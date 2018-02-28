@@ -210,7 +210,16 @@ const EditableHtml = withStyles(theme => ({
 EditableHtml.propTypes = {
   markup: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+<<<<<<< HEAD
   className: PropTypes.string
+=======
+  className: PropTypes.string,
+  activePlugins: PropTypes.arrayOf((values, k) => {
+    const allValid = values.every(v => DEFAULT_PLUGINS.includes(v));
+    return !allValid &&
+      new Error(`Invalid values: ${values}, values must be one of [${DEFAULT_PLUGINS.join(',')}]`)
+  })
+>>>>>>> af2de14... fix(types): fix type checking
 }
 
 export default EditableHtml;
