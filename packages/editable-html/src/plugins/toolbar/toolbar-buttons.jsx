@@ -1,8 +1,9 @@
 import React from 'react';
 import debug from 'debug';
 import injectSheet from 'react-jss';
+import classNames from 'classnames';
 
-const styles = {
+const styles = () => ({
   button: {
     color: 'grey',
     display: 'inline-flex',
@@ -14,15 +15,9 @@ const styles = {
   active: {
     color: 'black'
   }
-}
+});
 
-const buttonStyles = {
-  root: Object.assign(styles.button, {
-    display: 'inline-flex'
-  })
-}
-
-const rbLog = debug('editable-html:raw-button');
+const log = debug('pie-elements:editable-html:raw-button');
 
 export class RawButton extends React.Component {
 
@@ -30,7 +25,7 @@ export class RawButton extends React.Component {
     super(props)
 
     this.onClick = (e) => {
-      rbLog('[onClick]');
+      log('[onClick]');
       e.preventDefault();
       const { onClick } = this.props;
       onClick(e)
@@ -38,14 +33,20 @@ export class RawButton extends React.Component {
   }
 
   render() {
-    const { classes, children } = this.props;
-    return <div
-      onMouseDown={this.onClick}
-      className={classes.root}>{children}</div>;
+    const { classes, children, active } = this.props;
+    const names = classNames(classes.button, active && classes.active);
+
+    return (
+      <div
+        className={names}
+        onMouseDown={this.onClick}>
+        {children}
+      </div>
+    );
   }
 }
 
-export const Button = injectSheet(buttonStyles)(RawButton);
+export const Button = injectSheet(styles())(RawButton);
 
 
 export class RawMarkButton extends React.Component {
@@ -60,16 +61,15 @@ export class RawMarkButton extends React.Component {
 
   render() {
     const { classes, children, active } = this.props;
-    let className = classes.button;
-
-    if (active) {
-      className += ` ${classes.active}`;
-    }
-
-    return <span
-      className={className}
-      onMouseDown={this.onToggle}>{children}</span>
+    const names = classNames(classes.button, active && classes.active);
+    return (
+      <span
+        className={names}
+        onMouseDown={this.onToggle}>
+        {children}
+      </span>
+    );
   }
 }
 
-export const MarkButton = injectSheet(styles)(RawMarkButton);
+export const MarkButton = injectSheet(styles())(RawMarkButton);

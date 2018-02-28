@@ -15,11 +15,11 @@ import Underlined from 'material-ui-icons/FormatUnderlined';
 import _ from 'lodash';
 import classNames from 'classnames';
 import debug from 'debug';
-import { findSingleNode } from './utils';
+import { findSingleNode, hasBlock, hasMark } from '../utils';
 //TODO: use mui createStyleSheet (ensures the class overrides work).
 import injectSheet from 'react-jss';
 
-const log = debug('editable-html:plugins:toolbar');
+const log = debug('pie-elements:editable-html:plugins:toolbar');
 
 const toolbarStyle = {
   toolbar: {
@@ -49,25 +49,36 @@ const toolbarStyle = {
 
 const ToolbarButton = (props) => {
 
-  const hasMark = (type) => {
-    const { value } = props;
-    return value.marks.some(mark => mark.type == type)
+
+  const onToggle = () => {
+    const c = props.onToggle(props.value.change(), props);
+    props.onChange(c);
   }
 
   if (props.isMark) {
-    const isActive = hasMark(props.type);
-    return <MarkButton
-      active={isActive}
-      label={props.type}
-      onToggle={() => {
-        const c = props.onToggle(props.value.change())
-        props.onChange(c);
-      }}
-      mark={props.type}
-    >{props.icon}</MarkButton>
+    const isActive = hasMark(props.value, props.type);
+    log('[ToolbarButton] mark:isActive: ', isActive);
+    return (
+      <MarkButton
+        active={isActive}
+        label={props.type}
+        onToggle={onToggle}
+        mark={props.type}>
+        {props.icon}
+      </MarkButton>
+    );
   } else {
-    return <Button
-      onClick={() => props.onClick(props.value, props.onChange)}>{props.icon}</Button>
+
+    // const isActive = hasBlock(props.value, props.type);
+    const isActive = props.isActive ? props.isActive(props.value) : hasBlock(props.value, props.type);
+    log('[ToolbarButton] block:isActive: ', isActive);
+    return (
+      <Button
+        onClick={() => props.onClick(props.value, props.onChange)}
+        active={isActive}>
+        {props.icon}
+      </Button>
+    )
   }
 }
 
@@ -149,6 +160,8 @@ export class RawToolbar extends React.Component {
         return p.toolbar.supports && p.toolbar.supports(node);
       }
     });
+
+
     log('[render] plugin: ', plugin);
 
     const CustomToolbar = plugin && plugin.toolbar && plugin.toolbar.customToolbar ? plugin.toolbar.customToolbar(node) : null;

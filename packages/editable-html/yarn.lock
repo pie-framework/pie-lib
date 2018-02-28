@@ -34,8 +34,13 @@
     react-portal "^3.1.0"
 
 "@types/jss@^9.3.0":
+<<<<<<< HEAD
   version "9.3.1"
   resolved "https://registry.yarnpkg.com/@types/jss/-/jss-9.3.1.tgz#9e113f5d3e6bba6d8babca6be528b5cf19d37a16"
+=======
+  version "9.3.0"
+  resolved "https://registry.yarnpkg.com/@types/jss/-/jss-9.3.0.tgz#0f8484fd03ded206917be27b58217f274a0ad59f"
+>>>>>>> 39415a2... feat(bulleted-list): add new plugin, add activePlugins prop, export DEFAULT_PLUGINS.
 
 "@types/node@*":
   version "8.5.1"
@@ -48,8 +53,13 @@
     "@types/react" "*"
 
 "@types/react@*":
+<<<<<<< HEAD
   version "16.0.40"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.0.40.tgz#caabc2296886f40b67f6fc80f0f3464476461df9"
+=======
+  version "16.0.38"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.0.38.tgz#76617433ea10274505f60bb86eddfdd0476ffdc2"
+>>>>>>> 39415a2... feat(bulleted-list): add new plugin, add activePlugins prop, export DEFAULT_PLUGINS.
 
 abab@^1.0.3:
   version "1.0.4"
@@ -4168,13 +4178,13 @@ lodash.sortby@^4.7.0:
   version "4.7.0"
   resolved "https://registry.yarnpkg.com/lodash.sortby/-/lodash.sortby-4.7.0.tgz#edd14c824e2cc9c1e0b0a1b42bb5210516a42438"
 
-lodash.throttle@^4.1.1:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/lodash.throttle/-/lodash.throttle-4.1.1.tgz#c23e91b710242ac70c37f1e1cda9274cc39bf2f4"
-
 lodash.uniq@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
+
+lodash@^4.1.1:
+  version "4.17.5"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.5.tgz#99a92d65c0272debe8c96b6057bc8fbfa3bed511"
 
 lodash@^4.13.1, lodash@^4.14.0, lodash@^4.15.0, lodash@^4.17.2, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.6.1:
   version "4.17.4"
@@ -4247,8 +4257,45 @@ material-ui-icons@^1.0.0-beta.17:
     recompose "^0.26.0"
 
 material-ui@^1.0.0-beta.27:
+<<<<<<< HEAD
   version "1.0.0-beta.36"
   resolved "https://registry.yarnpkg.com/material-ui/-/material-ui-1.0.0-beta.36.tgz#e877c570008cb0e4e7784fc69ff0359121a4866a"
+=======
+  version "1.0.0-beta.35"
+  resolved "https://registry.yarnpkg.com/material-ui/-/material-ui-1.0.0-beta.35.tgz#eeac6be307c0469943c7686e5c6bd4eaa6b1b563"
+  dependencies:
+    "@types/jss" "^9.3.0"
+    "@types/react-transition-group" "^2.0.6"
+    babel-runtime "^6.26.0"
+    brcast "^3.0.1"
+    classnames "^2.2.5"
+    deepmerge "^2.0.1"
+    dom-helpers "^3.2.1"
+    hoist-non-react-statics "^2.3.1"
+    jss "^9.3.3"
+    jss-camel-case "^6.0.0"
+    jss-default-unit "^8.0.2"
+    jss-global "^3.0.0"
+    jss-nested "^6.0.1"
+    jss-props-sort "^6.0.0"
+    jss-vendor-prefixer "^7.0.0"
+    keycode "^2.1.9"
+    lodash "^4.2.0"
+    normalize-scroll-left "^0.1.2"
+    prop-types "^15.6.0"
+    react-event-listener "^0.5.1"
+    react-jss "^8.1.0"
+    react-popper "^0.8.0"
+    react-scrollbar-size "^2.0.2"
+    react-transition-group "^2.2.1"
+    recompose "^0.26.0"
+    scroll "^2.0.3"
+    warning "^3.0.0"
+
+material-ui@^1.0.0-beta.6:
+  version "1.0.0-beta.24"
+  resolved "https://registry.yarnpkg.com/material-ui/-/material-ui-1.0.0-beta.24.tgz#a51452d0486f88fd7f13ebed869793f298aa800c"
+>>>>>>> 39415a2... feat(bulleted-list): add new plugin, add activePlugins prop, export DEFAULT_PLUGINS.
   dependencies:
     "@types/jss" "^9.3.0"
     "@types/react-transition-group" "^2.0.6"
@@ -4995,6 +5042,10 @@ popper.js@^1.12.9:
   version "1.12.9"
   resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.12.9.tgz#0dfbc2dff96c451bb332edcfcfaaf566d331d5b3"
 
+popper.js@^1.12.9:
+  version "1.12.9"
+  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.12.9.tgz#0dfbc2dff96c451bb332edcfcfaaf566d331d5b3"
+
 portfinder@^1.0.13, portfinder@^1.0.9:
   version "1.0.13"
   resolved "https://registry.yarnpkg.com/portfinder/-/portfinder-1.0.13.tgz#bb32ecd87c27104ae6ee44b5a3ccbf0ebb1aede9"
@@ -5501,6 +5552,13 @@ react-popper@^0.8.0:
     popper.js "^1.12.9"
     prop-types "^15.6.0"
 
+react-popper@^0.8.0:
+  version "0.8.2"
+  resolved "https://registry.yarnpkg.com/react-popper/-/react-popper-0.8.2.tgz#092095ff13933211d3856d9f325511ec3a42f12c"
+  dependencies:
+    popper.js "^1.12.9"
+    prop-types "^15.6.0"
+
 react-portal@^3.1.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/react-portal/-/react-portal-3.2.0.tgz#4224e19b2b05d5cbe730a7ba0e34ec7585de0043"
@@ -5859,6 +5917,12 @@ scroll@^2.0.3:
   dependencies:
     rafl "~1.2.1"
 
+scroll@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/scroll/-/scroll-2.0.3.tgz#0951b785544205fd17753bc3d294738ba16fc2ab"
+  dependencies:
+    rafl "~1.2.1"
+
 select-hose@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/select-hose/-/select-hose-2.0.0.tgz#625d8658f865af43ec962bfc376a37359a4994ca"
@@ -5972,38 +6036,38 @@ slash@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/slash/-/slash-1.0.0.tgz#c41f2f6c39fc16d1cd17ad4b5d896114ae470d55"
 
-slate-base64-serializer@^0.2.17:
-  version "0.2.17"
-  resolved "https://registry.yarnpkg.com/slate-base64-serializer/-/slate-base64-serializer-0.2.17.tgz#d38fead65194824cb2caa7fcba0f0620b1627a16"
+slate-base64-serializer@^0.2.25:
+  version "0.2.25"
+  resolved "https://registry.yarnpkg.com/slate-base64-serializer/-/slate-base64-serializer-0.2.25.tgz#da5032a5e36d49dbd5630a8c634fe61146bf2fd4"
   dependencies:
     isomorphic-base64 "^1.0.2"
 
-slate-dev-logger@^0.1.36:
-  version "0.1.36"
-  resolved "https://registry.yarnpkg.com/slate-dev-logger/-/slate-dev-logger-0.1.36.tgz#ecdb37dbf944dfc742bab23b6a20d5a0472db95e"
+slate-dev-logger@^0.1.39:
+  version "0.1.39"
+  resolved "https://registry.yarnpkg.com/slate-dev-logger/-/slate-dev-logger-0.1.39.tgz#744a69b85034244713e6de51483af5713c345af4"
 
-slate-html-serializer@^0.4.11:
-  version "0.4.15"
-  resolved "https://registry.yarnpkg.com/slate-html-serializer/-/slate-html-serializer-0.4.15.tgz#25809ced543f051b5a960d15bb519c132e8375b8"
+slate-html-serializer@^0.5.6:
+  version "0.5.6"
+  resolved "https://registry.yarnpkg.com/slate-html-serializer/-/slate-html-serializer-0.5.6.tgz#458fef3354299240ce4ebe9268c5622cef618db4"
   dependencies:
-    slate-dev-logger "^0.1.36"
+    slate-dev-logger "^0.1.39"
     type-of "^2.0.1"
 
-slate-plain-serializer@^0.4.15:
-  version "0.4.15"
-  resolved "https://registry.yarnpkg.com/slate-plain-serializer/-/slate-plain-serializer-0.4.15.tgz#bb4ff0594b7c56b88158d52ac99196972e5d0ba9"
+slate-plain-serializer@^0.5.6:
+  version "0.5.6"
+  resolved "https://registry.yarnpkg.com/slate-plain-serializer/-/slate-plain-serializer-0.5.6.tgz#8a40e94017d37c532a65163f1df17543ec9cae93"
   dependencies:
-    slate-dev-logger "^0.1.36"
+    slate-dev-logger "^0.1.39"
 
-slate-prop-types@^0.4.15:
-  version "0.4.15"
-  resolved "https://registry.yarnpkg.com/slate-prop-types/-/slate-prop-types-0.4.15.tgz#1cdfef01e33ac6d7b43142c59ece340b7b52a888"
+slate-prop-types@^0.4.23:
+  version "0.4.23"
+  resolved "https://registry.yarnpkg.com/slate-prop-types/-/slate-prop-types-0.4.23.tgz#8278a133fdce898d5c9d64ac1b3b002de335b9de"
   dependencies:
-    slate-dev-logger "^0.1.36"
+    slate-dev-logger "^0.1.39"
 
-slate-react@^0.10.17:
-  version "0.10.22"
-  resolved "https://registry.yarnpkg.com/slate-react/-/slate-react-0.10.22.tgz#1a6e178a307ddf98d1774adcfce7b8ca8fb1ef15"
+slate-react@^0.12.0:
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/slate-react/-/slate-react-0.12.0.tgz#20b5cce1f02f069ff8a385f9d4382d1a9d6de049"
   dependencies:
     debug "^2.3.2"
     get-window "^1.1.1"
@@ -6011,19 +6075,23 @@ slate-react@^0.10.17:
     is-in-browser "^1.1.3"
     is-window "^1.0.2"
     keycode "^2.1.2"
-    lodash.throttle "^4.1.1"
+    lodash "^4.1.1"
     prop-types "^15.5.8"
     react-immutable-proptypes "^2.1.0"
     react-portal "^3.1.0"
     selection-is-backward "^1.0.0"
-    slate-base64-serializer "^0.2.17"
-    slate-dev-logger "^0.1.36"
-    slate-plain-serializer "^0.4.15"
-    slate-prop-types "^0.4.15"
+    slate-base64-serializer "^0.2.25"
+    slate-dev-logger "^0.1.39"
+    slate-plain-serializer "^0.5.6"
+    slate-prop-types "^0.4.23"
 
-slate@^0.31.3:
-  version "0.31.7"
-  resolved "https://registry.yarnpkg.com/slate/-/slate-0.31.7.tgz#595b5e4ef45f7385a4535a4595fb0c6ebe326b45"
+slate-schema-violations@^0.1.4:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/slate-schema-violations/-/slate-schema-violations-0.1.4.tgz#f87ad4091f72c66edf32f418a33d80e5e87ad5e8"
+
+slate@^0.33.0:
+  version "0.33.0"
+  resolved "https://registry.yarnpkg.com/slate/-/slate-0.33.0.tgz#6a4e084aa3a55dc5b09bce1b7037f284396b9160"
   dependencies:
     debug "^2.3.2"
     direction "^0.1.5"
@@ -6031,7 +6099,8 @@ slate@^0.31.3:
     is-empty "^1.0.0"
     is-plain-object "^2.0.4"
     lodash "^4.17.4"
-    slate-dev-logger "^0.1.36"
+    slate-dev-logger "^0.1.39"
+    slate-schema-violations "^0.1.4"
     type-of "^2.0.1"
 
 sntp@1.x.x:

@@ -5,13 +5,13 @@ import Image from './plugins/image';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Value } from 'slate';
-import { buildPlugins } from './plugins';
+import { buildPlugins, DEFAULT_PLUGINS } from './plugins';
 import debug from 'debug';
 import { getHashes } from 'crypto';
 import { withStyles } from 'material-ui/styles';
 import classNames from 'classnames';
 
-export { htmlToValue, valueToHtml }
+export { htmlToValue, valueToHtml, DEFAULT_PLUGINS }
 
 
 const log = debug('editable-html');
@@ -25,8 +25,7 @@ export class RawEditableHtml extends React.Component {
       value: htmlToValue(props.markup)
     }
 
-
-    this.plugins = buildPlugins({
+    this.plugins = buildPlugins(props.activePlugins, {
       math: {
         onClick: this.onMathClick,
         onFocus: this.onPluginFocus,
@@ -211,6 +210,7 @@ EditableHtml.propTypes = {
   markup: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
 <<<<<<< HEAD
+<<<<<<< HEAD
   className: PropTypes.string
 =======
   className: PropTypes.string,
@@ -220,6 +220,10 @@ EditableHtml.propTypes = {
       new Error(`Invalid values: ${values}, values must be one of [${DEFAULT_PLUGINS.join(',')}]`)
   })
 >>>>>>> af2de14... fix(types): fix type checking
+=======
+  className: PropTypes.string,
+  formatting: PropTypes.arrayOf(PropTypes.string)
+>>>>>>> 39415a2... feat(bulleted-list): add new plugin, add activePlugins prop, export DEFAULT_PLUGINS.
 }
 
 export default EditableHtml;
