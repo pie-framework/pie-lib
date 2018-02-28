@@ -1,6 +1,7 @@
 import Bold from 'material-ui-icons/FormatBold';
 import Code from 'material-ui-icons/Code';
 import BulletedListIcon from 'material-ui-icons/FormatListBulleted';
+import NumberedListIcon from 'material-ui-icons/FormatListNumbered';
 import ImagePlugin from './image';
 import Italic from 'material-ui-icons/FormatItalic';
 import MathPlugin from './math';
@@ -12,6 +13,7 @@ import Underline from 'material-ui-icons/FormatUnderlined';
 import compact from 'lodash/compact';
 import debug from 'debug';
 import BulletedList from './bulleted-list';
+import EditList from './edit-list';
 
 const log = debug('editable-html:plugins');
 
@@ -57,7 +59,8 @@ export const DEFAULT_PLUGINS = [
   'strikethrough',
   'bulleted-list',
   'image',
-  'math'
+  'math',
+  'numbered-list',
 ];
 
 export const buildPlugins = (activePlugins, opts) => {
@@ -76,6 +79,7 @@ export const buildPlugins = (activePlugins, opts) => {
     addIf('image', opts.image && opts.image.onDelete && ImagePlugin(opts.image)),
     addIf('math', MathPlugin(opts.math)),
     addIf('bulleted-list', BulletedList({ key: 'l', type: 'bulleted-list', icon: <BulletedListIcon /> })),
+    addIf('numbered-list', EditList({ key: 'ol', type: 'numbered-list', icon: <NumberedListIcon /> })),
     ToolbarPlugin(opts.toolbar)
   ]);
 }

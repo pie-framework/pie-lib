@@ -119,7 +119,7 @@ export default class RteDemo extends React.Component {
   render() {
 
     const { markup } = this.state;
-
+    
     const imageSupport = {
       add: this.addImage,
       delete: this.onDeleteImage
@@ -131,8 +131,10 @@ export default class RteDemo extends React.Component {
         markup={markup}
         onChange={this.onChange}
         imageSupport={imageSupport}
-        activePlugins={['bold', 'bulleted-list']}
+        activePlugins={['bold', 'bulleted-list', 'numbered-list']}
         onBlur={this.onBlur}
+        width="400px"
+        height="300px"
       />
       <input type="file" hidden ref={r => this.fileInput = r}></input>
       <br />
