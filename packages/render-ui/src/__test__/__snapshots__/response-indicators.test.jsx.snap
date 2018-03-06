@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`response-indicators snapshot  - no feedback  1`] = `
+<div
+  className={undefined}
+>
+  <span
+    onClick={[Function]}
+  >
+    <div>
+      correct
+    </div>
+  </span>
+</div>
+`;
+
+exports[`response-indicators snapshot  - with feedback  1`] = `
+<div
+  className="RawIndicator-responseIndicator-1"
+>
+  <span
+    onClick={[Function]}
+  >
+    <div>
+      correct
+    </div>
+  </span>
+  <div>
+    <span>
+      Popover
+    </span>
+    <span>
+      <div
+        className="Feedback-corespringFeedback-5"
+      >
+        <div
+          className="Feedback-content-6 Feedback-correct-7"
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "hi",
+            }
+          }
+        />
+      </div>
+    </span>
+  </div>
+</div>
+`;

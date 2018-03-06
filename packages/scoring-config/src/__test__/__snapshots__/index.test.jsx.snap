@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`index empty - renders snapshots 1`] = `
+<div
+  className={undefined}
+>
+  <p
+    className="MuiTypography-root-1 MuiTypography-body1-10"
+    type="subheading"
+  >
+    Partial Scoring Rules
+  </p>
+  <br />
+  <p
+    className="MuiTypography-root-1 MuiTypography-body1-10"
+  >
+    If there is more than one correct answer to this question, you may allow partial credit based on the number of correct answers submitted. This is optional.
+  </p>
+  <br />
+  <div
+    className="Component-root-25"
+  >
+    <p
+      className="MuiTypography-root-1 MuiTypography-body1-10"
+      type="caption"
+    >
+      You must have more than 1 correct response to set up partial scoring
+    </p>
+  </div>
+</div>
+`;

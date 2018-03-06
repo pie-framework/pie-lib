@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button renders 1`] = `
+<div
+  className="root"
+  onMouseDown={[Function]}
+/>
+`;
+
+exports[`MarkButton renders active 1`] = `
+<span
+  className="button active"
+  onMouseDown={[Function]}
+/>
+`;
+
+exports[`MarkButton renders not active 1`] = `
+<span
+  className="button"
+  onMouseDown={[Function]}
+/>
+`;

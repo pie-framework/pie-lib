@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`component snapshot 1`] = `
+<div
+  className="root"
+>
+  <div
+    data-mock-component="true"
+  >
+    EditableMathInput
+  </div>
+</div>
+`;

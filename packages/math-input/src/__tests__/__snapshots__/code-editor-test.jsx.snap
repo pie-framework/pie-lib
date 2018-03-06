@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CodeEditor 1`] = `
+<textarea
+  className="CodeEditor-root-1"
+  onBlur={undefined}
+  onChange={[Function]}
+  tabIndex="-1"
+  value={undefined}
+/>
+`;

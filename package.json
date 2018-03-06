@@ -1,0 +1,9 @@
+{
+  "name": "@pie-lib/pie-lib",
+  "description": "the pie-libs mono repo",
+  "private": true,
+  "license": "MIT",
+  "devDependencies": {
+    "lerna": "^2.8.0"
+  }
+}

@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`feedback-menu renders correctly 1`] = `
+<div>
+  <div
+    onClick={[Function]}
+  />
+  <div>
+    Menu
+  </div>
+</div>
+`;

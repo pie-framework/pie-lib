@@ -1,0 +1,134 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`index - snapshot renders correctly 1`] = `
+<div
+  className="RawChoiceConfiguration-choiceConfiguration-2"
+>
+  <div
+    className="RawChoiceConfiguration-topRow-3"
+  >
+    <div
+      className="MuiFormControl-root-13 RawInputContainer-formControl-12 RawChoiceConfiguration-toggle-6"
+      onBlur={[Function]}
+      onFocus={[Function]}
+    >
+      <label
+        className="MuiFormLabel-root-23 MuiInputLabel-root-17 MuiInputLabel-formControl-18 MuiInputLabel-animated-21 MuiInputLabel-shrink-20"
+        data-shrink={true}
+      >
+        Correct
+      </label>
+    </div>
+    <div
+      aria-describedby={undefined}
+      className="MuiFormControl-root-13 RawChoiceConfiguration-value-4"
+      onBlur={[Function]}
+      onFocus={[Function]}
+    >
+      <label
+        className="MuiFormLabel-root-23 MuiInputLabel-root-17 MuiInputLabel-formControl-18 MuiInputLabel-animated-21 MuiInputLabel-shrink-20"
+        data-shrink={true}
+        htmlFor={undefined}
+      >
+        Value
+      </label>
+      <div
+        className="MuiInput-root-27 MuiInput-formControl-28 MuiInput-inkbar-29 MuiInput-underline-33"
+        onBlur={[Function]}
+        onFocus={[Function]}
+      >
+        <input
+          aria-invalid={false}
+          aria-required={false}
+          autoComplete={undefined}
+          autoFocus={undefined}
+          className="MuiInput-input-36"
+          defaultValue={undefined}
+          disabled={false}
+          id={undefined}
+          name={undefined}
+          onChange={[Function]}
+          onKeyDown={undefined}
+          onKeyUp={undefined}
+          placeholder={undefined}
+          readOnly={undefined}
+          required={undefined}
+          rows={undefined}
+          type="text"
+          value="foo"
+        />
+      </div>
+    </div>
+    <div
+      className="MuiFormControl-root-13 RawInputContainer-formControl-12 Component-labelContainer-42"
+      onBlur={[Function]}
+      onFocus={[Function]}
+    >
+      <label
+        className="MuiFormLabel-root-23 MuiInputLabel-root-17 MuiInputLabel-formControl-18 MuiInputLabel-animated-21 MuiInputLabel-shrink-20"
+        data-shrink={true}
+      >
+        Label
+      </label>
+      <div
+        className="Component-editorHolder-43"
+      >
+        <div>
+          EditableHtml
+        </div>
+      </div>
+    </div>
+    <div
+      className="MuiFormControl-root-13 RawInputContainer-formControl-12 RawChoiceConfiguration-feedback-7"
+      onBlur={[Function]}
+      onFocus={[Function]}
+    >
+      <label
+        className="MuiFormLabel-root-23 MuiInputLabel-root-17 MuiInputLabel-formControl-18 MuiInputLabel-animated-21 MuiInputLabel-shrink-20"
+        data-shrink={true}
+      >
+        Feedback
+      </label>
+      <div>
+        <div
+          onClick={[Function]}
+        />
+        <div>
+          Menu
+        </div>
+      </div>
+    </div>
+    <div
+      className="MuiFormControl-root-13 RawInputContainer-formControl-12 RawChoiceConfiguration-delete-10"
+      onBlur={[Function]}
+      onFocus={[Function]}
+    >
+      <label
+        className="MuiFormLabel-root-23 MuiInputLabel-root-17 MuiInputLabel-formControl-18 MuiInputLabel-animated-21 MuiInputLabel-shrink-20"
+        data-shrink={true}
+      >
+        Delete
+      </label>
+    </div>
+  </div>
+  <div
+    className="MuiFormControl-root-13 RawInputContainer-formControl-12 Component-labelContainer-42 Component-text-44"
+    onBlur={[Function]}
+    onFocus={[Function]}
+  >
+    <label
+      className="MuiFormLabel-root-23 MuiInputLabel-root-17 MuiInputLabel-formControl-18 MuiInputLabel-animated-21 MuiInputLabel-shrink-20"
+      data-shrink={true}
+    >
+      Feedback Text
+    </label>
+    <div
+      className="Component-editorHolder-43"
+    >
+      <div>
+        EditableHtml
+      </div>
+    </div>
+  </div>
+</div>
+`;

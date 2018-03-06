@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className=""
+  onFocus={undefined}
+>
+  <div
+    aria-valuenow={50}
+    className="MuiLinearProgress-root-1 MuiLinearProgress-primaryColor-2"
+  >
+    <div
+      className="MuiLinearProgress-bar-8 MuiLinearProgress-primaryColorBar-3 MuiLinearProgress-determinateBar1-15"
+      style={
+        Object {
+          "transform": "scaleX(0.5)",
+        }
+      }
+    />
+  </div>
+  <img
+    src={undefined}
+    style={
+      Object {
+        "height": "50px",
+        "width": "50px",
+      }
+    }
+  />
+</div>
+`;

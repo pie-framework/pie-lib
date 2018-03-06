@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="holder"
+>
+  <span
+    className="button-0-1"
+    onMouseDown={[Function]}
+  >
+    25%
+  </span>
+  <span
+    className="button-0-1"
+    onMouseDown={[Function]}
+  >
+    50%
+  </span>
+  <span
+    className="button-0-1"
+    onMouseDown={[Function]}
+  >
+    75%
+  </span>
+  <span
+    className="button-0-1 active-0-2"
+    onMouseDown={[Function]}
+  >
+    100%
+  </span>
+</div>
+`;
