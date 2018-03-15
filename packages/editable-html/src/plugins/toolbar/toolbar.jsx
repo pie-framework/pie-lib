@@ -69,8 +69,7 @@ const ToolbarButton = (props) => {
     );
   } else {
 
-    // const isActive = hasBlock(props.value, props.type);
-    const isActive = props.isActive ? props.isActive(props.value) : hasBlock(props.value, props.type);
+    const isActive = props.isActive ? props.isActive(props.value, props.type) : hasBlock(props.value, props.type);
     log('[ToolbarButton] block:isActive: ', isActive);
     return (
       <Button

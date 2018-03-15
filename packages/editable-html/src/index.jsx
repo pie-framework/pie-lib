@@ -197,6 +197,7 @@ export class RawEditableHtml extends React.Component {
           onBlur={this.onBlur}
           onFocus={this.onFocus}
           focusedNode={focusedNode}
+          onKeyDown={(node) => {}}
           style={style} />
       </div >
     );

@@ -13,7 +13,7 @@ import Underline from 'material-ui-icons/FormatUnderlined';
 import compact from 'lodash/compact';
 import debug from 'debug';
 import BulletedList from './bulleted-list';
-import EditList from './edit-list';
+import List from './list';
 
 const log = debug('editable-html:plugins');
 
@@ -78,8 +78,10 @@ export const buildPlugins = (activePlugins, opts) => {
     addIf('underline', MarkHotkey({ key: 'u', type: 'underline', icon: <Underline />, tag: 'u' })),
     addIf('image', opts.image && opts.image.onDelete && ImagePlugin(opts.image)),
     addIf('math', MathPlugin(opts.math)),
-    addIf('bulleted-list', BulletedList({ key: 'l', type: 'bulleted-list', icon: <BulletedListIcon /> })),
-    addIf('numbered-list', EditList({ key: 'ol', type: 'numbered-list', icon: <NumberedListIcon /> })),
-    ToolbarPlugin(opts.toolbar)
+    //addIf('bulleted-list', BulletedList({ key: 'l', type: 'bulleted-list', icon: <BulletedListIcon /> })),
+    addIf('bulleted-list', List({ key: 'l', type: 'bulleted-list', icon: <BulletedListIcon /> })),
+    addIf('numbered-list', List({ key: 'n', type: 'numbered-list', icon: <NumberedListIcon /> })),
+    ToolbarPlugin(opts.toolbar),
+    
   ]);
 }

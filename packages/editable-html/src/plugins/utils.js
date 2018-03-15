@@ -23,3 +23,5 @@ export const hasMark = (value, type) => value && value.marks.some(mark => mark.t
 
 
 export const hasBlock = (value, type) => value && value.blocks.some(node => node.type == type);
+
+export const hasNode = ({document}, type) => document && document.nodes.some(node => node.type == type);
