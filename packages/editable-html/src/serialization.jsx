@@ -3,6 +3,7 @@ import React from 'react';
 import debug from 'debug';
 import { serialization as imgSerialization } from './plugins/image';
 import { serialization as mathSerialization } from './plugins/math';
+import { serialization as listSerialization } from './plugins/list';
 
 const log = debug('editable-html:serialization');
 
@@ -14,10 +15,8 @@ const log = debug('editable-html:serialization');
 
 const BLOCK_TAGS = {
   div: 'div',
+  span: 'span',
   p: 'paragraph',
-  li: 'list-item',
-  ul: 'bulleted-list',
-  ol: 'numbered-list',
   blockquote: 'quote',
   pre: 'code',
   h1: 'heading-one',
@@ -123,7 +122,7 @@ const RULES = [
       }
     }
   }
-].concat([imgSerialization, mathSerialization]);
+].concat([imgSerialization, mathSerialization, listSerialization]);
 
 const serializer = new Html({
   defaultBlock: 'div',

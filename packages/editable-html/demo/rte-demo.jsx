@@ -12,7 +12,7 @@ const puppySrc = 'http://cdn2-www.dogtime.com/assets/uploads/gallery/30-impossib
  */
 // const html = `<div><div>hi</div><img src="${puppySrc}"></img></div>`;
 // const html = `<span data-mathjax="">\\frac{1}{2}</span>`;
-const html = `<ul><li>apple</li></ul>`;
+const html = `<ul><li><span>apple<span></li></ul>`;
 
 
 // const j = { "kind": "value", "document": { "kind": "document", "data": {}, "nodes": [{ "kind": "block", "type": "div", "nodes": [{ "kind": "text", "leaves": [{ "kind": "leaf", "text": "a" }] }, { "kind": "block", "type": "image", "isVoid": true, "nodes": [], "data": { "src": "http://cdn2-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-8.jpg", "width": null, "height": null } }] }] } }
@@ -119,7 +119,7 @@ export default class RteDemo extends React.Component {
   render() {
 
     const { markup } = this.state;
-    
+
     const imageSupport = {
       add: this.addImage,
       delete: this.onDeleteImage

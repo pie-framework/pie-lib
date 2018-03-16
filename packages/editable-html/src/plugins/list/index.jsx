@@ -1,74 +1,95 @@
+import React from 'react'; // eslint-disable-line
+import EditList from 'slate-edit-list';
 import debug from 'debug';
-import React from 'react';
-import { hasBlock, hasNode } from '../utils';
+
+const log = debug('editable-html:plugins:list');
+
+const b = (type, next, childNodes) => ({
+  kind: 'block',
+  type,
+  nodes: next(childNodes)
+});
+
+export const serialization = {
+
+  deserialize(el, next) {
+
+    const name = el.tagName.toLowerCase();
+
+    if (name === 'li') {
+      return b('list_item', next, el.childNodes);
+    }
+
+    if (name === 'ul') {
+      return b('ul_list', next, el.childNodes);
+    }
+
+    if (name === 'ol') {
+      return b('ol_list', next, el.childNodes);
+    }
+  },
+  serialize(object, children) {
+
+    if (object.kind !== 'block') return;
+
+    if (object.type === 'list_item') {
+      return <li>{children}</li>;
+    }
+    if (object.type === 'ul_list') {
+      return <ul>{children}</ul>;
+    }
+    if (object.type === 'ol_list') {
+      return <ol>{children}</ol>;
+    }
+  }
+}
 
 export default (options) => {
-  const { type, key, icon } = options;
+  const { type, icon } = options;
 
-  const isActive = ({document}, type) => hasNode({document}, type);
-  
-  return {
-    toolbar : {
-      isMark: false,
-      type,
-      icon,
-      isActive,
-      onClick : (value, onChange) => {
-        const change = value.change();
-        const { document } = value;
+  const core = EditList({
+    typeDefault: 'span'
+  });
 
-        const DEFAULT_NODE = 'paragraph';
-       
-        if (type != 'bulleted-list' && type != 'numbered-list') {
-          const isActive = hasBlock(value, type)
-          const isList = hasBlock(value, 'list-item')
-          console.log("IN IF");
-          if (isList) {
-            change
-              .setBlocks(isActive ? DEFAULT_NODE : type)
-              .unwrapBlock('numbered-list')
-              .unwrapBlock('bulleted-list')
-          } else {
-            change.setBlocks(isActive ? DEFAULT_NODE : type)
-          }
-        } else { 
-          // Handle the extra wrapping required for list buttons.
-          const isList = hasBlock(value, 'list-item')
-          const isType = value.blocks.some(block => {
-            return !!document.getClosest(block.key, parent => parent.type == type)
-          })
-         
-          if (isList && isType) {
-            change
-              .setBlocks(DEFAULT_NODE)
-              .unwrapBlock('numbered-list')
-              .unwrapBlock('bulleted-list')
-          } else if (isList) {
-            change
-            .unwrapBlock('numbered-list')
-            .unwrapBlock('bulleted-list')
-              .wrapBlock(type)
-          } else {
-            change.setBlocks('list-item').wrapBlock(type)
-          }
-        }
-        onChange(change)  
+  core.renderNode = (props) => {
+    const { node, attributes, children } = props;
+
+    switch (node.type) {
+      case 'ul_list':
+        return <ul {...attributes}>{children}</ul>;
+      case 'ol_list':
+        return <ol {...attributes}>{children}</ol>;
+      case 'list_item':
+        return <li {...props.attributes}>{props.children}</li>;
+    }
+  }
+
+  const toolbar = {
+    isMark: false,
+    type,
+    icon,
+    isActive: (value, type) => {
+      if (!core.utils.isSelectionInList(value)) {
+        return false;
       }
+      const current = core.utils.getCurrentList(value);
+      return current.type === type;
     },
-
-    renderNode(props) {
-      const { attributes, children, node } = props
-      const type = node && node.get('type');
-     
-      switch (type) {
-        case 'bulleted-list':
-          return <ul {...attributes}>{children}</ul>
-        case 'numbered-list':
-          return <ol {...attributes}>{children}</ol>  
-        case 'list-item':
-          return <li {...attributes}>{children}</li>
+    onClick: (value, onChange) => {
+      log('[onClick]', value);
+      const inList = core.utils.isSelectionInList(value);
+      if (inList) {
+        const change = value.change().call(core.changes.unwrapList);
+        onChange(change);
+      } else {
+        const change = value.change().call(core.changes.wrapInList, type);
+        onChange(change);
       }
     }
   }
+
+  core.toolbar = toolbar;
+
+  return core;
 
 }

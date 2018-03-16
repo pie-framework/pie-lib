@@ -79,9 +79,9 @@ export const buildPlugins = (activePlugins, opts) => {
     addIf('image', opts.image && opts.image.onDelete && ImagePlugin(opts.image)),
     addIf('math', MathPlugin(opts.math)),
     //addIf('bulleted-list', BulletedList({ key: 'l', type: 'bulleted-list', icon: <BulletedListIcon /> })),
-    addIf('bulleted-list', List({ key: 'l', type: 'bulleted-list', icon: <BulletedListIcon /> })),
-    addIf('numbered-list', List({ key: 'n', type: 'numbered-list', icon: <NumberedListIcon /> })),
+    addIf('bulleted-list', List({ key: 'l', type: 'ul_list', icon: <BulletedListIcon /> })),
+    addIf('numbered-list', List({ key: 'n', type: 'ol_list', icon: <NumberedListIcon /> })),
     ToolbarPlugin(opts.toolbar),
-    
+
   ]);
 }
