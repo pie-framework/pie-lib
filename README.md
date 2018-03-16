@@ -1,16 +1,8 @@
-# pie-elements
+# pie-lib
 
-The pie elements package set.
+Some reusable react components.
 
 Elements are in `packages`.
-
-
-## lerna
-
-
-### issues 
-
-* whilst publishing w/ lerna will bump dependencies in the main packages, it won't do so for internal pie packages (ie controller/configure).
 
 # install
 
@@ -26,26 +18,17 @@ npm install
 
 # running
 
-### info
-```shell
-cd packages/multiple-choice
-pie info
-```
-Sometimes you want to link in libraries to the config ui: 
-
-```
-cd docs/demo/.pie/.configure
-npm link @pie-lib/editable-html # will link up the local editable-html package
-```
+most packages have a `demo` directory in which you can run: `../node_modules/.bin/webpack-dev-server --hot --inline` in.
 
 # release/publish
 
 ```bash
+# run lint
+npm run lint
+
 lerna publish --conventional-commits # will add conventional commits to each packages CHANGELOG.md
 # you can add --skip-npm and/or --skip-git if you want to bypass publishing to either.
 ```
-
-> TODO: we need to set up a flow where we merge `develop` -> `master` then run the publish cmd.
 
 ### dependencies
 * [lerna js][lerna] for handling multiple packages in a mono repo
