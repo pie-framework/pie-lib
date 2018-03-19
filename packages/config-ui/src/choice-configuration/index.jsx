@@ -4,7 +4,7 @@ import { withStyles } from 'material-ui/styles';
 import TextField from 'material-ui/TextField';
 import classNames from 'classnames';
 import InputContainer from '../input-container';
-import EditableHtml from '@pie-lib/editable-html';
+import EditableHtml, { serialization } from '@pie-lib/editable-html';
 import { InputCheckbox, InputRadio } from '../inputs';
 import FeedbackMenu from './feedback-menu';
 import ActionDelete from 'material-ui-icons/Delete';
