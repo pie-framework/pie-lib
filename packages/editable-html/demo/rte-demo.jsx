@@ -126,13 +126,13 @@ export default class RteDemo extends React.Component {
       delete: this.onDeleteImage
     }
 
+    //activePlugins={['bold', 'bulleted-list', 'numbered-list']}
     return (<div>
       <h1>Editable Html Demo</h1>
       <EditableHtml
         markup={markup}
         onChange={this.onChange}
         imageSupport={imageSupport}
-        activePlugins={['bold', 'bulleted-list', 'numbered-list']}
         onBlur={this.onBlur}
       />
       <input type="file" hidden ref={r => this.fileInput = r}></input>

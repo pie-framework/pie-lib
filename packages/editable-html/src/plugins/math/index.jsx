@@ -22,8 +22,8 @@ export default function MathPlugin(options) {
         const change = value.change().insertInline(math);
         onChange(change);
       },
-      supports: node => (node && node.kind === 'inline' && node.type === 'math'),
-      customToolbar: node => (node && node.kind === 'inline' && node.type === 'math') && MathToolbar
+      supports: node => (node && node.object === 'inline' && node.type === 'math'),
+      customToolbar: node => (node && node.object === 'inline' && node.type === 'math') && MathToolbar
     },
     schema: {
       document: { types: ['math'] }
@@ -53,7 +53,7 @@ export default function MathPlugin(options) {
 }
 
 export const inlineMath = () => Inline.create({
-  kind: 'inline',
+  object: 'inline',
   type: 'math',
   isVoid: true,
   data: {
@@ -75,7 +75,7 @@ export const serialization = {
     log('[deserialize] hasMathJaxAttribute: ', hasMathJaxAttribute);
     if (tagName === 'span' && hasMathJaxAttribute) {
       return {
-        kind: 'inline',
+        object: 'inline',
         type: 'math',
         isVoid: true,
         nodes: [],

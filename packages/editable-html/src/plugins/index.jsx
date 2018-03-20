@@ -49,6 +49,8 @@ function MarkHotkey(options) {
   }
 }
 
+//TODO: re-add 'math' - the changes arent being picked up correctly
+//TODO: re-add 'image' - the image handler cant find the placeholder
 export const DEFAULT_PLUGINS = [
   'bold',
   'code',
@@ -56,8 +58,6 @@ export const DEFAULT_PLUGINS = [
   'underline',
   'strikethrough',
   'bulleted-list',
-  'image',
-  'math',
   'numbered-list',
 ];
 

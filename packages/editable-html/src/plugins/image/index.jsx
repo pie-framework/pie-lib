@@ -96,7 +96,7 @@ export const serialization = {
     const height = parseInt(style.height.replace('px', ''), 10) || null;
 
     const out = {
-      kind: 'block',
+      object: 'block',
       type: 'image',
       isVoid: true,
       nodes: [],

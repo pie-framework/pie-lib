@@ -5,7 +5,7 @@ import debug from 'debug';
 const log = debug('editable-html:plugins:list');
 
 const b = (type, next, childNodes) => ({
-  kind: 'block',
+  object: 'block',
   type,
   nodes: next(childNodes)
 });
@@ -30,7 +30,7 @@ export const serialization = {
   },
   serialize(object, children) {
 
-    if (object.kind !== 'block') return;
+    if (object.block !== 'block') return;
 
     if (object.type === 'list_item') {
       return <li>{children}</li>;

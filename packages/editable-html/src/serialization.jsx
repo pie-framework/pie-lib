@@ -63,14 +63,14 @@ const blocks = {
       }
     }
     return {
-      kind: 'block',
+      object: 'block',
       type: block,
       nodes: next(el.childNodes)
     }
   },
   serialize: (object, children) => {
 
-    if (object.kind !== 'block') return;
+    if (object.object !== 'block') return;
 
     log('[blocks:serialize] object: ', object, children);
     for (var key in BLOCK_TAGS) {
@@ -89,13 +89,13 @@ const marks = {
     if (!mark) return
     log('[deserialize] mark: ', mark);
     return {
-      kind: 'mark',
+      object: 'mark',
       type: mark,
       nodes: next(el.childNodes)
     }
   },
   serialize(object, children) {
-    if (object.kind !== 'mark') return;
+    if (object.block !== 'mark') return;
 
     for (var key in MARK_TAGS) {
       if (MARK_TAGS[key] === object.type) {
@@ -116,7 +116,7 @@ const codeBlocks = {
       : el.childNodes
 
     return {
-      kind: 'block',
+      object: 'block',
       type: 'code',
       nodes: next(childNodes)
     }
@@ -128,7 +128,7 @@ const links = {
   deserialize(el, next) {
     if (el.tagName.toLowerCase() != 'a') return
     return {
-      kind: 'inline',
+      object: 'inline',
       type: 'link',
       nodes: next(el.childNodes),
       data: {
@@ -179,21 +179,13 @@ const TEXT_RULE = {
   },
 }
 
-const findFirstNonNested = (c) => {
-
-  if (c.children && c.children.size === 1) {
-    const inner = c.children.get(0);
-    if (inner && inner.type === 'div') {
-      return findFirstNonNested(inner);
-    } else {
-      return inner;
-    }
-  }
-  return c;
-}
-
 const RULES = [
-  TEXT_RULE, blocks, marks, listSerialization, mathSerialization, imgSerialization];
+  listSerialization,
+  mathSerialization,
+  imgSerialization,
+  TEXT_RULE,
+  blocks,
+  marks];
 
 const serializer = new Html({
   defaultBlock: 'div',
