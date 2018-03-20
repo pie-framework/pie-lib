@@ -1,7 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Editor from './editor';
-import * as serialization from './serialization';
+import { htmlToValue, valueToHtml } from './serialization';
+
+/**
+ * Export lower level Editor and serialization functions.
+ */
+export { htmlToValue, valueToHtml, Editor }
 
 /**
  * Wrapper around the editor that exposes a `markup` and `onChange(markup:string)` api.
@@ -19,8 +24,8 @@ export default class EditableHtml extends React.Component {
   constructor(props) {
     super(props);
 
-    const v = serialization.htmlToValue(props.markup);
-    const mu = serialization.valueToHtml(v);
+    const v = htmlToValue(props.markup);
+    const mu = valueToHtml(v);
 
     if (mu !== props.markup) {
       props.onChange(mu);
@@ -33,8 +38,8 @@ export default class EditableHtml extends React.Component {
 
   componentWillReceiveProps(props) {
 
-    const v = serialization.htmlToValue(props.markup)
-    const current = serialization.htmlToValue(this.props.markup);
+    const v = htmlToValue(props.markup)
+    const current = htmlToValue(this.props.markup);
 
     if (!v.equals(current)) {
       this.setState({ value: v });
@@ -42,7 +47,7 @@ export default class EditableHtml extends React.Component {
   }
 
   onChange = value => {
-    const html = serialization.valueToHtml(value);
+    const html = valueToHtml(value);
 
     if (html !== this.props.markup) {
       this.props.onChange(html);
