@@ -3,7 +3,13 @@
   "description": "the pie-libs mono repo",
   "private": true,
   "license": "MIT",
+  "scripts": {
+    "lint": "./node_modules/.bin/eslint --ext .js --ext .jsx packages"
+  },
   "devDependencies": {
-    "lerna": "^2.8.0"
+    "lerna": "^2.8.0",
+    "eslint": "^4.18.2",
+    "babel-eslint": "^8.2.2",
+    "eslint-plugin-react": "^7.7.0"
   }
 }

@@ -1,15 +1,11 @@
 import { Editor, findNode } from 'slate-react';
 import { htmlToValue, valueToHtml } from './serialization';
-
-import Image from './plugins/image';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Value } from 'slate';
 import { buildPlugins, DEFAULT_PLUGINS } from './plugins';
 import debug from 'debug';
-import { getHashes } from 'crypto';
 import { withStyles } from 'material-ui/styles';
-import classNames from 'classnames';
 
 export { htmlToValue, valueToHtml, DEFAULT_PLUGINS }
 
@@ -17,6 +13,15 @@ export { htmlToValue, valueToHtml, DEFAULT_PLUGINS }
 const log = debug('editable-html');
 
 export class RawEditableHtml extends React.Component {
+
+  static propTypes = {
+    onChange: PropTypes.func.isRequired,
+    markup: PropTypes.string.isRequired,
+    imageSupport: PropTypes.object,
+    activePlugins: PropTypes.arrayOf(PropTypes.string),
+    width: PropTypes.string,
+    height: PropTypes.string,
+  }
 
   constructor(props) {
     super(props);
@@ -60,7 +65,6 @@ export class RawEditableHtml extends React.Component {
           this.onEditingDone();
         }
       },
-
     });
   }
 
@@ -100,6 +104,7 @@ export class RawEditableHtml extends React.Component {
   onEditingDone = () => {
     log('[onEditingDone]');
     this.setState({ stashedValue: null, focusedNode: null });
+    log('[onEditingDone] value: ', this.state.value);
     const html = valueToHtml(this.state.value);
     this.props.onChange(html);
   }
@@ -180,31 +185,29 @@ export class RawEditableHtml extends React.Component {
   }
 
   render() {
-    const { classes, className, width, height } = this.props;
-    const { value, showToolbar, focusedNode } = this.state;
-    const style = {width, height};
+    const { width, height } = this.props;
+    const { value, focusedNode } = this.state;
+    const style = { width, height };
     log('[render]', value.document);
 
-    const names = classNames(classes.editableHtml, className);
 
     return (
       <div style={style}>
         <Editor
+          plugins={this.plugins}
           ref={r => this.editor = r}
           value={value}
           onChange={this.onChange}
-          plugins={this.plugins}
           onBlur={this.onBlur}
           onFocus={this.onFocus}
           focusedNode={focusedNode}
-          onKeyDown={(node) => {}}
           style={style} />
-      </div >
+      </div>
     );
   }
 }
 
-const EditableHtml = withStyles(theme => ({
+const EditableHtml = withStyles(() => ({
   editableHtml: {
     fontFamily: 'Roboto, sans-serif'
   }
@@ -213,7 +216,7 @@ const EditableHtml = withStyles(theme => ({
 EditableHtml.propTypes = {
   markup: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  activePlugins: PropTypes.arrayOf((values, k) => {
+  activePlugins: PropTypes.arrayOf((values) => {
     const allValid = values.every(v => DEFAULT_PLUGINS.includes(v));
     return !allValid &&
       new Error(`Invalid values: ${values}, values must be one of [${DEFAULT_PLUGINS.join(',')}]`)
