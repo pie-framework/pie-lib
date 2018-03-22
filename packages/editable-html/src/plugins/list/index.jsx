@@ -60,7 +60,7 @@ export default (options) => {
       case 'ol_list':
         return <ol {...attributes}>{children}</ol>;
       case 'list_item':
-        return <li {...props.attributes}>{props.children}</li>;
+        return <li {...attributes}>{children}</li>;
     }
   }
 
