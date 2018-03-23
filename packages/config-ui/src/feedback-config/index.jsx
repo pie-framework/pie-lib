@@ -46,21 +46,21 @@ export class FeedbackConfig extends React.Component {
   }
 
   render() {
-    const { defaults, feedback } = this.props;
+    const { defaults, feedback, allowPartial } = this.props;
 
     const correct = this.mkModel('correct');
     const incorrect = this.mkModel('incorrect');
-    const partial = this.mkModel('partial');
+    const partial = allowPartial && this.mkModel('partial');
 
     return <FormSection label="Feedback">
       <FeedbackSelector
         label="If correct, show"
         feedback={correct}
         onFeedbackChange={this.onCorrectChange} />
-      <FeedbackSelector
+      {allowPartial && <FeedbackSelector
         label="If partially correct, show"
         feedback={partial}
-        onFeedbackChange={this.onPartialChange} />
+        onFeedbackChange={this.onPartialChange} />}
       <FeedbackSelector
         label="If incorrect, show"
         feedback={incorrect}
@@ -70,10 +70,11 @@ export class FeedbackConfig extends React.Component {
 }
 
 FeedbackConfig.propTypes = {
+  allowPartial: PropTypes.bool,
   defaults: PropTypes.shape({
     correct: PropTypes.string.isRequired,
     incorrect: PropTypes.string.isRequired,
-    partial: PropTypes.string.isRequired
+    partial: PropTypes.string
   }),
   feedback: PropTypes.shape({
     correctFeedback: PropTypes.string,
@@ -86,6 +87,7 @@ FeedbackConfig.propTypes = {
 }
 
 FeedbackConfig.defaultProps = {
+  allowPartial: true,
   defaults: {
     correct: 'Correct',
     incorrect: 'Incorrect',
