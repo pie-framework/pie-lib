@@ -3,3 +3,4 @@ lerna-debug.log
 .vscode
 .idea
 .DS_Store
+*.lock
