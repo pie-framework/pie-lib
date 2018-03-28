@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.2.0"></a>
+# [2.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@2.1.5...@pie-lib/config-ui@2.2.0) (2018-03-28)
+
+
+### Features
+
+* **feedback-config:**  add optional 'allowPartial' prop to disable partial feedback controls ([eeaf312](https://github.com/pie-framework/pie-lib/commit/eeaf312))
+
+
+
+
 <a name="2.1.5"></a>
 ## 2.1.5 (2018-03-06)
 
