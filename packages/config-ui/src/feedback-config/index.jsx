@@ -1,25 +1,26 @@
-import Card, { CardContent } from 'material-ui/Card';
-
 import FeedbackSelector from './feedback-selector';
 import FormSection from '../form-section';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Typography from 'material-ui/Typography';
 import cloneDeep from 'lodash/cloneDeep';
 import { withStyles } from 'material-ui/styles';
 
 export { FeedbackSelector };
 
-const style = {}
+const style = {};
 
-export const buildDefaults = (input) => Object.assign({}, {
-  correctFeedbackType: 'default',
-  incorrectFeedbackType: 'default',
-  partialFeedbackType: 'default'
-}, input)
+export const buildDefaults = input =>
+  Object.assign(
+    {},
+    {
+      correctFeedbackType: 'default',
+      incorrectFeedbackType: 'default',
+      partialFeedbackType: 'default'
+    },
+    input
+  );
 
 export class FeedbackConfig extends React.Component {
-
   constructor(props) {
     super(props);
     this.onCorrectChange = this.onChange.bind(this, 'correct');
@@ -29,10 +30,13 @@ export class FeedbackConfig extends React.Component {
 
   onChange(key, data) {
     const { defaults, onChange, feedback } = this.props;
-    const { type, default: defaultFeedback, customFeedback } = data;
+    const { type, customFeedback } = data;
     const out = cloneDeep(feedback);
     out[`${key}FeedbackType`] = type;
-    out[`${key}Feedback`] = type === 'custom' ? customFeedback : (type === 'default' ? defaults[key] : '');
+    out[`${key}Feedback`] =
+      type === 'custom'
+        ? customFeedback
+        : type === 'default' ? defaults[key] : '';
     onChange(out);
   }
 
@@ -42,30 +46,37 @@ export class FeedbackConfig extends React.Component {
       type: feedback[`${key}FeedbackType`],
       default: defaults[key],
       customFeedback: feedback[`${key}Feedback`]
-    }
+    };
   }
 
   render() {
-    const { defaults, feedback, allowPartial } = this.props;
+    const { allowPartial } = this.props;
 
     const correct = this.mkModel('correct');
     const incorrect = this.mkModel('incorrect');
     const partial = allowPartial && this.mkModel('partial');
 
-    return <FormSection label="Feedback">
-      <FeedbackSelector
-        label="If correct, show"
-        feedback={correct}
-        onFeedbackChange={this.onCorrectChange} />
-      {allowPartial && <FeedbackSelector
-        label="If partially correct, show"
-        feedback={partial}
-        onFeedbackChange={this.onPartialChange} />}
-      <FeedbackSelector
-        label="If incorrect, show"
-        feedback={incorrect}
-        onFeedbackChange={this.onIncorrectChange} />
-    </FormSection>;
+    return (
+      <FormSection label="Feedback">
+        <FeedbackSelector
+          label="If correct, show"
+          feedback={correct}
+          onFeedbackChange={this.onCorrectChange}
+        />
+        {allowPartial && (
+          <FeedbackSelector
+            label="If partially correct, show"
+            feedback={partial}
+            onFeedbackChange={this.onPartialChange}
+          />
+        )}
+        <FeedbackSelector
+          label="If incorrect, show"
+          feedback={incorrect}
+          onFeedbackChange={this.onIncorrectChange}
+        />
+      </FormSection>
+    );
   }
 }
 
@@ -82,9 +93,10 @@ FeedbackConfig.propTypes = {
     incorrectFeedback: PropTypes.string,
     incorrectFeedbackType: PropTypes.string,
     defaultFeedback: PropTypes.string,
-    defaultFeedbackType: PropTypes.string,
-  })
-}
+    defaultFeedbackType: PropTypes.string
+  }),
+  onChange: PropTypes.func.isRequired
+};
 
 FeedbackConfig.defaultProps = {
   allowPartial: true,
@@ -99,8 +111,8 @@ FeedbackConfig.defaultProps = {
     incorrectFeedback: '',
     incorrectFeedbackType: 'default',
     partialFeedback: '',
-    partialFeedbackType: 'default',
+    partialFeedbackType: 'default'
   }
-}
+};
 
 export default withStyles(style, { name: 'FeedbackConfig' })(FeedbackConfig);
