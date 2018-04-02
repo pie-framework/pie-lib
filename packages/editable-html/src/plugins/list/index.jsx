@@ -69,6 +69,7 @@ export default (options) => {
     type,
     icon,
     isActive: (value, type) => {
+     
       if (!core.utils.isSelectionInList(value)) {
         return false;
       }
@@ -87,7 +88,7 @@ export default (options) => {
       }
     }
   }
-
+  
   core.toolbar = toolbar;
 
   return core;

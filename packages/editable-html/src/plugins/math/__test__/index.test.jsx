@@ -75,7 +75,7 @@ describe('MathPlugin', () => {
 
       const out = mod.serialization.deserialize(el, next);
       expect(out).toEqual({
-        kind: 'inline',
+        object: 'inline',
         type: 'math',
         isVoid: true,
         nodes: [],
