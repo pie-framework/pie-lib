@@ -1,0 +1,8 @@
+{
+  "sourceMaps": "inline",
+  "presets": [
+    "react",
+    "env",
+    "stage-0"
+  ]
+}
