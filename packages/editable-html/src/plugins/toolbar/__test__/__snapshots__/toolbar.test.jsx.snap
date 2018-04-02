@@ -7,12 +7,7 @@ exports[`toolbar default renders default toolbar 1`] = `
 >
   <div
     className={undefined}
-  >
-    <div
-      className="root-0-4"
-      onMouseDown={[Function]}
-    />
-  </div>
+  />
   <div
     className="shared"
   >

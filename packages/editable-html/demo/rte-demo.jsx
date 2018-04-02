@@ -1,4 +1,4 @@
-import EditableHtml from '../src';
+import EditableHtml, { DEFAULT_PLUGINS } from '../src';
 import React from 'react';
 import { Value } from 'slate'
 import _ from 'lodash';
@@ -11,7 +11,9 @@ const puppySrc = 'http://cdn2-www.dogtime.com/assets/uploads/gallery/30-impossib
  * Note: See core schema rules - it normalizes so you can only have blocks or inline and text in a block.
  */
 // const html = `<div><div>hi</div><img src="${puppySrc}"></img></div>`;
-const html = `<span data-mathjax="">\\frac{1}{2}</span>`;
+// const html = `<span data-mathjax="">\\frac{1}{2}</span>`;
+// const html = `<ul><li><span>apple<span></li></ul>`;
+const html = `hi`;
 
 
 // const j = { "kind": "value", "document": { "kind": "document", "data": {}, "nodes": [{ "kind": "block", "type": "div", "nodes": [{ "kind": "text", "leaves": [{ "kind": "leaf", "text": "a" }] }, { "kind": "block", "type": "image", "isVoid": true, "nodes": [], "data": { "src": "http://cdn2-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-8.jpg", "width": null, "height": null } }] }] } }
@@ -124,6 +126,7 @@ export default class RteDemo extends React.Component {
       delete: this.onDeleteImage
     }
 
+    //activePlugins={['bold', 'bulleted-list', 'numbered-list']}
     return (<div>
       <h1>Editable Html Demo</h1>
       <EditableHtml
@@ -136,7 +139,7 @@ export default class RteDemo extends React.Component {
       <br />
       <br />
       <h4>markup</h4>
-      <pre>{markup}</pre>
+      <pre className="prettyprint">{markup}</pre>
     </div>);
   }
 }

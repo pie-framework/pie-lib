@@ -63,9 +63,7 @@ describe('toolbar', () => {
 
     beforeEach(() => {
       plugins = [
-        {
-          toolbar: {}
-        }
+  
       ];
     });
 

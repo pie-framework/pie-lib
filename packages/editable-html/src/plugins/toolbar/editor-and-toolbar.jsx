@@ -1,4 +1,4 @@
-import { findSingleNode, selectedNode } from './utils';
+import { findSingleNode, selectedNode } from '../utils';
 
 import React from 'react';
 import Toolbar from './toolbar';
@@ -14,14 +14,14 @@ export class RawEditorAndToolbar extends React.Component {
   render() {
 
     const {
-     classes,
+      classes,
       children,
       value,
       plugins,
       onChange,
       onDone,
       focusedNode
-   } = this.props;
+    } = this.props;
 
 
     const inFocus = value.isFocused || (focusedNode !== null && focusedNode !== undefined);

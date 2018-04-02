@@ -1,8 +1,9 @@
 {
   "sourceMaps": "inline",
   "presets": [
-    "react",
-    "env",
+    "env", 
+    "react", 
     "stage-0"
-  ]
+  ],
+  "plugins": ["transform-class-properties"]
 }

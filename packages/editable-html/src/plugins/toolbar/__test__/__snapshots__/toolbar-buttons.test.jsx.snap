@@ -2,7 +2,7 @@
 
 exports[`Button renders 1`] = `
 <div
-  className="root"
+  className=""
   onMouseDown={[Function]}
 />
 `;

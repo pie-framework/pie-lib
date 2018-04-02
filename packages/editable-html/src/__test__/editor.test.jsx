@@ -1,13 +1,16 @@
 import React from 'react';
-import EditableHtml, { RawEditableHtml, htmlToValue, valueToHtml } from '../index';
+import { htmlToValue, valueToHtml } from '../index';
+import Editor from '../editor';
 import { shallow, configure } from 'enzyme';
 import debug from 'debug';
-
 
 import { mockComponents } from './utils';
 import Adapter from 'enzyme-adapter-react-15';
 
 const log = debug('editable-html:test');
+
+const value = htmlToValue('hi');
+
 beforeAll(() => {
   configure({ adapter: new Adapter() });
 });
@@ -15,7 +18,7 @@ beforeAll(() => {
 jest.mock('@pie-lib/math-input', () => {
   return {
     EditableMathInput: jest.fn()
-  }
+  };
 });
 
 expect.extend({
@@ -25,26 +28,14 @@ expect.extend({
     return {
       pass,
       message: () => `expected ${html} to match ${v}`
-    }
+    };
   }
 });
 
-
-test('className', () => {
-  const wrapper = shallow(<EditableHtml
-    className={'foo'}
-    markup={'hi'}
-    onChange={jest.fn()} />);
-
-  expect(wrapper.hasClass('foo')).toBeTruthy();
-});
-
 test('onFocus/onBlur resets the value', () => {
-
-  const wrapper = shallow(<RawEditableHtml
-    markup={'hi'}
-    classes={{}}
-    onChange={jest.fn()} />);
+  const wrapper = shallow(
+    <Editor value={value} classes={{}} onChange={jest.fn()} />
+  );
 
   wrapper.instance().onFocus();
 
@@ -52,7 +43,8 @@ test('onFocus/onBlur resets the value', () => {
   expect(wrapper.state('stashedValue')).toEqualHtml('<div>hi</div>');
   wrapper.instance().onChange({ value: htmlToValue('new value') });
   expect(wrapper.state('value')).toEqualHtml('<div>new value</div>');
-  return wrapper.instance()
+  return wrapper
+    .instance()
     .onBlur({})
     .then(() => {
       expect(wrapper.state('value')).toEqualHtml('<div>hi</div>');
@@ -60,14 +52,11 @@ test('onFocus/onBlur resets the value', () => {
 });
 
 test('onFocus stashes the value', () => {
-
-  const wrapper = shallow(<RawEditableHtml
-    markup={'hi'}
-    classes={{}}
-    onChange={jest.fn()} />);
+  const wrapper = shallow(
+    <Editor value={value} classes={{}} onChange={jest.fn()} />
+  );
 
   wrapper.instance().onFocus();
 
   expect(wrapper.state('stashedValue')).toEqualHtml('<div>hi</div>');
-
 });

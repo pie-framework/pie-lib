@@ -6,16 +6,17 @@ exports[`renders correctly 1`] = `
   onFocus={undefined}
 >
   <div
-    aria-valuenow={50}
-    className="MuiLinearProgress-root-1 MuiLinearProgress-primaryColor-2"
+    className="MuiLinearProgress-root-1 MuiLinearProgress-colorPrimary-2"
+    mode="determinate"
+    role="progressbar"
   >
     <div
-      className="MuiLinearProgress-bar-8 MuiLinearProgress-primaryColorBar-3 MuiLinearProgress-determinateBar1-15"
-      style={
-        Object {
-          "transform": "scaleX(0.5)",
-        }
-      }
+      className="MuiLinearProgress-bar-9 MuiLinearProgress-barColorPrimary-10 MuiLinearProgress-bar1Indeterminate-12"
+      style={Object {}}
+    />
+    <div
+      className="MuiLinearProgress-bar-9 MuiLinearProgress-barColorPrimary-10 MuiLinearProgress-bar2Indeterminate-13"
+      style={Object {}}
     />
   </div>
   <img
