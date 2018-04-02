@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/editable-html",
-  "version": "2.2.4",
+  "version": "2.2.5",
   "description": "",
   "license": "ISC",
   "main": "src/index.jsx",
@@ -9,7 +9,7 @@
   },
   "author": "",
   "dependencies": {
-    "@pie-lib/math-input": "^1.3.1",
+    "@pie-lib/math-input": "^1.3.2",
     "classnames": "^2.2.5",
     "debug": "^3.0.0",
     "immutable": "^3.8.2",

@@ -12,7 +12,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "0.1.9",
+  "version": "0.1.10",
   "main": "src/index.jsx",
   "scripts": {
     "test": "./node_modules/.bin/mocha --require babel-register test/**"
@@ -43,7 +43,7 @@
     "webpack-dev-server": "^2.5.1"
   },
   "dependencies": {
-    "@pie-lib/icons": "^0.3.4",
+    "@pie-lib/icons": "^0.3.5",
     "classnames": "^2.2.5",
     "jss": "^8.1.0",
     "less": "^2.7.2",

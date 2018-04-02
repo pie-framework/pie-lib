@@ -11,9 +11,7 @@ const b = (type, next, childNodes) => ({
 });
 
 export const serialization = {
-
   deserialize(el, next) {
-
     const name = el.tagName.toLowerCase();
 
     if (name === 'li') {
@@ -29,7 +27,6 @@ export const serialization = {
     }
   },
   serialize(object, children) {
-
     if (object.block !== 'block') return;
 
     if (object.type === 'list_item') {
@@ -42,16 +39,16 @@ export const serialization = {
       return <ol>{children}</ol>;
     }
   }
-}
+};
 
-export default (options) => {
+export default options => {
   const { type, icon } = options;
 
   const core = EditList({
     typeDefault: 'span'
   });
 
-  core.renderNode = (props) => {
+  core.renderNode = props => {
     const { node, attributes, children } = props;
 
     switch (node.type) {
@@ -62,7 +59,7 @@ export default (options) => {
       case 'list_item':
         return <li {...attributes}>{children}</li>;
     }
-  }
+  };
 
   const toolbar = {
     isMark: false,
@@ -87,10 +84,9 @@ export default (options) => {
         onChange(change);
       }
     }
-  }
-  
+  };
+
   core.toolbar = toolbar;
 
   return core;
-
-}
+};
