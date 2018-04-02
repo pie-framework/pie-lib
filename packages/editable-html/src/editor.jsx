@@ -189,7 +189,7 @@ export class Editor extends React.Component {
   }
 
   render() {
-    const { width, height } = this.props;
+    const { width, height, disabled } = this.props;
     const { value, focusedNode } = this.state;
     const style = { width, height };
     log('[render]', value.document);
@@ -205,7 +205,8 @@ export class Editor extends React.Component {
           onBlur={this.onBlur}
           onFocus={this.onFocus}
           focusedNode={focusedNode}
-          style={style} />
+          style={style}
+          readOnly={disabled} />
       </div>
     );
   }
