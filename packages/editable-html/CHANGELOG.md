@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.0.0"></a>
+# [3.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@2.2.5...@pie-lib/editable-html@3.0.0) (2018-04-02)
+
+
+### Bug Fixes
+
+* **EditableHtml:** wrap the Editor with a component that checks markup against value ([57b7dda](https://github.com/pie-framework/pie-lib/commit/57b7dda))
+* **Editor:** use  `object` instead of  `kind` w/ slate@0.33.0 ([3bb0cca](https://github.com/pie-framework/pie-lib/commit/3bb0cca))
+* **list:** use logic from 'slate-edit-list' ([d0be5fe](https://github.com/pie-framework/pie-lib/commit/d0be5fe))
+* **types:** fix type checking ([a088983](https://github.com/pie-framework/pie-lib/commit/a088983))
+
+
+### Features
+
+* **bulleted-list:** add new plugin, add activePlugins prop, export DEFAULT_PLUGINS. ([6268832](https://github.com/pie-framework/pie-lib/commit/6268832))
+* **EditableHtml:** export `Editor` ([c3e53fe](https://github.com/pie-framework/pie-lib/commit/c3e53fe))
+
+
+### BREAKING CHANGES
+
+* **Editor:** 'math' and 'image' plugins have been disabled pending fixes.
+
+
+
+
 <a name="2.2.5"></a>
 ## [2.2.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@2.2.4...@pie-lib/editable-html@2.2.5) (2018-03-28)
 
