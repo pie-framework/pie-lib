@@ -3,9 +3,13 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Some react based charting components",
-  "keywords": ["react", "pie", "charting"],
+  "keywords": [
+    "react",
+    "pie",
+    "charting"
+  ],
   "repository": "pie-framework/pie-lib",
   "main": "src/index.js",
   "scripts": {
