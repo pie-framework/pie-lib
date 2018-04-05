@@ -189,14 +189,15 @@ export class Editor extends React.Component {
   }
 
   render() {
-    const { width, height, disabled } = this.props;
+    const { width, height, disabled, highlightShape } = this.props;
     const { value, focusedNode } = this.state;
-    const style = { width, height };
+    let background = highlightShape && 'rgb(0,0,0,0.1)';
+    const style = { width, height};
+    const rootStyle = { width, height, background};
     log('[render]', value.document);
-
-
+    
     return (
-      <div style={style}>
+      <div style={rootStyle}>
         <SlateEditor
           plugins={this.plugins}
           ref={r => this.editor = r}
