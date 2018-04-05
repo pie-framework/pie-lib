@@ -1,6 +1,6 @@
 import React from 'react';
 import { htmlToValue, valueToHtml } from '../index';
-import Editor from '../editor';
+import { Editor } from '../editor';
 import { shallow, configure } from 'enzyme';
 import debug from 'debug';
 
