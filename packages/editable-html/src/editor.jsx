@@ -195,8 +195,6 @@ export class Editor extends React.Component {
     const rootStyle = { width: width, minHeight: height, background: highlightShape && 'rgb(0,0,0,0.1)'};
     log('[render]', value.document);
     
-    console.log("rootStyle", rootStyle)
-    console.log("style", style)
     return (
       <div style={rootStyle}>
         <SlateEditor
