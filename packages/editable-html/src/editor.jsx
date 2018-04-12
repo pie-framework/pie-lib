@@ -19,8 +19,8 @@ export class Editor extends React.Component {
     onChange: PropTypes.func.isRequired,
     value: SlateTypes.value.isRequired,
     imageSupport: PropTypes.object,
-    width: PropTypes.string,
-    height: PropTypes.string,
+    width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     classes: PropTypes.object.isRequired,
     highlightShape: PropTypes.bool,
     disabled: PropTypes.bool,
@@ -204,15 +204,46 @@ export class Editor extends React.Component {
     }
   }
 
+  valueToSize = v => {
+    if (!v) {
+      return;
+    }
+
+    if (typeof v === 'string') {
+      if (v.endsWith('%')) {
+        return undefined;
+      } else if (v.endsWith('px')) {
+        return v;
+      } else {
+        const value = parseInt(v, 10);
+        return isNaN(value) ? value : `${value}px`;
+      }
+    }
+    if (typeof v === 'number') {
+      return `${v}px`;
+    }
+
+    return;
+  };
+
+  buildSizeStyle() {
+    const { width, height } = this.props;
+
+    return {
+      width: this.valueToSize(width),
+      height: this.valueToSize(height)
+    };
+  }
+
   render() {
-    const { width, height, disabled, highlightShape, classes } = this.props;
+    const { disabled, highlightShape, classes } = this.props;
     const { value, focusedNode } = this.state;
-    const style = { width: width, minHeight: height };
-    const rootStyle = { width: width, minHeight: height };
+
+    const sizeStyle = this.buildSizeStyle();
 
     return (
       <div
-        style={rootStyle}
+        style={sizeStyle}
         className={classNames(highlightShape && classes.withBg)}
       >
         <SlateEditor
@@ -223,8 +254,8 @@ export class Editor extends React.Component {
           onBlur={this.onBlur}
           onFocus={this.onFocus}
           focusedNode={focusedNode}
-          style={style}
           readOnly={disabled}
+          className={classes.slateEditor}
         />
       </div>
     );
@@ -233,7 +264,10 @@ export class Editor extends React.Component {
 
 const styles = {
   withBg: {
-    backgroundColor: 'rgba(0,0,0,0.1)'
+    backgroundColor: 'rgba(0,0,0,0.06)'
+  },
+  slateEditor: {
+    height: '100%'
   }
 };
 export default withStyles(styles)(Editor);

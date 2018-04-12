@@ -60,3 +60,44 @@ test('onFocus stashes the value', () => {
 
   expect(wrapper.state('stashedValue')).toEqualHtml('<div>hi</div>');
 });
+
+describe('buildSizeStyle', () => {
+  const wrapper = extras => {
+    const props = Object.assign({}, extras);
+    return shallow(
+      <Editor value={value} classes={{}} onChange={jest.fn()} {...props} />
+    );
+  };
+
+  it('builds width', () => {
+    const w = wrapper({ width: 100 });
+    expect(w.instance().buildSizeStyle()).toEqual({
+      width: '100px',
+      height: undefined
+    });
+  });
+
+  it('returns undefined for % ', () => {
+    const w = wrapper({ height: '100%', width: '100%' });
+    expect(w.instance().buildSizeStyle()).toEqual({
+      width: undefined,
+      height: undefined
+    });
+  });
+
+  it('builds height', () => {
+    const w = wrapper({ height: 100 });
+    expect(w.instance().buildSizeStyle()).toEqual({
+      width: undefined,
+      height: '100px'
+    });
+  });
+
+  it('builds', () => {
+    const w = wrapper({});
+    expect(w.instance().buildSizeStyle()).toEqual({
+      width: undefined,
+      height: undefined
+    });
+  });
+});

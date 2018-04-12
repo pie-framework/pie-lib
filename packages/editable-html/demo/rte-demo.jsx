@@ -1,11 +1,16 @@
 import EditableHtml, { DEFAULT_PLUGINS } from '../src';
 import React from 'react';
-import { Value } from 'slate'
+import { Value } from 'slate';
 import _ from 'lodash';
 import debug from 'debug';
+import Checkbox from 'material-ui/Checkbox';
+import { FormGroup, FormControlLabel } from 'material-ui/Form';
+import { isNullOrUndefined } from 'util';
+import TextField from 'material-ui/TextField';
 
 const log = debug('editable-html:rte-demo');
-const puppySrc = 'http://cdn2-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-8.jpg'
+const puppySrc =
+  'http://cdn2-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-8.jpg';
 
 /**
  * Note: See core schema rules - it normalizes so you can only have blocks or inline and text in a block.
@@ -15,24 +20,26 @@ const puppySrc = 'http://cdn2-www.dogtime.com/assets/uploads/gallery/30-impossib
 // const html = `<ul><li><span>apple<span></li></ul>`;
 const html = `hi`;
 
-
 // const j = { "kind": "value", "document": { "kind": "document", "data": {}, "nodes": [{ "kind": "block", "type": "div", "nodes": [{ "kind": "text", "leaves": [{ "kind": "leaf", "text": "a" }] }, { "kind": "block", "type": "image", "isVoid": true, "nodes": [], "data": { "src": "http://cdn2-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-8.jpg", "width": null, "height": null } }] }] } }
 
 export default class RteDemo extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
-      markup: html
-    }
+      markup: html,
+      showHighlight: false,
+      disabled: false,
+      width: '',
+      height: ''
+    };
   }
 
-  onChange = (markup) => {
+  onChange = markup => {
     log('onChange: ');
     this.setState({ markup });
-  }
+  };
 
-  handleInputFiles = (input) => {
+  handleInputFiles = input => {
     log('[handleInputFiles] input: ', input);
 
     const { imageHandler } = this.state;
@@ -62,15 +69,15 @@ export default class RteDemo extends React.Component {
       });
       reader.readAsDataURL(file);
     }
-  }
+  };
 
-  handleFileSelect = (event) => {
+  handleFileSelect = event => {
     log('[handleFileSelect] event: ', event);
     //disable the check cancelled call
     this.setState({ checkCancelled: false }, () => {
       this.handleInputFiles(event.target);
     });
-  }
+  };
 
   shouldComponentUpdate(nextProps, nextState) {
     if (this.state.insertImage !== nextState.insertImage) {
@@ -88,7 +95,7 @@ export default class RteDemo extends React.Component {
     this.fileInput.removeEventListener('change', this.handleFileSelect);
   }
 
-  addImage = (imageHandler) => {
+  addImage = imageHandler => {
     log('[addImage]', imageHandler);
     this.setState({ imageHandler });
     this.fileInput.click();
@@ -99,7 +106,7 @@ export default class RteDemo extends React.Component {
      * then call handleInputFiles if checkCancelled is true.
      * It's set to false if a 'change' event is fired.
      */
-    document.body.onfocus = (e) => {
+    document.body.onfocus = e => {
       log('focus document...', this.fileInput.files);
       document.body.onfocus = null;
       this.setState({ checkCancelled: true }, () => {
@@ -109,38 +116,87 @@ export default class RteDemo extends React.Component {
           }
         }, 200);
       });
-    }
-  }
+    };
+  };
 
   onDeleteImage = (url, done) => {
     log('delete image src: ', url);
     done();
-  }
+  };
 
   render() {
-
-    const { markup } = this.state;
-
+    const { markup, showHighlight, disabled, width, height } = this.state;
     const imageSupport = {
       add: this.addImage,
       delete: this.onDeleteImage
-    }
+    };
+
+    log('this.state', this.state);
 
     //activePlugins={['bold', 'bulleted-list', 'numbered-list']}
-    return (<div>
-      <h1>Editable Html Demo</h1>
-      <EditableHtml
-        markup={markup}
-        onChange={this.onChange}
-        imageSupport={imageSupport}
-        onBlur={this.onBlur}
-      />
-      <input type="file" hidden ref={r => this.fileInput = r}></input>
-      <br />
-      <br />
-      <h4>markup</h4>
-      <pre className="prettyprint">{markup}</pre>
-    </div>);
+    return (
+      <div>
+        <h1>Editable Html Demo</h1>
+        <FormGroup row>
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={showHighlight}
+                onChange={event =>
+                  this.setState({ showHighlight: event.target.checked })
+                }
+              />
+            }
+            label="show highlight"
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={disabled}
+                onChange={event =>
+                  this.setState({ disabled: event.target.checked })
+                }
+              />
+            }
+            label="disabled"
+          />
+          <FormControlLabel
+            control={
+              <TextField
+                value={width}
+                onChange={event => this.setState({ width: event.target.value })}
+              />
+            }
+            label="width"
+          />
+          <FormControlLabel
+            control={
+              <TextField
+                value={height}
+                onChange={event =>
+                  this.setState({ height: event.target.value })
+                }
+              />
+            }
+            label="height"
+          />
+        </FormGroup>
+        <EditableHtml
+          markup={markup}
+          onChange={this.onChange}
+          imageSupport={imageSupport}
+          onBlur={this.onBlur}
+          disabled={disabled}
+          highlightShape={showHighlight}
+          width={width}
+          height={height}
+        />
+        <input type="file" hidden ref={r => (this.fileInput = r)} />
+        <br />
+        <br />
+        <h4>markup</h4>
+        <pre className="prettyprint">{markup}</pre>
+      </div>
+    );
   }
 }
-

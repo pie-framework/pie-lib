@@ -6,7 +6,11 @@ exports[`toolbar renders 1`] = `
 >
   <div
     className="editorHolder editorInFocus"
-  />
+  >
+    <div
+      className={undefined}
+    />
+  </div>
   <div>
     ---- toolbar ------ 
   </div>
