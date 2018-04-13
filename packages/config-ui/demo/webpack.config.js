@@ -1,4 +1,5 @@
 module.exports = {
+  devtool: 'cheap-eval-source-map',
   context: __dirname,
   entry: './entry.jsx',
   output: {
@@ -6,15 +7,13 @@ module.exports = {
     path: __dirname
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.jsx$/,
         loader: 'babel-loader',
         options: {
           babelrc: false,
-          presets: [
-            "react",'env', 'stage-0'
-          ]
+          presets: ['react', 'env', 'stage-0']
         }
       },
       {
@@ -34,4 +33,4 @@ module.exports = {
     symlinks: false,
     extensions: ['.js', '.jsx']
   }
-}
+};

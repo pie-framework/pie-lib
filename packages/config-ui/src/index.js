@@ -1,4 +1,7 @@
-import FeedbackConfig, { FeedbackSelector, buildDefaults as feedbackConfigDefaults } from './feedback-config';
+import FeedbackConfig, {
+  FeedbackSelector,
+  buildDefaults as feedbackConfigDefaults
+} from './feedback-config';
 import { InputCheckbox, InputSwitch, InputRadio } from './inputs';
 import Langs, { LanguageControls } from './langs';
 
@@ -6,7 +9,6 @@ import Checkbox from './checkbox';
 import FormSection from './form-section';
 import Help from './help';
 import InputContainer from './input-container';
-import MultiLangInput from './multi-lang-input';
 import NumberTextField from './number-text-field';
 import TwoChoice, { NChoice } from './two-choice';
 import TagsInput from './tags-input';
@@ -28,9 +30,8 @@ export {
   Langs,
   LanguageControls,
   MuiBox,
-  MultiLangInput,
   NChoice,
   NumberTextField,
   TagsInput,
   TwoChoice
-}
+};
