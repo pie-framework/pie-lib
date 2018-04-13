@@ -5,25 +5,25 @@ exports[`renders correctly 1`] = `
   className="holder"
 >
   <span
-    className="button-0-1"
+    className="RawMarkButton-button-0-1-2"
     onMouseDown={[Function]}
   >
     25%
   </span>
   <span
-    className="button-0-1"
+    className="RawMarkButton-button-0-1-2"
     onMouseDown={[Function]}
   >
     50%
   </span>
   <span
-    className="button-0-1"
+    className="RawMarkButton-button-0-1-2"
     onMouseDown={[Function]}
   >
     75%
   </span>
   <span
-    className="button-0-1 active-0-2"
+    className="RawMarkButton-button-0-1-2 RawMarkButton-active-0-1-3"
     onMouseDown={[Function]}
   >
     100%

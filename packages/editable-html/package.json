@@ -43,6 +43,7 @@
     "file-loader": "^1.1.11",
     "jest": "^22.0.2",
     "lodash": "^4.17.4",
+    "sinon": "^4.5.0",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
     "react-test-renderer": "^16.3.1",
