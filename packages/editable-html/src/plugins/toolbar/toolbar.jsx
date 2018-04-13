@@ -1,17 +1,10 @@
 import { Button, MarkButton } from './toolbar-buttons';
 
-import Bold from 'material-ui-icons/FormatBold';
-import Check from 'material-ui-icons/Check';
-import Code from 'material-ui-icons/Code';
-import Delete from 'material-ui-icons/Delete';
-import Functions from 'material-ui-icons/Functions';
+import Check from '@material-ui/icons/Check';
+import Delete from '@material-ui/icons/Delete';
 import IconButton from 'material-ui/IconButton';
-import Image from 'material-ui-icons/Image';
-import Italic from 'material-ui-icons/FormatItalic';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Strikethrough from 'material-ui-icons/FormatStrikethrough';
-import Underlined from 'material-ui-icons/FormatUnderlined';
 import _ from 'lodash';
 import classNames from 'classnames';
 import debug from 'debug';
@@ -31,12 +24,13 @@ const toolbarStyle = {
     margin: '0px',
     padding: '2px',
     width: '100%',
-    boxShadow: '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
+    boxShadow:
+      '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
     boxSizing: 'border-box',
     display: 'none'
   },
   focused: {
-    display: 'flex',
+    display: 'flex'
   },
   iconRoot: {
     width: '28px',
@@ -45,15 +39,13 @@ const toolbarStyle = {
   label: {
     color: 'var(--editable-html-toolbar-check, #00bb00)'
   }
-}
+};
 
-const ToolbarButton = (props) => {
-
-
+const ToolbarButton = props => {
   const onToggle = () => {
     const c = props.onToggle(props.value.change(), props);
     props.onChange(c);
-  }
+  };
 
   if (props.isMark) {
     const isActive = hasMark(props.value, props.type);
@@ -63,75 +55,76 @@ const ToolbarButton = (props) => {
         active={isActive}
         label={props.type}
         onToggle={onToggle}
-        mark={props.type}>
+        mark={props.type}
+      >
         {props.icon}
       </MarkButton>
     );
   } else {
-
-    const isActive = props.isActive ? props.isActive(props.value, props.type) : hasBlock(props.value, props.type);
+    const isActive = props.isActive
+      ? props.isActive(props.value, props.type)
+      : hasBlock(props.value, props.type);
     log('[ToolbarButton] block:isActive: ', isActive);
     return (
       <Button
         onClick={() => props.onClick(props.value, props.onChange)}
-        active={isActive}>
+        active={isActive}
+      >
         {props.icon}
       </Button>
-    )
+    );
   }
-}
+};
 
 const RawDefaultToolbar = ({ plugins, value, onChange, classes }) => {
   const toolbarPlugins = plugins.filter(p => p.toolbar).map(p => p.toolbar);
   return (
     <div className={classes.inline}>
       {toolbarPlugins.map((p, index) => {
-        return <ToolbarButton
-          {...p}
-          key={index}
-          value={value}
-          onChange={onChange} />
+        return (
+          <ToolbarButton {...p} key={index} value={value} onChange={onChange} />
+        );
       })}
-    </div>);
-}
+    </div>
+  );
+};
 
 const DefaultToolbar = injectSheet(toolbarStyle)(RawDefaultToolbar);
 
 export class RawToolbar extends React.Component {
-
   constructor(props) {
     super(props);
-    this.hasMark = (type) => {
+    this.hasMark = type => {
       const { value } = this.props;
-      return value.marks.some(mark => mark.type == type)
-    }
+      return value.marks.some(mark => mark.type == type);
+    };
 
-    this.hasBlock = (type) => {
+    this.hasBlock = type => {
       const { value } = this.props;
-      return value.blocks.some(node => node.type == type)
-    }
+      return value.blocks.some(node => node.type == type);
+    };
   }
 
-  onToggle = (plugin) => {
+  onToggle = plugin => {
     const { value, onChange } = this.props;
 
     if (!plugin.onToggle) return;
 
-    const change = plugin.onToggle(value.change())
+    const change = plugin.onToggle(value.change());
     onChange(change);
-  }
+  };
 
-  onClick = (e) => {
-    log('[onClick]')
+  onClick = e => {
+    log('[onClick]');
     e.preventDefault();
-  }
+  };
 
-  onButtonClick = (fn) => {
+  onButtonClick = fn => {
     return e => {
       e.preventDefault();
       fn();
-    }
-  }
+    };
+  };
 
   render() {
     const {
@@ -144,7 +137,8 @@ export class RawToolbar extends React.Component {
       value,
       onChange,
       isFocused,
-      onClick } = this.props;
+      onClick
+    } = this.props;
 
     const node = findSingleNode(value);
 
@@ -160,58 +154,63 @@ export class RawToolbar extends React.Component {
       }
     });
 
-
     log('[render] plugin: ', plugin);
 
-    const CustomToolbar = plugin && plugin.toolbar && plugin.toolbar.customToolbar ? plugin.toolbar.customToolbar(node) : null;
+    const CustomToolbar =
+      plugin && plugin.toolbar && plugin.toolbar.customToolbar
+        ? plugin.toolbar.customToolbar(node)
+        : null;
 
     log('[render] CustomToolbar: ', CustomToolbar);
 
     const style = zIndex ? { zIndex } : {};
 
-    const names = classNames(classes.toolbar, isFocused && classes.focused)
+    const names = classNames(classes.toolbar, isFocused && classes.focused);
 
     const doneFn = this.onButtonClick(onDone);
 
     const deletable = node && plugin && plugin.deleteNode;
 
     return (
-      <div className={names}
-        onClick={this.onClick}>
-        {CustomToolbar ?
-          <CustomToolbar
-            value={value}
-            onChange={onChange}
-            node={node} /> :
-          <DefaultToolbar
-            plugins={plugins}
-            value={value}
-            onChange={onChange} />}
+      <div className={names} onClick={this.onClick}>
+        {CustomToolbar ? (
+          <CustomToolbar value={value} onChange={onChange} node={node} />
+        ) : (
+          <DefaultToolbar plugins={plugins} value={value} onChange={onChange} />
+        )}
 
-        <div className={classes.shared} >
-          {deletable && <IconButton
-            aria-label="Delete"
-            style={{ width: '28px', height: '28px' }}
-            className={classes.iconRoot}
-            onClick={(e) => plugin.deleteNode(e, node, value, onChange)}
-            classes={{
-              root: classes.iconRoot
-            }}>
-            <Delete />
-          </IconButton>}
+        <div className={classes.shared}>
+          {deletable && (
+            <IconButton
+              aria-label="Delete"
+              style={{ width: '28px', height: '28px' }}
+              className={classes.iconRoot}
+              onClick={e => plugin.deleteNode(e, node, value, onChange)}
+              classes={{
+                root: classes.iconRoot
+              }}
+            >
+              <Delete />
+            </IconButton>
+          )}
           <IconButton
             aria-label="Done"
             style={{ width: '28px', height: '28px' }}
             className={classes.iconRoot}
-            onClick={(plugin && plugin.onDone) ? (e) => plugin.onDone(e, node, value, onChange, doneFn) : doneFn}
+            onClick={
+              plugin && plugin.onDone
+                ? e => plugin.onDone(e, node, value, onChange, doneFn)
+                : doneFn
+            }
             classes={{
               label: classes.label,
               root: classes.iconRoot
-            }}>
+            }}
+          >
             <Check />
           </IconButton>
         </div>
-      </div >
+      </div>
     );
   }
 }
@@ -222,6 +221,6 @@ RawToolbar.propTypes = {
   plugins: PropTypes.array,
   onImageClick: PropTypes.func,
   onDone: PropTypes.func.isRequired
-}
+};
 
 export default injectSheet(_.clone(toolbarStyle), { index: 1000 })(RawToolbar);

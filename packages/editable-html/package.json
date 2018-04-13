@@ -9,16 +9,15 @@
   },
   "author": "",
   "dependencies": {
-    "@pie-lib/math-input": "^1.3.3",
+    "@pie-lib/math-input": "2.0.0-prerelease",
     "classnames": "^2.2.5",
     "debug": "^3.0.0",
     "immutable": "^3.8.2",
     "keycode": "^2.1.9",
-    "material-ui": "^1.0.0-beta.27",
-    "material-ui-icons": "^1.0.0-beta.17",
-    "react": "^15.6.1",
-    "react-jss": "^7.0.2",
-    "react-portal": "^3.1.0",
+    "material-ui": "^1.0.0-beta.41",
+    "@material-ui/icons": "^1.0.0-beta.42",
+    "react-jss": "^8.4.0",
+    "react-portal": "^4.1.4",
     "slate": "^0.33.4",
     "slate-edit-list": "^0.11.2",
     "slate-html-serializer": "^0.6.1",
@@ -26,7 +25,7 @@
     "slate-react": "^0.12.4"
   },
   "peerDependencies": {
-    "react": "^15.6.1"
+    "react": "^16.3.1"
   },
   "devDependencies": {
     "babel-core": "^6.25.0",
@@ -39,24 +38,21 @@
     "babel-preset-stage-0": "^6.24.1",
     "css-loader": "^0.28.5",
     "enzyme": "^3.3.0",
-    "enzyme-adapter-react-15": "^1.0.5",
+    "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.3",
-    "file-loader": "^0.11.2",
-    "http-server": "^0.10.0",
+    "file-loader": "^1.1.11",
     "jest": "^22.0.2",
-    "less": "^2.7.2",
-    "less-loader": "^4.0.5",
     "lodash": "^4.17.4",
-    "react-dom": "^15.6.1",
-    "react-test-renderer": "^15.6.1",
-    "sinon": "^4.1.3",
+    "react": "^16.3.1",
+    "react-dom": "^16.3.1",
+    "react-test-renderer": "^16.3.1",
     "slate-prop-types-typings": "^0.0.3",
     "slate-typings": "^0.0.3",
-    "style-loader": "^0.18.2",
-    "url-loader": "^0.5.9",
-    "webpack": "^3.5.4",
-    "webpack-dashboard": "^1.0.0-2",
-    "webpack-dev-server": "^2.7.1"
+    "style-loader": "^0.20.3",
+    "url-loader": "^1.0.1",
+    "webpack": "^4.5.0",
+    "webpack-dev-server": "^3.1.3",
+    "webpack-cli": "^2.0.14"
   },
   "publishConfig": {
     "access": "public"

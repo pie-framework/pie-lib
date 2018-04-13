@@ -1,6 +1,6 @@
 import { Block, Data } from 'slate';
 
-import Image from 'material-ui-icons/Image';
+import Image from '@material-ui/icons/Image';
 import ImageComponent from './component';
 import ImageToolbar from './image-toolbar';
 import InsertImageHandler from './insert-image-handler';
@@ -10,7 +10,6 @@ import debug from 'debug';
 const log = debug('editable-html:plugins:image');
 
 export default function ImagePlugin(opts) {
-
   const toolbar = opts.insertImageRequested && {
     icon: <Image />,
     onClick: (value, onChange) => {
@@ -26,23 +25,24 @@ export default function ImagePlugin(opts) {
 
       const change = value.change().insertBlock(block);
       onChange(change);
-      opts.insertImageRequested((getValue) => new InsertImageHandler(block, getValue, onChange));
-
+      opts.insertImageRequested(
+        getValue => new InsertImageHandler(block, getValue, onChange)
+      );
     },
-    supports: node => (node.kind === 'block' && node.type === 'image'),
+    supports: node => node.kind === 'block' && node.type === 'image',
     customToolbar: node => ImageToolbar
-  }
+  };
 
   return {
     toolbar,
     deleteNode: (e, node, value, onChange) => {
       e.preventDefault();
       if (opts.onDelete) {
-        const update = node.data.merge(Data.create({ deleteStatus: 'pending' }));
+        const update = node.data.merge(
+          Data.create({ deleteStatus: 'pending' })
+        );
 
-        let change = value
-          .change()
-          .setNodeByKey(node.key, { data: update });
+        let change = value.change().setNodeByKey(node.key, { data: update });
 
         onChange(change);
         opts.onDelete(node.data.get('src'), (err, v) => {
@@ -50,17 +50,21 @@ export default function ImagePlugin(opts) {
             change = v.change().removeNodeByKey(node.key);
           } else {
             log('[error]: ', err);
-            change = v.change().setNodeByKey(node.key, node.data.merge(Data.create({ deleteStatus: 'failed' })));
+            change = v
+              .change()
+              .setNodeByKey(
+                node.key,
+                node.data.merge(Data.create({ deleteStatus: 'failed' }))
+              );
           }
           onChange(change);
         });
-
       } else {
         let change = value.change().removeNodeByKey(node.key);
         onChange(change);
       }
     },
-    stopReset: (value) => {
+    stopReset: value => {
       const imgPendingInsertion = value.document.findDescendant(n => {
         if (n.type !== 'image') {
           return;
@@ -72,20 +76,21 @@ export default function ImagePlugin(opts) {
     },
     renderNode(props) {
       if (props.node.type === 'image') {
-        const all = Object.assign({
-          onDelete: opts.onDelete,
-          onFocus: opts.onFocus,
-          onBlur: opts.onBlur
-        }, props);
-        return <ImageComponent {...all} />
+        const all = Object.assign(
+          {
+            onDelete: opts.onDelete,
+            onFocus: opts.onFocus,
+            onBlur: opts.onBlur
+          },
+          props
+        );
+        return <ImageComponent {...all} />;
       }
     }
-  }
+  };
 }
 
 export const serialization = {
-
-
   deserialize(el, next) {
     const name = el.tagName.toLowerCase();
     if (name !== 'img') return;
@@ -102,9 +107,10 @@ export const serialization = {
       nodes: [],
       data: {
         src: el.getAttribute('src'),
-        width, height
+        width,
+        height
       }
-    }
+    };
     log('return object: ', out);
     return out;
   },
@@ -127,8 +133,8 @@ export const serialization = {
     const props = {
       src,
       style
-    }
+    };
 
-    return <img {...props}></img>;
+    return <img {...props} />;
   }
 };

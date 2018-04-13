@@ -1,4 +1,4 @@
-import Functions from 'material-ui-icons/Functions';
+import Functions from '@material-ui/icons/Functions';
 import { Inline } from 'slate';
 import MathInput from './component';
 import MathToolbar from './math-toolbar';

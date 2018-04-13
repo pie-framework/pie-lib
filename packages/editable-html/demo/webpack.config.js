@@ -9,16 +9,13 @@ module.exports = {
     path: __dirname
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.jsx$/,
         loader: 'babel-loader',
         options: {
           babelrc: false,
-          presets: [
-            'react', 'env', 'stage-0'
-
-          ]
+          presets: ['react', 'env', 'stage-0']
         }
       },
       {
@@ -40,4 +37,4 @@ module.exports = {
   plugins: [
     // new DashboardPlugin()
   ]
-}
+};

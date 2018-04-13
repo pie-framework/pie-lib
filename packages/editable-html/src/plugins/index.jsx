@@ -1,14 +1,14 @@
-import Bold from 'material-ui-icons/FormatBold';
-import Code from 'material-ui-icons/Code';
-import BulletedListIcon from 'material-ui-icons/FormatListBulleted';
-import NumberedListIcon from 'material-ui-icons/FormatListNumbered';
+import Bold from '@material-ui/icons/FormatBold';
+import Code from '@material-ui/icons/Code';
+import BulletedListIcon from '@material-ui/icons/FormatListBulleted';
+import NumberedListIcon from '@material-ui/icons/FormatListNumbered';
 import ImagePlugin from './image';
-import Italic from 'material-ui-icons/FormatItalic';
+import Italic from '@material-ui/icons/FormatItalic';
 import MathPlugin from './math';
 import React from 'react';
-import Strikethrough from 'material-ui-icons/FormatStrikethrough';
+import Strikethrough from '@material-ui/icons/FormatStrikethrough';
 import ToolbarPlugin from './toolbar';
-import Underline from 'material-ui-icons/FormatUnderlined';
+import Underline from '@material-ui/icons/FormatUnderlined';
 import compact from 'lodash/compact';
 import debug from 'debug';
 import List from './list';
@@ -16,7 +16,7 @@ import List from './list';
 const log = debug('editable-html:plugins');
 
 function MarkHotkey(options) {
-  const { type, key, icon, tag } = options
+  const { type, key, icon, tag } = options;
 
   // Return our "plugin" object, containing the `onKeyDown` handler.
   return {
@@ -24,7 +24,7 @@ function MarkHotkey(options) {
       isMark: true,
       type,
       icon,
-      onToggle: (change) => {
+      onToggle: change => {
         log('[onToggleMark] type: ', type);
         return change.toggleMark(type);
       }
@@ -32,21 +32,21 @@ function MarkHotkey(options) {
     renderMark(props) {
       if (props.mark.type === type) {
         const K = tag || type;
-        return <K>{props.children}</K>
+        return <K>{props.children}</K>;
       }
     },
     onKeyDown(event, change) {
       // Check that the key pressed matches our `key` option.
-      if (!event.metaKey || event.key != key) return
+      if (!event.metaKey || event.key != key) return;
 
       // Prevent the default characters from being inserted.
-      event.preventDefault()
+      event.preventDefault();
 
       // Toggle the mark `type`.
-      change.toggleMark(type)
-      return true
+      change.toggleMark(type);
+      return true;
     }
-  }
+  };
 }
 
 //TODO: re-add 'math' - the changes arent being picked up correctly
@@ -58,7 +58,7 @@ export const DEFAULT_PLUGINS = [
   'underline',
   'strikethrough',
   'bulleted-list',
-  'numbered-list',
+  'numbered-list'
 ];
 
 export const buildPlugins = (activePlugins, opts) => {
@@ -69,15 +69,41 @@ export const buildPlugins = (activePlugins, opts) => {
   const addIf = (key, p) => activePlugins.includes(key) && p;
 
   return compact([
-    addIf('bold', MarkHotkey({ key: 'b', type: 'bold', icon: <Bold />, tag: 'strong' })),
+    addIf(
+      'bold',
+      MarkHotkey({ key: 'b', type: 'bold', icon: <Bold />, tag: 'strong' })
+    ),
     addIf('code', MarkHotkey({ key: '`', type: 'code', icon: <Code /> })),
-    addIf('italic', MarkHotkey({ key: 'i', type: 'italic', icon: <Italic />, tag: 'em' })),
-    addIf('strikethrough', MarkHotkey({ key: '~', type: 'strikethrough', icon: <Strikethrough />, tag: 'del' })),
-    addIf('underline', MarkHotkey({ key: 'u', type: 'underline', icon: <Underline />, tag: 'u' })),
-    addIf('image', opts.image && opts.image.onDelete && ImagePlugin(opts.image)),
+    addIf(
+      'italic',
+      MarkHotkey({ key: 'i', type: 'italic', icon: <Italic />, tag: 'em' })
+    ),
+    addIf(
+      'strikethrough',
+      MarkHotkey({
+        key: '~',
+        type: 'strikethrough',
+        icon: <Strikethrough />,
+        tag: 'del'
+      })
+    ),
+    addIf(
+      'underline',
+      MarkHotkey({ key: 'u', type: 'underline', icon: <Underline />, tag: 'u' })
+    ),
+    addIf(
+      'image',
+      opts.image && opts.image.onDelete && ImagePlugin(opts.image)
+    ),
     addIf('math', MathPlugin(opts.math)),
-    addIf('bulleted-list', List({ key: 'l', type: 'ul_list', icon: <BulletedListIcon /> })),
-    addIf('numbered-list', List({ key: 'n', type: 'ol_list', icon: <NumberedListIcon /> })),
+    addIf(
+      'bulleted-list',
+      List({ key: 'l', type: 'ul_list', icon: <BulletedListIcon /> })
+    ),
+    addIf(
+      'numbered-list',
+      List({ key: 'n', type: 'ol_list', icon: <NumberedListIcon /> })
+    ),
     ToolbarPlugin(opts.toolbar)
   ]);
-}
+};
