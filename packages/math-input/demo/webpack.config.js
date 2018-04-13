@@ -5,7 +5,7 @@ module.exports = {
     main: './entry.jsx',
     editable: './editable-math-input.jsx'
   },
-  devtool: 'cheap-eval-source-map',
+  devtool: 'eval-source-map',
   context: __dirname,
   output: {
     filename: './[name].js',
@@ -36,6 +36,6 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: [".jsx", ".js", ".json"]
-  },
-}
+    extensions: ['.jsx', '.js', '.json']
+  }
+};
