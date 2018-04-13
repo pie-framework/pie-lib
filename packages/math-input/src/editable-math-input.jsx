@@ -10,6 +10,12 @@ const log = debug('math-input:editable-math-input');
  * Wrapper for MathQuill MQ.MathField.
  */
 export default class EditableMathInput extends React.PureComponent {
+  static propTypes = {
+    onClick: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired,
+    latex: PropTypes.string.isRequired,
+    editing: PropTypes.bool.isRequired
+  };
 
   componentDidMount() {
     this.mathField = MQ.MathField(this.input, {
@@ -75,14 +81,8 @@ export default class EditableMathInput extends React.PureComponent {
         onClick={onClick}
         onFocus={onFocus}
         onBlur={onBlur}
-        ref={r => this.input = r}></span>
+        ref={r => (this.input = r)}
+      />
     );
   }
-}
-
-EditableMathInput.propTypes = {
-  onClick: PropTypes.func.isRequired,
-  onChange: PropTypes.func.isRequired,
-  latex: PropTypes.string.isRequired,
-  editing: PropTypes.bool.isRequired
 }

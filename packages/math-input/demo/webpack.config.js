@@ -2,8 +2,7 @@ const path = require('path');
 
 module.exports = {
   entry: {
-    main: './entry.jsx',
-    editable: './editable-math-input.jsx'
+    main: './entry.jsx'
   },
   devtool: 'eval-source-map',
   context: __dirname,
