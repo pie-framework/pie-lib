@@ -2,7 +2,7 @@ import React from 'react';
 import DomainAndRange, { DomainAndRange as Inner } from '../domain-and-range';
 import renderer from 'react-test-renderer';
 import { shallow, configure } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-15';
+import Adapter from 'enzyme-adapter-react-16';
 import { Domain } from 'domain';
 
 configure({ adapter: new Adapter() });

@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow, configure } from 'enzyme';
 import _ from 'lodash';
 import { context as buildContext } from './mock-context';
-import Adapter from 'enzyme-adapter-react-15';
+import Adapter from 'enzyme-adapter-react-16';
 import { Point } from '../index';
 import Draggable from '../draggable';
 
