@@ -1,12 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class Expander extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
       show: props.show || false
-    }
+    };
   }
 
   componentWillReceiveProps(nextProps) {
@@ -16,14 +16,14 @@ export default class Expander extends React.Component {
   }
 
   render() {
-    const className = `${this.props.className} ${this.state.show ? 'show' : 'hide'}`
-    return <div className={className}>
-      {this.props.children}
-    </div>;
+    const className = `${this.props.className} ${
+      this.state.show ? 'show' : 'hide'
+    }`;
+    return <div className={className}>{this.props.children}</div>;
   }
 }
 
 Expander.propTypes = {
-  show: React.PropTypes.bool.isRequired,
-  className: React.PropTypes.string.isRequired
-}
+  show: PropTypes.bool.isRequired,
+  className: PropTypes.string.isRequired
+};

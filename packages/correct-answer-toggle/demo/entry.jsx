@@ -1,18 +1,16 @@
 import Checkbox from 'material-ui/Checkbox';
-import Expander from '../src/expander.jsx';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Toggle from '../src/index.jsx';
 
 class Wrapper extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
       toggled: false,
       show: true
-    }
+    };
   }
 
   onToggle(toggled) {
@@ -24,7 +22,7 @@ class Wrapper extends React.Component {
   }
 
   render() {
-    return <MuiThemeProvider>
+    return (
       <div>
         <Checkbox
           label="Show"
@@ -40,20 +38,23 @@ class Wrapper extends React.Component {
         <Toggle
           show={this.state.show}
           toggled={this.state.toggled}
-          onToggle={this.onToggle.bind(this)} />
-
-        <div hidden={!this.state.show}>Note: You can set the color of the label by using <code>--correct-answer-toggle-label-color</code> css variable</div>
+          onToggle={this.onToggle.bind(this)}
+        />
+        <div hidden={!this.state.show}>
+          Note: You can set the color of the label by using{' '}
+          <code>--correct-answer-toggle-label-color</code> css variable
+        </div>
         <Toggle
           className="red-label"
           show={this.state.show}
           toggled={this.state.toggled}
-          onToggle={this.onToggle.bind(this)} />
+          onToggle={this.onToggle.bind(this)}
+        />
         <p>Here is some text below</p>
       </div>
-    </MuiThemeProvider>;
+    );
   }
 }
-
 
 document.addEventListener('DOMContentLoaded', () => {
   const element = React.createElement(Wrapper, {});
