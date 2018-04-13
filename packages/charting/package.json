@@ -3,9 +3,13 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Some react based charting components",
-  "keywords": ["react", "pie", "charting"],
+  "keywords": [
+    "react",
+    "pie",
+    "charting"
+  ],
   "repository": "pie-framework/pie-lib",
   "main": "src/index.js",
   "scripts": {
@@ -30,9 +34,10 @@
     "react": "^16.3.1"
   },
   "devDependencies": {
+    "@material-ui/icons": "^1.0.0-beta.42",
     "@types/jest": "^22.2.0",
-    "babel-jest": "^22.4.3",
     "babel-core": "^6.26.0",
+    "babel-jest": "^22.4.3",
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
@@ -42,7 +47,6 @@
     "enzyme-adapter-react-16": "^1.1.1",
     "jest": "^22.4.3",
     "material-ui": "1.0.0-beta.41",
-    "@material-ui/icons": "^1.0.0-beta.42",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
     "react-test-renderer": "^16.3.1",
