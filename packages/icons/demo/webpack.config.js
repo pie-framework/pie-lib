@@ -2,6 +2,7 @@ var webpack = require('webpack');
 var path = require('path');
 
 var config = {
+  mode: 'development',
   entry: './demo.jsx',
   output: {
     path: __dirname,

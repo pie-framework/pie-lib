@@ -1,6 +1,7 @@
 // const DashboardPlugin = require('webpack-dashboard/plugin');
 
 module.exports = {
+  mode: 'development',
   devtool: 'eval-source-map',
   context: __dirname,
   entry: './entry.jsx',
