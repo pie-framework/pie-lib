@@ -2,12 +2,11 @@ import React, { PropTypes } from 'react';
 import Enzyme, { shallow, mount } from 'enzyme';
 import { NumberTextField } from '../number-text-field';
 import TextField from 'material-ui/TextField';
-import Adapter from 'enzyme-adapter-react-15';
+import Adapter from 'enzyme-adapter-react-16';
 
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('NumberTextField', () => {
-
   describe('render', () => {
     let value = 1;
     let onChange, component, textField;
@@ -18,7 +17,6 @@ describe('NumberTextField', () => {
     };
 
     describe('TextField', () => {
-
       beforeEach(() => {
         onChange = jest.fn();
         component = shallow(
@@ -27,11 +25,11 @@ describe('NumberTextField', () => {
             min={min}
             max={max}
             classes={{}}
-            onChange={onChange} />
+            onChange={onChange}
+          />
         );
         textField = component.find(TextField);
       });
-
 
       it('should exist', () => {
         expect(textField.length).toEqual(1);
@@ -54,14 +52,12 @@ describe('NumberTextField', () => {
           });
 
           describe('called with valid string representation of int', () => {
-
             it('should be called with parsed int', () => {
               const e = event('3');
               props.onChange(e);
               expect(onChange.mock.calls[0][0]).toEqual(e);
               expect(onChange.mock.calls[0][1]).toEqual(parseInt('3', 10));
             });
-
           });
 
           describe('called with empty string', () => {
@@ -71,18 +67,15 @@ describe('NumberTextField', () => {
               expect(onChange.mock.calls[0][0]).toEqual(e);
               expect(onChange.mock.calls[0][1]).toEqual(undefined);
             });
-
           });
 
           describe('called with invalid int', () => {
-
             it('should be called with undefined it not a valid number', () => {
               const e = event('nope');
               props.onChange(e);
               expect(onChange.mock.calls[0][0]).toEqual(e);
               expect(onChange.mock.calls[0][1]).toEqual(undefined);
             });
-
           });
 
           describe('string int exceeds max', () => {
@@ -94,7 +87,6 @@ describe('NumberTextField', () => {
               expect(onChange.mock.calls[0][0]).toEqual(e);
               expect(onChange.mock.calls[0][1]).toEqual(max);
             });
-
           });
 
           describe('string int less than min', () => {

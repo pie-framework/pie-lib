@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import Enzyme, { shallow, mount } from 'enzyme';
 import { FeedbackConfig } from '../index';
 import FeedbackSelector from '../feedback-selector';
-import Adapter from 'enzyme-adapter-react-15';
+import Adapter from 'enzyme-adapter-react-16';
 
 Enzyme.configure({ adapter: new Adapter() });
 

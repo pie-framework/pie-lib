@@ -13,7 +13,7 @@ exports[`index - snapshot renders correctly 1`] = `
       onFocus={[Function]}
     >
       <label
-        className="MuiFormLabel-root-23 MuiInputLabel-root-17 MuiInputLabel-formControl-18 MuiInputLabel-animated-21 MuiInputLabel-shrink-20"
+        className="MuiFormLabel-root-22 MuiInputLabel-root-17 MuiInputLabel-formControl-18 MuiInputLabel-animated-21 MuiInputLabel-shrink-20"
         data-shrink={true}
       >
         Correct
@@ -26,16 +26,14 @@ exports[`index - snapshot renders correctly 1`] = `
       onFocus={[Function]}
     >
       <label
-        className="MuiFormLabel-root-23 MuiInputLabel-root-17 MuiInputLabel-formControl-18 MuiInputLabel-animated-21 MuiInputLabel-shrink-20"
+        className="MuiFormLabel-root-22 MuiInputLabel-root-17 MuiInputLabel-formControl-18 MuiInputLabel-animated-21 MuiInputLabel-shrink-20"
         data-shrink={true}
         htmlFor={undefined}
       >
         Value
       </label>
       <div
-        className="MuiInput-root-27 MuiInput-formControl-28 MuiInput-inkbar-29 MuiInput-underline-33"
-        onBlur={[Function]}
-        onFocus={[Function]}
+        className="MuiInput-root-28 MuiInput-formControl-29 MuiInput-underline-32"
       >
         <input
           aria-invalid={false}
@@ -47,7 +45,9 @@ exports[`index - snapshot renders correctly 1`] = `
           disabled={false}
           id={undefined}
           name={undefined}
+          onBlur={[Function]}
           onChange={[Function]}
+          onFocus={[Function]}
           onKeyDown={undefined}
           onKeyUp={undefined}
           placeholder={undefined}
@@ -65,7 +65,7 @@ exports[`index - snapshot renders correctly 1`] = `
       onFocus={[Function]}
     >
       <label
-        className="MuiFormLabel-root-23 MuiInputLabel-root-17 MuiInputLabel-formControl-18 MuiInputLabel-animated-21 MuiInputLabel-shrink-20"
+        className="MuiFormLabel-root-22 MuiInputLabel-root-17 MuiInputLabel-formControl-18 MuiInputLabel-animated-21 MuiInputLabel-shrink-20"
         data-shrink={true}
       >
         Label
@@ -84,7 +84,7 @@ exports[`index - snapshot renders correctly 1`] = `
       onFocus={[Function]}
     >
       <label
-        className="MuiFormLabel-root-23 MuiInputLabel-root-17 MuiInputLabel-formControl-18 MuiInputLabel-animated-21 MuiInputLabel-shrink-20"
+        className="MuiFormLabel-root-22 MuiInputLabel-root-17 MuiInputLabel-formControl-18 MuiInputLabel-animated-21 MuiInputLabel-shrink-20"
         data-shrink={true}
       >
         Feedback
@@ -104,7 +104,7 @@ exports[`index - snapshot renders correctly 1`] = `
       onFocus={[Function]}
     >
       <label
-        className="MuiFormLabel-root-23 MuiInputLabel-root-17 MuiInputLabel-formControl-18 MuiInputLabel-animated-21 MuiInputLabel-shrink-20"
+        className="MuiFormLabel-root-22 MuiInputLabel-root-17 MuiInputLabel-formControl-18 MuiInputLabel-animated-21 MuiInputLabel-shrink-20"
         data-shrink={true}
       >
         Delete
@@ -117,7 +117,7 @@ exports[`index - snapshot renders correctly 1`] = `
     onFocus={[Function]}
   >
     <label
-      className="MuiFormLabel-root-23 MuiInputLabel-root-17 MuiInputLabel-formControl-18 MuiInputLabel-animated-21 MuiInputLabel-shrink-20"
+      className="MuiFormLabel-root-22 MuiInputLabel-root-17 MuiInputLabel-formControl-18 MuiInputLabel-animated-21 MuiInputLabel-shrink-20"
       data-shrink={true}
     >
       Feedback Text
