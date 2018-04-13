@@ -5,7 +5,7 @@ import { shallow, configure } from 'enzyme';
 import debug from 'debug';
 
 import { mockComponents } from './utils';
-import Adapter from 'enzyme-adapter-react-15';
+import Adapter from 'enzyme-adapter-react-16';
 
 const log = debug('editable-html:test');
 

@@ -5,7 +5,7 @@ import debug from 'debug';
 const log = debug('editable-html:test:math');
 
 import { configure, mount } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-15';
+import Adapter from 'enzyme-adapter-react-16';
 
 beforeAll(() => {
   configure({ adapter: new Adapter() });
@@ -14,15 +14,13 @@ beforeAll(() => {
 mockMathInput();
 
 describe('component', () => {
-
   let mod, MathComponent, node, editor, classes, mathWrapper;
 
   mathWrapper = {
     change: jest.fn()
-  }
+  };
 
   beforeEach(() => {
-
     try {
       mod = require('../component.jsx');
     } catch (e) {
@@ -36,28 +34,24 @@ describe('component', () => {
         isFocused: true
       },
       change: jest.fn()
-    }
+    };
 
     node = {
       data: {
         get: jest.fn(() => 'latex')
       }
-    }
-
+    };
   });
 
   test('snapshot', () => {
-    const tree = renderer.create(<MathComponent
-      classes={classes}
-      editor={editor}
-      node={node}
-    />);
+    const tree = renderer.create(
+      <MathComponent classes={classes} editor={editor} node={node} />
+    );
 
     expect(tree).toMatchSnapshot();
   });
 
   xdescribe('componentDidUpdate', () => {
-
     //TODO: Testing components w/ refs is a pain in the ....
     //Isolate the use of refs to only the wrapper arount the MathInput
     //So that tests can be written.
