@@ -2,7 +2,7 @@ import React from 'react'; // eslint-disable-line
 import EditList from 'slate-edit-list';
 import debug from 'debug';
 
-const log = debug('editable-html:plugins:list');
+const log = debug('@pie-lib:editable-html:plugins:list');
 
 const b = (type, next, childNodes) => ({
   object: 'block',
@@ -27,13 +27,14 @@ export const serialization = {
     }
   },
   serialize(object, children) {
-    if (object.block !== 'block') return;
+    if (object.object !== 'block') return;
 
     if (object.type === 'list_item') {
       return <li>{children}</li>;
     }
     if (object.type === 'ul_list') {
-      return <ul>{children}</ul>;
+      const out = <ul>{children}</ul>;
+      return out;
     }
     if (object.type === 'ol_list') {
       return <ol>{children}</ol>;
@@ -66,7 +67,6 @@ export default options => {
     type,
     icon,
     isActive: (value, type) => {
-     
       if (!core.utils.isSelectionInList(value)) {
         return false;
       }
