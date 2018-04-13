@@ -36,7 +36,7 @@ class Demo extends React.Component {
           />
         </div>
         <div>
-          <p>This is a keypad you can add an 'onClick' to.</p>
+          <p>This is a keypad you can add an onClick to.</p>
           <label>
             {' '}
             Read Only ?
