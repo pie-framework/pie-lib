@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 export default class Expander extends React.Component {
   constructor(props) {
@@ -16,14 +17,19 @@ export default class Expander extends React.Component {
   }
 
   render() {
-    const className = `${this.props.className} ${
-      this.state.show ? 'show' : 'hide'
-    }`;
-    return <div className={className}>{this.props.children}</div>;
+    const { className, children } = this.props;
+    const { show } = this.state;
+    const names = classNames(className, show ? 'show' : 'hide');
+
+    return <div className={names}>{children}</div>;
   }
 }
 
 Expander.propTypes = {
   show: PropTypes.bool.isRequired,
-  className: PropTypes.string.isRequired
+  className: PropTypes.string,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]).isRequired
 };
