@@ -1,7 +1,7 @@
 import React from 'react';
 import { NumberTextField } from '@pie-lib/config-ui';
 import IconButton from 'material-ui/IconButton';
-import ActionDelete from 'material-ui-icons/Delete';
+import ActionDelete from '@material-ui/icons/Delete';
 import { withStyles } from 'material-ui/styles';
 import PropTypes from 'prop-types';
 
@@ -12,10 +12,12 @@ const Row = ({
   onRowChange,
   deletable,
   onDelete,
-  maxAnswers }) => {
-
-  const onScoreChange = (event, scorePercentage) => onRowChange({ scorePercentage, numberOfCorrect });
-  const onNumberOfCorrectChange = (event, numberOfCorrect) => onRowChange({ scorePercentage, numberOfCorrect });
+  maxAnswers
+}) => {
+  const onScoreChange = (event, scorePercentage) =>
+    onRowChange({ scorePercentage, numberOfCorrect });
+  const onNumberOfCorrectChange = (event, numberOfCorrect) =>
+    onRowChange({ scorePercentage, numberOfCorrect });
 
   return (
     <div className={classes.row}>
@@ -25,16 +27,21 @@ const Row = ({
         min={1}
         max={99}
         value={scorePercentage}
-        onChange={onScoreChange} />% for&nbsp;
+        onChange={onScoreChange}
+      />% for&nbsp;
       <NumberTextField
         className={classes.field}
         min={1}
         max={maxAnswers}
         value={numberOfCorrect}
-        onChange={onNumberOfCorrectChange} />
+        onChange={onNumberOfCorrectChange}
+      />
       correct answer{numberOfCorrect > 1 ? 's' : ''}.
-                {deletable && <IconButton
-        onClick={onDelete}><ActionDelete /></IconButton>}
+      {deletable && (
+        <IconButton onClick={onDelete}>
+          <ActionDelete />
+        </IconButton>
+      )}
     </div>
   );
 };

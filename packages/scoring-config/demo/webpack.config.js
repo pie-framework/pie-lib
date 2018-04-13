@@ -1,4 +1,5 @@
 module.exports = {
+  mode: 'development',
   context: __dirname,
   entry: './entry.jsx',
   output: {
@@ -6,15 +7,13 @@ module.exports = {
     path: __dirname
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         loader: 'babel-loader',
         options: {
           babelrc: false,
-          presets: [
-            'env', 'stage-0'
-          ]
+          presets: ['env', 'stage-0']
         }
       },
       {
@@ -22,9 +21,7 @@ module.exports = {
         loader: 'babel-loader',
         options: {
           babelrc: false,
-          presets: [
-            'env', 'stage-0', 'react'
-          ]
+          presets: ['env', 'stage-0', 'react']
         }
       },
       {
@@ -44,4 +41,4 @@ module.exports = {
     symlinks: false,
     extensions: ['.js', '.jsx']
   }
-}
+};

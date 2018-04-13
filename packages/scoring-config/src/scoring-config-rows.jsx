@@ -1,7 +1,6 @@
 import Button from 'material-ui/Button';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Typography from 'material-ui/Typography';
 import cloneDeep from 'lodash/cloneDeep';
 import { withStyles } from 'material-ui/styles';
 import debug from 'debug';
@@ -10,7 +9,6 @@ import Row from './row';
 const log = debug('@pie-elements:scoring-config:scoring-config-row');
 
 export class Rows extends React.Component {
-
   constructor(props) {
     super(props);
     this.addRow = this.addRow.bind(this);
@@ -43,7 +41,9 @@ export class Rows extends React.Component {
   render() {
     const { partialScoring, numberOfCorrectResponses, classes } = this.props;
     const maxAnswers = Math.max(1, numberOfCorrectResponses - 1);
-    const canAddRow = partialScoring ? partialScoring.length < maxAnswers : true;
+    const canAddRow = partialScoring
+      ? partialScoring.length < maxAnswers
+      : true;
 
     log('partialScoring: ', partialScoring);
 
@@ -52,18 +52,20 @@ export class Rows extends React.Component {
         {partialScoring.map((row, index) => (
           <Row
             {...row}
-            onRowChange={(row) => this.onRowChange(index, row)}
+            onRowChange={row => this.onRowChange(index, row)}
             onDelete={() => this.onDelete(index)}
             maxAnswers={maxAnswers}
             deletable={true}
-            key={index} />
+            key={index}
+          />
         ))}
         <Button
           className={classes.addButton}
           disabled={!canAddRow}
           variant="raised"
           color="primary"
-          onClick={this.addRow}>
+          onClick={this.addRow}
+        >
           {partialScoring.length > 0 ? 'Add another scenario' : 'Add scenario'}
         </Button>
       </div>
@@ -79,16 +81,17 @@ const styles = theme => ({
 
 Rows.propTypes = {
   numberOfCorrectResponses: PropTypes.number.isRequired,
-  partialScoring: PropTypes.arrayOf(PropTypes.shape({
-    numberOfCorrect: PropTypes.number.isRequired,
-    scorePercentage: PropTypes.number.isRequired
-  })),
+  partialScoring: PropTypes.arrayOf(
+    PropTypes.shape({
+      numberOfCorrect: PropTypes.number.isRequired,
+      scorePercentage: PropTypes.number.isRequired
+    })
+  ),
   onChange: PropTypes.func.isRequired
-}
+};
 
 Rows.defaultProps = {
   partialScoring: []
-}
+};
 
 export default withStyles(styles)(Rows);
-
