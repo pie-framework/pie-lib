@@ -2,11 +2,10 @@ import { EditableMathInput } from '@pie-lib/math-input';
 import React from 'react';
 
 /**
- * Exposes a change function that will update a math input 
+ * Exposes a change function that will update a math input
  * while editing is true.
  */
 export default class MathWrapper extends React.Component {
-
   change(c) {
     const { editing } = this.props;
     if (!editing || !this.input) {
@@ -30,18 +29,18 @@ export default class MathWrapper extends React.Component {
   }
 
   render() {
-
     const { latex, editing, onClick, onChange, onFocus, onBlur } = this.props;
 
     return (
       <EditableMathInput
-        ref={r => this.input = r}
+        ref={r => (this.input = r)}
         latex={latex}
         editing={!!editing}
         onClick={onClick}
         onChange={onChange}
         onFocus={onFocus}
-        onBlur={onBlur} />
+        onBlur={onBlur}
+      />
     );
   }
 }

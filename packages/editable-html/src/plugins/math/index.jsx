@@ -1,6 +1,3 @@
-import { Keypad, MathQuillInput, addBrackets, removeBrackets } from '@pie-lib/math-input';
-
-import { Data } from 'slate';
 import Functions from 'material-ui-icons/Functions';
 import { Inline } from 'slate';
 import MathInput from './component';
@@ -22,19 +19,21 @@ export default function MathPlugin(options) {
         const change = value.change().insertInline(math);
         onChange(change);
       },
-      supports: node => (node && node.object === 'inline' && node.type === 'math'),
-      customToolbar: node => (node && node.object === 'inline' && node.type === 'math') && MathToolbar
+      supports: node =>
+        node && node.object === 'inline' && node.type === 'math',
+      customToolbar: node =>
+        node && node.object === 'inline' && node.type === 'math' && MathToolbar
     },
     schema: {
       document: { types: ['math'] }
     },
     /**
-     * A onDone wrapper function, places a blur change on the node, then calls 
+     * A onDone wrapper function, places a blur change on the node, then calls
      * the original donefn.
      * Feels a bit messy - there may be a cleaner way to do this.
      */
     onDone: (e, node, value, onChange, fn) => {
-      const update = { ...node.data.toObject(), change: { type: 'blur' } }
+      const update = { ...node.data.toObject(), change: { type: 'blur' } };
       const change = value.change().setNodeByKey(node.key, { data: update });
       onChange(change);
       fn(e);
@@ -43,24 +42,28 @@ export default function MathPlugin(options) {
       if (props.node.type === 'math') {
         log('[renderNode]: ', props);
         log('MathInput', MathInput);
-        return <MathInput {...props}
-          onClick={() => options.onClick(props.node)}
-          onFocus={options.onFocus}
-          onBlur={options.onBlur} />
+        return (
+          <MathInput
+            {...props}
+            onClick={() => options.onClick(props.node)}
+            onFocus={options.onFocus}
+            onBlur={options.onBlur}
+          />
+        );
       }
     }
-  }
+  };
 }
 
-export const inlineMath = () => Inline.create({
-  object: 'inline',
-  type: 'math',
-  isVoid: true,
-  data: {
-    latex: '1 + 1 = 2'
-  }
-});
-
+export const inlineMath = () =>
+  Inline.create({
+    object: 'inline',
+    type: 'math',
+    isVoid: true,
+    data: {
+      latex: '1 + 1 = 2'
+    }
+  });
 
 export const serialization = {
   deserialize(el, next) {
@@ -69,8 +72,10 @@ export const serialization = {
     }
 
     const tagName = el.tagName.toLowerCase();
-    log('[deserialize] name: ', tagName)
-    const hasMathJaxAttribute = el.getAttribute('mathjax') !== undefined || el.getAttribute('data-mathjax') !== undefined;
+    log('[deserialize] name: ', tagName);
+    const hasMathJaxAttribute =
+      el.getAttribute('mathjax') !== undefined ||
+      el.getAttribute('data-mathjax') !== undefined;
 
     log('[deserialize] hasMathJaxAttribute: ', hasMathJaxAttribute);
     if (tagName === 'span' && hasMathJaxAttribute) {
@@ -82,7 +87,7 @@ export const serialization = {
         data: {
           latex: el.innerHTML
         }
-      }
+      };
     }
   },
   serialize(object, children) {
@@ -91,4 +96,3 @@ export const serialization = {
     }
   }
 };
-
