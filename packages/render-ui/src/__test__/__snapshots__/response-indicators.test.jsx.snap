@@ -29,20 +29,22 @@ exports[`response-indicators snapshot  - with feedback  1`] = `
     <span>
       Popover
     </span>
-    <span>
-      <div
-        className="Feedback-corespringFeedback-5"
-      >
+    <div>
+      <div>
         <div
-          className="Feedback-content-6 Feedback-correct-7"
-          dangerouslySetInnerHTML={
-            Object {
-              "__html": "hi",
+          className="Feedback-corespringFeedback-5"
+        >
+          <div
+            className="Feedback-content-6 Feedback-correct-7"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "hi",
+              }
             }
-          }
-        />
+          />
+        </div>
       </div>
-    </span>
+    </div>
   </div>
 </div>
 `;

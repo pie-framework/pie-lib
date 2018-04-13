@@ -1,4 +1,5 @@
 module.exports = {
+  mode: 'development',
   devtool: 'eval-source-map',
   context: __dirname,
   entry: './entry.jsx',
@@ -7,14 +8,15 @@ module.exports = {
     path: __dirname
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.jsx$/,
         loader: 'babel-loader',
         options: {
           babelrc: false,
           presets: [
-            require('babel-preset-react'), require('babel-preset-stage-0')
+            require('babel-preset-react'),
+            require('babel-preset-stage-0')
           ]
         }
       },
@@ -35,4 +37,4 @@ module.exports = {
     symlinks: false,
     extensions: ['.js', '.jsx']
   }
-}
+};

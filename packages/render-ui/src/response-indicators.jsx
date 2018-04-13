@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import * as icons from '@pie-lib/icons';
 import Popover from 'material-ui/Popover';
 import { withStyles } from 'material-ui/styles';
-import Typography from 'material-ui/Typography';
 import Feedback from './feedback';
 import debug from 'debug';
 
@@ -22,16 +21,14 @@ const styles = theme => ({
   },
   popperClose: {
     cursor: 'pointer'
-  },
+  }
 });
 
 const BuildIndicator = (Icon, correctness) => {
   class RawIndicator extends React.Component {
-
     constructor(props) {
       super(props);
-      this.state = {
-      }
+      this.state = {};
     }
 
     handlePopoverOpen = event => {
@@ -48,30 +45,30 @@ const BuildIndicator = (Icon, correctness) => {
       const { anchorEl } = this.state;
       return (
         <div className={feedback && classes.responseIndicator}>
-          <span
-            ref={r => this.icon = r}
-            onClick={this.handlePopoverOpen}><Icon /></span>
+          <span ref={r => (this.icon = r)} onClick={this.handlePopoverOpen}>
+            <Icon />
+          </span>
 
           {feedback && (
             <Popover
               className={classes.popover}
               classes={{
-                paper: classes.paper,
+                paper: classes.paper
               }}
               open={!!anchorEl}
               anchorEl={anchorEl}
               anchorOrigin={{
                 vertical: 'bottom',
-                horizontal: 'left',
+                horizontal: 'left'
               }}
               transformOrigin={{
                 vertical: 'top',
-                horizontal: 'left',
+                horizontal: 'left'
               }}
-              onClose={this.handlePopoverClose}>
+              onClose={this.handlePopoverClose}
+            >
               <Feedback feedback={feedback} correctness={correctness} />
             </Popover>
-
           )}
         </div>
       );
@@ -81,12 +78,18 @@ const BuildIndicator = (Icon, correctness) => {
   RawIndicator.propTypes = {
     feedback: PropTypes.string,
     classes: PropTypes.object.isRequired
-  }
+  };
 
   return withStyles(styles)(RawIndicator);
-}
+};
 
 export const Correct = BuildIndicator(icons.Correct, 'correct');
 export const Incorrect = BuildIndicator(icons.Incorrect, 'incorrect');
-export const PartiallyCorrect = BuildIndicator(icons.PartiallyCorrect, 'partially-correct');
-export const NothingSubmitted = BuildIndicator(icons.NothingSubmitted, 'nothing-submitted');
+export const PartiallyCorrect = BuildIndicator(
+  icons.PartiallyCorrect,
+  'partially-correct'
+);
+export const NothingSubmitted = BuildIndicator(
+  icons.NothingSubmitted,
+  'nothing-submitted'
+);
