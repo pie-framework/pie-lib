@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="4.0.1"></a>
+## [4.0.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@3.1.1...@pie-lib/editable-html@4.0.1) (2018-04-16)
+
+
+### Bug Fixes
+
+* **dependencies:** version bump react and material-ui ([05d72cf](https://github.com/pie-framework/pie-lib/commit/05d72cf))
+* **font:** set Roboto as font ([d142ce9](https://github.com/pie-framework/pie-lib/commit/d142ce9))
+
+
+
+
 <a name="3.1.1"></a>
 ## [3.1.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@3.1.0...@pie-lib/editable-html@3.1.1) (2018-04-13)
 

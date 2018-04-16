@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@1.3.3...@pie-lib/math-input@2.0.0) (2018-04-16)
+
+
+### Bug Fixes
+
+* **dependencies:** version bump react ([1c2b53d](https://github.com/pie-framework/pie-lib/commit/1c2b53d))
+
+
+### BREAKING CHANGES
+
+* **dependencies:** requires react@^16.3.1
+
+
+
+
 <a name="1.3.3"></a>
 ## [1.3.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@1.3.2...@pie-lib/math-input@1.3.3) (2018-04-02)
 

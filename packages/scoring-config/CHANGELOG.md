@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.0.0"></a>
+# [1.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@0.3.33...@pie-lib/scoring-config@1.0.0) (2018-04-16)
+
+
+### Bug Fixes
+
+* **dependecies:** bump react version ([aec216f](https://github.com/pie-framework/pie-lib/commit/aec216f))
+
+
+### BREAKING CHANGES
+
+* **dependecies:** requires react@^16.3.1
+
+
+
+
 <a name="0.3.33"></a>
 ## [0.3.33](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@0.3.32...@pie-lib/scoring-config@0.3.33) (2018-04-13)
 

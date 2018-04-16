@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.0.0"></a>
+# [1.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@0.1.15...@pie-lib/render-ui@1.0.0) (2018-04-16)
+
+
+### Bug Fixes
+
+* **dependencies:** bump react version ([0169b4a](https://github.com/pie-framework/pie-lib/commit/0169b4a))
+
+
+### BREAKING CHANGES
+
+* **dependencies:** requires react@^16.3.1
+
+
+
+
 <a name="0.1.15"></a>
 ## [0.1.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@0.1.14...@pie-lib/render-ui@0.1.15) (2018-04-02)
 

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.0.0"></a>
+# [3.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@2.2.4...@pie-lib/config-ui@3.0.0) (2018-04-16)
+
+
+### Bug Fixes
+
+* **dependencies:** version bump react and libs ([6befebd](https://github.com/pie-framework/pie-lib/commit/6befebd))
+
+
+### BREAKING CHANGES
+
+* **dependencies:** MultiLangInput is removed
+
+
+
+
 <a name="2.2.4"></a>
 ## [2.2.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@2.2.3...@pie-lib/config-ui@2.2.4) (2018-04-13)
 

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.0.0"></a>
+# [1.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@0.1.11...@pie-lib/correct-answer-toggle@1.0.0) (2018-04-16)
+
+
+### Bug Fixes
+
+* **versions:** bump versions of react ([d0467cd](https://github.com/pie-framework/pie-lib/commit/d0467cd))
+
+
+### BREAKING CHANGES
+
+* **versions:** uses react@^16.3.1
+
+
+
+
 <a name="0.1.11"></a>
 ## [0.1.11](https://github.com/PieElements/pie-elements/compare/@pie-lib/correct-answer-toggle@0.1.10...@pie-lib/correct-answer-toggle@0.1.11) (2018-04-02)
 
