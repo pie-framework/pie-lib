@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="4.0.2"></a>
+## [4.0.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@4.0.1...@pie-lib/editable-html@4.0.2) (2018-04-16)
+
+
+### Bug Fixes
+
+* **dependencies:** update dependencies ([8a5c1b2](https://github.com/pie-framework/pie-lib/commit/8a5c1b2))
+* **serialization:** fix serialization ([9191bb6](https://github.com/pie-framework/pie-lib/commit/9191bb6))
+
+
+
+
 <a name="4.0.1"></a>
 ## [4.0.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@3.1.1...@pie-lib/editable-html@4.0.1) (2018-04-16)
 
