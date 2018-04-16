@@ -39,7 +39,7 @@
     "@pie-lib/icons": "1.0.0-prerelease",
     "classnames": "^2.2.5",
     "lodash": "^4.17.4",
-    "prop-types": "^15.5.10",
+    "prop-types": "^15.6.1",
     "react-jss": "^8.4.0",
     "react-transition-group": "^2.1.0"
   }
