@@ -5,6 +5,8 @@
   "license": "MIT",
   "scripts": {
     "lint": "./node_modules/.bin/eslint --ext .js --ext .jsx packages",
+    "lint-two":
+      "lerna exec -- \\$LERNA_ROOT_PATH/node_modules/.bin/eslint  --ignore-path \\$LERNA_ROOT_PATH/.eslintignore --ext .js --ext .jsx src",
     "clean": "lerna exec -- rm -fr lib",
     "build":
       "lerna exec -- \\$LERNA_ROOT_PATH/node_modules/.bin/babel src -d lib"
