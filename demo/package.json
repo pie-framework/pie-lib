@@ -1,0 +1,13 @@
+{
+  "name": "@pie-lib/demo",
+  "private": true,
+  "scripts": {
+    "dev": "next"
+  },
+  "dependencies": {
+    "next": "^5.1.0",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "material-ui": "1.0.0-beta.41"
+  }
+}
