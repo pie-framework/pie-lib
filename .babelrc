@@ -1,3 +1,5 @@
 {
-  "presets": ["airbnb", "stage-0"]
+  "presets": ["env", "react", "stage-0"],
+  "ignore": ["**/__test__/**", "**/__tests__/**"],
+  "sourceMaps": "inline"
 }
