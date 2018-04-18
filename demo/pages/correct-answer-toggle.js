@@ -1,9 +1,8 @@
 import Checkbox from 'material-ui/Checkbox';
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Toggle from '@pie-lib/correct-answer-toggle';
-// const Toggle = () => <div>t</div>;
-class Wrapper extends React.Component {
+
+export default class Wrapper extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,6 +22,7 @@ class Wrapper extends React.Component {
   render() {
     return (
       <div>
+        blah blah
         <Checkbox
           label="Show"
           checked={this.state.show}
@@ -54,4 +54,3 @@ class Wrapper extends React.Component {
     );
   }
 }
-export default Wrapper;

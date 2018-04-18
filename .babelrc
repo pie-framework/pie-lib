@@ -1,4 +1,11 @@
 {
   "presets": ["env", "react", "stage-0"],
+  "ignore": [
+    "**/__test__/**",
+    "**/__tests__/**",
+    "__mocks__",
+    "node_modules",
+    "lib"
+  ],
   "sourceMaps": "inline"
 }

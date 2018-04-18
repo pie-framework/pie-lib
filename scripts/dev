@@ -1,0 +1,86 @@
+#!/usr/bin/env node
+
+const argv = require('minimist')(process.argv.slice(2));
+const { execSync } = require('child_process');
+const fs = require('fs-extra');
+const { join } = require('path');
+const _ = require('lodash');
+const { spawnSync, spawn } = require('child_process');
+
+const demoNeedsAnInstall = async packages => {
+  const installed = await fs.readdir('demo/node_modules/@pie-lib');
+
+  const names = packages.map(p => p.name);
+  return !_.isEqual(installed.sort(), names.sort());
+};
+
+//0. list packages
+const run = async () => {
+  const names = await fs.readdir('packages');
+  const packages = await Promise.all(
+    names.map(async p => {
+      const path = join(`packages/${p}`);
+      const st = await fs.stat(path);
+      if (st.isDirectory()) {
+        return {
+          name: p,
+          path
+        };
+      }
+    })
+  );
+
+  const needInstall = await demoNeedsAnInstall(packages, 'demo');
+
+  if (needInstall && !argv.skipInstall) {
+    //install..
+    console.log('demo needs an install');
+    execSync('rm -fr node_modules/@pie-lib', {
+      cwd: 'demo',
+      stdio: 'inherit'
+    });
+
+    execSync('yarn install', { cwd: 'demo', stdio: 'inherit' });
+  }
+
+  console.log('scope: ', argv.scope);
+
+  if (argv.scope) {
+    const babel = spawn(
+      './node_modules/.bin/babel',
+      [
+        `packages/${argv.scope}/src`,
+        '--watch',
+        '--out-dir',
+        `demo/node_modules/@pie-lib/${argv.scope}/lib`,
+        '--ignore',
+        'node_modules'
+      ],
+      { stdio: 'inherit' }
+    );
+
+    babel.on('error', e => {
+      console.error('babel: error: ', e);
+    });
+    babel.on('data', function() {
+      console.log('babel: ', arguments);
+    });
+  }
+
+  const nextCmd = './node_modules/.bin/next';
+
+  spawnSync(nextCmd, { cwd: 'demo', stdio: 'inherit' });
+};
+
+run()
+  .then(() => {
+    console.log('running');
+  })
+  .catch(e => {
+    console.error(e);
+    throw e;
+  });
+//1. install demo if needed
+
+//2. set up babel watch (pkg/$name/src -> demo/node_modules/@pie-lib/$name/lib)
+//3. boot next server
