@@ -4,7 +4,7 @@
     "access": "public"
   },
   "version": "2.0.0",
-  "main": "lib/index.jsx",
+  "main": "lib/index.js",
   "dependencies": {
     "@material-ui/icons": "^1.0.0-beta.42",
     "debug": "^3.0.0",

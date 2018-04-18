@@ -3,15 +3,20 @@
   "description": "the pie-libs mono repo",
   "private": true,
   "license": "MIT",
+  "config": {
+    "scope": "none"
+  },
   "scripts": {
+    "test": "./scripts/test",
     "lint": "./node_modules/.bin/eslint --ext .js --ext .jsx packages",
     "lint-two":
       "lerna exec -- \\$LERNA_ROOT_PATH/node_modules/.bin/eslint  --ignore-path \\$LERNA_ROOT_PATH/.eslintignore --ext .js --ext .jsx src",
     "clean": "lerna exec -- rm -fr lib",
     "build":
-      "lerna exec -- \\$LERNA_ROOT_PATH/node_modules/.bin/babel src -d lib"
+      "npm run clean && npm run lint-two && lerna exec -- \\$LERNA_ROOT_PATH/node_modules/.bin/babel --ignore '/__test__/','/__tests__/' src -d lib"
   },
   "devDependencies": {
+    "minimist": "^1.2.0",
     "babel-eslint": "^8.2.2",
     "lerna": "^2.8.0",
     "babel-cli": "^6.26.0",
@@ -27,9 +32,7 @@
     "react-dom": "^16.3.2",
     "jest": "^22.4.3",
     "eslint": "^4.19.1",
-    "eslint-plugin-react": "^7.7.0"
-  },
-  "peerDependencies": {
-    "react": "^16.3.2"
+    "eslint-plugin-react": "^7.7.0",
+    "prettier": "^1.12.1"
   }
 }

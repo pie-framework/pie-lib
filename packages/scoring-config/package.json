@@ -2,7 +2,7 @@
   "name": "@pie-lib/scoring-config",
   "version": "1.0.1",
   "description": "",
-  "main": "lib/index.jsx",
+  "main": "lib/index.js",
   "publishConfig": {
     "access": "public"
   },

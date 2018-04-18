@@ -3,7 +3,7 @@
   "version": "4.0.2",
   "description": "",
   "license": "ISC",
-  "main": "lib/index.jsx",
+  "main": "lib/index.js",
   "scripts": {
     "test": "jest --verbose"
   },

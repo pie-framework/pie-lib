@@ -8,7 +8,7 @@
     "access": "public"
   },
   "version": "1.0.1",
-  "main": "lib/index.jsx",
+  "main": "lib/index.js",
   "scripts": {
     "test": "./node_modules/.bin/jest"
   },

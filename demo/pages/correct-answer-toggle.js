@@ -1,8 +1,8 @@
 import Checkbox from 'material-ui/Checkbox';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Toggle from '../../packages/correct-answer-toggle/src/index.jsx';
-
+import Toggle from '@pie-lib/correct-answer-toggle';
+// const Toggle = () => <div>t</div>;
 class Wrapper extends React.Component {
   constructor(props) {
     super(props);
@@ -54,10 +54,4 @@ class Wrapper extends React.Component {
     );
   }
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-  const element = React.createElement(Wrapper, {});
-  let container = document.querySelector('.toggle');
-  console.log('container: ', container);
-  ReactDOM.render(element, container);
-});
+export default Wrapper;
