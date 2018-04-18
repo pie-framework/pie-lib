@@ -4,7 +4,10 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "lint": "./node_modules/.bin/eslint --ext .js --ext .jsx packages"
+    "lint": "./node_modules/.bin/eslint --ext .js --ext .jsx packages",
+    "clean": "lerna exec -- rm -fr lib",
+    "build":
+      "lerna exec -- \\$LERNA_ROOT_PATH/node_modules/.bin/babel src -d lib"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.2",

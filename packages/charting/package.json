@@ -7,7 +7,7 @@
   "description": "Some react based charting components",
   "keywords": ["react", "pie", "charting"],
   "repository": "pie-framework/pie-lib",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "./node_modules/.bin/jest"
   },
@@ -28,15 +28,6 @@
   },
   "peerDependencies": {
     "react": "^16.3.1"
-  },
-  "devDependencies": {
-    "@material-ui/icons": "^1.0.0-beta.42",
-    "material-ui": "1.0.0-beta.41",
-    "react": "^16.3.1",
-    "react-dom": "^16.3.1",
-    "webpack": "^4.1.1",
-    "webpack-cli": "^2.0.12",
-    "webpack-dev-server": "^3.1.1"
   },
   "jest": {
     "testRegex": "(/__tests__/.*\\.test.jsx|(\\.|/)(test|spec))\\.jsx?$"

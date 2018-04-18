@@ -4,7 +4,7 @@
     "access": "public"
   },
   "version": "2.0.0",
-  "main": "src/index.jsx",
+  "main": "lib/index.jsx",
   "dependencies": {
     "@material-ui/icons": "^1.0.0-beta.42",
     "debug": "^3.0.0",
@@ -20,35 +20,12 @@
   "jest": {
     "moduleNameMapper": {
       "^mathquill$": "<rootDir>/__mocks__/mathquill-mock.js",
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
+        "<rootDir>/__mocks__/fileMock.js",
       "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
     }
   },
   "peerDependencies": {
-    "react": "^16.3.1"
-  },
-  "devDependencies": {
-    "@types/react": "^16.0.2",
-    "@types/react-dom": "^16.0.5",
-    "babel-core": "^6.26.0",
-    "babel-jest": "^22.4.3",
-    "babel-loader": "^7.1.2",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
-    "babel-register": "^6.26.0",
-    "css-loader": "^0.28.5",
-    "enzyme": "^3.3.0",
-    "file-loader": "^1.1.11",
-    "jest": "^22.4.3",
-    "react": "^16.3.1",
-    "react-dom": "^16.3.1",
-    "react-test-renderer": "^16.3.1",
-    "source-map-loader": "^0.2.1",
-    "style-loader": "^0.20.3",
-    "url-loader": "^1.0.1",
-    "webpack": "^4.5.0",
-    "webpack-cli": "^2.0.14",
-    "webpack-dev-server": "^3.1.3"
+    "react": "^16.3.2"
   }
 }

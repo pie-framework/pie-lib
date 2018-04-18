@@ -1,3 +1,7 @@
 import React from 'react';
+import 
+export default () => <div>
 
-export default () => <div />;
+
+  <CorrectAnswerToggle/>
+</div>;

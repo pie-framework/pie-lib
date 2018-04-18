@@ -1,8 +1,9 @@
 {
   "name": "@pie-lib/render-ui",
   "version": "1.0.0",
-  "description": "Some shared ui elements when rendering - but not worthy of their own package yet.",
-  "main": "src/index.js",
+  "description":
+    "Some shared ui elements when rendering - but not worthy of their own package yet.",
+  "main": "lib/index.js",
   "publishConfig": {
     "access": "public"
   },
@@ -17,19 +18,5 @@
   },
   "peerDependencies": {
     "react": "^16.3.1"
-  },
-  "devDependencies": {
-    "babel-jest": "^22.4.0",
-    "babel-loader": "^7.1.4",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
-    "jest": "^22.4.0",
-    "react": "^16.3.1",
-    "react-dom": "^16.3.1",
-    "react-test-renderer": "^16.3.1",
-    "webpack": "^4.5.0",
-    "webpack-cli": "^2.0.14",
-    "webpack-dev-server": "^3.1.3"
   }
 }
