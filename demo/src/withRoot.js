@@ -5,6 +5,9 @@ import CssBaseline from 'material-ui/CssBaseline';
 import getPageContext from './getPageContext';
 import Root from './root';
 
+const links = [
+  { label: 'CorrectAnswerToggle', path: '/correct-answer-toggle' }
+];
 function withRoot(Component) {
   class WithRoot extends React.Component {
     constructor(props, context) {
@@ -32,7 +35,7 @@ function withRoot(Component) {
         >
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />
-          <Root>
+          <Root links={links}>
             <Component {...this.props} />
           </Root>
         </MuiThemeProvider>

@@ -1,8 +1,11 @@
 import Checkbox from 'material-ui/Checkbox';
 import React from 'react';
 import Toggle from '@pie-lib/correct-answer-toggle';
+import { withStyles } from 'material-ui/styles';
 
-export default class Wrapper extends React.Component {
+import withRoot from '../src/withRoot';
+
+export class Wrapper extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -54,3 +57,11 @@ export default class Wrapper extends React.Component {
     );
   }
 }
+
+export default withRoot(
+  withStyles({
+    root: {
+      backgroundColor: 'blue'
+    }
+  })(Wrapper)
+);

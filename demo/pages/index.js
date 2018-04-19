@@ -2,8 +2,9 @@ import { withStyles } from 'material-ui/styles';
 import React from 'react';
 
 import withRoot from '../src/withRoot';
+import Typography from 'material-ui/Typography';
 const D = ({ classes }) => (
-  <div className={classes.root}>foo where is the container</div>
+  <Typography variant={'title'}>Welcome to the @pie-libs demo</Typography>
 );
 
 export default withRoot(
