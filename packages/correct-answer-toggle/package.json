@@ -3,11 +3,15 @@
   "description": "A react based toggle component",
   "repository": "pie-framework/pie-lib",
   "license": "ISC",
-  "keywords": ["react", "pie", "material-ui"],
+  "keywords": [
+    "react",
+    "pie",
+    "material-ui"
+  ],
   "publishConfig": {
     "access": "public"
   },
-  "version": "2.0.2",
+  "version": "2.0.3",
   "main": "lib/index.js",
   "scripts": {
     "test": "./node_modules/.bin/jest"
@@ -17,7 +21,7 @@
     "react": "^16.3.2"
   },
   "dependencies": {
-    "@pie-lib/icons": "^2.1.0",
+    "@pie-lib/icons": "^2.1.1",
     "classnames": "^2.2.5",
     "lodash": "^4.17.5",
     "prop-types": "^15.6.1",
