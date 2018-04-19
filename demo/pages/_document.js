@@ -1,24 +1,14 @@
 import Document, { Head, Main, NextScript } from 'next/document';
-// import { ServerStyleSheet } from 'styled-components';
 import React from 'react';
-import { JssProvider, SheetsRegistry } from 'react-jss';
-// import { renderToString } from 'react-dom/server';
-// import JssProvider from 'react-jss/lib/JssProvider';
-import {
-  MuiThemeProvider,
-  createMuiTheme,
-  createGenerateClassName
-} from 'material-ui/styles';
+import { JssProvider } from 'react-jss';
 import getPageContext from '../src/getPageContext';
 import flush from 'styled-jsx/server';
 
-import { green, red } from 'material-ui/colors';
-import CssBaseline from 'material-ui/CssBaseline';
-
 export default class MyDocument extends Document {
   static getInitialProps(ctx) {
-    // Get the context of the page to collected side effects.
     const pageContext = getPageContext();
+
+    /* eslint-disable */
     const page = ctx.renderPage(Component => props => (
       <JssProvider
         registry={pageContext.sheetsRegistry}
@@ -27,6 +17,7 @@ export default class MyDocument extends Document {
         <Component pageContext={pageContext} {...props} />
       </JssProvider>
     ));
+    /* eslint-enable */
 
     return {
       ...page,
@@ -47,12 +38,12 @@ export default class MyDocument extends Document {
   }
 
   render() {
-    const { pageContext } = this.props;
+    const { pageContext, path } = this.props;
 
     return (
       <html lang="en" dir="ltr">
         <Head>
-          <title>My page</title>
+          <title>{path}</title>
           <meta charSet="utf-8" />
           {/* Use minimum-scale=1 to enable GPU rasterization */}
           <meta
