@@ -9,7 +9,6 @@ const noTouch = {
 
 export default {
   root: {
-    backgroundColor: 'mistyrose',
     width: '100%',
     cursor: 'pointer'
   },
