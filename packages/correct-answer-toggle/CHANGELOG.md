@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.4"></a>
+## [2.0.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.0.3...@pie-lib/correct-answer-toggle@2.0.4) (2018-04-19)
+
+
+### Bug Fixes
+
+* **size:** fix icon size ([440c451](https://github.com/pie-framework/pie-lib/commit/440c451))
+
+
+
+
 <a name="2.0.3"></a>
 ## [2.0.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.0.2...@pie-lib/correct-answer-toggle@2.0.3) (2018-04-19)
 

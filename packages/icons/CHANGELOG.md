@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.1.2"></a>
+## [2.1.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.1.1...@pie-lib/icons@2.1.2) (2018-04-19)
+
+
+### Bug Fixes
+
+* **correct-response:** fix styles import ([fbd4556](https://github.com/pie-framework/pie-lib/commit/fbd4556))
+
+
+
+
 <a name="2.1.1"></a>
 ## [2.1.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.1.0...@pie-lib/icons@2.1.1) (2018-04-19)
 
