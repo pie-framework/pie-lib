@@ -11,33 +11,31 @@
     "test": "./scripts/test",
     "dev": "./scripts/dev",
     "lint": "./node_modules/.bin/eslint --ext .js --ext .jsx packages",
-    "lint-two":
-      "lerna exec -- \\$LERNA_ROOT_PATH/node_modules/.bin/eslint  --ignore-path \\$LERNA_ROOT_PATH/.eslintignore --ext .js --ext .jsx src",
+    "lint-two": "lerna exec -- \\$LERNA_ROOT_PATH/node_modules/.bin/eslint  --ignore-path \\$LERNA_ROOT_PATH/.eslintignore --ext .js --ext .jsx src",
     "clean": "lerna exec -- rm -fr lib",
-    "build":
-      "npm run clean && npm run lint-two && lerna exec -- \\$LERNA_ROOT_PATH/node_modules/.bin/babel --ignore '/__test__/','/__tests__/' src -d lib"
+    "build": "npm run clean && npm run lint-two && lerna exec -- \\$LERNA_ROOT_PATH/node_modules/.bin/babel --ignore '/__test__/','/__tests__/' src -d lib"
   },
   "devDependencies": {
-    "next": "^5.1.0",
-    "minimist": "^1.2.0",
-    "babel-eslint": "^8.2.2",
-    "lerna": "^2.8.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.2",
     "babel-jest": "^22.4.3",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "css-loader": "^0.28.11",
-    "lodash": "^4.17.5",
-    "fs-extra": "^5.0.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
-    "jest": "^22.4.3",
     "eslint": "^4.19.1",
     "eslint-plugin-react": "^7.7.0",
-    "prettier": "^1.12.1"
+    "fs-extra": "^5.0.0",
+    "jest": "^22.4.3",
+    "lerna": "^2.8.0",
+    "lodash": "^4.17.5",
+    "minimist": "^1.2.0",
+    "prettier": "^1.12.1",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "regenerator-runtime": "^0.11.1"
   }
 }

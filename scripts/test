@@ -1,18 +1,10 @@
 #!/usr/bin/env node
-//lerna exec -- \\$LERNA_ROOT_PATH/node_modules/.bin/jest",
 
 const argv = require('minimist')(process.argv.slice(2));
 const { execSync } = require('child_process');
 
-const lerna = ['lerna exec', '-- \\$LERNA_ROOT_PATH/node_modules/.bin/jest'];
-
-// const cmd =
-//   'lerna exec ' +
-//   (argv.scope ? `--scope @pie-lib/${argv.scope}` : '') +
-//   ' -- \\$LERNA_ROOT_PATH/node_modules/.bin/jest --verbose';
-
 const cmd = `./node_modules/.bin/jest ${
   argv.scope ? `packages/${argv.scope}/src` : ''
 }`;
-console.log(cmd);
+
 execSync(cmd, { stdio: 'inherit' });
