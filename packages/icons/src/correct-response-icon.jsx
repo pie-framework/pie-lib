@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
-import withStyles from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 
 const OpenIcon = ({ bg, fg }) => (
   <svg
@@ -104,6 +104,7 @@ const CorrectResponse = ({ open, classes, className }) => (
 );
 
 CorrectResponse.propTypes = {
+  classes: PropTypes.object.isRequired,
   open: PropTypes.bool,
   size: PropTypes.string,
   className: PropTypes.string
