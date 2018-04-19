@@ -3,9 +3,7 @@
   "description": "A react based toggle component",
   "repository": "pie-framework/pie-lib",
   "license": "ISC",
-  "keywords": [
-    "react"
-  ],
+  "keywords": ["react", "pie", "material-ui"],
   "publishConfig": {
     "access": "public"
   },
