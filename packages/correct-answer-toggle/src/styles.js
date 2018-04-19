@@ -44,7 +44,8 @@ export default {
     noTouch
   ),
   icon: {
-    position: 'absolute'
+    position: 'absolute',
+    width: '25px'
   },
   iconHolder: {
     width: '25px',
