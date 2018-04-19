@@ -1,7 +1,7 @@
 // !important - pull in the pre-configured jss module not the raw js module.
-import injectSheet, { jss } from 'react-jss';
+// import injectSheet, { jss } from 'react-jss';
 import styles, { animationStyles } from './styles';
-
+import { withStyles } from 'material-ui/styles';
 import CSSTransition from 'react-transition-group/CSSTransition';
 import { CorrectResponse } from '@pie-lib/icons';
 import Expander from './expander';
@@ -9,7 +9,7 @@ import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-const aniClasses = jss.createStyleSheet(animationStyles).attach();
+// const aniClasses = jss.createStyleSheet(animationStyles).attach();
 
 /**
  * We export the raw unstyled class for testability. For public use please use the default export.
@@ -51,13 +51,14 @@ export class CorrectAnswerToggle extends React.Component {
 
     return (
       <div className={classNames(classes.root, className)}>
+        {/* foo - with styles */}
         <Expander show={this.state.show} className={classes.expander}>
           <div className={classes.content} onClick={this.onClick.bind(this)}>
             <div className={classes.iconHolder}>
               <CSSTransition
                 timeout={400}
                 in={this.props.toggled}
-                classNames={aniClasses.classes}
+                classNames={classes}
               >
                 <CorrectResponse
                   open={true}
@@ -68,7 +69,7 @@ export class CorrectAnswerToggle extends React.Component {
               <CSSTransition
                 timeout={5000}
                 in={!this.props.toggled}
-                classNames={aniClasses.classes}
+                classNames={classes}
               >
                 <CorrectResponse
                   open={false}
@@ -89,4 +90,4 @@ export class CorrectAnswerToggle extends React.Component {
   }
 }
 
-export default injectSheet(styles)(CorrectAnswerToggle);
+export default withStyles(styles)(CorrectAnswerToggle);
