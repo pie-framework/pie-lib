@@ -10,11 +10,11 @@
   "license": "ISC",
   "dependencies": {
     "classnames": "^2.2.5",
-    "prop-types": "^15.6.1",
-    "react-jss": "^8.4.0"
+    "prop-types": "^15.6.1"
   },
   "peerDependencies": {
-    "react": "^16.3.1"
+    "react": "^16.3.2",
+    "material-ui": "^1.0.0-beta.42"
   },
   "publishConfig": {
     "access": "public"
