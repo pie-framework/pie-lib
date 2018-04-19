@@ -88,11 +88,6 @@ function ClippedDrawer(props) {
         <div className={classes.toolbar} />
         <List>
           <ActiveLink path="/" primary={'Home'} />
-          {/* <ListItem button>
-            <Link href={'/'} as={asPath('/')}>
-              <ListItemText primary={'Home'} />
-            </Link>
-          </ListItem> */}
           <Divider />
           {links.map((l, index) => (
             <ActiveLink key={index} path={l.path} primary={l.label} />
