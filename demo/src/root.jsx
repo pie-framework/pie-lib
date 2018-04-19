@@ -8,15 +8,13 @@ import Typography from 'material-ui/Typography';
 import List, { ListItem, ListItemText } from 'material-ui/List';
 import Link from 'next/link';
 import Divider from 'material-ui/Divider';
-
-// import { mailFolderListItems, otherMailFolderListItems } from './tileData';
+import { withRouter } from 'next/router';
 
 const drawerWidth = 240;
 
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    height: 430,
     zIndex: 1,
     overflow: 'hidden',
     position: 'relative',
@@ -45,6 +43,32 @@ const asPath = p => {
   return isProd ? `/pie-lib${p}` : p;
 };
 
+const PageTitle = withRouter(({ router, href }) => (
+  <Typography variant="title" color="inherit" noWrap>
+    {`@pie-lib/${router.pathname.split('/')[1]}`}
+  </Typography>
+));
+
+const ActiveLink = withStyles(theme => ({
+  active: {
+    color: theme.palette.primary.main
+  }
+}))(
+  withRouter(({ router, path, primary, classes }) => {
+    const isActive = path === router.pathname;
+    return (
+      <ListItem button>
+        <Link href={path} as={asPath(path)}>
+          <ListItemText
+            primary={primary}
+            classes={{ primary: isActive && classes.active }}
+          />
+        </Link>
+      </ListItem>
+    );
+  })
+);
+
 function ClippedDrawer(props) {
   const { classes, children, links } = props;
 
@@ -52,9 +76,7 @@ function ClippedDrawer(props) {
     <div className={classes.root}>
       <AppBar position="absolute" className={classes.appBar}>
         <Toolbar>
-          <Typography variant="title" color="inherit" noWrap>
-            @pie-lib/
-          </Typography>
+          <PageTitle />
         </Toolbar>
       </AppBar>
       <Drawer
@@ -65,18 +87,15 @@ function ClippedDrawer(props) {
       >
         <div className={classes.toolbar} />
         <List>
-          <ListItem>
+          <ActiveLink path="/" primary={'Home'} />
+          {/* <ListItem button>
             <Link href={'/'} as={asPath('/')}>
               <ListItemText primary={'Home'} />
             </Link>
-          </ListItem>
+          </ListItem> */}
           <Divider />
           {links.map((l, index) => (
-            <ListItem key={index}>
-              <Link href={l.path} as={asPath(l.path)}>
-                <ListItemText primary={l.label} />
-              </Link>
-            </ListItem>
+            <ActiveLink key={index} path={l.path} primary={l.label} />
           ))}
         </List>
       </Drawer>

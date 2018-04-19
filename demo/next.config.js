@@ -12,7 +12,9 @@ module.exports = {
   exportPathMap: function(/*defaultPathMap*/) {
     return {
       '/': { page: '/' },
-      '/correct-answer-toggle': { page: '/correct-answer-toggle' }
+      '/correct-answer-toggle': { page: '/correct-answer-toggle' },
+      '/charting/plot-points': { page: '/charting/plot-points' },
+      '/charting/graph-lines': { page: '/charting/graph-lines' }
     };
   },
   assetPrefix: process.env.NODE_ENV === 'production' ? '/pie-lib' : '' //eslint-disable-line

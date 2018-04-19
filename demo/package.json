@@ -8,6 +8,7 @@
     "react-dom": "^16.3.2",
     "material-ui": "^1.0.0-beta.42",
     "@material-ui/icons": "^1.0.0-beta.42",
-    "@pie-lib/correct-answer-toggle": "^2.0.4"
+    "@pie-lib/correct-answer-toggle": "^2.0.4",
+    "@pie-lib/charting": "^2.0.0"
   }
 }

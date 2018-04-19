@@ -6,8 +6,11 @@ import getPageContext from './getPageContext';
 import Root from './root';
 
 const links = [
-  { label: 'CorrectAnswerToggle', path: '/correct-answer-toggle' }
+  { label: 'CorrectAnswerToggle', path: '/correct-answer-toggle' },
+  { label: 'Charting - PlotPoints', path: '/charting/plot-points' },
+  { label: 'Charting - GraphLines', path: '/charting/graph-lines' }
 ];
+
 function withRoot(Component) {
   class WithRoot extends React.Component {
     constructor(props, context) {
