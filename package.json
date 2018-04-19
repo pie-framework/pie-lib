@@ -7,6 +7,7 @@
     "scope": "none"
   },
   "scripts": {
+    "static": "./scripts/static",
     "test": "./scripts/test",
     "dev": "./scripts/dev",
     "lint": "./node_modules/.bin/eslint --ext .js --ext .jsx packages",
