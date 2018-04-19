@@ -39,6 +39,12 @@ const styles = theme => ({
   toolbar: theme.mixins.toolbar
 });
 
+const asPath = p => {
+  const isProd =
+    process && process.env && process.env.NODE_ENV === 'production'; // eslint-disable-line
+  return isProd ? `/pie-lib${p}` : p;
+};
+
 function ClippedDrawer(props) {
   const { classes, children, links } = props;
 
@@ -47,7 +53,7 @@ function ClippedDrawer(props) {
       <AppBar position="absolute" className={classes.appBar}>
         <Toolbar>
           <Typography variant="title" color="inherit" noWrap>
-            @pie-libs
+            @pie-lib/
           </Typography>
         </Toolbar>
       </AppBar>
@@ -60,14 +66,14 @@ function ClippedDrawer(props) {
         <div className={classes.toolbar} />
         <List>
           <ListItem>
-            <Link href={'/'}>
+            <Link href={'/'} as={asPath('/')}>
               <ListItemText primary={'Home'} />
             </Link>
           </ListItem>
           <Divider />
           {links.map((l, index) => (
             <ListItem key={index}>
-              <Link href={l.path}>
+              <Link href={l.path} as={asPath(l.path)}>
                 <ListItemText primary={l.label} />
               </Link>
             </ListItem>

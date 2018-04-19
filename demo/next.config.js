@@ -8,5 +8,12 @@ module.exports = {
     out.watch = true;
     out.watchOptions = undefined;
     return out;
-  }
+  },
+  exportPathMap: function(/*defaultPathMap*/) {
+    return {
+      '/': { page: '/' },
+      '/correct-answer-toggle': { page: '/correct-answer-toggle' }
+    };
+  },
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/pie-lib' : '' //eslint-disable-line
 };
