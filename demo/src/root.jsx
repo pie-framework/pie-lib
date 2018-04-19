@@ -20,7 +20,8 @@ const styles = theme => ({
     zIndex: 1,
     overflow: 'hidden',
     position: 'relative',
-    display: 'flex'
+    display: 'flex',
+    fontFamily: '"Roboto", sans-serif'
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1
