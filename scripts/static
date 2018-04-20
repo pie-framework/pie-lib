@@ -5,10 +5,13 @@ set -e
 cd demo
 rm -fr out
 
+
+export NODE_ENV="production"
+export ASSET_PREFIX="/pie-lib"
+
 ./node_modules/.bin/next build
 ./node_modules/.bin/next export 
 
-export NODE_ENV="production"
 cd out
 touch .nojekyll
 git init
