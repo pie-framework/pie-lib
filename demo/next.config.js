@@ -24,6 +24,7 @@ module.exports = withCSS({
       '/icons': { page: '/icons' },
       '/math-input': { page: '/math-input' },
       '/editable-html': { page: '/editable-html' },
+      '/config-ui': { page: '/config-ui' },
       '/charting/plot-points': { page: '/charting/plot-points' },
       '/charting/graph-lines': { page: '/charting/graph-lines' }
     };

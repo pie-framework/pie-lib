@@ -11,6 +11,7 @@ const links = [
   { label: 'Charting - GraphLines', path: '/charting/graph-lines' },
   { label: 'Icons', path: '/icons' },
   { label: 'MathInput', path: '/math-input' },
+  { label: 'ConfigUi', path: '/config-ui' },
   { label: 'EditableHtml', path: '/editable-html' }
 ];
 
