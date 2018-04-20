@@ -1,7 +1,8 @@
 {
   "name": "@pie-lib/render-ui",
   "version": "2.0.4",
-  "description": "Some shared ui elements when rendering - but not worthy of their own package yet.",
+  "description":
+    "Some shared ui elements when rendering - but not worthy of their own package yet.",
   "main": "lib/index.js",
   "publishConfig": {
     "access": "public"
@@ -17,5 +18,9 @@
   },
   "peerDependencies": {
     "react": "^16.3.1"
+  },
+  "devDependencies": {
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2"
   }
 }

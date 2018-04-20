@@ -1,15 +1,10 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { classObject, mockMathInput } from '../../../__test__/utils';
+import { classObject, mockMathInput } from '../../../__tests__/utils';
 import debug from 'debug';
 const log = debug('editable-html:test:math');
 
-import { configure, mount } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-
-beforeAll(() => {
-  configure({ adapter: new Adapter() });
-});
+import { mount } from 'enzyme';
 
 mockMathInput();
 

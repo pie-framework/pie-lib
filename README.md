@@ -1,6 +1,5 @@
 # @pie-lib/\*
 
-
 Some reusable react components, mostly used in [pie][pie] components.
 
 Elements are in `packages`.
@@ -26,6 +25,8 @@ npm test
 ```
 
 ### test a single package
+
+> You'll need to have the depencencies installed for each package: `lerna exec yarn install`.
 
 ```bash
 npm test -- --scope pkg # eg: npm test -- --scope charting

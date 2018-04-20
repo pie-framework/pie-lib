@@ -1,18 +1,12 @@
-import { assert, match, stub } from 'sinon';
 import { configure, shallow } from 'enzyme';
 
-import Adapter from 'enzyme-adapter-react-16';
 import { Data } from 'slate';
 import { ImageToolbar } from '../image-toolbar';
 import MockChange from './mock-change';
 import React from 'react';
 
-beforeAll(() => {
-  configure({ adapter: new Adapter() });
-});
-
 test('onChange is called on button click', () => {
-  const onChange = stub();
+  const onChange = jest.fn();
   const node = {
     key: 1,
     data: Data.create({ resizePercent: 100 })
@@ -21,7 +15,7 @@ test('onChange is called on button click', () => {
   const change = new MockChange();
 
   const value = {
-    change: stub().returns(change)
+    change: jest.fn().mockReturnValue(change)
   };
 
   const toolbar = shallow(
@@ -31,6 +25,6 @@ test('onChange is called on button click', () => {
   const tbs = toolbar.find('[percent=25]');
 
   tbs.simulate('click');
-  assert.calledWith(change.setNodeByKey, 1, { data: match.object });
-  assert.calledWith(onChange, change);
+  expect(change.setNodeByKey).toBeCalledWith(1, { data: expect.anything() });
+  expect(onChange).toBeCalledWith(change);
 });

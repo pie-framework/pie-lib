@@ -1,5 +1,5 @@
 {
   "presets": ["env", "react", "stage-0"],
-  "ignore": ["node_modules", "lib"],
+  "ignore": ["node_modules", "packages/**/lib"],
   "sourceMaps": false
 }

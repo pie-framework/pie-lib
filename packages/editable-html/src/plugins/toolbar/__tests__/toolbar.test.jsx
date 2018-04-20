@@ -1,58 +1,77 @@
-import { classObject, mockIconButton, mockMathInput } from '../../../__test__/utils';
+import {
+  classObject,
+  mockIconButton,
+  mockMathInput
+} from '../../../__tests__/utils';
 
 import { Data } from 'slate';
 import { RawToolbar } from '../toolbar';
 import React from 'react';
 import debug from 'debug';
 import renderer from 'react-test-renderer';
-import { stub } from 'sinon';
 
 mockMathInput();
 
 jest.mock('material-ui/IconButton', () => {
-  return (props) => <div className={props.className} style={props.style} ariaLabel={props['aria-label']}></div>
+  return props => (
+    <div
+      className={props.className}
+      style={props.style}
+      ariaLabel={props['aria-label']}
+    />
+  );
 });
 
 const log = debug('editable-html:test:toolbar');
 
-
 describe('toolbar', () => {
-
   let onDelete, classes;
 
   beforeEach(() => {
-    onDelete = stub();
-    classes = classObject('iconRoot', 'inline', 'toolbar', 'focused', 'shared', 'inline')
+    onDelete = jest.fn();
+    classes = classObject(
+      'iconRoot',
+      'inline',
+      'toolbar',
+      'focused',
+      'shared',
+      'inline'
+    );
   });
 
   test('renders custom toolbar', () => {
-
-    const node = {}
+    const node = {};
 
     const value = {
       isCollapsed: true,
       startKey: 1,
       document: {
-        getClosestInline: stub().returns(node)
+        getClosestInline: jest.fn().mockReturnValue(node)
       }
-    }
+    };
 
     const plugins = [
       {
         deleteNode: () => true,
         toolbar: {
           supports: () => true,
-          customToolbar: () => () => <div> --------- custom toolbar ----------- </div>
+          customToolbar: () => () => (
+            <div> --------- custom toolbar ----------- </div>
+          )
         }
       }
     ];
 
     const tree = renderer
-      .create(<RawToolbar
-        plugins={plugins}
-        classes={classes}
-        value={value}
-        onDone={() => ({})} />).toJSON();
+      .create(
+        <RawToolbar
+          plugins={plugins}
+          classes={classes}
+          value={value}
+          onDone={() => ({})}
+        />
+      )
+      .toJSON();
 
     log('tree: ', JSON.stringify(tree, null, '  '));
     expect(tree).toMatchSnapshot();
@@ -62,22 +81,21 @@ describe('toolbar', () => {
     let plugins;
 
     beforeEach(() => {
-      plugins = [
-  
-      ];
+      plugins = [];
     });
 
     test('renders default toolbar', () => {
-
       const tree = renderer
-        .create(<RawToolbar
-          plugins={plugins}
-          classes={classes}
-          value={{}}
-          onDone={() => ({})} />)
+        .create(
+          <RawToolbar
+            plugins={plugins}
+            classes={classes}
+            value={{}}
+            onDone={() => ({})}
+          />
+        )
         .toJSON();
       expect(tree).toMatchSnapshot();
     });
-
   });
 });

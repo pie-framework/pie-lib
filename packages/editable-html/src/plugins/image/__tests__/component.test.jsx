@@ -2,10 +2,8 @@ import { Data } from 'slate';
 import { RawComponent } from '../component';
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { stub } from 'sinon';
 
 it('renders correctly', () => {
-
   const node = {
     data: Data.create({
       resizePercent: 50,
@@ -17,10 +15,10 @@ it('renders correctly', () => {
 
   const editor = {
     value: {},
-    change: stub()
-  }
+    change: jest.fn()
+  };
 
-  const onDelete = stub();
+  const onDelete = jest.fn();
 
   const classes = {
     active: 'active',
@@ -29,20 +27,24 @@ it('renders correctly', () => {
   };
 
   const tree = renderer
-    .create(<RawComponent
-      node={node}
-      editor={editor}
-      classes={classes}
-      onDelete={onDelete} />, {
-      createNodeMock: el => {
-        if (el.type === 'img') {
-          return {
-            naturalWidth: 100,
-            naturalHeight: 100
+    .create(
+      <RawComponent
+        node={node}
+        editor={editor}
+        classes={classes}
+        onDelete={onDelete}
+      />,
+      {
+        createNodeMock: el => {
+          if (el.type === 'img') {
+            return {
+              naturalWidth: 100,
+              naturalHeight: 100
+            };
           }
         }
       }
-    })
+    )
     .toJSON();
   expect(tree).toMatchSnapshot();
 });

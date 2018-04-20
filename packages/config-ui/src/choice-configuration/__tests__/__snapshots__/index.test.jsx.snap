@@ -33,14 +33,14 @@ exports[`index - snapshot renders correctly 1`] = `
         Value
       </label>
       <div
-        className="MuiInput-root-28 MuiInput-formControl-29 MuiInput-underline-32"
+        className="MuiInput-root-27 MuiInput-formControl-28 MuiInput-underline-31"
       >
         <input
           aria-invalid={false}
           aria-required={false}
           autoComplete={undefined}
           autoFocus={undefined}
-          className="MuiInput-input-36"
+          className="MuiInput-input-35"
           defaultValue={undefined}
           disabled={false}
           id={undefined}
@@ -60,7 +60,7 @@ exports[`index - snapshot renders correctly 1`] = `
       </div>
     </div>
     <div
-      className="MuiFormControl-root-13 RawInputContainer-formControl-12 Component-labelContainer-42"
+      className="MuiFormControl-root-13 RawInputContainer-formControl-12 Component-labelContainer-40"
       onBlur={[Function]}
       onFocus={[Function]}
     >
@@ -71,7 +71,7 @@ exports[`index - snapshot renders correctly 1`] = `
         Label
       </label>
       <div
-        className="Component-editorHolder-43"
+        className="Component-editorHolder-41"
       >
         <div>
           EditableHtml
@@ -112,7 +112,7 @@ exports[`index - snapshot renders correctly 1`] = `
     </div>
   </div>
   <div
-    className="MuiFormControl-root-13 RawInputContainer-formControl-12 Component-labelContainer-42 Component-text-44"
+    className="MuiFormControl-root-13 RawInputContainer-formControl-12 Component-labelContainer-40 Component-text-42"
     onBlur={[Function]}
     onFocus={[Function]}
   >
@@ -123,7 +123,7 @@ exports[`index - snapshot renders correctly 1`] = `
       Feedback Text
     </label>
     <div
-      className="Component-editorHolder-43"
+      className="Component-editorHolder-41"
     >
       <div>
         EditableHtml

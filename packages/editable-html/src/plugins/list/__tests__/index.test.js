@@ -1,15 +1,12 @@
 import React from 'react';
 
 import { configure, shallow } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
 import renderer from 'react-test-renderer';
 import List, { serialization } from '../index';
 import Util from '../../utils';
 import debug from 'debug';
 
 const log = debug('@pie-lib:editable-html:test:plugins:list');
-
-configure({ adapter: new Adapter() });
 
 describe('ListPlugin', () => {
   describe('deserialize', () => {

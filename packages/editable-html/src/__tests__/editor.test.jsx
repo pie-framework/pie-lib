@@ -5,15 +5,10 @@ import { shallow, configure } from 'enzyme';
 import debug from 'debug';
 
 import { mockComponents } from './utils';
-import Adapter from 'enzyme-adapter-react-16';
 
 const log = debug('editable-html:test');
 
 const value = htmlToValue('hi');
-
-beforeAll(() => {
-  configure({ adapter: new Adapter() });
-});
 
 jest.mock('@pie-lib/math-input', () => {
   return {
