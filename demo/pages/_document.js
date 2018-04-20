@@ -42,8 +42,6 @@ export default class MyDocument extends Document {
     const { pageContext, path } = this.props;
     const { __NEXT_DATA__ } = this.props;
 
-    console.log('>> ', __NEXT_DATA__.assetPrefix);
-
     return (
       <html lang="en" dir="ltr">
         <Head>

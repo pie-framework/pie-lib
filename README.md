@@ -13,23 +13,20 @@ npm install
 
 ## develop
 
-I'm working up the development script at the moment and it'll eventually be:
-
 ```bash
-npm run dev
+npm run dev --scope package-name
 # go to http://localhost:3000
 ```
 
-For now you can do the following:
+`--scope` - watch a local package - if you don't set scope nothing is watched!
+
+Under the hood this is doing:
 
 ```bash
 cd demo
+# boot next
 ./node_modules/.bin/next
-```
-
-If you want to do some live dev against the site, just set up a babel watch like so:
-
-```bash
+#If you want to do some live dev against the site, just set up a babel watch like so:
 # watch math-input/src for changes and send to demo app.
 ./node_modules/.bin/babel packages/math-input/src --watch --out-dir demo/node_modules/@pie-lib/math-input/lib --ignore node_modules
 ```
