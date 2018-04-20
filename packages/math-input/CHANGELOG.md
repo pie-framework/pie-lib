@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.0.2"></a>
+## [3.0.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@3.0.1...@pie-lib/math-input@3.0.2) (2018-04-20)
+
+
+### Bug Fixes
+
+* **ssr:** throw error if MQ is undefined ([f91a405](https://github.com/pie-framework/pie-lib/commit/f91a405))
+* **test:** normalize tests ([b86b3d9](https://github.com/pie-framework/pie-lib/commit/b86b3d9))
+
+
+
+
 <a name="3.0.1"></a>
 ## [3.0.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@3.0.0...@pie-lib/math-input@3.0.1) (2018-04-19)
 

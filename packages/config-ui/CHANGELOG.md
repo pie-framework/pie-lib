@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="4.0.5"></a>
+## [4.0.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@4.0.4...@pie-lib/config-ui@4.0.5) (2018-04-20)
+
+
+### Bug Fixes
+
+* **test:** normalize tests ([b86b3d9](https://github.com/pie-framework/pie-lib/commit/b86b3d9))
+
+
+
+
 <a name="4.0.4"></a>
 ## [4.0.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@4.0.3...@pie-lib/config-ui@4.0.4) (2018-04-19)
 
