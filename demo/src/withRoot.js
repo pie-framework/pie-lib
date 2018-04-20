@@ -8,7 +8,10 @@ import Root from './root';
 const links = [
   { label: 'CorrectAnswerToggle', path: '/correct-answer-toggle' },
   { label: 'Charting - PlotPoints', path: '/charting/plot-points' },
-  { label: 'Charting - GraphLines', path: '/charting/graph-lines' }
+  { label: 'Charting - GraphLines', path: '/charting/graph-lines' },
+  { label: 'Icons', path: '/icons' },
+  { label: 'MathInput', path: '/math-input' },
+  { label: 'EditableHtml', path: '/editable-html' }
 ];
 
 function withRoot(Component) {

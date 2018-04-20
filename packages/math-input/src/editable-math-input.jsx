@@ -1,8 +1,12 @@
-import MathQuill from 'mathquill';
 import PropTypes from 'prop-types';
 import React from 'react';
 import debug from 'debug';
-const MQ = MathQuill.getInterface(2);
+
+let MQ;
+if (typeof window !== 'undefined') {
+  const MathQuill = require('mathquill');
+  MQ = MathQuill.getInterface(2);
+}
 
 const log = debug('math-input:editable-math-input');
 

@@ -3,12 +3,18 @@
   "private": true,
   "version": "1.0.0",
   "dependencies": {
+    "@material-ui/icons": "^1.0.0-beta.42",
+    "@pie-lib/charting": "^2.0.0",
+    "@pie-lib/correct-answer-toggle": "^2.0.4",
+    "@pie-lib/editable-html": "^5.0.1",
+    "@pie-lib/icons": "~2.1.2",
+    "@pie-lib/math-input": "^3.0.1",
+    "@zeit/next-css": "^0.1.5",
+    "material-ui": "^1.0.0-beta.42",
     "next": "6.0.0-canary.4",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
-    "material-ui": "^1.0.0-beta.42",
-    "@material-ui/icons": "^1.0.0-beta.42",
-    "@pie-lib/correct-answer-toggle": "^2.0.4",
-    "@pie-lib/charting": "^2.0.0"
+    "url-loader": "^1.0.1",
+    "file-loader": "^1.1.11"
   }
 }

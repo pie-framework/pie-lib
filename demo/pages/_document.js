@@ -58,6 +58,7 @@ export default class MyDocument extends Document {
             name="theme-color"
             content={pageContext.theme.palette.primary.main}
           />
+          <link rel="stylesheet" href="/_next/static/style.css" />
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
