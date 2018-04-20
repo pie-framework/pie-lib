@@ -61,6 +61,7 @@ npm run build
 ## release
 
 ```bash
+# be sure to have built at this point.
 lerna publish --conventional-commits
 # will add conventional commits to each packages CHANGELOG.md
 # you can add --skip-npm and/or --skip-git if you want to bypass publishing to either.
