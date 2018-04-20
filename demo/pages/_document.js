@@ -40,6 +40,9 @@ export default class MyDocument extends Document {
 
   render() {
     const { pageContext, path } = this.props;
+    const { __NEXT_DATA__ } = this.props;
+
+    console.log('>> ', __NEXT_DATA__.assetPrefix);
 
     return (
       <html lang="en" dir="ltr">
@@ -59,7 +62,10 @@ export default class MyDocument extends Document {
             name="theme-color"
             content={pageContext.theme.palette.primary.main}
           />
-          <link rel="stylesheet" href={'/pie-lib/_next/static/style.css'} />
+          <link
+            rel="stylesheet"
+            href={`${__NEXT_DATA__.assetPrefix || ''}/_next/static/style.css`}
+          />
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"

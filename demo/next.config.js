@@ -1,11 +1,24 @@
 const withCSS = require('@zeit/next-css');
+
+const getAssetPrefix = () => {
+  //eslint-disable-next-line
+  if (process.env.NODE_ENV !== 'production') {
+    return '';
+  }
+
+  return process.env.ASSET_PREFIX || ''; //eslint-disable-line
+};
+
 module.exports = withCSS({
-  webpack: (config, { buildId, dev, isServer, defaultLoaders }) => {
+  webpack: (config /*opts*/) => {
+    const publicPath = `${getAssetPrefix()}/_next/static`;
     config.module.rules.push({
       test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2|otf)$/,
       loader: 'url-loader',
       options: {
-        limit: 10000
+        limit: 10000,
+        outputPath: 'static',
+        publicPath
       }
     });
     return config;
@@ -25,9 +38,11 @@ module.exports = withCSS({
       '/math-input': { page: '/math-input' },
       '/editable-html': { page: '/editable-html' },
       '/config-ui': { page: '/config-ui' },
+      '/render-ui': { page: '/render-ui' },
+      '/scoring-config': { page: '/scoring-config' },
       '/charting/plot-points': { page: '/charting/plot-points' },
       '/charting/graph-lines': { page: '/charting/graph-lines' }
     };
   },
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/pie-lib' : '' //eslint-disable-line
+  assetPrefix: getAssetPrefix()
 });

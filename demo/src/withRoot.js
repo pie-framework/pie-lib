@@ -6,13 +6,15 @@ import getPageContext from './getPageContext';
 import Root from './root';
 
 const links = [
-  { label: 'CorrectAnswerToggle', path: '/correct-answer-toggle' },
-  { label: 'Charting - PlotPoints', path: '/charting/plot-points' },
-  { label: 'Charting - GraphLines', path: '/charting/graph-lines' },
-  { label: 'Icons', path: '/icons' },
-  { label: 'MathInput', path: '/math-input' },
-  { label: 'ConfigUi', path: '/config-ui' },
-  { label: 'EditableHtml', path: '/editable-html' }
+  { label: 'correct-answer-toggle', path: '/correct-answer-toggle' },
+  { label: 'charting - PlotPoints', path: '/charting/plot-points' },
+  { label: 'charting - GraphLines', path: '/charting/graph-lines' },
+  { label: 'icons', path: '/icons' },
+  { label: 'math-input', path: '/math-input' },
+  { label: 'config-ui', path: '/config-ui' },
+  { label: 'render-ui', path: '/render-ui' },
+  { label: 'scoring-config', path: '/scoring-config' },
+  { label: 'editable-html', path: '/editable-html' }
 ];
 
 function withRoot(Component) {

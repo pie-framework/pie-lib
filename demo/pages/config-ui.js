@@ -104,6 +104,10 @@ class RawContainer extends React.Component {
     });
   }
 
+  componentDidMount() {
+    this.setState({ mounted: true });
+  }
+
   onChoiceConfigChange = update => {
     console.log('update: ', update);
     this.setState({ choiceConfig: update });
@@ -111,9 +115,9 @@ class RawContainer extends React.Component {
 
   render() {
     const { classes } = this.props;
-
+    const { mounted } = this.state;
     console.log('this.state: ', this.state);
-    return (
+    return mounted ? (
       <div className={classes.root}>
         <div className={classes.left}>
           <Section name="Choice Configuration">
@@ -228,6 +232,8 @@ class RawContainer extends React.Component {
           </pre>
         </div>
       </div>
+    ) : (
+      <div>loading...</div>
     );
   }
 }

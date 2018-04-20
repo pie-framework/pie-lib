@@ -17,6 +17,9 @@ class Demo extends React.Component {
     this.setState({ latex });
   }
 
+  onMathInputClick(argumnents) {
+    console.log('onMathInputClick', arguments);
+  }
   onClick(data) {
     console.log('onClick', data.value, data.type);
   }
@@ -24,13 +27,19 @@ class Demo extends React.Component {
   onInputChange(latex) {
     console.log('onInputChange', latex);
   }
+
+  componentDidMount() {
+    this.setState({ mounted: true });
+  }
   render() {
-    const { readOnly, latex } = this.state;
-    return (
+    const { readOnly, latex, mounted } = this.state;
+
+    return mounted ? (
       <div>
         <div>
           <p>This is a math input based in MathQuill.</p>
           <EditableMathInput
+            onClick={this.onMathInputClick}
             latex={'\\frac{1}{2}'}
             onChange={this.onInputChange}
           />
@@ -50,6 +59,8 @@ class Demo extends React.Component {
           <pre>{JSON.stringify(latex, null, '  ')}</pre>
         </div>
       </div>
+    ) : (
+      <div>loading...</div>
     );
   }
 }

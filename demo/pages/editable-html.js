@@ -87,7 +87,13 @@ class RteDemo extends React.Component {
   }
 
   componentDidMount() {
-    this.fileInput.addEventListener('change', this.handleFileSelect);
+    this.setState({ mounted: true });
+  }
+
+  componentDidUpdate() {
+    if (this.fileInput) {
+      this.fileInput.addEventListener('change', this.handleFileSelect);
+    }
   }
 
   componentWillUnmount() {
@@ -124,7 +130,14 @@ class RteDemo extends React.Component {
   };
 
   render() {
-    const { markup, showHighlight, disabled, width, height } = this.state;
+    const {
+      markup,
+      showHighlight,
+      disabled,
+      width,
+      height,
+      mounted
+    } = this.state;
     const imageSupport = {
       add: this.addImage,
       delete: this.onDeleteImage
@@ -133,7 +146,7 @@ class RteDemo extends React.Component {
     log('this.state', this.state);
 
     //activePlugins={['bold', 'bulleted-list', 'numbered-list']}
-    return (
+    return mounted ? (
       <div>
         <FormGroup row>
           <FormControlLabel
@@ -195,6 +208,8 @@ class RteDemo extends React.Component {
         <h4>markup</h4>
         <pre className="prettyprint">{markup}</pre>
       </div>
+    ) : (
+      <div>loading...</div>
     );
   }
 }
