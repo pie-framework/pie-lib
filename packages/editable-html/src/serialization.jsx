@@ -187,9 +187,30 @@ const RULES = [
   marks
 ];
 
+function defaultParseHtml(html) {
+  if (typeof DOMParser === 'undefined') {
+    throw new Error(
+      'The native `DOMParser` global which the `Html` serializer uses by default is not present in this environment. You must supply the `options.parseHtml` function instead.'
+    );
+  }
+
+  const parsed = new DOMParser().parseFromString(html, 'text/html');
+  const { body } = parsed;
+  return body;
+}
+
+/** If this lib is used on the server side, we need to bypass using the DOMParser - just put in a stub. */
+const parseHtml =
+  typeof window === 'undefined'
+    ? () => ({
+        childNodes: []
+      })
+    : defaultParseHtml;
+
 const serializer = new Html({
   defaultBlock: 'div',
-  rules: RULES
+  rules: RULES,
+  parseHtml
 });
 
 export const htmlToValue = html => serializer.deserialize(html);

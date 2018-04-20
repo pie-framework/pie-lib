@@ -9,6 +9,7 @@ import List, { ListItem, ListItemText } from 'material-ui/List';
 import Link from 'next/link';
 import Divider from 'material-ui/Divider';
 import { withRouter } from 'next/router';
+import { asPath } from './utils';
 
 const drawerWidth = 240;
 
@@ -36,12 +37,6 @@ const styles = theme => ({
   },
   toolbar: theme.mixins.toolbar
 });
-
-const asPath = p => {
-  const isProd =
-    process && process.env && process.env.NODE_ENV === 'production'; // eslint-disable-line
-  return isProd ? `/pie-lib${p}` : p;
-};
 
 const PageTitle = withRouter(({ router, href }) => (
   <Typography variant="title" color="inherit" noWrap>
