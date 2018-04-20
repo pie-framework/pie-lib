@@ -13,12 +13,13 @@ const log = debug('math-input:editable-math-input');
 /**
  * Wrapper for MathQuill MQ.MathField.
  */
-export default class EditableMathInput extends React.PureComponent {
+export default class EditableMathInput extends React.Component {
   static propTypes = {
     onClick: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired,
     latex: PropTypes.string.isRequired,
-    editing: PropTypes.bool.isRequired
+    onFocus: PropTypes.func,
+    onBlur: PropTypes.func
   };
 
   componentDidMount() {
