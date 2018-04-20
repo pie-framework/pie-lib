@@ -22,6 +22,9 @@ export default class EditableMathInput extends React.PureComponent {
   };
 
   componentDidMount() {
+    if (!MQ) {
+      throw new Error('MQ is not defined - but component has mounted?');
+    }
     this.mathField = MQ.MathField(this.input, {
       handlers: {
         edit: this.onInputEdit.bind(this)
