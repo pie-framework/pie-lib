@@ -2,9 +2,14 @@
 
 const argv = require('minimist')(process.argv.slice(2));
 const { execSync } = require('child_process');
+const { resolve, join } = require('path');
 
 const cmd = `./node_modules/.bin/jest ${
   argv.scope ? `packages/${argv.scope}/src` : ''
 }`;
-
-execSync(cmd, { stdio: 'inherit' });
+console.log('cmd: ', cmd);
+execSync(cmd, {
+  stdio: 'inherit',
+  cwd: resolve(join(__dirname, '..')),
+  env: Object.assign(process.env, { NODE_ENV: 'test' })
+});
