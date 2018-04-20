@@ -1,7 +1,4 @@
-import * as indicators from './response-indicators.jsx';
+import * as indicators from './response-indicators';
 import Feedback from './feedback';
 
-export {
-  indicators,
-  Feedback
-}
+export { indicators, Feedback };
