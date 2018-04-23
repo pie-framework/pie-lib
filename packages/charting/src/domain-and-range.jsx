@@ -106,91 +106,101 @@ export class DomainAndRange extends React.Component {
       width,
       height,
       children,
+      title,
       disabled
     } = this.props;
     const { scale } = this.getScaleFunctions();
 
     return (
-      <svg
-        width={width}
-        height={height}
-        className={classNames(classes.svg, disabled && classes.disabled)}
-      >
-        <Grid
-          xScale={scale.x}
-          yScale={scale.y}
+      <div>
+        {title && <h4 className={classes.title}>{title}</h4>}
+        <svg
           width={width}
           height={height}
-          numTicksRows={tickCount(domain.min, domain.max, domain.step)}
-          stroke={disabled ? 'rgba(236, 239, 241, 0.5)' : 'rgb(236, 239, 241)'}
-          numTicksColumns={tickCount(range.min, range.max, domain.step)}
-        />
-        <Axis
-          orientation={'left'}
-          scale={scale.y}
-          top={0}
-          height={height}
-          left={scale.x(0)}
-          numTicks={tickCount(range.min, range.max, range.step)}
-          stroke={`rgba(144, 164, 174, ${disabled ? '0.3' : '1'})`}
-          strokeWidth={2}
-          label={range.label}
-          tickTextFill={'red'}
-          tickTextDy={10}
-          hideZero={true}
-          tickTextFontSize={20}
-          tickText={{
-            fontSize: 20
-          }}
-          tickTextAnchor={'bottom'}
-        />
-        <Axis
-          hideZero={true}
-          scale={scale.x}
-          numTicks={tickCount(domain.min, domain.max, domain.step)}
-          top={scale.y(0)}
-          left={0}
-          stroke={`rgba(144, 164, 174, ${disabled ? '0.5' : '1'})`}
-          strokeWidth={2}
-          label={domain.label}
-          tickTextFill={'#1b1a1e'}
-        />
-        <rect
-          ref={rect => (this.rect = rect)}
-          //need to have a fill for it to be clickable
-          fill="red"
-          fillOpacity="0.0"
-          width={width}
-          height={height}
-        />
+          className={classNames(classes.svg, disabled && classes.disabled)}
+        >
+          <Grid
+            xScale={scale.x}
+            yScale={scale.y}
+            width={width}
+            height={height}
+            numTicksRows={tickCount(domain.min, domain.max, domain.step)}
+            stroke={disabled ? 'rgba(236, 239, 241, 0.5)' : 'rgb(236, 239, 241)'}
+            numTicksColumns={tickCount(range.min, range.max, domain.step)}
+          />
+          <Axis
+            orientation={'left'}
+            scale={scale.y}
+            top={0}
+            height={height}
+            left={scale.x(0)}
+            numTicks={tickCount(range.min, range.max, range.step)}
+            stroke={`rgba(144, 164, 174, ${disabled ? '0.3' : '1'})`}
+            strokeWidth={2}
+            label={range.label}
+            tickTextFill={'red'}
+            tickTextDy={10}
+            hideZero={true}
+            tickTextFontSize={20}
+            tickText={{
+              fontSize: 20
+            }}
+            tickTextAnchor={'bottom'}
+          />
+          <Axis
+            hideZero={true}
+            scale={scale.x}
+            numTicks={tickCount(domain.min, domain.max, domain.step)}
+            top={scale.y(0)}
+            left={0}
+            stroke={`rgba(144, 164, 174, ${disabled ? '0.5' : '1'})`}
+            strokeWidth={2}
+            label={domain.label}
+            tickTextFill={'#1b1a1e'}
+          />
+          <rect
+            ref={rect => (this.rect = rect)}
+            //need to have a fill for it to be clickable
+            fill="red"
+            fillOpacity="0.0"
+            width={width}
+            height={height}
+          />
 
-        <Arrow x={width / 2} y={0} className={classes.arrow} direction={'up'} />
-        <Arrow
-          x={width / 2}
-          y={height}
-          className={classes.arrow}
-          direction={'down'}
-        />
-        <Arrow
-          x={width}
-          y={height / 2}
-          direction="right"
-          className={classes.arrow}
-        />
-        <Arrow x={0} y={height / 2} className={classes.arrow} />
-        <Arrow
-          x={width}
-          y={height / 2}
-          direction="right"
-          className={classes.arrow}
-        />
-        {children}
-      </svg>
+          <Arrow x={width / 2} y={0} className={classes.arrow} direction={'up'} />
+          <Arrow
+            x={width / 2}
+            y={height}
+            className={classes.arrow}
+            direction={'down'}
+          />
+          <Arrow
+            x={width}
+            y={height / 2}
+            direction="right"
+            className={classes.arrow}
+          />
+          <Arrow x={0} y={height / 2} className={classes.arrow} />
+          <Arrow
+            x={width}
+            y={height / 2}
+            direction="right"
+            className={classes.arrow}
+          />
+          {children}
+        </svg>
+      </div>
     );
   }
 }
 
 const styles = {
+  title: {
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    textAlign: 'center',
+    marginTop: '0'
+  },
   svg: {
     cursor: 'pointer'
   },

@@ -8,14 +8,15 @@ const log = debug('pie-lib:charting:point:utils');
  * Get the index of the point in the points array
  * @param {Point[]} points
  * @param {Point} p
+ * @param {Boolean} includeLabel - will look at label too to determine if point is there
  */
-export const pointIndex = (points, p) => {
+export const pointIndex = (points, p, includeLabel) => {
   return (points || []).findIndex(s => {
-    return s.x === p.x && s.y === p.y;
+    return s.x === p.x && s.y === p.y && (includeLabel ? s.label === p.label : true);
   });
 };
 
-export const hasPoint = (points, p) => pointIndex(points, p) !== -1;
+export const hasPoint = (points, p, includeLabel) => pointIndex(points, p, includeLabel) !== -1;
 
 export const trim = point => ({
   x: point.x,
