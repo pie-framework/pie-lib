@@ -9,7 +9,7 @@
   },
   "author": "",
   "dependencies": {
-    "@material-ui/icons": "^1.0.0-beta.42",
+    "@material-ui/icons": "^1.0.0-beta.43",
     "@pie-lib/math-input": "^3.0.3",
     "classnames": "^2.2.5",
     "debug": "^3.1.0",
@@ -19,7 +19,7 @@
     "react-jss": "^8.4.0",
     "react-portal": "^4.1.5",
     "slate": "^0.33.4",
-    "slate-edit-list": "^0.11.2",
+    "slate-edit-list": "^0.11.3",
     "slate-html-serializer": "^0.6.1",
     "slate-prop-types": "^0.4.27",
     "slate-react": "^0.12.4"
