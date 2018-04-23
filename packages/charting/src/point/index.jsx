@@ -104,6 +104,7 @@ export class Point extends React.Component {
     disabled: false,
     correct: undefined,
     label: undefined,
+    showLabels: true,
     showCoordinates: false
   };
 
@@ -126,6 +127,7 @@ export class Point extends React.Component {
     onDragStop: PropTypes.func,
     onDragStart: PropTypes.func,
     label: PropTypes.string,
+    showLabels: PropTypes.bool,
     showCoordinates: PropTypes.bool
   };
 
@@ -147,6 +149,7 @@ export class Point extends React.Component {
       correct,
       empty,
       classes,
+      showLabels,
       showCoordinates,
       label
     } = this.props;
@@ -252,12 +255,12 @@ export class Point extends React.Component {
         bounds={scaledBounds}
       >
         <g className={circleClass}>
-          {(label || showCoordinates) && (
+          {((showLabels && label) || showCoordinates) && (
             <Label
               showCoordinates={showCoordinates}
               x={x}
               y={y}
-              label={label}
+              label={showLabels ? label : null}
             />
           )}
           <circle r="5" strokeWidth="3" cx={scale.x(x)} cy={scale.y(y)} />
