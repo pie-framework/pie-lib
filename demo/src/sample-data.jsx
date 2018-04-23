@@ -11,6 +11,7 @@
 export const base = {
   width: 600,
   height: 600,
+  title: 'title',
   //domain is the x-axis
   domain: {
     max: 10,
