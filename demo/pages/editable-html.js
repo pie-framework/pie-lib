@@ -6,10 +6,12 @@ import Checkbox from 'material-ui/Checkbox';
 import { FormGroup, FormControlLabel } from 'material-ui/Form';
 import TextField from 'material-ui/TextField';
 import withRoot from '../src/withRoot';
+import { withStyles } from 'material-ui/styles';
+import PropTypes from 'prop-types';
+import Typography from 'material-ui/Typography';
 
-const log = debug('editable-html:rte-demo');
-const puppySrc =
-  'http://cdn2-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-8.jpg';
+const log = debug('@pie-lib:editable-html:demo');
+const puppySrc = `https://bit.ly/23yROY8`;
 
 /**
  * Note: See core schema rules - it normalizes so you can only have blocks or inline and text in a block.
@@ -17,11 +19,22 @@ const puppySrc =
 // const html = `<div><div>hi</div><img src="${puppySrc}"></img></div>`;
 // const html = `<span data-mathjax="">\\frac{1}{2}</span>`;
 // const html = `<ul><li><span>apple<span></li></ul>`;
-const html = `hi`;
+// const html = `<div>
+//   <img src="${puppySrc}"></img>
+// </div>`;
+
+const html = `<div>
+<div>this is some text</div>
+<img src="${puppySrc}"/>
+</div>`;
 
 // const j = { "kind": "value", "document": { "kind": "document", "data": {}, "nodes": [{ "kind": "block", "type": "div", "nodes": [{ "kind": "text", "leaves": [{ "kind": "leaf", "text": "a" }] }, { "kind": "block", "type": "image", "isVoid": true, "nodes": [], "data": { "src": "http://cdn2-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-8.jpg", "width": null, "height": null } }] }] } }
 
 class RteDemo extends React.Component {
+  static propTypes = {
+    classes: PropTypes.object.isRequired
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -130,6 +143,7 @@ class RteDemo extends React.Component {
   };
 
   render() {
+    const { classes } = this.props;
     const {
       markup,
       showHighlight,
@@ -148,6 +162,12 @@ class RteDemo extends React.Component {
     //activePlugins={['bold', 'bulleted-list', 'numbered-list']}
     return mounted ? (
       <div>
+        <Typography variant="title">EditableHtml</Typography>
+        <Typography variant="body1">
+          A rich text editor with a material design look.
+        </Typography>
+        <br />
+
         <FormGroup row>
           <FormControlLabel
             control={
@@ -171,25 +191,17 @@ class RteDemo extends React.Component {
             }
             label="disabled"
           />
-          <FormControlLabel
-            control={
-              <TextField
-                value={width}
-                onChange={event => this.setState({ width: event.target.value })}
-              />
-            }
-            label="width"
+          <TextField
+            className={classes.sizeInput}
+            placeholder={'width'}
+            value={width}
+            onChange={event => this.setState({ width: event.target.value })}
           />
-          <FormControlLabel
-            control={
-              <TextField
-                value={height}
-                onChange={event =>
-                  this.setState({ height: event.target.value })
-                }
-              />
-            }
-            label="height"
+          <TextField
+            className={classes.sizeInput}
+            placeholder={'height'}
+            value={height}
+            onChange={event => this.setState({ height: event.target.value })}
           />
         </FormGroup>
         <EditableHtml
@@ -206,11 +218,39 @@ class RteDemo extends React.Component {
         <br />
         <br />
         <h4>markup</h4>
-        <pre className="prettyprint">{markup}</pre>
+        <pre className={classes.prettyPrint}>{markup}</pre>
+        <hr />
+        <Typography variant="subheading">Issues</Typography>
+        <ol>
+          <li>
+            <a
+              href="https://github.com/ianstormtaylor/slate/blob/master/packages/slate/src/constants/core-schema-rules.js#L39"
+              target="_blank"
+            >
+              Slate's core schema
+            </a>{' '}
+            only allows for either block or inline and text in a block node. If
+            it finds an invalid node it just removes any invalid nodes within
+            it. This could be problematic for us when handling incoming content
+            of unknown provenance.
+          </li>
+        </ol>
       </div>
     ) : (
       <div>loading...</div>
     );
   }
 }
-export default withRoot(RteDemo);
+
+const styles = theme => ({
+  sizeInput: {
+    width: '60px',
+    paddingLeft: theme.spacing.unit * 2
+  },
+  prettyPrint: {
+    whiteSpace: 'normal',
+    width: '100%'
+  }
+});
+
+export default withRoot(withStyles(styles)(RteDemo));

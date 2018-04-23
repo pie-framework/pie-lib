@@ -6,7 +6,7 @@ import { htmlToValue, valueToHtml } from './serialization';
 /**
  * Export lower level Editor and serialization functions.
  */
-export { htmlToValue, valueToHtml, Editor }
+export { htmlToValue, valueToHtml, Editor };
 
 /**
  * Wrapper around the editor that exposes a `markup` and `onChange(markup:string)` api.
@@ -15,11 +15,10 @@ export { htmlToValue, valueToHtml, Editor }
  * We should be making better use of schemas w/ normalize.
  */
 export default class EditableHtml extends React.Component {
-
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     markup: PropTypes.string.isRequired
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -33,12 +32,15 @@ export default class EditableHtml extends React.Component {
 
     this.state = {
       value: v
-    }
+    };
   }
 
   componentWillReceiveProps(props) {
+    if (props.markup === this.props.markup) {
+      return;
+    }
 
-    const v = htmlToValue(props.markup)
+    const v = htmlToValue(props.markup);
     const current = htmlToValue(this.props.markup);
 
     if (!v.equals(current)) {
@@ -52,11 +54,16 @@ export default class EditableHtml extends React.Component {
     if (html !== this.props.markup) {
       this.props.onChange(html);
     }
-  }
+  };
 
   render() {
     const { value } = this.state;
-    const props = { ...this.props, markup: null, value, onChange: this.onChange }
+    const props = {
+      ...this.props,
+      markup: null,
+      value,
+      onChange: this.onChange
+    };
     return <Editor {...props} />;
   }
 }

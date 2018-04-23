@@ -54,7 +54,9 @@ const run = async () => {
         '--out-dir',
         `demo/node_modules/@pie-lib/${argv.scope}/lib`,
         '--ignore',
-        'node_modules'
+        'node_modules',
+        '--source-maps',
+        'inline'
       ],
       { stdio: 'inherit' }
     );

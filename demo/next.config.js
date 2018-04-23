@@ -28,6 +28,7 @@ module.exports = withCSS({
     const out = Object.assign({}, config);
     out.watch = true;
     out.watchOptions = undefined;
+    out.devtool = 'inline-cheap-source-map';
     return out;
   },
   exportPathMap: function(/*defaultPathMap*/) {

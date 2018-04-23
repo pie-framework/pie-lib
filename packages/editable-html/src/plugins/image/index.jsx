@@ -1,4 +1,4 @@
-import { Block, Data } from 'slate';
+import { Block, Data, Range } from 'slate';
 
 import Image from '@material-ui/icons/Image';
 import ImageComponent from './component';
@@ -7,7 +7,7 @@ import InsertImageHandler from './insert-image-handler';
 import React from 'react';
 import debug from 'debug';
 
-const log = debug('editable-html:plugins:image');
+const log = debug('@pie-lib:editable-html:plugins:image');
 
 export default function ImagePlugin(opts) {
   const toolbar = opts.insertImageRequested && {
@@ -29,8 +29,8 @@ export default function ImagePlugin(opts) {
         getValue => new InsertImageHandler(block, getValue, onChange)
       );
     },
-    supports: node => node.kind === 'block' && node.type === 'image',
-    customToolbar: node => ImageToolbar
+    supports: node => node.object === 'block' && node.type === 'image',
+    customToolbar: () => ImageToolbar
   };
 
   return {
@@ -85,6 +85,25 @@ export default function ImagePlugin(opts) {
           props
         );
         return <ImageComponent {...all} />;
+      }
+    },
+    onKeyDown(event, change, editor) {
+      log('[onKeyDown] ...');
+      const { startKey } = change.value.selection;
+      const n = change.value.document.getDescendant(startKey);
+      const p = change.value.document.getParent(n.key);
+
+      if (p.type === 'image') {
+        const block = Block.fromJSON({ type: 'div' });
+        const range = Range.fromJSON({
+          anchorKey: block.key,
+          anchorOffset: 0,
+          focusKey: block.key,
+          focusOffset: 0,
+          isFocused: true,
+          isBackward: false
+        });
+        change.insertBlockAtRange(change.value.selection, block).select(range);
       }
     }
   };

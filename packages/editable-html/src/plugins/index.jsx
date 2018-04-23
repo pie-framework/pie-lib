@@ -58,7 +58,8 @@ export const DEFAULT_PLUGINS = [
   'underline',
   'strikethrough',
   'bulleted-list',
-  'numbered-list'
+  'numbered-list',
+  'image'
 ];
 
 export const buildPlugins = (activePlugins, opts) => {

@@ -4,9 +4,11 @@ module.exports = {
   mode: 'development',
   devtool: 'eval-source-map',
   context: __dirname,
-  entry: './entry.jsx',
+  entry: {
+    image: './image/index.jsx'
+  },
   output: {
-    filename: 'bundle.js',
+    filename: '[name]/bundle.js',
     path: __dirname
   },
   module: {
@@ -18,24 +20,10 @@ module.exports = {
           babelrc: false,
           presets: ['react', 'env', 'stage-0']
         }
-      },
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader']
-      },
-      {
-        test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2|otf)$/,
-        loader: 'url-loader',
-        options: {
-          limit: 10000
-        }
       }
     ]
   },
   resolve: {
     extensions: ['.js', '.jsx']
-  },
-  plugins: [
-    // new DashboardPlugin()
-  ]
+  }
 };
