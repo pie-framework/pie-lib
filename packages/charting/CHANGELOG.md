@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.1.0"></a>
+# [2.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@2.0.1...@pie-lib/charting@2.1.0) (2018-04-23)
+
+
+### Features
+
+* **point-intercept:** add title label to top of chart ([71ba936](https://github.com/pie-framework/pie-lib/commit/71ba936))
+
+
+
+
 <a name="2.0.1"></a>
 ## [2.0.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@2.0.0...@pie-lib/charting@2.0.1) (2018-04-20)
 
