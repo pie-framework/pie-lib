@@ -12,6 +12,7 @@ const log = debug('pie-lib:charting:plot-points');
 
 export default class PlotPoints extends React.Component {
   static propTypes = {
+    title: PropTypes.string,
     width: PropTypes.number.isRequired,
     height: PropTypes.number.isRequired,
     points: PropTypes.arrayOf(PointType),
@@ -27,7 +28,14 @@ export default class PlotPoints extends React.Component {
       PropTypes.oneOf(['numbers', 'letters'])
     ]),
     showPointCoordinates: PropTypes.bool,
-    maxNoOfPoints: PropTypes.number
+    showPointLabels: PropTypes.bool,
+    maxNoOfPoints: PropTypes.oneOfType([
+      PropTypes.string, PropTypes.number
+    ]),
+  };
+
+  static defaultProps = {
+    showPointLabels: true
   };
 
   getPointBounds = p => utils.bounds(p, this.props.domain, this.props.range);
@@ -79,12 +87,14 @@ export default class PlotPoints extends React.Component {
 
   render() {
     const {
+      title,
       width,
       height,
       domain,
       range,
       points,
       disabled,
+      showPointLabels,
       showPointCoordinates
     } = this.props;
 
@@ -95,6 +105,7 @@ export default class PlotPoints extends React.Component {
 
     return (
       <DomainAndRange
+        title={title}
         disabled={disabled}
         onClick={this.onDomainClick}
         width={width}
@@ -106,6 +117,7 @@ export default class PlotPoints extends React.Component {
           <Point
             key={index}
             showCoordinates={showPointCoordinates}
+            showLabels={showPointLabels}
             {...p}
             disabled={disabled}
             onClick={() => this.toggleSelectPoint(p)}
