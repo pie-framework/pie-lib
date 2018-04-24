@@ -17,7 +17,7 @@ export class Component extends React.Component {
       change: PropTypes.func.isRequired
     }).isRequired,
     classes: PropTypes.object.isRequired,
-    attributes: PropTypes.object.isRequired,
+    attributes: PropTypes.object,
     onFocus: PropTypes.func,
     onBlur: PropTypes.func
   };

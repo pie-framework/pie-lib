@@ -1,17 +1,18 @@
-import { Data } from 'slate';
-import { RawComponent } from '../component';
+import { Data, Block } from 'slate';
+import { Component } from '../component';
 import React from 'react';
 import renderer from 'react-test-renderer';
 
 it('renders correctly', () => {
-  const node = {
+  const node = Block.fromJSON({
+    type: 'image',
     data: Data.create({
       resizePercent: 50,
       width: 50,
       height: 50,
       percent: 50
     })
-  };
+  });
 
   const editor = {
     value: {},
@@ -28,7 +29,7 @@ it('renders correctly', () => {
 
   const tree = renderer
     .create(
-      <RawComponent
+      <Component
         node={node}
         editor={editor}
         classes={classes}
