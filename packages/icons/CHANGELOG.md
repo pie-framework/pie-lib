@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.1.4"></a>
+## [2.1.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.1.3...@pie-lib/icons@2.1.4) (2018-04-24)
+
+
+### Bug Fixes
+
+* **dependencies:** version bump ([dd82caf](https://github.com/pie-framework/pie-lib/commit/dd82caf))
+
+
+
+
 <a name="2.1.3"></a>
 ## [2.1.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.1.2...@pie-lib/icons@2.1.3) (2018-04-20)
 

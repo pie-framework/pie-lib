@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.0.4"></a>
+## [3.0.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@3.0.3...@pie-lib/math-input@3.0.4) (2018-04-24)
+
+
+### Bug Fixes
+
+* **dependencies:** version bump ([3317784](https://github.com/pie-framework/pie-lib/commit/3317784))
+
+
+
+
 <a name="3.0.3"></a>
 ## [3.0.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@3.0.2...@pie-lib/math-input@3.0.3) (2018-04-20)
 

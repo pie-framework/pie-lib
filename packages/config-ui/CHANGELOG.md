@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="4.0.8"></a>
+## [4.0.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@4.0.7...@pie-lib/config-ui@4.0.8) (2018-04-24)
+
+
+### Bug Fixes
+
+* **dependencies:** version bump ([dd82caf](https://github.com/pie-framework/pie-lib/commit/dd82caf))
+
+
+
+
 <a name="4.0.7"></a>
 ## [4.0.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@4.0.6...@pie-lib/config-ui@4.0.7) (2018-04-24)
 
