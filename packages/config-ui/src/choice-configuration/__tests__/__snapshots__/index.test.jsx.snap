@@ -2,76 +2,36 @@
 
 exports[`index - snapshot renders correctly 1`] = `
 <div
-  className="RawChoiceConfiguration-choiceConfiguration-2"
+  className="choiceConfiguration"
 >
   <div
-    className="RawChoiceConfiguration-topRow-3"
+    className={undefined}
   >
     <div
-      className="MuiFormControl-root-13 RawInputContainer-formControl-12 RawChoiceConfiguration-toggle-6"
+      className="MuiFormControl-root-3 RawInputContainer-formControl-2"
       onBlur={[Function]}
       onFocus={[Function]}
     >
       <label
-        className="MuiFormLabel-root-22 MuiInputLabel-root-17 MuiInputLabel-formControl-18 MuiInputLabel-animated-21 MuiInputLabel-shrink-20"
+        className="MuiFormLabel-root-12 MuiInputLabel-root-7 MuiInputLabel-formControl-8 MuiInputLabel-animated-11 MuiInputLabel-shrink-10"
         data-shrink={true}
       >
         Correct
       </label>
     </div>
     <div
-      aria-describedby={undefined}
-      className="MuiFormControl-root-13 RawChoiceConfiguration-value-4"
+      className="MuiFormControl-root-3 RawInputContainer-formControl-2 Component-labelContainer-17"
       onBlur={[Function]}
       onFocus={[Function]}
     >
       <label
-        className="MuiFormLabel-root-22 MuiInputLabel-root-17 MuiInputLabel-formControl-18 MuiInputLabel-animated-21 MuiInputLabel-shrink-20"
-        data-shrink={true}
-        htmlFor={undefined}
-      >
-        Value
-      </label>
-      <div
-        className="MuiInput-root-27 MuiInput-formControl-28 MuiInput-underline-31"
-      >
-        <input
-          aria-invalid={false}
-          aria-required={false}
-          autoComplete={undefined}
-          autoFocus={undefined}
-          className="MuiInput-input-35"
-          defaultValue={undefined}
-          disabled={false}
-          id={undefined}
-          name={undefined}
-          onBlur={[Function]}
-          onChange={[Function]}
-          onFocus={[Function]}
-          onKeyDown={undefined}
-          onKeyUp={undefined}
-          placeholder={undefined}
-          readOnly={undefined}
-          required={undefined}
-          rows={undefined}
-          type="text"
-          value="foo"
-        />
-      </div>
-    </div>
-    <div
-      className="MuiFormControl-root-13 RawInputContainer-formControl-12 Component-labelContainer-40"
-      onBlur={[Function]}
-      onFocus={[Function]}
-    >
-      <label
-        className="MuiFormLabel-root-22 MuiInputLabel-root-17 MuiInputLabel-formControl-18 MuiInputLabel-animated-21 MuiInputLabel-shrink-20"
+        className="MuiFormLabel-root-12 MuiInputLabel-root-7 MuiInputLabel-formControl-8 MuiInputLabel-animated-11 MuiInputLabel-shrink-10"
         data-shrink={true}
       >
         Label
       </label>
       <div
-        className="Component-editorHolder-41"
+        className="Component-editorHolder-18"
       >
         <div>
           EditableHtml
@@ -79,12 +39,12 @@ exports[`index - snapshot renders correctly 1`] = `
       </div>
     </div>
     <div
-      className="MuiFormControl-root-13 RawInputContainer-formControl-12 RawChoiceConfiguration-feedback-7"
+      className="MuiFormControl-root-3 RawInputContainer-formControl-2"
       onBlur={[Function]}
       onFocus={[Function]}
     >
       <label
-        className="MuiFormLabel-root-22 MuiInputLabel-root-17 MuiInputLabel-formControl-18 MuiInputLabel-animated-21 MuiInputLabel-shrink-20"
+        className="MuiFormLabel-root-12 MuiInputLabel-root-7 MuiInputLabel-formControl-8 MuiInputLabel-animated-11 MuiInputLabel-shrink-10"
         data-shrink={true}
       >
         Feedback
@@ -99,12 +59,12 @@ exports[`index - snapshot renders correctly 1`] = `
       </div>
     </div>
     <div
-      className="MuiFormControl-root-13 RawInputContainer-formControl-12 RawChoiceConfiguration-delete-10"
+      className="MuiFormControl-root-3 RawInputContainer-formControl-2"
       onBlur={[Function]}
       onFocus={[Function]}
     >
       <label
-        className="MuiFormLabel-root-22 MuiInputLabel-root-17 MuiInputLabel-formControl-18 MuiInputLabel-animated-21 MuiInputLabel-shrink-20"
+        className="MuiFormLabel-root-12 MuiInputLabel-root-7 MuiInputLabel-formControl-8 MuiInputLabel-animated-11 MuiInputLabel-shrink-10"
         data-shrink={true}
       >
         Delete
@@ -112,18 +72,18 @@ exports[`index - snapshot renders correctly 1`] = `
     </div>
   </div>
   <div
-    className="MuiFormControl-root-13 RawInputContainer-formControl-12 Component-labelContainer-40 Component-text-42"
+    className="MuiFormControl-root-3 RawInputContainer-formControl-2 Component-labelContainer-17 Component-text-19"
     onBlur={[Function]}
     onFocus={[Function]}
   >
     <label
-      className="MuiFormLabel-root-22 MuiInputLabel-root-17 MuiInputLabel-formControl-18 MuiInputLabel-animated-21 MuiInputLabel-shrink-20"
+      className="MuiFormLabel-root-12 MuiInputLabel-root-7 MuiInputLabel-formControl-8 MuiInputLabel-animated-11 MuiInputLabel-shrink-10"
       data-shrink={true}
     >
       Feedback Text
     </label>
     <div
-      className="Component-editorHolder-41"
+      className="Component-editorHolder-18"
     >
       <div>
         EditableHtml

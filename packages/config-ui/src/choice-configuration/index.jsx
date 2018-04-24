@@ -32,7 +32,7 @@ const EditableHtmlContainer = withStyles(theme => ({
   );
 });
 
-const Feedback = withStyles(theme => ({
+const Feedback = withStyles(() => ({
   text: {
     width: '100%'
   }
@@ -59,7 +59,34 @@ const Feedback = withStyles(theme => ({
   }
 });
 
-export class RawChoiceConfiguration extends React.Component {
+export class ChoiceConfiguration extends React.Component {
+  static propTypes = {
+    classes: PropTypes.object.isRequired,
+    className: PropTypes.string,
+    mode: PropTypes.oneOf(['checkbox', 'radio']),
+    defaultFeedback: PropTypes.object.isRequired,
+    data: PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      value: PropTypes.string.isRequired,
+      correct: PropTypes.bool,
+      feedback: PropTypes.shape({
+        type: PropTypes.string,
+        value: PropTypes.string
+      })
+    }),
+    onDelete: PropTypes.func,
+    onChange: PropTypes.func,
+    index: PropTypes.number,
+    imageSupport: PropTypes.shape({
+      add: PropTypes.func.isRequired,
+      delete: PropTypes.func.isRequired
+    })
+  };
+
+  static defaultProps = {
+    index: -1
+  };
+
   _changeFn = key => update => {
     const { data, onChange } = this.props;
     if (onChange) {
@@ -68,14 +95,6 @@ export class RawChoiceConfiguration extends React.Component {
   };
 
   onLabelChange = this._changeFn('label');
-
-  onValueChange = event => {
-    const { onChange, data } = this.props;
-    const value = event.target.value;
-    if (onChange) {
-      onChange({ ...data, value });
-    }
-  };
 
   onCheckedChange = event => {
     const correct = event.target.checked;
@@ -136,12 +155,6 @@ export class RawChoiceConfiguration extends React.Component {
             label={'Correct'}
             checked={!!data.correct}
           />
-          <TextField
-            label={'Value'}
-            value={data.value}
-            className={classes.value}
-            onChange={this.onValueChange}
-          />
           <EditableHtmlContainer
             label={'Label'}
             value={data.label}
@@ -177,31 +190,6 @@ export class RawChoiceConfiguration extends React.Component {
     );
   }
 }
-
-RawChoiceConfiguration.propTypes = {
-  mode: PropTypes.oneOf(['checkbox', 'radio']),
-  defaultFeedback: PropTypes.object.isRequired,
-  data: PropTypes.shape({
-    label: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired,
-    correct: PropTypes.bool,
-    feedback: PropTypes.shape({
-      type: PropTypes.string,
-      value: PropTypes.string
-    })
-  }),
-  onDelete: PropTypes.func,
-  onChange: PropTypes.func,
-  index: PropTypes.number,
-  imageSupport: PropTypes.shape({
-    add: PropTypes.func.isRequired,
-    delete: PropTypes.func.isRequired
-  })
-};
-
-RawChoiceConfiguration.defaultProps = {
-  index: -1
-};
 
 const styles = theme => ({
   index: {
@@ -246,5 +234,4 @@ const styles = theme => ({
   }
 });
 
-const ChoiceConfiguration = withStyles(styles)(RawChoiceConfiguration);
-export default ChoiceConfiguration;
+export default withStyles(styles)(ChoiceConfiguration);

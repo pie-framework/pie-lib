@@ -1,5 +1,5 @@
 import React from 'react';
-import ChoiceConfiguration, { RawChoiceConfiguration } from '../index';
+import { ChoiceConfiguration } from '../index';
 import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
 import Enzyme from 'enzyme';
@@ -29,7 +29,11 @@ describe('index - snapshot', () => {
   it('renders correctly', () => {
     const tree = renderer
       .create(
-        <ChoiceConfiguration defaultFeedback={defaultFeedback} data={data} />
+        <ChoiceConfiguration
+          classes={classes}
+          defaultFeedback={defaultFeedback}
+          data={data}
+        />
       )
       .toJSON();
     expect(tree).toMatchSnapshot();
@@ -43,7 +47,7 @@ describe('index - logic', () => {
     onChange = jest.fn();
 
     wrapper = shallow(
-      <RawChoiceConfiguration
+      <ChoiceConfiguration
         classes={classes}
         defaultFeedback={defaultFeedback}
         data={data}
@@ -51,20 +55,6 @@ describe('index - logic', () => {
       />
     );
     instance = wrapper.instance();
-  });
-
-  describe('onValueChange', () => {
-    it('calls onChange', () => {
-      const event = {
-        target: {
-          value: 'foo'
-        }
-      };
-
-      instance.onValueChange(event);
-      expect(onChange.mock.calls.length).toBe(1);
-      expect(onChange.mock.calls[0][0]).toMatchObject({ value: 'foo' });
-    });
   });
 
   describe('onCheckedChange', () => {
