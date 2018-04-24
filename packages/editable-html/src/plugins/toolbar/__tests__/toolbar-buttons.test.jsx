@@ -1,6 +1,6 @@
 import { classObject, mockIconButton } from '../../../__tests__/utils';
 
-import { Data, Mark } from 'slate';
+import { Data } from 'slate';
 import { RawMarkButton, RawButton } from '../toolbar-buttons';
 import React from 'react';
 import debug from 'debug';
@@ -31,7 +31,7 @@ describe('MarkButton', () => {
     const tree = renderer
       .create(
         <RawMarkButton
-          mark={Mark.fromJSON({ type: 'i' })}
+          mark={'i'}
           onToggle={jest.fn()}
           active={false}
           classes={classes}
@@ -47,7 +47,7 @@ describe('MarkButton', () => {
     const tree = renderer
       .create(
         <RawMarkButton
-          mark={Mark.fromJSON({ type: 'i' })}
+          mark={'i'}
           onToggle={jest.fn()}
           active={true}
           classes={classes}
