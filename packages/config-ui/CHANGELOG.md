@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="5.0.0"></a>
+# [5.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@4.0.10...@pie-lib/config-ui@5.0.0) (2018-04-24)
+
+
+### Features
+
+* **choice-configurtion:** remove value field ([6408949](https://github.com/pie-framework/pie-lib/commit/6408949))
+
+
+### BREAKING CHANGES
+
+* **choice-configurtion:** `data.value` is no longer editable within this ui, clients must manage it themselves"
+
+
+
+
 <a name="4.0.10"></a>
 ## [4.0.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@4.0.9...@pie-lib/config-ui@4.0.10) (2018-04-24)
 
