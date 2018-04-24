@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/scoring-config",
-  "version": "2.0.8",
+  "version": "2.0.9",
   "description": "",
   "main": "lib/index.js",
   "publishConfig": {
@@ -13,7 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "@material-ui/icons": "^1.0.0-beta.43",
-    "@pie-lib/config-ui": "^4.0.8",
+    "@pie-lib/config-ui": "^4.0.9",
     "debug": "^3.1.0",
     "lodash": "^4.17.4",
     "material-ui": "^1.0.0-beta.43"
