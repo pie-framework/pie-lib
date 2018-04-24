@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="5.0.4"></a>
+## [5.0.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@5.0.3...@pie-lib/editable-html@5.0.4) (2018-04-24)
+
+
+### Bug Fixes
+
+* **dependencies:** bump slate-edit-list to 0.11.3 ([e82adc7](https://github.com/pie-framework/pie-lib/commit/e82adc7))
+* **image:** fix up image plugin ([c7229eb](https://github.com/pie-framework/pie-lib/commit/c7229eb)), closes [#4](https://github.com/pie-framework/pie-lib/issues/4)
+
+
+
+
 <a name="5.0.3"></a>
 ## [5.0.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@5.0.2...@pie-lib/editable-html@5.0.3) (2018-04-20)
 
