@@ -252,7 +252,7 @@ export class Editor extends React.Component {
   };
 
   render() {
-    const { disabled, highlightShape, classes } = this.props;
+    const { disabled, highlightShape, classes, className } = this.props;
     const { value, focusedNode } = this.state;
 
     const sizeStyle = this.buildSizeStyle();
@@ -260,7 +260,7 @@ export class Editor extends React.Component {
     return (
       <div
         style={sizeStyle}
-        className={classNames(highlightShape && classes.withBg)}
+        className={classNames(highlightShape && classes.withBg, className)}
       >
         <SlateEditor
           plugins={this.plugins}
