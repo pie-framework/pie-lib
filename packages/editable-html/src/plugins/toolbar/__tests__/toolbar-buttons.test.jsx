@@ -1,6 +1,6 @@
 import { classObject, mockIconButton } from '../../../__tests__/utils';
 
-import { Data } from 'slate';
+import { Data, Mark } from 'slate';
 import { RawMarkButton, RawButton } from '../toolbar-buttons';
 import React from 'react';
 import debug from 'debug';
@@ -13,7 +13,13 @@ const log = debug('editable-html:test:editor-and-toolbar');
 describe('Button', () => {
   it('renders', () => {
     const classes = classObject('root');
-    const tree = renderer.create(<RawButton classes={classes} />).toJSON();
+    const tree = renderer
+      .create(
+        <RawButton onClick={jest.fn()} classes={classes}>
+          children
+        </RawButton>
+      )
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 });
@@ -23,14 +29,32 @@ describe('MarkButton', () => {
 
   it('renders not active', () => {
     const tree = renderer
-      .create(<RawMarkButton active={false} classes={classes} />)
+      .create(
+        <RawMarkButton
+          mark={Mark.fromJSON({ type: 'i' })}
+          onToggle={jest.fn()}
+          active={false}
+          classes={classes}
+        >
+          children
+        </RawMarkButton>
+      )
       .toJSON();
     expect(tree).toMatchSnapshot();
   });
 
   it('renders active', () => {
     const tree = renderer
-      .create(<RawMarkButton active={true} classes={classes} />)
+      .create(
+        <RawMarkButton
+          mark={Mark.fromJSON({ type: 'i' })}
+          onToggle={jest.fn()}
+          active={true}
+          classes={classes}
+        >
+          children
+        </RawMarkButton>
+      )
       .toJSON();
     expect(tree).toMatchSnapshot();
   });

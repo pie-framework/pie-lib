@@ -4,19 +4,25 @@ exports[`Button renders 1`] = `
 <div
   className=""
   onMouseDown={[Function]}
-/>
+>
+  children
+</div>
 `;
 
 exports[`MarkButton renders active 1`] = `
 <span
   className="button active"
   onMouseDown={[Function]}
-/>
+>
+  children
+</span>
 `;
 
 exports[`MarkButton renders not active 1`] = `
 <span
   className="button"
   onMouseDown={[Function]}
-/>
+>
+  children
+</span>
 `;

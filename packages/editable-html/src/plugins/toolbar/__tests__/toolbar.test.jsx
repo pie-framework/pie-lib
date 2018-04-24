@@ -4,8 +4,8 @@ import {
   mockMathInput
 } from '../../../__tests__/utils';
 
-import { Data } from 'slate';
-import { RawToolbar } from '../toolbar';
+import { Data, Value, Inline } from 'slate';
+import { Toolbar } from '../toolbar';
 import React from 'react';
 import debug from 'debug';
 import renderer from 'react-test-renderer';
@@ -22,13 +22,33 @@ jest.mock('material-ui/IconButton', () => {
   );
 });
 
+let node = Inline.fromJSON({ type: 'i' });
+let value;
 const log = debug('editable-html:test:toolbar');
 
 describe('toolbar', () => {
-  let onDelete, classes;
+  let onDelete, classes, document;
 
   beforeEach(() => {
     onDelete = jest.fn();
+
+    value = Value.fromJSON({});
+    document = {
+      getClosestInline: jest.fn().mockReturnValue(node)
+    };
+
+    Object.defineProperties(value, {
+      isCollapsed: {
+        get: jest.fn(() => true)
+      },
+      startKey: {
+        get: jest.fn(() => '1')
+      },
+      document: {
+        get: jest.fn(() => document)
+      }
+    });
+
     classes = classObject(
       'iconRoot',
       'inline',
@@ -40,16 +60,6 @@ describe('toolbar', () => {
   });
 
   test('renders custom toolbar', () => {
-    const node = {};
-
-    const value = {
-      isCollapsed: true,
-      startKey: 1,
-      document: {
-        getClosestInline: jest.fn().mockReturnValue(node)
-      }
-    };
-
     const plugins = [
       {
         deleteNode: () => true,
@@ -64,11 +74,12 @@ describe('toolbar', () => {
 
     const tree = renderer
       .create(
-        <RawToolbar
+        <Toolbar
           plugins={plugins}
           classes={classes}
           value={value}
-          onDone={() => ({})}
+          onDone={jest.fn()}
+          onChange={jest.fn()}
         />
       )
       .toJSON();
@@ -87,11 +98,12 @@ describe('toolbar', () => {
     test('renders default toolbar', () => {
       const tree = renderer
         .create(
-          <RawToolbar
+          <Toolbar
             plugins={plugins}
             classes={classes}
-            value={{}}
-            onDone={() => ({})}
+            value={value}
+            onDone={jest.fn()}
+            onChange={jest.fn()}
           />
         )
         .toJSON();

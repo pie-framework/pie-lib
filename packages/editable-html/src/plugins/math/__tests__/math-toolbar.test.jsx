@@ -1,6 +1,6 @@
 import { configure, shallow } from 'enzyme';
 
-import { Data } from 'slate';
+import { Data, Block, Value } from 'slate';
 import MathToolbar from '../math-toolbar';
 import MockChange from '../../image/__tests__/mock-change';
 import React from 'react';
@@ -19,16 +19,17 @@ describe('math-toolbar', () => {
   describe('click', () => {
     let node, change, value, onChange, toolbar;
     beforeEach(() => {
-      node = {
+      node = Block.fromJSON({
         key: '1',
+        type: 'math',
         data: Data.create({})
-      };
+      });
 
       change = new MockChange();
 
-      value = {
-        change: jest.fn().mockReturnValue(change)
-      };
+      value = Value.fromJSON({});
+
+      value.change = jest.fn().mockReturnValue(change);
 
       onChange = jest.fn();
       toolbar = shallow(

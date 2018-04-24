@@ -2,6 +2,8 @@ import { HorizontalKeypad } from '@pie-lib/math-input';
 
 import React from 'react';
 import debug from 'debug';
+import SlatePropTypes from 'slate-prop-types';
+import PropTypes from 'prop-types';
 
 const log = debug('editable-html:plugins:math:math-toolbar');
 
@@ -22,6 +24,12 @@ const toNodeData = data => {
 };
 
 export default class MathToolbar extends React.Component {
+  static propTypes = {
+    node: SlatePropTypes.node.isRequired,
+    value: SlatePropTypes.value.isRequired,
+    onChange: PropTypes.func.isRequired
+  };
+
   onClick = data => {
     const { node, value, onChange } = this.props;
 
@@ -37,7 +45,6 @@ export default class MathToolbar extends React.Component {
   };
 
   render() {
-    const { data } = this.props.node;
     return <HorizontalKeypad onClick={this.onClick} />;
   }
 }

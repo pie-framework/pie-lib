@@ -1,11 +1,21 @@
 import { EditableMathInput } from '@pie-lib/math-input';
 import React from 'react';
+import PropTypes from 'prop-types';
 
 /**
  * Exposes a change function that will update a math input
  * while editing is true.
  */
 export default class MathWrapper extends React.Component {
+  static propTypes = {
+    editing: PropTypes.bool,
+    latex: PropTypes.string,
+    onClick: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired,
+    onFocus: PropTypes.func,
+    onBlur: PropTypes.func
+  };
+
   change(c) {
     const { editing } = this.props;
     if (!editing || !this.input) {

@@ -1,4 +1,4 @@
-import { Data, findDOMNode } from 'slate';
+import { Data } from 'slate';
 import { removeBrackets } from '@pie-lib/math-input';
 
 import MathWrapper from './input-wrapper';
@@ -7,59 +7,72 @@ import classNames from 'classnames';
 import debug from 'debug';
 import injectSheet from 'react-jss';
 import { primary } from '../../theme';
+import SlatePropTypes from 'slate-prop-types';
+import PropTypes from 'prop-types';
 
 const log = debug('editable-html:plugins:math:component');
 
 export class MathComponent extends React.Component {
+  static propTypes = {
+    node: SlatePropTypes.node.isRequired,
+    editor: PropTypes.shape({
+      value: SlatePropTypes.value.isRequired
+    }),
+    onFocus: PropTypes.func,
+    onBlur: PropTypes.func,
+    onClick: PropTypes.func.isRequired,
+    classes: PropTypes.object.isRequired
+  };
+
   constructor(props) {
     super(props);
     this.state = {
       disableBlur: false
     };
+  }
 
-    this.onFocus = event => {
-      log('[onFocus]');
-      if (this.props.onFocus) {
-        this.props.onFocus(event);
-      }
-    };
+  onFocus = event => {
+    log('[onFocus]');
+    if (this.props.onFocus) {
+      this.props.onFocus(event);
+    }
+  };
 
-    this.onBlur = event => {
-      log('[onBlur]');
-      if (this.props.onBlur) {
-        this.props.onBlur(event);
-      }
-    };
+  onBlur = event => {
+    log('[onBlur]');
+    if (this.props.onBlur) {
+      this.props.onBlur(event);
+    }
+  };
 
-    this.onChange = latex => {
-      log('[onChange]', latex);
-      const { node, editor } = this.props;
-      const { key } = node;
-      const data = Data.create({ latex, editing: true });
-      const change = editor.value.change().setNodeByKey(key, { data });
-      editor.onChange(change);
-    };
+  onChange = latex => {
+    log('[onChange]', latex);
+    const { node, editor } = this.props;
+    const { key } = node;
+    const data = Data.create({ latex, editing: true });
+    const change = editor.value.change().setNodeByKey(key, { data });
+    editor.onChange(change);
+  };
 
-    this.onClick = event => {
-      log('[onClick] preventDefault and stopPropagation');
-      if (this.props.onClick) {
-        event.preventDefault();
-        event.stopPropagation();
-        this.props.onClick();
-      }
-    };
-
-    this.onDeleteClick = event => {
-      log('delete click');
+  onClick = event => {
+    log('[onClick] preventDefault and stopPropagation');
+    if (this.props.onClick) {
       event.preventDefault();
       event.stopPropagation();
+      this.props.onClick();
+    }
+  };
 
-      const { node, editor } = this.props;
+  onDeleteClick = event => {
+    log('delete click');
+    event.preventDefault();
+    event.stopPropagation();
 
-      const change = editor.value.change().moveNodeByKey(node.key);
-      editor.onChange(change);
-    };
-  }
+    const { node, editor } = this.props;
+
+    const change = editor.value.change().moveNodeByKey(node.key);
+    editor.onChange(change);
+  };
 
   componentDidUpdate() {
     log('this.wrapper: ', this.wrapper);
@@ -75,7 +88,6 @@ export class MathComponent extends React.Component {
 
       log('[componentDidUpdate] new latex: ', data.latex);
 
-      const change = editor.value.change().setNodeByKey(node.key, { data });
       editor.change(c => {
         c.setNodeByKey(node.key, { data });
       });

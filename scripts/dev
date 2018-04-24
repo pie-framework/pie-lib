@@ -1,46 +1,31 @@
 #!/usr/bin/env node
 
 const argv = require('minimist')(process.argv.slice(2));
-const { execSync } = require('child_process');
 const fs = require('fs-extra');
 const { join } = require('path');
 const _ = require('lodash');
 const { spawnSync, spawn } = require('child_process');
 
-const demoNeedsAnInstall = async packages => {
-  const installed = await fs.readdir('demo/node_modules/@pie-lib');
-
-  const names = packages.map(p => p.name);
-  return !_.isEqual(installed.sort(), names.sort());
+process.on('unhandledRejection', error => {
+  // Will print "unhandledRejection err is not defined"
+  console.error(error.message);
+});
+const isDemoInstalled = async () => {
+  const exists = await fs.exists('demo/node_modules');
+  if (exists) {
+    const stat = await fs.stat('demo/node_modules');
+    return stat.isDirectory();
+  } else {
+    return false;
+  }
 };
 
 //0. list packages
 const run = async () => {
-  const names = await fs.readdir('packages');
-  const packages = await Promise.all(
-    names.map(async p => {
-      const path = join(`packages/${p}`);
-      const st = await fs.stat(path);
-      if (st.isDirectory()) {
-        return {
-          name: p,
-          path
-        };
-      }
-    })
-  );
+  installed = await isDemoInstalled();
 
-  const needInstall = await demoNeedsAnInstall(packages, 'demo');
-
-  if (needInstall && !argv.skipInstall) {
-    //install..
-    console.log('demo needs an install');
-    execSync('rm -fr node_modules/@pie-lib', {
-      cwd: 'demo',
-      stdio: 'inherit'
-    });
-
-    execSync('yarn install', { cwd: 'demo', stdio: 'inherit' });
+  if (!installed) {
+    throw new Error("You need to run yarn install in 'demo'");
   }
 
   console.log('scope: ', argv.scope);
@@ -60,7 +45,6 @@ const run = async () => {
       ],
       { stdio: 'inherit' }
     );
-
     babel.on('error', e => {
       console.error('babel: error: ', e);
     });
@@ -74,8 +58,7 @@ const run = async () => {
   spawnSync(nextCmd, {
     cwd: 'demo',
     stdio: 'inherit',
-    env: Object.assign(process.env),
-    NODE_ENV: 'development'
+    env: Object.assign({}, process.env, { NODE_ENV: 'development' })
   });
 };
 

@@ -2,6 +2,8 @@ import React from 'react';
 import debug from 'debug';
 import injectSheet from 'react-jss';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import SlatePropTypes from 'slate-prop-types';
 
 const styles = () => ({
   button: {
@@ -20,26 +22,33 @@ const styles = () => ({
 const log = debug('pie-elements:editable-html:raw-button');
 
 export class RawButton extends React.Component {
+  static propTypes = {
+    onClick: PropTypes.func.isRequired,
+    classes: PropTypes.object.isRequired,
+    children: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.node),
+      PropTypes.node
+    ]).isRequired,
+    active: PropTypes.bool
+  };
 
   constructor(props) {
-    super(props)
-
-    this.onClick = (e) => {
-      log('[onClick]');
-      e.preventDefault();
-      const { onClick } = this.props;
-      onClick(e)
-    }
+    super(props);
   }
+
+  onClick = e => {
+    log('[onClick]');
+    e.preventDefault();
+    const { onClick } = this.props;
+    onClick(e);
+  };
 
   render() {
     const { classes, children, active } = this.props;
     const names = classNames(classes.button, active && classes.active);
 
     return (
-      <div
-        className={names}
-        onMouseDown={this.onClick}>
+      <div className={names} onMouseDown={this.onClick}>
         {children}
       </div>
     );
@@ -48,24 +57,32 @@ export class RawButton extends React.Component {
 
 export const Button = injectSheet(styles())(RawButton);
 
-
 export class RawMarkButton extends React.Component {
+  static propTypes = {
+    onToggle: PropTypes.func.isRequired,
+    mark: SlatePropTypes.mark,
+    children: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.node),
+      PropTypes.node
+    ]).isRequired,
+    classes: PropTypes.object.isRequired,
+    active: PropTypes.bool
+  };
+
   constructor(props) {
     super(props);
-
-    this.onToggle = (e) => {
-      e.preventDefault();
-      this.props.onToggle(this.props.mark);
-    };
   }
+
+  onToggle = e => {
+    e.preventDefault();
+    this.props.onToggle(this.props.mark);
+  };
 
   render() {
     const { classes, children, active } = this.props;
     const names = classNames(classes.button, active && classes.active);
     return (
-      <span
-        className={names}
-        onMouseDown={this.onToggle}>
+      <span className={names} onMouseDown={this.onToggle}>
         {children}
       </span>
     );

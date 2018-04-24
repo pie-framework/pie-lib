@@ -9,24 +9,9 @@ import { buildPlugins, DEFAULT_PLUGINS } from './plugins';
 import debug from 'debug';
 import { withStyles } from 'material-ui/styles';
 import classNames from 'classnames';
-import { LAST_CHILD_TYPE_INVALID } from 'slate-schema-violations';
 export { DEFAULT_PLUGINS, serialization };
 
 const log = debug('@pie-lib:editable-html');
-
-const schema = {
-  document: {
-    last: { types: ['paragraph'] },
-    normalize: (change, reason, { node }) => {
-      switch (reason) {
-        case LAST_CHILD_TYPE_INVALID: {
-          const paragraph = Block.create('paragraph');
-          return change.insertNodeByKey(node.key, node.nodes.size, paragraph);
-        }
-      }
-    }
-  }
-};
 
 export class Editor extends React.Component {
   static propTypes = {
@@ -286,7 +271,6 @@ export class Editor extends React.Component {
           onFocus={this.onFocus}
           focusedNode={focusedNode}
           readOnly={disabled}
-          schema={schema}
           className={classes.slateEditor}
         />
       </div>
