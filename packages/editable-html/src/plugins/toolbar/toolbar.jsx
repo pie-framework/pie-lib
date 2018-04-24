@@ -5,41 +5,14 @@ import Delete from '@material-ui/icons/Delete';
 import IconButton from 'material-ui/IconButton';
 import PropTypes from 'prop-types';
 import React from 'react';
-import _ from 'lodash';
 import classNames from 'classnames';
 import debug from 'debug';
+import SlatePropTypes from 'slate-prop-types';
+
 import { findSingleNode, hasBlock, hasMark } from '../utils';
-//TODO: use mui createStyleSheet (ensures the class overrides work).
-import injectSheet from 'react-jss';
+import { withStyles } from 'material-ui/styles';
 
 const log = debug('pie-elements:editable-html:plugins:toolbar');
-
-const toolbarStyle = {
-  toolbar: {
-    position: 'absolute',
-    zIndex: 10,
-    cursor: 'pointer',
-    justifyContent: 'space-between',
-    background: 'var(--editable-html-toolbar-bg, #efefef)',
-    margin: '0px',
-    padding: '2px',
-    width: '100%',
-    boxShadow:
-      '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
-    boxSizing: 'border-box',
-    display: 'none'
-  },
-  focused: {
-    display: 'flex'
-  },
-  iconRoot: {
-    width: '28px',
-    height: '28px'
-  },
-  label: {
-    color: 'var(--editable-html-toolbar-check, #00bb00)'
-  }
-};
 
 const ToolbarButton = props => {
   const onToggle = () => {
@@ -76,10 +49,10 @@ const ToolbarButton = props => {
   }
 };
 
-const RawDefaultToolbar = ({ plugins, value, onChange, classes }) => {
+const DefaultToolbar = ({ plugins, value, onChange }) => {
   const toolbarPlugins = plugins.filter(p => p.toolbar).map(p => p.toolbar);
   return (
-    <div className={classes.inline}>
+    <div>
       {toolbarPlugins.map((p, index) => {
         return (
           <ToolbarButton {...p} key={index} value={value} onChange={onChange} />
@@ -89,21 +62,37 @@ const RawDefaultToolbar = ({ plugins, value, onChange, classes }) => {
   );
 };
 
-const DefaultToolbar = injectSheet(toolbarStyle)(RawDefaultToolbar);
+DefaultToolbar.propTypes = {
+  plugins: PropTypes.array.isRequired,
+  value: SlatePropTypes.value.isRequired,
+  onChange: PropTypes.func.isRequired
+};
 
-export class RawToolbar extends React.Component {
+export class Toolbar extends React.Component {
+  static propTypes = {
+    zIndex: PropTypes.number,
+    value: SlatePropTypes.value.isRequired,
+    plugins: PropTypes.array,
+    onImageClick: PropTypes.func,
+    onDone: PropTypes.func.isRequired,
+    classes: PropTypes.object.isRequired,
+    isFocused: PropTypes.bool,
+    onChange: PropTypes.func.isRequired
+  };
+
   constructor(props) {
     super(props);
-    this.hasMark = type => {
-      const { value } = this.props;
-      return value.marks.some(mark => mark.type == type);
-    };
-
-    this.hasBlock = type => {
-      const { value } = this.props;
-      return value.blocks.some(node => node.type == type);
-    };
   }
+
+  hasMark = type => {
+    const { value } = this.props;
+    return value.marks.some(mark => mark.type == type);
+  };
+
+  hasBlock = type => {
+    const { value } = this.props;
+    return value.blocks.some(node => node.type == type);
+  };
 
   onToggle = plugin => {
     const { value, onChange } = this.props;
@@ -127,18 +116,7 @@ export class RawToolbar extends React.Component {
   };
 
   render() {
-    const {
-      classes,
-      onDone,
-      zIndex,
-      onFocus,
-      onBlur,
-      plugins,
-      value,
-      onChange,
-      isFocused,
-      onClick
-    } = this.props;
+    const { classes, onDone, plugins, value, onChange, isFocused } = this.props;
 
     const node = findSingleNode(value);
 
@@ -162,8 +140,6 @@ export class RawToolbar extends React.Component {
         : null;
 
     log('[render] CustomToolbar: ', CustomToolbar);
-
-    const style = zIndex ? { zIndex } : {};
 
     const names = classNames(classes.toolbar, isFocused && classes.focused);
 
@@ -215,12 +191,30 @@ export class RawToolbar extends React.Component {
   }
 }
 
-RawToolbar.propTypes = {
-  zIndex: PropTypes.number,
-  value: PropTypes.object.isRequired,
-  plugins: PropTypes.array,
-  onImageClick: PropTypes.func,
-  onDone: PropTypes.func.isRequired
+const style = {
+  toolbar: {
+    position: 'absolute',
+    zIndex: 10,
+    cursor: 'pointer',
+    justifyContent: 'space-between',
+    background: 'var(--editable-html-toolbar-bg, #efefef)',
+    margin: '0px',
+    padding: '2px',
+    width: '100%',
+    boxShadow:
+      '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
+    boxSizing: 'border-box',
+    display: 'none'
+  },
+  focused: {
+    display: 'flex'
+  },
+  iconRoot: {
+    width: '28px',
+    height: '28px'
+  },
+  label: {
+    color: 'var(--editable-html-toolbar-check, #00bb00)'
+  }
 };
-
-export default injectSheet(_.clone(toolbarStyle), { index: 1000 })(RawToolbar);
+export default withStyles(style, { index: 1000 })(Toolbar);

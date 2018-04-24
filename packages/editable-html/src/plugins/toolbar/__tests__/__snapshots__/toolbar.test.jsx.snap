@@ -5,9 +5,7 @@ exports[`toolbar default renders default toolbar 1`] = `
   className="toolbar"
   onClick={[Function]}
 >
-  <div
-    className={undefined}
-  />
+  <div />
   <div
     className="shared"
   >

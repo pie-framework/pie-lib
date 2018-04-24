@@ -66,7 +66,7 @@ export const inlineMath = () =>
   });
 
 export const serialization = {
-  deserialize(el, next) {
+  deserialize(el) {
     if (el.nodeType === TEXT_NODE) {
       return;
     }
@@ -90,7 +90,7 @@ export const serialization = {
       };
     }
   },
-  serialize(object, children) {
+  serialize(object) {
     if (object.type === 'math') {
       return <span data-mathjax="">{object.data.get('latex')}</span>;
     }

@@ -5,11 +5,12 @@ import debug from 'debug';
 const log = debug('editable-html:test:math');
 
 import { mount } from 'enzyme';
+import { Data, Block, Value } from 'slate';
 
 mockMathInput();
 
 describe('component', () => {
-  let mod, MathComponent, node, editor, classes, mathWrapper;
+  let mod, MathComponent, node, editor, classes, mathWrapper, value;
 
   mathWrapper = {
     change: jest.fn()
@@ -23,24 +24,25 @@ describe('component', () => {
     }
 
     MathComponent = mod.MathComponent;
+    value = Value.fromJSON({});
     classes = classObject('root', 'selected');
-    editor = {
-      value: {
-        isFocused: true
-      },
-      change: jest.fn()
-    };
+    editor = { value };
 
-    node = {
-      data: {
-        get: jest.fn(() => 'latex')
-      }
-    };
+    node = Block.fromJSON({
+      type: 'math',
+      data: { latex: 'latex' }
+    });
   });
 
   test('snapshot', () => {
     const tree = renderer.create(
-      <MathComponent classes={classes} editor={editor} node={node} />
+      <MathComponent
+        classes={classes}
+        editor={editor}
+        node={node}
+        value={value}
+        onClick={jest.fn()}
+      />
     );
 
     expect(tree).toMatchSnapshot();

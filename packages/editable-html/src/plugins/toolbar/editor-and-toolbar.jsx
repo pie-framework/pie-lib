@@ -1,15 +1,29 @@
-import { findSingleNode, selectedNode } from '../utils';
-
 import React from 'react';
 import Toolbar from './toolbar';
 import classNames from 'classnames';
 import debug from 'debug';
 import injectSheet from 'react-jss';
 import { primary } from '../../theme';
+import PropTypes from 'prop-types';
+import SlatePropTypes from 'slate-prop-types';
 
 const log = debug('editable-html:plugins:toolbar:editor-and-toolbar');
 
-export class RawEditorAndToolbar extends React.Component {
+export class EditorAndToolbar extends React.Component {
+  static propTypes = {
+    children: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.node),
+      PropTypes.node
+    ]).isRequired,
+    value: SlatePropTypes.value.isRequired,
+    plugins: PropTypes.array.isRequired,
+    onChange: PropTypes.func.isRequired,
+    onDone: PropTypes.func.isRequired,
+    focusedNode: PropTypes.node,
+    readOnly: PropTypes.bool,
+    classes: PropTypes.object.isRequired
+  };
+
   render() {
     const {
       classes,
@@ -97,7 +111,8 @@ const style = {
       content: '""',
       position: 'absolute',
       transform: 'scaleX(0)',
-      transition: `transform 200ms cubic-bezier(0.0, 0.0, 0.2, 1) 0ms, background-color 200ms linear`,
+      transition:
+        'transform 200ms cubic-bezier(0.0, 0.0, 0.2, 1) 0ms, background-color 200ms linear',
       backgroundColor: 'rgba(0, 0, 0, 0.42)'
     },
     '&:focus': {
@@ -134,7 +149,8 @@ const style = {
       content: '""',
       position: 'absolute',
       transform: 'scaleX(0)',
-      transition: `transform 200ms cubic-bezier(0.0, 0.0, 0.2, 1) 0ms, background-color 0ms linear`,
+      transition:
+        'transform 200ms cubic-bezier(0.0, 0.0, 0.2, 1) 0ms, background-color 0ms linear',
       backgroundColor: 'rgba(0, 0, 0, 0)'
     },
     '&:hover': {
@@ -159,4 +175,4 @@ const style = {
   }
 };
 
-export default injectSheet(style)(RawEditorAndToolbar);
+export default injectSheet(style)(EditorAndToolbar);
