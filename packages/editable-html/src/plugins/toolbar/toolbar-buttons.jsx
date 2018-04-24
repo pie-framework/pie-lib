@@ -60,7 +60,7 @@ export const Button = injectSheet(styles())(RawButton);
 export class RawMarkButton extends React.Component {
   static propTypes = {
     onToggle: PropTypes.func.isRequired,
-    mark: SlatePropTypes.mark,
+    mark: PropTypes.string,
     children: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.node),
       PropTypes.node
