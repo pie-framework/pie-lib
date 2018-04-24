@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="5.0.8"></a>
+## [5.0.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@5.0.7...@pie-lib/editable-html@5.0.8) (2018-04-24)
+
+
+### Bug Fixes
+
+* **editor:** pass in className ([60b2c65](https://github.com/pie-framework/pie-lib/commit/60b2c65))
+
+
+
+
 <a name="5.0.7"></a>
 ## [5.0.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@5.0.6...@pie-lib/editable-html@5.0.7) (2018-04-24)
 
