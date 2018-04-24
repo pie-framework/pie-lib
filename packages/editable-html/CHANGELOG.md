@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="5.0.7"></a>
+## [5.0.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@5.0.6...@pie-lib/editable-html@5.0.7) (2018-04-24)
+
+
+### Bug Fixes
+
+* **MarkButton:** change mark type to string ([e9b1ef2](https://github.com/pie-framework/pie-lib/commit/e9b1ef2))
+
+
+
+
 <a name="5.0.6"></a>
 ## [5.0.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@5.0.5...@pie-lib/editable-html@5.0.6) (2018-04-24)
 
