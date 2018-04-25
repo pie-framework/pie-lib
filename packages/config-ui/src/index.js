@@ -14,9 +14,11 @@ import TwoChoice, { NChoice } from './two-choice';
 import TagsInput from './tags-input';
 import MuiBox from './mui-box';
 import ChoiceConfiguration from './choice-configuration';
+import * as choiceUtils from './choice-utils';
 
 export {
   ChoiceConfiguration,
+  choiceUtils,
   Checkbox,
   FeedbackConfig,
   FeedbackSelector,
