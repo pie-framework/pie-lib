@@ -52,14 +52,14 @@ const ActiveLink = withStyles(theme => ({
   withRouter(({ router, path, primary, classes }) => {
     const isActive = path === router.pathname;
     return (
-      <ListItem button>
-        <Link href={path} as={asPath(path)}>
+      <Link href={path} as={asPath(path)}>
+        <ListItem button>
           <ListItemText
             primary={primary}
             classes={{ primary: isActive && classes.active }}
           />
-        </Link>
-      </ListItem>
+        </ListItem>
+      </Link>
     );
   })
 );
