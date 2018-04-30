@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.2.1"></a>
+## [0.2.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.2.0...@pie-lib/tools@0.2.1) (2018-04-30)
+
+
+### Bug Fixes
+
+* **protractor:** make center circle transparent ([e748293](https://github.com/pie-framework/pie-lib/commit/e748293))
+
+
+
+
 <a name="0.2.0"></a>
 # [0.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.1.3...@pie-lib/tools@0.2.0) (2018-04-30)
 
