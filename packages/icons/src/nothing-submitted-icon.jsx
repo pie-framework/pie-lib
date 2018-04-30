@@ -93,18 +93,14 @@ export class NothingSubmitted extends React.Component {
 
   render() {
     if (this.props.category === undefined) {
-      console.log(`icons[${this.props.iconSet}]`);
       return this.icons[this.props.iconSet];
     } else {
       if (this.props.shape === undefined) {
-        console.log(`icons.feedback[${this.props.iconSet}]`);
         return this.icons.feedback[this.props.iconSet];
       } else {
         if (this.props.open === true) {
-          console.log(`icons.feedback.square.open[${this.props.iconSet}]`);
           return this.icons.feedback.square.open[this.props.iconSet];
         } else {
-          console.log(`icons.feedback.square[${this.props.iconSet}]`);
           return this.icons.feedback.square[this.props.iconSet];
         }
       }
