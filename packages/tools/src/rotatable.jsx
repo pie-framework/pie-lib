@@ -10,6 +10,7 @@ import {
 import { Portal } from 'react-portal';
 import Point from '@mapbox/point-geometry';
 import { parse as parseOrigin } from './transform-origin';
+import classNames from 'classnames';
 
 const log = debug('@pie-lib:tools:rotatable');
 
@@ -62,11 +63,17 @@ export class Rotatable extends React.Component {
         class: PropTypes.string.isRequired,
         origin: PropTypes.string
       })
-    )
+    ),
+    className: PropTypes.string,
+    startPosition: PropTypes.shape({
+      left: PropTypes.number,
+      top: PropTypes.number
+    })
   };
 
   static defaultProps = {
-    showAnchor: false
+    showAnchor: false,
+    startPosition: { left: 0, top: 0 }
   };
 
   constructor(props) {
@@ -77,8 +84,8 @@ export class Rotatable extends React.Component {
       startAngle: 0,
       angle: 0,
       position: {
-        left: 0,
-        top: 0
+        left: props.startPosition.left,
+        top: props.startPosition.top
       }
     };
   }
@@ -274,7 +281,7 @@ export class Rotatable extends React.Component {
   };
 
   render() {
-    const { children, classes, showAnchor } = this.props;
+    const { children, classes, showAnchor, className } = this.props;
     const { rotation, anchor, origin, translate, position } = this.state;
 
     const t = translate ? `translate(${translate.x}px, ${translate.y}px)` : '';
@@ -288,7 +295,7 @@ export class Rotatable extends React.Component {
 
     return (
       <div
-        className={classes.rotatable}
+        className={classNames(classes.rotatable, className)}
         style={style}
         ref={r => (this.rotatable = r)}
         onMouseDown={this.mouseDown}

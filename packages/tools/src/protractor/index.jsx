@@ -9,17 +9,25 @@ import classNames from 'classnames';
 export class Protractor extends React.Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
-    width: PropTypes.number.isRequired
+    width: PropTypes.number.isRequired,
+    className: PropTypes.string,
+    startPosition: PropTypes.shape({
+      left: PropTypes.number,
+      top: PropTypes.number
+    })
   };
 
   static defaultProps = {
-    width: 450
+    width: 450,
+    startPosition: { left: 0, top: 0 }
   };
 
   render() {
-    const { classes, width } = this.props;
+    const { classes, width, className, startPosition } = this.props;
     return (
       <Rotatable
+        className={className}
+        startPosition={startPosition}
         handle={[
           {
             class: 'leftAnchor',
