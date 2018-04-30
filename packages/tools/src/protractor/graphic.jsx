@@ -106,6 +106,6 @@ export default withStyles(theme => ({
   circle: {
     strokeWidth: '0.2',
     stroke: strokeColor(theme),
-    fill: 'white'
+    fill: 'none'
   }
 }))(Graphic);
