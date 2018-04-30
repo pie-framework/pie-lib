@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.1.3"></a>
+## [0.1.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.1.2...@pie-lib/tools@0.1.3) (2018-04-30)
+
+
+### Bug Fixes
+
+* **dependencies:** set material-ui version to ^1.0.0-beta.44 ([6fd66bc](https://github.com/pie-framework/pie-lib/commit/6fd66bc))
+
+
+
+
 <a name="0.1.2"></a>
 ## [0.1.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.1.1...@pie-lib/tools@0.1.2) (2018-04-30)
 

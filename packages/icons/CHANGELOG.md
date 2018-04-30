@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.1.7"></a>
+## [2.1.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.1.6...@pie-lib/icons@2.1.7) (2018-04-30)
+
+
+### Bug Fixes
+
+* **dependencies:** set material-ui version to ^1.0.0-beta.44 ([6fd66bc](https://github.com/pie-framework/pie-lib/commit/6fd66bc))
+
+
+
+
 <a name="2.1.6"></a>
 ## [2.1.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.1.5...@pie-lib/icons@2.1.6) (2018-04-30)
 

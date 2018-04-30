@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.17"></a>
+## [2.0.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@2.0.16...@pie-lib/scoring-config@2.0.17) (2018-04-30)
+
+
+### Bug Fixes
+
+* **dependencies:** set material-ui version to ^1.0.0-beta.44 ([6fd66bc](https://github.com/pie-framework/pie-lib/commit/6fd66bc))
+
+
+
+
 <a name="2.0.16"></a>
 ## [2.0.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@2.0.15...@pie-lib/scoring-config@2.0.16) (2018-04-30)
 

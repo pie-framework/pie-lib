@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.9"></a>
+## [2.0.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.0.8...@pie-lib/correct-answer-toggle@2.0.9) (2018-04-30)
+
+
+### Bug Fixes
+
+* **dependencies:** set material-ui version to ^1.0.0-beta.44 ([6fd66bc](https://github.com/pie-framework/pie-lib/commit/6fd66bc))
+
+
+
+
 <a name="2.0.8"></a>
 ## [2.0.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.0.7...@pie-lib/correct-answer-toggle@2.0.8) (2018-04-30)
 
