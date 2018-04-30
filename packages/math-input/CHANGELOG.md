@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.0.7"></a>
+## [3.0.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@3.0.6...@pie-lib/math-input@3.0.7) (2018-04-30)
+
+
+### Bug Fixes
+
+* **dependencies:** roll back material-ui ([5167d1f](https://github.com/pie-framework/pie-lib/commit/5167d1f))
+
+
+
+
 <a name="3.0.6"></a>
 ## [3.0.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@3.0.5...@pie-lib/math-input@3.0.6) (2018-04-30)
 

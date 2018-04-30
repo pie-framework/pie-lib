@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="5.1.3"></a>
+## [5.1.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@5.1.2...@pie-lib/config-ui@5.1.3) (2018-04-30)
+
+
+### Bug Fixes
+
+* **dependencies:** roll back material-ui ([5167d1f](https://github.com/pie-framework/pie-lib/commit/5167d1f))
+
+
+
+
 <a name="5.1.2"></a>
 ## [5.1.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@5.1.1...@pie-lib/config-ui@5.1.2) (2018-04-30)
 
