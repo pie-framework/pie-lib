@@ -3,11 +3,7 @@
   "description": "A react based toggle component",
   "repository": "pie-framework/pie-lib",
   "license": "ISC",
-  "keywords": [
-    "react",
-    "pie",
-    "material-ui"
-  ],
+  "keywords": ["react", "pie", "material-ui"],
   "publishConfig": {
     "access": "public"
   },
@@ -24,12 +20,12 @@
     "react-transition-group": "^2.3.1"
   },
   "devDependencies": {
-    "material-ui": "1.0.0-beta.43",
+    "material-ui": "1.0.0-beta.44",
     "react": "^16.3.2",
     "react-dom": "^16.3.2"
   },
   "peerDependencies": {
-    "material-ui": "1.0.0-beta.43",
+    "material-ui": "1.0.0-beta.44",
     "react": "^16.3.2"
   }
 }
