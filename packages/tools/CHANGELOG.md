@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.2.2"></a>
+## [0.2.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.2.1...@pie-lib/tools@0.2.2) (2018-04-30)
+
+
+### Bug Fixes
+
+* **protractor:** move lines out of circle ([505178d](https://github.com/pie-framework/pie-lib/commit/505178d))
+
+
+
+
 <a name="0.2.1"></a>
 ## [0.2.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.2.0...@pie-lib/tools@0.2.1) (2018-04-30)
 
