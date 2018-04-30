@@ -42,7 +42,10 @@ module.exports = withCSS({
       '/render-ui': { page: '/render-ui' },
       '/scoring-config': { page: '/scoring-config' },
       '/charting/plot-points': { page: '/charting/plot-points' },
-      '/charting/graph-lines': { page: '/charting/graph-lines' }
+      '/charting/graph-lines': { page: '/charting/graph-lines' },
+      '/tools/ruler': { page: '/tools/ruler' },
+      '/tools/protractor': { page: '/tools/protractor' },
+      '/tools/rotatable': { page: '/tools/rotatable' }
     };
   },
   assetPrefix: getAssetPrefix()

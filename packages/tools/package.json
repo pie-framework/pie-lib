@@ -1,0 +1,34 @@
+{
+  "name": "@pie-lib/tools",
+  "publishConfig": {
+    "access": "public"
+  },
+  "version": "0.0.1",
+  "description": "Some interactive tools",
+  "keywords": ["react", "pie", "tools"],
+  "repository": "pie-framework/pie-lib",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@mapbox/point-geometry": "^0.1.0",
+    "classnames": "^2.2.5",
+    "invariant": "^2.2.4",
+    "lodash": "^4.17.5",
+    "react-draggable": "^3.0.5",
+    "react-portal": "^4.1.5",
+    "trigonometry-calculator": "^2.0.0"
+  },
+  "devDependencies": {
+    "material-ui": "^1.0.0-beta.42",
+    "react": "^16.3.1",
+    "react-dom": "^16.3.1"
+  },
+  "peerDependencies": {
+    "material-ui": "^1.0.0-beta.42",
+    "react": "^16.3.1"
+  }
+}
