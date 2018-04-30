@@ -18,7 +18,6 @@
     "classnames": "^2.2.5",
     "invariant": "^2.2.4",
     "lodash": "^4.17.5",
-    "react-draggable": "^3.0.5",
     "react-portal": "^4.1.5",
     "trigonometry-calculator": "^2.0.0"
   },
