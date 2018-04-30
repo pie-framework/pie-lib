@@ -3,7 +3,6 @@
   "private": true,
   "version": "1.0.0",
   "dependencies": {
-    "@mapbox/point-geometry": "^0.1.0",
     "@material-ui/icons": "^1.0.0-beta.43",
     "@pie-lib/charting": "^2.2.0",
     "@pie-lib/config-ui": "^5.1.0",
@@ -18,12 +17,10 @@
     "classnames": "^2.2.5",
     "file-loader": "^1.1.11",
     "material-ui": "^1.0.0-beta.43",
-    "next": "6.0.0-canary.4",
+    "next": "6.0.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-portal": "^4.1.5",
-    "trigonometry-calculator": "^2.0.0",
-    "url-loader": "^1.0.1",
-    "victor": "^1.1.0"
+    "url-loader": "^1.0.1"
   }
 }
