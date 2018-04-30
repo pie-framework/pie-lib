@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.2.0"></a>
+# [0.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.1.3...@pie-lib/tools@0.2.0) (2018-04-30)
+
+
+### Features
+
+* **rotatable:** add startPosition and className ([4e93991](https://github.com/pie-framework/pie-lib/commit/4e93991))
+
+
+
+
 <a name="0.1.3"></a>
 ## [0.1.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.1.2...@pie-lib/tools@0.1.3) (2018-04-30)
 
