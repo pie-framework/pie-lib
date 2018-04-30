@@ -1,10 +1,14 @@
 {
   "name": "@pie-lib/icons",
-  "version": "2.1.5",
+  "version": "2.1.6",
   "description": "Some simple icons",
   "main": "lib/index.js",
   "repository": "pie-framework/pie-lib",
-  "keywords": ["pie", "react", "material-ui"],
+  "keywords": [
+    "pie",
+    "react",
+    "material-ui"
+  ],
   "scripts": {
     "demo": "cd demo && ../node_modules/.bin/webpack-dev-server --hot --inline"
   },

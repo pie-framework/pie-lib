@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="5.0.10"></a>
+## [5.0.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@5.0.9...@pie-lib/editable-html@5.0.10) (2018-04-30)
+
+
+### Bug Fixes
+
+* **dependencies:** lock material-ui to 1.0.0-beta.44 ([60df8e6](https://github.com/pie-framework/pie-lib/commit/60df8e6))
+
+
+
+
 <a name="5.0.9"></a>
 ## [5.0.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@5.0.8...@pie-lib/editable-html@5.0.9) (2018-04-30)
 

@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/editable-html",
-  "version": "5.0.9",
+  "version": "5.0.10",
   "description": "",
   "license": "ISC",
   "main": "lib/index.js",
@@ -10,7 +10,7 @@
   "author": "",
   "dependencies": {
     "@material-ui/icons": "^1.0.0-beta.44",
-    "@pie-lib/math-input": "^3.0.5",
+    "@pie-lib/math-input": "^3.0.6",
     "classnames": "^2.2.5",
     "debug": "^3.1.0",
     "immutable": "^3.8.2",
