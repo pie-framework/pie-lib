@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`unit-type snapshot renders 1`] = `
+<text
+  fontSize={11}
+  stroke="none"
+  x={8}
+  y={14}
+>
+  cm
+</text>
+`;

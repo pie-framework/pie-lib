@@ -14,7 +14,10 @@ const links = [
   { label: 'config-ui', path: '/config-ui' },
   { label: 'render-ui', path: '/render-ui' },
   { label: 'scoring-config', path: '/scoring-config' },
-  { label: 'editable-html', path: '/editable-html' }
+  { label: 'editable-html', path: '/editable-html' },
+  { label: 'tools - ruler', path: '/tools/ruler' },
+  { label: 'tools - protractor', path: '/tools/protractor' },
+  { label: 'tools - rotatable', path: '/tools/rotatable' }
 ];
 
 function withRoot(Component) {

@@ -5,19 +5,22 @@
   "dependencies": {
     "@material-ui/icons": "^1.0.0-beta.43",
     "@pie-lib/charting": "^2.2.0",
+    "@pie-lib/config-ui": "^5.1.0",
     "@pie-lib/correct-answer-toggle": "^2.0.6",
-    "@pie-lib/editable-html": "^5.0.5",
+    "@pie-lib/editable-html": "^5.0.8",
     "@pie-lib/icons": "~2.1.4",
     "@pie-lib/math-input": "^3.0.4",
-    "@pie-lib/config-ui": "^4.0.8",
-    "@pie-lib/scoring-config": "^2.0.8",
     "@pie-lib/render-ui": "^2.0.7",
+    "@pie-lib/scoring-config": "^2.0.13",
+    "@pie-lib/tools": "^0.0.1",
     "@zeit/next-css": "^0.1.5",
+    "classnames": "^2.2.5",
+    "file-loader": "^1.1.11",
     "material-ui": "^1.0.0-beta.43",
-    "next": "6.0.0-canary.4",
+    "next": "6.0.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
-    "url-loader": "^1.0.1",
-    "file-loader": "^1.1.11"
+    "react-portal": "^4.1.5",
+    "url-loader": "^1.0.1"
   }
 }
