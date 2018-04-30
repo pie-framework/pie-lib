@@ -4,11 +4,7 @@
   "description": "Some simple icons",
   "main": "lib/index.js",
   "repository": "pie-framework/pie-lib",
-  "keywords": [
-    "pie",
-    "react",
-    "material-ui"
-  ],
+  "keywords": ["pie", "react", "material-ui"],
   "scripts": {
     "demo": "cd demo && ../node_modules/.bin/webpack-dev-server --hot --inline"
   },
@@ -19,7 +15,7 @@
     "prop-types": "^15.6.1"
   },
   "peerDependencies": {
-    "material-ui": "1.0.0-beta.44",
+    "material-ui": "^1.0.0-beta.44",
     "react": "^16.3.2"
   },
   "publishConfig": {
