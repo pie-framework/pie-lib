@@ -17,10 +17,19 @@ const Section = withStyles(theme => ({
 ));
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  componentDidMount() {
+    this.setState({ mounted: true });
+  }
+
   render() {
     const { classes } = this.props;
-
-    return (
+    const { mounted } = this.state;
+    return mounted ? (
       <div className={classes.root}>
         <Section title="response indicators">
           <div className={classes.flow}>
@@ -42,6 +51,8 @@ class App extends React.Component {
           <Feedback correctness="incorrect" feedback="Incorrect" />
         </Section>
       </div>
+    ) : (
+      <div>loading...</div>
     );
   }
 }
