@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.1.5"></a>
+## [2.1.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.1.4...@pie-lib/icons@2.1.5) (2018-04-30)
+
+
+### Bug Fixes
+
+* **dependencies:** lock material-ui to 1.0.0-beta.43 ([2a3e087](https://github.com/pie-framework/pie-lib/commit/2a3e087))
+* **dependencies:** update material-ui ([17b1a9f](https://github.com/pie-framework/pie-lib/commit/17b1a9f))
+* **log:** remove console.log ([a285041](https://github.com/pie-framework/pie-lib/commit/a285041))
+
+
+
+
 <a name="2.1.4"></a>
 ## [2.1.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.1.3...@pie-lib/icons@2.1.4) (2018-04-24)
 

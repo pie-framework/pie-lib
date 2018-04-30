@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.0.5"></a>
+## [3.0.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@3.0.4...@pie-lib/math-input@3.0.5) (2018-04-30)
+
+
+### Bug Fixes
+
+* **dependencies:** lock material-ui to 1.0.0-beta.43 ([2a3e087](https://github.com/pie-framework/pie-lib/commit/2a3e087))
+* **dependencies:** upgrade material-ui ([b94b50e](https://github.com/pie-framework/pie-lib/commit/b94b50e))
+
+
+
+
 <a name="3.0.4"></a>
 ## [3.0.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@3.0.3...@pie-lib/math-input@3.0.4) (2018-04-24)
 
