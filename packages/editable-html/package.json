@@ -9,7 +9,7 @@
   },
   "author": "",
   "dependencies": {
-    "@material-ui/icons": "^1.0.0-beta.44",
+    "@material-ui/icons": "^1.0.0-beta.43",
     "@pie-lib/math-input": "^3.0.6",
     "classnames": "^2.2.5",
     "debug": "^3.1.0",
