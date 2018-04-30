@@ -32,7 +32,7 @@ const Spike = withStyles(theme => ({
     className={classes.line}
     style={{}}
     x1="15"
-    x2={'50'}
+    x2={'46'}
     y1="50"
     y2="50"
   />

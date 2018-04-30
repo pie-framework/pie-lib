@@ -25,6 +25,12 @@ class Demo extends React.Component {
       <div>
         <Typography variant="title">Protractor</Typography>
         <Protractor />
+
+        <div style={{ width: '400px' }}>
+          <svg viewBox="0 0 100 100">
+            <path d="M 0,0 l 50,50 l 50,-50  l 0,0 z" fill="lightgreen" />
+          </svg>
+        </div>
       </div>
     ) : (
       <div>loading...</div>
