@@ -3,33 +3,67 @@ import React from 'react';
 import TextField from 'material-ui/TextField';
 import classNames from 'classnames';
 import { withStyles } from 'material-ui/styles';
+import debug from 'debug';
+import isFinite from 'lodash/isFinite';
 
-const styles = {
-  root: {
-    width: '30px',
-    paddingLeft: '10px',
-    paddingRight: '10px',
+const log = debug('@pie-lib:config-ui:number-text-field');
+
+const styles = theme => ({
+  root: { marginRight: theme.spacing.unit }
+});
+
+const fallbackNumber = (min, max) => {
+  if (!isFinite(min) && !isFinite(max)) {
+    return 0;
+  }
+  if (!isFinite(min) && isFinite(max)) {
+    return max;
+  }
+
+  if (isFinite(min)) {
+    return min;
   }
 };
 
 export class NumberTextField extends React.Component {
+  static propTypes = {
+    classes: PropTypes.object.isRequired,
+    className: PropTypes.string,
+    onChange: PropTypes.func.isRequired,
+    value: PropTypes.number,
+    min: PropTypes.number,
+    max: PropTypes.number,
+    label: PropTypes.string
+  };
 
   constructor(props) {
     super(props);
+
+    const value = this.clamp(props.value);
+
     this.state = {
-      value: props.value
+      value
     };
+
+    if (value !== props.value) {
+      this.props.onChange({}, value);
+    }
+
     this.onChange = this.onChange.bind(this);
   }
 
   componentWillReceiveProps(props) {
-    const v = parseInt(props.value, 10);
-    const value = isNaN(v) ? '' : props.value;
+    const value = this.clamp(props.value);
     this.setState({ value });
   }
 
   clamp(value) {
-    const { min, max } = this.props
+    if (!isFinite(value)) {
+      return fallbackNumber(this.props.min, this.props.max);
+    }
+
+    const { min, max } = this.props;
+
     if (max) {
       value = Math.min(value, max);
     }
@@ -41,36 +75,45 @@ export class NumberTextField extends React.Component {
 
   onChange(event) {
     const value = event.target.value;
-    this.setState({ value });
 
-    if (isNaN(value) || value === '') {
-      this.props.onChange(event, undefined);
-    } else {
-      let number = this.clamp(parseInt(value, 10));
-      this.props.onChange(event, number);
+    log('value: ', value);
+
+    if (!value || isNaN(value)) {
+      log('not natural - return');
+      return;
+    }
+
+    const rawNumber = parseFloat(value, 10);
+    log('rawNumber: ', rawNumber);
+
+    const number = this.clamp(rawNumber);
+    log('number: ', number);
+
+    if (number !== this.state.value) {
+      log('trigger update...');
+      this.setState({ value: number }, () => {
+        this.props.onChange(event, number);
+      });
     }
   }
 
   render() {
-    const { value, className, classes } = this.props;
+    const { className, classes, label } = this.props;
     const names = classNames(classes.root, className);
     return (
       <TextField
-        className={names}
+        label={label}
         value={this.state.value}
-        onChange={this.onChange} />
+        onChange={this.onChange}
+        type="number"
+        className={names}
+        InputLabelProps={{
+          shrink: true
+        }}
+        margin="normal"
+      />
     );
   }
 }
 
-const Out = withStyles(styles)(NumberTextField);
-
-Out.propTypes = {
-  className: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
-  value: PropTypes.number,
-  min: PropTypes.number,
-  max: PropTypes.number
-}
-
-export default Out;
+export default withStyles(styles)(NumberTextField);

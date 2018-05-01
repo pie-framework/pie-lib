@@ -12,6 +12,7 @@ const links = [
   { label: 'icons', path: '/icons' },
   { label: 'math-input', path: '/math-input' },
   { label: 'config-ui', path: '/config-ui' },
+  { label: 'config-ui - numbers', path: '/config-ui/numbers' },
   { label: 'render-ui', path: '/render-ui' },
   { label: 'scoring-config', path: '/scoring-config' },
   { label: 'editable-html', path: '/editable-html' },

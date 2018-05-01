@@ -1,10 +1,7 @@
-import React, { PropTypes } from 'react';
-import Enzyme, { shallow, mount } from 'enzyme';
+import React from 'react';
+import { shallow } from 'enzyme';
 import { NumberTextField } from '../number-text-field';
 import TextField from 'material-ui/TextField';
-import Adapter from 'enzyme-adapter-react-16';
-
-Enzyme.configure({ adapter: new Adapter() });
 
 describe('NumberTextField', () => {
   describe('render', () => {
@@ -31,7 +28,7 @@ describe('NumberTextField', () => {
         textField = component.find(TextField);
       });
 
-      it('should exist', () => {
+      it('should render mui TextField', () => {
         expect(textField.length).toEqual(1);
       });
 
@@ -55,48 +52,51 @@ describe('NumberTextField', () => {
             it('should be called with parsed int', () => {
               const e = event('3');
               props.onChange(e);
-              expect(onChange.mock.calls[0][0]).toEqual(e);
-              expect(onChange.mock.calls[0][1]).toEqual(parseInt('3', 10));
+              expect(onChange).toBeCalledWith(e, 3);
             });
           });
 
           describe('called with empty string', () => {
-            it('should be called empty string', () => {
+            it('should not be called with an empty string', () => {
               const e = event('');
               props.onChange(e);
-              expect(onChange.mock.calls[0][0]).toEqual(e);
-              expect(onChange.mock.calls[0][1]).toEqual(undefined);
+              expect(onChange).not.toBeCalled();
             });
           });
 
           describe('called with invalid int', () => {
-            it('should be called with undefined it not a valid number', () => {
+            it('should not be called with undefined it not a valid number', () => {
               const e = event('nope');
               props.onChange(e);
-              expect(onChange.mock.calls[0][0]).toEqual(e);
-              expect(onChange.mock.calls[0][1]).toEqual(undefined);
+              expect(onChange).not.toBeCalled();
             });
           });
 
           describe('string int exceeds max', () => {
-            let value = (max + 1).toString();
+            const value = (max + 1).toString();
 
             it('should be called with value of max', () => {
-              let e = event(value);
+              const e = event(value);
               props.onChange(e);
-              expect(onChange.mock.calls[0][0]).toEqual(e);
-              expect(onChange.mock.calls[0][1]).toEqual(max);
+              expect(onChange).toBeCalledWith(e, max);
             });
           });
 
           describe('string int less than min', () => {
-            let value = (min - 1).toString();
-
-            it('should be called with valie of min', () => {
+            const value = (min - 1).toString();
+            it('should not be called with with min if it has initialized to min', () => {
               const e = event(value);
               props.onChange(e, value);
-              expect(onChange.mock.calls[0][0]).toEqual(e);
-              expect(onChange.mock.calls[0][1]).toEqual(min);
+              expect(onChange).not.toBeCalledWith(e, min);
+            });
+
+            it('should be called with min for raw value less than min', () => {
+              const e = event(value);
+
+              //need to bump it up first
+              props.onChange(event('4'));
+              props.onChange(e, value);
+              expect(onChange).toBeCalledWith(e, min);
             });
           });
         });

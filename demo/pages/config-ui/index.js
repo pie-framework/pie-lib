@@ -17,11 +17,10 @@ import {
 } from '@pie-lib/config-ui';
 
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Typography from 'material-ui/Typography';
 import debug from 'debug';
 import { withStyles } from 'material-ui/styles';
-import withRoot from '../src/withRoot';
+import withRoot from '../../src/withRoot';
 
 const log = debug('demo:config-ui');
 

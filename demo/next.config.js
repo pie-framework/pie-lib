@@ -39,6 +39,7 @@ module.exports = withCSS({
       '/math-input': { page: '/math-input' },
       '/editable-html': { page: '/editable-html' },
       '/config-ui': { page: '/config-ui' },
+      '/config-ui/numbers': { page: '/config-ui/numbers' },
       '/render-ui': { page: '/render-ui' },
       '/scoring-config': { page: '/scoring-config' },
       '/charting/plot-points': { page: '/charting/plot-points' },
