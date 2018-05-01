@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.4.0"></a>
+# [0.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.3.0...@pie-lib/tools@0.4.0) (2018-05-01)
+
+
+### Features
+
+* **ruler:** move handles away from ticks ([85353fb](https://github.com/pie-framework/pie-lib/commit/85353fb))
+
+
+
+
 <a name="0.3.0"></a>
 # [0.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.2.2...@pie-lib/tools@0.3.0) (2018-05-01)
 
