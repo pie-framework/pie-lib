@@ -12,7 +12,12 @@ export class Ruler extends React.Component {
     height: PropTypes.number,
     units: PropTypes.number.isRequired,
     measure: PropTypes.oneOf(['imperial', 'metric']).isRequired,
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
+    className: PropTypes.string,
+    startPosition: PropTypes.shape({
+      left: PropTypes.number.isRequired,
+      top: PropTypes.number.isRequired
+    })
   };
 
   static defaultProps = {
@@ -23,7 +28,15 @@ export class Ruler extends React.Component {
   };
 
   render() {
-    const { classes, width, height, units, measure } = this.props;
+    const {
+      classes,
+      width,
+      height,
+      units,
+      measure,
+      className,
+      startPosition
+    } = this.props;
 
     const unit =
       measure === 'imperial'
@@ -37,6 +50,8 @@ export class Ruler extends React.Component {
           };
     return (
       <Rotatable
+        className={className}
+        startPosition={startPosition}
         handle={[
           { class: 'leftAnchor', origin: 'bottom right' },
           { class: 'rightAnchor', origin: 'bottom left' }
