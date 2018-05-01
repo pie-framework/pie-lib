@@ -27,6 +27,7 @@ const fallbackNumber = (min, max) => {
 
 export class NumberTextField extends React.Component {
   static propTypes = {
+    disabled: PropTypes.bool,
     classes: PropTypes.object.isRequired,
     className: PropTypes.string,
     onChange: PropTypes.func.isRequired,
@@ -98,10 +99,11 @@ export class NumberTextField extends React.Component {
   }
 
   render() {
-    const { className, classes, label } = this.props;
+    const { className, classes, label, disabled } = this.props;
     const names = classNames(classes.root, className);
     return (
       <TextField
+        disabled={disabled}
         label={label}
         value={this.state.value}
         onChange={this.onChange}

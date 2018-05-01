@@ -1,11 +1,8 @@
-import Radio, { RadioGroup } from 'material-ui/Radio';
-
 import EditableHTML from '@pie-lib/editable-html';
 import InputContainer from '../input-container';
 import PropTypes from 'prop-types';
 import RadioWithLabel from '../radio-with-label';
 import React from 'react';
-import Typography from 'material-ui/Typography';
 import debug from 'debug';
 import { withStyles } from 'material-ui/styles';
 
@@ -22,7 +19,7 @@ const style = theme => ({
     marginBottom: '20px'
   },
   label: {
-    cursor: 'pointer',
+    cursor: 'pointer'
   },
   inputContainerLabel: {
     paddingBottom: '10px;'
@@ -52,42 +49,49 @@ const style = theme => ({
     cursor: 'default'
   },
   editor: {
-    fontFamily: theme.typography.fontFamily,
+    fontFamily: theme.typography.fontFamily
   }
 });
 
-const Group = ({ feedbackLabels, label, value, classes, handleChange, keys }) => (
+const Group = ({
+  feedbackLabels,
+  label,
+  value,
+  classes,
+  handleChange,
+  keys
+}) => (
   <div className={classes.choiceHolder}>
-    {keys.map((key) => {
-      return (<div className={classes.choice} key={key}>
-        <RadioWithLabel
-          value={key}
-          checked={value === key}
-          onChange={(e) => handleChange(e.currentTarget.value)}
-          label={feedbackLabels[key]} />
-      </div>);
+    {keys.map(key => {
+      return (
+        <div className={classes.choice} key={key}>
+          <RadioWithLabel
+            value={key}
+            checked={value === key}
+            onChange={e => handleChange(e.currentTarget.value)}
+            label={feedbackLabels[key]}
+          />
+        </div>
+      );
     })}
   </div>
-)
+);
 
 class FeedbackSelector extends React.Component {
-
   constructor(props) {
     super(props);
 
-    this.onTypeChange = (type) => {
+    this.onTypeChange = type => {
       log('onTypeChange:', type);
-      this.props.onFeedbackChange(
-        Object.assign(this.props.feedback, { type })
-      );
-    }
+      this.props.onFeedbackChange(Object.assign(this.props.feedback, { type }));
+    };
 
-    this.onCustomFeedbackChange = (customFeedback) => {
+    this.onCustomFeedbackChange = customFeedback => {
       log('onCustomFeedbackChange:', customFeedback);
       this.props.onFeedbackChange(
         Object.assign(this.props.feedback, { customFeedback })
       );
-    }
+    };
   }
 
   render() {
@@ -95,27 +99,36 @@ class FeedbackSelector extends React.Component {
 
     let feedbackKeys = keys || Object.keys(feedbackLabels);
 
-    return <div className={classes.feedbackSelector}>
-      <InputContainer label={label}
-        className={classes.feedbackInputContainer}
-        extraClasses={{ label: classes.inputContainerLabel }}>
-        <Group
-          classes={classes}
-          keys={feedbackKeys}
+    return (
+      <div className={classes.feedbackSelector}>
+        <InputContainer
           label={label}
-          value={feedback.type}
-          handleChange={this.onTypeChange}
-          feedbackLabels={feedbackLabels} />
-      </InputContainer>
-      {feedback.type === 'custom' && <div className={classes.feedbackHolder}>
-        <EditableHTML
-          className={classes.editor}
-          onChange={this.onCustomFeedbackChange}
-          markup={feedback.customFeedback || ''} />
-      </div>}
-      {feedback.type === 'default' &&
-        <div className={classes.defaultHolder}> {feedback.default}</div>}
-    </div>;
+          className={classes.feedbackInputContainer}
+          extraClasses={{ label: classes.inputContainerLabel }}
+        >
+          <Group
+            classes={classes}
+            keys={feedbackKeys}
+            label={label}
+            value={feedback.type}
+            handleChange={this.onTypeChange}
+            feedbackLabels={feedbackLabels}
+          />
+        </InputContainer>
+        {feedback.type === 'custom' && (
+          <div className={classes.feedbackHolder}>
+            <EditableHTML
+              className={classes.editor}
+              onChange={this.onCustomFeedbackChange}
+              markup={feedback.customFeedback || ''}
+            />
+          </div>
+        )}
+        {feedback.type === 'default' && (
+          <div className={classes.defaultHolder}> {feedback.default}</div>
+        )}
+      </div>
+    );
   }
 }
 
@@ -127,6 +140,8 @@ FeedbackSelector.propTypes = {
     default: PropTypes.string.isRequired
   }),
   onFeedbackChange: PropTypes.func.isRequired
-}
+};
 
-export default withStyles(style, { name: 'FeedbackSelector' })(FeedbackSelector);
+export default withStyles(style, { name: 'FeedbackSelector' })(
+  FeedbackSelector
+);

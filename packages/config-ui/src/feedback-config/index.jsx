@@ -4,8 +4,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import cloneDeep from 'lodash/cloneDeep';
 import { withStyles } from 'material-ui/styles';
+import LegacyFeedbackSelector from './legacy-feedback-selector';
 
-export { FeedbackSelector };
+export { FeedbackSelector, LegacyFeedbackSelector };
 
 const style = {};
 
@@ -36,7 +37,9 @@ export class FeedbackConfig extends React.Component {
     out[`${key}Feedback`] =
       type === 'custom'
         ? customFeedback
-        : type === 'default' ? defaults[key] : '';
+        : type === 'default'
+          ? defaults[key]
+          : '';
     onChange(out);
   }
 
