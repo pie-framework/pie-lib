@@ -17,7 +17,9 @@ export class Ruler extends React.Component {
     startPosition: PropTypes.shape({
       left: PropTypes.number.isRequired,
       top: PropTypes.number.isRequired
-    })
+    }),
+    label: PropTypes.string,
+    tickCount: PropTypes.number
   };
 
   static defaultProps = {
@@ -35,17 +37,19 @@ export class Ruler extends React.Component {
       units,
       measure,
       className,
-      startPosition
+      startPosition,
+      label,
+      tickCount
     } = this.props;
 
     const unit =
       measure === 'imperial'
         ? {
-            type: 'in',
-            ticks: 16
+            type: label,
+            ticks: tickCount && tickCount % 4 === 0 ? tickCount : 16
           }
         : {
-            type: 'cm',
+            type: label,
             ticks: 10
           };
     return (
