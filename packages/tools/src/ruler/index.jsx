@@ -84,11 +84,11 @@ const styles = theme => ({
   },
   leftAnchor: {
     left: '-10px',
-    bottom: '-10px'
+    top: '40%'
   },
   rightAnchor: {
     right: '-10px',
-    bottom: '-10px'
+    top: '40%'
   }
 });
 
