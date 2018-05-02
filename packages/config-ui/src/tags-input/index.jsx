@@ -1,16 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import debug from 'debug';
 import uniq from 'lodash/uniq';
 import { Chip } from 'material-ui';
 import MuiBox from '../mui-box';
 
-const log = debug('pie-elements:config-ui:tags-input');
-
 const ENTER = 13;
 
-const Tag = withStyles(theme => ({
+const Tag = withStyles(() => ({
   tag: {
     padding: '0px',
     margin: '1px'
@@ -25,6 +22,12 @@ Tag.propTypes = {
 };
 
 export class TagsInput extends React.Component {
+  static propTypes = {
+    classes: PropTypes.object.isRequired,
+    tags: PropTypes.arrayOf(PropTypes.string).isRequired,
+    onChange: PropTypes.func.isRequired
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -91,11 +94,6 @@ export class TagsInput extends React.Component {
     );
   }
 }
-
-TagsInput.propTypes = {
-  tags: PropTypes.arrayOf(PropTypes.string).isRequired,
-  onChange: PropTypes.func.isRequired
-};
 
 const styles = theme => ({
   tagsInput: {
