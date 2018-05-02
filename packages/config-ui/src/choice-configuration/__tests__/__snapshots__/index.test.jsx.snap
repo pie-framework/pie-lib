@@ -8,30 +8,30 @@ exports[`index - snapshot renders correctly 1`] = `
     className={undefined}
   >
     <div
-      className="MuiFormControl-root-3 RawInputContainer-formControl-2"
+      className="MuiFormControl-root-4 RawInputContainer-formControl-2"
       onBlur={[Function]}
       onFocus={[Function]}
     >
       <label
-        className="MuiFormLabel-root-12 MuiInputLabel-root-7 MuiInputLabel-formControl-8 MuiInputLabel-animated-11 MuiInputLabel-shrink-10"
+        className="MuiFormLabel-root-13 MuiInputLabel-root-8 MuiInputLabel-formControl-9 MuiInputLabel-animated-12 MuiInputLabel-shrink-11 RawInputContainer-label-3"
         data-shrink={true}
       >
         Correct
       </label>
     </div>
     <div
-      className="MuiFormControl-root-3 RawInputContainer-formControl-2 Component-labelContainer-17"
+      className="MuiFormControl-root-4 RawInputContainer-formControl-2 Component-labelContainer-18"
       onBlur={[Function]}
       onFocus={[Function]}
     >
       <label
-        className="MuiFormLabel-root-12 MuiInputLabel-root-7 MuiInputLabel-formControl-8 MuiInputLabel-animated-11 MuiInputLabel-shrink-10"
+        className="MuiFormLabel-root-13 MuiInputLabel-root-8 MuiInputLabel-formControl-9 MuiInputLabel-animated-12 MuiInputLabel-shrink-11 RawInputContainer-label-3"
         data-shrink={true}
       >
         Label
       </label>
       <div
-        className="Component-editorHolder-18"
+        className="Component-editorHolder-19"
       >
         <div>
           EditableHtml
@@ -39,12 +39,12 @@ exports[`index - snapshot renders correctly 1`] = `
       </div>
     </div>
     <div
-      className="MuiFormControl-root-3 RawInputContainer-formControl-2"
+      className="MuiFormControl-root-4 RawInputContainer-formControl-2"
       onBlur={[Function]}
       onFocus={[Function]}
     >
       <label
-        className="MuiFormLabel-root-12 MuiInputLabel-root-7 MuiInputLabel-formControl-8 MuiInputLabel-animated-11 MuiInputLabel-shrink-10"
+        className="MuiFormLabel-root-13 MuiInputLabel-root-8 MuiInputLabel-formControl-9 MuiInputLabel-animated-12 MuiInputLabel-shrink-11 RawInputContainer-label-3"
         data-shrink={true}
       >
         Feedback
@@ -59,12 +59,12 @@ exports[`index - snapshot renders correctly 1`] = `
       </div>
     </div>
     <div
-      className="MuiFormControl-root-3 RawInputContainer-formControl-2"
+      className="MuiFormControl-root-4 RawInputContainer-formControl-2"
       onBlur={[Function]}
       onFocus={[Function]}
     >
       <label
-        className="MuiFormLabel-root-12 MuiInputLabel-root-7 MuiInputLabel-formControl-8 MuiInputLabel-animated-11 MuiInputLabel-shrink-10"
+        className="MuiFormLabel-root-13 MuiInputLabel-root-8 MuiInputLabel-formControl-9 MuiInputLabel-animated-12 MuiInputLabel-shrink-11 RawInputContainer-label-3"
         data-shrink={true}
       >
         Delete
@@ -72,18 +72,18 @@ exports[`index - snapshot renders correctly 1`] = `
     </div>
   </div>
   <div
-    className="MuiFormControl-root-3 RawInputContainer-formControl-2 Component-labelContainer-17 Component-text-19"
+    className="MuiFormControl-root-4 RawInputContainer-formControl-2 Component-labelContainer-18 Component-text-20"
     onBlur={[Function]}
     onFocus={[Function]}
   >
     <label
-      className="MuiFormLabel-root-12 MuiInputLabel-root-7 MuiInputLabel-formControl-8 MuiInputLabel-animated-11 MuiInputLabel-shrink-10"
+      className="MuiFormLabel-root-13 MuiInputLabel-root-8 MuiInputLabel-formControl-9 MuiInputLabel-animated-12 MuiInputLabel-shrink-11 RawInputContainer-label-3"
       data-shrink={true}
     >
       Feedback Text
     </label>
     <div
-      className="Component-editorHolder-18"
+      className="Component-editorHolder-19"
     >
       <div>
         EditableHtml

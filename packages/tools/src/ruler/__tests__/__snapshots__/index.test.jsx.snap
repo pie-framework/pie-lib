@@ -28,7 +28,7 @@ exports[`ruler snapshot renders 1`] = `
       unit={
         Object {
           "ticks": 16,
-          "type": "in",
+          "type": undefined,
         }
       }
       units={12}
