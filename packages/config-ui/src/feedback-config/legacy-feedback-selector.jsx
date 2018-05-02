@@ -2,13 +2,14 @@ import FeedbackSelector from './feedback-selector';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const map = legacy => {
+export const map = (legacy, defaultFb) => {
   const out = {
     type: legacy.feedbackType
   };
 
-  out.customFeedback = out.type === 'custom' && legacy.feedback;
-  out.default = out.type === 'default' && legacy.feedback;
+  out.customFeedback = out.type === 'custom' ? legacy.feedback : '';
+  out.default = out.type === 'default' ? legacy.feedback || defaultFb : '';
+
   return out;
 };
 
@@ -25,7 +26,8 @@ export class LegacyFeedbackSelector extends React.Component {
   static propTypes = {
     onFeedbackChange: PropTypes.func.isRequired,
     label: PropTypes.string.isRequired,
-    feedback: PropTypes.object.isRequired
+    feedback: PropTypes.object.isRequired,
+    defaultFeedback: PropTypes.string.isRequired
   };
 
   changeFeedback = fb => {
@@ -34,8 +36,8 @@ export class LegacyFeedbackSelector extends React.Component {
   };
 
   render() {
-    const { label, feedback } = this.props;
-    const mappedFeedback = map(feedback);
+    const { label, feedback, defaultFeedback } = this.props;
+    const mappedFeedback = map(feedback, defaultFeedback);
 
     return (
       <FeedbackSelector
