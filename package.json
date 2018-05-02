@@ -12,11 +12,9 @@
     "dev": "./scripts/dev",
     "lint": "./node_modules/.bin/eslint --ext .js --ext .jsx packages",
     "postinstall": "cd demo && yarn install",
-    "lint-two":
-      "lerna exec -- \\$LERNA_ROOT_PATH/node_modules/.bin/eslint  --ignore-path \\$LERNA_ROOT_PATH/.eslintignore --ext .js --ext .jsx src",
+    "lint-two": "lerna exec -- \\$LERNA_ROOT_PATH/node_modules/.bin/eslint  --ignore-path \\$LERNA_ROOT_PATH/.eslintignore --ext .js --ext .jsx src",
     "clean": "lerna exec -- rm -fr lib",
-    "build":
-      "npm run clean && npm run lint-two && lerna exec -- \\$LERNA_ROOT_PATH/node_modules/.bin/babel --ignore '/__test__/','/__tests__/' src -d lib"
+    "build": "npm run clean && npm run lint-two && lerna exec -- \\$LERNA_ROOT_PATH/node_modules/.bin/babel --ignore '/__test__/','/__tests__/' src -d lib"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
