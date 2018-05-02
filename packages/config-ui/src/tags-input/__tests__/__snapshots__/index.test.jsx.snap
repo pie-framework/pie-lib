@@ -1,0 +1,143 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TagsInput snapshots renders 1`] = `
+<TagsInput
+  classes={
+    Object {
+      "tagsInput": "tagsInput",
+    }
+  }
+  onChange={[MockFunction]}
+  tags={
+    Array [
+      "foo",
+    ]
+  }
+>
+  <WithStyles(Component)
+    focused={false}
+  >
+    <Component
+      classes={
+        Object {
+          "focused": "Component-focused-2",
+          "muiBox": "Component-muiBox-1",
+        }
+      }
+      focused={false}
+    >
+      <div
+        className="Component-muiBox-1"
+      >
+        <div
+          className="tagsInput"
+        >
+          <WithStyles(Component)
+            key="0"
+            label="foo"
+            onDelete={[Function]}
+          >
+            <Component
+              classes={
+                Object {
+                  "tag": "Component-tag-3",
+                }
+              }
+              label="foo"
+              onDelete={[Function]}
+            >
+              <WithStyles(Chip)
+                className="Component-tag-3"
+                label="foo"
+                onDelete={[Function]}
+              >
+                <Chip
+                  className="Component-tag-3"
+                  classes={
+                    Object {
+                      "avatar": "MuiChip-avatar-7",
+                      "avatarChildren": "MuiChip-avatarChildren-8",
+                      "clickable": "MuiChip-clickable-5",
+                      "deletable": "MuiChip-deletable-6",
+                      "deleteIcon": "MuiChip-deleteIcon-10",
+                      "label": "MuiChip-label-9",
+                      "root": "MuiChip-root-4",
+                    }
+                  }
+                  component="div"
+                  label="foo"
+                  onDelete={[Function]}
+                >
+                  <div
+                    className="MuiChip-root-4 MuiChip-deletable-6 Component-tag-3"
+                    onKeyDown={[Function]}
+                    role="button"
+                    tabIndex={0}
+                  >
+                    <span
+                      className="MuiChip-label-9"
+                    >
+                      foo
+                    </span>
+                    <pure(Cancel)
+                      className="MuiChip-deleteIcon-10"
+                      onClick={[Function]}
+                    >
+                      <Cancel
+                        className="MuiChip-deleteIcon-10"
+                        onClick={[Function]}
+                      >
+                        <WithStyles(SvgIcon)
+                          className="MuiChip-deleteIcon-10"
+                          onClick={[Function]}
+                        >
+                          <SvgIcon
+                            className="MuiChip-deleteIcon-10"
+                            classes={
+                              Object {
+                                "colorAction": "MuiSvgIcon-colorAction-14",
+                                "colorDisabled": "MuiSvgIcon-colorDisabled-15",
+                                "colorError": "MuiSvgIcon-colorError-16",
+                                "colorPrimary": "MuiSvgIcon-colorPrimary-12",
+                                "colorSecondary": "MuiSvgIcon-colorSecondary-13",
+                                "root": "MuiSvgIcon-root-11",
+                              }
+                            }
+                            color="inherit"
+                            onClick={[Function]}
+                            viewBox="0 0 24 24"
+                          >
+                            <svg
+                              aria-hidden="true"
+                              className="MuiSvgIcon-root-11 MuiChip-deleteIcon-10"
+                              focusable="false"
+                              onClick={[Function]}
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"
+                              />
+                            </svg>
+                          </SvgIcon>
+                        </WithStyles(SvgIcon)>
+                      </Cancel>
+                    </pure(Cancel)>
+                  </div>
+                </Chip>
+              </WithStyles(Chip)>
+            </Component>
+          </WithStyles(Component)>
+          <input
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+    </Component>
+  </WithStyles(Component)>
+</TagsInput>
+`;
