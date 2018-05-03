@@ -23,9 +23,20 @@ describe('builder', () => {
   });
 
   describe('words', () => {
-    it('works', () => {
-      const out = words("he hasn't an apple");
-      expect(out.length).toEqual(4);
+    it.only('works', () => {
+      const out = words('foo. bar');
+      expect(out).toEqual([
+        {
+          text: 'foo',
+          start: 0,
+          end: 3
+        },
+        {
+          text: 'bar',
+          start: 5,
+          end: 8
+        }
+      ]);
     });
   });
 

@@ -1,10 +1,60 @@
 import compact from 'lodash/compact';
-import { sentences } from 'sbd';
+// import inspect = require('unist-util-inspect')
+import English from 'parse-english';
 
-export { sentences };
+const getWord = w => {
+  console.log('get word: ', w);
+  const out = w.children.reduce((acc, n) => {
+    if (n.value) {
+      console.log('acc: ,', acc, ' value? ', n.value);
+      return `${acc}${n.value}`;
+    } else {
+      return acc;
+    }
+  }, '');
+  console.log('out: ', out);
+  return out;
+};
 
 export const words = text => {
-  return text.split(' ');
+  const tree = new English().parse(text);
+  // console.log(JSON.stringify(tree, null, '  '));
+
+  const out = tree.children.reduce((acc, child) => {
+    if (child.type === 'ParagraphNode') {
+      console.log('acc: ', acc);
+      return child.children.reduce((acc, child) => {
+        console.log('> acc: ', acc);
+        if (child.type === 'SentenceNode') {
+          return child.children.reduce((acc, child) => {
+            console.log('>> acc: ', acc);
+            if (child.type === 'WordNode') {
+              const node = {
+                text: getWord(child),
+                start: child.position.start.offset,
+                end: child.position.end.offset
+              };
+              return acc.concat([node]);
+            } else {
+              return acc;
+            }
+          }, acc);
+        } else {
+          return acc;
+        }
+      }, acc);
+    } else {
+      return acc;
+    }
+  }, []);
+
+  console.log('out:', out);
+  return out;
+  // console.log(inspect(tree));
+  // const raw = text.split(' ');
+
+  // raw.map(w => ({ text: w }));
+  // return text.split(' ');
 };
 
 export const normalize = (text, tokens) => {
