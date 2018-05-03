@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`token-select snapshot renders 1`] = `
+<div
+  className=""
+>
+  <WithStyles(Token)
+    highlight={false}
+    key="0"
+    onClick={[Function]}
+    selectable={true}
+    text="foo"
+  />
+</div>
+`;

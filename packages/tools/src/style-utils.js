@@ -1,10 +1,6 @@
-export const noSelect = () => ({
-  cursor: 'default',
-  '-webkit-user-select': 'none',
-  '-moz-user-select': 'none',
-  '-ms-user-select': 'none',
-  'user-select': 'none'
-});
+import { noSelect } from '@pie-lib/style-utils';
+
+export { noSelect };
 
 export const strokeColor = theme =>
   `var(--ruler-stroke, ${theme.palette.primary.main})`;
