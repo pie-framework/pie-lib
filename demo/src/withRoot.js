@@ -18,7 +18,8 @@ const links = [
   { label: 'editable-html', path: '/editable-html' },
   { label: 'tools - ruler', path: '/tools/ruler' },
   { label: 'tools - protractor', path: '/tools/protractor' },
-  { label: 'tools - rotatable', path: '/tools/rotatable' }
+  { label: 'tools - rotatable', path: '/tools/rotatable' },
+  { label: 'text-select', path: '/text-select' }
 ];
 
 function withRoot(Component) {

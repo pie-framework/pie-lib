@@ -1,0 +1,28 @@
+{
+  "name": "@pie-lib/text-select",
+  "publishConfig": {
+    "access": "public"
+  },
+  "version": "0.0.1",
+  "description": "Some react components for text selection",
+  "keywords": ["react", "pie", "text", "select"],
+  "repository": "pie-framework/pie-lib",
+  "main": "lib/index.js",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "invariant": "^2.2.4",
+    "lodash": "^4.17.5"
+  },
+  "devDependencies": {
+    "material-ui": "^1.0.0-beta.44",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "@pie-lib/test-utils": "^0.0.2"
+  },
+  "peerDependencies": {
+    "material-ui": "^1.0.0-beta.44",
+    "react": "^16.3.2"
+  }
+}

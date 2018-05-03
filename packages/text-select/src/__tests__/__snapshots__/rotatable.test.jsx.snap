@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`rotatable snapshot renders 1`] = `
+<div
+  className=""
+  onMouseDown={[Function]}
+  onMouseUp={[Function]}
+  style={
+    Object {
+      "left": 0,
+      "top": 0,
+      "transform": " rotate(0deg)",
+      "transformOrigin": undefined,
+    }
+  }
+>
+  foo
+</div>
+`;
+
+exports[`rotatable snapshot renders with transforms 1`] = `
+<div
+  className=""
+  onMouseDown={[Function]}
+  onMouseUp={[Function]}
+  style={
+    Object {
+      "left": 0,
+      "top": 0,
+      "transform": "translate(10px, 10px) rotate(10deg)",
+      "transformOrigin": "bottom left",
+    }
+  }
+>
+  foo
+</div>
+`;
