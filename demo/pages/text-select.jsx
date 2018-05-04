@@ -73,7 +73,10 @@ class Demo extends React.Component {
         selectable: index % 2 === 0,
         correct: index % 4 === 0
       })),
-      tokenizerTokens: [{ start: 0, end: 36 }]
+      // tokenizerTokens: [{ text: 'a', start: 0, end: 1 }]
+      tokenizerTokens: [
+        { text: 'Rachel cut out 8 stars in 6 minutes.', start: 0, end: 36 }
+      ]
     };
   }
 
@@ -128,6 +131,16 @@ class Demo extends React.Component {
           tokens={this.state.tokenizerTokens}
           onChange={tokenizerTokens => this.setState({ tokenizerTokens })}
         />
+
+        <div>
+          <ul>
+            {this.state.tokenizerTokens.map((t, index) => (
+              <li key={index}>
+                {t.text} {t.start}-{t.end}, {t.correct ? 'correct' : ''}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     ) : (
       <div>loading...</div>
