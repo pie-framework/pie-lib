@@ -23,13 +23,13 @@ describe('builder', () => {
   });
 
   describe('words', () => {
-    it.only('works', () => {
+    it('works', () => {
       const out = words('foo. bar');
       expect(out).toEqual([
         {
-          text: 'foo',
+          text: 'foo.',
           start: 0,
-          end: 3
+          end: 4
         },
         {
           text: 'bar',
@@ -41,9 +41,15 @@ describe('builder', () => {
   });
 
   describe('sentenences', () => {
+    it('foobar', () => {
+      const text = 'This is foo. This is bar.';
+      const out = sentences(text);
+      expect(out[0]).toEqual({ text: 'This is foo.', start: 0, end: 12 });
+      expect(out[1]).toEqual({ text: 'This is bar.', start: 13, end: 25 });
+    });
     it('works', () => {
       const text =
-        'On Jan. 20, former Sen. Barack Obama became the 44th President of the U.S. Millions attended the Inauguration.';
+        'On Jan. 20, former Sen. Barack Obama became the 44th President of the USA. Millions attended the Inauguration.';
 
       const out = sentences(text);
       expect(out.length).toEqual(2);

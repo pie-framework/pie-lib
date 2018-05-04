@@ -1,33 +1,53 @@
 import compact from 'lodash/compact';
-// import inspect = require('unist-util-inspect')
 import English from 'parse-english';
 
-const getWord = w => {
-  console.log('get word: ', w);
-  const out = w.children.reduce((acc, n) => {
-    if (n.value) {
-      console.log('acc: ,', acc, ' value? ', n.value);
-      return `${acc}${n.value}`;
+const g = (str, node) => {
+  if (node.children) {
+    return node.children.reduce(g, str);
+  } else if (node.value) {
+    return str + node.value;
+  } else {
+    return str;
+  }
+};
+
+const getSentence = s => g('', s);
+
+const getWord = w => g('', w);
+
+export const sentences = text => {
+  const tree = new English().parse(text);
+
+  // console.log(JSON.stringify(tree.children[0].children, null, '  '));
+  const out = tree.children.reduce((acc, child) => {
+    if (child.type === 'ParagraphNode') {
+      return child.children.reduce((acc, child) => {
+        if (child.type === 'SentenceNode') {
+          const sentence = {
+            text: getSentence(child),
+            start: child.position.start.offset,
+            end: child.position.end.offset
+          };
+          return acc.concat([sentence]);
+        } else {
+          return acc;
+        }
+      }, acc);
     } else {
       return acc;
     }
-  }, '');
-  console.log('out: ', out);
+  }, []);
+
   return out;
 };
-
 export const words = text => {
   const tree = new English().parse(text);
-  // console.log(JSON.stringify(tree, null, '  '));
 
   const out = tree.children.reduce((acc, child) => {
     if (child.type === 'ParagraphNode') {
-      console.log('acc: ', acc);
       return child.children.reduce((acc, child) => {
-        console.log('> acc: ', acc);
         if (child.type === 'SentenceNode') {
           return child.children.reduce((acc, child) => {
-            console.log('>> acc: ', acc);
             if (child.type === 'WordNode') {
               const node = {
                 text: getWord(child),
@@ -48,13 +68,7 @@ export const words = text => {
     }
   }, []);
 
-  console.log('out:', out);
   return out;
-  // console.log(inspect(tree));
-  // const raw = text.split(' ');
-
-  // raw.map(w => ({ text: w }));
-  // return text.split(' ');
 };
 
 export const normalize = (text, tokens) => {

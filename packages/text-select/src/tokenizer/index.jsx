@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Controls from './controls';
 import { withStyles } from 'material-ui/styles';
-import { normalize } from './builder';
+import { normalize, words, sentences } from './builder';
 import yellow from 'material-ui/colors/yellow';
 
 const T = withStyles(theme => ({
@@ -60,13 +60,13 @@ export class Tokenizer extends React.Component {
   };
 
   buildWordTokens = () => {
-    const { onChange } = this.props;
+    const { onChange, text } = this.props;
     const tokens = words(text);
     onChange(tokens);
   };
 
   buildSentenceTokens = () => {
-    const { onChange } = this.props;
+    const { onChange, text } = this.props;
     const tokens = sentences(text);
     onChange(tokens);
   };
