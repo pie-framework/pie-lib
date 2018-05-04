@@ -1,4 +1,9 @@
-import { TokenSelect, TokenTypes, Tokenizer } from '@pie-lib/text-select';
+import {
+  TextSelect,
+  TokenSelect,
+  TokenTypes,
+  Tokenizer
+} from '@pie-lib/text-select';
 import withRoot from '../src/withRoot';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -15,6 +20,22 @@ const text = () => [
   'Rachel cut out 4 more stars than Lovelle.',
   'Lovelle and Rachel cut the same number of stars in 6 minutes.'
 ];
+
+const raw = text().join(' ');
+
+const tokens = text().map(t => {
+  const start = raw.indexOf(t);
+  const end = start + t.length;
+  return {
+    text: t,
+    start,
+    end
+  };
+});
+
+const correctedTokens = tokens.map((t, index) => {
+  return { ...t, correct: index % 2 === 0 };
+});
 
 class RawCustomToken extends React.Component {
   static propTypes = {
@@ -54,29 +75,33 @@ class Demo extends React.Component {
   constructor(props) {
     super(props);
 
-    const tokens = text().map((t, index) => ({
-      text: t,
-      selectable: index % 2 === 0
-    }));
+    // const tokens = text().map((t, index) => ({
+    //   text: t,
+    //   selectable: index % 2 === 0
+    // }));
 
     this.state = {
       mounted: false,
-      tokens: clone(tokens),
-      disabledTokens: text().map((t, index) => ({
-        text: t,
-        selected: index % 2 === 0,
-        selectable: index % 2 === 0
-      })),
-      customTokens: text().map((t, index) => ({
-        text: t,
-        selected: index % 2 === 0,
-        selectable: index % 2 === 0,
-        correct: index % 4 === 0
-      })),
-      // tokenizerTokens: [{ text: 'a', start: 0, end: 1 }]
-      tokenizerTokens: [
-        { text: 'Rachel cut out 8 stars in 6 minutes.', start: 0, end: 36 }
-      ]
+      textSelect: {
+        selected: tokens.filter((t, index) => index % 2 === 0),
+        withCorrect: tokens.filter((t, index) => index % 2 !== 0)
+      }
+      // tokens: clone(tokens),
+      // disabledTokens: text().map((t, index) => ({
+      //   text: t,
+      //   selected: index % 2 === 0,
+      //   selectable: index % 2 === 0
+      // })),
+      // customTokens: text().map((t, index) => ({
+      //   text: t,
+      //   selected: index % 2 === 0,
+      //   selectable: index % 2 === 0,
+      //   correct: index % 4 === 0
+      // })),
+      // // tokenizerTokens: [{ text: 'a', start: 0, end: 1 }]
+      // tokenizerTokens: [
+      //   { text: 'Rachel cut out 8 stars in 6 minutes.', start: 0, end: 36 }
+      // ]
     };
   }
 
@@ -89,7 +114,36 @@ class Demo extends React.Component {
     const { mounted } = this.state;
     return mounted ? (
       <div className={classes.demo}>
-        <Header>TokenSelect</Header>
+        <Header>TextSelect</Header>
+        <Body>This is the comp</Body>
+        <TextSelect
+          disabled={false}
+          text={raw}
+          tokens={tokens}
+          selectedTokens={this.state.textSelect.selected}
+          onChange={tokens =>
+            this.setState({ textSelect: { selected: tokens } })
+          }
+        />
+        <Body>Disabled</Body>
+        <TextSelect
+          disabled={true}
+          text={raw}
+          tokens={tokens}
+          selectedTokens={this.state.textSelect.selected}
+          onChange={() => ({})}
+        />
+        <Body>Correct/Incorrect</Body>
+        <TextSelect
+          disabled={true}
+          text={raw}
+          tokens={correctedTokens}
+          selectedTokens={this.state.textSelect.withCorrect}
+          onChange={tokens =>
+            this.setState({ textSelect: { withCorrect: tokens } })
+          }
+        />
+        {/* <Header>TokenSelect</Header>
         <Typography className={classes.description} variant={'body1'}>
           Displays text that may be selected by the user clicking on it.
         </Typography>
@@ -140,7 +194,7 @@ class Demo extends React.Component {
               </li>
             ))}
           </ul>
-        </div>
+        </div> */}
       </div>
     ) : (
       <div>loading...</div>

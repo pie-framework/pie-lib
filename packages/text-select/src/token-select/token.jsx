@@ -54,7 +54,7 @@ export default withStyles(theme => {
     token: {
       cursor: 'pointer',
       display: 'inline',
-      paddingRight: theme.spacing.unit * 0.5,
+      paddingRight: 0, //theme.spacing.unit * 0.5,
       transition: 'background-color 100ms ease-in'
     },
     disabled: {
@@ -62,7 +62,7 @@ export default withStyles(theme => {
       color: 'grey'
     },
     disabledAndSelected: {
-      backgroundColor: 'lightgrey'
+      backgroundColor: 'pink'
       // filter: 'brightness(100%)'
     },
     selected: {
