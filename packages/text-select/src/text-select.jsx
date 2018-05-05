@@ -8,17 +8,9 @@ import { withStyles } from 'material-ui/styles';
 import classNames from 'classnames';
 import green from 'material-ui/colors/green';
 import orange from 'material-ui/colors/orange';
+import { TokenTypes } from './token-select/token';
 
 const log = debug('@pie-lib:text-select');
-/**
- *   <TextSelect
-        disabled={model.disabled}
-        text={model.text}
-        tokens={model.tokens}
-        selectedTokens={session.selectedTokens}
-        onChange={onSelectionChange}
-      />
- */
 
 const RawCustom = props => {
   const { classes } = props;
@@ -42,8 +34,19 @@ const Custom = withStyles(theme => ({
   }
 }))(RawCustom);
 
+/**
+ * Built on TokenSelect uses build.normalize to build the token set.
+ */
 export default class TextSelect extends React.Component {
-  static propTypes = {};
+  static propTypes = {
+    onChange: PropTypes.func.isRequired,
+    disabled: PropTypes.bool,
+    tokens: PropTypes.arrayOf(PropTypes.shape(TokenTypes)),
+    selectedTokens: PropTypes.arrayOf(PropTypes.shape(TokenTypes)),
+    text: PropTypes.string.isRequired,
+    className: PropTypes.string,
+    highlightChoices: PropTypes.bool
+  };
 
   change = tokens => {
     log('change...');
@@ -53,7 +56,14 @@ export default class TextSelect extends React.Component {
 
   render() {
     log('render: ...');
-    const { text, disabled, tokens, selectedTokens, onChange } = this.props;
+    const {
+      text,
+      disabled,
+      tokens,
+      selectedTokens,
+      className,
+      highlightChoices
+    } = this.props;
 
     const normalized = normalize(text, tokens);
     const prepped = normalized.map(t => {
@@ -64,7 +74,7 @@ export default class TextSelect extends React.Component {
       const correct = selected ? t.correct : undefined;
       return {
         ...t,
-        selectable: !disabled,
+        selectable: !disabled && t.predefined,
         selected,
         correct
       };
@@ -73,10 +83,10 @@ export default class TextSelect extends React.Component {
     const tokensHaveCorrectInfo =
       tokens.filter(t => t.hasOwnProperty('correct')).length > 0;
 
-    log('prepped: ', prepped);
     return (
       <TokenSelect
-        text={text}
+        highlightChoices={!disabled && highlightChoices}
+        className={className}
         tokens={prepped}
         disabled={disabled}
         onChange={this.change}

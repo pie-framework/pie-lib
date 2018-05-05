@@ -13,6 +13,7 @@ import clone from 'lodash/clone';
 import classNames from 'classnames';
 import green from 'material-ui/colors/green';
 import orange from 'material-ui/colors/orange';
+import compact from 'lodash/compact';
 
 const text = () => [
   'Rachel cut out 8 stars in 6 minutes.',
@@ -23,15 +24,20 @@ const text = () => [
 
 const raw = text().join(' ');
 
-const tokens = text().map(t => {
-  const start = raw.indexOf(t);
-  const end = start + t.length;
-  return {
-    text: t,
-    start,
-    end
-  };
-});
+const tokens = compact(
+  text().map((t, index) => {
+    if (index === 2) {
+      return undefined;
+    }
+    const start = raw.indexOf(t);
+    const end = start + t.length;
+    return {
+      text: t,
+      start,
+      end
+    };
+  })
+);
 
 const correctedTokens = tokens.map((t, index) => {
   return { ...t, correct: index % 2 === 0 };
@@ -84,7 +90,7 @@ class Demo extends React.Component {
       mounted: false,
       textSelect: {
         selected: tokens.filter((t, index) => index % 2 === 0),
-        withCorrect: tokens.filter((t, index) => index % 2 !== 0)
+        withCorrect: tokens.filter((t, index) => index === 0 || index === 1)
       }
       // tokens: clone(tokens),
       // disabledTokens: text().map((t, index) => ({
@@ -117,16 +123,21 @@ class Demo extends React.Component {
         <Header>TextSelect</Header>
         <Body>This is the comp</Body>
         <TextSelect
+          highlightChoices={true}
+          className={classes.textSelect}
           disabled={false}
           text={raw}
           tokens={tokens}
           selectedTokens={this.state.textSelect.selected}
           onChange={tokens =>
-            this.setState({ textSelect: { selected: tokens } })
+            this.setState({
+              textSelect: { ...this.state.textSelect, selected: tokens }
+            })
           }
         />
         <Body>Disabled</Body>
         <TextSelect
+          className={classes.textSelect}
           disabled={true}
           text={raw}
           tokens={tokens}
@@ -135,12 +146,15 @@ class Demo extends React.Component {
         />
         <Body>Correct/Incorrect</Body>
         <TextSelect
+          className={classes.textSelect}
           disabled={true}
           text={raw}
           tokens={correctedTokens}
           selectedTokens={this.state.textSelect.withCorrect}
           onChange={tokens =>
-            this.setState({ textSelect: { withCorrect: tokens } })
+            this.setState({
+              textSelect: { ...this.state.textSelect, withCorrect: tokens }
+            })
           }
         />
         {/* <Header>TokenSelect</Header>
@@ -214,6 +228,9 @@ const StyledDemo = withStyles(theme => ({
     backgroundColor: 'none',
     padding: theme.spacing.unit,
     border: `solid 1px ${theme.palette.primary.light}`
+  },
+  textSelect: {
+    paddingBottom: theme.spacing.unit * 3
   }
 }))(Demo);
 export default withRoot(StyledDemo);

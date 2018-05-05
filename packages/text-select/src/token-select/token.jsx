@@ -14,7 +14,8 @@ export class Token extends React.Component {
     classes: PropTypes.object.isRequired,
     className: PropTypes.string,
     onClick: PropTypes.func.isRequired,
-    disabled: PropTypes.bool
+    disabled: PropTypes.bool,
+    highlight: PropTypes.bool
   };
 
   static defaultProps = {};
@@ -27,15 +28,16 @@ export class Token extends React.Component {
       selected,
       classes,
       className: classNameProp,
-      disabled
+      disabled,
+      highlight
     } = this.props;
-
     const className = classNames(
       classes.token,
       disabled && classes.disabled,
       selectable && !disabled && classes.selectable,
       selected && !disabled && classes.selected,
       selected && disabled && classes.disabledAndSelected,
+      highlight && selectable && !disabled && !selected && classes.highlight,
       classNameProp
     );
     return (
@@ -73,6 +75,9 @@ export default withStyles(theme => {
       '&:hover': {
         backgroundColor: theme.palette.secondary.light
       }
+    },
+    highlight: {
+      border: `dashed 1px ${theme.palette.primary.light}`
     }
   };
 })(Token);

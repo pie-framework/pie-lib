@@ -12,7 +12,8 @@ export class TokenSelect extends React.Component {
     classes: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     disabled: PropTypes.bool,
-    tokenComponent: PropTypes.element
+    tokenComponent: PropTypes.element,
+    highlightChoices: PropTypes.bool
   };
 
   static defaultProps = {};
@@ -31,7 +32,8 @@ export class TokenSelect extends React.Component {
       tokenComponent,
       tokens,
       className: classNameProp,
-      disabled
+      disabled,
+      highlightChoices
     } = this.props;
 
     const TokenComponent = tokenComponent || Token;
@@ -43,6 +45,7 @@ export class TokenSelect extends React.Component {
             key={index}
             disabled={disabled}
             {...t}
+            highlight={highlightChoices}
             onClick={() => this.toggleToken(index, t)}
           />
         ))}
