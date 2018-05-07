@@ -65,10 +65,10 @@ export class NumberTextField extends React.Component {
 
     const { min, max } = this.props;
 
-    if (max) {
+    if (isFinite(max)) {
       value = Math.min(value, max);
     }
-    if (min) {
+    if (isFinite(min)) {
       value = Math.max(value, min);
     }
     return value;

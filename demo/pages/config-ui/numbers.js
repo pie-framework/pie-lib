@@ -80,7 +80,7 @@ class RawContainer extends React.Component {
               label="1 - 10"
               value={this.state.numberTextField.one}
               max={10}
-              min={1}
+              min={0}
               onChange={this.update('one')}
             />
             <NumberTextField
