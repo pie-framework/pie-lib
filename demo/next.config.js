@@ -40,6 +40,7 @@ module.exports = withCSS({
       '/editable-html': { page: '/editable-html' },
       '/config-ui': { page: '/config-ui' },
       '/config-ui/numbers': { page: '/config-ui/numbers' },
+      '/config-ui/tabs': { page: '/config-ui/tabs' },
       '/render-ui': { page: '/render-ui' },
       '/scoring-config': { page: '/scoring-config' },
       '/charting/plot-points': { page: '/charting/plot-points' },

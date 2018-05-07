@@ -5,7 +5,7 @@ import FeedbackConfig, {
 } from './feedback-config';
 import { InputCheckbox, InputSwitch, InputRadio } from './inputs';
 import Langs, { LanguageControls } from './langs';
-
+import Tabs from './tabs';
 import Checkbox from './checkbox';
 import FormSection from './form-section';
 import Help from './help';
@@ -36,6 +36,7 @@ export {
   MuiBox,
   NChoice,
   NumberTextField,
+  Tabs,
   TagsInput,
   TwoChoice
 };
