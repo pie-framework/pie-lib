@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="5.2.0"></a>
+# [5.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@5.1.7...@pie-lib/config-ui@5.2.0) (2018-05-08)
+
+
+### Bug Fixes
+
+* **number-text-field:** fix min if zero ([ddb9152](https://github.com/pie-framework/pie-lib/commit/ddb9152))
+
+
+### Features
+
+* **tabs:** add Tabs + polish feedback ([e325850](https://github.com/pie-framework/pie-lib/commit/e325850))
+
+
+
+
 <a name="5.1.7"></a>
 ## [5.1.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@5.1.6...@pie-lib/config-ui@5.1.7) (2018-05-02)
 
