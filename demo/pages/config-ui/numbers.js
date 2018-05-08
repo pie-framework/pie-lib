@@ -90,6 +90,16 @@ class RawContainer extends React.Component {
               onChange={this.update('two')}
             />
           </Section>
+          <Section name="with suffix">
+            <NumberTextField
+              label="1 - 10"
+              suffix={'%'}
+              value={this.state.numberTextField.one}
+              max={10}
+              min={1}
+              onChange={this.update('one')}
+            />
+          </Section>
           <Section name="layout - works with Input* components">
             <InputCheckbox label="Foo" />
             <NumberTextField
