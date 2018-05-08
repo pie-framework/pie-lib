@@ -81,33 +81,13 @@ class Demo extends React.Component {
   constructor(props) {
     super(props);
 
-    // const tokens = text().map((t, index) => ({
-    //   text: t,
-    //   selectable: index % 2 === 0
-    // }));
-
     this.state = {
       mounted: false,
       textSelect: {
         selected: tokens.filter((t, index) => index % 2 === 0),
         withCorrect: tokens.filter((t, index) => index === 0 || index === 1)
-      }
-      // tokens: clone(tokens),
-      // disabledTokens: text().map((t, index) => ({
-      //   text: t,
-      //   selected: index % 2 === 0,
-      //   selectable: index % 2 === 0
-      // })),
-      // customTokens: text().map((t, index) => ({
-      //   text: t,
-      //   selected: index % 2 === 0,
-      //   selectable: index % 2 === 0,
-      //   correct: index % 4 === 0
-      // })),
-      // // tokenizerTokens: [{ text: 'a', start: 0, end: 1 }]
-      // tokenizerTokens: [
-      //   { text: 'Rachel cut out 8 stars in 6 minutes.', start: 0, end: 36 }
-      // ]
+      },
+      tokenizerTokens: []
     };
   }
 
@@ -120,7 +100,7 @@ class Demo extends React.Component {
     const { mounted } = this.state;
     return mounted ? (
       <div className={classes.demo}>
-        <Header>TextSelect</Header>
+        <Header>TextSelect (uses TokenSelect)</Header>
         <Body>This is the comp</Body>
         <TextSelect
           highlightChoices={true}
@@ -158,40 +138,6 @@ class Demo extends React.Component {
             })
           }
         />
-        {/* <Header>TokenSelect</Header>
-        <Typography className={classes.description} variant={'body1'}>
-          Displays text that may be selected by the user clicking on it.
-        </Typography>
-        <ul>
-          <li>can be disabled</li>
-          <li>selection view can be customized</li>
-        </ul>
-        <Header>Selectable...</Header>
-        <TokenSelect
-          className={classes.tokenSelect}
-          tokens={this.state.tokens}
-          onChange={tokens => this.setState({ tokens })}
-        />
-        <Header>Disabled</Header>
-        <TokenSelect
-          disabled={true}
-          className={classes.tokenSelect}
-          tokens={this.state.disabledTokens}
-          onChange={tokens => this.setState({ tokens })}
-        />
-        <Header>Custom Token</Header>
-        <Body>
-          You can define a different token component with `tokenComponent`. All
-          the properties in token will be spread on to as well as `disabled`,
-          and `onClick`.
-        </Body>
-        <TokenSelect
-          disabled={true}
-          className={classes.tokenSelect}
-          tokenComponent={CustomToken}
-          tokens={this.state.customTokens}
-          onChange={tokens => this.setState({ tokens })}
-        />
 
         <Header>Tokenizer</Header>
         <Body>Takes a string of text and tokens as input</Body>
@@ -202,6 +148,7 @@ class Demo extends React.Component {
         />
 
         <div>
+          Tokens:
           <ul>
             {this.state.tokenizerTokens.map((t, index) => (
               <li key={index}>
@@ -209,7 +156,7 @@ class Demo extends React.Component {
               </li>
             ))}
           </ul>
-        </div> */}
+        </div>
       </div>
     ) : (
       <div>loading...</div>

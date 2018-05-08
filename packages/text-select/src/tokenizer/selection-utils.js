@@ -24,11 +24,11 @@ export const getCaretCharacterOffsetWithin = element => {
   var doc = element.ownerDocument || element.document;
   var win = doc.defaultView || doc.parentWindow;
   var sel;
-  if (typeof win.getSelection != 'undefined') {
+  if (typeof win.getSelection !== 'undefined') {
     sel = win.getSelection();
     if (sel.rangeCount > 0) {
       var range = win.getSelection().getRangeAt(0);
-      var selected = range.toString().length; // *
+      var selected = range.toString().length;
       var preCaretRange = range.cloneRange();
       preCaretRange.selectNodeContents(element);
       preCaretRange.setEnd(range.endContainer, range.endOffset);
