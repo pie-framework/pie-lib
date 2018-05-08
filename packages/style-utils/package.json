@@ -1,13 +1,11 @@
 {
   "name": "@pie-lib/style-utils",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "",
   "main": "lib/index.js",
   "publishConfig": {
     "access": "public"
   },
   "author": "",
-  "license": "ISC",
-  "peerDependencies": {},
-  "devDependencies": {}
+  "license": "ISC"
 }
