@@ -33,13 +33,10 @@ export const getCaretCharacterOffsetWithin = element => {
       preCaretRange.selectNodeContents(element);
       preCaretRange.setEnd(range.endContainer, range.endOffset);
       if (selected) {
-        // *
-        caretOffset = preCaretRange.toString().length - selected; // *
+        caretOffset = preCaretRange.toString().length - selected;
       } else {
-        // *
         caretOffset = preCaretRange.toString().length;
-      } // *
-      // caretOffset = preCaretRange.toString().length;
+      }
     }
   } else if ((sel = doc.selection) && sel.type != 'Control') {
     var textRange = sel.createRange();
