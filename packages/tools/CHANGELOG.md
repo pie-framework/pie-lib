@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.5.3"></a>
+## [0.5.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.5.1...@pie-lib/tools@0.5.3) (2018-05-08)
+
+
+### Bug Fixes
+
+* **build:** trigger rebuild ([9357023](https://github.com/pie-framework/pie-lib/commit/9357023))
+
+
+
+
 <a name="0.5.1"></a>
 ## [0.5.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.5.0...@pie-lib/tools@0.5.1) (2018-05-02)
 

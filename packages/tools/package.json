@@ -3,9 +3,13 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "Some interactive tools",
-  "keywords": ["react", "pie", "tools"],
+  "keywords": [
+    "react",
+    "pie",
+    "tools"
+  ],
   "repository": "pie-framework/pie-lib",
   "main": "lib/index.js",
   "scripts": {
