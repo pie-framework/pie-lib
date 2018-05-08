@@ -23,12 +23,14 @@ const Row = ({
     <div className={classes.row}>
       Award
       <NumberTextField
-        className={classes.field}
+        className={classes.percent}
         min={1}
         max={99}
         value={scorePercentage}
         onChange={onScoreChange}
-      />% for&nbsp;
+        suffix={'%'}
+      />{' '}
+      for&nbsp;
       <NumberTextField
         className={classes.field}
         min={1}
@@ -38,7 +40,7 @@ const Row = ({
       />
       correct answer{numberOfCorrect > 1 ? 's' : ''}.
       {deletable && (
-        <IconButton onClick={onDelete}>
+        <IconButton className={classes.delete} onClick={onDelete}>
           <ActionDelete />
         </IconButton>
       )}
@@ -50,10 +52,19 @@ const styles = theme => ({
   row: {
     fontFamily: theme.typography.fontFamily,
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'baseline'
+  },
+  percent: {
+    width: '60px',
+    paddingLeft: theme.spacing.unit
   },
   field: {
-    width: '30px'
+    width: '50px',
+    paddingLeft: theme.spacing.unit
+  },
+  delete: {
+    position: 'relative',
+    top: '6px'
   }
 });
 
