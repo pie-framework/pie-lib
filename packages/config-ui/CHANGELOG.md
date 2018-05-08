@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="5.3.0"></a>
+# [5.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@5.2.0...@pie-lib/config-ui@5.3.0) (2018-05-08)
+
+
+### Features
+
+* **number-text-field:** add suffix prop ([95d0d49](https://github.com/pie-framework/pie-lib/commit/95d0d49))
+
+
+
+
 <a name="5.2.0"></a>
 # [5.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@5.1.7...@pie-lib/config-ui@5.2.0) (2018-05-08)
 

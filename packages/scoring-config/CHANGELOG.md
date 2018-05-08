@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.22"></a>
+## [2.0.22](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@2.0.21...@pie-lib/scoring-config@2.0.22) (2018-05-08)
+
+
+### Bug Fixes
+
+* **row:** polish css ([4d6c156](https://github.com/pie-framework/pie-lib/commit/4d6c156))
+
+
+
+
 <a name="2.0.21"></a>
 ## [2.0.21](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@2.0.20...@pie-lib/scoring-config@2.0.21) (2018-05-08)
 
