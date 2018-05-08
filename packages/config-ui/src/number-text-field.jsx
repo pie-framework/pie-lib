@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { withStyles } from 'material-ui/styles';
 import debug from 'debug';
 import isFinite from 'lodash/isFinite';
-
+import { InputAdornment } from 'material-ui/Input';
 const log = debug('@pie-lib:config-ui:number-text-field');
 
 const styles = theme => ({
@@ -34,7 +34,8 @@ export class NumberTextField extends React.Component {
     value: PropTypes.number,
     min: PropTypes.number,
     max: PropTypes.number,
-    label: PropTypes.string
+    label: PropTypes.string,
+    suffix: PropTypes.string
   };
 
   constructor(props) {
@@ -99,7 +100,7 @@ export class NumberTextField extends React.Component {
   }
 
   render() {
-    const { className, classes, label, disabled } = this.props;
+    const { className, classes, label, disabled, suffix } = this.props;
     const names = classNames(classes.root, className);
     return (
       <TextField
@@ -111,6 +112,11 @@ export class NumberTextField extends React.Component {
         className={names}
         InputLabelProps={{
           shrink: true
+        }}
+        InputProps={{
+          endAdornment: suffix && (
+            <InputAdornment position="end">{suffix}</InputAdornment>
+          )
         }}
         margin="normal"
       />
