@@ -3,9 +3,14 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "1.0.6",
+  "version": "1.1.0",
   "description": "Some react components for text selection",
-  "keywords": ["react", "pie", "text", "select"],
+  "keywords": [
+    "react",
+    "pie",
+    "text",
+    "select"
+  ],
   "repository": "pie-framework/pie-lib",
   "main": "lib/index.js",
   "author": "",

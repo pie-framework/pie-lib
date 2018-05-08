@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.6.0"></a>
+# [0.6.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.5.3...@pie-lib/tools@0.6.0) (2018-05-08)
+
+
+### Features
+
+* **text-select:** Add new text-select package. ([3916c19](https://github.com/pie-framework/pie-lib/commit/3916c19))
+
+
+
+
 <a name="0.5.3"></a>
 ## [0.5.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.5.1...@pie-lib/tools@0.5.3) (2018-05-08)
 
