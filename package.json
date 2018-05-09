@@ -23,6 +23,7 @@
   "devDependencies": {
     "@pie-framework/build-helper": "^1.0.3",
     "@pie-lib/test-utils": "^0.0.3",
+    "@babel/runtime": "7.0.0-beta.46",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.2",

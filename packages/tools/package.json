@@ -5,11 +5,7 @@
   },
   "version": "0.6.0",
   "description": "Some interactive tools",
-  "keywords": [
-    "react",
-    "pie",
-    "tools"
-  ],
+  "keywords": ["react", "pie", "tools"],
   "repository": "pie-framework/pie-lib",
   "main": "lib/index.js",
   "scripts": {
@@ -19,6 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "@mapbox/point-geometry": "^0.1.0",
+    "@pie-lib/style-utils": "^0.1.0",
     "classnames": "^2.2.5",
     "invariant": "^2.2.4",
     "lodash": "^4.17.5",
