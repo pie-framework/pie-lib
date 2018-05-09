@@ -178,6 +178,17 @@ class RawContainer extends React.Component {
                   { label: 'right', value: 'right' }
                 ]}
               />
+              <NChoice
+                header="n-choice"
+                direction={'vertical'}
+                value={this.state.nChoice}
+                onChange={nChoice => this.setState({ nChoice })}
+                opts={[
+                  { label: 'left', value: 'left' },
+                  { label: 'center', value: 'center' },
+                  { label: 'right', value: 'right' }
+                ]}
+              />
             </div>
           </Section>
 

@@ -1,8 +1,4 @@
-import { FormControl, FormControlLabel, FormLabel } from 'material-ui/Form';
-import Radio, { RadioGroup } from 'material-ui/Radio';
-
 import InputContainer from './input-container';
-import InputLabel from 'material-ui/Input/InputLabel';
 import PropTypes from 'prop-types';
 import RadioWithLabel from './radio-with-label';
 import React from 'react';
@@ -21,48 +17,58 @@ const styles = theme => ({
 });
 
 class RawNChoice extends React.Component {
+  static propTypes = {
+    header: PropTypes.string.isRequired,
+    className: PropTypes.string,
+    opts: PropTypes.array.isRequired,
+    value: PropTypes.string,
+    onChange: PropTypes.func.isRequired,
+    direction: PropTypes.oneOf(['horizontal', 'vertical']),
+    classes: PropTypes.object.isRequired
+  };
 
-  constructor(props) {
-    super(props);
-
-    this.handleChange = (event) => {
-      this.props.onChange(event.currentTarget.value)
-    }
-  }
+  handleChange = event => {
+    this.props.onChange(event.currentTarget.value);
+  };
 
   render() {
-
     const { header, className, classes, opts, value, direction } = this.props;
 
-    return <InputContainer
-      label={header}
-      className={className}>
-      <div className={classNames(classes.group, direction === 'vertical' && classes.vertical)}>
-        {opts.map((o, index) => <RadioWithLabel
-          value={o.value}
-          key={index}
-          checked={o.value === value}
-          onChange={this.handleChange}
-          label={o.label}
-        />)}
-      </div>
-    </InputContainer>
-
+    return (
+      <InputContainer label={header} className={className}>
+        <div className={classNames(classes.group, classes[direction])}>
+          {opts.map((o, index) => (
+            <RadioWithLabel
+              value={o.value}
+              key={index}
+              checked={o.value === value}
+              onChange={this.handleChange}
+              label={o.label}
+            />
+          ))}
+        </div>
+      </InputContainer>
+    );
   }
 }
 
 export const NChoice = withStyles(styles)(RawNChoice);
 
-NChoice.propTypes = {
-  header: PropTypes.string.isRequired,
-  className: PropTypes.string,
-  opts: PropTypes.array.isRequired,
-  value: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
-  direction: PropTypes.oneOf(['horizontal', 'vertical'])
-}
-
 class TwoChoice extends React.Component {
+  static propTypes = {
+    header: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
+    one: PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      value: PropTypes.string.isRequired
+    }),
+    two: PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      value: PropTypes.string.isRequired
+    }),
+    className: PropTypes.string
+  };
 
   render() {
     const { one, two, header, className, value, onChange } = this.props;
@@ -73,26 +79,10 @@ class TwoChoice extends React.Component {
         className={className}
         opts={opts}
         value={value}
-        onChange={onChange} />
+        onChange={onChange}
+      />
     );
   }
 }
 
-
-
-TwoChoice.propTypes = {
-  header: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-  one: PropTypes.shape({
-    label: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired
-  }),
-  two: PropTypes.shape({
-    label: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired
-  })
-};
-
-
-export default withStyles(styles, { name: 'TwoChoice' })(TwoChoice);
+export default withStyles(styles)(TwoChoice);
