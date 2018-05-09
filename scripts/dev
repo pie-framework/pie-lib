@@ -51,14 +51,14 @@ const run = async () => {
 
   const args = scope.map(s => ({
     src: `packages/${s}/src`,
-    target: `packages/${s}/lib`
+    target: `demo/node_modules/@pie-lib/${s}/lib`
   }));
 
   watcher = watch(args);
 
   const nextCmd = './node_modules/.bin/next';
 
-  nextProcess = spawnSync(nextCmd, {
+  nextProcess = spawn(nextCmd, {
     cwd: 'demo',
     stdio: 'inherit',
     env: Object.assign({}, process.env, { NODE_ENV: 'development' })

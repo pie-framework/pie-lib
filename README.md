@@ -11,6 +11,16 @@ npm install -g lerna
 npm install
 ```
 
+## Commands
+
+| Action  | Cmd                                 | Notes                                                     |
+| ------- | ----------------------------------- | --------------------------------------------------------- |
+| test    | `npm test`                          |                                                           |
+| lint    | `npm run lint`                      |                                                           |
+| build   | `npm run build`                     |                                                           |
+| release | `npm run release`                   |                                                           |
+| dev     | `scripts/dev --scope $package-name` | run the demo site on localhost:3000 `--scope` if optional |
+
 ## develop
 
 ```bash
