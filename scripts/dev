@@ -3,7 +3,7 @@
 const argv = require('minimist')(process.argv.slice(2));
 const debug = require('debug');
 const fs = require('fs-extra');
-const { spawnSync, spawn } = require('child_process');
+const { spawn } = require('child_process');
 const { processFix, watch } = require('@pie-framework/build-helper');
 const log = debug('@pie-lib:scripts:dev');
 
@@ -39,7 +39,6 @@ const isDemoInstalled = async () => {
   }
 };
 
-//0. list packages
 const run = async () => {
   const installed = await isDemoInstalled();
 
