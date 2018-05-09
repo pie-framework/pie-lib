@@ -9,26 +9,24 @@ const Checkbox = ({ checked, onChange, value, label, classes }) => (
     classes={{
       label: classes.label
     }}
-
     control={
-      <MuiCheckbox
-        checked={checked}
-        onChange={onChange}
-        value={value} />
+      <MuiCheckbox checked={checked} onChange={onChange} value={value} />
     }
-    label={label} />
+    label={label}
+  />
 );
 
 Checkbox.propTypes = {
+  classes: PropTypes.object.isRequired,
   checked: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string,
   label: PropTypes.string.isRequired
-}
+};
 
 Checkbox.defaultProps = {
   value: ''
-}
+};
 
 export default withStyles({
   label: {

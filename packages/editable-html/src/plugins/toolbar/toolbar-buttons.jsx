@@ -3,7 +3,6 @@ import debug from 'debug';
 import injectSheet from 'react-jss';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import SlatePropTypes from 'slate-prop-types';
 
 const styles = () => ({
   button: {

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.10"></a>
+## [2.0.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.0.9...@pie-lib/correct-answer-toggle@2.0.10) (2018-05-09)
+
+
+### Bug Fixes
+
+* **lint:** automatic lint fixes ([7c9a2a4](https://github.com/pie-framework/pie-lib/commit/7c9a2a4))
+* **lint:** lint fixes ([f059583](https://github.com/pie-framework/pie-lib/commit/f059583))
+
+
+
+
 <a name="2.0.9"></a>
 ## [2.0.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.0.8...@pie-lib/correct-answer-toggle@2.0.9) (2018-04-30)
 

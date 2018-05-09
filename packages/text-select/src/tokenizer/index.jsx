@@ -6,12 +6,9 @@ import { words, sentences } from './builder';
 import clone from 'lodash/clone';
 import isEqual from 'lodash/isEqual';
 import differenceWith from 'lodash/differenceWith';
-import debug from 'debug';
 import classNames from 'classnames';
 import { noSelect } from '@pie-lib/style-utils';
 import TokenText from './token-text';
-
-const log = debug('@pie-lib:text-select:tokenizer');
 
 export class Tokenizer extends React.Component {
   static propTypes = {

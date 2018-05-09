@@ -1,8 +1,5 @@
 import invariant from 'invariant';
-import debug from 'debug';
 import range from 'lodash/range';
-
-const log = debug('pie-lib:charting:utils');
 
 export const buildSizeArray = (size, padding) => {
   invariant(padding < size, 'padding must be less than size');

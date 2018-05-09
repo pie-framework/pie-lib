@@ -104,39 +104,6 @@ const marks = {
   }
 };
 
-const codeBlocks = {
-  // Special case for code blocks, which need to grab the nested childNodes.
-  deserialize(el, next) {
-    if (el.tagName.toLowerCase() != 'pre') return;
-    const code = el.childNodes[0];
-    const childNodes =
-      code && code.tagName.toLowerCase() == 'code'
-        ? code.childNodes
-        : el.childNodes;
-
-    return {
-      object: 'block',
-      type: 'code',
-      nodes: next(childNodes)
-    };
-  }
-};
-
-const links = {
-  // Special case for links, to grab their href.
-  deserialize(el, next) {
-    if (el.tagName.toLowerCase() != 'a') return;
-    return {
-      object: 'inline',
-      type: 'link',
-      nodes: next(el.childNodes),
-      data: {
-        href: el.getAttribute('href')
-      }
-    };
-  }
-};
-
 const TEXT_RULE = {
   deserialize(el) {
     if (el.tagName && el.tagName.toLowerCase() === 'br') {

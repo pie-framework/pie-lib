@@ -1,7 +1,7 @@
 /**
  * Lifted from multiple-choice - TODO: create a shared package for it.
  */
-import { withStyles, withTheme } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 
 import React from 'react';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
@@ -22,7 +22,7 @@ const styleSheet = {
     '-webkit-font-smoothing': 'antialiased',
     backgroundColor: 'var(--feedback-bg-color, grey)',
     borderRadius: '4px',
-    fontFamily: "'Roboto', 'Noto', sans-serif",
+    fontFamily: '"Roboto", "Noto", sans-serif',
     fontSize: '12px',
     lineHeight: '25px',
     margin: '0px',

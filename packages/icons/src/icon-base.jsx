@@ -1,12 +1,20 @@
-import { Circle, IconRoot, RoundFeedbackBox, Square, SquareFeedbackBox, getStyles } from './icon-root';
+import {
+  Circle,
+  IconRoot,
+  RoundFeedbackBox,
+  Square,
+  SquareFeedbackBox
+} from './icon-root';
 
 import PropTypes from 'prop-types';
 import React from 'react';
 
 export default (Action, Emoji) => {
-
   class IconBase extends React.Component {
-
+    static propTypes = {
+      classes: PropTypes.object.isRequired,
+      size: PropTypes.number
+    };
     constructor(props) {
       super(props);
       const { classes, size } = this.props;
@@ -14,81 +22,111 @@ export default (Action, Emoji) => {
       this.icons = {
         feedback: {
           round: {
-            check: <IconRoot size={size}>
-              <RoundFeedbackBox className={classes.bg} />
-              <Action className={classes.fg} />
-            </IconRoot>,
-            emoji: <IconRoot size={size}>
-              <RoundFeedbackBox className={classes.bg} />
-              <Emoji className={classes.fg} />
-            </IconRoot>,
-            open: {
-              check: <IconRoot size={size}>
-                <Action className={classes.bg} />
-              </IconRoot>,
-              emoji: <IconRoot size={size}>
-                <Emoji className={classes.bg} />
+            check: (
+              <IconRoot size={size}>
+                <RoundFeedbackBox className={classes.bg} />
+                <Action className={classes.fg} />
               </IconRoot>
+            ),
+            emoji: (
+              <IconRoot size={size}>
+                <RoundFeedbackBox className={classes.bg} />
+                <Emoji className={classes.fg} />
+              </IconRoot>
+            ),
+            open: {
+              check: (
+                <IconRoot size={size}>
+                  <Action className={classes.bg} />
+                </IconRoot>
+              ),
+              emoji: (
+                <IconRoot size={size}>
+                  <Emoji className={classes.bg} />
+                </IconRoot>
+              )
             }
           },
           square: {
-            check: <IconRoot size={size}>
-              <SquareFeedbackBox className={classes.bg} />
-              <Action className={classes.fg} />
-            </IconRoot>,
-            emoji: <IconRoot size={size}>
-              <SquareFeedbackBox className={classes.bg} />
-              <Emoji className={classes.fg} />
-            </IconRoot>,
-            open: {
-              check: <IconRoot size={size}>
-                <Action className={classes.bg} />
-              </IconRoot>,
-              emoji: <IconRoot size={size}>
-                <Emoji className={classes.bg} />
+            check: (
+              <IconRoot size={size}>
+                <SquareFeedbackBox className={classes.bg} />
+                <Action className={classes.fg} />
               </IconRoot>
+            ),
+            emoji: (
+              <IconRoot size={size}>
+                <SquareFeedbackBox className={classes.bg} />
+                <Emoji className={classes.fg} />
+              </IconRoot>
+            ),
+            open: {
+              check: (
+                <IconRoot size={size}>
+                  <Action className={classes.bg} />
+                </IconRoot>
+              ),
+              emoji: (
+                <IconRoot size={size}>
+                  <Emoji className={classes.bg} />
+                </IconRoot>
+              )
             }
           }
         },
         round: {
-          check: <IconRoot size={size}>
-            <Circle className={classes.bg} />
-            <Action className={classes.fg} />
-          </IconRoot>,
-          emoji: <IconRoot size={size}>
-            <Circle className={classes.bg} />
-            <Emoji className={classes.fg} />
-          </IconRoot>,
-          open: {
-            check: <IconRoot size={size}>
-              <Action className={classes.bg} />
-            </IconRoot>,
-            emoji: <IconRoot size={size}>
-              <Emoji className={classes.bg} />
+          check: (
+            <IconRoot size={size}>
+              <Circle className={classes.bg} />
+              <Action className={classes.fg} />
             </IconRoot>
-          }
-        },
-        square: {
-          check: <IconRoot size={size}>
-            <Square className={classes.bg} />
-            <Action className={classes.fg} />
-          </IconRoot>,
-          emoji: <IconRoot size={size}>
-            <Square className={classes.bg} />
-            <Emoji className={classes.fg} />
-          </IconRoot>,
+          ),
+          emoji: (
+            <IconRoot size={size}>
+              <Circle className={classes.bg} />
+              <Emoji className={classes.fg} />
+            </IconRoot>
+          ),
           open: {
-            check:
+            check: (
               <IconRoot size={size}>
                 <Action className={classes.bg} />
-              </IconRoot>,
-            emoji:
+              </IconRoot>
+            ),
+            emoji: (
               <IconRoot size={size}>
                 <Emoji className={classes.bg} />
               </IconRoot>
+            )
+          }
+        },
+        square: {
+          check: (
+            <IconRoot size={size}>
+              <Square className={classes.bg} />
+              <Action className={classes.fg} />
+            </IconRoot>
+          ),
+          emoji: (
+            <IconRoot size={size}>
+              <Square className={classes.bg} />
+              <Emoji className={classes.fg} />
+            </IconRoot>
+          ),
+          open: {
+            check: (
+              <IconRoot size={size}>
+                <Action className={classes.bg} />
+              </IconRoot>
+            ),
+            emoji: (
+              <IconRoot size={size}>
+                <Emoji className={classes.bg} />
+              </IconRoot>
+            )
           }
         }
-      }
+      };
     }
 
     render() {
@@ -105,9 +143,7 @@ export default (Action, Emoji) => {
           return this.icons.feedback[this.props.shape][this.props.iconSet];
         }
       }
-      return null;
     }
-
   }
 
   IconBase.propTypes = {
@@ -125,5 +161,4 @@ export default (Action, Emoji) => {
   };
 
   return IconBase;
-}
-
+};

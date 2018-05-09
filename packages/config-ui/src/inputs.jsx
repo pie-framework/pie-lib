@@ -6,19 +6,29 @@ import React from 'react';
 import Switch from 'material-ui/Switch';
 import { withStyles } from 'material-ui/styles';
 
+const InputTypes = {
+  classes: PropTypes.object.isRequired,
+  className: PropTypes.string,
+  label: PropTypes.string,
+  checked: PropTypes.bool,
+  onChange: PropTypes.func,
+  disabled: PropTypes.bool
+};
+
 const RawInputSwitch = ({ classes, className, label, checked, onChange }) => {
   return (
-    <InputContainer
-      className={className}
-      label={label}>
+    <InputContainer className={className} label={label}>
       <Switch
         className={classes.switchRoot}
         checked={checked}
         onChange={onChange}
-        aria-label={label} />
+        aria-label={label}
+      />
     </InputContainer>
-  )
-}
+  );
+};
+
+RawInputSwitch.propTypes = { ...InputTypes };
 
 const InputSwitch = withStyles({
   switchRoot: {
@@ -27,35 +37,51 @@ const InputSwitch = withStyles({
   }
 })(RawInputSwitch);
 
-const RawInputCheckbox = ({ classes, className, label, checked, onChange, disabled }) => {
+const RawInputCheckbox = ({
+  classes,
+  className,
+  label,
+  checked,
+  onChange,
+  disabled
+}) => {
   return (
-    <InputContainer
-      className={className}
-      label={label}>
+    <InputContainer className={className} label={label}>
       <Checkbox
         className={classes.checkboxRoot}
         disabled={disabled}
         checked={checked}
         onChange={onChange}
-        aria-label={label} />
+        aria-label={label}
+      />
     </InputContainer>
-  )
-}
+  );
+};
 
-const RawInputRadio = ({ classes, className, label, checked, onChange, disabled }) => {
+RawInputCheckbox.propTypes = { ...InputTypes };
+
+const RawInputRadio = ({
+  classes,
+  className,
+  label,
+  checked,
+  onChange,
+  disabled
+}) => {
   return (
-    <InputContainer
-      className={className}
-      label={label}>
+    <InputContainer className={className} label={label}>
       <Radio
         className={classes.radioRoot}
         disabled={disabled}
         checked={checked}
         onChange={onChange}
-        aria-label={label} />
+        aria-label={label}
+      />
     </InputContainer>
-  )
-}
+  );
+};
+
+RawInputRadio.propTypes = { ...InputTypes };
 
 const InputCheckbox = withStyles({
   checkboxRoot: {
@@ -63,14 +89,10 @@ const InputCheckbox = withStyles({
   }
 })(RawInputCheckbox);
 
-const InputRadio = withStyles(theme => ({
+const InputRadio = withStyles(() => ({
   radioRoot: {
     transform: 'translate(-20%, 20%)'
   }
 }))(RawInputRadio);
 
-export {
-  InputSwitch,
-  InputCheckbox,
-  InputRadio
-}
+export { InputSwitch, InputCheckbox, InputRadio };

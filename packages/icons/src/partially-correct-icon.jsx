@@ -7,7 +7,7 @@ import { withStyles } from 'material-ui/styles';
 const styles = getStyles('partially-correct', '#4aaf46', '#c1e1ac');
 
 const Check = ({ className }) => (
-  <g transform={`translate(0, 0)`}>
+  <g transform={'translate(0, 0)'}>
     <polygon
       className={className}
       points="27.5,13.4 23.9,11.4 15.9,25.8 19.1,28.6"
@@ -20,7 +20,7 @@ const Check = ({ className }) => (
 );
 
 const Emoji = ({ className }) => (
-  <g transform={`translate(2, 0)`}>
+  <g transform={'translate(2, 0)'}>
     <rect x="20.6" y="11.8" className={className} width="4" height="5" />
     <rect x="11.5" y="11.8" className={className} width="4" height="5" />
     <rect
@@ -33,6 +33,8 @@ const Emoji = ({ className }) => (
     />
   </g>
 );
+
+Emoji.propTypes = Check.propTypes = { className: PropTypes.string };
 
 export const PartiallyCorrect = IconBase(Check, Emoji);
 

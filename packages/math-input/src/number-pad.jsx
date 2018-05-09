@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { buttonStyle } from './styles';
 import merge from 'lodash/merge';
-import { withStyles } from 'material-ui/styles'
+import { withStyles } from 'material-ui/styles';
 
 const styles = {
   root: {
@@ -18,7 +18,6 @@ export const numbers = ['7', '8', '9', '4', '5', '6', '1', '2', '3', '0'];
 const extras = ['.', '='];
 export const defaults = numbers.concat(extras);
 
-
 const baseStyles = merge(buttonStyle(), {
   root: {
     backgroundColor: '#cacaca',
@@ -26,59 +25,66 @@ const baseStyles = merge(buttonStyle(), {
   }
 });
 
-const NumberPadButton = withStyles(baseStyles)((props) => {
-  return <IconButton
-    tabIndex={'-1'}
-    onClick={(e) => {
-      props.onClick(props.value)
-    }}
-    classes={props.classes}
-  >{props.children}</IconButton>
+const NumberPadButton = withStyles(baseStyles)(props => {
+  return (
+    <IconButton
+      tabIndex={'-1'}
+      onClick={() => {
+        props.onClick(props.value);
+      }}
+      classes={props.classes}
+    >
+      {props.children}
+    </IconButton>
+  );
 });
 
-const EqualsButton = withStyles(merge(buttonStyle(), {
-  root: {
-    backgroundColor: 'orange',
-    height: '100%'
-  }
-}))(props => {
-  return <NumberPadButton {...props} />
-})
+const EqualsButton = withStyles(
+  merge(buttonStyle(), {
+    root: {
+      backgroundColor: 'orange',
+      height: '100%'
+    }
+  })
+)(props => {
+  return <NumberPadButton {...props} />;
+});
 
 export class NumberPad extends React.Component {
-
   constructor(props) {
     super(props);
     this.onClick = this.onClick.bind(this);
   }
 
   onClick(value) {
-    this.props.onClick(value)
+    this.props.onClick(value);
   }
 
   render() {
     const { classes, values } = this.props;
-    return <div className={classes.root}>
-      {values.map(v => {
-
-        const Button = v === '=' ? EqualsButton : NumberPadButton;
-        return <Button
-          key={v}
-          onClick={this.onClick}
-          value={v}
-        >{v}</Button>
-      })}
-    </div>
+    return (
+      <div className={classes.root}>
+        {values.map(v => {
+          const Button = v === '=' ? EqualsButton : NumberPadButton;
+          return (
+            <Button key={v} onClick={this.onClick} value={v}>
+              {v}
+            </Button>
+          );
+        })}
+      </div>
+    );
   }
 }
 
 NumberPad.propTypes = {
+  onClick: PropTypes.func,
+  classes: PropTypes.object.isRequired,
   values: PropTypes.arrayOf(PropTypes.string)
-}
+};
 
 NumberPad.defaultProps = {
   values: defaults
-}
+};
 
-const StyledNumberPad = withStyles(styles)(NumberPad);
-export default StyledNumberPad;
+export default withStyles(styles)(NumberPad);

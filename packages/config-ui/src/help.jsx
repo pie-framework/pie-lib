@@ -4,6 +4,7 @@ import Dialog, {
   DialogContentText,
   DialogTitle
 } from 'material-ui/Dialog';
+import PropTypes from 'prop-types';
 
 import Button from 'material-ui/Button';
 import HelpIcon from '@material-ui/icons/Help';
@@ -21,6 +22,10 @@ const RawHelpButton = ({ onClick, classes }) => (
     <HelpIcon />
   </IconButton>
 );
+RawHelpButton.propTypes = {
+  onClick: PropTypes.func,
+  classes: PropTypes.object.isRequired
+};
 
 export const HelpButton = withStyles({
   icon: {
@@ -44,7 +49,25 @@ export const HelpDialog = ({ open, onClose, children, title }) => (
   </Dialog>
 );
 
+HelpDialog.propTypes = {
+  open: PropTypes.bool,
+  onClose: PropTypes.func,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]).isRequired,
+  title: PropTypes.string.isRequired
+};
+
 class Help extends React.Component {
+  static propTypes = {
+    children: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.node),
+      PropTypes.node
+    ]).isRequired,
+    title: PropTypes.string
+  };
+
   constructor(props) {
     super(props);
     this.state = {

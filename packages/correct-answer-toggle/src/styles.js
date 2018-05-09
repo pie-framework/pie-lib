@@ -33,7 +33,7 @@ export default {
   label: Object.assign(
     {
       width: '140px',
-      fontFamily: "'Roboto', sans-serif",
+      fontFamily: '\'Roboto\', sans-serif',
       height: '25px',
       lineHeight: '25px',
       verticalAlign: 'middle',

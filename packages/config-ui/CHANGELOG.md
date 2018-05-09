@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="5.3.1"></a>
+## [5.3.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@5.3.0...@pie-lib/config-ui@5.3.1) (2018-05-09)
+
+
+### Bug Fixes
+
+* **lint:** lint fixes ([f059583](https://github.com/pie-framework/pie-lib/commit/f059583))
+
+
+
+
 <a name="5.3.0"></a>
 # [5.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@5.2.0...@pie-lib/config-ui@5.3.0) (2018-05-08)
 

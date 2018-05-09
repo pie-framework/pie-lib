@@ -1,35 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import DomainAndRange, { ContextTypes } from './domain-and-range';
-import { LineType, PointType } from './charting-types';
-import { Line } from '@vx/shape';
+import DomainAndRange from './domain-and-range';
+import { LineType } from './charting-types';
 import ExpressionLine from './expression-line';
 
-import debug from 'debug';
-
-const log = debug('pie-lib:charting:graph-lines');
-
-class ScaledLine extends React.Component {
-  static propTypes = {
-    from: PointType.isRequired,
-    to: PointType.isRequired
-  };
-
-  static contextTypes = ContextTypes();
-
-  scalePoint = p => {
-    const { scale } = this.context;
-    return {
-      x: scale.x(p.x),
-      y: scale.y(p.y)
-    };
-  };
-
-  render() {
-    const { from, to } = this.props;
-    return <Line from={this.scalePoint(from)} to={this.scalePoint(to)} />;
-  }
-}
 export default class GraphLines extends React.Component {
   static propTypes = {
     disabled: PropTypes.bool.isRequired,

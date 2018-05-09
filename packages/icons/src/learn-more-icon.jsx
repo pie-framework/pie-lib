@@ -10,7 +10,16 @@ const Glint = ({ fill }) => (
   />
 );
 
+Glint.propTypes = {
+  fill: PropTypes.string
+};
+
 export class LearnMore extends React.Component {
+  static propTypes = {
+    classes: PropTypes.object.isRequired,
+    size: PropTypes.number
+  };
+
   render() {
     const { classes, size } = this.props;
 

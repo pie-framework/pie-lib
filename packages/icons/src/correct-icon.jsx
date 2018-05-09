@@ -7,7 +7,7 @@ import { withStyles } from 'material-ui/styles';
 const styles = getStyles('correct', '#f8ffe2', '#4aaf46');
 
 const Emoji = ({ className }) => (
-  <g transform={`translate(1, 0)`}>
+  <g transform={'translate(1, 0)'}>
     <path
       className={className}
       d="M24.7,22.1c-1.5,1.7-3.6,2.7-5.8,2.7s-4.5-1.1-5.8-2.7l-2.8,1.6c2,2.7,5.2,4.2,8.7,4.2
@@ -17,6 +17,10 @@ const Emoji = ({ className }) => (
     <rect x="12.7" y="13.1" className={className} width="3.7" height="4.7" />
   </g>
 );
+
+Emoji.propTypes = {
+  className: PropTypes.string
+};
 
 Emoji.defaultProps = {
   x: 0
@@ -29,6 +33,13 @@ const Check = ({ className, x, y }) => (
     points="19.1,28.6 11.8,22.3 14.4,19.2 17.9,22.1 23.9,11.4 27.5,13.4"
   />
 );
+
+Check.propTypes = {
+  x: PropTypes.number,
+  y: PropTypes.number,
+  className: PropTypes.string
+};
+
 Check.defaultProps = {
   x: 0,
   y: 0

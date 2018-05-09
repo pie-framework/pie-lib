@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import EditableMathInput from './editable-math-input';
 import HorizontalKeypad from './horizontal-keypad';
 

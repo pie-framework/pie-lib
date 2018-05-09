@@ -9,6 +9,21 @@ import Row from './row';
 const log = debug('@pie-elements:scoring-config:scoring-config-row');
 
 export class Rows extends React.Component {
+  static propTypes = {
+    numberOfCorrectResponses: PropTypes.number.isRequired,
+    partialScoring: PropTypes.arrayOf(
+      PropTypes.shape({
+        numberOfCorrect: PropTypes.number.isRequired,
+        scorePercentage: PropTypes.number.isRequired
+      })
+    ),
+    onChange: PropTypes.func.isRequired,
+    classes: PropTypes.object.isRequired
+  };
+
+  static defaultProps = {
+    partialScoring: []
+  };
   constructor(props) {
     super(props);
     this.addRow = this.addRow.bind(this);
@@ -78,20 +93,5 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 2
   }
 });
-
-Rows.propTypes = {
-  numberOfCorrectResponses: PropTypes.number.isRequired,
-  partialScoring: PropTypes.arrayOf(
-    PropTypes.shape({
-      numberOfCorrect: PropTypes.number.isRequired,
-      scorePercentage: PropTypes.number.isRequired
-    })
-  ),
-  onChange: PropTypes.func.isRequired
-};
-
-Rows.defaultProps = {
-  partialScoring: []
-};
 
 export default withStyles(styles)(Rows);

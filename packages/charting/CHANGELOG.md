@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.2.1"></a>
+## [2.2.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@2.2.0...@pie-lib/charting@2.2.1) (2018-05-09)
+
+
+### Bug Fixes
+
+* **lint:** lint fixes ([f059583](https://github.com/pie-framework/pie-lib/commit/f059583))
+
+
+
+
 <a name="2.2.0"></a>
 # [2.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@2.1.0...@pie-lib/charting@2.2.0) (2018-04-24)
 

@@ -8,7 +8,7 @@ import debug from 'debug';
 
 const log = debug('pie-libs:render-ui:response-indicators');
 
-const styles = theme => ({
+const styles = () => ({
   responseIndicator: {
     cursor: 'pointer'
   },

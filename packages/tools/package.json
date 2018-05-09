@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "0.6.0",
+  "version": "0.6.2",
   "description": "Some interactive tools",
   "keywords": [
     "react",
@@ -19,6 +19,7 @@
   "license": "ISC",
   "dependencies": {
     "@mapbox/point-geometry": "^0.1.0",
+    "@pie-lib/style-utils": "^0.1.0",
     "classnames": "^2.2.5",
     "invariant": "^2.2.4",
     "lodash": "^4.17.5",
