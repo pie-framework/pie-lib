@@ -179,7 +179,7 @@ class RawContainer extends React.Component {
                 ]}
               />
               <NChoice
-                header="n-choice"
+                header="n-choice vertical"
                 direction={'vertical'}
                 value={this.state.nChoice}
                 onChange={nChoice => this.setState({ nChoice })}
