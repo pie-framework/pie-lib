@@ -14,6 +14,9 @@ const styles = theme => ({
     display: 'flex',
     paddingLeft: 0,
     marginTop: theme.spacing.unit
+  },
+  verticalFlex: {
+    flexDirection: 'column'
   }
 });
 
@@ -29,12 +32,12 @@ class RawNChoice extends React.Component {
 
   render() {
 
-    const { header, className, classes, opts, value } = this.props;
+    const { header, className, classes, opts, value, showVertical } = this.props;
 
     return <InputContainer
       label={header}
       className={className}>
-      <div className={classes.group}>
+      <div className={classNames(classes.group, showVertical && classes.verticalFlex)}>
         {opts.map((o, index) => <RadioWithLabel
           value={o.value}
           key={index}

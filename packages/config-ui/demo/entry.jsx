@@ -166,6 +166,7 @@ class RawContainer extends React.Component {
                 two={{ label: 'two', value: 'two' }}
               />
               <NChoice
+                showVertical={true}
                 header="n-choice"
                 value={this.state.nChoice}
                 onChange={nChoice => this.setState({ nChoice })}
