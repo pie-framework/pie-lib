@@ -1,0 +1,19 @@
+{
+  "name": "@pie-lib/test-utils",
+  "version": "0.0.3",
+  "description": "",
+  "main": "lib/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "",
+  "license": "ISC",
+  "peerDependencies": {
+    "enzyme": "^3.3.0",
+    "react": "^16.3.1"
+  },
+  "devDependencies": {
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1"
+  }
+}
