@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="5.4.0"></a>
+# [5.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@5.3.1...@pie-lib/config-ui@5.4.0) (2018-05-09)
+
+
+### Bug Fixes
+
+* **lint:** lint fixes ([b238f42](https://github.com/pie-framework/pie-lib/commit/b238f42))
+
+
+### Features
+
+* **two-choice:** added test case for n choice and refactored previos changes ([47997d0](https://github.com/pie-framework/pie-lib/commit/47997d0))
+
+
+
+
 <a name="5.3.1"></a>
 ## [5.3.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@5.3.0...@pie-lib/config-ui@5.3.1) (2018-05-09)
 
