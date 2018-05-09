@@ -1,15 +1,34 @@
 #!/usr/bin/env node
 
 const argv = require('minimist')(process.argv.slice(2));
+const debug = require('debug');
 const fs = require('fs-extra');
-const { join } = require('path');
-const _ = require('lodash');
 const { spawnSync, spawn } = require('child_process');
+const { processFix, watch } = require('@pie-framework/build-helper');
+const log = debug('@pie-lib:scripts:dev');
 
-process.on('unhandledRejection', error => {
-  // Will print "unhandledRejection err is not defined"
-  console.error(error.message);
+//
+
+let watcher = null;
+let nextProcess = null;
+processFix(log, () => {
+  if (watcher) {
+    watcher.exit();
+  }
+
+  if (nextProcess) {
+    nextProcess.kill();
+  }
+
+  process.exit();
 });
+
+const scope = argv.scope
+  ? Array.isArray(argv.scope)
+    ? argv.scope
+    : [argv.scope]
+  : fs.readdirSync('packages').filter(n => !n.startsWith('.'));
+
 const isDemoInstalled = async () => {
   const exists = await fs.exists('demo/node_modules');
   if (exists) {
@@ -22,40 +41,24 @@ const isDemoInstalled = async () => {
 
 //0. list packages
 const run = async () => {
-  installed = await isDemoInstalled();
+  const installed = await isDemoInstalled();
 
   if (!installed) {
-    throw new Error("You need to run yarn install in 'demo'");
+    throw new Error('You need to run yarn install in "demo"');
   }
 
-  console.log('scope: ', argv.scope);
+  log('scope: ', scope);
 
-  if (argv.scope) {
-    const babel = spawn(
-      './node_modules/.bin/babel',
-      [
-        `packages/${argv.scope}/src`,
-        '--watch',
-        '--out-dir',
-        `demo/node_modules/@pie-lib/${argv.scope}/lib`,
-        '--ignore',
-        'node_modules',
-        '--source-maps',
-        'inline'
-      ],
-      { stdio: 'inherit' }
-    );
-    babel.on('error', e => {
-      console.error('babel: error: ', e);
-    });
-    babel.on('data', function() {
-      console.log('babel: ', arguments);
-    });
-  }
+  const args = scope.map(s => ({
+    src: `packages/${s}/src`,
+    target: `packages/${s}/lib`
+  }));
+
+  watcher = watch(args);
 
   const nextCmd = './node_modules/.bin/next';
 
-  spawnSync(nextCmd, {
+  nextProcess = spawnSync(nextCmd, {
     cwd: 'demo',
     stdio: 'inherit',
     env: Object.assign({}, process.env, { NODE_ENV: 'development' })
@@ -64,9 +67,10 @@ const run = async () => {
 
 run()
   .then(() => {
-    console.log('running');
+    log('running');
   })
   .catch(e => {
+    //eslint-disable-next-line
     console.error(e);
     throw e;
   });
