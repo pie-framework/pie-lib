@@ -71,6 +71,7 @@ const styles = theme => ({
 export default withStyles(styles)(Row);
 
 Row.propTypes = {
+  classes: PropTypes.object.isRequired,
   numberOfCorrect: PropTypes.number.isRequired,
   scorePercentage: PropTypes.number.isRequired,
   onRowChange: PropTypes.func.isRequired,

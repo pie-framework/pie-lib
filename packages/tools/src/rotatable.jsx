@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import debug from 'debug';
 import {
   getAnchor as calcAnchor,
   distanceBetween,
@@ -11,8 +10,6 @@ import { Portal } from 'react-portal';
 import Point from '@mapbox/point-geometry';
 import { parse as parseOrigin } from './transform-origin';
 import classNames from 'classnames';
-
-const log = debug('@pie-lib:tools:rotatable');
 
 const Anchor = withStyles({
   anchor: {

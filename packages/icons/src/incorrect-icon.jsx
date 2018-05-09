@@ -25,6 +25,9 @@ const Ex = ({ className }) => (
   </g>
 );
 
+Ex.propTypes = {
+  className: PropTypes.string
+};
 const Emoji = ({ className }) => (
   <g transform={'translate(1,0)'}>
     <rect x="21" y="12.9" className={className} width="3.7" height="4.7" />
@@ -32,6 +35,10 @@ const Emoji = ({ className }) => (
     <rect x="12.2" y="22.5" className={className} width="13" height="3.3" />
   </g>
 );
+
+Emoji.propTypes = {
+  className: PropTypes.string
+};
 
 const styles = getStyles('incorrect', '#fbf2e3', '#fcb733');
 

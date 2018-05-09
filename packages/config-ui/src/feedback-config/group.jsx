@@ -1,13 +1,10 @@
 import PropTypes from 'prop-types';
 import RadioWithLabel from '../radio-with-label';
 import React from 'react';
-import debug from 'debug';
 import { withStyles } from 'material-ui/styles';
 import classNames from 'classnames';
 
-const log = debug('config-ui:feedback-config:feedback-selector');
-
-const styles = theme => ({
+const styles = () => ({
   radioLabel: {
     fontSize: '12px'
   },
@@ -49,6 +46,7 @@ const Group = ({
 );
 
 Group.propTypes = {
+  className: PropTypes.string,
   feedbackLabels: PropTypes.object.isRequired,
   value: PropTypes.string.isRequired,
   classes: PropTypes.object.isRequired,

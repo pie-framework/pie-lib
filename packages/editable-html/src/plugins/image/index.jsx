@@ -87,7 +87,7 @@ export default function ImagePlugin(opts) {
         return <ImageComponent {...all} />;
       }
     },
-    onKeyDown(event, change, editor) {
+    onKeyDown(event, change /*,editor*/) {
       log('[onKeyDown] ...');
       const { startKey } = change.value.selection;
       const n = change.value.document.getDescendant(startKey);
@@ -110,7 +110,7 @@ export default function ImagePlugin(opts) {
 }
 
 export const serialization = {
-  deserialize(el, next) {
+  deserialize(el /*, next*/) {
     const name = el.tagName.toLowerCase();
     if (name !== 'img') return;
 
@@ -133,7 +133,7 @@ export const serialization = {
     log('return object: ', out);
     return out;
   },
-  serialize(object, children) {
+  serialize(object /*, children*/) {
     if (object.type !== 'image') return;
 
     const { data } = object;

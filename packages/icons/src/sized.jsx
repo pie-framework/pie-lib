@@ -1,9 +1,8 @@
-
 import React from 'react';
 import { normalizeSize } from './icon-root';
+import PropTypes from 'prop-types';
 
-export default ({ size, children }) => {
-
+const Sized = ({ size, children }) => {
   size = normalizeSize(size);
 
   const style = {
@@ -11,7 +10,16 @@ export default ({ size, children }) => {
     width: size,
     display: 'inline-block',
     position: 'relative'
-  }
+  };
 
-  return (<div style={style}>{children}</div>);
-}
+  return <div style={style}>{children}</div>;
+};
+
+Sized.propTypes = {
+  size: PropTypes.number,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]).isRequired
+};
+export default Sized;

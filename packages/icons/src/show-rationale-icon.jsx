@@ -3,7 +3,7 @@ import React from 'react';
 import { withStyles } from 'material-ui/styles';
 import { normalizeSize } from './icon-root';
 
-const Info = ({ fg, border }) => (
+const Info = ({ fg }) => (
   <g>
     <rect x="-115" y="136.7" className={fg} width="3" height="3" />
     <polygon
@@ -13,12 +13,19 @@ const Info = ({ fg, border }) => (
   </g>
 );
 
+Info.propTypes = {
+  fg: PropTypes.string
+};
+
 const Border = ({ className }) => (
   <path
     className={className}
     d="M-113,158.5c-8,0-14.5-6.5-14.5-14.5s6.5-14.5,14.5-14.5s14.5,6.5,14.5,14.5S-105,158.5-113,158.5zM-113,130.5c-7.4,0-13.5,6.1-13.5,13.5s6.1,13.5,13.5,13.5s13.5-6.1,13.5-13.5S-105.6,130.5-113,130.5z"
   />
 );
+Border.propTypes = {
+  className: PropTypes.string
+};
 const Circle = () => (
   <g>
     <path
@@ -60,6 +67,13 @@ const Root = ({ children, size }) => {
     </div>
   );
 };
+Root.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]).isRequired,
+  size: PropTypes.number
+};
 
 const styles = {
   fg: {
@@ -77,6 +91,10 @@ const styles = {
 };
 
 export class ShowRationale extends React.Component {
+  static propTypes = {
+    classes: PropTypes.object.isRequired
+  };
+
   constructor(props) {
     super(props);
   }

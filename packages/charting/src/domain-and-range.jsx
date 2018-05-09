@@ -37,6 +37,7 @@ export class DomainAndRange extends React.Component {
     height: PropTypes.number.isRequired,
     domain: AxisType.isRequired,
     range: AxisType.isRequired,
+    title: PropTypes.string,
     onClick: PropTypes.func
   };
 
@@ -125,7 +126,9 @@ export class DomainAndRange extends React.Component {
             width={width}
             height={height}
             numTicksRows={tickCount(domain.min, domain.max, domain.step)}
-            stroke={disabled ? 'rgba(236, 239, 241, 0.5)' : 'rgb(236, 239, 241)'}
+            stroke={
+              disabled ? 'rgba(236, 239, 241, 0.5)' : 'rgb(236, 239, 241)'
+            }
             numTicksColumns={tickCount(range.min, range.max, domain.step)}
           />
           <Axis
@@ -167,7 +170,12 @@ export class DomainAndRange extends React.Component {
             height={height}
           />
 
-          <Arrow x={width / 2} y={0} className={classes.arrow} direction={'up'} />
+          <Arrow
+            x={width / 2}
+            y={0}
+            className={classes.arrow}
+            direction={'up'}
+          />
           <Arrow
             x={width / 2}
             y={height}

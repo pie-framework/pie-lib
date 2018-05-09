@@ -2,11 +2,8 @@ import EditableHTML from '@pie-lib/editable-html';
 import InputContainer from '../input-container';
 import PropTypes from 'prop-types';
 import React from 'react';
-import debug from 'debug';
 import { withStyles } from 'material-ui/styles';
 import Group from './group';
-
-const log = debug('config-ui:feedback-config:feedback-selector');
 
 const feedbackLabels = {
   default: 'Simple Feedback',

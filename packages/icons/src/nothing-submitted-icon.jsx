@@ -30,8 +30,16 @@ const Emoji = ({ className }) => (
   </g>
 );
 
+Emoji.propTypes = Octagon.propTypes = Exclamation.propTypes = {
+  className: PropTypes.string
+};
 const styles = getStyles('nothing-submitted', 'white', '#464146');
+
 export class NothingSubmitted extends React.Component {
+  static propTypes = {
+    classes: PropTypes.object.isRequired
+  };
+
   constructor(props) {
     super(props);
     const { classes } = this.props;
@@ -105,8 +113,6 @@ export class NothingSubmitted extends React.Component {
         }
       }
     }
-
-    return null;
   }
 }
 

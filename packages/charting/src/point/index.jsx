@@ -7,7 +7,7 @@ import { ContextTypes } from '../domain-and-range';
 import debug from 'debug';
 import * as utils from './utils';
 
-import { correct, incorrect, primary, secondary } from '../color';
+import { correct, incorrect, primary } from '../color';
 
 export { utils };
 

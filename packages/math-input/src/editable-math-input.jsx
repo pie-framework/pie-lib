@@ -67,7 +67,7 @@ export default class EditableMathInput extends React.Component {
     return this.mathField.latex();
   }
 
-  onInputEdit(e) {
+  onInputEdit() {
     log('[onInputEdit] ...');
 
     if (!this.mathField) {

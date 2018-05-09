@@ -1,4 +1,3 @@
-import Button from 'material-ui/Button';
 import Input, { InputLabel } from 'material-ui/Input';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -6,7 +5,7 @@ import classNames from 'classnames';
 import { withStyles } from 'material-ui/styles';
 import Select from 'material-ui/Select';
 import { MenuItem } from 'material-ui/Menu';
-import { FormControl, FormHelperText } from 'material-ui/Form';
+import { FormControl } from 'material-ui/Form';
 import debug from 'debug';
 
 const log = debug('pie-elements:config-ui:langs');
@@ -29,38 +28,49 @@ const styles = theme => ({
 });
 
 class RawLangs extends React.Component {
+  static propTypes = {
+    onChange: PropTypes.func,
+    langs: PropTypes.array,
+    selected: PropTypes.bool,
+    label: PropTypes.string,
+    classes: PropTypes.object.isRequired
+  };
 
   constructor(props) {
     super(props);
     this.uid = (Math.random() * 10000).toFixed();
   }
 
-  choose = (event) => {
+  choose = event => {
     log('[choose] event: ', event);
     if (this.props.onChange) {
       this.props.onChange(event.currentTarget.getAttribute('value'));
     }
-  }
+  };
 
   render() {
-    let { langs, selected, onChange, label, classes } = this.props;
+    let { langs, selected, label, classes } = this.props;
     log('[render] selected:', selected);
-    return <div className={classes.root}>
-      <FormControl
-        className={classes.formControl}>
-        <InputLabel
-          className={classes.inputLabel}
-          htmlFor={this.uid}>{label}</InputLabel>
-        <Select
-          value={selected}
-          onChange={this.choose}
-          input={<Input id={this.uid} />}>
-          {langs.map((l, index) => <MenuItem
-            key={index}
-            value={l}>{l}</MenuItem>)}
-        </Select>
-      </FormControl>
-    </div>;
+    return (
+      <div className={classes.root}>
+        <FormControl className={classes.formControl}>
+          <InputLabel className={classes.inputLabel} htmlFor={this.uid}>
+            {label}
+          </InputLabel>
+          <Select
+            value={selected}
+            onChange={this.choose}
+            input={<Input id={this.uid} />}
+          >
+            {langs.map((l, index) => (
+              <MenuItem key={index} value={l}>
+                {l}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </div>
+    );
   }
 }
 
@@ -74,29 +84,36 @@ export const LanguageControls = withStyles({
     gridAutoColumns: '1fr',
     gridGap: '8px'
   }
-})(({
-  classes,
-  langs,
-  activeLang,
-  defaultLang,
-  onActiveLangChange,
-  onDefaultLangChange,
-  className }) => {
-  const names = classNames(classes.languageControls, className);
+})(
+  ({
+    classes,
+    langs,
+    activeLang,
+    defaultLang,
+    onActiveLangChange,
+    onDefaultLangChange,
+    className
+  }) => {
+    const names = classNames(classes.languageControls, className);
 
-  return <div className={names}>
-    <Langs
-      label="Choose language to edit"
-      langs={langs}
-      selected={activeLang}
-      onChange={l => onActiveLangChange(l)} />
-    <Langs
-      label="Default language"
-      langs={langs}
-      selected={defaultLang}
-      onChange={l => onDefaultLangChange(l)} />
-  </div>
-});
+    return (
+      <div className={names}>
+        <Langs
+          label="Choose language to edit"
+          langs={langs}
+          selected={activeLang}
+          onChange={l => onActiveLangChange(l)}
+        />
+        <Langs
+          label="Default language"
+          langs={langs}
+          selected={defaultLang}
+          onChange={l => onDefaultLangChange(l)}
+        />
+      </div>
+    );
+  }
+);
 
 LanguageControls.propTypes = {
   langs: PropTypes.array,
@@ -104,4 +121,4 @@ LanguageControls.propTypes = {
   defaultLang: PropTypes.string.isRequired,
   onActiveLangChange: PropTypes.func.isRequired,
   onDefaultLangChange: PropTypes.func.isRequired
-}
+};

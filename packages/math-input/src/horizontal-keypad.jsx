@@ -15,6 +15,7 @@ import classNames from 'classnames';
 import debug from 'debug';
 import merge from 'lodash/merge';
 import { withStyles } from 'material-ui/styles';
+import PropTypes from 'prop-types';
 
 const log = debug('math-input:keypad');
 
@@ -31,13 +32,6 @@ const topRowStyle = {
   })
 };
 
-const Blank = withStyles({
-  root: {
-    display: 'inline-block',
-    backgroundColor: 'white'
-  }
-})(props => <div className={props.classes.root} />);
-
 const RawIconButton = props => {
   const root = props.hide ? props.classes.hideRoot : props.classes.root;
   return (
@@ -52,16 +46,18 @@ const RawIconButton = props => {
   );
 };
 
-const Tr = withStyles(topRowStyle, { name: 'TR' })(RawIconButton);
+RawIconButton.propTypes = {
+  hide: PropTypes.bool,
+  style: PropTypes.object,
+  classes: PropTypes.object,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]).isRequired,
+  onClick: PropTypes.func
+};
 
-const CodeButton = withStyles(
-  merge({}, topRowStyle, {
-    root: {
-      backgroundColor: 'pink'
-    }
-  }),
-  { name: 'IconButton' }
-)(RawIconButton);
+const Tr = withStyles(topRowStyle, { name: 'TR' })(RawIconButton);
 
 const cursor = ['Left', 'Right', 'Up', 'Down'];
 
@@ -84,6 +80,10 @@ const TopRow = props => (
     })}
   </div>
 );
+TopRow.propTypes = {
+  className: PropTypes.string,
+  showingCode: PropTypes.bool
+};
 
 const DeleteAndClear = props => {
   return (
@@ -98,52 +98,64 @@ const DeleteAndClear = props => {
   );
 };
 
+DeleteAndClear.propTypes = {
+  showingCode: PropTypes.bool,
+  onClick: PropTypes.func
+};
+
 export class Keypad extends React.PureComponent {
+  static propTypes = {
+    onClick: PropTypes.func.isRequired,
+    onFocus: PropTypes.func,
+    onToggleCode: PropTypes.func,
+    latex: PropTypes.string,
+    classes: PropTypes.object.isRequired
+  };
   constructor(props) {
     super(props);
     this.state = {
       showCode: false
     };
-
-    this.onFocus = e => {
-      log('onFocus', e);
-      if (this.props.onFocus) {
-        this.props.onFocus(e);
-      }
-    };
-
-    this.onTopRowClick = value => {
-      this.props.onClick({
-        value,
-        type: 'cursor'
-      });
-    };
-
-    this.onNumberPadClick = value => {
-      this.props.onClick({
-        value
-      });
-    };
-
-    this.onBasicOperatorsClick = value => {
-      this.props.onClick({
-        value
-      });
-    };
-
-    this.onExtrasClick = data => {
-      this.props.onClick(data);
-    };
-
-    this.toggleCode = () => {
-      this.setState({ showCode: !this.state.showCode }, () => {
-        this.props.onToggleCode && this.props.onToggleCode();
-      });
-    };
   }
 
+  onFocus = e => {
+    log('onFocus', e);
+    if (this.props.onFocus) {
+      this.props.onFocus(e);
+    }
+  };
+
+  onTopRowClick = value => {
+    this.props.onClick({
+      value,
+      type: 'cursor'
+    });
+  };
+
+  onNumberPadClick = value => {
+    this.props.onClick({
+      value
+    });
+  };
+
+  onBasicOperatorsClick = value => {
+    this.props.onClick({
+      value
+    });
+  };
+
+  onExtrasClick = data => {
+    this.props.onClick(data);
+  };
+
+  toggleCode = () => {
+    this.setState({ showCode: !this.state.showCode }, () => {
+      this.props.onToggleCode && this.props.onToggleCode();
+    });
+  };
+
   render() {
-    const { classes, latex, onChange, onCodeEditorBlur } = this.props;
+    const { classes } = this.props;
     const { showCode } = this.state;
     const holderClasses = classNames(
       classes.padHolder,
@@ -184,13 +196,7 @@ const styles = {
     gridRow: '1/4',
     gridTemplateColumns: '3fr 1fr 4fr 1fr 1fr'
   },
-  topRow: {
-    // gridColumn: '1/8',
-    // display: 'grid',
-    // gridTemplateColumns: 'repeat(8, 1fr)',
-    // gridRowGap: '0px',
-    // gridColumnGap: '0px',
-  }
+  topRow: {}
 };
 
 export default withStyles(styles, { name: 'Keypad' })(Keypad);

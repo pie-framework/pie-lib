@@ -10,7 +10,7 @@
     "static": "./scripts/static",
     "test": "./scripts/test",
     "dev": "./scripts/dev",
-    "lint": "./node_modules/.bin/eslint --ext .js --ext .jsx packages",
+    "lint": "./node_modules/.bin/eslint --ext .js --ext .jsx packages/**/src",
     "postinstall": "cd demo && yarn install",
     "lint-two":
       "lerna exec -- \\$LERNA_ROOT_PATH/node_modules/.bin/eslint  --ignore-path \\$LERNA_ROOT_PATH/.eslintignore --ext .js --ext .jsx src",

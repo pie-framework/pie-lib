@@ -34,6 +34,8 @@ const Emoji = ({ className }) => (
   </g>
 );
 
+Emoji.propTypes = Check.propTypes = { className: PropTypes.string };
+
 export const PartiallyCorrect = IconBase(Check, Emoji);
 
 PartiallyCorrect.propTypes = {

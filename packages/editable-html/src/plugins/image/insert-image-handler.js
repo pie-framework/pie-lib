@@ -10,7 +10,6 @@ const log = debug('editable-html:image:insert-image-handler');
  * @param {Function} onChange - callback to notify changes applied by the handler
  */
 class InsertImageHandler {
-
   constructor(placeholderBlock, getValue, onChange) {
     this.placeholderBlock = placeholderBlock;
     this.getValue = getValue;
@@ -18,7 +17,6 @@ class InsertImageHandler {
   }
 
   getPlaceholderInDocument(value) {
-
     const { document } = value;
     const directChild = document.getChild(this.placeholderBlock.key);
 
@@ -31,36 +29,41 @@ class InsertImageHandler {
     if (child) {
       return child;
     } else {
-      throw new Error('insert-image: Can\'t find placeholder!');
+      //eslint-disable-next-line
+      throw new Error("insert-image: Can't find placeholder!");
     }
   }
 
   cancel() {
     log('insert cancelled');
-    const c = this.getValue().change().removeNodeByKey(this.placeholderBlock.key);
+    const c = this.getValue()
+      .change()
+      .removeNodeByKey(this.placeholderBlock.key);
     this.onChange(c);
   }
 
   done(err, src) {
-
     log('done: err:', err);
     if (err) {
-      logError(err);
+      //eslint-disable-next-line
+      console.log(err);
     } else {
-      const value = this.getValue()
+      const value = this.getValue();
       const child = this.getPlaceholderInDocument(value);
       const data = child.data.merge(
         Data.create({ loaded: true, src, percent: 100 })
       );
 
-      const change = value.change().setNodeByKey(this.placeholderBlock.key, { data });
+      const change = value
+        .change()
+        .setNodeByKey(this.placeholderBlock.key, { data });
       this.onChange(change);
     }
   }
 
   /**
    * Notify handler that the user chose a file - will create a change with a preview in the editor.
-   * 
+   *
    * @param {File} file - the file that the user chose using a file input.
    */
   fileChosen(file) {
@@ -75,7 +78,9 @@ class InsertImageHandler {
       const dataURL = reader.result;
       const child = this.getPlaceholderInDocument(value);
       const data = child.data.set('src', dataURL);
-      const change = value.change().setNodeByKey(this.placeholderBlock.key, { data });
+      const change = value
+        .change()
+        .setNodeByKey(this.placeholderBlock.key, { data });
       this.onChange(change);
     };
     reader.readAsDataURL(file);
@@ -86,7 +91,9 @@ class InsertImageHandler {
     const value = this.getValue();
     const child = this.getPlaceholderInDocument(value);
     const data = child.data.set('percent', percent);
-    const change = value.change().setNodeByKey(this.placeholderBlock.key, { data });
+    const change = value
+      .change()
+      .setNodeByKey(this.placeholderBlock.key, { data });
     this.onChange(change);
   }
 }

@@ -26,6 +26,11 @@ const OpenIcon = ({ bg, fg }) => (
   </svg>
 );
 
+OpenIcon.propTypes = {
+  bg: PropTypes.string,
+  fg: PropTypes.string
+};
+
 const CloseIcon = ({ bg, fg, border }) => (
   <svg
     preserveAspectRatio="xMinYMin meet"
@@ -66,6 +71,12 @@ const CloseIcon = ({ bg, fg, border }) => (
     />
   </svg>
 );
+
+CloseIcon.propTypes = {
+  bg: PropTypes.string,
+  fg: PropTypes.string,
+  border: PropTypes.string
+};
 
 const styles = {
   root: {

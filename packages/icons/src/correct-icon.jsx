@@ -18,6 +18,10 @@ const Emoji = ({ className }) => (
   </g>
 );
 
+Emoji.propTypes = {
+  className: PropTypes.string
+};
+
 Emoji.defaultProps = {
   x: 0
 };
@@ -29,6 +33,13 @@ const Check = ({ className, x, y }) => (
     points="19.1,28.6 11.8,22.3 14.4,19.2 17.9,22.1 23.9,11.4 27.5,13.4"
   />
 );
+
+Check.propTypes = {
+  x: PropTypes.number,
+  y: PropTypes.number,
+  className: PropTypes.string
+};
+
 Check.defaultProps = {
   x: 0,
   y: 0
