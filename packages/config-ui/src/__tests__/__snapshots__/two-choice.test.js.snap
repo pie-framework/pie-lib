@@ -1,51 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`NChoice renders correctly 1`] = `
-<div
-  className="MuiFormControl-root-5 RawInputContainer-formControl-3"
-  onBlur={[Function]}
-  onFocus={[Function]}
->
-  <label
-    className="MuiFormLabel-root-14 MuiInputLabel-root-9 MuiInputLabel-formControl-10 MuiInputLabel-animated-13 MuiInputLabel-shrink-12 RawInputContainer-label-4"
-    data-shrink={true}
-  >
-    n-choice-vertical
-  </label>
-  <div
-    className="RawNChoice-group-1 RawNChoice-vertical-2"
-  >
-    <label
-      className="MuiFormControlLabel-root-20"
-    >
-      <span
-        className="MuiTypography-root-23 MuiTypography-body1-32 MuiFormControlLabel-label-22 Component-label-19"
-      >
-        left
-      </span>
-    </label>
-    <label
-      className="MuiFormControlLabel-root-20"
-    >
-      <span
-        className="MuiTypography-root-23 MuiTypography-body1-32 MuiFormControlLabel-label-22 Component-label-19"
-      >
-        center
-      </span>
-    </label>
-    <label
-      className="MuiFormControlLabel-root-20"
-    >
-      <span
-        className="MuiTypography-root-23 MuiTypography-body1-32 MuiFormControlLabel-label-22 Component-label-19"
-      >
-        right
-      </span>
-    </label>
-  </div>
-</div>
-`;
-
 exports[`NChoice renders n choice radio buttons vertical correctly 1`] = `
 <div
   className="MuiFormControl-root-5 RawInputContainer-formControl-3"
