@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const defaultColor = `var(--math-input-calculator, #1A9CFF)`;
+export const defaultColor = 'var(--math-input-calculator, #1A9CFF)';
 
 export default ({ children }) => (
   <svg

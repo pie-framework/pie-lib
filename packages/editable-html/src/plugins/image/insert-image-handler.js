@@ -31,7 +31,7 @@ class InsertImageHandler {
     if (child) {
       return child;
     } else {
-      throw new Error(`insert-image: Can't find placeholder!`);
+      throw new Error('insert-image: Can\'t find placeholder!');
     }
   }
 
@@ -89,6 +89,6 @@ class InsertImageHandler {
     const change = value.change().setNodeByKey(this.placeholderBlock.key, { data });
     this.onChange(change);
   }
-};
+}
 
 export default InsertImageHandler;
