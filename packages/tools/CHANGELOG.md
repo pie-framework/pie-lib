@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.6.1"></a>
+## [0.6.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.6.0...@pie-lib/tools@0.6.1) (2018-05-09)
+
+
+### Bug Fixes
+
+* **test:** fix test run ([d15ac94](https://github.com/pie-framework/pie-lib/commit/d15ac94))
+
+
+
+
 <a name="0.6.0"></a>
 # [0.6.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.5.3...@pie-lib/tools@0.6.0) (2018-05-08)
 
