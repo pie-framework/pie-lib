@@ -15,7 +15,7 @@ const styles = theme => ({
     paddingLeft: 0,
     marginTop: theme.spacing.unit
   },
-  verticalFlex: {
+  vertical: {
     flexDirection: 'column'
   }
 });
@@ -32,12 +32,12 @@ class RawNChoice extends React.Component {
 
   render() {
 
-    const { header, className, classes, opts, value, showVertical } = this.props;
+    const { header, className, classes, opts, value, direction } = this.props;
 
     return <InputContainer
       label={header}
       className={className}>
-      <div className={classNames(classes.group, showVertical && classes.verticalFlex)}>
+      <div className={classNames(classes.group, direction === 'vertical' && classes.vertical)}>
         {opts.map((o, index) => <RadioWithLabel
           value={o.value}
           key={index}
@@ -58,7 +58,8 @@ NChoice.propTypes = {
   className: PropTypes.string,
   opts: PropTypes.array.isRequired,
   value: PropTypes.string,
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
+  direction: PropTypes.oneOf(['horizontal', 'vertical'])
 }
 
 class TwoChoice extends React.Component {
