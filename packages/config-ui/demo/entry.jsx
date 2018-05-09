@@ -73,7 +73,8 @@ class RawContainer extends React.Component {
         'ice cream'
       ],
       twoChoice: 'one',
-      nChoice: 'left',
+      nChoiceHorizontal: 'left',
+      nChoiceVertical: 'left',
       selector: {
         type: 'default',
         customFeedback: undefined,
@@ -165,17 +166,28 @@ class RawContainer extends React.Component {
                 one={{ label: 'one', value: 'one' }}
                 two={{ label: 'two', value: 'two' }}
               />
-              <NChoice
-                showVertical={true}
-                header="n-choice"
-                value={this.state.nChoice}
-                onChange={nChoice => this.setState({ nChoice })}
-                opts={[
-                  { label: 'left', value: 'left' },
-                  { label: 'center', value: 'center' },
-                  { label: 'right', value: 'right' }
-                ]}
-              />
+                <NChoice
+                    direction="horizontal"
+                    header="n-choice-horizontal"
+                    value={this.state.nChoiceHorizontal}
+                    onChange={nChoiceHorizontal => this.setState({ nChoiceHorizontal })}
+                    opts={[
+                        { label: 'left', value: 'left' },
+                        { label: 'center', value: 'center' },
+                        { label: 'right', value: 'right' }
+                    ]}
+                />
+                <NChoice
+                    direction="vertical"
+                    header="n-choice-vertical"
+                    value={this.state.nChoiceVertical}
+                    onChange={nChoiceVertical => this.setState({ nChoiceVertical })}
+                    opts={[
+                        { label: 'left', value: 'left' },
+                        { label: 'center', value: 'center' },
+                        { label: 'right', value: 'right' }
+                    ]}
+                />
             </div>
           </Section>
 
