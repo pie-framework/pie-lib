@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="5.0.13"></a>
+## [5.0.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@5.0.12...@pie-lib/editable-html@5.0.13) (2018-05-09)
+
+
+### Bug Fixes
+
+* **lint:** automatic lint fixes ([7c9a2a4](https://github.com/pie-framework/pie-lib/commit/7c9a2a4))
+* **lint:** lint fixes ([f059583](https://github.com/pie-framework/pie-lib/commit/f059583))
+
+
+
+
 <a name="5.0.12"></a>
 ## [5.0.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@5.0.11...@pie-lib/editable-html@5.0.12) (2018-04-30)
 

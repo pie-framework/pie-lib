@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.6.2"></a>
+## [0.6.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.6.1...@pie-lib/tools@0.6.2) (2018-05-09)
+
+
+### Bug Fixes
+
+* **lint:** lint fixes ([f059583](https://github.com/pie-framework/pie-lib/commit/f059583))
+
+
+
+
 <a name="0.6.1"></a>
 ## [0.6.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.6.0...@pie-lib/tools@0.6.1) (2018-05-09)
 
