@@ -1,0 +1,42 @@
+#!/usr/bin/env node
+
+const argv = require('minimist')(process.argv.slice(2));
+const debug = require('debug');
+const fs = require('fs-extra');
+const { processFix, watch } = require('@pie-framework/build-helper');
+const log = debug('@pie-lib:scripts:watch');
+
+let watcher = null;
+
+processFix(log, () => {
+  if (watcher) {
+    watcher.exit();
+  }
+  process.exit();
+});
+
+const scope = argv.scope
+  ? Array.isArray(argv.scope)
+    ? argv.scope
+    : [argv.scope]
+  : fs.readdirSync('packages').filter(n => !n.startsWith('.'));
+
+const run = async () => {
+  log('scope: ', scope);
+  const args = scope.map(s => ({
+    src: `packages/${s}/src`,
+    target: `packages/${s}/lib`
+  }));
+
+  watcher = watch(args);
+};
+
+run()
+  .then(() => {
+    log('running');
+  })
+  .catch(e => {
+    //eslint-disable-next-line
+    console.error(e);
+    throw e;
+  });
