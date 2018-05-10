@@ -59,6 +59,10 @@ describe('feedback', () => {
       assert('unknown', {}, undefined);
     });
 
+    describe('partially-correct', () => {
+      assert('partially-correct', {}, 'Nearly');
+    });
+
     describe('partial', () => {
       assert('partial', {}, 'Nearly');
       assert('partial', { partial: { type: 'default' } }, 'Nearly');

@@ -16,6 +16,13 @@ const defaults = {
  *  @property {FeedbackConfig} partial
  */
 
+const normalizeCorrectness = c => {
+  if (c === 'partially-correct') {
+    return 'partial';
+  }
+  return c;
+};
+
 /**
  * Get the feedback for the correctness
  *
@@ -24,6 +31,7 @@ const defaults = {
  */
 export const getFeedbackForCorrectness = (correctness, feedback) =>
   new Promise(resolve => {
+    correctness = normalizeCorrectness(correctness);
     const fb = feedback[correctness] || defaults[correctness] || {};
     const d = defaults[correctness] || {};
     getFeedback(fb, d[fb.type || 'default']).then(result => resolve(result));
