@@ -3,7 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="5.4.1"></a>
+      <a name="6.0.0"></a>
+# [6.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@5.4.1...@pie-lib/config-ui@6.0.0) (2018-05-10)
+
+
+### Features
+
+* **feedback-config:** streamline feedback model ([047bcf7](https://github.com/pie-framework/pie-lib/commit/047bcf7))
+
+
+### BREAKING CHANGES
+
+* **feedback-config:** * FeedbackSelector - onFeedbackChange -> onChange
+* FeedbackConfig + FeedbackSelector now work with model like so:
+```javascript
+{
+correct: {type, default, custom},
+incorrect: {type, default, custom},
+partial: {type, default, custom}
+}
+```
+* LegacyFeedbackSelector is gone
+
+
+
+
+      <a name="5.4.1"></a>
 ## [5.4.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@5.4.0...@pie-lib/config-ui@5.4.1) (2018-05-10)
 
 
