@@ -83,8 +83,7 @@ class RawContainer extends React.Component {
         two: 2
       },
       feedback: feedbackConfigDefaults({
-        correctFeedbackType: 'custom',
-        correctFeedback: 'custom message'
+        correct: { type: 'custom', custom: 'custom message' }
       }),
       lang: 'en-US',
       activeLang: 'en-US',
@@ -204,9 +203,7 @@ class RawContainer extends React.Component {
             <FeedbackSelector
               label={'Some Feedback:'}
               feedback={this.state.selector}
-              onFeedbackChange={feedback =>
-                this.setState({ selector: feedback })
-              }
+              onChange={feedback => this.setState({ selector: feedback })}
             />
           </Section>
           <Section name="FeedbackConfig">

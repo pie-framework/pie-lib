@@ -10,6 +10,7 @@ const feedbackLabels = {
   none: 'No Feedback',
   custom: 'Customized Feedback'
 };
+
 const holder = (theme, extras) => ({
   marginTop: '0px',
   background: '#e0dee0',
@@ -47,37 +48,35 @@ const style = theme => ({
   }
 });
 
-class FeedbackSelector extends React.Component {
+export const FeedbackType = {
+  type: PropTypes.oneOf(['default', 'custom', 'none']),
+  default: PropTypes.string,
+  custom: PropTypes.string
+};
+
+export class FeedbackSelector extends React.Component {
   static propTypes = {
     keys: PropTypes.arrayOf(PropTypes.string),
     classes: PropTypes.object.isRequired,
     label: PropTypes.string.isRequired,
-    feedback: PropTypes.shape({
-      type: PropTypes.oneOf(['default', 'none', 'custom']).isRequired,
-      customFeedback: PropTypes.string,
-      default: PropTypes.string.isRequired
-    }),
-    onFeedbackChange: PropTypes.func.isRequired
+    feedback: PropTypes.shape(FeedbackType).isRequired,
+    onChange: PropTypes.func.isRequired
   };
 
-  constructor(props) {
-    super(props);
-  }
-
-  onTypeChange = type => {
-    this.props.onFeedbackChange(Object.assign(this.props.feedback, { type }));
+  changeType = type => {
+    const { onChange, feedback } = this.props;
+    onChange({ ...feedback, type });
   };
 
-  onCustomFeedbackChange = customFeedback => {
-    this.props.onFeedbackChange(
-      Object.assign(this.props.feedback, { customFeedback })
-    );
+  changeCustom = custom => {
+    const { onChange, feedback } = this.props;
+    onChange({ ...feedback, type: 'custom', custom });
   };
 
   render() {
     const { keys, classes, label, feedback } = this.props;
 
-    let feedbackKeys = keys || Object.keys(feedbackLabels);
+    const feedbackKeys = keys || Object.keys(feedbackLabels);
 
     return (
       <div className={classes.feedbackSelector}>
@@ -91,7 +90,7 @@ class FeedbackSelector extends React.Component {
             keys={feedbackKeys}
             label={label}
             value={feedback.type}
-            handleChange={this.onTypeChange}
+            onChange={this.changeType}
             feedbackLabels={feedbackLabels}
           />
         </InputContainer>
@@ -99,8 +98,8 @@ class FeedbackSelector extends React.Component {
           <div className={classes.customHolder}>
             <EditableHTML
               className={classes.editor}
-              onChange={this.onCustomFeedbackChange}
-              markup={feedback.customFeedback || ''}
+              onChange={this.changeCustom}
+              markup={feedback.custom || ''}
             />
           </div>
         )}

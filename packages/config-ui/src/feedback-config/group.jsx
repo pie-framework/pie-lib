@@ -23,7 +23,7 @@ const Group = ({
   value,
   classes,
   className,
-  handleChange,
+  onChange,
   keys
 }) => (
   <div className={classNames(classes.choiceHolder, className)}>
@@ -36,7 +36,7 @@ const Group = ({
             classes={{
               label: classes.radioLabel
             }}
-            onChange={e => handleChange(e.currentTarget.value)}
+            onChange={e => onChange(e.currentTarget.value)}
             label={feedbackLabels[key]}
           />
         </div>
@@ -51,7 +51,7 @@ Group.propTypes = {
   value: PropTypes.string.isRequired,
   classes: PropTypes.object.isRequired,
   keys: PropTypes.arrayOf(PropTypes.string),
-  handleChange: PropTypes.func
+  onChange: PropTypes.func
 };
 
 export default withStyles(styles)(Group);

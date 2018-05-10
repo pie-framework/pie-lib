@@ -1,6 +1,5 @@
 import FeedbackConfig, {
   FeedbackSelector,
-  LegacyFeedbackSelector,
   buildDefaults as feedbackConfigDefaults
 } from './feedback-config';
 import { InputCheckbox, InputSwitch, InputRadio } from './inputs';
@@ -32,7 +31,6 @@ export {
   InputSwitch,
   Langs,
   LanguageControls,
-  LegacyFeedbackSelector,
   MuiBox,
   NChoice,
   NumberTextField,
