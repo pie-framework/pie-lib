@@ -1,11 +1,24 @@
-import { getFeedback } from '../index';
+import { getFeedbackForCorrectness, getFeedback } from '../index';
 describe('feedback', () => {
   describe('getFeedback', () => {
+    const assert = (config, fallback, expected) => {
+      it(`${JSON.stringify(config)} -> ${expected}`, async () => {
+        const result = await getFeedback(config, fallback);
+        expect(result).toEqual(expected);
+      });
+    };
+
+    assert({ type: 'none' }, 'foo', undefined);
+    assert({ type: 'default' }, 'foo', 'foo');
+    assert({ type: 'default', default: 'bar' }, 'foo', 'bar');
+  });
+
+  describe('getFeedbackForCorrectness', () => {
     const assert = (correctness, config, expected) => {
       it(`${correctness} + ${JSON.stringify(
         config
       )} -> ${expected}`, async () => {
-        const result = await getFeedback(correctness, config);
+        const result = await getFeedbackForCorrectness(correctness, config);
         expect(result).toEqual(expected);
       });
     };
