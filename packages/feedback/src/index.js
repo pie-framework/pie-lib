@@ -1,4 +1,4 @@
-const defaults = {
+export const defaults = {
   correct: { type: 'default', default: 'Correct', custom: 'Correct' },
   incorrect: { type: 'default', default: 'Incorrect', custom: 'Incorrect' },
   partial: { type: 'default', default: 'Nearly', custom: 'Nearly' }
