@@ -1,4 +1,4 @@
-import { getFeedbackForCorrectness, getFeedback } from '../index';
+import { getFeedbackForCorrectness, getFeedback, defaults } from '../index';
 describe('feedback', () => {
   describe('getFeedback', () => {
     const assert = (config, fallback, expected) => {
@@ -53,6 +53,10 @@ describe('feedback', () => {
         { incorrect: { type: 'custom', custom: 'Custom' } },
         'Custom'
       );
+    });
+
+    describe('unanswered', () => {
+      assert('unanswered', {}, defaults.unanswered.default);
     });
 
     describe('unknown', () => {
