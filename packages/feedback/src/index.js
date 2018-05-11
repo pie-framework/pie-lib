@@ -36,6 +36,7 @@ const normalizeCorrectness = c => {
  */
 export const getFeedbackForCorrectness = (correctness, feedback) =>
   new Promise(resolve => {
+    feedback = { ...defaults, ...feedback };
     correctness = normalizeCorrectness(correctness);
     const fb = feedback[correctness] || defaults[correctness] || {};
     const d = defaults[correctness] || {};

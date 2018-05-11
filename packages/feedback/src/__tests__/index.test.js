@@ -24,6 +24,7 @@ describe('feedback', () => {
     };
 
     describe('correct', () => {
+      assert('correct', null, 'Correct');
       assert('correct', {}, 'Correct');
       assert('correct', { correct: { type: 'default' } }, 'Correct');
       assert('correct', { correct: { type: 'default', default: 'C' } }, 'C');
