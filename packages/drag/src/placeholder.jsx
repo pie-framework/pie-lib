@@ -9,7 +9,6 @@ export const PlaceHolder = ({
   className,
   isOver,
   type,
-  index,
   grid,
   disabled
 }) => {
@@ -34,6 +33,23 @@ export const PlaceHolder = ({
       {children}
     </div>
   );
+};
+
+PlaceHolder.propTypes = {
+  classes: PropTypes.object.isRequired,
+  grid: PropTypes.shape({
+    columns: PropTypes.number,
+    rows: PropTypes.number
+  }),
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]).isRequired,
+  className: PropTypes.string,
+  isOver: PropTypes.bool,
+  index: PropTypes.number,
+  type: PropTypes.string,
+  disabled: PropTypes.bool
 };
 
 const styles = theme => ({
@@ -66,17 +82,5 @@ const styles = theme => ({
     color: 'rgba(0,0,0,0.6)'
   }
 });
-
-PlaceHolder.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired,
-  className: PropTypes.string,
-  isOver: PropTypes.bool,
-  index: PropTypes.number,
-  type: PropTypes.string,
-  disabled: PropTypes.bool
-};
 
 export default withStyles(styles)(PlaceHolder);
