@@ -1,0 +1,24 @@
+{
+  "name": "@pie-lib/drag",
+  "version": "0.0.1",
+  "description": "",
+  "main": "lib/index.js",
+  "dependencies": {
+    "classnames": "^2.2.5"
+  },
+  "devDependencies": {
+    "react-dnd": "^3.0.0",
+    "react-dnd-html5-backend": "^2.6.0",
+    "material-ui": "^1.0.0-beta.47"
+  },
+  "peerDependencies": {
+    "react-dnd": "^3.0.0",
+    "react-dnd-html5-backend": "^2.6.0",
+    "material-ui": "^1.0.0-beta.47"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "",
+  "license": "ISC"
+}
