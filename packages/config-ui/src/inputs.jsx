@@ -1,10 +1,10 @@
-import Checkbox from 'material-ui/Checkbox';
-import Radio from 'material-ui/Radio';
+import Checkbox from '@material-ui/core/Checkbox';
+import Radio from '@material-ui/core/Radio';
 import InputContainer from './input-container';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Switch from 'material-ui/Switch';
-import { withStyles } from 'material-ui/styles';
+import Switch from '@material-ui/core/Switch';
+import { withStyles } from '@material-ui/core/styles';
 
 const InputTypes = {
   classes: PropTypes.object.isRequired,

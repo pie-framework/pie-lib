@@ -25,26 +25,5 @@ exports[`response-indicators snapshot  - with feedback  1`] = `
       correct
     </div>
   </span>
-  <div>
-    <span>
-      Popover
-    </span>
-    <div>
-      <div>
-        <div
-          className="Feedback-corespringFeedback-5"
-        >
-          <div
-            className="Feedback-content-6 Feedback-correct-7"
-            dangerouslySetInnerHTML={
-              Object {
-                "__html": "hi",
-              }
-            }
-          />
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 `;

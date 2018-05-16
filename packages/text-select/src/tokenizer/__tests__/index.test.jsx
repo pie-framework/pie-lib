@@ -1,5 +1,4 @@
 import { Tokenizer } from '../index';
-import { ExpansionPanelActions } from 'material-ui';
 import { shallow } from 'enzyme';
 import React from 'react';
 import { words, sentences } from '../builder';

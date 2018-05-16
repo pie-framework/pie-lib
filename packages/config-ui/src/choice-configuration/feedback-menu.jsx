@@ -1,6 +1,7 @@
-import Menu, { MenuItem } from 'material-ui/Menu';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 import ActionFeedback from '@material-ui/icons/Feedback';
-import IconButton from 'material-ui/IconButton';
+import IconButton from '@material-ui/core/IconButton';
 import PropTypes from 'prop-types';
 import React from 'react';
 

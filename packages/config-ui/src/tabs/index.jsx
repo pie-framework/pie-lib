@@ -1,6 +1,7 @@
 import React from 'react';
 
-import MuiTabs, { Tab as MuiTab } from 'material-ui/Tabs';
+import MuiTabs from '@material-ui/core/Tabs';
+import MuiTab from '@material-ui/core/Tab';
 import PropTypes from 'prop-types';
 
 export default class Tabs extends React.Component {

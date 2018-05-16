@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
-import green from 'material-ui/colors/green';
-import orange from 'material-ui/colors/orange';
+import green from '@material-ui/core/colors/green';
+import orange from '@material-ui/core/colors/orange';
 
 const CorrectnessToken = props => {
   const { classes } = props;

@@ -1,9 +1,9 @@
-import IconButton from 'material-ui/IconButton';
+import IconButton from '@material-ui/core/IconButton';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { buttonStyle } from './styles';
 import merge from 'lodash/merge';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
   root: {

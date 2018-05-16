@@ -1,9 +1,9 @@
-import InputLabel from 'material-ui/Input/InputLabel';
+import InputLabel from '@material-ui/core/InputLabel';
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
-import { withStyles } from 'material-ui/styles';
-import { FormControl } from 'material-ui/Form';
+import { withStyles } from '@material-ui/core/styles';
+import FormControl from '@material-ui/core/FormControl';
 
 const RawInputContainer = props => {
   const { label, className, children, classes } = props;

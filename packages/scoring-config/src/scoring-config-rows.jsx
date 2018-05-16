@@ -1,8 +1,8 @@
-import Button from 'material-ui/Button';
+import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 import React from 'react';
 import cloneDeep from 'lodash/cloneDeep';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import debug from 'debug';
 import Row from './row';
 

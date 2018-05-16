@@ -1,7 +1,7 @@
-import { FormControlLabel } from 'material-ui/Form';
-import Radio from 'material-ui/Radio';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Radio from '@material-ui/core/Radio';
 import React from 'react';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 export default withStyles({
   label: {
@@ -12,8 +12,7 @@ export default withStyles({
   <FormControlLabel
     value={value}
     classes={classes}
-    control={<Radio
-      checked={checked}
-      onChange={onChange} />}
-    label={label} />
+    control={<Radio checked={checked} onChange={onChange} />}
+    label={label}
+  />
 ));

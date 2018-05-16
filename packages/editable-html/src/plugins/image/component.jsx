@@ -1,9 +1,9 @@
-import { LinearProgress } from 'material-ui/Progress';
+import LinearProgress from '@material-ui/core/LinearProgress';
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 import debug from 'debug';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import SlatePropTypes from 'slate-prop-types';
 
 const log = debug('@pie-lib:editable-html:plugins:image:component');

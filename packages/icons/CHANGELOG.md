@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.2.0"></a>
+# [2.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.1.8...@pie-lib/icons@2.2.0) (2018-05-16)
+
+
+### Features
+
+* upgrade material-ui -> [@material-ui](https://github.com/material-ui)/core@^1.0.0-rc.1 ([017ef63](https://github.com/pie-framework/pie-lib/commit/017ef63))
+
+
+
+
 <a name="2.1.8"></a>
 ## [2.1.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.1.7...@pie-lib/icons@2.1.8) (2018-05-09)
 

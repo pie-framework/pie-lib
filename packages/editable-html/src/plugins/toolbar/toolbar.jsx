@@ -2,7 +2,7 @@ import { Button, MarkButton } from './toolbar-buttons';
 
 import Check from '@material-ui/icons/Check';
 import Delete from '@material-ui/icons/Delete';
-import IconButton from 'material-ui/IconButton';
+import IconButton from '@material-ui/core/IconButton';
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
@@ -10,7 +10,7 @@ import debug from 'debug';
 import SlatePropTypes from 'slate-prop-types';
 
 import { findSingleNode, hasBlock, hasMark } from '../utils';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 const log = debug('pie-elements:editable-html:plugins:toolbar');
 

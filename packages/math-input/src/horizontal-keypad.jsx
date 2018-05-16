@@ -5,7 +5,7 @@ import BasicOperatorsPad from './basic-operators';
 import Clear from '@material-ui/icons/Clear';
 import Down from '@material-ui/icons/KeyboardArrowDown';
 import Extras from './extras';
-import IconButton from 'material-ui/IconButton';
+import IconButton from '@material-ui/core/IconButton';
 import Left from '@material-ui/icons/KeyboardArrowLeft';
 import NumberPad from './number-pad';
 import Right from '@material-ui/icons/KeyboardArrowRight';
@@ -14,7 +14,7 @@ import { buttonStyle } from './styles';
 import classNames from 'classnames';
 import debug from 'debug';
 import merge from 'lodash/merge';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 
 const log = debug('math-input:keypad');

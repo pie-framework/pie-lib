@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import { normalize, intersection } from './builder';
-import yellow from 'material-ui/colors/yellow';
-import green from 'material-ui/colors/green';
+import yellow from '@material-ui/core/colors/yellow';
+import green from '@material-ui/core/colors/green';
 import debug from 'debug';
 import classNames from 'classnames';
 

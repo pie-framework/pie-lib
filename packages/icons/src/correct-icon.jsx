@@ -2,7 +2,7 @@ import IconBase from './icon-base';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { getStyles } from './icon-root';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 const styles = getStyles('correct', '#f8ffe2', '#4aaf46');
 

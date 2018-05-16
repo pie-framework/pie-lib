@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { NumberTextField } from '../number-text-field';
-import TextField from 'material-ui/TextField';
+import TextField from '@material-ui/core/TextField';
 
 describe('NumberTextField', () => {
   describe('render', () => {
