@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.1.0"></a>
+# [2.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@2.0.26...@pie-lib/scoring-config@2.1.0) (2018-05-16)
+
+
+### Features
+
+* upgrade material-ui -> [@material-ui](https://github.com/material-ui)/core@^1.0.0-rc.1 ([017ef63](https://github.com/pie-framework/pie-lib/commit/017ef63))
+
+
+
+
 <a name="2.0.26"></a>
 ## [2.0.26](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@2.0.25...@pie-lib/scoring-config@2.0.26) (2018-05-10)
 

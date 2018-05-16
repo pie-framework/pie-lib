@@ -3,7 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-      <a name="6.0.0"></a>
+  <a name="6.1.0"></a>
+# [6.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@6.0.0...@pie-lib/config-ui@6.1.0) (2018-05-16)
+
+
+### Features
+
+* upgrade material-ui -> [@material-ui](https://github.com/material-ui)/core@^1.0.0-rc.1 ([017ef63](https://github.com/pie-framework/pie-lib/commit/017ef63))
+
+
+
+
+  <a name="6.0.0"></a>
 # [6.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@5.4.1...@pie-lib/config-ui@6.0.0) (2018-05-10)
 
 
@@ -28,7 +39,7 @@ partial: {type, default, custom}
 
 
 
-      <a name="5.4.1"></a>
+<a name="5.4.1"></a>
 ## [5.4.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@5.4.0...@pie-lib/config-ui@5.4.1) (2018-05-10)
 
 
