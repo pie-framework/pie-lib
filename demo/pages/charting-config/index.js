@@ -49,11 +49,11 @@ class ChartingConfigDemo extends React.Component {
     this.setState({ mounted: true });
   }
 
-  onChange = (newConfig) => {
+  onChange = newConfig => {
     this.setState({
-      config: newConfig,
+      config: newConfig
     });
-  }
+  };
 
   render() {
     const { mounted, config } = this.state;

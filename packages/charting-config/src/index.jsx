@@ -8,7 +8,7 @@ export default class ChartingConfig extends React.Component {
     config: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     resetToDefaults: PropTypes.func.isRequired
-  }
+  };
 
   onChange = (name, shouldNotBeNumber, isCheckbox) => event => {
     const { config } = this.props;
@@ -16,7 +16,11 @@ export default class ChartingConfig extends React.Component {
     const newConfig = { ...config };
 
     if (!isNaN(newValue) || shouldNotBeNumber || isCheckbox) {
-      newConfig[name] = shouldNotBeNumber ? (isCheckbox ? event.target.checked : event.target.value) : newValue;
+      newConfig[name] = shouldNotBeNumber
+        ? isCheckbox
+          ? event.target.checked
+          : event.target.value
+        : newValue;
 
       this.props.onChange(newConfig, name);
     }
@@ -25,18 +29,21 @@ export default class ChartingConfig extends React.Component {
   render() {
     const { config, onChange, resetToDefaults } = this.props;
 
+    // return <div>foo</div>;
+
     return [
       <GraphAttributeConfig
         key="graph-attribute-config"
         config={config}
         onChange={onChange}
-      />,
-      <DisplayConfig
-        key="graph-display-config"
-        config={config}
-        onChange={onChange}
-        resetToDefaults={resetToDefaults}
       />
     ];
+    //   <DisplayConfig
+    //     key="graph-display-config"
+    //     config={config}
+    //     onChange={onChange}
+    //     resetToDefaults={resetToDefaults}
+    //   />
+    // ];
   }
 }

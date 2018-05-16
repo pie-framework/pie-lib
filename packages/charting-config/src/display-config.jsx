@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Input from 'material-ui/Input';
-import Button from 'material-ui/Button';
+import { withStyles } from '@material-ui/core/styles';
+import Input from '@material-ui/core/Input';
+import Button from '@material-ui/core/Button';
 import { InputCheckbox, InputContainer } from '@pie-lib/config-ui';
 import Box from './box';
 
@@ -25,7 +25,7 @@ const styles = theme => ({
   },
   displayInput: {
     width: '90%'
-  },
+  }
 });
 
 class DisplayConfig extends React.Component {
@@ -108,13 +108,15 @@ class DisplayConfig extends React.Component {
               <InputCheckbox
                 label="Show Point Labels"
                 checked={config.showPointLabels}
-                onChange={onChange('showPointLabels', true, true)}/>
+                onChange={onChange('showPointLabels', true, true)}
+              />
             </div>
             <div className={classes.optionsCheckbox}>
               <InputCheckbox
                 label="Show Axis Labels"
                 checked={config.showAxisLabels}
-                onChange={onChange('showAxisLabels', true, true)}/>
+                onChange={onChange('showAxisLabels', true, true)}
+              />
             </div>
           </div>
           <div className={classes.displayOptionsContainer}>
@@ -122,7 +124,8 @@ class DisplayConfig extends React.Component {
               <InputCheckbox
                 label="Show Point Coordinates"
                 checked={config.showCoordinates}
-                onChange={onChange('showCoordinates', true, true)}/>
+                onChange={onChange('showCoordinates', true, true)}
+              />
             </div>
           </div>
         </div>

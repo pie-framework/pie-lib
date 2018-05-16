@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Typography from 'material-ui/Typography';
-import Input from 'material-ui/Input';
+import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Input from '@material-ui/core/Input';
 import { InputContainer } from '@pie-lib/config-ui';
 import Box from './box';
 
@@ -24,7 +24,7 @@ const styles = () => ({
   graphAttributesContainer: {
     display: 'flex',
     flexDirection: 'column'
-  },
+  }
 });
 
 class GraphAttributeConfig extends React.Component {
@@ -41,10 +41,11 @@ class GraphAttributeConfig extends React.Component {
       <Box>
         <h2>Graph Attributes</h2>
         <Typography type="body1">
-            <span>
-              Use this section to setup the graph area. Note: Minimum value may not be greater than 0.
-              Maximum value may not be less than 0. Minimum and maximum values can not be equal.
-            </span>
+          <span>
+            Use this section to setup the graph area. Note: Minimum value may
+            not be greater than 0. Maximum value may not be less than 0. Minimum
+            and maximum values can not be equal.
+          </span>
         </Typography>
         <h3>Domain (X)</h3>
         <div className={classes.graphAttributesContainer}>
