@@ -5,15 +5,7 @@
   },
   "version": "0.2.0",
   "description": "Some react based pie-charting configuring components",
-  "keywords": [
-    "react",
-    "pie",
-    "charting",
-    "config"
-  ],
-  "scripts": {
-    "test": "./node_modules/.bin/jest"
-  },
+  "keywords": ["react", "pie", "charting", "config"],
   "repository": "pie-framework/pie-lib",
   "main": "lib/index.js",
   "author": "",
