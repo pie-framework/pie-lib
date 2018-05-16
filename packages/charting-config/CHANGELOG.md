@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.2.1"></a>
+## [0.2.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting-config@0.2.0...@pie-lib/charting-config@0.2.1) (2018-05-16)
+
+
+### Bug Fixes
+
+* rm test script ([1c4643d](https://github.com/pie-framework/pie-lib/commit/1c4643d))
+
+
+
+
 <a name="0.2.0"></a>
 # 0.2.0 (2018-05-16)
 
