@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import { indicators, Feedback } from '@pie-lib/render-ui';
 import withRoot from '../src/withRoot';
 const { Correct, Incorrect, PartiallyCorrect, NothingSubmitted } = indicators;

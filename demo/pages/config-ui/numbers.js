@@ -1,9 +1,9 @@
 import { NumberTextField, InputCheckbox, InputRadio } from '@pie-lib/config-ui';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Typography from 'material-ui/Typography';
+import Typography from '@material-ui/core/Typography';
 import debug from 'debug';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import withRoot from '../../src/withRoot';
 import Section from '../../src/formatting/section';
 
