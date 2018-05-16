@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Typography from 'material-ui/Typography';
 import debug from 'debug';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import withRoot from '../../src/withRoot';
 
 // eslint-disable-next-line

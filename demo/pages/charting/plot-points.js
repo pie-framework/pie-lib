@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { PlotPoints, pointUtils as utils } from '@pie-lib/charting';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import debug from 'debug';
 import InfoPanel from '../../src/info-panel';
 import withRoot from '../../src/withRoot';

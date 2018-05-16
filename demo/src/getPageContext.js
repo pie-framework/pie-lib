@@ -1,7 +1,10 @@
 /* eslint-disable no-underscore-dangle */
 
 import { SheetsRegistry } from 'jss';
-import { createMuiTheme, createGenerateClassName } from 'material-ui/styles';
+import {
+  createMuiTheme,
+  createGenerateClassName
+} from '@material-ui/core/styles';
 const theme = createMuiTheme({});
 
 function createPageContext() {

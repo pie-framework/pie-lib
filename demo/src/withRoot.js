@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { MuiThemeProvider } from 'material-ui/styles';
+import { MuiThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from 'material-ui/CssBaseline';
 import getPageContext from './getPageContext';
 import Root from './root';

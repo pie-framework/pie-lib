@@ -3,12 +3,13 @@ import React from 'react';
 import _ from 'lodash';
 import debug from 'debug';
 import Checkbox from 'material-ui/Checkbox';
-import { FormGroup, FormControlLabel } from 'material-ui/Form';
+import FormGroup from 'material-ui/FormGroup';
+import FormControlLabel from 'material-ui/FormControlLabel';
 import TextField from 'material-ui/TextField';
 import withRoot from '../src/withRoot';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
-import Typography from 'material-ui/Typography';
+import Typography from '@material-ui/core/Typography';
 
 const log = debug('@pie-lib:editable-html:demo');
 const puppySrc = `https://bit.ly/23yROY8`;

@@ -1,8 +1,9 @@
 import Checkbox from 'material-ui/Checkbox';
 import React from 'react';
 import Toggle from '@pie-lib/correct-answer-toggle';
-import { withStyles } from 'material-ui/styles';
-import { FormGroup, FormControlLabel } from 'material-ui/Form';
+import { withStyles } from '@material-ui/core/styles';
+import FormGroup from 'material-ui/FormGroup';
+import FormControlLabel from 'material-ui/FormControlLabel';
 import Typography from 'material-ui/Typography';
 
 import withRoot from '../src/withRoot';
