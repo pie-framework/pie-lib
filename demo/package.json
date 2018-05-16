@@ -9,6 +9,7 @@
     "@pie-lib/charting-config": "^0.2.1",
     "@pie-lib/config-ui": "^7.1.1",
     "@pie-lib/correct-answer-toggle": "^2.1.0",
+    "@pie-lib/drag": "^0.2.0",
     "@pie-lib/editable-html": "^6.1.0",
     "@pie-lib/icons": "~2.2.0",
     "@pie-lib/math-input": "^4.1.0",
@@ -23,6 +24,8 @@
     "next": "6.0.2",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
+    "react-dnd": "^3.0.0",
+    "react-dnd-html5-backend": "^2.6.0",
     "url-loader": "^1.0.1"
   }
 }

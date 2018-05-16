@@ -2,6 +2,7 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import grey from '@material-ui/core/colors/grey';
 
 export const PlaceHolder = ({
   children,
@@ -56,30 +57,22 @@ const styles = theme => ({
   placeholder: {
     width: '100%',
     height: '100%',
-    background: '#f8f6f6',
-    boxShadow: 'inset 3px 4px 2px 0 rgba(0,0,0,0.08)',
-    border: '1px solid #c2c2c2',
-    transition: 'background-color 200ms linear',
+    background: '#EEEEEE',
+    border: '1px solid #D1D1D1',
+    transition: 'background-color 200ms linear, border-color 200ms linear',
     boxSizing: 'border-box',
     display: 'grid',
     gridRowGap: `${theme.spacing.unit}px`,
     gridColumnGap: `${theme.spacing.unit}px`,
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: theme.spacing.unit * 0.5
+    padding: theme.spacing.unit * 1
   },
   disabled: {
     boxShadow: 'none',
     background: 'white'
   },
   over: {
-    backgroundColor: '#ddd'
-  },
-  number: {
-    width: '100%',
-    fontSize: '30px',
-    textAlign: 'center',
-    color: 'rgba(0,0,0,0.6)'
+    border: `1px solid ${grey[500]}`,
+    backgroundColor: `${grey[300]}`
   }
 });
 

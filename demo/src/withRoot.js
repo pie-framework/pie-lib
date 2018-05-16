@@ -21,7 +21,8 @@ const links = [
   { label: 'tools - ruler', path: '/tools/ruler' },
   { label: 'tools - protractor', path: '/tools/protractor' },
   { label: 'tools - rotatable', path: '/tools/rotatable' },
-  { label: 'text-select', path: '/text-select' }
+  { label: 'text-select', path: '/text-select' },
+  { label: 'drag', path: '/drag' }
 ];
 
 function withRoot(Component) {
