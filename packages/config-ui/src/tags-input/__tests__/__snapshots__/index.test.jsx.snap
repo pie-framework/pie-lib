@@ -55,13 +55,13 @@ exports[`TagsInput snapshots renders 1`] = `
                   className="Component-tag-3"
                   classes={
                     Object {
-                      "avatar": "MuiChip-avatar-4",
-                      "avatarChildren": "MuiChip-avatarChildren-5",
-                      "clickable": "MuiChip-clickable-2",
-                      "deletable": "MuiChip-deletable-3",
-                      "deleteIcon": "MuiChip-deleteIcon-7",
-                      "label": "MuiChip-label-6",
-                      "root": "MuiChip-root-1",
+                      "avatar": "MuiChip-avatar-7",
+                      "avatarChildren": "MuiChip-avatarChildren-8",
+                      "clickable": "MuiChip-clickable-5",
+                      "deletable": "MuiChip-deletable-6",
+                      "deleteIcon": "MuiChip-deleteIcon-10",
+                      "label": "MuiChip-label-9",
+                      "root": "MuiChip-root-4",
                     }
                   }
                   component="div"
@@ -69,38 +69,38 @@ exports[`TagsInput snapshots renders 1`] = `
                   onDelete={[Function]}
                 >
                   <div
-                    className="MuiChip-root-1 MuiChip-deletable-3 Component-tag-3"
+                    className="MuiChip-root-4 MuiChip-deletable-6 Component-tag-3"
                     onKeyDown={[Function]}
                     role="button"
                     tabIndex={0}
                   >
                     <span
-                      className="MuiChip-label-6"
+                      className="MuiChip-label-9"
                     >
                       foo
                     </span>
                     <pure(Cancel)
-                      className="MuiChip-deleteIcon-7"
+                      className="MuiChip-deleteIcon-10"
                       onClick={[Function]}
                     >
                       <Cancel
-                        className="MuiChip-deleteIcon-7"
+                        className="MuiChip-deleteIcon-10"
                         onClick={[Function]}
                       >
                         <WithStyles(SvgIcon)
-                          className="MuiChip-deleteIcon-7"
+                          className="MuiChip-deleteIcon-10"
                           onClick={[Function]}
                         >
                           <SvgIcon
-                            className="MuiChip-deleteIcon-7"
+                            className="MuiChip-deleteIcon-10"
                             classes={
                               Object {
-                                "colorAction": "MuiSvgIcon-colorAction-11",
-                                "colorDisabled": "MuiSvgIcon-colorDisabled-13",
-                                "colorError": "MuiSvgIcon-colorError-12",
-                                "colorPrimary": "MuiSvgIcon-colorPrimary-9",
-                                "colorSecondary": "MuiSvgIcon-colorSecondary-10",
-                                "root": "MuiSvgIcon-root-8",
+                                "colorAction": "MuiSvgIcon-colorAction-14",
+                                "colorDisabled": "MuiSvgIcon-colorDisabled-16",
+                                "colorError": "MuiSvgIcon-colorError-15",
+                                "colorPrimary": "MuiSvgIcon-colorPrimary-12",
+                                "colorSecondary": "MuiSvgIcon-colorSecondary-13",
+                                "root": "MuiSvgIcon-root-11",
                               }
                             }
                             color="inherit"
@@ -109,7 +109,7 @@ exports[`TagsInput snapshots renders 1`] = `
                           >
                             <svg
                               aria-hidden="true"
-                              className="MuiSvgIcon-root-8 MuiChip-deleteIcon-7"
+                              className="MuiSvgIcon-root-11 MuiChip-deleteIcon-10"
                               focusable="false"
                               onClick={[Function]}
                               viewBox="0 0 24 24"
