@@ -6,27 +6,37 @@ import GraphAttributeConfig from './graph-attribute-config';
 export default class ChartingConfig extends React.Component {
   static propTypes = {
     config: PropTypes.object.isRequired,
-    onGridParameterChange: PropTypes.func.isRequired,
-    onModelConfigAttributeChange: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired,
     resetToDefaults: PropTypes.func.isRequired
   }
 
+  onChange = (name, shouldNotBeNumber, isCheckbox) => event => {
+    const { config } = this.props;
+    const newValue = parseInt(event.target.value, 10);
+    const newConfig = { ...config };
+
+    if (!isNaN(newValue) || shouldNotBeNumber || isCheckbox) {
+      newConfig[name] = shouldNotBeNumber ? (isCheckbox ? event.target.checked : event.target.value) : newValue;
+
+      this.props.onChange(newConfig, name);
+    }
+  };
+
   render() {
-    const { config, onGridParameterChange, onModelConfigAttributeChange, resetToDefaults } = this.props;
+    const { config, onChange, resetToDefaults } = this.props;
 
     return [
       <GraphAttributeConfig
         key="graph-attribute-config"
         config={config}
-        onGridParameterChange={onGridParameterChange}
-        onModelConfigAttributeChange={onModelConfigAttributeChange}
+        onChange={onChange}
       />,
       <DisplayConfig
         key="graph-display-config"
         config={config}
-        onModelConfigAttributeChange={onModelConfigAttributeChange}
+        onChange={onChange}
         resetToDefaults={resetToDefaults}
-    />
+      />
     ];
   }
 }

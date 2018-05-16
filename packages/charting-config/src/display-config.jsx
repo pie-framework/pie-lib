@@ -32,12 +32,12 @@ class DisplayConfig extends React.Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     config: PropTypes.object.isRequired,
-    onModelConfigAttributeChange: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired,
     resetToDefaults: PropTypes.func.isRequired
   };
 
   render() {
-    const { classes, config, onModelConfigAttributeChange, resetToDefaults } = this.props;
+    const { classes, config, onChange, resetToDefaults } = this.props;
 
     return (
       <Box>
@@ -48,7 +48,7 @@ class DisplayConfig extends React.Component {
             <Input
               className={classes.displayInput}
               type="text"
-              onChange={onModelConfigAttributeChange('graphTitle', true)}
+              onChange={onChange('graphTitle', true)}
               value={config.graphTitle}
               placeholder="Enter Value"
             />
@@ -57,7 +57,7 @@ class DisplayConfig extends React.Component {
             <Input
               className={classes.displayInput}
               type="text"
-              onChange={onModelConfigAttributeChange('domainLabel', true)}
+              onChange={onChange('domainLabel', true)}
               value={config.domainLabel}
               placeholder="Enter Value"
             />
@@ -66,7 +66,7 @@ class DisplayConfig extends React.Component {
             <Input
               className={classes.displayInput}
               type="text"
-              onChange={onModelConfigAttributeChange('rangeLabel', true)}
+              onChange={onChange('rangeLabel', true)}
               value={config.rangeLabel}
               placeholder="Enter Value"
             />
@@ -82,7 +82,7 @@ class DisplayConfig extends React.Component {
               }}
               className={classes.displayInput}
               type="number"
-              onChange={onModelConfigAttributeChange('graphWidth')}
+              onChange={onChange('graphWidth')}
               value={config.graphWidth}
               placeholder="Enter Value"
             />
@@ -96,7 +96,7 @@ class DisplayConfig extends React.Component {
               }}
               className={classes.displayInput}
               type="number"
-              onChange={onModelConfigAttributeChange('graphHeight')}
+              onChange={onChange('graphHeight')}
               value={config.graphHeight}
               placeholder="Enter Value"
             />
@@ -108,13 +108,13 @@ class DisplayConfig extends React.Component {
               <InputCheckbox
                 label="Show Point Labels"
                 checked={config.showPointLabels}
-                onChange={onModelConfigAttributeChange('showPointLabels', true, true)}/>
+                onChange={onChange('showPointLabels', true, true)}/>
             </div>
             <div className={classes.optionsCheckbox}>
               <InputCheckbox
                 label="Show Axis Labels"
                 checked={config.showAxisLabels}
-                onChange={onModelConfigAttributeChange('showAxisLabels', true, true)}/>
+                onChange={onChange('showAxisLabels', true, true)}/>
             </div>
           </div>
           <div className={classes.displayOptionsContainer}>
@@ -122,7 +122,7 @@ class DisplayConfig extends React.Component {
               <InputCheckbox
                 label="Show Point Coordinates"
                 checked={config.showCoordinates}
-                onChange={onModelConfigAttributeChange('showCoordinates', true, true)}/>
+                onChange={onChange('showCoordinates', true, true)}/>
             </div>
           </div>
         </div>

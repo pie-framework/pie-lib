@@ -31,12 +31,11 @@ class GraphAttributeConfig extends React.Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     config: PropTypes.object.isRequired,
-    onGridParameterChange: PropTypes.func.isRequired,
-    onModelConfigAttributeChange: PropTypes.func.isRequired
+    onChange: PropTypes.func.isRequired
   };
 
   render() {
-    const { classes, config, onGridParameterChange, onModelConfigAttributeChange } = this.props;
+    const { classes, config, onChange } = this.props;
 
     return (
       <Box>
@@ -58,7 +57,7 @@ class GraphAttributeConfig extends React.Component {
                   }}
                   className={classes.attributeInput}
                   type="number"
-                  onChange={onGridParameterChange('domainMin')}
+                  onChange={onChange('domainMin')}
                   value={config.domainMin}
                   placeholder="Enter Minimum"
                 />
@@ -67,7 +66,7 @@ class GraphAttributeConfig extends React.Component {
                 <Input
                   className={classes.attributeInput}
                   type="number"
-                  onChange={onModelConfigAttributeChange('domainStepValue')}
+                  onChange={onChange('domainStepValue')}
                   value={config.domainStepValue}
                   placeholder="Enter Tick"
                 />
@@ -76,7 +75,7 @@ class GraphAttributeConfig extends React.Component {
                 <Input
                   className={classes.attributeInput}
                   type="number"
-                  onChange={onModelConfigAttributeChange('domainLabelFrequency')}
+                  onChange={onChange('domainLabelFrequency')}
                   value={config.domainLabelFrequency}
                   placeholder="Enter Tick Label Frequency"
                 />
@@ -90,7 +89,7 @@ class GraphAttributeConfig extends React.Component {
                   }}
                   className={classes.attributeInput}
                   type="number"
-                  onChange={onGridParameterChange('domainMax')}
+                  onChange={onChange('domainMax')}
                   value={config.domainMax}
                   placeholder="Enter Maximum"
                 />
@@ -99,7 +98,7 @@ class GraphAttributeConfig extends React.Component {
                 <Input
                   className={classes.attributeInput}
                   type="number"
-                  onChange={onModelConfigAttributeChange('domainSnapValue')}
+                  onChange={onChange('domainSnapValue')}
                   value={config.domainSnapValue}
                   placeholder="Enter Snap"
                 />
@@ -111,7 +110,7 @@ class GraphAttributeConfig extends React.Component {
                   }}
                   className={classes.attributeInput}
                   type="number"
-                  onChange={onModelConfigAttributeChange('domainGraphPadding')}
+                  onChange={onChange('domainGraphPadding')}
                   value={config.domainGraphPadding}
                   placeholder="Enter Padding"
                 />
@@ -130,7 +129,7 @@ class GraphAttributeConfig extends React.Component {
                   }}
                   className={classes.attributeInput}
                   type="number"
-                  onChange={onGridParameterChange('rangeMin')}
+                  onChange={onChange('rangeMin')}
                   value={config.rangeMin}
                   placeholder="Enter Minimum"
                 />
@@ -139,7 +138,7 @@ class GraphAttributeConfig extends React.Component {
                 <Input
                   className={classes.attributeInput}
                   type="number"
-                  onChange={onModelConfigAttributeChange('rangeStepValue')}
+                  onChange={onChange('rangeStepValue')}
                   value={config.rangeStepValue}
                   placeholder="Enter Tick"
                 />
@@ -148,7 +147,7 @@ class GraphAttributeConfig extends React.Component {
                 <Input
                   className={classes.attributeInput}
                   type="number"
-                  onChange={onModelConfigAttributeChange('rangeLabelFrequency')}
+                  onChange={onChange('rangeLabelFrequency')}
                   value={config.rangeLabelFrequency}
                   placeholder="Enter Tick Label Frequency"
                 />
@@ -162,7 +161,7 @@ class GraphAttributeConfig extends React.Component {
                   }}
                   className={classes.attributeInput}
                   type="number"
-                  onChange={onGridParameterChange('rangeMax')}
+                  onChange={onChange('rangeMax')}
                   value={config.rangeMax}
                   placeholder="Enter Maximum"
                 />
@@ -171,7 +170,7 @@ class GraphAttributeConfig extends React.Component {
                 <Input
                   className={classes.attributeInput}
                   type="number"
-                  onChange={onModelConfigAttributeChange('rangeSnapValue')}
+                  onChange={onChange('rangeSnapValue')}
                   value={config.rangeSnapValue}
                   placeholder="Enter Snap"
                 />
@@ -183,7 +182,7 @@ class GraphAttributeConfig extends React.Component {
                   }}
                   className={classes.attributeInput}
                   type="number"
-                  onChange={onModelConfigAttributeChange('rangeGraphPadding')}
+                  onChange={onChange('rangeGraphPadding')}
                   value={config.rangeGraphPadding}
                   placeholder="Enter Padding"
                 />

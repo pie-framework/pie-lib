@@ -65,7 +65,7 @@ describe('DisplayConfig', () => {
   beforeEach(() => {
     props = {
       config: defaultProps.model.model.config,
-      onModelConfigAttributeChange: jest.fn(),
+      onChange: jest.fn(),
       resetToDefaults: jest.fn()
     };
 
@@ -89,8 +89,7 @@ describe('GraphAttributeConfig', () => {
   beforeEach(() => {
     props = {
       config: defaultProps.model.model.config,
-      onGridParameterChange: jest.fn(),
-      onModelConfigAttributeChange: jest.fn()
+      onChange: jest.fn()
     };
 
     wrapper = shallowChild(GraphAttributeConfig, props, 1);
