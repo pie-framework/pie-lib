@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/config-ui",
-  "version": "7.1.0",
+  "version": "7.1.1",
   "main": "lib/index.js",
   "publishConfig": {
     "access": "public"
