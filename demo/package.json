@@ -6,7 +6,7 @@
     "@material-ui/core": "^1.0.0-rc.1",
     "@material-ui/icons": "^1.0.0-rc.0",
     "@pie-lib/charting": "^2.2.3",
-    "@pie-lib/charting-config": "^0.1.0",
+    "@pie-lib/charting-config": "../packages/charting-config/src",
     "@pie-lib/config-ui": "^7.0.0",
     "@pie-lib/correct-answer-toggle": "^2.1.0",
     "@pie-lib/editable-html": "^6.0.0",

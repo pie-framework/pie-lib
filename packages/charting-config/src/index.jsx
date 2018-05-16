@@ -27,23 +27,20 @@ export default class ChartingConfig extends React.Component {
   };
 
   render() {
-    const { config, onChange, resetToDefaults } = this.props;
-
-    // return <div>foo</div>;
+    const { config, resetToDefaults } = this.props;
 
     return [
       <GraphAttributeConfig
         key="graph-attribute-config"
         config={config}
-        onChange={onChange}
+        onChange={this.onChange}
+      />,
+      <DisplayConfig
+        key="graph-display-config"
+        config={config}
+        onChange={this.onChange}
+        resetToDefaults={resetToDefaults}
       />
     ];
-    //   <DisplayConfig
-    //     key="graph-display-config"
-    //     config={config}
-    //     onChange={onChange}
-    //     resetToDefaults={resetToDefaults}
-    //   />
-    // ];
   }
 }

@@ -5,7 +5,12 @@
   },
   "version": "0.1.0",
   "description": "Some react based pie-charting configuring components",
-  "keywords": ["react", "pie", "charting", "config"],
+  "keywords": [
+    "react",
+    "pie",
+    "charting",
+    "config"
+  ],
   "scripts": {
     "test": "./node_modules/.bin/jest"
   },
@@ -15,7 +20,7 @@
   "license": "ISC",
   "dependencies": {
     "@pie-lib/config-ui": "^7.1.1",
-    "material-ui": "^1.0.0-rc.1",
+    "@material-ui/core": "^1.0.0-rc.1",
     "prop-types": "^15.6.0"
   },
   "peerDependencies": {
