@@ -1,8 +1,8 @@
 import React from 'react';
 import { NumberTextField } from '@pie-lib/config-ui';
-import IconButton from 'material-ui/IconButton';
+import IconButton from '@material-ui/core/IconButton';
 import ActionDelete from '@material-ui/icons/Delete';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 
 const Row = ({

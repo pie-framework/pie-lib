@@ -2,7 +2,7 @@ import FeedbackSelector, { FeedbackType } from './feedback-selector';
 import FormSection from '../form-section';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import merge from 'lodash/merge';
 
 export { FeedbackSelector };

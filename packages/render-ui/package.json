@@ -1,7 +1,8 @@
 {
   "name": "@pie-lib/render-ui",
   "version": "2.0.11",
-  "description": "Some shared ui elements when rendering - but not worthy of their own package yet.",
+  "description":
+    "Some shared ui elements when rendering - but not worthy of their own package yet.",
   "main": "lib/index.js",
   "publishConfig": {
     "access": "public"
@@ -12,7 +13,7 @@
   "dependencies": {
     "@pie-lib/icons": "^2.1.8",
     "debug": "^3.1.0",
-    "material-ui": "^1.0.0-beta.44",
+    "@material-ui/core": "^1.0.0-rc.1",
     "react-transition-group": "^2.3.1"
   },
   "peerDependencies": {

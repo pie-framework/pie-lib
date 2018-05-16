@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import TextField from 'material-ui/TextField';
+import { withStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
 import classNames from 'classnames';
 import InputContainer from '../input-container';
 import EditableHtml from '@pie-lib/editable-html';
 import { InputCheckbox, InputRadio } from '../inputs';
 import FeedbackMenu from './feedback-menu';
 import ActionDelete from '@material-ui/icons/Delete';
-import IconButton from 'material-ui/IconButton';
-import Typography from 'material-ui/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
 
 const EditableHtmlContainer = withStyles(theme => ({
   labelContainer: {},

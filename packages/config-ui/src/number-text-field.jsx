@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import TextField from 'material-ui/TextField';
+import TextField from '@material-ui/core/TextField';
 import classNames from 'classnames';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import debug from 'debug';
 import isFinite from 'lodash/isFinite';
-import { InputAdornment } from 'material-ui/Input';
+import InputAdornment from '@material-ui/core/InputAdornment';
 const log = debug('@pie-lib:config-ui:number-text-field');
 
 const styles = theme => ({

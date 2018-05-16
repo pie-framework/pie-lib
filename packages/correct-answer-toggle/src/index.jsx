@@ -1,5 +1,5 @@
 import styles from './styles';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import CSSTransition from 'react-transition-group/CSSTransition';
 import { CorrectResponse } from '@pie-lib/icons';
 import Expander from './expander';

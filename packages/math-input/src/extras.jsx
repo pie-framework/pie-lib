@@ -21,7 +21,7 @@ import PropTypes from 'prop-types';
 
 import React from 'react';
 import merge from 'lodash/merge';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 // Subscript/Superscript section
 const subscript = {

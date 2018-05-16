@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Controls from './controls';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import { words, sentences } from './builder';
 import clone from 'lodash/clone';
 import isEqual from 'lodash/isEqual';

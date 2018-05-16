@@ -12,18 +12,15 @@
     "dev": "./scripts/dev",
     "lint": "./node_modules/.bin/eslint --ext .js --ext .jsx packages/**/src",
     "postinstall": "cd demo && yarn install",
-    "lint-two":
-      "lerna exec -- \\$LERNA_ROOT_PATH/node_modules/.bin/eslint  --ignore-path \\$LERNA_ROOT_PATH/.eslintignore --ext .js --ext .jsx src",
+    "lint-two": "lerna exec -- \\$LERNA_ROOT_PATH/node_modules/.bin/eslint  --ignore-path \\$LERNA_ROOT_PATH/.eslintignore --ext .js --ext .jsx src",
     "clean": "lerna exec -- rm -fr lib",
-    "release":
-      "npm run clean && npm test && npm run build && lerna publish --conventional-commits",
-    "build":
-      "npm run clean && npm run lint-two && lerna exec -- \\$LERNA_ROOT_PATH/node_modules/.bin/babel --ignore '/__test__/','/__tests__/' src -d lib"
+    "release": "npm run clean && npm test && npm run build && lerna publish --conventional-commits",
+    "build": "npm run clean && npm run lint-two && lerna exec -- \\$LERNA_ROOT_PATH/node_modules/.bin/babel --ignore '/__test__/','/__tests__/' src -d lib"
   },
   "devDependencies": {
+    "@babel/runtime": "7.0.0-beta.46",
     "@pie-framework/build-helper": "^1.0.3",
     "@pie-lib/test-utils": "^0.0.3",
-    "@babel/runtime": "7.0.0-beta.46",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.2",
@@ -46,5 +43,8 @@
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "regenerator-runtime": "^0.11.1"
+  },
+  "dependencies": {
+    "@material-ui/codemod": "^1.0.0-rc.0"
   }
 }

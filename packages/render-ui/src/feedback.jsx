@@ -1,7 +1,7 @@
 /**
  * Lifted from multiple-choice - TODO: create a shared package for it.
  */
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 import React from 'react';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';

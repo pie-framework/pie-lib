@@ -7,7 +7,7 @@ import React from 'react';
 import { Value, Block } from 'slate';
 import { buildPlugins, DEFAULT_PLUGINS } from './plugins';
 import debug from 'debug';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 export { DEFAULT_PLUGINS, serialization };
 

@@ -3,7 +3,7 @@ import { MarkButton } from '../toolbar/toolbar-buttons';
 import PropTypes from 'prop-types';
 import React from 'react';
 import debug from 'debug';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import SlatePropTypes from 'slate-prop-types';
 
 const log = debug('@pie-lib:editable-html:plugins:image:image-toolbar');
