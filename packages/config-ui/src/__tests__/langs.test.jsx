@@ -6,6 +6,7 @@ describe('langs', () => {
   let onChange;
   const wrapper = extras => {
     const defaults = {
+      uid: '1',
       onChange,
       classes: {},
       langs: ['en-US', 'es-ES']

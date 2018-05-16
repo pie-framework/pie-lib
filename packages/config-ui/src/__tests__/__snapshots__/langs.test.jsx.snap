@@ -4,12 +4,12 @@ exports[`langs snapshot renders 1`] = `
 <div>
   <WithStyles(FormControl)>
     <WithStyles(InputLabel)
-      htmlFor="89"
+      htmlFor="1"
     />
     <WithStyles(Select)
       input={
         <WithStyles(Input)
-          id="89"
+          id="1"
         />
       }
       onChange={[Function]}

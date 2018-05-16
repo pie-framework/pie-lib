@@ -34,12 +34,13 @@ export class RawLangs extends React.Component {
     langs: PropTypes.array,
     selected: PropTypes.string,
     label: PropTypes.string,
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
+    uid: PropTypes.string
   };
 
   constructor(props) {
     super(props);
-    this.uid = (Math.random() * 10000).toFixed();
+    this.uid = props.uid || (Math.random() * 10000).toFixed();
   }
 
   choose = event => {
