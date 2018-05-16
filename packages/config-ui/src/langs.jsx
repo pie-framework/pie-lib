@@ -28,7 +28,7 @@ const styles = theme => ({
   }
 });
 
-class RawLangs extends React.Component {
+export class RawLangs extends React.Component {
   static propTypes = {
     onChange: PropTypes.func,
     langs: PropTypes.array,
