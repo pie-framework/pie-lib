@@ -28,24 +28,25 @@ const styles = theme => ({
   }
 });
 
-class RawLangs extends React.Component {
+export class RawLangs extends React.Component {
   static propTypes = {
     onChange: PropTypes.func,
     langs: PropTypes.array,
-    selected: PropTypes.bool,
+    selected: PropTypes.string,
     label: PropTypes.string,
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
+    uid: PropTypes.string
   };
 
   constructor(props) {
     super(props);
-    this.uid = (Math.random() * 10000).toFixed();
+    this.uid = props.uid || (Math.random() * 10000).toFixed();
   }
 
   choose = event => {
     log('[choose] event: ', event);
     if (this.props.onChange) {
-      this.props.onChange(event.currentTarget.getAttribute('value'));
+      this.props.onChange(event.target.value);
     }
   };
 

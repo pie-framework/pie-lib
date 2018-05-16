@@ -17,9 +17,9 @@ import {
 } from '@pie-lib/config-ui';
 
 import React from 'react';
-import Typography from 'material-ui/Typography';
+import Typography from '@material-ui/core/Typography';
 import debug from 'debug';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import withRoot from '../../src/withRoot';
 
 const log = debug('demo:config-ui');

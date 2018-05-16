@@ -12,7 +12,7 @@ import renderer from 'react-test-renderer';
 
 mockMathInput();
 
-jest.mock('material-ui/IconButton', () => {
+jest.mock('@material-ui/core/IconButton', () => {
   return props => (
     <div
       className={props.className}

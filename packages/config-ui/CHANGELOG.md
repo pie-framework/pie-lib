@@ -3,7 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-  <a name="6.1.0"></a>
+  <a name="7.1.1"></a>
+## [7.1.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@7.1.0...@pie-lib/config-ui@7.1.1) (2018-05-16)
+
+
+### Bug Fixes
+
+* **config-ui:** fixed material ui issues and language select issue ([59ac854](https://github.com/pie-framework/pie-lib/commit/59ac854))
+* **langs:** add optional uid prop ([cebf555](https://github.com/pie-framework/pie-lib/commit/cebf555))
+
+
+
+
+  <a name="7.0.1"></a>
+## [7.0.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@7.0.0...@pie-lib/config-ui@7.0.1) (2018-05-16)
+
+
+
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+<a name="6.1.0"></a>
 # [6.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@6.0.0...@pie-lib/config-ui@6.1.0) (2018-05-16)
 
 
@@ -14,7 +34,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-  <a name="6.0.0"></a>
+<a name="6.0.0"></a>
 # [6.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@5.4.1...@pie-lib/config-ui@6.0.0) (2018-05-10)
 
 
