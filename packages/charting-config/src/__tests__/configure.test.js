@@ -1,9 +1,10 @@
 import * as React from 'react';
 import DisplayConfig from '../display-config';
 import GraphAttributeConfig from '../graph-attribute-config';
-import Input from 'material-ui/Input';
-import Button from 'material-ui/Button';
+import Input from '@material-ui/core/Input';
+import Button from '@material-ui/core/Button';
 import { InputRadio, InputCheckbox, InputContainer } from '@pie-lib/config-ui';
+import * as configUi from '@pie-lib/config-ui';
 import Box from '../box';
 import { shallowChild } from '@pie-lib/test-utils';
 
@@ -21,7 +22,7 @@ const defaultProps = {
       partialFeedbackType: 'none',
       partialFeedbackValue: '',
       incorrectFeedbackType: 'none',
-      incorrectFeedbackValue: '',
+      incorrectFeedbackValue: ''
     },
     model: {
       config: {

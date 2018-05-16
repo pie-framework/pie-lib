@@ -5,12 +5,7 @@
   },
   "version": "0.1.0",
   "description": "Some react based pie-charting configuring components",
-  "keywords": [
-    "react",
-    "pie",
-    "charting",
-    "config"
-  ],
+  "keywords": ["react", "pie", "charting", "config"],
   "scripts": {
     "test": "./node_modules/.bin/jest"
   },
@@ -28,7 +23,7 @@
     "react-dom": "^16.3.2"
   },
   "devDependencies": {
-    "@pie-lib/test-utils": "0.0.2"
+    "@pie-lib/test-utils": "^0.0.3"
   },
   "jest": {
     "testRegex": "(/__tests__/.*\\.test.jsx|(\\.|/)(test|spec))\\.jsx?$"
