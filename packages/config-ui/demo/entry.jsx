@@ -16,12 +16,11 @@ import {
   MuiBox
 } from '../src/index';
 
-import Radio from 'material-ui/Radio';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Typography from 'material-ui/Typography';
+import Typography from '@material-ui/core/Typography';
 import debug from 'debug';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 const log = debug('demo:config-ui');
 
