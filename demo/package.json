@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/icons": "^1.0.0-beta.43",
     "@pie-lib/charting": "^2.2.0",
+    "@pie-lib/charting-config": "^0.1.0",
     "@pie-lib/config-ui": "^5.3.0",
     "@pie-lib/correct-answer-toggle": "^2.0.9",
     "@pie-lib/editable-html": "^5.0.12",

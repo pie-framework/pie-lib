@@ -9,6 +9,7 @@ const links = [
   { label: 'correct-answer-toggle', path: '/correct-answer-toggle' },
   { label: 'charting - PlotPoints', path: '/charting/plot-points' },
   { label: 'charting - GraphLines', path: '/charting/graph-lines' },
+  { label: 'charting - config', path: '/charting-config' },
   { label: 'icons', path: '/icons' },
   { label: 'math-input', path: '/math-input' },
   { label: 'config-ui', path: '/config-ui' },
