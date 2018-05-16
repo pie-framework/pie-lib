@@ -3,7 +3,7 @@ import React from 'react';
 import { Ruler } from '@pie-lib/tools';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
-import { Typography } from 'material-ui';
+import Typography from '@material-ui/core/Typography';
 import Link from 'next/link';
 
 class Demo extends React.Component {

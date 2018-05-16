@@ -4,7 +4,7 @@ import { Rotatable, utils } from '@pie-lib/tools';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Typography } from 'material-ui';
+import Typography from '@material-ui/core/Typography';
 
 const square = opts => {
   return { ...opts };

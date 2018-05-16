@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^1.0.0-rc.1",
-    "@material-ui/icons": "^1.0.0-beta.43",
+    "@material-ui/icons": "^1.0.0-rc.0",
     "@pie-lib/editable-html": "^5.1.0",
     "@pie-lib/icons": "^2.2.0",
     "debug": "^3.0.1",
