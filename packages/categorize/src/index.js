@@ -2,7 +2,8 @@ import compact from 'lodash/compact';
 import debug from 'debug';
 import clone from 'lodash/clone';
 import remove from 'lodash/remove';
-import toPairs from 'lodash/toPairs';
+import isEqual from 'lodash/isEqual';
+import every from 'lodash/every';
 
 const log = debug('@pie-lib:drag:categorize');
 
@@ -22,6 +23,13 @@ export const limitChoices = (choiceId, count, choices) => {
   return out.choices;
 };
 
+/**
+ * Limit in an array of arrays.
+ * So for an array with [[1,1],[1,1]] if you call limitInArray(1, arr, 3) you'll get: [[1,1], [1]]
+ * @param {*} id
+ * @param {*} arrays
+ * @param {*} limit
+ */
 export const limitInArrays = (id, arrays, limit) => {
   const result = arrays.reduce(
     (acc, array) => {
@@ -37,6 +45,13 @@ export const limitInArrays = (id, arrays, limit) => {
   return result.out;
 };
 
+/**
+ * Limit the id in the array to the limit set.
+ * So for an array with [1,1,1,1] if you call limitInArray(1, arr, 2) you'll get: [1,1]
+ * @param {string} id
+ * @param {string[]} arr
+ * @param {number} limit
+ */
 export const limitInArray = (id, arr, limit) => {
   if (limit === 0) {
     const stripped = arr.filter(v => v !== id);
@@ -83,6 +98,7 @@ export const ensureNoExtraChoicesInAnswer = (answer, choices) => {
   }, answer);
   return out;
 };
+
 /**
  * Count the number of choice ids in a given answer array
  * @param {string} choiceId
@@ -100,6 +116,11 @@ export const countInAnswer = (choiceId, answer) => {
 export const countInChoices = (choiceId, choices) =>
   (choices || []).filter(c => c === choiceId).length;
 
+/**
+ * Count the number of times a choice has been selected in categories.
+ * @param {*} choice
+ * @param {*} categories
+ */
 export const countChosen = (choice, categories) => {
   if (!choice || !choice.id) {
     return 0;
@@ -255,13 +276,33 @@ export const buildState = (
         }
       );
 
-      return { ...category, choices: out.choices };
+      const ids = out.choices.map(c => c.id).sort();
+      const correctIds = clone(cr ? cr.choices : []).sort();
+
+      log('ids: ', ids, 'correctIds: ', correctIds);
+      const correct = hasCorrectResponse ? isEqual(ids, correctIds) : undefined;
+      return {
+        ...category,
+        choices: out.choices,
+        correct
+      };
     } else {
-      return { ...category, choices: [] };
+      const correct =
+        correctChoices === undefined ? true : correctChoices.length === 0;
+      log('empty choices is that correct?', correctChoices);
+      return {
+        ...category,
+        choices: [],
+        correct
+      };
     }
   };
 
   const withChoices = categories.map(addChoices);
+
+  const correct = correctResponse
+    ? every(withChoices, category => category.correct)
+    : undefined;
 
   const stillSelectable = h => {
     if (h.categoryCount > 0) {
@@ -280,5 +321,5 @@ export const buildState = (
     }
   });
 
-  return { choices: filteredChoices, categories: withChoices };
+  return { choices: filteredChoices, categories: withChoices, correct };
 };

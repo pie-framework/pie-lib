@@ -7,29 +7,37 @@ import {
   limitInArray,
   limitInArrays,
   removeAllChoices
-} from '../categorize';
+} from '../index';
 import range from 'lodash/range';
 import util from 'util';
 import debug from 'debug';
+import { cat, cats, choice, answer } from './utils';
 
 const log = debug('@pie-lib:drag:test');
 
 const inspect = o => util.inspect(o, { color: true });
 
 describe('categorize', () => {
-  const cat = id => ({ id });
-  const choice = (id, categoryCount, correct) => {
-    const out = { id, categoryCount };
+  describe('countChosen', () => {
+    const assert = (choice, categories, expected) => {
+      const l = (categories || []).map(c => c.choices || []);
 
-    if (correct === false || correct === true) {
-      out.correct = correct;
-    }
-    return out;
-  };
-  const answer = (category, choices) => {
-    const c = choices ? (Array.isArray(choices) ? choices : [choices]) : [];
-    return { category, choices: c };
-  };
+      it(`${JSON.stringify(choice)} + ${JSON.stringify(
+        l
+      )} = ${expected}`, () => {
+        expect(countChosen(choice, categories)).toEqual(expected);
+      });
+    };
+
+    assert(null, null, 0);
+    assert({}, null, 0);
+    assert({ id: '1' }, [], 0);
+    assert({ id: '1' }, [{ choices: undefined }], 0);
+    assert({ id: '1' }, [cats(['1'])], 1);
+    assert({ id: '1' }, [cats(['1', '1'])], 2);
+    assert({ id: '1' }, [cats(['1', '2'])], 1);
+    assert({ id: '1' }, [cats(['1']), cats(['1'])], 2);
+  });
 
   describe('limitInArrays', () => {
     const assert = (id, arrays, limit, expected) => {
@@ -60,7 +68,7 @@ describe('categorize', () => {
     });
   });
 
-  describe.only('removeAllChoices', () => {
+  describe('removeAllChoices', () => {
     it('strips if there is no category id', () => {
       const result = removeAllChoices('1', [{ choices: ['1'] }]);
       expect(result).toEqual([{ choices: [] }]);
@@ -177,9 +185,6 @@ describe('categorize', () => {
   });
 
   describe('countChosen', () => {
-    const cat = ids => ({
-      choices: ids.map(i => ({ id: i }))
-    });
     const assert = (choice, categories, expected) => {
       const l = (categories || []).map(c => c.choices || []);
 
@@ -194,10 +199,10 @@ describe('categorize', () => {
     assert({}, null, 0);
     assert({ id: '1' }, [], 0);
     assert({ id: '1' }, [{ choices: undefined }], 0);
-    assert({ id: '1' }, [cat(['1'])], 1);
-    assert({ id: '1' }, [cat(['1', '1'])], 2);
-    assert({ id: '1' }, [cat(['1', '2'])], 1);
-    assert({ id: '1' }, [cat(['1']), cat(['1'])], 2);
+    assert({ id: '1' }, [cats(['1'])], 1);
+    assert({ id: '1' }, [cats(['1', '1'])], 2);
+    assert({ id: '1' }, [cats(['1', '2'])], 1);
+    assert({ id: '1' }, [cats(['1']), cats(['1'])], 2);
   });
 
   describe('removeChoiceFromCategory', () => {
@@ -299,7 +304,9 @@ describe('categorize', () => {
       [answer('1', '1')],
       [],
       {
-        categories: [{ ...cat('1'), choices: [choice('1')] }],
+        categories: [
+          { ...cat('1'), choices: [choice('1')], correct: undefined }
+        ],
         choices: [choice('1')]
       }
     );
@@ -356,8 +363,9 @@ describe('categorize', () => {
       [answer('1', ['1'])],
       [answer('2', ['1'])],
       {
+        correct: false,
         categories: [
-          { ...cat('1'), choices: [choice('1', 0, false)] },
+          { ...cat('1'), choices: [choice('1', 0, false)], correct: false },
           {
             ...cat('2'),
             choices: []
@@ -374,10 +382,12 @@ describe('categorize', () => {
       [answer('1', ['1'])],
       [answer('1', ['1'])],
       {
+        correct: true,
         categories: [
           {
             ...cat('1'),
-            choices: [choice('1', 0, true)]
+            choices: [choice('1', 0, true)],
+            correct: true
           }
         ],
         choices: [{ ...choice('1', 0) }]
@@ -391,10 +401,12 @@ describe('categorize', () => {
       [answer('1', ['1', '1'])],
       [answer('1', ['1', '1'])],
       {
+        correct: true,
         categories: [
           {
             ...cat('1'),
-            choices: [choice('1', 0, true), choice('1', 0, true)]
+            choices: [choice('1', 0, true), choice('1', 0, true)],
+            correct: true
           }
         ],
         choices: [{ ...choice('1', 0) }]
@@ -408,10 +420,12 @@ describe('categorize', () => {
       [answer('1', ['1', '1'])],
       [answer('1', ['1'])],
       {
+        correct: false,
         categories: [
           {
             ...cat('1'),
-            choices: [choice('1', 0, true), choice('1', 0, false)]
+            choices: [choice('1', 0, true), choice('1', 0, false)],
+            correct: false
           }
         ],
         choices: [{ ...choice('1', 0) }]
@@ -419,14 +433,34 @@ describe('categorize', () => {
     );
 
     assert(
-      '1 category, 1 limited choice , 1 correct answer, correct response',
-      [cat('1')],
+      '2 categories, 1 limited choice , 1 correct answer, correct response',
+      [cat('1'), cat('2')],
       [choice('1', 1)],
       [answer('1', ['1'])],
       [answer('1', ['1'])],
       {
-        categories: [{ ...cat('1'), choices: [choice('1', 1, true)] }],
+        correct: true,
+        categories: [
+          { ...cat('1'), choices: [choice('1', 1, true)], correct: true },
+          { ...cat('2'), correct: true }
+        ],
         choices: [{ empty: true }]
+      }
+    );
+
+    assert(
+      '2 categories, 1 limited choice , empty answer, correct response',
+      [cat('1'), cat('2')],
+      [choice('1', 1)],
+      [],
+      [answer('1', ['1'])],
+      {
+        correct: false,
+        categories: [
+          { ...cat('1'), choices: [], correct: false },
+          { ...cat('2'), choices: [], correct: true }
+        ],
+        choices: [choice('1', 1)]
       }
     );
   });
