@@ -37,7 +37,7 @@ export const score = (categories, scoring) =>
     const weightingRules = getWeightingRules(scoring);
 
     const weights = categories.map(c => {
-      const r = weightingRules.find(r => r.category === c.id) || { weight: 1 };
+      const r = weightingRules.find(r => r.category === c.id) || { points: 1 };
       return { ...r, category: c.id };
     });
 
@@ -45,22 +45,22 @@ export const score = (categories, scoring) =>
 
     const weightTotal = categories.reduce((total, c) => {
       const r = weights.find(r => r.category === c.id);
-      return (total += r.weight);
+      return (total += r.points);
     }, 0);
 
     log('total: ', weightTotal);
 
     const withScore = categories.map(c => {
-      const w = weights.find(r => r.category === c.id).weight;
+      const w = weights.find(r => r.category === c.id).points;
 
       log('category: ', c);
       if (c.correct === true) {
-        return { category: c.id, score: w, weight: w };
+        return { category: c.id, score: w, points: w };
       } else {
         const rules = getPartialRulesForCategory(scoring.partial, c.id);
         log('partial rules for category: ', rules);
         if (!rules) {
-          return { category: c.id, score: 0, weight: w };
+          return { category: c.id, score: 0, points: w };
         } else {
           const correctCount = (c.choices || []).filter(h => h.correct).length;
           log('correctCount: ', correctCount);
@@ -71,7 +71,7 @@ export const score = (categories, scoring) =>
           return {
             category: c.id,
             score,
-            weight: w,
+            points: w,
             partial: {
               correctChoices: correctCount,
               rule: rule
