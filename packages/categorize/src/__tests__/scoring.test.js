@@ -93,7 +93,7 @@ describe('scoring', () => {
         {
           weighting: {
             enabled: true,
-            rules: [{ category: '2', weight: 3 }]
+            rules: [{ category: '2', points: 3 }]
           },
           partial: {
             enabled: true,
@@ -131,7 +131,7 @@ describe('scoring', () => {
         {
           weighting: {
             enabled: true,
-            rules: [{ category: '2', weight: 3 }]
+            rules: [{ category: '2', points: 3 }]
           },
           partial: {
             enabled: true,
@@ -154,12 +154,11 @@ describe('scoring', () => {
         assert(
           '2 equal weights',
           categories,
-          // [{ id: '1', correct: true }, { id: '2', correct: true }],
           {
             weighting: {
               rules: [
-                { category: '1', weight: 1 },
-                { category: '2', weight: 1 }
+                { category: '1', points: 1 },
+                { category: '2', points: 1 }
               ]
             }
           },
@@ -182,13 +181,12 @@ describe('scoring', () => {
         assert(
           '2 unequal weights',
           categories,
-          // [{ id: '1', correct: true }, { id: '2', correct: true }],
           {
             weighting: {
               enabled: true,
               rules: [
-                { category: '1', weight: 3 },
-                { category: '2', weight: 1 }
+                { category: '1', points: 3 },
+                { category: '2', points: 1 }
               ]
             }
           },
@@ -221,8 +219,8 @@ describe('scoring', () => {
             weighting: {
               enabled: true,
               rules: [
-                { category: '1', weight: 2 },
-                { category: '2', weight: 1 }
+                { category: '1', points: 2 },
+                { category: '2', points: 1 }
               ]
             }
           },
