@@ -13,7 +13,9 @@ export class Choice extends React.Component {
       PropTypes.node
     ])
   };
+
   static defaultProps = {};
+
   render() {
     const { classes, className, children } = this.props;
     return (
