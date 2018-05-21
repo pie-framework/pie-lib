@@ -4,7 +4,9 @@ import clone from 'lodash/clone';
 import remove from 'lodash/remove';
 import isEqual from 'lodash/isEqual';
 import every from 'lodash/every';
+import { score } from './scoring';
 
+export { score };
 const log = debug('@pie-lib:drag:categorize');
 
 export const limitChoices = (choiceId, count, choices) => {
