@@ -1,15 +1,12 @@
-
-
-# install 
+# install
 
 ```
 npm install
 ```
 
-
-# demo 
+# demo
 
 ```
-cd demo 
+cd demo
 ../node_modules/.bin/webpack-dev-server --hot --inline
 ```
