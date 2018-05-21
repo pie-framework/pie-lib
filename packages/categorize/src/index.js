@@ -7,7 +7,7 @@ import every from 'lodash/every';
 import { score } from './scoring';
 
 export { score };
-const log = debug('@pie-lib:drag:categorize');
+const log = debug('@pie-lib:categorize');
 
 export const limitChoices = (choiceId, count, choices) => {
   const out = choices.reduce(
