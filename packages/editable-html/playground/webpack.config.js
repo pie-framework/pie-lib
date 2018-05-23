@@ -5,7 +5,8 @@ module.exports = {
   devtool: 'eval-source-map',
   context: __dirname,
   entry: {
-    image: './image/index.jsx'
+    image: './image/index.jsx',
+    'prod-test': './prod-test/index.jsx'
   },
   output: {
     filename: '[name]/bundle.js',
@@ -13,6 +14,10 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.css$/,
+        loader: 'url-loader'
+      },
       {
         test: /\.jsx$/,
         loader: 'babel-loader',
@@ -25,5 +30,10 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.jsx']
+  },
+  externals: {
+    react: 'React',
+    'react-dom': 'ReactDOM',
+    'react-dom/server': 'ReactDOMServer'
   }
 };
