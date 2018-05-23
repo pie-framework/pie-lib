@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import EditableHtml from '../../src/index';
 
-class ImageDemo extends React.Component {
+class ProdTest extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,9 +13,8 @@ class ImageDemo extends React.Component {
   render() {
     return (
       <div>
-        EditableHtml - and react production issue
+        EditableHtml and react production
         <hr />
-        <p>This should work in react.prod - but it doesnt</p>
         <EditableHtml
           markup={this.state.markup}
           onChange={markup => this.setState({ markup })}
@@ -26,6 +25,6 @@ class ImageDemo extends React.Component {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const el = React.createElement(ImageDemo, {});
+  const el = React.createElement(ProdTest, {});
   ReactDOM.render(el, document.querySelector('#app'));
 });
