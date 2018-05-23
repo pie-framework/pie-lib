@@ -40,6 +40,6 @@ If you are running in production and have an external `React` and `ReactDOM`, yo
 ```html
   <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
-  <!-- this must be added ->
+  <!-- this must be added -->
   <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom-server.browser.production.min.js"></script>
 ```
