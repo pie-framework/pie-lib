@@ -33,7 +33,7 @@ module.exports = {
   },
   externals: {
     react: 'React',
-    'react-dom': 'ReactDOM'
-    // 'react-dom/server': 'ReactDOMServer'
+    'react-dom': 'ReactDOM',
+    'react-dom/server': 'ReactDOMServer'
   }
 };
