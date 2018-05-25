@@ -3,7 +3,7 @@ import { swap } from '../point/utils';
 
 const log = debug('pie-lib:charting:line:utils');
 
-class Expression {
+export class Expression {
   constructor(multiplier, b) {
     this.multiplier = multiplier;
     this.b = b;
@@ -16,7 +16,17 @@ class Expression {
   getY(x) {
     return this.multiplier * x + this.b;
   }
+
+  equals(other) {
+    return this.multiplier === other.multiplier && this.b === other.b;
+  }
 }
+
+export const pointsHaveSameExpression = (a, b) => {
+  const expressionA = expression(a.from, a.to);
+  const expressionB = expression(b.from, b.to);
+  return expressionA.equals(expressionB);
+};
 /**
  * Create a linear expression from 2 points
  */

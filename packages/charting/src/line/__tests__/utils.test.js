@@ -1,4 +1,10 @@
-import { expression, point, pointsFromExpression } from '../utils';
+import {
+  expression,
+  point,
+  pointsFromExpression,
+  Expression,
+  pointsHaveSameExpression
+} from '../utils';
 import { s } from '../../__tests__/string-helper';
 import debug from 'debug';
 
@@ -29,6 +35,29 @@ describe('points', () => {
   a({ multiplier: -3, b: -2 }, -10, 4);
 });
 
+describe('pointsHaveSameExpression', () => {
+  const assert = (a, b, expected) => {
+    it(`${a} ${b} = ${expected}`, () => {
+      const result = pointsHaveSameExpression(a, b);
+      expect(result).toEqual(expected);
+    });
+  };
+
+  assert(
+    { from: point(-3, -8), to: point(-2, -5) },
+    { from: point(-1, -2), to: point(0, 1) },
+    true
+  );
+});
+
+describe('Expression', () => {
+  describe('equals', () => {
+    it('is equal', () => {
+      expect(new Expression(2, 1).equals(new Expression(2, 1)));
+    });
+  });
+});
+
 describe('expression', () => {
   assert(point(0, 0), point(1, 1), 1, 0);
   assert(point(0, 1), point(1, 2), 1, 1);
@@ -40,4 +69,6 @@ describe('expression', () => {
   assert(point(-2, -5), point(2, -1), 1, -3);
   assert(point(-2, -5), point(2, -3), 0.5, -4);
   assert(point(-5, -10), point(-1, -3), 1.75, -1.25);
+  assert(point(-3, -8), point(-2, -5), 3, 1);
+  assert(point(-1, -2), point(0, 1), 3, 1);
 });
