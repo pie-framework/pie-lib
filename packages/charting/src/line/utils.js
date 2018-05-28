@@ -6,15 +6,16 @@ const log = debug('pie-lib:charting:line:utils');
 export class Expression {
   constructor(multiplier, b) {
     this.multiplier = multiplier;
-    this.b = b;
+    this.isVerticalLine = Math.abs(this.multiplier) === Infinity;
+    this.b = this.isVerticalLine ? undefined : b;
   }
 
   expr() {
-    return `${this.multiplier}x + ${this.b}`;
+    return this.isVerticalLine ? 'x' : `${this.multiplier}x + ${this.b}`;
   }
 
   getY(x) {
-    return this.multiplier * x + this.b;
+    return this.isVerticalLine ? x : this.multiplier * x + this.b;
   }
 
   equals(other) {

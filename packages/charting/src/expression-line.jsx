@@ -37,16 +37,19 @@ export class ExpressionLine extends React.Component {
     const { domain } = this.props;
     const expression = utils.expression(line.from, line.to);
 
+    const fromX = expression.isVerticalLine ? line.from.x : domain.min;
+    const toX = expression.isVerticalLine ? line.to.x : domain.max;
+
     const fromY = expression.getY(domain.min);
     const toY = expression.getY(domain.max);
 
     return {
       from: new VxPoint({
-        x: scale.x(domain.min),
+        x: scale.x(fromX),
         y: scale.y(fromY)
       }),
       to: new VxPoint({
-        x: scale.x(domain.max),
+        x: scale.x(toX),
         y: scale.y(toY)
       })
     };

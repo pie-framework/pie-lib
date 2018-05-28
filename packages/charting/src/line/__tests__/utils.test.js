@@ -13,7 +13,7 @@ const log = debug('pie-lib:charting:test');
 const assert = (from, to, multiplier, b) => {
   it(s`${from} -> ${to} == ${multiplier}x + ${b}`, () => {
     const result = expression(from, to);
-    expect(result).toEqual({
+    expect(result).toMatchObject({
       multiplier,
       b
     });
@@ -26,7 +26,7 @@ describe('points', () => {
     log('points: ', JSON.stringify(points));
     const e = expression(points.from, points.to);
     it(s`${expr} -> ${min}/${max} -> ${e} `, () => {
-      expect(e).toEqual(expr);
+      expect(e).toMatchObject(expr);
     });
   };
 
@@ -56,9 +56,29 @@ describe('Expression', () => {
       expect(new Expression(2, 1).equals(new Expression(2, 1)));
     });
   });
+
+  describe('isVerticalLine', () => {
+    it('returns true for Infinity multiplier', () => {
+      const e = new Expression(Infinity, 0);
+      expect(e.isVerticalLine).toEqual(true);
+    });
+    it('returns true for -Infinity multiplier', () => {
+      const e = new Expression(-Infinity, 0);
+      expect(e.isVerticalLine).toEqual(true);
+    });
+  });
+
+  describe('getY', () => {
+    it('returns value if isVerticalLine', () => {
+      const e = new Expression(Infinity, 0);
+      expect(e.getY(-10)).toEqual(-10);
+      expect(e.getY(10)).toEqual(10);
+    });
+  });
 });
 
 describe('expression', () => {
+  assert(point(0, 0), point(0, 1), Infinity, undefined);
   assert(point(0, 0), point(1, 1), 1, 0);
   assert(point(0, 1), point(1, 2), 1, 1);
   assert(point(0, 2), point(1, 3), 1, 2);
