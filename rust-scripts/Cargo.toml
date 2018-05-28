@@ -1,0 +1,6 @@
+[package]
+name = "rust_scripts"
+version = "0.1.0"
+authors = ["edeustace <ed.eustace@gmail.com>"]
+
+[dependencies]
