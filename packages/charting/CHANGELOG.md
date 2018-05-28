@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.3.0"></a>
+# [2.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@2.2.3...@pie-lib/charting@2.3.0) (2018-05-28)
+
+
+### Bug Fixes
+
+* **expression:** handle vertical lines which have no slope ([2cd6bb0](https://github.com/pie-framework/pie-lib/commit/2cd6bb0))
+
+
+### Features
+
+* add Expression.equals method ([5ae0c1e](https://github.com/pie-framework/pie-lib/commit/5ae0c1e))
+
+
+
+
 <a name="2.2.3"></a>
 ## [2.2.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@2.2.2...@pie-lib/charting@2.2.3) (2018-05-16)
 
