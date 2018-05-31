@@ -15,6 +15,7 @@ import TagsInput from './tags-input';
 import MuiBox from './mui-box';
 import ChoiceConfiguration from './choice-configuration';
 import * as choiceUtils from './choice-utils';
+import withStatefulModel from './with-stateful-model';
 
 export {
   ChoiceConfiguration,
@@ -36,5 +37,6 @@ export {
   NumberTextField,
   Tabs,
   TagsInput,
-  TwoChoice
+  TwoChoice,
+  withStatefulModel
 };
