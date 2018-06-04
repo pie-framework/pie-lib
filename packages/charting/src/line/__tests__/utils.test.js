@@ -50,6 +50,17 @@ describe('pointsHaveSameExpression', () => {
   );
 });
 
+describe.only('pointsFromExpression', () => {
+  const assert = (expression, expectedFrom, expectedTo) => {
+    it(`${expression}`, () => {
+      const result = pointsFromExpression(expression);
+      expect(result).toEqual({ from: expectedFrom, to: expectedTo });
+    });
+  };
+  assert(new Expression(3, 1), point(-1 / 3, 0), point(0, 1));
+  assert(new Expression(-1, 1), point(1, 0), point(0, 1));
+});
+
 describe('Expression', () => {
   describe('equals', () => {
     it('is equal', () => {
@@ -78,6 +89,8 @@ describe('Expression', () => {
 });
 
 describe('expression', () => {
+  assert(point(0, 1), point(1, 0), -1, 1);
+  assert(point(1, 0), point(0, 1), -1, 1);
   assert(point(0, 0), point(0, 1), Infinity, undefined);
   assert(point(0, 0), point(1, 1), 1, 0);
   assert(point(0, 1), point(1, 2), 1, 1);
