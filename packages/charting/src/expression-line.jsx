@@ -90,6 +90,19 @@ export class ExpressionLine extends React.Component {
     const l = preview || line;
 
     const points = this.buildExtendedLine(l, domain, range);
+    let label;
+
+    if (l.label) {
+      const xAvg = (points.from.x + points.to.x) / 2;
+      const yAvg = (points.from.y + points.to.y) / 2;
+      const rotation = Math.atan((points.to.y - points.from.y) / (points.to.x - points.from.x)) * 180 / Math.PI;
+      label = {
+        x: xAvg,
+        y: yAvg,
+        transform: `rotate(${rotation}, ${xAvg}, ${yAvg + 20})`
+      };
+    }
+
     return (
       <g>
         <Line
@@ -102,6 +115,9 @@ export class ExpressionLine extends React.Component {
           from={points.from}
           to={points.to}
         />
+        {label && <text {...label}>
+          {l.label}
+        </text>}
         <Point
           showCoordinates={true}
           x={line.from.x}

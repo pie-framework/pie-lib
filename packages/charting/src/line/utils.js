@@ -3,6 +3,8 @@ import { swap } from '../point/utils';
 
 const log = debug('pie-lib:charting:line:utils');
 
+const lineExpressionRegex = new RegExp(/([+|-]?\d+)?(x)?([+|-]\d+)?/i);
+
 export class Expression {
   constructor(multiplier, b) {
     this.multiplier = multiplier;
@@ -50,6 +52,22 @@ export const pointsFromExpression = (expression, min, max) => {
     to: point(max, toY)
   };
 };
+
+export const expressionFromDescriptor = descriptor => {
+  const lineDescriptor = descriptor.match(lineExpressionRegex);
+  const maybeB = parseInt(lineDescriptor[3], 10);
+  const maybeMultiplier = parseInt(lineDescriptor[1], 10)
+  let multiplier = isNaN(maybeMultiplier) ? (lineDescriptor[2] === undefined ? 0 : 1) : maybeMultiplier;
+  let b = isNaN(maybeB) ? 0 : maybeB;
+
+  // it's a constant, no variable found
+  if (lineDescriptor[2] === undefined) {
+    b = multiplier;
+    multiplier = 0;
+  }
+
+  return new Expression(multiplier, b);
+}
 
 export const hasLine = (lines, line) => lineIndex(lines, line) !== -1;
 
