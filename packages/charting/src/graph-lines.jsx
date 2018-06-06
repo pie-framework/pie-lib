@@ -47,7 +47,7 @@ export default class GraphLines extends React.Component {
       y: snapTo(range.min, range.max, range.step, point.y)
     };
 
-    if (!lines.length || (lines.length && maxLines > lines.length - 1)) {
+    if (!lines.length || (lines.length && maxLines > lines.length)) {
       if (!this.state.point) {
         this.setState({ point: snapped });
 
@@ -98,6 +98,7 @@ export default class GraphLines extends React.Component {
         {lines.map((l, index) => {
           return (
             <ExpressionLine
+              disabled={disabled}
               key={index}
               index={index}
               line={l}
@@ -113,7 +114,7 @@ export default class GraphLines extends React.Component {
           showCoordinates={true}
           showLabels={false}
           {...point}
-          disabled={false}
+          disabled={disabled}
           empty={false}
           bounds={this.getPointBounds(point)}
           interval={1}

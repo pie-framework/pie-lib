@@ -27,7 +27,12 @@ export class ExpressionLine extends React.Component {
     onChange: PropTypes.func.isRequired,
     classes: PropTypes.object.isRequired,
     onClick: PropTypes.func.isRequired,
-    selected: PropTypes.bool
+    selected: PropTypes.bool,
+    disabled: PropTypes.bool
+  };
+
+  static defaultProps = {
+    disabled: false
   };
 
   static contextTypes = ContextTypes();
@@ -82,7 +87,7 @@ export class ExpressionLine extends React.Component {
   };
 
   render() {
-    const { line, domain, range, classes, selected } = this.props;
+    const { disabled, line, domain, range, classes, selected } = this.props;
     const { preview } = this.state;
 
     log('[render] preview:', preview);
@@ -122,7 +127,7 @@ export class ExpressionLine extends React.Component {
           showCoordinates={true}
           x={line.from.x}
           y={line.from.y}
-          disabled={false}
+          disabled={disabled}
           empty={false}
           onDrag={this.onDragFrom}
           onMove={this.onMoveFrom}
@@ -135,7 +140,7 @@ export class ExpressionLine extends React.Component {
           showCoordinates={true}
           x={line.to.x}
           y={line.to.y}
-          disabled={false}
+          disabled={disabled}
           empty={false}
           onDrag={this.onDragTo}
           onMove={this.onMoveTo}
