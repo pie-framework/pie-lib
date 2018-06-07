@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.3.1"></a>
+## [2.3.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@2.3.0...@pie-lib/charting@2.3.1) (2018-06-07)
+
+
+### Bug Fixes
+
+* **lineUtils:** pointsFromExpression calculate using when x and y are 0 ([d641fcd](https://github.com/pie-framework/pie-lib/commit/d641fcd))
+
+
+
+
 <a name="2.3.0"></a>
 # [2.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@2.2.3...@pie-lib/charting@2.3.0) (2018-05-28)
 
