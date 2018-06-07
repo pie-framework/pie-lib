@@ -30,6 +30,7 @@ export class DomainAndRange extends React.Component {
   static childContextTypes = ContextTypes();
 
   static propTypes = {
+    className: PropTypes.string,
     classes: PropTypes.object.isRequired,
     disabled: PropTypes.bool.isRequired,
     children: PropTypes.node.isRequired,
@@ -101,6 +102,7 @@ export class DomainAndRange extends React.Component {
 
   render() {
     const {
+      className,
       classes,
       domain,
       range,
@@ -113,7 +115,7 @@ export class DomainAndRange extends React.Component {
     const { scale } = this.getScaleFunctions();
 
     return (
-      <div>
+      <div className={className}>
         {title && <h4 className={classes.title}>{title}</h4>}
         <svg
           width={width}

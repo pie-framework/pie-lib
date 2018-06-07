@@ -3,6 +3,8 @@ import { swap } from '../point/utils';
 
 const log = debug('pie-lib:charting:line:utils');
 
+const lineExpressionRegex = new RegExp(/([+|-]?\d+)?(x)?([+|-]\d+)?/i);
+
 export class Expression {
   constructor(multiplier, b) {
     this.multiplier = multiplier;
@@ -16,6 +18,10 @@ export class Expression {
 
   getY(x) {
     return this.isVerticalLine ? x : this.multiplier * x + this.b;
+  }
+
+  getX(y) {
+    return this.isVerticalLine ? y : (y - this.b) / this.multiplier;
   }
 
   equals(other) {
@@ -42,13 +48,35 @@ export const expression = (from, to) => {
 
 export const point = (x, y) => ({ x, y });
 
-export const pointsFromExpression = (expression, min, max) => {
-  const fromY = expression.multiplier * min + expression.b;
-  const toY = expression.multiplier * max + expression.b;
+export const pointsFromExpression = expression => {
+  const to = point(0, expression.b);
+  const huh = expression.getX(0);
+  const from = point(huh, 0);
+
   return {
-    from: point(min, fromY),
-    to: point(max, toY)
+    from,
+    to
   };
+};
+
+export const expressionFromDescriptor = descriptor => {
+  const lineDescriptor = descriptor.match(lineExpressionRegex);
+  const maybeB = parseInt(lineDescriptor[3], 10);
+  const maybeMultiplier = parseInt(lineDescriptor[1], 10);
+  let multiplier = isNaN(maybeMultiplier)
+    ? lineDescriptor[2] === undefined
+      ? 0
+      : 1
+    : maybeMultiplier;
+  let b = isNaN(maybeB) ? 0 : maybeB;
+
+  // it's a constant, no variable found
+  if (lineDescriptor[2] === undefined) {
+    b = multiplier;
+    multiplier = 0;
+  }
+
+  return new Expression(multiplier, b);
 };
 
 export const hasLine = (lines, line) => lineIndex(lines, line) !== -1;
