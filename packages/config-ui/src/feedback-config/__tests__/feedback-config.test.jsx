@@ -29,6 +29,7 @@ describe('FeedbackConfig', () => {
             feedback={feedback}
             defaults={defaults}
             onChange={jest.fn()}
+            classes={{}}
           />
         );
 
@@ -45,12 +46,29 @@ describe('FeedbackConfig', () => {
               feedback={feedback}
               defaults={defaults}
               onChange={jest.fn()}
+              classes={{}}
             />
           );
 
           selectors = component.find(FeedbackSelector);
 
           expect(selectors.length).toEqual(2);
+        });
+      });
+
+      describe('snapshot', () => {
+        it('matches the snapshot', () => {
+          component = shallow(
+            <FeedbackConfig
+              allowPartial={false}
+              feedback={feedback}
+              defaults={defaults}
+              onChange={jest.fn()}
+              classes={{}}
+            />
+          );
+
+          expect(component).toMatchSnapshot();
         });
       });
     });
