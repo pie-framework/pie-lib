@@ -62,6 +62,8 @@ const Feedback = withStyles(() => ({
 export class ChoiceConfiguration extends React.Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
+    noLabels: PropTypes.bool,
+    useLetterOrdering: PropTypes.bool,
     className: PropTypes.string,
     mode: PropTypes.oneOf(['checkbox', 'radio']),
     defaultFeedback: PropTypes.object.isRequired,
@@ -84,7 +86,9 @@ export class ChoiceConfiguration extends React.Component {
   };
 
   static defaultProps = {
-    index: -1
+    index: -1,
+    noLabels: false,
+    useLetterOrdering: false
   };
 
   _changeFn = key => update => {
@@ -136,6 +140,8 @@ export class ChoiceConfiguration extends React.Component {
       defaultFeedback,
       index,
       className,
+      noLabels,
+      useLetterOrdering,
       imageSupport
     } = this.props;
 
@@ -146,22 +152,30 @@ export class ChoiceConfiguration extends React.Component {
         <div className={classes.topRow}>
           {index > 0 && (
             <Typography className={classes.index} type="title">
-              {index}
+              {useLetterOrdering ? String.fromCharCode(96 + index).toUpperCase() : index}
             </Typography>
           )}
           <InputToggle
             className={classes.toggle}
             onChange={this.onCheckedChange}
-            label={'Correct'}
+            label={!noLabels ? 'Correct' : ''}
             checked={!!data.correct}
           />
-          <EditableHtmlContainer
-            label={'Label'}
-            value={data.label}
-            onChange={this.onLabelChange}
-            imageSupport={imageSupport}
-          />
-          <InputContainer className={classes.feedback} label="Feedback">
+          <div className={classes.middleColumn}>
+            <EditableHtmlContainer
+              label={!noLabels ? 'Label' : ''}
+              value={data.label}
+              onChange={this.onLabelChange}
+              imageSupport={imageSupport}
+            />
+            <Feedback
+              {...data.feedback}
+              correct={data.correct}
+              defaults={defaultFeedback}
+              onChange={this.onFeedbackValueChange}
+            />
+          </div>
+          <InputContainer className={classes.feedback} label={!noLabels ? 'Feedback' : ''}>
             <FeedbackMenu
               onChange={this.onFeedbackTypeChange}
               value={data.feedback}
@@ -170,7 +184,7 @@ export class ChoiceConfiguration extends React.Component {
               }}
             />
           </InputContainer>
-          <InputContainer className={classes.delete} label="Delete">
+          <InputContainer className={classes.delete} label={!noLabels ? 'Delete' : ''}>
             <IconButton
               aria-label="delete"
               className={classes.deleteIcon}
@@ -180,12 +194,6 @@ export class ChoiceConfiguration extends React.Component {
             </IconButton>
           </InputContainer>
         </div>
-        <Feedback
-          {...data.feedback}
-          correct={data.correct}
-          defaults={defaultFeedback}
-          onChange={this.onFeedbackValueChange}
-        />
       </div>
     );
   }
@@ -231,6 +239,11 @@ const styles = theme => ({
     paddingTop: theme.spacing.unit,
     paddingLeft: 0,
     marginLeft: 0
+  },
+  middleColumn: {
+    display: 'flex',
+    flex: 1,
+    flexDirection: 'column'
   }
 });
 
