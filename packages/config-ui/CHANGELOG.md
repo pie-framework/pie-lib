@@ -3,7 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-  <a name="7.3.0"></a>
+      <a name="7.4.0"></a>
+# [7.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@7.3.0...@pie-lib/config-ui@7.4.0) (2018-07-18)
+
+
+### Features
+
+* **choice-configuration:** allow no label mode and adjust feedback input design ([ecc11a1](https://github.com/pie-framework/pie-lib/commit/ecc11a1))
+* **config-ui:** update feedback ui for config views [ch83] ([6bffd28](https://github.com/pie-framework/pie-lib/commit/6bffd28))
+* **config-ui:** version bump for material-ui to solve related bugs ([c0d8ad8](https://github.com/pie-framework/pie-lib/commit/c0d8ad8))
+
+
+
+
+      <a name="7.3.0"></a>
 # [7.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@7.2.2...@pie-lib/config-ui@7.3.0) (2018-05-31)
 
 
@@ -14,7 +27,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-  <a name="7.2.2"></a>
+<a name="7.2.2"></a>
 ## [7.2.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@7.2.1...@pie-lib/config-ui@7.2.2) (2018-05-28)
 
 
