@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@1.0.1...@pie-lib/drag@1.1.0) (2018-07-18)
+
+
+### Features
+
+* **drag-and-drop:** ensure singleton behavior for drag and drop context even if multiple pies using it are present at the same time ([774371d](https://github.com/pie-framework/pie-lib/commit/774371d))
+* **drag-and-drop:** version bump and dependency version updates ([38c20c2](https://github.com/pie-framework/pie-lib/commit/38c20c2))
+
+
+
+
 <a name="1.0.1"></a>
 ## [1.0.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@1.0.0...@pie-lib/drag@1.0.1) (2018-05-31)
 
