@@ -1,9 +1,9 @@
 import Functions from '@material-ui/icons/Functions';
 import { Inline } from 'slate';
-import MathInput from './component';
-import MathToolbar from './math-toolbar';
+import MathPreview from './math-preview';
 import React from 'react';
 import debug from 'debug';
+import { MathToolbar } from './math-toolbar';
 
 const log = debug('editable-html:plugins:math');
 
@@ -21,35 +21,42 @@ export default function MathPlugin(options) {
       },
       supports: node =>
         node && node.object === 'inline' && node.type === 'math',
-      customToolbar: node =>
-        node && node.object === 'inline' && node.type === 'math' && MathToolbar
+      /**
+       * Return a react component function
+       * @param node {Slate.Node}
+       * @param toolbarDone {Function} a function to call once the toolbar has made any changes, call with the node.key and a data object.
+       */
+      customToolbar: (node, toolbarDone) => {
+        if (node && node.object === 'inline' && node.type === 'math') {
+          const latex = node.data.get('latex');
+          const onDone = latex => {
+            const update = {
+              ...node.data.toObject(),
+              latex
+            };
+            toolbarDone(node.key, update);
+          };
+
+          const Tb = () => <MathToolbar latex={latex} onDone={onDone} />;
+          return Tb;
+        }
+      },
+
+      /**
+       * This method takes the output of customToolbars onDone method + a Slate.Value object.
+       * @returns {Slate.Change} a change object
+       */
+      applyChange: (nodeKey, nodeData, value) =>
+        value.change().setNodeByKey(nodeKey, { data: nodeData })
     },
     schema: {
       document: { types: ['math'] }
     },
-    /**
-     * A onDone wrapper function, places a blur change on the node, then calls
-     * the original donefn.
-     * Feels a bit messy - there may be a cleaner way to do this.
-     */
-    onDone: (e, node, value, onChange, fn) => {
-      const update = { ...node.data.toObject(), change: { type: 'blur' } };
-      const change = value.change().setNodeByKey(node.key, { data: update });
-      onChange(change);
-      fn(e);
-    },
+
     renderNode: props => {
       if (props.node.type === 'math') {
-        log('[renderNode]: ', props);
-        log('MathInput', MathInput);
-        return (
-          <MathInput
-            {...props}
-            onClick={() => options.onClick(props.node)}
-            onFocus={options.onFocus}
-            onBlur={options.onBlur}
-          />
-        );
+        log('[renderNode]: data:', props.node.data);
+        return <MathPreview {...props} />;
       }
     }
   };

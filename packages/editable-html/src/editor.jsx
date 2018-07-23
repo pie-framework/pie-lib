@@ -11,7 +11,7 @@ import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 export { DEFAULT_PLUGINS, serialization };
 
-const log = debug('@pie-lib:editable-html');
+const log = debug('editable-html:editor');
 
 export class Editor extends React.Component {
   static propTypes = {
@@ -189,9 +189,14 @@ export class Editor extends React.Component {
     }
   };
 
-  onChange = change => {
+  onChange = (change, done) => {
     log('[onChange]');
-    this.setState({ value: change.value });
+    this.setState({ value: change.value }, () => {
+      log('[onChange], call done()');
+      if (done) {
+        done();
+      }
+    });
   };
 
   componentWillReceiveProps(props) {
@@ -255,6 +260,7 @@ export class Editor extends React.Component {
     const { disabled, highlightShape, classes, className } = this.props;
     const { value, focusedNode } = this.state;
 
+    log('[render] value: ', value);
     const sizeStyle = this.buildSizeStyle();
 
     return (

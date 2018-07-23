@@ -5,30 +5,29 @@ import { ImageToolbar } from '../image-toolbar';
 import MockChange from './mock-change';
 import React from 'react';
 
-test('onChange is called on button click', () => {
-  const onChange = jest.fn();
-  const node = Block.fromJSON({
-    type: 'image',
-    key: 1,
-    data: Data.create({ resizePercent: 100 })
+describe('ImageToolbar', () => {
+  let onChange;
+
+  beforeEach(() => {
+    onChange = jest.fn();
   });
 
-  const value = Value.fromJSON({});
+  const mkWrapper = extras => {
+    const props = {
+      percent: 100,
+      onChange,
+      classes: {},
+      ...extras
+    };
 
-  const c = {};
-  c.setNodeByKey = jest.fn().mockReturnValue(c);
+    return shallow(<ImageToolbar {...props} />);
+  };
 
-  value.change = jest.fn().mockReturnValue(c);
-
-  const toolbar = shallow(
-    <ImageToolbar node={node} value={value} classes={{}} onChange={onChange} />
-  );
-
-  const tbs = toolbar.find('[percent=25]');
-
-  tbs.simulate('click');
-  expect(c.setNodeByKey).toBeCalledWith(1, {
-    data: expect.anything()
+  describe('onChange', () => {
+    it('calls onChange with percent', () => {
+      const w = mkWrapper();
+      w.instance().onPercentClick(25);
+      expect(onChange).toHaveBeenCalledWith(25);
+    });
   });
-  expect(onChange).toBeCalledWith(c);
 });

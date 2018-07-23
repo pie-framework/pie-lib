@@ -1,25 +1,17 @@
-import { mockComponents, mockMathInput } from '../../../__tests__/utils';
 import React from 'react';
 import debug from 'debug';
 import MockChange from '../../image/__tests__/mock-change';
 import { Data } from 'slate';
+import MathPlugin, { serialization, inlineMath } from '../index';
 
 const log = debug('editable-html:test:math');
 
-mockMathInput();
+jest.mock('../math-preview', () => () => <div> math preview</div>);
+jest.mock('../math-toolbar', () => () => ({
+  MathToolbar: () => <div>MathToolbar</div>
+}));
 
 describe('MathPlugin', () => {
-  let mod, MathPlugin, compMock;
-
-  beforeEach(() => {
-    compMock = jest.fn(() => {
-      return <div>mock</div>;
-    });
-    jest.doMock('../component', () => compMock);
-    mod = require('../index');
-    MathPlugin = mod.default;
-  });
-
   describe('toolbar', () => {
     describe('onClick', () => {
       let plugin, mockChange, value, onChange;
@@ -35,7 +27,7 @@ describe('MathPlugin', () => {
 
       test('calls insertInline', () => {
         expect(mockChange.insertInline).toBeCalledWith(
-          expect.objectContaining({ data: mod.inlineMath().data })
+          expect.objectContaining({ data: inlineMath().data })
         );
       });
 
@@ -62,7 +54,7 @@ describe('MathPlugin', () => {
       };
       const next = jest.fn();
 
-      const out = mod.serialization.deserialize(el, next);
+      const out = serialization.deserialize(el, next);
       expect(out).toEqual({
         object: 'inline',
         type: 'math',
@@ -86,7 +78,7 @@ describe('MathPlugin', () => {
       };
       const children = [];
 
-      const out = mod.serialization.serialize(object, children);
+      const out = serialization.serialize(object, children);
       expect(out).toEqual(<span data-mathjax="">latex</span>);
     });
   });

@@ -1,50 +1,64 @@
-import { HorizontalKeypad } from '@pie-lib/math-input';
-
 import React from 'react';
-import debug from 'debug';
-import SlatePropTypes from 'slate-prop-types';
 import PropTypes from 'prop-types';
+import EditorAndPad from './editor-and-pad';
+import { DoneButton } from '../toolbar/done-button';
+import { withStyles } from '@material-ui/core/styles';
 
-const log = debug('editable-html:plugins:math:math-toolbar');
-
-const toNodeData = data => {
-  if (!data) {
-    return;
-  }
-
-  const { type, value } = data;
-
-  if (type === 'command' || type === 'cursor') {
-    return data;
-  } else if (value === 'clear') {
-    return { type: 'clear' };
-  } else {
-    return { type: 'write', value };
-  }
-};
-
-export default class MathToolbar extends React.Component {
+export class MathToolbar extends React.Component {
   static propTypes = {
-    node: SlatePropTypes.node.isRequired,
-    value: SlatePropTypes.value.isRequired,
-    onChange: PropTypes.func.isRequired
+    latex: PropTypes.string.isRequired,
+    onDone: PropTypes.func.isRequired
   };
 
-  onClick = data => {
-    const { node, value, onChange } = this.props;
+  constructor(props) {
+    super(props);
+    this.state = {
+      latex: props.latex
+    };
+  }
 
-    const mathChange = toNodeData(data);
+  done = () => {
+    this.props.onDone(this.state.latex);
+  };
 
-    if (mathChange) {
-      const update = { ...node.data.toObject(), change: mathChange };
+  componentWillReceiveProps(nextProps) {
+    this.setState({ latex: nextProps.latex });
+  }
 
-      log('[send change to node: ', node.key, update);
-      const change = value.change().setNodeByKey(node.key, { data: update });
-      onChange(change);
-    }
+  onChange = latex => this.setState({ latex });
+
+  render() {
+    const { latex } = this.state;
+    return (
+      <PureToolbar latex={latex} onChange={this.onChange} onDone={this.done} />
+    );
+  }
+}
+
+export class RawPureToolbar extends React.Component {
+  static propTypes = {
+    latex: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
+    onDone: PropTypes.func.isRequired,
+    classes: PropTypes.object.isRequired
   };
 
   render() {
-    return <HorizontalKeypad onClick={this.onClick} />;
+    const { latex, onChange, onDone, classes } = this.props;
+    return (
+      <div className={classes.pureToolbar}>
+        <EditorAndPad latex={latex} onChange={onChange} />
+        <DoneButton onClick={onDone} />
+      </div>
+    );
   }
 }
+const styles = () => ({
+  pureToolbar: {
+    display: 'flex',
+    width: '100%',
+    justifyContent: 'space-between'
+  }
+});
+
+export const PureToolbar = withStyles(styles)(RawPureToolbar);

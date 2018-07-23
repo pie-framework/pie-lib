@@ -45,9 +45,9 @@ const BasicOperatorsPadButton = withStyles(baseStyles, {
 
 export class BasicOperatorsPad extends React.Component {
   static propTypes = {
-    onClick: PropTypes.object.isRequired,
+    onClick: PropTypes.func.isRequired,
     values: PropTypes.array,
-    classes: PropTypes.isRequired
+    classes: PropTypes.object.isRequired
   };
 
   static defaultProps = {

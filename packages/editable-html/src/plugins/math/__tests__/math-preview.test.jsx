@@ -1,32 +1,19 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { classObject, mockMathInput } from '../../../__tests__/utils';
+import { classObject } from '../../../__tests__/utils';
 import debug from 'debug';
 const log = debug('editable-html:test:math');
-
+import MathPreview from '../math-preview';
 import { mount } from 'enzyme';
 import { Data, Block, Value } from 'slate';
 
-mockMathInput();
+jest.mock('../mathquill/static', () => () => <div>Static</div>);
 
-describe('component', () => {
-  let mod, MathComponent, node, editor, classes, mathWrapper, value;
-
-  mathWrapper = {
-    change: jest.fn()
-  };
-
+describe('MathPreview', () => {
+  let value, classes, node;
   beforeEach(() => {
-    try {
-      mod = require('../component.jsx');
-    } catch (e) {
-      log(e);
-    }
-
-    MathComponent = mod.MathComponent;
     value = Value.fromJSON({});
     classes = classObject('root', 'selected');
-    editor = { value };
 
     node = Block.fromJSON({
       type: 'math',
@@ -36,9 +23,8 @@ describe('component', () => {
 
   test('snapshot', () => {
     const tree = renderer.create(
-      <MathComponent
+      <MathPreview
         classes={classes}
-        editor={editor}
         node={node}
         value={value}
         onClick={jest.fn()}

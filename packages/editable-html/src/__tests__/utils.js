@@ -35,9 +35,16 @@ export function mockIconButton() {
 }
 
 export function mockMathInput() {
+  jest.mock('../plugins/math/mathquill/editor', () => () => <div>editor</div>);
+  jest.mock('../plugins/math/mathquill/static', () => () => <div>static</div>);
   jest.mock('@pie-lib/math-input', () => ({
     addBrackets: jest.fn(s => s),
     removeBrackets: jest.fn(s => s),
-    ...mockComponents('Keypad', 'MathQuillInput', 'EditableMathInput')
+    ...mockComponents(
+      'Keypad',
+      'MathQuillInput',
+      'EditableMathInput',
+      'HorizontalKeypad'
+    )
   }));
 }
