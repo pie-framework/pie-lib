@@ -9,7 +9,7 @@ const log = debug('editable-html:plugins:math');
 
 const TEXT_NODE = 3;
 
-export default function MathPlugin(options) {
+export default function MathPlugin(/*options*/) {
   return {
     toolbar: {
       icon: <Functions />,

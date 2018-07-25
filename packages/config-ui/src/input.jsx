@@ -11,11 +11,12 @@ export default class Input extends React.Component {
     type: PropTypes.string.isRequired,
     error: PropTypes.func,
     noModelUpdateOnError: PropTypes.bool
-  }
+  };
 
   static defaultProps = {
     type: 'text',
-    error: (value, type) => type === 'number' ? !value || isNaN(value) : !value,
+    error: (value, type) =>
+      type === 'number' ? !value || isNaN(value) : !value,
     noModelUpdateOnError: false
   };
 
@@ -29,7 +30,7 @@ export default class Input extends React.Component {
 
   componentWillReceiveProps(newProps) {
     this.setState({
-      value: newProps.value,
+      value: newProps.value
     });
   }
 
@@ -40,20 +41,20 @@ export default class Input extends React.Component {
     if (error(value, type)) {
       this.setState({
         error: true,
-        value: event.target.value,
+        value: event.target.value
       });
     } else {
       this.setState({
         error: false,
-        value: event.target.value,
+        value: event.target.value
       });
 
       onChange(event);
     }
-  }
+  };
 
   render() {
-    const { label, type, noModelUpdateOnError, ...rest } = this.props;
+    const { label, type, noModelUpdateOnError, ...rest } = this.props; // eslint-disable-line
     const { value, error } = this.state;
 
     return label ? (
@@ -74,6 +75,6 @@ export default class Input extends React.Component {
         onChange={this.onChange}
         error={error}
       />
-    )
+    );
   }
 }

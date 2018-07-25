@@ -51,7 +51,7 @@ export default class Static extends React.Component {
   }
 
   render() {
-    const { latex, onFocus, onBlur } = this.props;
+    const { onFocus, onBlur } = this.props;
 
     return (
       <span onFocus={onFocus} onBlur={onBlur} ref={r => (this.input = r)} />

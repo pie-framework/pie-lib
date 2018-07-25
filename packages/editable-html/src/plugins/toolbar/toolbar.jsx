@@ -70,6 +70,7 @@ const RawDefaultToolbar = ({ plugins, value, onChange, onDone, classes }) => {
 };
 
 RawDefaultToolbar.propTypes = {
+  classes: PropTypes.object.isRequired,
   plugins: PropTypes.array.isRequired,
   value: SlatePropTypes.value.isRequired,
   onChange: PropTypes.func.isRequired,
