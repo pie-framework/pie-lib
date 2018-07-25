@@ -12,18 +12,16 @@ export default class ChartingConfig extends React.Component {
 
   onChange = (name, shouldNotBeNumber, isCheckbox) => event => {
     const { config } = this.props;
-    const newValue = parseInt(event.target.value, 10);
+    const newValue = isNaN(parseInt(event.target.value, 10)) ? '' : parseInt(event.target.value, 10);
     const newConfig = { ...config };
 
-    if (!isNaN(newValue) || shouldNotBeNumber || isCheckbox) {
-      newConfig[name] = shouldNotBeNumber
-        ? isCheckbox
-          ? event.target.checked
-          : event.target.value
-        : newValue;
+    newConfig[name] = shouldNotBeNumber
+      ? isCheckbox
+        ? event.target.checked
+        : event.target.value
+      : newValue;
 
-      this.props.onChange(newConfig, name);
-    }
+    this.props.onChange(newConfig, name);
   };
 
   render() {
