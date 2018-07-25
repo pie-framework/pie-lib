@@ -64,6 +64,7 @@ exports[`TagsInput snapshots renders 1`] = `
                       "root": "MuiChip-root-4",
                     }
                   }
+                  clickable={false}
                   component="div"
                   label="foo"
                   onDelete={[Function]}
@@ -100,10 +101,13 @@ exports[`TagsInput snapshots renders 1`] = `
                                 "colorError": "MuiSvgIcon-colorError-15",
                                 "colorPrimary": "MuiSvgIcon-colorPrimary-12",
                                 "colorSecondary": "MuiSvgIcon-colorSecondary-13",
+                                "fontSizeInherit": "MuiSvgIcon-fontSizeInherit-17",
                                 "root": "MuiSvgIcon-root-11",
                               }
                             }
                             color="inherit"
+                            component="svg"
+                            fontSize="default"
                             onClick={[Function]}
                             viewBox="0 0 24 24"
                           >

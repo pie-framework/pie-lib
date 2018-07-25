@@ -11,10 +11,11 @@ const log = debug('editable-html:test');
 const value = htmlToValue('hi');
 
 jest.mock('@pie-lib/math-input', () => {
-  return {
-    EditableMathInput: jest.fn()
-  };
+  HorizontalKeypad: () => <div>HorizontalKeypad</div>;
 });
+
+jest.mock('../plugins/math/mathquill/editor', () => () => <div>editor</div>);
+jest.mock('../plugins/math/mathquill/static', () => () => <div>static</div>);
 
 expect.extend({
   toEqualHtml(value, html) {

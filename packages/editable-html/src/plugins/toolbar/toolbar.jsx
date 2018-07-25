@@ -1,6 +1,5 @@
 import { Button, MarkButton } from './toolbar-buttons';
-
-import Check from '@material-ui/icons/Check';
+import { DoneButton } from './done-button';
 import Delete from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import PropTypes from 'prop-types';
@@ -12,7 +11,7 @@ import SlatePropTypes from 'slate-prop-types';
 import { findSingleNode, hasBlock, hasMark } from '../utils';
 import { withStyles } from '@material-ui/core/styles';
 
-const log = debug('pie-elements:editable-html:plugins:toolbar');
+const log = debug('editable-html:plugins:toolbar');
 
 const ToolbarButton = props => {
   const onToggle = () => {
@@ -49,24 +48,44 @@ const ToolbarButton = props => {
   }
 };
 
-const DefaultToolbar = ({ plugins, value, onChange }) => {
+const RawDefaultToolbar = ({ plugins, value, onChange, onDone, classes }) => {
   const toolbarPlugins = plugins.filter(p => p.toolbar).map(p => p.toolbar);
   return (
-    <div>
-      {toolbarPlugins.map((p, index) => {
-        return (
-          <ToolbarButton {...p} key={index} value={value} onChange={onChange} />
-        );
-      })}
+    <div className={classes.defaultToolbar}>
+      <div>
+        {toolbarPlugins.map((p, index) => {
+          return (
+            <ToolbarButton
+              {...p}
+              key={index}
+              value={value}
+              onChange={onChange}
+            />
+          );
+        })}
+      </div>
+      <DoneButton onClick={onDone} />
     </div>
   );
 };
 
-DefaultToolbar.propTypes = {
+RawDefaultToolbar.propTypes = {
+  classes: PropTypes.object.isRequired,
   plugins: PropTypes.array.isRequired,
   value: SlatePropTypes.value.isRequired,
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
+  onDone: PropTypes.func.isRequired
 };
+
+const toolbarStyles = () => ({
+  defaultToolbar: {
+    display: 'flex',
+    width: '100%',
+    justifyContent: 'space-between'
+  }
+});
+
+const DefaultToolbar = withStyles(toolbarStyles)(RawDefaultToolbar);
 
 export class Toolbar extends React.Component {
   static propTypes = {
@@ -82,6 +101,9 @@ export class Toolbar extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      change: null
+    };
   }
 
   hasMark = type => {
@@ -116,10 +138,11 @@ export class Toolbar extends React.Component {
   };
 
   render() {
-    const { classes, onDone, plugins, value, onChange, isFocused } = this.props;
+    const { classes, plugins, value, onChange, isFocused, onDone } = this.props;
 
     const node = findSingleNode(value);
 
+    log(' --------------> [render] node: ', node);
     log('[render] node: ', node);
 
     const plugin = plugins.find(p => {
@@ -134,25 +157,50 @@ export class Toolbar extends React.Component {
 
     log('[render] plugin: ', plugin);
 
+    const toolbarChangeHandler = callOnDone => (key, update) => {
+      log('[toolbarChangeHandler] node update: key:', key, 'node: ', update);
+      if (!plugin.toolbar.applyChange) {
+        throw new Error(
+          'if you have a custom toolbar you must supply "plugin.toolbar.applyChange(key, data, value: Slate.Value): Slate.Change"'
+        );
+      }
+      const pluginChange = plugin.toolbar.applyChange(key, update, value);
+      if (pluginChange) {
+        log('[toolbarChangeHandler] trigger onChange...', pluginChange.value);
+        onChange(pluginChange, () => {
+          if (callOnDone) {
+            onDone();
+          }
+        });
+      }
+    };
+
     const CustomToolbar =
       plugin && plugin.toolbar && plugin.toolbar.customToolbar
-        ? plugin.toolbar.customToolbar(node)
+        ? plugin.toolbar.customToolbar(
+            node,
+            toolbarChangeHandler(true),
+            toolbarChangeHandler(false)
+          )
         : null;
 
     log('[render] CustomToolbar: ', CustomToolbar);
 
     const names = classNames(classes.toolbar, isFocused && classes.focused);
 
-    const doneFn = this.onButtonClick(onDone);
-
     const deletable = node && plugin && plugin.deleteNode;
 
     return (
       <div className={names} onClick={this.onClick}>
         {CustomToolbar ? (
-          <CustomToolbar value={value} onChange={onChange} node={node} />
+          <CustomToolbar />
         ) : (
-          <DefaultToolbar plugins={plugins} value={value} onChange={onChange} />
+          <DefaultToolbar
+            plugins={plugins}
+            value={value}
+            onChange={onChange}
+            onDone={onDone}
+          />
         )}
 
         <div className={classes.shared}>
@@ -169,22 +217,6 @@ export class Toolbar extends React.Component {
               <Delete />
             </IconButton>
           )}
-          <IconButton
-            aria-label="Done"
-            style={{ width: '28px', height: '28px' }}
-            className={classes.iconRoot}
-            onClick={
-              plugin && plugin.onDone
-                ? e => plugin.onDone(e, node, value, onChange, doneFn)
-                : doneFn
-            }
-            classes={{
-              label: classes.label,
-              root: classes.iconRoot
-            }}
-          >
-            <Check />
-          </IconButton>
         </div>
       </div>
     );

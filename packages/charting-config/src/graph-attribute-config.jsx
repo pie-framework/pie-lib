@@ -2,8 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import Input from '@material-ui/core/Input';
-import { InputContainer } from '@pie-lib/config-ui';
+import { Input } from '@pie-lib/config-ui';
 import Box from './box';
 
 const styles = () => ({
@@ -51,71 +50,68 @@ class GraphAttributeConfig extends React.Component {
         <div className={classes.graphAttributesContainer}>
           <div className={classes.optionsColumnContainer}>
             <div className={classes.optionsColumn}>
-              <InputContainer label="Minimum Value">
-                <Input
-                  inputProps={{
-                    max: parseInt(config.domainMax, 10) - 1
-                  }}
-                  className={classes.attributeInput}
-                  type="number"
-                  onChange={onChange('domainMin')}
-                  value={config.domainMin}
-                  placeholder="Enter Minimum"
-                />
-              </InputContainer>
-              <InputContainer label="Tick Value">
-                <Input
-                  className={classes.attributeInput}
-                  type="number"
-                  onChange={onChange('domainStepValue')}
-                  value={config.domainStepValue}
-                  placeholder="Enter Tick"
-                />
-              </InputContainer>
-              <InputContainer label="Tick Label Frequency">
-                <Input
-                  className={classes.attributeInput}
-                  type="number"
-                  onChange={onChange('domainLabelFrequency')}
-                  value={config.domainLabelFrequency}
-                  placeholder="Enter Tick Label Frequency"
-                />
-              </InputContainer>
+              <Input
+                noModelUpdateOnError
+                inputProps={{
+                  max: parseInt(config.domainMax, 10) - 1
+                }}
+                className={classes.attributeInput}
+                type="number"
+                label="Minimum Value"
+                onChange={onChange('domainMin')}
+                value={config.domainMin}
+                placeholder="Enter Minimum"
+              />
+              <Input
+                noModelUpdateOnError
+                className={classes.attributeInput}
+                type="number"
+                label="Tick Value"
+                onChange={onChange('domainStepValue')}
+                value={config.domainStepValue}
+                placeholder="Enter Tick"
+              />
+              <Input
+                noModelUpdateOnError
+                className={classes.attributeInput}
+                type="number"
+                label="Tick Label Frequency"
+                onChange={onChange('domainLabelFrequency')}
+                value={config.domainLabelFrequency}
+                placeholder="Enter Tick Label Frequency"
+              />
             </div>
             <div className={classes.optionsColumn}>
-              <InputContainer label="Maximum Value">
-                <Input
-                  inputProps={{
-                    min: parseInt(config.domainMin, 10) + 1
-                  }}
-                  className={classes.attributeInput}
-                  type="number"
-                  onChange={onChange('domainMax')}
-                  value={config.domainMax}
-                  placeholder="Enter Maximum"
-                />
-              </InputContainer>
-              <InputContainer label="Snap Value">
-                <Input
-                  className={classes.attributeInput}
-                  type="number"
-                  onChange={onChange('domainSnapValue')}
-                  value={config.domainSnapValue}
-                  placeholder="Enter Snap"
-                />
-              </InputContainer>
-              <InputContainer label="Padding (%)">
-                <Input
-                  inputProps={{
-                    step: 25
-                  }}
-                  className={classes.attributeInput}
-                  type="number"
-                  onChange={onChange('domainGraphPadding')}
-                  value={config.domainGraphPadding}
-                  placeholder="Enter Padding"
-                />
-              </InputContainer>
+              <Input
+                inputProps={{
+                  min: parseInt(config.domainMin, 10) + 1
+                }}
+                className={classes.attributeInput}
+                type="number"
+                label="Maximum Value"
+                onChange={onChange('domainMax')}
+                value={config.domainMax}
+                placeholder="Enter Maximum"
+              />
+              <Input
+                label="Snap Value"
+                className={classes.attributeInput}
+                type="number"
+                onChange={onChange('domainSnapValue')}
+                value={config.domainSnapValue}
+                placeholder="Enter Snap"
+              />
+              <Input
+                labe="Padding (%)"
+                inputProps={{
+                  step: 25
+                }}
+                className={classes.attributeInput}
+                type="number"
+                onChange={onChange('domainGraphPadding')}
+                value={config.domainGraphPadding}
+                placeholder="Enter Padding"
+              />
             </div>
           </div>
         </div>
@@ -123,71 +119,65 @@ class GraphAttributeConfig extends React.Component {
         <div className={classes.graphAttributesContainer}>
           <div className={classes.optionsColumnContainer}>
             <div className={classes.optionsColumn}>
-              <InputContainer label="Minimum Value">
-                <Input
-                  inputProps={{
-                    max: parseInt(config.rangeMax, 10) - 1
-                  }}
-                  className={classes.attributeInput}
-                  type="number"
-                  onChange={onChange('rangeMin')}
-                  value={config.rangeMin}
-                  placeholder="Enter Minimum"
-                />
-              </InputContainer>
-              <InputContainer label="Tick Value">
-                <Input
-                  className={classes.attributeInput}
-                  type="number"
-                  onChange={onChange('rangeStepValue')}
-                  value={config.rangeStepValue}
-                  placeholder="Enter Tick"
-                />
-              </InputContainer>
-              <InputContainer label="Tick Label Frequency">
-                <Input
-                  className={classes.attributeInput}
-                  type="number"
-                  onChange={onChange('rangeLabelFrequency')}
-                  value={config.rangeLabelFrequency}
-                  placeholder="Enter Tick Label Frequency"
-                />
-              </InputContainer>
+              <Input
+                inputProps={{
+                  max: parseInt(config.rangeMax, 10) - 1
+                }}
+                label="Minimum Value"
+                className={classes.attributeInput}
+                type="number"
+                onChange={onChange('rangeMin')}
+                value={config.rangeMin}
+                placeholder="Enter Minimum"
+              />
+              <Input
+                label="Tick Value"
+                className={classes.attributeInput}
+                type="number"
+                onChange={onChange('rangeStepValue')}
+                value={config.rangeStepValue}
+                placeholder="Enter Tick"
+              />
+              <Input
+                label="Tick Label Frequency"
+                className={classes.attributeInput}
+                type="number"
+                onChange={onChange('rangeLabelFrequency')}
+                value={config.rangeLabelFrequency}
+                placeholder="Enter Tick Label Frequency"
+              />
             </div>
             <div className={classes.optionsColumn}>
-              <InputContainer label="Maximum Value">
-                <Input
-                  inputProps={{
-                    min: parseInt(config.rangeMin, 10) + 1
-                  }}
-                  className={classes.attributeInput}
-                  type="number"
-                  onChange={onChange('rangeMax')}
-                  value={config.rangeMax}
-                  placeholder="Enter Maximum"
-                />
-              </InputContainer>
-              <InputContainer label="Snap Value">
-                <Input
-                  className={classes.attributeInput}
-                  type="number"
-                  onChange={onChange('rangeSnapValue')}
-                  value={config.rangeSnapValue}
-                  placeholder="Enter Snap"
-                />
-              </InputContainer>
-              <InputContainer label="Padding (%)">
-                <Input
-                  inputProps={{
-                    step: 25
-                  }}
-                  className={classes.attributeInput}
-                  type="number"
-                  onChange={onChange('rangeGraphPadding')}
-                  value={config.rangeGraphPadding}
-                  placeholder="Enter Padding"
-                />
-              </InputContainer>
+              <Input
+                label="Maximum Value"
+                inputProps={{
+                  min: parseInt(config.rangeMin, 10) + 1
+                }}
+                className={classes.attributeInput}
+                type="number"
+                onChange={onChange('rangeMax')}
+                value={config.rangeMax}
+                placeholder="Enter Maximum"
+              />
+              <Input
+                label="Snap Value"
+                className={classes.attributeInput}
+                type="number"
+                onChange={onChange('rangeSnapValue')}
+                value={config.rangeSnapValue}
+                placeholder="Enter Snap"
+              />
+              <Input
+                label="Padding (%)"
+                inputProps={{
+                  step: 25
+                }}
+                className={classes.attributeInput}
+                type="number"
+                onChange={onChange('rangeGraphPadding')}
+                value={config.rangeGraphPadding}
+                placeholder="Enter Padding"
+              />
             </div>
           </div>
         </div>

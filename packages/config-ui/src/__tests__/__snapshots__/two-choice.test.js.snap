@@ -3,8 +3,6 @@
 exports[`NChoice renders n choice radio buttons vertical correctly 1`] = `
 <div
   className="MuiFormControl-root-5 RawInputContainer-formControl-3"
-  onBlur={[Function]}
-  onFocus={[Function]}
 >
   <label
     className="MuiFormLabel-root-14 MuiInputLabel-root-9 MuiInputLabel-formControl-10 MuiInputLabel-animated-13 MuiInputLabel-shrink-12 RawInputContainer-label-4"
@@ -48,23 +46,26 @@ exports[`NChoice renders n choice radio buttons vertical correctly 1`] = `
             />
           </svg>
           <input
+            autoFocus={undefined}
             checked={true}
             className="MuiSwitchBase-input-31"
             disabled={false}
             id={undefined}
             name={undefined}
             onChange={[Function]}
+            readOnly={undefined}
+            required={undefined}
             tabIndex={undefined}
             type="radio"
             value="left"
           />
         </span>
         <span
-          className="MuiTouchRipple-root-47"
+          className="MuiTouchRipple-root-48"
         />
       </span>
       <span
-        className="MuiTypography-root-54 MuiTypography-body1-63 MuiFormControlLabel-label-22 Component-label-19"
+        className="MuiTypography-root-55 MuiTypography-body1-64 MuiFormControlLabel-label-22 Component-label-19"
       >
         left
       </span>
@@ -102,23 +103,26 @@ exports[`NChoice renders n choice radio buttons vertical correctly 1`] = `
             />
           </svg>
           <input
+            autoFocus={undefined}
             checked={false}
             className="MuiSwitchBase-input-31"
             disabled={false}
             id={undefined}
             name={undefined}
             onChange={[Function]}
+            readOnly={undefined}
+            required={undefined}
             tabIndex={undefined}
             type="radio"
             value="center"
           />
         </span>
         <span
-          className="MuiTouchRipple-root-47"
+          className="MuiTouchRipple-root-48"
         />
       </span>
       <span
-        className="MuiTypography-root-54 MuiTypography-body1-63 MuiFormControlLabel-label-22 Component-label-19"
+        className="MuiTypography-root-55 MuiTypography-body1-64 MuiFormControlLabel-label-22 Component-label-19"
       >
         center
       </span>
@@ -156,23 +160,26 @@ exports[`NChoice renders n choice radio buttons vertical correctly 1`] = `
             />
           </svg>
           <input
+            autoFocus={undefined}
             checked={false}
             className="MuiSwitchBase-input-31"
             disabled={false}
             id={undefined}
             name={undefined}
             onChange={[Function]}
+            readOnly={undefined}
+            required={undefined}
             tabIndex={undefined}
             type="radio"
             value="right"
           />
         </span>
         <span
-          className="MuiTouchRipple-root-47"
+          className="MuiTouchRipple-root-48"
         />
       </span>
       <span
-        className="MuiTypography-root-54 MuiTypography-body1-63 MuiFormControlLabel-label-22 Component-label-19"
+        className="MuiTypography-root-55 MuiTypography-body1-64 MuiFormControlLabel-label-22 Component-label-19"
       >
         right
       </span>

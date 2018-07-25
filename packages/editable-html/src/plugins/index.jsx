@@ -59,7 +59,8 @@ export const DEFAULT_PLUGINS = [
   'strikethrough',
   'bulleted-list',
   'numbered-list',
-  'image'
+  'image',
+  'math'
 ];
 
 export const buildPlugins = (activePlugins, opts) => {

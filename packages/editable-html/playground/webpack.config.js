@@ -6,7 +6,8 @@ module.exports = {
   context: __dirname,
   entry: {
     image: './image/index.jsx',
-    'prod-test': './prod-test/index.jsx'
+    'prod-test': './prod-test/index.jsx',
+    mathquill: './mathquill/index.jsx'
   },
   output: {
     filename: '[name]/bundle.js',

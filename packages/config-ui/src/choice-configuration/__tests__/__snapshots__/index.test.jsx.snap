@@ -9,8 +9,6 @@ exports[`index - snapshot renders correctly 1`] = `
   >
     <div
       className="MuiFormControl-root-4 RawInputContainer-formControl-2"
-      onBlur={[Function]}
-      onFocus={[Function]}
     >
       <label
         className="MuiFormLabel-root-13 MuiInputLabel-root-8 MuiInputLabel-formControl-9 MuiInputLabel-animated-12 MuiInputLabel-shrink-11 RawInputContainer-label-3"
@@ -49,19 +47,22 @@ exports[`index - snapshot renders correctly 1`] = `
             />
           </svg>
           <input
+            autoFocus={undefined}
             checked={false}
             className="MuiSwitchBase-input-26"
             disabled={false}
             id={undefined}
             name={undefined}
             onChange={[Function]}
+            readOnly={undefined}
+            required={undefined}
             tabIndex={undefined}
             type="radio"
             value={undefined}
           />
         </span>
         <span
-          className="MuiTouchRipple-root-42"
+          className="MuiTouchRipple-root-43"
         />
       </span>
     </div>
@@ -69,9 +70,7 @@ exports[`index - snapshot renders correctly 1`] = `
       className={undefined}
     >
       <div
-        className="MuiFormControl-root-4 RawInputContainer-formControl-2 Component-labelContainer-49"
-        onBlur={[Function]}
-        onFocus={[Function]}
+        className="MuiFormControl-root-4 RawInputContainer-formControl-2 Component-labelContainer-50"
       >
         <label
           className="MuiFormLabel-root-13 MuiInputLabel-root-8 MuiInputLabel-formControl-9 MuiInputLabel-animated-12 MuiInputLabel-shrink-11 RawInputContainer-label-3"
@@ -80,7 +79,7 @@ exports[`index - snapshot renders correctly 1`] = `
           Label
         </label>
         <div
-          className="Component-editorHolder-50"
+          className="Component-editorHolder-51"
         >
           <div>
             EditableHtml
@@ -88,9 +87,7 @@ exports[`index - snapshot renders correctly 1`] = `
         </div>
       </div>
       <div
-        className="MuiFormControl-root-4 RawInputContainer-formControl-2 Component-labelContainer-49 Component-text-51"
-        onBlur={[Function]}
-        onFocus={[Function]}
+        className="MuiFormControl-root-4 RawInputContainer-formControl-2 Component-labelContainer-50 Component-text-52"
       >
         <label
           className="MuiFormLabel-root-13 MuiInputLabel-root-8 MuiInputLabel-formControl-9 MuiInputLabel-animated-12 MuiInputLabel-shrink-11 RawInputContainer-label-3"
@@ -99,7 +96,7 @@ exports[`index - snapshot renders correctly 1`] = `
           Feedback Text
         </label>
         <div
-          className="Component-editorHolder-50"
+          className="Component-editorHolder-51"
         >
           <div>
             EditableHtml
@@ -109,8 +106,6 @@ exports[`index - snapshot renders correctly 1`] = `
     </div>
     <div
       className="MuiFormControl-root-4 RawInputContainer-formControl-2"
-      onBlur={[Function]}
-      onFocus={[Function]}
     >
       <label
         className="MuiFormLabel-root-13 MuiInputLabel-root-8 MuiInputLabel-formControl-9 MuiInputLabel-animated-12 MuiInputLabel-shrink-11 RawInputContainer-label-3"
@@ -157,7 +152,7 @@ exports[`index - snapshot renders correctly 1`] = `
               </svg>
             </span>
             <span
-              className="MuiTouchRipple-root-42"
+              className="MuiTouchRipple-root-43"
             />
           </button>
         </div>
@@ -165,8 +160,6 @@ exports[`index - snapshot renders correctly 1`] = `
     </div>
     <div
       className="MuiFormControl-root-4 RawInputContainer-formControl-2"
-      onBlur={[Function]}
-      onFocus={[Function]}
     >
       <label
         className="MuiFormLabel-root-13 MuiInputLabel-root-8 MuiInputLabel-formControl-9 MuiInputLabel-animated-12 MuiInputLabel-shrink-11 RawInputContainer-label-3"
@@ -210,7 +203,7 @@ exports[`index - snapshot renders correctly 1`] = `
           </svg>
         </span>
         <span
-          className="MuiTouchRipple-root-42"
+          className="MuiTouchRipple-root-43"
         />
       </button>
     </div>

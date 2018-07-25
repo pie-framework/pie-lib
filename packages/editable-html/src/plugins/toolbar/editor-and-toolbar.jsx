@@ -2,8 +2,8 @@ import React from 'react';
 import Toolbar from './toolbar';
 import classNames from 'classnames';
 import debug from 'debug';
-import injectSheet from 'react-jss';
 import { primary } from '../../theme';
+import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import SlatePropTypes from 'slate-prop-types';
 
@@ -19,7 +19,7 @@ export class EditorAndToolbar extends React.Component {
     plugins: PropTypes.array.isRequired,
     onChange: PropTypes.func.isRequired,
     onDone: PropTypes.func.isRequired,
-    focusedNode: PropTypes.node,
+    focusedNode: SlatePropTypes.node,
     readOnly: PropTypes.bool,
     classes: PropTypes.object.isRequired
   };
@@ -60,6 +60,7 @@ export class EditorAndToolbar extends React.Component {
         </div>
         <Toolbar
           plugins={plugins}
+          focusedNode={focusedNode}
           value={value}
           isFocused={inFocus}
           onChange={onChange}
@@ -132,7 +133,6 @@ const style = {
   },
 
   readOnly: {
-    // backgroundColor: 'rgba(0,0,0,0.05)',
     '&::before': {
       background: 'transparent',
       backgroundSize: '5px 1px',
@@ -175,4 +175,4 @@ const style = {
   }
 };
 
-export default injectSheet(style)(EditorAndToolbar);
+export default withStyles(style)(EditorAndToolbar);
