@@ -8,6 +8,7 @@ import Tabs from './tabs';
 import Checkbox from './checkbox';
 import FormSection from './form-section';
 import Help from './help';
+import Input from './input';
 import InputContainer from './input-container';
 import NumberTextField from './number-text-field';
 import TwoChoice, { NChoice } from './two-choice';
@@ -33,6 +34,7 @@ export {
   Langs,
   LanguageControls,
   MuiBox,
+  Input,
   NChoice,
   NumberTextField,
   Tabs,
