@@ -5,12 +5,7 @@
   },
   "version": "0.2.6",
   "description": "Some react based pie-charting configuring components",
-  "keywords": [
-    "react",
-    "pie",
-    "charting",
-    "config"
-  ],
+  "keywords": ["react", "pie", "charting", "config"],
   "repository": "pie-framework/pie-lib",
   "main": "lib/index.js",
   "author": "",
@@ -26,8 +21,5 @@
   },
   "devDependencies": {
     "@pie-lib/test-utils": "^0.0.3"
-  },
-  "jest": {
-    "testRegex": "(/__tests__/.*\\.test.jsx|(\\.|/)(test|spec))\\.jsx?$"
   }
 }

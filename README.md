@@ -40,3 +40,9 @@ Just point jest to the dir/file:
 [lerna]: https://lernajs.io/
 [pie]: http://pie-framework.org
 [ccs]: https://conventionalcommits.org/
+
+## Test issues
+
+Sometimes the project test set up can get out of synch
+
+* try `lerna bootstrap`, `npm run build`, `rm -fr packages/test-utils/node_modules` and run again.
