@@ -3,7 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-      <a name="7.4.0"></a>
+  <a name="7.6.0"></a>
+# [7.6.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@7.4.0...@pie-lib/config-ui@7.6.0) (2018-07-25)
+
+
+### Features
+
+* **config-ui:** input added that keeps model updates at bay if erroneous model update would happen ([c025f74](https://github.com/pie-framework/pie-lib/commit/c025f74))
+
+
+
+
+  <a name="7.4.0"></a>
 # [7.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@7.3.0...@pie-lib/config-ui@7.4.0) (2018-07-18)
 
 
@@ -16,7 +27,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-      <a name="7.3.0"></a>
+<a name="7.3.0"></a>
 # [7.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@7.2.2...@pie-lib/config-ui@7.3.0) (2018-05-31)
 
 

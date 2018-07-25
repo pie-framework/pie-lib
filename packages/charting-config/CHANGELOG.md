@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.3.0"></a>
+# [0.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting-config@0.2.6...@pie-lib/charting-config@0.3.0) (2018-07-25)
+
+
+### Features
+
+* **charting-config:** update inputs to no longer pass through invalid model updates ([59c5d06](https://github.com/pie-framework/pie-lib/commit/59c5d06))
+
+
+
+
 <a name="0.2.6"></a>
 ## [0.2.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting-config@0.2.5...@pie-lib/charting-config@0.2.6) (2018-07-18)
 
