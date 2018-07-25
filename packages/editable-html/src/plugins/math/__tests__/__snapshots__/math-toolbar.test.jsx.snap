@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`math-toolbar snapshot renders 1`] = `
+<WithStyles(RawPureToolbar)
+  latex="foo"
+  onChange={[Function]}
+  onDone={[Function]}
+/>
+`;

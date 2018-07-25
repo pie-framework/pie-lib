@@ -5,21 +5,19 @@ exports[`toolbar default renders default toolbar 1`] = `
   className="toolbar"
   onClick={[Function]}
 >
-  <div />
   <div
-    className="shared"
+    className="RawDefaultToolbar-defaultToolbar-1"
   >
+    <div />
     <div
       ariaLabel="Done"
-      className="iconRoot"
-      style={
-        Object {
-          "height": "28px",
-          "width": "28px",
-        }
-      }
+      className="RawDoneButton-iconRoot-2"
+      style={undefined}
     />
   </div>
+  <div
+    className="shared"
+  />
 </div>
 `;
 
@@ -36,16 +34,6 @@ exports[`toolbar renders custom toolbar 1`] = `
   >
     <div
       ariaLabel="Delete"
-      className="iconRoot"
-      style={
-        Object {
-          "height": "28px",
-          "width": "28px",
-        }
-      }
-    />
-    <div
-      ariaLabel="Done"
       className="iconRoot"
       style={
         Object {

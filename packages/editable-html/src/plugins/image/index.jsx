@@ -30,7 +30,28 @@ export default function ImagePlugin(opts) {
       );
     },
     supports: node => node.object === 'block' && node.type === 'image',
-    customToolbar: () => ImageToolbar
+    /**
+     * Apply the change from the output of a custom toolbar
+     * @see customToolbar#onChange function
+     */
+    applyChange: (key, data, value) =>
+      value.change().setNodeByKey(key, { data }),
+    customToolbar: (node, _, toolbarChange) => {
+      const percent = node.data.get('resizePercent');
+
+      const onChange = resizePercent => {
+        const update = {
+          ...node.data.toObject(),
+          resizePercent
+        };
+        toolbarChange(node.key, update);
+      };
+
+      const Tb = () => (
+        <ImageToolbar percent={percent || 100} onChange={onChange} />
+      );
+      return Tb;
+    }
   };
 
   return {

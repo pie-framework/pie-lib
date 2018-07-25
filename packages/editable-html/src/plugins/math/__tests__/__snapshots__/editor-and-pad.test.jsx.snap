@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditorAndPad snapshot renders 1`] = `
+<div>
+  <Component
+    latex="\\\\frac{1}{2}"
+    onChange={[Function]}
+  />
+  <hr />
+  <HorizontalKeypad
+    onClick={[Function]}
+  />
+</div>
+`;

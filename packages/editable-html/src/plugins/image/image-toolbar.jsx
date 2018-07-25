@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import debug from 'debug';
 import { withStyles } from '@material-ui/core/styles';
-import SlatePropTypes from 'slate-prop-types';
 
 const log = debug('@pie-lib:editable-html:plugins:image:image-toolbar');
 
@@ -25,24 +24,18 @@ PercentButton.propTypes = {
 
 export class ImageToolbar extends React.Component {
   static propTypes = {
-    node: SlatePropTypes.node.isRequired,
-    value: SlatePropTypes.value.isRequired,
+    percent: PropTypes.number.isRequired,
     onChange: PropTypes.func.isRequired,
     classes: PropTypes.object.isRequired
   };
 
   onPercentClick = percent => {
     log('[onPercentClick]: percent:', percent);
-    const { node, value, onChange } = this.props;
-    const update = node.data.set('resizePercent', percent);
-    log('[onPercentClick]: update:', update);
-    const change = value.change().setNodeByKey(node.key, { data: update });
-    onChange(change);
+    this.props.onChange(percent);
   };
 
   render() {
-    const { node, classes } = this.props;
-    const percent = node.data.get('resizePercent');
+    const { classes, percent } = this.props;
     return (
       <div className={classes.holder}>
         <PercentButton
