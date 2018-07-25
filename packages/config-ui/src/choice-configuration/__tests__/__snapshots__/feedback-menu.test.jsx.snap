@@ -40,7 +40,7 @@ exports[`feedback-menu renders correctly 1`] = `
         </svg>
       </span>
       <span
-        className="MuiTouchRipple-root-17"
+        className="MuiTouchRipple-root-16"
       />
     </button>
   </div>

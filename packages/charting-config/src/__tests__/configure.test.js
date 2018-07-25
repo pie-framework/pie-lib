@@ -1,10 +1,9 @@
 import * as React from 'react';
 import DisplayConfig from '../display-config';
 import GraphAttributeConfig from '../graph-attribute-config';
-import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
-import { InputRadio, InputCheckbox, InputContainer } from '@pie-lib/config-ui';
-import * as configUi from '@pie-lib/config-ui';
+import { default as MaterialInput } from '@material-ui/core/Input';
+import { Input as ConfigInput, InputCheckbox, InputContainer } from '@pie-lib/config-ui';
 import Box from '../box';
 import { shallowChild } from '@pie-lib/test-utils';
 
@@ -79,7 +78,7 @@ describe('DisplayConfig', () => {
     expect(component.find(Button).length).toEqual(1);
     expect(component.find(InputCheckbox).length).toEqual(3);
     expect(component.find(InputContainer).length).toEqual(5);
-    expect(component.find(Input).length).toEqual(5);
+    expect(component.find(MaterialInput).length).toEqual(5);
   });
 });
 
@@ -90,7 +89,7 @@ describe('GraphAttributeConfig', () => {
   beforeEach(() => {
     props = {
       config: defaultProps.model.model.config,
-      onChange: jest.fn()
+      onChange: jest.fn().mockReturnValue(jest.fn())
     };
 
     wrapper = shallowChild(GraphAttributeConfig, props, 1);
@@ -101,11 +100,7 @@ describe('GraphAttributeConfig', () => {
     expect(component.find(Box).length).toEqual(1);
   });
 
-  xit('renders Input', () => {
-    expect(component.find(Input).length).toBeGreaterThan(10);
-  });
-
-  xit('renders InputContainer', () => {
-    expect(component.find(InputContainer).length).toBeGreaterThan(10);
+  it('renders Input', () => {
+    expect(component.find(ConfigInput).length).toBeGreaterThan(10);
   });
 });

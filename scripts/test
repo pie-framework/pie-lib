@@ -4,7 +4,7 @@ const argv = require('minimist')(process.argv.slice(2));
 const { execSync } = require('child_process');
 const { resolve, join } = require('path');
 
-const cmd = `./node_modules/.bin/jest ${
+const cmd = `./node_modules/.bin/jest --watch -u ${
   argv.scope ? `packages/${argv.scope}/src` : ''
 }`;
 console.log('cmd: ', cmd);
