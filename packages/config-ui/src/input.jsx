@@ -53,7 +53,12 @@ export default class Input extends React.Component {
   }
 
   render() {
-    const { label, type, noModelUpdateOnError, ...rest } = this.props;
+    const {
+      label,
+      type,
+      noModelUpdateOnError, // eslint-disable-line no-unused-vars
+      ...rest
+    } = this.props;
     const { value, error } = this.state;
 
     return label ? (
