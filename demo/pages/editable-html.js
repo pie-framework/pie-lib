@@ -10,9 +10,19 @@ import withRoot from '../src/withRoot';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
+import katex from 'katex';
+require('katex/dist/katex.css');
 
 const log = debug('@pie-lib:editable-html:demo');
 const puppySrc = `https://bit.ly/23yROY8`;
+
+let renderMathInElement = () => {};
+
+if (typeof window !== 'undefined') {
+  //Auto render requires the katex global
+  window.katex = katex;
+  renderMathInElement = require('katex/dist/contrib/auto-render.min');
+}
 
 /**
  * Note: See core schema rules - it normalizes so you can only have blocks or inline and text in a block.
@@ -27,10 +37,53 @@ const puppySrc = `https://bit.ly/23yROY8`;
 // <img src="${puppySrc}"/>
 //<div>this is some text</div>
 const html = `<div>
-<span data-mathjax="">\\frac{1}{2}</span>
+<span data-latex="">\\(\\frac{1}{2}\\)</span>
 </div>`;
 
 // const j = { "kind": "value", "document": { "kind": "document", "data": {}, "nodes": [{ "kind": "block", "type": "div", "nodes": [{ "kind": "text", "leaves": [{ "kind": "leaf", "text": "a" }] }, { "kind": "block", "type": "image", "isVoid": true, "nodes": [], "data": { "src": "http://cdn2-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-8.jpg", "width": null, "height": null } }] }] } }
+
+class RawMarkupPreview extends React.Component {
+  static propTypes = {
+    classes: PropTypes.object.isRequired,
+    markup: PropTypes.string.isRequired
+  };
+
+  componentDidUpdate() {
+    if (this.preview) {
+      renderMathInElement(this.preview);
+    }
+  }
+
+  componentDidMount() {
+    if (this.preview) {
+      renderMathInElement(this.preview);
+    }
+  }
+
+  render() {
+    const { markup, classes } = this.props;
+    return (
+      <div>
+        <Typography variant="title">Markup</Typography>
+        <Typography variant="subheading">Preview</Typography>
+        <div
+          ref={r => (this.preview = r)}
+          dangerouslySetInnerHTML={{ __html: markup }}
+        />
+        <hr />
+        <Typography variant="subheading">Raw</Typography>
+        <pre className={classes.prettyPrint}>{markup}</pre>
+        <hr />
+      </div>
+    );
+  }
+}
+const MarkupPreview = withStyles(() => ({
+  prettyPrint: {
+    whiteSpace: 'normal',
+    width: '100%'
+  }
+}))(RawMarkupPreview);
 
 class RteDemo extends React.Component {
   static propTypes = {
@@ -218,10 +271,7 @@ class RteDemo extends React.Component {
         />
         <input type="file" hidden ref={r => (this.fileInput = r)} />
         <br />
-        <br />
-        <h4>markup</h4>
-        <pre className={classes.prettyPrint}>{markup}</pre>
-        <hr />
+        <MarkupPreview markup={markup} />
         <Typography variant="subheading">Issues</Typography>
         <ol>
           <li>
@@ -248,10 +298,6 @@ const styles = theme => ({
   sizeInput: {
     width: '60px',
     paddingLeft: theme.spacing.unit * 2
-  },
-  prettyPrint: {
-    whiteSpace: 'normal',
-    width: '100%'
   }
 });
 
