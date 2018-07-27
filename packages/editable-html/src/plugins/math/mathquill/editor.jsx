@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import debug from 'debug';
+import { debounce } from 'lodash';
 
 let MQ;
 if (typeof window !== 'undefined') {
@@ -72,7 +73,7 @@ export default class Editor extends React.Component {
     return this.mathField.latex();
   }
 
-  onInputEdit(event) {
+  _onInputEdit = event => {
     log('[onInputEdit] ...', event);
 
     if (!this.mathField) {
@@ -82,7 +83,12 @@ export default class Editor extends React.Component {
       return;
     }
     this.props.onChange(this.mathField.latex());
-  }
+  };
+
+  onInputEdit = debounce(this._onInputEdit, 300, {
+    leading: false,
+    trailing: true
+  });
 
   latexIsEqual = (a, b) => {
     if (!a && !b) {
