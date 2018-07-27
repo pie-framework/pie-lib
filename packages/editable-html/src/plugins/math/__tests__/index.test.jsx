@@ -51,41 +51,57 @@ describe('MathPlugin', () => {
   });
 
   describe('serialization', () => {
-    test('deserializes', () => {
-      const el = {
-        tagName: 'span',
-        getAttribute: jest.fn(() => ''),
-        hasAttribute: jest.fn(() => true),
-        innerHTML: 'latex'
-      };
-      const next = jest.fn();
+    describe('deserialize', () => {
+      const assertDeserialize = (html, expected) => {
+        test(`innerHTML: ${html} is deserialized to: ${expected}`, () => {
+          const el = {
+            tagName: 'span',
+            getAttribute: jest.fn(() => ''),
+            hasAttribute: jest.fn(() => true),
+            innerHTML: html
+          };
+          const next = jest.fn();
 
-      const out = serialization.deserialize(el, next);
-      expect(out).toEqual({
-        object: 'inline',
-        type: 'math',
-        isVoid: true,
-        nodes: [],
-        data: {
-          latex: 'latex'
-        }
-      });
+          const out = serialization.deserialize(el, next);
+          expect(out).toEqual({
+            object: 'inline',
+            type: 'math',
+            isVoid: true,
+            nodes: [],
+            data: {
+              latex: expected
+            }
+          });
+        });
+      };
+
+      assertDeserialize('&lt;', '<');
+      assertDeserialize('latex', 'latex');
     });
 
-    test('serialization', () => {
-      const object = {
-        kind: 'inline',
-        type: 'math',
-        isVoid: true,
-        nodes: [],
-        data: Data.create({
-          latex: 'latex'
-        })
-      };
-      const children = [];
+    describe('serialize', () => {
+      const assertSerialize = (latex, expectedHtml) => {
+        test(`${latex} is serialized to: ${expectedHtml}`, () => {
+          const object = {
+            kind: 'inline',
+            type: 'math',
+            isVoid: true,
+            nodes: [],
+            data: Data.create({ latex })
+          };
+          const children = [];
 
-      const out = serialization.serialize(object, children);
-      expect(out).toEqual(<span data-latex="">latex</span>);
+          const out = serialization.serialize(object, children);
+          expect(out).toEqual(<span data-latex="">{expectedHtml}</span>);
+        });
+      };
+
+      assertSerialize('latex', 'latex');
+
+      /**
+       * Note that when this is converted to html it get's escaped - but that's an issue with the slate html-serializer.
+       */
+      assertSerialize('<', '<');
     });
   });
 });
