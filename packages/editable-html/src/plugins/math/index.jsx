@@ -4,7 +4,7 @@ import MathPreview from './math-preview';
 import React from 'react';
 import debug from 'debug';
 import { MathToolbar } from './math-toolbar';
-
+import { removeBrackets, addBrackets } from '@pie-lib/math-input';
 const log = debug('editable-html:plugins:math');
 
 const TEXT_NODE = 3;
@@ -72,6 +72,11 @@ export const inlineMath = () =>
     }
   });
 
+const htmlDecode = input => {
+  var doc = new DOMParser().parseFromString(input, 'text/html');
+  return doc.documentElement.textContent;
+};
+
 export const serialization = {
   deserialize(el) {
     if (el.nodeType === TEXT_NODE) {
@@ -80,26 +85,34 @@ export const serialization = {
 
     const tagName = el.tagName.toLowerCase();
     log('[deserialize] name: ', tagName);
-    const hasMathJaxAttribute =
-      el.getAttribute('mathjax') !== undefined ||
-      el.getAttribute('data-mathjax') !== undefined;
 
-    log('[deserialize] hasMathJaxAttribute: ', hasMathJaxAttribute);
-    if (tagName === 'span' && hasMathJaxAttribute) {
+    if (tagName !== 'span') {
+      return;
+    }
+
+    const hasLatex = el.hasAttribute('data-latex') || el.hasAttribute('latex');
+
+    if (hasLatex) {
+      const latex = htmlDecode(el.innerHTML);
+      const noBrackets = removeBrackets(latex);
+      log('[deserialize]: noBrackets: ', noBrackets);
       return {
         object: 'inline',
         type: 'math',
         isVoid: true,
         nodes: [],
         data: {
-          latex: el.innerHTML
+          latex: noBrackets
         }
       };
     }
   },
   serialize(object) {
     if (object.type === 'math') {
-      return <span data-mathjax="">{object.data.get('latex')}</span>;
+      const l = object.data.get('latex');
+      log('[serialize] latex: ', l);
+      const decoded = htmlDecode(l);
+      return <span data-latex="">{addBrackets(decoded)}</span>;
     }
   }
 };

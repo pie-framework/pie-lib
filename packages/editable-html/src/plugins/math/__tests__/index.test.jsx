@@ -6,6 +6,11 @@ import MathPlugin, { serialization, inlineMath } from '../index';
 
 const log = debug('editable-html:test:math');
 
+jest.mock('@pie-lib/math-input', () => ({
+  removeBrackets: jest.fn(n => n),
+  addBrackets: jest.fn(n => n)
+}));
+
 jest.mock('../math-preview', () => () => <div> math preview</div>);
 jest.mock('../math-toolbar', () => () => ({
   MathToolbar: () => <div>MathToolbar</div>
@@ -50,6 +55,7 @@ describe('MathPlugin', () => {
       const el = {
         tagName: 'span',
         getAttribute: jest.fn(() => ''),
+        hasAttribute: jest.fn(() => true),
         innerHTML: 'latex'
       };
       const next = jest.fn();
@@ -79,7 +85,7 @@ describe('MathPlugin', () => {
       const children = [];
 
       const out = serialization.serialize(object, children);
-      expect(out).toEqual(<span data-mathjax="">latex</span>);
+      expect(out).toEqual(<span data-latex="">latex</span>);
     });
   });
 });

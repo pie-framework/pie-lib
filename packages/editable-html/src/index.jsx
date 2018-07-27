@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Editor from './editor';
 import { htmlToValue, valueToHtml } from './serialization';
+import debug from 'debug';
 
+const log = debug('editable-html');
 /**
  * Export lower level Editor and serialization functions.
  */
@@ -50,7 +52,7 @@ export default class EditableHtml extends React.Component {
 
   onChange = value => {
     const html = valueToHtml(value);
-
+    log('value as html: ', html);
     if (html !== this.props.markup) {
       this.props.onChange(html);
     }
