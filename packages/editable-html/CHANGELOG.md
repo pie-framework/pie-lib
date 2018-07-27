@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="6.2.1"></a>
+## [6.2.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.2.0...@pie-lib/editable-html@6.2.1) (2018-07-27)
+
+
+### Bug Fixes
+
+* **math:** emit latex wrapped in brackets ([0ef0a75](https://github.com/pie-framework/pie-lib/commit/0ef0a75))
+
+
+
+
 <a name="6.2.0"></a>
 # [6.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.1.1...@pie-lib/editable-html@6.2.0) (2018-07-25)
 
