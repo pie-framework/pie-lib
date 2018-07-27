@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="6.2.2"></a>
+## [6.2.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.2.1...@pie-lib/editable-html@6.2.2) (2018-07-27)
+
+
+### Bug Fixes
+
+* debounce 'onInputEdit' to prevent componentLifecycle overflow ([f1081ce](https://github.com/pie-framework/pie-lib/commit/f1081ce))
+
+
+
+
 <a name="6.2.1"></a>
 ## [6.2.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.2.0...@pie-lib/editable-html@6.2.1) (2018-07-27)
 
