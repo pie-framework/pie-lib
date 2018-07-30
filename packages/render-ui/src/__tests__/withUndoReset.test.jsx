@@ -1,6 +1,7 @@
 import * as React from 'react';
 import withUndoReset from '../withUndoReset';
 import { mount, shallow } from 'enzyme';
+import { shallowChild } from '@pie-lib/test-utils';
 
 describe('withUndoReset', () => {
   let wrapper;
@@ -82,6 +83,118 @@ describe('withUndoReset', () => {
       wrapper.find(WrappedClass).instance().onRemoveLastItem();
 
       expect(wrapper.find(WrappedClass).html().includes('span')).toEqual(false);
+    });
+
+    it('can undo changes in the session', () => {
+      wrapper = shallowChild(Component, defaultProps, 1)();
+      const instance = wrapper.instance();
+
+      instance.onSessionChange({
+        items: [{
+          id: 2,
+        }]
+      });
+
+      instance.onSessionChange({
+        items: [{
+          id: 2,
+        }, {
+          id: 3,
+        }]
+      });
+
+      expect(wrapper.state().changes).toEqual([{
+        items: [{
+          id: 2,
+        }]
+      }, {
+        items: [{
+          id: 2,
+        }, {
+          id: 3,
+        }]
+      }]);
+
+      expect(wrapper.state().session).toEqual({
+        items: [{
+          id: 2,
+        }, {
+          id: 3,
+        }]
+      });
+
+      instance.onUndo();
+
+      expect(wrapper.state().changes).toEqual([{
+        items: [{
+          id: 2,
+        }]
+      }]);
+
+      expect(wrapper.state().session).toEqual({
+        items: [{
+          id: 2,
+        }]
+      });
+
+      instance.onUndo();
+
+      expect(wrapper.state().changes).toEqual([]);
+
+      expect(wrapper.state().session).toEqual({
+        items: []
+      });
+
+      expect(wrapper.find(WrappedClass).html()).toEqual('<div></div>');
+    });
+
+    it('can reset changes in the session', () => {
+      wrapper = shallowChild(Component, defaultProps, 1)();
+      const instance = wrapper.instance();
+
+      instance.onSessionChange({
+        items: [{
+          id: 2,
+        }]
+      });
+
+      instance.onSessionChange({
+        items: [{
+          id: 2,
+        }, {
+          id: 3,
+        }]
+      });
+
+      expect(wrapper.state().changes).toEqual([{
+        items: [{
+          id: 2,
+        }]
+      }, {
+        items: [{
+          id: 2,
+        }, {
+          id: 3,
+        }]
+      }]);
+
+      expect(wrapper.state().session).toEqual({
+        items: [{
+          id: 2,
+        }, {
+          id: 3,
+        }]
+      });
+
+      instance.onReset();
+
+      expect(wrapper.state().changes).toEqual([]);
+
+      expect(wrapper.state().session).toEqual({
+        items: []
+      });
+
+      expect(wrapper.find(WrappedClass).html()).toEqual('<div></div>');
     });
   })
 })
