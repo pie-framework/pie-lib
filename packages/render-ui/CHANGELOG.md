@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="4.1.0"></a>
+# [4.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@3.0.0...@pie-lib/render-ui@4.1.0) (2018-07-31)
+
+
+### Features
+
+* **render-ui:** added undo-reset HoC support for undo-reset functionality ([383ad4d](https://github.com/pie-framework/pie-lib/commit/383ad4d))
+
+
+
+
 <a name="2.1.0"></a>
 # [2.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@2.0.11...@pie-lib/render-ui@2.1.0) (2018-05-16)
 
