@@ -1,4 +1,5 @@
 import * as indicators from './response-indicators';
 import Feedback from './feedback';
+import withUndoReset from './withUndoReset';
 
-export { indicators, Feedback };
+export { indicators, withUndoReset, Feedback };
