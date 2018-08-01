@@ -189,6 +189,7 @@ export class Toolbar extends React.Component {
     const names = classNames(classes.toolbar, isFocused && classes.focused);
 
     const deletable = node && plugin && plugin.deleteNode;
+    const showDone = node && plugin && plugin.toolbar && plugin.toolbar.showDone;
 
     return (
       <div className={names} onClick={this.onClick}>
@@ -217,6 +218,7 @@ export class Toolbar extends React.Component {
               <Delete />
             </IconButton>
           )}
+          {showDone && (<DoneButton onClick={onDone} />)}
         </div>
       </div>
     );

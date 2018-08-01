@@ -51,7 +51,8 @@ export default function ImagePlugin(opts) {
         <ImageToolbar percent={percent || 100} onChange={onChange} />
       );
       return Tb;
-    }
+    },
+    showDone: true
   };
 
   return {
