@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="4.2.1"></a>
+## [4.2.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.1.0...@pie-lib/render-ui@4.2.1) (2018-08-01)
+
+
+### Bug Fixes
+
+* **render-ui:** add named export for withUndoReset ([97203a2](https://github.com/pie-framework/pie-lib/commit/97203a2))
+
+
+
+
 <a name="4.1.0"></a>
 # [4.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@3.0.0...@pie-lib/render-ui@4.1.0) (2018-07-31)
 
