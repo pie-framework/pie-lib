@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="6.2.4"></a>
+## [6.2.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.2.3...@pie-lib/editable-html@6.2.4) (2018-08-02)
+
+
+### Bug Fixes
+
+* **math:** prevent mathquill re-render if math is unchanged. Closes [#47](https://github.com/pie-framework/pie-lib/issues/47). ([5e7b0fd](https://github.com/pie-framework/pie-lib/commit/5e7b0fd))
+
+
+
+
 <a name="6.2.3"></a>
 ## [6.2.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.2.2...@pie-lib/editable-html@6.2.3) (2018-08-01)
 
