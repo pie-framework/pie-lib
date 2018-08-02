@@ -52,8 +52,17 @@ export class EditorAndPad extends React.Component {
     onChange(latex);
   };
 
+  /** Only render if the mathquill instance's latex is different */
+  shouldComponentUpdate(nextProps) {
+    const inputIsDifferent = this.input.latex() !== nextProps.latex;
+    log('[shouldComponentUpdate] ', 'inputIsDifferent: ', inputIsDifferent);
+    return inputIsDifferent;
+  }
+
   render() {
     const { latex, classes } = this.props;
+
+    log('[render]', latex);
 
     return (
       <div className={classes.mathToolbar}>

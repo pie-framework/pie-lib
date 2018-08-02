@@ -73,6 +73,12 @@ export default class Editor extends React.Component {
     return this.mathField.latex();
   }
 
+  latex() {
+    if (this.mathField) {
+      return this.mathField.latex();
+    }
+  }
+
   _onInputEdit = event => {
     log('[onInputEdit] ...', event);
 
