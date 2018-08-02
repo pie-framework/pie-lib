@@ -20,11 +20,11 @@
     "mathquill": "git+https://github.com/luxp/mathquill-webpack.git",
     "react-jss": "^8.6.1",
     "react-portal": "^4.1.5",
-    "slate": "^0.34.6",
+    "slate": "^0.36.2",
     "slate-edit-list": "^0.11.3",
     "slate-html-serializer": "^0.6.12",
     "slate-prop-types": "^0.4.38",
-    "slate-react": "^0.13.3"
+    "slate-react": "^0.14.3"
   },
   "devDependencies": {
     "react": "^16.4.1",
