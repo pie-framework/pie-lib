@@ -37,7 +37,10 @@ if (typeof window !== 'undefined') {
 // <img src="${puppySrc}"/>
 //<div>this is some text</div>
 const html = `<div>
-<span data-latex="">\\(\\frac{1}{2}\\)</span>
+  <p>
+    foo
+    <img src="${puppySrc}"/>
+  </p>
 </div>`;
 
 // const j = { "kind": "value", "document": { "kind": "document", "data": {}, "nodes": [{ "kind": "block", "type": "div", "nodes": [{ "kind": "text", "leaves": [{ "kind": "leaf", "text": "a" }] }, { "kind": "block", "type": "image", "isVoid": true, "nodes": [], "data": { "src": "http://cdn2-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-8.jpg", "width": null, "height": null } }] }] } }
