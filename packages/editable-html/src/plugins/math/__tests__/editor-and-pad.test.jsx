@@ -28,7 +28,8 @@ describe('EditorAndPad', () => {
       clear: jest.fn(),
       command: jest.fn(),
       keystroke: jest.fn(),
-      write: jest.fn()
+      write: jest.fn(),
+      latex: jest.fn()
     };
     return w;
   };
@@ -38,6 +39,22 @@ describe('EditorAndPad', () => {
       const w = mkWrapper();
 
       expect(w).toMatchSnapshot();
+    });
+  });
+
+  describe('shouldComponentUpdate', () => {
+    it('returns false if the latex is unchanged', () => {
+      const w = mkWrapper();
+      const i = w.instance();
+      i.input.latex.mockReturnValue('current');
+      expect(i.shouldComponentUpdate({ latex: 'current' })).toEqual(false);
+    });
+
+    it('returns true if the latex is changed', () => {
+      const w = mkWrapper();
+      const i = w.instance();
+      i.input.latex.mockReturnValue('current');
+      expect(i.shouldComponentUpdate({ latex: 'new' })).toEqual(true);
     });
   });
 
