@@ -5,6 +5,11 @@ module.exports = {
         object: 'block',
         type: 'paragraph',
         nodes: [
+          // {
+          //   object: 'block',
+          //   type: 'foo',
+          //   isVoid: true
+          // },
           {
             object: 'text',
             leaves: [

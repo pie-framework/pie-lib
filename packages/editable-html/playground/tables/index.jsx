@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Value } from 'slate';
+import { Value, Schema } from 'slate';
 import data from './data';
 import { Editor } from 'slate-react';
 import ImgPlugin from './image-plugin';
@@ -13,9 +13,8 @@ const schema = {
       }
     ],
     normalize: (change, error) => {
-      console.log('normalize ... !!!');
+      console.log('normalize ... !!!', error.code);
       if (error.code == 'child_type_invalid') {
-        console.log('!!!');
         change.setNodeByKey(error.child.key, { type: 'paragraph' });
       }
     }
@@ -24,14 +23,13 @@ const schema = {
     paragraph: {
       nodes: [
         {
-          match: { object: 'text' }
+          match: [{ type: 'image' }, { object: 'text' }]
         }
       ],
 
       normalize: (change, error) => {
-        console.log('ppp normalize ... !!!');
+        console.log('paragraph normalize ... !!!', error.code);
         if (error.code == 'child_type_invalid') {
-          console.log('pp!!!');
           change.setNodeByKey(error.child.key, { type: 'paragraph' });
         }
       }
@@ -43,7 +41,6 @@ const schema = {
       normalize: (change, error) => {
         console.log('img normalize ... !!!');
         if (error.code == 'child_type_invalid') {
-          console.log('img !!!');
           change.setNodeByKey(error.child.key, { type: 'paragraph' });
         }
       }
@@ -51,6 +48,9 @@ const schema = {
   }
 };
 
+const s = Schema.fromJSON(schema);
+s.rules.splice(0, 12);
+console.log('ss: ', s);
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -60,16 +60,24 @@ class App extends React.Component {
 
     this.plugins = [ImgPlugin()];
   }
+
+  renderNode = props => {
+    console.log('renderNode', props.node.type);
+    if (props.node.type === 'paragraph') {
+      return <p {...props.attributes}>{props.children}</p>;
+    }
+  };
   render() {
+    console.log('schema: ', schema);
+
     return (
-      <div>
-        <Editor
-          value={this.state.value}
-          plugins={this.plugins}
-          schema={schema}
-          onChange={change => this.setState({ value: change.value })}
-        />
-      </div>
+      <Editor
+        value={this.state.value}
+        plugins={this.plugins}
+        schema={s}
+        renderNode={this.renderNode}
+        onChange={change => this.setState({ value: change.value })}
+      />
     );
   }
 }
