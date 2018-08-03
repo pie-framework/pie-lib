@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="6.2.5"></a>
+## [6.2.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.2.4...@pie-lib/editable-html@6.2.5) (2018-08-03)
+
+
+### Bug Fixes
+
+* make images inline instead of block so they render correctly. ([e02fec0](https://github.com/pie-framework/pie-lib/commit/e02fec0))
+
+
+
+
 <a name="6.2.4"></a>
 ## [6.2.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.2.3...@pie-lib/editable-html@6.2.4) (2018-08-02)
 
