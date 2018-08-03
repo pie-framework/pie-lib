@@ -11,13 +11,7 @@ const schema = {
       {
         match: [{ type: 'paragraph' }, { type: 'image' }]
       }
-    ],
-    normalize: (change, error) => {
-      console.log('normalize ... !!!', error.code);
-      if (error.code == 'child_type_invalid') {
-        change.setNodeByKey(error.child.key, { type: 'paragraph' });
-      }
-    }
+    ]
   },
   blocks: {
     paragraph: {
@@ -25,32 +19,16 @@ const schema = {
         {
           match: [{ type: 'image' }, { object: 'text' }]
         }
-      ],
-
-      normalize: (change, error) => {
-        console.log('paragraph normalize ... !!!', error.code);
-        if (error.code == 'child_type_invalid') {
-          change.setNodeByKey(error.child.key, { type: 'paragraph' });
-        }
-      }
+      ]
     },
     image: {
-      isVoid: true,
-      data: {},
-
-      normalize: (change, error) => {
-        console.log('img normalize ... !!!');
-        if (error.code == 'child_type_invalid') {
-          change.setNodeByKey(error.child.key, { type: 'paragraph' });
-        }
-      }
+      isVoid: true
     }
   }
 };
-
 const s = Schema.fromJSON(schema);
-s.rules.splice(0, 12);
-console.log('ss: ', s);
+const v = Value.fromJSON(data, { normalize: false });
+console.log(s);
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -61,20 +39,12 @@ class App extends React.Component {
     this.plugins = [ImgPlugin()];
   }
 
-  renderNode = props => {
-    console.log('renderNode', props.node.type);
-    if (props.node.type === 'paragraph') {
-      return <p {...props.attributes}>{props.children}</p>;
-    }
-  };
   render() {
-    console.log('schema: ', schema);
-
     return (
       <Editor
         value={this.state.value}
         plugins={this.plugins}
-        schema={s}
+        schema={schema}
         renderNode={this.renderNode}
         onChange={change => this.setState({ value: change.value })}
       />
