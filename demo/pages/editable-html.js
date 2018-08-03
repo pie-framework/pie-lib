@@ -62,7 +62,6 @@ class RawMarkupPreview extends React.Component {
     return (
       <div>
         <Typography variant="title">Markup</Typography>
-        <Typography variant="subheading">Preview</Typography>
         <div
           ref={r => (this.preview = r)}
           dangerouslySetInnerHTML={{ __html: markup }}
@@ -224,12 +223,24 @@ class RteDemo extends React.Component {
           A rich text editor with a material design look.
         </Typography>
         <br />
+        <div>
+          <em className={classes.italic}>
+            You can enter your own markup here to see how it works with the
+            editor.
+          </em>
+        </div>
         <textarea
           className={classes.textArea}
           onChange={e => this.setState({ userHtml: e.target.value })}
           value={this.state.userHtml}
         />
-        <Button onClick={this.updateEditorMarkup}>Update Editor</Button>
+        <Button
+          variant="raised"
+          color="primary"
+          onClick={this.updateEditorMarkup}
+        >
+          Update Editor
+        </Button>
         <FormGroup row>
           <FormControlLabel
             control={
@@ -279,21 +290,6 @@ class RteDemo extends React.Component {
         <input type="file" hidden ref={r => (this.fileInput = r)} />
         <br />
         <MarkupPreview markup={markup} />
-        <Typography variant="subheading">Issues</Typography>
-        <ol>
-          <li>
-            <a
-              href="https://github.com/ianstormtaylor/slate/blob/master/packages/slate/src/constants/core-schema-rules.js#L39"
-              target="_blank"
-            >
-              Slate's core schema
-            </a>{' '}
-            only allows for either block or inline and text in a block node. If
-            it finds an invalid node it just removes any invalid nodes within
-            it. This could be problematic for us when handling incoming content
-            of unknown provenance.
-          </li>
-        </ol>
       </div>
     ) : (
       <div>loading...</div>
@@ -302,6 +298,9 @@ class RteDemo extends React.Component {
 }
 
 const styles = theme => ({
+  italic: {
+    fontSize: '11px'
+  },
   textArea: {
     width: '100%',
     height: '100px'
