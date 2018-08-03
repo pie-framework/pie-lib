@@ -12,6 +12,7 @@ import Underline from '@material-ui/icons/FormatUnderlined';
 import compact from 'lodash/compact';
 import debug from 'debug';
 import List from './list';
+import TablePlugin from './table';
 
 const log = debug('@pie-lib:editable-html:plugins');
 
@@ -58,7 +59,8 @@ export const DEFAULT_PLUGINS = [
   'bulleted-list',
   'numbered-list',
   'image',
-  'math'
+  'math',
+  'table'
 ];
 
 export const buildPlugins = (activePlugins, opts) => {
@@ -69,6 +71,7 @@ export const buildPlugins = (activePlugins, opts) => {
   const addIf = (key, p) => activePlugins.includes(key) && p;
 
   return compact([
+    addIf('table', TablePlugin(opts.table)),
     addIf(
       'bold',
       MarkHotkey({ key: 'b', type: 'bold', icon: <Bold />, tag: 'strong' })

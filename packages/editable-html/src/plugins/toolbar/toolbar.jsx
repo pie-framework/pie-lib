@@ -137,6 +137,24 @@ export class Toolbar extends React.Component {
     };
   };
 
+  onToolbarDone = (change, finishEditing) => {
+    log('[onToolbarDone] change: ', change, 'finishEditing: ', finishEditing);
+    const { onChange, onDone } = this.props;
+
+    if (change) {
+      onChange(change, () => {
+        if (finishEditing) {
+          onDone();
+        }
+      });
+    } else {
+      if (finishEditing) {
+        log('[onToolbarChange] call onDone');
+        onDone();
+      }
+    }
+  };
+
   render() {
     const { classes, plugins, value, onChange, isFocused, onDone } = this.props;
 
@@ -151,37 +169,33 @@ export class Toolbar extends React.Component {
       }
 
       if (p.toolbar) {
-        return p.toolbar.supports && p.toolbar.supports(node);
+        return p.toolbar.supports && p.toolbar.supports(node, value);
       }
     });
 
     log('[render] plugin: ', plugin);
 
-    const toolbarChangeHandler = callOnDone => (key, update) => {
-      log('[toolbarChangeHandler] node update: key:', key, 'node: ', update);
-      if (!plugin.toolbar.applyChange) {
-        throw new Error(
-          'if you have a custom toolbar you must supply "plugin.toolbar.applyChange(key, data, value: Slate.Value): Slate.Change"'
-        );
-      }
-      const pluginChange = plugin.toolbar.applyChange(key, update, value);
-      if (pluginChange) {
-        log('[toolbarChangeHandler] trigger onChange...', pluginChange.value);
-        onChange(pluginChange, () => {
-          if (callOnDone) {
-            onDone();
-          }
-        });
-      }
-    };
+    // const toolbarChangeHandler = callOnDone => (key, update) => {
+    //   log('[toolbarChangeHandler] node update: key:', key, 'node: ', update);
+    //   if (!plugin.toolbar.applyChange) {
+    //     throw new Error(
+    //       'if you have a custom toolbar you must supply "plugin.toolbar.applyChange(key, data, value: Slate.Value): Slate.Change"'
+    //     );
+    //   }
+    //   const pluginChange = plugin.toolbar.applyChange(key, update, value);
+    //   if (pluginChange) {
+    //     log('[toolbarChangeHandler] trigger onChange...', pluginChange.value);
+    //     onChange(pluginChange, () => {
+    //       if (callOnDone) {
+    //         onDone();
+    //       }
+    //     });
+    //   }
+    // };
 
     const CustomToolbar =
       plugin && plugin.toolbar && plugin.toolbar.customToolbar
-        ? plugin.toolbar.customToolbar(
-            node,
-            toolbarChangeHandler(true),
-            toolbarChangeHandler(false)
-          )
+        ? plugin.toolbar.customToolbar(node, value, this.onToolbarDone)
         : null;
 
     log('[render] CustomToolbar: ', CustomToolbar);
@@ -189,7 +203,8 @@ export class Toolbar extends React.Component {
     const names = classNames(classes.toolbar, isFocused && classes.focused);
 
     const deletable = node && plugin && plugin.deleteNode;
-    const showDone = node && plugin && plugin.toolbar && plugin.toolbar.showDone;
+    const showDone =
+      node && plugin && plugin.toolbar && plugin.toolbar.showDone;
 
     return (
       <div className={names} onClick={this.onClick}>
@@ -218,7 +233,7 @@ export class Toolbar extends React.Component {
               <Delete />
             </IconButton>
           )}
-          {showDone && (<DoneButton onClick={onDone} />)}
+          {showDone && <DoneButton onClick={onDone} />}
         </div>
       </div>
     );

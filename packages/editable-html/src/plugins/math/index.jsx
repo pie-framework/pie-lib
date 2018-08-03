@@ -24,9 +24,10 @@ export default function MathPlugin(/*options*/) {
       /**
        * Return a react component function
        * @param node {Slate.Node}
-       * @param toolbarDone {Function} a function to call once the toolbar has made any changes, call with the node.key and a data object.
+       * @param value {Slate.Value}
+       * @param onDone {(change?: Slate.Change, finishEditing :boolea) => void} - a function to call once the toolbar has made any changes, call with the node.key and a data object.
        */
-      customToolbar: (node, toolbarDone) => {
+      customToolbar: (node, value, onToolbarDone) => {
         if (node && node.object === 'inline' && node.type === 'math') {
           const latex = node.data.get('latex');
           const onDone = latex => {
@@ -34,20 +35,23 @@ export default function MathPlugin(/*options*/) {
               ...node.data.toObject(),
               latex
             };
-            toolbarDone(node.key, update);
+            const change = value
+              .change()
+              .setNodeByKey(node.key, { data: update });
+            onToolbarDone(change, true);
           };
 
           const Tb = () => <MathToolbar latex={latex} onDone={onDone} />;
           return Tb;
         }
-      },
+      }
 
       /**
        * This method takes the output of customToolbars onDone method + a Slate.Value object.
        * @returns {Slate.Change} a change object
-       */
       applyChange: (nodeKey, nodeData, value) =>
         value.change().setNodeByKey(nodeKey, { data: nodeData })
+       */
     },
     schema: {
       document: { match: [{ type: 'math' }] }

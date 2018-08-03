@@ -36,7 +36,7 @@ export default function ImagePlugin(opts) {
      */
     applyChange: (key, data, value) =>
       value.change().setNodeByKey(key, { data }),
-    customToolbar: (node, _, toolbarChange) => {
+    customToolbar: (node, value, onToolbarDone) => {
       const percent = node.data.get('resizePercent');
 
       const onChange = resizePercent => {
@@ -44,7 +44,9 @@ export default function ImagePlugin(opts) {
           ...node.data.toObject(),
           resizePercent
         };
-        toolbarChange(node.key, update);
+
+        const change = value.change().setNodeByKey(node.key, { data: update });
+        onToolbarDone(change, false);
       };
 
       const Tb = () => (

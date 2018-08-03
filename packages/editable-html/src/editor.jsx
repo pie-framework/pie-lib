@@ -83,6 +83,16 @@ export class Editor extends React.Component {
           this.editor.blur();
           this.onEditingDone();
         }
+      },
+      table: {
+        onFocus: () => {
+          log('[table:onFocus]...');
+          this.onPluginFocus();
+        },
+        onBlur: () => {
+          log('[table:onBlur]...');
+          this.onPluginBlur();
+        }
       }
     });
   }

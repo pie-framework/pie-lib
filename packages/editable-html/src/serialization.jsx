@@ -4,6 +4,7 @@ import debug from 'debug';
 import { serialization as imgSerialization } from './plugins/image';
 import { serialization as mathSerialization } from './plugins/math';
 import { serialization as listSerialization } from './plugins/list';
+import { serialization as tableSerialization } from './plugins/table';
 import { Mark, Value } from 'slate';
 
 const log = debug('@pie-lib:editable-html:serialization');
@@ -149,6 +150,7 @@ const RULES = [
   listSerialization,
   mathSerialization,
   imgSerialization,
+  tableSerialization,
   TEXT_RULE,
   blocks,
   marks

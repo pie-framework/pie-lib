@@ -33,7 +33,8 @@ if (typeof window !== 'undefined') {
  * Note: See core schema rules - it normalizes so you can only have blocks or inline and text in a block.
  */
 
-const html = `<div><p>hi <img src="${puppySrc}" style="width: 200px"/> bar</p></div>`;
+const html = `<table border="1"><tr><td>a</td><td>b</td></tr></table>`;
+// const html = `<div><p>hi <img src="${puppySrc}" style="width: 200px"/> bar</p></div>`;
 
 const value = htmlToValue(html);
 
