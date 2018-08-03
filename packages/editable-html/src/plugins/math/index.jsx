@@ -5,7 +5,7 @@ import React from 'react';
 import debug from 'debug';
 import { MathToolbar } from './math-toolbar';
 import { removeBrackets, addBrackets } from '@pie-lib/math-input';
-const log = debug('editable-html:plugins:math');
+const log = debug('@pie-lib:editable-html:plugins:math');
 
 const TEXT_NODE = 3;
 
@@ -50,7 +50,7 @@ export default function MathPlugin(/*options*/) {
         value.change().setNodeByKey(nodeKey, { data: nodeData })
     },
     schema: {
-      document: { types: ['math'] }
+      document: { match: [{ type: 'math' }] }
     },
 
     renderNode: props => {

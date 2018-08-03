@@ -24,7 +24,7 @@ jest.mock('@material-ui/core/IconButton', () => {
 
 let node = Inline.fromJSON({ type: 'i' });
 let value;
-const log = debug('editable-html:test:toolbar');
+const log = debug('@pie-lib:editable-html:test:toolbar');
 
 describe('toolbar', () => {
   let onDelete, classes, document;

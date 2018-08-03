@@ -7,7 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import SlatePropTypes from 'slate-prop-types';
 
-const log = debug('editable-html:plugins:toolbar:editor-and-toolbar');
+const log = debug('@pie-lib:editable-html:plugins:toolbar:editor-and-toolbar');
 
 export class EditorAndToolbar extends React.Component {
   static propTypes = {

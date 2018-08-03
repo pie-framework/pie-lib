@@ -1,7 +1,7 @@
 import { Data } from 'slate';
 import debug from 'debug';
 
-const log = debug('editable-html:image:insert-image-handler');
+const log = debug('@pie-lib:editable-html:image:insert-image-handler');
 
 /**
  * Handles user selection, insertion (or cancellation) of an image into the editor.

@@ -8,7 +8,7 @@ import renderer from 'react-test-renderer';
 
 mockIconButton();
 
-const log = debug('editable-html:test:editor-and-toolbar');
+const log = debug('@pie-lib:editable-html:test:editor-and-toolbar');
 
 describe('Button', () => {
   it('renders', () => {

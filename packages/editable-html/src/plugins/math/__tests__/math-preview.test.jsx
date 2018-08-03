@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import { classObject } from '../../../__tests__/utils';
 import debug from 'debug';
-const log = debug('editable-html:test:math');
+const log = debug('@pie-lib:editable-html:test:math');
 import MathPreview from '../math-preview';
 import { mount } from 'enzyme';
 import { Data, Block, Value } from 'slate';

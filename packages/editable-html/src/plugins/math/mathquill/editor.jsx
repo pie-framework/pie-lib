@@ -9,7 +9,7 @@ if (typeof window !== 'undefined') {
   MQ = MathQuill.getInterface(2);
 }
 
-const log = debug('editable-html:plugins:math:mathquill:editor');
+const log = debug('@pie-lib:editable-html:plugins:math:mathquill:editor');
 
 export default class Editor extends React.Component {
   static propTypes = {

@@ -1,4 +1,7 @@
-import EditableHtml, { DEFAULT_PLUGINS } from '@pie-lib/editable-html';
+import EditableHtml, {
+  DEFAULT_PLUGINS,
+  htmlToValue
+} from '@pie-lib/editable-html';
 import React from 'react';
 import _ from 'lodash';
 import debug from 'debug';
@@ -10,6 +13,8 @@ import withRoot from '../src/withRoot';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+
 import katex from 'katex';
 require('katex/dist/katex.css');
 
@@ -27,23 +32,12 @@ if (typeof window !== 'undefined') {
 /**
  * Note: See core schema rules - it normalizes so you can only have blocks or inline and text in a block.
  */
-// const html = `<div><div>hi</div><img src="${puppySrc}"></img></div>`;
-// const html = `<span data-mathjax="">\\frac{1}{2}</span>`;
-// const html = `<ul><li><span>apple<span></li></ul>`;
-// const html = `<div>
-//   <img src="${puppySrc}"></img>
-// </div>`;
 
-// <img src="${puppySrc}"/>
-//<div>this is some text</div>
-const html = `<div>
-  <p>
-    foo
-    <img src="${puppySrc}"/>
-  </p>
-</div>`;
+const html = `<div><p>hi <img src="${puppySrc}" style="width: 200px"/> bar</p></div>`;
 
-// const j = { "kind": "value", "document": { "kind": "document", "data": {}, "nodes": [{ "kind": "block", "type": "div", "nodes": [{ "kind": "text", "leaves": [{ "kind": "leaf", "text": "a" }] }, { "kind": "block", "type": "image", "isVoid": true, "nodes": [], "data": { "src": "http://cdn2-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-8.jpg", "width": null, "height": null } }] }] } }
+const value = htmlToValue(html);
+
+log('value: ', value);
 
 class RawMarkupPreview extends React.Component {
   static propTypes = {
@@ -96,6 +90,7 @@ class RteDemo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      userHtml: html,
       markup: html,
       showHighlight: false,
       disabled: false,
@@ -200,6 +195,10 @@ class RteDemo extends React.Component {
     done();
   };
 
+  updateEditorMarkup = () => {
+    this.setState({ markup: this.state.userHtml });
+  };
+
   render() {
     const { classes } = this.props;
     const {
@@ -225,7 +224,12 @@ class RteDemo extends React.Component {
           A rich text editor with a material design look.
         </Typography>
         <br />
-
+        <textarea
+          className={classes.textArea}
+          onChange={e => this.setState({ userHtml: e.target.value })}
+          value={this.state.userHtml}
+        />
+        <Button onClick={this.updateEditorMarkup}>Update Editor</Button>
         <FormGroup row>
           <FormControlLabel
             control={
@@ -298,6 +302,10 @@ class RteDemo extends React.Component {
 }
 
 const styles = theme => ({
+  textArea: {
+    width: '100%',
+    height: '100px'
+  },
   sizeInput: {
     width: '60px',
     paddingLeft: theme.spacing.unit * 2

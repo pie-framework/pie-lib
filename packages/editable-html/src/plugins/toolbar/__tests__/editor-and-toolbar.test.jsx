@@ -10,7 +10,7 @@ jest.mock('../toolbar', () => () => <div>---- toolbar ------ </div>);
 
 mockIconButton();
 
-const log = debug('editable-html:test:editor-and-toolbar');
+const log = debug('@pie-lib:editable-html:test:editor-and-toolbar');
 
 describe('toolbar', () => {
   let onDelete, classes;

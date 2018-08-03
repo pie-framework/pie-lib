@@ -151,7 +151,7 @@ const styles = theme => ({
   root: {
     position: 'relative',
     border: 'solid 1px white',
-    display: 'inline-flex',
+    display: 'inline-block',
     transition: 'opacity 200ms linear'
   },
   active: {

@@ -6,7 +6,7 @@ import debug from 'debug';
 
 import { mockComponents } from './utils';
 
-const log = debug('editable-html:test');
+const log = debug('@pie-lib:editable-html:test');
 
 const value = htmlToValue('hi');
 

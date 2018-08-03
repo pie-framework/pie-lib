@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import MathQuillEditor from './mathquill/editor';
 import { withStyles } from '@material-ui/core/styles';
 
-const log = debug('editable-html:plugins:math:editor-and-pad');
+const log = debug('@pie-lib:editable-html:plugins:math:editor-and-pad');
 
 const toNodeData = data => {
   if (!data) {

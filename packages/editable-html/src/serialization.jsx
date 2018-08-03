@@ -4,9 +4,9 @@ import debug from 'debug';
 import { serialization as imgSerialization } from './plugins/image';
 import { serialization as mathSerialization } from './plugins/math';
 import { serialization as listSerialization } from './plugins/list';
-import { Mark } from 'slate';
+import { Mark, Value } from 'slate';
 
-const log = debug('editable-html:serialization');
+const log = debug('@pie-lib:editable-html:serialization');
 
 /**
  * Tags to blocks.
@@ -181,4 +181,5 @@ const serializer = new Html({
 });
 
 export const htmlToValue = html => serializer.deserialize(html);
+
 export const valueToHtml = value => serializer.serialize(value);

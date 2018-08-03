@@ -11,7 +11,7 @@ import SlatePropTypes from 'slate-prop-types';
 import { findSingleNode, hasBlock, hasMark } from '../utils';
 import { withStyles } from '@material-ui/core/styles';
 
-const log = debug('editable-html:plugins:toolbar');
+const log = debug('@pie-lib:editable-html:plugins:toolbar');
 
 const ToolbarButton = props => {
   const onToggle = () => {

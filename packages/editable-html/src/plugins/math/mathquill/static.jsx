@@ -8,7 +8,7 @@ if (typeof window !== 'undefined') {
   MQ = MathQuill.getInterface(2);
 }
 
-const log = debug('editable-html:plugins:math:mathquill');
+const log = debug('@pie-lib:editable-html:plugins:math:mathquill');
 
 /**
  * Wrapper for MathQuill MQ.MathField.

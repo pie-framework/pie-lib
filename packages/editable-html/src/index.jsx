@@ -4,7 +4,7 @@ import Editor from './editor';
 import { htmlToValue, valueToHtml } from './serialization';
 import debug from 'debug';
 
-const log = debug('editable-html');
+const log = debug('@pie-lib:editable-html');
 /**
  * Export lower level Editor and serialization functions.
  */

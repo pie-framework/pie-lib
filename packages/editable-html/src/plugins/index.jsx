@@ -14,7 +14,7 @@ import debug from 'debug';
 import List from './list';
 import TablePlugin from './table';
 
-const log = debug('editable-html:plugins');
+const log = debug('@pie-lib:editable-html:plugins');
 
 function MarkHotkey(options) {
   const { type, key, icon, tag } = options;
@@ -50,8 +50,6 @@ function MarkHotkey(options) {
   };
 }
 
-//TODO: re-add 'math' - the changes arent being picked up correctly
-//TODO: re-add 'image' - the image handler cant find the placeholder
 export const DEFAULT_PLUGINS = [
   'bold',
   'code',

@@ -6,7 +6,7 @@ import { primary } from '../../theme';
 import PropTypes from 'prop-types';
 import Static from './mathquill/static';
 
-const log = debug('editable-html:plugins:math:component');
+const log = debug('@pie-lib:editable-html:plugins:math:component');
 
 export class RawMathPreview extends React.Component {
   static propTypes = {

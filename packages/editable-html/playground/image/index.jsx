@@ -1,10 +1,10 @@
-import imageData from './data.json';
+import imageData from './data';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Editor } from 'slate-react';
 import { Range, Block, Value } from 'slate';
-
+import EditableEditor from '../../src/backup-editor';
 class Img extends React.Component {
   render() {
     const { data } = this.props.node;
@@ -63,6 +63,11 @@ class ImageDemo extends React.Component {
         some text...
         <hr />
         <Editor
+          value={value}
+          onChange={change => this.setState({ value: change.value })}
+          plugins={this.plugins}
+        />
+        <EditableEditor
           value={value}
           onChange={change => this.setState({ value: change.value })}
           plugins={this.plugins}

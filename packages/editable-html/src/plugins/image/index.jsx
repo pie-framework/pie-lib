@@ -14,7 +14,7 @@ export default function ImagePlugin(opts) {
     icon: <Image />,
     onClick: (value, onChange) => {
       log('[toolbar] onClick');
-      const block = Inline.create({
+      const inline = Inline.create({
         type: 'image',
         isVoid: true,
         data: {
@@ -23,13 +23,13 @@ export default function ImagePlugin(opts) {
         }
       });
 
-      const change = value.change().insertBlock(block);
+      const change = value.change().insertInline(inline);
       onChange(change);
       opts.insertImageRequested(
-        getValue => new InsertImageHandler(block, getValue, onChange)
+        getValue => new InsertImageHandler(inline, getValue, onChange)
       );
     },
-    supports: node => node.object === 'block' && node.type === 'image',
+    supports: node => node.object === 'inline' && node.type === 'image',
     /**
      * Apply the change from the output of a custom toolbar
      * @see customToolbar#onChange function
@@ -145,7 +145,6 @@ export const serialization = {
       object: 'inline',
       type: 'image',
       isVoid: true,
-      nodes: [],
       data: {
         src: el.getAttribute('src'),
         width,

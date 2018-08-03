@@ -4,7 +4,7 @@ import MockChange from '../../image/__tests__/mock-change';
 import { Data } from 'slate';
 import MathPlugin, { serialization, inlineMath } from '../index';
 
-const log = debug('editable-html:test:math');
+const log = debug('@pie-lib:editable-html:test:math');
 
 jest.mock('@pie-lib/math-input', () => ({
   removeBrackets: jest.fn(n => n),

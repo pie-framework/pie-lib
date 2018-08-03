@@ -14,7 +14,7 @@ jest.mock('@pie-lib/math-input', () => {
 
 jest.mock('../editor-and-pad', () => () => <div>EditorAndPad</div>);
 
-const log = debug('editable-html:test:editor-and-toolbar');
+const log = debug('@pie-lib:editable-html:test:editor-and-toolbar');
 
 describe('math-toolbar', () => {
   let onDone;

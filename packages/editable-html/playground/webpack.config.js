@@ -8,7 +8,8 @@ module.exports = {
     image: './image/index.jsx',
     'schema-override': './schema-override/index.jsx',
     'prod-test': './prod-test/index.jsx',
-    mathquill: './mathquill/index.jsx'
+    mathquill: './mathquill/index.jsx',
+    serialization: './serialization/index.jsx'
   },
   output: {
     filename: '[name]/bundle.js',
