@@ -1,4 +1,4 @@
-import { Block, Data, Range } from 'slate';
+import { Block, Data, Range, Inline } from 'slate';
 
 import Image from '@material-ui/icons/Image';
 import ImageComponent from './component';
@@ -14,7 +14,7 @@ export default function ImagePlugin(opts) {
     icon: <Image />,
     onClick: (value, onChange) => {
       log('[toolbar] onClick');
-      const block = Block.create({
+      const block = Inline.create({
         type: 'image',
         isVoid: true,
         data: {
@@ -125,7 +125,7 @@ export default function ImagePlugin(opts) {
           isFocused: true,
           isBackward: false
         });
-        change.insertBlockAtRange(change.value.selection, block).select(range);
+        change.insertInlineAtRange(change.value.selection, block).select(range);
       }
     }
   };
@@ -142,7 +142,7 @@ export const serialization = {
     const height = parseInt(style.height.replace('px', ''), 10) || null;
 
     const out = {
-      object: 'block',
+      object: 'inline',
       type: 'image',
       isVoid: true,
       nodes: [],

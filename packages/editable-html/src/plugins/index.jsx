@@ -12,6 +12,7 @@ import Underline from '@material-ui/icons/FormatUnderlined';
 import compact from 'lodash/compact';
 import debug from 'debug';
 import List from './list';
+import TablePlugin from './table';
 
 const log = debug('editable-html:plugins');
 
@@ -60,7 +61,8 @@ export const DEFAULT_PLUGINS = [
   'bulleted-list',
   'numbered-list',
   'image',
-  'math'
+  'math',
+  'table'
 ];
 
 export const buildPlugins = (activePlugins, opts) => {
@@ -98,6 +100,7 @@ export const buildPlugins = (activePlugins, opts) => {
       opts.image && opts.image.onDelete && ImagePlugin(opts.image)
     ),
     addIf('math', MathPlugin(opts.math)),
+    addIf('table', TablePlugin(opts.table)),
     addIf(
       'bulleted-list',
       List({ key: 'l', type: 'ul_list', icon: <BulletedListIcon /> })

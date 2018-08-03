@@ -6,7 +6,7 @@ module.exports = {
   context: __dirname,
   entry: {
     image: './image/index.jsx',
-    tables: './tables/index.jsx',
+    'schema-override': './schema-override/index.jsx',
     'prod-test': './prod-test/index.jsx',
     mathquill: './mathquill/index.jsx'
   },
