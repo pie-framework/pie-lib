@@ -96,6 +96,7 @@ export class Toolbar extends React.Component {
     onDone: PropTypes.func.isRequired,
     classes: PropTypes.object.isRequired,
     isFocused: PropTypes.bool,
+    autoWidth: PropTypes.bool,
     onChange: PropTypes.func.isRequired
   };
 
@@ -138,7 +139,7 @@ export class Toolbar extends React.Component {
   };
 
   render() {
-    const { classes, plugins, value, onChange, isFocused, onDone } = this.props;
+    const { classes, plugins, value, autoWidth, onChange, isFocused, onDone } = this.props;
 
     const node = findSingleNode(value);
 
@@ -186,7 +187,11 @@ export class Toolbar extends React.Component {
 
     log('[render] CustomToolbar: ', CustomToolbar);
 
-    const names = classNames(classes.toolbar, isFocused && classes.focused);
+    const names = classNames(
+      classes.toolbar,
+      autoWidth ? classes.autoWidth : classes.fullWidth,
+      isFocused && classes.focused
+    );
 
     const deletable = node && plugin && plugin.deleteNode;
     const showDone = node && plugin && plugin.toolbar && plugin.toolbar.showDone;
@@ -234,11 +239,16 @@ const style = {
     background: 'var(--editable-html-toolbar-bg, #efefef)',
     margin: '0px',
     padding: '2px',
-    width: '100%',
     boxShadow:
       '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
     boxSizing: 'border-box',
     display: 'none'
+  },
+  fullWidth: {
+    width: '100%'
+  },
+  autoWidth: {
+    width: 'auto'
   },
   focused: {
     display: 'flex'
