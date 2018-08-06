@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="6.3.0"></a>
+# [6.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.2.5...@pie-lib/editable-html@6.3.0) (2018-08-06)
+
+
+### Features
+
+* **editable-html:** added autoWidthToolbar for editable-html ([a5103f5](https://github.com/pie-framework/pie-lib/commit/a5103f5))
+
+
+
+
 <a name="6.2.5"></a>
 ## [6.2.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.2.4...@pie-lib/editable-html@6.2.5) (2018-08-03)
 

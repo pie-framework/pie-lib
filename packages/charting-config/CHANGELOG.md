@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.3.6"></a>
+## [0.3.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting-config@0.3.5...@pie-lib/charting-config@0.3.6) (2018-08-06)
+
+
+
+
+**Note:** Version bump only for package @pie-lib/charting-config
+
 <a name="0.3.5"></a>
 ## [0.3.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting-config@0.3.4...@pie-lib/charting-config@0.3.5) (2018-08-03)
 
