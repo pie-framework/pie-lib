@@ -30,12 +30,6 @@ export default function ImagePlugin(opts) {
       );
     },
     supports: node => node.object === 'inline' && node.type === 'image',
-    /**
-     * Apply the change from the output of a custom toolbar
-     * @see customToolbar#onChange function
-     */
-    applyChange: (key, data, value) =>
-      value.change().setNodeByKey(key, { data }),
     customToolbar: (node, value, onToolbarDone) => {
       const percent = node.data.get('resizePercent');
 
