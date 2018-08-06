@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`table-toolbar snapshot renders 1`] = `
+<div
+  className="table-toolbar"
+>
+  <div>
+    <Jss(RawButton)
+      onClick={[MockFunction]}
+    >
+      <AddRow />
+    </Jss(RawButton)>
+    <Jss(RawButton)
+      onClick={[MockFunction]}
+    >
+      <RemoveRow />
+    </Jss(RawButton)>
+    <Jss(RawButton)
+      onClick={[MockFunction]}
+    >
+      <AddColumn />
+    </Jss(RawButton)>
+    <Jss(RawButton)
+      onClick={[MockFunction]}
+    >
+      <RemoveColumn />
+    </Jss(RawButton)>
+    <Jss(RawButton)
+      onClick={[MockFunction]}
+    >
+      <RemoveTable />
+    </Jss(RawButton)>
+  </div>
+  <WithStyles(RawDoneButton)
+    onClick={[Function]}
+  />
+</div>
+`;

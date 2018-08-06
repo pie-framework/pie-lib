@@ -12,7 +12,7 @@ import {
 } from './icons';
 import PropTypes from 'prop-types';
 
-class TableToolbar extends React.Component {
+export class TableToolbar extends React.Component {
   static propTypes = {
     onAddRow: PropTypes.func.isRequired,
     onRemoveRow: PropTypes.func.isRequired,
@@ -28,6 +28,7 @@ class TableToolbar extends React.Component {
     e.preventDefault();
     onDone();
   };
+
   render() {
     const {
       onAddRow,

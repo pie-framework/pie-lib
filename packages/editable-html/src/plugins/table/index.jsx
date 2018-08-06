@@ -1,14 +1,20 @@
 import React from 'react';
-import { Block } from 'slate';
 import EditTable from 'slate-edit-table';
 import debug from 'debug';
 import GridOn from '@material-ui/icons/GridOn';
 import TableToolbar from './table-toolbar';
-
+import PropTypes from 'prop-types';
+import SlatePropTypes from 'slate-prop-types';
+import { withStyles } from '@material-ui/core/styles';
 const log = debug('@pie-lib:editable-html:plugins:table');
 
-const Table = props => (
+const Table = withStyles(theme => ({
+  table: {
+    borderCollapse: 'collapse'
+  }
+}))(props => (
   <table
+    className={props.classes.table}
     {...props.attributes}
     border={props.node.data.get('border')}
     onFocus={props.onFocus}
@@ -16,54 +22,55 @@ const Table = props => (
   >
     <tbody>{props.children}</tbody>
   </table>
-);
+));
+
+Table.propTypes = {
+  attributes: PropTypes.object,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
+  node: SlatePropTypes.Node,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]).isRequired
+};
 
 const TableRow = props => <tr {...props.attributes}>{props.children}</tr>;
 
-const TableCell = props => (
-  <td {...props.attributes} onFocus={props.onFocus} onBlur={props.onBlur}>
+TableRow.propTypes = {
+  attributes: PropTypes.object,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]).isRequired
+};
+
+const TableCell = withStyles(theme => ({
+  td: {
+    border: `solid 1px ${theme.palette.primary.main}`
+  }
+}))(props => (
+  <td
+    {...props.attributes}
+    className={props.classes.td}
+    onFocus={props.onFocus}
+    onBlur={props.onBlur}
+  >
     {props.children}
   </td>
-);
+));
 
-const tableData = () =>
-  Block.create({
-    object: 'block',
-    type: 'table',
-    data: {
-      border: '1'
-    },
-    nodes: [
-      {
-        object: 'block',
-        type: 'table_row',
-        nodes: [
-          {
-            object: 'block',
-            type: 'table_cell',
-            nodes: [
-              {
-                object: 'block',
-                type: 'div',
-                nodes: []
-              }
-            ]
-          },
-          {
-            object: 'block',
-            type: 'table_cell',
-            nodes: [
-              {
-                object: 'block',
-                type: 'div',
-                nodes: []
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  });
+TableCell.propTypes = {
+  attributes: PropTypes.object,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]).isRequired
+};
 
 export default opts => {
   const core = EditTable({
@@ -74,9 +81,8 @@ export default opts => {
     icon: <GridOn />,
     onClick: (value, onChange) => {
       log('insert table');
-      const table = tableData();
-      const change = value.change().insertBlock(table);
-      onChange(change);
+      const c = core.changes.insertTable(value.change(), 2, 2);
+      onChange(c);
     },
     supports: (node, value) =>
       node && node.object === 'block' && core.utils.isSelectionInTable(value),
@@ -155,7 +161,6 @@ export const serialization = {
             ? el.children[0].children
             : el.children;
         const c = Array.from(children);
-        console.log('children: ', children);
         return {
           object: 'block',
           type: 'table',
