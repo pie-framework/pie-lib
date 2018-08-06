@@ -45,13 +45,6 @@ export default function MathPlugin(/*options*/) {
           return Tb;
         }
       }
-
-      /**
-       * This method takes the output of customToolbars onDone method + a Slate.Value object.
-       * @returns {Slate.Change} a change object
-      applyChange: (nodeKey, nodeData, value) =>
-        value.change().setNodeByKey(nodeKey, { data: nodeData })
-       */
     },
     schema: {
       document: { match: [{ type: 'math' }] }
