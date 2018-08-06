@@ -51,16 +51,21 @@ const TableCell = withStyles(theme => ({
   td: {
     border: `solid 1px ${theme.palette.primary.main}`
   }
-}))(props => (
-  <td
-    {...props.attributes}
-    className={props.classes.td}
-    onFocus={props.onFocus}
-    onBlur={props.onBlur}
-  >
-    {props.children}
-  </td>
-));
+}))(props => {
+  const Tag = props.node.data.get('header') ? 'th' : 'td';
+
+  return (
+    <Tag
+      {...props.attributes}
+      colSpan={props.node.data.get('colspan')}
+      className={props.classes[Tag]}
+      onFocus={props.onFocus}
+      onBlur={props.onBlur}
+    >
+      {props.children}
+    </Tag>
+  );
+});
 
 TableCell.propTypes = {
   attributes: PropTypes.object,
@@ -170,6 +175,17 @@ export const serialization = {
           }
         };
       }
+      case 'th': {
+        return {
+          object: 'block',
+          type: 'table_cell',
+          nodes: next(el.childNodes),
+          data: {
+            header: true,
+            colspan: el.getAttribute('colspan')
+          }
+        };
+      }
       case 'tr': {
         return {
           object: 'block',
@@ -181,7 +197,11 @@ export const serialization = {
         return {
           object: 'block',
           type: 'table_cell',
-          nodes: next(el.childNodes)
+          nodes: next(el.childNodes),
+          data: {
+            header: false,
+            colspan: el.getAttribute('colspan')
+          }
         };
       }
     }
@@ -203,7 +223,12 @@ export const serialization = {
         return <tr>{children}</tr>;
       }
       case 'table_cell': {
-        return <td>{children}</td>;
+        const colspan = object.data.get('colspan');
+        if (object.data.get('header')) {
+          return <th colSpan={colspan}>{children}</th>;
+        } else {
+          return <td colSpan={colspan}>{children}</td>;
+        }
       }
     }
   }
