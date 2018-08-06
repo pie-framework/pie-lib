@@ -46,3 +46,15 @@ Just point jest to the dir/file:
 Sometimes the project test set up can get out of synch
 
 * try `lerna bootstrap`, `npm run build`, `rm -fr packages/test-utils/node_modules` and run again.
+
+## Building and deployng a pre-release
+
+```shell
+# make sure the local demo is working first: scripts/dev then:
+cd demo
+./node_modules/.bin/next build
+./node_modules/.bin/next export
+cd out
+# you can now deploy using now (or if you have another static site handler)
+now .
+```
