@@ -21,6 +21,7 @@ export class EditorAndToolbar extends React.Component {
     onDone: PropTypes.func.isRequired,
     focusedNode: SlatePropTypes.node,
     readOnly: PropTypes.bool,
+    autoWidth: PropTypes.bool,
     classes: PropTypes.object.isRequired
   };
 
@@ -33,6 +34,7 @@ export class EditorAndToolbar extends React.Component {
       onChange,
       onDone,
       focusedNode,
+      autoWidth,
       readOnly
     } = this.props;
 
@@ -59,6 +61,7 @@ export class EditorAndToolbar extends React.Component {
           <div className={classes.children}>{children}</div>
         </div>
         <Toolbar
+          autoWidth={autoWidth}
           plugins={plugins}
           focusedNode={focusedNode}
           value={value}

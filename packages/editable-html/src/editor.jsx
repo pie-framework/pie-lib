@@ -23,6 +23,7 @@ export class Editor extends React.Component {
     classes: PropTypes.object.isRequired,
     highlightShape: PropTypes.bool,
     disabled: PropTypes.bool,
+    autoWidthToolbar: PropTypes.bool,
     activePlugins: PropTypes.arrayOf(values => {
       const allValid = values.every(v => DEFAULT_PLUGINS.includes(v));
       return (
@@ -77,6 +78,7 @@ export class Editor extends React.Component {
          * To minimize converting html -> state -> html
          * We only emit markup once 'done' is clicked.
          */
+        autoWidth: props.autoWidthToolbar,
         onDone: () => {
           log('[onDone]');
           this.setState({ toolbarInFocus: false, focusedNode: null });
