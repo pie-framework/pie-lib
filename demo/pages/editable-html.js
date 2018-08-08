@@ -28,6 +28,13 @@ if (typeof window !== 'undefined') {
   renderMathInElement = require('katex/dist/contrib/auto-render.min');
 }
 
+const renderOpts = {
+  delimiters: [
+    { left: '\\(', right: '\\)', display: false },
+    { left: '$', right: '$', display: false }
+  ]
+};
+
 /**
  * Note: See core schema rules - it normalizes so you can only have blocks or inline and text in a block.
  */
@@ -56,13 +63,13 @@ class RawMarkupPreview extends React.Component {
 
   componentDidUpdate() {
     if (this.preview) {
-      renderMathInElement(this.preview);
+      renderMathInElement(this.preview, renderOpts);
     }
   }
 
   componentDidMount() {
     if (this.preview) {
-      renderMathInElement(this.preview);
+      renderMathInElement(this.preview, renderOpts);
     }
   }
 
