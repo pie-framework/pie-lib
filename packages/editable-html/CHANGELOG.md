@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="6.4.0"></a>
+# [6.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.3.0...@pie-lib/editable-html@6.4.0) (2018-08-08)
+
+
+### Features
+
+* **math:** add support for $ latex character ([0569f14](https://github.com/pie-framework/pie-lib/commit/0569f14))
+
+
+
+
 <a name="6.3.0"></a>
 # [6.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.2.5...@pie-lib/editable-html@6.3.0) (2018-08-06)
 
