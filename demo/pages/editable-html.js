@@ -13,8 +13,7 @@ import withRoot from '../src/withRoot';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-
+import InputChooser from '../src/editable-html/input-chooser';
 import katex from 'katex';
 require('katex/dist/katex.css');
 
@@ -32,12 +31,22 @@ if (typeof window !== 'undefined') {
 /**
  * Note: See core schema rules - it normalizes so you can only have blocks or inline and text in a block.
  */
+const inputOptions = [
+  {
+    label: 'An image in a P tag',
+    html: `<div><p>hi <img src="${puppySrc}" style="width: 200px"/> bar</p></div>`
+  },
+  {
+    label: 'Latex \\(..\\)',
+    html: '<div><span data-latex="">\\(\\frac{1}{2}\\)</span></div>'
+  },
+  {
+    label: 'Latex $..$',
+    html: '<div><span data-latex="">$\\frac{1}{2}$</span></div>'
+  }
+];
 
-const html = `<div><p>hi <img src="${puppySrc}" style="width: 200px"/> bar</p></div>`;
-
-const value = htmlToValue(html);
-
-log('value: ', value);
+const html = inputOptions[0].html;
 
 class RawMarkupPreview extends React.Component {
   static propTypes = {
@@ -89,7 +98,6 @@ class RteDemo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userHtml: html,
       markup: html,
       showHighlight: false,
       disabled: false,
@@ -223,24 +231,10 @@ class RteDemo extends React.Component {
           A rich text editor with a material design look.
         </Typography>
         <br />
-        <div>
-          <em className={classes.italic}>
-            You can enter your own markup here to see how it works with the
-            editor.
-          </em>
-        </div>
-        <textarea
-          className={classes.textArea}
-          onChange={e => this.setState({ userHtml: e.target.value })}
-          value={this.state.userHtml}
+        <InputChooser
+          inputOptions={inputOptions}
+          onChange={markup => this.setState({ markup })}
         />
-        <Button
-          variant="raised"
-          color="primary"
-          onClick={this.updateEditorMarkup}
-        >
-          Update Editor
-        </Button>
         <FormGroup row>
           <FormControlLabel
             control={
@@ -298,13 +292,6 @@ class RteDemo extends React.Component {
 }
 
 const styles = theme => ({
-  italic: {
-    fontSize: '11px'
-  },
-  textArea: {
-    width: '100%',
-    height: '100px'
-  },
   sizeInput: {
     width: '60px',
     paddingLeft: theme.spacing.unit * 2
