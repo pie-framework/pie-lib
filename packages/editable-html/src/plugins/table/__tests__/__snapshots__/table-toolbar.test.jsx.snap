@@ -8,27 +8,27 @@ exports[`table-toolbar snapshot renders 1`] = `
     <Jss(RawButton)
       onClick={[MockFunction]}
     >
-      <AddRow />
+      <WithStyles(Component) />
     </Jss(RawButton)>
     <Jss(RawButton)
       onClick={[MockFunction]}
     >
-      <RemoveRow />
+      <WithStyles(Component) />
     </Jss(RawButton)>
     <Jss(RawButton)
       onClick={[MockFunction]}
     >
-      <AddColumn />
+      <WithStyles(Component) />
     </Jss(RawButton)>
     <Jss(RawButton)
       onClick={[MockFunction]}
     >
-      <RemoveColumn />
+      <WithStyles(Component) />
     </Jss(RawButton)>
     <Jss(RawButton)
       onClick={[MockFunction]}
     >
-      <RemoveTable />
+      <WithStyles(Component) />
     </Jss(RawButton)>
   </div>
   <WithStyles(RawDoneButton)

@@ -97,7 +97,10 @@ describe('serialization', () => {
     it('deserializes td', () => {
       const el = {
         tagName: 'td',
-        children: []
+        children: [],
+        getAttribute: jest.fn(function() {
+          return '1';
+        })
       };
 
       const out = serialization.deserialize(el, next);
@@ -105,7 +108,11 @@ describe('serialization', () => {
       expect(out).toEqual({
         object: 'block',
         type: 'table_cell',
-        nodes: []
+        nodes: [],
+        data: {
+          colspan: '1',
+          header: false
+        }
       });
     });
   });
@@ -139,7 +146,10 @@ describe('serialization', () => {
       const el = serialization.serialize({
         object: 'block',
         type: 'table_cell',
-        nodes: []
+        nodes: [],
+        data: Data.create({
+          header: false
+        })
       });
 
       expect(el).toEqual(<td />);
