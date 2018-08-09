@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/config-ui",
-  "version": "7.6.7",
+  "version": "7.6.8",
   "main": "lib/index.js",
   "publishConfig": {
     "access": "public"
@@ -11,7 +11,7 @@
   "dependencies": {
     "@material-ui/core": "^1.3.0",
     "@material-ui/icons": "^1.1.0",
-    "@pie-lib/editable-html": "^6.4.0",
+    "@pie-lib/editable-html": "^6.5.0",
     "@pie-lib/icons": "^2.2.0",
     "debug": "^3.0.1",
     "lodash": "^4.17.10",

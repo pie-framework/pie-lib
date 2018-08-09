@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.2.0"></a>
+# [3.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@3.1.15...@pie-lib/scoring-config@3.2.0) (2018-08-09)
+
+
+### Features
+
+* **editable-html:** add basic table support ([637a93a](https://github.com/pie-framework/pie-lib/commit/637a93a))
+
+
+
+
 <a name="3.1.15"></a>
 
 ## [3.1.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@3.1.14...@pie-lib/scoring-config@3.1.15) (2018-08-08)

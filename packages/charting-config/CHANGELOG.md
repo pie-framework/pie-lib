@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.4.0"></a>
+# [0.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting-config@0.3.7...@pie-lib/charting-config@0.4.0) (2018-08-09)
+
+
+### Features
+
+* **editable-html:** add basic table support ([637a93a](https://github.com/pie-framework/pie-lib/commit/637a93a))
+
+
+
+
 <a name="0.3.7"></a>
 
 ## [0.3.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting-config@0.3.6...@pie-lib/charting-config@0.3.7) (2018-08-08)
