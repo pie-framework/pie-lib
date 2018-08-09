@@ -4,12 +4,12 @@ import MockChange from '../../image/__tests__/mock-change';
 import { Data } from 'slate';
 import MathPlugin, { serialization, inlineMath } from '../index';
 
-const log = debug('@pie-lib:editable-html:test:math');
-
-jest.mock('@pie-lib/math-input', () => ({
-  removeBrackets: jest.fn(n => n),
-  addBrackets: jest.fn(n => n)
+jest.mock('mathquill', () => ({
+  StaticMath: jest.fn(),
+  getInterface: jest.fn().mockReturnThis()
 }));
+
+const log = debug('@pie-lib:editable-html:test:math');
 
 jest.mock('../math-preview', () => () => <div> math preview</div>);
 jest.mock('../math-toolbar', () => () => ({
@@ -52,8 +52,8 @@ describe('MathPlugin', () => {
 
   describe('serialization', () => {
     describe('deserialize', () => {
-      const assertDeserialize = (html, expected) => {
-        test(`innerHTML: ${html} is deserialized to: ${expected}`, () => {
+      const assertDeserialize = (html, expected, wrapType) => {
+        it(`innerHTML: ${html} is deserialized to: ${expected} with wrapType: ${wrapType}`, () => {
           const el = {
             tagName: 'span',
             getAttribute: jest.fn(() => ''),
@@ -69,39 +69,48 @@ describe('MathPlugin', () => {
             isVoid: true,
             nodes: [],
             data: {
-              latex: expected
+              latex: expected,
+              wrapper: wrapType
             }
           });
         });
       };
 
-      assertDeserialize('&lt;', '<');
-      assertDeserialize('latex', 'latex');
+      assertDeserialize('$$&lt;$$', '<', MathPlugin.DOLLAR);
+      assertDeserialize('$&lt;$', '<', MathPlugin.DOLLAR);
+      assertDeserialize('\\(&lt;\\)', '<', MathPlugin.ROUND_BRACKETS);
+      assertDeserialize('\\[&lt;\\]', '<', MathPlugin.ROUND_BRACKETS);
+      assertDeserialize('latex', 'latex', MathPlugin.ROUND_BRACKETS);
     });
 
     describe('serialize', () => {
-      const assertSerialize = (latex, expectedHtml) => {
-        test(`${latex} is serialized to: ${expectedHtml}`, () => {
+      const assertSerialize = (latex, expectedHtml, wrapper) => {
+        wrapper = wrapper || MathPlugin.ROUND_BRACKETS;
+        it(`${latex} is serialized to: ${expectedHtml}`, () => {
           const object = {
             kind: 'inline',
             type: 'math',
             isVoid: true,
             nodes: [],
-            data: Data.create({ latex })
+            data: Data.create({ latex, wrapper })
           };
           const children = [];
 
           const out = serialization.serialize(object, children);
+          log('out: ', out);
           expect(out).toEqual(<span data-latex="">{expectedHtml}</span>);
         });
       };
 
-      assertSerialize('latex', 'latex');
+      assertSerialize('latex', '\\(latex\\)', MathPlugin.ROUND_BRACKETS);
+      assertSerialize('latex', '\\(latex\\)', MathPlugin.SQUARE_BRACKETS);
+      assertSerialize('latex', '$latex$', MathPlugin.DOLLAR);
+      assertSerialize('latex', '$latex$', MathPlugin.DOUBLE_DOLLAR);
 
       /**
        * Note that when this is converted to html it get's escaped - but that's an issue with the slate html-serializer.
        */
-      assertSerialize('<', '<');
+      assertSerialize('<', '\\(<\\)');
     });
   });
 });

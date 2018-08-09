@@ -59,6 +59,11 @@ export default function MathPlugin(/*options*/) {
   };
 }
 
+MathPlugin.ROUND_BRACKETS = 'round_brackets';
+MathPlugin.SQUARE_BRACKETS = 'square_brackets';
+MathPlugin.DOLLAR = 'dollar';
+MathPlugin.DOUBLE_DOLLAR = 'double_dollar';
+
 export const inlineMath = () =>
   Inline.create({
     object: 'inline',
@@ -72,6 +77,63 @@ export const inlineMath = () =>
 const htmlDecode = input => {
   var doc = new DOMParser().parseFromString(input, 'text/html');
   return doc.documentElement.textContent;
+};
+
+const PAIRS = {
+  [MathPlugin.ROUND_BRACKETS]: ['\\(', '\\)'],
+  [MathPlugin.SQUARE_BRACKETS]: ['\\[', '\\]'],
+  [MathPlugin.DOLLAR]: ['$', '$'],
+  [MathPlugin.DOUBLE_DOLLAR]: ['$$', '$$']
+};
+
+export const wrap = (content, wrapType) => {
+  if (wrapType === MathPlugin.SQUARE_BRACKETS) {
+    console.warn('\\[...\\] is not supported yet'); // eslint-disable-line
+    wrapType = MathPlugin.ROUND_BRACKETS;
+  }
+  if (wrapType === MathPlugin.DOUBLE_DOLLAR) {
+    console.warn('$$...$$ is not supported yet'); // eslint-disable-line
+    wrapType = MathPlugin.DOLLAR;
+  }
+
+  const [start, end] = PAIRS[wrapType] || PAIRS[MathPlugin.ROUND_BRACKETS];
+  return `${start}${content}${end}`;
+};
+
+export const unwrap = content => {
+  if (content.startsWith('$$') && content.endsWith('$$')) {
+    console.warn('$$ syntax is not yet supported'); // eslint-disable-line
+    return {
+      unwrapped: content.substring(2, content.length - 2),
+      wrapType: MathPlugin.DOLLAR
+    };
+  }
+  if (content.startsWith('$') && content.endsWith('$')) {
+    return {
+      unwrapped: content.substring(1, content.length - 1),
+      wrapType: MathPlugin.DOLLAR
+    };
+  }
+
+  if (content.startsWith('\\[') && content.endsWith('\\]')) {
+    console.warn('\\[..\\] syntax is not yet supported'); // eslint-disable-line
+    return {
+      unwrapped: content.substring(2, content.length - 2),
+      wrapType: MathPlugin.ROUND_BRACKETS
+    };
+  }
+
+  if (content.startsWith('\\(') && content.endsWith('\\)')) {
+    return {
+      unwrapped: content.substring(2, content.length - 2),
+      wrapType: MathPlugin.ROUND_BRACKETS
+    };
+  }
+
+  return {
+    unwrapped: content,
+    wrapType: MathPlugin.ROUND_BRACKETS
+  };
 };
 
 export const serialization = {
@@ -91,15 +153,16 @@ export const serialization = {
 
     if (hasLatex) {
       const latex = htmlDecode(el.innerHTML);
-      const noBrackets = removeBrackets(latex);
-      log('[deserialize]: noBrackets: ', noBrackets);
+      const { unwrapped, wrapType } = unwrap(latex);
+      log('[deserialize]: noBrackets: ', unwrapped, wrapType);
       return {
         object: 'inline',
         type: 'math',
         isVoid: true,
         nodes: [],
         data: {
-          latex: noBrackets
+          latex: unwrapped,
+          wrapper: wrapType
         }
       };
     }
@@ -107,9 +170,10 @@ export const serialization = {
   serialize(object) {
     if (object.type === 'math') {
       const l = object.data.get('latex');
+      const wrapper = object.data.get('wrapper');
       log('[serialize] latex: ', l);
       const decoded = htmlDecode(l);
-      return <span data-latex="">{addBrackets(decoded)}</span>;
+      return <span data-latex="">{wrap(decoded, wrapper)}</span>;
     }
   }
 };

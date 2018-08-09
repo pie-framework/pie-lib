@@ -1,0 +1,14 @@
+{
+  "name": "@pie-lib/player-utils",
+  "version": "0.1.0",
+  "description": "utilities for player custom elements",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "lib/index.js",
+  "author": "pie-framework developers",
+  "license": "ISC",
+  "dependencies": {
+    "katex": "^0.10.0-beta"
+  }
+}
