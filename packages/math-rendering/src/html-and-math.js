@@ -33,7 +33,7 @@ export default class HtmlAndMath extends React.Component {
       <Tag
         ref={r => (this.node = r)}
         className={className}
-        dangerouslySetInnerHtml={{ __html: html }}
+        dangerouslySetInnerHTML={{ __html: html }}
       />
     );
   }
