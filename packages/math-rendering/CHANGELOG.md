@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.2.2"></a>
+## [0.2.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@0.2.1...@pie-lib/math-rendering@0.2.2) (2018-08-10)
+
+
+### Bug Fixes
+
+* fix html setter ([00253c4](https://github.com/pie-framework/pie-lib/commit/00253c4))
+* fix tag name ([7291eb2](https://github.com/pie-framework/pie-lib/commit/7291eb2))
+
+
+
+
 <a name="0.2.1"></a>
 ## [0.2.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@0.2.0...@pie-lib/math-rendering@0.2.1) (2018-08-10)
 
