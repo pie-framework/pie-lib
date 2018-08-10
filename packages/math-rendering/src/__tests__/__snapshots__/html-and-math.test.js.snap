@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`html-and-math render renders 1`] = `
+<tag
+  dangerouslySetInnerHtml={
+    Object {
+      "__html": "<p>hi</p>",
+    }
+  }
+/>
+`;
