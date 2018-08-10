@@ -28,9 +28,9 @@ export default class HtmlAndMath extends React.Component {
 
   render() {
     const { tag, className, html } = this.props;
-
+    const Tag = tag || 'div';
     return (
-      <tag
+      <Tag
         ref={r => (this.node = r)}
         className={className}
         dangerouslySetInnerHtml={{ __html: html }}
