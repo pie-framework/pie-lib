@@ -30,6 +30,12 @@ exports[`table-toolbar snapshot renders 1`] = `
     >
       <WithStyles(Component) />
     </Jss(RawButton)>
+    <Jss(RawButton)
+      active={true}
+      onClick={[MockFunction]}
+    >
+      <pure(BorderAll) />
+    </Jss(RawButton)>
   </div>
   <WithStyles(RawDoneButton)
     onClick={[Function]}

@@ -9,9 +9,7 @@ import { withStyles } from '@material-ui/core/styles';
 const log = debug('@pie-lib:editable-html:plugins:table');
 
 const Table = withStyles(theme => ({
-  table: {
-    borderCollapse: 'collapse'
-  }
+  table: {}
 }))(props => (
   <table
     className={props.classes.table}
@@ -48,9 +46,7 @@ TableRow.propTypes = {
 };
 
 const TableCell = withStyles(theme => ({
-  td: {
-    border: `solid 1px ${theme.palette.primary.main}`
-  }
+  td: {}
 }))(props => {
   const Tag = props.node.data.get('header') ? 'th' : 'td';
 
@@ -82,6 +78,12 @@ export default opts => {
     typeContent: 'div'
   });
 
+  core.utils.getTableBlock = (containerNode, key) => {
+    const node = containerNode.getDescendant(key);
+    const ancestors = containerNode.getAncestors(key).push(node);
+    return ancestors.findLast(p => p.type === 'table');
+  };
+
   core.toolbar = {
     icon: <GridOn />,
     onClick: (value, onChange) => {
@@ -91,7 +93,17 @@ export default opts => {
     },
     supports: (node, value) =>
       node && node.object === 'block' && core.utils.isSelectionInTable(value),
+    /**
+     * Note - the node may not be a table node - it may be a node inside a table.
+     */
     customToolbar: (node, value, onToolbarDone) => {
+      log('[customToolbar] node.data: ', node.data);
+
+      const tableBlock = core.utils.getTableBlock(value.document, node.key);
+      log('[customToolbar] tableBlock: ', tableBlock);
+
+      const hasBorder = () =>
+        tableBlock.data.get('border') && tableBlock.data.get('border') !== '0';
       const addRow = () => {
         const change = core.changes.insertRow(value.change());
         onToolbarDone(change, false);
@@ -117,6 +129,16 @@ export default opts => {
         onToolbarDone(change, false);
       };
 
+      const toggleBorder = () => {
+        const { data } = tableBlock;
+        const update = data.set('border', hasBorder() ? '0' : '1');
+        log('[toggleBorder] update: ', update);
+        const change = value
+          .change()
+          .setNodeByKey(tableBlock.key, { data: update });
+        onToolbarDone(change, false);
+      };
+
       const onDone = () => {
         log('[onDone] call onToolbarDone...');
         onToolbarDone(null, true);
@@ -129,6 +151,8 @@ export default opts => {
           onAddColumn={addColumn}
           onRemoveColumn={removeColumn}
           onRemoveTable={removeTable}
+          hasBorder={hasBorder()}
+          onToggleBorder={toggleBorder}
           onDone={onDone}
         />
       );

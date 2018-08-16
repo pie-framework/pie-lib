@@ -49,6 +49,52 @@ describe('table', () => {
       assertSupports(true, 'inline', false);
       assertSupports(false, 'inline', false);
     });
+
+    describe('customToolbar', () => {
+      describe('toggleBorder', () => {
+        const assertToggle = (border, expectedBorder) => {
+          describe(`with initial border of ${border}`, () => {
+            let change;
+            let done;
+
+            beforeEach(() => {
+              const plugin = TablePlugin();
+              change = {
+                setNodeByKey: jest.fn().mockReturnThis()
+              };
+              plugin.utils.getTableBlock = jest.fn().mockReturnValue({
+                key: 'tableKey',
+                data: Data.create({ border })
+              });
+              const node = { key: 'nodeKey' };
+              const value = {
+                change: jest.fn().mockReturnValue(change)
+              };
+              done = jest.fn();
+              const Comp = plugin.toolbar.customToolbar(node, value, done);
+              const c = Comp();
+              c.props.onToggleBorder();
+            });
+
+            it(`calls setNodeByKey with ${expectedBorder}`, () => {
+              expect(change.setNodeByKey).toHaveBeenCalledWith('tableKey', {
+                data: Data.create({ border: expectedBorder })
+              });
+            });
+
+            it('calls onToolbarDone', () => {
+              expect(done).toHaveBeenCalledWith(change, false);
+            });
+          });
+        };
+
+        assertToggle(null, '1');
+        assertToggle(undefined, '1');
+        assertToggle('0', '1');
+        assertToggle('1', '0');
+        assertToggle('2', '0');
+      });
+    });
   });
 });
 

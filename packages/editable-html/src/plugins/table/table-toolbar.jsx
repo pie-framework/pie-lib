@@ -2,6 +2,7 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { Button } from '../toolbar/toolbar-buttons';
 import { DoneButton } from '../toolbar/done-button';
+import BorderAll from '@material-ui/icons/BorderAll';
 
 import {
   AddRow,
@@ -11,6 +12,9 @@ import {
   RemoveTable
 } from './icons';
 import PropTypes from 'prop-types';
+import debug from 'debug';
+
+const log = debug('@pie-lib:editable-html:plugins:table-toolbar');
 
 export class TableToolbar extends React.Component {
   static propTypes = {
@@ -19,6 +23,8 @@ export class TableToolbar extends React.Component {
     onAddColumn: PropTypes.func.isRequired,
     onRemoveColumn: PropTypes.func.isRequired,
     onRemoveTable: PropTypes.func.isRequired,
+    onToggleBorder: PropTypes.func.isRequired,
+    hasBorder: PropTypes.bool.isRequired,
     onDone: PropTypes.func.isRequired,
     classes: PropTypes.object.isRequired
   };
@@ -36,8 +42,12 @@ export class TableToolbar extends React.Component {
       onAddColumn,
       onRemoveColumn,
       onRemoveTable,
+      onToggleBorder,
+      hasBorder,
       classes
     } = this.props;
+    log('[render] hasBorder:', hasBorder);
+
     return (
       <div className={classes.tableToolbar}>
         <div>
@@ -55,6 +65,9 @@ export class TableToolbar extends React.Component {
           </Button>
           <Button onClick={onRemoveTable}>
             <RemoveTable />
+          </Button>
+          <Button onClick={onToggleBorder} active={hasBorder}>
+            <BorderAll />
           </Button>
         </div>
         <DoneButton onClick={this.onDone} />

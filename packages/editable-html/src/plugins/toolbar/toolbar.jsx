@@ -157,7 +157,15 @@ export class Toolbar extends React.Component {
   };
 
   render() {
-    const { classes, plugins, value, autoWidth, onChange, isFocused, onDone } = this.props;
+    const {
+      classes,
+      plugins,
+      value,
+      autoWidth,
+      onChange,
+      isFocused,
+      onDone
+    } = this.props;
 
     const node = findSingleNode(value);
 
@@ -175,24 +183,6 @@ export class Toolbar extends React.Component {
     });
 
     log('[render] plugin: ', plugin);
-
-    // const toolbarChangeHandler = callOnDone => (key, update) => {
-    //   log('[toolbarChangeHandler] node update: key:', key, 'node: ', update);
-    //   if (!plugin.toolbar.applyChange) {
-    //     throw new Error(
-    //       'if you have a custom toolbar you must supply "plugin.toolbar.applyChange(key, data, value: Slate.Value): Slate.Change"'
-    //     );
-    //   }
-    //   const pluginChange = plugin.toolbar.applyChange(key, update, value);
-    //   if (pluginChange) {
-    //     log('[toolbarChangeHandler] trigger onChange...', pluginChange.value);
-    //     onChange(pluginChange, () => {
-    //       if (callOnDone) {
-    //         onDone();
-    //       }
-    //     });
-    //   }
-    // };
 
     const CustomToolbar =
       plugin && plugin.toolbar && plugin.toolbar.customToolbar
