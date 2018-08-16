@@ -6,27 +6,35 @@ import TableToolbar from './table-toolbar';
 import PropTypes from 'prop-types';
 import SlatePropTypes from 'slate-prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import convert from 'react-attr-converter';
+import { object as toStyleObject } from 'to-style';
+import { paramCase } from 'change-case';
+
 const log = debug('@pie-lib:editable-html:plugins:table');
 
 const Table = withStyles(theme => ({
   table: {}
-}))(props => (
-  <table
-    className={props.classes.table}
-    {...props.attributes}
-    border={props.node.data.get('border')}
-    onFocus={props.onFocus}
-    onBlur={props.onBlur}
-  >
-    <tbody>{props.children}</tbody>
-  </table>
-));
+}))(props => {
+  const nodeAttributes = dataToAttributes(props.node.data);
+
+  return (
+    <table
+      className={props.classes.table}
+      {...props.attributes}
+      {...nodeAttributes}
+      onFocus={props.onFocus}
+      onBlur={props.onBlur}
+    >
+      <tbody>{props.children}</tbody>
+    </table>
+  );
+});
 
 Table.propTypes = {
   attributes: PropTypes.object,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
-  node: SlatePropTypes.Node,
+  node: SlatePropTypes.node,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
@@ -50,9 +58,13 @@ const TableCell = withStyles(theme => ({
 }))(props => {
   const Tag = props.node.data.get('header') ? 'th' : 'td';
 
+  const nodeAttributes = dataToAttributes(props.node.data);
+  delete nodeAttributes.header;
+
   return (
     <Tag
       {...props.attributes}
+      {...nodeAttributes}
       colSpan={props.node.data.get('colspan')}
       className={props.classes[Tag]}
       onFocus={props.onFocus}
@@ -178,6 +190,56 @@ export default opts => {
   return core;
 };
 
+export const parseStyleString = s => {
+  const regex = /([\w-]*)\s*:\s*([^;]*)/g;
+  let match;
+  const result = {};
+  while ((match = regex.exec(s))) {
+    result[match[1]] = match[2].trim();
+  }
+  return result;
+};
+
+const toStyleString = o => {
+  return Object.keys(o).reduce((acc, k) => {
+    const hyphenated = paramCase(k);
+    acc[hyphenated] = o[k];
+    return acc;
+  }, {});
+};
+export const reactAttributes = o => toStyleObject(o, { camelize: true });
+
+const attributesToMap = el => (acc, attribute) => {
+  const value = el.getAttribute(attribute);
+  if (value) {
+    if (attribute === 'style') {
+      const styleString = el.getAttribute(attribute);
+      const reactStyleObject = reactAttributes(parseStyleString(styleString));
+      acc['style'] = reactStyleObject;
+    } else {
+      acc[attribute] = el.getAttribute(attribute);
+    }
+  }
+  return acc;
+};
+
+const dataToAttributes = data => {
+  if (!data || !data.get) {
+    return {};
+  }
+
+  return data.reduce((acc, v, name) => {
+    if (v) {
+      acc[convert(name)] = v;
+    }
+    return acc;
+  }, {});
+};
+
+const attributes = ['border', 'cellpadding', 'cellspacing', 'class', 'style'];
+
+const cellAttributes = ['colspan', 'rowspan', 'class', 'style'];
+
 export const serialization = {
   deserialize(el, next) {
     const tag = el.tagName.toLowerCase();
@@ -190,13 +252,12 @@ export const serialization = {
             ? el.children[0].children
             : el.children;
         const c = Array.from(children);
+
         return {
           object: 'block',
           type: 'table',
           nodes: next(c),
-          data: {
-            border: el.getAttribute('border')
-          }
+          data: attributes.reduce(attributesToMap(el), {})
         };
       }
       case 'th': {
@@ -204,10 +265,7 @@ export const serialization = {
           object: 'block',
           type: 'table_cell',
           nodes: next(el.childNodes),
-          data: {
-            header: true,
-            colspan: el.getAttribute('colspan')
-          }
+          data: cellAttributes.reduce(attributesToMap(el), { header: true })
         };
       }
       case 'tr': {
@@ -222,10 +280,7 @@ export const serialization = {
           object: 'block',
           type: 'table_cell',
           nodes: next(el.childNodes),
-          data: {
-            header: false,
-            colspan: el.getAttribute('colspan')
-          }
+          data: cellAttributes.reduce(attributesToMap(el), { header: false })
         };
       }
     }
@@ -237,8 +292,9 @@ export const serialization = {
 
     switch (object.type) {
       case 'table': {
+        const attributes = dataToAttributes(object.data);
         return (
-          <table border={object.data.get('border')}>
+          <table {...attributes}>
             <tbody>{children}</tbody>
           </table>
         );
@@ -247,11 +303,12 @@ export const serialization = {
         return <tr>{children}</tr>;
       }
       case 'table_cell': {
-        const colspan = object.data.get('colspan');
+        const attributes = dataToAttributes(object.data);
+        delete attributes.header;
         if (object.data.get('header')) {
-          return <th colSpan={colspan}>{children}</th>;
+          return <th {...attributes}>{children}</th>;
         } else {
-          return <td colSpan={colspan}>{children}</td>;
+          return <td {...attributes}>{children}</td>;
         }
       }
     }

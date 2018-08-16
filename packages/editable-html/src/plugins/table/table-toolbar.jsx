@@ -24,7 +24,7 @@ export class TableToolbar extends React.Component {
     onRemoveColumn: PropTypes.func.isRequired,
     onRemoveTable: PropTypes.func.isRequired,
     onToggleBorder: PropTypes.func.isRequired,
-    hasBorder: PropTypes.bool.isRequired,
+    hasBorder: PropTypes.bool,
     onDone: PropTypes.func.isRequired,
     classes: PropTypes.object.isRequired
   };

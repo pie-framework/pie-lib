@@ -1,5 +1,9 @@
 import EditTable from 'slate-edit-table';
-import TablePlugin, { serialization } from '../index';
+import TablePlugin, {
+  serialization,
+  parseStyleString,
+  reactAttributes
+} from '../index';
 import { Data } from 'slate';
 import React from 'react';
 
@@ -98,6 +102,41 @@ describe('table', () => {
   });
 });
 
+describe('parseStyleString', () => {
+  const parses = (s, expected) => {
+    it(`parses ${s} -> ${JSON.stringify(expected)}`, () => {
+      const result = parseStyleString(s);
+      expect(result).toEqual(expected);
+    });
+  };
+  parses(' width: 10px ', { width: '10px' });
+  parses(' width: 10px; ', { width: '10px' });
+  parses(' border-width: 10px; ', { 'border-width': '10px' });
+  parses(' border: solid 1px red; height: 1px', {
+    border: 'solid 1px red',
+    height: '1px'
+  });
+});
+
+describe('toStyleString', () => {
+  const styleString = (o, expected) => {
+    it(`${JSON.stringify(s)} -> ${expected}`, () => {
+      const result = toStyleString(o);
+      expect(result).toEqual(expected);
+    });
+  };
+});
+
+describe('reactAttributes', () => {
+  const attributes = (o, expected) => {
+    it(`${JSON.stringify(o)} -> ${JSON.stringify(expected)}`, () => {
+      const result = reactAttributes(o);
+      expect(result).toEqual(expected);
+    });
+  };
+  attributes({ 'border-width': '10px' }, { borderWidth: '10px' });
+});
+
 describe('serialization', () => {
   describe('deserialize', () => {
     let next;
@@ -106,22 +145,48 @@ describe('serialization', () => {
       next = jest.fn().mockReturnValue([]);
     });
 
-    it('deserializes table', () => {
-      const el = {
-        tagName: 'table',
-        children: [],
-        getAttribute: jest.fn().mockReturnValue('1')
+    describe('table', () => {
+      let el;
+      let out;
+      beforeEach(() => {
+        el = {
+          tagName: 'table',
+          children: [],
+          getAttribute: jest.fn(name => {
+            switch (name) {
+              case 'border':
+                return '1';
+              case 'cellspacing':
+                return '2';
+              case 'cellpadding':
+                return '3';
+              case 'class':
+                return 'table-class';
+              case 'style':
+                return 'width: 10px';
+            }
+          })
+        };
+        out = serialization.deserialize(el, next);
+      });
+
+      const assertData = (name, value) => {
+        it(`data.${name} should eql ${value}`, () => {
+          expect(out.data[name]).toEqual(value);
+        });
       };
 
-      const out = serialization.deserialize(el, next);
-
-      expect(out).toEqual({
-        object: 'block',
-        type: 'table',
-        nodes: [],
-        data: {
-          border: '1'
-        }
+      assertData('border', '1');
+      assertData('cellspacing', '2');
+      assertData('cellpadding', '3');
+      assertData('class', 'table-class');
+      assertData('style', { width: '10px' });
+      it('returns a table block', () => {
+        expect(out).toMatchObject({
+          object: 'block',
+          type: 'table',
+          nodes: []
+        });
       });
     });
 
@@ -144,8 +209,13 @@ describe('serialization', () => {
       const el = {
         tagName: 'td',
         children: [],
-        getAttribute: jest.fn(function() {
-          return '1';
+        getAttribute: jest.fn(function(name) {
+          const o = {
+            class: 'class name',
+            colspan: '1',
+            rowspan: '1'
+          };
+          return o[name];
         })
       };
 
@@ -157,6 +227,8 @@ describe('serialization', () => {
         nodes: [],
         data: {
           colspan: '1',
+          rowspan: '1',
+          class: 'class name',
           header: false
         }
       });
@@ -169,11 +241,15 @@ describe('serialization', () => {
         object: 'block',
         type: 'table',
         nodes: [],
-        data: Data.create({ border: '1' })
+        data: Data.create({
+          border: '1',
+          cellpadding: '2',
+          cellspacing: '3'
+        })
       });
 
       expect(el).toEqual(
-        <table border="1">
+        <table border="1" cellPadding="2" cellSpacing="3">
           <tbody />
         </table>
       );
@@ -194,11 +270,13 @@ describe('serialization', () => {
         type: 'table_cell',
         nodes: [],
         data: Data.create({
-          header: false
+          header: false,
+          style: { width: '10px' },
+          class: 'foo'
         })
       });
 
-      expect(el).toEqual(<td />);
+      expect(el).toEqual(<td style={{ width: '10px' }} className={'foo'} />);
     });
   });
 });
