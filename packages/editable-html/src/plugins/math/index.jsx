@@ -4,7 +4,7 @@ import MathPreview from './math-preview';
 import React from 'react';
 import debug from 'debug';
 import { MathToolbar } from './math-toolbar';
-import { removeBrackets, addBrackets } from '@pie-lib/math-input';
+
 const log = debug('@pie-lib:editable-html:plugins:math');
 
 const TEXT_NODE = 3;
