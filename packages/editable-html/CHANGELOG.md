@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="6.6.0"></a>
+# [6.6.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.5.0...@pie-lib/editable-html@6.6.0) (2018-08-17)
+
+
+### Bug Fixes
+
+* **table:** add support for more attributes ([0c3aeb4](https://github.com/pie-framework/pie-lib/commit/0c3aeb4))
+
+
+### Features
+
+* **table:** add toolbar border toggle button to toolbar ([7b2add3](https://github.com/pie-framework/pie-lib/commit/7b2add3))
+
+
+
+
 <a name="6.5.0"></a>
 # [6.5.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.4.0...@pie-lib/editable-html@6.5.0) (2018-08-09)
 
