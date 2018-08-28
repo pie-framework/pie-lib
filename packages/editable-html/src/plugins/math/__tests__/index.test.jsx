@@ -81,6 +81,7 @@ describe('MathPlugin', () => {
       assertDeserialize('\\(&lt;\\)', '<', MathPlugin.ROUND_BRACKETS);
       assertDeserialize('\\[&lt;\\]', '<', MathPlugin.ROUND_BRACKETS);
       assertDeserialize('latex', 'latex', MathPlugin.ROUND_BRACKETS);
+      assertDeserialize('\\displaystyle foo', 'foo', MathPlugin.ROUND_BRACKETS);
     });
 
     describe('serialize', () => {

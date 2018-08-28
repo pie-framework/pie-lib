@@ -101,6 +101,12 @@ export const wrap = (content, wrapType) => {
 };
 
 export const unwrap = content => {
+  const displayStyleIndex = content.indexOf('\\displaystyle');
+  if (displayStyleIndex !== -1) {
+    console.warn('\\displaystyle is not supported - removing'); // eslint-disable-line
+    content = content.replace('\\displaystyle', '').trim();
+  }
+
   if (content.startsWith('$$') && content.endsWith('$$')) {
     console.warn('$$ syntax is not yet supported'); // eslint-disable-line
     return {

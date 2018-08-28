@@ -52,6 +52,11 @@ const inputOptions = [
     html: '<div><span data-latex="">$\\frac{1}{2}$</span></div>'
   },
   {
+    label: 'Latex \\displaystyle',
+    html:
+      '<div><span data-latex="">\\(\\displaystyle - \\frac{36}{55}\\)</span></div>'
+  },
+  {
     label: 'Table',
     html: '<table border="1"><tr><td>a</td><td>b</td></tr></table>'
   },
