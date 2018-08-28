@@ -57,6 +57,10 @@ const inputOptions = [
       '<div><span data-latex="">\\(\\displaystyle - \\frac{36}{55}\\)</span></div>'
   },
   {
+    label: 'Nested div w/ image',
+    html: '<div>​<div><img src="foo.com/img.png"></div>​</div>'
+  },
+  {
     label: 'Table',
     html: '<table border="1"><tr><td>a</td><td>b</td></tr></table>'
   },
