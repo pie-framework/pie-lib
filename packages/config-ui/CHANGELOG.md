@@ -3,7 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-  <a name="7.6.10"></a>
+      <a name="7.6.11"></a>
+## [7.6.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@7.6.10...@pie-lib/config-ui@7.6.11) (2018-08-28)
+
+
+
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+      <a name="7.6.10"></a>
 ## [7.6.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@7.6.9...@pie-lib/config-ui@7.6.10) (2018-08-17)
 
 
@@ -11,7 +19,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
-  <a name="7.6.9"></a>
+<a name="7.6.9"></a>
 ## [7.6.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@7.6.8...@pie-lib/config-ui@7.6.9) (2018-08-17)
 
 
