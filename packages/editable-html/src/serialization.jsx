@@ -156,6 +156,12 @@ const RULES = [
   marks
 ];
 
+function allWhitespace( node )
+{
+  // Use ECMA-262 Edition 3 String and RegExp features
+  return !(/[^\t\n\r ]/.test(node.textContent));
+}
+
 function defaultParseHtml(html) {
   if (typeof DOMParser === 'undefined') {
     throw new Error(
@@ -166,13 +172,21 @@ function defaultParseHtml(html) {
   const parsed = new DOMParser().parseFromString(html, 'text/html');
 
   const { body } = parsed;
-  // var textNodes = document.createTreeWalker(
-  //   body,
-  //   NodeFilter.SHOW_TEXT,
-  //   null,
-  //   null
-  // );
-  // console.log('textNodes:', textNodes);
+  var textNodes = document.createTreeWalker(
+    body,
+    NodeFilter.SHOW_TEXT,
+    null,
+    null
+  );
+  var n = textNodes.nextNode();
+  
+  while(n){
+    if(allWhitespace(n) || n.nodeValue === '\u200B'){
+      n.parentNode.removeChild(n);
+    }
+    n = textNodes.nextNode();
+  }
+  
   return body;
 }
 

@@ -104,25 +104,6 @@ export default function ImagePlugin(opts) {
         );
         return <ImageComponent {...all} />;
       }
-    },
-    onKeyDown(event, change /*,editor*/) {
-      log('[onKeyDown] ...');
-      const { startKey } = change.value.selection;
-      const n = change.value.document.getDescendant(startKey);
-      const p = change.value.document.getParent(n.key);
-
-      if (p.type === 'image') {
-        const block = Block.fromJSON({ type: 'div' });
-        const range = Range.fromJSON({
-          anchorKey: block.key,
-          anchorOffset: 0,
-          focusKey: block.key,
-          focusOffset: 0,
-          isFocused: true,
-          isBackward: false
-        });
-        change.insertInlineAtRange(change.value.selection, block).select(range);
-      }
     }
   };
 }
