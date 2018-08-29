@@ -58,7 +58,11 @@ const inputOptions = [
   },
   {
     label: 'Nested div w/ image',
-    html: '<div>​<div><img src="foo.com/img.png"></div>​</div>'
+    html: '<div>​<div><img src="foo.com/img.png"/></div>​</div>'
+  },
+  {
+    label: 'Nested div w/ text',
+    html: '<div>​<div>hi</div>​</div>'
   },
   {
     label: 'Table',
