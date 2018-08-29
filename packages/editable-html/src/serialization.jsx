@@ -164,7 +164,15 @@ function defaultParseHtml(html) {
   }
 
   const parsed = new DOMParser().parseFromString(html, 'text/html');
+
   const { body } = parsed;
+  // var textNodes = document.createTreeWalker(
+  //   body,
+  //   NodeFilter.SHOW_TEXT,
+  //   null,
+  //   null
+  // );
+  // console.log('textNodes:', textNodes);
   return body;
 }
 
@@ -185,3 +193,11 @@ const serializer = new Html({
 export const htmlToValue = html => serializer.deserialize(html);
 
 export const valueToHtml = value => serializer.serialize(value);
+
+/**
+ *
+ * <div><div>a</div></div> -> <div>a</div>
+ *
+ * <div><div>a</div><div>b</div></div> -> <div>a</div><div>b</div>
+ * <div><div>a</div>4444<div>b</div></div> -> <div>a</div>4444<div>b</div>
+ */
