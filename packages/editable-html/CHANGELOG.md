@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="6.6.3"></a>
+## [6.6.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.6.2...@pie-lib/editable-html@6.6.3) (2018-08-29)
+
+
+### Bug Fixes
+
+* serialize - remove empty text nodes after DomParse ([8b6df96](https://github.com/pie-framework/pie-lib/commit/8b6df96))
+
+
+
+
 <a name="6.6.2"></a>
 ## [6.6.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.6.1...@pie-lib/editable-html@6.6.2) (2018-08-28)
 
