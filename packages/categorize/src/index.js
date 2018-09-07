@@ -279,7 +279,9 @@ export const buildState = (
       );
 
       const ids = out.choices.map(c => c.id).sort();
-      const correctIds = clone(cr ? cr.choices : []).sort();
+      const correctIds = clone(
+        cr && Array.isArray(cr.choices) ? cr.choices : []
+      ).sort();
 
       log('ids: ', ids, 'correctIds: ', correctIds);
       const correct = hasCorrectResponse ? isEqual(ids, correctIds) : undefined;
