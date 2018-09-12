@@ -10,7 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "katex": "^0.10.0-beta",
-    "prop-types": "^15.6.2"
+    "prop-types": "^15.6.2",
+    "debug": "^4.0.1"
   },
   "peerDependencies": {
     "react": "^16.4.2"

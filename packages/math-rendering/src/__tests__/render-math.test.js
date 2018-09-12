@@ -10,7 +10,14 @@ jest.mock('katex/dist/katex.css', () => ({}));
 
 describe('render-math', () => {
   it('calls katex render', () => {
-    renderMath({});
-    expect(katexRender).toHaveBeenCalledWith({}, expect.anything());
+    const div = document.createElement('div');
+    renderMath(div);
+    expect(katexRender).toHaveBeenCalledWith(div, expect.anything());
+  });
+
+  it('call render math for an array of elements', () => {
+    katexRender.mockReset();
+    renderMath([{}, {}]);
+    expect(katexRender).toHaveBeenCalledTimes(2);
   });
 });

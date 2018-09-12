@@ -1,5 +1,8 @@
+import debug from 'debug';
 import katex from 'katex';
 require('katex/dist/katex.css');
+
+const log = debug('pie-lib:math-rendering');
 
 let renderMathInElement = () => {};
 
@@ -17,5 +20,15 @@ const renderOpts = {
 };
 
 export default (el, opts) => {
-  renderMathInElement(el, { ...renderOpts, ...opts });
+  if (!el) {
+    log('el is undefined');
+    return;
+  }
+
+  if (el instanceof Element) {
+    renderMathInElement(el, { ...renderOpts, ...opts });
+  } else if (el.length) {
+    const arr = Array.from(el);
+    arr.forEach(e => renderMathInElement(e, { ...renderOpts, ...opts }));
+  }
 };
