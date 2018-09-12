@@ -1,3 +1,3 @@
 describe('horizontal-keypad', () => {
-  xit('todo');
+  xit('todo', jest.fn());
 });

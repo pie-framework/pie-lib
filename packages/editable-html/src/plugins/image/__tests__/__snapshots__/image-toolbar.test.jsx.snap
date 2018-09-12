@@ -2,7 +2,7 @@
 
 exports[`renders correctly 1`] = `
 <div
-  className="ImageToolbar-holder-1 holder"
+  className="ImageToolbar-holder-01 holder"
 >
   <span
     className="RawMarkButton-button-0-1-1"

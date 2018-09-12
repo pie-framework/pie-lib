@@ -3,24 +3,22 @@
 exports[`renders correctly 1`] = `
 <div
   className=""
-  onFocus={undefined}
 >
   <div
-    className="MuiLinearProgress-root-1 MuiLinearProgress-colorPrimary-2"
+    className="MuiLinearProgress-root-01 MuiLinearProgress-colorPrimary-02"
     mode="determinate"
     role="progressbar"
   >
     <div
-      className="MuiLinearProgress-bar-9 MuiLinearProgress-barColorPrimary-10 MuiLinearProgress-bar1Indeterminate-12"
+      className="MuiLinearProgress-bar-09 MuiLinearProgress-barColorPrimary-010 MuiLinearProgress-bar1Indeterminate-012"
       style={Object {}}
     />
     <div
-      className="MuiLinearProgress-bar-9 MuiLinearProgress-barColorPrimary-10 MuiLinearProgress-bar2Indeterminate-15"
+      className="MuiLinearProgress-bar-09 MuiLinearProgress-barColorPrimary-010 MuiLinearProgress-bar2Indeterminate-015"
       style={Object {}}
     />
   </div>
   <img
-    src={undefined}
     style={
       Object {
         "height": "50px",

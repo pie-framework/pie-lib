@@ -4,21 +4,19 @@ exports[`index - snapshot renders correctly 1`] = `
 <div
   className="choiceConfiguration"
 >
-  <div
-    className={undefined}
-  >
+  <div>
     <div
-      className="MuiFormControl-root-4 RawInputContainer-formControl-2"
+      className="MuiFormControl-root-04 RawInputContainer-formControl-02"
     >
       <label
-        className="MuiFormLabel-root-13 MuiInputLabel-root-8 MuiInputLabel-formControl-9 MuiInputLabel-animated-12 MuiInputLabel-shrink-11 RawInputContainer-label-3"
+        className="MuiFormLabel-root-013 MuiInputLabel-root-08 MuiInputLabel-formControl-09 MuiInputLabel-animated-012 MuiInputLabel-shrink-011 RawInputContainer-label-03"
         data-shrink={true}
       >
         Correct
       </label>
       <span
         aria-label="Correct"
-        className="MuiButtonBase-root-33 MuiIconButton-root-27 MuiSwitchBase-root-23 MuiRadio-root-18 MuiRadio-colorSecondary-22 RawInputRadio-radioRoot-1"
+        className="MuiButtonBase-root-035 MuiIconButton-root-029 MuiSwitchBase-root-025 MuiRadio-root-020 MuiRadio-colorSecondary-024 RawInputRadio-radioRoot-01"
         onBlur={[Function]}
         onFocus={[Function]}
         onKeyDown={[Function]}
@@ -29,16 +27,14 @@ exports[`index - snapshot renders correctly 1`] = `
         onTouchEnd={[Function]}
         onTouchMove={[Function]}
         onTouchStart={[Function]}
-        role={undefined}
         tabIndex={null}
       >
         <span
-          className="MuiIconButton-label-32"
+          className="MuiIconButton-label-034"
         >
           <svg
             aria-hidden="true"
-            className="MuiSvgIcon-root-36"
-            color={undefined}
+            className="MuiSvgIcon-root-038"
             focusable="false"
             viewBox="0 0 24 24"
           >
@@ -47,39 +43,30 @@ exports[`index - snapshot renders correctly 1`] = `
             />
           </svg>
           <input
-            autoFocus={undefined}
             checked={false}
-            className="MuiSwitchBase-input-26"
+            className="MuiSwitchBase-input-028"
             disabled={false}
-            id={undefined}
-            name={undefined}
             onChange={[Function]}
-            readOnly={undefined}
-            required={undefined}
-            tabIndex={undefined}
             type="radio"
-            value={undefined}
           />
         </span>
         <span
-          className="MuiTouchRipple-root-43"
+          className="MuiTouchRipple-root-045"
         />
       </span>
     </div>
-    <div
-      className={undefined}
-    >
+    <div>
       <div
-        className="MuiFormControl-root-4 RawInputContainer-formControl-2 Component-labelContainer-50"
+        className="MuiFormControl-root-04 RawInputContainer-formControl-02 Component-labelContainer-052"
       >
         <label
-          className="MuiFormLabel-root-13 MuiInputLabel-root-8 MuiInputLabel-formControl-9 MuiInputLabel-animated-12 MuiInputLabel-shrink-11 RawInputContainer-label-3"
+          className="MuiFormLabel-root-013 MuiInputLabel-root-08 MuiInputLabel-formControl-09 MuiInputLabel-animated-012 MuiInputLabel-shrink-011 RawInputContainer-label-03"
           data-shrink={true}
         >
           Label
         </label>
         <div
-          className="Component-editorHolder-51"
+          className="Component-editorHolder-053"
         >
           <div>
             EditableHtml
@@ -87,16 +74,16 @@ exports[`index - snapshot renders correctly 1`] = `
         </div>
       </div>
       <div
-        className="MuiFormControl-root-4 RawInputContainer-formControl-2 Component-labelContainer-50 Component-text-52"
+        className="MuiFormControl-root-04 RawInputContainer-formControl-02 Component-labelContainer-052 Component-text-054"
       >
         <label
-          className="MuiFormLabel-root-13 MuiInputLabel-root-8 MuiInputLabel-formControl-9 MuiInputLabel-animated-12 MuiInputLabel-shrink-11 RawInputContainer-label-3"
+          className="MuiFormLabel-root-013 MuiInputLabel-root-08 MuiInputLabel-formControl-09 MuiInputLabel-animated-012 MuiInputLabel-shrink-011 RawInputContainer-label-03"
           data-shrink={true}
         >
           Feedback Text
         </label>
         <div
-          className="Component-editorHolder-51"
+          className="Component-editorHolder-053"
         >
           <div>
             EditableHtml
@@ -105,10 +92,10 @@ exports[`index - snapshot renders correctly 1`] = `
       </div>
     </div>
     <div
-      className="MuiFormControl-root-4 RawInputContainer-formControl-2"
+      className="MuiFormControl-root-04 RawInputContainer-formControl-02"
     >
       <label
-        className="MuiFormLabel-root-13 MuiInputLabel-root-8 MuiInputLabel-formControl-9 MuiInputLabel-animated-12 MuiInputLabel-shrink-11 RawInputContainer-label-3"
+        className="MuiFormLabel-root-013 MuiInputLabel-root-08 MuiInputLabel-formControl-09 MuiInputLabel-animated-012 MuiInputLabel-shrink-011 RawInputContainer-label-03"
         data-shrink={true}
       >
         Feedback
@@ -119,7 +106,7 @@ exports[`index - snapshot renders correctly 1`] = `
         >
           <button
             aria-label="Custom Feedback"
-            className="MuiButtonBase-root-33 MuiIconButton-root-27"
+            className="MuiButtonBase-root-035 MuiIconButton-root-029"
             disabled={false}
             onBlur={[Function]}
             onFocus={[Function]}
@@ -135,44 +122,44 @@ exports[`index - snapshot renders correctly 1`] = `
             type="button"
           >
             <span
-              className="MuiIconButton-label-32"
+              className="MuiIconButton-label-034"
             >
               <svg
                 aria-hidden="true"
-                className="MuiSvgIcon-root-36 MuiSvgIcon-colorSecondary-38"
-                color={undefined}
+                className="MuiSvgIcon-root-038 MuiSvgIcon-colorSecondary-040"
                 focusable="false"
                 viewBox="0 0 24 24"
               >
-                <g>
-                  <path
-                    d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 12h-2v-2h2v2zm0-4h-2V6h2v4z"
-                  />
-                </g>
+                <path
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                />
+                <path
+                  d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 12h-2v-2h2v2zm0-4h-2V6h2v4z"
+                />
               </svg>
             </span>
             <span
-              className="MuiTouchRipple-root-43"
+              className="MuiTouchRipple-root-045"
             />
           </button>
         </div>
       </div>
     </div>
     <div
-      className="MuiFormControl-root-4 RawInputContainer-formControl-2"
+      className="MuiFormControl-root-04 RawInputContainer-formControl-02"
     >
       <label
-        className="MuiFormLabel-root-13 MuiInputLabel-root-8 MuiInputLabel-formControl-9 MuiInputLabel-animated-12 MuiInputLabel-shrink-11 RawInputContainer-label-3"
+        className="MuiFormLabel-root-013 MuiInputLabel-root-08 MuiInputLabel-formControl-09 MuiInputLabel-animated-012 MuiInputLabel-shrink-011 RawInputContainer-label-03"
         data-shrink={true}
       >
         Delete
       </label>
       <button
         aria-label="delete"
-        className="MuiButtonBase-root-33 MuiIconButton-root-27"
+        className="MuiButtonBase-root-035 MuiIconButton-root-029"
         disabled={false}
         onBlur={[Function]}
-        onClick={undefined}
         onFocus={[Function]}
         onKeyDown={[Function]}
         onKeyUp={[Function]}
@@ -186,24 +173,25 @@ exports[`index - snapshot renders correctly 1`] = `
         type="button"
       >
         <span
-          className="MuiIconButton-label-32"
+          className="MuiIconButton-label-034"
         >
           <svg
             aria-hidden="true"
-            className="MuiSvgIcon-root-36"
-            color={undefined}
+            className="MuiSvgIcon-root-038"
             focusable="false"
             viewBox="0 0 24 24"
           >
-            <g>
-              <path
-                d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"
-              />
-            </g>
+            <path
+              d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"
+            />
+            <path
+              d="M0 0h24v24H0z"
+              fill="none"
+            />
           </svg>
         </span>
         <span
-          className="MuiTouchRipple-root-43"
+          className="MuiTouchRipple-root-045"
         />
       </button>
     </div>

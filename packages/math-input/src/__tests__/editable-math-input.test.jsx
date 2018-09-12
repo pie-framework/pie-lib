@@ -1,3 +1,3 @@
 describe('editable-math-input', () => {
-  xit('todo');
+  xit('todo', jest.fn());
 });

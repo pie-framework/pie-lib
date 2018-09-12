@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`snapshot renders correctly 1`] = `
-<div
-  className={undefined}
->
+<div>
   <svg
     className="DomainAndRange-svg-0-1-2"
     height={500}

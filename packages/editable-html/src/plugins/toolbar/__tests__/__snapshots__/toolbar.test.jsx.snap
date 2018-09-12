@@ -6,13 +6,12 @@ exports[`toolbar default renders default toolbar 1`] = `
   onClick={[Function]}
 >
   <div
-    className="RawDefaultToolbar-defaultToolbar-1"
+    className="RawDefaultToolbar-defaultToolbar-01"
   >
     <div />
     <div
       ariaLabel="Done"
-      className="RawDoneButton-iconRoot-2"
-      style={undefined}
+      className="RawDoneButton-iconRoot-02"
     />
   </div>
   <div
