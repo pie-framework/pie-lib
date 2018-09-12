@@ -20,14 +20,14 @@ exports[`TagsInput snapshots renders 1`] = `
     <Component
       classes={
         Object {
-          "focused": "Component-focused-02",
-          "muiBox": "Component-muiBox-01",
+          "focused": "Component-focused-2",
+          "muiBox": "Component-muiBox-1",
         }
       }
       focused={false}
     >
       <div
-        className="Component-muiBox-01"
+        className="Component-muiBox-1"
       >
         <div
           className="tagsInput"
@@ -40,43 +40,38 @@ exports[`TagsInput snapshots renders 1`] = `
             <Component
               classes={
                 Object {
-                  "tag": "Component-tag-03",
+                  "tag": "Component-tag-3",
                 }
               }
               label="foo"
               onDelete={[Function]}
             >
               <WithStyles(Chip)
-                className="Component-tag-03"
+                className="Component-tag-3"
                 label="foo"
                 onDelete={[Function]}
               >
                 <Chip
-                  className="Component-tag-03"
+                  className="Component-tag-3"
                   classes={
                     Object {
-                      "avatar": "MuiChip-avatar-016",
-                      "avatarChildren": "MuiChip-avatarChildren-019",
-                      "avatarColorPrimary": "MuiChip-avatarColorPrimary-017",
-                      "avatarColorSecondary": "MuiChip-avatarColorSecondary-018",
-                      "clickable": "MuiChip-clickable-07",
-                      "clickableColorPrimary": "MuiChip-clickableColorPrimary-08",
-                      "clickableColorSecondary": "MuiChip-clickableColorSecondary-09",
-                      "colorPrimary": "MuiChip-colorPrimary-05",
-                      "colorSecondary": "MuiChip-colorSecondary-06",
-                      "deletable": "MuiChip-deletable-010",
-                      "deletableColorPrimary": "MuiChip-deletableColorPrimary-011",
-                      "deletableColorSecondary": "MuiChip-deletableColorSecondary-012",
-                      "deleteIcon": "MuiChip-deleteIcon-021",
-                      "deleteIconColorPrimary": "MuiChip-deleteIconColorPrimary-022",
-                      "deleteIconColorSecondary": "MuiChip-deleteIconColorSecondary-023",
-                      "deleteIconOutlinedColorPrimary": "MuiChip-deleteIconOutlinedColorPrimary-024",
-                      "deleteIconOutlinedColorSecondary": "MuiChip-deleteIconOutlinedColorSecondary-025",
-                      "label": "MuiChip-label-020",
-                      "outlined": "MuiChip-outlined-013",
-                      "outlinedPrimary": "MuiChip-outlinedPrimary-014",
-                      "outlinedSecondary": "MuiChip-outlinedSecondary-015",
-                      "root": "MuiChip-root-04",
+                      "avatar": "MuiChip-avatar-13",
+                      "avatarChildren": "MuiChip-avatarChildren-16",
+                      "avatarColorPrimary": "MuiChip-avatarColorPrimary-14",
+                      "avatarColorSecondary": "MuiChip-avatarColorSecondary-15",
+                      "clickable": "MuiChip-clickable-7",
+                      "clickableColorPrimary": "MuiChip-clickableColorPrimary-8",
+                      "clickableColorSecondary": "MuiChip-clickableColorSecondary-9",
+                      "colorPrimary": "MuiChip-colorPrimary-5",
+                      "colorSecondary": "MuiChip-colorSecondary-6",
+                      "deletable": "MuiChip-deletable-10",
+                      "deletableColorPrimary": "MuiChip-deletableColorPrimary-11",
+                      "deletableColorSecondary": "MuiChip-deletableColorSecondary-12",
+                      "deleteIcon": "MuiChip-deleteIcon-18",
+                      "deleteIconColorPrimary": "MuiChip-deleteIconColorPrimary-19",
+                      "deleteIconColorSecondary": "MuiChip-deleteIconColorSecondary-20",
+                      "label": "MuiChip-label-17",
+                      "root": "MuiChip-root-4",
                     }
                   }
                   clickable={false}
@@ -84,43 +79,41 @@ exports[`TagsInput snapshots renders 1`] = `
                   component="div"
                   label="foo"
                   onDelete={[Function]}
-                  variant="default"
                 >
                   <div
-                    className="MuiChip-root-04 MuiChip-deletable-010 Component-tag-03"
+                    className="MuiChip-root-4 MuiChip-deletable-10 Component-tag-3"
                     onKeyDown={[Function]}
-                    onKeyUp={[Function]}
                     role="button"
                     tabIndex={0}
                   >
                     <span
-                      className="MuiChip-label-020"
+                      className="MuiChip-label-17"
                     >
                       foo
                     </span>
                     <pure(Cancel)
-                      className="MuiChip-deleteIcon-021"
+                      className="MuiChip-deleteIcon-18"
                       onClick={[Function]}
                     >
                       <Cancel
-                        className="MuiChip-deleteIcon-021"
+                        className="MuiChip-deleteIcon-18"
                         onClick={[Function]}
                       >
                         <WithStyles(SvgIcon)
-                          className="MuiChip-deleteIcon-021"
+                          className="MuiChip-deleteIcon-18"
                           onClick={[Function]}
                         >
                           <SvgIcon
-                            className="MuiChip-deleteIcon-021"
+                            className="MuiChip-deleteIcon-18"
                             classes={
                               Object {
-                                "colorAction": "MuiSvgIcon-colorAction-029",
-                                "colorDisabled": "MuiSvgIcon-colorDisabled-031",
-                                "colorError": "MuiSvgIcon-colorError-030",
-                                "colorPrimary": "MuiSvgIcon-colorPrimary-027",
-                                "colorSecondary": "MuiSvgIcon-colorSecondary-028",
-                                "fontSizeInherit": "MuiSvgIcon-fontSizeInherit-032",
-                                "root": "MuiSvgIcon-root-026",
+                                "colorAction": "MuiSvgIcon-colorAction-24",
+                                "colorDisabled": "MuiSvgIcon-colorDisabled-26",
+                                "colorError": "MuiSvgIcon-colorError-25",
+                                "colorPrimary": "MuiSvgIcon-colorPrimary-22",
+                                "colorSecondary": "MuiSvgIcon-colorSecondary-23",
+                                "fontSizeInherit": "MuiSvgIcon-fontSizeInherit-27",
+                                "root": "MuiSvgIcon-root-21",
                               }
                             }
                             color="inherit"
@@ -131,7 +124,7 @@ exports[`TagsInput snapshots renders 1`] = `
                           >
                             <svg
                               aria-hidden="true"
-                              className="MuiSvgIcon-root-026 MuiChip-deleteIcon-021"
+                              className="MuiSvgIcon-root-21 MuiChip-deleteIcon-18"
                               focusable="false"
                               onClick={[Function]}
                               viewBox="0 0 24 24"

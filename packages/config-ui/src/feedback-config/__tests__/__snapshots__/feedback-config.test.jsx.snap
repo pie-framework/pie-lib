@@ -3,7 +3,7 @@
 exports[`FeedbackConfig render Feedback Config Component snapshot matches the snapshot 1`] = `
 <WithStyles(ExpansionPanel)>
   <WithStyles(ExpansionPanelSummary)
-    expandIcon={<pure(ExpandMoreIcon) />}
+    expandIcon={<pure(ExpandMore) />}
   >
     <WithStyles(Typography)>
       Feedback
