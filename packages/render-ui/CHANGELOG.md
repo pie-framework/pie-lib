@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="4.2.3"></a>
+## [4.2.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.2.1...@pie-lib/render-ui@4.2.3) (2018-09-12)
+
+**Note:** Version bump only for package @pie-lib/render-ui
+
+
+
+
+
 <a name="4.2.2"></a>
 ## [4.2.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.2.1...@pie-lib/render-ui@4.2.2) (2018-09-12)
 

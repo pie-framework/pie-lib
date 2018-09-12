@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.4.0"></a>
+# [0.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@0.2.3...@pie-lib/math-rendering@0.4.0) (2018-09-12)
+
+
+### Features
+
+* renderMath now accepts either an Element or an array-like of Element. ([2bd9423](https://github.com/pie-framework/pie-lib/commit/2bd9423))
+
+
+
+
+
 <a name="0.3.0"></a>
 # [0.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@0.2.3...@pie-lib/math-rendering@0.3.0) (2018-09-12)
 
