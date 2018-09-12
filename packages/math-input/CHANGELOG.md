@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="4.2.3"></a>
+## [4.2.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@4.2.2...@pie-lib/math-input@4.2.3) (2018-09-12)
+
+
+### Bug Fixes
+
+* githead ([3e485e0](https://github.com/pie-framework/pie-lib/commit/3e485e0))
+* rm githead ([a1523aa](https://github.com/pie-framework/pie-lib/commit/a1523aa))
+
+
+
+
 <a name="4.2.2"></a>
 ## [4.2.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@4.2.0...@pie-lib/math-input@4.2.2) (2018-09-12)
 

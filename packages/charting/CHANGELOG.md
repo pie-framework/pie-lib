@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.3.5"></a>
+## [2.3.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@2.3.4...@pie-lib/charting@2.3.5) (2018-09-12)
+
+
+### Bug Fixes
+
+* githead ([3e485e0](https://github.com/pie-framework/pie-lib/commit/3e485e0))
+* rm githead ([a1523aa](https://github.com/pie-framework/pie-lib/commit/a1523aa))
+
+
+
+
 <a name="2.3.4"></a>
 ## [2.3.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@2.3.2...@pie-lib/charting@2.3.4) (2018-09-12)
 

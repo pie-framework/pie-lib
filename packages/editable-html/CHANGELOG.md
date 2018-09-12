@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="6.6.6"></a>
+## [6.6.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.6.5...@pie-lib/editable-html@6.6.6) (2018-09-12)
+
+
+### Bug Fixes
+
+* githead ([3e485e0](https://github.com/pie-framework/pie-lib/commit/3e485e0))
+* rm githead ([a1523aa](https://github.com/pie-framework/pie-lib/commit/a1523aa))
+
+
+
+
 <a name="6.6.5"></a>
 ## [6.6.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.6.3...@pie-lib/editable-html@6.6.5) (2018-09-12)
 
