@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/math-rendering",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "description": "math rendering utilities",
   "publishConfig": {
     "access": "public"
@@ -9,9 +9,9 @@
   "author": "pie-framework developers",
   "license": "ISC",
   "dependencies": {
+    "debug": "^3.1.0",
     "katex": "^0.10.0-beta",
-    "prop-types": "^15.6.2",
-    "debug": "^3.1.0"
+    "prop-types": "^15.6.2"
   },
   "peerDependencies": {
     "react": "^16.4.2"
