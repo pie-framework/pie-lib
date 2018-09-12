@@ -5,3 +5,4 @@ lerna-debug.log
 .idea
 .DS_Store
 *.lock
+package-lock.json

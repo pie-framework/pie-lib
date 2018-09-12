@@ -5,11 +5,7 @@
   },
   "version": "0.7.2",
   "description": "Some interactive tools",
-  "keywords": [
-    "react",
-    "pie",
-    "tools"
-  ],
+  "keywords": ["react", "pie", "tools"],
   "repository": "pie-framework/pie-lib",
   "main": "lib/index.js",
   "scripts": {
@@ -34,6 +30,5 @@
   "peerDependencies": {
     "@material-ui/core": "^1.0.0-rc.1",
     "react": "^16.3.1"
-  },
-  "gitHead": "64722e4681e28db8737c99c458f06232206b5b83"
+  }
 }

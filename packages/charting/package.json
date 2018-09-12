@@ -5,11 +5,7 @@
   },
   "version": "2.3.4",
   "description": "Some react based charting components",
-  "keywords": [
-    "react",
-    "pie",
-    "charting"
-  ],
+  "keywords": ["react", "pie", "charting"],
   "repository": "pie-framework/pie-lib",
   "main": "lib/index.js",
   "scripts": {
@@ -35,6 +31,5 @@
   },
   "jest": {
     "testRegex": "(/__tests__/.*\\.test.jsx|(\\.|/)(test|spec))\\.jsx?$"
-  },
-  "gitHead": "64722e4681e28db8737c99c458f06232206b5b83"
+  }
 }
