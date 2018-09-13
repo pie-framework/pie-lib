@@ -9,8 +9,17 @@
   "author": "pie-framework developers",
   "license": "ISC",
   "dependencies": {
+<<<<<<< HEAD
     "debug": "^3.1.0",
+<<<<<<< HEAD
     "katex": "^0.10.0-rc.1",
+=======
+    "katex": "^0.10.0-beta",
+    "mathjax3": "^3.0.0-beta.1",
+>>>>>>> 78ff73c... feat(math-rendering): initial mathjax attempt for rendering math in page
+=======
+    "mathjax3": "3.0.0-beta.1",
+>>>>>>> da71427... get rendering working
     "prop-types": "^15.6.2"
   },
   "peerDependencies": {
