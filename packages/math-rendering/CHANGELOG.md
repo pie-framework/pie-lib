@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.0.1"></a>
+## [1.0.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@1.0.0...@pie-lib/math-rendering@1.0.1) (2018-09-13)
+
+
+### Bug Fixes
+
+* set export correctly as default ([3154124](https://github.com/pie-framework/pie-lib/commit/3154124))
+
+
+
+
 <a name="1.0.0"></a>
 # [1.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@0.5.0...@pie-lib/math-rendering@1.0.0) (2018-09-13)
 
