@@ -16,7 +16,8 @@
     "@material-ui/icons": "^1.0.0-rc.0",
     "@pie-lib/config-ui": "^7.6.16",
     "debug": "^3.1.0",
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "classnames": "^2.2.6"
   },
   "peerDependencies": {
     "react": "^16.3.1"

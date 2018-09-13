@@ -1,8 +1,6 @@
 import { renderMath } from '../render-math';
 import { MathJax } from 'mathjax3/mathjax3/mathjax';
 
-// const katexRender = require('katex/dist/contrib/auto-render.min');
-
 jest.mock(
   'mathjax3/mathjax3/mathjax',
   () => ({
