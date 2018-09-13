@@ -1,4 +1,4 @@
-import { renderMath } from '../render-math';
+import renderMath from '../render-math';
 import { MathJax } from 'mathjax3/mathjax3/mathjax';
 
 jest.mock(
