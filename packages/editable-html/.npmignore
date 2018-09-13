@@ -1,2 +1,7 @@
 src
 playground
+yarn-error.log
+static.json
+*.tgz
+deploy.sh
+
