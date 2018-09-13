@@ -1,8 +1,10 @@
-import { renderMath } from '../src/render-math';
+import renderMath from '../src/render-math';
 
 const init = () => {
-  const node = document.querySelector('#mathml-node');
-  renderMath(node);
+  const mathNodes = document.querySelectorAll('div');
+
+  // const node = document.querySelector('#mathml-node');
+  renderMath(mathNodes);
 };
 
 if (document.readyState === 'ready') {

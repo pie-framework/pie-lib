@@ -59,7 +59,7 @@ const bootstrap = (opts = { useSingleDollar: false }) => {
   };
 };
 
-export const renderMath = (el, renderOpts) => {
+const renderMath = (el, renderOpts) => {
   if (!instance) {
     instance = bootstrap(renderOpts);
   }
@@ -76,3 +76,5 @@ export const renderMath = (el, renderOpts) => {
     instance.Typeset(...arr);
   }
 };
+
+export default renderMath;
