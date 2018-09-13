@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.0.0"></a>
+# [1.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@0.5.0...@pie-lib/math-rendering@1.0.0) (2018-09-13)
+
+
+### Features
+
+* use mathjax 3 beta for rendering ([c3c920f](https://github.com/pie-framework/pie-lib/commit/c3c920f))
+
+
+### BREAKING CHANGES
+
+* Single dollar support must be explicitly enabled using `renderMath({useSingleDollar: true})`
+
+
+
+
 <a name="0.5.0"></a>
 # [0.5.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@0.2.3...@pie-lib/math-rendering@0.5.0) (2018-09-12)
 
