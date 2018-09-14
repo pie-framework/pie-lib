@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@1.0.1...@pie-lib/math-rendering@1.1.0) (2018-09-14)
+
+
+### Features
+
+* allow latex rendering of $ to enabled through a global ([168f6b6](https://github.com/pie-framework/pie-lib/commit/168f6b6))
+
+
+
+
 <a name="1.0.1"></a>
 ## [1.0.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@1.0.0...@pie-lib/math-rendering@1.0.1) (2018-09-13)
 
