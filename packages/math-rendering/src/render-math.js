@@ -12,10 +12,28 @@ const log = debug('pie-lib:math-rendering');
 
 let instance = null;
 
-const bootstrap = (opts = { useSingleDollar: false }) => {
+/** Add temporary support for a global singleDollar override
+ *  <code>
+ *   // This will enable single dollar rendering
+ *   window.pie = window.pie || {};
+ *   window.pie.mathRendering =  {useSingleDollar: true };
+ *  </code>
+ */
+const defaultOpts = () => {
+  if (typeof window !== 'undefined') {
+    window.pie = window.pie || {};
+    return window.pie.mathRendering || {};
+  } else {
+    return {};
+  }
+};
+
+const bootstrap = opts => {
   if (typeof window === 'undefined') {
     return { Typeset: () => ({}) };
   }
+
+  opts = opts || defaultOpts();
 
   if (opts.useSingleDollar) {
     // eslint-disable-next-line
