@@ -10,6 +10,7 @@ import Strikethrough from '@material-ui/icons/FormatStrikethrough';
 import ToolbarPlugin from './toolbar';
 import Underline from '@material-ui/icons/FormatUnderlined';
 import compact from 'lodash/compact';
+import SoftBreakPlugin from 'slate-soft-break';
 import debug from 'debug';
 import List from './list';
 import TablePlugin from './table';
@@ -107,6 +108,7 @@ export const buildPlugins = (activePlugins, opts) => {
       'numbered-list',
       List({ key: 'n', type: 'ol_list', icon: <NumberedListIcon /> })
     ),
-    ToolbarPlugin(opts.toolbar)
+    ToolbarPlugin(opts.toolbar),
+    SoftBreakPlugin(),
   ]);
 };

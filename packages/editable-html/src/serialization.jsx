@@ -179,14 +179,14 @@ function defaultParseHtml(html) {
     null
   );
   var n = textNodes.nextNode();
-  
+
   while(n){
     if(allWhitespace(n) || n.nodeValue === '\u200B'){
       n.parentNode.removeChild(n);
     }
     n = textNodes.nextNode();
   }
-  
+
   return body;
 }
 
