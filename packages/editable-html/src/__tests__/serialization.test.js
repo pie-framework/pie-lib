@@ -22,13 +22,11 @@ describe('htmlToValue', () => {
           {
             object: 'block',
             type: 'div',
-            isVoid: false,
             data: {},
             nodes: [
               {
                 object: 'block',
                 type: 'paragraph',
-                isVoid: false,
                 data: {},
                 nodes: [
                   {
@@ -44,7 +42,6 @@ describe('htmlToValue', () => {
                   {
                     object: 'inline',
                     type: 'image',
-                    isVoid: true,
                     data: {
                       src: 'blah.jpg',
                       width: null,
