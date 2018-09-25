@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="6.7.3"></a>
+## [6.7.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.7.0...@pie-lib/editable-html@6.7.3) (2018-09-25)
+
+
+### Bug Fixes
+
+* rollback slate version, keep slate-soft-break ([fd37c73](https://github.com/pie-framework/pie-lib/commit/fd37c73))
+
+
+
+
+
 <a name="6.7.0"></a>
 # [6.7.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.6.7...@pie-lib/editable-html@6.7.0) (2018-09-19)
 
