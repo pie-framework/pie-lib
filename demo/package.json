@@ -10,7 +10,7 @@
     "@pie-lib/config-ui": "^7.6.8",
     "@pie-lib/correct-answer-toggle": "^2.1.0",
     "@pie-lib/drag": "^1.1.0",
-    "@pie-lib/editable-html": "^6.5.0",
+    "@pie-lib/editable-html": "6.7.2",
     "@pie-lib/icons": "~2.2.0",
     "@pie-lib/math-input": "^4.2.0",
     "@pie-lib/render-ui": "^4.2.1",
