@@ -7,8 +7,8 @@ Elements are in `packages`.
 ## install
 
 ```bash
-npm install -g lerna
-npm install
+yarn install 
+./node_modules/.bin/lerna bootstrap
 ```
 
 ## Commands
