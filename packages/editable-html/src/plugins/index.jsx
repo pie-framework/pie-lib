@@ -109,6 +109,6 @@ export const buildPlugins = (activePlugins, opts) => {
       List({ key: 'n', type: 'ol_list', icon: <NumberedListIcon /> })
     ),
     ToolbarPlugin(opts.toolbar),
-    SoftBreakPlugin(),
+    SoftBreakPlugin()
   ]);
 };

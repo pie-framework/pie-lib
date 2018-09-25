@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/editable-html",
-  "version": "6.7.0",
+  "version": "6.7.2",
   "description": "",
   "license": "ISC",
   "main": "lib/index.js",
@@ -22,7 +22,7 @@
     "react-attr-converter": "^0.3.1",
     "react-jss": "^8.6.1",
     "react-portal": "^4.1.5",
-    "slate": "^0.40.2",
+    "slate": "^0.36.2",
     "slate-edit-list": "^0.11.3",
     "slate-edit-table": "^0.17.0",
     "slate-html-serializer": "^0.6.12",
