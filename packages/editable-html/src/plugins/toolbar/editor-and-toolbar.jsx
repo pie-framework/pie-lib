@@ -89,8 +89,7 @@ const style = {
     }
   },
   children: {
-    padding: '7px',
-    height: '100%'
+    padding: '7px'
   },
   editorHolder: {
     position: 'relative',
