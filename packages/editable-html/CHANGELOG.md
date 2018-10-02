@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="6.7.4"></a>
+## [6.7.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.7.3...@pie-lib/editable-html@6.7.4) (2018-10-02)
+
+
+### Bug Fixes
+
+* **editablehtml:** fixed auto resizing ([0f8cdd3](https://github.com/pie-framework/pie-lib/commit/0f8cdd3))
+
+
+
+
+
 <a name="6.7.3"></a>
 ## [6.7.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.7.0...@pie-lib/editable-html@6.7.3) (2018-09-25)
 
