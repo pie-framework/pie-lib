@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Controls from './controls';
 import { withStyles } from '@material-ui/core/styles';
-import { words, sentences } from './builder';
+import { words, sentences, paragraphs } from './builder';
 import clone from 'lodash/clone';
 import isEqual from 'lodash/isEqual';
 import differenceWith from 'lodash/differenceWith';
@@ -49,6 +49,12 @@ export class Tokenizer extends React.Component {
   buildSentenceTokens = () => {
     const { onChange, text } = this.props;
     const tokens = sentences(text);
+    onChange(tokens);
+  };
+
+  buildParagraphTokens = () => {
+    const { onChange, text } = this.props;
+    const tokens = paragraphs(text);
     onChange(tokens);
   };
 
@@ -118,6 +124,7 @@ export class Tokenizer extends React.Component {
           onClear={this.clear}
           onWords={this.buildWordTokens}
           onSentences={this.buildSentenceTokens}
+          onParagraphs={this.buildParagraphTokens}
           setCorrectMode={setCorrectMode}
           onToggleCorrectMode={this.toggleCorrectMode}
         />

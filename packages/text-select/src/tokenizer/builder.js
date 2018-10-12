@@ -12,10 +12,32 @@ const g = (str, node) => {
   }
 };
 
+const getParagraphs = p => g('', p);
+
 const getSentence = s => g('', s);
 
 const getWord = w => g('', w);
 
+export const paragraphs = text => {
+  const tree = new English().parse(text);
+
+  // console.log(JSON.stringify(tree.children[0].children, null, '  '));
+  const out = tree.children.reduce((acc, child) => {
+    if (child.type === 'ParagraphNode') {
+      const sentence = {
+        text: getParagraphs(child),
+        start: child.position.start.offset,
+        end: child.position.end.offset
+      };
+
+      return acc.concat([sentence]);
+    } else {
+      return acc;
+    }
+  }, []);
+
+  return out;
+};
 export const sentences = text => {
   const tree = new English().parse(text);
 
