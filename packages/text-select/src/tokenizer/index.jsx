@@ -28,41 +28,53 @@ export class Tokenizer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      setCorrectMode: false
+      setCorrectMode: false,
+      mode: ''
     };
   }
+
+  onChangeHandler = (token, mode) => {
+    this.props.onChange(token, mode);
+
+    this.setState({
+      mode
+    });
+  };
 
   toggleCorrectMode = () =>
     this.setState({ setCorrectMode: !this.state.setCorrectMode });
 
   clear = () => {
-    const { onChange } = this.props;
-    onChange([]);
+    this.onChangeHandler([], '');
   };
 
   buildWordTokens = () => {
-    const { onChange, text } = this.props;
+    const { text } = this.props;
     const tokens = words(text);
-    onChange(tokens);
+
+    this.onChangeHandler(tokens, 'words');
   };
 
   buildSentenceTokens = () => {
-    const { onChange, text } = this.props;
+    const { text } = this.props;
     const tokens = sentences(text);
-    onChange(tokens);
+
+    this.onChangeHandler(tokens, 'sentence');
   };
 
   buildParagraphTokens = () => {
-    const { onChange, text } = this.props;
+    const { text } = this.props;
     const tokens = paragraphs(text);
-    onChange(tokens);
+
+    this.onChangeHandler(tokens, 'paragraphs');
   };
 
   selectToken = (newToken, tokensToRemove) => {
-    const { onChange, tokens } = this.props;
+    const { tokens } = this.props;
     const update = differenceWith(clone(tokens), tokensToRemove, isEqual);
+
     update.push(newToken);
-    onChange(update);
+    this.onChangeHandler(update, this.state.mode);
   };
 
   tokenClick = token => {
@@ -85,25 +97,30 @@ export class Tokenizer extends React.Component {
   };
 
   setCorrect = token => {
-    const { onChange, tokens } = this.props;
+    const { tokens } = this.props;
     const index = this.tokenIndex(token);
     if (index !== -1) {
       const t = tokens[index];
+
       t.correct = !t.correct;
+
       const update = clone(tokens);
+
       update.splice(index, 1, t);
-      onChange(update);
+      this.onChangeHandler(update, this.state.mode);
     }
   };
 
   removeToken = token => {
-    const { onChange, tokens } = this.props;
+    const { tokens } = this.props;
 
     const index = this.tokenIndex(token);
     if (index !== -1) {
       const update = clone(tokens);
+
       update.splice(index, 1);
-      onChange(update);
+
+      this.onChangeHandler(update, this.state.mode);
     }
   };
 
