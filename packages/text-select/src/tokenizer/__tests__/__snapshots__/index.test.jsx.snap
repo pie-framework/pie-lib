@@ -6,6 +6,7 @@ exports[`tokenizer snapshot renders 1`] = `
 >
   <WithStyles(Controls)
     onClear={[Function]}
+    onParagraphs={[Function]}
     onSentences={[Function]}
     onToggleCorrectMode={[Function]}
     onWords={[Function]}
