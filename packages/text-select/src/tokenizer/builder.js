@@ -12,7 +12,7 @@ const g = (str, node) => {
   }
 };
 
-const getParagraphs = p => g('', p);
+const getParagraph = p => g('', p);
 
 const getSentence = s => g('', s);
 
@@ -21,16 +21,15 @@ const getWord = w => g('', w);
 export const paragraphs = text => {
   const tree = new English().parse(text);
 
-  // console.log(JSON.stringify(tree.children[0].children, null, '  '));
   const out = tree.children.reduce((acc, child) => {
     if (child.type === 'ParagraphNode') {
-      const sentence = {
-        text: getParagraphs(child),
+      const paragraph = {
+        text: getParagraph(child),
         start: child.position.start.offset,
         end: child.position.end.offset
       };
 
-      return acc.concat([sentence]);
+      return acc.concat([paragraph]);
     } else {
       return acc;
     }
@@ -41,7 +40,6 @@ export const paragraphs = text => {
 export const sentences = text => {
   const tree = new English().parse(text);
 
-  // console.log(JSON.stringify(tree.children[0].children, null, '  '));
   const out = tree.children.reduce((acc, child) => {
     if (child.type === 'ParagraphNode') {
       return child.children.reduce((acc, child) => {

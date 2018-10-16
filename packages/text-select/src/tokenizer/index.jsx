@@ -48,25 +48,11 @@ export class Tokenizer extends React.Component {
     this.onChangeHandler([], '');
   };
 
-  buildWordTokens = () => {
+  buildTokens = (type, fn) => {
     const { text } = this.props;
-    const tokens = words(text);
+    const tokens = fn(text);
 
-    this.onChangeHandler(tokens, 'words');
-  };
-
-  buildSentenceTokens = () => {
-    const { text } = this.props;
-    const tokens = sentences(text);
-
-    this.onChangeHandler(tokens, 'sentence');
-  };
-
-  buildParagraphTokens = () => {
-    const { text } = this.props;
-    const tokens = paragraphs(text);
-
-    this.onChangeHandler(tokens, 'paragraphs');
+    this.onChangeHandler(tokens, type);
   };
 
   selectToken = (newToken, tokensToRemove) => {
@@ -139,9 +125,9 @@ export class Tokenizer extends React.Component {
       <div className={rootName}>
         <Controls
           onClear={this.clear}
-          onWords={this.buildWordTokens}
-          onSentences={this.buildSentenceTokens}
-          onParagraphs={this.buildParagraphTokens}
+          onWords={() => this.buildTokens('words', words)}
+          onSentences={() => this.buildTokens('sentence', sentences)}
+          onParagraphs={() => this.buildTokens('paragraphs', paragraphs)}
           setCorrectMode={setCorrectMode}
           onToggleCorrectMode={this.toggleCorrectMode}
         />

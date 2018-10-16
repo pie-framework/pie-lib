@@ -1,4 +1,4 @@
-import { normalize, sentences, words, sort, intersection } from '../builder';
+import { normalize, sentences, words, paragraphs, sort, intersection } from '../builder';
 
 const token = (start, end, text) => ({ start, end, text });
 
@@ -179,6 +179,23 @@ describe('builder', () => {
 
       const out = sentences(text);
       expect(out.length).toEqual(2);
+    });
+  });
+
+  describe('paragraphs', () => {
+    it('foobar', () => {
+      const text = 'This is foo. This is bar.\nThis is foobar. This is barfoo.';
+      const out = paragraphs(text);
+      expect(out[0]).toEqual({ text: 'This is foo. This is bar.', start: 0, end: 25 });
+      expect(out[1]).toEqual({ text: 'This is foobar. This is barfoo.', start: 26, end: 57 });
+    });
+    it('works', () => {
+      const text =
+        'On Jan. 20, former Sen. Barack Obama became the 44th President of the USA. Millions attended the Inauguration.' +
+        '\\ndadadadadadadadada.';
+
+      const out = paragraphs(text);
+      expect(out.length).toEqual(1);
     });
   });
 });
