@@ -11,6 +11,7 @@ export class Controls extends React.Component {
     onClear: PropTypes.func.isRequired,
     onWords: PropTypes.func.isRequired,
     onSentences: PropTypes.func.isRequired,
+    onParagraphs: PropTypes.func.isRequired,
     setCorrectMode: PropTypes.bool.isRequired,
     onToggleCorrectMode: PropTypes.func.isRequired
   };
@@ -23,9 +24,11 @@ export class Controls extends React.Component {
       onClear,
       onWords,
       onSentences,
+      onParagraphs,
       setCorrectMode,
       onToggleCorrectMode
     } = this.props;
+
     return (
       <div className={classes.controls}>
         <div>
@@ -46,6 +49,15 @@ export class Controls extends React.Component {
             disabled={setCorrectMode}
           >
             Sentences
+          </Button>
+          <Button
+            onClick={onParagraphs}
+            className={classes.button}
+            size="small"
+            color="primary"
+            disabled={setCorrectMode}
+          >
+            Paragraphs
           </Button>
           <Button
             className={classes.button}

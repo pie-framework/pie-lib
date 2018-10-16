@@ -1,7 +1,7 @@
 import { Tokenizer } from '../index';
-import { shallow } from 'enzyme';
 import React from 'react';
-import { words, sentences } from '../builder';
+import { shallow } from 'enzyme';
+import { words, sentences, paragraphs } from '../builder';
 
 const tokens = () => [
   {
@@ -15,7 +15,8 @@ const eff = () => tokens()[0];
 
 jest.mock('../builder', () => ({
   words: jest.fn().mockReturnValue([{ start: 0, end: 3, text: 'foo' }]),
-  sentences: jest.fn().mockReturnValue([{ start: 0, end: 3, text: 'foo' }])
+  sentences: jest.fn().mockReturnValue([{ start: 0, end: 3, text: 'foo' }]),
+  paragraphs: jest.fn().mockReturnValue([{ start: 0, end: 3, text: 'foo' }])
 }));
 describe('tokenizer', () => {
   describe('snapshot', () => {
@@ -89,20 +90,27 @@ describe('tokenizer', () => {
           .selectToken({ start: 1, end: 3, text: 'oo' }, [
             { start: 0, end: 1, text: 'f' }
           ]);
-        expect(onChange).toBeCalledWith([{ start: 1, end: 3, text: 'oo' }]);
+        expect(onChange).toBeCalledWith([{ start: 1, end: 3, text: 'oo' }], '');
+      });
+    });
+
+    describe('buildParagraphsTokens', () => {
+      it('calls paragraphs', () => {
+        w.instance().buildTokens('paragraph', paragraphs);
+        expect(paragraphs).toBeCalledWith('foo');
       });
     });
 
     describe('buildSentenceTokens', () => {
       it('calls sentences', () => {
-        w.instance().buildSentenceTokens();
+        w.instance().buildTokens('sentence', sentences);
         expect(sentences).toBeCalledWith('foo');
       });
     });
 
     describe('buildWordTokens', () => {
       it('calls words', () => {
-        w.instance().buildWordTokens();
+        w.instance().buildTokens('word', words);
         expect(words).toBeCalledWith('foo');
       });
     });
@@ -110,7 +118,7 @@ describe('tokenizer', () => {
     describe('clear', () => {
       it('calls onChange with an empty array', () => {
         w.instance().clear();
-        expect(onChange).toBeCalledWith([]);
+        expect(onChange).toBeCalledWith([], '');
       });
     });
 
@@ -127,7 +135,7 @@ describe('tokenizer', () => {
         w.instance().setCorrect({ start: 0, end: 1, text: 'f' });
         expect(onChange).toBeCalledWith([
           { start: 0, end: 1, text: 'f', correct: true }
-        ]);
+        ], '');
       });
       it('calls onChange w/ correct: false', () => {
         w.setProps({
@@ -136,14 +144,14 @@ describe('tokenizer', () => {
         w.instance().setCorrect({ start: 0, end: 1, text: 'f' });
         expect(onChange).toBeCalledWith([
           { start: 0, end: 1, text: 'f', correct: false }
-        ]);
+        ], '');
       });
     });
 
     describe('removeToken', () => {
       it('calls onChange', () => {
         w.instance().removeToken({ start: 0, end: 1, text: 'f' });
-        expect(onChange).toBeCalledWith([]);
+        expect(onChange).toBeCalledWith([], '');
       });
       it('does not call onChange if it cant find the token', () => {
         w.instance().removeToken({ start: 2, end: 3, text: 'a' });

@@ -1,5 +1,5 @@
 module.exports = {
-  testRegex: 'src/*/__tests__/.*.test\\.jsx?$',
+  testRegex: 'src/.*/?__tests__/.*.test\\.jsx?$',
   setupFiles: ['./jest.setup.js'],
   verbose: false,
   snapshotSerializers: ['enzyme-to-json/serializer'],

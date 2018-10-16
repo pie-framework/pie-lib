@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Controls from './controls';
 import { withStyles } from '@material-ui/core/styles';
-import { words, sentences } from './builder';
+import { words, sentences, paragraphs } from './builder';
 import clone from 'lodash/clone';
 import isEqual from 'lodash/isEqual';
 import differenceWith from 'lodash/differenceWith';
@@ -28,35 +28,39 @@ export class Tokenizer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      setCorrectMode: false
+      setCorrectMode: false,
+      mode: ''
     };
   }
+
+  onChangeHandler = (token, mode) => {
+    this.props.onChange(token, mode);
+
+    this.setState({
+      mode
+    });
+  };
 
   toggleCorrectMode = () =>
     this.setState({ setCorrectMode: !this.state.setCorrectMode });
 
   clear = () => {
-    const { onChange } = this.props;
-    onChange([]);
+    this.onChangeHandler([], '');
   };
 
-  buildWordTokens = () => {
-    const { onChange, text } = this.props;
-    const tokens = words(text);
-    onChange(tokens);
-  };
+  buildTokens = (type, fn) => {
+    const { text } = this.props;
+    const tokens = fn(text);
 
-  buildSentenceTokens = () => {
-    const { onChange, text } = this.props;
-    const tokens = sentences(text);
-    onChange(tokens);
+    this.onChangeHandler(tokens, type);
   };
 
   selectToken = (newToken, tokensToRemove) => {
-    const { onChange, tokens } = this.props;
+    const { tokens } = this.props;
     const update = differenceWith(clone(tokens), tokensToRemove, isEqual);
+
     update.push(newToken);
-    onChange(update);
+    this.onChangeHandler(update, this.state.mode);
   };
 
   tokenClick = token => {
@@ -79,25 +83,30 @@ export class Tokenizer extends React.Component {
   };
 
   setCorrect = token => {
-    const { onChange, tokens } = this.props;
+    const { tokens } = this.props;
     const index = this.tokenIndex(token);
     if (index !== -1) {
       const t = tokens[index];
+
       t.correct = !t.correct;
+
       const update = clone(tokens);
+
       update.splice(index, 1, t);
-      onChange(update);
+      this.onChangeHandler(update, this.state.mode);
     }
   };
 
   removeToken = token => {
-    const { onChange, tokens } = this.props;
+    const { tokens } = this.props;
 
     const index = this.tokenIndex(token);
     if (index !== -1) {
       const update = clone(tokens);
+
       update.splice(index, 1);
-      onChange(update);
+
+      this.onChangeHandler(update, this.state.mode);
     }
   };
 
@@ -116,8 +125,9 @@ export class Tokenizer extends React.Component {
       <div className={rootName}>
         <Controls
           onClear={this.clear}
-          onWords={this.buildWordTokens}
-          onSentences={this.buildSentenceTokens}
+          onWords={() => this.buildTokens('words', words)}
+          onSentences={() => this.buildTokens('sentence', sentences)}
+          onParagraphs={() => this.buildTokens('paragraphs', paragraphs)}
           setCorrectMode={setCorrectMode}
           onToggleCorrectMode={this.toggleCorrectMode}
         />
