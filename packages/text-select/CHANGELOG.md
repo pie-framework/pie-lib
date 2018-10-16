@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.2.2"></a>
+## [1.2.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.2.1...@pie-lib/text-select@1.2.2) (2018-10-16)
+
+
+### Bug Fixes
+
+* **add-paragraph:** added a paragraph builder for tokens ([61189c0](https://github.com/pie-framework/pie-lib/commit/61189c0))
+* **mode-save:** added a new state variable that saves the current mode of the tokenizer ([340b4ba](https://github.com/pie-framework/pie-lib/commit/340b4ba))
+* **mode-save:** added some tests and refactored some code ([2ffeaca](https://github.com/pie-framework/pie-lib/commit/2ffeaca))
+
+
+
+
+
 <a name="1.2.1"></a>
 ## [1.2.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.2.0...@pie-lib/text-select@1.2.1) (2018-07-25)
 
