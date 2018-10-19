@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="6.7.5"></a>
+## [6.7.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.7.4...@pie-lib/editable-html@6.7.5) (2018-10-19)
+
+
+### Bug Fixes
+
+* **ch468:** added disableunderline prop for the editable-html component ([0886417](https://github.com/pie-framework/pie-lib/commit/0886417))
+
+
+
+
+
 <a name="6.7.4"></a>
 ## [6.7.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.7.3...@pie-lib/editable-html@6.7.4) (2018-10-02)
 
