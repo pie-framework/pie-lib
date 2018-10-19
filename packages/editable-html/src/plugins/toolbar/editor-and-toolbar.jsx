@@ -21,6 +21,7 @@ export class EditorAndToolbar extends React.Component {
     onDone: PropTypes.func.isRequired,
     focusedNode: SlatePropTypes.node,
     readOnly: PropTypes.bool,
+    disableUnderline: PropTypes.bool,
     autoWidth: PropTypes.bool,
     classes: PropTypes.object.isRequired
   };
@@ -35,7 +36,8 @@ export class EditorAndToolbar extends React.Component {
       onDone,
       focusedNode,
       autoWidth,
-      readOnly
+      readOnly,
+      disableUnderline
     } = this.props;
 
     const inFocus =
@@ -43,7 +45,8 @@ export class EditorAndToolbar extends React.Component {
     const holderNames = classNames(
       classes.editorHolder,
       inFocus && classes.editorInFocus,
-      readOnly && classes.readOnly
+      readOnly && classes.readOnly,
+      disableUnderline && classes.disabledUnderline
     );
 
     log(
@@ -131,6 +134,14 @@ const style = {
         backgroundColor: 'black',
         height: '2px'
       }
+    }
+  },
+  disabledUnderline: {
+    '&::before': {
+      display: 'none'
+    },
+    '&::after': {
+      display: 'none'
     }
   },
 
