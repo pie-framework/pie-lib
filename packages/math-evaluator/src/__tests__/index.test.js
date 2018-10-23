@@ -1,6 +1,35 @@
 import areValuesEqual from '../index';
 
+
+
 describe('math-evaluator', () => {
+
+  const assert = (isEqual) => (label) => function(){
+   const args = Array.prototype.slice.call(null, arguments):
+   const pairs = _.chunk(args, 2);
+   describe(label, () => {
+      pairs.forEach( ([a,b]) => {
+        it(`${a} === ${b} ? ${isEqual}`, () => {
+          expect(areValuesEqual(a, b)).toBe(isEqual);
+        });
+      });
+   }):
+  }
+  
+  const assertEqual = assert(true);
+  const assertNotEqual = assert(false);
+  assertEqual('simple')( 
+    'x', 'x',
+    '2x', '2x',
+    '3x + 4x', '7x',
+    //...
+  )
+  
+  assertNotEqual('simple')(
+    '', 'x',
+    '3x', '4x',
+    //....
+  )
   it('evaluates simple expressions correctly', () => {
     expect(areValuesEqual('x', 'x')).toEqual(true);
     expect(areValuesEqual('2x', '2x')).toEqual(true);
