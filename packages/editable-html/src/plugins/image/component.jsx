@@ -5,10 +5,15 @@ import classNames from 'classnames';
 import debug from 'debug';
 import { withStyles } from '@material-ui/core/styles';
 import SlatePropTypes from 'slate-prop-types';
+import reduce from 'lodash/reduce';
+import isEqual from 'lodash/isEqual';
+import isEmpty from 'lodash/isEmpty';
 
 const log = debug('@pie-lib:editable-html:plugins:image:component');
 
 const size = s => (s ? `${s}px` : 'auto');
+
+export let showToolbar = true;
 
 export class Component extends React.Component {
   static propTypes = {
@@ -77,6 +82,64 @@ export class Component extends React.Component {
     };
   }
 
+  onSpacerMouseDown = () => {
+    showToolbar = false;
+
+    setTimeout(() => {
+      const sel = window.getSelection();
+      const voidEl = sel.anchorNode.parentElement.closest('[data-slate-void]');
+
+      if (!voidEl) {
+        return;
+      }
+
+      sel.removeAllRanges();
+
+      const prevEl = voidEl.previousSibling;
+      const children = prevEl.querySelectorAll('*');
+      const textNode = reduce(children, (ac, c) => {
+        if (c.firstChild && c.firstChild.nodeType === Node.TEXT_NODE) {
+          return c.firstChild;
+        }
+      }, {});
+      const textLength = textNode.textContent.length;
+
+      sel.setBaseAndExtent(textNode, textLength, textNode, textLength);
+      showToolbar = true;
+    }, 100);
+  };
+
+  /**
+   * Getting 1 or 2 spaces depending on the previous element.
+   * If the previous element is an empty text, 2 spaces are returned.
+   * @returns {[string]}
+   */
+  getBeginningSpaces = () => {
+    const parentJSON = this.props.parent.toJSON();
+    const nodeJSON = this.props.node.toJSON();
+    const spaces = [' '];
+    let previousNode;
+
+    for (let i = 0; i < parentJSON.nodes.length; i++) {
+      const n = parentJSON.nodes[i];
+
+      if (i !== 0 && isEqual(n, nodeJSON)) {
+        previousNode = parentJSON.nodes[i - 1];
+        break;
+      }
+    }
+
+    if (previousNode) {
+      previousNode.leaves.forEach((l) => {
+        if (isEmpty(l.text)) {
+          spaces.push(' ');
+        }
+      });
+    }
+
+    return spaces;
+  };
+
   render() {
     const { node, editor, classes, attributes, onFocus } = this.props;
     const active =
@@ -94,9 +157,11 @@ export class Component extends React.Component {
 
     const className = classNames(
       classes.root,
-      active && classes.active,
-      !loaded && classes.loading,
-      deleteStatus === 'pending' && classes.pendingDelete
+      {
+        [classes.active]: active && showToolbar,
+        [classes.loading]: !loaded,
+        [classes.pendingDelete]: deleteStatus === 'pending'
+      }
     );
 
     const progressClasses = classNames(
@@ -104,16 +169,25 @@ export class Component extends React.Component {
       loaded && classes.hideProgress
     );
 
-    return (
-      <div onFocus={onFocus} className={className}>
+    return [
+      <span
+        key={'sp1'}
+        onMouseDown={this.onSpacerMouseDown}
+      >
+        {this.getBeginningSpaces()}
+      </span>,
+      <div key={'comp'} onFocus={onFocus} className={className}>
         <LinearProgress
           mode="determinate"
           value={percent > 0 ? percent : 0}
           className={progressClasses}
         />
-        <img src={src} {...attributes} ref={r => (this.img = r)} style={size} />
-      </div>
-    );
+        <img src={src} {...attributes} ref={r => (this.img = r)} style={size}/>
+      </div>,
+      <span key={'sp2'}>
+        &nbsp;
+      </span>
+    ];
   }
 }
 

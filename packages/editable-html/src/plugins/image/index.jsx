@@ -1,7 +1,7 @@
 import { Block, Data, Range, Inline } from 'slate';
 
 import Image from '@material-ui/icons/Image';
-import ImageComponent from './component';
+import ImageComponent, { showToolbar } from './component';
 import ImageToolbar from './image-toolbar';
 import InsertImageHandler from './insert-image-handler';
 import React from 'react';
@@ -29,7 +29,7 @@ export default function ImagePlugin(opts) {
         getValue => new InsertImageHandler(inline, getValue, onChange)
       );
     },
-    supports: node => node.object === 'inline' && node.type === 'image',
+    supports: node => showToolbar && node.object === 'inline' && node.type === 'image',
     customToolbar: (node, value, onToolbarDone) => {
       const percent = node.data.get('resizePercent');
 
