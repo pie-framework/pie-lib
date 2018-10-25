@@ -1,7 +1,7 @@
 import { Block, Data, Range, Inline } from 'slate';
 
 import Image from '@material-ui/icons/Image';
-import ImageComponent, { showToolbar } from './component';
+import ImageComponent from './component';
 import ImageToolbar from './image-toolbar';
 import InsertImageHandler from './insert-image-handler';
 import React from 'react';
@@ -110,6 +110,8 @@ export default function ImagePlugin(opts) {
       const updateNodesArray = [];
       let index = 0;
 
+      if (node.object !== 'document') return;
+
       node.findDescendant(d => {
         if (d.object === 'text') {
           textNodeMap[index] = d;
@@ -124,13 +126,13 @@ export default function ImagePlugin(opts) {
         index++;
       });
 
-      if (updateNodesArray.length) {
-        return change => {
-          change.withoutNormalization(() => {
-            updateNodesArray.forEach((n) => change.insertTextByKey(n.key, 0, ' '));
-          });
-        };
-      }
+      if (!updateNodesArray.length) return;
+
+      return change => {
+        change.withoutNormalization(() => {
+          updateNodesArray.forEach((n) => change.insertTextByKey(n.key, 0, ' '));
+        });
+      };
     }
   };
 }
