@@ -29,7 +29,7 @@ export default function ImagePlugin(opts) {
         getValue => new InsertImageHandler(inline, getValue, onChange)
       );
     },
-    supports: node => showToolbar && node.object === 'inline' && node.type === 'image',
+    supports: node => node.object === 'inline' && node.type === 'image',
     customToolbar: (node, value, onToolbarDone) => {
       const percent = node.data.get('resizePercent');
 
@@ -103,6 +103,31 @@ export default function ImagePlugin(opts) {
           props
         );
         return <ImageComponent {...all} />;
+      }
+    },
+    normalizeNode: (node) => {
+      const textNodeMap = {};
+      const updateNodesArray = [];
+      let index = 0;
+
+      node.findDescendant(d => {
+        if (d.object === 'text') {
+          textNodeMap[index] = d;
+        }
+
+        if (d.type === 'image') {
+          if (index > 0 && textNodeMap[index - 1] && textNodeMap[index - 1].text === '') {
+            updateNodesArray.push(textNodeMap[index - 1]);
+          }
+        }
+
+        index++;
+      });
+
+      if (updateNodesArray.length) {
+        return change => {
+          updateNodesArray.forEach((n) => change.insertTextByKey(n.key, 0, ' '));
+        };
       }
     }
   };
