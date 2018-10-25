@@ -126,7 +126,9 @@ export default function ImagePlugin(opts) {
 
       if (updateNodesArray.length) {
         return change => {
-          updateNodesArray.forEach((n) => change.insertTextByKey(n.key, 0, ' '));
+          change.withoutNormalization(() => {
+            updateNodesArray.forEach((n) => change.insertTextByKey(n.key, 0, ' '));
+          });
         };
       }
     }
