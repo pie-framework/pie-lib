@@ -1,58 +1,59 @@
 import React from 'react';
-import Rows from './scoring-config-rows';
 import Typography from '@material-ui/core/Typography';
+import Checkbox from '@material-ui/core/Checkbox';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 
-const emptyStyles = {
-  root: {
-    padding: '20px'
-  }
-};
-
-const Empty = withStyles(emptyStyles)(({ classes }) => (
-  <div className={classes.root}>
-    <Typography type="caption">
-      You must have more than 1 correct response to set up partial scoring
-    </Typography>
-  </div>
-));
-
 export class PartialScoringConfig extends React.Component {
   static propTypes = {
-    numberOfCorrectResponses: PropTypes.number,
-    partialScoring: PropTypes.array,
+    label: PropTypes.string,
+    partialScoring: PropTypes.bool,
     classes: PropTypes.object.isRequired,
     onChange: PropTypes.func
   };
 
+  state = {
+    checked: false
+  };
+
+  constructor(props) {
+    super(props);
+
+    const { partialScoring } = props;
+
+    this.state.checked = partialScoring;
+  }
+
+  onCheckboxChanged = () => {
+    const checked = !this.state.checked;
+    const { onChange } = this.props;
+
+    this.setState({
+      checked
+    });
+    onChange(checked);
+  };
+
   render() {
-    const {
-      numberOfCorrectResponses,
-      partialScoring,
-      classes,
-      onChange
-    } = this.props;
+    const { classes, label } = this.props;
+    const { checked } = this.state;
 
     return (
       <div className={classes.scoringConfig}>
         <Typography type="subheading">Partial Scoring Rules</Typography>
         <br />
         <Typography>
-          If there is more than one correct answer to this question, you may
-          allow partial credit based on the number of correct answers submitted.
-          This is optional.
+          {
+            label
+              ? label
+              : 'Each correct response is worth 1/X where X is the number of correct answer selections.'
+          }
         </Typography>
-        <br />
-        {numberOfCorrectResponses > 1 ? (
-          <Rows
-            numberOfCorrectResponses={numberOfCorrectResponses}
-            partialScoring={partialScoring}
-            onChange={onChange}
-          />
-        ) : (
-          <Empty />
-        )}
+        <Checkbox
+          checked={checked}
+          onChange={this.onCheckboxChanged}
+          label={''}
+        />
       </div>
     );
   }
