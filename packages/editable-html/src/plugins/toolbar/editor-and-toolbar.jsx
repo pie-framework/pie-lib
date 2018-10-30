@@ -27,6 +27,9 @@ export class EditorAndToolbar extends React.Component {
     classes: PropTypes.object.isRequired
   };
 
+  /** This is an interim fix until this PR is merged in slate: 
+    * https://github.com/ianstormtaylor/slate/pull/2236
+    */
   componentDidMount() {
     if (IS_FIREFOX) {
       this.editorRef.tmp.isUpdatingSelection = true;
