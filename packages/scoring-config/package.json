@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/scoring-config",
-  "version": "3.2.14",
+  "version": "3.2.15",
   "description": "",
   "main": "lib/index.js",
   "publishConfig": {

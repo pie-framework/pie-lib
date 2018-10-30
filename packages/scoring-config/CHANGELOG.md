@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.2.15"></a>
+## [3.2.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@3.2.14...@pie-lib/scoring-config@3.2.15) (2018-10-30)
+
+
+### Bug Fixes
+
+* **ch497:** updated the scoring-config package in order to work with the new algorithm for scoring ([0089559](https://github.com/pie-framework/pie-lib/commit/0089559))
+* **scoring-config:** updated the snapshot for the test ([7fbe102](https://github.com/pie-framework/pie-lib/commit/7fbe102))
+
+
+
+
+
 <a name="3.2.14"></a>
 ## [3.2.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@3.2.13...@pie-lib/scoring-config@3.2.14) (2018-10-30)
 
