@@ -12,6 +12,7 @@ const links = [
   { label: 'charting - config', path: '/charting-config' },
   { label: 'icons', path: '/icons' },
   { label: 'math-input', path: '/math-input' },
+  { label: 'math-evaluator', path: '/math-evaluator' },
   { label: 'config-ui', path: '/config-ui' },
   { label: 'config-ui - numbers', path: '/config-ui/numbers' },
   { label: 'config-ui - tabs', path: '/config-ui/tabs' },

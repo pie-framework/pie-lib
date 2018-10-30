@@ -1,0 +1,24 @@
+{
+  "name": "@pie-lib/math-evaluator",
+  "publishConfig": {
+    "access": "public"
+  },
+  "version": "0.0.1",
+  "description": "Math evaluator tool for comparing expressions for equality",
+  "keywords": [
+    "math",
+    "evaluator",
+    "equations",
+    "expressions"
+  ],
+  "repository": "pie-framework/pie-lib",
+  "main": "lib/index.js",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mathjs": "^5.2.1"
+  },
+  "devDependencies": {
+    "@pie-lib/test-utils": "^0.0.3"
+  }
+}

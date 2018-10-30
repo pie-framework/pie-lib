@@ -23,6 +23,7 @@
     "classnames": "^2.2.6",
     "file-loader": "^1.1.11",
     "katex": "^0.10.0-beta",
+    "mathjs": "^5.2.1",
     "next": "^6.1.1",
     "react": "^16.4.2",
     "react-attr-converter": "^0.3.1",
