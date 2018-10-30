@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="6.7.6"></a>
+## [6.7.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.7.5...@pie-lib/editable-html@6.7.6) (2018-10-30)
+
+
+### Bug Fixes
+
+* **focus-inside-text-issue:** changed a temporary variable that decides if it should call the updateSelection function or not in order for the execution to not reach some outdated code that messes things up for firefox ([2c2e571](https://github.com/pie-framework/pie-lib/commit/2c2e571))
+* **focus-inside-text-issue:** fixed a test ([5676c82](https://github.com/pie-framework/pie-lib/commit/5676c82))
+
+
+
+
+
 <a name="6.7.5"></a>
 ## [6.7.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.7.4...@pie-lib/editable-html@6.7.5) (2018-10-19)
 
