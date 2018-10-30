@@ -58,10 +58,14 @@ export class EditorAndToolbar extends React.Component {
       readOnly && classes.readOnly,
       disableUnderline && classes.disabledUnderline
     );
-    const clonedChildren = React.cloneElement(
-      children,
-      { ref: el => this.editorRef = el }
-    );
+    let clonedChildren = children;
+
+    if (typeof children !== 'string') {
+      clonedChildren = React.cloneElement(
+        children,
+        { ref: el => this.editorRef = el }
+      );
+    }
 
     log(
       '[render] inFocus: ',
