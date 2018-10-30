@@ -23,11 +23,13 @@ describe('htmlToValue', () => {
             object: 'block',
             type: 'div',
             data: {},
+            isVoid: false,
             nodes: [
               {
                 object: 'block',
                 type: 'paragraph',
                 data: {},
+                isVoid: false,
                 nodes: [
                   {
                     object: 'text',
@@ -47,6 +49,7 @@ describe('htmlToValue', () => {
                       width: null,
                       height: null
                     },
+                    isVoid: true,
                     nodes: [
                       {
                         object: 'text',

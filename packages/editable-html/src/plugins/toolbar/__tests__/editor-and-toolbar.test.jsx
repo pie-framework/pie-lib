@@ -1,7 +1,7 @@
 import { classObject, mockIconButton } from '../../../__tests__/utils';
 
 import { Data, Value } from 'slate';
-import { EditorAndToolbar } from '../editor-and-toolbar';
+import { EditorAndToolbar, getClonedChildren } from '../editor-and-toolbar';
 import React from 'react';
 import debug from 'debug';
 import renderer from 'react-test-renderer';
