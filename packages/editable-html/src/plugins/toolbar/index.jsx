@@ -8,6 +8,11 @@ import React from 'react';
 export default function ToolbarPlugin(opts) {
   return {
     /* eslint-disable-next-line */
-    renderEditor: props => <EditorAndToolbar {...props} disableUnderline={opts.disableUnderline} onDone={opts.onDone} />
+    renderEditor: props => <EditorAndToolbar
+      {...props}
+      mainEditorRef={opts.mainEditorRef}
+      disableUnderline={opts.disableUnderline}
+      onDone={opts.onDone}
+    />
   };
 }
