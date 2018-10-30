@@ -23,6 +23,7 @@
     "react-jss": "^8.6.1",
     "react-portal": "^4.1.5",
     "slate": "^0.36.2",
+    "slate-dev-environment": "^0.2.0",
     "slate-edit-list": "^0.11.3",
     "slate-edit-table": "^0.17.0",
     "slate-html-serializer": "^0.6.12",

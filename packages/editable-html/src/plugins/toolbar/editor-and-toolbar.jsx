@@ -6,6 +6,7 @@ import { primary } from '../../theme';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import SlatePropTypes from 'slate-prop-types';
+import { IS_FIREFOX } from 'slate-dev-environment';
 
 const log = debug('@pie-lib:editable-html:plugins:toolbar:editor-and-toolbar');
 
@@ -25,6 +26,15 @@ export class EditorAndToolbar extends React.Component {
     autoWidth: PropTypes.bool,
     classes: PropTypes.object.isRequired
   };
+
+  /** This is an interim fix until this PR is merged in slate: 
+    * https://github.com/ianstormtaylor/slate/pull/2236
+    */
+  componentDidMount() {
+    if (IS_FIREFOX) {
+      this.editorRef.tmp.isUpdatingSelection = true;
+    }
+  }
 
   render() {
     const {
@@ -48,6 +58,10 @@ export class EditorAndToolbar extends React.Component {
       readOnly && classes.readOnly,
       disableUnderline && classes.disabledUnderline
     );
+    const clonedChildren = React.cloneElement(
+      children,
+      { ref: el => this.editorRef = el }
+    );
 
     log(
       '[render] inFocus: ',
@@ -61,7 +75,7 @@ export class EditorAndToolbar extends React.Component {
     return (
       <div className={classes.root}>
         <div className={holderNames}>
-          <div className={classes.children}>{children}</div>
+          <div className={classes.children}>{clonedChildren}</div>
         </div>
         <Toolbar
           autoWidth={autoWidth}
