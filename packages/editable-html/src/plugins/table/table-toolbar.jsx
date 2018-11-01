@@ -3,6 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { Button } from '../toolbar/toolbar-buttons';
 import { DoneButton } from '../toolbar/done-button';
 import BorderAll from '@material-ui/icons/BorderAll';
+import { ToolbarButton } from '../toolbar/toolbar'
 
 import {
   AddRow,
@@ -18,6 +19,9 @@ const log = debug('@pie-lib:editable-html:plugins:table-toolbar');
 
 export class TableToolbar extends React.Component {
   static propTypes = {
+    imagePlugin: PropTypes.object.isRequired,
+    value: PropTypes.object.isRequired,
+    onChange: PropTypes.func.isRequired,
     onAddRow: PropTypes.func.isRequired,
     onRemoveRow: PropTypes.func.isRequired,
     onAddColumn: PropTypes.func.isRequired,
@@ -37,6 +41,9 @@ export class TableToolbar extends React.Component {
 
   render() {
     const {
+      imagePlugin,
+      value,
+      onChange,
       onAddRow,
       onRemoveRow,
       onAddColumn,
@@ -66,6 +73,14 @@ export class TableToolbar extends React.Component {
           <Button onClick={onRemoveTable}>
             <RemoveTable />
           </Button>
+          {
+            imagePlugin &&
+            <ToolbarButton
+              {...imagePlugin.toolbar}
+              value={value}
+              onChange={onChange}
+            />
+          }
           <Button onClick={onToggleBorder} active={hasBorder}>
             <BorderAll />
           </Button>
