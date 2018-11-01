@@ -85,7 +85,7 @@ TableCell.propTypes = {
   ]).isRequired
 };
 
-export default (opts, imagePlugin) => {
+export default (opts, imagePlugin, mathPlugin) => {
   const core = EditTable({
     typeContent: 'div'
   });
@@ -159,6 +159,7 @@ export default (opts, imagePlugin) => {
       const Tb = () => (
         <TableToolbar
           imagePlugin={imagePlugin}
+          mathPlugin={mathPlugin}
           onChange={(c) => onToolbarDone(c, false)}
           value={value}
           onAddRow={addRow}

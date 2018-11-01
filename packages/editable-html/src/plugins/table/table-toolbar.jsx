@@ -20,6 +20,7 @@ const log = debug('@pie-lib:editable-html:plugins:table-toolbar');
 export class TableToolbar extends React.Component {
   static propTypes = {
     imagePlugin: PropTypes.object.isRequired,
+    mathPlugin: PropTypes.object.isRequired,
     value: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     onAddRow: PropTypes.func.isRequired,
@@ -42,6 +43,7 @@ export class TableToolbar extends React.Component {
   render() {
     const {
       imagePlugin,
+      mathPlugin,
       value,
       onChange,
       onAddRow,
@@ -77,6 +79,14 @@ export class TableToolbar extends React.Component {
             imagePlugin &&
             <ToolbarButton
               {...imagePlugin.toolbar}
+              value={value}
+              onChange={onChange}
+            />
+          }
+          {
+            mathPlugin &&
+            <ToolbarButton
+              {...mathPlugin.toolbar}
               value={value}
               onChange={onChange}
             />
