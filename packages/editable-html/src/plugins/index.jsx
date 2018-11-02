@@ -70,9 +70,14 @@ export const buildPlugins = (activePlugins, opts) => {
   activePlugins = activePlugins || DEFAULT_PLUGINS;
 
   const addIf = (key, p) => activePlugins.includes(key) && p;
+  const imagePlugin = opts.image && opts.image.onDelete && ImagePlugin(opts.image);
+  const mathPlugin = MathPlugin(opts.math);
 
   return compact([
-    addIf('table', TablePlugin(opts.table)),
+    addIf('table', TablePlugin(opts.table, compact([
+      imagePlugin,
+      mathPlugin
+    ]))),
     addIf(
       'bold',
       MarkHotkey({ key: 'b', type: 'bold', icon: <Bold />, tag: 'strong' })
@@ -97,9 +102,9 @@ export const buildPlugins = (activePlugins, opts) => {
     ),
     addIf(
       'image',
-      opts.image && opts.image.onDelete && ImagePlugin(opts.image)
+      imagePlugin
     ),
-    addIf('math', MathPlugin(opts.math)),
+    addIf('math', mathPlugin),
     addIf(
       'bulleted-list',
       List({ key: 'l', type: 'ul_list', icon: <BulletedListIcon /> })

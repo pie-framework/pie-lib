@@ -13,7 +13,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 const log = debug('@pie-lib:editable-html:plugins:toolbar');
 
-const ToolbarButton = props => {
+export const ToolbarButton = props => {
   const onToggle = () => {
     const c = props.onToggle(props.value.change(), props);
     props.onChange(c);
