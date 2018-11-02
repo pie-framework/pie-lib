@@ -82,13 +82,17 @@ export class ChoiceConfiguration extends React.Component {
     imageSupport: PropTypes.shape({
       add: PropTypes.func.isRequired,
       delete: PropTypes.func.isRequired
-    })
+    }),
+    allowFeedBack: PropTypes.bool,
+    allowDelete: PropTypes.bool
   };
 
   static defaultProps = {
     index: -1,
     noLabels: false,
-    useLetterOrdering: false
+    useLetterOrdering: false,
+    allowFeedBack: true,
+    allowDelete: true
   };
 
   _changeFn = key => update => {
@@ -142,7 +146,9 @@ export class ChoiceConfiguration extends React.Component {
       className,
       noLabels,
       useLetterOrdering,
-      imageSupport
+      imageSupport,
+      allowFeedBack,
+      allowDelete
     } = this.props;
 
     const InputToggle = mode === 'checkbox' ? InputCheckbox : InputRadio;
@@ -175,24 +181,30 @@ export class ChoiceConfiguration extends React.Component {
               onChange={this.onFeedbackValueChange}
             />
           </div>
-          <InputContainer className={classes.feedback} label={!noLabels ? 'Feedback' : ''}>
-            <FeedbackMenu
-              onChange={this.onFeedbackTypeChange}
-              value={data.feedback}
-              classes={{
-                icon: classes.feedbackIcon
-              }}
-            />
-          </InputContainer>
-          <InputContainer className={classes.delete} label={!noLabels ? 'Delete' : ''}>
-            <IconButton
-              aria-label="delete"
-              className={classes.deleteIcon}
-              onClick={onDelete}
-            >
-              <ActionDelete />
-            </IconButton>
-          </InputContainer>
+          {
+            allowFeedBack &&
+            <InputContainer className={classes.feedback} label={!noLabels ? 'Feedback' : ''}>
+              <FeedbackMenu
+                onChange={this.onFeedbackTypeChange}
+                value={data.feedback}
+                classes={{
+                  icon: classes.feedbackIcon
+                }}
+              />
+            </InputContainer>
+          }
+          {
+            allowDelete &&
+            <InputContainer className={classes.delete} label={!noLabels ? 'Delete' : ''}>
+              <IconButton
+                aria-label="delete"
+                className={classes.deleteIcon}
+                onClick={onDelete}
+              >
+                <ActionDelete />
+              </IconButton>
+            </InputContainer>
+          }
         </div>
       </div>
     );
