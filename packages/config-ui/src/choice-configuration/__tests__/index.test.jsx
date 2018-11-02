@@ -26,10 +26,36 @@ const classes = {
 };
 
 describe('index - snapshot', () => {
-  it('renders correctly', () => {
+  it('renders correctly with default props', () => {
     const tree = renderer
       .create(
         <ChoiceConfiguration
+          classes={classes}
+          defaultFeedback={defaultFeedback}
+          data={data}
+        />
+      )
+      .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+  it('renders correctly when feedback is not allowed', () => {
+    const tree = renderer
+      .create(
+        <ChoiceConfiguration
+          allowFeedBack={false}
+          classes={classes}
+          defaultFeedback={defaultFeedback}
+          data={data}
+        />
+      )
+      .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+  it('renders correctly when delete is not allowed', () => {
+    const tree = renderer
+      .create(
+        <ChoiceConfiguration
+          allowDelete={false}
           classes={classes}
           defaultFeedback={defaultFeedback}
           data={data}
