@@ -74,7 +74,10 @@ export const buildPlugins = (activePlugins, opts) => {
   const mathPlugin = MathPlugin(opts.math);
 
   return compact([
-    addIf('table', TablePlugin(opts.table, imagePlugin, mathPlugin)),
+    addIf('table', TablePlugin(opts.table, compact([
+      imagePlugin,
+      mathPlugin
+    ]))),
     addIf(
       'bold',
       MarkHotkey({ key: 'b', type: 'bold', icon: <Bold />, tag: 'strong' })
