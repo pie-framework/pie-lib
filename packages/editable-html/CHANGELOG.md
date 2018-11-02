@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="6.8.0"></a>
+# [6.8.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.7.6...@pie-lib/editable-html@6.8.0) (2018-11-02)
+
+
+### Features
+
+* **image-support-tables:** added image support to the table plugin ([88196d2](https://github.com/pie-framework/pie-lib/commit/88196d2))
+* **math-support-tables:** added math support to the table plugin ([0010443](https://github.com/pie-framework/pie-lib/commit/0010443))
+* **plugins-support-for-tables:** made the requested changes and fixed the tests ([132e35c](https://github.com/pie-framework/pie-lib/commit/132e35c))
+
+
+
+
+
 <a name="6.7.6"></a>
 ## [6.7.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.7.5...@pie-lib/editable-html@6.7.6) (2018-10-30)
 
