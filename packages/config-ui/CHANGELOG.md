@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="7.7.0"></a>
+# [7.7.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@7.6.22...@pie-lib/config-ui@7.7.0) (2018-11-02)
+
+
+### Features
+
+* **choice-config-customization:** added 2 new tests for rendering the snapshot ([ef61be9](https://github.com/pie-framework/pie-lib/commit/ef61be9))
+* **choice-config-customization:** added possibility to disable the deletion of one item and also adding a feedback ([278293c](https://github.com/pie-framework/pie-lib/commit/278293c))
+
+
+
+
+
 <a name="7.6.22"></a>
 ## [7.6.22](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@7.6.21...@pie-lib/config-ui@7.6.22) (2018-10-30)
 
