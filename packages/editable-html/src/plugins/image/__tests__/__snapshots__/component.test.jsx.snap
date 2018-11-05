@@ -1,32 +1,40 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly 1`] = `
-<div
-  className=""
-  onFocus={undefined}
->
+Array [
+  <span>
+     
+  </span>,
   <div
-    className="MuiLinearProgress-root-1 MuiLinearProgress-colorPrimary-2"
-    mode="determinate"
-    role="progressbar"
+    className=""
+    onFocus={undefined}
   >
     <div
-      className="MuiLinearProgress-bar-9 MuiLinearProgress-barColorPrimary-10 MuiLinearProgress-bar1Indeterminate-12"
-      style={Object {}}
-    />
-    <div
-      className="MuiLinearProgress-bar-9 MuiLinearProgress-barColorPrimary-10 MuiLinearProgress-bar2Indeterminate-15"
-      style={Object {}}
-    />
-  </div>
-  <img
-    src={undefined}
-    style={
-      Object {
-        "height": "50px",
-        "width": "50px",
+      className="MuiLinearProgress-root-1 MuiLinearProgress-colorPrimary-2"
+      mode="determinate"
+      role="progressbar"
+    >
+      <div
+        className="MuiLinearProgress-bar-9 MuiLinearProgress-barColorPrimary-10 MuiLinearProgress-bar1Indeterminate-12"
+        style={Object {}}
+      />
+      <div
+        className="MuiLinearProgress-bar-9 MuiLinearProgress-barColorPrimary-10 MuiLinearProgress-bar2Indeterminate-15"
+        style={Object {}}
+      />
+    </div>
+    <img
+      src={undefined}
+      style={
+        Object {
+          "height": "50px",
+          "width": "50px",
+        }
       }
-    }
-  />
-</div>
+    />
+  </div>,
+  <span>
+     
+  </span>,
+]
 `;
