@@ -7,10 +7,14 @@ import { withStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 import areValuesEqual from '../../../packages/math-evaluator/src/index';
-// import mathExpressions from 'math-expressions';
-// import escapeLatex from 'escape-latex';
-// import sanitizeLatex from 'sanitize-latex';
+import mathExpressions from 'math-expressions';
+import escapeLatex from 'escape-latex';
+import sanitizeLatex from 'sanitize-latex';
 import katex from 'katex';
+import debug from 'debug';
+import jsesc from 'jsesc';
+
+const log = debug('demo:math-evaluator');
 
 require('katex/dist/katex.css');
 
@@ -73,6 +77,90 @@ const MarkupPreview = withStyles(() => ({
   }
 }))(RawMarkupPreview);
 
+const EscapeInput = props => (
+  <div>
+    Input:
+    <br />
+    <textarea
+      style={{ width: '100%' }}
+      type="text"
+      value={props.value}
+      onChange={props.onChange}
+    />
+  </div>
+);
+
+const escape = s => jsesc(s);
+
+const expr = s => {
+  try {
+    return mathExpressions.fromLatex(s).toString();
+  } catch (e) {
+    log('math expression error: ', e.message);
+    return '';
+  }
+};
+
+const EscapePreview = props => (
+  <div>
+    <div>
+      raw: <pre>{props.value}</pre>
+    </div>
+    <div>
+      escaped: <pre>{escape(props.value)}</pre>
+    </div>
+    <div>
+      expr: <pre>{expr(props.value)}</pre>
+    </div>
+  </div>
+);
+
+class EscapeDemo extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      one: '1^{12^{2^{2^3}}}+3_4 + \\frac{1}{2}+4',
+      two: '1^{12^{2^{2^3}}}+3_4 + \\frac{1}{2}+4',
+      equal: true
+    };
+  }
+
+  onChange = id => e => {
+    const other = id === 'one' ? 'two' : 'one';
+    let equal = false;
+    try {
+      const escapeA = escape(e.target.value);
+      const escapeB = escape(this.state[other]);
+      log('a: ', escapeA, 'b: ', escapeB);
+      equal = areValuesEqual(expr(e.target.value), expr(this.state[other]));
+    } catch (e) {
+      log('error: ', e.message);
+    }
+
+    this.setState({
+      [id]: e.target.value,
+      equal
+    });
+  };
+
+  render() {
+    return (
+      <div>
+        <h4>Escape demo..</h4>
+        <EscapeInput value={this.state.one} onChange={this.onChange('one')} />
+        <EscapePreview value={this.state.one} />
+        <br />
+        <br />
+        <EscapeInput value={this.state.two} onChange={this.onChange('two')} />
+        <EscapePreview value={this.state.two} />
+        <h1 style={{ color: this.state.equal ? 'green' : 'red' }}>
+          {this.state.equal ? 'EQUAL' : 'NOT EQUAL'}
+        </h1>
+      </div>
+    );
+  }
+}
+
 class Demo extends React.Component {
   constructor(props) {
     super(props);
@@ -99,7 +187,9 @@ class Demo extends React.Component {
   }
 
   isResponseCorrect = (exprOne, exprTwo) => {
-    this.setState({ equal: areValuesEqual(exprOne, exprTwo, { inverse: this.state.inverse }) });
+    this.setState({
+      equal: areValuesEqual(exprOne, exprTwo, { inverse: this.state.inverse })
+    });
   };
 
   render() {
@@ -120,8 +210,12 @@ class Demo extends React.Component {
         <div>
           <p>This is a math expression equality evaluator tool</p>
         </div>
+
+        <EscapeDemo />
         <div>
-          <p>This is a checkbox to toggle inverse values for evaluation results</p>
+          <p>
+            This is a checkbox to toggle inverse values for evaluation results
+          </p>
           <label>
             {' '}
             Inverse
@@ -148,9 +242,17 @@ class Demo extends React.Component {
           />
           <br />
           <br />
-          <Button onClick={() => this.isResponseCorrect(this.state.exprOne, this.state.exprTwo)}>Evaluate</Button>
+          <Button
+            onClick={() =>
+              this.isResponseCorrect(this.state.exprOne, this.state.exprTwo)
+            }
+          >
+            Evaluate
+          </Button>
         </div>
-        <Typography>Values are: <b>{equal ? ' EQUAL ' : ' NOT EQUAL '}</b></Typography>
+        <Typography>
+          Values are: <b>{equal ? ' EQUAL ' : ' NOT EQUAL '}</b>
+        </Typography>
         <div>
           <EditableHtml
             markup={markupOne}
