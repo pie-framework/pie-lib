@@ -41,7 +41,7 @@ const renderOpts = {
 const inputOptions = [
   {
     label: 'An image in a P tag',
-    html: `<div><p>hi <img src="${puppySrc}" style="width: 200px"/> bar</p></div>`
+    html: `<div><p><img src="${puppySrc}" style="width:170px;height:151px"/> bar</p><p><img src="${puppySrc}" style="width:170px;height:151px"/> bar</p></div>`
   },
   {
     label: 'Latex \\(..\\)',

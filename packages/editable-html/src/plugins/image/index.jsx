@@ -104,6 +104,35 @@ export default function ImagePlugin(opts) {
         );
         return <ImageComponent {...all} />;
       }
+    },
+    normalizeNode: (node) => {
+      const textNodeMap = {};
+      const updateNodesArray = [];
+      let index = 0;
+
+      if (node.object !== 'document') return;
+
+      node.findDescendant(d => {
+        if (d.object === 'text') {
+          textNodeMap[index] = d;
+        }
+
+        if (d.type === 'image') {
+          if (index > 0 && textNodeMap[index - 1] && textNodeMap[index - 1].text === '') {
+            updateNodesArray.push(textNodeMap[index - 1]);
+          }
+        }
+
+        index++;
+      });
+
+      if (!updateNodesArray.length) return;
+
+      return change => {
+        change.withoutNormalization(() => {
+          updateNodesArray.forEach((n) => change.insertTextByKey(n.key, 0, ' '));
+        });
+      };
     }
   };
 }

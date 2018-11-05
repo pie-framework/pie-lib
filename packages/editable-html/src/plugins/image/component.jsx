@@ -104,16 +104,22 @@ export class Component extends React.Component {
       loaded && classes.hideProgress
     );
 
-    return (
-      <div onFocus={onFocus} className={className}>
+    return [
+      <span key={'sp1'}>
+        &nbsp;
+      </span>,
+      <div key={'comp'} onFocus={onFocus} className={className}>
         <LinearProgress
           mode="determinate"
           value={percent > 0 ? percent : 0}
           className={progressClasses}
         />
-        <img src={src} {...attributes} ref={r => (this.img = r)} style={size} />
-      </div>
-    );
+        <img src={src} {...attributes} ref={r => (this.img = r)} style={size}/>
+      </div>,
+      <span key={'sp2'}>
+        &nbsp;
+      </span>
+    ];
   }
 }
 
