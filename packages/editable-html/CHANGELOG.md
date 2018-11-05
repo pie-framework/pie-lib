@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="6.9.0"></a>
+# [6.9.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.8.0...@pie-lib/editable-html@6.9.0) (2018-11-05)
+
+
+### Bug Fixes
+
+* **focus-before-image:** added a withoutNormalization to fix the issue of adding multiple spaces ([21c8b13](https://github.com/pie-framework/pie-lib/commit/21c8b13))
+* **focus-before-image:** added spaces before and after an image and made sure that when they are clicked the editor focuses where it should be ([f562dcf](https://github.com/pie-framework/pie-lib/commit/f562dcf))
+* **focus-before-image:** optimized the normalize function ([8172de2](https://github.com/pie-framework/pie-lib/commit/8172de2))
+* **focus-before-image:** used the normalizeNode hook to make the changes ([c0eacc3](https://github.com/pie-framework/pie-lib/commit/c0eacc3))
+
+
+### Features
+
+* **editable-html:** added a test for the normalizeNode function ([4e81020](https://github.com/pie-framework/pie-lib/commit/4e81020))
+
+
+
+
+
 <a name="6.8.0"></a>
 # [6.8.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.7.6...@pie-lib/editable-html@6.8.0) (2018-11-02)
 
