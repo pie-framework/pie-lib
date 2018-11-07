@@ -16,6 +16,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "jsesc": "^2.5.1",
+    "math-expressions": "^2.0.0-alpha1",
     "mathjs": "^5.2.1"
   },
   "devDependencies": {

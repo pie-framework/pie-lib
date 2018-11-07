@@ -8,8 +8,6 @@ import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 import areValuesEqual from '../../../packages/math-evaluator/src/index';
 import mathExpressions from 'math-expressions';
-import escapeLatex from 'escape-latex';
-import sanitizeLatex from 'sanitize-latex';
 import katex from 'katex';
 import debug from 'debug';
 import jsesc from 'jsesc';
@@ -33,7 +31,7 @@ const renderOpts = {
   ]
 };
 
-const html = '<div><span data-latex="">\\(\\frac{1}{2}\\)</span></div>';
+const html = '<div><span data-latex=""></span></div>';
 
 class RawMarkupPreview extends React.Component {
   static propTypes = {
@@ -169,8 +167,8 @@ class Demo extends React.Component {
       exprOne: '',
       exprTwo: '',
       inverse: false,
-      markupOne: html,
-      markupTwo: html,
+      isLatex: true,
+      exampleMarkup: html,
       showHighlight: false,
       disabled: false,
       width: '',
@@ -188,21 +186,24 @@ class Demo extends React.Component {
 
   isResponseCorrect = (exprOne, exprTwo) => {
     this.setState({
-      equal: areValuesEqual(exprOne, exprTwo, { inverse: this.state.inverse })
+      equal: areValuesEqual(exprOne, exprTwo, {
+        inverse: this.state.inverse,
+        isLatex: this.state.isLatex
+      })
     });
   };
 
   render() {
     const {
-      markupOne,
-      markupTwo,
+      exampleMarkup,
       showHighlight,
       disabled,
       width,
       height,
       mounted,
       equal,
-      inverse
+      inverse,
+      isLatex
     } = this.state;
 
     return mounted ? (
@@ -210,8 +211,6 @@ class Demo extends React.Component {
         <div>
           <p>This is a math expression equality evaluator tool</p>
         </div>
-
-        <EscapeDemo />
         <div>
           <p>
             This is a checkbox to toggle inverse values for evaluation results
@@ -223,6 +222,18 @@ class Demo extends React.Component {
               type="checkbox"
               checked={inverse}
               onChange={() => this.setState({ inverse: !this.state.inverse })}
+            />
+          </label>
+          <p>
+            This is a checkbox to indicate wheter the compared values will be latex format or not
+          </p>
+          <label>
+            {' '}
+            Latex Values
+            <input
+              type="checkbox"
+              checked={isLatex}
+              onChange={() => this.setState({ isLatex: !this.state.isLatex })}
             />
           </label>
         </div>
@@ -255,30 +266,17 @@ class Demo extends React.Component {
         </Typography>
         <div>
           <EditableHtml
-            markup={markupOne}
-            onChange={this.onChange('markupOne')}
+            markup={exampleMarkup}
+            onChange={this.onChange('exampleMarkup')}
             disabled={disabled}
             highlightShape={showHighlight}
             width={width}
             height={height}
           />
           <br />
-          <MarkupPreview markup={markupOne} />
-          <br />
-          <br />
-          <br />
-          <EditableHtml
-            markup={markupTwo}
-            onChange={this.onChange('markupTwo')}
-            disabled={disabled}
-            highlightShape={showHighlight}
-            width={width}
-            height={height}
-          />
-          <br />
-          <MarkupPreview markup={markupTwo} />
-          {markupTwo.toString()}
+          <MarkupPreview markup={exampleMarkup} />
         </div>
+        <EscapeDemo />
       </div>
     ) : (
       <div>loading...</div>
