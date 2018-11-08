@@ -1,12 +1,8 @@
 import mathjs from 'mathjs';
-// import jsesc from 'jsesc';
 import mathExpressions from 'math-expressions';
-
-// const escape = s => jsesc(s);
 
 function prepareExpression(string, isLatex) {
   let returnValue = string ? string.trim() : '';
-  // returnValue = isLatex ? escape(returnValue) : returnValue;
 
   return isLatex ? mathExpressions.fromLatex(`${returnValue}`).toString() : mathExpressions.fromText(`${returnValue}`).toString();
 }
