@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="6.10.0"></a>
+# [6.10.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.9.0...@pie-lib/editable-html@6.10.0) (2018-11-09)
+
+
+### Features
+
+* **editable-html:** add raw latex to math plugin created span ([afe2981](https://github.com/pie-framework/pie-lib/commit/afe2981))
+
+
+
+
+
 <a name="6.9.0"></a>
 # [6.9.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.8.0...@pie-lib/editable-html@6.9.0) (2018-11-05)
 
