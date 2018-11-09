@@ -225,7 +225,7 @@ class Demo extends React.Component {
             />
           </label>
           <p>
-            This is a checkbox to indicate wheter the compared values will be latex format or not
+            This is a checkbox to indicate whether the compared values will be latex format or not
           </p>
           <label>
             {' '}

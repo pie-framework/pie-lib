@@ -8,7 +8,7 @@ function prepareExpression(string, isLatex) {
 }
 
 function canExpressionBeRationalized(expression) {
-  return !['sin', 'cos', 'tan', 'ctg'].some(trigFunc => expression.includes(trigFunc));
+  return !['sin', 'cos', 'tan', 'ctg'].some(trigFunc => `${expression}`.includes(trigFunc));
 }
 
 export default function areValuesEqual(valueOne, valueTwo, options = {}) {
