@@ -179,7 +179,7 @@ export const serialization = {
       const wrapper = object.data.get('wrapper');
       log('[serialize] latex: ', l);
       const decoded = htmlDecode(l);
-      return <span data-latex="">{wrap(decoded, wrapper)}</span>;
+      return <span data-latex="" data-raw={decoded}>{wrap(decoded, wrapper)}</span>;
     }
   }
 };

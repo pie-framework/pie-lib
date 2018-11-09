@@ -99,7 +99,7 @@ describe('MathPlugin', () => {
 
           const out = serialization.serialize(object, children);
           log('out: ', out);
-          expect(out).toEqual(<span data-latex="">{expectedHtml}</span>);
+          expect(out).toEqual(<span data-latex="" data-raw={latex}>{expectedHtml}</span>);
         });
       };
 
