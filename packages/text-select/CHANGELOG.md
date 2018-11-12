@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.2.3"></a>
+## [1.2.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.2.2...@pie-lib/text-select@1.2.3) (2018-11-12)
+
+
+### Bug Fixes
+
+* **added-dependencies-where-needed:** fixed missing dependencies ([7c28bd3](https://github.com/pie-framework/pie-lib/commit/7c28bd3))
+
+
+
+
+
 <a name="1.2.2"></a>
 ## [1.2.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.2.1...@pie-lib/text-select@1.2.2) (2018-10-16)
 

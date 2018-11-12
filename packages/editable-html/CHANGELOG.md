@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="6.10.1"></a>
+## [6.10.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.10.0...@pie-lib/editable-html@6.10.1) (2018-11-12)
+
+
+### Bug Fixes
+
+* **added-dependencies-where-needed:** fixed missing dependencies ([7c28bd3](https://github.com/pie-framework/pie-lib/commit/7c28bd3))
+
+
+
+
+
 <a name="6.10.0"></a>
 # [6.10.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.9.0...@pie-lib/editable-html@6.10.0) (2018-11-09)
 
