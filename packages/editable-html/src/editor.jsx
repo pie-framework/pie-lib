@@ -303,7 +303,6 @@ const styles = {
     backgroundColor: 'rgba(0,0,0,0.06)'
   },
   slateEditor: {
-    height: '100%',
     fontFamily: 'Roboto, sans-serif'
   }
 };
