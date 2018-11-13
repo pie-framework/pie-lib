@@ -33,6 +33,10 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
+      - run:
+          name: Compiling the packages
+          command: yarn build:light
+
       # run tests!
       - run:
           name: Running Tests
