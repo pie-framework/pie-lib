@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="6.10.2"></a>
+## [6.10.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.10.1...@pie-lib/editable-html@6.10.2) (2018-11-13)
+
+
+### Bug Fixes
+
+* **editable-html:** fixed the issue of expanding inputs ([ad972d3](https://github.com/pie-framework/pie-lib/commit/ad972d3))
+
+
+
+
+
 <a name="6.10.1"></a>
 ## [6.10.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.10.0...@pie-lib/editable-html@6.10.1) (2018-11-12)
 
