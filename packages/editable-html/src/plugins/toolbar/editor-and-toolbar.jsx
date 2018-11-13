@@ -97,7 +97,6 @@ export class EditorAndToolbar extends React.Component {
 
 const style = {
   root: {
-    height: '100%',
     position: 'relative',
     padding: '0px',
     border: 'none',
@@ -114,7 +113,6 @@ const style = {
   },
   editorHolder: {
     position: 'relative',
-    height: '100%',
     padding: '0px',
     '&::before': {
       left: '0',
