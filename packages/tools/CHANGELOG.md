@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.7.4"></a>
+## [0.7.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.7.3...@pie-lib/tools@0.7.4) (2018-11-16)
+
+
+### Bug Fixes
+
+* add assert package ([02f13bd](https://github.com/pie-framework/pie-lib/commit/02f13bd))
+
+
+
+
+
 <a name="0.7.3"></a>
 ## [0.7.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.7.2...@pie-lib/tools@0.7.3) (2018-09-12)
 
