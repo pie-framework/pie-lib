@@ -1,9 +1,8 @@
 import Functions from '@material-ui/icons/Functions';
 import { Inline } from 'slate';
-import MathPreview from './math-preview';
+import { MathPreview, MathToolbar } from '@pie-lib/math-toolbar';
 import React from 'react';
 import debug from 'debug';
-import { MathToolbar } from './math-toolbar';
 
 const log = debug('@pie-lib:editable-html:plugins:math');
 

@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import EditorAndPad from './editor-and-pad';
-import { DoneButton } from '../toolbar/done-button';
+import { DoneButton } from './done-button';
 import { withStyles } from '@material-ui/core/styles';
+import MathPreview from './math-preview';
+
+export { MathPreview };
 
 export class MathToolbar extends React.Component {
   static propTypes = {
