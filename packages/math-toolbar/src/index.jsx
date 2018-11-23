@@ -24,7 +24,7 @@ export class MathToolbar extends React.Component {
     this.props.onDone(this.state.latex);
   };
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     this.setState({ latex: nextProps.latex });
   }
 
