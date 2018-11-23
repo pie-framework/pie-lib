@@ -2,11 +2,10 @@ import React from 'react';
 import classNames from 'classnames';
 import debug from 'debug';
 import { withStyles } from '@material-ui/core/styles';
-import { primary } from '../../theme';
 import PropTypes from 'prop-types';
 import Static from './mathquill/static';
 
-const log = debug('@pie-lib:editable-html:plugins:math:component');
+const log = debug('@pie-lib:math-toolbar:math-preview');
 
 export class RawMathPreview extends React.Component {
   static propTypes = {
@@ -41,7 +40,7 @@ const mp = theme => ({
     '& > .mq-focused': {
       outline: 'none',
       boxShadow: 'none',
-      border: `solid 1px ${primary}`,
+      border: `solid 1px black`,
       borderRadius: '0px'
     }
   },

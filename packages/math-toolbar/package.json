@@ -1,0 +1,35 @@
+{
+  "name": "@pie-lib/math-toolbar",
+  "publishConfig": {
+    "access": "public"
+  },
+  "version": "0.0.1",
+  "description": "Math toolbar for editing math equations",
+  "keywords": [
+    "math",
+    "toolbar",
+    "equations",
+    "expressions"
+  ],
+  "repository": "pie-framework/pie-lib",
+  "main": "lib/index.js",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@material-ui/core": "^1.4.1",
+    "@material-ui/icons": "^2.0.0",
+    "@pie-lib/math-input": "^4.2.3",
+    "classnames": "^2.2.6",
+    "debug": "^3.1.0",
+    "keycode": "^2.2.0",
+    "mathquill": "git+https://github.com/luxp/mathquill-webpack.git",
+    "prop-types": "^15.6.1"
+  },
+  "peerDependencies": {
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1"
+  },
+  "devDependencies": {
+    "@pie-lib/test-utils": "^0.0.3"
+  }
+}

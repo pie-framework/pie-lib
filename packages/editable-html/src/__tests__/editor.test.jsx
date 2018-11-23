@@ -14,9 +14,6 @@ jest.mock('@pie-lib/math-input', () => {
   HorizontalKeypad: () => <div>HorizontalKeypad</div>;
 });
 
-jest.mock('../plugins/math/mathquill/editor', () => () => <div>editor</div>);
-jest.mock('../plugins/math/mathquill/static', () => () => <div>static</div>);
-
 expect.extend({
   toEqualHtml(value, html) {
     const v = valueToHtml(value);
