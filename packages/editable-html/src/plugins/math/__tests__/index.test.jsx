@@ -11,11 +11,6 @@ jest.mock('mathquill', () => ({
 
 const log = debug('@pie-lib:editable-html:test:math');
 
-jest.mock('../math-preview', () => () => <div> math preview</div>);
-jest.mock('../math-toolbar', () => () => ({
-  MathToolbar: () => <div>MathToolbar</div>
-}));
-
 describe('MathPlugin', () => {
   describe('toolbar', () => {
     describe('onClick', () => {
@@ -99,7 +94,11 @@ describe('MathPlugin', () => {
 
           const out = serialization.serialize(object, children);
           log('out: ', out);
-          expect(out).toEqual(<span data-latex="" data-raw={latex}>{expectedHtml}</span>);
+          expect(out).toEqual(
+            <span data-latex="" data-raw={latex}>
+              {expectedHtml}
+            </span>
+          );
         });
       };
 
