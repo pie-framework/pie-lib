@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="6.11.0"></a>
+# [6.11.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.10.2...@pie-lib/editable-html@6.11.0) (2018-11-23)
+
+
+### Bug Fixes
+
+* sort tests ([f6d78e3](https://github.com/pie-framework/pie-lib/commit/f6d78e3))
+
+
+### Features
+
+* **math-toolbar:** broke apart editable-html math toolbar into a separate package ([72c5a79](https://github.com/pie-framework/pie-lib/commit/72c5a79))
+* **math-toolbar:** fix editable-html broken test ([da6022a](https://github.com/pie-framework/pie-lib/commit/da6022a))
+
+
+
+
+
 <a name="6.10.2"></a>
 ## [6.10.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.10.1...@pie-lib/editable-html@6.10.2) (2018-11-13)
 
