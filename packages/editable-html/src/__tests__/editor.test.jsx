@@ -10,6 +10,7 @@ const log = debug('@pie-lib:editable-html:test');
 
 const value = htmlToValue('hi');
 
+jest.mock('@pie-lib/math-toolbar', () => ({}));
 jest.mock('@pie-lib/math-input', () => {
   HorizontalKeypad: () => <div>HorizontalKeypad</div>;
 });
