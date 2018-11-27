@@ -10,7 +10,7 @@
     "@material-ui/icons": "^1.0.0-rc.0",
     "debug": "^3.1.0",
     "lodash": "^4.17.5",
-    "mathquill": "git+ssh://git@github.com:pie-framework/mathquill-webpack.git",
+    "mathquill": "git+https://github.com/pie-framework/mathquill-webpack.git",
     "react-portal": "^4.1.5"
   },
   "peerDependencies": {
