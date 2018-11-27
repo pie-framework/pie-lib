@@ -18,7 +18,7 @@
     "immutable": "^3.8.2",
     "keycode": "^2.2.0",
     "lodash": "^4.17.10",
-    "mathquill": "git+https://github.com/luxp/mathquill-webpack.git",
+    "mathquill": "git+ssh://git@github.com:pie-framework/mathquill-webpack.git",
     "prop-types": "^15.6.1",
     "react-attr-converter": "^0.3.1",
     "react-jss": "^8.6.1",
