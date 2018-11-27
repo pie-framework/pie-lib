@@ -34,5 +34,11 @@ export const styles = {
   fillOnly: {
     fill: defaultColor,
     stroke: 'none'
+  },
+  textIcon: {
+    color: defaultColor,
+    fontSize: '35px',
+    fontWeight: '300',
+    lineHeight: '48px'
   }
 };

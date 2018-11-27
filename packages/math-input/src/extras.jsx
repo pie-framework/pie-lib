@@ -7,6 +7,12 @@ import {
   GreaterThanEqual,
   LessThan,
   LessThanEqual,
+  NotEqual,
+  SameOrder,
+  NotSameOrder,
+  NotApprox,
+  Cong,
+  NotCong,
   NthRoot,
   Parenthesis,
   Percent,
@@ -14,7 +20,18 @@ import {
   Subscript,
   Superscript,
   X,
-  Y
+  Y,
+  // Geometry
+  RightArrow,
+  LeftRightArrow,
+  Segment,
+  Parallel,
+  Perpendicular,
+  Angle,
+  MeasuredAngle,
+  Triangle,
+  Parallelogram,
+  CircledDot
 } from './icons';
 import { OverrideIconButton, buttonStyle } from './styles';
 import PropTypes from 'prop-types';
@@ -132,6 +149,60 @@ const approx = {
   shortcut: '',
   category: 'number'
 };
+const notApprox = {
+  name: 'Not Approx',
+  icon: NotApprox,
+  symbol: '&nap;',
+  logic: 'write',
+  command: '\\napprox',
+  shortcut: '',
+  category: 'number'
+};
+const notEqual = {
+  name: 'Not Equal',
+  icon: NotEqual,
+  symbol: '&ne;',
+  logic: 'write',
+  command: '\\ne',
+  shortcut: '',
+  category: 'number'
+};
+const sameOrder = {
+  name: 'Same Order',
+  icon: SameOrder,
+  symbol: '&tilde;',
+  logic: 'write',
+  command: '\\sim',
+  shortcut: '',
+  category: 'number'
+};
+const notSameOrder = {
+  name: 'Not Same Order',
+  icon: NotSameOrder,
+  symbol: '&#8769;',
+  logic: 'write',
+  command: '\\nsim',
+  shortcut: '',
+  category: 'number'
+};
+const cong = {
+  name: 'Cong',
+  icon: Cong,
+  symbol: '&cong;',
+  logic: 'write',
+  command: '\\cong',
+  shortcut: '',
+  category: 'number'
+};
+const notCong = {
+  name: 'Not Cong',
+  icon: NotCong,
+  symbol: '&ncong;',
+  logic: 'write',
+  command: '\\ncong',
+  shortcut: '',
+  category: 'number'
+};
 const le = {
   name: 'Less than or equal',
   icon: LessThanEqual,
@@ -168,6 +239,97 @@ const y = {
   shortcut: '',
   category: 'vars'
 }; //<sup>n</sup>
+// Geometry
+const rightArrow = {
+  name: 'Right Arrow',
+  icon: RightArrow,
+  symbol: '&xrarr;',
+  logic: 'write',
+  command: '\\rightarrow',
+  shortcut: '',
+  category: 'geometry'
+};
+const leftRightArrow = {
+  name: 'Left Right Arrow',
+  icon: LeftRightArrow,
+  symbol: '&xharr;',
+  logic: 'write',
+  command: '\\leftrightarrow',
+  shortcut: '',
+  category: 'geometry'
+};
+const segment = {
+  name: 'Segment',
+  icon: Segment,
+  symbol: 'AB',
+  logic: 'write',
+  command: '\\overline{AB}',
+  shortcut: '',
+  category: 'geometry'
+};
+const parallel = {
+  name: 'Parallel',
+  icon: Parallel,
+  symbol: '&par;',
+  logic: 'write',
+  command: '\\parallel',
+  shortcut: '',
+  category: 'geometry'
+};
+const perpendicular = {
+  name: 'Perpendicular',
+  icon: Perpendicular,
+  symbol: '&perp;',
+  logic: 'write',
+  command: '\\perpendicular',
+  shortcut: '',
+  category: 'geometry'
+};
+const angle = {
+  name: 'Angle',
+  icon: Angle,
+  symbol: '&angle;',
+  logic: 'write',
+  command: '\\angle',
+  shortcut: '',
+  category: 'geometry'
+};
+const measuredAngle = {
+  name: 'Measure Of Angle',
+  icon: MeasuredAngle,
+  symbol: '&angmsd; ',
+  logic: 'write',
+  command: '\\measuredangle',
+  shortcut: '',
+  category: 'geometry'
+};
+const triangle = {
+  name: 'Triangle',
+  icon: Triangle,
+  symbol: '&triangle;',
+  logic: 'write',
+  command: '\\triangle',
+  shortcut: '',
+  category: 'geometry'
+};
+const parallelogram = {
+  name: 'Parallelogram',
+  icon: Parallelogram,
+  symbol: '&fltns;',
+  logic: 'write',
+  command: '\\parallelogram',
+  shortcut: '',
+  category: 'geometry'
+};
+const circledDot = {
+  name: 'Circled Dot',
+  icon: CircledDot,
+  symbol: '&odot;',
+  logic: 'write',
+  command: '\\odot',
+  shortcut: '',
+  category: 'geometry'
+};
 
 const buttons = [
   superscript,
@@ -182,10 +344,27 @@ const buttons = [
   gt,
   degree,
   approx,
+  notApprox,
+  notEqual,
+  cong,
+  notCong,
+  sameOrder,
+  notSameOrder,
   le,
   ge,
   x,
-  y
+  y,
+  // Geometry
+  rightArrow,
+  leftRightArrow,
+  segment,
+  parallel,
+  perpendicular,
+  angle,
+  measuredAngle,
+  triangle,
+  parallelogram,
+  circledDot
 ];
 
 const specialStyle = merge({}, buttonStyle(), {

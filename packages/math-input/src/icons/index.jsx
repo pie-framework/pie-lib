@@ -3,7 +3,8 @@ import Base, { styles } from './base';
 import React from 'react';
 import injectSheet from 'react-jss';
 
-const mkIcon = (N) => injectSheet(styles)(props => <Base><N {...props} /></Base>);
+const mkIcon = (N, noBase) => injectSheet(styles)(props => noBase ? <N {...props} /> : <Base><N {...props} /></Base>);
+const mkTextIcon = (N) => mkIcon(N, true);
 
 export const AbsoluteValue = mkIcon(props => (
   <g>
@@ -21,7 +22,7 @@ export const Fraction = mkIcon(props => (<g>
 
 export const GreaterThan = mkIcon(props => (
   <path className={props.classes.fillOnly} d="M37.9,28.3l-19.9,8.1v-2.3l16.8-6.7l-16.8-6.7v-2.3l19.9,8.1V28.3z" />
-))
+));
 
 export const LessThan = mkIcon(props => <path className={`${props.classes.fillOnly} ${props.className}`} d="M22.1,27.4l16.8,6.7v2.3l-19.9-8.1v-1.9l19.9-8.1v2.3L22.1,27.4z" />);
 
@@ -93,7 +94,41 @@ export const GreaterThanEqual = mkIcon(props => <g>
   <path className={props.classes.fillOnly} d="M38.9,28.3l-19.9,8.1v-2.3l16.8-6.7l-16.8-6.7v-2.3l19.9,8.1V28.3z" />
   <line className={props.classes.root} x1="18.8" y1="41.4" x2="39.5" y2="41.4" />
 </g>
-)
+);
+
+export const NotEqual = mkTextIcon((props) => <span className={props.classes.textIcon}>≠</span>);
+
+export const SameOrder = mkTextIcon((props) => <span className={props.classes.textIcon}>~</span>);
+
+export const NotSameOrder = mkTextIcon((props) => <span className={props.classes.textIcon}>≁</span>);
+
+export const NotApprox = mkTextIcon((props) => <span className={props.classes.textIcon}>≉</span>);
+
+export const Cong = mkTextIcon((props) => <span className={props.classes.textIcon}>≅</span>);
+
+export const NotCong = mkTextIcon((props) => <span className={props.classes.textIcon}>≇</span>);
+
+// Geometry
+
+export const RightArrow = mkTextIcon((props) => <span className={props.classes.textIcon} style={{ fontSize: '25px' }}>⟶</span>);
+
+export const LeftRightArrow = mkTextIcon((props) => <span className={props.classes.textIcon} style={{ fontSize: '25px' }}>⟷</span>);
+
+export const Segment = mkTextIcon((props) => <span className={props.classes.textIcon} style={{ fontSize: '25px' }}>AB</span>);
+
+export const Parallel = mkTextIcon((props) => <span className={props.classes.textIcon}>∥</span>);
+
+export const Perpendicular = mkTextIcon((props) => <span className={props.classes.textIcon}>⊥</span>);
+
+export const Angle = mkTextIcon((props) => <span className={props.classes.textIcon}>∠</span>);
+
+export const MeasuredAngle = mkTextIcon((props) => <span className={props.classes.textIcon}>∡</span>);
+
+export const Triangle = mkTextIcon((props) => <span className={props.classes.textIcon}>▵</span>);
+
+export const Parallelogram = mkTextIcon((props) => <span className={props.classes.textIcon}>▱</span>);
+
+export const CircledDot = mkTextIcon((props) => <span className={props.classes.textIcon}>⊙</span>);
 
 export const X = mkIcon(props =>
   <path className={props.classes.fillOnly} d="M23.1, 30.3c0.9-2.2, 2.5-5.5, 5.3-5.5c2.4,0, 2.9, 2.4,3.4,4.3c0.9-1.4, 2.5-4.3,4.4-4.3c1.2,0,2.1,0.7,2.1,1.9 c0,1.3-0.8,2-2,2c-0.4,0-0.8-0.2-1.2-0.4c-0.4-0.2-0.6-0.4-0.8-0.4c-0.9,0.1-2.3,2.2-2.2,2.8l1.2 5.4c0.2,0.9,0.3,1.7,1,1.7	c0.8,0,2.3-2.8,2.6-3.6l0.8,0.3c-0.9,2.3-2.6,5.3-5.4,5.3c-3,0-3.5-3.1-4-5.4c-1.2,2-2.4,5.4-5.3, 5.4c-1.3, 0-1.9-1.1-1.9-2.3 c0-1,0.9-1.9 1.9-1.9c0.7,0,1.3,0.4, 1.7,0.6c0.3,0.1, 0.6, 0.4,0.7,0.4c0.5,0,2.2-2.1 2.6-3.3l-1.3-5.7c0-0.1-0.2-0.4-0.4-0.4 c-1, 0-2.1,2.7-2.5,3.4L23.1,30.3z" />
