@@ -22,7 +22,7 @@
     "classnames": "^2.2.6",
     "debug": "^3.1.0",
     "keycode": "^2.2.0",
-    "mathquill": "git+ssh://git@github.com:pie-framework/mathquill-webpack.git",
+    "mathquill": "git+https://github.com/pie-framework/mathquill-webpack.git",
     "prop-types": "^15.6.1"
   },
   "peerDependencies": {
