@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="6.13.0"></a>
+# [6.13.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.12.0...@pie-lib/editable-html@6.13.0) (2018-11-27)
+
+
+### Features
+
+* **math-toolbar:** changed from ssh to https for the mathquill forked repo ([7364008](https://github.com/pie-framework/pie-lib/commit/7364008))
+
+
+
+
+
 <a name="6.12.0"></a>
 # [6.12.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.11.0...@pie-lib/editable-html@6.12.0) (2018-11-27)
 

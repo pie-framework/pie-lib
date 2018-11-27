@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="4.4.0"></a>
+# [4.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@4.3.0...@pie-lib/math-input@4.4.0) (2018-11-27)
+
+
+### Features
+
+* **math-toolbar:** changed from ssh to https for the mathquill forked repo ([7364008](https://github.com/pie-framework/pie-lib/commit/7364008))
+
+
+
+
+
 <a name="4.3.0"></a>
 # [4.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@4.2.3...@pie-lib/math-input@4.3.0) (2018-11-27)
 
