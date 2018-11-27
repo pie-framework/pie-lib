@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="6.12.0"></a>
+# [6.12.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.11.0...@pie-lib/editable-html@6.12.0) (2018-11-27)
+
+
+### Features
+
+* **math-input:** added some new symbols to the math-input ([56062aa](https://github.com/pie-framework/pie-lib/commit/56062aa))
+
+
+
+
+
 <a name="6.11.0"></a>
 # [6.11.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.10.2...@pie-lib/editable-html@6.11.0) (2018-11-23)
 
