@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.2.25"></a>
+## [3.2.25](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@3.2.24...@pie-lib/scoring-config@3.2.25) (2018-11-27)
+
+**Note:** Version bump only for package @pie-lib/scoring-config
+
+
+
+
+
 <a name="3.2.24"></a>
 ## [3.2.24](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@3.2.23...@pie-lib/scoring-config@3.2.24) (2018-11-27)
 
