@@ -54,7 +54,9 @@ TableRow.propTypes = {
 };
 
 const TableCell = withStyles(theme => ({
-  td: {}
+  td: {
+    minWidth: '25px'
+  }
 }))(props => {
   const Tag = props.node.data.get('header') ? 'th' : 'td';
 
