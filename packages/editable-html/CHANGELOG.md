@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="6.13.2"></a>
+## [6.13.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.13.1...@pie-lib/editable-html@6.13.2) (2018-12-04)
+
+
+### Bug Fixes
+
+* **editable-html:** increased the initial width of the table cell ([0f4bf9f](https://github.com/pie-framework/pie-lib/commit/0f4bf9f))
+
+
+
+
+
 <a name="6.13.1"></a>
 ## [6.13.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.13.0...@pie-lib/editable-html@6.13.1) (2018-11-27)
 
