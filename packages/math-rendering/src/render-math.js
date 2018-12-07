@@ -7,6 +7,7 @@ import { browserAdaptor as adaptor } from 'mathjax3/mathjax3/adaptors/browserAda
 import { RegisterHTMLHandler } from 'mathjax3/mathjax3/handlers/html';
 RegisterHTMLHandler(adaptor());
 import debug from 'debug';
+import { wrapMath, unWrapMath } from './normalization';
 
 const log = debug('pie-lib:math-rendering');
 
@@ -26,6 +27,14 @@ const defaultOpts = () => {
   } else {
     return {};
   }
+};
+
+const fixMathElements = () => {
+  const mathElements = document.querySelectorAll('[data-latex]');
+
+  mathElements.forEach((item) => {
+    item.innerText = wrapMath(unWrapMath(item.outerText).unwrapped);
+  });
 };
 
 const bootstrap = opts => {
@@ -55,6 +64,8 @@ const bootstrap = opts => {
     },
     {}
   );
+
+  fixMathElements();
 
   const html = MathJax.document(document, {
     InputJax: [new TeX(texConfig), new MathML(mmlConfig)],
