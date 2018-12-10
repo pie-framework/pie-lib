@@ -29,12 +29,20 @@ const defaultOpts = () => {
   }
 };
 
-const fixMathElements = () => {
+export const fixMathElement = (element) => {
+  let property = 'innerText';
+
+  if (element.textContent) {
+    property = 'textContent';
+  }
+
+  element[property] = wrapMath(unWrapMath(element[property]).unwrapped);
+};
+
+export const fixMathElements = () => {
   const mathElements = document.querySelectorAll('[data-latex]');
 
-  mathElements.forEach((item) => {
-    item.innerText = wrapMath(unWrapMath(item.outerText).unwrapped);
-  });
+  mathElements.forEach(item => fixMathElement(item));
 };
 
 const bootstrap = opts => {
