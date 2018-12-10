@@ -19,7 +19,7 @@ export const serialization = {
     }
 
     if (name === 'ul') {
-      return b('ul_list', next, el.childNodes);
+      return b('ul_list', next, Array.from(el.children));
     }
 
     if (name === 'ol') {
