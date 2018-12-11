@@ -1,28 +1,28 @@
-const MathPlugin = {};
+export const BracketTypes = {};
 
-MathPlugin.ROUND_BRACKETS = 'round_brackets';
-MathPlugin.SQUARE_BRACKETS = 'square_brackets';
-MathPlugin.DOLLAR = 'dollar';
-MathPlugin.DOUBLE_DOLLAR = 'double_dollar';
+BracketTypes.ROUND_BRACKETS = 'round_brackets';
+BracketTypes.SQUARE_BRACKETS = 'square_brackets';
+BracketTypes.DOLLAR = 'dollar';
+BracketTypes.DOUBLE_DOLLAR = 'double_dollar';
 
 const PAIRS = {
-  [MathPlugin.ROUND_BRACKETS]: ['\\(', '\\)'],
-  [MathPlugin.SQUARE_BRACKETS]: ['\\[', '\\]'],
-  [MathPlugin.DOLLAR]: ['$', '$'],
-  [MathPlugin.DOUBLE_DOLLAR]: ['$$', '$$']
+  [BracketTypes.ROUND_BRACKETS]: ['\\(', '\\)'],
+  [BracketTypes.SQUARE_BRACKETS]: ['\\[', '\\]'],
+  [BracketTypes.DOLLAR]: ['$', '$'],
+  [BracketTypes.DOUBLE_DOLLAR]: ['$$', '$$']
 };
 
 export const wrapMath = (content, wrapType) => {
-  if (wrapType === MathPlugin.SQUARE_BRACKETS) {
+  if (wrapType === BracketTypes.SQUARE_BRACKETS) {
     console.warn('\\[...\\] is not supported yet'); // eslint-disable-line
-    wrapType = MathPlugin.ROUND_BRACKETS;
+    wrapType = BracketTypes.ROUND_BRACKETS;
   }
-  if (wrapType === MathPlugin.DOUBLE_DOLLAR) {
+  if (wrapType === BracketTypes.DOUBLE_DOLLAR) {
     console.warn('$$...$$ is not supported yet'); // eslint-disable-line
-    wrapType = MathPlugin.DOLLAR;
+    wrapType = BracketTypes.DOLLAR;
   }
 
-  const [start, end] = PAIRS[wrapType] || PAIRS[MathPlugin.ROUND_BRACKETS];
+  const [start, end] = PAIRS[wrapType] || PAIRS[BracketTypes.ROUND_BRACKETS];
   return `${start}${content}${end}`;
 };
 
@@ -37,13 +37,13 @@ export const unWrapMath = content => {
     console.warn('$$ syntax is not yet supported'); // eslint-disable-line
     return {
       unwrapped: content.substring(2, content.length - 2),
-      wrapType: MathPlugin.DOLLAR
+      wrapType: BracketTypes.DOLLAR
     };
   }
   if (content.startsWith('$') && content.endsWith('$')) {
     return {
       unwrapped: content.substring(1, content.length - 1),
-      wrapType: MathPlugin.DOLLAR
+      wrapType: BracketTypes.DOLLAR
     };
   }
 
@@ -51,19 +51,19 @@ export const unWrapMath = content => {
     console.warn('\\[..\\] syntax is not yet supported'); // eslint-disable-line
     return {
       unwrapped: content.substring(2, content.length - 2),
-      wrapType: MathPlugin.ROUND_BRACKETS
+      wrapType: BracketTypes.ROUND_BRACKETS
     };
   }
 
   if (content.startsWith('\\(') && content.endsWith('\\)')) {
     return {
       unwrapped: content.substring(2, content.length - 2),
-      wrapType: MathPlugin.ROUND_BRACKETS
+      wrapType: BracketTypes.ROUND_BRACKETS
     };
   }
 
   return {
     unwrapped: content,
-    wrapType: MathPlugin.ROUND_BRACKETS
+    wrapType: BracketTypes.ROUND_BRACKETS
   };
 };
