@@ -19,11 +19,11 @@ export const serialization = {
     }
 
     if (name === 'ul') {
-      return b('ul_list', next, el.children.length ? Array.from(el.children) : el.childNodes;
+      return b('ul_list', next, el.children.length ? Array.from(el.children) : el.childNodes);
     }
 
     if (name === 'ol') {
-      return b('ol_list', next, el.children.length ? Array.from(el.children) : el.childNodes;
+      return b('ol_list', next, el.children.length ? Array.from(el.children) : el.childNodes);
     }
   },
   serialize(object, children) {
