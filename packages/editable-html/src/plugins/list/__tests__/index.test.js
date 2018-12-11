@@ -13,7 +13,7 @@ describe('ListPlugin', () => {
 
     const assertDeserialize = (tagName, expectedType) => {
       it(`should deserialize ${tagName} to ${expectedType}`, () => {
-        const out = serialization.deserialize({ tagName, children: [] }, next);
+        const out = serialization.deserialize({ tagName, children: [], childNodes: [] }, next);
 
         expect(out).toMatchObject({ object: 'block', type: expectedType });
         expect(next).toHaveBeenCalledWith([]);
