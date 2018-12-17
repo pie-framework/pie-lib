@@ -15,11 +15,13 @@ import TwoChoice, { NChoice } from './two-choice';
 import TagsInput from './tags-input';
 import MuiBox from './mui-box';
 import ChoiceConfiguration from './choice-configuration';
+import Layout from './layout';
 import * as choiceUtils from './choice-utils';
 import withStatefulModel from './with-stateful-model';
 
 export {
   ChoiceConfiguration,
+  Layout,
   choiceUtils,
   Checkbox,
   FeedbackConfig,

@@ -74,7 +74,7 @@ export default class FeedbackMenu extends React.Component {
 
     const t = value && value.type;
     const iconColor =
-      t === 'custom' ? 'secondary' : t === 'default' ? 'primary' : 'disabled';
+      t === 'custom' || t === 'default' ? 'primary' : 'disabled';
 
     const tooltip =
       t === 'custom'
