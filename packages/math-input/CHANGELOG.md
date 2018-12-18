@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="4.5.2"></a>
+## [4.5.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@4.5.0...@pie-lib/math-input@4.5.2) (2018-12-18)
+
+
+### Bug Fixes
+
+* version bump ([3dcbea9](https://github.com/pie-framework/pie-lib/commit/3dcbea9))
+
+
+
+
+
 <a name="4.5.0"></a>
 # [4.5.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@4.4.1...@pie-lib/math-input@4.5.0) (2018-12-18)
 
