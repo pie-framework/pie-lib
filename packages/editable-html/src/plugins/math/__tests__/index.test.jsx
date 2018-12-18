@@ -6,7 +6,8 @@ import MathPlugin, { serialization, inlineMath } from '../index';
 
 jest.mock('mathquill', () => ({
   StaticMath: jest.fn(),
-  getInterface: jest.fn().mockReturnThis()
+  getInterface: jest.fn().mockReturnThis(),
+  registerEmbed: jest.fn()
 }));
 
 const log = debug('@pie-lib:editable-html:test:math');
