@@ -7,6 +7,14 @@ let MQ;
 if (typeof window !== 'undefined') {
   const MathQuill = require('mathquill');
   MQ = MathQuill.getInterface(2);
+
+  MQ.registerEmbed('answerBlock', id => {
+    return {
+      htmlString: `<span id=${id}></span>`,
+      text: () => "testText",
+      latex: () => "\\embed{answerBlock}[" + id + "]"
+    };
+  });
 }
 
 const log = debug('@pie-lib:editable-html:plugins:math:mathquill:editor');
@@ -103,19 +111,11 @@ export default class Editor extends React.Component {
     if ((a && !b) || (!a && b)) {
       return false;
     }
-    return a.trim().replace(/\s/g, '') === b.trim().replace(/\s/, '');
+    return a.trim().replace(/\s/g, '') === b.trim().replace(/\s/g, '');
   };
 
-  shouldComponentUpdate(nextProps) {
-    log(
-      '[shouldComponentUpdate] nextProps.latex: ',
-      nextProps.latex,
-      'current: ',
-      this.mathField.latex()
-    );
-    const isEqual = this.latexIsEqual(nextProps.latex, this.mathField.latex());
-    log('[shouldComponentUpdate] isEqual? ', isEqual);
-    return !isEqual;
+  shouldComponentUpdate() {
+    return false;
   }
 
   render() {
