@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="4.6.0"></a>
+# [4.6.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@4.5.2...@pie-lib/math-input@4.6.0) (2018-12-18)
+
+
+### Features
+
+* **math-toolbar:** answer block initial implementation ([2200ee4](https://github.com/pie-framework/pie-lib/commit/2200ee4))
+* **math-toolbar:** version bumps ([e88dc9a](https://github.com/pie-framework/pie-lib/commit/e88dc9a))
+
+
+
+
+
 <a name="4.5.2"></a>
 ## [4.5.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@4.5.0...@pie-lib/math-input@4.5.2) (2018-12-18)
 
