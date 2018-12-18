@@ -17,6 +17,8 @@ const toNodeData = data => {
 
   if (type === 'command' || type === 'cursor') {
     return data;
+  } else if (type === 'answer') {
+    return { type: 'answer', ...data };
   } else if (value === 'clear') {
     return { type: 'clear' };
   } else {
@@ -26,6 +28,7 @@ const toNodeData = data => {
 
 export class EditorAndPad extends React.Component {
   static propTypes = {
+    allowAnswerBlock: PropTypes.bool,
     latex: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     classes: PropTypes.object
@@ -42,6 +45,9 @@ export class EditorAndPad extends React.Component {
       this.input.command(c.value);
     } else if (c.type === 'cursor') {
       this.input.keystroke(c.value);
+    } else if (c.type === 'answer') {
+      console.log('add answer block!!');
+      this.input.write('| Answer Block Here |');
     } else {
       this.input.write(c.value);
     }
@@ -60,7 +66,7 @@ export class EditorAndPad extends React.Component {
   }
 
   render() {
-    const { latex, classes } = this.props;
+    const { allowAnswerBlock, latex, classes } = this.props;
 
     log('[render]', latex);
 
@@ -73,7 +79,7 @@ export class EditorAndPad extends React.Component {
           onChange={this.onEditorChange}
         />
         <hr className={classes.hr} />
-        <HorizontalKeypad onClick={this.onClick} />
+        <HorizontalKeypad allowAnswerBlock={allowAnswerBlock} onClick={this.onClick} />
       </div>
     );
   }
