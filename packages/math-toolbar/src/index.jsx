@@ -9,6 +9,7 @@ export { MathPreview };
 
 export class MathToolbar extends React.Component {
   static propTypes = {
+    allowAnswerBlock: PropTypes.bool,
     latex: PropTypes.string.isRequired,
     onDone: PropTypes.func.isRequired
   };
@@ -31,9 +32,15 @@ export class MathToolbar extends React.Component {
   onChange = latex => this.setState({ latex });
 
   render() {
+    const { allowAnswerBlock } = this.props;
     const { latex } = this.state;
     return (
-      <PureToolbar latex={latex} onChange={this.onChange} onDone={this.done} />
+      <PureToolbar
+        allowAnswerBlock={allowAnswerBlock}
+        latex={latex}
+        onChange={this.onChange}
+        onDone={this.done}
+      />
     );
   }
 }
@@ -43,14 +50,19 @@ export class RawPureToolbar extends React.Component {
     latex: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     onDone: PropTypes.func.isRequired,
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
+    allowAnswerBlock: PropTypes.bool
   };
 
   render() {
-    const { latex, onChange, onDone, classes } = this.props;
+    const { allowAnswerBlock, latex, onChange, onDone, classes } = this.props;
     return (
       <div className={classes.pureToolbar}>
-        <EditorAndPad latex={latex} onChange={onChange} />
+        <EditorAndPad
+          allowAnswerBlock={allowAnswerBlock}
+          latex={latex}
+          onChange={onChange}
+        />
         <DoneButton onClick={onDone} />
       </div>
     );
