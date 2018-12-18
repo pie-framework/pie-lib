@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.3.0"></a>
+# [0.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@0.2.1...@pie-lib/math-toolbar@0.3.0) (2018-12-18)
+
+
+### Features
+
+* **math-toolbar:** answer block column for keypad and related functionality ([2fd700a](https://github.com/pie-framework/pie-lib/commit/2fd700a))
+
+
+
+
+
 <a name="0.2.1"></a>
 ## [0.2.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@0.2.0...@pie-lib/math-toolbar@0.2.1) (2018-11-27)
 

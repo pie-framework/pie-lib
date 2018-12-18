@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="4.5.0"></a>
+# [4.5.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@4.4.1...@pie-lib/math-input@4.5.0) (2018-12-18)
+
+
+### Features
+
+* **math-toolbar:** answer block column for keypad and related functionality ([2fd700a](https://github.com/pie-framework/pie-lib/commit/2fd700a))
+
+
+
+
+
 <a name="4.4.1"></a>
 ## [4.4.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@4.4.0...@pie-lib/math-input@4.4.1) (2018-11-27)
 
