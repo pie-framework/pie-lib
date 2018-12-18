@@ -1,4 +1,6 @@
-import renderMath from '../render-math';
+import React from 'react';
+import { mount } from 'enzyme';
+import renderMath, { fixMathElement } from '../render-math';
 import { MathJax } from 'mathjax3/mathjax3/mathjax';
 
 jest.mock(
@@ -50,10 +52,25 @@ describe.only('render-math', () => {
   it('call render math for an array of elements', () => {
     const divOne = document.createElement('div');
     const divTwo = document.createElement('div');
+
     renderMath([divOne, divTwo]);
+
     expect(MathJax.document).toHaveBeenCalledTimes(1);
     expect(MathJax.findMath).toHaveBeenCalledWith({
       elements: [divOne, divTwo]
     });
+  });
+
+  it('wraps the math containing element the right way', () => {
+    const wrapper = mount(
+      <div>
+        <span data-latex="">{'420\\text{ cm}=4.2\\text{ meters}'}</span>
+      </div>
+    );
+    const spanElem = wrapper.instance();
+
+    fixMathElement(spanElem);
+
+    expect(spanElem.textContent).toEqual('\\(420\\text{ cm}=4.2\\text{ meters}\\)');
   });
 });

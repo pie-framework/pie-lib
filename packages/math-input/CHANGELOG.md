@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="4.4.1"></a>
+## [4.4.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@4.4.0...@pie-lib/math-input@4.4.1) (2018-11-27)
+
+**Note:** Version bump only for package @pie-lib/math-input
+
+
+
+
+
+<a name="4.4.0"></a>
+# [4.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@4.3.0...@pie-lib/math-input@4.4.0) (2018-11-27)
+
+
+### Features
+
+* **math-toolbar:** changed from ssh to https for the mathquill forked repo ([7364008](https://github.com/pie-framework/pie-lib/commit/7364008))
+
+
+
+
+
+<a name="4.3.0"></a>
+# [4.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@4.2.3...@pie-lib/math-input@4.3.0) (2018-11-27)
+
+
+### Features
+
+* **math-input:** added some new symbols to the math-input ([56062aa](https://github.com/pie-framework/pie-lib/commit/56062aa))
+
+
+
+
+
 <a name="4.2.3"></a>
 ## [4.2.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@4.2.2...@pie-lib/math-input@4.2.3) (2018-09-12)
 

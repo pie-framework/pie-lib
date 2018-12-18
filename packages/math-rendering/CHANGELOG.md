@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.1.1"></a>
+## [1.1.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@1.1.0...@pie-lib/math-rendering@1.1.1) (2018-12-11)
+
+
+### Bug Fixes
+
+* **editable-html:** added tests for the wrap / unwrap methods ([7e8ac89](https://github.com/pie-framework/pie-lib/commit/7e8ac89))
+* **editable-html-and-math-rendering:** moved the wrap and unwrap math functions to the math-rendering package and used it there as well ([e68f955](https://github.com/pie-framework/pie-lib/commit/e68f955))
+* **math-rendering:** added tests ([7b3dbfa](https://github.com/pie-framework/pie-lib/commit/7b3dbfa))
+
+
+
+
+
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@1.0.1...@pie-lib/math-rendering@1.1.0) (2018-09-14)
 

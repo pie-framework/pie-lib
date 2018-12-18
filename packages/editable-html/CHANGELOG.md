@@ -3,6 +3,51 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="6.13.2"></a>
+## [6.13.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.13.1...@pie-lib/editable-html@6.13.2) (2018-12-04)
+
+
+### Bug Fixes
+
+* **editable-html:** increased the initial width of the table cell ([0f4bf9f](https://github.com/pie-framework/pie-lib/commit/0f4bf9f))
+
+
+
+
+
+<a name="6.13.1"></a>
+## [6.13.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.13.0...@pie-lib/editable-html@6.13.1) (2018-11-27)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+<a name="6.13.0"></a>
+# [6.13.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.12.0...@pie-lib/editable-html@6.13.0) (2018-11-27)
+
+
+### Features
+
+* **math-toolbar:** changed from ssh to https for the mathquill forked repo ([7364008](https://github.com/pie-framework/pie-lib/commit/7364008))
+
+
+
+
+
+<a name="6.12.0"></a>
+# [6.12.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.11.0...@pie-lib/editable-html@6.12.0) (2018-11-27)
+
+
+### Features
+
+* **math-input:** added some new symbols to the math-input ([56062aa](https://github.com/pie-framework/pie-lib/commit/56062aa))
+
+
+
+
+
 <a name="6.11.0"></a>
 # [6.11.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.10.2...@pie-lib/editable-html@6.11.0) (2018-11-23)
 
