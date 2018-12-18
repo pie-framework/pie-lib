@@ -122,11 +122,16 @@ DeleteAndClear.propTypes = {
 export class Keypad extends React.PureComponent {
   static propTypes = {
     allowAnswerBlock: PropTypes.bool,
+    mode: PropTypes.string,
     onClick: PropTypes.func.isRequired,
     onFocus: PropTypes.func,
     onToggleCode: PropTypes.func,
     latex: PropTypes.string,
     classes: PropTypes.object.isRequired
+  };
+
+  static defaultProps = {
+    mode: 'scientific'
   };
 
   constructor(props) {
@@ -166,13 +171,6 @@ export class Keypad extends React.PureComponent {
     this.props.onClick(data);
   };
 
-  onMathQuestionExtraClick = (data = {}) => {
-    this.props.onClick({
-      ...data,
-      type: 'answer'
-    });
-  };
-
   toggleCode = () => {
     this.setState({ showCode: !this.state.showCode }, () => {
       this.props.onToggleCode && this.props.onToggleCode();
@@ -180,33 +178,36 @@ export class Keypad extends React.PureComponent {
   };
 
   render() {
-    const { classes, allowAnswerBlock } = this.props;
+    const { classes, mode } = this.props;
     const { showCode } = this.state;
-    let padHolderStyles = {
-      gridColumn: '1/8',
-      gridTemplateColumns: '3fr 1fr 4fr 1fr 1fr'
-    };
-
-    if (allowAnswerBlock) {
-      padHolderStyles = {
-        gridColumn: '1/8',
-        gridTemplateColumns: '3fr 1fr 4fr 1fr 1fr 1fr'
-      };
-    }
+    const showTopRow = mode === 'advanced' || mode === 'scientific';
+    const showExtra = mode === 'scientific';
 
     const holderClasses = classNames(
       classes.padHolder,
       showCode && classes.hidden
     );
 
+    const holderStyles = {
+      gridColumn: '1/8',
+      gridTemplateColumns: '3fr 1fr 4fr 1fr 1fr'
+    };
+
+    if (mode === 'simple') {
+      holderStyles.gridColumn = '1/5';
+      holderStyles.gridTemplateColumns = '3fr 1fr 1fr';
+    } else if (mode === 'advanced') {
+      holderStyles.gridColumn = '1/6';
+      holderStyles.gridTemplateColumns = '3fr 1fr 1fr 1fr';
+    }
+
     return (
       <div className={classes.root} onFocus={this.onFocus} tabIndex={'-1'}>
-        <div className={holderClasses} style={padHolderStyles}>
+        <div className={holderClasses} style={holderStyles}>
           <NumberPad onClick={this.onNumberPadClick} />
           <BasicOperatorsPad onClick={this.onBasicOperatorsClick} />
-          <Extras onClick={this.onExtrasClick} />
-          <TopRow className={classes.topRow} onClick={this.onTopRowClick} />
-          {allowAnswerBlock && <MathQuestionExtras onClick={this.onMathQuestionExtraClick } />}
+          {showExtra && <Extras onClick={this.onExtrasClick} />}
+          {showTopRow && <TopRow className={classes.topRow} onClick={this.onTopRowClick} />}
           <DeleteAndClear onClick={this.onTopRowClick} />
         </div>
       </div>
@@ -217,6 +218,7 @@ export class Keypad extends React.PureComponent {
 const styles = {
   root: {
     minWidth: '350px',
+    minHeight: '150px',
     display: 'grid',
     gridTemplateRows: '1fr 4fr',
     gridColumnGap: '0px',
