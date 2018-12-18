@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cx from 'classnames';
 import EditorAndPad from './editor-and-pad';
 import { DoneButton } from './done-button';
 import { withStyles } from '@material-ui/core/styles';
@@ -10,9 +11,27 @@ export { MathPreview };
 export class MathToolbar extends React.Component {
   static propTypes = {
     allowAnswerBlock: PropTypes.bool,
+    controlledKeypad: PropTypes.bool,
+    keypadMode: PropTypes.string,
+    classNames: PropTypes.object,
+    showKeypad: PropTypes.bool,
     latex: PropTypes.string.isRequired,
-    onDone: PropTypes.func.isRequired
+    onAnswerBlockAdd: PropTypes.func,
+    onChange: PropTypes.func,
+    onDone: PropTypes.func.isRequired,
+    onFocus: PropTypes.func
   };
+
+  static defaultProps = {
+    classNames: {},
+    keypadMode: 'scientific',
+    allowAnswerBlock: false,
+    controlledKeypad: false,
+    showKeypad: true,
+    onChange: () => {},
+    onAnswerBlockAdd: () => {},
+    onFocus: () => {}
+  }
 
   constructor(props) {
     super(props);
@@ -29,17 +48,35 @@ export class MathToolbar extends React.Component {
     this.setState({ latex: nextProps.latex });
   }
 
-  onChange = latex => this.setState({ latex });
+  onChange = latex => {
+    this.setState({ latex });
+    this.props.onChange(latex);
+  };
 
   render() {
-    const { allowAnswerBlock } = this.props;
     const { latex } = this.state;
+    const {
+      classNames,
+      allowAnswerBlock,
+      onAnswerBlockAdd,
+      controlledKeypad,
+      keypadMode,
+      showKeypad,
+      onFocus
+    } = this.props;
+
     return (
       <PureToolbar
+        classNames={classNames}
+        onAnswerBlockAdd={onAnswerBlockAdd}
         allowAnswerBlock={allowAnswerBlock}
         latex={latex}
+        keypadMode={keypadMode}
         onChange={this.onChange}
         onDone={this.done}
+        onFocus={onFocus}
+        showKeypad={showKeypad}
+        controlledKeypad={controlledKeypad}
       />
     );
   }
@@ -47,21 +84,47 @@ export class MathToolbar extends React.Component {
 
 export class RawPureToolbar extends React.Component {
   static propTypes = {
+    classNames: PropTypes.object,
     latex: PropTypes.string.isRequired,
+    keypadMode: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     onDone: PropTypes.func.isRequired,
+    onAnswerBlockAdd: PropTypes.func,
+    onFocus: PropTypes.func,
     classes: PropTypes.object.isRequired,
-    allowAnswerBlock: PropTypes.bool
+    allowAnswerBlock: PropTypes.bool,
+    controlledKeypad: PropTypes.bool,
+    showKeypad: PropTypes.bool
   };
 
   render() {
-    const { allowAnswerBlock, latex, onChange, onDone, classes } = this.props;
+    const {
+      classNames,
+      allowAnswerBlock,
+      onAnswerBlockAdd,
+      controlledKeypad,
+      showKeypad,
+      keypadMode,
+      latex,
+      onChange,
+      onDone,
+      onFocus,
+      classes
+    } = this.props;
+
     return (
-      <div className={classes.pureToolbar}>
+      <div className={cx(classes.pureToolbar, classNames.toolbar)}>
+        <div />
         <EditorAndPad
+          keypadMode={keypadMode}
+          classNames={classNames}
+          controlledKeypad={controlledKeypad}
+          showKeypad={showKeypad}
           allowAnswerBlock={allowAnswerBlock}
+          onAnswerBlockAdd={onAnswerBlockAdd}
           latex={latex}
           onChange={onChange}
+          onFocus={onFocus}
         />
         <DoneButton onClick={onDone} />
       </div>
@@ -72,6 +135,7 @@ const styles = () => ({
   pureToolbar: {
     display: 'flex',
     width: '100%',
+    alignItems: 'center',
     justifyContent: 'space-between'
   }
 });
