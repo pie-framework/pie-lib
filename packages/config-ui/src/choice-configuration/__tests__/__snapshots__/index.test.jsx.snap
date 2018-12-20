@@ -87,19 +87,36 @@ exports[`index - snapshot renders correctly when delete is not allowed 1`] = `
         </div>
       </div>
       <div
-        className="MuiFormControl-root-4 RawInputContainer-formControl-2 Component-labelContainer-52 Component-text-54"
+        className="Component-feedbackContainer-55"
       >
-        <label
-          className="MuiFormLabel-root-13 MuiInputLabel-root-8 MuiInputLabel-formControl-9 MuiInputLabel-animated-12 MuiInputLabel-shrink-11 RawInputContainer-label-3"
-          data-shrink={true}
+        <svg
+          aria-hidden="true"
+          className="MuiSvgIcon-root-38 Component-arrowIcon-56"
+          color={undefined}
+          focusable="false"
+          viewBox="0 0 24 24"
         >
-          Feedback Text
-        </label>
+          <g>
+            <path
+              d="M19 15l-6 6-1.42-1.42L15.17 16H4V4h2v10h9.17l-3.59-3.58L13 9l6 6z"
+            />
+          </g>
+        </svg>
         <div
-          className="Component-editorHolder-53"
+          className="MuiFormControl-root-4 RawInputContainer-formControl-2 Component-labelContainer-52 Component-text-54"
         >
-          <div>
-            EditableHtml
+          <label
+            className="MuiFormLabel-root-13 MuiInputLabel-root-8 MuiInputLabel-formControl-9 MuiInputLabel-animated-12 MuiInputLabel-shrink-11 RawInputContainer-label-3"
+            data-shrink={true}
+          >
+            Feedback Text
+          </label>
+          <div
+            className="Component-editorHolder-53"
+          >
+            <div>
+              EditableHtml
+            </div>
           </div>
         </div>
       </div>
@@ -139,7 +156,7 @@ exports[`index - snapshot renders correctly when delete is not allowed 1`] = `
             >
               <svg
                 aria-hidden="true"
-                className="MuiSvgIcon-root-38 MuiSvgIcon-colorSecondary-40"
+                className="MuiSvgIcon-root-38 MuiSvgIcon-colorPrimary-39"
                 color={undefined}
                 focusable="false"
                 viewBox="0 0 24 24"
@@ -249,19 +266,36 @@ exports[`index - snapshot renders correctly when feedback is not allowed 1`] = `
         </div>
       </div>
       <div
-        className="MuiFormControl-root-4 RawInputContainer-formControl-2 Component-labelContainer-52 Component-text-54"
+        className="Component-feedbackContainer-55"
       >
-        <label
-          className="MuiFormLabel-root-13 MuiInputLabel-root-8 MuiInputLabel-formControl-9 MuiInputLabel-animated-12 MuiInputLabel-shrink-11 RawInputContainer-label-3"
-          data-shrink={true}
+        <svg
+          aria-hidden="true"
+          className="MuiSvgIcon-root-38 Component-arrowIcon-56"
+          color={undefined}
+          focusable="false"
+          viewBox="0 0 24 24"
         >
-          Feedback Text
-        </label>
+          <g>
+            <path
+              d="M19 15l-6 6-1.42-1.42L15.17 16H4V4h2v10h9.17l-3.59-3.58L13 9l6 6z"
+            />
+          </g>
+        </svg>
         <div
-          className="Component-editorHolder-53"
+          className="MuiFormControl-root-4 RawInputContainer-formControl-2 Component-labelContainer-52 Component-text-54"
         >
-          <div>
-            EditableHtml
+          <label
+            className="MuiFormLabel-root-13 MuiInputLabel-root-8 MuiInputLabel-formControl-9 MuiInputLabel-animated-12 MuiInputLabel-shrink-11 RawInputContainer-label-3"
+            data-shrink={true}
+          >
+            Feedback Text
+          </label>
+          <div
+            className="Component-editorHolder-53"
+          >
+            <div>
+              EditableHtml
+            </div>
           </div>
         </div>
       </div>
@@ -406,19 +440,36 @@ exports[`index - snapshot renders correctly with default props 1`] = `
         </div>
       </div>
       <div
-        className="MuiFormControl-root-4 RawInputContainer-formControl-2 Component-labelContainer-52 Component-text-54"
+        className="Component-feedbackContainer-55"
       >
-        <label
-          className="MuiFormLabel-root-13 MuiInputLabel-root-8 MuiInputLabel-formControl-9 MuiInputLabel-animated-12 MuiInputLabel-shrink-11 RawInputContainer-label-3"
-          data-shrink={true}
+        <svg
+          aria-hidden="true"
+          className="MuiSvgIcon-root-38 Component-arrowIcon-56"
+          color={undefined}
+          focusable="false"
+          viewBox="0 0 24 24"
         >
-          Feedback Text
-        </label>
+          <g>
+            <path
+              d="M19 15l-6 6-1.42-1.42L15.17 16H4V4h2v10h9.17l-3.59-3.58L13 9l6 6z"
+            />
+          </g>
+        </svg>
         <div
-          className="Component-editorHolder-53"
+          className="MuiFormControl-root-4 RawInputContainer-formControl-2 Component-labelContainer-52 Component-text-54"
         >
-          <div>
-            EditableHtml
+          <label
+            className="MuiFormLabel-root-13 MuiInputLabel-root-8 MuiInputLabel-formControl-9 MuiInputLabel-animated-12 MuiInputLabel-shrink-11 RawInputContainer-label-3"
+            data-shrink={true}
+          >
+            Feedback Text
+          </label>
+          <div
+            className="Component-editorHolder-53"
+          >
+            <div>
+              EditableHtml
+            </div>
           </div>
         </div>
       </div>
@@ -458,7 +509,7 @@ exports[`index - snapshot renders correctly with default props 1`] = `
             >
               <svg
                 aria-hidden="true"
-                className="MuiSvgIcon-root-38 MuiSvgIcon-colorSecondary-40"
+                className="MuiSvgIcon-root-38 MuiSvgIcon-colorPrimary-39"
                 color={undefined}
                 focusable="false"
                 viewBox="0 0 24 24"
