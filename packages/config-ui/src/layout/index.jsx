@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Measure from 'react-measure';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import classnames from 'classnames';
@@ -91,31 +92,17 @@ class Layout extends React.Component {
     super(props);
     this.state = {
       value: 0,
-      width: 500,
+      dimensions: {
+        height: 500,
+        width: 500
+      },
       index: 0
     };
   }
 
-  componentDidMount() {
-    this.handleResize();
-    window.addEventListener('resize', this.handleResize);
-  }
+  onTabsChange = (event, index) => this.setState({ index });
 
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.handleResize);
-  }
-
-  handleResize = () => {
-    this.setState({
-      width: this.element.clientWidth
-    });
-  };
-
-  onTabsChange = (event, index) => {
-    this.setState({ index });
-  };
-
-  hasSidePanel = () => this.state.width >= 950;
+  hasSidePanel = () => this.state.dimensions.width >= 950;
 
   renderSidePanel = () => {
     const { sidePanelSelector } = this.props;
@@ -136,14 +123,14 @@ class Layout extends React.Component {
     );
   };
 
-  render() {
+  renderContent = (measureRef) => {
     const { classes, regularItems, scoringItem, disableSidePanel } = this.props;
     const { index } = this.state;
     const hasSidePanel = this.hasSidePanel();
 
     return (
       <div
-        ref={ref => ref && (this.element = ref)}
+        ref={measureRef}
         className={classnames(
           classes.container,
           {
@@ -156,9 +143,9 @@ class Layout extends React.Component {
           value={index}
           indicatorColor="primary"
         >
-          <Tab label="Design" />
-          {!disableSidePanel && !hasSidePanel && <Tab label="Settings" />}
-          {scoringItem && <Tab label="Scoring" />}
+          <Tab label="Design"/>
+          {!disableSidePanel && !hasSidePanel && <Tab label="Settings"/>}
+          {scoringItem && <Tab label="Scoring"/>}
         </Tabs>
         <div className={classes.contentContainer}>
           {disableSidePanel && <Sections {...this.props} />}
@@ -178,6 +165,19 @@ class Layout extends React.Component {
           }
         </div>
       </div>
+    );
+  };
+
+  render() {
+    return (
+      <Measure
+        bounds
+        onResize={contentRect => {
+          this.setState({ dimensions: contentRect.bounds })
+        }}
+      >
+        {({ measureRef }) => this.renderContent(measureRef)}
+      </Measure>
     );
   }
 }
