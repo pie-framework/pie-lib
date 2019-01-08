@@ -4,7 +4,7 @@ import Measure from 'react-measure';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import classnames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 
 const Section = props => {
@@ -77,7 +77,7 @@ class SidePanel extends React.Component {
   }
 }
 
-class Layout extends React.Component {
+class ConfigLayout extends React.Component {
   static propTypes = {
     sidePanelSelector: PropTypes.string,
     disableSidePanel: PropTypes.bool,
@@ -123,6 +123,23 @@ class Layout extends React.Component {
     );
   };
 
+  getRightIndex = () => {
+    const { scoringItem } = this.props;
+    const { index } = this.state;
+    const settingsTab = this.shouldRenderSettingsTab() ? 1 : 0;
+    const scoringTab = scoringItem ? 1 : 0;
+    const tabsNumber = settingsTab + scoringTab;
+
+    return index > tabsNumber ? tabsNumber : index;
+  };
+
+  shouldRenderSettingsTab = () => {
+    const { disableSidePanel } = this.props;
+    const hasSidePanel = this.hasSidePanel();
+
+    return !disableSidePanel && !hasSidePanel;
+  };
+
   renderContent = (measureRef) => {
     const { classes, regularItems, scoringItem, disableSidePanel } = this.props;
     const { index } = this.state;
@@ -144,7 +161,7 @@ class Layout extends React.Component {
           indicatorColor="primary"
         >
           <Tab label="Design"/>
-          {!disableSidePanel && !hasSidePanel && <Tab label="Settings"/>}
+          {this.shouldRenderSettingsTab() && <Tab label="Settings"/>}
           {scoringItem && <Tab label="Scoring"/>}
         </Tabs>
         <div className={classes.contentContainer}>
@@ -173,7 +190,8 @@ class Layout extends React.Component {
       <Measure
         bounds
         onResize={contentRect => {
-          this.setState({ dimensions: contentRect.bounds })
+          const tabIndex = this.getRightIndex();
+          this.setState({ index: tabIndex, dimensions: contentRect.bounds });
         }}
       >
         {({ measureRef }) => this.renderContent(measureRef)}
@@ -184,6 +202,8 @@ class Layout extends React.Component {
 
 const styles = () => ({
   container: {
+    display: 'flex',
+    flexDirection: 'column',
     position: 'relative'
   },
   contentContainer: {
@@ -243,4 +263,46 @@ const styles = () => ({
   }
 });
 
-export default withStyles(styles)(Layout);
+const theme = createMuiTheme({
+  palette: {
+    action: {
+      disabled: 'rgba(0, 0, 0, 0.54);'
+    }
+  },
+  overrides: {
+    MuiRadio: {
+      checked: {
+        color: '#3f51b5 !important'
+      }
+    },
+    MuiCheckbox: {
+      checked: {
+        color: '#3f51b5 !important'
+      }
+    },
+    MuiTabs: {
+      root: {
+        borderBottom: '1px solid #eee'
+      }
+    },
+    MuiSwitch: {
+      checked: {
+        color: '#3f51b5 !important',
+        '& + $bar': {
+          backgroundColor: '#3f51b5 !important',
+          opacity: 0.5
+        }
+      }
+    }
+  }
+});
+
+const Styled = withStyles(styles)(ConfigLayout);
+
+const RootElem = props => (
+  <MuiThemeProvider theme={theme}>
+    <Styled {...props} />
+  </MuiThemeProvider>
+);
+
+export default RootElem;

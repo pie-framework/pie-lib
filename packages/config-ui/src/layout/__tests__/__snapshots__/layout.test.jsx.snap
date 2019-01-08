@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`index - snapshot renders correctly with a side panel 1`] = `
+exports[`layout - snapshot renders correctly with a side panel 1`] = `
 <div
-  className="Layout-container-1"
+  className="ConfigLayout-container-1"
 >
   <div
     className="MuiTabs-root-12"
@@ -109,7 +109,7 @@ exports[`index - snapshot renders correctly with a side panel 1`] = `
     </div>
   </div>
   <div
-    className="Layout-contentContainer-2"
+    className="ConfigLayout-contentContainer-2"
   >
     <div>
       <div>
@@ -123,9 +123,9 @@ exports[`index - snapshot renders correctly with a side panel 1`] = `
 </div>
 `;
 
-exports[`index - snapshot renders correctly without a side panel 1`] = `
+exports[`layout - snapshot renders correctly without a side panel 1`] = `
 <div
-  className="Layout-container-1"
+  className="ConfigLayout-container-1"
 >
   <div
     className="MuiTabs-root-12"
@@ -196,13 +196,13 @@ exports[`index - snapshot renders correctly without a side panel 1`] = `
     </div>
   </div>
   <div
-    className="Layout-contentContainer-2"
+    className="ConfigLayout-contentContainer-2"
   >
     <div
-      className="Layout-section-7"
+      className="ConfigLayout-section-7"
     >
       <div
-        className="Layout-sidePanelItems-10"
+        className="ConfigLayout-sidePanelItems-10"
       >
         <div>
           Foo
@@ -213,10 +213,10 @@ exports[`index - snapshot renders correctly without a side panel 1`] = `
       </div>
     </div>
     <div
-      className="Layout-section-7"
+      className="ConfigLayout-section-7"
     >
       <div
-        className="Layout-sidePanelItems-10"
+        className="ConfigLayout-sidePanelItems-10"
       >
         <div>
           Foo

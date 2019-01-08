@@ -1,16 +1,16 @@
 import React from 'react';
-import Layout from '../index';
+import ConfigLayout from '../ConfigLayout';
 import renderer from 'react-test-renderer';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-describe('index - snapshot', () => {
+describe('layout - snapshot', () => {
   it('renders correctly with a side panel', () => {
     const tree = renderer
       .create(
-        <Layout
+        <ConfigLayout
           sideMenuItems={[
             {
               items: [
@@ -52,7 +52,7 @@ describe('index - snapshot', () => {
   it('renders correctly without a side panel', () => {
     const tree = renderer
       .create(
-        <Layout
+        <ConfigLayout
           sideMenuItems={[
             {
               items: [
