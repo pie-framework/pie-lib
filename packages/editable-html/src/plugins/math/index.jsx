@@ -1,6 +1,7 @@
 import Functions from '@material-ui/icons/Functions';
 import { Inline } from 'slate';
 import { MathPreview, MathToolbar } from '@pie-lib/math-toolbar';
+import { wrapMath, unWrapMath } from '@pie-lib/math-rendering';
 import React from 'react';
 import debug from 'debug';
 
@@ -74,71 +75,9 @@ export const inlineMath = () =>
   });
 
 const htmlDecode = input => {
-  var doc = new DOMParser().parseFromString(input, 'text/html');
+  const doc = new DOMParser().parseFromString(input, 'text/html');
+
   return doc.documentElement.textContent;
-};
-
-const PAIRS = {
-  [MathPlugin.ROUND_BRACKETS]: ['\\(', '\\)'],
-  [MathPlugin.SQUARE_BRACKETS]: ['\\[', '\\]'],
-  [MathPlugin.DOLLAR]: ['$', '$'],
-  [MathPlugin.DOUBLE_DOLLAR]: ['$$', '$$']
-};
-
-export const wrap = (content, wrapType) => {
-  if (wrapType === MathPlugin.SQUARE_BRACKETS) {
-    console.warn('\\[...\\] is not supported yet'); // eslint-disable-line
-    wrapType = MathPlugin.ROUND_BRACKETS;
-  }
-  if (wrapType === MathPlugin.DOUBLE_DOLLAR) {
-    console.warn('$$...$$ is not supported yet'); // eslint-disable-line
-    wrapType = MathPlugin.DOLLAR;
-  }
-
-  const [start, end] = PAIRS[wrapType] || PAIRS[MathPlugin.ROUND_BRACKETS];
-  return `${start}${content}${end}`;
-};
-
-export const unwrap = content => {
-  const displayStyleIndex = content.indexOf('\\displaystyle');
-  if (displayStyleIndex !== -1) {
-    console.warn('\\displaystyle is not supported - removing'); // eslint-disable-line
-    content = content.replace('\\displaystyle', '').trim();
-  }
-
-  if (content.startsWith('$$') && content.endsWith('$$')) {
-    console.warn('$$ syntax is not yet supported'); // eslint-disable-line
-    return {
-      unwrapped: content.substring(2, content.length - 2),
-      wrapType: MathPlugin.DOLLAR
-    };
-  }
-  if (content.startsWith('$') && content.endsWith('$')) {
-    return {
-      unwrapped: content.substring(1, content.length - 1),
-      wrapType: MathPlugin.DOLLAR
-    };
-  }
-
-  if (content.startsWith('\\[') && content.endsWith('\\]')) {
-    console.warn('\\[..\\] syntax is not yet supported'); // eslint-disable-line
-    return {
-      unwrapped: content.substring(2, content.length - 2),
-      wrapType: MathPlugin.ROUND_BRACKETS
-    };
-  }
-
-  if (content.startsWith('\\(') && content.endsWith('\\)')) {
-    return {
-      unwrapped: content.substring(2, content.length - 2),
-      wrapType: MathPlugin.ROUND_BRACKETS
-    };
-  }
-
-  return {
-    unwrapped: content,
-    wrapType: MathPlugin.ROUND_BRACKETS
-  };
 };
 
 export const serialization = {
@@ -158,7 +97,7 @@ export const serialization = {
 
     if (hasLatex) {
       const latex = htmlDecode(el.innerHTML);
-      const { unwrapped, wrapType } = unwrap(latex);
+      const { unwrapped, wrapType } = unWrapMath(latex);
       log('[deserialize]: noBrackets: ', unwrapped, wrapType);
       return {
         object: 'inline',
@@ -178,7 +117,7 @@ export const serialization = {
       const wrapper = object.data.get('wrapper');
       log('[serialize] latex: ', l);
       const decoded = htmlDecode(l);
-      return <span data-latex="" data-raw={decoded}>{wrap(decoded, wrapper)}</span>;
+      return <span data-latex="" data-raw={decoded}>{wrapMath(decoded, wrapper)}</span>;
     }
   }
 };
