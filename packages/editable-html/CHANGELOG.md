@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.14.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.13.2...@pie-lib/editable-html@6.14.0) (2019-01-08)
+
+
+### Bug Fixes
+
+* **editable-html:** bumping editable-html version ([79e6b40](https://github.com/pie-framework/pie-lib/commit/79e6b40))
+
+
+
+## 6.13.8 (2019-01-08)
+
+
+
+## 6.13.7 (2019-01-08)
+
+
+
+## 6.13.6 (2019-01-08)
+
+
+### Bug Fixes
+
+* **editable-html:** finally fixed the test ([1cc454e](https://github.com/pie-framework/pie-lib/commit/1cc454e))
+* **editable-html:** fixed some tests ([2916509](https://github.com/pie-framework/pie-lib/commit/2916509))
+* **editable-html:** fixed some tests ([b9bfcd7](https://github.com/pie-framework/pie-lib/commit/b9bfcd7))
+* **editable-html:** fixed test ([db0e05c](https://github.com/pie-framework/pie-lib/commit/db0e05c))
+* **editable-html:** fixed the syntax error ([0d82f87](https://github.com/pie-framework/pie-lib/commit/0d82f87))
+* **editable-html:** made it possible for the editable-html component to recognize lists inside a table cell ([59a02b7](https://github.com/pie-framework/pie-lib/commit/59a02b7))
+* **editable-html:** removed the wrap and unwrap functions and used those from the math-rendering package ([bce1077](https://github.com/pie-framework/pie-lib/commit/bce1077))
+* **editable-html:** updated the math rendering package ([cdd08f7](https://github.com/pie-framework/pie-lib/commit/cdd08f7))
+* **editable-html:** updated the math-rendering package ([1c38c0b](https://github.com/pie-framework/pie-lib/commit/1c38c0b))
+* **editable-html-and-math-rendering:** moved the wrap and unwrap math functions to the math-rendering package and used it there as well ([e68f955](https://github.com/pie-framework/pie-lib/commit/e68f955))
+* **math-rendering:** removed the editable-html changes for now ([c73faa6](https://github.com/pie-framework/pie-lib/commit/c73faa6))
+
+
+### Features
+
+* **config-ui:** added a layout component in order to be used by all elements to be rendered ([5bf1bbc](https://github.com/pie-framework/pie-lib/commit/5bf1bbc))
+
+
+
+
+
 <a name="6.13.2"></a>
 ## [6.13.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.13.1...@pie-lib/editable-html@6.13.2) (2018-12-04)
 

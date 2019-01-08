@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.9.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@7.7.10...@pie-lib/config-ui@7.9.0) (2019-01-08)
+
+
+
+# 7.8.0 (2019-01-08)
+
+
+### Features
+
+* **config-ui:** created a new layout for the preview elements in order for them to have the right theme and updated tests ([edebb09](https://github.com/pie-framework/pie-lib/commit/edebb09))
+
+
+
+## 7.7.17 (2018-12-29)
+
+
+### Features
+
+* **config-ui:** added tests for the pie-lib/layout package and fixed the choice-configuration package test ([ecae46f](https://github.com/pie-framework/pie-lib/commit/ecae46f))
+* **config-ui:** used the react-measure package in order to get the width of the element to decide if the side panel is displayed or not ([13503ee](https://github.com/pie-framework/pie-lib/commit/13503ee))
+
+
+
+## 7.7.11 (2018-12-17)
+
+
+### Features
+
+* **config-ui:** added a layout component in order to be used by all elements to be rendered ([5bf1bbc](https://github.com/pie-framework/pie-lib/commit/5bf1bbc))
+
+
+
+
+
 <a name="7.7.10"></a>
 ## [7.7.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@7.7.9...@pie-lib/config-ui@7.7.10) (2018-12-04)
 
