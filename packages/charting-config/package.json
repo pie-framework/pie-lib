@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "0.4.25",
+  "version": "0.4.29",
   "description": "Some react based pie-charting configuring components",
   "keywords": [
     "react",
