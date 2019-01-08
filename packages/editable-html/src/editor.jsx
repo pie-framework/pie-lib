@@ -23,6 +23,7 @@ export class Editor extends React.Component {
     classes: PropTypes.object.isRequired,
     highlightShape: PropTypes.bool,
     disabled: PropTypes.bool,
+    nonEmpty: PropTypes.bool,
     disableUnderline: PropTypes.bool,
     autoWidthToolbar: PropTypes.bool,
     activePlugins: PropTypes.arrayOf(values => {
@@ -82,10 +83,19 @@ export class Editor extends React.Component {
         disableUnderline: props.disableUnderline,
         autoWidth: props.autoWidthToolbar,
         onDone: () => {
+          const { nonEmpty } = this.props;
+
           log('[onDone]');
           this.setState({ toolbarInFocus: false, focusedNode: null });
           this.editor.blur();
-          this.onEditingDone();
+
+          if (nonEmpty && this.state.value.startText.text.length === 0) {
+            this.resetValue(true).then(() => {
+              this.onEditingDone();
+            });
+          } else {
+            this.onEditingDone();
+          }
         }
       },
       table: {
@@ -169,7 +179,7 @@ export class Editor extends React.Component {
   /**
    * Reset the value if the user didn't click done.
    */
-  resetValue = () => {
+  resetValue = (force) => {
     const { value, focusedNode } = this.state;
 
     const stopReset = this.plugins.reduce((s, p) => {
@@ -178,10 +188,13 @@ export class Editor extends React.Component {
 
     log('[resetValue]', value.isFocused, focusedNode, 'stopReset: ', stopReset);
     if (
-      this.state.stashedValue &&
-      !value.isFocused &&
-      !focusedNode &&
-      !stopReset
+      (
+        this.state.stashedValue &&
+        !value.isFocused &&
+        !focusedNode &&
+        !stopReset
+      ) ||
+      force
     ) {
       log('[resetValue] resetting...');
       log('stashed', this.state.stashedValue.document.toObject());

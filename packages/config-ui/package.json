@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/config-ui",
-  "version": "7.7.10",
+  "version": "7.7.17",
   "main": "lib/index.js",
   "publishConfig": {
     "access": "public"
@@ -16,7 +16,8 @@
     "classnames": "^2.2.6",
     "debug": "^3.0.1",
     "lodash": "^4.17.10",
-    "prop-types": "^15.6.1"
+    "prop-types": "^15.6.1",
+    "react-measure": "^2.2.2"
   },
   "devDependencies": {
     "react": "^16.3.1",
