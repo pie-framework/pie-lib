@@ -8,13 +8,15 @@ if (typeof window !== 'undefined') {
   const MathQuill = require('mathquill');
   MQ = MathQuill.getInterface(2);
 
-  MQ.registerEmbed('answerBlock', id => {
-    return {
-      htmlString: `<span id=${id}></span>`,
-      text: () => "testText",
-      latex: () => "\\embed{answerBlock}[" + id + "]"
-    };
-  });
+  if (MQ && MQ.registerEmbed) {
+    MQ && MQ.registerEmbed('answerBlock', id => {
+      return {
+        htmlString: `<span id=${id}></span>`,
+        text: () => "testText",
+        latex: () => "\\embed{answerBlock}[" + id + "]"
+      };
+    });
+  }
 }
 
 const log = debug('@pie-lib:editable-html:plugins:math:mathquill:editor');

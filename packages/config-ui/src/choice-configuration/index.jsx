@@ -8,21 +8,23 @@ import EditableHtml from '@pie-lib/editable-html';
 import { InputCheckbox, InputRadio } from '../inputs';
 import FeedbackMenu from './feedback-menu';
 import ActionDelete from '@material-ui/icons/Delete';
+import ArrowRight from '@material-ui/icons/SubdirectoryArrowRight';
 import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
 
 const EditableHtmlContainer = withStyles(theme => ({
   labelContainer: {},
   editorHolder: {
     marginTop: theme.spacing.unit * 2
   }
-}))(({ label, classes, onChange, value, className, imageSupport }) => {
+}))(({ label, classes, onChange, value, className, imageSupport, disabled, nonEmpty }) => {
   const names = classNames(classes.labelContainer, className);
   return (
     <InputContainer label={label} className={names}>
       <div className={classes.editorHolder}>
         <EditableHtml
           markup={value || ''}
+          disabled={disabled}
+          nonEmpty={nonEmpty}
           onChange={onChange}
           imageSupport={imageSupport}
           className={classes.editor}
@@ -35,26 +37,41 @@ const EditableHtmlContainer = withStyles(theme => ({
 const Feedback = withStyles(() => ({
   text: {
     width: '100%'
+  },
+  feedbackContainer: {
+    position: 'relative'
+  },
+  arrowIcon: {
+    fill: '#ccc',
+    left: -56,
+    position: 'absolute',
+    top: 20
   }
 }))(({ value, onChange, type, correct, classes, defaults }) => {
   if (!type || type === 'none') {
     return null;
   } else if (type === 'default') {
     return (
-      <TextField
-        className={classes.text}
-        label="Feedback Text"
-        value={correct ? defaults.correct : defaults.incorrect}
-      />
+      <div className={classes.feedbackContainer}>
+        <ArrowRight className={classes.arrowIcon} />
+        <TextField
+          className={classes.text}
+          label="Feedback Text"
+          value={correct ? defaults.correct : defaults.incorrect}
+        />
+      </div>
     );
   } else {
     return (
-      <EditableHtmlContainer
-        className={classes.text}
-        label="Feedback Text"
-        value={value}
-        onChange={onChange}
-      />
+      <div className={classes.feedbackContainer}>
+        <ArrowRight className={classes.arrowIcon} />
+        <EditableHtmlContainer
+          className={classes.text}
+          label="Feedback Text"
+          value={value}
+          onChange={onChange}
+        />
+      </div>
     );
   }
 });
@@ -67,6 +84,8 @@ export class ChoiceConfiguration extends React.Component {
     className: PropTypes.string,
     mode: PropTypes.oneOf(['checkbox', 'radio']),
     defaultFeedback: PropTypes.object.isRequired,
+    disabled: PropTypes.bool,
+    nonEmpty: PropTypes.bool,
     data: PropTypes.shape({
       label: PropTypes.string.isRequired,
       value: PropTypes.string.isRequired,
@@ -147,6 +166,8 @@ export class ChoiceConfiguration extends React.Component {
       noLabels,
       useLetterOrdering,
       imageSupport,
+      disabled,
+      nonEmpty,
       allowFeedBack,
       allowDelete
     } = this.props;
@@ -157,9 +178,9 @@ export class ChoiceConfiguration extends React.Component {
       <div className={names}>
         <div className={classes.topRow}>
           {index > 0 && (
-            <Typography className={classes.index} type="title">
+            <span className={classes.index} type="title">
               {useLetterOrdering ? String.fromCharCode(96 + index).toUpperCase() : index}
-            </Typography>
+            </span>
           )}
           <InputToggle
             className={classes.toggle}
@@ -173,6 +194,8 @@ export class ChoiceConfiguration extends React.Component {
               value={data.label}
               onChange={this.onLabelChange}
               imageSupport={imageSupport}
+              disabled={disabled}
+              nonEmpty={nonEmpty}
             />
             <Feedback
               {...data.feedback}
@@ -213,7 +236,7 @@ export class ChoiceConfiguration extends React.Component {
 
 const styles = theme => ({
   index: {
-    transform: 'translate(-60%, 35%)'
+    padding: '24px 10px 0 0'
   },
   choiceConfiguration: {},
   topRow: {

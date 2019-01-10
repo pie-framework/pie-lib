@@ -15,11 +15,14 @@ import TwoChoice, { NChoice } from './two-choice';
 import TagsInput from './tags-input';
 import MuiBox from './mui-box';
 import ChoiceConfiguration from './choice-configuration';
+import ConfigLayout from './layout/ConfigLayout';
+import PreviewLayout from './layout/PreviewLayout';
 import * as choiceUtils from './choice-utils';
 import withStatefulModel from './with-stateful-model';
 
 export {
   ChoiceConfiguration,
+  ConfigLayout,
   choiceUtils,
   Checkbox,
   FeedbackConfig,
@@ -40,5 +43,6 @@ export {
   Tabs,
   TagsInput,
   TwoChoice,
+  PreviewLayout,
   withStatefulModel
 };

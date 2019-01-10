@@ -3,8 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="0.4.29"></a>
-## [0.4.29](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting-config@0.4.28...@pie-lib/charting-config@0.4.29) (2018-12-18)
+## [0.4.31](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting-config@0.4.30...@pie-lib/charting-config@0.4.31) (2019-01-08)
 
 **Note:** Version bump only for package @pie-lib/charting-config
 
@@ -12,28 +11,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-<a name="0.4.28"></a>
-## [0.4.28](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting-config@0.4.27...@pie-lib/charting-config@0.4.28) (2018-12-18)
-
-**Note:** Version bump only for package @pie-lib/charting-config
+## [0.4.30](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting-config@0.4.25...@pie-lib/charting-config@0.4.30) (2019-01-08)
 
 
+### Bug Fixes
 
-
-
-<a name="0.4.27"></a>
-## [0.4.27](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting-config@0.4.26...@pie-lib/charting-config@0.4.27) (2018-12-18)
-
-**Note:** Version bump only for package @pie-lib/charting-config
-
-
-
-
-
-<a name="0.4.26"></a>
-## [0.4.26](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting-config@0.4.25...@pie-lib/charting-config@0.4.26) (2018-12-18)
-
-**Note:** Version bump only for package @pie-lib/charting-config
+* **general:** bumped versions of some packages ([a38c7b5](https://github.com/pie-framework/pie-lib/commit/a38c7b5))
 
 
 

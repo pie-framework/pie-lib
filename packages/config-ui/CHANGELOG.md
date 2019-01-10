@@ -3,40 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="7.7.15"></a>
-## [7.7.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@7.7.14...@pie-lib/config-ui@7.7.15) (2018-12-18)
-
-**Note:** Version bump only for package @pie-lib/config-ui
+# [7.9.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@7.7.10...@pie-lib/config-ui@7.9.0) (2019-01-08)
 
 
 
+# 7.8.0 (2019-01-08)
 
 
-<a name="7.7.14"></a>
-## [7.7.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@7.7.13...@pie-lib/config-ui@7.7.14) (2018-12-18)
+### Features
 
-**Note:** Version bump only for package @pie-lib/config-ui
-
-
-
-
-
-<a name="7.7.13"></a>
-## [7.7.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@7.7.11...@pie-lib/config-ui@7.7.13) (2018-12-18)
-
-
-### Bug Fixes
-
-* bump config-ui version ([dd6b72c](https://github.com/pie-framework/pie-lib/commit/dd6b72c))
+* **config-ui:** created a new layout for the preview elements in order for them to have the right theme and updated tests ([edebb09](https://github.com/pie-framework/pie-lib/commit/edebb09))
 
 
 
+## 7.7.17 (2018-12-29)
 
 
-<a name="7.7.11"></a>
-## [7.7.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@7.7.10...@pie-lib/config-ui@7.7.11) (2018-12-18)
+### Features
 
-**Note:** Version bump only for package @pie-lib/config-ui
+* **config-ui:** added tests for the pie-lib/layout package and fixed the choice-configuration package test ([ecae46f](https://github.com/pie-framework/pie-lib/commit/ecae46f))
+* **config-ui:** used the react-measure package in order to get the width of the element to decide if the side panel is displayed or not ([13503ee](https://github.com/pie-framework/pie-lib/commit/13503ee))
+
+
+
+## 7.7.11 (2018-12-17)
+
+
+### Features
+
+* **config-ui:** added a layout component in order to be used by all elements to be rendered ([5bf1bbc](https://github.com/pie-framework/pie-lib/commit/5bf1bbc))
 
 
 

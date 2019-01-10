@@ -1,19 +1,22 @@
 import React from 'react';
 
-import { configure, shallow } from 'enzyme';
-import renderer from 'react-test-renderer';
 import List, { serialization } from '../index';
-import Util from '../../utils';
 import debug from 'debug';
 
 const log = debug('@pie-lib:editable-html:test:plugins:list');
 
 describe('ListPlugin', () => {
+  let next;
+
   describe('deserialize', () => {
+    next = jest.fn();
+
     const assertDeserialize = (tagName, expectedType) => {
       it(`should deserialize ${tagName} to ${expectedType}`, () => {
-        const out = serialization.deserialize({ tagName }, jest.fn());
+        const out = serialization.deserialize({ tagName, children: [], childNodes: [] }, next);
+
         expect(out).toMatchObject({ object: 'block', type: expectedType });
+        expect(next).toHaveBeenCalledWith([]);
       });
     };
     assertDeserialize('ul', 'ul_list');

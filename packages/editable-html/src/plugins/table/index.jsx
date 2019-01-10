@@ -284,7 +284,7 @@ export const serialization = {
         return {
           object: 'block',
           type: 'table_cell',
-          nodes: next(el.childNodes),
+          nodes: next(Array.from(el.children)),
           data: cellAttributes.reduce(attributesToMap(el), { header: false })
         };
       }
