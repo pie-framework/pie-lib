@@ -1,0 +1,150 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Graph snapshot renders 1`] = `
+<WithStyles(Root)
+  graphProps={
+    Object {
+      "domain": Object {
+        "max": 1,
+        "min": 0,
+        "step": 1,
+      },
+      "range": Object {
+        "max": 1,
+        "min": 0,
+        "step": 1,
+      },
+      "scale": Object {
+        "x": [Function],
+        "y": [Function],
+      },
+      "size": Object {
+        "height": 400,
+        "width": 400,
+      },
+      "snap": Object {
+        "x": [Function],
+        "y": [Function],
+      },
+    }
+  }
+  onMouseMove={[Function]}
+>
+  <WithStyles(Grid)
+    graphProps={
+      Object {
+        "domain": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "range": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "scale": Object {
+          "x": [Function],
+          "y": [Function],
+        },
+        "size": Object {
+          "height": 400,
+          "width": 400,
+        },
+        "snap": Object {
+          "x": [Function],
+          "y": [Function],
+        },
+      }
+    }
+  />
+  <Axes
+    graphProps={
+      Object {
+        "domain": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "range": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "scale": Object {
+          "x": [Function],
+          "y": [Function],
+        },
+        "size": Object {
+          "height": 400,
+          "width": 400,
+        },
+        "snap": Object {
+          "x": [Function],
+          "y": [Function],
+        },
+      }
+    }
+    includeArrows={true}
+  />
+  <Bg
+    graphProps={
+      Object {
+        "domain": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "range": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "scale": Object {
+          "x": [Function],
+          "y": [Function],
+        },
+        "size": Object {
+          "height": 400,
+          "width": 400,
+        },
+        "snap": Object {
+          "x": [Function],
+          "y": [Function],
+        },
+      }
+    }
+    height={400}
+    onClick={[Function]}
+    width={400}
+  />
+  <WithStyles(Labels)
+    graphProps={
+      Object {
+        "domain": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "range": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "scale": Object {
+          "x": [Function],
+          "y": [Function],
+        },
+        "size": Object {
+          "height": 400,
+          "width": 400,
+        },
+        "snap": Object {
+          "x": [Function],
+          "y": [Function],
+        },
+      }
+    }
+  />
+</WithStyles(Root)>
+`;

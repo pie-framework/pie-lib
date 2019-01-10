@@ -3,10 +3,10 @@
 exports[`langs snapshot renders 1`] = `
 <div>
   <WithStyles(FormControl)>
-    <WithStyles(InputLabel)
+    <WithStyles(WithFormControlContext(InputLabel))
       htmlFor="1"
     />
-    <WithStyles(Select)
+    <WithStyles(WithFormControlContext(Select))
       input={
         <WithStyles(Input)
           id="1"
@@ -26,7 +26,7 @@ exports[`langs snapshot renders 1`] = `
       >
         es-ES
       </WithStyles(MenuItem)>
-    </WithStyles(Select)>
+    </WithStyles(WithFormControlContext(Select))>
   </WithStyles(FormControl)>
 </div>
 `;

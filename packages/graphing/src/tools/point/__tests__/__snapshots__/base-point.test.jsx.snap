@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BasePoint snapshot renders 1`] = `
+<g
+  className="className"
+  onChange={[MockFunction]}
+>
+  <circle
+    r="7"
+  />
+</g>
+`;

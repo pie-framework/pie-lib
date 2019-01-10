@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ToggleBar snapshot renders 1`] = `
+<div
+  className="className"
+>
+  <WithStyles(Button)
+    className=""
+    classes={
+      Object {
+        "disabled": undefined,
+      }
+    }
+    disabled={false}
+    key="one"
+    onClick={[Function]}
+    size="small"
+    value="one"
+    variant="outlined"
+  >
+    one
+  </WithStyles(Button)>
+  <WithStyles(Button)
+    className=""
+    classes={
+      Object {
+        "disabled": undefined,
+      }
+    }
+    disabled={false}
+    key="two"
+    onClick={[Function]}
+    size="small"
+    value="two"
+    variant="outlined"
+  >
+    two
+  </WithStyles(Button)>
+</div>
+`;

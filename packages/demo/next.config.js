@@ -43,8 +43,8 @@ module.exports = withCSS({
       '/config-ui/tabs': { page: '/config-ui/tabs' },
       '/render-ui': { page: '/render-ui' },
       '/scoring-config': { page: '/scoring-config' },
-      '/charting/plot-points': { page: '/charting/plot-points' },
-      '/charting/graph-lines': { page: '/charting/graph-lines' },
+      '/graphing': { page: '/graphing' },
+      '/charting': { page: '/charting' },
       '/tools/ruler': { page: '/tools/ruler' },
       '/tools/protractor': { page: '/tools/protractor' },
       '/tools/rotatable': { page: '/tools/rotatable' }

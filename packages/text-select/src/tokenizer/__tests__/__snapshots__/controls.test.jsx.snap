@@ -40,7 +40,7 @@ exports[`controls snapshot renders 1`] = `
       Clear
     </WithStyles(Button)>
   </div>
-  <WithStyles(FormControlLabel)
+  <WithStyles(WithFormControlContext(FormControlLabel))
     control={
       <WithStyles(Switch)
         checked={false}

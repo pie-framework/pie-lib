@@ -4,11 +4,15 @@ import mathExpressions from 'math-expressions';
 function prepareExpression(string, isLatex) {
   let returnValue = string ? string.trim() : '';
 
-  return isLatex ? mathExpressions.fromLatex(`${returnValue}`).toString() : mathExpressions.fromText(`${returnValue}`).toString();
+  return isLatex
+    ? mathExpressions.fromLatex(`${returnValue}`).toString()
+    : mathExpressions.fromText(`${returnValue}`).toString();
 }
 
 function canExpressionBeRationalized(expression) {
-  return !['sin', 'cos', 'tan', 'ctg'].some(trigFunc => `${expression}`.includes(trigFunc));
+  return !['sin', 'cos', 'tan', 'ctg'].some(trigFunc =>
+    `${expression}`.includes(trigFunc)
+  );
 }
 
 export default function areValuesEqual(valueOne, valueTwo, options = {}) {
@@ -20,8 +24,12 @@ export default function areValuesEqual(valueOne, valueTwo, options = {}) {
   const preparedValueOne = prepareExpression(valueOne, isLatex);
   const preparedValueTwo = prepareExpression(valueTwo, isLatex);
 
-  let one = canExpressionBeRationalized(preparedValueOne) ? mathjs.rationalize(preparedValueOne) : preparedValueOne;
-  let two = canExpressionBeRationalized(preparedValueTwo) ? mathjs.rationalize(preparedValueTwo) : preparedValueTwo;
+  let one = canExpressionBeRationalized(preparedValueOne)
+    ? mathjs.rationalize(preparedValueOne)
+    : preparedValueOne;
+  let two = canExpressionBeRationalized(preparedValueTwo)
+    ? mathjs.rationalize(preparedValueTwo)
+    : preparedValueTwo;
 
   one = mathjs.simplify(one);
   two = mathjs.simplify(two);

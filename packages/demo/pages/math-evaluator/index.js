@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
-import areValuesEqual from '../../../packages/math-evaluator/src/index';
+import areValuesEqual from '@pie-lib/math-evaluator';
 import mathExpressions from 'math-expressions';
 import katex from 'katex';
 import debug from 'debug';
@@ -55,13 +55,13 @@ class RawMarkupPreview extends React.Component {
     const { markup, classes } = this.props;
     return (
       <div>
-        <Typography variant="title">Markup</Typography>
+        <Typography variant="h6">Markup</Typography>
         <div
           ref={r => (this.preview = r)}
           dangerouslySetInnerHTML={{ __html: markup }}
         />
         <hr />
-        <Typography variant="subheading">Raw</Typography>
+        <Typography variant="subtitle1">Raw</Typography>
         <pre className={classes.prettyPrint}>{markup}</pre>
         <hr />
       </div>
@@ -225,7 +225,8 @@ class Demo extends React.Component {
             />
           </label>
           <p>
-            This is a checkbox to indicate whether the compared values will be latex format or not
+            This is a checkbox to indicate whether the compared values will be
+            latex format or not
           </p>
           <label>
             {' '}

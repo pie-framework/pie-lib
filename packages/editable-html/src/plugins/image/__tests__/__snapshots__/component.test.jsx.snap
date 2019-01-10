@@ -7,24 +7,22 @@ Array [
   </span>,
   <div
     className=""
-    onFocus={undefined}
   >
     <div
-      className="MuiLinearProgress-root-1 MuiLinearProgress-colorPrimary-2"
+      className="MuiLinearProgress-root-1 MuiLinearProgress-colorPrimary-2 MuiLinearProgress-indeterminate-5"
       mode="determinate"
       role="progressbar"
     >
       <div
-        className="MuiLinearProgress-bar-9 MuiLinearProgress-barColorPrimary-10 MuiLinearProgress-bar1Indeterminate-12"
+        className="MuiLinearProgress-bar-11 MuiLinearProgress-barColorPrimary-12 MuiLinearProgress-bar1Indeterminate-14"
         style={Object {}}
       />
       <div
-        className="MuiLinearProgress-bar-9 MuiLinearProgress-barColorPrimary-10 MuiLinearProgress-bar2Indeterminate-15"
+        className="MuiLinearProgress-bar-11 MuiLinearProgress-barColorPrimary-12 MuiLinearProgress-bar2Indeterminate-17"
         style={Object {}}
       />
     </div>
     <img
-      src={undefined}
       style={
         Object {
           "height": "50px",
