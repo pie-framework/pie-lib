@@ -3,20 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [0.5.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@0.2.1...@pie-lib/math-toolbar@0.5.0) (2019-01-08)
+<a name="0.5.1"></a>
+## [0.5.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@0.5.0...@pie-lib/math-toolbar@0.5.1) (2019-01-10)
 
 
 ### Bug Fixes
 
-* **general:** bumped versions of some packages ([a38c7b5](https://github.com/pie-framework/pie-lib/commit/a38c7b5))
-* **math-toolbar:** fixed test ([84adb15](https://github.com/pie-framework/pie-lib/commit/84adb15))
-
-
-### Features
-
-* **math-toolbar:** answer block column for keypad and related functionality ([2fd700a](https://github.com/pie-framework/pie-lib/commit/2fd700a))
-* **math-toolbar:** answer block initial implementation ([2200ee4](https://github.com/pie-framework/pie-lib/commit/2200ee4))
-* **math-toolbar:** version bumps ([e88dc9a](https://github.com/pie-framework/pie-lib/commit/e88dc9a))
+* version bump ([3dcbea9](https://github.com/pie-framework/pie-lib/commit/3dcbea9))
 
 
 

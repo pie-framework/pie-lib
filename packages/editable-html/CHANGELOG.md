@@ -3,7 +3,8 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [6.14.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.13.2...@pie-lib/editable-html@6.14.0) (2019-01-08)
+<a name="6.15.0"></a>
+# [6.15.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.13.5...@pie-lib/editable-html@6.15.0) (2019-01-10)
 
 
 ### Bug Fixes
@@ -12,14 +13,17 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+<a name="6.13.8"></a>
 ## 6.13.8 (2019-01-08)
 
 
 
+<a name="6.13.7"></a>
 ## 6.13.7 (2019-01-08)
 
 
 
+<a name="6.13.6"></a>
 ## 6.13.6 (2019-01-08)
 
 
@@ -34,8 +38,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **editable-html:** removed the wrap and unwrap functions and used those from the math-rendering package ([bce1077](https://github.com/pie-framework/pie-lib/commit/bce1077))
 * **editable-html:** updated the math rendering package ([cdd08f7](https://github.com/pie-framework/pie-lib/commit/cdd08f7))
 * **editable-html:** updated the math-rendering package ([1c38c0b](https://github.com/pie-framework/pie-lib/commit/1c38c0b))
-* **editable-html-and-math-rendering:** moved the wrap and unwrap math functions to the math-rendering package and used it there as well ([e68f955](https://github.com/pie-framework/pie-lib/commit/e68f955))
-* **math-rendering:** removed the editable-html changes for now ([c73faa6](https://github.com/pie-framework/pie-lib/commit/c73faa6))
 
 
 ### Features
