@@ -59,7 +59,7 @@ const run = async () => {
 
   const nextCmd = './node_modules/.bin/next';
 
-  nextProcess = spawn(nextCmd, {
+  nextProcess = spawn(nextCmd, ['packages/demo'], {
     stdio: 'inherit',
     env: Object.assign({}, process.env, { NODE_ENV: 'development' })
   });
