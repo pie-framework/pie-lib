@@ -27,7 +27,9 @@ const scope = argv.scope
   ? Array.isArray(argv.scope)
     ? argv.scope
     : [argv.scope]
-  : fs.readdirSync('packages').filter(n => !n.startsWith('.'));
+  : fs
+      .readdirSync('packages')
+      .filter(n => !n.startsWith('.') && !n.startsWith('demo'));
 
 const isDemoInstalled = async () => {
   const exists = await fs.exists('packages/demo/node_modules');
@@ -48,17 +50,16 @@ const run = async () => {
 
   log('scope: ', scope);
 
-  const args = scope.map(s => ({
-    src: `packages/${s}/src`,
-    target: `packages/${s}/lib`
-  }));
+  // const args = scope.map(s => ({
+  //   src: `packages/${s}/src`,
+  //   target: `packages/${s}/lib`
+  // }));
 
-  watcher = watch(args);
+  // watcher = watch(args);
 
   const nextCmd = './node_modules/.bin/next';
 
   nextProcess = spawn(nextCmd, {
-    cwd: 'demo',
     stdio: 'inherit',
     env: Object.assign({}, process.env, { NODE_ENV: 'development' })
   });

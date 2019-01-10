@@ -3,9 +3,15 @@ import { MathML } from 'mathjax3/mathjax3/input/mathml';
 import { TeX } from 'mathjax3/mathjax3/input/tex';
 
 import { CHTML } from 'mathjax3/mathjax3/output/chtml';
-import { browserAdaptor as adaptor } from 'mathjax3/mathjax3/adaptors/browserAdaptor';
 import { RegisterHTMLHandler } from 'mathjax3/mathjax3/handlers/html';
-RegisterHTMLHandler(adaptor());
+
+if (typeof window !== 'undefined') {
+  const {
+    browserAdaptor
+  } = require('mathjax3/mathjax3/adaptors/browserAdaptor');
+  RegisterHTMLHandler(browserAdaptor());
+}
+
 import debug from 'debug';
 import { wrapMath, unWrapMath } from './normalization';
 
@@ -29,7 +35,7 @@ const defaultOpts = () => {
   }
 };
 
-export const fixMathElement = (element) => {
+export const fixMathElement = element => {
   let property = 'innerText';
 
   if (element.textContent) {

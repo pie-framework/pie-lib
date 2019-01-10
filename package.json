@@ -17,8 +17,9 @@
     "lint-two": "lerna exec -- \\$LERNA_ROOT_PATH/node_modules/.bin/eslint  --ignore-path \\$LERNA_ROOT_PATH/.eslintignore --ext .js --ext .jsx src",
     "clean": "lerna exec -- rm -fr lib",
     "release": "npm run clean && npm run build && npm test && lerna publish --conventional-commits",
-    "build": "npm run clean && npm run lint-two && lerna exec -- \\$LERNA_ROOT_PATH/node_modules/.bin/babel --ignore '/__test__/','/__tests__/' src -d lib",
-    "build:light": "lerna exec -- \\$LERNA_ROOT_PATH/node_modules/.bin/babel --ignore '/__test__/','/__tests__/' src -d lib"
+    "build": "npm run clean && npm run lint-two && npm run babelize",
+    "build:light": "npm run babelize",
+    "babelize": "lerna exec -- \\$LERNA_ROOT_PATH/scripts/babelize \\$LERNA_PACKAGE_NAME"
   },
   "devDependencies": {
     "@babel/runtime": "7.2.0",
@@ -43,6 +44,7 @@
     "lerna": "^3.10.2",
     "lodash": "^4.17.11",
     "minimist": "^1.2.0",
+    "next": "7.0.2",
     "prettier": "^1.15.3",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
