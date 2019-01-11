@@ -1,5 +1,9 @@
 import React from 'react';
-import { withStyles, createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import {
+  withStyles,
+  createMuiTheme,
+  MuiThemeProvider
+} from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 
 class PreviewLayout extends React.Component {
@@ -14,11 +18,7 @@ class PreviewLayout extends React.Component {
   render() {
     const { children, classes } = this.props;
 
-    return (
-      <div className={classes.container}>
-        {children}
-      </div>
-    );
+    return <div className={classes.container}>{children}</div>;
   }
 }
 
@@ -38,12 +38,12 @@ const theme = createMuiTheme({
   },
   overrides: {
     MuiRadio: {
-      checked: {
+      '&$checked': {
         color: '#3f51b5 !important'
       }
     },
     MuiCheckbox: {
-      checked: {
+      '&$checked': {
         color: '#3f51b5 !important'
       }
     },
@@ -53,7 +53,7 @@ const theme = createMuiTheme({
       }
     },
     MuiSwitch: {
-      checked: {
+      '&$checked': {
         color: '#3f51b5 !important',
         '& + $bar': {
           backgroundColor: '#3f51b5 !important',

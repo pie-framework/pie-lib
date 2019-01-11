@@ -99,13 +99,13 @@ class RawMarkupPreview extends React.Component {
     const { markup, classes } = this.props;
     return (
       <div>
-        <Typography variant="title">Markup</Typography>
+        <Typography variant="h6">Markup</Typography>
         <div
           ref={r => (this.preview = r)}
           dangerouslySetInnerHTML={{ __html: markup }}
         />
         <hr />
-        <Typography variant="subheading">Raw</Typography>
+        <Typography variant="subtitle1">Raw</Typography>
         <pre className={classes.prettyPrint}>{markup}</pre>
         <hr />
       </div>
@@ -255,8 +255,8 @@ class RteDemo extends React.Component {
     //activePlugins={['bold', 'bulleted-list', 'numbered-list']}
     return mounted ? (
       <div>
-        <Typography variant="title">EditableHtml</Typography>
-        <Typography variant="body1">
+        <Typography variant="h6">EditableHtml</Typography>
+        <Typography variant="body2">
           A rich text editor with a material design look.
         </Typography>
         <br />

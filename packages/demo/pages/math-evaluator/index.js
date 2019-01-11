@@ -55,13 +55,13 @@ class RawMarkupPreview extends React.Component {
     const { markup, classes } = this.props;
     return (
       <div>
-        <Typography variant="title">Markup</Typography>
+        <Typography variant="h6">Markup</Typography>
         <div
           ref={r => (this.preview = r)}
           dangerouslySetInnerHTML={{ __html: markup }}
         />
         <hr />
-        <Typography variant="subheading">Raw</Typography>
+        <Typography variant="subtitle1">Raw</Typography>
         <pre className={classes.prettyPrint}>{markup}</pre>
         <hr />
       </div>

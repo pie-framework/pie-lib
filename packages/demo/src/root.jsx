@@ -41,7 +41,7 @@ const styles = theme => ({
 });
 
 const PageTitle = withRouter(({ router, href }) => (
-  <Typography variant="title" color="inherit" noWrap>
+  <Typography variant="h6" color="inherit" noWrap>
     {`@pie-lib/${router.pathname.split('/')[1]}`}
   </Typography>
 ));

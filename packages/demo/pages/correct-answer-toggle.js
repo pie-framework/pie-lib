@@ -33,8 +33,8 @@ export class Wrapper extends React.Component {
     const { mounted } = this.state;
     return mounted ? (
       <div>
-        <Typography variant="title">CorrectAnswerToggle</Typography>
-        <Typography variant="body1">
+        <Typography variant="h6">CorrectAnswerToggle</Typography>
+        <Typography>
           Used when you want to allow the user to see a correct answer
         </Typography>
         <hr />

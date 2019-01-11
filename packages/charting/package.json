@@ -31,7 +31,7 @@
     "react-jss": "^8.6.1"
   },
   "peerDependencies": {
-    "react": "^16.3.1"
+    "react": "^16.7.0"
   },
   "jest": {
     "testRegex": "(/__tests__/.*\\.test.jsx|(\\.|/)(test|spec))\\.jsx?$"

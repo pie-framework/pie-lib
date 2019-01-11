@@ -19,7 +19,7 @@ export class Wrapper extends React.Component {
     const { classes } = this.props;
     return (
       <div>
-        <Typography variant="title">Drag</Typography>
+        <Typography variant="h6">Drag</Typography>
         <Divider />
         <PlaceHolder className={classes.grid} grid={{ columns: 3 }}>
           <Choice>foo bar</Choice>

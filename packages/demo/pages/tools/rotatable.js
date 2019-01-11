@@ -167,8 +167,8 @@ class Demo extends React.Component {
     const { mounted } = this.state;
     return mounted ? (
       <div>
-        <Typography variant="title">Rotatable</Typography>
-        <Typography variant="body1">
+        <Typography variant="h6">Rotatable</Typography>
+        <Typography variant="body2">
           This is the underlying component for Ruler/Protractor
         </Typography>
         <Rotatable
@@ -186,7 +186,7 @@ class Demo extends React.Component {
 
         <br />
         <br />
-        <Typography variant="body1">
+        <Typography variant="body2">
           This is an example of using anchor-utils distanceBetween
         </Typography>
         <Playground degrees={-15} from={'bottom right'} to={'bottom left'} />

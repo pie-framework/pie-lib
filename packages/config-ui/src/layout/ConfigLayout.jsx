@@ -4,25 +4,25 @@ import Measure from 'react-measure';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import classnames from 'classnames';
-import { withStyles, createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import {
+  withStyles,
+  createMuiTheme,
+  MuiThemeProvider
+} from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 
 const Section = props => {
-  const { classes, title, items} = props;
+  const { classes, title, items } = props;
 
-  return items && items.length > 0 && (
-    <div className={classes.section}>
-      {
-        title &&
-        <h2>
-          {title}
-        </h2>
-      }
-      <div className={classes.sidePanelItems}>
-        {items}
+  return (
+    items &&
+    items.length > 0 && (
+      <div className={classes.section}>
+        {title && <h2>{title}</h2>}
+        <div className={classes.sidePanelItems}>{items}</div>
       </div>
-    </div>
-  )
+    )
+  );
 };
 
 Section.propTypes = {
@@ -41,7 +41,7 @@ const Sections = props => {
       title={section.title}
       items={section.items}
     />
-  ))
+  ));
 };
 
 Sections.propTypes = {
@@ -61,15 +61,11 @@ class SidePanel extends React.Component {
   };
 
   render() {
-    const { classes} = this.props;
+    const { classes } = this.props;
 
     return (
-      <div
-        className={classes.sidePanel}
-      >
-        <div
-          className={classes.sections}
-        >
+      <div className={classes.sidePanel}>
+        <div className={classes.sections}>
           <Sections {...this.props} />
         </div>
       </div>
@@ -118,9 +114,7 @@ class ConfigLayout extends React.Component {
       return null;
     }
 
-    return (
-      <SidePanel {...this.props}/>
-    );
+    return <SidePanel {...this.props} />;
   };
 
   getRightIndex = () => {
@@ -140,7 +134,7 @@ class ConfigLayout extends React.Component {
     return !disableSidePanel && !hasSidePanel;
   };
 
-  renderContent = (measureRef) => {
+  renderContent = measureRef => {
     const { classes, regularItems, scoringItem, disableSidePanel } = this.props;
     const { index } = this.state;
     const hasSidePanel = this.hasSidePanel();
@@ -148,38 +142,27 @@ class ConfigLayout extends React.Component {
     return (
       <div
         ref={measureRef}
-        className={classnames(
-          classes.container,
-          {
-            [classes.hasSidePanel]: hasSidePanel
-          }
-        )}
+        className={classnames(classes.container, {
+          [classes.hasSidePanel]: hasSidePanel
+        })}
       >
         <Tabs
           onChange={this.onTabsChange}
           value={index}
           indicatorColor="primary"
         >
-          <Tab label="Design"/>
-          {this.shouldRenderSettingsTab() && <Tab label="Settings"/>}
-          {scoringItem && <Tab label="Scoring"/>}
+          <Tab label="Design" />
+          {this.shouldRenderSettingsTab() && <Tab label="Settings" />}
+          {scoringItem && <Tab label="Scoring" />}
         </Tabs>
         <div className={classes.contentContainer}>
           {disableSidePanel && <Sections {...this.props} />}
           {index === 0 && regularItems}
-          {
-            !hasSidePanel && index === 1 && !disableSidePanel &&
+          {!hasSidePanel && index === 1 && !disableSidePanel && (
             <Sections {...this.props} />
-          }
-          {
-            (!hasSidePanel && index === 2 || index === 1) &&
-            scoringItem
-          }
-          {
-            hasSidePanel &&
-            !disableSidePanel &&
-            this.renderSidePanel()
-          }
+          )}
+          {((!hasSidePanel && index === 2) || index === 1) && scoringItem}
+          {hasSidePanel && !disableSidePanel && this.renderSidePanel()}
         </div>
       </div>
     );
@@ -271,12 +254,12 @@ const theme = createMuiTheme({
   },
   overrides: {
     MuiRadio: {
-      checked: {
+      '&$checked': {
         color: '#3f51b5 !important'
       }
     },
     MuiCheckbox: {
-      checked: {
+      '&$checked': {
         color: '#3f51b5 !important'
       }
     },
@@ -286,7 +269,7 @@ const theme = createMuiTheme({
       }
     },
     MuiSwitch: {
-      checked: {
+      '&$checked': {
         color: '#3f51b5 !important',
         '& + $bar': {
           backgroundColor: '#3f51b5 !important',

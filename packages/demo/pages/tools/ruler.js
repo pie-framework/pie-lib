@@ -25,20 +25,20 @@ class Demo extends React.Component {
     const { mounted } = this.state;
     return mounted ? (
       <div>
-        <Typography variant="title">Ruler</Typography>
-        <Typography variant="body1">
+        <Typography variant="h6">Ruler</Typography>
+        <Typography variant="body2">
           Default ruler is 12in imperial @ 40px per inch
         </Typography>
         <Ruler />
         <br />
         <br />
-        <Typography variant="body1">
+        <Typography variant="body2">
           You can set it to Metric - 10cm @ 48px per cm
         </Typography>
         <Ruler width={480} measure={'metric'} units={6} />
         <br />
         <br />
-        <Typography variant="body1">
+        <Typography variant="body2">
           Or you can change the units for 6in @ 60px per inch
         </Typography>
         <Ruler measure={'imperial'} width={480} units={6} />
