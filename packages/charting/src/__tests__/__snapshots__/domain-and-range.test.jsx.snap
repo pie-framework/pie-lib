@@ -1,37 +1,34 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`snapshot renders correctly 1`] = `
-<div
-  className={undefined}
->
+<div>
   <svg
     className="DomainAndRange-svg-0-1-2"
     height={500}
     width={500}
   >
     <g
-      className="cx-group vx-grid"
+      className="vx-group vx-grid"
       transform="translate(0, 0)"
     >
       <g
-        className="cx-group vx-rows"
+        className="vx-group vx-rows"
         transform="translate(0, 0)"
       />
       <g
-        className="cx-group vx-columns"
+        className="vx-group vx-columns"
         transform="translate(0, 0)"
       />
     </g>
     <g
-      className="cx-group vx-axis"
+      className="vx-group vx-axis"
       transform="translate(250, 0)"
     >
       <line
         className="vx-line vx-axis-line"
+        fill="transparent"
         stroke="rgba(144, 164, 174, 1)"
-        strokeDasharray=""
         strokeWidth={2}
-        transform=""
         x1={0}
         x2={0}
         y1={0.5}
@@ -40,15 +37,14 @@ exports[`snapshot renders correctly 1`] = `
       
     </g>
     <g
-      className="cx-group vx-axis"
+      className="vx-group vx-axis"
       transform="translate(0, 250)"
     >
       <line
         className="vx-line vx-axis-line"
+        fill="transparent"
         stroke="rgba(144, 164, 174, 1)"
-        strokeDasharray=""
         strokeWidth={2}
-        transform=""
         x1={0.5}
         x2={500.5}
         y1={0}

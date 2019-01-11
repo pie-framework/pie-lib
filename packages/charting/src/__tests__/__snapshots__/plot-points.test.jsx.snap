@@ -1,29 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`snapshot renders correctly 1`] = `
-<div
-  className={undefined}
->
+<div>
   <svg
     className="DomainAndRange-svg-0-1-2"
     height={500}
     width={500}
   >
     <g
-      className="cx-group vx-grid"
+      className="vx-group vx-grid"
       transform="translate(0, 0)"
     >
       <g
-        className="cx-group vx-rows"
+        className="vx-group vx-rows"
         transform="translate(0, 0)"
       >
         <line
           className="vx-line"
+          fill="transparent"
           stroke="rgb(236, 239, 241)"
-          strokeDasharray=""
           strokeWidth={1}
-          style={undefined}
-          transform=""
           x1={0}
           x2={500}
           y1={0}
@@ -31,11 +27,9 @@ exports[`snapshot renders correctly 1`] = `
         />
         <line
           className="vx-line"
+          fill="transparent"
           stroke="rgb(236, 239, 241)"
-          strokeDasharray=""
           strokeWidth={1}
-          style={undefined}
-          transform=""
           x1={0}
           x2={500}
           y1={25}
@@ -43,11 +37,9 @@ exports[`snapshot renders correctly 1`] = `
         />
         <line
           className="vx-line"
+          fill="transparent"
           stroke="rgb(236, 239, 241)"
-          strokeDasharray=""
           strokeWidth={1}
-          style={undefined}
-          transform=""
           x1={0}
           x2={500}
           y1={50}
@@ -55,11 +47,9 @@ exports[`snapshot renders correctly 1`] = `
         />
         <line
           className="vx-line"
+          fill="transparent"
           stroke="rgb(236, 239, 241)"
-          strokeDasharray=""
           strokeWidth={1}
-          style={undefined}
-          transform=""
           x1={0}
           x2={500}
           y1={75}
@@ -67,11 +57,9 @@ exports[`snapshot renders correctly 1`] = `
         />
         <line
           className="vx-line"
+          fill="transparent"
           stroke="rgb(236, 239, 241)"
-          strokeDasharray=""
           strokeWidth={1}
-          style={undefined}
-          transform=""
           x1={0}
           x2={500}
           y1={100}
@@ -79,11 +67,9 @@ exports[`snapshot renders correctly 1`] = `
         />
         <line
           className="vx-line"
+          fill="transparent"
           stroke="rgb(236, 239, 241)"
-          strokeDasharray=""
           strokeWidth={1}
-          style={undefined}
-          transform=""
           x1={0}
           x2={500}
           y1={125}
@@ -91,11 +77,9 @@ exports[`snapshot renders correctly 1`] = `
         />
         <line
           className="vx-line"
+          fill="transparent"
           stroke="rgb(236, 239, 241)"
-          strokeDasharray=""
           strokeWidth={1}
-          style={undefined}
-          transform=""
           x1={0}
           x2={500}
           y1={150}
@@ -103,11 +87,9 @@ exports[`snapshot renders correctly 1`] = `
         />
         <line
           className="vx-line"
+          fill="transparent"
           stroke="rgb(236, 239, 241)"
-          strokeDasharray=""
           strokeWidth={1}
-          style={undefined}
-          transform=""
           x1={0}
           x2={500}
           y1={175}
@@ -115,11 +97,9 @@ exports[`snapshot renders correctly 1`] = `
         />
         <line
           className="vx-line"
+          fill="transparent"
           stroke="rgb(236, 239, 241)"
-          strokeDasharray=""
           strokeWidth={1}
-          style={undefined}
-          transform=""
           x1={0}
           x2={500}
           y1={200}
@@ -127,11 +107,9 @@ exports[`snapshot renders correctly 1`] = `
         />
         <line
           className="vx-line"
+          fill="transparent"
           stroke="rgb(236, 239, 241)"
-          strokeDasharray=""
           strokeWidth={1}
-          style={undefined}
-          transform=""
           x1={0}
           x2={500}
           y1={225}
@@ -139,11 +117,9 @@ exports[`snapshot renders correctly 1`] = `
         />
         <line
           className="vx-line"
+          fill="transparent"
           stroke="rgb(236, 239, 241)"
-          strokeDasharray=""
           strokeWidth={1}
-          style={undefined}
-          transform=""
           x1={0}
           x2={500}
           y1={250}
@@ -151,11 +127,9 @@ exports[`snapshot renders correctly 1`] = `
         />
         <line
           className="vx-line"
+          fill="transparent"
           stroke="rgb(236, 239, 241)"
-          strokeDasharray=""
           strokeWidth={1}
-          style={undefined}
-          transform=""
           x1={0}
           x2={500}
           y1={275}
@@ -163,11 +137,9 @@ exports[`snapshot renders correctly 1`] = `
         />
         <line
           className="vx-line"
+          fill="transparent"
           stroke="rgb(236, 239, 241)"
-          strokeDasharray=""
           strokeWidth={1}
-          style={undefined}
-          transform=""
           x1={0}
           x2={500}
           y1={300}
@@ -175,11 +147,9 @@ exports[`snapshot renders correctly 1`] = `
         />
         <line
           className="vx-line"
+          fill="transparent"
           stroke="rgb(236, 239, 241)"
-          strokeDasharray=""
           strokeWidth={1}
-          style={undefined}
-          transform=""
           x1={0}
           x2={500}
           y1={325}
@@ -187,11 +157,9 @@ exports[`snapshot renders correctly 1`] = `
         />
         <line
           className="vx-line"
+          fill="transparent"
           stroke="rgb(236, 239, 241)"
-          strokeDasharray=""
           strokeWidth={1}
-          style={undefined}
-          transform=""
           x1={0}
           x2={500}
           y1={350}
@@ -199,11 +167,9 @@ exports[`snapshot renders correctly 1`] = `
         />
         <line
           className="vx-line"
+          fill="transparent"
           stroke="rgb(236, 239, 241)"
-          strokeDasharray=""
           strokeWidth={1}
-          style={undefined}
-          transform=""
           x1={0}
           x2={500}
           y1={375}
@@ -211,11 +177,9 @@ exports[`snapshot renders correctly 1`] = `
         />
         <line
           className="vx-line"
+          fill="transparent"
           stroke="rgb(236, 239, 241)"
-          strokeDasharray=""
           strokeWidth={1}
-          style={undefined}
-          transform=""
           x1={0}
           x2={500}
           y1={400}
@@ -223,11 +187,9 @@ exports[`snapshot renders correctly 1`] = `
         />
         <line
           className="vx-line"
+          fill="transparent"
           stroke="rgb(236, 239, 241)"
-          strokeDasharray=""
           strokeWidth={1}
-          style={undefined}
-          transform=""
           x1={0}
           x2={500}
           y1={425}
@@ -235,11 +197,9 @@ exports[`snapshot renders correctly 1`] = `
         />
         <line
           className="vx-line"
+          fill="transparent"
           stroke="rgb(236, 239, 241)"
-          strokeDasharray=""
           strokeWidth={1}
-          style={undefined}
-          transform=""
           x1={0}
           x2={500}
           y1={450}
@@ -247,11 +207,9 @@ exports[`snapshot renders correctly 1`] = `
         />
         <line
           className="vx-line"
+          fill="transparent"
           stroke="rgb(236, 239, 241)"
-          strokeDasharray=""
           strokeWidth={1}
-          style={undefined}
-          transform=""
           x1={0}
           x2={500}
           y1={475}
@@ -259,11 +217,9 @@ exports[`snapshot renders correctly 1`] = `
         />
         <line
           className="vx-line"
+          fill="transparent"
           stroke="rgb(236, 239, 241)"
-          strokeDasharray=""
           strokeWidth={1}
-          style={undefined}
-          transform=""
           x1={0}
           x2={500}
           y1={500}
@@ -271,16 +227,14 @@ exports[`snapshot renders correctly 1`] = `
         />
       </g>
       <g
-        className="cx-group vx-columns"
+        className="vx-group vx-columns"
         transform="translate(0, 0)"
       >
         <line
           className="vx-line"
+          fill="transparent"
           stroke="rgb(236, 239, 241)"
-          strokeDasharray=""
           strokeWidth={1}
-          style={undefined}
-          transform=""
           x1={0}
           x2={0}
           y1={0}
@@ -288,11 +242,9 @@ exports[`snapshot renders correctly 1`] = `
         />
         <line
           className="vx-line"
+          fill="transparent"
           stroke="rgb(236, 239, 241)"
-          strokeDasharray=""
           strokeWidth={1}
-          style={undefined}
-          transform=""
           x1={25}
           x2={25}
           y1={0}
@@ -300,11 +252,9 @@ exports[`snapshot renders correctly 1`] = `
         />
         <line
           className="vx-line"
+          fill="transparent"
           stroke="rgb(236, 239, 241)"
-          strokeDasharray=""
           strokeWidth={1}
-          style={undefined}
-          transform=""
           x1={50}
           x2={50}
           y1={0}
@@ -312,11 +262,9 @@ exports[`snapshot renders correctly 1`] = `
         />
         <line
           className="vx-line"
+          fill="transparent"
           stroke="rgb(236, 239, 241)"
-          strokeDasharray=""
           strokeWidth={1}
-          style={undefined}
-          transform=""
           x1={75}
           x2={75}
           y1={0}
@@ -324,11 +272,9 @@ exports[`snapshot renders correctly 1`] = `
         />
         <line
           className="vx-line"
+          fill="transparent"
           stroke="rgb(236, 239, 241)"
-          strokeDasharray=""
           strokeWidth={1}
-          style={undefined}
-          transform=""
           x1={100}
           x2={100}
           y1={0}
@@ -336,11 +282,9 @@ exports[`snapshot renders correctly 1`] = `
         />
         <line
           className="vx-line"
+          fill="transparent"
           stroke="rgb(236, 239, 241)"
-          strokeDasharray=""
           strokeWidth={1}
-          style={undefined}
-          transform=""
           x1={125}
           x2={125}
           y1={0}
@@ -348,11 +292,9 @@ exports[`snapshot renders correctly 1`] = `
         />
         <line
           className="vx-line"
+          fill="transparent"
           stroke="rgb(236, 239, 241)"
-          strokeDasharray=""
           strokeWidth={1}
-          style={undefined}
-          transform=""
           x1={150}
           x2={150}
           y1={0}
@@ -360,11 +302,9 @@ exports[`snapshot renders correctly 1`] = `
         />
         <line
           className="vx-line"
+          fill="transparent"
           stroke="rgb(236, 239, 241)"
-          strokeDasharray=""
           strokeWidth={1}
-          style={undefined}
-          transform=""
           x1={175}
           x2={175}
           y1={0}
@@ -372,11 +312,9 @@ exports[`snapshot renders correctly 1`] = `
         />
         <line
           className="vx-line"
+          fill="transparent"
           stroke="rgb(236, 239, 241)"
-          strokeDasharray=""
           strokeWidth={1}
-          style={undefined}
-          transform=""
           x1={200}
           x2={200}
           y1={0}
@@ -384,11 +322,9 @@ exports[`snapshot renders correctly 1`] = `
         />
         <line
           className="vx-line"
+          fill="transparent"
           stroke="rgb(236, 239, 241)"
-          strokeDasharray=""
           strokeWidth={1}
-          style={undefined}
-          transform=""
           x1={225}
           x2={225}
           y1={0}
@@ -396,11 +332,9 @@ exports[`snapshot renders correctly 1`] = `
         />
         <line
           className="vx-line"
+          fill="transparent"
           stroke="rgb(236, 239, 241)"
-          strokeDasharray=""
           strokeWidth={1}
-          style={undefined}
-          transform=""
           x1={250}
           x2={250}
           y1={0}
@@ -408,11 +342,9 @@ exports[`snapshot renders correctly 1`] = `
         />
         <line
           className="vx-line"
+          fill="transparent"
           stroke="rgb(236, 239, 241)"
-          strokeDasharray=""
           strokeWidth={1}
-          style={undefined}
-          transform=""
           x1={275}
           x2={275}
           y1={0}
@@ -420,11 +352,9 @@ exports[`snapshot renders correctly 1`] = `
         />
         <line
           className="vx-line"
+          fill="transparent"
           stroke="rgb(236, 239, 241)"
-          strokeDasharray=""
           strokeWidth={1}
-          style={undefined}
-          transform=""
           x1={300}
           x2={300}
           y1={0}
@@ -432,11 +362,9 @@ exports[`snapshot renders correctly 1`] = `
         />
         <line
           className="vx-line"
+          fill="transparent"
           stroke="rgb(236, 239, 241)"
-          strokeDasharray=""
           strokeWidth={1}
-          style={undefined}
-          transform=""
           x1={325}
           x2={325}
           y1={0}
@@ -444,11 +372,9 @@ exports[`snapshot renders correctly 1`] = `
         />
         <line
           className="vx-line"
+          fill="transparent"
           stroke="rgb(236, 239, 241)"
-          strokeDasharray=""
           strokeWidth={1}
-          style={undefined}
-          transform=""
           x1={350}
           x2={350}
           y1={0}
@@ -456,11 +382,9 @@ exports[`snapshot renders correctly 1`] = `
         />
         <line
           className="vx-line"
+          fill="transparent"
           stroke="rgb(236, 239, 241)"
-          strokeDasharray=""
           strokeWidth={1}
-          style={undefined}
-          transform=""
           x1={375}
           x2={375}
           y1={0}
@@ -468,11 +392,9 @@ exports[`snapshot renders correctly 1`] = `
         />
         <line
           className="vx-line"
+          fill="transparent"
           stroke="rgb(236, 239, 241)"
-          strokeDasharray=""
           strokeWidth={1}
-          style={undefined}
-          transform=""
           x1={400}
           x2={400}
           y1={0}
@@ -480,11 +402,9 @@ exports[`snapshot renders correctly 1`] = `
         />
         <line
           className="vx-line"
+          fill="transparent"
           stroke="rgb(236, 239, 241)"
-          strokeDasharray=""
           strokeWidth={1}
-          style={undefined}
-          transform=""
           x1={425}
           x2={425}
           y1={0}
@@ -492,11 +412,9 @@ exports[`snapshot renders correctly 1`] = `
         />
         <line
           className="vx-line"
+          fill="transparent"
           stroke="rgb(236, 239, 241)"
-          strokeDasharray=""
           strokeWidth={1}
-          style={undefined}
-          transform=""
           x1={450}
           x2={450}
           y1={0}
@@ -504,11 +422,9 @@ exports[`snapshot renders correctly 1`] = `
         />
         <line
           className="vx-line"
+          fill="transparent"
           stroke="rgb(236, 239, 241)"
-          strokeDasharray=""
           strokeWidth={1}
-          style={undefined}
-          transform=""
           x1={475}
           x2={475}
           y1={0}
@@ -516,11 +432,9 @@ exports[`snapshot renders correctly 1`] = `
         />
         <line
           className="vx-line"
+          fill="transparent"
           stroke="rgb(236, 239, 241)"
-          strokeDasharray=""
           strokeWidth={1}
-          style={undefined}
-          transform=""
           x1={500}
           x2={500}
           y1={0}
@@ -529,635 +443,814 @@ exports[`snapshot renders correctly 1`] = `
       </g>
     </g>
     <g
-      className="cx-group vx-axis"
+      className="vx-group vx-axis"
       transform="translate(250, 0)"
     >
       <g
-        className="cx-group vx-axis-tick"
+        className="vx-group vx-axis-tick"
         transform="translate(0, 0)"
       >
         <line
           className="vx-line"
+          fill="transparent"
           stroke="black"
-          strokeDasharray=""
-          strokeWidth={1}
-          transform=""
           x1={0}
           x2={-8}
           y1={0}
           y2={0}
         />
-        <text
-          fill="black"
-          fontFamily="Arial"
+        <svg
           fontSize={10}
-          textAnchor="middle"
-          x={-8}
+          style={
+            Object {
+              "overflow": "visible",
+            }
+          }
+          x={0}
           y={0}
         >
-          <tspan
-            dy="0em"
+          <text
+            fill="black"
+            fontFamily="Arial"
+            fontSize={10}
+            textAnchor="middle"
             x={-8}
+            y={0}
           >
-            10
-          </tspan>
-        </text>
+            <tspan
+              dy="0em"
+              x={-8}
+            >
+              10
+            </tspan>
+          </text>
+        </svg>
       </g>
       <g
-        className="cx-group vx-axis-tick"
+        className="vx-group vx-axis-tick"
         transform="translate(0, 0)"
       >
         <line
           className="vx-line"
+          fill="transparent"
           stroke="black"
-          strokeDasharray=""
-          strokeWidth={1}
-          transform=""
           x1={0}
           x2={-8}
           y1={25}
           y2={25}
         />
-        <text
-          fill="black"
-          fontFamily="Arial"
+        <svg
           fontSize={10}
-          textAnchor="middle"
-          x={-8}
-          y={25}
+          style={
+            Object {
+              "overflow": "visible",
+            }
+          }
+          x={0}
+          y={0}
         >
-          <tspan
-            dy="0em"
+          <text
+            fill="black"
+            fontFamily="Arial"
+            fontSize={10}
+            textAnchor="middle"
             x={-8}
+            y={25}
           >
-            9
-          </tspan>
-        </text>
+            <tspan
+              dy="0em"
+              x={-8}
+            >
+              9
+            </tspan>
+          </text>
+        </svg>
       </g>
       <g
-        className="cx-group vx-axis-tick"
+        className="vx-group vx-axis-tick"
         transform="translate(0, 0)"
       >
         <line
           className="vx-line"
+          fill="transparent"
           stroke="black"
-          strokeDasharray=""
-          strokeWidth={1}
-          transform=""
           x1={0}
           x2={-8}
           y1={50}
           y2={50}
         />
-        <text
-          fill="black"
-          fontFamily="Arial"
+        <svg
           fontSize={10}
-          textAnchor="middle"
-          x={-8}
-          y={50}
+          style={
+            Object {
+              "overflow": "visible",
+            }
+          }
+          x={0}
+          y={0}
         >
-          <tspan
-            dy="0em"
+          <text
+            fill="black"
+            fontFamily="Arial"
+            fontSize={10}
+            textAnchor="middle"
             x={-8}
+            y={50}
           >
-            8
-          </tspan>
-        </text>
+            <tspan
+              dy="0em"
+              x={-8}
+            >
+              8
+            </tspan>
+          </text>
+        </svg>
       </g>
       <g
-        className="cx-group vx-axis-tick"
+        className="vx-group vx-axis-tick"
         transform="translate(0, 0)"
       >
         <line
           className="vx-line"
+          fill="transparent"
           stroke="black"
-          strokeDasharray=""
-          strokeWidth={1}
-          transform=""
           x1={0}
           x2={-8}
           y1={75}
           y2={75}
         />
-        <text
-          fill="black"
-          fontFamily="Arial"
+        <svg
           fontSize={10}
-          textAnchor="middle"
-          x={-8}
-          y={75}
+          style={
+            Object {
+              "overflow": "visible",
+            }
+          }
+          x={0}
+          y={0}
         >
-          <tspan
-            dy="0em"
+          <text
+            fill="black"
+            fontFamily="Arial"
+            fontSize={10}
+            textAnchor="middle"
             x={-8}
+            y={75}
           >
-            7
-          </tspan>
-        </text>
+            <tspan
+              dy="0em"
+              x={-8}
+            >
+              7
+            </tspan>
+          </text>
+        </svg>
       </g>
       <g
-        className="cx-group vx-axis-tick"
+        className="vx-group vx-axis-tick"
         transform="translate(0, 0)"
       >
         <line
           className="vx-line"
+          fill="transparent"
           stroke="black"
-          strokeDasharray=""
-          strokeWidth={1}
-          transform=""
           x1={0}
           x2={-8}
           y1={100}
           y2={100}
         />
-        <text
-          fill="black"
-          fontFamily="Arial"
+        <svg
           fontSize={10}
-          textAnchor="middle"
-          x={-8}
-          y={100}
+          style={
+            Object {
+              "overflow": "visible",
+            }
+          }
+          x={0}
+          y={0}
         >
-          <tspan
-            dy="0em"
+          <text
+            fill="black"
+            fontFamily="Arial"
+            fontSize={10}
+            textAnchor="middle"
             x={-8}
+            y={100}
           >
-            6
-          </tspan>
-        </text>
+            <tspan
+              dy="0em"
+              x={-8}
+            >
+              6
+            </tspan>
+          </text>
+        </svg>
       </g>
       <g
-        className="cx-group vx-axis-tick"
+        className="vx-group vx-axis-tick"
         transform="translate(0, 0)"
       >
         <line
           className="vx-line"
+          fill="transparent"
           stroke="black"
-          strokeDasharray=""
-          strokeWidth={1}
-          transform=""
           x1={0}
           x2={-8}
           y1={125}
           y2={125}
         />
-        <text
-          fill="black"
-          fontFamily="Arial"
+        <svg
           fontSize={10}
-          textAnchor="middle"
-          x={-8}
-          y={125}
+          style={
+            Object {
+              "overflow": "visible",
+            }
+          }
+          x={0}
+          y={0}
         >
-          <tspan
-            dy="0em"
+          <text
+            fill="black"
+            fontFamily="Arial"
+            fontSize={10}
+            textAnchor="middle"
             x={-8}
+            y={125}
           >
-            5
-          </tspan>
-        </text>
+            <tspan
+              dy="0em"
+              x={-8}
+            >
+              5
+            </tspan>
+          </text>
+        </svg>
       </g>
       <g
-        className="cx-group vx-axis-tick"
+        className="vx-group vx-axis-tick"
         transform="translate(0, 0)"
       >
         <line
           className="vx-line"
+          fill="transparent"
           stroke="black"
-          strokeDasharray=""
-          strokeWidth={1}
-          transform=""
           x1={0}
           x2={-8}
           y1={150}
           y2={150}
         />
-        <text
-          fill="black"
-          fontFamily="Arial"
+        <svg
           fontSize={10}
-          textAnchor="middle"
-          x={-8}
-          y={150}
+          style={
+            Object {
+              "overflow": "visible",
+            }
+          }
+          x={0}
+          y={0}
         >
-          <tspan
-            dy="0em"
+          <text
+            fill="black"
+            fontFamily="Arial"
+            fontSize={10}
+            textAnchor="middle"
             x={-8}
+            y={150}
           >
-            4
-          </tspan>
-        </text>
+            <tspan
+              dy="0em"
+              x={-8}
+            >
+              4
+            </tspan>
+          </text>
+        </svg>
       </g>
       <g
-        className="cx-group vx-axis-tick"
+        className="vx-group vx-axis-tick"
         transform="translate(0, 0)"
       >
         <line
           className="vx-line"
+          fill="transparent"
           stroke="black"
-          strokeDasharray=""
-          strokeWidth={1}
-          transform=""
           x1={0}
           x2={-8}
           y1={175}
           y2={175}
         />
-        <text
-          fill="black"
-          fontFamily="Arial"
+        <svg
           fontSize={10}
-          textAnchor="middle"
-          x={-8}
-          y={175}
+          style={
+            Object {
+              "overflow": "visible",
+            }
+          }
+          x={0}
+          y={0}
         >
-          <tspan
-            dy="0em"
+          <text
+            fill="black"
+            fontFamily="Arial"
+            fontSize={10}
+            textAnchor="middle"
             x={-8}
+            y={175}
           >
-            3
-          </tspan>
-        </text>
+            <tspan
+              dy="0em"
+              x={-8}
+            >
+              3
+            </tspan>
+          </text>
+        </svg>
       </g>
       <g
-        className="cx-group vx-axis-tick"
+        className="vx-group vx-axis-tick"
         transform="translate(0, 0)"
       >
         <line
           className="vx-line"
+          fill="transparent"
           stroke="black"
-          strokeDasharray=""
-          strokeWidth={1}
-          transform=""
           x1={0}
           x2={-8}
           y1={200}
           y2={200}
         />
-        <text
-          fill="black"
-          fontFamily="Arial"
+        <svg
           fontSize={10}
-          textAnchor="middle"
-          x={-8}
-          y={200}
+          style={
+            Object {
+              "overflow": "visible",
+            }
+          }
+          x={0}
+          y={0}
         >
-          <tspan
-            dy="0em"
+          <text
+            fill="black"
+            fontFamily="Arial"
+            fontSize={10}
+            textAnchor="middle"
             x={-8}
+            y={200}
           >
-            2
-          </tspan>
-        </text>
+            <tspan
+              dy="0em"
+              x={-8}
+            >
+              2
+            </tspan>
+          </text>
+        </svg>
       </g>
       <g
-        className="cx-group vx-axis-tick"
+        className="vx-group vx-axis-tick"
         transform="translate(0, 0)"
       >
         <line
           className="vx-line"
+          fill="transparent"
           stroke="black"
-          strokeDasharray=""
-          strokeWidth={1}
-          transform=""
           x1={0}
           x2={-8}
           y1={225}
           y2={225}
         />
-        <text
-          fill="black"
-          fontFamily="Arial"
+        <svg
           fontSize={10}
-          textAnchor="middle"
-          x={-8}
-          y={225}
+          style={
+            Object {
+              "overflow": "visible",
+            }
+          }
+          x={0}
+          y={0}
         >
-          <tspan
-            dy="0em"
+          <text
+            fill="black"
+            fontFamily="Arial"
+            fontSize={10}
+            textAnchor="middle"
             x={-8}
+            y={225}
           >
-            1
-          </tspan>
-        </text>
+            <tspan
+              dy="0em"
+              x={-8}
+            >
+              1
+            </tspan>
+          </text>
+        </svg>
       </g>
       <g
-        className="cx-group vx-axis-tick"
+        className="vx-group vx-axis-tick"
         transform="translate(0, 0)"
       >
         <line
           className="vx-line"
+          fill="transparent"
           stroke="black"
-          strokeDasharray=""
-          strokeWidth={1}
-          transform=""
           x1={0}
           x2={-8}
           y1={275}
           y2={275}
         />
-        <text
-          fill="black"
-          fontFamily="Arial"
+        <svg
           fontSize={10}
-          textAnchor="middle"
-          x={-8}
-          y={275}
+          style={
+            Object {
+              "overflow": "visible",
+            }
+          }
+          x={0}
+          y={0}
         >
-          <tspan
-            dy="0em"
+          <text
+            fill="black"
+            fontFamily="Arial"
+            fontSize={10}
+            textAnchor="middle"
             x={-8}
+            y={275}
           >
-            -1
-          </tspan>
-        </text>
+            <tspan
+              dy="0em"
+              x={-8}
+            >
+              -1
+            </tspan>
+          </text>
+        </svg>
       </g>
       <g
-        className="cx-group vx-axis-tick"
+        className="vx-group vx-axis-tick"
         transform="translate(0, 0)"
       >
         <line
           className="vx-line"
+          fill="transparent"
           stroke="black"
-          strokeDasharray=""
-          strokeWidth={1}
-          transform=""
           x1={0}
           x2={-8}
           y1={300}
           y2={300}
         />
-        <text
-          fill="black"
-          fontFamily="Arial"
+        <svg
           fontSize={10}
-          textAnchor="middle"
-          x={-8}
-          y={300}
+          style={
+            Object {
+              "overflow": "visible",
+            }
+          }
+          x={0}
+          y={0}
         >
-          <tspan
-            dy="0em"
+          <text
+            fill="black"
+            fontFamily="Arial"
+            fontSize={10}
+            textAnchor="middle"
             x={-8}
+            y={300}
           >
-            -2
-          </tspan>
-        </text>
+            <tspan
+              dy="0em"
+              x={-8}
+            >
+              -2
+            </tspan>
+          </text>
+        </svg>
       </g>
       <g
-        className="cx-group vx-axis-tick"
+        className="vx-group vx-axis-tick"
         transform="translate(0, 0)"
       >
         <line
           className="vx-line"
+          fill="transparent"
           stroke="black"
-          strokeDasharray=""
-          strokeWidth={1}
-          transform=""
           x1={0}
           x2={-8}
           y1={325}
           y2={325}
         />
-        <text
-          fill="black"
-          fontFamily="Arial"
+        <svg
           fontSize={10}
-          textAnchor="middle"
-          x={-8}
-          y={325}
+          style={
+            Object {
+              "overflow": "visible",
+            }
+          }
+          x={0}
+          y={0}
         >
-          <tspan
-            dy="0em"
+          <text
+            fill="black"
+            fontFamily="Arial"
+            fontSize={10}
+            textAnchor="middle"
             x={-8}
+            y={325}
           >
-            -3
-          </tspan>
-        </text>
+            <tspan
+              dy="0em"
+              x={-8}
+            >
+              -3
+            </tspan>
+          </text>
+        </svg>
       </g>
       <g
-        className="cx-group vx-axis-tick"
+        className="vx-group vx-axis-tick"
         transform="translate(0, 0)"
       >
         <line
           className="vx-line"
+          fill="transparent"
           stroke="black"
-          strokeDasharray=""
-          strokeWidth={1}
-          transform=""
           x1={0}
           x2={-8}
           y1={350}
           y2={350}
         />
-        <text
-          fill="black"
-          fontFamily="Arial"
+        <svg
           fontSize={10}
-          textAnchor="middle"
-          x={-8}
-          y={350}
+          style={
+            Object {
+              "overflow": "visible",
+            }
+          }
+          x={0}
+          y={0}
         >
-          <tspan
-            dy="0em"
+          <text
+            fill="black"
+            fontFamily="Arial"
+            fontSize={10}
+            textAnchor="middle"
             x={-8}
+            y={350}
           >
-            -4
-          </tspan>
-        </text>
+            <tspan
+              dy="0em"
+              x={-8}
+            >
+              -4
+            </tspan>
+          </text>
+        </svg>
       </g>
       <g
-        className="cx-group vx-axis-tick"
+        className="vx-group vx-axis-tick"
         transform="translate(0, 0)"
       >
         <line
           className="vx-line"
+          fill="transparent"
           stroke="black"
-          strokeDasharray=""
-          strokeWidth={1}
-          transform=""
           x1={0}
           x2={-8}
           y1={375}
           y2={375}
         />
-        <text
-          fill="black"
-          fontFamily="Arial"
+        <svg
           fontSize={10}
-          textAnchor="middle"
-          x={-8}
-          y={375}
+          style={
+            Object {
+              "overflow": "visible",
+            }
+          }
+          x={0}
+          y={0}
         >
-          <tspan
-            dy="0em"
+          <text
+            fill="black"
+            fontFamily="Arial"
+            fontSize={10}
+            textAnchor="middle"
             x={-8}
+            y={375}
           >
-            -5
-          </tspan>
-        </text>
+            <tspan
+              dy="0em"
+              x={-8}
+            >
+              -5
+            </tspan>
+          </text>
+        </svg>
       </g>
       <g
-        className="cx-group vx-axis-tick"
+        className="vx-group vx-axis-tick"
         transform="translate(0, 0)"
       >
         <line
           className="vx-line"
+          fill="transparent"
           stroke="black"
-          strokeDasharray=""
-          strokeWidth={1}
-          transform=""
           x1={0}
           x2={-8}
           y1={400}
           y2={400}
         />
-        <text
-          fill="black"
-          fontFamily="Arial"
+        <svg
           fontSize={10}
-          textAnchor="middle"
-          x={-8}
-          y={400}
+          style={
+            Object {
+              "overflow": "visible",
+            }
+          }
+          x={0}
+          y={0}
         >
-          <tspan
-            dy="0em"
+          <text
+            fill="black"
+            fontFamily="Arial"
+            fontSize={10}
+            textAnchor="middle"
             x={-8}
+            y={400}
           >
-            -6
-          </tspan>
-        </text>
+            <tspan
+              dy="0em"
+              x={-8}
+            >
+              -6
+            </tspan>
+          </text>
+        </svg>
       </g>
       <g
-        className="cx-group vx-axis-tick"
+        className="vx-group vx-axis-tick"
         transform="translate(0, 0)"
       >
         <line
           className="vx-line"
+          fill="transparent"
           stroke="black"
-          strokeDasharray=""
-          strokeWidth={1}
-          transform=""
           x1={0}
           x2={-8}
           y1={425}
           y2={425}
         />
-        <text
-          fill="black"
-          fontFamily="Arial"
+        <svg
           fontSize={10}
-          textAnchor="middle"
-          x={-8}
-          y={425}
+          style={
+            Object {
+              "overflow": "visible",
+            }
+          }
+          x={0}
+          y={0}
         >
-          <tspan
-            dy="0em"
+          <text
+            fill="black"
+            fontFamily="Arial"
+            fontSize={10}
+            textAnchor="middle"
             x={-8}
+            y={425}
           >
-            -7
-          </tspan>
-        </text>
+            <tspan
+              dy="0em"
+              x={-8}
+            >
+              -7
+            </tspan>
+          </text>
+        </svg>
       </g>
       <g
-        className="cx-group vx-axis-tick"
+        className="vx-group vx-axis-tick"
         transform="translate(0, 0)"
       >
         <line
           className="vx-line"
+          fill="transparent"
           stroke="black"
-          strokeDasharray=""
-          strokeWidth={1}
-          transform=""
           x1={0}
           x2={-8}
           y1={450}
           y2={450}
         />
-        <text
-          fill="black"
-          fontFamily="Arial"
+        <svg
           fontSize={10}
-          textAnchor="middle"
-          x={-8}
-          y={450}
+          style={
+            Object {
+              "overflow": "visible",
+            }
+          }
+          x={0}
+          y={0}
         >
-          <tspan
-            dy="0em"
+          <text
+            fill="black"
+            fontFamily="Arial"
+            fontSize={10}
+            textAnchor="middle"
             x={-8}
+            y={450}
           >
-            -8
-          </tspan>
-        </text>
+            <tspan
+              dy="0em"
+              x={-8}
+            >
+              -8
+            </tspan>
+          </text>
+        </svg>
       </g>
       <g
-        className="cx-group vx-axis-tick"
+        className="vx-group vx-axis-tick"
         transform="translate(0, 0)"
       >
         <line
           className="vx-line"
+          fill="transparent"
           stroke="black"
-          strokeDasharray=""
-          strokeWidth={1}
-          transform=""
           x1={0}
           x2={-8}
           y1={475}
           y2={475}
         />
-        <text
-          fill="black"
-          fontFamily="Arial"
+        <svg
           fontSize={10}
-          textAnchor="middle"
-          x={-8}
-          y={475}
+          style={
+            Object {
+              "overflow": "visible",
+            }
+          }
+          x={0}
+          y={0}
         >
-          <tspan
-            dy="0em"
+          <text
+            fill="black"
+            fontFamily="Arial"
+            fontSize={10}
+            textAnchor="middle"
             x={-8}
+            y={475}
           >
-            -9
-          </tspan>
-        </text>
+            <tspan
+              dy="0em"
+              x={-8}
+            >
+              -9
+            </tspan>
+          </text>
+        </svg>
       </g>
       <g
-        className="cx-group vx-axis-tick"
+        className="vx-group vx-axis-tick"
         transform="translate(0, 0)"
       >
         <line
           className="vx-line"
+          fill="transparent"
           stroke="black"
-          strokeDasharray=""
-          strokeWidth={1}
-          transform=""
           x1={0}
           x2={-8}
           y1={500}
           y2={500}
         />
-        <text
-          fill="black"
-          fontFamily="Arial"
+        <svg
           fontSize={10}
-          textAnchor="middle"
-          x={-8}
-          y={500}
+          style={
+            Object {
+              "overflow": "visible",
+            }
+          }
+          x={0}
+          y={0}
         >
-          <tspan
-            dy="0em"
+          <text
+            fill="black"
+            fontFamily="Arial"
+            fontSize={10}
+            textAnchor="middle"
             x={-8}
+            y={500}
           >
-            -10
-          </tspan>
-        </text>
+            <tspan
+              dy="0em"
+              x={-8}
+            >
+              -10
+            </tspan>
+          </text>
+        </svg>
       </g>
       <line
         className="vx-line vx-axis-line"
+        fill="transparent"
         stroke="rgba(144, 164, 174, 1)"
-        strokeDasharray=""
         strokeWidth={2}
-        transform=""
         x1={0}
         x2={0}
         y1={0.5}
@@ -1166,635 +1259,814 @@ exports[`snapshot renders correctly 1`] = `
       
     </g>
     <g
-      className="cx-group vx-axis"
+      className="vx-group vx-axis"
       transform="translate(0, 250)"
     >
       <g
-        className="cx-group vx-axis-tick"
+        className="vx-group vx-axis-tick"
         transform="translate(0, 0)"
       >
         <line
           className="vx-line"
+          fill="transparent"
           stroke="black"
-          strokeDasharray=""
-          strokeWidth={1}
-          transform=""
           x1={0}
           x2={0}
           y1={0}
           y2={8}
         />
-        <text
-          fill="black"
-          fontFamily="Arial"
+        <svg
           fontSize={10}
-          textAnchor="middle"
+          style={
+            Object {
+              "overflow": "visible",
+            }
+          }
           x={0}
-          y={18}
+          y={0}
         >
-          <tspan
-            dy="0em"
+          <text
+            fill="black"
+            fontFamily="Arial"
+            fontSize={10}
+            textAnchor="middle"
             x={0}
+            y={18}
           >
-            -10
-          </tspan>
-        </text>
+            <tspan
+              dy="0em"
+              x={0}
+            >
+              -10
+            </tspan>
+          </text>
+        </svg>
       </g>
       <g
-        className="cx-group vx-axis-tick"
+        className="vx-group vx-axis-tick"
         transform="translate(0, 0)"
       >
         <line
           className="vx-line"
+          fill="transparent"
           stroke="black"
-          strokeDasharray=""
-          strokeWidth={1}
-          transform=""
           x1={25}
           x2={25}
           y1={0}
           y2={8}
         />
-        <text
-          fill="black"
-          fontFamily="Arial"
+        <svg
           fontSize={10}
-          textAnchor="middle"
-          x={25}
-          y={18}
+          style={
+            Object {
+              "overflow": "visible",
+            }
+          }
+          x={0}
+          y={0}
         >
-          <tspan
-            dy="0em"
+          <text
+            fill="black"
+            fontFamily="Arial"
+            fontSize={10}
+            textAnchor="middle"
             x={25}
+            y={18}
           >
-            -9
-          </tspan>
-        </text>
+            <tspan
+              dy="0em"
+              x={25}
+            >
+              -9
+            </tspan>
+          </text>
+        </svg>
       </g>
       <g
-        className="cx-group vx-axis-tick"
+        className="vx-group vx-axis-tick"
         transform="translate(0, 0)"
       >
         <line
           className="vx-line"
+          fill="transparent"
           stroke="black"
-          strokeDasharray=""
-          strokeWidth={1}
-          transform=""
           x1={50}
           x2={50}
           y1={0}
           y2={8}
         />
-        <text
-          fill="black"
-          fontFamily="Arial"
+        <svg
           fontSize={10}
-          textAnchor="middle"
-          x={50}
-          y={18}
+          style={
+            Object {
+              "overflow": "visible",
+            }
+          }
+          x={0}
+          y={0}
         >
-          <tspan
-            dy="0em"
+          <text
+            fill="black"
+            fontFamily="Arial"
+            fontSize={10}
+            textAnchor="middle"
             x={50}
+            y={18}
           >
-            -8
-          </tspan>
-        </text>
+            <tspan
+              dy="0em"
+              x={50}
+            >
+              -8
+            </tspan>
+          </text>
+        </svg>
       </g>
       <g
-        className="cx-group vx-axis-tick"
+        className="vx-group vx-axis-tick"
         transform="translate(0, 0)"
       >
         <line
           className="vx-line"
+          fill="transparent"
           stroke="black"
-          strokeDasharray=""
-          strokeWidth={1}
-          transform=""
           x1={75}
           x2={75}
           y1={0}
           y2={8}
         />
-        <text
-          fill="black"
-          fontFamily="Arial"
+        <svg
           fontSize={10}
-          textAnchor="middle"
-          x={75}
-          y={18}
+          style={
+            Object {
+              "overflow": "visible",
+            }
+          }
+          x={0}
+          y={0}
         >
-          <tspan
-            dy="0em"
+          <text
+            fill="black"
+            fontFamily="Arial"
+            fontSize={10}
+            textAnchor="middle"
             x={75}
+            y={18}
           >
-            -7
-          </tspan>
-        </text>
+            <tspan
+              dy="0em"
+              x={75}
+            >
+              -7
+            </tspan>
+          </text>
+        </svg>
       </g>
       <g
-        className="cx-group vx-axis-tick"
+        className="vx-group vx-axis-tick"
         transform="translate(0, 0)"
       >
         <line
           className="vx-line"
+          fill="transparent"
           stroke="black"
-          strokeDasharray=""
-          strokeWidth={1}
-          transform=""
           x1={100}
           x2={100}
           y1={0}
           y2={8}
         />
-        <text
-          fill="black"
-          fontFamily="Arial"
+        <svg
           fontSize={10}
-          textAnchor="middle"
-          x={100}
-          y={18}
+          style={
+            Object {
+              "overflow": "visible",
+            }
+          }
+          x={0}
+          y={0}
         >
-          <tspan
-            dy="0em"
+          <text
+            fill="black"
+            fontFamily="Arial"
+            fontSize={10}
+            textAnchor="middle"
             x={100}
+            y={18}
           >
-            -6
-          </tspan>
-        </text>
+            <tspan
+              dy="0em"
+              x={100}
+            >
+              -6
+            </tspan>
+          </text>
+        </svg>
       </g>
       <g
-        className="cx-group vx-axis-tick"
+        className="vx-group vx-axis-tick"
         transform="translate(0, 0)"
       >
         <line
           className="vx-line"
+          fill="transparent"
           stroke="black"
-          strokeDasharray=""
-          strokeWidth={1}
-          transform=""
           x1={125}
           x2={125}
           y1={0}
           y2={8}
         />
-        <text
-          fill="black"
-          fontFamily="Arial"
+        <svg
           fontSize={10}
-          textAnchor="middle"
-          x={125}
-          y={18}
+          style={
+            Object {
+              "overflow": "visible",
+            }
+          }
+          x={0}
+          y={0}
         >
-          <tspan
-            dy="0em"
+          <text
+            fill="black"
+            fontFamily="Arial"
+            fontSize={10}
+            textAnchor="middle"
             x={125}
+            y={18}
           >
-            -5
-          </tspan>
-        </text>
+            <tspan
+              dy="0em"
+              x={125}
+            >
+              -5
+            </tspan>
+          </text>
+        </svg>
       </g>
       <g
-        className="cx-group vx-axis-tick"
+        className="vx-group vx-axis-tick"
         transform="translate(0, 0)"
       >
         <line
           className="vx-line"
+          fill="transparent"
           stroke="black"
-          strokeDasharray=""
-          strokeWidth={1}
-          transform=""
           x1={150}
           x2={150}
           y1={0}
           y2={8}
         />
-        <text
-          fill="black"
-          fontFamily="Arial"
+        <svg
           fontSize={10}
-          textAnchor="middle"
-          x={150}
-          y={18}
+          style={
+            Object {
+              "overflow": "visible",
+            }
+          }
+          x={0}
+          y={0}
         >
-          <tspan
-            dy="0em"
+          <text
+            fill="black"
+            fontFamily="Arial"
+            fontSize={10}
+            textAnchor="middle"
             x={150}
+            y={18}
           >
-            -4
-          </tspan>
-        </text>
+            <tspan
+              dy="0em"
+              x={150}
+            >
+              -4
+            </tspan>
+          </text>
+        </svg>
       </g>
       <g
-        className="cx-group vx-axis-tick"
+        className="vx-group vx-axis-tick"
         transform="translate(0, 0)"
       >
         <line
           className="vx-line"
+          fill="transparent"
           stroke="black"
-          strokeDasharray=""
-          strokeWidth={1}
-          transform=""
           x1={175}
           x2={175}
           y1={0}
           y2={8}
         />
-        <text
-          fill="black"
-          fontFamily="Arial"
+        <svg
           fontSize={10}
-          textAnchor="middle"
-          x={175}
-          y={18}
+          style={
+            Object {
+              "overflow": "visible",
+            }
+          }
+          x={0}
+          y={0}
         >
-          <tspan
-            dy="0em"
+          <text
+            fill="black"
+            fontFamily="Arial"
+            fontSize={10}
+            textAnchor="middle"
             x={175}
+            y={18}
           >
-            -3
-          </tspan>
-        </text>
+            <tspan
+              dy="0em"
+              x={175}
+            >
+              -3
+            </tspan>
+          </text>
+        </svg>
       </g>
       <g
-        className="cx-group vx-axis-tick"
+        className="vx-group vx-axis-tick"
         transform="translate(0, 0)"
       >
         <line
           className="vx-line"
+          fill="transparent"
           stroke="black"
-          strokeDasharray=""
-          strokeWidth={1}
-          transform=""
           x1={200}
           x2={200}
           y1={0}
           y2={8}
         />
-        <text
-          fill="black"
-          fontFamily="Arial"
+        <svg
           fontSize={10}
-          textAnchor="middle"
-          x={200}
-          y={18}
+          style={
+            Object {
+              "overflow": "visible",
+            }
+          }
+          x={0}
+          y={0}
         >
-          <tspan
-            dy="0em"
+          <text
+            fill="black"
+            fontFamily="Arial"
+            fontSize={10}
+            textAnchor="middle"
             x={200}
+            y={18}
           >
-            -2
-          </tspan>
-        </text>
+            <tspan
+              dy="0em"
+              x={200}
+            >
+              -2
+            </tspan>
+          </text>
+        </svg>
       </g>
       <g
-        className="cx-group vx-axis-tick"
+        className="vx-group vx-axis-tick"
         transform="translate(0, 0)"
       >
         <line
           className="vx-line"
+          fill="transparent"
           stroke="black"
-          strokeDasharray=""
-          strokeWidth={1}
-          transform=""
           x1={225}
           x2={225}
           y1={0}
           y2={8}
         />
-        <text
-          fill="black"
-          fontFamily="Arial"
+        <svg
           fontSize={10}
-          textAnchor="middle"
-          x={225}
-          y={18}
+          style={
+            Object {
+              "overflow": "visible",
+            }
+          }
+          x={0}
+          y={0}
         >
-          <tspan
-            dy="0em"
+          <text
+            fill="black"
+            fontFamily="Arial"
+            fontSize={10}
+            textAnchor="middle"
             x={225}
+            y={18}
           >
-            -1
-          </tspan>
-        </text>
+            <tspan
+              dy="0em"
+              x={225}
+            >
+              -1
+            </tspan>
+          </text>
+        </svg>
       </g>
       <g
-        className="cx-group vx-axis-tick"
+        className="vx-group vx-axis-tick"
         transform="translate(0, 0)"
       >
         <line
           className="vx-line"
+          fill="transparent"
           stroke="black"
-          strokeDasharray=""
-          strokeWidth={1}
-          transform=""
           x1={275}
           x2={275}
           y1={0}
           y2={8}
         />
-        <text
-          fill="black"
-          fontFamily="Arial"
+        <svg
           fontSize={10}
-          textAnchor="middle"
-          x={275}
-          y={18}
+          style={
+            Object {
+              "overflow": "visible",
+            }
+          }
+          x={0}
+          y={0}
         >
-          <tspan
-            dy="0em"
+          <text
+            fill="black"
+            fontFamily="Arial"
+            fontSize={10}
+            textAnchor="middle"
             x={275}
+            y={18}
           >
-            1
-          </tspan>
-        </text>
+            <tspan
+              dy="0em"
+              x={275}
+            >
+              1
+            </tspan>
+          </text>
+        </svg>
       </g>
       <g
-        className="cx-group vx-axis-tick"
+        className="vx-group vx-axis-tick"
         transform="translate(0, 0)"
       >
         <line
           className="vx-line"
+          fill="transparent"
           stroke="black"
-          strokeDasharray=""
-          strokeWidth={1}
-          transform=""
           x1={300}
           x2={300}
           y1={0}
           y2={8}
         />
-        <text
-          fill="black"
-          fontFamily="Arial"
+        <svg
           fontSize={10}
-          textAnchor="middle"
-          x={300}
-          y={18}
+          style={
+            Object {
+              "overflow": "visible",
+            }
+          }
+          x={0}
+          y={0}
         >
-          <tspan
-            dy="0em"
+          <text
+            fill="black"
+            fontFamily="Arial"
+            fontSize={10}
+            textAnchor="middle"
             x={300}
+            y={18}
           >
-            2
-          </tspan>
-        </text>
+            <tspan
+              dy="0em"
+              x={300}
+            >
+              2
+            </tspan>
+          </text>
+        </svg>
       </g>
       <g
-        className="cx-group vx-axis-tick"
+        className="vx-group vx-axis-tick"
         transform="translate(0, 0)"
       >
         <line
           className="vx-line"
+          fill="transparent"
           stroke="black"
-          strokeDasharray=""
-          strokeWidth={1}
-          transform=""
           x1={325}
           x2={325}
           y1={0}
           y2={8}
         />
-        <text
-          fill="black"
-          fontFamily="Arial"
+        <svg
           fontSize={10}
-          textAnchor="middle"
-          x={325}
-          y={18}
+          style={
+            Object {
+              "overflow": "visible",
+            }
+          }
+          x={0}
+          y={0}
         >
-          <tspan
-            dy="0em"
+          <text
+            fill="black"
+            fontFamily="Arial"
+            fontSize={10}
+            textAnchor="middle"
             x={325}
+            y={18}
           >
-            3
-          </tspan>
-        </text>
+            <tspan
+              dy="0em"
+              x={325}
+            >
+              3
+            </tspan>
+          </text>
+        </svg>
       </g>
       <g
-        className="cx-group vx-axis-tick"
+        className="vx-group vx-axis-tick"
         transform="translate(0, 0)"
       >
         <line
           className="vx-line"
+          fill="transparent"
           stroke="black"
-          strokeDasharray=""
-          strokeWidth={1}
-          transform=""
           x1={350}
           x2={350}
           y1={0}
           y2={8}
         />
-        <text
-          fill="black"
-          fontFamily="Arial"
+        <svg
           fontSize={10}
-          textAnchor="middle"
-          x={350}
-          y={18}
+          style={
+            Object {
+              "overflow": "visible",
+            }
+          }
+          x={0}
+          y={0}
         >
-          <tspan
-            dy="0em"
+          <text
+            fill="black"
+            fontFamily="Arial"
+            fontSize={10}
+            textAnchor="middle"
             x={350}
+            y={18}
           >
-            4
-          </tspan>
-        </text>
+            <tspan
+              dy="0em"
+              x={350}
+            >
+              4
+            </tspan>
+          </text>
+        </svg>
       </g>
       <g
-        className="cx-group vx-axis-tick"
+        className="vx-group vx-axis-tick"
         transform="translate(0, 0)"
       >
         <line
           className="vx-line"
+          fill="transparent"
           stroke="black"
-          strokeDasharray=""
-          strokeWidth={1}
-          transform=""
           x1={375}
           x2={375}
           y1={0}
           y2={8}
         />
-        <text
-          fill="black"
-          fontFamily="Arial"
+        <svg
           fontSize={10}
-          textAnchor="middle"
-          x={375}
-          y={18}
+          style={
+            Object {
+              "overflow": "visible",
+            }
+          }
+          x={0}
+          y={0}
         >
-          <tspan
-            dy="0em"
+          <text
+            fill="black"
+            fontFamily="Arial"
+            fontSize={10}
+            textAnchor="middle"
             x={375}
+            y={18}
           >
-            5
-          </tspan>
-        </text>
+            <tspan
+              dy="0em"
+              x={375}
+            >
+              5
+            </tspan>
+          </text>
+        </svg>
       </g>
       <g
-        className="cx-group vx-axis-tick"
+        className="vx-group vx-axis-tick"
         transform="translate(0, 0)"
       >
         <line
           className="vx-line"
+          fill="transparent"
           stroke="black"
-          strokeDasharray=""
-          strokeWidth={1}
-          transform=""
           x1={400}
           x2={400}
           y1={0}
           y2={8}
         />
-        <text
-          fill="black"
-          fontFamily="Arial"
+        <svg
           fontSize={10}
-          textAnchor="middle"
-          x={400}
-          y={18}
+          style={
+            Object {
+              "overflow": "visible",
+            }
+          }
+          x={0}
+          y={0}
         >
-          <tspan
-            dy="0em"
+          <text
+            fill="black"
+            fontFamily="Arial"
+            fontSize={10}
+            textAnchor="middle"
             x={400}
+            y={18}
           >
-            6
-          </tspan>
-        </text>
+            <tspan
+              dy="0em"
+              x={400}
+            >
+              6
+            </tspan>
+          </text>
+        </svg>
       </g>
       <g
-        className="cx-group vx-axis-tick"
+        className="vx-group vx-axis-tick"
         transform="translate(0, 0)"
       >
         <line
           className="vx-line"
+          fill="transparent"
           stroke="black"
-          strokeDasharray=""
-          strokeWidth={1}
-          transform=""
           x1={425}
           x2={425}
           y1={0}
           y2={8}
         />
-        <text
-          fill="black"
-          fontFamily="Arial"
+        <svg
           fontSize={10}
-          textAnchor="middle"
-          x={425}
-          y={18}
+          style={
+            Object {
+              "overflow": "visible",
+            }
+          }
+          x={0}
+          y={0}
         >
-          <tspan
-            dy="0em"
+          <text
+            fill="black"
+            fontFamily="Arial"
+            fontSize={10}
+            textAnchor="middle"
             x={425}
+            y={18}
           >
-            7
-          </tspan>
-        </text>
+            <tspan
+              dy="0em"
+              x={425}
+            >
+              7
+            </tspan>
+          </text>
+        </svg>
       </g>
       <g
-        className="cx-group vx-axis-tick"
+        className="vx-group vx-axis-tick"
         transform="translate(0, 0)"
       >
         <line
           className="vx-line"
+          fill="transparent"
           stroke="black"
-          strokeDasharray=""
-          strokeWidth={1}
-          transform=""
           x1={450}
           x2={450}
           y1={0}
           y2={8}
         />
-        <text
-          fill="black"
-          fontFamily="Arial"
+        <svg
           fontSize={10}
-          textAnchor="middle"
-          x={450}
-          y={18}
+          style={
+            Object {
+              "overflow": "visible",
+            }
+          }
+          x={0}
+          y={0}
         >
-          <tspan
-            dy="0em"
+          <text
+            fill="black"
+            fontFamily="Arial"
+            fontSize={10}
+            textAnchor="middle"
             x={450}
+            y={18}
           >
-            8
-          </tspan>
-        </text>
+            <tspan
+              dy="0em"
+              x={450}
+            >
+              8
+            </tspan>
+          </text>
+        </svg>
       </g>
       <g
-        className="cx-group vx-axis-tick"
+        className="vx-group vx-axis-tick"
         transform="translate(0, 0)"
       >
         <line
           className="vx-line"
+          fill="transparent"
           stroke="black"
-          strokeDasharray=""
-          strokeWidth={1}
-          transform=""
           x1={475}
           x2={475}
           y1={0}
           y2={8}
         />
-        <text
-          fill="black"
-          fontFamily="Arial"
+        <svg
           fontSize={10}
-          textAnchor="middle"
-          x={475}
-          y={18}
+          style={
+            Object {
+              "overflow": "visible",
+            }
+          }
+          x={0}
+          y={0}
         >
-          <tspan
-            dy="0em"
+          <text
+            fill="black"
+            fontFamily="Arial"
+            fontSize={10}
+            textAnchor="middle"
             x={475}
+            y={18}
           >
-            9
-          </tspan>
-        </text>
+            <tspan
+              dy="0em"
+              x={475}
+            >
+              9
+            </tspan>
+          </text>
+        </svg>
       </g>
       <g
-        className="cx-group vx-axis-tick"
+        className="vx-group vx-axis-tick"
         transform="translate(0, 0)"
       >
         <line
           className="vx-line"
+          fill="transparent"
           stroke="black"
-          strokeDasharray=""
-          strokeWidth={1}
-          transform=""
           x1={500}
           x2={500}
           y1={0}
           y2={8}
         />
-        <text
-          fill="black"
-          fontFamily="Arial"
+        <svg
           fontSize={10}
-          textAnchor="middle"
-          x={500}
-          y={18}
+          style={
+            Object {
+              "overflow": "visible",
+            }
+          }
+          x={0}
+          y={0}
         >
-          <tspan
-            dy="0em"
+          <text
+            fill="black"
+            fontFamily="Arial"
+            fontSize={10}
+            textAnchor="middle"
             x={500}
+            y={18}
           >
-            10
-          </tspan>
-        </text>
+            <tspan
+              dy="0em"
+              x={500}
+            >
+              10
+            </tspan>
+          </text>
+        </svg>
       </g>
       <line
         className="vx-line vx-axis-line"
+        fill="transparent"
         stroke="rgba(144, 164, 174, 1)"
-        strokeDasharray=""
         strokeWidth={2}
-        transform=""
         x1={0.5}
         x2={500.5}
         y1={0}
