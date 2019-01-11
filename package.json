@@ -15,7 +15,7 @@
     "dev": "./scripts/dev",
     "lint": "./node_modules/.bin/eslint --ext .js --ext .jsx packages/**/src",
     "lint-two": "lerna exec -- \\$LERNA_ROOT_PATH/node_modules/.bin/eslint  --ignore-path \\$LERNA_ROOT_PATH/.eslintignore --ext .js --ext .jsx src",
-    "clean": "lerna exec -- rm -fr lib",
+    "clean": "lerna exec -- rm -fr lib node_modules",
     "release": "npm run clean && npm run build && npm test && lerna publish --conventional-commits",
     "build": "npm run clean && npm run lint-two && npm run babelize",
     "build:light": "npm run babelize",

@@ -50,12 +50,12 @@ const run = async () => {
 
   log('scope: ', scope);
 
-  // const args = scope.map(s => ({
-  //   src: `packages/${s}/src`,
-  //   target: `packages/${s}/lib`
-  // }));
+  const args = scope.map(s => ({
+    src: `packages/${s}/src`,
+    target: `packages/${s}/lib`
+  }));
 
-  // watcher = watch(args);
+  watcher = watch(args);
 
   const nextCmd = './node_modules/.bin/next';
 
