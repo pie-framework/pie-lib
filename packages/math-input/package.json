@@ -6,8 +6,8 @@
   "version": "4.6.0",
   "main": "lib/index.js",
   "dependencies": {
-    "@material-ui/core": "^1.0.0-rc.1",
-    "@material-ui/icons": "^1.0.0-rc.0",
+    "@material-ui/core": "^3.8.3",
+    "@material-ui/icons": "^3.0.2",
     "debug": "^3.1.0",
     "lodash": "^4.17.5",
     "mathquill": "git+https://github.com/pie-framework/mathquill-webpack.git",
