@@ -24,7 +24,7 @@
     "file-loader": "^3.0.1",
     "katex": "^0.10.0",
     "math-expressions": "^2.0.0-alpha1",
-    "mathjs": "^5.4.0",
+    "mathjs": "^5.4.1",
     "react": "^16.7.0",
     "react-attr-converter": "^0.3.1",
     "react-dnd": "^7.0.2",
