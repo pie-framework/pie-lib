@@ -7,7 +7,6 @@ const log = debug('pie-lib:graphing:tool-menu');
 
 export class ToolMenu extends React.Component {
   static propTypes = {
-    classes: PropTypes.object.isRequired,
     className: PropTypes.string,
     tools: PropTypes.array,
     currentTool: PropTypes.shape({
@@ -33,9 +32,9 @@ export class ToolMenu extends React.Component {
   };
 
   render() {
-    const { classes, className, tools, currentTool } = this.props;
+    const { className, tools, currentTool } = this.props;
     return (
-      <div className={classNames(classes.toolMenu, className)}>
+      <div className={classNames(className)}>
         <ToggleBar
           options={tools.map(t => t.label || t.type)}
           selected={currentTool.label || currentTool.type}
