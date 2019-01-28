@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
-import { NumberTextField } from '@pie-lib/config-ui';
+import NumberTextField from '@pie-lib/config-ui/lib/number-text-field';
 
 const DisplaySize = withStyles(theme => ({
   displaySize: {

@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
-import { Toggle, DisplaySize } from '@pie-lib/config-ui';
+import DisplaySize from '@pie-lib/config-ui/lib/settings/display-size';
+import Toggle from '@pie-lib/config-ui/lib/settings/toggle';
 import debug from 'debug';
 
 const log = debug('pie-lib:demo:settings');

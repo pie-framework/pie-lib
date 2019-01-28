@@ -118,7 +118,7 @@ exports[`Graph snapshot renders 1`] = `
     onClick={[Function]}
     width={400}
   />
-  <WithStyles(Labels)
+  <Labels
     graphProps={
       Object {
         "domain": Object {
