@@ -34,10 +34,6 @@ const scope = argv.scope
 
 const run = async () => {
 
-  if (!installed) {
-    throw new Error('You need to run yarn install in "demo"');
-  }
-
   log('scope: ', scope);
 
   const args = scope.map(s => ({
