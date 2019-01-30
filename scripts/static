@@ -2,17 +2,15 @@
 
 set -e 
 
-cd demo
-rm -fr out
-
+rm -fr packages/demo/out
 
 export NODE_ENV="production"
 export ASSET_PREFIX="/pie-lib"
 
-./node_modules/.bin/next build
-./node_modules/.bin/next export 
+./node_modules/.bin/next build packages/demo 
+./node_modules/.bin/next export packages/demo
 
-cd out
+cd packages/demo/out
 touch .nojekyll
 git init
 git add .

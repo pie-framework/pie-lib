@@ -6,23 +6,12 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
-import areValuesEqual from '../../../packages/math-evaluator/src/index';
+import areValuesEqual from '@pie-lib/math-evaluator';
 import mathExpressions from 'math-expressions';
-import katex from 'katex';
 import debug from 'debug';
 import jsesc from 'jsesc';
 
 const log = debug('demo:math-evaluator');
-
-require('katex/dist/katex.css');
-
-let renderMathInElement = () => {};
-
-if (typeof window !== 'undefined') {
-  //Auto render requires the katex global
-  window.katex = katex;
-  renderMathInElement = require('katex/dist/contrib/auto-render.min');
-}
 
 const renderOpts = {
   delimiters: [
@@ -39,29 +28,17 @@ class RawMarkupPreview extends React.Component {
     markup: PropTypes.string.isRequired
   };
 
-  componentDidUpdate() {
-    if (this.preview) {
-      renderMathInElement(this.preview, renderOpts);
-    }
-  }
-
-  componentDidMount() {
-    if (this.preview) {
-      renderMathInElement(this.preview, renderOpts);
-    }
-  }
-
   render() {
     const { markup, classes } = this.props;
     return (
       <div>
-        <Typography variant="title">Markup</Typography>
+        <Typography variant="h6">Markup</Typography>
         <div
           ref={r => (this.preview = r)}
           dangerouslySetInnerHTML={{ __html: markup }}
         />
         <hr />
-        <Typography variant="subheading">Raw</Typography>
+        <Typography variant="subtitle1">Raw</Typography>
         <pre className={classes.prettyPrint}>{markup}</pre>
         <hr />
       </div>
@@ -225,7 +202,8 @@ class Demo extends React.Component {
             />
           </label>
           <p>
-            This is a checkbox to indicate whether the compared values will be latex format or not
+            This is a checkbox to indicate whether the compared values will be
+            latex format or not
           </p>
           <label>
             {' '}

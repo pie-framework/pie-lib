@@ -4,27 +4,7 @@ import { MuiThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import getPageContext from './getPageContext';
 import Root from './root';
-
-const links = [
-  { label: 'correct-answer-toggle', path: '/correct-answer-toggle' },
-  { label: 'charting - PlotPoints', path: '/charting/plot-points' },
-  { label: 'charting - GraphLines', path: '/charting/graph-lines' },
-  { label: 'charting - config', path: '/charting-config' },
-  { label: 'icons', path: '/icons' },
-  { label: 'math-input', path: '/math-input' },
-  { label: 'math-evaluator', path: '/math-evaluator' },
-  { label: 'config-ui', path: '/config-ui' },
-  { label: 'config-ui - numbers', path: '/config-ui/numbers' },
-  { label: 'config-ui - tabs', path: '/config-ui/tabs' },
-  { label: 'render-ui', path: '/render-ui' },
-  { label: 'scoring-config', path: '/scoring-config' },
-  { label: 'editable-html', path: '/editable-html' },
-  { label: 'tools - ruler', path: '/tools/ruler' },
-  { label: 'tools - protractor', path: '/tools/protractor' },
-  { label: 'tools - rotatable', path: '/tools/rotatable' },
-  { label: 'text-select', path: '/text-select' },
-  { label: 'drag', path: '/drag' }
-];
+import links from './links';
 
 function withRoot(Component) {
   class WithRoot extends React.Component {

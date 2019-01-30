@@ -23,7 +23,7 @@ class Demo extends React.Component {
     const { mounted } = this.state;
     return mounted ? (
       <div>
-        <Typography variant="title">Protractor</Typography>
+        <Typography variant="h6">Protractor</Typography>
         <Protractor />
 
         <div style={{ width: '400px' }}>

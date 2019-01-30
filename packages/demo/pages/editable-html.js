@@ -14,19 +14,9 @@ import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import InputChooser from '../src/editable-html/input-chooser';
-import katex from 'katex';
-require('katex/dist/katex.css');
 
 const log = debug('@pie-lib:editable-html:demo');
 const puppySrc = `https://bit.ly/23yROY8`;
-
-let renderMathInElement = () => {};
-
-if (typeof window !== 'undefined') {
-  //Auto render requires the katex global
-  window.katex = katex;
-  renderMathInElement = require('katex/dist/contrib/auto-render.min');
-}
 
 const renderOpts = {
   delimiters: [
@@ -83,29 +73,17 @@ class RawMarkupPreview extends React.Component {
     markup: PropTypes.string.isRequired
   };
 
-  componentDidUpdate() {
-    if (this.preview) {
-      renderMathInElement(this.preview, renderOpts);
-    }
-  }
-
-  componentDidMount() {
-    if (this.preview) {
-      renderMathInElement(this.preview, renderOpts);
-    }
-  }
-
   render() {
     const { markup, classes } = this.props;
     return (
       <div>
-        <Typography variant="title">Markup</Typography>
+        <Typography variant="h6">Markup</Typography>
         <div
           ref={r => (this.preview = r)}
           dangerouslySetInnerHTML={{ __html: markup }}
         />
         <hr />
-        <Typography variant="subheading">Raw</Typography>
+        <Typography variant="subtitle1">Raw</Typography>
         <pre className={classes.prettyPrint}>{markup}</pre>
         <hr />
       </div>
@@ -255,8 +233,8 @@ class RteDemo extends React.Component {
     //activePlugins={['bold', 'bulleted-list', 'numbered-list']}
     return mounted ? (
       <div>
-        <Typography variant="title">EditableHtml</Typography>
-        <Typography variant="body1">
+        <Typography variant="h6">EditableHtml</Typography>
+        <Typography variant="body2">
           A rich text editor with a material design look.
         </Typography>
         <br />

@@ -32,23 +32,13 @@ module.exports = withCSS({
     return out;
   },
   exportPathMap: function(/*defaultPathMap*/) {
-    return {
-      '/': { page: '/' },
-      '/correct-answer-toggle': { page: '/correct-answer-toggle' },
-      '/icons': { page: '/icons' },
-      '/math-input': { page: '/math-input' },
-      '/editable-html': { page: '/editable-html' },
-      '/config-ui': { page: '/config-ui' },
-      '/config-ui/numbers': { page: '/config-ui/numbers' },
-      '/config-ui/tabs': { page: '/config-ui/tabs' },
-      '/render-ui': { page: '/render-ui' },
-      '/scoring-config': { page: '/scoring-config' },
-      '/charting/plot-points': { page: '/charting/plot-points' },
-      '/charting/graph-lines': { page: '/charting/graph-lines' },
-      '/tools/ruler': { page: '/tools/ruler' },
-      '/tools/protractor': { page: '/tools/protractor' },
-      '/tools/rotatable': { page: '/tools/rotatable' }
-    };
+    return require('./src/links').reduce(
+      (acc, l) => {
+        acc[l.path] = { page: l.path };
+        return acc;
+      },
+      { '/': { page: '/' } }
+    );
   },
   assetPrefix: getAssetPrefix()
 });

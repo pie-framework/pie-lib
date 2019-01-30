@@ -72,7 +72,7 @@ export class InputChooser extends React.Component {
           value={userHtml}
         />
         <Button
-          variant="raised"
+          variant="contained"
           color="primary"
           onClick={() => this.props.onChange(this.state.userHtml)}
         >
