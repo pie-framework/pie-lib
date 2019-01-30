@@ -29,6 +29,7 @@ exports[`layout - snapshot renders correctly with a side panel 1`] = `
             disabled={false}
             onBlur={[Function]}
             onClick={[Function]}
+            onContextMenu={[Function]}
             onFocus={[Function]}
             onKeyDown={[Function]}
             onKeyUp={[Function]}
@@ -65,6 +66,7 @@ exports[`layout - snapshot renders correctly with a side panel 1`] = `
             disabled={false}
             onBlur={[Function]}
             onClick={[Function]}
+            onContextMenu={[Function]}
             onFocus={[Function]}
             onKeyDown={[Function]}
             onKeyUp={[Function]}
@@ -97,7 +99,7 @@ exports[`layout - snapshot renders correctly with a side panel 1`] = `
           </button>
         </div>
         <span
-          className="TabIndicator-root-36 TabIndicator-colorPrimary-37 MuiTabs-indicator-20"
+          className="MuiPrivateTabIndicator-root-36 MuiPrivateTabIndicator-colorPrimary-37 MuiTabs-indicator-20"
           style={
             Object {
               "left": 0,
@@ -152,6 +154,7 @@ exports[`layout - snapshot renders correctly without a side panel 1`] = `
             disabled={false}
             onBlur={[Function]}
             onClick={[Function]}
+            onContextMenu={[Function]}
             onFocus={[Function]}
             onKeyDown={[Function]}
             onKeyUp={[Function]}
@@ -184,7 +187,7 @@ exports[`layout - snapshot renders correctly without a side panel 1`] = `
           </button>
         </div>
         <span
-          className="TabIndicator-root-36 TabIndicator-colorPrimary-37 MuiTabs-indicator-20"
+          className="MuiPrivateTabIndicator-root-36 MuiPrivateTabIndicator-colorPrimary-37 MuiTabs-indicator-20"
           style={
             Object {
               "left": 0,

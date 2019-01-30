@@ -16,23 +16,34 @@ const EditableHtmlContainer = withStyles(theme => ({
   editorHolder: {
     marginTop: theme.spacing.unit * 2
   }
-}))(({ label, classes, onChange, value, className, imageSupport, disabled, nonEmpty }) => {
-  const names = classNames(classes.labelContainer, className);
-  return (
-    <InputContainer label={label} className={names}>
-      <div className={classes.editorHolder}>
-        <EditableHtml
-          markup={value || ''}
-          disabled={disabled}
-          nonEmpty={nonEmpty}
-          onChange={onChange}
-          imageSupport={imageSupport}
-          className={classes.editor}
-        />
-      </div>
-    </InputContainer>
-  );
-});
+}))(
+  ({
+    label,
+    classes,
+    onChange,
+    value,
+    className,
+    imageSupport,
+    disabled,
+    nonEmpty
+  }) => {
+    const names = classNames(classes.labelContainer, className);
+    return (
+      <InputContainer label={label} className={names}>
+        <div className={classes.editorHolder}>
+          <EditableHtml
+            markup={value || ''}
+            disabled={disabled}
+            nonEmpty={nonEmpty}
+            onChange={onChange}
+            imageSupport={imageSupport}
+            className={classes.editor}
+          />
+        </div>
+      </InputContainer>
+    );
+  }
+);
 
 const Feedback = withStyles(() => ({
   text: {
@@ -179,7 +190,9 @@ export class ChoiceConfiguration extends React.Component {
         <div className={classes.topRow}>
           {index > 0 && (
             <span className={classes.index} type="title">
-              {useLetterOrdering ? String.fromCharCode(96 + index).toUpperCase() : index}
+              {useLetterOrdering
+                ? String.fromCharCode(96 + index).toUpperCase()
+                : index}
             </span>
           )}
           <InputToggle
@@ -204,9 +217,11 @@ export class ChoiceConfiguration extends React.Component {
               onChange={this.onFeedbackValueChange}
             />
           </div>
-          {
-            allowFeedBack &&
-            <InputContainer className={classes.feedback} label={!noLabels ? 'Feedback' : ''}>
+          {allowFeedBack && (
+            <InputContainer
+              className={classes.feedback}
+              label={!noLabels ? 'Feedback' : ''}
+            >
               <FeedbackMenu
                 onChange={this.onFeedbackTypeChange}
                 value={data.feedback}
@@ -215,10 +230,12 @@ export class ChoiceConfiguration extends React.Component {
                 }}
               />
             </InputContainer>
-          }
-          {
-            allowDelete &&
-            <InputContainer className={classes.delete} label={!noLabels ? 'Delete' : ''}>
+          )}
+          {allowDelete && (
+            <InputContainer
+              className={classes.delete}
+              label={!noLabels ? 'Delete' : ''}
+            >
               <IconButton
                 aria-label="delete"
                 className={classes.deleteIcon}
@@ -227,7 +244,7 @@ export class ChoiceConfiguration extends React.Component {
                 <ActionDelete />
               </IconButton>
             </InputContainer>
-          }
+          )}
         </div>
       </div>
     );
@@ -261,12 +278,12 @@ const styles = theme => ({
   },
   feedbackIcon: {
     margin: 0,
-    padding: 0,
+    paddingLeft: 0,
     width: 'inherit'
   },
   deleteIcon: {
     margin: 0,
-    padding: 0,
+    paddingLeft: 0,
     width: 'inherit'
   },
   delete: {

@@ -34,7 +34,7 @@ exports[`table-toolbar snapshot renders 1`] = `
       active={true}
       onClick={[MockFunction]}
     >
-      <pure(BorderAll) />
+      <pure(BorderAllIcon) />
     </Jss(RawButton)>
   </div>
   <WithStyles(RawDoneButton)

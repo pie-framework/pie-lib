@@ -27,12 +27,14 @@ const scope = argv.scope
   ? Array.isArray(argv.scope)
     ? argv.scope
     : [argv.scope]
-  : fs.readdirSync('packages').filter(n => !n.startsWith('.'));
+  : fs
+      .readdirSync('packages')
+      .filter(n => !n.startsWith('.') && !n.startsWith('demo'));
 
 const isDemoInstalled = async () => {
-  const exists = await fs.exists('demo/node_modules');
+  const exists = await fs.exists('packages/demo/node_modules');
   if (exists) {
-    const stat = await fs.stat('demo/node_modules');
+    const stat = await fs.stat('packages/demo/node_modules');
     return stat.isDirectory();
   } else {
     return false;
@@ -50,15 +52,14 @@ const run = async () => {
 
   const args = scope.map(s => ({
     src: `packages/${s}/src`,
-    target: `demo/node_modules/@pie-lib/${s}/lib`
+    target: `packages/${s}/lib`
   }));
 
   watcher = watch(args);
 
   const nextCmd = './node_modules/.bin/next';
 
-  nextProcess = spawn(nextCmd, {
-    cwd: 'demo',
+  nextProcess = spawn(nextCmd, ['packages/demo'], {
     stdio: 'inherit',
     env: Object.assign({}, process.env, { NODE_ENV: 'development' })
   });

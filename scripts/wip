@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+###
+# builds the static site and deploys it to now.sh, then adds the alias
+# scripts/wip $aliasname
+###
+
+set -e 
+
+rm -fr packages/demo/out
+
+./node_modules/.bin/next build packages/demo 
+./node_modules/.bin/next export packages/demo
+
+cd packages/demo/out
+URL="$(now --public -C)"
+echo "new deployment at: $URL"
+now alias $URL $1 

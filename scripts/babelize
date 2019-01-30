@@ -1,0 +1,10 @@
+#!/usr/bin/env node
+const { execSync } = require('child_process');
+const { basename } = require('path');
+if (basename(process.cwd()) === 'demo') {
+  return;
+}
+// eslint-disable-next-line quotes
+execSync("babel --ignore '/__test__/','/__tests__/' src -d lib", {
+  stdio: 'inherit'
+});
