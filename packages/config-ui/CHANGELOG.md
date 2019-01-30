@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@7.10.0...@pie-lib/config-ui@8.0.0) (2019-01-30)
+
+
+### Bug Fixes
+
+* broken test ([c16b9cf](https://github.com/pie-framework/pie-lib/commit/c16b9cf))
+
+
+### Features
+
+* new charting/graphing ([35b8dcc](https://github.com/pie-framework/pie-lib/commit/35b8dcc))
+
+
+### BREAKING CHANGES
+
+* Charting is a complete re-write and so any downstream
+libs will need to be updated to work with them.
+
+
+
+
+
 <a name="7.10.0"></a>
 # [7.10.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@7.7.15...@pie-lib/config-ui@7.10.0) (2019-01-10)
 

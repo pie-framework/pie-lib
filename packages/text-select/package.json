@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "1.2.3",
+  "version": "2.0.0",
   "description": "Some react components for text selection",
   "keywords": [
     "react",
@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@material-ui/core": "^3.8.3",
-    "@pie-lib/test-utils": "^0.0.3",
+    "@pie-lib/test-utils": "^1.0.0",
     "natural": "^0.6.3",
     "react": "^16.7.0",
     "react-dom": "^16.7.0"

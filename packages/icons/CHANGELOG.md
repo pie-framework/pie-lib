@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.2.0...@pie-lib/icons@3.0.0) (2019-01-30)
+
+
+### Features
+
+* new charting/graphing ([35b8dcc](https://github.com/pie-framework/pie-lib/commit/35b8dcc))
+
+
+### BREAKING CHANGES
+
+* Charting is a complete re-write and so any downstream
+libs will need to be updated to work with them.
+
+
+
+
+
 <a name="2.2.0"></a>
 # [2.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.1.8...@pie-lib/icons@2.2.0) (2018-05-16)
 

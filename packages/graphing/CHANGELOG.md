@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0 (2019-01-30)
+
+
+### Bug Fixes
+
+* tool menu missing object ([457990b](https://github.com/pie-framework/pie-lib/commit/457990b))
+* undo ([b8981a8](https://github.com/pie-framework/pie-lib/commit/b8981a8))
+
+
+### Features
+
+* new charting/graphing ([35b8dcc](https://github.com/pie-framework/pie-lib/commit/35b8dcc))
+
+
+### BREAKING CHANGES
+
+* Charting is a complete re-write and so any downstream
+libs will need to be updated to work with them.
+
+
+
+
+
 <a name="2.3.5"></a>
 ## [2.3.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@2.3.4...@pie-lib/charting@2.3.5) (2018-09-12)
 
