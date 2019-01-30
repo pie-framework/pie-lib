@@ -32,10 +32,13 @@ module.exports = withCSS({
     return out;
   },
   exportPathMap: function(/*defaultPathMap*/) {
-    return require('./src/links').reduce((acc, l) => {
-      acc[l.path] = { page: l.path };
-      return acc;
-    }, {});
+    return require('./src/links').reduce(
+      (acc, l) => {
+        acc[l.path] = { page: l.path };
+        return acc;
+      },
+      { '/': { page: '/' } }
+    );
   },
   assetPrefix: getAssetPrefix()
 });
