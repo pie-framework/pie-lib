@@ -1,5 +1,5 @@
 import React from 'react';
-import ConfigLayout from '../ConfigLayout';
+import ConfigLayout from '../config-layout';
 import renderer from 'react-test-renderer';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
@@ -13,34 +13,16 @@ describe('layout - snapshot', () => {
         <ConfigLayout
           sideMenuItems={[
             {
-              items: [
-                <div key={0}>
-                  Foo
-                </div>,
-                <div key={1}>
-                  Bar
-                </div>
-              ]
+              items: [<div key={0}>Foo</div>, <div key={1}>Bar</div>]
             },
             {
-              items: [
-                <div key={2}>
-                  Foo
-                </div>,
-                <div key={3}>
-                  Bar
-                </div>
-              ]
+              items: [<div key={2}>Foo</div>, <div key={3}>Bar</div>]
             }
           ]}
           regularItems={
             <div>
-              <div>
-                Foo
-              </div>
-              <div>
-                Bar
-              </div>
+              <div>Foo</div>
+              <div>Bar</div>
             </div>
           }
           disableSidePanel={false}
@@ -55,34 +37,16 @@ describe('layout - snapshot', () => {
         <ConfigLayout
           sideMenuItems={[
             {
-              items: [
-                <div key={0}>
-                  Foo
-                </div>,
-                <div key={1}>
-                  Bar
-                </div>
-              ]
+              items: [<div key={0}>Foo</div>, <div key={1}>Bar</div>]
             },
             {
-              items: [
-                <div key={2}>
-                  Foo
-                </div>,
-                <div key={3}>
-                  Bar
-                </div>
-              ]
+              items: [<div key={2}>Foo</div>, <div key={3}>Bar</div>]
             }
           ]}
           regularItems={
             <div>
-              <div>
-                Foo
-              </div>
-              <div>
-                Bar
-              </div>
+              <div>Foo</div>
+              <div>Bar</div>
             </div>
           }
           disableSidePanel={true}

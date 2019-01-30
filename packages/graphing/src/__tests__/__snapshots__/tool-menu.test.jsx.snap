@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ToolMenu snapshot renders 1`] = `
+<div
+  className="className"
+>
+  <WithStyles(ToggleBar)
+    onChange={[Function]}
+    options={
+      Array [
+        "one",
+        "two",
+      ]
+    }
+    selected="one"
+  />
+</div>
+`;

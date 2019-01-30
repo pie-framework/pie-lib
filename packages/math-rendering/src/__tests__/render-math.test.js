@@ -42,7 +42,7 @@ jest.mock('mathjax3/mathjax3/handlers/html', () => ({
 }));
 
 describe.only('render-math', () => {
-  it('calls katex render', () => {
+  it('calls MathJax render', () => {
     const div = document.createElement('div');
     renderMath(div);
     expect(MathJax.document).toHaveBeenCalledTimes(1);
@@ -71,6 +71,8 @@ describe.only('render-math', () => {
 
     fixMathElement(spanElem);
 
-    expect(spanElem.textContent).toEqual('\\(420\\text{ cm}=4.2\\text{ meters}\\)');
+    expect(spanElem.textContent).toEqual(
+      '\\(420\\text{ cm}=4.2\\text{ meters}\\)'
+    );
   });
 });
