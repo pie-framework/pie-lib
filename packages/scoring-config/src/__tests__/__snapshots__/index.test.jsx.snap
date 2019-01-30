@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`index empty - renders snapshots 1`] = `
-<div
-  className={undefined}
->
+<div>
   <p
     className="MuiTypography-root-1 MuiTypography-body1-10"
     type="subheading"
@@ -17,9 +15,10 @@ exports[`index empty - renders snapshots 1`] = `
     Each correct response is worth 1/X where X is the number of correct answer selections.
   </p>
   <span
-    className="MuiButtonBase-root-41 MuiIconButton-root-35 MuiSwitchBase-root-31 MuiCheckbox-root-26 MuiCheckbox-colorSecondary-30"
+    className="MuiButtonBase-root-53 MuiIconButton-root-47 MuiPrivateSwitchBase-root-43 MuiCheckbox-root-37 MuiCheckbox-colorSecondary-42"
     label=""
     onBlur={[Function]}
+    onContextMenu={[Function]}
     onFocus={[Function]}
     onKeyDown={[Function]}
     onKeyUp={[Function]}
@@ -29,17 +28,16 @@ exports[`index empty - renders snapshots 1`] = `
     onTouchEnd={[Function]}
     onTouchMove={[Function]}
     onTouchStart={[Function]}
-    role={undefined}
     tabIndex={null}
   >
     <span
-      className="MuiIconButton-label-40"
+      className="MuiIconButton-label-52"
     >
       <svg
         aria-hidden="true"
-        className="MuiSvgIcon-root-44"
-        color={undefined}
+        className="MuiSvgIcon-root-56"
         focusable="false"
+        role="presentation"
         viewBox="0 0 24 24"
       >
         <path
@@ -47,22 +45,14 @@ exports[`index empty - renders snapshots 1`] = `
         />
       </svg>
       <input
-        autoFocus={undefined}
-        checked={false}
-        className="MuiSwitchBase-input-34"
-        disabled={undefined}
-        id={undefined}
-        name={undefined}
+        className="MuiPrivateSwitchBase-input-46"
+        data-indeterminate={false}
         onChange={[Function]}
-        readOnly={undefined}
-        required={undefined}
-        tabIndex={undefined}
         type="checkbox"
-        value={undefined}
       />
     </span>
     <span
-      className="MuiTouchRipple-root-51"
+      className="MuiTouchRipple-root-65"
     />
   </span>
 </div>
