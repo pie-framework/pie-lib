@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.16.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.15.0...@pie-lib/editable-html@6.16.0) (2019-01-30)
+
+
+### Features
+
+* libs version bump ([d905a83](https://github.com/pie-framework/pie-lib/commit/d905a83))
+
+
+
+
+
 <a name="6.15.0"></a>
 # [6.15.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.13.5...@pie-lib/editable-html@6.15.0) (2019-01-10)
 

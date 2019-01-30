@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.7.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@4.6.0...@pie-lib/math-input@4.7.0) (2019-01-30)
+
+
+### Features
+
+* libs version bump ([b9476a9](https://github.com/pie-framework/pie-lib/commit/b9476a9))
+
+
+
+
+
 <a name="4.6.0"></a>
 # [4.6.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@4.5.2...@pie-lib/math-input@4.6.0) (2018-12-18)
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/test-utils@0.0.3...@pie-lib/test-utils@0.1.0) (2019-01-30)
+
+
+### Features
+
+* libs version bump ([de9ac2b](https://github.com/pie-framework/pie-lib/commit/de9ac2b))
+
+
+
+
+
 <a name="0.0.3"></a>
 ## [0.0.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/test-utils@0.0.2...@pie-lib/test-utils@0.0.3) (2018-05-08)
 

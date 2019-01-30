@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@0.2.0...@pie-lib/math-evaluator@0.3.0) (2019-01-30)
+
+
+### Bug Fixes
+
+* math-expressions import ([10d25b9](https://github.com/pie-framework/pie-lib/commit/10d25b9))
+* use plain module from math-expressions ([a8f0647](https://github.com/pie-framework/pie-lib/commit/a8f0647))
+
+
+### Features
+
+* libs version bump ([4edc4be](https://github.com/pie-framework/pie-lib/commit/4edc4be))
+
+
+
+
+
 <a name="0.2.0"></a>
 # [0.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@0.1.0...@pie-lib/math-evaluator@0.2.0) (2018-11-09)
 
