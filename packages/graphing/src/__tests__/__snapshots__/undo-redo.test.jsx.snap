@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UndoRedo snapshot renders 1`] = `
+<div
+  className=""
+>
+  <WithStyles(Button)
+    onClick={[MockFunction]}
+  >
+    Undo
+  </WithStyles(Button)>
+  <WithStyles(Button)
+    onClick={[MockFunction]}
+  >
+    Redo
+  </WithStyles(Button)>
+  <WithStyles(Button)
+    onClick={[MockFunction]}
+  >
+    Reset
+  </WithStyles(Button)>
+</div>
+`;

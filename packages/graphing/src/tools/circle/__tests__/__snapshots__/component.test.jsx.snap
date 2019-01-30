@@ -1,0 +1,104 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component snapshot renders 1`] = `
+<g>
+  <GridDraggable
+    className=""
+    graphProps={
+      Object {
+        "domain": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "range": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "scale": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+        "size": Object {
+          "height": 400,
+          "width": 400,
+        },
+        "snap": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+      }
+    }
+    onDrag={[Function]}
+    onMove={[Function]}
+    radius={1.4142135623730951}
+    x={0}
+    y={0}
+  />
+  <WithStyles(GridDraggable)
+    graphProps={
+      Object {
+        "domain": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "range": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "scale": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+        "size": Object {
+          "height": 400,
+          "width": 400,
+        },
+        "snap": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+      }
+    }
+    onDrag={[Function]}
+    onMove={[Function]}
+    x={1}
+    y={1}
+  />
+  <WithStyles(GridDraggable)
+    graphProps={
+      Object {
+        "domain": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "range": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "scale": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+        "size": Object {
+          "height": 400,
+          "width": 400,
+        },
+        "snap": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+      }
+    }
+    onDrag={[Function]}
+    onMove={[Function]}
+    x={0}
+    y={0}
+  />
+</g>
+`;
