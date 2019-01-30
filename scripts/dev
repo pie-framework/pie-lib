@@ -31,18 +31,8 @@ const scope = argv.scope
       .readdirSync('packages')
       .filter(n => !n.startsWith('.') && !n.startsWith('demo'));
 
-const isDemoInstalled = async () => {
-  const exists = await fs.exists('packages/demo/node_modules');
-  if (exists) {
-    const stat = await fs.stat('packages/demo/node_modules');
-    return stat.isDirectory();
-  } else {
-    return false;
-  }
-};
 
 const run = async () => {
-  const installed = await isDemoInstalled();
 
   if (!installed) {
     throw new Error('You need to run yarn install in "demo"');
