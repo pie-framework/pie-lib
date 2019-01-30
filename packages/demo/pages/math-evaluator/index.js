@@ -8,21 +8,10 @@ import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 import areValuesEqual from '@pie-lib/math-evaluator';
 import mathExpressions from 'math-expressions';
-import katex from 'katex';
 import debug from 'debug';
 import jsesc from 'jsesc';
 
 const log = debug('demo:math-evaluator');
-
-require('katex/dist/katex.css');
-
-let renderMathInElement = () => {};
-
-if (typeof window !== 'undefined') {
-  //Auto render requires the katex global
-  window.katex = katex;
-  renderMathInElement = require('katex/dist/contrib/auto-render.min');
-}
 
 const renderOpts = {
   delimiters: [
@@ -38,18 +27,6 @@ class RawMarkupPreview extends React.Component {
     classes: PropTypes.object.isRequired,
     markup: PropTypes.string.isRequired
   };
-
-  componentDidUpdate() {
-    if (this.preview) {
-      renderMathInElement(this.preview, renderOpts);
-    }
-  }
-
-  componentDidMount() {
-    if (this.preview) {
-      renderMathInElement(this.preview, renderOpts);
-    }
-  }
 
   render() {
     const { markup, classes } = this.props;

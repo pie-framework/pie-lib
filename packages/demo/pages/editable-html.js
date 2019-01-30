@@ -14,19 +14,9 @@ import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import InputChooser from '../src/editable-html/input-chooser';
-import katex from 'katex';
-require('katex/dist/katex.css');
 
 const log = debug('@pie-lib:editable-html:demo');
 const puppySrc = `https://bit.ly/23yROY8`;
-
-let renderMathInElement = () => {};
-
-if (typeof window !== 'undefined') {
-  //Auto render requires the katex global
-  window.katex = katex;
-  renderMathInElement = require('katex/dist/contrib/auto-render.min');
-}
 
 const renderOpts = {
   delimiters: [
@@ -82,18 +72,6 @@ class RawMarkupPreview extends React.Component {
     classes: PropTypes.object.isRequired,
     markup: PropTypes.string.isRequired
   };
-
-  componentDidUpdate() {
-    if (this.preview) {
-      renderMathInElement(this.preview, renderOpts);
-    }
-  }
-
-  componentDidMount() {
-    if (this.preview) {
-      renderMathInElement(this.preview, renderOpts);
-    }
-  }
 
   render() {
     const { markup, classes } = this.props;

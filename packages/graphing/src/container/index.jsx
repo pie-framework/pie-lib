@@ -37,10 +37,12 @@ class Root extends React.Component {
     onChangeMarks: PropTypes.func,
     marks: PropTypes.array
   };
+
   constructor(props) {
     super(props);
 
-    this.store = createStore(reducer, { marks: props.marks });
+    const r = reducer();
+    this.store = createStore(r, { marks: props.marks });
 
     this.store.subscribe(this.onStoreChange);
   }
