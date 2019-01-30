@@ -11,7 +11,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Link from 'next/link';
 import Divider from '@material-ui/core/Divider';
 import { withRouter } from 'next/router';
-import { asPath } from './utils';
 
 const drawerWidth = 240;
 
@@ -54,7 +53,7 @@ const ActiveLink = withStyles(theme => ({
   withRouter(({ router, path, primary, classes }) => {
     const isActive = path === router.pathname;
     return (
-      <Link href={path} as={asPath(path)}>
+      <Link href={path} as={path}>
         <ListItem button>
           <ListItemText
             primary={primary}

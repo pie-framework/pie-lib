@@ -3,7 +3,6 @@ import React from 'react';
 import { JssProvider } from 'react-jss';
 import getPageContext from '../src/getPageContext';
 import flush from 'styled-jsx/server';
-import { asPath } from '../src/utils';
 
 export default class MyDocument extends Document {
   static getInitialProps(ctx) {
@@ -59,10 +58,6 @@ export default class MyDocument extends Document {
           <meta
             name="theme-color"
             content={pageContext.theme.palette.primary.main}
-          />
-          <link
-            rel="stylesheet"
-            href={`${__NEXT_DATA__.assetPrefix || ''}/_next/static/style.css`}
           />
           <link
             rel="stylesheet"

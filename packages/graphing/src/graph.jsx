@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import Labels from './labels';
 import { Axes, AxisPropTypes } from './axis';
 import Grid from './grid';
@@ -15,7 +14,6 @@ import isEqual from 'lodash/isEqual';
 const log = debug('pie-lib:graphing:graph');
 
 export const graphPropTypes = {
-  classes: PropTypes.object.isRequired,
   className: PropTypes.string,
   size: PropTypes.shape({
     width: PropTypes.number.isRequired,
