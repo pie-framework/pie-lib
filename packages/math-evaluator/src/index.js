@@ -1,5 +1,5 @@
 import mathjs from 'mathjs';
-import mathExpressions from 'math-expressions/build/math-expressions';
+import mathExpressions from 'math-expressions';
 
 function prepareExpression(string, isLatex) {
   let returnValue = string ? string.trim() : '';
