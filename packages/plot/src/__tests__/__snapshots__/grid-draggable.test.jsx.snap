@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`gridDraggable snapshot reqular 1`] = `
+<Component
+  axis="both"
+  bounds={
+    Object {
+      "bottom": 0,
+      "left": 0,
+      "right": 0,
+      "top": 0,
+    }
+  }
+  grid={
+    Array [
+      1,
+      1,
+    ]
+  }
+  onDrag={[Function]}
+  onMouseDown={[Function]}
+  onStart={[Function]}
+  onStop={[Function]}
+>
+  <Component
+    graphProps={
+      Object {
+        "domain": Object {
+          "max": 1,
+          "min": 0,
+        },
+        "range": Object {
+          "max": 1,
+          "min": 0,
+        },
+        "scale": Object {
+          "x": [MockFunction] {
+            "calls": Array [
+              Array [
+                1,
+              ],
+              Array [
+                0,
+              ],
+            ],
+            "results": Array [
+              Object {
+                "isThrow": false,
+                "value": 1,
+              },
+              Object {
+                "isThrow": false,
+                "value": 0,
+              },
+            ],
+          },
+          "y": [MockFunction] {
+            "calls": Array [
+              Array [
+                1,
+              ],
+              Array [
+                0,
+              ],
+            ],
+            "results": Array [
+              Object {
+                "isThrow": false,
+                "value": 1,
+              },
+              Object {
+                "isThrow": false,
+                "value": 0,
+              },
+            ],
+          },
+        },
+        "size": Object {
+          "height": 500,
+          "width": 500,
+        },
+        "snap": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+      }
+    }
+  />
+</Component>
+`;
