@@ -47,7 +47,7 @@ Sometimes the project test set up can get out of synch
 
 * try `lerna bootstrap`, `npm run build`, `rm -fr packages/test-utils/node_modules` and run again.
 
-## Building and deployng a pre-release
+## Building and deploying a pre-release
 
 ```shell
 # make sure the local demo is working first: scripts/dev then:
