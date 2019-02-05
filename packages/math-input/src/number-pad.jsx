@@ -21,7 +21,7 @@ export const defaults = numbers.concat(extras);
 const baseStyles = merge(buttonStyle(), {
   root: {
     backgroundColor: '#cacaca',
-    width: '55px',
+    width: '100%',
     height: '100%',
     marginRight: 0
   }
@@ -44,7 +44,7 @@ const NumberPadButton = withStyles(baseStyles)(props => {
 const EqualsButton = withStyles(
   merge(buttonStyle(), {
     root: {
-      width: '55px',
+      width: '100%',
       height: '100%',
       marginRight: 0,
       backgroundColor: 'orange'

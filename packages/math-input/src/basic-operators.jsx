@@ -24,7 +24,7 @@ const baseStyles = merge(buttonStyle(), {
   root: {
     backgroundColor: 'orange',
     height: '100%',
-    width: '54px',
+    width: '100%',
     marginRight: 0
   }
 });

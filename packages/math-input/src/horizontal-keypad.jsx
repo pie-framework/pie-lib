@@ -26,7 +26,7 @@ const topRowStyle = {
   root: merge({}, bs.root, {
     backgroundColor: '#eaeadf',
     marginRight: '0',
-    width: '55px',
+    width: '100%',
     height: '55px'
   }),
   label: bs.label,
