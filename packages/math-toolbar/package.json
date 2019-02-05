@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "0.6.2",
+  "version": "0.6.3",
   "description": "Math toolbar for editing math equations",
   "keywords": [
     "math",
@@ -32,5 +32,5 @@
   "devDependencies": {
     "@pie-lib/test-utils": "^0.1.1"
   },
-  "gitHead": "1090bd26e31b37d067d32cde11a4185ef0b7dc52"
+  "gitHead": "70f9b554272dd55e2ff0655340da659191e7beff"
 }
