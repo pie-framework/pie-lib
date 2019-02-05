@@ -23,7 +23,9 @@ export const defaults = [
 const baseStyles = merge(buttonStyle(), {
   root: {
     backgroundColor: 'orange',
-    height: '100%'
+    height: '100%',
+    width: '54px',
+    marginRight: 0
   }
 });
 
