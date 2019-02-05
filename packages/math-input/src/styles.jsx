@@ -24,7 +24,9 @@ export const buttonStyle = () => ({
     borderRadius: '0',
     marginRight: '5px',
     marginBottom: '0px',
-    width: '100%'
+    padding: 0,
+    width: '48px',
+    height: '48px'
   },
   label: {
     display: 'block'

@@ -25,7 +25,9 @@ const bs = buttonStyle();
 const topRowStyle = {
   root: merge({}, bs.root, {
     backgroundColor: '#eaeadf',
-    marginRight: '0'
+    marginRight: '0',
+    width: '55px',
+    height: '55px'
   }),
   label: bs.label,
   hideRoot: merge({}, bs.root, {
@@ -92,8 +94,8 @@ const DeleteAndClear = props => {
       <Tr hide={props.showingCode} onClick={() => props.onClick('Backspace')}>
         <Backspace />
       </Tr>
-      <Tr hide={props.showingCode}>
-        <Clear onClick={() => props.onClick('clear')} />
+      <Tr hide={props.showingCode} onClick={() => props.onClick('clear')} >
+        <Clear />
       </Tr>
     </div>
   );
