@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.11.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@7.11.2...@pie-lib/config-ui@7.11.3) (2019-02-05)
+
+
+### Bug Fixes
+
+* version bump ([caaf960](https://github.com/pie-framework/pie-lib/commit/caaf960))
+
+
+
+
+
 ## [7.11.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@7.11.1...@pie-lib/config-ui@7.11.2) (2019-02-05)
 
 **Note:** Version bump only for package @pie-lib/config-ui
