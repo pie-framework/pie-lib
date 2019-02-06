@@ -15,7 +15,12 @@ const CorrectnessToken = props => {
     props.correct === false && classes.incorrect
   );
 
-  return <span className={className}>{props.text}</span>;
+  return (
+    <span
+      className={className}
+      dangerouslySetInnerHTML={{ __html: props.text }}
+    />
+  );
 };
 
 CorrectnessToken.propTypes = {
@@ -25,6 +30,9 @@ CorrectnessToken.propTypes = {
 };
 
 export default withStyles(() => ({
+  custom: {
+    display: 'initial'
+  },
   correct: {
     backgroundColor: green[500]
   },

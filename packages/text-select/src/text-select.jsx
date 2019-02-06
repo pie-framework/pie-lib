@@ -12,7 +12,7 @@ const log = debug('@pie-lib:text-select');
  */
 export default class TextSelect extends React.Component {
   static propTypes = {
-    onChange: PropTypes.func.isRequired,
+    onChange: PropTypes.func,
     disabled: PropTypes.bool,
     tokens: PropTypes.arrayOf(PropTypes.shape(TokenTypes)).isRequired,
     selectedTokens: PropTypes.arrayOf(PropTypes.shape(TokenTypes)).isRequired,
@@ -23,8 +23,16 @@ export default class TextSelect extends React.Component {
   };
 
   change = tokens => {
-    const out = tokens.filter(t => t.selected);
-    this.props.onChange(out);
+    const { onChange } = this.props;
+
+    if (!onChange) {
+      return;
+    }
+    const out = tokens
+      .filter(t => t.selected)
+      .map(t => ({ start: t.start, end: t.end }));
+
+    onChange(out);
   };
 
   render() {
@@ -42,7 +50,7 @@ export default class TextSelect extends React.Component {
     log('normalized: ', normalized);
     const prepped = normalized.map(t => {
       const selectedIndex = selectedTokens.findIndex(s => {
-        return s.start === t.start && s.end === t.end && s.text === t.text;
+        return s.start === t.start && s.end === t.end; // && s.text === t.text;
       });
       const selected = selectedIndex !== -1;
       const correct = selected ? t.correct : undefined;
