@@ -23,7 +23,8 @@ export class TokenSelect extends React.Component {
 
   static defaultProps = {
     highlightChoices: false,
-    maxNoOfSelections: 0
+    maxNoOfSelections: 0,
+    tokens: []
   };
 
   selectedCount = () => this.props.tokens.filter(t => t.selected).length;

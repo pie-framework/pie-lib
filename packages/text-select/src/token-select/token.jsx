@@ -18,7 +18,9 @@ export class Token extends React.Component {
     highlight: PropTypes.bool
   };
 
-  static defaultProps = {};
+  static defaultProps = {
+    selectable: false
+  };
 
   render() {
     const {
@@ -44,9 +46,8 @@ export class Token extends React.Component {
       <span
         onClick={selectable && !disabled ? onClick : undefined}
         className={className}
-      >
-        {text}
-      </span>
+        dangerouslySetInnerHTML={{ __html: text }}
+      />
     );
   }
 }
@@ -55,7 +56,7 @@ export default withStyles(theme => {
   return {
     token: {
       cursor: 'pointer',
-      display: 'inline',
+      display: 'initial',
       paddingRight: 0,
       transition: 'background-color 100ms ease-in'
     },
@@ -68,14 +69,20 @@ export default withStyles(theme => {
     },
     selectable: {
       '&:hover': {
-        backgroundColor: theme.palette.secondary.light
+        backgroundColor: theme.palette.secondary.light,
+        '& > *': {
+          backgroundColor: theme.palette.secondary.light
+        }
       }
     },
     selected: {
       '&:hover': {
         backgroundColor: theme.palette.primary.light
       },
-      backgroundColor: theme.palette.primary.light
+      backgroundColor: theme.palette.primary.light,
+      '& > *': {
+        backgroundColor: theme.palette.primary.light
+      }
     },
     highlight: {
       border: `dashed 1px ${theme.palette.primary.light}`

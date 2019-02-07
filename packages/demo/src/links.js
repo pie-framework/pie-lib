@@ -12,6 +12,7 @@ module.exports = [
   { label: 'render-ui', path: '/render-ui' },
   { label: 'scoring-config', path: '/scoring-config' },
   { label: 'text-select', path: '/text-select' },
+  { label: 'text-select math', path: '/text-select-math' },
   { label: 'tools - ruler', path: '/tools/ruler' },
   { label: 'tools - protractor', path: '/tools/protractor' },
   { label: 'tools - rotatable', path: '/tools/rotatable' },
