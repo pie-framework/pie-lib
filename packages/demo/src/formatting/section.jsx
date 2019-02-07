@@ -8,17 +8,6 @@ const Section = withStyles(theme => ({
     paddingTop: '40px',
     paddingBottom: '40px',
     position: 'relative'
-    // '&::after': {
-    //   display: 'block',
-    //   position: 'absolute',
-    //   left: '0',
-    //   // top: '0',
-    //   bottom: '0',
-    //   right: '0',
-    //   height: '1px',
-    //   content: '""',
-    //   backgroundColor: 'rgba(0,0,0,0.2)'
-    // }
   },
   header: {
     position: 'relative',

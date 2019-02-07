@@ -50,7 +50,7 @@ export default class TextSelect extends React.Component {
     log('normalized: ', normalized);
     const prepped = normalized.map(t => {
       const selectedIndex = selectedTokens.findIndex(s => {
-        return s.start === t.start && s.end === t.end; // && s.text === t.text;
+        return s.start === t.start && s.end === t.end;
       });
       const selected = selectedIndex !== -1;
       const correct = selected ? t.correct : undefined;
