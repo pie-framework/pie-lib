@@ -166,7 +166,14 @@ const styles = theme => ({
     position: 'relative',
     textAlign: 'center',
     '& > .mq-math-mode': {
-      border: 'solid 0px lightgrey'
+      border: 'solid 0px lightgrey',
+      '& .mq-non-leaf': {
+        display: 'inline-flex',
+        alignItems: 'center',
+      },
+      '& .mq-paren' : {
+        verticalAlign: 'middle'
+      }
     },
     '& > .mq-focused': {
       outline: 'none',

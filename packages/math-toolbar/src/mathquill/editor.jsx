@@ -11,7 +11,7 @@ if (typeof window !== 'undefined') {
   if (MQ && MQ.registerEmbed) {
     MQ.registerEmbed('answerBlock', id => {
       return {
-        htmlString: `<span id=${id}></span>`,
+        htmlString: `<span style="min-height: 20px" id=${id}></span>`,
         text: () => "testText",
         latex: () => "\\embed{answerBlock}[" + id + "]"
       };
