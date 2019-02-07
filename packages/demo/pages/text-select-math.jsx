@@ -116,11 +116,6 @@ class Demo extends React.Component {
           selected: true
         }
       ]
-      // textSelect: {
-      //   selected: tokens.filter((t, index) => index % 2 === 0),
-      //   withCorrect: tokens.filter((t, index) => index === 0 || index === 1)
-      // },
-      // tokenizerTokens: []
     };
   }
 
