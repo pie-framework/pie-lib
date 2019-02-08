@@ -9,24 +9,17 @@ if (typeof window !== 'undefined') {
   MQ = MathQuill.getInterface(2);
 
   if (MQ && MQ.registerEmbed) {
-    MQ &&
-      MQ.registerEmbed('answerBlock', id => {
-        return {
-          htmlString: `<span id=${id}></span>`,
-          text: () => 'testText',
-          latex: () => '\\embed{answerBlock}[' + id + ']'
-        };
-      });
+    MQ && MQ.registerEmbed('answerBlock', id => {
+      return {
+        htmlString: `<span id=${id}></span>`,
+        text: () => "testText",
+        latex: () => "\\embed{answerBlock}[" + id + "]"
+      };
+    });
   }
 }
 
 const log = debug('@pie-lib:editable-html:plugins:math:mathquill:editor');
-
-//TODO: This is almost identical to `@pie-lib/math-input/src/mq/input.jx - can we remove this?
-/**
- * import {mq} from '@pie-lib/math-input';
- * <mq.Input/>
- */
 
 export default class Editor extends React.Component {
   static propTypes = {
