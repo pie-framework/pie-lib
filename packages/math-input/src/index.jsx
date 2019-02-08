@@ -1,7 +1,7 @@
-import EditableMathInput from './editable-math-input';
-import HorizontalKeypad from './horizontal-keypad';
+export KeyPad from './keypad';
 
-export { EditableMathInput, HorizontalKeypad };
+export MathInput from './math-input';
+export { keysForGrade } from './keys/grades';
 
 const addLeftBracket = s => (s.indexOf('\\(') === 0 ? s : `\\(${s}`);
 const addRightBracket = s =>
@@ -12,3 +12,11 @@ const rmRightBracket = s =>
 
 export const addBrackets = s => addRightBracket(addLeftBracket(s));
 export const removeBrackets = s => rmRightBracket(rmLeftBracket(s));
+
+export * as keys from './keys';
+
+export * as icons from './keys/icons';
+
+export HorizontalKeypad from './horizontal-keypad';
+
+export mq from './mq';
