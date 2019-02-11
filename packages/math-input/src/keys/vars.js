@@ -1,4 +1,3 @@
-import { X, Y } from './icons';
 import { mkSet } from './utils';
 
 const set = mkSet('vars');
@@ -11,6 +10,5 @@ export const x = set({
 export const y = set({
   name: 'Y',
   latex: 'y',
-  icon: Y,
   write: 'y'
 });

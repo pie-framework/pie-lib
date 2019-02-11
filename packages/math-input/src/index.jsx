@@ -15,8 +15,6 @@ export const removeBrackets = s => rmRightBracket(rmLeftBracket(s));
 
 export * as keys from './keys';
 
-export * as icons from './keys/icons';
-
 export HorizontalKeypad from './horizontal-keypad';
 
 export mq from './mq';

@@ -1,16 +1,3 @@
-import {
-  RightArrow,
-  LeftRightArrow,
-  Parallel,
-  Perpendicular,
-  Angle,
-  MeasuredAngle,
-  Triangle,
-  Parallelogram,
-  CircledDot,
-  Degree
-} from './icons';
-
 const set = o => ({ ...o, category: 'geometry' });
 
 export const overline = set({
@@ -63,7 +50,7 @@ export const angle = set({
 });
 export const overArc = set({
   name: 'Over arc',
-  label: 'ovra',
+  latex: '\\overarc{}',
   command: '\\overarc'
 });
 export const measureOfAngle = set({

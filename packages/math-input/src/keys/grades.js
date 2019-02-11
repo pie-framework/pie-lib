@@ -23,7 +23,7 @@ const hs = [
   [comparison.lessThan, comparison.greaterThan, misc.plusMinus, misc.absValue],
   [
     constants.pi,
-    { name: 'i', label: 'i', write: 'i' },
+    { name: 'i', latex: 'i', write: 'i' },
     misc.parenthesis,
     misc.brackets
   ],

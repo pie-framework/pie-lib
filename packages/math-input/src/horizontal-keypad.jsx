@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import * as exponent from './keys/exponent';
+import * as subSup from './keys/sub-sup';
 import * as misc from './keys/misc';
 import * as fractions from './keys/fractions';
 import * as comparison from './keys/comparison';
@@ -10,8 +11,8 @@ import Keypad from './keypad';
 
 const additionalKeys = [
   [
-    misc.superscript,
-    misc.subscript,
+    subSup.superscript,
+    subSup.subscript,
     fractions.xOverBlank,
     misc.percentage,
     geometry.segment,
@@ -56,6 +57,8 @@ const toOldModel = d => {
     return { value: d.command, type: 'command' };
   } else if (d.write) {
     return { value: d.write };
+  } else if (d.keystroke) {
+    return { type: 'cursor', value: d.keystroke };
   }
 };
 
