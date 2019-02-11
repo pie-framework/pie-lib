@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@4.7.3...@pie-lib/math-input@5.0.0) (2019-02-11)
+
+
+### Bug Fixes
+
+* nav w/ HorizontalKeypad ([79a72be](https://github.com/pie-framework/pie-lib/commit/79a72be))
+
+
+### Features
+
+* new ui + layout ([2f6fdba](https://github.com/pie-framework/pie-lib/commit/2f6fdba))
+
+
+### BREAKING CHANGES
+
+* * The ui is quite different now
+* Some of the old components are gone (except for HorizontalKeypad which
+is retained for backward compatibility).
+
+
+
+
+
 ## [4.7.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@4.7.2...@pie-lib/math-input@4.7.3) (2019-02-05)
 
 

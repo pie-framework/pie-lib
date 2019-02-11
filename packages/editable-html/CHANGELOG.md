@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.16.3...@pie-lib/editable-html@7.0.0) (2019-02-11)
+
+
+### Features
+
+* new ui + layout ([2f6fdba](https://github.com/pie-framework/pie-lib/commit/2f6fdba))
+
+
+### BREAKING CHANGES
+
+* * The ui is quite different now
+* Some of the old components are gone (except for HorizontalKeypad which
+is retained for backward compatibility).
+
+
+
+
+
 ## [6.16.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@6.16.2...@pie-lib/editable-html@6.16.3) (2019-02-05)
 
 
