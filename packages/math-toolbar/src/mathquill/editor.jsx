@@ -9,11 +9,19 @@ if (typeof window !== 'undefined') {
   MQ = MathQuill.getInterface(2);
 
   if (MQ && MQ.registerEmbed) {
-    MQ && MQ.registerEmbed('answerBlock', id => {
+    MQ.registerEmbed('answerBlock', id => {
       return {
-        htmlString: `<span id=${id}></span>`,
+        htmlString: `<span style="min-height: 20px" id=${id}></span>`,
         text: () => "testText",
         latex: () => "\\embed{answerBlock}[" + id + "]"
+      };
+    });
+
+    MQ.registerEmbed('newLine', () => {
+      return {
+        htmlString: `<div class="newLine"></div>`,
+        text: () => 'testText',
+        latex: () => '\\embed{newLine}[]'
       };
     });
   }
@@ -106,6 +114,16 @@ export default class Editor extends React.Component {
     trailing: true
   });
 
+  onKeyPress = event => {
+    if (event.charCode === 13) {
+      // if enter's pressed, we're going for a custom embedded element that'll
+      // have a block display (empty div) - for a hacked line break using ccs
+      // all because mathquill doesn't support a line break
+      this.write('\\embed{newLine}[]');
+      this._onInputEdit();
+    }
+  }
+
   latexIsEqual = (a, b) => {
     if (!a && !b) {
       return true;
@@ -126,6 +144,7 @@ export default class Editor extends React.Component {
 
     return (
       <span
+        onKeyPress={this.onKeyPress}
         onClick={onClick}
         onFocus={onFocus}
         onBlur={onBlur}

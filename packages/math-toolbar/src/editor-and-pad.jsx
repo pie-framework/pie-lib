@@ -132,7 +132,7 @@ export class EditorAndPad extends React.Component {
           <Button
             className={classes.addAnswerBlockButton}
             type="primary"
-            style={{ bottom: shouldShowKeypad ? '213px' : '20px' }}
+            style={{ bottom: shouldShowKeypad ? '403px' : '20px' }}
             onClick={this.onAnswerBlockClick}
           >
             + Response Area
@@ -166,7 +166,14 @@ const styles = theme => ({
     position: 'relative',
     textAlign: 'center',
     '& > .mq-math-mode': {
-      border: 'solid 0px lightgrey'
+      border: 'solid 0px lightgrey',
+      '& .mq-non-leaf': {
+        display: 'inline-flex',
+        alignItems: 'center',
+      },
+      '& .mq-paren' : {
+        verticalAlign: 'middle'
+      }
     },
     '& > .mq-focused': {
       outline: 'none',
