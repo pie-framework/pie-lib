@@ -40,7 +40,7 @@ describe('text-select', () => {
         ];
 
         w.instance().change(changeArgs);
-        expect(onChange).toBeCalledWith([changeArgs[0]]);
+        expect(onChange).toBeCalledWith([{ start: 0, end: 1 }]);
       });
     });
   });

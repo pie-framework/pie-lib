@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@0.6.6...@pie-lib/math-toolbar@0.7.0) (2019-02-11)
+
+
+### Features
+
+* version bump ([fef98bd](https://github.com/pie-framework/pie-lib/commit/fef98bd))
+
+
+
+
+
+## [0.6.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@0.6.5...@pie-lib/math-toolbar@0.6.6) (2019-02-11)
+
+**Note:** Version bump only for package @pie-lib/math-toolbar
+
+
+
+
+
+## [0.6.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@0.6.4...@pie-lib/math-toolbar@0.6.5) (2019-02-11)
+
+**Note:** Version bump only for package @pie-lib/math-toolbar
+
+
+
+
+
 ## [0.6.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@0.6.2...@pie-lib/math-toolbar@0.6.4) (2019-02-05)
 
 

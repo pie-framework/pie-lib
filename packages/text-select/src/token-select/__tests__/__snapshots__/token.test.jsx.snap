@@ -3,5 +3,10 @@
 exports[`token snapshot renders 1`] = `
 <span
   className="token"
+  dangerouslySetInnerHTML={
+    Object {
+      "__html": undefined,
+    }
+  }
 />
 `;

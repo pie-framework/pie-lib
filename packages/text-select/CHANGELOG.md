@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.3.1...@pie-lib/text-select@1.4.0) (2019-02-07)
+
+
+### Features
+
+* support html markup in TextSelect ([b3942ed](https://github.com/pie-framework/pie-lib/commit/b3942ed))
+
+
+
+
+
 ## [1.3.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.3.0...@pie-lib/text-select@1.3.1) (2019-01-30)
 
 **Note:** Version bump only for package @pie-lib/text-select

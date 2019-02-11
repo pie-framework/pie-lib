@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "4.7.5",
+  "version": "5.0.3",
   "main": "lib/index.js",
   "dependencies": {
     "@material-ui/core": "^3.8.3",
@@ -26,5 +26,5 @@
       "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
     }
   },
-  "gitHead": "70f9b554272dd55e2ff0655340da659191e7beff"
+  "gitHead": "392d23fb87a66e7260172db53451a64628b0bf8a"
 }

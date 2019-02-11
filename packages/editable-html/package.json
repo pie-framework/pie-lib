@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/editable-html",
-  "version": "6.16.3",
+  "version": "7.0.2",
   "description": "",
   "license": "ISC",
   "main": "lib/index.js",
@@ -8,9 +8,8 @@
   "dependencies": {
     "@material-ui/core": "^3.8.3",
     "@material-ui/icons": "^3.0.2",
-    "@pie-lib/math-input": "^4.7.3",
     "@pie-lib/math-rendering": "^1.2.1",
-    "@pie-lib/math-toolbar": "^0.6.4",
+    "@pie-lib/math-toolbar": "^0.7.0",
     "change-case": "^3.0.2",
     "classnames": "^2.2.6",
     "debug": "^4.1.1",
@@ -43,5 +42,5 @@
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "70f9b554272dd55e2ff0655340da659191e7beff"
+  "gitHead": "392d23fb87a66e7260172db53451a64628b0bf8a"
 }
