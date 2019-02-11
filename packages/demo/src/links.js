@@ -9,6 +9,7 @@ module.exports = [
   { label: 'icons', path: '/icons' },
   { label: 'math-evaluator', path: '/math-evaluator' },
   { label: 'math-input', path: '/math-input' },
+  { label: 'math-toolbar', path: '/math-toolbar' },
   { label: 'render-ui', path: '/render-ui' },
   { label: 'scoring-config', path: '/scoring-config' },
   { label: 'text-select', path: '/text-select' },

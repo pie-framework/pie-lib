@@ -1,6 +1,8 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 import debug from 'debug';
+import classNames from 'classnames';
 
 let MQ;
 if (typeof window !== 'undefined') {
@@ -8,16 +10,18 @@ if (typeof window !== 'undefined') {
   MQ = MathQuill.getInterface(2);
 }
 
-const log = debug('math-input:editable-math-input');
+const log = debug('math-input:mq:input');
 
 /**
  * Wrapper for MathQuill MQ.MathField.
  */
-export default class EditableMathInput extends React.Component {
+export class Input extends React.Component {
   static propTypes = {
-    onClick: PropTypes.func.isRequired,
-    onChange: PropTypes.func.isRequired,
-    latex: PropTypes.string.isRequired,
+    className: PropTypes.string,
+    classes: PropTypes.object.isRequired,
+    onClick: PropTypes.func,
+    onChange: PropTypes.func,
+    latex: PropTypes.string,
     onFocus: PropTypes.func,
     onBlur: PropTypes.func
   };
@@ -26,12 +30,17 @@ export default class EditableMathInput extends React.Component {
     if (!MQ) {
       throw new Error('MQ is not defined - but component has mounted?');
     }
+
+    const { latex } = this.props;
     this.mathField = MQ.MathField(this.input, {
       handlers: {
         edit: this.onInputEdit.bind(this)
       }
     });
-    this.mathField.latex(this.props.latex);
+
+    if (latex) {
+      this.mathField.latex(latex);
+    }
   }
 
   clear() {
@@ -50,7 +59,14 @@ export default class EditableMathInput extends React.Component {
   }
 
   command(v) {
-    this.mathField.cmd(v);
+    log('command: ', v);
+    if (Array.isArray(v)) {
+      v.forEach(vv => {
+        this.mathField.cmd(vv);
+      });
+    } else {
+      this.mathField.cmd(v);
+    }
     this.mathField.focus();
     return this.mathField.latex();
   }
@@ -62,30 +78,34 @@ export default class EditableMathInput extends React.Component {
   }
 
   write(v) {
+    log('write: ', v);
     this.mathField.write(v);
     this.mathField.focus();
     return this.mathField.latex();
   }
 
-  onInputEdit() {
+  onInputEdit = () => {
     log('[onInputEdit] ...');
-
+    const { onChange } = this.props;
     if (!this.mathField) {
       return;
     }
 
-    this.props.onChange(this.mathField.latex());
-  }
+    if (onChange) {
+      onChange(this.mathField.latex());
+    }
+  };
 
   shouldComponentUpdate(nextProps) {
     return nextProps.latex !== this.mathField.latex();
   }
 
   render() {
-    const { onClick, onFocus, onBlur } = this.props;
+    const { onClick, onFocus, onBlur, classes, className } = this.props;
 
     return (
       <span
+        className={classNames(classes.input, className)}
         onClick={onClick}
         onFocus={onFocus}
         onBlur={onBlur}
@@ -94,3 +114,7 @@ export default class EditableMathInput extends React.Component {
     );
   }
 }
+
+const styles = theme => ({});
+
+export default withStyles(styles)(Input);

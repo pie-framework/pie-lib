@@ -8,7 +8,6 @@
   "dependencies": {
     "@material-ui/core": "^3.8.3",
     "@material-ui/icons": "^3.0.2",
-    "@pie-lib/math-input": "^4.7.3",
     "@pie-lib/math-rendering": "^1.2.1",
     "@pie-lib/math-toolbar": "^0.6.4",
     "change-case": "^3.0.2",
