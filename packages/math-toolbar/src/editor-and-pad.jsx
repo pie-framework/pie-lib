@@ -76,15 +76,20 @@ export class EditorAndPad extends React.Component {
       id: `answerBlock${answerBlockIdCounter + 1}`
     });
 
-    this.setState(state => ({
-      answerBlocks: state.answerBlocks.concat({
-        id: `answerBlock${state.answerBlockIdCounter + 1}`
+    this.setState(
+      state => ({
+        answerBlocks: state.answerBlocks.concat({
+          id: `answerBlock${state.answerBlockIdCounter + 1}`
+        }),
+        answerBlockIdCounter: state.answerBlockIdCounter + 1
       }),
-      answerBlockIdCounter: state.answerBlockIdCounter + 1
-    }), () => {
-      this.props.onAnswerBlockAdd(`answerBlock${this.state.answerBlockIdCounter}`);
-    });
-  }
+      () => {
+        this.props.onAnswerBlockAdd(
+          `answerBlock${this.state.answerBlockIdCounter}`
+        );
+      }
+    );
+  };
 
   onEditorChange = latex => {
     const { onChange } = this.props;
@@ -115,7 +120,8 @@ export class EditorAndPad extends React.Component {
       onFocus,
       classes
     } = this.props;
-    const shouldShowKeypad = !controlledKeypad || (controlledKeypad && showKeypad);
+    const shouldShowKeypad =
+      !controlledKeypad || (controlledKeypad && showKeypad);
 
     log('[render]', latex);
 
@@ -128,7 +134,7 @@ export class EditorAndPad extends React.Component {
           latex={latex}
           onChange={this.onEditorChange}
         />
-        {allowAnswerBlock &&
+        {allowAnswerBlock && (
           <Button
             className={classes.addAnswerBlockButton}
             type="primary"
@@ -136,9 +142,12 @@ export class EditorAndPad extends React.Component {
             onClick={this.onAnswerBlockClick}
           >
             + Response Area
-          </Button>}
+          </Button>
+        )}
         <hr className={classes.hr} />
-        {shouldShowKeypad && <HorizontalKeypad mode={keypadMode} onClick={this.onClick} />}
+        {shouldShowKeypad && (
+          <HorizontalKeypad mode={keypadMode} onClick={this.onClick} />
+        )}
       </div>
     );
   }
@@ -147,12 +156,12 @@ export class EditorAndPad extends React.Component {
 const styles = theme => ({
   mathEditor: {
     marginTop: theme.spacing.unit,
-    marginBottom: theme.spacing.unit,
+    marginBottom: theme.spacing.unit
   },
   addAnswerBlockButton: {
     position: 'absolute',
     right: '12px',
-    border: '1px solid lightgrey',
+    border: '1px solid lightgrey'
   },
   hr: {
     padding: 0,
@@ -168,10 +177,9 @@ const styles = theme => ({
     '& > .mq-math-mode': {
       border: 'solid 0px lightgrey',
       '& .mq-non-leaf': {
-        display: 'inline-flex',
-        alignItems: 'center',
+        alignItems: 'center'
       },
-      '& .mq-paren' : {
+      '& .mq-paren': {
         verticalAlign: 'middle'
       }
     },
