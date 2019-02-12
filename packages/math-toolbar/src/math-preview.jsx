@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import debug from 'debug';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
-import Static from './mathquill/static';
+import { mq } from '@pie-lib/math-input';
 
 const log = debug('@pie-lib:math-toolbar:math-preview');
 
@@ -24,7 +24,7 @@ export class RawMathPreview extends React.Component {
     return (
       <div className={classNames(classes.root, isSelected && classes.selected)}>
         {' '}
-        <Static latex={latex} onFocus={onFocus} onBlur={onBlur} />
+        <mq.Static latex={latex} onFocus={onFocus} onBlur={onBlur} />
       </div>
     );
   }
@@ -40,7 +40,7 @@ const mp = theme => ({
     '& > .mq-focused': {
       outline: 'none',
       boxShadow: 'none',
-      border: `solid 1px black`,
+      border: 'solid 1px black',
       borderRadius: '0px'
     }
   },

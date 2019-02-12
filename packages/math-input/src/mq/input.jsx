@@ -3,11 +3,17 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import debug from 'debug';
 import classNames from 'classnames';
+import { registerAnswerBlock, registerLineBreak } from './custom-elements';
 
 let MQ;
 if (typeof window !== 'undefined') {
   const MathQuill = require('mathquill');
   MQ = MathQuill.getInterface(2);
+
+  if (MQ && MQ.registerEmbed) {
+    registerAnswerBlock(MQ);
+    registerLineBreak(MQ);
+  }
 }
 
 const log = debug('math-input:mq:input');
@@ -96,6 +102,16 @@ export class Input extends React.Component {
     }
   };
 
+  onKeyPress = event => {
+    if (event.charCode === 13) {
+      // if enter's pressed, we're going for a custom embedded element that'll
+      // have a block display (empty div) - for a hacked line break using ccs
+      // all because mathquill doesn't support a line break
+      this.write('\\embed{newLine}[]');
+      this.onInputEdit();
+    }
+  }
+
   shouldComponentUpdate(nextProps) {
     return nextProps.latex !== this.mathField.latex();
   }
@@ -106,6 +122,7 @@ export class Input extends React.Component {
     return (
       <span
         className={classNames(classes.input, className)}
+        onKeyPress={this.onKeyPress}
         onClick={onClick}
         onFocus={onFocus}
         onBlur={onBlur}

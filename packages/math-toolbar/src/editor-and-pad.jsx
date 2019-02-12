@@ -1,12 +1,10 @@
-import { HorizontalKeypad } from '@pie-lib/math-input';
+import { HorizontalKeypad, mq } from '@pie-lib/math-input';
 import React from 'react';
 import debug from 'debug';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import MathQuillEditor from './mathquill/editor';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
-
 const log = debug('@pie-lib:math-toolbar:editor-and-pad');
 
 const toNodeData = data => {
@@ -99,7 +97,7 @@ export class EditorAndPad extends React.Component {
   /** Only render if the mathquill instance's latex is different
    * or the keypad state changed from one state to the other (shown / hidden) */
   shouldComponentUpdate(nextProps) {
-    const inputIsDifferent = this.input.latex() !== nextProps.latex;
+    const inputIsDifferent = this.input.mathField.latex() !== nextProps.latex;
     log('[shouldComponentUpdate] ', 'inputIsDifferent: ', inputIsDifferent);
 
     if (!inputIsDifferent && this.props.controlledKeypad) {
@@ -127,10 +125,10 @@ export class EditorAndPad extends React.Component {
 
     return (
       <div className={classes.mathToolbar}>
-        <MathQuillEditor
+        <mq.Input
           onFocus={onFocus}
           className={cx(classes.mathEditor, classNames.editor)}
-          ref={r => (this.input = r)}
+          innerRef={r => (this.input = r)}
           latex={latex}
           onChange={this.onEditorChange}
         />
@@ -138,7 +136,7 @@ export class EditorAndPad extends React.Component {
           <Button
             className={classes.addAnswerBlockButton}
             type="primary"
-            style={{ bottom: shouldShowKeypad ? '403px' : '20px' }}
+            style={{ bottom: shouldShowKeypad ? '320px' : '20px' }}
             onClick={this.onAnswerBlockClick}
           >
             + Response Area
