@@ -3,5 +3,6 @@
 exports[`Input snapshot renders 1`] = `
 <span
   className="className"
+  onKeyPress={[Function]}
 />
 `;
