@@ -17,4 +17,4 @@ export * as keys from './keys';
 
 export HorizontalKeypad from './horizontal-keypad';
 
-export mq from './mq';
+export * as mq from './mq';
