@@ -1,12 +1,10 @@
-import { HorizontalKeypad } from '@pie-lib/math-input';
+import { HorizontalKeypad, mq } from '@pie-lib/math-input';
 import React from 'react';
 import debug from 'debug';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import MathQuillEditor from './mathquill/editor';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
-
 const log = debug('@pie-lib:math-toolbar:editor-and-pad');
 
 const toNodeData = data => {
@@ -76,15 +74,20 @@ export class EditorAndPad extends React.Component {
       id: `answerBlock${answerBlockIdCounter + 1}`
     });
 
-    this.setState(state => ({
-      answerBlocks: state.answerBlocks.concat({
-        id: `answerBlock${state.answerBlockIdCounter + 1}`
+    this.setState(
+      state => ({
+        answerBlocks: state.answerBlocks.concat({
+          id: `answerBlock${state.answerBlockIdCounter + 1}`
+        }),
+        answerBlockIdCounter: state.answerBlockIdCounter + 1
       }),
-      answerBlockIdCounter: state.answerBlockIdCounter + 1
-    }), () => {
-      this.props.onAnswerBlockAdd(`answerBlock${this.state.answerBlockIdCounter}`);
-    });
-  }
+      () => {
+        this.props.onAnswerBlockAdd(
+          `answerBlock${this.state.answerBlockIdCounter}`
+        );
+      }
+    );
+  };
 
   onEditorChange = latex => {
     const { onChange } = this.props;
@@ -94,7 +97,7 @@ export class EditorAndPad extends React.Component {
   /** Only render if the mathquill instance's latex is different
    * or the keypad state changed from one state to the other (shown / hidden) */
   shouldComponentUpdate(nextProps) {
-    const inputIsDifferent = this.input.latex() !== nextProps.latex;
+    const inputIsDifferent = this.input.mathField.latex() !== nextProps.latex;
     log('[shouldComponentUpdate] ', 'inputIsDifferent: ', inputIsDifferent);
 
     if (!inputIsDifferent && this.props.controlledKeypad) {
@@ -115,30 +118,34 @@ export class EditorAndPad extends React.Component {
       onFocus,
       classes
     } = this.props;
-    const shouldShowKeypad = !controlledKeypad || (controlledKeypad && showKeypad);
+    const shouldShowKeypad =
+      !controlledKeypad || (controlledKeypad && showKeypad);
 
     log('[render]', latex);
 
     return (
       <div className={classes.mathToolbar}>
-        <MathQuillEditor
+        <mq.Input
           onFocus={onFocus}
           className={cx(classes.mathEditor, classNames.editor)}
-          ref={r => (this.input = r)}
+          innerRef={r => (this.input = r)}
           latex={latex}
           onChange={this.onEditorChange}
         />
-        {allowAnswerBlock &&
+        {allowAnswerBlock && (
           <Button
             className={classes.addAnswerBlockButton}
             type="primary"
-            style={{ bottom: shouldShowKeypad ? '403px' : '20px' }}
+            style={{ bottom: shouldShowKeypad ? '320px' : '20px' }}
             onClick={this.onAnswerBlockClick}
           >
             + Response Area
-          </Button>}
+          </Button>
+        )}
         <hr className={classes.hr} />
-        {shouldShowKeypad && <HorizontalKeypad mode={keypadMode} onClick={this.onClick} />}
+        {shouldShowKeypad && (
+          <HorizontalKeypad mode={keypadMode} onClick={this.onClick} />
+        )}
       </div>
     );
   }
@@ -147,12 +154,12 @@ export class EditorAndPad extends React.Component {
 const styles = theme => ({
   mathEditor: {
     marginTop: theme.spacing.unit,
-    marginBottom: theme.spacing.unit,
+    marginBottom: theme.spacing.unit
   },
   addAnswerBlockButton: {
     position: 'absolute',
     right: '12px',
-    border: '1px solid lightgrey',
+    border: '1px solid lightgrey'
   },
   hr: {
     padding: 0,
@@ -169,9 +176,9 @@ const styles = theme => ({
       border: 'solid 0px lightgrey',
       '& .mq-non-leaf': {
         display: 'inline-flex',
-        alignItems: 'center',
+        alignItems: 'center'
       },
-      '& .mq-paren' : {
+      '& .mq-paren': {
         verticalAlign: 'middle'
       }
     },
