@@ -175,7 +175,6 @@ const styles = theme => ({
     '& > .mq-math-mode': {
       border: 'solid 0px lightgrey',
       '& .mq-non-leaf': {
-        display: 'inline-flex',
         alignItems: 'center'
       },
       '& .mq-paren': {

@@ -13,7 +13,7 @@ const additionalKeys = [
   [
     subSup.superscript,
     subSup.subscript,
-    fractions.xOverBlank,
+    fractions.blankOverBlank,
     misc.percentage,
     geometry.segment,
     geometry.parallel
