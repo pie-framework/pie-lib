@@ -8,6 +8,7 @@ import { withStyles } from '@material-ui/core/styles';
 const styles = theme => ({
   group: {
     display: 'flex',
+    flexWrap: 'wrap',
     paddingLeft: 0,
     marginTop: theme.spacing.unit
   },

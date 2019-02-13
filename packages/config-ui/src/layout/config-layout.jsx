@@ -247,6 +247,9 @@ const styles = () => ({
 });
 
 const theme = createMuiTheme({
+  typography: {
+    useNextVariants: true,
+  },
   palette: {
     action: {
       disabled: 'rgba(0, 0, 0, 0.54);'
@@ -254,14 +257,18 @@ const theme = createMuiTheme({
   },
   overrides: {
     MuiRadio: {
-      '&$checked': {
-        color: '#3f51b5 !important'
+      root: {
+        '&$checked': {
+          color: '#3f51b5 !important'
+        }
       }
     },
     MuiCheckbox: {
-      '&$checked': {
-        color: '#3f51b5 !important'
-      }
+      root: {
+        '&$checked': {
+          color: '#3f51b5 !important'
+        }
+      },
     },
     MuiTabs: {
       root: {
@@ -269,11 +276,13 @@ const theme = createMuiTheme({
       }
     },
     MuiSwitch: {
-      '&$checked': {
-        color: '#3f51b5 !important',
-        '& + $bar': {
-          backgroundColor: '#3f51b5 !important',
-          opacity: 0.5
+      root: {
+        '&$checked': {
+          color: '#3f51b5 !important',
+          '& + $bar': {
+            backgroundColor: '#3f51b5 !important',
+            opacity: 0.5
+          }
         }
       }
     }
