@@ -40,6 +40,10 @@ export class Editor extends React.Component {
     className: PropTypes.string
   };
 
+  static defaultProps = {
+    disableUnderline: true
+  };
+
   constructor(props) {
     super(props);
 

@@ -99,9 +99,8 @@ const style = {
   root: {
     position: 'relative',
     padding: '0px',
-    border: 'none',
-    borderBottom: '0px solid #cccccc',
-    borderRadius: '0px',
+    border: '1px solid #ccc',
+    borderRadius: '4px',
     cursor: 'text',
     '& [data-slate-editor="true"]': {
       overflow: 'auto',
@@ -109,7 +108,7 @@ const style = {
     }
   },
   children: {
-    padding: '7px'
+    padding: '10px 16px'
   },
   editorHolder: {
     position: 'relative',
