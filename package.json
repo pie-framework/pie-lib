@@ -17,6 +17,7 @@
     "lint-two": "lerna exec -- \\$LERNA_ROOT_PATH/node_modules/.bin/eslint  --ignore-path \\$LERNA_ROOT_PATH/.eslintignore --ext .js --ext .jsx src",
     "clean": "lerna exec -- rm -fr lib node_modules",
     "release": "npm run clean && npm run build && npm test && lerna publish --conventional-commits",
+    "release:next": "npm run clean && npm test && npm run build && lerna publish --canary --yes --conventional-commits --preid next --dist-tag next",
     "build": "npm run clean && npm run lint-two && npm run babelize",
     "build:light": "npm run babelize",
     "babelize": "lerna exec -- \\$LERNA_ROOT_PATH/scripts/babelize \\$LERNA_PACKAGE_NAME",
