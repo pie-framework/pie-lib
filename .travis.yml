@@ -8,6 +8,8 @@ before_install:
 stages:
   - name: release-next
     if: branch = develop
+  - name: now-next
+    if: branch = develop
   - name: build
     if: branch != develop
 
@@ -17,6 +19,8 @@ jobs:
       script: npm run build
     - stage: release-next
       script: 'npm run release:next'
+    - stage: now-next
+      script: npm run now:next
 
 branches:
   only:

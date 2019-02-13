@@ -7,12 +7,34 @@
 
 set -e 
 
-rm -fr packages/demo/out
+NOW_PATH=$(readlink -e  "node_modules/.bin/now")
+# rm -fr packages/demo/out
 
-./node_modules/.bin/next build packages/demo 
-./node_modules/.bin/next export packages/demo
+# ./node_modules/.bin/next build packages/demo 
+# ./node_modules/.bin/next export packages/demo
 
 cd packages/demo/out
-URL="$(now --public -C)"
+
+
+echo "? $NOW_PATH"
+cmd="$NOW_PATH --public -C"
+
+if [ ! -z "$NOW_TOKEN" ]
+  then 
+    cmd+=" --token=$NOW_TOKEN"
+fi
+
+echo "cmd? $cmd"
+
+URL="$($cmd)"
 echo "new deployment at: $URL"
-now alias $URL $1 
+
+alias="$NOW_PATH alias $URL $1"
+
+if [ ! -z "$NOW_TOKEN" ] 
+  then 
+    alias+=" --token=$NOW_TOKEN"
+fi
+
+echo "alias cmd: $alias"
+eval $alias
