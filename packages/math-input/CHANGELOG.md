@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@5.0.3...@pie-lib/math-input@5.0.4) (2019-02-13)
+
+
+### Bug Fixes
+
+* fraction button in HorizontalKeypad ([0d5d896](https://github.com/pie-framework/pie-lib/commit/0d5d896))
+* remove unnecessary mathquill wrappers in favor of [@pie-lib](https://github.com/pie-lib)/math-input and small styling fixes ([b29bc9a](https://github.com/pie-framework/pie-lib/commit/b29bc9a))
+* use export '*' for mq ([1d8200b](https://github.com/pie-framework/pie-lib/commit/1d8200b))
+
+
+
+
+
 ## [5.0.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@5.0.2...@pie-lib/math-input@5.0.3) (2019-02-11)
 
 **Note:** Version bump only for package @pie-lib/math-input

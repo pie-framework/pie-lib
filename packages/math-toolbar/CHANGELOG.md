@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@0.7.0...@pie-lib/math-toolbar@0.8.0) (2019-02-13)
+
+
+### Bug Fixes
+
+* fraction button in HorizontalKeypad ([0d5d896](https://github.com/pie-framework/pie-lib/commit/0d5d896))
+* remove unnecessary mathquill wrappers in favor of [@pie-lib](https://github.com/pie-lib)/math-input and small styling fixes ([b29bc9a](https://github.com/pie-framework/pie-lib/commit/b29bc9a))
+* **math-toolbar:** styling fix for mathquill fractions ([35b0d2d](https://github.com/pie-framework/pie-lib/commit/35b0d2d))
+
+
+### Features
+
+* **math-inline:** small styling fixes and adjustments ([3b2b142](https://github.com/pie-framework/pie-lib/commit/3b2b142))
+* **math-toolbar:** line break support ([6b55597](https://github.com/pie-framework/pie-lib/commit/6b55597))
+* **math-toolbar:** mathquill paranthesis styling fix for custom elements ([dd1b720](https://github.com/pie-framework/pie-lib/commit/dd1b720))
+
+
+
+
+
 # [0.7.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@0.6.6...@pie-lib/math-toolbar@0.7.0) (2019-02-11)
 
 
