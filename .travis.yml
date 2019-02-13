@@ -1,0 +1,32 @@
+language: node_js
+node_js:
+  - 9.11.2
+
+before_install:
+  - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" >> .npmrc
+
+stages:
+  - name: release-next
+    if: branch = develop
+  - name: now-next
+    if: branch = develop
+  - name: build
+    if: branch != develop
+
+jobs:
+  include:
+    - stage: build
+      script: npm run build
+    - stage: release-next
+      script: 'npm run release:next'
+    - stage: now-next
+      script: npm run now:next
+
+branches:
+  only:
+    - develop
+
+cache:
+  yarn: true
+  directories:
+    - node_modules
