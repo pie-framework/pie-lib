@@ -22,4 +22,7 @@ branches:
   only:
     - develop
 
-cache: npm
+cache:
+  yarn: true
+  directories:
+    - node_modules
