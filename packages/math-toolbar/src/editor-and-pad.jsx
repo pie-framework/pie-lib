@@ -175,7 +175,11 @@ const styles = theme => ({
     '& > .mq-math-mode': {
       border: 'solid 0px lightgrey',
       '& .mq-non-leaf': {
-        alignItems: 'center'
+        display: 'inline-flex',
+        alignItems: 'center',
+      },
+      '& .mq-non-leaf.mq-fraction': {
+        display: 'inline-block',
       },
       '& .mq-paren': {
         verticalAlign: 'middle'
