@@ -8,13 +8,13 @@ before_install:
 stages:
   - name: release-next
     if: branch = develop
-  - name: test
+  - name: build
     if: branch != develop
 
 jobs:
   include:
-    - stage: test
-      script: npm run test
+    - stage: build
+      script: npm run build
     - stage: release-next
       script: 'npm run release:next'
 
