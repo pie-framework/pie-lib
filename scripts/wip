@@ -8,10 +8,10 @@
 set -e 
 
 NOW_PATH=$(readlink -e  "node_modules/.bin/now")
-# rm -fr packages/demo/out
+rm -fr packages/demo/out
 
-# ./node_modules/.bin/next build packages/demo 
-# ./node_modules/.bin/next export packages/demo
+./node_modules/.bin/next build packages/demo 
+./node_modules/.bin/next export packages/demo
 
 cd packages/demo/out
 
