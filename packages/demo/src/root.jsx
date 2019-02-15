@@ -11,6 +11,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Link from 'next/link';
 import Divider from '@material-ui/core/Divider';
 import { withRouter } from 'next/router';
+import classNames from 'classnames';
 
 const drawerWidth = 240;
 
@@ -36,21 +37,39 @@ const styles = theme => ({
     padding: theme.spacing.unit * 3,
     minWidth: 0 // So the Typography noWrap works
   },
-  toolbar: theme.mixins.toolbar
+  toolbar: {
+    ...theme.mixins.toolbar,
+    display: 'flex',
+    justifyContent: 'space-between'
+  },
+  devToolbar: {
+    backgroundColor: 'orange'
+  },
+  extras: {
+    float: 'right'
+  }
 });
 
-const PageTitle = withRouter(({ router, href }) => (
-  <Typography variant="h6" color="inherit" noWrap>
-    {`@pie-lib/${router.pathname.split('/')[1]}`}
-  </Typography>
-));
+const PageTitle = withRouter(({ router, href }) => {
+  const name = router.pathname.split('/')[1];
+  const title = name ? `@pie-lib/${name}` : '@pie-lib';
+  return (
+    <Typography variant="h6" color="inherit" noWrap>
+      {title}
+    </Typography>
+  );
+});
 
 const ActiveLink = withStyles(theme => ({
   active: {
     color: theme.palette.primary.main
+  },
+  version: {
+    fontSize: '11px',
+    color: theme.palette.secondary.main
   }
 }))(
-  withRouter(({ router, path, primary, classes }) => {
+  withRouter(({ router, path, primary, classes, version }) => {
     const isActive = path === router.pathname;
     return (
       <Link href={path} as={path}>
@@ -59,6 +78,7 @@ const ActiveLink = withStyles(theme => ({
             primary={primary}
             classes={{ primary: isActive && classes.active }}
           />
+          {version && <span className={classes.version}>{version}</span>}
         </ListItem>
       </Link>
     );
@@ -66,13 +86,27 @@ const ActiveLink = withStyles(theme => ({
 );
 
 function ClippedDrawer(props) {
-  const { classes, children, links } = props;
-
+  const { classes, children, links, gitInfo } = props;
   return (
     <div className={classes.root}>
       <AppBar position="absolute" className={classes.appBar}>
-        <Toolbar>
+        <Toolbar
+          className={classNames(
+            classes.toolbar,
+            gitInfo.branch !== 'master' && classes.devToolbar
+          )}
+        >
           <PageTitle />
+          <div className={classes.extras}>
+            {gitInfo.branch}&nbsp;|&nbsp;
+            <a
+              href={`https://github.com/pie-framework/pie-lib/commit/${
+                gitInfo.short
+              }`}
+            >
+              {gitInfo.short}
+            </a>
+          </div>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -86,7 +120,18 @@ function ClippedDrawer(props) {
           <ActiveLink path="/" primary={'Home'} />
           <Divider />
           {links.map((l, index) => (
-            <ActiveLink key={index} path={l.path} primary={l.label} />
+            <ActiveLink
+              key={index}
+              path={l.path}
+              primary={l.label}
+              version={
+                gitInfo.branch === 'master'
+                  ? l.version
+                  : l.version
+                  ? 'next'
+                  : undefined
+              }
+            />
           ))}
         </List>
       </Drawer>
@@ -99,6 +144,7 @@ function ClippedDrawer(props) {
 }
 
 ClippedDrawer.propTypes = {
+  gitInfo: PropTypes.object,
   links: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string.isRequired,

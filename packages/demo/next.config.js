@@ -1,5 +1,10 @@
 const withCSS = require('@zeit/next-css');
 
+const { loadLinks } = require('./config/load-links');
+
+const gitInfo = require('./config/git-info')();
+const links = loadLinks();
+
 const getAssetPrefix = () => {
   //eslint-disable-next-line
   if (process.env.NODE_ENV !== 'production') {
@@ -32,7 +37,7 @@ module.exports = withCSS({
     return out;
   },
   exportPathMap: function(/*defaultPathMap*/) {
-    return require('./src/links').reduce(
+    return links.reduce(
       (acc, l) => {
         acc[l.path] = { page: l.path };
         return acc;
@@ -40,5 +45,9 @@ module.exports = withCSS({
       { '/': { page: '/' } }
     );
   },
-  assetPrefix: getAssetPrefix()
+  assetPrefix: getAssetPrefix(),
+  env: {
+    links,
+    gitInfo
+  }
 });

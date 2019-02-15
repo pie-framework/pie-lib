@@ -1,4 +1,7 @@
-module.exports = [
+const { pathExistsSync, readJsonSync } = require('fs-extra');
+const { resolve } = require('path');
+
+const rawLinks = [
   { label: 'config-ui', path: '/config-ui' },
   { label: 'config-ui - numbers', path: '/config-ui/numbers' },
   { label: 'config-ui - tabs', path: '/config-ui/tabs' },
@@ -14,8 +17,19 @@ module.exports = [
   { label: 'scoring-config', path: '/scoring-config' },
   { label: 'text-select', path: '/text-select' },
   { label: 'text-select math', path: '/text-select-math' },
-  { label: 'tools - ruler', path: '/tools/ruler' },
-  { label: 'tools - protractor', path: '/tools/protractor' },
-  { label: 'tools - rotatable', path: '/tools/rotatable' },
+  { label: 'ruler', path: '/tools/ruler' },
+  { label: 'protractor', path: '/tools/protractor' },
+  { label: 'rotatable', path: '/tools/rotatable' },
   { label: 'drag', path: '/drag' }
 ];
+
+module.exports.loadLinks = () => {
+  return rawLinks.map(l => {
+    const pkgPath = resolve(__dirname, '../../', l.label, 'package.json');
+    if (pathExistsSync(pkgPath)) {
+      const pkg = readJsonSync(pkgPath);
+      l.version = pkg.version;
+    }
+    return l;
+  });
+}; // = links;
