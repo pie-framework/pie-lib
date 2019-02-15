@@ -1,5 +1,7 @@
 # @pie-lib/\*
 
+[![Build Status](https://travis-ci.org/pie-framework/pie-lib.svg?branch=develop)](https://travis-ci.org/pie-framework/pie-lib)
+
 Some reusable react components, mostly used in [pie][pie] components.
 
 Elements are in `packages`.

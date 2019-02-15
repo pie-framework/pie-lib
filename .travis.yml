@@ -12,6 +12,8 @@ stages:
     if: branch = develop
   - name: build
     if: branch != develop
+  - name: travis-release-deploy
+    if: branch = master
 
 jobs:
   include:
@@ -21,10 +23,13 @@ jobs:
       script: 'npm run release:next'
     - stage: now-next
       script: npm run now:next
+    - stage: travis-release-deploy
+      script: 'scripts/travis-release-deploy'
 
 branches:
   only:
     - develop
+    - master
 
 cache:
   yarn: true

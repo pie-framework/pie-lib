@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+if [ ! $TRAVIS ] 
+then 
+  echo "This can only be run on travis ci"
+  exit 1
+fi
+
+echo ">> travis by default works w/ a detached head - lerna doesnt like this."
+
+echo "checkout $TRAVIS_BRANCH"
+
+git checkout ${TRAVIS_BRANCH}
+SHA="${git rev-parse --short HEAD}"
+echo "master sha: ${SHA}"
+echo "commit to test: ${TRAVIS_COMMIT}"
+
+echo "run release"
+npm run release
+
+echo "build demo"
+scripts/wip pie-lib 
