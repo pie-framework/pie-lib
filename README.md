@@ -7,7 +7,7 @@ Elements are in `packages`.
 ## install
 
 ```bash
-yarn install 
+yarn install
 ./node_modules/.bin/lerna bootstrap
 ```
 
@@ -22,6 +22,12 @@ yarn install
 | dev     | `scripts/dev --scope $package-name` | run the demo site on localhost:3000 `--scope` if optional |
 | static  | `scripts/static`                    | build and deploy the static site to github                |
 
+- exact versions in demo
+- deploy `next` demo on `develop`
+- release `next` on `develop`
+- deploy `latest` demo on `master`
+- release `latest` on `master`
+
 ### test a single package
 
 Just point jest to the dir/file:
@@ -32,8 +38,8 @@ Just point jest to the dir/file:
 
 ## contributing
 
-* the packages use `independent` versioning, meaning that a change in 1 package won't bump another package's version.
-* use [conventional commits syntax][ccs] when commiting, lerna will detect the appropriate version bump.
+- the packages use `independent` versioning, meaning that a change in 1 package won't bump another package's version.
+- use [conventional commits syntax][ccs] when commiting, lerna will detect the appropriate version bump.
 
 ### dependencies
 
@@ -45,7 +51,7 @@ Just point jest to the dir/file:
 
 Sometimes the project test set up can get out of synch
 
-* try `lerna bootstrap`, `npm run build`, `rm -fr packages/test-utils/node_modules` and run again.
+- try `lerna bootstrap`, `npm run build`, `rm -fr packages/test-utils/node_modules` and run again.
 
 ## Building and deploying a pre-release
 
