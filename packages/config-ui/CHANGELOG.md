@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.11.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@7.11.7...@pie-lib/config-ui@7.11.9) (2019-02-15)
+
+
+### Bug Fixes
+
+* **config-ui:** fixed some design issues that were messed up with the material-ui bump ([34a58da](https://github.com/pie-framework/pie-lib/commit/34a58da))
+
+
+
+
+
 ## [7.11.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@7.11.6...@pie-lib/config-ui@7.11.7) (2019-02-13)
 
 **Note:** Version bump only for package @pie-lib/config-ui
