@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@3.0.3...@pie-lib/demo@3.1.0) (2019-02-15)
+
+
+### Features
+
+* add version numbers ([e9f19ab](https://github.com/pie-framework/pie-lib/commit/e9f19ab))
+
+
+
+
+
 ## [3.0.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@3.0.2...@pie-lib/demo@3.0.3) (2019-02-13)
 
 
