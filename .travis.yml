@@ -9,25 +9,17 @@ before_script:
   - git remote set-url origin https://${GITHUB_TOKEN}@github.com/pie-framework/pie-lib.git
 
 stages:
-  - name: release-next
+  - name: release-deploy-next
     if: branch = develop
-  - name: now-next
-    if: branch = develop
-  - name: build
-    if: branch != develop
-  - name: travis-release-deploy
+  - name: release-deploy
     if: branch = master
 
 jobs:
   include:
-    - stage: build
-      script: npm run build
-    - stage: release-next
-      script: 'npm run release:next'
-    - stage: now-next
-      script: npm run now:next
-    - stage: travis-release-deploy
-      script: 'scripts/travis-release-deploy'
+    - stage: release-deploy-next
+      script: 'scripts/build release deploy --next'
+    - stage: release-deploy
+      script: 'scripts/build release deploy'
 
 branches:
   only:

@@ -1,0 +1,32 @@
+#!/usr/bin/env node
+
+const minimist = require('minimist');
+const { Commands } = require('@pie-framework/build-helper');
+const args = minimist(process.argv.slice(2));
+const { resolve } = require('path');
+
+class LibCommands extends Commands {
+  deploy() {
+    const demoDir = resolve(this.projectRoot, 'packages', 'demo');
+    const next = this.bin('next');
+    this.runCmds([`${next} build`, `${next} export`], { cwd: demoDir });
+
+    const alias = `pie-lib${args.next ? '-next' : ''}`;
+    this.staticToNow(resolve(demoDir, 'out'), alias);
+  }
+}
+
+const cmds = new LibCommands(resolve(__dirname, '..'), args);
+
+const actions = args._.filter(a => {
+  return cmds[a];
+});
+
+if (actions.length !== args._.length) {
+  throw new Error(`unknown actions: ${args._}`);
+}
+
+actions.forEach(a => {
+  const fn = cmds[a].bind(cmds);
+  fn();
+});
