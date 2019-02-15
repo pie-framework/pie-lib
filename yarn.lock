@@ -1567,10 +1567,10 @@
     universal-user-agent "^2.0.0"
     url-template "^2.0.8"
 
-"@pie-framework/build-helper@^1.2.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@pie-framework/build-helper/-/build-helper-1.2.1.tgz#47768ede5ba9ab0d2f53970e561421ffed9d3a23"
-  integrity sha512-EacbFUKubq//RBPdYWju9Y92p2x6Cf49ows6SgXi1bXhKb8akiDtakybn/qgXKzJcHtahLUfG6SZRoy+aR8m7A==
+"@pie-framework/build-helper@^1.3.0":
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/@pie-framework/build-helper/-/build-helper-1.3.1.tgz#504ba57e56af8999fccaa817bca826c6b4e2a164"
+  integrity sha512-Ff+bDKRX3B771tjzXG/INVqzrmyLb4NnT0wYD5mTg9U1aGl7T7jkCTNtr0igcdORmk+pxEx/diidScSYjFOeoA==
   dependencies:
     debug "^4.1.1"
 
