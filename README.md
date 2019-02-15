@@ -22,13 +22,12 @@ yarn install
 | build   | `npm run build`                     |                                                           |
 | release | `npm run release`                   |                                                           |
 | dev     | `scripts/dev --scope $package-name` | run the demo site on localhost:3000 `--scope` if optional |
-| static  | `scripts/static`                    | build and deploy the static site to github                |
+| static  | `scripts/wip $alias-name`           | build and deploy the static site tno now.sh               |
 
-- exact versions in demo
-- deploy `next` demo on `develop`
-- release `next` on `develop`
-- deploy `latest` demo on `master`
-- release `latest` on `master`
+## Workflow
+
+- merging to `develop` releases `next` versions and deploys to `pie-lib-next.now.sh`
+- merging to `master` releases `latest` versions and deploys to `pie-lib.now.sh`
 
 ### test a single package
 
