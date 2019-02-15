@@ -5,6 +5,9 @@ node_js:
 before_install:
   - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" >> .npmrc
 
+before_script:
+  - git remote set-url origin https://${GITHUB_TOKEN}@github.com/pie-framework/pie-lib.git
+
 stages:
   - name: release-next
     if: branch = develop
