@@ -1,40 +1,21 @@
-#!/usr/bin/env bash
+#!/usr/bin/env node
 
-###
-# builds the static site and deploys it to now.sh, then adds the alias
-# scripts/wip $aliasname
-###
+const minimist = require('minimist');
 
-set -e 
+const args = minimist(process.argv.slice(2));
+const { execSync } = require('child_process');
+const { deployToNow } = require('@pie-framework/build-helper');
+const { resolve } = require('path');
 
-NOW_PATH=$(readlink -e  "node_modules/.bin/now")
-rm -fr packages/demo/out
+const bin = n => resolve(__dirname, '..', 'node_modules', '.bin', n);
 
-./node_modules/.bin/next build packages/demo 
-./node_modules/.bin/next export packages/demo
+const nextPath = bin('next');
+const demoDir = resolve(__dirname, '..', 'packages/demo');
 
-cd packages/demo/out
+execSync(`${nextPath} build`, { cwd: demoDir, stdio: 'inherit' });
+execSync(`${nextPath} export`, { cwd: demoDir, stdio: 'inherit' });
 
-
-echo "? $NOW_PATH"
-cmd="$NOW_PATH --public -C"
-
-if [ ! -z "$NOW_TOKEN" ]
-  then 
-    cmd+=" --token=$NOW_TOKEN"
-fi
-
-echo "cmd? $cmd"
-
-URL="$($cmd)"
-echo "new deployment at: $URL"
-
-alias="$NOW_PATH alias $URL $1"
-
-if [ ! -z "$NOW_TOKEN" ] 
-  then 
-    alias+=" --token=$NOW_TOKEN"
-fi
-
-echo "alias cmd: $alias"
-eval $alias
+const token = process.env.NOW_TOKEN;
+const alias = args._[0];
+const nowPath = bin('now');
+deployToNow(resolve(demoDir, 'out'), token, alias, nowPath);
