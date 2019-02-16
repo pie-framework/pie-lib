@@ -23,7 +23,7 @@ exports[`RawXAxis snapshot renders 1`] = `
           ],
           "results": Array [
             Object {
-              "isThrow": false,
+              "type": "return",
               "value": 0,
             },
           ],
@@ -46,7 +46,7 @@ exports[`RawXAxis snapshot renders 1`] = `
           ],
           "results": Array [
             Object {
-              "isThrow": false,
+              "type": "return",
               "value": 0,
             },
           ],
@@ -85,7 +85,7 @@ exports[`RawYAxis snapshot renders 1`] = `
           ],
           "results": Array [
             Object {
-              "isThrow": false,
+              "type": "return",
               "value": 0,
             },
           ],
@@ -108,7 +108,7 @@ exports[`RawYAxis snapshot renders 1`] = `
           ],
           "results": Array [
             Object {
-              "isThrow": false,
+              "type": "return",
               "value": 0,
             },
           ],

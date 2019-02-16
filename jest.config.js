@@ -3,5 +3,6 @@ module.exports = {
   setupFiles: ['./jest.setup.js'],
   verbose: false,
   snapshotSerializers: ['enzyme-to-json/serializer'],
-  testURL: 'http://localhost'
+  testURL: 'http://localhost',
+  transformIgnorePatterns: ['node_modules', '.*/lib/.*']
 };

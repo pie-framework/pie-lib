@@ -45,11 +45,11 @@ exports[`gridDraggable snapshot reqular 1`] = `
             ],
             "results": Array [
               Object {
-                "isThrow": false,
+                "type": "return",
                 "value": 1,
               },
               Object {
-                "isThrow": false,
+                "type": "return",
                 "value": 0,
               },
             ],
@@ -65,11 +65,11 @@ exports[`gridDraggable snapshot reqular 1`] = `
             ],
             "results": Array [
               Object {
-                "isThrow": false,
+                "type": "return",
                 "value": 1,
               },
               Object {
-                "isThrow": false,
+                "type": "return",
                 "value": 0,
               },
             ],
