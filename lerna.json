@@ -6,6 +6,7 @@
   "useWorkspaces": true,
   "command": {
     "publish": {
+      "ignoreChanges": ["yarn.lock"],
       "message": "[skip travis] chore: publish"
     }
   }
