@@ -14,15 +14,6 @@ class LibCommands extends Commands {
     const alias = `pie-lib${args.next ? '-next' : ''}`;
     this.staticToNow(resolve(demoDir, 'out'), alias);
   }
-
-  babel() {
-    console.log('>> babel override for babel 7');
-    this.runCmds([
-      `${this.p.lerna} exec -- ${
-        this.p.babel
-      } --ignore '**/__test__/**','**/__tests__/**' src -d lib --copy-files --source-maps --root-mode upward`
-    ]);
-  }
 }
 
 const cmds = new LibCommands(resolve(__dirname, '..'), args);
