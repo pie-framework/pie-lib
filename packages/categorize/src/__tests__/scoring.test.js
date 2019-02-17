@@ -8,7 +8,6 @@ describe('scoring', () => {
       fn(label, async () => {
         const result = await score(categories, scoring);
 
-        console.log(util.inspect(result, { colors: true, depth: 5 }));
         expect(result).toMatchObject(expected);
       });
     };
