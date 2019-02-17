@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.4.0...@pie-lib/text-select@1.4.1) (2019-02-17)
+
+
+### Bug Fixes
+
+* fix tests ([1363aa4](https://github.com/pie-framework/pie-lib/commit/1363aa4))
+
+
+
+
+
 # [1.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.3.1...@pie-lib/text-select@1.4.0) (2019-02-07)
 
 
