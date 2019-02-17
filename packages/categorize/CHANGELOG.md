@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.5.2...@pie-lib/categorize@0.5.4) (2019-02-17)
+
+
+### Bug Fixes
+
+* force version bump ([dd057a5](https://github.com/pie-framework/pie-lib/commit/dd057a5))
+
+
+
+
+
 ## [0.5.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.5.1...@pie-lib/categorize@0.5.2) (2019-02-17)
 
 
