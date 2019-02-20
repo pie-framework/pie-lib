@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@0.8.0...@pie-lib/math-toolbar@0.9.0) (2019-02-20)
+
+
+### Features
+
+* **math-toolbar:** configurable keypad for extra button variety ([f219ae1](https://github.com/pie-framework/pie-lib/commit/f219ae1))
+
+
+
+
+
 # [0.8.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@0.7.0...@pie-lib/math-toolbar@0.8.0) (2019-02-13)
 
 
