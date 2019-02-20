@@ -12,7 +12,7 @@ export class MathToolbar extends React.Component {
   static propTypes = {
     allowAnswerBlock: PropTypes.bool,
     controlledKeypad: PropTypes.bool,
-    keypadMode: PropTypes.string,
+    keypadMode: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     classNames: PropTypes.object,
     showKeypad: PropTypes.bool,
     latex: PropTypes.string.isRequired,
@@ -24,7 +24,7 @@ export class MathToolbar extends React.Component {
 
   static defaultProps = {
     classNames: {},
-    keypadMode: 'scientific',
+    keypadMode: 'everything',
     allowAnswerBlock: false,
     controlledKeypad: false,
     showKeypad: true,
@@ -86,7 +86,7 @@ export class RawPureToolbar extends React.Component {
   static propTypes = {
     classNames: PropTypes.object,
     latex: PropTypes.string.isRequired,
-    keypadMode: PropTypes.string,
+    keypadMode: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     onChange: PropTypes.func.isRequired,
     onDone: PropTypes.func.isRequired,
     onAnswerBlockAdd: PropTypes.func,

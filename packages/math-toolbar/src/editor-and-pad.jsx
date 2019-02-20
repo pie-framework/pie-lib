@@ -28,7 +28,7 @@ const toNodeData = data => {
 export class EditorAndPad extends React.Component {
   static propTypes = {
     classNames: PropTypes.object,
-    keypadMode: PropTypes.string,
+    keypadMode: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     allowAnswerBlock: PropTypes.bool,
     showKeypad: PropTypes.bool,
     controlledKeypad: PropTypes.bool,
@@ -99,6 +99,10 @@ export class EditorAndPad extends React.Component {
   shouldComponentUpdate(nextProps) {
     const inputIsDifferent = this.input.mathField.latex() !== nextProps.latex;
     log('[shouldComponentUpdate] ', 'inputIsDifferent: ', inputIsDifferent);
+
+    if (!inputIsDifferent && this.props.keypadMode !== nextProps.keypadMode) {
+      return true;
+    }
 
     if (!inputIsDifferent && this.props.controlledKeypad) {
       return this.props.showKeypad !== nextProps.showKeypad;

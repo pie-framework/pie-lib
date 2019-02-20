@@ -9,9 +9,10 @@ import * as trigonometry from './trigonometry';
 import * as geometry from './geometry';
 import * as logic from './logic';
 import * as log from './log';
+import * as subSup from './sub-sup'
 import * as statistics from './statistics';
-
 import { toArray } from './utils';
+
 const hs = [
   [vars.x, vars.y, exponent.squared, exponent.squareRoot, logic.therefore],
   [
@@ -108,6 +109,51 @@ const gradeSets = [
         geometry.overRightArrow,
         geometry.overLeftRightArrow,
         geometry.overArc
+      ]
+    ]
+  },
+  {
+    predicate: 'everything',
+    set: [
+      [
+        subSup.superscript,
+        subSup.subscript,
+        fractions.blankOverBlank,
+        misc.percentage,
+        geometry.segment,
+        geometry.parallel
+      ],
+      [
+        exponent.squareRoot,
+        exponent.nthRoot,
+        misc.absValue,
+        misc.parenthesis,
+        geometry.perpindicular,
+        geometry.angle
+      ],
+      [
+        comparison.lessThan,
+        comparison.greaterThan,
+        geometry.degree,
+        misc.approx,
+        geometry.measureOfAngle,
+        geometry.triangle
+      ],
+      [
+        misc.nApprox,
+        misc.notEqual,
+        geometry.congruentTo,
+        geometry.notCongruentTo,
+        geometry.parallelogram,
+        geometry.circledDot
+      ],
+      [
+        misc.similar,
+        misc.notSimilar,
+        comparison.lessThanEqual,
+        comparison.greaterThanEqual,
+        vars.x,
+        vars.y
       ]
     ]
   },
