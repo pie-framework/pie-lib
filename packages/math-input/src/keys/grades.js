@@ -9,10 +9,10 @@ import * as trigonometry from './trigonometry';
 import * as geometry from './geometry';
 import * as logic from './logic';
 import * as log from './log';
-import * as statistics from './statistics';
-
-import { toArray } from './utils';
 import * as subSup from './sub-sup'
+import * as statistics from './statistics';
+import { toArray } from './utils';
+
 const hs = [
   [vars.x, vars.y, exponent.squared, exponent.squareRoot, logic.therefore],
   [
