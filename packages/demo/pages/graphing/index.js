@@ -467,7 +467,7 @@ export class GridDemo extends React.Component {
   };
 
   changeTab = (event, tabIndex) => {
-    this.setState({ tabIndex });
+    this.setState({ indexTab: tabIndex });
   };
 
   changeMarks = marks => {

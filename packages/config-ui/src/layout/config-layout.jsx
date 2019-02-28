@@ -80,6 +80,8 @@ class ConfigLayout extends React.Component {
     sideMenuItems: PropTypes.array,
     scoringItem: PropTypes.node,
     regularItems: PropTypes.node,
+    regularOnly: PropTypes.bool,
+    inTabForSure: PropTypes.bool,
     className: PropTypes.string,
     classes: PropTypes.object
   };
@@ -98,7 +100,7 @@ class ConfigLayout extends React.Component {
 
   onTabsChange = (event, index) => this.setState({ index });
 
-  hasSidePanel = () => this.state.dimensions.width >= 950;
+  hasSidePanel = () => this.state.dimensions.width >= 100;
 
   renderSidePanel = () => {
     const { sidePanelSelector } = this.props;
@@ -135,9 +137,24 @@ class ConfigLayout extends React.Component {
   };
 
   renderContent = measureRef => {
-    const { classes, regularItems, scoringItem, disableSidePanel } = this.props;
+    const { classes, regularItems, scoringItem, disableSidePanel, regularOnly, inTabForSure } = this.props;
     const { index } = this.state;
     const hasSidePanel = this.hasSidePanel();
+
+    if (regularOnly) {
+      return regularItems;
+    }
+
+    return (
+      <div
+        ref={measureRef}
+      >
+        {!inTabForSure && hasSidePanel && !disableSidePanel && this.renderSidePanel()}
+        {(inTabForSure || (!hasSidePanel && !disableSidePanel)) && (
+          <Sections {...this.props} />
+        )}
+      </div>
+    );
 
     return (
       <div
@@ -174,6 +191,7 @@ class ConfigLayout extends React.Component {
         bounds
         onResize={contentRect => {
           const tabIndex = this.getRightIndex();
+
           this.setState({ index: tabIndex, dimensions: contentRect.bounds });
         }}
       >
@@ -201,6 +219,8 @@ const styles = () => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
+    minWidth: '200px',
+    maxWidth: '250px',
     padding: '15px',
     position: 'absolute',
     right: 0,
