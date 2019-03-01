@@ -318,12 +318,15 @@ export default RootElem;
 
 export const htmlTemplateFactory = elementName => `
     <style>
+      @import url('https://fonts.googleapis.com/css?family=Roboto');
+
       :host {
         display: block;
         contain: content;
         outline: none !important;
         box-shadow: none;
         position: relative;
+        font-family: 'Roboto', sans-serif;
       }
       
       ::slotted([slot=preview-custom]) {
@@ -462,6 +465,11 @@ export class ConfigureWrapper extends HTMLElement {
 
     window.onTabClick = (el, index) => {
       this.indexTab = index;
+
+      if (this.onTabChanged) {
+        this.onTabChanged(index);
+      }
+
       this._render();
     };
 
