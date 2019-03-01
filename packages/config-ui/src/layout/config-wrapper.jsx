@@ -352,6 +352,7 @@ CustomPreviewModelUpdatedEvent.TYPE = 'customPreviewModel.updated';
 export class ConfigureWrapper extends HTMLElement {
   constructor() {
     super();
+    this._noPreview = false;
     this.onModelChanged = this.onModelChanged.bind(this);
     this.indexTab = 0;
     const template = document.createElement('template');
@@ -452,7 +453,6 @@ export class ConfigureWrapper extends HTMLElement {
             <slot name="configure-custom">
             </slot>
             <slot name="preview-custom">
-                <multiple-choice id="default"></multiple-choice>
             </slot>
         </div>
     </div>
@@ -509,6 +509,11 @@ export class ConfigureWrapper extends HTMLElement {
 
   set configure(c) {
     this._configure = c;
+    this._render();
+  }
+
+  set noPreview(noPreview) {
+    this._noPreview = noPreview;
     this._render();
   }
 
@@ -580,28 +585,31 @@ export class ConfigureWrapper extends HTMLElement {
   }
 
   renderPreviewTab() {
-    if (this.markup) {
+    const existing = this.querySelector('[slot=preview-custom]');
+    const settingsTabEl = this.shadowRoot.querySelector('.previewTab');
+
+    if (!this._noPreview) {
       if (!this._previewSlot) {
-        const existing = this.querySelector('[slot=preview-custom]');
+        const span = document.createElement('span');
 
-        if (!existing) {
-          const span = document.createElement('span');
-          const settingsTabEl = this.shadowRoot.querySelector('.previewTab');
+        settingsTabEl.className = 'tab previewTab visible';
 
-          settingsTabEl.className = 'tab previewTab visible';
+        span.className = `tabContent${this.inTabSidePanel ? ' full' : ''}`;
+        span.setAttribute('slot', 'preview-custom');
 
-          span.className = `tabContent${this.inTabSidePanel ? ' full' : ''}`;
-          span.setAttribute('slot', 'preview-custom');
+        span.innerHTML = this.markup;
 
-          span.innerHTML = this.markup;
-
-          this._previewSlot = span;
-          this.appendChild(span);
-          this.handlePreviewTab();
-        }
+        this._previewSlot = span;
+        this.appendChild(span);
+        this.handlePreviewTab();
       } else {
         this._previewSlot.className = `tabContent${this.indexTab === 1 ? ' selected' : ''}${this.inTabSidePanel ? ' full' : ''}`;
       }
+    } else if (existing) {
+      this._previewSlot = null;
+      this.removeChild(existing);
+
+      settingsTabEl.className = 'tab previewTab hidden';
     }
   }
 
