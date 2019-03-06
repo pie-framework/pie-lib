@@ -1,56 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import * as exponent from './keys/exponent';
-import * as subSup from './keys/sub-sup';
-import * as misc from './keys/misc';
-import * as fractions from './keys/fractions';
-import * as comparison from './keys/comparison';
-import * as geometry from './keys/geometry';
-import * as vars from './keys/vars';
+import { keysForGrade } from './keys/grades';
 import Keypad from './keypad';
-
-const additionalKeys = [
-  [
-    subSup.superscript,
-    subSup.subscript,
-    fractions.blankOverBlank,
-    misc.percentage,
-    geometry.segment,
-    geometry.parallel
-  ],
-  [
-    exponent.squareRoot,
-    exponent.nthRoot,
-    misc.absValue,
-    misc.parenthesis,
-    geometry.perpindicular,
-    geometry.angle
-  ],
-  [
-    comparison.lessThan,
-    comparison.greaterThan,
-    geometry.degree,
-    misc.approx,
-    geometry.measureOfAngle,
-    geometry.triangle
-  ],
-  [
-    misc.nApprox,
-    misc.notEqual,
-    geometry.congruentTo,
-    geometry.notCongruentTo,
-    geometry.parallelogram,
-    geometry.circledDot
-  ],
-  [
-    misc.similar,
-    misc.notSimilar,
-    comparison.lessThanEqual,
-    comparison.greaterThanEqual,
-    vars.x,
-    vars.y
-  ]
-];
 
 const toOldModel = d => {
   if (d.command) {
@@ -65,7 +16,7 @@ const toOldModel = d => {
 export default class HorizontalKeypad extends React.Component {
   static propTypes = {
     className: PropTypes.string,
-    mode: PropTypes.string,
+    mode: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     onClick: PropTypes.func.isRequired,
     onFocus: PropTypes.func
   };
@@ -86,7 +37,7 @@ export default class HorizontalKeypad extends React.Component {
       <Keypad
         className={className}
         onFocus={onFocus}
-        additionalKeys={mode === 'scientific' ? additionalKeys : []}
+        additionalKeys={keysForGrade(mode)}
         onPress={this.keypadPress}
       />
     );
