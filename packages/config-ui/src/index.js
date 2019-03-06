@@ -16,7 +16,7 @@ export TagsInput from './tags-input';
 export MuiBox from './mui-box';
 export ChoiceConfiguration from './choice-configuration';
 export ConfigLayout from './layout/config-layout';
-export OutsideConfigLayout, { ConfigureWrapper, htmlTemplateFactory } from './layout/config-wrapper';
+export OutsideConfigLayout, { ConfigureWrapper, htmlTemplateFactory, getElemName } from './layout/config-wrapper';
 export PreviewLayout from './layout/preview-layout';
 export * as choiceUtils from './choice-utils';
 export withStatefulModel from './with-stateful-model';

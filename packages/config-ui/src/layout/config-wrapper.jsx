@@ -1,9 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Measure from 'react-measure';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import classnames from 'classnames';
 import {
   withStyles,
   createMuiTheme,
@@ -137,8 +134,7 @@ class OutsideConfigLayout extends React.Component {
   };
 
   renderContent = measureRef => {
-    const { classes, regularItems, scoringItem, disableSidePanel, regularOnly, inTabForSure } = this.props;
-    const { index } = this.state;
+    const { regularItems, disableSidePanel, regularOnly, inTabForSure } = this.props;
     const hasSidePanel = this.hasSidePanel();
 
     if (regularOnly) {
@@ -153,34 +149,6 @@ class OutsideConfigLayout extends React.Component {
         {(inTabForSure || (!hasSidePanel && !disableSidePanel)) && (
           <Sections {...this.props} />
         )}
-      </div>
-    );
-
-    return (
-      <div
-        ref={measureRef}
-        className={classnames(classes.container, {
-          [classes.hasSidePanel]: hasSidePanel
-        })}
-      >
-        <Tabs
-          onChange={this.onTabsChange}
-          value={index}
-          indicatorColor="primary"
-        >
-          <Tab label="Design" />
-          {this.shouldRenderSettingsTab() && <Tab label="Settings" />}
-          {scoringItem && <Tab label="Scoring" />}
-        </Tabs>
-        <div className={classes.contentContainer}>
-          {disableSidePanel && <Sections {...this.props} />}
-          {index === 0 && regularItems}
-          {!hasSidePanel && index === 1 && !disableSidePanel && (
-            <Sections {...this.props} />
-          )}
-          {((!hasSidePanel && index === 2) || index === 1) && scoringItem}
-          {hasSidePanel && !disableSidePanel && this.renderSidePanel()}
-        </div>
       </div>
     );
   };
@@ -314,8 +282,6 @@ const RootElem = props => (
   </MuiThemeProvider>
 );
 
-export default RootElem;
-
 export const htmlTemplateFactory = elementName => `
     <style>
       @import url('https://fonts.googleapis.com/css?family=Roboto');
@@ -342,6 +308,18 @@ export const htmlTemplateFactory = elementName => `
     </div>
 `;
 
+export const getElemName = (defaultName) => {
+  const pieInfo = window.pie && window.pie.default && window.pie.default['@pie-element/multiple-choice'];
+
+  if (pieInfo && pieInfo.Element) {
+    const elem = new pieInfo.Element();
+
+    return elem.tagName.toLowerCase();
+  }
+
+  return defaultName;
+};
+
 class CustomPreviewModelUpdatedEvent extends CustomEvent {
   constructor(update, reset = false) {
     super(CustomPreviewModelUpdatedEvent.TYPE, { bubbles: true, detail: { update, reset } });
@@ -357,6 +335,7 @@ export class ConfigureWrapper extends HTMLElement {
     super();
     this._noPreview = false;
     this.onModelChanged = this.onModelChanged.bind(this);
+    this.mode = 'gather';
     this.indexTab = 0;
     const template = document.createElement('template');
 
@@ -396,6 +375,26 @@ export class ConfigureWrapper extends HTMLElement {
 
         ::slotted(.ConfigLayout-sidePanel-138) {
             width: 300px !important;
+        }
+        
+        .extra-options {
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            width: 75%;
+            background: #fafafa;
+            height: 50px;
+            padding: 10px;
+            box-sizing: border-box;
+            margin-top: 20px;
+        }
+        
+        .extra-options.present {
+          display: flex;
+        }
+        
+        .extra-options.full {
+            width: 100%;
         }
 
         .tabs-container {
@@ -444,6 +443,33 @@ export class ConfigureWrapper extends HTMLElement {
             top: 48px;
             transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
         }
+        
+        .custom-checkbox {
+          display: flex;
+          align-items: center;
+          cursor: pointer;
+        }
+        
+        .checkbox-container {
+          width: 20px;
+          height: 20px;
+          display: inline-block;
+          box-sizing: border-box;
+          border-radius: 50%;
+          border: 2px solid #008463;
+          padding: 3px;       
+          margin-right: 5px; 
+        }
+        
+        .checkbox-container.checked .checkbox-el {
+          background: #008463;
+          width: 10px;
+          height: 10px;
+          display: block;
+          box-sizing: border-box;
+          border-radius: 50%;
+          padding: 3px;            
+        }
     </style>
     <div class="tabs-container">
         <div class="tabs">
@@ -452,6 +478,41 @@ export class ConfigureWrapper extends HTMLElement {
             <div class="tab settingsTab hidden" onclick="onTabClick(this, 2)">Settings</div>
         </div>
         <span class="selected-line" style="left: 0px; width: 100px;"></span>
+        <div class="extra-options">
+            <div
+              class="custom-checkbox"
+              data-mode="gather"
+              onclick="onCheckboxClick(this)"
+            >
+                <i class="checkbox-container">
+                    <i class="checkbox-el">
+                    </i>                
+                </i>
+                Gather
+            </div>                    
+            <div
+              class="custom-checkbox"
+              data-mode="view"
+              onclick="onCheckboxClick(this)"
+            >
+                <i class="checkbox-container">
+                    <i class="checkbox-el">
+                    </i>                
+                </i>
+                View
+            </div>                    
+            <div
+              class="custom-checkbox"
+              data-mode="evaluate"
+              onclick="onCheckboxClick(this)"
+            >
+                <i class="checkbox-container">
+                    <i class="checkbox-el">
+                    </i>                
+                </i>
+                Evaluate
+            </div>                    
+        </div>
         <div class="tab-content">
             <slot name="configure-custom">
             </slot>
@@ -465,11 +526,12 @@ export class ConfigureWrapper extends HTMLElement {
 
     window.onTabClick = (el, index) => {
       this.indexTab = index;
+      this._render();
+    };
 
-      if (this.onTabChanged) {
-        this.onTabChanged(index);
-      }
-
+    window.onCheckboxClick = (el) => {
+      this.mode = el.dataset.mode;
+      this.handlePreviewTab();
       this._render();
     };
 
@@ -478,13 +540,22 @@ export class ConfigureWrapper extends HTMLElement {
 
     const ro = new ResizeObserver(() => {
       const tabs = this.shadowRoot.querySelector('.tabs');
+      const extraOptions = this.shadowRoot.querySelector('.extra-options');
 
       this.inTabSidePanel = this.offsetWidth * 0.20 < 190;
 
       if (this.inTabSidePanel) {
         tabs.classList.add('full');
+
+        if (extraOptions) {
+          extraOptions.classList.add('full');
+        }
       } else {
         tabs.classList.remove('full');
+
+        if (extraOptions) {
+          extraOptions.classList.remove('full');
+        }
       }
 
       this._render();
@@ -510,6 +581,21 @@ export class ConfigureWrapper extends HTMLElement {
     selectedEl.classList.add('selected');
   }
 
+  handleModes() {
+    const checkboxes = this.shadowRoot.querySelectorAll('.extra-options .custom-checkbox');
+    let selectedMode = checkboxes[0];
+
+    checkboxes.forEach((checkbox) => {
+      if (checkbox.dataset.mode === this.mode) {
+        selectedMode = checkbox;
+      }
+
+      checkbox.firstElementChild.classList.remove('checked')
+    });
+
+    selectedMode.firstElementChild.classList.add('checked');
+  }
+
   set model(s) {
     this._model = s;
     this._render();
@@ -525,7 +611,25 @@ export class ConfigureWrapper extends HTMLElement {
     this._render();
   }
 
+  set rerender(rerender) {
+    this._rerender = rerender;
+  }
+
   renderDesignTab() {
+    const renderDesignEl = () => {
+      const element = React.createElement(this.configureElement.el, {
+        ...this.configureElement.props,
+        onModelChanged: this.onModelChanged,
+      });
+
+      const configLayout = React.createElement(RootElem, {
+        regularOnly: true,
+        regularItems: element,
+      });
+
+      ReactDOM.render(configLayout, this._configureSlot);
+    };
+
     if (this.configureElement) {
       if (!this._configureSlot) {
         const span = document.createElement('span');
@@ -535,23 +639,17 @@ export class ConfigureWrapper extends HTMLElement {
 
         span.className = `tabContent selected${this.inTabSidePanel ? ' full' : ''}`;
 
-        const element = React.createElement(this.configureElement.el, {
-          ...this.configureElement.props,
-          onModelChanged: this.onModelChanged,
-        });
-
-        const configLayout = React.createElement(RootElem, {
-          regularOnly: true,
-          regularItems: element,
-        });
-
         span.setAttribute('slot', 'configure-custom');
 
         this._configureSlot = span;
         this.appendChild(span);
 
-        ReactDOM.render(configLayout, span);
+        renderDesignEl(this._configureSlot);
       } else {
+        if (this._rerender) {
+          renderDesignEl(this._configureSlot);
+        }
+
         this._configureSlot.className = `tabContent${this.indexTab === 0 ? ' selected' : ''}${this.inTabSidePanel ? ' full' : ''}`;
       }
     } else {
@@ -564,15 +662,16 @@ export class ConfigureWrapper extends HTMLElement {
   onModelChanged(m, reset) {
     this._model = m;
     this.handlePreviewTab(reset);
-    this.changeModel && this.changeModel(m, reset);
   }
 
   handlePreviewTab(reset) {
     const el = this._previewSlot ? this._previewSlot.firstChild : {};
+    const newSession = reset ? [] : this.previewSession;
 
-    el.session = reset ? [] : this.previewSession;
-    this.modelFn(this._model, el.session, {
-      mode: 'gather'
+    el.session = newSession;
+
+    this.modelFn(this._model, newSession, {
+      mode: this.mode
     })
       .then((newModel) => {
         const sidePanelEl = this._sidePanel && this._sidePanel.el.firstChild;
@@ -595,6 +694,11 @@ export class ConfigureWrapper extends HTMLElement {
   renderPreviewTab() {
     const existing = this.querySelector('[slot=preview-custom]');
     const settingsTabEl = this.shadowRoot.querySelector('.previewTab');
+    const extraOptions = this.shadowRoot.querySelector('.extra-options');
+
+    if (extraOptions) {
+      extraOptions.className = `extra-options${this.indexTab === 1 ? ' present' : ''}`;
+    }
 
     if (!this._noPreview) {
       if (!this._previewSlot) {
@@ -611,6 +715,11 @@ export class ConfigureWrapper extends HTMLElement {
         this.appendChild(span);
         this.handlePreviewTab();
       } else {
+
+        if (this._rerender) {
+          this.handlePreviewTab();
+        }
+
         this._previewSlot.className = `tabContent${this.indexTab === 1 ? ' selected' : ''}${this.inTabSidePanel ? ' full' : ''}`;
       }
     } else if (existing) {
@@ -664,6 +773,7 @@ export class ConfigureWrapper extends HTMLElement {
 
   _render() {
     this.handleTabs();
+    this.handleModes();
 
     if (this._model && this._configure) {
       this.renderDesignTab();
