@@ -526,6 +526,11 @@ export class ConfigureWrapper extends HTMLElement {
 
     window.onTabClick = (el, index) => {
       this.indexTab = index;
+
+      if (this.onTabChanged) {
+        this.onTabChanged(index);
+      }
+
       this._render();
     };
 
