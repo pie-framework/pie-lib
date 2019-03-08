@@ -13,6 +13,7 @@ import Link from 'next/link';
 import Divider from '@material-ui/core/Divider';
 import { withRouter } from 'next/router';
 import classNames from 'classnames';
+import ChangelogDialog from './changelog-dialog';
 
 const drawerWidth = 240;
 
@@ -68,9 +69,12 @@ const ActiveLink = withStyles(theme => ({
   version: {
     fontSize: '11px',
     color: theme.palette.secondary.main
+  },
+  versionActive: {
+    color: theme.palette.primary.main
   }
 }))(
-  withRouter(({ router, path, primary, classes, version }) => {
+  withRouter(({ router, path, primary, classes, version, onVersionClick }) => {
     const isActive = path === router.pathname;
     return (
       <Link href={path} as={path}>
@@ -79,7 +83,17 @@ const ActiveLink = withStyles(theme => ({
             primary={primary}
             classes={{ primary: isActive && classes.active }}
           />
-          {version && <span className={classes.version}>{version}</span>}
+          {version && (
+            <span
+              onClick={isActive ? () => onVersionClick(path) : undefined}
+              className={classNames(
+                classes.version,
+                isActive && classes.versionActive
+              )}
+            >
+              {version}
+            </span>
+          )}
         </ListItem>
       </Link>
     );
@@ -93,8 +107,31 @@ const ChangelogButton = props => {
 class ClippedDrawer extends React.Component {
   //(props) {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      changelogOpen: false
+    };
+  }
+
+  showChangeLog = path => {
+    this.setState({ changelogOpen: true, changelogPath: path });
+  };
+
+  hideDialog = () => {
+    this.setState({ changelogOpen: false, changelogPath: undefined });
+  };
+
   render() {
-    const { classes, children, links, gitInfo } = this.props;
+    const { classes, children, links, gitInfo, packageInfo } = this.props;
+    const { changelogOpen, changelogPath } = this.state;
+
+    const clPackage = changelogOpen
+      ? packageInfo.find(pi => {
+          return pi.dir.endsWith(changelogPath);
+        })
+      : undefined;
+
     return (
       <div className={classes.root}>
         <AppBar position="absolute" className={classes.appBar}>
@@ -105,7 +142,11 @@ class ClippedDrawer extends React.Component {
             )}
           >
             <PageTitle />
-            <ChangelogButton onClick={this.showChangelog} />
+            {/* <ChangelogButton
+              onClick={() => {
+                this.showChangeLog();
+              }}
+            /> */}
             <div className={classes.extras}>
               {gitInfo.branch}&nbsp;|&nbsp;
               <a
@@ -133,6 +174,7 @@ class ClippedDrawer extends React.Component {
                 key={index}
                 path={l.path}
                 primary={l.label}
+                onVersionClick={this.showChangeLog}
                 version={
                   gitInfo.branch === 'master'
                     ? l.version
@@ -148,6 +190,11 @@ class ClippedDrawer extends React.Component {
           <div className={classes.toolbar} />
           {children}
         </main>
+        <ChangelogDialog
+          open={changelogOpen}
+          onClose={this.hideDialog}
+          activePackage={clPackage}
+        />
       </div>
     );
   }
@@ -155,6 +202,7 @@ class ClippedDrawer extends React.Component {
 
 ClippedDrawer.propTypes = {
   gitInfo: PropTypes.object,
+  packageInfo: PropTypes.array,
   links: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string.isRequired,

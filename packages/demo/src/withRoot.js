@@ -6,8 +6,6 @@ import getPageContext from './getPageContext';
 import Root from './root';
 // import links from './links';
 
-const ChangeLog = () => <div>changelog</div>;
-
 function withRoot(Component) {
   class WithRoot extends React.Component {
     constructor(props, context) {
