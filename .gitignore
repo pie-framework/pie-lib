@@ -6,3 +6,4 @@ lerna-debug.log
 .DS_Store
 package-lock.json
 .npmrc
+NEXT.CHANGELOG.md
