@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
+import Button from '@material-ui/core/Button';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -85,62 +86,71 @@ const ActiveLink = withStyles(theme => ({
   })
 );
 
-function ClippedDrawer(props) {
-  const { classes, children, links, gitInfo } = props;
-  return (
-    <div className={classes.root}>
-      <AppBar position="absolute" className={classes.appBar}>
-        <Toolbar
-          className={classNames(
-            classes.toolbar,
-            gitInfo.branch !== 'master' && classes.devToolbar
-          )}
+const ChangelogButton = props => {
+  return <Button onClick={props.onClick}>Changelog</Button>;
+};
+
+class ClippedDrawer extends React.Component {
+  //(props) {
+
+  render() {
+    const { classes, children, links, gitInfo } = this.props;
+    return (
+      <div className={classes.root}>
+        <AppBar position="absolute" className={classes.appBar}>
+          <Toolbar
+            className={classNames(
+              classes.toolbar,
+              gitInfo.branch !== 'master' && classes.devToolbar
+            )}
+          >
+            <PageTitle />
+            <ChangelogButton onClick={this.showChangelog} />
+            <div className={classes.extras}>
+              {gitInfo.branch}&nbsp;|&nbsp;
+              <a
+                href={`https://github.com/pie-framework/pie-lib/commit/${
+                  gitInfo.short
+                }`}
+              >
+                {gitInfo.short}
+              </a>
+            </div>
+          </Toolbar>
+        </AppBar>
+        <Drawer
+          variant="permanent"
+          classes={{
+            paper: classes.drawerPaper
+          }}
         >
-          <PageTitle />
-          <div className={classes.extras}>
-            {gitInfo.branch}&nbsp;|&nbsp;
-            <a
-              href={`https://github.com/pie-framework/pie-lib/commit/${
-                gitInfo.short
-              }`}
-            >
-              {gitInfo.short}
-            </a>
-          </div>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        variant="permanent"
-        classes={{
-          paper: classes.drawerPaper
-        }}
-      >
-        <div className={classes.toolbar} />
-        <List>
-          <ActiveLink path="/" primary={'Home'} />
-          <Divider />
-          {links.map((l, index) => (
-            <ActiveLink
-              key={index}
-              path={l.path}
-              primary={l.label}
-              version={
-                gitInfo.branch === 'master'
-                  ? l.version
-                  : l.version
-                  ? 'next'
-                  : undefined
-              }
-            />
-          ))}
-        </List>
-      </Drawer>
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-        {children}
-      </main>
-    </div>
-  );
+          <div className={classes.toolbar} />
+          <List>
+            <ActiveLink path="/" primary={'Home'} />
+            <Divider />
+            {links.map((l, index) => (
+              <ActiveLink
+                key={index}
+                path={l.path}
+                primary={l.label}
+                version={
+                  gitInfo.branch === 'master'
+                    ? l.version
+                    : l.version
+                    ? 'next'
+                    : undefined
+                }
+              />
+            ))}
+          </List>
+        </Drawer>
+        <main className={classes.content}>
+          <div className={classes.toolbar} />
+          {children}
+        </main>
+      </div>
+    );
+  }
 }
 
 ClippedDrawer.propTypes = {
