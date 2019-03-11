@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@5.0.4...@pie-lib/math-input@5.1.0) (2019-02-20)
+
+
+### Features
+
+* **math-toolbar:** configurable keypad for extra button variety ([f219ae1](https://github.com/pie-framework/pie-lib/commit/f219ae1))
+
+
+
+
+
 ## [5.0.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@5.0.3...@pie-lib/math-input@5.0.4) (2019-02-13)
 
 
