@@ -7,7 +7,9 @@ before_install:
 
 stages:
   - name: release-deploy-next
-    if: branch = develop
+    if: branch = develop AND type != pull_request
+  - name: test
+    if: branch = develop AND type = pull_request
   - name: release-deploy
     if: branch = master
 
@@ -15,6 +17,8 @@ jobs:
   include:
     - stage: release-deploy-next
       script: 'scripts/build release deploy --next'
+    - stage: test
+      script: 'scripts/build test'
     - stage: release-deploy
       script: 'scripts/build release deploy'
 
