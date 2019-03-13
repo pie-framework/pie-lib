@@ -1,5 +1,20 @@
 [
   {
+    "type": "fix",
+    "scope": null,
+    "subject": "ignore node_modules",
+    "merge": null,
+    "header": "fix: ignore node_modules",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "900ab7c1b17d00ccfccbc003e458ac4225a03a1e",
+    "gitTags": "",
+    "committerDate": "2019-03-13 17:38:41 +0000",
+    "isTagged": true,
+    "earliestTag": "@pie-lib/editable-html@7.1.11"
+  },
+  {
     "type": "chore",
     "scope": null,
     "subject": "generate changelog.json instead of markdown",
