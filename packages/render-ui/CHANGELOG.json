@@ -1,5 +1,20 @@
 [
   {
+    "type": "chore",
+    "scope": null,
+    "subject": "generate changelog.json instead of markdown",
+    "merge": null,
+    "header": "chore: generate changelog.json instead of markdown",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "eaa5019a11f70c53425d55856bd3b940237f8c7d",
+    "gitTags": "",
+    "committerDate": "2019-03-13 17:24:09 +0000",
+    "isTagged": true,
+    "earliestTag": "@pie-lib/render-ui@4.3.2"
+  },
+  {
     "type": "feat",
     "scope": null,
     "subject": "libs version bump",
