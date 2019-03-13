@@ -42,10 +42,9 @@ class LibCommands extends Commands {
 
     return Promise.all(
       packages.map(async pkg => {
+        // This function is called from prepack - so we don't know if it's next or not
         await writeChangelogJsonForPackage(pkg, false);
-        if (this.args.next) {
-          await writeChangelogJsonForPackage(pkg, true);
-        }
+        await writeChangelogJsonForPackage(pkg, true);
         await this.commit(pkg.dir, '[travis skip] update changelog.json');
       })
     );
