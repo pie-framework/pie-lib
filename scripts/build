@@ -4,7 +4,8 @@ const minimist = require('minimist');
 const {
   Commands,
   getPackages,
-  changelogJson
+  changelogJson,
+  rmChangelogJson
 } = require('@pie-framework/build-helper');
 const args = minimist(process.argv.slice(2));
 const { resolve, join } = require('path');
@@ -27,6 +28,10 @@ class LibCommands extends Commands {
     return Promise.resolve(undefined);
   }
 
+  rmChangelogs() {
+    return rmChangelogJson(join(this.projectRoot, 'packages'));
+  }
+
   async logChangelog() {
     const packages = _.take(getPackages(join(this.projectRoot, 'packages')), 1);
 
@@ -34,10 +39,10 @@ class LibCommands extends Commands {
       packages.map(p => changelogJson(p, { type: 'released' }))
     );
     console.log('changelogs', changelogs);
-    const unreleased = await Promise.all(
-      packages.map(p => changelogJson(p, { type: 'unreleased' }))
-    );
-    console.log('unreleased', unreleased);
+    // const unreleased = await Promise.all(
+    //   packages.map(p => changelogJson(p, { type: 'unreleased' }))
+    // );
+    // console.log('unreleased', unreleased);
   }
 }
 

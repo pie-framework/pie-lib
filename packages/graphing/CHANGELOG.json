@@ -1,0 +1,47 @@
+[
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "force version bump",
+    "merge": null,
+    "header": "fix: force version bump",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "dd057a52e90133dfb30660b1824760cb9f10a280",
+    "gitTags": "",
+    "committerDate": "2019-02-17 21:23:35 +0000",
+    "isTagged": true,
+    "earliestTag": "@pie-lib/graphing@0.1.4"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "fix tests",
+    "merge": null,
+    "header": "fix: fix tests",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "1363aa4540f970c8cdd05ef05c1325de973d22e2",
+    "gitTags": "",
+    "committerDate": "2019-02-16 23:47:25 +0000",
+    "isTagged": true,
+    "earliestTag": "@pie-lib/graphing@0.1.2"
+  },
+  {
+    "type": "feat",
+    "scope": null,
+    "subject": "new graphing package",
+    "merge": null,
+    "header": "feat: new graphing package",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "8782bf89d20c493409282d7786325ca5ecdcdc0b",
+    "gitTags": "",
+    "committerDate": "2019-01-30 22:14:28 +0000",
+    "isTagged": true,
+    "earliestTag": "@pie-lib/graphing@0.1.0"
+  }
+]

@@ -8,4 +8,3 @@ package-lock.json
 .npmrc
 NEXT.CHANGELOG.md
 *.CHANGELOG.json
-CHANGELOG.json
