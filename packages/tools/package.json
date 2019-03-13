@@ -13,7 +13,7 @@
   "repository": "pie-framework/pie-lib",
   "main": "lib/index.js",
   "scripts": {
-    "test": "./node_modules/.bin/jest"
+    "prepack": "../../scripts/build changelog --scope tools"
   },
   "author": "",
   "license": "ISC",

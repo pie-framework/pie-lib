@@ -6,6 +6,9 @@
   "publishConfig": {
     "access": "public"
   },
+  "scripts": {
+    "prepack": "../../scripts/build changelog --scope feedback"
+  },
   "author": "",
   "license": "ISC"
 }

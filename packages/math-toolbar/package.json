@@ -32,5 +32,8 @@
   "devDependencies": {
     "@pie-lib/test-utils": "^0.1.3"
   },
+  "scripts": {
+    "prepack": "../../scripts/build changelog --scope math-toolbar"
+  },
   "gitHead": "392d23fb87a66e7260172db53451a64628b0bf8a"
 }

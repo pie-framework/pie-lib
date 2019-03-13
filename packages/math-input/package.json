@@ -20,11 +20,8 @@
     "react": "^16.7.0",
     "react-dom": "^16.7.0"
   },
-  "jest": {
-    "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
-      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
-    }
+  "scripts": {
+    "prepack": "../../scripts/build changelog --scope math-input"
   },
   "gitHead": "392d23fb87a66e7260172db53451a64628b0bf8a"
 }

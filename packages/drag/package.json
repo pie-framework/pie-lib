@@ -13,6 +13,9 @@
   "publishConfig": {
     "access": "public"
   },
+  "scripts": {
+    "prepack": "../../scripts/build changelog --scope drag"
+  },
   "author": "",
   "license": "ISC",
   "gitHead": "1090bd26e31b37d067d32cde11a4185ef0b7dc52"
