@@ -1,10 +1,10 @@
 #!/usr/bin/env node
-
+const _ = require('lodash');
 const minimist = require('minimist');
 const {
   Commands,
   getPackages,
-  getUnreleasedChangelog
+  changelogJson
 } = require('@pie-framework/build-helper');
 const args = minimist(process.argv.slice(2));
 const { resolve, join } = require('path');
@@ -28,12 +28,16 @@ class LibCommands extends Commands {
   }
 
   async logChangelog() {
-    const packages = getPackages(join(this.projectRoot, 'packages'));
+    const packages = _.take(getPackages(join(this.projectRoot, 'packages')), 1);
 
     const changelogs = await Promise.all(
-      packages.map(p => getUnreleasedChangelog(p))
+      packages.map(p => changelogJson(p, { type: 'released' }))
     );
     console.log('changelogs', changelogs);
+    const unreleased = await Promise.all(
+      packages.map(p => changelogJson(p, { type: 'unreleased' }))
+    );
+    console.log('unreleased', unreleased);
   }
 }
 
