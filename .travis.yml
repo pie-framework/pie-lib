@@ -16,7 +16,7 @@ stages:
 jobs:
   include:
     - stage: release-deploy-next
-      script: 'scripts/build release deploy --next'
+      script: 'scripts/build release deploy --next --skipForcePublish'
     - stage: test
       script: 'scripts/build test'
     - stage: release-deploy
