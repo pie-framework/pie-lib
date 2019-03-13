@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/categorize",
-  "version": "0.5.6",
+  "version": "0.5.7-next.5+eb74411",
   "description": "",
   "main": "lib/index.js",
   "dependencies": {
@@ -15,5 +15,5 @@
   },
   "author": "",
   "license": "ISC",
-  "gitHead": "1090bd26e31b37d067d32cde11a4185ef0b7dc52"
+  "gitHead": "eb7441107c5c066f9d30101dabc6b6b17e8437d1"
 }
