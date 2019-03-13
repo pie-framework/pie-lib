@@ -5,10 +5,11 @@ const {
   Commands,
   getPackages,
   changelogJson,
-  rmChangelogJson
+  rmChangelogJson,
+  writeChangelogJsonForPackage
 } = require('@pie-framework/build-helper');
 const args = minimist(process.argv.slice(2));
-const { resolve, join } = require('path');
+const { resolve, join, basename } = require('path');
 
 class LibCommands extends Commands {
   async deploy() {
@@ -30,6 +31,24 @@ class LibCommands extends Commands {
 
   rmChangelogs() {
     return rmChangelogJson(join(this.projectRoot, 'packages'));
+  }
+
+  changelog() {
+    const packagesDir = join(this.projectRoot, 'packages');
+    const allPackages = getPackages(packagesDir);
+    const packages = this.args.scope
+      ? allPackages.filter(p => basename(p.dir) === this.args.scope)
+      : allPackages;
+
+    return Promise.all(
+      packages.map(async pkg => {
+        await writeChangelogJsonForPackage(pkg, false);
+        if (this.args.next) {
+          await writeChangelogJsonForPackage(pkg, true);
+        }
+        await this.commit(pkg.dir, '[travis skip] update changelog.json');
+      })
+    );
   }
 
   async logChangelog() {
