@@ -1,5 +1,35 @@
 [
   {
+    "type": "chore",
+    "scope": null,
+    "subject": "generate changelog.json instead of markdown",
+    "merge": null,
+    "header": "chore: generate changelog.json instead of markdown",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "eaa5019a11f70c53425d55856bd3b940237f8c7d",
+    "gitTags": "",
+    "committerDate": "2019-03-13 17:24:09 +0000",
+    "isTagged": true,
+    "earliestTag": "@pie-lib/categorize@0.5.6"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "foo",
+    "merge": null,
+    "header": "fix: foo",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "472904452c163acda9f1e93ea7085ab42769af42",
+    "gitTags": "",
+    "committerDate": "2019-03-13 13:09:58 +0000",
+    "isTagged": true,
+    "earliestTag": "@pie-lib/categorize@0.5.6"
+  },
+  {
     "type": "fix",
     "scope": null,
     "subject": "force version bump",
