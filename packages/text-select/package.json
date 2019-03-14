@@ -36,7 +36,7 @@
     "@material-ui/core": "^3.8.3",
     "react": "^16.7.0"
   },
-  "gitHead": "1090bd26e31b37d067d32cde11a4185ef0b7dc52",
+  "gitHead": "f3345ae70660f4ae88450512261c7ea1601003c8",
   "scripts": {
     "prepack": "../../scripts/build changelog --scope text-select"
   }

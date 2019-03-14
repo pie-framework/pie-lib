@@ -10,5 +10,6 @@
     "prepack": "../../scripts/build changelog --scope feedback"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "gitHead": "f3345ae70660f4ae88450512261c7ea1601003c8"
 }
