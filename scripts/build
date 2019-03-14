@@ -22,18 +22,6 @@ class LibCommands extends Commands {
     return this.staticToNow(resolve(demoDir, 'out'), alias);
   }
 
-  /**
-   * Override this so that the changelogs dont get removed.
-   * We want to pull them in to the demo site build.
-   */
-  afterPublish() {
-    return Promise.resolve(undefined);
-  }
-
-  rmChangelogs() {
-    return rmChangelogJson(join(this.projectRoot, 'packages'));
-  }
-
   /** called by each package in prepack */
   changelog() {
     const packagesDir = join(this.projectRoot, 'packages');
@@ -53,19 +41,6 @@ class LibCommands extends Commands {
         );
       })
     );
-  }
-
-  async logChangelog() {
-    const packages = _.take(getPackages(join(this.projectRoot, 'packages')), 1);
-
-    const changelogs = await Promise.all(
-      packages.map(p => changelogJson(p, { type: 'released' }))
-    );
-    console.log('changelogs', changelogs);
-    // const unreleased = await Promise.all(
-    //   packages.map(p => changelogJson(p, { type: 'unreleased' }))
-    // );
-    // console.log('unreleased', unreleased);
   }
 }
 

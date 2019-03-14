@@ -30,7 +30,7 @@
     "@babel/plugin-proposal-export-default-from": "^7.2.0",
     "@babel/plugin-proposal-export-namespace-from": "^7.2.0",
     "@babel/polyfill": "^7.2.5",
-    "@pie-framework/build-helper": "^4.1.1",
+    "@pie-framework/build-helper": "^4.2.0",
     "@pie-lib/test-utils": "^0.0.3",
     "@types/enzyme": "^3.1.15",
     "@types/jest": "^24.0.5",
