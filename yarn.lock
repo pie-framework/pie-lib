@@ -1780,10 +1780,10 @@
     universal-user-agent "^2.0.0"
     url-template "^2.0.8"
 
-"@pie-framework/build-helper@^4.2.0":
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/@pie-framework/build-helper/-/build-helper-4.2.0.tgz#25475e0cb9d17884e93119f450bf08fd55162245"
-  integrity sha512-aA3K2HaB4cFtLNUDAcgtVk7Ah8yetkabrPUeiZO2TqsysD4lzIRxo1hsWx6+u3vEdOi7wUsLa3bHQESmFOt2yw==
+"@pie-framework/build-helper@^4.2.1":
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/@pie-framework/build-helper/-/build-helper-4.2.1.tgz#bfe813c452d2074e82261f433911e6dd1cdf3b79"
+  integrity sha512-Zg3GvYYccZqrhbcSb30YD6iMKVlB9eWDbU91FilzsB2o0bovhMD5wEUd4c/pQcIL7Sqv+UOOnW11SMK4xEu1fw==
   dependencies:
     conventional-changelog-core "^3.1.6"
     conventional-changelog-writer "^4.0.3"
