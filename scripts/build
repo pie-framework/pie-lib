@@ -45,9 +45,9 @@ class LibCommands extends Commands {
       packages.map(async pkg => {
         // This function is called from prepack - so we don't know if it's next or not
         const clPath = await writeChangelogJsonForPackage(pkg, false);
-        const nextClPath = await writeChangelogJsonForPackage(pkg, true);
+        // Next changelog is ignored so skip
         await this.commit(
-          [clPath, nextClPath],
+          [clPath],
           `[travis skip] update changelog.json for ${pkg.pkg.name}`
         );
       })
