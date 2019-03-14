@@ -333,6 +333,7 @@ CustomPreviewModelUpdatedEvent.TYPE = 'customPreviewModel.updated';
 export class ConfigureWrapper extends HTMLElement {
   constructor() {
     super();
+    this._disableSidePanel = false;
     this._noPreview = false;
     this.onModelChanged = this.onModelChanged.bind(this);
     this.mode = 'gather';
@@ -367,6 +368,7 @@ export class ConfigureWrapper extends HTMLElement {
 
         ::slotted(.sidePanelClass) {
             max-width: 250px;
+            min-width: 200px;
             position: fixed;
             right: 0;
             top: 0;
@@ -382,7 +384,6 @@ export class ConfigureWrapper extends HTMLElement {
             align-items: center;
             justify-content: space-between;
             width: 75%;
-            background: #fafafa;
             height: 50px;
             padding: 10px;
             box-sizing: border-box;
@@ -542,12 +543,11 @@ export class ConfigureWrapper extends HTMLElement {
 
     this.attachShadow({ mode: 'open' });
     this.shadowRoot.appendChild(template.content.cloneNode(true));
-
-    const ro = new ResizeObserver(() => {
+    this.resizeObserverHandler = () => {
       const tabs = this.shadowRoot.querySelector('.tabs');
       const extraOptions = this.shadowRoot.querySelector('.extra-options');
 
-      this.inTabSidePanel = this.offsetWidth * 0.20 < 190;
+      this.inTabSidePanel = this._disableSidePanel || (this.offsetWidth * 0.20 < 190);
 
       if (this.inTabSidePanel) {
         tabs.classList.add('full');
@@ -564,7 +564,9 @@ export class ConfigureWrapper extends HTMLElement {
       }
 
       this._render();
-    });
+    };
+
+    const ro = new ResizeObserver(this.resizeObserverHandler);
 
     ro.observe(this);
   }
@@ -613,6 +615,12 @@ export class ConfigureWrapper extends HTMLElement {
 
   set noPreview(noPreview) {
     this._noPreview = noPreview;
+    this._render();
+  }
+
+  set disableSidePanel(disableSidePanel) {
+    this._disableSidePanel = disableSidePanel;
+    this.resizeObserverHandler();
     this._render();
   }
 
@@ -780,7 +788,7 @@ export class ConfigureWrapper extends HTMLElement {
     this.handleTabs();
     this.handleModes();
 
-    if (this._model && this._configure) {
+    if (this._model) {
       this.renderDesignTab();
       this.renderPreviewTab();
       this.renderSidePanel();
