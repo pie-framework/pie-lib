@@ -1,16 +1,9 @@
 #!/usr/bin/env node
 const _ = require('lodash');
 const minimist = require('minimist');
-const {
-  Commands,
-  getPackages,
-  changelogJson,
-  rmChangelogJson,
-  writeChangelogJsonForPackage,
-  series
-} = require('@pie-framework/build-helper');
+const { Commands } = require('@pie-framework/build-helper');
 const args = minimist(process.argv.slice(2));
-const { resolve, join, basename } = require('path');
+const { resolve } = require('path');
 
 class LibCommands extends Commands {
   async deploy() {
