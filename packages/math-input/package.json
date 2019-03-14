@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "5.1.8",
+  "version": "5.1.9",
   "main": "lib/index.js",
   "dependencies": {
     "@material-ui/core": "^3.8.3",
@@ -23,8 +23,5 @@
   "scripts": {
     "prepack": "../../scripts/build changelog --scope math-input"
   },
-  "gitHead": "392d23fb87a66e7260172db53451a64628b0bf8a",
-  "scripts": {
-    "prepack": "../../scripts/build changelog --scope math-input"
-  }
+  "gitHead": "392d23fb87a66e7260172db53451a64628b0bf8a"
 }

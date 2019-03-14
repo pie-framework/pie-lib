@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.8.6...@pie-lib/tools@0.8.7) (2019-03-14)
+
+**Note:** Version bump only for package @pie-lib/tools
+
+
+
+
+
 ## [0.8.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.8.5...@pie-lib/tools@0.8.6) (2019-03-13)
 
 **Note:** Version bump only for package @pie-lib/tools

@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/style-utils",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "",
   "main": "lib/index.js",
   "publishConfig": {
@@ -10,8 +10,5 @@
     "prepack": "../../scripts/build changelog --scope style-utils"
   },
   "author": "",
-  "license": "ISC",
-  "scripts": {
-    "prepack": "../../scripts/build changelog --scope style-utils"
-  }
+  "license": "ISC"
 }

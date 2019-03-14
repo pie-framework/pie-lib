@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/drag",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "description": "",
   "main": "lib/index.js",
   "dependencies": {
@@ -18,8 +18,5 @@
   },
   "author": "",
   "license": "ISC",
-  "gitHead": "1090bd26e31b37d067d32cde11a4185ef0b7dc52",
-  "scripts": {
-    "prepack": "../../scripts/build changelog --scope drag"
-  }
+  "gitHead": "1090bd26e31b37d067d32cde11a4185ef0b7dc52"
 }
