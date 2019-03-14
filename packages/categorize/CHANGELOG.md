@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.5.12...@pie-lib/categorize@0.5.13) (2019-03-14)
+
+
+### Bug Fixes
+
+* rm foo ([6aa0200](https://github.com/pie-framework/pie-lib/commit/6aa0200))
+
+
+
+
+
 ## [0.5.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.5.11...@pie-lib/categorize@0.5.12) (2019-03-14)
 
 **Note:** Version bump only for package @pie-lib/categorize
