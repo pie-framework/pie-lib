@@ -2,6 +2,21 @@
   {
     "type": "chore",
     "scope": null,
+    "subject": "get packages to call changelog function on prepack",
+    "merge": null,
+    "header": "chore: get packages to call changelog function on prepack",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "8828f01f2d16d29404ba837c1de40d09e7230ec5",
+    "gitTags": "",
+    "committerDate": "2019-03-14 12:40:05 +0000",
+    "isTagged": true,
+    "earliestTag": "@pie-lib/graphing@0.1.10"
+  },
+  {
+    "type": "chore",
+    "scope": null,
     "subject": "call changelog on prepack",
     "merge": null,
     "header": "chore: call changelog on prepack",
