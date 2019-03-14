@@ -163,5 +163,20 @@
     "committerDate": "2018-05-21 13:58:56 -0400",
     "isTagged": true,
     "earliestTag": "@pie-lib/categorize@0.3.0"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "rm foo",
+    "merge": null,
+    "header": "fix: rm foo",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "6aa0200215adf9cba68e23a697a260358fd4c933",
+    "gitTags": "",
+    "committerDate": "2019-03-14 13:50:35 +0000",
+    "isTagged": true,
+    "earliestTag": "@pie-lib/categorize@0.5.13"
   }
 ]
