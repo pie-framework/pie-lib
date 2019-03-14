@@ -6,7 +6,8 @@ const {
   getPackages,
   changelogJson,
   rmChangelogJson,
-  writeChangelogJsonForPackage
+  writeChangelogJsonForPackage,
+  series
 } = require('@pie-framework/build-helper');
 const args = minimist(process.argv.slice(2));
 const { resolve, join, basename } = require('path');
@@ -41,7 +42,7 @@ class LibCommands extends Commands {
       ? allPackages.filter(p => basename(p.dir) === this.args.scope)
       : allPackages;
 
-    return Promise.all(
+    return series(
       packages.map(async pkg => {
         // This function is called from prepack - so we don't know if it's next or not
         const clPath = await writeChangelogJsonForPackage(pkg, false);
