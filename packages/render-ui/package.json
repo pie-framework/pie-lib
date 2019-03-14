@@ -7,7 +7,7 @@
     "access": "public"
   },
   "scripts": {
-    "test": "./node_modules/.bin/jest"
+    "prepack": "../../scripts/build changelog --scope render-ui"
   },
   "dependencies": {
     "@material-ui/core": "^3.8.3",

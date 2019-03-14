@@ -14,7 +14,7 @@
   "version": "2.1.9",
   "main": "lib/index.js",
   "scripts": {
-    "test": "./node_modules/.bin/jest"
+    "prepack": "../../scripts/build changelog --scope correct-answer-toggle"
   },
   "dependencies": {
     "@material-ui/core": "^3.8.3",
