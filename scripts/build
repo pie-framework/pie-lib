@@ -33,6 +33,7 @@ class LibCommands extends Commands {
     return rmChangelogJson(join(this.projectRoot, 'packages'));
   }
 
+  /** called by each package in prepack */
   changelog() {
     const packagesDir = join(this.projectRoot, 'packages');
     const allPackages = getPackages(packagesDir);
@@ -43,9 +44,12 @@ class LibCommands extends Commands {
     return Promise.all(
       packages.map(async pkg => {
         // This function is called from prepack - so we don't know if it's next or not
-        await writeChangelogJsonForPackage(pkg, false);
-        await writeChangelogJsonForPackage(pkg, true);
-        await this.commit(pkg.dir, '[travis skip] update changelog.json');
+        const clPath = await writeChangelogJsonForPackage(pkg, false);
+        const nextClPath = await writeChangelogJsonForPackage(pkg, true);
+        await this.commit(
+          [clPath, nextClPath],
+          `[travis skip] update changelog.json for ${pkg.pkg.name}`
+        );
       })
     );
   }
