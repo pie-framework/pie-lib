@@ -2,6 +2,21 @@
   {
     "type": "chore",
     "scope": null,
+    "subject": "call changelog on prepack",
+    "merge": null,
+    "header": "chore: call changelog on prepack",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "b672c012de096c55b765a765f758da3fc5df2f90",
+    "gitTags": "",
+    "committerDate": "2019-03-13 23:00:44 +0000",
+    "isTagged": true,
+    "earliestTag": "@pie-lib/config-ui@7.11.23"
+  },
+  {
+    "type": "chore",
+    "scope": null,
     "subject": "generate changelog.json instead of markdown",
     "merge": null,
     "header": "chore: generate changelog.json instead of markdown",

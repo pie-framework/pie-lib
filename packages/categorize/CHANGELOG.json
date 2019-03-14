@@ -2,6 +2,21 @@
   {
     "type": "fix",
     "scope": null,
+    "subject": "add FOO",
+    "merge": null,
+    "header": "fix: add FOO",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "3d1b387ae46e0f9c2369057e073fe51ecc637753",
+    "gitTags": "",
+    "committerDate": "2019-03-14 13:03:58 +0000",
+    "isTagged": true,
+    "earliestTag": "@pie-lib/categorize@0.5.9"
+  },
+  {
+    "type": "fix",
+    "scope": null,
     "subject": "call changelog in prepack",
     "merge": null,
     "header": "fix: call changelog in prepack",
