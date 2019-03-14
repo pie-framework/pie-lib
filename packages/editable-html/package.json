@@ -42,8 +42,8 @@
   "publishConfig": {
     "access": "public"
   },
+  "gitHead": "392d23fb87a66e7260172db53451a64628b0bf8a",
   "scripts": {
     "prepack": "../../scripts/build changelog --scope editable-html"
-  },
-  "gitHead": "392d23fb87a66e7260172db53451a64628b0bf8a"
+  }
 }

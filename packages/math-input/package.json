@@ -23,5 +23,8 @@
   "scripts": {
     "prepack": "../../scripts/build changelog --scope math-input"
   },
-  "gitHead": "392d23fb87a66e7260172db53451a64628b0bf8a"
+  "gitHead": "392d23fb87a66e7260172db53451a64628b0bf8a",
+  "scripts": {
+    "prepack": "../../scripts/build changelog --scope math-input"
+  }
 }

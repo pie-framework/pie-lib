@@ -10,5 +10,8 @@
     "prepack": "../../scripts/build changelog --scope style-utils"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "scripts": {
+    "prepack": "../../scripts/build changelog --scope style-utils"
+  }
 }
