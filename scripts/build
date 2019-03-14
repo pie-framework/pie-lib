@@ -43,7 +43,7 @@ class LibCommands extends Commands {
       : allPackages;
 
     return series(
-      packages.map(async pkg => {
+      packages.map(pkg => async () => {
         // This function is called from prepack - so we don't know if it's next or not
         const clPath = await writeChangelogJsonForPackage(pkg, false);
         await writeChangelogJsonForPackage(pkg, true);
