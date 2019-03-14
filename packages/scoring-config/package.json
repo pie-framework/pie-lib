@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/scoring-config",
-  "version": "3.3.23",
+  "version": "3.3.25",
   "description": "",
   "main": "lib/index.js",
   "publishConfig": {
@@ -26,5 +26,5 @@
     "react": "^16.7.0",
     "react-dom": "^16.7.0"
   },
-  "gitHead": "392d23fb87a66e7260172db53451a64628b0bf8a"
+  "gitHead": "f3345ae70660f4ae88450512261c7ea1601003c8"
 }
