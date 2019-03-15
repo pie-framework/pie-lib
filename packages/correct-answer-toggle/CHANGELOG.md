@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.1.13...@pie-lib/correct-answer-toggle@2.1.14) (2019-03-15)
+
+
+### Bug Fixes
+
+* rm child prepack in favour of root prepack ([381d8d6](https://github.com/pie-framework/pie-lib/commit/381d8d6))
+
+
+
+
+
 ## [2.1.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.1.12...@pie-lib/correct-answer-toggle@2.1.13) (2019-03-14)
 
 **Note:** Version bump only for package @pie-lib/correct-answer-toggle

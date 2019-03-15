@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@0.3.8...@pie-lib/math-evaluator@0.3.9) (2019-03-15)
+
+
+### Bug Fixes
+
+* rm child prepack in favour of root prepack ([381d8d6](https://github.com/pie-framework/pie-lib/commit/381d8d6))
+
+
+
+
+
 ## [0.3.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@0.3.7...@pie-lib/math-evaluator@0.3.8) (2019-03-14)
 
 **Note:** Version bump only for package @pie-lib/math-evaluator

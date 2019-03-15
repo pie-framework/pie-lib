@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.5.13...@pie-lib/categorize@0.5.14) (2019-03-15)
+
+
+### Bug Fixes
+
+* add foo two ([c53c9f2](https://github.com/pie-framework/pie-lib/commit/c53c9f2))
+* rm child prepack in favour of root prepack ([381d8d6](https://github.com/pie-framework/pie-lib/commit/381d8d6))
+
+
+
+
+
 ## [0.5.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.5.12...@pie-lib/categorize@0.5.13) (2019-03-14)
 
 
