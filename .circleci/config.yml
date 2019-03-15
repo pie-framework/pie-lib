@@ -21,7 +21,7 @@ save_cache: &save_cache
   key: v1-dependencies-{{ checksum "package.json" }}
 
 jobs:
-  lint_and_test:
+  lint:
     <<: *defaults
     steps:
       - checkout
@@ -29,7 +29,17 @@ jobs:
       - restore_cache: *restore_cache
       - run: yarn install
       - save_cache: *save_cache
-      - run: scripts/build lint test
+      - run: scripts/build lint
+
+  test:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: *reg_auth
+      - restore_cache: *restore_cache
+      - run: yarn install
+      - save_cache: *save_cache
+      - run: scripts/build test
 
   build:
     <<: *defaults
@@ -67,7 +77,13 @@ workflows:
 
   simple_build:
     jobs:
-      - lint_and_test:
+      - lint:
+          filters:
+            branches:
+              ignore:
+                - develop
+                - master
+      - test:
           filters:
             branches:
               ignore:
