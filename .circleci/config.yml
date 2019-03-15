@@ -5,60 +5,53 @@ defaults: &defaults
   docker:
     - image: circleci/node:11.10.0
 
+reg_auth: &reg_auth
+  run:
+    name: Authenticate with registry
+    command:
+      echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
+      # Download and cache dependencies
+restore_cache: &restore_cache
+  keys:
+    - v1-dependencies-{{ checksum "package.json" }}
+    # fallback to using the latest cache if no exact match is found
+    - v1-dependencies-
+
+save_cache: &save_cache
+  paths:
+    - node_modules
+  key: v1-dependencies-{{ checksum "package.json" }}
+
 jobs:
   build:
     <<: *defaults
     steps:
       - checkout
-
-      - run:
-          name: Authenticate with registry
-          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
-
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-
+      - *reg_auth
+      - *restore_cache
       - run: yarn install
-
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-
-      # run tests!
-      # - run: yarn test
+      - *save_cache
       - run: scripts/build release --next --skipForcePublish
+
+  releaseBuild:
+    <<: *defaults
+    steps:
+      - checkout
+      - *reg_auth
+      - *restore_cache
+      - run: yarn install
+      - *save_cache
+      - run: scripts/build release
 
   deployDemo:
     <<: *defaults
 
     steps:
       - checkout
-
-      - run:
-          name: Authenticate with registry
-          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
-
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-
+      - *reg_auth
+      - *restore_cache
       - run: yarn install
-
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-
-      # run tests!
-      # - run: yarn test
+      - *save_cache
       - run: scripts/build build deploy --next
 
 workflows:
@@ -70,6 +63,13 @@ workflows:
             branches:
               only:
                 - develop
+  buildMaster:
+    jobs:
+      - releaseBuild:
+          filters:
+            branches:
+              only:
+                - master
 
   nightly:
     triggers:
