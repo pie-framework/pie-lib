@@ -88,5 +88,20 @@
     "committerDate": "2019-01-30 22:14:28 +0000",
     "isTagged": true,
     "earliestTag": "@pie-lib/graphing@0.1.0"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "rm child prepack in favour of root prepack",
+    "merge": null,
+    "header": "fix: rm child prepack in favour of root prepack",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "381d8d6485269b641d8d4655148966d2e70803be",
+    "gitTags": "",
+    "committerDate": "2019-03-15 09:51:11 +0000",
+    "isTagged": true,
+    "earliestTag": "@pie-lib/graphing@0.1.12"
   }
 ]
