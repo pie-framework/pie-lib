@@ -13,9 +13,7 @@
   },
   "version": "2.1.13",
   "main": "lib/index.js",
-  "scripts": {
-    "prepack": "../../scripts/build changelog --scope correct-answer-toggle"
-  },
+  "scripts": {},
   "dependencies": {
     "@material-ui/core": "^3.8.3",
     "@pie-lib/icons": "^2.3.7",

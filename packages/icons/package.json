@@ -9,9 +9,7 @@
     "react",
     "material-ui"
   ],
-  "scripts": {
-    "prepack": "../../scripts/build changelog --scope icons"
-  },
+  "scripts": {},
   "author": "",
   "license": "ISC",
   "dependencies": {

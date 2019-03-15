@@ -18,7 +18,8 @@
     "release": "scripts/build release deploy",
     "release:next": "scripts/build release deploy --next",
     "build": "scripts/build build",
-    "postinstall": "lerna bootstrap"
+    "postinstall": "lerna bootstrap",
+    "prepack": "scripts/build changelog"
   },
   "devDependencies": {
     "@babel/runtime": "7.2.0",

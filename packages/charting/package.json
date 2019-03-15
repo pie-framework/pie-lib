@@ -10,9 +10,7 @@
     "pie",
     "charting"
   ],
-  "scripts": {
-    "prepack": "../../scripts/build changelog --scope charting"
-  },
+  "scripts": {},
   "repository": "pie-framework/pie-lib",
   "main": "lib/index.js",
   "author": "",

@@ -12,9 +12,7 @@
   ],
   "repository": "pie-framework/pie-lib",
   "main": "lib/index.js",
-  "scripts": {
-    "prepack": "../../scripts/build changelog --scope tools"
-  },
+  "scripts": {},
   "author": "",
   "license": "ISC",
   "dependencies": {

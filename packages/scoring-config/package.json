@@ -6,9 +6,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "scripts": {
-    "prepack": "../../scripts/build changelog --scope scoring-config"
-  },
+  "scripts": {},
   "author": "",
   "license": "ISC",
   "dependencies": {

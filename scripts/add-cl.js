@@ -5,9 +5,9 @@ const { writeJsonSync } = require('fs-extra');
 const pkgs = getPackages(resolve(__dirname, '..', 'packages'));
 
 pkgs.forEach(p => {
-  p.pkg.scripts = {
-    prepack: `../../scripts/build changelog --scope ${basename(p.dir)}`
-  };
+  if (p.pkg.scripts) {
+    delete p.pkg.scripts.prepack;
+  }
   console.log('update', p.pkg.name);
   writeJsonSync(join(p.dir, 'package.json'), p.pkg, { spaces: '  ' });
 });
