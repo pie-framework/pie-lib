@@ -6,11 +6,9 @@ defaults: &defaults
     - image: circleci/node:11.10.0
 
 reg_auth: &reg_auth
-  run:
-    name: Authenticate with registry
-    command:
-      echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
-      # Download and cache dependencies
+  name: Authenticate with registry
+  command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
+
 restore_cache: &restore_cache
   keys:
     - v1-dependencies-{{ checksum "package.json" }}
@@ -27,20 +25,20 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - *reg_auth
-      - *restore_cache
+      - run: *reg_auth
+      - restore_cache: *restore_cache
       - run: yarn install
-      - *save_cache
+      - save_cache: *save_cache
       - run: scripts/build release --next --skipForcePublish
 
   releaseBuild:
     <<: *defaults
     steps:
       - checkout
-      - *reg_auth
-      - *restore_cache
+      - run: *reg_auth
+      - restore_cache: *restore_cache
       - run: yarn install
-      - *save_cache
+      - save_cache: *save_cache
       - run: scripts/build release
 
   deployDemo:
@@ -48,10 +46,10 @@ jobs:
 
     steps:
       - checkout
-      - *reg_auth
-      - *restore_cache
+      - run: *reg_auth
+      - restore_cache: *restore_cache
       - run: yarn install
-      - *save_cache
+      - save_cache: *save_cache
       - run: scripts/build build deploy --next
 
 workflows:
