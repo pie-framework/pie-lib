@@ -68,11 +68,11 @@ workflows:
   simple_build:
     jobs:
       - lint_and_test:
-        filters:
-          branches:
-            ignore:
-              - develop
-              - master
+          filters:
+            branches:
+              ignore:
+                - develop
+                - master
   build:
     jobs:
       - build:
