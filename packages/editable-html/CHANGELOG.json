@@ -1,5 +1,20 @@
 [
   {
+    "type": "fix",
+    "scope": null,
+    "subject": "rm child prepack in favour of root prepack",
+    "merge": null,
+    "header": "fix: rm child prepack in favour of root prepack",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "381d8d6485269b641d8d4655148966d2e70803be",
+    "gitTags": "",
+    "committerDate": "2019-03-15 09:51:11 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.1.17"
+  },
+  {
     "type": "chore",
     "scope": null,
     "subject": "get packages to call changelog function on prepack",
@@ -12,7 +27,7 @@
     "gitTags": "",
     "committerDate": "2019-03-14 12:40:05 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@7.1.13"
+    "tag": "@pie-lib/editable-html@7.1.13"
   },
   {
     "type": "chore",
@@ -27,7 +42,7 @@
     "gitTags": "",
     "committerDate": "2019-03-13 23:00:44 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@7.1.12"
+    "tag": "@pie-lib/editable-html@7.1.12"
   },
   {
     "type": "fix",
@@ -42,7 +57,7 @@
     "gitTags": "",
     "committerDate": "2019-03-13 17:38:41 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@7.1.11"
+    "tag": "@pie-lib/editable-html@7.1.11"
   },
   {
     "type": "chore",
@@ -57,7 +72,7 @@
     "gitTags": "",
     "committerDate": "2019-03-13 17:24:09 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@7.1.10"
+    "tag": "@pie-lib/editable-html@7.1.10"
   },
   {
     "type": "chore",
@@ -72,7 +87,7 @@
     "gitTags": "",
     "committerDate": "2019-03-12 21:55:40 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@7.1.10"
+    "tag": "@pie-lib/editable-html@7.1.10"
   },
   {
     "type": "fix",
@@ -87,7 +102,7 @@
     "gitTags": "",
     "committerDate": "2019-02-17 21:23:35 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@7.1.10"
+    "tag": "@pie-lib/editable-html@7.1.10"
   },
   {
     "type": "feat",
@@ -102,7 +117,7 @@
     "gitTags": "",
     "committerDate": "2019-02-13 20:41:08 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@7.1.0"
+    "tag": "@pie-lib/editable-html@7.1.0"
   },
   {
     "type": "feat",
@@ -122,7 +137,7 @@
     "gitTags": "",
     "committerDate": "2019-02-08 16:53:52 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@7.0.0"
+    "tag": "@pie-lib/editable-html@7.0.0"
   },
   {
     "type": "fix",
@@ -137,7 +152,7 @@
     "gitTags": "",
     "committerDate": "2019-02-05 15:38:33 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.16.3"
+    "tag": "@pie-lib/editable-html@6.16.3"
   },
   {
     "type": "feat",
@@ -152,7 +167,7 @@
     "gitTags": "",
     "committerDate": "2019-01-30 22:14:28 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.16.0"
+    "tag": "@pie-lib/editable-html@6.16.0"
   },
   {
     "type": "fix",
@@ -167,7 +182,7 @@
     "gitTags": "",
     "committerDate": "2019-01-08 14:22:10 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.15.0"
+    "tag": "@pie-lib/editable-html@6.15.0"
   },
   {
     "type": "chore",
@@ -182,7 +197,7 @@
     "gitTags": "",
     "committerDate": "2018-12-18 13:12:45 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.13.5"
+    "tag": "@pie-lib/editable-html@6.13.5"
   },
   {
     "type": "feat",
@@ -197,7 +212,7 @@
     "gitTags": "",
     "committerDate": "2018-12-17 19:42:51 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.15.0"
+    "tag": "@pie-lib/editable-html@6.15.0"
   },
   {
     "type": "fix",
@@ -212,7 +227,7 @@
     "gitTags": " (origin/fix/editable-html-refactor)",
     "committerDate": "2018-12-11 15:25:33 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.15.0"
+    "tag": "@pie-lib/editable-html@6.15.0"
   },
   {
     "type": "fix",
@@ -227,7 +242,7 @@
     "gitTags": " (origin/fix/editable-html-list-inside-table)",
     "committerDate": "2018-12-11 15:21:43 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.15.0"
+    "tag": "@pie-lib/editable-html@6.15.0"
   },
   {
     "type": "fix",
@@ -242,7 +257,7 @@
     "gitTags": "",
     "committerDate": "2018-12-11 15:16:35 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.15.0"
+    "tag": "@pie-lib/editable-html@6.15.0"
   },
   {
     "type": "fix",
@@ -257,7 +272,7 @@
     "gitTags": "",
     "committerDate": "2018-12-11 14:56:28 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.15.0"
+    "tag": "@pie-lib/editable-html@6.15.0"
   },
   {
     "type": "fix",
@@ -272,7 +287,7 @@
     "gitTags": "",
     "committerDate": "2018-12-11 14:54:46 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.15.0"
+    "tag": "@pie-lib/editable-html@6.15.0"
   },
   {
     "type": "fix",
@@ -287,7 +302,7 @@
     "gitTags": "",
     "committerDate": "2018-12-11 14:44:12 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.15.0"
+    "tag": "@pie-lib/editable-html@6.15.0"
   },
   {
     "type": "fix",
@@ -302,7 +317,7 @@
     "gitTags": "",
     "committerDate": "2018-12-10 17:09:29 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.15.0"
+    "tag": "@pie-lib/editable-html@6.15.0"
   },
   {
     "type": "fix",
@@ -317,7 +332,7 @@
     "gitTags": "",
     "committerDate": "2018-12-10 16:48:40 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.15.0"
+    "tag": "@pie-lib/editable-html@6.15.0"
   },
   {
     "type": "fix",
@@ -332,7 +347,7 @@
     "gitTags": "",
     "committerDate": "2018-12-07 18:51:29 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.15.0"
+    "tag": "@pie-lib/editable-html@6.15.0"
   },
   {
     "type": "fix",
@@ -347,7 +362,7 @@
     "gitTags": "",
     "committerDate": "2018-12-07 18:49:16 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.13.3"
+    "tag": "@pie-lib/editable-html@6.13.3"
   },
   {
     "type": "fix",
@@ -362,7 +377,7 @@
     "gitTags": "",
     "committerDate": "2018-12-07 18:43:51 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.13.3"
+    "tag": "@pie-lib/editable-html@6.13.3"
   },
   {
     "type": "fix",
@@ -377,7 +392,7 @@
     "gitTags": " (origin/issue/71/table-cell-increase)",
     "committerDate": "2018-11-29 16:38:06 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.13.2"
+    "tag": "@pie-lib/editable-html@6.13.2"
   },
   {
     "type": "feat",
@@ -392,7 +407,7 @@
     "gitTags": "",
     "committerDate": "2018-11-27 16:02:58 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.13.0"
+    "tag": "@pie-lib/editable-html@6.13.0"
   },
   {
     "type": "feat",
@@ -407,7 +422,7 @@
     "gitTags": "",
     "committerDate": "2018-11-27 10:53:44 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.12.0"
+    "tag": "@pie-lib/editable-html@6.12.0"
   },
   {
     "type": "fix",
@@ -422,7 +437,7 @@
     "gitTags": "",
     "committerDate": "2018-11-23 14:36:50 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.11.0"
+    "tag": "@pie-lib/editable-html@6.11.0"
   },
   {
     "type": "feat",
@@ -437,7 +452,7 @@
     "gitTags": " (origin/feat/math-toolbar)",
     "committerDate": "2018-11-23 14:23:53 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.11.0"
+    "tag": "@pie-lib/editable-html@6.11.0"
   },
   {
     "type": "feat",
@@ -452,7 +467,7 @@
     "gitTags": "",
     "committerDate": "2018-11-22 19:03:24 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.11.0"
+    "tag": "@pie-lib/editable-html@6.11.0"
   },
   {
     "type": "fix",
@@ -467,7 +482,7 @@
     "gitTags": "",
     "committerDate": "2018-11-13 12:00:45 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.10.2"
+    "tag": "@pie-lib/editable-html@6.10.2"
   },
   {
     "type": "fix",
@@ -482,7 +497,7 @@
     "gitTags": " (origin/fix/added-dependencies-where-needed)",
     "committerDate": "2018-11-09 16:44:05 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.10.1"
+    "tag": "@pie-lib/editable-html@6.10.1"
   },
   {
     "type": "chore",
@@ -497,7 +512,7 @@
     "gitTags": " (origin/feat/math-evaluator, feat/math-evaluator)",
     "committerDate": "2018-11-09 14:03:54 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.10.0"
+    "tag": "@pie-lib/editable-html@6.10.0"
   },
   {
     "type": "chore",
@@ -512,7 +527,7 @@
     "gitTags": "",
     "committerDate": "2018-11-05 11:14:18 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.10.0"
+    "tag": "@pie-lib/editable-html@6.10.0"
   },
   {
     "type": "feat",
@@ -527,7 +542,7 @@
     "gitTags": "",
     "committerDate": "2018-11-05 12:37:26 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.10.0"
+    "tag": "@pie-lib/editable-html@6.10.0"
   },
   {
     "type": "feat",
@@ -542,7 +557,7 @@
     "gitTags": "",
     "committerDate": "2018-11-05 09:35:22 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.10.0"
+    "tag": "@pie-lib/editable-html@6.10.0"
   },
   {
     "type": "feat",
@@ -557,7 +572,7 @@
     "gitTags": "",
     "committerDate": "2018-11-02 15:37:54 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.10.0"
+    "tag": "@pie-lib/editable-html@6.10.0"
   },
   {
     "type": "feat",
@@ -572,7 +587,7 @@
     "gitTags": " (origin/issue73/image-support-tables)",
     "committerDate": "2018-11-01 11:29:59 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.10.0"
+    "tag": "@pie-lib/editable-html@6.10.0"
   },
   {
     "type": "feat",
@@ -587,7 +602,7 @@
     "gitTags": "",
     "committerDate": "2018-11-01 11:21:41 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.10.0"
+    "tag": "@pie-lib/editable-html@6.10.0"
   },
   {
     "type": "fix",
@@ -602,7 +617,7 @@
     "gitTags": "",
     "committerDate": "2018-10-30 12:15:54 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.10.0"
+    "tag": "@pie-lib/editable-html@6.10.0"
   },
   {
     "type": "fix",
@@ -617,7 +632,7 @@
     "gitTags": "",
     "committerDate": "2018-10-30 11:22:58 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.10.0"
+    "tag": "@pie-lib/editable-html@6.10.0"
   },
   {
     "type": "fix",
@@ -632,7 +647,7 @@
     "gitTags": " (origin/issue70/editable-html-before-image-focus)",
     "committerDate": "2018-10-25 18:11:04 +0300",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.10.0"
+    "tag": "@pie-lib/editable-html@6.10.0"
   },
   {
     "type": "fix",
@@ -647,7 +662,7 @@
     "gitTags": " (issue70/editable-html-before-image-focus)",
     "committerDate": "2018-10-25 17:47:44 +0300",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.10.0"
+    "tag": "@pie-lib/editable-html@6.10.0"
   },
   {
     "type": "fix",
@@ -662,7 +677,7 @@
     "gitTags": "",
     "committerDate": "2018-10-25 17:37:18 +0300",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.10.0"
+    "tag": "@pie-lib/editable-html@6.10.0"
   },
   {
     "type": "fix",
@@ -677,7 +692,7 @@
     "gitTags": "",
     "committerDate": "2018-10-24 16:33:35 +0300",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.10.0"
+    "tag": "@pie-lib/editable-html@6.10.0"
   },
   {
     "type": "fix",
@@ -692,7 +707,7 @@
     "gitTags": "",
     "committerDate": "2018-10-19 15:36:30 +0300",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.10.0"
+    "tag": "@pie-lib/editable-html@6.10.0"
   },
   {
     "type": "fix",
@@ -707,7 +722,7 @@
     "gitTags": "",
     "committerDate": "2018-10-02 14:57:24 +0300",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.10.0"
+    "tag": "@pie-lib/editable-html@6.10.0"
   },
   {
     "type": "fix",
@@ -722,7 +737,7 @@
     "gitTags": "",
     "committerDate": "2018-09-25 16:28:05 +0100",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.10.0"
+    "tag": "@pie-lib/editable-html@6.10.0"
   },
   {
     "type": "chore",
@@ -737,7 +752,7 @@
     "gitTags": "",
     "committerDate": "2018-09-19 13:23:23 +0100",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.10.0"
+    "tag": "@pie-lib/editable-html@6.10.0"
   },
   {
     "type": "chore",
@@ -752,7 +767,7 @@
     "gitTags": "",
     "committerDate": "2018-09-18 17:50:59 +0300",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.10.0"
+    "tag": "@pie-lib/editable-html@6.10.0"
   },
   {
     "type": "feat",
@@ -767,7 +782,7 @@
     "gitTags": "",
     "committerDate": "2018-09-18 17:38:02 +0300",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.10.0"
+    "tag": "@pie-lib/editable-html@6.10.0"
   },
   {
     "type": "fix",
@@ -782,7 +797,7 @@
     "gitTags": "",
     "committerDate": "2018-09-13 10:36:23 +0100",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.10.0"
+    "tag": "@pie-lib/editable-html@6.10.0"
   },
   {
     "type": "fix",
@@ -797,7 +812,7 @@
     "gitTags": "",
     "committerDate": "2018-09-12 14:44:09 +0100",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.10.0"
+    "tag": "@pie-lib/editable-html@6.10.0"
   },
   {
     "type": "chore",
@@ -812,7 +827,7 @@
     "gitTags": "",
     "committerDate": "2018-09-12 14:41:45 +0100",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.10.0"
+    "tag": "@pie-lib/editable-html@6.10.0"
   },
   {
     "type": "fix",
@@ -827,7 +842,7 @@
     "gitTags": "",
     "committerDate": "2018-09-12 14:38:21 +0100",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.10.0"
+    "tag": "@pie-lib/editable-html@6.10.0"
   },
   {
     "type": "fix",
@@ -842,7 +857,7 @@
     "gitTags": "",
     "committerDate": "2018-08-29 16:11:50 +0100",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.10.0"
+    "tag": "@pie-lib/editable-html@6.10.0"
   },
   {
     "type": "fix",
@@ -857,7 +872,7 @@
     "gitTags": "",
     "committerDate": "2018-08-28 11:51:15 +0100",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.10.0"
+    "tag": "@pie-lib/editable-html@6.10.0"
   },
   {
     "type": "chore",
@@ -872,7 +887,7 @@
     "gitTags": "",
     "committerDate": "2018-08-28 11:50:42 +0100",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.10.0"
+    "tag": "@pie-lib/editable-html@6.10.0"
   },
   {
     "type": "fix",
@@ -887,7 +902,7 @@
     "gitTags": "",
     "committerDate": "2018-08-17 12:40:23 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.10.0"
+    "tag": "@pie-lib/editable-html@6.10.0"
   },
   {
     "type": "fix",
@@ -902,7 +917,7 @@
     "gitTags": " (origin/feature/table-add-border-control)",
     "committerDate": "2018-08-16 14:35:44 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.10.0"
+    "tag": "@pie-lib/editable-html@6.10.0"
   },
   {
     "type": "feat",
@@ -917,7 +932,7 @@
     "gitTags": "",
     "committerDate": "2018-08-16 12:18:44 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.10.0"
+    "tag": "@pie-lib/editable-html@6.10.0"
   },
   {
     "type": "feat",
@@ -932,7 +947,7 @@
     "gitTags": "",
     "committerDate": "2018-08-08 13:05:08 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.10.0"
+    "tag": "@pie-lib/editable-html@6.10.0"
   },
   {
     "type": "chore",
@@ -947,7 +962,7 @@
     "gitTags": "",
     "committerDate": "2018-08-06 11:26:48 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.10.0"
+    "tag": "@pie-lib/editable-html@6.10.0"
   },
   {
     "type": "chore",
@@ -962,7 +977,7 @@
     "gitTags": "",
     "committerDate": "2018-08-06 11:26:22 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.10.0"
+    "tag": "@pie-lib/editable-html@6.10.0"
   },
   {
     "type": "feat",
@@ -977,7 +992,7 @@
     "gitTags": "",
     "committerDate": "2018-08-06 11:25:26 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.10.0"
+    "tag": "@pie-lib/editable-html@6.10.0"
   },
   {
     "type": "feat",
@@ -992,7 +1007,7 @@
     "gitTags": "",
     "committerDate": "2018-08-06 17:20:52 +0300",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.10.0"
+    "tag": "@pie-lib/editable-html@6.10.0"
   },
   {
     "type": "fix",
@@ -1007,7 +1022,7 @@
     "gitTags": "",
     "committerDate": "2018-08-03 16:04:44 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.10.0"
+    "tag": "@pie-lib/editable-html@6.10.0"
   },
   {
     "type": "chore",
@@ -1022,7 +1037,7 @@
     "gitTags": " (origin/feature/schema-update)",
     "committerDate": "2018-08-02 16:27:52 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.10.0"
+    "tag": "@pie-lib/editable-html@6.10.0"
   },
   {
     "type": "fix",
@@ -1037,7 +1052,7 @@
     "gitTags": "",
     "committerDate": "2018-08-02 14:29:01 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.10.0"
+    "tag": "@pie-lib/editable-html@6.10.0"
   },
   {
     "type": "fix",
@@ -1052,7 +1067,7 @@
     "gitTags": "",
     "committerDate": "2018-08-01 17:24:18 +0300",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.10.0"
+    "tag": "@pie-lib/editable-html@6.10.0"
   },
   {
     "type": "chore",
@@ -1067,7 +1082,7 @@
     "gitTags": "",
     "committerDate": "2018-07-27 15:54:47 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.10.0"
+    "tag": "@pie-lib/editable-html@6.10.0"
   },
   {
     "type": "fix",
@@ -1082,7 +1097,7 @@
     "gitTags": "",
     "committerDate": "2018-07-27 15:17:31 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.10.0"
+    "tag": "@pie-lib/editable-html@6.10.0"
   },
   {
     "type": "chore",
@@ -1097,7 +1112,7 @@
     "gitTags": "",
     "committerDate": "2018-07-27 10:30:47 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.10.0"
+    "tag": "@pie-lib/editable-html@6.10.0"
   },
   {
     "type": "fix",
@@ -1112,7 +1127,7 @@
     "gitTags": "",
     "committerDate": "2018-07-27 10:15:18 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.10.0"
+    "tag": "@pie-lib/editable-html@6.10.0"
   },
   {
     "type": "chore",
@@ -1127,7 +1142,7 @@
     "gitTags": "",
     "committerDate": "2018-07-25 10:06:13 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.10.0"
+    "tag": "@pie-lib/editable-html@6.10.0"
   },
   {
     "type": "feat",
@@ -1142,7 +1157,7 @@
     "gitTags": "",
     "committerDate": "2018-07-24 14:50:51 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.10.0"
+    "tag": "@pie-lib/editable-html@6.10.0"
   },
   {
     "type": "chore",
@@ -1157,7 +1172,7 @@
     "gitTags": "",
     "committerDate": "2018-05-23 10:19:00 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.1.1"
+    "tag": "@pie-lib/editable-html@6.1.1"
   },
   {
     "type": "chore",
@@ -1172,7 +1187,7 @@
     "gitTags": "",
     "committerDate": "2018-05-23 10:18:15 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.1.1"
+    "tag": "@pie-lib/editable-html@6.1.1"
   },
   {
     "type": "chore",
@@ -1187,7 +1202,7 @@
     "gitTags": "",
     "committerDate": "2018-05-23 10:17:34 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.1.1"
+    "tag": "@pie-lib/editable-html@6.1.1"
   },
   {
     "type": "chore",
@@ -1202,7 +1217,7 @@
     "gitTags": "",
     "committerDate": "2018-05-23 10:16:49 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.1.1"
+    "tag": "@pie-lib/editable-html@6.1.1"
   },
   {
     "type": "chore",
@@ -1217,7 +1232,7 @@
     "gitTags": "",
     "committerDate": "2018-05-23 10:14:59 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.1.1"
+    "tag": "@pie-lib/editable-html@6.1.1"
   },
   {
     "type": "chore",
@@ -1232,7 +1247,7 @@
     "gitTags": "",
     "committerDate": "2018-05-16 09:24:33 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@6.0.1"
+    "tag": "@pie-lib/editable-html@6.0.1"
   },
   {
     "type": "feat",
@@ -1247,7 +1262,7 @@
     "gitTags": "",
     "committerDate": "2018-05-15 21:52:09 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@5.1.0"
+    "tag": "@pie-lib/editable-html@5.1.0"
   },
   {
     "type": "fix",
@@ -1262,7 +1277,7 @@
     "gitTags": "",
     "committerDate": "2018-05-09 13:35:42 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@5.0.13"
+    "tag": "@pie-lib/editable-html@5.0.13"
   },
   {
     "type": "fix",
@@ -1277,7 +1292,7 @@
     "gitTags": "",
     "committerDate": "2018-05-09 12:33:39 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@5.0.13"
+    "tag": "@pie-lib/editable-html@5.0.13"
   },
   {
     "type": "fix",
@@ -1292,7 +1307,7 @@
     "gitTags": "",
     "committerDate": "2018-04-30 11:38:04 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@5.0.12"
+    "tag": "@pie-lib/editable-html@5.0.12"
   },
   {
     "type": "fix",
@@ -1307,7 +1322,7 @@
     "gitTags": "",
     "committerDate": "2018-04-30 11:31:31 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@5.0.11"
+    "tag": "@pie-lib/editable-html@5.0.11"
   },
   {
     "type": "fix",
@@ -1322,7 +1337,7 @@
     "gitTags": "",
     "committerDate": "2018-04-30 11:27:53 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@5.0.10"
+    "tag": "@pie-lib/editable-html@5.0.10"
   },
   {
     "type": "fix",
@@ -1337,7 +1352,7 @@
     "gitTags": "",
     "committerDate": "2018-04-30 11:19:39 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@5.0.10"
+    "tag": "@pie-lib/editable-html@5.0.10"
   },
   {
     "type": "fix",
@@ -1352,7 +1367,7 @@
     "gitTags": "",
     "committerDate": "2018-04-30 10:56:18 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@5.0.10"
+    "tag": "@pie-lib/editable-html@5.0.10"
   },
   {
     "type": "fix",
@@ -1367,7 +1382,7 @@
     "gitTags": "",
     "committerDate": "2018-04-24 14:43:20 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@5.0.10"
+    "tag": "@pie-lib/editable-html@5.0.10"
   },
   {
     "type": "fix",
@@ -1382,7 +1397,7 @@
     "gitTags": "",
     "committerDate": "2018-04-24 13:29:43 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@5.0.10"
+    "tag": "@pie-lib/editable-html@5.0.10"
   },
   {
     "type": "fix",
@@ -1397,7 +1412,7 @@
     "gitTags": "",
     "committerDate": "2018-04-24 11:17:08 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@5.0.10"
+    "tag": "@pie-lib/editable-html@5.0.10"
   },
   {
     "type": "fix",
@@ -1412,7 +1427,7 @@
     "gitTags": "",
     "committerDate": "2018-04-24 09:43:35 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@5.0.10"
+    "tag": "@pie-lib/editable-html@5.0.10"
   },
   {
     "type": "chore",
@@ -1427,7 +1442,7 @@
     "gitTags": "",
     "committerDate": "2018-04-23 21:50:37 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@5.0.10"
+    "tag": "@pie-lib/editable-html@5.0.10"
   },
   {
     "type": "fix",
@@ -1442,7 +1457,7 @@
     "gitTags": "",
     "committerDate": "2018-04-23 21:24:49 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@5.0.10"
+    "tag": "@pie-lib/editable-html@5.0.10"
   },
   {
     "type": "fix",
@@ -1457,7 +1472,7 @@
     "gitTags": "",
     "committerDate": "2018-04-23 10:07:31 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@5.0.10"
+    "tag": "@pie-lib/editable-html@5.0.10"
   },
   {
     "type": "fix",
@@ -1472,7 +1487,7 @@
     "gitTags": "",
     "committerDate": "2018-04-19 22:25:09 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@5.0.10"
+    "tag": "@pie-lib/editable-html@5.0.10"
   },
   {
     "type": "fix",
@@ -1487,7 +1502,7 @@
     "gitTags": "",
     "committerDate": "2018-04-16 12:52:32 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@4.0.2"
+    "tag": "@pie-lib/editable-html@4.0.2"
   },
   {
     "type": "fix",
@@ -1502,7 +1517,7 @@
     "gitTags": "",
     "committerDate": "2018-04-16 12:38:08 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@4.0.2"
+    "tag": "@pie-lib/editable-html@4.0.2"
   },
   {
     "type": "chore",
@@ -1517,7 +1532,7 @@
     "gitTags": "",
     "committerDate": "2018-04-13 17:48:18 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@4.0.1"
+    "tag": "@pie-lib/editable-html@4.0.1"
   },
   {
     "type": "chore",
@@ -1532,7 +1547,7 @@
     "gitTags": "",
     "committerDate": "2018-04-13 14:52:33 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@4.0.1"
+    "tag": "@pie-lib/editable-html@4.0.1"
   },
   {
     "type": "chore",
@@ -1547,7 +1562,7 @@
     "gitTags": "",
     "committerDate": "2018-04-13 14:36:30 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@4.0.1"
+    "tag": "@pie-lib/editable-html@4.0.1"
   },
   {
     "type": "fix",
@@ -1562,7 +1577,7 @@
     "gitTags": "",
     "committerDate": "2018-04-13 13:26:36 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@4.0.1"
+    "tag": "@pie-lib/editable-html@4.0.1"
   },
   {
     "type": "fix",
@@ -1577,7 +1592,7 @@
     "gitTags": "",
     "committerDate": "2018-04-13 12:51:25 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@4.0.1"
+    "tag": "@pie-lib/editable-html@4.0.1"
   },
   {
     "type": "fix",
@@ -1592,7 +1607,7 @@
     "gitTags": "",
     "committerDate": "2018-04-13 10:07:38 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@3.1.1"
+    "tag": "@pie-lib/editable-html@3.1.1"
   },
   {
     "type": "chore",
@@ -1607,7 +1622,7 @@
     "gitTags": "",
     "committerDate": "2018-04-12 23:24:33 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@4.0.1"
+    "tag": "@pie-lib/editable-html@4.0.1"
   },
   {
     "type": "feat",
@@ -1622,7 +1637,7 @@
     "gitTags": "",
     "committerDate": "2018-04-12 13:12:54 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@3.1.0"
+    "tag": "@pie-lib/editable-html@3.1.0"
   },
   {
     "type": "chore",
@@ -1637,7 +1652,7 @@
     "gitTags": "",
     "committerDate": "2018-04-05 08:25:01 -0500",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@3.0.1"
+    "tag": "@pie-lib/editable-html@3.0.1"
   },
   {
     "type": "typo",
@@ -1652,7 +1667,7 @@
     "gitTags": "",
     "committerDate": "2018-04-05 14:23:54 +0530",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@3.0.1"
+    "tag": "@pie-lib/editable-html@3.0.1"
   },
   {
     "type": "fix",
@@ -1672,7 +1687,7 @@
     "gitTags": "",
     "committerDate": "2018-03-20 12:14:04 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@3.0.0"
+    "tag": "@pie-lib/editable-html@3.0.0"
   },
   {
     "type": "feat",
@@ -1687,7 +1702,7 @@
     "gitTags": "",
     "committerDate": "2018-03-20 12:13:50 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@3.0.0"
+    "tag": "@pie-lib/editable-html@3.0.0"
   },
   {
     "type": "fix",
@@ -1702,7 +1717,7 @@
     "gitTags": "",
     "committerDate": "2018-03-20 12:12:59 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@3.0.0"
+    "tag": "@pie-lib/editable-html@3.0.0"
   },
   {
     "type": "fix",
@@ -1717,7 +1732,7 @@
     "gitTags": "",
     "committerDate": "2018-03-16 15:37:23 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@3.0.0"
+    "tag": "@pie-lib/editable-html@3.0.0"
   },
   {
     "type": "feat",
@@ -1732,7 +1747,7 @@
     "gitTags": "",
     "committerDate": "2018-03-07 04:00:05 +0530",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@3.0.0"
+    "tag": "@pie-lib/editable-html@3.0.0"
   },
   {
     "type": "fix",
@@ -1747,7 +1762,7 @@
     "gitTags": "",
     "committerDate": "2018-03-07 03:53:10 +0530",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@3.0.0"
+    "tag": "@pie-lib/editable-html@3.0.0"
   },
   {
     "type": "chore",
@@ -1762,21 +1777,6 @@
     "gitTags": "",
     "committerDate": "2018-03-06 13:31:35 -0500",
     "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@2.2.5"
-  },
-  {
-    "type": "fix",
-    "scope": null,
-    "subject": "rm child prepack in favour of root prepack",
-    "merge": null,
-    "header": "fix: rm child prepack in favour of root prepack",
-    "body": null,
-    "footer": null,
-    "notes": [],
-    "hash": "381d8d6485269b641d8d4655148966d2e70803be",
-    "gitTags": "",
-    "committerDate": "2019-03-15 09:51:11 +0000",
-    "isTagged": true,
-    "earliestTag": "@pie-lib/editable-html@7.1.17"
+    "tag": "@pie-lib/editable-html@2.2.5"
   }
 ]

@@ -1,5 +1,20 @@
 [
   {
+    "type": "fix",
+    "scope": null,
+    "subject": "rm child prepack in favour of root prepack",
+    "merge": null,
+    "header": "fix: rm child prepack in favour of root prepack",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "381d8d6485269b641d8d4655148966d2e70803be",
+    "gitTags": "",
+    "committerDate": "2019-03-15 09:51:11 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/math-rendering@1.2.9"
+  },
+  {
     "type": "chore",
     "scope": null,
     "subject": "get packages to call changelog function on prepack",
@@ -12,7 +27,7 @@
     "gitTags": "",
     "committerDate": "2019-03-14 12:40:05 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-rendering@1.2.5"
+    "tag": "@pie-lib/math-rendering@1.2.5"
   },
   {
     "type": "chore",
@@ -27,7 +42,7 @@
     "gitTags": "",
     "committerDate": "2019-03-13 23:00:44 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-rendering@1.2.4"
+    "tag": "@pie-lib/math-rendering@1.2.4"
   },
   {
     "type": "chore",
@@ -42,7 +57,7 @@
     "gitTags": "",
     "committerDate": "2019-03-13 17:24:09 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-rendering@1.2.2"
+    "tag": "@pie-lib/math-rendering@1.2.2"
   },
   {
     "type": "fix",
@@ -57,7 +72,7 @@
     "gitTags": "",
     "committerDate": "2019-01-30 22:14:28 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-rendering@1.2.0"
+    "tag": "@pie-lib/math-rendering@1.2.0"
   },
   {
     "type": "feat",
@@ -72,7 +87,7 @@
     "gitTags": "",
     "committerDate": "2019-01-30 22:14:28 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-rendering@1.2.0"
+    "tag": "@pie-lib/math-rendering@1.2.0"
   },
   {
     "type": "fix",
@@ -87,7 +102,7 @@
     "gitTags": " (origin/fix/math-rendering-wrong-name)",
     "committerDate": "2018-12-11 15:10:50 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-rendering@1.1.2"
+    "tag": "@pie-lib/math-rendering@1.1.2"
   },
   {
     "type": "fix",
@@ -102,7 +117,7 @@
     "gitTags": "",
     "committerDate": "2018-12-11 12:05:42 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-rendering@1.1.1"
+    "tag": "@pie-lib/math-rendering@1.1.1"
   },
   {
     "type": "fix",
@@ -117,7 +132,7 @@
     "gitTags": "",
     "committerDate": "2018-12-10 15:34:13 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-rendering@1.1.1"
+    "tag": "@pie-lib/math-rendering@1.1.1"
   },
   {
     "type": "fix",
@@ -132,7 +147,7 @@
     "gitTags": "",
     "committerDate": "2018-12-07 18:43:51 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-rendering@1.1.1"
+    "tag": "@pie-lib/math-rendering@1.1.1"
   },
   {
     "type": "feat",
@@ -147,7 +162,7 @@
     "gitTags": "",
     "committerDate": "2018-09-14 11:07:02 +0100",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-rendering@1.1.0"
+    "tag": "@pie-lib/math-rendering@1.1.0"
   },
   {
     "type": "fix",
@@ -162,7 +177,7 @@
     "gitTags": "",
     "committerDate": "2018-09-13 21:47:44 +0100",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-rendering@1.0.1"
+    "tag": "@pie-lib/math-rendering@1.0.1"
   },
   {
     "type": "feat",
@@ -182,7 +197,7 @@
     "gitTags": "",
     "committerDate": "2018-09-13 18:23:35 +0100",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-rendering@1.0.0"
+    "tag": "@pie-lib/math-rendering@1.0.0"
   },
   {
     "type": "fix",
@@ -197,7 +212,7 @@
     "gitTags": "",
     "committerDate": "2018-09-12 14:47:52 +0100",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-rendering@0.5.0"
+    "tag": "@pie-lib/math-rendering@0.5.0"
   },
   {
     "type": "fix",
@@ -212,7 +227,7 @@
     "gitTags": "",
     "committerDate": "2018-09-12 14:44:09 +0100",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-rendering@0.5.0"
+    "tag": "@pie-lib/math-rendering@0.5.0"
   },
   {
     "type": "fix",
@@ -227,7 +242,7 @@
     "gitTags": "",
     "committerDate": "2018-09-12 14:38:21 +0100",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-rendering@0.5.0"
+    "tag": "@pie-lib/math-rendering@0.5.0"
   },
   {
     "type": "feat",
@@ -242,7 +257,7 @@
     "gitTags": "",
     "committerDate": "2018-09-12 14:12:00 +0100",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-rendering@0.5.0"
+    "tag": "@pie-lib/math-rendering@0.5.0"
   },
   {
     "type": "chore",
@@ -257,7 +272,7 @@
     "gitTags": "",
     "committerDate": "2018-08-10 12:41:53 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-rendering@0.2.3"
+    "tag": "@pie-lib/math-rendering@0.2.3"
   },
   {
     "type": "fix",
@@ -272,7 +287,7 @@
     "gitTags": "",
     "committerDate": "2018-08-10 12:39:18 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-rendering@0.2.2"
+    "tag": "@pie-lib/math-rendering@0.2.2"
   },
   {
     "type": "fix",
@@ -287,7 +302,7 @@
     "gitTags": "",
     "committerDate": "2018-08-10 12:37:19 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-rendering@0.2.2"
+    "tag": "@pie-lib/math-rendering@0.2.2"
   },
   {
     "type": "fix",
@@ -302,7 +317,7 @@
     "gitTags": "",
     "committerDate": "2018-08-10 12:27:39 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-rendering@0.2.1"
+    "tag": "@pie-lib/math-rendering@0.2.1"
   },
   {
     "type": "feat",
@@ -317,21 +332,6 @@
     "gitTags": "",
     "committerDate": "2018-08-10 12:03:03 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-rendering@0.2.0"
-  },
-  {
-    "type": "fix",
-    "scope": null,
-    "subject": "rm child prepack in favour of root prepack",
-    "merge": null,
-    "header": "fix: rm child prepack in favour of root prepack",
-    "body": null,
-    "footer": null,
-    "notes": [],
-    "hash": "381d8d6485269b641d8d4655148966d2e70803be",
-    "gitTags": "",
-    "committerDate": "2019-03-15 09:51:11 +0000",
-    "isTagged": true,
-    "earliestTag": "@pie-lib/math-rendering@1.2.9"
+    "tag": "@pie-lib/math-rendering@0.2.0"
   }
 ]

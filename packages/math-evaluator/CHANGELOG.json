@@ -1,5 +1,20 @@
 [
   {
+    "type": "fix",
+    "scope": null,
+    "subject": "rm child prepack in favour of root prepack",
+    "merge": null,
+    "header": "fix: rm child prepack in favour of root prepack",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "381d8d6485269b641d8d4655148966d2e70803be",
+    "gitTags": "",
+    "committerDate": "2019-03-15 09:51:11 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/math-evaluator@0.3.9"
+  },
+  {
     "type": "chore",
     "scope": null,
     "subject": "get packages to call changelog function on prepack",
@@ -12,7 +27,7 @@
     "gitTags": "",
     "committerDate": "2019-03-14 12:40:05 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-evaluator@0.3.5"
+    "tag": "@pie-lib/math-evaluator@0.3.5"
   },
   {
     "type": "chore",
@@ -27,7 +42,7 @@
     "gitTags": "",
     "committerDate": "2019-03-13 23:00:44 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-evaluator@0.3.4"
+    "tag": "@pie-lib/math-evaluator@0.3.4"
   },
   {
     "type": "chore",
@@ -42,7 +57,7 @@
     "gitTags": "",
     "committerDate": "2019-03-13 17:24:09 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-evaluator@0.3.2"
+    "tag": "@pie-lib/math-evaluator@0.3.2"
   },
   {
     "type": "feat",
@@ -57,7 +72,7 @@
     "gitTags": "",
     "committerDate": "2019-01-30 22:14:28 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-evaluator@0.3.0"
+    "tag": "@pie-lib/math-evaluator@0.3.0"
   },
   {
     "type": "fix",
@@ -72,7 +87,7 @@
     "gitTags": "",
     "committerDate": "2019-01-30 22:14:28 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-evaluator@0.3.0"
+    "tag": "@pie-lib/math-evaluator@0.3.0"
   },
   {
     "type": "fix",
@@ -87,7 +102,7 @@
     "gitTags": "",
     "committerDate": "2019-01-16 21:44:10 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-evaluator@0.3.0"
+    "tag": "@pie-lib/math-evaluator@0.3.0"
   },
   {
     "type": "chore",
@@ -102,7 +117,7 @@
     "gitTags": "",
     "committerDate": "2018-11-09 13:48:04 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-evaluator@0.2.0"
+    "tag": "@pie-lib/math-evaluator@0.2.0"
   },
   {
     "type": "feat",
@@ -117,7 +132,7 @@
     "gitTags": "",
     "committerDate": "2018-11-08 08:57:08 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-evaluator@0.2.0"
+    "tag": "@pie-lib/math-evaluator@0.2.0"
   },
   {
     "type": "feat",
@@ -132,7 +147,7 @@
     "gitTags": "",
     "committerDate": "2018-11-07 12:17:28 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-evaluator@0.2.0"
+    "tag": "@pie-lib/math-evaluator@0.2.0"
   },
   {
     "type": "fix",
@@ -147,7 +162,7 @@
     "gitTags": "",
     "committerDate": "2018-10-23 14:00:09 +0300",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-evaluator@0.1.0"
+    "tag": "@pie-lib/math-evaluator@0.1.0"
   },
   {
     "type": "feat",
@@ -162,21 +177,6 @@
     "gitTags": "",
     "committerDate": "2018-10-22 09:48:19 +0300",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-evaluator@0.1.0"
-  },
-  {
-    "type": "fix",
-    "scope": null,
-    "subject": "rm child prepack in favour of root prepack",
-    "merge": null,
-    "header": "fix: rm child prepack in favour of root prepack",
-    "body": null,
-    "footer": null,
-    "notes": [],
-    "hash": "381d8d6485269b641d8d4655148966d2e70803be",
-    "gitTags": "",
-    "committerDate": "2019-03-15 09:51:11 +0000",
-    "isTagged": true,
-    "earliestTag": "@pie-lib/math-evaluator@0.3.9"
+    "tag": "@pie-lib/math-evaluator@0.1.0"
   }
 ]

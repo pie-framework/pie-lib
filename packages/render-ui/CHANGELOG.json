@@ -1,5 +1,20 @@
 [
   {
+    "type": "fix",
+    "scope": null,
+    "subject": "rm child prepack in favour of root prepack",
+    "merge": null,
+    "header": "fix: rm child prepack in favour of root prepack",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "381d8d6485269b641d8d4655148966d2e70803be",
+    "gitTags": "",
+    "committerDate": "2019-03-15 09:51:11 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/render-ui@4.3.8"
+  },
+  {
     "type": "chore",
     "scope": null,
     "subject": "call changelog on prepack",
@@ -12,7 +27,7 @@
     "gitTags": "",
     "committerDate": "2019-03-13 23:00:44 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/render-ui@4.3.4"
+    "tag": "@pie-lib/render-ui@4.3.4"
   },
   {
     "type": "chore",
@@ -27,7 +42,7 @@
     "gitTags": "",
     "committerDate": "2019-03-13 17:24:09 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/render-ui@4.3.2"
+    "tag": "@pie-lib/render-ui@4.3.2"
   },
   {
     "type": "feat",
@@ -42,7 +57,7 @@
     "gitTags": "",
     "committerDate": "2019-01-30 22:14:28 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/render-ui@4.3.0"
+    "tag": "@pie-lib/render-ui@4.3.0"
   },
   {
     "type": "fix",
@@ -57,7 +72,7 @@
     "gitTags": "",
     "committerDate": "2018-09-12 14:44:09 +0100",
     "isTagged": true,
-    "earliestTag": "@pie-lib/render-ui@4.2.4"
+    "tag": "@pie-lib/render-ui@4.2.4"
   },
   {
     "type": "chore",
@@ -72,7 +87,7 @@
     "gitTags": "",
     "committerDate": "2018-09-12 14:41:45 +0100",
     "isTagged": true,
-    "earliestTag": "@pie-lib/render-ui@4.2.4"
+    "tag": "@pie-lib/render-ui@4.2.4"
   },
   {
     "type": "fix",
@@ -87,7 +102,7 @@
     "gitTags": "",
     "committerDate": "2018-09-12 14:38:21 +0100",
     "isTagged": true,
-    "earliestTag": "@pie-lib/render-ui@4.2.4"
+    "tag": "@pie-lib/render-ui@4.2.4"
   },
   {
     "type": "fix",
@@ -102,7 +117,7 @@
     "gitTags": "",
     "committerDate": "2018-08-01 14:40:01 +0300",
     "isTagged": true,
-    "earliestTag": "@pie-lib/render-ui@4.2.1"
+    "tag": "@pie-lib/render-ui@4.2.1"
   },
   {
     "type": "chore",
@@ -117,7 +132,7 @@
     "gitTags": "",
     "committerDate": "2018-07-30 15:27:27 +0300",
     "isTagged": true,
-    "earliestTag": "@pie-lib/render-ui@4.1.0"
+    "tag": "@pie-lib/render-ui@4.1.0"
   },
   {
     "type": "chore",
@@ -132,7 +147,7 @@
     "gitTags": "",
     "committerDate": "2018-07-27 20:07:08 +0300",
     "isTagged": true,
-    "earliestTag": "@pie-lib/render-ui@4.1.0"
+    "tag": "@pie-lib/render-ui@4.1.0"
   },
   {
     "type": "feat",
@@ -147,7 +162,7 @@
     "gitTags": "",
     "committerDate": "2018-07-27 17:15:15 +0300",
     "isTagged": true,
-    "earliestTag": "@pie-lib/render-ui@4.1.0"
+    "tag": "@pie-lib/render-ui@4.1.0"
   },
   {
     "type": "fix",
@@ -162,7 +177,7 @@
     "gitTags": "",
     "committerDate": "2018-05-16 09:07:43 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/render-ui@3.0.0"
+    "tag": "@pie-lib/render-ui@3.0.0"
   },
   {
     "type": "feat",
@@ -177,7 +192,7 @@
     "gitTags": "",
     "committerDate": "2018-05-15 21:52:09 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/render-ui@2.1.0"
+    "tag": "@pie-lib/render-ui@2.1.0"
   },
   {
     "type": "fix",
@@ -192,7 +207,7 @@
     "gitTags": "",
     "committerDate": "2018-05-09 13:35:42 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/render-ui@2.0.11"
+    "tag": "@pie-lib/render-ui@2.0.11"
   },
   {
     "type": "fix",
@@ -207,7 +222,7 @@
     "gitTags": "",
     "committerDate": "2018-05-09 12:33:39 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/render-ui@2.0.11"
+    "tag": "@pie-lib/render-ui@2.0.11"
   },
   {
     "type": "fix",
@@ -222,7 +237,7 @@
     "gitTags": "",
     "committerDate": "2018-04-30 11:38:04 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/render-ui@2.0.10"
+    "tag": "@pie-lib/render-ui@2.0.10"
   },
   {
     "type": "fix",
@@ -237,7 +252,7 @@
     "gitTags": "",
     "committerDate": "2018-04-30 11:27:53 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/render-ui@2.0.10"
+    "tag": "@pie-lib/render-ui@2.0.10"
   },
   {
     "type": "fix",
@@ -252,7 +267,7 @@
     "gitTags": "",
     "committerDate": "2018-04-30 11:19:39 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/render-ui@2.0.10"
+    "tag": "@pie-lib/render-ui@2.0.10"
   },
   {
     "type": "fix",
@@ -267,7 +282,7 @@
     "gitTags": "",
     "committerDate": "2018-04-30 10:56:18 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/render-ui@2.0.10"
+    "tag": "@pie-lib/render-ui@2.0.10"
   },
   {
     "type": "fix",
@@ -282,7 +297,7 @@
     "gitTags": "",
     "committerDate": "2018-04-24 09:42:40 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/render-ui@2.0.10"
+    "tag": "@pie-lib/render-ui@2.0.10"
   },
   {
     "type": "fix",
@@ -297,7 +312,7 @@
     "gitTags": "",
     "committerDate": "2018-04-20 12:53:36 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/render-ui@2.0.10"
+    "tag": "@pie-lib/render-ui@2.0.10"
   },
   {
     "type": "fix",
@@ -312,7 +327,7 @@
     "gitTags": "",
     "committerDate": "2018-04-19 22:25:09 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/render-ui@2.0.10"
+    "tag": "@pie-lib/render-ui@2.0.10"
   },
   {
     "type": "fix",
@@ -332,7 +347,7 @@
     "gitTags": "",
     "committerDate": "2018-04-13 14:08:43 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/render-ui@1.0.0"
+    "tag": "@pie-lib/render-ui@1.0.0"
   },
   {
     "type": "chore",
@@ -347,21 +362,6 @@
     "gitTags": "",
     "committerDate": "2018-03-06 13:31:35 -0500",
     "isTagged": true,
-    "earliestTag": "@pie-lib/render-ui@0.1.14"
-  },
-  {
-    "type": "fix",
-    "scope": null,
-    "subject": "rm child prepack in favour of root prepack",
-    "merge": null,
-    "header": "fix: rm child prepack in favour of root prepack",
-    "body": null,
-    "footer": null,
-    "notes": [],
-    "hash": "381d8d6485269b641d8d4655148966d2e70803be",
-    "gitTags": "",
-    "committerDate": "2019-03-15 09:51:11 +0000",
-    "isTagged": true,
-    "earliestTag": "@pie-lib/render-ui@4.3.8"
+    "tag": "@pie-lib/render-ui@0.1.14"
   }
 ]

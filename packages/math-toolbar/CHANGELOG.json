@@ -1,5 +1,20 @@
 [
   {
+    "type": "fix",
+    "scope": null,
+    "subject": "rm child prepack in favour of root prepack",
+    "merge": null,
+    "header": "fix: rm child prepack in favour of root prepack",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "381d8d6485269b641d8d4655148966d2e70803be",
+    "gitTags": "",
+    "committerDate": "2019-03-15 09:51:11 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/math-toolbar@0.9.13"
+  },
+  {
     "type": "chore",
     "scope": null,
     "subject": "get packages to call changelog function on prepack",
@@ -12,7 +27,7 @@
     "gitTags": "",
     "committerDate": "2019-03-14 12:40:05 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-toolbar@0.9.10"
+    "tag": "@pie-lib/math-toolbar@0.9.10"
   },
   {
     "type": "chore",
@@ -27,7 +42,7 @@
     "gitTags": "",
     "committerDate": "2019-03-13 23:00:44 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-toolbar@0.9.10"
+    "tag": "@pie-lib/math-toolbar@0.9.10"
   },
   {
     "type": "chore",
@@ -42,7 +57,7 @@
     "gitTags": "",
     "committerDate": "2019-03-13 17:24:09 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-toolbar@0.9.10"
+    "tag": "@pie-lib/math-toolbar@0.9.10"
   },
   {
     "type": "chore",
@@ -57,7 +72,7 @@
     "gitTags": "",
     "committerDate": "2019-03-12 21:55:40 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-toolbar@0.9.10"
+    "tag": "@pie-lib/math-toolbar@0.9.10"
   },
   {
     "type": "feat",
@@ -72,7 +87,7 @@
     "gitTags": "",
     "committerDate": "2019-02-20 12:01:12 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-toolbar@0.9.0"
+    "tag": "@pie-lib/math-toolbar@0.9.0"
   },
   {
     "type": "fix",
@@ -87,7 +102,7 @@
     "gitTags": "",
     "committerDate": "2019-02-13 11:45:49 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-toolbar@0.8.0"
+    "tag": "@pie-lib/math-toolbar@0.8.0"
   },
   {
     "type": "fix",
@@ -102,7 +117,7 @@
     "gitTags": "",
     "committerDate": "2019-02-12 16:44:04 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-toolbar@0.8.0"
+    "tag": "@pie-lib/math-toolbar@0.8.0"
   },
   {
     "type": "fix",
@@ -117,7 +132,7 @@
     "gitTags": "",
     "committerDate": "2019-02-12 13:02:53 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-toolbar@0.8.0"
+    "tag": "@pie-lib/math-toolbar@0.8.0"
   },
   {
     "type": "feat",
@@ -132,7 +147,7 @@
     "gitTags": "",
     "committerDate": "2019-02-11 11:32:10 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-toolbar@0.7.0"
+    "tag": "@pie-lib/math-toolbar@0.7.0"
   },
   {
     "type": "feat",
@@ -147,7 +162,7 @@
     "gitTags": "",
     "committerDate": "2019-02-07 12:50:10 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-toolbar@0.8.0"
+    "tag": "@pie-lib/math-toolbar@0.8.0"
   },
   {
     "type": "feat",
@@ -162,7 +177,7 @@
     "gitTags": "",
     "committerDate": "2019-02-06 10:47:43 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-toolbar@0.8.0"
+    "tag": "@pie-lib/math-toolbar@0.8.0"
   },
   {
     "type": "chore",
@@ -177,7 +192,7 @@
     "gitTags": "",
     "committerDate": "2019-02-05 18:43:17 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-toolbar@0.8.0"
+    "tag": "@pie-lib/math-toolbar@0.8.0"
   },
   {
     "type": "feat",
@@ -192,7 +207,7 @@
     "gitTags": "",
     "committerDate": "2019-02-05 18:30:12 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-toolbar@0.8.0"
+    "tag": "@pie-lib/math-toolbar@0.8.0"
   },
   {
     "type": "fix",
@@ -207,7 +222,7 @@
     "gitTags": "",
     "committerDate": "2019-02-05 15:38:33 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-toolbar@0.6.4"
+    "tag": "@pie-lib/math-toolbar@0.6.4"
   },
   {
     "type": "feat",
@@ -222,7 +237,7 @@
     "gitTags": "",
     "committerDate": "2019-01-30 22:14:28 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-toolbar@0.6.0"
+    "tag": "@pie-lib/math-toolbar@0.6.0"
   },
   {
     "type": "fix",
@@ -237,7 +252,7 @@
     "gitTags": "",
     "committerDate": "2019-01-08 14:18:19 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-toolbar@0.5.0"
+    "tag": "@pie-lib/math-toolbar@0.5.0"
   },
   {
     "type": "fix",
@@ -252,7 +267,7 @@
     "gitTags": "",
     "committerDate": "2019-01-08 11:44:20 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-toolbar@0.5.0"
+    "tag": "@pie-lib/math-toolbar@0.5.0"
   },
   {
     "type": "chore",
@@ -267,7 +282,7 @@
     "gitTags": "",
     "committerDate": "2018-12-18 13:07:02 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-toolbar@0.4.0"
+    "tag": "@pie-lib/math-toolbar@0.4.0"
   },
   {
     "type": "fix",
@@ -282,7 +297,7 @@
     "gitTags": "",
     "committerDate": "2018-12-18 12:59:14 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-toolbar@0.3.2"
+    "tag": "@pie-lib/math-toolbar@0.3.2"
   },
   {
     "type": "feat",
@@ -297,7 +312,7 @@
     "gitTags": "",
     "committerDate": "2018-12-18 14:39:32 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-toolbar@0.4.0"
+    "tag": "@pie-lib/math-toolbar@0.4.0"
   },
   {
     "type": "feat",
@@ -312,7 +327,7 @@
     "gitTags": "",
     "committerDate": "2018-12-18 13:52:00 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-toolbar@0.4.0"
+    "tag": "@pie-lib/math-toolbar@0.4.0"
   },
   {
     "type": "feat",
@@ -327,7 +342,7 @@
     "gitTags": "",
     "committerDate": "2018-11-29 13:34:45 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-toolbar@0.3.0"
+    "tag": "@pie-lib/math-toolbar@0.3.0"
   },
   {
     "type": "feat",
@@ -342,7 +357,7 @@
     "gitTags": "",
     "committerDate": "2018-11-27 16:02:58 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-toolbar@0.2.0"
+    "tag": "@pie-lib/math-toolbar@0.2.0"
   },
   {
     "type": "feat",
@@ -357,7 +372,7 @@
     "gitTags": "",
     "committerDate": "2018-11-27 14:55:51 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-toolbar@0.2.0"
+    "tag": "@pie-lib/math-toolbar@0.2.0"
   },
   {
     "type": "feat",
@@ -372,21 +387,6 @@
     "gitTags": "",
     "committerDate": "2018-11-22 19:03:24 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/math-toolbar@0.1.0"
-  },
-  {
-    "type": "fix",
-    "scope": null,
-    "subject": "rm child prepack in favour of root prepack",
-    "merge": null,
-    "header": "fix: rm child prepack in favour of root prepack",
-    "body": null,
-    "footer": null,
-    "notes": [],
-    "hash": "381d8d6485269b641d8d4655148966d2e70803be",
-    "gitTags": "",
-    "committerDate": "2019-03-15 09:51:11 +0000",
-    "isTagged": true,
-    "earliestTag": "@pie-lib/math-toolbar@0.9.13"
+    "tag": "@pie-lib/math-toolbar@0.1.0"
   }
 ]

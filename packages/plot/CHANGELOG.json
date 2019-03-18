@@ -1,5 +1,20 @@
 [
   {
+    "type": "fix",
+    "scope": null,
+    "subject": "rm child prepack in favour of root prepack",
+    "merge": null,
+    "header": "fix: rm child prepack in favour of root prepack",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "381d8d6485269b641d8d4655148966d2e70803be",
+    "gitTags": "",
+    "committerDate": "2019-03-15 09:51:11 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/plot@0.1.12"
+  },
+  {
     "type": "chore",
     "scope": null,
     "subject": "get packages to call changelog function on prepack",
@@ -12,7 +27,7 @@
     "gitTags": "",
     "committerDate": "2019-03-14 12:40:05 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/plot@0.1.10"
+    "tag": "@pie-lib/plot@0.1.10"
   },
   {
     "type": "chore",
@@ -27,7 +42,7 @@
     "gitTags": "",
     "committerDate": "2019-03-13 23:00:44 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/plot@0.1.10"
+    "tag": "@pie-lib/plot@0.1.10"
   },
   {
     "type": "chore",
@@ -42,7 +57,7 @@
     "gitTags": "",
     "committerDate": "2019-03-13 17:24:09 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/plot@0.1.10"
+    "tag": "@pie-lib/plot@0.1.10"
   },
   {
     "type": "fix",
@@ -57,7 +72,7 @@
     "gitTags": "",
     "committerDate": "2019-02-17 21:23:35 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/plot@0.1.10"
+    "tag": "@pie-lib/plot@0.1.10"
   },
   {
     "type": "fix",
@@ -72,7 +87,7 @@
     "gitTags": "",
     "committerDate": "2019-02-16 23:47:25 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/plot@0.1.10"
+    "tag": "@pie-lib/plot@0.1.10"
   },
   {
     "type": "feat",
@@ -87,21 +102,6 @@
     "gitTags": "",
     "committerDate": "2019-01-30 22:14:28 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/plot@0.1.0"
-  },
-  {
-    "type": "fix",
-    "scope": null,
-    "subject": "rm child prepack in favour of root prepack",
-    "merge": null,
-    "header": "fix: rm child prepack in favour of root prepack",
-    "body": null,
-    "footer": null,
-    "notes": [],
-    "hash": "381d8d6485269b641d8d4655148966d2e70803be",
-    "gitTags": "",
-    "committerDate": "2019-03-15 09:51:11 +0000",
-    "isTagged": true,
-    "earliestTag": "@pie-lib/plot@0.1.12"
+    "tag": "@pie-lib/plot@0.1.0"
   }
 ]

@@ -1,5 +1,20 @@
 [
   {
+    "type": "fix",
+    "scope": null,
+    "subject": "rm child prepack in favour of root prepack",
+    "merge": null,
+    "header": "fix: rm child prepack in favour of root prepack",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "381d8d6485269b641d8d4655148966d2e70803be",
+    "gitTags": "",
+    "committerDate": "2019-03-15 09:51:11 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/demo@3.1.17"
+  },
+  {
     "type": "chore",
     "scope": null,
     "subject": "get packages to call changelog function on prepack",
@@ -12,7 +27,7 @@
     "gitTags": "",
     "committerDate": "2019-03-14 12:40:05 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/demo@3.1.13"
+    "tag": "@pie-lib/demo@3.1.13"
   },
   {
     "type": "chore",
@@ -27,7 +42,7 @@
     "gitTags": "",
     "committerDate": "2019-03-13 17:24:09 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/demo@3.1.10"
+    "tag": "@pie-lib/demo@3.1.10"
   },
   {
     "type": "feat",
@@ -42,7 +57,7 @@
     "gitTags": "",
     "committerDate": "2019-02-15 12:39:27 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/demo@3.1.0"
+    "tag": "@pie-lib/demo@3.1.0"
   },
   {
     "type": "fix",
@@ -57,7 +72,7 @@
     "gitTags": "",
     "committerDate": "2019-02-12 16:44:04 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/demo@3.0.3"
+    "tag": "@pie-lib/demo@3.0.3"
   },
   {
     "type": "chore",
@@ -72,7 +87,7 @@
     "gitTags": "",
     "committerDate": "2019-02-11 10:53:13 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/demo@3.0.0"
+    "tag": "@pie-lib/demo@3.0.0"
   },
   {
     "type": "fix",
@@ -87,7 +102,7 @@
     "gitTags": " (origin/feature/equation-editor, feature/equation-editor)",
     "committerDate": "2019-02-11 10:46:28 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/demo@3.0.0"
+    "tag": "@pie-lib/demo@3.0.0"
   },
   {
     "type": "feat",
@@ -107,7 +122,7 @@
     "gitTags": "",
     "committerDate": "2019-02-08 16:53:52 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/demo@3.0.0"
+    "tag": "@pie-lib/demo@3.0.0"
   },
   {
     "type": "feat",
@@ -122,7 +137,7 @@
     "gitTags": "",
     "committerDate": "2019-02-07 15:24:36 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/demo@1.1.0"
+    "tag": "@pie-lib/demo@1.1.0"
   },
   {
     "type": "fix",
@@ -137,21 +152,6 @@
     "gitTags": "",
     "committerDate": "2019-01-30 22:14:28 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/demo@1.0.1"
-  },
-  {
-    "type": "fix",
-    "scope": null,
-    "subject": "rm child prepack in favour of root prepack",
-    "merge": null,
-    "header": "fix: rm child prepack in favour of root prepack",
-    "body": null,
-    "footer": null,
-    "notes": [],
-    "hash": "381d8d6485269b641d8d4655148966d2e70803be",
-    "gitTags": "",
-    "committerDate": "2019-03-15 09:51:11 +0000",
-    "isTagged": true,
-    "earliestTag": "@pie-lib/demo@3.1.17"
+    "tag": "@pie-lib/demo@1.0.1"
   }
 ]

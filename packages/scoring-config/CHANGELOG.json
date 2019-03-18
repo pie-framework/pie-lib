@@ -2,6 +2,21 @@
   {
     "type": "fix",
     "scope": null,
+    "subject": "rm child prepack in favour of root prepack",
+    "merge": null,
+    "header": "fix: rm child prepack in favour of root prepack",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "381d8d6485269b641d8d4655148966d2e70803be",
+    "gitTags": "",
+    "committerDate": "2019-03-15 09:51:11 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/scoring-config@3.3.28"
+  },
+  {
+    "type": "fix",
+    "scope": null,
     "subject": "bump version",
     "merge": null,
     "header": "fix: bump version",
@@ -12,7 +27,7 @@
     "gitTags": "",
     "committerDate": "2019-03-14 13:17:17 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/scoring-config@3.3.26"
+    "tag": "@pie-lib/scoring-config@3.3.26"
   },
   {
     "type": "chore",
@@ -27,7 +42,7 @@
     "gitTags": "",
     "committerDate": "2019-03-13 23:00:44 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/scoring-config@3.3.22"
+    "tag": "@pie-lib/scoring-config@3.3.22"
   },
   {
     "type": "chore",
@@ -42,7 +57,7 @@
     "gitTags": "",
     "committerDate": "2019-03-13 17:24:09 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/scoring-config@3.3.20"
+    "tag": "@pie-lib/scoring-config@3.3.20"
   },
   {
     "type": "chore",
@@ -57,7 +72,7 @@
     "gitTags": "",
     "committerDate": "2019-03-12 21:55:40 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/scoring-config@3.3.19"
+    "tag": "@pie-lib/scoring-config@3.3.19"
   },
   {
     "type": "fix",
@@ -72,7 +87,7 @@
     "gitTags": "",
     "committerDate": "2019-02-17 21:23:35 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/scoring-config@3.3.11"
+    "tag": "@pie-lib/scoring-config@3.3.11"
   },
   {
     "type": "fix",
@@ -87,7 +102,7 @@
     "gitTags": "",
     "committerDate": "2019-02-05 15:38:33 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/scoring-config@3.3.11"
+    "tag": "@pie-lib/scoring-config@3.3.11"
   },
   {
     "type": "feat",
@@ -102,7 +117,7 @@
     "gitTags": "",
     "committerDate": "2019-01-30 22:14:28 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/scoring-config@3.3.0"
+    "tag": "@pie-lib/scoring-config@3.3.0"
   },
   {
     "type": "fix",
@@ -117,7 +132,7 @@
     "gitTags": "",
     "committerDate": "2019-01-08 14:18:19 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/scoring-config@3.2.31"
+    "tag": "@pie-lib/scoring-config@3.2.31"
   },
   {
     "type": "fix",
@@ -132,7 +147,7 @@
     "gitTags": "",
     "committerDate": "2018-10-30 12:23:50 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/scoring-config@3.2.15"
+    "tag": "@pie-lib/scoring-config@3.2.15"
   },
   {
     "type": "fix",
@@ -147,7 +162,7 @@
     "gitTags": " (origin/ch497/scoring-config-update)",
     "committerDate": "2018-10-29 14:23:53 +0200",
     "isTagged": true,
-    "earliestTag": "@pie-lib/scoring-config@3.2.15"
+    "tag": "@pie-lib/scoring-config@3.2.15"
   },
   {
     "type": "fix",
@@ -162,7 +177,7 @@
     "gitTags": "",
     "committerDate": "2018-09-12 14:44:09 +0100",
     "isTagged": true,
-    "earliestTag": "@pie-lib/scoring-config@3.2.10"
+    "tag": "@pie-lib/scoring-config@3.2.10"
   },
   {
     "type": "chore",
@@ -177,7 +192,7 @@
     "gitTags": "",
     "committerDate": "2018-09-12 14:41:45 +0100",
     "isTagged": true,
-    "earliestTag": "@pie-lib/scoring-config@3.2.10"
+    "tag": "@pie-lib/scoring-config@3.2.10"
   },
   {
     "type": "fix",
@@ -192,7 +207,7 @@
     "gitTags": "",
     "committerDate": "2018-09-12 14:38:21 +0100",
     "isTagged": true,
-    "earliestTag": "@pie-lib/scoring-config@3.2.10"
+    "tag": "@pie-lib/scoring-config@3.2.10"
   },
   {
     "type": "feat",
@@ -207,7 +222,7 @@
     "gitTags": "",
     "committerDate": "2018-08-06 11:25:26 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/scoring-config@3.2.0"
+    "tag": "@pie-lib/scoring-config@3.2.0"
   },
   {
     "type": "fix",
@@ -222,7 +237,7 @@
     "gitTags": "",
     "committerDate": "2018-05-16 10:58:58 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/scoring-config@3.1.10"
+    "tag": "@pie-lib/scoring-config@3.1.10"
   },
   {
     "type": "fix",
@@ -237,7 +252,7 @@
     "gitTags": "",
     "committerDate": "2018-05-16 09:07:43 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/scoring-config@3.0.0"
+    "tag": "@pie-lib/scoring-config@3.0.0"
   },
   {
     "type": "feat",
@@ -252,7 +267,7 @@
     "gitTags": "",
     "committerDate": "2018-05-15 21:52:09 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/scoring-config@2.1.0"
+    "tag": "@pie-lib/scoring-config@2.1.0"
   },
   {
     "type": "fix",
@@ -267,7 +282,7 @@
     "gitTags": "",
     "committerDate": "2018-05-09 13:35:42 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/scoring-config@2.0.23"
+    "tag": "@pie-lib/scoring-config@2.0.23"
   },
   {
     "type": "fix",
@@ -282,7 +297,7 @@
     "gitTags": "",
     "committerDate": "2018-05-07 21:09:19 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/scoring-config@2.0.22"
+    "tag": "@pie-lib/scoring-config@2.0.22"
   },
   {
     "type": "fix",
@@ -297,7 +312,7 @@
     "gitTags": "",
     "committerDate": "2018-04-30 11:38:04 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/scoring-config@2.0.17"
+    "tag": "@pie-lib/scoring-config@2.0.17"
   },
   {
     "type": "fix",
@@ -312,7 +327,7 @@
     "gitTags": "",
     "committerDate": "2018-04-30 11:31:31 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/scoring-config@2.0.16"
+    "tag": "@pie-lib/scoring-config@2.0.16"
   },
   {
     "type": "fix",
@@ -327,7 +342,7 @@
     "gitTags": "",
     "committerDate": "2018-04-30 11:27:53 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/scoring-config@2.0.15"
+    "tag": "@pie-lib/scoring-config@2.0.15"
   },
   {
     "type": "fix",
@@ -342,7 +357,7 @@
     "gitTags": "",
     "committerDate": "2018-04-30 11:19:39 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/scoring-config@2.0.14"
+    "tag": "@pie-lib/scoring-config@2.0.14"
   },
   {
     "type": "fix",
@@ -357,7 +372,7 @@
     "gitTags": "",
     "committerDate": "2018-04-30 10:56:18 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/scoring-config@2.0.14"
+    "tag": "@pie-lib/scoring-config@2.0.14"
   },
   {
     "type": "fix",
@@ -372,7 +387,7 @@
     "gitTags": "",
     "committerDate": "2018-04-24 09:43:35 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/scoring-config@2.0.10"
+    "tag": "@pie-lib/scoring-config@2.0.10"
   },
   {
     "type": "fix",
@@ -387,7 +402,7 @@
     "gitTags": "",
     "committerDate": "2018-04-19 22:25:09 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/scoring-config@2.0.10"
+    "tag": "@pie-lib/scoring-config@2.0.10"
   },
   {
     "type": "chore",
@@ -402,7 +417,7 @@
     "gitTags": "",
     "committerDate": "2018-04-13 15:03:52 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/scoring-config@1.0.0"
+    "tag": "@pie-lib/scoring-config@1.0.0"
   },
   {
     "type": "fix",
@@ -422,7 +437,7 @@
     "gitTags": "",
     "committerDate": "2018-04-13 14:16:15 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/scoring-config@1.0.0"
+    "tag": "@pie-lib/scoring-config@1.0.0"
   },
   {
     "type": "chore",
@@ -437,21 +452,6 @@
     "gitTags": "",
     "committerDate": "2018-03-06 13:31:35 -0500",
     "isTagged": true,
-    "earliestTag": "@pie-lib/scoring-config@0.3.29"
-  },
-  {
-    "type": "fix",
-    "scope": null,
-    "subject": "rm child prepack in favour of root prepack",
-    "merge": null,
-    "header": "fix: rm child prepack in favour of root prepack",
-    "body": null,
-    "footer": null,
-    "notes": [],
-    "hash": "381d8d6485269b641d8d4655148966d2e70803be",
-    "gitTags": "",
-    "committerDate": "2019-03-15 09:51:11 +0000",
-    "isTagged": true,
-    "earliestTag": "@pie-lib/scoring-config@3.3.28"
+    "tag": "@pie-lib/scoring-config@0.3.29"
   }
 ]

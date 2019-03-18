@@ -1,5 +1,20 @@
 [
   {
+    "type": "fix",
+    "scope": null,
+    "subject": "rm child prepack in favour of root prepack",
+    "merge": null,
+    "header": "fix: rm child prepack in favour of root prepack",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "381d8d6485269b641d8d4655148966d2e70803be",
+    "gitTags": "",
+    "committerDate": "2019-03-15 09:51:11 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/charting@4.0.13"
+  },
+  {
     "type": "chore",
     "scope": null,
     "subject": "get packages to call changelog function on prepack",
@@ -12,7 +27,7 @@
     "gitTags": "",
     "committerDate": "2019-03-14 12:40:05 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/charting@4.0.10"
+    "tag": "@pie-lib/charting@4.0.10"
   },
   {
     "type": "chore",
@@ -27,7 +42,7 @@
     "gitTags": "",
     "committerDate": "2019-03-13 23:00:44 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/charting@4.0.10"
+    "tag": "@pie-lib/charting@4.0.10"
   },
   {
     "type": "chore",
@@ -42,7 +57,7 @@
     "gitTags": "",
     "committerDate": "2019-03-13 17:24:09 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/charting@4.0.10"
+    "tag": "@pie-lib/charting@4.0.10"
   },
   {
     "type": "fix",
@@ -57,7 +72,7 @@
     "gitTags": "",
     "committerDate": "2019-02-17 21:23:35 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/charting@4.0.10"
+    "tag": "@pie-lib/charting@4.0.10"
   },
   {
     "type": "fix",
@@ -72,7 +87,7 @@
     "gitTags": "",
     "committerDate": "2019-01-30 23:00:44 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/charting@4.0.10"
+    "tag": "@pie-lib/charting@4.0.10"
   },
   {
     "type": "feat",
@@ -92,7 +107,7 @@
     "gitTags": "",
     "committerDate": "2019-01-30 21:51:02 +0000",
     "isTagged": true,
-    "earliestTag": "@pie-lib/charting@4.0.0"
+    "tag": "@pie-lib/charting@4.0.0"
   },
   {
     "type": "fix",
@@ -107,7 +122,7 @@
     "gitTags": "",
     "committerDate": "2018-09-12 14:44:09 +0100",
     "isTagged": true,
-    "earliestTag": "@pie-lib/charting@2.3.5"
+    "tag": "@pie-lib/charting@2.3.5"
   },
   {
     "type": "chore",
@@ -122,7 +137,7 @@
     "gitTags": "",
     "committerDate": "2018-09-12 14:41:45 +0100",
     "isTagged": true,
-    "earliestTag": "@pie-lib/charting@2.3.5"
+    "tag": "@pie-lib/charting@2.3.5"
   },
   {
     "type": "fix",
@@ -137,7 +152,7 @@
     "gitTags": "",
     "committerDate": "2018-09-12 14:38:21 +0100",
     "isTagged": true,
-    "earliestTag": "@pie-lib/charting@2.3.5"
+    "tag": "@pie-lib/charting@2.3.5"
   },
   {
     "type": "chore",
@@ -152,7 +167,7 @@
     "gitTags": "",
     "committerDate": "2018-06-06 21:10:13 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/charting@2.3.2"
+    "tag": "@pie-lib/charting@2.3.2"
   },
   {
     "type": "feature",
@@ -167,7 +182,7 @@
     "gitTags": "",
     "committerDate": "2018-06-06 14:36:58 +0300",
     "isTagged": true,
-    "earliestTag": "@pie-lib/charting@2.3.1"
+    "tag": "@pie-lib/charting@2.3.1"
   },
   {
     "type": "fix",
@@ -182,7 +197,7 @@
     "gitTags": "",
     "committerDate": "2018-06-04 12:44:10 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/charting@2.3.1"
+    "tag": "@pie-lib/charting@2.3.1"
   },
   {
     "type": "feature",
@@ -197,7 +212,7 @@
     "gitTags": "",
     "committerDate": "2018-06-04 16:53:49 +0300",
     "isTagged": true,
-    "earliestTag": "@pie-lib/charting@2.3.1"
+    "tag": "@pie-lib/charting@2.3.1"
   },
   {
     "type": "fix",
@@ -212,7 +227,7 @@
     "gitTags": "",
     "committerDate": "2018-05-28 15:36:46 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/charting@2.3.0"
+    "tag": "@pie-lib/charting@2.3.0"
   },
   {
     "type": "feat",
@@ -227,7 +242,7 @@
     "gitTags": " (origin/feature/charting-line-utils)",
     "committerDate": "2018-05-25 13:10:31 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/charting@2.3.0"
+    "tag": "@pie-lib/charting@2.3.0"
   },
   {
     "type": "chore",
@@ -242,7 +257,7 @@
     "gitTags": "",
     "committerDate": "2018-05-15 13:41:08 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/charting@2.2.3"
+    "tag": "@pie-lib/charting@2.2.3"
   },
   {
     "type": "fix",
@@ -257,7 +272,7 @@
     "gitTags": "",
     "committerDate": "2018-05-09 13:35:42 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/charting@2.2.1"
+    "tag": "@pie-lib/charting@2.2.1"
   },
   {
     "type": "feat",
@@ -272,7 +287,7 @@
     "gitTags": "",
     "committerDate": "2018-04-24 09:41:05 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/charting@2.2.0"
+    "tag": "@pie-lib/charting@2.2.0"
   },
   {
     "type": "chore",
@@ -287,7 +302,7 @@
     "gitTags": "",
     "committerDate": "2018-04-23 21:50:37 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/charting@2.2.0"
+    "tag": "@pie-lib/charting@2.2.0"
   },
   {
     "type": "feat",
@@ -302,7 +317,7 @@
     "gitTags": "",
     "committerDate": "2018-04-23 09:42:15 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/charting@2.1.0"
+    "tag": "@pie-lib/charting@2.1.0"
   },
   {
     "type": "fix",
@@ -322,7 +337,7 @@
     "gitTags": "",
     "committerDate": "2018-04-12 22:43:29 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/charting@1.0.0"
+    "tag": "@pie-lib/charting@1.0.0"
   },
   {
     "type": "feat",
@@ -337,21 +352,6 @@
     "gitTags": "",
     "committerDate": "2018-04-02 10:15:10 -0400",
     "isTagged": true,
-    "earliestTag": "@pie-lib/charting@0.1.0"
-  },
-  {
-    "type": "fix",
-    "scope": null,
-    "subject": "rm child prepack in favour of root prepack",
-    "merge": null,
-    "header": "fix: rm child prepack in favour of root prepack",
-    "body": null,
-    "footer": null,
-    "notes": [],
-    "hash": "381d8d6485269b641d8d4655148966d2e70803be",
-    "gitTags": "",
-    "committerDate": "2019-03-15 09:51:11 +0000",
-    "isTagged": true,
-    "earliestTag": "@pie-lib/charting@4.0.13"
+    "tag": "@pie-lib/charting@0.1.0"
   }
 ]
