@@ -7,6 +7,11 @@ import {
   MuiThemeProvider
 } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
+import {
+  DeleteImageEvent,
+  InsertImageEvent,
+  ModelUpdatedEvent
+} from '@pie-framework/pie-configure-events';
 
 const Section = props => {
   const { classes, title, items } = props;
@@ -632,7 +637,7 @@ export class ConfigureWrapper extends HTMLElement {
     const renderDesignEl = () => {
       const element = React.createElement(this.configureElement.el, {
         ...this.configureElement.props,
-        onModelChanged: this.onModelChanged,
+        [this.modelChangeFnName]: this.onModelChanged
       });
 
       const configLayout = React.createElement(RootElem, {
@@ -797,3 +802,135 @@ export class ConfigureWrapper extends HTMLElement {
 }
 
 customElements.define('configure-wrapper', ConfigureWrapper);
+
+export const createCustomElementWithWrapper = ({
+                                                 elementName,
+                                                 configureElement,
+                                                 defaultConfigureValues,
+                                                 modelCallback,
+                                                 configureCallback,
+                                                 getSideMenuItems,
+                                                 modelFn,
+                                                 modelChangeFnName
+                                               }) => {
+  return class ConfigWrapper extends HTMLElement {
+    constructor() {
+      super();
+      this._noPreview = false;
+      this._previewTabVisible = false;
+      this.onModelChanged = this.onModelChanged.bind(this);
+      this._configure = defaultConfigureValues;
+
+      const elemName = getElemName(elementName);
+
+      const htmlTemplate = htmlTemplateFactory(elemName);
+
+      const template = document.createElement('template');
+
+      template.innerHTML = htmlTemplate;
+
+      this.attachShadow({ mode: 'open' });
+      this.shadowRoot.appendChild(template.content.cloneNode(true));
+    }
+
+    set model(s) {
+      this._model = modelCallback(s);
+      this._render();
+    }
+
+    set configure(c) {
+      const info = configureCallback(c, this._model);
+
+      this.onModelChanged(info.model);
+      this._configure = info.configure;
+      this._render();
+    }
+
+    set disableSidePanel(s) {
+      this._disableSidePanel = s;
+      this._render();
+    }
+
+    set noPreview(s) {
+      this._noPreview = s;
+      this._render();
+    }
+
+    set previewTabVisible(s) {
+      this._previewTabVisible = s;
+      this._render();
+    }
+
+    dispatchModelUpdated(reset) {
+      const resetValue = !!reset;
+
+      this.dispatchEvent(new ModelUpdatedEvent(this._model, resetValue));
+    }
+
+    onModelChanged(m, reset) {
+      this._model = m;
+      this._render(true, reset);
+      this.dispatchModelUpdated(reset);
+    }
+
+    /**
+     *
+     * @param {done, progress, file} handler
+     */
+    insertImage(handler) {
+      this.dispatchEvent(new InsertImageEvent(handler));
+    }
+
+    onDeleteImage(src, done) {
+      this.dispatchEvent(new DeleteImageEvent(src, done));
+    }
+
+    renderWrapper(rerender, reset) {
+      const el = this.wrapperEl || document.createElement('configure-wrapper');
+
+      el.setAttribute('slot', 'configure-wrapper');
+
+      if (!this.wrapperEl) {
+        this.appendChild(el);
+      }
+
+      this.wrapperEl = el;
+
+      const slot = this.shadowRoot.querySelector('[name=preview-custom]');
+      const assignedElements = slot.assignedElements();
+      const firstElem = assignedElements.length ? assignedElements[0] : slot.firstElementChild;
+      const markup = firstElem.outerHTML;
+
+      if (!this._previewTabVisible) {
+        el.configureElement = configureElement(this);
+      }
+
+      el.modelChangeFnName = modelChangeFnName;
+      el.disableSidePanel = this._disableSidePanel;
+      el.sideMenuItems = getSideMenuItems({
+        model: this._model,
+        configure: this._configure,
+        onModelChanged: this.onModelChanged
+      }, this._previewTabVisible);
+
+      el.rerender = rerender;
+
+      el.modelFn = modelFn;
+      el.noPreview = this._noPreview;
+
+      el.markup = markup;
+      el.previewSession = (!reset && window.demo && window.demo.session) || {};
+
+      el.configure = this._configure;
+      el.model = this._model;
+      el.onTabChanged = (tabIndex) => {
+        this.previewTabVisible = tabIndex === 1;
+      };
+    }
+
+    _render(rerender, reset) {
+
+      this.renderWrapper(rerender, reset);
+    }
+  }
+};
