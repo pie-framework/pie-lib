@@ -7,11 +7,6 @@ import {
   MuiThemeProvider
 } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
-import {
-  DeleteImageEvent,
-  InsertImageEvent,
-  ModelUpdatedEvent
-} from '@pie-framework/pie-configure-events';
 
 const Section = props => {
   const { classes, title, items } = props;
