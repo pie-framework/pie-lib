@@ -296,7 +296,7 @@ export class Editor extends React.Component {
 
     return (
       <div
-        style={sizeStyle}
+        style={{ width: sizeStyle.width }}
         className={classNames(highlightShape && classes.withBg, className)}
       >
         <SlateEditor
@@ -309,6 +309,7 @@ export class Editor extends React.Component {
           focusedNode={focusedNode}
           readOnly={disabled}
           className={classes.slateEditor}
+          style={{ height: sizeStyle.height }}
         />
       </div>
     );
@@ -317,10 +318,10 @@ export class Editor extends React.Component {
 
 const styles = {
   withBg: {
-    backgroundColor: 'rgba(0,0,0,0.06)'
+    backgroundColor: 'rgba(0,0,0,0.06)',
   },
   slateEditor: {
-    fontFamily: 'Roboto, sans-serif'
+    fontFamily: 'Roboto, sans-serif',
   }
 };
 export default withStyles(styles)(Editor);
