@@ -335,18 +335,24 @@ class CustomPreviewModelUpdatedEvent extends CustomEvent {
 
 CustomPreviewModelUpdatedEvent.TYPE = 'customPreviewModel.updated';
 
-export class ConfigureWrapper extends HTMLElement {
-  constructor() {
-    super();
-    this._disableSidePanel = false;
-    this._noPreview = false;
-    this.onModelChanged = this.onModelChanged.bind(this);
-    this.mode = 'gather';
-    this.indexTab = 0;
-    const template = document.createElement('template');
+export const createCustomElementWithWrapper = ({
+                                                 elementName,
+                                                 getSideMenuItems,
+                                                 modelChangeFnName = 'onModelChanged'
+                                               }) => {
+  return class extends HTMLElement {
+    constructor() {
+      super();
+      this._disableSidePanel = false;
+      this._previewTabVisible = false;
+      this._noPreview = false;
+      this.onModelChanged = this.onModelChanged.bind(this);
+      this.mode = 'gather';
+      this.indexTab = 0;
+      const template = document.createElement('template');
 
-    template.innerHTML = `
-    <style>
+      template.innerHTML = `
+      <style>
         :host {
           display: block;
           contain: content;
@@ -523,414 +529,293 @@ export class ConfigureWrapper extends HTMLElement {
             <slot name="configure-custom">
             </slot>
             <slot name="preview-custom">
+              <${elementName} id="default"></${elementName}>
             </slot>
         </div>
     </div>
     <slot name="sidepanel-custom">
     </slot>
-  `;
+    `;
 
-    window.onTabClick = (el, index) => {
-      this.indexTab = index;
+      window.onTabClick = (el, index) => {
+        this.indexTab = index;
 
-      if (this.onTabChanged) {
-        this.onTabChanged(index);
-      }
+        this._previewTabVisible = index === 1;
 
-      this._render();
-    };
+        this._renderWrapper();
+      };
 
-    window.onCheckboxClick = (el) => {
-      this.mode = el.dataset.mode;
-      this.handlePreviewTab();
-      this._render();
-    };
-
-    this.attachShadow({ mode: 'open' });
-    this.shadowRoot.appendChild(template.content.cloneNode(true));
-    this.resizeObserverHandler = () => {
-      const tabs = this.shadowRoot.querySelector('.tabs');
-      const extraOptions = this.shadowRoot.querySelector('.extra-options');
-
-      this.inTabSidePanel = this._disableSidePanel || (this.offsetWidth * 0.20 < 190);
-
-      if (this.inTabSidePanel) {
-        tabs.classList.add('full');
-
-        if (extraOptions) {
-          extraOptions.classList.add('full');
-        }
-      } else {
-        tabs.classList.remove('full');
-
-        if (extraOptions) {
-          extraOptions.classList.remove('full');
-        }
-      }
-
-      this._render();
-    };
-
-    const ro = new ResizeObserver(this.resizeObserverHandler);
-
-    ro.observe(this);
-  }
-
-  handleTabs() {
-    const tabs = this.shadowRoot.querySelectorAll('.tabs .tab');
-    const selectedLine = this.shadowRoot.querySelector('.selected-line');
-    let selectedEl = tabs[0];
-
-    tabs.forEach((tab, index) => {
-      if (index === this.indexTab) {
-        selectedEl = tab;
-      }
-
-      tab.classList.remove('selected')
-    });
-
-    selectedLine.style.left = `${this.indexTab * 100}px`;
-    selectedEl.classList.add('selected');
-  }
-
-  handleModes() {
-    const checkboxes = this.shadowRoot.querySelectorAll('.extra-options .custom-checkbox');
-    let selectedMode = checkboxes[0];
-
-    checkboxes.forEach((checkbox) => {
-      if (checkbox.dataset.mode === this.mode) {
-        selectedMode = checkbox;
-      }
-
-      checkbox.firstElementChild.classList.remove('checked')
-    });
-
-    selectedMode.firstElementChild.classList.add('checked');
-  }
-
-  set model(s) {
-    this._model = s;
-    this._render();
-  }
-
-  set configure(c) {
-    this._configure = c;
-    this._render();
-  }
-
-  set noPreview(noPreview) {
-    this._noPreview = noPreview;
-    this._render();
-  }
-
-  set disableSidePanel(disableSidePanel) {
-    this._disableSidePanel = disableSidePanel;
-    this.resizeObserverHandler();
-    this._render();
-  }
-
-  set rerender(rerender) {
-    this._rerender = rerender;
-  }
-
-  renderDesignTab() {
-    const renderDesignEl = () => {
-      const element = React.createElement(this.configureElement.el, {
-        ...this.configureElement.props,
-        [this.modelChangeFnName]: this.onModelChanged
-      });
-
-      const configLayout = React.createElement(RootElem, {
-        regularOnly: true,
-        regularItems: element,
-      });
-
-      ReactDOM.render(configLayout, this._configureSlot);
-    };
-
-    if (this.configureElement) {
-      if (!this._configureSlot) {
-        const span = document.createElement('span');
-        const settingsTabEl = this.shadowRoot.querySelector('.designTab');
-
-        settingsTabEl.className = 'tab designTab visible';
-
-        span.className = `tabContent selected${this.inTabSidePanel ? ' full' : ''}`;
-
-        span.setAttribute('slot', 'configure-custom');
-
-        this._configureSlot = span;
-        this.appendChild(span);
-
-        renderDesignEl(this._configureSlot);
-      } else {
-        if (this._rerender) {
-          renderDesignEl(this._configureSlot);
-        }
-
-        this._configureSlot.className = `tabContent${this.indexTab === 0 ? ' selected' : ''}${this.inTabSidePanel ? ' full' : ''}`;
-      }
-    } else {
-      const settingsTabEl = this.shadowRoot.querySelector('.tabs-container');
-
-      settingsTabEl.className = 'tabs-container hidden';
-    }
-  }
-
-  onModelChanged(m, reset) {
-    this._model = m;
-    this.handlePreviewTab(reset);
-  }
-
-  handlePreviewTab(reset) {
-    const el = this._previewSlot ? this._previewSlot.firstChild : {};
-    const newSession = reset ? [] : this.previewSession;
-
-    el.session = newSession;
-
-    this.modelFn(this._model, newSession, {
-      mode: this.mode
-    })
-      .then((newModel) => {
-        const sidePanelEl = this._sidePanel && this._sidePanel.el.firstChild;
-
-        el.model = newModel;
-
-        this.dispatchEvent(new CustomPreviewModelUpdatedEvent(this._model, reset));
-
-        if (sidePanelEl) {
-          const element = React.createElement(RootElem, {
-            sideMenuItems: this.sideMenuItems,
-            regularItems: null,
-          });
-
-          ReactDOM.render(element, this._sidePanel.el);
-        }
-      });
-  }
-
-  renderPreviewTab() {
-    const existing = this.querySelector('[slot=preview-custom]');
-    const settingsTabEl = this.shadowRoot.querySelector('.previewTab');
-    const extraOptions = this.shadowRoot.querySelector('.extra-options');
-
-    if (extraOptions) {
-      extraOptions.className = `extra-options${this.indexTab === 1 ? ' present' : ''}`;
-    }
-
-    if (!this._noPreview) {
-      if (!this._previewSlot) {
-        const span = document.createElement('span');
-
-        settingsTabEl.className = 'tab previewTab visible';
-
-        span.className = `tabContent${this.inTabSidePanel ? ' full' : ''}`;
-        span.setAttribute('slot', 'preview-custom');
-
-        span.innerHTML = this.markup;
-
-        this._previewSlot = span;
-        this.appendChild(span);
+      window.onCheckboxClick = (el) => {
+        this.mode = el.dataset.mode;
         this.handlePreviewTab();
-      } else {
-
-        if (this._rerender) {
-          this.handlePreviewTab();
-        }
-
-        this._previewSlot.className = `tabContent${this.indexTab === 1 ? ' selected' : ''}${this.inTabSidePanel ? ' full' : ''}`;
-      }
-    } else if (existing) {
-      this._previewSlot = null;
-      this.removeChild(existing);
-
-      settingsTabEl.className = 'tab previewTab hidden';
-    }
-  }
-
-  renderSidePanel() {
-    let containerEl = this._sidePanel ? this._sidePanel.el : null;
-
-    if (!this._sidePanel || (this._sidePanel && this._sidePanel.inTab !== this.inTabSidePanel)) {
-
-      if (this._sidePanel) {
-        this.removeChild(this._sidePanel.el);
-      }
-
-      const span = document.createElement('span');
-
-      span.className = this.inTabSidePanel ? `tabContent${this.indexTab === 2 ? ' selected' : ''}${this.inTabSidePanel ? ' full' : ''}` : 'sidePanelClass';
-
-      span.setAttribute('slot', 'sidepanel-custom');
-
-      this._sidePanel = { el: span, inTab: this.inTabSidePanel };
-      this.appendChild(span);
-
-      containerEl = span;
-    } else if (this._sidePanel) {
-      this._sidePanel.el.className = this.inTabSidePanel ? `tabContent${this.indexTab === 2 ? ' selected' : ''}${this.inTabSidePanel ? ' full' : ''}` : 'sidePanelClass';
-    }
-
-    const settingsTabEl = this.shadowRoot.querySelector('.settingsTab');
-
-    settingsTabEl.className = `tab settingsTab hidden ${this.inTabSidePanel ? ' visible' : ''}`;
-
-    if (!this.inTabSidePanel && this.indexTab === 2) {
-      this.indexTab = 1;
-      this._render();
-    }
-
-    const element = React.createElement(RootElem, {
-      sideMenuItems: this.sideMenuItems,
-      regularItems: null,
-      inTabForSure: this.inTabSidePanel && this.indexTab === 2
-    });
-
-    ReactDOM.render(element, containerEl);
-  }
-
-  _render() {
-    this.handleTabs();
-    this.handleModes();
-
-    if (this._model) {
-      this.renderDesignTab();
-      this.renderPreviewTab();
-      this.renderSidePanel();
-    }
-  }
-}
-
-customElements.define('configure-wrapper', ConfigureWrapper);
-
-export const createCustomElementWithWrapper = ({
-                                                 elementName,
-                                                 configureElement,
-                                                 defaultConfigureValues,
-                                                 modelCallback,
-                                                 configureCallback,
-                                                 getSideMenuItems,
-                                                 modelFn,
-                                                 modelChangeFnName
-                                               }) => {
-  return class ConfigWrapper extends HTMLElement {
-    constructor() {
-      super();
-      this._noPreview = false;
-      this._previewTabVisible = false;
-      this.onModelChanged = this.onModelChanged.bind(this);
-      this._configure = defaultConfigureValues;
-
-      const elemName = getElemName(elementName);
-
-      const htmlTemplate = htmlTemplateFactory(elemName);
-
-      const template = document.createElement('template');
-
-      template.innerHTML = htmlTemplate;
+        this._renderWrapper();
+      };
 
       this.attachShadow({ mode: 'open' });
       this.shadowRoot.appendChild(template.content.cloneNode(true));
+      this.resizeObserverHandler = () => {
+        const tabs = this.shadowRoot.querySelector('.tabs');
+        const extraOptions = this.shadowRoot.querySelector('.extra-options');
+
+        this.inTabSidePanel = this._disableSidePanel || (this.offsetWidth * 0.20 < 190);
+
+        if (this.inTabSidePanel) {
+          tabs.classList.add('full');
+
+          if (extraOptions) {
+            extraOptions.classList.add('full');
+          }
+        } else {
+          tabs.classList.remove('full');
+
+          if (extraOptions) {
+            extraOptions.classList.remove('full');
+          }
+        }
+
+        this._renderWrapper();
+      };
+
+      const ro = new ResizeObserver(this.resizeObserverHandler);
+
+      ro.observe(this);
     }
 
-    set model(s) {
-      this._model = modelCallback(s);
-      this._render();
+    handleTabs() {
+      const tabs = this.shadowRoot.querySelectorAll('.tabs .tab');
+      const selectedLine = this.shadowRoot.querySelector('.selected-line');
+      let selectedEl = tabs[0];
+
+      tabs.forEach((tab, index) => {
+        if (index === this.indexTab) {
+          selectedEl = tab;
+        }
+
+        tab.classList.remove('selected')
+      });
+
+      selectedLine.style.left = `${this.indexTab * 100}px`;
+      selectedEl.classList.add('selected');
     }
 
-    set configure(c) {
-      const info = configureCallback(c, this._model);
+    handleModes() {
+      const checkboxes = this.shadowRoot.querySelectorAll('.extra-options .custom-checkbox');
+      let selectedMode = checkboxes[0];
 
-      this.onModelChanged(info.model);
-      this._configure = info.configure;
-      this._render();
+      checkboxes.forEach((checkbox) => {
+        if (checkbox.dataset.mode === this.mode) {
+          selectedMode = checkbox;
+        }
+
+        checkbox.firstElementChild.classList.remove('checked')
+      });
+
+      selectedMode.firstElementChild.classList.add('checked');
     }
 
-    set disableSidePanel(s) {
-      this._disableSidePanel = s;
-      this._render();
+    set noPreview(noPreview) {
+      this._noPreview = noPreview;
+      this._renderWrapper();
     }
 
-    set noPreview(s) {
-      this._noPreview = s;
-      this._render();
+    set disableSidePanel(disableSidePanel) {
+      this._disableSidePanel = disableSidePanel;
+      this.resizeObserverHandler();
+      this._renderWrapper();
     }
 
-    set previewTabVisible(s) {
-      this._previewTabVisible = s;
-      this._render();
-    }
+    renderDesignTab() {
+      const renderDesignEl = () => {
+        const element = React.createElement(this.configureElement.el, {
+          ...this.configureElement.props,
+          [modelChangeFnName]: this.onModelChanged
+        });
 
-    dispatchModelUpdated(reset) {
-      const resetValue = !!reset;
+        const configLayout = React.createElement(RootElem, {
+          regularOnly: true,
+          regularItems: element,
+        });
 
-      this.dispatchEvent(new ModelUpdatedEvent(this._model, resetValue));
+        ReactDOM.render(configLayout, this._configureSlot);
+      };
+
+      if (this.configureElement) {
+        if (!this._configureSlot) {
+          const span = document.createElement('span');
+          const settingsTabEl = this.shadowRoot.querySelector('.designTab');
+
+          settingsTabEl.className = 'tab designTab visible';
+
+          span.className = `tabContent selected${this.inTabSidePanel ? ' full' : ''}`;
+
+          span.setAttribute('slot', 'configure-custom');
+
+          this._configureSlot = span;
+          this.appendChild(span);
+
+          renderDesignEl(this._configureSlot);
+        } else {
+          if (this._rerender) {
+            renderDesignEl(this._configureSlot);
+          }
+
+          this._configureSlot.className = `tabContent${this.indexTab === 0 ? ' selected' : ''}${this.inTabSidePanel ? ' full' : ''}`;
+        }
+      } else {
+        const settingsTabEl = this.shadowRoot.querySelector('.tabs-container');
+
+        settingsTabEl.className = 'tabs-container hidden';
+      }
     }
 
     onModelChanged(m, reset) {
       this._model = m;
-      this._render(true, reset);
-      this.dispatchModelUpdated(reset);
-    }
+      this._renderWrapper(true, reset);
 
-    /**
-     *
-     * @param {done, progress, file} handler
-     */
-    insertImage(handler) {
-      this.dispatchEvent(new InsertImageEvent(handler));
-    }
-
-    onDeleteImage(src, done) {
-      this.dispatchEvent(new DeleteImageEvent(src, done));
-    }
-
-    renderWrapper(rerender, reset) {
-      const el = this.wrapperEl || document.createElement('configure-wrapper');
-
-      el.setAttribute('slot', 'configure-wrapper');
-
-      if (!this.wrapperEl) {
-        this.appendChild(el);
+      if (this.onModelChangedCallback) {
+        this.onModelChangedCallback(m, reset);
       }
+    }
 
-      this.wrapperEl = el;
+    handlePreviewTab() {
+      const el = this._previewSlot ? this._previewSlot.firstChild : {};
+      const newSession = this._reset ? [] : el._session;
 
+      el.session = newSession || ((!this._reset && window.demo && window.demo.session) || []);
+
+      this.modelFn(this._model, newSession, {
+        mode: this.mode
+      })
+        .then((newModel) => {
+          const sidePanelEl = this._sidePanel && this._sidePanel.el.firstChild;
+
+          el.model = newModel;
+
+          this.dispatchEvent(new CustomPreviewModelUpdatedEvent(this._model, this._reset));
+
+          if (sidePanelEl) {
+            const element = React.createElement(RootElem, {
+              sideMenuItems: getSideMenuItems({
+                model: this._model,
+                configure: this._configure,
+                onModelChanged: this.onModelChanged
+              }, this._previewTabVisible),
+              regularItems: null,
+            });
+
+            ReactDOM.render(element, this._sidePanel.el);
+          }
+        });
+    }
+
+    getMarkup() {
       const slot = this.shadowRoot.querySelector('[name=preview-custom]');
       const assignedElements = slot.assignedElements();
       const firstElem = assignedElements.length ? assignedElements[0] : slot.firstElementChild;
-      const markup = firstElem.outerHTML;
 
-      if (!this._previewTabVisible) {
-        el.configureElement = configureElement(this);
-      }
-
-      el.modelChangeFnName = modelChangeFnName;
-      el.disableSidePanel = this._disableSidePanel;
-      el.sideMenuItems = getSideMenuItems({
-        model: this._model,
-        configure: this._configure,
-        onModelChanged: this.onModelChanged
-      }, this._previewTabVisible);
-
-      el.rerender = rerender;
-
-      el.modelFn = modelFn;
-      el.noPreview = this._noPreview;
-
-      el.markup = markup;
-      el.previewSession = (!reset && window.demo && window.demo.session) || {};
-
-      el.configure = this._configure;
-      el.model = this._model;
-      el.onTabChanged = (tabIndex) => {
-        this.previewTabVisible = tabIndex === 1;
-      };
+      return firstElem.id === 'default'? firstElem.outerHTML : null;
     }
 
-    _render(rerender, reset) {
+    renderPreviewTab() {
+      const existing = this.querySelector('[slot=preview-custom]');
+      const settingsTabEl = this.shadowRoot.querySelector('.previewTab');
+      const extraOptions = this.shadowRoot.querySelector('.extra-options');
 
-      this.renderWrapper(rerender, reset);
+      if (extraOptions) {
+        extraOptions.className = `extra-options${this.indexTab === 1 ? ' present' : ''}`;
+      }
+
+      if (!this._noPreview) {
+        if (!this._previewSlot) {
+          const markup = this.getMarkup();
+
+          if (markup) {
+            const span = document.createElement('span');
+
+            settingsTabEl.className = 'tab previewTab visible';
+
+            span.className = `tabContent${this.inTabSidePanel ? ' full' : ''}`;
+            span.setAttribute('slot', 'preview-custom');
+
+            span.innerHTML = markup;
+
+            this._previewSlot = span;
+            this.appendChild(span);
+            this.handlePreviewTab();
+          }
+        } else {
+
+          if (this._rerender) {
+            this.handlePreviewTab();
+          }
+
+          this._previewSlot.className = `tabContent${this.indexTab === 1 ? ' selected' : ''}${this.inTabSidePanel ? ' full' : ''}`;
+        }
+      } else if (existing) {
+        this._previewSlot = null;
+        this.removeChild(existing);
+
+        settingsTabEl.className = 'tab previewTab hidden';
+      }
+    }
+
+    renderSidePanel() {
+      let containerEl = this._sidePanel ? this._sidePanel.el : null;
+
+      if (!this._sidePanel || (this._sidePanel && this._sidePanel.inTab !== this.inTabSidePanel)) {
+
+        if (this._sidePanel) {
+          this.removeChild(this._sidePanel.el);
+        }
+
+        const span = document.createElement('span');
+
+        span.className = this.inTabSidePanel ? `tabContent${this.indexTab === 2 ? ' selected' : ''}${this.inTabSidePanel ? ' full' : ''}` : 'sidePanelClass';
+
+        span.setAttribute('slot', 'sidepanel-custom');
+
+        this._sidePanel = { el: span, inTab: this.inTabSidePanel };
+        this.appendChild(span);
+
+        containerEl = span;
+      } else if (this._sidePanel) {
+        this._sidePanel.el.className = this.inTabSidePanel ? `tabContent${this.indexTab === 2 ? ' selected' : ''}${this.inTabSidePanel ? ' full' : ''}` : 'sidePanelClass';
+      }
+
+      const settingsTabEl = this.shadowRoot.querySelector('.settingsTab');
+
+      settingsTabEl.className = `tab settingsTab hidden ${this.inTabSidePanel ? ' visible' : ''}`;
+
+      if (!this.inTabSidePanel && this.indexTab === 2) {
+        this.indexTab = 1;
+        this._renderWrapper();
+      }
+
+      const element = React.createElement(RootElem, {
+        sideMenuItems: getSideMenuItems({
+          model: this._model,
+          configure: this._configure,
+          onModelChanged: this.onModelChanged
+        }, this._previewTabVisible),
+        regularItems: null,
+        inTabForSure: this.inTabSidePanel && this.indexTab === 2
+      });
+
+      ReactDOM.render(element, containerEl);
+    }
+
+    _renderWrapper(rerender, reset) {
+      this._rerender = rerender;
+      this._reset = reset;
+
+      this.handleTabs();
+      this.handleModes();
+
+      if (this._model) {
+        this.renderDesignTab();
+        this.renderPreviewTab();
+        this.renderSidePanel();
+      }
     }
   }
 };
