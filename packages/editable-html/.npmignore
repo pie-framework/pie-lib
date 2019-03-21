@@ -4,4 +4,5 @@ yarn-error.log
 static.json
 *.tgz
 deploy.sh
+node_modules
 

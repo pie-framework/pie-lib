@@ -3,6 +3,116 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@5.1.12...@pie-lib/math-input@5.1.13) (2019-03-15)
+
+
+### Bug Fixes
+
+* rm child prepack in favour of root prepack ([381d8d6](https://github.com/pie-framework/pie-lib/commit/381d8d6))
+
+
+
+
+
+## [5.1.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@5.1.11...@pie-lib/math-input@5.1.12) (2019-03-14)
+
+**Note:** Version bump only for package @pie-lib/math-input
+
+
+
+
+
+## [5.1.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@5.1.10...@pie-lib/math-input@5.1.11) (2019-03-14)
+
+**Note:** Version bump only for package @pie-lib/math-input
+
+
+
+
+
+## [5.1.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@5.1.9...@pie-lib/math-input@5.1.10) (2019-03-14)
+
+**Note:** Version bump only for package @pie-lib/math-input
+
+
+
+
+
+## [5.1.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@5.1.8...@pie-lib/math-input@5.1.9) (2019-03-14)
+
+**Note:** Version bump only for package @pie-lib/math-input
+
+
+
+
+
+## [5.1.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@5.1.7...@pie-lib/math-input@5.1.8) (2019-03-13)
+
+**Note:** Version bump only for package @pie-lib/math-input
+
+
+
+
+
+## [5.1.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@5.1.6...@pie-lib/math-input@5.1.7) (2019-03-13)
+
+**Note:** Version bump only for package @pie-lib/math-input
+
+
+
+
+
+## [5.1.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@5.1.5...@pie-lib/math-input@5.1.6) (2019-03-13)
+
+**Note:** Version bump only for package @pie-lib/math-input
+
+
+
+
+
+## [5.1.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@5.1.3...@pie-lib/math-input@5.1.5) (2019-03-12)
+
+**Note:** Version bump only for package @pie-lib/math-input
+
+
+
+
+
+## [5.1.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@5.1.2...@pie-lib/math-input@5.1.3) (2019-03-12)
+
+**Note:** Version bump only for package @pie-lib/math-input
+
+
+
+
+
+## [5.1.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@5.1.1...@pie-lib/math-input@5.1.2) (2019-03-11)
+
+**Note:** Version bump only for package @pie-lib/math-input
+
+
+
+
+
+## [5.1.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@5.1.0...@pie-lib/math-input@5.1.1) (2019-03-11)
+
+**Note:** Version bump only for package @pie-lib/math-input
+
+
+
+
+
+# [5.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@5.0.4...@pie-lib/math-input@5.1.0) (2019-02-20)
+
+
+### Features
+
+* **math-toolbar:** configurable keypad for extra button variety ([f219ae1](https://github.com/pie-framework/pie-lib/commit/f219ae1))
+
+
+
+
+
 ## [5.0.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@5.0.3...@pie-lib/math-input@5.0.4) (2019-02-13)
 
 

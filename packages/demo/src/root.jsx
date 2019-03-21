@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
+import Button from '@material-ui/core/Button';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -12,6 +13,7 @@ import Link from 'next/link';
 import Divider from '@material-ui/core/Divider';
 import { withRouter } from 'next/router';
 import classNames from 'classnames';
+import ChangelogDialog from './changelog-dialog';
 
 const drawerWidth = 240;
 
@@ -67,9 +69,12 @@ const ActiveLink = withStyles(theme => ({
   version: {
     fontSize: '11px',
     color: theme.palette.secondary.main
+  },
+  versionActive: {
+    color: theme.palette.primary.main
   }
 }))(
-  withRouter(({ router, path, primary, classes, version }) => {
+  withRouter(({ router, path, primary, classes, version, onVersionClick }) => {
     const isActive = path === router.pathname;
     return (
       <Link href={path} as={path}>
@@ -78,73 +83,126 @@ const ActiveLink = withStyles(theme => ({
             primary={primary}
             classes={{ primary: isActive && classes.active }}
           />
-          {version && <span className={classes.version}>{version}</span>}
+          {version && (
+            <span
+              onClick={isActive ? () => onVersionClick(path) : undefined}
+              className={classNames(
+                classes.version,
+                isActive && classes.versionActive
+              )}
+            >
+              {version}
+            </span>
+          )}
         </ListItem>
       </Link>
     );
   })
 );
 
-function ClippedDrawer(props) {
-  const { classes, children, links, gitInfo } = props;
-  return (
-    <div className={classes.root}>
-      <AppBar position="absolute" className={classes.appBar}>
-        <Toolbar
-          className={classNames(
-            classes.toolbar,
-            gitInfo.branch !== 'master' && classes.devToolbar
-          )}
+const ChangelogButton = props => {
+  return <Button onClick={props.onClick}>Changelog</Button>;
+};
+
+class ClippedDrawer extends React.Component {
+  //(props) {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      changelogOpen: false
+    };
+  }
+
+  showChangeLog = path => {
+    this.setState({ changelogOpen: true, changelogPath: path });
+  };
+
+  hideDialog = () => {
+    this.setState({ changelogOpen: false, changelogPath: undefined });
+  };
+
+  render() {
+    const { classes, children, links, gitInfo, packageInfo } = this.props;
+    const { changelogOpen, changelogPath } = this.state;
+
+    const clPackage = changelogOpen
+      ? packageInfo.find(pi => {
+          return pi.dir.endsWith(changelogPath);
+        })
+      : undefined;
+
+    return (
+      <div className={classes.root}>
+        <AppBar position="absolute" className={classes.appBar}>
+          <Toolbar
+            className={classNames(
+              classes.toolbar,
+              gitInfo.branch !== 'master' && classes.devToolbar
+            )}
+          >
+            <PageTitle />
+            {/* <ChangelogButton
+              onClick={() => {
+                this.showChangeLog();
+              }}
+            /> */}
+            <div className={classes.extras}>
+              {gitInfo.branch}&nbsp;|&nbsp;
+              <a
+                href={`https://github.com/pie-framework/pie-lib/commit/${
+                  gitInfo.short
+                }`}
+              >
+                {gitInfo.short}
+              </a>
+            </div>
+          </Toolbar>
+        </AppBar>
+        <Drawer
+          variant="permanent"
+          classes={{
+            paper: classes.drawerPaper
+          }}
         >
-          <PageTitle />
-          <div className={classes.extras}>
-            {gitInfo.branch}&nbsp;|&nbsp;
-            <a
-              href={`https://github.com/pie-framework/pie-lib/commit/${
-                gitInfo.short
-              }`}
-            >
-              {gitInfo.short}
-            </a>
-          </div>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        variant="permanent"
-        classes={{
-          paper: classes.drawerPaper
-        }}
-      >
-        <div className={classes.toolbar} />
-        <List>
-          <ActiveLink path="/" primary={'Home'} />
-          <Divider />
-          {links.map((l, index) => (
-            <ActiveLink
-              key={index}
-              path={l.path}
-              primary={l.label}
-              version={
-                gitInfo.branch === 'master'
-                  ? l.version
-                  : l.version
-                  ? 'next'
-                  : undefined
-              }
-            />
-          ))}
-        </List>
-      </Drawer>
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-        {children}
-      </main>
-    </div>
-  );
+          <div className={classes.toolbar} />
+          <List>
+            <ActiveLink path="/" primary={'Home'} />
+            <Divider />
+            {links.map((l, index) => (
+              <ActiveLink
+                key={index}
+                path={l.path}
+                primary={l.label}
+                onVersionClick={this.showChangeLog}
+                version={
+                  gitInfo.branch === 'master'
+                    ? l.version
+                    : l.version
+                    ? 'next'
+                    : undefined
+                }
+              />
+            ))}
+          </List>
+        </Drawer>
+        <main className={classes.content}>
+          <div className={classes.toolbar} />
+          {children}
+        </main>
+        <ChangelogDialog
+          open={changelogOpen}
+          onClose={this.hideDialog}
+          activePackage={clPackage}
+        />
+      </div>
+    );
+  }
 }
 
 ClippedDrawer.propTypes = {
   gitInfo: PropTypes.object,
+  packageInfo: PropTypes.array,
   links: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string.isRequired,

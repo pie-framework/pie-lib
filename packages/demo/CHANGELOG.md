@@ -3,6 +3,129 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@3.1.16...@pie-lib/demo@3.1.17) (2019-03-15)
+
+
+### Bug Fixes
+
+* rm child prepack in favour of root prepack ([381d8d6](https://github.com/pie-framework/pie-lib/commit/381d8d6))
+
+
+
+
+
+## [3.1.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@3.1.15...@pie-lib/demo@3.1.16) (2019-03-14)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [3.1.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@3.1.14...@pie-lib/demo@3.1.15) (2019-03-14)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [3.1.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@3.1.13...@pie-lib/demo@3.1.14) (2019-03-14)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [3.1.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@3.1.12...@pie-lib/demo@3.1.13) (2019-03-14)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [3.1.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@3.1.11...@pie-lib/demo@3.1.12) (2019-03-13)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [3.1.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@3.1.10...@pie-lib/demo@3.1.11) (2019-03-13)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [3.1.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@3.1.9...@pie-lib/demo@3.1.10) (2019-03-13)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [3.1.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@3.1.8...@pie-lib/demo@3.1.9) (2019-03-12)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [3.1.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@3.1.7...@pie-lib/demo@3.1.8) (2019-03-12)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [3.1.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@3.1.6...@pie-lib/demo@3.1.7) (2019-03-12)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [3.1.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@3.1.5...@pie-lib/demo@3.1.6) (2019-03-12)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [3.1.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@3.1.4...@pie-lib/demo@3.1.5) (2019-03-11)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [3.1.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@3.1.3...@pie-lib/demo@3.1.4) (2019-03-11)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [3.1.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@3.1.2...@pie-lib/demo@3.1.3) (2019-02-20)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
 ## [3.1.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@3.1.1...@pie-lib/demo@3.1.2) (2019-02-17)
 
 **Note:** Version bump only for package @pie-lib/demo

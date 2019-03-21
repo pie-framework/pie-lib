@@ -5,6 +5,8 @@ const { loadLinks } = require('./config/load-links');
 const gitInfo = require('./config/git-info')();
 const links = loadLinks();
 
+const packageInfo = require('./config/package-info');
+
 const getAssetPrefix = () => {
   //eslint-disable-next-line
   if (process.env.NODE_ENV !== 'production') {
@@ -48,6 +50,7 @@ module.exports = withCSS({
   assetPrefix: getAssetPrefix(),
   env: {
     links,
-    gitInfo
+    gitInfo,
+    packageInfo: packageInfo.load()
   }
 });
