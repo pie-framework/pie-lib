@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import debug from 'debug';
 import classNames from 'classnames';
-import { registerAnswerBlock, registerLineBreak } from './custom-elements';
+import { registerLineBreak } from './custom-elements';
 
 let MQ;
 if (typeof window !== 'undefined') {
@@ -11,7 +11,6 @@ if (typeof window !== 'undefined') {
   MQ = MathQuill.getInterface(2);
 
   if (MQ && MQ.registerEmbed) {
-    registerAnswerBlock(MQ);
     registerLineBreak(MQ);
   }
 }
@@ -113,6 +112,10 @@ export class Input extends React.Component {
     }
   };
 
+  onInputFocus = (name) => {
+    console.log(name)
+  };
+
   onKeyPress = event => {
     if (event.charCode === 13) {
       // if enter's pressed, we're going for a custom embedded element that'll
@@ -124,14 +127,12 @@ export class Input extends React.Component {
   };
 
   shouldComponentUpdate(nextProps) {
-    console.log('render', this.props.latex);
     log('next: ', nextProps.latex);
     log('current: ', this.mathField.latex());
     return nextProps.latex !== this.mathField.latex();
   }
 
   render() {
-    console.log('render', this.props.latex);
     const { onClick, onFocus, onBlur, classes, className } = this.props;
 
     return (

@@ -9,6 +9,7 @@ if (typeof window !== 'undefined') {
 }
 
 const log = debug('pie-lib:math-input:mq:static');
+const REGEX = /\\MathQuillMathField\[answerBlock\d*\]\{(.*?)\}/g;
 
 /**
  * Wrapper for MathQuill MQ.MathField.
@@ -36,18 +37,13 @@ export default class Static extends React.Component {
     const iter = this.mathField.innerFields.keys();
     let v = iter.next();
     do {
-      console.log(v);
       v = iter.next();
     } while (!v.done);
-    Object.keys(this.mathField.innerFields).find((v, k) => {
-      console.log(k);
-    });
   }
   onInputEdit(field) {
     if (!this.mathField) {
       return;
     }
-    console.log('!!', field, field.name, field.latex());
     const name = this.props.getFieldName(field, this.mathField.innerFields);
     if (this.props.onSubFieldChange) {
       this.props.onSubFieldChange(name, field.latex());
@@ -81,7 +77,10 @@ export default class Static extends React.Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    return nextProps.latex !== this.mathField.latex();
+    const nextLatex = nextProps.latex.replace(REGEX, (match, submatch) => submatch);
+    const newFieldCount = ((nextProps.latex).match(REGEX) || []).length;
+
+    return (nextLatex !== this.mathField.latex()) || (newFieldCount !== Object.keys(this.mathField.innerFields).length / 2);
   }
 
   render() {

@@ -1,13 +1,3 @@
-const registerAnswerBlock = function(MQ) {
-  MQ.registerEmbed('answerBlock', id => {
-    return {
-      htmlString: `<span style="min-height: 20px" id=${id}></span>`,
-      text: () => "testText",
-      latex: () => "\\embed{answerBlock}[" + id + "]"
-    };
-  });
-}
-
 const registerLineBreak = function(MQ) {
   MQ.registerEmbed('newLine', () => {
     return {
@@ -19,6 +9,5 @@ const registerLineBreak = function(MQ) {
 }
 
 export {
-  registerAnswerBlock,
   registerLineBreak
 };
