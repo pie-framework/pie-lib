@@ -193,10 +193,21 @@ class RawContainer extends React.Component {
 
           <Section name="NumberTextField">
             <NumberTextField
+              label="Number Text Field Without Validation"
               value={this.state.numberTextField.one}
               max={10}
               min={1}
               onChange={this.updateOne}
+              className={classes.numberField}
+            />
+            <NumberTextField
+              label="Number Text Field With Validation"
+              value={this.state.numberTextField.one}
+              max={10}
+              min={1}
+              onChange={this.updateOne}
+              showErrorWhenOutsideRange
+              className={classes.numberField}
             />
           </Section>
           <Section name="FeedbackSelector">
@@ -257,6 +268,9 @@ const Container = withStyles(theme => ({
   },
   right: {
     flex: 0.3
+  },
+  numberField: {
+    width: '270px'
   }
 }))(RawContainer);
 
