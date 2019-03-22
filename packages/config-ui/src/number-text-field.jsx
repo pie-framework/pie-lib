@@ -93,7 +93,7 @@ export class NumberTextField extends React.Component {
 
     if (number !== this.state.value) {
       log('trigger update...');
-      this.setState({ value: number }, () => {
+      this.setState({ value: number.toString() }, () => {
         this.props.onChange(event, number);
       });
     }
