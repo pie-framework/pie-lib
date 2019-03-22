@@ -58,9 +58,8 @@ Sometimes the project test set up can get out of synch
 
 ```shell
 # make sure the local demo is working first: scripts/dev then:
-cd demo
-./node_modules/.bin/next build
-./node_modules/.bin/next export
+./node_modules/.bin/next build packages/demo
+./node_modules/.bin/next export packages/demo
 cd out
 # you can now deploy using now (or if you have another static site handler)
 now .

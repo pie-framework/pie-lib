@@ -29,12 +29,43 @@ export default class Static extends React.Component {
     this.update();
   }
 
+  findName(field) {
+    if (!this.mathField) {
+      return;
+    }
+    const iter = this.mathField.innerFields.keys();
+    let v = iter.next();
+    do {
+      console.log(v);
+      v = iter.next();
+    } while (!v.done);
+    Object.keys(this.mathField.innerFields).find((v, k) => {
+      console.log(k);
+    });
+  }
+  onInputEdit(field) {
+    if (!this.mathField) {
+      return;
+    }
+    console.log('!!', field, field.name, field.latex());
+    const name = this.props.getFieldName(field, this.mathField.innerFields);
+    if (this.props.onSubFieldChange) {
+      this.props.onSubFieldChange(name, field.latex());
+    }
+  }
+
   update() {
     if (!MQ) {
       throw new Error('MQ is not defined - but component has mounted?');
     }
     this.input.innerHTML = this.props.latex;
-    this.mathField = MQ.StaticMath(this.input);
+    if (!this.mathField) {
+      this.mathField = MQ.StaticMath(this.input, {
+        handlers: {
+          edit: this.onInputEdit.bind(this)
+        }
+      });
+    }
   }
 
   blur() {
