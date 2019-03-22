@@ -1,20 +1,18 @@
 {
   "name": "@pie-lib/scoring-config",
-  "version": "3.3.19",
+  "version": "3.3.28",
   "description": "",
   "main": "lib/index.js",
   "publishConfig": {
     "access": "public"
   },
-  "scripts": {
-    "test": "./node_modules/.bin/jest"
-  },
+  "scripts": {},
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@material-ui/core": "^3.8.3",
     "@material-ui/icons": "^3.0.2",
-    "@pie-lib/config-ui": "^7.11.20",
+    "@pie-lib/config-ui": "^7.11.28",
     "classnames": "^2.2.6",
     "debug": "^4.1.1",
     "lodash": "^4.17.11"
@@ -26,5 +24,5 @@
     "react": "^16.7.0",
     "react-dom": "^16.7.0"
   },
-  "gitHead": "392d23fb87a66e7260172db53451a64628b0bf8a"
+  "gitHead": "f3345ae70660f4ae88450512261c7ea1601003c8"
 }

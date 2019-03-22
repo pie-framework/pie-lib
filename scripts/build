@@ -1,13 +1,9 @@
 #!/usr/bin/env node
-
+const _ = require('lodash');
 const minimist = require('minimist');
-const {
-  Commands,
-  getPackages,
-  getUnreleasedChangelog
-} = require('@pie-framework/build-helper');
+const { Commands } = require('@pie-framework/build-helper');
 const args = minimist(process.argv.slice(2));
-const { resolve, join } = require('path');
+const { resolve } = require('path');
 
 class LibCommands extends Commands {
   async deploy() {
@@ -17,23 +13,6 @@ class LibCommands extends Commands {
 
     const alias = `pie-lib${args.next ? '-next' : ''}`;
     return this.staticToNow(resolve(demoDir, 'out'), alias);
-  }
-
-  /**
-   * Override this so that the changelogs dont get removed.
-   * We want to pull them in to the demo site build.
-   */
-  afterPublish() {
-    return Promise.resolve(undefined);
-  }
-
-  async logChangelog() {
-    const packages = getPackages(join(this.projectRoot, 'packages'));
-
-    const changelogs = await Promise.all(
-      packages.map(p => getUnreleasedChangelog(p))
-    );
-    console.log('changelogs', changelogs);
   }
 }
 

@@ -3,6 +3,73 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@0.3.8...@pie-lib/math-evaluator@0.3.9) (2019-03-15)
+
+
+### Bug Fixes
+
+* rm child prepack in favour of root prepack ([381d8d6](https://github.com/pie-framework/pie-lib/commit/381d8d6))
+
+
+
+
+
+## [0.3.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@0.3.7...@pie-lib/math-evaluator@0.3.8) (2019-03-14)
+
+**Note:** Version bump only for package @pie-lib/math-evaluator
+
+
+
+
+
+## [0.3.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@0.3.6...@pie-lib/math-evaluator@0.3.7) (2019-03-14)
+
+**Note:** Version bump only for package @pie-lib/math-evaluator
+
+
+
+
+
+## [0.3.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@0.3.5...@pie-lib/math-evaluator@0.3.6) (2019-03-14)
+
+**Note:** Version bump only for package @pie-lib/math-evaluator
+
+
+
+
+
+## [0.3.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@0.3.4...@pie-lib/math-evaluator@0.3.5) (2019-03-14)
+
+**Note:** Version bump only for package @pie-lib/math-evaluator
+
+
+
+
+
+## [0.3.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@0.3.3...@pie-lib/math-evaluator@0.3.4) (2019-03-13)
+
+**Note:** Version bump only for package @pie-lib/math-evaluator
+
+
+
+
+
+## [0.3.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@0.3.2...@pie-lib/math-evaluator@0.3.3) (2019-03-13)
+
+**Note:** Version bump only for package @pie-lib/math-evaluator
+
+
+
+
+
+## [0.3.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@0.3.1...@pie-lib/math-evaluator@0.3.2) (2019-03-13)
+
+**Note:** Version bump only for package @pie-lib/math-evaluator
+
+
+
+
+
 ## [0.3.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@0.3.0...@pie-lib/math-evaluator@0.3.1) (2019-01-30)
 
 **Note:** Version bump only for package @pie-lib/math-evaluator

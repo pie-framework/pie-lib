@@ -3,6 +3,73 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@1.2.8...@pie-lib/math-rendering@1.2.9) (2019-03-15)
+
+
+### Bug Fixes
+
+* rm child prepack in favour of root prepack ([381d8d6](https://github.com/pie-framework/pie-lib/commit/381d8d6))
+
+
+
+
+
+## [1.2.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@1.2.7...@pie-lib/math-rendering@1.2.8) (2019-03-14)
+
+**Note:** Version bump only for package @pie-lib/math-rendering
+
+
+
+
+
+## [1.2.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@1.2.6...@pie-lib/math-rendering@1.2.7) (2019-03-14)
+
+**Note:** Version bump only for package @pie-lib/math-rendering
+
+
+
+
+
+## [1.2.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@1.2.5...@pie-lib/math-rendering@1.2.6) (2019-03-14)
+
+**Note:** Version bump only for package @pie-lib/math-rendering
+
+
+
+
+
+## [1.2.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@1.2.4...@pie-lib/math-rendering@1.2.5) (2019-03-14)
+
+**Note:** Version bump only for package @pie-lib/math-rendering
+
+
+
+
+
+## [1.2.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@1.2.3...@pie-lib/math-rendering@1.2.4) (2019-03-13)
+
+**Note:** Version bump only for package @pie-lib/math-rendering
+
+
+
+
+
+## [1.2.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@1.2.2...@pie-lib/math-rendering@1.2.3) (2019-03-13)
+
+**Note:** Version bump only for package @pie-lib/math-rendering
+
+
+
+
+
+## [1.2.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@1.2.1...@pie-lib/math-rendering@1.2.2) (2019-03-13)
+
+**Note:** Version bump only for package @pie-lib/math-rendering
+
+
+
+
+
 ## [1.2.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@1.2.0...@pie-lib/math-rendering@1.2.1) (2019-01-30)
 
 **Note:** Version bump only for package @pie-lib/math-rendering

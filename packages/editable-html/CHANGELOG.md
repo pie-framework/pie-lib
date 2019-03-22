@@ -3,6 +3,76 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.1.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.1.16...@pie-lib/editable-html@7.1.17) (2019-03-15)
+
+
+### Bug Fixes
+
+* rm child prepack in favour of root prepack ([381d8d6](https://github.com/pie-framework/pie-lib/commit/381d8d6))
+
+
+
+
+
+## [7.1.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.1.15...@pie-lib/editable-html@7.1.16) (2019-03-14)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+## [7.1.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.1.14...@pie-lib/editable-html@7.1.15) (2019-03-14)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+## [7.1.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.1.13...@pie-lib/editable-html@7.1.14) (2019-03-14)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+## [7.1.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.1.12...@pie-lib/editable-html@7.1.13) (2019-03-14)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+## [7.1.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.1.11...@pie-lib/editable-html@7.1.12) (2019-03-13)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+## [7.1.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.1.10...@pie-lib/editable-html@7.1.11) (2019-03-13)
+
+
+### Bug Fixes
+
+* ignore node_modules ([900ab7c](https://github.com/pie-framework/pie-lib/commit/900ab7c))
+
+
+
+
+
+## [7.1.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.1.9...@pie-lib/editable-html@7.1.10) (2019-03-13)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
 ## [7.1.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.1.7...@pie-lib/editable-html@7.1.9) (2019-03-12)
 
 **Note:** Version bump only for package @pie-lib/editable-html

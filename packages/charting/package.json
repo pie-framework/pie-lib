@@ -3,13 +3,14 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "4.0.5",
+  "version": "4.0.13",
   "description": "charting",
   "keywords": [
     "react",
     "pie",
     "charting"
   ],
+  "scripts": {},
   "repository": "pie-framework/pie-lib",
   "main": "lib/index.js",
   "author": "",
@@ -17,7 +18,7 @@
   "dependencies": {
     "@mapbox/point-geometry": "^0.1.0",
     "@material-ui/core": "^3.8.3",
-    "@pie-lib/plot": "^0.1.4",
+    "@pie-lib/plot": "^0.1.12",
     "@vx/axis": "^0.0.183",
     "@vx/event": "^0.0.182",
     "@vx/grid": "^0.0.183",
@@ -50,5 +51,5 @@
   "peerDependencies": {
     "react": "^16.7.0"
   },
-  "gitHead": "1090bd26e31b37d067d32cde11a4185ef0b7dc52"
+  "gitHead": "f3345ae70660f4ae88450512261c7ea1601003c8"
 }
