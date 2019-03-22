@@ -37,13 +37,24 @@ export class Input extends React.Component {
       throw new Error('MQ is not defined - but component has mounted?');
     }
 
-    const { latex } = this.props;
     this.mathField = MQ.MathField(this.input, {
       handlers: {
         edit: this.onInputEdit.bind(this)
       }
     });
 
+    this.updateLatex();
+  }
+
+  componentDidUpdate() {
+    this.updateLatex();
+  }
+
+  updateLatex() {
+    if (!this.mathField) {
+      return;
+    }
+    const { latex } = this.props;
     if (latex) {
       this.mathField.latex(latex);
     }
@@ -110,13 +121,17 @@ export class Input extends React.Component {
       this.write('\\embed{newLine}[]');
       this.onInputEdit();
     }
-  }
+  };
 
   shouldComponentUpdate(nextProps) {
+    console.log('render', this.props.latex);
+    log('next: ', nextProps.latex);
+    log('current: ', this.mathField.latex());
     return nextProps.latex !== this.mathField.latex();
   }
 
   render() {
+    console.log('render', this.props.latex);
     const { onClick, onFocus, onBlur, classes, className } = this.props;
 
     return (

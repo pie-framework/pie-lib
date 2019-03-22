@@ -1,10 +1,14 @@
 import React from 'react';
 import { mq } from '@pie-lib/math-input';
 import { withStyles } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
+import debug from 'debug';
+
+const log = debug('pie-lib:demo:math-input');
 
 let registered = false;
 
-const REGEX = /\\embed\{edBlock\}\[(.*)\]/g;
+const REGEX = /\\embed\{edBlock\}\[(.*?)\]/g;
 
 export class CustomSample extends React.Component {
   constructor(props) {
@@ -64,7 +68,8 @@ export class CustomSample extends React.Component {
     const result = ltx.replace(
       REGEX,
       (match, submatch, offset, wholeString) => {
-        return `\\MathQuillMathField[${submatch}]{${this.state[submatch]}}`;
+        return `\\MathQuillMathField[${submatch}]{${this.state[submatch] ||
+          'x'}}`;
       }
     );
     console.log(result);
@@ -77,16 +82,25 @@ export class CustomSample extends React.Component {
       return tf && tf.id == changeField.id;
     });
   }
+
+  addBlock() {
+    const latex = `${this.state.latex} + \\embed{edBlock}[r2]`;
+    this.setState({ latex });
+  }
   render() {
-    console.log('RENDER!!');
+    log('RENDER!!', this.state.latex);
+    const prepped = this.prepareForStatic(this.state.latex);
+    log('prepped:', prepped);
+
     return (
       <div ref={r => (this.root = r)}>
         foo
         <div>The editor with custom embeds:</div>
+        <Button onClick={() => this.addBlock()}>Add block</Button>
         <mq.Input latex={this.state.latex} />
         <div>The static math with edit fields with in it.</div>
         <mq.Static
-          latex={this.prepareForStatic(this.state.latex)}
+          latex={prepped}
           onSubFieldChange={this.subFieldChanged}
           getFieldName={this.getFieldName}
         />

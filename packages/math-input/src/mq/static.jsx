@@ -58,7 +58,7 @@ export default class Static extends React.Component {
     if (!MQ) {
       throw new Error('MQ is not defined - but component has mounted?');
     }
-    this.input.innerHTML = this.props.latex;
+    // this.input.innerHTML = this.props.latex;
     if (!this.mathField) {
       this.mathField = MQ.StaticMath(this.input, {
         handlers: {
@@ -66,6 +66,8 @@ export default class Static extends React.Component {
         }
       });
     }
+
+    this.mathField.latex(this.props.latex);
   }
 
   blur() {
