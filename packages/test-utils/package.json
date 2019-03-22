@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/test-utils",
-  "version": "0.1.1",
+  "version": "0.1.9",
   "description": "",
   "main": "lib/index.js",
   "publishConfig": {
@@ -16,5 +16,6 @@
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.7.1"
   },
-  "gitHead": "1090bd26e31b37d067d32cde11a4185ef0b7dc52"
+  "gitHead": "f3345ae70660f4ae88450512261c7ea1601003c8",
+  "scripts": {}
 }

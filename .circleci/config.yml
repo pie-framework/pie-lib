@@ -1,0 +1,116 @@
+version: 2
+
+defaults: &defaults
+  working_directory: ~/repo
+  docker:
+    - image: circleci/node:11.10.0
+
+reg_auth: &reg_auth
+  name: Authenticate with registry
+  command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
+
+restore_cache: &restore_cache
+  keys:
+    - v1-dependencies-{{ checksum "package.json" }}
+    # fallback to using the latest cache if no exact match is found
+    - v1-dependencies-
+
+save_cache: &save_cache
+  paths:
+    - node_modules
+  key: v1-dependencies-{{ checksum "package.json" }}
+
+jobs:
+  lint:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: *reg_auth
+      - restore_cache: *restore_cache
+      - run: yarn install
+      - save_cache: *save_cache
+      - run: scripts/build lint
+
+  test:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: *reg_auth
+      - restore_cache: *restore_cache
+      - run: yarn install
+      - save_cache: *save_cache
+      - run: scripts/build babel test
+
+  build:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: *reg_auth
+      - restore_cache: *restore_cache
+      - run: yarn install
+      - save_cache: *save_cache
+      - run: scripts/build release --next --skipForcePublish
+
+  release_build:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: *reg_auth
+      - restore_cache: *restore_cache
+      - run: yarn install
+      - save_cache: *save_cache
+      - run: scripts/build release
+
+  deploy_demo:
+    <<: *defaults
+
+    steps:
+      - checkout
+      - run: *reg_auth
+      - restore_cache: *restore_cache
+      - run: yarn install
+      - save_cache: *save_cache
+      - run: scripts/build build deploy --next
+
+workflows:
+  version: 2
+
+  simple_build:
+    jobs:
+      - lint:
+          filters:
+            branches:
+              ignore:
+                - develop
+                - master
+      - test:
+          filters:
+            branches:
+              ignore:
+                - develop
+                - master
+  build:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only:
+                - develop
+  build_master:
+    jobs:
+      - release_build:
+          filters:
+            branches:
+              only:
+                - master
+
+  nightly:
+    triggers:
+      - schedule:
+          cron: '0 0 * * *'
+          filters:
+            branches:
+              only:
+                - develop
+    jobs:
+      - deploy_demo

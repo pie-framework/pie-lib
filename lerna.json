@@ -6,8 +6,8 @@
   "useWorkspaces": true,
   "command": {
     "publish": {
-      "ignoreChanges": ["yarn.lock"],
-      "message": "[skip travis] chore: publish"
+      "ignoreChanges": ["yarn.lock", "CHANGELOG.json"],
+      "message": "[ci skip] chore: publish"
     }
   }
 }
