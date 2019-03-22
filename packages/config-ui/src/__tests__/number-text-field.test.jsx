@@ -41,7 +41,25 @@ describe('NumberTextField', () => {
         it('should contain value', () => {
           expect(props.value).toEqual(value);
         });
+      });
 
+      describe('logic', () => {
+        describe('clamp', () => {
+          const assertClamp = (input, expected) => {
+            it(`${input} => ${expected}`, () => {
+              const result = component.instance().clamp(input);
+              expect(result).toEqual(expected);
+            });
+          };
+
+          assertClamp('foo', 1);
+          assertClamp(1, 1);
+          assertClamp(2, 2);
+          assertClamp(0, 1);
+          assertClamp(-1, 1);
+          assertClamp(10, 10);
+          assertClamp(11, 10);
+        });
 
         describe('onBlur', () => {
           const event = value => ({
@@ -85,19 +103,19 @@ describe('NumberTextField', () => {
             });
           });
 
-            describe('called with empty string', () => {
-              it('should be called with min value', () => {
-                const e = event('');
+          describe('called with empty string', () => {
+            it('should be called with min value', () => {
+              const e = event('');
 
-                textField.simulate('change', e);
+              textField.simulate('change', e);
 
-                expect(component.state('value')).toEqual('');
+              expect(component.state('value')).toEqual('');
 
-                textField.simulate('blur', e);
+              textField.simulate('blur', e);
 
-                expect(component.state('value')).toEqual(min.toString());
-              });
+              expect(component.state('value')).toEqual(min.toString());
             });
+          });
 
           describe('string int less than min', () => {
             const value = (min - 1).toString();
@@ -130,7 +148,7 @@ describe('NumberTextField', () => {
               expect(component.state('value')).toEqual(max.toString());
             });
           });
-        })
+        });
       });
     });
   });
