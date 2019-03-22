@@ -77,19 +77,43 @@ export default class Static extends React.Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    const nextLatex = nextProps.latex.replace(REGEX, (match, submatch) => submatch);
-    const newFieldCount = ((nextProps.latex).match(REGEX) || []).length;
+    const nextLatex = nextProps.latex.replace(
+      REGEX,
+      (match, submatch) => submatch
+    );
+    const newFieldCount = (nextProps.latex.match(REGEX) || []).length;
 
-    return (nextLatex !== this.mathField.latex()) || (newFieldCount !== Object.keys(this.mathField.innerFields).length / 2);
+    return (
+      nextLatex !== this.mathField.latex() ||
+      newFieldCount !== Object.keys(this.mathField.innerFields).length / 2
+    );
   }
 
+  onFocus = e => {
+    try {
+      const rootBlock = e.target.parentElement.nextSibling;
+      const id = parseInt(rootBlock.getAttribute('mathquill-block-id'), 10);
+      const innerField = this.mathField.innerFields.find(f => f.id === id);
+
+      if (innerField) {
+        const name = this.props.getFieldName(
+          innerField,
+          this.mathField.innerFields
+        );
+        this.props.onSubFieldFocus(name, innerField);
+      }
+    } catch (e) {
+      console.error('error finding root block');
+    }
+  };
+
   render() {
-    const { onFocus, onBlur, className } = this.props;
+    const { onBlur, className } = this.props;
 
     return (
       <span
         className={className}
-        onFocus={onFocus}
+        onFocus={this.onFocus}
         onBlur={onBlur}
         ref={r => (this.input = r)}
       />

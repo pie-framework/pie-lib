@@ -62,6 +62,10 @@ export class CustomSample extends React.Component {
     console.log('subfield change..', name, subfieldValue);
   }
 
+  subFieldFocus(name, field) {
+    console.log('sub field focus: ', name, field.latex());
+  }
+
   prepareForStatic(ltx) {
     console.log('ltx:', ltx);
 
@@ -102,6 +106,7 @@ export class CustomSample extends React.Component {
         <mq.Static
           latex={prepped}
           onSubFieldChange={this.subFieldChanged}
+          onSubFieldFocus={this.subFieldFocus}
           getFieldName={this.getFieldName}
         />
       </div>
