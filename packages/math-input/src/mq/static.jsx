@@ -100,6 +100,9 @@ export default class Static extends React.Component {
           innerField,
           this.mathField.innerFields
         );
+        if (this.props.setInput) {
+          this.props.setInput(innerField);
+        }
         this.props.onSubFieldFocus(name, innerField);
       }
     } catch (e) {
