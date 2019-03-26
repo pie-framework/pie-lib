@@ -5,7 +5,9 @@ import Static from '../static';
 const Mathquill = require('mathquill');
 
 jest.mock('mathquill', () => ({
-  StaticMath: jest.fn(),
+  StaticMath: jest.fn().mockReturnValue({
+    latex: jest.fn()
+  }),
   getInterface: jest.fn().mockReturnThis()
 }));
 
@@ -22,7 +24,7 @@ describe('static', () => {
     });
 
     it('set the html', () => {
-      expect(w.instance().input.innerHTML).toEqual('foo');
+      expect(Mathquill.getInterface().StaticMath().latex).toBeCalledWith('foo');
     });
 
     it('calls MQ.StaticMath', () => {

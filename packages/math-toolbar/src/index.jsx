@@ -135,6 +135,7 @@ const styles = () => ({
   pureToolbar: {
     display: 'flex',
     width: '100%',
+    zIndex: 8,
     alignItems: 'center',
     justifyContent: 'space-between'
   }

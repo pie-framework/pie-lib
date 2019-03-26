@@ -9,6 +9,7 @@ if (typeof window !== 'undefined') {
 }
 
 const log = debug('pie-lib:math-input:mq:static');
+const REGEX = /\\MathQuillMathField\[answerBlock\d*\]\{(.*?)\}/g;
 
 /**
  * Wrapper for MathQuill MQ.MathField.
@@ -29,12 +30,40 @@ export default class Static extends React.Component {
     this.update();
   }
 
+  findName(field) {
+    if (!this.mathField) {
+      return;
+    }
+    const iter = this.mathField.innerFields.keys();
+    let v = iter.next();
+    do {
+      v = iter.next();
+    } while (!v.done);
+  }
+  onInputEdit(field) {
+    if (!this.mathField) {
+      return;
+    }
+    const name = this.props.getFieldName(field, this.mathField.innerFields);
+    if (this.props.onSubFieldChange) {
+      this.props.onSubFieldChange(name, field.latex());
+    }
+  }
+
   update() {
     if (!MQ) {
       throw new Error('MQ is not defined - but component has mounted?');
     }
-    this.input.innerHTML = this.props.latex;
-    this.mathField = MQ.StaticMath(this.input);
+    // this.input.innerHTML = this.props.latex;
+    if (!this.mathField) {
+      this.mathField = MQ.StaticMath(this.input, {
+        handlers: {
+          edit: this.onInputEdit.bind(this)
+        }
+      });
+    }
+
+    this.mathField.latex(this.props.latex);
   }
 
   blur() {
@@ -48,16 +77,46 @@ export default class Static extends React.Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    return nextProps.latex !== this.mathField.latex();
+    const nextLatex = nextProps.latex.replace(
+      REGEX,
+      (match, submatch) => submatch
+    );
+    const newFieldCount = (nextProps.latex.match(REGEX) || []).length;
+
+    return (
+      nextLatex !== this.mathField.latex() ||
+      newFieldCount !== Object.keys(this.mathField.innerFields).length / 2
+    );
   }
 
+  onFocus = e => {
+    try {
+      const rootBlock = e.target.parentElement.nextSibling;
+      const id = parseInt(rootBlock.getAttribute('mathquill-block-id'), 10);
+      const innerField = this.mathField.innerFields.find(f => f.id === id);
+
+      if (innerField) {
+        const name = this.props.getFieldName(
+          innerField,
+          this.mathField.innerFields
+        );
+        if (this.props.setInput) {
+          this.props.setInput(innerField);
+        }
+        this.props.onSubFieldFocus(name, innerField);
+      }
+    } catch (e) {
+      console.error('error finding root block');
+    }
+  };
+
   render() {
-    const { onFocus, onBlur, className } = this.props;
+    const { onBlur, className } = this.props;
 
     return (
       <span
         className={className}
-        onFocus={onFocus}
+        onFocus={this.onFocus}
         onBlur={onBlur}
         ref={r => (this.input = r)}
       />
