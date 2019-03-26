@@ -35,7 +35,12 @@ export class NumberTextField extends React.Component {
     min: PropTypes.number,
     max: PropTypes.number,
     label: PropTypes.string,
-    suffix: PropTypes.string
+    suffix: PropTypes.string,
+    showErrorWhenOutsideRange: PropTypes.bool
+  };
+
+  static defaultProps = {
+    showErrorWhenOutsideRange: false
   };
 
   constructor(props) {
@@ -54,7 +59,7 @@ export class NumberTextField extends React.Component {
     this.onChange = this.onChange.bind(this);
   }
 
-  componentWillReceiveProps(props) {
+  UNSAFE_componentWillReceiveProps(props) {
     const value = this.clamp(props.value);
     this.setState({ value });
   }
@@ -75,17 +80,14 @@ export class NumberTextField extends React.Component {
     return value;
   }
 
-  onChange(event) {
+  /**
+   * on Blur (this can be triggered by pressing Enter, see below)
+   * we check the entered value and reset it if needed
+   */
+  onBlur = event => {
     const value = event.target.value;
 
-    log('value: ', value);
-
-    if (!value || isNaN(value)) {
-      log('not natural - return');
-      return;
-    }
-
-    const rawNumber = parseFloat(value, 10);
+    const rawNumber = parseFloat(value);
     log('rawNumber: ', rawNumber);
 
     const number = this.clamp(rawNumber);
@@ -93,21 +95,78 @@ export class NumberTextField extends React.Component {
 
     if (number !== this.state.value) {
       log('trigger update...');
-      this.setState({ value: number }, () => {
+      this.setState({ value: number.toString() }, () => {
         this.props.onChange(event, number);
       });
     }
+  };
+
+  onChange(event) {
+    const value = event.target.value;
+    this.setState({ value });
   }
 
+  errorMessage = () => {
+    const { min, max } = this.props;
+    if (min && max) {
+      return `The value must be between ${min} and ${max}`;
+    }
+    if (min) {
+      return `The value must be greater than ${min}`;
+    }
+    if (max) {
+      return `The value must be less than ${max}`;
+    }
+  };
+
+  /**
+   * if the input has to show error when outside range,
+   * and the entered value is not matching the requirements
+   * we display error message
+   */
+
+  getError = () => {
+    const { value } = this.state;
+    const float = parseFloat(value);
+    const clamped = this.clamp(float);
+    if (clamped !== float) {
+      return this.errorMessage();
+    }
+  };
+
   render() {
-    const { className, classes, label, disabled, suffix } = this.props;
+    const {
+      className,
+      classes,
+      label,
+      disabled,
+      suffix,
+      min,
+      max,
+      showErrorWhenOutsideRange
+    } = this.props;
     const names = classNames(classes.root, className);
+
+    const error = showErrorWhenOutsideRange && this.getError();
+
     return (
       <TextField
+        inputRef={ref => {
+          this.inputRef = ref;
+        }}
         disabled={disabled}
         label={label}
         value={this.state.value}
+        error={!!error}
+        helperText={error}
         onChange={this.onChange}
+        onBlur={this.onBlur}
+        onKeyPress={e => {
+          // once the Enter key is pressed, we force input blur
+          if (e.key === 'Enter' && this.inputRef) {
+            this.inputRef.blur();
+          }
+        }}
         type="number"
         className={names}
         InputLabelProps={{
@@ -117,6 +176,10 @@ export class NumberTextField extends React.Component {
           endAdornment: suffix && (
             <InputAdornment position="end">{suffix}</InputAdornment>
           )
+        }}
+        inputProps={{
+          min,
+          max
         }}
         margin="normal"
       />
