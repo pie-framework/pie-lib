@@ -112,10 +112,6 @@ export class Input extends React.Component {
     }
   };
 
-  onInputFocus = (name) => {
-    console.log(name)
-  };
-
   onKeyPress = event => {
     if (event.charCode === 13) {
       // if enter's pressed, we're going for a custom embedded element that'll
