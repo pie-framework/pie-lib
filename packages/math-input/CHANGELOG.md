@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@5.1.13...@pie-lib/math-input@5.2.0) (2019-03-26)
+
+
+### Bug Fixes
+
+* continued mathquill math-input work ([f4c6d67](https://github.com/pie-framework/pie-lib/commit/f4c6d67))
+
+
+### Features
+
+* math-input static subfield setter on props ([a4651d9](https://github.com/pie-framework/pie-lib/commit/a4651d9))
+
+
+
+
+
 ## [5.1.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@5.1.12...@pie-lib/math-input@5.1.13) (2019-03-15)
 
 

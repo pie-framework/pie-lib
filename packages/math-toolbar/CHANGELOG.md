@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@0.9.13...@pie-lib/math-toolbar@0.9.14) (2019-03-26)
+
+
+### Bug Fixes
+
+* **math-toolbar:** added logic to make sure answer blocks are not duplicates ([d8dd513](https://github.com/pie-framework/pie-lib/commit/d8dd513))
+* **math-toolbar:** z-index fix for math toolbar ([ef50bb6](https://github.com/pie-framework/pie-lib/commit/ef50bb6))
+
+
+
+
+
 ## [0.9.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@0.9.12...@pie-lib/math-toolbar@0.9.13) (2019-03-15)
 
 
