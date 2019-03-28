@@ -17,7 +17,6 @@ export class TokenSelect extends React.Component {
     classes: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     disabled: PropTypes.bool,
-    tokenComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
     highlightChoices: PropTypes.bool,
     maxNoOfSelections: PropTypes.number,
     showCorrectnessToken: PropTypes.bool
@@ -52,7 +51,7 @@ export class TokenSelect extends React.Component {
       spanWrapper class is a class that I added on each span that wraps a token
       (Token & CorrectnessToken)
     */
-    const span = target.closest('.spanWrapper');
+    const span = target.closest(`.${Token.rootClassName}`);
 
     /* indexkey is an attribute that I added on each span that wraps a token
     * and represents the index of the token
@@ -79,39 +78,36 @@ export class TokenSelect extends React.Component {
 
   generateTokensInHtml = () => {
     const {
-      tokenComponent,
       tokens,
       disabled,
       highlightChoices,
       showCorrectnessToken,
     } = this.props;
-    const TokenComponent = tokenComponent || Token;
     const selectedCount = this.selectedCount();
 
-    let stringHtml = '';
-
-    tokens.map((t, index) => {
+    const reducer = (accumulator, t, index) => {
       const selectable =
         t.selected || (t.selectable && this.canSelectMore(selectedCount));
       const showCorrectAnswer = showCorrectnessToken && (t.selectable || t.selected);
 
       if ((selectable && !disabled) || (showCorrectAnswer)) {
-        stringHtml = `${stringHtml} ${renderToString(
-          <TokenComponent
+        return accumulator + renderToString(
+          <Token
             key={index}
             disabled={disabled}
             index={index}
             {...t}
             selectable={selectable}
             highlight={highlightChoices}
+            showCorrectnessToken={showCorrectnessToken}
           />
-        )}`
+        )
       } else {
-        stringHtml = `${stringHtml}${t.text}`;
+        return accumulator + t.text;
       }
-    });
+    };
 
-    return stringHtml;
+    return tokens && tokens.reduce(reducer, '');
   };
 
   render() {

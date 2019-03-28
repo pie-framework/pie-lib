@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import TokenSelect from './token-select';
 import { normalize } from './tokenizer/builder';
 import { TokenTypes } from './token-select/token';
-import CorrectnessToken from './correctness-token';
 import debug from 'debug';
 const log = debug('@pie-lib:text-select');
 /**
@@ -75,7 +74,6 @@ export default class TextSelect extends React.Component {
         disabled={disabled}
         onChange={this.change}
         maxNoOfSelections={maxNoOfSelections}
-        tokenComponent={tokensHaveCorrectInfo ? CorrectnessToken : undefined}
         showCorrectnessToken={tokensHaveCorrectInfo}
       />
     );
