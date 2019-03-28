@@ -13,9 +13,8 @@ export class Token extends React.Component {
     ...TokenTypes,
     classes: PropTypes.object.isRequired,
     className: PropTypes.string,
-    onClick: PropTypes.func.isRequired,
     disabled: PropTypes.bool,
-    highlight: PropTypes.bool
+    highlight: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -24,16 +23,17 @@ export class Token extends React.Component {
 
   render() {
     const {
-      onClick,
       text,
       selectable,
       selected,
       classes,
       className: classNameProp,
       disabled,
+      index,
       highlight
     } = this.props;
     const className = classNames(
+      'spanWrapper',
       classes.token,
       disabled && classes.disabled,
       selectable && !disabled && classes.selectable,
@@ -44,9 +44,9 @@ export class Token extends React.Component {
     );
     return (
       <span
-        onClick={selectable && !disabled ? onClick : undefined}
         className={className}
         dangerouslySetInnerHTML={{ __html: text }}
+        data-indexkey={index}
       />
     );
   }

@@ -7,9 +7,10 @@ import green from '@material-ui/core/colors/green';
 import orange from '@material-ui/core/colors/orange';
 
 const CorrectnessToken = props => {
-  const { classes } = props;
+  const { classes, index } = props;
 
   const className = classNames(
+    'spanWrapper',
     classes.custom,
     props.correct === true && classes.correct,
     props.correct === false && classes.incorrect
@@ -19,6 +20,7 @@ const CorrectnessToken = props => {
     <span
       className={className}
       dangerouslySetInnerHTML={{ __html: props.text }}
+      data-indexkey={index}
     />
   );
 };
