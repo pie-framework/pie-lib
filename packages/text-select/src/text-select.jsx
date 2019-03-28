@@ -58,7 +58,7 @@ export default class TextSelect extends React.Component {
         ...t,
         selectable: !disabled && t.predefined,
         selected,
-        correct
+        correct,
       };
     });
 
@@ -76,6 +76,7 @@ export default class TextSelect extends React.Component {
         onChange={this.change}
         maxNoOfSelections={maxNoOfSelections}
         tokenComponent={tokensHaveCorrectInfo ? CorrectnessToken : undefined}
+        showCorrectnessToken={tokensHaveCorrectInfo}
       />
     );
   }

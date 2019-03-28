@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import clone from 'lodash/clone';
 import debug from 'debug';
 import { noSelect } from '@pie-lib/style-utils';
+import { renderToString } from 'react-dom/server'
 
 const log = debug('@pie-lib:text-select:token-select');
 
@@ -18,7 +19,8 @@ export class TokenSelect extends React.Component {
     disabled: PropTypes.bool,
     tokenComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
     highlightChoices: PropTypes.bool,
-    maxNoOfSelections: PropTypes.number
+    maxNoOfSelections: PropTypes.number,
+    showCorrectnessToken: PropTypes.bool
   };
 
   static defaultProps = {
@@ -43,54 +45,85 @@ export class TokenSelect extends React.Component {
     );
   };
 
-  toggleToken = (index, t) => {
-    const { onChange, maxNoOfSelections } = this.props;
-    const selected = !t.selected;
-    if (
-      selected &&
-      maxNoOfSelections > 0 &&
-      this.selectedCount() >= maxNoOfSelections
-    ) {
-      log('skip toggle max reached');
-      return;
-    }
-    const update = { ...t, selected: !t.selected };
+  toggleToken = ({ target }) => {
+    const { showCorrectnessToken } = this.props;
     const tokens = clone(this.props.tokens);
-    tokens.splice(index, 1, update);
-    onChange(tokens);
+    /* We take the first parent element that has spanWrapper class
+      spanWrapper class is a class that I added on each span that wraps a token
+      (Token & CorrectnessToken)
+    */
+    const span = target.closest('.spanWrapper');
+
+    /* indexkey is an attribute that I added on each span that wraps a token
+    * and represents the index of the token
+    */
+    const index = span && span.dataset && span.dataset.indexkey;
+    const t = index && tokens[index];
+
+    if (t && !showCorrectnessToken) {
+      const { onChange, maxNoOfSelections } = this.props;
+      const selected = !t.selected;
+      if (
+        selected &&
+        maxNoOfSelections > 0 &&
+        this.selectedCount() >= maxNoOfSelections
+      ) {
+        log('skip toggle max reached');
+        return;
+      }
+      const update = { ...t, selected: !t.selected };
+      tokens.splice(index, 1, update);
+      onChange(tokens);
+    }
+  };
+
+  generateTokensInHtml = () => {
+    const {
+      tokenComponent,
+      tokens,
+      disabled,
+      highlightChoices,
+      showCorrectnessToken,
+    } = this.props;
+    const TokenComponent = tokenComponent || Token;
+    const selectedCount = this.selectedCount();
+
+    let stringHtml = '';
+
+    tokens.map((t, index) => {
+      const selectable =
+        t.selected || (t.selectable && this.canSelectMore(selectedCount));
+      const showCorrectAnswer = showCorrectnessToken && (t.selectable || t.selected);
+
+      if ((selectable && !disabled) || (showCorrectAnswer)) {
+        stringHtml = `${stringHtml} ${renderToString(
+          <TokenComponent
+            key={index}
+            disabled={disabled}
+            index={index}
+            {...t}
+            selectable={selectable}
+            highlight={highlightChoices}
+          />
+        )}`
+      } else {
+        stringHtml = `${stringHtml}${t.text}`;
+      }
+    });
+
+    return stringHtml;
   };
 
   render() {
-    const {
-      classes,
-      tokenComponent,
-      tokens,
-      className: classNameProp,
-      disabled,
-      highlightChoices
-    } = this.props;
-
-    const TokenComponent = tokenComponent || Token;
+    const { classes, className: classNameProp } = this.props;
     const className = classNames(classes.tokenSelect, classNameProp);
-    const selectedCount = this.selectedCount();
-    return (
-      <div className={className}>
-        {tokens.map((t, index) => {
-          const selectable =
-            t.selected || (t.selectable && this.canSelectMore(selectedCount));
+    const html = this.generateTokensInHtml();
 
-          return (
-            <TokenComponent
-              key={index}
-              disabled={disabled}
-              {...t}
-              selectable={selectable}
-              highlight={highlightChoices}
-              onClick={() => this.toggleToken(index, t)}
-            />
-          );
-        })}
-      </div>
+    return (
+      <div
+        className={className} dangerouslySetInnerHTML={{ __html: html }}
+        onClick={this.toggleToken}
+      />
     );
   }
 }
