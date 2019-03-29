@@ -7,7 +7,7 @@ describe('token-select', () => {
     it('renders', () => {
       const w = shallow(
         <TokenSelect
-          tokens={[{ selectable: true, text: 'foo' }]}
+          tokens={[]}
           classes={{}}
           onChange={jest.fn()}
         />
@@ -69,15 +69,53 @@ describe('token-select', () => {
     });
 
     describe('toggleToken', () => {
-      it('returns if max tokens have been selected', () => {
+      it('return if clicked target is not selectable', () => {
         w.setProps({ maxNoOfSelections: 1, tokens: [{ selected: true }] });
-        w.instance().toggleToken(0, { selected: false });
+
+        /*
+         Hardcoded closest in order to return null object
+         (in code is found as span)
+         */
+        const closest = jest.fn().mockReturnValue(null);
+        const mockedEvent = { target: { closest: closest } };
+
+        w.instance().toggleToken(mockedEvent);
+
         expect(onChange).not.toBeCalled();
       });
+
       it('calls onChange', () => {
-        w.setProps({ maxNoOfSelections: 0, tokens: [{ selected: false }] });
-        w.instance().toggleToken(0, { selected: false });
-        expect(onChange).toBeCalledWith([{ selected: true }]);
+        w.setProps({ maxNoOfSelections: 0, tokens: [{ selected: true }] });
+
+        /*
+        Hardcoded closest in order to return an object that contains dataset.indexkey
+        (in code is found as span)
+         */
+        const closest = jest.fn().mockReturnValue({
+          dataset: {
+            indexkey: '0'
+          }
+        });
+        const mockedEvent = { target: { closest: closest } };
+
+        w.instance().toggleToken(mockedEvent);
+
+        expect(onChange).toBeCalled();
+      });
+
+      it('returns if max tokens have been selected', () => {
+        w.setProps({ maxNoOfSelections: 0, tokens: [{ selected: true }] });
+
+        const closest = jest.fn().mockReturnValue({
+          dataset: {
+            indexkey: '0'
+          }
+        });
+        const mockedEvent = { target: { closest: closest } };
+
+        w.instance().toggleToken(mockedEvent);
+
+        expect(onChange).not.toBeCalledWith([{ selected: true }]);
       });
     });
   });

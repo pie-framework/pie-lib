@@ -3,13 +3,11 @@
 exports[`token-select snapshot renders 1`] = `
 <div
   className=""
->
-  <WithStyles(Token)
-    highlight={false}
-    key="0"
-    onClick={[Function]}
-    selectable={true}
-    text="foo"
-  />
-</div>
+  dangerouslySetInnerHTML={
+    Object {
+      "__html": "",
+    }
+  }
+  onClick={[Function]}
+/>
 `;
