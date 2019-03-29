@@ -338,12 +338,18 @@ export const createCustomElementWithWrapper = ({
   return class extends HTMLElement {
     constructor() {
       super();
+
       this._disableSidePanel = false;
       this._previewTabVisible = false;
       this._noPreview = false;
-      this.onModelChanged = this.onModelChanged.bind(this);
       this.mode = 'gather';
       this.indexTab = 0;
+
+      this.onModelChanged = this.onModelChanged.bind(this);
+      this.onTabClick = this.onTabClick.bind(this);
+      this.onCheckboxClick = this.onCheckboxClick.bind(this);
+      this.resizeObserverHandler = this.resizeObserverHandler.bind(this);
+
       const template = document.createElement('template');
 
       template.innerHTML = `
@@ -480,16 +486,15 @@ export const createCustomElementWithWrapper = ({
     </style>
     <div class="tabs-container">
         <div class="tabs">
-            <div class="tab designTab hidden selected" onclick="onTabClick(this, 0)">Design</div>
-            <div class="tab previewTab hidden" onclick="onTabClick(this, 1)">Preview</div>
-            <div class="tab settingsTab hidden" onclick="onTabClick(this, 2)">Settings</div>
+            <div class="tab designTab hidden selected" data-index="0">Design</div>
+            <div class="tab previewTab hidden" data-index="1">Preview</div>
+            <div class="tab settingsTab hidden" data-index="2">Settings</div>
         </div>
         <span class="selected-line" style="left: 0px; width: 100px;"></span>
         <div class="extra-options">
             <div
               class="custom-checkbox"
               data-mode="gather"
-              onclick="onCheckboxClick(this)"
             >
                 <i class="checkbox-container">
                     <i class="checkbox-el">
@@ -500,7 +505,6 @@ export const createCustomElementWithWrapper = ({
             <div
               class="custom-checkbox"
               data-mode="view"
-              onclick="onCheckboxClick(this)"
             >
                 <i class="checkbox-container">
                     <i class="checkbox-el">
@@ -511,7 +515,6 @@ export const createCustomElementWithWrapper = ({
             <div
               class="custom-checkbox"
               data-mode="evaluate"
-              onclick="onCheckboxClick(this)"
             >
                 <i class="checkbox-container">
                     <i class="checkbox-el">
@@ -532,48 +535,77 @@ export const createCustomElementWithWrapper = ({
     </slot>
     `;
 
-      window.onTabClick = (el, index) => {
-        this.indexTab = index;
-
-        this._previewTabVisible = index === 1;
-
-        this._renderWrapper();
-      };
-
-      window.onCheckboxClick = (el) => {
-        this.mode = el.dataset.mode;
-        this.handlePreviewTab();
-        this._renderWrapper();
-      };
-
       this.attachShadow({ mode: 'open' });
       this.shadowRoot.appendChild(template.content.cloneNode(true));
-      this.resizeObserverHandler = () => {
-        const tabs = this.shadowRoot.querySelector('.tabs');
-        const extraOptions = this.shadowRoot.querySelector('.extra-options');
 
-        this.inTabSidePanel = this._disableSidePanel || (this.offsetWidth * 0.20 < 190);
+      this.resizeObserver = new ResizeObserver(this.resizeObserverHandler);
+    }
 
-        if (this.inTabSidePanel) {
-          tabs.classList.add('full');
+    connectedCallback() {
+      const tabs = this.shadowRoot.querySelector('.tabs');
 
-          if (extraOptions) {
-            extraOptions.classList.add('full');
-          }
-        } else {
-          tabs.classList.remove('full');
+      tabs.addEventListener('click', this.onTabClick);
 
-          if (extraOptions) {
-            extraOptions.classList.remove('full');
-          }
+      const checkboxes = this.shadowRoot.querySelectorAll('.custom-checkbox');
+
+      checkboxes.forEach((c) => {
+        c.addEventListener('click', this.onCheckboxClick);
+      });
+
+      this.resizeObserver.observe(this);
+    }
+
+    disconnectedCallback() {
+      const tabs = this.shadowRoot.querySelector('.tabs');
+
+      tabs.removeEventListener('click', this.onTabClick);
+
+      const checkboxes = this.shadowRoot.querySelectorAll('.custom-checkbox');
+
+      checkboxes.forEach((c) => {
+        c.removeEventListener('click', this.onCheckboxClick);
+      });
+
+      this.resizeObserver.disconnect();
+    }
+
+    onTabClick(e) {
+      const index = parseInt(e.target.dataset.index);
+
+      this.indexTab = index;
+
+      this._previewTabVisible = index === 1;
+
+      this._renderWrapper();
+    }
+
+    onCheckboxClick(e) {
+      this.mode = e.currentTarget.dataset.mode;
+      this.handlePreviewTab();
+      this._renderWrapper();
+    }
+
+    resizeObserverHandler() {
+      const tabs = this.shadowRoot.querySelector('.tabs');
+      const extraOptions = this.shadowRoot.querySelector('.extra-options');
+
+      this.inTabSidePanel = this._disableSidePanel || (this.offsetWidth * 0.20 < 190);
+
+      if (this.inTabSidePanel) {
+        tabs.classList.add('full');
+
+        if (extraOptions) {
+          extraOptions.classList.add('full');
         }
+      } else {
+        tabs.classList.remove('full');
 
-        this._renderWrapper();
-      };
+        if (extraOptions) {
+          extraOptions.classList.remove('full');
+        }
+      }
 
-      const ro = new ResizeObserver(this.resizeObserverHandler);
-
-      ro.observe(this);
+      this._renderWrapper();
     }
 
     handleTabs() {
@@ -676,7 +708,7 @@ export const createCustomElementWithWrapper = ({
       const el = this._previewSlot ? this._previewSlot.firstChild : {};
       const newSession = this._reset ? [] : el._session;
 
-      el.session = newSession || ((!this._reset && window.demo && window.demo.session) || []);
+      el.session = newSession || [];
 
       this.modelFn(this._model, newSession, {
         mode: this.mode
