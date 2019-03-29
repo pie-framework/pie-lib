@@ -69,17 +69,25 @@ export class EditorAndPad extends React.Component {
   onAnswerBlockClick = () => {
     const { answerBlockIdCounter } = this.state;
 
+    let newCounter = answerBlockIdCounter + 1;
+    let elements = document.querySelectorAll(`#answerBlock${newCounter}`);
+
+    while (elements.length) {
+      newCounter += 1;
+      elements = document.querySelectorAll(`#answerBlock${newCounter}`);
+    }
+
     this.onClick({
       type: 'answer',
-      id: `answerBlock${answerBlockIdCounter + 1}`
+      id: `answerBlock${newCounter}`
     });
 
     this.setState(
       state => ({
         answerBlocks: state.answerBlocks.concat({
-          id: `answerBlock${state.answerBlockIdCounter + 1}`
+          id: `answerBlock${newCounter}`
         }),
-        answerBlockIdCounter: state.answerBlockIdCounter + 1
+        answerBlockIdCounter: newCounter
       }),
       () => {
         this.props.onAnswerBlockAdd(

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import debug from 'debug';
 import classNames from 'classnames';
-import { registerAnswerBlock, registerLineBreak } from './custom-elements';
+import { registerLineBreak } from './custom-elements';
 
 let MQ;
 if (typeof window !== 'undefined') {
@@ -11,7 +11,6 @@ if (typeof window !== 'undefined') {
   MQ = MathQuill.getInterface(2);
 
   if (MQ && MQ.registerEmbed) {
-    registerAnswerBlock(MQ);
     registerLineBreak(MQ);
   }
 }
@@ -37,13 +36,24 @@ export class Input extends React.Component {
       throw new Error('MQ is not defined - but component has mounted?');
     }
 
-    const { latex } = this.props;
     this.mathField = MQ.MathField(this.input, {
       handlers: {
         edit: this.onInputEdit.bind(this)
       }
     });
 
+    this.updateLatex();
+  }
+
+  componentDidUpdate() {
+    this.updateLatex();
+  }
+
+  updateLatex() {
+    if (!this.mathField) {
+      return;
+    }
+    const { latex } = this.props;
     if (latex) {
       this.mathField.latex(latex);
     }
@@ -110,9 +120,11 @@ export class Input extends React.Component {
       this.write('\\embed{newLine}[]');
       this.onInputEdit();
     }
-  }
+  };
 
   shouldComponentUpdate(nextProps) {
+    log('next: ', nextProps.latex);
+    log('current: ', this.mathField.latex());
     return nextProps.latex !== this.mathField.latex();
   }
 

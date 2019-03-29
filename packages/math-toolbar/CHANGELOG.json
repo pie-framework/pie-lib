@@ -388,5 +388,35 @@
     "committerDate": "2018-11-22 19:03:24 +0200",
     "isTagged": true,
     "tag": "@pie-lib/math-toolbar@0.1.0"
+  },
+  {
+    "type": "fix",
+    "scope": "math-toolbar",
+    "subject": "z-index fix for math toolbar",
+    "merge": null,
+    "header": "fix(math-toolbar): z-index fix for math toolbar",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "ef50bb61cdf7c0670c2de789efa6062e3c988f4d",
+    "gitTags": "",
+    "committerDate": "2019-03-21 10:49:43 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/math-toolbar@0.9.14"
+  },
+  {
+    "type": "fix",
+    "scope": "math-toolbar",
+    "subject": "added logic to make sure answer blocks are not duplicates",
+    "merge": null,
+    "header": "fix(math-toolbar): added logic to make sure answer blocks are not duplicates",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "d8dd51338bb9901acaba996bd6e72815ef80078f",
+    "gitTags": "",
+    "committerDate": "2019-03-20 16:24:50 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/math-toolbar@0.9.14"
   }
 ]
