@@ -24,7 +24,8 @@ export class Token extends React.Component {
   };
 
   static defaultProps = {
-    selectable: false
+    selectable: false,
+    text: ''
   };
 
   render() {

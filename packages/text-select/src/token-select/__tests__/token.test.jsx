@@ -11,7 +11,6 @@ describe('token', () => {
             token: 'token',
             selectable: 'selectable'
           }}
-          onClick={jest.fn()}
         />
       );
       expect(w).toMatchSnapshot();
