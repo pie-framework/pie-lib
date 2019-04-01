@@ -2,10 +2,10 @@
 
 exports[`token snapshot renders 1`] = `
 <span
-  className="token"
+  className="tokenRootClass token"
   dangerouslySetInnerHTML={
     Object {
-      "__html": undefined,
+      "__html": "",
     }
   }
 />
