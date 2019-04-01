@@ -4,7 +4,6 @@ exports[`text-select snapshot renders 1`] = `
 <WithStyles(TokenSelect)
   maxNoOfSelections={4}
   onChange={[Function]}
-  showCorrectnessToken={false}
   tokens={
     Array [
       Object {
