@@ -61,11 +61,6 @@ export default class TextSelect extends React.Component {
       };
     });
 
-    const tokensHaveCorrectInfo =
-      tokens.filter(t => {
-        return t.hasOwnProperty('correct') > 0 && t.correct !== undefined;
-      }).length > 0;
-
     return (
       <TokenSelect
         highlightChoices={!disabled && highlightChoices}
@@ -74,7 +69,6 @@ export default class TextSelect extends React.Component {
         disabled={disabled}
         onChange={this.change}
         maxNoOfSelections={maxNoOfSelections}
-        showCorrectnessToken={tokensHaveCorrectInfo}
       />
     );
   }

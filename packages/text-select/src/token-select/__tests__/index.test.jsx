@@ -72,12 +72,8 @@ describe('token-select', () => {
       it('return if clicked target is not selectable', () => {
         w.setProps({ maxNoOfSelections: 1, tokens: [{ selected: true }] });
 
-        /*
-         Hardcoded closest in order to return null object
-         (in code is found as span)
-         */
         const closest = jest.fn().mockReturnValue(null);
-        const mockedEvent = { target: { closest: closest } };
+        const mockedEvent = { target: { closest } };
 
         w.instance().toggleToken(mockedEvent);
 
@@ -87,16 +83,12 @@ describe('token-select', () => {
       it('calls onChange', () => {
         w.setProps({ maxNoOfSelections: 0, tokens: [{ selected: true }] });
 
-        /*
-        Hardcoded closest in order to return an object that contains dataset.indexkey
-        (in code is found as span)
-         */
         const closest = jest.fn().mockReturnValue({
           dataset: {
             indexkey: '0'
           }
         });
-        const mockedEvent = { target: { closest: closest } };
+        const mockedEvent = { target: { closest } };
 
         w.instance().toggleToken(mockedEvent);
 
@@ -111,7 +103,7 @@ describe('token-select', () => {
             indexkey: '0'
           }
         });
-        const mockedEvent = { target: { closest: closest } };
+        const mockedEvent = { target: { closest } };
 
         w.instance().toggleToken(mockedEvent);
 

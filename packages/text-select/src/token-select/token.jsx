@@ -38,13 +38,12 @@ export class Token extends React.Component {
       disabled,
       index,
       highlight,
-      showCorrectnessToken,
       correct
     } = this.props;
 
     let className;
 
-    if (showCorrectnessToken) {
+    if (correct !== undefined) {
       className = classNames(
         Token.rootClassName,
         classes.custom,

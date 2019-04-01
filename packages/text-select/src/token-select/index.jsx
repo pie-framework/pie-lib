@@ -19,7 +19,6 @@ export class TokenSelect extends React.Component {
     disabled: PropTypes.bool,
     highlightChoices: PropTypes.bool,
     maxNoOfSelections: PropTypes.number,
-    showCorrectnessToken: PropTypes.bool
   };
 
   static defaultProps = {
@@ -44,22 +43,20 @@ export class TokenSelect extends React.Component {
     );
   };
 
-  toggleToken = ({ target }) => {
-    const { showCorrectnessToken } = this.props;
+  /**
+   @function
+   @param { object } event
+
+   each token is wrapped into a span that has Token.rootClassName class and indexkey attribute (represents the index of the token)
+   */
+  toggleToken = (event) => {
+    const { target } = event;
     const tokens = clone(this.props.tokens);
-    /* We take the first parent element that has spanWrapper class
-      spanWrapper class is a class that I added on each span that wraps a token
-      (Token & CorrectnessToken)
-    */
-    const span = target.closest(`.${Token.rootClassName}`);
+    const targetSpanWrapper = target.closest(`.${Token.rootClassName}`);
+    const targetedTokenIndex = targetSpanWrapper && targetSpanWrapper.dataset && targetSpanWrapper.dataset.indexkey;
+    const t = targetedTokenIndex && tokens[targetedTokenIndex];
 
-    /* indexkey is an attribute that I added on each span that wraps a token
-    * and represents the index of the token
-    */
-    const index = span && span.dataset && span.dataset.indexkey;
-    const t = index && tokens[index];
-
-    if (t && !showCorrectnessToken) {
+    if (t && t.correct === undefined) {
       const { onChange, maxNoOfSelections } = this.props;
       const selected = !t.selected;
       if (
@@ -71,7 +68,7 @@ export class TokenSelect extends React.Component {
         return;
       }
       const update = { ...t, selected: !t.selected };
-      tokens.splice(index, 1, update);
+      tokens.splice(targetedTokenIndex, 1, update);
       onChange(tokens);
     }
   };
@@ -81,14 +78,13 @@ export class TokenSelect extends React.Component {
       tokens,
       disabled,
       highlightChoices,
-      showCorrectnessToken,
     } = this.props;
     const selectedCount = this.selectedCount();
 
     const reducer = (accumulator, t, index) => {
       const selectable =
         t.selected || (t.selectable && this.canSelectMore(selectedCount));
-      const showCorrectAnswer = showCorrectnessToken && (t.selectable || t.selected);
+      const showCorrectAnswer = t.correct !== undefined && (t.selectable || t.selected);
 
       if ((selectable && !disabled) || (showCorrectAnswer)) {
         return accumulator + renderToString(
@@ -99,7 +95,6 @@ export class TokenSelect extends React.Component {
             {...t}
             selectable={selectable}
             highlight={highlightChoices}
-            showCorrectnessToken={showCorrectnessToken}
           />
         )
       } else {
