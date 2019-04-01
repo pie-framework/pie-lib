@@ -47,7 +47,9 @@ export class TokenSelect extends React.Component {
    @function
    @param { object } event
 
-   each token is wrapped into a span that has Token.rootClassName class and indexkey attribute (represents the index of the token)
+   @description
+    each token is wrapped into a span that has Token.rootClassName class and indexkey attribute (represents the index of the token)
+    tokens are updated with the targeted token having the correct value set for 'selected' property
    */
   toggleToken = (event) => {
     const { target } = event;
