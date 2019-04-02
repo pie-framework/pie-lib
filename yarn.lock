@@ -7764,6 +7764,12 @@ mathjs@^5.4.1:
   dependencies:
     jquery latest
 
+"mathquill@git+https://github.com/pie-framework/mathquill-webpack.git#feat/expose-parser":
+  version "0.10.1"
+  resolved "git+https://github.com/pie-framework/mathquill-webpack.git#6820661750bfdcff7ab584ad44792989d85848a2"
+  dependencies:
+    jquery latest
+
 maximatch@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/maximatch/-/maximatch-0.1.0.tgz#86cd8d6b04c9f307c05a6b9419906d0360fb13a2"

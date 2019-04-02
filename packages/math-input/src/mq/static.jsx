@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import debug from 'debug';
+import { withStyles } from '@material-ui/core/styles';
 
 let MQ;
 if (typeof window !== 'undefined') {
@@ -14,7 +15,7 @@ const REGEX = /\\MathQuillMathField\[answerBlock\d*\]\{(.*?)\}/g;
 /**
  * Wrapper for MathQuill MQ.MathField.
  */
-export default class Static extends React.Component {
+export class Static extends React.Component {
   static propTypes = {
     latex: PropTypes.string.isRequired,
     onFocus: PropTypes.func,
@@ -40,6 +41,7 @@ export default class Static extends React.Component {
       v = iter.next();
     } while (!v.done);
   }
+
   onInputEdit(field) {
     if (!this.mathField) {
       return;
@@ -77,16 +79,18 @@ export default class Static extends React.Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    const nextLatex = nextProps.latex.replace(
-      REGEX,
-      (match, submatch) => submatch
-    );
+    const parsed = this.mathField.parseLatex(nextProps.latex);
+
+    log('[shouldComponentUpdate] parsed:', parsed);
+    log('[shouldComponentUpdate] currentLatex:', this.mathField.latex());
     const newFieldCount = (nextProps.latex.match(REGEX) || []).length;
 
-    return (
-      nextLatex !== this.mathField.latex() ||
-      newFieldCount !== Object.keys(this.mathField.innerFields).length / 2
-    );
+    const out =
+      parsed !== this.mathField.latex() ||
+      newFieldCount !== Object.keys(this.mathField.innerFields).length / 2;
+
+    log('[shouldComponentUpdate] ', out);
+    return out;
   }
 
   onFocus = e => {
@@ -105,13 +109,13 @@ export default class Static extends React.Component {
         }
         this.props.onSubFieldFocus(name, innerField);
       }
-    } catch (e) {
-      console.error('error finding root block');
+    } catch (err) {
+      console.error('error finding root block', err.message);
     }
   };
 
   render() {
-    const { onBlur, className } = this.props;
+    const { onBlur, className, classes } = this.props;
 
     return (
       <span
@@ -123,3 +127,12 @@ export default class Static extends React.Component {
     );
   }
 }
+
+export default withStyles(theme => ({
+  tmpSpan: {
+    display: 'none',
+    position: 'absolute',
+    width: 0,
+    height: 0
+  }
+}))(Static);

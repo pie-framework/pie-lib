@@ -37,6 +37,7 @@ class Demo extends React.Component {
   onMathInputClick() {
     console.log('onMathInputClick', arguments);
   }
+
   onClick(data) {
     console.log('onClick', data.value, data.type);
   }
