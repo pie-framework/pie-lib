@@ -51,7 +51,11 @@ export class Editor extends React.Component {
       value: props.value
     };
 
-    this.plugins = buildPlugins(props.activePlugins, {
+    this.plugins = this.setPluggins(props);
+  }
+
+  setPluggins = (props) => {
+    return buildPlugins(props.activePlugins, {
       math: {
         onClick: this.onMathClick,
         onFocus: this.onPluginFocus,
@@ -59,23 +63,23 @@ export class Editor extends React.Component {
       },
       image: {
         onDelete:
-          this.props.imageSupport &&
-          this.props.imageSupport.delete &&
-          ((src, done) => {
-            this.props.imageSupport.delete(src, e => {
-              done(e, this.state.value);
-            });
-          }),
+        props.imageSupport &&
+        props.imageSupport.delete &&
+        ((src, done) => {
+          props.imageSupport.delete(src, e => {
+            done(e, this.state.value);
+          });
+        }),
         insertImageRequested:
-          this.props.imageSupport &&
-          (getHandler => {
-            /**
-             * The handler is the object through which the outer context
-             * communicates file upload events like: fileChosen, cancel, progress
-             */
-            const handler = getHandler(() => this.state.value);
-            this.props.imageSupport.add(handler);
-          }),
+        props.imageSupport &&
+        (getHandler => {
+          /**
+           * The handler is the object through which the outer context
+           * communicates file upload events like: fileChosen, cancel, progress
+           */
+          const handler = getHandler(() => this.state.value);
+          props.imageSupport.add(handler);
+        }),
         onFocus: this.onPluginFocus,
         onBlur: this.onPluginBlur
       },
@@ -87,7 +91,7 @@ export class Editor extends React.Component {
         disableUnderline: props.disableUnderline,
         autoWidth: props.autoWidthToolbar,
         onDone: () => {
-          const { nonEmpty } = this.props;
+          const { nonEmpty } = props;
 
           log('[onDone]');
           this.setState({ toolbarInFocus: false, focusedNode: null });
@@ -112,8 +116,8 @@ export class Editor extends React.Component {
           this.onPluginBlur();
         }
       }
-    });
-  }
+    })
+  };
 
   onPluginBlur = e => {
     log('[onPluginBlur]', e.relatedTarget);
@@ -236,6 +240,10 @@ export class Editor extends React.Component {
         focus: false,
         value: props.value
       });
+    }
+
+    if (this.props.imageSupport !== props.imageSupport) {
+      this.plugins = this.setPluggins(props);
     }
   }
 
