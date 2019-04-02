@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import debug from 'debug';
-import { withStyles } from '@material-ui/core/styles';
 
 let MQ;
 if (typeof window !== 'undefined') {
@@ -15,7 +14,7 @@ const REGEX = /\\MathQuillMathField\[answerBlock\d*\]\{(.*?)\}/g;
 /**
  * Wrapper for MathQuill MQ.MathField.
  */
-export class Static extends React.Component {
+export default class Static extends React.Component {
   static propTypes = {
     latex: PropTypes.string.isRequired,
     onFocus: PropTypes.func,
@@ -115,7 +114,7 @@ export class Static extends React.Component {
   };
 
   render() {
-    const { onBlur, className, classes } = this.props;
+    const { onBlur, className } = this.props;
 
     return (
       <span
@@ -127,12 +126,3 @@ export class Static extends React.Component {
     );
   }
 }
-
-export default withStyles(theme => ({
-  tmpSpan: {
-    display: 'none',
-    position: 'absolute',
-    width: 0,
-    height: 0
-  }
-}))(Static);
