@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [
   {
     "type": "feat",
@@ -15,3 +16,6 @@
     "tag": "@pie-lib/controller-utils@0.1.0"
   }
 ]
+=======
+[]
+>>>>>>> e9effce... [ci skip] update changelog.json
