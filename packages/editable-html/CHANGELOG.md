@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.1.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.1.17...@pie-lib/editable-html@7.1.18) (2019-03-26)
+
+
+### Bug Fixes
+
+* **extended-text-entry:** Fixed dimensions issue (width & height) were not changing properly. ([8183203](https://github.com/pie-framework/pie-lib/commit/8183203))
+
+
+
+
+
 ## [7.1.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.1.16...@pie-lib/editable-html@7.1.17) (2019-03-15)
 
 

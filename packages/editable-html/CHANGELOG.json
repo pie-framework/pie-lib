@@ -1778,5 +1778,20 @@
     "committerDate": "2018-03-06 13:31:35 -0500",
     "isTagged": true,
     "tag": "@pie-lib/editable-html@2.2.5"
+  },
+  {
+    "type": "fix",
+    "scope": "extended-text-entry",
+    "subject": "Fixed dimensions issue (width & height) were not changing properly.",
+    "merge": null,
+    "header": "fix(extended-text-entry): Fixed dimensions issue (width & height) were not changing properly.",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "818320372391a4878365f29c6145f72240894ee3",
+    "gitTags": "",
+    "committerDate": "2019-03-21 10:04:18 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.1.18"
   }
 ]

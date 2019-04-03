@@ -973,5 +973,50 @@
     "committerDate": "2018-03-06 13:31:35 -0500",
     "isTagged": true,
     "tag": "@pie-lib/config-ui@2.2.0"
+  },
+  {
+    "type": "chore",
+    "scope": null,
+    "subject": "polish",
+    "merge": null,
+    "header": "chore: polish",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "5e385c0246171062cfc4c87c3b7eb5496e34f709",
+    "gitTags": "",
+    "committerDate": "2019-03-22 16:20:26 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/config-ui@7.11.29"
+  },
+  {
+    "type": "fix",
+    "scope": "config-ui",
+    "subject": "Fixed tests for number-text-field.",
+    "merge": null,
+    "header": "fix(config-ui): Fixed tests for number-text-field.",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "71b86b7c3fa7482109822c842d7970d1f673e861",
+    "gitTags": "",
+    "committerDate": "2019-03-22 17:19:12 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/config-ui@7.11.29"
+  },
+  {
+    "type": "fix",
+    "scope": "config-ui",
+    "subject": "number-text-field was not allowing user to type a number inside the input. Added min and max values, error message (to indicate than the entered value is not correct) as an option. This component will trigger props.onChange only when submitting the input (enter pressed) or when input it's blurred.",
+    "merge": null,
+    "header": "fix(config-ui): number-text-field was not allowing user to type a number inside the input. Added min and max values, error message (to indicate than the entered value is not correct) as an option. This component will trigger props.onChange only when submitting the input (enter pressed) or when input it's blurred.",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "2c34ea5b3da83f8f94481ecaab76539bc530b7fd",
+    "gitTags": "",
+    "committerDate": "2019-03-22 14:31:19 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/config-ui@7.11.29"
   }
 ]

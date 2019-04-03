@@ -1,0 +1,16 @@
+{
+  "name": "@pie-lib/controller-utils",
+  "version": "0.1.0",
+  "description": "",
+  "main": "lib/index.js",
+  "dependencies": {
+    "debug": "^4.1.1",
+    "lodash": "^4.17.11"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {},
+  "author": "",
+  "license": "ISC"
+}

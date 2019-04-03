@@ -153,5 +153,35 @@
     "committerDate": "2019-01-30 22:14:28 +0000",
     "isTagged": true,
     "tag": "@pie-lib/demo@1.0.1"
+  },
+  {
+    "type": "feat",
+    "scope": "config-ui",
+    "subject": "Added Number Text Field with validation example in demo.",
+    "merge": null,
+    "header": "feat(config-ui): Added Number Text Field with validation example in demo.",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "243f9211f0f11d67b0cbab40941a9ddd99cf3c23",
+    "gitTags": " (origin/fix/extended-text-entry-setting-height-propererty)",
+    "committerDate": "2019-03-22 19:26:49 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/demo@3.2.0"
+  },
+  {
+    "type": "chore",
+    "scope": null,
+    "subject": "polish",
+    "merge": null,
+    "header": "chore: polish",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "5e385c0246171062cfc4c87c3b7eb5496e34f709",
+    "gitTags": "",
+    "committerDate": "2019-03-22 16:20:26 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/demo@3.2.0"
   }
 ]

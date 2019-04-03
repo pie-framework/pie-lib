@@ -86,6 +86,16 @@ class RawContainer extends React.Component {
             />
             <InputRadio label="Foo" />
           </Section>
+          <Section name="validation">
+            <NumberTextField
+              label="1 - 10"
+              min={1}
+              max={10}
+              showErrorWhenOutsideRange={true}
+              value={this.state.numberTextField.validation}
+              onChange={this.update('validation')}
+            />
+          </Section>
         </div>
         <div className={classes.right}>
           <pre className={classes.code}>

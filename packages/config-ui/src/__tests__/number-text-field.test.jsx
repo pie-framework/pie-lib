@@ -6,16 +6,14 @@ import TextField from '@material-ui/core/TextField';
 describe('NumberTextField', () => {
   describe('render', () => {
     let value = 1;
-    let onChange, component, textField;
+    let onChange, component, textField, onBlur;
     let min = 1;
     let max = 10;
-    let style = {
-      border: '1px solid red'
-    };
 
     describe('TextField', () => {
       beforeEach(() => {
         onChange = jest.fn();
+        onBlur = jest.fn();
         component = shallow(
           <NumberTextField
             value={value}
@@ -23,6 +21,7 @@ describe('NumberTextField', () => {
             max={max}
             classes={{}}
             onChange={onChange}
+            onBlur={onBlur}
           />
         );
         textField = component.find(TextField);
@@ -42,33 +41,95 @@ describe('NumberTextField', () => {
         it('should contain value', () => {
           expect(props.value).toEqual(value);
         });
+      });
 
-        describe('onChange', () => {
+      describe('logic', () => {
+        describe('clamp', () => {
+          const assertClamp = (input, expected) => {
+            it(`${input} => ${expected}`, () => {
+              const result = component.instance().clamp(input);
+              expect(result).toEqual(expected);
+            });
+          };
+
+          assertClamp('foo', 1);
+          assertClamp(1, 1);
+          assertClamp(2, 2);
+          assertClamp(0, 1);
+          assertClamp(-1, 1);
+          assertClamp(10, 10);
+          assertClamp(11, 10);
+        });
+
+        describe('onBlur', () => {
           const event = value => ({
             target: { value }
           });
 
           describe('called with valid string representation of int', () => {
             it('should be called with parsed int', () => {
-              const e = event('3');
-              props.onChange(e);
-              expect(onChange).toBeCalledWith(e, 3);
+              const e = event('1');
+
+              textField.simulate('change', e);
+
+              expect(component.state('value')).toEqual('1');
+
+              e.target.value = '100';
+
+              textField.simulate('change', e);
+
+              expect(component.state('value')).toEqual('100');
+
+              const beforeMax = (max - 1).toString();
+              e.target.value = beforeMax;
+
+              textField.simulate('blur', e);
+
+              expect(component.state('value')).toEqual(beforeMax);
+            });
+          });
+
+          describe('called with invalid string representation of int', () => {
+            it('should be called with min value', () => {
+              const e = event('aa');
+
+              textField.simulate('change', e);
+
+              expect(component.state('value')).toEqual('aa');
+
+              textField.simulate('blur', e);
+
+              expect(component.state('value')).toEqual(min.toString());
             });
           });
 
           describe('called with empty string', () => {
-            it('should not be called with an empty string', () => {
+            it('should be called with min value', () => {
               const e = event('');
-              props.onChange(e);
-              expect(onChange).not.toBeCalled();
+
+              textField.simulate('change', e);
+
+              expect(component.state('value')).toEqual('');
+
+              textField.simulate('blur', e);
+
+              expect(component.state('value')).toEqual(min.toString());
             });
           });
 
-          describe('called with invalid int', () => {
-            it('should not be called with undefined it not a valid number', () => {
-              const e = event('nope');
-              props.onChange(e);
-              expect(onChange).not.toBeCalled();
+          describe('string int less than min', () => {
+            const value = (min - 1).toString();
+
+            it('should be called with value of min', () => {
+              const e = event(value);
+
+              textField.simulate('change', e);
+
+              expect(component.state('value')).toEqual(value);
+
+              textField.simulate('blur', e);
+
+              expect(component.state('value')).toEqual(min.toString());
             });
           });
 
@@ -77,26 +138,14 @@ describe('NumberTextField', () => {
 
             it('should be called with value of max', () => {
               const e = event(value);
-              props.onChange(e);
-              expect(onChange).toBeCalledWith(e, max);
-            });
-          });
 
-          describe('string int less than min', () => {
-            const value = (min - 1).toString();
-            it('should not be called with with min if it has initialized to min', () => {
-              const e = event(value);
-              props.onChange(e, value);
-              expect(onChange).not.toBeCalledWith(e, min);
-            });
+              textField.simulate('change', e);
 
-            it('should be called with min for raw value less than min', () => {
-              const e = event(value);
+              expect(component.state('value')).toEqual(value);
 
-              //need to bump it up first
-              props.onChange(event('4'));
-              props.onChange(e, value);
-              expect(onChange).toBeCalledWith(e, min);
+              textField.simulate('blur', e);
+
+              expect(component.state('value')).toEqual(max.toString());
             });
           });
         });
