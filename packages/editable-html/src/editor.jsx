@@ -26,6 +26,7 @@ export class Editor extends React.Component {
     nonEmpty: PropTypes.bool,
     disableUnderline: PropTypes.bool,
     autoWidthToolbar: PropTypes.bool,
+    disableImages: PropTypes.bool,
     activePlugins: PropTypes.arrayOf(values => {
       const allValid = values.every(v => DEFAULT_PLUGINS.includes(v));
       return (
@@ -41,7 +42,8 @@ export class Editor extends React.Component {
   };
 
   static defaultProps = {
-    disableUnderline: true
+    disableUnderline: true,
+    disableImages: false,
   };
 
   constructor(props) {
@@ -63,7 +65,8 @@ export class Editor extends React.Component {
       },
       image: {
         onDelete:
-        props.imageSupport &&
+        !props.disableImages
+        && props.imageSupport &&
         props.imageSupport.delete &&
         ((src, done) => {
           props.imageSupport.delete(src, e => {
@@ -71,6 +74,7 @@ export class Editor extends React.Component {
           });
         }),
         insertImageRequested:
+        !props.disableImages &&
         props.imageSupport &&
         (getHandler => {
           /**
@@ -242,7 +246,7 @@ export class Editor extends React.Component {
       });
     }
 
-    if (this.props.imageSupport !== props.imageSupport) {
+    if (this.props.disableImages !== props.disableImages) {
       this.plugins = this.setPluggins(props);
     }
   }
