@@ -15,7 +15,6 @@ import Select from '@material-ui/core/Select';
 import { withStyles } from '@material-ui/core';
 import grey from '@material-ui/core/colors/grey';
 import Section from '../src/formatting/section';
-import CustomSample from './math-input/custom-sample';
 
 class Demo extends React.Component {
   constructor(props) {
@@ -37,7 +36,6 @@ class Demo extends React.Component {
   onMathInputClick() {
     console.log('onMathInputClick', arguments);
   }
-
   onClick(data) {
     console.log('onClick', data.value, data.type);
   }
@@ -72,7 +70,93 @@ class Demo extends React.Component {
     const keyset = keysForGrade(editorType);
     return mounted ? (
       <div>
-        <CustomSample />
+        <Section name="Equation editor with presets">
+          <br />
+          <FormControl variant="outlined">
+            <InputLabel
+              ref={ref => {
+                this.InputLabelRef = ref;
+              }}
+              htmlFor="outlined-age-simple"
+            >
+              Preset
+            </InputLabel>
+            <Select
+              value={this.state.editorType}
+              label={'Preset'}
+              onChange={this.changeEditorType}
+              input={
+                <OutlinedInput
+                  labelWidth={this.state.labelWidth}
+                  name="Editor Type"
+                />
+              }
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value={1}>Grade 1 - 2</MenuItem>
+              <MenuItem value={3}>Grade 3 - 5</MenuItem>
+              <MenuItem value={6}>Grade 6 - 7</MenuItem>
+              <MenuItem value={8}>Grade 8 - HS</MenuItem>
+              <MenuItem value={'geometry'}>Geometry</MenuItem>
+              <MenuItem value={'advanced-algebra'}>Advanced Algebra</MenuItem>
+              <MenuItem value={'statistics'}>Statistics</MenuItem>
+              <MenuItem value={'everything'}>Everything</MenuItem>
+            </Select>
+          </FormControl>
+
+          <MathInput
+            keyset={keyset}
+            latex={this.state.inputOne}
+            onChange={latex => this.setState({ inputOne: latex })}
+          />
+          <pre className={classes.pre}>{this.state.inputOne}</pre>
+        </Section>
+
+        <Section name="Custom keys (E261001)">
+          <div>
+            Setting custom keys is done by setting 'keyset' with an array of row
+            arrays. The object should have a 'label' and either 'write' or
+            'command'.
+          </div>
+          <MathInput
+            displayMode={'block-on-focus'}
+            latex={this.state.inputTwo}
+            onChange={latex => this.setState({ inputTwo: latex })}
+            keyset={[
+              [
+                { label: 'a', write: 'a' },
+                { label: 'b', write: 'b' },
+                { label: 'c', write: 'c' },
+                { label: 'y', write: 'y' }
+              ],
+              [
+                keys.misc.parenthesis,
+                keys.fractions.xBlankBlank,
+                keys.exponent.xToPowerOfN,
+                keys.exponent.squareRoot
+              ]
+            ]}
+          />
+          <pre className={classes.pre}>{this.state.inputTwo}</pre>
+        </Section>
+
+        <Section name="keypad standalone">
+          <p>
+            The keypad can be rendered by itself and connected to whatever you
+            like.
+          </p>
+          <KeyPad />
+        </Section>
+
+        <Section name="Horizontal Keypad (for backward compatibility) w/ 4.x">
+          <HorizontalKeypad
+            onClick={d => {
+              console.log('d:', d);
+            }}
+          />
+        </Section>
       </div>
     ) : (
       <div />
