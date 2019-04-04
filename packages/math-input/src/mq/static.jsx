@@ -4,7 +4,7 @@ import debug from 'debug';
 
 let MQ;
 if (typeof window !== 'undefined') {
-  const MathQuill = require('mathquill');
+  const MathQuill = require('@pie-framework/mathquill');
   MQ = MathQuill.getInterface(2);
 }
 
@@ -80,8 +80,6 @@ export default class Static extends React.Component {
   shouldComponentUpdate(nextProps) {
     const parsed = this.mathField.parseLatex(nextProps.latex);
 
-    log('[shouldComponentUpdate] parsed:', parsed);
-    log('[shouldComponentUpdate] currentLatex:', this.mathField.latex());
     const newFieldCount = (nextProps.latex.match(REGEX) || []).length;
 
     const out =

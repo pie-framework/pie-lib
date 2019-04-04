@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.1.18...@pie-lib/editable-html@7.2.0) (2019-04-04)
+
+
+### Bug Fixes
+
+* move mathquill to devDependency ([9466018](https://github.com/pie-framework/pie-lib/commit/9466018))
+* **extended-text-entry:** Fixed dimensions issue (width & height) were not changing properly. ([6521760](https://github.com/pie-framework/pie-lib/commit/6521760))
+
+
+### Features
+
+* use [@pie-framework](https://github.com/pie-framework)/mathquill - our fork with extras ([7fc47a7](https://github.com/pie-framework/pie-lib/commit/7fc47a7))
+
+
+
+
+
 ## [7.1.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.1.17...@pie-lib/editable-html@7.1.18) (2019-03-26)
 
 
