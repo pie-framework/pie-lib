@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@5.2.0...@pie-lib/math-input@5.3.0) (2019-04-04)
+
+
+### Bug Fixes
+
+* shouldComponentUpdate correctly checks latex ([a49c68b](https://github.com/pie-framework/pie-lib/commit/a49c68b))
+
+
+### Features
+
+* use [@pie-framework](https://github.com/pie-framework)/mathquill - our fork with extras ([7fc47a7](https://github.com/pie-framework/pie-lib/commit/7fc47a7))
+
+
+
+
+
 # [5.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@5.1.13...@pie-lib/math-input@5.2.0) (2019-03-26)
 
 
