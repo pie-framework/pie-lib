@@ -1785,6 +1785,13 @@
     lodash "^4.17.11"
     through2 "^3.0.1"
 
+"@pie-framework/mathquill@^0.10.3":
+  version "0.10.3"
+  resolved "https://registry.yarnpkg.com/@pie-framework/mathquill/-/mathquill-0.10.3.tgz#6e9fe502682f5ddbe7b4ce325871af997a8a3141"
+  integrity sha512-fUgdqzpwtk2eggWUw65VArX81G4gHqaU2CVs3mJ/9/1Z1SjZxM2OS6ZReuex/4j+Ta/BRC07Go2fUeKdFI5Lqg==
+  dependencies:
+    jquery "^3.3.1"
+
 "@pie-lib/charting-config@^0.4.32":
   version "0.4.32"
   resolved "https://registry.yarnpkg.com/@pie-lib/charting-config/-/charting-config-0.4.32.tgz#d2eecd4cc1dde6fff0b768d4b05235d4e7a020e9"
@@ -7000,7 +7007,7 @@ jest@24.1.0:
     import-local "^2.0.0"
     jest-cli "^24.1.0"
 
-jquery@latest:
+jquery@^3.3.1:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.3.1.tgz#958ce29e81c9790f31be7792df5d4d95fc57fbca"
   integrity sha512-Ubldcmxp5np52/ENotGxlLe6aGMvmF4R8S6tZjsP6Knsaxd/xp3Zrh50cG93lR6nPXyUFwzN3ZSOQI0wRJNdGg==
@@ -7709,12 +7716,6 @@ mathjs@^5.4.1:
     seed-random "2.2.0"
     tiny-emitter "2.0.2"
     typed-function "1.1.0"
-
-"mathquill@git+https://github.com/pie-framework/mathquill-webpack.git":
-  version "0.10.1"
-  resolved "git+https://github.com/pie-framework/mathquill-webpack.git#3777808dab77235b5854959632b2ed9333b7ad3a"
-  dependencies:
-    jquery latest
 
 maximatch@^0.1.0:
   version "0.1.0"

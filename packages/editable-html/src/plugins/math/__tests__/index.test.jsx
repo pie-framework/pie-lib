@@ -4,7 +4,7 @@ import MockChange from '../../image/__tests__/mock-change';
 import { Data } from 'slate';
 import MathPlugin, { serialization, inlineMath } from '../index';
 
-jest.mock('mathquill', () => ({
+jest.mock('@pie-framework/mathquill', () => ({
   StaticMath: jest.fn(),
   getInterface: jest.fn().mockReturnThis(),
   registerEmbed: jest.fn()

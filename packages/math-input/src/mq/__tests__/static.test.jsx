@@ -2,9 +2,9 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import Static from '../static';
 
-const Mathquill = require('mathquill');
+const Mathquill = require('@pie-framework/mathquill');
 
-jest.mock('mathquill', () => ({
+jest.mock('@pie-framework/mathquill', () => ({
   StaticMath: jest.fn().mockReturnValue({
     latex: jest.fn()
   }),
