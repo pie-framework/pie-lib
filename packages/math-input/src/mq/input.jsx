@@ -7,7 +7,7 @@ import { registerLineBreak } from './custom-elements';
 
 let MQ;
 if (typeof window !== 'undefined') {
-  const MathQuill = require('mathquill');
+  const MathQuill = require('@pie-framework/mathquill');
   MQ = MathQuill.getInterface(2);
 
   if (MQ && MQ.registerEmbed) {

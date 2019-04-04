@@ -283,5 +283,20 @@
     "committerDate": "2018-05-08 16:28:33 -0400",
     "isTagged": true,
     "tag": "@pie-lib/text-select@1.1.0"
+  },
+  {
+    "type": "fix",
+    "scope": "text-select",
+    "subject": "making use of span wrapper for tokens only where needed and recreated the html as string (issue: previous implementation was breaking the html content)",
+    "merge": null,
+    "header": "fix(text-select): making use of span wrapper for tokens only where needed and recreated the html as string (issue: previous implementation was breaking the html content)",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "532adc78de6cb429a521969e2ed9dd4f22f774fd",
+    "gitTags": "",
+    "committerDate": "2019-03-28 13:14:54 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/text-select@1.4.10"
   }
 ]

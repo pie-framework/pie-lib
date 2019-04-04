@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.4.9...@pie-lib/text-select@1.4.10) (2019-04-02)
+
+
+### Bug Fixes
+
+* **text-select:** making use of span wrapper for tokens only where needed and recreated the html as string (issue: previous implementation was breaking the html content) ([532adc7](https://github.com/pie-framework/pie-lib/commit/532adc7))
+
+
+
+
+
 ## [1.4.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.4.8...@pie-lib/text-select@1.4.9) (2019-03-15)
 
 

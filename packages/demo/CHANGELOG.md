@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@3.2.0...@pie-lib/demo@3.2.1) (2019-04-02)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+# [3.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@3.1.17...@pie-lib/demo@3.2.0) (2019-03-26)
+
+
+### Features
+
+* **config-ui:** Added Number Text Field with validation example in demo. ([243f921](https://github.com/pie-framework/pie-lib/commit/243f921))
+
+
+
+
+
 ## [3.1.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@3.1.16...@pie-lib/demo@3.1.17) (2019-03-15)
 
 

@@ -99,7 +99,7 @@
     "footer": null,
     "notes": [],
     "hash": "79a72be598f494cc8dca38045a9faa88794526b0",
-    "gitTags": " (origin/feature/equation-editor, feature/equation-editor)",
+    "gitTags": "",
     "committerDate": "2019-02-11 10:46:28 +0000",
     "isTagged": true,
     "tag": "@pie-lib/demo@3.0.0"

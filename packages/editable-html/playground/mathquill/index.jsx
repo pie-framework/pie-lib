@@ -6,7 +6,7 @@ import { debounce } from 'lodash';
 
 let MQ;
 if (typeof window !== 'undefined') {
-  const MathQuill = require('mathquill');
+  const MathQuill = require('@pie-framework/mathquill');
   MQ = MathQuill.getInterface(2);
 }
 
