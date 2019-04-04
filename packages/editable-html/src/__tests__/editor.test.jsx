@@ -4,8 +4,6 @@ import { Editor } from '../editor';
 import { shallow, configure } from 'enzyme';
 import debug from 'debug';
 
-import { mockComponents } from './utils';
-
 const log = debug('@pie-lib:editable-html:test');
 
 const value = htmlToValue('hi');
@@ -93,5 +91,27 @@ describe('buildSizeStyle', () => {
       width: undefined,
       height: undefined
     });
+  });
+});
+
+describe('pluggins', () => {
+  const wrapper = extras => {
+    const props = Object.assign({}, extras);
+    return shallow(
+      <Editor value={value} classes={{}} onChange={jest.fn()} {...props} />
+    );
+  };
+
+  it('updatesIamgePluggin', () => {
+    const wrapperWithImageSupport = wrapper({ imageSupport: { delete: jest.fn(), add: jest.fn() } });
+    const plugginsInitialLength = wrapperWithImageSupport.instance().plugins.length;
+
+    wrapperWithImageSupport.setProps({ disableImages: true });
+
+    expect(wrapperWithImageSupport.instance().plugins.length).toEqual(plugginsInitialLength - 1);
+
+    wrapperWithImageSupport.setProps({ disableImages: false });
+
+    expect(wrapperWithImageSupport.instance().plugins.length).toEqual(plugginsInitialLength);
   });
 });
