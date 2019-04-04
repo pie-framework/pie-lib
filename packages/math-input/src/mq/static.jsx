@@ -10,6 +10,11 @@ if (typeof window !== 'undefined') {
 
 const log = debug('pie-lib:math-input:mq:static');
 const REGEX = /\\MathQuillMathField\[answerBlock\d*\]\{(.*?)\}/g;
+const WHITESPACE_REGEX = / /g;
+
+function stripSpaces(string = '') {
+  return string.replace(WHITESPACE_REGEX, '');
+}
 
 /**
  * Wrapper for MathQuill MQ.MathField.
@@ -78,12 +83,12 @@ export default class Static extends React.Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    const parsed = this.mathField.parseLatex(nextProps.latex);
+    const parsed = stripSpaces(this.mathField.parseLatex(nextProps.latex));
 
     const newFieldCount = (nextProps.latex.match(REGEX) || []).length;
 
     const out =
-      parsed !== this.mathField.latex() ||
+      parsed !== stripSpaces(this.mathField.latex().trim()) ||
       newFieldCount !== Object.keys(this.mathField.innerFields).length / 2;
 
     log('[shouldComponentUpdate] ', out);
