@@ -102,7 +102,7 @@ describe('pluggins', () => {
     );
   };
 
-  it('updatesIamgePluggin', () => {
+  it('updatesImagePluggin', () => {
     const wrapperWithImageSupport = wrapper({ imageSupport: { delete: jest.fn(), add: jest.fn() } });
     const plugginsInitialLength = wrapperWithImageSupport.instance().plugins.length;
 
