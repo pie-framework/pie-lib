@@ -52,6 +52,7 @@ export default function ImagePlugin(opts) {
   };
 
   return {
+    name: 'image',
     toolbar,
     deleteNode: (e, node, value, onChange) => {
       e.preventDefault();
@@ -105,7 +106,7 @@ export default function ImagePlugin(opts) {
         return <ImageComponent {...all} />;
       }
     },
-    normalizeNode: (node) => {
+    normalizeNode: node => {
       const textNodeMap = {};
       const updateNodesArray = [];
       let index = 0;
@@ -118,7 +119,11 @@ export default function ImagePlugin(opts) {
         }
 
         if (d.type === 'image') {
-          if (index > 0 && textNodeMap[index - 1] && textNodeMap[index - 1].text === '') {
+          if (
+            index > 0 &&
+            textNodeMap[index - 1] &&
+            textNodeMap[index - 1].text === ''
+          ) {
             updateNodesArray.push(textNodeMap[index - 1]);
           }
         }
@@ -130,7 +135,7 @@ export default function ImagePlugin(opts) {
 
       return change => {
         change.withoutNormalization(() => {
-          updateNodesArray.forEach((n) => change.insertTextByKey(n.key, 0, ' '));
+          updateNodesArray.forEach(n => change.insertTextByKey(n.key, 0, ' '));
         });
       };
     }

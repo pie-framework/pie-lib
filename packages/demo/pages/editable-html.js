@@ -2,6 +2,7 @@ import EditableHtml, {
   DEFAULT_PLUGINS,
   htmlToValue
 } from '@pie-lib/editable-html';
+import grey from '@material-ui/core/colors/grey';
 import React from 'react';
 import _ from 'lodash';
 import debug from 'debug';
@@ -107,6 +108,7 @@ class RteDemo extends React.Component {
     this.state = {
       markup: html,
       showHighlight: false,
+      disableImageUpload: false,
       disabled: false,
       width: '',
       height: ''
@@ -218,6 +220,7 @@ class RteDemo extends React.Component {
     const {
       markup,
       showHighlight,
+      disableImageUpload,
       disabled,
       width,
       height,
@@ -242,42 +245,56 @@ class RteDemo extends React.Component {
           inputOptions={inputOptions}
           onChange={markup => this.setState({ markup })}
         />
-        <FormGroup row>
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={showHighlight}
-                onChange={event =>
-                  this.setState({ showHighlight: event.target.checked })
-                }
-              />
-            }
-            label="show highlight"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={disabled}
-                onChange={event =>
-                  this.setState({ disabled: event.target.checked })
-                }
-              />
-            }
-            label="disabled"
-          />
-          <TextField
-            className={classes.sizeInput}
-            placeholder={'width'}
-            value={width}
-            onChange={event => this.setState({ width: event.target.value })}
-          />
-          <TextField
-            className={classes.sizeInput}
-            placeholder={'height'}
-            value={height}
-            onChange={event => this.setState({ height: event.target.value })}
-          />
-        </FormGroup>
+        <div className={classes.controls}>
+          <Typography variant="headline">Runtime Options</Typography>
+          <FormGroup row>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={showHighlight}
+                  onChange={event =>
+                    this.setState({ showHighlight: event.target.checked })
+                  }
+                />
+              }
+              label="show highlight"
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={disableImageUpload}
+                  onChange={event =>
+                    this.setState({ disableImageUpload: event.target.checked })
+                  }
+                />
+              }
+              label="disable image upload"
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={disabled}
+                  onChange={event =>
+                    this.setState({ disabled: event.target.checked })
+                  }
+                />
+              }
+              label="disabled"
+            />
+            <TextField
+              className={classes.sizeInput}
+              placeholder={'width'}
+              value={width}
+              onChange={event => this.setState({ width: event.target.value })}
+            />
+            <TextField
+              className={classes.sizeInput}
+              placeholder={'height'}
+              value={height}
+              onChange={event => this.setState({ height: event.target.value })}
+            />
+          </FormGroup>
+        </div>
         <EditableHtml
           markup={markup}
           onChange={this.onChange}
@@ -285,6 +302,11 @@ class RteDemo extends React.Component {
           onBlur={this.onBlur}
           disabled={disabled}
           highlightShape={showHighlight}
+          pluginProps={{
+            image: {
+              disabled: disableImageUpload
+            }
+          }}
           width={width}
           height={height}
         />
@@ -299,6 +321,12 @@ class RteDemo extends React.Component {
 }
 
 const styles = theme => ({
+  controls: {
+    backgroundColor: grey[200],
+    padding: theme.spacing.unit,
+    marginTop: theme.spacing.unit,
+    marginBottom: theme.spacing.unit
+  },
   sizeInput: {
     width: '60px',
     paddingLeft: theme.spacing.unit * 2

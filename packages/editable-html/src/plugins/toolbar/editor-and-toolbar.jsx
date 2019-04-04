@@ -24,12 +24,13 @@ export class EditorAndToolbar extends React.Component {
     readOnly: PropTypes.bool,
     disableUnderline: PropTypes.bool,
     autoWidth: PropTypes.bool,
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
+    pluginProps: PropTypes.object
   };
 
-  /** This is an interim fix until this PR is merged in slate: 
-    * https://github.com/ianstormtaylor/slate/pull/2236
-    */
+  /** This is an interim fix until this PR is merged in slate:
+   * https://github.com/ianstormtaylor/slate/pull/2236
+   */
   componentDidMount() {
     if (IS_FIREFOX) {
       this.editorRef.tmp.isUpdatingSelection = true;
@@ -47,7 +48,8 @@ export class EditorAndToolbar extends React.Component {
       focusedNode,
       autoWidth,
       readOnly,
-      disableUnderline
+      disableUnderline,
+      pluginProps
     } = this.props;
 
     const inFocus =
@@ -61,10 +63,9 @@ export class EditorAndToolbar extends React.Component {
     let clonedChildren = children;
 
     if (typeof children !== 'string') {
-      clonedChildren = React.cloneElement(
-        children,
-        { ref: el => this.editorRef = el }
-      );
+      clonedChildren = React.cloneElement(children, {
+        ref: el => (this.editorRef = el)
+      });
     }
 
     log(
@@ -89,6 +90,7 @@ export class EditorAndToolbar extends React.Component {
           isFocused={inFocus}
           onChange={onChange}
           onDone={onDone}
+          pluginProps={pluginProps}
         />
       </div>
     );

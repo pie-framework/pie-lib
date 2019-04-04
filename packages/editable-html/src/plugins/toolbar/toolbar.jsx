@@ -48,8 +48,21 @@ export const ToolbarButton = props => {
   }
 };
 
-const RawDefaultToolbar = ({ plugins, value, onChange, onDone, classes }) => {
-  const toolbarPlugins = plugins.filter(p => p.toolbar).map(p => p.toolbar);
+const RawDefaultToolbar = ({
+  plugins,
+  pluginProps,
+  value,
+  onChange,
+  onDone,
+  classes
+}) => {
+  const toolbarPlugins = plugins
+    .filter(p => {
+      const isDisabled = (pluginProps[p.name] || {}).disabled;
+      return p.toolbar && !isDisabled;
+    })
+    .map(p => p.toolbar);
+
   return (
     <div className={classes.defaultToolbar}>
       <div>
@@ -72,9 +85,13 @@ const RawDefaultToolbar = ({ plugins, value, onChange, onDone, classes }) => {
 RawDefaultToolbar.propTypes = {
   classes: PropTypes.object.isRequired,
   plugins: PropTypes.array.isRequired,
+  pluginProps: PropTypes.object,
   value: SlatePropTypes.value.isRequired,
   onChange: PropTypes.func.isRequired,
   onDone: PropTypes.func.isRequired
+};
+RawDefaultToolbar.defaultProps = {
+  pluginProps: {}
 };
 
 const toolbarStyles = () => ({
@@ -97,7 +114,8 @@ export class Toolbar extends React.Component {
     classes: PropTypes.object.isRequired,
     isFocused: PropTypes.bool,
     autoWidth: PropTypes.bool,
-    onChange: PropTypes.func.isRequired
+    onChange: PropTypes.func.isRequired,
+    pluginProps: PropTypes.object
   };
 
   constructor(props) {
@@ -164,7 +182,8 @@ export class Toolbar extends React.Component {
       autoWidth,
       onChange,
       isFocused,
-      onDone
+      onDone,
+      pluginProps
     } = this.props;
 
     const node = findSingleNode(value);
@@ -208,6 +227,7 @@ export class Toolbar extends React.Component {
         ) : (
           <DefaultToolbar
             plugins={plugins}
+            pluginProps={pluginProps}
             value={value}
             onChange={onChange}
             onDone={onDone}
