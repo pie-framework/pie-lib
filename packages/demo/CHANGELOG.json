@@ -243,5 +243,20 @@
     "committerDate": "2019-04-02 16:20:39 +0100",
     "isTagged": true,
     "tag": "@pie-lib/demo@3.3.0"
+  },
+  {
+    "type": "feat",
+    "scope": null,
+    "subject": "add new prop 'pluginProps'",
+    "merge": null,
+    "header": "feat: add new prop 'pluginProps'",
+    "body": "This prop allows you to make runtime changes that the plugin can make\nuse of while executing.\n\n> At the moment it's only used to render toolbar buttons, but if needed\nwe can get the props to pass down to the render methods of each plugin.",
+    "footer": null,
+    "notes": [],
+    "hash": "f73a2a2bbb551fb91716708e412386c365ef7cd6",
+    "gitTags": "",
+    "committerDate": "2019-04-04 11:51:50 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/demo@3.4.0"
   }
 ]

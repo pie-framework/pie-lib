@@ -773,5 +773,20 @@
     "committerDate": "2019-04-02 16:20:39 +0100",
     "isTagged": true,
     "tag": "@pie-lib/math-input@5.3.0"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "static math diffing algorithm fix for spaces",
+    "merge": null,
+    "header": "fix: static math diffing algorithm fix for spaces",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "2ce8bacf1f4d8a72bede1e820db07c0c6f9a4211",
+    "gitTags": "",
+    "committerDate": "2019-04-04 17:10:35 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/math-input@5.3.2"
   }
 ]
