@@ -6,7 +6,7 @@ import {
 import { shallow } from 'enzyme';
 
 import { Data, Value, Inline } from 'slate';
-import { Toolbar } from '../toolbar';
+import { Toolbar, DefaultToolbar } from '../toolbar';
 import React from 'react';
 import debug from 'debug';
 import renderer from 'react-test-renderer';
@@ -87,54 +87,6 @@ describe('toolbar', () => {
 
     log('tree: ', JSON.stringify(tree, null, '  '));
     expect(tree).toMatchSnapshot();
-  });
-
-  it('does not render disabled plugins', () => {
-    const plugins = [
-      {
-        deleteNode: () => true,
-        toolbar: {
-          supports: () => true,
-          customToolbar: () => () => (
-            <div> --------- custom toolbar ----------- </div>
-          )
-        },
-      },
-      {
-        deleteNode: () => true,
-        toolbar: {},
-        name: 'image'
-      }
-    ];
-
-    const wrapper = shallow(
-      <Toolbar
-        plugins={plugins}
-        classes={classes}
-        value={value}
-        onDone={jest.fn()}
-        onChange={jest.fn()}
-      />
-    );
-
-    const toolbarPluginsLength = wrapper.instance().filterDefaultToolbarPlugins().length;
-
-    wrapper.setProps({ pluginProps: {
-      image: {
-        disabled: true
-      }
-    }});
-
-    expect(wrapper.instance().filterDefaultToolbarPlugins().length).toEqual(toolbarPluginsLength - 1);
-
-    wrapper.setProps({ pluginProps: {
-      image: {
-        disabled: false
-      }
-    }});
-
-    expect(wrapper.instance().filterDefaultToolbarPlugins().length).toEqual(toolbarPluginsLength);
-
   });
 
   describe('default', () => {
