@@ -50,23 +50,15 @@ export const ToolbarButton = props => {
 
 const RawDefaultToolbar = ({
   plugins,
-  pluginProps,
   value,
   onChange,
   onDone,
   classes
 }) => {
-  const toolbarPlugins = plugins
-    .filter(p => {
-      const isDisabled = (pluginProps[p.name] || {}).disabled;
-      return p.toolbar && !isDisabled;
-    })
-    .map(p => p.toolbar);
-
   return (
     <div className={classes.defaultToolbar}>
       <div>
-        {toolbarPlugins.map((p, index) => {
+        {plugins.map((p, index) => {
           return (
             <ToolbarButton
               {...p}
@@ -174,6 +166,39 @@ export class Toolbar extends React.Component {
     }
   };
 
+  filterDefaultToolbarPlugins = () => {
+    const { plugins, pluginProps } = this.props;
+
+    const filteredPlugins = plugins
+      .filter(p => {
+        const isDisabled = p.name && pluginProps && (pluginProps[p.name] || {}).disabled;
+        return p.toolbar && !isDisabled;
+      });
+
+    return filteredPlugins && filteredPlugins.map(p => p.toolbar);
+  };
+
+  renderDefaultToolbar = () => {
+    const {
+      value,
+      onChange,
+      onDone,
+      pluginProps
+    } = this.props;
+
+    const toolbarPlugins = this.filterDefaultToolbarPlugins();
+
+    return (
+      <DefaultToolbar
+        plugins={toolbarPlugins}
+        pluginProps={pluginProps}
+        value={value}
+        onChange={onChange}
+        onDone={onDone}
+      />
+    )
+  };
+
   render() {
     const {
       classes,
@@ -183,7 +208,6 @@ export class Toolbar extends React.Component {
       onChange,
       isFocused,
       onDone,
-      pluginProps
     } = this.props;
 
     const node = findSingleNode(value);
@@ -222,17 +246,10 @@ export class Toolbar extends React.Component {
 
     return (
       <div className={names} onClick={this.onClick}>
-        {CustomToolbar ? (
-          <CustomToolbar />
-        ) : (
-          <DefaultToolbar
-            plugins={plugins}
-            pluginProps={pluginProps}
-            value={value}
-            onChange={onChange}
-            onDone={onDone}
-          />
-        )}
+        {CustomToolbar
+          ? <CustomToolbar />
+          : this.renderDefaultToolbar()
+        }
 
         <div className={classes.shared}>
           {deletable && (

@@ -3,6 +3,7 @@ import {
   mockIconButton,
   mockMathInput
 } from '../../../__tests__/utils';
+import { shallow } from 'enzyme';
 
 import { Data, Value, Inline } from 'slate';
 import { Toolbar } from '../toolbar';
@@ -88,26 +89,51 @@ describe('toolbar', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  describe('default', () => {
-    let plugins;
+  test('does not render disabled plugins', () => {
+    const plugins = [
+      {
+        deleteNode: () => true,
+        toolbar: {
+          supports: () => true,
+          customToolbar: () => () => (
+            <div> --------- custom toolbar ----------- </div>
+          )
+        },
+      },
+      {
+        deleteNode: () => true,
+        toolbar: {},
+        name: 'image'
+      }
+    ];
 
-    beforeEach(() => {
-      plugins = [];
-    });
+    const wrapper = shallow(
+      <Toolbar
+        plugins={plugins}
+        classes={classes}
+        value={value}
+        onDone={jest.fn()}
+        onChange={jest.fn()}
+      />
+    );
 
-    test('renders default toolbar', () => {
-      const tree = renderer
-        .create(
-          <Toolbar
-            plugins={plugins}
-            classes={classes}
-            value={value}
-            onDone={jest.fn()}
-            onChange={jest.fn()}
-          />
-        )
-        .toJSON();
-      expect(tree).toMatchSnapshot();
-    });
+    const toolbarPluginsLength = wrapper.instance().filterDefaultToolbarPlugins().length;
+
+    wrapper.setProps({ pluginProps: {
+      image: {
+        disabled: true
+      }
+    }});
+
+    expect(wrapper.instance().filterDefaultToolbarPlugins().length).toEqual(toolbarPluginsLength - 1);
+
+    wrapper.setProps({ pluginProps: {
+      image: {
+        disabled: false
+      }
+    }});
+
+    expect(wrapper.instance().filterDefaultToolbarPlugins().length).toEqual(toolbarPluginsLength);
+
   });
 });
