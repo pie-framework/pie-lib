@@ -3,9 +3,10 @@ import {
   mockIconButton,
   mockMathInput
 } from '../../../__tests__/utils';
+import { shallow } from 'enzyme';
 
 import { Data, Value, Inline } from 'slate';
-import { Toolbar } from '../toolbar';
+import { Toolbar, DefaultToolbar } from '../toolbar';
 import React from 'react';
 import debug from 'debug';
 import renderer from 'react-test-renderer';

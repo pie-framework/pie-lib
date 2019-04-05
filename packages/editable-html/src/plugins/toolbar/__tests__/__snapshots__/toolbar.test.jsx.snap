@@ -6,7 +6,7 @@ exports[`toolbar default renders default toolbar 1`] = `
   onClick={[Function]}
 >
   <div
-    className="RawDefaultToolbar-defaultToolbar-1"
+    className="DefaultToolbar-defaultToolbar-1"
   >
     <div />
     <div
