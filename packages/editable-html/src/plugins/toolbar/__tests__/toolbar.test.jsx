@@ -89,7 +89,7 @@ describe('toolbar', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  test('does not render disabled plugins', () => {
+  it('does not render disabled plugins', () => {
     const plugins = [
       {
         deleteNode: () => true,
@@ -135,5 +135,28 @@ describe('toolbar', () => {
 
     expect(wrapper.instance().filterDefaultToolbarPlugins().length).toEqual(toolbarPluginsLength);
 
+  });
+
+  describe('default', () => {
+    let plugins;
+
+    beforeEach(() => {
+      plugins = [];
+    });
+
+    test('renders default toolbar', () => {
+      const tree = renderer
+        .create(
+          <Toolbar
+            plugins={plugins}
+            classes={classes}
+            value={value}
+            onDone={jest.fn()}
+            onChange={jest.fn()}
+          />
+        )
+        .toJSON();
+      expect(tree).toMatchSnapshot();
+    });
   });
 });
