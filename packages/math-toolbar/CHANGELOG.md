@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@0.10.2...@pie-lib/math-toolbar@0.11.0) (2019-04-10)
+
+
+### Features
+
+* **math-toolbar:** no decimals support added ([39baa2e](https://github.com/pie-framework/pie-lib/commit/39baa2e))
+
+
+
+
+
 ## [0.10.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@0.10.1...@pie-lib/math-toolbar@0.10.2) (2019-04-05)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
