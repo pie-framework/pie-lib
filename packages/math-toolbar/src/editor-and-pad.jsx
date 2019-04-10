@@ -7,6 +7,8 @@ import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 const log = debug('@pie-lib:math-toolbar:editor-and-pad');
 
+const decimalRegex = /\.|,/g;
+
 const toNodeData = data => {
   if (!data) {
     return;
@@ -32,6 +34,7 @@ export class EditorAndPad extends React.Component {
     allowAnswerBlock: PropTypes.bool,
     showKeypad: PropTypes.bool,
     controlledKeypad: PropTypes.bool,
+    noDecimal: PropTypes.bool,
     latex: PropTypes.string.isRequired,
     onAnswerBlockAdd: PropTypes.func,
     onFocus: PropTypes.func,
@@ -49,8 +52,14 @@ export class EditorAndPad extends React.Component {
   }
 
   onClick = data => {
+    const { noDecimal } = this.props;
     const c = toNodeData(data);
     log('mathChange: ', c);
+
+    // if decimals are not allowed for this response, we discard the input
+    if (noDecimal && (c.value === '.' || c.value === ',')) {
+      return;
+    }
 
     if (c.type === 'clear') {
       log('call clear...');
@@ -98,7 +107,15 @@ export class EditorAndPad extends React.Component {
   };
 
   onEditorChange = latex => {
-    const { onChange } = this.props;
+    const { onChange, noDecimal } = this.props;
+
+    // if no decimals are allowed and the last change is a decimal dot, discard the change
+    if (noDecimal && (latex.indexOf('.') !== -1 || latex.indexOf(',') !== -1)) {
+      this.input.clear();
+      this.input.write(latex.replace(decimalRegex, ''));
+      return;
+    }
+
     onChange(latex);
   };
 
@@ -109,6 +126,10 @@ export class EditorAndPad extends React.Component {
     log('[shouldComponentUpdate] ', 'inputIsDifferent: ', inputIsDifferent);
 
     if (!inputIsDifferent && this.props.keypadMode !== nextProps.keypadMode) {
+      return true;
+    }
+
+    if (!inputIsDifferent && this.props.noDecimal !== nextProps.noDecimal) {
       return true;
     }
 
@@ -126,6 +147,7 @@ export class EditorAndPad extends React.Component {
       allowAnswerBlock,
       controlledKeypad,
       showKeypad,
+      noDecimal,
       latex,
       onFocus,
       classes
@@ -156,7 +178,7 @@ export class EditorAndPad extends React.Component {
         )}
         <hr className={classes.hr} />
         {shouldShowKeypad && (
-          <HorizontalKeypad mode={keypadMode} onClick={this.onClick} />
+          <HorizontalKeypad mode={keypadMode} onClick={this.onClick} noDecimal={noDecimal} />
         )}
       </div>
     );
