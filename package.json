@@ -19,6 +19,7 @@
     "release:next": "scripts/build release deploy --next",
     "build": "scripts/build build",
     "postinstall": "lerna bootstrap",
+    "prepush": "npm run test",
     "prepack": "scripts/build changelog"
   },
   "devDependencies": {
