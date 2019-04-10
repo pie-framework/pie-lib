@@ -433,5 +433,20 @@
     "committerDate": "2019-04-03 22:05:15 +0100",
     "isTagged": true,
     "tag": "@pie-lib/math-toolbar@0.10.0"
+  },
+  {
+    "type": "feat",
+    "scope": "math-toolbar",
+    "subject": "no decimals support added",
+    "merge": null,
+    "header": "feat(math-toolbar): no decimals support added",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "39baa2ec9cbfe7adcacba68a43c581d8ee64cf1d",
+    "gitTags": "",
+    "committerDate": "2019-04-10 10:39:05 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/math-toolbar@0.11.0"
   }
 ]
