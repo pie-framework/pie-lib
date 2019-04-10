@@ -19,12 +19,7 @@ describe('math-evaluator', () => {
   const assertEqual = assert(true);
   const assertNotEqual = assert(false);
 
-  assertNotEqual('evaluates simple expressions correctly')(
-    '0',
-    'x',
-    '3x',
-    '4x'
-  );
+  assertNotEqual('evaluates simple expressions correctly')('0', 'x', '3x', '4x');
 
   assertEqual('evaluates simple expressions correctly')('x', 'x', '2x', '2x');
 
@@ -156,9 +151,7 @@ describe('math-evaluator', () => {
     'y^(x+x)'
   );
 
-  assertEqual(
-    'evaluates function expressions correctly with variable parameters'
-  )(
+  assertEqual('evaluates function expressions correctly with variable parameters')(
     'sqrt(4x)',
     'sqrt(2x+2x)',
     'sqrt(x^2)',
@@ -174,21 +167,11 @@ describe('math-evaluator', () => {
 
   it('correctly consumes allowDecimals option', () => {
     expect(areValuesEqual('123', '123', { allowDecimals: true })).toEqual(true);
-    expect(areValuesEqual('123', '123.0', { allowDecimals: true })).toEqual(
-      true
-    );
-    expect(areValuesEqual('123,0', '123.0', { allowDecimals: true })).toEqual(
-      true
-    );
-    expect(areValuesEqual('123,0', '123.0', { allowDecimals: false })).toEqual(
-      false
-    );
-    expect(areValuesEqual('123', '123.0', { allowDecimals: false })).toEqual(
-      false
-    );
-    expect(areValuesEqual('123', '123,0', { allowDecimals: false })).toEqual(
-      false
-    );
+    expect(areValuesEqual('123', '123.0', { allowDecimals: true })).toEqual(true);
+    expect(areValuesEqual('123,0', '123.0', { allowDecimals: true })).toEqual(true);
+    expect(areValuesEqual('123,0', '123.0', { allowDecimals: false })).toEqual(false);
+    expect(areValuesEqual('123', '123.0', { allowDecimals: false })).toEqual(false);
+    expect(areValuesEqual('123', '123,0', { allowDecimals: false })).toEqual(false);
   });
 
   it('evaluates simple trigo expressions correctly', () => {
