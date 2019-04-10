@@ -1,4 +1,5 @@
 // .prettierrc.js
 module.exports = {
-  singleQuote: true
+  singleQuote: true,
+  printWidth: 100
 };
