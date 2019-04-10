@@ -67,10 +67,12 @@ export class KeyPad extends React.Component {
     baseSet: PropTypes.array,
     additionalKeys: PropTypes.array,
     onPress: PropTypes.func.isRequired,
-    onFocus: PropTypes.func
+    onFocus: PropTypes.func,
+    noDecimal: PropTypes.bool
   };
   static defaultProps = {
-    baseSet: baseSet
+    baseSet: baseSet,
+    noDecimal: false
   };
 
   buttonClick = key => {
@@ -84,6 +86,16 @@ export class KeyPad extends React.Component {
     return _.flatten(transposed);
   };
 
+  keyIsNotAllowed = key => {
+    const { noDecimal } = this.props;
+
+    if (((key.write === '.' && key.label === '.') || (key.write === ',' && key.label === ',')) && noDecimal) {
+      return true;
+    }
+
+    return false;
+  }
+
   render() {
     const { classes, className, baseSet, additionalKeys, onFocus } = this.props;
 
@@ -92,7 +104,7 @@ export class KeyPad extends React.Component {
     const shift = allKeys.length % 5 ? 1 : 0;
     const style = {
       gridTemplateColumns: `repeat(${Math.floor(allKeys.length / 5) +
-        shift}, minmax(min-content, 150px))`
+      shift}, minmax(min-content, 150px))`
     };
     return (
       <div
@@ -104,7 +116,7 @@ export class KeyPad extends React.Component {
           const onClick = this.buttonClick.bind(this, k);
 
           if (!k) {
-            return <span key={`empty-${index}`} />;
+            return <span key={`empty-${index}`}/>;
           }
 
           const common = {
@@ -114,6 +126,7 @@ export class KeyPad extends React.Component {
               classes[k.category],
               k.label === '=' && classes.equals
             ),
+            disabled: this.keyIsNotAllowed(k),
             key: `${k.label || k.latex || k.command}-${index}`
           };
 
@@ -134,7 +147,7 @@ export class KeyPad extends React.Component {
 
             return (
               <IconButton tabIndex={'-1'} {...common}>
-                <Icon className={classes.icon} />
+                <Icon className={classes.icon}/>
               </IconButton>
             );
           }
@@ -143,6 +156,7 @@ export class KeyPad extends React.Component {
     );
   }
 }
+
 const styles = theme => ({
   keys: {
     width: '100%',
@@ -156,7 +170,7 @@ const styles = theme => ({
     position: 'relative',
     width: '100%',
     height: '100%',
-    backgroundColor: '#cceeff',
+    backgroundColor: '#cef',
     borderRadius: 0,
     padding: `${theme.spacing.unit}px 0 ${theme.spacing.unit}px 0`
   },

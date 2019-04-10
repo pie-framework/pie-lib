@@ -18,11 +18,13 @@ export default class HorizontalKeypad extends React.Component {
     className: PropTypes.string,
     mode: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     onClick: PropTypes.func.isRequired,
-    onFocus: PropTypes.func
+    onFocus: PropTypes.func,
+    noDecimal: PropTypes.bool
   };
 
   static defaultProps = {
-    mode: 'scientific'
+    mode: 'scientific',
+    noDecimal: false
   };
 
   keypadPress = data => {
@@ -32,11 +34,12 @@ export default class HorizontalKeypad extends React.Component {
   };
 
   render() {
-    const { mode, onFocus, className } = this.props;
+    const { mode, onFocus, noDecimal, className } = this.props;
     return (
       <Keypad
         className={className}
         onFocus={onFocus}
+        noDecimal={noDecimal}
         additionalKeys={keysForGrade(mode)}
         onPress={this.keypadPress}
       />

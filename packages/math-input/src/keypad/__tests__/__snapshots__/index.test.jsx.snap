@@ -11,6 +11,7 @@ exports[`Keypad snapshot renders 1`] = `
 >
   <WithStyles(Button)
     className=""
+    disabled={false}
     key="7-0"
     onClick={[Function]}
   >
@@ -18,6 +19,7 @@ exports[`Keypad snapshot renders 1`] = `
   </WithStyles(Button)>
   <WithStyles(Button)
     className=""
+    disabled={false}
     key="4-1"
     onClick={[Function]}
   >
@@ -25,6 +27,7 @@ exports[`Keypad snapshot renders 1`] = `
   </WithStyles(Button)>
   <WithStyles(Button)
     className=""
+    disabled={false}
     key="1-2"
     onClick={[Function]}
   >
@@ -32,6 +35,7 @@ exports[`Keypad snapshot renders 1`] = `
   </WithStyles(Button)>
   <WithStyles(Button)
     className=""
+    disabled={false}
     key="0-3"
     onClick={[Function]}
   >
@@ -39,6 +43,7 @@ exports[`Keypad snapshot renders 1`] = `
   </WithStyles(Button)>
   <WithStyles(Button)
     className=""
+    disabled={false}
     key="◀-4"
     onClick={[Function]}
   >
@@ -46,6 +51,7 @@ exports[`Keypad snapshot renders 1`] = `
   </WithStyles(Button)>
   <WithStyles(Button)
     className=""
+    disabled={false}
     key="8-5"
     onClick={[Function]}
   >
@@ -53,6 +59,7 @@ exports[`Keypad snapshot renders 1`] = `
   </WithStyles(Button)>
   <WithStyles(Button)
     className=""
+    disabled={false}
     key="5-6"
     onClick={[Function]}
   >
@@ -60,6 +67,7 @@ exports[`Keypad snapshot renders 1`] = `
   </WithStyles(Button)>
   <WithStyles(Button)
     className=""
+    disabled={false}
     key="2-7"
     onClick={[Function]}
   >
@@ -67,6 +75,7 @@ exports[`Keypad snapshot renders 1`] = `
   </WithStyles(Button)>
   <WithStyles(Button)
     className=""
+    disabled={false}
     key=".-8"
     onClick={[Function]}
   >
@@ -74,6 +83,7 @@ exports[`Keypad snapshot renders 1`] = `
   </WithStyles(Button)>
   <WithStyles(Button)
     className=""
+    disabled={false}
     key="▶-9"
     onClick={[Function]}
   >
@@ -81,6 +91,7 @@ exports[`Keypad snapshot renders 1`] = `
   </WithStyles(Button)>
   <WithStyles(Button)
     className=""
+    disabled={false}
     key="9-10"
     onClick={[Function]}
   >
@@ -88,6 +99,7 @@ exports[`Keypad snapshot renders 1`] = `
   </WithStyles(Button)>
   <WithStyles(Button)
     className=""
+    disabled={false}
     key="6-11"
     onClick={[Function]}
   >
@@ -95,6 +107,7 @@ exports[`Keypad snapshot renders 1`] = `
   </WithStyles(Button)>
   <WithStyles(Button)
     className=""
+    disabled={false}
     key="3-12"
     onClick={[Function]}
   >
@@ -102,6 +115,7 @@ exports[`Keypad snapshot renders 1`] = `
   </WithStyles(Button)>
   <WithStyles(Button)
     className=""
+    disabled={false}
     key=",-13"
     onClick={[Function]}
   >
@@ -109,6 +123,7 @@ exports[`Keypad snapshot renders 1`] = `
   </WithStyles(Button)>
   <WithStyles(Button)
     className=""
+    disabled={false}
     key="⌫-14"
     onClick={[Function]}
   >
@@ -116,6 +131,7 @@ exports[`Keypad snapshot renders 1`] = `
   </WithStyles(Button)>
   <WithStyles(Button)
     className=""
+    disabled={false}
     key="÷-15"
     onClick={[Function]}
   >
@@ -123,6 +139,7 @@ exports[`Keypad snapshot renders 1`] = `
   </WithStyles(Button)>
   <WithStyles(Button)
     className=""
+    disabled={false}
     key="×-16"
     onClick={[Function]}
   >
@@ -130,6 +147,7 @@ exports[`Keypad snapshot renders 1`] = `
   </WithStyles(Button)>
   <WithStyles(Button)
     className=""
+    disabled={false}
     key="--17"
     onClick={[Function]}
   >
@@ -137,6 +155,7 @@ exports[`Keypad snapshot renders 1`] = `
   </WithStyles(Button)>
   <WithStyles(Button)
     className=""
+    disabled={false}
     key="+-18"
     onClick={[Function]}
   >
@@ -144,6 +163,7 @@ exports[`Keypad snapshot renders 1`] = `
   </WithStyles(Button)>
   <WithStyles(Button)
     className=""
+    disabled={false}
     key="=-19"
     onClick={[Function]}
   >
