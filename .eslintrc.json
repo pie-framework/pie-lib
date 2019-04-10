@@ -1,8 +1,10 @@
 {
   "parser": "babel-eslint",
+  "plugins": ["prettier"],
   "extends": [
     "eslint:recommended",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "plugin:prettier/recommended"
   ],
   "env": {
     "browser": true,
@@ -21,6 +23,7 @@
       "warn",
       "single"
     ],
+    "prettier/prettier": "warn",
     "strict": 0,
     "react/prop-types": "warn",
     "react/jsx-no-duplicate-props": "warn",
