@@ -15,6 +15,7 @@ export class MathToolbar extends React.Component {
     keypadMode: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     classNames: PropTypes.object,
     showKeypad: PropTypes.bool,
+    noDecimal: PropTypes.bool,
     latex: PropTypes.string.isRequired,
     onAnswerBlockAdd: PropTypes.func,
     onChange: PropTypes.func,
@@ -27,6 +28,7 @@ export class MathToolbar extends React.Component {
     keypadMode: 'everything',
     allowAnswerBlock: false,
     controlledKeypad: false,
+    noDecimal: false,
     showKeypad: true,
     onChange: () => {},
     onAnswerBlockAdd: () => {},
@@ -61,6 +63,7 @@ export class MathToolbar extends React.Component {
       onAnswerBlockAdd,
       controlledKeypad,
       keypadMode,
+      noDecimal,
       showKeypad,
       onFocus
     } = this.props;
@@ -71,6 +74,7 @@ export class MathToolbar extends React.Component {
         onAnswerBlockAdd={onAnswerBlockAdd}
         allowAnswerBlock={allowAnswerBlock}
         latex={latex}
+        noDecimal={noDecimal}
         keypadMode={keypadMode}
         onChange={this.onChange}
         onDone={this.done}
@@ -92,6 +96,7 @@ export class RawPureToolbar extends React.Component {
     onAnswerBlockAdd: PropTypes.func,
     onFocus: PropTypes.func,
     classes: PropTypes.object.isRequired,
+    noDecimal: PropTypes.bool,
     allowAnswerBlock: PropTypes.bool,
     controlledKeypad: PropTypes.bool,
     showKeypad: PropTypes.bool
@@ -105,6 +110,7 @@ export class RawPureToolbar extends React.Component {
       controlledKeypad,
       showKeypad,
       keypadMode,
+      noDecimal,
       latex,
       onChange,
       onDone,
@@ -119,6 +125,7 @@ export class RawPureToolbar extends React.Component {
           keypadMode={keypadMode}
           classNames={classNames}
           controlledKeypad={controlledKeypad}
+          noDecimal={noDecimal}
           showKeypad={showKeypad}
           allowAnswerBlock={allowAnswerBlock}
           onAnswerBlockAdd={onAnswerBlockAdd}
