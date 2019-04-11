@@ -3,6 +3,68 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@5.3.2...@pie-lib/math-input@5.4.0) (2019-04-10)
+
+
+### Features
+
+* **math-input:** no decimals support added ([48b1c39](https://github.com/pie-framework/pie-lib/commit/48b1c39))
+
+
+
+
+
+## [5.3.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@5.3.1...@pie-lib/math-input@5.3.2) (2019-04-05)
+
+
+### Bug Fixes
+
+* static math diffing algorithm fix for spaces ([2ce8bac](https://github.com/pie-framework/pie-lib/commit/2ce8bac))
+
+
+
+
+
+## [5.3.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@5.3.0...@pie-lib/math-input@5.3.1) (2019-04-04)
+
+**Note:** Version bump only for package @pie-lib/math-input
+
+
+
+
+
+# [5.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@5.2.0...@pie-lib/math-input@5.3.0) (2019-04-04)
+
+
+### Bug Fixes
+
+* shouldComponentUpdate correctly checks latex ([a49c68b](https://github.com/pie-framework/pie-lib/commit/a49c68b))
+
+
+### Features
+
+* use [@pie-framework](https://github.com/pie-framework)/mathquill - our fork with extras ([7fc47a7](https://github.com/pie-framework/pie-lib/commit/7fc47a7))
+
+
+
+
+
+# [5.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@5.1.13...@pie-lib/math-input@5.2.0) (2019-03-26)
+
+
+### Bug Fixes
+
+* continued mathquill math-input work ([f4c6d67](https://github.com/pie-framework/pie-lib/commit/f4c6d67))
+
+
+### Features
+
+* math-input static subfield setter on props ([a4651d9](https://github.com/pie-framework/pie-lib/commit/a4651d9))
+
+
+
+
+
 ## [5.1.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@5.1.12...@pie-lib/math-input@5.1.13) (2019-03-15)
 
 

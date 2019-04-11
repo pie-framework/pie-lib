@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.11.33](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@7.11.32...@pie-lib/config-ui@7.11.33) (2019-04-10)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
+## [7.11.32](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@7.11.31...@pie-lib/config-ui@7.11.32) (2019-04-05)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
+## [7.11.31](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@7.11.30...@pie-lib/config-ui@7.11.31) (2019-04-04)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
+## [7.11.30](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@7.11.29...@pie-lib/config-ui@7.11.30) (2019-04-04)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
+## [7.11.29](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@7.11.28...@pie-lib/config-ui@7.11.29) (2019-03-26)
+
+
+### Bug Fixes
+
+* **config-ui:** Fixed tests for number-text-field. ([71b86b7](https://github.com/pie-framework/pie-lib/commit/71b86b7))
+* **config-ui:** number-text-field was not allowing user to type a number inside the input. Added min and max values, error message (to indicate than the entered value is not correct) as an option. This component will trigger props.onChange only when submitting the input (enter pressed) or when input it's blurred. ([2c34ea5](https://github.com/pie-framework/pie-lib/commit/2c34ea5))
+
+
+
+
+
 ## [7.11.28](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@7.11.27...@pie-lib/config-ui@7.11.28) (2019-03-15)
 
 

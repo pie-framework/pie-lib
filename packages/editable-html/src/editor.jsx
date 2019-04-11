@@ -26,6 +26,7 @@ export class Editor extends React.Component {
     nonEmpty: PropTypes.bool,
     disableUnderline: PropTypes.bool,
     autoWidthToolbar: PropTypes.bool,
+    pluginProps: PropTypes.any,
     activePlugins: PropTypes.arrayOf(values => {
       const allValid = values.every(v => DEFAULT_PLUGINS.includes(v));
       return (
@@ -183,7 +184,7 @@ export class Editor extends React.Component {
   /**
    * Reset the value if the user didn't click done.
    */
-  resetValue = (force) => {
+  resetValue = force => {
     const { value, focusedNode } = this.state;
 
     const stopReset = this.plugins.reduce((s, p) => {
@@ -192,12 +193,10 @@ export class Editor extends React.Component {
 
     log('[resetValue]', value.isFocused, focusedNode, 'stopReset: ', stopReset);
     if (
-      (
-        this.state.stashedValue &&
+      (this.state.stashedValue &&
         !value.isFocused &&
         !focusedNode &&
-        !stopReset
-      ) ||
+        !stopReset) ||
       force
     ) {
       log('[resetValue] resetting...');
@@ -230,7 +229,7 @@ export class Editor extends React.Component {
     });
   };
 
-  componentWillReceiveProps(props) {
+  UNSAFE_componentWillReceiveProps(props) {
     if (!props.value.document.equals(this.props.value.document)) {
       this.setState({
         focus: false,
@@ -288,7 +287,13 @@ export class Editor extends React.Component {
   };
 
   render() {
-    const { disabled, highlightShape, classes, className } = this.props;
+    const {
+      disabled,
+      highlightShape,
+      classes,
+      className,
+      pluginProps
+    } = this.props;
     const { value, focusedNode } = this.state;
 
     log('[render] value: ', value);
@@ -310,6 +315,7 @@ export class Editor extends React.Component {
           readOnly={disabled}
           className={classes.slateEditor}
           style={{ height: sizeStyle.height }}
+          pluginProps={pluginProps}
         />
       </div>
     );
@@ -318,10 +324,10 @@ export class Editor extends React.Component {
 
 const styles = {
   withBg: {
-    backgroundColor: 'rgba(0,0,0,0.06)',
+    backgroundColor: 'rgba(0,0,0,0.06)'
   },
   slateEditor: {
-    fontFamily: 'Roboto, sans-serif',
+    fontFamily: 'Roboto, sans-serif'
   }
 };
 export default withStyles(styles)(Editor);

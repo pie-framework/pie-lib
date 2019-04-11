@@ -4,12 +4,17 @@ import debug from 'debug';
 
 let MQ;
 if (typeof window !== 'undefined') {
-  const MathQuill = require('mathquill');
+  const MathQuill = require('@pie-framework/mathquill');
   MQ = MathQuill.getInterface(2);
 }
 
 const log = debug('pie-lib:math-input:mq:static');
 const REGEX = /\\MathQuillMathField\[answerBlock\d*\]\{(.*?)\}/g;
+const WHITESPACE_REGEX = / /g;
+
+function stripSpaces(string = '') {
+  return string.replace(WHITESPACE_REGEX, '');
+}
 
 /**
  * Wrapper for MathQuill MQ.MathField.
@@ -40,6 +45,7 @@ export default class Static extends React.Component {
       v = iter.next();
     } while (!v.done);
   }
+
   onInputEdit(field) {
     if (!this.mathField) {
       return;
@@ -77,16 +83,16 @@ export default class Static extends React.Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    const nextLatex = nextProps.latex.replace(
-      REGEX,
-      (match, submatch) => submatch
-    );
+    const parsed = stripSpaces(this.mathField.parseLatex(nextProps.latex));
+
     const newFieldCount = (nextProps.latex.match(REGEX) || []).length;
 
-    return (
-      nextLatex !== this.mathField.latex() ||
-      newFieldCount !== Object.keys(this.mathField.innerFields).length / 2
-    );
+    const out =
+      parsed !== stripSpaces(this.mathField.latex().trim()) ||
+      newFieldCount !== Object.keys(this.mathField.innerFields).length / 2;
+
+    log('[shouldComponentUpdate] ', out);
+    return out;
   }
 
   onFocus = e => {
@@ -105,8 +111,8 @@ export default class Static extends React.Component {
         }
         this.props.onSubFieldFocus(name, innerField);
       }
-    } catch (e) {
-      console.error('error finding root block');
+    } catch (err) {
+      console.error('error finding root block', err.message);
     }
   };
 

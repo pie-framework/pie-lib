@@ -3,6 +3,56 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@0.10.2...@pie-lib/math-toolbar@0.11.0) (2019-04-10)
+
+
+### Features
+
+* **math-toolbar:** no decimals support added ([39baa2e](https://github.com/pie-framework/pie-lib/commit/39baa2e))
+
+
+
+
+
+## [0.10.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@0.10.1...@pie-lib/math-toolbar@0.10.2) (2019-04-05)
+
+**Note:** Version bump only for package @pie-lib/math-toolbar
+
+
+
+
+
+## [0.10.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@0.10.0...@pie-lib/math-toolbar@0.10.1) (2019-04-04)
+
+**Note:** Version bump only for package @pie-lib/math-toolbar
+
+
+
+
+
+# [0.10.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@0.9.14...@pie-lib/math-toolbar@0.10.0) (2019-04-04)
+
+
+### Features
+
+* use [@pie-framework](https://github.com/pie-framework)/mathquill - our fork with extras ([7fc47a7](https://github.com/pie-framework/pie-lib/commit/7fc47a7))
+
+
+
+
+
+## [0.9.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@0.9.13...@pie-lib/math-toolbar@0.9.14) (2019-03-26)
+
+
+### Bug Fixes
+
+* **math-toolbar:** added logic to make sure answer blocks are not duplicates ([d8dd513](https://github.com/pie-framework/pie-lib/commit/d8dd513))
+* **math-toolbar:** z-index fix for math toolbar ([ef50bb6](https://github.com/pie-framework/pie-lib/commit/ef50bb6))
+
+
+
+
+
 ## [0.9.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@0.9.12...@pie-lib/math-toolbar@0.9.13) (2019-03-15)
 
 

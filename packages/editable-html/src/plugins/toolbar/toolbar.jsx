@@ -1,4 +1,3 @@
-import { Button, MarkButton } from './toolbar-buttons';
 import { DoneButton } from './done-button';
 import Delete from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
@@ -8,84 +7,10 @@ import classNames from 'classnames';
 import debug from 'debug';
 import SlatePropTypes from 'slate-prop-types';
 
-import { findSingleNode, hasBlock, hasMark } from '../utils';
+import { findSingleNode } from '../utils';
 import { withStyles } from '@material-ui/core/styles';
-
+import DefaultToolbar from './default-toolbar';
 const log = debug('@pie-lib:editable-html:plugins:toolbar');
-
-export const ToolbarButton = props => {
-  const onToggle = () => {
-    const c = props.onToggle(props.value.change(), props);
-    props.onChange(c);
-  };
-
-  if (props.isMark) {
-    const isActive = hasMark(props.value, props.type);
-    log('[ToolbarButton] mark:isActive: ', isActive);
-    return (
-      <MarkButton
-        active={isActive}
-        label={props.type}
-        onToggle={onToggle}
-        mark={props.type}
-      >
-        {props.icon}
-      </MarkButton>
-    );
-  } else {
-    const isActive = props.isActive
-      ? props.isActive(props.value, props.type)
-      : hasBlock(props.value, props.type);
-    log('[ToolbarButton] block:isActive: ', isActive);
-    return (
-      <Button
-        onClick={() => props.onClick(props.value, props.onChange)}
-        active={isActive}
-      >
-        {props.icon}
-      </Button>
-    );
-  }
-};
-
-const RawDefaultToolbar = ({ plugins, value, onChange, onDone, classes }) => {
-  const toolbarPlugins = plugins.filter(p => p.toolbar).map(p => p.toolbar);
-  return (
-    <div className={classes.defaultToolbar}>
-      <div>
-        {toolbarPlugins.map((p, index) => {
-          return (
-            <ToolbarButton
-              {...p}
-              key={index}
-              value={value}
-              onChange={onChange}
-            />
-          );
-        })}
-      </div>
-      <DoneButton onClick={onDone} />
-    </div>
-  );
-};
-
-RawDefaultToolbar.propTypes = {
-  classes: PropTypes.object.isRequired,
-  plugins: PropTypes.array.isRequired,
-  value: SlatePropTypes.value.isRequired,
-  onChange: PropTypes.func.isRequired,
-  onDone: PropTypes.func.isRequired
-};
-
-const toolbarStyles = () => ({
-  defaultToolbar: {
-    display: 'flex',
-    width: '100%',
-    justifyContent: 'space-between'
-  }
-});
-
-const DefaultToolbar = withStyles(toolbarStyles)(RawDefaultToolbar);
 
 export class Toolbar extends React.Component {
   static propTypes = {
@@ -97,7 +22,8 @@ export class Toolbar extends React.Component {
     classes: PropTypes.object.isRequired,
     isFocused: PropTypes.bool,
     autoWidth: PropTypes.bool,
-    onChange: PropTypes.func.isRequired
+    onChange: PropTypes.func.isRequired,
+    pluginProps: PropTypes.object
   };
 
   constructor(props) {
@@ -160,6 +86,7 @@ export class Toolbar extends React.Component {
     const {
       classes,
       plugins,
+      pluginProps,
       value,
       autoWidth,
       onChange,
@@ -208,6 +135,7 @@ export class Toolbar extends React.Component {
         ) : (
           <DefaultToolbar
             plugins={plugins}
+            pluginProps={pluginProps}
             value={value}
             onChange={onChange}
             onDone={onDone}

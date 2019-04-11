@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@0.3.9...@pie-lib/math-evaluator@0.4.0) (2019-04-10)
+
+
+### Features
+
+* **math-evaluator:** introduce partial rationalization, polynomial equation fixes and allowDecimals option ([78fe0a1](https://github.com/pie-framework/pie-lib/commit/78fe0a1))
+
+
+
+
+
 ## [0.3.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@0.3.8...@pie-lib/math-evaluator@0.3.9) (2019-03-15)
 
 
