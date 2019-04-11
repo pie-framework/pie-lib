@@ -158,7 +158,7 @@ class RawContainer extends React.Component {
           grouped (eg.: Item Type, Properties). Each key for a setting is the key found for that
           setting in the model (eg.: placementArea for model.placementArea, choiceAreaLayout for
           model.choiceAreaLayout). Each setting can have a type (toggle/two-choice) and optional
-          properties depending on setting type (eg.: choices for two-choice, resetSession if the
+          properties depending on setting (eg.: choices for two-choice type, resetSession if the
           session has to be reset when updating the model).
         </Typography>
         <div className={classes.settingsPanel}>
@@ -180,8 +180,8 @@ class RawContainer extends React.Component {
         <Typography>
           The key for a setting can be also the key found for that setting in the model.configure
           (eg.: editableChoiceLabel for model.configure.editableChoiceLabel). For this case, each
-          setting can have customModelUpdate property, which is a function that returns the custom
-          updated model which is after that used in onChange function.
+          setting can have customModelUpdate property (a function that returns the custom updated
+          model which is after that used in onChange function).
         </Typography>
         <div className={classes.settingsPanel}>
           <pre>
