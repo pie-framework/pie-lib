@@ -21,3 +21,7 @@ export * as choiceUtils from './choice-utils';
 export withStatefulModel from './with-stateful-model';
 export Toggle from './settings/toggle';
 export DisplaySize from './settings/display-size';
+
+import * as settings from './settings';
+
+export { settings };
