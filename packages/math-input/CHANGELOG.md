@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@5.3.2...@pie-lib/math-input@5.4.0) (2019-04-10)
+
+
+### Features
+
+* **math-input:** no decimals support added ([48b1c39](https://github.com/pie-framework/pie-lib/commit/48b1c39))
+
+
+
+
+
 ## [5.3.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@5.3.1...@pie-lib/math-input@5.3.2) (2019-04-05)
 
 
