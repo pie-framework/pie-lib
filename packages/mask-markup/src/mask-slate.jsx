@@ -5,34 +5,60 @@ import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import SlatePropTypes from 'slate-prop-types';
 import { Editor } from 'slate-react';
+import debug from 'debug';
+
+const log = debug('pie-lib:masked-markup:mask-slate');
 
 const schema = {
   document: {
     nodes: [
       {
-        match: [{ type: 'paragraph' }, { type: 'image' }, { type: 'text-input' }]
+        match: [{ type: 'div' }, { type: 'span' }, { type: 'image' }, { type: 'text-input' }]
       }
     ],
     normalize: (editor, err) => {
-      console.log('doc err:', err);
+      log('doc err:', err);
     }
   },
   blocks: {
-    paragraph: {
+    div: {
       nodes: [
         {
-          match: { object: 'text' }
+          match: [{ object: 'text' }, { type: 'text-input' }, { type: 'div' }]
         }
       ],
 
       normalize: (editor, err) => {
-        console.log('p err:', err);
+        log('div err:', err);
       }
     },
     image: {
       isVoid: true,
       data: {
         src: v => v && isUrl(v)
+      }
+    }
+  },
+  inlines: {
+    'text-input': {
+      isVoid: true,
+      normalize: (editor, err) => {
+        log('text-input err:', err);
+      }
+    },
+    span: {
+      nodes: [
+        {
+          match: [
+            { type: 'text-input' },
+            {
+              object: 'text'
+            }
+          ]
+        }
+      ],
+      normalize: (editor, err) => {
+        log('span err:', err);
       }
     }
   }
@@ -46,19 +72,19 @@ export class MaskSlate extends React.Component {
   };
   static defaultProps = {};
 
-  constructor(props) {
-    super(props);
-    this.schema = {
-      document: {
-        normalize: (editor, error) => {
-          console.log('normalize error: ', error);
-        }
-      }
-    };
-  }
+  // renderNode = (props, editor, next) => {
+  //   console.log('renderNode root', props);
+
+  //   if (props.node.type === 'span') {
+  //     return <span>{props.children}</span>;
+  //   } else {
+  //     return next();
+  //   }
+  // };
+
   render() {
     const { classes, className, plugins, value } = this.props;
-    return <Editor schema={this.schema} value={value} readOnly={true} plugins={plugins} />;
+    return <Editor schema={schema} value={value} readOnly={true} plugins={plugins} />;
   }
 }
 const styles = theme => ({

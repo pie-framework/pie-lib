@@ -9,10 +9,16 @@ import Select from '@material-ui/core/Select';
 import { withStyles } from '@material-ui/core';
 import grey from '@material-ui/core/colors/grey';
 import Section from '../../src/formatting/section';
+import Pre from '../../src/formatting/pre';
 import { Value } from 'slate';
 import inputPlugin from './input-plugin';
 
 // const MyComp = () => <div>WOOF</div>;
+
+const mkText = t => ({
+  object: 'text',
+  leaves: [{ object: 'leaf', text: t }]
+});
 
 const valueJson = {
   object: 'value',
@@ -20,24 +26,59 @@ const valueJson = {
     object: 'document',
     data: {},
     nodes: [
+      // {
+      //   object: 'block',
+      //   type: 'paragraph',
+      //   nodes: [
+      //     {
+      //       object: 'text',
+      //       leaves: [{ object: 'leaf', text: 'hi' }, { object: 'leaf', text: ' there' }]
+      //     }
+      //   ]
+      // },
       {
         object: 'block',
-        type: 'paragraph',
+        type: 'div',
         nodes: [
+          // {
+          //   object: 'text',
+          //   leaves: [{ object: 'leaf', text: 'hi' }, { object: 'leaf', text: ' there' }]
+          // },
+          // {
+          //   object: 'inline',
+          //   type: 'text-input',
+          //   isVoid: true,
+          //   data: {
+          //     value: 'this is the text',
+          //     id: '1'
+          //   }
+          // },
+          // {
+          //   object: 'text',
+          //   leaves: [{ object: 'leaf', text: 'hi' }, { object: 'leaf', text: ' there' }]
+          // },
           {
-            object: 'text',
-            leaves: [{ object: 'leaf', text: 'hi' }, { object: 'leaf', text: ' there' }]
+            object: 'block',
+            type: 'div',
+            nodes: [
+              mkText('hi'),
+              {
+                object: 'inline',
+                type: 'span',
+                nodes: [mkText('before text')]
+              }
+              // {
+              //   object: 'inline',
+              //   type: 'text-input',
+              //   isVoid: true,
+              //   data: {
+              //     value: 'this is the text',
+              //     id: '1'
+              //   }
+              // }
+            ]
           }
         ]
-      },
-      {
-        object: 'block',
-        type: 'text-input',
-        isVoid: true,
-        data: {
-          value: 'this is the text',
-          id: '1'
-        }
       }
       // {
       //   object: 'block',
@@ -63,6 +104,9 @@ class Demo extends React.Component {
     super(props);
     this.state = {
       mounted: false,
+      inputs: {
+        1: 'this is the text'
+      },
       value: Value.fromJSON(valueJson, { normalize: false })
     };
 
@@ -93,8 +137,10 @@ class Demo extends React.Component {
     this.msPlugins = [inputPlugin({ onChange: this.inputChange })];
   }
 
-  inputChange = value => {
+  inputChange = (id, value) => {
     console.log('input change:', value);
+
+    this.setState({ inputs: { [id]: value } });
     // this.setState({ value });
     // const { value } = this.state;
     // value.change().setNode;
@@ -120,6 +166,7 @@ class Demo extends React.Component {
           As above but this time just use a readOnly instance of slate. Slate has more than we need,
           but already handles the whole render tree etc so may be quicker to get started with:
           <MaskSlate value={value} plugins={this.msPlugins} />
+          <Pre value={this.state} />
         </Section>
       </div>
     ) : (
