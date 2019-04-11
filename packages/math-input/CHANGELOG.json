@@ -788,5 +788,20 @@
     "committerDate": "2019-04-04 17:10:35 +0300",
     "isTagged": true,
     "tag": "@pie-lib/math-input@5.3.2"
+  },
+  {
+    "type": "feat",
+    "scope": "math-input",
+    "subject": "no decimals support added",
+    "merge": null,
+    "header": "feat(math-input): no decimals support added",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "48b1c395417e016c1083cf03a2176d4083d359a7",
+    "gitTags": "",
+    "committerDate": "2019-04-10 10:36:26 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/math-input@5.4.0"
   }
 ]

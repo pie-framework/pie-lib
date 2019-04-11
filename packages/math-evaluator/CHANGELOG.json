@@ -178,5 +178,35 @@
     "committerDate": "2018-10-22 09:48:19 +0300",
     "isTagged": true,
     "tag": "@pie-lib/math-evaluator@0.1.0"
+  },
+  {
+    "type": "chore",
+    "scope": null,
+    "subject": "prettify it",
+    "merge": null,
+    "header": "chore: prettify it",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "32b365bcd81976fbe8ecb6c7c0574d6a9226a4aa",
+    "gitTags": "",
+    "committerDate": "2019-04-10 10:27:22 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/math-evaluator@0.4.0"
+  },
+  {
+    "type": "feat",
+    "scope": "math-evaluator",
+    "subject": "introduce partial rationalization, polynomial equation fixes and allowDecimals option",
+    "merge": null,
+    "header": "feat(math-evaluator): introduce partial rationalization, polynomial equation fixes and allowDecimals option",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "78fe0a11eaaf23db7134e08d2b2ed2a2cd1b427b",
+    "gitTags": "",
+    "committerDate": "2019-04-10 10:22:39 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/math-evaluator@0.4.0"
   }
 ]
