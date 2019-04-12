@@ -7,10 +7,7 @@ import PropTypes from 'prop-types';
 export default class Tabs extends React.Component {
   static propTypes = {
     className: PropTypes.string,
-    children: PropTypes.oneOfType([
-      PropTypes.arrayOf(PropTypes.node),
-      PropTypes.node
-    ]).isRequired
+    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired
   };
 
   constructor(props) {
@@ -30,9 +27,9 @@ export default class Tabs extends React.Component {
     return (
       <div className={className}>
         <MuiTabs value={value} onChange={this.handleChange}>
-          {React.Children.map(children, (c, index) => (
-            <MuiTab key={index} label={c.props.title} />
-          ))}
+          {React.Children.map(children, (c, index) =>
+            c ? <MuiTab key={index} label={c.props.title} /> : null
+          )}
         </MuiTabs>
         {children[value]}
       </div>

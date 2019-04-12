@@ -6,7 +6,7 @@ import Tab from '@material-ui/core/Tab';
 import classnames from 'classnames';
 import { withStyles, createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
-
+import LayoutContents from './layout-contents';
 class SidePanel extends React.Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
@@ -96,45 +96,47 @@ class ConfigLayout extends React.Component {
     return !disableSidePanel && !hasSidePanel;
   };
 
-  renderContent = measureRef => {
-    const { children, classes, scoringItem, disableSidePanel, settings } = this.props;
-    const { index } = this.state;
-    const hasSidePanel = this.hasSidePanel();
+  // renderContent = measureRef => {
+  //   const { children, classes, scoringItem, disableSidePanel, settings } = this.props;
+  //   const { index } = this.state;
+  //   const hasSidePanel = this.hasSidePanel();
 
-    return (
-      <div
-        ref={measureRef}
-        className={classnames(classes.container, {
-          [classes.hasSidePanel]: hasSidePanel
-        })}
-      >
-        <Tabs onChange={this.onTabsChange} value={index} indicatorColor="primary">
-          <Tab label="Design" />
-          {this.shouldRenderSettingsTab() && <Tab label="Settings" />}
-          {scoringItem && <Tab label="Scoring" />}
-        </Tabs>
-        <div className={classes.contentContainer}>
-          {disableSidePanel && settings}
-          {index === 0 && children}
-          {!hasSidePanel && index === 1 && !disableSidePanel && settings}
-          {((!hasSidePanel && index === 2) || index === 1) && scoringItem}
-          {hasSidePanel && !disableSidePanel && this.renderSidePanel()}
-        </div>
-      </div>
-    );
-  };
+  //   return (
+  //     <div
+  //       ref={measureRef}
+  //       className={classnames(classes.container, {
+  //         [classes.hasSidePanel]: hasSidePanel
+  //       })}
+  //     >
+  //       <Tabs onChange={this.onTabsChange} value={index} indicatorColor="primary">
+  //         <Tab label="Design" />
+  //         {this.shouldRenderSettingsTab() && <Tab label="Settings" />}
+  //         {scoringItem && <Tab label="Scoring" />}
+  //       </Tabs>
+  //       <div className={classes.contentContainer}>
+  //         {/* {disableSidePanel && settings} */}
+  //         {index === 0 && children}
+  //         {!hasSidePanel && index === 1 && !disableSidePanel && settings}
+  //         {/*
+  //         {((!hasSidePanel && index === 2) || index === 1) && scoringItem}
+  //         {hasSidePanel && !disableSidePanel && this.renderSidePanel()} */}
+  //       </div>
+  //     </div>
+  //   );
+  // };
 
   render() {
     return (
       <Measure
         bounds
         onResize={contentRect => {
-          const tabIndex = this.getRightIndex();
-
-          this.setState({ index: tabIndex, dimensions: contentRect.bounds });
+          // const tabIndex = this.getRightIndex();
+          this.setState({ dimensions: contentRect.bounds });
         }}
       >
-        {({ measureRef }) => this.renderContent(measureRef)}
+        {({ measureRef }) => (
+          <LayoutContents contentRef={measureRef} {...this.props} showSidePanel={true} />
+        )}
       </Measure>
     );
   }
