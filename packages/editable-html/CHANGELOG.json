@@ -1853,5 +1853,20 @@
     "committerDate": "2019-04-04 11:51:50 +0100",
     "isTagged": true,
     "tag": "@pie-lib/editable-html@7.3.0"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "add author",
+    "merge": null,
+    "header": "fix: add author",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "10ef4db455c0867ba5e01ddffae6d53f673e2a6e",
+    "gitTags": "",
+    "committerDate": "2019-04-11 12:34:37 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.3.3"
   }
 ]

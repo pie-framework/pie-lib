@@ -258,5 +258,40 @@
     "committerDate": "2019-04-04 11:51:50 +0100",
     "isTagged": true,
     "tag": "@pie-lib/demo@3.4.0"
+  },
+  {
+    "type": "feat",
+    "scope": null,
+    "subject": "new config layout component",
+    "merge": null,
+    "header": "feat: new config layout component",
+    "body": null,
+    "footer": "BREAKING CHANGE: component is accessible as `import {layout} from\n'@pie-lib/config-ui'; const {ConfigLayout}=settings;`",
+    "notes": [
+      {
+        "title": "BREAKING CHANGE",
+        "text": "component is accessible as `import {layout} from\n'@pie-lib/config-ui'; const {ConfigLayout}=settings;`"
+      }
+    ],
+    "hash": "452e8a95159cd32ec76d285670402b777b4cfe04",
+    "gitTags": " (origin/develop, origin/HEAD)",
+    "committerDate": "2019-04-12 22:06:18 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/demo@4.0.0"
+  },
+  {
+    "type": "feat",
+    "scope": null,
+    "subject": "New component Settings panel for rendering the settings ui.",
+    "merge": null,
+    "header": "feat: New component Settings panel for rendering the settings ui.",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "7ce4741e05a58a1810b0d3c58583e2421f63ca36",
+    "gitTags": "",
+    "committerDate": "2019-04-12 20:52:03 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/demo@4.0.0"
   }
 ]
