@@ -7,7 +7,7 @@
     "@material-ui/icons": "^3.0.2",
     "@pie-lib/charting": "^4.0.13",
     "@pie-lib/charting-config": "^0.4.32",
-    "@pie-lib/config-ui": "^8.0.0",
+    "@pie-lib/config-ui": "9.0.0",
     "@pie-lib/correct-answer-toggle": "^2.1.14",
     "@pie-lib/drag": "^1.1.12",
     "@pie-lib/editable-html": "^7.3.3",
