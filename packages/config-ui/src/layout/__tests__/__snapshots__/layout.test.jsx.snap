@@ -5,13 +5,13 @@ exports[`layout - snapshot renders correctly with a side panel 1`] = `
   className="ConfigLayout-container-1"
 >
   <div
-    className="MuiTabs-root-12"
+    className="MuiTabs-root-10"
   >
     <div
-      className="MuiTabs-flexContainer-13"
+      className="MuiTabs-flexContainer-11"
     >
       <div
-        className="MuiTabs-scroller-15 MuiTabs-fixed-16"
+        className="MuiTabs-scroller-13 MuiTabs-fixed-14"
         onScroll={[Function]}
         role="tablist"
         style={
@@ -21,11 +21,11 @@ exports[`layout - snapshot renders correctly with a side panel 1`] = `
         }
       >
         <div
-          className="MuiTabs-flexContainer-13"
+          className="MuiTabs-flexContainer-11"
         >
           <button
             aria-selected={true}
-            className="MuiButtonBase-root-33 MuiTab-root-21 MuiTab-textColorInherit-23 MuiTab-selected-26"
+            className="MuiButtonBase-root-31 MuiTab-root-19 MuiTab-textColorInherit-21 MuiTab-selected-24"
             disabled={false}
             onBlur={[Function]}
             onClick={[Function]}
@@ -44,25 +44,25 @@ exports[`layout - snapshot renders correctly with a side panel 1`] = `
             type="button"
           >
             <span
-              className="MuiTab-wrapper-29"
+              className="MuiTab-wrapper-27"
             >
               <span
-                className="MuiTab-labelContainer-30"
+                className="MuiTab-labelContainer-28"
               >
                 <span
-                  className="MuiTab-label-31"
+                  className="MuiTab-label-29"
                 >
                   Design
                 </span>
               </span>
             </span>
             <span
-              className="MuiTouchRipple-root-39"
+              className="MuiTouchRipple-root-37"
             />
           </button>
           <button
             aria-selected={false}
-            className="MuiButtonBase-root-33 MuiTab-root-21 MuiTab-textColorInherit-23"
+            className="MuiButtonBase-root-31 MuiTab-root-19 MuiTab-textColorInherit-21"
             disabled={false}
             onBlur={[Function]}
             onClick={[Function]}
@@ -81,25 +81,25 @@ exports[`layout - snapshot renders correctly with a side panel 1`] = `
             type="button"
           >
             <span
-              className="MuiTab-wrapper-29"
+              className="MuiTab-wrapper-27"
             >
               <span
-                className="MuiTab-labelContainer-30"
+                className="MuiTab-labelContainer-28"
               >
                 <span
-                  className="MuiTab-label-31"
+                  className="MuiTab-label-29"
                 >
                   Settings
                 </span>
               </span>
             </span>
             <span
-              className="MuiTouchRipple-root-39"
+              className="MuiTouchRipple-root-37"
             />
           </button>
         </div>
         <span
-          className="MuiPrivateTabIndicator-root-36 MuiPrivateTabIndicator-colorPrimary-37 MuiTabs-indicator-20"
+          className="MuiPrivateTabIndicator-root-34 MuiPrivateTabIndicator-colorPrimary-35 MuiTabs-indicator-18"
           style={
             Object {
               "left": 0,
@@ -130,13 +130,13 @@ exports[`layout - snapshot renders correctly without a side panel 1`] = `
   className="ConfigLayout-container-1"
 >
   <div
-    className="MuiTabs-root-12"
+    className="MuiTabs-root-10"
   >
     <div
-      className="MuiTabs-flexContainer-13"
+      className="MuiTabs-flexContainer-11"
     >
       <div
-        className="MuiTabs-scroller-15 MuiTabs-fixed-16"
+        className="MuiTabs-scroller-13 MuiTabs-fixed-14"
         onScroll={[Function]}
         role="tablist"
         style={
@@ -146,11 +146,11 @@ exports[`layout - snapshot renders correctly without a side panel 1`] = `
         }
       >
         <div
-          className="MuiTabs-flexContainer-13"
+          className="MuiTabs-flexContainer-11"
         >
           <button
             aria-selected={true}
-            className="MuiButtonBase-root-33 MuiTab-root-21 MuiTab-textColorInherit-23 MuiTab-selected-26"
+            className="MuiButtonBase-root-31 MuiTab-root-19 MuiTab-textColorInherit-21 MuiTab-selected-24"
             disabled={false}
             onBlur={[Function]}
             onClick={[Function]}
@@ -169,25 +169,25 @@ exports[`layout - snapshot renders correctly without a side panel 1`] = `
             type="button"
           >
             <span
-              className="MuiTab-wrapper-29"
+              className="MuiTab-wrapper-27"
             >
               <span
-                className="MuiTab-labelContainer-30"
+                className="MuiTab-labelContainer-28"
               >
                 <span
-                  className="MuiTab-label-31"
+                  className="MuiTab-label-29"
                 >
                   Design
                 </span>
               </span>
             </span>
             <span
-              className="MuiTouchRipple-root-39"
+              className="MuiTouchRipple-root-37"
             />
           </button>
         </div>
         <span
-          className="MuiPrivateTabIndicator-root-36 MuiPrivateTabIndicator-colorPrimary-37 MuiTabs-indicator-20"
+          className="MuiPrivateTabIndicator-root-34 MuiPrivateTabIndicator-colorPrimary-35 MuiTabs-indicator-18"
           style={
             Object {
               "left": 0,
@@ -201,32 +201,12 @@ exports[`layout - snapshot renders correctly without a side panel 1`] = `
   <div
     className="ConfigLayout-contentContainer-2"
   >
-    <div
-      className="ConfigLayout-section-7"
-    >
-      <div
-        className="ConfigLayout-sidePanelItems-10"
-      >
-        <div>
-          Foo
-        </div>
-        <div>
-          Bar
-        </div>
+    <div>
+      <div>
+        Foo
       </div>
-    </div>
-    <div
-      className="ConfigLayout-section-7"
-    >
-      <div
-        className="ConfigLayout-sidePanelItems-10"
-      >
-        <div>
-          Foo
-        </div>
-        <div>
-          Bar
-        </div>
+      <div>
+        Bar
       </div>
     </div>
     <div>

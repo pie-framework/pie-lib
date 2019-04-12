@@ -11,22 +11,19 @@ describe('layout - snapshot', () => {
     const tree = renderer
       .create(
         <ConfigLayout
-          sideMenuItems={[
-            {
-              items: [<div key={0}>Foo</div>, <div key={1}>Bar</div>]
-            },
-            {
-              items: [<div key={2}>Foo</div>, <div key={3}>Bar</div>]
-            }
-          ]}
-          regularItems={
+          settings={
             <div>
-              <div>Foo</div>
-              <div>Bar</div>
+              <div key={0}>Foo</div>
+              <div key={1}>Bar</div>
             </div>
           }
           disableSidePanel={false}
-        />
+        >
+          <div>
+            <div>Foo</div>
+            <div>Bar</div>
+          </div>
+        </ConfigLayout>
       )
       .toJSON();
     expect(tree).toMatchSnapshot();
@@ -35,22 +32,19 @@ describe('layout - snapshot', () => {
     const tree = renderer
       .create(
         <ConfigLayout
-          sideMenuItems={[
-            {
-              items: [<div key={0}>Foo</div>, <div key={1}>Bar</div>]
-            },
-            {
-              items: [<div key={2}>Foo</div>, <div key={3}>Bar</div>]
-            }
-          ]}
-          regularItems={
+          settings={
             <div>
-              <div>Foo</div>
-              <div>Bar</div>
+              <div key={0}>Foo</div>
+              <div key={1}>Bar</div>
             </div>
           }
           disableSidePanel={true}
-        />
+        >
+          <div>
+            <div>Foo</div>
+            <div>Bar</div>
+          </div>
+        </ConfigLayout>
       )
       .toJSON();
     expect(tree).toMatchSnapshot();

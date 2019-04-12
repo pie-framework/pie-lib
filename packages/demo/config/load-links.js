@@ -5,6 +5,7 @@ const rawLinks = [
   { label: 'config-ui', path: '/config-ui' },
   { label: 'config-ui - numbers', path: '/config-ui/numbers' },
   { label: 'config-ui - tabs', path: '/config-ui/tabs' },
+  { label: 'config-ui - config-layout', path: '/config-ui/config-layout' },
   { label: 'correct-answer-toggle', path: '/correct-answer-toggle' },
   { label: 'editable-html', path: '/editable-html' },
   { label: 'graphing', path: '/graphing' },
