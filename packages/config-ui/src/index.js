@@ -15,8 +15,8 @@ export TwoChoice, { NChoice } from './two-choice';
 export TagsInput from './tags-input';
 export MuiBox from './mui-box';
 export ChoiceConfiguration from './choice-configuration';
-export ConfigLayout from './layout/config-layout';
-export PreviewLayout from './layout/preview-layout';
+export * as layout from './layout';
+
 export * as choiceUtils from './choice-utils';
 export withStatefulModel from './with-stateful-model';
 export Toggle from './settings/toggle';

@@ -64,18 +64,8 @@ class RawMinMax extends React.Component {
       <div>
         <Typography variant="overline">{label}</Typography>
         <div className={classes.minMax}>
-          <Nt
-            label="min"
-            value={model.min}
-            variant="thin"
-            onChange={n => this.change('min', n)}
-          />
-          <Nt
-            label="max"
-            value={model.max}
-            variant="thin"
-            onChange={n => this.change('max', n)}
-          />
+          <Nt label="min" value={model.min} variant="thin" onChange={n => this.change('min', n)} />
+          <Nt label="max" value={model.max} variant="thin" onChange={n => this.change('max', n)} />
         </div>
         <Nt
           label="tick frequency"
@@ -221,23 +211,14 @@ export class RawOptions extends React.Component {
             onChange={e => this.change('title', e.target.value)}
           />
         )}
-        {labels && (
-          <LabelsConfig
-            value={model.labels}
-            onChange={l => this.change('labels', l)}
-          />
-        )}
+        {labels && <LabelsConfig value={model.labels} onChange={l => this.change('labels', l)} />}
         <div className={classes.domainAndRange}>
           <MinMax
             label={'Domain (X)'}
             model={model.domain}
             onChange={d => this.change('domain', d)}
           />
-          <MinMax
-            label={'Range (Y)'}
-            model={model.range}
-            onChange={d => this.change('range', d)}
-          />
+          <MinMax label={'Range (Y)'} model={model.range} onChange={d => this.change('range', d)} />
         </div>
       </div>
     );
@@ -467,7 +448,7 @@ export class GridDemo extends React.Component {
   };
 
   changeTab = (event, tabIndex) => {
-    this.setState({ tabIndex });
+    this.setState({ indexTab: tabIndex });
   };
 
   changeMarks = marks => {
@@ -505,10 +486,7 @@ export class GridDemo extends React.Component {
             </Tabs>
             {tabIndex === 0 && (
               <TabContainer>
-                <Settings
-                  model={settings}
-                  onChange={settings => this.setState({ settings })}
-                />
+                <Settings model={settings} onChange={settings => this.setState({ settings })} />
                 <Options
                   model={model}
                   graphTitle={settings.graphTitle}
