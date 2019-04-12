@@ -1,10 +1,11 @@
-import { SettingsPanel } from '@pie-lib/config-ui';
+import { settings } from '@pie-lib/config-ui';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import withRoot from '../../src/withRoot';
 
+const { Panel, NewPanel, toggle, radio } = settings;
 export const generateSettingsSample = model => {
   const {
     configure: {
@@ -148,6 +149,7 @@ class RawContainer extends React.Component {
   render() {
     const { classes } = this.props;
     const { mounted, model, modelCustom } = this.state;
+    const { configure } = model;
 
     return mounted ? (
       <div className={classes.root}>
@@ -169,10 +171,31 @@ class RawContainer extends React.Component {
             Settings:
             {JSON.stringify(generateSettingsSample(model), null, '  ')}
           </pre>
-          <SettingsPanel
+          <Panel
             key="settings-panel"
             onChange={(model, resetSession) => this.onChange(model, resetSession, 'model')}
             settings={generateSettingsSample(model)}
+          />
+
+          <NewPanel
+            model={model}
+            onChange={(model, key) => {
+              this.setState({ model, lastKey: key });
+            }}
+            groups={{
+              'Item Type': {
+                // foo: toggle('I am foo'),
+                placementArea:
+                  configure.settingsPlacementArea && toggle(configure.placementAreaLabel),
+                choiceAreaLayout:
+                  configure.settingsOrientation &&
+                  radio(configure.orientationLabel, 'vertical', 'horizontal'),
+                'configure.editChoiceLabel': toggle('edit choice label')
+              },
+              'Group Two': {
+                bar: toggle('this is bar')
+              }
+            }}
           />
         </div>
         <Typography>Settings panel custom</Typography>
@@ -201,7 +224,7 @@ class RawContainer extends React.Component {
               '  '
             )}
           </pre>
-          <SettingsPanel
+          <Panel
             key="customized-settings-panel"
             onChange={(model, resetSession) => this.onChange(model, resetSession, 'modelCustom')}
             settings={generateSettingsComplexSample(modelCustom)}

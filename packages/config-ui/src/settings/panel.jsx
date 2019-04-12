@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import debug from 'debug';
-import Toggle from './settings/toggle';
-import TwoChoice from './two-choice';
+import Toggle from './toggle';
+import TwoChoice from '../two-choice';
 
 const Setting = props => {
   const { setting, settingKey: key, classes } = props;
