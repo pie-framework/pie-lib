@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@7.11.34...@pie-lib/config-ui@8.0.0) (2019-04-12)
+
+
+### Features
+
+* New component Settings panel for rendering the settings ui. ([7ce4741](https://github.com/pie-framework/pie-lib/commit/7ce4741))
+* new config layout component ([452e8a9](https://github.com/pie-framework/pie-lib/commit/452e8a9))
+
+
+### BREAKING CHANGES
+
+* component is accessible as `import {layout} from
+'@pie-lib/config-ui'; const {ConfigLayout}=settings;`
+
+
+
+
+
 ## [7.11.34](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@7.11.33...@pie-lib/config-ui@7.11.34) (2019-04-11)
 
 **Note:** Version bump only for package @pie-lib/config-ui
