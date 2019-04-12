@@ -30,7 +30,7 @@ class RawContainer extends React.Component {
     return mounted ? (
       <div className={classes.root}>
         <Typography>Tabs - just add a title to the child node</Typography>
-        <Tabs>
+        <Tabs indicatorColor="primary">
           <div title="One" className={classes.tabContent}>
             foo
           </div>

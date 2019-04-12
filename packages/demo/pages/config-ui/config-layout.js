@@ -1,21 +1,4 @@
-import {
-  ConfigLayout,
-  ChoiceConfiguration,
-  FeedbackConfig,
-  FeedbackSelector,
-  InputContainer,
-  InputSwitch,
-  InputCheckbox,
-  InputRadio,
-  Langs,
-  LanguageControls,
-  NChoice,
-  NumberTextField,
-  TagsInput,
-  TwoChoice,
-  feedbackConfigDefaults,
-  MuiBox
-} from '@pie-lib/config-ui';
+import { layout, TwoChoice } from '@pie-lib/config-ui';
 
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
@@ -56,7 +39,8 @@ class RawContainer extends React.Component {
     super(props);
     this.state = {
       twoChoice: 'one',
-      nChoice: 'left'
+      nChoice: 'left',
+      layoutMode: 'inline'
     };
     log('state: ', this.state);
   }
@@ -67,18 +51,59 @@ class RawContainer extends React.Component {
 
   render() {
     const { classes } = this.props;
-    const { mounted } = this.state;
+    const { mounted, layoutMode } = this.state;
     console.log('this.state: ', this.state);
     return mounted ? (
       <div className={classes.root}>
         <div className={classes.left}>
-          <Section name="Choice Configuration">
+          <Section name="ConfigLayout">
             <Typography>
-              This is a wrapper for the configure element for a pie-element package
+              A component that loads content in 2 slots: it's children and 'settings', depending on
+              the width, the settings will either be rendered in a tab or to the right of the
+              children.
+            </Typography>
+
+            <layout.ConfigLayout
+              sidePanelMinWidth={500}
+              settings={
+                <React.Fragment>
+                  <div>settings here</div>
+                  <br />
+                  <TwoChoice
+                    header="two-choice"
+                    value={this.state.twoChoice}
+                    onChange={twoChoice => this.setState({ twoChoice })}
+                    one={{ label: 'one', value: 'one' }}
+                    two={{ label: 'two', value: 'two' }}
+                  />
+                </React.Fragment>
+              }
+            >
+              Here is the main content.
+            </layout.ConfigLayout>
+          </Section>
+
+          <Section name="LayoutContents">
+            <Typography>
+              This is the underlying component of ConfigLayout. It renders secondary content in a
+              tab or to the right of children
             </Typography>
             <br />
+            <TwoChoice
+              header="layout mode"
+              value={layoutMode}
+              one={'inline'}
+              two={'tabbed'}
+              onChange={layoutMode => this.setState({ layoutMode })}
+            />
             <br />
-            <ConfigLayout
+            <layout.LayoutContents mode={layoutMode} secondary={<div>secondary</div>}>
+              This is the main content
+            </layout.LayoutContents>
+          </Section>
+          <Section name="old config layout">
+            <layout.OldConfigLayout
+              sidePanelMinWidth={500}
               settings={
                 <React.Fragment>
                   <TwoChoice
@@ -88,33 +113,11 @@ class RawContainer extends React.Component {
                     one={{ label: 'one', value: 'one' }}
                     two={{ label: 'two', value: 'two' }}
                   />
-                  <NChoice
-                    header="n-choice"
-                    value={this.state.nChoice}
-                    onChange={nChoice => this.setState({ nChoice })}
-                    opts={[
-                      { label: 'left', value: 'left' },
-                      { label: 'center', value: 'center' },
-                      { label: 'right', value: 'right' }
-                    ]}
-                  />
-                  <NChoice
-                    header="n-choice vertical"
-                    direction={'vertical'}
-                    value={this.state.nChoice}
-                    onChange={nChoice => this.setState({ nChoice })}
-                    opts={[
-                      { label: 'left', value: 'left' },
-                      { label: 'center', value: 'center' },
-                      { label: 'right', value: 'right' }
-                    ]}
-                  />
                 </React.Fragment>
               }
-              sidePanelMinWidth={500}
             >
-              <div>Something</div>
-            </ConfigLayout>
+              content
+            </layout.OldConfigLayout>
           </Section>
         </div>
         <div className={classes.right}>

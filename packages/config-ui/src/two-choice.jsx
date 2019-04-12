@@ -35,10 +35,14 @@ class RawNChoice extends React.Component {
   render() {
     const { header, className, classes, opts, value, direction } = this.props;
 
+    const preppedOpts = opts.map(o => {
+      return typeof o === 'string' ? { label: o, value: o } : o;
+    });
+
     return (
       <InputContainer label={header} className={className}>
         <div className={classNames(classes.group, classes[direction])}>
-          {opts.map((o, index) => (
+          {preppedOpts.map((o, index) => (
             <RadioWithLabel
               value={o.value}
               key={index}
@@ -55,19 +59,15 @@ class RawNChoice extends React.Component {
 
 export const NChoice = withStyles(styles)(RawNChoice);
 
+const labelValue = PropTypes.shape({ label: PropTypes.string, value: PropTypes.string });
+
 class TwoChoice extends React.Component {
   static propTypes = {
     header: PropTypes.string.isRequired,
     value: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
-    one: PropTypes.shape({
-      label: PropTypes.string.isRequired,
-      value: PropTypes.string.isRequired
-    }),
-    two: PropTypes.shape({
-      label: PropTypes.string.isRequired,
-      value: PropTypes.string.isRequired
-    }),
+    one: PropTypes.oneOfType([labelValue, PropTypes.string]),
+    two: PropTypes.oneOfType([labelValue, PropTypes.string]),
     className: PropTypes.string
   };
 
