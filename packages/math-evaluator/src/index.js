@@ -97,3 +97,9 @@ export default function areValuesEqual(valueOne, valueTwo, options = {}) {
 
   return inverse ? !equals : equals;
 }
+
+export const latexEqual = (latexOne, latexTwo) => {
+  const one = mathExpressions.fromLatex(latexOne.toString());
+  const two = mathExpressions.fromLatex(latexTwo.toString());
+  return one.equals(two);
+};

@@ -1,7 +1,17 @@
-import areValuesEqual from '../index';
+import areValuesEqual, { latexEqual } from '../index';
 import _ from 'lodash';
+import me from 'math-expressions';
+
+import data, { fullExpressions } from './data';
 
 describe('math-evaluator', () => {
+  const mkAssertion = (root, opts) => expected => value => {
+    opts = opts || {};
+    it(`${expected ? '===' : '!=='} ${value}`, () => {
+      expect(areValuesEqual(root, value, opts)).toEqual(expected);
+    });
+  };
+
   const assert = isEqual => label =>
     function() {
       const args = Array.from(arguments);
@@ -19,163 +29,67 @@ describe('math-evaluator', () => {
   const assertEqual = assert(true);
   const assertNotEqual = assert(false);
 
-  assertNotEqual('evaluates simple expressions correctly')('0', 'x', '3x', '4x');
+  const getEqualsObj = o => {
+    if (Array.isArray(o)) {
+      return { equals: o, notEquals: [] };
+    } else {
+      return { equals: o.eq, notEquals: o.neq };
+    }
+  };
 
-  assertEqual('evaluates simple expressions correctly')('x', 'x', '2x', '2x');
+  describe('default', () => {
+    Object.keys(data).forEach(k => {
+      describe(k, () => {
+        const { allowDecimals, ...rest } = data[k];
+        Object.keys(rest).forEach(dk => {
+          describe(dk, () => {
+            const assert = mkAssertion(dk, { allowDecimals });
+            const { equals, notEquals } = getEqualsObj(data[k][dk]);
+            // const equals = data[k][dk].eq;
+            // const notEquals = data[k][dk].neq;
 
-  assertEqual('evaluates simple expressions correctly 2')(
-    '100',
-    '100',
-    '50 + 50',
-    '25 * 4',
-    '200 / 2',
-    '20 * 5',
-    '2.5 * 40',
-    '10 * 10'
-  );
-
-  assertNotEqual('evaluates simple expressions correctly 2')(
-    '100',
-    '0',
-    '0',
-    '50 * 2',
-    '44 + 57',
-    '100',
-    '44 + 57',
-    '50 * 3'
-  );
-
-  assertEqual('evaluates simple expressions correctly 3')(
-    '50 + 50',
-    '100',
-    '100 / 2 + 50',
-    '100',
-    '2 + 2',
-    '4',
-    '1/2 + .5',
-    '1'
-  );
-
-  assertNotEqual('evaluates simple expressions correctly 3')(
-    '50 + 51',
-    '100',
-    '25 * 2 + 51',
-    '100',
-    '1/2 + .5',
-    '1.9',
-    '1/2 + .5',
-    '1.1'
-  );
-
-  assertEqual('evaluates simple expressions correctly 4')(
-    '50 + 50',
-    '100',
-    '100 / 2 + 50',
-    '100',
-    '2 + 2',
-    '4',
-    '1/2 + .5',
-    '1',
-    '13/2',
-    '13/2',
-    '26/4',
-    '13/2',
-    '6 + 1/2',
-    '13/2',
-    '6.5',
-    '13/2'
-  );
-
-  assertNotEqual('evaluates simple expressions correctly 4')(
-    '50 + 51',
-    '100',
-    '25 * 2 + 51',
-    '100',
-    '1/2 + .5',
-    '1.9',
-    '1/2 + .5',
-    '1.1',
-    '14/2',
-    '13/2',
-    '6.6',
-    '13/2'
-  );
-
-  assertEqual('evaluates simple variable expressions correctly')(
-    'x',
-    'x',
-    'x + 0',
-    'x',
-    '(x-2) + 2',
-    'x',
-    '((x^2 + x) / x) - 1',
-    'x',
-    '2x/2',
-    'x',
-    '(x + 2)^2',
-    '(x + 2)^2',
-    'x^2 + 4x + 4',
-    '(x + 2)^2',
-    'x^2 + 4(x+1)',
-    '(x + 2)^2',
-    'x^2 + 8 ((x+1) / 2)',
-    '(x + 2)^2'
-  );
-
-  assertNotEqual('evaluates simple variable expressions correctly')(
-    'y',
-    'x',
-    'x + 1',
-    'x',
-    'x^3 + 4x + 4',
-    '(x + 2)^2',
-    'x^2 + 4(x+2)',
-    '(x + 2)^2'
-  );
-
-  assertEqual('evaluates simple variable expressions correctly 2')(
-    '(2 + x)^2',
-    '(x + 2)^2',
-    'x^2 + 4x + 4',
-    '(x + 2)^2',
-    'x^2 + 4(x+1)',
-    '(x + 2)^2',
-    'x^2 + 8 ((x+1) / 2)',
-    '(x + 2)^2'
-  );
-
-  assertEqual('evaluates expressions correctly with variable exponents')(
-    '(2 + x)^2x',
-    '(x + 2)^2x',
-    'y^(2 x)',
-    'y^(x+x)'
-  );
-
-  assertEqual('evaluates function expressions correctly with variable parameters')(
-    'sqrt(4x)',
-    'sqrt(2x+2x)',
-    'sqrt(x^2)',
-    'sqrt(((x+1)^2) - ((x+1)^2) + x^2)'
-  );
-
-  assertNotEqual('evaluates simple variable expressions correctly 2')(
-    'x^3 + 4x + 4',
-    '(x + 2)^2',
-    'x^2 + 4(x+2)',
-    '(x + 2)^2'
-  );
-
-  it('correctly consumes allowDecimals option', () => {
-    expect(areValuesEqual('123', '123', { allowDecimals: true })).toEqual(true);
-    expect(areValuesEqual('123', '123.0', { allowDecimals: true })).toEqual(true);
-    expect(areValuesEqual('123,0', '123.0', { allowDecimals: true })).toEqual(true);
-    expect(areValuesEqual('123,0', '123.0', { allowDecimals: false })).toEqual(false);
-    expect(areValuesEqual('123', '123.0', { allowDecimals: false })).toEqual(false);
-    expect(areValuesEqual('123', '123,0', { allowDecimals: false })).toEqual(false);
+            (equals || []).forEach(e => {
+              assert(true)(e);
+            });
+            (notEquals || []).forEach(e => {
+              assert(false)(e);
+            });
+          });
+        });
+      });
+    });
   });
 
-  it('evaluates simple trigo expressions correctly', () => {
-    expect(areValuesEqual('sin(x)', 'sin(x)')).toEqual(true);
-    expect(areValuesEqual('tan(x)', 'tan(x)')).toEqual(true);
+  describe('latexEqual', () => {
+    const mkLatexAssertion = (root, opts) => expected => value => {
+      opts = opts || {};
+      it(`${expected ? '===' : '!=='} ${value}`, () => {
+        expect(latexEqual(root, value, opts)).toEqual(expected);
+      });
+    };
+
+    const allData = { ...data, ...fullExpressions };
+    Object.keys({ ...data, ...fullExpressions }).forEach(k => {
+      describe(k, () => {
+        const all = allData[k];
+        const { allowDecimals, isLatex, ...rest } = all;
+        Object.keys(rest).forEach(dk => {
+          describe(dk, () => {
+            const dkLatex = isLatex ? dk : me.fromText(dk).toLatex();
+            const assert = mkLatexAssertion(dkLatex, { allowDecimals });
+            const { equals, notEquals } = getEqualsObj(allData[k][dk]);
+
+            (equals || []).forEach(e => {
+              const l = isLatex ? e : me.fromText(e).toLatex();
+              assert(true)(l);
+            });
+            (notEquals || []).forEach(e => {
+              const l = isLatex ? e : me.fromText(e).toLatex();
+              assert(false)(l);
+            });
+          });
+        });
+      });
+    });
   });
 });

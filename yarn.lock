@@ -8496,6 +8496,16 @@ math-expressions@^2.0.0-alpha1:
     numeric "*"
     xml-parser "*"
 
+math-expressions@^2.0.5-alpha:
+  version "2.0.5-alpha"
+  resolved "https://registry.yarnpkg.com/math-expressions/-/math-expressions-2.0.5-alpha.tgz#25ff6658192d6b9e0aeb8916f059a19bc2f2f269"
+  integrity sha512-LIczJtI+WaQ1zs76jRnkUNn01T6O+/NbP2ZwMN66VsDVIketbepIdNSj26IJdTiWE6rapcCwc/13UiHokDX0DA==
+  dependencies:
+    mathjs "^4.1.1"
+    number-theory "*"
+    numeric "*"
+    xml-parser "*"
+
 math-random@^1.0.1:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/math-random/-/math-random-1.0.4.tgz#5dd6943c938548267016d4e34f057583080c514c"
@@ -8508,7 +8518,7 @@ mathjax3@^3.0.0-beta.3:
   dependencies:
     esm "^3.0.34"
 
-mathjs@^4.4.2:
+mathjs@^4.1.1, mathjs@^4.4.2:
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/mathjs/-/mathjs-4.4.2.tgz#79a5c8ad92a6434e22dbfac13e223a9bd62d6981"
   integrity sha512-T5zGIbDT/JGmzIu2Bocq4U8gbcmQVCyZaJbBCHKmJkLMQoWuh1SOuFH98doj1JEQwjpKkq3rqdUCuy3vLlBZOA==
@@ -8522,7 +8532,7 @@ mathjs@^4.4.2:
     tiny-emitter "2.0.2"
     typed-function "1.0.3"
 
-mathjs@^5.4.1:
+mathjs@^5.4.1, mathjs@^5.9.0:
   version "5.9.0"
   resolved "https://registry.yarnpkg.com/mathjs/-/mathjs-5.9.0.tgz#e926feb1c67c2cae103512dd35ddc2573106e1e5"
   integrity sha512-f1xmJklkTCr48y023cFy/ZSoVzOfgHp1gutvebi/Vv5RLly6j8G9T2/XHkfXewZKcwPDbhBkFEYljaCjudxulQ==
