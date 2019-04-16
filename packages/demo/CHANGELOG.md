@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@4.0.0...@pie-lib/demo@4.0.1) (2019-04-12)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+# [4.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@3.4.2...@pie-lib/demo@4.0.0) (2019-04-12)
+
+
+### Features
+
+* New component Settings panel for rendering the settings ui. ([7ce4741](https://github.com/pie-framework/pie-lib/commit/7ce4741))
+* new config layout component ([452e8a9](https://github.com/pie-framework/pie-lib/commit/452e8a9))
+
+
+### BREAKING CHANGES
+
+* component is accessible as `import {layout} from
+'@pie-lib/config-ui'; const {ConfigLayout}=settings;`
+
+
+
+
+
+## [3.4.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@3.4.1...@pie-lib/demo@3.4.2) (2019-04-11)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
 ## [3.4.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@3.4.0...@pie-lib/demo@3.4.1) (2019-04-10)
 
 **Note:** Version bump only for package @pie-lib/demo

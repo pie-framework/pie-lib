@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`layout - snapshot renders correctly with a side panel 1`] = `
+<Measure
+  bounds={true}
+  onResize={[Function]}
+>
+  <Component />
+</Measure>
+`;
+
+exports[`layout - snapshot renders correctly without a side panel 1`] = `
+<Measure
+  bounds={true}
+  onResize={[Function]}
+>
+  <Component />
+</Measure>
+`;

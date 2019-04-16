@@ -3,7 +3,9 @@ const { resolve } = require('path');
 
 const rawLinks = [
   { label: 'config-ui', path: '/config-ui' },
+  { label: 'config-ui - config-layout', path: '/config-ui/config-layout' },
   { label: 'config-ui - numbers', path: '/config-ui/numbers' },
+  { label: 'config-ui - settings-panel', path: '/config-ui/settings-panel' },
   { label: 'config-ui - tabs', path: '/config-ui/tabs' },
   { label: 'correct-answer-toggle', path: '/correct-answer-toggle' },
   { label: 'editable-html', path: '/editable-html' },

@@ -52,7 +52,7 @@ export class ChartDemo extends React.Component {
   };
 
   changeTab = (event, tabIndex) => {
-    this.setState({ tabIndex });
+    this.setState({ indexTab: tabIndex });
   };
 
   changeData = data => {
@@ -70,10 +70,7 @@ export class ChartDemo extends React.Component {
       <div>
         <div className={classes.demo}>
           <div>
-            <Settings
-              model={settings}
-              onChange={settings => this.setState({ settings })}
-            />
+            <Settings model={settings} onChange={settings => this.setState({ settings })} />
             <Options model={model} onChange={this.change} />
           </div>
           <div>
