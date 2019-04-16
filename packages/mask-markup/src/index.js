@@ -1,6 +1,6 @@
-// export MaskMarkup from './mask-markup';
-// export MaskSlate from './mask-slate';
 export MaskMarkup from './simple/mask';
 import Input from './simple/input';
+import Dropdown from './simple/dropdown';
 
-export const components = { Input };
+export const components = { Input, Dropdown };
+console.log(Dropdown);

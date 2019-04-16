@@ -12,7 +12,8 @@ export class SimpleMask extends React.Component {
     className: PropTypes.string,
     markup: PropTypes.string,
     components: PropTypes.object,
-    model: PropTypes.object
+    model: PropTypes.object,
+    onChange: PropTypes.func
   };
 
   static defaultProps = {};
@@ -25,32 +26,39 @@ export class SimpleMask extends React.Component {
     this.renderComps();
   }
 
-  compChange(id, value) {
-    console.log('changed: ', id, value);
-  }
+  compChange = (id, value) => {
+    const { onChange } = this.props;
+
+    const m = { ...this.props.model[id], value };
+    const model = { ...this.props.model, [id]: m };
+    onChange(model);
+  };
 
   renderComps() {
     if (!this.root) {
       return;
     }
-
     const nodes = this.root.querySelectorAll('[data-component]');
-
     const { components, model } = this.props;
+
     nodes.forEach(e => {
+      console.log('e.dataset.component:', e.dataset.component);
       const Comp = components[e.dataset.component];
-      const value = model[e.dataset.id];
-      console.log('value: ', value);
+      console.log('Comp', Comp);
       if (!Comp) {
         return;
       }
-      const el = React.createElement(Comp, { value, id: e.dataset.id, onChange: this.compChange });
+      const props = model[e.dataset.id];
+      const el = React.createElement(Comp, {
+        ...props,
+        id: e.dataset.id,
+        onChange: this.compChange
+      });
       ReactDOM.render(el, e);
     });
   }
 
   render() {
-    console.log('RENDED!!!');
     const { classes, className, markup } = this.props;
     return (
       <div

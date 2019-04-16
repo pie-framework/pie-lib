@@ -13,8 +13,6 @@ import Pre from '../../src/formatting/pre';
 import { Value } from 'slate';
 import inputPlugin from './input-plugin';
 
-// const MyComp = () => <div>WOOF</div>;
-
 const mkText = t => ({
   object: 'text',
   leaves: [{ object: 'leaf', text: t }]
@@ -26,37 +24,10 @@ const valueJson = {
     object: 'document',
     data: {},
     nodes: [
-      // {
-      //   object: 'block',
-      //   type: 'paragraph',
-      //   nodes: [
-      //     {
-      //       object: 'text',
-      //       leaves: [{ object: 'leaf', text: 'hi' }, { object: 'leaf', text: ' there' }]
-      //     }
-      //   ]
-      // },
       {
         object: 'block',
         type: 'div',
         nodes: [
-          // {
-          //   object: 'text',
-          //   leaves: [{ object: 'leaf', text: 'hi' }, { object: 'leaf', text: ' there' }]
-          // },
-          // {
-          //   object: 'inline',
-          //   type: 'text-input',
-          //   isVoid: true,
-          //   data: {
-          //     value: 'this is the text',
-          //     id: '1'
-          //   }
-          // },
-          // {
-          //   object: 'text',
-          //   leaves: [{ object: 'leaf', text: 'hi' }, { object: 'leaf', text: ' there' }]
-          // },
           {
             object: 'block',
             type: 'div',
@@ -67,15 +38,6 @@ const valueJson = {
                 type: 'span',
                 nodes: [mkText('before text')]
               }
-              // {
-              //   object: 'inline',
-              //   type: 'text-input',
-              //   isVoid: true,
-              //   data: {
-              //     value: 'this is the text',
-              //     id: '1'
-              //   }
-              // }
             ]
           }
         ]
@@ -103,17 +65,24 @@ class Demo extends React.Component {
   constructor(props) {
     super(props);
 
+    console.log('components.Dropdown:', components.Dropdown);
     this.simpleComponents = {
-      input: components.Input
+      input: components.Input,
+      dropdown: components.Dropdown
     };
 
     this.state = {
       mounted: false,
       simpleModel: {
-        1: 'foo bar'
+        1: { value: 'foo bar' },
+        2: { value: 'blah' },
+        3: {
+          value: 'foo',
+          choices: [{ label: 'foo', value: 'foo' }, { label: 'bar', value: 'bar' }]
+        }
       },
       simpleMarkup:
-        'this is some markup <span data-component="input" data-id="1"></span> and some more text',
+        'this is some markup <span data-component="input" data-id="1"></span> and some more text <span data-component="input" data-id="2"></span><span data-component="dropdown" data-id="3"></span>',
       inputs: {
         1: 'this is the text'
       },
@@ -201,6 +170,7 @@ class Demo extends React.Component {
             model={this.state.simpleModel}
             onChange={simpleModel => this.setState({ simpleModel })}
           />
+          <Pre value={this.state.simpleModel} />
         </Section>
       </div>
     ) : (
