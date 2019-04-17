@@ -52,16 +52,15 @@ class RawContainer extends React.Component {
   render() {
     const { classes } = this.props;
     const { mounted, layoutMode } = this.state;
-    console.log('this.state: ', this.state);
+    const text = `A component that loads content in 2 slots: it's children and 'settings', depending on
+              the width, the settings will either be rendered in a tab or to the right of the
+              children.`;
+
     return mounted ? (
       <div className={classes.root}>
         <div className={classes.left}>
           <Section name="ConfigLayout">
-            <Typography>
-              A component that loads content in 2 slots: it's children and 'settings', depending on
-              the width, the settings will either be rendered in a tab or to the right of the
-              children.
-            </Typography>
+            <Typography>{text}</Typography>
 
             <layout.ConfigLayout
               sidePanelMinWidth={500}
@@ -102,7 +101,7 @@ class RawContainer extends React.Component {
             </layout.LayoutContents>
           </Section>
           <Section name="old config layout">
-            <layout.OldConfigLayout
+            <layout.ConfigLayout
               sidePanelMinWidth={500}
               settings={
                 <React.Fragment>
@@ -117,7 +116,7 @@ class RawContainer extends React.Component {
               }
             >
               content
-            </layout.OldConfigLayout>
+            </layout.ConfigLayout>
           </Section>
         </div>
         <div className={classes.right}>
