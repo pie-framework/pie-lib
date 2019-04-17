@@ -52,16 +52,37 @@ export const fullExpressions = {
     'V=9\\times18\\times30': [
       'V=9\\times18\\times30',
       'V=30\\times18\\times9',
-      'V=15\\times2\\times18\\times9',
-      'V=14\\times2\\times18\\times9'
+      'V=15\\times2\\times18\\times9'
+      // 'V=14\\times2\\times18\\times9'
     ],
     '\\frac{1}{3}=\\frac{2}{6}': [
       '\\frac{1}{3} = \\frac{4}{12}',
       '\\frac{1}{\\frac{3}{1}} = \\frac{2}{6}',
       '\\frac{10}{\\frac{30}{1}} = \\frac{2}{6}'
+    ],
+    '2x-9+\\frac{35}{x+3}': [
+      '2x - 9 + \\frac{35}{x+3}',
+      '\\frac{100}{50}x - 9 + \\frac{7\\times5}{x+3}',
+      '\\frac{100}{50}x - 9 + \\frac{35}{x+3}'
     ]
     //TODO: support \\text
     //'\\frac{2}{3}\\ \\text{pounds}': ['\\frac{2}{3}\\ \\text{pounds}'],
     //'270\\ \\text{minutes}' : ['270\\ \\text{minutes}']
   }
 };
+
+// 2x - 9 + (35 / x+3)
+// -7 + 35/x+3
+
+// 1/x + 4 = 5
+// (1 + 4)x = 5
+// 5x = 5
+// x = 5/5
+// x = 1
+
+// 2 / (x + 1) + 4 = 5
+// 2/ (x + 1) = 5 - 4
+// 2/ (x + 1) = 1
+// 2 = x + 1
+// 2 - 1 = x
+// x = 1
