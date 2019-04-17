@@ -293,5 +293,20 @@
     "committerDate": "2019-04-12 20:52:03 +0100",
     "isTagged": true,
     "tag": "@pie-lib/demo@4.0.0"
+  },
+  {
+    "type": "fix",
+    "scope": "demo",
+    "subject": "Fixed demo bug.",
+    "merge": null,
+    "header": "fix(demo): Fixed demo bug.",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "8f7986db41fcc1ccbb728b0c265a4c7c615924b9",
+    "gitTags": " (origin/fix/config-layout)",
+    "committerDate": "2019-04-16 09:13:56 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/demo@4.0.2"
   }
 ]
