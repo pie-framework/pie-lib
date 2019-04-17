@@ -53,7 +53,6 @@ export const fullExpressions = {
       'V=9\\times18\\times30',
       'V=30\\times18\\times9',
       'V=15\\times2\\times18\\times9'
-      // 'V=14\\times2\\times18\\times9'
     ],
     '\\frac{1}{3}=\\frac{2}{6}': [
       '\\frac{1}{3} = \\frac{4}{12}',
