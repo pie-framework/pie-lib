@@ -65,10 +65,10 @@ class Demo extends React.Component {
   constructor(props) {
     super(props);
 
-    console.log('components.Dropdown:', components.Dropdown);
     this.simpleComponents = {
       input: components.Input,
-      dropdown: components.Dropdown
+      dropdown: components.Dropdown,
+      blank: components.Blank
     };
 
     this.state = {
@@ -79,10 +79,13 @@ class Demo extends React.Component {
         3: {
           value: 'foo',
           choices: [{ label: 'foo', value: 'foo' }, { label: 'bar', value: 'bar' }]
+        },
+        4: {
+          value: 'this is the blank info'
         }
       },
       simpleMarkup:
-        'this is some markup <span data-component="input" data-id="1"></span> and some more text <span data-component="input" data-id="2"></span><span data-component="dropdown" data-id="3"></span>',
+        'this is some markup <span data-component="input" data-id="1"></span> and some more text <span data-component="input" data-id="2"></span><span data-component="dropdown" data-id="3"></span> and <div> here is a blank: <span data-component="blank" data-id="4"></span></div>',
       inputs: {
         1: 'this is the text'
       },

@@ -5,7 +5,11 @@ import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import Input from '@material-ui/core/Input';
 import ReactDOM from 'react-dom';
-
+const d = require('@pie-lib/drag');
+console.log('DDD:', d);
+console.log('DDD:', d.withDragContext);
+// import { d } from '@pie-lib/drag';
+// console.log('d:', d, d.withDragContext);
 export class SimpleMask extends React.Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
@@ -72,4 +76,7 @@ export class SimpleMask extends React.Component {
 const styles = theme => ({
   class: {}
 });
-export default withStyles(styles)(SimpleMask);
+const Styled = withStyles(styles)(SimpleMask);
+
+const Out = d.withDragContext(Styled);
+export default Out;
