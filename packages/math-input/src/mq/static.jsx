@@ -9,7 +9,7 @@ if (typeof window !== 'undefined') {
 }
 
 const log = debug('pie-lib:math-input:mq:static');
-const REGEX = /\\MathQuillMathField\[answerBlock\d*\]\{(.*?)\}/g;
+const REGEX = /\\MathQuillMathField\[r\d*\]\{(.*?)\}/g;
 const WHITESPACE_REGEX = / /g;
 
 function stripSpaces(string = '') {
@@ -102,10 +102,7 @@ export default class Static extends React.Component {
       const innerField = this.mathField.innerFields.find(f => f.id === id);
 
       if (innerField) {
-        const name = this.props.getFieldName(
-          innerField,
-          this.mathField.innerFields
-        );
+        const name = this.props.getFieldName(innerField, this.mathField.innerFields);
         if (this.props.setInput) {
           this.props.setInput(innerField);
         }
