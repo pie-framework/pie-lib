@@ -52,7 +52,6 @@ export class SimpleMask extends React.Component {
       const props = value[e.dataset.id];
       const config = (this.props.config || {})[e.dataset.id];
       const feedback = (this.props.feedback || {})[e.dataset.id];
-      console.log('props:', props);
 
       const el = React.createElement(Comp, {
         ...props,

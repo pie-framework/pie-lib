@@ -74,6 +74,7 @@ class Demo extends React.Component {
         }
       : {};
 
+    // TODO: check similar comps to see what they support...
     return mounted ? (
       <div>
         <Section name="MaskMarkup">
