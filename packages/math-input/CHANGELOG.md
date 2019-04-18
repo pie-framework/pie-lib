@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@5.4.3...@pie-lib/math-input@6.0.0) (2019-04-17)
+
+### Features
+
+- **math-input:** static math answer block support updated to formulaV2 ([24d5341](https://github.com/pie-framework/pie-lib/commit/24d5341))
+
+### BREAKING CHANGES
+
+- **math-input:** answer block mathquill mathfields now have a new id definition when declared
+
 ## [5.4.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@5.4.2...@pie-lib/math-input@5.4.3) (2019-04-12)
 
 **Note:** Version bump only for package @pie-lib/math-input
