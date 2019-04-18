@@ -1,23 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
-import Input from '@material-ui/core/Input';
 import ReactDOM from 'react-dom';
 const d = require('@pie-lib/drag');
-console.log('DDD:', d);
-console.log('DDD:', d.withDragContext);
-// import { d } from '@pie-lib/drag';
-// console.log('d:', d, d.withDragContext);
+
 export class SimpleMask extends React.Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     className: PropTypes.string,
     markup: PropTypes.string,
     components: PropTypes.object,
-    model: PropTypes.object,
-    onChange: PropTypes.func
+    value: PropTypes.object,
+    config: PropTypes.object,
+    feedback: PropTypes.object,
+    onChange: PropTypes.func,
+    disabled: PropTypes.bool
   };
 
   static defaultProps = {};
@@ -33,8 +31,9 @@ export class SimpleMask extends React.Component {
   compChange = (id, value) => {
     const { onChange } = this.props;
 
-    const m = { ...this.props.model[id], value };
-    const model = { ...this.props.model, [id]: m };
+    const m = { ...this.props.value[id], value };
+    delete m.correct;
+    const model = { ...this.props.value, [id]: m };
     onChange(model);
   };
 
@@ -43,18 +42,23 @@ export class SimpleMask extends React.Component {
       return;
     }
     const nodes = this.root.querySelectorAll('[data-component]');
-    const { components, model } = this.props;
+    const { components, value, disabled } = this.props;
 
     nodes.forEach(e => {
-      console.log('e.dataset.component:', e.dataset.component);
       const Comp = components[e.dataset.component];
-      console.log('Comp', Comp);
       if (!Comp) {
         return;
       }
-      const props = model[e.dataset.id];
+      const props = value[e.dataset.id];
+      const config = (this.props.config || {})[e.dataset.id];
+      const feedback = (this.props.feedback || {})[e.dataset.id];
+      console.log('props:', props);
+
       const el = React.createElement(Comp, {
         ...props,
+        ...config,
+        ...feedback,
+        disabled,
         id: e.dataset.id,
         onChange: this.compChange
       });

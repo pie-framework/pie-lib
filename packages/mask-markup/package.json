@@ -7,10 +7,11 @@
     "access": "public"
   },
   "dependencies": {
-    "debug": "^4.1.1",
-    "react": "^16.8.6",
     "@material-ui/core": "^3.9.3",
     "@pie-lib/drag": "^1.1.12",
+    "classnames": "^2.2.6",
+    "debug": "^4.1.1",
+    "react": "^16.8.6",
     "react-dnd": "^7.0.2",
     "react-dnd-html5-backend": "^7.0.2",
     "slate": "^0.36.2",

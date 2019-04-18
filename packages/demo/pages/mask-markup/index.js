@@ -1,179 +1,128 @@
 import { MaskMarkup, components } from '@pie-lib/mask-markup';
 import React from 'react';
 import withRoot from '../../src/withRoot';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
 import { withStyles } from '@material-ui/core';
-import grey from '@material-ui/core/colors/grey';
 import Section from '../../src/formatting/section';
 import Pre from '../../src/formatting/pre';
-import { Value } from 'slate';
 import inputPlugin from './input-plugin';
+import DragChoice from './drag-choice';
+import { withDragContext } from '@pie-lib/drag';
+import Switch from '@material-ui/core/Switch';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
-const mkText = t => ({
-  object: 'text',
-  leaves: [{ object: 'leaf', text: t }]
-});
-
-const valueJson = {
-  object: 'value',
-  document: {
-    object: 'document',
-    data: {},
-    nodes: [
-      {
-        object: 'block',
-        type: 'div',
-        nodes: [
-          {
-            object: 'block',
-            type: 'div',
-            nodes: [
-              mkText('hi'),
-              {
-                object: 'inline',
-                type: 'span',
-                nodes: [mkText('before text')]
-              }
-            ]
-          }
-        ]
-      }
-      // {
-      //   object: 'block',
-      //   type: 'paragraph',
-      //   nodes: [
-      //     {
-      //       object: 'text',
-      //       leaves: [
-      //         {
-      //           object: 'leaf',
-      //           text: 'A line of text in a paragraph.'
-      //         }
-      //       ]
-      //     }
-      //   ]
-      // }
-    ]
-  }
-};
+const markup = `<div>
+<p>1: Hey, diddle, diddle,</p>
+<p>2: The cat and the fiddle,</p>
+<p>3: The cow <span data-component="blank" data-id="1"></span> over the moon;</p>
+<p>4: The little dog <span data-component="input" data-id="2"></span>,</p>
+<p>5: To see such sport,</p>
+<p>6: And the dish ran away with the <span data-component="dropdown" data-id="3"></span>.</p>
+</div>`;
 
 class Demo extends React.Component {
   constructor(props) {
     super(props);
 
-    this.simpleComponents = {
+    this.components = {
       input: components.Input,
       dropdown: components.Dropdown,
       blank: components.Blank
     };
 
     this.state = {
+      disabled: false,
+      evaluate: false,
       mounted: false,
-      simpleModel: {
-        1: { value: 'foo bar' },
-        2: { value: 'blah' },
-        3: {
-          value: 'foo',
-          choices: [{ label: 'foo', value: 'foo' }, { label: 'bar', value: 'bar' }]
+      markup,
+      value: {
+        1: {
+          value: undefined
         },
-        4: {
-          value: 'this is the blank info'
+        2: {
+          value: ''
+        },
+        3: {
+          value: ''
         }
-      },
-      simpleMarkup:
-        'this is some markup <span data-component="input" data-id="1"></span> and some more text <span data-component="input" data-id="2"></span><span data-component="dropdown" data-id="3"></span> and <div> here is a blank: <span data-component="blank" data-id="4"></span></div>',
-      inputs: {
-        1: 'this is the text'
-      },
-      value: Value.fromJSON(valueJson, { normalize: false })
+      }
     };
-
-    // this.updateInput = (text, nodeKey) => {
-    //   const updatedValue = this.state.value.change().setNodByKey(nodeKey, { type: 'paragraph' })
-    //     .value;
-    //   this.setState({ value: updatedValue });
-    // };
-
-    // this.plugins = [
-    //   {
-    //     name: 'text-input',
-    //     renderNode: node => {
-    //       if (node.type === 'text-input') {
-    //         return (
-    //           <Input
-    //             style={{ display: 'inline' }}
-    //             value={'hi'}
-    //             onChange={event => this.updateInput(event.target.value, node.key)}
-    //           />
-    //         );
-    //       }
-    //       return undefined;
-    //     }
-    //   }
-    // ];
 
     this.msPlugins = [inputPlugin({ onChange: this.inputChange })];
   }
-
-  inputChange = (id, value) => {
-    console.log('input change:', value);
-
-    this.setState({ inputs: { [id]: value } });
-    // this.setState({ value });
-    // const { value } = this.state;
-    // value.change().setNode;
-  };
 
   componentDidMount() {
     this.setState({ mounted: true });
   }
 
   render() {
-    const { mounted, markup, value, simpleMarkup } = this.state;
+    const { mounted, markup, value, disabled, evaluate } = this.state;
 
-    console.log('value:', value.toJS());
+    const feedback = evaluate
+      ? {
+          1: {
+            value: value['1'].value,
+            correct: value['1'].value === 'Jumped'
+          },
+          2: {
+            value: value['2'].value,
+            correct: value['2'].value === 'laughed'
+          },
+          3: {
+            value: value['3'].value,
+            correct: value['3'].value === 'spoon'
+          }
+        }
+      : {};
+
     return mounted ? (
       <div>
-        3 options:
-        <ol>
-          <li>Use slate data model, render with readOnly slate instance</li>
-          <li>Use slate data model, render with simplified comp</li>
-          <li>take html, render it, find nodes w/ x, convert them into comps w/ ReactDOM</li>
-        </ol>
-        <p>
-          1: The issue w/ using slate readOnly is that they have all this schema stuff inside it
-          which can be a bit of a pain to work with, esp if we are importing this from elsewhere.
-        </p>
-        <p>2: The issue with a simple comp is that we have to impl it.</p>
-        <p>
-          3: The last option is the most simplistic, but it has a drawback that the authoring of
-          this component will be done in slate, which will generate a slate like data model. Also
-          it'll require jumping out of react, finding nodes then running reactDom.
-        </p>
-        {/* <Section name="Mask Markup">
-          This package contains componenents that allow you to render custom components within
-          markup/text. This is my first attempt. the idea was to use the Slate model, but to provide
-          a simplified renderer:
-          <MaskMarkup plugins={this.plugins} value={this.state.value} />
-        </Section> */}
-        {/* <Section name="Mask Slate">
-          As above but this time just use a readOnly instance of slate. Slate has more than we need,
-          but already handles the whole render tree etc so may be quicker to get started with:
-          <MaskSlate value={value} plugins={this.msPlugins} />
-          <Pre value={this.state} />
-        </Section> */}
-        <Section name="3: simple">
-          <MaskMarkup
-            markup={simpleMarkup}
-            components={this.simpleComponents}
-            model={this.state.simpleModel}
-            onChange={simpleModel => this.setState({ simpleModel })}
+        <Section name="MaskMarkup">
+          <FormControlLabel
+            control={
+              <Switch
+                checked={disabled}
+                onChange={() => this.setState({ disabled: !this.state.disabled })}
+              />
+            }
+            label="Disabled"
           />
-          <Pre value={this.state.simpleModel} />
+          <FormControlLabel
+            control={
+              <Switch
+                checked={evaluate}
+                onChange={() => this.setState({ evaluate: !this.state.evaluate })}
+              />
+            }
+            label="Evaluate"
+          />
+          <MaskMarkup
+            markup={markup}
+            disabled={disabled}
+            components={this.components}
+            value={value}
+            feedback={feedback}
+            config={{
+              3: {
+                choices: [
+                  { label: 'carrot', value: 'carrot' },
+                  { label: 'spoon', value: 'spoon' },
+                  { label: 'monsoon', value: 'monsoon' },
+                  { label: 'saucer', value: 'saucer' }
+                ]
+              }
+            }}
+            onChange={value => this.setState({ value })}
+          />
+          <hr />
+          <div>
+            Line 3 Options:
+            <DragChoice targetId="4" value="Jumped" disabled={disabled} />
+            <DragChoice targetId="4" value="Leaped" />
+            <DragChoice targetId="4" value="Flew" />
+            <DragChoice targetId="4" value="Crawled" />
+          </div>
+          <hr />
+          <Pre value={this.state.value} />
         </Section>
       </div>
     ) : (
@@ -184,4 +133,4 @@ class Demo extends React.Component {
 
 const Styled = withStyles(theme => ({}))(Demo);
 
-export default withRoot(Styled);
+export default withDragContext(withRoot(Styled));

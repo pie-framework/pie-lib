@@ -1,23 +1,54 @@
 import React from 'react';
 import debug from 'debug';
-import { DragSource, DropTarget } from 'react-dnd';
+import { DropTarget } from 'react-dnd';
+import { withDragContext } from '@pie-lib/drag';
+import { withStyles } from '@material-ui/core/styles';
+import Chip from '@material-ui/core/Chip';
+import classnames from 'classnames';
 const log = debug('pie-lib:mask-markup:drag-blank');
 
 export const DRAG_TYPE = 'MaskBlank';
 
-const BlankContent = props => {
-  const { connectDragSource, connectDropTarget } = props;
+const BlankContent = withStyles(theme => ({
+  content: {
+    border: `solid 0px ${theme.palette.primary.main}`,
+    minWidth: '200px',
+    padding: theme.spacing.unit
+  },
+  chip: {
+    minWidth: '90px'
+  },
+  correct: {
+    border: 'solid 1px green'
+  },
+  incorrect: {
+    border: 'solid 1px red'
+  }
+}))(props => {
+  const { disabled, value, connectDropTarget, classes, isOver, dragItem, correct } = props;
 
-  return connectDragSource(connectDropTarget(<div className={name}>DRAGGGGG</div>), {});
-};
+  const label = dragItem && isOver ? dragItem.value : value;
+  return connectDropTarget(
+    <span className={classnames(classes.content, isOver && classes.over)}>
+      <Chip
+        label={label}
+        className={classnames(
+          classes.chip,
+          classes[correct !== undefined ? (correct ? 'correct' : 'incorrect') : undefined],
+          disabled && classes.chipDisabled
+        )}
+        variant={disabled ? 'outlined' : undefined}
+        onDelete={value && !disabled ? () => props.onChange(props.id, undefined) : undefined}
+      />
+    </span>
+  );
+});
 
 const tileTarget = {
   drop(props, monitor) {
     const draggedItem = monitor.getItem();
     log('props.instanceId', props.instanceId, 'draggedItem.instanceId:', draggedItem.instanceId);
-    if (draggedItem.instanceId === props.instanceId) {
-      props.onDropChoice(draggedItem, props.index);
-    }
+    props.onChange(props.id, draggedItem.value);
   },
   canDrop(props, monitor) {
     const draggedItem = monitor.getItem();
@@ -28,36 +59,8 @@ const tileTarget = {
 
 const DropTile = DropTarget(DRAG_TYPE, tileTarget, (connect, monitor) => ({
   connectDropTarget: connect.dropTarget(),
-  isOver: monitor.isOver()
+  isOver: monitor.isOver(),
+  dragItem: monitor.getItem()
 }))(BlankContent);
 
-const tileSource = {
-  canDrag(props) {
-    return props.draggable && !props.disabled;
-  },
-  beginDrag(props) {
-    return {
-      id: props.id,
-      type: props.type,
-      instanceId: props.instanceId
-    };
-  },
-  endDrag(props, monitor) {
-    if (!monitor.didDrop()) {
-      if (props.type === 'target') {
-        props.onRemoveChoice(monitor.getItem());
-      }
-    }
-  }
-};
-
-const DragDropTile = DragSource(DRAG_TYPE, tileSource, (connect, monitor) => ({
-  connectDragSource: connect.dragSource(),
-  isDragging: monitor.isDragging()
-}))(DropTile);
-
-export default DragDropTile;
-
-// const DragBlank = props => <span>{props.value}</span>;
-
-// export default DragBlank;
+export default withDragContext(DropTile);
