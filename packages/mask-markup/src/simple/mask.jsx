@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import ReactDOM from 'react-dom';
-const d = require('@pie-lib/drag');
+// const d = require('@pie-lib/drag');
+import { DragDropContext } from 'react-dnd';
+import MultiBackend from 'react-dnd-multi-backend';
+import HTML5toTouch from 'react-dnd-multi-backend/lib/HTML5toTouch'; // or any other pipeline
+//export default DragDropContext(MultiBackend(HTML5toTouch))(App);
 
 export class SimpleMask extends React.Component {
   static propTypes = {
@@ -53,15 +57,15 @@ export class SimpleMask extends React.Component {
       const config = (this.props.config || {})[e.dataset.id];
       const feedback = (this.props.feedback || {})[e.dataset.id];
 
-      const el = React.createElement(Comp, {
-        ...props,
-        ...config,
-        ...feedback,
-        disabled,
-        id: e.dataset.id,
-        onChange: this.compChange
-      });
-      ReactDOM.render(el, e);
+      // const el = React.createElement(Comp, {
+      //   ...props,
+      //   ...config,
+      //   ...feedback,
+      //   disabled,
+      //   id: e.dataset.id,
+      //   onChange: this.compChange
+      // });
+      // ReactDOM.render(el, e);
     });
   }
 
@@ -81,5 +85,10 @@ const styles = theme => ({
 });
 const Styled = withStyles(styles)(SimpleMask);
 
-const Out = d.withDragContext(Styled);
-export default Out;
+// const Out = d.withDragContext(Styled);
+// export default Out;
+// import { DragDropContext } from 'react-dnd';
+//   import MultiBackend from 'react-dnd-multi-backend';
+//   import HTML5toTouch from 'react-dnd-multi-backend/lib/HTML5toTouch'; // or any other pipeline
+//   ...
+export default DragDropContext(MultiBackend(HTML5toTouch))(Styled);

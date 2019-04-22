@@ -1,7 +1,9 @@
 import React from 'react';
 import debug from 'debug';
-import { DropTarget } from 'react-dnd';
-import { withDragContext } from '@pie-lib/drag';
+import { DropTarget, DragDropContext } from 'react-dnd';
+// import { withDragContext } from '@pie-lib/drag';
+import MultiBackend from 'react-dnd-multi-backend';
+import HTML5toTouch from 'react-dnd-multi-backend/lib/HTML5toTouch';
 import { withStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 import classnames from 'classnames';
@@ -62,5 +64,7 @@ const DropTile = DropTarget(DRAG_TYPE, tileTarget, (connect, monitor) => ({
   isOver: monitor.isOver(),
   dragItem: monitor.getItem()
 }))(BlankContent);
+
+const withDragContext = Comp => DragDropContext(MultiBackend(HTML5toTouch))(Comp);
 
 export default withDragContext(DropTile);
