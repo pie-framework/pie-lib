@@ -1,12 +1,11 @@
 import React from 'react';
 import debug from 'debug';
-import { DropTarget } from 'react-dnd';
-import { withDragContext } from '@pie-lib/drag';
+import { withDragContext, DropTarget } from '@pie-lib/drag';
+import TargetConnector from 'react-dnd/lib/cjs/TargetConnector';
 import { withStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 import classnames from 'classnames';
 const log = debug('pie-lib:mask-markup:drag-blank');
-
 export const DRAG_TYPE = 'MaskBlank';
 
 const BlankContent = withStyles(theme => ({
@@ -25,7 +24,12 @@ const BlankContent = withStyles(theme => ({
     border: 'solid 1px red'
   }
 }))(props => {
-  const { disabled, value, connectDropTarget, classes, isOver, dragItem, correct } = props;
+  const { disabled, value, classes, isOver, dragItem, correct, dragDropManager } = props;
+
+  console.log('in c: dragDropManager', dragDropManager);
+
+  const connect = new TargetConnector(dragDropManager.getBackend());
+  const connectDropTarget = connect.dropTarget();
 
   const label = dragItem && isOver ? dragItem.value : value;
   return connectDropTarget(
@@ -44,23 +48,24 @@ const BlankContent = withStyles(theme => ({
   );
 });
 
-const tileTarget = {
-  drop(props, monitor) {
-    const draggedItem = monitor.getItem();
-    log('props.instanceId', props.instanceId, 'draggedItem.instanceId:', draggedItem.instanceId);
-    props.onChange(props.id, draggedItem.value);
-  },
-  canDrop(props, monitor) {
-    const draggedItem = monitor.getItem();
-    const canDrop = draggedItem.instanceId === props.instanceId;
-    return canDrop;
-  }
-};
+// const tileTarget = {
+//   drop(props, monitor) {
+//     const draggedItem = monitor.getItem();
+//     log('props.instanceId', props.instanceId, 'draggedItem.instanceId:', draggedItem.instanceId);
+//     props.onChange(props.id, draggedItem.value);
+//   },
+//   canDrop(props, monitor) {
+//     const draggedItem = monitor.getItem();
+//     const canDrop = draggedItem.instanceId === props.instanceId;
+//     return canDrop;
+//   }
+// };
 
-const DropTile = DropTarget(DRAG_TYPE, tileTarget, (connect, monitor) => ({
-  connectDropTarget: connect.dropTarget(),
-  isOver: monitor.isOver(),
-  dragItem: monitor.getItem()
-}))(BlankContent);
+// const DropTile = DropTarget(DRAG_TYPE, tileTarget, (connect, monitor) => ({
+//   connectDropTarget: connect.dropTarget(),
+//   isOver: monitor.isOver(),
+//   dragItem: monitor.getItem()
+// }))(BlankContent);
 
-export default withDragContext(DropTile);
+// export default () => <div>hi</div>;
+export default BlankContent;

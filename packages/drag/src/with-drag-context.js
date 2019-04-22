@@ -15,4 +15,5 @@ if (typeof window !== 'undefined') {
 /**
  * Provides a single point of access for the html5 backend.
  */
+console.log('>>>>> context: ', context);
 export default context;

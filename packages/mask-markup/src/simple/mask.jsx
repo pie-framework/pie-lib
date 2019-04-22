@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import ReactDOM from 'react-dom';
-const d = require('@pie-lib/drag');
+import { DragDropContextConsumer } from '@pie-lib/drag';
 
 export class SimpleMask extends React.Component {
   static propTypes = {
@@ -57,16 +57,26 @@ export class SimpleMask extends React.Component {
         ...props,
         ...config,
         ...feedback,
+        dragDropManager: this.props.dragDropManager,
         disabled,
         id: e.dataset.id,
         onChange: this.compChange
       });
       ReactDOM.render(el, e);
+      // const ContextProvider = createContextProvider(this.context);
+
+      // ReactDOM.render(
+      //   <ContextProvider backend={this.context.backend}>
+      //     <Comp />
+      //   </ContextProvider>,
+      //   e
+      // );
     });
   }
 
   render() {
     const { classes, className, markup } = this.props;
+    console.log('??', DragDropContextConsumer);
     return (
       <div
         className={classNames(classes.class, className)}
@@ -81,5 +91,19 @@ const styles = theme => ({
 });
 const Styled = withStyles(styles)(SimpleMask);
 
-const Out = d.withDragContext(Styled);
-export default Out;
+class Wrapper extends React.Component {
+  render() {
+    // const { classes, className, markup } = this.props;
+    // console.log('??', DragDropContextConsumer);
+    return (
+      <DragDropContextConsumer>
+        {({ dragDropManager }) => {
+          console.log('dragDropManager: ', dragDropManager);
+          return <Styled {...this.props} dragDropManager={dragDropManager} />;
+        }}
+      </DragDropContextConsumer>
+    );
+  }
+}
+
+export default Wrapper;

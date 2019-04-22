@@ -1,7 +1,6 @@
 import React from 'react';
 import debug from 'debug';
-import { DragSource, DropTarget } from 'react-dnd';
-import { withDragContext } from '@pie-lib/drag';
+import { DragSource } from 'react-dnd';
 import { withStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 const log = debug('pie-lib:mask-markup:drag-blank');
@@ -13,7 +12,7 @@ const BlankContent = withStyles(theme => ({
     border: `solid 0px ${theme.palette.primary.main}`
   }
 }))(props => {
-  const { connectDragSource, connectDropTarget, classes } = props;
+  const { connectDragSource, classes } = props;
   return connectDragSource(
     <span className={classes.choice}>
       <Chip label={props.value} />
