@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@0.11.4...@pie-lib/math-toolbar@1.0.0) (2019-04-23)
+
+
+### Bug Fixes
+
+* **math-toolbar:** response block addition switched to %response% from embeded custom element ([0eb6f94](https://github.com/pie-framework/pie-lib/commit/0eb6f94))
+
+
+### BREAKING CHANGES
+
+* **math-toolbar:** response block addition now uses a different format
+
+
+
+
+
 ## [0.11.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@0.11.3...@pie-lib/math-toolbar@0.11.4) (2019-04-17)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
