@@ -42,15 +42,6 @@ export class EditorAndPad extends React.Component {
     classes: PropTypes.object
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      answerBlockIdCounter: 0,
-      answerBlocks: props.allowAnswerBlock ? [] : undefined
-    };
-  }
-
   onClick = data => {
     const { noDecimal } = this.props;
     const c = toNodeData(data);
@@ -69,41 +60,17 @@ export class EditorAndPad extends React.Component {
     } else if (c.type === 'cursor') {
       this.input.keystroke(c.value);
     } else if (c.type === 'answer') {
-      this.input.write(`\\embed{answerBlock}[${c.id}]`);
+      this.input.write('%response%');
     } else {
       this.input.write(c.value);
     }
   };
 
   onAnswerBlockClick = () => {
-    const { answerBlockIdCounter } = this.state;
-
-    let newCounter = answerBlockIdCounter + 1;
-    let elements = document.querySelectorAll(`#answerBlock${newCounter}`);
-
-    while (elements.length) {
-      newCounter += 1;
-      elements = document.querySelectorAll(`#answerBlock${newCounter}`);
-    }
-
+    this.props.onAnswerBlockAdd();
     this.onClick({
-      type: 'answer',
-      id: `answerBlock${newCounter}`
+      type: 'answer'
     });
-
-    this.setState(
-      state => ({
-        answerBlocks: state.answerBlocks.concat({
-          id: `answerBlock${newCounter}`
-        }),
-        answerBlockIdCounter: newCounter
-      }),
-      () => {
-        this.props.onAnswerBlockAdd(
-          `answerBlock${this.state.answerBlockIdCounter}`
-        );
-      }
-    );
   };
 
   onEditorChange = latex => {
@@ -152,8 +119,7 @@ export class EditorAndPad extends React.Component {
       onFocus,
       classes
     } = this.props;
-    const shouldShowKeypad =
-      !controlledKeypad || (controlledKeypad && showKeypad);
+    const shouldShowKeypad = !controlledKeypad || (controlledKeypad && showKeypad);
 
     log('[render]', latex);
 
@@ -210,10 +176,10 @@ const styles = theme => ({
       border: 'solid 0px lightgrey',
       '& .mq-non-leaf': {
         display: 'inline-flex',
-        alignItems: 'center',
+        alignItems: 'center'
       },
       '& .mq-non-leaf.mq-fraction': {
-        display: 'inline-block',
+        display: 'inline-block'
       },
       '& .mq-paren': {
         verticalAlign: 'middle'
