@@ -4,6 +4,7 @@ import componentize from './componentize';
 import { deserialize } from './serialization';
 import Mask from './tree/mask';
 import Choices from './choices';
+import Blank from './tree/blank';
 
 export const buildLayoutFromMarkup = markup => {
   const { ids, markup: processed } = componentize(markup, 'blank');
@@ -20,6 +21,13 @@ export default class DragInTheBlank extends React.Component {
     onChange: PropTypes.func
   };
 
+  renderChildren = (node, data, onChange) => {
+    const component = node.data ? node.data.component : undefined;
+    if (component === 'blank') {
+      return <Blank value={data[node.data.id]} id={node.data.id} onChange={onChange} />;
+    }
+  };
+
   render() {
     //1. add nodes
     const { markup, layout, value, onChange, choices } = this.props;
@@ -29,7 +37,12 @@ export default class DragInTheBlank extends React.Component {
     return (
       <div>
         <Choices value={choices} />
-        <Mask layout={maskLayout} data={value} onChange={onChange} />
+        <Mask
+          layout={maskLayout}
+          data={value}
+          onChange={onChange}
+          renderChildren={this.renderChildren}
+        />
       </div>
     );
   }
