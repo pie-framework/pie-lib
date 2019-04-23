@@ -3,6 +3,8 @@ import debug from 'debug';
 import { DragSource } from '@pie-lib/drag';
 import { withStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
+import classnames from 'classnames';
+
 const log = debug('pie-lib:mask-markup:drag-blank');
 
 export const DRAG_TYPE = 'MaskBlank';
@@ -10,12 +12,13 @@ export const DRAG_TYPE = 'MaskBlank';
 const BlankContent = withStyles(theme => ({
   choice: {
     border: `solid 0px ${theme.palette.primary.main}`
-  }
+  },
+  disabled: {}
 }))(props => {
-  const { connectDragSource, classes } = props;
+  const { connectDragSource, classes, disabled } = props;
   return connectDragSource(
-    <span className={classes.choice}>
-      <Chip label={props.value} />
+    <span className={classnames(classes.choice, disabled && classes.disabled)}>
+      <Chip label={props.value} variant={disabled ? 'outlined' : undefined} />
     </span>,
     {}
   );

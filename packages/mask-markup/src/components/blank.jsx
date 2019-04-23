@@ -1,7 +1,6 @@
 import React from 'react';
 import debug from 'debug';
 import { withDragContext, DropTarget } from '@pie-lib/drag';
-import TargetConnector from 'react-dnd/lib/cjs/TargetConnector';
 import { withStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 import classnames from 'classnames';
@@ -33,8 +32,7 @@ const BlankContent = withStyles(theme => ({
         label={label}
         className={classnames(
           classes.chip,
-          classes[correct !== undefined ? (correct ? 'correct' : 'incorrect') : undefined],
-          disabled && classes.chipDisabled
+          classes[correct !== undefined ? (correct ? 'correct' : 'incorrect') : undefined]
         )}
         variant={disabled ? 'outlined' : undefined}
         onDelete={value && !disabled ? () => props.onChange(props.id, undefined) : undefined}

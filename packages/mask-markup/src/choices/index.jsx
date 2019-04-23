@@ -4,15 +4,22 @@ import Choice from './choice';
 
 export default class Choices extends React.Component {
   static propTypes = {
+    disabled: PropTypes.bool,
     value: PropTypes.arrayOf(PropTypes.shape({ label: PropTypes.string, value: PropTypes.string }))
   };
 
   render() {
-    const { value } = this.props;
+    const { value, disabled } = this.props;
     return (
       <div>
         {value.map((v, index) => (
-          <Choice key={`${v.value}-${index}`} value={v.value} label={v.label} targetId={'1'} />
+          <Choice
+            disabled={disabled}
+            key={`${v.value}-${index}`}
+            value={v.value}
+            label={v.label}
+            targetId={'1'}
+          />
         ))}
       </div>
     );

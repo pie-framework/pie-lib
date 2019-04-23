@@ -1,11 +1,10 @@
-import { tree, Choices, MaskMarkup, DragInTheBlank, components } from '@pie-lib/mask-markup';
+import { DragInTheBlank, ConstructedResponse, InlineDropdown } from '@pie-lib/mask-markup';
 import React from 'react';
 import withRoot from '../../src/withRoot';
 import { withStyles } from '@material-ui/core';
 import Section from '../../src/formatting/section';
 import Pre from '../../src/formatting/pre';
 import inputPlugin from './input-plugin';
-import DragChoice from './drag-choice';
 import { withDragContext } from '@pie-lib/drag';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -23,14 +22,29 @@ class Demo extends React.Component {
   constructor(props) {
     super(props);
 
-    this.components = {
-      input: components.Input,
-      dropdown: components.Dropdown,
-      blank: components.Blank
-    };
+    // this.components = {
+    //   input: components.Input,
+    //   dropdown: components.Dropdown,
+    //   blank: components.Blank
+    // };
 
     this.state = {
-      main: {
+      constructedResponse: {
+        markup: '<div> input here: {{0}}</div>',
+        value: {
+          0: 'blank'
+        }
+      },
+      inlineDropdown: {
+        markup: '<div> dropdown here: {{0}}</div>',
+        value: {
+          0: 'foo'
+        },
+        choices: {
+          0: [choice('foo'), choice('bar'), choice('baz')]
+        }
+      },
+      dragInTheBlank: {
         markup: '<div>blank here: {{0}}</div>',
         choices: [
           choice('foo'),
@@ -102,7 +116,16 @@ class Demo extends React.Component {
   }
 
   render() {
-    const { mounted, markup, value, disabled, evaluate, main } = this.state;
+    const {
+      mounted,
+      markup,
+      value,
+      disabled,
+      evaluate,
+      dragInTheBlank,
+      constructedResponse,
+      inlineDropdown
+    } = this.state;
 
     const feedback = evaluate
       ? {
@@ -124,6 +147,26 @@ class Demo extends React.Component {
     // TODO: check similar comps to see what they support...
     return mounted ? (
       <div>
+        <div>
+          <FormControlLabel
+            control={
+              <Switch
+                checked={disabled}
+                onChange={() => this.setState({ disabled: !this.state.disabled })}
+              />
+            }
+            label="Disabled"
+          />
+          <FormControlLabel
+            control={
+              <Switch
+                checked={evaluate}
+                onChange={() => this.setState({ evaluate: !this.state.evaluate })}
+              />
+            }
+            label="Evaluate"
+          />
+        </div>
         {/* <Section name="low level">
           <Choices value={this.state.choices[2]} data={this.state.data} />
           <tree.Mask
@@ -134,10 +177,33 @@ class Demo extends React.Component {
         </Section> */}
         <Section name="Drag in the Blank">
           <DragInTheBlank
-            {...main}
-            onChange={value => this.setState({ main: { ...this.state.main, value } })}
+            disabled={disabled}
+            {...dragInTheBlank}
+            onChange={value =>
+              this.setState({ dragInTheBlank: { ...this.state.dragInTheBlank, value } })
+            }
           />
-          <Pre value={this.state.main.value} />
+          <Pre value={this.state.dragInTheBlank.value} />
+        </Section>
+        <Section name="Explicit Constructed Response">
+          <ConstructedResponse
+            disabled={disabled}
+            {...constructedResponse}
+            onChange={value => {
+              this.setState({ constructedResponse: { ...this.state.constructedResponse, value } });
+            }}
+          />
+          <Pre value={this.state.constructedResponse.value} />
+        </Section>
+        <Section name="Inline Dropdown">
+          <InlineDropdown
+            disabled={disabled}
+            {...inlineDropdown}
+            onChange={value => {
+              this.setState({ inlineDropdown: { ...this.state.inlineDropdown, value } });
+            }}
+          />
+          <Pre value={this.state.inlineDropdown.value} />
         </Section>
         {/* <Section name="MaskMarkup">
           <FormControlLabel
