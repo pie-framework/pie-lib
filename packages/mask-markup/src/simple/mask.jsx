@@ -86,9 +86,11 @@ export class SimpleMask extends React.Component {
     );
   }
 }
+
 const styles = theme => ({
   class: {}
 });
+
 const Styled = withStyles(styles)(SimpleMask);
 
 class Wrapper extends React.Component {

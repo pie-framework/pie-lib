@@ -3,6 +3,7 @@ import Input from './simple/input';
 import Dropdown from './simple/dropdown';
 import Blank from './simple/drag-blank';
 export const components = { Input, Dropdown, Blank };
+export * as tree from './tree';
 
 const REGEX = /\{\{(\d?)\}\}/g;
 export const componentize = (s, t) => {

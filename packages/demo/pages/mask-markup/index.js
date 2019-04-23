@@ -1,4 +1,4 @@
-import { MaskMarkup, components } from '@pie-lib/mask-markup';
+import { tree, MaskMarkup, components } from '@pie-lib/mask-markup';
 import React from 'react';
 import withRoot from '../../src/withRoot';
 import { withStyles } from '@material-ui/core';
@@ -77,7 +77,17 @@ class Demo extends React.Component {
     // TODO: check similar comps to see what they support...
     return mounted ? (
       <div>
-        <Section name="MaskMarkup">
+        <tree.Mask
+          value={{
+            object: 'block',
+            type: 'div',
+            nodes: [
+              { object: 'text', content: 'hi' },
+              { object: 'inline', type: 'span', nodes: [{ object: 'text', content: 'in span' }] }
+            ]
+          }}
+        />
+        {/* <Section name="MaskMarkup">
           <FormControlLabel
             control={
               <Switch
@@ -124,7 +134,7 @@ class Demo extends React.Component {
           </div>
           <hr />
           <Pre value={this.state.value} />
-        </Section>
+        </Section> */}
       </div>
     ) : (
       <div />
