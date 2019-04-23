@@ -1,4 +1,4 @@
-import { tree, MaskMarkup, components } from '@pie-lib/mask-markup';
+import { tree, Choices, MaskMarkup, DragInTheBlank, components } from '@pie-lib/mask-markup';
 import React from 'react';
 import withRoot from '../../src/withRoot';
 import { withStyles } from '@material-ui/core';
@@ -18,7 +18,7 @@ const markup = `<div>
 <p>5: To see such sport,</p>
 <p>6: And the dish ran away with the <span data-component="dropdown" data-id="3"></span>.</p>
 </div>`;
-
+const choice = v => ({ label: v, value: v });
 class Demo extends React.Component {
   constructor(props) {
     super(props);
@@ -30,6 +30,53 @@ class Demo extends React.Component {
     };
 
     this.state = {
+      main: {
+        markup: '<div>blank here: {{0}}</div>',
+        choices: [
+          choice('foo'),
+          choice('bar'),
+          choice('baz'),
+          choice('beamish'),
+          choice('murphys')
+        ],
+
+        value: {
+          0: undefined
+        },
+        feedback: {
+          0: {}
+        }
+      },
+      data: {
+        1: 'this is one',
+        2: 'carrot'
+      },
+      choices: {
+        2: [{ label: 'foo', value: 'foo' }, { label: 'bar', value: 'bar' }]
+      },
+      layout: {
+        object: 'block',
+        type: 'div',
+        nodes: [
+          {
+            object: 'block',
+            type: 'div',
+            nodes: [
+              {
+                object: 'inline',
+                type: 'input',
+                data: {
+                  id: '1'
+                }
+              },
+              { object: 'text', content: 'foo' },
+              { object: 'inline', type: 'blank', data: { id: '2' } }
+            ]
+          },
+          { object: 'text', content: 'hi' },
+          { object: 'inline', type: 'span', nodes: [{ object: 'text', content: ' in span' }] }
+        ]
+      },
       disabled: false,
       evaluate: false,
       mounted: false,
@@ -55,7 +102,7 @@ class Demo extends React.Component {
   }
 
   render() {
-    const { mounted, markup, value, disabled, evaluate } = this.state;
+    const { mounted, markup, value, disabled, evaluate, main } = this.state;
 
     const feedback = evaluate
       ? {
@@ -77,16 +124,21 @@ class Demo extends React.Component {
     // TODO: check similar comps to see what they support...
     return mounted ? (
       <div>
-        <tree.Mask
-          value={{
-            object: 'block',
-            type: 'div',
-            nodes: [
-              { object: 'text', content: 'hi' },
-              { object: 'inline', type: 'span', nodes: [{ object: 'text', content: 'in span' }] }
-            ]
-          }}
-        />
+        {/* <Section name="low level">
+          <Choices value={this.state.choices[2]} data={this.state.data} />
+          <tree.Mask
+            layout={this.state.layout}
+            data={this.state.data}
+            onChange={data => this.setState({ data })}
+          />
+        </Section> */}
+        <Section name="Drag in the Blank">
+          <DragInTheBlank
+            {...main}
+            onChange={value => this.setState({ main: { ...this.state.main, value } })}
+          />
+          <Pre value={this.state.main.value} />
+        </Section>
         {/* <Section name="MaskMarkup">
           <FormControlLabel
             control={
