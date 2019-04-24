@@ -448,5 +448,25 @@
     "committerDate": "2019-04-10 10:39:05 +0300",
     "isTagged": true,
     "tag": "@pie-lib/math-toolbar@0.11.0"
+  },
+  {
+    "type": "fix",
+    "scope": "math-toolbar",
+    "subject": "response block addition switched to %response% from embeded custom element",
+    "merge": null,
+    "header": "fix(math-toolbar): response block addition switched to %response% from embeded custom element",
+    "body": null,
+    "footer": "BREAKING CHANGE: response block addition now uses a different format",
+    "notes": [
+      {
+        "title": "BREAKING CHANGE",
+        "text": "response block addition now uses a different format"
+      }
+    ],
+    "hash": "0eb6f94c8def870b495e0c96f531bdadf32a4c7b",
+    "gitTags": " (origin/feat/math-inline-formula-v2)",
+    "committerDate": "2019-04-22 14:18:02 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/math-toolbar@1.0.0"
   }
 ]

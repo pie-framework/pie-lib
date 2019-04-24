@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@9.0.3...@pie-lib/config-ui@10.0.0) (2019-04-24)
+
+
+### Features
+
+* Added support to Settings Panel for updating configuration as well (not only model). ([44e10d1](https://github.com/pie-framework/pie-lib/commit/44e10d1))
+
+
+### BREAKING CHANGES
+
+* radio function used for settings panel expects 3 parameters and the second one is an array of choices.
+
+
+
+
+
+## [9.0.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@9.0.2...@pie-lib/config-ui@9.0.3) (2019-04-23)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
 ## [9.0.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@9.0.1...@pie-lib/config-ui@9.0.2) (2019-04-17)
 
 **Note:** Version bump only for package @pie-lib/config-ui

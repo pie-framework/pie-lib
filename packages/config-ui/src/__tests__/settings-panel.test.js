@@ -13,8 +13,7 @@ describe('Settings Panel', () => {
     editChoiceLabel: false
   };
   let model = {
-    choiceAreaLayout: 'vertical',
-    configure
+    choiceAreaLayout: 'vertical'
   };
 
   let groups = ({ configure }) => ({
@@ -24,12 +23,21 @@ describe('Settings Panel', () => {
         label: configure.orientationLabel,
         choices: [{ label: 'opt1', value: 'opt1' }, { label: 'opt2', value: 'opt2' }]
       },
-      'configure.editChoiceLabel': { type: 'toggle', label: 'Edit choice label' }
+      editChoiceLabel: { type: 'toggle', label: 'Edit choice label', isConfigProperty: true }
     }
   });
 
   const wrapper = extras => {
-    return shallow(<Panel model={model} onChange={onChange} groups={groups(model)} {...extras} />);
+    return shallow(
+      <Panel
+        model={model}
+        configuration={configure}
+        onChangeModel={onChange}
+        onChangeConfiguration={onChange}
+        groups={groups({ configure })}
+        {...extras}
+      />
+    );
   };
 
   describe('snapshot', () => {
@@ -55,8 +63,8 @@ describe('Settings Panel', () => {
 
   describe('logic', () => {
     describe('onChange gets called', () => {
-      it('updates root props', () => {
-        w.instance().changeModel('test', false);
+      it('updates model props', () => {
+        w.instance().change('test', false);
 
         expect(onChange).toBeCalledWith(
           {
@@ -67,20 +75,17 @@ describe('Settings Panel', () => {
         );
       });
 
-      it('updates nested props', () => {
-        w.instance().changeModel('configure.test.test', true);
+      it('updates configuration props', () => {
+        w.instance().change('test.test', true, true);
 
         expect(onChange).toBeCalledWith(
           {
-            ...model,
-            configure: {
-              ...configure,
-              test: {
-                test: true
-              }
+            ...configure,
+            test: {
+              test: true
             }
           },
-          'configure.test.test'
+          'test.test'
         );
       });
     });
@@ -93,18 +98,20 @@ describe('toggle', () => {
 
     expect(setting).toEqual({
       label: 'Label',
-      type: 'toggle'
+      type: 'toggle',
+      isConfigProperty: false
     });
   });
 });
 
 describe('radio', () => {
   it('returns a radio type object', () => {
-    const setting = radio('Radio', 'one', 'two');
+    const setting = radio('Radio', ['one', 'two']);
 
     expect(setting).toEqual({
       label: 'Radio',
       type: 'radio',
+      isConfigProperty: false,
       choices: [
         {
           label: 'one',

@@ -1068,5 +1068,25 @@
     "committerDate": "2019-04-12 20:52:03 +0100",
     "isTagged": true,
     "tag": "@pie-lib/config-ui@8.0.0"
+  },
+  {
+    "type": "feat",
+    "scope": null,
+    "subject": "Added support to Settings Panel for updating configuration as well (not only model).",
+    "merge": null,
+    "header": "feat: Added support to Settings Panel for updating configuration as well (not only model).",
+    "body": null,
+    "footer": "BREAKING CHANGE: radio function used for settings panel expects 3 parameters and the second one is an array of choices.",
+    "notes": [
+      {
+        "title": "BREAKING CHANGE",
+        "text": "radio function used for settings panel expects 3 parameters and the second one is an array of choices."
+      }
+    ],
+    "hash": "44e10d11857e0873a3ee304a863e2162a0fe8c30",
+    "gitTags": "",
+    "committerDate": "2019-04-24 10:03:41 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/config-ui@10.0.0"
   }
 ]
