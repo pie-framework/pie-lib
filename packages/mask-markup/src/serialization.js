@@ -49,7 +49,8 @@ const rules = [
     serialize: () => undefined
   }
 ];
+
 // Create a new serializer instance with our `rules` from above.
-const html = new Html({ rules });
+const html = new Html({ rules, defaultBlock: 'div' });
 
 export const deserialize = s => html.deserialize(s, { toJSON: true });

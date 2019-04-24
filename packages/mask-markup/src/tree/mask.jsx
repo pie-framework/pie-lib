@@ -13,11 +13,8 @@ const renderChildren = (value, data, onChange, rootRenderChildren) => {
     return null;
   }
 
-  // console.log('renderChildren:', value);
   const children = [];
   (value.nodes || []).forEach((n, index) => {
-    // console.log('root: render...', rootRenderChildren);
-
     const key = `${n.type}-${index}`;
 
     if (rootRenderChildren) {
@@ -27,15 +24,13 @@ const renderChildren = (value, data, onChange, rootRenderChildren) => {
         return;
       }
     }
-    //quick workaround for dom nesting issue
-    // n.type = n.type === 'p' ? 'div' : n.type;
 
     if (n.object === 'text') {
       const content = n.leaves.reduce((acc, l) => {
         return acc + l.text;
       }, '');
       children.push(<span key={`text-${index}`}>{content}</span>);
-    } else if (n.type === 'p') {
+    } else if (n.type === 'p' || node.type === 'paragraph') {
       children.push(
         <Paragraph key={key}>{renderChildren(n, data, onChange, rootRenderChildren)}</Paragraph>
       );
@@ -51,30 +46,6 @@ const renderChildren = (value, data, onChange, rootRenderChildren) => {
         children.push(<Tag key={key} {...n.data.attributes} />);
       }
     }
-    // console.log('node:', n, n.data.component);
-    // const component = n.data ? n.data.component : undefined;
-    // if (component === 'input') {
-    //   children.push(
-    //     <Input value={data[n.data.id]} onChange={e => onChange(n.data.id, e.target.value)} />
-    //   );
-    // } else if (component === 'blank') {
-    //   console.log('got a blank..---------------------------.');
-    //   children.push(<Blank value={data[n.data.id]} id={n.data.id} onChange={onChange} />);
-
-    // if (n.type === 'div') {
-    //   children.push(<div>{renderChildren(n, data, onChange, rootRenderChildren)}</div>);
-    // } else if (n.type === 'span') {
-    //   children.push(<span>{renderChildren(n, data, onChange, rootRenderChildren)}</span>);
-    // } else if (n.object === 'text') {
-    //   const content = n.leaves.reduce((acc, l) => {
-    //     return acc + l.text;
-    //   }, '');
-    //   children.push(<span>{content}</span>);
-    // } else if (n.data.component === 'input') {
-    //   children.push(
-    //     <Input value={data[n.data.id]} onChange={e => onChange(n.data.id, e.target.value)} />
-    //   );
-    // }
   });
   return children;
 };
