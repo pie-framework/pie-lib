@@ -71,7 +71,7 @@ const Group = withStyles(theme => ({
         const tagProps = { ...properties, key, value };
         const Tag = tagMap[tagProps.type];
 
-        return <Tag key={key} {...tagProps} onChange={v => onChange(key, v, config)} />;
+        return <Tag key={key} {...tagProps} onChange={v => onChange(key, v, isConfigProperty)} />;
       })}
     </div>
   );
@@ -82,21 +82,22 @@ export class Panel extends React.Component {
     model: PropTypes.object,
     configuration: PropTypes.object,
     groups: PropTypes.object,
-    onChange: PropTypes.func
+    onChangeModel: PropTypes.func,
+    onChangeConfiguration: PropTypes.func
   };
 
   change = (key, value, isConfigProperty = false) => {
     log('[changeModel]', key, value);
-    const { onChange } = this.props;
+    const { onChangeModel, onChangeConfiguration } = this.props;
     const model = { ...this.props.model };
     const configuration = { ...this.props.configuration };
 
     if (isConfigProperty) {
       _.set(configuration, key, value);
-      onChange(configuration, key, isConfigProperty);
+      onChangeConfiguration(configuration, key);
     } else {
       _.set(model, key, value);
-      onChange(model, key, isConfigProperty);
+      onChangeModel(model, key);
     }
   };
 

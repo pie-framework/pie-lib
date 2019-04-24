@@ -32,7 +32,8 @@ describe('Settings Panel', () => {
       <Panel
         model={model}
         configuration={configure}
-        onChange={onChange}
+        onChangeModel={onChange}
+        onChangeConfiguration={onChange}
         groups={groups({ configure })}
         {...extras}
       />
@@ -70,8 +71,7 @@ describe('Settings Panel', () => {
             ...model,
             test: false
           },
-          'test',
-          false
+          'test'
         );
       });
 
@@ -85,8 +85,7 @@ describe('Settings Panel', () => {
               test: true
             }
           },
-          'test.test',
-          true
+          'test.test'
         );
       });
     });
