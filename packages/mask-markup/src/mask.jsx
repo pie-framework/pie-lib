@@ -9,7 +9,7 @@ const Paragraph = withStyles(theme => ({
   }
 }))(props => <div className={props.classes.para}>{props.children}</div>);
 
-const renderChildren = (layout, value, onChange, rootRenderChildren) => {
+export const renderChildren = (layout, value, onChange, rootRenderChildren) => {
   if (!value) {
     return null;
   }
@@ -51,19 +51,6 @@ const renderChildren = (layout, value, onChange, rootRenderChildren) => {
   return children;
 };
 
-const Container = props => {
-  const { value, layout, onChange } = props;
-  const children = renderChildren(layout, value, onChange, props.renderChildren);
-  return <div>{children}</div>;
-};
-
-Container.propTypes = {
-  layout: PropTypes.object,
-  value: PropTypes.object,
-  onChange: PropTypes.func,
-  renderChildren: PropTypes.func
-};
-
 /**
  * Renders a layout that uses the slate.js Value model structure.
  */
@@ -81,14 +68,8 @@ export default class Mask extends React.Component {
   };
 
   render() {
-    const { renderChildren, value, layout } = this.props;
-    return (
-      <Container
-        renderChildren={renderChildren}
-        layout={layout}
-        value={value}
-        onChange={this.handleChange}
-      />
-    );
+    const { value, layout } = this.props;
+    const children = renderChildren(layout, value, this.handleChange, this.props.renderChildren);
+    return <div>{children}</div>;
   }
 }
