@@ -55,7 +55,7 @@ const Group = withStyles(theme => ({
     fontWeight: 500
   }
 }))(props => {
-  const { classes, model, label, group } = props;
+  const { classes, model, label, group, configuration, onChange } = props;
 
   return (
     <div className={classes.group}>
@@ -65,9 +65,13 @@ const Group = withStyles(theme => ({
         if (!group[key]) {
           return null;
         }
-        const tagProps = { ...group[key], key, value: _.get(model, key) };
+
+        const { isConfigProperty, ...properties } = group[key];
+        const value = isConfigProperty ? _.get(configuration, key) : _.get(model, key);
+        const tagProps = { ...properties, key, value };
         const Tag = tagMap[tagProps.type];
-        return <Tag key={key} {...tagProps} onChange={v => props.onChange(key, v)} />;
+
+        return <Tag key={key} {...tagProps} onChange={v => onChange(key, v, isConfigProperty)} />;
       })}
     </div>
   );
@@ -76,27 +80,47 @@ const Group = withStyles(theme => ({
 export class Panel extends React.Component {
   static propTypes = {
     model: PropTypes.object,
+    configuration: PropTypes.object,
     groups: PropTypes.object,
-    onChange: PropTypes.func
+    onChangeModel: PropTypes.func,
+    onChangeConfiguration: PropTypes.func
   };
 
-  changeModel = (key, value) => {
+  static defaultProps = {
+    onChangeModel: () => {},
+    onChangeConfiguration: () => {}
+  };
+
+  change = (key, value, isConfigProperty = false) => {
     log('[changeModel]', key, value);
-    const { onChange } = this.props;
+    const { onChangeModel, onChangeConfiguration } = this.props;
     const model = { ...this.props.model };
+    const configuration = { ...this.props.configuration };
 
-    _.set(model, key, value);
-
-    onChange(model, key);
+    if (isConfigProperty) {
+      _.set(configuration, key, value);
+      onChangeConfiguration(configuration, key);
+    } else {
+      _.set(model, key, value);
+      onChangeModel(model, key);
+    }
   };
 
   render() {
-    const { groups, model } = this.props;
+    const { groups, model, configuration } = this.props;
     log('render:', model);
+
     return (
       <div>
         {Object.keys(groups).map(g => (
-          <Group label={g} key={g} model={model} group={groups[g]} onChange={this.changeModel} />
+          <Group
+            label={g}
+            key={g}
+            model={model}
+            configuration={configuration}
+            group={groups[g]}
+            onChange={this.change}
+          />
         ))}
       </div>
     );

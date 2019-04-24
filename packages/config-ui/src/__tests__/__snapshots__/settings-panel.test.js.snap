@@ -3,10 +3,18 @@
 exports[`Settings Panel snapshot does not render radio buttons 1`] = `
 <div>
   <WithStyles(Component)
+    configuration={
+      Object {
+        "editChoiceLabel": false,
+        "orientationLabel": "Orientation",
+        "settingsOrientation": true,
+      }
+    }
     group={
       Object {
         "choiceAreaLayout": false,
-        "configure.editChoiceLabel": Object {
+        "editChoiceLabel": Object {
+          "isConfigProperty": true,
           "label": "Edit choice label",
           "type": "toggle",
         },
@@ -17,11 +25,6 @@ exports[`Settings Panel snapshot does not render radio buttons 1`] = `
     model={
       Object {
         "choiceAreaLayout": "vertical",
-        "configure": Object {
-          "editChoiceLabel": false,
-          "orientationLabel": "Orientation",
-          "settingsOrientation": true,
-        },
       }
     }
     onChange={[Function]}
@@ -32,6 +35,13 @@ exports[`Settings Panel snapshot does not render radio buttons 1`] = `
 exports[`Settings Panel snapshot renders 1`] = `
 <div>
   <WithStyles(Component)
+    configuration={
+      Object {
+        "editChoiceLabel": false,
+        "orientationLabel": "Orientation",
+        "settingsOrientation": true,
+      }
+    }
     group={
       Object {
         "choiceAreaLayout": Object {
@@ -48,7 +58,8 @@ exports[`Settings Panel snapshot renders 1`] = `
           "label": "Orientation",
           "type": "radio",
         },
-        "configure.editChoiceLabel": Object {
+        "editChoiceLabel": Object {
+          "isConfigProperty": true,
           "label": "Edit choice label",
           "type": "toggle",
         },
@@ -59,11 +70,6 @@ exports[`Settings Panel snapshot renders 1`] = `
     model={
       Object {
         "choiceAreaLayout": "vertical",
-        "configure": Object {
-          "editChoiceLabel": false,
-          "orientationLabel": "Orientation",
-          "settingsOrientation": true,
-        },
       }
     }
     onChange={[Function]}
