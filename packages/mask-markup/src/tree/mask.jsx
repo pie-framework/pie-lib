@@ -9,17 +9,17 @@ const Paragraph = withStyles(theme => ({
   }
 }))(props => <div className={props.classes.para}>{props.children}</div>);
 
-const renderChildren = (value, data, onChange, rootRenderChildren) => {
+const renderChildren = (layout, value, onChange, rootRenderChildren) => {
   if (!value) {
     return null;
   }
 
   const children = [];
-  (value.nodes || []).forEach((n, index) => {
+  (layout.nodes || []).forEach((n, index) => {
     const key = `${n.type}-${index}`;
 
     if (rootRenderChildren) {
-      const c = rootRenderChildren(n, data, onChange);
+      const c = rootRenderChildren(n, value, onChange);
       if (c) {
         children.push(c);
         return;
@@ -33,14 +33,14 @@ const renderChildren = (value, data, onChange, rootRenderChildren) => {
       children.push(<span key={`text-${index}`}>{content}</span>);
     } else if (n.type === 'p' || n.type === 'paragraph') {
       children.push(
-        <Paragraph key={key}>{renderChildren(n, data, onChange, rootRenderChildren)}</Paragraph>
+        <Paragraph key={key}>{renderChildren(n, value, onChange, rootRenderChildren)}</Paragraph>
       );
     } else {
       const Tag = n.type;
       if (n.nodes && n.nodes.length > 0) {
         children.push(
           <Tag key={key} {...n.data.attributes}>
-            {renderChildren(n, data, onChange, rootRenderChildren)}{' '}
+            {renderChildren(n, value, onChange, rootRenderChildren)}{' '}
           </Tag>
         );
       } else {
@@ -52,39 +52,38 @@ const renderChildren = (value, data, onChange, rootRenderChildren) => {
 };
 
 const Container = props => {
-  const { value, data, onChange } = props;
-  const children = renderChildren(value, data, onChange, props.renderChildren);
+  const { value, layout, onChange } = props;
+  const children = renderChildren(layout, value, onChange, props.renderChildren);
   return <div>{children}</div>;
 };
 
 Container.propTypes = {
+  layout: PropTypes.object,
   value: PropTypes.object,
-  data: PropTypes.object,
   onChange: PropTypes.func,
   renderChildren: PropTypes.func
 };
 
 export default class Mask extends React.Component {
   static propTypes = {
-    value: PropTypes.any,
     renderChildren: PropTypes.func,
     layout: PropTypes.object,
-    data: PropTypes.object,
+    value: PropTypes.object,
     onChange: PropTypes.func
   };
 
   handleChange = (id, value) => {
-    const data = { ...this.props.data, [id]: value };
+    const data = { ...this.props.value, [id]: value };
     this.props.onChange(data);
   };
 
   render() {
-    const { renderChildren, data, layout } = this.props;
+    const { renderChildren, value, layout } = this.props;
     return (
       <Container
         renderChildren={renderChildren}
-        value={layout}
-        data={data}
+        layout={layout}
+        value={value}
         onChange={this.handleChange}
       />
     );

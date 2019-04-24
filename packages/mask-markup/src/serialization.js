@@ -2,20 +2,25 @@ import Html from 'slate-html-serializer';
 
 const INLINE = ['span'];
 const MARK = ['em', 'strong', 'u'];
+const TEXT_NODE = 3;
 
 const attr = el => {
   if (!el.attributes || el.attributes.length <= 0) {
     return undefined;
   }
+
   const out = {};
 
   for (var i = 0; i < el.attributes.length; i++) {
     const a = el.attributes[i];
-    out[a.name] = a.value;
+    if (!a.name.startsWith('data-')) {
+      out[a.name] = a.value;
+    }
   }
 
   return out;
 };
+
 const getObject = type => {
   if (INLINE.includes(type)) {
     return 'inline';
@@ -24,7 +29,6 @@ const getObject = type => {
   }
   return 'block';
 };
-const TEXT_NODE = 3;
 
 const rules = [
   {
