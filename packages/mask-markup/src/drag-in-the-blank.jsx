@@ -30,16 +30,24 @@ export default class DragInTheBlank extends React.Component {
     ),
     value: PropTypes.object,
     onChange: PropTypes.func,
-    disabled: PropTypes.bool
+    disabled: PropTypes.bool,
+    feedback: PropTypes.object
   };
 
   render() {
-    const { markup, layout, value, onChange, choices, disabled } = this.props;
+    const { markup, layout, value, onChange, choices, disabled, feedback } = this.props;
 
     return (
       <div>
         <Choices value={choices} disabled={disabled} />
-        <Masked markup={markup} layout={layout} value={value} onChange={onChange} />
+        <Masked
+          markup={markup}
+          layout={layout}
+          value={value}
+          onChange={onChange}
+          disabled={disabled}
+          feedback={feedback}
+        />
       </div>
     );
   }
