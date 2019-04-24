@@ -2,7 +2,7 @@ import React from 'react';
 import Dropdown from './components/dropdown';
 import { withMask } from './with-mask';
 
-const Out = withMask('dropdown', props => (node, data, onChange) => {
+export default withMask('dropdown', props => (node, data, onChange) => {
   const dataset = node.data ? node.data.dataset || {} : {};
   if (dataset.component === 'dropdown') {
     const { feedback } = props;
@@ -19,4 +19,3 @@ const Out = withMask('dropdown', props => (node, data, onChange) => {
     );
   }
 });
-export default Out;

@@ -30,7 +30,7 @@ const renderChildren = (layout, value, onChange, rootRenderChildren) => {
       const content = n.leaves.reduce((acc, l) => {
         return acc + l.text;
       }, '');
-      children.push(<span key={`text-${index}`}>{content}</span>);
+      children.push(content);
     } else if (n.type === 'p' || n.type === 'paragraph') {
       children.push(
         <Paragraph key={key}>{renderChildren(n, value, onChange, rootRenderChildren)}</Paragraph>
@@ -64,6 +64,9 @@ Container.propTypes = {
   renderChildren: PropTypes.func
 };
 
+/**
+ * Renders a layout that uses the slate.js Value model structure.
+ */
 export default class Mask extends React.Component {
   static propTypes = {
     renderChildren: PropTypes.func,

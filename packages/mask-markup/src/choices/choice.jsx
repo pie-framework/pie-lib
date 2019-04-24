@@ -5,7 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 import classnames from 'classnames';
 
-const log = debug('pie-lib:mask-markup:drag-blank');
+const log = debug('pie-lib:mask-markup:choice');
 
 export const DRAG_TYPE = 'MaskBlank';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Mask from './tree/mask';
+import Mask from './mask';
 import componentize from './componentize';
 import { deserialize } from './serialization';
 
@@ -13,7 +13,13 @@ export const buildLayoutFromMarkup = (markup, type) => {
 export const withMask = (type, renderChildren) => {
   return class WithMask extends React.Component {
     static propTypes = {
+      /**
+       * At the start we'll probably work with markup
+       */
       markup: PropTypes.string,
+      /**
+       * Once we start authoring, it may make sense for use to us layout, which will be a simple js object that maps to `slate.Value`.
+       */
       layout: PropTypes.object,
       value: PropTypes.object,
       onChange: PropTypes.func

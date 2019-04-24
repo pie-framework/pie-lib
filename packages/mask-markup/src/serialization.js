@@ -32,6 +32,9 @@ const getObject = type => {
 
 const rules = [
   {
+    /**
+     * deserialize everything, we're not fussy about the dom structure for now.
+     */
     deserialize: (el, next) => {
       if (el.nodeType === TEXT_NODE) {
         return {
@@ -49,8 +52,7 @@ const rules = [
         data: { dataset: { ...el.dataset }, attributes: { ...attributes } },
         nodes: next(el.childNodes)
       };
-    },
-    serialize: () => undefined
+    }
   }
 ];
 
