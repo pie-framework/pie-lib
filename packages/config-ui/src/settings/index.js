@@ -2,7 +2,7 @@ import Panel from './panel';
 
 export { Panel };
 
-export const toggle = label => ({ type: 'toggle', label });
+export const toggle = (label, configuration) => ({ type: 'toggle', label, configuration });
 
 const toChoice = opt => {
   if (typeof opt === 'string') {
@@ -14,10 +14,11 @@ const toChoice = opt => {
 
 export const radio = function() {
   const args = Array.prototype.slice.call(arguments);
-  const [label, ...opts] = args;
+  const [label, configuration, ...opts] = args;
   return {
     type: 'radio',
     label,
+    configuration,
     choices: opts.map(o => toChoice(o))
   };
 };
