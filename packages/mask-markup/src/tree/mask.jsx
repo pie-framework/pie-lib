@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+
 const Paragraph = withStyles(theme => ({
   para: {
     paddingTop: theme.spacing.unit,
@@ -52,9 +53,15 @@ const renderChildren = (value, data, onChange, rootRenderChildren) => {
 
 const Container = props => {
   const { value, data, onChange } = props;
-  // const Tag = value.type;
   const children = renderChildren(value, data, onChange, props.renderChildren);
   return <div>{children}</div>;
+};
+
+Container.propTypes = {
+  value: PropTypes.object,
+  data: PropTypes.object,
+  onChange: PropTypes.func,
+  renderChildren: PropTypes.func
 };
 
 export default class Mask extends React.Component {
@@ -73,7 +80,6 @@ export default class Mask extends React.Component {
 
   render() {
     const { renderChildren, data, layout } = this.props;
-    // console.log('render');
     return (
       <Container
         renderChildren={renderChildren}
