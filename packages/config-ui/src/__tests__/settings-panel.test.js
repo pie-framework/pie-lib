@@ -23,7 +23,7 @@ describe('Settings Panel', () => {
         label: configure.orientationLabel,
         choices: [{ label: 'opt1', value: 'opt1' }, { label: 'opt2', value: 'opt2' }]
       },
-      editChoiceLabel: { type: 'toggle', label: 'Edit choice label', configuration: true }
+      editChoiceLabel: { type: 'toggle', label: 'Edit choice label', isConfigProperty: true }
     }
   });
 
@@ -111,7 +111,7 @@ describe('radio', () => {
     expect(setting).toEqual({
       label: 'Radio',
       type: 'radio',
-      configuration: false,
+      isConfigProperty: false,
       choices: [
         {
           label: 'one',

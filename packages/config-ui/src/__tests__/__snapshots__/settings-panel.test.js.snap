@@ -14,7 +14,7 @@ exports[`Settings Panel snapshot does not render radio buttons 1`] = `
       Object {
         "choiceAreaLayout": false,
         "editChoiceLabel": Object {
-          "configuration": true,
+          "isConfigProperty": true,
           "label": "Edit choice label",
           "type": "toggle",
         },
@@ -59,7 +59,7 @@ exports[`Settings Panel snapshot renders 1`] = `
           "type": "radio",
         },
         "editChoiceLabel": Object {
-          "configuration": true,
+          "isConfigProperty": true,
           "label": "Edit choice label",
           "type": "toggle",
         },

@@ -66,8 +66,8 @@ const Group = withStyles(theme => ({
           return null;
         }
 
-        const { configuration: config, ...properties } = group[key];
-        const value = config ? _.get(configuration, key) : _.get(model, key);
+        const { isConfigProperty, ...properties } = group[key];
+        const value = isConfigProperty ? _.get(configuration, key) : _.get(model, key);
         const tagProps = { ...properties, key, value };
         const Tag = tagMap[tagProps.type];
 
@@ -85,18 +85,18 @@ export class Panel extends React.Component {
     onChange: PropTypes.func
   };
 
-  change = (key, value, config = false) => {
+  change = (key, value, isConfigProperty = false) => {
     log('[changeModel]', key, value);
     const { onChange } = this.props;
     const model = { ...this.props.model };
     const configuration = { ...this.props.configuration };
 
-    if (config) {
+    if (isConfigProperty) {
       _.set(configuration, key, value);
-      onChange(configuration, key, config);
+      onChange(configuration, key, isConfigProperty);
     } else {
       _.set(model, key, value);
-      onChange(model, key, config);
+      onChange(model, key, isConfigProperty);
     }
   };
 
