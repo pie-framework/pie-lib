@@ -30,7 +30,7 @@ const renderChildren = (value, data, onChange, rootRenderChildren) => {
         return acc + l.text;
       }, '');
       children.push(<span key={`text-${index}`}>{content}</span>);
-    } else if (n.type === 'p' || node.type === 'paragraph') {
+    } else if (n.type === 'p' || n.type === 'paragraph') {
       children.push(
         <Paragraph key={key}>{renderChildren(n, data, onChange, rootRenderChildren)}</Paragraph>
       );
