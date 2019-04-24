@@ -98,14 +98,15 @@ describe('toggle', () => {
 
     expect(setting).toEqual({
       label: 'Label',
-      type: 'toggle'
+      type: 'toggle',
+      isConfigProperty: false
     });
   });
 });
 
 describe('radio', () => {
   it('returns a radio type object', () => {
-    const setting = radio('Radio', false, 'one', 'two');
+    const setting = radio('Radio', ['one', 'two']);
 
     expect(setting).toEqual({
       label: 'Radio',
