@@ -21,13 +21,16 @@ export default class ConstructedResponse extends React.Component {
   };
 
   renderChildren = (node, data, onChange) => {
-    const component = node.data ? node.data.component : undefined;
-    if (component === 'input') {
+    const dataset = node.data ? node.data.dataset || {} : {};
+    if (dataset.component === 'input') {
+      const { feedback } = this.props;
       return (
         <Input
+          key={`${node.type}-input-${dataset.id}`}
+          correct={feedback && feedback[dataset.id] && feedback[dataset.id].correct}
           disabled={this.props.disabled}
-          value={data[node.data.id]}
-          id={node.data.id}
+          value={data[dataset.id]}
+          id={dataset.id}
           onChange={onChange}
         />
       );

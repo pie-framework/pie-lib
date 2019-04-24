@@ -1,6 +1,6 @@
 import React from 'react';
 import debug from 'debug';
-import { withDragContext, DropTarget } from '@pie-lib/drag';
+import { DropTarget } from '@pie-lib/drag';
 import { withStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 import classnames from 'classnames';
@@ -29,6 +29,7 @@ const BlankContent = withStyles(theme => ({
   return connectDropTarget(
     <span className={classnames(classes.content, isOver && classes.over)}>
       <Chip
+        component="span"
         label={label}
         className={classnames(
           classes.chip,

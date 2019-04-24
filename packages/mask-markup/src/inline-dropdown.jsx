@@ -22,15 +22,18 @@ export default class InlineDropdown extends React.Component {
   };
 
   renderChildren = (node, data, onChange) => {
-    const component = node.data ? node.data.component : undefined;
-    if (component === 'dropdown') {
+    const dataset = node.data ? node.data.dataset || {} : {};
+    if (dataset.component === 'dropdown') {
+      const { feedback } = this.props;
       return (
         <Dropdown
+          key={`${node.type}-dropdown-${dataset.id}`}
+          correct={feedback && feedback[dataset.id] && feedback[dataset.id].correct}
           disabled={this.props.disabled}
-          value={data[node.data.id]}
-          id={node.data.id}
+          value={data[dataset.id]}
+          id={dataset.id}
           onChange={onChange}
-          choices={this.props.choices[node.data.id]}
+          choices={this.props.choices[dataset.id]}
         />
       );
     }

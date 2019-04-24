@@ -10,12 +10,14 @@ import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 const markup = `<div>
-<p>1: Hey, diddle, diddle,</p>
-<p>2: The cat and the fiddle,</p>
-<p>3: The cow <span data-component="blank" data-id="1"></span> over the moon;</p>
-<p>4: The little dog <span data-component="input" data-id="2"></span>,</p>
-<p>5: To see such sport,</p>
-<p>6: And the dish ran away with the <span data-component="dropdown" data-id="3"></span>.</p>
+  <img src="https://image.shutterstock.com/image-vector/cow-jumped-over-moon-traditional-260nw-1152899330.jpg"></img>
+   <h5>Hey Diddle Diddle <i>by ?</i></h5>
+ <p>1: Hey, diddle, diddle,</p>
+ <p>2: The cat and the fiddle,</p>
+ <p>3: The cow {{0}} over the moon;</p>
+ <p>4: The little dog {{1}},</p>
+ <p>5: To see such sport,</p>
+ <p>6: And the dish ran away with the {{2}}.</p>
 </div>`;
 const choice = v => ({ label: v, value: v });
 class Demo extends React.Component {
@@ -30,35 +32,37 @@ class Demo extends React.Component {
 
     this.state = {
       constructedResponse: {
-        markup: '<div> input here: {{0}}</div>',
+        markup,
         value: {
           0: 'blank'
         }
       },
       inlineDropdown: {
-        markup: '<div> dropdown here: {{0}}</div>',
+        markup,
         value: {
-          0: 'foo'
+          0: 'Climbed',
+          1: '',
+          2: ''
         },
         choices: {
-          0: [choice('foo'), choice('bar'), choice('baz')]
+          0: [choice('Jumped'), choice('Climbed'), choice('Flew')],
+          1: [choice('Laughed'), choice('Cried'), choice('Sang')],
+          2: [choice('Spoon'), choice('Fork'), choice('Knife')]
         }
       },
       dragInTheBlank: {
-        markup: '<div>blank here: {{0}}</div>',
+        markup,
         choices: [
-          choice('foo'),
-          choice('bar'),
-          choice('baz'),
-          choice('beamish'),
-          choice('murphys')
+          choice('Jumped'),
+          choice('Laughed'),
+          choice('Spoon'),
+          choice('Fork'),
+          choice('Bumped'),
+          choice('Smiled')
         ],
 
         value: {
           0: undefined
-        },
-        feedback: {
-          0: {}
         }
       },
       data: {
@@ -115,6 +119,29 @@ class Demo extends React.Component {
     this.setState({ mounted: true });
   }
 
+  getFeedback = obj => {
+    const { evaluate } = this.state;
+
+    if (!evaluate) {
+      return {};
+    }
+
+    return {
+      0: {
+        value: obj.value['0'],
+        correct: obj.value['0'] === 'Jumped'
+      },
+      1: {
+        value: obj.value['1'],
+        correct: obj.value['1'] === 'Laughed'
+      },
+      2: {
+        value: obj.value['2'],
+        correct: obj.value['2'] === 'Spoon'
+      }
+    };
+  };
+
   render() {
     const {
       mounted,
@@ -127,22 +154,9 @@ class Demo extends React.Component {
       inlineDropdown
     } = this.state;
 
-    const feedback = evaluate
-      ? {
-          1: {
-            value: value['1'].value,
-            correct: value['1'].value === 'Jumped'
-          },
-          2: {
-            value: value['2'].value,
-            correct: value['2'].value === 'laughed'
-          },
-          3: {
-            value: value['3'].value,
-            correct: value['3'].value === 'spoon'
-          }
-        }
-      : {};
+    const dragFeedback = this.getFeedback(dragInTheBlank);
+    const crFeedback = this.getFeedback(constructedResponse);
+    const idFeedback = this.getFeedback(inlineDropdown);
 
     // TODO: check similar comps to see what they support...
     return mounted ? (
@@ -177,6 +191,7 @@ class Demo extends React.Component {
         </Section> */}
         <Section name="Drag in the Blank">
           <DragInTheBlank
+            feedback={dragFeedback}
             disabled={disabled}
             {...dragInTheBlank}
             onChange={value =>
@@ -189,6 +204,7 @@ class Demo extends React.Component {
           <ConstructedResponse
             disabled={disabled}
             {...constructedResponse}
+            feedback={crFeedback}
             onChange={value => {
               this.setState({ constructedResponse: { ...this.state.constructedResponse, value } });
             }}
@@ -199,6 +215,7 @@ class Demo extends React.Component {
           <InlineDropdown
             disabled={disabled}
             {...inlineDropdown}
+            feedback={idFeedback}
             onChange={value => {
               this.setState({ inlineDropdown: { ...this.state.inlineDropdown, value } });
             }}

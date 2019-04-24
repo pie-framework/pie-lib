@@ -4,7 +4,7 @@ import componentize from './componentize';
 import { deserialize } from './serialization';
 import Mask from './tree/mask';
 import Choices from './choices';
-import Blank from './tree/blank';
+import Blank from './components/blank';
 
 export const buildLayoutFromMarkup = markup => {
   const { ids, markup: processed } = componentize(markup, 'blank');
@@ -24,13 +24,16 @@ export default class DragInTheBlank extends React.Component {
   };
 
   renderChildren = (node, data, onChange) => {
-    const component = node.data ? node.data.component : undefined;
-    if (component === 'blank') {
+    const dataset = node.data ? node.data.dataset || {} : {};
+    if (dataset.component === 'blank') {
+      const { feedback } = this.props;
       return (
         <Blank
+          key={`${node.type}-${dataset.id}`}
+          correct={feedback && feedback[dataset.id] && feedback[dataset.id].correct}
           disabled={this.props.disabled}
-          value={data[node.data.id]}
-          id={node.data.id}
+          value={data[dataset.id]}
+          id={dataset.id}
           onChange={onChange}
         />
       );

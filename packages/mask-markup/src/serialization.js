@@ -1,33 +1,51 @@
 import Html from 'slate-html-serializer';
 
-const BLOCK = ['div', 'p', 'pre'];
 const INLINE = ['span'];
 const MARK = ['em', 'strong', 'u'];
 
-const des = (arr, object) => (el, next) => {
-  const tn = el.tagName.toLowerCase();
-  // console.log('tn:', tn);
-  if (arr.includes(tn)) {
-    return {
-      object,
-      type: tn,
-      data: { ...el.dataset },
-      nodes: next(el.childNodes)
-    };
+const attr = el => {
+  if (!el.attributes || el.attributes.length <= 0) {
+    return undefined;
   }
+  const out = {};
+
+  for (var i = 0; i < el.attributes.length; i++) {
+    const a = el.attributes[i];
+    out[a.name] = a.value;
+  }
+
+  return out;
 };
+const getObject = type => {
+  if (INLINE.includes(type)) {
+    return 'inline';
+  } else if (MARK.includes(type)) {
+    return 'mark';
+  }
+  return 'block';
+};
+const TEXT_NODE = 3;
 
 const rules = [
   {
-    deserialize: des(BLOCK, 'block'),
-    serialize: () => undefined
-  },
-  {
-    deserialize: des(INLINE, 'inline'),
-    serialize: () => undefined
-  },
-  {
-    deserialize: des(MARK, 'mark'),
+    deserialize: (el, next) => {
+      if (el.nodeType === TEXT_NODE) {
+        return {
+          object: 'text',
+          leaves: [{ text: el.textContent }]
+        };
+      }
+      const type = el.tagName.toLowerCase();
+
+      const attributes = attr(el) || {};
+      const object = getObject(type);
+      return {
+        object,
+        type,
+        data: { dataset: { ...el.dataset }, attributes: { ...attributes } },
+        nodes: next(el.childNodes)
+      };
+    },
     serialize: () => undefined
   }
 ];
