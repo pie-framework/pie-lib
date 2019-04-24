@@ -66,9 +66,9 @@ const Group = withStyles(theme => ({
           return null;
         }
 
-        const { configuration: config, ...props } = group[key];
+        const { configuration: config, ...properties } = group[key];
         const value = config ? _.get(configuration, key) : _.get(model, key);
-        const tagProps = { ...props, key, value };
+        const tagProps = { ...properties, key, value };
         const Tag = tagMap[tagProps.type];
 
         return <Tag key={key} {...tagProps} onChange={v => onChange(key, v, config)} />;
