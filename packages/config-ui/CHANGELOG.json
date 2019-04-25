@@ -1088,5 +1088,20 @@
     "committerDate": "2019-04-24 10:03:41 +0300",
     "isTagged": true,
     "tag": "@pie-lib/config-ui@10.0.0"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "Fixed demo page after updating Settings Panel.",
+    "merge": null,
+    "header": "fix: Fixed demo page after updating Settings Panel.",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "158fac9a0d651a79d9121f5620c55deb7ca4afb6",
+    "gitTags": "",
+    "committerDate": "2019-04-24 11:56:28 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/config-ui@10.0.1"
   }
 ]
