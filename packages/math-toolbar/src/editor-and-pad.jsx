@@ -35,6 +35,7 @@ export class EditorAndPad extends React.Component {
     showKeypad: PropTypes.bool,
     controlledKeypad: PropTypes.bool,
     noDecimal: PropTypes.bool,
+    additionalKeys: PropTypes.array,
     latex: PropTypes.string.isRequired,
     onAnswerBlockAdd: PropTypes.func,
     onFocus: PropTypes.func,
@@ -112,6 +113,7 @@ export class EditorAndPad extends React.Component {
       classNames,
       keypadMode,
       allowAnswerBlock,
+      additionalKeys,
       controlledKeypad,
       showKeypad,
       noDecimal,
@@ -144,7 +146,12 @@ export class EditorAndPad extends React.Component {
         )}
         <hr className={classes.hr} />
         {shouldShowKeypad && (
-          <HorizontalKeypad mode={keypadMode} onClick={this.onClick} noDecimal={noDecimal} />
+          <HorizontalKeypad
+            additionalKeys={additionalKeys}
+            mode={keypadMode}
+            onClick={this.onClick}
+            noDecimal={noDecimal}
+          />
         )}
       </div>
     );
