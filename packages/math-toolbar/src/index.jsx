@@ -16,6 +16,7 @@ export class MathToolbar extends React.Component {
     classNames: PropTypes.object,
     showKeypad: PropTypes.bool,
     noDecimal: PropTypes.bool,
+    additionalKeys: PropTypes.array,
     latex: PropTypes.string.isRequired,
     onAnswerBlockAdd: PropTypes.func,
     onChange: PropTypes.func,
@@ -30,10 +31,11 @@ export class MathToolbar extends React.Component {
     controlledKeypad: false,
     noDecimal: false,
     showKeypad: true,
+    additionalKeys: [],
     onChange: () => {},
     onAnswerBlockAdd: () => {},
     onFocus: () => {}
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -64,6 +66,7 @@ export class MathToolbar extends React.Component {
       controlledKeypad,
       keypadMode,
       noDecimal,
+      additionalKeys,
       showKeypad,
       onFocus
     } = this.props;
@@ -74,6 +77,7 @@ export class MathToolbar extends React.Component {
         onAnswerBlockAdd={onAnswerBlockAdd}
         allowAnswerBlock={allowAnswerBlock}
         latex={latex}
+        additionalKeys={additionalKeys}
         noDecimal={noDecimal}
         keypadMode={keypadMode}
         onChange={this.onChange}
@@ -94,6 +98,7 @@ export class RawPureToolbar extends React.Component {
     onChange: PropTypes.func.isRequired,
     onDone: PropTypes.func.isRequired,
     onAnswerBlockAdd: PropTypes.func,
+    additionalKeys: PropTypes.array,
     onFocus: PropTypes.func,
     classes: PropTypes.object.isRequired,
     noDecimal: PropTypes.bool,
@@ -108,6 +113,7 @@ export class RawPureToolbar extends React.Component {
       allowAnswerBlock,
       onAnswerBlockAdd,
       controlledKeypad,
+      additionalKeys,
       showKeypad,
       keypadMode,
       noDecimal,
@@ -127,6 +133,7 @@ export class RawPureToolbar extends React.Component {
           controlledKeypad={controlledKeypad}
           noDecimal={noDecimal}
           showKeypad={showKeypad}
+          additionalKeys={additionalKeys}
           allowAnswerBlock={allowAnswerBlock}
           onAnswerBlockAdd={onAnswerBlockAdd}
           latex={latex}

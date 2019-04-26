@@ -20,3 +20,10 @@ export const mu = set({
   latex: '\\mu',
   write: '\\mu'
 });
+
+export const sigma = set({
+  name: 'Sigma',
+  label: '\\Sigma',
+  latex: '\\Sigma',
+  write: '\\Sigma'
+});

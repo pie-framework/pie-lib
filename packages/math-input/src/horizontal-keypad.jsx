@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { keysForGrade } from './keys/grades';
+import { extendKeySet } from './keys/utils';
 import Keypad from './keypad';
 
 const toOldModel = d => {
@@ -19,12 +20,14 @@ export default class HorizontalKeypad extends React.Component {
     mode: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     onClick: PropTypes.func.isRequired,
     onFocus: PropTypes.func,
-    noDecimal: PropTypes.bool
+    noDecimal: PropTypes.bool,
+    additionalKeys: PropTypes.array
   };
 
   static defaultProps = {
     mode: 'scientific',
-    noDecimal: false
+    noDecimal: false,
+    additionalKeys: []
   };
 
   keypadPress = data => {
@@ -34,13 +37,14 @@ export default class HorizontalKeypad extends React.Component {
   };
 
   render() {
-    const { mode, onFocus, noDecimal, className } = this.props;
+    const { mode, onFocus, noDecimal, className, additionalKeys } = this.props;
+
     return (
       <Keypad
         className={className}
         onFocus={onFocus}
         noDecimal={noDecimal}
-        additionalKeys={keysForGrade(mode)}
+        additionalKeys={extendKeySet(keysForGrade(mode), additionalKeys)}
         onPress={this.keypadPress}
       />
     );

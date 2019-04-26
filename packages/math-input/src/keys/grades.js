@@ -8,26 +8,18 @@ import * as constants from './constants';
 import * as trigonometry from './trigonometry';
 import * as geometry from './geometry';
 import * as logic from './logic';
+import * as matrices from './matrices';
+import * as operators from './operators';
 import * as log from './log';
-import * as subSup from './sub-sup'
+import * as subSup from './sub-sup';
 import * as statistics from './statistics';
 import { toArray } from './utils';
 
 const hs = [
-  [vars.x, vars.y, exponent.squared, exponent.squareRoot, logic.therefore],
-  [
-    fractions.xOverBlank,
-    fractions.xBlankBlank,
-    exponent.xToPowerOfN,
-    exponent.nthRoot
-  ],
+  [vars.x, vars.y, exponent.squared, exponent.squareRoot, vars.theta],
+  [fractions.xOverBlank, subSup.subscript, exponent.xToPowerOfN, exponent.nthRoot],
   [comparison.lessThan, comparison.greaterThan, misc.plusMinus, misc.absValue],
-  [
-    constants.pi,
-    { name: 'i', latex: 'i', write: 'i' },
-    misc.parenthesis,
-    misc.brackets
-  ],
+  [constants.pi, { name: 'i', latex: 'i', write: 'i' }, misc.parenthesis, misc.brackets],
   [trigonometry.sin, trigonometry.cos, trigonometry.tan, geometry.degree]
 ];
 
@@ -43,9 +35,11 @@ const advancedAlgebra = (() => {
 
 const statisticsSet = (() => {
   const out = [...hs.map(arr => [...arr])];
+  out[0][out[0].length - 1] = subSup.subscript;
   out[1].push(statistics.mu);
   out[2].push(statistics.xBar);
   out[3].push(statistics.yBar);
+  out[4].push(statistics.sigma);
   return out;
 })();
 
@@ -61,31 +55,40 @@ const gradeSets = [
   {
     predicate: n => n === 6 || n === 7,
     set: [
-      [vars.x, vars.y, exponent.squared, exponent.squareRoot, logic.therefore],
+      [vars.x, vars.y, exponent.squared, exponent.squareRoot, operators.circleDot],
+      [fractions.xOverBlank, fractions.xBlankBlank, exponent.xToPowerOfN, exponent.nthRoot],
+      [comparison.lessThan, comparison.greaterThan, misc.plusMinus, misc.absValue],
+      [comparison.lessThanEqual, comparison.greaterThanEqual, misc.parenthesis, constants.pi],
+      [trigonometry.sin, trigonometry.cos, trigonometry.tan, geometry.degree]
+    ]
+  },
+  {
+    predicate: n => n >= 8 || n === 'HS',
+    set: [
+      [vars.x, vars.y, exponent.squared, exponent.squareRoot, operators.circleDot],
       [
         fractions.xOverBlank,
-        fractions.xBlankBlank,
+        subSup.subscript,
         exponent.xToPowerOfN,
-        exponent.nthRoot
+        exponent.nthRoot,
+        subSup.subscript
       ],
       [
         comparison.lessThan,
         comparison.greaterThan,
         misc.plusMinus,
         misc.absValue
+        // matrices.singleCellMatrix
       ],
       [
-        comparison.lessThanEqual,
-        comparison.greaterThanEqual,
+        constants.pi,
+        { name: 'i', latex: 'i', write: 'i' },
         misc.parenthesis,
-        constants.pi
+        misc.brackets
+        // matrices.doubleCellMatrix
       ],
       [trigonometry.sin, trigonometry.cos, trigonometry.tan, geometry.degree]
     ]
-  },
-  {
-    predicate: n => n >= 8 || n === 'HS',
-    set: hs
   },
   {
     predicate: 'geometry',
@@ -94,21 +97,24 @@ const gradeSets = [
         geometry.degree,
         geometry.primeArcminute,
         geometry.doublePrimeArcSecond,
-        geometry.triangle
+        geometry.triangle,
+        fractions.xOverBlank
       ],
       [
         geometry.angle,
         geometry.measureOfAngle,
         geometry.similarTo,
-        geometry.congruentTo
+        geometry.congruentTo,
+        exponent.squareRoot
       ],
-      [trigonometry.sin, trigonometry.cos, trigonometry.tan, trigonometry.sec],
-      [trigonometry.csc, trigonometry.cot, exponent.xToPowerOfN, constants.pi],
+      [trigonometry.sin, trigonometry.cos, trigonometry.tan, trigonometry.sec, exponent.nthRoot],
+      [trigonometry.csc, trigonometry.cot, exponent.xToPowerOfN, constants.pi, subSup.subscript],
       [
         geometry.overline,
         geometry.overRightArrow,
         geometry.overLeftRightArrow,
-        geometry.overArc
+        geometry.overArc,
+        vars.theta
       ]
     ]
   },
