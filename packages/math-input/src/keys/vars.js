@@ -12,3 +12,8 @@ export const y = set({
   latex: 'y',
   write: 'y'
 });
+export const theta = set({
+  name: 'Theta',
+  latex: '\\theta',
+  write: '\\theta'
+});

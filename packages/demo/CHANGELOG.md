@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@4.0.4...@pie-lib/demo@4.0.5) (2019-04-25)
+
+
+### Bug Fixes
+
+* Fixed demo page after updating Settings Panel. ([158fac9](https://github.com/pie-framework/pie-lib/commit/158fac9))
+
+
+
+
+
 ## [4.0.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@4.0.3...@pie-lib/demo@4.0.4) (2019-04-24)
 
 **Note:** Version bump only for package @pie-lib/demo

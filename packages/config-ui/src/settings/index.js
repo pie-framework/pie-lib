@@ -22,7 +22,7 @@ export const radio = function() {
   return {
     type: 'radio',
     label,
-    choices: choices.map(o => toChoice(o)),
+    choices: choices && choices.map(o => toChoice(o)),
     isConfigProperty
   };
 };
