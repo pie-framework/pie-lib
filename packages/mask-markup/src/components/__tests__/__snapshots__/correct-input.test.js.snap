@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CorrectInput render renders correctly with correct as false 1`] = `
+<Component
+  classes={
+    Object {
+      "underline-correct": "Component-underline-correct-1",
+      "underline-incorrect": "Component-underline-incorrect-2",
+    }
+  }
+  correct={false}
+  disabled={false}
+  onChange={[MockFunction]}
+  value="Cow"
+  variant="outlined"
+/>
+`;
+
+exports[`CorrectInput render renders correctly with default props 1`] = `
+<Component
+  classes={
+    Object {
+      "underline-correct": "Component-underline-correct-1",
+      "underline-incorrect": "Component-underline-incorrect-2",
+    }
+  }
+  correct={false}
+  disabled={false}
+  onChange={[MockFunction]}
+  value="Cow"
+  variant="outlined"
+/>
+`;
+
+exports[`CorrectInput render renders correctly with disabled prop as true 1`] = `
+<Component
+  classes={
+    Object {
+      "underline-correct": "Component-underline-correct-1",
+      "underline-incorrect": "Component-underline-incorrect-2",
+    }
+  }
+  correct={false}
+  disabled={true}
+  onChange={[MockFunction]}
+  value="Cow"
+  variant="outlined"
+/>
+`;

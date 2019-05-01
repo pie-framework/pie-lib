@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`index Choice render renders correctly with default props 1`] = `
+<Component
+  classes={
+    Object {
+      "choice": "Component-choice-1",
+      "disabled": "Component-disabled-2",
+    }
+  }
+  disabled={false}
+  label="Label"
+  targetId="1"
+  value="1"
+/>
+`;
+
+exports[`index Choice render renders correctly with disabled prop as true 1`] = `
+<Component
+  classes={
+    Object {
+      "choice": "Component-choice-1",
+      "disabled": "Component-disabled-2",
+    }
+  }
+  disabled={true}
+  label="Label"
+  targetId="1"
+  value="1"
+/>
+`;
+
+exports[`index Choices renders correctly with default props 1`] = `
+<div>
+  <DragSource(WithStyles(Component))
+    disabled={false}
+    key="Jumped-0"
+    label="Jumped"
+    targetId="1"
+    value="Jumped"
+  />
+  <DragSource(WithStyles(Component))
+    disabled={false}
+    key="Laughed-1"
+    label="Laughed"
+    targetId="1"
+    value="Laughed"
+  />
+  <DragSource(WithStyles(Component))
+    disabled={false}
+    key="Spoon-2"
+    label="Spoon"
+    targetId="1"
+    value="Spoon"
+  />
+</div>
+`;
+
+exports[`index Choices renders correctly with disabled prop as true 1`] = `
+<div>
+  <DragSource(WithStyles(Component))
+    disabled={true}
+    key="Jumped-0"
+    label="Jumped"
+    targetId="1"
+    value="Jumped"
+  />
+  <DragSource(WithStyles(Component))
+    disabled={true}
+    key="Laughed-1"
+    label="Laughed"
+    targetId="1"
+    value="Laughed"
+  />
+  <DragSource(WithStyles(Component))
+    disabled={true}
+    key="Spoon-2"
+    label="Spoon"
+    targetId="1"
+    value="Spoon"
+  />
+</div>
+`;

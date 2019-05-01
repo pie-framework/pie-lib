@@ -9,7 +9,7 @@ const log = debug('pie-lib:mask-markup:choice');
 
 export const DRAG_TYPE = 'MaskBlank';
 
-const BlankContent = withStyles(theme => ({
+export const BlankContent = withStyles(theme => ({
   choice: {
     border: `solid 0px ${theme.palette.primary.main}`
   },

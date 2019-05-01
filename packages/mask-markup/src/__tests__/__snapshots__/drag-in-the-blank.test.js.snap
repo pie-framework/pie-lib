@@ -1,0 +1,181 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DragInTheBlank render renders correctly with default props 1`] = `
+<div>
+  <Choices
+    disabled={false}
+    value={
+      Array [
+        Object {
+          "label": "Jumped",
+          "value": "Jumped",
+        },
+        Object {
+          "label": "Laughed",
+          "value": "Laughed",
+        },
+        Object {
+          "label": "Spoon",
+          "value": "Spoon",
+        },
+        Object {
+          "label": "Fork",
+          "value": "Fork",
+        },
+        Object {
+          "label": "Bumped",
+          "value": "Bumped",
+        },
+        Object {
+          "label": "Smiled",
+          "value": "Smiled",
+        },
+      ]
+    }
+  />
+  <WithMask
+    disabled={false}
+    feedback={Object {}}
+    markup="<div>
+  <img src=\\"https://image.shutterstock.com/image-vector/cow-jumped-over-moon-traditional-260nw-1152899330.jpg\\"></img>
+   <h5>Hey Diddle Diddle <i>by ?</i></h5>
+ <p>1: Hey, diddle, diddle,</p>
+ <p>2: The cat and the fiddle,</p>
+ <p>3: The cow {{0}} over the moon;</p>
+ <p>4: The little dog {{1}},</p>
+ <p>5: To see such sport,</p>
+ <p>6: And the dish ran away with the {{2}}.</p>
+</div>"
+    value={
+      Object {
+        "0": undefined,
+      }
+    }
+  />
+</div>
+`;
+
+exports[`DragInTheBlank render renders correctly with disabled prop as true 1`] = `
+<div>
+  <Choices
+    disabled={true}
+    value={
+      Array [
+        Object {
+          "label": "Jumped",
+          "value": "Jumped",
+        },
+        Object {
+          "label": "Laughed",
+          "value": "Laughed",
+        },
+        Object {
+          "label": "Spoon",
+          "value": "Spoon",
+        },
+        Object {
+          "label": "Fork",
+          "value": "Fork",
+        },
+        Object {
+          "label": "Bumped",
+          "value": "Bumped",
+        },
+        Object {
+          "label": "Smiled",
+          "value": "Smiled",
+        },
+      ]
+    }
+  />
+  <WithMask
+    disabled={true}
+    feedback={Object {}}
+    markup="<div>
+  <img src=\\"https://image.shutterstock.com/image-vector/cow-jumped-over-moon-traditional-260nw-1152899330.jpg\\"></img>
+   <h5>Hey Diddle Diddle <i>by ?</i></h5>
+ <p>1: Hey, diddle, diddle,</p>
+ <p>2: The cat and the fiddle,</p>
+ <p>3: The cow {{0}} over the moon;</p>
+ <p>4: The little dog {{1}},</p>
+ <p>5: To see such sport,</p>
+ <p>6: And the dish ran away with the {{2}}.</p>
+</div>"
+    value={
+      Object {
+        "0": undefined,
+      }
+    }
+  />
+</div>
+`;
+
+exports[`DragInTheBlank render renders correctly with feedback 1`] = `
+<div>
+  <Choices
+    disabled={false}
+    value={
+      Array [
+        Object {
+          "label": "Jumped",
+          "value": "Jumped",
+        },
+        Object {
+          "label": "Laughed",
+          "value": "Laughed",
+        },
+        Object {
+          "label": "Spoon",
+          "value": "Spoon",
+        },
+        Object {
+          "label": "Fork",
+          "value": "Fork",
+        },
+        Object {
+          "label": "Bumped",
+          "value": "Bumped",
+        },
+        Object {
+          "label": "Smiled",
+          "value": "Smiled",
+        },
+      ]
+    }
+  />
+  <WithMask
+    disabled={false}
+    feedback={
+      Object {
+        "0": Object {
+          "correct": "Jumped",
+          "value": "Jumped",
+        },
+        "1": Object {
+          "correct": "Laughed",
+          "value": "Laughed",
+        },
+        "2": Object {
+          "correct": "Spoon",
+          "value": "Spoon",
+        },
+      }
+    }
+    markup="<div>
+  <img src=\\"https://image.shutterstock.com/image-vector/cow-jumped-over-moon-traditional-260nw-1152899330.jpg\\"></img>
+   <h5>Hey Diddle Diddle <i>by ?</i></h5>
+ <p>1: Hey, diddle, diddle,</p>
+ <p>2: The cat and the fiddle,</p>
+ <p>3: The cow {{0}} over the moon;</p>
+ <p>4: The little dog {{1}},</p>
+ <p>5: To see such sport,</p>
+ <p>6: And the dish ran away with the {{2}}.</p>
+</div>"
+    value={
+      Object {
+        "0": undefined,
+      }
+    }
+  />
+</div>
+`;

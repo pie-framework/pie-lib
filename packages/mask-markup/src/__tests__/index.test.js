@@ -1,13 +1,17 @@
+import * as React from 'react';
 import { componentize } from '../index';
+import { deserialize } from '../serialization';
 
 describe('index', () => {
   describe('componentize', () => {
-    it('', () => {
-      const result = componentize('{{0}} foo {{1}}', 'dropdown');
+    it('should return an array with the appropriate markup', () => {
+      const dropDownMarkup = componentize('{{0}} foo {{1}}', 'dropdown');
 
-      expect(result).toEqual(
-        '<span data-component="dropdown" data-id="0"></span> foo <span data-component="dropdown" data-id="1"></span>'
-      );
+      expect(dropDownMarkup).toEqual({
+        ids: [],
+        markup:
+          '<span data-component="dropdown" data-id="0"></span> foo <span data-component="dropdown" data-id="1"></span>'
+      });
     });
   });
 });
