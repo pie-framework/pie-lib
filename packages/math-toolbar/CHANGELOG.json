@@ -468,5 +468,20 @@
     "committerDate": "2019-04-22 14:18:02 +0300",
     "isTagged": true,
     "tag": "@pie-lib/math-toolbar@1.0.0"
+  },
+  {
+    "type": "feat",
+    "scope": "math-input",
+    "subject": "custom keys support and extended keypads",
+    "merge": null,
+    "header": "feat(math-input): custom keys support and extended keypads",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "34a428b6f6007d4757c7cfa66e187b24ddb085b9",
+    "gitTags": "",
+    "committerDate": "2019-04-25 16:16:24 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/math-toolbar@1.1.0"
   }
 ]
