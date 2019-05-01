@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.0.0...@pie-lib/math-input@6.1.0) (2019-05-01)
+
+
+### Features
+
+* **math-input:** custom keys support and extended keypads ([bcb136a](https://github.com/pie-framework/pie-lib/commit/bcb136a))
+
+
+
+
+
 # [6.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@5.4.3...@pie-lib/math-input@6.0.0) (2019-04-17)
 
 
