@@ -12,6 +12,7 @@ const rawLinks = [
   { label: 'graphing', path: '/graphing' },
   { label: 'charting', path: '/charting' },
   { label: 'icons', path: '/icons' },
+  { label: 'mask-markup', path: '/mask-markup' },
   { label: 'math-evaluator', path: '/math-evaluator' },
   { label: 'math-input', path: '/math-input' },
   { label: 'math-toolbar', path: '/math-toolbar' },

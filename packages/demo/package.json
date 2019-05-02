@@ -13,6 +13,7 @@
     "@pie-lib/editable-html": "^7.3.7",
     "@pie-lib/graphing": "^0.1.12",
     "@pie-lib/icons": "^2.3.8",
+    "@pie-lib/mask-markup": "1.0.0-next.2",
     "@pie-lib/math-input": "^6.0.0",
     "@pie-lib/math-toolbar": "^1.0.1",
     "@pie-lib/render-ui": "^4.3.9",

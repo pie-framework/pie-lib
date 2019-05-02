@@ -1,0 +1,25 @@
+{
+  "name": "@pie-lib/mask-markup",
+  "version": "1.0.0-next.2",
+  "description": "",
+  "main": "lib/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@material-ui/core": "^3.9.3",
+    "@pie-lib/drag": "^1.1.12",
+    "classnames": "^2.2.6",
+    "debug": "^4.1.1",
+    "react": "^16.8.6",
+    "react-dnd": "^7.0.2",
+    "react-dnd-html5-backend": "^7.0.2",
+    "slate": "^0.36.2",
+    "slate-prop-types": "^0.4.38",
+    "slate-html-serializer": "^0.6.12",
+    "slate-react": "^0.14.3"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

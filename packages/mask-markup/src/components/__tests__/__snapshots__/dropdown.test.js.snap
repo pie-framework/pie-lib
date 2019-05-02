@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dropdown render renders correctly with correct as true 1`] = `
+<WithStyles(WithFormControlContext(Select))
+  disabled={false}
+  input={
+    <WithStyles(Component)
+      correct={true}
+    />
+  }
+  onChange={[Function]}
+  value="Jumped"
+>
+  <WithStyles(MenuItem)
+    key="Jumped-0"
+    value="Jumped"
+  >
+    Jumped
+  </WithStyles(MenuItem)>
+  <WithStyles(MenuItem)
+    key="Laughed-1"
+    value="Laughed"
+  >
+    Laughed
+  </WithStyles(MenuItem)>
+  <WithStyles(MenuItem)
+    key="Smiled-2"
+    value="Smiled"
+  >
+    Smiled
+  </WithStyles(MenuItem)>
+</WithStyles(WithFormControlContext(Select))>
+`;
+
+exports[`Dropdown render renders correctly with default props 1`] = `
+<WithStyles(WithFormControlContext(Select))
+  disabled={false}
+  input={
+    <WithStyles(Component)
+      correct={false}
+    />
+  }
+  onChange={[Function]}
+  value="Jumped"
+>
+  <WithStyles(MenuItem)
+    key="Jumped-0"
+    value="Jumped"
+  >
+    Jumped
+  </WithStyles(MenuItem)>
+  <WithStyles(MenuItem)
+    key="Laughed-1"
+    value="Laughed"
+  >
+    Laughed
+  </WithStyles(MenuItem)>
+  <WithStyles(MenuItem)
+    key="Smiled-2"
+    value="Smiled"
+  >
+    Smiled
+  </WithStyles(MenuItem)>
+</WithStyles(WithFormControlContext(Select))>
+`;
+
+exports[`Dropdown render renders correctly with disabled prop as true 1`] = `
+<WithStyles(WithFormControlContext(Select))
+  disabled={true}
+  input={
+    <WithStyles(Component)
+      correct={false}
+    />
+  }
+  onChange={[Function]}
+  value="Jumped"
+>
+  <WithStyles(MenuItem)
+    key="Jumped-0"
+    value="Jumped"
+  >
+    Jumped
+  </WithStyles(MenuItem)>
+  <WithStyles(MenuItem)
+    key="Laughed-1"
+    value="Laughed"
+  >
+    Laughed
+  </WithStyles(MenuItem)>
+  <WithStyles(MenuItem)
+    key="Smiled-2"
+    value="Smiled"
+  >
+    Smiled
+  </WithStyles(MenuItem)>
+</WithStyles(WithFormControlContext(Select))>
+`;
