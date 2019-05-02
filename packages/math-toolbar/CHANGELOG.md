@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.1.0...@pie-lib/math-toolbar@1.2.0) (2019-05-02)
+
+
+### Features
+
+* **mask-markup:** merging with the develop branch ([0153c1a](https://github.com/pie-framework/pie-lib/commit/0153c1a))
+
+
+
+
+
 # [1.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.0.1...@pie-lib/math-toolbar@1.1.0) (2019-05-01)
 
 ### Features

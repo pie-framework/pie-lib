@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.0.2...@pie-lib/config-ui@10.1.0) (2019-05-02)
+
+
+### Features
+
+* **mask-markup:** merging with the develop branch ([0153c1a](https://github.com/pie-framework/pie-lib/commit/0153c1a))
+
+
+
+
+
 ## [10.0.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.0.1...@pie-lib/config-ui@10.0.2) (2019-05-01)
 
 **Note:** Version bump only for package @pie-lib/config-ui

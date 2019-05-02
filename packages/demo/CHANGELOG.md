@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@4.0.6...@pie-lib/demo@4.1.0) (2019-05-02)
+
+
+### Features
+
+* **mask-markup:** merging with the develop branch ([0153c1a](https://github.com/pie-framework/pie-lib/commit/0153c1a))
+
+
+
+
+
 ## [4.0.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@4.0.5...@pie-lib/demo@4.0.6) (2019-05-01)
 
 **Note:** Version bump only for package @pie-lib/demo
