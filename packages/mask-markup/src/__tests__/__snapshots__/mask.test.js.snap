@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Mask render renders correctly a div 1`] = `
+<div>
+  <div
+    key="div-0"
+  >
+    <WithStyles(Component)
+      key="p-0"
+    >
+      Foo
+    </WithStyles(Component)>
+     
+  </div>
+</div>
+`;
+
+exports[`Mask render renders correctly a paragraph 1`] = `
+<div>
+  <WithStyles(Component)
+    key="p-0"
+  >
+    Foo
+  </WithStyles(Component)>
+</div>
+`;
+
+exports[`Mask render renders correctly with default props 1`] = `
+<div>
+  Foo
+</div>
+`;
