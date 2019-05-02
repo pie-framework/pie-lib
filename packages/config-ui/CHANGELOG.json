@@ -1103,5 +1103,20 @@
     "committerDate": "2019-04-24 11:56:28 +0300",
     "isTagged": true,
     "tag": "@pie-lib/config-ui@10.0.1"
+  },
+  {
+    "type": "feat",
+    "scope": "mask-markup",
+    "subject": "merging with the develop branch",
+    "merge": null,
+    "header": "feat(mask-markup): merging with the develop branch",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "0153c1aba8a08ba6c974fcc69476a87b9086f6c5",
+    "gitTags": " (develop)",
+    "committerDate": "2019-05-02 07:12:59 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/config-ui@10.1.0"
   }
 ]

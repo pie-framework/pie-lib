@@ -453,5 +453,20 @@
     "committerDate": "2018-03-06 13:31:35 -0500",
     "isTagged": true,
     "tag": "@pie-lib/scoring-config@0.3.29"
+  },
+  {
+    "type": "feat",
+    "scope": "mask-markup",
+    "subject": "merging with the develop branch",
+    "merge": null,
+    "header": "feat(mask-markup): merging with the develop branch",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "0153c1aba8a08ba6c974fcc69476a87b9086f6c5",
+    "gitTags": " (develop)",
+    "committerDate": "2019-05-02 07:12:59 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/scoring-config@3.4.0"
   }
 ]

@@ -1,1 +1,32 @@
-[]
+[
+  {
+    "type": "feat",
+    "scope": "mask-markup",
+    "subject": "merging with the develop branch",
+    "merge": null,
+    "header": "feat(mask-markup): merging with the develop branch",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "0153c1aba8a08ba6c974fcc69476a87b9086f6c5",
+    "gitTags": " (develop)",
+    "committerDate": "2019-05-02 07:12:59 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/mask-markup@1.0.0"
+  },
+  {
+    "type": "feat",
+    "scope": "mask-markup",
+    "subject": "wrote tests for the component",
+    "merge": null,
+    "header": "feat(mask-markup): wrote tests for the component",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "dac270622a55c09c7397563d31893c02ee9c1022",
+    "gitTags": " (origin/feat/ed-exp-dnd-props)",
+    "committerDate": "2019-05-01 16:28:11 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/mask-markup@1.0.0"
+  }
+]
