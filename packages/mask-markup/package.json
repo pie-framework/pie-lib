@@ -16,6 +16,7 @@
     "react-dnd-html5-backend": "^7.0.2",
     "slate": "^0.36.2",
     "slate-html-serializer": "^0.6.12",
+    "immutable": ">=3.8.1",
     "slate-prop-types": "^0.4.38",
     "slate-react": "^0.14.3"
   },
