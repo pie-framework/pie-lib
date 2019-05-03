@@ -49,10 +49,7 @@ const LatexButton = withStyles(theme => ({
     }
   }
 }))(props => (
-  <Button
-    className={classNames(props.classes.root, props.className)}
-    onClick={props.onClick}
-  >
+  <Button className={classNames(props.classes.root, props.className)} onClick={props.onClick}>
     <mq.Static
       className={classNames(props.classes.latexButton, props.mqClassName)}
       latex={props.latex}
@@ -89,12 +86,15 @@ export class KeyPad extends React.Component {
   keyIsNotAllowed = key => {
     const { noDecimal } = this.props;
 
-    if (((key.write === '.' && key.label === '.') || (key.write === ',' && key.label === ',')) && noDecimal) {
+    if (
+      ((key.write === '.' && key.label === '.') || (key.write === ',' && key.label === ',')) &&
+      noDecimal
+    ) {
       return true;
     }
 
     return false;
-  }
+  };
 
   render() {
     const { classes, className, baseSet, additionalKeys, onFocus } = this.props;
@@ -104,40 +104,26 @@ export class KeyPad extends React.Component {
     const shift = allKeys.length % 5 ? 1 : 0;
     const style = {
       gridTemplateColumns: `repeat(${Math.floor(allKeys.length / 5) +
-      shift}, minmax(min-content, 150px))`
+        shift}, minmax(min-content, 150px))`
     };
     return (
-      <div
-        className={classNames(classes.keys, className)}
-        style={style}
-        onFocus={onFocus}
-      >
+      <div className={classNames(classes.keys, className)} style={style} onFocus={onFocus}>
         {allKeys.map((k, index) => {
           const onClick = this.buttonClick.bind(this, k);
 
           if (!k) {
-            return <span key={`empty-${index}`}/>;
+            return <span key={`empty-${index}`} />;
           }
 
           const common = {
             onClick,
-            className: classNames(
-              classes.labelButton,
-              classes[k.category],
-              k.label === '=' && classes.equals
-            ),
+            className: classNames(classes.labelButton, classes[k.category]),
             disabled: this.keyIsNotAllowed(k),
             key: `${k.label || k.latex || k.command}-${index}`
           };
 
           if (k.latex) {
-            return (
-              <LatexButton
-                latex={k.latex}
-                {...common}
-                className={classes.latexButton}
-              />
-            );
+            return <LatexButton latex={k.latex} {...common} className={classes.latexButton} />;
           }
 
           if (k.label) {
@@ -147,7 +133,7 @@ export class KeyPad extends React.Component {
 
             return (
               <IconButton tabIndex={'-1'} {...common}>
-                <Icon className={classes.icon}/>
+                <Icon className={classes.icon} />
               </IconButton>
             );
           }
@@ -196,12 +182,6 @@ const styles = theme => ({
     backgroundColor: lighten(green[500], 0.5),
     '&:hover': {
       backgroundColor: lighten(green[500], 0.7)
-    }
-  },
-  equals: {
-    backgroundColor: theme.palette.secondary.light,
-    '&:hover': {
-      backgroundColor: lighten(theme.palette.secondary.light, 0.7)
     }
   },
   icon: {
