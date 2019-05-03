@@ -853,5 +853,20 @@
     "committerDate": "2019-05-02 07:12:59 +0300",
     "isTagged": true,
     "tag": "@pie-lib/math-input@6.2.0"
+  },
+  {
+    "type": "chore",
+    "scope": null,
+    "subject": "math-input equals sign should have the same background color as other operators",
+    "merge": null,
+    "header": "chore: math-input equals sign should have the same background color as other operators",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "6edc253ae84262895b580b7fb5db524f2dd0bf52",
+    "gitTags": " (origin/ch1420/color-of-button)",
+    "committerDate": "2019-05-03 13:10:36 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/math-input@6.2.1"
   }
 ]
