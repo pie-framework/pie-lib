@@ -28,5 +28,20 @@
     "committerDate": "2019-05-01 16:28:11 +0300",
     "isTagged": true,
     "tag": "@pie-lib/mask-markup@1.0.0"
+  },
+  {
+    "type": "fix",
+    "scope": "dependencies",
+    "subject": "used a specific version for the immutable package",
+    "merge": null,
+    "header": "fix(dependencies): used a specific version for the immutable package",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "641bc3c49707e9ace7b68c05c17d72bff64960b3",
+    "gitTags": " (origin/fix/mask-markup-immutable)",
+    "committerDate": "2019-05-03 12:48:19 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/mask-markup@1.0.1"
   }
 ]
