@@ -16,6 +16,7 @@ const log = debug('editable-html:editor');
 export class Editor extends React.Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
+    onFocus: PropTypes.func,
     value: SlateTypes.value.isRequired,
     imageSupport: PropTypes.object,
     width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -31,18 +32,15 @@ export class Editor extends React.Component {
       const allValid = values.every(v => DEFAULT_PLUGINS.includes(v));
       return (
         !allValid &&
-        new Error(
-          `Invalid values: ${values}, values must be one of [${DEFAULT_PLUGINS.join(
-            ','
-          )}]`
-        )
+        new Error(`Invalid values: ${values}, values must be one of [${DEFAULT_PLUGINS.join(',')}]`)
       );
     }),
     className: PropTypes.string
   };
 
   static defaultProps = {
-    disableUnderline: true
+    disableUnderline: true,
+    onFocus: () => {}
   };
 
   constructor(props) {
@@ -172,6 +170,7 @@ export class Editor extends React.Component {
   onFocus = () => {
     log('[onFocus]', document.activeElement);
     this.stashValue();
+    this.props.onFocus();
   };
 
   stashValue = () => {
@@ -192,13 +191,7 @@ export class Editor extends React.Component {
     }, false);
 
     log('[resetValue]', value.isFocused, focusedNode, 'stopReset: ', stopReset);
-    if (
-      (this.state.stashedValue &&
-        !value.isFocused &&
-        !focusedNode &&
-        !stopReset) ||
-      force
-    ) {
+    if ((this.state.stashedValue && !value.isFocused && !focusedNode && !stopReset) || force) {
       log('[resetValue] resetting...');
       log('stashed', this.state.stashedValue.document.toObject());
       log('current', this.state.value.document.toObject());
@@ -287,13 +280,7 @@ export class Editor extends React.Component {
   };
 
   render() {
-    const {
-      disabled,
-      highlightShape,
-      classes,
-      className,
-      pluginProps
-    } = this.props;
+    const { disabled, highlightShape, classes, className, pluginProps } = this.props;
     const { value, focusedNode } = this.state;
 
     log('[render] value: ', value);
