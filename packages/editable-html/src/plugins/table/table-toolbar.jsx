@@ -3,15 +3,9 @@ import { withStyles } from '@material-ui/core/styles';
 import { Button } from '../toolbar/toolbar-buttons';
 import { DoneButton } from '../toolbar/done-button';
 import BorderAll from '@material-ui/icons/BorderAll';
-import { ToolbarButton } from '../toolbar/toolbar'
+import { ToolbarButton } from '../toolbar/default-toolbar';
 
-import {
-  AddRow,
-  AddColumn,
-  RemoveColumn,
-  RemoveRow,
-  RemoveTable
-} from './icons';
+import { AddRow, AddColumn, RemoveColumn, RemoveRow, RemoveTable } from './icons';
 import PropTypes from 'prop-types';
 import debug from 'debug';
 
@@ -79,16 +73,14 @@ export class TableToolbar extends React.Component {
           <Button onClick={onRemoveTable}>
             <RemoveTable />
           </Button>
-          {
-            plugins.map((p, index) => (
-              <ToolbarButton
-                key={`plugin-${index}`}
-                {...p.toolbar}
-                value={value}
-                onChange={onChange}
-              />
-            ))
-          }
+          {plugins.map((p, index) => (
+            <ToolbarButton
+              key={`plugin-${index}`}
+              {...p.toolbar}
+              value={value}
+              onChange={onChange}
+            />
+          ))}
           <Button onClick={onToggleBorder} active={hasBorder}>
             <BorderAll />
           </Button>
