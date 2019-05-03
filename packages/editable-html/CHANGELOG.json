@@ -1883,5 +1883,20 @@
     "committerDate": "2019-05-02 07:12:59 +0300",
     "isTagged": true,
     "tag": "@pie-lib/editable-html@7.4.0"
+  },
+  {
+    "type": "fix",
+    "scope": "toolbar",
+    "subject": "fixed the issue that was caused by importing a button from a different file",
+    "merge": null,
+    "header": "fix(toolbar): fixed the issue that was caused by importing a button from a different file",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "ec08f12f22676b1c394c516796454f9a0771d204",
+    "gitTags": "",
+    "committerDate": "2019-05-03 12:44:30 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.4.1"
   }
 ]
