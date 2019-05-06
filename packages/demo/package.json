@@ -17,6 +17,7 @@
     "@pie-lib/math-input": "^6.2.1",
     "@pie-lib/math-toolbar": "^1.2.1",
     "@pie-lib/render-ui": "^4.3.10",
+    "@pie-lib/rubric": "^0.0.1",
     "@pie-lib/scoring-config": "^3.4.2",
     "@pie-lib/style-utils": "^0.1.8",
     "@pie-lib/text-select": "^1.4.12",
