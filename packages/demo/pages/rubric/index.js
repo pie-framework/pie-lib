@@ -10,10 +10,9 @@ class Demo extends React.Component {
     super(props);
     this.state = {
       rubric: {
-        maxPoints: 2,
         excludeZero: false,
         // the index is the points
-        points: ['not correct at all', 'half correct', '<div>Correct</div>']
+        points: ['nothing right', 'a teeny bit right', 'mostly right', 'bingo']
       }
     };
   }

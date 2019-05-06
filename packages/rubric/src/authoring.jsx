@@ -16,7 +16,19 @@ import Typography from '@material-ui/core/Typography';
 import DragIndicator from '@material-ui/icons/DragIndicator';
 import EditableHtml from '@pie-lib/editable-html';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { swap } from '@pie-lib/drag';
+import debug from 'debug';
+import takeRight from 'lodash/takeRight';
+
+import range from 'lodash/range';
+const log = debug('pie-lib:rubric:authoring');
+
+const reorder = (list, startIndex, endIndex) => {
+  const result = Array.from(list);
+  const [removed] = result.splice(startIndex, 1);
+  result.splice(endIndex, 0, removed);
+
+  return result;
+};
 
 export const RubricType = {
   maxPoints: PropTypes.number.isRequired,
@@ -42,8 +54,12 @@ const MaxPoints = withStyles(theme => ({
       <InputLabel width={100} htmlFor="...">
         Max Points
       </InputLabel>
-      <Select value={value} onChange={onChange} input={<OutlinedInput labelWidth={80} />}>
-        {times(max).map((v, index) => (
+      <Select
+        value={value}
+        onChange={e => onChange(e.target.value)}
+        input={<OutlinedInput labelWidth={80} />}
+      >
+        {range(1, max).map(v => (
           <MenuItem key={`${v}`} value={v}>
             {v}
           </MenuItem>
@@ -54,12 +70,7 @@ const MaxPoints = withStyles(theme => ({
 });
 
 export const PointConfig = withStyles(theme => ({
-  pointConfig: {
-    // marginTop: theme.spacing.unit,
-    // marginBottom: theme.spacing.unit,
-    // paddingTop: theme.spacing.unit,
-    // paddingBottom: theme.spacing.unit
-  },
+  pointConfig: {},
   row: {
     display: 'flex',
     width: '100%'
@@ -86,7 +97,7 @@ export const PointConfig = withStyles(theme => ({
       </Typography>
       <div className={classes.row}>
         <DragIndicator className={classes.dragIndicator} />
-        <EditableHtml className={classes.editor} markup={content} onChange={() => ({})} />
+        <EditableHtml className={classes.editor} markup={content} onChange={props.onChange} />
       </div>
     </div>
   );
@@ -99,8 +110,8 @@ export class RawAuthoring extends React.Component {
     value: RubricType,
     onChange: PropTypes.func
   };
+
   static defaultProps = {};
-  // <PointConfig value={p} key={`${p.points}-${index}`} />
 
   dragEnd = result => {
     if (!result.destination) {
@@ -108,25 +119,55 @@ export class RawAuthoring extends React.Component {
     }
 
     const { value, onChange } = this.props;
-    const points = swap(value.points, parseInt(result.draggableId, 10), result.destination.index);
+    const points = reorder(value.points, result.source.index, result.destination.index);
     onChange({ ...this.props.value, points });
+  };
+
+  changeMaxPoints = maxPoints => {
+    const { value, onChange } = this.props;
+    const currentMax = value.points.length - 1;
+
+    log('current', currentMax, 'new: ', maxPoints);
+    let points;
+    if (maxPoints > currentMax) {
+      points = times(maxPoints - currentMax)
+        .map(() => '')
+        .concat(value.points);
+    }
+    if (maxPoints < currentMax) {
+      log('less than');
+      points = takeRight(value.points, maxPoints + 1);
+    }
+    if (points) {
+      onChange({ ...value, points });
+    }
+  };
+
+  changePoint = (index, content) => {
+    log('changePoint:', index, content);
+    const { value, onChange } = this.props;
+    const points = Array.from(value.points);
+    points.splice(index, 1, content);
+    log('changePoint: points:', points);
+    onChange({ ...value, points });
   };
 
   render() {
     const { classes, className, value } = this.props;
+
     return (
       <div className={classNames(classes.class, className)}>
         <FormGroup row>
-          <MaxPoints max={10} value={value.maxPoints} onChange={this.changeMaxPoints} />
+          <MaxPoints max={10} value={value.points.length - 1} onChange={this.changeMaxPoints} />
           <FormControlLabel
-            label="Exclude Zero"
+            label="Exclude zeros from bubble sheet"
             control={<Checkbox value={value.excludeZero} onChange={this.changeExcludeZero} />}
           />
         </FormGroup>
         <div className={classes.container}>
           <DragDropContext onDragEnd={this.dragEnd}>
             <Droppable droppableId="droppable">
-              {(provided, snapshot) => (
+              {provided => (
                 <div {...provided.droppableProps} ref={provided.innerRef}>
                   {value.points.map((p, index) => (
                     <Draggable
@@ -134,13 +175,18 @@ export class RawAuthoring extends React.Component {
                       index={index}
                       draggableId={index.toString()}
                     >
-                      {(provided, snapshot) => (
+                      {provided => (
                         <div
+                          className={classes.configHolder}
                           ref={provided.innerRef}
                           {...provided.draggableProps}
                           {...provided.dragHandleProps}
                         >
-                          <PointConfig points={value.points.length - 1 - index} content={p} />
+                          <PointConfig
+                            points={value.points.length - 1 - index}
+                            content={p}
+                            onChange={this.changePoint.bind(this, index)}
+                          />
                         </div>
                       )}
                     </Draggable>
@@ -161,25 +207,29 @@ const styles = theme => ({
     backgroundColor: grey[200],
     borderWidth: 1,
     borderStyle: 'solid',
-    borderColor: grey[300]
-    // padding: theme.spacing.unit * 2,
-    // margin: theme.spacing.unit
+    borderColor: grey[300],
+    padding: theme.spacing.unit * 2,
+    margin: theme.spacing.unit
+  },
+  configHolder: {
+    paddingTop: theme.spacing.unit,
+    paddingBottom: theme.spacing.unit
   }
 });
 
 const StyledRawAuthoring = withStyles(styles)(RawAuthoring);
-const Authoring = props => {
-  const value = { ...props.value, points: props.value.points.reverse() };
 
+const Reverse = props => {
+  const points = Array.from(props.value.points).reverse();
+  const value = { ...props.value, points };
   const onChange = value => {
-    props.onChange({ ...value, points: value.points.reverse() });
+    props.onChange({ ...value, points: Array.from(value.points).reverse() });
   };
   return <StyledRawAuthoring value={value} onChange={onChange} />;
 };
-
-Authoring.propTypes = {
+Reverse.propTypes = {
   value: RubricType,
+  getIndex: PropTypes.func,
   onChange: PropTypes.func
 };
-
-export default Authoring;
+export default Reverse;
