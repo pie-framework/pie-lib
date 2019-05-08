@@ -22,6 +22,7 @@ export const overLeftRightArrow = set({
 export const segment = set({
   name: 'Segment',
   latex: '\\overleftrightarrow{AB}',
+  write: '\\overleftrightarrow{AB}',
   label: 'AB'
 });
 
