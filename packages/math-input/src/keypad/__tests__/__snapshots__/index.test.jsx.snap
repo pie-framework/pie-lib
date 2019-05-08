@@ -148,10 +148,10 @@ exports[`Keypad snapshot renders 1`] = `
   <WithStyles(Button)
     className=""
     disabled={false}
-    key="--17"
+    key="−-17"
     onClick={[Function]}
   >
-    -
+    −
   </WithStyles(Button)>
   <WithStyles(Button)
     className=""

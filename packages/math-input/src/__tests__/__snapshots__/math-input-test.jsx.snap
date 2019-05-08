@@ -88,8 +88,8 @@ exports[`MathInput snapshot renders 1`] = `
             },
             Object {
               "category": "operators",
-              "label": "-",
-              "write": "-",
+              "label": "−",
+              "write": "−",
             },
           ],
           Array [
