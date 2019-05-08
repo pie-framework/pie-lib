@@ -868,5 +868,20 @@
     "committerDate": "2019-05-03 13:10:36 +0300",
     "isTagged": true,
     "tag": "@pie-lib/math-input@6.2.1"
+  },
+  {
+    "type": "fix",
+    "scope": "math-input",
+    "subject": "keypad operator fixes and styling adjustments",
+    "merge": null,
+    "header": "fix(math-input): keypad operator fixes and styling adjustments",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "c18757aa1f905f2b4af9c0a5e1a2b4040297d4ae",
+    "gitTags": "",
+    "committerDate": "2019-05-08 09:48:40 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/math-input@6.2.2"
   }
 ]

@@ -498,5 +498,20 @@
     "committerDate": "2019-05-02 07:12:59 +0300",
     "isTagged": true,
     "tag": "@pie-lib/math-toolbar@1.2.0"
+  },
+  {
+    "type": "fix",
+    "scope": "math-toolbar",
+    "subject": "math styling fixes",
+    "merge": null,
+    "header": "fix(math-toolbar): math styling fixes",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "c97a9486af79fc887774994b92024db9117a621c",
+    "gitTags": "",
+    "committerDate": "2019-05-08 09:53:17 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/math-toolbar@1.2.2"
   }
 ]
