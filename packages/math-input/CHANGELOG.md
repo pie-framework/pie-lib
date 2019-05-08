@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.2.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.2.1...@pie-lib/math-input@6.2.2) (2019-05-08)
+
+
+### Bug Fixes
+
+* **math-input:** keypad operator fixes and styling adjustments ([c18757a](https://github.com/pie-framework/pie-lib/commit/c18757a))
+
+
+
+
+
 ## [6.2.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.2.0...@pie-lib/math-input@6.2.1) (2019-05-03)
 
 **Note:** Version bump only for package @pie-lib/math-input
