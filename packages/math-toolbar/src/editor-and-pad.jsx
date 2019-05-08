@@ -180,17 +180,7 @@ const styles = theme => ({
     position: 'relative',
     textAlign: 'center',
     '& > .mq-math-mode': {
-      border: 'solid 0px lightgrey',
-      '& .mq-non-leaf': {
-        display: 'inline-flex',
-        alignItems: 'center'
-      },
-      '& .mq-non-leaf.mq-fraction': {
-        display: 'inline-block'
-      },
-      '& .mq-paren': {
-        verticalAlign: 'middle'
-      }
+      border: 'solid 0px lightgrey'
     },
     '& > .mq-focused': {
       outline: 'none',

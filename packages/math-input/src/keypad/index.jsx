@@ -27,7 +27,7 @@ const LatexButton = withStyles(theme => ({
       backgroundColor: fade(theme.palette.secondary.main, 0.4)
     },
     '& .mq-overarrow': {
-      width: '20px'
+      width: '30px'
     },
     '& .mq-root-block': {
       padding: '5px'
@@ -117,7 +117,12 @@ export class KeyPad extends React.Component {
 
           const common = {
             onClick,
-            className: classNames(classes.labelButton, classes[k.category]),
+            className: classNames(
+              classes.labelButton,
+              classes[k.category],
+              k.label === ',' && classes.comma,
+              k.label === '.' && classes.dot
+            ),
             disabled: this.keyIsNotAllowed(k),
             key: `${k.label || k.latex || k.command}-${index}`
           };
@@ -161,6 +166,7 @@ const styles = theme => ({
     padding: `${theme.spacing.unit}px 0 ${theme.spacing.unit}px 0`
   },
   labelButton: {
+    fontSize: '1.4rem',
     backgroundColor: lighten(theme.palette.primary.light, 0.5),
     '&:hover': {
       backgroundColor: lighten(theme.palette.primary.light, 0.7)
@@ -183,6 +189,14 @@ const styles = theme => ({
     '&:hover': {
       backgroundColor: lighten(green[500], 0.7)
     }
+  },
+  comma: {
+    fontSize: '2.2rem',
+    lineHeight: '2.2rem'
+  },
+  dot: {
+    fontSize: '2.2rem',
+    lineHeight: '2.2rem'
   },
   icon: {
     height: '30px'

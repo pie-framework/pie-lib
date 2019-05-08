@@ -14,8 +14,8 @@ export const plus = set({
 });
 
 export const minus = set({
-  write: '-',
-  label: '-'
+  write: '−',
+  label: '−'
 });
 
 export const divide = set({
