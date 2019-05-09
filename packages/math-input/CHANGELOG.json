@@ -883,5 +883,20 @@
     "committerDate": "2019-05-08 09:48:40 +0300",
     "isTagged": true,
     "tag": "@pie-lib/math-input@6.2.2"
+  },
+  {
+    "type": "fix",
+    "scope": "math-input",
+    "subject": "fix trigo keypad buttons",
+    "merge": null,
+    "header": "fix(math-input): fix trigo keypad buttons",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "cdd76498192f0fa45152edacd11e5ee7fdd97f19",
+    "gitTags": " (origin/fix/math-inline-related-fixes)",
+    "committerDate": "2019-05-08 13:49:15 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/math-input@6.2.3"
   }
 ]
