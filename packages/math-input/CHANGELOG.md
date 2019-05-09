@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.2.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.2.2...@pie-lib/math-input@6.2.3) (2019-05-09)
+
+
+### Bug Fixes
+
+* **math-input:** fix trigo keypad buttons ([cdd7649](https://github.com/pie-framework/pie-lib/commit/cdd7649))
+
+
+
+
+
 ## [6.2.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.2.1...@pie-lib/math-input@6.2.2) (2019-05-08)
 
 
