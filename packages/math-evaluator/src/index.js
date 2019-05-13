@@ -1,8 +1,9 @@
 import mathjs from 'mathjs';
 import mathExpressions from 'math-expressions';
 
-const decimaCommalRegex = /,/g;
+const decimalCommaRegex = /,/g;
 const decimalRegex = /\.|,/g;
+const decimalWithThousandSeparatorNumberRegex = /^(?!0+\.00)(?=.{1,9}(\.|$))(?!0(?!\.))\d{1,3}(,\d{3})*(\.\d+)?$/;
 
 function rationalizeAllPossibleSubNodes(expression) {
   const tree = mathjs.parse(expression);
@@ -21,7 +22,8 @@ function rationalizeAllPossibleSubNodes(expression) {
 
 function prepareExpression(string, isLatex) {
   let returnValue = string ? string.trim() : '';
-  returnValue = returnValue.replace(decimaCommalRegex, '.');
+
+  returnValue = returnValue.replace(decimalCommaRegex, '.');
 
   returnValue = isLatex
     ? mathExpressions.fromLatex(`${returnValue}`).toString()
@@ -54,6 +56,8 @@ function shouldRationalizeEntireTree(tree) {
         functionParameter.compile().eval();
       }
     });
+
+    mathjs.rationalize(tree);
   } catch {
     shouldDoIt = false;
   }
@@ -74,14 +78,25 @@ export default function areValuesEqual(valueOne, valueTwo, options = {}) {
     inverse // returns inverse for the comparison result
   } = options;
 
+  let valueOneToUse = valueOne;
+  let valueTwoToUse = valueTwo;
+
   if (allowDecimals === false) {
     if (containsDecimal(valueOne) || containsDecimal(valueTwo)) {
       return false;
     }
+  } else if (allowDecimals === true) {
+    if (containsDecimal(valueOne) && decimalWithThousandSeparatorNumberRegex.test(valueOne)) {
+      valueOneToUse = valueOne.replace(decimalCommaRegex, '');
+    }
+
+    if (containsDecimal(valueTwo) && decimalWithThousandSeparatorNumberRegex.test(valueTwo)) {
+      valueTwoToUse = valueTwo.replace(decimalCommaRegex, '');
+    }
   }
 
-  const preparedValueOne = prepareExpression(valueOne, isLatex);
-  const preparedValueTwo = prepareExpression(valueTwo, isLatex);
+  const preparedValueOne = prepareExpression(valueOneToUse, isLatex, allowDecimals);
+  const preparedValueTwo = prepareExpression(valueTwoToUse, isLatex, allowDecimals);
 
   let one = shouldRationalizeEntireTree(preparedValueOne)
     ? mathjs.rationalize(preparedValueOne)
