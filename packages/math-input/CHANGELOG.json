@@ -898,5 +898,20 @@
     "committerDate": "2019-05-08 13:49:15 +0300",
     "isTagged": true,
     "tag": "@pie-lib/math-input@6.2.3"
+  },
+  {
+    "type": "chore",
+    "scope": "math-input",
+    "subject": "adjust keys for keypad for 8th grade and advanced algebra",
+    "merge": null,
+    "header": "chore(math-input): adjust keys for keypad for 8th grade and advanced algebra",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "51678ee97e68e7dc053ec99585504a69b3e2a205",
+    "gitTags": "",
+    "committerDate": "2019-05-09 12:08:42 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/math-input@6.2.4"
   }
 ]
