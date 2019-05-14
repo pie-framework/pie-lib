@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.2.3...@pie-lib/math-toolbar@1.2.4) (2019-05-14)
+
+
+### Bug Fixes
+
+* **math-toolbar:** small styling fix for z-index ([bf46cc4](https://github.com/pie-framework/pie-lib/commit/bf46cc4))
+
+
+
+
+
 ## [1.2.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.2.2...@pie-lib/math-toolbar@1.2.3) (2019-05-09)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
