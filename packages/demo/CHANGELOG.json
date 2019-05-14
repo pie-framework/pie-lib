@@ -338,5 +338,20 @@
     "committerDate": "2019-05-02 07:12:59 +0300",
     "isTagged": true,
     "tag": "@pie-lib/demo@4.1.0"
+  },
+  {
+    "type": "feat",
+    "scope": null,
+    "subject": "Added Collapsible Element.",
+    "merge": null,
+    "header": "feat: Added Collapsible Element.",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "600b71c565746dfe8789941c23ab6ca38a24427d",
+    "gitTags": "",
+    "committerDate": "2019-05-14 11:35:25 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/demo@4.2.0"
   }
 ]
