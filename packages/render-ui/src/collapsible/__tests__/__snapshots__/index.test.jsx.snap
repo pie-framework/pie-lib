@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`protractor snapshot renders 1`] = `
+exports[`collapsible snapshot renders 1`] = `
 <div>
   <div
     key="rationale-show-more"
@@ -14,14 +14,6 @@ exports[`protractor snapshot renders 1`] = `
     in={false}
     timeout="auto"
     unmountOnExit={true}
-  >
-    <div
-      dangerouslySetInnerHTML={
-        Object {
-          "__html": undefined,
-        }
-      }
-    />
-  </WithStyles(Collapse)>
+  />
 </div>
 `;

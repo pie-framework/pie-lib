@@ -23,7 +23,6 @@ const rawLinks = [
   { label: 'ruler', path: '/tools/ruler' },
   { label: 'protractor', path: '/tools/protractor' },
   { label: 'rotatable', path: '/tools/rotatable' },
-  { label: 'collapsible', path: '/tools/collapsible' },
   { label: 'drag', path: '/drag' }
 ];
 

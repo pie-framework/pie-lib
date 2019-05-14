@@ -1,9 +1,9 @@
 import toJson from 'enzyme-to-json';
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme/build';
 import { Collapsible } from '../index';
 import React from 'react';
 
-describe('protractor', () => {
+describe('collapsible', () => {
   describe('snapshot', () => {
     it('renders', () => {
       const wrapper = shallow(<Collapsible classes={{}} />);
