@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`protractor snapshot renders 1`] = `
+<div>
+  <div
+    key="rationale-show-more"
+    onClick={[Function]}
+  >
+    <span>
+      Show
+    </span>
+  </div>
+  <WithStyles(Collapse)
+    in={false}
+    timeout="auto"
+    unmountOnExit={true}
+  >
+    <div
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": undefined,
+        }
+      }
+    />
+  </WithStyles(Collapse)>
+</div>
+`;
