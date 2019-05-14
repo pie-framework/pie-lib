@@ -53,11 +53,7 @@ class App extends React.Component {
         </Section>
 
         <Section title="Collapsible">
-          <Collapsible
-            extendTitle="Show Content"
-            collapseTitle="Hide Content"
-            labels={{ visible: 'Hide Content', hidden: 'Show Content' }}
-          >
+          <Collapsible labels={{ visible: 'Hide Content', hidden: 'Show Content' }}>
             This is the collapsed content.
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
