@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`collapsible snapshot renders 1`] = `
+<div>
+  <div
+    key="rationale-show-more"
+    onClick={[Function]}
+  >
+    <span>
+      Show
+    </span>
+  </div>
+  <WithStyles(Collapse)
+    in={false}
+    timeout="auto"
+    unmountOnExit={true}
+  />
+</div>
+`;
