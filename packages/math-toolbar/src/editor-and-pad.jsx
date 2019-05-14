@@ -176,7 +176,7 @@ const styles = theme => ({
     borderBottom: `solid 1px ${theme.palette.primary.main}`
   },
   mathToolbar: {
-    zIndex: 10,
+    zIndex: 9,
     position: 'relative',
     textAlign: 'center',
     '& > .mq-math-mode': {

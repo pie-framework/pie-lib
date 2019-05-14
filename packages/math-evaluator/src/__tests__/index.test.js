@@ -174,6 +174,21 @@ describe('math-evaluator', () => {
     expect(areValuesEqual('123', '123,0', { allowDecimals: false })).toEqual(false);
   });
 
+  it('correctly consumes allowDecimals option for complex examples too', () => {
+    expect(areValuesEqual('1500000', '1500000', { allowDecimals: true })).toEqual(true);
+    expect(areValuesEqual('1,500,000', '1,500,000', { allowDecimals: true })).toEqual(true);
+    expect(areValuesEqual('1500000', '1,500,000', { allowDecimals: true })).toEqual(true);
+    expect(areValuesEqual('1500000', '1,500,000.00', { allowDecimals: true })).toEqual(true);
+    expect(areValuesEqual('1500000', '1,500,000.0', { allowDecimals: true })).toEqual(true);
+    expect(areValuesEqual('1,500,000.0', '1,500,000.00', { allowDecimals: true })).toEqual(true);
+    expect(areValuesEqual('1500000', '1,500000', { allowDecimals: true })).toEqual(false);
+    expect(areValuesEqual('1500000', '1500,000', { allowDecimals: true })).toEqual(false);
+    expect(areValuesEqual('1500000', '1,500,000.01', { allowDecimals: true })).toEqual(false);
+    expect(areValuesEqual('1500000', '1,500,00,0', { allowDecimals: true })).toEqual(false);
+    expect(areValuesEqual('1500000', '1500,000', { allowDecimals: true })).toEqual(false);
+    expect(areValuesEqual('1500000', ',1500,000', { allowDecimals: true })).toEqual(false);
+  });
+
   it('evaluates simple trigo expressions correctly', () => {
     expect(areValuesEqual('sin(x)', 'sin(x)')).toEqual(true);
     expect(areValuesEqual('tan(x)', 'tan(x)')).toEqual(true);

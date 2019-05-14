@@ -13,12 +13,11 @@ import * as operators from './operators';
 import * as log from './log';
 import * as subSup from './sub-sup';
 import * as statistics from './statistics';
-import { toArray } from './utils';
 
 const hs = [
   [vars.x, vars.y, exponent.squared, exponent.squareRoot, vars.theta],
   [fractions.xOverBlank, subSup.subscript, exponent.xToPowerOfN, exponent.nthRoot],
-  [comparison.lessThan, comparison.greaterThan, misc.plusMinus, misc.absValue],
+  [comparison.lessThanEqual, comparison.greaterThanEqual, misc.plusMinus, misc.absValue],
   [constants.pi, { name: 'i', latex: 'i', write: 'i' }, misc.parenthesis, misc.brackets],
   [trigonometry.sin, trigonometry.cos, trigonometry.tan, geometry.degree]
 ];
@@ -74,8 +73,8 @@ const gradeSets = [
         subSup.subscript
       ],
       [
-        comparison.lessThan,
-        comparison.greaterThan,
+        comparison.lessThanEqual,
+        comparison.greaterThanEqual,
         misc.plusMinus,
         misc.absValue
         // matrices.singleCellMatrix
