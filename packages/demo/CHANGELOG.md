@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.2.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@4.2.0...@pie-lib/demo@4.2.1) (2019-05-15)
+
+
+### Bug Fixes
+
+* Added className property on Collapsible wrapper. ([4c5f39b](https://github.com/pie-framework/pie-lib/commit/4c5f39b))
+
+
+
+
+
 # [4.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@4.1.5...@pie-lib/demo@4.2.0) (2019-05-14)
 
 
