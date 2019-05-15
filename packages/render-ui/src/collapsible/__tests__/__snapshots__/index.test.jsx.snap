@@ -3,7 +3,6 @@
 exports[`collapsible snapshot renders 1`] = `
 <div>
   <div
-    key="rationale-show-more"
     onClick={[Function]}
   >
     <span>
