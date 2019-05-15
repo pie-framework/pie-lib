@@ -38,7 +38,7 @@ export default function MathPlugin(/*options*/) {
             onToolbarDone(change, true);
           };
 
-          const Tb = () => <MathToolbar latex={latex} onDone={onDone} />;
+          const Tb = () => <MathToolbar autoFocus latex={latex} onDone={onDone} />;
           return Tb;
         }
       }

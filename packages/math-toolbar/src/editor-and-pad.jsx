@@ -31,6 +31,7 @@ export class EditorAndPad extends React.Component {
   static propTypes = {
     classNames: PropTypes.object,
     keypadMode: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    autoFocus: PropTypes.bool,
     allowAnswerBlock: PropTypes.bool,
     showKeypad: PropTypes.bool,
     controlledKeypad: PropTypes.bool,
@@ -44,7 +45,7 @@ export class EditorAndPad extends React.Component {
   };
 
   componentDidMount() {
-    if (this.input) {
+    if (this.input && this.props.autoFocus) {
       this.input.focus();
     }
   }
