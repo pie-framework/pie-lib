@@ -353,5 +353,20 @@
     "committerDate": "2019-05-14 11:35:25 +0300",
     "isTagged": true,
     "tag": "@pie-lib/demo@4.2.0"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "Added className property on Collapsible wrapper.",
+    "merge": null,
+    "header": "fix: Added className property on Collapsible wrapper.",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "4c5f39bd580af660c78d488e0dabb6e0bb9f5fb4",
+    "gitTags": "",
+    "committerDate": "2019-05-15 13:02:25 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/demo@4.2.1"
   }
 ]
