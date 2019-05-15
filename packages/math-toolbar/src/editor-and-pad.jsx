@@ -31,6 +31,7 @@ export class EditorAndPad extends React.Component {
   static propTypes = {
     classNames: PropTypes.object,
     keypadMode: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    autoFocus: PropTypes.bool,
     allowAnswerBlock: PropTypes.bool,
     showKeypad: PropTypes.bool,
     controlledKeypad: PropTypes.bool,
@@ -42,6 +43,12 @@ export class EditorAndPad extends React.Component {
     onChange: PropTypes.func.isRequired,
     classes: PropTypes.object
   };
+
+  componentDidMount() {
+    if (this.input && this.props.autoFocus) {
+      this.input.focus();
+    }
+  }
 
   onClick = data => {
     const { noDecimal } = this.props;
@@ -180,7 +187,7 @@ const styles = theme => ({
     position: 'relative',
     textAlign: 'center',
     '& > .mq-math-mode': {
-      border: 'solid 0px lightgrey'
+      border: 'solid 1px lightgrey'
     },
     '& > .mq-focused': {
       outline: 'none',
