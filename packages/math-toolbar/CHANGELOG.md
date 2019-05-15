@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.2.4...@pie-lib/math-toolbar@1.3.0) (2019-05-15)
+
+
+### Features
+
+* **math-toolbar:** input will automatically grab focus ([2a344fb](https://github.com/pie-framework/pie-lib/commit/2a344fb))
+
+
+
+
+
 ## [1.2.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.2.3...@pie-lib/math-toolbar@1.2.4) (2019-05-14)
 
 
