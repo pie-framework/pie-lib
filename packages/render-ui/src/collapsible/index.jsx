@@ -33,7 +33,7 @@ export class Collapsible extends React.Component {
 
     return (
       <div className={className}>
-        <div key="rationale-show-more" onClick={this.toggleExpanded}>
+        <div onClick={this.toggleExpanded}>
           <span className={classes.title}>{title}</span>
         </div>
         <Collapse
