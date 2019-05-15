@@ -7,7 +7,8 @@ import PropTypes from 'prop-types';
 export class Collapsible extends React.Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
-    children: PropTypes.string,
+    className: PropTypes.string,
+    children: PropTypes.object,
     labels: PropTypes.shape({
       visible: PropTypes.string,
       hidden: PropTypes.string
@@ -27,11 +28,11 @@ export class Collapsible extends React.Component {
   };
 
   render() {
-    const { classes, labels, children } = this.props;
+    const { classes, labels, children, className } = this.props;
     const title = this.state.expanded ? labels.visible || 'Hide' : labels.hidden || 'Show';
 
     return (
-      <div>
+      <div className={className}>
         <div key="rationale-show-more" onClick={this.toggleExpanded}>
           <span className={classes.title}>{title}</span>
         </div>

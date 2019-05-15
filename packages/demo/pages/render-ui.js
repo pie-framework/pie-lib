@@ -53,7 +53,10 @@ class App extends React.Component {
         </Section>
 
         <Section title="Collapsible">
-          <Collapsible labels={{ visible: 'Hide Content', hidden: 'Show Content' }}>
+          <Collapsible
+            labels={{ visible: 'Hide Content', hidden: 'Show Content' }}
+            className={classes.collapsible}
+          >
             This is the collapsed content.
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -82,6 +85,9 @@ const StyledApp = withStyles(theme => ({
     '& > *': {
       paddingLeft: '20px'
     }
+  },
+  collapsible: {
+    paddingTop: theme.spacing.unit
   }
 }))(App);
 
