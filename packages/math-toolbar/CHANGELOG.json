@@ -528,5 +528,35 @@
     "committerDate": "2019-05-13 15:17:00 +0300",
     "isTagged": true,
     "tag": "@pie-lib/math-toolbar@1.2.4"
+  },
+  {
+    "type": "chore",
+    "scope": null,
+    "subject": "autoFocus prop for automatically focusing math toolbar",
+    "merge": null,
+    "header": "chore: autoFocus prop for automatically focusing math toolbar",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "c600e24019914ffeec4058cafe6824262001e5db",
+    "gitTags": "",
+    "committerDate": "2019-05-15 16:31:20 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/math-toolbar@1.3.0"
+  },
+  {
+    "type": "feat",
+    "scope": "math-toolbar",
+    "subject": "input will automatically grab focus",
+    "merge": null,
+    "header": "feat(math-toolbar): input will automatically grab focus",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "2a344fb4f61e99321bda03538b57251898471497",
+    "gitTags": "",
+    "committerDate": "2019-05-15 16:23:52 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/math-toolbar@1.3.0"
   }
 ]
