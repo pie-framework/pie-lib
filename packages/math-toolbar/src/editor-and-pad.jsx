@@ -43,6 +43,12 @@ export class EditorAndPad extends React.Component {
     classes: PropTypes.object
   };
 
+  componentDidMount() {
+    if (this.input) {
+      this.input.focus();
+    }
+  }
+
   onClick = data => {
     const { noDecimal } = this.props;
     const c = toNodeData(data);
@@ -180,7 +186,7 @@ const styles = theme => ({
     position: 'relative',
     textAlign: 'center',
     '& > .mq-math-mode': {
-      border: 'solid 0px lightgrey'
+      border: 'solid 1px lightgrey'
     },
     '& > .mq-focused': {
       outline: 'none',
