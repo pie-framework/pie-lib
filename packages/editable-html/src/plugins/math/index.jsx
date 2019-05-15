@@ -19,8 +19,7 @@ export default function MathPlugin(/*options*/) {
         const change = value.change().insertInline(math);
         onChange(change);
       },
-      supports: node =>
-        node && node.object === 'inline' && node.type === 'math',
+      supports: node => node && node.object === 'inline' && node.type === 'math',
       /**
        * Return a react component function
        * @param node {Slate.Node}
@@ -35,9 +34,7 @@ export default function MathPlugin(/*options*/) {
               ...node.data.toObject(),
               latex
             };
-            const change = value
-              .change()
-              .setNodeByKey(node.key, { data: update });
+            const change = value.change().setNodeByKey(node.key, { data: update });
             onToolbarDone(change, true);
           };
 
@@ -70,7 +67,7 @@ export const inlineMath = () =>
     type: 'math',
     isVoid: true,
     data: {
-      latex: '1 + 1 = 2'
+      latex: ''
     }
   });
 
@@ -117,7 +114,11 @@ export const serialization = {
       const wrapper = object.data.get('wrapper');
       log('[serialize] latex: ', l);
       const decoded = htmlDecode(l);
-      return <span data-latex="" data-raw={decoded}>{wrapMath(decoded, wrapper)}</span>;
+      return (
+        <span data-latex="" data-raw={decoded}>
+          {wrapMath(decoded, wrapper)}
+        </span>
+      );
     }
   }
 };
