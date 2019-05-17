@@ -10,13 +10,17 @@ const Dropdown = ({ id, correct, disabled, value, onChange, choices }) => {
       disabled={disabled}
       value={value}
       input={<CorrectInput correct={correct} />}
+      MenuProps={{
+        keepMounted: true,
+        disablePortal: true
+      }}
       onChange={e => {
         onChange(id, e.target.value);
       }}
     >
       {(choices || []).map((c, index) => (
         <MenuItem key={`${c.label}-${index}`} value={c.value}>
-          {c.label}
+          <span dangerouslySetInnerHTML={{ __html: c.label }} />
         </MenuItem>
       ))}
     </Select>

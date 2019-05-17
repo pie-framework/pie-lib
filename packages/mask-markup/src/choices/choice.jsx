@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import debug from 'debug';
 import { DragSource } from '@pie-lib/drag';
 import { withStyles } from '@material-ui/core/styles';
@@ -18,7 +19,10 @@ export const BlankContent = withStyles(theme => ({
   const { connectDragSource, classes, disabled } = props;
   return connectDragSource(
     <span className={classnames(classes.choice, disabled && classes.disabled)}>
-      <Chip label={props.value} variant={disabled ? 'outlined' : undefined} />
+      <Chip
+        label={<span dangerouslySetInnerHTML={{ __html: props.value }} />}
+        variant={disabled ? 'outlined' : undefined}
+      />
     </span>,
     {}
   );
@@ -28,10 +32,18 @@ const tileSource = {
   canDrag(props) {
     return !props.disabled;
   },
-  beginDrag(props) {
+  beginDrag(props, monitor, component) {
+    /**
+     * Need this in order to have the preview of the item accurately
+     * (Math rendering especially)
+     * */
+    // eslint-disable-next-line
+    const choiceDOM = ReactDOM.findDOMNode(component);
+
     return {
       id: props.targetId,
-      value: props.value,
+      value: props.id,
+      label: (choiceDOM && choiceDOM.outerHTML) || props.value,
       instanceId: props.instanceId
     };
   },

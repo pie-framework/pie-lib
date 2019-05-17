@@ -39,12 +39,12 @@ export class BlankContent extends React.Component {
 
   render() {
     const { id, disabled, value, classes, isOver, dragItem, correct, onChange } = this.props;
-    const label = dragItem && isOver ? dragItem.value : value;
+    const label = dragItem && isOver ? dragItem.label : value;
 
     return (
       <Chip
         component="span"
-        label={label}
+        label={<span dangerouslySetInnerHTML={{ __html: label }} />}
         className={classnames(
           classes.chip,
           classes[correct !== undefined ? (correct ? 'correct' : 'incorrect') : undefined]
