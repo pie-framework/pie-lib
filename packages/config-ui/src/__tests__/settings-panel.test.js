@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { Panel } from '../settings/panel';
-import { toggle, radio } from '../settings';
+import { toggle, radio, dropdown, numberField, numberFields } from '../settings';
 
 describe('Settings Panel', () => {
   let w;
@@ -122,6 +122,62 @@ describe('radio', () => {
           value: 'two'
         }
       ]
+    });
+  });
+});
+
+describe('dropdown', () => {
+  it('returns a dropdown type object', () => {
+    const setting = dropdown('Dropdown', ['one', 'two']);
+
+    expect(setting).toEqual({
+      label: 'Dropdown',
+      type: 'dropdown',
+      isConfigProperty: false,
+      choices: ['one', 'two']
+    });
+  });
+});
+
+describe('numberField', () => {
+  it('returns a numberField type object', () => {
+    const setting = numberField('Number Field', { max: 12 }, true);
+
+    expect(setting).toEqual({
+      label: 'Number Field',
+      type: 'numberField',
+      isConfigProperty: true,
+      max: 12
+    });
+  });
+});
+
+describe('numberFields', () => {
+  it('returns a numberFields type object', () => {
+    const setting = numberFields('Number Fields', {
+      one: {
+        label: 'One'
+      },
+      two: {
+        label: 'Two'
+      }
+    });
+
+    expect(setting).toEqual({
+      label: 'Number Fields',
+      type: 'numberFields',
+      fields: {
+        one: {
+          type: 'numberField',
+          label: 'One',
+          isConfigProperty: false
+        },
+        two: {
+          type: 'numberField',
+          label: 'Two',
+          isConfigProperty: false
+        }
+      }
     });
   });
 });
