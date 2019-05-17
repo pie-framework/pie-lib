@@ -1,7 +1,4 @@
-import EditableHtml, {
-  DEFAULT_PLUGINS,
-  htmlToValue
-} from '@pie-lib/editable-html';
+import EditableHtml, { ALL_PLUGINS, htmlToValue } from '@pie-lib/editable-html';
 import grey from '@material-ui/core/colors/grey';
 import React from 'react';
 import _ from 'lodash';
@@ -11,13 +8,15 @@ import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import TextField from '@material-ui/core/TextField';
 import withRoot from '../src/withRoot';
+import { withDragContext, DragSource } from '@pie-lib/drag';
+import classnames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import InputChooser from '../src/editable-html/input-chooser';
 
 const log = debug('@pie-lib:editable-html:demo');
-const puppySrc = `https://bit.ly/23yROY8`;
+const puppySrc = 'https://bit.ly/23yROY8';
 
 const renderOpts = {
   delimiters: [
@@ -25,6 +24,44 @@ const renderOpts = {
     { left: '$', right: '$', display: false }
   ]
 };
+
+export const BlankContent = withStyles(theme => ({
+  choice: {
+    border: `solid 0px ${theme.palette.primary.main}`
+  },
+  disabled: {}
+}))(props => {
+  const { children, connectDragSource, classes, disabled } = props;
+
+  return connectDragSource(
+    <span className={classnames(classes.choice, disabled && classes.disabled)}>{children}</span>
+  );
+});
+
+const tileSource = {
+  canDrag(props) {
+    return !props.disabled;
+  },
+  beginDrag(props) {
+    return {
+      id: props.targetId,
+      value: props.value,
+      instanceId: props.instanceId
+    };
+  },
+  endDrag(props, monitor) {
+    if (!monitor.didDrop()) {
+      if (props.type === 'target') {
+        props.onRemoveChoice(monitor.getItem());
+      }
+    }
+  }
+};
+
+const DragDropTile = DragSource('drag-in-the-blank-choice', tileSource, (connect, monitor) => ({
+  connectDragSource: connect.dragSource(),
+  isDragging: monitor.isDragging()
+}))(BlankContent);
 
 /**
  * Note: See core schema rules - it normalizes so you can only have blocks or inline and text in a block.
@@ -44,8 +81,7 @@ const inputOptions = [
   },
   {
     label: 'Latex \\displaystyle',
-    html:
-      '<div><span data-latex="">\\(\\displaystyle - \\frac{36}{55}\\)</span></div>'
+    html: '<div><span data-latex="">\\(\\displaystyle - \\frac{36}{55}\\)</span></div>'
   },
   {
     label: 'Nested div w/ image',
@@ -79,10 +115,7 @@ class RawMarkupPreview extends React.Component {
     return (
       <div>
         <Typography variant="h6">Markup</Typography>
-        <div
-          ref={r => (this.preview = r)}
-          dangerouslySetInnerHTML={{ __html: markup }}
-        />
+        <div ref={r => (this.preview = r)} dangerouslySetInnerHTML={{ __html: markup }} />
         <hr />
         <Typography variant="subtitle1">Raw</Typography>
         <pre className={classes.prettyPrint}>{markup}</pre>
@@ -233,18 +266,14 @@ class RteDemo extends React.Component {
 
     log('this.state', this.state);
 
-    //activePlugins={['bold', 'bulleted-list', 'numbered-list']}
+    const activePlugins = ALL_PLUGINS;
+
     return mounted ? (
       <div>
         <Typography variant="h6">EditableHtml</Typography>
-        <Typography variant="body2">
-          A rich text editor with a material design look.
-        </Typography>
+        <Typography variant="body2">A rich text editor with a material design look.</Typography>
         <br />
-        <InputChooser
-          inputOptions={inputOptions}
-          onChange={markup => this.setState({ markup })}
-        />
+        <InputChooser inputOptions={inputOptions} onChange={markup => this.setState({ markup })} />
         <div className={classes.controls}>
           <Typography variant="headline">Runtime Options</Typography>
           <FormGroup row>
@@ -252,9 +281,7 @@ class RteDemo extends React.Component {
               control={
                 <Checkbox
                   checked={showHighlight}
-                  onChange={event =>
-                    this.setState({ showHighlight: event.target.checked })
-                  }
+                  onChange={event => this.setState({ showHighlight: event.target.checked })}
                 />
               }
               label="show highlight"
@@ -263,9 +290,7 @@ class RteDemo extends React.Component {
               control={
                 <Checkbox
                   checked={disableImageUpload}
-                  onChange={event =>
-                    this.setState({ disableImageUpload: event.target.checked })
-                  }
+                  onChange={event => this.setState({ disableImageUpload: event.target.checked })}
                 />
               }
               label="disable image upload"
@@ -274,9 +299,7 @@ class RteDemo extends React.Component {
               control={
                 <Checkbox
                   checked={disabled}
-                  onChange={event =>
-                    this.setState({ disabled: event.target.checked })
-                  }
+                  onChange={event => this.setState({ disabled: event.target.checked })}
                 />
               }
               label="disabled"
@@ -296,6 +319,17 @@ class RteDemo extends React.Component {
           </FormGroup>
         </div>
         <EditableHtml
+          activePlugins={activePlugins}
+          toolbarOpts={{
+            position: 'top',
+            alwaysVisible: true
+          }}
+          responseAreaProps={{
+            type: 'drag-in-the-blank',
+            options: {
+              duplicates: true
+            }
+          }}
           markup={markup}
           onChange={this.onChange}
           imageSupport={imageSupport}
@@ -312,6 +346,12 @@ class RteDemo extends React.Component {
         />
         <input type="file" hidden ref={r => (this.fileInput = r)} />
         <br />
+
+        <DragDropTile targetId="0">
+          <span data-latex="" data-raw="\sqrt{4}">
+            \(\sqrt{4}\)
+          </span>
+        </DragDropTile>
         <MarkupPreview markup={markup} />
       </div>
     ) : (
@@ -333,4 +373,4 @@ const styles = theme => ({
   }
 });
 
-export default withRoot(withStyles(styles)(RteDemo));
+export default withDragContext(withRoot(withStyles(styles)(RteDemo)));

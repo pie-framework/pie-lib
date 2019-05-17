@@ -39,7 +39,7 @@ export class BlankContent extends React.Component {
 
   render() {
     const { id, disabled, value, classes, isOver, dragItem, correct, onChange } = this.props;
-    const label = dragItem && isOver ? dragItem.value : value;
+    const label = dragItem && isOver ? dragItem.label : value;
 
     return (
       <Chip

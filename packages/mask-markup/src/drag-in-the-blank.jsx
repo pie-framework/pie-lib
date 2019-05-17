@@ -8,12 +8,15 @@ const Masked = withMask('blank', props => (node, data, onChange) => {
   const dataset = node.data ? node.data.dataset || {} : {};
   if (dataset.component === 'blank') {
     const { feedback } = props;
+    const choiceId = data[dataset.id];
+    const choice = props.choices.find(c => c.id === choiceId);
+
     return (
       <Blank
         key={`${node.type}-${dataset.id}`}
         correct={feedback && feedback[dataset.id] && feedback[dataset.id].correct}
         disabled={props.disabled}
-        value={data[dataset.id]}
+        value={choice && choice.value}
         id={dataset.id}
         onChange={onChange}
       />
@@ -44,6 +47,7 @@ export default class DragInTheBlank extends React.Component {
           markup={markup}
           layout={layout}
           value={value}
+          choices={choices}
           onChange={onChange}
           disabled={disabled}
           feedback={feedback}

@@ -31,7 +31,8 @@ const tileSource = {
   beginDrag(props) {
     return {
       id: props.targetId,
-      value: props.value,
+      value: props.id,
+      label: props.value,
       instanceId: props.instanceId
     };
   },

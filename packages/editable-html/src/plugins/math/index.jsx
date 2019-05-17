@@ -11,6 +11,7 @@ const TEXT_NODE = 3;
 
 export default function MathPlugin(/*options*/) {
   return {
+    name: 'math',
     toolbar: {
       icon: <Functions />,
       onClick: (value, onChange) => {
@@ -19,8 +20,7 @@ export default function MathPlugin(/*options*/) {
         const change = value.change().insertInline(math);
         onChange(change);
       },
-      supports: node =>
-        node && node.object === 'inline' && node.type === 'math',
+      supports: node => node && node.object === 'inline' && node.type === 'math',
       /**
        * Return a react component function
        * @param node {Slate.Node}
@@ -35,10 +35,13 @@ export default function MathPlugin(/*options*/) {
               ...node.data.toObject(),
               latex
             };
-            const change = value
-              .change()
-              .setNodeByKey(node.key, { data: update });
-            onToolbarDone(change, true);
+            const change = value.change().setNodeByKey(node.key, { data: update });
+
+            const nextText = value.document.getNextText(node.key);
+
+            change.moveFocusTo(nextText.key, 0).moveAnchorTo(nextText.key, 0);
+
+            onToolbarDone(change, false);
           };
 
           const Tb = () => <MathToolbar latex={latex} onDone={onDone} />;
@@ -48,6 +51,15 @@ export default function MathPlugin(/*options*/) {
     },
     schema: {
       document: { match: [{ type: 'math' }] }
+    },
+
+    pluginStyles: (parentNode, p) => {
+      if (p) {
+        return {
+          position: 'absolute',
+          top: 'initial'
+        };
+      }
     },
 
     renderNode: props => {
@@ -117,7 +129,11 @@ export const serialization = {
       const wrapper = object.data.get('wrapper');
       log('[serialize] latex: ', l);
       const decoded = htmlDecode(l);
-      return <span data-latex="" data-raw={decoded}>{wrapMath(decoded, wrapper)}</span>;
+      return (
+        <span data-latex="" data-raw={decoded}>
+          {wrapMath(decoded, wrapper)}
+        </span>
+      );
     }
   }
 };

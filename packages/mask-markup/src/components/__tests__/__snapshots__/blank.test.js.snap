@@ -31,7 +31,6 @@ exports[`Blank render renders correctly with draggedItem and isOver 1`] = `
 <WithStyles(Chip)
   className=""
   component="span"
-  label="Dog"
   onDelete={[Function]}
 />
 `;

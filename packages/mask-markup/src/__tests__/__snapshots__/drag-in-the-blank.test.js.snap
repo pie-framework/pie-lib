@@ -7,33 +7,61 @@ exports[`DragInTheBlank render renders correctly with default props 1`] = `
     value={
       Array [
         Object {
-          "label": "Jumped",
+          "id": "0",
           "value": "Jumped",
         },
         Object {
-          "label": "Laughed",
+          "id": "1",
           "value": "Laughed",
         },
         Object {
-          "label": "Spoon",
+          "id": "2",
           "value": "Spoon",
         },
         Object {
-          "label": "Fork",
+          "id": "3",
           "value": "Fork",
         },
         Object {
-          "label": "Bumped",
+          "id": "4",
           "value": "Bumped",
         },
         Object {
-          "label": "Smiled",
+          "id": "5",
           "value": "Smiled",
         },
       ]
     }
   />
   <WithMask
+    choices={
+      Array [
+        Object {
+          "id": "0",
+          "value": "Jumped",
+        },
+        Object {
+          "id": "1",
+          "value": "Laughed",
+        },
+        Object {
+          "id": "2",
+          "value": "Spoon",
+        },
+        Object {
+          "id": "3",
+          "value": "Fork",
+        },
+        Object {
+          "id": "4",
+          "value": "Bumped",
+        },
+        Object {
+          "id": "5",
+          "value": "Smiled",
+        },
+      ]
+    }
     disabled={false}
     feedback={Object {}}
     markup="<div>
@@ -62,33 +90,61 @@ exports[`DragInTheBlank render renders correctly with disabled prop as true 1`] 
     value={
       Array [
         Object {
-          "label": "Jumped",
+          "id": "0",
           "value": "Jumped",
         },
         Object {
-          "label": "Laughed",
+          "id": "1",
           "value": "Laughed",
         },
         Object {
-          "label": "Spoon",
+          "id": "2",
           "value": "Spoon",
         },
         Object {
-          "label": "Fork",
+          "id": "3",
           "value": "Fork",
         },
         Object {
-          "label": "Bumped",
+          "id": "4",
           "value": "Bumped",
         },
         Object {
-          "label": "Smiled",
+          "id": "5",
           "value": "Smiled",
         },
       ]
     }
   />
   <WithMask
+    choices={
+      Array [
+        Object {
+          "id": "0",
+          "value": "Jumped",
+        },
+        Object {
+          "id": "1",
+          "value": "Laughed",
+        },
+        Object {
+          "id": "2",
+          "value": "Spoon",
+        },
+        Object {
+          "id": "3",
+          "value": "Fork",
+        },
+        Object {
+          "id": "4",
+          "value": "Bumped",
+        },
+        Object {
+          "id": "5",
+          "value": "Smiled",
+        },
+      ]
+    }
     disabled={true}
     feedback={Object {}}
     markup="<div>
@@ -117,33 +173,61 @@ exports[`DragInTheBlank render renders correctly with feedback 1`] = `
     value={
       Array [
         Object {
-          "label": "Jumped",
+          "id": "0",
           "value": "Jumped",
         },
         Object {
-          "label": "Laughed",
+          "id": "1",
           "value": "Laughed",
         },
         Object {
-          "label": "Spoon",
+          "id": "2",
           "value": "Spoon",
         },
         Object {
-          "label": "Fork",
+          "id": "3",
           "value": "Fork",
         },
         Object {
-          "label": "Bumped",
+          "id": "4",
           "value": "Bumped",
         },
         Object {
-          "label": "Smiled",
+          "id": "5",
           "value": "Smiled",
         },
       ]
     }
   />
   <WithMask
+    choices={
+      Array [
+        Object {
+          "id": "0",
+          "value": "Jumped",
+        },
+        Object {
+          "id": "1",
+          "value": "Laughed",
+        },
+        Object {
+          "id": "2",
+          "value": "Spoon",
+        },
+        Object {
+          "id": "3",
+          "value": "Fork",
+        },
+        Object {
+          "id": "4",
+          "value": "Bumped",
+        },
+        Object {
+          "id": "5",
+          "value": "Smiled",
+        },
+      ]
+    }
     disabled={false}
     feedback={
       Object {

@@ -2,6 +2,12 @@
 
 exports[`Dropdown render renders correctly with correct as true 1`] = `
 <WithStyles(WithFormControlContext(Select))
+  MenuProps={
+    Object {
+      "disablePortal": true,
+      "keepMounted": true,
+    }
+  }
   disabled={false}
   input={
     <WithStyles(Component)
@@ -15,25 +21,49 @@ exports[`Dropdown render renders correctly with correct as true 1`] = `
     key="Jumped-0"
     value="Jumped"
   >
-    Jumped
+    <span
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "Jumped",
+        }
+      }
+    />
   </WithStyles(MenuItem)>
   <WithStyles(MenuItem)
     key="Laughed-1"
     value="Laughed"
   >
-    Laughed
+    <span
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "Laughed",
+        }
+      }
+    />
   </WithStyles(MenuItem)>
   <WithStyles(MenuItem)
     key="Smiled-2"
     value="Smiled"
   >
-    Smiled
+    <span
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "Smiled",
+        }
+      }
+    />
   </WithStyles(MenuItem)>
 </WithStyles(WithFormControlContext(Select))>
 `;
 
 exports[`Dropdown render renders correctly with default props 1`] = `
 <WithStyles(WithFormControlContext(Select))
+  MenuProps={
+    Object {
+      "disablePortal": true,
+      "keepMounted": true,
+    }
+  }
   disabled={false}
   input={
     <WithStyles(Component)
@@ -47,25 +77,49 @@ exports[`Dropdown render renders correctly with default props 1`] = `
     key="Jumped-0"
     value="Jumped"
   >
-    Jumped
+    <span
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "Jumped",
+        }
+      }
+    />
   </WithStyles(MenuItem)>
   <WithStyles(MenuItem)
     key="Laughed-1"
     value="Laughed"
   >
-    Laughed
+    <span
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "Laughed",
+        }
+      }
+    />
   </WithStyles(MenuItem)>
   <WithStyles(MenuItem)
     key="Smiled-2"
     value="Smiled"
   >
-    Smiled
+    <span
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "Smiled",
+        }
+      }
+    />
   </WithStyles(MenuItem)>
 </WithStyles(WithFormControlContext(Select))>
 `;
 
 exports[`Dropdown render renders correctly with disabled prop as true 1`] = `
 <WithStyles(WithFormControlContext(Select))
+  MenuProps={
+    Object {
+      "disablePortal": true,
+      "keepMounted": true,
+    }
+  }
   disabled={true}
   input={
     <WithStyles(Component)
@@ -79,19 +133,37 @@ exports[`Dropdown render renders correctly with disabled prop as true 1`] = `
     key="Jumped-0"
     value="Jumped"
   >
-    Jumped
+    <span
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "Jumped",
+        }
+      }
+    />
   </WithStyles(MenuItem)>
   <WithStyles(MenuItem)
     key="Laughed-1"
     value="Laughed"
   >
-    Laughed
+    <span
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "Laughed",
+        }
+      }
+    />
   </WithStyles(MenuItem)>
   <WithStyles(MenuItem)
     key="Smiled-2"
     value="Smiled"
   >
-    Smiled
+    <span
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "Smiled",
+        }
+      }
+    />
   </WithStyles(MenuItem)>
 </WithStyles(WithFormControlContext(Select))>
 `;

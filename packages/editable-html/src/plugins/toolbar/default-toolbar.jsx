@@ -21,12 +21,7 @@ export const ToolbarButton = props => {
     const isActive = hasMark(props.value, props.type);
     log('[ToolbarButton] mark:isActive: ', isActive);
     return (
-      <MarkButton
-        active={isActive}
-        label={props.type}
-        onToggle={onToggle}
-        mark={props.type}
-      >
+      <MarkButton active={isActive} label={props.type} onToggle={onToggle} mark={props.type}>
         {props.icon}
       </MarkButton>
     );
@@ -36,10 +31,7 @@ export const ToolbarButton = props => {
       : hasBlock(props.value, props.type);
     log('[ToolbarButton] block:isActive: ', isActive);
     return (
-      <Button
-        onClick={() => props.onClick(props.value, props.onChange)}
-        active={isActive}
-      >
+      <Button onClick={() => props.onClick(props.value, props.onChange)} active={isActive}>
         {props.icon}
       </Button>
     );
@@ -51,30 +43,14 @@ const isActiveToolbarPlugin = props => plugin => {
   return plugin && plugin.toolbar && !isDisabled;
 };
 
-export const DefaultToolbar = ({
-  plugins,
-  pluginProps,
-  value,
-  onChange,
-  onDone,
-  classes
-}) => {
-  const filtered = plugins
-    .filter(isActiveToolbarPlugin(pluginProps))
-    .map(p => p.toolbar);
+export const DefaultToolbar = ({ plugins, pluginProps, value, onChange, onDone, classes }) => {
+  const filtered = plugins.filter(isActiveToolbarPlugin(pluginProps)).map(p => p.toolbar);
 
   return (
     <div className={classes.defaultToolbar}>
-      <div>
+      <div className={classes.buttonsContainer}>
         {filtered.map((p, index) => {
-          return (
-            <ToolbarButton
-              {...p}
-              key={index}
-              value={value}
-              onChange={onChange}
-            />
-          );
+          return <ToolbarButton {...p} key={index} value={value} onChange={onChange} />;
         })}
       </div>
       <DoneButton onClick={onDone} />
@@ -88,7 +64,9 @@ DefaultToolbar.propTypes = {
   pluginProps: PropTypes.object,
   value: SlatePropTypes.value.isRequired,
   onChange: PropTypes.func.isRequired,
-  onDone: PropTypes.func.isRequired
+  onDone: PropTypes.func.isRequired,
+  showDone: PropTypes.bool,
+  addArea: PropTypes.bool
 };
 
 DefaultToolbar.defaultProps = {
@@ -100,6 +78,11 @@ const toolbarStyles = () => ({
     display: 'flex',
     width: '100%',
     justifyContent: 'space-between'
+  },
+  buttonsContainer: {
+    alignItems: 'center',
+    display: 'flex',
+    width: '100%'
   }
 });
 

@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import debug from 'debug';
 import SlatePropTypes from 'slate-prop-types';
 
-import { findSingleNode } from '../utils';
+import { findSingleNode, findParentNode } from '../utils';
 import { withStyles } from '@material-ui/core/styles';
 import DefaultToolbar from './default-toolbar';
 const log = debug('@pie-lib:editable-html:plugins:toolbar');
@@ -23,7 +23,11 @@ export class Toolbar extends React.Component {
     isFocused: PropTypes.bool,
     autoWidth: PropTypes.bool,
     onChange: PropTypes.func.isRequired,
-    pluginProps: PropTypes.object
+    pluginProps: PropTypes.object,
+    toolbarOpts: PropTypes.shape({
+      position: PropTypes.oneOf(['bottom', 'top']),
+      alwaysVisible: PropTypes.bool
+    })
   };
 
   constructor(props) {
@@ -87,6 +91,7 @@ export class Toolbar extends React.Component {
       classes,
       plugins,
       pluginProps,
+      toolbarOpts,
       value,
       autoWidth,
       onChange,
@@ -95,6 +100,7 @@ export class Toolbar extends React.Component {
     } = this.props;
 
     const node = findSingleNode(value);
+    const parentNode = findParentNode(value, node);
 
     log(' --------------> [render] node: ', node);
     log('[render] node: ', node);
@@ -108,28 +114,62 @@ export class Toolbar extends React.Component {
         return p.toolbar.supports && p.toolbar.supports(node, value);
       }
     });
+    const parentPlugin = plugins.find(p => {
+      if (!parentNode) {
+        return;
+      }
+
+      if (p.toolbar) {
+        return p.toolbar.supports && p.toolbar.supports(parentNode, value);
+      }
+    });
 
     log('[render] plugin: ', plugin);
 
+    const handleDone = (change, done) => {
+      let handler = onDone;
+
+      if (plugin && plugin.toolbar && plugin.toolbar.customToolbar) {
+        handler = this.onToolbarDone;
+      }
+
+      handler(change, done);
+
+      if (parentPlugin && parentPlugin.handleDone) {
+        parentPlugin.handleDone(value, node, plugin, onChange);
+      }
+    };
+
     const CustomToolbar =
       plugin && plugin.toolbar && plugin.toolbar.customToolbar
-        ? plugin.toolbar.customToolbar(node, value, this.onToolbarDone)
+        ? plugin.toolbar.customToolbar(node, value, handleDone)
         : null;
 
     log('[render] CustomToolbar: ', CustomToolbar);
+    const parentExtraStyles =
+      parentPlugin && parentPlugin.pluginStyles
+        ? parentPlugin.pluginStyles(parentNode, plugin)
+        : {};
+    const pluginExtraStyles =
+      plugin && plugin.pluginStyles ? plugin.pluginStyles(parentNode, plugin) : {};
+    const extraStyles = {
+      ...pluginExtraStyles,
+      ...parentExtraStyles
+    };
 
-    const names = classNames(
-      classes.toolbar,
-      autoWidth ? classes.autoWidth : classes.fullWidth,
-      isFocused && classes.focused
-    );
+    const names = classNames(classes.toolbar, {
+      [classes.toolbarTop]: toolbarOpts.position === 'top',
+      [classes.focused]: toolbarOpts.alwaysVisible || isFocused,
+      [classes.autoWidth]: autoWidth,
+      [classes.fullWidth]: !autoWidth
+    });
 
     const deletable = node && plugin && plugin.deleteNode;
     const showDone =
-      node && plugin && plugin.toolbar && plugin.toolbar.showDone;
+      node && plugin && plugin.toolbar && plugin.toolbar.showDone && !toolbarOpts.alwaysVisible;
 
     return (
-      <div className={names} onClick={this.onClick}>
+      <div className={names} style={extraStyles} onClick={this.onClick}>
         {CustomToolbar ? (
           <CustomToolbar />
         ) : (
@@ -138,7 +178,7 @@ export class Toolbar extends React.Component {
             pluginProps={pluginProps}
             value={value}
             onChange={onChange}
-            onDone={onDone}
+            onDone={handleDone}
           />
         )}
 
@@ -156,7 +196,7 @@ export class Toolbar extends React.Component {
               <Delete />
             </IconButton>
           )}
-          {showDone && <DoneButton onClick={onDone} />}
+          {showDone && <DoneButton onClick={handleDone} />}
         </div>
       </div>
     );
@@ -176,6 +216,9 @@ const style = {
       '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
     boxSizing: 'border-box',
     display: 'none'
+  },
+  toolbarTop: {
+    top: '-45px'
   },
   fullWidth: {
     width: '100%'

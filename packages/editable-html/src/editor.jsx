@@ -5,11 +5,11 @@ import * as serialization from './serialization';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Value, Block } from 'slate';
-import { buildPlugins, DEFAULT_PLUGINS } from './plugins';
+import { buildPlugins, ALL_PLUGINS, DEFAULT_PLUGINS } from './plugins';
 import debug from 'debug';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
-export { DEFAULT_PLUGINS, serialization };
+export { ALL_PLUGINS, DEFAULT_PLUGINS, serialization };
 
 const log = debug('editable-html:editor');
 
@@ -28,11 +28,24 @@ export class Editor extends React.Component {
     disableUnderline: PropTypes.bool,
     autoWidthToolbar: PropTypes.bool,
     pluginProps: PropTypes.any,
+    responseAreaProps: PropTypes.shape({
+      type: PropTypes.oneOf([
+        'explicit-constructed-response',
+        'inline-dropdown',
+        'drag-in-the-blank'
+      ]),
+      options: PropTypes.object
+    }),
+    toolbarOpts: PropTypes.shape({
+      position: PropTypes.oneOf(['bottom', 'top']),
+      alwaysVisible: PropTypes.bool
+    }),
     activePlugins: PropTypes.arrayOf(values => {
-      const allValid = values.every(v => DEFAULT_PLUGINS.includes(v));
+      const allValid = values.every(v => ALL_PLUGINS.includes(v));
+
       return (
         !allValid &&
-        new Error(`Invalid values: ${values}, values must be one of [${DEFAULT_PLUGINS.join(',')}]`)
+        new Error(`Invalid values: ${values}, values must be one of [${ALL_PLUGINS.join(',')}]`)
       );
     }),
     className: PropTypes.string
@@ -40,7 +53,11 @@ export class Editor extends React.Component {
 
   static defaultProps = {
     disableUnderline: true,
-    onFocus: () => {}
+    onFocus: () => {},
+    toolbarOpts: {
+      position: 'bottom',
+      alwaysVisible: false
+    }
   };
 
   constructor(props) {
@@ -110,13 +127,25 @@ export class Editor extends React.Component {
           log('[table:onBlur]...');
           this.onPluginBlur();
         }
+      },
+      responseArea: {
+        type: props.responseAreaProps && props.responseAreaProps.type,
+        options: props.responseAreaProps && props.responseAreaProps.options,
+        onFocus: () => {
+          log('[table:onFocus]...');
+          this.onPluginFocus();
+        },
+        onBlur: () => {
+          log('[table:onBlur]...');
+          this.onPluginBlur();
+        }
       }
     });
   }
 
   onPluginBlur = e => {
-    log('[onPluginBlur]', e.relatedTarget);
-    const target = e.relatedTarget;
+    log('[onPluginBlur]', e && e.relatedTarget);
+    const target = e && e.relatedTarget;
 
     const node = target ? findNode(target, this.state.value) : null;
     log('[onPluginBlur] node: ', node);
@@ -126,8 +155,8 @@ export class Editor extends React.Component {
   };
 
   onPluginFocus = e => {
-    log('[onPluginFocus]', e.target);
-    const target = e.target;
+    log('[onPluginFocus]', e && e.target);
+    const target = e && e.target;
     if (target) {
       const node = findNode(target, this.state.value);
       log('[onPluginFocus] node: ', node);
@@ -280,17 +309,21 @@ export class Editor extends React.Component {
   };
 
   render() {
-    const { disabled, highlightShape, classes, className, pluginProps } = this.props;
+    const { disabled, highlightShape, classes, className, pluginProps, toolbarOpts } = this.props;
     const { value, focusedNode } = this.state;
 
     log('[render] value: ', value);
     const sizeStyle = this.buildSizeStyle();
+    const names = classNames(
+      {
+        [classes.withBg]: highlightShape,
+        [classes.toolbarOnTop]: toolbarOpts.alwaysVisible && toolbarOpts.position === 'top'
+      },
+      className
+    );
 
     return (
-      <div
-        style={{ width: sizeStyle.width }}
-        className={classNames(highlightShape && classes.withBg, className)}
-      >
+      <div style={{ width: sizeStyle.width }} className={names}>
         <SlateEditor
           plugins={this.plugins}
           ref={r => (this.editor = r)}
@@ -299,10 +332,12 @@ export class Editor extends React.Component {
           onBlur={this.onBlur}
           onFocus={this.onFocus}
           focusedNode={focusedNode}
+          normalize={this.normalize}
           readOnly={disabled}
           className={classes.slateEditor}
           style={{ height: sizeStyle.height }}
           pluginProps={pluginProps}
+          toolbarOpts={toolbarOpts}
         />
       </div>
     );
@@ -315,6 +350,10 @@ const styles = {
   },
   slateEditor: {
     fontFamily: 'Roboto, sans-serif'
+  },
+  toolbarOnTop: {
+    marginTop: '45px'
   }
 };
+
 export default withStyles(styles)(Editor);

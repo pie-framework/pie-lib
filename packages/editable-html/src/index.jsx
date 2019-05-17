@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Editor from './editor';
+import Editor, { DEFAULT_PLUGINS, ALL_PLUGINS } from './editor';
 import { htmlToValue, valueToHtml } from './serialization';
 import debug from 'debug';
 
@@ -8,7 +8,7 @@ const log = debug('@pie-lib:editable-html');
 /**
  * Export lower level Editor and serialization functions.
  */
-export { htmlToValue, valueToHtml, Editor };
+export { htmlToValue, valueToHtml, Editor, DEFAULT_PLUGINS, ALL_PLUGINS };
 
 /**
  * Wrapper around the editor that exposes a `markup` and `onChange(markup:string)` api.

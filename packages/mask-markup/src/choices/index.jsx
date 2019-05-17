@@ -17,7 +17,7 @@ export default class Choices extends React.Component {
             disabled={disabled}
             key={`${v.value}-${index}`}
             value={v.value}
-            label={v.label}
+            id={v.id}
             targetId={'1'}
           />
         ))}

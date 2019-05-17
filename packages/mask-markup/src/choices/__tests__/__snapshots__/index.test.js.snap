@@ -35,21 +35,18 @@ exports[`index Choices renders correctly with default props 1`] = `
   <DragSource(WithStyles(Component))
     disabled={false}
     key="Jumped-0"
-    label="Jumped"
     targetId="1"
     value="Jumped"
   />
   <DragSource(WithStyles(Component))
     disabled={false}
     key="Laughed-1"
-    label="Laughed"
     targetId="1"
     value="Laughed"
   />
   <DragSource(WithStyles(Component))
     disabled={false}
     key="Spoon-2"
-    label="Spoon"
     targetId="1"
     value="Spoon"
   />
@@ -61,21 +58,18 @@ exports[`index Choices renders correctly with disabled prop as true 1`] = `
   <DragSource(WithStyles(Component))
     disabled={true}
     key="Jumped-0"
-    label="Jumped"
     targetId="1"
     value="Jumped"
   />
   <DragSource(WithStyles(Component))
     disabled={true}
     key="Laughed-1"
-    label="Laughed"
     targetId="1"
     value="Laughed"
   />
   <DragSource(WithStyles(Component))
     disabled={true}
     key="Spoon-2"
-    label="Spoon"
     targetId="1"
     value="Spoon"
   />
