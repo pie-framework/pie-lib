@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { renderMath } from '@pie-lib/math-rendering';
 import Choices from './choices';
 import Blank from './components/blank';
 import { withMask } from './with-mask';
@@ -37,11 +38,15 @@ export default class DragInTheBlank extends React.Component {
     feedback: PropTypes.object
   };
 
+  componentDidUpdate() {
+    renderMath(this.rootRef);
+  }
+
   render() {
     const { markup, layout, value, onChange, choices, disabled, feedback } = this.props;
 
     return (
-      <div>
+      <div ref={ref => ref && (this.rootRef = ref)}>
         <Choices value={choices} disabled={disabled} />
         <Masked
           markup={markup}

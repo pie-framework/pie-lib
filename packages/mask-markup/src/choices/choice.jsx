@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import debug from 'debug';
 import { DragSource } from '@pie-lib/drag';
 import { withStyles } from '@material-ui/core/styles';
@@ -32,18 +31,11 @@ const tileSource = {
   canDrag(props) {
     return !props.disabled;
   },
-  beginDrag(props, monitor, component) {
-    /**
-     * Need this in order to have the preview of the item accurately
-     * (Math rendering especially)
-     * */
-    // eslint-disable-next-line
-    const choiceDOM = ReactDOM.findDOMNode(component);
-
+  beginDrag(props) {
     return {
       id: props.targetId,
       value: props.id,
-      label: (choiceDOM && choiceDOM.outerHTML) || props.value,
+      label: props.value,
       instanceId: props.instanceId
     };
   },
