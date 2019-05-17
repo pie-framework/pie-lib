@@ -247,7 +247,7 @@ export class GridDemo extends React.Component {
   constructor(props) {
     super(props);
 
-    const toolsArr = [tools.point(), tools.circle(), tools.polygon()];
+    const toolsArr = [tools.point(), tools.circle(), tools.polygon(), tools.sine()];
     this.state = {
       currentTool: toolsArr[2],
       tools: toolsArr,
@@ -279,48 +279,49 @@ export class GridDemo extends React.Component {
           labelStep: 1
         },
         backgroundMarks: [
-          {
-            type: 'polygon',
-            points: [
-              {
-                x: -2,
-                y: -2
-              },
-              {
-                x: -2,
-                y: -3
-              },
-              {
-                x: -1,
-                y: -4
-              },
-              {
-                x: 1,
-                y: -3
-              },
-              {
-                x: 1,
-                y: -2
-              },
-              {
-                x: -1,
-                y: -3
-              },
-              {
-                x: 0,
-                y: -1
-              },
-              {
-                x: -3,
-                y: -1
-              },
-              {
-                x: -3,
-                y: -2
-              }
-            ],
-            closed: true
-          }
+          { type: 'sine', root: { x: -2, y: 0 }, edge: { x: -1, y: 1 } }
+          // {
+          //   type: 'polygon',
+          //   points: [
+          //     {
+          //       x: -2,
+          //       y: -2
+          //     },
+          //     {
+          //       x: -2,
+          //       y: -3
+          //     },
+          //     {
+          //       x: -1,
+          //       y: -4
+          //     },
+          //     {
+          //       x: 1,
+          //       y: -3
+          //     },
+          //     {
+          //       x: 1,
+          //       y: -2
+          //     },
+          //     {
+          //       x: -1,
+          //       y: -3
+          //     },
+          //     {
+          //       x: 0,
+          //       y: -1
+          //     },
+          //     {
+          //       x: -3,
+          //       y: -1
+          //     },
+          //     {
+          //       x: -3,
+          //       y: -2
+          //     }
+          //   ],
+          //   closed: true
+          // }
         ],
         marks: [
           // {
