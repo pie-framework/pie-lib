@@ -279,7 +279,7 @@ export class GridDemo extends React.Component {
           labelStep: 1
         },
         backgroundMarks: [
-          { type: 'sine', root: { x: -2, y: 0 }, edge: { x: -1, y: 1 } }
+          { type: 'sine', root: { x: 0, y: 0 }, edge: { x: 1, y: 1 } }
           // {
           //   type: 'polygon',
           //   points: [
