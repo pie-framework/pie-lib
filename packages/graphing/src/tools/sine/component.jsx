@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { ToolPropType } from '../types';
 import debug from 'debug';
 import { types } from '@pie-lib/plot';
-import { LinePath } from '@vx/shape';
+import LinePath from './line-path';
 import { Group } from '@vx/group';
 import { curveMonotoneX, curveNatural } from '@vx/curve';
 // import { genDateValue } from '@vx/mock-data';
@@ -36,7 +36,7 @@ const sinY = (amplitude, freq) => x => {
 
 const buildDataPoints = (min, max, root, amplitude, freq) => {
   const fn = sinY(amplitude, freq);
-  const unshifted = _.range(min, max + freq / 40, freq / 40).map(v => new Point(v, fn(v)));
+  const unshifted = _.range(min, max + freq / 4, freq / 4).map(v => new Point(v, fn(v)));
   return unshifted.map(p => p.add(new Point(root.x, root.y)));
 };
 
@@ -99,6 +99,7 @@ class RawSine extends React.Component {
           ySCale={d => graphProps.scale.y(d.y)}
           strokeWidth={2}
           data={raw}
+          graphProps={graphProps}
           //curve={curveMonotoneX}
         />
 
