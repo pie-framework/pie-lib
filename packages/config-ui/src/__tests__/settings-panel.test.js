@@ -21,7 +21,29 @@ describe('Settings Panel', () => {
       choiceAreaLayout: configure.settingsOrientation && {
         type: 'radio',
         label: configure.orientationLabel,
-        choices: [{ label: 'opt1', value: 'opt1' }, { label: 'opt2', value: 'opt2' }]
+        choices: [{ label: 'opt1', value: 'opt1' }, { label: 'opt2', value: 'opt2' }],
+        equationEditor: dropdown('Dropdown', [
+          'geometry',
+          'advanced-algebra',
+          'statistics',
+          'everything'
+        ]),
+        graph: numberFields('Graph Display Size', {
+          domain: {
+            label: 'Domain',
+            suffix: 'px'
+          },
+          range: {
+            label: 'Range',
+            suffix: 'px'
+          },
+          width: {
+            label: 'Width',
+            suffix: 'px',
+            min: 50,
+            max: 250
+          }
+        })
       },
       editChoiceLabel: { type: 'toggle', label: 'Edit choice label', isConfigProperty: true }
     }

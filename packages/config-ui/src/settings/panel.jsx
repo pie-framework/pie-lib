@@ -33,16 +33,24 @@ Radio.propTypes = { ...baseTypes, choices: PropTypes.arrayOf(PropTypes.shape(lab
 const Dropdown = withStyles({
   label: {
     margin: 0,
-    fontSize: '0.8rem'
+    fontSize: '0.85rem'
+  },
+  wrapper: {
+    marginTop: '4px',
+    border: '2px solid lightgrey',
+    borderRadius: '4px',
+    padding: '0 8px'
   }
 })(({ classes, label, value, onChange, choices }) => {
   return (
     <div>
       {label && <p className={classes.label}>{label}</p>}
       <Select
+        className={classes.wrapper}
         value={value || (choices && choices[0])}
         onChange={({ target }) => onChange(target.value)}
         input={<Input id={`dropdown-${label}`} />}
+        disableUnderline
       >
         {choices.map((l, index) => (
           <MenuItem key={index} value={l}>
@@ -59,7 +67,14 @@ Dropdown.propTypes = { ...baseTypes, choices: PropTypes.arrayOf(PropTypes.string
 const NumberField = withStyles({
   field: {
     width: '35%',
-    marginRight: '24px'
+    marginRight: '24px',
+    marginTop: '8px'
+  },
+  wrapper: {
+    marginTop: '4px',
+    border: '2px solid lightgrey',
+    borderRadius: '4px',
+    padding: '0 8px'
   }
 })(({ classes, label, value, onChange = () => {}, suffix, min, max }) => {
   return (
@@ -72,6 +87,8 @@ const NumberField = withStyles({
       suffix={suffix}
       className={classes.field}
       showErrorWhenOutsideRange
+      inputClassName={classes.wrapper}
+      disableUnderline
     />
   );
 });
@@ -81,7 +98,8 @@ NumberField.propTypes = {
   classes: PropTypes.object,
   suffix: PropTypes.string,
   min: PropTypes.number,
-  max: PropTypes.number
+  max: PropTypes.number,
+  value: PropTypes.number
 };
 
 const ToggleWrapper = ({ label, value, onChange }) => (
@@ -104,6 +122,10 @@ const Group = withStyles(theme => ({
   groupHeader: {
     fontSize: '10px',
     fontWeight: 500
+  },
+  numberFields: {
+    marginBottom: 0,
+    fontSize: '0.85rem'
   }
 }))(props => {
   const { classes, model, label, group, configuration, onChange } = props;
@@ -133,8 +155,8 @@ const Group = withStyles(theme => ({
 
     if (type === 'numberFields') {
       return (
-        <div>
-          <p>{label}</p>
+        <div key={`numberField-${label}`}>
+          <p className={classes.numberFields}>{label}</p>
           {Object.keys(fields).map(fieldKey => {
             return getTag(group, `${key}.${fieldKey}`, `${key}.fields.${fieldKey}`);
           })}
