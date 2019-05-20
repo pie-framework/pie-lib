@@ -31,15 +31,13 @@ const getAmplitudeAndFreq = (root, edge) => {
 const sinY = (amplitude, freq) => x => {
   const num = 2 * Math.PI * x;
   const frac = num / freq;
-  return amplitude * parseFloat(Math.sin(frac).toFixed(3));
+  return amplitude * parseFloat(Math.sin(frac).toFixed(10));
 };
 
-const buildDataPoints = (min, max, amplitude, freq) => {
+const buildDataPoints = (min, max, root, amplitude, freq) => {
   const fn = sinY(amplitude, freq);
-  return _.range(min, max + freq / 4, freq / 4).map(v => ({
-    x: v,
-    y: fn(v)
-  }));
+  const unshifted = _.range(min, max + freq / 40, freq / 40).map(v => new Point(v, fn(v)));
+  return unshifted.map(p => p.add(new Point(root.x, root.y)));
 };
 
 class RawSine extends React.Component {
@@ -89,7 +87,7 @@ class RawSine extends React.Component {
     log('amplitude: ', amplitude, 'freq: ', freq);
     // now build out the data points
     const { domain } = graphProps;
-    const dataPoints = buildDataPoints(domain.min, domain.max, amplitude, freq);
+    const dataPoints = buildDataPoints(domain.min, domain.max, root, amplitude, freq);
 
     log('dataPoints:', dataPoints);
     const raw = dataPoints.map(d => [graphProps.scale.x(d.x), graphProps.scale.y(d.y)]);
@@ -101,6 +99,7 @@ class RawSine extends React.Component {
           ySCale={d => graphProps.scale.y(d.y)}
           strokeWidth={2}
           data={raw}
+          //curve={curveMonotoneX}
         />
 
         <BasePoint
@@ -128,41 +127,6 @@ const Sine = withStyles(theme => ({
     stroke: theme.palette.secondary.light
   }
 }))(RawSine);
-
-// ({ classes, root, edge, graphProps }) => {
-//   log('graphProps', graphProps);
-
-//   const { amplitude, freq } = getAmplitudeAndFreq(root, edge);
-
-//   log('amplitude: ', amplitude, 'freq: ', freq);
-//   // now build out the data points
-//   const { domain } = graphProps;
-//   const dataPoints = buildDataPoints(domain.min, domain.max, amplitude, freq);
-
-//   log('dataPoints:', dataPoints);
-//   const raw = dataPoints.map(d => [graphProps.scale.x(d.x), graphProps.scale.y(d.y)]);
-//   return (
-//     <g>
-//       <LinePath
-//         className={classNames(classes.sinePath)}
-//         xScale={d => graphProps.scale.x(d.x)}
-//         ySCale={d => graphProps.scale.y(d.y)}
-//         strokeWidth={2}
-//         data={raw}
-//       />
-
-//       <BasePoint graphProps={graphProps} x={root.x} y={root.y} />
-//       <BasePoint
-//         graphProps={graphProps}
-//         x={edge.x}
-//         y={edge.y}
-//         onDragStart={startEdgeDrag}
-//         onDragStop={stopEdgeDrag}
-//         onDrag={dragEdge}
-//       />
-//     </g>
-//   );
-// });
 
 export default class Component extends React.Component {
   static propTypes = {
