@@ -60,7 +60,6 @@ const Sample = ({ width, height }) => {
                 y={d => yScale(y(d))}
                 stroke={'#ffffff'}
                 strokeWidth={1}
-                curve={i % 2 == 0 ? curveMonotoneX : undefined}
               />
             </Group>
           );
@@ -73,34 +72,45 @@ const Sine = ({ root, edge, graphProps }) => {
   log('graphProps', graphProps);
 
   // M0,0 L 100,100 L 300,200
-  const data = [
-    // xy(-6, -1),
-    // xy(-5, 1),
-    // xy(-4, -1),
-    xy(-3, 1),
-    xy(-2, -1),
-    xy(-1, 1),
-    xy(0, -1),
-    xy(1, 1),
-    xy(2, -1),
-    xy(3, 1),
-    xy(4, -1),
-    xy(5, 1),
-    xy(6, -1)
-  ];
+  const yVal = (amplitude, freq) => x => {
+    const num = 2 * Math.PI * x;
+    const frac = num / freq;
+    console.log('x', x, 'num', num, 'freq, ', freq, 'frac:', frac);
+    return amplitude * parseFloat(Math.sin(frac).toFixed(3));
+  };
+  const data = _.range(0, 5, 0.01).map(v => {
+    const y = yVal(1, 1)(v);
+    return { x: v, y };
+    // console.log('v:', v.toFixed(2), 'y sin:', y.toFixed(4));
+  });
+  console.log('data:', data);
+  // const data = [
+  //   // xy(-6, -1),
+  //   // xy(-5, 1),
+  //   // xy(-4, -1),
+  //   xy(-3, 1),
+  //   xy(-2, -1),
+  //   xy(-1, 1),
+  //   xy(0, -1),
+  //   xy(1, 1),
+  //   xy(2, -1),
+  //   xy(3, 1),
+  //   xy(4, -1),
+  //   xy(5, 1),
+  //   xy(6, -1)
+  // ];
   const raw = data.map(d => [graphProps.scale.x(d.x), graphProps.scale.y(d.y)]);
   console.log('raw:', raw);
   return (
     <LinePath
       xScale={d => {
-        console.log('>>>>', d);
         return graphProps.scale.x(d.x);
       }}
       ySCale={d => graphProps.scale.y(d.y)}
       stroke={'green'}
       strokeWidth={2}
       data={raw}
-      curve={curveMonotoneX}
+      // curve={curveMonotoneX}
     />
   );
 };
