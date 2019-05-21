@@ -247,7 +247,7 @@ export class GridDemo extends React.Component {
   constructor(props) {
     super(props);
 
-    const toolsArr = [tools.point(), tools.circle(), tools.polygon()];
+    const toolsArr = [tools.point(), tools.circle(), tools.polygon(), tools.segment()];
     this.state = {
       currentTool: toolsArr[2],
       tools: toolsArr,
@@ -320,6 +320,17 @@ export class GridDemo extends React.Component {
               }
             ],
             closed: true
+          },
+          {
+            type: 'segment',
+            firstEnd: {
+              x: -5,
+              y: 5
+            },
+            secondEnd: {
+              x: -4,
+              y: 5
+            }
           }
         ],
         marks: [
