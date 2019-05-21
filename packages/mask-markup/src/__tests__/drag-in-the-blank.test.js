@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
 import { DragInTheBlank } from '../index';
-import { choice } from './utils';
 
 const markup = `<div>
   <img src="https://image.shutterstock.com/image-vector/cow-jumped-over-moon-traditional-260nw-1152899330.jpg"></img>
@@ -13,6 +12,7 @@ const markup = `<div>
  <p>5: To see such sport,</p>
  <p>6: And the dish ran away with the {{2}}.</p>
 </div>`;
+const choice = (v, id) => ({ value: v, id });
 
 describe('DragInTheBlank', () => {
   const defaultProps = {
@@ -20,12 +20,12 @@ describe('DragInTheBlank', () => {
     feedback: {},
     markup,
     choices: [
-      choice('Jumped'),
-      choice('Laughed'),
-      choice('Spoon'),
-      choice('Fork'),
-      choice('Bumped'),
-      choice('Smiled')
+      choice('Jumped', '0'),
+      choice('Laughed', '1'),
+      choice('Spoon', '2'),
+      choice('Fork', '3'),
+      choice('Bumped', '4'),
+      choice('Smiled', '5')
     ],
 
     value: {

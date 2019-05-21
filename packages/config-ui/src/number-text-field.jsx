@@ -30,13 +30,15 @@ export class NumberTextField extends React.Component {
     disabled: PropTypes.bool,
     classes: PropTypes.object.isRequired,
     className: PropTypes.string,
+    inputClassName: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     value: PropTypes.number,
     min: PropTypes.number,
     max: PropTypes.number,
     label: PropTypes.string,
     suffix: PropTypes.string,
-    showErrorWhenOutsideRange: PropTypes.bool
+    showErrorWhenOutsideRange: PropTypes.bool,
+    disableUnderline: PropTypes.bool
   };
 
   static defaultProps = {
@@ -143,6 +145,8 @@ export class NumberTextField extends React.Component {
       suffix,
       min,
       max,
+      inputClassName,
+      disableUnderline,
       showErrorWhenOutsideRange
     } = this.props;
     const names = classNames(classes.root, className);
@@ -173,9 +177,9 @@ export class NumberTextField extends React.Component {
           shrink: true
         }}
         InputProps={{
-          endAdornment: suffix && (
-            <InputAdornment position="end">{suffix}</InputAdornment>
-          )
+          endAdornment: suffix && <InputAdornment position="end">{suffix}</InputAdornment>,
+          className: inputClassName,
+          disableUnderline: disableUnderline
         }}
         inputProps={{
           min,

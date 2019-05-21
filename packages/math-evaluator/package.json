@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "0.4.4",
+  "version": "0.5.0",
   "description": "Math evaluator tool for comparing expressions for equality",
   "keywords": [
     "math",

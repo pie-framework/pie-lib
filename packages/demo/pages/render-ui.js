@@ -1,6 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { indicators, Feedback } from '@pie-lib/render-ui';
+import { Collapsible } from '@pie-lib/render-ui';
 import withRoot from '../src/withRoot';
 const { Correct, Incorrect, PartiallyCorrect, NothingSubmitted } = indicators;
 
@@ -50,6 +51,23 @@ class App extends React.Component {
           <br />
           <Feedback correctness="incorrect" feedback="Incorrect" />
         </Section>
+
+        <Section title="Collapsible">
+          <Collapsible
+            labels={{ visible: 'Hide Content', hidden: 'Show Content' }}
+            className={classes.collapsible}
+          >
+            This is the collapsed content.
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+              dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+              mollit anim id est laborum.
+            </p>
+          </Collapsible>
+        </Section>
       </div>
     ) : (
       <div>loading...</div>
@@ -67,6 +85,9 @@ const StyledApp = withStyles(theme => ({
     '& > *': {
       paddingLeft: '20px'
     }
+  },
+  collapsible: {
+    paddingTop: theme.spacing.unit
   }
 }))(App);
 
