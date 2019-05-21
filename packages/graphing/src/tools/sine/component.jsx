@@ -33,12 +33,22 @@ const sinY = (amplitude, freq) => x => {
 };
 
 const buildDataPoints = (min, max, root, amplitude, freq) => {
-  log('[buildDataPoints] min:', min, 'max:', max, 'root:', root);
+  log(
+    '[buildDataPoints] min:',
+    min,
+    'max:',
+    max,
+    'root:',
+    root,
+    'amplitude:',
+    amplitude,
+    'freq:',
+    freq
+  );
   const fn = sinY(amplitude, freq);
-  const xs = xPoints(root.x, freq / 4, min, max);
+  const xs = xPoints(0, freq / 4, min - root.x, max - root.x);
   log('xs:', xs);
-  return xs.map(v => new Point(v, fn(v)));
-  // return unshifted.map(p => p.add(new Point(root.x, root.y)));
+  return xs.map(v => new Point(v, fn(v))).map(p => p.add(new Point(root.x, root.y)));
 };
 
 class RawSine extends React.Component {
@@ -137,7 +147,7 @@ class RawSine extends React.Component {
           root={this.props.root}
           edge={this.props.edge}
           onMove={this.moveLine}
-          // curve={curveMonotoneX}
+          curve={curveMonotoneX}
         />
 
         <BasePoint
