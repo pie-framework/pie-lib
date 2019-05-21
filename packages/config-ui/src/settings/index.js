@@ -26,3 +26,31 @@ export const radio = function() {
     isConfigProperty
   };
 };
+
+export const dropdown = (label, choices, isConfigProperty = false) => {
+  return {
+    type: 'dropdown',
+    label,
+    choices,
+    isConfigProperty
+  };
+};
+
+export const numberField = (label, options, isConfigProperty = false) => ({
+  ...options,
+  label,
+  type: 'numberField',
+  isConfigProperty
+});
+
+export const numberFields = (label, fields, isConfigProperty = false) => {
+  Object.keys(fields).map(key => {
+    fields[key] = numberField(fields[key].label, fields[key], isConfigProperty);
+  });
+
+  return {
+    type: 'numberFields',
+    label,
+    fields
+  };
+};
