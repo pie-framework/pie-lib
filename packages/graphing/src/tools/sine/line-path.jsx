@@ -16,12 +16,13 @@ class RawLinePath extends React.Component {
     graphProps: types.GraphPropsType.isRequired,
     disabled: PropTypes.bool,
     xScale: PropTypes.func.isRequired,
-    yScale: PropTypes.func.isRequired
+    yScale: PropTypes.func.isRequired,
+    root: PointType.isRequired,
+    edge: PointType.isRequired
   };
 
   render() {
     const { data, classes, xScale, yScale, className, disabled, ...rest } = this.props;
-    // const { scale } = graphProps;
     return (
       <vx.LinePath
         data={data}
@@ -52,17 +53,18 @@ export const LinePath = withStyles(theme => ({
 
 export default gridDraggable({
   bounds: (props, { domain, range }) => {
-    return utils.bounds({ x: 0, y: 0 }, domain, range);
+    const area = utils.pointsToArea(props.root, props.edge);
+    return utils.bounds(area, domain, range);
   },
   anchorPoint: props => {
-    const { from } = props;
-    return from;
+    const { root } = props;
+    return root;
   },
   fromDelta: (props, delta) => {
-    const { from, to } = props;
+    const { root, edge } = props;
     return {
-      from: utils.point(from).add(utils.point(delta)),
-      to: utils.point(to).add(utils.point(delta))
+      root: utils.point(root).add(utils.point(delta)),
+      edge: utils.point(edge).add(utils.point(delta))
     };
   }
 })(LinePath);

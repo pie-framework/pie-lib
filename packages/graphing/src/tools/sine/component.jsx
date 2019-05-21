@@ -4,17 +4,15 @@ import { ToolPropType } from '../types';
 import debug from 'debug';
 import { types } from '@pie-lib/plot';
 import LinePath from './line-path';
-import { Group } from '@vx/group';
 import { curveMonotoneX, curveNatural } from '@vx/curve';
 // import { genDateValue } from '@vx/mock-data';
-import { scaleTime, scaleLinear } from '@vx/scale';
-import { extent, max } from 'd3-array';
 import _ from 'lodash';
 import Point from '@mapbox/point-geometry';
 import BasePoint from '../point/base-point';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import { PointType } from '../../../lib/tools/types';
+import { xPoints } from './utils';
 const xy = (x, y) => ({ x, y });
 
 const log = debug('pie-lib:graphing:sine');
@@ -35,9 +33,12 @@ const sinY = (amplitude, freq) => x => {
 };
 
 const buildDataPoints = (min, max, root, amplitude, freq) => {
+  log('[buildDataPoints] min:', min, 'max:', max, 'root:', root);
   const fn = sinY(amplitude, freq);
-  const unshifted = _.range(min, max + freq / 4, freq / 4).map(v => new Point(v, fn(v)));
-  return unshifted.map(p => p.add(new Point(root.x, root.y)));
+  const xs = xPoints(root.x, freq / 4, min, max);
+  log('xs:', xs);
+  return xs.map(v => new Point(v, fn(v)));
+  // return unshifted.map(p => p.add(new Point(root.x, root.y)));
 };
 
 class RawSine extends React.Component {
@@ -45,7 +46,8 @@ class RawSine extends React.Component {
     graphProps: types.GraphPropsType.isRequired,
     classes: PropTypes.object.isRequired,
     root: PointType.isRequired,
-    edge: PointType
+    edge: PointType,
+    onChange: PropTypes.func.isRequired
   };
 
   constructor(props) {
@@ -53,43 +55,72 @@ class RawSine extends React.Component {
     this.state = {};
   }
 
-  startEdgeDrag = edge => {
-    // this.setState({ edge });
-  };
+  startEdgeDrag = () => {};
 
-  stopEdgeDrag = () => {
-    this.setState({ edge: undefined });
-  };
+  stopEdgeDrag = () => this.setState({ edge: undefined });
 
   dragEdge = edge => {
     log('[dragEdge] edge:', edge);
     this.setState({ edge });
   };
 
-  startRootDrag = root => {};
+  startRootDrag = () => {};
 
-  dragRoot = root => {
-    this.setState({ root });
+  dragRoot = root => this.setState({ root });
+
+  moveRoot = root => {
+    const { edge, onChange } = this.props;
+    const update = { root, edge };
+    onChange(update);
   };
 
-  stopRootDrag = () => {
-    this.setState({ root: undefined });
+  moveEdge = edge => {
+    const { root, onChange } = this.props;
+    const update = { root, edge };
+    onChange(update);
+  };
+
+  moveLine = ({ root, edge }) => {
+    const { onChange } = this.props;
+    onChange({ root, edge });
+  };
+
+  stopRootDrag = () => this.setState({ root: undefined });
+  startLineDrag = () => {};
+  stopLineDrag = () => this.setState({ line: undefined });
+  dragLine = line => this.setState({ line });
+
+  getPoints = () => {
+    const { domain } = this.props.graphProps;
+    if (this.state.line) {
+      /** line is being transformed by drag, so we want to build it's data points off of the props instead of the state.line object. */
+      // const root = utils.point(this.props.root).add(this.state.lineAnchor);
+      const { amplitude, freq } = getAmplitudeAndFreq(this.props.root, this.props.edge);
+      const dataPoints = buildDataPoints(domain.min, domain.max, this.props.root, amplitude, freq);
+      return {
+        root: this.state.line.root,
+        edge: this.state.line.edge,
+        dataPoints
+      };
+    }
+
+    const root = this.state.root ? this.state.root : this.props.root;
+    const edge = this.state.edge ? this.state.edge : this.props.edge;
+    const { amplitude, freq } = getAmplitudeAndFreq(root, edge);
+
+    log('[getPoints] amplitude:', amplitude, 'freq:', freq);
+
+    const dataPoints = buildDataPoints(domain.min, domain.max, root, amplitude, freq);
+    console.table(dataPoints);
+    return { root: this.props.root, edge: this.props.edge, dataPoints };
   };
 
   render() {
     const { classes, graphProps } = this.props;
-    log('graphProps', graphProps);
+    const { root, edge, dataPoints } = this.getPoints();
 
-    const edge = this.state.edge ? this.state.edge : this.props.edge;
-    const root = this.state.root ? this.state.root : this.props.root;
-    const { amplitude, freq } = getAmplitudeAndFreq(root, edge);
+    log('root', root.x, root.y, 'edge: ', edge.x, edge.y);
 
-    log('amplitude: ', amplitude, 'freq: ', freq);
-    // now build out the data points
-    const { domain } = graphProps;
-    const dataPoints = buildDataPoints(domain.min, domain.max, root, amplitude, freq);
-
-    log('dataPoints:', dataPoints);
     const raw = dataPoints.map(d => [graphProps.scale.x(d.x), graphProps.scale.y(d.y)]);
     return (
       <g>
@@ -100,24 +131,32 @@ class RawSine extends React.Component {
           strokeWidth={2}
           data={raw}
           graphProps={graphProps}
-          //curve={curveMonotoneX}
+          onDragStart={this.startLineDrag}
+          onDragStop={this.stopLineDrag}
+          onDrag={this.dragLine}
+          root={this.props.root}
+          edge={this.props.edge}
+          onMove={this.moveLine}
+          // curve={curveMonotoneX}
         />
 
         <BasePoint
           graphProps={graphProps}
-          x={this.props.root.x}
-          y={this.props.root.y}
+          x={root.x}
+          y={root.y}
           onDragStart={this.startRootDrag}
           onDragStop={this.stopRootDrag}
           onDrag={this.dragRoot}
+          onMove={this.moveRoot}
         />
         <BasePoint
           graphProps={graphProps}
-          x={this.props.edge.x}
-          y={this.props.edge.y}
+          x={edge.x}
+          y={edge.y}
           onDragStart={this.startEdgeDrag}
           onDragStop={this.stopEdgeDrag}
           onDrag={this.dragEdge}
+          onMove={this.moveEdge}
         />
       </g>
     );
@@ -138,8 +177,16 @@ export default class Component extends React.Component {
 
   static defaultProps = {};
 
+  changeMark = ({ root, edge }) => {
+    const { mark, onChange } = this.props;
+    const update = { ...mark, root, edge };
+    onChange(mark, update);
+  };
+
   render() {
     const { mark, graphProps } = this.props;
-    return <Sine root={mark.root} edge={mark.edge} graphProps={graphProps} />;
+    return (
+      <Sine root={mark.root} edge={mark.edge} graphProps={graphProps} onChange={this.changeMark} />
+    );
   }
 }
