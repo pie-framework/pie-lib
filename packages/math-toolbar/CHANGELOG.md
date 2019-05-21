@@ -3,16 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [1.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.1.0...@pie-lib/math-toolbar@1.2.0) (2019-05-02)
-
+# [1.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.2.4...@pie-lib/math-toolbar@1.3.0) (2019-05-15)
 
 ### Features
 
-* **mask-markup:** merging with the develop branch ([0153c1a](https://github.com/pie-framework/pie-lib/commit/0153c1a))
+- **math-toolbar:** input will automatically grab focus ([2a344fb](https://github.com/pie-framework/pie-lib/commit/2a344fb))
 
+## [1.2.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.2.3...@pie-lib/math-toolbar@1.2.4) (2019-05-14)
 
+### Bug Fixes
 
+- **math-toolbar:** small styling fix for z-index ([bf46cc4](https://github.com/pie-framework/pie-lib/commit/bf46cc4))
 
+## [1.2.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.2.2...@pie-lib/math-toolbar@1.2.3) (2019-05-09)
+
+**Note:** Version bump only for package @pie-lib/math-toolbar
+
+## [1.2.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.2.1...@pie-lib/math-toolbar@1.2.2) (2019-05-08)
+
+### Bug Fixes
+
+- **math-toolbar:** math styling fixes ([c97a948](https://github.com/pie-framework/pie-lib/commit/c97a948))
+
+## [1.2.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.2.0...@pie-lib/math-toolbar@1.2.1) (2019-05-03)
+
+**Note:** Version bump only for package @pie-lib/math-toolbar
+
+# [1.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.1.0...@pie-lib/math-toolbar@1.2.0) (2019-05-02)
+
+### Features
+
+- **mask-markup:** merging with the develop branch ([0153c1a](https://github.com/pie-framework/pie-lib/commit/0153c1a))
 
 # [1.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.0.1...@pie-lib/math-toolbar@1.1.0) (2019-05-01)
 

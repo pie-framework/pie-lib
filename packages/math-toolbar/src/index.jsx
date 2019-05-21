@@ -10,6 +10,7 @@ export { MathPreview };
 
 export class MathToolbar extends React.Component {
   static propTypes = {
+    autoFocus: PropTypes.bool,
     allowAnswerBlock: PropTypes.bool,
     controlledKeypad: PropTypes.bool,
     keypadMode: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -27,6 +28,7 @@ export class MathToolbar extends React.Component {
   static defaultProps = {
     classNames: {},
     keypadMode: 'everything',
+    autoFocus: false,
     allowAnswerBlock: false,
     controlledKeypad: false,
     noDecimal: false,
@@ -61,6 +63,7 @@ export class MathToolbar extends React.Component {
     const { latex } = this.state;
     const {
       classNames,
+      autoFocus,
       allowAnswerBlock,
       onAnswerBlockAdd,
       controlledKeypad,
@@ -73,6 +76,7 @@ export class MathToolbar extends React.Component {
 
     return (
       <PureToolbar
+        autoFocus={autoFocus}
         classNames={classNames}
         onAnswerBlockAdd={onAnswerBlockAdd}
         allowAnswerBlock={allowAnswerBlock}
@@ -101,6 +105,7 @@ export class RawPureToolbar extends React.Component {
     additionalKeys: PropTypes.array,
     onFocus: PropTypes.func,
     classes: PropTypes.object.isRequired,
+    autoFocus: PropTypes.bool,
     noDecimal: PropTypes.bool,
     allowAnswerBlock: PropTypes.bool,
     controlledKeypad: PropTypes.bool,
@@ -110,6 +115,7 @@ export class RawPureToolbar extends React.Component {
   render() {
     const {
       classNames,
+      autoFocus,
       allowAnswerBlock,
       onAnswerBlockAdd,
       controlledKeypad,
@@ -128,6 +134,7 @@ export class RawPureToolbar extends React.Component {
       <div className={cx(classes.pureToolbar, classNames.toolbar)}>
         <div />
         <EditorAndPad
+          autoFocus={autoFocus}
           keypadMode={keypadMode}
           classNames={classNames}
           controlledKeypad={controlledKeypad}

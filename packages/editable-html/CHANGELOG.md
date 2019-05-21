@@ -3,16 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [7.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.3.8...@pie-lib/editable-html@7.4.0) (2019-05-02)
+## [7.5.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.5.3...@pie-lib/editable-html@7.5.4) (2019-05-15)
 
+**Note:** Version bump only for package @pie-lib/editable-html
+
+## [7.5.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.5.2...@pie-lib/editable-html@7.5.3) (2019-05-14)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+## [7.5.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.5.1...@pie-lib/editable-html@7.5.2) (2019-05-09)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+## [7.5.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.5.0...@pie-lib/editable-html@7.5.1) (2019-05-08)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+# [7.5.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.4.1...@pie-lib/editable-html@7.5.0) (2019-05-03)
 
 ### Features
 
-* **mask-markup:** merging with the develop branch ([0153c1a](https://github.com/pie-framework/pie-lib/commit/0153c1a))
+- **editable-html:** add onFocus prop support ([e7c471b](https://github.com/pie-framework/pie-lib/commit/e7c471b))
 
+## [7.4.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.4.0...@pie-lib/editable-html@7.4.1) (2019-05-03)
 
+### Bug Fixes
 
+- **toolbar:** fixed the issue that was caused by importing a button from a different file ([ec08f12](https://github.com/pie-framework/pie-lib/commit/ec08f12))
 
+# [7.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.3.8...@pie-lib/editable-html@7.4.0) (2019-05-02)
+
+### Features
+
+- **mask-markup:** merging with the develop branch ([0153c1a](https://github.com/pie-framework/pie-lib/commit/0153c1a))
 
 ## [7.3.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.3.7...@pie-lib/editable-html@7.3.8) (2019-05-01)
 

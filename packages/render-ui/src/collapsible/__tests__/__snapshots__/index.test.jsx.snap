@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`collapsible snapshot renders 1`] = `
+<div>
+  <div
+    onClick={[Function]}
+  >
+    <span>
+      Show
+    </span>
+  </div>
+  <WithStyles(Collapse)
+    in={false}
+    timeout="auto"
+    unmountOnExit={true}
+  />
+</div>
+`;

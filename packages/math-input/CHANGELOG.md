@@ -3,16 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [6.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.1.0...@pie-lib/math-input@6.2.0) (2019-05-02)
+## [6.2.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.2.3...@pie-lib/math-input@6.2.4) (2019-05-14)
 
+**Note:** Version bump only for package @pie-lib/math-input
+
+## [6.2.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.2.2...@pie-lib/math-input@6.2.3) (2019-05-09)
+
+### Bug Fixes
+
+- **math-input:** fix trigo keypad buttons ([cdd7649](https://github.com/pie-framework/pie-lib/commit/cdd7649))
+
+## [6.2.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.2.1...@pie-lib/math-input@6.2.2) (2019-05-08)
+
+### Bug Fixes
+
+- **math-input:** keypad operator fixes and styling adjustments ([c18757a](https://github.com/pie-framework/pie-lib/commit/c18757a))
+
+## [6.2.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.2.0...@pie-lib/math-input@6.2.1) (2019-05-03)
+
+**Note:** Version bump only for package @pie-lib/math-input
+
+# [6.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.1.0...@pie-lib/math-input@6.2.0) (2019-05-02)
 
 ### Features
 
-* **mask-markup:** merging with the develop branch ([0153c1a](https://github.com/pie-framework/pie-lib/commit/0153c1a))
-
-
-
-
+- **mask-markup:** merging with the develop branch ([0153c1a](https://github.com/pie-framework/pie-lib/commit/0153c1a))
 
 # [6.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.0.0...@pie-lib/math-input@6.1.0) (2019-05-01)
 

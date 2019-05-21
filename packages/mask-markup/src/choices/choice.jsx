@@ -18,7 +18,10 @@ export const BlankContent = withStyles(theme => ({
   const { connectDragSource, classes, disabled } = props;
   return connectDragSource(
     <span className={classnames(classes.choice, disabled && classes.disabled)}>
-      <Chip label={props.value} variant={disabled ? 'outlined' : undefined} />
+      <Chip
+        label={<span dangerouslySetInnerHTML={{ __html: props.value }} />}
+        variant={disabled ? 'outlined' : undefined}
+      />
     </span>,
     {}
   );

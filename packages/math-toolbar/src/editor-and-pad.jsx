@@ -31,6 +31,7 @@ export class EditorAndPad extends React.Component {
   static propTypes = {
     classNames: PropTypes.object,
     keypadMode: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    autoFocus: PropTypes.bool,
     allowAnswerBlock: PropTypes.bool,
     showKeypad: PropTypes.bool,
     controlledKeypad: PropTypes.bool,
@@ -42,6 +43,12 @@ export class EditorAndPad extends React.Component {
     onChange: PropTypes.func.isRequired,
     classes: PropTypes.object
   };
+
+  componentDidMount() {
+    if (this.input && this.props.autoFocus) {
+      this.input.focus();
+    }
+  }
 
   onClick = data => {
     const { noDecimal } = this.props;
@@ -176,21 +183,11 @@ const styles = theme => ({
     borderBottom: `solid 1px ${theme.palette.primary.main}`
   },
   mathToolbar: {
-    zIndex: 10,
+    zIndex: 9,
     position: 'relative',
     textAlign: 'center',
     '& > .mq-math-mode': {
-      border: 'solid 0px lightgrey',
-      '& .mq-non-leaf': {
-        display: 'inline-flex',
-        alignItems: 'center'
-      },
-      '& .mq-non-leaf.mq-fraction': {
-        display: 'inline-block'
-      },
-      '& .mq-paren': {
-        verticalAlign: 'middle'
-      }
+      border: 'solid 1px lightgrey'
     },
     '& > .mq-focused': {
       outline: 'none',

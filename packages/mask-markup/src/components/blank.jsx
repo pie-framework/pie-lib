@@ -1,5 +1,7 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import { renderMath } from '@pie-lib/math-rendering';
 import debug from 'debug';
 import { DropTarget } from '@pie-lib/drag';
 import { withStyles } from '@material-ui/core/styles';
@@ -37,14 +39,22 @@ export class BlankContent extends React.Component {
     onChange: PropTypes.func
   };
 
+  componentDidUpdate() {
+    renderMath(this.rootRef);
+  }
+
   render() {
     const { id, disabled, value, classes, isOver, dragItem, correct, onChange } = this.props;
     const label = dragItem && isOver ? dragItem.label : value;
 
     return (
       <Chip
+        ref={ref => {
+          //eslint-disable-next-line
+          this.rootRef = ReactDOM.findDOMNode(ref);
+        }}
         component="span"
-        label={label}
+        label={<span dangerouslySetInnerHTML={{ __html: label }} />}
         className={classnames(
           classes.chip,
           classes[correct !== undefined ? (correct ? 'correct' : 'incorrect') : undefined]
@@ -76,8 +86,8 @@ const tileTarget = {
   },
   canDrop(props, monitor) {
     const draggedItem = monitor.getItem();
-    const canDrop = draggedItem.instanceId === props.instanceId;
-    return canDrop;
+
+    return draggedItem.instanceId === props.instanceId;
   }
 };
 

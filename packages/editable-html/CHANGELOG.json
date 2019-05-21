@@ -1898,5 +1898,50 @@
     "committerDate": "2019-05-03 12:44:30 +0300",
     "isTagged": true,
     "tag": "@pie-lib/editable-html@7.4.1"
+  },
+  {
+    "type": "feat",
+    "scope": "editable-html",
+    "subject": "add onFocus prop support",
+    "merge": null,
+    "header": "feat(editable-html): add onFocus prop support",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "e7c471b34263f2d2e9b17e6b168aa0bec5c6aad8",
+    "gitTags": " (origin/feat/editable-html-on-focus)",
+    "committerDate": "2019-05-03 13:36:11 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.5.0"
+  },
+  {
+    "type": "chore",
+    "scope": null,
+    "subject": "autoFocus prop for automatically focusing math toolbar",
+    "merge": null,
+    "header": "chore: autoFocus prop for automatically focusing math toolbar",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "c600e24019914ffeec4058cafe6824262001e5db",
+    "gitTags": "",
+    "committerDate": "2019-05-15 16:31:20 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.5.4"
+  },
+  {
+    "type": "chore",
+    "scope": "editable-html",
+    "subject": "math plugin default value should be empty",
+    "merge": null,
+    "header": "chore(editable-html): math plugin default value should be empty",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "b350094d3f3ca7684178ef979ebb6a688a09fd46",
+    "gitTags": "",
+    "committerDate": "2019-05-15 16:23:01 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.5.4"
   }
 ]

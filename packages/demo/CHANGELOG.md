@@ -3,16 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [4.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@4.0.6...@pie-lib/demo@4.1.0) (2019-05-02)
+## [4.2.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@4.2.1...@pie-lib/demo@4.2.2) (2019-05-15)
 
+**Note:** Version bump only for package @pie-lib/demo
+
+## [4.2.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@4.2.0...@pie-lib/demo@4.2.1) (2019-05-15)
+
+### Bug Fixes
+
+- Added className property on Collapsible wrapper. ([4c5f39b](https://github.com/pie-framework/pie-lib/commit/4c5f39b))
+
+# [4.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@4.1.5...@pie-lib/demo@4.2.0) (2019-05-14)
 
 ### Features
 
-* **mask-markup:** merging with the develop branch ([0153c1a](https://github.com/pie-framework/pie-lib/commit/0153c1a))
+- Added Collapsible Element. ([600b71c](https://github.com/pie-framework/pie-lib/commit/600b71c))
 
+## [4.1.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@4.1.4...@pie-lib/demo@4.1.5) (2019-05-14)
 
+**Note:** Version bump only for package @pie-lib/demo
 
+## [4.1.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@4.1.3...@pie-lib/demo@4.1.4) (2019-05-09)
 
+**Note:** Version bump only for package @pie-lib/demo
+
+## [4.1.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@4.1.2...@pie-lib/demo@4.1.3) (2019-05-08)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+## [4.1.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@4.1.1...@pie-lib/demo@4.1.2) (2019-05-03)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+## [4.1.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@4.1.0...@pie-lib/demo@4.1.1) (2019-05-03)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+# [4.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@4.0.6...@pie-lib/demo@4.1.0) (2019-05-02)
+
+### Features
+
+- **mask-markup:** merging with the develop branch ([0153c1a](https://github.com/pie-framework/pie-lib/commit/0153c1a))
 
 ## [4.0.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@4.0.5...@pie-lib/demo@4.0.6) (2019-05-01)
 
