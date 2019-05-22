@@ -4,7 +4,7 @@ import _ from 'lodash';
 
 export const tool = () => ({
   type: 'segment',
-  Component: props => <LineComponent {...props} type="segment" />,
+  Component: LineComponent,
   addPoint: (point, mark) => {
     if (!mark) {
       return {
