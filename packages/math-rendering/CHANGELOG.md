@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@1.2.10...@pie-lib/math-rendering@1.2.11) (2019-05-22)
+
+
+### Bug Fixes
+
+* fontUrl - rm rawgit, use unpkg.com ([e3c840a](https://github.com/pie-framework/pie-lib/commit/e3c840a))
+
+
+
+
+
 ## [1.2.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@1.2.9...@pie-lib/math-rendering@1.2.10) (2019-05-22)
 
 
