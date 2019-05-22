@@ -58,7 +58,7 @@ export class RawBaseComponent extends React.Component {
     classes: PropTypes.object,
     className: PropTypes.string,
     disabled: PropTypes.bool,
-    points: PropTypes.arrayOf(PointType),
+    points: PropTypes.arrayOf(types.PointType),
     closed: PropTypes.bool,
     onChange: PropTypes.func.isRequired,
     onClosePolygon: PropTypes.func.isRequired,

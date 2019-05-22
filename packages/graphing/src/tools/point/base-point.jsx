@@ -26,6 +26,7 @@ class RawBp extends React.Component {
       disabled,
       correctness,
       graphProps,
+      isDragging,
       ...rest
     } = this.props;
     const { scale } = graphProps;
