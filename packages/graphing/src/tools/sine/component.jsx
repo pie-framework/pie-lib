@@ -1,17 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ToolPropType } from '../types';
+import { ToolPropTypeFields } from '../types';
 import debug from 'debug';
 import { types } from '@pie-lib/plot';
 import LinePath from './line-path';
-import { curveMonotoneX, curveNatural } from '@vx/curve';
+import { curveMonotoneX } from '@vx/curve';
 // import { genDateValue } from '@vx/mock-data';
 import _ from 'lodash';
 import Point from '@mapbox/point-geometry';
 import BasePoint from '../point/base-point';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-import { PointType } from '../../../lib/tools/types';
 import { xPoints } from './utils';
 const xy = (x, y) => ({ x, y });
 
@@ -57,8 +56,8 @@ class RawSine extends React.Component {
   static propTypes = {
     graphProps: types.GraphPropsType.isRequired,
     classes: PropTypes.object.isRequired,
-    root: PointType.isRequired,
-    edge: PointType,
+    root: types.PointType.isRequired,
+    edge: types.PointType.isRequired,
     onChange: PropTypes.func.isRequired
   };
 
@@ -139,7 +138,7 @@ class RawSine extends React.Component {
         <LinePath
           className={classNames(classes.sinePath)}
           xScale={d => graphProps.scale.x(d.x)}
-          ySCale={d => graphProps.scale.y(d.y)}
+          yScale={d => graphProps.scale.y(d.y)}
           data={raw}
           graphProps={graphProps}
           onDragStart={this.startLineDrag}
@@ -181,9 +180,8 @@ const Sine = withStyles(theme => ({
 
 export default class Component extends React.Component {
   static propTypes = {
-    ...ToolPropType,
-    graphProps: types.GraphPropsType.isRequired,
-    foo: PropTypes.string
+    ...ToolPropTypeFields,
+    graphProps: types.GraphPropsType.isRequired
   };
 
   static defaultProps = {};

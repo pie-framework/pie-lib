@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { ToolPropType } from '../types';
+import { ToolPropTypeFields } from '../types';
 import debug from 'debug';
 import BasePoint from '../point/base-point';
 import BgCircle from './bg-circle';
@@ -17,11 +17,6 @@ const opacityPulsate = opacity => ({
   '100%': { opacity: '0.0' }
 });
 
-export const PointType = {
-  x: PropTypes.number,
-  y: PropTypes.number
-};
-
 const getRadius = (center, outer) => {
   const c = point(center);
   return c.dist(point(outer));
@@ -33,9 +28,9 @@ export class RawBaseCircle extends React.Component {
     classes: PropTypes.object.isRequired,
     className: PropTypes.string,
     correctness: PropTypes.string,
-    center: PropTypes.shape(PointType),
+    center: types.PointType,
     disabled: PropTypes.bool,
-    outerPoint: PropTypes.shape(PointType),
+    outerPoint: types.PointType,
     onChange: PropTypes.func.isRequired,
     onDragStart: PropTypes.func,
     onDragStop: PropTypes.func,
@@ -198,7 +193,7 @@ export const BaseCircle = withStyles(theme => ({
 
 export default class Component extends React.Component {
   static propTypes = {
-    ...ToolPropType,
+    ...ToolPropTypeFields,
     graphProps: types.GraphPropsType.isRequired
   };
 

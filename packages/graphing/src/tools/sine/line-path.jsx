@@ -17,8 +17,8 @@ class RawLinePath extends React.Component {
     disabled: PropTypes.bool,
     xScale: PropTypes.func.isRequired,
     yScale: PropTypes.func.isRequired,
-    root: PointType.isRequired,
-    edge: PointType.isRequired
+    root: PropTypes.shape(PointType).isRequired,
+    edge: PropTypes.shape(PointType).isRequired
   };
 
   render() {
@@ -40,15 +40,11 @@ class RawLinePath extends React.Component {
       <React.Fragment>
         <vx.LinePath
           data={data}
-          xScale={xScale}
-          yScale={yScale}
           className={classNames(classes.drawLine, disabled && classes.disabled, className)}
           {...rest}
         />
         <vx.LinePath
           data={data}
-          xScale={xScale}
-          yScale={yScale}
           className={classNames(
             classes.line,
             isDragging && classes.dragging,
