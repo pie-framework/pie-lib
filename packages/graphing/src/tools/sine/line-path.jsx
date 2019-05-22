@@ -22,29 +22,64 @@ class RawLinePath extends React.Component {
   };
 
   render() {
-    const { data, classes, xScale, yScale, className, disabled, ...rest } = this.props;
+    const {
+      data,
+      classes,
+      xScale,
+      yScale,
+      className,
+      disabled,
+      graphProps,
+      root,
+      edge,
+      isDragging,
+      ...rest
+    } = this.props;
+
     return (
-      <vx.LinePath
-        data={data}
-        xScale={xScale}
-        yScale={yScale}
-        className={classNames(classes.line, disabled && classes.disabled, className)}
-        {...rest}
-      />
+      <React.Fragment>
+        <vx.LinePath
+          data={data}
+          xScale={xScale}
+          yScale={yScale}
+          className={classNames(classes.drawLine, disabled && classes.disabled, className)}
+          {...rest}
+        />
+        <vx.LinePath
+          data={data}
+          xScale={xScale}
+          yScale={yScale}
+          className={classNames(
+            classes.line,
+            isDragging && classes.dragging,
+            disabled && classes.disabled,
+            className
+          )}
+          {...rest}
+        />
+      </React.Fragment>
     );
   }
 }
 
+const dragging = theme => ({
+  strokeWidth: 7,
+  stroke: theme.palette.secondary.light
+});
+
 export const LinePath = withStyles(theme => ({
+  drawLine: {
+    strokeWidth: 2,
+    stroke: theme.palette.secondary.light
+  },
   line: {
     strokeWidth: 6,
+    fill: 'none',
     transition: 'stroke-width 200ms ease-in, stroke 200ms ease-in',
     stroke: 'transparent',
-    '&:hover': {
-      strokeWidth: 7,
-      stroke: theme.palette.secondary.light
-    }
+    '&:hover': dragging(theme)
   },
+  dragging: dragging(theme),
   disabled: {
     ...disabled('stroke'),
     strokeWidth: 2

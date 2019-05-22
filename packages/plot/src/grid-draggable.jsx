@@ -20,10 +20,7 @@ export const deltaFn = (scale, snap, val) => delta => {
  */
 export const gridDraggable = opts => Comp => {
   invariant(
-    !!opts &&
-      isFunction(opts.fromDelta) &&
-      isFunction(opts.bounds) &&
-      isFunction(opts.anchorPoint),
+    !!opts && isFunction(opts.fromDelta) && isFunction(opts.bounds) && isFunction(opts.anchorPoint),
     'You must supply an object with: { anchorPoint: Function, fromDelta: Function, bounds: Function }'
   );
 
@@ -143,21 +140,15 @@ export const gridDraggable = opts => Comp => {
           onMove(moveArg);
         }
       }
+
+      this.setState({ startX: null, startY: null });
       // return false to prevent state updates in the underlying draggable - a move will have triggered an update already.
       return false;
     };
 
     render() {
       /* eslint-disable no-unused-vars */
-      const {
-        disabled,
-        onDragStart,
-        onDragStop,
-        onDrag,
-        onMove,
-        onClick,
-        ...rest
-      } = this.props;
+      const { disabled, onDragStart, onDragStop, onDrag, onMove, onClick, ...rest } = this.props;
       /* eslint-enable no-unused-vars */
 
       const grid = this.grid();
@@ -173,6 +164,11 @@ export const gridDraggable = opts => Comp => {
       //prevent the text select icon from rendering.
       const onMouseDown = e => e.nativeEvent.preventDefault();
 
+      /**
+       * TODO: This shouldnt be necessary, we should be able to use the r-d classnames.
+       * But they aren't being unset. If we continue with this lib, we'll have to fix this.
+       */
+      const isDragging = this.state ? !!this.state.startX : false;
       return (
         <Draggable
           disabled={disabled}
@@ -184,7 +180,7 @@ export const gridDraggable = opts => Comp => {
           grid={[grid.x, grid.y]}
           bounds={scaledBounds}
         >
-          <Comp {...rest} disabled={disabled} />
+          <Comp {...rest} disabled={disabled} isDragging={isDragging} />
         </Draggable>
       );
     }

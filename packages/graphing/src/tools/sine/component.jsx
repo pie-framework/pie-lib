@@ -46,7 +46,9 @@ const buildDataPoints = (min, max, root, amplitude, freq) => {
     freq
   );
   const fn = sinY(amplitude, freq);
-  const xs = xPoints(0, freq / 4, min - root.x, max - root.x);
+  const diff = max - root.x;
+  const plusDiff = min - root.x;
+  const xs = xPoints(0, freq / 16, min - root.x - diff, max - root.x - plusDiff);
   log('xs:', xs);
   return xs.map(v => new Point(v, fn(v))).map(p => p.add(new Point(root.x, root.y)));
 };
@@ -138,7 +140,6 @@ class RawSine extends React.Component {
           className={classNames(classes.sinePath)}
           xScale={d => graphProps.scale.x(d.x)}
           ySCale={d => graphProps.scale.y(d.y)}
-          strokeWidth={2}
           data={raw}
           graphProps={graphProps}
           onDragStart={this.startLineDrag}
@@ -174,7 +175,7 @@ class RawSine extends React.Component {
 }
 const Sine = withStyles(theme => ({
   sinePath: {
-    stroke: theme.palette.secondary.light
+    //stroke: theme.palette.secondary.light
   }
 }))(RawSine);
 
