@@ -1,5 +1,5 @@
 import { Inline, Text, Node } from 'slate';
-import { cloneFragment } from 'slate-react';
+import { cloneFragment, findDOMNode } from 'slate-react';
 import { DragSource, DropTarget } from '@pie-lib/drag';
 import Snackbar from '@material-ui/core/Snackbar';
 import { withStyles } from '@material-ui/core/styles';
@@ -72,7 +72,7 @@ const useStyles = withStyles(theme => ({
 const BlankContent = ({ n, children, isDragging, dragItem, isOver, value }) => {
   console.log('Dragging', isDragging);
 
-  const label = dragItem && isOver ? dragItem.value : value || '\u00A0';
+  const label = dragItem && isOver ? dragItem.value.value : value || '\u00A0';
   const finalLabel = isDragging ? '\u00A0' : label;
   const hasGrip = finalLabel !== '\u00A0';
 
@@ -164,8 +164,10 @@ const tileSource = {
   },
   endDrag(props, monitor) {
     if (!monitor.didDrop()) {
-      if (props.type === 'target') {
-        props.onRemoveChoice(monitor.getItem());
+      const draggedItem = monitor.getItem();
+
+      if (draggedItem.fromChoice) {
+        props.removeResponse();
       }
     }
   }
@@ -209,7 +211,7 @@ const insertSnackBar = message => {
   }, 2000);
 };
 
-const findSN = key => document.querySelector('[data-key="' + key + '"]');
+const findSN = key => window.document.querySelector('[data-key="' + key + '"]');
 
 export default function ResponseAreaPlugin(opts) {
   const toolbar = {
@@ -307,7 +309,8 @@ export default function ResponseAreaPlugin(opts) {
     toolbar,
     pluginStyles: (parentNode, p) => {
       if (p && p.name === 'math') {
-        const domNode = findSN(parentNode.key);
+        //eslint-disable-next-line
+        const domNode = findDOMNode(parentNode.key);
         const domNodeRect = domNode.getBoundingClientRect();
         const editor = domNode.closest('[data-slate-editor]');
         const editorRect = editor.getBoundingClientRect();
@@ -671,27 +674,29 @@ export default function ResponseAreaPlugin(opts) {
                     : value.document.getClosestInline(key);
                 const lastText = currentNode.getLastText();
 
-                setTimeout(() => {
-                  const native = window.getSelection();
-                  const p = native.anchorNode.parentElement.closest('[data-offset-key]');
+                if (value.isFocused) {
+                  setTimeout(() => {
+                    const native = window.getSelection();
+                    const p = native.anchorNode.parentElement.closest('[data-offset-key]');
 
-                  if (p) {
-                    const attr = p.getAttribute('data-offset-key');
-                    const focusKey = attr.split(':')[0];
+                    if (p) {
+                      const attr = p.getAttribute('data-offset-key');
+                      const focusKey = attr.split(':')[0];
 
-                    if (!focused || focusKey !== lastText.key) {
-                      change
-                        .moveFocusTo(lastText.key, lastText.text.length - 1)
-                        .moveAnchorTo(lastText.key, lastText.text.length - 1);
+                      if (!focused || focusKey !== lastText.key) {
+                        change
+                          .moveFocusTo(lastText.key, lastText.text.length - 1)
+                          .moveAnchorTo(lastText.key, lastText.text.length - 1);
 
-                      change.setNodeByKey(currentNode.key, {
-                        data: { focused: true }
-                      });
+                        change.setNodeByKey(currentNode.key, {
+                          data: { focused: true }
+                        });
 
-                      props.editor.onChange(change);
+                        props.editor.onChange(change);
+                      }
                     }
-                  }
-                });
+                  });
+                }
               }}
               contentEditable
               suppressContentEditableWarning
@@ -721,13 +726,23 @@ export default function ResponseAreaPlugin(opts) {
               n={n}
               targetId="0"
               value={data.value}
-              duplicates={data.duplicates}
+              duplicates={opts.options.duplicates}
               onChange={value => {
                 const val = props.editor.value;
                 const change = val.change();
 
                 change.setNodeByKey(n.key, {
-                  data: { value }
+                  data: value
+                });
+
+                props.editor.onChange(change);
+              }}
+              removeResponse={() => {
+                const val = props.editor.value;
+                const change = val.change();
+
+                change.setNodeByKey(n.key, {
+                  data: { value: undefined }
                 });
 
                 props.editor.onChange(change);
@@ -881,7 +896,12 @@ export default function ResponseAreaPlugin(opts) {
       }
     },
     normalizeNode: node => {
-      if (node.object !== 'document' && node.type !== 'inline_dropdown') {
+      if (
+        node.object !== 'document' &&
+        node.type !== 'inline_dropdown' &&
+        node.type !== 'explicit_constructed_response' &&
+        node.type !== 'drag_in_the_blank'
+      ) {
         return;
       }
 
@@ -890,6 +910,7 @@ export default function ResponseAreaPlugin(opts) {
       const changeSelectionArray = [];
       const removeValueOnCloseArray = [];
       const addItemBuilder = [];
+      const addSpacesArray = [];
 
       const shouldRemoveSelection = node => {
         const selected = node.data.get('selected');
@@ -953,29 +974,37 @@ export default function ResponseAreaPlugin(opts) {
 
         return !itemBuilder;
       };
+      const shouldAddSpace = node => {
+        const lastText = node.getLastText();
+        const t = lastText.text[lastText.text.length - 1];
+
+        return t !== '\u00A0' && t !== '\u200B' && t !== ' ';
+      };
 
       if (node.object === 'document') {
         const inlineDropdowns = node.filterDescendants(d => d.type === 'inline_dropdown');
+        const ecrs = node.filterDescendants(d => d.type === 'explicit_constructed_response');
+        const ditbs = node.filterDescendants(d => d.type === 'drag_in_the_blank');
 
-        inlineDropdowns.forEach(respArea => {
-          if (shouldRemoveSelection(respArea)) {
-            removeSelectionArray.push(respArea);
-          } else {
-            if (shouldChangeSelection(respArea)) {
-              changeSelectionArray.push(respArea);
+        if (inlineDropdowns.size) {
+          inlineDropdowns.forEach(respArea => {
+            if (shouldRemoveSelection(respArea)) {
+              removeSelectionArray.push(respArea);
+            } else {
+              if (shouldChangeSelection(respArea)) {
+                changeSelectionArray.push(respArea);
+              }
+
+              if (shouldRemoveValueOnClose(respArea)) {
+                removeValueOnCloseArray.push(respArea);
+              }
+
+              if (shouldAddItemBuilder(respArea)) {
+                addItemBuilder.push(respArea);
+              }
             }
+          });
 
-            if (shouldRemoveValueOnClose(respArea)) {
-              removeValueOnCloseArray.push(respArea);
-            }
-
-            if (shouldAddItemBuilder(respArea)) {
-              addItemBuilder.push(respArea);
-            }
-          }
-        });
-
-        if (inlineDropdowns.length) {
           const mathNode = node.findDescendant(d => d.type === 'math');
 
           if (removeSelectionArray.length === 0 && mathNode) {
@@ -997,6 +1026,22 @@ export default function ResponseAreaPlugin(opts) {
             }
           }
         }
+
+        if (ecrs.size) {
+          ecrs.forEach(ecr => {
+            if (shouldAddSpace(ecr)) {
+              addSpacesArray.push(ecr);
+            }
+          });
+        }
+
+        if (ditbs.size) {
+          ditbs.forEach(ditb => {
+            if (shouldAddSpace(ditb)) {
+              addSpacesArray.push(ditb);
+            }
+          });
+        }
       }
 
       if (node.type === 'inline_dropdown') {
@@ -1017,8 +1062,21 @@ export default function ResponseAreaPlugin(opts) {
         }
       }
 
+      if (node.type === 'explicit_constructed_response') {
+        if (shouldAddSpace(node)) {
+          addSpacesArray.push(node);
+        }
+      }
+
+      if (node.type === 'drag_in_the_blank') {
+        if (shouldAddSpace(node)) {
+          addSpacesArray.push(node);
+        }
+      }
+
       if (
         /*!removeSelectionArray.length &&*/
+        !addSpacesArray.length &&
         !changeSelectionArray.length &&
         !removeValueOnCloseArray.length &&
         !addItemBuilder.length &&
@@ -1055,6 +1113,12 @@ export default function ResponseAreaPlugin(opts) {
 
       return change => {
         change.withoutNormalization(() => {
+          addSpacesArray.forEach(n => {
+            const lastText = n.getLastText();
+
+            change.insertTextByKey(lastText.key, lastText.text.length, ' ');
+          });
+
           removeSelectionArray.forEach(n => {
             change.setNodeByKey(n.key, {
               data: {
@@ -1292,7 +1356,8 @@ export default function ResponseAreaPlugin(opts) {
       const closestEcr = closestKey && document.getClosestInline(closestKey);
 
       if (closestEcr && closestEcr.type === 'explicit_constructed_response') {
-        const inlineDOMNode = findSN(closestEcr);
+        //eslint-disable-next-line
+        const inlineDOMNode = findDOMNode(closestEcr);
         const absoluteChild = inlineDOMNode.childNodes[1];
         const childStyle = getComputedStyle(absoluteChild);
 

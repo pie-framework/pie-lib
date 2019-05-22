@@ -109,9 +109,7 @@ const style = {
     borderRadius: '4px',
     cursor: 'text',
     '& [data-slate-editor="true"]': {
-      overflow: 'auto',
       overflow: 'visible',
-      minHeight: '50px',
       maxHeight: '500px',
       padding: '5px 0'
     }

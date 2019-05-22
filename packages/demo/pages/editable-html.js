@@ -69,7 +69,9 @@ const DragDropTile = DragSource('drag-in-the-blank-choice', tileSource, (connect
 const inputOptions = [
   {
     label: 'An image in a P tag',
-    html: `<div><p><img src="${puppySrc}" style="width:170px;height:151px"/> bar</p><p><img src="${puppySrc}" style="width:170px;height:151px"/> bar</p></div>`
+    // html: `<div><p><img src="${puppySrc}" style="width:170px;height:151px"/> bar</p><p><img src="${puppySrc}" style="width:170px;height:151px"/> bar</p></div>`,
+    html:
+      '<div><p>The <span data-type="drag_in_the_blank" data-id="0" data-value="cow"> jumped <span data-type="drag_in_the_blank" data-id="1" data-value="over"> the <span data-type="drag_in_the_blank" data-id="2" data-value="moon"></span></span></span></p></div>'
   },
   {
     label: 'Latex \\(..\\)',
