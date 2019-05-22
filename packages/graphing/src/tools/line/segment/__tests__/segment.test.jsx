@@ -1,7 +1,7 @@
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme/build';
 import React from 'react';
 import { BgSegment } from '../segment';
-import { graphProps } from '../../../__tests__/utils';
+import { graphProps } from '../../../../__tests__/utils';
 
 describe('BgCircle', () => {
   let w;
@@ -11,11 +11,11 @@ describe('BgCircle', () => {
       classes: {},
       className: 'className',
       onChange,
-      firstEnd: {
+      from: {
         x: 0,
         y: 0
       },
-      secondEnd: {
+      to: {
         x: 0,
         y: 0
       },

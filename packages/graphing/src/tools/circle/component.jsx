@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { ToolPropType } from '../types';
 import debug from 'debug';
-import BasePoint from '../point/base-point';
+import { BasePoint } from '../common/point';
 import BgCircle from './bg-circle';
 import { point } from '../../utils';
 import classNames from 'classnames';

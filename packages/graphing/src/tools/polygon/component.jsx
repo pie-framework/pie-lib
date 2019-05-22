@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { ToolPropType, PointType } from '../types';
-import BasePoint from '../point/base-point';
+import { BasePoint } from '../common/point';
 import chunk from 'lodash/chunk';
 import initial from 'lodash/initial';
 import isEqual from 'lodash/isEqual';
@@ -135,9 +135,7 @@ export class RawBaseComponent extends React.Component {
     const { dragLine, dragPoint, dragPoly } = this.state;
     const { points, closed } = this.props;
     if (dragPoint && dragLine) {
-      throw new Error(
-        'should never have a point and line dragged at the same time'
-      );
+      throw new Error('should never have a point and line dragged at the same time');
     }
 
     if (dragPoint) {
@@ -154,13 +152,7 @@ export class RawBaseComponent extends React.Component {
     if (dragLine) {
       const { existing, next } = dragLine;
 
-      let swapped = swap(
-        points,
-        existing.from,
-        next.from,
-        existing.to,
-        next.to
-      );
+      let swapped = swap(points, existing.from, next.from, existing.to, next.to);
       /** We do a little visual trick here so we don't need to update the lines array.
        * The Line components are transparent until you hover over them or drag.
        * The bars you see are actually part of the polygon.

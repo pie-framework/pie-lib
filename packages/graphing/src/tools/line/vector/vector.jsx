@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles/index';
 import classNames from 'classnames';
 import { types, gridDraggable } from '@pie-lib/plot';
-import * as utils from '../../utils';
-import { disabled, correct, incorrect } from '../styles';
+import * as utils from '../../../utils';
+import { disabled, correct, incorrect } from '../../styles';
 
 /**
  * A low level segment component
@@ -12,17 +12,17 @@ import { disabled, correct, incorrect } from '../styles';
  * TODO: This and base point have a lot of similarities - merge commonality
  *
  */
-class RawSegment extends React.Component {
+class RawVector extends React.Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     className: PropTypes.string,
     correctness: PropTypes.string,
     disabled: PropTypes.bool,
-    firstEnd: PropTypes.shape({
+    from: PropTypes.shape({
       x: PropTypes.number,
       y: PropTypes.number
     }).isRequired,
-    secondEnd: PropTypes.shape({
+    to: PropTypes.shape({
       x: PropTypes.number,
       y: PropTypes.number
     }).isRequired,
@@ -30,32 +30,26 @@ class RawSegment extends React.Component {
   };
 
   render() {
-    const {
-      classes,
-      disabled,
-      className,
-      correctness,
-      graphProps,
-      firstEnd,
-      secondEnd,
-      ...rest
-    } = this.props;
+    const { classes, disabled, className, correctness, graphProps, from, to, ...rest } = this.props;
     const { scale } = graphProps;
 
     return (
-      <line
-        x1={scale.x(firstEnd.x)}
-        y1={scale.y(firstEnd.y)}
-        x2={scale.x(secondEnd.x)}
-        y2={scale.y(secondEnd.y)}
-        className={classNames(
-          classes.bgSegment,
-          disabled && classes.disabled,
-          classes[correctness],
-          className
-        )}
-        {...rest}
-      />
+      <g>
+        <line
+          x1={scale.x(from.x)}
+          y1={scale.y(from.y)}
+          x2={scale.x(to.x)}
+          y2={scale.y(to.y)}
+          className={classNames(
+            classes.bgSegment,
+            disabled && classes.disabled,
+            classes[correctness],
+            className
+          )}
+          markerEnd="url(#arrow)"
+          {...rest}
+        />
+      </g>
     );
   }
 }
@@ -79,26 +73,31 @@ const styles = theme => ({
       stroke: theme.palette.primary.dark
     }
   },
+  bgArrow: {
+    stroke: theme.palette.secondary.main,
+    cursor: 'pointer',
+    fill: `var(--point-bg, ${theme.palette.secondary.main})`
+  },
   disabled: applyStyle(disabled),
   correct: applyStyle(correct),
   incorrect: applyStyle(incorrect)
 });
 
-export const BgSegment = withStyles(styles)(RawSegment);
+export const BgVector = withStyles(styles)(RawVector);
 
 export default gridDraggable({
   bounds: (props, { domain, range }) => {
-    const { firstEnd, secondEnd } = props;
-    const area = utils.lineToArea(firstEnd, secondEnd);
+    const { from, to } = props;
+    const area = utils.lineToArea(from, to);
 
     return utils.bounds(area, domain, range);
   },
   anchorPoint: props => {
-    const { firstEnd } = props;
+    const { from } = props;
 
-    return firstEnd;
+    return from;
   },
   fromDelta: (props, delta) => {
     return utils.point(props).add(utils.point(delta));
   }
-})(BgSegment);
+})(BgVector);

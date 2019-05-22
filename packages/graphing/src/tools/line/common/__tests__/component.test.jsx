@@ -1,6 +1,6 @@
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme/build';
 import React from 'react';
-import { graphProps, xy } from '../../../__tests__/utils';
+import { graphProps, xy } from '../../../../__tests__/utils';
 
 import { RawBaseSegment } from '../component';
 
@@ -13,8 +13,8 @@ describe('Component', () => {
       className: 'className',
       onChange,
       graphProps: graphProps(),
-      firstEnd: xy(0, 0),
-      secondEnd: xy(1, 1)
+      from: xy(0, 0),
+      to: xy(1, 1)
     };
     const props = { ...defaults, ...extras };
     return shallow(<RawBaseSegment {...props} />);
@@ -28,61 +28,61 @@ describe('Component', () => {
   describe('logic', () => {
     beforeEach(() => (w = wrapper()));
 
-    describe('moveFirstEnd', () => {
+    describe('moveFrom', () => {
       it('does not call onChange', () => {
-        w.instance().moveFirstEnd(xy(1, 1));
+        w.instance().moveFrom(xy(1, 1));
         expect(onChange).not.toHaveBeenCalledWith({
-          firstEnd: xy(1, 1),
-          secondEnd: xy(1, 1)
+          from: xy(1, 1),
+          to: xy(1, 1)
         });
       });
 
       it('calls onChange', () => {
-        w.instance().moveFirstEnd(xy(5, 5));
+        w.instance().moveFrom(xy(5, 5));
         expect(onChange).toHaveBeenCalledWith({
-          firstEnd: xy(5, 5),
-          secondEnd: xy(1, 1)
+          from: xy(5, 5),
+          to: xy(1, 1)
         });
       });
     });
 
-    describe('dragFirstEnd', () => {
-      it('sets draggedFirstEnd', () => {
-        w.instance().dragFirstEnd(xy(3, 3));
-        expect(w.state().draggedFirstEnd).toEqual(xy(3, 3));
+    describe('dragFrom', () => {
+      it('sets draggedFrom', () => {
+        w.instance().dragFrom(xy(3, 3));
+        expect(w.state().draggedFrom).toEqual(xy(3, 3));
       });
     });
 
-    describe('moveSecondEnd', () => {
+    describe('moveTo', () => {
       it('does not call onChange', () => {
-        w.instance().moveSecondEnd(xy(0, 0));
+        w.instance().moveTo(xy(0, 0));
         expect(onChange).not.toHaveBeenCalledWith({
-          firstEnd: xy(1, 1),
-          secondEnd: xy(1, 1)
+          from: xy(1, 1),
+          to: xy(1, 1)
         });
       });
 
       it('calls onChange', () => {
-        w.instance().moveSecondEnd(xy(4, 4));
+        w.instance().moveTo(xy(4, 4));
         expect(onChange).toHaveBeenCalledWith({
-          firstEnd: xy(0, 0),
-          secondEnd: xy(4, 4)
+          from: xy(0, 0),
+          to: xy(4, 4)
         });
       });
     });
 
-    describe('dragSecondEnd', () => {
-      it('sets draggedSecondEnd', () => {
-        w.instance().dragSecondEnd(xy(3, 3));
-        expect(w.state().draggedSecondEnd).toEqual(xy(3, 3));
+    describe('dragTo', () => {
+      it('sets draggedTo', () => {
+        w.instance().dragTo(xy(3, 3));
+        expect(w.state().draggedTo).toEqual(xy(3, 3));
       });
     });
 
     describe('dragSegment', () => {
       it('sets isSegmentDrag', () => {
         w.instance().dragSegment(xy(3, 3));
-        expect(w.state().draggedFirstEnd).toEqual(xy(3, 3));
-        expect(w.state().draggedSecondEnd).toEqual(xy(4, 4));
+        expect(w.state().draggedFrom).toEqual(xy(3, 3));
+        expect(w.state().draggedTo).toEqual(xy(4, 4));
         expect(w.state().isSegmentDrag).toEqual(true);
       });
     });
@@ -90,8 +90,8 @@ describe('Component', () => {
       it('calls onChange', () => {
         w.instance().moveSegment(xy(1, 1));
         expect(onChange).toHaveBeenCalledWith({
-          firstEnd: xy(1, 1),
-          secondEnd: xy(2, 2)
+          from: xy(1, 1),
+          to: xy(2, 2)
         });
       });
     });

@@ -1,5 +1,5 @@
 import React from 'react';
-import BasePoint from './base-point';
+import { BasePoint } from '../common/point';
 import debug from 'debug';
 import { ToolPropType } from '../types';
 import { types } from '@pie-lib/plot';

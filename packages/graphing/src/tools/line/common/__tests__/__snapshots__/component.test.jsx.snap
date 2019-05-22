@@ -2,9 +2,9 @@
 
 exports[`Component snapshot renders 1`] = `
 <g>
-  <GridDraggable
+  <Component
     className=""
-    firstEnd={
+    from={
       Object {
         "x": 0,
         "y": 0,
@@ -38,7 +38,7 @@ exports[`Component snapshot renders 1`] = `
     }
     onDrag={[Function]}
     onMove={[Function]}
-    secondEnd={
+    to={
       Object {
         "x": 1,
         "y": 1,
@@ -76,8 +76,8 @@ exports[`Component snapshot renders 1`] = `
     }
     onDrag={[Function]}
     onMove={[Function]}
-    x={1}
-    y={1}
+    x={0}
+    y={0}
   />
   <WithStyles(GridDraggable)
     graphProps={
@@ -108,8 +108,52 @@ exports[`Component snapshot renders 1`] = `
     }
     onDrag={[Function]}
     onMove={[Function]}
-    x={0}
-    y={0}
+    x={1}
+    y={1}
+  />
+  <WithStyles(GridDraggable)
+    from={
+      Object {
+        "x": 0,
+        "y": 0,
+      }
+    }
+    graphProps={
+      Object {
+        "domain": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "range": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "scale": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+        "size": Object {
+          "height": 400,
+          "width": 400,
+        },
+        "snap": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+      }
+    }
+    onDrag={[Function]}
+    onMove={[Function]}
+    to={
+      Object {
+        "x": 1,
+        "y": 1,
+      }
+    }
+    x={1}
+    y={1}
   />
 </g>
 `;
