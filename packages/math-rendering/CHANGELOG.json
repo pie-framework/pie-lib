@@ -333,5 +333,20 @@
     "committerDate": "2018-08-10 12:03:03 -0400",
     "isTagged": true,
     "tag": "@pie-lib/math-rendering@0.2.0"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "bump mathjax3 to 3.0.0-beta.4",
+    "merge": null,
+    "header": "fix: bump mathjax3 to 3.0.0-beta.4",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "3f0a6552f1a7e9be468a85a9061405b9ffc0093d",
+    "gitTags": "",
+    "committerDate": "2019-05-22 09:48:45 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/math-rendering@1.2.10"
   }
 ]
