@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import withRoot from '../../src/withRoot';
 
-const { Panel, toggle, radio } = settings;
+const { Panel, toggle, radio, dropdown, numberFields, numberField } = settings;
 
 class RawContainer extends React.Component {
   static propTypes = {
@@ -17,7 +17,13 @@ class RawContainer extends React.Component {
       mounted: false,
       model: {
         choiceAreaLayout: 'vertical',
-        placementArea: true
+        placementArea: true,
+        equationEditor: 'geometry',
+        graph: {
+          domain: 1,
+          range: 12,
+          width: 100
+        }
       },
       configuration: {
         orientationLabel: 'Orientation',
@@ -25,7 +31,8 @@ class RawContainer extends React.Component {
 
         settingsPlacementArea: true,
         settingsOrientation: true,
-        editChoiceLabel: false
+        editChoiceLabel: false,
+        height: 200
       }
     };
   }
@@ -80,10 +87,33 @@ class RawContainer extends React.Component {
                 choiceAreaLayout:
                   configuration.settingsOrientation &&
                   radio(configuration.orientationLabel, ['vertical', 'horizontal']),
-                editChoiceLabel: toggle('Edit choice label', true)
+                editChoiceLabel: toggle('Edit choice label', true),
+                equationEditor: dropdown('Dropdown', [
+                  'geometry',
+                  'advanced-algebra',
+                  'statistics',
+                  'everything'
+                ]),
+                graph: numberFields('Graph Display Size', {
+                  domain: {
+                    label: 'Domain',
+                    suffix: 'px'
+                  },
+                  range: {
+                    label: 'Range',
+                    suffix: 'px'
+                  },
+                  width: {
+                    label: 'Width',
+                    suffix: 'px',
+                    min: 50,
+                    max: 250
+                  }
+                })
               },
               'Group Two': {
-                bar: toggle('This is bar')
+                bar: toggle('This is bar'),
+                height: numberField('Height', null, true)
               }
             }}
           />
