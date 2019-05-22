@@ -348,5 +348,20 @@
     "committerDate": "2019-05-22 09:48:45 +0100",
     "isTagged": true,
     "tag": "@pie-lib/math-rendering@1.2.10"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "fontUrl - rm rawgit, use unpkg.com",
+    "merge": null,
+    "header": "fix: fontUrl - rm rawgit, use unpkg.com",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "e3c840a45fb1b351a50cdbf180ae2fcac27a6006",
+    "gitTags": "",
+    "committerDate": "2019-05-22 11:35:55 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/math-rendering@1.2.11"
   }
 ]
