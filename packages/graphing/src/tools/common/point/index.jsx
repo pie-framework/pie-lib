@@ -22,10 +22,6 @@ const gridDraggableProperties = {
   }
 };
 
-export const BP = gridDraggable(gridDraggableProperties)(RawBp);
-
-export const AP = gridDraggable(gridDraggableProperties)(RawArrow);
-
 const styles = theme => ({
   point: {
     '& circle, & polygon': {
@@ -49,5 +45,9 @@ const styles = theme => ({
     }
   }
 });
+
+export const BP = gridDraggable(gridDraggableProperties)(RawBp);
+export const AP = gridDraggable(gridDraggableProperties)(RawArrow);
+
 export const BasePoint = withStyles(styles)(BP);
 export const ArrowPoint = withStyles(styles)(AP);
