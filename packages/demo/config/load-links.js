@@ -15,6 +15,7 @@ const rawLinks = [
   { label: 'mask-markup', path: '/mask-markup' },
   { label: 'math-evaluator', path: '/math-evaluator' },
   { label: 'math-input', path: '/math-input' },
+  { label: 'math-rendering', path: '/math-rendering' },
   { label: 'math-toolbar', path: '/math-toolbar' },
   { label: 'render-ui', path: '/render-ui' },
   { label: 'rubric', path: '/rubric' },
