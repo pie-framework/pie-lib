@@ -247,7 +247,7 @@ export class GridDemo extends React.Component {
   constructor(props) {
     super(props);
 
-    const toolsArr = [tools.point(), tools.circle(), tools.polygon(), tools.sine()];
+    const toolsArr = [tools.sine(), tools.point(), tools.circle(), tools.polygon()];
     this.state = {
       currentTool: toolsArr[2],
       tools: toolsArr,
@@ -323,7 +323,7 @@ export class GridDemo extends React.Component {
           // }
         ],
         marks: [
-          { type: 'sine', root: { x: 0, y: 0 }, edge: { x: 2, y: 2 } }
+          //{ type: 'sine', root: { x: 0, y: 0 }, edge: { x: 2, y: 2 } }
           // {
           //   disabled: true,
           //   type: 'polygon',

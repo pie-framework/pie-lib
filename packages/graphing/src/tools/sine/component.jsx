@@ -11,45 +11,28 @@ import Point from '@mapbox/point-geometry';
 import BasePoint from '../point/base-point';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-import { xPoints } from './utils';
+import { xPoints, sinY, buildDataPoints } from './utils';
 const xy = (x, y) => ({ x, y });
+
+const FREQ_DIVIDER = 4;
 
 const log = debug('pie-lib:graphing:sine');
 
 log('sine...');
 const getAmplitudeAndFreq = (root, edge) => {
+  if (!edge) {
+    return { freq: 0, amplitude: 0 };
+  }
+
+  if (root.x == edge.x) {
+    return { freq: 0, amplitude: 0 };
+  }
+
   const r = new Point(root.x, root.y);
   const e = new Point(edge.x, edge.y);
   const d = e.sub(r);
   // edge point describes 1/4 of the freq
   return { freq: d.x * 4, amplitude: d.y };
-};
-
-const sinY = (amplitude, freq) => x => {
-  const num = 2 * Math.PI * x;
-  const frac = num / freq;
-  return amplitude * parseFloat(Math.sin(frac).toFixed(10));
-};
-
-const buildDataPoints = (min, max, root, amplitude, freq) => {
-  log(
-    '[buildDataPoints] min:',
-    min,
-    'max:',
-    max,
-    'root:',
-    root,
-    'amplitude:',
-    amplitude,
-    'freq:',
-    freq
-  );
-  const fn = sinY(amplitude, freq);
-  const diff = max - root.x;
-  const plusDiff = min - root.x;
-  const xs = xPoints(0, freq / 16, min - root.x - diff, max - root.x - plusDiff);
-  log('xs:', xs);
-  return xs.map(v => new Point(v, fn(v))).map(p => p.add(new Point(root.x, root.y)));
 };
 
 class RawSine extends React.Component {
@@ -103,11 +86,19 @@ class RawSine extends React.Component {
 
   getPoints = () => {
     const { domain } = this.props.graphProps;
+
     if (this.state.line) {
       /** line is being transformed by drag, so we want to build it's data points off of the props instead of the state.line object. */
       // const root = utils.point(this.props.root).add(this.state.lineAnchor);
       const { amplitude, freq } = getAmplitudeAndFreq(this.props.root, this.props.edge);
-      const dataPoints = buildDataPoints(domain.min, domain.max, this.props.root, amplitude, freq);
+      const interval = freq / FREQ_DIVIDER;
+      const dataPoints = buildDataPoints(
+        domain.min,
+        domain.max,
+        this.props.root,
+        interval,
+        sinY(amplitude, freq)
+      );
       return {
         root: this.state.line.root,
         edge: this.state.line.edge,
@@ -118,11 +109,17 @@ class RawSine extends React.Component {
     const root = this.state.root ? this.state.root : this.props.root;
     const edge = this.state.edge ? this.state.edge : this.props.edge;
     const { amplitude, freq } = getAmplitudeAndFreq(root, edge);
-
+    const interval = freq / FREQ_DIVIDER;
     log('[getPoints] amplitude:', amplitude, 'freq:', freq);
 
-    const dataPoints = buildDataPoints(domain.min, domain.max, root, amplitude, freq);
-    console.table(dataPoints);
+    const dataPoints = buildDataPoints(
+      domain.min,
+      domain.max,
+      root,
+      interval,
+      sinY(amplitude, freq)
+    );
+    // console.table(dataPoints);
     return { root: this.props.root, edge: this.props.edge, dataPoints };
   };
 
@@ -130,25 +127,26 @@ class RawSine extends React.Component {
     const { classes, graphProps } = this.props;
     const { root, edge, dataPoints } = this.getPoints();
 
-    log('root', root.x, root.y, 'edge: ', edge.x, edge.y);
-
     const raw = dataPoints.map(d => [graphProps.scale.x(d.x), graphProps.scale.y(d.y)]);
+
     return (
       <g>
-        <LinePath
-          className={classNames(classes.sinePath)}
-          xScale={d => graphProps.scale.x(d.x)}
-          yScale={d => graphProps.scale.y(d.y)}
-          data={raw}
-          graphProps={graphProps}
-          onDragStart={this.startLineDrag}
-          onDragStop={this.stopLineDrag}
-          onDrag={this.dragLine}
-          root={this.props.root}
-          edge={this.props.edge}
-          onMove={this.moveLine}
-          curve={curveMonotoneX}
-        />
+        {edge && (
+          <LinePath
+            className={classNames(classes.sinePath)}
+            xScale={d => graphProps.scale.x(d.x)}
+            yScale={d => graphProps.scale.y(d.y)}
+            data={raw}
+            graphProps={graphProps}
+            onDragStart={this.startLineDrag}
+            onDragStop={this.stopLineDrag}
+            onDrag={this.dragLine}
+            root={this.props.root}
+            edge={this.props.edge}
+            onMove={this.moveLine}
+            curve={curveMonotoneX}
+          />
+        )}
 
         <BasePoint
           graphProps={graphProps}
@@ -159,15 +157,17 @@ class RawSine extends React.Component {
           onDrag={this.dragRoot}
           onMove={this.moveRoot}
         />
-        <BasePoint
-          graphProps={graphProps}
-          x={edge.x}
-          y={edge.y}
-          onDragStart={this.startEdgeDrag}
-          onDragStop={this.stopEdgeDrag}
-          onDrag={this.dragEdge}
-          onMove={this.moveEdge}
-        />
+        {edge && (
+          <BasePoint
+            graphProps={graphProps}
+            x={edge.x}
+            y={edge.y}
+            onDragStart={this.startEdgeDrag}
+            onDragStop={this.stopEdgeDrag}
+            onDrag={this.dragEdge}
+            onMove={this.moveEdge}
+          />
+        )}
       </g>
     );
   }
