@@ -211,8 +211,6 @@ const insertSnackBar = message => {
   }, 2000);
 };
 
-const findSN = key => window.document.querySelector('[data-key="' + key + '"]');
-
 export default function ResponseAreaPlugin(opts) {
   const toolbar = {
     icon: (
@@ -976,15 +974,17 @@ export default function ResponseAreaPlugin(opts) {
       };
       const shouldAddSpace = node => {
         const lastText = node.getLastText();
-        const t = lastText.text[lastText.text.length - 1];
 
-        return t !== '\u00A0' && t !== '\u200B' && t !== ' ';
+        if (lastText) {
+          const t = lastText.text[lastText.text.length - 1];
+
+          return t !== '\u00A0' && t !== '\u200B' && t !== ' ';
+        }
       };
 
       if (node.object === 'document') {
         const inlineDropdowns = node.filterDescendants(d => d.type === 'inline_dropdown');
         const ecrs = node.filterDescendants(d => d.type === 'explicit_constructed_response');
-        const ditbs = node.filterDescendants(d => d.type === 'drag_in_the_blank');
 
         if (inlineDropdowns.size) {
           inlineDropdowns.forEach(respArea => {
@@ -1031,14 +1031,6 @@ export default function ResponseAreaPlugin(opts) {
           ecrs.forEach(ecr => {
             if (shouldAddSpace(ecr)) {
               addSpacesArray.push(ecr);
-            }
-          });
-        }
-
-        if (ditbs.size) {
-          ditbs.forEach(ditb => {
-            if (shouldAddSpace(ditb)) {
-              addSpacesArray.push(ditb);
             }
           });
         }
