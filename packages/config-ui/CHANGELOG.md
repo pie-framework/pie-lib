@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.1.6...@pie-lib/config-ui@10.2.0) (2019-05-22)
+
+
+### Features
+
+* Added support for dropdown and number text fields in settings panel. ([db84ffb](https://github.com/pie-framework/pie-lib/commit/db84ffb))
+
+
+
+
+
 ## [10.1.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.1.5...@pie-lib/config-ui@10.1.6) (2019-05-15)
 
 **Note:** Version bump only for package @pie-lib/config-ui

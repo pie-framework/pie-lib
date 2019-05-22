@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@1.2.9...@pie-lib/math-rendering@1.2.10) (2019-05-22)
+
+
+### Bug Fixes
+
+* bump mathjax3 to 3.0.0-beta.4 ([3f0a655](https://github.com/pie-framework/pie-lib/commit/3f0a655))
+
+
+
+
+
 ## [1.2.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@1.2.8...@pie-lib/math-rendering@1.2.9) (2019-03-15)
 
 
