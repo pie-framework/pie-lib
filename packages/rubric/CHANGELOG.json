@@ -1,0 +1,32 @@
+[
+  {
+    "type": "chore",
+    "scope": null,
+    "subject": "rm console.log",
+    "merge": null,
+    "header": "chore: rm console.log",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "96090cc41ed5833f223622d6ea24c50831091a0c",
+    "gitTags": " (origin/develop, origin/HEAD, develop)",
+    "committerDate": "2019-05-22 10:10:55 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/rubric@0.1.0"
+  },
+  {
+    "type": "feat",
+    "scope": null,
+    "subject": "rubric authoring (#119)",
+    "merge": null,
+    "header": "feat: rubric authoring (#119)",
+    "body": "* rubric wip\n\n* polish",
+    "footer": null,
+    "notes": [],
+    "hash": "6e24df7b18db19519cf4323dddf089990c04aa5d",
+    "gitTags": "",
+    "committerDate": "2019-05-21 08:28:21 -0400",
+    "isTagged": true,
+    "tag": "@pie-lib/rubric@0.1.0"
+  }
+]
