@@ -26,15 +26,12 @@ describe('utils', () => {
       bottom: -1,
       right: 1
     });
-    assertPolygon(
-      [xy(0, 0), xy(3, 0), xy(2, -1), xy(4, -3), xy(1, -4), xy(2, -2)],
-      {
-        left: 0,
-        top: 0,
-        bottom: -4,
-        right: 4
-      }
-    );
+    assertPolygon([xy(0, 0), xy(3, 0), xy(2, -1), xy(4, -3), xy(1, -4), xy(2, -2)], {
+      left: 0,
+      top: 0,
+      bottom: -4,
+      right: 4
+    });
   });
 
   describe('lineToArea', () => {
@@ -52,5 +49,45 @@ describe('utils', () => {
       bottom: -3,
       right: 4
     });
+  });
+
+  describe('getAngleDeg', () => {
+    const assertAngle = (ax, ay, bx, by, angle) => {
+      it(`${ax},${ay}  ${bx},${by} => ${angle}`, () => {
+        const result = utils.getAngleDeg(ax, ay, bx, by);
+
+        expect(result).toEqual(angle);
+      });
+    };
+
+    assertAngle(0, 0, 1, 1, 45);
+    assertAngle(0, 0, 0, 1, 0);
+    assertAngle(0, 0, 0, -1, 180);
+    assertAngle(1, 1, -8, 10, 315);
+  });
+
+  describe('calculateThirdPointOnLine', () => {
+    const assertThirdPoint = (a, b, graphProps, c) => {
+      it(`${a.x},${a.y}  ${b.x},${b.y} => ${c.x},${c.y}`, () => {
+        const result = utils.calculateThirdPointOnLine(a, b, graphProps);
+
+        expect(result).toEqual(c);
+      });
+    };
+
+    const graphProps = {
+      domain: {
+        min: -14,
+        max: 10
+      },
+      range: {
+        min: -14,
+        max: 14
+      }
+    };
+
+    assertThirdPoint({ x: 0, y: 0 }, { x: 1, y: 1 }, graphProps, { x: 10, y: 10 });
+    assertThirdPoint({ x: 3, y: 3 }, { x: -3, y: 3 }, graphProps, { x: -14, y: 3 });
+    assertThirdPoint({ x: 1, y: 2 }, { x: 3, y: 6 }, graphProps, { x: 7, y: 14 });
   });
 });

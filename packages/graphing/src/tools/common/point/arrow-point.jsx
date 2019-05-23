@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { types } from '@pie-lib/plot';
 import isEqual from 'lodash/isEqual';
+import { getAngleDeg } from '../../../utils';
 
 export class RawArrow extends React.Component {
   static propTypes = {
@@ -23,39 +24,6 @@ export class RawArrow extends React.Component {
     graphProps: types.GraphPropsType.isRequired
   };
 
-  getAngleDeg(ax, ay, bx, by) {
-    if (ax === bx) {
-      if (ay < by) {
-        angleDeg = 0;
-      } else {
-        angleDeg = 180;
-      }
-
-      return angleDeg;
-    }
-
-    if (ay === by) {
-      if (ax < bx) {
-        angleDeg = 90;
-      } else {
-        angleDeg = 270;
-      }
-
-      return angleDeg;
-    }
-
-    const angleRad = Math.atan((ay - by) / (ax - bx));
-    let angleDeg = (angleRad * 180) / Math.PI;
-
-    if (ax > bx) {
-      angleDeg = 270 - angleDeg;
-    } else {
-      angleDeg = 90 - angleDeg;
-    }
-
-    return angleDeg;
-  }
-
   render() {
     const {
       classes,
@@ -69,9 +37,12 @@ export class RawArrow extends React.Component {
       to,
       ...rest
     } = this.props;
-    const { scale } = graphProps;
+    // x & y are the initial coordinates for the arrow
+    // from & to are used only to calculate the angle that the arrow should be rotated with
 
-    let angle = this.getAngleDeg(from.x, from.y, to.x, to.y);
+    const { scale } = graphProps;
+    const angle = getAngleDeg(from.x, from.y, to.x, to.y);
+
     let points = '';
 
     if (isEqual(from, to)) {

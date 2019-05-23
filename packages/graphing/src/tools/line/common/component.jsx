@@ -6,10 +6,12 @@ import debug from 'debug';
 import { BasePoint, ArrowPoint } from '../../common/point';
 import Segment from '../segment/segment';
 import Vector from '../vector/vector';
+import Ray from '../ray/ray';
 import { point } from '../../../utils';
 import classNames from 'classnames';
 import { types } from '@pie-lib/plot';
 import isEqual from 'lodash/isEqual';
+import { calculateThirdPointOnLine } from '../../../utils';
 
 const log = debug('pie-lib:graphing:segment');
 
@@ -26,7 +28,8 @@ export const PointType = {
 
 const ComponentTypes = {
   segment: Segment,
-  vector: Vector
+  vector: Vector,
+  ray: Ray
 };
 
 export class RawBaseSegment extends React.Component {
@@ -41,7 +44,8 @@ export class RawBaseSegment extends React.Component {
     onChange: PropTypes.func.isRequired,
     onDragStart: PropTypes.func,
     onDragStop: PropTypes.func,
-    graphProps: types.GraphPropsType.isRequired
+    graphProps: types.GraphPropsType.isRequired,
+    type: PropTypes.string
   };
 
   static defaultProps = {};
@@ -65,13 +69,13 @@ export class RawBaseSegment extends React.Component {
   };
 
   dragFrom = draggedFrom => {
-    log('[dragFrom] ', draggedFrom);
     this.setState({ draggedFrom });
   };
 
   moveTo = to => {
     const { onChange, from } = this.props;
     const d = { from, to };
+
     this.setState({ draggedTo: undefined }, () => {
       if (!isEqual(to, from)) {
         onChange(d);
@@ -85,11 +89,9 @@ export class RawBaseSegment extends React.Component {
 
   dragSegment = draggedFrom => {
     const { from, to } = this.props;
-
-    log('dragSegment: ', draggedFrom, 'from: ', from, 'to: ', to);
-
     const diff = point(from).sub(point(draggedFrom));
     const draggedTo = point(to).sub(diff);
+    log('dragSegment: ', draggedFrom, 'from: ', from, 'to: ', to);
 
     this.setState({ draggedFrom, draggedTo, isSegmentDrag: true });
   };
@@ -105,10 +107,32 @@ export class RawBaseSegment extends React.Component {
       {
         draggedFrom: undefined,
         draggedTo: undefined,
-        isSegmentDrag: false
+        isSegmentDrag: false,
+        draggedToTest: null
       },
       () => onChange(d)
     );
+  };
+
+  getRayPosition = (rayEndsAt, lineStartsAt, lineEndsAt) => {
+    let { from, graphProps } = this.props;
+    const { draggedFrom, draggedTo, isSegmentDrag } = this.state;
+    let arrowPoint;
+
+    if (!isSegmentDrag) {
+      arrowPoint = calculateThirdPointOnLine(lineStartsAt, lineEndsAt, graphProps);
+
+      if (isFinite(arrowPoint.x) && isFinite(arrowPoint.y)) {
+        rayEndsAt = arrowPoint;
+      }
+    } else {
+      const diff = point(from).sub(point(draggedFrom));
+      arrowPoint = calculateThirdPointOnLine(draggedFrom, draggedTo, graphProps);
+
+      rayEndsAt = point(arrowPoint).add(diff);
+    }
+
+    return rayEndsAt;
   };
 
   render() {
@@ -125,13 +149,22 @@ export class RawBaseSegment extends React.Component {
       to
     } = this.props;
     const { draggedFrom, draggedTo, isSegmentDrag } = this.state;
+
     log('[render] draggedFrom: ', draggedFrom, 'from: ', from);
 
     to = to || from;
-    const f = draggedFrom || from;
-    const s = draggedTo || to;
     const common = { graphProps };
     const Component = ComponentTypes[type];
+
+    const f = draggedFrom || from;
+    const t = draggedTo || to;
+    const lineStartsAt = isSegmentDrag ? from : f;
+    const lineEndsAt = isSegmentDrag ? to : t;
+    let rayEndsAt = lineEndsAt;
+
+    if (type === 'ray') {
+      rayEndsAt = this.getRayPosition(rayEndsAt, lineStartsAt, lineEndsAt);
+    }
 
     return (
       <g>
@@ -139,10 +172,11 @@ export class RawBaseSegment extends React.Component {
           disabled={building || disabled}
           correctness={correctness}
           className={classNames(building && classes.segmentBuilding)}
-          x={isSegmentDrag ? from.x : f.x}
-          y={isSegmentDrag ? from.y : f.y}
-          from={isSegmentDrag ? from : f}
-          to={isSegmentDrag ? to : s}
+          x={lineStartsAt.x}
+          y={lineStartsAt.y}
+          from={lineStartsAt}
+          to={lineEndsAt}
+          ray={rayEndsAt}
           onDrag={this.dragSegment}
           onMove={this.moveSegment}
           onDragStart={onDragStart}
@@ -164,8 +198,8 @@ export class RawBaseSegment extends React.Component {
           <BasePoint
             disabled={building || disabled}
             correctness={correctness}
-            x={isSegmentDrag ? s.x : to.x}
-            y={isSegmentDrag ? s.y : to.y}
+            x={isSegmentDrag ? t.x : to.x}
+            y={isSegmentDrag ? t.y : to.y}
             onMove={this.moveTo}
             onDrag={this.dragTo}
             onDragStart={onDragStart}
@@ -173,14 +207,14 @@ export class RawBaseSegment extends React.Component {
             {...common}
           />
         )}
-        {type !== 'segment' && (
+        {type === 'vector' && (
           <ArrowPoint
             disabled={building || disabled}
             correctness={correctness}
             from={f}
-            to={s}
-            x={isSegmentDrag ? s.x : to.x}
-            y={isSegmentDrag ? s.y : to.y}
+            to={t}
+            x={isSegmentDrag ? t.x : to.x}
+            y={isSegmentDrag ? t.y : to.y}
             onMove={this.moveTo}
             onDrag={this.dragTo}
             onDragStart={onDragStart}

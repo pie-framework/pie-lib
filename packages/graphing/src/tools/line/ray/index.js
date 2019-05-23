@@ -2,12 +2,12 @@ import LineComponent from '../common/component';
 import _ from 'lodash';
 
 export const tool = () => ({
-  type: 'vector',
+  type: 'ray',
   Component: LineComponent,
   addPoint: (point, mark) => {
     if (!mark) {
       return {
-        type: 'vector',
+        type: 'ray',
         building: true,
         from: point
       };

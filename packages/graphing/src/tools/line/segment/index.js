@@ -1,4 +1,3 @@
-import React from 'react';
 import LineComponent from '../common/component';
 import _ from 'lodash';
 

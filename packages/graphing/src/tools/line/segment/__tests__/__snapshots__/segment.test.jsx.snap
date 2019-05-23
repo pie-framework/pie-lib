@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`BgCircle snapshot renders 1`] = `
+exports[`BgSegment snapshot renders 1`] = `
 <RawSegment
   className="className"
   classes={

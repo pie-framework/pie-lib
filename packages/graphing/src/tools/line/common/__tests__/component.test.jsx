@@ -86,6 +86,7 @@ describe('Component', () => {
         expect(w.state().isSegmentDrag).toEqual(true);
       });
     });
+
     describe('moveSegment', () => {
       it('calls onChange', () => {
         w.instance().moveSegment(xy(1, 1));
@@ -93,6 +94,52 @@ describe('Component', () => {
           from: xy(1, 1),
           to: xy(2, 2)
         });
+      });
+    });
+
+    describe('getRayPosition', () => {
+      let w;
+
+      beforeEach(() => {
+        w = wrapper({
+          graphProps: {
+            ...graphProps(),
+            domain: {
+              min: -14,
+              max: 10,
+              step: 1
+            },
+            range: {
+              min: -14,
+              max: 14,
+              step: 1
+            }
+          },
+          from: xy(0, 0),
+          to: xy(2, 2)
+        });
+      });
+
+      it('return arrow position while not dragging', () => {
+        const rayPosition = w
+          .instance()
+          .getRayPosition({ x: 2, y: 2 }, { x: 0, y: 0 }, { x: 2, y: 2 });
+
+        expect(rayPosition).toEqual({ x: 10, y: 10 });
+      });
+
+      it('return arrow position while dragging', () => {
+        w.instance().setState({
+          isSegmentDrag: true,
+          draggedFrom: { x: -1, y: 0 },
+          draggedTo: { x: 1, y: 2 }
+        });
+
+        const rayPosition = w
+          .instance()
+          .getRayPosition({ x: 2, y: 2 }, { x: 0, y: 0 }, { x: 2, y: 2 });
+
+        expect(rayPosition).toEqual({ x: 11, y: 11 });
       });
     });
   });

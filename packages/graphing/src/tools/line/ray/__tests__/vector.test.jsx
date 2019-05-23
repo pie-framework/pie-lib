@@ -1,9 +1,9 @@
 import { shallow } from 'enzyme/build';
 import React from 'react';
-import { BgSegment } from '../segment';
+import { BgRay } from '../ray';
 import { graphProps } from '../../../../__tests__/utils';
 
-describe('BgSegment', () => {
+describe('BgRay', () => {
   let w;
   let onChange = jest.fn();
   const wrapper = extras => {
@@ -11,18 +11,18 @@ describe('BgSegment', () => {
       classes: {},
       className: 'className',
       onChange,
-      from: {
+      firstEnd: {
         x: 0,
         y: 0
       },
-      to: {
+      secondEnd: {
         x: 0,
         y: 0
       },
       graphProps: graphProps()
     };
     const props = { ...defaults, ...extras };
-    return shallow(<BgSegment {...props} />);
+    return shallow(<BgRay {...props} />);
   };
   describe('snapshot', () => {
     it('renders', () => {

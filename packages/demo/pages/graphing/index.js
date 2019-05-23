@@ -55,7 +55,7 @@ class RawMinMax extends React.Component {
 
   change = (key, pair) => {
     const { model, onChange } = this.props;
-    onChange({ ...model, [key]: pair });
+    onChange({ ...model, [key]: pair || 0 });
   };
 
   render() {
@@ -252,7 +252,8 @@ export class GridDemo extends React.Component {
       tools.circle(),
       tools.polygon(),
       tools.segment(),
-      tools.vector()
+      tools.vector(),
+      tools.ray()
     ];
     this.state = {
       currentTool: toolsArr[2],

@@ -1,15 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`BgVector snapshot renders 1`] = `
-<RawVector
+exports[`BgRay snapshot renders 1`] = `
+<RawRay
   className="className"
   classes={
     Object {
-      "bgArrow": "RawVector-bgArrow-2",
-      "bgSegment": "RawVector-bgSegment-1",
-      "correct": "RawVector-correct-4",
-      "disabled": "RawVector-disabled-3",
-      "incorrect": "RawVector-incorrect-5",
+      "bgArrow": "RawRay-bgArrow-2",
+      "bgSegment": "RawRay-bgSegment-1",
+      "correct": "RawRay-correct-4",
+      "disabled": "RawRay-disabled-3",
+      "incorrect": "RawRay-incorrect-5",
     }
   }
   firstEnd={

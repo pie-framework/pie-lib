@@ -3,7 +3,7 @@ import React from 'react';
 import { BgVector } from '../vector';
 import { graphProps } from '../../../../__tests__/utils';
 
-describe('BgCircle', () => {
+describe('BgVector', () => {
   let w;
   let onChange = jest.fn();
   const wrapper = extras => {
