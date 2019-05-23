@@ -247,7 +247,13 @@ export class GridDemo extends React.Component {
   constructor(props) {
     super(props);
 
-    const toolsArr = [tools.sine(), tools.point(), tools.circle(), tools.polygon()];
+    const toolsArr = [
+      tools.parabola(),
+      tools.sine(),
+      tools.point(),
+      tools.circle(),
+      tools.polygon()
+    ];
     this.state = {
       currentTool: toolsArr[2],
       tools: toolsArr,
@@ -265,8 +271,8 @@ export class GridDemo extends React.Component {
       model: {
         title: undefined,
         domain: {
-          min: -2,
-          max: 2,
+          min: -5,
+          max: 5,
           padding: 0,
           step: 1,
           labelStep: 1
@@ -323,6 +329,8 @@ export class GridDemo extends React.Component {
           // }
         ],
         marks: [
+          { type: 'parabola', root: { x: 0, y: 0 }, edge: { x: 1, y: 1 } },
+          { type: 'parabola', root: { x: 2, y: 2 }, edge: { x: -1, y: 1 } },
           { type: 'sine', root: { x: 0, y: 0 }, edge: { x: -1, y: 1 } }
           // {
           //   disabled: true,

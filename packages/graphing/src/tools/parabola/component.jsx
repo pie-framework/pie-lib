@@ -5,16 +5,14 @@ import debug from 'debug';
 import { types } from '@pie-lib/plot';
 import LinePath from '../shared/line-path';
 import { curveMonotoneX } from '@vx/curve';
-// import { genDateValue } from '@vx/mock-data';
 import _ from 'lodash';
 import Point from '@mapbox/point-geometry';
 import BasePoint from '../point/base-point';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-import { sinY, buildDataPoints } from '../utils';
-const xy = (x, y) => ({ x, y });
+import { buildDataPoints, parabolaFromTwoPoints } from '../utils';
 
-const FREQ_DIVIDER = 16;
+const FREQ_DIVIDER = 4;
 
 const log = debug('pie-lib:graphing:sine');
 
@@ -35,7 +33,7 @@ const getAmplitudeAndFreq = (root, edge) => {
   return { freq: d.x * 4, amplitude: d.y };
 };
 
-class RawSine extends React.Component {
+class RawParabola extends React.Component {
   static propTypes = {
     graphProps: types.GraphPropsType.isRequired,
     classes: PropTypes.object.isRequired,
@@ -90,16 +88,18 @@ class RawSine extends React.Component {
     if (this.state.line) {
       /** line is being transformed by drag, so we want to build it's data points off of the props instead of the state.line object. */
       // const root = utils.point(this.props.root).add(this.state.lineAnchor);
-      const { amplitude, freq } = getAmplitudeAndFreq(this.props.root, this.props.edge);
-      const interval = freq / FREQ_DIVIDER;
+      // const { freq } = getAmplitudeAndFreq(root, edge);
+      // const interval = freq / FREQ_DIVIDER;
       const dataPoints = buildDataPoints(
         domain.min,
         domain.max,
         this.props.root,
         this.props.edge,
-        interval,
-        sinY(amplitude, freq, { phase: this.props.root.x, vertical: this.props.root.y })
+        1,
+        parabolaFromTwoPoints(this.props.root, this.props.edge)
       );
+
+      log('dataPoints:', dataPoints);
       return {
         root: this.state.line.root,
         edge: this.state.line.edge,
@@ -109,9 +109,7 @@ class RawSine extends React.Component {
 
     const root = this.state.root ? this.state.root : this.props.root;
     const edge = this.state.edge ? this.state.edge : this.props.edge;
-    const { amplitude, freq } = getAmplitudeAndFreq(root, edge);
-    const interval = freq / FREQ_DIVIDER;
-    log('[getPoints] amplitude:', amplitude, 'freq:', freq);
+    const interval = 1;
 
     const dataPoints =
       edge && edge.x === root.x
@@ -122,8 +120,9 @@ class RawSine extends React.Component {
             root,
             edge,
             interval,
-            sinY(amplitude, freq, { phase: root.x, vertical: root.y })
+            parabolaFromTwoPoints(root, edge)
           );
+    log('dataPoints:', dataPoints);
     // console.table(dataPoints);
     return { root: this.props.root, edge: this.props.edge, dataPoints };
   };
@@ -134,7 +133,7 @@ class RawSine extends React.Component {
 
     const raw = dataPoints.map(d => [graphProps.scale.x(d.x), graphProps.scale.y(d.y)]);
 
-    console.log('edge.x', edge && edge.x, 'root.x:', root.x);
+    console.log('PARABOLA: edge.x', edge && edge.x, 'root.x:', root.x);
     return (
       <g>
         {edge && (
@@ -178,11 +177,7 @@ class RawSine extends React.Component {
     );
   }
 }
-const Sine = withStyles(theme => ({
-  sinePath: {
-    //stroke: theme.palette.secondary.light
-  }
-}))(RawSine);
+const Sine = withStyles(theme => ({}))(RawParabola);
 
 export default class Component extends React.Component {
   static propTypes = {

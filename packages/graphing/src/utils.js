@@ -2,6 +2,11 @@ import head from 'lodash/head';
 import tail from 'lodash/tail';
 import { utils } from '@pie-lib/plot';
 import invariant from 'invariant';
+import _ from 'lodash';
+import debug from 'debug';
+import Point from '@mapbox/point-geometry';
+
+const log = debug('pie-lib:graphing:sine:utils');
 
 export const tickCount = utils.tickCount;
 export const bounds = utils.bounds;

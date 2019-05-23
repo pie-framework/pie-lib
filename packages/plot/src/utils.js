@@ -4,6 +4,8 @@ import Point from '@mapbox/point-geometry';
 import head from 'lodash/head';
 import tail from 'lodash/tail';
 
+export const xy = (x, y) => ({ x, y });
+
 export const buildSizeArray = (size, padding) => {
   padding = Number.isFinite(padding) ? Math.max(padding, 0) : 0;
   invariant(padding < size, 'padding must be less than size');
