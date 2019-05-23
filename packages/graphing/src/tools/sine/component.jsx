@@ -5,14 +5,11 @@ import debug from 'debug';
 import { types } from '@pie-lib/plot';
 import LinePath from '../shared/line-path';
 import { curveMonotoneX } from '@vx/curve';
-// import { genDateValue } from '@vx/mock-data';
-import _ from 'lodash';
 import Point from '@mapbox/point-geometry';
 import BasePoint from '../point/base-point';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import { sinY, buildDataPoints } from '../utils';
-const xy = (x, y) => ({ x, y });
 
 const FREQ_DIVIDER = 16;
 
@@ -134,7 +131,6 @@ class RawSine extends React.Component {
 
     const raw = dataPoints.map(d => [graphProps.scale.x(d.x), graphProps.scale.y(d.y)]);
 
-    console.log('edge.x', edge && edge.x, 'root.x:', root.x);
     return (
       <g>
         {edge && (
@@ -178,11 +174,8 @@ class RawSine extends React.Component {
     );
   }
 }
-const Sine = withStyles(theme => ({
-  sinePath: {
-    //stroke: theme.palette.secondary.light
-  }
-}))(RawSine);
+
+const Sine = withStyles(() => ({}))(RawSine);
 
 export default class Component extends React.Component {
   static propTypes = {

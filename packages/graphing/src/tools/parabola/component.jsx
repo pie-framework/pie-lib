@@ -5,33 +5,12 @@ import debug from 'debug';
 import { types } from '@pie-lib/plot';
 import LinePath from '../shared/line-path';
 import { curveMonotoneX } from '@vx/curve';
-import _ from 'lodash';
-import Point from '@mapbox/point-geometry';
 import BasePoint from '../point/base-point';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import { buildDataPoints, parabolaFromTwoPoints } from '../utils';
 
-const FREQ_DIVIDER = 4;
-
 const log = debug('pie-lib:graphing:sine');
-
-log('sine...');
-const getAmplitudeAndFreq = (root, edge) => {
-  if (!edge) {
-    return { freq: 0, amplitude: 0 };
-  }
-
-  if (root.x == edge.x) {
-    return { freq: 0, amplitude: 0 };
-  }
-
-  const r = new Point(root.x, root.y);
-  const e = new Point(edge.x, edge.y);
-  const d = e.sub(r);
-  // edge point describes 1/4 of the freq
-  return { freq: d.x * 4, amplitude: d.y };
-};
 
 class RawParabola extends React.Component {
   static propTypes = {
@@ -123,7 +102,6 @@ class RawParabola extends React.Component {
             parabolaFromTwoPoints(root, edge)
           );
     log('dataPoints:', dataPoints);
-    // console.table(dataPoints);
     return { root: this.props.root, edge: this.props.edge, dataPoints };
   };
 
@@ -133,7 +111,6 @@ class RawParabola extends React.Component {
 
     const raw = dataPoints.map(d => [graphProps.scale.x(d.x), graphProps.scale.y(d.y)]);
 
-    console.log('PARABOLA: edge.x', edge && edge.x, 'root.x:', root.x);
     return (
       <g>
         {edge && (
@@ -177,7 +154,7 @@ class RawParabola extends React.Component {
     );
   }
 }
-const Sine = withStyles(theme => ({}))(RawParabola);
+const Parabola = withStyles(theme => ({}))(RawParabola);
 
 export default class Component extends React.Component {
   static propTypes = {
@@ -196,7 +173,12 @@ export default class Component extends React.Component {
   render() {
     const { mark, graphProps } = this.props;
     return (
-      <Sine root={mark.root} edge={mark.edge} graphProps={graphProps} onChange={this.changeMark} />
+      <Parabola
+        root={mark.root}
+        edge={mark.edge}
+        graphProps={graphProps}
+        onChange={this.changeMark}
+      />
     );
   }
 }
