@@ -40,7 +40,7 @@ class RawSine extends React.Component {
     graphProps: types.GraphPropsType.isRequired,
     classes: PropTypes.object.isRequired,
     root: types.PointType.isRequired,
-    edge: types.PointType.isRequired,
+    edge: types.PointType,
     onChange: PropTypes.func.isRequired
   };
 
@@ -113,14 +113,17 @@ class RawSine extends React.Component {
     const interval = freq / FREQ_DIVIDER;
     log('[getPoints] amplitude:', amplitude, 'freq:', freq);
 
-    const dataPoints = buildDataPoints(
-      domain.min,
-      domain.max,
-      root,
-      edge,
-      interval,
-      sinY(amplitude, freq, { phase: root.x, vertical: root.y })
-    );
+    const dataPoints =
+      edge && edge.x === root.x
+        ? []
+        : buildDataPoints(
+            domain.min,
+            domain.max,
+            root,
+            edge,
+            interval,
+            sinY(amplitude, freq, { phase: root.x, vertical: root.y })
+          );
     // console.table(dataPoints);
     return { root: this.props.root, edge: this.props.edge, dataPoints };
   };
@@ -131,6 +134,7 @@ class RawSine extends React.Component {
 
     const raw = dataPoints.map(d => [graphProps.scale.x(d.x), graphProps.scale.y(d.y)]);
 
+    console.log('edge.x', edge && edge.x, 'root.x:', root.x);
     return (
       <g>
         {edge && (

@@ -65,6 +65,7 @@ const dragging = theme => ({
 
 export const LinePath = withStyles(theme => ({
   drawLine: {
+    fill: 'none',
     strokeWidth: 2,
     stroke: theme.palette.secondary.light
   },

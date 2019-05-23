@@ -5,11 +5,6 @@ const log = debug('pie-lib:graphing:sine:utils');
 
 /**
  * build the x points with root as the anchor.
- * adds padding left and right so that
- * the anchor can be moved left/right
- * and there will be points off stage rendering.
- *
- *  root: 0, freq: 2, min: -5, max: 5 ==> -5,-4-2,0,2,4,5
  */
 export const xPoints = (root, freq, min, max) => {
   freq = Math.abs(freq);
@@ -21,7 +16,7 @@ export const xPoints = (root, freq, min, max) => {
 };
 
 /**
- * \(a\ \sin\left(\frac{2\pi\left(x\ \ +\ c\right)}{b}\right)\ +\ p\)
+ * Calculate y for x value using amp, freq and shift
  * https://www.desmos.com/calculator/f1psfoiiv6
  */
 export const sinY = (amplitude, freq, shift) => x => {
@@ -36,21 +31,11 @@ export const sinY = (amplitude, freq, shift) => x => {
 
 export const buildDataPoints = (min, max, root, edge, interval, yFn) => {
   log('[buildDataPoints] min:', min, 'max:', max, 'root:', root);
-  // const fn = sinY(amplitude, freq);
-  const diff = max - root.x;
-  const plusDiff = min - root.x;
-
+  edge = edge ? edge : { ...root };
   const minX = Math.min(root.x, edge.x);
   const maxX = Math.max(root.x, edge.x);
-
-  // -2 - 0 = 0
-  // -4 + 2 = -2
-  //  1 - 1 = 0
-  //  1 - 3 = -2
   const leftSpace = min - minX;
   const rightSpace = max - maxX;
-  log('min', minX, 'max:', maxX, 'leftSpace: ', leftSpace, 'rightSpace:', rightSpace);
   const xs = xPoints(minX, interval, min - rightSpace, max - leftSpace);
-  log('xs:', xs);
-  return xs.map(v => new Point(v, yFn(v))); //.map(p => p.add(new Point(root.x, root.y)));
+  return xs.map(v => new Point(v, yFn(v)));
 };
