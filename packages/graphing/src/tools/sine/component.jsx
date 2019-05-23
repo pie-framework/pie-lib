@@ -11,10 +11,10 @@ import Point from '@mapbox/point-geometry';
 import BasePoint from '../point/base-point';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-import { xPoints, sinY, buildDataPoints } from './utils';
+import { sinY, buildDataPoints } from './utils';
 const xy = (x, y) => ({ x, y });
 
-const FREQ_DIVIDER = 4;
+const FREQ_DIVIDER = 16;
 
 const log = debug('pie-lib:graphing:sine');
 
@@ -96,8 +96,9 @@ class RawSine extends React.Component {
         domain.min,
         domain.max,
         this.props.root,
+        this.props.edge,
         interval,
-        sinY(amplitude, freq)
+        sinY(amplitude, freq, { phase: this.props.root.x, vertical: this.props.root.y })
       );
       return {
         root: this.state.line.root,
@@ -116,8 +117,9 @@ class RawSine extends React.Component {
       domain.min,
       domain.max,
       root,
+      edge,
       interval,
-      sinY(amplitude, freq)
+      sinY(amplitude, freq, { phase: root.x, vertical: root.y })
     );
     // console.table(dataPoints);
     return { root: this.props.root, edge: this.props.edge, dataPoints };

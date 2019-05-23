@@ -189,7 +189,6 @@ export class Graph extends React.Component {
     log('[render]', marks);
 
     const graphProps = createGraphProps(domain, range, size);
-    console.log('size:', size, graphProps);
     const maskSize = {
       x: -10,
       y: -10,

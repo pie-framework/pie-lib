@@ -265,8 +265,8 @@ export class GridDemo extends React.Component {
       model: {
         title: undefined,
         domain: {
-          min: -5,
-          max: 5,
+          min: -2,
+          max: 2,
           padding: 0,
           step: 1,
           labelStep: 1
@@ -323,7 +323,7 @@ export class GridDemo extends React.Component {
           // }
         ],
         marks: [
-          //{ type: 'sine', root: { x: 0, y: 0 }, edge: { x: 2, y: 2 } }
+          { type: 'sine', root: { x: 0, y: 0 }, edge: { x: -1, y: 1 } }
           // {
           //   disabled: true,
           //   type: 'polygon',
