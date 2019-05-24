@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { types } from '@pie-lib/plot';
+import { arrowDimensions, calculateCorrectScaledPoints } from '../utils';
 
 /**
  * A low level segment component
@@ -43,28 +44,43 @@ export class RawLine extends React.Component {
       ...rest
     } = this.props;
     const { scale } = graphProps;
+    const { x: scaledBackwardX, y: scaledBackwardY } = calculateCorrectScaledPoints(
+      scale,
+      forward,
+      backward,
+      'line'
+    );
+    const { x: scaledForwardX, y: scaledForwardY } = calculateCorrectScaledPoints(
+      scale,
+      backward,
+      forward,
+      'line'
+    );
 
     return (
       <g>
         <defs>
           <marker
             id="arrow"
-            viewBox="0 0 5 5"
-            refX="2.5"
-            refY="2.5"
+            viewBox={`0 0 ${arrowDimensions.line} ${arrowDimensions.line}`}
+            refX={arrowDimensions.line / 2}
+            refY={arrowDimensions.line / 2}
             markerWidth="3"
             markerHeight="3"
             orient="auto-start-reverse"
             className={classes.arrow}
           >
-            <path d="M 0 0 L 5 2.5 L 0 5 z" />
+            <path
+              d={`M 0 0 L ${arrowDimensions.line} ${arrowDimensions.line / 2} L 0
+              ${arrowDimensions.line} z`}
+            />
           </marker>
         </defs>
         <line
-          x1={scale.x(backward.x)}
-          y1={scale.y(backward.y)}
-          x2={scale.x(forward.x)}
-          y2={scale.y(forward.y)}
+          x1={scaledBackwardX}
+          y1={scaledBackwardY}
+          x2={scaledForwardX}
+          y2={scaledForwardY}
           className={classNames(
             classes.bgSegment,
             disabled && classes.disabled,

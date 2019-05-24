@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { types } from '@pie-lib/plot';
 import isEqual from 'lodash/isEqual';
 import { getAngleDeg } from '../../../utils';
+import { arrowDimensions } from '../../line-tools/utils';
 
 export class RawArrow extends React.Component {
   static propTypes = {
@@ -48,7 +49,8 @@ export class RawArrow extends React.Component {
     if (isEqual(from, to)) {
       points = '0,0 0,0 0,0';
     } else {
-      points = '0,-7 7,7 -7,7';
+      points = `0,0 ${arrowDimensions.vector},${arrowDimensions.vector * 2} 
+      -${arrowDimensions.vector},${arrowDimensions.vector * 2}`;
     }
 
     return (
