@@ -248,13 +248,13 @@ export class GridDemo extends React.Component {
     super(props);
 
     const toolsArr = [
-      tools.line(),
       tools.point(),
       tools.circle(),
       tools.polygon(),
       tools.segment(),
       tools.vector(),
-      tools.ray()
+      tools.ray(),
+      tools.line()
     ];
     this.state = {
       currentTool: toolsArr[2],
