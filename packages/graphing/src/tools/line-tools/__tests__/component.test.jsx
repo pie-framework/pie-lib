@@ -98,74 +98,81 @@ describe('Component', () => {
     });
 
     describe('getRayAtPosition', () => {
-      let w;
-
-      beforeEach(() => {
-        w = wrapper({
-          graphProps: {
-            ...graphProps(),
-            domain: {
-              min: -14,
-              max: 10,
-              step: 1
-            },
-            range: {
-              min: -14,
-              max: 14,
-              step: 1
-            }
+      const w = wrapper({
+        graphProps: {
+          ...graphProps(),
+          domain: {
+            min: -14,
+            max: 10,
+            step: 1
           },
-          from: xy(0, 0),
-          to: xy(2, 2)
-        });
+          range: {
+            min: -14,
+            max: 14,
+            step: 1
+          }
+        },
+        from: xy(0, 0),
+        to: xy(2, 2)
       });
 
-      describe('start', () => {
-        it('return arrow position while not dragging', () => {
-          const rayPosition = w
-            .instance()
-            .getRayAtPosition({ x: 2, y: 2 }, { x: 0, y: 0 }, { x: 2, y: 2 });
+      const assertRayPosition = (ray, from, to, rayPosition, text, expected) => {
+        it(text, () => {
+          const result = w.instance().getRayAtPosition(ray, from, to, rayPosition);
 
-          expect(rayPosition).toEqual({ x: -14, y: -14 });
+          expect(result).toEqual(expected);
         });
+      };
 
-        it('return arrow position while dragging', () => {
+      const assertRayPositionWhileDragging = (ray, from, to, rayPosition, text, expected) => {
+        it(text, () => {
           w.instance().setState({
             isSegmentDrag: true,
             draggedFrom: { x: -1, y: 0 },
             draggedTo: { x: 1, y: 2 }
           });
 
-          const rayPosition = w
-            .instance()
-            .getRayAtPosition({ x: 2, y: 2 }, { x: 0, y: 0 }, { x: 2, y: 2 });
-
-          expect(rayPosition).toEqual({ x: -13, y: -13 });
+          const result = w.instance().getRayAtPosition(ray, from, to, rayPosition);
+          expect(result).toEqual(expected);
         });
+      };
+
+      describe('not dragging', () => {
+        assertRayPosition(
+          { x: 2, y: 2 },
+          { x: 0, y: 0 },
+          { x: 2, y: 2 },
+          'start',
+          'return arrow position',
+          { x: -14, y: -14 }
+        );
+        assertRayPosition(
+          { x: 2, y: 2 },
+          { x: 0, y: 0 },
+          { x: 2, y: 2 },
+          'end',
+          'return arrow position',
+          { x: 10, y: 10 }
+        );
       });
 
-      describe('end', () => {
-        it('return arrow position while not dragging', () => {
-          const rayPosition = w
-            .instance()
-            .getRayAtPosition({ x: 2, y: 2 }, { x: 0, y: 0 }, { x: 2, y: 2 }, 'end');
-
-          expect(rayPosition).toEqual({ x: 10, y: 10 });
-        });
-
-        it('return arrow position while dragging', () => {
-          w.instance().setState({
-            isSegmentDrag: true,
-            draggedFrom: { x: -1, y: 0 },
-            draggedTo: { x: 1, y: 2 }
-          });
-
-          const rayPosition = w
-            .instance()
-            .getRayAtPosition({ x: 2, y: 2 }, { x: 0, y: 0 }, { x: 2, y: 2 }, 'end');
-
-          expect(rayPosition).toEqual({ x: 11, y: 11 });
-        });
+      describe('dragging', () => {
+        assertRayPositionWhileDragging(
+          { x: 2, y: 2 },
+          { x: 0, y: 0 },
+          { x: 2, y: 2 },
+          'start',
+          'return arrow position',
+          { x: -13, y: -13 }
+        );
+        assertRayPositionWhileDragging(
+          { x: 2, y: 2 },
+          { x: 0, y: 0 },
+          { x: 2, y: 2 },
+          'end',
+          'return arrow position',
+          { x: 11, y: 11 }
+        );
       });
     });
   });
