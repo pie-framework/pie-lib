@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RawLine snapshot renders 1`] = `
+<g>
+  <defs>
+    <marker
+      id="arrow"
+      markerHeight="3"
+      markerWidth="3"
+      orient="auto-start-reverse"
+      refX="2.5"
+      refY="2.5"
+      viewBox="0 0 5 5"
+    >
+      <path
+        d="M 0 0 L 5 2.5 L 0 5 z"
+      />
+    </marker>
+  </defs>
+  <line
+    className="className"
+    from={
+      Object {
+        "x": 0,
+        "y": 0,
+      }
+    }
+    markerEnd="url(#arrow)"
+    markerStart="url(#arrow)"
+    onChange={[MockFunction]}
+    to={
+      Object {
+        "x": 0,
+        "y": 0,
+      }
+    }
+    x1={1}
+    x2={1}
+    y1={1}
+    y2={1}
+  />
+</g>
+`;
