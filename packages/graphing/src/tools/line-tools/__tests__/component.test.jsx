@@ -116,16 +116,16 @@ describe('Component', () => {
         to: xy(2, 2)
       });
 
-      const assertRayPosition = (ray, from, to, rayPosition, text, expected) => {
-        it(text, () => {
+      const assertRayPosition = (ray, from, to, rayPosition, expected) => {
+        it(`${from.x},${from.y} ${to.x},${to.y} => ${expected.x},${expected.y}`, () => {
           const result = w.instance().getRayAtPosition(ray, from, to, rayPosition);
 
           expect(result).toEqual(expected);
         });
       };
 
-      const assertRayPositionWhileDragging = (ray, from, to, rayPosition, text, expected) => {
-        it(text, () => {
+      const assertRayPositionWhileDragging = (ray, from, to, rayPosition, expected) => {
+        it(`${from.x},${from.y} ${to.x},${to.y} => ${expected.x},${expected.y}`, () => {
           w.instance().setState({
             isSegmentDrag: true,
             draggedFrom: { x: -1, y: 0 },
@@ -138,41 +138,22 @@ describe('Component', () => {
       };
 
       describe('not dragging', () => {
-        assertRayPosition(
-          { x: 2, y: 2 },
-          { x: 0, y: 0 },
-          { x: 2, y: 2 },
-          'start',
-          'return arrow position',
-          { x: -14, y: -14 }
-        );
-        assertRayPosition(
-          { x: 2, y: 2 },
-          { x: 0, y: 0 },
-          { x: 2, y: 2 },
-          'end',
-          'return arrow position',
-          { x: 10, y: 10 }
-        );
+        assertRayPosition({ x: 2, y: 2 }, { x: 0, y: 0 }, { x: 2, y: 2 }, 'start', {
+          x: -14,
+          y: -14
+        });
+        assertRayPosition({ x: 2, y: 2 }, { x: 0, y: 0 }, { x: 2, y: 2 }, 'end', { x: 10, y: 10 });
       });
 
       describe('dragging', () => {
-        assertRayPositionWhileDragging(
-          { x: 2, y: 2 },
-          { x: 0, y: 0 },
-          { x: 2, y: 2 },
-          'start',
-          'return arrow position',
-          { x: -13, y: -13 }
-        );
-        assertRayPositionWhileDragging(
-          { x: 2, y: 2 },
-          { x: 0, y: 0 },
-          { x: 2, y: 2 },
-          'end',
-          'return arrow position',
-          { x: 11, y: 11 }
-        );
+        assertRayPositionWhileDragging({ x: 2, y: 2 }, { x: 0, y: 0 }, { x: 2, y: 2 }, 'start', {
+          x: -13,
+          y: -13
+        });
+        assertRayPositionWhileDragging({ x: 2, y: 2 }, { x: 0, y: 0 }, { x: 2, y: 2 }, 'end', {
+          x: 11,
+          y: 11
+        });
       });
     });
   });
