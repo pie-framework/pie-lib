@@ -1,55 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`BgVector snapshot renders 1`] = `
-<RawVector
-  className="className"
-  classes={
-    Object {
-      "bgArrow": "RawVector-bgArrow-2",
-      "bgSegment": "RawVector-bgSegment-1",
-      "correct": "RawVector-correct-4",
-      "disabled": "RawVector-disabled-3",
-      "incorrect": "RawVector-incorrect-5",
-    }
-  }
-  firstEnd={
-    Object {
-      "x": 0,
-      "y": 0,
-    }
-  }
-  graphProps={
-    Object {
-      "domain": Object {
-        "max": 1,
-        "min": 0,
-        "step": 1,
-      },
-      "range": Object {
-        "max": 1,
-        "min": 0,
-        "step": 1,
-      },
-      "scale": Object {
-        "x": [MockFunction],
-        "y": [MockFunction],
-      },
-      "size": Object {
-        "height": 400,
-        "width": 400,
-      },
-      "snap": Object {
-        "x": [MockFunction],
-        "y": [MockFunction],
-      },
-    }
-  }
-  onChange={[MockFunction]}
-  secondEnd={
-    Object {
-      "x": 0,
-      "y": 0,
-    }
-  }
-/>
+exports[`RawVector snapshot renders 1`] = `
+<g>
+  <line
+    className="className"
+    onChange={[MockFunction]}
+    x1={0}
+    x2={0}
+    y1={0}
+    y2={0}
+  />
+</g>
 `;

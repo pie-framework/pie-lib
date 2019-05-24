@@ -1,54 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`BgSegment snapshot renders 1`] = `
-<RawSegment
+exports[`RawSegment snapshot renders 1`] = `
+<line
   className="className"
-  classes={
-    Object {
-      "bgSegment": "RawSegment-bgSegment-1",
-      "correct": "RawSegment-correct-3",
-      "disabled": "RawSegment-disabled-2",
-      "incorrect": "RawSegment-incorrect-4",
-    }
-  }
-  from={
-    Object {
-      "x": 0,
-      "y": 0,
-    }
-  }
-  graphProps={
-    Object {
-      "domain": Object {
-        "max": 1,
-        "min": 0,
-        "step": 1,
-      },
-      "range": Object {
-        "max": 1,
-        "min": 0,
-        "step": 1,
-      },
-      "scale": Object {
-        "x": [MockFunction],
-        "y": [MockFunction],
-      },
-      "size": Object {
-        "height": 400,
-        "width": 400,
-      },
-      "snap": Object {
-        "x": [MockFunction],
-        "y": [MockFunction],
-      },
-    }
-  }
   onChange={[MockFunction]}
-  to={
-    Object {
-      "x": 0,
-      "y": 0,
-    }
-  }
+  x1={0}
+  x2={0}
+  y1={0}
+  y2={0}
 />
 `;

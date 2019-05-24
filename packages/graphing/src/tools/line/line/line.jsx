@@ -6,7 +6,7 @@ import { types } from '@pie-lib/plot';
 /**
  * A low level segment component
  */
-export class RawRay extends React.Component {
+export class RawLine extends React.Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     className: PropTypes.string,
@@ -15,12 +15,16 @@ export class RawRay extends React.Component {
     from: PropTypes.shape({
       x: PropTypes.number,
       y: PropTypes.number
-    }).isRequired,
+    }),
     to: PropTypes.shape({
       x: PropTypes.number,
       y: PropTypes.number
     }),
     forward: PropTypes.shape({
+      x: PropTypes.number,
+      y: PropTypes.number
+    }).isRequired,
+    backward: PropTypes.shape({
       x: PropTypes.number,
       y: PropTypes.number
     }).isRequired,
@@ -34,7 +38,7 @@ export class RawRay extends React.Component {
       className,
       correctness,
       graphProps,
-      from,
+      backward,
       forward,
       ...rest
     } = this.props;
@@ -57,8 +61,8 @@ export class RawRay extends React.Component {
           </marker>
         </defs>
         <line
-          x1={scale.x(from.x)}
-          y1={scale.y(from.y)}
+          x1={scale.x(backward.x)}
+          y1={scale.y(backward.y)}
           x2={scale.x(forward.x)}
           y2={scale.y(forward.y)}
           className={classNames(
@@ -68,6 +72,7 @@ export class RawRay extends React.Component {
             className
           )}
           markerEnd="url(#arrow)"
+          markerStart="url(#arrow)"
           {...rest}
         />
       </g>

@@ -4,14 +4,12 @@ import { withStyles } from '@material-ui/core/styles/index';
 import { ToolPropType } from '../../types';
 import debug from 'debug';
 import { BasePoint, ArrowPoint } from '../../common/point';
-import Segment from '../segment/segment';
-import Vector from '../vector/vector';
-import Ray from '../ray/ray';
 import { point } from '../../../utils';
 import classNames from 'classnames';
 import { types } from '@pie-lib/plot';
 import isEqual from 'lodash/isEqual';
 import { calculateThirdPointOnLine } from '../../../utils';
+import Components from './gridDraggableComponent';
 
 const log = debug('pie-lib:graphing:segment');
 
@@ -24,12 +22,6 @@ const opacityPulsate = opacity => ({
 export const PointType = {
   x: PropTypes.number,
   y: PropTypes.number
-};
-
-const ComponentTypes = {
-  segment: Segment,
-  vector: Vector,
-  ray: Ray
 };
 
 export class RawBaseSegment extends React.Component {
@@ -114,24 +106,33 @@ export class RawBaseSegment extends React.Component {
     );
   };
 
-  getRayPosition = (rayEndsAt, lineStartsAt, lineEndsAt) => {
+  getRayAtPosition = (rayEndsAt, lineStartsAt, lineEndsAt, rayPosition = 'start') => {
     let { from, graphProps } = this.props;
     const { draggedFrom, draggedTo, isSegmentDrag } = this.state;
     let arrowPoint;
 
     if (!isSegmentDrag) {
-      arrowPoint = calculateThirdPointOnLine(lineStartsAt, lineEndsAt, graphProps);
+      if (rayPosition === 'start') {
+        arrowPoint = calculateThirdPointOnLine(lineEndsAt, lineStartsAt, graphProps);
+      } else {
+        arrowPoint = calculateThirdPointOnLine(lineStartsAt, lineEndsAt, graphProps);
+      }
 
       if (isFinite(arrowPoint.x) && isFinite(arrowPoint.y)) {
         rayEndsAt = arrowPoint;
       }
     } else {
       const diff = point(from).sub(point(draggedFrom));
-      arrowPoint = calculateThirdPointOnLine(draggedFrom, draggedTo, graphProps);
+      if (rayPosition === 'start') {
+        arrowPoint = calculateThirdPointOnLine(draggedTo, draggedFrom, graphProps);
+      } else {
+        arrowPoint = calculateThirdPointOnLine(draggedFrom, draggedTo, graphProps);
+      }
 
       rayEndsAt = point(arrowPoint).add(diff);
     }
 
+    console.log(rayEndsAt);
     return rayEndsAt;
   };
 
@@ -154,16 +155,21 @@ export class RawBaseSegment extends React.Component {
 
     to = to || from;
     const common = { graphProps };
-    const Component = ComponentTypes[type];
+    const Component = Components[type];
 
     const f = draggedFrom || from;
     const t = draggedTo || to;
     const lineStartsAt = isSegmentDrag ? from : f;
     const lineEndsAt = isSegmentDrag ? to : t;
     let rayEndsAt = lineEndsAt;
+    let rayStartsAt = lineStartsAt;
 
-    if (type === 'ray') {
-      rayEndsAt = this.getRayPosition(rayEndsAt, lineStartsAt, lineEndsAt);
+    if (type === 'ray' || type === 'line') {
+      rayEndsAt = this.getRayAtPosition(rayEndsAt, lineStartsAt, lineEndsAt, 'end');
+    }
+
+    if (type === 'line') {
+      rayStartsAt = this.getRayAtPosition(rayEndsAt, lineStartsAt, lineEndsAt, 'start');
     }
 
     return (
@@ -176,7 +182,8 @@ export class RawBaseSegment extends React.Component {
           y={lineStartsAt.y}
           from={lineStartsAt}
           to={lineEndsAt}
-          ray={rayEndsAt}
+          backward={rayStartsAt}
+          forward={rayEndsAt}
           onDrag={this.dragSegment}
           onMove={this.moveSegment}
           onDragStart={onDragStart}

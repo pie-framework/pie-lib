@@ -97,7 +97,7 @@ describe('Component', () => {
       });
     });
 
-    describe('getRayPosition', () => {
+    describe('getRayAtPosition', () => {
       let w;
 
       beforeEach(() => {
@@ -120,26 +120,52 @@ describe('Component', () => {
         });
       });
 
-      it('return arrow position while not dragging', () => {
-        const rayPosition = w
-          .instance()
-          .getRayPosition({ x: 2, y: 2 }, { x: 0, y: 0 }, { x: 2, y: 2 });
+      describe('start', () => {
+        it('return arrow position while not dragging', () => {
+          const rayPosition = w
+            .instance()
+            .getRayAtPosition({ x: 2, y: 2 }, { x: 0, y: 0 }, { x: 2, y: 2 });
 
-        expect(rayPosition).toEqual({ x: 10, y: 10 });
-      });
-
-      it('return arrow position while dragging', () => {
-        w.instance().setState({
-          isSegmentDrag: true,
-          draggedFrom: { x: -1, y: 0 },
-          draggedTo: { x: 1, y: 2 }
+          expect(rayPosition).toEqual({ x: -14, y: -14 });
         });
 
-        const rayPosition = w
-          .instance()
-          .getRayPosition({ x: 2, y: 2 }, { x: 0, y: 0 }, { x: 2, y: 2 });
+        it('return arrow position while dragging', () => {
+          w.instance().setState({
+            isSegmentDrag: true,
+            draggedFrom: { x: -1, y: 0 },
+            draggedTo: { x: 1, y: 2 }
+          });
 
-        expect(rayPosition).toEqual({ x: 11, y: 11 });
+          const rayPosition = w
+            .instance()
+            .getRayAtPosition({ x: 2, y: 2 }, { x: 0, y: 0 }, { x: 2, y: 2 });
+
+          expect(rayPosition).toEqual({ x: -13, y: -13 });
+        });
+      });
+
+      describe('end', () => {
+        it('return arrow position while not dragging', () => {
+          const rayPosition = w
+            .instance()
+            .getRayAtPosition({ x: 2, y: 2 }, { x: 0, y: 0 }, { x: 2, y: 2 }, 'end');
+
+          expect(rayPosition).toEqual({ x: 10, y: 10 });
+        });
+
+        it('return arrow position while dragging', () => {
+          w.instance().setState({
+            isSegmentDrag: true,
+            draggedFrom: { x: -1, y: 0 },
+            draggedTo: { x: 1, y: 2 }
+          });
+
+          const rayPosition = w
+            .instance()
+            .getRayAtPosition({ x: 2, y: 2 }, { x: 0, y: 0 }, { x: 2, y: 2 }, 'end');
+
+          expect(rayPosition).toEqual({ x: 11, y: 11 });
+        });
       });
     });
   });

@@ -1,9 +1,9 @@
 import { shallow } from 'enzyme/build';
 import React from 'react';
-import { BgSegment } from '../segment';
+import { RawSegment } from '../segment';
 import { graphProps } from '../../../../__tests__/utils';
 
-describe('BgSegment', () => {
+describe('RawSegment', () => {
   let w;
   let onChange = jest.fn();
   const wrapper = extras => {
@@ -22,7 +22,7 @@ describe('BgSegment', () => {
       graphProps: graphProps()
     };
     const props = { ...defaults, ...extras };
-    return shallow(<BgSegment {...props} />);
+    return shallow(<RawSegment {...props} />);
   };
   describe('snapshot', () => {
     it('renders', () => {

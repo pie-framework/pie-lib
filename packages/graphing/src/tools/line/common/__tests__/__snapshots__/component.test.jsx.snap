@@ -3,7 +3,19 @@
 exports[`Component snapshot renders 1`] = `
 <g>
   <Component
+    backward={
+      Object {
+        "x": 0,
+        "y": 0,
+      }
+    }
     className=""
+    forward={
+      Object {
+        "x": 1,
+        "y": 1,
+      }
+    }
     from={
       Object {
         "x": 0,
@@ -38,12 +50,6 @@ exports[`Component snapshot renders 1`] = `
     }
     onDrag={[Function]}
     onMove={[Function]}
-    ray={
-      Object {
-        "x": 1,
-        "y": 1,
-      }
-    }
     to={
       Object {
         "x": 1,

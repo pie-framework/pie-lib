@@ -1,18 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles/index';
 import classNames from 'classnames';
-import { types, gridDraggable } from '@pie-lib/plot';
-import * as utils from '../../../utils';
-import { disabled, correct, incorrect } from '../../styles';
+import { types } from '@pie-lib/plot';
 
 /**
  * A low level segment component
- *
- * TODO: This and base point have a lot of similarities - merge commonality
- *
  */
-class RawVector extends React.Component {
+export class RawVector extends React.Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     className: PropTypes.string,
@@ -52,51 +46,3 @@ class RawVector extends React.Component {
     );
   }
 }
-
-const applyStyle = fn => ({
-  ...fn('stroke'),
-  '&:hover': {
-    strokeWidth: 3,
-    ...fn('stroke')
-  }
-});
-
-const styles = theme => ({
-  bgSegment: {
-    fill: 'transparent',
-    stroke: theme.palette.primary.light,
-    strokeWidth: 3,
-    transition: 'stroke 200ms ease-in, stroke-width 200ms ease-in',
-    '&:hover': {
-      strokeWidth: 6,
-      stroke: theme.palette.primary.dark
-    }
-  },
-  bgArrow: {
-    stroke: theme.palette.secondary.main,
-    cursor: 'pointer',
-    fill: `var(--point-bg, ${theme.palette.secondary.main})`
-  },
-  disabled: applyStyle(disabled),
-  correct: applyStyle(correct),
-  incorrect: applyStyle(incorrect)
-});
-
-export const BgVector = withStyles(styles)(RawVector);
-
-export default gridDraggable({
-  bounds: (props, { domain, range }) => {
-    const { from, to } = props;
-    const area = utils.lineToArea(from, to);
-
-    return utils.bounds(area, domain, range);
-  },
-  anchorPoint: props => {
-    const { from } = props;
-
-    return from;
-  },
-  fromDelta: (props, delta) => {
-    return utils.point(props).add(utils.point(delta));
-  }
-})(BgVector);
