@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme/build';
 import React from 'react';
-import { graphProps, xy } from '../../../../__tests__/utils';
+import { graphProps, xy } from '../../../__tests__/utils';
 
 import { RawBaseSegment } from '../component';
 

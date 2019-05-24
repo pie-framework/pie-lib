@@ -1,11 +1,11 @@
 import { withStyles } from '@material-ui/core/styles/index';
 import { gridDraggable } from '@pie-lib/plot';
-import * as utils from '../../../utils';
-import { disabled, correct, incorrect } from '../../styles';
-import { RawSegment } from '../segment/segment';
-import { RawVector } from '../vector/vector';
-import { RawRay } from '../ray/ray';
-import { RawLine } from '../line/line';
+import * as utils from '../../utils';
+import { disabled, correct, incorrect } from '../styles';
+import { RawSegment } from './segment/segment';
+import { RawVector } from './vector/vector';
+import { RawRay } from './ray/ray';
+import { RawLine } from './line/line';
 
 const applyStyle = fn => ({
   ...fn('stroke'),

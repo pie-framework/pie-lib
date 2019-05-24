@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles/index';
-import { ToolPropType } from '../../types';
+import { ToolPropType } from '../types';
 import debug from 'debug';
-import { BasePoint, ArrowPoint } from '../../common/point';
-import { point } from '../../../utils';
+import { BasePoint, ArrowPoint } from '../common/point';
+import { point } from '../../utils';
 import classNames from 'classnames';
 import { types } from '@pie-lib/plot';
 import isEqual from 'lodash/isEqual';
-import { calculateThirdPointOnLine } from '../../../utils';
+import { calculateThirdPointOnLine } from '../../utils';
 import Components from './gridDraggableComponent';
 
 const log = debug('pie-lib:graphing:segment');
@@ -106,7 +106,7 @@ export class RawBaseSegment extends React.Component {
     );
   };
 
-  getRayAtPosition = (rayEndsAt, lineStartsAt, lineEndsAt, rayPosition = 'start') => {
+  getRayAtPosition = (arrow, lineStartsAt, lineEndsAt, rayPosition = 'start') => {
     let { from, graphProps } = this.props;
     const { draggedFrom, draggedTo, isSegmentDrag } = this.state;
     let arrowPoint;
@@ -119,7 +119,7 @@ export class RawBaseSegment extends React.Component {
       }
 
       if (isFinite(arrowPoint.x) && isFinite(arrowPoint.y)) {
-        rayEndsAt = arrowPoint;
+        arrow = arrowPoint;
       }
     } else {
       const diff = point(from).sub(point(draggedFrom));
@@ -129,11 +129,10 @@ export class RawBaseSegment extends React.Component {
         arrowPoint = calculateThirdPointOnLine(draggedFrom, draggedTo, graphProps);
       }
 
-      rayEndsAt = point(arrowPoint).add(diff);
+      arrow = point(arrowPoint).add(diff);
     }
 
-    console.log(rayEndsAt);
-    return rayEndsAt;
+    return arrow;
   };
 
   render() {

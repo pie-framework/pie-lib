@@ -1,4 +1,4 @@
-import LineComponent from '../common/component';
+import LineComponent from '../component';
 import _ from 'lodash';
 
 export const tool = () => ({

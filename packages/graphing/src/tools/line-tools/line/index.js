@@ -1,13 +1,13 @@
-import LineComponent from '../common/component';
+import LineComponent from '../component';
 import _ from 'lodash';
 
 export const tool = () => ({
-  type: 'vector',
+  type: 'line',
   Component: LineComponent,
   addPoint: (point, mark) => {
     if (!mark) {
       return {
-        type: 'vector',
+        type: 'line',
         building: true,
         from: point
       };
