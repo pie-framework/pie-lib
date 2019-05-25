@@ -90,4 +90,40 @@ describe('utils', () => {
     assertThirdPoint({ x: 3, y: 3 }, { x: -3, y: 3 }, graphProps, { x: -14, y: 3 });
     assertThirdPoint({ x: 1, y: 2 }, { x: 3, y: 6 }, graphProps, { x: 7, y: 14 });
   });
+
+  describe('calculatePreviousNearestScaledPoint', () => {
+    const scale = {
+      x: from => from * 100,
+      y: from => from * 100
+    };
+
+    const assertCalculatePreviousNearestScaledPoint = (from, to, type, expected) => {
+      it(`${from.x},${from.y}  ${to.x},${to.y} => scaled to ${expected.x},${expected.y}`, () => {
+        const result = utils.calculatePreviousNearestScaledPoint(scale, from, to, type);
+
+        expect(result).toEqual(expected);
+      });
+    };
+
+    assertCalculatePreviousNearestScaledPoint({ x: 0, y: 0 }, { x: 1, y: 1 }, undefined, {
+      x: 100,
+      y: 100
+    });
+    assertCalculatePreviousNearestScaledPoint({ x: 0, y: 0 }, { x: 1, y: 1 }, 'vector', {
+      x: 93,
+      y: 93
+    });
+    assertCalculatePreviousNearestScaledPoint({ x: 0, y: 0 }, { x: 1, y: 1 }, 'ray', {
+      x: 95,
+      y: 95
+    });
+    assertCalculatePreviousNearestScaledPoint({ x: 0, y: 0 }, { x: 1, y: 1 }, 'line', {
+      x: 95,
+      y: 95
+    });
+    assertCalculatePreviousNearestScaledPoint({ x: 1, y: 1 }, { x: 0, y: 0 }, 'line', {
+      x: 5,
+      y: 5
+    });
+  });
 });

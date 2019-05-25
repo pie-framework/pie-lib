@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { types } from '@pie-lib/plot';
 import isEqual from 'lodash/isEqual';
-import { getAngleDeg } from '../../../utils';
-import { arrowDimensions } from '../../line-tools/utils';
+import { getAngleDeg, arrowDimensions } from '../../../utils';
 
 export class RawArrow extends React.Component {
   static propTypes = {

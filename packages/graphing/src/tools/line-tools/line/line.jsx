@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { types } from '@pie-lib/plot';
-import { arrowDimensions, calculateCorrectScaledPoints } from '../utils';
+import { arrowDimensions, calculatePreviousNearestScaledPoint } from '../../../utils';
 
 /**
  * A low level segment component
@@ -44,13 +44,13 @@ export class RawLine extends React.Component {
       ...rest
     } = this.props;
     const { scale } = graphProps;
-    const { x: scaledBackwardX, y: scaledBackwardY } = calculateCorrectScaledPoints(
+    const { x: scaledBackwardX, y: scaledBackwardY } = calculatePreviousNearestScaledPoint(
       scale,
       forward,
       backward,
       'line'
     );
-    const { x: scaledForwardX, y: scaledForwardY } = calculateCorrectScaledPoints(
+    const { x: scaledForwardX, y: scaledForwardY } = calculatePreviousNearestScaledPoint(
       scale,
       backward,
       forward,

@@ -106,13 +106,14 @@ export class RawBaseSegment extends React.Component {
     );
   };
 
-  getRayAtPosition = (arrow, lineStartsAt, lineEndsAt, rayPosition = 'start') => {
+  getDirectionPoint = (lineStartsAt, lineEndsAt, rayPosition = 'forward') => {
+    let arrow = lineEndsAt;
     let { from, graphProps } = this.props;
     const { draggedFrom, draggedTo, isSegmentDrag } = this.state;
     let arrowPoint;
 
     if (!isSegmentDrag) {
-      if (rayPosition === 'start') {
+      if (rayPosition === 'forward') {
         arrowPoint = calculateThirdPointOnLine(lineEndsAt, lineStartsAt, graphProps);
       } else {
         arrowPoint = calculateThirdPointOnLine(lineStartsAt, lineEndsAt, graphProps);
@@ -123,7 +124,7 @@ export class RawBaseSegment extends React.Component {
       }
     } else {
       const diff = point(from).sub(point(draggedFrom));
-      if (rayPosition === 'start') {
+      if (rayPosition === 'forward') {
         arrowPoint = calculateThirdPointOnLine(draggedTo, draggedFrom, graphProps);
       } else {
         arrowPoint = calculateThirdPointOnLine(draggedFrom, draggedTo, graphProps);
@@ -158,17 +159,17 @@ export class RawBaseSegment extends React.Component {
 
     const f = draggedFrom || from;
     const t = draggedTo || to;
-    const lineStartsAt = isSegmentDrag ? from : f;
-    const lineEndsAt = isSegmentDrag ? to : t;
-    let rayEndsAt = lineEndsAt;
-    let rayStartsAt = lineStartsAt;
+    const startsAt = isSegmentDrag ? from : f;
+    const endsAt = isSegmentDrag ? to : t;
+    let forwardDirectionPoint = endsAt;
+    let backwardDirectionPoint = startsAt;
 
     if (type === 'ray' || type === 'line') {
-      rayEndsAt = this.getRayAtPosition(rayEndsAt, lineStartsAt, lineEndsAt, 'end');
+      forwardDirectionPoint = this.getDirectionPoint(startsAt, endsAt, 'backward');
     }
 
     if (type === 'line') {
-      rayStartsAt = this.getRayAtPosition(rayEndsAt, lineStartsAt, lineEndsAt, 'start');
+      backwardDirectionPoint = this.getDirectionPoint(startsAt, endsAt, 'forward');
     }
 
     return (
@@ -177,12 +178,12 @@ export class RawBaseSegment extends React.Component {
           disabled={building || disabled}
           correctness={correctness}
           className={classNames(building && classes.segmentBuilding)}
-          x={lineStartsAt.x}
-          y={lineStartsAt.y}
-          from={lineStartsAt}
-          to={lineEndsAt}
-          backward={rayStartsAt}
-          forward={rayEndsAt}
+          x={startsAt.x}
+          y={startsAt.y}
+          from={startsAt}
+          to={endsAt}
+          backward={backwardDirectionPoint}
+          forward={forwardDirectionPoint}
           onDrag={this.dragSegment}
           onMove={this.moveSegment}
           onDragStart={onDragStart}

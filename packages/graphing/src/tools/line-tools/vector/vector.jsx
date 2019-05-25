@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { types } from '@pie-lib/plot';
-import { calculateCorrectScaledPoints } from '../utils';
+import { calculatePreviousNearestScaledPoint } from '../../../utils';
 
 /**
  * A low level segment component
@@ -30,7 +30,12 @@ export class RawVector extends React.Component {
     const scaledFromX = scale.x(from.x);
     const scaledFromY = scale.y(from.y);
 
-    const { x: scaledToX, y: scaledToY } = calculateCorrectScaledPoints(scale, from, to, 'vector');
+    const { x: scaledToX, y: scaledToY } = calculatePreviousNearestScaledPoint(
+      scale,
+      from,
+      to,
+      'vector'
+    );
 
     return (
       <g>

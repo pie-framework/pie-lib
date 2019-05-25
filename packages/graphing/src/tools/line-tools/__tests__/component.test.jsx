@@ -97,7 +97,7 @@ describe('Component', () => {
       });
     });
 
-    describe('getRayAtPosition', () => {
+    describe('getDirectionPoint', () => {
       const w = wrapper({
         graphProps: {
           ...graphProps(),
@@ -116,15 +116,15 @@ describe('Component', () => {
         to: xy(2, 2)
       });
 
-      const assertRayPosition = (ray, from, to, rayPosition, expected) => {
+      const assertDirectionPoint = (from, to, rayPosition, expected) => {
         it(`${from.x},${from.y} ${to.x},${to.y} => ${expected.x},${expected.y}`, () => {
-          const result = w.instance().getRayAtPosition(ray, from, to, rayPosition);
+          const result = w.instance().getDirectionPoint(from, to, rayPosition);
 
           expect(result).toEqual(expected);
         });
       };
 
-      const assertRayPositionWhileDragging = (ray, from, to, rayPosition, expected) => {
+      const assertDirectionPointWhileDragging = (from, to, rayPosition, expected) => {
         it(`${from.x},${from.y} ${to.x},${to.y} => ${expected.x},${expected.y}`, () => {
           w.instance().setState({
             isSegmentDrag: true,
@@ -132,25 +132,25 @@ describe('Component', () => {
             draggedTo: { x: 1, y: 2 }
           });
 
-          const result = w.instance().getRayAtPosition(ray, from, to, rayPosition);
+          const result = w.instance().getDirectionPoint(from, to, rayPosition);
           expect(result).toEqual(expected);
         });
       };
 
       describe('not dragging', () => {
-        assertRayPosition({ x: 2, y: 2 }, { x: 0, y: 0 }, { x: 2, y: 2 }, 'start', {
+        assertDirectionPoint({ x: 0, y: 0 }, { x: 2, y: 2 }, 'forward', {
           x: -14,
           y: -14
         });
-        assertRayPosition({ x: 2, y: 2 }, { x: 0, y: 0 }, { x: 2, y: 2 }, 'end', { x: 10, y: 10 });
+        assertDirectionPoint({ x: 0, y: 0 }, { x: 2, y: 2 }, 'backward', { x: 10, y: 10 });
       });
 
       describe('dragging', () => {
-        assertRayPositionWhileDragging({ x: 2, y: 2 }, { x: 0, y: 0 }, { x: 2, y: 2 }, 'start', {
+        assertDirectionPointWhileDragging({ x: 0, y: 0 }, { x: 2, y: 2 }, 'forward', {
           x: -13,
           y: -13
         });
-        assertRayPositionWhileDragging({ x: 2, y: 2 }, { x: 0, y: 0 }, { x: 2, y: 2 }, 'end', {
+        assertDirectionPointWhileDragging({ x: 0, y: 0 }, { x: 2, y: 2 }, 'backward', {
           x: 11,
           y: 11
         });

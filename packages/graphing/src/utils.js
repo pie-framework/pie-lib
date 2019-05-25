@@ -32,6 +32,14 @@ export const lineToArea = (from, to) => {
   return { left, top, bottom, right };
 };
 
+/**
+ * Returns the angle that one line creates (line is determined from point A and point B)
+ * @param ax - number - coordinate of X axis for point A
+ * @param ay - number - coordinate of Y axis for point A
+ * @param bx - number - coordinate of X axis for point B
+ * @param by - number - coordinate of Y axis for point B
+ * @returns {number}
+ */
 export const getAngleDeg = (ax, ay, bx, by) => {
   if (ax === bx) {
     if (ay < by) {
@@ -65,6 +73,14 @@ export const getAngleDeg = (ax, ay, bx, by) => {
   return angleDeg;
 };
 
+/**
+ * Returns third point on a line, that meets the borders of the graph
+ * @param pointA - object with x and y
+ * @param pointB - object with x and y
+ * @param graphProps - object with domain and range, both having min and max values
+ * these values define the borders for the graph
+ * @returns {{x: number, y: number}}
+ */
 export const calculateThirdPointOnLine = (pointA, pointB, graphProps) => {
   const angle = getAngleDeg(pointA.x, pointA.y, pointB.x, pointB.y);
   let x;
@@ -153,4 +169,53 @@ export const calculateThirdPointOnLine = (pointA, pointB, graphProps) => {
   }
 
   return { x, y };
+};
+
+export const arrowDimensions = {
+  none: 0,
+  vector: 7,
+  ray: 5,
+  line: 5
+};
+
+/**
+ * Returns a point that is between 'from' & 'to', closer to 'to'
+ * The distance between 'to' and the returned point is defined by the 'type'
+ * @param scale - object with x and y functions to scale a given number
+ * @param from - object with x and y
+ * @param to - object with x and y
+ * @param type - undefined, 'vector', 'ray', 'line'
+ * @returns {{x: number, y: number}}
+ */
+export const calculatePreviousNearestScaledPoint = (scale, from, to, type = 'none') => {
+  const scaledFromX = scale.x(from.x);
+  const scaledFromY = scale.y(from.y);
+  let scaledToX = scale.x(to.x);
+  let scaledToY = scale.y(to.y);
+  let middlePoint;
+
+  middlePoint = calculateThirdPointOnLine(
+    { x: scaledToX, y: scaledToY },
+    { x: scaledFromX, y: scaledFromY },
+    {
+      domain: {
+        min: scale.x(to.x) - arrowDimensions[type],
+        max: scale.x(to.x) + arrowDimensions[type]
+      },
+      range: {
+        min: scale.y(to.y) - arrowDimensions[type],
+        max: scale.y(to.y) + arrowDimensions[type]
+      }
+    }
+  );
+
+  if (middlePoint && isFinite(middlePoint.x) && isFinite(middlePoint.y)) {
+    scaledToX = middlePoint.x;
+    scaledToY = middlePoint.y;
+  }
+
+  return {
+    x: scaledToX,
+    y: scaledToY
+  };
 };

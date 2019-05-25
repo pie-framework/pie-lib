@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { types } from '@pie-lib/plot';
-import { calculateCorrectScaledPoints, arrowDimensions } from '../utils';
+import { calculatePreviousNearestScaledPoint, arrowDimensions } from '../../../utils';
 
 /**
  * A low level segment component
@@ -42,7 +42,7 @@ export class RawRay extends React.Component {
     const { scale } = graphProps;
     const scaledFromX = scale.x(from.x);
     const scaledFromY = scale.y(from.y);
-    const { x: scaledForwardX, y: scaledForwardY } = calculateCorrectScaledPoints(
+    const { x: scaledForwardX, y: scaledForwardY } = calculatePreviousNearestScaledPoint(
       scale,
       from,
       forward,
