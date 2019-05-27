@@ -9,7 +9,6 @@ import {
 import { utils } from '@pie-lib/plot';
 
 import _ from 'lodash';
-console.log('utils:', utils);
 const { xy } = utils;
 
 describe('utils', () => {
@@ -57,14 +56,14 @@ describe('utils', () => {
     });
   });
 
-  describe.skip('buildDataPoints', () => {
+  describe('buildDataPoints', () => {
     it('?', () => {
       const result = buildDataPoints(-1, 1, { x: 0, y: 0 }, 1, x => x);
       expect(result.map(p => p.x)).toEqual([-1, 0, 1]);
     });
   });
 
-  describe.only('pointsToABC', () => {
+  describe('pointsToABC', () => {
     const assertPointsToABC = (one, two, three, a, b, c) => {
       it(`${one}, ${two}, ${three} => ${a}, ${b}, ${c}`, () => {
         const result = pointsToABC(one, two, three);
@@ -74,10 +73,10 @@ describe('utils', () => {
       });
     };
 
-    // assertPointsToABC(xy(0, 0), xy(1, 1), xy(-1, 1), 1, 0, 0);
-    // assertPointsToABC(xy(0, 0), xy(2, 1), xy(-2, 1), 0.25, 0, 0);
-    // assertPointsToABC(xy(1, 0), xy(2, 1), xy(0, 1), 1, -2, 1);
-    // assertPointsToABC(xy(1, 0), xy(4, 1), xy(-2, 1), 0.11111, -0.22222, 0.11111);
+    assertPointsToABC(xy(0, 0), xy(1, 1), xy(-1, 1), 1, 0, 0);
+    assertPointsToABC(xy(0, 0), xy(2, 1), xy(-2, 1), 0.25, 0, 0);
+    assertPointsToABC(xy(1, 0), xy(2, 1), xy(0, 1), 1, -2, 1);
+    assertPointsToABC(xy(1, 0), xy(4, 1), xy(-2, 1), 0.11111, -0.22222, 0.11111);
     assertPointsToABC(xy(0, 0), xy(1, 2), xy(-1, 2), 2, 0, 0);
   });
 
