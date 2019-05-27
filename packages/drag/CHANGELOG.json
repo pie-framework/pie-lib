@@ -273,5 +273,20 @@
     "committerDate": "2018-05-15 11:15:54 -0400",
     "isTagged": true,
     "tag": "@pie-lib/drag@0.1.0"
+  },
+  {
+    "type": "chore",
+    "scope": null,
+    "subject": "rm console.log",
+    "merge": null,
+    "header": "chore: rm console.log",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "96090cc41ed5833f223622d6ea24c50831091a0c",
+    "gitTags": " (origin/develop, origin/HEAD, develop)",
+    "committerDate": "2019-05-22 10:10:55 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/drag@1.1.14"
   }
 ]

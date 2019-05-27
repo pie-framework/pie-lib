@@ -5,10 +5,10 @@ import { TeX } from 'mathjax3/mathjax3/input/tex';
 import { CHTML } from 'mathjax3/mathjax3/output/chtml';
 import { RegisterHTMLHandler } from 'mathjax3/mathjax3/handlers/html';
 
+const MATHJAX_VERSION = '3.0.0-beta.4';
+
 if (typeof window !== 'undefined') {
-  const {
-    browserAdaptor
-  } = require('mathjax3/mathjax3/adaptors/browserAdaptor');
+  const { browserAdaptor } = require('mathjax3/mathjax3/adaptors/browserAdaptor');
   RegisterHTMLHandler(browserAdaptor());
 }
 
@@ -60,9 +60,7 @@ const bootstrap = opts => {
 
   if (opts.useSingleDollar) {
     // eslint-disable-next-line
-    console.warn(
-      '[math-rendering] using $ is not advisable, please use $$..$$ or \\(...\\)'
-    );
+    console.warn('[math-rendering] using $ is not advisable, please use $$..$$ or \\(...\\)');
   }
 
   const texConfig = opts.useSingleDollar
@@ -70,14 +68,8 @@ const bootstrap = opts => {
     : {};
 
   const mmlConfig = {};
-
-  const htmlConfig = Object.assign(
-    {
-      fontURL:
-        'https://cdn.rawgit.com/mathjax/mathjax-v3/3.0.0-beta.1/mathjax2/css'
-    },
-    {}
-  );
+  const fontURL = `https://unpkg.com/mathjax3@${MATHJAX_VERSION}/mathjax3-ts/output/chtml/fonts/tex-woff-v2`;
+  const htmlConfig = { fontURL };
 
   fixMathElements();
 

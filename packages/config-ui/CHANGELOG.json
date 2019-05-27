@@ -1118,5 +1118,20 @@
     "committerDate": "2019-05-02 07:12:59 +0300",
     "isTagged": true,
     "tag": "@pie-lib/config-ui@10.1.0"
+  },
+  {
+    "type": "feat",
+    "scope": null,
+    "subject": "Added support for dropdown and number text fields in settings panel.",
+    "merge": null,
+    "header": "feat: Added support for dropdown and number text fields in settings panel.",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "db84ffb8040fef8c2d6f8259ffdfcc82c211ba84",
+    "gitTags": "",
+    "committerDate": "2019-05-17 20:53:06 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/config-ui@10.2.0"
   }
 ]
