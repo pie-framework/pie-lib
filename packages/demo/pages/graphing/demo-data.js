@@ -95,17 +95,12 @@ export const marks = [
   //   x: 2,
   //   y: 3
   // },
-  // {
-  //   type: 'polygon',
-  //   //??
-  //   closed: true,
-  //   points: [
-  //     { x: -1, y: 1 },
-  //     { x: 4, y: 2 },
-  //     { x: 3, y: 1 },
-  //     { x: 5, y: -3 }
-  //   ]
-  // },
+  {
+    type: 'polygon',
+    //??
+    closed: true,
+    points: [{ x: -1, y: 1 }, { x: 4, y: 2 }, { x: 3, y: 1 }, { x: 5, y: -3 }]
+  }
   // { type: 'point', x: 1, y: 1 },
   // {
   //   type: 'circle',
