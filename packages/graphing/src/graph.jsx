@@ -10,7 +10,7 @@ import Bg from './bg';
 import _ from 'lodash';
 import invariant from 'invariant';
 import isEqual from 'lodash/isEqual';
-
+import { RectClipPath } from '@vx/clip-path';
 const log = debug('pie-lib:graphing:graph');
 
 export const graphPropTypes = {
@@ -90,10 +90,7 @@ export class Graph extends React.Component {
     const tool = currentTool || this.getDefaultTool();
     log('[onBgClick] currentTool: ', currentTool);
 
-    const updatedMark = tool.addPoint(
-      { x, y },
-      buildingMark ? { ...buildingMark } : undefined
-    );
+    const updatedMark = tool.addPoint({ x, y }, buildingMark ? { ...buildingMark } : undefined);
     log('[onBgClick] updatedMark: ', currentTool);
 
     this.updateMarks(buildingMark, updatedMark, true);
@@ -178,10 +175,7 @@ export class Graph extends React.Component {
   componentDidUpdate(prevProps) {
     const { onChangeMarks } = this.props;
     const buildingMark = this.getBuildingMark();
-    if (
-      !_.isEqual(prevProps.currentTool, this.props.currentTool) &&
-      buildingMark !== undefined
-    ) {
+    if (!_.isEqual(prevProps.currentTool, this.props.currentTool) && buildingMark !== undefined) {
       const marks = this.removeMark(buildingMark);
       if (marks) {
         onChangeMarks(marks);
@@ -190,21 +184,17 @@ export class Graph extends React.Component {
   }
 
   render() {
-    const {
-      axesSettings,
-      size,
-      domain,
-      marks,
-      backgroundMarks,
-      range,
-      title,
-      labels
-    } = this.props;
+    const { axesSettings, size, domain, marks, backgroundMarks, range, title, labels } = this.props;
 
     log('[render]', marks);
 
     const graphProps = createGraphProps(domain, range, size);
-
+    const maskSize = {
+      x: -10,
+      y: -10,
+      width: size.width + 20,
+      height: size.height + 20
+    };
     const common = { graphProps };
     return (
       <Root title={title} onMouseMove={this.mouseMove} {...common}>
@@ -212,33 +202,36 @@ export class Graph extends React.Component {
         <Axes {...axesSettings} {...common} />
         <Bg {...size} onClick={this.onBgClick} {...common} />
         <Labels value={labels} {...common} />
-
-        {(backgroundMarks || []).map((m, index) => {
-          const Component = this.getComponent(m);
-          return (
-            <Component
-              key={`${m.type}-${index}-bg`}
-              mark={{ ...m, disabled: true }}
-              {...common}
-            />
-          );
-        })}
-        {(marks || []).map((m, index) => {
-          const Component = this.getComponent(m);
-          return (
-            <Component
-              key={`${m.type}-${index}`}
-              mark={m}
-              onChange={this.changeMark}
-              onComplete={this.completeMark}
-              onDragStart={m.building ? this.buildMarkDragging : undefined}
-              onDragStop={
-                m.building ? this.buildMarkStoppedDragging : undefined
-              }
-              {...common}
-            />
-          );
-        })}
+        <mask id="myMask">
+          <rect {...maskSize} fill="white" />
+        </mask>
+        <g id="marks" mask="url('#myMask')">
+          {(backgroundMarks || []).map((m, index) => {
+            const Component = this.getComponent(m);
+            return (
+              <Component
+                key={`${m.type}-${index}-bg`}
+                mark={{ ...m, disabled: true }}
+                {...common}
+              />
+            );
+          })}
+          {(marks || []).map((m, index) => {
+            const Component = this.getComponent(m);
+            return (
+              <Component
+                key={`${m.type}-${index}`}
+                mark={m}
+                onChange={this.changeMark}
+                onComplete={this.completeMark}
+                onDragStart={m.building ? this.buildMarkDragging : undefined}
+                onDragStop={m.building ? this.buildMarkStoppedDragging : undefined}
+                {...common}
+              />
+            );
+          })}
+        </g>
+        {/* <use clipPath={'rect-clip-path'} xlinkHref={'#marks'} /> */}
       </Root>
     );
   }

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles/index';
-import { ToolPropType } from '../types';
+import { ToolPropTypeFields } from '../types';
 import debug from 'debug';
 import { BasePoint, ArrowPoint } from '../common/point';
 import { point } from '../../utils';
@@ -255,7 +255,7 @@ export const BaseSegment = withStyles(theme => ({
 
 export default class Component extends React.Component {
   static propTypes = {
-    ...ToolPropType,
+    ...ToolPropTypeFields,
     graphProps: types.GraphPropsType.isRequired
   };
 

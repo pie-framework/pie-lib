@@ -1,7 +1,7 @@
 import React from 'react';
 import { BasePoint } from '../common/point';
 import debug from 'debug';
-import { ToolPropType } from '../types';
+import { ToolPropTypeFields } from '../types';
 import { types } from '@pie-lib/plot';
 
 const log = debug('pie-lib:graphing:point');
@@ -9,7 +9,7 @@ const log = debug('pie-lib:graphing:point');
 export class Point extends React.Component {
   static propTypes = {
     graphProps: types.GraphPropsType.isRequired,
-    ...ToolPropType
+    ...ToolPropTypeFields
   };
 
   static defaultProps = {};

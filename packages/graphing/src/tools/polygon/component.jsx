@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { ToolPropType, PointType } from '../types';
+import { ToolPropTypeFields } from '../types';
 import { BasePoint } from '../common/point';
 import chunk from 'lodash/chunk';
 import initial from 'lodash/initial';
@@ -58,7 +58,7 @@ export class RawBaseComponent extends React.Component {
     classes: PropTypes.object,
     className: PropTypes.string,
     disabled: PropTypes.bool,
-    points: PropTypes.arrayOf(PropTypes.shape(PointType)),
+    points: PropTypes.arrayOf(types.PointType),
     closed: PropTypes.bool,
     onChange: PropTypes.func.isRequired,
     onClosePolygon: PropTypes.func.isRequired,
@@ -241,7 +241,7 @@ export const BaseComponent = withStyles(theme => ({}))(RawBaseComponent);
 
 export default class Component extends React.Component {
   static propTypes = {
-    ...ToolPropType,
+    ...ToolPropTypeFields,
     graphProps: types.GraphPropsType.isRequired
   };
 

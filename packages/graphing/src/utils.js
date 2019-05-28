@@ -1,12 +1,17 @@
 import head from 'lodash/head';
 import tail from 'lodash/tail';
 import { utils } from '@pie-lib/plot';
+import invariant from 'invariant';
+import _ from 'lodash';
+import debug from 'debug';
+import Point from '@mapbox/point-geometry';
+
+const log = debug('pie-lib:graphing:sine:utils');
 
 export const tickCount = utils.tickCount;
 export const bounds = utils.bounds;
 export const point = utils.point;
 
-// export { * from utils}
 export const polygonToArea = points => {
   const h = head(points);
   const area = {
@@ -24,11 +29,14 @@ export const polygonToArea = points => {
   }, area);
 };
 
-export const lineToArea = (from, to) => {
-  const left = Math.min(from.x, to.x);
-  const top = Math.max(from.y, to.y);
-  const bottom = Math.min(from.y, to.y);
-  const right = Math.max(from.x, to.x);
+export const lineToArea = (from, to) => pointsToArea(from, to);
+
+export const pointsToArea = (a, b) => {
+  invariant(!!a && !!b, 'a or b is undefined');
+  const left = Math.min(a.x, b.x);
+  const top = Math.max(a.y, b.y);
+  const bottom = Math.min(a.y, b.y);
+  const right = Math.max(a.x, b.x);
   return { left, top, bottom, right };
 };
 

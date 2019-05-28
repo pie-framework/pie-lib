@@ -146,5 +146,20 @@ exports[`Graph snapshot renders 1`] = `
       }
     }
   />
+  <mask
+    id="myMask"
+  >
+    <rect
+      fill="white"
+      height={420}
+      width={420}
+      x={-10}
+      y={-10}
+    />
+  </mask>
+  <g
+    id="marks"
+    mask="url('#myMask')"
+  />
 </WithStyles(Root)>
 `;

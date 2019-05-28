@@ -254,7 +254,9 @@ export class GridDemo extends React.Component {
       tools.segment(),
       tools.vector(),
       tools.ray(),
-      tools.line()
+      tools.line(),
+      tools.sine(),
+      tools.parabola()
     ];
     this.state = {
       currentTool: toolsArr[2],
@@ -353,6 +355,9 @@ export class GridDemo extends React.Component {
           }
         ],
         marks: [
+          // { type: 'parabola', root: { x: 0, y: 0 }, edge: { x: 1, y: 1 } },
+          { type: 'parabola', root: { x: 2, y: 2 }, edge: { x: -1, y: 1 } },
+          { type: 'sine', root: { x: 0, y: 0 }, edge: { x: -1, y: 1 } },
           // {
           //   disabled: true,
           //   type: 'polygon',
