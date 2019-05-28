@@ -28,5 +28,35 @@
     "committerDate": "2019-05-21 08:28:21 -0400",
     "isTagged": true,
     "tag": "@pie-lib/rubric@0.1.0"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "use checked instead of value for checkbox",
+    "merge": null,
+    "header": "fix: use checked instead of value for checkbox",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "7f84c1191aad56d319cfab42cb2c53c1aa918fa3",
+    "gitTags": " (origin/develop, origin/HEAD, develop)",
+    "committerDate": "2019-05-28 21:09:39 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/rubric@0.1.2"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "RubricType must be shape",
+    "merge": null,
+    "header": "fix: RubricType must be shape",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "aeae2116632b98fe5ede7d9ffee8dbb8da71aef7",
+    "gitTags": "",
+    "committerDate": "2019-05-28 21:09:34 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/rubric@0.1.2"
   }
 ]
