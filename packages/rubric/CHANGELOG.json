@@ -58,5 +58,20 @@
     "committerDate": "2019-05-28 21:09:34 +0100",
     "isTagged": true,
     "tag": "@pie-lib/rubric@0.1.2"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "points is string[]",
+    "merge": null,
+    "header": "fix: points is string[]",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "82c216a995880451248d61c540d5c2dba4efdef3",
+    "gitTags": "",
+    "committerDate": "2019-05-28 21:44:12 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/rubric@0.1.3"
   }
 ]
