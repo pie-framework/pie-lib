@@ -161,7 +161,7 @@ export class RawAuthoring extends React.Component {
           <MaxPoints max={10} value={value.points.length - 1} onChange={this.changeMaxPoints} />
           <FormControlLabel
             label="Exclude zeros from bubble sheet"
-            control={<Checkbox value={value.excludeZero} onChange={this.changeExcludeZero} />}
+            control={<Checkbox checked={value.excludeZero} onChange={this.changeExcludeZero} />}
           />
         </FormGroup>
         <div className={classes.container}>
