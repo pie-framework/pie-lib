@@ -33,12 +33,7 @@ const reorder = (list, startIndex, endIndex) => {
 export const RubricType = PropTypes.shape({
   maxPoints: PropTypes.number.isRequired,
   excludeZero: PropTypes.bool,
-  points: PropTypes.arrayOf(
-    PropTypes.shape({
-      points: PropTypes.number.isRequired,
-      content: PropTypes.string.isRequired
-    })
-  )
+  points: PropTypes.arrayOf(PropTypes.string)
 });
 
 const MaxPoints = withStyles(theme => ({
