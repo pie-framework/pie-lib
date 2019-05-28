@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.1.2...@pie-lib/rubric@0.1.3) (2019-05-28)
+
+
+### Bug Fixes
+
+* points is string[] ([82c216a](https://github.com/pie-framework/pie-lib/commit/82c216a))
+
+
+
+
+
 ## [0.1.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.1.1...@pie-lib/rubric@0.1.2) (2019-05-28)
 
 
