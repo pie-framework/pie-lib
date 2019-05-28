@@ -264,7 +264,6 @@ export class GridDemo extends React.Component {
       settings: {
         includeArrows: true,
         labels: true,
-        padding: true,
         graphTitle: false,
         coordinatesOnHover: false,
         size: {
