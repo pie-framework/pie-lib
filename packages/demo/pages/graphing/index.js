@@ -257,7 +257,8 @@ export class GridDemo extends React.Component {
       tools.ray(),
       tools.line(),
       tools.sine(),
-      tools.parabola()
+      tools.parabola(),
+      tools.label()
     ];
     this.state = {
       currentTool: toolsArr[2],

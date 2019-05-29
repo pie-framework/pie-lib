@@ -184,7 +184,17 @@ export class Graph extends React.Component {
   }
 
   render() {
-    const { axesSettings, size, domain, marks, backgroundMarks, range, title, labels } = this.props;
+    const {
+      axesSettings,
+      size,
+      domain,
+      marks,
+      backgroundMarks,
+      range,
+      title,
+      labels,
+      currentTool
+    } = this.props;
 
     log('[render]', marks);
 
@@ -226,6 +236,7 @@ export class Graph extends React.Component {
                 onComplete={this.completeMark}
                 onDragStart={m.building ? this.buildMarkDragging : undefined}
                 onDragStop={m.building ? this.buildMarkStoppedDragging : undefined}
+                labelIsActive={currentTool && currentTool.type === 'label'}
                 {...common}
               />
             );

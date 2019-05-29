@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles/index';
 import { ToolPropTypeFields } from '../types';
 import debug from 'debug';
 import { BasePoint, ArrowPoint } from '../common/point';
+import { Label } from '../common/label';
 import { point } from '../../utils';
 import classNames from 'classnames';
 import { types } from '@pie-lib/plot';
@@ -37,7 +38,8 @@ export class RawBaseSegment extends React.Component {
     onDragStart: PropTypes.func,
     onDragStop: PropTypes.func,
     graphProps: types.GraphPropsType.isRequired,
-    type: PropTypes.string
+    type: PropTypes.string,
+    labelIsActive: PropTypes.bool
   };
 
   static defaultProps = {};
@@ -45,7 +47,8 @@ export class RawBaseSegment extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      draggedFrom: undefined
+      draggedFrom: undefined,
+      label: null
     };
   }
 
@@ -147,9 +150,10 @@ export class RawBaseSegment extends React.Component {
       correctness,
       graphProps,
       type,
-      to
+      to,
+      labelIsActive
     } = this.props;
-    const { draggedFrom, draggedTo, isSegmentDrag } = this.state;
+    const { draggedFrom, draggedTo, isSegmentDrag, label } = this.state;
 
     log('[render] draggedFrom: ', draggedFrom, 'from: ', from);
 
@@ -173,7 +177,24 @@ export class RawBaseSegment extends React.Component {
     }
 
     return (
-      <g>
+      <g
+        onClick={() => {
+          if (labelIsActive) {
+            this.setState({ label: '' });
+          }
+        }}
+      >
+        {label !== null && (
+          <Label
+            disabled={building || disabled}
+            correctness={correctness}
+            onChange={value => this.setState({ label: value })}
+            onRemove={() => this.setState({ label: null })}
+            x={isSegmentDrag ? f.x : from.x}
+            y={isSegmentDrag ? f.y : from.y}
+            {...common}
+          />
+        )}
         <Component
           disabled={building || disabled}
           correctness={correctness}
@@ -270,7 +291,7 @@ export default class Component extends React.Component {
   };
 
   render() {
-    const { mark, onDragStart, onDragStop, graphProps } = this.props;
+    const { mark, onDragStart, onDragStop, graphProps, labelIsActive } = this.props;
     return (
       <BaseSegment
         {...mark}
@@ -278,6 +299,7 @@ export default class Component extends React.Component {
         onDragStart={onDragStart}
         onDragStop={onDragStop}
         graphProps={graphProps}
+        labelIsActive={labelIsActive}
       />
     );
   }
