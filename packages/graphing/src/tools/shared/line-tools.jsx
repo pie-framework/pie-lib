@@ -54,13 +54,14 @@ export const lineToolComponent = Component => {
   };
 };
 
-export const lineBase = () => {
+export const lineBase = Comp => {
   return class LineBase extends React.Component {
     render() {
       const { graphProps, from, to } = this.props;
-      console.log('from:', from);
+      console.log(Comp);
       return (
         <g>
+          <Comp from={from} to={to} graphProps={graphProps} />
           <BasePoint x={from.x} y={from.y} graphProps={graphProps} />
           <BasePoint x={to.x} y={to.y} graphProps={graphProps} />
         </g>

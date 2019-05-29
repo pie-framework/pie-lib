@@ -9,6 +9,10 @@ const tick = (isMajor, v) => ({
   x: v
 });
 
+const obj = (strings, ...values) => {
+  return strings.reduce();
+};
+
 const major = tick.bind(null, true);
 const minor = tick.bind(null, false);
 
@@ -64,6 +68,18 @@ describe('utils', () => {
     assertAngle(0, 0, 0, 1, 0);
     assertAngle(0, 0, 0, -1, 180);
     assertAngle(1, 1, -8, 10, 315);
+  });
+
+  describe.only('edge', () => {
+    const assertEdge = (domain, range) => (from, to, expected) => {
+      it(obj`${from}, ${to} => ${expected}`, () => {
+        const result = utils.edge(domain, range)(from, to);
+        expect(result).toEqual(expected);
+      });
+    };
+    const basic = assertEdge({ min: -10, max: 10 }, { min: -10, max: 10 });
+    basic(xy(0, 0), xy(1, 1), xy(10, 10));
+    // basic(xy(1, 1), xy(0, 0), xy(-10, -10));
   });
 
   describe('calculateThirdPointOnLine', () => {
