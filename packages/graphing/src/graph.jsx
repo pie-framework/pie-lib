@@ -182,13 +182,15 @@ export class Graph extends React.Component {
     }
   }
 
-  clickComponent(e) {
-    log('click component!', e);
-  }
+  clickComponent = point => {
+    log('click component!', point);
+    this.onBgClick(point);
+  };
 
   render() {
     const { axesSettings, size, domain, marks, backgroundMarks, range, title, labels } = this.props;
 
+    const tool = this.getTool();
     log('[render]', marks);
 
     const graphProps = createGraphProps(domain, range, size);
@@ -230,6 +232,7 @@ export class Graph extends React.Component {
                 onClick={this.clickComponent}
                 onDragStart={m.building ? this.buildMarkDragging : undefined}
                 onDragStop={m.building ? this.buildMarkStoppedDragging : undefined}
+                isToolActive={m.type === tool.type}
                 {...common}
               />
             );
