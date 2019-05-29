@@ -8,6 +8,7 @@ import BgCircle from './bg-circle';
 import { point } from '../../utils';
 import classNames from 'classnames';
 import { types } from '@pie-lib/plot';
+import { Label } from '../common/label';
 
 const log = debug('pie-lib:graphing:circle');
 
@@ -34,7 +35,8 @@ export class RawBaseCircle extends React.Component {
     onChange: PropTypes.func.isRequired,
     onDragStart: PropTypes.func,
     onDragStop: PropTypes.func,
-    graphProps: types.GraphPropsType.isRequired
+    graphProps: types.GraphPropsType.isRequired,
+    labelIsActive: PropTypes.bool
   };
 
   static defaultProps = {};
@@ -42,7 +44,8 @@ export class RawBaseCircle extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      draggedCenter: undefined
+      draggedCenter: undefined,
+      label: null
     };
   }
 
@@ -116,9 +119,10 @@ export class RawBaseCircle extends React.Component {
       onDragStart,
       onDragStop,
       correctness,
-      graphProps
+      graphProps,
+      labelIsActive
     } = this.props;
-    const { draggedCenter, draggedOuter, isCircleDrag } = this.state;
+    const { draggedCenter, draggedOuter, isCircleDrag, label } = this.state;
 
     log('[render] draggedCenter: ', draggedCenter, 'center: ', center);
 
@@ -129,7 +133,24 @@ export class RawBaseCircle extends React.Component {
 
     const common = { graphProps };
     return (
-      <g>
+      <g
+        onClick={() => {
+          if (labelIsActive) {
+            this.setState({ label: '' });
+          }
+        }}
+      >
+        {label !== null && (
+          <Label
+            disabled={building || disabled}
+            correctness={correctness}
+            onChange={value => this.setState({ label: value })}
+            onRemove={() => this.setState({ label: null })}
+            x={o.x}
+            y={o.y}
+            {...common}
+          />
+        )}
         <BgCircle
           disabled={building || disabled}
           correctness={correctness}
@@ -212,7 +233,7 @@ export default class Component extends React.Component {
   };
 
   render() {
-    const { mark, onDragStart, onDragStop, graphProps } = this.props;
+    const { mark, onDragStart, onDragStop, graphProps, labelIsActive } = this.props;
     return (
       <BaseCircle
         {...mark}
@@ -220,6 +241,7 @@ export default class Component extends React.Component {
         onDragStart={onDragStart}
         onDragStop={onDragStop}
         graphProps={graphProps}
+        labelIsActive={labelIsActive}
       />
     );
   }

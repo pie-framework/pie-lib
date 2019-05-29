@@ -190,8 +190,8 @@ export class RawBaseSegment extends React.Component {
             correctness={correctness}
             onChange={value => this.setState({ label: value })}
             onRemove={() => this.setState({ label: null })}
-            x={isSegmentDrag ? f.x : from.x}
-            y={isSegmentDrag ? f.y : from.y}
+            x={f.x}
+            y={f.y}
             {...common}
           />
         )}

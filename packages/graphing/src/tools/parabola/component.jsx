@@ -62,12 +62,13 @@ export default class Component extends React.Component {
   };
 
   render() {
-    const { mark, graphProps } = this.props;
+    const { mark, graphProps, labelIsActive } = this.props;
     return (
       <Parabola
         root={mark.root}
         edge={mark.edge}
         graphProps={graphProps}
+        labelIsActive={labelIsActive}
         onChange={this.changeMark}
       />
     );

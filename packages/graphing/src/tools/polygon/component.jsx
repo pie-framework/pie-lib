@@ -10,6 +10,7 @@ import debug from 'debug';
 import Line from './line';
 import DraggablePolygon, { Polygon } from './polygon';
 import { types } from '@pie-lib/plot';
+import { Label } from '../common/label';
 const log = debug('pie-lib:graphing:polygon');
 
 export const buildLines = (points, closed) => {
@@ -64,12 +65,15 @@ export class RawBaseComponent extends React.Component {
     onClosePolygon: PropTypes.func.isRequired,
     onDragStart: PropTypes.func,
     onDragStop: PropTypes.func,
-    graphProps: types.GraphPropsType.isRequired
+    graphProps: types.GraphPropsType.isRequired,
+    labelIsActive: PropTypes.bool
   };
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      label: null
+    };
   }
 
   movePoint = (from, to) => {
@@ -94,9 +98,9 @@ export class RawBaseComponent extends React.Component {
     onChange(next);
   };
 
-  dragPoint = (from, to) => {
+  dragPoint = (from, index, to) => {
     log('[dragPoint] from, to:', from, to);
-    this.setState({ dragPoint: { from, to } });
+    this.setState({ dragPoint: { from, to, index } });
   };
 
   dragLine = (existing, next) => {
@@ -182,13 +186,40 @@ export class RawBaseComponent extends React.Component {
   };
 
   render() {
-    const { closed, points, disabled, graphProps } = this.props;
+    const { closed, points, disabled, graphProps, labelIsActive } = this.props;
     log('[render]', points.join(','));
     const pl = this.getPointsAndLines();
+    const { dragPoly, dragPoint } = this.state;
+
+    let labelPosition = pl.points[0];
+
+    if (dragPoly && dragPoly.next) {
+      labelPosition = dragPoly && dragPoly.next[0];
+    }
+
+    if (dragPoint && dragPoint.index === 0) {
+      labelPosition = dragPoint.to;
+    }
 
     log('[render] graphProps:', graphProps);
     return (
-      <g>
+      <g
+        onClick={() => {
+          if (labelIsActive) {
+            this.setState({ label: '' });
+          }
+        }}
+      >
+        {this.state.label !== null && (
+          <Label
+            disabled={disabled}
+            onChange={value => this.setState({ label: value })}
+            onRemove={() => this.setState({ label: null })}
+            x={labelPosition.x}
+            y={labelPosition.y}
+            graphProps={graphProps}
+          />
+        )}
         {closed ? (
           <DraggablePolygon
             disabled={disabled}
@@ -222,7 +253,7 @@ export class RawBaseComponent extends React.Component {
               disabled={disabled}
               key={`${xy(p)}-${index}`}
               onDragStart={this.props.onDragStart}
-              onDrag={this.dragPoint.bind(this, p)}
+              onDrag={this.dragPoint.bind(this, p, index)}
               onDragStop={this.clearDragState}
               onMove={this.movePoint.bind(this, p)}
               onClick={index === 0 ? this.close : () => {}}
@@ -275,7 +306,7 @@ export default class Component extends React.Component {
   };
 
   render() {
-    const { mark, graphProps } = this.props;
+    const { mark, graphProps, labelIsActive } = this.props;
     return (
       <BaseComponent
         {...mark}
@@ -284,6 +315,7 @@ export default class Component extends React.Component {
         onDragStart={this.dragStart}
         onDragStop={this.dragStop}
         graphProps={graphProps}
+        labelIsActive={labelIsActive}
       />
     );
   }

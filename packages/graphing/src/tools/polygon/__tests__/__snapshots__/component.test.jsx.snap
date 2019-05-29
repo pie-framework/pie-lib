@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RawBaseComponent snapshot renders 1`] = `
-<g>
+<g
+  onClick={[Function]}
+>
   <WithStyles(RawPolygon)
     graphProps={
       Object {

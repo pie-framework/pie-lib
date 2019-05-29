@@ -6,6 +6,7 @@ import { curveMonotoneX } from '@vx/curve';
 import { BasePoint } from '../common/point/index';
 
 import debug from 'debug';
+import { Label } from '../common/label';
 
 const log = debug('pie-lib:graphing:with-root-edge');
 
@@ -16,12 +17,15 @@ export const withRootEdge = getPoints => {
       classes: PropTypes.object.isRequired,
       root: types.PointType.isRequired,
       edge: types.PointType,
-      onChange: PropTypes.func.isRequired
+      onChange: PropTypes.func.isRequired,
+      labelIsActive: PropTypes.bool
     };
 
     constructor(props) {
       super(props);
-      this.state = {};
+      this.state = {
+        label: null
+      };
     }
 
     startEdgeDrag = () => {};
@@ -60,13 +64,39 @@ export const withRootEdge = getPoints => {
     dragLine = line => this.setState({ line });
 
     render() {
-      const { classes, graphProps } = this.props;
+      const { classes, graphProps, labelIsActive, root: propsRoot } = this.props;
+      const { root: stateRoot, line } = this.state;
       const { root, edge, dataPoints } = getPoints(this.props, this.state);
+
+      let labelPosition = propsRoot;
+
+      if (stateRoot) {
+        labelPosition = stateRoot;
+      }
+
+      if (line && line.root) {
+        labelPosition = line.root;
+      }
 
       const raw = dataPoints.map(d => [graphProps.scale.x(d.x), graphProps.scale.y(d.y)]);
 
       return (
-        <g>
+        <g
+          onClick={() => {
+            if (labelIsActive) {
+              this.setState({ label: '' });
+            }
+          }}
+        >
+          {this.state.label !== null && (
+            <Label
+              onChange={value => this.setState({ label: value })}
+              onRemove={() => this.setState({ label: null })}
+              x={labelPosition.x}
+              y={labelPosition.y}
+              graphProps={graphProps}
+            />
+          )}
           {edge && (
             <LinePath
               xScale={d => graphProps.scale.x(d.x)}

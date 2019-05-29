@@ -37,10 +37,7 @@ describe('RawBaseComponent', () => {
     describe('moveLine', () => {
       it('calls onChange', () => {
         w = wrapper({ points: [xy(1, 1), xy(2, 2)], onChange });
-        w.instance().moveLine(
-          { from: xy(1, 1), to: xy(2, 2) },
-          { from: xy(3, 3), to: xy(4, 4) }
-        );
+        w.instance().moveLine({ from: xy(1, 1), to: xy(2, 2) }, { from: xy(3, 3), to: xy(4, 4) });
         expect(onChange).toHaveBeenCalledWith([xy(3, 3), xy(4, 4)]);
       });
     });
@@ -48,8 +45,8 @@ describe('RawBaseComponent', () => {
     describe('dragPoint', () => {
       it('stores point', () => {
         w = wrapper();
-        w.instance().dragPoint(xy(1, 1), xy(2, 2));
-        expect(w.state().dragPoint).toEqual({ from: xy(1, 1), to: xy(2, 2) });
+        w.instance().dragPoint(xy(1, 1), undefined, xy(2, 2));
+        expect(w.state().dragPoint).toEqual({ from: xy(1, 1), to: xy(2, 2), index: undefined });
       });
     });
 
