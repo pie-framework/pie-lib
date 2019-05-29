@@ -6,7 +6,7 @@ import debug from 'debug';
 import * as utils from './utils';
 import isFunction from 'lodash/isFunction';
 import invariant from 'invariant';
-import { mouse, clientPoint } from 'd3-selection';
+import { clientPoint } from 'd3-selection';
 
 const log = debug('pie-lib:plot:grid-draggable');
 
@@ -122,33 +122,24 @@ export const gridDraggable = opts => Comp => {
       }
 
       log('[onStop] lastX/Y: ', dd.lastX, dd.lastY);
-      // if the movement wasnt large enough to be considered a move.
-      if (this.tiny('x', e) && this.tiny('y', e)) {
+      const isClick = this.tiny('x', e) && this.tiny('y', e);
+
+      if (isClick) {
         if (onClick) {
           this.setState({ startX: null });
-          // const pos = this.position();
-          log('event X/Y:', e.clientX, e.clientY, e);
           const { graphProps } = this.props;
           const { scale, snap } = graphProps;
-
-          // const x = scale.x.invert(e.offsetX);
-          // const y = scale.x.invert(e.offsetY);
-          // log('???? x/y:', x, y);
-          // mouse();
           const [rawX, rawY] = clientPoint(e.target, e);
           let x = scale.x.invert(rawX);
           let y = scale.x.invert(rawY);
           x = snap.x(x);
           y = snap.y(y) * -1;
-          // log('p:', p, scale.x.invert(p[0]), scale.y.invert(p[1]));
-
-          // log('>> d:', { x, y });
           onClick({ x, y });
           return false;
         }
       } else {
         if (!onMove) {
-          return;
+          return false;
         }
 
         const moveArg = this.applyDelta({ x: dd.lastX, y: dd.lastY });

@@ -248,6 +248,8 @@ export class GridDemo extends React.Component {
   constructor(props) {
     super(props);
 
+    console.log('tools:', tools.lineTwo);
+
     const toolsArr = [
       tools.point(),
       tools.circle(),
@@ -256,6 +258,7 @@ export class GridDemo extends React.Component {
       tools.vector(),
       tools.ray(),
       tools.line(),
+      tools.lineTwo(),
       tools.sine(),
       tools.parabola()
     ];

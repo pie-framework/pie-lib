@@ -7,5 +7,5 @@ import { tool as ray } from './line-tools/ray';
 import { tool as line } from './line-tools/line';
 import { tool as sine } from './sine/index';
 import { tool as parabola } from './parabola/index';
-
-export { point, circle, polygon, segment, vector, ray, line, sine, parabola };
+import { tool as lineTwo } from './line';
+export { point, circle, polygon, segment, vector, ray, line, lineTwo, sine, parabola };
