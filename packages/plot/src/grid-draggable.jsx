@@ -134,6 +134,7 @@ export const gridDraggable = opts => Comp => {
           let y = scale.x.invert(rawY);
           x = snap.x(x);
           y = snap.y(y) * -1;
+          y = y == 0 ? Math.abs(y) : 0;
           onClick({ x, y });
           return false;
         }
