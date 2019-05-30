@@ -33,7 +33,7 @@ const getAmplitudeAndFreq = (root, edge) => {
   return { freq: d.x * 4, amplitude: d.y };
 };
 
-const Sine = withRootEdge((props, state) => {
+export const getPoints = (props, state) => {
   const { domain } = props.graphProps;
 
   if (state.line) {
@@ -74,7 +74,9 @@ const Sine = withRootEdge((props, state) => {
           sinY(amplitude, freq, { phase: root.x, vertical: root.y })
         );
   return { root: props.root, edge: props.edge, dataPoints };
-});
+};
+
+const Sine = withRootEdge(getPoints);
 
 export default class Component extends React.Component {
   static propTypes = {

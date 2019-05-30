@@ -7,7 +7,7 @@ import { withRootEdge } from '../shared/with-root-edge';
 
 const log = debug('pie-lib:graphing:sine');
 
-const Parabola = withRootEdge((props, state) => {
+export const getPoints = (props, state) => {
   const { domain } = props.graphProps;
 
   if (state.line) {
@@ -45,7 +45,9 @@ const Parabola = withRootEdge((props, state) => {
         );
   log('dataPoints:', dataPoints);
   return { root: props.root, edge: props.edge, dataPoints };
-});
+};
+
+const Parabola = withRootEdge(getPoints);
 
 export default class Component extends React.Component {
   static propTypes = {
