@@ -2,7 +2,6 @@ import _ from 'lodash';
 import React from 'react';
 import { BasePoint } from '../common/point';
 import { types } from '@pie-lib/plot';
-import { ToolPropTypeFields } from '../../../lib/tools/types';
 export const lineTool = (type, Component) => () => ({
   type,
   Component,
@@ -26,7 +25,7 @@ export const lineTool = (type, Component) => () => ({
 export const lineToolComponent = Component => {
   return class LineToolComponent extends React.Component {
     static propTypes = {
-      ...ToolPropTypeFields,
+      ...types.ToolPropTypeFields,
       graphProps: types.GraphPropsType.isRequired
     };
 
@@ -56,14 +55,55 @@ export const lineToolComponent = Component => {
 
 export const lineBase = Comp => {
   return class LineBase extends React.Component {
+    static propTypes = {
+      graphProps: types.GraphPropsType,
+      from: types.PointType,
+      to: types.PointType
+    };
+
+    constructor(props) {
+      super(props);
+      this.state = {};
+    }
+
+    startDragFrom = () => {};
+    dragFrom = from => this.setState({ from });
+    dragTo = to => this.setState({ to });
+    stopDragFrom = () => this.setState({ from: undefined });
+    stopDragTo = () => this.setState({ from: undefined });
+
+    dragComp = ({ from, to }) => this.setState({ from, to });
+    stopDragComp = () => this.setState({ from: undefined, to: undefined });
     render() {
       const { graphProps, from, to } = this.props;
-      console.log(Comp);
+      console.log('Comp:', Comp);
       return (
         <g>
-          <Comp from={from} to={to} graphProps={graphProps} />
-          <BasePoint x={from.x} y={from.y} graphProps={graphProps} />
-          <BasePoint x={to.x} y={to.y} graphProps={graphProps} />
+          <Comp
+            from={this.state.from ? this.state.from : from}
+            to={this.state.to ? this.state.to : to}
+            graphProps={graphProps}
+            onDrag={this.dragComp}
+            onDragStop={this.stopDragComp}
+          />
+          <BasePoint
+            x={from.x}
+            y={from.y}
+            graphProps={graphProps}
+            onDragStart={this.startDragFrom}
+            onDragStop={this.stopDragFrom}
+            onDrag={this.dragFrom}
+            onClick={this.clickFrom}
+          />
+          <BasePoint
+            x={to.x}
+            y={to.y}
+            graphProps={graphProps}
+            onDragStart={this.startDragTo}
+            onDragStop={this.stopDragTo}
+            onDrag={this.dragTo}
+            onClick={this.clickTo}
+          />
         </g>
       );
     }
