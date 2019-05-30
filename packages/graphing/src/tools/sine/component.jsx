@@ -1,14 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { ToolPropTypeFields } from '../types';
 import debug from 'debug';
 import { types } from '@pie-lib/plot';
-import LinePath from '../shared/line-path';
-import { curveMonotoneX } from '@vx/curve';
 import Point from '@mapbox/point-geometry';
-import { BasePoint } from '../common/point/index';
-import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
 import { sinY, buildDataPoints } from '../utils';
 import { withRootEdge } from '../shared/with-root-edge';
 
@@ -93,9 +87,15 @@ export default class Component extends React.Component {
   };
 
   render() {
-    const { mark, graphProps } = this.props;
+    const { mark, graphProps, onClick } = this.props;
     return (
-      <Sine root={mark.root} edge={mark.edge} graphProps={graphProps} onChange={this.changeMark} />
+      <Sine
+        root={mark.root}
+        edge={mark.edge}
+        graphProps={graphProps}
+        onChange={this.changeMark}
+        onClick={onClick}
+      />
     );
   }
 }

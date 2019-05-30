@@ -64,7 +64,9 @@ export class RawBaseComponent extends React.Component {
     onClosePolygon: PropTypes.func.isRequired,
     onDragStart: PropTypes.func,
     onDragStop: PropTypes.func,
-    graphProps: types.GraphPropsType.isRequired
+    onClick: PropTypes.func,
+    graphProps: types.GraphPropsType.isRequired,
+    isToolActive: PropTypes.bool
   };
 
   constructor(props) {
@@ -181,8 +183,23 @@ export class RawBaseComponent extends React.Component {
     }
   };
 
+  clickPoint = (point, index, data) => {
+    // console.log(' ---------------------- >> ', point, index, data);
+    const { closed, onClosePolygon, onClick, isToolActive } = this.props;
+    if (isToolActive && !closed && index === 0) {
+      onClosePolygon();
+    } else {
+      onClick(data);
+    }
+  };
+
+  clickLine = data => {
+    const { onClick } = this.props;
+    onClick(data);
+  };
+
   render() {
-    const { closed, points, disabled, graphProps } = this.props;
+    const { closed, points, disabled, graphProps, onClick } = this.props;
     log('[render]', points.join(','));
     const pl = this.getPointsAndLines();
 
@@ -197,6 +214,7 @@ export class RawBaseComponent extends React.Component {
             onDrag={this.dragPoly.bind(this, pl.poly)}
             onDragStop={this.clearDragState}
             onMove={this.movePoly.bind(this, pl.poly)}
+            onClick={onClick}
             graphProps={graphProps}
             closed={closed}
           />
@@ -213,6 +231,7 @@ export class RawBaseComponent extends React.Component {
             onDrag={this.dragLine.bind(this, l)}
             onDragStop={this.clearDragState}
             onMove={this.moveLine.bind(this, l)}
+            onClick={this.clickLine}
             graphProps={graphProps}
           />
         ))}
@@ -225,7 +244,8 @@ export class RawBaseComponent extends React.Component {
               onDrag={this.dragPoint.bind(this, p)}
               onDragStop={this.clearDragState}
               onMove={this.movePoint.bind(this, p)}
-              onClick={index === 0 ? this.close : () => {}}
+              onClick={this.clickPoint.bind(this, p, index)}
+              // onClick={index === 0 ? this.close : () => {}}
               x={p.x}
               y={p.y}
               graphProps={graphProps}
@@ -275,7 +295,7 @@ export default class Component extends React.Component {
   };
 
   render() {
-    const { mark, graphProps } = this.props;
+    const { mark, graphProps, onClick } = this.props;
     return (
       <BaseComponent
         {...mark}
@@ -283,6 +303,7 @@ export default class Component extends React.Component {
         onClosePolygon={this.closePolygon}
         onDragStart={this.dragStart}
         onDragStop={this.dragStop}
+        onClick={onClick}
         graphProps={graphProps}
       />
     );
