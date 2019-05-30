@@ -41,7 +41,7 @@ export class RawBaseSegment extends React.Component {
     type: PropTypes.string,
     showLabel: PropTypes.bool,
     changeLabel: PropTypes.func,
-    onClick: PropTypes.func
+    onComponentClick: PropTypes.func
   };
 
   static defaultProps = {};
@@ -153,7 +153,7 @@ export class RawBaseSegment extends React.Component {
       type,
       to,
       changeLabel,
-      onClick,
+      onComponentClick,
       showLabel
     } = this.props;
     const { draggedFrom, draggedTo, isSegmentDrag } = this.state;
@@ -180,7 +180,7 @@ export class RawBaseSegment extends React.Component {
     }
 
     return (
-      <g onClick={onClick}>
+      <g onClick={onComponentClick}>
         <Label
           disabled={building || disabled}
           correctness={correctness}
@@ -293,7 +293,7 @@ export default class Component extends React.Component {
   };
 
   render() {
-    const { mark, onDragStart, onDragStop, graphProps, onClick } = this.props;
+    const { mark, onDragStart, onDragStop, graphProps, onComponentClick } = this.props;
     return (
       <BaseSegment
         {...mark}
@@ -301,7 +301,7 @@ export default class Component extends React.Component {
         onDragStart={onDragStart}
         onDragStop={onDragStop}
         graphProps={graphProps}
-        onClick={onClick}
+        onComponentClick={onComponentClick}
         changeLabel={this.changeLabel}
       />
     );

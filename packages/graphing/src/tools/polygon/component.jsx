@@ -67,7 +67,7 @@ export class RawBaseComponent extends React.Component {
     onDragStop: PropTypes.func,
     graphProps: types.GraphPropsType.isRequired,
     showLabel: PropTypes.bool,
-    onClick: PropTypes.func,
+    onComponentClick: PropTypes.func,
     changeLabel: PropTypes.func
   };
 
@@ -204,14 +204,22 @@ export class RawBaseComponent extends React.Component {
   };
 
   render() {
-    const { closed, points, disabled, graphProps, onClick, changeLabel, showLabel } = this.props;
+    const {
+      closed,
+      points,
+      disabled,
+      graphProps,
+      onComponentClick,
+      changeLabel,
+      showLabel
+    } = this.props;
     log('[render]', points.join(','));
     const pl = this.getPointsAndLines();
     let labelPosition = this.getLabelPosition();
 
     log('[render] graphProps:', graphProps);
     return (
-      <g onClick={onClick}>
+      <g onClick={onComponentClick}>
         <Label
           disabled={disabled}
           onChange={changeLabel}
@@ -313,7 +321,7 @@ export default class Component extends React.Component {
   };
 
   render() {
-    const { mark, graphProps, onClick } = this.props;
+    const { mark, graphProps, onComponentClick } = this.props;
     return (
       <BaseComponent
         {...mark}
@@ -322,7 +330,7 @@ export default class Component extends React.Component {
         onDragStart={this.dragStart}
         onDragStop={this.dragStop}
         graphProps={graphProps}
-        onClick={onClick}
+        onComponentClick={onComponentClick}
         changeLabel={this.changeLabel}
       />
     );

@@ -232,7 +232,7 @@ export class Graph extends React.Component {
               <Component
                 key={`${m.type}-${index}`}
                 mark={m}
-                onClick={() => {
+                onComponentClick={() => {
                   if (currentTool && currentTool.type === 'label') {
                     const updatedMark = this.getCorrespondingTool(m).addLabel(m);
                     this.updateMarks(m, updatedMark);

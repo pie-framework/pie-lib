@@ -38,7 +38,7 @@ export class RawBaseCircle extends React.Component {
     graphProps: types.GraphPropsType.isRequired,
     showLabel: PropTypes.bool,
     changeLabel: PropTypes.func,
-    onClick: PropTypes.func
+    onComponentClick: PropTypes.func
   };
 
   static defaultProps = {};
@@ -122,7 +122,7 @@ export class RawBaseCircle extends React.Component {
       correctness,
       graphProps,
       changeLabel,
-      onClick,
+      onComponentClick,
       showLabel
     } = this.props;
     const { draggedCenter, draggedOuter, isCircleDrag } = this.state;
@@ -136,7 +136,7 @@ export class RawBaseCircle extends React.Component {
 
     const common = { graphProps };
     return (
-      <g onClick={onClick}>
+      <g onClick={onComponentClick}>
         <Label
           disabled={building || disabled}
           correctness={correctness}
@@ -235,7 +235,7 @@ export default class Component extends React.Component {
   };
 
   render() {
-    const { mark, onDragStart, onDragStop, graphProps, onClick } = this.props;
+    const { mark, onDragStart, onDragStop, graphProps, onComponentClick } = this.props;
     return (
       <BaseCircle
         {...mark}
@@ -243,7 +243,7 @@ export default class Component extends React.Component {
         onDragStart={onDragStart}
         onDragStop={onDragStop}
         graphProps={graphProps}
-        onClick={onClick}
+        onComponentClick={onComponentClick}
         changeLabel={this.changeLabel}
       />
     );

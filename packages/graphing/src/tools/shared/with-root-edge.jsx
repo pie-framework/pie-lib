@@ -19,7 +19,7 @@ export const withRootEdge = getPoints => {
       edge: types.PointType,
       onChange: PropTypes.func.isRequired,
       showLabel: PropTypes.bool,
-      onClick: PropTypes.func,
+      onComponentClick: PropTypes.func,
       changeLabel: PropTypes.func
     };
 
@@ -66,7 +66,14 @@ export const withRootEdge = getPoints => {
     dragLine = line => this.setState({ line });
 
     render() {
-      const { classes, graphProps, root: propsRoot, onClick, changeLabel, showLabel } = this.props;
+      const {
+        classes,
+        graphProps,
+        root: propsRoot,
+        onComponentClick,
+        changeLabel,
+        showLabel
+      } = this.props;
       const { root: stateRoot, line } = this.state;
       const { root, edge, dataPoints } = getPoints(this.props, this.state);
 
@@ -83,7 +90,7 @@ export const withRootEdge = getPoints => {
       const raw = dataPoints.map(d => [graphProps.scale.x(d.x), graphProps.scale.y(d.y)]);
 
       return (
-        <g onClick={onClick}>
+        <g onClick={onComponentClick}>
           <Label
             onChange={changeLabel}
             x={labelPosition.x}

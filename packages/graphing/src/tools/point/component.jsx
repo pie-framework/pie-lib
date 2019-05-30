@@ -35,11 +35,11 @@ export class Point extends React.Component {
   };
 
   render() {
-    const { mark, graphProps, onClick } = this.props;
+    const { mark, graphProps, onComponentClick } = this.props;
     const { draggedTo } = this.state;
 
     return (
-      <g onClick={onClick}>
+      <g onClick={onComponentClick}>
         <Label onChange={this.changeLabel} {...mark} {...draggedTo} graphProps={graphProps} />
         <BasePoint {...mark} onMove={this.move} onDrag={this.drag} graphProps={graphProps} />
       </g>
