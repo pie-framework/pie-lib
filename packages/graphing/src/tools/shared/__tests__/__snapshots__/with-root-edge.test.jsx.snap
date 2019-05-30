@@ -140,6 +140,7 @@ exports[`WithRootEdge snapshot renders 1`] = `
         },
       }
     }
+    onClick={[Function]}
     onDrag={[Function]}
     onDragStart={[Function]}
     onDragStop={[Function]}
@@ -260,6 +261,7 @@ exports[`WithRootEdge snapshot renders 1`] = `
         },
       }
     }
+    onClick={[Function]}
     onDrag={[Function]}
     onDragStart={[Function]}
     onDragStop={[Function]}
@@ -374,6 +376,7 @@ exports[`WithRootEdge snapshot renders 1`] = `
         },
       }
     }
+    onClick={[Function]}
     onDrag={[Function]}
     onDragStart={[Function]}
     onDragStop={[Function]}
