@@ -30,6 +30,7 @@ exports[`Component snapshot renders 1`] = `
         },
       }
     }
+    onClick={[Function]}
     onDrag={[Function]}
     onMove={[Function]}
     radius={1.4142135623730951}
@@ -63,6 +64,7 @@ exports[`Component snapshot renders 1`] = `
         },
       }
     }
+    onClick={[Function]}
     onDrag={[Function]}
     onMove={[Function]}
     x={1}
@@ -95,6 +97,7 @@ exports[`Component snapshot renders 1`] = `
         },
       }
     }
+    onClick={[Function]}
     onDrag={[Function]}
     onMove={[Function]}
     x={0}

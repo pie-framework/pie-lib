@@ -3,9 +3,13 @@ import React from 'react';
 import { gridDraggable } from '../grid-draggable';
 import { getDelta } from '../utils';
 
-jest.mock('../draggable', () => ({ children }) => (
-  <div data-name="draggable">{children}</div>
-));
+import { clientPoint } from 'd3-selection';
+
+jest.mock('d3-selection', () => ({
+  clientPoint: jest.fn().mockReturnValue([0, 0])
+}));
+
+jest.mock('../draggable', () => ({ children }) => <div data-name="draggable">{children}</div>);
 
 jest.mock('../utils', () => ({
   getDelta: jest.fn()
@@ -38,13 +42,14 @@ describe('gridDraggable', () => {
       }
     };
 
+    defaults.graphProps.scale.x.invert = jest.fn(x => x);
+    defaults.graphProps.scale.y.invert = jest.fn(x => x);
+
     const props = { ...defaults, ...extras };
 
     opts = {
       anchorPoint: jest.fn().mockReturnValue({ x: 0, y: 0 }),
-      bounds: jest
-        .fn()
-        .mockReturnValue({ left: 0, top: 0, bottom: 0, right: 0 }),
+      bounds: jest.fn().mockReturnValue({ left: 0, top: 0, bottom: 0, right: 0 }),
       fromDelta: jest.fn(),
       ...opts
     };
@@ -177,7 +182,7 @@ describe('gridDraggable', () => {
         const w = wrapper({}, { onClick });
         w.instance().tiny = jest.fn().mockReturnValue(true);
         w.instance().onStop({}, {});
-        expect(onClick).toHaveBeenCalled();
+        expect(onClick).toHaveBeenCalledWith({ x: 0, y: 0 });
       });
 
       it('calls onMove if not tiny', () => {
