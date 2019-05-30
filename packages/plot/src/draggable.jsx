@@ -1,4 +1,4 @@
-import Draggable from 'react-draggable';
+import Draggable, { DraggableCore } from 'react-draggable';
 
 export default class LocalDraggable extends Draggable {
   componentWillReceiveProps(next) {
@@ -7,3 +7,5 @@ export default class LocalDraggable extends Draggable {
     this.setState({ x: 0, y: 0 });
   }
 }
+
+export { DraggableCore };

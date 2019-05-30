@@ -1,5 +1,8 @@
 import { xy } from '../lib/utils';
 import Point from '@mapbox/point-geometry';
+import debug from 'debug';
+const log = debug('pie-lib:plot:trig');
+
 const slope = (a, b) => (b.y - a.y) / (b.x - a.x);
 export const toDegrees = radians => radians * (180 / Math.PI);
 export const toRadians = degrees => degrees * (Math.PI / 180);
@@ -42,11 +45,11 @@ export const edges = (domain, range) => (a, b) => [
  * @param {*} bounds
  */
 export const diffEdge = (bounds, a, b) => {
-  const log = console.log.bind(console, `[${a.x},${a.y}-${b.x},${b.y}]`);
+  let l = log.bind(console, `[${a.x},${a.y}-${b.x},${b.y}]`);
   const xRadians = angle(a, b);
-  log('x angle', toDegrees(xRadians));
+  l('x angle', toDegrees(xRadians));
   const yRadians = Math.abs(xRadians - toRadians(90));
-  log('y angle', toDegrees(yRadians));
+  l('y angle', toDegrees(yRadians));
 
   const xSide = Math.abs(a.x - bounds.x);
   // const xAngle = toRadians(90) - xRadians;
@@ -63,8 +66,8 @@ export const diffEdge = (bounds, a, b) => {
   const ySide = Math.abs(a.y - bounds.y);
   const yH = hypotenuse(ySide, xRadians);
 
-  log('x: side', xSide, 'h:', xH);
-  log('y: side', ySide, 'h:', yH);
+  l('x: side', xSide, 'h:', xH);
+  l('y: side', ySide, 'h:', yH);
 
   // use the shortest hypotenuse
   if (xH <= yH) {

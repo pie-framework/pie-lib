@@ -2,6 +2,10 @@ import _ from 'lodash';
 import React from 'react';
 import { BasePoint } from '../common/point';
 import { types } from '@pie-lib/plot';
+import debug from 'debug';
+
+const log = debug('pie-lib:graphing:line-tools');
+
 export const lineTool = (type, Component) => () => ({
   type,
   Component,
@@ -70,18 +74,48 @@ export const lineBase = Comp => {
     dragFrom = from => this.setState({ from });
     dragTo = to => this.setState({ to });
     stopDragFrom = () => this.setState({ from: undefined });
-    stopDragTo = () => this.setState({ from: undefined });
+    stopDragTo = () => this.setState({ to: undefined });
 
-    dragComp = ({ from, to }) => this.setState({ from, to });
-    stopDragComp = () => this.setState({ from: undefined, to: undefined });
+    dragComp = ({ from, to }) => {
+      log('@@@@ dragComp');
+      this.setState({ from, to });
+    };
+    stopDragComp = () => this.setState({ comp: undefined });
+    // buildPoints = () => {
+    //   const { comp, from, to } = this.state;
+
+    //   if (comp) {
+    //     return {
+    //       comp: { from: this.props.from, to: this.props.to },
+    //       from: comp.from,
+    //       to: comp.to
+    //     };
+    //   }
+
+    //   log(comp, from, to);
+
+    //   return {
+    //     comp: { from: from || this.props.from, to: to || this.props.to },
+    //     from: this.props.from,
+    //     to: this.props.to
+    //   };
+    // };
     render() {
-      const { graphProps, from, to } = this.props;
-      console.log('Comp:', Comp);
+      const { graphProps } = this.props;
+
+      // const points = this.buildPoints();
+      const from = this.state.from ? this.state.from : this.props.from;
+      const to = this.state.to ? this.state.to : this.props.to;
+
+      console.log('[render]', from, to);
+      // const compPos = {
+      //   from: this.state.comp
+      // }
       return (
         <g>
           <Comp
-            from={this.state.from ? this.state.from : from}
-            to={this.state.to ? this.state.to : to}
+            from={from}
+            to={to}
             graphProps={graphProps}
             onDrag={this.dragComp}
             onDragStop={this.stopDragComp}

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { GraphPropsType } from './types';
-import Draggable from './draggable';
+import Draggable, { DraggableCore } from './draggable';
 import debug from 'debug';
 import * as utils from './utils';
 import isFunction from 'lodash/isFunction';
@@ -92,6 +92,20 @@ export const gridDraggable = opts => Comp => {
 
       const dragArg = this.applyDelta({ x: dd.x, y: dd.y });
 
+      const { graphProps } = this.props;
+      const { scale, snap } = graphProps;
+
+      // return {
+      //   anchorPoint: {
+      //     x,
+      //     y
+      //   },
+      //   x: deltaFn(scale.x, snap.x, x),
+      //   y: deltaFn(scale.y, snap.y, y)
+      const x = snap.x(scale.x.invert(scale.x(0) + dd.deltaX));
+      const y = snap.y(scale.y.invert(scale.y(0) + dd.deltaY));
+      log('[onDrag] x/y:', x, y);
+      const newDragArg = opts.fromDelta(this.props, { x: y });
       log('[onDrag] .. dragArg:', dragArg);
       if (dragArg !== undefined || dragArg !== null) {
         onDrag(dragArg);
@@ -111,6 +125,7 @@ export const gridDraggable = opts => Comp => {
 
     applyDelta = point => {
       const delta = this.getDelta(point);
+      log('[applyDelta] delta:', delta);
       return opts.fromDelta(this.props, delta);
     };
 
