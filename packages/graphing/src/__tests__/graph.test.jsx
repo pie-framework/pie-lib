@@ -72,10 +72,7 @@ describe('Graph', () => {
 
     describe('getBuildingMark', () => {
       it('returns mark that is building', () => {
-        const marks = [
-          { type: 'mark' },
-          { type: 'mark', building: true, x: 1, y: 1 }
-        ];
+        const marks = [{ type: 'mark' }, { type: 'mark', building: true, x: 1, y: 1 }];
         w = wrapper({ marks });
         const result = w.instance().getBuildingMark();
         expect(result).toEqual(marks[1]);
@@ -93,11 +90,7 @@ describe('Graph', () => {
         w.instance().props.tools[0].addPoint.mockReturnValue(updatedMark);
         w.instance().updateMarks = jest.fn();
         w.instance().onBgClick({ x: 3, y: 3 });
-        expect(w.instance().updateMarks).toHaveBeenCalledWith(
-          buildingMark,
-          updatedMark,
-          true
-        );
+        expect(w.instance().updateMarks).toHaveBeenCalledWith(buildingMark, updatedMark, true);
       });
     });
 
@@ -113,14 +106,8 @@ describe('Graph', () => {
         w.instance().updateMarks = jest.fn();
         w.instance().completeMark({ x: 3, y: 3 });
 
-        expect(w.instance().props.tools[0].complete).toHaveBeenCalledWith(
-          buildingMark,
-          xy(3, 3)
-        );
-        expect(w.instance().updateMarks).toHaveBeenCalledWith(
-          buildingMark,
-          completedMark
-        );
+        expect(w.instance().props.tools[0].complete).toHaveBeenCalledWith(buildingMark, xy(3, 3));
+        expect(w.instance().updateMarks).toHaveBeenCalledWith(buildingMark, completedMark);
       });
     });
 
@@ -140,7 +127,7 @@ describe('Graph', () => {
       });
     });
 
-    describe('getComponent', () => {
+    describe('getCorrespondingTool', () => {
       let marks, compMock;
 
       beforeEach(() => {
@@ -151,19 +138,19 @@ describe('Graph', () => {
 
       it('returns the component', () => {
         w.instance().props.tools[0].Component = compMock;
-        const Comp = w.instance().getComponent(marks[1]);
+        const Comp = w.instance().getCorrespondingTool(marks[1]).Component;
         expect(Comp).toEqual(compMock);
       });
 
       it('throws an error if there is no tool', () => {
         w.instance().props.tools.pop();
-        expect(() => w.instance().getComponent({ type: 'mark' })).toThrow(
+        expect(() => w.instance().getCorrespondingTool({ type: 'mark' })).toThrow(
           /No tool supports.*/
         );
       });
       it('throws an error if there is no tool.Component', () => {
         w.instance().props.tools[0].Component = undefined;
-        expect(() => w.instance().getComponent({ type: 'mark' })).toThrow(
+        expect(() => w.instance().getCorrespondingTool({ type: 'mark' })).toThrow(
           /No tool supports.*/
         );
       });

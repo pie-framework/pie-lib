@@ -52,7 +52,10 @@ const Sine = withRootEdge((props, state) => {
     return {
       root: state.line.root,
       edge: state.line.edge,
-      dataPoints
+      dataPoints,
+      onClick: props.onClick,
+      changeLabel: props.changeLabel,
+      showLabel: props.showLabel
     };
   }
 
@@ -73,7 +76,14 @@ const Sine = withRootEdge((props, state) => {
           interval,
           sinY(amplitude, freq, { phase: root.x, vertical: root.y })
         );
-  return { root: props.root, edge: props.edge, dataPoints };
+  return {
+    root: props.root,
+    edge: props.edge,
+    dataPoints,
+    onClick: props.onClick,
+    changeLabel: props.changeLabel,
+    showLabel: props.showLabel
+  };
 });
 
 export default class Component extends React.Component {
@@ -90,15 +100,24 @@ export default class Component extends React.Component {
     onChange(mark, update);
   };
 
+  changeLabel = label => {
+    const { mark, onChange } = this.props;
+
+    const m = { ...mark, label, showLabel: !(label === undefined) };
+    onChange(mark, m);
+  };
+
   render() {
-    const { mark, graphProps, labelIsActive } = this.props;
+    const { mark, graphProps, onClick } = this.props;
     return (
       <Sine
         root={mark.root}
         edge={mark.edge}
         graphProps={graphProps}
+        onClick={onClick}
         onChange={this.changeMark}
-        labelIsActive={labelIsActive}
+        changeLabel={this.changeLabel}
+        showLabel={mark.showLabel}
       />
     );
   }

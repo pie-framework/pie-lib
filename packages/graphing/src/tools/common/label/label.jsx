@@ -13,7 +13,7 @@ export class RawLabel extends React.Component {
     y: PropTypes.number,
     graphProps: types.GraphPropsType.isRequired,
     onChange: PropTypes.func,
-    onRemove: PropTypes.func
+    showLabel: PropTypes.bool
   };
 
   render() {
@@ -26,9 +26,13 @@ export class RawLabel extends React.Component {
       correctness,
       graphProps,
       onChange,
-      onRemove
+      showLabel
     } = this.props;
     const { scale } = graphProps;
+
+    if (!showLabel) {
+      return null;
+    }
 
     return (
       <g
@@ -54,7 +58,7 @@ export class RawLabel extends React.Component {
               }}
               onBlur={({ target }) => {
                 if (target.value === '') {
-                  onRemove();
+                  onChange();
                 }
               }}
             />

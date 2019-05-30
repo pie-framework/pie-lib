@@ -18,5 +18,9 @@ export const tool = () => ({
     }
 
     return { ...mark, building: false, to: point };
-  }
+  },
+  addLabel: point => ({
+    ...point,
+    showLabel: true
+  })
 });

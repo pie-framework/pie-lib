@@ -50,5 +50,9 @@ export const tool = () => ({
     } else {
       return { ...mark, edge: point, closed: true, building: false };
     }
-  }
+  },
+  addLabel: point => ({
+    ...point,
+    showLabel: true
+  })
 });

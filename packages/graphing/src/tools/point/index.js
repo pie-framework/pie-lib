@@ -7,5 +7,9 @@ export const tool = opts => ({
   addPoint: point => ({
     type: 'point',
     ...point
+  }),
+  addLabel: point => ({
+    ...point,
+    showLabel: true
   })
 });

@@ -45,5 +45,9 @@ export const tool = () => ({
       const { closed, points } = addPointToArray(point, mark.points);
       return { ...mark, closed, points, building: !closed };
     }
-  }
+  },
+  addLabel: point => ({
+    ...point,
+    showLabel: true
+  })
 });

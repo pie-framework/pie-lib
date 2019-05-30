@@ -16,5 +16,9 @@ export const tool = opts => ({
     } else {
       return { ...mark, outerPoint: point, building: false };
     }
-  }
+  },
+  addLabel: point => ({
+    ...point,
+    showLabel: true
+  })
 });

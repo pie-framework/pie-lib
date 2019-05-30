@@ -24,7 +24,10 @@ const Parabola = withRootEdge((props, state) => {
     return {
       root: state.line.root,
       edge: state.line.edge,
-      dataPoints
+      dataPoints,
+      onClick: props.onClick,
+      changeLabel: props.changeLabel,
+      showLabel: props.showLabel
     };
   }
 
@@ -44,7 +47,14 @@ const Parabola = withRootEdge((props, state) => {
           parabolaFromTwoPoints(root, edge)
         );
   log('dataPoints:', dataPoints);
-  return { root: props.root, edge: props.edge, dataPoints };
+  return {
+    root: props.root,
+    edge: props.edge,
+    dataPoints,
+    onClick: props.onClick,
+    changeLabel: props.changeLabel,
+    showLabel: props.showLabel
+  };
 });
 
 export default class Component extends React.Component {
@@ -61,15 +71,24 @@ export default class Component extends React.Component {
     onChange(mark, update);
   };
 
+  changeLabel = label => {
+    const { mark, onChange } = this.props;
+
+    const m = { ...mark, label, showLabel: !(label === undefined) };
+    onChange(mark, m);
+  };
+
   render() {
-    const { mark, graphProps, labelIsActive } = this.props;
+    const { mark, graphProps, onClick } = this.props;
     return (
       <Parabola
         root={mark.root}
         edge={mark.edge}
         graphProps={graphProps}
-        labelIsActive={labelIsActive}
+        onClick={onClick}
         onChange={this.changeMark}
+        changeLabel={this.changeLabel}
+        showLabel={mark.showLabel}
       />
     );
   }

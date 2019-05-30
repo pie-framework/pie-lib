@@ -131,7 +131,7 @@ export class Graph extends React.Component {
 
   buildMarkStoppedDragging = () => this.setState({ dragging: false });
 
-  getComponent = mark => {
+  getCorrespondingTool = mark => {
     if (!mark) {
       return undefined;
     }
@@ -140,7 +140,7 @@ export class Graph extends React.Component {
 
     const tool = (tools || []).find(t => t.type === mark.type);
     if (tool && tool.Component) {
-      return tool.Component;
+      return tool;
     } else {
       throw new Error(`No tool supports type ${mark.type}`);
     }
@@ -217,7 +217,7 @@ export class Graph extends React.Component {
         </mask>
         <g id="marks" mask="url('#myMask')">
           {(backgroundMarks || []).map((m, index) => {
-            const Component = this.getComponent(m);
+            const { Component } = this.getCorrespondingTool(m);
             return (
               <Component
                 key={`${m.type}-${index}-bg`}
@@ -227,11 +227,17 @@ export class Graph extends React.Component {
             );
           })}
           {(marks || []).map((m, index) => {
-            const Component = this.getComponent(m);
+            const { Component } = this.getCorrespondingTool(m);
             return (
               <Component
                 key={`${m.type}-${index}`}
                 mark={m}
+                onClick={() => {
+                  if (currentTool && currentTool.type === 'label') {
+                    const updatedMark = this.getCorrespondingTool(m).addLabel(m);
+                    this.updateMarks(m, updatedMark);
+                  }
+                }}
                 onChange={this.changeMark}
                 onComplete={this.completeMark}
                 onDragStart={m.building ? this.buildMarkDragging : undefined}

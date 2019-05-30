@@ -18,7 +18,9 @@ export const withRootEdge = getPoints => {
       root: types.PointType.isRequired,
       edge: types.PointType,
       onChange: PropTypes.func.isRequired,
-      labelIsActive: PropTypes.bool
+      showLabel: PropTypes.bool,
+      onClick: PropTypes.func,
+      changeLabel: PropTypes.func
     };
 
     constructor(props) {
@@ -64,7 +66,7 @@ export const withRootEdge = getPoints => {
     dragLine = line => this.setState({ line });
 
     render() {
-      const { classes, graphProps, labelIsActive, root: propsRoot } = this.props;
+      const { classes, graphProps, root: propsRoot, onClick, changeLabel, showLabel } = this.props;
       const { root: stateRoot, line } = this.state;
       const { root, edge, dataPoints } = getPoints(this.props, this.state);
 
@@ -81,22 +83,14 @@ export const withRootEdge = getPoints => {
       const raw = dataPoints.map(d => [graphProps.scale.x(d.x), graphProps.scale.y(d.y)]);
 
       return (
-        <g
-          onClick={() => {
-            if (labelIsActive) {
-              this.setState({ label: '' });
-            }
-          }}
-        >
-          {this.state.label !== null && (
-            <Label
-              onChange={value => this.setState({ label: value })}
-              onRemove={() => this.setState({ label: null })}
-              x={labelPosition.x}
-              y={labelPosition.y}
-              graphProps={graphProps}
-            />
-          )}
+        <g onClick={onClick}>
+          <Label
+            onChange={changeLabel}
+            x={labelPosition.x}
+            y={labelPosition.y}
+            showLabel={showLabel}
+            graphProps={graphProps}
+          />
           {edge && (
             <LinePath
               xScale={d => graphProps.scale.x(d.x)}

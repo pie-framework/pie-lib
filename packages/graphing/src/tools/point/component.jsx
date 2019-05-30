@@ -15,16 +15,18 @@ export class Point extends React.Component {
 
   static defaultProps = {};
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      label: null
-    };
-  }
+  state = {};
 
   move = p => {
     const { mark, onChange } = this.props;
     const m = { ...mark, ...p };
+    onChange(mark, m);
+  };
+
+  changeLabel = label => {
+    const { mark, onChange } = this.props;
+
+    const m = { ...mark, label, showLabel: !(label === undefined) };
     onChange(mark, m);
   };
 
@@ -33,26 +35,12 @@ export class Point extends React.Component {
   };
 
   render() {
-    const { mark, graphProps, labelIsActive } = this.props;
-    const { label, draggedTo } = this.state;
+    const { mark, graphProps, onClick } = this.props;
+    const { draggedTo } = this.state;
 
     return (
-      <g
-        onClick={() => {
-          if (labelIsActive) {
-            this.setState({ label: '' });
-          }
-        }}
-      >
-        {label !== null && (
-          <Label
-            onChange={value => this.setState({ label: value })}
-            onRemove={() => this.setState({ label: null })}
-            {...mark}
-            {...draggedTo}
-            graphProps={graphProps}
-          />
-        )}
+      <g onClick={onClick}>
+        <Label onChange={this.changeLabel} {...mark} {...draggedTo} graphProps={graphProps} />
         <BasePoint {...mark} onMove={this.move} onDrag={this.drag} graphProps={graphProps} />
       </g>
     );

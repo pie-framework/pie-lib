@@ -39,7 +39,9 @@ export class RawBaseSegment extends React.Component {
     onDragStop: PropTypes.func,
     graphProps: types.GraphPropsType.isRequired,
     type: PropTypes.string,
-    labelIsActive: PropTypes.bool
+    showLabel: PropTypes.bool,
+    changeLabel: PropTypes.func,
+    onClick: PropTypes.func
   };
 
   static defaultProps = {};
@@ -47,8 +49,7 @@ export class RawBaseSegment extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      draggedFrom: undefined,
-      label: null
+      draggedFrom: undefined
     };
   }
 
@@ -151,9 +152,11 @@ export class RawBaseSegment extends React.Component {
       graphProps,
       type,
       to,
-      labelIsActive
+      changeLabel,
+      onClick,
+      showLabel
     } = this.props;
-    const { draggedFrom, draggedTo, isSegmentDrag, label } = this.state;
+    const { draggedFrom, draggedTo, isSegmentDrag } = this.state;
 
     log('[render] draggedFrom: ', draggedFrom, 'from: ', from);
 
@@ -177,24 +180,16 @@ export class RawBaseSegment extends React.Component {
     }
 
     return (
-      <g
-        onClick={() => {
-          if (labelIsActive) {
-            this.setState({ label: '' });
-          }
-        }}
-      >
-        {label !== null && (
-          <Label
-            disabled={building || disabled}
-            correctness={correctness}
-            onChange={value => this.setState({ label: value })}
-            onRemove={() => this.setState({ label: null })}
-            x={f.x}
-            y={f.y}
-            {...common}
-          />
-        )}
+      <g onClick={onClick}>
+        <Label
+          disabled={building || disabled}
+          correctness={correctness}
+          onChange={changeLabel}
+          x={f.x}
+          y={f.y}
+          showLabel={showLabel}
+          {...common}
+        />
         <Component
           disabled={building || disabled}
           correctness={correctness}
@@ -290,8 +285,15 @@ export default class Component extends React.Component {
     onChange(this.props.mark, m);
   };
 
+  changeLabel = label => {
+    const { mark, onChange } = this.props;
+
+    const m = { ...mark, label, showLabel: !(label === undefined) };
+    onChange(mark, m);
+  };
+
   render() {
-    const { mark, onDragStart, onDragStop, graphProps, labelIsActive } = this.props;
+    const { mark, onDragStart, onDragStop, graphProps, onClick } = this.props;
     return (
       <BaseSegment
         {...mark}
@@ -299,7 +301,8 @@ export default class Component extends React.Component {
         onDragStart={onDragStart}
         onDragStop={onDragStop}
         graphProps={graphProps}
-        labelIsActive={labelIsActive}
+        onClick={onClick}
+        changeLabel={this.changeLabel}
       />
     );
   }

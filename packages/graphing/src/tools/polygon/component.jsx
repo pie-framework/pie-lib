@@ -66,14 +66,15 @@ export class RawBaseComponent extends React.Component {
     onDragStart: PropTypes.func,
     onDragStop: PropTypes.func,
     graphProps: types.GraphPropsType.isRequired,
-    labelIsActive: PropTypes.bool
+    showLabel: PropTypes.bool,
+    onClick: PropTypes.func,
+    changeLabel: PropTypes.func
   };
 
   constructor(props) {
     super(props);
-    this.state = {
-      label: null
-    };
+
+    this.state = {};
   }
 
   movePoint = (from, to) => {
@@ -185,9 +186,7 @@ export class RawBaseComponent extends React.Component {
     }
   };
 
-  render() {
-    const { closed, points, disabled, graphProps, labelIsActive } = this.props;
-    log('[render]', points.join(','));
+  getLabelPosition = () => {
     const pl = this.getPointsAndLines();
     const { dragPoly, dragPoint } = this.state;
 
@@ -201,25 +200,26 @@ export class RawBaseComponent extends React.Component {
       labelPosition = dragPoint.to;
     }
 
+    return labelPosition || {};
+  };
+
+  render() {
+    const { closed, points, disabled, graphProps, onClick, changeLabel, showLabel } = this.props;
+    log('[render]', points.join(','));
+    const pl = this.getPointsAndLines();
+    let labelPosition = this.getLabelPosition();
+
     log('[render] graphProps:', graphProps);
     return (
-      <g
-        onClick={() => {
-          if (labelIsActive) {
-            this.setState({ label: '' });
-          }
-        }}
-      >
-        {this.state.label !== null && (
-          <Label
-            disabled={disabled}
-            onChange={value => this.setState({ label: value })}
-            onRemove={() => this.setState({ label: null })}
-            x={labelPosition.x}
-            y={labelPosition.y}
-            graphProps={graphProps}
-          />
-        )}
+      <g onClick={onClick}>
+        <Label
+          disabled={disabled}
+          onChange={changeLabel}
+          x={labelPosition.x}
+          y={labelPosition.y}
+          showLabel={showLabel}
+          graphProps={graphProps}
+        />
         {closed ? (
           <DraggablePolygon
             disabled={disabled}
@@ -305,8 +305,15 @@ export default class Component extends React.Component {
     }
   };
 
+  changeLabel = label => {
+    const { mark, onChange } = this.props;
+
+    const m = { ...mark, label, showLabel: !(label === undefined) };
+    onChange(mark, m);
+  };
+
   render() {
-    const { mark, graphProps, labelIsActive } = this.props;
+    const { mark, graphProps, onClick } = this.props;
     return (
       <BaseComponent
         {...mark}
@@ -315,7 +322,8 @@ export default class Component extends React.Component {
         onDragStart={this.dragStart}
         onDragStop={this.dragStop}
         graphProps={graphProps}
-        labelIsActive={labelIsActive}
+        onClick={onClick}
+        changeLabel={this.changeLabel}
       />
     );
   }
