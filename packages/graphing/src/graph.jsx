@@ -58,8 +58,20 @@ export class Graph extends React.Component {
     }
   };
 
+  startDrag = () => {
+    const { marks } = this.props;
+    this.setState({ marks });
+  };
+  stopDrag = () => {
+    const { onChangeMarks } = this.props;
+    const update = [...this.state.marks];
+    this.setState({ marks: undefined }, () => {
+      onChangeMarks(update);
+    });
+  };
+
   changeMark = (oldMark, newMark) => {
-    const { marks, onChangeMarks } = this.props;
+    const { marks } = this.state;
 
     const index = marks.findIndex(m => _.isEqual(m, oldMark));
 
@@ -67,7 +79,7 @@ export class Graph extends React.Component {
       const out = [...marks];
       out.splice(index, 1, { ...newMark });
       log('[changeMark] call onChangeMarks');
-      onChangeMarks(out);
+      this.setState({ marks: out });
     }
   };
 
@@ -188,8 +200,9 @@ export class Graph extends React.Component {
   };
 
   render() {
-    const { axesSettings, size, domain, marks, backgroundMarks, range, title, labels } = this.props;
+    const { axesSettings, size, domain, backgroundMarks, range, title, labels } = this.props;
 
+    const marks = this.state.marks ? this.state.marks : this.props.marks;
     const tool = this.getTool();
     log('[render]', marks);
 
@@ -230,8 +243,9 @@ export class Graph extends React.Component {
                 onChange={this.changeMark}
                 onComplete={this.completeMark}
                 onClick={this.clickComponent}
-                onDragStart={m.building ? this.buildMarkDragging : undefined}
-                onDragStop={m.building ? this.buildMarkStoppedDragging : undefined}
+                onDragStart={this.startDrag}
+                onDragStop={this.stopDrag}
+                //m.building ? this.buildMarkStoppedDragging : undefined}
                 isToolActive={m.type === tool.type}
                 {...common}
               />

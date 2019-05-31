@@ -45,7 +45,7 @@ export const edges = (domain, range) => (a, b) => [
  * @param {*} bounds
  */
 export const diffEdge = (bounds, a, b) => {
-  let l = log.bind(console, `[${a.x},${a.y}-${b.x},${b.y}]`);
+  let l = () => {}; //log.bind(console, `[${a.x},${a.y}-${b.x},${b.y}]`);
   const xRadians = angle(a, b);
   l('x angle', toDegrees(xRadians));
   const yRadians = Math.abs(xRadians - toRadians(90));

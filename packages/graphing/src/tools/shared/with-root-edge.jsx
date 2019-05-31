@@ -16,62 +16,39 @@ export const withRootEdge = getPoints => {
       root: types.PointType.isRequired,
       edge: types.PointType,
       onChange: PropTypes.func.isRequired,
-      onClick: PropTypes.func
+      onClick: PropTypes.func,
+      onDragStart: PropTypes.func,
+      onDragStop: PropTypes.func
     };
 
     static defaultProps = {
       onClick: () => ({})
     };
 
-    constructor(props) {
-      super(props);
-      this.state = {};
-    }
-
-    startEdgeDrag = () => {};
-
-    stopEdgeDrag = () => this.setState({ edge: undefined });
-
-    dragEdge = edge => {
-      log('[dragEdge] edge:', edge);
-      this.setState({ edge });
-    };
-
-    startRootDrag = () => {};
-
-    dragRoot = root => this.setState({ root });
-
-    moveRoot = root => {
+    dragRoot = root => {
       const { edge, onChange } = this.props;
       const update = { root, edge };
       onChange(update);
     };
 
-    moveEdge = edge => {
+    dragEdge = edge => {
       const { root, onChange } = this.props;
       const update = { root, edge };
       onChange(update);
     };
 
-    moveLine = ({ root, edge }) => {
+    dragLine = ({ root, edge }) => {
       const { onChange } = this.props;
       onChange({ root, edge });
     };
 
-    stopRootDrag = () => this.setState({ root: undefined });
-    startLineDrag = () => {};
-    stopLineDrag = () => this.setState({ line: undefined });
-    dragLine = line => this.setState({ line });
-
-    clickLine = point => this.props.onClick(point);
-    clickRoot = point => this.props.onClick(point);
-    clickEdge = point => this.props.onClick(point);
     render() {
-      const { graphProps } = this.props;
+      const { graphProps, onDragStart, onDragStop, onClick } = this.props;
       const { root, edge, dataPoints } = getPoints(this.props, this.state);
 
       const raw = dataPoints.map(d => [graphProps.scale.x(d.x), graphProps.scale.y(d.y)]);
 
+      const common = { onClick, graphProps, onDragStart, onDragStop };
       return (
         <g>
           {edge && (
@@ -79,40 +56,15 @@ export const withRootEdge = getPoints => {
               xScale={d => graphProps.scale.x(d.x)}
               yScale={d => graphProps.scale.y(d.y)}
               data={raw}
-              graphProps={graphProps}
-              onDragStart={this.startLineDrag}
-              onDragStop={this.stopLineDrag}
-              onClick={this.clickLine}
               onDrag={this.dragLine}
               root={this.props.root}
               edge={this.props.edge}
-              onMove={this.moveLine}
               curve={curveMonotoneX}
+              {...common}
             />
           )}
-
-          <BasePoint
-            graphProps={graphProps}
-            x={root.x}
-            y={root.y}
-            onDragStart={this.startRootDrag}
-            onDragStop={this.stopRootDrag}
-            onDrag={this.dragRoot}
-            onMove={this.moveRoot}
-            onClick={this.clickRoot}
-          />
-          {edge && (
-            <BasePoint
-              graphProps={graphProps}
-              x={edge.x}
-              y={edge.y}
-              onDragStart={this.startEdgeDrag}
-              onDragStop={this.stopEdgeDrag}
-              onDrag={this.dragEdge}
-              onMove={this.moveEdge}
-              onClick={this.clickEdge}
-            />
-          )}
+          <BasePoint x={root.x} y={root.y} onDrag={this.dragRoot} {...common} />
+          {edge && <BasePoint x={edge.x} y={edge.y} onDrag={this.dragEdge} {...common} />}
         </g>
       );
     }

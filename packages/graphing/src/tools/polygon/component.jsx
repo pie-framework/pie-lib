@@ -51,8 +51,6 @@ const swap = (arr, ...rest) => {
   );
 };
 
-const xy = p => `${p.x}-${p.y}`;
-
 export class RawBaseComponent extends React.Component {
   static propTypes = {
     classes: PropTypes.object,
@@ -69,108 +67,31 @@ export class RawBaseComponent extends React.Component {
     isToolActive: PropTypes.bool
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
-  movePoint = (from, to) => {
-    log('[movePoint] ', from, to);
-
-    const { onChange, points } = this.props;
-
-    const update = swap(points, from, to);
-    onChange(update);
-  };
-
-  moveLine = (existing, next) => {
-    log('[moveLine]', existing, next);
-    const { points, onChange } = this.props;
-    const update = swap(points, existing.from, next.from, existing.to, next.to);
-    onChange(update);
-  };
-
-  movePoly = (existing, next) => {
-    const { onChange } = this.props;
-    log('[movePoly]', existing, next);
-    onChange(next);
-  };
-
   dragPoint = (from, to) => {
     log('[dragPoint] from, to:', from, to);
-    this.setState({ dragPoint: { from, to } });
+    const { onChange } = this.props;
+    const points = this.props.points.map(p => {
+      if (isEqual(p, from)) {
+        return to;
+      }
+      return p;
+    });
+
+    onChange(points);
   };
 
   dragLine = (existing, next) => {
     log('[dragLine]: ', existing, next);
-    this.setState({ dragLine: { existing, next } });
+    const { onChange } = this.props;
+    // this.setState({ dragLine: { existing, next } });
+    let points = swap(this.props.points, existing.from, next.from, existing.to, next.to);
+    onChange(points);
   };
 
   dragPoly = (existing, next) => {
     log('[dragPoly] ', existing, next);
-    this.setState({ dragPoly: { existing, next } });
-  };
-
-  clearDragState = done => {
-    this.setState(
-      {
-        dragPoint: undefined,
-        dragLine: undefined,
-        dragPoly: undefined
-      },
-      () => {
-        if (this.props.onDragStop) {
-          this.props.onDragStop();
-        }
-        if (done) {
-          done();
-        }
-      }
-    );
-  };
-
-  /**
-   * Return points for polygon, points for points and lines for lines.
-   * These will be different depending on what is being dragged.
-   */
-  getPointsAndLines = () => {
-    const { dragLine, dragPoint, dragPoly } = this.state;
-    const { points, closed } = this.props;
-    if (dragPoint && dragLine) {
-      throw new Error('should never have a point and line dragged at the same time');
-    }
-
-    if (dragPoint) {
-      const i = points.findIndex(p => isEqual(p, dragPoint.from));
-      if (i >= 0) {
-        const poly = [...points];
-        poly.splice(i, 1, dragPoint.to);
-        const lines = buildLines(poly, closed);
-        /** a point is being dragged - so we just pass the original alongn */
-        return { poly, lines, points };
-      }
-    }
-
-    if (dragLine) {
-      const { existing, next } = dragLine;
-
-      let swapped = swap(points, existing.from, next.from, existing.to, next.to);
-      /** We do a little visual trick here so we don't need to update the lines array.
-       * The Line components are transparent until you hover over them or drag.
-       * The bars you see are actually part of the polygon.
-       */
-      const updatedLines = buildLines(points, closed);
-      return { lines: updatedLines, poly: swapped, points: swapped };
-    }
-
-    if (dragPoly) {
-      const lines = buildLines(dragPoly.next, closed);
-      // pass points through - drag is already applying the tranform.
-      return { poly: points, points: dragPoly.next, lines };
-    }
-
-    // the unadulterated set..
-    return { poly: points, lines: buildLines(points, closed), points };
+    const { onChange } = this.props;
+    onChange(next);
   };
 
   close = () => {
@@ -184,7 +105,6 @@ export class RawBaseComponent extends React.Component {
   };
 
   clickPoint = (point, index, data) => {
-    // console.log(' ---------------------- >> ', point, index, data);
     const { closed, onClosePolygon, onClick, isToolActive } = this.props;
     if (isToolActive && !closed && index === 0) {
       onClosePolygon();
@@ -199,56 +119,41 @@ export class RawBaseComponent extends React.Component {
   };
 
   render() {
-    const { closed, points, disabled, graphProps, onClick } = this.props;
-    log('[render]', points.join(','));
-    const pl = this.getPointsAndLines();
-
-    log('[render] graphProps:', graphProps);
+    const { closed, disabled, graphProps, onClick, onDragStart, onDragStop, points } = this.props;
+    const lines = buildLines(points, closed);
+    const common = { onDragStart, onDragStop, graphProps, disabled };
     return (
       <g>
         {closed ? (
           <DraggablePolygon
-            disabled={disabled}
-            points={pl.poly}
-            onDragStart={this.props.onDragStart}
-            onDrag={this.dragPoly.bind(this, pl.poly)}
-            onDragStop={this.clearDragState}
-            onMove={this.movePoly.bind(this, pl.poly)}
+            points={points}
+            onDrag={this.dragPoly.bind(this, points)}
             onClick={onClick}
-            graphProps={graphProps}
             closed={closed}
+            {...common}
           />
         ) : (
-          <Polygon points={pl.poly} graphProps={graphProps} closed={closed} />
+          <Polygon points={points} graphProps={graphProps} closed={closed} />
         )}
-        {(pl.lines || []).map((l, index) => (
+        {(lines || []).map((l, index) => (
           <Line
-            disabled={disabled}
-            key={`${xy(l.from)}-${xy(l.to)}-${index}`}
+            key={`line-${index}`}
             from={l.from}
             to={l.to}
-            onDragStart={this.props.onDragStart}
             onDrag={this.dragLine.bind(this, l)}
-            onDragStop={this.clearDragState}
-            onMove={this.moveLine.bind(this, l)}
             onClick={this.clickLine}
-            graphProps={graphProps}
+            {...common}
           />
         ))}
-        {(pl.points || []).map((p, index) => {
+
+        {(points || []).map((p, index) => {
           return (
             <BasePoint
-              disabled={disabled}
-              key={`${xy(p)}-${index}`}
-              onDragStart={this.props.onDragStart}
+              key={`point-${index}`}
               onDrag={this.dragPoint.bind(this, p)}
-              onDragStop={this.clearDragState}
-              onMove={this.movePoint.bind(this, p)}
-              onClick={this.clickPoint.bind(this, p, index)}
-              // onClick={index === 0 ? this.close : () => {}}
               x={p.x}
               y={p.y}
-              graphProps={graphProps}
+              {...common}
             />
           );
         })}

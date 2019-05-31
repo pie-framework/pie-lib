@@ -2,9 +2,7 @@ import _ from 'lodash';
 import React from 'react';
 import { BasePoint } from '../common/point';
 import { types } from '@pie-lib/plot';
-import debug from 'debug';
-
-const log = debug('pie-lib:graphing:line-tools');
+import PropTypes from 'prop-types';
 
 export const lineTool = (type, Component) => () => ({
   type,
@@ -33,17 +31,14 @@ export const lineToolComponent = Component => {
       graphProps: types.GraphPropsType.isRequired
     };
 
-    static defaultProps = {};
-
-    changeMark = ({ root, edge }) => {
+    changeMark = ({ from, to }) => {
       const { mark, onChange } = this.props;
-      const update = { ...mark, root, edge };
+      const update = { ...mark, from, to };
       onChange(mark, update);
     };
 
     render() {
-      const { mark, graphProps, onClick } = this.props;
-      console.log('mark:', mark);
+      const { mark, graphProps, onClick, onDragStart, onDragStop } = this.props;
       return (
         <Component
           from={mark.from}
@@ -51,6 +46,8 @@ export const lineToolComponent = Component => {
           graphProps={graphProps}
           onChange={this.changeMark}
           onClick={onClick}
+          onDragStart={onDragStart}
+          onDragStop={onDragStop}
         />
       );
     }
@@ -62,82 +59,42 @@ export const lineBase = Comp => {
     static propTypes = {
       graphProps: types.GraphPropsType,
       from: types.PointType,
-      to: types.PointType
+      to: types.PointType,
+      onChange: PropTypes.func,
+      onDragStart: PropTypes.func,
+      onDragStop: PropTypes.func
     };
-
-    constructor(props) {
-      super(props);
-      this.state = {};
-    }
-
-    startDragFrom = () => {};
-    dragFrom = from => this.setState({ from });
-    dragTo = to => this.setState({ to });
-    stopDragFrom = () => this.setState({ from: undefined });
-    stopDragTo = () => this.setState({ to: undefined });
 
     dragComp = ({ from, to }) => {
-      log('@@@@ dragComp');
-      this.setState({ from, to });
+      const { onChange } = this.props;
+      onChange({ from, to });
     };
-    stopDragComp = () => this.setState({ comp: undefined });
-    // buildPoints = () => {
-    //   const { comp, from, to } = this.state;
 
-    //   if (comp) {
-    //     return {
-    //       comp: { from: this.props.from, to: this.props.to },
-    //       from: comp.from,
-    //       to: comp.to
-    //     };
-    //   }
+    dragFrom = from => {
+      const { onChange } = this.props;
+      onChange({ from, to: this.props.to });
+    };
 
-    //   log(comp, from, to);
+    dragTo = to => {
+      const { onChange } = this.props;
+      onChange({ from: this.props.from, to });
+    };
 
-    //   return {
-    //     comp: { from: from || this.props.from, to: to || this.props.to },
-    //     from: this.props.from,
-    //     to: this.props.to
-    //   };
-    // };
     render() {
-      const { graphProps } = this.props;
+      const { graphProps, onDragStart, onDragStop, from, to } = this.props;
 
-      // const points = this.buildPoints();
-      const from = this.state.from ? this.state.from : this.props.from;
-      const to = this.state.to ? this.state.to : this.props.to;
-
-      console.log('[render]', from, to);
-      // const compPos = {
-      //   from: this.state.comp
-      // }
+      const common = { graphProps, onDragStart, onDragStop };
       return (
         <g>
-          <Comp
-            from={from}
-            to={to}
-            graphProps={graphProps}
-            onDrag={this.dragComp}
-            onDragStop={this.stopDragComp}
-          />
+          <Comp from={from} to={to} onDrag={this.dragComp} {...common} />
           <BasePoint
             x={from.x}
             y={from.y}
-            graphProps={graphProps}
-            onDragStart={this.startDragFrom}
-            onDragStop={this.stopDragFrom}
             onDrag={this.dragFrom}
             onClick={this.clickFrom}
+            {...common}
           />
-          <BasePoint
-            x={to.x}
-            y={to.y}
-            graphProps={graphProps}
-            onDragStart={this.startDragTo}
-            onDragStop={this.stopDragTo}
-            onDrag={this.dragTo}
-            onClick={this.clickTo}
-          />
+          <BasePoint x={to.x} y={to.y} onDrag={this.dragTo} onClick={this.clickTo} {...common} />
         </g>
       );
     }

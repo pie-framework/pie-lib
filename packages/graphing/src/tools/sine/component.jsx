@@ -27,31 +27,10 @@ const getAmplitudeAndFreq = (root, edge) => {
   return { freq: d.x * 4, amplitude: d.y };
 };
 
-const Sine = withRootEdge((props, state) => {
+const Sine = withRootEdge(props => {
   const { domain } = props.graphProps;
 
-  if (state.line) {
-    /** line is being transformed by drag, so we want to build it's data points off of the props instead of the state.line object. */
-    // const root = utils.point(this.props.root).add(this.state.lineAnchor);
-    const { amplitude, freq } = getAmplitudeAndFreq(props.root, props.edge);
-    const interval = freq / FREQ_DIVIDER;
-    const dataPoints = buildDataPoints(
-      domain.min,
-      domain.max,
-      props.root,
-      props.edge,
-      interval,
-      sinY(amplitude, freq, { phase: props.root.x, vertical: props.root.y })
-    );
-    return {
-      root: state.line.root,
-      edge: state.line.edge,
-      dataPoints
-    };
-  }
-
-  const root = state.root ? state.root : props.root;
-  const edge = state.edge ? state.edge : props.edge;
+  const { root, edge } = props;
   const { amplitude, freq } = getAmplitudeAndFreq(root, edge);
   const interval = freq / FREQ_DIVIDER;
   log('[getPoints] amplitude:', amplitude, 'freq:', freq);
@@ -85,7 +64,7 @@ export default class Component extends React.Component {
   };
 
   render() {
-    const { mark, graphProps, onClick } = this.props;
+    const { mark, graphProps, onClick, onDragStart, onDragStop } = this.props;
     return (
       <Sine
         root={mark.root}
@@ -93,6 +72,8 @@ export default class Component extends React.Component {
         graphProps={graphProps}
         onChange={this.changeMark}
         onClick={onClick}
+        onDragStart={onDragStart}
+        onDragStop={onDragStop}
       />
     );
   }

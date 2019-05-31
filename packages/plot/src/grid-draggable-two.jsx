@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { GraphPropsType } from './types';
-import Draggable, { DraggableCore } from './draggable';
+import { DraggableCore } from './draggable';
 import debug from 'debug';
 import * as utils from './utils';
 import isFunction from 'lodash/isFunction';
 import invariant from 'invariant';
 import { clientPoint } from 'd3-selection';
 
-const log = debug('pie-lib:plot:grid-draggable');
+const log = debug('pie-lib:plot:grid-draggable-two');
 
 export const deltaFn = (scale, snap, val) => delta => {
   const normalized = delta + scale(0);
@@ -110,7 +110,7 @@ export const gridDraggable = opts => Comp => {
       log('[onDrag] .. dragArg:', dragArg);
       if (dragArg !== undefined || dragArg !== null) {
         onDrag(dragArg);
-        // this.setState({ lastDrag: dragArg });
+        this.setState({ lastDrag: dragArg });
       }
     };
 

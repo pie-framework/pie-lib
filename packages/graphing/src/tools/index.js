@@ -8,3 +8,5 @@ export { tool as line } from './line-tools/line';
 export { tool as sine } from './sine/index';
 export { tool as parabola } from './parabola/index';
 export { tool as lineTwo } from './line';
+export { tool as segmentTwo } from './segment';
+export { tool as rayTwo } from './ray';
