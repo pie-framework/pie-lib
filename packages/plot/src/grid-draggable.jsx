@@ -7,8 +7,25 @@ import * as utils from './utils';
 import isFunction from 'lodash/isFunction';
 import invariant from 'invariant';
 import { clientPoint } from 'd3-selection';
-
 const log = debug('pie-lib:plot:grid-draggable');
+
+export const isNum = num => typeof num === 'number' && !isNaN(num);
+
+export const getBoundPosition = (bounds, x, y) => {
+  if (!bounds) {
+    return [x, y];
+  }
+
+  // Keep x and y below right and bottom limits...
+  if (isNum(bounds.right)) x = Math.min(x, bounds.right);
+  if (isNum(bounds.bottom)) y = Math.min(y, bounds.bottom);
+
+  // But above left and top limits.
+  if (isNum(bounds.left)) x = Math.max(x, bounds.left);
+  if (isNum(bounds.top)) y = Math.max(y, bounds.top);
+
+  return [x, y];
+};
 
 export const deltaFn = (scale, snap, val) => delta => {
   const normalized = delta + scale(0);
@@ -82,6 +99,19 @@ export const gridDraggable = opts => Comp => {
       return out;
     };
 
+    getScaledBounds = () => {
+      const bounds = opts.bounds(this.props, this.props.graphProps);
+      log('bounds: ', bounds);
+      const grid = this.grid();
+
+      return {
+        left: (bounds.left / grid.interval) * grid.x,
+        right: (bounds.right / grid.interval) * grid.x,
+        top: (bounds.top / grid.interval) * grid.y,
+        bottom: (bounds.bottom / grid.interval) * grid.y
+      };
+    };
+
     onDrag = (e, dd) => {
       log('[onDrag] .. ', dd.x, dd.y, dd);
       const { onDrag } = this.props;
@@ -92,7 +122,6 @@ export const gridDraggable = opts => Comp => {
 
       const dragArg = this.applyDelta({ x: dd.deltaX, y: dd.deltaY });
 
-      log('[onDrag] dragArg:', dragArg);
       // const { graphProps } = this.props;
       // const { scale, snap } = graphProps;
 
@@ -108,6 +137,8 @@ export const gridDraggable = opts => Comp => {
       // log('[onDrag] x/y:', x, y);
       // const newDragArg = opts.fromDelta(this.props, { x: y });
       log('[onDrag] .. dragArg:', dragArg);
+      const [x, y] = getBoundPosition(this, dd.x, dd.y);
+      log('[bound!] ', x, y);
       if (dragArg !== undefined || dragArg !== null) {
         onDrag(dragArg);
         // this.setState({ lastDrag: dragArg });
@@ -184,15 +215,6 @@ export const gridDraggable = opts => Comp => {
       /* eslint-enable no-unused-vars */
 
       const grid = this.grid();
-      const bounds = opts.bounds(this.props, this.props.graphProps);
-
-      const scaledBounds = {
-        left: (bounds.left / grid.interval) * grid.x,
-        right: (bounds.right / grid.interval) * grid.x,
-        top: (bounds.top / grid.interval) * grid.y,
-        bottom: (bounds.bottom / grid.interval) * grid.y
-      };
-
       //prevent the text select icon from rendering.
       const onMouseDown = e => e.nativeEvent.preventDefault();
 
@@ -210,7 +232,6 @@ export const gridDraggable = opts => Comp => {
           onStop={this.onStop}
           axis={opts.axis || 'both'}
           grid={[grid.x, grid.y]}
-          bounds={scaledBounds}
         >
           <Comp {...rest} disabled={disabled} isDragging={isDragging} />
         </DraggableCore>

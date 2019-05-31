@@ -2,7 +2,7 @@ import { xy } from '../../../plot/lib/utils';
 const fromTo = (fx, fy, tx, ty) => ({ from: xy(fx, fy), to: xy(tx, ty) });
 
 export const marks = [
-  { type: 'parabola', root: { x: 0, y: 0 }, edge: { x: 1, y: 1 } },
+  //{ type: 'parabola', root: { x: 0, y: 0 }, edge: { x: 1, y: 1 } },
   // { type: 'parabola', root: { x: 2, y: 2 }, edge: { x: -1, y: 1 } },
   { type: 'sine', root: { x: 0, y: 0 }, edge: { x: -1, y: 1 } }
   // {
