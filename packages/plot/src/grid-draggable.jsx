@@ -9,24 +9,6 @@ import invariant from 'invariant';
 import { clientPoint } from 'd3-selection';
 const log = debug('pie-lib:plot:grid-draggable');
 
-export const isNum = num => typeof num === 'number' && !isNaN(num);
-
-export const getBoundPosition = (bounds, x, y) => {
-  if (!bounds) {
-    return [x, y];
-  }
-
-  // Keep x and y below right and bottom limits...
-  if (isNum(bounds.right)) x = Math.min(x, bounds.right);
-  if (isNum(bounds.bottom)) y = Math.min(y, bounds.bottom);
-
-  // But above left and top limits.
-  if (isNum(bounds.left)) x = Math.max(x, bounds.left);
-  if (isNum(bounds.top)) y = Math.max(y, bounds.top);
-
-  return [x, y];
-};
-
 export const deltaFn = (scale, snap, val) => delta => {
   const normalized = delta + scale(0);
   const inverted = scale.invert(normalized);
@@ -141,11 +123,8 @@ export const gridDraggable = opts => Comp => {
       const dragArg = this.applyDelta({ x: dd.deltaX, y: dd.deltaY });
 
       log('[onDrag] .. dragArg:', dragArg);
-      const [x, y] = getBoundPosition(this.getScaledBounds(), dd.x, dd.y);
-      log('[bound!] ', x, y);
       if (dragArg !== undefined || dragArg !== null) {
         onDrag(dragArg);
-        // this.setState({ lastDrag: dragArg });
       }
     };
 
@@ -168,7 +147,7 @@ export const gridDraggable = opts => Comp => {
 
     onStop = (e, dd) => {
       log('[onStop] dd:', dd);
-      const { onDragStop, onClick, onMove } = this.props;
+      const { onDragStop, onClick } = this.props;
 
       if (onDragStop) {
         onDragStop();
@@ -191,21 +170,6 @@ export const gridDraggable = opts => Comp => {
           onClick({ x, y });
           return false;
         }
-      } else {
-        if (!onMove) {
-          return false;
-        }
-
-        if (!this.state.lastDrag) {
-          return false;
-        }
-
-        // const moveArg = this.applyDelta({ x: dd.deltaX, y: dd.deltaY });
-
-        // if (moveArg !== undefined || moveArg !== null) {
-        log('[onStop] call onMove with: ', this.state.lastDrag);
-        onMove(this.state.lastDrag);
-        // }
       }
 
       this.setState({ startX: null, startY: null });
