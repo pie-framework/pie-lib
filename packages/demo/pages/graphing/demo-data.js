@@ -4,7 +4,7 @@ const fromTo = (fx, fy, tx, ty) => ({ from: xy(fx, fy), to: xy(tx, ty) });
 export const marks = [
   //{ type: 'parabola', root: { x: 0, y: 0 }, edge: { x: 1, y: 1 } },
   // { type: 'parabola', root: { x: 2, y: 2 }, edge: { x: -1, y: 1 } },
-  { type: 'sine', root: { x: -5, y: 0 }, edge: { x: -4, y: 1 } }
+  { type: 'sine', root: xy(-5, 0), edge: xy(-4, 1) },
   // {
   //   disabled: true,
   //   type: 'polygon',
@@ -48,19 +48,18 @@ export const marks = [
   //   ],
   //   closed: true
   // },
-  // {
-  //   type: 'circle',
-  //   disabled: true,
-  //   correctness: 'correct',
-  //   center: {
-  //     x: -4,
-  //     y: 3
-  //   },
-  //   outerPoint: {
-  //     x: -3,
-  //     y: 2
-  //   }
-  // },
+  {
+    type: 'circle',
+    disabled: false,
+    center: {
+      x: -4,
+      y: 3
+    },
+    outerPoint: {
+      x: -3,
+      y: 2
+    }
+  }
   // {
   //   type: 'circle',
   //   disabled: true,

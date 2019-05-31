@@ -42,57 +42,46 @@ export class RawBaseCircle extends React.Component {
     onClick: () => ({})
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      draggedCenter: undefined
-    };
-  }
-
-  moveCenter = center => {
+  dragCenter = center => {
     const { onChange } = this.props;
     const d = { center, outerPoint: this.props.outerPoint };
 
-    this.setState({ draggedCenter: undefined }, () => {
-      onChange(d);
-    });
+    onChange(d);
   };
 
-  dragCenter = draggedCenter => {
-    log('[dragCenter] ', draggedCenter);
-    this.setState({ draggedCenter });
-  };
+  // dragCenter = draggedCenter => {
+  //   log('[dragCenter] ', draggedCenter);
+  //   this.setState({ draggedCenter });
+  // };
 
-  moveOuter = outerPoint => {
+  dragOuter = outerPoint => {
     const { onChange } = this.props;
     const d = { center: this.props.center, outerPoint };
-    this.setState({ draggedOuter: undefined }, () => {
-      onChange(d);
-    });
+    onChange(d);
   };
 
-  dragOuter = draggedOuter => {
-    this.setState({ draggedOuter });
-  };
+  // dragOuter = draggedOuter => {
+  //   this.setState({ draggedOuter });
+  // };
 
-  dragCircle = draggedCenter => {
-    log(
-      'dragCircle: ',
-      draggedCenter,
-      'center: ',
-      this.props.center,
-      ' outer: ',
-      this.props.outerPoint
-    );
+  // dragCircle = draggedCenter => {
+  //   log(
+  //     'dragCircle: ',
+  //     draggedCenter,
+  //     'center: ',
+  //     this.props.center,
+  //     ' outer: ',
+  //     this.props.outerPoint
+  //   );
 
-    const diff = point(this.props.center).sub(point(draggedCenter));
+  //   const diff = point(this.props.center).sub(point(draggedCenter));
 
-    const draggedOuter = point(this.props.outerPoint).sub(diff);
+  //   const draggedOuter = point(this.props.outerPoint).sub(diff);
 
-    this.setState({ draggedCenter, draggedOuter, isCircleDrag: true });
-  };
+  //   this.setState({ draggedCenter, draggedOuter, isCircleDrag: true });
+  // };
 
-  moveCircle = center => {
+  dragCircle = center => {
     const { onChange } = this.props;
     const diff = point(this.props.center).sub(point(center));
     const outerPoint = point(this.props.outerPoint).sub(diff);
@@ -133,58 +122,45 @@ export class RawBaseCircle extends React.Component {
       building,
       onDragStart,
       onDragStop,
+      onClick,
       correctness,
       graphProps
     } = this.props;
-    const { draggedCenter, draggedOuter, isCircleDrag } = this.state;
 
-    log('[render] draggedCenter: ', draggedCenter, 'center: ', center);
+    const common = { onDragStart, onDragStop, graphProps, onClick };
 
     outerPoint = outerPoint || center;
-    const c = draggedCenter || center;
-    const o = draggedOuter || outerPoint;
-    const radius = getRadius(c, o);
 
-    const common = { graphProps };
+    const radius = getRadius(center, outerPoint);
+
     return (
       <g>
         <BgCircle
           disabled={building || disabled}
           correctness={correctness}
           className={classNames(building && classes.bgCircleBuilding)}
-          x={isCircleDrag ? center.x : c.x}
-          y={isCircleDrag ? center.y : c.y}
+          x={center.x}
+          y={center.y}
           radius={radius}
           onDrag={this.dragCircle}
           onMove={this.moveCircle}
-          onDragStart={onDragStart}
-          onDragStop={onDragStop}
-          onClick={this.clickBg}
           {...common}
         />
         <BasePoint
           disabled={building || disabled}
           correctness={correctness}
-          x={isCircleDrag ? o.x : outerPoint.x}
-          y={isCircleDrag ? o.y : outerPoint.y}
-          onMove={this.moveOuter}
+          x={outerPoint.x}
+          y={outerPoint.y}
           onDrag={this.dragOuter}
-          onDragStart={onDragStart}
-          onDragStop={onDragStop}
-          onClick={this.clickOuter}
           {...common}
         />
         <BasePoint
           disabled={building || disabled}
           correctness={correctness}
-          x={isCircleDrag ? c.x : center.x}
-          y={isCircleDrag ? c.y : center.y}
+          x={center.x}
+          y={center.y}
           className={classes.center}
-          onMove={this.moveCenter}
           onDrag={this.dragCenter}
-          onDragStart={onDragStart}
-          onDragStop={onDragStop}
-          onClick={this.clickCenter}
           {...common}
         />
       </g>
