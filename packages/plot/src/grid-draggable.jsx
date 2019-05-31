@@ -104,12 +104,14 @@ export const gridDraggable = opts => Comp => {
       log('bounds: ', bounds);
       const grid = this.grid();
 
-      return {
+      const scaled = {
         left: (bounds.left / grid.interval) * grid.x,
         right: (bounds.right / grid.interval) * grid.x,
         top: (bounds.top / grid.interval) * grid.y,
         bottom: (bounds.bottom / grid.interval) * grid.y
       };
+      log('[getScaledBounds]: ', scaled);
+      return scaled;
     };
 
     onDrag = (e, dd) => {
@@ -119,25 +121,27 @@ export const gridDraggable = opts => Comp => {
       if (!onDrag) {
         return;
       }
+      const bounds = this.getScaledBounds();
+
+      if (dd.deltaX < 0 && dd.deltaX < bounds.left) {
+        return;
+      }
+      if (dd.deltaX > 0 && dd.deltaX > bounds.right) {
+        return;
+      }
+
+      if (dd.deltaY < 0 && dd.deltaY < bounds.top) {
+        return;
+      }
+
+      if (dd.deltaY > 0 && dd.deltaY > bounds.bottom) {
+        return;
+      }
 
       const dragArg = this.applyDelta({ x: dd.deltaX, y: dd.deltaY });
 
-      // const { graphProps } = this.props;
-      // const { scale, snap } = graphProps;
-
-      // return {
-      //   anchorPoint: {
-      //     x,
-      //     y
-      //   },
-      //   x: deltaFn(scale.x, snap.x, x),
-      //   y: deltaFn(scale.y, snap.y, y)
-      // const x = snap.x(scale.x.invert(scale.x(0) + dd.deltaX));
-      // const y = snap.y(scale.y.invert(scale.y(0) + dd.deltaY));
-      // log('[onDrag] x/y:', x, y);
-      // const newDragArg = opts.fromDelta(this.props, { x: y });
       log('[onDrag] .. dragArg:', dragArg);
-      const [x, y] = getBoundPosition(this, dd.x, dd.y);
+      const [x, y] = getBoundPosition(this.getScaledBounds(), dd.x, dd.y);
       log('[bound!] ', x, y);
       if (dragArg !== undefined || dragArg !== null) {
         onDrag(dragArg);
