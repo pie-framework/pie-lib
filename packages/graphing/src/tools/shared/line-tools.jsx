@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import { BasePoint } from '../common/point';
-import { types } from '@pie-lib/plot';
+import { types, utils, gridDraggable } from '@pie-lib/plot';
 import PropTypes from 'prop-types';
 
 export const lineTool = (type, Component) => () => ({
@@ -54,8 +54,26 @@ export const lineToolComponent = Component => {
   };
 };
 
+const dragOpts = () => ({
+  bounds: (props, { domain, range }) => {
+    const area = utils.lineToArea(props.from, props.to);
+    return utils.bounds(area, domain, range);
+  },
+  anchorPoint: props => {
+    const { from } = props;
+    return from;
+  },
+  fromDelta: (props, delta) => {
+    const { from, to } = props;
+    return {
+      from: utils.point(from).add(utils.point(delta)),
+      to: utils.point(to).add(utils.point(delta))
+    };
+  }
+});
+
 export const lineBase = Comp => {
-  return class LineBase extends React.Component {
+  class LineBase extends React.Component {
     static propTypes = {
       graphProps: types.GraphPropsType,
       from: types.PointType,
@@ -98,5 +116,7 @@ export const lineBase = Comp => {
         </g>
       );
     }
-  };
+  }
+
+  return gridDraggable(dragOpts())(LineBase);
 };
