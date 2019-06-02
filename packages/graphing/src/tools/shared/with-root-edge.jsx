@@ -14,20 +14,22 @@ export const withRootEdge = getPoints => {
   class RootEdge extends React.Component {
     static propTypes = {
       graphProps: types.GraphPropsType.isRequired,
-      classes: PropTypes.object.isRequired,
       root: types.PointType.isRequired,
       edge: types.PointType,
       onChange: PropTypes.func.isRequired,
       showLabel: PropTypes.bool,
       onComponentClick: PropTypes.func,
-      changeLabel: PropTypes.func
+      changeLabel: PropTypes.func,
+      onClick: PropTypes.func
+    };
+
+    static defaultProps = {
+      onClick: () => ({})
     };
 
     constructor(props) {
       super(props);
-      this.state = {
-        label: null
-      };
+      this.state = {};
     }
 
     startEdgeDrag = () => {};
@@ -65,6 +67,9 @@ export const withRootEdge = getPoints => {
     stopLineDrag = () => this.setState({ line: undefined });
     dragLine = line => this.setState({ line });
 
+    clickLine = point => this.props.onClick(point);
+    clickRoot = point => this.props.onClick(point);
+    clickEdge = point => this.props.onClick(point);
     render() {
       const {
         classes,
@@ -106,6 +111,7 @@ export const withRootEdge = getPoints => {
               graphProps={graphProps}
               onDragStart={this.startLineDrag}
               onDragStop={this.stopLineDrag}
+              onClick={this.clickLine}
               onDrag={this.dragLine}
               root={this.props.root}
               edge={this.props.edge}
@@ -122,6 +128,7 @@ export const withRootEdge = getPoints => {
             onDragStop={this.stopRootDrag}
             onDrag={this.dragRoot}
             onMove={this.moveRoot}
+            onClick={this.clickRoot}
           />
           {edge && (
             <BasePoint
@@ -132,6 +139,7 @@ export const withRootEdge = getPoints => {
               onDragStop={this.stopEdgeDrag}
               onDrag={this.dragEdge}
               onMove={this.moveEdge}
+              onClick={this.clickEdge}
             />
           )}
         </g>

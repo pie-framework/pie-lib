@@ -10,7 +10,6 @@ import Bg from './bg';
 import _ from 'lodash';
 import invariant from 'invariant';
 import isEqual from 'lodash/isEqual';
-import { RectClipPath } from '@vx/clip-path';
 const log = debug('pie-lib:graphing:graph');
 
 export const graphPropTypes = {
@@ -183,6 +182,11 @@ export class Graph extends React.Component {
     }
   }
 
+  clickComponent = point => {
+    log('click component!', point);
+    this.onBgClick(point);
+  };
+
   render() {
     const {
       axesSettings,
@@ -196,6 +200,7 @@ export class Graph extends React.Component {
       currentTool
     } = this.props;
 
+    const tool = this.getTool();
     log('[render]', marks);
 
     const graphProps = createGraphProps(domain, range, size);
@@ -240,8 +245,10 @@ export class Graph extends React.Component {
                 }}
                 onChange={this.changeMark}
                 onComplete={this.completeMark}
+                onClick={this.clickComponent}
                 onDragStart={m.building ? this.buildMarkDragging : undefined}
                 onDragStop={m.building ? this.buildMarkStoppedDragging : undefined}
+                isToolActive={m.type === tool.type}
                 labelIsActive={currentTool && currentTool.type === 'label'}
                 {...common}
               />

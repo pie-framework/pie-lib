@@ -1,14 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { ToolPropTypeFields } from '../types';
 import debug from 'debug';
 import { types } from '@pie-lib/plot';
-import LinePath from '../shared/line-path';
-import { curveMonotoneX } from '@vx/curve';
 import Point from '@mapbox/point-geometry';
-import { BasePoint } from '../common/point/index';
-import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
 import { sinY, buildDataPoints } from '../utils';
 import { withRootEdge } from '../shared/with-root-edge';
 
@@ -33,7 +27,7 @@ const getAmplitudeAndFreq = (root, edge) => {
   return { freq: d.x * 4, amplitude: d.y };
 };
 
-const Sine = withRootEdge((props, state) => {
+export const getPoints = (props, state) => {
   const { domain } = props.graphProps;
 
   if (state.line) {
@@ -84,7 +78,9 @@ const Sine = withRootEdge((props, state) => {
     changeLabel: props.changeLabel,
     showLabel: props.showLabel
   };
-});
+};
+
+const Sine = withRootEdge(getPoints);
 
 export default class Component extends React.Component {
   static propTypes = {
@@ -108,7 +104,7 @@ export default class Component extends React.Component {
   };
 
   render() {
-    const { mark, graphProps, onComponentClick } = this.props;
+    const { mark, graphProps, onComponentClick, onClick } = this.props;
     return (
       <Sine
         root={mark.root}
@@ -118,6 +114,7 @@ export default class Component extends React.Component {
         onChange={this.changeMark}
         changeLabel={this.changeLabel}
         showLabel={mark.showLabel}
+        onClick={onClick}
       />
     );
   }

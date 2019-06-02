@@ -1,0 +1,498 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WithRootEdge snapshot renders 1`] = `
+<g>
+  <WithStyles(RawLabel)
+    graphProps={
+      Object {
+        "domain": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "range": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "scale": Object {
+          "x": [MockFunction] {
+            "calls": Array [
+              Array [
+                1,
+              ],
+              Array [
+                1.25,
+              ],
+              Array [
+                1.5,
+              ],
+              Array [
+                1.75,
+              ],
+              Array [
+                2,
+              ],
+            ],
+            "results": Array [
+              Object {
+                "type": "return",
+                "value": 1,
+              },
+              Object {
+                "type": "return",
+                "value": 1.25,
+              },
+              Object {
+                "type": "return",
+                "value": 1.5,
+              },
+              Object {
+                "type": "return",
+                "value": 1.75,
+              },
+              Object {
+                "type": "return",
+                "value": 2,
+              },
+            ],
+          },
+          "y": [MockFunction] {
+            "calls": Array [
+              Array [
+                1,
+              ],
+              Array [
+                1.3826834324,
+              ],
+              Array [
+                1.7071067812,
+              ],
+              Array [
+                1.9238795325,
+              ],
+              Array [
+                2,
+              ],
+            ],
+            "results": Array [
+              Object {
+                "type": "return",
+                "value": 1,
+              },
+              Object {
+                "type": "return",
+                "value": 1.3826834324,
+              },
+              Object {
+                "type": "return",
+                "value": 1.7071067812,
+              },
+              Object {
+                "type": "return",
+                "value": 1.9238795325,
+              },
+              Object {
+                "type": "return",
+                "value": 2,
+              },
+            ],
+          },
+        },
+        "size": Object {
+          "height": 400,
+          "width": 400,
+        },
+        "snap": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+      }
+    }
+    x={1}
+    y={1}
+  />
+  <WithStyles(RawLinePath)
+    curve={[Function]}
+    data={
+      Array [
+        Array [
+          1,
+          1,
+        ],
+        Array [
+          1.25,
+          1.3826834324,
+        ],
+        Array [
+          1.5,
+          1.7071067812,
+        ],
+        Array [
+          1.75,
+          1.9238795325,
+        ],
+        Array [
+          2,
+          2,
+        ],
+      ]
+    }
+    edge={
+      Object {
+        "x": 2,
+        "y": 2,
+      }
+    }
+    graphProps={
+      Object {
+        "domain": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "range": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "scale": Object {
+          "x": [MockFunction] {
+            "calls": Array [
+              Array [
+                1,
+              ],
+              Array [
+                1.25,
+              ],
+              Array [
+                1.5,
+              ],
+              Array [
+                1.75,
+              ],
+              Array [
+                2,
+              ],
+            ],
+            "results": Array [
+              Object {
+                "type": "return",
+                "value": 1,
+              },
+              Object {
+                "type": "return",
+                "value": 1.25,
+              },
+              Object {
+                "type": "return",
+                "value": 1.5,
+              },
+              Object {
+                "type": "return",
+                "value": 1.75,
+              },
+              Object {
+                "type": "return",
+                "value": 2,
+              },
+            ],
+          },
+          "y": [MockFunction] {
+            "calls": Array [
+              Array [
+                1,
+              ],
+              Array [
+                1.3826834324,
+              ],
+              Array [
+                1.7071067812,
+              ],
+              Array [
+                1.9238795325,
+              ],
+              Array [
+                2,
+              ],
+            ],
+            "results": Array [
+              Object {
+                "type": "return",
+                "value": 1,
+              },
+              Object {
+                "type": "return",
+                "value": 1.3826834324,
+              },
+              Object {
+                "type": "return",
+                "value": 1.7071067812,
+              },
+              Object {
+                "type": "return",
+                "value": 1.9238795325,
+              },
+              Object {
+                "type": "return",
+                "value": 2,
+              },
+            ],
+          },
+        },
+        "size": Object {
+          "height": 400,
+          "width": 400,
+        },
+        "snap": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+      }
+    }
+    onClick={[Function]}
+    onDrag={[Function]}
+    onDragStart={[Function]}
+    onDragStop={[Function]}
+    onMove={[Function]}
+    root={
+      Object {
+        "x": 1,
+        "y": 1,
+      }
+    }
+    xScale={[Function]}
+    yScale={[Function]}
+  />
+  <WithStyles(RawBp)
+    graphProps={
+      Object {
+        "domain": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "range": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "scale": Object {
+          "x": [MockFunction] {
+            "calls": Array [
+              Array [
+                1,
+              ],
+              Array [
+                1.25,
+              ],
+              Array [
+                1.5,
+              ],
+              Array [
+                1.75,
+              ],
+              Array [
+                2,
+              ],
+            ],
+            "results": Array [
+              Object {
+                "type": "return",
+                "value": 1,
+              },
+              Object {
+                "type": "return",
+                "value": 1.25,
+              },
+              Object {
+                "type": "return",
+                "value": 1.5,
+              },
+              Object {
+                "type": "return",
+                "value": 1.75,
+              },
+              Object {
+                "type": "return",
+                "value": 2,
+              },
+            ],
+          },
+          "y": [MockFunction] {
+            "calls": Array [
+              Array [
+                1,
+              ],
+              Array [
+                1.3826834324,
+              ],
+              Array [
+                1.7071067812,
+              ],
+              Array [
+                1.9238795325,
+              ],
+              Array [
+                2,
+              ],
+            ],
+            "results": Array [
+              Object {
+                "type": "return",
+                "value": 1,
+              },
+              Object {
+                "type": "return",
+                "value": 1.3826834324,
+              },
+              Object {
+                "type": "return",
+                "value": 1.7071067812,
+              },
+              Object {
+                "type": "return",
+                "value": 1.9238795325,
+              },
+              Object {
+                "type": "return",
+                "value": 2,
+              },
+            ],
+          },
+        },
+        "size": Object {
+          "height": 400,
+          "width": 400,
+        },
+        "snap": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+      }
+    }
+    onClick={[Function]}
+    onDrag={[Function]}
+    onDragStart={[Function]}
+    onDragStop={[Function]}
+    onMove={[Function]}
+    x={1}
+    y={1}
+  />
+  <WithStyles(RawBp)
+    graphProps={
+      Object {
+        "domain": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "range": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "scale": Object {
+          "x": [MockFunction] {
+            "calls": Array [
+              Array [
+                1,
+              ],
+              Array [
+                1.25,
+              ],
+              Array [
+                1.5,
+              ],
+              Array [
+                1.75,
+              ],
+              Array [
+                2,
+              ],
+            ],
+            "results": Array [
+              Object {
+                "type": "return",
+                "value": 1,
+              },
+              Object {
+                "type": "return",
+                "value": 1.25,
+              },
+              Object {
+                "type": "return",
+                "value": 1.5,
+              },
+              Object {
+                "type": "return",
+                "value": 1.75,
+              },
+              Object {
+                "type": "return",
+                "value": 2,
+              },
+            ],
+          },
+          "y": [MockFunction] {
+            "calls": Array [
+              Array [
+                1,
+              ],
+              Array [
+                1.3826834324,
+              ],
+              Array [
+                1.7071067812,
+              ],
+              Array [
+                1.9238795325,
+              ],
+              Array [
+                2,
+              ],
+            ],
+            "results": Array [
+              Object {
+                "type": "return",
+                "value": 1,
+              },
+              Object {
+                "type": "return",
+                "value": 1.3826834324,
+              },
+              Object {
+                "type": "return",
+                "value": 1.7071067812,
+              },
+              Object {
+                "type": "return",
+                "value": 1.9238795325,
+              },
+              Object {
+                "type": "return",
+                "value": 2,
+              },
+            ],
+          },
+        },
+        "size": Object {
+          "height": 400,
+          "width": 400,
+        },
+        "snap": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+      }
+    }
+    onClick={[Function]}
+    onDrag={[Function]}
+    onDragStart={[Function]}
+    onDragStop={[Function]}
+    onMove={[Function]}
+    x={2}
+    y={2}
+  />
+</g>
+`;

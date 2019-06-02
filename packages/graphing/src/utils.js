@@ -81,6 +81,9 @@ export const getAngleDeg = (ax, ay, bx, by) => {
   return angleDeg;
 };
 
+export const edge = (domain, range) => (from, to) => {
+  return { x: 0, y: 0 };
+};
 /**
  * Returns third point on a line, that meets the borders of the graph
  * @param pointA - object with x and y

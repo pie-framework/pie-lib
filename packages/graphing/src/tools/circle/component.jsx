@@ -38,10 +38,13 @@ export class RawBaseCircle extends React.Component {
     graphProps: types.GraphPropsType.isRequired,
     showLabel: PropTypes.bool,
     changeLabel: PropTypes.func,
-    onComponentClick: PropTypes.func
+    onComponentClick: PropTypes.func,
+    onClick: PropTypes.func
   };
 
-  static defaultProps = {};
+  static defaultProps = {
+    onClick: () => ({})
+  };
 
   constructor(props) {
     super(props);
@@ -110,6 +113,21 @@ export class RawBaseCircle extends React.Component {
     );
   };
 
+  clickCenter = data => {
+    const { onClick } = this.props;
+    onClick(data);
+  };
+
+  clickOuter = data => {
+    const { onClick } = this.props;
+    onClick(data);
+  };
+
+  clickBg = data => {
+    const { onClick } = this.props;
+    onClick(data);
+  };
+
   render() {
     let {
       center,
@@ -157,6 +175,7 @@ export class RawBaseCircle extends React.Component {
           onMove={this.moveCircle}
           onDragStart={onDragStart}
           onDragStop={onDragStop}
+          onClick={this.clickBg}
           {...common}
         />
         <BasePoint
@@ -168,6 +187,7 @@ export class RawBaseCircle extends React.Component {
           onDrag={this.dragOuter}
           onDragStart={onDragStart}
           onDragStop={onDragStop}
+          onClick={this.clickOuter}
           {...common}
         />
         <BasePoint
@@ -180,6 +200,7 @@ export class RawBaseCircle extends React.Component {
           onDrag={this.dragCenter}
           onDragStart={onDragStart}
           onDragStop={onDragStop}
+          onClick={this.clickCenter}
           {...common}
         />
       </g>
@@ -235,13 +256,14 @@ export default class Component extends React.Component {
   };
 
   render() {
-    const { mark, onDragStart, onDragStop, graphProps, onComponentClick } = this.props;
+    const { mark, onDragStart, onDragStop, graphProps, onComponentClick, onClick } = this.props;
     return (
       <BaseCircle
         {...mark}
         onChange={this.change}
         onDragStart={onDragStart}
         onDragStop={onDragStop}
+        onClick={onClick}
         graphProps={graphProps}
         onComponentClick={onComponentClick}
         changeLabel={this.changeLabel}
