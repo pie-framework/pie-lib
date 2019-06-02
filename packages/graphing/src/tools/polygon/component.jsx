@@ -238,14 +238,6 @@ export class RawBaseComponent extends React.Component {
     log('[render] graphProps:', graphProps);
     return (
       <g onClick={onComponentClick}>
-        <Label
-          disabled={disabled}
-          onChange={changeLabel}
-          x={labelPosition.x}
-          y={labelPosition.y}
-          showLabel={showLabel}
-          graphProps={graphProps}
-        />
         {closed ? (
           <DraggablePolygon
             disabled={disabled}
@@ -292,6 +284,14 @@ export class RawBaseComponent extends React.Component {
             />
           );
         })}
+        <Label
+          disabled={disabled}
+          onChange={changeLabel}
+          x={labelPosition.x}
+          y={labelPosition.y}
+          showLabel={showLabel}
+          graphProps={graphProps}
+        />
       </g>
     );
   }

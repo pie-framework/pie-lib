@@ -155,15 +155,6 @@ export class RawBaseCircle extends React.Component {
     const common = { graphProps };
     return (
       <g onClick={onComponentClick}>
-        <Label
-          disabled={building || disabled}
-          correctness={correctness}
-          onChange={changeLabel}
-          x={o.x}
-          y={o.y}
-          showLabel={showLabel}
-          {...common}
-        />
         <BgCircle
           disabled={building || disabled}
           correctness={correctness}
@@ -201,6 +192,15 @@ export class RawBaseCircle extends React.Component {
           onDragStart={onDragStart}
           onDragStop={onDragStop}
           onClick={this.clickCenter}
+          {...common}
+        />
+        <Label
+          disabled={building || disabled}
+          correctness={correctness}
+          onChange={changeLabel}
+          x={o.x}
+          y={o.y}
+          showLabel={showLabel}
           {...common}
         />
       </g>

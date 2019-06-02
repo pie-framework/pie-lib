@@ -181,15 +181,6 @@ export class RawBaseSegment extends React.Component {
 
     return (
       <g onClick={onComponentClick}>
-        <Label
-          disabled={building || disabled}
-          correctness={correctness}
-          onChange={changeLabel}
-          x={f.x}
-          y={f.y}
-          showLabel={showLabel}
-          {...common}
-        />
         <Component
           disabled={building || disabled}
           correctness={correctness}
@@ -245,6 +236,15 @@ export class RawBaseSegment extends React.Component {
             {...common}
           />
         )}
+        <Label
+          disabled={building || disabled}
+          correctness={correctness}
+          onChange={changeLabel}
+          x={f.x}
+          y={f.y}
+          showLabel={showLabel}
+          {...common}
+        />
       </g>
     );
   }

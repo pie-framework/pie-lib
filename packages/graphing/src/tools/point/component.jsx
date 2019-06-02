@@ -40,8 +40,8 @@ export class Point extends React.Component {
 
     return (
       <g onClick={onComponentClick}>
-        <Label onChange={this.changeLabel} {...mark} {...draggedTo} graphProps={graphProps} />
         <BasePoint {...mark} onMove={this.move} onDrag={this.drag} graphProps={graphProps} />
+        <Label onChange={this.changeLabel} {...mark} {...draggedTo} graphProps={graphProps} />
       </g>
     );
   }

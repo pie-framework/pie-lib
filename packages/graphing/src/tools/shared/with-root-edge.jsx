@@ -96,13 +96,6 @@ export const withRootEdge = getPoints => {
 
       return (
         <g onClick={onComponentClick}>
-          <Label
-            onChange={changeLabel}
-            x={labelPosition.x}
-            y={labelPosition.y}
-            showLabel={showLabel}
-            graphProps={graphProps}
-          />
           {edge && (
             <LinePath
               xScale={d => graphProps.scale.x(d.x)}
@@ -142,6 +135,13 @@ export const withRootEdge = getPoints => {
               onClick={this.clickEdge}
             />
           )}
+          <Label
+            onChange={changeLabel}
+            x={labelPosition.x}
+            y={labelPosition.y}
+            showLabel={showLabel}
+            graphProps={graphProps}
+          />
         </g>
       );
     }
