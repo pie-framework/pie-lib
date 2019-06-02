@@ -29,7 +29,8 @@ exports[`Component snapshot renders 1`] = `
         },
       }
     }
-    onChange={[Function]}
+    onDrag={[Function]}
+    onMove={[Function]}
   />
   <WithStyles(GridDraggable)
     graphProps={
@@ -58,8 +59,7 @@ exports[`Component snapshot renders 1`] = `
         },
       }
     }
-    onDrag={[Function]}
-    onMove={[Function]}
+    onChange={[Function]}
   />
 </g>
 `;

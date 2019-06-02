@@ -2,34 +2,6 @@
 
 exports[`RawBaseComponent snapshot renders 1`] = `
 <g>
-  <WithStyles(GridDraggable)
-    graphProps={
-      Object {
-        "domain": Object {
-          "max": 1,
-          "min": 0,
-          "step": 1,
-        },
-        "range": Object {
-          "max": 1,
-          "min": 0,
-          "step": 1,
-        },
-        "scale": Object {
-          "x": [MockFunction],
-          "y": [MockFunction],
-        },
-        "size": Object {
-          "height": 400,
-          "width": 400,
-        },
-        "snap": Object {
-          "x": [MockFunction],
-          "y": [MockFunction],
-        },
-      }
-    }
-  />
   <WithStyles(RawPolygon)
     graphProps={
       Object {
@@ -58,6 +30,34 @@ exports[`RawBaseComponent snapshot renders 1`] = `
       }
     }
     points={Array []}
+  />
+  <WithStyles(GridDraggable)
+    graphProps={
+      Object {
+        "domain": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "range": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "scale": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+        "size": Object {
+          "height": 400,
+          "width": 400,
+        },
+        "snap": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+      }
+    }
   />
 </g>
 `;
