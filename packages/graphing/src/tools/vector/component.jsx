@@ -1,6 +1,7 @@
 import { lineToolComponent, lineBase } from '../shared/line-tools';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { types } from '@pie-lib/plot';
 
 const Line = props => {
   const { graphProps, from, to, ...rest } = props;
@@ -19,7 +20,9 @@ const Line = props => {
 };
 
 Line.propTypes = {
-  graphProps: PropTypes.any
+  graphProps: PropTypes.any,
+  from: types.PointType,
+  to: types.PointType
 };
 
 const Vector = lineBase(Line);

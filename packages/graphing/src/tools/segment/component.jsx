@@ -2,25 +2,9 @@ import { lineToolComponent, lineBase } from '../shared/line-tools';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { gridDraggable, utils } from '@pie-lib/plot';
+import { types } from '@pie-lib/plot';
 
-const Line = gridDraggable({
-  bounds: (props, { domain, range }) => {
-    const area = utils.lineToArea(props.from, props.to);
-    return utils.bounds(area, domain, range);
-  },
-  anchorPoint: props => {
-    const { from } = props;
-    return from;
-  },
-  fromDelta: (props, delta) => {
-    const { from, to } = props;
-    return {
-      from: utils.point(from).add(utils.point(delta)),
-      to: utils.point(to).add(utils.point(delta))
-    };
-  }
-})(props => {
+const Line = props => {
   const { graphProps, from, to, ...rest } = props;
   const { scale } = graphProps;
   // const [eFrom, eTo] = trig.edges(graphProps.domain, graphProps.range)(from, to);
@@ -36,10 +20,12 @@ const Line = gridDraggable({
       {...rest}
     />
   );
-});
+};
 
 Line.propTypes = {
-  graphProps: PropTypes.any
+  graphProps: PropTypes.any,
+  from: types.PointType,
+  to: types.PointType
 };
 
 const Segment = lineBase(Line);

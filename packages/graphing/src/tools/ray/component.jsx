@@ -2,28 +2,12 @@ import { lineToolComponent, lineBase } from '../shared/line-tools';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { trig, gridDraggable, utils } from '@pie-lib/plot';
+import { trig, types } from '@pie-lib/plot';
 import debug from 'debug';
 
 const log = debug('pie-lib:graphing:ray-two');
 
-const RayLine = gridDraggable({
-  bounds: (props, { domain, range }) => {
-    const area = utils.lineToArea(props.from, props.to);
-    return utils.bounds(area, domain, range);
-  },
-  anchorPoint: props => {
-    const { from } = props;
-    return from;
-  },
-  fromDelta: (props, delta) => {
-    const { from, to } = props;
-    return {
-      from: utils.point(from).add(utils.point(delta)),
-      to: utils.point(to).add(utils.point(delta))
-    };
-  }
-})(props => {
+const RayLine = props => {
   const { graphProps, from, to, ...rest } = props;
   const { scale } = graphProps;
   const [eFrom, eTo] = trig.edges(graphProps.domain, graphProps.range)(from, to);
@@ -41,10 +25,12 @@ const RayLine = gridDraggable({
       {...rest}
     />
   );
-});
+};
 
 RayLine.propTypes = {
-  graphProps: PropTypes.any
+  graphProps: PropTypes.any,
+  from: types.PointType,
+  to: types.PointType
 };
 
 const Ray = lineBase(RayLine);
