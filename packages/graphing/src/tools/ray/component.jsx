@@ -1,7 +1,7 @@
 import { lineToolComponent, lineBase, styles } from '../shared/line-tools';
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import { ArrowHead } from '../common/arrow-head';
 import { trig, types } from '@pie-lib/plot';
 import debug from 'debug';
 import { withStyles } from '@material-ui/core/styles';
@@ -17,7 +17,7 @@ const RayLine = withStyles(theme => ({
   const { scale } = graphProps;
   const [aToB] = trig.edges(graphProps.domain, graphProps.range)(from, to);
 
-  const size = 6;
+  const size = 5;
   log('from:', from, 'to: ', to);
   return (
     <g>
@@ -32,10 +32,7 @@ const RayLine = withStyles(theme => ({
           orient="auto-start-reverse"
           className={classes.arrow}
         >
-          <path
-            d={`M 0 0 L ${size} ${size / 2} L 0
-              ${size} z`}
-          />
+          <ArrowHead size={size} />
         </marker>
       </defs>
       <line
