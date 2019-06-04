@@ -4,8 +4,9 @@ import * as utils from '../../../utils';
 import { disabled, correct, incorrect } from '../../styles';
 import { RawBp } from './base-point';
 import { RawArrow } from './arrow-point';
+import BaseArrow from './arrow';
 
-const gridDraggableProperties = {
+const opts = {
   bounds: (props, { domain, range }) => {
     const { x, y } = props;
     const area = { left: x, top: y, bottom: y, right: x };
@@ -48,8 +49,6 @@ const styles = theme => {
   };
 };
 
-export const BP = gridDraggable(gridDraggableProperties)(RawBp);
-export const AP = gridDraggable(gridDraggableProperties)(RawArrow);
-
-export const BasePoint = withStyles(styles)(BP);
-export const ArrowPoint = withStyles(styles)(AP);
+export const BasePoint = withStyles(styles)(gridDraggable(opts)(RawBp));
+export const ArrowPoint = withStyles(styles)(gridDraggable(opts)(RawArrow));
+export const Arrow = withStyles(styles)(gridDraggable(opts)(BaseArrow));

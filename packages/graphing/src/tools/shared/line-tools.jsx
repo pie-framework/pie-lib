@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import { BasePoint } from '../common/point';
-import { types, utils, gridDraggable } from '@pie-lib/plot';
+import { types, utils, gridDraggable, trig } from '@pie-lib/plot';
 import PropTypes from 'prop-types';
 import debug from 'debug';
 
@@ -77,8 +77,11 @@ const dragOpts = () => ({
   }
 });
 
-export const lineBase = Comp => {
+export const lineBase = (Comp, opts) => {
   const DraggableComp = gridDraggable(dragOpts())(Comp);
+
+  const FromPoint = opts && opts.from ? opts.from : BasePoint;
+  const ToPoint = opts && opts.to ? opts.to : BasePoint;
 
   class LineBase extends React.Component {
     static propTypes = {
@@ -110,11 +113,13 @@ export const lineBase = Comp => {
 
       const common = { graphProps, onDragStart, onDragStop };
 
+      const angle = trig.toDegrees(trig.angle(from, to));
+      log('angle:', angle);
       log('props:', this.props);
       return (
         <g>
           {to && <DraggableComp from={from} to={to} onDrag={this.dragComp} {...common} />}
-          <BasePoint
+          <FromPoint
             x={from.x}
             y={from.y}
             onDrag={this.dragFrom}
@@ -122,7 +127,14 @@ export const lineBase = Comp => {
             {...common}
           />
           {to && (
-            <BasePoint x={to.x} y={to.y} onDrag={this.dragTo} onClick={this.clickTo} {...common} />
+            <ToPoint
+              x={to.x}
+              y={to.y}
+              angle={angle} //angle + 45}
+              onDrag={this.dragTo}
+              onClick={this.clickTo}
+              {...common}
+            />
           )}
         </g>
       );
