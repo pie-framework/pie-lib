@@ -179,7 +179,7 @@ export const gridDraggable = opts => Comp => {
 
     render() {
       /* eslint-disable no-unused-vars */
-      const { disabled, onDragStart, onDragStop, onDrag, onMove, onClick, ...rest } = this.props;
+      const { disabled, ...rest } = this.props;
       /* eslint-enable no-unused-vars */
 
       const grid = this.grid();
@@ -191,6 +191,8 @@ export const gridDraggable = opts => Comp => {
        * But they aren't being unset. If we continue with this lib, we'll have to fix this.
        */
       const isDragging = this.state ? !!this.state.startX : false;
+
+      log('rest:', rest);
       return (
         <DraggableCore
           disabled={disabled}

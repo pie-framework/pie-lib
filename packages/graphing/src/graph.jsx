@@ -62,6 +62,7 @@ export class Graph extends React.Component {
     const { marks } = this.props;
     this.setState({ marks });
   };
+
   stopDrag = () => {
     const { onChangeMarks } = this.props;
     const update = [...this.state.marks];
@@ -72,6 +73,10 @@ export class Graph extends React.Component {
 
   changeMark = (oldMark, newMark) => {
     const { marks } = this.state;
+
+    if (!marks) {
+      throw new Error('no marks set?');
+    }
 
     const index = marks.findIndex(m => _.isEqual(m, oldMark));
 

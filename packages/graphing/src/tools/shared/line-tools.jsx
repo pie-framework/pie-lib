@@ -3,6 +3,9 @@ import React from 'react';
 import { BasePoint } from '../common/point';
 import { types, utils, gridDraggable } from '@pie-lib/plot';
 import PropTypes from 'prop-types';
+import debug from 'debug';
+
+const log = debug('pie-lib:graphing:line-tools');
 
 export const lineTool = (type, Component) => () => ({
   type,
@@ -39,6 +42,8 @@ export const lineToolComponent = Component => {
 
     render() {
       const { mark, graphProps, onClick, onDragStart, onDragStop } = this.props;
+
+      log('onDragStart:', onDragStart);
       return (
         <Component
           from={mark.from}
@@ -73,6 +78,8 @@ const dragOpts = () => ({
 });
 
 export const lineBase = Comp => {
+  const DraggableComp = gridDraggable(dragOpts())(Comp);
+
   class LineBase extends React.Component {
     static propTypes = {
       graphProps: types.GraphPropsType,
@@ -102,9 +109,11 @@ export const lineBase = Comp => {
       const { graphProps, onDragStart, onDragStop, from, to } = this.props;
 
       const common = { graphProps, onDragStart, onDragStop };
+
+      log('props:', this.props);
       return (
         <g>
-          <Comp from={from} to={to} onDrag={this.dragComp} {...common} />
+          {to && <DraggableComp from={from} to={to} onDrag={this.dragComp} {...common} />}
           <BasePoint
             x={from.x}
             y={from.y}
@@ -112,11 +121,13 @@ export const lineBase = Comp => {
             onClick={this.clickFrom}
             {...common}
           />
-          <BasePoint x={to.x} y={to.y} onDrag={this.dragTo} onClick={this.clickTo} {...common} />
+          {to && (
+            <BasePoint x={to.x} y={to.y} onDrag={this.dragTo} onClick={this.clickTo} {...common} />
+          )}
         </g>
       );
     }
   }
 
-  return gridDraggable(dragOpts())(LineBase);
+  return LineBase;
 };

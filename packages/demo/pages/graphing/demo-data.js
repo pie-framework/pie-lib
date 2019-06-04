@@ -104,9 +104,9 @@ export const marks = [
   //   points: [{ x: -1, y: 1 }, { x: 4, y: 2 }, { x: 5, y: -3 }]
   // },
   // { type: 'line', from: { x: 0, y: 0 }, to: { x: 1, y: 1 } },
-  { type: 'line-two', ...fromTo(-1, 0, 0, 1) }
-  // { type: 'segment-two', ...fromTo(0, 2, 2, 3) }
-  // { type: 'ray-two', ...fromTo(-1, -1, -4, -2) }
+  // { type: 'line-two', ...fromTo(0, 0, 2, -1) },
+  // { type: 'segment-two', ...fromTo(0, 2, 2, 3) },
+  { type: 'ray-two', ...fromTo(-1, -1, -4, -2) }
   // { type: 'point', x: 1, y: 1 },
   // {
   //   type: 'circle',

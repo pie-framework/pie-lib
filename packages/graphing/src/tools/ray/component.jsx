@@ -10,18 +10,17 @@ const log = debug('pie-lib:graphing:ray-two');
 const RayLine = props => {
   const { graphProps, from, to, ...rest } = props;
   const { scale } = graphProps;
-  const [eFrom, eTo] = trig.edges(graphProps.domain, graphProps.range)(from, to);
+  const [aToB, bToA] = trig.edges(graphProps.domain, graphProps.range)(from, to);
 
   log('from:', from, 'to: ', to);
-  log('eFrom:', eFrom, 'to: ', eTo);
   return (
     <line
       stroke="darkorange"
       strokeWidth="6"
-      x1={scale.x(eFrom.x)}
-      y1={scale.y(eFrom.y)}
-      x2={scale.x(eTo.x)}
-      y2={scale.y(eTo.y)}
+      x1={scale.x(from.x)}
+      y1={scale.y(from.y)}
+      x2={scale.x(aToB.x)}
+      y2={scale.y(aToB.y)}
       {...rest}
     />
   );

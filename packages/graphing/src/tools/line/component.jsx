@@ -10,7 +10,7 @@ const ArrowedLine = props => {
 
   return (
     <line
-      stroke="red"
+      stroke="cyan"
       strokeWidth="7"
       x1={scale.x(eFrom.x)}
       y1={scale.y(eFrom.y)}
