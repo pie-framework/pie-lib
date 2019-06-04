@@ -128,7 +128,6 @@ export class RawBaseComponent extends React.Component {
           <DraggablePolygon
             points={points}
             onDrag={this.dragPoly.bind(this, points)}
-            onClick={onClick}
             closed={closed}
             {...common}
           />
@@ -154,6 +153,7 @@ export class RawBaseComponent extends React.Component {
               x={p.x}
               y={p.y}
               {...common}
+              onClick={this.clickPoint.bind(this, p, index)}
             />
           );
         })}
@@ -200,7 +200,7 @@ export default class Component extends React.Component {
   };
 
   render() {
-    const { mark, graphProps, onClick } = this.props;
+    const { mark, graphProps, onClick, isToolActive } = this.props;
     return (
       <BaseComponent
         {...mark}
@@ -210,6 +210,7 @@ export default class Component extends React.Component {
         onDragStop={this.dragStop}
         onClick={onClick}
         graphProps={graphProps}
+        isToolActive={isToolActive}
       />
     );
   }

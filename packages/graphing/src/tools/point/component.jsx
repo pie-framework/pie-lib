@@ -21,8 +21,16 @@ export class Point extends React.Component {
   };
 
   render() {
-    const { mark, graphProps } = this.props;
-    return <BasePoint {...mark} onMove={this.move} graphProps={graphProps} />;
+    const { mark, graphProps, onDragStart, onDragStop } = this.props;
+    return (
+      <BasePoint
+        {...mark}
+        onDrag={this.move}
+        onDragStart={onDragStart}
+        onDragStop={onDragStop}
+        graphProps={graphProps}
+      />
+    );
   }
 }
 

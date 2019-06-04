@@ -158,15 +158,18 @@ export const gridDraggable = opts => Comp => {
 
       if (isClick) {
         if (onClick) {
+          log('call onClick');
           this.setState({ startX: null });
           const { graphProps } = this.props;
           const { scale, snap } = graphProps;
           const [rawX, rawY] = clientPoint(e.target, e);
+          log('rawX, rawY', rawX, rawY);
           let x = scale.x.invert(rawX);
-          let y = scale.x.invert(rawY);
+          let y = scale.y.invert(rawY);
           x = snap.x(x);
-          y = snap.y(y) * -1;
-          y = y == 0 ? Math.abs(y) : 0;
+          y = snap.y(y);
+          log('x,y', x, y);
+          log('>>> x,y', x, y);
           onClick({ x, y });
           return false;
         }
@@ -179,7 +182,8 @@ export const gridDraggable = opts => Comp => {
 
     render() {
       /* eslint-disable no-unused-vars */
-      const { disabled, ...rest } = this.props;
+      //Note: we pull onClick out so that it's not in ...rest.
+      const { disabled, onClick, ...rest } = this.props;
       /* eslint-enable no-unused-vars */
 
       const grid = this.grid();
