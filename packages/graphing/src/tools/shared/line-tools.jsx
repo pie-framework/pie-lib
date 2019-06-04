@@ -131,3 +131,19 @@ export const lineBase = Comp => {
 
   return LineBase;
 };
+
+export const styles = {
+  line: theme => ({
+    fill: 'transparent',
+    stroke: theme.palette.primary.light,
+    strokeWidth: 3,
+    transition: 'stroke 200ms ease-in, stroke-width 200ms ease-in',
+    '&:hover': {
+      strokeWidth: 6,
+      stroke: theme.palette.primary.dark
+    }
+  }),
+  arrow: theme => ({
+    fill: `var(--point-bg, ${theme.palette.secondary.main})`
+  })
+};

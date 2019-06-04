@@ -113,11 +113,6 @@ export class RawBaseComponent extends React.Component {
     }
   };
 
-  clickLine = data => {
-    const { onClick } = this.props;
-    onClick(data);
-  };
-
   render() {
     const { closed, disabled, graphProps, onClick, onDragStart, onDragStop, points } = this.props;
     const lines = buildLines(points, closed);
@@ -129,6 +124,7 @@ export class RawBaseComponent extends React.Component {
             points={points}
             onDrag={this.dragPoly.bind(this, points)}
             closed={closed}
+            onClick={onClick}
             {...common}
           />
         ) : (
@@ -140,7 +136,7 @@ export class RawBaseComponent extends React.Component {
             from={l.from}
             to={l.to}
             onDrag={this.dragLine.bind(this, l)}
-            onClick={this.clickLine}
+            onClick={onClick}
             {...common}
           />
         ))}
@@ -152,8 +148,8 @@ export class RawBaseComponent extends React.Component {
               onDrag={this.dragPoint.bind(this, p)}
               x={p.x}
               y={p.y}
-              {...common}
               onClick={this.clickPoint.bind(this, p, index)}
+              {...common}
             />
           );
         })}
