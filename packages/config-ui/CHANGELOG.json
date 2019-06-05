@@ -1133,5 +1133,35 @@
     "committerDate": "2019-05-17 20:53:06 +0300",
     "isTagged": true,
     "tag": "@pie-lib/config-ui@10.2.0"
+  },
+  {
+    "type": "chore",
+    "scope": "merge",
+    "subject": "merged with develop",
+    "merge": null,
+    "header": "chore(merge): merged with develop",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "89ff9d89eb26b5afc82267c10f79af2894f4c2d5",
+    "gitTags": " (origin/feat/response-area-plugin)",
+    "committerDate": "2019-06-05 21:55:26 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/config-ui@10.2.2"
+  },
+  {
+    "type": "chore",
+    "scope": "merge",
+    "subject": "merged with develop",
+    "merge": null,
+    "header": "chore(merge): merged with develop",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "e68506cf63b2a17973821bb0cfef40828faccd1f",
+    "gitTags": "",
+    "committerDate": "2019-05-21 06:26:54 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/config-ui@10.2.2"
   }
 ]
