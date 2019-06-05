@@ -55,6 +55,43 @@ exports[`Settings Panel snapshot renders 1`] = `
               "value": "opt2",
             },
           ],
+          "equationEditor": Object {
+            "choices": Array [
+              "geometry",
+              "advanced-algebra",
+              "statistics",
+              "everything",
+            ],
+            "isConfigProperty": false,
+            "label": "Dropdown",
+            "type": "dropdown",
+          },
+          "graph": Object {
+            "fields": Object {
+              "domain": Object {
+                "isConfigProperty": false,
+                "label": "Domain",
+                "suffix": "px",
+                "type": "numberField",
+              },
+              "range": Object {
+                "isConfigProperty": false,
+                "label": "Range",
+                "suffix": "px",
+                "type": "numberField",
+              },
+              "width": Object {
+                "isConfigProperty": false,
+                "label": "Width",
+                "max": 250,
+                "min": 50,
+                "suffix": "px",
+                "type": "numberField",
+              },
+            },
+            "label": "Graph Display Size",
+            "type": "numberFields",
+          },
           "label": "Orientation",
           "type": "radio",
         },

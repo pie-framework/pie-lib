@@ -43,5 +43,50 @@
     "committerDate": "2019-05-03 12:48:19 +0300",
     "isTagged": true,
     "tag": "@pie-lib/mask-markup@1.0.1"
+  },
+  {
+    "type": "fix",
+    "scope": "packages",
+    "subject": "included the math-rendering dependency",
+    "merge": null,
+    "header": "fix(packages): included the math-rendering dependency",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "70c530012cc4a29a76fa4256ef0ce9df1005ad63",
+    "gitTags": " (origin/feat/mask-markup-changes)",
+    "committerDate": "2019-05-17 12:57:23 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/mask-markup@1.1.0"
+  },
+  {
+    "type": "fix",
+    "scope": "rendering",
+    "subject": "made sure that the math is rendered properly at all times",
+    "merge": null,
+    "header": "fix(rendering): made sure that the math is rendered properly at all times",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "14463c94da9740dbe10e3a7854f214fb1b9018f0",
+    "gitTags": "",
+    "committerDate": "2019-05-17 12:51:46 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/mask-markup@1.1.0"
+  },
+  {
+    "type": "feat",
+    "scope": "components",
+    "subject": "changed the code for the components in order to have items rendered properly (especially math items)",
+    "merge": null,
+    "header": "feat(components): changed the code for the components in order to have items rendered properly (especially math items)",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "59663f78cdee43f7a519653b5cec941636a264a6",
+    "gitTags": "",
+    "committerDate": "2019-05-17 10:38:23 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/mask-markup@1.1.0"
   }
 ]

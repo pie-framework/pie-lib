@@ -368,5 +368,50 @@
     "committerDate": "2019-05-15 13:02:25 +0300",
     "isTagged": true,
     "tag": "@pie-lib/demo@4.2.1"
+  },
+  {
+    "type": "chore",
+    "scope": null,
+    "subject": "rm console.log",
+    "merge": null,
+    "header": "chore: rm console.log",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "96090cc41ed5833f223622d6ea24c50831091a0c",
+    "gitTags": " (origin/develop, origin/HEAD, develop)",
+    "committerDate": "2019-05-22 10:10:55 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/demo@4.3.0"
+  },
+  {
+    "type": "feat",
+    "scope": null,
+    "subject": "rubric authoring (#119)",
+    "merge": null,
+    "header": "feat: rubric authoring (#119)",
+    "body": "* rubric wip\n\n* polish",
+    "footer": null,
+    "notes": [],
+    "hash": "6e24df7b18db19519cf4323dddf089990c04aa5d",
+    "gitTags": "",
+    "committerDate": "2019-05-21 08:28:21 -0400",
+    "isTagged": true,
+    "tag": "@pie-lib/demo@4.3.0"
+  },
+  {
+    "type": "feat",
+    "scope": null,
+    "subject": "Added support for dropdown and number text fields in settings panel.",
+    "merge": null,
+    "header": "feat: Added support for dropdown and number text fields in settings panel.",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "db84ffb8040fef8c2d6f8259ffdfcc82c211ba84",
+    "gitTags": "",
+    "committerDate": "2019-05-17 20:53:06 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/demo@4.3.0"
   }
 ]

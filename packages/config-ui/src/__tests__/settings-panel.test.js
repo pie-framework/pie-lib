@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { Panel } from '../settings/panel';
-import { toggle, radio } from '../settings';
+import { toggle, radio, dropdown, numberField, numberFields } from '../settings';
 
 describe('Settings Panel', () => {
   let w;
@@ -21,7 +21,29 @@ describe('Settings Panel', () => {
       choiceAreaLayout: configure.settingsOrientation && {
         type: 'radio',
         label: configure.orientationLabel,
-        choices: [{ label: 'opt1', value: 'opt1' }, { label: 'opt2', value: 'opt2' }]
+        choices: [{ label: 'opt1', value: 'opt1' }, { label: 'opt2', value: 'opt2' }],
+        equationEditor: dropdown('Dropdown', [
+          'geometry',
+          'advanced-algebra',
+          'statistics',
+          'everything'
+        ]),
+        graph: numberFields('Graph Display Size', {
+          domain: {
+            label: 'Domain',
+            suffix: 'px'
+          },
+          range: {
+            label: 'Range',
+            suffix: 'px'
+          },
+          width: {
+            label: 'Width',
+            suffix: 'px',
+            min: 50,
+            max: 250
+          }
+        })
       },
       editChoiceLabel: { type: 'toggle', label: 'Edit choice label', isConfigProperty: true }
     }
@@ -122,6 +144,62 @@ describe('radio', () => {
           value: 'two'
         }
       ]
+    });
+  });
+});
+
+describe('dropdown', () => {
+  it('returns a dropdown type object', () => {
+    const setting = dropdown('Dropdown', ['one', 'two']);
+
+    expect(setting).toEqual({
+      label: 'Dropdown',
+      type: 'dropdown',
+      isConfigProperty: false,
+      choices: ['one', 'two']
+    });
+  });
+});
+
+describe('numberField', () => {
+  it('returns a numberField type object', () => {
+    const setting = numberField('Number Field', { max: 12 }, true);
+
+    expect(setting).toEqual({
+      label: 'Number Field',
+      type: 'numberField',
+      isConfigProperty: true,
+      max: 12
+    });
+  });
+});
+
+describe('numberFields', () => {
+  it('returns a numberFields type object', () => {
+    const setting = numberFields('Number Fields', {
+      one: {
+        label: 'One'
+      },
+      two: {
+        label: 'Two'
+      }
+    });
+
+    expect(setting).toEqual({
+      label: 'Number Fields',
+      type: 'numberFields',
+      fields: {
+        one: {
+          type: 'numberField',
+          label: 'One',
+          isConfigProperty: false
+        },
+        two: {
+          type: 'numberField',
+          label: 'Two',
+          isConfigProperty: false
+        }
+      }
     });
   });
 });
