@@ -88,5 +88,50 @@
     "committerDate": "2019-06-05 21:55:26 +0300",
     "isTagged": true,
     "tag": "@pie-lib/rubric@0.1.4"
+  },
+  {
+    "type": "chore",
+    "scope": "merge",
+    "subject": "merged with develop",
+    "merge": null,
+    "header": "chore(merge): merged with develop",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "03e233c8095db723b28db9db7d51c5b1572eb7a4",
+    "gitTags": " (develop)",
+    "committerDate": "2019-06-05 23:10:07 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/rubric@0.2.0"
+  },
+  {
+    "type": "feat",
+    "scope": "editable-html",
+    "subject": "made some changes in order to publish packages with the editable-html bump",
+    "merge": null,
+    "header": "feat(editable-html): made some changes in order to publish packages with the editable-html bump",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "d049e3c2f2bd650ae5e94b84aa7dd3348ad682dc",
+    "gitTags": "",
+    "committerDate": "2019-06-05 23:01:55 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/rubric@0.2.0"
+  },
+  {
+    "type": "chore",
+    "scope": "editable-html",
+    "subject": "version bump",
+    "merge": null,
+    "header": "chore(editable-html): version bump",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "64d9b802b2df2f5bf96e21f6b8e12dd997416f4a",
+    "gitTags": "",
+    "committerDate": "2019-06-05 22:49:11 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/rubric@0.2.0"
   }
 ]
