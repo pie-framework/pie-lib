@@ -1,0 +1,217 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`choice snapshot renders correctly when focused 1`] = `
+<span
+  key="0"
+  style={
+    Object {
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "margin": "0 10px",
+      "minHeight": "50px",
+      "minWidth": "178px",
+      "position": "relative",
+    }
+  }
+>
+  <div
+    onClick={[Function]}
+    style={
+      Object {
+        "bottom": 0,
+        "cursor": "default",
+        "display": "block",
+        "left": 0,
+        "position": "fixed",
+        "right": 0,
+        "top": 0,
+      }
+    }
+  />
+  <div
+    contentEditable={true}
+    data-key="0"
+    onMouseDown={[Function]}
+    style={
+      Object {
+        "background": "#FFF",
+        "border": "1px solid #C0C3CF",
+        "borderRadius": "3px",
+        "boxSizing": "border-box",
+        "display": "inline-flex",
+        "height": false,
+        "minHeight": "36px",
+        "minWidth": "178px",
+        "overflow": "hidden",
+        "padding": "8px",
+        "position": "absolute",
+      }
+    }
+    suppressContentEditableWarning={true}
+  >
+    A
+  </div>
+</span>
+`;
+
+exports[`choice snapshot renders correctly when focused and in an input 1`] = `
+<span
+  key="0"
+  style={
+    Object {
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "margin": "10px",
+      "minHeight": "50px",
+      "minWidth": "178px",
+      "position": "relative",
+    }
+  }
+>
+  <div
+    onClick={[Function]}
+    style={
+      Object {
+        "bottom": 0,
+        "cursor": "default",
+        "display": "block",
+        "left": 0,
+        "position": "fixed",
+        "right": 0,
+        "top": 0,
+      }
+    }
+  />
+  <div
+    contentEditable={true}
+    data-key="0"
+    onMouseDown={[Function]}
+    style={
+      Object {
+        "background": "#FFF",
+        "border": "1px solid #C0C3CF",
+        "borderRadius": "3px",
+        "boxSizing": "border-box",
+        "display": "inline-flex",
+        "height": false,
+        "minHeight": "36px",
+        "minWidth": "178px",
+        "overflow": "hidden",
+        "padding": "8px",
+        "position": "absolute",
+      }
+    }
+    suppressContentEditableWarning={true}
+  >
+    A
+  </div>
+</span>
+`;
+
+exports[`choice snapshot renders correctly when in a table 1`] = `
+<span
+  key="0"
+  style={
+    Object {
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "margin": "10px",
+      "minHeight": "50px",
+      "minWidth": "178px",
+      "position": "relative",
+    }
+  }
+>
+  <div
+    onClick={[Function]}
+    style={
+      Object {
+        "bottom": 0,
+        "cursor": "default",
+        "display": "none",
+        "left": 0,
+        "position": "fixed",
+        "right": 0,
+        "top": 0,
+      }
+    }
+  />
+  <div
+    contentEditable={true}
+    data-key="0"
+    onMouseDown={[Function]}
+    style={
+      Object {
+        "background": "#FFF",
+        "border": "1px solid #C0C3CF",
+        "borderRadius": "3px",
+        "boxSizing": "border-box",
+        "display": "inline-flex",
+        "height": "36px",
+        "minHeight": "36px",
+        "minWidth": "178px",
+        "overflow": "hidden",
+        "padding": "8px",
+        "position": "relative",
+      }
+    }
+    suppressContentEditableWarning={true}
+  >
+    A
+  </div>
+</span>
+`;
+
+exports[`choice snapshot renders correctly when not in a table 1`] = `
+<span
+  key="0"
+  style={
+    Object {
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "margin": "10px",
+      "minHeight": "50px",
+      "minWidth": "178px",
+      "position": "relative",
+    }
+  }
+>
+  <div
+    onClick={[Function]}
+    style={
+      Object {
+        "bottom": 0,
+        "cursor": "default",
+        "display": "none",
+        "left": 0,
+        "position": "fixed",
+        "right": 0,
+        "top": 0,
+      }
+    }
+  />
+  <div
+    contentEditable={true}
+    data-key="0"
+    onMouseDown={[Function]}
+    style={
+      Object {
+        "background": "#FFF",
+        "border": "1px solid #C0C3CF",
+        "borderRadius": "3px",
+        "boxSizing": "border-box",
+        "display": "inline-flex",
+        "height": "36px",
+        "minHeight": "36px",
+        "minWidth": "178px",
+        "overflow": "hidden",
+        "padding": "8px",
+        "position": "relative",
+      }
+    }
+    suppressContentEditableWarning={true}
+  >
+    A
+  </div>
+</span>
+`;

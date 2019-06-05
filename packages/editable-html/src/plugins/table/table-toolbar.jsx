@@ -57,7 +57,7 @@ export class TableToolbar extends React.Component {
 
     return (
       <div className={classes.tableToolbar}>
-        <div>
+        <div className={classes.toolbarButtons}>
           <Button onClick={onAddRow}>
             <AddRow />
           </Button>
@@ -96,6 +96,9 @@ const styles = () => ({
     width: '100%',
     display: 'flex',
     justifyContent: 'space-between'
+  },
+  toolbarButtons: {
+    display: 'flex'
   }
 });
 export default withStyles(styles)(TableToolbar);

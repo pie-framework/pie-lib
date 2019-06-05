@@ -2,58 +2,7 @@
 
 exports[`Blank render renders correctly with default props 1`] = `
 <WithStyles(Chip)
-  className=""
-  component="span"
-  label={
-    <span
-      dangerouslySetInnerHTML={
-        Object {
-          "__html": "Cow",
-        }
-      }
-    />
-  }
-  onDelete={[Function]}
-/>
-`;
-
-exports[`Blank render renders correctly with disabled prop as true 1`] = `
-<WithStyles(Chip)
-  className=""
-  component="span"
-  label={
-    <span
-      dangerouslySetInnerHTML={
-        Object {
-          "__html": "Cow",
-        }
-      }
-    />
-  }
-  variant="outlined"
-/>
-`;
-
-exports[`Blank render renders correctly with draggedItem 1`] = `
-<WithStyles(Chip)
-  className=""
-  component="span"
-  label={
-    <span
-      dangerouslySetInnerHTML={
-        Object {
-          "__html": "Cow",
-        }
-      }
-    />
-  }
-  onDelete={[Function]}
-/>
-`;
-
-exports[`Blank render renders correctly with draggedItem and isOver 1`] = `
-<WithStyles(Chip)
-  className=""
+  className="undefined"
   component="span"
   label={
     <span
@@ -64,6 +13,54 @@ exports[`Blank render renders correctly with draggedItem and isOver 1`] = `
       }
     />
   }
-  onDelete={[Function]}
+/>
+`;
+
+exports[`Blank render renders correctly with disabled prop as true 1`] = `
+<WithStyles(Chip)
+  className="undefined"
+  component="span"
+  label={
+    <span
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": undefined,
+        }
+      }
+    />
+  }
+  variant="outlined"
+/>
+`;
+
+exports[`Blank render renders correctly with draggedItem 1`] = `
+<WithStyles(Chip)
+  className="undefined"
+  component="span"
+  label={
+    <span
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": undefined,
+        }
+      }
+    />
+  }
+/>
+`;
+
+exports[`Blank render renders correctly with draggedItem and isOver 1`] = `
+<WithStyles(Chip)
+  className="undefined"
+  component="span"
+  label={
+    <span
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "Dog",
+        }
+      }
+    />
+  }
 />
 `;

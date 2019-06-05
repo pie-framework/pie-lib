@@ -7,36 +7,19 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 ## [4.3.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.3.11...@pie-lib/render-ui@4.3.12) (2019-05-15)
-
 
 ### Bug Fixes
 
-* Added className property on Collapsible wrapper. ([4c5f39b](https://github.com/pie-framework/pie-lib/commit/4c5f39b))
-
-
-
-
+- Added className property on Collapsible wrapper. ([4c5f39b](https://github.com/pie-framework/pie-lib/commit/4c5f39b))
 
 ## [4.3.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.3.10...@pie-lib/render-ui@4.3.11) (2019-05-14)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 ## [4.3.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.3.9...@pie-lib/render-ui@4.3.10) (2019-05-02)
 
 **Note:** Version bump only for package @pie-lib/render-ui
-
-
-
-
 
 ## [4.3.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.3.8...@pie-lib/render-ui@4.3.9) (2019-04-17)
 

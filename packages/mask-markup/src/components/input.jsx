@@ -9,6 +9,7 @@ const Input = ({ disabled, correct, id, value, onChange }) => {
       correct={correct}
       variant="outlined"
       value={value}
+      isBox={true}
       onChange={e => {
         onChange(id, e.target.value);
       }}

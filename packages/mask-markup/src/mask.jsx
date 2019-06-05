@@ -4,8 +4,8 @@ import { withStyles } from '@material-ui/core/styles';
 
 const Paragraph = withStyles(theme => ({
   para: {
-    paddingTop: theme.spacing.unit,
-    paddingBottom: theme.spacing.unit
+    paddingTop: 2 * theme.spacing.unit,
+    paddingBottom: 2 * theme.spacing.unit
   }
 }))(props => <div className={props.classes.para}>{props.children}</div>);
 
@@ -70,6 +70,7 @@ export default class Mask extends React.Component {
   render() {
     const { value, layout } = this.props;
     const children = renderChildren(layout, value, this.handleChange, this.props.renderChildren);
+
     return <div>{children}</div>;
   }
 }

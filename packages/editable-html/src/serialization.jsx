@@ -5,6 +5,7 @@ import { serialization as imgSerialization } from './plugins/image';
 import { serialization as mathSerialization } from './plugins/math';
 import { serialization as listSerialization } from './plugins/list';
 import { serialization as tableSerialization } from './plugins/table';
+import { serialization as responseAreaSerialization } from './plugins/response-area';
 import { Mark, Value } from 'slate';
 
 const log = debug('@pie-lib:editable-html:serialization');
@@ -151,15 +152,15 @@ const RULES = [
   mathSerialization,
   imgSerialization,
   tableSerialization,
+  responseAreaSerialization,
   TEXT_RULE,
   blocks,
   marks
 ];
 
-function allWhitespace( node )
-{
+function allWhitespace(node) {
   // Use ECMA-262 Edition 3 String and RegExp features
-  return !(/[^\t\n\r ]/.test(node.textContent));
+  return !/[^\t\n\r ]/.test(node.textContent);
 }
 
 function defaultParseHtml(html) {
@@ -172,16 +173,11 @@ function defaultParseHtml(html) {
   const parsed = new DOMParser().parseFromString(html, 'text/html');
 
   const { body } = parsed;
-  var textNodes = document.createTreeWalker(
-    body,
-    NodeFilter.SHOW_TEXT,
-    null,
-    null
-  );
+  var textNodes = document.createTreeWalker(body, NodeFilter.SHOW_TEXT, null, null);
   var n = textNodes.nextNode();
 
-  while(n){
-    if(allWhitespace(n) || n.nodeValue === '\u200B'){
+  while (n) {
+    if (allWhitespace(n) || n.nodeValue === '\u200B') {
       n.parentNode.removeChild(n);
     }
     n = textNodes.nextNode();

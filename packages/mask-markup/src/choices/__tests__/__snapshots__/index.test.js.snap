@@ -4,8 +4,9 @@ exports[`index Choice render renders correctly with default props 1`] = `
 <Component
   classes={
     Object {
+      "chip": "Component-chip-2",
       "choice": "Component-choice-1",
-      "disabled": "Component-disabled-2",
+      "disabled": "Component-disabled-3",
     }
   }
   disabled={false}
@@ -19,8 +20,9 @@ exports[`index Choice render renders correctly with disabled prop as true 1`] = 
 <Component
   classes={
     Object {
+      "chip": "Component-chip-2",
       "choice": "Component-choice-1",
-      "disabled": "Component-disabled-2",
+      "disabled": "Component-disabled-3",
     }
   }
   disabled={true}
@@ -33,22 +35,34 @@ exports[`index Choice render renders correctly with disabled prop as true 1`] = 
 exports[`index Choices renders correctly with default props 1`] = `
 <div>
   <DragSource(WithStyles(Component))
+    choice={
+      Object {
+        "label": "Jumped",
+        "value": "Jumped",
+      }
+    }
     disabled={false}
     key="Jumped-0"
-    targetId="1"
-    value="Jumped"
   />
   <DragSource(WithStyles(Component))
+    choice={
+      Object {
+        "label": "Laughed",
+        "value": "Laughed",
+      }
+    }
     disabled={false}
     key="Laughed-1"
-    targetId="1"
-    value="Laughed"
   />
   <DragSource(WithStyles(Component))
+    choice={
+      Object {
+        "label": "Spoon",
+        "value": "Spoon",
+      }
+    }
     disabled={false}
     key="Spoon-2"
-    targetId="1"
-    value="Spoon"
   />
 </div>
 `;
@@ -56,22 +70,34 @@ exports[`index Choices renders correctly with default props 1`] = `
 exports[`index Choices renders correctly with disabled prop as true 1`] = `
 <div>
   <DragSource(WithStyles(Component))
+    choice={
+      Object {
+        "label": "Jumped",
+        "value": "Jumped",
+      }
+    }
     disabled={true}
     key="Jumped-0"
-    targetId="1"
-    value="Jumped"
   />
   <DragSource(WithStyles(Component))
+    choice={
+      Object {
+        "label": "Laughed",
+        "value": "Laughed",
+      }
+    }
     disabled={true}
     key="Laughed-1"
-    targetId="1"
-    value="Laughed"
   />
   <DragSource(WithStyles(Component))
+    choice={
+      Object {
+        "label": "Spoon",
+        "value": "Spoon",
+      }
+    }
     disabled={true}
     key="Spoon-2"
-    targetId="1"
-    value="Spoon"
   />
 </div>
 `;
