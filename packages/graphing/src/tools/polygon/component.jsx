@@ -80,14 +80,6 @@ export class RawBaseComponent extends React.Component {
     const update = [...this.props.points];
     update.splice(index, 1, to);
     onChange(update);
-    // const points = this.props.points.map(p => {
-    //   if (isEqual(p, from)) {
-    //     return to;
-    //   }
-    //   return p;
-    // });
-
-    // onChange(points);
   };
 
   dragLine = (existing, next) => {
@@ -194,13 +186,7 @@ export default class Component extends React.Component {
     onComplete(mark, update);
   };
 
-  dragStart = () => {
-    this.setState({ mark: this.props.mark });
-    // const { onDragStart } = this.props;
-    // if (onDragStart) {
-    //   onDragStart();
-    // }
-  };
+  dragStart = () => this.setState({ mark: this.props.mark });
 
   dragStop = () => {
     const { onChange } = this.props;
@@ -208,10 +194,6 @@ export default class Component extends React.Component {
     this.setState({ mark: undefined }, () => {
       onChange(this.props.mark, m);
     });
-    // const { onDragStop } = this.props;
-    // if (onDragStop) {
-    //   onDragStop();
-    // }
   };
 
   render() {

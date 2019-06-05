@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { types } from '@pie-lib/plot';
+import { types, utils } from '@pie-lib/plot';
 import LinePath from '../shared/line-path';
 import { curveMonotoneX } from '@vx/curve';
 import { BasePoint } from '../common/point';
@@ -8,7 +8,6 @@ import { ToolPropTypeFields } from '../types';
 
 import debug from 'debug';
 import isEqual from 'lodash/isEqual';
-import { isDomainRangeEqual } from '../../../../charting/src/utils';
 
 const log = debug('pie-lib:graphing:with-root-edge');
 
@@ -45,7 +44,7 @@ export const rootEdgeComponent = RootEdgeComp => {
       return (
         !isEqual(this.props.mark, nextProps.mark) ||
         !isEqual(this.state.mark, nextState.mark) ||
-        !isDomainRangeEqual(this.props.graphProps, nextProps.graphProps)
+        !utils.isDomainRangeEqual(this.props.graphProps, nextProps.graphProps)
       );
     }
 
