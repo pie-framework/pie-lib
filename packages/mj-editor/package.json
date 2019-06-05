@@ -1,0 +1,21 @@
+{
+  "name": "@pie-lib/mj-editor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lib/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@material-ui/core": "^3.9.3",
+    "@pie-lib/math-input": "^6.2.4",
+    "@pie-lib/math-rendering": "^1.2.11",
+    "@pie-framework/mathquill": "^0.10.4",
+    "classnames": "^2.2.6",
+    "debug": "^4.1.1",
+    "react": "^16.8.6"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
