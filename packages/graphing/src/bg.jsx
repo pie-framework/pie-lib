@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { select, mouse } from 'd3-selection';
 import { types } from '@pie-lib/plot';
-import { isDomainRangeEqual } from '../../charting/src/utils';
+import { isDomainRangeEqual } from './utils';
 
 export default class Bg extends React.Component {
   static propTypes = {

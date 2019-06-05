@@ -3,6 +3,13 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { types } from '@pie-lib/plot';
 
+const Label = ({ label, editable }) => {
+  const onChange = e => {
+    console.log('change..', e);
+  };
+  return <input type="text" value={label} onChange={onChange} />;
+};
+
 export class RawBp extends React.Component {
   static propTypes = {
     classes: PropTypes.object,

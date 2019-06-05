@@ -72,24 +72,25 @@ export const marks = [
   //     y: -3
   //   }
   // },
-  {
-    type: 'circle',
-    // correctness: 'incorrect',
-    disabled: false,
-    root: {
-      x: 1,
-      y: 3
-    },
-    edge: {
-      x: 2,
-      y: 4
-    }
-  },
   // {
-  //   type: 'point',
-  //   x: 3,
-  //   y: 3
+  //   type: 'circle',
+  //   // correctness: 'incorrect',
+  //   disabled: false,
+  //   root: {
+  //     x: 1,
+  //     y: 3
+  //   },
+  //   edge: {
+  //     x: 2,
+  //     y: 4
+  //   }
   // },
+  {
+    type: 'point',
+    x: 3,
+    y: 3,
+    label: 'A'
+  },
   // {
   //   disabled: true,
   //   correctness: 'correct',

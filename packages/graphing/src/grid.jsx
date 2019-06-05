@@ -4,7 +4,7 @@ import * as vx from '@vx/grid';
 import { tickCount } from './utils';
 import { types } from '@pie-lib/plot';
 import { withStyles } from '@material-ui/core/styles';
-import { isDomainRangeEqual } from '../../charting/src/utils';
+import { isDomainRangeEqual } from './utils';
 
 export class Grid extends React.Component {
   static propTypes = {

@@ -8,7 +8,7 @@ import { ToolPropTypeFields } from '../types';
 
 import debug from 'debug';
 import isEqual from 'lodash/isEqual';
-import { isDomainRangeEqual } from '../../../../charting/src/utils';
+import { isDomainRangeEqual } from '../utils';
 
 const log = debug('pie-lib:graphing:with-root-edge');
 

@@ -10,6 +10,8 @@ import Bg from './bg';
 import _ from 'lodash';
 import invariant from 'invariant';
 import isEqual from 'lodash/isEqual';
+import { MarkLabel } from './mark-label';
+
 const log = debug('pie-lib:graphing:graph');
 
 export const graphPropTypes = {
@@ -260,6 +262,19 @@ export class Graph extends React.Component {
               />
             );
           })}
+          <foreignObject x="0" y="0" {...size}>
+            {(marks || [])
+              .filter(m => m.label)
+              .map((m, index) => {
+                return (
+                  <MarkLabel
+                    key={`mark-label-${m.label}-${index}`}
+                    mark={m}
+                    graphProps={graphProps}
+                  />
+                );
+              })}
+          </foreignObject>
         </g>
         {/* <use clipPath={'rect-clip-path'} xlinkHref={'#marks'} /> */}
       </Root>

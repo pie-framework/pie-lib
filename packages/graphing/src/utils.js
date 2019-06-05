@@ -5,6 +5,7 @@ import invariant from 'invariant';
 import _ from 'lodash';
 import debug from 'debug';
 import Point from '@mapbox/point-geometry';
+import isEqual from 'lodash/isEqual';
 
 const log = debug('pie-lib:graphing:sine:utils');
 
@@ -229,4 +230,11 @@ export const calculatePreviousNearestScaledPoint = (scale, from, to, type = 'non
     x: scaledToX,
     y: scaledToY
   };
+};
+
+export const isDomainRangeEqual = (graphProps, nextGraphProps) => {
+  return (
+    isEqual(graphProps.domain, nextGraphProps.domain) &&
+    isEqual(graphProps.range, nextGraphProps.range)
+  );
 };
