@@ -61,7 +61,7 @@ export class RawLine extends React.Component {
       <g>
         <defs>
           <marker
-            id="arrow"
+            id="old-arrow"
             viewBox={`0 0 ${arrowDimensions.line} ${arrowDimensions.line}`}
             refX={arrowDimensions.line / 2}
             refY={arrowDimensions.line / 2}

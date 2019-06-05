@@ -58,21 +58,22 @@ export class Graph extends React.Component {
     }
   };
 
-  startDrag = () => {
-    const { marks } = this.props;
-    this.setState({ marks });
-  };
+  // startDrag = () => {
+  //   const { marks } = this.props;
+  //   this.setState({ marks });
+  // };
 
-  stopDrag = () => {
-    const { onChangeMarks } = this.props;
-    const update = [...this.state.marks];
-    this.setState({ marks: undefined }, () => {
-      onChangeMarks(update);
-    });
-  };
+  // stopDrag = () => {
+  //   const { onChangeMarks } = this.props;
+  //   const update = [...this.state.marks];
+  //   this.setState({ marks: undefined }, () => {
+  //     onChangeMarks(update);
+  //   });
+  // };
 
   changeMark = (oldMark, newMark) => {
-    const { marks } = this.state;
+    console.log('changeMark!!!!');
+    const { marks, onChangeMarks } = this.props;
 
     if (!marks) {
       throw new Error('no marks set?');
@@ -84,7 +85,8 @@ export class Graph extends React.Component {
       const out = [...marks];
       out.splice(index, 1, { ...newMark });
       log('[changeMark] call onChangeMarks');
-      this.setState({ marks: out });
+      onChangeMarks(out);
+      // this.setState({ marks: out });
     }
   };
 
@@ -219,6 +221,8 @@ export class Graph extends React.Component {
       height: size.height + 20
     };
     const common = { graphProps };
+
+    console.log('!! graph.render..');
     return (
       <Root title={title} onMouseMove={this.mouseMove} {...common}>
         <Grid {...common} />

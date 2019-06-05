@@ -1,5 +1,5 @@
-import _ from 'lodash';
 import React from 'react';
+import isEqual from 'lodash/isEqual';
 import { BasePoint } from '../common/point';
 import { types, utils, gridDraggable, trig } from '@pie-lib/plot';
 import PropTypes from 'prop-types';
@@ -34,16 +34,32 @@ export const lineToolComponent = Component => {
       graphProps: types.GraphPropsType.isRequired
     };
 
+    constructor(props) {
+      super(props);
+      this.state = {};
+    }
+
+    startDrag = () => this.setState({ mark: { ...this.props.mark } });
+
+    stopDrag = () => {
+      const { onChange } = this.props;
+      const update = { ...this.state.mark };
+      this.setState({ mark: undefined }, () => {
+        if (!isEqual(this.props.mark, update)) {
+          onChange(this.props.mark, update);
+        }
+      });
+    };
+
     changeMark = ({ from, to }) => {
-      const { mark, onChange } = this.props;
-      const update = { ...mark, from, to };
-      onChange(mark, update);
+      const mark = { ...this.state.mark, from, to };
+      this.setState({ mark });
     };
 
     render() {
-      const { mark, graphProps, onClick, onDragStart, onDragStop } = this.props;
+      const { graphProps, onClick } = this.props;
 
-      log('onDragStart:', onDragStart);
+      const mark = this.state.mark ? this.state.mark : this.props.mark;
       return (
         <Component
           from={mark.from}
@@ -51,8 +67,8 @@ export const lineToolComponent = Component => {
           graphProps={graphProps}
           onChange={this.changeMark}
           onClick={onClick}
-          onDragStart={onDragStart}
-          onDragStop={onDragStop}
+          onDragStart={this.startDrag}
+          onDragStop={this.stopDrag}
         />
       );
     }
@@ -113,9 +129,7 @@ export const lineBase = (Comp, opts) => {
 
       const common = { graphProps, onDragStart, onDragStop };
 
-      const angle = trig.toDegrees(trig.angle(from, to));
-      log('angle:', angle);
-      log('props:', this.props);
+      const angle = to ? trig.toDegrees(trig.angle(from, to)) : 0;
       return (
         <g>
           {to && <DraggableComp from={from} to={to} onDrag={this.dragComp} {...common} />}

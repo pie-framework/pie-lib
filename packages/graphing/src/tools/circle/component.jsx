@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { ToolPropTypeFields } from '../types';
 import debug from 'debug';
 import { BasePoint } from '../common/point';
 import BgCircle from './bg-circle';
 import { point } from '../../utils';
 import classNames from 'classnames';
 import { types } from '@pie-lib/plot';
+import { rootEdgeComponent } from '../shared/with-root-edge';
 
 const log = debug('pie-lib:graphing:circle');
 
@@ -17,8 +17,8 @@ const opacityPulsate = opacity => ({
   '100%': { opacity: '0.0' }
 });
 
-const getRadius = (center, outer) => {
-  const c = point(center);
+const getRadius = (root, outer) => {
+  const c = point(root);
   return c.dist(point(outer));
 };
 
@@ -28,9 +28,9 @@ export class RawBaseCircle extends React.Component {
     classes: PropTypes.object.isRequired,
     className: PropTypes.string,
     correctness: PropTypes.string,
-    center: types.PointType,
+    root: types.PointType,
     disabled: PropTypes.bool,
-    outerPoint: types.PointType,
+    edge: types.PointType,
     onChange: PropTypes.func.isRequired,
     onDragStart: PropTypes.func,
     onDragStop: PropTypes.func,
@@ -42,53 +42,27 @@ export class RawBaseCircle extends React.Component {
     onClick: () => ({})
   };
 
-  dragCenter = center => {
+  dragroot = root => {
     const { onChange } = this.props;
-    const d = { center, outerPoint: this.props.outerPoint };
+    const d = { root, edge: this.props.edge };
 
     onChange(d);
   };
 
-  // dragCenter = draggedCenter => {
-  //   log('[dragCenter] ', draggedCenter);
-  //   this.setState({ draggedCenter });
-  // };
-
-  dragOuter = outerPoint => {
+  dragOuter = edge => {
     const { onChange } = this.props;
-    const d = { center: this.props.center, outerPoint };
+    const d = { root: this.props.root, edge };
     onChange(d);
   };
 
-  // dragOuter = draggedOuter => {
-  //   this.setState({ draggedOuter });
-  // };
-
-  // dragCircle = draggedCenter => {
-  //   log(
-  //     'dragCircle: ',
-  //     draggedCenter,
-  //     'center: ',
-  //     this.props.center,
-  //     ' outer: ',
-  //     this.props.outerPoint
-  //   );
-
-  //   const diff = point(this.props.center).sub(point(draggedCenter));
-
-  //   const draggedOuter = point(this.props.outerPoint).sub(diff);
-
-  //   this.setState({ draggedCenter, draggedOuter, isCircleDrag: true });
-  // };
-
-  dragCircle = center => {
+  dragCircle = root => {
     const { onChange } = this.props;
-    const diff = point(this.props.center).sub(point(center));
-    const outerPoint = point(this.props.outerPoint).sub(diff);
-    const d = { center, outerPoint };
+    const diff = point(this.props.root).sub(point(root));
+    const edge = point(this.props.edge).sub(diff);
+    const d = { root, edge };
     this.setState(
       {
-        draggedCenter: undefined,
+        draggedroot: undefined,
         draggedOuter: undefined,
         isCircleDrag: false
       },
@@ -98,25 +72,10 @@ export class RawBaseCircle extends React.Component {
     );
   };
 
-  clickCenter = data => {
-    const { onClick } = this.props;
-    onClick(data);
-  };
-
-  clickOuter = data => {
-    const { onClick } = this.props;
-    onClick(data);
-  };
-
-  clickBg = data => {
-    const { onClick } = this.props;
-    onClick(data);
-  };
-
   render() {
     let {
-      center,
-      outerPoint,
+      root,
+      edge,
       disabled,
       classes,
       building,
@@ -129,9 +88,9 @@ export class RawBaseCircle extends React.Component {
 
     const common = { onDragStart, onDragStop, graphProps, onClick };
 
-    outerPoint = outerPoint || center;
+    edge = edge || root;
 
-    const radius = getRadius(center, outerPoint);
+    const radius = getRadius(root, edge);
 
     return (
       <g>
@@ -139,8 +98,8 @@ export class RawBaseCircle extends React.Component {
           disabled={building || disabled}
           correctness={correctness}
           className={classNames(building && classes.bgCircleBuilding)}
-          x={center.x}
-          y={center.y}
+          x={root.x}
+          y={root.y}
           radius={radius}
           onDrag={this.dragCircle}
           onMove={this.moveCircle}
@@ -149,18 +108,18 @@ export class RawBaseCircle extends React.Component {
         <BasePoint
           disabled={building || disabled}
           correctness={correctness}
-          x={outerPoint.x}
-          y={outerPoint.y}
+          x={edge.x}
+          y={edge.y}
           onDrag={this.dragOuter}
           {...common}
         />
         <BasePoint
           disabled={building || disabled}
           correctness={correctness}
-          x={center.x}
-          y={center.y}
-          className={classes.center}
-          onDrag={this.dragCenter}
+          x={root.x}
+          y={root.y}
+          className={classes.root}
+          onDrag={this.dragroot}
           {...common}
         />
       </g>
@@ -178,7 +137,7 @@ export const BaseCircle = withStyles(theme => ({
       stroke: theme.palette.primary.dark
     }
   },
-  center: {},
+  root: {},
   bgCircleBuilding: {
     stroke: theme.palette.secondary.light,
     animation: 'opacityPulse 2s ease-out',
@@ -188,37 +147,5 @@ export const BaseCircle = withStyles(theme => ({
   '@keyframes opacityPulse': opacityPulsate('0.3')
 }))(RawBaseCircle);
 
-export default class Component extends React.Component {
-  static propTypes = {
-    ...ToolPropTypeFields,
-    graphProps: types.GraphPropsType.isRequired
-  };
-
-  constructor(props) {
-    super(props);
-  }
-
-  change = d => {
-    const { onChange } = this.props;
-    const m = {
-      ...this.props.mark,
-      center: d.center,
-      outerPoint: d.outerPoint
-    };
-    onChange(this.props.mark, m);
-  };
-
-  render() {
-    const { mark, onDragStart, onDragStop, onClick, graphProps } = this.props;
-    return (
-      <BaseCircle
-        {...mark}
-        onChange={this.change}
-        onDragStart={onDragStart}
-        onDragStop={onDragStop}
-        onClick={onClick}
-        graphProps={graphProps}
-      />
-    );
-  }
-}
+const Component = rootEdgeComponent(BaseCircle);
+export default Component;

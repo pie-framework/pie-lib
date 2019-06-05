@@ -3,12 +3,71 @@ import PropTypes from 'prop-types';
 import { types } from '@pie-lib/plot';
 import LinePath from '../shared/line-path';
 import { curveMonotoneX } from '@vx/curve';
-import { BasePoint } from '../common/point/index';
+import { BasePoint } from '../common/point';
+import { ToolPropTypeFields } from '../types';
 
 import debug from 'debug';
+import isEqual from 'lodash/isEqual';
+import { isDomainRangeEqual } from '../../../../charting/src/utils';
 
 const log = debug('pie-lib:graphing:with-root-edge');
 
+export const rootEdgeComponent = RootEdgeComp => {
+  return class Component extends React.Component {
+    static propTypes = {
+      ...ToolPropTypeFields,
+      graphProps: types.GraphPropsType.isRequired
+    };
+
+    constructor(props) {
+      super(props);
+      this.state = {};
+    }
+
+    changeMark = ({ root, edge }) => {
+      const mark = { ...this.state.mark, root, edge };
+      this.setState({ mark });
+    };
+
+    startDrag = () => this.setState({ mark: { ...this.props.mark } });
+
+    stopDrag = () => {
+      const { onChange } = this.props;
+      const mark = { ...this.state.mark };
+      this.setState({ mark: undefined }, () => {
+        if (!isEqual(mark, this.props.mark)) {
+          onChange(this.props.mark, mark);
+        }
+      });
+    };
+
+    shouldComponentUpdate(nextProps, nextState) {
+      return (
+        !isEqual(this.props.mark, nextProps.mark) ||
+        !isEqual(this.state.mark, nextState.mark) ||
+        !isDomainRangeEqual(this.props.graphProps, nextProps.graphProps)
+      );
+    }
+
+    render() {
+      const { graphProps, onClick } = this.props;
+
+      const mark = this.state.mark ? this.state.mark : this.props.mark;
+
+      return (
+        <RootEdgeComp
+          root={mark.root}
+          edge={mark.edge}
+          graphProps={graphProps}
+          onChange={this.changeMark}
+          onClick={onClick}
+          onDragStart={this.startDrag}
+          onDragStop={this.stopDrag}
+        />
+      );
+    }
+  };
+};
 export const withRootEdge = getPoints => {
   class RootEdge extends React.Component {
     static propTypes = {

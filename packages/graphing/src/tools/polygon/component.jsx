@@ -10,14 +10,15 @@ import debug from 'debug';
 import Line from './line';
 import DraggablePolygon, { Polygon } from './polygon';
 import { types } from '@pie-lib/plot';
+import invariant from 'invariant';
 const log = debug('pie-lib:graphing:polygon');
 
 export const buildLines = (points, closed) => {
   const expanded = points.reduce((acc, p, index) => {
-    acc.push(p);
+    acc.push({ ...p, index });
     const isLast = index === points.length - 1;
     const next = isLast ? 0 : index + 1;
-    acc.push(points[next]);
+    acc.push({ ...points[next], index: next });
     return acc;
   }, []);
 
@@ -36,9 +37,11 @@ const swap = (arr, ...rest) => {
     (acc, pr) => {
       if (pr.length === 2) {
         let [e, replacement] = pr;
-        const i = acc.findIndex(pt => pt.x === e.x && pt.y === e.y);
-        if (i >= 0) {
-          acc.splice(i, 1, replacement);
+        invariant(Number.isFinite(e.index), 'Index must be defined');
+        const index = e.index;
+        // const i = acc.findIndex(pt => pt.x === e.x && pt.y === e.y);
+        if (index >= 0) {
+          acc.splice(index, 1, replacement);
           return acc;
         } else {
           return acc;
@@ -67,17 +70,24 @@ export class RawBaseComponent extends React.Component {
     isToolActive: PropTypes.bool
   };
 
-  dragPoint = (from, to) => {
+  dragPoint = (index, from, to) => {
     log('[dragPoint] from, to:', from, to);
     const { onChange } = this.props;
-    const points = this.props.points.map(p => {
-      if (isEqual(p, from)) {
-        return to;
-      }
-      return p;
-    });
 
-    onChange(points);
+    if (isEqual(from, to)) {
+      return;
+    }
+    const update = [...this.props.points];
+    update.splice(index, 1, to);
+    onChange(update);
+    // const points = this.props.points.map(p => {
+    //   if (isEqual(p, from)) {
+    //     return to;
+    //   }
+    //   return p;
+    // });
+
+    // onChange(points);
   };
 
   dragLine = (existing, next) => {
@@ -145,7 +155,7 @@ export class RawBaseComponent extends React.Component {
           return (
             <BasePoint
               key={`point-${index}`}
-              onDrag={this.dragPoint.bind(this, p)}
+              onDrag={this.dragPoint.bind(this, index, p)}
               x={p.x}
               y={p.y}
               onClick={this.clickPoint.bind(this, p, index)}
@@ -168,10 +178,13 @@ export default class Component extends React.Component {
 
   static defaultProps = {};
 
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
   change = points => {
-    const { mark, onChange } = this.props;
-    const update = { ...mark, points };
-    onChange(mark, update);
+    const mark = { ...this.state.mark, points };
+    this.setState({ mark });
   };
 
   closePolygon = () => {
@@ -182,24 +195,30 @@ export default class Component extends React.Component {
   };
 
   dragStart = () => {
-    const { onDragStart } = this.props;
-    if (onDragStart) {
-      onDragStart();
-    }
+    this.setState({ mark: this.props.mark });
+    // const { onDragStart } = this.props;
+    // if (onDragStart) {
+    //   onDragStart();
+    // }
   };
 
   dragStop = () => {
-    const { onDragStop } = this.props;
-    if (onDragStop) {
-      onDragStop();
-    }
+    const { onChange } = this.props;
+    const m = { ...this.state.mark };
+    this.setState({ mark: undefined }, () => {
+      onChange(this.props.mark, m);
+    });
+    // const { onDragStop } = this.props;
+    // if (onDragStop) {
+    //   onDragStop();
+    // }
   };
 
   render() {
     const { mark, graphProps, onClick, isToolActive } = this.props;
     return (
       <BaseComponent
-        {...mark}
+        {...this.state.mark || mark}
         onChange={this.change}
         onClosePolygon={this.closePolygon}
         onDragStart={this.dragStart}

@@ -72,19 +72,19 @@ export const marks = [
   //     y: -3
   //   }
   // },
-  // {
-  //   type: 'circle',
-  //   correctness: 'incorrect',
-  //   disabled: true,
-  //   center: {
-  //     x: 1,
-  //     y: 3
-  //   },
-  //   outerPoint: {
-  //     x: 2,
-  //     y: 4
-  //   }
-  // },
+  {
+    type: 'circle',
+    // correctness: 'incorrect',
+    disabled: false,
+    root: {
+      x: 1,
+      y: 3
+    },
+    edge: {
+      x: 2,
+      y: 4
+    }
+  },
   // {
   //   type: 'point',
   //   x: 3,
@@ -97,20 +97,20 @@ export const marks = [
   //   x: 2,
   //   y: 3
   // },
-  // {
-  //   type: 'polygon',
-  //   //??
-  //   closed: true,
-  //   points: [{ x: -1, y: 1 }, { x: 4, y: 2 }, { x: 5, y: -3 }]
-  // }
-  { type: 'line', from: { x: 0, y: 0 }, to: { x: 1, y: 1 } },
+  {
+    type: 'polygon',
+    //??
+    closed: true,
+    points: [xy(-1, 1), xy(4, 2), xy(5, -3), xy(-1, -2)]
+  }
+  // { type: 'line', from: { x: 0, y: 0 }, to: { x: 1, y: 1 } },
   // { type: 'line-two', ...fromTo(0, 0, 2, -1) },
   // { type: 'segment-two', ...fromTo(0, 2, 2, 3) },
-  { type: 'segment', ...fromTo(1, 2, 3, 3) },
+  // { type: 'segment', ...fromTo(1, 2, 3, 3) },
   // { type: 'ray-two', ...fromTo(-1, -1, -4, -2) },
-  { type: 'ray', ...fromTo(1, -1, -2, -2) },
+  // { type: 'ray', ...fromTo(1, -1, -2, -2) },
   // { type: 'vector-two', ...fromTo(-1, 2, 2, 3) },
-  { type: 'vector', ...fromTo(-1, 1, 2, 2) }
+  // { type: 'vector', ...fromTo(-1, 1, 2, 2) }
   // { type: 'point', x: 1, y: 1 },
   // {
   //   type: 'circle',

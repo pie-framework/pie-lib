@@ -4,6 +4,7 @@ import * as vx from '@vx/grid';
 import { tickCount } from './utils';
 import { types } from '@pie-lib/plot';
 import { withStyles } from '@material-ui/core/styles';
+import { isDomainRangeEqual } from '../../charting/src/utils';
 
 export class Grid extends React.Component {
   static propTypes = {
@@ -12,10 +13,16 @@ export class Grid extends React.Component {
     graphProps: types.GraphPropsType.isRequired
   };
 
+  shouldComponentUpdate(nextProps) {
+    const { graphProps } = this.props;
+    const { graphProps: nextGraphProps } = nextProps;
+    return !isDomainRangeEqual(graphProps, nextGraphProps);
+  }
+
   render() {
+    console.log('!!! grid render');
     const { classes, graphProps } = this.props;
     const { scale, size, domain, range } = graphProps;
-
     return (
       <vx.Grid
         innerRef={r => (this.grid = r)}

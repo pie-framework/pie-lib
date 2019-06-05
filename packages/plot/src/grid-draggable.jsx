@@ -7,6 +7,7 @@ import * as utils from './utils';
 import isFunction from 'lodash/isFunction';
 import invariant from 'invariant';
 import { clientPoint } from 'd3-selection';
+import ReactDOM from 'react-dom';
 const log = debug('pie-lib:plot:grid-draggable');
 
 export const deltaFn = (scale, snap, val) => delta => {
@@ -97,12 +98,14 @@ export const gridDraggable = opts => Comp => {
     };
 
     onDrag = (e, dd) => {
-      log('[onDrag] .. ', dd.x, dd.y, dd);
-      const { onDrag } = this.props;
+      log('[onDrag] .. dd:', dd);
+      log('[onDrag] .. e:', e);
+      const { onDrag, graphProps } = this.props;
 
       if (!onDrag) {
         return;
       }
+
       const bounds = this.getScaledBounds();
 
       if (dd.deltaX < 0 && dd.deltaX < bounds.left) {
@@ -120,9 +123,29 @@ export const gridDraggable = opts => Comp => {
         return;
       }
 
+      // ignore drag movement outside of the domain and range.
+      const [rawX, rawY] = clientPoint(dd.node, e);
+      const { scale, domain, range } = graphProps;
+      let x = scale.x.invert(rawX);
+      let y = scale.y.invert(rawY);
+
+      if (dd.deltaX > 0 && x < domain.min) {
+        return;
+      }
+
+      if (dd.deltaX < 0 && x > domain.max) {
+        return;
+      }
+
+      if (dd.deltaY > 0 && y > range.max) {
+        return;
+      }
+      if (dd.deltaY < 0 && y < range.min) {
+        return;
+      }
+
       const dragArg = this.applyDelta({ x: dd.deltaX, y: dd.deltaY });
 
-      log('[onDrag] .. dragArg:', dragArg);
       if (dragArg !== undefined || dragArg !== null) {
         onDrag(dragArg);
       }
@@ -196,7 +219,7 @@ export const gridDraggable = opts => Comp => {
        */
       const isDragging = this.state ? !!this.state.startX : false;
 
-      log('rest:', rest);
+      // log('rest:', rest);
       return (
         <DraggableCore
           disabled={disabled}

@@ -4,6 +4,8 @@ import { withStyles } from '@material-ui/core/styles';
 import { utils, types } from '@pie-lib/plot';
 import { AxisLeft, AxisBottom } from '@vx/axis';
 import { dataToXBand } from './utils';
+import { isEqual } from 'lodash/isEqual';
+import { isDomainRangeEqual } from './utils';
 
 class RawChartAxes extends React.Component {
   static propTypes = {
@@ -13,7 +15,15 @@ class RawChartAxes extends React.Component {
     graphProps: types.GraphPropsType.isRequired
   };
 
+  shouldComponentUpdate(nextProps) {
+    const { data } = this.props;
+    return (
+      !isDomainRangeEqual(this.props.graphProps, nextProps.graphProps) ||
+      isEqual(data, nextProps.data)
+    );
+  }
   render() {
+    console.log('!!!!!!!!!!!! axes..render!!');
     const { classes, data, graphProps } = this.props;
     const { scale, range, domain, size } = graphProps;
     const xBand = dataToXBand(scale.x, data, size.width);

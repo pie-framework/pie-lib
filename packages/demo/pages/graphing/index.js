@@ -255,13 +255,9 @@ export class GridDemo extends React.Component {
       tools.circle(),
       tools.polygon(),
       tools.segment(),
-      tools.segmentTwo(),
       tools.vector(),
-      tools.vectorTwo(),
       tools.ray(),
-      tools.rayTwo(),
       tools.line(),
-      tools.lineTwo(),
       tools.sine(),
       tools.parabola()
     ];

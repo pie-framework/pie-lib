@@ -4,30 +4,20 @@ import PropTypes from 'prop-types';
 import { trig, types } from '@pie-lib/plot';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-import { ArrowHead } from '../common/arrow-head';
+import { ArrowHead, ArrowMarker, genUid } from '../common/arrow-head';
+const markerId = genUid();
 
 const ArrowedLine = withStyles(theme => ({
-  line: styles.line(theme)
+  line: styles.line(theme),
+  arrow: styles.arrow(theme)
 }))(props => {
   const { className, classes, correctness, disabled, graphProps, from, to, ...rest } = props;
   const { scale } = graphProps;
   const [eFrom, eTo] = trig.edges(graphProps.domain, graphProps.range)(from, to);
-  const size = 20;
   return (
     <g>
       <defs>
-        <marker
-          id="arrow"
-          viewBox={`0 0 ${size} ${size}`}
-          refX={size / 2}
-          refY={size / 2}
-          markerWidth="10"
-          markerHeight="10"
-          orient="auto-start-reverse"
-          className={classes.arrow}
-        >
-          <ArrowHead />
-        </marker>
+        <ArrowMarker id={markerId} className={classes.arrow} />
       </defs>
       <line
         x1={scale.x(eFrom.x)}
@@ -40,8 +30,8 @@ const ArrowedLine = withStyles(theme => ({
           classes[correctness],
           className
         )}
-        markerEnd="url(#arrow)"
-        markerStart="url(#arrow)"
+        markerEnd={`url(#${markerId})`}
+        markerStart={`url(#${markerId})`}
         {...rest}
       />
     </g>
