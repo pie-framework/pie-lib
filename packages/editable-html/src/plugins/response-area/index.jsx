@@ -82,8 +82,6 @@ export default function ResponseAreaPlugin(opts) {
       if (n.type === 'menu_item') {
         const data = n.data.toJSON();
 
-        console.log('Index', n.key, data.id);
-
         return <MenuItem n={n} data={data} nodeProps={props} />;
       }
 
