@@ -30,12 +30,12 @@ describe('Blank', () => {
     });
 
     it('renders correctly with draggedItem', () => {
-      wrapper.setProps({ dragItem: {} });
+      wrapper.setProps({ dragItem: { choice: { value: 'Dog' } } });
       expect(wrapper).toMatchSnapshot();
     });
 
     it('renders correctly with draggedItem and isOver', () => {
-      wrapper.setProps({ dragItem: { value: 'Dog' }, isOver: true });
+      wrapper.setProps({ dragItem: { choice: { value: 'Dog' } }, isOver: true });
       expect(wrapper).toMatchSnapshot();
     });
   });

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Editor from './editor';
+import Editor, { DEFAULT_PLUGINS, ALL_PLUGINS } from './editor';
 import { htmlToValue, valueToHtml } from './serialization';
 import debug from 'debug';
 
@@ -8,18 +8,23 @@ const log = debug('@pie-lib:editable-html');
 /**
  * Export lower level Editor and serialization functions.
  */
-export { htmlToValue, valueToHtml, Editor };
+export { htmlToValue, valueToHtml, Editor, DEFAULT_PLUGINS, ALL_PLUGINS };
 
 /**
  * Wrapper around the editor that exposes a `markup` and `onChange(markup:string)` api.
- * Because of the mismatch between the markup and the `Value` we need to convert the incoming markup to a value and compare it.
- * TODO: This is an interim fix, we'll need to strip back `Editor` and look how best to maintain the `markup` api whilst avoiding the serialization mismatch.
- * We should be making better use of schemas w/ normalize.
+ * Because of the mismatch between the markup and the `Value` we need to convert the incoming markup to a value and
+ * compare it. TODO: This is an interim fix, we'll need to strip back `Editor` and look how best to maintain the
+ * `markup` api whilst avoiding the serialization mismatch. We should be making better use of schemas w/ normalize.
  */
 export default class EditableHtml extends React.Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
+    onDone: PropTypes.func,
     markup: PropTypes.string.isRequired
+  };
+
+  static defaultProps = {
+    onDone: () => {}
   };
 
   constructor(props) {
@@ -50,11 +55,34 @@ export default class EditableHtml extends React.Component {
     }
   }
 
-  onChange = value => {
+  onChange = (value, done) => {
     const html = valueToHtml(value);
+
     log('value as html: ', html);
+
     if (html !== this.props.markup) {
       this.props.onChange(html);
+    }
+
+    if (done) {
+      this.props.onDone();
+    }
+  };
+
+  focus = position => {
+    if (this.editorRef) {
+      this.editorRef.change(c => {
+        const lastText = c.value.document.getLastText();
+
+        c.focus();
+
+        if (position === 'end') {
+          c.moveFocusTo(lastText.key, lastText.text.length).moveAnchorTo(
+            lastText.key,
+            lastText.text.length
+          );
+        }
+      });
     }
   };
 
@@ -64,8 +92,10 @@ export default class EditableHtml extends React.Component {
       ...this.props,
       markup: null,
       value,
-      onChange: this.onChange
+      onChange: this.onChange,
+      onDone: this.onDone
     };
-    return <Editor {...props} />;
+
+    return <Editor editorRef={ref => ref && (this.editorRef = ref)} {...props} />;
   }
 }

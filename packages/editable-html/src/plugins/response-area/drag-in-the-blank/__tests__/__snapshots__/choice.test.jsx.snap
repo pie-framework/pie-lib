@@ -1,0 +1,147 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`choice snapshot renders correctly when some tile is dragged and is over this tile 1`] = `
+<div
+  contentEditable={false}
+  data-key="0"
+  style={
+    Object {
+      "background": "#FFF",
+      "border": "1px solid #C0C3CF",
+      "borderRadius": "3px",
+      "boxSizing": "border-box",
+      "display": "inline-flex",
+      "height": "36px",
+      "minHeight": "36px",
+      "minWidth": "178px",
+      "overflow": "hidden",
+      "padding": "8px 8px 8px 35px",
+      "position": "relative",
+    }
+  }
+>
+  <GripIcon
+    contentEditable={false}
+    style={
+      Object {
+        "color": "#9B9B9B",
+        "left": "15px",
+        "position": "absolute",
+        "top": "6px",
+      }
+    }
+  />
+  <span
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "B",
+      }
+    }
+  />
+  A
+</div>
+`;
+
+exports[`choice snapshot renders correctly when some tile is dragged but it is not over this tile, has no value 1`] = `
+<div
+  contentEditable={false}
+  data-key="0"
+  style={
+    Object {
+      "background": "#FFF",
+      "border": "1px solid #C0C3CF",
+      "borderRadius": "3px",
+      "boxSizing": "border-box",
+      "display": "inline-flex",
+      "height": "36px",
+      "minHeight": "36px",
+      "minWidth": "178px",
+      "overflow": "hidden",
+      "padding": "8px 8px 8px 35px",
+      "position": "relative",
+    }
+  }
+>
+  <span
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": " ",
+      }
+    }
+  />
+  A
+</div>
+`;
+
+exports[`choice snapshot renders correctly when some tile is dragged but it is not over this tile, has value 1`] = `
+<div
+  contentEditable={false}
+  data-key="0"
+  style={
+    Object {
+      "background": "#FFF",
+      "border": "1px solid #C0C3CF",
+      "borderRadius": "3px",
+      "boxSizing": "border-box",
+      "display": "inline-flex",
+      "height": "36px",
+      "minHeight": "36px",
+      "minWidth": "178px",
+      "overflow": "hidden",
+      "padding": "8px 8px 8px 35px",
+      "position": "relative",
+    }
+  }
+>
+  <GripIcon
+    contentEditable={false}
+    style={
+      Object {
+        "color": "#9B9B9B",
+        "left": "15px",
+        "position": "absolute",
+        "top": "6px",
+      }
+    }
+  />
+  <span
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "C",
+      }
+    }
+  />
+  A
+</div>
+`;
+
+exports[`choice snapshot renders correctly when this tile is being dragged 1`] = `
+<div
+  contentEditable={false}
+  data-key="0"
+  style={
+    Object {
+      "background": "#FFF",
+      "border": "1px solid #C0C3CF",
+      "borderRadius": "3px",
+      "boxSizing": "border-box",
+      "display": "inline-flex",
+      "height": "36px",
+      "minHeight": "36px",
+      "minWidth": "178px",
+      "overflow": "hidden",
+      "padding": "8px 8px 8px 35px",
+      "position": "relative",
+    }
+  }
+>
+  <span
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": " ",
+      }
+    }
+  />
+  A
+</div>
+`;

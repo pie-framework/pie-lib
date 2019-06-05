@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`menu-item snapshot renders correctly when clicked 1`] = `
+<span
+  contentEditable={false}
+  data-node-key="0"
+  onMouseDown={[Function]}
+  style={
+    Object {
+      "background": "#C4DCFA",
+      "boxSizing": "border-box",
+      "cursor": "pointer",
+      "display": "block",
+      "lineHeight": "30px",
+      "margin": "0px 0px -20px 0px",
+      "minHeight": "45px",
+      "minWidth": "178px",
+      "padding": "10px 25px 10px 10px",
+      "position": "relative",
+    }
+  }
+>
+  <i
+    data-key="0"
+    onMouseDown={[Function]}
+    style={
+      Object {
+        "cursor": "pointer",
+        "fontSize": "20px",
+        "fontStyle": "normal",
+        "height": "50px",
+        "lineHeight": "40px",
+        "position": "absolute",
+        "right": "0",
+        "top": "0",
+        "width": "25px",
+        "zIndex": 3,
+      }
+    }
+  >
+    x
+  </i>
+  <div
+    style={
+      Object {
+        "background": "transparent",
+        "bottom": 0,
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+        "zIndex": 2,
+      }
+    }
+  />
+  A
+</span>
+`;
+
+exports[`menu-item snapshot renders correctly with default props 1`] = `
+<span
+  contentEditable={false}
+  data-node-key="0"
+  onMouseDown={[Function]}
+  style={
+    Object {
+      "background": "#fff",
+      "boxSizing": "border-box",
+      "cursor": "pointer",
+      "display": "block",
+      "lineHeight": "30px",
+      "margin": "0px 0px -20px 0px",
+      "minHeight": "45px",
+      "minWidth": "178px",
+      "padding": "10px 25px 10px 10px",
+      "position": "relative",
+    }
+  }
+>
+  <i
+    data-key="0"
+    onMouseDown={[Function]}
+    style={
+      Object {
+        "cursor": "pointer",
+        "fontSize": "20px",
+        "fontStyle": "normal",
+        "height": "50px",
+        "lineHeight": "40px",
+        "position": "absolute",
+        "right": "0",
+        "top": "0",
+        "width": "25px",
+        "zIndex": 3,
+      }
+    }
+  >
+    x
+  </i>
+  <div
+    style={
+      Object {
+        "background": "transparent",
+        "bottom": 0,
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+        "zIndex": 2,
+      }
+    }
+  />
+  A
+</span>
+`;

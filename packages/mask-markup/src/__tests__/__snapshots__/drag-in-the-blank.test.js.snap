@@ -1,10 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DragInTheBlank render renders correctly with default props 1`] = `
-<div>
+<div
+  style={
+    Object {
+      "display": "flex",
+      "flexDirection": "column-reverse",
+    }
+  }
+>
   <Choices
-    disabled={false}
-    value={
+    choices={
       Array [
         Object {
           "id": "0",
@@ -31,6 +37,12 @@ exports[`DragInTheBlank render renders correctly with default props 1`] = `
           "value": "Smiled",
         },
       ]
+    }
+    disabled={false}
+    value={
+      Object {
+        "0": undefined,
+      }
     }
   />
   <WithMask
@@ -84,10 +96,16 @@ exports[`DragInTheBlank render renders correctly with default props 1`] = `
 `;
 
 exports[`DragInTheBlank render renders correctly with disabled prop as true 1`] = `
-<div>
+<div
+  style={
+    Object {
+      "display": "flex",
+      "flexDirection": "column-reverse",
+    }
+  }
+>
   <Choices
-    disabled={true}
-    value={
+    choices={
       Array [
         Object {
           "id": "0",
@@ -114,6 +132,12 @@ exports[`DragInTheBlank render renders correctly with disabled prop as true 1`] 
           "value": "Smiled",
         },
       ]
+    }
+    disabled={true}
+    value={
+      Object {
+        "0": undefined,
+      }
     }
   />
   <WithMask
@@ -167,10 +191,16 @@ exports[`DragInTheBlank render renders correctly with disabled prop as true 1`] 
 `;
 
 exports[`DragInTheBlank render renders correctly with feedback 1`] = `
-<div>
+<div
+  style={
+    Object {
+      "display": "flex",
+      "flexDirection": "column-reverse",
+    }
+  }
+>
   <Choices
-    disabled={false}
-    value={
+    choices={
       Array [
         Object {
           "id": "0",
@@ -197,6 +227,12 @@ exports[`DragInTheBlank render renders correctly with feedback 1`] = `
           "value": "Smiled",
         },
       ]
+    }
+    disabled={false}
+    value={
+      Object {
+        "0": undefined,
+      }
     }
   />
   <WithMask

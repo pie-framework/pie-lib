@@ -12,10 +12,7 @@ const log = debug('@pie-lib:editable-html:plugins:toolbar:editor-and-toolbar');
 
 export class EditorAndToolbar extends React.Component {
   static propTypes = {
-    children: PropTypes.oneOfType([
-      PropTypes.arrayOf(PropTypes.node),
-      PropTypes.node
-    ]).isRequired,
+    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
     value: SlatePropTypes.value.isRequired,
     plugins: PropTypes.array.isRequired,
     onChange: PropTypes.func.isRequired,
@@ -25,13 +22,19 @@ export class EditorAndToolbar extends React.Component {
     disableUnderline: PropTypes.bool,
     autoWidth: PropTypes.bool,
     classes: PropTypes.object.isRequired,
-    pluginProps: PropTypes.object
+    pluginProps: PropTypes.object,
+    toolbarOpts: PropTypes.shape({
+      position: PropTypes.oneOf(['bottom', 'top']),
+      alwaysVisible: PropTypes.bool
+    })
   };
 
   /** This is an interim fix until this PR is merged in slate:
    * https://github.com/ianstormtaylor/slate/pull/2236
    */
   componentDidMount() {
+    window.editorRef = this.editorRef;
+
     if (IS_FIREFOX) {
       this.editorRef.tmp.isUpdatingSelection = true;
     }
@@ -49,11 +52,11 @@ export class EditorAndToolbar extends React.Component {
       autoWidth,
       readOnly,
       disableUnderline,
-      pluginProps
+      pluginProps,
+      toolbarOpts
     } = this.props;
 
-    const inFocus =
-      value.isFocused || (focusedNode !== null && focusedNode !== undefined);
+    const inFocus = value.isFocused || (focusedNode !== null && focusedNode !== undefined);
     const holderNames = classNames(
       classes.editorHolder,
       inFocus && classes.editorInFocus,
@@ -91,6 +94,7 @@ export class EditorAndToolbar extends React.Component {
           onChange={onChange}
           onDone={onDone}
           pluginProps={pluginProps}
+          toolbarOpts={toolbarOpts}
         />
       </div>
     );
@@ -105,8 +109,9 @@ const style = {
     borderRadius: '4px',
     cursor: 'text',
     '& [data-slate-editor="true"]': {
-      overflow: 'auto',
-      maxHeight: '500px'
+      overflow: 'visible',
+      maxHeight: '500px',
+      padding: '5px 0'
     }
   },
   children: {
@@ -166,8 +171,7 @@ const style = {
     '&::before': {
       background: 'transparent',
       backgroundSize: '5px 1px',
-      backgroundImage:
-        'linear-gradient(to right, rgba(0, 0, 0, 0.42) 33%, transparent 0%)',
+      backgroundImage: 'linear-gradient(to right, rgba(0, 0, 0, 0.42) 33%, transparent 0%)',
       backgroundRepeat: 'repeat-x',
       backgroundPosition: 'left top'
     },
@@ -179,8 +183,7 @@ const style = {
       content: '""',
       position: 'absolute',
       transform: 'scaleX(0)',
-      transition:
-        'transform 200ms cubic-bezier(0.0, 0.0, 0.2, 1) 0ms, background-color 0ms linear',
+      transition: 'transform 200ms cubic-bezier(0.0, 0.0, 0.2, 1) 0ms, background-color 0ms linear',
       backgroundColor: 'rgba(0, 0, 0, 0)'
     },
     '&:hover': {
