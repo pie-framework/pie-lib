@@ -13,6 +13,7 @@ import classnames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
+import MoreVert from '@material-ui/icons/MoreVert';
 import InputChooser from '../src/editable-html/input-chooser';
 
 const log = debug('@pie-lib:editable-html:demo');
@@ -25,16 +26,59 @@ const renderOpts = {
   ]
 };
 
+const GripIcon = ({ style }) => {
+  return (
+    <span style={style}>
+      <MoreVert
+        style={{
+          margin: '0 -16px'
+        }}
+      />
+      <MoreVert />
+    </span>
+  );
+};
+
 export const BlankContent = withStyles(theme => ({
   choice: {
     border: `solid 0px ${theme.palette.primary.main}`
   },
   disabled: {}
 }))(props => {
-  const { children, connectDragSource, classes, disabled } = props;
+  const { connectDragSource, choice, onClick } = props;
 
   return connectDragSource(
-    <span className={classnames(classes.choice, disabled && classes.disabled)}>{children}</span>
+    <div
+      style={{
+        display: 'inline-flex',
+        minWidth: '178px',
+        minHeight: '36px',
+        height: '36px',
+        background: '#FFF',
+        border: '1px solid #C0C3CF',
+        boxSizing: 'border-box',
+        borderRadius: '3px',
+        overflow: 'hidden',
+        position: 'relative',
+        padding: '8px 8px 8px 35px'
+      }}
+      onClick={onClick}
+    >
+      <GripIcon
+        style={{
+          position: 'absolute',
+          top: '6px',
+          left: '15px',
+          color: '#9B9B9B',
+          zIndex: 2
+        }}
+      />
+      <span
+        dangerouslySetInnerHTML={{
+          __html: choice.value
+        }}
+      />
+    </div>
   );
 });
 
@@ -45,7 +89,7 @@ const tileSource = {
   beginDrag(props) {
     return {
       id: props.targetId,
-      value: props.value,
+      value: props.choice,
       instanceId: props.instanceId
     };
   },
@@ -69,9 +113,7 @@ const DragDropTile = DragSource('drag-in-the-blank-choice', tileSource, (connect
 const inputOptions = [
   {
     label: 'An image in a P tag',
-    // html: `<div><p><img src="${puppySrc}" style="width:170px;height:151px"/> bar</p><p><img src="${puppySrc}" style="width:170px;height:151px"/> bar</p></div>`,
-    html:
-      '<div><p>The <span data-type="drag_in_the_blank" data-id="0" data-value="cow"> jumped <span data-type="drag_in_the_blank" data-id="1" data-value="over"> the <span data-type="drag_in_the_blank" data-id="2" data-value="moon"></span></span></span></p></div>'
+    html: `<div><p><img src="${puppySrc}" style="width:170px;height:151px"/> bar</p><p><img src="${puppySrc}" style="width:170px;height:151px"/> bar</p></div>`
   },
   {
     label: 'Latex \\(..\\)',
@@ -349,11 +391,13 @@ class RteDemo extends React.Component {
         <input type="file" hidden ref={r => (this.fileInput = r)} />
         <br />
 
-        <DragDropTile targetId="0">
-          <span data-latex="" data-raw="\sqrt{4}">
-            \(\sqrt{4}\)
-          </span>
-        </DragDropTile>
+        <DragDropTile
+          targetId="0"
+          choice={{
+            id: '0',
+            value: '<span data-latex="" data-raw="\\sqrt{4}">\\(\\sqrt{4}\\)</span>'
+          }}
+        />
         <MarkupPreview markup={markup} />
       </div>
     ) : (

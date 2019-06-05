@@ -13,13 +13,20 @@ export const BlankContent = withStyles(theme => ({
   choice: {
     border: `solid 0px ${theme.palette.primary.main}`
   },
+  chip: {
+    alignItems: 'center',
+    display: 'inline-flex',
+    height: 'initial',
+    minHeight: '32px'
+  },
   disabled: {}
 }))(props => {
   const { connectDragSource, classes, disabled } = props;
   return connectDragSource(
     <span className={classnames(classes.choice, disabled && classes.disabled)}>
       <Chip
-        label={<span dangerouslySetInnerHTML={{ __html: props.value }} />}
+        className={classes.chip}
+        label={<span dangerouslySetInnerHTML={{ __html: props.choice.value }} />}
         variant={disabled ? 'outlined' : undefined}
       />
     </span>,
@@ -33,18 +40,9 @@ const tileSource = {
   },
   beginDrag(props) {
     return {
-      id: props.targetId,
-      value: props.id,
-      label: props.value,
+      choice: props.choice,
       instanceId: props.instanceId
     };
-  },
-  endDrag(props, monitor) {
-    if (!monitor.didDrop()) {
-      if (props.type === 'target') {
-        props.onRemoveChoice(monitor.getItem());
-      }
-    }
   }
 };
 

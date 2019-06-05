@@ -144,6 +144,8 @@ export class Toolbar extends React.Component {
       plugin && plugin.toolbar && plugin.toolbar.customToolbar
         ? plugin.toolbar.customToolbar(node, value, handleDone)
         : null;
+    const filteredPlugins =
+      plugin && plugin.filterPlugins ? plugin.filterPlugins(node, plugins) : plugins;
 
     log('[render] CustomToolbar: ', CustomToolbar);
     const parentExtraStyles =
@@ -174,7 +176,7 @@ export class Toolbar extends React.Component {
           <CustomToolbar />
         ) : (
           <DefaultToolbar
-            plugins={plugins}
+            plugins={filteredPlugins}
             pluginProps={pluginProps}
             value={value}
             onChange={onChange}

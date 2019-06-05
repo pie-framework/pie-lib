@@ -1,295 +1,26 @@
-import { Inline, Text, Node } from 'slate';
-import { cloneFragment, findDOMNode } from 'slate-react';
-import { DragSource, DropTarget } from '@pie-lib/drag';
-import Snackbar from '@material-ui/core/Snackbar';
-import { withStyles } from '@material-ui/core/styles';
-import classnames from 'classnames';
+import React from 'react';
+import debug from 'debug';
+import { Inline, Text, Node, Document } from 'slate';
+import { cloneFragment, findDOMNode, getEventTransfer } from 'slate-react';
 import isEmpty from 'lodash/isEmpty';
 import isEqual from 'lodash/isEqual';
+import capitalize from 'lodash/capitalize';
 
-import ChevronRight from '@material-ui/icons/ChevronRight';
-import MoreVert from '@material-ui/icons/MoreVert';
-import React from 'react';
-import ReactDOM from 'react-dom';
-import debug from 'debug';
+import InlineDropdown, { ItemBuilder, MenuItem } from './inline-dropdown';
+import DragInTheBlank from './drag-in-the-blank';
+import ExplicitConstructedResponse from './explicit-constructed-response';
+import { getDefaultElement, isNumber } from './utils';
+import { ToolbarIcon } from './icons';
 
 const log = debug('@pie-lib:editable-html:plugins:response-area');
 
-const getRotate = direction => {
-  switch (direction) {
-    case 'down':
-      return 90;
-    case 'up':
-      return -90;
-    case 'left':
-      return 180;
-    default:
-      return 0;
-  }
-};
-
-const Chevron = ({ direction, style }) => {
-  const rotate = getRotate(direction);
-
-  return (
-    <ChevronRight
-      style={{
-        transform: `rotate(${rotate}deg)`,
-        ...style
-      }}
-    />
-  );
-};
-
-const GripIcon = ({ style }) => {
-  return (
-    <span style={style}>
-      <MoreVert
-        style={{
-          margin: '0 -16px'
-        }}
-      />
-      <MoreVert />
-    </span>
-  );
-};
-
-const useStyles = withStyles(theme => ({
-  content: {
-    border: `solid 0px ${theme.palette.primary.main}`
-  },
-  chip: {
-    minWidth: '90px'
-  },
-  correct: {
-    border: 'solid 1px green'
-  },
-  incorrect: {
-    border: 'solid 1px red'
-  }
-}));
-
-const BlankContent = ({ n, children, isDragging, dragItem, isOver, value }) => {
-  console.log('Dragging', isDragging);
-
-  const label = dragItem && isOver ? dragItem.value.value : value || '\u00A0';
-  const finalLabel = isDragging ? '\u00A0' : label;
-  const hasGrip = finalLabel !== '\u00A0';
-
-  return (
-    <div
-      style={{
-        display: 'inline-flex',
-        minWidth: '178px',
-        minHeight: '36px',
-        height: '36px',
-        background: '#FFF',
-        border: '1px solid #C0C3CF',
-        boxSizing: 'border-box',
-        borderRadius: '3px',
-        overflow: 'hidden',
-        position: 'relative',
-        padding: '8px 8px 8px 35px'
-      }}
-      data-key={n.key}
-      contentEditable={false}
-    >
-      {hasGrip && (
-        <GripIcon
-          style={{
-            position: 'absolute',
-            top: '6px',
-            left: '15px',
-            color: '#9B9B9B'
-          }}
-          contentEditable={false}
-        />
-      )}
-      <span
-        dangerouslySetInnerHTML={{
-          __html: finalLabel
-        }}
-      />
-      {children}
-    </div>
-  );
-};
-
-const StyledBlankContent = useStyles(BlankContent);
-
-const connectedBlankContent = useStyles(({ connectDropTarget, connectDragSource, ...props }) => {
-  const { classes, isOver, value } = props;
-  const dragContent = <StyledBlankContent {...props} />;
-  const dragEl = !value ? dragContent : connectDragSource(<span>{dragContent}</span>);
-  const content = (
-    <span className={classnames(classes.content, isOver && classes.over)}>{dragEl}</span>
-  );
-
-  return connectDropTarget ? connectDropTarget(content) : content;
-});
-
-const tileTarget = {
-  drop(props, monitor) {
-    const draggedItem = monitor.getItem();
-
-    if (!draggedItem.fromChoice || (draggedItem.fromChoice && props.duplicates)) {
-      log('props.instanceId', props.instanceId, 'draggedItem.instanceId:', draggedItem.instanceId);
-      props.onChange(draggedItem.value);
-    }
-  },
-  canDrop(props, monitor) {
-    const draggedItem = monitor.getItem();
-
-    return draggedItem.instanceId === props.instanceId;
-  }
-};
-
-const DropTile = DropTarget('drag-in-the-blank-choice', tileTarget, (connect, monitor) => ({
-  connectDropTarget: connect.dropTarget(),
-  isOver: monitor.isOver(),
-  dragItem: monitor.getItem()
-}))(connectedBlankContent);
-
-const tileSource = {
-  canDrag(props) {
-    return !props.disabled && !!props.value;
-  },
-  beginDrag(props) {
-    return {
-      id: props.targetId,
-      value: props.value,
-      instanceId: props.instanceId,
-      fromChoice: true
-    };
-  },
-  endDrag(props, monitor) {
-    if (!monitor.didDrop()) {
-      const draggedItem = monitor.getItem();
-
-      if (draggedItem.fromChoice) {
-        props.removeResponse();
-      }
-    }
-  }
-};
-
-const DragDropTile = DragSource('drag-in-the-blank-choice', tileSource, (connect, monitor) => ({
-  connectDragSource: connect.dragSource(),
-  isDragging: monitor.isDragging()
-}))(DropTile);
-
-const isNumber = val => !isNaN(parseFloat(val)) && isFinite(val);
-
-let clickInterval;
-
-const insertSnackBar = message => {
-  const prevSnacks = document.querySelectorAll('.response-area-alert');
-
-  prevSnacks.forEach(s => s.remove());
-
-  const newEl = document.createElement('div');
-
-  newEl.className = 'response-area-alert';
-
-  const el = (
-    <Snackbar
-      anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-      open={true}
-      ContentProps={{
-        'aria-describedby': 'message-id'
-      }}
-      message={<span id="message-id">{message}</span>}
-    />
-  );
-
-  ReactDOM.render(el, newEl);
-
-  document.body.appendChild(newEl);
-
-  setTimeout(() => {
-    newEl.remove();
-  }, 2000);
-};
-
 export default function ResponseAreaPlugin(opts) {
   const toolbar = {
-    icon: (
-      <div
-        style={{
-          fontFamily: 'Cerebri Sans',
-          fontSize: '14px',
-          lineHeight: '14px',
-          position: 'relative',
-          top: '7px',
-          width: '110px',
-          height: '28px'
-        }}
-      >
-        + Response Area
-      </div>
-    ),
+    icon: <ToolbarIcon />,
     onClick: (value, onChange) => {
       log('[toolbar] onClick');
       const change = value.change();
-      let newInline;
-
-      switch (opts.type) {
-        case 'explicit-constructed-response':
-          newInline = Inline.create({
-            type: 'explicit_constructed_response',
-            nodes: [Text.create('\u00A0')],
-            data: {
-              selected: null
-            }
-          });
-          break;
-        case 'drag-in-the-blank':
-          newInline = Inline.create({
-            type: 'drag_in_the_blank',
-            isVoid: true,
-            data: {
-              duplicates: opts.options.duplicates,
-              value: null
-            }
-          });
-          break;
-        default:
-          // inline-dropdown
-          newInline = Inline.create({
-            type: 'inline_dropdown',
-            nodes: [
-              Inline.create({
-                type: 'item_builder',
-                nodes: [Text.create('\u00A0')]
-              }),
-              {
-                object: 'inline',
-                type: 'menu_item',
-                data: {
-                  id: 0,
-                  value: 'Default Option 1',
-                  isDefault: true
-                },
-                nodes: [Text.create('Default Option 1')]
-              },
-              {
-                object: 'inline',
-                type: 'menu_item',
-                data: {
-                  id: 1,
-                  value: 'Default Option 2',
-                  isDefault: true
-                },
-                nodes: [Text.create('Default Option 2')]
-              }
-            ],
-            data: {
-              open: false,
-              selected: null
-            }
-          });
-          break;
-      }
+      const newInline = getDefaultElement(opts);
 
       if (newInline) {
         change.insertInline(newInline);
@@ -298,13 +29,23 @@ export default function ResponseAreaPlugin(opts) {
       }
     },
     supports: node =>
-      node.object === 'inline' && (node.type === 'inline_dropdown' || node.type === 'item_builder'),
+      node.object === 'inline' &&
+      (node.type === 'inline_dropdown' ||
+        node.type === 'item_builder' ||
+        node.type === 'explicit_constructed_response'),
     showDone: true
   };
 
   return {
-    name: 'inline_dropdown',
+    name: 'response_area',
     toolbar,
+    filterPlugins: (node, plugins) => {
+      if (node.type === 'explicit_constructed_response') {
+        return [];
+      }
+
+      return plugins.filter(p => p.name !== 'response_area');
+    },
     pluginStyles: (parentNode, p) => {
       if (p && p.name === 'math') {
         //eslint-disable-next-line
@@ -322,10 +63,6 @@ export default function ResponseAreaPlugin(opts) {
       }
     },
 
-    schema: {
-      document: { match: [{ type: 'inline_dropdown' }] }
-    },
-
     // Doesn't need reset
     stopReset: () => {
       return true;
@@ -335,124 +72,7 @@ export default function ResponseAreaPlugin(opts) {
       const { attributes, node: n } = props;
 
       if (n.type === 'item_builder') {
-        return (
-          <span
-            {...attributes}
-            style={{
-              alignItems: 'center',
-              background: '#E0E1E6',
-              boxSizing: 'border-box',
-              borderRadius: '2px 2px 0px 0px',
-              display: 'inline-flex',
-              minHeight: '52px',
-              justifyContent: 'center',
-              minWidth: '178px',
-              width: '100%',
-              cursor: 'initial',
-              padding: '10px'
-            }}
-            contentEditable
-            suppressContentEditableWarning
-          >
-            <span
-              style={{
-                background: '#fff',
-                border: '2px solid #89B7F4',
-                borderRadius: '3px',
-                boxSizing: 'border-box',
-                display: 'inline-block',
-                minWidth: '160px',
-                width: '100%',
-                minHeight: '36px',
-                position: 'relative',
-                padding: '10px 25px 10px 10px'
-              }}
-              data-key={n.key}
-              onMouseDown={e => {
-                const value = props.editor.value;
-                const change = value.change();
-                const closestWithKey = e.target.closest('[data-key]');
-                const key = closestWithKey.dataset.key;
-                const currentNode = value.document.findDescendant(d => d.key === key);
-                const lastText = currentNode.getLastText();
-
-                setTimeout(() => {
-                  const native = window.getSelection();
-                  const p = native.anchorNode.parentElement.closest('[data-offset-key]');
-
-                  if (p) {
-                    const attr = p.getAttribute('data-offset-key');
-                    const focusKey = attr.split(':')[0];
-
-                    if (focusKey !== lastText.key) {
-                      change
-                        .moveFocusTo(lastText.key, lastText.text.length - 1)
-                        .moveAnchorTo(lastText.key, lastText.text.length - 1);
-
-                      props.editor.onChange(change);
-                    }
-                  }
-                });
-              }}
-            >
-              {props.children}
-              <i
-                style={{
-                  cursor: 'pointer',
-                  fontSize: '20px',
-                  fontStyle: 'normal',
-                  position: 'absolute',
-                  top: '8px',
-                  right: '8px'
-                }}
-                contentEditable={false}
-                onMouseDown={e => {
-                  const value = props.editor.value;
-                  const { document } = value;
-                  const change = value.change();
-                  const inlineDropdown = document.getClosest(
-                    n.key,
-                    a => a.type === 'inline_dropdown'
-                  );
-                  const newVal = n.getText();
-
-                  e.preventDefault();
-                  e.stopPropagation();
-                  e.nativeEvent.stopImmediatePropagation();
-
-                  if (n.nodes.size !== 1 || (newVal && newVal !== '\u00A0')) {
-                    const lastMenuItem = inlineDropdown.nodes.findLast(n => n.type === 'menu_item');
-                    const clonedNodes = n.nodes.map(n => Node.create(n.toJSON()));
-                    const node = Inline.create({
-                      type: 'menu_item',
-                      nodes: clonedNodes,
-                      data: {
-                        id: !lastMenuItem ? 0 : parseInt(lastMenuItem.data.get('id')) + 1
-                      }
-                    });
-
-                    const jsonNode = n.toJSON();
-
-                    change.insertNodeByKey(inlineDropdown.key, inlineDropdown.nodes.size, node);
-                    change.replaceNodeByKey(
-                      n.key,
-                      Node.create({
-                        ...jsonNode,
-                        nodes: [Text.create('\u00A0')]
-                      })
-                    );
-                  } else {
-                    insertSnackBar('Choice cannot be empty');
-                  }
-
-                  props.editor.onChange(change);
-                }}
-              >
-                +
-              </i>
-            </span>
-          </span>
-        );
+        return <ItemBuilder attributes={attributes} n={n} nodeProps={props} />;
       }
 
       if (n.type === 'response_menu_item') {
@@ -464,244 +84,19 @@ export default function ResponseAreaPlugin(opts) {
 
         console.log('Index', n.key, data.id);
 
-        return (
-          <span
-            contentEditable={false}
-            data-node-key={n.key}
-            style={{
-              background: data.clicked ? '#C4DCFA' : '#fff',
-              boxSizing: 'border-box',
-              display: 'block',
-              minHeight: '45px',
-              minWidth: '178px',
-              cursor: 'pointer',
-              lineHeight: '30px',
-              padding: '10px 25px 10px 10px',
-              margin: '0px 0px -20px 0px',
-              position: 'relative'
-            }}
-            onMouseDown={e => {
-              e.preventDefault();
-              e.stopPropagation();
-              e.nativeEvent.stopImmediatePropagation();
-
-              const handleClick = (e, doubleClick) => {
-                const val = props.editor.value;
-                const change = val.change();
-                const list = val.document.filterDescendants(d => d.type === 'menu_item');
-
-                if (doubleClick) {
-                  const closestEl = e.target.closest('[data-node-key]');
-                  const key = closestEl.dataset.nodeKey;
-                  // response area
-                  const inlineDropdown = val.document.getClosest(
-                    key,
-                    a => a.type === 'inline_dropdown'
-                  );
-                  const newData = {
-                    ...inlineDropdown.data.toJSON(),
-                    open: false,
-                    selected: null
-                  };
-
-                  const menuItem = inlineDropdown.findDescendant(
-                    d => d.type === 'menu_item' && d.key === key
-                  );
-
-                  newData.selected = menuItem && menuItem.data.get('id');
-
-                  console.log('Changing to', newData.selected);
-
-                  change.setNodeByKey(inlineDropdown.key, {
-                    data: newData
-                  });
-                  const nextText = val.document.getNextText(inlineDropdown.key);
-
-                  change.moveFocusTo(nextText.key, 0).moveAnchorTo(nextText.key, 0);
-                } else {
-                  list.forEach(n =>
-                    change.setNodeByKey(n.key, {
-                      data: {
-                        ...n.data.toJSON(),
-                        clicked: false
-                      }
-                    })
-                  );
-
-                  change.setNodeByKey(n.key, {
-                    data: {
-                      ...data,
-                      clicked: true
-                    }
-                  });
-                }
-
-                props.editor.onChange(change);
-                clickInterval = undefined;
-              };
-
-              console.log('click', clickInterval);
-
-              if (clickInterval) {
-                clearInterval(clickInterval);
-                handleClick(e, true);
-              } else {
-                clickInterval = setTimeout(() => handleClick(e), 200);
-              }
-            }}
-          >
-            <i
-              style={{
-                cursor: 'pointer',
-                fontSize: '20px',
-                fontStyle: 'normal',
-                position: 'absolute',
-                top: '0',
-                right: '0',
-                zIndex: 3,
-                width: '25px',
-                height: '50px',
-                lineHeight: '40px'
-              }}
-              data-key={n.key}
-              onMouseDown={e => {
-                const elKey = e.target.dataset.key;
-                const val = props.editor.value;
-                const inlineDropdown = val.document.getClosest(
-                  elKey,
-                  a => a.type === 'inline_dropdown'
-                );
-                const menuItems = inlineDropdown.filterDescendants(d => d.type === 'menu_item');
-                const change = val.change();
-
-                e.preventDefault();
-                e.stopPropagation();
-                e.nativeEvent.stopImmediatePropagation();
-
-                if (menuItems.size > 2) {
-                  const elKey = e.target.dataset.key;
-
-                  change.removeNodeByKey(elKey);
-                } else {
-                  insertSnackBar('You need to have at least 2 possible responses.');
-                }
-
-                props.editor.onChange(change);
-              }}
-            >
-              x
-            </i>
-            <div
-              style={{
-                background: 'transparent',
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                zIndex: 2
-              }}
-            />
-            {props.children}
-          </span>
-        );
+        return <MenuItem n={n} data={data} nodeProps={props} />;
       }
 
       if (n.type === 'explicit_constructed_response') {
         const data = n.data.toJSON();
-        const { focused } = data;
 
         return (
-          <span
-            {...attributes}
-            style={{
-              display: 'inline-flex',
-              minHeight: '50px',
-              minWidth: '178px',
-              position: 'relative',
-              margin: '0 10px',
-              cursor: 'pointer'
-            }}
-          >
-            <div
-              style={{
-                cursor: 'default',
-                display: focused ? 'block' : 'none',
-                position: 'fixed',
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0
-              }}
-              onClick={() => {
-                const { value: val, onChange } = props.editor;
-                const change = val.change();
-                const nextText = val.document.getNextText(n.key);
-
-                change.moveFocusTo(nextText.key, 0).moveAnchorTo(nextText.key, 0);
-                change.setNodeByKey(n.key, {
-                  data: { focused: false }
-                });
-
-                onChange(change);
-              }}
-            />
-            <div
-              style={{
-                display: 'inline-flex',
-                minWidth: '178px',
-                minHeight: '36px',
-                height: !data.focused && '36px',
-                background: '#FFF',
-                border: '1px solid #C0C3CF',
-                boxSizing: 'border-box',
-                borderRadius: '3px',
-                overflow: 'hidden',
-                position: data.focused ? 'absolute' : 'relative',
-                padding: '8px'
-              }}
-              data-key={n.key}
-              onMouseDown={e => {
-                const value = props.editor.value;
-                const change = value.change();
-                const closestWithKey = e.target.closest('[data-key]');
-                const key = closestWithKey.dataset.key;
-                const currentNode =
-                  key === n.key
-                    ? value.document.findDescendant(d => d.key === key)
-                    : value.document.getClosestInline(key);
-                const lastText = currentNode.getLastText();
-
-                if (value.isFocused) {
-                  setTimeout(() => {
-                    const native = window.getSelection();
-                    const p = native.anchorNode.parentElement.closest('[data-offset-key]');
-
-                    if (p) {
-                      const attr = p.getAttribute('data-offset-key');
-                      const focusKey = attr.split(':')[0];
-
-                      if (!focused || focusKey !== lastText.key) {
-                        change
-                          .moveFocusTo(lastText.key, lastText.text.length - 1)
-                          .moveAnchorTo(lastText.key, lastText.text.length - 1);
-
-                        change.setNodeByKey(currentNode.key, {
-                          data: { focused: true }
-                        });
-
-                        props.editor.onChange(change);
-                      }
-                    }
-                  });
-                }
-              }}
-              contentEditable
-              suppressContentEditableWarning
-            >
-              {props.children}
-            </div>
-          </span>
+          <ExplicitConstructedResponse
+            attributes={attributes}
+            data={data}
+            n={n}
+            nodeProps={props}
+          />
         );
       }
 
@@ -709,187 +104,15 @@ export default function ResponseAreaPlugin(opts) {
         const data = n.data.toJSON();
 
         return (
-          <span
-            {...attributes}
-            style={{
-              display: 'inline-flex',
-              minHeight: '50px',
-              minWidth: '178px',
-              position: 'relative',
-              margin: '0 10px',
-              cursor: 'pointer'
-            }}
-          >
-            <DragDropTile
-              n={n}
-              targetId="0"
-              value={data.value}
-              duplicates={opts.options.duplicates}
-              onChange={value => {
-                const val = props.editor.value;
-                const change = val.change();
-
-                change.setNodeByKey(n.key, {
-                  data: value
-                });
-
-                props.editor.onChange(change);
-              }}
-              removeResponse={() => {
-                const val = props.editor.value;
-                const change = val.change();
-
-                change.setNodeByKey(n.key, {
-                  data: { value: undefined }
-                });
-
-                props.editor.onChange(change);
-              }}
-            >
-              {props.children}
-            </DragDropTile>
-          </span>
+          <DragInTheBlank attributes={attributes} data={data} n={n} nodeProps={props} opts={opts} />
         );
       }
 
       if (n.type === 'inline_dropdown') {
         const data = n.data.toJSON();
 
-        const openOrClose = open => {
-          const key = n.key;
-          const data = { open: open };
-          const val = props.editor.value;
-          const node = val.document.findDescendant(d => d.key === key);
-          const itemBuilder = node.findDescendant(d => d.type === 'item_builder');
-          const newChange = val.change();
-
-          newChange.setNodeByKey(key, {
-            data: {
-              ...node.data.toJSON(),
-              ...data
-            }
-          });
-
-          if (open) {
-            const firstText = itemBuilder.getFirstText();
-
-            newChange.moveFocusTo(firstText.key, 0).moveAnchorTo(firstText.key, 0);
-          } else {
-            const inlineDropdown = val.document.getClosest(
-              itemBuilder.key,
-              a => a.type === 'inline_dropdown'
-            );
-            const nextText = val.document.getNextText(inlineDropdown.key);
-
-            newChange.moveFocusTo(nextText.key, 0).moveAnchorTo(nextText.key, 0);
-          }
-
-          props.editor.onChange(newChange);
-        };
-
-        const { open } = data;
-        const getSelectedItem = () => {
-          const selectedChildren = props.children.find(
-            c => c.props.node.type === 'response_menu_item'
-          );
-
-          return selectedChildren ? React.cloneElement(selectedChildren) : null;
-        };
-
-        const selectedItem = getSelectedItem();
-        const filteredItems = props.children.filter(
-          c => c.props.node.type !== 'response_menu_item'
-        );
-
-        console.log('Open', open);
-
         return (
-          <span
-            {...attributes}
-            style={{
-              display: 'inline-flex',
-              height: '50px',
-              position: 'relative',
-              top: '10px',
-              margin: '0 10px',
-              cursor: 'pointer'
-            }}
-          >
-            <div
-              style={{
-                display: 'inline-flex',
-                minWidth: '178px',
-                height: '36px',
-                background: '#FFF',
-                border: '1px solid #C0C3CF',
-                boxSizing: 'border-box',
-                borderRadius: '3px',
-                position: 'relative',
-                bottom: '10px'
-              }}
-              contentEditable={false}
-              onClick={() => openOrClose(true)}
-            >
-              <div
-                style={{
-                  background: 'transparent',
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0
-                }}
-              />
-              <div
-                style={{
-                  flex: 1,
-                  overflow: 'hidden',
-                  padding: '8px 25px 8px 8px'
-                }}
-              >
-                {selectedItem || '\u00A0'}
-              </div>
-              <Chevron
-                direction="down"
-                style={{
-                  position: 'absolute',
-                  top: '5px',
-                  right: '5px'
-                }}
-              />
-            </div>
-            <div
-              style={{
-                cursor: 'default',
-                display: open ? 'block' : 'none',
-                position: 'fixed',
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0
-              }}
-              onClick={() => openOrClose(false)}
-            />
-            <div
-              style={{
-                background: '#fff',
-                position: 'absolute',
-                top: '30px',
-                display: 'block',
-                minWidth: '178px',
-                border: '1px solid #E0E1E6',
-                boxSizing: 'border-box',
-                boxShadow: '0px 0px 5px rgba(126, 132, 148, 0.3)',
-                borderRadius: '3px',
-                maxHeight: '400px',
-                overflow: 'scroll',
-                zIndex: open ? 2 : -1,
-                visibility: open ? 'visible' : 'hidden'
-              }}
-            >
-              {filteredItems}
-            </div>
-          </span>
+          <InlineDropdown attributes={attributes} data={data} n={n} nodeProps={props} opts={opts} />
         );
       }
     },
@@ -909,6 +132,7 @@ export default function ResponseAreaPlugin(opts) {
       const removeValueOnCloseArray = [];
       const addItemBuilder = [];
       const addSpacesArray = [];
+      const addMarginArray = [];
 
       const shouldRemoveSelection = node => {
         const selected = node.data.get('selected');
@@ -957,6 +181,7 @@ export default function ResponseAreaPlugin(opts) {
 
         return true;
       };
+
       const shouldRemoveValueOnClose = node => {
         if (node.data.get('open')) {
           return false;
@@ -967,11 +192,13 @@ export default function ResponseAreaPlugin(opts) {
 
         return !(text === '\u00A0' || isEmpty(text));
       };
+
       const shouldAddItemBuilder = node => {
         const itemBuilder = node.findDescendant(d => d.type === 'item_builder');
 
         return !itemBuilder;
       };
+
       const shouldAddSpace = node => {
         const lastText = node.getLastText();
 
@@ -982,7 +209,19 @@ export default function ResponseAreaPlugin(opts) {
         }
       };
 
+      const shouldAddMargin = respArea => {
+        const table = node.getClosest(respArea.key, n => n.type === 'table');
+
+        return table && !respArea.data.get('inTable');
+      };
+
       if (node.object === 'document') {
+        const allElements = node.filterDescendants(
+          d =>
+            d.type === 'inline_dropdown' ||
+            d.type === 'explicit_constructed_response' ||
+            d.type === 'drag_in_the_blank'
+        );
         const inlineDropdowns = node.filterDescendants(d => d.type === 'inline_dropdown');
         const ecrs = node.filterDescendants(d => d.type === 'explicit_constructed_response');
 
@@ -1034,6 +273,14 @@ export default function ResponseAreaPlugin(opts) {
             }
           });
         }
+
+        if (allElements.size) {
+          allElements.forEach(el => {
+            if (shouldAddMargin(el)) {
+              addMarginArray.push(el);
+            }
+          });
+        }
       }
 
       if (node.type === 'inline_dropdown') {
@@ -1066,8 +313,18 @@ export default function ResponseAreaPlugin(opts) {
         }
       }
 
+      console.log(
+        !addMarginArray.length,
+        !addSpacesArray.length,
+        !changeSelectionArray.length,
+        !removeValueOnCloseArray.length,
+        !addItemBuilder.length,
+        isEmpty(altChangesMap)
+      );
+
       if (
         /*!removeSelectionArray.length &&*/
+        !addMarginArray.length &&
         !addSpacesArray.length &&
         !changeSelectionArray.length &&
         !removeValueOnCloseArray.length &&
@@ -1105,6 +362,15 @@ export default function ResponseAreaPlugin(opts) {
 
       return change => {
         change.withoutNormalization(() => {
+          addMarginArray.forEach(n => {
+            change.setNodeByKey(n.key, {
+              data: {
+                ...n.data.toJSON(),
+                inTable: true
+              }
+            });
+          });
+
           addSpacesArray.forEach(n => {
             const lastText = n.getLastText();
 
@@ -1162,9 +428,15 @@ export default function ResponseAreaPlugin(opts) {
       };
     },
     onKeyDown(event, change, editor) {
+      /*
+       * This function handles the actions that are happening inside the 3 items
+       * when an user presses a key
+       * */
       const { startKey, startOffset, startText, endOffset, document } = editor.value;
       const closesInline = document.getClosestInline(startKey);
+      const prevNode = document.getPreviousNode(startKey);
 
+      const key = event.keyCode || event.which;
       const ARROW_LEFT = 37;
       const ARROW_RIGHT = 39;
       const ARROW_UP = 38;
@@ -1174,11 +446,16 @@ export default function ResponseAreaPlugin(opts) {
       const V_KEY = 86;
       const BACKSPACE_KEY = 8;
       const DELETE_KEY = 46;
+      const HOME_KEY = 36;
+      const END_KEY = 35;
       let shouldCancel = null;
 
-      if (closesInline && closesInline.type === 'item_builder') {
-        const key = event.keyCode || event.which;
-
+      // This function is handling the input inside these 2 elements
+      if (
+        closesInline &&
+        (closesInline.type === 'item_builder' ||
+          closesInline.type === 'explicit_constructed_response')
+      ) {
         if (
           key === A_KEY ||
           key === C_KEY ||
@@ -1201,110 +478,130 @@ export default function ResponseAreaPlugin(opts) {
             shouldCancel = true;
           };
 
+          // If we are at the beginning of the input
           if (startOffset === 0) {
+            // if the user presses the left or up arrow
             if (key === ARROW_LEFT || key === ARROW_UP) {
+              // we don't let the cursor go outside of the input
               preventEvent();
 
               console.log('Moved Left');
 
+              // if the buttons are pressed when the content is selected
               if (startOffset !== endOffset) {
+                // we remove the selection and go to the beginning of the input
                 change.moveOffsetsTo(0);
               }
             }
 
+            // if the user presses the backspace key
             if (key === BACKSPACE_KEY && startOffset === endOffset) {
+              // We prevent the event in order to not delete the inline
               preventEvent();
             }
           }
 
+          // If we are at the end of the input
           if (length - startOffset <= 1) {
+            // if the user presses the right or down arrow
             if (key === ARROW_RIGHT || key === ARROW_DOWN) {
+              // we don't let the cursor go outside of the input
               preventEvent();
               console.log('Moved Right');
             }
 
+            // if the user presses the delete key
             if (key === DELETE_KEY && startOffset === endOffset) {
+              // We prevent the event in order to not delete the inline
               preventEvent();
             }
           }
 
-          const goToBeginning = () => {
-            if (key === 36) {
+          const shouldGoToBeginning = () => {
+            // if the user presses the home key
+            if (key === HOME_KEY) {
               return true;
             }
 
             const altKey = event.metaKey;
 
+            // or the cmd + left or up arrow
             return altKey && (key === ARROW_LEFT || key === ARROW_UP);
           };
 
-          const goToEnd = () => {
-            if (key === 35) {
+          const shouldGoToEnd = () => {
+            // if the user presses the end key
+            if (key === END_KEY) {
               return true;
             }
 
             const altKey = event.metaKey;
 
+            // or the cmd + right or down arrow
             return altKey && (key === ARROW_RIGHT || key === ARROW_DOWN);
           };
 
-          if (goToEnd()) {
+          if (shouldGoToEnd()) {
             preventEvent();
 
+            // move the anchor to the end of the input
             change.moveAnchorOffsetTo(length - 1);
 
+            // if the shift key is not pressed we move the focus to the end of the input as well
             if (!event.shiftKey) {
               change.moveFocusOffsetTo(length - 1);
             }
 
+            // if the shift key is pressed some text is going to be selected
             editor.onChange(change);
             console.log('Moved To End');
           }
 
-          if (goToBeginning()) {
+          if (shouldGoToBeginning()) {
             preventEvent();
+
+            // move the anchor to the beginning of the input
             change.moveAnchorOffsetTo(0);
 
+            // if the shift key is not pressed we move the focus to the beginning of the input as well
             if (!event.shiftKey) {
               change.moveFocusOffsetTo(0);
             }
 
+            // if the shift key is pressed some text is going to be selected
             editor.onChange(change);
             console.log('Moved To Start');
           }
 
+          // if the control or metaKey is pressed
           if (event.cmdKey || event.metaKey) {
+            // if the A key is pressed as well
             if (key === A_KEY) {
               const firstText = closesInline.getFirstText();
               const lastText = closesInline.getLastText();
 
+              // we prevent the event
               preventEvent();
 
+              // we move the focus to the first text and anchor to the last, to select all text
               change
                 .moveFocusTo(firstText.key, 0)
                 .moveAnchorTo(lastText.key, lastText.text.length - 1);
               console.log('Select All');
             }
-
-            if (key === C_KEY) {
-              preventEvent();
-
-              console.log(cloneFragment);
-            }
-
-            if (key === V_KEY) {
-              console.log('Paste');
-            }
           }
 
+          // this is needed in order to check if the focus moved outside of the editors
           setTimeout(() => {
             const { startKey, document } = editor.value;
-            const closestItemBuilder = document.getClosest(
+            const closestEditableElement = document.getClosest(
               startKey,
-              a => a.type === 'item_builder'
+              a => a.type === 'item_builder' || a.type === 'explicit_constructed_response'
             );
 
-            if (!closestItemBuilder) {
+            // if the focus is outside of the editors
+            if (!closestEditableElement) {
+              // we move it inside the editor, at the end of the input
               change
                 .moveFocusTo(startText.key, startText.text.length - 1)
                 .moveAnchorTo(startText.key, startText.text.length - 1);
@@ -1316,15 +613,24 @@ export default function ResponseAreaPlugin(opts) {
         }
       }
 
+      // if the backspace key is pressed and the previous node is of ecr type
+      if (key === BACKSPACE_KEY && prevNode && prevNode.type === 'explicit_constructed_response') {
+        // we remove the node
+        change.removeNodeByKey(prevNode.key);
+        editor.onChange(change);
+
+        return true;
+      }
+
       const native = window.getSelection();
 
       /*
-       * If after pressing a key the focus moves inside the ecr input
-       * we expand the item
+       * If after pressing a key when the focus is not inside an ecr input
+       * and the focus moves inside the ecr input, then we expand the item
        * */
       if (!closesInline || closesInline.type !== 'explicit_constructed_response') {
         setTimeout(() => {
-          const { document, startKey, startOffset } = editor.value;
+          const { document, startOffset } = editor.value;
           const closestEl =
             native.anchorNode && native.anchorNode.parentElement.closest('[data-key]');
           const closestKey = closestEl && closestEl.dataset.key;
@@ -1347,22 +653,28 @@ export default function ResponseAreaPlugin(opts) {
       const closestKey = closestEl && closestEl.dataset.key;
       const closestEcr = closestKey && document.getClosestInline(closestKey);
 
+      // if the input is inside the ecr input
       if (closestEcr && closestEcr.type === 'explicit_constructed_response') {
+        /*
+         * this is needed in order to change the width of the ecr element
+         * to be the same as the one for the editable content
+         * */
         //eslint-disable-next-line
         const inlineDOMNode = findDOMNode(closestEcr);
         const absoluteChild = inlineDOMNode.childNodes[1];
         const childStyle = getComputedStyle(absoluteChild);
 
         inlineDOMNode.style.width = childStyle.width;
-      }
 
-      setTimeout(() => {
-        const closestEl =
-          native.anchorNode && native.anchorNode.parentElement.closest('[data-key]');
-        const closestKey = closestEl && closestEl.dataset.key;
-        const closestEcr = closestKey && document.getClosestInline(closestKey);
-
-        if (closestEcr) {
+        /*
+         * this is needed in order to handle the case when the focus moves outside of the input
+         * when it was inside before
+         * */
+        setTimeout(() => {
+          const closestEl =
+            native.anchorNode && native.anchorNode.parentElement.closest('[data-key]');
+          const closestKey = closestEl && closestEl.dataset.key;
+          const closestEcr = closestKey && document.getClosestInline(closestKey);
           const lastText = closestEcr.getLastText();
 
           if (
@@ -1376,8 +688,8 @@ export default function ResponseAreaPlugin(opts) {
             editor.onChange(change);
             console.log('A iesit');
           }
-        }
-      }, 0);
+        }, 0);
+      }
 
       return shouldCancel;
     },
@@ -1386,6 +698,87 @@ export default function ResponseAreaPlugin(opts) {
       const inline = editor.value.document.findDescendant(d => d.key === closestEl.dataset.key);
 
       if (inline.type === 'drag_in_the_blank') {
+        return false;
+      }
+    },
+    onCopy(event, change, editor) {
+      const closestEl = event.target.closest('[data-key]');
+      const inline = editor.value.document.getClosestInline(closestEl.dataset.key);
+
+      if (inline) {
+        if (inline.type === 'explicit_constructed_response' || inline.type === 'item_builder') {
+          const ecrInlineWithContent = editor.value.fragment.findDescendant(
+            d => d.type === 'explicit_constructed_response'
+          );
+          const fragment = Document.fromJSON({
+            object: 'document',
+            nodes: [
+              {
+                data: {},
+                isVoid: false,
+                nodes: ecrInlineWithContent.toJSON().nodes,
+                object: 'block',
+                type: 'paragraph'
+              }
+            ],
+            data: {}
+          });
+
+          cloneFragment(event, change.value, fragment);
+          return true;
+        }
+      }
+    },
+    onPaste(event, change, editor) {
+      const closestEl = event.target.closest('[data-key]');
+      const inline = editor.value.document.getClosestInline(closestEl.dataset.key);
+
+      if (
+        inline &&
+        (inline.type === 'explicit_constructed_response' || inline.type === 'item_builder')
+      ) {
+        const transfer = getEventTransfer(event);
+        let fragment = transfer.fragment;
+
+        let range = change.value.selection;
+
+        if (range.isExpanded) {
+          change.deleteAtRange(range, { normalize: false });
+
+          if (change.value.document.getDescendant(range.startKey)) {
+            range = range.collapseToStart();
+          } else {
+            range = range.collapseTo(range.endKey, 0);
+          }
+        }
+
+        if (!fragment || inline.type === 'explicit_constructed_response') {
+          const copied = event.clipboardData.getData('text');
+
+          change.insertText(copied);
+          editor.onChange(change);
+
+          return false;
+        }
+
+        if (!fragment.nodes.size) return;
+
+        fragment = fragment.mapDescendants(child => child.regenerateKey());
+
+        const blocks = fragment.getBlocks();
+        const firstBlock = blocks.first();
+
+        firstBlock.nodes.forEach(n => {
+          if (n.object === 'text') {
+            change.insertText(n.text);
+          } else {
+            change[`insert${capitalize(n.object)}`](n);
+            change.collapseToStartOfNextText(n);
+          }
+        });
+
+        editor.onChange(change);
+
         return false;
       }
     }
@@ -1415,6 +808,10 @@ export const serialization = {
         return n;
       });
 
+      if (newMenuItems.length === 0) {
+        newMenuItems.push(createDefaultMenuItem(1, 'Default Option 1'));
+      }
+
       if (newMenuItems.length === 1) {
         newMenuItems.push(createDefaultMenuItem(2, 'Default Option 2'));
       }
@@ -1433,7 +830,8 @@ export const serialization = {
           object: 'inline',
           type: 'inline_dropdown',
           data: {
-            selected: isNumber(el.dataset.correctId) ? parseInt(el.dataset.correctId) : undefined
+            selected: isNumber(el.dataset.correctId) ? parseInt(el.dataset.correctId) : undefined,
+            inTable: el.dataset.inTable
           },
           nodes: getChildNodes(el.childNodes)
         };
@@ -1452,6 +850,9 @@ export const serialization = {
         return {
           object: 'inline',
           type: 'explicit_constructed_response',
+          data: {
+            inTable: el.dataset.inTable
+          },
           nodes: next(el.childNodes)
         };
       case 'drag_in_the_blank':
@@ -1460,8 +861,10 @@ export const serialization = {
           type: 'drag_in_the_blank',
           isVoid: true,
           data: {
+            index: el.dataset.index,
             id: el.dataset.id,
-            value: el.dataset.value
+            value: el.dataset.value,
+            inTable: el.dataset.inTable
           }
         };
     }
@@ -1473,20 +876,38 @@ export const serialization = {
 
     switch (object.type) {
       case 'inline_dropdown': {
+        const data = object.data.toJSON();
+
         return (
-          <span data-type="inline_dropdown" data-correct-id={object.data.get('selected')}>
+          <span
+            data-type="inline_dropdown"
+            data-correct-id={data.selected}
+            data-in-table={data.inTable}
+          >
             {children}
           </span>
         );
       }
       case 'explicit_constructed_response': {
-        return <span data-type="explicit_constructed_response">{children}</span>;
-      }
-      case 'drag_in_the_blank': {
-        const jsonData = object.data.toJSON();
+        const data = object.data.toJSON();
 
         return (
-          <span data-type="drag_in_the_blank" data-id={jsonData.id} data-value={jsonData.value} />
+          <span data-type="explicit_constructed_response" data-in-table={data.inTable}>
+            {children}
+          </span>
+        );
+      }
+      case 'drag_in_the_blank': {
+        const data = object.data.toJSON();
+
+        return (
+          <span
+            data-type="drag_in_the_blank"
+            data-index={data.index}
+            data-id={data.id}
+            data-value={data.value}
+            data-in-table={data.inTable}
+          />
         );
       }
       case 'item_builder':

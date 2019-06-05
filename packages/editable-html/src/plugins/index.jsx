@@ -76,9 +76,11 @@ export const buildPlugins = (activePlugins, opts) => {
   const addIf = (key, p) => activePlugins.includes(key) && p;
   const imagePlugin = opts.image && opts.image.onDelete && ImagePlugin(opts.image);
   const mathPlugin = MathPlugin(opts.math);
+  const responseAreaPlugin =
+    opts.responseArea && ResponseAreaPlugin(opts.responseArea, compact([mathPlugin]));
 
   return compact([
-    addIf('table', TablePlugin(opts.table, compact([imagePlugin, mathPlugin]))),
+    addIf('table', TablePlugin(opts.table, compact([imagePlugin, mathPlugin, responseAreaPlugin]))),
     addIf('bold', MarkHotkey({ key: 'b', type: 'bold', icon: <Bold />, tag: 'strong' })),
     addIf('code', MarkHotkey({ key: '`', type: 'code', icon: <Code /> })),
     addIf('italic', MarkHotkey({ key: 'i', type: 'italic', icon: <Italic />, tag: 'em' })),
@@ -98,6 +100,6 @@ export const buildPlugins = (activePlugins, opts) => {
     addIf('numbered-list', List({ key: 'n', type: 'ol_list', icon: <NumberedListIcon /> })),
     ToolbarPlugin(opts.toolbar),
     SoftBreakPlugin(),
-    addIf('response-area', ResponseAreaPlugin(opts.responseArea, compact([mathPlugin])))
+    addIf('response-area', responseAreaPlugin)
   ]);
 };

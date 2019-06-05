@@ -15,6 +15,7 @@ const log = debug('editable-html:editor');
 
 export class Editor extends React.Component {
   static propTypes = {
+    editorRef: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired,
     onFocus: PropTypes.func,
     value: SlateTypes.value.isRequired,
@@ -178,7 +179,7 @@ export class Editor extends React.Component {
     log('[onEditingDone]');
     this.setState({ stashedValue: null, focusedNode: null });
     log('[onEditingDone] value: ', this.state.value);
-    this.props.onChange(this.state.value);
+    this.props.onChange(this.state.value, true);
   };
 
   onBlur = event => {
@@ -326,11 +327,12 @@ export class Editor extends React.Component {
       <div style={{ width: sizeStyle.width }} className={names}>
         <SlateEditor
           plugins={this.plugins}
-          ref={r => (this.editor = r)}
+          ref={r => (this.editor = r && this.props.editorRef(r))}
           value={value}
           onChange={this.onChange}
           onBlur={this.onBlur}
           onFocus={this.onFocus}
+          onEditingDone={this.onEditingDone}
           focusedNode={focusedNode}
           normalize={this.normalize}
           readOnly={disabled}
