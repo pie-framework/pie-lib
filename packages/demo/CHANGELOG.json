@@ -488,5 +488,35 @@
     "committerDate": "2019-05-17 13:25:39 +0300",
     "isTagged": true,
     "tag": "@pie-lib/demo@4.4.0"
+  },
+  {
+    "type": "feat",
+    "scope": "editable-html",
+    "subject": "made some changes in order to publish packages with the editable-html bump",
+    "merge": null,
+    "header": "feat(editable-html): made some changes in order to publish packages with the editable-html bump",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "d049e3c2f2bd650ae5e94b84aa7dd3348ad682dc",
+    "gitTags": "",
+    "committerDate": "2019-06-05 23:01:55 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/demo@4.5.0"
+  },
+  {
+    "type": "chore",
+    "scope": "editable-html",
+    "subject": "version bump",
+    "merge": null,
+    "header": "chore(editable-html): version bump",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "64d9b802b2df2f5bf96e21f6b8e12dd997416f4a",
+    "gitTags": "",
+    "committerDate": "2019-06-05 22:49:11 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/demo@4.5.0"
   }
 ]
