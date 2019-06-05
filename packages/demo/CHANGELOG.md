@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.5.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@4.4.0...@pie-lib/demo@4.5.0) (2019-06-05)
+
+
+### Features
+
+* **editable-html:** made some changes in order to publish packages with the editable-html bump ([d049e3c](https://github.com/pie-framework/pie-lib/commit/d049e3c))
+
+
+
+
+
 # [4.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@4.2.6...@pie-lib/demo@4.4.0) (2019-06-05)
 
 

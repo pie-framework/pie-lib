@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.1.4...@pie-lib/rubric@0.2.0) (2019-06-05)
+
+
+### Features
+
+* **editable-html:** made some changes in order to publish packages with the editable-html bump ([d049e3c](https://github.com/pie-framework/pie-lib/commit/d049e3c))
+
+
+
+
+
 ## [0.1.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.1.3...@pie-lib/rubric@0.1.4) (2019-06-05)
 
 **Note:** Version bump only for package @pie-lib/rubric
