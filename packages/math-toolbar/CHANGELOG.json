@@ -558,5 +558,20 @@
     "committerDate": "2019-05-15 16:23:52 +0300",
     "isTagged": true,
     "tag": "@pie-lib/math-toolbar@1.3.0"
+  },
+  {
+    "type": "chore",
+    "scope": "merge",
+    "subject": "merged with develop",
+    "merge": null,
+    "header": "chore(merge): merged with develop",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "e68506cf63b2a17973821bb0cfef40828faccd1f",
+    "gitTags": "",
+    "committerDate": "2019-05-21 06:26:54 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/math-toolbar@1.3.1"
   }
 ]
