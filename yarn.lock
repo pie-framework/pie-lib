@@ -1971,6 +1971,21 @@
     "@pie-lib/config-ui" "^7.10.0"
     prop-types "^15.6.0"
 
+"@pie-lib/config-ui@^10.3.0":
+  version "10.3.0"
+  resolved "https://registry.yarnpkg.com/@pie-lib/config-ui/-/config-ui-10.3.0.tgz#f4de12e3c31dcabf132b3f88a1761b285f3a80ba"
+  integrity sha512-OT2718nQ1wqiwcOCMbBlOjzqtPyQHKj6Wldcwx0t8fBxEnTNZ1HfSsBeN2EmmJIKzmWXy8G2GjEBRf4Aq+e1Mw==
+  dependencies:
+    "@material-ui/core" "^3.8.3"
+    "@material-ui/icons" "^3.0.2"
+    "@pie-lib/editable-html" "^7.6.0"
+    "@pie-lib/icons" "^2.3.8"
+    classnames "^2.2.6"
+    debug "^4.1.1"
+    lodash "^4.17.11"
+    prop-types "^15.6.2"
+    react-measure "^2.2.2"
+
 "@pie-lib/config-ui@^7.10.0":
   version "7.11.34"
   resolved "https://registry.yarnpkg.com/@pie-lib/config-ui/-/config-ui-7.11.34.tgz#0aa926da7970fb3dcf1ce7cff8c497677e5cf1a7"
@@ -2691,7 +2706,14 @@ afinn-165@^1.0.2:
   resolved "https://registry.yarnpkg.com/afinn-165/-/afinn-165-1.0.3.tgz#3968346229659bad79f9655017087c1771cc9eb6"
   integrity sha512-LTwJcUGRzjQCR6uQCXMEUkoecezmWNjyWRjPm9pv0WlIYtLLaOnVsR1RvAdSMgOJPTFNlxS1IkfXxrkmV+gcyQ==
 
-agent-base@4, agent-base@^4.1.0, agent-base@~4.2.1:
+agent-base@4, agent-base@^4.1.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/agent-base/-/agent-base-4.3.0.tgz#8165f01c436009bccad0b1d122f05ed770efc6ee"
+  integrity sha512-salcGninV0nPrwpGNn4VTXBb1SOuXQBiqbrNXoeizJsHrsL6ERFM2Ne3JUSBWRE6aeNJI2ROP/WEEIDUiDe3cg==
+  dependencies:
+    es6-promisify "^5.0.0"
+
+agent-base@~4.2.1:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/agent-base/-/agent-base-4.2.1.tgz#d89e5999f797875674c07d87f260fc41e83e8ca9"
   integrity sha512-JVwXMr9nHYTUXsBFKUqhJwvlcYU/blreOEUkhNR2eXZIvwd+c+o5V4MgDPKWnMS/56awN3TRzIP+KoPn+roQtg==
@@ -5243,9 +5265,9 @@ ee-first@1.1.1:
   integrity sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
 
 electron-to-chromium@^1.3.137:
-  version "1.3.146"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.146.tgz#d7010f417f87c2068fbb6700ae57767e2393eba7"
-  integrity sha512-BrUq08sx7eR4PCwLbjFxXmjcbDro6DSoc1pN8VCxq76U+o9JQzJlWH/NVtcpAqcktwpE5CVvMyqHqTQfCETNoQ==
+  version "1.3.147"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.147.tgz#5d804484f9ab836536a9f5db6020e3eb91d0a322"
+  integrity sha512-pHE+9S2OMXOLAze6KvKMA9Te56M5e4WIdPPPeZ2JiSNvpXkDrn9FoBot1yeeXMRClWvQGI6vj06kQFqCADrspQ==
 
 elegant-spinner@^1.0.1:
   version "1.0.1"
