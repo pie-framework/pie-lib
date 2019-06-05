@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.6.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.5.6...@pie-lib/editable-html@7.6.0) (2019-06-05)
+
+
+### Bug Fixes
+
+* **response-area:** fixed a bug that made it impossible to add a response-area ([9c7a54b](https://github.com/pie-framework/pie-lib/commit/9c7a54b))
+
+
+### Features
+
+* **response-area:** added response area to the editable-html packages ([bc7af2b](https://github.com/pie-framework/pie-lib/commit/bc7af2b))
+* **response-area:** changes to make the response-areas work ([1c15fcd](https://github.com/pie-framework/pie-lib/commit/1c15fcd))
+* **response-area:** commiting some changes in order for the packages to be published ([395358d](https://github.com/pie-framework/pie-lib/commit/395358d))
+* **response-area:** made some changes in order to be able to handle all 3 of the new elements ([480073e](https://github.com/pie-framework/pie-lib/commit/480073e))
+
+
+
+
+
 ## [7.5.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.5.5...@pie-lib/editable-html@7.5.6) (2019-05-22)
 
 **Note:** Version bump only for package @pie-lib/editable-html

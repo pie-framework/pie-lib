@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@4.2.6...@pie-lib/demo@4.4.0) (2019-06-05)
+
+
+### Features
+
+* **response-area:** added response area to the editable-html packages ([bc7af2b](https://github.com/pie-framework/pie-lib/commit/bc7af2b))
+* **response-area:** changes to make the response-areas work ([1c15fcd](https://github.com/pie-framework/pie-lib/commit/1c15fcd))
+* **response-area:** made some changes in order to be able to handle all 3 of the new elements ([480073e](https://github.com/pie-framework/pie-lib/commit/480073e))
+
+
+
+
+
 ## [4.2.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@4.2.5...@pie-lib/demo@4.2.6) (2019-05-28)
 
 **Note:** Version bump only for package @pie-lib/demo

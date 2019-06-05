@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.1.2...@pie-lib/mask-markup@1.2.0) (2019-06-05)
+
+
+### Features
+
+* **response-area:** added response area to the editable-html packages ([bc7af2b](https://github.com/pie-framework/pie-lib/commit/bc7af2b))
+* **response-area:** changes to make the response-areas work ([1c15fcd](https://github.com/pie-framework/pie-lib/commit/1c15fcd))
+* **response-area:** commiting some changes in order for the packages to be published ([395358d](https://github.com/pie-framework/pie-lib/commit/395358d))
+
+
+
+
+
 ## [1.1.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.1.1...@pie-lib/mask-markup@1.1.2) (2019-05-22)
 
 **Note:** Version bump only for package @pie-lib/mask-markup
