@@ -51,6 +51,9 @@ export const gridDraggable = opts => Comp => {
     onStart = e => {
       const { onDragStart } = this.props;
 
+      if (document.activeElement) {
+        document.activeElement.blur();
+      }
       this.setState({ startX: e.clientX, startY: e.clientY });
       if (onDragStart) {
         onDragStart();

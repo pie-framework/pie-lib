@@ -115,6 +115,10 @@ export class RawBaseComponent extends React.Component {
     }
   };
 
+  // shouldComponentUpdate = (nextProps, nextState) => {
+  //   return false;
+  // };
+
   render() {
     const { closed, disabled, graphProps, onClick, onDragStart, onDragStop, points } = this.props;
     const lines = buildLines(points, closed);

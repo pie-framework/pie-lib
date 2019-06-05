@@ -3,6 +3,8 @@ import { BasePoint } from '../common/point';
 import debug from 'debug';
 import { ToolPropTypeFields } from '../types';
 import { types } from '@pie-lib/plot';
+import ReactDOM from 'react-dom';
+import { MarkLabel } from '../../mark-label';
 
 const log = debug('pie-lib:graphing:point');
 
@@ -33,17 +35,33 @@ export class Point extends React.Component {
     });
   };
 
+  labelChange = label => {
+    const { onChange } = this.props;
+    this.setState({ mark: undefined }, () => {
+      onChange(this.props.mark, { ...this.props.mark, label });
+    });
+  };
+
   render() {
-    const { graphProps } = this.props;
+    const { graphProps, labelNode } = this.props;
+    console.log('labelNode: ', labelNode);
     const mark = this.state.mark ? this.state.mark : this.props.mark;
     return (
-      <BasePoint
-        {...mark}
-        onDrag={this.move}
-        onDragStart={this.startDrag}
-        onDragStop={this.stopDrag}
-        graphProps={graphProps}
-      />
+      <React.Fragment>
+        <BasePoint
+          {...mark}
+          onDrag={this.move}
+          onDragStart={this.startDrag}
+          onDragStop={this.stopDrag}
+          graphProps={graphProps}
+        />
+        {labelNode &&
+          mark.label &&
+          ReactDOM.createPortal(
+            <MarkLabel mark={mark} graphProps={graphProps} onChange={this.labelChange} />,
+            labelNode
+          )}
+      </React.Fragment>
     );
   }
 }

@@ -74,7 +74,7 @@ export class Graph extends React.Component {
   // };
 
   changeMark = (oldMark, newMark) => {
-    console.log('changeMark!!!!');
+    console.log('changeMark!!!!', newMark);
     const { marks, onChangeMarks } = this.props;
 
     if (!marks) {
@@ -208,6 +208,10 @@ export class Graph extends React.Component {
     this.onBgClick(point);
   };
 
+  componentDidMount = () => {
+    this.setState({ labelNode: this.labelNode });
+  };
+  getLabelNode = () => this.labelNode;
   render() {
     const { axesSettings, size, domain, backgroundMarks, range, title, labels } = this.props;
 
@@ -224,7 +228,7 @@ export class Graph extends React.Component {
     };
     const common = { graphProps };
 
-    console.log('!! graph.render..');
+    console.log('!! graph.render..', this.props.labelNode);
     return (
       <Root title={title} onMouseMove={this.mouseMove} {...common}>
         <Grid {...common} />
@@ -256,14 +260,21 @@ export class Graph extends React.Component {
                 onClick={this.clickComponent}
                 onDragStart={this.startDrag}
                 onDragStop={this.stopDrag}
+                labelNode={this.state.labelNode}
                 //m.building ? this.buildMarkStoppedDragging : undefined}
                 isToolActive={m.type === tool.type}
                 {...common}
               />
             );
           })}
-          <foreignObject x="0" y="0" {...size} style={{ pointerEvents: 'none' }}>
-            {(marks || [])
+          <foreignObject
+            ref={labelNode => (this.labelNode = labelNode)}
+            x="0"
+            y="0"
+            {...size}
+            style={{ pointerEvents: 'none' }}
+          >
+            {/* {(marks || [])
               .filter(m => m.label)
               .map((m, index) => {
                 return (
@@ -274,7 +285,7 @@ export class Graph extends React.Component {
                     onChange={this.changeMark}
                   />
                 );
-              })}
+              })} */}
           </foreignObject>
         </g>
         {/* <use clipPath={'rect-clip-path'} xlinkHref={'#marks'} /> */}

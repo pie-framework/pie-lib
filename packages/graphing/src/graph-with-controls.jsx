@@ -50,14 +50,12 @@ export class GraphWithControls extends React.Component {
     return (
       <div className={classNames(classes.graphWithControls, className)}>
         <div className={classes.controls}>
-          <ToolMenu
-            tools={tools}
-            currentTool={currentTool}
-            onChange={this.changeCurrentTool}
-          />
+          <ToolMenu tools={tools} currentTool={currentTool} onChange={this.changeCurrentTool} />
           <UndoRedo onUndo={onUndo} onRedo={onRedo} onReset={onReset} />
         </div>
+        <div ref={r => (this.labelNode = r)} />
         <Graph
+          labelNode={this.labelNode}
           size={size}
           domain={domain}
           range={range}
