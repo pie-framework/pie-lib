@@ -262,7 +262,7 @@ export class Graph extends React.Component {
               />
             );
           })}
-          <foreignObject x="0" y="0" {...size}>
+          <foreignObject x="0" y="0" {...size} style={{ pointerEvents: 'none' }}>
             {(marks || [])
               .filter(m => m.label)
               .map((m, index) => {
@@ -271,6 +271,7 @@ export class Graph extends React.Component {
                     key={`mark-label-${m.label}-${index}`}
                     mark={m}
                     graphProps={graphProps}
+                    onChange={this.changeMark}
                   />
                 );
               })}

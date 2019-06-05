@@ -14,15 +14,17 @@ export const MarkLabel = props => {
 
   const blurInput = () => {
     setIsFocused(false);
-    if (props.onChange) {
-      props.onChange({ ...mark, label });
+    if (props.onChange && mark.label !== label) {
+      console.log(mark.label, '??', label);
+      props.onChange(mark, { ...mark, label });
     }
   };
 
   const style = {
     position: 'absolute',
     left: graphProps.scale.x(mark.x),
-    top: graphProps.scale.y(mark.y)
+    top: graphProps.scale.y(mark.y),
+    pointerEvents: 'auto'
   };
 
   return (

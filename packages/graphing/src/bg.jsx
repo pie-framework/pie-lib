@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { select, mouse } from 'd3-selection';
-import { types } from '@pie-lib/plot';
-import { isDomainRangeEqual } from './utils';
+import { types, utils } from '@pie-lib/plot';
 
 export default class Bg extends React.Component {
   static propTypes = {
@@ -21,7 +20,7 @@ export default class Bg extends React.Component {
 
   shouldComponentUpdate(nextProps) {
     return (
-      !isDomainRangeEqual(this.props.graphProps, nextProps.graphProps) ||
+      !utils.isDomainRangeEqual(this.props.graphProps, nextProps.graphProps) ||
       this.props.width !== nextProps.width ||
       this.props.height !== nextProps.height
     );

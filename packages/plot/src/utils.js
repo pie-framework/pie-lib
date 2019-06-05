@@ -3,6 +3,7 @@ import range from 'lodash/range';
 import Point from '@mapbox/point-geometry';
 import head from 'lodash/head';
 import tail from 'lodash/tail';
+import isEqual from 'lodash/isEqual';
 
 export const xy = (x, y) => ({ x, y });
 
@@ -126,4 +127,13 @@ export const bounds = (area, domain, range) => {
 export const point = o => new Point(o.x, o.y);
 export const getDelta = (from, to) => {
   return point(to).sub(point(from));
+};
+
+export const bandKey = (d, index) => `${index}-${d.label || '-'}`;
+
+export const isDomainRangeEqual = (graphProps, nextGraphProps) => {
+  return (
+    isEqual(graphProps.domain, nextGraphProps.domain) &&
+    isEqual(graphProps.range, nextGraphProps.range)
+  );
 };

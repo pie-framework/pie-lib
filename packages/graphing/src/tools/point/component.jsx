@@ -14,20 +14,34 @@ export class Point extends React.Component {
 
   static defaultProps = {};
 
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
   move = p => {
-    const { mark, onChange } = this.props;
-    const m = { ...mark, ...p };
-    onChange(mark, m);
+    const mark = { ...this.state.mark, ...p };
+    this.setState({ mark });
+  };
+  startDrag = () => this.setState({ mark: { ...this.props.mark } });
+
+  stopDrag = () => {
+    const { onChange } = this.props;
+    const mark = { ...this.state.mark };
+    this.setState({ mark: undefined }, () => {
+      onChange(this.props.mark, mark);
+    });
   };
 
   render() {
-    const { mark, graphProps, onDragStart, onDragStop } = this.props;
+    const { graphProps } = this.props;
+    const mark = this.state.mark ? this.state.mark : this.props.mark;
     return (
       <BasePoint
         {...mark}
         onDrag={this.move}
-        onDragStart={onDragStart}
-        onDragStop={onDragStop}
+        onDragStart={this.startDrag}
+        onDragStop={this.stopDrag}
         graphProps={graphProps}
       />
     );

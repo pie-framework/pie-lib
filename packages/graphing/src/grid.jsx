@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import * as vx from '@vx/grid';
 import { tickCount } from './utils';
-import { types } from '@pie-lib/plot';
+import { types, utils } from '@pie-lib/plot';
 import { withStyles } from '@material-ui/core/styles';
-import { isDomainRangeEqual } from './utils';
 
 export class Grid extends React.Component {
   static propTypes = {
@@ -16,7 +15,7 @@ export class Grid extends React.Component {
   shouldComponentUpdate(nextProps) {
     const { graphProps } = this.props;
     const { graphProps: nextGraphProps } = nextProps;
-    return !isDomainRangeEqual(graphProps, nextGraphProps);
+    return !utils.isDomainRangeEqual(graphProps, nextGraphProps);
   }
 
   render() {
