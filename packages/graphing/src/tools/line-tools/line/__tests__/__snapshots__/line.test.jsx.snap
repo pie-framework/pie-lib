@@ -4,7 +4,7 @@ exports[`RawLine snapshot renders 1`] = `
 <g>
   <defs>
     <marker
-      id="arrow"
+      id="old-arrow"
       markerHeight="3"
       markerWidth="3"
       orient="auto-start-reverse"

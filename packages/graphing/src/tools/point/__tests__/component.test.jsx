@@ -30,8 +30,16 @@ describe('Component', () => {
       it('calls onChange', () => {
         const w = wrapper({ mark: { ...xy(0, 0) } });
         w.instance().move({ x: 1, y: 1 });
-        expect(onChange).toHaveBeenCalledWith(xy(0, 0), xy(1, 1));
+        expect(w.state('mark')).toMatchObject({ ...xy(1, 1) });
       });
+    });
+
+    describe('labelChange', () => {
+      it.todo('calls onChange');
+    });
+
+    describe('clickPoint', () => {
+      it.todo('calls onChange');
     });
   });
 });

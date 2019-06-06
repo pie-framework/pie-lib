@@ -42,14 +42,14 @@ export class RawBaseCircle extends React.Component {
     onClick: () => ({})
   };
 
-  dragroot = root => {
+  dragRoot = root => {
     const { onChange } = this.props;
     const d = { root, edge: this.props.edge };
 
     onChange(d);
   };
 
-  dragOuter = edge => {
+  dragEdge = edge => {
     const { onChange } = this.props;
     const d = { root: this.props.root, edge };
     onChange(d);
@@ -102,7 +102,6 @@ export class RawBaseCircle extends React.Component {
           y={root.y}
           radius={radius}
           onDrag={this.dragCircle}
-          onMove={this.moveCircle}
           {...common}
         />
         <BasePoint
@@ -110,7 +109,7 @@ export class RawBaseCircle extends React.Component {
           correctness={correctness}
           x={edge.x}
           y={edge.y}
-          onDrag={this.dragOuter}
+          onDrag={this.dragEdge}
           {...common}
         />
         <BasePoint
@@ -119,7 +118,7 @@ export class RawBaseCircle extends React.Component {
           x={root.x}
           y={root.y}
           className={classes.root}
-          onDrag={this.dragroot}
+          onDrag={this.dragRoot}
           {...common}
         />
       </g>
