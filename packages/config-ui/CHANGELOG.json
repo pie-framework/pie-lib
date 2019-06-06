@@ -1208,5 +1208,20 @@
     "committerDate": "2019-06-05 23:10:07 +0300",
     "isTagged": true,
     "tag": "@pie-lib/config-ui@10.3.0"
+  },
+  {
+    "type": "chore",
+    "scope": "merge",
+    "subject": "merged with develop",
+    "merge": null,
+    "header": "chore(merge): merged with develop",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "ccf6553b1749984649f310ca22832fa411190035",
+    "gitTags": "",
+    "committerDate": "2019-06-05 23:27:16 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/config-ui@10.3.1"
   }
 ]
