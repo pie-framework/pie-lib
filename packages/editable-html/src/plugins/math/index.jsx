@@ -11,6 +11,7 @@ const TEXT_NODE = 3;
 
 export default function MathPlugin(/*options*/) {
   return {
+    name: 'math',
     toolbar: {
       icon: <Functions />,
       onClick: (value, onChange) => {
@@ -35,7 +36,12 @@ export default function MathPlugin(/*options*/) {
               latex
             };
             const change = value.change().setNodeByKey(node.key, { data: update });
-            onToolbarDone(change, true);
+
+            const nextText = value.document.getNextText(node.key);
+
+            change.moveFocusTo(nextText.key, 0).moveAnchorTo(nextText.key, 0);
+
+            onToolbarDone(change, false);
           };
 
           const Tb = () => <MathToolbar autoFocus latex={latex} onDone={onDone} />;
@@ -45,6 +51,15 @@ export default function MathPlugin(/*options*/) {
     },
     schema: {
       document: { match: [{ type: 'math' }] }
+    },
+
+    pluginStyles: (parentNode, p) => {
+      if (p) {
+        return {
+          position: 'absolute',
+          top: 'initial'
+        };
+      }
     },
 
     renderNode: props => {

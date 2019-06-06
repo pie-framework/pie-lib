@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`icons snapshot Chevron renders arrow right as default 1`] = `
+<pure(ChevronRightIcon)
+  style={
+    Object {
+      "transform": "rotate(0deg)",
+    }
+  }
+/>
+`;
+
+exports[`icons snapshot Chevron renders arrow right with transform when prop is given 1`] = `
+<pure(ChevronRightIcon)
+  style={
+    Object {
+      "transform": "rotate(180deg)",
+    }
+  }
+/>
+`;
+
+exports[`icons snapshot Chevron renders with style when prop is given 1`] = `
+<pure(ChevronRightIcon)
+  style={
+    Object {
+      "position": "absolute",
+      "right": "5px",
+      "top": "5px",
+      "transform": "rotate(0deg)",
+    }
+  }
+/>
+`;
+
+exports[`icons snapshot GripIcon renders correctly with style props 1`] = `
+<span
+  style={
+    Object {
+      "color": "#9B9B9B",
+      "left": "15px",
+      "position": "absolute",
+      "top": "6px",
+    }
+  }
+>
+  <pure(MoreVertIcon)
+    style={
+      Object {
+        "margin": "0 -16px",
+      }
+    }
+  />
+  <pure(MoreVertIcon) />
+</span>
+`;
+
+exports[`icons snapshot GripIcon renders correctly without props 1`] = `
+<span>
+  <pure(MoreVertIcon)
+    style={
+      Object {
+        "margin": "0 -16px",
+      }
+    }
+  />
+  <pure(MoreVertIcon) />
+</span>
+`;
+
+exports[`icons snapshot ToolbarIcon renders correctly 1`] = `
+<Component
+  classes={
+    Object {
+      "fontFamily": "Component-fontFamily-1",
+      "fontSize": "Component-fontSize-2",
+      "height": "Component-height-7",
+      "lineHeight": "Component-lineHeight-3",
+      "position": "Component-position-4",
+      "top": "Component-top-5",
+      "width": "Component-width-6",
+    }
+  }
+/>
+`;

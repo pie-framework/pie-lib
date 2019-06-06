@@ -4,6 +4,7 @@ exports[`Input render renders correctly with correct as false 1`] = `
 <WithStyles(Component)
   correct={false}
   disabled={false}
+  isBox={true}
   onChange={[Function]}
   value="Cow"
   variant="outlined"
@@ -14,6 +15,7 @@ exports[`Input render renders correctly with default props 1`] = `
 <WithStyles(Component)
   correct={false}
   disabled={false}
+  isBox={true}
   onChange={[Function]}
   value="Cow"
   variant="outlined"
@@ -24,6 +26,7 @@ exports[`Input render renders correctly with disabled prop as true 1`] = `
 <WithStyles(Component)
   correct={false}
   disabled={true}
+  isBox={true}
   onChange={[Function]}
   value="Cow"
   variant="outlined"

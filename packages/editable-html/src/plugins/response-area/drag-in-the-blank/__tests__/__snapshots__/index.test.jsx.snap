@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`choice snapshot renders correctly when in a table and duplicates are off 1`] = `
+<span
+  key="0"
+  style={
+    Object {
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "margin": "10px",
+      "minHeight": "50px",
+      "minWidth": "178px",
+      "position": "relative",
+    }
+  }
+>
+  <DragSource(DropTarget(WithStyles(Component)))
+    dragKey="0"
+    duplicates={false}
+    n={
+      Object {
+        "key": "0",
+      }
+    }
+    onChange={[Function]}
+    removeResponse={[Function]}
+    targetId="0"
+    value={
+      Object {
+        "inTable": true,
+      }
+    }
+  >
+    A
+  </DragSource(DropTarget(WithStyles(Component)))>
+</span>
+`;
+
+exports[`choice snapshot renders correctly when in a table and duplicates are on 1`] = `
+<span
+  key="0"
+  style={
+    Object {
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "margin": "10px",
+      "minHeight": "50px",
+      "minWidth": "178px",
+      "position": "relative",
+    }
+  }
+>
+  <DragSource(DropTarget(WithStyles(Component)))
+    dragKey="0"
+    duplicates={true}
+    n={
+      Object {
+        "key": "0",
+      }
+    }
+    onChange={[Function]}
+    removeResponse={[Function]}
+    targetId="0"
+    value={
+      Object {
+        "inTable": true,
+      }
+    }
+  >
+    A
+  </DragSource(DropTarget(WithStyles(Component)))>
+</span>
+`;
+
+exports[`choice snapshot renders correctly when not in a table and duplicates are off 1`] = `
+<span
+  key="0"
+  style={
+    Object {
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "margin": "0 10px",
+      "minHeight": "50px",
+      "minWidth": "178px",
+      "position": "relative",
+    }
+  }
+>
+  <DragSource(DropTarget(WithStyles(Component)))
+    dragKey="0"
+    duplicates={false}
+    n={
+      Object {
+        "key": "0",
+      }
+    }
+    onChange={[Function]}
+    removeResponse={[Function]}
+    targetId="0"
+    value={
+      Object {
+        "inTable": false,
+      }
+    }
+  >
+    A
+  </DragSource(DropTarget(WithStyles(Component)))>
+</span>
+`;

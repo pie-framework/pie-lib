@@ -25,21 +25,17 @@ const log = debug('pie-lib:rubric:authoring');
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
   const [removed] = result.splice(startIndex, 1);
+
   result.splice(endIndex, 0, removed);
 
   return result;
 };
 
-export const RubricType = {
+export const RubricType = PropTypes.shape({
   maxPoints: PropTypes.number.isRequired,
   excludeZero: PropTypes.bool,
-  points: PropTypes.arrayOf(
-    PropTypes.shape({
-      points: PropTypes.number.isRequired,
-      content: PropTypes.string.isRequired
-    })
-  )
-};
+  points: PropTypes.arrayOf(PropTypes.string)
+});
 
 const MaxPoints = withStyles(theme => ({
   formControl: {
@@ -161,7 +157,7 @@ export class RawAuthoring extends React.Component {
           <MaxPoints max={10} value={value.points.length - 1} onChange={this.changeMaxPoints} />
           <FormControlLabel
             label="Exclude zeros from bubble sheet"
-            control={<Checkbox value={value.excludeZero} onChange={this.changeExcludeZero} />}
+            control={<Checkbox checked={value.excludeZero} onChange={this.changeExcludeZero} />}
           />
         </FormGroup>
         <div className={classes.container}>

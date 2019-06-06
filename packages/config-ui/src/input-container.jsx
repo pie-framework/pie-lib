@@ -8,6 +8,7 @@ import FormControl from '@material-ui/core/FormControl';
 const RawInputContainer = props => {
   const { label, className, children, classes } = props;
   const names = classNames(classes.formControl, className);
+
   return (
     <FormControl className={names}>
       <InputLabel className={classes.label} shrink={true}>
@@ -21,10 +22,7 @@ const RawInputContainer = props => {
 RawInputContainer.propTypes = {
   label: PropTypes.string.isRequired,
   className: PropTypes.string,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired,
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
   classes: PropTypes.object.isRequired
 };
 
