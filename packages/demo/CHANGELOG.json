@@ -518,5 +518,20 @@
     "committerDate": "2019-06-05 22:49:11 +0300",
     "isTagged": true,
     "tag": "@pie-lib/demo@4.5.0"
+  },
+  {
+    "type": "chore",
+    "scope": "editable-html",
+    "subject": "changed versions for packages that contain editable-html",
+    "merge": null,
+    "header": "chore(editable-html): changed versions for packages that contain editable-html",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "e0ef7c4ecb6d524fae19779cb7ce1a68924f7557",
+    "gitTags": "",
+    "committerDate": "2019-06-05 23:19:26 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/demo@4.5.1"
   }
 ]
