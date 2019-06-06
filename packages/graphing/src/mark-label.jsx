@@ -63,16 +63,8 @@ export const MarkLabel = withStyles(styles)(props => {
 
   const { mark, graphProps, classes, disabled, inputRef: externalInputRef } = props;
 
-  const [label, setLabel] = useState(mark.label);
-
   const onChange = e => {
-    setLabel(e.target.value);
-  };
-
-  const blurInput = () => {
-    if (props.onChange) {
-      props.onChange(label);
-    }
+    props.onChange(e.target.value);
   };
 
   const rect = input ? input.getBoundingClientRect() : { width: 0, height: 0 };
@@ -93,8 +85,7 @@ export const MarkLabel = withStyles(styles)(props => {
       }}
       disabled={disabled}
       inputClassName={cn(classes.input, disabled && classes.disabled)}
-      onBlur={blurInput}
-      value={label}
+      value={mark.label}
       style={style}
       onChange={onChange}
     />

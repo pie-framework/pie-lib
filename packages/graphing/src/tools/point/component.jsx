@@ -39,6 +39,9 @@ export class Point extends React.Component {
     });
   };
 
+  /**
+   * TODO: Perf: defer label change until focus is complete?
+   */
   labelChange = label => {
     const { onChange } = this.props;
     const update = { ...this.props.mark, label };
@@ -60,8 +63,6 @@ export class Point extends React.Component {
       }
     }
   };
-
-  componentDidMount = () => {};
 
   render() {
     const { graphProps, labelNode, labelModeEnabled } = this.props;

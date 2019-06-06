@@ -249,7 +249,7 @@ export class Graph extends React.Component {
         <Grid {...common} />
         <Axes {...axesSettings} {...common} />
         <Bg {...size} onClick={this.onBgClick} {...common} />
-        {/* <Labels value={labels} {...common} /> */}
+        <Labels value={labels} {...common} />
         <mask id="myMask">
           <rect {...maskSize} fill="white" />
         </mask>
@@ -288,20 +288,7 @@ export class Graph extends React.Component {
             y="0"
             {...size}
             style={{ pointerEvents: 'none' }}
-          >
-            {/* {(marks || [])
-              .filter(m => m.label)
-              .map((m, index) => {
-                return (
-                  <MarkLabel
-                    key={`mark-label-${m.label}-${index}`}
-                    mark={m}
-                    graphProps={graphProps}
-                    onChange={this.changeMark}
-                  />
-                );
-              })} */}
-          </foreignObject>
+          />
         </g>
         {/* <use clipPath={'rect-clip-path'} xlinkHref={'#marks'} /> */}
       </Root>
