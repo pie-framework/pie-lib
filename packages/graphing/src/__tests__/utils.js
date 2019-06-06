@@ -29,4 +29,4 @@ export const graphProps = () => ({
   }
 });
 
-export const xy = (x, y) => ({ x, y });
+export const xy = (x, y, index) => ({ x, y, index });

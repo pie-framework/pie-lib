@@ -33,7 +33,6 @@ export const buildLines = (points, closed) => {
 
 const swap = (arr, ...rest) => {
   const pairs = chunk(rest, 2);
-
   return pairs.reduce(
     (acc, pr) => {
       if (pr.length === 2) {
@@ -86,7 +85,7 @@ export class RawBaseComponent extends React.Component {
   dragLine = (existing, next) => {
     log('[dragLine]: ', existing, next);
     const { onChange } = this.props;
-    let points = swap(this.props.points, existing.from, next.from, existing.to, next.to);
+    const points = swap(this.props.points, existing.from, next.from, existing.to, next.to);
     onChange(points);
   };
 
