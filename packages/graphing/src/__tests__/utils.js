@@ -29,4 +29,10 @@ export const graphProps = () => ({
   }
 });
 
-export const xy = (x, y, index) => ({ x, y, index });
+export const xy = (x, y, index) => {
+  const out = { x, y, index };
+  if (!Number.isFinite(index)) {
+    delete out.index;
+  }
+  return out;
+};
