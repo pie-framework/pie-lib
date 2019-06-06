@@ -46,16 +46,24 @@ export class GraphWithControls extends React.Component {
       tools
     } = this.props;
 
-    const { currentTool } = this.state;
+    const { currentTool, labelModeEnabled } = this.state;
     return (
       <div className={classNames(classes.graphWithControls, className)}>
         <div className={classes.controls}>
-          <ToolMenu tools={tools} currentTool={currentTool} onChange={this.changeCurrentTool} />
+          <ToolMenu
+            tools={tools}
+            currentTool={currentTool}
+            onChange={this.changeCurrentTool}
+            labelModeEnabled={labelModeEnabled}
+            onToggleLabelMode={() =>
+              this.setState({ labelModeEnabled: !this.state.labelModeEnabled })
+            }
+          />
           <UndoRedo onUndo={onUndo} onRedo={onRedo} onReset={onReset} />
         </div>
         <div ref={r => (this.labelNode = r)} />
         <Graph
-          labelNode={this.labelNode}
+          labelModeEnabled={labelModeEnabled}
           size={size}
           domain={domain}
           range={range}

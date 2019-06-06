@@ -1,11 +1,12 @@
 import React from 'react';
 import { Axis } from '@vx/axis';
 import { tickCount } from '../utils';
-import { types } from '@pie-lib/plot';
+import { types, utils } from '@pie-lib/plot';
 import PropTypes from 'prop-types';
 import Arrow from './arrow';
 import { withStyles } from '@material-ui/core';
 import debug from 'debug';
+import isEqual from 'lodash/isEqual';
 
 const log = debug('pie-lib:graphing:axes');
 
@@ -45,7 +46,16 @@ export class RawXAxis extends React.Component {
     graphProps: types.GraphPropsType.isRequired
   };
   static defaultProps = AxisDefaultProps;
+
+  shouldComponentUpdate(nextProps) {
+    const { data } = this.props;
+    return (
+      !utils.isDomainRangeEqual(this.props.graphProps, nextProps.graphProps) ||
+      !isEqual(data, nextProps.data)
+    );
+  }
   render() {
+    console.log('>>>>>>>>>>>>>>>>>>>>> !!!!!!!!!!!! axes..render!!');
     const { includeArrows, classes, graphProps } = this.props;
     const { scale, domain, size } = graphProps;
 
@@ -68,22 +78,10 @@ export class RawXAxis extends React.Component {
           })}
         />
         {includeArrows && (
-          <Arrow
-            direction="left"
-            x={domain.min}
-            y={0}
-            className={classes.arrow}
-            scale={scale}
-          />
+          <Arrow direction="left" x={domain.min} y={0} className={classes.arrow} scale={scale} />
         )}
         {includeArrows && (
-          <Arrow
-            direction="right"
-            x={domain.max}
-            y={0}
-            className={classes.arrow}
-            scale={scale}
-          />
+          <Arrow direction="right" x={domain.max} y={0} className={classes.arrow} scale={scale} />
         )}
         {domain.axisLabel && (
           <text x={size.width + 20} y={scale.y(0) + 5} textAnchor="middle">
@@ -103,7 +101,15 @@ export class RawYAxis extends React.Component {
     graphProps: types.GraphPropsType.isRequired
   };
   static defaultProps = AxisDefaultProps;
+  shouldComponentUpdate(nextProps) {
+    const { data } = this.props;
+    return (
+      !utils.isDomainRangeEqual(this.props.graphProps, nextProps.graphProps) ||
+      !isEqual(data, nextProps.data)
+    );
+  }
   render() {
+    console.log('>>>>>>>>>>>>>>>>>>>>> !!!!!!!!!!!! axes..render!!');
     const { classes, includeArrows, graphProps } = this.props;
     const { scale, range, size } = graphProps;
     return (
@@ -132,22 +138,10 @@ export class RawYAxis extends React.Component {
           tickTextAnchor={'bottom'}
         />
         {includeArrows && (
-          <Arrow
-            direction="down"
-            x={0}
-            y={range.min}
-            className={classes.arrow}
-            scale={scale}
-          />
+          <Arrow direction="down" x={0} y={range.min} className={classes.arrow} scale={scale} />
         )}
         {includeArrows && (
-          <Arrow
-            direction="up"
-            x={0}
-            y={range.max}
-            className={classes.arrow}
-            scale={scale}
-          />
+          <Arrow direction="up" x={0} y={range.max} className={classes.arrow} scale={scale} />
         )}
         {range.axisLabel && (
           <text x={scale.x(0)} y={-10} textAnchor="middle">

@@ -29,7 +29,8 @@ export const graphPropTypes = {
   backgroundMarks: PropTypes.array,
   onChangeMarks: PropTypes.func.isRequired,
   tools: PropTypes.array,
-  defaultTool: PropTypes.string
+  defaultTool: PropTypes.string,
+  labelModeEnabled: PropTypes.bool
 };
 
 export class Graph extends React.Component {
@@ -104,6 +105,11 @@ export class Graph extends React.Component {
 
   onBgClick = ({ x, y }) => {
     log('[onBgClick] x,y: ', x, y);
+
+    if (this.props.labelModeEnabled) {
+      log('label mode!!!');
+      return;
+    }
 
     const buildingMark = this.getBuildingMark();
     const { currentTool } = this.props;
@@ -213,7 +219,16 @@ export class Graph extends React.Component {
   };
   getLabelNode = () => this.labelNode;
   render() {
-    const { axesSettings, size, domain, backgroundMarks, range, title, labels } = this.props;
+    const {
+      axesSettings,
+      size,
+      domain,
+      backgroundMarks,
+      range,
+      title,
+      labels,
+      labelModeEnabled
+    } = this.props;
 
     const marks = this.state.marks ? this.state.marks : this.props.marks;
     const tool = this.getTool();
@@ -226,7 +241,7 @@ export class Graph extends React.Component {
       width: size.width + 20,
       height: size.height + 20
     };
-    const common = { graphProps };
+    const common = { graphProps, labelModeEnabled };
 
     console.log('!! graph.render..', this.props.labelNode);
     return (
@@ -234,7 +249,7 @@ export class Graph extends React.Component {
         <Grid {...common} />
         <Axes {...axesSettings} {...common} />
         <Bg {...size} onClick={this.onBgClick} {...common} />
-        <Labels value={labels} {...common} />
+        {/* <Labels value={labels} {...common} /> */}
         <mask id="myMask">
           <rect {...maskSize} fill="white" />
         </mask>

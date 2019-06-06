@@ -11,6 +11,7 @@ import Line from './line';
 import DraggablePolygon, { Polygon } from './polygon';
 import { types } from '@pie-lib/plot';
 import invariant from 'invariant';
+import { isDomainRangeEqual } from '@pie-lib/plot/lib/utils';
 const log = debug('pie-lib:graphing:polygon');
 
 export const buildLines = (points, closed) => {
@@ -200,6 +201,15 @@ export default class Component extends React.Component {
     });
   };
 
+  shouldComponentUpdate = (nextProps, nextState) => {
+    const { graphProps, mark } = this.props;
+    const { graphProps: nextGraphProps } = nextProps;
+    return (
+      !isDomainRangeEqual(graphProps, nextGraphProps) ||
+      !isEqual(mark, nextProps.mark) ||
+      !isEqual(this.state.mark, nextState.mark)
+    );
+  };
   render() {
     const { mark, graphProps, onClick, isToolActive } = this.props;
     return (

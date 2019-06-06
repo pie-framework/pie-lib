@@ -2,8 +2,48 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
-import classNames from 'classnames';
+import cn from 'classnames';
 import Button from '@material-ui/core/Button';
+
+const buttonStyles = theme => ({
+  selected: {
+    backgroundColor: 'white'
+  },
+  disabled: {
+    '& span': {
+      color: theme.palette.primary.dark
+    },
+    backgroundColor: 'white'
+  }
+});
+export const MiniButton = withStyles(buttonStyles)(props => {
+  const { disabled, classes, className, disabledClassName, selected, value, onClick } = props;
+  return (
+    <Button
+      size="small"
+      disabled={disabled}
+      color={selected ? 'secondary' : 'default'}
+      className={cn(selected && classes.selected, className)}
+      classes={{
+        disabled: cn(classes.disabled, disabledClassName)
+      }}
+      value={value}
+      key={value}
+      variant="outlined"
+      onClick={onClick}
+    >
+      {value}
+    </Button>
+  );
+});
+MiniButton.propTypes = {
+  disabled: PropTypes.bool,
+  className: PropTypes.string,
+  disabledClassName: PropTypes.string,
+  selected: PropTypes.bool,
+  value: PropTypes.string,
+  onClick: PropTypes.func
+};
 
 export class ToggleBar extends React.Component {
   static propTypes = {
@@ -24,27 +64,18 @@ export class ToggleBar extends React.Component {
   render() {
     const { classes, className, options, selected } = this.props;
     return (
-      <div className={classNames(classes.class, className)}>
+      <div className={cn(classes.class, className)}>
         {(options || []).map(o => {
           const isSelected = o === selected;
           return (
-            <Button
-              size="small"
-              disabled={isSelected}
-              className={classNames(
-                classes.button,
-                isSelected && classes.selected
-              )}
-              classes={{
-                disabled: classes.disabled
-              }}
-              value={o}
+            <MiniButton
               key={o}
-              variant="outlined"
+              value={o}
+              disabled={isSelected}
+              className={cn(classes.button, isSelected && classes.selected)}
+              disabledClassName={classes.disabled}
               onClick={this.select}
-            >
-              {o}
-            </Button>
+            />
           );
         })}
       </div>
@@ -55,15 +86,6 @@ const styles = theme => ({
   class: {},
   button: {
     marginRight: theme.spacing.unit
-  },
-  selected: {
-    backgroundColor: 'white'
-  },
-  disabled: {
-    '& span': {
-      color: theme.palette.primary.dark
-    },
-    backgroundColor: 'white'
   }
 });
 

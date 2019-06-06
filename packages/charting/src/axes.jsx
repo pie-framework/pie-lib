@@ -17,13 +17,14 @@ class RawChartAxes extends React.Component {
 
   shouldComponentUpdate(nextProps) {
     const { data } = this.props;
-    return (
-      !isDomainRangeEqual(this.props.graphProps, nextProps.graphProps) ||
-      isEqual(data, nextProps.data)
-    );
+    return true;
+    // return (
+    //   !isDomainRangeEqual(this.props.graphProps, nextProps.graphProps) ||
+    //   isEqual(data, nextProps.data)
+    // );
   }
   render() {
-    console.log('!!!!!!!!!!!! axes..render!!');
+    console.log('>>>>>>>>>>>>>>>>>>>>> !!!!!!!!!!!! axes..render!!');
     const { classes, data, graphProps } = this.props;
     const { scale, range, domain, size } = graphProps;
     const xBand = dataToXBand(scale.x, data, size.width);

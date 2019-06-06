@@ -45,7 +45,6 @@ export default class Bg extends React.Component {
   };
 
   render() {
-    console.log('BG render!!!');
     const { width, height } = this.props;
     return (
       <rect

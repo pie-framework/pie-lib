@@ -5,7 +5,8 @@ import { ToolPropTypeFields } from '../types';
 import { types } from '@pie-lib/plot';
 import ReactDOM from 'react-dom';
 import { MarkLabel } from '../../mark-label';
-
+import isEqual from 'lodash/isEqual';
+import isEmpty from 'lodash/isEmpty';
 const log = debug('pie-lib:graphing:point');
 
 export class Point extends React.Component {
@@ -25,26 +26,45 @@ export class Point extends React.Component {
     const mark = { ...this.state.mark, ...p };
     this.setState({ mark });
   };
+
   startDrag = () => this.setState({ mark: { ...this.props.mark } });
 
   stopDrag = () => {
     const { onChange } = this.props;
     const mark = { ...this.state.mark };
     this.setState({ mark: undefined }, () => {
-      onChange(this.props.mark, mark);
+      if (!isEqual(this.props.mark, mark)) {
+        onChange(this.props.mark, mark);
+      }
     });
   };
 
   labelChange = label => {
     const { onChange } = this.props;
-    this.setState({ mark: undefined }, () => {
-      onChange(this.props.mark, { ...this.props.mark, label });
-    });
+    const update = { ...this.props.mark, label };
+
+    if (!label || isEmpty(label)) {
+      delete update.label;
+    }
+
+    onChange(this.props.mark, update);
   };
 
+  clickPoint = () => {
+    const { labelModeEnabled, onChange } = this.props;
+
+    if (labelModeEnabled) {
+      onChange(this.props.mark, { ...this.props.mark, label: '' });
+      if (this.input) {
+        this.input.focus();
+      }
+    }
+  };
+
+  componentDidMount = () => {};
+
   render() {
-    const { graphProps, labelNode } = this.props;
-    console.log('labelNode: ', labelNode);
+    const { graphProps, labelNode, labelModeEnabled } = this.props;
     const mark = this.state.mark ? this.state.mark : this.props.mark;
     return (
       <React.Fragment>
@@ -54,11 +74,18 @@ export class Point extends React.Component {
           onDragStart={this.startDrag}
           onDragStop={this.stopDrag}
           graphProps={graphProps}
+          onClick={this.clickPoint}
         />
         {labelNode &&
-          mark.label &&
+          mark.hasOwnProperty('label') &&
           ReactDOM.createPortal(
-            <MarkLabel mark={mark} graphProps={graphProps} onChange={this.labelChange} />,
+            <MarkLabel
+              inputRef={r => (this.input = r)}
+              disabled={!labelModeEnabled}
+              mark={mark}
+              graphProps={graphProps}
+              onChange={this.labelChange}
+            />,
             labelNode
           )}
       </React.Fragment>
