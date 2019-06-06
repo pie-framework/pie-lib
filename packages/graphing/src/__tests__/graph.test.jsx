@@ -21,7 +21,8 @@ describe('Graph', () => {
       ],
       domain: { min: 0, max: 1, step: 1 },
       range: { min: 0, max: 1, step: 1 },
-      size: { width: 400, height: 400 }
+      size: { width: 400, height: 400 },
+      marks: []
     };
     const props = { ...defaults, ...extras };
 
@@ -72,10 +73,7 @@ describe('Graph', () => {
 
     describe('getBuildingMark', () => {
       it('returns mark that is building', () => {
-        const marks = [
-          { type: 'mark' },
-          { type: 'mark', building: true, x: 1, y: 1 }
-        ];
+        const marks = [{ type: 'mark' }, { type: 'mark', building: true, x: 1, y: 1 }];
         w = wrapper({ marks });
         const result = w.instance().getBuildingMark();
         expect(result).toEqual(marks[1]);
@@ -93,11 +91,7 @@ describe('Graph', () => {
         w.instance().props.tools[0].addPoint.mockReturnValue(updatedMark);
         w.instance().updateMarks = jest.fn();
         w.instance().onBgClick({ x: 3, y: 3 });
-        expect(w.instance().updateMarks).toHaveBeenCalledWith(
-          buildingMark,
-          updatedMark,
-          true
-        );
+        expect(w.instance().updateMarks).toHaveBeenCalledWith(buildingMark, updatedMark, true);
       });
     });
 
@@ -113,14 +107,8 @@ describe('Graph', () => {
         w.instance().updateMarks = jest.fn();
         w.instance().completeMark({ x: 3, y: 3 });
 
-        expect(w.instance().props.tools[0].complete).toHaveBeenCalledWith(
-          buildingMark,
-          xy(3, 3)
-        );
-        expect(w.instance().updateMarks).toHaveBeenCalledWith(
-          buildingMark,
-          completedMark
-        );
+        expect(w.instance().props.tools[0].complete).toHaveBeenCalledWith(buildingMark, xy(3, 3));
+        expect(w.instance().updateMarks).toHaveBeenCalledWith(buildingMark, completedMark);
       });
     });
 
@@ -157,15 +145,11 @@ describe('Graph', () => {
 
       it('throws an error if there is no tool', () => {
         w.instance().props.tools.pop();
-        expect(() => w.instance().getComponent({ type: 'mark' })).toThrow(
-          /No tool supports.*/
-        );
+        expect(() => w.instance().getComponent({ type: 'mark' })).toThrow(/No tool supports.*/);
       });
       it('throws an error if there is no tool.Component', () => {
         w.instance().props.tools[0].Component = undefined;
-        expect(() => w.instance().getComponent({ type: 'mark' })).toThrow(
-          /No tool supports.*/
-        );
+        expect(() => w.instance().getComponent({ type: 'mark' })).toThrow(/No tool supports.*/);
       });
     });
 

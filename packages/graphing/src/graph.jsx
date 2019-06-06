@@ -10,7 +10,6 @@ import Bg from './bg';
 import _ from 'lodash';
 import invariant from 'invariant';
 import isEqual from 'lodash/isEqual';
-import { MarkLabel } from './mark-label';
 
 const log = debug('pie-lib:graphing:graph');
 
@@ -75,7 +74,6 @@ export class Graph extends React.Component {
       out.splice(index, 1, { ...newMark });
       log('[changeMark] call onChangeMarks');
       onChangeMarks(out);
-      // this.setState({ marks: out });
     }
   };
 
@@ -139,10 +137,6 @@ export class Graph extends React.Component {
     }
   };
 
-  buildMarkDragging = () => this.setState({ dragging: true });
-
-  buildMarkStoppedDragging = () => this.setState({ dragging: false });
-
   getComponent = mark => {
     if (!mark) {
       return undefined;
@@ -203,7 +197,7 @@ export class Graph extends React.Component {
   componentDidMount = () => {
     this.setState({ labelNode: this.labelNode });
   };
-  getLabelNode = () => this.labelNode;
+
   render() {
     const {
       axesSettings,
@@ -274,7 +268,6 @@ export class Graph extends React.Component {
             style={{ pointerEvents: 'none' }}
           />
         </g>
-        {/* <use clipPath={'rect-clip-path'} xlinkHref={'#marks'} /> */}
       </Root>
     );
   }

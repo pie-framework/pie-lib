@@ -160,6 +160,18 @@ exports[`Graph snapshot renders 1`] = `
   <g
     id="marks"
     mask="url('#myMask')"
-  />
+  >
+    <foreignObject
+      height={400}
+      style={
+        Object {
+          "pointerEvents": "none",
+        }
+      }
+      width={400}
+      x="0"
+      y="0"
+    />
+  </g>
 </WithStyles(Root)>
 `;

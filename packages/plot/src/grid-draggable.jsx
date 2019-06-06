@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { GraphPropsType } from './types';
-import Draggable, { DraggableCore } from './draggable';
+import { DraggableCore } from './draggable';
 import debug from 'debug';
 import * as utils from './utils';
 import isFunction from 'lodash/isFunction';
 import invariant from 'invariant';
 import { clientPoint } from 'd3-selection';
-import ReactDOM from 'react-dom';
 const log = debug('pie-lib:plot:grid-draggable');
 
 export const deltaFn = (scale, snap, val) => delta => {
@@ -15,6 +14,7 @@ export const deltaFn = (scale, snap, val) => delta => {
   const inverted = scale.invert(normalized);
   return snap(val + inverted);
 };
+
 /**
  * Creates a Component that is draggable, within a bounded grid.
  * @param {*} opts
@@ -100,9 +100,31 @@ export const gridDraggable = opts => Comp => {
       return scaled;
     };
 
+    skipDragOutsideOfBounds = (dd, e, graphProps) => {
+      // ignore drag movement outside of the domain and range.
+      const [rawX, rawY] = clientPoint(dd.node, e);
+      const { scale, domain, range } = graphProps;
+      let x = scale.x.invert(rawX);
+      let y = scale.y.invert(rawY);
+
+      if (dd.deltaX > 0 && x < domain.min) {
+        return true;
+      }
+
+      if (dd.deltaX < 0 && x > domain.max) {
+        return true;
+      }
+
+      if (dd.deltaY > 0 && y > range.max) {
+        return true;
+      }
+      if (dd.deltaY < 0 && y < range.min) {
+        return true;
+      }
+      return false;
+    };
+
     onDrag = (e, dd) => {
-      log('[onDrag] .. dd:', dd);
-      log('[onDrag] .. e:', e);
       const { onDrag, graphProps } = this.props;
 
       if (!onDrag) {
@@ -126,24 +148,7 @@ export const gridDraggable = opts => Comp => {
         return;
       }
 
-      // ignore drag movement outside of the domain and range.
-      const [rawX, rawY] = clientPoint(dd.node, e);
-      const { scale, domain, range } = graphProps;
-      let x = scale.x.invert(rawX);
-      let y = scale.y.invert(rawY);
-
-      if (dd.deltaX > 0 && x < domain.min) {
-        return;
-      }
-
-      if (dd.deltaX < 0 && x > domain.max) {
-        return;
-      }
-
-      if (dd.deltaY > 0 && y > range.max) {
-        return;
-      }
-      if (dd.deltaY < 0 && y < range.min) {
+      if (this.skipDragOutsideOfBounds(dd, e, graphProps)) {
         return;
       }
 
@@ -189,13 +194,10 @@ export const gridDraggable = opts => Comp => {
           const { graphProps } = this.props;
           const { scale, snap } = graphProps;
           const [rawX, rawY] = clientPoint(e.target, e);
-          log('rawX, rawY', rawX, rawY);
           let x = scale.x.invert(rawX);
           let y = scale.y.invert(rawY);
           x = snap.x(x);
           y = snap.y(y);
-          log('x,y', x, y);
-          log('>>> x,y', x, y);
           onClick({ x, y });
           return false;
         }
@@ -222,7 +224,6 @@ export const gridDraggable = opts => Comp => {
        */
       const isDragging = this.state ? !!this.state.startX : false;
 
-      // log('rest:', rest);
       return (
         <DraggableCore
           disabled={disabled}

@@ -4,37 +4,19 @@ exports[`ToggleBar snapshot renders 1`] = `
 <div
   className="className"
 >
-  <WithStyles(Button)
+  <WithStyles(Component)
     className=""
-    classes={
-      Object {
-        "disabled": undefined,
-      }
-    }
     disabled={false}
     key="one"
     onClick={[Function]}
-    size="small"
     value="one"
-    variant="outlined"
-  >
-    one
-  </WithStyles(Button)>
-  <WithStyles(Button)
+  />
+  <WithStyles(Component)
     className=""
-    classes={
-      Object {
-        "disabled": undefined,
-      }
-    }
     disabled={false}
     key="two"
     onClick={[Function]}
-    size="small"
     value="two"
-    variant="outlined"
-  >
-    two
-  </WithStyles(Button)>
+  />
 </div>
 `;
