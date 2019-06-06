@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.6.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.6.0...@pie-lib/editable-html@7.6.1) (2019-06-06)
+
+
+### Bug Fixes
+
+* **drag-in-the-blank:** made it possible to drop choices in newly created response areas ([0a8568f](https://github.com/pie-framework/pie-lib/commit/0a8568f))
+
+
+
+
+
 # [7.6.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.5.6...@pie-lib/editable-html@7.6.0) (2019-06-05)
 
 
