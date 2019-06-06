@@ -55,7 +55,6 @@ export class RawXAxis extends React.Component {
     );
   }
   render() {
-    console.log('>>>>>>>>>>>>>>>>>>>>> !!!!!!!!!!!! axes..render!!');
     const { includeArrows, classes, graphProps } = this.props;
     const { scale, domain, size } = graphProps;
 
@@ -109,7 +108,6 @@ export class RawYAxis extends React.Component {
     );
   }
   render() {
-    console.log('>>>>>>>>>>>>>>>>>>>>> !!!!!!!!!!!! axes..render!!');
     const { classes, includeArrows, graphProps } = this.props;
     const { scale, range, size } = graphProps;
     return (

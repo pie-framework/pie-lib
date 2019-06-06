@@ -61,21 +61,7 @@ export class Graph extends React.Component {
     }
   };
 
-  // startDrag = () => {
-  //   const { marks } = this.props;
-  //   this.setState({ marks });
-  // };
-
-  // stopDrag = () => {
-  //   const { onChangeMarks } = this.props;
-  //   const update = [...this.state.marks];
-  //   this.setState({ marks: undefined }, () => {
-  //     onChangeMarks(update);
-  //   });
-  // };
-
   changeMark = (oldMark, newMark) => {
-    console.log('changeMark!!!!', newMark);
     const { marks, onChangeMarks } = this.props;
 
     if (!marks) {
@@ -243,7 +229,6 @@ export class Graph extends React.Component {
     };
     const common = { graphProps, labelModeEnabled };
 
-    console.log('!! graph.render..', this.props.labelNode);
     return (
       <Root title={title} onMouseMove={this.mouseMove} {...common}>
         <Grid {...common} />
@@ -276,7 +261,6 @@ export class Graph extends React.Component {
                 onDragStart={this.startDrag}
                 onDragStop={this.stopDrag}
                 labelNode={this.state.labelNode}
-                //m.building ? this.buildMarkStoppedDragging : undefined}
                 isToolActive={m.type === tool.type}
                 {...common}
               />

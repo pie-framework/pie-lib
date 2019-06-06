@@ -19,7 +19,6 @@ export class Grid extends React.Component {
   }
 
   render() {
-    console.log('!!! grid render');
     const { classes, graphProps } = this.props;
     const { scale, size, domain, range } = graphProps;
     return (

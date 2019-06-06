@@ -86,7 +86,6 @@ export class RawBaseComponent extends React.Component {
   dragLine = (existing, next) => {
     log('[dragLine]: ', existing, next);
     const { onChange } = this.props;
-    // this.setState({ dragLine: { existing, next } });
     let points = swap(this.props.points, existing.from, next.from, existing.to, next.to);
     onChange(points);
   };
@@ -115,10 +114,6 @@ export class RawBaseComponent extends React.Component {
       onClick(data);
     }
   };
-
-  // shouldComponentUpdate = (nextProps, nextState) => {
-  //   return false;
-  // };
 
   render() {
     const { closed, disabled, graphProps, onClick, onDragStart, onDragStop, points } = this.props;
