@@ -1,4 +1,5 @@
 import React from 'react';
+import isUndefined from 'lodash/isUndefined';
 import { DragSource, DropTarget } from '@pie-lib/drag';
 import { withStyles } from '@material-ui/core/styles';
 import classnames from 'classnames';
@@ -82,13 +83,17 @@ const connectedBlankContent = useStyles(({ connectDropTarget, connectDragSource,
 export const tileTarget = {
   drop(props, monitor) {
     const draggedItem = monitor.getItem();
+    const shouldDrop =
+      isUndefined(draggedItem.value.index) ||
+      isUndefined(props.value.index) ||
+      draggedItem.value.index !== props.value.index;
 
-    if (draggedItem.value.index !== props.value.index) {
+    if (shouldDrop) {
       props.onChange(draggedItem.value);
     }
 
     return {
-      dropped: draggedItem.value.index !== props.value.index
+      dropped: shouldDrop
     };
   },
   canDrop(props, monitor) {
