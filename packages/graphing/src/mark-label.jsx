@@ -3,6 +3,7 @@ import cn from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import AutosizeInput from 'react-input-autosize';
 import PropTypes from 'prop-types';
+import { GraphPropsType } from '@pie-lib/plot/lib/types';
 
 const styles = theme => ({
   input: {
@@ -57,7 +58,7 @@ const coordinates = (graphProps, mark, rect, position) => {
   }
 };
 
-const useDebounce = (value, delay) => {
+export const useDebounce = (value, delay) => {
   const [debouncedValue, setDebouncedValue] = useState(value);
 
   useEffect(() => {
@@ -69,7 +70,7 @@ const useDebounce = (value, delay) => {
   return debouncedValue;
 };
 
-export const MarkLabel = withStyles(styles)(props => {
+export const MarkLabel = props => {
   const [input, setInput] = useState(null);
   const _ref = useCallback(node => setInput(node));
 
@@ -115,8 +116,15 @@ export const MarkLabel = withStyles(styles)(props => {
       onChange={onChange}
     />
   );
-});
+};
 
 MarkLabel.propTypes = {
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  onChange: PropTypes.func,
+  graphProps: GraphPropsType,
+  classes: PropTypes.object,
+  inputRef: PropTypes.func,
+  mark: PropTypes.object
 };
+
+export default withStyles(styles)(MarkLabel);

@@ -4,7 +4,7 @@ import debug from 'debug';
 import { ToolPropTypeFields } from '../shared/types';
 import { types } from '@pie-lib/plot';
 import ReactDOM from 'react-dom';
-import { MarkLabel } from '../../mark-label';
+import MarkLabel from '../../mark-label';
 import isEqual from 'lodash/isEqual';
 import isEmpty from 'lodash/isEmpty';
 const log = debug('pie-lib:graphing:point');

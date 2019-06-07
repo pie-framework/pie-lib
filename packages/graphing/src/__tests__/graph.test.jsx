@@ -6,25 +6,25 @@ import { xy } from '../__tests__/utils';
 describe('Graph', () => {
   let w;
   let onChangeMarks = jest.fn();
+  const defaultProps = () => ({
+    classes: {},
+    className: 'className',
+    onChangeMarks,
+    tools: [
+      {
+        type: 'mark',
+        Component: () => <div />,
+        addPoint: jest.fn((pnt, m) => ({ ...m, pnt })),
+        complete: jest.fn((m, d) => ({ ...m, ...d }))
+      }
+    ],
+    domain: { min: 0, max: 1, step: 1 },
+    range: { min: 0, max: 1, step: 1 },
+    size: { width: 400, height: 400 },
+    marks: []
+  });
   const wrapper = (extras, opts) => {
-    const defaults = {
-      classes: {},
-      className: 'className',
-      onChangeMarks,
-      tools: [
-        {
-          type: 'mark',
-          Component: () => <div />,
-          addPoint: jest.fn((pnt, m) => ({ ...m, pnt })),
-          complete: jest.fn((m, d) => ({ ...m, ...d }))
-        }
-      ],
-      domain: { min: 0, max: 1, step: 1 },
-      range: { min: 0, max: 1, step: 1 },
-      size: { width: 400, height: 400 },
-      marks: []
-    };
-    const props = { ...defaults, ...extras };
+    const props = { ...defaultProps(), ...extras };
 
     return shallow(<Graph {...props} />, opts);
   };
@@ -37,7 +37,12 @@ describe('Graph', () => {
   });
   describe('logic', () => {
     describe('componentDidMount', () => {
-      it.todo('sets the labelNode to state');
+      it('sets the labelNode to state', () => {
+        w = shallow(<Graph {...defaultProps()} />, { disableLifecycleMethods: true });
+        w.instance().labelNode = {};
+        w.instance().componentDidMount();
+        expect(w.state('labelNode')).toEqual(w.instance().labelNode);
+      });
     });
 
     describe('getDefaultTool', () => {
@@ -98,7 +103,12 @@ describe('Graph', () => {
         expect(w.instance().updateMarks).toHaveBeenCalledWith(buildingMark, updatedMark, true);
       });
 
-      it.todo('returns early of labelModeEnabled');
+      it('returns early of labelModeEnabled', () => {
+        w = wrapper({ labelModeEnabled: true });
+        w.instance().updateMarks = jest.fn();
+        w.instance().onBgClick({ x: 3, y: 3 });
+        expect(w.instance().updateMarks).not.toHaveBeenCalled();
+      });
     });
 
     describe('completeMark', () => {

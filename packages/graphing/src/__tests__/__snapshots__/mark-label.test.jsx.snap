@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MarkLabel snapshot  1`] = `
+<AutosizeInput
+  injectStyles={true}
+  inputClassName=""
+  inputRef={[Function]}
+  minWidth={1}
+  onChange={[Function]}
+  style={
+    Object {
+      "left": 11,
+      "pointerEvents": "auto",
+      "position": "absolute",
+      "top": -9,
+    }
+  }
+/>
+`;

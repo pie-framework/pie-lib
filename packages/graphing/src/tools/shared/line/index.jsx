@@ -1,6 +1,6 @@
 import React from 'react';
 import isEqual from 'lodash/isEqual';
-import { BasePoint } from '../../shared/point';
+import { BasePoint } from '../point';
 import { types, utils, gridDraggable, trig } from '@pie-lib/plot';
 import PropTypes from 'prop-types';
 import debug from 'debug';
