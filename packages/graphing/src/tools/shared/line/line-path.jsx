@@ -3,38 +3,37 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { PointType } from '../types';
 import { types, gridDraggable } from '@pie-lib/plot';
-import * as utils from '../../utils';
+import * as utils from '../../../utils';
 import classNames from 'classnames';
 import { disabled } from '../styles';
 import * as vx from '@vx/shape';
 
-class RawLinePath extends React.Component {
+export class LinePath extends React.Component {
   static propTypes = {
     className: PropTypes.string,
     classes: PropTypes.object,
     data: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)),
     graphProps: types.GraphPropsType.isRequired,
     disabled: PropTypes.bool,
-    xScale: PropTypes.func.isRequired,
-    yScale: PropTypes.func.isRequired,
     root: PropTypes.shape(PointType).isRequired,
-    edge: PropTypes.shape(PointType).isRequired
+    edge: PropTypes.shape(PointType).isRequired,
+    isDragging: PropTypes.bool
   };
 
   render() {
+    /* eslint-disable no-unused-vars */
     const {
       data,
       classes,
-      xScale,
-      yScale,
       className,
       disabled,
-      graphProps,
       root,
       edge,
+      graphProps,
       isDragging,
       ...rest
     } = this.props;
+    /* eslint-enable */
 
     return (
       <React.Fragment>
@@ -63,7 +62,7 @@ const dragging = theme => ({
   stroke: theme.palette.secondary.light
 });
 
-export const LinePath = withStyles(theme => ({
+export const StyledLinePath = withStyles(theme => ({
   drawLine: {
     fill: 'none',
     strokeWidth: 2,
@@ -81,7 +80,7 @@ export const LinePath = withStyles(theme => ({
     ...disabled('stroke'),
     strokeWidth: 2
   }
-}))(RawLinePath);
+}))(LinePath);
 
 export default gridDraggable({
   bounds: (props, { domain, range }) => {
@@ -99,4 +98,4 @@ export default gridDraggable({
       edge: utils.point(edge).add(utils.point(delta))
     };
   }
-})(LinePath);
+})(StyledLinePath);

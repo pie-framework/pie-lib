@@ -111,8 +111,6 @@ export const withRootEdge = getPoints => {
         <g>
           {edge && (
             <LinePath
-              xScale={d => graphProps.scale.x(d.x)}
-              yScale={d => graphProps.scale.y(d.y)}
               data={raw}
               onDrag={this.dragLine}
               root={this.props.root}

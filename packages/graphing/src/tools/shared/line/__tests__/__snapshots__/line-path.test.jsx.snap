@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LinePath snapshot renders 1`] = `
+<Fragment>
+  <u
+    className="className"
+    onChange={[MockFunction]}
+  />
+  <u
+    className="className"
+    onChange={[MockFunction]}
+  />
+</Fragment>
+`;

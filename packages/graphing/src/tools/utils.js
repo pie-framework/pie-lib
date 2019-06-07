@@ -58,18 +58,6 @@ export const pointsToABC = (one, two, three) => {
   const a = d3 / a3;
   const b = (d1 - a1 * a) / b1;
   const c = one.y - a * Math.pow(one.x, 2) - b * one.x;
-  // log('a1', a1);
-  // log('b1', b1);
-  // log('d1', d1);
-  // log('a2', a2);
-  // log('b2', b2);
-  // log('d2', d2);
-  // log('bMult', bMult);
-  // log('a3', a3);
-  // log('d3', d3);
-  // log('a', a);
-  // log('b', b);
-  // log('c', c);
   return { a, b, c };
 };
 
