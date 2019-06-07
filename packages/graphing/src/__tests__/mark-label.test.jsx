@@ -1,7 +1,7 @@
 import { shallow } from 'enzyme';
 import React from 'react';
-import { MarkLabel } from '../mark-label';
-
+import { MarkLabel, position, coordinates } from '../mark-label';
+import { graphProps as getGraphProps } from '../utils';
 // jest.mock('react', () => {
 //   const Actual = jest.requireActual('react');
 
@@ -23,29 +23,6 @@ const xyFn = () => {
   return out;
 };
 
-const getGraphProps = (dmin = -5, dmax = 5, rmin = -5, rmax = 5) => ({
-  scale: {
-    x: xyFn(),
-    y: xyFn()
-  },
-  snap: {
-    x: xyFn(),
-    y: xyFn()
-  },
-  domain: {
-    min: dmin,
-    max: dmax
-  },
-  range: {
-    min: rmin,
-    max: rmax
-  },
-  size: {
-    width: 500,
-    height: 500
-  }
-});
-
 describe('MarkLabel', () => {
   let w;
   let onChange = jest.fn();
@@ -61,9 +38,44 @@ describe('MarkLabel', () => {
     return shallow(<MarkLabel {...props} />);
   };
   describe('snapshot', () => {
-    it('', () => {
+    it('renders', () => {
       w = wrapper();
       expect(w).toMatchSnapshot();
     });
+    it('renders', () => {
+      w = wrapper({ mark: { x: 10, y: 10 } });
+      expect(w).toMatchSnapshot();
+    });
+  });
+});
+
+describe('position', () => {
+  const assertPosition = (mark, rect, expected) => {
+    it(`${mark.x},${mark.y} + ${rect.width},${rect.height} => ${expected}`, () => {
+      const graphProps = getGraphProps();
+      const result = position(graphProps, mark, rect);
+      expect(result).toEqual(expected);
+    });
+  };
+
+  assertPosition({ x: 0, y: 0 }, { width: 10, height: 10 }, 'top-left');
+  assertPosition({ x: 0, y: 0 }, { width: 0, height: 0 }, 'bottom-right');
+  assertPosition({ x: 0, y: 0 }, { width: 10, height: 0 }, 'bottom-left');
+  assertPosition({ x: 0, y: 0 }, { width: 0, height: 10 }, 'top-right');
+});
+
+describe('coordinates', () => {
+  const assertCoordinates = (mark, rect, pos, expected) => {
+    it(`${mark.x}, ${mark.y} -> ${pos} = ${expected.left}, ${expected.top}`, () => {
+      const result = coordinates(getGraphProps(), mark, rect, pos);
+      expect(result).toEqual(expected);
+    });
+  };
+  assertCoordinates({ x: 0, y: 0 }, { width: 0, height: 0 }, 'top-left', { left: -10, top: -10 });
+  assertCoordinates({ x: 0, y: 0 }, { width: 0, height: 0 }, 'bottom-left', { left: -10, top: 10 });
+  assertCoordinates({ x: 0, y: 0 }, { width: 0, height: 0 }, 'top-right', { left: 10, top: -10 });
+  assertCoordinates({ x: 0, y: 0 }, { width: 0, height: 0 }, 'bottom-right', {
+    left: 10,
+    top: 10
   });
 });

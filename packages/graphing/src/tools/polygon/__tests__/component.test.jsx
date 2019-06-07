@@ -2,7 +2,7 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import { graphProps, xy } from '../../../__tests__/utils';
 
-import { RawBaseComponent, buildLines } from '../component';
+import { RawBaseComponent, buildLines, swap } from '../component';
 
 describe('buildLines', () => {
   const defaultPoints = [xy(0, 0), xy(1, 1), xy(1, 0)];
@@ -21,7 +21,10 @@ describe('buildLines', () => {
 });
 
 describe('swap', () => {
-  it.todo('swaps pairs');
+  it('swaps pairs', () => {
+    const result = swap([xy(0, 0, 0), xy(1, 1, 1), xy(2, 2, 2)], xy(0, 0, 0), xy(3, 3, 0));
+    expect(result).toEqual([xy(3, 3, 0), xy(1, 1, 1), xy(2, 2, 2)]);
+  });
 });
 
 describe('RawBaseComponent', () => {

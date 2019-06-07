@@ -31,7 +31,7 @@ export const buildLines = (points, closed) => {
   return closed ? all : initial(all);
 };
 
-const swap = (arr, ...rest) => {
+export const swap = (arr, ...rest) => {
   const pairs = chunk(rest, 2);
   return pairs.reduce(
     (acc, pr) => {

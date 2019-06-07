@@ -11,10 +11,11 @@ const log = debug('pie-lib:graphing:ray-two');
 
 const markerId = genUid();
 
-const RayLine = withStyles(theme => ({
+const rayStyles = theme => ({
   line: styles.line(theme),
   arrow: styles.arrow(theme)
-}))(props => {
+});
+export const RayLine = props => {
   const { graphProps, from, to, classes, disabled, correctness, className, ...rest } = props;
   const { scale } = graphProps;
   const [aToB] = trig.edges(graphProps.domain, graphProps.range)(from, to);
@@ -22,7 +23,7 @@ const RayLine = withStyles(theme => ({
   return (
     <g>
       <defs>
-        <ArrowMarker id={markerId} className={classes.arrow} />
+        <ArrowMarker id={props.markerId || markerId} className={classes.arrow} />
       </defs>
       <line
         x1={scale.x(from.x)}
@@ -36,19 +37,26 @@ const RayLine = withStyles(theme => ({
           classes[correctness],
           className
         )}
-        markerEnd={`url(#${markerId})`}
+        markerEnd={`url(#${props.markerId || markerId})`}
       />
     </g>
   );
-});
-
-RayLine.propTypes = {
-  graphProps: PropTypes.any,
-  from: types.PointType,
-  to: types.PointType
 };
 
-const Ray = lineBase(RayLine);
+RayLine.propTypes = {
+  classes: PropTypes.object,
+  className: PropTypes.string,
+  disabled: PropTypes.bool,
+  correctness: PropTypes.string,
+  graphProps: PropTypes.any,
+  from: types.PointType,
+  to: types.PointType,
+  markerId: PropTypes.string
+};
+
+const StyledRay = withStyles(rayStyles)(RayLine);
+
+const Ray = lineBase(StyledRay);
 const Component = lineToolComponent(Ray);
 
 export default Component;

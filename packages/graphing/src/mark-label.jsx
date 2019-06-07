@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import AutosizeInput from 'react-input-autosize';
 import PropTypes from 'prop-types';
 import { GraphPropsType } from '@pie-lib/plot/lib/types';
+import { useDebounce } from './use-debounce';
 
 const styles = theme => ({
   input: {
@@ -21,18 +22,18 @@ const styles = theme => ({
   }
 });
 
-const position = (graphProps, mark, rect) => {
+export const position = (graphProps, mark, rect) => {
   rect = rect || { width: 0, height: 0 };
   const { scale, domain, range } = graphProps;
 
   const rightEdge = scale.x(mark.x) + rect.width;
   const bottomEdge = scale.y(mark.y) + rect.height;
-  const h = rightEdge > scale.x(domain.max) ? 'left' : 'right';
-  const v = bottomEdge > scale.y(range.min) ? 'top' : 'bottom';
+  const h = rightEdge >= scale.x(domain.max) ? 'left' : 'right';
+  const v = bottomEdge >= scale.y(range.min) ? 'top' : 'bottom';
   return `${v}-${h}`;
 };
 
-const coordinates = (graphProps, mark, rect, position) => {
+export const coordinates = (graphProps, mark, rect, position) => {
   const { scale } = graphProps;
   const shift = 10;
   rect = rect || { width: 0, height: 0 };
@@ -56,18 +57,6 @@ const coordinates = (graphProps, mark, rect, position) => {
       };
     }
   }
-};
-
-export const useDebounce = (value, delay) => {
-  const [debouncedValue, setDebouncedValue] = useState(value);
-
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedValue(value);
-    }, delay);
-    return () => clearTimeout(handler);
-  }, [value]);
-  return debouncedValue;
 };
 
 export const MarkLabel = props => {

@@ -5,12 +5,14 @@ import { trig, types } from '@pie-lib/plot';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import { ArrowMarker, genUid } from '../shared/arrow-head';
+import { GraphPropsType } from '@pie-lib/plot/lib/types';
 const markerId = genUid();
 
-const ArrowedLine = withStyles(theme => ({
+const lineStyles = theme => ({
   line: styles.line(theme),
   arrow: styles.arrow(theme)
-}))(props => {
+});
+export const ArrowedLine = props => {
   const { className, classes, correctness, disabled, graphProps, from, to, ...rest } = props;
   const { scale } = graphProps;
   const [eFrom, eTo] = trig.edges(graphProps.domain, graphProps.range)(from, to);
@@ -36,15 +38,21 @@ const ArrowedLine = withStyles(theme => ({
       />
     </g>
   );
-});
+};
 
 ArrowedLine.propTypes = {
-  graphProps: PropTypes.any,
+  className: PropTypes.string,
+  classes: PropTypes.object,
+  correctness: PropTypes.string,
+  disabled: PropTypes.bool,
+  graphProps: GraphPropsType,
   from: types.PointType,
   to: types.PointType
 };
 
-const Line = lineBase(ArrowedLine);
+const StyledArrowedLine = withStyles(lineStyles)(ArrowedLine);
+
+const Line = lineBase(StyledArrowedLine);
 const Component = lineToolComponent(Line);
 
 export default Component;

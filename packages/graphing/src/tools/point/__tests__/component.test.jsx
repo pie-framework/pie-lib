@@ -7,7 +7,7 @@ import Component from '../component';
 describe('Component', () => {
   let w;
   let onChange = jest.fn();
-  const wrapper = extras => {
+  const wrapper = (extras, opts) => {
     const defaults = {
       classes: {},
       className: 'className',
@@ -15,7 +15,7 @@ describe('Component', () => {
       graphProps: graphProps()
     };
     const props = { ...defaults, ...extras };
-    return shallow(<Component {...props} />);
+    return shallow(<Component {...props} />, opts);
   };
 
   describe('snapshot', () => {
@@ -35,11 +35,32 @@ describe('Component', () => {
     });
 
     describe('labelChange', () => {
-      it.todo('calls onChange');
+      it('callsOnChange with label removed', () => {
+        const mark = { label: 'foo' };
+        const update = {};
+        const w = wrapper({ mark });
+        w.instance().labelChange(undefined);
+        expect(onChange).toHaveBeenCalledWith(mark, update);
+      });
     });
 
     describe('clickPoint', () => {
-      it.todo('calls onChange');
+      let mark;
+      let w;
+      beforeEach(() => {
+        mark = { label: 'foo' };
+        w = wrapper({ mark, labelModeEnabled: true }, { disableLifecycleMethods: true });
+        w.instance().input = {
+          focus: jest.fn()
+        };
+        w.instance().clickPoint();
+      });
+      it('calls onChange if labelModeEnabeld', () => {
+        expect(onChange).toHaveBeenCalledWith(mark, { ...mark, label: '' });
+      });
+      it('calls input.focus', () => {
+        expect(w.instance().input.focus).toHaveBeenCalled();
+      });
     });
   });
 });

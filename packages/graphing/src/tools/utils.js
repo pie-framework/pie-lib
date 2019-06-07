@@ -78,6 +78,15 @@ export const pointsToABC = (one, two, three) => {
  */
 export const parabola = (a, b, c) => x => a * Math.pow(x, 2) + b * x + c;
 
+/**
+ * Generate a set of data points, add spacing before min and after max if there is space between minx + min and maxX and max
+ * @param {*} min
+ * @param {*} max
+ * @param {*} root
+ * @param {*} edge
+ * @param {*} interval
+ * @param {*} yFn
+ */
 export const buildDataPoints = (min, max, root, edge, interval, yFn) => {
   log('[buildDataPoints] min:', min, 'max:', max, 'root:', root);
   edge = edge ? edge : { ...root };
@@ -85,6 +94,7 @@ export const buildDataPoints = (min, max, root, edge, interval, yFn) => {
   const maxX = Math.max(root.x, edge.x);
   const leftSpace = min - minX;
   const rightSpace = max - maxX;
+  console.log(minX, interval);
   const xs = xPoints(minX, interval, min - rightSpace, max - leftSpace);
   log('[buildDataPoints]:xs:', xs);
   return xs.map(v => new Point(v, yFn(v)));

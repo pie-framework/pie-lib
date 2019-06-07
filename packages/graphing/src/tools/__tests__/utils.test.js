@@ -12,8 +12,6 @@ import _ from 'lodash';
 const { xy } = utils;
 
 describe('utils', () => {
-  it.todo('fix descriptions below...');
-
   describe('xPoints', () => {
     const assertXPoints = (root, freq, min, max, expected) => {
       it(`root: ${root}, freq: ${freq}, domain: ${min}<->${max} => ${expected}`, () => {
@@ -59,9 +57,9 @@ describe('utils', () => {
   });
 
   describe('buildDataPoints', () => {
-    it('?', () => {
-      const result = buildDataPoints(-1, 1, { x: 0, y: 0 }, 1, x => x);
-      expect(result.map(p => p.x)).toEqual([-1, 0, 1]);
+    it('generates points', () => {
+      const result = buildDataPoints(-1, 1, { x: 0, y: 0 }, { x: 0, y: 0 }, 1, x => x);
+      expect(result.map(p => p.x)).toEqual([-2, -1, 0, 1, 2]);
     });
   });
 
@@ -83,15 +81,15 @@ describe('utils', () => {
   });
 
   describe('parabolaFromTwoPoints', () => {
-    it('works', () => {
-      const fn = parabolaFromTwoPoints(xy(0, 0), xy(1, 1));
-      expect(fn(0)).toEqual(0);
-      expect(fn(1)).toEqual(1);
+    describe('0,0 -> 1,2', () => {
+      const yVal = parabolaFromTwoPoints(xy(0, 0), xy(1, 1));
+      it('for x = 0, returns 0', () => expect(yVal(0)).toEqual(0));
+      it('for x = 1, returns 1', () => expect(yVal(1)).toEqual(1));
     });
-    it.only('works', () => {
-      const fn = parabolaFromTwoPoints(xy(0, 0), xy(1, 2));
-      expect(fn(0)).toEqual(0);
-      expect(fn(1)).toEqual(2);
+    describe('0,0 -> 1,2', () => {
+      const yVal = parabolaFromTwoPoints(xy(0, 0), xy(1, 2));
+      it('for x = 0, returns 0', () => expect(yVal(0)).toEqual(0));
+      it('for x = 1, returns 2', () => expect(yVal(1)).toEqual(2));
     });
   });
 

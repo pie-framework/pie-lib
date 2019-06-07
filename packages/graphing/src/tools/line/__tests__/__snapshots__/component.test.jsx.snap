@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ArrowedLine snapshot renders 1`] = `
+<g>
+  <defs>
+    <ArrowMarker
+      id="arrow-862"
+      size={5}
+    />
+  </defs>
+  <line
+    className="className"
+    markerEnd="url(#arrow-862)"
+    markerStart="url(#arrow-862)"
+    onChange={[MockFunction]}
+  />
+</g>
+`;
