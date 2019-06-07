@@ -27,7 +27,14 @@ export class Point extends React.Component {
     this.setState({ mark });
   };
 
-  startDrag = () => this.setState({ mark: { ...this.props.mark } });
+  startDrag = () => {
+    const update = { ...this.props.mark };
+
+    if (update.label === '') {
+      delete update.label;
+    }
+    this.setState({ mark: update });
+  };
 
   stopDrag = () => {
     const { onChange } = this.props;
@@ -39,9 +46,6 @@ export class Point extends React.Component {
     });
   };
 
-  /**
-   * TODO: Perf: defer label change until focus is complete?
-   */
   labelChange = label => {
     const { onChange } = this.props;
     const update = { ...this.props.mark, label };
@@ -50,7 +54,9 @@ export class Point extends React.Component {
       delete update.label;
     }
 
-    onChange(this.props.mark, update);
+    this.setState({ mark: update }, () => {
+      onChange(this.props.mark, update);
+    });
   };
 
   clickPoint = () => {

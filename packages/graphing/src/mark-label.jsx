@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import cn from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import AutosizeInput from 'react-input-autosize';
@@ -57,15 +57,40 @@ const coordinates = (graphProps, mark, rect, position) => {
   }
 };
 
+const useDebounce = (value, delay) => {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+    return () => clearTimeout(handler);
+  }, [value]);
+  return debouncedValue;
+};
+
 export const MarkLabel = withStyles(styles)(props => {
   const [input, setInput] = useState(null);
   const _ref = useCallback(node => setInput(node));
 
   const { mark, graphProps, classes, disabled, inputRef: externalInputRef } = props;
+  const [label, setLabel] = useState(mark.label);
 
-  const onChange = e => {
-    props.onChange(e.target.value);
-  };
+  const onChange = e => setLabel(e.target.value);
+
+  const debouncedLabel = useDebounce(label, 200);
+
+  // useState only sets the value once, to synch props to state need useEffect
+  useEffect(() => {
+    setLabel(mark.label);
+  }, [mark.label]);
+
+  // pick up the change to debouncedLabel and save it
+  useEffect(() => {
+    if (typeof debouncedLabel === 'string' && debouncedLabel !== mark.label) {
+      props.onChange(debouncedLabel);
+    }
+  }, [debouncedLabel]);
 
   const rect = input ? input.getBoundingClientRect() : { width: 0, height: 0 };
   const pos = position(graphProps, mark, rect);
@@ -85,7 +110,7 @@ export const MarkLabel = withStyles(styles)(props => {
       }}
       disabled={disabled}
       inputClassName={cn(classes.input, disabled && classes.disabled)}
-      value={mark.label}
+      value={label}
       style={style}
       onChange={onChange}
     />
