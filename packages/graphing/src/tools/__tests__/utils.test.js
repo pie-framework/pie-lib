@@ -12,6 +12,8 @@ import _ from 'lodash';
 const { xy } = utils;
 
 describe('utils', () => {
+  it.todo('fix descriptions below...');
+
   describe('xPoints', () => {
     const assertXPoints = (root, freq, min, max, expected) => {
       it(`root: ${root}, freq: ${freq}, domain: ${min}<->${max} => ${expected}`, () => {

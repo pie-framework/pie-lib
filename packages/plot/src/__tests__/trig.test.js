@@ -132,4 +132,8 @@ describe('trig', () => {
     assertDiffEdge(xy(-4, -4), xy(-1, -1), xy(-2, -2), xy(-4, -4));
     assertDiffEdge(xy(-4, 4), xy(-1, -1), xy(-2, 0), xy(-4, 2));
   });
+
+  describe('getOpposingSide', () => {
+    it.todo('gets value..');
+  });
 });

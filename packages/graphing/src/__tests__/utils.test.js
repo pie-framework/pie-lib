@@ -1,4 +1,3 @@
-import { AssertionError } from 'assert';
 import * as utils from '../utils';
 
 const xy = (x, y) => ({ x, y });
@@ -48,82 +47,6 @@ describe('utils', () => {
       top: 4,
       bottom: -3,
       right: 4
-    });
-  });
-
-  describe('getAngleDeg', () => {
-    const assertAngle = (ax, ay, bx, by, angle) => {
-      it(`${ax},${ay}  ${bx},${by} => ${angle}`, () => {
-        const result = utils.getAngleDeg(ax, ay, bx, by);
-
-        expect(result).toEqual(angle);
-      });
-    };
-
-    assertAngle(0, 0, 1, 1, 45);
-    assertAngle(0, 0, 0, 1, 0);
-    assertAngle(0, 0, 0, -1, 180);
-    assertAngle(1, 1, -8, 10, 315);
-  });
-
-  describe('calculateThirdPointOnLine', () => {
-    const assertThirdPoint = (a, b, graphProps, c) => {
-      it(`${a.x},${a.y}  ${b.x},${b.y} => ${c.x},${c.y}`, () => {
-        const result = utils.calculateThirdPointOnLine(a, b, graphProps);
-
-        expect(result).toEqual(c);
-      });
-    };
-
-    const graphProps = {
-      domain: {
-        min: -14,
-        max: 10
-      },
-      range: {
-        min: -14,
-        max: 14
-      }
-    };
-
-    assertThirdPoint({ x: 0, y: 0 }, { x: 1, y: 1 }, graphProps, { x: 10, y: 10 });
-    assertThirdPoint({ x: 3, y: 3 }, { x: -3, y: 3 }, graphProps, { x: -14, y: 3 });
-    assertThirdPoint({ x: 1, y: 2 }, { x: 3, y: 6 }, graphProps, { x: 7, y: 14 });
-  });
-
-  describe('calculatePreviousNearestScaledPoint', () => {
-    const scale = {
-      x: from => from * 100,
-      y: from => from * 100
-    };
-
-    const assertCalculatePreviousNearestScaledPoint = (from, to, type, expected) => {
-      it(`${from.x},${from.y}  ${to.x},${to.y} => scaled to ${expected.x},${expected.y}`, () => {
-        const result = utils.calculatePreviousNearestScaledPoint(scale, from, to, type);
-
-        expect(result).toEqual(expected);
-      });
-    };
-
-    assertCalculatePreviousNearestScaledPoint({ x: 0, y: 0 }, { x: 1, y: 1 }, undefined, {
-      x: 100,
-      y: 100
-    });
-    assertCalculatePreviousNearestScaledPoint({ x: 0, y: 0 }, { x: 1, y: 1 }, 'vector', {
-      x: 93,
-      y: 93
-    });
-    assertCalculatePreviousNearestScaledPoint({ x: 0, y: 0 }, { x: 1, y: 1 }, 'ray', {
-      x: 95,
-      y: 95
-    });
-    assertCalculatePreviousNearestScaledPoint({ x: 0, y: 0 }, { x: 1, y: 1 }, 'line', {
-      x: 95,
-      y: 95
-    });
-    assertCalculatePreviousNearestScaledPoint({ x: 1, y: 1 }, { x: 0, y: 0 }, 'line', {
-      x: 5,
-      y: 5
     });
   });
 });

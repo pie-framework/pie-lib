@@ -36,6 +36,10 @@ describe('Graph', () => {
     });
   });
   describe('logic', () => {
+    describe('componentDidMount', () => {
+      it.todo('sets the labelNode to state');
+    });
+
     describe('getDefaultTool', () => {
       it('returns the default specified in the props', () => {
         const defaultTool = { type: 'default' };
@@ -93,6 +97,8 @@ describe('Graph', () => {
         w.instance().onBgClick({ x: 3, y: 3 });
         expect(w.instance().updateMarks).toHaveBeenCalledWith(buildingMark, updatedMark, true);
       });
+
+      it.todo('returns early of labelModeEnabled');
     });
 
     describe('completeMark', () => {

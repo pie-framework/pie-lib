@@ -20,6 +20,10 @@ describe('buildLines', () => {
   assertBuildLines(defaultPoints, true, []);
 });
 
+describe('swap', () => {
+  it.todo('swaps pairs');
+});
+
 describe('RawBaseComponent', () => {
   let w;
   let onChange = jest.fn();
