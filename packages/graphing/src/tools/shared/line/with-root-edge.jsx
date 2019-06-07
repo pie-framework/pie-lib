@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { types, utils } from '@pie-lib/plot';
-import LinePath from '../shared/line-path';
+import LinePath from '../line/line-path';
 import { curveMonotoneX } from '@vx/curve';
-import { BasePoint } from '../common/point';
+import { BasePoint } from '../point';
 import { ToolPropTypeFields } from '../types';
 
 import debug from 'debug';

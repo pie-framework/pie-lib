@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import debug from 'debug';
-import { BasePoint } from '../common/point';
+import { BasePoint } from '../shared/point';
 import BgCircle from './bg-circle';
 import { point } from '../../utils';
 import classNames from 'classnames';
 import { types } from '@pie-lib/plot';
-import { rootEdgeComponent } from '../shared/with-root-edge';
+import { rootEdgeComponent } from '../shared/line/with-root-edge';
 
 const log = debug('pie-lib:graphing:circle');
 

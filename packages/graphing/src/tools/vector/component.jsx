@@ -1,5 +1,5 @@
-import { lineToolComponent, lineBase, styles } from '../shared/line-tools';
-import { Arrow } from '../common/point';
+import { lineToolComponent, lineBase, styles } from '../shared/line';
+import { Arrow } from '../shared/point';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { types } from '@pie-lib/plot';

@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { PointType } from '../types';
+import { PointType } from '../shared/types';
 import { types, gridDraggable } from '@pie-lib/plot';
 import * as utils from '../../utils';
 import classNames from 'classnames';
-import { disabled } from '../styles';
+import { disabled } from '../shared/styles';
 
 class RawLine extends React.Component {
   static propTypes = {

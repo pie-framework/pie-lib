@@ -1,4 +1,4 @@
-import { lineToolComponent, lineBase, styles } from '../shared/line-tools';
+import { lineToolComponent, lineBase, styles } from '../shared/line';
 import React from 'react';
 import PropTypes from 'prop-types';
 

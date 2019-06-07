@@ -240,7 +240,7 @@ const Options = withStyles(theme => ({
   }
 }))(RawOptions);
 
-export class GridDemo extends React.Component {
+export class GridDemo extends React.PureComponent {
   static propTypes = {
     classes: PropTypes.object.isRequired
   };

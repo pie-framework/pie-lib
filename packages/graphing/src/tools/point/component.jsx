@@ -1,7 +1,7 @@
 import React from 'react';
-import { BasePoint } from '../common/point';
+import { BasePoint } from '../shared/point';
 import debug from 'debug';
-import { ToolPropTypeFields } from '../types';
+import { ToolPropTypeFields } from '../shared/types';
 import { types } from '@pie-lib/plot';
 import ReactDOM from 'react-dom';
 import { MarkLabel } from '../../mark-label';

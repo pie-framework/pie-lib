@@ -1,7 +1,7 @@
 import { withStyles } from '@material-ui/core/styles/index';
 import { gridDraggable } from '@pie-lib/plot';
 import * as utils from '../../../utils';
-import { disabled, correct, incorrect } from '../../styles';
+import { disabled, correct, incorrect } from '../styles';
 import { RawBp } from './base-point';
 import { RawArrow } from './arrow-point';
 import BaseArrow from './arrow';

@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { ToolPropTypeFields } from '../types';
-import { BasePoint } from '../common/point';
+import { ToolPropTypeFields } from '../shared/types';
+import { BasePoint } from '../shared/point';
 import chunk from 'lodash/chunk';
 import initial from 'lodash/initial';
 import isEqual from 'lodash/isEqual';

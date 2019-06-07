@@ -1,10 +1,10 @@
-import { lineToolComponent, lineBase, styles } from '../shared/line-tools';
+import { lineToolComponent, lineBase, styles } from '../shared/line';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { trig, types } from '@pie-lib/plot';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-import { ArrowHead, ArrowMarker, genUid } from '../common/arrow-head';
+import { ArrowMarker, genUid } from '../shared/arrow-head';
 const markerId = genUid();
 
 const ArrowedLine = withStyles(theme => ({
