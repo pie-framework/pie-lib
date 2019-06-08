@@ -12,6 +12,7 @@ import {
 } from '../trig';
 import { xy } from '../utils';
 import debug from 'debug';
+import { getOpposingSide } from '../../lib/trig';
 const log = debug('pie-lib:plot:trig:test');
 
 const vs = v => {
@@ -133,7 +134,16 @@ describe('trig', () => {
     assertDiffEdge(xy(-4, 4), xy(-1, -1), xy(-2, 0), xy(-4, 2));
   });
 
-  describe('getOpposingSide', () => {
-    it.todo('gets value..');
+  describe.only('getOpposingSide', () => {
+    const assertOpposingSide = (hyp, angle, expected) => {
+      it(`${hyp}, ${angle} = ${expected}`, () => {
+        const radians = toRadians(angle);
+        const result = getOpposingSide(hyp, radians);
+        expect(result).toBeCloseTo(expected);
+      });
+    };
+
+    assertOpposingSide(1, 45, 0.707);
+    assertOpposingSide(1.25, 45, 0.88);
   });
 });

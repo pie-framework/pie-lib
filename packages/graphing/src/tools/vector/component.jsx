@@ -6,9 +6,11 @@ import { types } from '@pie-lib/plot';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 
-const Line = withStyles(theme => ({
+const lineStyles = theme => ({
   line: styles.line(theme)
-}))(props => {
+});
+
+export const Line = props => {
   const { className, classes, disabled, correctness, graphProps, from, to, ...rest } = props;
   const { scale } = graphProps;
   return (
@@ -26,15 +28,20 @@ const Line = withStyles(theme => ({
       {...rest}
     />
   );
-});
+};
 
 Line.propTypes = {
+  className: PropTypes.string,
+  classes: PropTypes.object,
+  disabled: PropTypes.bool,
+  correctness: PropTypes.string,
   graphProps: PropTypes.any,
   from: types.PointType,
   to: types.PointType
 };
 
-const Vector = lineBase(Line, { to: Arrow });
+const StyledLine = withStyles(lineStyles)(Line);
+const Vector = lineBase(StyledLine, { to: Arrow });
 const Component = lineToolComponent(Vector);
 
 export default Component;
