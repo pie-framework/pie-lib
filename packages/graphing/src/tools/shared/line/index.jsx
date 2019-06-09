@@ -4,6 +4,7 @@ import { BasePoint } from '../point';
 import { types, utils, gridDraggable, trig } from '@pie-lib/plot';
 import PropTypes from 'prop-types';
 import debug from 'debug';
+import _ from 'lodash';
 
 const log = debug('pie-lib:graphing:line-tools');
 
