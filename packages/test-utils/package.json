@@ -10,11 +10,7 @@
   "license": "ISC",
   "peerDependencies": {
     "enzyme": "^3.8.0",
-    "react": "^16.7.0"
-  },
-  "devDependencies": {
-    "enzyme": "^3.8.0",
-    "enzyme-adapter-react-16": "^1.7.1"
+    "react": "^16.8.6"
   },
   "gitHead": "f3345ae70660f4ae88450512261c7ea1601003c8",
   "scripts": {}

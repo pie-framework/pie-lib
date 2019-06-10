@@ -4,17 +4,17 @@ export const tool = opts => ({
   type: 'circle',
   Component: Circle,
   hover: (point, mark) => {
-    return { ...mark, outerPoint: point };
+    return { ...mark, edge: point };
   },
   addPoint: (point, mark) => {
     if (!mark) {
       return {
         type: 'circle',
-        center: point,
+        root: point,
         building: true
       };
     } else {
-      return { ...mark, outerPoint: point, building: false };
+      return { ...mark, edge: point, building: false };
     }
   }
 });

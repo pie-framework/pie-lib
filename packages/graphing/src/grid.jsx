@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import * as vx from '@vx/grid';
 import { tickCount } from './utils';
-import { types } from '@pie-lib/plot';
+import { types, utils } from '@pie-lib/plot';
 import { withStyles } from '@material-ui/core/styles';
 
 export class Grid extends React.Component {
@@ -12,10 +12,15 @@ export class Grid extends React.Component {
     graphProps: types.GraphPropsType.isRequired
   };
 
+  shouldComponentUpdate(nextProps) {
+    const { graphProps } = this.props;
+    const { graphProps: nextGraphProps } = nextProps;
+    return !utils.isDomainRangeEqual(graphProps, nextGraphProps);
+  }
+
   render() {
     const { classes, graphProps } = this.props;
     const { scale, size, domain, range } = graphProps;
-
     return (
       <vx.Grid
         innerRef={r => (this.grid = r)}

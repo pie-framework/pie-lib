@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { GraphPropsType } from './types';
-import Draggable from './draggable';
+import { DraggableCore } from './draggable';
 import debug from 'debug';
 import * as utils from './utils';
 import isFunction from 'lodash/isFunction';
 import invariant from 'invariant';
-
+import { clientPoint } from 'd3-selection';
 const log = debug('pie-lib:plot:grid-draggable');
 
 export const deltaFn = (scale, snap, val) => delta => {
@@ -14,16 +14,14 @@ export const deltaFn = (scale, snap, val) => delta => {
   const inverted = scale.invert(normalized);
   return snap(val + inverted);
 };
+
 /**
  * Creates a Component that is draggable, within a bounded grid.
  * @param {*} opts
  */
 export const gridDraggable = opts => Comp => {
   invariant(
-    !!opts &&
-      isFunction(opts.fromDelta) &&
-      isFunction(opts.bounds) &&
-      isFunction(opts.anchorPoint),
+    !!opts && isFunction(opts.fromDelta) && isFunction(opts.bounds) && isFunction(opts.anchorPoint),
     'You must supply an object with: { anchorPoint: Function, fromDelta: Function, bounds: Function }'
   );
 
@@ -53,6 +51,9 @@ export const gridDraggable = opts => Comp => {
     onStart = e => {
       const { onDragStart } = this.props;
 
+      if (document.activeElement) {
+        document.activeElement.blur();
+      }
       this.setState({ startX: e.clientX, startY: e.clientY });
       if (onDragStart) {
         onDragStart();
@@ -84,17 +85,75 @@ export const gridDraggable = opts => Comp => {
       return out;
     };
 
+    getScaledBounds = () => {
+      const bounds = opts.bounds(this.props, this.props.graphProps);
+      log('bounds: ', bounds);
+      const grid = this.grid();
+
+      const scaled = {
+        left: (bounds.left / grid.interval) * grid.x,
+        right: (bounds.right / grid.interval) * grid.x,
+        top: (bounds.top / grid.interval) * grid.y,
+        bottom: (bounds.bottom / grid.interval) * grid.y
+      };
+      log('[getScaledBounds]: ', scaled);
+      return scaled;
+    };
+
+    skipDragOutsideOfBounds = (dd, e, graphProps) => {
+      // ignore drag movement outside of the domain and range.
+      const [rawX, rawY] = clientPoint(dd.node, e);
+      const { scale, domain, range } = graphProps;
+      let x = scale.x.invert(rawX);
+      let y = scale.y.invert(rawY);
+
+      if (dd.deltaX > 0 && x < domain.min) {
+        return true;
+      }
+
+      if (dd.deltaX < 0 && x > domain.max) {
+        return true;
+      }
+
+      if (dd.deltaY > 0 && y > range.max) {
+        return true;
+      }
+      if (dd.deltaY < 0 && y < range.min) {
+        return true;
+      }
+      return false;
+    };
+
     onDrag = (e, dd) => {
-      log('[onDrag] .. ', dd.x, dd.y);
-      const { onDrag } = this.props;
+      const { onDrag, graphProps } = this.props;
 
       if (!onDrag) {
         return;
       }
 
-      const dragArg = this.applyDelta({ x: dd.x, y: dd.y });
+      const bounds = this.getScaledBounds();
 
-      log('[onDrag] .. dragArg:', dragArg);
+      if (dd.deltaX < 0 && dd.deltaX < bounds.left) {
+        return;
+      }
+      if (dd.deltaX > 0 && dd.deltaX > bounds.right) {
+        return;
+      }
+
+      if (dd.deltaY < 0 && dd.deltaY < bounds.top) {
+        return;
+      }
+
+      if (dd.deltaY > 0 && dd.deltaY > bounds.bottom) {
+        return;
+      }
+
+      if (this.skipDragOutsideOfBounds(dd, e, graphProps)) {
+        return;
+      }
+
+      const dragArg = this.applyDelta({ x: dd.deltaX, y: dd.deltaY });
+
       if (dragArg !== undefined || dragArg !== null) {
         onDrag(dragArg);
       }
@@ -113,68 +172,60 @@ export const gridDraggable = opts => Comp => {
 
     applyDelta = point => {
       const delta = this.getDelta(point);
+      log('[applyDelta] delta:', delta);
       return opts.fromDelta(this.props, delta);
     };
 
     onStop = (e, dd) => {
-      const { onDragStop, onClick, onMove } = this.props;
+      log('[onStop] dd:', dd);
+      const { onDragStop, onClick } = this.props;
 
       if (onDragStop) {
         onDragStop();
       }
 
       log('[onStop] lastX/Y: ', dd.lastX, dd.lastY);
-      // if the movement wasnt large enough to be considered a move.
-      if (this.tiny('x', e) && this.tiny('y', e)) {
+      const isClick = this.tiny('x', e) && this.tiny('y', e);
+
+      if (isClick) {
         if (onClick) {
+          log('call onClick');
           this.setState({ startX: null });
-          onClick();
+          const { graphProps } = this.props;
+          const { scale, snap } = graphProps;
+          const [rawX, rawY] = clientPoint(e.target, e);
+          let x = scale.x.invert(rawX);
+          let y = scale.y.invert(rawY);
+          x = snap.x(x);
+          y = snap.y(y);
+          onClick({ x, y });
           return false;
         }
-      } else {
-        if (!onMove) {
-          return;
-        }
-
-        const moveArg = this.applyDelta({ x: dd.lastX, y: dd.lastY });
-
-        if (moveArg !== undefined || moveArg !== null) {
-          log('[onStop] call onMove with: ', moveArg);
-          onMove(moveArg);
-        }
       }
+
+      this.setState({ startX: null, startY: null });
       // return false to prevent state updates in the underlying draggable - a move will have triggered an update already.
       return false;
     };
 
     render() {
       /* eslint-disable no-unused-vars */
-      const {
-        disabled,
-        onDragStart,
-        onDragStop,
-        onDrag,
-        onMove,
-        onClick,
-        ...rest
-      } = this.props;
+      //Note: we pull onClick out so that it's not in ...rest.
+      const { disabled, onClick, ...rest } = this.props;
       /* eslint-enable no-unused-vars */
 
       const grid = this.grid();
-      const bounds = opts.bounds(this.props, this.props.graphProps);
-
-      const scaledBounds = {
-        left: (bounds.left / grid.interval) * grid.x,
-        right: (bounds.right / grid.interval) * grid.x,
-        top: (bounds.top / grid.interval) * grid.y,
-        bottom: (bounds.bottom / grid.interval) * grid.y
-      };
-
       //prevent the text select icon from rendering.
       const onMouseDown = e => e.nativeEvent.preventDefault();
 
+      /**
+       * TODO: This shouldnt be necessary, we should be able to use the r-d classnames.
+       * But they aren't being unset. If we continue with this lib, we'll have to fix this.
+       */
+      const isDragging = this.state ? !!this.state.startX : false;
+
       return (
-        <Draggable
+        <DraggableCore
           disabled={disabled}
           onMouseDown={onMouseDown}
           onStart={this.onStart}
@@ -182,10 +233,9 @@ export const gridDraggable = opts => Comp => {
           onStop={this.onStop}
           axis={opts.axis || 'both'}
           grid={[grid.x, grid.y]}
-          bounds={scaledBounds}
         >
-          <Comp {...rest} disabled={disabled} />
-        </Draggable>
+          <Comp {...rest} disabled={disabled} isDragging={isDragging} />
+        </DraggableCore>
       );
     }
   };

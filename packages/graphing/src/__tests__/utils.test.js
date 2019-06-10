@@ -1,4 +1,3 @@
-import { AssertionError } from 'assert';
 import * as utils from '../utils';
 
 const xy = (x, y) => ({ x, y });
@@ -26,15 +25,12 @@ describe('utils', () => {
       bottom: -1,
       right: 1
     });
-    assertPolygon(
-      [xy(0, 0), xy(3, 0), xy(2, -1), xy(4, -3), xy(1, -4), xy(2, -2)],
-      {
-        left: 0,
-        top: 0,
-        bottom: -4,
-        right: 4
-      }
-    );
+    assertPolygon([xy(0, 0), xy(3, 0), xy(2, -1), xy(4, -3), xy(1, -4), xy(2, -2)], {
+      left: 0,
+      top: 0,
+      bottom: -4,
+      right: 4
+    });
   });
 
   describe('lineToArea', () => {

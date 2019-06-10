@@ -15,10 +15,13 @@ export const SizeType = PropTypes.shape({
   height: PropTypes.number.isRequired
 });
 
-export const ChildrenType = PropTypes.oneOfType([
-  PropTypes.arrayOf(PropTypes.node),
-  PropTypes.node
-]).isRequired;
+export const PointType = PropTypes.shape({
+  x: PropTypes.number.isRequired,
+  y: PropTypes.number.isRequired
+});
+
+export const ChildrenType = PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node])
+  .isRequired;
 
 export const ScaleType = PropTypes.shape({
   x: PropTypes.func.isRequired,

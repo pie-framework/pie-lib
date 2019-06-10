@@ -14,7 +14,7 @@
     "prop-types": "^15.6.2"
   },
   "peerDependencies": {
-    "react": "^16.7.0"
+    "react": "^16.8.6"
   },
   "gitHead": "f3345ae70660f4ae88450512261c7ea1601003c8",
   "scripts": {}
