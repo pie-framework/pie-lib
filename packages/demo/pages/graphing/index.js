@@ -11,6 +11,7 @@ import classNames from 'classnames';
 import Settings from './settings';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import { marks, backgroundMarks } from './demo-data';
 
 function TabContainer(props) {
   return (
@@ -55,7 +56,7 @@ class RawMinMax extends React.Component {
 
   change = (key, pair) => {
     const { model, onChange } = this.props;
-    onChange({ ...model, [key]: pair });
+    onChange({ ...model, [key]: pair || 0 });
   };
 
   render() {
@@ -239,7 +240,7 @@ const Options = withStyles(theme => ({
   }
 }))(RawOptions);
 
-export class GridDemo extends React.Component {
+export class GridDemo extends React.PureComponent {
   static propTypes = {
     classes: PropTypes.object.isRequired
   };
@@ -247,14 +248,25 @@ export class GridDemo extends React.Component {
   constructor(props) {
     super(props);
 
-    const toolsArr = [tools.point(), tools.circle(), tools.polygon()];
+    // console.log('tools:', tools.lineTwo);
+
+    const toolsArr = [
+      tools.point(),
+      tools.circle(),
+      tools.polygon(),
+      tools.segment(),
+      tools.vector(),
+      tools.ray(),
+      tools.line(),
+      tools.sine(),
+      tools.parabola()
+    ];
     this.state = {
       currentTool: toolsArr[2],
       tools: toolsArr,
       settings: {
         includeArrows: true,
         labels: true,
-        padding: true,
         graphTitle: false,
         coordinatesOnHover: false,
         size: {
@@ -278,162 +290,8 @@ export class GridDemo extends React.Component {
           step: 1,
           labelStep: 1
         },
-        backgroundMarks: [
-          {
-            type: 'polygon',
-            points: [
-              {
-                x: -2,
-                y: -2
-              },
-              {
-                x: -2,
-                y: -3
-              },
-              {
-                x: -1,
-                y: -4
-              },
-              {
-                x: 1,
-                y: -3
-              },
-              {
-                x: 1,
-                y: -2
-              },
-              {
-                x: -1,
-                y: -3
-              },
-              {
-                x: 0,
-                y: -1
-              },
-              {
-                x: -3,
-                y: -1
-              },
-              {
-                x: -3,
-                y: -2
-              }
-            ],
-            closed: true
-          }
-        ],
-        marks: [
-          // {
-          //   disabled: true,
-          //   type: 'polygon',
-          //   points: [
-          //     {
-          //       x: -2,
-          //       y: -2
-          //     },
-          //     {
-          //       x: -2,
-          //       y: -3
-          //     },
-          //     {
-          //       x: -1,
-          //       y: -4
-          //     },
-          //     {
-          //       x: 1,
-          //       y: -3
-          //     },
-          //     {
-          //       x: 1,
-          //       y: -2
-          //     },
-          //     {
-          //       x: -1,
-          //       y: -3
-          //     },
-          //     {
-          //       x: 0,
-          //       y: -1
-          //     },
-          //     {
-          //       x: -3,
-          //       y: -1
-          //     },
-          //     {
-          //       x: -3,
-          //       y: -2
-          //     }
-          //   ],
-          //   closed: true
-          // },
-          // {
-          //   type: 'circle',
-          //   disabled: true,
-          //   correctness: 'correct',
-          //   center: {
-          //     x: -4,
-          //     y: 3
-          //   },
-          //   outerPoint: {
-          //     x: -3,
-          //     y: 2
-          //   }
-          // },
-          // {
-          //   type: 'circle',
-          //   disabled: true,
-          //   center: {
-          //     x: -4,
-          //     y: -4
-          //   },
-          //   outerPoint: {
-          //     x: -3,
-          //     y: -3
-          //   }
-          // },
-          // {
-          //   type: 'circle',
-          //   correctness: 'incorrect',
-          //   disabled: true,
-          //   center: {
-          //     x: 1,
-          //     y: 3
-          //   },
-          //   outerPoint: {
-          //     x: 2,
-          //     y: 4
-          //   }
-          // },
-          {
-            type: 'point',
-            x: 3,
-            y: 3
-          }
-          // {
-          //   disabled: true,
-          //   correctness: 'correct',
-          //   type: 'point',
-          //   x: 2,
-          //   y: 3
-          // }
-          // {
-          //   type: 'polygon',
-          //   //??
-          //   closed: true,
-          //   points: [
-          //     { x: -1, y: 1 },
-          //     { x: 4, y: 2 },
-          //     { x: 3, y: 1 },
-          //     { x: 5, y: -3 }
-          //   ]
-          // }
-          // { type: 'point', x: 1, y: 1 },
-          // {
-          //   type: 'circle',
-          //   center: { x: -2, y: 2 },
-          //   outerPoint: { x: -3, y: 3 }
-          // }
-        ]
+        backgroundMarks: backgroundMarks,
+        marks: marks
       }
     };
   }

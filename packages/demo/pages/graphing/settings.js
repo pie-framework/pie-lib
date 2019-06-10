@@ -43,27 +43,14 @@ export class Settings extends React.Component {
             checked={model.includeArrows}
           />
           <Toggle
-            label={'Padding'}
-            toggle={v => this.toggle('padding', v)}
-            checked={model.padding}
-          />
-          <Toggle
             label={'GraphTitle'}
             toggle={v => this.toggle('graphTitle', v)}
             checked={model.graphTitle}
           />
-          <Toggle
-            label={'Labels'}
-            toggle={v => this.toggle('labels', v)}
-            checked={model.labels}
-          />
+          <Toggle label={'Labels'} toggle={v => this.toggle('labels', v)} checked={model.labels} />
 
           <div>
-            <DisplaySize
-              label={'Graph Display Size'}
-              size={model.size}
-              onChange={this.size}
-            />
+            <DisplaySize label={'Graph Display Size'} size={model.size} onChange={this.size} />
             <Toggle
               label={'Coordinates on Hover'}
               toggle={v => this.toggle('coordinatesOnHover', v)}
