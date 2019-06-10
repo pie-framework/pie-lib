@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import { types, gridDraggable } from '@pie-lib/plot';
 import * as utils from '../../utils';
-import { disabled, correct, incorrect } from '../styles';
+import { disabled, correct, incorrect } from '../shared/styles';
 
 /**
  * A low level circle component

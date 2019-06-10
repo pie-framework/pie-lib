@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { select, mouse } from 'd3-selection';
-import { types } from '@pie-lib/plot';
+import { types, utils } from '@pie-lib/plot';
 
 export default class Bg extends React.Component {
   static propTypes = {
@@ -18,6 +18,13 @@ export default class Bg extends React.Component {
     rect.on('click', this.onRectClick.bind(this, rect));
   }
 
+  shouldComponentUpdate(nextProps) {
+    return (
+      !utils.isDomainRangeEqual(this.props.graphProps, nextProps.graphProps) ||
+      this.props.width !== nextProps.width ||
+      this.props.height !== nextProps.height
+    );
+  }
   /**
    * Note: we use d3 click + mouse to give us domain values directly.
    * Saves us having to calculate them ourselves from a MouseEvent.

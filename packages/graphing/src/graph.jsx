@@ -28,7 +28,8 @@ export const graphPropTypes = {
   backgroundMarks: PropTypes.array,
   onChangeMarks: PropTypes.func.isRequired,
   tools: PropTypes.array,
-  defaultTool: PropTypes.string
+  defaultTool: PropTypes.string,
+  labelModeEnabled: PropTypes.bool
 };
 
 export class Graph extends React.Component {
@@ -62,6 +63,10 @@ export class Graph extends React.Component {
   changeMark = (oldMark, newMark) => {
     const { marks, onChangeMarks } = this.props;
 
+    if (!marks) {
+      throw new Error('no marks set?');
+    }
+
     const index = marks.findIndex(m => _.isEqual(m, oldMark));
 
     if (index >= 0) {
@@ -85,15 +90,17 @@ export class Graph extends React.Component {
   onBgClick = ({ x, y }) => {
     log('[onBgClick] x,y: ', x, y);
 
+    if (this.props.labelModeEnabled) {
+      log('label mode!!!');
+      return;
+    }
+
     const buildingMark = this.getBuildingMark();
     const { currentTool } = this.props;
     const tool = currentTool || this.getDefaultTool();
     log('[onBgClick] currentTool: ', currentTool);
 
-    const updatedMark = tool.addPoint(
-      { x, y },
-      buildingMark ? { ...buildingMark } : undefined
-    );
+    const updatedMark = tool.addPoint({ x, y }, buildingMark ? { ...buildingMark } : undefined);
     log('[onBgClick] updatedMark: ', currentTool);
 
     this.updateMarks(buildingMark, updatedMark, true);
@@ -129,10 +136,6 @@ export class Graph extends React.Component {
       }
     }
   };
-
-  buildMarkDragging = () => this.setState({ dragging: true });
-
-  buildMarkStoppedDragging = () => this.setState({ dragging: false });
 
   getComponent = mark => {
     if (!mark) {
@@ -178,10 +181,7 @@ export class Graph extends React.Component {
   componentDidUpdate(prevProps) {
     const { onChangeMarks } = this.props;
     const buildingMark = this.getBuildingMark();
-    if (
-      !_.isEqual(prevProps.currentTool, this.props.currentTool) &&
-      buildingMark !== undefined
-    ) {
+    if (!_.isEqual(prevProps.currentTool, this.props.currentTool) && buildingMark !== undefined) {
       const marks = this.removeMark(buildingMark);
       if (marks) {
         onChangeMarks(marks);
@@ -189,56 +189,85 @@ export class Graph extends React.Component {
     }
   }
 
+  clickComponent = point => {
+    log('click component!', point);
+    this.onBgClick(point);
+  };
+
+  componentDidMount = () => {
+    this.setState({ labelNode: this.labelNode });
+  };
+
   render() {
     const {
       axesSettings,
       size,
       domain,
-      marks,
       backgroundMarks,
       range,
       title,
-      labels
+      labels,
+      labelModeEnabled
     } = this.props;
 
+    const marks = this.state.marks ? this.state.marks : this.props.marks;
+    const tool = this.getTool();
     log('[render]', marks);
 
     const graphProps = createGraphProps(domain, range, size);
+    const maskSize = {
+      x: -10,
+      y: -10,
+      width: size.width + 20,
+      height: size.height + 20
+    };
+    const common = { graphProps, labelModeEnabled };
 
-    const common = { graphProps };
     return (
       <Root title={title} onMouseMove={this.mouseMove} {...common}>
         <Grid {...common} />
         <Axes {...axesSettings} {...common} />
         <Bg {...size} onClick={this.onBgClick} {...common} />
         <Labels value={labels} {...common} />
-
-        {(backgroundMarks || []).map((m, index) => {
-          const Component = this.getComponent(m);
-          return (
-            <Component
-              key={`${m.type}-${index}-bg`}
-              mark={{ ...m, disabled: true }}
-              {...common}
-            />
-          );
-        })}
-        {(marks || []).map((m, index) => {
-          const Component = this.getComponent(m);
-          return (
-            <Component
-              key={`${m.type}-${index}`}
-              mark={m}
-              onChange={this.changeMark}
-              onComplete={this.completeMark}
-              onDragStart={m.building ? this.buildMarkDragging : undefined}
-              onDragStop={
-                m.building ? this.buildMarkStoppedDragging : undefined
-              }
-              {...common}
-            />
-          );
-        })}
+        <mask id="myMask">
+          <rect {...maskSize} fill="white" />
+        </mask>
+        <g id="marks" mask="url('#myMask')">
+          {(backgroundMarks || []).map((m, index) => {
+            const Component = this.getComponent(m);
+            return (
+              <Component
+                key={`${m.type}-${index}-bg`}
+                mark={{ ...m, disabled: true }}
+                {...common}
+              />
+            );
+          })}
+          {(marks || []).map((m, index) => {
+            const Component = this.getComponent(m);
+            return (
+              <Component
+                key={`${m.type}-${index}`}
+                mark={m}
+                onChange={this.changeMark}
+                onComplete={this.completeMark}
+                onClick={this.clickComponent}
+                onDragStart={this.startDrag}
+                onDragStop={this.stopDrag}
+                labelNode={this.state.labelNode}
+                isToolActive={m.type === tool.type}
+                {...common}
+              />
+            );
+          })}
+          <foreignObject
+            ref={labelNode => (this.labelNode = labelNode)}
+            x="0"
+            y="0"
+            {...size}
+            style={{ pointerEvents: 'none' }}
+          />
+        </g>
       </Root>
     );
   }

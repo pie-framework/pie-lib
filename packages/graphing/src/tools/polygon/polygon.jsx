@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { PointType } from '../types';
+import { PointType } from '../shared/types';
 import { gridDraggable, types } from '@pie-lib/plot';
 import * as utils from '../../utils';
 import classNames from 'classnames';
 import { fade } from '@material-ui/core/styles/colorManipulator';
-import { disabled } from '../styles';
+import { disabled } from '../shared/styles';
 
 export const getPointString = (points, scale) => {
   return (points || [])
@@ -31,15 +31,7 @@ export class RawPolygon extends React.Component {
   };
 
   render() {
-    const {
-      points,
-      classes,
-      className,
-      disabled,
-      graphProps,
-      closed,
-      ...rest
-    } = this.props;
+    const { points, classes, className, disabled, graphProps, closed, ...rest } = this.props;
     const { scale } = graphProps;
 
     const pointString = getPointString(points, scale);

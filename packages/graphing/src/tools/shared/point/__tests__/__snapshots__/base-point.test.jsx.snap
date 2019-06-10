@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BasePoint snapshot renders 1`] = `
+<RawBp
+  className="className"
+  classes={
+    Object {
+      "correct": "RawBp-correct-3",
+      "disabled": "RawBp-disabled-2",
+      "incorrect": "RawBp-incorrect-4",
+      "point": "RawBp-point-1",
+    }
+  }
+  graphProps={
+    Object {
+      "domain": Object {
+        "max": 1,
+        "min": 0,
+        "step": 1,
+      },
+      "range": Object {
+        "max": 1,
+        "min": 0,
+        "step": 1,
+      },
+      "scale": Object {
+        "x": [MockFunction],
+        "y": [MockFunction],
+      },
+      "size": Object {
+        "height": 400,
+        "width": 400,
+      },
+      "snap": Object {
+        "x": [MockFunction],
+        "y": [MockFunction],
+      },
+    }
+  }
+  onChange={[MockFunction]}
+/>
+`;

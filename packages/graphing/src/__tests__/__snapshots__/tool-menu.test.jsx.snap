@@ -14,5 +14,8 @@ exports[`ToolMenu snapshot renders 1`] = `
     }
     selected="one"
   />
+  <WithStyles(Component)
+    value="Label"
+  />
 </div>
 `;
