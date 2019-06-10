@@ -1955,7 +1955,7 @@
     lodash "^4.17.11"
     through2 "^3.0.1"
 
-"@pie-framework/mathquill@^0.10.3":
+"@pie-framework/mathquill@^0.10.3", "@pie-framework/mathquill@^0.10.4":
   version "0.10.4"
   resolved "https://registry.yarnpkg.com/@pie-framework/mathquill/-/mathquill-0.10.4.tgz#6725a1ab29381479d75439e97ad4934b86ed0991"
   integrity sha512-qKGhcYgR9B0YfV0aAnJDM6JDAd+aYiYFpH2BSrBbWDb4C1WfaqzuceSZmZjOthl11Tatg1/coRaz5UKDWto3Rw==
