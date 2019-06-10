@@ -468,5 +468,50 @@
     "committerDate": "2019-05-02 07:12:59 +0300",
     "isTagged": true,
     "tag": "@pie-lib/scoring-config@3.4.0"
+  },
+  {
+    "type": "chore",
+    "scope": "merge",
+    "subject": "merged with develop",
+    "merge": null,
+    "header": "chore(merge): merged with develop",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "89ff9d89eb26b5afc82267c10f79af2894f4c2d5",
+    "gitTags": " (origin/feat/response-area-plugin)",
+    "committerDate": "2019-06-05 21:55:26 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/scoring-config@3.4.9"
+  },
+  {
+    "type": "chore",
+    "scope": "merge",
+    "subject": "merged with develop",
+    "merge": null,
+    "header": "chore(merge): merged with develop",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "e68506cf63b2a17973821bb0cfef40828faccd1f",
+    "gitTags": "",
+    "committerDate": "2019-05-21 06:26:54 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/scoring-config@3.4.9"
+  },
+  {
+    "type": "chore",
+    "scope": "editable-html",
+    "subject": "changed versions for packages that contain editable-html",
+    "merge": null,
+    "header": "chore(editable-html): changed versions for packages that contain editable-html",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "e0ef7c4ecb6d524fae19779cb7ce1a68924f7557",
+    "gitTags": "",
+    "committerDate": "2019-06-05 23:19:26 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/scoring-config@3.4.12"
   }
 ]

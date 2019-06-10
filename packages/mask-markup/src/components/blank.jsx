@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { renderMath } from '@pie-lib/math-rendering';
 import debug from 'debug';
-import { DropTarget } from '@pie-lib/drag';
+import { DragSource, DropTarget } from '@pie-lib/drag';
 import { withStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 import classnames from 'classnames';
@@ -31,7 +31,8 @@ export class BlankContent extends React.Component {
   static propTypes = {
     id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     disabled: PropTypes.bool,
-    value: PropTypes.string,
+    duplicates: PropTypes.bool,
+    choice: PropTypes.object,
     classes: PropTypes.object,
     isOver: PropTypes.bool,
     dragItem: PropTypes.object,
@@ -44,8 +45,8 @@ export class BlankContent extends React.Component {
   }
 
   render() {
-    const { id, disabled, value, classes, isOver, dragItem, correct, onChange } = this.props;
-    const label = dragItem && isOver ? dragItem.label : value;
+    const { disabled, choice, classes, isOver, dragItem, correct } = this.props;
+    const label = dragItem && isOver ? dragItem.choice.value : choice && choice.value;
 
     return (
       <Chip
@@ -55,12 +56,11 @@ export class BlankContent extends React.Component {
         }}
         component="span"
         label={<span dangerouslySetInnerHTML={{ __html: label }} />}
-        className={classnames(
-          classes.chip,
-          classes[correct !== undefined ? (correct ? 'correct' : 'incorrect') : undefined]
-        )}
+        className={classnames(classes.chip, {
+          [classes.correct]: correct !== undefined && correct,
+          [classes.incorrect]: correct !== undefined && !correct
+        })}
         variant={disabled ? 'outlined' : undefined}
-        onDelete={value && !disabled ? () => onChange(id, undefined) : undefined}
       />
     );
   }
@@ -68,21 +68,31 @@ export class BlankContent extends React.Component {
 
 const StyledBlankContent = useStyles(BlankContent);
 
-const connectedBlankContent = useStyles(({ connectDropTarget, ...props }) => {
+const connectedBlankContent = useStyles(({ connectDragSource, connectDropTarget, ...props }) => {
   const { classes, isOver } = props;
 
   return connectDropTarget(
-    <span className={classnames(classes.content, isOver && classes.over)}>
-      <StyledBlankContent {...props} />
-    </span>
+    connectDragSource(
+      <span className={classnames(classes.content, isOver && classes.over)}>
+        <StyledBlankContent {...props} />
+      </span>
+    )
   );
 });
 
 const tileTarget = {
   drop(props, monitor) {
     const draggedItem = monitor.getItem();
+
     log('props.instanceId', props.instanceId, 'draggedItem.instanceId:', draggedItem.instanceId);
-    props.onChange(props.id, draggedItem.value);
+
+    if (draggedItem.id !== props.id) {
+      props.onChange(props.id, draggedItem.choice.id);
+    }
+
+    return {
+      dropped: draggedItem.id !== props.id
+    };
   },
   canDrop(props, monitor) {
     const draggedItem = monitor.getItem();
@@ -97,5 +107,35 @@ const DropTile = DropTarget(DRAG_TYPE, tileTarget, (connect, monitor) => ({
   dragItem: monitor.getItem()
 }))(connectedBlankContent);
 
-// export default () => <div>hi</div>;
-export default DropTile;
+const tileSource = {
+  canDrag(props) {
+    return !props.disabled && !!props.choice;
+  },
+  beginDrag(props) {
+    return {
+      id: props.id,
+      choice: props.choice,
+      instanceId: props.instanceId,
+      fromChoice: true
+    };
+  },
+  endDrag(props, monitor) {
+    // this will be null if it did not drop
+    const dropResult = monitor.getDropResult();
+
+    if (!dropResult || (dropResult.dropped && !props.duplicates)) {
+      const draggedItem = monitor.getItem();
+
+      if (draggedItem.fromChoice) {
+        props.onChange(props.id, undefined);
+      }
+    }
+  }
+};
+
+const DragDropTile = DragSource(DRAG_TYPE, tileSource, (connect, monitor) => ({
+  connectDragSource: connect.dragSource(),
+  isDragging: monitor.isDragging()
+}))(DropTile);
+
+export default DragDropTile;

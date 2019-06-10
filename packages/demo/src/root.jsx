@@ -55,6 +55,7 @@ const styles = theme => ({
 const PageTitle = withRouter(({ router, href }) => {
   const name = router.pathname.split('/')[1];
   const title = name ? `@pie-lib/${name}` : '@pie-lib';
+
   return (
     <Typography variant="h6" color="inherit" noWrap>
       {title}
@@ -79,17 +80,11 @@ const ActiveLink = withStyles(theme => ({
     return (
       <Link href={path} as={path}>
         <ListItem button>
-          <ListItemText
-            primary={primary}
-            classes={{ primary: isActive && classes.active }}
-          />
+          <ListItemText primary={primary} classes={{ primary: isActive && classes.active }} />
           {version && (
             <span
               onClick={isActive ? () => onVersionClick(path) : undefined}
-              className={classNames(
-                classes.version,
-                isActive && classes.versionActive
-              )}
+              className={classNames(classes.version, isActive && classes.versionActive)}
             >
               {version}
             </span>
@@ -149,11 +144,7 @@ class ClippedDrawer extends React.Component {
             /> */}
             <div className={classes.extras}>
               {gitInfo.branch}&nbsp;|&nbsp;
-              <a
-                href={`https://github.com/pie-framework/pie-lib/commit/${
-                  gitInfo.short
-                }`}
-              >
+              <a href={`https://github.com/pie-framework/pie-lib/commit/${gitInfo.short}`}>
                 {gitInfo.short}
               </a>
             </div>
@@ -175,13 +166,7 @@ class ClippedDrawer extends React.Component {
                 path={l.path}
                 primary={l.label}
                 onVersionClick={this.showChangeLog}
-                version={
-                  gitInfo.branch === 'master'
-                    ? l.version
-                    : l.version
-                    ? 'next'
-                    : undefined
-                }
+                version={gitInfo.branch === 'master' ? l.version : l.version ? 'next' : undefined}
               />
             ))}
           </List>
@@ -190,11 +175,7 @@ class ClippedDrawer extends React.Component {
           <div className={classes.toolbar} />
           {children}
         </main>
-        <ChangelogDialog
-          open={changelogOpen}
-          onClose={this.hideDialog}
-          activePackage={clPackage}
-        />
+        <ChangelogDialog open={changelogOpen} onClose={this.hideDialog} activePackage={clPackage} />
       </div>
     );
   }
@@ -209,10 +190,7 @@ ClippedDrawer.propTypes = {
       path: PropTypes.string.isRequired
     })
   ).isRequired,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired,
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
   classes: PropTypes.object.isRequired
 };
 

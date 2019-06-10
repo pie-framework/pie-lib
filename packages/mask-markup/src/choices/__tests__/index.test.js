@@ -8,7 +8,7 @@ describe('index', () => {
   describe('Choices', () => {
     const defaultProps = {
       disabled: false,
-      value: [choice('Jumped'), choice('Laughed'), choice('Spoon')]
+      choices: [choice('Jumped'), choice('Laughed'), choice('Spoon')]
     };
     let wrapper;
 

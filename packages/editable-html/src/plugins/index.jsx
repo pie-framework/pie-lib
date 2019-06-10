@@ -14,6 +14,7 @@ import SoftBreakPlugin from 'slate-soft-break';
 import debug from 'debug';
 import List from './list';
 import TablePlugin from './table';
+import ResponseAreaPlugin from './response-area';
 
 const log = debug('@pie-lib:editable-html:plugins');
 
@@ -51,7 +52,7 @@ function MarkHotkey(options) {
   };
 }
 
-export const DEFAULT_PLUGINS = [
+export const ALL_PLUGINS = [
   'bold',
   'code',
   'italic',
@@ -61,8 +62,11 @@ export const DEFAULT_PLUGINS = [
   'numbered-list',
   'image',
   'math',
-  'table'
+  'table',
+  'response-area'
 ];
+
+export const DEFAULT_PLUGINS = ALL_PLUGINS.slice(0, 10);
 
 export const buildPlugins = (activePlugins, opts) => {
   log('[buildPlugins] opts: ', opts);
@@ -72,21 +76,14 @@ export const buildPlugins = (activePlugins, opts) => {
   const addIf = (key, p) => activePlugins.includes(key) && p;
   const imagePlugin = opts.image && opts.image.onDelete && ImagePlugin(opts.image);
   const mathPlugin = MathPlugin(opts.math);
+  const responseAreaPlugin =
+    opts.responseArea && ResponseAreaPlugin(opts.responseArea, compact([mathPlugin]));
 
   return compact([
-    addIf('table', TablePlugin(opts.table, compact([
-      imagePlugin,
-      mathPlugin
-    ]))),
-    addIf(
-      'bold',
-      MarkHotkey({ key: 'b', type: 'bold', icon: <Bold />, tag: 'strong' })
-    ),
+    addIf('table', TablePlugin(opts.table, compact([imagePlugin, mathPlugin, responseAreaPlugin]))),
+    addIf('bold', MarkHotkey({ key: 'b', type: 'bold', icon: <Bold />, tag: 'strong' })),
     addIf('code', MarkHotkey({ key: '`', type: 'code', icon: <Code /> })),
-    addIf(
-      'italic',
-      MarkHotkey({ key: 'i', type: 'italic', icon: <Italic />, tag: 'em' })
-    ),
+    addIf('italic', MarkHotkey({ key: 'i', type: 'italic', icon: <Italic />, tag: 'em' })),
     addIf(
       'strikethrough',
       MarkHotkey({
@@ -96,24 +93,13 @@ export const buildPlugins = (activePlugins, opts) => {
         tag: 'del'
       })
     ),
-    addIf(
-      'underline',
-      MarkHotkey({ key: 'u', type: 'underline', icon: <Underline />, tag: 'u' })
-    ),
-    addIf(
-      'image',
-      imagePlugin
-    ),
+    addIf('underline', MarkHotkey({ key: 'u', type: 'underline', icon: <Underline />, tag: 'u' })),
+    addIf('image', imagePlugin),
     addIf('math', mathPlugin),
-    addIf(
-      'bulleted-list',
-      List({ key: 'l', type: 'ul_list', icon: <BulletedListIcon /> })
-    ),
-    addIf(
-      'numbered-list',
-      List({ key: 'n', type: 'ol_list', icon: <NumberedListIcon /> })
-    ),
+    addIf('bulleted-list', List({ key: 'l', type: 'ul_list', icon: <BulletedListIcon /> })),
+    addIf('numbered-list', List({ key: 'n', type: 'ol_list', icon: <NumberedListIcon /> })),
     ToolbarPlugin(opts.toolbar),
-    SoftBreakPlugin()
+    SoftBreakPlugin(),
+    addIf('response-area', responseAreaPlugin)
   ]);
 };

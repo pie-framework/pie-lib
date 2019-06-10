@@ -9,7 +9,7 @@ const log = debug('pie-lib:config-ui:settings:panel');
 import _ from 'lodash';
 import Input from '@material-ui/core/Input';
 import MenuItem from '@material-ui/core/MenuItem';
-import { NumberTextField } from '../../lib';
+import { NumberTextField } from '../index';
 
 const labelValue = {
   label: PropTypes.string,

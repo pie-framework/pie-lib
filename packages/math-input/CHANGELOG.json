@@ -913,5 +913,20 @@
     "committerDate": "2019-05-09 12:08:42 +0300",
     "isTagged": true,
     "tag": "@pie-lib/math-input@6.2.4"
+  },
+  {
+    "type": "chore",
+    "scope": "merge",
+    "subject": "merged with develop",
+    "merge": null,
+    "header": "chore(merge): merged with develop",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "e68506cf63b2a17973821bb0cfef40828faccd1f",
+    "gitTags": "",
+    "committerDate": "2019-05-21 06:26:54 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/math-input@6.2.5"
   }
 ]

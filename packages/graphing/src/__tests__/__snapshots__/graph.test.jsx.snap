@@ -146,5 +146,32 @@ exports[`Graph snapshot renders 1`] = `
       }
     }
   />
+  <mask
+    id="myMask"
+  >
+    <rect
+      fill="white"
+      height={420}
+      width={420}
+      x={-10}
+      y={-10}
+    />
+  </mask>
+  <g
+    id="marks"
+    mask="url('#myMask')"
+  >
+    <foreignObject
+      height={400}
+      style={
+        Object {
+          "pointerEvents": "none",
+        }
+      }
+      width={400}
+      x="0"
+      y="0"
+    />
+  </g>
 </WithStyles(Root)>
 `;

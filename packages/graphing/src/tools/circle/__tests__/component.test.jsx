@@ -13,8 +13,8 @@ describe('Component', () => {
       className: 'className',
       onChange,
       graphProps: graphProps(),
-      center: xy(0, 0),
-      outerPoint: xy(1, 1)
+      root: xy(0, 0),
+      edge: xy(1, 1)
     };
     const props = { ...defaults, ...extras };
     return shallow(<RawBaseCircle {...props} />);
@@ -28,53 +28,33 @@ describe('Component', () => {
   describe('logic', () => {
     beforeEach(() => (w = wrapper()));
 
-    describe('moveCenter', () => {
+    describe('dragRoot', () => {
       it('calls onChange', () => {
-        w.instance().moveCenter(xy(1, 1));
+        w = wrapper();
+        w.instance().dragRoot(xy(1, 1));
         expect(onChange).toHaveBeenCalledWith({
-          center: xy(1, 1),
-          outerPoint: xy(1, 1)
+          root: xy(1, 1),
+          edge: xy(1, 1)
         });
       });
     });
 
-    describe('dragCenter', () => {
-      it('sets draggedCenter', () => {
-        w.instance().dragCenter(xy(3, 3));
-        expect(w.state().draggedCenter).toEqual(xy(3, 3));
-      });
-    });
-
-    describe('moveOuter', () => {
+    describe('dragEdge', () => {
       it('calls onChange', () => {
-        w.instance().moveOuter(xy(4, 4));
+        w.instance().dragEdge(xy(4, 4));
         expect(onChange).toHaveBeenCalledWith({
-          center: xy(0, 0),
-          outerPoint: xy(4, 4)
+          root: xy(0, 0),
+          edge: xy(4, 4)
         });
-      });
-    });
-
-    describe('dragOuter', () => {
-      it('sets draggedOuter', () => {
-        w.instance().dragOuter(xy(3, 3));
-        expect(w.state().draggedOuter).toEqual(xy(3, 3));
       });
     });
 
     describe('dragCircle', () => {
-      it('sets draggedCircle', () => {
-        w.instance().dragCircle(xy(3, 3));
-        expect(w.state().draggedCenter).toEqual(xy(3, 3));
-        expect(w.state().draggedOuter).toEqual(xy(4, 4));
-      });
-    });
-    describe('moveCircle', () => {
       it('calls onChange', () => {
-        w.instance().moveCircle(xy(1, 1));
+        w.instance().dragCircle(xy(1, 1));
         expect(onChange).toHaveBeenCalledWith({
-          center: xy(1, 1),
-          outerPoint: xy(2, 2)
+          root: xy(1, 1),
+          edge: xy(2, 2)
         });
       });
     });

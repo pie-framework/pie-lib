@@ -363,5 +363,20 @@
     "committerDate": "2019-05-22 11:35:55 +0100",
     "isTagged": true,
     "tag": "@pie-lib/math-rendering@1.2.11"
+  },
+  {
+    "type": "chore",
+    "scope": "merge",
+    "subject": "merged with develop",
+    "merge": null,
+    "header": "chore(merge): merged with develop",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "89ff9d89eb26b5afc82267c10f79af2894f4c2d5",
+    "gitTags": " (origin/feat/response-area-plugin)",
+    "committerDate": "2019-06-05 21:55:26 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/math-rendering@1.2.12"
   }
 ]

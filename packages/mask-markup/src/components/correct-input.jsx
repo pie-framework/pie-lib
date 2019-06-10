@@ -14,13 +14,21 @@ const underline = color => ({
 
 export default withStyles(() => ({
   'underline-correct': underline('green'),
-  'underline-incorrect': underline('red')
+  'underline-incorrect': underline('red'),
+  box: {
+    border: 'solid #9E9F9E',
+    borderWidth: '1px 1px 0 1px'
+  }
 }))(props => {
-  const { correct, classes, ...rest } = props;
+  const { correct, isBox, classes, ...rest } = props;
   const label = typeof correct === 'boolean' ? (correct ? 'correct' : 'incorrect') : undefined;
   const underlineName = label && classes[`underline-${label}`];
+
   return (
     <Input
+      className={classnames({
+        [classes.box]: isBox
+      })}
       classes={{
         underline: classnames(underlineName)
       }}

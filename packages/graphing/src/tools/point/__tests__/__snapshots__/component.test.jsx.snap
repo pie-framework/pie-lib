@@ -1,33 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component snapshot renders 1`] = `
-<WithStyles(GridDraggable)
-  graphProps={
-    Object {
-      "domain": Object {
-        "max": 1,
-        "min": 0,
-        "step": 1,
-      },
-      "range": Object {
-        "max": 1,
-        "min": 0,
-        "step": 1,
-      },
-      "scale": Object {
-        "x": [MockFunction],
-        "y": [MockFunction],
-      },
-      "size": Object {
-        "height": 400,
-        "width": 400,
-      },
-      "snap": Object {
-        "x": [MockFunction],
-        "y": [MockFunction],
-      },
+<Fragment>
+  <WithStyles(GridDraggable)
+    graphProps={
+      Object {
+        "domain": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "range": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "scale": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+        "size": Object {
+          "height": 400,
+          "width": 400,
+        },
+        "snap": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+      }
     }
-  }
-  onMove={[Function]}
-/>
+    onClick={[Function]}
+    onDrag={[Function]}
+    onDragStart={[Function]}
+    onDragStop={[Function]}
+  />
+</Fragment>
 `;

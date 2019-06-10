@@ -2,7 +2,30 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import { graphProps, xy } from '../../../__tests__/utils';
 
-import { RawBaseComponent, buildLines } from '../component';
+import { RawBaseComponent, buildLines, swap } from '../component';
+
+describe('buildLines', () => {
+  const defaultPoints = [xy(0, 0), xy(1, 1), xy(1, 0)];
+
+  const assertBuildLines = (points, closed, expected) => {
+    it(`builds points and lines for ${points} = ${expected}`, () => {
+      const result = buildLines(points);
+      expect(result).toMatchObject([
+        { from: xy(0, 0, 0), to: xy(1, 1, 1) },
+        { from: xy(1, 1, 1), to: xy(1, 0, 2) }
+      ]);
+    });
+  };
+
+  assertBuildLines(defaultPoints, true, []);
+});
+
+describe('swap', () => {
+  it('swaps pairs', () => {
+    const result = swap([xy(0, 0, 0), xy(1, 1, 1), xy(2, 2, 2)], xy(0, 0, 0), xy(3, 3, 0));
+    expect(result).toEqual([xy(3, 3, 0), xy(1, 1, 1), xy(2, 2, 2)]);
+  });
+});
 
 describe('RawBaseComponent', () => {
   let w;
@@ -26,143 +49,64 @@ describe('RawBaseComponent', () => {
     });
   });
   describe('logic', () => {
-    describe('movePoint', () => {
+    describe('dragPoint', () => {
       it('calls onChange', () => {
         onChange = jest.fn();
         w = wrapper({ points: [xy(1, 1)], onChange });
-        w.instance().movePoint(xy(1, 1), xy(2, 2));
+        w.instance().dragPoint(0, xy(1, 1), xy(2, 2));
         expect(onChange).toHaveBeenCalledWith([xy(2, 2)]);
       });
     });
-    describe('moveLine', () => {
-      it('calls onChange', () => {
-        w = wrapper({ points: [xy(1, 1), xy(2, 2)], onChange });
-        w.instance().moveLine(
-          { from: xy(1, 1), to: xy(2, 2) },
-          { from: xy(3, 3), to: xy(4, 4) }
-        );
-        expect(onChange).toHaveBeenCalledWith([xy(3, 3), xy(4, 4)]);
-      });
-    });
-
-    describe('dragPoint', () => {
-      it('stores point', () => {
-        w = wrapper();
-        w.instance().dragPoint(xy(1, 1), xy(2, 2));
-        expect(w.state().dragPoint).toEqual({ from: xy(1, 1), to: xy(2, 2) });
-      });
-    });
-
     describe('dragLine', () => {
-      it('stores dragLine', () => {
-        w = wrapper();
-        const existing = { from: xy(1, 1), to: xy(2, 2) };
-        const next = { from: xy(2, 2), to: xy(3, 3) };
-        w.instance().dragLine(existing, next);
-        expect(w.state().dragLine).toEqual({ existing, next });
+      it('calls onChange', () => {
+        w = wrapper({ points: [xy(1, 1, 0), xy(2, 2, 1)], onChange });
+        w.instance().dragLine(
+          { from: xy(1, 1, 0), to: xy(2, 2, 1) },
+          { from: xy(2, 2, 0), to: xy(4, 4, 1) }
+        );
+        expect(onChange).toHaveBeenCalledWith([xy(2, 2, 0), xy(4, 4, 1)]);
       });
     });
+
     describe('dragPoly', () => {
-      it('stores dragPoly', () => {
-        w = wrapper();
+      it('calls onChange', () => {
+        w = wrapper({ onChange });
         const existing = [xy(1, 1)];
         const next = [xy(2, 2)];
         w.instance().dragPoly(existing, next);
-        expect(w.state().dragPoly).toEqual({ existing, next });
+        expect(onChange).toHaveBeenCalledWith([xy(2, 2)]);
       });
     });
+  });
 
-    describe('clearDragState', () => {
-      const assertClear = (key, value) => {
-        it(`clears ${key}`, () => {
-          w = wrapper();
-          w.setState({ [key]: value });
-          w.instance().clearDragState();
-          expect(w.state()[key]).toBeUndefined();
-        });
-      };
+  describe('close', () => {
+    it('calls onClosePolygon', () => {
+      const onClosePolygon = jest.fn();
+      w = wrapper({ onClosePolygon, points: [xy(1, 1), xy(2, 2), xy(3, 3)] });
+      w.instance().close();
+      expect(onClosePolygon).toHaveBeenCalled();
+    });
+  });
 
-      assertClear('dragPoint', { from: xy(1, 1), to: xy(2, 2) });
-
-      assertClear('dragLine', {
-        existing: { from: xy(1, 1), to: xy(2, 2) },
-        next: { from: xy(2, 2), to: xy(3, 3) }
-      });
-
-      assertClear('dragPoly', {
-        existing: [],
-        next: []
-      });
+  describe('clickPoint', () => {
+    let onClick = jest.fn();
+    let onClosePolygon = jest.fn();
+    beforeEach(() => {
+      onClosePolygon.mockClear();
+      onClick.mockClear();
     });
 
-    describe('getPointsAndLines', () => {
-      const defaultPoints = [xy(0, 0), xy(1, 1), xy(1, 0)];
-
-      const assertPointsAndLines = (isClosed, key, value, expected) => {
-        it(`builds points and lines for ${key} = ${value}`, () => {
-          w = wrapper({
-            closed: isClosed,
-            points: defaultPoints
-          });
-          w.setState({ [key]: value });
-          const result = w.instance().getPointsAndLines();
-
-          expect(result).toMatchObject(expected);
-        });
-      };
-
-      assertPointsAndLines(
-        true,
-        'dragPoint',
-        {
-          from: xy(0, 0),
-          to: xy(-1, 0)
-        },
-        {
-          points: [xy(0, 0), xy(1, 1), xy(1, 0)],
-          poly: [xy(-1, 0), xy(1, 1), xy(1, 0)],
-          lines: buildLines([xy(-1, 0), xy(1, 1), xy(1, 0)], true)
-        }
-      );
-
-      assertPointsAndLines(
-        true,
-        'dragLine',
-        {
-          existing: {
-            from: xy(0, 0),
-            to: xy(1, 1)
-          },
-          next: {
-            from: xy(1, 0),
-            to: xy(2, 1)
-          }
-        },
-        {
-          points: [xy(1, 0), xy(2, 1), xy(1, 0)],
-          poly: [xy(1, 0), xy(2, 1), xy(1, 0)],
-          lines: buildLines(defaultPoints, true)
-        }
-      );
-      assertPointsAndLines(
-        true,
-        'dragPoly',
-        { existing: [], next: [xy(2, 2), xy(3, 3)] },
-        {
-          points: [xy(2, 2), xy(3, 3)],
-          poly: defaultPoints,
-          lines: buildLines([xy(2, 2), xy(3, 3)], true)
-        }
-      );
-    });
-
-    describe('close', () => {
+    const assertCallback = (isToolActive, closed, index, mock) => {
       it('calls onClosePolygon', () => {
-        const onClosePolygon = jest.fn();
-        w = wrapper({ onClosePolygon, points: [xy(1, 1), xy(2, 2), xy(3, 3)] });
-        w.instance().close();
-        expect(onClosePolygon).toHaveBeenCalled();
+        const w = wrapper({ onClosePolygon, onClick, isToolActive, closed });
+        w.instance().clickPoint(xy(0, 0, 0), index, {});
+        expect(mock).toHaveBeenCalled();
       });
-    });
+    };
+
+    assertCallback(true, false, 0, onClosePolygon);
+    assertCallback(true, false, 1, onClick);
+    assertCallback(false, false, 0, onClick);
+    assertCallback(true, true, 0, onClick);
   });
 });

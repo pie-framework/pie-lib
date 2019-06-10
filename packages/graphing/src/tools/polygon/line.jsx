@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { PointType } from '../types';
+import { PointType } from '../shared/types';
 import { types, gridDraggable } from '@pie-lib/plot';
 import * as utils from '../../utils';
 import classNames from 'classnames';
-import { disabled } from '../styles';
+import { disabled } from '../shared/styles';
 
 class RawLine extends React.Component {
   static propTypes = {
@@ -18,15 +18,7 @@ class RawLine extends React.Component {
   };
 
   render() {
-    const {
-      graphProps,
-      classes,
-      from,
-      to,
-      className,
-      disabled,
-      ...rest
-    } = this.props;
+    const { graphProps, classes, from, to, className, disabled, ...rest } = this.props;
     const { scale } = graphProps;
     return (
       <line
@@ -34,11 +26,7 @@ class RawLine extends React.Component {
         y1={scale.y(from.y)}
         x2={scale.x(to.x)}
         y2={scale.y(to.y)}
-        className={classNames(
-          classes.line,
-          disabled && classes.disabled,
-          className
-        )}
+        className={classNames(classes.line, disabled && classes.disabled, className)}
         {...rest}
       />
     );

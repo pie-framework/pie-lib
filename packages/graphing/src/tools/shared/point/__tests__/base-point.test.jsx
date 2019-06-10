@@ -1,12 +1,12 @@
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme/build';
 import React from 'react';
-import { BasePoint } from '../base-point';
+import { BasePoint } from '../index';
 import { gridDraggable } from '@pie-lib/plot';
-import { graphProps } from '../../../__tests__/utils';
-import { bounds } from '../../../utils';
+import { graphProps } from '../../../../__tests__/utils';
+import { bounds } from '../../../../utils';
 
-jest.mock('../../../utils', () => {
-  const { point } = jest.requireActual('../../../utils');
+jest.mock('../../../../utils', () => {
+  const { point } = jest.requireActual('../../../../utils');
   return {
     bounds: jest.fn(),
     point

@@ -1,8 +1,4 @@
-import {
-  classObject,
-  mockIconButton,
-  mockMathInput
-} from '../../../__tests__/utils';
+import { classObject, mockIconButton, mockMathInput } from '../../../__tests__/utils';
 import { shallow } from 'enzyme';
 
 import { Data, Value, Inline } from 'slate';
@@ -15,27 +11,32 @@ mockMathInput();
 
 jest.mock('@material-ui/core/IconButton', () => {
   return props => (
-    <div
-      className={props.className}
-      style={props.style}
-      ariaLabel={props['aria-label']}
-    />
+    <div className={props.className} style={props.style} ariaLabel={props['aria-label']} />
   );
 });
 
 let node = Inline.fromJSON({ type: 'i' });
+let parentNode = Inline.fromJSON({
+  type: 'i'
+});
 let value;
 const log = debug('@pie-lib:editable-html:test:toolbar');
 
 describe('toolbar', () => {
-  let onDelete, classes, document;
+  let onDelete, classes, document, toolbarOpts;
 
   beforeEach(() => {
     onDelete = jest.fn();
 
+    toolbarOpts = {
+      position: 'bottom',
+      alwaysVisible: false
+    };
+
     value = Value.fromJSON({});
     document = {
-      getClosestInline: jest.fn().mockReturnValue(node)
+      getClosestInline: jest.fn().mockReturnValue(node),
+      getParent: jest.fn().mockReturnValue()
     };
 
     Object.defineProperties(value, {
@@ -50,14 +51,7 @@ describe('toolbar', () => {
       }
     });
 
-    classes = classObject(
-      'iconRoot',
-      'inline',
-      'toolbar',
-      'focused',
-      'shared',
-      'inline'
-    );
+    classes = classObject('iconRoot', 'inline', 'toolbar', 'focused', 'shared', 'inline');
   });
 
   test('renders custom toolbar', () => {
@@ -66,9 +60,7 @@ describe('toolbar', () => {
         deleteNode: () => true,
         toolbar: {
           supports: () => true,
-          customToolbar: () => () => (
-            <div> --------- custom toolbar ----------- </div>
-          )
+          customToolbar: () => () => <div> --------- custom toolbar ----------- </div>
         }
       }
     ];
@@ -76,6 +68,7 @@ describe('toolbar', () => {
     const tree = renderer
       .create(
         <Toolbar
+          toolbarOpts={toolbarOpts}
           plugins={plugins}
           classes={classes}
           value={value}
@@ -100,6 +93,7 @@ describe('toolbar', () => {
       const tree = renderer
         .create(
           <Toolbar
+            toolbarOpts={toolbarOpts}
             plugins={plugins}
             classes={classes}
             value={value}
