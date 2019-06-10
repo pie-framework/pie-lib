@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme';
 import React from 'react';
-import { rootEdgeComponent } from '../with-root-edge';
+import { rootEdgeComponent, withRootEdge } from '../with-root-edge';
 import { graphProps as getGraphProps } from '../../../../__tests__/utils';
 import { utils } from '@pie-lib/plot';
 
@@ -14,7 +14,7 @@ describe('rootEdgeComponent', () => {
     mark = { root: xy(0, 0), edge: xy(1, 1) };
     Comp = rootEdgeComponent(() => <text />);
   });
-  const wrapper = extras => {
+  const wrapper = (extras, opts) => {
     const defaults = {
       mark,
       graphProps: getGraphProps(),
@@ -22,7 +22,7 @@ describe('rootEdgeComponent', () => {
     };
 
     const props = { ...defaults, ...extras };
-    return shallow(<Comp {...props} />);
+    return shallow(<Comp {...props} />, opts);
   };
   describe('snapshot', () => {
     it('renders', () => {
@@ -56,9 +56,57 @@ describe('rootEdgeComponent', () => {
         expect(onChange).toHaveBeenCalledWith(mark, update);
       });
     });
+  });
+});
 
-    describe('shouldComponentUpdate', () => {
-      it.todo('..');
+describe('withRootEdge', () => {
+  let Comp;
+  let onChange;
+  beforeEach(() => {
+    onChange = jest.fn();
+    Comp = withRootEdge((props, state) => {
+      return { root: xy(0, 0), edge: xy(1, 1), dataPoints: [] };
+    });
+  });
+  const wrapper = extras => {
+    const defaults = {
+      root: xy(0, 0),
+      edge: xy(1, 1),
+      graphProps: getGraphProps(),
+      onChange
+    };
+    const props = { ...defaults, ...extras };
+    return shallow(<Comp {...props} />);
+  };
+
+  describe('snapshot', () => {
+    it('renders', () => {
+      const w = wrapper();
+      expect(w).toMatchSnapshot();
+    });
+  });
+
+  describe('logic', () => {
+    const assertCallsOnChange = (fn, args, expected) => {
+      it('calls onChange', () => {
+        const update = { from: xy(2, 2), to: xy(4, 4) };
+        const w = wrapper();
+        w.instance()[fn](...args);
+        expect(w.instance().props.onChange).toHaveBeenCalledWith(expected);
+      });
+    };
+
+    describe('dragLine', () => {
+      const update = { root: xy(2, 2), edge: xy(4, 4) };
+      assertCallsOnChange('dragLine', [update], update);
+    });
+
+    describe('dragRoot', () => {
+      assertCallsOnChange('dragRoot', [xy(2, 2)], { root: xy(2, 2), edge: xy(1, 1) });
+    });
+
+    describe('dragEdge', () => {
+      assertCallsOnChange('dragEdge', [xy(2, 2)], { root: xy(0, 0), edge: xy(2, 2) });
     });
   });
 });

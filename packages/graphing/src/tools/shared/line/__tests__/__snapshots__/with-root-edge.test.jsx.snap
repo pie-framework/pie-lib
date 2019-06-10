@@ -45,3 +45,116 @@ exports[`rootEdgeComponent snapshot renders 1`] = `
   }
 />
 `;
+
+exports[`withRootEdge snapshot renders 1`] = `
+<g>
+  <GridDraggable
+    curve={[Function]}
+    data={Array []}
+    edge={
+      Object {
+        "x": 1,
+        "y": 1,
+      }
+    }
+    graphProps={
+      Object {
+        "domain": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "range": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "scale": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+        "size": Object {
+          "height": 400,
+          "width": 400,
+        },
+        "snap": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+      }
+    }
+    onClick={[Function]}
+    onDrag={[Function]}
+    root={
+      Object {
+        "x": 0,
+        "y": 0,
+      }
+    }
+  />
+  <WithStyles(GridDraggable)
+    graphProps={
+      Object {
+        "domain": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "range": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "scale": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+        "size": Object {
+          "height": 400,
+          "width": 400,
+        },
+        "snap": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+      }
+    }
+    onClick={[Function]}
+    onDrag={[Function]}
+    x={0}
+    y={0}
+  />
+  <WithStyles(GridDraggable)
+    graphProps={
+      Object {
+        "domain": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "range": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "scale": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+        "size": Object {
+          "height": 400,
+          "width": 400,
+        },
+        "snap": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+      }
+    }
+    onClick={[Function]}
+    onDrag={[Function]}
+    x={1}
+    y={1}
+  />
+</g>
+`;
