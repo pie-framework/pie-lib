@@ -1,129 +1,79 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { types, utils } from '@pie-lib/plot';
-import LinePath from '../line/line-path';
+import { types } from '@pie-lib/plot';
+import { LinePath } from '../line/line-path';
 import { curveMonotoneX } from '@vx/curve';
-import { BasePoint } from '../point';
-import { ToolPropTypeFields } from '../types';
+import { lineBase, lineToolComponent } from './index';
 
-import debug from 'debug';
-import isEqual from 'lodash/isEqual';
+const toRootEdge = m => {
+  const out = { ...m };
+  out.root = { ...m.from };
+  out.edge = m.to ? { ...m.to } : undefined;
+  delete out.from;
+  delete out.to;
+  return out;
+};
 
-const log = debug('pie-lib:graphing:with-root-edge');
+const toFromTo = m => {
+  const out = { ...m };
+  out.from = { ...m.root };
+  out.to = m.edge ? { ...m.edge } : undefined;
+  delete out.root;
+  delete out.edge;
+  return out;
+};
+
+export const rootEdgeToFromToWrapper = BaseComp => {
+  const Wrapper = props => {
+    const m = toFromTo(props.mark);
+
+    const onChange = (current, next) => {
+      props.onChange(toRootEdge(current), toRootEdge(next));
+    };
+
+    return <BaseComp {...props} mark={m} onChange={onChange} />;
+  };
+
+  Wrapper.propTypes = {
+    onChange: PropTypes.func,
+    mark: PropTypes.object
+  };
+
+  return Wrapper;
+};
 
 export const rootEdgeComponent = RootEdgeComp => {
-  return class Component extends React.Component {
-    static propTypes = {
-      ...ToolPropTypeFields,
-      graphProps: types.GraphPropsType.isRequired
-    };
-
-    constructor(props) {
-      super(props);
-      this.state = {};
-    }
-
-    changeMark = ({ root, edge }) => {
-      const mark = { ...this.state.mark, root, edge };
-      this.setState({ mark });
-    };
-
-    startDrag = () => this.setState({ mark: { ...this.props.mark } });
-
-    stopDrag = () => {
-      const { onChange } = this.props;
-      const mark = { ...this.state.mark };
-      this.setState({ mark: undefined }, () => {
-        if (!isEqual(mark, this.props.mark)) {
-          onChange(this.props.mark, mark);
-        }
-      });
-    };
-
-    shouldComponentUpdate(nextProps, nextState) {
-      return (
-        !isEqual(this.props.mark, nextProps.mark) ||
-        !isEqual(this.state.mark, nextState.mark) ||
-        !utils.isDomainRangeEqual(this.props.graphProps, nextProps.graphProps)
-      );
-    }
-
-    render() {
-      const { graphProps, onClick } = this.props;
-
-      const mark = this.state.mark ? this.state.mark : this.props.mark;
-
-      return (
-        <RootEdgeComp
-          root={mark.root}
-          edge={mark.edge}
-          graphProps={graphProps}
-          onChange={this.changeMark}
-          onClick={onClick}
-          onDragStart={this.startDrag}
-          onDragStop={this.stopDrag}
-        />
-      );
-    }
-  };
+  const BaseComponent = lineToolComponent(RootEdgeComp);
+  return rootEdgeToFromToWrapper(BaseComponent);
 };
+
+const withPointsGenerationLinePath = getPoints => {
+  const LinePathComponent = props => {
+    const { graphProps, from, to, onClick, onDragStart, onDragStop, onChange, ...rest } = props;
+
+    const { dataPoints } = getPoints({
+      graphProps: props.graphProps,
+      root: from,
+      edge: to
+    });
+    const raw = dataPoints.map(d => [graphProps.scale.x(d.x), graphProps.scale.y(d.y)]);
+
+    const common = { onClick, graphProps, onDragStart, onDragStop, onChange };
+    return <LinePath data={raw} from={from} to={to} curve={curveMonotoneX} {...common} {...rest} />;
+  };
+  LinePathComponent.propTypes = {
+    graphProps: types.GraphPropsType.isRequired,
+    from: types.PointType.isRequired,
+    to: types.PointType,
+    onClick: PropTypes.func,
+    onDragStart: PropTypes.func,
+    onDragStop: PropTypes.func,
+    onChange: PropTypes.func
+  };
+  return LinePathComponent;
+};
+
 export const withRootEdge = getPoints => {
-  class RootEdge extends React.Component {
-    static propTypes = {
-      graphProps: types.GraphPropsType.isRequired,
-      root: types.PointType.isRequired,
-      edge: types.PointType,
-      onChange: PropTypes.func.isRequired,
-      onClick: PropTypes.func,
-      onDragStart: PropTypes.func,
-      onDragStop: PropTypes.func
-    };
-
-    static defaultProps = {
-      onClick: () => ({})
-    };
-
-    dragRoot = root => {
-      const { edge, onChange } = this.props;
-      const update = { root, edge };
-      onChange(update);
-    };
-
-    dragEdge = edge => {
-      const { root, onChange } = this.props;
-      const update = { root, edge };
-      onChange(update);
-    };
-
-    dragLine = ({ root, edge }) => {
-      const { onChange } = this.props;
-      onChange({ root, edge });
-    };
-
-    render() {
-      const { graphProps, onDragStart, onDragStop, onClick } = this.props;
-      const { root, edge, dataPoints } = getPoints(this.props, this.state);
-
-      const raw = dataPoints.map(d => [graphProps.scale.x(d.x), graphProps.scale.y(d.y)]);
-
-      const common = { onClick, graphProps, onDragStart, onDragStop };
-      return (
-        <g>
-          {edge && (
-            <LinePath
-              data={raw}
-              onDrag={this.dragLine}
-              root={this.props.root}
-              edge={this.props.edge}
-              curve={curveMonotoneX}
-              {...common}
-            />
-          )}
-          <BasePoint x={root.x} y={root.y} onDrag={this.dragRoot} {...common} />
-          {edge && <BasePoint x={edge.x} y={edge.y} onDrag={this.dragEdge} {...common} />}
-        </g>
-      );
-    }
-  }
-  return RootEdge;
+  const LinePathComp = withPointsGenerationLinePath(getPoints);
+  return lineBase(LinePathComp);
 };

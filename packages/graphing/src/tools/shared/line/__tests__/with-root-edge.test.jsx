@@ -1,10 +1,53 @@
 import { shallow } from 'enzyme';
 import React from 'react';
-import { rootEdgeComponent, withRootEdge } from '../with-root-edge';
+import { rootEdgeComponent, withRootEdge, rootEdgeToFromToWrapper } from '../with-root-edge';
 import { graphProps as getGraphProps } from '../../../../__tests__/utils';
 import { utils } from '@pie-lib/plot';
-
+import { lineToolComponent, LineToolMockComponent } from '..';
 const { xy } = utils;
+jest.mock('../index', () => {
+  const out = {
+    lineBase: jest.fn().mockReturnValue(() => <div />),
+    lineToolComponent: jest.fn().mockReturnValue(() => <div />)
+  };
+  return out;
+});
+
+describe('rootEdgeToToFromWRapper', () => {
+  let Comp;
+  let w;
+  let onChange = jest.fn();
+  beforeEach(() => {
+    Comp = rootEdgeToFromToWrapper(() => <div />);
+  });
+  const wrapper = extras => {
+    const defaults = {
+      mark: { root: xy(1, 1), edge: xy(2, 2) },
+      onChange
+    };
+    const props = { ...defaults, ...extras };
+    return shallow(<Comp {...props} />);
+  };
+
+  it('renders', () => {
+    w = wrapper();
+    expect(w).toMatchSnapshot();
+  });
+
+  it('has from/to mark', () => {
+    w = wrapper();
+    expect(w.props().mark).toEqual({ from: xy(1, 1), to: xy(2, 2) });
+  });
+
+  it('calls onChange with root edge ', () => {
+    w = wrapper();
+    w.props().onChange({ from: xy(1, 1), to: xy(2, 2) }, { from: xy(3, 3), to: xy(4, 4) });
+    expect(onChange).toHaveBeenCalledWith(
+      { root: xy(1, 1), edge: xy(2, 2) },
+      { root: xy(3, 3), edge: xy(4, 4) }
+    );
+  });
+});
 describe('rootEdgeComponent', () => {
   let w;
   let onChange = jest.fn();
@@ -28,85 +71,6 @@ describe('rootEdgeComponent', () => {
     it('renders', () => {
       const w = wrapper();
       expect(w).toMatchSnapshot();
-    });
-  });
-
-  describe('logic', () => {
-    const update = { root: xy(2, 2), edge: xy(4, 4) };
-    beforeEach(() => {
-      w = wrapper();
-    });
-    describe('changeMark', () => {
-      it('calls setState', () => {
-        w.instance().changeMark(update);
-        expect(w.state('mark')).toMatchObject(update);
-      });
-    });
-
-    describe('stopDrag', () => {
-      beforeEach(() => {
-        w = wrapper();
-        w.setState({ mark: update });
-        w.instance().stopDrag();
-      });
-      it('unsets state.mark', () => {
-        expect(w.state('mark')).toBeUndefined();
-      });
-      it('calls onChange', () => {
-        expect(onChange).toHaveBeenCalledWith(mark, update);
-      });
-    });
-  });
-});
-
-describe('withRootEdge', () => {
-  let Comp;
-  let onChange;
-  beforeEach(() => {
-    onChange = jest.fn();
-    Comp = withRootEdge((props, state) => {
-      return { root: xy(0, 0), edge: xy(1, 1), dataPoints: [] };
-    });
-  });
-  const wrapper = extras => {
-    const defaults = {
-      root: xy(0, 0),
-      edge: xy(1, 1),
-      graphProps: getGraphProps(),
-      onChange
-    };
-    const props = { ...defaults, ...extras };
-    return shallow(<Comp {...props} />);
-  };
-
-  describe('snapshot', () => {
-    it('renders', () => {
-      const w = wrapper();
-      expect(w).toMatchSnapshot();
-    });
-  });
-
-  describe('logic', () => {
-    const assertCallsOnChange = (fn, args, expected) => {
-      it('calls onChange', () => {
-        const update = { from: xy(2, 2), to: xy(4, 4) };
-        const w = wrapper();
-        w.instance()[fn](...args);
-        expect(w.instance().props.onChange).toHaveBeenCalledWith(expected);
-      });
-    };
-
-    describe('dragLine', () => {
-      const update = { root: xy(2, 2), edge: xy(4, 4) };
-      assertCallsOnChange('dragLine', [update], update);
-    });
-
-    describe('dragRoot', () => {
-      assertCallsOnChange('dragRoot', [xy(2, 2)], { root: xy(2, 2), edge: xy(1, 1) });
-    });
-
-    describe('dragEdge', () => {
-      assertCallsOnChange('dragEdge', [xy(2, 2)], { root: xy(0, 0), edge: xy(2, 2) });
     });
   });
 });

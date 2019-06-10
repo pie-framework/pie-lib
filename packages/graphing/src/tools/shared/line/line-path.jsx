@@ -2,21 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { PointType } from '../types';
-import { types, gridDraggable } from '@pie-lib/plot';
-import * as utils from '../../../utils';
+import { types } from '@pie-lib/plot';
 import classNames from 'classnames';
 import { disabled } from '../styles';
 import * as vx from '@vx/shape';
 
-export class LinePath extends React.Component {
+export class RawLinePath extends React.Component {
   static propTypes = {
     className: PropTypes.string,
     classes: PropTypes.object,
     data: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)),
     graphProps: types.GraphPropsType.isRequired,
     disabled: PropTypes.bool,
-    root: PropTypes.shape(PointType).isRequired,
-    edge: PropTypes.shape(PointType).isRequired,
+    from: PropTypes.shape(PointType).isRequired,
+    to: PropTypes.shape(PointType).isRequired,
     isDragging: PropTypes.bool
   };
 
@@ -27,8 +26,8 @@ export class LinePath extends React.Component {
       classes,
       className,
       disabled,
-      root,
-      edge,
+      from,
+      to,
       graphProps,
       isDragging,
       ...rest
@@ -62,7 +61,7 @@ const dragging = theme => ({
   stroke: theme.palette.secondary.light
 });
 
-export const StyledLinePath = withStyles(theme => ({
+export const LinePath = withStyles(theme => ({
   drawLine: {
     fill: 'none',
     strokeWidth: 2,
@@ -80,22 +79,4 @@ export const StyledLinePath = withStyles(theme => ({
     ...disabled('stroke'),
     strokeWidth: 2
   }
-}))(LinePath);
-
-export default gridDraggable({
-  bounds: (props, { domain, range }) => {
-    const area = utils.pointsToArea(props.root, props.edge);
-    return utils.bounds(area, domain, range);
-  },
-  anchorPoint: props => {
-    const { root } = props;
-    return root;
-  },
-  fromDelta: (props, delta) => {
-    const { root, edge } = props;
-    return {
-      root: utils.point(root).add(utils.point(delta)),
-      edge: utils.point(edge).add(utils.point(delta))
-    };
-  }
-})(StyledLinePath);
+}))(RawLinePath);

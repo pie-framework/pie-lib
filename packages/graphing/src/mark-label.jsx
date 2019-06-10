@@ -28,6 +28,7 @@ export const position = (graphProps, mark, rect) => {
 
   const rightEdge = scale.x(mark.x) + rect.width;
   const bottomEdge = scale.y(mark.y) + rect.height;
+
   const h = rightEdge >= scale.x(domain.max) ? 'left' : 'right';
   const v = bottomEdge >= scale.y(range.min) ? 'top' : 'bottom';
   return `${v}-${h}`;

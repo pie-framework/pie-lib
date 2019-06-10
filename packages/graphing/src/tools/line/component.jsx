@@ -19,7 +19,7 @@ export const ArrowedLine = props => {
   return (
     <g>
       <defs>
-        <ArrowMarker id={markerId} className={classes.arrow} />
+        <ArrowMarker id={props.markerId || markerId} className={classes.arrow} />
       </defs>
       <line
         x1={scale.x(eFrom.x)}
@@ -32,8 +32,8 @@ export const ArrowedLine = props => {
           classes[correctness],
           className
         )}
-        markerEnd={`url(#${markerId})`}
-        markerStart={`url(#${markerId})`}
+        markerEnd={`url(#${props.markerId || markerId})`}
+        markerStart={`url(#${props.markerId || markerId})`}
         {...rest}
       />
     </g>
@@ -47,7 +47,8 @@ ArrowedLine.propTypes = {
   disabled: PropTypes.bool,
   graphProps: GraphPropsType,
   from: types.PointType,
-  to: types.PointType
+  to: types.PointType,
+  markerId: PropTypes.string
 };
 
 const StyledArrowedLine = withStyles(lineStyles)(ArrowedLine);

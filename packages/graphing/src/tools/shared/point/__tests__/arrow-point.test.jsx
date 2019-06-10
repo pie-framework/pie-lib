@@ -4,7 +4,9 @@ import { ArrowPoint } from '../index';
 import { gridDraggable } from '@pie-lib/plot';
 import { graphProps } from '../../../../__tests__/utils';
 import { bounds } from '../../../../utils';
+import { utils } from '@pie-lib/plot';
 
+const { xy } = utils;
 jest.mock('../../../../utils', () => {
   const { point } = jest.requireActual('../../../../utils');
   return {
@@ -30,7 +32,9 @@ describe('ArrowPoint', () => {
       classes: {},
       className: 'className',
       onChange,
-      graphProps: graphProps()
+      graphProps: graphProps(),
+      from: xy(0, 0),
+      to: xy(1, 1)
     };
     const props = { ...defaults, ...extras };
     return shallow(<ArrowPoint {...props} />);

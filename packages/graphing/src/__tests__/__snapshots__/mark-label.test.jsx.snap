@@ -12,7 +12,7 @@ exports[`MarkLabel snapshot renders 1`] = `
       "left": 11,
       "pointerEvents": "auto",
       "position": "absolute",
-      "top": 11,
+      "top": -9,
     }
   }
 />

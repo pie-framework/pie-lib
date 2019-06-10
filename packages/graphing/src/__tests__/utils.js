@@ -4,7 +4,7 @@ export const scaleMock = () => {
   return fn;
 };
 
-export const graphProps = () => ({
+export const graphProps = (dmin = 0, dmax = 1, rmin = 0, rmax = 1) => ({
   scale: {
     x: scaleMock(),
     y: scaleMock()
@@ -14,13 +14,13 @@ export const graphProps = () => ({
     y: jest.fn(n => n)
   },
   domain: {
-    min: 0,
-    max: 1,
+    min: dmin,
+    max: dmax,
     step: 1
   },
   range: {
-    min: 0,
-    max: 1,
+    min: rmin,
+    max: rmax,
     step: 1
   },
   size: {

@@ -11,6 +11,12 @@ exports[`ArrowPoint snapshot renders 1`] = `
       "point": "RawArrow-point-1",
     }
   }
+  from={
+    Object {
+      "x": 0,
+      "y": 0,
+    }
+  }
   graphProps={
     Object {
       "domain": Object {
@@ -38,5 +44,11 @@ exports[`ArrowPoint snapshot renders 1`] = `
     }
   }
   onChange={[MockFunction]}
+  to={
+    Object {
+      "x": 1,
+      "y": 1,
+    }
+  }
 />
 `;

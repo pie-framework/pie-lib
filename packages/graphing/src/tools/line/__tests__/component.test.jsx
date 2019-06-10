@@ -23,6 +23,7 @@ describe('ArrowedLine', () => {
       classes: {},
       className: 'className',
       onChange,
+      markerId: '1',
       graphProps: getGraphProps()
     };
     const props = { ...defaults, ...extras };

@@ -4,14 +4,15 @@ exports[`ArrowedLine snapshot renders 1`] = `
 <g>
   <defs>
     <ArrowMarker
-      id="arrow-862"
+      id="1"
       size={5}
     />
   </defs>
   <line
     className="className"
-    markerEnd="url(#arrow-862)"
-    markerStart="url(#arrow-862)"
+    markerEnd="url(#1)"
+    markerId="1"
+    markerStart="url(#1)"
     onChange={[MockFunction]}
   />
 </g>

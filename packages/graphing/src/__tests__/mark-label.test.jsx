@@ -1,21 +1,7 @@
 import { shallow } from 'enzyme';
 import React from 'react';
 import { MarkLabel, position, coordinates } from '../mark-label';
-import { graphProps as getGraphProps } from '../utils';
-// jest.mock('react', () => {
-//   const Actual = jest.requireActual('react');
-
-//   Actual.useState = jest.fn();
-//   Actual.useEffect = jest.fn();
-//   Actual.useCallback = jest.fn();
-//   console.log('actual:', Actual);
-//   // return {
-//   //   default: Actual,
-//   //   useState: jest.fn(),
-//   //   useEffect: jest.fn()
-//   // };
-//   return Actual;
-// });
+import { graphProps as getGraphProps } from '../__tests__/utils';
 
 const xyFn = () => {
   const out = jest.fn(n => n);
@@ -32,7 +18,7 @@ describe('MarkLabel', () => {
       className: 'className',
       onChange,
       mark: { x: 1, y: 1 },
-      graphProps: getGraphProps()
+      graphProps: getGraphProps(0, 10, 0, 10)
     };
     const props = { ...defaults, ...extras };
     return shallow(<MarkLabel {...props} />);
@@ -52,14 +38,15 @@ describe('MarkLabel', () => {
 describe('position', () => {
   const assertPosition = (mark, rect, expected) => {
     it(`${mark.x},${mark.y} + ${rect.width},${rect.height} => ${expected}`, () => {
-      const graphProps = getGraphProps();
+      // we set range.min to a value because in pixels - the greater the Y the lower down on the screen.
+      const graphProps = getGraphProps(0, 10, 10, 0);
       const result = position(graphProps, mark, rect);
       expect(result).toEqual(expected);
     });
   };
 
   assertPosition({ x: 0, y: 0 }, { width: 10, height: 10 }, 'top-left');
-  assertPosition({ x: 0, y: 0 }, { width: 0, height: 0 }, 'bottom-right');
+  assertPosition({ x: 0, y: 0 }, { width: 1, height: 1 }, 'bottom-right');
   assertPosition({ x: 0, y: 0 }, { width: 10, height: 0 }, 'bottom-left');
   assertPosition({ x: 0, y: 0 }, { width: 0, height: 10 }, 'top-right');
 });

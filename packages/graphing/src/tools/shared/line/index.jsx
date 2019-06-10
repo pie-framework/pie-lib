@@ -53,6 +53,7 @@ export const lineToolComponent = Component => {
     };
 
     changeMark = ({ from, to }) => {
+      console.log('CHANGE MARK');
       const mark = { ...this.state.mark, from, to };
       this.setState({ mark });
     };
