@@ -1,7 +1,7 @@
 import { AssertionError } from 'assert';
 import * as utils from '../utils';
 
-const xy = (x, y) => ({ x, y });
+const xy = utils.xy;
 
 const tick = (isMajor, v) => ({
   major: isMajor,
@@ -41,15 +41,12 @@ describe('utils', () => {
       bottom: -1,
       right: 1
     });
-    assertPolygon(
-      [xy(0, 0), xy(3, 0), xy(2, -1), xy(4, -3), xy(1, -4), xy(2, -2)],
-      {
-        left: 0,
-        top: 0,
-        bottom: -4,
-        right: 4
-      }
-    );
+    assertPolygon([xy(0, 0), xy(3, 0), xy(2, -1), xy(4, -3), xy(1, -4), xy(2, -2)], {
+      left: 0,
+      top: 0,
+      bottom: -4,
+      right: 4
+    });
   });
 
   describe('buildTickModel', () => {
@@ -62,29 +59,13 @@ describe('utils', () => {
     });
 
     it('builds major only ticks', () => {
-      let result = utils.buildTickModel(
-        { min: 0, max: 2 },
-        { minor: 0 },
-        1,
-        scaleFn
-      );
+      let result = utils.buildTickModel({ min: 0, max: 2 }, { minor: 0 }, 1, scaleFn);
       expect(result).toEqual([major(0), major(1), major(2)]);
     });
 
     it('builds minor + major ticks', () => {
-      let result = utils.buildTickModel(
-        { min: 0, max: 2 },
-        { minor: 1 },
-        0.5,
-        scaleFn
-      );
-      expect(result).toEqual([
-        major(0),
-        minor(0.5),
-        major(1),
-        minor(1.5),
-        major(2)
-      ]);
+      let result = utils.buildTickModel({ min: 0, max: 2 }, { minor: 1 }, 0.5, scaleFn);
+      expect(result).toEqual([major(0), minor(0.5), major(1), minor(1.5), major(2)]);
     });
   });
 
@@ -122,9 +103,7 @@ describe('utils', () => {
   describe('getInterval', () => {
     let assertGetInterval = (min, max, ticks, expected) => {
       let paramsDescription = JSON.stringify(ticks);
-      it(`converts: ${paramsDescription} to ${JSON.stringify(
-        expected
-      )}`, () => {
+      it(`converts: ${paramsDescription} to ${JSON.stringify(expected)}`, () => {
         let result = utils.getInterval({ min: min, max: max }, ticks);
         expect(result).toEqual(expected);
       });

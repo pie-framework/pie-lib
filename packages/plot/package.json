@@ -28,25 +28,14 @@
     "debug": "^4.1.1",
     "invariant": "^2.2.4",
     "lodash": "^4.17.11",
-    "react": "^16.7.0",
+    "react": "^16.8.6",
     "react-draggable": "^3.1.1",
     "react-redux": "^6.0.0",
     "redux": "^4.0.1",
     "redux-undo": "beta"
   },
-  "devDependencies": {
-    "enzyme": "^3.8.0",
-    "enzyme-adapter-react-16": "^1.7.1",
-    "enzyme-to-json": "^3.3.5",
-    "eslint-plugin-react": "^7.12.3",
-    "prettier": "^1.15.3",
-    "react-dom": "^16.7.0",
-    "webpack": "^4.28.4",
-    "webpack-cli": "^3.2.1",
-    "webpack-dev-server": "^3.1.14"
-  },
   "peerDependencies": {
-    "react": "^16.7.0"
+    "react": "^16.8.6"
   },
   "gitHead": "f3345ae70660f4ae88450512261c7ea1601003c8",
   "scripts": {}
