@@ -31,7 +31,6 @@ describe('LinePath', () => {
   let onChange = jest.fn();
   beforeEach(() => {
     LinePath = require('../line-path').LinePath;
-    // console.log('line path', LinePath);
   });
   const wrapper = extras => {
     const defaults = {

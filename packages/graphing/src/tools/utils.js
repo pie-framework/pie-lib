@@ -82,7 +82,6 @@ export const buildDataPoints = (min, max, root, edge, interval, yFn) => {
   const maxX = Math.max(root.x, edge.x);
   const leftSpace = min - minX;
   const rightSpace = max - maxX;
-  console.log(minX, interval);
   const xs = xPoints(minX, interval, min - rightSpace, max - leftSpace);
   log('[buildDataPoints]:xs:', xs);
   return xs.map(v => new Point(v, yFn(v)));
