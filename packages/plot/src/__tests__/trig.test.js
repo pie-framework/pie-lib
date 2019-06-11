@@ -8,7 +8,8 @@ import {
   toDegrees,
   acuteXAngle,
   acuteYAngle,
-  diffEdge
+  diffEdge,
+  getPointOnLineAtADistance
 } from '../trig';
 import { xy } from '../utils';
 import debug from 'debug';
@@ -134,7 +135,7 @@ describe('trig', () => {
     assertDiffEdge(xy(-4, 4), xy(-1, -1), xy(-2, 0), xy(-4, 2));
   });
 
-  describe.only('getOpposingSide', () => {
+  describe('getOpposingSide', () => {
     const assertOpposingSide = (hyp, angle, expected) => {
       it(`${hyp}, ${angle} = ${expected}`, () => {
         const radians = toRadians(angle);
@@ -145,5 +146,20 @@ describe('trig', () => {
 
     assertOpposingSide(1, 45, 0.707);
     assertOpposingSide(1.25, 45, 0.88);
+  });
+
+  describe('getPointOnLineAtADistance', () => {
+    const assertGetPoint = (from, to, distance, expected) => {
+      it(p`<${distance}> ${from} -> ${to} => ${expected}`, () => {
+        const result = getPointOnLineAtADistance(from, to, distance);
+        expect(result.x).toBeCloseTo(expected.x);
+        expect(result.y).toBeCloseTo(expected.y);
+      });
+    };
+
+    assertGetPoint(xy(-4, 0), xy(0, 0), 3, xy(-3, 0));
+    assertGetPoint(xy(4, 4), xy(0, 0), 1.41, xy(1, 1));
+    assertGetPoint(xy(4, 4), xy(0, 0), 2.83, xy(2, 2));
+    assertGetPoint(xy(5, 6), xy(-5, -6), 7.81, xy(0, 0));
   });
 });

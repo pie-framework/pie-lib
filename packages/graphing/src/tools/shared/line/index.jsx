@@ -4,7 +4,6 @@ import { BasePoint } from '../point';
 import { types, utils, gridDraggable, trig } from '@pie-lib/plot';
 import PropTypes from 'prop-types';
 import debug from 'debug';
-import _ from 'lodash';
 
 const log = debug('pie-lib:graphing:line-tools');
 
@@ -18,10 +17,6 @@ export const lineTool = (type, Component) => () => ({
         building: true,
         from: point
       };
-    }
-
-    if (_.isEqual(point, mark.from)) {
-      return { ...mark };
     }
 
     return { ...mark, building: false, to: point };
@@ -105,6 +100,7 @@ export const lineBase = (Comp, opts) => {
       graphProps: types.GraphPropsType,
       from: types.PointType,
       to: types.PointType,
+      scaledTo: types.PointType,
       onChange: PropTypes.func,
       onDragStart: PropTypes.func,
       onDragStop: PropTypes.func
@@ -126,14 +122,24 @@ export const lineBase = (Comp, opts) => {
     };
 
     render() {
-      const { graphProps, onDragStart, onDragStop, from, to } = this.props;
+      // scaledTo is a property used for vector component; it represents the 'to' point that is already
+      // scaled and was calculated in order to display the arrow correctly
+      const { graphProps, onDragStart, onDragStop, from, to, scaledTo } = this.props;
 
       const common = { graphProps, onDragStart, onDragStop };
 
       const angle = to ? trig.toDegrees(trig.angle(from, to)) : 0;
       return (
         <g>
-          {to && <DraggableComp from={from} to={to} onDrag={this.dragComp} {...common} />}
+          {to && (
+            <DraggableComp
+              from={from}
+              to={to}
+              scaledTo={scaledTo}
+              onDrag={this.dragComp}
+              {...common}
+            />
+          )}
           <FromPoint
             x={from.x}
             y={from.y}
@@ -145,6 +151,7 @@ export const lineBase = (Comp, opts) => {
             <ToPoint
               x={to.x}
               y={to.y}
+              scaled={scaledTo}
               angle={angle} //angle + 45}
               onDrag={this.dragTo}
               onClick={this.clickTo}

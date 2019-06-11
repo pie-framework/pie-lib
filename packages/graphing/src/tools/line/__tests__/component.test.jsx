@@ -10,7 +10,8 @@ jest.mock('@pie-lib/plot', () => {
     gridDraggable: a.gridDraggable,
     utils: a.utils,
     trig: {
-      edges: jest.fn(() => jest.fn().mockReturnValue([0, 0]))
+      edges: jest.fn(() => jest.fn().mockReturnValue([0, 0])),
+      getPointOnLineAtADistance: jest.fn(() => jest.fn().mockReturnValue(1))
     }
   };
 });

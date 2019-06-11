@@ -16,16 +16,39 @@ export const ArrowedLine = props => {
   const { className, classes, correctness, disabled, graphProps, from, to, ...rest } = props;
   const { scale } = graphProps;
   const [eFrom, eTo] = trig.edges(graphProps.domain, graphProps.range)(from, to);
+
+  const eFromArrow = trig.getPointOnLineAtADistance(
+    {
+      x: scale.x(eTo.x),
+      y: scale.y(eTo.y)
+    },
+    {
+      x: scale.x(eFrom.x),
+      y: scale.y(eFrom.y)
+    }
+  );
+
+  const eToArrow = trig.getPointOnLineAtADistance(
+    {
+      x: scale.x(eFrom.x),
+      y: scale.y(eFrom.y)
+    },
+    {
+      x: scale.x(eTo.x),
+      y: scale.y(eTo.y)
+    }
+  );
+
   return (
     <g>
       <defs>
         <ArrowMarker id={props.markerId || markerId} className={classes.arrow} />
       </defs>
       <line
-        x1={scale.x(eFrom.x)}
-        y1={scale.y(eFrom.y)}
-        x2={scale.x(eTo.x)}
-        y2={scale.y(eTo.y)}
+        x1={eFromArrow.x}
+        y1={eFromArrow.y}
+        x2={eToArrow.x}
+        y2={eToArrow.y}
         className={classNames(
           classes.line,
           disabled && classes.disabled,

@@ -12,6 +12,10 @@ export default class Arrow extends React.Component {
     disabled: PropTypes.bool,
     x: PropTypes.number.isRequired,
     y: PropTypes.number.isRequired,
+    scaled: {
+      x: PropTypes.number.isRequired,
+      y: PropTypes.number.isRequired
+    },
     angle: PropTypes.number.isRequired,
     graphProps: types.GraphPropsType.isRequired
   };
@@ -23,6 +27,7 @@ export default class Arrow extends React.Component {
       className,
       x,
       y,
+      scaled,
       disabled,
       correctness,
       graphProps,
@@ -41,7 +46,9 @@ export default class Arrow extends React.Component {
           classes[correctness],
           className
         )}
-        transform={`translate(${scale.x(x)}, ${scale.y(y)}) rotate(${angle * -1} 0 0)`}
+        transform={`translate(${scaled ? scaled.x : scale.x(x)}, ${
+          scaled ? scaled.y : scale.y(y)
+        }) rotate(${angle * -1} 0 0)`}
         {...rest}
       >
         <ArrowHead size={size} transform={transform} />

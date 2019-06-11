@@ -14,9 +14,9 @@ exports[`RayLine snapshot renders 1`] = `
     markerId="1"
     onChange={[MockFunction]}
     x1={0}
-    x2={1}
+    x2={-3.9497474683058327}
     y1={0}
-    y2={1}
+    y2={-3.9497474683058327}
   />
 </g>
 `;

@@ -19,6 +19,16 @@ export const RayLine = props => {
   const { graphProps, from, to, classes, disabled, correctness, className, ...rest } = props;
   const { scale } = graphProps;
   const [aToB] = trig.edges(graphProps.domain, graphProps.range)(from, to);
+  const aToBArrow = trig.getPointOnLineAtADistance(
+    {
+      x: scale.x(from.x),
+      y: scale.y(from.y)
+    },
+    {
+      x: scale.x(aToB.x),
+      y: scale.y(aToB.y)
+    }
+  );
 
   return (
     <g>
@@ -28,8 +38,8 @@ export const RayLine = props => {
       <line
         x1={scale.x(from.x)}
         y1={scale.y(from.y)}
-        x2={scale.x(aToB.x)}
-        y2={scale.y(aToB.y)}
+        x2={aToBArrow.x}
+        y2={aToBArrow.y}
         {...rest}
         className={classNames(
           classes.line,

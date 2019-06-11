@@ -100,10 +100,28 @@ export class Graph extends React.Component {
     const tool = currentTool || this.getDefaultTool();
     log('[onBgClick] currentTool: ', currentTool);
 
-    const updatedMark = tool.addPoint({ x, y }, buildingMark ? { ...buildingMark } : undefined);
-    log('[onBgClick] updatedMark: ', currentTool);
+    let pointAlreadyAdded = false;
 
-    this.updateMarks(buildingMark, updatedMark, true);
+    switch (tool.type) {
+      case 'circle':
+      case 'sine':
+      case 'parabola':
+        if (buildingMark && isEqual(buildingMark.root, { x, y })) {
+          pointAlreadyAdded = true;
+        }
+        break;
+      default:
+        if (buildingMark && isEqual(buildingMark.from, { x, y })) {
+          pointAlreadyAdded = true;
+        }
+        break;
+    }
+
+    if (!pointAlreadyAdded) {
+      const updatedMark = tool.addPoint({ x, y }, buildingMark ? { ...buildingMark } : undefined);
+      log('[onBgClick] updatedMark: ', currentTool);
+      this.updateMarks(buildingMark, updatedMark, true);
+    }
   };
 
   completeMark = markData => {

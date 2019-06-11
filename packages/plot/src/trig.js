@@ -116,3 +116,19 @@ export const diffEdge = (bounds, a, b) => {
   log('normalized:', normalized);
   return normalized;
 };
+
+/**
+ * Returns a point that is on a line determined by 2 points at a specific distance from the second point
+ * @param from - point with x, y
+ * @param to - point with x, y
+ * @param distance - number
+ * @returns {{x: number | *, y: number | *}}
+ */
+export const getPointOnLineAtADistance = (from, to, distance = 7) => {
+  const scaledDistance = Math.hypot(to.x - from.x, to.y - from.y);
+
+  return {
+    x: scaledDistance && to.x + (distance / scaledDistance) * (from.x - to.x),
+    y: scaledDistance && to.y + (distance / scaledDistance) * (from.y - to.y)
+  };
+};

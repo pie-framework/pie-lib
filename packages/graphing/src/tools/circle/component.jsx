@@ -17,8 +17,8 @@ const opacityPulsate = opacity => ({
   '100%': { opacity: '0.0' }
 });
 
-const getRadius = (root, outer) => {
-  const c = point(root);
+const getRadius = (from, outer) => {
+  const c = point(from);
   return c.dist(point(outer));
 };
 
@@ -28,9 +28,9 @@ export class RawBaseCircle extends React.Component {
     classes: PropTypes.object.isRequired,
     className: PropTypes.string,
     correctness: PropTypes.string,
-    root: types.PointType,
+    from: types.PointType,
     disabled: PropTypes.bool,
-    edge: types.PointType,
+    to: types.PointType,
     onChange: PropTypes.func.isRequired,
     onDragStart: PropTypes.func,
     onDragStop: PropTypes.func,
@@ -42,24 +42,24 @@ export class RawBaseCircle extends React.Component {
     onClick: () => ({})
   };
 
-  dragRoot = root => {
+  dragFrom = from => {
     const { onChange } = this.props;
-    const d = { root, edge: this.props.edge };
+    const d = { from, to: this.props.to };
 
     onChange(d);
   };
 
-  dragEdge = edge => {
+  dragTo = to => {
     const { onChange } = this.props;
-    const d = { root: this.props.root, edge };
+    const d = { from: this.props.from, to };
     onChange(d);
   };
 
-  dragCircle = root => {
+  dragCircle = from => {
     const { onChange } = this.props;
-    const diff = point(this.props.root).sub(point(root));
-    const edge = point(this.props.edge).sub(diff);
-    const d = { root, edge };
+    const diff = point(this.props.from).sub(point(from));
+    const to = point(this.props.to).sub(diff);
+    const d = { from, to };
     this.setState(
       {
         draggedroot: undefined,
@@ -74,8 +74,8 @@ export class RawBaseCircle extends React.Component {
 
   render() {
     let {
-      root,
-      edge,
+      from,
+      to,
       disabled,
       classes,
       building,
@@ -88,9 +88,9 @@ export class RawBaseCircle extends React.Component {
 
     const common = { onDragStart, onDragStop, graphProps, onClick };
 
-    edge = edge || root;
+    to = to || from;
 
-    const radius = getRadius(root, edge);
+    const radius = getRadius(from, to);
 
     return (
       <g>
@@ -98,8 +98,8 @@ export class RawBaseCircle extends React.Component {
           disabled={building || disabled}
           correctness={correctness}
           className={classNames(building && classes.bgCircleBuilding)}
-          x={root.x}
-          y={root.y}
+          x={from.x}
+          y={from.y}
           radius={radius}
           onDrag={this.dragCircle}
           {...common}
@@ -107,18 +107,18 @@ export class RawBaseCircle extends React.Component {
         <BasePoint
           disabled={building || disabled}
           correctness={correctness}
-          x={edge.x}
-          y={edge.y}
-          onDrag={this.dragEdge}
+          x={to.x}
+          y={to.y}
+          onDrag={this.dragTo}
           {...common}
         />
         <BasePoint
           disabled={building || disabled}
           correctness={correctness}
-          x={root.x}
-          y={root.y}
-          className={classes.root}
-          onDrag={this.dragRoot}
+          x={from.x}
+          y={from.y}
+          className={classes.from}
+          onDrag={this.dragFrom}
           {...common}
         />
       </g>
