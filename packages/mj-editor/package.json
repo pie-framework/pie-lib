@@ -13,6 +13,7 @@
     "@pie-framework/mathquill": "^0.10.4",
     "classnames": "^2.2.6",
     "debug": "^4.1.1",
+    "mathjax3": "3.0.0-beta.4",
     "react": "^16.8.6"
   },
   "keywords": [],
