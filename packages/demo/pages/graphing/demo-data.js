@@ -4,7 +4,7 @@ const fromTo = (fx, fy, tx, ty) => ({ from: xy(fx, fy), to: xy(tx, ty) });
 export const marks = [
   //{ type: 'parabola', root: { x: 0, y: 0 }, edge: { x: 1, y: 1 } },
   // { type: 'parabola', root: { x: 2, y: 2 }, edge: { x: -1, y: 1 } },
-  { type: 'sine', root: xy(-5, 0), edge: xy(-4, 1) },
+  // { type: 'sine', root: xy(-5, 0), edge: xy(-4, 1) },
   // {
   //   disabled: true,
   //   type: 'polygon',
@@ -105,7 +105,7 @@ export const marks = [
   //   points: [xy(-1, 1), xy(4, 2), xy(5, -3), xy(-1, -2)]
   // }
   // { type: 'line', from: { x: 0, y: 0 }, to: { x: 1, y: 1 } },
-  { type: 'segment', ...fromTo(1, 2, 3, 3) }
+  // { type: 'segment', ...fromTo(1, 2, 3, 3) }
   // { type: 'ray', ...fromTo(1, -1, -2, -2) },
   // { type: 'vector', ...fromTo(-1, 1, 2, 2) }
   // { type: 'point', x: 1, y: 1 },

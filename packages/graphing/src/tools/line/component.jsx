@@ -6,6 +6,8 @@ import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import { ArrowMarker, genUid } from '../shared/arrow-head';
 import { GraphPropsType } from '@pie-lib/plot/lib/types';
+import isEqual from 'lodash/isEqual';
+
 const markerId = genUid();
 
 const lineStyles = theme => ({
@@ -16,28 +18,41 @@ export const ArrowedLine = props => {
   const { className, classes, correctness, disabled, graphProps, from, to, ...rest } = props;
   const { scale } = graphProps;
   const [eFrom, eTo] = trig.edges(graphProps.domain, graphProps.range)(from, to);
+  let eFromArrow;
+  let eToArrow;
 
-  const eFromArrow = trig.getPointOnLineAtADistance(
-    {
-      x: scale.x(eTo.x),
-      y: scale.y(eTo.y)
-    },
-    {
-      x: scale.x(eFrom.x),
-      y: scale.y(eFrom.y)
-    }
-  );
+  if (!isEqual(from, to)) {
+    eFromArrow = trig.getPointOnLineAtADistance(
+      {
+        x: scale.x(eTo.x),
+        y: scale.y(eTo.y)
+      },
+      {
+        x: scale.x(eFrom.x),
+        y: scale.y(eFrom.y)
+      }
+    );
 
-  const eToArrow = trig.getPointOnLineAtADistance(
-    {
-      x: scale.x(eFrom.x),
-      y: scale.y(eFrom.y)
-    },
-    {
-      x: scale.x(eTo.x),
-      y: scale.y(eTo.y)
-    }
-  );
+    eToArrow = trig.getPointOnLineAtADistance(
+      {
+        x: scale.x(eFrom.x),
+        y: scale.y(eFrom.y)
+      },
+      {
+        x: scale.x(eTo.x),
+        y: scale.y(eTo.y)
+      }
+    );
+  } else {
+    eFromArrow = {
+      x: scale.x(from.x),
+      y: scale.y(from.y)
+    };
+    eToArrow = {
+      x: scale.x(to.x),
+      y: scale.y(to.y)
+    };
+  }
 
   return (
     <g>

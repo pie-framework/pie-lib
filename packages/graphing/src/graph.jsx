@@ -67,6 +67,26 @@ export class Graph extends React.Component {
       throw new Error('no marks set?');
     }
 
+    switch (newMark.type) {
+      case 'line':
+      case 'ray':
+      case 'segment':
+      case 'vector':
+        if (isEqual(newMark.from, newMark.to)) {
+          return;
+        }
+        break;
+      case 'circle':
+      case 'sine':
+      case 'parabola':
+        if (isEqual(newMark.root, newMark.edge)) {
+          return;
+        }
+        break;
+      default:
+        break;
+    }
+
     const index = marks.findIndex(m => _.isEqual(m, oldMark));
 
     if (index >= 0) {

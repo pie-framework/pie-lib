@@ -25,7 +25,9 @@ describe('ArrowedLine', () => {
       className: 'className',
       onChange,
       markerId: '1',
-      graphProps: getGraphProps()
+      graphProps: getGraphProps(),
+      from: { x: 0, y: 0 },
+      to: { x: 1, y: 1 }
     };
     const props = { ...defaults, ...extras };
     return shallow(<ArrowedLine {...props} />);

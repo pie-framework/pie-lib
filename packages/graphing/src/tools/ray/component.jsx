@@ -6,6 +6,7 @@ import { trig, types } from '@pie-lib/plot';
 import debug from 'debug';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
+import isEqual from 'lodash/isEqual';
 
 const log = debug('pie-lib:graphing:ray-two');
 
@@ -19,16 +20,25 @@ export const RayLine = props => {
   const { graphProps, from, to, classes, disabled, correctness, className, ...rest } = props;
   const { scale } = graphProps;
   const [aToB] = trig.edges(graphProps.domain, graphProps.range)(from, to);
-  const aToBArrow = trig.getPointOnLineAtADistance(
-    {
-      x: scale.x(from.x),
-      y: scale.y(from.y)
-    },
-    {
-      x: scale.x(aToB.x),
-      y: scale.y(aToB.y)
-    }
-  );
+  let aToBArrow;
+
+  if (!isEqual(from, to)) {
+    aToBArrow = trig.getPointOnLineAtADistance(
+      {
+        x: scale.x(from.x),
+        y: scale.y(from.y)
+      },
+      {
+        x: scale.x(aToB.x),
+        y: scale.y(aToB.y)
+      }
+    );
+  } else {
+    aToBArrow = {
+      x: scale.x(to.x),
+      y: scale.y(to.y)
+    };
+  }
 
   return (
     <g>

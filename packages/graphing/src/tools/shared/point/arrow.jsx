@@ -12,10 +12,10 @@ export default class Arrow extends React.Component {
     disabled: PropTypes.bool,
     x: PropTypes.number.isRequired,
     y: PropTypes.number.isRequired,
-    scaled: {
+    scaled: PropTypes.shape({
       x: PropTypes.number.isRequired,
       y: PropTypes.number.isRequired
-    },
+    }),
     angle: PropTypes.number.isRequired,
     graphProps: types.GraphPropsType.isRequired
   };
