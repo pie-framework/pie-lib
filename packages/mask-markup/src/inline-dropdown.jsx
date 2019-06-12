@@ -5,16 +5,20 @@ import { withMask } from './with-mask';
 export default withMask('dropdown', props => (node, data, onChange) => {
   const dataset = node.data ? node.data.dataset || {} : {};
   if (dataset.component === 'dropdown') {
-    const { feedback } = props;
+    const { choices, disabled, feedback, showCorrectAnswer } = props;
+    const correctAnswer = props.choices[dataset.id].find(c => c.correct);
+    const finalChoice = showCorrectAnswer ? correctAnswer.value : data[dataset.id];
+
     return (
       <Dropdown
         key={`${node.type}-dropdown-${dataset.id}`}
-        correct={feedback && feedback[dataset.id] && feedback[dataset.id].correct}
-        disabled={props.disabled}
-        value={data[dataset.id]}
+        correct={feedback && feedback[dataset.id] && feedback[dataset.id] === 'correct'}
+        disabled={disabled || showCorrectAnswer}
+        value={finalChoice}
         id={dataset.id}
         onChange={onChange}
-        choices={props.choices[dataset.id]}
+        choices={choices[dataset.id]}
+        showCorrectAnswer={showCorrectAnswer}
       />
     );
   }

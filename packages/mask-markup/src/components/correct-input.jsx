@@ -3,18 +3,18 @@ import Input from '@material-ui/core/Input';
 import classnames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 
-const underline = color => ({
+const correctStyle = color => ({
   '&:before': {
-    borderBottom: `solid 2px ${color}`
+    borderBottom: `solid 2px ${color} !important`
   },
   '&:after': {
-    borderBottom: `solid 2px ${color}`
+    borderBottom: `solid 2px ${color} !important`
   }
 });
 
 export default withStyles(() => ({
-  'underline-correct': underline('green'),
-  'underline-incorrect': underline('red'),
+  correct: correctStyle('green'),
+  incorrect: correctStyle('red'),
   box: {
     border: 'solid #9E9F9E',
     borderWidth: '1px 1px 0 1px'
@@ -22,7 +22,7 @@ export default withStyles(() => ({
 }))(props => {
   const { correct, isBox, classes, ...rest } = props;
   const label = typeof correct === 'boolean' ? (correct ? 'correct' : 'incorrect') : undefined;
-  const underlineName = label && classes[`underline-${label}`];
+  const correctName = label && classes[label];
 
   return (
     <Input
@@ -30,7 +30,7 @@ export default withStyles(() => ({
         [classes.box]: isBox
       })}
       classes={{
-        underline: classnames(underlineName)
+        underline: classnames(correctName)
       }}
       {...rest}
     />

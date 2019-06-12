@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CorrectInput from './correct-input';
 
-const Input = ({ disabled, correct, id, value, onChange }) => {
+const Input = ({ disabled, correct, id, value, onChange, showCorrectAnswer }) => {
   return (
     <CorrectInput
       disabled={disabled}
-      correct={correct}
+      correct={showCorrectAnswer || correct}
       variant="outlined"
       value={value}
       isBox={true}
@@ -21,7 +21,8 @@ Input.propTypes = {
   value: PropTypes.string,
   onChange: PropTypes.func,
   disabled: PropTypes.bool,
-  correct: PropTypes.bool
+  correct: PropTypes.bool,
+  showCorrectAnswer: PropTypes.bool
 };
 
 export default Input;

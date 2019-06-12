@@ -4,12 +4,12 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import CorrectInput from './correct-input';
 
-const Dropdown = ({ id, correct, disabled, value, onChange, choices }) => {
+const Dropdown = ({ id, correct, disabled, value, onChange, choices, showCorrectAnswer }) => {
   return (
     <Select
       disabled={disabled}
       value={value}
-      input={<CorrectInput correct={correct} />}
+      input={<CorrectInput correct={showCorrectAnswer || correct} />}
       MenuProps={{
         keepMounted: true,
         disablePortal: true
