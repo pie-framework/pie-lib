@@ -102,26 +102,15 @@ export const gridDraggable = opts => Comp => {
 
     skipDragOutsideOfBounds = (dd, e, graphProps) => {
       // ignore drag movement outside of the domain and range.
-      const [rawX, rawY] = clientPoint(dd.node, e);
+      const rootNode = graphProps.getRootNode();
+      const [rawX, rawY] = clientPoint(rootNode, e);
       const { scale, domain, range } = graphProps;
       let x = scale.x.invert(rawX);
       let y = scale.y.invert(rawY);
 
-      if (dd.deltaX > 0 && x < domain.min) {
-        return true;
-      }
-
-      if (dd.deltaX < 0 && x > domain.max) {
-        return true;
-      }
-
-      if (dd.deltaY > 0 && y > range.max) {
-        return true;
-      }
-      if (dd.deltaY < 0 && y < range.min) {
-        return true;
-      }
-      return false;
+      const xOutside = (dd.deltaX > 0 && x < domain.min) || (dd.deltaX < 0 && x > domain.max);
+      const yOutside = (dd.deltaY > 0 && y > range.max) || (dd.deltaY < 0 && y < range.min);
+      return xOutside || yOutside;
     };
 
     onDrag = (e, dd) => {
@@ -136,6 +125,7 @@ export const gridDraggable = opts => Comp => {
       if (dd.deltaX < 0 && dd.deltaX < bounds.left) {
         return;
       }
+
       if (dd.deltaX > 0 && dd.deltaX > bounds.right) {
         return;
       }

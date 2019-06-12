@@ -42,7 +42,8 @@ const getGraphProps = () => ({
   size: {
     width: 500,
     height: 500
-  }
+  },
+  getRootNode: () => ({})
 });
 
 describe('gridDraggable', () => {

@@ -121,6 +121,7 @@ export const lineBase = (Comp, opts) => {
     };
 
     dragTo = to => {
+      console.log('DRAG TO:', to);
       const { onChange } = this.props;
       onChange({ from: this.props.from, to });
     };

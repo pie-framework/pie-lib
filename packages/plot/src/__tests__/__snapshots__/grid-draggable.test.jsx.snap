@@ -21,6 +21,7 @@ exports[`gridDraggable snapshot reqular 1`] = `
           "max": 1,
           "min": 0,
         },
+        "getRootNode": [Function],
         "range": Object {
           "max": 1,
           "min": 0,
