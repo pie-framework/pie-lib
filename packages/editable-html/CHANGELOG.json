@@ -2063,5 +2063,35 @@
     "committerDate": "2019-06-06 12:50:27 +0300",
     "isTagged": true,
     "tag": "@pie-lib/editable-html@7.6.1"
+  },
+  {
+    "type": "feat",
+    "scope": null,
+    "subject": "version bumps",
+    "merge": null,
+    "header": "feat: version bumps",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "23eb54f95e4b6480e2f8c5b336627a7f3bc2f428",
+    "gitTags": "",
+    "committerDate": "2019-06-10 15:24:32 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.7.0"
+  },
+  {
+    "type": "fix",
+    "scope": "drag-in-the-blank",
+    "subject": "made it possible to drop choices in newly created response areas",
+    "merge": null,
+    "header": "fix(drag-in-the-blank): made it possible to drop choices in newly created response areas",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "ba5d2e9b92de0baf7ca0aed4447875bda61728b9",
+    "gitTags": "",
+    "committerDate": "2019-06-06 12:45:24 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.7.0"
   }
 ]

@@ -103,5 +103,35 @@
     "committerDate": "2019-01-30 22:14:28 +0000",
     "isTagged": true,
     "tag": "@pie-lib/graphing@0.1.0"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "fix bounded drag calculation",
+    "merge": null,
+    "header": "fix: fix bounded drag calculation",
+    "body": "To get the correct x/y coordinates the drag logic needs a reference to\nthe root <g> node that contains all the elements.",
+    "footer": null,
+    "notes": [],
+    "hash": "08097bd199de32b534ea788d12f528fb5fb7b9ff",
+    "gitTags": "",
+    "committerDate": "2019-06-12 13:23:25 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/graphing@0.2.0"
+  },
+  {
+    "type": "feat",
+    "scope": null,
+    "subject": "graphing updates",
+    "merge": null,
+    "header": "feat: graphing updates",
+    "body": "feat: add label to Point\nfeat: add click through\n\n* draggable refactor\n* line refactor\n* click support",
+    "footer": null,
+    "notes": [],
+    "hash": "f347e4c0449d797b1f108544add0833f7d47d733",
+    "gitTags": "",
+    "committerDate": "2019-06-10 15:24:14 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/graphing@0.2.0"
   }
 ]
