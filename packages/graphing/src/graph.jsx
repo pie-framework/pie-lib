@@ -214,7 +214,7 @@ export class Graph extends React.Component {
     const tool = this.getTool();
     log('[render]', marks);
 
-    const graphProps = createGraphProps(domain, range, size);
+    const graphProps = createGraphProps(domain, range, size, () => this.rootNode);
     const maskSize = {
       x: -10,
       y: -10,
@@ -224,7 +224,12 @@ export class Graph extends React.Component {
     const common = { graphProps, labelModeEnabled };
 
     return (
-      <Root title={title} onMouseMove={this.mouseMove} {...common}>
+      <Root
+        title={title}
+        onMouseMove={this.mouseMove}
+        rootRef={r => (this.rootNode = r)}
+        {...common}
+      >
         <Grid {...common} />
         <Axes {...axesSettings} {...common} />
         <Bg {...size} onClick={this.onBgClick} {...common} />

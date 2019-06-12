@@ -2,7 +2,7 @@ import invariant from 'invariant';
 import { buildSizeArray, snapTo } from './utils';
 import { scaleLinear } from 'd3-scale';
 
-export const create = (domain, range, size) => {
+export const create = (domain, range, size, getRootNode) => {
   invariant(domain.min < domain.max, 'domain: min must be less than max');
   invariant(range.min < range.max, 'range: min must be less than max');
 
@@ -23,5 +23,5 @@ export const create = (domain, range, size) => {
     y: snapTo.bind(null, range.min, range.max, 1)
   };
 
-  return { scale, snap, domain, range, size };
+  return { scale, snap, domain, range, size, getRootNode };
 };

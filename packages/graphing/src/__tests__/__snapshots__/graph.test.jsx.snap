@@ -9,6 +9,7 @@ exports[`Graph snapshot renders 1`] = `
         "min": 0,
         "step": 1,
       },
+      "getRootNode": [Function],
       "range": Object {
         "max": 1,
         "min": 0,
@@ -29,6 +30,7 @@ exports[`Graph snapshot renders 1`] = `
     }
   }
   onMouseMove={[Function]}
+  rootRef={[Function]}
 >
   <WithStyles(Grid)
     graphProps={
@@ -38,6 +40,7 @@ exports[`Graph snapshot renders 1`] = `
           "min": 0,
           "step": 1,
         },
+        "getRootNode": [Function],
         "range": Object {
           "max": 1,
           "min": 0,
@@ -66,6 +69,7 @@ exports[`Graph snapshot renders 1`] = `
           "min": 0,
           "step": 1,
         },
+        "getRootNode": [Function],
         "range": Object {
           "max": 1,
           "min": 0,
@@ -95,6 +99,7 @@ exports[`Graph snapshot renders 1`] = `
           "min": 0,
           "step": 1,
         },
+        "getRootNode": [Function],
         "range": Object {
           "max": 1,
           "min": 0,
@@ -126,6 +131,7 @@ exports[`Graph snapshot renders 1`] = `
           "min": 0,
           "step": 1,
         },
+        "getRootNode": [Function],
         "range": Object {
           "max": 1,
           "min": 0,
