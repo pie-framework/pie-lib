@@ -2048,5 +2048,20 @@
     "committerDate": "2019-05-17 13:25:39 +0300",
     "isTagged": true,
     "tag": "@pie-lib/editable-html@7.6.0"
+  },
+  {
+    "type": "fix",
+    "scope": "drag-in-the-blank",
+    "subject": "made it possible to drop choices in newly created response areas",
+    "merge": null,
+    "header": "fix(drag-in-the-blank): made it possible to drop choices in newly created response areas",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "0a8568fc1147f537935a76419338e54a15a08f81",
+    "gitTags": " (develop)",
+    "committerDate": "2019-06-06 12:50:27 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.6.1"
   }
 ]

@@ -501,16 +501,16 @@
   },
   {
     "type": "chore",
-    "scope": "editable-html",
-    "subject": "changed versions for packages that contain editable-html",
+    "scope": "version",
+    "subject": "bumped the version",
     "merge": null,
-    "header": "chore(editable-html): changed versions for packages that contain editable-html",
+    "header": "chore(version): bumped the version",
     "body": null,
     "footer": null,
     "notes": [],
-    "hash": "e0ef7c4ecb6d524fae19779cb7ce1a68924f7557",
-    "gitTags": "",
-    "committerDate": "2019-06-05 23:19:26 +0300",
+    "hash": "9703ec6280d9b7b00bcd99ba81ee6f1f29b0e0bf",
+    "gitTags": " (develop)",
+    "committerDate": "2019-06-05 23:32:53 +0300",
     "isTagged": true,
     "tag": "@pie-lib/scoring-config@3.4.12"
   }
