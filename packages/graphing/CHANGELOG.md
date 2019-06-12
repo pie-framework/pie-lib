@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@0.1.12...@pie-lib/graphing@0.2.0) (2019-06-12)
+
+
+### Bug Fixes
+
+* fix bounded drag calculation ([08097bd](https://github.com/pie-framework/pie-lib/commit/08097bd))
+
+
+### Features
+
+* graphing updates ([f347e4c](https://github.com/pie-framework/pie-lib/commit/f347e4c))
+
+
+
+
+
 ## [0.1.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@0.1.11...@pie-lib/graphing@0.1.12) (2019-03-15)
 
 
