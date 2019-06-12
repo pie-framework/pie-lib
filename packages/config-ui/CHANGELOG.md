@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.3.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.3.0...@pie-lib/config-ui@10.3.1) (2019-06-06)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
+# [10.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.2.2...@pie-lib/config-ui@10.3.0) (2019-06-05)
+
+
+### Features
+
+* **editable-html:** made some changes in order to publish packages with the editable-html bump ([d049e3c](https://github.com/pie-framework/pie-lib/commit/d049e3c))
+
+
+
+
+
+## [10.2.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.2.1...@pie-lib/config-ui@10.2.2) (2019-06-05)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
 ## [10.2.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.2.0...@pie-lib/config-ui@10.2.1) (2019-05-22)
 
 **Note:** Version bump only for package @pie-lib/config-ui
