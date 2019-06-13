@@ -4,13 +4,14 @@ exports[`RayLine snapshot renders 1`] = `
 <g>
   <defs>
     <ArrowMarker
-      id="1"
+      className=""
+      id="1-enabled"
       size={5}
     />
   </defs>
   <line
     className="className"
-    markerEnd="url(#1)"
+    markerEnd="url(#1-enabled)"
     markerId="1"
     onChange={[MockFunction]}
     x1={0}

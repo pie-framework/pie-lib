@@ -1,4 +1,5 @@
 import Circle from './component';
+import isEqual from 'lodash/isEqual';
 
 export const tool = opts => ({
   type: 'circle',
@@ -7,6 +8,10 @@ export const tool = opts => ({
     return { ...mark, edge: point };
   },
   addPoint: (point, mark) => {
+    if (mark && isEqual(mark.root, point)) {
+      return mark;
+    }
+
     if (!mark) {
       return {
         type: 'circle',

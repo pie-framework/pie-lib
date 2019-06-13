@@ -5,7 +5,9 @@ exports[`Line snapshot renders 1`] = `
   className="className"
   classes={
     Object {
+      "correct": "RawLine-correct-3",
       "disabled": "RawLine-disabled-2",
+      "incorrect": "RawLine-incorrect-4",
       "line": "RawLine-line-1",
     }
   }

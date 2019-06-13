@@ -7,7 +7,10 @@ import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 
 const lineStyles = theme => ({
-  line: styles.line(theme)
+  line: styles.line(theme),
+  disabled: styles.disabled(theme),
+  correct: styles.correct(theme, 'stroke'),
+  incorrect: styles.incorrect(theme, 'stroke')
 });
 
 export const Line = props => {

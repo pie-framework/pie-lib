@@ -5,9 +5,11 @@ exports[`LinePath snapshot renders 1`] = `
   className="className"
   classes={
     Object {
+      "correct": "RawLinePath-correct-5",
       "disabled": "RawLinePath-disabled-4",
       "dragging": "RawLinePath-dragging-3",
       "drawLine": "RawLinePath-drawLine-1",
+      "incorrect": "RawLinePath-incorrect-6",
       "line": "RawLinePath-line-2",
     }
   }

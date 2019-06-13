@@ -6,7 +6,9 @@ exports[`Polygon snapshot renders 1`] = `
   classes={
     Object {
       "closed": "RawPolygon-closed-1",
+      "correct": "RawPolygon-correct-4",
       "disabled": "RawPolygon-disabled-3",
+      "incorrect": "RawPolygon-incorrect-5",
       "open": "RawPolygon-open-2",
     }
   }

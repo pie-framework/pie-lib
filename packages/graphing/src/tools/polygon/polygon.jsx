@@ -6,7 +6,7 @@ import { gridDraggable, types } from '@pie-lib/plot';
 import * as utils from '../../utils';
 import classNames from 'classnames';
 import { fade } from '@material-ui/core/styles/colorManipulator';
-import { disabled } from '../shared/styles';
+import { correct, disabled, incorrect } from '../shared/styles';
 
 export const getPointString = (points, scale) => {
   return (points || [])
@@ -31,7 +31,16 @@ export class RawPolygon extends React.Component {
   };
 
   render() {
-    const { points, classes, className, disabled, graphProps, closed, ...rest } = this.props;
+    const {
+      points,
+      classes,
+      className,
+      disabled,
+      correctness,
+      graphProps,
+      closed,
+      ...rest
+    } = this.props;
     const { scale } = graphProps;
 
     const pointString = getPointString(points, scale);
@@ -43,6 +52,7 @@ export class RawPolygon extends React.Component {
           closed && classes.closed,
           !closed && classes.open,
           disabled && classes.disabled,
+          classes[correctness],
           className
         )}
         {...rest}
@@ -64,7 +74,9 @@ export const Polygon = withStyles(theme => ({
   },
   disabled: {
     ...disabled('stroke')
-  }
+  },
+  correct: correct('stoke'),
+  incorrect: incorrect('stroke')
 }))(RawPolygon);
 
 export default gridDraggable({

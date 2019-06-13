@@ -13,8 +13,8 @@ describe('Component', () => {
       className: 'className',
       onChange,
       graphProps: graphProps(),
-      root: xy(0, 0),
-      edge: xy(1, 1)
+      from: xy(0, 0),
+      to: xy(1, 1)
     };
     const props = { ...defaults, ...extras };
     return shallow(<RawBaseCircle {...props} />);
@@ -28,23 +28,29 @@ describe('Component', () => {
   describe('logic', () => {
     beforeEach(() => (w = wrapper()));
 
-    describe('dragRoot', () => {
+    describe('dragFrom', () => {
       it('calls onChange', () => {
         w = wrapper();
-        w.instance().dragRoot(xy(1, 1));
+        w.instance().dragFrom(xy(1, 1));
+        expect(onChange).not.toHaveBeenCalledWith({
+          from: xy(1, 1),
+          to: xy(1, 1)
+        });
+
+        w.instance().dragFrom(xy(2, 2));
         expect(onChange).toHaveBeenCalledWith({
-          root: xy(1, 1),
-          edge: xy(1, 1)
+          from: xy(2, 2),
+          to: xy(1, 1)
         });
       });
     });
 
-    describe('dragEdge', () => {
+    describe('dragTo', () => {
       it('calls onChange', () => {
-        w.instance().dragEdge(xy(4, 4));
+        w.instance().dragTo(xy(4, 4));
         expect(onChange).toHaveBeenCalledWith({
-          root: xy(0, 0),
-          edge: xy(4, 4)
+          from: xy(0, 0),
+          to: xy(4, 4)
         });
       });
     });
@@ -53,8 +59,8 @@ describe('Component', () => {
       it('calls onChange', () => {
         w.instance().dragCircle(xy(1, 1));
         expect(onChange).toHaveBeenCalledWith({
-          root: xy(1, 1),
-          edge: xy(2, 2)
+          from: xy(1, 1),
+          to: xy(2, 2)
         });
       });
     });

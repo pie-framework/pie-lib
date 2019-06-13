@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { PointType } from '../types';
 import { types } from '@pie-lib/plot';
 import classNames from 'classnames';
-import { disabled } from '../styles';
+import { disabled, correct, incorrect } from '../styles';
 import * as vx from '@vx/shape';
 
 export class RawLinePath extends React.Component {
@@ -14,6 +14,7 @@ export class RawLinePath extends React.Component {
     data: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)),
     graphProps: types.GraphPropsType.isRequired,
     disabled: PropTypes.bool,
+    correctness: PropTypes.string,
     from: PropTypes.shape(PointType).isRequired,
     to: PropTypes.shape(PointType).isRequired,
     isDragging: PropTypes.bool
@@ -26,6 +27,7 @@ export class RawLinePath extends React.Component {
       classes,
       className,
       disabled,
+      correctness,
       from,
       to,
       graphProps,
@@ -38,7 +40,12 @@ export class RawLinePath extends React.Component {
       <React.Fragment>
         <vx.LinePath
           data={data}
-          className={classNames(classes.drawLine, disabled && classes.disabled, className)}
+          className={classNames(
+            classes.drawLine,
+            disabled && classes.disabled,
+            classes[correctness],
+            className
+          )}
           {...rest}
         />
         <vx.LinePath
@@ -47,6 +54,7 @@ export class RawLinePath extends React.Component {
             classes.line,
             isDragging && classes.dragging,
             disabled && classes.disabled,
+            classes[correctness],
             className
           )}
           {...rest}
@@ -78,5 +86,11 @@ export const LinePath = withStyles(theme => ({
   disabled: {
     ...disabled('stroke'),
     strokeWidth: 2
+  },
+  correct: {
+    ...correct('stroke')
+  },
+  incorrect: {
+    ...incorrect('stroke')
   }
 }))(RawLinePath);

@@ -11,6 +11,10 @@ export const tool = () => ({
   },
   addPoint: (point, mark) => {
     log('add point to sine model: ', point, 'mark: ', mark);
+    if (mark && isEqual(mark.root, point)) {
+      return mark;
+    }
+
     if (!mark) {
       return {
         type: 'sine',

@@ -1,5 +1,6 @@
 import Parabola from './component';
 import debug from 'debug';
+import isEqual from 'lodash/isEqual';
 
 const log = debug('pie-lib:graphing:parabola');
 
@@ -9,6 +10,10 @@ export const tool = () => ({
   complete: (data, mark) => ({ ...mark, building: false, closed: true }),
   addPoint: (point, mark) => {
     log('add point to parabola model: ', point, 'mark: ', mark);
+    if (mark && isEqual(mark.root, point)) {
+      return mark;
+    }
+
     if (!mark) {
       return {
         type: 'parabola',
