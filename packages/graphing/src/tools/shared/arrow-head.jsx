@@ -1,14 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const ArrowHead = ({ size, transform }) => (
-  <polygon points={`0,0 ${size},${size / 2} 0,${size}`} transform={transform} />
+export const ArrowHead = ({ size, transform, points }) => (
+  <polygon points={points || `0,0 ${size},${size / 2} 0,${size}`} transform={transform} />
 );
 ArrowHead.propTypes = {
+  points: PropTypes.string,
   size: PropTypes.number,
   transform: PropTypes.string
 };
 ArrowHead.defaultProps = {
+  points: '',
   size: 10,
   transform: ''
 };

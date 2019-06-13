@@ -114,6 +114,7 @@ export const lineBase = (Comp, opts) => {
       onChange: PropTypes.func,
       onDragStart: PropTypes.func,
       onDragStop: PropTypes.func,
+      onClick: PropTypes.func,
       correctness: PropTypes.string,
       disabled: PropTypes.bool
     };
@@ -138,27 +139,29 @@ export const lineBase = (Comp, opts) => {
     };
 
     render() {
-      const { graphProps, onDragStart, onDragStop, from, to, disabled, correctness } = this.props;
-      const common = { graphProps, onDragStart, onDragStop, disabled, correctness };
+      const {
+        graphProps,
+        onDragStart,
+        onDragStop,
+        from,
+        to,
+        disabled,
+        correctness,
+        onClick
+      } = this.props;
+      const common = { graphProps, onDragStart, onDragStop, disabled, correctness, onClick };
       const angle = to ? trig.toDegrees(trig.angle(from, to)) : 0;
 
       return (
         <g>
           {to && <DraggableComp from={from} to={to} onDrag={this.dragComp} {...common} />}
-          <FromPoint
-            x={from.x}
-            y={from.y}
-            onDrag={this.dragFrom}
-            onClick={this.clickFrom}
-            {...common}
-          />
+          <FromPoint x={from.x} y={from.y} onDrag={this.dragFrom} {...common} />
           {to && (
             <ToPoint
               x={to.x}
               y={to.y}
               angle={angle} //angle + 45}
               onDrag={this.dragTo}
-              onClick={this.clickTo}
               {...common}
             />
           )}
