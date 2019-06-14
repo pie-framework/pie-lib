@@ -19,6 +19,7 @@ exports[`ArrowMarker snapshot renders 1`] = `
   viewBox="0 0 10 10"
 >
   <ArrowHead
+    points=""
     size={10}
     transform=""
   />
