@@ -608,5 +608,35 @@
     "committerDate": "2019-06-10 15:24:32 +0100",
     "isTagged": true,
     "tag": "@pie-lib/demo@4.6.0"
+  },
+  {
+    "type": "feat",
+    "scope": null,
+    "subject": "Added possibility to plot shapes that include defining points colocated with the defining points of other shapes",
+    "merge": null,
+    "header": "feat: Added possibility to plot shapes that include defining points colocated with the defining points of other shapes",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "f616f34c5dd9875a42778ec43a8dbd9a938799aa",
+    "gitTags": " (origin/fix/graphing-bugs-2015)",
+    "committerDate": "2019-06-14 02:58:57 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/demo@4.7.0"
+  },
+  {
+    "type": "feat",
+    "scope": null,
+    "subject": "added displayedTools property which determines which tools should appear in tool-menu. If it's not set, all tools from tools array will appear.",
+    "merge": null,
+    "header": "feat: added displayedTools property which determines which tools should appear in tool-menu. If it's not set, all tools from tools array will appear.",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "3eec9fbd104fd5a78afa1b24244499dff24a1394",
+    "gitTags": "",
+    "committerDate": "2019-06-14 01:45:14 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/demo@4.7.0"
   }
 ]
