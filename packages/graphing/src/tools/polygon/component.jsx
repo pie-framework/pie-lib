@@ -24,8 +24,7 @@ export const buildLines = (points, closed) => {
   }, []);
 
   const all = chunk(expanded, 2).map(([from, to]) => {
-    const line = { from, to };
-    return line;
+    return { from, to };
   });
 
   return closed ? all : initial(all);
@@ -59,6 +58,7 @@ export class RawBaseComponent extends React.Component {
     classes: PropTypes.object,
     className: PropTypes.string,
     disabled: PropTypes.bool,
+    correctness: PropTypes.string,
     points: PropTypes.arrayOf(types.PointType),
     closed: PropTypes.bool,
     onChange: PropTypes.func.isRequired,
@@ -115,9 +115,18 @@ export class RawBaseComponent extends React.Component {
   };
 
   render() {
-    const { closed, disabled, graphProps, onClick, onDragStart, onDragStop, points } = this.props;
+    const {
+      closed,
+      disabled,
+      graphProps,
+      onClick,
+      onDragStart,
+      onDragStop,
+      points,
+      correctness
+    } = this.props;
     const lines = buildLines(points, closed);
-    const common = { onDragStart, onDragStop, graphProps, disabled };
+    const common = { onDragStart, onDragStop, graphProps, disabled, correctness };
     return (
       <g>
         {closed ? (
@@ -159,7 +168,7 @@ export class RawBaseComponent extends React.Component {
   }
 }
 
-export const BaseComponent = withStyles(theme => ({}))(RawBaseComponent);
+export const BaseComponent = withStyles(() => ({}))(RawBaseComponent);
 
 export default class Component extends React.Component {
   static propTypes = {
@@ -206,9 +215,11 @@ export default class Component extends React.Component {
   };
   render() {
     const { mark, graphProps, onClick, isToolActive } = this.props;
+    const { mark: stateMark } = this.state;
+
     return (
       <BaseComponent
-        {...this.state.mark || mark}
+        {...(stateMark || mark)}
         onChange={this.change}
         onClosePolygon={this.closePolygon}
         onDragStart={this.dragStart}

@@ -49,7 +49,18 @@ export const rootEdgeComponent = RootEdgeComp => {
 
 const withPointsGenerationLinePath = getPoints => {
   const LinePathComponent = props => {
-    const { graphProps, from, to, onClick, onDragStart, onDragStop, onChange, ...rest } = props;
+    const {
+      graphProps,
+      from,
+      to,
+      onClick,
+      onDragStart,
+      onDragStop,
+      onChange,
+      disabled,
+      correctness,
+      ...rest
+    } = props;
 
     const { dataPoints } = getPoints({
       graphProps: props.graphProps,
@@ -58,7 +69,16 @@ const withPointsGenerationLinePath = getPoints => {
     });
     const raw = dataPoints.map(d => [graphProps.scale.x(d.x), graphProps.scale.y(d.y)]);
 
-    const common = { onClick, graphProps, onDragStart, onDragStop, onChange };
+    const common = {
+      onClick,
+      graphProps,
+      onDragStart,
+      onDragStop,
+      onChange,
+      disabled,
+      correctness
+    };
+
     return <LinePath data={raw} from={from} to={to} curve={curveMonotoneX} {...common} {...rest} />;
   };
   LinePathComponent.propTypes = {
@@ -68,7 +88,9 @@ const withPointsGenerationLinePath = getPoints => {
     onClick: PropTypes.func,
     onDragStart: PropTypes.func,
     onDragStop: PropTypes.func,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    disabled: PropTypes.bool,
+    correctness: PropTypes.string
   };
   return LinePathComponent;
 };

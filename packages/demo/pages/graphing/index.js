@@ -264,6 +264,7 @@ export class GridDemo extends React.PureComponent {
     this.state = {
       currentTool: toolsArr[2],
       tools: toolsArr,
+      displayedTools: toolsArr,
       settings: {
         includeArrows: true,
         labels: true,
@@ -372,6 +373,7 @@ export class GridDemo extends React.PureComponent {
               marks={model.marks}
               backgroundMarks={model.backgroundMarks}
               onChangeMarks={this.changeMarks}
+              displayedTools={this.state.displayedTools}
               tools={this.state.tools}
               currentTool={this.state.currentTool}
               defaultTool={this.state.tools[0].type}

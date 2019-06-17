@@ -4,7 +4,7 @@ import { BasePoint } from '../point';
 import { types, utils, gridDraggable, trig } from '@pie-lib/plot';
 import PropTypes from 'prop-types';
 import debug from 'debug';
-import _ from 'lodash';
+import { disabled, correct, incorrect } from '../styles';
 
 const log = debug('pie-lib:graphing:line-tools');
 
@@ -12,6 +12,10 @@ export const lineTool = (type, Component) => () => ({
   type,
   Component,
   addPoint: (point, mark) => {
+    if (mark && isEqual(mark.root, point)) {
+      return mark;
+    }
+
     if (!mark) {
       return {
         type,
@@ -20,7 +24,7 @@ export const lineTool = (type, Component) => () => ({
       };
     }
 
-    if (_.isEqual(point, mark.from)) {
+    if (isEqual(point, mark.from)) {
       return { ...mark };
     }
 
@@ -63,6 +67,8 @@ export const lineToolComponent = Component => {
       const mark = this.state.mark ? this.state.mark : this.props.mark;
       return (
         <Component
+          disabled={mark.disabled}
+          correctness={mark.correctness}
           from={mark.from}
           to={mark.to}
           graphProps={graphProps}
@@ -107,7 +113,16 @@ export const lineBase = (Comp, opts) => {
       to: types.PointType,
       onChange: PropTypes.func,
       onDragStart: PropTypes.func,
-      onDragStop: PropTypes.func
+      onDragStop: PropTypes.func,
+      onClick: PropTypes.func,
+      correctness: PropTypes.string,
+      disabled: PropTypes.bool
+    };
+
+    onChangePoint = point => {
+      if (!isEqual(point.from, point.to)) {
+        this.props.onChange(point);
+      }
     };
 
     dragComp = ({ from, to }) => {
@@ -116,39 +131,37 @@ export const lineBase = (Comp, opts) => {
     };
 
     dragFrom = from => {
-      const { onChange } = this.props;
-      onChange({ from, to: this.props.to });
+      this.onChangePoint({ from, to: this.props.to });
     };
 
     dragTo = to => {
-      console.log('DRAG TO:', to);
-      const { onChange } = this.props;
-      onChange({ from: this.props.from, to });
+      this.onChangePoint({ from: this.props.from, to });
     };
 
     render() {
-      const { graphProps, onDragStart, onDragStop, from, to } = this.props;
-
-      const common = { graphProps, onDragStart, onDragStop };
-
+      const {
+        graphProps,
+        onDragStart,
+        onDragStop,
+        from,
+        to,
+        disabled,
+        correctness,
+        onClick
+      } = this.props;
+      const common = { graphProps, onDragStart, onDragStop, disabled, correctness, onClick };
       const angle = to ? trig.toDegrees(trig.angle(from, to)) : 0;
+
       return (
         <g>
           {to && <DraggableComp from={from} to={to} onDrag={this.dragComp} {...common} />}
-          <FromPoint
-            x={from.x}
-            y={from.y}
-            onDrag={this.dragFrom}
-            onClick={this.clickFrom}
-            {...common}
-          />
+          <FromPoint x={from.x} y={from.y} onDrag={this.dragFrom} {...common} />
           {to && (
             <ToPoint
               x={to.x}
               y={to.y}
               angle={angle} //angle + 45}
               onDrag={this.dragTo}
-              onClick={this.clickTo}
               {...common}
             />
           )}
@@ -173,5 +186,18 @@ export const styles = {
   }),
   arrow: theme => ({
     fill: `var(--point-bg, ${theme.palette.secondary.main})`
+  }),
+  disabledArrow: () => ({
+    ...disabled()
+  }),
+  disabled: () => ({
+    ...disabled('stroke'),
+    strokeWidth: 2
+  }),
+  correct: (theme, key) => ({
+    ...correct(key)
+  }),
+  incorrect: (theme, key) => ({
+    ...incorrect(key)
   })
 };

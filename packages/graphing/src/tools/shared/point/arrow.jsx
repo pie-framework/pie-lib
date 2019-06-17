@@ -32,7 +32,14 @@ export default class Arrow extends React.Component {
     const size = 14;
     const { scale } = graphProps;
 
-    const transform = `translate(${(size / 2) * -1}, ${(size / 2) * -1})`;
+    const scaledX = scale.x(x);
+    const scaledY = scale.y(y);
+    const transform = `translate(${(size / 2) * -1}, ${(size / 2) * -1})
+      rotate(${-1 * angle} ${scaledX + size / 2} ${scaledY + size / 2})`;
+    const points = `${scaledX},${scaledY}
+     ${scaledX + size},${scaledY + size / 2}
+      ${scaledX}, ${scaledY + size}`;
+
     return (
       <g
         className={classNames(
@@ -41,10 +48,9 @@ export default class Arrow extends React.Component {
           classes[correctness],
           className
         )}
-        transform={`translate(${scale.x(x)}, ${scale.y(y)}) rotate(${angle * -1} 0 0)`}
         {...rest}
       >
-        <ArrowHead size={size} transform={transform} />
+        <ArrowHead size={size} transform={transform} points={points} />
       </g>
     );
   }

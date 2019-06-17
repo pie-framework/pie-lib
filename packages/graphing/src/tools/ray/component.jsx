@@ -13,17 +13,27 @@ const markerId = genUid();
 
 const rayStyles = theme => ({
   line: styles.line(theme),
-  arrow: styles.arrow(theme)
+  enabledArrow: styles.arrow(theme),
+  disabledArrow: styles.disabledArrow(theme),
+  disabled: styles.disabled(theme),
+  correct: styles.correct(theme, 'stroke'),
+  correctArrow: styles.correct(theme),
+  incorrect: styles.incorrect(theme, 'stroke'),
+  incorrectArrow: styles.incorrect(theme)
 });
 export const RayLine = props => {
   const { graphProps, from, to, classes, disabled, correctness, className, ...rest } = props;
   const { scale } = graphProps;
   const [aToB] = trig.edges(graphProps.domain, graphProps.range)(from, to);
+  const suffix = correctness || (disabled && 'disabled') || 'enabled';
 
   return (
     <g>
       <defs>
-        <ArrowMarker id={props.markerId || markerId} className={classes.arrow} />
+        <ArrowMarker
+          id={`${props.markerId || markerId}-${suffix}`}
+          className={classNames(classes[`${suffix}Arrow`])}
+        />
       </defs>
       <line
         x1={scale.x(from.x)}
@@ -37,7 +47,7 @@ export const RayLine = props => {
           classes[correctness],
           className
         )}
-        markerEnd={`url(#${props.markerId || markerId})`}
+        markerEnd={`url(#${props.markerId || markerId}-${suffix})`}
       />
     </g>
   );

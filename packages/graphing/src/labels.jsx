@@ -40,16 +40,9 @@ class RawLabel extends React.Component {
   render() {
     const { text, side, graphProps } = this.props;
 
-    const { scale, range, domain, size } = graphProps;
+    const { size } = graphProps;
 
-    const transform = getTransform(
-      side,
-      scale,
-      range,
-      domain,
-      size.width,
-      size.height
-    );
+    const transform = getTransform(side, size.width, size.height);
     return (
       <text textAnchor="middle" x={0} y={0} transform={transform}>
         {text}
@@ -79,18 +72,20 @@ export class Labels extends React.Component {
 
   static defaultProps = {};
   render() {
-    const { value } = this.props;
+    const { value, graphProps } = this.props;
     return (
       <React.Fragment>
         {value && value.left && (
-          <Label key="left" side="left" text={value.left} />
+          <Label key="left" side="left" text={value.left} graphProps={graphProps} />
         )}
-        {value && value.top && <Label key="top" side="top" text={value.top} />}
+        {value && value.top && (
+          <Label key="top" side="top" text={value.top} graphProps={graphProps} />
+        )}
         {value && value.bottom && (
-          <Label key="bottom" side="bottom" text={value.bottom} />
+          <Label key="bottom" side="bottom" text={value.bottom} graphProps={graphProps} />
         )}
         {value && value.right && (
-          <Label key="right" side="right" text={value.right} />
+          <Label key="right" side="right" text={value.right} graphProps={graphProps} />
         )}
       </React.Fragment>
     );

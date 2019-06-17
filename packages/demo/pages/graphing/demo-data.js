@@ -107,7 +107,7 @@ export const marks = [
   // { type: 'line', from: { x: 0, y: 0 }, to: { x: 1, y: 1 } },
   //  { type: 'segment', ...fromTo(1, 2, 3, 3) }
   // { type: 'ray', ...fromTo(1, -1, -2, -2) },
-  { type: 'vector', ...fromTo(0, 0, -5, 5) }
+  // { type: 'vector', ...fromTo(0, 0, -5, 5) }
   // { type: 'point', x: 1, y: 1 },
   // {
   //   type: 'circle',

@@ -124,11 +124,13 @@ export class RawYAxis extends React.Component {
           tickLength={10}
           tickClassName={classes.tick}
           tickLabelProps={value => {
+            const digits = value.toLocaleString().length || 1;
             const show = value % range.labelStep === 0;
+
             return {
               ...tickLabelStyles,
               dy: 4,
-              dx: -15,
+              dx: -10 - digits * 5,
               opacity: show ? 1 : 0
             };
           }}
