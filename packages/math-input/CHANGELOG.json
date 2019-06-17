@@ -928,5 +928,20 @@
     "committerDate": "2019-05-21 06:26:54 +0300",
     "isTagged": true,
     "tag": "@pie-lib/math-input@6.2.5"
+  },
+  {
+    "type": "feat",
+    "scope": null,
+    "subject": "version bumps",
+    "merge": null,
+    "header": "feat: version bumps",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "23eb54f95e4b6480e2f8c5b336627a7f3bc2f428",
+    "gitTags": "",
+    "committerDate": "2019-06-10 15:24:32 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/math-input@6.3.0"
   }
 ]

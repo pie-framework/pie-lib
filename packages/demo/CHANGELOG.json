@@ -578,5 +578,35 @@
     "committerDate": "2019-06-05 22:40:46 +0300",
     "isTagged": true,
     "tag": "@pie-lib/demo@4.4.0"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "fix bounded drag calculation",
+    "merge": null,
+    "header": "fix: fix bounded drag calculation",
+    "body": "To get the correct x/y coordinates the drag logic needs a reference to\nthe root <g> node that contains all the elements.",
+    "footer": null,
+    "notes": [],
+    "hash": "08097bd199de32b534ea788d12f528fb5fb7b9ff",
+    "gitTags": "",
+    "committerDate": "2019-06-12 13:23:25 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/demo@4.6.0"
+  },
+  {
+    "type": "feat",
+    "scope": null,
+    "subject": "version bumps",
+    "merge": null,
+    "header": "feat: version bumps",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "23eb54f95e4b6480e2f8c5b336627a7f3bc2f428",
+    "gitTags": "",
+    "committerDate": "2019-06-10 15:24:32 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/demo@4.6.0"
   }
 ]

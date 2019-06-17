@@ -163,5 +163,35 @@
     "committerDate": "2019-05-17 13:25:39 +0300",
     "isTagged": true,
     "tag": "@pie-lib/mask-markup@1.2.0"
+  },
+  {
+    "type": "fix",
+    "scope": "version",
+    "subject": "bumped the version",
+    "merge": null,
+    "header": "fix(version): bumped the version",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "d444dfbe0581d45aa2f21ff75713aeba6769c9e3",
+    "gitTags": "",
+    "committerDate": "2019-06-12 19:10:07 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/mask-markup@1.2.2"
+  },
+  {
+    "type": "fix",
+    "scope": "components",
+    "subject": "updated ui for the mask markup elements",
+    "merge": null,
+    "header": "fix(components): updated ui for the mask markup elements",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "33153ddd7773cf2b581d671d0583898e79e8aa5d",
+    "gitTags": "",
+    "committerDate": "2019-06-12 18:50:23 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/mask-markup@1.2.2"
   }
 ]
