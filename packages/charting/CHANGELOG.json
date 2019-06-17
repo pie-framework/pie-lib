@@ -353,5 +353,20 @@
     "committerDate": "2018-04-02 10:15:10 -0400",
     "isTagged": true,
     "tag": "@pie-lib/charting@0.1.0"
+  },
+  {
+    "type": "feat",
+    "scope": null,
+    "subject": "version bumps",
+    "merge": null,
+    "header": "feat: version bumps",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "23eb54f95e4b6480e2f8c5b336627a7f3bc2f428",
+    "gitTags": "",
+    "committerDate": "2019-06-10 15:24:32 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/charting@4.1.0"
   }
 ]

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.2.0...@pie-lib/mask-markup@1.2.2) (2019-06-12)
+
+
+### Bug Fixes
+
+* **components:** updated ui for the mask markup elements ([33153dd](https://github.com/pie-framework/pie-lib/commit/33153dd))
+* **version:** bumped the version ([d444dfb](https://github.com/pie-framework/pie-lib/commit/d444dfb))
+
+
+
+
+
 # [1.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.1.2...@pie-lib/mask-markup@1.2.0) (2019-06-05)
 
 

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.6.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@4.5.2...@pie-lib/demo@4.6.0) (2019-06-12)
+
+
+### Bug Fixes
+
+* fix bounded drag calculation ([08097bd](https://github.com/pie-framework/pie-lib/commit/08097bd))
+
+
+### Features
+
+* version bumps ([23eb54f](https://github.com/pie-framework/pie-lib/commit/23eb54f))
+
+
+
+
+
 ## [4.5.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@4.5.1...@pie-lib/demo@4.5.2) (2019-06-06)
 
 **Note:** Version bump only for package @pie-lib/demo
