@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@0.2.0...@pie-lib/graphing@0.3.0) (2019-06-17)
+
+
+### Bug Fixes
+
+* app was crashing when trying to edit graph labels ([9482ff9](https://github.com/pie-framework/pie-lib/commit/9482ff9))
+* backgroundMarks were not displaying anymore proper colors for disabled, correct and incorrect. Circle was crashing. ([0551120](https://github.com/pie-framework/pie-lib/commit/0551120))
+* labels not vertically align as expected for numbers greater than 99 ([fef214f](https://github.com/pie-framework/pie-lib/commit/fef214f))
+
+
+### Features
+
+* added displayedTools property which determines which tools should appear in tool-menu. If it's not set, all tools from tools array will appear. ([3eec9fb](https://github.com/pie-framework/pie-lib/commit/3eec9fb))
+* Added possibility to plot shapes that include defining points colocated with the defining points of other shapes ([f616f34](https://github.com/pie-framework/pie-lib/commit/f616f34))
+* Added possibility to plot shapes that include defining points colocated with the defining points of other shapes for point as well. ([32a1501](https://github.com/pie-framework/pie-lib/commit/32a1501))
+
+
+
+
+
 # [0.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@0.1.12...@pie-lib/graphing@0.2.0) (2019-06-12)
 
 

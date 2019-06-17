@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.7.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@4.6.0...@pie-lib/demo@4.7.0) (2019-06-17)
+
+
+### Features
+
+* added displayedTools property which determines which tools should appear in tool-menu. If it's not set, all tools from tools array will appear. ([3eec9fb](https://github.com/pie-framework/pie-lib/commit/3eec9fb))
+* Added possibility to plot shapes that include defining points colocated with the defining points of other shapes ([f616f34](https://github.com/pie-framework/pie-lib/commit/f616f34))
+
+
+
+
+
 # [4.6.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@4.5.2...@pie-lib/demo@4.6.0) (2019-06-12)
 
 
