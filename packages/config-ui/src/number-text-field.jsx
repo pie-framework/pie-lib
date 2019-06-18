@@ -38,7 +38,8 @@ export class NumberTextField extends React.Component {
     label: PropTypes.string,
     suffix: PropTypes.string,
     showErrorWhenOutsideRange: PropTypes.bool,
-    disableUnderline: PropTypes.bool
+    disableUnderline: PropTypes.bool,
+    variant: PropTypes.string
   };
 
   static defaultProps = {
@@ -147,7 +148,8 @@ export class NumberTextField extends React.Component {
       max,
       inputClassName,
       disableUnderline,
-      showErrorWhenOutsideRange
+      showErrorWhenOutsideRange,
+      variant
     } = this.props;
     const names = classNames(classes.root, className);
 
@@ -155,6 +157,7 @@ export class NumberTextField extends React.Component {
 
     return (
       <TextField
+        variant={variant || 'default'}
         inputRef={ref => {
           this.inputRef = ref;
         }}
