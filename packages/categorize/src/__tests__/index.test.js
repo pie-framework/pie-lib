@@ -22,9 +22,7 @@ describe('categorize', () => {
     const assert = (choice, categories, expected) => {
       const l = (categories || []).map(c => c.choices || []);
 
-      it(`${JSON.stringify(choice)} + ${JSON.stringify(
-        l
-      )} = ${expected}`, () => {
+      it(`${JSON.stringify(choice)} + ${JSON.stringify(l)} = ${expected}`, () => {
         expect(countChosen(choice, categories)).toEqual(expected);
       });
     };
@@ -75,20 +73,12 @@ describe('categorize', () => {
     });
 
     it('strips if the category id matches', () => {
-      const result = removeAllChoices(
-        '1',
-        [{ category: '2', choices: ['1'] }],
-        '2'
-      );
+      const result = removeAllChoices('1', [{ category: '2', choices: ['1'] }], '2');
       expect(result).toEqual([{ category: '2', choices: [] }]);
     });
 
     it('doesnt strip if the category id does not match', () => {
-      const result = removeAllChoices(
-        '1',
-        [{ category: '3', choices: ['1'] }],
-        '2'
-      );
+      const result = removeAllChoices('1', [{ category: '3', choices: ['1'] }], '2');
       expect(result).toEqual([{ category: '3', choices: ['1'] }]);
     });
   });
@@ -96,14 +86,11 @@ describe('categorize', () => {
   describe('ensureNoExtraChoicesInAnswer', () => {
     const _assert = only => (answer, choices, expected) => {
       const fn = only ? it.only : it;
-      fn(
-        `${inspect(answer)} + ${inspect(choices)} == ${inspect(expected)}`,
-        () => {
-          const result = ensureNoExtraChoicesInAnswer(answer, choices);
-          log('result: ', result);
-          expect(result).toEqual(expected);
-        }
-      );
+      fn(`${inspect(answer)} + ${inspect(choices)} == ${inspect(expected)}`, () => {
+        const result = ensureNoExtraChoicesInAnswer(answer, choices);
+        log('result: ', result);
+        expect(result).toEqual(expected);
+      });
     };
     const assert = _assert(false);
     assert.only = _assert(true);
@@ -130,27 +117,15 @@ describe('categorize', () => {
       [choice('1'), choice('2', 1)],
       [answer('1', ['1', '2', '1'])]
     );
-    assert(
-      [answer('1', ['1', '2', '1'])],
-      [choice('1')],
-      [answer('1', ['1', '2', '1'])]
-    );
-    assert(
-      [answer('1', ['1', '2', '1'])],
-      [choice('1', 1)],
-      [answer('1', ['1', '2'])]
-    );
+    assert([answer('1', ['1', '2', '1'])], [choice('1')], [answer('1', ['1', '2', '1'])]);
+    assert([answer('1', ['1', '2', '1'])], [choice('1', 1)], [answer('1', ['1', '2'])]);
     assert(
       [answer('1', ['3', '3', '1', '2', '1', '2', '3'])],
       [choice('1'), choice('2', 1), choice('3', 2)],
       [answer('1', ['3', '3', '1', '2', '1'])]
     );
 
-    assert(
-      [answer('1', ['1', '1'])],
-      [choice('1', 0)],
-      [answer('1', ['1', '1'])]
-    );
+    assert([answer('1', ['1', '1'])], [choice('1', 0)], [answer('1', ['1', '1'])]);
 
     assert(
       [answer('1', range(0, 10).map(r => '1'))],
@@ -165,11 +140,7 @@ describe('categorize', () => {
       [answer('1', ['1']), answer('2', [])]
     );
 
-    assert(
-      [answer('1', ['1', '1', '1'])],
-      [choice('1', 2)],
-      [answer('1', ['1', '1'])]
-    );
+    assert([answer('1', ['1', '1', '1'])], [choice('1', 2)], [answer('1', ['1', '1'])]);
 
     assert(
       [answer('1', ['1']), answer('2', ['1', '1'])],
@@ -188,9 +159,7 @@ describe('categorize', () => {
     const assert = (choice, categories, expected) => {
       const l = (categories || []).map(c => c.choices || []);
 
-      it(`${JSON.stringify(choice)} + ${JSON.stringify(
-        l
-      )} = ${expected}`, () => {
+      it(`${JSON.stringify(choice)} + ${JSON.stringify(l)} = ${expected}`, () => {
         expect(countChosen(choice, categories)).toEqual(expected);
       });
     };
@@ -207,16 +176,10 @@ describe('categorize', () => {
 
   describe('removeChoiceFromCategory', () => {
     const assert = (choiceId, categoryId, choiceIndex, answers, expected) => {
-      it(`remove choice:${choiceId} from category:${categoryId} == ${util.inspect(
-        expected,
-        { colors: true }
-      )}`, () => {
-        const result = removeChoiceFromCategory(
-          choiceId,
-          categoryId,
-          choiceIndex,
-          answers
-        );
+      it(`remove choice:${choiceId} from category:${categoryId} == ${util.inspect(expected, {
+        colors: true
+      })}`, () => {
+        const result = removeChoiceFromCategory(choiceId, categoryId, choiceIndex, answers);
         expect(result).toEqual(expected);
       });
     };
@@ -230,13 +193,7 @@ describe('categorize', () => {
       [answer('1', []), answer('2', ['1', '1'])]
     );
 
-    assert(
-      '1',
-      '1',
-      3,
-      [answer('1', ['1', '2', '3', '1'])],
-      [answer('1', ['1', '2', '3'])]
-    );
+    assert('1', '1', 3, [answer('1', ['1', '2', '3', '1'])], [answer('1', ['1', '2', '3'])]);
   });
 
   describe('moveChoiceToCategory', () => {
@@ -245,52 +202,19 @@ describe('categorize', () => {
         expected,
         { colors: true }
       )}`, () => {
-        const result = moveChoiceToCategory(
-          choiceId,
-          from,
-          to,
-          choiceIndex,
-          answers
-        );
+        const result = moveChoiceToCategory(choiceId, from, to, choiceIndex, answers);
         expect(result).toEqual(expected);
       });
     };
-    assert(
-      '1',
-      '1',
-      '2',
-      0,
-      [answer('1', ['1'])],
-      [answer('1', []), answer('2', ['1'])]
-    );
-    assert(
-      '1',
-      undefined,
-      '2',
-      0,
-      [answer('1', ['1'])],
-      [answer('1', ['1']), answer('2', ['1'])]
-    );
+    assert('1', '1', '2', 0, [answer('1', ['1'])], [answer('1', []), answer('2', ['1'])]);
+    assert('1', undefined, '2', 0, [answer('1', ['1'])], [answer('1', ['1']), answer('2', ['1'])]);
   });
 
   describe('buildState', () => {
-    const _a = (
-      only,
-      label,
-      categories,
-      choices,
-      answers,
-      correctResponse,
-      expected
-    ) => {
+    const _a = (only, label, categories, choices, answers, correctResponse, expected) => {
       const fn = only ? it.only : it;
       fn(label, () => {
-        const result = buildState(
-          categories,
-          choices,
-          answers,
-          correctResponse
-        );
+        const result = buildState(categories, choices, answers, correctResponse);
         expect(result).toMatchObject(expected);
       });
     };
@@ -304,9 +228,7 @@ describe('categorize', () => {
       [answer('1', '1')],
       [],
       {
-        categories: [
-          { ...cat('1'), choices: [choice('1')], correct: undefined }
-        ],
+        categories: [{ ...cat('1'), choices: [choice('1')], correct: undefined }],
         choices: [choice('1')]
       }
     );
@@ -461,6 +383,25 @@ describe('categorize', () => {
           { ...cat('2'), choices: [], correct: true }
         ],
         choices: [choice('1', 1)]
+      }
+    );
+
+    assert(
+      '1 cat, 2 choices, 1 answer, 1 correct response, 1 alternate response',
+      [cat('1')],
+      [choice('1', 0), choice('2', 0)],
+      [answer('1', ['2'])],
+      [answer('1', ['1'], [['2']])],
+      {
+        correct: true,
+        categories: [
+          {
+            ...cat('1'),
+            choices: [choice('2', 0, true)],
+            correct: true
+          }
+        ],
+        choices: [{ ...choice('1', 0) }, { ...choice('2', 0) }]
       }
     );
   });
