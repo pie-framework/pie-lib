@@ -13,7 +13,7 @@ export const choice = (id, categoryCount, correct) => {
   return out;
 };
 
-export const answer = (category, choices) => {
+export const answer = (category, choices, alternateResponses) => {
   const c = choices ? (Array.isArray(choices) ? choices : [choices]) : [];
-  return { category, choices: c };
+  return { alternateResponses, category, choices: c };
 };
