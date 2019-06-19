@@ -1,36 +1,35 @@
 import React from 'react';
-import Input from '@material-ui/core/Input';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
 import classnames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 
 const correctStyle = color => ({
-  '&:before': {
-    borderBottom: `solid 2px ${color} !important`
-  },
-  '&:after': {
-    borderBottom: `solid 2px ${color} !important`
-  }
+  borderColor: `${color} !important`
 });
 
 export default withStyles(() => ({
+  input: {
+    padding: '10px 20px 10px 10px'
+  },
   correct: correctStyle('green'),
   incorrect: correctStyle('red'),
-  box: {
-    border: 'solid #9E9F9E',
-    borderWidth: '1px 1px 0 1px'
+  notchedOutline: {
+    borderColor: 'green'
   }
 }))(props => {
   const { correct, isBox, classes, ...rest } = props;
   const label = typeof correct === 'boolean' ? (correct ? 'correct' : 'incorrect') : undefined;
-  const correctName = label && classes[label];
 
   return (
-    <Input
+    <OutlinedInput
       className={classnames({
         [classes.box]: isBox
       })}
       classes={{
-        underline: classnames(correctName)
+        notchedOutline: classnames({
+          [classes[label]]: label
+        }),
+        input: classes.input
       }}
       {...rest}
     />
