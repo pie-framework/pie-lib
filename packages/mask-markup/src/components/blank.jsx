@@ -13,8 +13,7 @@ export const DRAG_TYPE = 'MaskBlank';
 const useStyles = withStyles(theme => ({
   content: {
     border: `solid 0px ${theme.palette.primary.main}`,
-    minWidth: '200px',
-    padding: theme.spacing.unit
+    minWidth: '200px'
   },
   chip: {
     minWidth: '90px'
