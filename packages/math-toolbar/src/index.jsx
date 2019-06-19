@@ -147,7 +147,7 @@ export class RawPureToolbar extends React.Component {
           onChange={onChange}
           onFocus={onFocus}
         />
-        <DoneButton onClick={onDone} />
+        {(!controlledKeypad || (controlledKeypad && showKeypad)) && <DoneButton onClick={onDone} />}
       </div>
     );
   }
@@ -157,8 +157,7 @@ const styles = () => ({
     display: 'flex',
     width: '100%',
     zIndex: 8,
-    alignItems: 'center',
-    justifyContent: 'space-between'
+    alignItems: 'center'
   }
 });
 

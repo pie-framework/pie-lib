@@ -133,7 +133,7 @@ export class EditorAndPad extends React.Component {
     log('[render]', latex);
 
     return (
-      <div className={classes.mathToolbar}>
+      <div className={cx(classes.mathToolbar, classNames.mathToolbar)}>
         <mq.Input
           onFocus={onFocus}
           className={cx(classes.mathEditor, classNames.editor)}
@@ -186,6 +186,7 @@ const styles = theme => ({
     zIndex: 9,
     position: 'relative',
     textAlign: 'center',
+    width: 'auto',
     '& > .mq-math-mode': {
       border: 'solid 1px lightgrey'
     },
