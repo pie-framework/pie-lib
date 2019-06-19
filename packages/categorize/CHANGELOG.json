@@ -208,5 +208,20 @@
     "committerDate": "2018-05-21 13:58:56 -0400",
     "isTagged": true,
     "tag": "@pie-lib/categorize@0.3.0"
+  },
+  {
+    "type": "feat",
+    "scope": "buildState",
+    "subject": "added alternate response support",
+    "merge": null,
+    "header": "feat(buildState): added alternate response support",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "cbdf3cdd2c166612f7ea58a89c365ffa960d54c6",
+    "gitTags": "",
+    "committerDate": "2019-06-19 08:49:07 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/categorize@0.6.0"
   }
 ]
