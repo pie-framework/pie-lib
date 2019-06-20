@@ -1,9 +1,11 @@
 import compact from 'lodash/compact';
 import debug from 'debug';
 import clone from 'lodash/clone';
+import cloneDeep from 'lodash/cloneDeep';
 import remove from 'lodash/remove';
-import isEqual from 'lodash/isEqual';
 import every from 'lodash/every';
+import isEqual from 'lodash/isEqual';
+import isUndefined from 'lodash/isUndefined';
 import { score } from './scoring';
 
 export { score };
@@ -109,10 +111,7 @@ export const ensureNoExtraChoicesInAnswer = (answer, choices) => {
  * @param {{category: string, choices: string[]}[]} answer
  */
 export const countInAnswer = (choiceId, answer) => {
-  const out = answer.reduce(
-    (acc, a) => acc + countInChoices(choiceId, a.choices),
-    0
-  );
+  const out = answer.reduce((acc, a) => acc + countInChoices(choiceId, a.choices), 0);
   log('[countInAnswer] choiceId:', choiceId, answer);
   return out;
 };
@@ -164,12 +163,7 @@ export const removeAllChoices = (choiceId, answers, categoryId) => {
   });
 };
 
-export const removeChoiceFromCategory = (
-  choiceId,
-  categoryId,
-  choiceIndex,
-  answers
-) => {
+export const removeChoiceFromCategory = (choiceId, categoryId, choiceIndex, answers) => {
   log('[removeChoiceFromCategory] choiceIndex:', choiceIndex);
 
   return answers.map(a => {
@@ -188,13 +182,7 @@ export const removeChoiceFromCategory = (
   });
 };
 
-export const moveChoiceToCategory = (
-  choiceId,
-  from,
-  to,
-  choiceIndex,
-  answers
-) => {
+export const moveChoiceToCategory = (choiceId, from, to, choiceIndex, answers) => {
   log(
     '[moveChoiceToCategory] choice: ',
     choiceId,
@@ -237,64 +225,94 @@ export const moveChoiceToCategory = (
  * @param {{id:string}[]} choices
  * @param {{category: string, choices:string[]}[]} answers
  *
+ * @param correctResponse
  * @returns {categories: Category[], choices: Choice[]}
  */
-export const buildState = (
-  categories,
-  choices,
-  answers = [],
-  correctResponse
-) => {
+export const buildState = (categories, choices, answers = [], correctResponse) => {
+  const generateChoices = (mappedChoices, correctChoices) =>
+    mappedChoices.reduce(
+      (acc, choice) => {
+        if (!acc.correct) {
+          acc.choices.push({ ...choice, correct: undefined });
+        } else {
+          const index = acc.correct.findIndex(id => id === choice.id);
+          const newChoice = { ...choice, correct: index !== -1 };
+
+          if (newChoice.correct) {
+            acc.correctCount += 1;
+          }
+
+          acc.choices.push(newChoice);
+
+          if (index !== -1) {
+            acc.correct.splice(index, 1);
+          }
+        }
+
+        return acc;
+      },
+      {
+        choices: [],
+        correctCount: 0,
+        correct: correctChoices
+      }
+    );
+  const getBestScenario = (mappedChoices, mainCorrectPossibility, correctResponse) => {
+    let result = generateChoices(mappedChoices, mainCorrectPossibility);
+
+    if (mainCorrectPossibility && correctResponse && correctResponse.alternateResponses) {
+      correctResponse.alternateResponses.forEach(choices => {
+        const newResult = generateChoices(mappedChoices, cloneDeep(choices));
+
+        if (newResult.correctCount > result.correctCount) {
+          result = newResult;
+        }
+      });
+    }
+
+    return result;
+  };
   const addChoices = category => {
     const answer = answers.find(a => a.category === category.id);
 
-    const hasCorrectResponse =
-      Array.isArray(correctResponse) && correctResponse.length > 0;
+    const hasCorrectResponse = Array.isArray(correctResponse) && correctResponse.length > 0;
 
     const cr = hasCorrectResponse
       ? correctResponse.find(r => r.category === category.id)
       : undefined;
     const correctChoices = clone(cr ? cr.choices || [] : undefined);
+    const hasAlternateResponses = cr && !isUndefined(cr.alternateResponses);
 
     if (answer) {
       const mappedChoices = compact(
         (answer.choices || []).map(id => choices.find(c => c.id === id))
       );
 
-      const out = mappedChoices.reduce(
-        (acc, choice) => {
-          if (!acc.correct) {
-            acc.choices.push({ ...choice, correct: undefined });
-          } else {
-            const index = acc.correct.findIndex(id => id === choice.id);
-            acc.choices.push({ ...choice, correct: index !== -1 });
-            if (index !== -1) {
-              acc.correct.splice(index, 1);
-            }
-          }
-          return acc;
-        },
-        {
-          choices: [],
-          correct: hasCorrectResponse ? correctChoices || [] : undefined
-        }
-      );
+      const mainCorrectPossibility = hasCorrectResponse ? correctChoices || [] : undefined;
+      const out = getBestScenario(mappedChoices, mainCorrectPossibility, cr);
 
       const ids = out.choices.map(c => c.id).sort();
-      const correctIds = clone(
-        cr && Array.isArray(cr.choices) ? cr.choices : []
-      ).sort();
+      const correctIds = clone(cr && Array.isArray(cr.choices) ? cr.choices : []).sort();
 
       log('ids: ', ids, 'correctIds: ', correctIds);
-      const correct = hasCorrectResponse ? isEqual(ids, correctIds) : undefined;
+      let correct = hasCorrectResponse ? isEqual(ids, correctIds) : undefined;
+
+      if (correct !== true && hasAlternateResponses) {
+        cr.alternateResponses.forEach(choices => {
+          const altIds = out.choices.map(c => c.id).sort();
+          const altCorrectIds = clone(choices || []).sort();
+
+          correct = isEqual(altIds, altCorrectIds);
+        });
+      }
+
       return {
         ...category,
         choices: out.choices,
         correct
       };
     } else {
-      const correct =
-        correctChoices === undefined ? true : correctChoices.length === 0;
+      const correct = correctChoices === undefined ? true : correctChoices.length === 0;
       log('empty choices is that correct?', correctChoices);
       return {
         ...category,
@@ -306,9 +324,7 @@ export const buildState = (
 
   const withChoices = categories.map(addChoices);
 
-  const correct = correctResponse
-    ? every(withChoices, category => category.correct)
-    : undefined;
+  const correct = correctResponse ? every(withChoices, category => category.correct) : undefined;
 
   const stillSelectable = h => {
     if (h.categoryCount > 0) {
