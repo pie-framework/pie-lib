@@ -4,9 +4,10 @@ exports[`CorrectInput render renders correctly with correct as false 1`] = `
 <Component
   classes={
     Object {
-      "box": "Component-box-3",
-      "correct": "Component-correct-1",
-      "incorrect": "Component-incorrect-2",
+      "correct": "Component-correct-2",
+      "incorrect": "Component-incorrect-3",
+      "input": "Component-input-1",
+      "notchedOutline": "Component-notchedOutline-4",
     }
   }
   correct={false}
@@ -21,9 +22,10 @@ exports[`CorrectInput render renders correctly with default props 1`] = `
 <Component
   classes={
     Object {
-      "box": "Component-box-3",
-      "correct": "Component-correct-1",
-      "incorrect": "Component-incorrect-2",
+      "correct": "Component-correct-2",
+      "incorrect": "Component-incorrect-3",
+      "input": "Component-input-1",
+      "notchedOutline": "Component-notchedOutline-4",
     }
   }
   correct={false}
@@ -38,9 +40,10 @@ exports[`CorrectInput render renders correctly with disabled prop as true 1`] = 
 <Component
   classes={
     Object {
-      "box": "Component-box-3",
-      "correct": "Component-correct-1",
-      "incorrect": "Component-incorrect-2",
+      "correct": "Component-correct-2",
+      "incorrect": "Component-incorrect-3",
+      "input": "Component-input-1",
+      "notchedOutline": "Component-notchedOutline-4",
     }
   }
   correct={false}

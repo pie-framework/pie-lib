@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.5.14...@pie-lib/categorize@0.6.0) (2019-06-19)
+
+
+### Features
+
+* **buildState:** added alternate response support ([cbdf3cd](https://github.com/pie-framework/pie-lib/commit/cbdf3cd))
+
+
+
+
+
 ## [0.5.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.5.13...@pie-lib/categorize@0.5.14) (2019-03-15)
 
 

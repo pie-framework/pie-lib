@@ -1238,5 +1238,20 @@
     "committerDate": "2019-06-10 15:24:32 +0100",
     "isTagged": true,
     "tag": "@pie-lib/config-ui@10.4.0"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "allow variant in NumberTextField",
+    "merge": null,
+    "header": "fix: allow variant in NumberTextField",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "cc2f4505b02637a92a5e11d956da680a4574128d",
+    "gitTags": " (develop)",
+    "committerDate": "2019-06-18 10:14:40 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/config-ui@10.4.2"
   }
 ]

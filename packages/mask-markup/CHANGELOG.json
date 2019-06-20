@@ -193,5 +193,20 @@
     "committerDate": "2019-06-12 18:50:23 +0300",
     "isTagged": true,
     "tag": "@pie-lib/mask-markup@1.2.2"
+  },
+  {
+    "type": "design",
+    "scope": "input",
+    "subject": "fixed the explicit-constructed-response and inline-dropdown input border",
+    "merge": null,
+    "header": "design(input): fixed the explicit-constructed-response and inline-dropdown input border",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "26a8881178ee3b6e670d17e68db42a06f1a77e23",
+    "gitTags": "",
+    "committerDate": "2019-06-19 17:29:24 -0500",
+    "isTagged": true,
+    "tag": "@pie-lib/mask-markup@1.2.4"
   }
 ]
