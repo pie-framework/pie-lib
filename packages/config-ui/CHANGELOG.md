@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.4.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.4.1...@pie-lib/config-ui@10.4.2) (2019-06-18)
+
+
+### Bug Fixes
+
+* allow variant in NumberTextField ([cc2f450](https://github.com/pie-framework/pie-lib/commit/cc2f450))
+
+
+
+
+
 ## [10.4.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.4.0...@pie-lib/config-ui@10.4.1) (2019-06-17)
 
 **Note:** Version bump only for package @pie-lib/config-ui
