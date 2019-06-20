@@ -47,8 +47,8 @@ export class GraphWithControls extends React.Component {
       displayedTools,
       correctnessMarks
     } = this.props;
-
     const { currentTool, labelModeEnabled } = this.state;
+
     return (
       <div className={classNames(classes.graphWithControls, className)}>
         <div className={classes.controls}>
