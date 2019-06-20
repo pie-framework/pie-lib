@@ -44,7 +44,8 @@ export class GraphWithControls extends React.Component {
       onRedo,
       onReset,
       tools,
-      displayedTools
+      displayedTools,
+      correctnessMarks
     } = this.props;
 
     const { currentTool, labelModeEnabled } = this.state;
@@ -60,7 +61,7 @@ export class GraphWithControls extends React.Component {
               this.setState({ labelModeEnabled: !this.state.labelModeEnabled })
             }
           />
-          <UndoRedo onUndo={onUndo} onRedo={onRedo} onReset={onReset} />
+          {!correctnessMarks && <UndoRedo onUndo={onUndo} onRedo={onRedo} onReset={onReset} />}
         </div>
         <div ref={r => (this.labelNode = r)} />
         <Graph
@@ -71,7 +72,7 @@ export class GraphWithControls extends React.Component {
           title={title}
           axesSettings={axesSettings}
           labels={labels}
-          marks={marks}
+          marks={correctnessMarks || marks}
           backgroundMarks={backgroundMarks}
           onChangeMarks={onChangeMarks}
           tools={tools}
