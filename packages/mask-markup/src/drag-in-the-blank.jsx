@@ -93,7 +93,13 @@ export default class DragInTheBlank extends React.Component {
 
     return (
       <div ref={ref => ref && (this.rootRef = ref)} style={style}>
-        <Choices duplicates={duplicates} choices={choices} value={value} disabled={disabled} />
+        <Choices
+          choicePosition={choicePosition}
+          duplicates={duplicates}
+          choices={choices}
+          value={value}
+          disabled={disabled}
+        />
         <Masked
           markup={markup}
           layout={layout}

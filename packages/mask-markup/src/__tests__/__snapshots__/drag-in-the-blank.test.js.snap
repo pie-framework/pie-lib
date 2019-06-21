@@ -10,6 +10,7 @@ exports[`DragInTheBlank render renders correctly with default props 1`] = `
   }
 >
   <Choices
+    choicePosition="below"
     choices={
       Array [
         Object {
@@ -105,6 +106,7 @@ exports[`DragInTheBlank render renders correctly with disabled prop as true 1`] 
   }
 >
   <Choices
+    choicePosition="below"
     choices={
       Array [
         Object {
@@ -200,6 +202,7 @@ exports[`DragInTheBlank render renders correctly with feedback 1`] = `
   }
 >
   <Choices
+    choicePosition="below"
     choices={
       Array [
         Object {
