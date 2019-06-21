@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.5.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.4.3...@pie-lib/config-ui@10.5.0) (2019-06-21)
+
+
+### Features
+
+* **desgin:** added spacing before choices for ditb, fixed the config-ui design in order for it to work appropriately on bigger and smaller screens as well ([c5921c7](https://github.com/pie-framework/pie-lib/commit/c5921c7))
+* **version:** version bumped ([e9f5678](https://github.com/pie-framework/pie-lib/commit/e9f5678))
+
+
+
+
+
 ## [10.4.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.4.2...@pie-lib/config-ui@10.4.3) (2019-06-20)
 
 

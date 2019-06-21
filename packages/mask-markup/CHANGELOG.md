@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.2.5...@pie-lib/mask-markup@1.3.0) (2019-06-21)
+
+
+### Features
+
+* **desgin:** added spacing before choices for ditb, fixed the config-ui design in order for it to work appropriately on bigger and smaller screens as well ([c5921c7](https://github.com/pie-framework/pie-lib/commit/c5921c7))
+* **version:** version bumped ([e9f5678](https://github.com/pie-framework/pie-lib/commit/e9f5678))
+
+
+
+
+
 ## [1.2.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.2.4...@pie-lib/mask-markup@1.2.5) (2019-06-20)
 
 **Note:** Version bump only for package @pie-lib/mask-markup
