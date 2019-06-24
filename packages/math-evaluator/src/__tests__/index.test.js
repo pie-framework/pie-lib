@@ -193,4 +193,23 @@ describe('math-evaluator', () => {
     expect(areValuesEqual('sin(x)', 'sin(x)')).toEqual(true);
     expect(areValuesEqual('tan(x)', 'tan(x)')).toEqual(true);
   });
+
+  it('correctly creates math expressions 1', () => {
+    expect(
+      areValuesEqual(
+        'f^{-1}\\left(x\\right)=\\sqrt{x-1}+3',
+        'f^{-1}\\left(x\\right)=\\sqrt{x-1}+3',
+        { allowDecimals: true, isLatex: true }
+      )
+    ).toEqual(true);
+  });
+
+  it('correctly creates math expressions 2', () => {
+    expect(
+      areValuesEqual('72\\div12=6\\text{eggs}', '72\\div12=6\\text{eggs}', {
+        allowDecimals: true,
+        isLatex: true
+      })
+    ).toEqual(true);
+  });
 });
