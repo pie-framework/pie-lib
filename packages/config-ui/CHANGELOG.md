@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.6.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.5.0...@pie-lib/config-ui@10.6.0) (2019-06-24)
+
+
+### Features
+
+* space w/ theme.spacing.unit ([ca80e3c](https://github.com/pie-framework/pie-lib/commit/ca80e3c))
+
+
+
+
+
 # [10.5.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.4.3...@pie-lib/config-ui@10.5.0) (2019-06-21)
 
 
