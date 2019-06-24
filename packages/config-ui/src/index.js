@@ -6,6 +6,7 @@ export { InputCheckbox, InputSwitch, InputRadio } from './inputs';
 export Langs, { LanguageControls } from './langs';
 export Tabs from './tabs';
 export Checkbox from './checkbox';
+//FormSection
 export FormSection from './form-section';
 export Help from './help';
 export Input from './input';
