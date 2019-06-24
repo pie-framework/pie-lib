@@ -8,7 +8,9 @@ const { xy } = utils;
 jest.mock('../../utils', () => ({
   sinY: jest.fn().mockReturnValue(0),
   buildDataPoints: jest.fn().mockReturnValue([]),
-  parabolaFromTwoPoints: jest.fn(() => jest.fn())
+  parabolaFromTwoPoints: jest.fn(() => jest.fn()),
+  getAmplitudeAndFreq: jest.fn().mockReturnValue({ freq: 4, amplitude: 1 }),
+  FREQ_DIVIDER: 16
 }));
 
 jest.mock('../../shared/line/with-root-edge', () => ({

@@ -9,7 +9,8 @@ import { graphProps as getGraphProps } from '../../../__tests__/utils';
 const { xy } = utils;
 jest.mock('../../utils', () => ({
   buildDataPoints: jest.fn().mockReturnValue([]),
-  parabolaFromTwoPoints: jest.fn(() => jest.fn())
+  parabolaFromTwoPoints: jest.fn(() => jest.fn()),
+  getAmplitudeAndFreq: jest.fn().mockReturnValue({ freq: 4, amplitude: 1 })
 }));
 
 jest.mock('../../shared/line/with-root-edge', () => ({
