@@ -29,6 +29,8 @@ function prepareExpression(string, isLatex) {
     ? mathExpressions.fromLatex(`${returnValue}`).toString()
     : mathExpressions.fromText(`${returnValue}`).toString();
 
+  returnValue = returnValue.replace('=', '==');
+
   return rationalizeAllPossibleSubNodes(returnValue);
 }
 
