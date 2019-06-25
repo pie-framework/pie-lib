@@ -24,9 +24,6 @@ const styles = () => ({
     minWidth: '200px',
     maxWidth: '250px',
     padding: '15px',
-    position: 'absolute',
-    right: 0,
-    top: 0,
     width: '20%',
     zIndex: 99
   }

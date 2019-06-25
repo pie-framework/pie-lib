@@ -35,7 +35,9 @@ export class Tabs extends React.Component {
       <div className={className}>
         <MuiTabs indicatorColor="primary" value={value} onChange={this.handleChange}>
           {React.Children.map(children, (c, index) =>
-            c ? <MuiTab classes={tabClasses} key={index} label={c.props.title} /> : null
+            c && c.props.title ? (
+              <MuiTab classes={tabClasses} key={index} label={c.props.title} />
+            ) : null
           )}
         </MuiTabs>
         <div className={contentClassName}>{children[value]}</div>

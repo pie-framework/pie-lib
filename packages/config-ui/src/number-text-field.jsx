@@ -154,10 +154,9 @@ export class NumberTextField extends React.Component {
     const names = classNames(classes.root, className);
 
     const error = showErrorWhenOutsideRange && this.getError();
-
     return (
       <TextField
-        variant={variant || 'default'}
+        variant={variant || 'standard'}
         inputRef={ref => {
           this.inputRef = ref;
         }}
