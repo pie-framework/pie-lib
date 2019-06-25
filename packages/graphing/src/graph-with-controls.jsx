@@ -24,7 +24,10 @@ export class GraphWithControls extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!nextProps.displayedTools.find(t => t.type === this.state.currentTool.type)) {
+    if (
+      nextProps.displayedTools &&
+      !nextProps.displayedTools.find(t => t.type === this.state.currentTool.type)
+    ) {
       if (nextProps.currentTool.type !== this.state.currentTool.type) {
         this.setState({ currentTool: nextProps.currentTool });
       }
@@ -56,6 +59,7 @@ export class GraphWithControls extends React.Component {
       correctnessMarks
     } = this.props;
     const { currentTool, labelModeEnabled } = this.state;
+    const enabled = !correctnessMarks;
 
     return (
       <div className={classNames(classes.graphWithControls, className)}>
@@ -69,7 +73,7 @@ export class GraphWithControls extends React.Component {
               this.setState({ labelModeEnabled: !this.state.labelModeEnabled })
             }
           />
-          {!correctnessMarks && <UndoRedo onUndo={onUndo} onRedo={onRedo} onReset={onReset} />}
+          {enabled && <UndoRedo onUndo={onUndo} onRedo={onRedo} onReset={onReset} />}
         </div>
         <div ref={r => (this.labelNode = r)} />
         <Graph
@@ -82,7 +86,7 @@ export class GraphWithControls extends React.Component {
           labels={labels}
           marks={correctnessMarks || marks}
           backgroundMarks={backgroundMarks}
-          onChangeMarks={onChangeMarks}
+          onChangeMarks={enabled ? onChangeMarks : () => {}}
           tools={tools}
           currentTool={currentTool}
         />
