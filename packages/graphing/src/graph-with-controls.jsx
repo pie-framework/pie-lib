@@ -24,8 +24,10 @@ export class GraphWithControls extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.currentTool.type !== this.state.currentTool.type) {
-      this.setState({ currentTool: nextProps.currentTool });
+    if (!nextProps.displayedTools.find(t => t.type === this.state.currentTool.type)) {
+      if (nextProps.currentTool.type !== this.state.currentTool.type) {
+        this.setState({ currentTool: nextProps.currentTool });
+      }
     }
   }
 
