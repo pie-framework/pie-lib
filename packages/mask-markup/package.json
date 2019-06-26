@@ -13,6 +13,7 @@
     "classnames": "^2.2.6",
     "debug": "^4.1.1",
     "immutable": ">=3.8.1",
+    "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dnd": "^7.0.2",
     "react-dnd-html5-backend": "^7.0.2",

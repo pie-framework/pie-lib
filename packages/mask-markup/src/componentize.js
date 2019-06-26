@@ -1,4 +1,4 @@
-const REGEX = /\{\{(\d?)\}\}/g;
+const REGEX = /\{\{(\d+)\}\}/g;
 export default (s, t) => {
   const ids = [];
   if (!s) {

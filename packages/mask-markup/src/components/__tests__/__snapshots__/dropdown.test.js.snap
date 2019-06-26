@@ -21,37 +21,19 @@ exports[`Dropdown render renders correctly with correct as true 1`] = `
     key="Jumped-0"
     value="Jumped"
   >
-    <span
-      dangerouslySetInnerHTML={
-        Object {
-          "__html": "Jumped",
-        }
-      }
-    />
+    <span />
   </WithStyles(MenuItem)>
   <WithStyles(MenuItem)
     key="Laughed-1"
     value="Laughed"
   >
-    <span
-      dangerouslySetInnerHTML={
-        Object {
-          "__html": "Laughed",
-        }
-      }
-    />
+    <span />
   </WithStyles(MenuItem)>
   <WithStyles(MenuItem)
     key="Smiled-2"
     value="Smiled"
   >
-    <span
-      dangerouslySetInnerHTML={
-        Object {
-          "__html": "Smiled",
-        }
-      }
-    />
+    <span />
   </WithStyles(MenuItem)>
 </WithStyles(WithFormControlContext(Select))>
 `;
@@ -77,37 +59,19 @@ exports[`Dropdown render renders correctly with default props 1`] = `
     key="Jumped-0"
     value="Jumped"
   >
-    <span
-      dangerouslySetInnerHTML={
-        Object {
-          "__html": "Jumped",
-        }
-      }
-    />
+    <span />
   </WithStyles(MenuItem)>
   <WithStyles(MenuItem)
     key="Laughed-1"
     value="Laughed"
   >
-    <span
-      dangerouslySetInnerHTML={
-        Object {
-          "__html": "Laughed",
-        }
-      }
-    />
+    <span />
   </WithStyles(MenuItem)>
   <WithStyles(MenuItem)
     key="Smiled-2"
     value="Smiled"
   >
-    <span
-      dangerouslySetInnerHTML={
-        Object {
-          "__html": "Smiled",
-        }
-      }
-    />
+    <span />
   </WithStyles(MenuItem)>
 </WithStyles(WithFormControlContext(Select))>
 `;
@@ -133,37 +97,19 @@ exports[`Dropdown render renders correctly with disabled prop as true 1`] = `
     key="Jumped-0"
     value="Jumped"
   >
-    <span
-      dangerouslySetInnerHTML={
-        Object {
-          "__html": "Jumped",
-        }
-      }
-    />
+    <span />
   </WithStyles(MenuItem)>
   <WithStyles(MenuItem)
     key="Laughed-1"
     value="Laughed"
   >
-    <span
-      dangerouslySetInnerHTML={
-        Object {
-          "__html": "Laughed",
-        }
-      }
-    />
+    <span />
   </WithStyles(MenuItem)>
   <WithStyles(MenuItem)
     key="Smiled-2"
     value="Smiled"
   >
-    <span
-      dangerouslySetInnerHTML={
-        Object {
-          "__html": "Smiled",
-        }
-      }
-    />
+    <span />
   </WithStyles(MenuItem)>
 </WithStyles(WithFormControlContext(Select))>
 `;
