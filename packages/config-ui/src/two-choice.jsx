@@ -21,6 +21,7 @@ class RawNChoice extends React.Component {
   static propTypes = {
     header: PropTypes.string.isRequired,
     className: PropTypes.string,
+    customLabel: PropTypes.func,
     opts: PropTypes.array.isRequired,
     value: PropTypes.string,
     onChange: PropTypes.func.isRequired,
@@ -33,17 +34,18 @@ class RawNChoice extends React.Component {
   };
 
   render() {
-    const { header, className, classes, opts, value, direction } = this.props;
+    const { header, className, classes, customLabel, opts, value, direction } = this.props;
 
     const preppedOpts = opts.map(o => {
       return typeof o === 'string' ? { label: o, value: o } : o;
     });
+    const LabelComponent = customLabel || RadioWithLabel;
 
     return (
       <InputContainer label={header} className={className}>
         <div className={classNames(classes.group, classes[direction])}>
           {preppedOpts.map((o, index) => (
-            <RadioWithLabel
+            <LabelComponent
               value={o.value}
               key={index}
               checked={o.value === value}
@@ -72,10 +74,12 @@ class TwoChoice extends React.Component {
   };
 
   render() {
-    const { one, two, header, className, value, onChange } = this.props;
+    const { one, two, header, className, customLabel, value, onChange } = this.props;
     const opts = [one, two];
+
     return (
       <NChoice
+        customLabel={customLabel}
         header={header}
         className={className}
         opts={opts}
