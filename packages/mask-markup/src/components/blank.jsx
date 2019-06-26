@@ -54,7 +54,15 @@ export class BlankContent extends React.Component {
           this.rootRef = ReactDOM.findDOMNode(ref);
         }}
         component="span"
-        label={<span dangerouslySetInnerHTML={{ __html: label }} />}
+        label={
+          <span
+            ref={ref => {
+              if (ref) {
+                ref.innerHTML = label || '';
+              }
+            }}
+          />
+        }
         className={classnames(classes.chip, {
           [classes.correct]: correct !== undefined && correct,
           [classes.incorrect]: correct !== undefined && !correct
