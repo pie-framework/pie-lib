@@ -16,15 +16,15 @@ export class SettingsBox extends React.Component {
 }
 const styles = () => ({
   settingsBox: {
-    backgroundColor: '#FAFAFA',
+    backgroundColor: '#FFF',
     border: '2px solid #EEE',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
     minWidth: '200px',
     maxWidth: '250px',
-    padding: '15px',
-    width: '20%',
+    padding: '24px',
+    width: '80%',
     zIndex: 99
   }
 });

@@ -1,15 +1,19 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import get from 'lodash/get';
+import set from 'lodash/set';
 import Select from '@material-ui/core/Select';
-import debug from 'debug';
-import Toggle from './toggle';
-import TwoChoice from '../two-choice';
-const log = debug('pie-lib:config-ui:settings:panel');
-import _ from 'lodash';
 import Input from '@material-ui/core/Input';
 import MenuItem from '@material-ui/core/MenuItem';
+import debug from 'debug';
+
+import Toggle from './toggle';
+import TwoChoice from '../two-choice';
+import SettingsRadioLabel from './settings-radio-label';
 import { NumberTextField } from '../index';
+
+const log = debug('pie-lib:config-ui:settings:panel');
 
 const labelValue = {
   label: PropTypes.string,
@@ -22,13 +26,37 @@ const baseTypes = {
   onChange: PropTypes.func
 };
 
-const Radio = ({ label, value, onChange, choices }) => {
+const Radio = ({ classes, label, value, onChange, choices }) => {
   return (
-    <TwoChoice value={value} header={label} one={choices[0]} two={choices[1]} onChange={onChange} />
+    <TwoChoice
+      className={classes.radioSettings}
+      direction="vertical"
+      customLabel={SettingsRadioLabel}
+      value={value}
+      header={label}
+      one={choices[0]}
+      two={choices[1]}
+      onChange={onChange}
+    />
   );
 };
 
 Radio.propTypes = { ...baseTypes, choices: PropTypes.arrayOf(PropTypes.shape(labelValue)) };
+
+const StyledRadio = withStyles({
+  radioSettings: {
+    width: '100%',
+    '& > label': {
+      fontSize: '20px'
+    },
+    '& > div': {
+      marginTop: '20px'
+    }
+  },
+  label: {
+    display: 'none'
+  }
+})(Radio);
 
 const Dropdown = withStyles({
   label: {
@@ -110,22 +138,24 @@ ToggleWrapper.propTypes = { ...baseTypes, value: PropTypes.bool };
 
 const tagMap = {
   toggle: ToggleWrapper,
-  radio: Radio,
+  radio: StyledRadio,
   dropdown: Dropdown,
   numberField: NumberField
 };
 
 const Group = withStyles(theme => ({
   group: {
-    marginTop: theme.spacing.unit * 3
+    margin: '0 0 25px 0'
   },
   groupHeader: {
-    fontSize: '10px',
-    fontWeight: 500
+    color: '#495B8F',
+    fontSize: '14px',
+    fontWeight: 600,
+    marginBottom: '20px'
   },
   numberFields: {
-    marginBottom: 0,
-    fontSize: '0.85rem'
+    fontSize: '0.85rem',
+    marginBottom: 0
   }
 }))(props => {
   const { classes, model, label, group, configuration, onChange } = props;
@@ -136,8 +166,8 @@ const Group = withStyles(theme => ({
    * @param innerKey - the key(or path) to be used to get from the group (used only for numberField type)
    * @returns tag that corresponds to element type */
   const getTag = (group, key, innerKey) => {
-    const { isConfigProperty, ...properties } = _.get(group, innerKey || key);
-    const value = isConfigProperty ? _.get(configuration, key) : _.get(model, key);
+    const { isConfigProperty, ...properties } = get(group, innerKey || key);
+    const value = isConfigProperty ? get(configuration, key) : get(model, key);
     const tagProps = { ...properties, key, value };
     const Tag = tagMap[tagProps.type];
 
@@ -170,7 +200,7 @@ const Group = withStyles(theme => ({
 
   return (
     <div className={classes.group}>
-      <div className={classes.groupHeader}>{label.toUpperCase()}</div>
+      <div className={classes.groupHeader}>{label}</div>
 
       {Object.keys(group).map(key => {
         return content(group, key);
@@ -200,10 +230,10 @@ export class Panel extends React.Component {
     const configuration = { ...this.props.configuration };
 
     if (isConfigProperty) {
-      _.set(configuration, key, value);
+      set(configuration, key, value);
       onChangeConfiguration(configuration, key);
     } else {
-      _.set(model, key, value);
+      set(model, key, value);
       onChangeModel(model, key);
     }
   };

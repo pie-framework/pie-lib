@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
+import InputLabel from '@material-ui/core/InputLabel';
 import { withStyles } from '@material-ui/core/styles';
 import Switch from '@material-ui/core/Switch';
 
@@ -11,11 +11,12 @@ const Toggle = withStyles(theme => ({
     justifyContent: 'space-between'
   },
   label: {
+    fontSize: '14px',
     paddingTop: theme.spacing.unit * 2
   }
 }))(({ checked, label, toggle, classes }) => (
   <div className={classes.toggle}>
-    <Typography className={classes.label}>{label}</Typography>
+    <InputLabel className={classes.label}>{label}</InputLabel>
     <Switch checked={checked} onChange={e => toggle(e.target.checked)} />
   </div>
 ));
