@@ -133,7 +133,7 @@ export const diffEdge = (bounds, a, b) => {
   const side = getShortestSide(xH, yH);
 
   if (side !== 'x' && side !== 'y') {
-    throw new Error("Can't decide which hypotenuse to use");
+    throw new Error('Cant decide which hypotenuse to use');
   }
   const point =
     side === 'x'
