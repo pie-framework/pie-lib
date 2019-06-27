@@ -101,6 +101,12 @@ describe('trig', () => {
     one(xy(1, 1), xy(2, 2), [xy(4, 4), xy(-4, -4)]);
     one(xy(1, 0), xy(2, 0), [xy(4, 0), xy(-4, 0)]);
     one(xy(1, 0), xy(-2, 0), [xy(-4, 0), xy(4, 0)]);
+
+    /**
+     * domain {min: -5, max: 5, padding: 0, step: 1, labelStep: 1}labelStep: 1max: 5min: -5padding: 0step: 1__proto__: Object range:  {min: -5, max: 5, padding: 0, step: 1, labelStep: 1} a: {x: -5, y: 0} b: {x: -5, y: 2} edges: Point {x: -5, y: 5} Point {x: -5, y: 2}
+     */
+    const lineIssue = assertEdges({ min: -5, max: 5 }, { min: -5, max: 5 });
+    lineIssue(xy(-5, -0), xy(-5, 2), [xy(-5, 5), xy(-5, -5)]);
   });
 
   describe('diffEdge', () => {
@@ -132,9 +138,28 @@ describe('trig', () => {
     assertDiffEdge(xy(4, 4), xy(2, 2), xy(3, 3), xy(4, 4));
     assertDiffEdge(xy(-4, -4), xy(-1, -1), xy(-2, -2), xy(-4, -4));
     assertDiffEdge(xy(-4, 4), xy(-1, -1), xy(-2, 0), xy(-4, 2));
+
+    const lineIssue = assertDiffEdge.bind(null, xy(-5, -5));
+
+    lineIssue(xy(-5, 2), xy(-5, 0), xy(-5, -5));
+    //Top Right
+    assertDiffEdge(xy(5, 5), xy(0, 5), xy(2, 5), xy(5, 5));
+    assertDiffEdge(xy(5, 5), xy(5, 0), xy(5, 1), xy(5, 5));
+
+    // //Bottom Right
+    assertDiffEdge(xy(5, -5), xy(5, 0), xy(5, -0.1), xy(5, -5));
+    assertDiffEdge(xy(5, -5), xy(0, -5), xy(1, -5), xy(5, -5));
+
+    //Top Left
+    assertDiffEdge(xy(-5, 5), xy(-5, 0), xy(-5, 0.1), xy(-5, 5));
+    assertDiffEdge(xy(-5, 5), xy(0, 5), xy(-1, 5), xy(-5, 5));
+
+    //Bottom Left
+    assertDiffEdge(xy(-5, -5), xy(-5, 0), xy(-5, -0.1), xy(-5, -5));
+    assertDiffEdge(xy(-5, -5), xy(0, -5), xy(-1, -5), xy(-5, -5));
   });
 
-  describe.only('getOpposingSide', () => {
+  describe('getOpposingSide', () => {
     const assertOpposingSide = (hyp, angle, expected) => {
       it(`${hyp}, ${angle} = ${expected}`, () => {
         const radians = toRadians(angle);

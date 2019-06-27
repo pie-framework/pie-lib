@@ -45,7 +45,11 @@ export const acuteXAngle = a => {
 
 export const acuteYAngle = a => NINETY - acuteXAngle(a);
 
-export const hypotenuse = (a, alpha) => Math.abs(a / Math.sin(alpha));
+export const hypotenuse = (a, alpha) => {
+  const out = Math.abs(a / Math.sin(alpha));
+
+  return out;
+};
 
 /**
  * return 2 edge points for a,b within domain + range.
@@ -66,28 +70,51 @@ export const edges = (domain, range) => (a, b) => {
   const dX = b.x < a.x ? domain.max : domain.min;
   const dY = b.y < a.y ? range.max : range.min;
   const bToA = diffEdge(xy(dX, dY), b, a);
-  // log('minEdge:', minEdge, 'maxEdge: ', maxEdge);
   return [aToB, bToA];
 };
 
 /** get length of side A of a triangle from H and angle Alpha */
-export const getOpposingSide = (hyp, angle) => Math.abs(hyp * Math.sin(angle));
+export const getOpposingSide = (hyp, angle) => {
+  log('[getOpposingSide] hyp: ', hyp, 'angle:', angle);
+  return Math.abs(hyp * Math.sin(angle));
+};
 
+const getShortestSide = (xh, yh) => {
+  if (Number.isFinite(xh) && Number.isFinite(yh)) {
+    if (xh === 0 && yh > 0) {
+      return 'y';
+    }
+    if (yh === 0 && xh > 0) {
+      return 'x';
+    }
+    return xh < yh ? 'x' : 'y';
+  }
+  if (isNaN(xh) && !isNaN(yh)) {
+    return 'y';
+  }
+  if (!isNaN(xh) && isNaN(yh)) {
+    return 'x';
+  }
+  if (xh === Infinity) {
+    return 'y';
+  }
+  if (yh === Infinity) {
+    return 'x';
+  }
+
+  console.warn('hypotenuse - which is shorter? x:', xh, 'y:', yh);
+};
 /**
  * return the difference between bounds and a as a Point
  * @param {*} bounds
  */
 export const diffEdge = (bounds, a, b) => {
-  let l = log.bind(console, `[${a.x},${a.y} -> ${b.x},${b.y}]`);
+  let l = log.enabled ? log.bind(log, `diffEdge: [${a.x},${a.y} -> ${b.x},${b.y}]`) : () => {};
   const xRadians = angle(a, b);
-  // const acuteXRadians = acuteXAngle(xRadians);
   l('x angle', toDegrees(xRadians));
   const yRadians = Math.abs(xRadians - toRadians(90));
-  // const acuteYRadians = acuteYAngle(yRadians);
   l('y angle', toDegrees(yRadians));
-
   const xSide = Math.abs(a.x - bounds.x);
-  // const xAngle = toRadians(90) - xRadians;
 
   /**
    * Draw 2 triangles:
@@ -103,16 +130,22 @@ export const diffEdge = (bounds, a, b) => {
 
   l('x: side', xSide, 'h:', xH);
   l('y: side', ySide, 'h:', yH);
+  const side = getShortestSide(xH, yH);
 
+  if (side !== 'x' && side !== 'y') {
+    throw new Error("Can't decide which hypotenuse to use");
+  }
   const point =
-    xH <= yH
+    side === 'x'
       ? new Point(xSide, getOpposingSide(xH, xRadians))
       : new Point(getOpposingSide(yH, yRadians), ySide);
 
-  log('point:', point);
-  const out = point.multByPoint(new Point(b.x < a.x ? -1 : 1, b.y < a.y ? -1 : 1));
-  log('out:', out);
+  l('point:', point);
+  const multiplier = new Point(b.x < a.x ? -1 : 1, b.y < a.y ? -1 : 1);
+  l('multiplier:', multiplier);
+  const out = point.multByPoint(multiplier);
+  l('out:', out);
   const normalized = out.add(new Point(a.x, a.y));
-  log('normalized:', normalized);
+  l('normalized:', normalized);
   return normalized;
 };
