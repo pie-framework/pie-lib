@@ -15,6 +15,7 @@ jest.mock('@pie-lib/math-toolbar', () => ({
 }));
 const log = debug('@pie-lib:editable-html:test:math');
 
+// I believe @andrei is moving this stuff out.
 describe('MathPlugin', () => {
   describe('toolbar', () => {
     describe('onClick', () => {
