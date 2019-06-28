@@ -33,8 +33,7 @@ export class GraphWithControls extends React.Component {
     const t = tools.find(t => currentTool && t.type === currentTool);
 
     if ((!t || !t.toolbar) && !!currentTool) {
-      const displayedTool = tools.find(t => t.toolbar);
-      this.setState({ currentTool: displayedTool ? displayedTool.type : undefined });
+      this.setState({ currentTool: (tools.find(t => t.toolbar) || {}).type });
     }
   }
 
