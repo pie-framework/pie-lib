@@ -253,11 +253,11 @@ export class GridDemo extends React.PureComponent {
     const toolsArr = [
       { Component: tools.point(), display: true },
       { Component: tools.circle(), display: true },
-      { Component: tools.polygon(), display: false },
+      { Component: tools.polygon(), display: true },
       { Component: tools.segment(), display: true },
-      { Component: tools.vector(), display: false },
-      { Component: tools.ray(), display: false },
-      { Component: tools.line(), display: false },
+      { Component: tools.vector(), display: true },
+      { Component: tools.ray(), display: true },
+      { Component: tools.line(), display: true },
       { Component: tools.sine(), display: true },
       { Component: tools.parabola(), display: true }
     ];
