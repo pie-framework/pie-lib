@@ -19,24 +19,23 @@ export class GraphWithControls extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentTool: props.currentTool || props.tools[0]
+      currentTool: props.currentTool || props.tools[0].type
     };
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (
-      nextProps.displayedTools &&
-      !nextProps.displayedTools.find(t => t.type === this.state.currentTool.type)
-    ) {
-      if (nextProps.currentTool.type !== this.state.currentTool.type) {
-        this.setState({ currentTool: nextProps.currentTool });
-      }
-    }
   }
 
   changeCurrentTool = currentTool => {
     this.setState({ currentTool });
   };
+
+  componentDidUpdate() {
+    const { tools } = this.props;
+    const { currentTool } = this.state;
+    const t = tools.find(t => currentTool && t.type === currentTool);
+
+    if ((!t || !t.toolbar) && !!currentTool) {
+      this.setState({ currentTool: undefined });
+    }
+  }
 
   render() {
     const {
@@ -55,17 +54,17 @@ export class GraphWithControls extends React.Component {
       onRedo,
       onReset,
       tools,
-      displayedTools,
       correctnessMarks
     } = this.props;
     const { currentTool, labelModeEnabled } = this.state;
+
     const enabled = !correctnessMarks;
 
     return (
       <div className={classNames(classes.graphWithControls, className)}>
         <div className={classes.controls}>
           <ToolMenu
-            tools={displayedTools || tools}
+            tools={tools}
             currentTool={currentTool}
             onChange={this.changeCurrentTool}
             labelModeEnabled={labelModeEnabled}

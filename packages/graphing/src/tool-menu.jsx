@@ -9,10 +9,7 @@ export class ToolMenu extends React.Component {
   static propTypes = {
     className: PropTypes.string,
     tools: PropTypes.array,
-    currentTool: PropTypes.shape({
-      label: PropTypes.string,
-      type: PropTypes.string
-    }),
+    currentTool: PropTypes.string,
     onChange: PropTypes.func,
     onToggleLabelMode: PropTypes.func,
     labelModeEnabled: PropTypes.bool
@@ -24,24 +21,17 @@ export class ToolMenu extends React.Component {
 
   changeTool = selected => {
     log('[changeTool]: ', selected);
-
-    const { onChange, tools } = this.props;
-
-    const tool = tools.find(t => t.label === selected || t.type === selected);
-    if (tool) {
-      onChange(tool);
-    }
+    const { onChange } = this.props;
+    onChange(selected);
   };
 
   render() {
     const { className, tools, currentTool, onToggleLabelMode, labelModeEnabled } = this.props;
+
+    const t = tools.filter(t => t.toolbar);
     return (
       <div className={classNames(className)}>
-        <ToggleBar
-          options={tools.map(t => t.label || t.type)}
-          selected={currentTool.label || currentTool.type}
-          onChange={this.changeTool}
-        />
+        <ToggleBar options={t.map(t => t.type)} selected={currentTool} onChange={this.changeTool} />
         <MiniButton value={'Label'} onClick={onToggleLabelMode} selected={labelModeEnabled} />
       </div>
     );
