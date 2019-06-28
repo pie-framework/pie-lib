@@ -7,3 +7,4 @@ export { tool as line } from './line';
 export { tool as segment } from './segment';
 export { tool as ray } from './ray';
 export { tool as vector } from './vector';
+export * as utils from './utils';

@@ -9,9 +9,13 @@ jest.mock('@pie-framework/mathquill', () => ({
   getInterface: jest.fn().mockReturnThis(),
   registerEmbed: jest.fn()
 }));
-
+jest.mock('@pie-lib/math-toolbar', () => ({
+  MathPreview: () => <div />,
+  MathToolbar: () => <div />
+}));
 const log = debug('@pie-lib:editable-html:test:math');
 
+// I believe @andrei is moving this stuff out.
 describe('MathPlugin', () => {
   describe('toolbar', () => {
     describe('onClick', () => {

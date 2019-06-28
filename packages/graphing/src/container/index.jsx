@@ -58,6 +58,12 @@ class Root extends React.Component {
   render() {
     // eslint-disable-next-line no-unused-vars
     const { onChangeMarks, marks, ...rest } = this.props;
+    const correctnessSet = marks && marks.find(m => m.correctness);
+
+    if (correctnessSet) {
+      return <GraphWithControls {...rest} marks={marks} disabled={correctnessSet} />;
+    }
+
     return (
       <Provider store={this.store}>
         <GraphContainer {...rest} />

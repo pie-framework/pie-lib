@@ -11,7 +11,10 @@ import classNames from 'classnames';
 import Settings from './settings';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import Button from '@material-ui/core/Button';
 import { marks, backgroundMarks } from './demo-data';
+import { Checkbox, FormControlLabel } from '@material-ui/core';
+import { isEqual } from 'date-fns';
 
 function TabContainer(props) {
   return (
@@ -261,10 +264,11 @@ export class GridDemo extends React.PureComponent {
       tools.sine(),
       tools.parabola()
     ];
+
+    toolsArr.forEach(t => (t.toolbar = true));
     this.state = {
-      currentTool: toolsArr[2],
+      currentTool: toolsArr[2].type,
       tools: toolsArr,
-      displayedTools: toolsArr,
       settings: {
         includeArrows: true,
         labels: true,
@@ -329,6 +333,23 @@ export class GridDemo extends React.PureComponent {
     this.setState({ currentTool });
   };
 
+  toggleToolDisplay = (tool, e) => {
+    const index = this.state.tools.findIndex(t => t.type === tool.type);
+
+    if (index === -1) {
+      return;
+    }
+    const update = [...this.state.tools];
+    tool.toolbar = !!e.target.checked;
+    update.splice(index, 1, tool);
+
+    this.setState({ tools: update });
+  };
+
+  setCorrectness = correctness => {
+    const marks = this.state.model.marks.map(m => ({ ...m, correctness }));
+    this.setState({ model: { ...this.state.model, marks } });
+  };
   render() {
     log('render..');
     const { classes } = this.props;
@@ -361,6 +382,29 @@ export class GridDemo extends React.PureComponent {
             )}
           </div>
           <div>
+            <div>
+              <Button onClick={() => this.setCorrectness('correct')}>Correct</Button>
+              <Button onClick={() => this.setCorrectness('incorrect')}>Incorrect</Button>
+              <Button onClick={() => this.setCorrectness()}>none</Button>
+            </div>
+            <div>
+              <Typography>Show tool in Toolbar:</Typography>
+              {this.state.tools.map((t, index) => {
+                return (
+                  <FormControlLabel
+                    key={`${index}-${t.type || t.label}`}
+                    label={t.type || t.label}
+                    control={
+                      <Checkbox
+                        checked={t.toolbar}
+                        value={t.toolbar}
+                        onChange={this.toggleToolDisplay.bind(this, t)}
+                      />
+                    }
+                  />
+                );
+              })}
+            </div>
             <Graph
               size={settings.size}
               domain={model.domain}
@@ -373,10 +417,9 @@ export class GridDemo extends React.PureComponent {
               marks={model.marks}
               backgroundMarks={model.backgroundMarks}
               onChangeMarks={this.changeMarks}
-              displayedTools={this.state.displayedTools}
               tools={this.state.tools}
-              currentTool={this.state.currentTool}
-              defaultTool={this.state.tools[0].type}
+              currentTool={this.state.currentTool.Component}
+              defaultTool={this.state.tools[0].Component.type}
             />
           </div>
         </div>

@@ -6,16 +6,16 @@ exports[`ToggleBar snapshot renders 1`] = `
 >
   <WithStyles(Component)
     className=""
-    disabled={false}
     key="one"
     onClick={[Function]}
+    selected={false}
     value="one"
   />
   <WithStyles(Component)
     className=""
-    disabled={false}
     key="two"
     onClick={[Function]}
+    selected={false}
     value="two"
   />
 </div>

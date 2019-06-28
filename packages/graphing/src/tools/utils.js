@@ -2,6 +2,25 @@ import debug from 'debug';
 import Point from '@mapbox/point-geometry';
 import _ from 'lodash';
 const log = debug('pie-lib:graphing:tools:utils');
+
+export const FREQ_DIVIDER = 16;
+
+export const getAmplitudeAndFreq = (root, edge) => {
+  if (!edge) {
+    return { freq: 0, amplitude: 0 };
+  }
+
+  if (root.x == edge.x) {
+    return { freq: 0, amplitude: 0 };
+  }
+
+  const r = new Point(root.x, root.y);
+  const e = new Point(edge.x, edge.y);
+  const d = e.sub(r);
+  // edge point describes 1/4 of the freq
+  return { freq: d.x * 4, amplitude: d.y };
+};
+
 /**
  * build the x points with root as the anchor.
  */
