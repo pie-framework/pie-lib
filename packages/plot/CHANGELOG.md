@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@0.2.1...@pie-lib/plot@0.2.2) (2019-06-28)
+
+
+### Bug Fixes
+
+* calculate edge when points are on same horizontal or vertical line ([5cba298](https://github.com/pie-framework/pie-lib/commit/5cba298))
+
+
+
+
+
 ## [0.2.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@0.2.0...@pie-lib/plot@0.2.1) (2019-06-17)
 
 **Note:** Version bump only for package @pie-lib/plot
