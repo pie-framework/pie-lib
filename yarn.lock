@@ -2067,7 +2067,7 @@
     prop-types "^15.6.2"
     react-measure "^2.2.2"
 
-"@pie-lib/plot@^0.2.1":
+"@pie-lib/plot@^0.2.2":
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/@pie-lib/plot/-/plot-0.2.2.tgz#42dcb4e16d44608b31dd67090155d4936f1ee865"
   integrity sha512-bpjk4MBl9LQKFrcvm6a9Xf4tKa0TZqSWk1spSpwAoQjv7TCi7T96LEOlNXy7ZTizUsJFVQ0AE7yVjBB9A7s/JA==
