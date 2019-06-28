@@ -1,31 +1,42 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import cn from 'classnames';
 import Button from '@material-ui/core/Button';
 
 const buttonStyles = theme => ({
+  root: {},
   selected: {
+    backgroundColor: 'white',
+    '& span': {
+      color: theme.palette.primary.dark
+    }
+  },
+  notSelected: {
+    '& span': {
+      color: theme.palette.primary.main
+    },
     backgroundColor: 'white'
   },
   disabled: {
     '& span': {
-      color: theme.palette.primary.dark
+      color: theme.palette.primary.main
     },
-    backgroundColor: 'white'
+    backgroundColor: 'rgb(255,255,255,0.2)'
   }
 });
+
 export const MiniButton = withStyles(buttonStyles)(props => {
-  const { disabled, classes, className, disabledClassName, selected, value, onClick } = props;
+  const { disabled, classes, className, selected, value, onClick } = props;
   return (
     <Button
       size="small"
-      disabled={disabled}
+      disabled={disabled || selected}
       color={selected ? 'secondary' : 'default'}
       className={cn(selected && classes.selected, className)}
       classes={{
-        disabled: cn(classes.disabled, disabledClassName)
+        root: cn(classes.root),
+        disabled: cn(disabled && classes.disabled)
       }}
       value={value}
       key={value}
@@ -62,18 +73,19 @@ export class ToggleBar extends React.Component {
   };
 
   render() {
-    const { classes, className, options, selected } = this.props;
+    const { classes, className, disabled, options, selected } = this.props;
     return (
       <div className={cn(classes.class, className)}>
         {(options || []).map(o => {
           const isSelected = o === selected;
+
           return (
             <MiniButton
               key={o}
               value={o}
-              disabled={isSelected}
+              disabled={disabled}
+              selected={isSelected}
               className={cn(classes.button, isSelected && classes.selected)}
-              disabledClassName={classes.disabled}
               onClick={this.select}
             />
           );
@@ -85,7 +97,7 @@ export class ToggleBar extends React.Component {
 const styles = theme => ({
   class: {},
   button: {
-    marginRight: theme.spacing.unit
+    marginRight: -1 //theme.spacing.unit
   }
 });
 

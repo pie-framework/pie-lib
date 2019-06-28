@@ -88,6 +88,7 @@ export class Graph extends React.Component {
   };
 
   onBgClick = ({ x, y }) => {
+    const { currentTool } = this.props;
     log('[onBgClick] x,y: ', x, y);
 
     if (this.props.labelModeEnabled) {
@@ -96,8 +97,8 @@ export class Graph extends React.Component {
     }
 
     const buildingMark = this.getBuildingMark();
-    const { currentTool } = this.props;
-    const tool = currentTool || this.getDefaultTool();
+    const tool = this.getTool();
+    //tools.find(t => t.type === currentTool) || this.getDefaultTool();
     log('[onBgClick] currentTool: ', currentTool);
 
     const updatedMark = tool.addPoint({ x, y }, buildingMark ? { ...buildingMark } : undefined);
@@ -153,8 +154,8 @@ export class Graph extends React.Component {
   };
 
   getTool = () => {
-    const { currentTool } = this.props;
-    return currentTool || this.getDefaultTool();
+    const { tools, currentTool } = this.props;
+    return tools.find(t => t.type === currentTool) || this.getDefaultTool();
   };
 
   mouseMove = e => {

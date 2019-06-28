@@ -6,13 +6,12 @@ exports[`ToolMenu snapshot renders 1`] = `
 >
   <WithStyles(ToggleBar)
     onChange={[Function]}
-    options={
-      Array [
-        "one",
-        "two",
-      ]
+    options={Array []}
+    selected={
+      Object {
+        "type": "one",
+      }
     }
-    selected="one"
   />
   <WithStyles(Component)
     value="Label"
