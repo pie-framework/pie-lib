@@ -251,20 +251,19 @@ export class GridDemo extends React.PureComponent {
     // console.log('tools:', tools.lineTwo);
 
     const toolsArr = [
-      tools.point(),
-      tools.circle(),
-      tools.polygon(),
-      tools.segment(),
-      tools.vector(),
-      tools.ray(),
-      tools.line(),
-      tools.sine(),
-      tools.parabola()
+      { Component: tools.point(), display: true },
+      { Component: tools.circle(), display: true },
+      { Component: tools.polygon(), display: false },
+      { Component: tools.segment(), display: true },
+      { Component: tools.vector(), display: false },
+      { Component: tools.ray(), display: false },
+      { Component: tools.line(), display: false },
+      { Component: tools.sine(), display: true },
+      { Component: tools.parabola(), display: true }
     ];
     this.state = {
-      currentTool: toolsArr[2],
+      currentTool: toolsArr[0],
       tools: toolsArr,
-      displayedTools: toolsArr,
       settings: {
         includeArrows: true,
         labels: true,
@@ -325,10 +324,6 @@ export class GridDemo extends React.PureComponent {
     this.setState({ model });
   };
 
-  changeCurrentTool = currentTool => {
-    this.setState({ currentTool });
-  };
-
   render() {
     log('render..');
     const { classes } = this.props;
@@ -373,10 +368,9 @@ export class GridDemo extends React.PureComponent {
               marks={model.marks}
               backgroundMarks={model.backgroundMarks}
               onChangeMarks={this.changeMarks}
-              displayedTools={this.state.displayedTools}
               tools={this.state.tools}
-              currentTool={this.state.currentTool}
-              defaultTool={this.state.tools[0].type}
+              currentTool={this.state.currentTool.Component}
+              defaultTool={this.state.tools[0].Component.type}
             />
           </div>
         </div>

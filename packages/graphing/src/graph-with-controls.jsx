@@ -24,13 +24,15 @@ export class GraphWithControls extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (
-      nextProps.displayedTools &&
-      !nextProps.displayedTools.find(t => t.type === this.state.currentTool.type)
-    ) {
-      if (nextProps.currentTool.type !== this.state.currentTool.type) {
-        this.setState({ currentTool: nextProps.currentTool });
-      }
+    const nextTools = nextProps.tools.reduce(
+      (a, b) => (b.display === true ? [...a, b.Component] : a),
+      []
+    );
+
+    if (this.state.currentTool && !nextTools.find(t => t.type === this.state.currentTool.type)) {
+      this.setState({
+        currentTool: nextTools[0]
+      });
     }
   }
 
@@ -55,17 +57,15 @@ export class GraphWithControls extends React.Component {
       onRedo,
       onReset,
       tools,
-      displayedTools,
-      correctnessMarks
+      disabled
     } = this.props;
     const { currentTool, labelModeEnabled } = this.state;
-    const enabled = !correctnessMarks;
 
     return (
       <div className={classNames(classes.graphWithControls, className)}>
         <div className={classes.controls}>
           <ToolMenu
-            tools={displayedTools || tools}
+            tools={tools.reduce((a, b) => (b.display === true ? [...a, b.Component] : a), [])}
             currentTool={currentTool}
             onChange={this.changeCurrentTool}
             labelModeEnabled={labelModeEnabled}
@@ -73,7 +73,7 @@ export class GraphWithControls extends React.Component {
               this.setState({ labelModeEnabled: !this.state.labelModeEnabled })
             }
           />
-          {enabled && <UndoRedo onUndo={onUndo} onRedo={onRedo} onReset={onReset} />}
+          {!disabled && <UndoRedo onUndo={onUndo} onRedo={onRedo} onReset={onReset} />}
         </div>
         <div ref={r => (this.labelNode = r)} />
         <Graph
@@ -84,10 +84,10 @@ export class GraphWithControls extends React.Component {
           title={title}
           axesSettings={axesSettings}
           labels={labels}
-          marks={correctnessMarks || marks}
+          marks={marks}
           backgroundMarks={backgroundMarks}
-          onChangeMarks={enabled ? onChangeMarks : () => {}}
-          tools={tools}
+          onChangeMarks={disabled ? () => {} : onChangeMarks}
+          tools={tools.reduce((a, b) => [...a, b.Component], [])}
           currentTool={currentTool}
         />
       </div>
