@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@0.2.2...@pie-lib/plot@1.1.1) (2019-06-28)
+
+
+### Bug Fixes
+
+* fix version conflict ([397b5de](https://github.com/pie-framework/pie-lib/commit/397b5de))
+
+
+
+
+
 ## [0.2.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@0.2.1...@pie-lib/plot@0.2.2) (2019-06-28)
 
 
