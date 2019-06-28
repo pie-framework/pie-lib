@@ -30,7 +30,7 @@ describe('ToolMenu', () => {
       it('calls onChange', () => {
         w = wrapper();
         w.instance().changeTool('two');
-        expect(onChange).toHaveBeenCalledWith(tools[1]);
+        expect(onChange).toHaveBeenCalledWith('two');
       });
     });
   });
