@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`index Choice render renders correctly with default props 1`] = `
-<Component
+<BlankContentComp
   classes={
     Object {
-      "chip": "Component-chip-2",
-      "choice": "Component-choice-1",
-      "disabled": "Component-disabled-3",
+      "chip": "BlankContentComp-chip-2",
+      "choice": "BlankContentComp-choice-1",
+      "disabled": "BlankContentComp-disabled-3",
     }
   }
   disabled={false}
@@ -17,12 +17,12 @@ exports[`index Choice render renders correctly with default props 1`] = `
 `;
 
 exports[`index Choice render renders correctly with disabled prop as true 1`] = `
-<Component
+<BlankContentComp
   classes={
     Object {
-      "chip": "Component-chip-2",
-      "choice": "Component-choice-1",
-      "disabled": "Component-disabled-3",
+      "chip": "BlankContentComp-chip-2",
+      "choice": "BlankContentComp-choice-1",
+      "disabled": "BlankContentComp-disabled-3",
     }
   }
   disabled={true}
@@ -40,7 +40,7 @@ exports[`index Choices renders correctly with default props 1`] = `
     }
   }
 >
-  <DragSource(WithStyles(Component))
+  <DragSource(WithStyles(BlankContentComp))
     choice={
       Object {
         "label": "Jumped",
@@ -50,7 +50,7 @@ exports[`index Choices renders correctly with default props 1`] = `
     disabled={false}
     key="Jumped-0"
   />
-  <DragSource(WithStyles(Component))
+  <DragSource(WithStyles(BlankContentComp))
     choice={
       Object {
         "label": "Laughed",
@@ -60,7 +60,7 @@ exports[`index Choices renders correctly with default props 1`] = `
     disabled={false}
     key="Laughed-1"
   />
-  <DragSource(WithStyles(Component))
+  <DragSource(WithStyles(BlankContentComp))
     choice={
       Object {
         "label": "Spoon",
@@ -81,7 +81,7 @@ exports[`index Choices renders correctly with disabled prop as true 1`] = `
     }
   }
 >
-  <DragSource(WithStyles(Component))
+  <DragSource(WithStyles(BlankContentComp))
     choice={
       Object {
         "label": "Jumped",
@@ -91,7 +91,7 @@ exports[`index Choices renders correctly with disabled prop as true 1`] = `
     disabled={true}
     key="Jumped-0"
   />
-  <DragSource(WithStyles(Component))
+  <DragSource(WithStyles(BlankContentComp))
     choice={
       Object {
         "label": "Laughed",
@@ -101,7 +101,7 @@ exports[`index Choices renders correctly with disabled prop as true 1`] = `
     disabled={true}
     key="Laughed-1"
   />
-  <DragSource(WithStyles(Component))
+  <DragSource(WithStyles(BlankContentComp))
     choice={
       Object {
         "label": "Spoon",

@@ -9,7 +9,10 @@ jest.mock('@pie-framework/mathquill', () => ({
   getInterface: jest.fn().mockReturnThis(),
   registerEmbed: jest.fn()
 }));
-
+jest.mock('@pie-lib/math-toolbar', () => ({
+  MathPreview: () => <div />,
+  MathToolbar: () => <div />
+}));
 const log = debug('@pie-lib:editable-html:test:math');
 
 describe('MathPlugin', () => {

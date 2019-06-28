@@ -104,7 +104,7 @@ export const marks = [
   //   closed: true,
   //   points: [xy(-1, 1), xy(4, 2), xy(5, -3), xy(-1, -2)]
   // }
-  // { type: 'line', from: { x: 0, y: 0 }, to: { x: 1, y: 1 } },
+  { type: 'line', from: { x: -5, y: 0 }, to: { x: -5, y: 2 } }
   //  { type: 'segment', ...fromTo(1, 2, 3, 3) }
   // { type: 'ray', ...fromTo(1, -1, -2, -2) },
   // { type: 'vector', ...fromTo(0, 0, -5, 5) }

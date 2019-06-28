@@ -1,13 +1,43 @@
 import React from 'react';
-import debug from 'debug';
+import PropTypes from 'prop-types';
 import { DragSource } from '@pie-lib/drag';
 import { withStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 import classnames from 'classnames';
 
-const log = debug('pie-lib:mask-markup:choice');
-
 export const DRAG_TYPE = 'MaskBlank';
+
+class BlankContentComp extends React.Component {
+  static propTypes = {
+    disabled: PropTypes.bool,
+    choice: PropTypes.object,
+    classes: PropTypes.object,
+    connectDragSource: PropTypes.func
+  };
+
+  render() {
+    const { connectDragSource, choice, classes, disabled } = this.props;
+
+    return connectDragSource(
+      <span className={classnames(classes.choice, disabled && classes.disabled)}>
+        <Chip
+          className={classes.chip}
+          label={
+            <span
+              ref={ref => {
+                if (ref) {
+                  ref.innerHTML = choice.value;
+                }
+              }}
+            />
+          }
+          variant={disabled ? 'outlined' : undefined}
+        />
+      </span>,
+      {}
+    );
+  }
+}
 
 export const BlankContent = withStyles(theme => ({
   choice: {
@@ -20,19 +50,7 @@ export const BlankContent = withStyles(theme => ({
     minHeight: '32px'
   },
   disabled: {}
-}))(props => {
-  const { connectDragSource, classes, disabled } = props;
-  return connectDragSource(
-    <span className={classnames(classes.choice, disabled && classes.disabled)}>
-      <Chip
-        className={classes.chip}
-        label={<span dangerouslySetInnerHTML={{ __html: props.choice.value }} />}
-        variant={disabled ? 'outlined' : undefined}
-      />
-    </span>,
-    {}
-  );
-});
+}))(BlankContentComp);
 
 const tileSource = {
   canDrag(props) {

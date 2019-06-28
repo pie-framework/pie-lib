@@ -1313,5 +1313,35 @@
     "committerDate": "2019-06-20 21:54:12 -0400",
     "isTagged": true,
     "tag": "@pie-lib/config-ui@10.5.0"
+  },
+  {
+    "type": "feat",
+    "scope": null,
+    "subject": "space w/ theme.spacing.unit",
+    "merge": null,
+    "header": "feat: space w/ theme.spacing.unit",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "ca80e3c9771df8ae9e8669b2937e40db2bd73018",
+    "gitTags": "",
+    "committerDate": "2019-06-24 10:44:30 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/config-ui@10.6.0"
+  },
+  {
+    "type": "feat",
+    "scope": "layout",
+    "subject": "made the changes requested for the settings tab [ch2242]",
+    "merge": null,
+    "header": "feat(layout): made the changes requested for the settings tab [ch2242]",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "7677dcae6fea1bbbc835716f70df274f983e7ff0",
+    "gitTags": "",
+    "committerDate": "2019-06-25 21:00:09 -0400",
+    "isTagged": true,
+    "tag": "@pie-lib/config-ui@10.7.0"
   }
 ]
