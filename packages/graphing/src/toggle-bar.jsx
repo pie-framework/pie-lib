@@ -31,7 +31,7 @@ export const MiniButton = withStyles(buttonStyles)(props => {
   return (
     <Button
       size="small"
-      disabled={disabled || selected}
+      disabled={disabled}
       color={selected ? 'secondary' : 'default'}
       className={cn(selected && classes.selected, className)}
       classes={{
