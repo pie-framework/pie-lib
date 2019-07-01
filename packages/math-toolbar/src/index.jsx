@@ -104,6 +104,7 @@ export class RawPureToolbar extends React.Component {
     onAnswerBlockAdd: PropTypes.func,
     additionalKeys: PropTypes.array,
     onFocus: PropTypes.func,
+    onBlur: PropTypes.func,
     classes: PropTypes.object.isRequired,
     autoFocus: PropTypes.bool,
     noDecimal: PropTypes.bool,
@@ -127,6 +128,7 @@ export class RawPureToolbar extends React.Component {
       onChange,
       onDone,
       onFocus,
+      onBlur,
       classes
     } = this.props;
 
@@ -146,6 +148,7 @@ export class RawPureToolbar extends React.Component {
           latex={latex}
           onChange={onChange}
           onFocus={onFocus}
+          onBlur={onBlur}
         />
         {(!controlledKeypad || (controlledKeypad && showKeypad)) && <DoneButton onClick={onDone} />}
       </div>

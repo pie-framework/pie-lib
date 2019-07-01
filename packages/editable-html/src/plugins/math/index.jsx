@@ -44,7 +44,19 @@ export default function MathPlugin(/*options*/) {
             onToolbarDone(change, false);
           };
 
-          const Tb = () => <MathToolbar autoFocus latex={latex} onDone={onDone} />;
+          const Tb = () => (
+            <MathToolbar
+              autoFocus
+              latex={latex}
+              onDone={onDone}
+              onBlur={() => {
+                console.log('[onBlur] .. !!!');
+              }}
+              onFocus={() => {
+                console.log('[onFocus] .. !!!');
+              }}
+            />
+          );
           return Tb;
         }
       }

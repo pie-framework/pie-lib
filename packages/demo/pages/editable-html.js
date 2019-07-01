@@ -112,6 +112,10 @@ const DragDropTile = DragSource('drag-in-the-blank-choice', tileSource, (connect
  */
 const inputOptions = [
   {
+    label: 'Some math',
+    html: '<div><span data-latex="">\\(100\\)</span></div>'
+  },
+  {
     label: 'An image in a P tag',
     html: `<div><p><img src="${puppySrc}" style="width:170px;height:151px"/> bar</p><p><img src="${puppySrc}" style="width:170px;height:151px"/> bar</p></div>`
   },
