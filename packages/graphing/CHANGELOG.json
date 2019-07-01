@@ -363,5 +363,20 @@
     "committerDate": "2019-06-19 23:02:19 -0400",
     "isTagged": true,
     "tag": "@pie-lib/graphing@1.0.0"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "rm selected from MiniButton",
+    "merge": null,
+    "header": "fix: rm selected from MiniButton",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "3079d35bd9240259119ac133b8927834dd7c4ebc",
+    "gitTags": " (develop)",
+    "committerDate": "2019-07-01 10:27:40 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/graphing@1.0.2"
   }
 ]
