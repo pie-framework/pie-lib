@@ -3,6 +3,60 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.0.0...@pie-lib/demo@5.0.1) (2019-06-28)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+# [5.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@4.7.7...@pie-lib/demo@5.0.0) (2019-06-28)
+
+
+### Bug Fixes
+
+* calculate edge when points are on same horizontal or vertical line ([5cba298](https://github.com/pie-framework/pie-lib/commit/5cba298))
+* removed correctnessMarks and displayedTools ([6043e88](https://github.com/pie-framework/pie-lib/commit/6043e88))
+
+
+### Features
+
+* add `toolbar` flag to each tool ([c32ec2c](https://github.com/pie-framework/pie-lib/commit/c32ec2c))
+
+
+### BREAKING CHANGES
+
+* Graph 'tools' expected property has to be an array of objects having this form: { display: bool, Component: tool }
+
+
+
+
+
+## [4.7.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@4.7.6...@pie-lib/demo@4.7.7) (2019-06-26)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [4.7.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@4.7.5...@pie-lib/demo@4.7.6) (2019-06-26)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [4.7.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@4.7.4...@pie-lib/demo@4.7.5) (2019-06-24)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
 ## [4.7.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@4.7.3...@pie-lib/demo@4.7.4) (2019-06-21)
 
 **Note:** Version bump only for package @pie-lib/demo

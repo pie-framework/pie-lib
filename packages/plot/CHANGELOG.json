@@ -133,5 +133,35 @@
     "committerDate": "2019-06-10 15:24:31 +0100",
     "isTagged": true,
     "tag": "@pie-lib/plot@0.2.0"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "fix version conflict",
+    "merge": null,
+    "header": "fix: fix version conflict",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "397b5dedd0beb34814ada7099ccdca483e696abd",
+    "gitTags": "",
+    "committerDate": "2019-06-28 14:34:18 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/plot@1.1.1"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "calculate edge when points are on same horizontal or vertical line",
+    "merge": null,
+    "header": "fix: calculate edge when points are on same horizontal or vertical line",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "5cba298d99fcece210bd47ada1692144be604dc0",
+    "gitTags": "",
+    "committerDate": "2019-06-27 13:19:23 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/plot@0.2.2"
   }
 ]

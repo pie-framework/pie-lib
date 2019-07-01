@@ -5,7 +5,11 @@ import cn from 'classnames';
 import Button from '@material-ui/core/Button';
 
 const buttonStyles = theme => ({
-  root: {},
+  root: {
+    '&:hover': {
+      backgroundColor: 'rgb(255,255,255,0.5)'
+    }
+  },
   selected: {
     backgroundColor: 'white',
     '& span': {
@@ -22,7 +26,7 @@ const buttonStyles = theme => ({
     '& span': {
       color: theme.palette.primary.main
     },
-    backgroundColor: 'rgb(255,255,255,0.2)'
+    backgroundColor: 'rgb(255,255,255,0.8)'
   }
 });
 
@@ -31,11 +35,10 @@ export const MiniButton = withStyles(buttonStyles)(props => {
   return (
     <Button
       size="small"
-      disabled={disabled || selected}
+      disabled={disabled}
       color={selected ? 'secondary' : 'default'}
-      className={cn(selected && classes.selected, className)}
+      className={cn(classes.root, selected && classes.selected, className)}
       classes={{
-        root: cn(classes.root),
         disabled: cn(disabled && classes.disabled)
       }}
       value={value}
@@ -62,6 +65,7 @@ export class ToggleBar extends React.Component {
     className: PropTypes.string,
     options: PropTypes.arrayOf(PropTypes.string),
     selected: PropTypes.string,
+    disabled: PropTypes.bool,
     onChange: PropTypes.func
   };
 
@@ -81,6 +85,7 @@ export class ToggleBar extends React.Component {
 
           return (
             <MiniButton
+              disableRipple={true}
               key={o}
               value={o}
               disabled={disabled}

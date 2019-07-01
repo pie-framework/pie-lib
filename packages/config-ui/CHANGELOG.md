@@ -3,6 +3,45 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.7.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.7.1...@pie-lib/config-ui@10.7.2) (2019-06-28)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
+## [10.7.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.7.0...@pie-lib/config-ui@10.7.1) (2019-06-28)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
+# [10.7.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.6.0...@pie-lib/config-ui@10.7.0) (2019-06-26)
+
+
+### Features
+
+* **layout:** made the changes requested for the settings tab [ch2242] ([7677dca](https://github.com/pie-framework/pie-lib/commit/7677dca))
+* **layout:** merged develop into master [ch2242] ([28f11ba](https://github.com/pie-framework/pie-lib/commit/28f11ba))
+
+
+
+
+
+# [10.6.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.5.0...@pie-lib/config-ui@10.6.0) (2019-06-24)
+
+
+### Features
+
+* space w/ theme.spacing.unit ([ca80e3c](https://github.com/pie-framework/pie-lib/commit/ca80e3c))
+
+
+
+
+
 # [10.5.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.4.3...@pie-lib/config-ui@10.5.0) (2019-06-21)
 
 

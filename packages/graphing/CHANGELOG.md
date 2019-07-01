@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@1.0.0...@pie-lib/graphing@1.0.1) (2019-06-28)
+
+**Note:** Version bump only for package @pie-lib/graphing
+
+
+
+
+
+# [1.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@0.3.0...@pie-lib/graphing@1.0.0) (2019-06-28)
+
+
+### Bug Fixes
+
+* fixed polygon color when is correct ([d02d8b1](https://github.com/pie-framework/pie-lib/commit/d02d8b1))
+* removed correctnessMarks and displayedTools ([6043e88](https://github.com/pie-framework/pie-lib/commit/6043e88))
+
+
+### Features
+
+* add `toolbar` flag to each tool ([c32ec2c](https://github.com/pie-framework/pie-lib/commit/c32ec2c))
+* Added possibility to change currentTool. ([a705a29](https://github.com/pie-framework/pie-lib/commit/a705a29))
+* Disabled drawing in evaluate mode. ([00dd6d7](https://github.com/pie-framework/pie-lib/commit/00dd6d7))
+* If 'evaluate' mode, don't show control buttons. ([8345539](https://github.com/pie-framework/pie-lib/commit/8345539))
+* update currentTool when tools in toolbar change ([2e5e1c9](https://github.com/pie-framework/pie-lib/commit/2e5e1c9))
+* Use props.currentTool only if props.displayedTools doesn't contain this.state.currentTool no more ([a4fd2df](https://github.com/pie-framework/pie-lib/commit/a4fd2df))
+* When in 'evaluate' mode, hide controls. ([a57da65](https://github.com/pie-framework/pie-lib/commit/a57da65))
+
+
+### BREAKING CHANGES
+
+* Graph 'tools' expected property has to be an array of objects having this form: { display: bool, Component: tool }
+
+
+
+
+
 # [0.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@0.2.0...@pie-lib/graphing@0.3.0) (2019-06-17)
 
 
