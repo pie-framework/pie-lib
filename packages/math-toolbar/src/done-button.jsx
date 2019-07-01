@@ -30,6 +30,10 @@ const styles = {
     width: '28px',
     height: '28px',
     color: '#00bb00'
+  },
+  label: {
+    position: 'absolute',
+    top: '2px'
   }
 };
 export const DoneButton = withStyles(styles)(RawDoneButton);
