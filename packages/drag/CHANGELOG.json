@@ -303,5 +303,20 @@
     "committerDate": "2019-06-05 21:55:26 +0300",
     "isTagged": true,
     "tag": "@pie-lib/drag@1.1.15"
+  },
+  {
+    "type": "chore",
+    "scope": "merge",
+    "subject": "merged master into this branch",
+    "merge": null,
+    "header": "chore(merge): merged master into this branch",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "e7758d577c82c0f39a5bf44556792517cd1ea6b0",
+    "gitTags": "",
+    "committerDate": "2019-07-02 11:29:52 -0400",
+    "isTagged": true,
+    "tag": "@pie-lib/drag@1.1.18"
   }
 ]

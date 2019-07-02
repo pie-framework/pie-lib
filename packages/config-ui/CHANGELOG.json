@@ -1388,5 +1388,35 @@
     "committerDate": "2019-06-25 21:00:09 -0400",
     "isTagged": true,
     "tag": "@pie-lib/config-ui@10.7.0"
+  },
+  {
+    "type": "chore",
+    "scope": "version",
+    "subject": "version bumped the elements that need update",
+    "merge": null,
+    "header": "chore(version): version bumped the elements that need update",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "17fe624e780cd3115987b6ceee3227103212ce70",
+    "gitTags": "",
+    "committerDate": "2019-07-02 12:48:43 -0400",
+    "isTagged": true,
+    "tag": "@pie-lib/config-ui@10.7.4"
+  },
+  {
+    "type": "chore",
+    "scope": "merge",
+    "subject": "merged master into this branch",
+    "merge": null,
+    "header": "chore(merge): merged master into this branch",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "e7758d577c82c0f39a5bf44556792517cd1ea6b0",
+    "gitTags": "",
+    "committerDate": "2019-07-02 11:29:52 -0400",
+    "isTagged": true,
+    "tag": "@pie-lib/config-ui@10.7.4"
   }
 ]
