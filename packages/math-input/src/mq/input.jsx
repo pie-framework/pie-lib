@@ -33,12 +33,24 @@ export class Input extends React.Component {
       throw new Error('MQ is not defined - but component has mounted?');
     }
 
+    if (this.mathField) {
+      throw new Error('have mathfield?');
+    }
     log('[componentDidMount] input:', this.input);
     this.mathField = MQ.MathField(this.input, {
       handlers: {
-        edit: () => {
-          console.log('!!! Edit');
-          this.onInputEdit.bind(this)();
+        edit: (a, b, c) => {
+          console.log('!!! MQ.Input - Edit', a, b, c);
+          // this.onInputEdit.bind(this)();
+          log('[onInputEdit] ...');
+          const { onChange } = this.props;
+
+          if (onChange) {
+            const l = a.latex();
+            // setTimeout(() => {
+            //   onChange(l);
+            // }, 100);
+          }
         }
       }
     });
@@ -47,6 +59,10 @@ export class Input extends React.Component {
     this.updateLatex();
   }
 
+  componentWillUnmount() {
+    console.log('comp will unmount!!!!!!!!!!!!!');
+    this.mathField = undefined;
+  }
   componentDidUpdate() {
     log('[componentDidUpdate]...');
     this.updateLatex();
@@ -57,7 +73,8 @@ export class Input extends React.Component {
       return;
     }
     const { latex } = this.props;
-    if (latex) {
+    if (latex && latex !== this.mathField.latex()) {
+      console.log('setting the latex !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
       this.mathField.latex(latex);
     }
   }
@@ -103,18 +120,6 @@ export class Input extends React.Component {
     return this.mathField.latex();
   }
 
-  onInputEdit = () => {
-    log('[onInputEdit] ...');
-    const { onChange } = this.props;
-    if (!this.mathField) {
-      return;
-    }
-
-    if (onChange) {
-      onChange(this.mathField.latex());
-    }
-  };
-
   // onKeyPress = event => {
   //   if (event.charCode === 13) {
   //     // if enter's pressed, we're going for a custom embedded element that'll
@@ -134,7 +139,8 @@ export class Input extends React.Component {
   render() {
     const { onClick, onFocus, onBlur, classes, className } = this.props;
 
-    log('[render]...');
+    // log('[render]...');
+    console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! [render]...');
     return (
       <span
         className={classNames(classes.input, className)}

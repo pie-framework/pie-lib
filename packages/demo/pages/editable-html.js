@@ -15,6 +15,8 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import MoreVert from '@material-ui/icons/MoreVert';
 import InputChooser from '../src/editable-html/input-chooser';
+import { mq } from '@pie-lib/math-input';
+import { PureToolbar } from '@pie-lib/math-toolbar';
 
 const log = debug('@pie-lib:editable-html:demo');
 const puppySrc = 'https://bit.ly/23yROY8';
@@ -410,6 +412,46 @@ class RteDemo extends React.Component {
   }
 }
 
+class SimpleDemo extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      mounted: false,
+      latex: '\\frac{1}{2}',
+      showInput: false
+    };
+  }
+
+  componentDidMount() {
+    this.setState({ mounted: true });
+  }
+  render() {
+    const { mounted, latex, showInput } = this.state;
+    return mounted ? (
+      <div>
+        simple
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={showInput}
+              onChange={e => this.setState({ showInput: e.target.checked })}
+            />
+          }
+          label={'Show Input'}
+        />
+        {showInput && (
+          <PureToolbar
+            autoFocus={true}
+            latex={latex}
+            onChange={latex => this.setState({ latex })}
+          />
+        )}
+      </div>
+    ) : (
+      <div>not mounted</div>
+    );
+  }
+}
 const styles = theme => ({
   controls: {
     backgroundColor: grey[200],
@@ -423,4 +465,5 @@ const styles = theme => ({
   }
 });
 
-export default withDragContext(withRoot(withStyles(styles)(RteDemo)));
+const Out = withDragContext(withRoot(withStyles(styles)(SimpleDemo)));
+export default Out;
