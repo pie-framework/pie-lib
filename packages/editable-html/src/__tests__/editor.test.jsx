@@ -57,11 +57,7 @@ test('onFocus stashes the value', async () => {
     <Editor editorRef={jest.fn()} value={value} classes={{}} onChange={jest.fn()} />
   );
 
-  jest.runAllTimers();
-
   await wrapper.instance().onFocus();
-
-  jest.runAllTimers();
 
   expect(wrapper.state('stashedValue')).toEqualHtml('<div>hi</div>');
 });
