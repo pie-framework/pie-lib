@@ -34,28 +34,16 @@ export class Wrapper extends React.Component {
     return mounted ? (
       <div>
         <Typography variant="h6">CorrectAnswerToggle</Typography>
-        <Typography>
-          Used when you want to allow the user to see a correct answer
-        </Typography>
+        <Typography>Used when you want to allow the user to see a correct answer</Typography>
         <hr />
         <FormGroup row>
           <FormControlLabel
             label="Show"
-            control={
-              <Checkbox
-                checked={this.state.show}
-                onClick={this.onShow.bind(this)}
-              />
-            }
+            control={<Checkbox checked={this.state.show} onClick={this.onShow.bind(this)} />}
           />
           <FormControlLabel
             label="Toggle"
-            control={
-              <Checkbox
-                checked={this.state.toggled}
-                onClick={this.onToggle.bind(this)}
-              />
-            }
+            control={<Checkbox checked={this.state.toggled} onClick={this.onToggle.bind(this)} />}
           />
         </FormGroup>
         <Toggle

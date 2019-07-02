@@ -36,7 +36,6 @@ const getValueByArray = (obj, parts, value) => {
   }
 };
 
-export const set = (obj, path, value) =>
-  setValueByArray(obj, path.split('.'), value);
+export const set = (obj, path, value) => setValueByArray(obj, path.split('.'), value);
 
 export const get = (obj, path) => getValueByArray(obj, path.split('.'));

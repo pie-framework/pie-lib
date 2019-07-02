@@ -33,8 +33,6 @@ export class EditorAndToolbar extends React.Component {
    * https://github.com/ianstormtaylor/slate/pull/2236
    */
   componentDidMount() {
-    window.editorRef = this.editorRef;
-
     if (IS_FIREFOX) {
       this.editorRef.tmp.isUpdatingSelection = true;
     }

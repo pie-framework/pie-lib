@@ -32,24 +32,30 @@ class ConfigLayout extends React.Component {
     const { bounds } = contentRect;
     const { sidePanelMinWidth } = this.props;
     const layoutMode = bounds.width >= sidePanelMinWidth ? 'inline' : 'tabbed';
+
     this.setState({ layoutMode });
   };
 
   render() {
-    const { settings, children } = this.props;
-    const { layoutMode } = this.state;
     return (
       <Measure bounds onResize={this.onResize}>
-        {({ measureRef }) => (
-          <div ref={measureRef}>
-            <LayoutContents
-              mode={layoutMode}
-              secondary={layoutMode === 'inline' ? <SettingsBox>{settings}</SettingsBox> : settings}
-            >
-              {children}
-            </LayoutContents>
-          </div>
-        )}
+        {({ measureRef }) => {
+          const { settings, children } = this.props;
+          const { layoutMode } = this.state;
+
+          return (
+            <div ref={measureRef}>
+              <LayoutContents
+                mode={layoutMode}
+                secondary={
+                  layoutMode === 'inline' ? <SettingsBox>{settings}</SettingsBox> : settings
+                }
+              >
+                {children}
+              </LayoutContents>
+            </div>
+          );
+        }}
       </Measure>
     );
   }

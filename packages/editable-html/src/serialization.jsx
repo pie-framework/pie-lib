@@ -5,7 +5,7 @@ import { serialization as imgSerialization } from './plugins/image';
 import { serialization as mathSerialization } from './plugins/math';
 import { serialization as listSerialization } from './plugins/list';
 import { serialization as tableSerialization } from './plugins/table';
-import { serialization as responseAreaSerialization } from './plugins/response-area';
+import { serialization as responseAreaSerialization } from './plugins/respArea';
 import { Mark, Value } from 'slate';
 
 const log = debug('@pie-lib:editable-html:serialization');

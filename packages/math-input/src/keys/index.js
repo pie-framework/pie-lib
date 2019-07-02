@@ -3,20 +3,7 @@ import * as nav from './navigation';
 import * as edit from './edit';
 import { divide, multiply, plus, minus, equals } from './basic-operators';
 
-const {
-  one,
-  two,
-  three,
-  four,
-  five,
-  six,
-  seven,
-  eight,
-  nine,
-  zero,
-  comma,
-  decimalPoint
-} = digits;
+const { one, two, three, four, five, six, seven, eight, nine, zero, comma, decimalPoint } = digits;
 
 export const baseSet = [
   [seven, eight, nine, divide],

@@ -102,9 +102,7 @@ class Intersection {
   }
 
   get surroundedTokens() {
-    return this.results
-      .filter(r => r.type === 'within-selection')
-      .map(t => t.token);
+    return this.results.filter(r => r.type === 'within-selection').map(t => t.token);
   }
 }
 /**
@@ -141,9 +139,7 @@ export const sort = tokens => {
       const e = a.end < b.end ? -1 : a.end > b.end ? 1 : 0;
       if (s === -1 && e !== -1) {
         throw new Error(
-          `sort does not support intersecting tokens. a: ${a.start}-${
-            a.end
-          }, b: ${b.start}-${b.end}`
+          `sort does not support intersecting tokens. a: ${a.start}-${a.end}, b: ${b.start}-${b.end}`
         );
       }
       return s;

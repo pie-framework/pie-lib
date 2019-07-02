@@ -11,7 +11,7 @@ export const normalizeAngle = a => {
   if (a > 360) {
     return a % 360;
   } else if (a < 0) {
-    return 360 + a % 360;
+    return 360 + (a % 360);
   }
   return a;
 };
@@ -126,14 +126,10 @@ export const getLeft = (rect, point, angle) => {
 export const getAnchor = (rect, point, angle) => {
   log('[getAnchor] rect: ', rect, 'point:', point, 'angle: ', angle);
   if (point.x > rect.width) {
-    throw new Error(
-      `x: ${point.x} cannot be greater than width: ${rect.width}`
-    );
+    throw new Error(`x: ${point.x} cannot be greater than width: ${rect.width}`);
   }
   if (point.y > rect.height) {
-    throw new Error(
-      `y: ${point.y} cannot be greater than height: ${rect.height}`
-    );
+    throw new Error(`y: ${point.y} cannot be greater than height: ${rect.height}`);
   }
   const a = normalizeAngle(angle);
   const top = getTop(rect, point, a);

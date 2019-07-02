@@ -34,66 +34,44 @@ export const insertSnackBar = message => {
   }, 2000);
 };
 
-export const defaultECR = Inline.create({
-  type: 'explicit_constructed_response',
-  nodes: [Text.create('\u00A0')],
-  data: {
-    selected: null
-  }
-});
+export const defaultECR = index =>
+  Inline.create({
+    type: 'explicit_constructed_response',
+    isVoid: true,
+    data: {
+      index
+    }
+  });
 
-export const defaultDIB = opts =>
+export const defaultDIB = (opts, index) =>
   Inline.create({
     type: 'drag_in_the_blank',
     isVoid: true,
     data: {
+      index,
       duplicates: opts.options.duplicates,
       value: null
     }
   });
 
-export const defaultIDD = Inline.create({
-  type: 'inline_dropdown',
-  nodes: [
-    Inline.create({
-      type: 'item_builder',
-      nodes: [Text.create('\u00A0')]
-    }),
-    {
-      object: 'inline',
-      type: 'menu_item',
-      data: {
-        id: 0,
-        value: 'Default Option 1',
-        isDefault: true
-      },
-      nodes: [Text.create('Default Option 1')]
-    },
-    {
-      object: 'inline',
-      type: 'menu_item',
-      data: {
-        id: 1,
-        value: 'Default Option 2',
-        isDefault: true
-      },
-      nodes: [Text.create('Default Option 2')]
+export const defaultIDD = index =>
+  Inline.create({
+    object: 'inline',
+    type: 'inline_dropdown',
+    isVoid: true,
+    data: {
+      index
     }
-  ],
-  data: {
-    open: false,
-    selected: null
-  }
-});
+  });
 
-export const getDefaultElement = opts => {
+export const getDefaultElement = (opts, index) => {
   switch (opts.type) {
     case 'explicit-constructed-response':
-      return defaultECR;
+      return defaultECR(index);
     case 'drag-in-the-blank':
-      return defaultDIB(opts);
+      return defaultDIB(opts, index);
     default:
       // inline-dropdown
-      return defaultIDD;
+      return defaultIDD(index);
   }
 };

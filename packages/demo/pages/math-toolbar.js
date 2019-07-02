@@ -17,11 +17,7 @@ export class Demo extends React.Component {
   }
   render() {
     const { mounted } = this.state;
-    return mounted ? (
-      <MathToolbar latex={'\\frac{1}{2}'} />
-    ) : (
-      <div>loading</div>
-    );
+    return mounted ? <MathToolbar latex={'\\frac{1}{2}'} /> : <div>loading</div>;
   }
 }
 

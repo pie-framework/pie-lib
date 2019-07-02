@@ -150,10 +150,10 @@ export class Toolbar extends React.Component {
     log('[render] CustomToolbar: ', CustomToolbar);
     const parentExtraStyles =
       parentPlugin && parentPlugin.pluginStyles
-        ? parentPlugin.pluginStyles(parentNode, plugin)
+        ? parentPlugin.pluginStyles(node, parentNode, plugin)
         : {};
     const pluginExtraStyles =
-      plugin && plugin.pluginStyles ? plugin.pluginStyles(parentNode, plugin) : {};
+      plugin && plugin.pluginStyles ? plugin.pluginStyles(node, parentNode, plugin) : {};
     const extraStyles = {
       ...pluginExtraStyles,
       ...parentExtraStyles
@@ -212,6 +212,7 @@ const style = {
     cursor: 'pointer',
     justifyContent: 'space-between',
     background: 'var(--editable-html-toolbar-bg, #efefef)',
+    minWidth: '280px',
     margin: '5px 0 0 0',
     padding: '2px',
     boxShadow:

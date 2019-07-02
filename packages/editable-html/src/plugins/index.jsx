@@ -14,7 +14,7 @@ import SoftBreakPlugin from 'slate-soft-break';
 import debug from 'debug';
 import List from './list';
 import TablePlugin from './table';
-import ResponseAreaPlugin from './response-area';
+import RespAreaPlugin from './respArea';
 
 const log = debug('@pie-lib:editable-html:plugins');
 
@@ -63,7 +63,7 @@ export const ALL_PLUGINS = [
   'image',
   'math',
   'table',
-  'response-area'
+  'responseArea'
 ];
 
 export const DEFAULT_PLUGINS = ALL_PLUGINS.slice(0, 10);
@@ -76,11 +76,11 @@ export const buildPlugins = (activePlugins, opts) => {
   const addIf = (key, p) => activePlugins.includes(key) && p;
   const imagePlugin = opts.image && opts.image.onDelete && ImagePlugin(opts.image);
   const mathPlugin = MathPlugin(opts.math);
-  const responseAreaPlugin =
-    opts.responseArea && ResponseAreaPlugin(opts.responseArea, compact([mathPlugin]));
+  const respAreaPlugin =
+    opts.responseArea && RespAreaPlugin(opts.responseArea, compact([mathPlugin]));
 
   return compact([
-    addIf('table', TablePlugin(opts.table, compact([imagePlugin, mathPlugin, responseAreaPlugin]))),
+    addIf('table', TablePlugin(opts.table, compact([imagePlugin, mathPlugin, respAreaPlugin]))),
     addIf('bold', MarkHotkey({ key: 'b', type: 'bold', icon: <Bold />, tag: 'strong' })),
     addIf('code', MarkHotkey({ key: '`', type: 'code', icon: <Code /> })),
     addIf('italic', MarkHotkey({ key: 'i', type: 'italic', icon: <Italic />, tag: 'em' })),
@@ -100,6 +100,6 @@ export const buildPlugins = (activePlugins, opts) => {
     addIf('numbered-list', List({ key: 'n', type: 'ol_list', icon: <NumberedListIcon /> })),
     ToolbarPlugin(opts.toolbar),
     SoftBreakPlugin(),
-    addIf('response-area', responseAreaPlugin)
+    addIf('responseArea', respAreaPlugin)
   ]);
 };

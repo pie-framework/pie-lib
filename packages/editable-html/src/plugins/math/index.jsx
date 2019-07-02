@@ -53,7 +53,7 @@ export default function MathPlugin(/*options*/) {
       document: { match: [{ type: 'math' }] }
     },
 
-    pluginStyles: (parentNode, p) => {
+    pluginStyles: (node, parentNode, p) => {
       if (p) {
         return {
           position: 'absolute',
