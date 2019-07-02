@@ -1,10 +1,4 @@
-import {
-  MathInput,
-  keysForGrade,
-  keys,
-  KeyPad,
-  HorizontalKeypad
-} from '@pie-lib/math-input';
+import { MathInput, keysForGrade, keys, KeyPad, HorizontalKeypad } from '@pie-lib/math-input';
 import React from 'react';
 import withRoot from '../src/withRoot';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
@@ -66,8 +60,11 @@ class Demo extends React.Component {
   render() {
     const { classes } = this.props;
     const { readOnly, latex, mounted, editorType } = this.state;
-
     const keyset = keysForGrade(editorType);
+    const customKeyMessage = `
+    Setting custom keys is done by setting 'keyset' with an array of row arrays. The object
+            should have a 'label' and either 'write' or 'command'.`;
+
     return mounted ? (
       <div>
         <Section name="Equation editor with presets">
@@ -85,12 +82,7 @@ class Demo extends React.Component {
               value={this.state.editorType}
               label={'Preset'}
               onChange={this.changeEditorType}
-              input={
-                <OutlinedInput
-                  labelWidth={this.state.labelWidth}
-                  name="Editor Type"
-                />
-              }
+              input={<OutlinedInput labelWidth={this.state.labelWidth} name="Editor Type" />}
             >
               <MenuItem value="">
                 <em>None</em>
@@ -115,14 +107,14 @@ class Demo extends React.Component {
         </Section>
 
         <Section name="Custom keys (E261001)">
-          <div>
-            Setting custom keys is done by setting 'keyset' with an array of row
-            arrays. The object should have a 'label' and either 'write' or
-            'command'.
-          </div>
+          <div>{customKeyMessage}</div>
           <MathInput
             displayMode={'block-on-focus'}
-            latex={this.state.inputTwo}
+            latex={
+              this.state.inputTwo / Users / lakatosandrei / CoreSpring / pie -
+              lib / packages / demo / pages / config -
+              ui / numbers.js
+            }
             onChange={latex => this.setState({ inputTwo: latex })}
             keyset={[
               [
@@ -143,10 +135,7 @@ class Demo extends React.Component {
         </Section>
 
         <Section name="keypad standalone">
-          <p>
-            The keypad can be rendered by itself and connected to whatever you
-            like.
-          </p>
+          <p>The keypad can be rendered by itself and connected to whatever you like.</p>
           <KeyPad />
         </Section>
 

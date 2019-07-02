@@ -15,6 +15,7 @@ const log = debug('editable-html:editor');
 
 export class Editor extends React.Component {
   static propTypes = {
+    autoFocus: PropTypes.bool,
     editorRef: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired,
     onFocus: PropTypes.func,
@@ -35,7 +36,9 @@ export class Editor extends React.Component {
         'inline-dropdown',
         'drag-in-the-blank'
       ]),
-      options: PropTypes.object
+      options: PropTypes.object,
+      respAreaToolbar: PropTypes.func,
+      onDelete: PropTypes.func
     }),
     toolbarOpts: PropTypes.shape({
       position: PropTypes.oneOf(['bottom', 'top']),
@@ -132,6 +135,7 @@ export class Editor extends React.Component {
       responseArea: {
         type: props.responseAreaProps && props.responseAreaProps.type,
         options: props.responseAreaProps && props.responseAreaProps.options,
+        respAreaToolbar: props.responseAreaProps && props.responseAreaProps.respAreaToolbar,
         onFocus: () => {
           log('[table:onFocus]...');
           this.onPluginFocus();
@@ -142,6 +146,20 @@ export class Editor extends React.Component {
         }
       }
     });
+  }
+
+  componentDidMount() {
+    if (this.editor && this.props.autoFocus) {
+      setTimeout(() => {
+        const editorDOM = document.querySelector(`[data-key="${this.editor.value.document.key}"]`);
+
+        this.editor.focus();
+
+        if (editorDOM) {
+          editorDOM.focus();
+        }
+      }, 0);
+    }
   }
 
   onPluginBlur = e => {
@@ -197,11 +215,20 @@ export class Editor extends React.Component {
     });
   };
 
-  onFocus = () => {
-    log('[onFocus]', document.activeElement);
-    this.stashValue();
-    this.props.onFocus();
-  };
+  /*
+   * Needs to be wrapped otherwise it causes issues because of race conditions
+   * Known issue for slatejs. See: https://github.com/ianstormtaylor/slate/issues/2097
+   * Using timeout I wasn't able to test this
+   * */
+  onFocus = () =>
+    new Promise(resolve => {
+      log('[onFocus]', document.activeElement);
+
+      this.stashValue();
+      this.props.onFocus();
+
+      resolve();
+    });
 
   stashValue = () => {
     log('[stashValue]');
@@ -243,11 +270,17 @@ export class Editor extends React.Component {
   };
 
   onChange = (change, done) => {
+    const { onTemporaryChange } = this.props;
+
     log('[onChange]');
     this.setState({ value: change.value }, () => {
       log('[onChange], call done()');
       if (done) {
         done();
+      }
+
+      if (onTemporaryChange) {
+        onTemporaryChange(this.state.value);
       }
     });
   };
@@ -310,7 +343,16 @@ export class Editor extends React.Component {
   };
 
   render() {
-    const { disabled, highlightShape, classes, className, pluginProps, toolbarOpts } = this.props;
+    const {
+      autoFocus,
+      disabled,
+      highlightShape,
+      classes,
+      className,
+      placeholder,
+      pluginProps,
+      toolbarOpts
+    } = this.props;
     const { value, focusedNode } = this.state;
 
     log('[render] value: ', value);
@@ -326,6 +368,7 @@ export class Editor extends React.Component {
     return (
       <div style={{ width: sizeStyle.width }} className={names}>
         <SlateEditor
+          autoFocus={autoFocus}
           plugins={this.plugins}
           ref={r => (this.editor = r && this.props.editorRef(r))}
           value={value}
@@ -340,6 +383,7 @@ export class Editor extends React.Component {
           style={{ height: sizeStyle.height }}
           pluginProps={pluginProps}
           toolbarOpts={toolbarOpts}
+          placeholder={placeholder}
         />
       </div>
     );

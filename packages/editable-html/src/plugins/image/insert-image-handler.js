@@ -50,13 +50,9 @@ class InsertImageHandler {
     } else {
       const value = this.getValue();
       const child = this.getPlaceholderInDocument(value);
-      const data = child.data.merge(
-        Data.create({ loaded: true, src, percent: 100 })
-      );
+      const data = child.data.merge(Data.create({ loaded: true, src, percent: 100 }));
 
-      const change = value
-        .change()
-        .setNodeByKey(this.placeholderBlock.key, { data });
+      const change = value.change().setNodeByKey(this.placeholderBlock.key, { data });
       this.onChange(change);
     }
   }
@@ -78,9 +74,7 @@ class InsertImageHandler {
       const dataURL = reader.result;
       const child = this.getPlaceholderInDocument(value);
       const data = child.data.set('src', dataURL);
-      const change = value
-        .change()
-        .setNodeByKey(this.placeholderBlock.key, { data });
+      const change = value.change().setNodeByKey(this.placeholderBlock.key, { data });
       this.onChange(change);
     };
     reader.readAsDataURL(file);
@@ -91,9 +85,7 @@ class InsertImageHandler {
     const value = this.getValue();
     const child = this.getPlaceholderInDocument(value);
     const data = child.data.set('percent', percent);
-    const change = value
-      .change()
-      .setNodeByKey(this.placeholderBlock.key, { data });
+    const change = value.change().setNodeByKey(this.placeholderBlock.key, { data });
     this.onChange(change);
   }
 }

@@ -16,4 +16,4 @@ export {
   NothingSubmitted,
   PartiallyCorrect,
   ShowRationale
-}
+};

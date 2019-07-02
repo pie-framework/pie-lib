@@ -1,12 +1,7 @@
 import cloneDeep from 'lodash/cloneDeep';
 
 export default (arr, fromIndex, toIndex) => {
-  if (
-    !arr ||
-    arr.length <= 1 ||
-    fromIndex === undefined ||
-    toIndex === undefined
-  ) {
+  if (!arr || arr.length <= 1 || fromIndex === undefined || toIndex === undefined) {
     throw new Error(
       `swap requires a non-empty array, fromIndex, toIndex: ${arr}, ${fromIndex} ${toIndex}`
     );

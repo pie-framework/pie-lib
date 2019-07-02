@@ -39,17 +39,17 @@ class RawContainer extends React.Component {
   render() {
     const { classes } = this.props;
     const { mounted } = this.state;
+    const initalValueMessage = `
+    If there is no initial value, it'll be set to either the min or max if present, or 0
+              if there is no min/max.`;
+
     return mounted ? (
       <div className={classes.root}>
         <div className={classes.left}>
           <Section name="NumberTextField - no initial value">
+            <Typography variant={'body1'}>{initalValueMessage}</Typography>
             <Typography variant={'body1'}>
-              If there is no initial value, it'll be set to either the min or
-              max if present, or 0 if there is no min/max.
-            </Typography>
-            <Typography variant={'body1'}>
-              onChange will only call when a number within the min max has been
-              set.
+              onChange will only call when a number within the min max has been set.
             </Typography>
             <NumberTextField
               label="1 - 10"
@@ -98,9 +98,7 @@ class RawContainer extends React.Component {
           </Section>
         </div>
         <div className={classes.right}>
-          <pre className={classes.code}>
-            {JSON.stringify(this.state, null, '  ')}
-          </pre>
+          <pre className={classes.code}>{JSON.stringify(this.state, null, '  ')}</pre>
         </div>
       </div>
     ) : (

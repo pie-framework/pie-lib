@@ -35,11 +35,7 @@ export class Wrapper extends React.Component {
           </Choice>
         </PlaceHolder>
 
-        <PlaceHolder
-          isOver={true}
-          className={classes.grid}
-          grid={{ columns: 3 }}
-        >
+        <PlaceHolder isOver={true} className={classes.grid} grid={{ columns: 3 }}>
           <Choice>foo bar</Choice>
           <Choice>
             <h1>Some Text</h1>
@@ -52,11 +48,7 @@ export class Wrapper extends React.Component {
             />
           </Choice>
         </PlaceHolder>
-        <PlaceHolder
-          disabled={true}
-          className={classes.grid}
-          grid={{ columns: 3 }}
-        >
+        <PlaceHolder disabled={true} className={classes.grid} grid={{ columns: 3 }}>
           <Choice>foo bar</Choice>
           <Choice>
             <h1>Some Text</h1>

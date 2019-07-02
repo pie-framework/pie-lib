@@ -61,16 +61,7 @@ class RawContainer extends React.Component {
           type: 'none'
         }
       },
-      tags: [
-        'apple',
-        'banana',
-        'carrot',
-        'donut',
-        'eggs',
-        'fries',
-        'hops',
-        'ice cream'
-      ],
+      tags: ['apple', 'banana', 'carrot', 'donut', 'eggs', 'fries', 'hops', 'ice cream'],
       twoChoice: 'one',
       nChoice: 'left',
       selector: {
@@ -120,8 +111,8 @@ class RawContainer extends React.Component {
         <div className={classes.left}>
           <Section name="Choice Configuration">
             <Typography>
-              This is a single choice configuration that can be used where the
-              user can build up a list of choices
+              This is a single choice configuration that can be used where the user can build up a
+              list of choices
             </Typography>
             <br />
             <br />
@@ -142,10 +133,7 @@ class RawContainer extends React.Component {
           </Section>
           <Section name="Tag Input">
             <div style={{ maxWidth: '300px' }}>
-              <TagsInput
-                tags={this.state.tags}
-                onChange={tags => this.setState({ tags })}
-              />
+              <TagsInput tags={this.state.tags} onChange={tags => this.setState({ tags })} />
             </div>
           </Section>
           <Section name="Input Container">
@@ -230,9 +218,7 @@ class RawContainer extends React.Component {
               activeLang={this.state.activeLang}
               defaultLang={this.state.defaultLang}
               onActiveLangChange={activeLang => this.setState({ activeLang })}
-              onDefaultLangChange={defaultLang =>
-                this.setState({ defaultLang })
-              }
+              onDefaultLangChange={defaultLang => this.setState({ defaultLang })}
             />
           </Section>
           <Section name="Langs">
@@ -245,9 +231,7 @@ class RawContainer extends React.Component {
           </Section>
         </div>
         <div className={classes.right}>
-          <pre className={classes.code}>
-            {JSON.stringify(this.state, null, '  ')}
-          </pre>
+          <pre className={classes.code}>{JSON.stringify(this.state, null, '  ')}</pre>
         </div>
       </div>
     ) : (
