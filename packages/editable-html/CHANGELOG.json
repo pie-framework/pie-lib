@@ -2153,5 +2153,20 @@
     "committerDate": "2019-07-02 11:29:52 -0400",
     "isTagged": true,
     "tag": "@pie-lib/editable-html@7.7.5"
+  },
+  {
+    "type": "fix",
+    "scope": "editor",
+    "subject": "added sanity check for editor reference in editor",
+    "merge": null,
+    "header": "fix(editor): added sanity check for editor reference in editor",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "274d8fdf137a9b9fa9aa9b22d825eade82179e97",
+    "gitTags": "",
+    "committerDate": "2019-07-02 14:35:31 -0400",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.7.6"
   }
 ]
