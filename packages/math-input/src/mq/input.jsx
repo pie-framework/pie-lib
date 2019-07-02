@@ -15,7 +15,7 @@ if (typeof window !== 'undefined') {
   }
 }
 
-const log = debug('math-input:mq:input');
+const log = debug('@pie-lib:math-input:mq:input');
 
 /**
  * Wrapper for MathQuill MQ.MathField.
@@ -32,6 +32,7 @@ export class Input extends React.Component {
   };
 
   componentDidMount() {
+    log('[componentDidMount] !!!');
     if (!MQ) {
       throw new Error('MQ is not defined - but component has mounted?');
     }
@@ -46,6 +47,7 @@ export class Input extends React.Component {
   }
 
   componentDidUpdate() {
+    log('[componentDidUpdate] !!!');
     this.updateLatex();
   }
 
@@ -54,7 +56,7 @@ export class Input extends React.Component {
       return;
     }
     const { latex } = this.props;
-    if (latex) {
+    if (latex && this.mathField.latex() !== latex) {
       this.mathField.latex(latex);
     }
   }
@@ -107,6 +109,11 @@ export class Input extends React.Component {
       return;
     }
 
+    if (this.mathField.latex() === this.props.latex) {
+      return;
+    }
+
+    log('mathfield:', this.mathField.latex(), 'props:', this.props.latex);
     if (onChange) {
       onChange(this.mathField.latex());
     }
@@ -125,12 +132,14 @@ export class Input extends React.Component {
   shouldComponentUpdate(nextProps) {
     log('next: ', nextProps.latex);
     log('current: ', this.mathField.latex());
-    return nextProps.latex !== this.mathField.latex();
+    const u = nextProps.latex !== this.mathField.latex();
+    log('INPUT: shouldUpdate:', u);
+    return u;
   }
 
   render() {
     const { onClick, onFocus, onBlur, classes, className } = this.props;
-
+    log('INPUT RENDER..');
     return (
       <span
         className={classNames(classes.input, className)}

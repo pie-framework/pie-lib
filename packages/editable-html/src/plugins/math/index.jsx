@@ -1,13 +1,51 @@
 import Functions from '@material-ui/icons/Functions';
 import { Inline } from 'slate';
-import { MathPreview, MathToolbar } from '@pie-lib/math-toolbar';
+import { MathPreview, PureToolbar } from '@pie-lib/math-toolbar';
 import { wrapMath, unWrapMath } from '@pie-lib/math-rendering';
 import React from 'react';
 import debug from 'debug';
-
+import SlatePropTypes from 'slate-prop-types';
+import PropTypes from 'prop-types';
 const log = debug('@pie-lib:editable-html:plugins:math');
 
 const TEXT_NODE = 3;
+
+const NewCustomToolbar = props => {
+  const { node, value } = props;
+
+  const onChange = latex => {
+    const update = {
+      ...node.data.toObject(),
+      latex
+    };
+    const change = value.change().setNodeByKey(node.key, { data: update });
+    log('call onToolbarChange:', change);
+    props.onChange(change, false);
+  };
+
+  const latex = node.data.get('latex');
+
+  log('[NewCustomToolbar] RENDER');
+  return (
+    <PureToolbar
+      autoFocus
+      latex={latex}
+      onChange={onChange}
+      onBlur={() => {
+        log('[onBlur] .. !!!');
+      }}
+      onFocus={() => {
+        log('[onFocus] .. !!!');
+      }}
+    />
+  );
+};
+
+NewCustomToolbar.propTypes = {
+  node: SlatePropTypes.node.isRequired,
+  value: SlatePropTypes.value,
+  onChange: PropTypes.func
+};
 
 export default function MathPlugin(/*options*/) {
   return {
@@ -21,42 +59,48 @@ export default function MathPlugin(/*options*/) {
         onChange(change);
       },
       supports: node => node && node.object === 'inline' && node.type === 'math',
+
+      NewCustomToolbar,
       /**
        * Return a react component function
        * @param node {Slate.Node}
        * @param value {Slate.Value}
        * @param onDone {(change?: Slate.Change, finishEditing :boolea) => void} - a function to call once the toolbar has made any changes, call with the node.key and a data object.
        */
-      customToolbar: (node, value, onToolbarDone) => {
+      customToolbar: (node, value, onToolbarChange) => {
         if (node && node.object === 'inline' && node.type === 'math') {
           const latex = node.data.get('latex');
-          const onDone = latex => {
+          const onChange = latex => {
             const update = {
               ...node.data.toObject(),
               latex
             };
             const change = value.change().setNodeByKey(node.key, { data: update });
 
-            const nextText = value.document.getNextText(node.key);
+            // const nextText = value.document.getNextText(node.key);
 
-            change.moveFocusTo(nextText.key, 0).moveAnchorTo(nextText.key, 0);
-
-            onToolbarDone(change, false);
+            // change.moveFocusTo(nextText.key, 0).moveAnchorTo(nextText.key, 0);
+            log('call onToolbarChange:', change);
+            onToolbarChange(change, false);
           };
 
-          const Tb = () => (
-            <MathToolbar
-              autoFocus
-              latex={latex}
-              onDone={onDone}
-              onBlur={() => {
-                console.log('[onBlur] .. !!!');
-              }}
-              onFocus={() => {
-                console.log('[onFocus] .. !!!');
-              }}
-            />
-          );
+          const Tb = () => {
+            log('RENDER TB - MATH CUSTOM TOOLBAR');
+            return (
+              <PureToolbar
+                autoFocus
+                latex={latex}
+                onChange={onChange}
+                // onDone={onDone}
+                onBlur={() => {
+                  console.log('[onBlur] .. !!!');
+                }}
+                onFocus={() => {
+                  console.log('[onFocus] .. !!!');
+                }}
+              />
+            );
+          };
           return Tb;
         }
       }

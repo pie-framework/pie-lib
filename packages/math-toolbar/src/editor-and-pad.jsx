@@ -46,9 +46,14 @@ export class EditorAndPad extends React.Component {
   };
 
   componentDidMount() {
+    log('[componentDidMount]');
     if (this.input && this.props.autoFocus) {
       this.input.focus();
     }
+  }
+
+  componentDidUpdate() {
+    log('[componentDidUpdate]');
   }
 
   onClick = data => {
@@ -91,13 +96,14 @@ export class EditorAndPad extends React.Component {
       this.input.write(latex.replace(decimalRegex, ''));
       return;
     }
-
+    log('[onEditorChange] call onChange', latex);
     onChange(latex);
   };
 
   /** Only render if the mathquill instance's latex is different
    * or the keypad state changed from one state to the other (shown / hidden) */
   shouldComponentUpdate(nextProps) {
+    log('[shouldComponentUpdate] ?? ', this.props, nextProps);
     const inputIsDifferent = this.input.mathField.latex() !== nextProps.latex;
     log('[shouldComponentUpdate] ', 'inputIsDifferent: ', inputIsDifferent);
 

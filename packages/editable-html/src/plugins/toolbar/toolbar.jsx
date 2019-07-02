@@ -12,13 +12,26 @@ import { withStyles } from '@material-ui/core/styles';
 import DefaultToolbar from './default-toolbar';
 const log = debug('@pie-lib:editable-html:plugins:toolbar');
 
+/**
+ * toolbar rendering optimization
+ *
+ * we have an issue where a custom toolbar is doing a full re-render on a change.
+ *
+ * What we want is for the component to be alreayd seen as mounted by react and for the shouldComponentUpdate logic to kick in.
+ *
+ *
+ * 1. Try using a component def instead of genereating a component def each time.
+ *
+ *
+ *
+ */
 export class Toolbar extends React.Component {
   static propTypes = {
     zIndex: PropTypes.number,
     value: SlatePropTypes.value.isRequired,
     plugins: PropTypes.array,
     onImageClick: PropTypes.func,
-    onDone: PropTypes.func.isRequired,
+    //onDone: PropTypes.func.isRequired,
     classes: PropTypes.object.isRequired,
     isFocused: PropTypes.bool,
     autoWidth: PropTypes.bool,
@@ -95,8 +108,8 @@ export class Toolbar extends React.Component {
       value,
       autoWidth,
       onChange,
-      isFocused,
-      onDone
+      isFocused
+      // onDone
     } = this.props;
 
     const node = findSingleNode(value);
@@ -126,24 +139,29 @@ export class Toolbar extends React.Component {
 
     log('[render] plugin: ', plugin);
 
-    const handleDone = (change, done) => {
-      let handler = onDone;
+    // const handleDone = (change, done) => {
+    //   let handler = onDone;
 
-      if (plugin && plugin.toolbar && plugin.toolbar.customToolbar) {
-        handler = this.onToolbarDone;
-      }
+    //   if (plugin && plugin.toolbar && plugin.toolbar.customToolbar) {
+    //     handler = this.onToolbarDone;
+    //   }
 
-      handler(change, done);
+    //   handler(change, done);
 
-      if (parentPlugin && parentPlugin.handleDone) {
-        parentPlugin.handleDone(value, node, plugin, onChange);
-      }
-    };
+    //   if (parentPlugin && parentPlugin.handleDone) {
+    //     parentPlugin.handleDone(value, node, plugin, onChange);
+    //   }
+    // };
+    // const onToolbarChange = change => {
+    //   log('[onToolbarChange]', arguments);
+    //   const { onChange } = this.props;
+    //   onChange(change);
+    // };
 
-    const CustomToolbar =
-      plugin && plugin.toolbar && plugin.toolbar.customToolbar
-        ? plugin.toolbar.customToolbar(node, value, handleDone)
-        : null;
+    const CustomToolbar = plugin && plugin.toolbar && plugin.toolbar.NewCustomToolbar;
+    // ? plugin.toolbar.customToolbar(node, value, onToolbarChange)
+    // : null;
+
     const filteredPlugins =
       plugin && plugin.filterPlugins ? plugin.filterPlugins(node, plugins) : plugins;
 
@@ -167,20 +185,20 @@ export class Toolbar extends React.Component {
     });
 
     const deletable = node && plugin && plugin.deleteNode;
-    const showDone =
-      node && plugin && plugin.toolbar && plugin.toolbar.showDone && !toolbarOpts.alwaysVisible;
+    // const showDone =
+    // node && plugin && plugin.toolbar && plugin.toolbar.showDone && !toolbarOpts.alwaysVisible;
 
     return (
       <div className={names} style={extraStyles} onClick={this.onClick}>
         {CustomToolbar ? (
-          <CustomToolbar />
+          <CustomToolbar onChange={onChange} node={node} value={value} />
         ) : (
           <DefaultToolbar
             plugins={filteredPlugins}
             pluginProps={pluginProps}
             value={value}
             onChange={onChange}
-            onDone={handleDone}
+            onDone={undefined}
           />
         )}
 
@@ -198,7 +216,7 @@ export class Toolbar extends React.Component {
               <Delete />
             </IconButton>
           )}
-          {showDone && <DoneButton onClick={handleDone} />}
+          {/* {showDone && <DoneButton onClick={handleDone} />} */}
         </div>
       </div>
     );

@@ -28,7 +28,9 @@ export class EditorAndToolbar extends React.Component {
       alwaysVisible: PropTypes.bool
     })
   };
-
+  static defaultProps = {
+    classNames: {}
+  };
   /** This is an interim fix until this PR is merged in slate:
    * https://github.com/ianstormtaylor/slate/pull/2236
    */
@@ -47,7 +49,7 @@ export class EditorAndToolbar extends React.Component {
       value,
       plugins,
       onChange,
-      onDone,
+      //onDone,
       focusedNode,
       autoWidth,
       readOnly,
@@ -92,7 +94,7 @@ export class EditorAndToolbar extends React.Component {
           value={value}
           isFocused={inFocus}
           onChange={onChange}
-          onDone={onDone}
+          //onDone={onDone}
           pluginProps={pluginProps}
           toolbarOpts={toolbarOpts}
         />

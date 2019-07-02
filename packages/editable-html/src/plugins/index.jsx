@@ -60,10 +60,10 @@ export const ALL_PLUGINS = [
   'strikethrough',
   'bulleted-list',
   'numbered-list',
-  'image',
-  'math',
-  'table',
-  'response-area'
+  // 'image',
+  'math'
+  // 'table',
+  // 'response-area'
 ];
 
 export const DEFAULT_PLUGINS = ALL_PLUGINS.slice(0, 10);
