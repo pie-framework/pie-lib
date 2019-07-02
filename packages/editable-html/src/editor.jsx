@@ -150,7 +150,7 @@ export class Editor extends React.Component {
 
   componentDidMount() {
     if (this.editor && this.props.autoFocus) {
-      setTimeout(() => {
+      Promise.resolve().then(() => {
         const editorDOM = document.querySelector(`[data-key="${this.editor.value.document.key}"]`);
 
         this.editor.focus();
@@ -158,7 +158,7 @@ export class Editor extends React.Component {
         if (editorDOM) {
           editorDOM.focus();
         }
-      }, 0);
+      });
     }
   }
 
