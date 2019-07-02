@@ -374,7 +374,7 @@
     "footer": null,
     "notes": [],
     "hash": "3079d35bd9240259119ac133b8927834dd7c4ebc",
-    "gitTags": "",
+    "gitTags": " (develop)",
     "committerDate": "2019-07-01 10:27:40 +0100",
     "isTagged": true,
     "tag": "@pie-lib/graphing@1.0.2"
