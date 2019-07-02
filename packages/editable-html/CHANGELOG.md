@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.7.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.7.5...@pie-lib/editable-html@7.7.6) (2019-07-02)
+
+
+### Bug Fixes
+
+* **editor:** added sanity check for editor reference in editor ([274d8fd](https://github.com/pie-framework/pie-lib/commit/274d8fd))
+
+
+
+
+
 ## [7.7.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.7.4...@pie-lib/editable-html@7.7.5) (2019-07-02)
 
 
