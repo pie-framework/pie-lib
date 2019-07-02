@@ -1,1 +1,47 @@
-[]
+[
+  {
+    "type": "feat",
+    "scope": null,
+    "subject": "moved utils into their own package",
+    "merge": null,
+    "header": "feat: moved utils into their own package",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "280341d1cbff12953bccefec417374c0b94077eb",
+    "gitTags": "",
+    "committerDate": "2019-07-02 08:20:57 -0400",
+    "isTagged": true,
+    "tag": "@pie-lib/graphing-utils@1.1.0"
+  },
+  {
+    "type": "feat",
+    "scope": null,
+    "subject": "moved utils into their own package",
+    "merge": null,
+    "header": "feat: moved utils into their own package",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "c0b8e003b6928019b6a48f7b334e0c2f9171c8d4",
+    "gitTags": "",
+    "committerDate": "2019-07-02 08:08:52 -0400",
+    "isTagged": true,
+    "tag": "@pie-lib/graphing-utils@1.1.0"
+  },
+  {
+    "type": "feat",
+    "scope": null,
+    "subject": "moved utils into their own package",
+    "merge": null,
+    "header": "feat: moved utils into their own package",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "c9a7d40cec0a4ad75107b81dd1b1228ff0ce446c",
+    "gitTags": "",
+    "committerDate": "2019-07-02 08:01:12 -0400",
+    "isTagged": true,
+    "tag": "@pie-lib/graphing-utils@1.1.0"
+  }
+]

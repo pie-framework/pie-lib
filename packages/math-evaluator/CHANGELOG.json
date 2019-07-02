@@ -253,5 +253,35 @@
     "committerDate": "2019-05-21 06:26:54 +0300",
     "isTagged": true,
     "tag": "@pie-lib/math-evaluator@0.5.1"
+  },
+  {
+    "type": "fix",
+    "scope": "math-evaluator",
+    "subject": "fix equals sign treatment in expressions",
+    "merge": null,
+    "header": "fix(math-evaluator): fix equals sign treatment in expressions",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "f81e9245ad3fefd0895c510cd3e2b2f3d4d11843",
+    "gitTags": " (origin/fix/math-evaluator-expression-fixes)",
+    "committerDate": "2019-06-25 15:43:58 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/math-evaluator@0.5.4"
+  },
+  {
+    "type": "chore",
+    "scope": null,
+    "subject": "added two failing tests for math-evaluator",
+    "merge": null,
+    "header": "chore: added two failing tests for math-evaluator",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "326a94b419dc16c3a23b80d155e0b0a3e32a7b28",
+    "gitTags": "",
+    "committerDate": "2019-06-24 18:26:25 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/math-evaluator@0.5.4"
   }
 ]

@@ -378,5 +378,20 @@
     "committerDate": "2019-07-01 10:27:40 +0100",
     "isTagged": true,
     "tag": "@pie-lib/graphing@1.0.2"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "avoid app crash when tools not defined.",
+    "merge": null,
+    "header": "fix: avoid app crash when tools not defined.",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "54915cc682d15415d35872f506b4bc2273672193",
+    "gitTags": "",
+    "committerDate": "2019-07-02 07:45:01 -0400",
+    "isTagged": true,
+    "tag": "@pie-lib/graphing@1.0.3"
   }
 ]
