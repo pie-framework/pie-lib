@@ -19,7 +19,7 @@ export class GraphWithControls extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentTool: props.currentTool || props.tools[0].type
+      currentTool: props.currentTool || (props.tools.length && props.tools[0].type) || undefined
     };
   }
 
