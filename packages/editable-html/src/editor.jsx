@@ -151,12 +151,16 @@ export class Editor extends React.Component {
   componentDidMount() {
     if (this.editor && this.props.autoFocus) {
       Promise.resolve().then(() => {
-        const editorDOM = document.querySelector(`[data-key="${this.editor.value.document.key}"]`);
+        if (this.editor) {
+          const editorDOM = document.querySelector(
+            `[data-key="${this.editor.value.document.key}"]`
+          );
 
-        this.editor.focus();
+          this.editor.focus();
 
-        if (editorDOM) {
-          editorDOM.focus();
+          if (editorDOM) {
+            editorDOM.focus();
+          }
         }
       });
     }
