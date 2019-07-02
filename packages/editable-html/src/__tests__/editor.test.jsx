@@ -51,16 +51,15 @@ describe('logic', () => {
       });
   });
 });
-/*
 
-test('onFocus stashes the value', () => {
+test('onFocus stashes the value', async () => {
   const wrapper = shallow(
     <Editor editorRef={jest.fn()} value={value} classes={{}} onChange={jest.fn()} />
   );
 
   jest.runAllTimers();
 
-  wrapper.instance().onFocus();
+  await wrapper.instance().onFocus();
 
   jest.runAllTimers();
 
@@ -107,4 +106,3 @@ describe('buildSizeStyle', () => {
     });
   });
 });
-*/
