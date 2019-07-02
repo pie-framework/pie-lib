@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.3.0...@pie-lib/mask-markup@1.3.1) (2019-06-26)
+
+
+### Bug Fixes
+
+* **rendering:** made sure that all styles provided in the markup are rendered [ch1935] ([b5c076c](https://github.com/pie-framework/pie-lib/commit/b5c076c))
+
+
+
+
+
 # [1.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.2.5...@pie-lib/mask-markup@1.3.0) (2019-06-21)
 
 

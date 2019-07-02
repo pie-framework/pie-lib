@@ -638,5 +638,55 @@
     "committerDate": "2019-06-14 01:45:14 +0300",
     "isTagged": true,
     "tag": "@pie-lib/demo@4.7.0"
+  },
+  {
+    "type": "feat",
+    "scope": null,
+    "subject": "add `toolbar` flag to each tool",
+    "merge": null,
+    "header": "feat: add `toolbar` flag to each tool",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "c32ec2ccd0017a6ccb4b1e656ca4e9d0f1321aaf",
+    "gitTags": "",
+    "committerDate": "2019-06-28 11:03:29 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/demo@5.0.0"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "removed correctnessMarks and displayedTools",
+    "merge": null,
+    "header": "fix: removed correctnessMarks and displayedTools",
+    "body": null,
+    "footer": "BREAKING CHANGE: Graph 'tools' expected property has to be an array of objects having this form: { display: bool, Component: tool }",
+    "notes": [
+      {
+        "title": "BREAKING CHANGE",
+        "text": "Graph 'tools' expected property has to be an array of objects having this form: { display: bool, Component: tool }"
+      }
+    ],
+    "hash": "6043e88322a316c6d1f3e0d4ba827a95337662aa",
+    "gitTags": "",
+    "committerDate": "2019-06-28 00:00:20 -0400",
+    "isTagged": true,
+    "tag": "@pie-lib/demo@5.0.0"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "calculate edge when points are on same horizontal or vertical line",
+    "merge": null,
+    "header": "fix: calculate edge when points are on same horizontal or vertical line",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "5cba298d99fcece210bd47ada1692144be604dc0",
+    "gitTags": "",
+    "committerDate": "2019-06-27 13:19:23 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/demo@5.0.0"
   }
 ]

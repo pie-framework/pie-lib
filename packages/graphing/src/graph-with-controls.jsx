@@ -19,13 +19,23 @@ export class GraphWithControls extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentTool: props.tools[0]
+      currentTool: props.currentTool || (props.tools.length && props.tools[0].type) || undefined
     };
   }
 
   changeCurrentTool = currentTool => {
     this.setState({ currentTool });
   };
+
+  componentDidUpdate() {
+    const { tools } = this.props;
+    const { currentTool } = this.state;
+    const t = tools.find(t => currentTool && t.type === currentTool);
+
+    if ((!t || !t.toolbar) && !!currentTool) {
+      this.setState({ currentTool: (tools.find(t => t.toolbar) || {}).type });
+    }
+  }
 
   render() {
     const {
@@ -44,15 +54,18 @@ export class GraphWithControls extends React.Component {
       onRedo,
       onReset,
       tools,
-      displayedTools
+      disabled
     } = this.props;
-
     const { currentTool, labelModeEnabled } = this.state;
+
+    // const enabled = !correctnessMarks;
+
     return (
       <div className={classNames(classes.graphWithControls, className)}>
         <div className={classes.controls}>
           <ToolMenu
-            tools={displayedTools || tools}
+            disabled={disabled}
+            tools={tools}
             currentTool={currentTool}
             onChange={this.changeCurrentTool}
             labelModeEnabled={labelModeEnabled}
@@ -60,7 +73,7 @@ export class GraphWithControls extends React.Component {
               this.setState({ labelModeEnabled: !this.state.labelModeEnabled })
             }
           />
-          <UndoRedo onUndo={onUndo} onRedo={onRedo} onReset={onReset} />
+          {!disabled && <UndoRedo onUndo={onUndo} onRedo={onRedo} onReset={onReset} />}
         </div>
         <div ref={r => (this.labelNode = r)} />
         <Graph
@@ -73,7 +86,7 @@ export class GraphWithControls extends React.Component {
           labels={labels}
           marks={marks}
           backgroundMarks={backgroundMarks}
-          onChangeMarks={onChangeMarks}
+          onChangeMarks={disabled ? () => {} : onChangeMarks}
           tools={tools}
           currentTool={currentTool}
         />

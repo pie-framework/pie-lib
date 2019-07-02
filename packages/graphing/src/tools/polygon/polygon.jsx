@@ -75,8 +75,12 @@ export const Polygon = withStyles(theme => ({
   disabled: {
     ...disabled('stroke')
   },
-  correct: correct('stoke'),
-  incorrect: incorrect('stroke')
+  correct: {
+    ...correct('stroke')
+  },
+  incorrect: {
+    ...incorrect('stroke')
+  }
 }))(RawPolygon);
 
 export default gridDraggable({
