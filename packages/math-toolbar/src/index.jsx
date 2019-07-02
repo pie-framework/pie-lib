@@ -5,11 +5,8 @@ import EditorAndPad from './editor-and-pad';
 import { DoneButton } from './done-button';
 import { withStyles } from '@material-ui/core/styles';
 import MathPreview from './math-preview';
-import debug from 'debug';
 
 export { MathPreview };
-
-const log = debug('@pie-lib:math-toolbar');
 
 export class MathToolbar extends React.Component {
   static propTypes = {
@@ -24,7 +21,7 @@ export class MathToolbar extends React.Component {
     latex: PropTypes.string.isRequired,
     onAnswerBlockAdd: PropTypes.func,
     onChange: PropTypes.func,
-    onDone: PropTypes.func,
+    onDone: PropTypes.func.isRequired,
     onFocus: PropTypes.func
   };
 
@@ -50,36 +47,16 @@ export class MathToolbar extends React.Component {
   }
 
   done = () => {
-    if (this.props.onDone) {
-      this.props.onDone(this.state.latex);
-    }
+    this.props.onDone(this.state.latex);
   };
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     this.setState({ latex: nextProps.latex });
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    if (nextProps.latex !== this.props.latex) {
-      log('UPDATE Props:', nextProps.latex, this.props.latex);
-      return true;
-    }
-    if (nextState.latex !== this.state.latex) {
-      log('UPDATE State:', nextState.latex, this.state.latex);
-      return true;
-    }
-    return false;
-  }
-
   onChange = latex => {
-    if (this.state.latex === latex) {
-      return;
-    }
-    this.setState({ latex }, () => {
-      if (this.props.onChange) {
-        this.props.onChange(latex);
-      }
-    });
+    this.setState({ latex });
+    this.props.onChange(latex);
   };
 
   render() {
@@ -119,7 +96,6 @@ export class MathToolbar extends React.Component {
 
 export class RawPureToolbar extends React.Component {
   static propTypes = {
-    /** @deprecated */
     classNames: PropTypes.object,
     latex: PropTypes.string.isRequired,
     keypadMode: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -128,7 +104,6 @@ export class RawPureToolbar extends React.Component {
     onAnswerBlockAdd: PropTypes.func,
     additionalKeys: PropTypes.array,
     onFocus: PropTypes.func,
-    onBlur: PropTypes.func,
     classes: PropTypes.object.isRequired,
     autoFocus: PropTypes.bool,
     noDecimal: PropTypes.bool,
@@ -136,15 +111,6 @@ export class RawPureToolbar extends React.Component {
     controlledKeypad: PropTypes.bool,
     showKeypad: PropTypes.bool
   };
-
-  shouldComponentUpdate(nextProps) {
-    if (nextProps.latex !== this.props.latex) {
-      log('UPDATE Props:', nextProps.latex, this.props.latex);
-      return true;
-    }
-    log("PureToolbar don't update");
-    return false;
-  }
 
   render() {
     const {
@@ -161,18 +127,17 @@ export class RawPureToolbar extends React.Component {
       onChange,
       onDone,
       onFocus,
-      onBlur,
       classes
     } = this.props;
 
-    log('RENDER!!!!', this.props);
+    const cn = classNames || {};
     return (
-      <div className={cx(classes.pureToolbar, (classNames || {}).toolbar)}>
+      <div className={cx(classes.pureToolbar, cn.toolbar)}>
         <div />
         <EditorAndPad
           autoFocus={autoFocus}
           keypadMode={keypadMode}
-          classNames={classNames || {}}
+          classNames={cn}
           controlledKeypad={controlledKeypad}
           noDecimal={noDecimal}
           showKeypad={showKeypad}
@@ -182,7 +147,6 @@ export class RawPureToolbar extends React.Component {
           latex={latex}
           onChange={onChange}
           onFocus={onFocus}
-          onBlur={onBlur}
         />
         {(!controlledKeypad || (controlledKeypad && showKeypad)) && <DoneButton onClick={onDone} />}
       </div>

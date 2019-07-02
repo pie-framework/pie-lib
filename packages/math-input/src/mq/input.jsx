@@ -4,15 +4,12 @@ import { withStyles } from '@material-ui/core/styles';
 import debug from 'debug';
 import classNames from 'classnames';
 import { registerLineBreak } from './custom-elements';
+import { load as loadMathQuill } from './load-mathquill';
 
-let MQ;
-if (typeof window !== 'undefined') {
-  const MathQuill = require('@pie-framework/mathquill');
-  MQ = MathQuill.getInterface(2);
+const MQ = loadMathQuill();
 
-  if (MQ && MQ.registerEmbed) {
-    registerLineBreak(MQ);
-  }
+if (MQ && MQ.registerEmbed) {
+  registerLineBreak(MQ);
 }
 
 const log = debug('@pie-lib:math-input:mq:input');
@@ -32,22 +29,26 @@ export class Input extends React.Component {
   };
 
   componentDidMount() {
-    log('[componentDidMount] !!!');
     if (!MQ) {
       throw new Error('MQ is not defined - but component has mounted?');
     }
 
+    log('[componentDidMount] input:', this.input);
     this.mathField = MQ.MathField(this.input, {
       handlers: {
-        edit: this.onInputEdit.bind(this)
+        edit: () => {
+          console.log('!!! Edit');
+          this.onInputEdit.bind(this)();
+        }
       }
     });
+    log('[componentDidMount] mathField:', this.mathField);
 
     this.updateLatex();
   }
 
   componentDidUpdate() {
-    log('[componentDidUpdate] !!!');
+    log('[componentDidUpdate]...');
     this.updateLatex();
   }
 
@@ -56,7 +57,7 @@ export class Input extends React.Component {
       return;
     }
     const { latex } = this.props;
-    if (latex && this.mathField.latex() !== latex) {
+    if (latex) {
       this.mathField.latex(latex);
     }
   }
@@ -109,37 +110,31 @@ export class Input extends React.Component {
       return;
     }
 
-    if (this.mathField.latex() === this.props.latex) {
-      return;
-    }
-
-    log('mathfield:', this.mathField.latex(), 'props:', this.props.latex);
     if (onChange) {
       onChange(this.mathField.latex());
     }
   };
 
-  onKeyPress = event => {
-    if (event.charCode === 13) {
-      // if enter's pressed, we're going for a custom embedded element that'll
-      // have a block display (empty div) - for a hacked line break using ccs
-      // all because mathquill doesn't support a line break
-      this.write('\\embed{newLine}[]');
-      this.onInputEdit();
-    }
-  };
+  // onKeyPress = event => {
+  //   if (event.charCode === 13) {
+  //     // if enter's pressed, we're going for a custom embedded element that'll
+  //     // have a block display (empty div) - for a hacked line break using ccs
+  //     // all because mathquill doesn't support a line break
+  //     this.write('\\embed{newLine}[]');
+  //     this.onInputEdit();
+  //   }
+  // };
 
   shouldComponentUpdate(nextProps) {
     log('next: ', nextProps.latex);
     log('current: ', this.mathField.latex());
-    const u = nextProps.latex !== this.mathField.latex();
-    log('INPUT: shouldUpdate:', u);
-    return u;
+    return nextProps.latex !== this.mathField.latex();
   }
 
   render() {
     const { onClick, onFocus, onBlur, classes, className } = this.props;
-    log('INPUT RENDER..');
+
+    log('[render]...');
     return (
       <span
         className={classNames(classes.input, className)}

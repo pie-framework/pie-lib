@@ -40,20 +40,16 @@ export class EditorAndPad extends React.Component {
     latex: PropTypes.string.isRequired,
     onAnswerBlockAdd: PropTypes.func,
     onFocus: PropTypes.func,
-    onBlur: PropTypes.func,
     onChange: PropTypes.func.isRequired,
     classes: PropTypes.object
   };
 
   componentDidMount() {
-    log('[componentDidMount]');
     if (this.input && this.props.autoFocus) {
-      this.input.focus();
+      setTimeout(() => {
+        this.input.focus();
+      }, 100);
     }
-  }
-
-  componentDidUpdate() {
-    log('[componentDidUpdate]');
   }
 
   onClick = data => {
@@ -96,14 +92,13 @@ export class EditorAndPad extends React.Component {
       this.input.write(latex.replace(decimalRegex, ''));
       return;
     }
-    log('[onEditorChange] call onChange', latex);
+
     onChange(latex);
   };
 
   /** Only render if the mathquill instance's latex is different
    * or the keypad state changed from one state to the other (shown / hidden) */
   shouldComponentUpdate(nextProps) {
-    log('[shouldComponentUpdate] ?? ', this.props, nextProps);
     const inputIsDifferent = this.input.mathField.latex() !== nextProps.latex;
     log('[shouldComponentUpdate] ', 'inputIsDifferent: ', inputIsDifferent);
 
@@ -118,8 +113,8 @@ export class EditorAndPad extends React.Component {
     if (!inputIsDifferent && this.props.controlledKeypad) {
       return this.props.showKeypad !== nextProps.showKeypad;
     }
-
-    return inputIsDifferent;
+    return true;
+    // return inputIsDifferent;
   }
 
   render() {
@@ -133,7 +128,6 @@ export class EditorAndPad extends React.Component {
       noDecimal,
       latex,
       onFocus,
-      onBlur,
       classes
     } = this.props;
     const shouldShowKeypad = !controlledKeypad || (controlledKeypad && showKeypad);
@@ -144,7 +138,6 @@ export class EditorAndPad extends React.Component {
       <div className={cx(classes.mathToolbar, classNames.mathToolbar)}>
         <mq.Input
           onFocus={onFocus}
-          onBlur={onBlur}
           className={cx(classes.mathEditor, classNames.editor)}
           innerRef={r => (this.input = r)}
           latex={latex}

@@ -34,7 +34,6 @@
     "to-style": "^1.3.3"
   },
   "devDependencies": {
-    "@pie-framework/mathquill": "^0.10.3",
     "react": "^16.8.6",
     "react-dom": "^16.7.0"
   },

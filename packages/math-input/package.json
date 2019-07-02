@@ -8,7 +8,7 @@
   "dependencies": {
     "@material-ui/core": "^3.8.3",
     "@material-ui/icons": "^3.0.2",
-    "@pie-framework/mathquill": "^0.10.3",
+    "@pie-framework/mathquill": "^0.11.1",
     "debug": "^4.1.1",
     "lodash": "^4.17.11",
     "react-portal": "^4.2.0"

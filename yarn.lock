@@ -2036,10 +2036,10 @@
     lodash "^4.17.11"
     through2 "^3.0.1"
 
-"@pie-framework/mathquill@^0.10.3":
-  version "0.10.4"
-  resolved "https://registry.yarnpkg.com/@pie-framework/mathquill/-/mathquill-0.10.4.tgz#6725a1ab29381479d75439e97ad4934b86ed0991"
-  integrity sha512-qKGhcYgR9B0YfV0aAnJDM6JDAd+aYiYFpH2BSrBbWDb4C1WfaqzuceSZmZjOthl11Tatg1/coRaz5UKDWto3Rw==
+"@pie-framework/mathquill@^0.11.1":
+  version "0.11.1"
+  resolved "https://registry.yarnpkg.com/@pie-framework/mathquill/-/mathquill-0.11.1.tgz#98269092337387c4887f216b2f827be4b0e19a7c"
+  integrity sha512-rXFkRO7h+OJoYJjFySA9C7YdOFdcUkm2iDD/s9niwU2ElAn/K93cjCqDxAsGU3Cd/NSNSERw3/weTswxERuRTA==
   dependencies:
     jquery "^3.3.1"
 
