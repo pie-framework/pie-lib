@@ -6,10 +6,10 @@ import {
   parabola,
   parabolaFromTwoPoints
 } from '../index';
-import { utils } from '@pie-lib/plot';
 
 import _ from 'lodash';
-const { xy } = utils;
+
+const xy = (x, y) => ({ x, y });
 
 describe('utils', () => {
   describe('xPoints', () => {
