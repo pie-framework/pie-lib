@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@1.0.2...@pie-lib/graphing@1.0.3) (2019-07-02)
+
+
+### Bug Fixes
+
+* avoid app crash when tools not defined. ([54915cc](https://github.com/pie-framework/pie-lib/commit/54915cc))
+
+
+
+
+
 ## [1.0.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@1.0.1...@pie-lib/graphing@1.0.2) (2019-07-01)
 
 

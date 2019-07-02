@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.1...@pie-lib/math-toolbar@1.4.2) (2019-07-02)
+
+
+### Bug Fixes
+
+* **math-toolbar:** fix width styling ([6b3788a](https://github.com/pie-framework/pie-lib/commit/6b3788a))
+
+
+
+
+
 ## [1.4.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.0...@pie-lib/math-toolbar@1.4.1) (2019-06-17)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
