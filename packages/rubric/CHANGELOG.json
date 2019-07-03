@@ -148,5 +148,35 @@
     "committerDate": "2019-06-05 23:27:16 +0300",
     "isTagged": true,
     "tag": "@pie-lib/rubric@0.2.1"
+  },
+  {
+    "type": "chore",
+    "scope": "editable-html",
+    "subject": "version bumped the editor version",
+    "merge": null,
+    "header": "chore(editable-html): version bumped the editor version",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "ae5be2c531ca9196cafc8ac22c519b369bb50e8a",
+    "gitTags": "",
+    "committerDate": "2019-07-02 14:45:51 -0400",
+    "isTagged": true,
+    "tag": "@pie-lib/rubric@0.2.8"
+  },
+  {
+    "type": "chore",
+    "scope": "version",
+    "subject": "version bumped some elements that depend on editable-html",
+    "merge": null,
+    "header": "chore(version): version bumped some elements that depend on editable-html",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "1b472679a467a5a37b43a2935c093afb10eb7bb8",
+    "gitTags": "",
+    "committerDate": "2019-07-02 14:41:50 -0400",
+    "isTagged": true,
+    "tag": "@pie-lib/rubric@0.2.8"
   }
 ]

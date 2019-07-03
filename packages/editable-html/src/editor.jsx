@@ -30,6 +30,7 @@ export class Editor extends React.Component {
     disableUnderline: PropTypes.bool,
     autoWidthToolbar: PropTypes.bool,
     pluginProps: PropTypes.any,
+    placeholder: PropTypes.string,
     responseAreaProps: PropTypes.shape({
       type: PropTypes.oneOf([
         'explicit-constructed-response',
@@ -348,7 +349,6 @@ export class Editor extends React.Component {
 
   render() {
     const {
-      autoFocus,
       disabled,
       highlightShape,
       classes,
@@ -372,7 +372,6 @@ export class Editor extends React.Component {
     return (
       <div style={{ width: sizeStyle.width }} className={names}>
         <SlateEditor
-          autoFocus={autoFocus}
           plugins={this.plugins}
           ref={r => (this.editor = r && this.props.editorRef(r))}
           value={value}
