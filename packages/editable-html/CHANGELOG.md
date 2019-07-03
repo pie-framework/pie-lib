@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.7.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.7.6...@pie-lib/editable-html@7.7.7) (2019-07-03)
+
+
+### Bug Fixes
+
+* **editable-html:** removed autoFocus prop that was added to the slate editor, causing issues with rendering when the editor is used on a element thats not yet added in the dom ([e67d56e](https://github.com/pie-framework/pie-lib/commit/e67d56e))
+
+
+
+
+
 ## [7.7.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.7.5...@pie-lib/editable-html@7.7.6) (2019-07-02)
 
 
