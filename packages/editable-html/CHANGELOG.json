@@ -2168,5 +2168,20 @@
     "committerDate": "2019-07-02 14:35:31 -0400",
     "isTagged": true,
     "tag": "@pie-lib/editable-html@7.7.6"
+  },
+  {
+    "type": "fix",
+    "scope": "editable-html",
+    "subject": "removed autoFocus prop that was added to the slate editor, causing issues with rendering when the editor is used on a element thats not yet added in the dom",
+    "merge": null,
+    "header": "fix(editable-html): removed autoFocus prop that was added to the slate editor, causing issues with rendering when the editor is used on a element thats not yet added in the dom",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "e67d56e1a947408877352e03ca33ad00d0ca5cbb",
+    "gitTags": "",
+    "committerDate": "2019-07-03 14:46:50 -0400",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.7.7"
   }
 ]
