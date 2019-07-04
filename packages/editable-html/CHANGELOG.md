@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.7.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.7.7...@pie-lib/editable-html@7.7.8) (2019-07-04)
+
+
+### Bug Fixes
+
+* **editable-html:** made it possible to add response area when there's no focus and the markup is empty, removed response area from the table when it is not active in the main editor ([adeb618](https://github.com/pie-framework/pie-lib/commit/adeb618))
+
+
+
+
+
 ## [7.7.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.7.6...@pie-lib/editable-html@7.7.7) (2019-07-03)
 
 
