@@ -54,7 +54,8 @@ export class GraphWithControls extends React.Component {
       onRedo,
       onReset,
       tools,
-      disabled
+      disabled,
+      hideLabel
     } = this.props;
     const { currentTool, labelModeEnabled } = this.state;
 
@@ -72,6 +73,7 @@ export class GraphWithControls extends React.Component {
             onToggleLabelMode={() =>
               this.setState({ labelModeEnabled: !this.state.labelModeEnabled })
             }
+            hideLabel={hideLabel}
           />
           {!disabled && <UndoRedo onUndo={onUndo} onRedo={onRedo} onReset={onReset} />}
         </div>

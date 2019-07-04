@@ -353,7 +353,7 @@ export class GridDemo extends React.PureComponent {
   render() {
     log('render..');
     const { classes } = this.props;
-    const { model, settings, mounted, tabIndex = 0 } = this.state;
+    const { model, settings, mounted, tabIndex = 0, hideLabel } = this.state;
 
     log('settings:', settings);
     return mounted ? (
@@ -404,6 +404,17 @@ export class GridDemo extends React.PureComponent {
                   />
                 );
               })}
+              <FormControlLabel
+                key="label"
+                label="label"
+                control={
+                  <Checkbox
+                    checked={!hideLabel}
+                    value={!hideLabel}
+                    onChange={() => this.setState({ hideLabel: !hideLabel })}
+                  />
+                }
+              />
             </div>
             <Graph
               size={settings.size}
@@ -420,6 +431,7 @@ export class GridDemo extends React.PureComponent {
               tools={this.state.tools}
               currentTool={this.state.currentTool.Component}
               defaultTool={this.state.tools[0].Component.type}
+              hideLabel={hideLabel}
             />
           </div>
         </div>
