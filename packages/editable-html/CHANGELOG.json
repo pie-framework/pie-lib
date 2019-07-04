@@ -2183,5 +2183,20 @@
     "committerDate": "2019-07-03 14:46:50 -0400",
     "isTagged": true,
     "tag": "@pie-lib/editable-html@7.7.7"
+  },
+  {
+    "type": "fix",
+    "scope": "editable-html",
+    "subject": "made it possible to add response area when there's no focus and the markup is empty, removed response area from the table when it is not active in the main editor",
+    "merge": null,
+    "header": "fix(editable-html): made it possible to add response area when there's no focus and the markup is empty, removed response area from the table when it is not active in the main editor",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "adeb618cdf7b2f421e9aaf0f35d530f94b01d7d4",
+    "gitTags": "",
+    "committerDate": "2019-07-04 11:11:47 -0400",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.7.8"
   }
 ]
