@@ -1,2 +1,2 @@
-export Input from './input';
+export Input, { InputWithState } from './input';
 export Static from './static';

@@ -10,7 +10,7 @@ const log = debug('@pie-lib:editable-html:plugins:math');
 
 const TEXT_NODE = 3;
 
-const NewCustomToolbar = props => {
+export const NewCustomToolbar = props => {
   const { node, value } = props;
 
   const onChange = latex => {
@@ -22,10 +22,10 @@ const NewCustomToolbar = props => {
     log('call onToolbarChange:', change);
     props.onChange(change, false);
   };
-
+  console.log('node...', node);
   const latex = node.data.get('latex');
 
-  log('[NewCustomToolbar] RENDER');
+  log('[NewCustomToolbar] RENDER ------------------------>');
   return (
     <PureToolbar
       autoFocus

@@ -17,7 +17,10 @@ import MoreVert from '@material-ui/icons/MoreVert';
 import InputChooser from '../src/editable-html/input-chooser';
 import { mq } from '@pie-lib/math-input';
 import { PureToolbar } from '@pie-lib/math-toolbar';
-
+import { NewCustomToolbar } from '@pie-lib/editable-html/lib/plugins/math';
+import { Value, Selection } from 'slate';
+import Toolbar from '@pie-lib/editable-html/lib/plugins/toolbar/toolbar';
+import MathPlugin from '@pie-lib/editable-html/lib/plugins/math';
 const log = debug('@pie-lib:editable-html:demo');
 const puppySrc = 'https://bit.ly/23yROY8';
 
@@ -412,10 +415,84 @@ class RteDemo extends React.Component {
   }
 }
 
+const mathPlugin = MathPlugin();
+
 class SimpleDemo extends React.Component {
   constructor(props) {
     super(props);
+
+    let value = Value.fromJS(
+      {
+        schema: {
+          // document: {
+          //   nodes: [{ match: { type: 'div' } }]
+          // },
+          // document: {
+          // nodes: [{ match: { type: 'math' } }, { match: { type: 'div' } }],
+          // match: [{ type: 'math' }, { type: 'div' }]
+          // },
+          blocks: {
+            div: {
+              normalize: (change, error) => {
+                console.log('>>> div - normalize!!', error);
+              },
+              nodes: [{ match: [{ object: 'text' }, { type: 'math' }] }]
+            },
+            normalize: (change, error) => {
+              console.log('>>> normalize!!', error);
+            }
+          },
+          inlines: {
+            math: {
+              parent: { type: 'div' }
+            }
+          }
+        },
+        document: {
+          nodes: [
+            {
+              object: 'block',
+              type: 'div',
+              nodes: [
+                {
+                  object: 'text',
+                  nodes: [{ object: 'leaf', text: 'a' }]
+                },
+                {
+                  object: 'inline',
+                  type: 'math',
+                  data: {
+                    latex: '\\frac{1}{1}'
+                  }
+                },
+                {
+                  object: 'text',
+                  nodes: [{ object: 'leaf', text: 'b' }]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      { normalize: true }
+    );
+
+    const node = value.document.getInlinesByType('math').get(0);
+    //.nodes.get(1);
+    console.log(JSON.stringify(value.document.toJSON(), null, '  '));
+    let change = value.change();
+    console.log('node:', node);
+    if (!node) {
+      throw new Error('no node');
+    }
+    console.log('change:', change);
+    change = change.collapseToStartOf(node);
+    value = change.value;
+
+    console.log(value.selection.toJS());
     this.state = {
+      value,
+      node,
       mounted: false,
       latex: '\\frac{1}{2}',
       showInput: false
@@ -425,10 +502,17 @@ class SimpleDemo extends React.Component {
   componentDidMount() {
     this.setState({ mounted: true });
   }
+
+  tbChange = c => {
+    this.setState({ value: c.value });
+  };
   render() {
-    const { mounted, latex, showInput } = this.state;
+    const { mounted, value, node, showInput } = this.state;
     return mounted ? (
       <div>
+        <pre style={{ width: '200px', wordWrap: 'break-word', whiteSpace: 'inherit' }}>
+          {JSON.stringify(this.state)}
+        </pre>
         simple
         <FormControlLabel
           control={
@@ -439,19 +523,21 @@ class SimpleDemo extends React.Component {
           }
           label={'Show Input'}
         />
-        {showInput && (
-          <PureToolbar
-            autoFocus={true}
-            latex={latex}
-            onChange={latex => this.setState({ latex })}
-          />
-        )}
+        <Toolbar plugins={[mathPlugin]} isFocused={true} value={value} />
       </div>
     ) : (
       <div>not mounted</div>
     );
   }
 }
+
+// {showInput && (
+// <NewCustomToolbar node={node} value={value} onChange={c => this.tbChange(c)} />
+// <PureToolbar
+//   autoFocus={true}
+//   latex={latex}
+//   onChange={latex => this.setState({ latex })}
+// />
 const styles = theme => ({
   controls: {
     backgroundColor: grey[200],

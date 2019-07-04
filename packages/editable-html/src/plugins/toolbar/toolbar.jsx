@@ -43,6 +43,13 @@ export class Toolbar extends React.Component {
     })
   };
 
+  static defaultProps = {
+    toolbarOpts: {
+      position: 'bottom',
+      alwaysVisible: true
+    }
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -190,7 +197,8 @@ export class Toolbar extends React.Component {
 
     return (
       <div className={names} style={extraStyles} onClick={this.onClick}>
-        {CustomToolbar ? (
+        {CustomToolbar && <CustomToolbar onChange={onChange} node={node} value={value} />}
+        {/* {CustomToolbar ? (
           <CustomToolbar onChange={onChange} node={node} value={value} />
         ) : (
           <DefaultToolbar
@@ -200,9 +208,9 @@ export class Toolbar extends React.Component {
             onChange={onChange}
             onDone={undefined}
           />
-        )}
+        )} */}
 
-        <div className={classes.shared}>
+        {/* <div className={classes.shared}>
           {deletable && (
             <IconButton
               aria-label="Delete"
@@ -217,7 +225,7 @@ export class Toolbar extends React.Component {
             </IconButton>
           )}
           {/* {showDone && <DoneButton onClick={handleDone} />} */}
-        </div>
+        {/* </div>  */}
       </div>
     );
   }

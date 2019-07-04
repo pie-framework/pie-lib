@@ -38,7 +38,7 @@ export class EditorAndToolbar extends React.Component {
     window.editorRef = this.editorRef;
 
     if (IS_FIREFOX) {
-      this.editorRef.tmp.isUpdatingSelection = true;
+      // this.editorRef.tmp.isUpdatingSelection = true;
     }
   }
 
@@ -65,13 +65,13 @@ export class EditorAndToolbar extends React.Component {
       readOnly && classes.readOnly,
       disableUnderline && classes.disabledUnderline
     );
-    let clonedChildren = children;
+    // let clonedChildren = children;
 
-    if (typeof children !== 'string') {
-      clonedChildren = React.cloneElement(children, {
-        ref: el => (this.editorRef = el)
-      });
-    }
+    // if (typeof children !== 'string') {
+    //   clonedChildren = React.cloneElement(children, {
+    //     ref: el => (this.editorRef = el)
+    //   });
+    // }
 
     log(
       '[render] inFocus: ',
@@ -85,7 +85,7 @@ export class EditorAndToolbar extends React.Component {
     return (
       <div className={classes.root}>
         <div className={holderNames}>
-          <div className={classes.children}>{clonedChildren}</div>
+          <div className={classes.children}>{children}</div>
         </div>
         <Toolbar
           autoWidth={autoWidth}

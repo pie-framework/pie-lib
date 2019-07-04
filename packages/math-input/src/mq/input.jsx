@@ -13,7 +13,74 @@ if (MQ && MQ.registerEmbed) {
 }
 
 const log = debug('@pie-lib:math-input:mq:input');
+/**
+ *
+ * next -
+ * try stripping back mq.Input and build back up
+ * try clone?
+ *  try putting mq inside a custom element?
+ */
+export class InputWithState extends React.Component {
+  static propTypes = {
+    latex: PropTypes.string.isRequired,
+    onChange: PropTypes.func,
+    onClick: PropTypes.func,
+    onFocus: PropTypes.func,
+    onBlur: PropTypes.func,
+    className: PropTypes.string
+  };
 
+  static getDerivedStateFromProps(props, state) {
+    if (props.latex !== state.latex) {
+      return {
+        latex: props.latex
+      };
+    }
+    return null;
+  }
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      latex: props.latex
+    };
+  }
+
+  changeLatex = latex => {
+    if (latex !== this.state.latex) {
+      console.log('input with state... setting state');
+      this.setState({ latex }, () => {
+        // window.requestAnimationFrame(() => {
+        //   this.props.onChange(this.state.latex);
+        // });
+        setTimeout(() => {
+          console.log('delay change callback');
+
+          this.props.onChange(this.state.latex);
+        }, 1000);
+      });
+    }
+  };
+
+  shouldComponentUpdate(nextProps) {
+    return nextProps.latex !== this.state.latex;
+  }
+
+  render() {
+    const { latex } = this.state;
+    const { onClick, onFocus, onBlur, className } = this.props;
+    return (
+      <StyledInput
+        className={className}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        onClick={onClick}
+        latex={latex}
+        onChange={this.changeLatex}
+      />
+    );
+  }
+}
 /**
  * Wrapper for MathQuill MQ.MathField.
  */
@@ -45,8 +112,11 @@ export class Input extends React.Component {
           log('[onInputEdit] ...');
           const { onChange } = this.props;
 
-          if (onChange) {
-            const l = a.latex();
+          const l = a.latex();
+          if (onChange && l !== this.props.latex) {
+            log('[onInputEdit] calling onChange callback');
+            onChange(l);
+            // this.updateLatex();
             // setTimeout(() => {
             //   onChange(l);
             // }, 100);
@@ -64,8 +134,8 @@ export class Input extends React.Component {
     this.mathField = undefined;
   }
   componentDidUpdate() {
-    log('[componentDidUpdate]...');
-    this.updateLatex();
+    log('>>>>>>>>>>>>>>... [componentDidUpdate]...', this.props.latex);
+    //this.updateLatex();
   }
 
   updateLatex() {
@@ -139,15 +209,14 @@ export class Input extends React.Component {
   render() {
     const { onClick, onFocus, onBlur, classes, className } = this.props;
 
-    // log('[render]...');
-    console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! [render]...');
+    log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! [render]...');
     return (
-      <span
+      <div
         className={classNames(classes.input, className)}
-        onKeyPress={this.onKeyPress}
-        onClick={onClick}
-        onFocus={onFocus}
-        onBlur={onBlur}
+        // onKeyPress={this.onKeyPress}
+        // onClick={onClick}
+        // onFocus={onFocus}
+        // onBlur={onBlur}
         ref={r => (this.input = r)}
       />
     );
@@ -156,4 +225,5 @@ export class Input extends React.Component {
 
 const styles = theme => ({});
 
-export default withStyles(styles)(Input);
+const StyledInput = withStyles(styles)(Input);
+export default StyledInput;

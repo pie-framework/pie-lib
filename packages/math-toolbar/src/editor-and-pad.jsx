@@ -46,9 +46,9 @@ export class EditorAndPad extends React.Component {
 
   componentDidMount() {
     if (this.input && this.props.autoFocus) {
-      setTimeout(() => {
-        this.input.focus();
-      }, 100);
+      // setTimeout(() => {
+      //   this.input.focus();
+      // }, 100);
     }
   }
 
@@ -99,8 +99,14 @@ export class EditorAndPad extends React.Component {
   /** Only render if the mathquill instance's latex is different
    * or the keypad state changed from one state to the other (shown / hidden) */
   shouldComponentUpdate(nextProps) {
-    const inputIsDifferent = this.input.mathField.latex() !== nextProps.latex;
-    log('[shouldComponentUpdate] ', 'inputIsDifferent: ', inputIsDifferent);
+    const inputIsDifferent = this.props.latex !== nextProps.latex;
+    log(
+      '[shouldComponentUpdate] ',
+      'inputIsDifferent: ',
+      inputIsDifferent,
+      this.props.latex,
+      nextProps.latex
+    );
 
     if (!inputIsDifferent && this.props.keypadMode !== nextProps.keypadMode) {
       return true;
@@ -113,8 +119,8 @@ export class EditorAndPad extends React.Component {
     if (!inputIsDifferent && this.props.controlledKeypad) {
       return this.props.showKeypad !== nextProps.showKeypad;
     }
-    return true;
-    // return inputIsDifferent;
+    // return true;
+    return inputIsDifferent;
   }
 
   render() {
@@ -143,7 +149,7 @@ export class EditorAndPad extends React.Component {
           latex={latex}
           onChange={this.onEditorChange}
         />
-        {allowAnswerBlock && (
+        {/* {allowAnswerBlock && (
           <Button
             className={classes.addAnswerBlockButton}
             type="primary"
@@ -161,7 +167,7 @@ export class EditorAndPad extends React.Component {
             onClick={this.onClick}
             noDecimal={noDecimal}
           />
-        )}
+        )} */}
       </div>
     );
   }
