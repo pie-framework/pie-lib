@@ -26,7 +26,21 @@ export default function ResponseAreaPlugin(opts) {
       lastIndexMap[type] += 1;
 
       if (newInline) {
-        change.insertInline(newInline);
+        if (change.value.selection.startKey || change.value.selection.endKey) {
+          change.insertInline(newInline);
+        } else {
+          // If the markup is empty and there's no focus
+          const firstText = value.document.getFirstText();
+          const parentNode = value.document.getParent(firstText.key);
+
+          if (parentNode) {
+            const index = parentNode.nodes.indexOf(firstText.key);
+
+            if (parentNode.isVoid) return;
+
+            change.insertNodeByKey(parentNode.key, index + 1, newInline);
+          }
+        }
 
         onChange(change);
       }

@@ -77,7 +77,9 @@ export const buildPlugins = (activePlugins, opts) => {
   const imagePlugin = opts.image && opts.image.onDelete && ImagePlugin(opts.image);
   const mathPlugin = MathPlugin(opts.math);
   const respAreaPlugin =
-    opts.responseArea && RespAreaPlugin(opts.responseArea, compact([mathPlugin]));
+    opts.responseArea &&
+    opts.responseArea.type &&
+    RespAreaPlugin(opts.responseArea, compact([mathPlugin]));
 
   return compact([
     addIf('table', TablePlugin(opts.table, compact([imagePlugin, mathPlugin, respAreaPlugin]))),
