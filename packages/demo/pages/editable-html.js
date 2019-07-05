@@ -424,6 +424,11 @@ class SimpleDemo extends React.Component {
     let value = Value.fromJS(
       {
         schema: {
+          document: {
+            normalize: (change, error) => {
+              console.log('>>> normalize!!', error);
+            }
+          },
           // document: {
           //   nodes: [{ match: { type: 'div' } }]
           // },
@@ -444,7 +449,10 @@ class SimpleDemo extends React.Component {
           },
           inlines: {
             math: {
-              parent: { type: 'div' }
+              parent: { type: 'div' },
+              normalize: (change, error) => {
+                console.log('>>> normalize!!', error);
+              }
             }
           }
         },
@@ -455,39 +463,28 @@ class SimpleDemo extends React.Component {
               type: 'div',
               nodes: [
                 {
-                  object: 'text',
-                  nodes: [{ object: 'leaf', text: 'a' }]
-                },
-                {
                   object: 'inline',
                   type: 'math',
+                  isVoid: true,
                   data: {
-                    latex: '\\frac{1}{1}'
+                    latex: '\\frac{1}{10}'
                   }
-                },
-                {
-                  object: 'text',
-                  nodes: [{ object: 'leaf', text: 'b' }]
                 }
               ]
             }
           ]
         }
       },
-      { normalize: true }
+      { normalize: false }
     );
 
     const node = value.document.getInlinesByType('math').get(0);
     //.nodes.get(1);
     console.log(JSON.stringify(value.document.toJSON(), null, '  '));
-    let change = value.change();
     console.log('node:', node);
     if (!node) {
       throw new Error('no node');
     }
-    console.log('change:', change);
-    change = change.collapseToStartOf(node);
-    value = change.value;
 
     console.log(value.selection.toJS());
     this.state = {
@@ -504,14 +501,15 @@ class SimpleDemo extends React.Component {
   }
 
   tbChange = c => {
-    this.setState({ value: c.value });
+    const node = c.value.document.getInlinesByType('math').get(0);
+    this.setState({ value: c.value, node });
   };
   render() {
     const { mounted, value, node, showInput } = this.state;
     return mounted ? (
       <div>
-        <pre style={{ width: '200px', wordWrap: 'break-word', whiteSpace: 'inherit' }}>
-          {JSON.stringify(this.state)}
+        <pre style={{ width: '600px', whiteSpace: 'inherit' }}>
+          {JSON.stringify(this.state.value, null, '  ')}
         </pre>
         simple
         <FormControlLabel
@@ -523,7 +521,15 @@ class SimpleDemo extends React.Component {
           }
           label={'Show Input'}
         />
-        <Toolbar plugins={[mathPlugin]} isFocused={true} value={value} />
+        {showInput && (
+          <Toolbar
+            plugins={[mathPlugin]}
+            node={node}
+            isFocused={true}
+            onChange={this.tbChange}
+            value={value}
+          />
+        )}
       </div>
     ) : (
       <div>not mounted</div>

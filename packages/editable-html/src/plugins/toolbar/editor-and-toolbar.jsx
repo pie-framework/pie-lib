@@ -7,6 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import SlatePropTypes from 'slate-prop-types';
 import { IS_FIREFOX } from 'slate-dev-environment';
+import { findSingleNode, findParentNode } from '../utils';
 
 const log = debug('@pie-lib:editable-html:plugins:toolbar:editor-and-toolbar');
 
@@ -82,6 +83,9 @@ export class EditorAndToolbar extends React.Component {
       focusedNode
     );
 
+    const node = findSingleNode(value);
+    // const parentNode = findParentNode(value, node);
+
     return (
       <div className={classes.root}>
         <div className={holderNames}>
@@ -95,6 +99,7 @@ export class EditorAndToolbar extends React.Component {
           isFocused={inFocus}
           onChange={onChange}
           //onDone={onDone}
+          node={node}
           pluginProps={pluginProps}
           toolbarOpts={toolbarOpts}
         />

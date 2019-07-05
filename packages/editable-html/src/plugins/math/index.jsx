@@ -25,7 +25,7 @@ export const NewCustomToolbar = props => {
   console.log('node...', node);
   const latex = node.data.get('latex');
 
-  log('[NewCustomToolbar] RENDER ------------------------>');
+  log('[NewCustomToolbar] RENDER ------------------------>', latex);
   return (
     <PureToolbar
       autoFocus

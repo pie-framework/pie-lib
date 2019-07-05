@@ -111,6 +111,7 @@ export class Toolbar extends React.Component {
       classes,
       plugins,
       pluginProps,
+      node,
       toolbarOpts,
       value,
       autoWidth,
@@ -119,11 +120,11 @@ export class Toolbar extends React.Component {
       // onDone
     } = this.props;
 
-    const node = findSingleNode(value);
-    const parentNode = findParentNode(value, node);
+    // const node = findSingleNode(value);
+    // const parentNode = findParentNode(value, node);
 
-    log(' --------------> [render] node: ', node);
-    log('[render] node: ', node);
+    // log(' --------------> [render] node: ', node);
+    // log('[render] node: ', node);
 
     const plugin = plugins.find(p => {
       if (!node) {
@@ -134,15 +135,15 @@ export class Toolbar extends React.Component {
         return p.toolbar.supports && p.toolbar.supports(node, value);
       }
     });
-    const parentPlugin = plugins.find(p => {
-      if (!parentNode) {
-        return;
-      }
+    // const parentPlugin = plugins.find(p => {
+    //   if (!parentNode) {
+    //     return;
+    //   }
 
-      if (p.toolbar) {
-        return p.toolbar.supports && p.toolbar.supports(parentNode, value);
-      }
-    });
+    //   if (p.toolbar) {
+    //     return p.toolbar.supports && p.toolbar.supports(parentNode, value);
+    //   }
+    // });
 
     log('[render] plugin: ', plugin);
 
@@ -169,19 +170,19 @@ export class Toolbar extends React.Component {
     // ? plugin.toolbar.customToolbar(node, value, onToolbarChange)
     // : null;
 
-    const filteredPlugins =
-      plugin && plugin.filterPlugins ? plugin.filterPlugins(node, plugins) : plugins;
+    // const filteredPlugins =
+    //   plugin && plugin.filterPlugins ? plugin.filterPlugins(node, plugins) : plugins;
 
     log('[render] CustomToolbar: ', CustomToolbar);
-    const parentExtraStyles =
-      parentPlugin && parentPlugin.pluginStyles
-        ? parentPlugin.pluginStyles(parentNode, plugin)
-        : {};
-    const pluginExtraStyles =
-      plugin && plugin.pluginStyles ? plugin.pluginStyles(parentNode, plugin) : {};
+    // const parentExtraStyles =
+    //   parentPlugin && parentPlugin.pluginStyles
+    //     ? parentPlugin.pluginStyles(parentNode, plugin)
+    //     : {};
+    // const pluginExtraStyles =
+    //   plugin && plugin.pluginStyles ? plugin.pluginStyles(parentNode, plugin) : {};
     const extraStyles = {
-      ...pluginExtraStyles,
-      ...parentExtraStyles
+      // ...pluginExtraStyles,
+      // ...parentExtraStyles
     };
 
     const names = classNames(classes.toolbar, {
@@ -191,7 +192,7 @@ export class Toolbar extends React.Component {
       [classes.fullWidth]: !autoWidth
     });
 
-    const deletable = node && plugin && plugin.deleteNode;
+    // const deletable = node && plugin && plugin.deleteNode;
     // const showDone =
     // node && plugin && plugin.toolbar && plugin.toolbar.showDone && !toolbarOpts.alwaysVisible;
 
