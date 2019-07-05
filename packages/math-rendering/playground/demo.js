@@ -30,8 +30,7 @@ console.log('demo');
 const MathJax = require('mathjax3/mathjax3/mathjax.js').MathJax; // MathJax core
 const MathML = require('mathjax3/mathjax3/input/mathml.js').MathML; // MathML input
 const CHTML = require('mathjax3/mathjax3/output/chtml.js').CHTML; // HTML output
-const adaptor = require('mathjax3/mathjax3/adaptors/browserAdaptor')
-  .browserAdaptor; // browser DOM
+const adaptor = require('mathjax3/mathjax3/adaptors/browserAdaptor').browserAdaptor; // browser DOM
 
 //
 //  Register the HTML handler with the browser adaptor
@@ -46,8 +45,7 @@ const MathJaxConfig = window.MathJaxConfig || {};
 const mmlConfig = Object.assign({}, MathJaxConfig.MathML || {});
 const htmlConfig = Object.assign(
   {
-    fontURL:
-      'https://cdn.rawgit.com/mathjax/mathjax-v3/3.0.0-beta.1/mathjax2/css'
+    fontURL: 'https://cdn.rawgit.com/mathjax/mathjax-v3/3.0.0-beta.1/mathjax2/css'
   },
   MathJaxConfig.HTML || {}
 );

@@ -1,13 +1,12 @@
-import { shallow } from 'enzyme';
 import React from 'react';
 import { withRootEdge } from '../../shared/line/with-root-edge';
-import { buildDataPoints, parabolaFromTwoPoints } from '../../utils';
+import { buildDataPoints, parabolaFromTwoPoints } from '@pie-lib/graphing-utils';
 import { utils } from '@pie-lib/plot';
 
 import { graphProps as getGraphProps } from '../../../__tests__/utils';
 
 const { xy } = utils;
-jest.mock('../../utils', () => ({
+jest.mock('@pie-lib/graphing-utils', () => ({
   buildDataPoints: jest.fn().mockReturnValue([]),
   parabolaFromTwoPoints: jest.fn(() => jest.fn()),
   getAmplitudeAndFreq: jest.fn().mockReturnValue({ freq: 4, amplitude: 1 })

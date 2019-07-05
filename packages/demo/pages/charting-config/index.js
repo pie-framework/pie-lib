@@ -57,14 +57,20 @@ class ChartingConfigDemo extends React.Component {
     this.setState({
       config: { ...defaultConfig }
     });
-  }
+  };
 
   render() {
     const { config } = this.state;
 
     console.log('this.state: ', this.state);
 
-    return <ChartingConfig config={config} onChange={this.onChange} resetToDefaults={this.resetToDefaults} />;
+    return (
+      <ChartingConfig
+        config={config}
+        onChange={this.onChange}
+        resetToDefaults={this.resetToDefaults}
+      />
+    );
   }
 }
 

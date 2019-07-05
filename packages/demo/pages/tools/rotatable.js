@@ -23,11 +23,7 @@ class RawBox extends React.Component {
     const { label, className, classes, style } = this.props;
 
     return (
-      <div
-        ref={r => (this.div = r)}
-        className={classNames(classes.box, className)}
-        style={style}
-      >
+      <div ref={r => (this.div = r)} className={classNames(classes.box, className)} style={style}>
         <span className={classes.label}>{label}</span>
       </div>
     );
@@ -73,12 +69,7 @@ class RawPlayground extends React.Component {
 
     const { degrees, from, to } = this.props;
     const { clientWidth: width, clientHeight: height } = this.toBox;
-    const distance = utils.distanceBetween(
-      { width, height },
-      degrees,
-      from,
-      to
-    );
+    const distance = utils.distanceBetween({ width, height }, degrees, from, to);
 
     this.setState({
       positionSet: true,
@@ -111,11 +102,7 @@ class RawPlayground extends React.Component {
     return (
       <div className={classes.root}>
         <Box className={classes.base} label={'base'} />
-        <Box
-          className={classes.from}
-          style={fromStyle}
-          label={'from: ' + from}
-        />
+        <Box className={classes.from} style={fromStyle} label={'from: ' + from} />
         <Box
           div={r => (this.toBox = r)}
           className={classes.to}

@@ -19,6 +19,7 @@ expect.extend({
   toEqualHtml(value, html) {
     const v = valueToHtml(value);
     const pass = v === html;
+
     return {
       pass,
       message: () => `expected ${html} to match ${v}`
@@ -26,31 +27,37 @@ expect.extend({
   }
 });
 
-test('onFocus/onBlur resets the value', () => {
-  const wrapper = shallow(
-    <Editor value={value} classes={{}} onChange={jest.fn()} />
-  );
+describe('logic', () => {
+  test('onFocus/onBlur resets the value', async () => {
+    const wrapper = shallow(
+      <Editor editorRef={jest.fn()} value={value} classes={{}} onChange={jest.fn()} />
+    );
 
-  wrapper.instance().onFocus();
+    await wrapper.instance().onFocus();
 
-  const v = htmlToValue('hi');
-  expect(wrapper.state('stashedValue')).toEqualHtml('<div>hi</div>');
-  wrapper.instance().onChange({ value: htmlToValue('new value') });
-  expect(wrapper.state('value')).toEqualHtml('<div>new value</div>');
-  return wrapper
-    .instance()
-    .onBlur({})
-    .then(() => {
-      expect(wrapper.state('value')).toEqualHtml('<div>hi</div>');
-    });
+    const v = htmlToValue('hi');
+
+    expect(wrapper.state('stashedValue')).toEqualHtml('<div>hi</div>');
+
+    wrapper.instance().onChange({ value: htmlToValue('new value') });
+
+    expect(wrapper.state('value')).toEqualHtml('<div>new value</div>');
+
+    return wrapper
+      .instance()
+      .onBlur({})
+      .then(() => {
+        expect(wrapper.state('value')).toEqualHtml('<div>hi</div>');
+      });
+  });
 });
 
-test('onFocus stashes the value', () => {
+test('onFocus stashes the value', async () => {
   const wrapper = shallow(
-    <Editor value={value} classes={{}} onChange={jest.fn()} />
+    <Editor editorRef={jest.fn()} value={value} classes={{}} onChange={jest.fn()} />
   );
 
-  wrapper.instance().onFocus();
+  await wrapper.instance().onFocus();
 
   expect(wrapper.state('stashedValue')).toEqualHtml('<div>hi</div>');
 });
@@ -59,7 +66,7 @@ describe('buildSizeStyle', () => {
   const wrapper = extras => {
     const props = Object.assign({}, extras);
     return shallow(
-      <Editor value={value} classes={{}} onChange={jest.fn()} {...props} />
+      <Editor editorRef={jest.fn()} value={value} classes={{}} onChange={jest.fn()} {...props} />
     );
   };
 

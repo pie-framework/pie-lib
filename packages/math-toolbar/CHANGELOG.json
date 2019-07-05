@@ -588,5 +588,20 @@
     "committerDate": "2019-06-10 15:24:32 +0100",
     "isTagged": true,
     "tag": "@pie-lib/math-toolbar@1.4.0"
+  },
+  {
+    "type": "fix",
+    "scope": "math-toolbar",
+    "subject": "fix width styling",
+    "merge": null,
+    "header": "fix(math-toolbar): fix width styling",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "6b3788a1b028380706aa974dc4c00d5f53162aea",
+    "gitTags": " (origin/fix/math-inline-related-fixes)",
+    "committerDate": "2019-06-19 11:16:20 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/math-toolbar@1.4.2"
   }
 ]

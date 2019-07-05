@@ -688,5 +688,35 @@
     "committerDate": "2019-06-27 13:19:23 +0100",
     "isTagged": true,
     "tag": "@pie-lib/demo@5.0.0"
+  },
+  {
+    "type": "chore",
+    "scope": "merge",
+    "subject": "merged master into this branch",
+    "merge": null,
+    "header": "chore(merge): merged master into this branch",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "e7758d577c82c0f39a5bf44556792517cd1ea6b0",
+    "gitTags": "",
+    "committerDate": "2019-07-02 11:29:52 -0400",
+    "isTagged": true,
+    "tag": "@pie-lib/demo@5.0.4"
+  },
+  {
+    "type": "chore",
+    "scope": "version",
+    "subject": "version bumped some elements that depend on editable-html",
+    "merge": null,
+    "header": "chore(version): version bumped some elements that depend on editable-html",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "1b472679a467a5a37b43a2935c093afb10eb7bb8",
+    "gitTags": "",
+    "committerDate": "2019-07-02 14:41:50 -0400",
+    "isTagged": true,
+    "tag": "@pie-lib/demo@5.0.5"
   }
 ]

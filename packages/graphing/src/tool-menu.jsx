@@ -33,7 +33,8 @@ export class ToolMenu extends React.Component {
       tools,
       currentTool,
       onToggleLabelMode,
-      labelModeEnabled
+      labelModeEnabled,
+      hideLabel
     } = this.props;
 
     const t = tools.filter(t => t.toolbar);
@@ -45,12 +46,14 @@ export class ToolMenu extends React.Component {
           selected={currentTool}
           onChange={this.changeTool}
         />
-        <MiniButton
-          disabled={disabled}
-          value={'Label'}
-          onClick={onToggleLabelMode}
-          selected={labelModeEnabled}
-        />
+        {!hideLabel && (
+          <MiniButton
+            disabled={disabled}
+            value={'Label'}
+            onClick={onToggleLabelMode}
+            selected={labelModeEnabled}
+          />
+        )}
       </div>
     );
   }

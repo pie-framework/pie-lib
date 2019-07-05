@@ -33,10 +33,7 @@ class RawMarkupPreview extends React.Component {
     return (
       <div>
         <Typography variant="h6">Markup</Typography>
-        <div
-          ref={r => (this.preview = r)}
-          dangerouslySetInnerHTML={{ __html: markup }}
-        />
+        <div ref={r => (this.preview = r)} dangerouslySetInnerHTML={{ __html: markup }} />
         <hr />
         <Typography variant="subtitle1">Raw</Typography>
         <pre className={classes.prettyPrint}>{markup}</pre>
@@ -56,12 +53,7 @@ const EscapeInput = props => (
   <div>
     Input:
     <br />
-    <textarea
-      style={{ width: '100%' }}
-      type="text"
-      value={props.value}
-      onChange={props.onChange}
-    />
+    <textarea style={{ width: '100%' }} type="text" value={props.value} onChange={props.onChange} />
   </div>
 );
 
@@ -189,9 +181,7 @@ class Demo extends React.Component {
           <p>This is a math expression equality evaluator tool</p>
         </div>
         <div>
-          <p>
-            This is a checkbox to toggle inverse values for evaluation results
-          </p>
+          <p>This is a checkbox to toggle inverse values for evaluation results</p>
           <label>
             {' '}
             Inverse
@@ -202,8 +192,7 @@ class Demo extends React.Component {
             />
           </label>
           <p>
-            This is a checkbox to indicate whether the compared values will be
-            latex format or not
+            This is a checkbox to indicate whether the compared values will be latex format or not
           </p>
           <label>
             {' '}
@@ -231,11 +220,7 @@ class Demo extends React.Component {
           />
           <br />
           <br />
-          <Button
-            onClick={() =>
-              this.isResponseCorrect(this.state.exprOne, this.state.exprTwo)
-            }
-          >
+          <Button onClick={() => this.isResponseCorrect(this.state.exprOne, this.state.exprTwo)}>
             Evaluate
           </Button>
         </div>
