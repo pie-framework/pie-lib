@@ -1,4 +1,4 @@
-import EditableHtml, { ALL_PLUGINS, htmlToValue } from '@pie-lib/editable-html';
+import EditableHtml, { ALL_PLUGINS, htmlToValue, Editor } from '@pie-lib/editable-html';
 import grey from '@material-ui/core/colors/grey';
 import React from 'react';
 import _ from 'lodash';
@@ -21,6 +21,7 @@ import { NewCustomToolbar } from '@pie-lib/editable-html/lib/plugins/math';
 import { Value, Selection } from 'slate';
 import Toolbar from '@pie-lib/editable-html/lib/plugins/toolbar/toolbar';
 import MathPlugin from '@pie-lib/editable-html/lib/plugins/math';
+import { valueToHtml } from '@pie-lib/editable-html/lib/serialization';
 const log = debug('@pie-lib:editable-html:demo');
 const puppySrc = 'https://bit.ly/23yROY8';
 
@@ -154,6 +155,9 @@ const inputOptions = [
       '<table cellspacing="0" cellpadding="4" class="borderall"> <tbody> <tr> <td style="width:140px" class="center bold">Trial</td> <td style="width:140px" class="center bold">Mass NH<sub>3</sub></td> <td style="width:140px" class="center bold">Mass HCl</td> <td style="width:140px" class="center bold">Mass NH<sub>4</sub>Cl</td> </tr> <tr> <td class="center">1</td> <td class="center">3.40 g</td> <td class="center">7.30 g</td> <td class="center">10.70 g</td> </tr> <tr> <td class="center">2</td> <td class="center">?</td> <td class="center">?</td> <td class="center">32.10 g</td> </tr> </tbody></table>'
   }
 ];
+inputOptions.forEach(io => {
+  io.value = htmlToValue(io.html);
+});
 
 const html = inputOptions[0].html;
 
@@ -184,15 +188,17 @@ const MarkupPreview = withStyles(() => ({
   }
 }))(RawMarkupPreview);
 
-class RteDemo extends React.Component {
+class RteDemoEditorOnly extends React.Component {
   static propTypes = {
     classes: PropTypes.object.isRequired
   };
 
   constructor(props) {
     super(props);
+
+    const value = inputOptions[0].value;
     this.state = {
-      markup: html,
+      value,
       showHighlight: false,
       disableImageUpload: false,
       disabled: false,
@@ -201,9 +207,14 @@ class RteDemo extends React.Component {
     };
   }
 
-  onChange = markup => {
-    log('onChange: ');
-    this.setState({ markup });
+  onChange = value => {
+    log('onChange: ', value.toJS());
+    log('onChange: selection', value.selection.toJS());
+    // if (!this.state.value.document.equals(value.document)) {
+    if (!this.state.value.equals(value)) {
+      log('documents do not equal  - bump state');
+      this.setState({ value });
+    }
   };
 
   handleInputFiles = input => {
@@ -304,7 +315,7 @@ class RteDemo extends React.Component {
   render() {
     const { classes } = this.props;
     const {
-      markup,
+      value,
       showHighlight,
       disableImageUpload,
       disabled,
@@ -371,7 +382,7 @@ class RteDemo extends React.Component {
             />
           </FormGroup>
         </div>
-        <EditableHtml
+        <Editor
           activePlugins={activePlugins}
           toolbarOpts={{
             position: 'top',
@@ -383,7 +394,7 @@ class RteDemo extends React.Component {
               duplicates: true
             }
           }}
-          markup={markup}
+          value={value}
           onChange={this.onChange}
           imageSupport={imageSupport}
           onBlur={this.onBlur}
@@ -407,13 +418,244 @@ class RteDemo extends React.Component {
             value: '<span data-latex="" data-raw="\\sqrt{4}">\\(\\sqrt{4}\\)</span>'
           }}
         />
-        <MarkupPreview markup={markup} />
+        <pre>{JSON.stringify(value.toJS(), null, '  ')}</pre>
       </div>
     ) : (
       <div>loading...</div>
     );
   }
 }
+
+// class RteDemo extends React.Component {
+//   static propTypes = {
+//     classes: PropTypes.object.isRequired
+//   };
+
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       markup: html,
+//       showHighlight: false,
+//       disableImageUpload: false,
+//       disabled: false,
+//       width: '',
+//       height: ''
+//     };
+//   }
+
+//   onChange = markup => {
+//     log('onChange: ');
+//     this.setState({ markup });
+//   };
+
+//   handleInputFiles = input => {
+//     log('[handleInputFiles] input: ', input);
+
+//     const { imageHandler } = this.state;
+//     if (input.files.length < 1 || !input.files[0]) {
+//       imageHandler.cancel();
+//       this.setState({ imageHandler: null });
+//     } else {
+//       const file = input.files[0];
+//       imageHandler.fileChosen(file);
+//       this.fileInput.value = '';
+//       const reader = new FileReader();
+//       reader.onload = () => {
+//         log('[reader.onload]');
+//         const dataURL = reader.result;
+//         setTimeout(() => {
+//           imageHandler.done(null, dataURL);
+//           this.setState({ imageHandler: null });
+//         }, 2000);
+//       };
+//       log('call readAsDataUrl...', file);
+//       let progress = 0;
+//       imageHandler.progress(progress);
+//       _.range(1, 100).forEach(n => {
+//         setTimeout(() => {
+//           imageHandler.progress(n);
+//         }, n * 20);
+//       });
+//       reader.readAsDataURL(file);
+//     }
+//   };
+
+//   handleFileSelect = event => {
+//     log('[handleFileSelect] event: ', event);
+//     //disable the check cancelled call
+//     this.setState({ checkCancelled: false }, () => {
+//       this.handleInputFiles(event.target);
+//     });
+//   };
+
+//   shouldComponentUpdate(nextProps, nextState) {
+//     if (this.state.insertImage !== nextState.insertImage) {
+//       console.log('skip update if the insertImageCallback has changed');
+//       return false;
+//     }
+//     return true;
+//   }
+
+//   componentDidMount() {
+//     this.setState({ mounted: true });
+//   }
+
+//   componentDidUpdate() {
+//     if (this.fileInput) {
+//       this.fileInput.addEventListener('change', this.handleFileSelect);
+//     }
+//   }
+
+//   componentWillUnmount() {
+//     this.fileInput.removeEventListener('change', this.handleFileSelect);
+//   }
+
+//   addImage = imageHandler => {
+//     log('[addImage]', imageHandler);
+//     this.setState({ imageHandler });
+//     this.fileInput.click();
+
+//     /**
+//      * There's no way to know if 'cancel' was clicked,
+//      * instead we have to listen for a focus on body,
+//      * then call handleInputFiles if checkCancelled is true.
+//      * It's set to false if a 'change' event is fired.
+//      */
+//     document.body.onfocus = e => {
+//       log('focus document...', this.fileInput.files);
+//       document.body.onfocus = null;
+//       this.setState({ checkCancelled: true }, () => {
+//         setTimeout(() => {
+//           if (this.state.checkCancelled) {
+//             this.handleInputFiles(this.fileInput);
+//           }
+//         }, 200);
+//       });
+//     };
+//   };
+
+//   onDeleteImage = (url, done) => {
+//     log('delete image src: ', url);
+//     done();
+//   };
+
+//   updateEditorMarkup = () => {
+//     this.setState({ markup: this.state.userHtml });
+//   };
+
+//   render() {
+//     const { classes } = this.props;
+//     const {
+//       markup,
+//       showHighlight,
+//       disableImageUpload,
+//       disabled,
+//       width,
+//       height,
+//       mounted
+//     } = this.state;
+//     const imageSupport = {
+//       add: this.addImage,
+//       delete: this.onDeleteImage
+//     };
+
+//     log('this.state', this.state);
+
+//     const activePlugins = ALL_PLUGINS;
+
+//     return mounted ? (
+//       <div>
+//         <Typography variant="h6">EditableHtml</Typography>
+//         <Typography variant="body2">A rich text editor with a material design look.</Typography>
+//         <br />
+//         <InputChooser inputOptions={inputOptions} onChange={markup => this.setState({ markup })} />
+//         <div className={classes.controls}>
+//           <Typography variant="headline">Runtime Options</Typography>
+//           <FormGroup row>
+//             <FormControlLabel
+//               control={
+//                 <Checkbox
+//                   checked={showHighlight}
+//                   onChange={event => this.setState({ showHighlight: event.target.checked })}
+//                 />
+//               }
+//               label="show highlight"
+//             />
+//             <FormControlLabel
+//               control={
+//                 <Checkbox
+//                   checked={disableImageUpload}
+//                   onChange={event => this.setState({ disableImageUpload: event.target.checked })}
+//                 />
+//               }
+//               label="disable image upload"
+//             />
+//             <FormControlLabel
+//               control={
+//                 <Checkbox
+//                   checked={disabled}
+//                   onChange={event => this.setState({ disabled: event.target.checked })}
+//                 />
+//               }
+//               label="disabled"
+//             />
+//             <TextField
+//               className={classes.sizeInput}
+//               placeholder={'width'}
+//               value={width}
+//               onChange={event => this.setState({ width: event.target.value })}
+//             />
+//             <TextField
+//               className={classes.sizeInput}
+//               placeholder={'height'}
+//               value={height}
+//               onChange={event => this.setState({ height: event.target.value })}
+//             />
+//           </FormGroup>
+//         </div>
+//         <EditableHtml
+//           activePlugins={activePlugins}
+//           toolbarOpts={{
+//             position: 'top',
+//             alwaysVisible: true
+//           }}
+//           responseAreaProps={{
+//             type: 'drag-in-the-blank',
+//             options: {
+//               duplicates: true
+//             }
+//           }}
+//           markup={markup}
+//           onChange={this.onChange}
+//           imageSupport={imageSupport}
+//           onBlur={this.onBlur}
+//           disabled={disabled}
+//           highlightShape={showHighlight}
+//           pluginProps={{
+//             image: {
+//               disabled: disableImageUpload
+//             }
+//           }}
+//           width={width}
+//           height={height}
+//         />
+//         <input type="file" hidden ref={r => (this.fileInput = r)} />
+//         <br />
+
+//         <DragDropTile
+//           targetId="0"
+//           choice={{
+//             id: '0',
+//             value: '<span data-latex="" data-raw="\\sqrt{4}">\\(\\sqrt{4}\\)</span>'
+//           }}
+//         />
+//         <MarkupPreview markup={markup} />
+//       </div>
+//     ) : (
+//       <div>loading...</div>
+//     );
+//   }
+// }
 
 const mathPlugin = MathPlugin();
 
@@ -557,5 +799,5 @@ const styles = theme => ({
   }
 });
 
-const Out = withDragContext(withRoot(withStyles(styles)(SimpleDemo)));
+const Out = withDragContext(withRoot(withStyles(styles)(RteDemoEditorOnly)));
 export default Out;

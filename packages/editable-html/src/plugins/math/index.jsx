@@ -20,7 +20,7 @@ export const NewCustomToolbar = props => {
     };
     const change = value.change().setNodeByKey(node.key, { data: update });
     log('call onToolbarChange:', change);
-    props.onChange(change, false);
+    props.onChange(change, true);
   };
   console.log('node...', node);
   const latex = node.data.get('latex');

@@ -83,7 +83,9 @@ export class EditorAndToolbar extends React.Component {
       focusedNode
     );
 
-    const node = findSingleNode(value);
+    // const node = findSingleNode(value);
+
+    log('.............. [render] selection:', value.selection.toJS());
     // const parentNode = findParentNode(value, node);
 
     return (
@@ -91,7 +93,7 @@ export class EditorAndToolbar extends React.Component {
         <div className={holderNames}>
           <div className={classes.children}>{children}</div>
         </div>
-        <Toolbar
+        {/* <Toolbar
           autoWidth={autoWidth}
           plugins={plugins}
           focusedNode={focusedNode}
@@ -99,10 +101,10 @@ export class EditorAndToolbar extends React.Component {
           isFocused={inFocus}
           onChange={onChange}
           //onDone={onDone}
-          node={node}
+          // node={node}
           pluginProps={pluginProps}
           toolbarOpts={toolbarOpts}
-        />
+        /> */}
       </div>
     );
   }

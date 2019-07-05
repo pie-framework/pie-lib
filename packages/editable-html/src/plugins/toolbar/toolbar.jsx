@@ -199,6 +199,7 @@ export class Toolbar extends React.Component {
     return (
       <div className={names} style={extraStyles} onClick={this.onClick}>
         {CustomToolbar && <CustomToolbar onChange={onChange} node={node} value={value} />}
+        {/* <CustomToolbar onChange={onChange} node={node} value={value} /> */}
         {/* {CustomToolbar ? (
           <CustomToolbar onChange={onChange} node={node} value={value} />
         ) : (

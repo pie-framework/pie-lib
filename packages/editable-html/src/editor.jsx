@@ -175,12 +175,12 @@ export class Editor extends React.Component {
     this.setState({ selectedNode: node });
   };
 
-  onEditingDone = () => {
-    log('[onEditingDone]');
-    this.setState({ stashedValue: null, focusedNode: null });
-    log('[onEditingDone] value: ', this.state.value);
-    this.props.onChange(this.state.value, true);
-  };
+  // onEditingDone = () => {
+  //   log('[onEditingDone]');
+  //   this.setState({ stashedValue: null, focusedNode: null });
+  //   log('[onEditingDone] value: ', this.state.value);
+  //   this.props.onChange(this.state.value, true);
+  // };
 
   onBlur = event => {
     log('[onBlur]');
@@ -244,12 +244,18 @@ export class Editor extends React.Component {
 
   onChange = (change, done) => {
     log('[onChange]');
-    this.setState({ value: change.value }, () => {
-      log('[onChange], call done()');
-      if (done) {
-        done();
-      }
-    });
+
+    const { onChange } = this.props;
+
+    if (onChange) {
+      onChange(change.value);
+    }
+    // this.setState({ value: change.value }, () => {
+    //   log('[onChange], call done()');
+    //   if (done) {
+    //     done();
+    //   }
+    // });
   };
 
   UNSAFE_componentWillReceiveProps(props) {
@@ -327,7 +333,7 @@ export class Editor extends React.Component {
       <div style={{ width: sizeStyle.width }} className={names}>
         <SlateEditor
           plugins={this.plugins}
-          ref={r => (this.editor = r && this.props.editorRef(r))}
+          // ref={r => (this.editor = r && this.props.editorRef(r))}
           value={value}
           onChange={this.onChange}
           onBlur={this.onBlur}
