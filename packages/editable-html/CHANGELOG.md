@@ -3,6 +3,59 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.7.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.7.7...@pie-lib/editable-html@7.7.8) (2019-07-04)
+
+
+### Bug Fixes
+
+* **editable-html:** made it possible to add response area when there's no focus and the markup is empty, removed response area from the table when it is not active in the main editor ([adeb618](https://github.com/pie-framework/pie-lib/commit/adeb618))
+
+
+
+
+
+## [7.7.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.7.6...@pie-lib/editable-html@7.7.7) (2019-07-03)
+
+
+### Bug Fixes
+
+* **editable-html:** removed autoFocus prop that was added to the slate editor, causing issues with rendering when the editor is used on a element thats not yet added in the dom ([e67d56e](https://github.com/pie-framework/pie-lib/commit/e67d56e))
+
+
+
+
+
+## [7.7.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.7.5...@pie-lib/editable-html@7.7.6) (2019-07-02)
+
+
+### Bug Fixes
+
+* **editor:** added sanity check for editor reference in editor ([274d8fd](https://github.com/pie-framework/pie-lib/commit/274d8fd))
+
+
+
+
+
+## [7.7.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.7.4...@pie-lib/editable-html@7.7.5) (2019-07-02)
+
+
+### Bug Fixes
+
+* **editor:** changed setTimeout to a promise resolve statement ([c66d50f](https://github.com/pie-framework/pie-lib/commit/c66d50f))
+* **tests:** added back the commented tests ([7d2cf81](https://github.com/pie-framework/pie-lib/commit/7d2cf81))
+
+
+
+
+
+## [7.7.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.7.3...@pie-lib/editable-html@7.7.4) (2019-07-02)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
 ## [7.7.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.7.2...@pie-lib/editable-html@7.7.3) (2019-06-28)
 
 **Note:** Version bump only for package @pie-lib/editable-html

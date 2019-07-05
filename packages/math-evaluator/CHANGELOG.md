@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@0.5.3...@pie-lib/math-evaluator@0.5.4) (2019-07-02)
+
+
+### Bug Fixes
+
+* **math-evaluator:** fix equals sign treatment in expressions ([f81e924](https://github.com/pie-framework/pie-lib/commit/f81e924))
+
+
+
+
+
 ## [0.5.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@0.5.2...@pie-lib/math-evaluator@0.5.3) (2019-06-17)
 
 **Note:** Version bump only for package @pie-lib/math-evaluator
