@@ -408,5 +408,35 @@
     "committerDate": "2019-07-02 11:29:52 -0400",
     "isTagged": true,
     "tag": "@pie-lib/graphing@1.0.4"
+  },
+  {
+    "type": "chore",
+    "scope": null,
+    "subject": "Updated pie-lib/graphing by adding pie-lib/graphing-utils as a dependency and remove duplicated utils file.",
+    "merge": null,
+    "header": "chore: Updated pie-lib/graphing by adding pie-lib/graphing-utils as a dependency and remove duplicated utils file.",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "b788cc7bdedfef7446cf00f3c43934b373ee4478",
+    "gitTags": " (origin/chore/use-graphing-utils-in-graphing)",
+    "committerDate": "2019-07-04 00:12:44 -0400",
+    "isTagged": true,
+    "tag": "@pie-lib/graphing@1.1.0"
+  },
+  {
+    "type": "feat",
+    "scope": null,
+    "subject": "Added hideLabel property in order to toggle the Label button from the toolbar.",
+    "merge": null,
+    "header": "feat: Added hideLabel property in order to toggle the Label button from the toolbar.",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "448c6d8b7444c302283ae478a483660a6c80dc54",
+    "gitTags": " (origin/fix/graphing-toggle-label)",
+    "committerDate": "2019-07-03 22:37:19 -0400",
+    "isTagged": true,
+    "tag": "@pie-lib/graphing@1.1.0"
   }
 ]
