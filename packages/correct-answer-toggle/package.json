@@ -11,12 +11,12 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "2.2.2",
+  "version": "2.2.3",
   "main": "lib/index.js",
   "scripts": {},
   "dependencies": {
     "@material-ui/core": "^3.8.3",
-    "@pie-lib/icons": "^2.4.2",
+    "@pie-lib/icons": "^2.4.3",
     "classnames": "^2.2.6",
     "lodash": "^4.17.11",
     "prop-types": "^15.6.2",
