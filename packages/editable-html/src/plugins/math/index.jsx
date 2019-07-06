@@ -47,7 +47,7 @@ export default function MathPlugin(opts) {
           const Tb = props => {
             const { pluginProps } = props || {};
             const { math } = pluginProps || {};
-            const keypadMode = math && math.getMode();
+            const { keypadMode } = math || {};
 
             return <MathToolbar autoFocus latex={latex} onDone={onDone} keypadMode={keypadMode} />;
           };
