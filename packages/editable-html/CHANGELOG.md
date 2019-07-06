@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.8.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.7.9...@pie-lib/editable-html@7.8.0) (2019-07-06)
+
+
+### Features
+
+* **editor:** exposed mathProps prop to provide a way of changing the keypadmode for the math toolbar [ch2178] ([8b339dd](https://github.com/pie-framework/pie-lib/commit/8b339dd))
+
+
+
+
+
 ## [7.7.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.7.8...@pie-lib/editable-html@7.7.9) (2019-07-05)
 
 **Note:** Version bump only for package @pie-lib/editable-html
