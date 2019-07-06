@@ -2228,5 +2228,20 @@
     "committerDate": "2019-07-05 21:54:56 -0400",
     "isTagged": true,
     "tag": "@pie-lib/editable-html@7.8.0"
+  },
+  {
+    "type": "feat",
+    "scope": "editor",
+    "subject": "exposed mathProps prop to provide a way of changing the keypadmode for the math toolbar [ch2178]",
+    "merge": null,
+    "header": "feat(editor): exposed mathProps prop to provide a way of changing the keypadmode for the math toolbar [ch2178]",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "8b339ddec47d622c555017f59dcca50ef1e2d34c",
+    "gitTags": "",
+    "committerDate": "2019-07-05 21:54:56 -0400",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.8.0"
   }
 ]
