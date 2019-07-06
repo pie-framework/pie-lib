@@ -9,7 +9,7 @@ const log = debug('@pie-lib:editable-html:plugins:math');
 
 const TEXT_NODE = 3;
 
-export default function MathPlugin(/*options*/) {
+export default function MathPlugin(opts) {
   return {
     name: 'math',
     toolbar: {
@@ -44,7 +44,12 @@ export default function MathPlugin(/*options*/) {
             onToolbarDone(change, false);
           };
 
-          const Tb = () => <MathToolbar autoFocus latex={latex} onDone={onDone} />;
+          const Tb = () => {
+            const keypadMode = opts.getMode();
+
+            return <MathToolbar autoFocus latex={latex} onDone={onDone} keypadMode={keypadMode} />;
+          };
+
           return Tb;
         }
       }
