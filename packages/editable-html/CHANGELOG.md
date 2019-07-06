@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.9.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.8.0...@pie-lib/editable-html@7.9.0) (2019-07-06)
+
+
+### Features
+
+* Ability to change keypadMode using props.pluginProps.math.getMode ([179df1c](https://github.com/pie-framework/pie-lib/commit/179df1c))
+* Ability to change keypadMode using props.pluginProps.math.keypadMode ([cbf3e17](https://github.com/pie-framework/pie-lib/commit/cbf3e17))
+
+
+
+
+
 # [7.8.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.7.9...@pie-lib/editable-html@7.8.0) (2019-07-06)
 
 
