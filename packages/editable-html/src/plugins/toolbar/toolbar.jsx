@@ -173,7 +173,7 @@ export class Toolbar extends React.Component {
     return (
       <div className={names} style={extraStyles} onClick={this.onClick}>
         {CustomToolbar ? (
-          <CustomToolbar />
+          <CustomToolbar pluginProps={pluginProps} />
         ) : (
           <DefaultToolbar
             plugins={filteredPlugins}

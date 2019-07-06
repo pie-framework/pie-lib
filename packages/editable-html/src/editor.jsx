@@ -41,9 +41,6 @@ export class Editor extends React.Component {
       respAreaToolbar: PropTypes.func,
       onDelete: PropTypes.func
     }),
-    mathProps: PropTypes.shape({
-      getMode: PropTypes.func.isRequired
-    }),
     toolbarOpts: PropTypes.shape({
       position: PropTypes.oneOf(['bottom', 'top']),
       alwaysVisible: PropTypes.bool
@@ -79,8 +76,7 @@ export class Editor extends React.Component {
       math: {
         onClick: this.onMathClick,
         onFocus: this.onPluginFocus,
-        onBlur: this.onPluginBlur,
-        getMode: props.mathProps && props.mathProps.getMode
+        onBlur: this.onPluginBlur
       },
       image: {
         onDelete:
