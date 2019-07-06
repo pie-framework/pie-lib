@@ -2243,5 +2243,35 @@
     "committerDate": "2019-07-05 21:54:56 -0400",
     "isTagged": true,
     "tag": "@pie-lib/editable-html@7.8.0"
+  },
+  {
+    "type": "feat",
+    "scope": null,
+    "subject": "Ability to change keypadMode using props.pluginProps.math.keypadMode",
+    "merge": null,
+    "header": "feat: Ability to change keypadMode using props.pluginProps.math.keypadMode",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "cbf3e17175d1184689df6ed4541e8e899c1b7e93",
+    "gitTags": " (origin/andreea/feat/editable-html-math-props)",
+    "committerDate": "2019-07-05 22:47:37 -0400",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.9.0"
+  },
+  {
+    "type": "feat",
+    "scope": null,
+    "subject": "Ability to change keypadMode using props.pluginProps.math.getMode",
+    "merge": null,
+    "header": "feat: Ability to change keypadMode using props.pluginProps.math.getMode",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "179df1c77b1e019f4a6391574c0b8428ca845bad",
+    "gitTags": "",
+    "committerDate": "2019-07-05 22:37:30 -0400",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.9.0"
   }
 ]
