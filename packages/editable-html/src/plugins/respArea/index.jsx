@@ -1,5 +1,6 @@
 import React from 'react';
 import debug from 'debug';
+import { Inline } from 'slate';
 import isUndefined from 'lodash/isUndefined';
 
 import InlineDropdown from './inline-dropdown';
@@ -11,6 +12,7 @@ import { ToolbarIcon } from './icons';
 const log = debug('@pie-lib:editable-html:plugins:respArea');
 
 const lastIndexMap = {};
+const elTypesArray = ['inline_dropdown', 'explicit_constructed_response', 'drag_in_the_blank'];
 
 export default function ResponseAreaPlugin(opts) {
   const toolbar = {
@@ -46,11 +48,7 @@ export default function ResponseAreaPlugin(opts) {
       }
     },
     customToolbar: opts.respAreaToolbar,
-    supports: node =>
-      node.object === 'inline' &&
-      (node.type === 'inline_dropdown' ||
-        node.type === 'item_builder' ||
-        node.type === 'explicit_constructed_response'),
+    supports: node => node.object === 'inline' && elTypesArray.indexOf(node.type) >= 0,
     showDone: false
   };
 
@@ -111,29 +109,13 @@ export default function ResponseAreaPlugin(opts) {
 
       const addSpacesArray = [];
 
-      const allElements = node.filterDescendants(
-        d =>
-          d.type === 'inline_dropdown' ||
-          d.type === 'explicit_constructed_response' ||
-          d.type === 'drag_in_the_blank'
-      );
+      const allElements = node.filterDescendants(d => elTypesArray.indexOf(d.type) >= 0);
 
       allElements.forEach(el => {
         const prevText = node.getPreviousText(el.key);
-        const nextText = node.getNextText(el.key);
 
-        if (prevText.text[prevText.text.length - 1] !== ' ') {
-          addSpacesArray.push({
-            key: prevText.key,
-            pos: 'end'
-          });
-        }
-
-        if (nextText.text[0] !== ' ') {
-          addSpacesArray.push({
-            key: nextText.key,
-            pos: 'start'
-          });
+        if (prevText.text.length === 0) {
+          addSpacesArray.push(prevText.key);
         }
       });
 
@@ -143,11 +125,10 @@ export default function ResponseAreaPlugin(opts) {
 
       return change => {
         change.withoutNormalization(() => {
-          addSpacesArray.forEach(({ key, pos }) => {
+          addSpacesArray.forEach(key => {
             const node = change.value.document.getNode(key);
-            const offset = pos === 'start' ? 0 : node.text.length;
 
-            change.insertTextByKey(key, offset, ' ');
+            change.insertTextByKey(key, node.text.length, '\u00A0\u00A0');
           });
         });
       };

@@ -25,7 +25,8 @@ export default function MathPlugin(opts) {
        * Return a react component function
        * @param node {Slate.Node}
        * @param value {Slate.Value}
-       * @param onDone {(change?: Slate.Change, finishEditing :boolea) => void} - a function to call once the toolbar has made any changes, call with the node.key and a data object.
+       * @param onDone {(change?: Slate.Change, finishEditing :boolea) => void} - a function to call once the toolbar
+       *   has made any changes, call with the node.key and a data object.
        */
       customToolbar: (node, value, onToolbarDone) => {
         if (node && node.object === 'inline' && node.type === 'math') {
@@ -74,6 +75,18 @@ export default function MathPlugin(opts) {
         log('[renderNode]: data:', props.node.data);
         return <MathPreview {...props} />;
       }
+
+      if (props.node.type === 'mathml') {
+        const html = props.node.data.get('html');
+
+        return (
+          <div
+            dangerouslySetInnerHTML={{
+              __html: html
+            }}
+          />
+        );
+      }
     }
   };
 }
@@ -101,12 +114,23 @@ const htmlDecode = input => {
 
 export const serialization = {
   deserialize(el) {
+    const tagName = el.tagName.toLowerCase();
+    log('[deserialize] name: ', tagName);
+
+    if (tagName === 'math') {
+      return {
+        object: 'block',
+        isVoid: true,
+        type: 'mathml',
+        data: {
+          html: el.outerHTML
+        }
+      };
+    }
+
     if (el.nodeType === TEXT_NODE) {
       return;
     }
-
-    const tagName = el.tagName.toLowerCase();
-    log('[deserialize] name: ', tagName);
 
     if (tagName !== 'span') {
       return;
@@ -140,6 +164,18 @@ export const serialization = {
         <span data-latex="" data-raw={decoded}>
           {wrapMath(decoded, wrapper)}
         </span>
+      );
+    }
+
+    if (object.type === 'mathml') {
+      const html = object.data.get('html');
+
+      return (
+        <span
+          contentEditable={false}
+          suppressContentEditableWarning
+          dangerouslySetInnerHTML={{ __html: html }}
+        />
       );
     }
   }
