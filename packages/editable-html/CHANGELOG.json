@@ -2273,5 +2273,20 @@
     "committerDate": "2019-07-05 22:37:30 -0400",
     "isTagged": true,
     "tag": "@pie-lib/editable-html@7.9.0"
+  },
+  {
+    "type": "feat",
+    "scope": "serialization",
+    "subject": "removed the space after the response area, rendered some items from the legacy content [ch2464], [ch1915], [ch1935]",
+    "merge": null,
+    "header": "feat(serialization): removed the space after the response area, rendered some items from the legacy content [ch2464], [ch1915], [ch1935]",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "8836f3a530d3268d40853b5871615032c3743b30",
+    "gitTags": "",
+    "committerDate": "2019-07-07 08:25:19 -0400",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.10.0"
   }
 ]
