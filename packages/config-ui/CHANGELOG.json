@@ -1448,5 +1448,20 @@
     "committerDate": "2019-07-02 14:41:50 -0400",
     "isTagged": true,
     "tag": "@pie-lib/config-ui@10.7.5"
+  },
+  {
+    "type": "fix",
+    "scope": "settings",
+    "subject": "made the design changes requested [ch2396]",
+    "merge": null,
+    "header": "fix(settings): made the design changes requested [ch2396]",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "8717ac60fe2260d9fa136acc2712baa02cca339b",
+    "gitTags": "",
+    "committerDate": "2019-07-07 15:15:42 -0400",
+    "isTagged": true,
+    "tag": "@pie-lib/config-ui@10.7.12"
   }
 ]
