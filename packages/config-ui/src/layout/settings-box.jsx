@@ -21,9 +21,9 @@ const styles = () => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    minWidth: '200px',
-    maxWidth: '250px',
-    padding: '24px',
+    minWidth: '275px',
+    maxWidth: '300px',
+    padding: '24px 8px 24px 24px',
     width: '80%',
     zIndex: 99
   }
