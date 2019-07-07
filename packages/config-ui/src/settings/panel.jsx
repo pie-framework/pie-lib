@@ -45,9 +45,13 @@ Radio.propTypes = { ...baseTypes, choices: PropTypes.arrayOf(PropTypes.shape(lab
 
 const StyledRadio = withStyles({
   radioSettings: {
+    marginTop: '4px',
+    paddingBottom: '4px',
     width: '100%',
     '& > label': {
-      fontSize: '20px'
+      color: 'rgba(0, 0, 0, 0.89)',
+      transform: 'translate(0, 10px) scale(1)',
+      fontSize: '14px'
     },
     '& > div': {
       marginTop: '20px'
@@ -149,9 +153,9 @@ const Group = withStyles(theme => ({
   },
   groupHeader: {
     color: '#495B8F',
-    fontSize: '14px',
+    fontSize: '16px',
     fontWeight: 600,
-    marginBottom: '20px'
+    marginBottom: '8px'
   },
   numberFields: {
     fontSize: '0.85rem',

@@ -5,6 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 export default withStyles({
   label: {
+    color: 'rgba(0, 0, 0, 0.89)',
     fontSize: '12px',
     left: '-5px',
     position: 'relative'
