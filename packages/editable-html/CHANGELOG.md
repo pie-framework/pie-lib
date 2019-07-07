@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.10.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.9.0...@pie-lib/editable-html@7.10.0) (2019-07-07)
+
+
+### Features
+
+* **serialization:** removed the space after the response area, rendered some items from the legacy content [ch2464], [ch1915], [ch1935] ([8836f3a](https://github.com/pie-framework/pie-lib/commit/8836f3a))
+
+
+
+
+
 # [7.9.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.8.0...@pie-lib/editable-html@7.9.0) (2019-07-06)
 
 
