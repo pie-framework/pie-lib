@@ -215,7 +215,16 @@ export class Editor extends React.Component {
 
     return new Promise(resolve => {
       this.setState({ focusedNode: node }, () => {
-        this.resetValue().then(() => resolve());
+        this.resetValue().then(() => {
+          // Allowing time for onChange to take effect if it is called
+          setTimeout(() => {
+            if (this.editor) {
+              this.editor.blur();
+            }
+          }, 100);
+
+          resolve();
+        });
       });
     });
   };
