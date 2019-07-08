@@ -3,6 +3,64 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.10.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.10.1...@pie-lib/editable-html@7.10.3) (2019-07-08)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+## [7.10.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.10.0...@pie-lib/editable-html@7.10.1) (2019-07-08)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+# [7.10.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.9.0...@pie-lib/editable-html@7.10.0) (2019-07-07)
+
+
+### Features
+
+* **serialization:** removed the space after the response area, rendered some items from the legacy content [ch2464], [ch1915], [ch1935] ([8836f3a](https://github.com/pie-framework/pie-lib/commit/8836f3a))
+
+
+
+
+
+# [7.9.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.8.0...@pie-lib/editable-html@7.9.0) (2019-07-06)
+
+
+### Features
+
+* Ability to change keypadMode using props.pluginProps.math.getMode ([179df1c](https://github.com/pie-framework/pie-lib/commit/179df1c))
+* Ability to change keypadMode using props.pluginProps.math.keypadMode ([cbf3e17](https://github.com/pie-framework/pie-lib/commit/cbf3e17))
+
+
+
+
+
+# [7.8.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.7.9...@pie-lib/editable-html@7.8.0) (2019-07-06)
+
+
+### Features
+
+* **editor:** exposed mathProps prop to provide a way of changing the keypadmode for the math toolbar [ch2178] ([8b339dd](https://github.com/pie-framework/pie-lib/commit/8b339dd))
+
+
+
+
+
+## [7.7.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.7.8...@pie-lib/editable-html@7.7.9) (2019-07-05)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
 ## [7.7.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.7.7...@pie-lib/editable-html@7.7.8) (2019-07-04)
 
 

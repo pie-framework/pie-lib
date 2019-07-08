@@ -2200,6 +2200,36 @@
     "tag": "@pie-lib/editable-html@7.7.8"
   },
   {
+    "type": "chore",
+    "scope": "merge",
+    "subject": "merged develop into master",
+    "merge": null,
+    "header": "chore(merge): merged develop into master",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "a508149b130a63b0d5b346431af2bda5fc4fc9b7",
+    "gitTags": " (develop)",
+    "committerDate": "2019-07-05 22:02:06 -0400",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.8.0"
+  },
+  {
+    "type": "feat",
+    "scope": "editor",
+    "subject": "exposed mathProps prop to provide a way of changing the keypadmode for the math toolbar [ch2178]",
+    "merge": null,
+    "header": "feat(editor): exposed mathProps prop to provide a way of changing the keypadmode for the math toolbar [ch2178]",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "8b339ddec47d622c555017f59dcca50ef1e2d34c",
+    "gitTags": " (origin/andreea/feat/editable-html-math-props)",
+    "committerDate": "2019-07-05 21:54:56 -0400",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.8.0"
+  },
+  {
     "type": "feat",
     "scope": "editor",
     "subject": "exposed mathProps prop to provide a way of changing the keypadmode for the math toolbar [ch2178]",
@@ -2258,5 +2288,35 @@
     "committerDate": "2019-07-07 08:25:19 -0400",
     "isTagged": true,
     "tag": "@pie-lib/editable-html@7.10.0"
+  },
+  {
+    "type": "chore",
+    "scope": "version",
+    "subject": "version bump editable-html",
+    "merge": null,
+    "header": "chore(version): version bump editable-html",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "8dbed5514e229bfe41eaae5f9d031cd8bed26bd0",
+    "gitTags": " (develop)",
+    "committerDate": "2019-07-08 15:52:37 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.10.3"
+  },
+  {
+    "type": "chore",
+    "scope": "editor",
+    "subject": "removed the onTemporaryChange prop functionality and added a function that ends the editing and it can be called for index",
+    "merge": null,
+    "header": "chore(editor): removed the onTemporaryChange prop functionality and added a function that ends the editing and it can be called for index",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "99d669c33fd97056dc6e1224313542ebbaafcdd9",
+    "gitTags": " (origin/develop, origin/HEAD)",
+    "committerDate": "2019-07-08 15:40:45 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.10.1"
   }
 ]

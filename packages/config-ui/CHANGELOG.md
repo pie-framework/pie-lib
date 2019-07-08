@@ -3,6 +3,65 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.7.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.7.13...@pie-lib/config-ui@10.7.14) (2019-07-08)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
+## [10.7.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.7.12...@pie-lib/config-ui@10.7.13) (2019-07-08)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
+## [10.7.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.7.11...@pie-lib/config-ui@10.7.12) (2019-07-07)
+
+
+### Bug Fixes
+
+* **settings:** made the design changes requested [ch2396] ([8717ac6](https://github.com/pie-framework/pie-lib/commit/8717ac6))
+
+
+
+
+
+## [10.7.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.7.10...@pie-lib/config-ui@10.7.11) (2019-07-07)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
+## [10.7.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.7.9...@pie-lib/config-ui@10.7.10) (2019-07-06)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
+## [10.7.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.7.8...@pie-lib/config-ui@10.7.9) (2019-07-06)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
+## [10.7.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.7.7...@pie-lib/config-ui@10.7.8) (2019-07-05)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
 ## [10.7.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.7.6...@pie-lib/config-ui@10.7.7) (2019-07-04)
 
 **Note:** Version bump only for package @pie-lib/config-ui

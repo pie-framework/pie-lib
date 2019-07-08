@@ -729,9 +729,39 @@
     "footer": null,
     "notes": [],
     "hash": "448c6d8b7444c302283ae478a483660a6c80dc54",
+    "gitTags": " (origin/fix/graphing-toggle-label)",
+    "committerDate": "2019-07-03 22:37:19 -0400",
+    "isTagged": true,
+    "tag": "@pie-lib/demo@5.1.0"
+  },
+  {
+    "type": "feat",
+    "scope": null,
+    "subject": "Added hideLabel property in order to toggle the Label button from the toolbar.",
+    "merge": null,
+    "header": "feat: Added hideLabel property in order to toggle the Label button from the toolbar.",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "448c6d8b7444c302283ae478a483660a6c80dc54",
     "gitTags": "",
     "committerDate": "2019-07-03 22:37:19 -0400",
     "isTagged": true,
     "tag": "@pie-lib/demo@5.1.0"
+  },
+  {
+    "type": "chore",
+    "scope": "merge",
+    "subject": "merged develop into master",
+    "merge": null,
+    "header": "chore(merge): merged develop into master",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "a508149b130a63b0d5b346431af2bda5fc4fc9b7",
+    "gitTags": " (develop)",
+    "committerDate": "2019-07-05 22:02:06 -0400",
+    "isTagged": true,
+    "tag": "@pie-lib/demo@5.1.1"
   }
 ]

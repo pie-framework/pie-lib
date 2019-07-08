@@ -3,6 +3,65 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.1.5...@pie-lib/demo@5.1.6) (2019-07-08)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [5.1.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.1.4...@pie-lib/demo@5.1.5) (2019-07-08)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [5.1.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.1.3...@pie-lib/demo@5.1.4) (2019-07-07)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [5.1.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.1.2...@pie-lib/demo@5.1.3) (2019-07-07)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [5.1.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.1.1...@pie-lib/demo@5.1.2) (2019-07-06)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [5.1.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.1.0...@pie-lib/demo@5.1.1) (2019-07-06)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+# [5.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.0.7...@pie-lib/demo@5.1.0) (2019-07-05)
+
+
+### Features
+
+* Added hideLabel property in order to toggle the Label button from the toolbar. ([448c6d8](https://github.com/pie-framework/pie-lib/commit/448c6d8))
+
+
+
+
+
 ## [5.0.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.0.6...@pie-lib/demo@5.0.7) (2019-07-04)
 
 **Note:** Version bump only for package @pie-lib/demo
