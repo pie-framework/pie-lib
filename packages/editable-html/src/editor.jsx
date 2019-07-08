@@ -284,17 +284,12 @@ export class Editor extends React.Component {
   };
 
   onChange = (change, done) => {
-    const { onTemporaryChange } = this.props;
-
     log('[onChange]');
     this.setState({ value: change.value }, () => {
       log('[onChange], call done()');
+
       if (done) {
         done();
-      }
-
-      if (onTemporaryChange) {
-        onTemporaryChange(this.state.value);
       }
     });
   };
