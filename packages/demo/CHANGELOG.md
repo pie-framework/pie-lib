@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.1.6...@pie-lib/demo@5.1.7) (2019-07-08)
+
+
+### Bug Fixes
+
+* save math changes when editor is re-focused ([7674a86](https://github.com/pie-framework/pie-lib/commit/7674a86))
+
+
+
+
+
 ## [5.1.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.1.5...@pie-lib/demo@5.1.6) (2019-07-08)
 
 **Note:** Version bump only for package @pie-lib/demo

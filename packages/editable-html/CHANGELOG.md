@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.10.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.10.3...@pie-lib/editable-html@7.10.4) (2019-07-08)
+
+
+### Bug Fixes
+
+* save math changes when editor is re-focused ([7674a86](https://github.com/pie-framework/pie-lib/commit/7674a86))
+
+
+
+
+
 ## [7.10.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.10.1...@pie-lib/editable-html@7.10.3) (2019-07-08)
 
 **Note:** Version bump only for package @pie-lib/editable-html
