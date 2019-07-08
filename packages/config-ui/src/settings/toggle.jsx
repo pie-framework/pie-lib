@@ -11,6 +11,7 @@ const Toggle = withStyles(theme => ({
     justifyContent: 'space-between'
   },
   label: {
+    color: 'rgba(0, 0, 0, 0.89)',
     fontSize: '14px',
     paddingTop: theme.spacing.unit * 2
   }

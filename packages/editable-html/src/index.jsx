@@ -67,7 +67,7 @@ export default class EditableHtml extends React.Component {
     }
 
     if (done) {
-      this.props.onDone();
+      this.props.onDone(html);
     }
   };
 
@@ -98,6 +98,12 @@ export default class EditableHtml extends React.Component {
           );
         }
       });
+    }
+  };
+
+  finishEditing = () => {
+    if (this.editorRef) {
+      this.editorRef.props.onEditingDone();
     }
   };
 

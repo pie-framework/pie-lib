@@ -67,7 +67,6 @@ export class Editor extends React.Component {
 
   constructor(props) {
     super(props);
-
     this.state = {
       value: props.value
     };
@@ -215,7 +214,16 @@ export class Editor extends React.Component {
 
     return new Promise(resolve => {
       this.setState({ focusedNode: node }, () => {
-        this.resetValue().then(() => resolve());
+        this.resetValue().then(() => {
+          // Allowing time for onChange to take effect if it is called
+          setTimeout(() => {
+            if (this.editor) {
+              this.editor.blur();
+            }
+          }, 100);
+
+          resolve();
+        });
       });
     });
   };
@@ -224,10 +232,23 @@ export class Editor extends React.Component {
    * Needs to be wrapped otherwise it causes issues because of race conditions
    * Known issue for slatejs. See: https://github.com/ianstormtaylor/slate/issues/2097
    * Using timeout I wasn't able to test this
+   *
+   * Note: The use of promises has been causing issues with MathQuill
    * */
   onFocus = () =>
     new Promise(resolve => {
       log('[onFocus]', document.activeElement);
+
+      /**
+       * This is a temporary hack - @see changeData below for some more information.
+       */
+      if (this.__TEMPORARY_CHANGE_DATA) {
+        const { key, data } = this.__TEMPORARY_CHANGE_DATA;
+        let change = this.state.value.change().setNodeByKey(key, { data });
+        this.setState({ value: change.value }, () => {
+          this.__TEMPORARY_CHANGE_DATA = null;
+        });
+      }
 
       this.stashValue();
       this.props.onFocus();
@@ -275,17 +296,12 @@ export class Editor extends React.Component {
   };
 
   onChange = (change, done) => {
-    const { onTemporaryChange } = this.props;
-
     log('[onChange]');
     this.setState({ value: change.value }, () => {
       log('[onChange], call done()');
+
       if (done) {
         done();
-      }
-
-      if (onTemporaryChange) {
-        onTemporaryChange(this.state.value);
       }
     });
   };
@@ -347,6 +363,24 @@ export class Editor extends React.Component {
     return undefined;
   };
 
+  changeData = (key, data) => {
+    log('[changeData]. .. ', key, data);
+
+    /**
+     * HACK ALERT: We should be calling setState here and storing the change data:
+     *
+     * <code>this.setState({changeData: { key, data}})</code>
+     * However this is causing issues with the Mathquill instance. The 'input' event stops firing on the element and no more changes get through.
+     * The issues seem to be related to the promises in onBlur/onFocus. But removing these brings it's own problems.
+     * A major clean up is planned for this component so I've decided to temporarily settle on this hack rather than spend more time on this.
+     */
+
+    // Uncomment this line to see the bug described above.
+    // this.setState({changeData: {key, data}})
+
+    this.__TEMPORARY_CHANGE_DATA = { key, data };
+  };
+
   render() {
     const {
       disabled,
@@ -387,6 +421,7 @@ export class Editor extends React.Component {
           pluginProps={pluginProps}
           toolbarOpts={toolbarOpts}
           placeholder={placeholder}
+          onDataChange={this.changeData}
         />
       </div>
     );
