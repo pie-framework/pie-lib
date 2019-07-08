@@ -380,6 +380,9 @@ export class Editor extends React.Component {
      * A major clean up is planned for this component so I've decided to temporarily settle on this hack rather than spend more time on this.
      */
 
+    // Uncomment this line to see the bug described above.
+    // this.setState({changeData: {key, data}})
+
     this.__TEMPORARY_CHANGE_DATA = { key, data };
   };
 
