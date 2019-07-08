@@ -20,6 +20,12 @@ const getCustomToolbar = (plugin, node, value, handleDone, onDataChange) => {
     return;
   }
   if (plugin.toolbar.CustomToolbarComp) {
+    /**
+     * Using a pre-defined Component should be preferred
+     * as the rendering of it (and it's children) can be optimized by React.
+     * If you keep re-defining the comp with an inline function
+     * then react will have to re-render.
+     */
     return plugin.toolbar.CustomToolbarComp;
   } else if (typeof plugin.toolbar.customToolbar === 'function') {
     log('deprecated - use CustomToolbarComp');
@@ -167,15 +173,6 @@ export class Toolbar extends React.Component {
       this.props.onDataChange
     );
 
-    // const CustomToolbar =
-    //   plugin && plugin.toolbar && plugin.toolbar.customToolbar
-    //     ? plugin.toolbar.customToolbar(node, value, handleDone, handleDataChange)
-    //     : null;
-
-    // const CustomToolbar = getCustomToolbar(plugin);
-    // plugin && plugin.toolbar && plugin.toolbar.customToolbar
-    //   ? plugin.toolbar.customToolbar(node, value, handleDone, handleDataChange)
-    //   : null;
     const filteredPlugins =
       plugin && plugin.filterPlugins ? plugin.filterPlugins(node, plugins) : plugins;
 
