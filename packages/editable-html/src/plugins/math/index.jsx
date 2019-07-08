@@ -14,9 +14,7 @@ export const CustomToolbarComp = React.memo(
   props => {
     const { node, value, onFocus, onBlur, onClick } = props;
 
-    // console.log('new options:', onFocus, onBlur, onClick);
     const onDone = (latex, b) => {
-      console.log('onDone !!! ', latex, b);
       const update = {
         ...node.data.toObject(),
         latex
@@ -37,15 +35,11 @@ export const CustomToolbarComp = React.memo(
       };
       const change = value.change().setNodeByKey(node.key, { data: update });
       log('call onToolbarChange:', change);
-      // setTimejout(() => {
       props.onDataChange(node.key, update);
-      // }, 1000);
     };
 
-    // console.log('node...', node);
     const latex = node.data.get('latex');
 
-    console.log('[NewCustomToolbar] RENDER ------------------------>', latex);
     return (
       <MathToolbar
         autoFocus
@@ -54,21 +48,12 @@ export const CustomToolbarComp = React.memo(
         onDone={onDone}
         onBlur={onBlur}
         onFocus={onFocus}
-        // e => {
-        //   // console.log('!!!!!onFocus!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-        //   onFocus(e, node);
-        // }}
         onClick={onClick}
-        // e => {
-        //   console.log('click !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-        //   onClick(e);
-        // }}
       />
     );
   },
   (prev, next) => {
     const equal = prev.node.equals(next.node);
-    console.log('should re-render - ?????? equal: ', equal, 'skip if true');
     return equal;
   }
 );
@@ -77,7 +62,10 @@ CustomToolbarComp.propTypes = {
   node: SlatePropTypes.node.isRequired,
   value: SlatePropTypes.value,
   onToolbarDone: PropTypes.func,
-  onDataChange: PropTypes.func
+  onDataChange: PropTypes.func,
+  onFocus: PropTypes.func,
+  onClick: PropTypes.func,
+  onBlur: PropTypes.func
 };
 
 export default function MathPlugin(opts) {

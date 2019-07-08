@@ -2,8 +2,9 @@ import React from 'react';
 import debug from 'debug';
 import MockChange from '../../image/__tests__/mock-change';
 import { Data } from 'slate';
-import MathPlugin, { serialization, inlineMath } from '../index';
-
+import MathPlugin, { serialization, inlineMath, CustomToolbarComp } from '../index';
+import { shallow } from 'enzyme';
+import { MathToolbar } from '@pie-lib/math-toolbar';
 jest.mock('@pie-framework/mathquill', () => ({
   StaticMath: jest.fn(),
   getInterface: jest.fn().mockReturnThis(),
@@ -116,6 +117,54 @@ describe('MathPlugin', () => {
        * Note that when this is converted to html it get's escaped - but that's an issue with the slate html-serializer.
        */
       assertSerialize('<', '\\(<\\)');
+    });
+  });
+});
+
+describe('CustomToolbarComp', () => {
+  let onDataChange;
+  let onToolbarDone;
+
+  const wrapper = extras => {
+    let mockChange = new MockChange();
+    const defaults = {
+      node: {
+        key: '1',
+        data: Data.create({ latex: 'foo' })
+      },
+      value: {
+        document: {
+          getNextText: jest.fn().mockReturnValue({ key: 'nt' })
+        },
+        change: jest.fn().mockReturnValue(mockChange)
+      },
+      onDataChange,
+      onToolbarDone
+    };
+
+    const props = {
+      ...defaults,
+      ...extras
+    };
+
+    return shallow(<CustomToolbarComp {...props} />);
+  };
+
+  describe('onDone', () => {
+    it('calls onToolbarDone', () => {
+      onToolbarDone = jest.fn();
+      const w = wrapper();
+      w.find(MathToolbar).prop('onDone')('oo');
+      expect(onToolbarDone).toHaveBeenCalledWith(expect.anything(), false);
+    });
+  });
+
+  describe('onChange', () => {
+    it('calls onDataChange', () => {
+      onDataChange = jest.fn();
+      const w = wrapper();
+      w.find(MathToolbar).prop('onChange')('oo');
+      expect(onDataChange).toHaveBeenCalledWith('1', { latex: 'oo' });
     });
   });
 });
