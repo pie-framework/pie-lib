@@ -468,5 +468,20 @@
     "committerDate": "2019-07-03 22:37:19 -0400",
     "isTagged": true,
     "tag": "@pie-lib/graphing@1.1.0"
+  },
+  {
+    "type": "chore",
+    "scope": "merge",
+    "subject": "merged develop into master",
+    "merge": null,
+    "header": "chore(merge): merged develop into master",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "a508149b130a63b0d5b346431af2bda5fc4fc9b7",
+    "gitTags": "",
+    "committerDate": "2019-07-05 22:02:06 -0400",
+    "isTagged": true,
+    "tag": "@pie-lib/graphing@1.1.1"
   }
 ]

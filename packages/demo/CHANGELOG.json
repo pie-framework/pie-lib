@@ -763,5 +763,20 @@
     "committerDate": "2019-07-05 22:02:06 -0400",
     "isTagged": true,
     "tag": "@pie-lib/demo@5.1.1"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "save math changes when editor is re-focused",
+    "merge": null,
+    "header": "fix: save math changes when editor is re-focused",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "7674a86899f586b778136d7c1c7c65837e0e9e52",
+    "gitTags": "",
+    "committerDate": "2019-07-08 14:53:01 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/demo@5.1.7"
   }
 ]
