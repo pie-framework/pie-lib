@@ -22,7 +22,8 @@ export class MathToolbar extends React.Component {
     onAnswerBlockAdd: PropTypes.func,
     onChange: PropTypes.func,
     onDone: PropTypes.func.isRequired,
-    onFocus: PropTypes.func
+    onFocus: PropTypes.func,
+    onBlur: PropTypes.func
   };
 
   static defaultProps = {
@@ -71,7 +72,8 @@ export class MathToolbar extends React.Component {
       noDecimal,
       additionalKeys,
       showKeypad,
-      onFocus
+      onFocus,
+      onBlur
     } = this.props;
 
     return (
@@ -87,6 +89,7 @@ export class MathToolbar extends React.Component {
         onChange={this.onChange}
         onDone={this.done}
         onFocus={onFocus}
+        onBlur={onBlur}
         showKeypad={showKeypad}
         controlledKeypad={controlledKeypad}
       />
@@ -131,12 +134,12 @@ export class RawPureToolbar extends React.Component {
     } = this.props;
 
     return (
-      <div className={cx(classes.pureToolbar, classNames.toolbar)}>
+      <div className={cx(classes.pureToolbar, (classNames || {}).toolbar)}>
         <div />
         <EditorAndPad
           autoFocus={autoFocus}
           keypadMode={keypadMode}
-          classNames={classNames}
+          classNames={classNames || {}}
           controlledKeypad={controlledKeypad}
           noDecimal={noDecimal}
           showKeypad={showKeypad}

@@ -4,10 +4,69 @@ import { MathPreview, MathToolbar } from '@pie-lib/math-toolbar';
 import { wrapMath, unWrapMath } from '@pie-lib/math-rendering';
 import React from 'react';
 import debug from 'debug';
-
+import SlatePropTypes from 'slate-prop-types';
+import PropTypes from 'prop-types';
 const log = debug('@pie-lib:editable-html:plugins:math');
 
 const TEXT_NODE = 3;
+
+export const CustomToolbarComp = React.memo(
+  props => {
+    const { node, value, onFocus, onBlur, onClick } = props;
+
+    const onDone = (latex, b) => {
+      const update = {
+        ...node.data.toObject(),
+        latex
+      };
+      const change = value.change().setNodeByKey(node.key, { data: update });
+
+      const nextText = value.document.getNextText(node.key);
+
+      change.moveFocusTo(nextText.key, 0).moveAnchorTo(nextText.key, 0);
+
+      props.onToolbarDone(change, false);
+    };
+
+    const onChange = latex => {
+      const update = {
+        ...node.data.toObject(),
+        latex
+      };
+      const change = value.change().setNodeByKey(node.key, { data: update });
+      log('call onToolbarChange:', change);
+      props.onDataChange(node.key, update);
+    };
+
+    const latex = node.data.get('latex');
+
+    return (
+      <MathToolbar
+        autoFocus
+        latex={latex}
+        onChange={onChange}
+        onDone={onDone}
+        onBlur={onBlur}
+        onFocus={onFocus}
+        onClick={onClick}
+      />
+    );
+  },
+  (prev, next) => {
+    const equal = prev.node.equals(next.node);
+    return equal;
+  }
+);
+
+CustomToolbarComp.propTypes = {
+  node: SlatePropTypes.node.isRequired,
+  value: SlatePropTypes.value,
+  onToolbarDone: PropTypes.func,
+  onDataChange: PropTypes.func,
+  onFocus: PropTypes.func,
+  onClick: PropTypes.func,
+  onBlur: PropTypes.func
+};
 
 export default function MathPlugin(opts) {
   return {
@@ -28,34 +87,7 @@ export default function MathPlugin(opts) {
        * @param onDone {(change?: Slate.Change, finishEditing :boolea) => void} - a function to call once the toolbar
        *   has made any changes, call with the node.key and a data object.
        */
-      customToolbar: (node, value, onToolbarDone) => {
-        if (node && node.object === 'inline' && node.type === 'math') {
-          const latex = node.data.get('latex');
-          const onDone = latex => {
-            const update = {
-              ...node.data.toObject(),
-              latex
-            };
-            const change = value.change().setNodeByKey(node.key, { data: update });
-
-            const nextText = value.document.getNextText(node.key);
-
-            change.moveFocusTo(nextText.key, 0).moveAnchorTo(nextText.key, 0);
-
-            onToolbarDone(change, false);
-          };
-
-          const Tb = props => {
-            const { pluginProps } = props || {};
-            const { math } = pluginProps || {};
-            const { keypadMode } = math || {};
-
-            return <MathToolbar autoFocus latex={latex} onDone={onDone} keypadMode={keypadMode} />;
-          };
-
-          return Tb;
-        }
-      }
+      CustomToolbarComp
     },
     schema: {
       document: { match: [{ type: 'math' }] }

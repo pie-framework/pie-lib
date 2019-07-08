@@ -12,6 +12,27 @@ import { withStyles } from '@material-ui/core/styles';
 import DefaultToolbar from './default-toolbar';
 const log = debug('@pie-lib:editable-html:plugins:toolbar');
 
+const getCustomToolbar = (plugin, node, value, handleDone, onDataChange) => {
+  if (!plugin) {
+    return;
+  }
+  if (!plugin.toolbar) {
+    return;
+  }
+  if (plugin.toolbar.CustomToolbarComp) {
+    /**
+     * Using a pre-defined Component should be preferred
+     * as the rendering of it (and it's children) can be optimized by React.
+     * If you keep re-defining the comp with an inline function
+     * then react will have to re-render.
+     */
+    return plugin.toolbar.CustomToolbarComp;
+  } else if (typeof plugin.toolbar.customToolbar === 'function') {
+    log('deprecated - use CustomToolbarComp');
+    return plugin.toolbar.customToolbar(node, value, handleDone, onDataChange);
+  }
+};
+
 export class Toolbar extends React.Component {
   static propTypes = {
     zIndex: PropTypes.number,
@@ -140,10 +161,18 @@ export class Toolbar extends React.Component {
       }
     };
 
-    const CustomToolbar =
-      plugin && plugin.toolbar && plugin.toolbar.customToolbar
-        ? plugin.toolbar.customToolbar(node, value, handleDone)
-        : null;
+    const handleDataChange = (key, data) => {
+      this.props.onDataChange(key, data);
+    };
+
+    const CustomToolbar = getCustomToolbar(
+      plugin,
+      node,
+      value,
+      handleDone,
+      this.props.onDataChange
+    );
+
     const filteredPlugins =
       plugin && plugin.filterPlugins ? plugin.filterPlugins(node, plugins) : plugins;
 
@@ -173,7 +202,13 @@ export class Toolbar extends React.Component {
     return (
       <div className={names} style={extraStyles} onClick={this.onClick}>
         {CustomToolbar ? (
-          <CustomToolbar pluginProps={pluginProps} />
+          <CustomToolbar
+            node={node}
+            value={value}
+            onToolbarDone={this.onToolbarDone}
+            onDataChange={handleDataChange}
+            pluginProps={pluginProps}
+          />
         ) : (
           <DefaultToolbar
             plugins={filteredPlugins}

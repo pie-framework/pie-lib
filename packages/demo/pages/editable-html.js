@@ -14,7 +14,7 @@ import Typography from '@material-ui/core/Typography';
 import InputChooser from '../src/editable-html/input-chooser';
 
 const log = debug('@pie-lib:editable-html:demo');
-const puppySrc = 'https://bit.ly/23yROY8';
+const puppySrc = `https://bit.ly/23yROY8`;
 
 const renderOpts = {
   delimiters: [
