@@ -99,7 +99,7 @@ export class GraphWithControls extends React.Component {
 const styles = theme => ({
   graphWithControls: {},
   controls: {
-    width: '100%',
+    width: 'inherit',
     display: 'flex',
     justifyContent: 'space-between',
     padding: theme.spacing.unit,
