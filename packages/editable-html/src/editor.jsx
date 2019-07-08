@@ -205,6 +205,30 @@ export class Editor extends React.Component {
     this.props.onChange(this.state.value, true);
   };
 
+  // onBlur = event => {
+  //   log('[onBlur]');
+  //   const target = event.relatedTarget;
+
+  //   const node = target ? findNode(target, this.state.value) : null;
+
+  //   log('[onBlur] node: ', node);
+
+  //   return new Promise(resolve => {
+  //     this.setState({ focusedNode: node }, () => {
+  //       this.resetValue().then(() => {
+  //         // Allowing time for onChange to take effect if it is called
+  //         setTimeout(() => {
+  //           if (this.editor) {
+  //             this.editor.blur();
+  //           }
+  //         }, 100);
+
+  //         resolve();
+  //       });
+  //     });
+  //   });
+  // };
+
   onBlur = event => {
     log('[onBlur]');
     const target = event.relatedTarget;
@@ -213,18 +237,14 @@ export class Editor extends React.Component {
 
     log('[onBlur] node: ', node);
 
-    return new Promise(resolve => {
-      this.setState({ focusedNode: node }, () => {
-        this.resetValue().then(() => {
-          // Allowing time for onChange to take effect if it is called
-          setTimeout(() => {
-            if (this.editor) {
-              this.editor.blur();
-            }
-          }, 100);
-
-          resolve();
-        });
+    this.setState({ focusedNode: node }, () => {
+      this.resetValue().then(() => {
+        // Allowing time for onChange to take effect if it is called
+        setTimeout(() => {
+          if (this.editor) {
+            this.editor.blur();
+          }
+        }, 100);
       });
     });
   };
@@ -234,15 +254,31 @@ export class Editor extends React.Component {
    * Known issue for slatejs. See: https://github.com/ianstormtaylor/slate/issues/2097
    * Using timeout I wasn't able to test this
    * */
-  onFocus = () =>
-    new Promise(resolve => {
-      log('[onFocus]', document.activeElement);
+  // onFocus = () =>
+  //   new Promise(resolve => {
+  //     log('[onFocus]', document.activeElement);
 
-      this.stashValue();
-      this.props.onFocus();
+  //     this.stashValue();
+  //     this.props.onFocus();
 
-      resolve();
-    });
+  //     resolve();
+  //   });
+  onFocus = () => {
+    log('[onFocus]', document.activeElement);
+
+    // if (window.__eh && window.__eh.changeData) {
+    //   const { key, data } = window.__eh.changeData;
+    //   // this.state.value.change().setNodeByKey(key, data);
+    //   let change = this.state.value.change().setNodeByKey(key, { data });
+    //   this.setState({ value: change.value }, () => {
+    //     window.__eh = {};
+    //     // this.onEditingDone();
+    //     this.props.onChange(this.state.value, false);
+    //   });
+    //  }
+    this.stashValue();
+    this.props.onFocus();
+  };
 
   stashValue = () => {
     log('[stashValue]');
@@ -356,6 +392,15 @@ export class Editor extends React.Component {
     return undefined;
   };
 
+  changeData = (key, data) => {
+    log('[changeData]. .. ', key, data);
+    // window.requestAnimationFrame(() => this.setState({ changeData: { key, data } }));
+    window.__eh = window.__eh || {};
+    window.__eh.changeData = { key, data };
+    // setTimeout(() => {
+    // this.setState({ changeData: { key, data } });
+    // }, 200);
+  };
   render() {
     const {
       disabled,
@@ -396,6 +441,7 @@ export class Editor extends React.Component {
           pluginProps={pluginProps}
           toolbarOpts={toolbarOpts}
           placeholder={placeholder}
+          onDataChange={this.changeData}
         />
       </div>
     );

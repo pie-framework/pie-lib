@@ -51,7 +51,8 @@ export class EditorAndToolbar extends React.Component {
       readOnly,
       disableUnderline,
       pluginProps,
-      toolbarOpts
+      toolbarOpts,
+      onDataChange
     } = this.props;
 
     const inFocus = value.isFocused || (focusedNode !== null && focusedNode !== undefined);
@@ -91,6 +92,7 @@ export class EditorAndToolbar extends React.Component {
           isFocused={inFocus}
           onChange={onChange}
           onDone={onDone}
+          onDataChange={onDataChange}
           pluginProps={pluginProps}
           toolbarOpts={toolbarOpts}
         />

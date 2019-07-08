@@ -4,10 +4,81 @@ import { MathPreview, MathToolbar } from '@pie-lib/math-toolbar';
 import { wrapMath, unWrapMath } from '@pie-lib/math-rendering';
 import React from 'react';
 import debug from 'debug';
-
+import SlatePropTypes from 'slate-prop-types';
+import PropTypes from 'prop-types';
 const log = debug('@pie-lib:editable-html:plugins:math');
 
 const TEXT_NODE = 3;
+
+export const CustomToolbarComp = React.memo(
+  props => {
+    const { node, value, onFocus, onBlur, onClick } = props;
+
+    // console.log('new options:', onFocus, onBlur, onClick);
+    const onDone = (latex, b) => {
+      console.log('onDone !!! ', latex, b);
+      const update = {
+        ...node.data.toObject(),
+        latex
+      };
+      const change = value.change().setNodeByKey(node.key, { data: update });
+
+      const nextText = value.document.getNextText(node.key);
+
+      change.moveFocusTo(nextText.key, 0).moveAnchorTo(nextText.key, 0);
+
+      props.onToolbarDone(change, false);
+    };
+
+    const onChange = latex => {
+      const update = {
+        ...node.data.toObject(),
+        latex
+      };
+      const change = value.change().setNodeByKey(node.key, { data: update });
+      log('call onToolbarChange:', change);
+      // setTimejout(() => {
+      props.onDataChange(node.key, update);
+      // }, 1000);
+    };
+
+    // console.log('node...', node);
+    const latex = node.data.get('latex');
+
+    console.log('[NewCustomToolbar] RENDER ------------------------>', latex);
+    return (
+      <MathToolbar
+        autoFocus
+        latex={latex}
+        onChange={onChange}
+        onDone={onDone}
+        onBlur={onBlur}
+        onFocus={onFocus}
+        // e => {
+        //   // console.log('!!!!!onFocus!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+        //   onFocus(e, node);
+        // }}
+        onClick={onClick}
+        // e => {
+        //   console.log('click !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+        //   onClick(e);
+        // }}
+      />
+    );
+  },
+  (prev, next) => {
+    const equal = prev.node.equals(next.node);
+    console.log('should re-render - ?????? equal: ', equal, 'skip if true');
+    return equal;
+  }
+);
+
+CustomToolbarComp.propTypes = {
+  node: SlatePropTypes.node.isRequired,
+  value: SlatePropTypes.value,
+  onToolbarDone: PropTypes.func,
+  onDataChange: PropTypes.func
+};
 
 export default function MathPlugin(opts) {
   return {
@@ -28,34 +99,51 @@ export default function MathPlugin(opts) {
        * @param onDone {(change?: Slate.Change, finishEditing :boolea) => void} - a function to call once the toolbar
        *   has made any changes, call with the node.key and a data object.
        */
-      customToolbar: (node, value, onToolbarDone) => {
-        if (node && node.object === 'inline' && node.type === 'math') {
-          const latex = node.data.get('latex');
-          const onDone = latex => {
-            const update = {
-              ...node.data.toObject(),
-              latex
-            };
-            const change = value.change().setNodeByKey(node.key, { data: update });
+      CustomToolbarComp
+      // customToolbar: (node, value, onToolbarDone, onToolbarDataChange) => {
+      //   if (node && node.object === 'inline' && node.type === 'math') {
+      //     const latex = node.data.get('latex');
+      //     const onDone = latex => {
+      //       const update = {
+      //         ...node.data.toObject(),
+      //         latex
+      //       };
+      //       const change = value.change().setNodeByKey(node.key, { data: update });
 
-            const nextText = value.document.getNextText(node.key);
+      //       const nextText = value.document.getNextText(node.key);
 
-            change.moveFocusTo(nextText.key, 0).moveAnchorTo(nextText.key, 0);
+      //       change.moveFocusTo(nextText.key, 0).moveAnchorTo(nextText.key, 0);
 
-            onToolbarDone(change, false);
-          };
+      //       onToolbarDone(change, false);
+      //     };
 
-          const Tb = props => {
-            const { pluginProps } = props || {};
-            const { math } = pluginProps || {};
-            const { keypadMode } = math || {};
+      //     const onDataChange = latex => {
+      //       if (node.data.get('latex') !== latex) {
+      //         const update = { ...node.data.toObject(), latex };
+      //         onToolbarDataChange(node.key, update);
+      //       }
+      //     };
 
-            return <MathToolbar autoFocus latex={latex} onDone={onDone} keypadMode={keypadMode} />;
-          };
+      //     const Tb = props => {
+      //       const { pluginProps } = props || {};
+      //       const { math } = pluginProps || {};
+      //       const { keypadMode } = math || {};
 
-          return Tb;
-        }
-      }
+      //       return (
+      //         <MathToolbar
+      //           autoFocus
+      //           latex={latex}
+      //           onBlur={opts.onBlur}
+      //           onDone={onDone}
+      //           onChange={onDataChange}
+      //           keypadMode={keypadMode}
+      //         />
+      //       );
+      //     };
+
+      //     return Tb;
+      //   }
+      // }
     },
     schema: {
       document: { match: [{ type: 'math' }] }
