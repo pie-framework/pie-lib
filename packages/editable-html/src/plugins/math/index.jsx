@@ -88,50 +88,6 @@ export default function MathPlugin(opts) {
        *   has made any changes, call with the node.key and a data object.
        */
       CustomToolbarComp
-      // customToolbar: (node, value, onToolbarDone, onToolbarDataChange) => {
-      //   if (node && node.object === 'inline' && node.type === 'math') {
-      //     const latex = node.data.get('latex');
-      //     const onDone = latex => {
-      //       const update = {
-      //         ...node.data.toObject(),
-      //         latex
-      //       };
-      //       const change = value.change().setNodeByKey(node.key, { data: update });
-
-      //       const nextText = value.document.getNextText(node.key);
-
-      //       change.moveFocusTo(nextText.key, 0).moveAnchorTo(nextText.key, 0);
-
-      //       onToolbarDone(change, false);
-      //     };
-
-      //     const onDataChange = latex => {
-      //       if (node.data.get('latex') !== latex) {
-      //         const update = { ...node.data.toObject(), latex };
-      //         onToolbarDataChange(node.key, update);
-      //       }
-      //     };
-
-      //     const Tb = props => {
-      //       const { pluginProps } = props || {};
-      //       const { math } = pluginProps || {};
-      //       const { keypadMode } = math || {};
-
-      //       return (
-      //         <MathToolbar
-      //           autoFocus
-      //           latex={latex}
-      //           onBlur={opts.onBlur}
-      //           onDone={onDone}
-      //           onChange={onDataChange}
-      //           keypadMode={keypadMode}
-      //         />
-      //       );
-      //     };
-
-      //     return Tb;
-      //   }
-      // }
     },
     schema: {
       document: { match: [{ type: 'math' }] }
