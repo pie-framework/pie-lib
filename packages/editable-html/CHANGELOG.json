@@ -2258,5 +2258,20 @@
     "committerDate": "2019-07-07 08:25:19 -0400",
     "isTagged": true,
     "tag": "@pie-lib/editable-html@7.10.0"
+  },
+  {
+    "type": "chore",
+    "scope": "editor",
+    "subject": "removed the onTemporaryChange prop functionality and added a function that ends the editing and it can be called for index",
+    "merge": null,
+    "header": "chore(editor): removed the onTemporaryChange prop functionality and added a function that ends the editing and it can be called for index",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "99d669c33fd97056dc6e1224313542ebbaafcdd9",
+    "gitTags": "",
+    "committerDate": "2019-07-08 15:40:45 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.10.1"
   }
 ]
