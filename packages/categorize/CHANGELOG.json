@@ -90,6 +90,21 @@
     "tag": "@pie-lib/categorize@0.5.10"
   },
   {
+    "type": "chore",
+    "scope": null,
+    "subject": "generate changelog.json instead of markdown",
+    "merge": null,
+    "header": "chore: generate changelog.json instead of markdown",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "eaa5019a11f70c53425d55856bd3b940237f8c7d",
+    "gitTags": "",
+    "committerDate": "2019-03-13 17:24:09 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/categorize@0.5.10"
+  },
+  {
     "type": "fix",
     "scope": null,
     "subject": "foo",
@@ -163,6 +178,21 @@
     "committerDate": "2018-09-07 16:35:47 +0100",
     "isTagged": true,
     "tag": "@pie-lib/categorize@0.4.2"
+  },
+  {
+    "type": "chore",
+    "scope": null,
+    "subject": "update test",
+    "merge": null,
+    "header": "chore: update test",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "fd0fdd29f8d565ac0bd69c5fb9858083ee63f477",
+    "gitTags": "",
+    "committerDate": "2018-05-21 15:49:20 -0400",
+    "isTagged": true,
+    "tag": "@pie-lib/categorize@0.4.1"
   },
   {
     "type": "feat",
