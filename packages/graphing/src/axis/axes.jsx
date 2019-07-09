@@ -83,9 +83,14 @@ export class RawXAxis extends React.Component {
           <Arrow direction="right" x={domain.max} y={0} className={classes.arrow} scale={scale} />
         )}
         {domain.axisLabel && (
-          <text x={size.width + 20} y={scale.y(0) + 5} textAnchor="middle">
-            {domain.axisLabel}
-          </text>
+          <foreignObject
+            x={size.width + 10}
+            y={scale.y(0)}
+            height={30}
+            width={(domain.axisLabel ? domain.axisLabel.length : 1) * 10}
+          >
+            <div dangerouslySetInnerHTML={{ __html: domain.axisLabel }} />
+          </foreignObject>
         )}
       </React.Fragment>
     );
@@ -110,6 +115,7 @@ export class RawYAxis extends React.Component {
   render() {
     const { classes, includeArrows, graphProps } = this.props;
     const { scale, range, size } = graphProps;
+
     return (
       <React.Fragment>
         <Axis
@@ -144,9 +150,14 @@ export class RawYAxis extends React.Component {
           <Arrow direction="up" x={0} y={range.max} className={classes.arrow} scale={scale} />
         )}
         {range.axisLabel && (
-          <text x={scale.x(0)} y={-10} textAnchor="middle">
-            {range.axisLabel}
-          </text>
+          <foreignObject
+            x={scale.x(0)}
+            y={-30}
+            height={30}
+            width={(range.axisLabel ? range.axisLabel.length : 1) * 10}
+          >
+            <div dangerouslySetInnerHTML={{ __html: range.axisLabel }} />
+          </foreignObject>
         )}
       </React.Fragment>
     );
