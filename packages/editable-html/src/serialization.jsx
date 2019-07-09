@@ -1,12 +1,12 @@
 import Html from 'slate-html-serializer';
 import React from 'react';
 import debug from 'debug';
-import { serialization as imgSerialization } from './plugins/image';
-import { serialization as mathSerialization } from './plugins/math';
-import { serialization as listSerialization } from './plugins/list';
-import { serialization as tableSerialization } from './plugins/table';
-import { serialization as responseAreaSerialization } from './plugins/respArea';
-import { Mark, Value } from 'slate';
+// import { serialization as imgSerialization } from './plugins/image';
+// import { serialization as mathSerialization } from './plugins/math';
+// import { serialization as listSerialization } from './plugins/list';
+// import { serialization as tableSerialization } from './plugins/table';
+// import { serialization as responseAreaSerialization } from './plugins/respArea';
+import { Mark } from 'slate';
 
 const log = debug('@pie-lib:editable-html:serialization');
 
@@ -148,11 +148,11 @@ const TEXT_RULE = {
 };
 
 const RULES = [
-  listSerialization,
-  mathSerialization,
-  imgSerialization,
-  tableSerialization,
-  responseAreaSerialization,
+  // listSerialization,
+  // mathSerialization,
+  // imgSerialization,
+  // tableSerialization,
+  // responseAreaSerialization,
   TEXT_RULE,
   blocks,
   marks
@@ -186,24 +186,25 @@ function defaultParseHtml(html) {
   return body;
 }
 
-/** If this lib is used on the server side, we need to bypass using the DOMParser - just put in a stub. */
-const parseHtml =
-  typeof window === 'undefined'
-    ? () => ({
-        childNodes: []
-      })
-    : defaultParseHtml;
+export const getSerializer = rules => {
+  /** If this lib is used on the server side, we need to bypass using the DOMParser - just put in a stub. */
+  const parseHtml =
+    typeof window === 'undefined'
+      ? () => ({
+          childNodes: []
+        })
+      : defaultParseHtml;
 
-const serializer = new Html({
-  defaultBlock: 'div',
-  rules: RULES,
-  parseHtml
-});
+  return new Html({
+    defaultBlock: 'div',
+    rules: RULES.concat(rules),
+    parseHtml
+  });
 
-export const htmlToValue = html => serializer.deserialize(html);
+  // export const htmlToValue = html => serializer.deserialize(html);
 
-export const valueToHtml = value => serializer.serialize(value);
-
+  // export const valueToHtml = value => serializer.serialize(value);
+};
 /**
  *
  * <div><div>a</div></div> -> <div>a</div>

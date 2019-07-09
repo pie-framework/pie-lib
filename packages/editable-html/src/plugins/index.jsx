@@ -1,10 +1,10 @@
+/* eslint-disable no-unused-vars */
 import Bold from '@material-ui/icons/FormatBold';
 import Code from '@material-ui/icons/Code';
 import BulletedListIcon from '@material-ui/icons/FormatListBulleted';
 import NumberedListIcon from '@material-ui/icons/FormatListNumbered';
 import ImagePlugin from './image';
 import Italic from '@material-ui/icons/FormatItalic';
-import MathPlugin from './math';
 import React from 'react';
 import Strikethrough from '@material-ui/icons/FormatStrikethrough';
 import ToolbarPlugin from './toolbar';
@@ -13,7 +13,8 @@ import compact from 'lodash/compact';
 import SoftBreakPlugin from 'slate-soft-break';
 import debug from 'debug';
 import List from './list';
-import TablePlugin from './table';
+import * as math from './math';
+import * as table from './table';
 import RespAreaPlugin from './respArea';
 
 const log = debug('@pie-lib:editable-html:plugins');
@@ -52,56 +53,73 @@ function MarkHotkey(options) {
   };
 }
 
-export const ALL_PLUGINS = [
-  'bold',
-  'code',
-  'italic',
-  'underline',
-  'strikethrough',
-  'bulleted-list',
-  'numbered-list',
-  'image',
-  'math',
-  'table',
-  'responseArea'
-];
+// export const ALL_PLUGINS = [
+//   'bold',
+//   'code',
+//   'italic',
+//   'underline',
+//   'strikethrough',
+//   'bulleted-list',
+//   'numbered-list',
+//   'image',
+//   'math',
+//   'table',
+//   'responseArea'
+// ];
 
-export const DEFAULT_PLUGINS = ALL_PLUGINS.slice(0, 10);
+export const defaultPlugins = () => {
+  return [
+    {
+      name: 'bold',
+      init: () => MarkHotkey({ key: 'b', type: 'bold', icon: <Bold />, tag: 'strong' })
+    },
+    {
+      name: 'table',
+      serialization: table.serialization,
+      init: table.default
+    },
+    {
+      name: 'math',
+      serialization: math.serialization,
+      init: math.default
+    }
+  ];
+}; //ALL_PLUGINS.slice(0, 10);
 
-export const buildPlugins = (activePlugins, opts) => {
-  log('[buildPlugins] opts: ', opts);
+// export const buildPlugins = (activePlugins, opts) => {
+//   log('[buildPlugins] opts: ', opts);
 
-  activePlugins = activePlugins || DEFAULT_PLUGINS;
+//   activePlugins = activePlugins || DEFAULT_PLUGINS;
 
-  const addIf = (key, p) => activePlugins.includes(key) && p;
-  const imagePlugin = opts.image && opts.image.onDelete && ImagePlugin(opts.image);
-  const mathPlugin = MathPlugin(opts.math);
-  const respAreaPlugin =
-    opts.responseArea &&
-    opts.responseArea.type &&
-    RespAreaPlugin(opts.responseArea, compact([mathPlugin]));
+//   const addIf = (key, p) => activePlugins.includes(key) && p;
+//   const imagePlugin = opts.image && opts.image.onDelete && ImagePlugin(opts.image);
+//   const mathPlugin = MathPlugin(opts.math);
+//   const respAreaPlugin =
+//     opts.responseArea &&
+//     opts.responseArea.type &&
+//     RespAreaPlugin(opts.responseArea, compact([mathPlugin]));
 
-  return compact([
-    addIf('table', TablePlugin(opts.table, compact([imagePlugin, mathPlugin, respAreaPlugin]))),
-    addIf('bold', MarkHotkey({ key: 'b', type: 'bold', icon: <Bold />, tag: 'strong' })),
-    addIf('code', MarkHotkey({ key: '`', type: 'code', icon: <Code /> })),
-    addIf('italic', MarkHotkey({ key: 'i', type: 'italic', icon: <Italic />, tag: 'em' })),
-    addIf(
-      'strikethrough',
-      MarkHotkey({
-        key: '~',
-        type: 'strikethrough',
-        icon: <Strikethrough />,
-        tag: 'del'
-      })
-    ),
-    addIf('underline', MarkHotkey({ key: 'u', type: 'underline', icon: <Underline />, tag: 'u' })),
-    addIf('image', imagePlugin),
-    addIf('math', mathPlugin),
-    addIf('bulleted-list', List({ key: 'l', type: 'ul_list', icon: <BulletedListIcon /> })),
-    addIf('numbered-list', List({ key: 'n', type: 'ol_list', icon: <NumberedListIcon /> })),
-    ToolbarPlugin(opts.toolbar),
-    SoftBreakPlugin(),
-    addIf('responseArea', respAreaPlugin)
-  ]);
-};
+//   return compact([
+//     addIf('table', TablePlugin(opts.table, compact([imagePlugin, mathPlugin, respAreaPlugin]))),
+//     addIf('bold', MarkHotkey({ key: 'b', type: 'bold', icon: <Bold />, tag: 'strong' })),
+//     addIf('code', MarkHotkey({ key: '`', type: 'code', icon: <Code /> })),
+//     addIf('italic', MarkHotkey({ key: 'i', type: 'italic', icon: <Italic />, tag: 'em' })),
+//     addIf(
+//       'strikethrough',
+//       MarkHotkey({
+//         key: '~',
+//         type: 'strikethrough',
+//         icon: <Strikethrough />,
+//         tag: 'del'
+//       })
+//     ),
+//     addIf('underline', MarkHotkey({ key: 'u', type: 'underline', icon: <Underline />, tag: 'u' })),
+//     addIf('image', imagePlugin),
+//     addIf('math', mathPlugin),
+//     addIf('bulleted-list', List({ key: 'l', type: 'ul_list', icon: <BulletedListIcon /> })),
+//     addIf('numbered-list', List({ key: 'n', type: 'ol_list', icon: <NumberedListIcon /> })),
+//     ToolbarPlugin(opts.toolbar),
+//     SoftBreakPlugin(),
+//     addIf('responseArea', respAreaPlugin)
+//   ]);
+// };

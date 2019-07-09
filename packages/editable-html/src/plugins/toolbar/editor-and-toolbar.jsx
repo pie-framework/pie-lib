@@ -2,7 +2,7 @@ import React from 'react';
 import Toolbar from './toolbar';
 import classNames from 'classnames';
 import debug from 'debug';
-import { primary } from '../../theme';
+// import { primary } from '../../theme';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import SlatePropTypes from 'slate-prop-types';
@@ -101,7 +101,7 @@ export class EditorAndToolbar extends React.Component {
   }
 }
 
-const style = {
+const style = theme => ({
   root: {
     position: 'relative',
     padding: '0px',
@@ -146,7 +146,7 @@ const style = {
     '&:focus': {
       '&::after': {
         transform: 'scaleX(1)',
-        backgroundColor: primary,
+        backgroundColor: theme.palette.primary.main,
         height: '2px'
       }
     },
@@ -197,15 +197,15 @@ const style = {
   editorInFocus: {
     '&::after': {
       transform: 'scaleX(1)',
-      backgroundColor: primary,
+      backgroundColor: theme.palette.primary.main,
       height: '2px'
     },
     '&:hover': {
       '&::after': {
-        backgroundColor: primary
+        backgroundColor: theme.palette.primary.main
       }
     }
   }
-};
+});
 
 export default withStyles(style)(EditorAndToolbar);
