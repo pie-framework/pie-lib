@@ -195,9 +195,11 @@ export const getSerializer = rules => {
         })
       : defaultParseHtml;
 
+  rules = rules.concat(RULES); //.concat(rules);
+
   return new Html({
     defaultBlock: 'div',
-    rules: RULES.concat(rules),
+    rules,
     parseHtml
   });
 
