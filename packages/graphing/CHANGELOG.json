@@ -483,5 +483,20 @@
     "committerDate": "2019-07-05 22:02:06 -0400",
     "isTagged": true,
     "tag": "@pie-lib/graphing@1.1.1"
+  },
+  {
+    "type": "feat",
+    "scope": null,
+    "subject": "Axis labels should render markup, so HTML tags should be shown. Make the toolbar to fit inside the graph box.",
+    "merge": null,
+    "header": "feat: Axis labels should render markup, so HTML tags should be shown. Make the toolbar to fit inside the graph box.",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "c187aa43f98cbaf23854961f62b8dac5cd3a03bf",
+    "gitTags": " (origin/andreea/ch2441/graphing-interaction-issues)",
+    "committerDate": "2019-07-08 23:32:10 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/graphing@1.2.0"
   }
 ]
