@@ -5,9 +5,15 @@ exports[`RawXAxis snapshot renders 1`] = `
   <F
     hideZero={true}
     left={0}
-    numTicks={1}
     scale={[MockFunction]}
+    tickFormat={[Function]}
     tickLabelProps={[Function]}
+    tickValues={
+      Array [
+        0,
+        0,
+      ]
+    }
     top={0}
   />
   <WithStyles(Arrow)
@@ -65,12 +71,18 @@ exports[`RawYAxis snapshot renders 1`] = `
     height={400}
     hideZero={true}
     left={0}
-    numTicks={1}
     orientation="left"
     scale={[MockFunction]}
+    tickFormat={[Function]}
     tickLabelProps={[Function]}
     tickLength={10}
     tickTextAnchor="bottom"
+    tickValues={
+      Array [
+        0,
+        0,
+      ]
+    }
     top={0}
   />
   <WithStyles(Arrow)

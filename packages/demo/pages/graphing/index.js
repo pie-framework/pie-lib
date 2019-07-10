@@ -285,15 +285,15 @@ export class GridDemo extends React.PureComponent {
           min: -5,
           max: 5,
           padding: 0,
-          step: 1,
-          labelStep: 1
+          step: 1.6,
+          labelStep: 3.2
         },
         range: {
           min: -5,
           max: 5,
           padding: 0,
-          step: 1,
-          labelStep: 1
+          step: 0.3,
+          labelStep: 0.9
         },
         backgroundMarks: backgroundMarks,
         marks: marks

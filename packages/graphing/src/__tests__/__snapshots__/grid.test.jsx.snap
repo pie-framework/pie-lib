@@ -2,10 +2,22 @@
 
 exports[`Grid snapshot renders 1`] = `
 <r
+  columnTickValues={
+    Array [
+      0,
+      0,
+      1,
+    ]
+  }
   height={400}
   innerRef={[Function]}
-  numTicksColumns={1}
-  numTicksRows={1}
+  rowTickValues={
+    Array [
+      0,
+      0,
+      1,
+    ]
+  }
   width={400}
   xScale={[MockFunction]}
   yScale={[MockFunction]}
