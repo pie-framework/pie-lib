@@ -188,16 +188,22 @@ export class Toolbar extends React.Component {
       ...parentExtraStyles
     };
 
+    const deletable = node && plugin && plugin.deleteNode;
+    const customToolbarShowDone =
+      node && plugin && plugin.toolbar && plugin.toolbar.showDone && !toolbarOpts.alwaysVisible;
+
+    // If there is a toolbarOpts we check if the showDone is not equal to false
+    const defaultToolbarShowDone = !toolbarOpts || toolbarOpts.showDone !== false;
+
+    const hasDoneButton = defaultToolbarShowDone || customToolbarShowDone;
+
     const names = classNames(classes.toolbar, {
+      [classes.toolbarWithNoDone]: !hasDoneButton,
       [classes.toolbarTop]: toolbarOpts.position === 'top',
       [classes.focused]: toolbarOpts.alwaysVisible || isFocused,
       [classes.autoWidth]: autoWidth,
       [classes.fullWidth]: !autoWidth
     });
-
-    const deletable = node && plugin && plugin.deleteNode;
-    const showDone =
-      node && plugin && plugin.toolbar && plugin.toolbar.showDone && !toolbarOpts.alwaysVisible;
 
     return (
       <div className={names} style={extraStyles} onClick={this.onClick}>
@@ -215,6 +221,7 @@ export class Toolbar extends React.Component {
             pluginProps={pluginProps}
             value={value}
             onChange={onChange}
+            showDone={defaultToolbarShowDone}
             onDone={handleDone}
           />
         )}
@@ -233,7 +240,7 @@ export class Toolbar extends React.Component {
               <Delete />
             </IconButton>
           )}
-          {showDone && <DoneButton onClick={handleDone} />}
+          {customToolbarShowDone && <DoneButton onClick={handleDone} />}
         </div>
       </div>
     );
@@ -254,6 +261,9 @@ const style = {
       '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
     boxSizing: 'border-box',
     display: 'none'
+  },
+  toolbarWithNoDone: {
+    minWidth: '265px'
   },
   toolbarTop: {
     top: '-45px'

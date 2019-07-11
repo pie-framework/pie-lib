@@ -43,7 +43,15 @@ const isActiveToolbarPlugin = props => plugin => {
   return plugin && plugin.toolbar && !isDisabled;
 };
 
-export const DefaultToolbar = ({ plugins, pluginProps, value, onChange, onDone, classes }) => {
+export const DefaultToolbar = ({
+  plugins,
+  pluginProps,
+  value,
+  onChange,
+  onDone,
+  classes,
+  showDone
+}) => {
   const filtered = plugins.filter(isActiveToolbarPlugin(pluginProps)).map(p => p.toolbar);
 
   return (
@@ -53,7 +61,7 @@ export const DefaultToolbar = ({ plugins, pluginProps, value, onChange, onDone, 
           return <ToolbarButton {...p} key={index} value={value} onChange={onChange} />;
         })}
       </div>
-      <DoneButton onClick={onDone} />
+      {showDone && <DoneButton onClick={onDone} />}
     </div>
   );
 };
