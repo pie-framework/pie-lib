@@ -2333,5 +2333,20 @@
     "committerDate": "2019-07-08 15:52:37 +0200",
     "isTagged": true,
     "tag": "@pie-lib/editable-html@7.10.3"
+  },
+  {
+    "type": "fix",
+    "scope": "editor",
+    "subject": "added possibility to hide the done button and added a onKeyDown prop [ch2489]",
+    "merge": null,
+    "header": "fix(editor): added possibility to hide the done button and added a onKeyDown prop [ch2489]",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "45bda8c312fe8907101a1bfbb30145350bbd5a2a",
+    "gitTags": "",
+    "committerDate": "2019-07-11 16:10:22 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.10.5"
   }
 ]

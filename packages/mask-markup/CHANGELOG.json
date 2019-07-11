@@ -268,5 +268,20 @@
     "committerDate": "2019-07-02 11:29:52 -0400",
     "isTagged": true,
     "tag": "@pie-lib/mask-markup@1.3.3"
+  },
+  {
+    "type": "fix",
+    "scope": "editor",
+    "subject": "added possibility to hide the done button and added a onKeyDown prop [ch2489]",
+    "merge": null,
+    "header": "fix(editor): added possibility to hide the done button and added a onKeyDown prop [ch2489]",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "45bda8c312fe8907101a1bfbb30145350bbd5a2a",
+    "gitTags": "",
+    "committerDate": "2019-07-11 16:10:22 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/mask-markup@1.3.6"
   }
 ]
