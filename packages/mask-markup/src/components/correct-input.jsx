@@ -31,6 +31,7 @@ export default withStyles(() => ({
         }),
         input: classes.input
       }}
+      labelWidth={0}
       {...rest}
     />
   );

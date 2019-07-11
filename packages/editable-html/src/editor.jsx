@@ -19,6 +19,7 @@ export class Editor extends React.Component {
     editorRef: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired,
     onFocus: PropTypes.func,
+    onKeyDown: PropTypes.func,
     value: SlateTypes.value.isRequired,
     imageSupport: PropTypes.object,
     width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -43,7 +44,8 @@ export class Editor extends React.Component {
     }),
     toolbarOpts: PropTypes.shape({
       position: PropTypes.oneOf(['bottom', 'top']),
-      alwaysVisible: PropTypes.bool
+      alwaysVisible: PropTypes.bool,
+      showDone: PropTypes.bool
     }),
     activePlugins: PropTypes.arrayOf(values => {
       const allValid = values.every(v => ALL_PLUGINS.includes(v));
@@ -62,7 +64,8 @@ export class Editor extends React.Component {
     toolbarOpts: {
       position: 'bottom',
       alwaysVisible: false
-    }
+    },
+    onKeyDown: () => {}
   };
 
   constructor(props) {
@@ -389,7 +392,8 @@ export class Editor extends React.Component {
       className,
       placeholder,
       pluginProps,
-      toolbarOpts
+      toolbarOpts,
+      onKeyDown
     } = this.props;
     const { value, focusedNode } = this.state;
 
@@ -409,6 +413,7 @@ export class Editor extends React.Component {
           plugins={this.plugins}
           ref={r => (this.editor = r && this.props.editorRef(r))}
           value={value}
+          onKeyDown={onKeyDown}
           onChange={this.onChange}
           onBlur={this.onBlur}
           onFocus={this.onFocus}

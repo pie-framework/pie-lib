@@ -23,7 +23,7 @@ class Dropdown extends React.Component {
     return (
       <Select
         disabled={disabled}
-        value={value}
+        value={value || ''}
         input={<CorrectInput correct={showCorrectAnswer || correct} />}
         MenuProps={{
           keepMounted: true,

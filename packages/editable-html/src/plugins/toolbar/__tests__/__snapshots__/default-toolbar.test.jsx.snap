@@ -3,9 +3,6 @@
 exports[`default-toolbar snapshot renders 1`] = `
 <div>
   <div />
-  <WithStyles(RawDoneButton)
-    onClick={[MockFunction]}
-  />
 </div>
 `;
 
@@ -228,9 +225,6 @@ exports[`default-toolbar snapshot renders 1 plugins 1`] = `
       }
     />
   </div>
-  <WithStyles(RawDoneButton)
-    onClick={[MockFunction]}
-  />
 </div>
 `;
 
@@ -453,9 +447,6 @@ exports[`default-toolbar snapshot renders 1 plugins, 1 is disabled 1`] = `
       }
     />
   </div>
-  <WithStyles(RawDoneButton)
-    onClick={[MockFunction]}
-  />
 </div>
 `;
 
@@ -893,8 +884,5 @@ exports[`default-toolbar snapshot renders 2 plugins 1`] = `
       }
     />
   </div>
-  <WithStyles(RawDoneButton)
-    onClick={[MockFunction]}
-  />
 </div>
 `;
