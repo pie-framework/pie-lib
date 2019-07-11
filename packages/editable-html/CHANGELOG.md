@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.10.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.10.4...@pie-lib/editable-html@7.10.5) (2019-07-11)
+
+
+### Bug Fixes
+
+* **editor:** added possibility to hide the done button and added a onKeyDown prop [ch2489] ([45bda8c](https://github.com/pie-framework/pie-lib/commit/45bda8c))
+
+
+
+
+
 ## [7.10.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.10.3...@pie-lib/editable-html@7.10.4) (2019-07-08)
 
 

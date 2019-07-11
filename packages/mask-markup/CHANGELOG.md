@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.3.5...@pie-lib/mask-markup@1.3.6) (2019-07-11)
+
+
+### Bug Fixes
+
+* **editor:** added possibility to hide the done button and added a onKeyDown prop [ch2489] ([45bda8c](https://github.com/pie-framework/pie-lib/commit/45bda8c))
+
+
+
+
+
 ## [1.3.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.3.4...@pie-lib/mask-markup@1.3.5) (2019-07-08)
 
 **Note:** Version bump only for package @pie-lib/mask-markup
