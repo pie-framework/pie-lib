@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.3.6...@pie-lib/mask-markup@1.3.7) (2019-07-12)
+
+
+### Bug Fixes
+
+* **editor:** added serialization for other elements in order to grab the styles for them [ch1915], [ch1935] ([2e09533](https://github.com/pie-framework/pie-lib/commit/2e09533))
+
+
+
+
+
 ## [1.3.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.3.5...@pie-lib/mask-markup@1.3.6) (2019-07-11)
 
 
