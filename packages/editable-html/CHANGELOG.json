@@ -2363,5 +2363,20 @@
     "committerDate": "2019-07-12 10:45:20 +0300",
     "isTagged": true,
     "tag": "@pie-lib/editable-html@7.10.6"
+  },
+  {
+    "type": "fix",
+    "scope": "editor",
+    "subject": "added serialization for other elements in order to grab the styles for them [ch1915], [ch1935]",
+    "merge": null,
+    "header": "fix(editor): added serialization for other elements in order to grab the styles for them [ch1915], [ch1935]",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "2e09533858ca946995420b8d776b40c80de7d024",
+    "gitTags": "",
+    "committerDate": "2019-07-12 14:13:14 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.10.7"
   }
 ]
