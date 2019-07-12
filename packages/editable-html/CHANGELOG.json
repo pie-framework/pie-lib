@@ -2378,5 +2378,20 @@
     "committerDate": "2019-07-12 14:13:14 +0300",
     "isTagged": true,
     "tag": "@pie-lib/editable-html@7.10.7"
+  },
+  {
+    "type": "fix",
+    "scope": "editor",
+    "subject": "changed the style for the drag-in-the-blank choice and removed unnecessary statement [ch1915]",
+    "merge": null,
+    "header": "fix(editor): changed the style for the drag-in-the-blank choice and removed unnecessary statement [ch1915]",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "649de6ded7ac5dba9c4c3540c616d4f7a8d8be1d",
+    "gitTags": "",
+    "committerDate": "2019-07-12 15:16:55 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.10.8"
   }
 ]
