@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.3.7...@pie-lib/mask-markup@1.3.8) (2019-07-12)
+
+
+### Bug Fixes
+
+* **package:** added missing package to the mask-markup element ([67f67c7](https://github.com/pie-framework/pie-lib/commit/67f67c7))
+
+
+
+
+
 ## [1.3.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.3.6...@pie-lib/mask-markup@1.3.7) (2019-07-12)
 
 
