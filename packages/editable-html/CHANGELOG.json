@@ -2348,5 +2348,20 @@
     "committerDate": "2019-07-11 16:10:22 +0300",
     "isTagged": true,
     "tag": "@pie-lib/editable-html@7.10.5"
+  },
+  {
+    "type": "fix",
+    "scope": "editor",
+    "subject": "removed the timeout in the onBlur function, instead i checked if the user clicked on the check mark button and prevented the action if it did",
+    "merge": null,
+    "header": "fix(editor): removed the timeout in the onBlur function, instead i checked if the user clicked on the check mark button and prevented the action if it did",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "489b926b32a520199e3b4b9a830e1fbd685b89f8",
+    "gitTags": "",
+    "committerDate": "2019-07-12 10:45:20 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.10.6"
   }
 ]
