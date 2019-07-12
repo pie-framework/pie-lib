@@ -23,14 +23,18 @@ describe('htmlToValue', () => {
             object: 'block',
             type: 'div',
             isVoid: false,
-            data: {},
+            data: {
+              attributes: {}
+            },
             isVoid: false,
             nodes: [
               {
                 object: 'block',
                 type: 'paragraph',
                 isVoid: false,
-                data: {},
+                data: {
+                  attributes: {}
+                },
                 isVoid: false,
                 nodes: [
                   {

@@ -1,25 +1,9 @@
 import Html from 'slate-html-serializer';
+import { object as toStyleObject } from 'to-style';
 
 const INLINE = ['span'];
 const MARK = ['em', 'strong', 'u'];
 const TEXT_NODE = 3;
-
-const attr = el => {
-  if (!el.attributes || el.attributes.length <= 0) {
-    return undefined;
-  }
-
-  const out = {};
-
-  for (var i = 0; i < el.attributes.length; i++) {
-    const a = el.attributes[i];
-    if (!a.name.startsWith('data-')) {
-      out[a.name] = a.value;
-    }
-  }
-
-  return out;
-};
 
 const getObject = type => {
   if (INLINE.includes(type)) {
@@ -29,6 +13,34 @@ const getObject = type => {
   }
   return 'block';
 };
+
+export const parseStyleString = s => {
+  const regex = /([\w-]*)\s*:\s*([^;]*)/g;
+  let match;
+  const result = {};
+  while ((match = regex.exec(s))) {
+    result[match[1]] = match[2].trim();
+  }
+  return result;
+};
+
+export const reactAttributes = o => toStyleObject(o, { camelize: true });
+
+const attributesToMap = el => (acc, attribute) => {
+  const value = el.getAttribute(attribute);
+  if (value) {
+    if (attribute === 'style') {
+      const styleString = el.getAttribute(attribute);
+      const reactStyleObject = reactAttributes(parseStyleString(styleString));
+      acc['style'] = reactStyleObject;
+    } else {
+      acc[attribute] = el.getAttribute(attribute);
+    }
+  }
+  return acc;
+};
+
+const attributes = ['border', 'cellpadding', 'cellspacing', 'class', 'style'];
 
 const rules = [
   {
@@ -44,12 +56,13 @@ const rules = [
       }
       const type = el.tagName.toLowerCase();
 
-      const attributes = attr(el) || {};
+      const attr = attributes.reduce(attributesToMap(el), {});
       const object = getObject(type);
+
       return {
         object,
         type,
-        data: { dataset: { ...el.dataset }, attributes: { ...attributes } },
+        data: { dataset: { ...el.dataset }, attributes: { ...attr } },
         nodes: next(el.childNodes)
       };
     }

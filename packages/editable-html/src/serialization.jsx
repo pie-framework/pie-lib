@@ -1,6 +1,8 @@
 import Html from 'slate-html-serializer';
 import React from 'react';
 import debug from 'debug';
+import { object as toStyleObject } from 'to-style';
+
 import { serialization as imgSerialization } from './plugins/image';
 import { serialization as mathSerialization } from './plugins/math';
 import { serialization as listSerialization } from './plugins/list';
@@ -44,6 +46,34 @@ const MARK_TAGS = {
   code: 'code'
 };
 
+export const parseStyleString = s => {
+  const regex = /([\w-]*)\s*:\s*([^;]*)/g;
+  let match;
+  const result = {};
+  while ((match = regex.exec(s))) {
+    result[match[1]] = match[2].trim();
+  }
+  return result;
+};
+
+export const reactAttributes = o => toStyleObject(o, { camelize: true });
+
+const attributesToMap = el => (acc, attribute) => {
+  const value = el.getAttribute(attribute);
+  if (value) {
+    if (attribute === 'style') {
+      const styleString = el.getAttribute(attribute);
+      const reactStyleObject = reactAttributes(parseStyleString(styleString));
+      acc['style'] = reactStyleObject;
+    } else {
+      acc[attribute] = el.getAttribute(attribute);
+    }
+  }
+  return acc;
+};
+
+const attributes = ['border', 'cellpadding', 'cellspacing', 'class', 'style'];
+
 /**
  * Serializer rules.
  *
@@ -57,6 +87,10 @@ const blocks = {
     if (!block) return;
     log('[blocks:deserialize] block: ', block);
 
+    if (el.tagName.toLowerCase() === 'td') {
+      console.log(td.textContent);
+    }
+
     if (el.childNodes.length === 1) {
       const cn = el.childNodes[0];
       if (cn && cn.tagName && cn.tagName.toLowerCase() === block) {
@@ -64,20 +98,27 @@ const blocks = {
         return;
       }
     }
+
     return {
       object: 'block',
       type: block,
+      data: { attributes: attributes.reduce(attributesToMap(el), {}) },
       nodes: next(el.childNodes)
     };
   },
   serialize: (object, children) => {
     if (object.object !== 'block') return;
 
+    const jsonData = object.data.toJSON();
+
     log('[blocks:serialize] object: ', object, children);
-    for (var key in BLOCK_TAGS) {
+    let key;
+
+    for (key in BLOCK_TAGS) {
       if (BLOCK_TAGS[key] === object.type) {
         const Tag = key;
-        return <Tag>{children}</Tag>;
+
+        return <Tag {...jsonData.attributes}>{children}</Tag>;
       }
     }
   }
