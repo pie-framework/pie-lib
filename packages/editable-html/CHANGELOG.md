@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.10.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.10.7...@pie-lib/editable-html@7.10.8) (2019-07-12)
+
+
+### Bug Fixes
+
+* **editor:** changed the style for the drag-in-the-blank choice and removed unnecessary statement [ch1915] ([649de6d](https://github.com/pie-framework/pie-lib/commit/649de6d))
+
+
+
+
+
 ## [7.10.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.10.6...@pie-lib/editable-html@7.10.7) (2019-07-12)
 
 
