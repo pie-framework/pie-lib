@@ -298,5 +298,20 @@
     "committerDate": "2019-07-12 14:13:14 +0300",
     "isTagged": true,
     "tag": "@pie-lib/mask-markup@1.3.7"
+  },
+  {
+    "type": "fix",
+    "scope": "package",
+    "subject": "added missing package to the mask-markup element",
+    "merge": null,
+    "header": "fix(package): added missing package to the mask-markup element",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "67f67c7c737c2c4260e4e3fc6fcb90a172e0e354",
+    "gitTags": "",
+    "committerDate": "2019-07-12 16:24:56 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/mask-markup@1.3.8"
   }
 ]
