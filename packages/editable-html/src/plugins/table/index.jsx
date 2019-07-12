@@ -35,10 +35,7 @@ Table.propTypes = {
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
   node: SlatePropTypes.node,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired
 };
 
 const TableRow = props => <tr {...props.attributes}>{props.children}</tr>;
@@ -47,10 +44,7 @@ TableRow.propTypes = {
   attributes: PropTypes.object,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired
 };
 
 const TableCell = withStyles(theme => ({
@@ -81,10 +75,7 @@ TableCell.propTypes = {
   attributes: PropTypes.object,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired
 };
 
 export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
@@ -147,9 +138,7 @@ export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
         const { data } = tableBlock;
         const update = data.set('border', hasBorder() ? '0' : '1');
         log('[toggleBorder] update: ', update);
-        const change = value
-          .change()
-          .setNodeByKey(tableBlock.key, { data: update });
+        const change = value.change().setNodeByKey(tableBlock.key, { data: update });
         onToolbarDone(change, false);
       };
 
@@ -161,7 +150,7 @@ export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
       const Tb = () => (
         <TableToolbar
           plugins={toolbarPlugins}
-          onChange={(c) => onToolbarDone(c, false)}
+          onChange={c => onToolbarDone(c, false)}
           value={value}
           onAddRow={addRow}
           onRemoveRow={removeRow}
@@ -184,9 +173,7 @@ export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
       case 'table_row':
         return <TableRow {...props} />;
       case 'table_cell':
-        return (
-          <TableCell {...props} onFocus={opts.onFocus} onBlur={opts.onBlur} />
-        );
+        return <TableCell {...props} onFocus={opts.onFocus} onBlur={opts.onBlur} />;
       default:
         return null;
     }
@@ -252,8 +239,7 @@ export const serialization = {
     switch (tag) {
       case 'table': {
         const children =
-          el.children.length === 1 &&
-          el.children[0].tagName.toLowerCase() === 'tbody'
+          el.children.length === 1 && el.children[0].tagName.toLowerCase() === 'tbody'
             ? el.children[0].children
             : el.children;
         const c = Array.from(children);
@@ -284,7 +270,7 @@ export const serialization = {
         return {
           object: 'block',
           type: 'table_cell',
-          nodes: next(Array.from(el.children)),
+          nodes: next(Array.from(el.childNodes)),
           data: cellAttributes.reduce(attributesToMap(el), { header: false })
         };
       }

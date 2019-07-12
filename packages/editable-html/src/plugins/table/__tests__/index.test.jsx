@@ -1,9 +1,5 @@
 import EditTable from 'slate-edit-table';
-import TablePlugin, {
-  serialization,
-  parseStyleString,
-  reactAttributes
-} from '../index';
+import TablePlugin, { serialization, parseStyleString, reactAttributes } from '../index';
 import { Data } from 'slate';
 import React from 'react';
 
@@ -29,10 +25,7 @@ describe('table', () => {
       it('calls changes.insertTable', () => {
         const plugin = TablePlugin();
         const onChange = jest.fn();
-        plugin.toolbar.onClick(
-          { change: jest.fn().mockReturnValue({}) },
-          onChange
-        );
+        plugin.toolbar.onClick({ change: jest.fn().mockReturnValue({}) }, onChange);
 
         expect(EditTable().changes.insertTable).toHaveBeenCalledWith({}, 2, 2);
       });
@@ -208,7 +201,7 @@ describe('serialization', () => {
     it('deserializes td', () => {
       const el = {
         tagName: 'td',
-        children: [],
+        childNodes: [],
         getAttribute: jest.fn(function(name) {
           const o = {
             class: 'class name',
