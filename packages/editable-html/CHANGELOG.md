@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.10.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.10.5...@pie-lib/editable-html@7.10.6) (2019-07-12)
+
+
+### Bug Fixes
+
+* **editor:** removed the timeout in the onBlur function, instead i checked if the user clicked on the check mark button and prevented the action if it did ([489b926](https://github.com/pie-framework/pie-lib/commit/489b926))
+
+
+
+
+
 ## [7.10.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.10.4...@pie-lib/editable-html@7.10.5) (2019-07-11)
 
 
