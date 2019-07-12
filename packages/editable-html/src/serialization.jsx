@@ -87,10 +87,6 @@ const blocks = {
     if (!block) return;
     log('[blocks:deserialize] block: ', block);
 
-    if (el.tagName.toLowerCase() === 'td') {
-      console.log(td.textContent);
-    }
-
     if (el.childNodes.length === 1) {
       const cn = el.childNodes[0];
       if (cn && cn.tagName && cn.tagName.toLowerCase() === block) {
