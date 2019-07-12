@@ -72,7 +72,8 @@ export const PointConfig = withStyles(theme => ({
     width: '100%'
   },
   editor: {
-    width: '100%'
+    width: '100%',
+    backgroundColor: 'white !important'
   },
   dragIndicator: {
     paddingTop: theme.spacing.unit,
@@ -153,6 +154,9 @@ export class RawAuthoring extends React.Component {
 
     return (
       <div className={classNames(classes.class, className)}>
+        <Typography variant="h5" className={classes.rubricTitle}>
+          Rubric
+        </Typography>
         <FormGroup row>
           <MaxPoints max={10} value={value.points.length - 1} onChange={this.changeMaxPoints} />
           <FormControlLabel
@@ -210,6 +214,10 @@ const styles = theme => ({
   configHolder: {
     paddingTop: theme.spacing.unit,
     paddingBottom: theme.spacing.unit
+  },
+  rubricTitle: {
+    paddingLeft: theme.spacing.unit,
+    margin: theme.spacing.unit
   }
 });
 
