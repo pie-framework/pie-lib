@@ -1,9 +1,11 @@
 import { Editor as SlateEditor, findNode } from 'slate-react';
 import SlateTypes from 'slate-prop-types';
 
+import debounce from 'lodash/debounce';
 import * as serialization from './serialization';
 import PropTypes from 'prop-types';
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { Value, Block } from 'slate';
 import { buildPlugins, ALL_PLUGINS, DEFAULT_PLUGINS } from './plugins';
 import debug from 'debug';
@@ -207,6 +209,17 @@ export class Editor extends React.Component {
     this.props.onChange(this.state.value, true);
   };
 
+  // Allowing time for onChange to take effect if it is called
+  handleBlur = resolve => {
+    this.resetValue().then(() => {
+      if (this.editor) {
+        this.editor.blur();
+      }
+
+      resolve();
+    });
+  };
+
   onBlur = event => {
     log('[onBlur]');
     const target = event.relatedTarget;
@@ -215,19 +228,21 @@ export class Editor extends React.Component {
 
     log('[onBlur] node: ', node);
 
-    return new Promise(resolve => {
-      this.setState({ focusedNode: node }, () => {
-        this.resetValue().then(() => {
-          // Allowing time for onChange to take effect if it is called
-          setTimeout(() => {
-            if (this.editor) {
-              this.editor.blur();
-            }
-          }, 100);
+    // eslint-disable-next-line
+    const wrapperNode = ReactDOM.findDOMNode(this.wrapperRef);
 
-          resolve();
-        });
-      });
+    // If the user clicked on the check mark inside this editor, we're not returning a promise
+    if (
+      wrapperNode &&
+      wrapperNode.contains(target) &&
+      target &&
+      target.matches('[aria-label="Done"]')
+    ) {
+      return false;
+    }
+
+    return new Promise(resolve => {
+      this.setState({ focusedNode: node }, this.handleBlur.bind(this, resolve));
     });
   };
 
@@ -408,7 +423,11 @@ export class Editor extends React.Component {
     );
 
     return (
-      <div style={{ width: sizeStyle.width }} className={names}>
+      <div
+        ref={ref => (this.wrapperRef = ref)}
+        style={{ width: sizeStyle.width }}
+        className={names}
+      >
         <SlateEditor
           plugins={this.plugins}
           ref={r => (this.editor = r && this.props.editorRef(r))}
