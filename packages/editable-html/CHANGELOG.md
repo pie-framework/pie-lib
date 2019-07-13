@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.10.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.10.8...@pie-lib/editable-html@7.10.9) (2019-07-13)
+
+
+### Bug Fixes
+
+* **editor:** added a way of saving the editable content when the user blures the component [ch2363], [ch1912], [ch2565], [ch2557], fixed some math rendering issue ([d4cdc6a](https://github.com/pie-framework/pie-lib/commit/d4cdc6a))
+
+
+
+
+
 ## [7.10.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.10.7...@pie-lib/editable-html@7.10.8) (2019-07-12)
 
 
