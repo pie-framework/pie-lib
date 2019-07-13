@@ -18,7 +18,7 @@ const log = debug('@pie-lib:editable-html:serialization');
  * @type {Object}
  */
 
-const BLOCK_TAGS = {
+export const BLOCK_TAGS = {
   div: 'div',
   span: 'span',
   p: 'paragraph',
@@ -98,6 +98,9 @@ const blocks = {
     return {
       object: 'block',
       type: block,
+      /**
+       * Here for rendering styles for all block elements
+       */
       data: { attributes: attributes.reduce(attributesToMap(el), {}) },
       nodes: next(el.childNodes)
     };

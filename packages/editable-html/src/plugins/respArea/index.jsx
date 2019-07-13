@@ -32,15 +32,23 @@ export default function ResponseAreaPlugin(opts) {
           change.insertInline(newInline);
         } else {
           // If the markup is empty and there's no focus
-          const firstText = value.document.getFirstText();
-          const parentNode = value.document.getParent(firstText.key);
+          const lastText = value.document.getLastText();
+          const parentNode = value.document.getParent(lastText.key);
 
           if (parentNode) {
-            const index = parentNode.nodes.indexOf(firstText.key);
+            const index = parentNode.nodes.indexOf(lastText.key);
 
             if (parentNode.isVoid) return;
 
             change.insertNodeByKey(parentNode.key, index + 1, newInline);
+          }
+        }
+
+        if (newInline.type === 'drag_in_the_blank') {
+          const nextText = change.value.document.getNextText(newInline.key);
+
+          if (nextText) {
+            change.moveFocusTo(nextText.key, 0).moveAnchorTo(nextText.key, 0);
           }
         }
 

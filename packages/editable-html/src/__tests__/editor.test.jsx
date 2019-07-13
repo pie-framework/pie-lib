@@ -28,7 +28,7 @@ expect.extend({
 });
 
 describe('logic', () => {
-  test('onFocus/onBlur resets the value', async () => {
+  test('onFocus/onBlur saves the value', async () => {
     const wrapper = shallow(
       <Editor editorRef={jest.fn()} value={value} classes={{}} onChange={jest.fn()} />
     );
@@ -47,7 +47,7 @@ describe('logic', () => {
       .instance()
       .onBlur({})
       .then(() => {
-        expect(wrapper.state('value')).toEqualHtml('<div>hi</div>');
+        expect(wrapper.state('value')).toEqualHtml('<div>new value</div>');
       });
   });
 });

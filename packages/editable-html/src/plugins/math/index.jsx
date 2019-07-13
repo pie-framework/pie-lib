@@ -6,6 +6,8 @@ import React from 'react';
 import debug from 'debug';
 import SlatePropTypes from 'slate-prop-types';
 import PropTypes from 'prop-types';
+
+import { BLOCK_TAGS } from '../../serialization';
 const log = debug('@pie-lib:editable-html:plugins:math');
 
 const TEXT_NODE = 3;
@@ -108,16 +110,13 @@ export default function MathPlugin(opts) {
         return <MathPreview {...props} />;
       }
 
+      /**
+       * Here for rendering mathml content
+       */
       if (props.node.type === 'mathml') {
         const html = props.node.data.get('html');
 
-        return (
-          <div
-            dangerouslySetInnerHTML={{
-              __html: html
-            }}
-          />
-        );
+        return <span {...props.attributes} dangerouslySetInnerHTML={{ __html: html }} />;
       }
     }
   };
@@ -144,18 +143,36 @@ const htmlDecode = input => {
   return doc.documentElement.textContent;
 };
 
+const getTagName = el => {
+  return ((el && el.tagName) || '').toLowerCase();
+};
+
 export const serialization = {
   deserialize(el) {
-    const tagName = el.tagName.toLowerCase();
+    const tagName = getTagName(el);
+    /**
+     * This is used for when there's a wrapper over the mathml element.
+     * Because of this slate rule: "Only allow block nodes or inline and text nodes in blocks."
+     * The element that contains only the mathml is removed (along with the math) because it has
+     * an inline child and the block is of type block
+     * This is for legacy content only since our math rendering is valid for the core slate rules
+     */
+    const hasMathChild =
+      BLOCK_TAGS[tagName] && el.childNodes.length === 1 && getTagName(el.firstChild) === 'math';
     log('[deserialize] name: ', tagName);
 
-    if (tagName === 'math') {
+    /**
+     * This is here in order to be able to render mathml content
+     */
+    if (tagName === 'math' || (el.dataset && el.dataset.type === 'mathml') || hasMathChild) {
+      const newHtml = hasMathChild ? el.innerHTML : el.outerHTML;
+
       return {
-        object: 'block',
+        object: 'inline',
         isVoid: true,
         type: 'mathml',
         data: {
-          html: el.outerHTML
+          html: newHtml
         }
       };
     }
@@ -199,16 +216,13 @@ export const serialization = {
       );
     }
 
+    /**
+     * Here for rendering mathml content
+     */
     if (object.type === 'mathml') {
       const html = object.data.get('html');
 
-      return (
-        <span
-          contentEditable={false}
-          suppressContentEditableWarning
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
-      );
+      return <span data-type="mathml" dangerouslySetInnerHTML={{ __html: html }} />;
     }
   }
 };

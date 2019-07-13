@@ -44,6 +44,12 @@ export default class DragInTheBlank extends React.Component {
     showCorrectAnswer: PropTypes.bool
   };
 
+  componentWillReceiveProps() {
+    if (this.rootRef) {
+      renderMath(this.rootRef);
+    }
+  }
+
   componentDidUpdate() {
     renderMath(this.rootRef);
   }
