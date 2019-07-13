@@ -57,6 +57,7 @@ describe('MathPlugin', () => {
         it(`innerHTML: ${html} is deserialized to: ${expected} with wrapType: ${wrapType}`, () => {
           const el = {
             tagName: 'span',
+            childNodes: [],
             getAttribute: jest.fn(() => ''),
             hasAttribute: jest.fn(() => true),
             innerHTML: html

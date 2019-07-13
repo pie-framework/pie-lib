@@ -21,7 +21,6 @@ export default class EditableHtml extends React.Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     onDone: PropTypes.func,
-    onTemporaryChange: PropTypes.func,
     markup: PropTypes.string.isRequired
   };
 
@@ -71,17 +70,6 @@ export default class EditableHtml extends React.Component {
     }
   };
 
-  onTemporaryChange = value => {
-    const { onTemporaryChange } = this.props;
-    const html = valueToHtml(value);
-
-    log('value as html: ', html);
-
-    if (html !== this.props.markup && onTemporaryChange) {
-      onTemporaryChange(html);
-    }
-  };
-
   focus = position => {
     if (this.editorRef) {
       this.editorRef.change(c => {
@@ -113,8 +101,7 @@ export default class EditableHtml extends React.Component {
       ...this.props,
       markup: null,
       value,
-      onChange: this.onChange,
-      onTemporaryChange: this.onTemporaryChange
+      onChange: this.onChange
     };
 
     return <Editor editorRef={ref => ref && (this.editorRef = ref)} {...props} />;

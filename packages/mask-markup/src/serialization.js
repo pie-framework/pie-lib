@@ -5,6 +5,24 @@ const INLINE = ['span'];
 const MARK = ['em', 'strong', 'u'];
 const TEXT_NODE = 3;
 
+const attr = el => {
+  if (!el.attributes || el.attributes.length <= 0) {
+    return undefined;
+  }
+
+  const out = {};
+  let i;
+
+  for (i = 0; i < el.attributes.length; i++) {
+    const a = el.attributes[i];
+    if (!a.name.startsWith('data-')) {
+      out[a.name] = a.value;
+    }
+  }
+
+  return out;
+};
+
 const getObject = type => {
   if (INLINE.includes(type)) {
     return 'inline';
@@ -40,7 +58,7 @@ const attributesToMap = el => (acc, attribute) => {
   return acc;
 };
 
-const attributes = ['border', 'cellpadding', 'cellspacing', 'class', 'style'];
+const attributes = ['border', 'class', 'style'];
 
 const rules = [
   {
@@ -56,13 +74,14 @@ const rules = [
       }
       const type = el.tagName.toLowerCase();
 
-      const attr = attributes.reduce(attributesToMap(el), {});
+      const normalAttrs = attr(el) || {};
+      const allAttrs = attributes.reduce(attributesToMap(el), { ...normalAttrs });
       const object = getObject(type);
 
       return {
         object,
         type,
-        data: { dataset: { ...el.dataset }, attributes: { ...attr } },
+        data: { dataset: { ...el.dataset }, attributes: { ...allAttrs } },
         nodes: next(el.childNodes)
       };
     }

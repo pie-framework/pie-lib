@@ -1,11 +1,10 @@
 import { Editor as SlateEditor, findNode } from 'slate-react';
 import SlateTypes from 'slate-prop-types';
 
-import debounce from 'lodash/debounce';
+import isEqual from 'lodash/isEqual';
 import * as serialization from './serialization';
 import PropTypes from 'prop-types';
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Value, Block } from 'slate';
 import { buildPlugins, ALL_PLUGINS, DEFAULT_PLUGINS } from './plugins';
 import debug from 'debug';
@@ -14,6 +13,20 @@ import classNames from 'classnames';
 export { ALL_PLUGINS, DEFAULT_PLUGINS, serialization };
 
 const log = debug('editable-html:editor');
+
+const defaultToolbarOpts = {
+  position: 'bottom',
+  alwaysVisible: false,
+  showDone: true,
+  doneOn: 'blur'
+};
+
+const createToolbarOpts = toolbarOpts => {
+  return {
+    ...defaultToolbarOpts,
+    ...toolbarOpts
+  };
+};
 
 export class Editor extends React.Component {
   static propTypes = {
@@ -47,7 +60,8 @@ export class Editor extends React.Component {
     toolbarOpts: PropTypes.shape({
       position: PropTypes.oneOf(['bottom', 'top']),
       alwaysVisible: PropTypes.bool,
-      showDone: PropTypes.bool
+      showDone: PropTypes.bool,
+      doneOn: PropTypes.string
     }),
     activePlugins: PropTypes.arrayOf(values => {
       const allValid = values.every(v => ALL_PLUGINS.includes(v));
@@ -63,17 +77,15 @@ export class Editor extends React.Component {
   static defaultProps = {
     disableUnderline: true,
     onFocus: () => {},
-    toolbarOpts: {
-      position: 'bottom',
-      alwaysVisible: false
-    },
+    toolbarOpts: defaultToolbarOpts,
     onKeyDown: () => {}
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      value: props.value
+      value: props.value,
+      toolbarOpts: createToolbarOpts(props.toolbarOpts)
     };
 
     this.plugins = buildPlugins(props.activePlugins, {
@@ -171,6 +183,17 @@ export class Editor extends React.Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    const { toolbarOpts } = this.state;
+    const newToolbarOpts = createToolbarOpts(nextProps.toolbarOpts);
+
+    if (isEqual(newToolbarOpts, toolbarOpts)) {
+      this.setState({
+        toolbarOpts: newToolbarOpts
+      });
+    }
+  }
+
   onPluginBlur = e => {
     log('[onPluginBlur]', e && e.relatedTarget);
     const target = e && e.relatedTarget;
@@ -211,13 +234,28 @@ export class Editor extends React.Component {
 
   // Allowing time for onChange to take effect if it is called
   handleBlur = resolve => {
-    this.resetValue().then(() => {
-      if (this.editor) {
-        this.editor.blur();
-      }
+    const { nonEmpty } = this.props;
+    const {
+      toolbarOpts: { doneOn }
+    } = this.state;
 
-      resolve();
-    });
+    this.setState({ toolbarInFocus: false, focusedNode: null });
+
+    if (this.editor) {
+      this.editor.blur();
+    }
+
+    if (doneOn === 'blur') {
+      if (nonEmpty && this.state.value.startText.text.length === 0) {
+        this.resetValue(true).then(() => {
+          this.onEditingDone();
+          resolve();
+        });
+      } else {
+        this.onEditingDone();
+        resolve();
+      }
+    }
   };
 
   onBlur = event => {
@@ -227,19 +265,6 @@ export class Editor extends React.Component {
     const node = target ? findNode(target, this.state.value) : null;
 
     log('[onBlur] node: ', node);
-
-    // eslint-disable-next-line
-    const wrapperNode = ReactDOM.findDOMNode(this.wrapperRef);
-
-    // If the user clicked on the check mark inside this editor, we're not returning a promise
-    if (
-      wrapperNode &&
-      wrapperNode.contains(target) &&
-      target &&
-      target.matches('[aria-label="Done"]')
-    ) {
-      return false;
-    }
 
     return new Promise(resolve => {
       this.setState({ focusedNode: node }, this.handleBlur.bind(this, resolve));
@@ -407,10 +432,9 @@ export class Editor extends React.Component {
       className,
       placeholder,
       pluginProps,
-      toolbarOpts,
       onKeyDown
     } = this.props;
-    const { value, focusedNode } = this.state;
+    const { value, focusedNode, toolbarOpts } = this.state;
 
     log('[render] value: ', value);
     const sizeStyle = this.buildSizeStyle();
