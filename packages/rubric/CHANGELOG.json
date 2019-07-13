@@ -178,5 +178,20 @@
     "committerDate": "2019-07-02 14:41:50 -0400",
     "isTagged": true,
     "tag": "@pie-lib/rubric@0.2.8"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "small styling tweaks (#147)",
+    "merge": null,
+    "header": "fix: small styling tweaks (#147)",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "ec1cce6e66d5e9dd7ea4c5776a95a2447c495999",
+    "gitTags": "",
+    "committerDate": "2019-07-12 17:41:25 -0400",
+    "isTagged": true,
+    "tag": "@pie-lib/rubric@0.2.22"
   }
 ]
