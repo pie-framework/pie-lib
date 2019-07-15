@@ -20,11 +20,13 @@ exports[`gridDraggable snapshot reqular 1`] = `
         "domain": Object {
           "max": 1,
           "min": 0,
+          "step": 1,
         },
         "getRootNode": [Function],
         "range": Object {
           "max": 1,
           "min": 0,
+          "step": 1,
         },
         "scale": Object {
           "x": [MockFunction] {

@@ -33,11 +33,13 @@ const getGraphProps = () => ({
   },
   domain: {
     min: 0,
-    max: 1
+    max: 1,
+    step: 1
   },
   range: {
     min: 0,
-    max: 1
+    max: 1,
+    step: 1
   },
   size: {
     width: 500,
@@ -80,7 +82,7 @@ describe('gridDraggable', () => {
       it('returns the grid', () => {
         const w = wrapper();
         const g = w.instance().grid();
-        expect(g).toEqual({ interval: 1, x: 1, y: 1 });
+        expect(g).toEqual({ x: 1, y: 1 });
       });
     });
 

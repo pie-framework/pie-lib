@@ -282,15 +282,15 @@ export class GridDemo extends React.PureComponent {
       model: {
         title: undefined,
         domain: {
-          min: -5,
-          max: 5,
+          min: -5.8,
+          max: 10.6,
           padding: 0,
           step: 1.6,
           labelStep: 3.2
         },
         range: {
-          min: -5,
-          max: 5,
+          min: -2.8,
+          max: 12.8,
           padding: 0,
           step: 0.3,
           labelStep: 0.9
