@@ -120,6 +120,7 @@ const style = {
   editorHolder: {
     position: 'relative',
     padding: '0px',
+    overflowY: 'scroll',
     '&::before': {
       left: '0',
       right: '0',
