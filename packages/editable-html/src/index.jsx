@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import Editor, { DEFAULT_PLUGINS, ALL_PLUGINS } from './editor';
 import { htmlToValue, valueToHtml } from './serialization';
+import { parseDegrees } from './parse-html';
 import debug from 'debug';
 
 const log = debug('@pie-lib:editable-html');
@@ -58,15 +59,16 @@ export default class EditableHtml extends React.Component {
 
   onChange = (value, done) => {
     const html = valueToHtml(value);
+    const htmlParsed = parseDegrees(html);
 
     log('value as html: ', html);
 
     if (html !== this.props.markup) {
-      this.props.onChange(html);
+      this.props.onChange(htmlParsed);
     }
 
     if (done) {
-      this.props.onDone(html);
+      this.props.onDone(htmlParsed);
     }
   };
 
