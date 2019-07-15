@@ -3,25 +3,7 @@ import PropTypes from 'prop-types';
 import * as vx from '@vx/grid';
 import { types, utils } from '@pie-lib/plot';
 import { withStyles } from '@material-ui/core/styles';
-
-const getTickValues = prop => {
-  const tickValues = [];
-  let tickVal = 0;
-
-  while (tickVal >= prop.min) {
-    tickValues.push(tickVal);
-    tickVal = Math.round((tickVal - prop.step) * 100) / 100;
-  }
-
-  tickVal = 0;
-
-  while (tickVal <= prop.max) {
-    tickValues.push(tickVal);
-    tickVal = Math.round((tickVal + prop.step) * 100) / 100;
-  }
-
-  return tickValues;
-};
+import { getTickValues } from './utils';
 
 export class Grid extends React.Component {
   static propTypes = {

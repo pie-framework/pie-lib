@@ -5,7 +5,6 @@ exports[`Grid snapshot renders 1`] = `
   columnTickValues={
     Array [
       0,
-      0,
       1,
     ]
   }
@@ -13,7 +12,6 @@ exports[`Grid snapshot renders 1`] = `
   innerRef={[Function]}
   rowTickValues={
     Array [
-      0,
       0,
       1,
     ]

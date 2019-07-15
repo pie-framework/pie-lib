@@ -1,33 +1,14 @@
 import React from 'react';
 import { Axis } from '@vx/axis';
-import { tickCount } from '../utils';
 import { types, utils } from '@pie-lib/plot';
 import PropTypes from 'prop-types';
 import Arrow from './arrow';
 import { withStyles } from '@material-ui/core';
 import debug from 'debug';
 import isEqual from 'lodash/isEqual';
+import { getTickValues } from '../utils';
 
 const log = debug('pie-lib:graphing:axes');
-
-const getTickValues = prop => {
-  const tickValues = [];
-  let tickVal = 0;
-
-  while (tickVal >= prop.min) {
-    tickValues.push(tickVal);
-    tickVal = Math.round((tickVal - prop.labelStep) * 100) / 100;
-  }
-
-  tickVal = 0;
-
-  while (tickVal <= prop.max) {
-    tickValues.push(tickVal);
-    tickVal = Math.round((tickVal + prop.labelStep) * 100) / 100;
-  }
-
-  return tickValues;
-};
 
 const AxisPropTypes = {
   includeArrows: PropTypes.bool
@@ -76,7 +57,7 @@ export class RawXAxis extends React.Component {
   render() {
     const { includeArrows, classes, graphProps } = this.props;
     const { scale, domain, size } = graphProps;
-    const columnTicksValues = getTickValues(domain);
+    const columnTicksValues = getTickValues({ ...domain, step: domain.labelStep });
 
     return (
       <React.Fragment>
@@ -130,7 +111,7 @@ export class RawYAxis extends React.Component {
   render() {
     const { classes, includeArrows, graphProps } = this.props;
     const { scale, range, size } = graphProps;
-    const rowTickValues = getTickValues(range);
+    const rowTickValues = getTickValues({ ...range, step: range.labelStep });
 
     return (
       <React.Fragment>

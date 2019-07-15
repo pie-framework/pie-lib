@@ -2,25 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { select, mouse } from 'd3-selection';
 import { types, utils } from '@pie-lib/plot';
-
-const getTickValues = prop => {
-  const tickValues = [];
-  let tickVal = 0;
-
-  while (tickVal >= prop.min) {
-    tickValues.push(tickVal);
-    tickVal = Math.round((tickVal - prop.step) * 100) / 100;
-  }
-
-  tickVal = 0;
-
-  while (tickVal <= prop.max) {
-    tickValues.push(tickVal);
-    tickVal = Math.round((tickVal + prop.step) * 100) / 100;
-  }
-
-  return tickValues;
-};
+import { getTickValues } from './utils';
 
 export default class Bg extends React.Component {
   static propTypes = {

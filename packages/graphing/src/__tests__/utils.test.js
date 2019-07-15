@@ -49,4 +49,18 @@ describe('utils', () => {
       right: 4
     });
   });
+
+  describe('getTickValues', () => {
+    const assertGetTickValues = (props, expected) => {
+      it(` => ${expected}`, () => {
+        const result = utils.getTickValues(props);
+        expect(result).toEqual(expected);
+      });
+    };
+
+    assertGetTickValues({ min: 0, max: 10, step: 1 }, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+    assertGetTickValues({ min: 0, max: 3, step: 0.5 }, [0, 0.5, 1, 1.5, 2, 2.5, 3]);
+    assertGetTickValues({ min: -0.2, max: 2, step: 0.6 }, [0, 0.6, 1.2, 1.8]);
+    assertGetTickValues({ min: -3.4, max: 6.2, step: 1.2 }, [0, -1.2, -2.4, 1.2, 2.4, 3.6, 4.8, 6]);
+  });
 });
