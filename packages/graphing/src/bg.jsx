@@ -40,11 +40,14 @@ export default class Bg extends React.Component {
     const columnTicks = getTickValues(graphProps.domain);
 
     const closest = (ticks, value) => {
-      return ticks.reduce((prev, curr) => {
-        const currentDistance = Math.abs(curr - value);
-        const previousDistance = Math.abs(prev - value);
-        return currentDistance <= previousDistance ? curr : prev;
-      });
+      return (
+        ticks.length &&
+        ticks.reduce((prev, curr) => {
+          const currentDistance = Math.abs(curr - value);
+          const previousDistance = Math.abs(prev - value);
+          return currentDistance <= previousDistance ? curr : prev;
+        })
+      );
     };
 
     let snapped = {};

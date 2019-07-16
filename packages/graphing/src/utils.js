@@ -12,14 +12,14 @@ export const getTickValues = prop => {
   const tickValues = [];
   let tickVal = 0;
 
-  while (tickVal >= prop.min) {
+  while (tickVal >= prop.min && tickValues.indexOf(tickVal) < 0) {
     tickValues.push(tickVal);
     tickVal = Math.round((tickVal - prop.step) * 100) / 100;
   }
 
   tickVal = Math.round(prop.step * 100) / 100;
 
-  while (tickVal <= prop.max) {
+  while (tickVal <= prop.max && tickValues.indexOf(tickVal) < 0) {
     tickValues.push(tickVal);
     tickVal = Math.round((tickVal + prop.step) * 100) / 100;
   }
