@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import * as vx from '@vx/grid';
-import { tickCount } from './utils';
 import { types, utils } from '@pie-lib/plot';
 import { withStyles } from '@material-ui/core/styles';
+import { getTickValues } from './utils';
 
 export class Grid extends React.Component {
   static propTypes = {
@@ -21,6 +21,9 @@ export class Grid extends React.Component {
   render() {
     const { classes, graphProps } = this.props;
     const { scale, size, domain, range } = graphProps;
+    const rowTickValues = getTickValues(range);
+    const columnTicksValues = getTickValues(domain);
+
     return (
       <vx.Grid
         innerRef={r => (this.grid = r)}
@@ -28,9 +31,9 @@ export class Grid extends React.Component {
         yScale={scale.y}
         width={size.width}
         height={size.height}
-        numTicksColumns={tickCount(domain.min, domain.max, domain.step)}
         className={classes.grid}
-        numTicksRows={tickCount(range.min, range.max, range.step)}
+        rowTickValues={rowTickValues}
+        columnTickValues={columnTicksValues}
       />
     );
   }

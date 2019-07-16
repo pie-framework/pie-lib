@@ -8,6 +8,25 @@ export const tickCount = utils.tickCount;
 export const bounds = utils.bounds;
 export const point = utils.point;
 
+export const getTickValues = prop => {
+  const tickValues = [];
+  let tickVal = 0;
+
+  while (tickVal >= prop.min && tickValues.indexOf(tickVal) < 0) {
+    tickValues.push(tickVal);
+    tickVal = Math.round((tickVal - prop.step) * 100) / 100;
+  }
+
+  tickVal = Math.round(prop.step * 100) / 100;
+
+  while (tickVal <= prop.max && tickValues.indexOf(tickVal) < 0) {
+    tickValues.push(tickVal);
+    tickVal = Math.round((tickVal + prop.step) * 100) / 100;
+  }
+
+  return tickValues;
+};
+
 export const polygonToArea = points => {
   const h = head(points);
   const area = {

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { select, mouse } from 'd3-selection';
 import { types, utils } from '@pie-lib/plot';
+import { getTickValues } from './utils';
 
 export default class Bg extends React.Component {
   static propTypes = {
@@ -31,15 +32,33 @@ export default class Bg extends React.Component {
    */
   onRectClick = rect => {
     const { onClick, graphProps } = this.props;
-    const { scale, snap } = graphProps;
+    const { scale } = graphProps;
     const coords = mouse(rect._groups[0][0]);
     const x = scale.x.invert(coords[0]);
     const y = scale.y.invert(coords[1]);
+    const rowTicks = getTickValues(graphProps.range);
+    const columnTicks = getTickValues(graphProps.domain);
 
-    const snapped = {
-      x: snap.x(x),
-      y: snap.y(y)
+    const closest = (ticks, value) => {
+      return (
+        ticks.length &&
+        ticks.reduce((prev, curr) => {
+          const currentDistance = Math.abs(curr - value);
+          const previousDistance = Math.abs(prev - value);
+          return currentDistance <= previousDistance ? curr : prev;
+        })
+      );
     };
+
+    let snapped = {};
+
+    if (columnTicks.indexOf(x) >= 0 && rowTicks.indexOf(y) >= 0) {
+      snapped.x = x;
+      snapped.y = y;
+    } else {
+      snapped.x = closest(columnTicks, x);
+      snapped.y = closest(rowTicks, y);
+    }
 
     onClick(snapped);
   };

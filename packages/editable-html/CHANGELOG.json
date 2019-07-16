@@ -2404,7 +2404,7 @@
     "footer": null,
     "notes": [],
     "hash": "d4cdc6ad861d76765fb8393155d2c4d3016bb915",
-    "gitTags": " (origin/develop, origin/HEAD)",
+    "gitTags": "",
     "committerDate": "2019-07-13 17:05:23 +0300",
     "isTagged": true,
     "tag": "@pie-lib/editable-html@7.10.9"

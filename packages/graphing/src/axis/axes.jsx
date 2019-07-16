@@ -1,12 +1,12 @@
 import React from 'react';
 import { Axis } from '@vx/axis';
-import { tickCount } from '../utils';
 import { types, utils } from '@pie-lib/plot';
 import PropTypes from 'prop-types';
 import Arrow from './arrow';
 import { withStyles } from '@material-ui/core';
 import debug from 'debug';
 import isEqual from 'lodash/isEqual';
+import { getTickValues } from '../utils';
 
 const log = debug('pie-lib:graphing:axes');
 
@@ -57,6 +57,7 @@ export class RawXAxis extends React.Component {
   render() {
     const { includeArrows, classes, graphProps } = this.props;
     const { scale, domain, size } = graphProps;
+    const columnTicksValues = getTickValues({ ...domain, step: domain.labelStep });
 
     return (
       <React.Fragment>
@@ -64,17 +65,17 @@ export class RawXAxis extends React.Component {
           axisLineClassName={classes.line}
           hideZero={true}
           scale={scale.x}
-          numTicks={tickCount(domain.min, domain.max, domain.step)}
           top={scale.y(0)}
           left={0}
           label={domain.label}
           tickClassName={classes.tick}
-          tickLabelProps={value => ({
+          tickFormat={value => value}
+          tickLabelProps={() => ({
             ...tickLabelStyles,
             y: '25',
-            dx: -4,
-            opacity: value % domain.labelStep === 0 ? 1 : 0
+            dx: -4
           })}
+          tickValues={columnTicksValues}
         />
         {includeArrows && (
           <Arrow direction="left" x={domain.min} y={0} className={classes.arrow} scale={scale} />
@@ -83,14 +84,9 @@ export class RawXAxis extends React.Component {
           <Arrow direction="right" x={domain.max} y={0} className={classes.arrow} scale={scale} />
         )}
         {domain.axisLabel && (
-          <foreignObject
-            x={size.width + 10}
-            y={scale.y(0)}
-            height={30}
-            width={(domain.axisLabel ? domain.axisLabel.length : 1) * 10}
-          >
-            <div dangerouslySetInnerHTML={{ __html: domain.axisLabel }} />
-          </foreignObject>
+          <text x={size.width + 20} y={scale.y(0) + 5} textAnchor="middle">
+            {domain.axisLabel}
+          </text>
         )}
       </React.Fragment>
     );
@@ -115,6 +111,7 @@ export class RawYAxis extends React.Component {
   render() {
     const { classes, includeArrows, graphProps } = this.props;
     const { scale, range, size } = graphProps;
+    const rowTickValues = getTickValues({ ...range, step: range.labelStep });
 
     return (
       <React.Fragment>
@@ -125,23 +122,22 @@ export class RawYAxis extends React.Component {
           top={0}
           height={size.height}
           left={scale.x(0)}
-          numTicks={tickCount(range.min, range.max, range.step)}
           label={range.label}
           tickLength={10}
           tickClassName={classes.tick}
+          tickFormat={value => value}
           tickLabelProps={value => {
             const digits = value.toLocaleString().length || 1;
-            const show = value % range.labelStep === 0;
 
             return {
               ...tickLabelStyles,
               dy: 4,
-              dx: -10 - digits * 5,
-              opacity: show ? 1 : 0
+              dx: -10 - digits * 5
             };
           }}
           hideZero={true}
           tickTextAnchor={'bottom'}
+          tickValues={rowTickValues}
         />
         {includeArrows && (
           <Arrow direction="down" x={0} y={range.min} className={classes.arrow} scale={scale} />
@@ -150,14 +146,9 @@ export class RawYAxis extends React.Component {
           <Arrow direction="up" x={0} y={range.max} className={classes.arrow} scale={scale} />
         )}
         {range.axisLabel && (
-          <foreignObject
-            x={scale.x(0)}
-            y={-30}
-            height={30}
-            width={(range.axisLabel ? range.axisLabel.length : 1) * 10}
-          >
-            <div dangerouslySetInnerHTML={{ __html: range.axisLabel }} />
-          </foreignObject>
+          <text x={scale.x(0)} y={-10} textAnchor="middle">
+            {range.axisLabel}
+          </text>
         )}
       </React.Fragment>
     );
