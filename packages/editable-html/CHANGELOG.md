@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.10.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.10.9...@pie-lib/editable-html@7.10.10) (2019-07-16)
+
+
+### Bug Fixes
+
+* add scroll feature when content exceeds 500px in height ([d7ddc01](https://github.com/pie-framework/pie-lib/commit/d7ddc01))
+* render degrees as expected ([87402e1](https://github.com/pie-framework/pie-lib/commit/87402e1))
+
+
+
+
+
 ## [7.10.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.10.8...@pie-lib/editable-html@7.10.9) (2019-07-13)
 
 

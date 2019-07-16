@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@1.1.4...@pie-lib/plot@1.2.0) (2019-07-16)
+
+
+### Features
+
+* support dragging when having a grid defined by decimal values ([5a5e505](https://github.com/pie-framework/pie-lib/commit/5a5e505))
+
+
+
+
+
 ## [1.1.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@1.1.3...@pie-lib/plot@1.1.4) (2019-07-08)
 
 **Note:** Version bump only for package @pie-lib/plot
