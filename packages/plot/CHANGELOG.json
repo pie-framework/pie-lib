@@ -163,5 +163,20 @@
     "committerDate": "2019-06-27 13:19:23 +0100",
     "isTagged": true,
     "tag": "@pie-lib/plot@0.2.2"
+  },
+  {
+    "type": "feat",
+    "scope": null,
+    "subject": "support dragging when having a grid defined by decimal values",
+    "merge": null,
+    "header": "feat: support dragging when having a grid defined by decimal values",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "5a5e505d9f1a7d3dd5bd553c03bdf61965945d68",
+    "gitTags": "",
+    "committerDate": "2019-07-16 00:42:36 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/plot@1.2.0"
   }
 ]
