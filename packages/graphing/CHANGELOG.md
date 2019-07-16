@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@1.1.1...@pie-lib/graphing@1.2.0) (2019-07-09)
+
+
+### Features
+
+* Axis labels should render markup, so HTML tags should be shown. Make the toolbar to fit inside the graph box. ([c187aa4](https://github.com/pie-framework/pie-lib/commit/c187aa4))
+
+
+
+
+
 ## [1.1.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@1.1.0...@pie-lib/graphing@1.1.1) (2019-07-08)
 
 **Note:** Version bump only for package @pie-lib/graphing

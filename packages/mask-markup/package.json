@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/mask-markup",
-  "version": "1.3.5",
+  "version": "1.3.9",
   "description": "",
   "main": "lib/index.js",
   "publishConfig": {

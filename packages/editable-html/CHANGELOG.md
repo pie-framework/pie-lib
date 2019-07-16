@@ -3,6 +3,61 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.10.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.10.8...@pie-lib/editable-html@7.10.9) (2019-07-13)
+
+
+### Bug Fixes
+
+* **editor:** added a way of saving the editable content when the user blures the component [ch2363], [ch1912], [ch2565], [ch2557], fixed some math rendering issue ([d4cdc6a](https://github.com/pie-framework/pie-lib/commit/d4cdc6a))
+
+
+
+
+
+## [7.10.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.10.7...@pie-lib/editable-html@7.10.8) (2019-07-12)
+
+
+### Bug Fixes
+
+* **editor:** changed the style for the drag-in-the-blank choice and removed unnecessary statement [ch1915] ([649de6d](https://github.com/pie-framework/pie-lib/commit/649de6d))
+
+
+
+
+
+## [7.10.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.10.6...@pie-lib/editable-html@7.10.7) (2019-07-12)
+
+
+### Bug Fixes
+
+* **editor:** added serialization for other elements in order to grab the styles for them [ch1915], [ch1935] ([2e09533](https://github.com/pie-framework/pie-lib/commit/2e09533))
+
+
+
+
+
+## [7.10.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.10.5...@pie-lib/editable-html@7.10.6) (2019-07-12)
+
+
+### Bug Fixes
+
+* **editor:** removed the timeout in the onBlur function, instead i checked if the user clicked on the check mark button and prevented the action if it did ([489b926](https://github.com/pie-framework/pie-lib/commit/489b926))
+
+
+
+
+
+## [7.10.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.10.4...@pie-lib/editable-html@7.10.5) (2019-07-11)
+
+
+### Bug Fixes
+
+* **editor:** added possibility to hide the done button and added a onKeyDown prop [ch2489] ([45bda8c](https://github.com/pie-framework/pie-lib/commit/45bda8c))
+
+
+
+
+
 ## [7.10.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.10.3...@pie-lib/editable-html@7.10.4) (2019-07-08)
 
 

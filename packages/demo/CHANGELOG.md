@@ -3,6 +3,62 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.1.13...@pie-lib/demo@5.1.14) (2019-07-13)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [5.1.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.1.12...@pie-lib/demo@5.1.13) (2019-07-12)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [5.1.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.1.11...@pie-lib/demo@5.1.12) (2019-07-12)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [5.1.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.1.10...@pie-lib/demo@5.1.11) (2019-07-12)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [5.1.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.1.9...@pie-lib/demo@5.1.10) (2019-07-12)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [5.1.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.1.8...@pie-lib/demo@5.1.9) (2019-07-11)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [5.1.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.1.7...@pie-lib/demo@5.1.8) (2019-07-09)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
 ## [5.1.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.1.6...@pie-lib/demo@5.1.7) (2019-07-08)
 
 
