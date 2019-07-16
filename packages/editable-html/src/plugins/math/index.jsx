@@ -15,6 +15,9 @@ const TEXT_NODE = 3;
 export const CustomToolbarComp = React.memo(
   props => {
     const { node, value, onFocus, onBlur, onClick } = props;
+    const { pluginProps } = props || {};
+    const { math } = pluginProps || {};
+    const { keypadMode } = math || {};
 
     const onDone = (latex, b) => {
       const update = {
@@ -51,12 +54,20 @@ export const CustomToolbarComp = React.memo(
         onBlur={onBlur}
         onFocus={onFocus}
         onClick={onClick}
+        keypadMode={keypadMode}
       />
     );
   },
   (prev, next) => {
-    const equal = prev.node.equals(next.node);
-    return equal;
+    const { node, pluginProps: { math: { keypadMode } = {} } = {} } = prev;
+    const {
+      node: nodeNext,
+      pluginProps: { math: { keypadMode: keypadModeNext } = {} } = {}
+    } = next;
+    const keypadModeChanged = keypadMode !== keypadModeNext;
+
+    const equal = node.equals(nodeNext);
+    return equal && !keypadModeChanged;
   }
 );
 
