@@ -45,7 +45,7 @@ const Nt = withStyles(theme => ({
     type="number"
     variant="outlined"
     value={value}
-    onChange={e => onChange(parseInt(e.target.value, 10))}
+    onChange={e => onChange(parseFloat(e.target.value))}
   />
 ));
 
@@ -282,18 +282,18 @@ export class GridDemo extends React.PureComponent {
       model: {
         title: undefined,
         domain: {
-          min: -5,
-          max: 5,
+          min: -5.8,
+          max: 10.6,
           padding: 0,
-          step: 1,
-          labelStep: 1
+          step: 1.6,
+          labelStep: 3.2
         },
         range: {
-          min: -5,
-          max: 5,
+          min: -2.8,
+          max: 4.8,
           padding: 0,
-          step: 1,
-          labelStep: 1
+          step: 0.3,
+          labelStep: 0.9
         },
         backgroundMarks: backgroundMarks,
         marks: marks

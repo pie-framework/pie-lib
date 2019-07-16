@@ -67,13 +67,14 @@ export function snapTo(min, max, interval, value) {
     return Math.abs(value - v) <= interval;
   });
 
-  const closest = rng.reduce((prev, curr) => {
-    const currentDistance = Math.abs(curr - value);
-    const previousDistance = Math.abs(prev - value);
-    return currentDistance <= previousDistance ? curr : prev;
-  });
-
-  return closest;
+  return (
+    rng.length &&
+    rng.reduce((prev, curr) => {
+      const currentDistance = Math.abs(curr - value);
+      const previousDistance = Math.abs(prev - value);
+      return currentDistance <= previousDistance ? curr : prev;
+    })
+  );
 }
 
 export function buildTickModel(domain, ticks, interval, scaleFn) {

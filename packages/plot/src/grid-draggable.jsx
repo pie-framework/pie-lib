@@ -8,13 +8,11 @@ import isFunction from 'lodash/isFunction';
 import invariant from 'invariant';
 import { clientPoint } from 'd3-selection';
 const log = debug('pie-lib:plot:grid-draggable');
-
 export const deltaFn = (scale, snap, val) => delta => {
   const normalized = delta + scale(0);
   const inverted = scale.invert(normalized);
   return snap(val + inverted);
 };
-
 /**
  * Creates a Component that is draggable, within a bounded grid.
  * @param {*} opts
@@ -24,7 +22,6 @@ export const gridDraggable = opts => Comp => {
     !!opts && isFunction(opts.fromDelta) && isFunction(opts.bounds) && isFunction(opts.anchorPoint),
     'You must supply an object with: { anchorPoint: Function, fromDelta: Function, bounds: Function }'
   );
-
   return class GridDraggable extends React.Component {
     static propTypes = {
       disabled: PropTypes.bool,
@@ -35,22 +32,16 @@ export const gridDraggable = opts => Comp => {
       onMove: PropTypes.func,
       graphProps: GraphPropsType.isRequired
     };
-
     grid = () => {
       const { graphProps } = this.props;
-      const { scale } = graphProps;
-      const interval = 1;
-
+      const { scale, domain, range } = graphProps;
       return {
-        interval,
-        x: scale.x(interval) - scale.x(0),
-        y: scale.y(interval) - scale.y(0)
+        x: scale.x(domain.step) - scale.x(0),
+        y: scale.y(range.step) - scale.y(0)
       };
     };
-
     onStart = e => {
       const { onDragStart } = this.props;
-
       if (document.activeElement) {
         document.activeElement.blur();
       }
@@ -59,12 +50,10 @@ export const gridDraggable = opts => Comp => {
         onDragStart();
       }
     };
-
     position = () => {
       const { x, y } = opts.anchorPoint(this.props);
       const { graphProps } = this.props;
       const { scale, snap } = graphProps;
-
       return {
         anchorPoint: {
           x,
