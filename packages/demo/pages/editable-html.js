@@ -1,4 +1,4 @@
-import EditableHtml, { DEFAULT_PLUGINS, htmlToValue } from '@pie-lib/editable-html';
+import EditableHtml from '@pie-lib/editable-html';
 import grey from '@material-ui/core/colors/grey';
 import React from 'react';
 import _ from 'lodash';
@@ -7,6 +7,9 @@ import Checkbox from '@material-ui/core/Checkbox';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import TextField from '@material-ui/core/TextField';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import Input from '@material-ui/core/Input';
 import withRoot from '../src/withRoot';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
@@ -14,14 +17,7 @@ import Typography from '@material-ui/core/Typography';
 import InputChooser from '../src/editable-html/input-chooser';
 
 const log = debug('@pie-lib:editable-html:demo');
-const puppySrc = `https://bit.ly/23yROY8`;
-
-const renderOpts = {
-  delimiters: [
-    { left: '\\(', right: '\\)', display: false },
-    { left: '$', right: '$', display: false }
-  ]
-};
+const puppySrc = 'https://bit.ly/23yROY8';
 
 /**
  * Note: See core schema rules - it normalizes so you can only have blocks or inline and text in a block.
@@ -104,7 +100,8 @@ class RteDemo extends React.Component {
       disableImageUpload: false,
       disabled: false,
       width: '',
-      height: ''
+      height: '',
+      keypadMode: 'everything'
     };
   }
 
@@ -217,7 +214,8 @@ class RteDemo extends React.Component {
       disabled,
       width,
       height,
-      mounted
+      mounted,
+      keypadMode
     } = this.state;
     const imageSupport = {
       add: this.addImage,
@@ -236,6 +234,26 @@ class RteDemo extends React.Component {
         <div className={classes.controls}>
           <Typography variant="headline">Runtime Options</Typography>
           <FormGroup row>
+            <FormControlLabel
+              control={
+                <Select
+                  name="keypadMode"
+                  value={keypadMode}
+                  onChange={event => this.setState({ keypadMode: event.target.value })}
+                  input={<Input id="keypadMode" />}
+                >
+                  <MenuItem value="1">Grade 1 - 2</MenuItem>
+                  <MenuItem value="3">Grade 3 - 5</MenuItem>
+                  <MenuItem value="6">Grade 6 - 7</MenuItem>
+                  <MenuItem value="8">Grade 8 - HS</MenuItem>
+                  <MenuItem value="geometry">Geometry</MenuItem>
+                  <MenuItem value="advanced-algebra">Advanced Algebra</MenuItem>
+                  <MenuItem value="statistics">Statistics</MenuItem>
+                  <MenuItem value="everything">Everything</MenuItem>
+                </Select>
+              }
+              label="Equation editor"
+            />
             <FormControlLabel
               control={
                 <Checkbox
@@ -287,6 +305,9 @@ class RteDemo extends React.Component {
           pluginProps={{
             image: {
               disabled: disableImageUpload
+            },
+            math: {
+              keypadMode: this.state.keypadMode
             }
           }}
           width={width}
