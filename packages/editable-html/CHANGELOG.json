@@ -2408,5 +2408,35 @@
     "committerDate": "2019-07-13 17:05:23 +0300",
     "isTagged": true,
     "tag": "@pie-lib/editable-html@7.10.9"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "render degrees as expected",
+    "merge": null,
+    "header": "fix: render degrees as expected",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "87402e13badf96f49c3a13baccf168ef67f1f058",
+    "gitTags": " (origin/sergiulucaci/ch1792/inline-math-degree-symbol-generates-undefined)",
+    "committerDate": "2019-07-11 20:32:05 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.10.10"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "add scroll feature when content exceeds 500px in height",
+    "merge": null,
+    "header": "fix: add scroll feature when content exceeds 500px in height",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "d7ddc015fa07511baa35b93d7b88f9c7978d0891",
+    "gitTags": " (origin/sergiulucaci/ch2609/student-editor-behaves-unexpectedly-if-too)",
+    "committerDate": "2019-07-11 17:24:49 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.10.10"
   }
 ]
