@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.2.0...@pie-lib/demo@5.2.1) (2019-07-17)
+
+
+### Bug Fixes
+
+* keypadMode not updating ([5d72bee](https://github.com/pie-framework/pie-lib/commit/5d72bee))
+
+
+
+
+
 # [5.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.1.14...@pie-lib/demo@5.2.0) (2019-07-16)
 
 

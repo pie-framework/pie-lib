@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.10.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.10.10...@pie-lib/editable-html@7.10.11) (2019-07-17)
+
+
+### Bug Fixes
+
+* keypadMode not updating ([5d72bee](https://github.com/pie-framework/pie-lib/commit/5d72bee))
+
+
+
+
+
 ## [7.10.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.10.9...@pie-lib/editable-html@7.10.10) (2019-07-16)
 
 
