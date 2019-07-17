@@ -2438,5 +2438,20 @@
     "committerDate": "2019-07-11 17:24:49 +0300",
     "isTagged": true,
     "tag": "@pie-lib/editable-html@7.10.10"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "keypadMode not updating",
+    "merge": null,
+    "header": "fix: keypadMode not updating",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "5d72bee5e39f3c6aecfdc1c46ba9dfcacd188ffd",
+    "gitTags": " (origin/andreea/ch2178/math-formula-editor-functionality-for-extended-issue)",
+    "committerDate": "2019-07-16 14:42:33 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.10.11"
   }
 ]
