@@ -75,6 +75,25 @@ describe('gridDraggable', () => {
       const w = wrapper();
       expect(w).toMatchSnapshot();
     });
+
+    it('render with decimals', () => {
+      const w = wrapper(
+        {},
+        {
+          domain: {
+            min: -1.5,
+            max: 1.6,
+            step: 0.3
+          },
+          range: {
+            min: -2,
+            max: 3,
+            step: 0.2
+          }
+        }
+      );
+      expect(w).toMatchSnapshot();
+    });
   });
 
   describe('logic', () => {
