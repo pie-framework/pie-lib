@@ -1,5 +1,104 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`gridDraggable snapshot render with decimals 1`] = `
+<mockConstructor
+  axis="both"
+  grid={
+    Array [
+      1,
+      1,
+    ]
+  }
+  onDrag={[Function]}
+  onMouseDown={[Function]}
+  onStart={[Function]}
+  onStop={[Function]}
+>
+  <Component
+    domain={
+      Object {
+        "max": 1.6,
+        "min": -1.5,
+        "step": 0.3,
+      }
+    }
+    graphProps={
+      Object {
+        "domain": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "getRootNode": [Function],
+        "range": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "scale": Object {
+          "x": [MockFunction] {
+            "calls": Array [
+              Array [
+                1,
+              ],
+              Array [
+                0,
+              ],
+            ],
+            "results": Array [
+              Object {
+                "type": "return",
+                "value": 1,
+              },
+              Object {
+                "type": "return",
+                "value": 0,
+              },
+            ],
+          },
+          "y": [MockFunction] {
+            "calls": Array [
+              Array [
+                1,
+              ],
+              Array [
+                0,
+              ],
+            ],
+            "results": Array [
+              Object {
+                "type": "return",
+                "value": 1,
+              },
+              Object {
+                "type": "return",
+                "value": 0,
+              },
+            ],
+          },
+        },
+        "size": Object {
+          "height": 500,
+          "width": 500,
+        },
+        "snap": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+      }
+    }
+    isDragging={false}
+    range={
+      Object {
+        "max": 3,
+        "min": -2,
+        "step": 0.2,
+      }
+    }
+  />
+</mockConstructor>
+`;
+
 exports[`gridDraggable snapshot reqular 1`] = `
 <mockConstructor
   axis="both"

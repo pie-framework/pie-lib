@@ -131,7 +131,8 @@ describe('CustomToolbarComp', () => {
     const defaults = {
       node: {
         key: '1',
-        data: Data.create({ latex: 'foo' })
+        data: Data.create({ latex: 'foo' }),
+        equals: () => true
       },
       value: {
         document: {
@@ -150,6 +151,28 @@ describe('CustomToolbarComp', () => {
 
     return shallow(<CustomToolbarComp {...props} />);
   };
+
+  describe('render', () => {
+    it('renders without default keypadMode', () => {
+      const w = wrapper();
+
+      expect(w).toMatchSnapshot();
+
+      w.setProps({ pluginProps: { math: { keypadMode: 3 } } });
+
+      expect(w).toMatchSnapshot();
+    });
+
+    it('renders with default keypadMode', () => {
+      const w = wrapper({ pluginProps: { math: { keypadMode: 'geometry' } } });
+
+      expect(w).toMatchSnapshot();
+
+      w.setProps({ pluginProps: { math: { keypadMode: 3 } } });
+
+      expect(w).toMatchSnapshot();
+    });
+  });
 
   describe('onDone', () => {
     it('calls onToolbarDone', () => {

@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CustomToolbarComp render renders with default keypadMode 1`] = `
+<MathToolbar
+  autoFocus={true}
+  keypadMode="geometry"
+  latex="foo"
+  onChange={[Function]}
+  onDone={[Function]}
+/>
+`;
+
+exports[`CustomToolbarComp render renders with default keypadMode 2`] = `
+<MathToolbar
+  autoFocus={true}
+  keypadMode={3}
+  latex="foo"
+  onChange={[Function]}
+  onDone={[Function]}
+/>
+`;
+
+exports[`CustomToolbarComp render renders without default keypadMode 1`] = `
+<MathToolbar
+  autoFocus={true}
+  latex="foo"
+  onChange={[Function]}
+  onDone={[Function]}
+/>
+`;
+
+exports[`CustomToolbarComp render renders without default keypadMode 2`] = `
+<MathToolbar
+  autoFocus={true}
+  keypadMode={3}
+  latex="foo"
+  onChange={[Function]}
+  onDone={[Function]}
+/>
+`;
