@@ -149,6 +149,11 @@ export class RawAuthoring extends React.Component {
     onChange({ ...value, points });
   };
 
+  excludeZeros = () => {
+    const { value, onChange } = this.props;
+    onChange({ ...value, excludeZero: !value.excludeZero });
+  };
+
   render() {
     const { classes, className, value } = this.props;
 
@@ -160,8 +165,8 @@ export class RawAuthoring extends React.Component {
         <FormGroup row>
           <MaxPoints max={10} value={value.points.length - 1} onChange={this.changeMaxPoints} />
           <FormControlLabel
-            label="Exclude zeros from bubble sheet"
-            control={<Checkbox checked={value.excludeZero} onChange={this.changeExcludeZero} />}
+            label="Exclude zeros"
+            control={<Checkbox checked={value.excludeZero} onChange={this.excludeZeros} />}
           />
         </FormGroup>
         <div className={classes.container}>
@@ -183,7 +188,7 @@ export class RawAuthoring extends React.Component {
                           {...provided.dragHandleProps}
                         >
                           <PointConfig
-                            points={value.points.length - 1 - index}
+                            points={value.points.length - (value.excludeZero ? 0 : 1) - index}
                             content={p}
                             onChange={this.changePoint.bind(this, index)}
                           />
