@@ -193,5 +193,20 @@
     "committerDate": "2019-07-12 17:41:25 -0400",
     "isTagged": true,
     "tag": "@pie-lib/rubric@0.2.22"
+  },
+  {
+    "type": "fix",
+    "scope": "rubric",
+    "subject": "exlude zero checkbox not functional (#151)",
+    "merge": null,
+    "header": "fix(rubric): exlude zero checkbox not functional (#151)",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "ca0d6af5ab5fed8d638aecea6ee0095eb72826ea",
+    "gitTags": "",
+    "committerDate": "2019-07-18 17:10:24 -0400",
+    "isTagged": true,
+    "tag": "@pie-lib/rubric@0.2.25"
   }
 ]
