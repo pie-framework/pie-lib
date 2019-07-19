@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.25](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.2.24...@pie-lib/rubric@0.2.25) (2019-07-19)
+
+
+### Bug Fixes
+
+* **rubric:** exlude zero checkbox not functional ([#151](https://github.com/pie-framework/pie-lib/issues/151)) ([ca0d6af](https://github.com/pie-framework/pie-lib/commit/ca0d6af))
+
+
+
+
+
 ## [0.2.24](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.2.23...@pie-lib/rubric@0.2.24) (2019-07-17)
 
 **Note:** Version bump only for package @pie-lib/rubric
