@@ -14,7 +14,6 @@ import Tab from '@material-ui/core/Tab';
 import Button from '@material-ui/core/Button';
 import { marks, backgroundMarks } from './demo-data';
 import { Checkbox, FormControlLabel } from '@material-ui/core';
-import { isEqual } from 'date-fns';
 
 function TabContainer(props) {
   return (
