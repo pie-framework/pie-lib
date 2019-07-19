@@ -251,8 +251,6 @@ export class GridDemo extends React.PureComponent {
   constructor(props) {
     super(props);
 
-    // console.log('tools:', tools.lineTwo);
-
     const toolsArr = [
       tools.point(),
       tools.circle(),
