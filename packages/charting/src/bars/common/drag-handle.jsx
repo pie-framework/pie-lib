@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { gridDraggable, utils, types } from '@pie-lib/plot';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles/index';
 import PropTypes from 'prop-types';
 
 class RawDragHandle extends React.Component {

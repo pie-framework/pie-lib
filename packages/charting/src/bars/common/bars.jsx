@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import { types } from '@pie-lib/plot';
 import { Group } from '@vx/group';
 import { Bar as VxBar } from '@vx/shape';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles/index';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import DragHandle from './drag-handle';
 import debug from 'debug';
-import { dataToXBand, bandKey } from '../utils';
+import { bandKey } from '../../utils';
 
 const log = debug('pie-lib:chart:bars');
 
@@ -29,15 +29,24 @@ class RawBar extends React.Component {
     };
   }
 
-  changeValue = (existing, next) => {
+  setDragValue = dragValue => this.setState({ dragValue });
+
+  dragStop = () => {
     const { onChange, label } = this.props;
-    log('[changeValue]', existing, next);
-    onChange({ label, value: next });
+    const { dragValue } = this.state;
+    log('[dragStop]', dragValue);
+
+    if (dragValue !== undefined) {
+      onChange({ label, value: dragValue });
+    }
+
+    this.setDragValue(undefined);
   };
 
   dragValue = (existing, next) => {
     log('[dragValue] next:', next);
-    this.setState({ dragValue: next });
+
+    this.setDragValue(next);
   };
 
   render() {
@@ -51,18 +60,8 @@ class RawBar extends React.Component {
     const barX = xBand(bandKey({ label }, index));
     const rawY = range.max - v;
     const yy = range.max - rawY;
-    log(
-      'label:',
-      label,
-      'barX:',
-      barX,
-      'v: ',
-      v,
-      'barHeight:',
-      barHeight,
-      'barWidth: ',
-      barWidth
-    );
+    log('label:', label, 'barX:', barX, 'v: ', v, 'barHeight:', barHeight, 'barWidth: ', barWidth);
+
     return (
       <React.Fragment>
         <VxBar
@@ -74,11 +73,10 @@ class RawBar extends React.Component {
         />
         <DragHandle
           x={barX}
-          y={value}
+          y={v}
           width={barWidth}
-          onMove={v => this.changeValue(value, v)}
           onDrag={v => this.dragValue(value, v)}
-          onDragStop={() => this.setState({ dragValue: undefined })}
+          onDragStop={this.dragStop}
           graphProps={graphProps}
         />
       </React.Fragment>
@@ -96,6 +94,7 @@ export class Bars extends React.Component {
   static propTypes = {
     data: PropTypes.array,
     onChange: PropTypes.func,
+    xBand: PropTypes.func,
     graphProps: types.GraphPropsType.isRequired
   };
 
@@ -110,9 +109,7 @@ export class Bars extends React.Component {
   };
 
   render() {
-    const { data, graphProps } = this.props;
-    const { scale, size } = graphProps;
-    const xBand = dataToXBand(scale.x, data, size.width);
+    const { data, graphProps, xBand } = this.props;
     return (
       <Group>
         {(data || []).map((d, index) => (

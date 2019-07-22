@@ -59,7 +59,10 @@ export class Options extends React.Component {
     const { classes, className, model } = this.props;
     return (
       <div className={classNames(classes.options, className)}>
-        <ChartType value={model.chartType} />
+        <ChartType
+          value={model.chartType}
+          onChange={e => this.change('chartType', e.target.value)}
+        />
         <TextField
           variant="outlined"
           label="Chart Title"
@@ -104,9 +107,7 @@ export class Options extends React.Component {
             key={index}
             index={index}
             // key={`${d.label || ''}_${d.value}_${index}`}
-            onChange={(label, value) =>
-              this.changeCategory(index, label, value)
-            }
+            onChange={(label, value) => this.changeCategory(index, label, value)}
           />
         ))}
       </div>
