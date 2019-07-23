@@ -4,6 +4,8 @@ export const bandKey = (d, index) => `${index}-${d.label || '-'}`;
 export const dataToXBand = (scaleX, data, width, type) => {
   switch (type) {
     case 'bar':
+    case 'dotPlot':
+    case 'linePlot':
       return scaleBand({
         rangeRound: [0, width],
         domain: data.map(bandKey),
@@ -31,16 +33,23 @@ export const dataToXBand = (scaleX, data, width, type) => {
 
 export const getTickValues = prop => {
   const tickValues = [];
-  let tickVal = 0;
+  // let tickVal = 0;
+  //
+  // while (tickVal >= prop.min && tickValues.indexOf(tickVal) < 0) {
+  //   tickValues.push(tickVal);
+  //   tickVal = Math.round((tickVal - prop.step) * 100) / 100;
+  // }
+  //
+  // tickVal = Math.round(prop.step * 100) / 100;
+  //
+  // while (tickVal <= prop.max && tickValues.indexOf(tickVal) < 0) {
+  //   tickValues.push(tickVal);
+  //   tickVal = Math.round((tickVal + prop.step) * 100) / 100;
+  // }
 
-  while (tickVal >= prop.min && tickValues.indexOf(tickVal) < 0) {
-    tickValues.push(tickVal);
-    tickVal = Math.round((tickVal - prop.step) * 100) / 100;
-  }
+  let tickVal = prop.min;
 
-  tickVal = Math.round(prop.step * 100) / 100;
-
-  while (tickVal <= prop.max && tickValues.indexOf(tickVal) < 0) {
+  while (tickVal <= prop.max) {
     tickValues.push(tickVal);
     tickVal = Math.round((tickVal + prop.step) * 100) / 100;
   }

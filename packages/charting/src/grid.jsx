@@ -5,7 +5,6 @@ import classNames from 'classnames';
 
 import { Grid as VxGrid } from '@vx/grid';
 import { types } from '@pie-lib/plot';
-import { dataToXBand } from './utils';
 import { getTickValues } from './utils';
 
 export class Grid extends React.Component {
@@ -13,20 +12,17 @@ export class Grid extends React.Component {
     classes: PropTypes.object.isRequired,
     className: PropTypes.string,
     data: PropTypes.array,
-    graphProps: types.GraphPropsType.isRequired
+    graphProps: types.GraphPropsType.isRequired,
+    xBand: PropTypes.func,
+    columnTickValues: PropTypes.array,
+    rowTickValues: PropTypes.array
   };
 
   static defaultProps = {};
 
   render() {
-    const { classes, className, data, graphProps, type } = this.props;
-
-    const { scale, range, size, domain } = graphProps;
-
-    const xBand = dataToXBand(scale.x, data, size.width, type);
-    const rowTickValues = getTickValues(range);
-    // TODO use columnTickValues when needed
-    const columnTickValues = type === 'line' ? undefined : [];
+    const { classes, className, graphProps, xBand, rowTickValues, columnTickValues } = this.props;
+    const { scale, range, size } = graphProps;
 
     return (
       <VxGrid
@@ -36,7 +32,7 @@ export class Grid extends React.Component {
         width={size.width}
         height={size.height}
         xOffset={xBand.bandwidth() / 2}
-        rowTickValues={rowTickValues}
+        rowTickValues={rowTickValues || getTickValues(range)}
         columnTickValues={columnTickValues}
       />
     );

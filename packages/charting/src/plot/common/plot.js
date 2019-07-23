@@ -2,16 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { types } from '@pie-lib/plot';
 import { Group } from '@vx/group';
-import { Bar as VxBar } from '@vx/shape';
 import { withStyles } from '@material-ui/core/styles/index';
-import { fade } from '@material-ui/core/styles/colorManipulator';
 import DragHandle from '../../common/drag-handle';
 import debug from 'debug';
 import { bandKey } from '../../utils';
 
 const log = debug('pie-lib:chart:bars');
 
-class RawBar extends React.Component {
+class RawPlot extends React.Component {
   static propTypes = {
     onChange: PropTypes.func,
     value: PropTypes.number,
@@ -50,27 +48,40 @@ class RawBar extends React.Component {
   };
 
   render() {
-    const { graphProps, value, label, classes, xBand, index } = this.props;
-    const { scale, range } = graphProps;
+    const { graphProps, value, label, classes, xBand, index, CustomBarElement } = this.props;
+    const { scale, range, size } = graphProps;
+    const { min, max } = range || {};
     const { dragValue } = this.state;
 
     const v = Number.isFinite(dragValue) ? dragValue : value;
     const barWidth = xBand.bandwidth();
-    const barHeight = scale.y(range.max + range.min - v);
+    const barHeight = scale.y(range.max - v);
     const barX = xBand(bandKey({ label }, index));
-    const rawY = range.max - v;
-    const yy = range.max - rawY;
+
     log('label:', label, 'barX:', barX, 'v: ', v, 'barHeight:', barHeight, 'barWidth: ', barWidth);
+
+    const values = [];
+    for (let i = range.min; i < v; i++) {
+      values.push(i);
+    }
+    const pointHeight = size.height / (Math.abs(min) + max);
+    const pointDiameter = (pointHeight > barWidth ? barWidth : pointHeight) - 12;
 
     return (
       <React.Fragment>
-        <VxBar
-          x={barX}
-          y={scale.y(yy)}
-          width={barWidth}
-          height={barHeight}
-          className={classes.bar}
-        />
+        {values.map(index =>
+          CustomBarElement({
+            index,
+            pointDiameter,
+            barX,
+            barWidth,
+            pointHeight,
+            label,
+            value,
+            classes,
+            scale
+          })
+        )}
         <DragHandle
           x={barX}
           y={v}
@@ -85,12 +96,15 @@ class RawBar extends React.Component {
 }
 
 const Bar = withStyles(theme => ({
-  bar: {
-    fill: fade(theme.palette.primary.main, 0.2)
+  dot: {
+    fill: theme.palette.primary.light
+  },
+  line: {
+    stroke: theme.palette.primary.light
   }
-}))(RawBar);
+}))(RawPlot);
 
-export class Bars extends React.Component {
+export class Plot extends React.Component {
   static propTypes = {
     data: PropTypes.array,
     onChange: PropTypes.func,
@@ -109,7 +123,8 @@ export class Bars extends React.Component {
   };
 
   render() {
-    const { data, graphProps, xBand } = this.props;
+    const { data, graphProps, xBand, CustomBarElement } = this.props;
+
     return (
       <Group>
         {(data || []).map((d, index) => (
@@ -121,6 +136,7 @@ export class Bars extends React.Component {
             key={`bar-${d.label}-${d.value}-${index}`}
             onChange={next => this.changeBar(index, next)}
             graphProps={graphProps}
+            CustomBarElement={CustomBarElement}
           />
         ))}
       </Group>
@@ -128,4 +144,4 @@ export class Bars extends React.Component {
   }
 }
 
-export default Bars;
+export default Plot;

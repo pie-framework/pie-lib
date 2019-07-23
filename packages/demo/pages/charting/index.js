@@ -28,23 +28,21 @@ export class ChartDemo extends React.Component {
         chartType: 'line',
         title: 'This is a chart',
         domain: {
-          label: 'Fruit',
-          max: 10,
-          min: 0
+          label: 'Fruit'
         },
         range: {
           label: 'Amount',
-          max: 5,
-          min: 0,
-          step: 1.4,
-          labelStep: 0.7
+          max: 5.5,
+          min: -3.9,
+          step: 0.75,
+          labelStep: 1
         },
         data: [
           { label: 'Apples', value: 5 },
-          { label: 'Grapes', value: 3 },
+          { label: 'Grapes', value: -3 },
           { label: 'Lemons', value: 0 },
           { label: 'Plums', value: 2 },
-          { label: 'Peaches', value: 1.2 },
+          { label: 'Peaches', value: 1 },
           { label: 'Melons', value: 4 }
         ]
       }

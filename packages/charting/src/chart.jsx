@@ -7,6 +7,7 @@ import ChartGrid from './grid';
 import ChartAxes from './axes';
 import chartTypes from './chart-types';
 import debug from 'debug';
+import { dataToXBand } from './utils';
 
 const log = debug('pie-lib:charts:chart');
 
@@ -34,7 +35,13 @@ export class Chart extends React.Component {
   static defaultProps = {};
 
   state = {
-    charts: [chartTypes.Bar(), chartTypes.Histogram(), chartTypes.Line()]
+    charts: [
+      chartTypes.Bar(),
+      chartTypes.Histogram(),
+      chartTypes.Line(),
+      chartTypes.DotPlot(),
+      chartTypes.LinePlot()
+    ]
   };
 
   getChartComponent = () => {
@@ -56,17 +63,25 @@ export class Chart extends React.Component {
   render() {
     const { classes, className, size, domain, range, title, data, chartType } = this.props;
     const ChartComponent = this.getChartComponent();
+    const { min, max, step } = range;
+    const plot = chartType === 'dotPlot' || chartType === 'linePlot';
 
     // TODO make sure both domain & range have step!!!
     const common = {
       graphProps: createGraphProps(
         {
+          ...domain,
           step: 1,
-          ...domain
+          labelStep: 1,
+          min: 0,
+          max: 1
         },
         {
-          step: 1,
-          ...range
+          ...range,
+          min: plot ? parseInt(min, 10) : min,
+          max: plot ? parseInt(max, 10) : max,
+          step: plot || !step ? 1 : step,
+          importantMin: plot ? parseInt(min, 10) : min
         },
         size,
         () => this.rootNode
@@ -81,11 +96,22 @@ export class Chart extends React.Component {
       height: size.height + 20
     };
 
+    const { scale } = common.graphProps;
+    const xBand = dataToXBand(scale.x, data, size.width, chartType);
+    const verticalLines = chartType === 'line' ? undefined : [];
+    const horizontalLines = plot ? [] : undefined;
+
     return (
       <div className={classNames(classes.class, className)}>
         <Root title={title} classes={classes} rootRef={r => (this.rootNode = r)} {...common}>
-          <ChartGrid data={data} type={chartType} {...common} />
-          <ChartAxes data={data} type={chartType} {...common} />
+          <ChartGrid
+            data={data}
+            xBand={xBand}
+            rowTickValues={horizontalLines}
+            columnTickValues={verticalLines}
+            {...common}
+          />
+          <ChartAxes data={data} xBand={xBand} leftAxisHidden={plot} {...common} />
           <mask id="myMask">
             <rect {...maskSize} fill="white" />
           </mask>

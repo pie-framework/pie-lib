@@ -2,7 +2,20 @@ import invariant from 'invariant';
 import { buildSizeArray, snapTo } from './utils';
 import { scaleLinear } from 'd3-scale';
 
-const createSnapMinAndMax = ({ min, max, step }) => {
+const createSnapMinAndMax = ({ importantMin, min, max, step }) => {
+  // for charting range, if step is a value with decimals, we have to calculate the min & max for the grid taking in consideration
+  // that min will determine the base line (grid's first line has to have min value)
+  // for example, if min: -5 & max: 5 & step: 0.75, to display correctly the chart, we have to set min: -5 & max: 4.75
+  if (importantMin) {
+    return {
+      step,
+      min: importantMin,
+      max: parseInt((Math.abs(importantMin) + max) / step) * step + importantMin
+    };
+  }
+
+  // for graphing, if step is a value with decimals, we have to calculate the min & max for the grid taking in consideration that 0 has to be exactly in the middle
+  // for example, if min: -5 & max: 5 & step: 0.75, in order to keep 0 in the middle we have to set min: -4.5 & max: 4.5
   return {
     step,
     min: parseInt(min / step) * step,

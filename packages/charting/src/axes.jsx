@@ -1,46 +1,49 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { utils, types } from '@pie-lib/plot';
+import { types } from '@pie-lib/plot';
 import { AxisLeft, AxisBottom } from '@vx/axis';
-import { dataToXBand, getTickValues } from './utils';
+import { getTickValues } from './utils';
 
 class RawChartAxes extends React.Component {
   static propTypes = {
     bottomScale: PropTypes.func,
     classes: PropTypes.object.isRequired,
     data: PropTypes.array,
-    graphProps: types.GraphPropsType.isRequired
+    graphProps: types.GraphPropsType.isRequired,
+    xBand: PropTypes.func,
+    leftAxisHidden: PropTypes.bool
   };
 
   render() {
-    const { classes, data, graphProps, type } = this.props;
+    const { classes, graphProps, xBand, leftAxisHidden } = this.props;
     const { scale, range, domain, size } = graphProps;
-    const xBand = dataToXBand(scale.x, data, size.width, type);
     const bottomScale = xBand.rangeRound([0, size.width]);
     const rowTickValues = getTickValues({ ...range, step: range.labelStep });
 
     return (
       <React.Fragment>
-        <AxisLeft
-          scale={scale.y}
-          className={classes.axis}
-          axisLineClassName={classes.axisLine}
-          tickLength={10}
-          tickClassName={classes.tick}
-          tickFormat={value => value}
-          label={range.label}
-          labelClassName={classes.axisLabel}
-          tickValues={rowTickValues}
-          tickLabelProps={value => {
-            const digits = value.toLocaleString().length || 1;
+        {!leftAxisHidden && (
+          <AxisLeft
+            scale={scale.y}
+            className={classes.axis}
+            axisLineClassName={classes.axisLine}
+            tickLength={10}
+            tickClassName={classes.tick}
+            tickFormat={value => value}
+            label={range.label}
+            labelClassName={classes.axisLabel}
+            tickValues={rowTickValues}
+            tickLabelProps={value => {
+              const digits = value.toLocaleString().length || 1;
 
-            return {
-              dy: 4,
-              dx: -10 - digits * 5
-            };
-          }}
-        />
+              return {
+                dy: 4,
+                dx: -10 - digits * 5
+              };
+            }}
+          />
+        )}
         <AxisBottom
           axisLineClassName={classes.axisLine}
           labelClassName={classes.axisLabel}
