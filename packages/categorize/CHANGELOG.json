@@ -223,5 +223,20 @@
     "committerDate": "2019-06-19 08:49:07 +0300",
     "isTagged": true,
     "tag": "@pie-lib/categorize@0.6.0"
+  },
+  {
+    "type": "fix",
+    "scope": "editor",
+    "subject": "fixed the alternate response issue [ch1255]",
+    "merge": null,
+    "header": "fix(editor): fixed the alternate response issue [ch1255]",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "12a9abb364c4b056785d782ccac4fecc6c1f4a75",
+    "gitTags": " (origin/develop, origin/HEAD, develop)",
+    "committerDate": "2019-07-24 14:56:57 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/categorize@0.6.2"
   }
 ]
