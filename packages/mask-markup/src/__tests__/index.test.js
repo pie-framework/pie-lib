@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { componentize } from '../index';
+import componentize from '../componentize';
 import { deserialize } from '../serialization';
 
 describe('index', () => {

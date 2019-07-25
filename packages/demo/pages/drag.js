@@ -1,10 +1,45 @@
 import React from 'react';
-import { PlaceHolder, Choice } from '@pie-lib/drag';
+import { PlaceHolder, Choice, withDragContext, DropTarget } from '@pie-lib/drag';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 
 import withRoot from '../src/withRoot';
+
+export const DRAG_TYPE = 'CHOICE';
+
+const TargetContainer = withStyles(() => ({
+  container: {
+    background: '#fff',
+    border: '1px solid black',
+    height: '500px',
+    marginTop: '40px',
+    width: '500px'
+  }
+}))(({ classes, connectDropTarget, val }) => {
+  return connectDropTarget(<div className={classes.container}>{val}</div>);
+});
+
+const tileTarget = {
+  drop(props, monitor) {
+    const item = monitor.getItem();
+
+    props.onDrop(item.children);
+
+    return {
+      dropped: true
+    };
+  },
+  canDrop() {
+    return true;
+  }
+};
+
+const DropContainer = DropTarget(DRAG_TYPE, tileTarget, (connect, monitor) => ({
+  connectDropTarget: connect.dropTarget(),
+  isOver: monitor.isOver(),
+  dragItem: monitor.getItem()
+}))(TargetContainer);
 
 export class Wrapper extends React.Component {
   constructor(props) {
@@ -15,12 +50,22 @@ export class Wrapper extends React.Component {
     };
   }
 
+  onDrop = children => {
+    this.setState({
+      containerVal: children
+    });
+  };
+
   render() {
+    const { containerVal } = this.state;
     const { classes } = this.props;
+
     return (
       <div>
         <Typography variant="h6">Drag</Typography>
+
         <Divider />
+
         <PlaceHolder className={classes.grid} grid={{ columns: 3 }}>
           <Choice>foo bar</Choice>
           <Choice>
@@ -48,6 +93,7 @@ export class Wrapper extends React.Component {
             />
           </Choice>
         </PlaceHolder>
+
         <PlaceHolder disabled={true} className={classes.grid} grid={{ columns: 3 }}>
           <Choice>foo bar</Choice>
           <Choice>
@@ -61,21 +107,25 @@ export class Wrapper extends React.Component {
             />
           </Choice>
         </PlaceHolder>
+
+        <DropContainer val={containerVal} onDrop={this.onDrop} />
       </div>
     );
   }
 }
 
-export default withRoot(
-  withStyles(theme => ({
-    root: {
-      backgroundColor: 'blue'
-    },
-    grid: {
-      marginTop: theme.spacing.unit
-    },
-    redLabel: {
-      '--correct-answer-toggle-label-color': 'red'
-    }
-  }))(Wrapper)
-);
+const StyledWrapper = withStyles(theme => ({
+  root: {
+    backgroundColor: 'blue'
+  },
+  grid: {
+    marginTop: theme.spacing.unit
+  },
+  redLabel: {
+    '--correct-answer-toggle-label-color': 'red'
+  }
+}))(Wrapper);
+
+const DndWrapper = withDragContext(StyledWrapper);
+
+export default withRoot(DndWrapper);
