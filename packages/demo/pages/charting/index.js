@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import debug from 'debug';
 import withRoot from '../../src/withRoot';
 import Settings from './settings';
-import { Chart } from '@pie-lib/charting';
+import { Chart, chartTypes } from '@pie-lib/charting';
 import Options from './options';
 
 const log = debug('pie-lib:charting:graph-lines-demo');
@@ -33,17 +33,24 @@ export class ChartDemo extends React.Component {
         range: {
           label: 'Amount',
           max: 5.5,
-          min: -3.9,
+          min: 0,
           step: 0.75,
           labelStep: 1
         },
         data: [
           { label: 'Apples', value: 5 },
-          { label: 'Grapes', value: -3 },
+          { label: 'Grapes', value: 3 },
           { label: 'Lemons', value: 0 },
           { label: 'Plums', value: 2 },
           { label: 'Peaches', value: 1 },
           { label: 'Melons', value: 4 }
+        ],
+        charts: [
+          chartTypes.Bar(),
+          chartTypes.Histogram(),
+          chartTypes.Line(),
+          chartTypes.DotPlot(),
+          chartTypes.LinePlot()
         ]
       }
     };
@@ -71,7 +78,6 @@ export class ChartDemo extends React.Component {
     log('render..');
     const { classes } = this.props;
     const { model, settings, mounted, tabIndex = 0 } = this.state;
-    const charts = [];
     log('settings:', settings);
     return mounted ? (
       <div>
@@ -86,7 +92,7 @@ export class ChartDemo extends React.Component {
               size={settings.size}
               domain={model.domain}
               range={model.range}
-              charts={charts}
+              charts={model.charts}
               data={model.data}
               title={model.title}
               onDataChange={this.changeData}

@@ -5,9 +5,8 @@ import classNames from 'classnames';
 import { Root, createGraphProps } from '@pie-lib/plot';
 import ChartGrid from './grid';
 import ChartAxes from './axes';
-import chartTypes from './chart-types';
 import debug from 'debug';
-import { dataToXBand } from './utils';
+import { dataToXBand, getDomainAndRangeByChartType, getGridLinesAndAxisByChartType } from './utils';
 
 const log = debug('pie-lib:charts:chart');
 
@@ -26,7 +25,12 @@ export class Chart extends React.Component {
       max: PropTypes.number
     }),
     data: PropTypes.arrayOf(PropTypes.shape({ label: PropTypes.string, value: PropTypes.number })),
-    range: PropTypes.shape({}),
+    range: PropTypes.shape({
+      label: PropTypes.string,
+      min: PropTypes.number,
+      max: PropTypes.number,
+      step: PropTypes.number
+    }),
     charts: PropTypes.array,
     title: PropTypes.string,
     onDataChange: PropTypes.func
@@ -34,20 +38,8 @@ export class Chart extends React.Component {
 
   static defaultProps = {};
 
-  state = {
-    charts: [
-      chartTypes.Bar(),
-      chartTypes.Histogram(),
-      chartTypes.Line(),
-      chartTypes.DotPlot(),
-      chartTypes.LinePlot()
-    ]
-  };
-
   getChartComponent = () => {
-    // TODO charts from props?
-    const { chartType } = this.props;
-    const { charts } = this.state;
+    const { chartType, charts } = this.props;
     const selectedChart = charts.find(chart => chart.type === chartType);
 
     log('chartType: ', chartType);
@@ -61,28 +53,18 @@ export class Chart extends React.Component {
   };
 
   render() {
-    const { classes, className, size, domain, range, title, data, chartType } = this.props;
+    const { classes, className, domain, range, size, title, data, chartType } = this.props;
     const ChartComponent = this.getChartComponent();
-    const { min, max, step } = range;
-    const plot = chartType === 'dotPlot' || chartType === 'linePlot';
 
-    // TODO make sure both domain & range have step!!!
+    const { verticalLines, horizontalLines, leftAxis } = getGridLinesAndAxisByChartType(
+      range,
+      chartType
+    );
+    const correctValues = getDomainAndRangeByChartType(domain, range, chartType);
     const common = {
       graphProps: createGraphProps(
-        {
-          ...domain,
-          step: 1,
-          labelStep: 1,
-          min: 0,
-          max: 1
-        },
-        {
-          ...range,
-          min: plot ? parseInt(min, 10) : min,
-          max: plot ? parseInt(max, 10) : max,
-          step: plot || !step ? 1 : step,
-          importantMin: plot ? parseInt(min, 10) : min
-        },
+        correctValues.domain,
+        correctValues.range,
         size,
         () => this.rootNode
       )
@@ -98,8 +80,6 @@ export class Chart extends React.Component {
 
     const { scale } = common.graphProps;
     const xBand = dataToXBand(scale.x, data, size.width, chartType);
-    const verticalLines = chartType === 'line' ? undefined : [];
-    const horizontalLines = plot ? [] : undefined;
 
     return (
       <div className={classNames(classes.class, className)}>
@@ -111,7 +91,7 @@ export class Chart extends React.Component {
             columnTickValues={verticalLines}
             {...common}
           />
-          <ChartAxes data={data} xBand={xBand} leftAxisHidden={plot} {...common} />
+          <ChartAxes data={data} xBand={xBand} leftAxis={leftAxis} {...common} />
           <mask id="myMask">
             <rect {...maskSize} fill="white" />
           </mask>

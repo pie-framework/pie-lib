@@ -33,20 +33,6 @@ export const dataToXBand = (scaleX, data, width, type) => {
 
 export const getTickValues = prop => {
   const tickValues = [];
-  // let tickVal = 0;
-  //
-  // while (tickVal >= prop.min && tickValues.indexOf(tickVal) < 0) {
-  //   tickValues.push(tickVal);
-  //   tickVal = Math.round((tickVal - prop.step) * 100) / 100;
-  // }
-  //
-  // tickVal = Math.round(prop.step * 100) / 100;
-  //
-  // while (tickVal <= prop.max && tickValues.indexOf(tickVal) < 0) {
-  //   tickValues.push(tickVal);
-  //   tickVal = Math.round((tickVal + prop.step) * 100) / 100;
-  // }
-
   let tickVal = prop.min;
 
   while (tickVal <= prop.max) {
@@ -55,4 +41,67 @@ export const getTickValues = prop => {
   }
 
   return tickValues;
+};
+
+export const getDomainAndRangeByChartType = (domain, range, chartType) => {
+  const { min, max, step } = range;
+
+  switch (chartType) {
+    // if chart is dot plot or line plot, we should ignore step and make sure that min & max are integer values
+    case 'dotPlot':
+    case 'linePlot':
+      return {
+        domain: {
+          ...domain,
+          step: 1,
+          labelStep: 1,
+          min: 0,
+          max: 1
+        },
+        range: {
+          ...range,
+          min: parseInt(min, 10),
+          max: parseInt(max, 10),
+          step: 1
+        }
+      };
+    default:
+      return {
+        domain: {
+          ...domain,
+          step: 1,
+          labelStep: 1,
+          min: 0,
+          max: 1
+        },
+        range: {
+          ...range,
+          step: !step ? 1 : step
+        }
+      };
+  }
+};
+
+export const getGridLinesAndAxisByChartType = (range, chartType) => {
+  switch (chartType) {
+    case 'line':
+      return {
+        verticalLines: undefined,
+        horizontalLines: getTickValues(range),
+        leftAxis: true
+      };
+    case 'dotPlot':
+    case 'linePlot':
+      return {
+        verticalLines: [],
+        horizontalLines: [],
+        leftAxis: false
+      };
+    default:
+      return {
+        verticalLines: [],
+        horizontalLines: getTickValues(range),
+        leftAxis: true
+      };
+  }
 };

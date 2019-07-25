@@ -50,7 +50,7 @@ class RawPlot extends React.Component {
   render() {
     const { graphProps, value, label, classes, xBand, index, CustomBarElement } = this.props;
     const { scale, range, size } = graphProps;
-    const { min, max } = range || {};
+    const { max } = range || {};
     const { dragValue } = this.state;
 
     const v = Number.isFinite(dragValue) ? dragValue : value;
@@ -61,10 +61,10 @@ class RawPlot extends React.Component {
     log('label:', label, 'barX:', barX, 'v: ', v, 'barHeight:', barHeight, 'barWidth: ', barWidth);
 
     const values = [];
-    for (let i = range.min; i < v; i++) {
+    for (let i = 0; i < v; i++) {
       values.push(i);
     }
-    const pointHeight = size.height / (Math.abs(min) + max);
+    const pointHeight = size.height / max;
     const pointDiameter = (pointHeight > barWidth ? barWidth : pointHeight) - 12;
 
     return (

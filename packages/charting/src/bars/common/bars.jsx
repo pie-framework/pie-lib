@@ -56,7 +56,7 @@ class RawBar extends React.Component {
 
     const v = Number.isFinite(dragValue) ? dragValue : value;
     const barWidth = xBand.bandwidth();
-    const barHeight = scale.y(range.max + range.min - v);
+    const barHeight = scale.y(range.max - v);
     const barX = xBand(bandKey({ label }, index));
     const rawY = range.max - v;
     const yy = range.max - rawY;

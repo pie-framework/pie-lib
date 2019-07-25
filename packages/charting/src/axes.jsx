@@ -12,18 +12,18 @@ class RawChartAxes extends React.Component {
     data: PropTypes.array,
     graphProps: types.GraphPropsType.isRequired,
     xBand: PropTypes.func,
-    leftAxisHidden: PropTypes.bool
+    leftAxis: PropTypes.bool
   };
 
   render() {
-    const { classes, graphProps, xBand, leftAxisHidden } = this.props;
+    const { classes, graphProps, xBand, leftAxis } = this.props;
     const { scale, range, domain, size } = graphProps;
     const bottomScale = xBand.rangeRound([0, size.width]);
     const rowTickValues = getTickValues({ ...range, step: range.labelStep });
 
     return (
       <React.Fragment>
-        {!leftAxisHidden && (
+        {leftAxis && (
           <AxisLeft
             scale={scale.y}
             className={classes.axis}

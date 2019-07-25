@@ -5,7 +5,6 @@ import classNames from 'classnames';
 
 import { Grid as VxGrid } from '@vx/grid';
 import { types } from '@pie-lib/plot';
-import { getTickValues } from './utils';
 
 export class Grid extends React.Component {
   static propTypes = {
@@ -22,7 +21,7 @@ export class Grid extends React.Component {
 
   render() {
     const { classes, className, graphProps, xBand, rowTickValues, columnTickValues } = this.props;
-    const { scale, range, size } = graphProps;
+    const { scale, size } = graphProps;
 
     return (
       <VxGrid
@@ -32,7 +31,7 @@ export class Grid extends React.Component {
         width={size.width}
         height={size.height}
         xOffset={xBand.bandwidth() / 2}
-        rowTickValues={rowTickValues || getTickValues(range)}
+        rowTickValues={rowTickValues}
         columnTickValues={columnTickValues}
       />
     );
