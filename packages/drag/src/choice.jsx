@@ -4,25 +4,29 @@ import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import grey from '@material-ui/core/colors/grey';
 
+import { DragSource } from './index';
+
+export const DRAG_TYPE = 'CHOICE';
+
 export class Choice extends React.Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     className: PropTypes.string,
-    children: PropTypes.oneOfType([
-      PropTypes.arrayOf(PropTypes.node),
-      PropTypes.node
-    ])
+    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
+    connectDragSource: PropTypes.func.isRequired
   };
 
   static defaultProps = {};
 
   render() {
-    const { classes, className, children } = this.props;
-    return (
+    const { classes, className, children, connectDragSource } = this.props;
+
+    return connectDragSource(
       <div className={classNames(classes.choice, className)}>{children}</div>
     );
   }
 }
+
 const styles = theme => ({
   choice: {
     backgroundColor: 'white',
@@ -31,4 +35,18 @@ const styles = theme => ({
   }
 });
 
-export default withStyles(styles)(Choice);
+const choiceSource = {
+  canDrag(props) {
+    return !props.disabled;
+  },
+  beginDrag(props) {
+    return props;
+  }
+};
+
+const styledChoice = withStyles(styles)(Choice);
+
+export default DragSource(DRAG_TYPE, choiceSource, (connect, monitor) => ({
+  connectDragSource: connect.dragSource(),
+  isDragging: monitor.isDragging()
+}))(styledChoice);
