@@ -23,6 +23,18 @@ const CustomBarElement = props => {
   );
 };
 
+CustomBarElement.propTypes = {
+  index: PropTypes.number,
+  pointDiameter: PropTypes.number,
+  barX: PropTypes.number,
+  barWidth: PropTypes.number,
+  pointHeight: PropTypes.number,
+  value: PropTypes.number,
+  label: PropTypes.string,
+  classes: PropTypes.object,
+  scale: PropTypes.object
+};
+
 export class DotPlot extends React.Component {
   static propTypes = {
     data: PropTypes.array,

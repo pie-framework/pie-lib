@@ -9,7 +9,7 @@ import { bandKey } from '../../utils';
 
 const log = debug('pie-lib:chart:bars');
 
-class RawPlot extends React.Component {
+export class RawPlot extends React.Component {
   static propTypes = {
     onChange: PropTypes.func,
     value: PropTypes.number,
@@ -17,7 +17,8 @@ class RawPlot extends React.Component {
     label: PropTypes.string,
     xBand: PropTypes.func,
     index: PropTypes.number.isRequired,
-    graphProps: types.GraphPropsType.isRequired
+    graphProps: types.GraphPropsType.isRequired,
+    CustomBarElement: PropTypes.func
   };
 
   constructor(props) {
@@ -109,7 +110,8 @@ export class Plot extends React.Component {
     data: PropTypes.array,
     onChange: PropTypes.func,
     xBand: PropTypes.func,
-    graphProps: types.GraphPropsType.isRequired
+    graphProps: types.GraphPropsType.isRequired,
+    CustomBarElement: PropTypes.func
   };
 
   changeBar = (index, next) => {

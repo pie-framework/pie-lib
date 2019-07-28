@@ -12,7 +12,7 @@ export class Grid extends React.Component {
     className: PropTypes.string,
     data: PropTypes.array,
     graphProps: types.GraphPropsType.isRequired,
-    xBand: PropTypes.func,
+    xBand: PropTypes.object,
     columnTickValues: PropTypes.array,
     rowTickValues: PropTypes.array
   };

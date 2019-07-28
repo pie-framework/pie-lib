@@ -11,7 +11,7 @@ const getData = (data, domain) => {
   const length = data.length;
 
   if (!max || !length) {
-    return { x: 0, y: 0 };
+    return [{ x: 0, y: 0 }];
   }
 
   return data.map((el, i) => ({
@@ -20,7 +20,7 @@ const getData = (data, domain) => {
   }));
 };
 
-class RawLine extends React.Component {
+export class RawLine extends React.Component {
   static propTypes = {
     onChange: PropTypes.func,
     value: PropTypes.number,
@@ -74,24 +74,25 @@ class RawLine extends React.Component {
           y={d => scale.y(d.dragValue !== undefined ? d.dragValue : d.y)}
           className={classes.line}
         />
-        {lineToUse.map((point, i) => {
-          const r = 5;
+        {lineToUse &&
+          lineToUse.map((point, i) => {
+            const r = 5;
 
-          return (
-            <DragHandle
-              key={`point-${point.x}-${i}`}
-              x={point.x}
-              y={point.dragValue !== undefined ? point.dragValue : point.y}
-              r={r}
-              onDragStart={() => this.setState({ dragging: true })}
-              onDrag={v =>
-                this.dragValue(i, point.dragValue !== undefined ? point.dragValue : point.y, v)
-              }
-              onDragStop={() => this.dragStop(i)}
-              graphProps={graphProps}
-            />
-          );
-        })}
+            return (
+              <DragHandle
+                key={`point-${point.x}-${i}`}
+                x={point.x}
+                y={point.dragValue !== undefined ? point.dragValue : point.y}
+                r={r}
+                onDragStart={() => this.setState({ dragging: true })}
+                onDrag={v =>
+                  this.dragValue(i, point.dragValue !== undefined ? point.dragValue : point.y, v)
+                }
+                onDragStop={() => this.dragStop(i)}
+                graphProps={graphProps}
+              />
+            );
+          })}
       </React.Fragment>
     );
   }

@@ -4,7 +4,7 @@ import { gridDraggable, utils, types } from '@pie-lib/plot';
 import { withStyles } from '@material-ui/core/styles/index';
 import PropTypes from 'prop-types';
 
-class RawDragHandle extends React.Component {
+export class RawDragHandle extends React.Component {
   static propTypes = {
     x: PropTypes.number.isRequired,
     y: PropTypes.number.isRequired,
@@ -28,7 +28,7 @@ class RawDragHandle extends React.Component {
   }
 }
 
-const D = gridDraggable({
+export const D = gridDraggable({
   axis: 'y',
   fromDelta: (props, delta) => {
     //TODO: should be in grid-draggable, if axis is y delta.x should always be 0.

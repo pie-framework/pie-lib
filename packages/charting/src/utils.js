@@ -1,4 +1,10 @@
 import { scaleBand, scalePoint } from '@vx/scale';
+import { utils } from '@pie-lib/plot';
+
+export const tickCount = utils.tickCount;
+export const bounds = utils.bounds;
+export const point = utils.point;
+
 export const bandKey = (d, index) => `${index}-${d.label || '-'}`;
 
 export const dataToXBand = (scaleX, data, width, type) => {
@@ -8,30 +14,30 @@ export const dataToXBand = (scaleX, data, width, type) => {
     case 'linePlot':
       return scaleBand({
         rangeRound: [0, width],
-        domain: data.map(bandKey),
+        domain: data && data.map(bandKey),
         padding: 0.2
       });
     case 'histogram':
       return scaleBand({
         rangeRound: [0, width],
-        domain: data.map(bandKey),
+        domain: data && data.map(bandKey),
         padding: 0
       });
     case 'line':
       return scalePoint({
-        domain: data.map(bandKey),
+        domain: data && data.map(bandKey),
         rangeRound: [0, width]
       });
     default:
       return scaleBand({
         range: [0, width],
-        domain: data.map(bandKey),
+        domain: data && data.map(bandKey),
         padding: 0
       });
   }
 };
 
-export const getTickValues = prop => {
+export const getTickValues = (prop = {}) => {
   const tickValues = [];
   let tickVal = prop.min;
 
@@ -44,7 +50,7 @@ export const getTickValues = prop => {
 };
 
 export const getDomainAndRangeByChartType = (domain, range, chartType) => {
-  const { min, max, step } = range;
+  const { min, max, step } = range || {};
 
   switch (chartType) {
     // if chart is dot plot or line plot, we should ignore step and make sure that min & max are integer values

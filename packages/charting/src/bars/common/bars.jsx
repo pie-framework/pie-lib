@@ -11,7 +11,7 @@ import { bandKey } from '../../utils';
 
 const log = debug('pie-lib:chart:bars');
 
-class RawBar extends React.Component {
+export class RawBar extends React.Component {
   static propTypes = {
     onChange: PropTypes.func,
     value: PropTypes.number,

@@ -38,12 +38,11 @@ export class Chart extends React.Component {
 
   static defaultProps = {};
 
-  getChartComponent = () => {
+  getChart = () => {
     const { chartType, charts } = this.props;
-    const selectedChart = charts.find(chart => chart.type === chartType);
-
     log('chartType: ', chartType);
-    return selectedChart.Component;
+
+    return charts && charts.find(chart => chart.type === chartType);
   };
 
   changeData = data => {
@@ -53,8 +52,19 @@ export class Chart extends React.Component {
   };
 
   render() {
-    const { classes, className, domain, range, size, title, data, chartType } = this.props;
-    const ChartComponent = this.getChartComponent();
+    const { classes, className, domain, range, size, title, data, charts } = this.props;
+    let ChartComponent = null;
+    let { chartType } = this.props;
+    let chart = null;
+
+    if (chartType) {
+      chart = this.getChart();
+      ChartComponent = chart && chart.Component;
+    } else {
+      chart = charts && charts[0];
+      ChartComponent = chart && chart.Component;
+      chartType = chart && chart.type;
+    }
 
     const { verticalLines, horizontalLines, leftAxis } = getGridLinesAndAxisByChartType(
       range,
@@ -79,24 +89,24 @@ export class Chart extends React.Component {
     };
 
     const { scale } = common.graphProps;
-    const xBand = dataToXBand(scale.x, data, size.width, chartType);
+    const xBand = dataToXBand(scale.x, data || [], size.width, chartType);
 
     return (
       <div className={classNames(classes.class, className)}>
         <Root title={title} classes={classes} rootRef={r => (this.rootNode = r)} {...common}>
           <ChartGrid
-            data={data}
+            {...common}
+            data={data || []}
             xBand={xBand}
             rowTickValues={horizontalLines}
             columnTickValues={verticalLines}
-            {...common}
           />
-          <ChartAxes data={data} xBand={xBand} leftAxis={leftAxis} {...common} />
+          <ChartAxes {...common} data={data || []} xBand={xBand} leftAxis={leftAxis} />
           <mask id="myMask">
             <rect {...maskSize} fill="white" />
           </mask>
           <g id="marks" mask="url('#myMask')">
-            <ChartComponent data={data} onChange={this.changeData} {...common} />
+            <ChartComponent {...common} data={data || []} onChange={this.changeData} />
           </g>
         </Root>
       </div>
@@ -104,7 +114,7 @@ export class Chart extends React.Component {
   }
 }
 
-const styles = theme => ({
+const styles = () => ({
   graphBox: {
     transform: 'translate(70px, 35px)'
   }

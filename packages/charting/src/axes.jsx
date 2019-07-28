@@ -11,7 +11,7 @@ class RawChartAxes extends React.Component {
     classes: PropTypes.object.isRequired,
     data: PropTypes.array,
     graphProps: types.GraphPropsType.isRequired,
-    xBand: PropTypes.func,
+    xBand: PropTypes.object,
     leftAxis: PropTypes.bool
   };
 

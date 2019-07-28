@@ -14,7 +14,7 @@ class RawDragHandle extends React.Component {
     className: PropTypes.string
   };
   render() {
-    const { x, y, width, graphProps, classes, className, ...rest } = this.props;
+    const { x, y, graphProps, classes, className, ...rest } = this.props;
     const { scale } = graphProps;
     return (
       <circle
