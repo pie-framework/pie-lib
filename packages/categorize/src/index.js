@@ -299,10 +299,12 @@ export const buildState = (categories, choices, answers = [], correctResponse) =
 
       if (correct !== true && hasAlternateResponses) {
         cr.alternateResponses.forEach(choices => {
-          const altIds = out.choices.map(c => c.id).sort();
-          const altCorrectIds = clone(choices || []).sort();
+          if (!correct) {
+            const altIds = out.choices.map(c => c.id).sort();
+            const altCorrectIds = clone(choices || []).sort();
 
-          correct = isEqual(altIds, altCorrectIds);
+            correct = isEqual(altIds, altCorrectIds);
+          }
         });
       }
 

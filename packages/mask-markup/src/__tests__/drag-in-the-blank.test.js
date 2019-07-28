@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
-import { DragInTheBlank } from '../index';
+import DragInTheBlank from '../drag-in-the-blank';
 
 const markup = `<div>
   <img src="https://image.shutterstock.com/image-vector/cow-jumped-over-moon-traditional-260nw-1152899330.jpg"></img>

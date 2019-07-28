@@ -3,371 +3,203 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.2.2...@pie-lib/demo@5.2.3) (2019-07-23)
+
+**Note:** Version bump only for package @pie-lib/demo
+
 ## [5.2.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.2.1...@pie-lib/demo@5.2.2) (2019-07-19)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.2.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.2.0...@pie-lib/demo@5.2.1) (2019-07-17)
-
 
 ### Bug Fixes
 
-* keypadMode not updating ([5d72bee](https://github.com/pie-framework/pie-lib/commit/5d72bee))
-
-
-
-
+- keypadMode not updating ([5d72bee](https://github.com/pie-framework/pie-lib/commit/5d72bee))
 
 # [5.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.1.14...@pie-lib/demo@5.2.0) (2019-07-16)
 
-
 ### Features
 
-* support dragging when having a grid defined by decimal values ([5a5e505](https://github.com/pie-framework/pie-lib/commit/5a5e505))
-
-
-
-
+- support dragging when having a grid defined by decimal values ([5a5e505](https://github.com/pie-framework/pie-lib/commit/5a5e505))
 
 ## [5.1.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.1.13...@pie-lib/demo@5.1.14) (2019-07-13)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.1.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.1.12...@pie-lib/demo@5.1.13) (2019-07-12)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [5.1.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.1.11...@pie-lib/demo@5.1.12) (2019-07-12)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.1.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.1.10...@pie-lib/demo@5.1.11) (2019-07-12)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [5.1.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.1.9...@pie-lib/demo@5.1.10) (2019-07-12)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.1.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.1.8...@pie-lib/demo@5.1.9) (2019-07-11)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [5.1.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.1.7...@pie-lib/demo@5.1.8) (2019-07-09)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.1.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.1.6...@pie-lib/demo@5.1.7) (2019-07-08)
-
 
 ### Bug Fixes
 
-* save math changes when editor is re-focused ([7674a86](https://github.com/pie-framework/pie-lib/commit/7674a86))
-
-
-
-
+- save math changes when editor is re-focused ([7674a86](https://github.com/pie-framework/pie-lib/commit/7674a86))
 
 ## [5.1.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.1.5...@pie-lib/demo@5.1.6) (2019-07-08)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.1.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.1.4...@pie-lib/demo@5.1.5) (2019-07-08)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [5.1.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.1.3...@pie-lib/demo@5.1.4) (2019-07-07)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.1.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.1.2...@pie-lib/demo@5.1.3) (2019-07-07)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [5.1.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.1.1...@pie-lib/demo@5.1.2) (2019-07-06)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.1.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.1.0...@pie-lib/demo@5.1.1) (2019-07-06)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 # [5.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.0.7...@pie-lib/demo@5.1.0) (2019-07-05)
-
 
 ### Features
 
-* Added hideLabel property in order to toggle the Label button from the toolbar. ([448c6d8](https://github.com/pie-framework/pie-lib/commit/448c6d8))
-
-
-
-
+- Added hideLabel property in order to toggle the Label button from the toolbar. ([448c6d8](https://github.com/pie-framework/pie-lib/commit/448c6d8))
 
 ## [5.0.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.0.6...@pie-lib/demo@5.0.7) (2019-07-04)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.0.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.0.5...@pie-lib/demo@5.0.6) (2019-07-03)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [5.0.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.0.4...@pie-lib/demo@5.0.5) (2019-07-02)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.0.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.0.3...@pie-lib/demo@5.0.4) (2019-07-02)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [5.0.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.0.2...@pie-lib/demo@5.0.3) (2019-07-02)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.0.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.0.1...@pie-lib/demo@5.0.2) (2019-07-01)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [5.0.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.0.0...@pie-lib/demo@5.0.1) (2019-06-28)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 # [5.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@4.7.7...@pie-lib/demo@5.0.0) (2019-06-28)
-
 
 ### Bug Fixes
 
-* calculate edge when points are on same horizontal or vertical line ([5cba298](https://github.com/pie-framework/pie-lib/commit/5cba298))
-* removed correctnessMarks and displayedTools ([6043e88](https://github.com/pie-framework/pie-lib/commit/6043e88))
-
+- calculate edge when points are on same horizontal or vertical line ([5cba298](https://github.com/pie-framework/pie-lib/commit/5cba298))
+- removed correctnessMarks and displayedTools ([6043e88](https://github.com/pie-framework/pie-lib/commit/6043e88))
 
 ### Features
 
-* add `toolbar` flag to each tool ([c32ec2c](https://github.com/pie-framework/pie-lib/commit/c32ec2c))
-
+- add `toolbar` flag to each tool ([c32ec2c](https://github.com/pie-framework/pie-lib/commit/c32ec2c))
 
 ### BREAKING CHANGES
 
-* Graph 'tools' expected property has to be an array of objects having this form: { display: bool, Component: tool }
-
-
-
-
+- Graph 'tools' expected property has to be an array of objects having this form: { display: bool, Component: tool }
 
 ## [4.7.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@4.7.6...@pie-lib/demo@4.7.7) (2019-06-26)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [4.7.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@4.7.5...@pie-lib/demo@4.7.6) (2019-06-26)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [4.7.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@4.7.4...@pie-lib/demo@4.7.5) (2019-06-24)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [4.7.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@4.7.3...@pie-lib/demo@4.7.4) (2019-06-21)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [4.7.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@4.7.2...@pie-lib/demo@4.7.3) (2019-06-20)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [4.7.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@4.7.1...@pie-lib/demo@4.7.2) (2019-06-19)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [4.7.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@4.7.0...@pie-lib/demo@4.7.1) (2019-06-18)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 # [4.7.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@4.6.0...@pie-lib/demo@4.7.0) (2019-06-17)
-
 
 ### Features
 
-* added displayedTools property which determines which tools should appear in tool-menu. If it's not set, all tools from tools array will appear. ([3eec9fb](https://github.com/pie-framework/pie-lib/commit/3eec9fb))
-* Added possibility to plot shapes that include defining points colocated with the defining points of other shapes ([f616f34](https://github.com/pie-framework/pie-lib/commit/f616f34))
-
-
-
-
+- added displayedTools property which determines which tools should appear in tool-menu. If it's not set, all tools from tools array will appear. ([3eec9fb](https://github.com/pie-framework/pie-lib/commit/3eec9fb))
+- Added possibility to plot shapes that include defining points colocated with the defining points of other shapes ([f616f34](https://github.com/pie-framework/pie-lib/commit/f616f34))
 
 # [4.6.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@4.5.2...@pie-lib/demo@4.6.0) (2019-06-12)
 
-
 ### Bug Fixes
 
-* fix bounded drag calculation ([08097bd](https://github.com/pie-framework/pie-lib/commit/08097bd))
-
+- fix bounded drag calculation ([08097bd](https://github.com/pie-framework/pie-lib/commit/08097bd))
 
 ### Features
 
-* version bumps ([23eb54f](https://github.com/pie-framework/pie-lib/commit/23eb54f))
-
-
-
-
+- version bumps ([23eb54f](https://github.com/pie-framework/pie-lib/commit/23eb54f))
 
 ## [4.5.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@4.5.1...@pie-lib/demo@4.5.2) (2019-06-06)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [4.5.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@4.5.0...@pie-lib/demo@4.5.1) (2019-06-05)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 # [4.5.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@4.4.0...@pie-lib/demo@4.5.0) (2019-06-05)
-
 
 ### Features
 
-* **editable-html:** made some changes in order to publish packages with the editable-html bump ([d049e3c](https://github.com/pie-framework/pie-lib/commit/d049e3c))
-
-
-
-
+- **editable-html:** made some changes in order to publish packages with the editable-html bump ([d049e3c](https://github.com/pie-framework/pie-lib/commit/d049e3c))
 
 # [4.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@4.2.6...@pie-lib/demo@4.4.0) (2019-06-05)
 
-
 ### Features
 
-* **response-area:** added response area to the editable-html packages ([bc7af2b](https://github.com/pie-framework/pie-lib/commit/bc7af2b))
-* **response-area:** changes to make the response-areas work ([1c15fcd](https://github.com/pie-framework/pie-lib/commit/1c15fcd))
-* **response-area:** made some changes in order to be able to handle all 3 of the new elements ([480073e](https://github.com/pie-framework/pie-lib/commit/480073e))
-
-
-
-
+- **response-area:** added response area to the editable-html packages ([bc7af2b](https://github.com/pie-framework/pie-lib/commit/bc7af2b))
+- **response-area:** changes to make the response-areas work ([1c15fcd](https://github.com/pie-framework/pie-lib/commit/1c15fcd))
+- **response-area:** made some changes in order to be able to handle all 3 of the new elements ([480073e](https://github.com/pie-framework/pie-lib/commit/480073e))
 
 ## [4.2.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@4.2.5...@pie-lib/demo@4.2.6) (2019-05-28)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [4.2.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@4.2.4...@pie-lib/demo@4.2.5) (2019-05-28)
 
