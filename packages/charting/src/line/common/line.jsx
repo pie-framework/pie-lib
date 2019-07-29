@@ -3,8 +3,9 @@ import { Group } from '@vx/group';
 import { LinePath } from '@vx/shape';
 import PropTypes from 'prop-types';
 import { types } from '@pie-lib/plot';
-import DragHandle from './drag-handle';
+import DraggableHandle, { DragHandle } from './drag-handle';
 import { withStyles } from '@material-ui/core/styles/index';
+import isEqual from 'lodash/isEqual';
 
 const getData = (data, domain) => {
   const { max } = domain || {};
@@ -15,6 +16,7 @@ const getData = (data, domain) => {
   }
 
   return data.map((el, i) => ({
+    ...el,
     x: i * (max / (length - 1)),
     y: el.value
   }));
@@ -43,14 +45,20 @@ export class RawLine extends React.Component {
     };
   }
 
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    if (!isEqual(this.props.data, nextProps.data)) {
+      this.setState({
+        line: getData(nextProps.data, nextProps.graphProps.domain)
+      });
+    }
+  }
+
   setDragValue = line => this.setState({ line });
 
   dragStop = index => {
     const { onChange } = this.props;
     this.setState({ dragging: false }, () => {
-      const newLine = [...this.props.data];
-      newLine[index].value = this.state.line[index].dragValue;
-      onChange(newLine);
+      onChange(index, this.state.line[index]);
     });
   };
 
@@ -77,12 +85,20 @@ export class RawLine extends React.Component {
         {lineToUse &&
           lineToUse.map((point, i) => {
             const r = 5;
+            let Component;
+
+            if (point.interactive) {
+              Component = DraggableHandle;
+            } else {
+              Component = DragHandle;
+            }
 
             return (
-              <DragHandle
+              <Component
                 key={`point-${point.x}-${i}`}
                 x={point.x}
                 y={point.dragValue !== undefined ? point.dragValue : point.y}
+                interactive={point.interactive}
                 r={r}
                 onDragStart={() => this.setState({ dragging: true })}
                 onDrag={v =>
@@ -119,10 +135,13 @@ export class Line extends React.Component {
     graphProps: types.GraphPropsType.isRequired
   };
 
-  changeLine = nextData => {
+  changeLine = (index, category) => {
     const { onChange } = this.props;
+    const newLine = [...this.props.data];
 
-    onChange(nextData);
+    newLine[index].value = category.dragValue;
+
+    onChange(newLine);
   };
 
   render() {

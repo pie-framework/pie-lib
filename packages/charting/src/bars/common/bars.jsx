@@ -5,21 +5,22 @@ import { Group } from '@vx/group';
 import { Bar as VxBar } from '@vx/shape';
 import { withStyles } from '@material-ui/core/styles/index';
 import { fade } from '@material-ui/core/styles/colorManipulator';
-import DragHandle from '../../common/drag-handle';
 import debug from 'debug';
 import { bandKey } from '../../utils';
+import DraggableHandle, { DragHandle } from '../../common/drag-handle';
 
 const log = debug('pie-lib:chart:bars');
 
 export class RawBar extends React.Component {
   static propTypes = {
-    onChange: PropTypes.func,
+    onChangeCategory: PropTypes.func,
     value: PropTypes.number,
     classes: PropTypes.object,
     label: PropTypes.string,
     xBand: PropTypes.func,
     index: PropTypes.number.isRequired,
-    graphProps: types.GraphPropsType.isRequired
+    graphProps: types.GraphPropsType.isRequired,
+    interactive: PropTypes.bool
   };
 
   constructor(props) {
@@ -32,12 +33,12 @@ export class RawBar extends React.Component {
   setDragValue = dragValue => this.setState({ dragValue });
 
   dragStop = () => {
-    const { onChange, label } = this.props;
+    const { label, onChangeCategory } = this.props;
     const { dragValue } = this.state;
     log('[dragStop]', dragValue);
 
     if (dragValue !== undefined) {
-      onChange({ label, value: dragValue });
+      onChangeCategory({ label, value: dragValue });
     }
 
     this.setDragValue(undefined);
@@ -50,7 +51,7 @@ export class RawBar extends React.Component {
   };
 
   render() {
-    const { graphProps, value, label, classes, xBand, index } = this.props;
+    const { graphProps, value, label, classes, xBand, index, interactive } = this.props;
     const { scale, range } = graphProps;
     const { dragValue } = this.state;
 
@@ -62,6 +63,14 @@ export class RawBar extends React.Component {
     const yy = range.max - rawY;
     log('label:', label, 'barX:', barX, 'v: ', v, 'barHeight:', barHeight, 'barWidth: ', barWidth);
 
+    let Component;
+
+    if (interactive) {
+      Component = DraggableHandle;
+    } else {
+      Component = DragHandle;
+    }
+
     return (
       <React.Fragment>
         <VxBar
@@ -71,9 +80,10 @@ export class RawBar extends React.Component {
           height={barHeight}
           className={classes.bar}
         />
-        <DragHandle
+        <Component
           x={barX}
           y={v}
+          interactive={interactive}
           width={barWidth}
           onDrag={v => this.dragValue(value, v)}
           onDragStop={this.dragStop}
@@ -93,33 +103,24 @@ const Bar = withStyles(theme => ({
 export class Bars extends React.Component {
   static propTypes = {
     data: PropTypes.array,
-    onChange: PropTypes.func,
+    onChangeCategory: PropTypes.func,
     xBand: PropTypes.func,
     graphProps: types.GraphPropsType.isRequired
   };
 
-  changeBar = (index, next) => {
-    const { data, onChange } = this.props;
-
-    if (index >= 0) {
-      const update = [...data];
-      update.splice(index, 1, next);
-      onChange(update);
-    }
-  };
-
   render() {
-    const { data, graphProps, xBand } = this.props;
+    const { data, graphProps, xBand, onChangeCategory } = this.props;
     return (
       <Group>
         {(data || []).map((d, index) => (
           <Bar
             value={d.value}
+            interactive={d.interactive}
             label={d.label}
             xBand={xBand}
             index={index}
             key={`bar-${d.label}-${d.value}-${index}`}
-            onChange={next => this.changeBar(index, next)}
+            onChangeCategory={category => onChangeCategory(index, category)}
             graphProps={graphProps}
           />
         ))}

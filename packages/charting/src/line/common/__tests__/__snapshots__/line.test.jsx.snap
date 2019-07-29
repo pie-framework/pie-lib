@@ -51,10 +51,14 @@ exports[`RawLine snapshot renders 1`] = `
     data={
       Array [
         Object {
+          "label": "A",
+          "value": 0,
           "x": 0,
           "y": 0,
         },
         Object {
+          "label": "B",
+          "value": 1,
           "x": 1,
           "y": 1,
         },
@@ -63,7 +67,7 @@ exports[`RawLine snapshot renders 1`] = `
     x={[Function]}
     y={[Function]}
   />
-  <WithStyles(GridDraggable)
+  <WithStyles(RawDragHandle)
     graphProps={
       Object {
         "domain": Object {
@@ -98,7 +102,7 @@ exports[`RawLine snapshot renders 1`] = `
     x={0}
     y={0}
   />
-  <WithStyles(GridDraggable)
+  <WithStyles(RawDragHandle)
     graphProps={
       Object {
         "domain": Object {

@@ -29,7 +29,7 @@ describe('Line', () => {
     it('changeLine', () => {
       const w = wrapper();
 
-      w.instance().changeLine([{ value: 1, label: '0' }]);
+      w.instance().changeLine(0, { dragValue: 1, label: '0' });
 
       expect(onChange).toHaveBeenCalledWith([{ value: 1, label: '0' }]);
     });
@@ -70,7 +70,7 @@ describe('RawLine', () => {
 
       w.instance().dragStop(0);
 
-      expect(onChange).toHaveBeenCalledWith([{ label: 'A', value: 2 }, { label: 'B', value: 1 }]);
+      expect(onChange).toHaveBeenCalledWith(0, { x: 0, y: 0, dragValue: 2 });
     });
   });
 });

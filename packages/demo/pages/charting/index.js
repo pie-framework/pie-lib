@@ -25,7 +25,7 @@ export class ChartDemo extends React.Component {
         }
       },
       model: {
-        chartType: 'line',
+        chartType: 'bar',
         title: 'This is a chart',
         domain: {
           label: 'Fruit'
@@ -39,11 +39,11 @@ export class ChartDemo extends React.Component {
         },
         data: [
           { label: 'Apples', value: 5 },
-          { label: 'Grapes', value: 3 },
+          { label: 'Grapes', value: 3, interactive: true },
           { label: 'Lemons', value: 0 },
-          { label: 'Plums', value: 2 },
+          { label: 'Plums', value: 2, interactive: true },
           { label: 'Peaches', value: 1 },
-          { label: 'Melons', value: 4 }
+          { label: 'Melons', value: 4, interactive: true, deletable: true }
         ],
         charts: [
           chartTypes.Bar(),

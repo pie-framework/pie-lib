@@ -7,6 +7,7 @@ import ChartGrid from './grid';
 import ChartAxes from './axes';
 import debug from 'debug';
 import { dataToXBand, getDomainAndRangeByChartType, getGridLinesAndAxisByChartType } from './utils';
+import ToolMenu from './tool-menu';
 
 const log = debug('pie-lib:charts:chart');
 
@@ -33,7 +34,8 @@ export class Chart extends React.Component {
     }),
     charts: PropTypes.array,
     title: PropTypes.string,
-    onDataChange: PropTypes.func
+    onDataChange: PropTypes.func,
+    addCategoryDisabled: PropTypes.bool
   };
 
   static defaultProps = {};
@@ -51,10 +53,53 @@ export class Chart extends React.Component {
     onDataChange(data);
   };
 
+  changeCategory = (index, newCategory) => {
+    const integerIndex = parseInt(index, 10);
+
+    if (integerIndex >= 0) {
+      const { data, onDataChange } = this.props;
+      const newData = [
+        ...data.slice(0, integerIndex),
+        {
+          ...data[integerIndex],
+          ...newCategory
+        },
+        ...data.slice(integerIndex + 1)
+      ];
+
+      onDataChange(newData);
+    }
+  };
+
+  addCategory = (chartType, range) => {
+    const { onDataChange, data } = this.props;
+
+    onDataChange([
+      ...data,
+      {
+        label: chartType === 'line' ? 'New point name' : 'New bar',
+        value: range.step,
+        deletable: true,
+        editable: true,
+        interactive: true
+      }
+    ]);
+  };
+
   render() {
-    const { classes, className, domain, range, size, title, data, charts } = this.props;
-    let ChartComponent = null;
+    const {
+      classes,
+      className,
+      domain,
+      range,
+      size,
+      title,
+      data,
+      charts,
+      addCategoryDisabled
+    } = this.props;
     let { chartType } = this.props;
+    let ChartComponent = null;
     let chart = null;
 
     if (chartType) {
@@ -87,26 +132,43 @@ export class Chart extends React.Component {
       width: size.width + 20,
       height: size.height + 20
     };
+    const categories = data || [];
 
     const { scale } = common.graphProps;
-    const xBand = dataToXBand(scale.x, data || [], size.width, chartType);
+    const xBand = dataToXBand(scale.x, categories, size.width, chartType);
 
     return (
       <div className={classNames(classes.class, className)}>
+        <div className={classes.controls}>
+          <ToolMenu
+            disabled={addCategoryDisabled}
+            addCategory={() => this.addCategory(chartType, correctValues.range)}
+          />
+        </div>
         <Root title={title} classes={classes} rootRef={r => (this.rootNode = r)} {...common}>
           <ChartGrid
             {...common}
-            data={data || []}
             xBand={xBand}
             rowTickValues={horizontalLines}
             columnTickValues={verticalLines}
           />
-          <ChartAxes {...common} data={data || []} xBand={xBand} leftAxis={leftAxis} />
+          <ChartAxes
+            {...common}
+            categories={categories}
+            xBand={xBand}
+            leftAxis={leftAxis}
+            onChange={this.changeData}
+          />
           <mask id="myMask">
             <rect {...maskSize} fill="white" />
           </mask>
           <g id="marks" mask="url('#myMask')">
-            <ChartComponent {...common} data={data || []} onChange={this.changeData} />
+            <ChartComponent
+              {...common}
+              data={categories}
+              onChange={this.changeData}
+              onChangeCategory={this.changeCategory}
+            />
           </g>
         </Root>
       </div>
@@ -114,9 +176,20 @@ export class Chart extends React.Component {
   }
 }
 
-const styles = () => ({
+const styles = theme => ({
   graphBox: {
     transform: 'translate(70px, 35px)'
+  },
+  controls: {
+    width: 'inherit',
+    display: 'flex',
+    justifyContent: 'space-between',
+    padding: theme.spacing.unit,
+    backgroundColor: theme.palette.primary.light,
+    borderTop: `solid 1px ${theme.palette.primary.dark}`,
+    borderBottom: `solid 0px ${theme.palette.primary.dark}`,
+    borderLeft: `solid 1px ${theme.palette.primary.dark}`,
+    borderRight: `solid 1px ${theme.palette.primary.dark}`
   }
 });
 

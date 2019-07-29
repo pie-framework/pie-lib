@@ -24,22 +24,12 @@ describe('Plot', () => {
   describe('snapshot', () => {
     it('renders', () => expect(wrapper()).toMatchSnapshot());
   });
-
-  describe('logic', () => {
-    it('changeBar', () => {
-      const w = wrapper();
-
-      w.instance().changeBar(0, { value: 1, label: '0' });
-
-      expect(onChange).toHaveBeenCalledWith([{ value: 1, label: '0' }]);
-    });
-  });
 });
 
 describe('RawPlot', () => {
   const xBand = () => {};
   xBand.bandwidth = () => {};
-  const onChange = jest.fn();
+  const onChangeCategory = jest.fn();
 
   const wrapper = extras => {
     const defaults = {
@@ -47,7 +37,7 @@ describe('RawPlot', () => {
       className: 'className',
       graphProps: graphProps(),
       xBand,
-      onChange,
+      onChangeCategory,
       data: [],
       label: 'label',
       CustomBarElement: () => <div />
@@ -66,7 +56,7 @@ describe('RawPlot', () => {
     it('dragStop', () => {
       w.instance().dragStop();
 
-      expect(onChange).not.toHaveBeenCalled();
+      expect(onChangeCategory).not.toHaveBeenCalled();
 
       w.instance().setState({
         dragValue: 2
@@ -74,7 +64,7 @@ describe('RawPlot', () => {
 
       w.instance().dragStop();
 
-      expect(onChange).toHaveBeenCalledWith({ label: 'label', value: 2 });
+      expect(onChangeCategory).toHaveBeenCalledWith({ label: 'label', value: 2 });
     });
   });
 });

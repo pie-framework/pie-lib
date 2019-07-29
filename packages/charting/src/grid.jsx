@@ -10,7 +10,6 @@ export class Grid extends React.Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     className: PropTypes.string,
-    data: PropTypes.array,
     graphProps: types.GraphPropsType.isRequired,
     xBand: PropTypes.object,
     columnTickValues: PropTypes.array,

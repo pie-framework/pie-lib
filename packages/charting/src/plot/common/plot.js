@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { types } from '@pie-lib/plot';
 import { Group } from '@vx/group';
 import { withStyles } from '@material-ui/core/styles/index';
-import DragHandle from '../../common/drag-handle';
+import DraggableHandle, { DragHandle } from '../../common/drag-handle';
 import debug from 'debug';
 import { bandKey } from '../../utils';
 
@@ -11,14 +11,15 @@ const log = debug('pie-lib:chart:bars');
 
 export class RawPlot extends React.Component {
   static propTypes = {
-    onChange: PropTypes.func,
+    onChangeCategory: PropTypes.func,
     value: PropTypes.number,
     classes: PropTypes.object,
     label: PropTypes.string,
     xBand: PropTypes.func,
     index: PropTypes.number.isRequired,
     graphProps: types.GraphPropsType.isRequired,
-    CustomBarElement: PropTypes.func
+    CustomBarElement: PropTypes.func,
+    interactive: PropTypes.bool
   };
 
   constructor(props) {
@@ -31,12 +32,12 @@ export class RawPlot extends React.Component {
   setDragValue = dragValue => this.setState({ dragValue });
 
   dragStop = () => {
-    const { onChange, label } = this.props;
+    const { label, onChangeCategory } = this.props;
     const { dragValue } = this.state;
     log('[dragStop]', dragValue);
 
     if (dragValue !== undefined) {
-      onChange({ label, value: dragValue });
+      onChangeCategory({ label, value: dragValue });
     }
 
     this.setDragValue(undefined);
@@ -49,7 +50,16 @@ export class RawPlot extends React.Component {
   };
 
   render() {
-    const { graphProps, value, label, classes, xBand, index, CustomBarElement } = this.props;
+    const {
+      graphProps,
+      value,
+      label,
+      classes,
+      xBand,
+      index,
+      CustomBarElement,
+      interactive
+    } = this.props;
     const { scale, range, size } = graphProps;
     const { max } = range || {};
     const { dragValue } = this.state;
@@ -67,6 +77,13 @@ export class RawPlot extends React.Component {
     }
     const pointHeight = size.height / max;
     const pointDiameter = (pointHeight > barWidth ? barWidth : pointHeight) - 12;
+    let Component;
+
+    if (interactive) {
+      Component = DraggableHandle;
+    } else {
+      Component = DragHandle;
+    }
 
     return (
       <React.Fragment>
@@ -83,9 +100,10 @@ export class RawPlot extends React.Component {
             scale
           })
         )}
-        <DragHandle
+        <Component
           x={barX}
           y={v}
+          interactive={interactive}
           width={barWidth}
           onDrag={v => this.dragValue(value, v)}
           onDragStop={this.dragStop}
@@ -108,24 +126,14 @@ const Bar = withStyles(theme => ({
 export class Plot extends React.Component {
   static propTypes = {
     data: PropTypes.array,
-    onChange: PropTypes.func,
+    onChangeCategory: PropTypes.func,
     xBand: PropTypes.func,
     graphProps: types.GraphPropsType.isRequired,
     CustomBarElement: PropTypes.func
   };
 
-  changeBar = (index, next) => {
-    const { data, onChange } = this.props;
-
-    if (index >= 0) {
-      const update = [...data];
-      update.splice(index, 1, next);
-      onChange(update);
-    }
-  };
-
   render() {
-    const { data, graphProps, xBand, CustomBarElement } = this.props;
+    const { data, graphProps, xBand, CustomBarElement, onChangeCategory } = this.props;
 
     return (
       <Group>
@@ -133,10 +141,11 @@ export class Plot extends React.Component {
           <Bar
             value={d.value}
             label={d.label}
+            interactive={d.interactive}
             xBand={xBand}
             index={index}
             key={`bar-${d.label}-${d.value}-${index}`}
-            onChange={next => this.changeBar(index, next)}
+            onChangeCategory={category => onChangeCategory(index, category)}
             graphProps={graphProps}
             CustomBarElement={CustomBarElement}
           />

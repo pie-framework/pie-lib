@@ -4,6 +4,11 @@ exports[`ChartAxes snapshot renders 1`] = `
 <div
   className="className"
 >
+  <div>
+    <ToolMenu
+      addCategory={[Function]}
+    />
+  </div>
   <WithStyles(Root)
     classes={Object {}}
     graphProps={
@@ -38,7 +43,6 @@ exports[`ChartAxes snapshot renders 1`] = `
   >
     <WithStyles(Grid)
       columnTickValues={Array []}
-      data={Array []}
       graphProps={
         Object {
           "domain": Object {
@@ -75,7 +79,7 @@ exports[`ChartAxes snapshot renders 1`] = `
       xBand={[Function]}
     />
     <WithStyles(RawChartAxes)
-      data={Array []}
+      categories={Array []}
       graphProps={
         Object {
           "domain": Object {
@@ -105,6 +109,7 @@ exports[`ChartAxes snapshot renders 1`] = `
         }
       }
       leftAxis={true}
+      onChange={[Function]}
       xBand={[Function]}
     />
     <mask
@@ -153,6 +158,7 @@ exports[`ChartAxes snapshot renders 1`] = `
           }
         }
         onChange={[Function]}
+        onChangeCategory={[Function]}
       />
     </g>
   </WithStyles(Root)>
@@ -163,6 +169,11 @@ exports[`ChartAxes snapshot renders with chartType property and empty charts pro
 <div
   className="className"
 >
+  <div>
+    <ToolMenu
+      addCategory={[Function]}
+    />
+  </div>
   <WithStyles(Root)
     classes={Object {}}
     graphProps={
@@ -197,7 +208,6 @@ exports[`ChartAxes snapshot renders with chartType property and empty charts pro
   >
     <WithStyles(Grid)
       columnTickValues={Array []}
-      data={Array []}
       graphProps={
         Object {
           "domain": Object {
@@ -234,7 +244,7 @@ exports[`ChartAxes snapshot renders with chartType property and empty charts pro
       xBand={[Function]}
     />
     <WithStyles(RawChartAxes)
-      data={Array []}
+      categories={Array []}
       graphProps={
         Object {
           "domain": Object {
@@ -264,6 +274,7 @@ exports[`ChartAxes snapshot renders with chartType property and empty charts pro
         }
       }
       leftAxis={true}
+      onChange={[Function]}
       xBand={[Function]}
     />
     <mask
@@ -312,6 +323,7 @@ exports[`ChartAxes snapshot renders with chartType property and empty charts pro
           }
         }
         onChange={[Function]}
+        onChangeCategory={[Function]}
       />
     </g>
   </WithStyles(Root)>
@@ -322,6 +334,11 @@ exports[`ChartAxes snapshot renders without chartType and charts properties 1`] 
 <div
   className="className"
 >
+  <div>
+    <ToolMenu
+      addCategory={[Function]}
+    />
+  </div>
   <WithStyles(Root)
     classes={Object {}}
     graphProps={
@@ -356,7 +373,6 @@ exports[`ChartAxes snapshot renders without chartType and charts properties 1`] 
   >
     <WithStyles(Grid)
       columnTickValues={Array []}
-      data={Array []}
       graphProps={
         Object {
           "domain": Object {
@@ -393,7 +409,7 @@ exports[`ChartAxes snapshot renders without chartType and charts properties 1`] 
       xBand={[Function]}
     />
     <WithStyles(RawChartAxes)
-      data={Array []}
+      categories={Array []}
       graphProps={
         Object {
           "domain": Object {
@@ -423,6 +439,7 @@ exports[`ChartAxes snapshot renders without chartType and charts properties 1`] 
         }
       }
       leftAxis={true}
+      onChange={[Function]}
       xBand={[Function]}
     />
     <mask
@@ -471,6 +488,7 @@ exports[`ChartAxes snapshot renders without chartType and charts properties 1`] 
           }
         }
         onChange={[Function]}
+        onChangeCategory={[Function]}
       />
     </g>
   </WithStyles(Root)>
@@ -481,6 +499,11 @@ exports[`ChartAxes snapshot renders without chartType property 1`] = `
 <div
   className="className"
 >
+  <div>
+    <ToolMenu
+      addCategory={[Function]}
+    />
+  </div>
   <WithStyles(Root)
     classes={Object {}}
     graphProps={
@@ -515,7 +538,6 @@ exports[`ChartAxes snapshot renders without chartType property 1`] = `
   >
     <WithStyles(Grid)
       columnTickValues={Array []}
-      data={Array []}
       graphProps={
         Object {
           "domain": Object {
@@ -552,7 +574,7 @@ exports[`ChartAxes snapshot renders without chartType property 1`] = `
       xBand={[Function]}
     />
     <WithStyles(RawChartAxes)
-      data={Array []}
+      categories={Array []}
       graphProps={
         Object {
           "domain": Object {
@@ -582,6 +604,7 @@ exports[`ChartAxes snapshot renders without chartType property 1`] = `
         }
       }
       leftAxis={true}
+      onChange={[Function]}
       xBand={[Function]}
     />
     <mask
@@ -630,6 +653,7 @@ exports[`ChartAxes snapshot renders without chartType property 1`] = `
           }
         }
         onChange={[Function]}
+        onChangeCategory={[Function]}
       />
     </g>
   </WithStyles(Root)>
@@ -640,6 +664,11 @@ exports[`ChartAxes snapshot renders without chartType property and empty charts 
 <div
   className="className"
 >
+  <div>
+    <ToolMenu
+      addCategory={[Function]}
+    />
+  </div>
   <WithStyles(Root)
     classes={Object {}}
     graphProps={
@@ -674,7 +703,6 @@ exports[`ChartAxes snapshot renders without chartType property and empty charts 
   >
     <WithStyles(Grid)
       columnTickValues={Array []}
-      data={Array []}
       graphProps={
         Object {
           "domain": Object {
@@ -711,7 +739,7 @@ exports[`ChartAxes snapshot renders without chartType property and empty charts 
       xBand={[Function]}
     />
     <WithStyles(RawChartAxes)
-      data={Array []}
+      categories={Array []}
       graphProps={
         Object {
           "domain": Object {
@@ -741,6 +769,7 @@ exports[`ChartAxes snapshot renders without chartType property and empty charts 
         }
       }
       leftAxis={true}
+      onChange={[Function]}
       xBand={[Function]}
     />
     <mask
@@ -789,6 +818,7 @@ exports[`ChartAxes snapshot renders without chartType property and empty charts 
           }
         }
         onChange={[Function]}
+        onChangeCategory={[Function]}
       />
     </g>
   </WithStyles(Root)>

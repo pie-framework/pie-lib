@@ -32,7 +32,7 @@ exports[`Bars snapshot renders 1`] = `
     index={0}
     key="bar-0-0-0"
     label="0"
-    onChange={[Function]}
+    onChangeCategory={[Function]}
     value={0}
     xBand={[Function]}
   />
@@ -45,7 +45,7 @@ exports[`RawBar snapshot renders 1`] = `
     height={NaN}
     y={NaN}
   />
-  <WithStyles(GridDraggable)
+  <WithStyles(RawDragHandle)
     graphProps={
       Object {
         "domain": Object {
