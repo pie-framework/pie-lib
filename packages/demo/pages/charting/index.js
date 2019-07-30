@@ -9,6 +9,15 @@ import Options from './options';
 
 const log = debug('pie-lib:charting:graph-lines-demo');
 
+const createCategory = (label, value) => ({
+  label,
+  value,
+  initial: true,
+  interactive: true,
+  editable: true,
+  deletable: true
+});
+
 export class ChartDemo extends React.Component {
   static propTypes = {
     classes: PropTypes.object.isRequired
@@ -25,25 +34,26 @@ export class ChartDemo extends React.Component {
         }
       },
       model: {
-        chartType: 'bar',
-        title: 'This is a chart',
+        chartType: 'line',
+        title: 'This is a chart!',
         domain: {
-          label: 'Fruit'
+          label: 'Fruits',
+          axisLabel: 'X'
         },
         range: {
           label: 'Amount',
           max: 5.5,
           min: 0,
-          step: 0.75,
-          labelStep: 1
+          labelStep: 1,
+          axisLabel: 'Y'
         },
         data: [
-          { label: 'Apples', value: 5 },
-          { label: 'Grapes', value: 3, interactive: true },
-          { label: 'Lemons', value: 0 },
-          { label: 'Plums', value: 2, interactive: true },
-          { label: 'Peaches', value: 1 },
-          { label: 'Melons', value: 4, interactive: true, deletable: true }
+          { ...createCategory('Apples', 5), interactive: false },
+          createCategory('Grapes', 3),
+          createCategory('Lemons', 0),
+          createCategory('Plums', 2),
+          createCategory('Peaches', 1),
+          createCategory('Melons', 4)
         ],
         charts: [
           chartTypes.Bar(),
@@ -75,10 +85,11 @@ export class ChartDemo extends React.Component {
   };
 
   render() {
-    log('render..');
     const { classes } = this.props;
-    const { model, settings, mounted, tabIndex = 0 } = this.state;
+    const { model, settings, mounted } = this.state;
+
     log('settings:', settings);
+
     return mounted ? (
       <div>
         <div className={classes.demo}>
@@ -96,6 +107,8 @@ export class ChartDemo extends React.Component {
               data={model.data}
               title={model.title}
               onDataChange={this.changeData}
+              editCategoryEnabled={true}
+              addCategoryEnabled={true}
             />
           </div>
         </div>

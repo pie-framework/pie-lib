@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { types } from '@pie-lib/plot';
 import { AxisLeft, AxisBottom } from '@vx/axis';
-import { getTickValues } from './utils';
+import { bandKey, getTickValues } from './utils';
+import MarkLabel from './mark-label';
 
 class RawChartAxes extends React.Component {
   static propTypes = {
@@ -11,29 +12,58 @@ class RawChartAxes extends React.Component {
     classes: PropTypes.object.isRequired,
     categories: PropTypes.array,
     graphProps: types.GraphPropsType.isRequired,
-    xBand: PropTypes.object,
+    xBand: PropTypes.func,
     leftAxis: PropTypes.bool,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    onChangeCategory: PropTypes.func
   };
 
   render() {
-    const { classes, graphProps, xBand, leftAxis, onChange, categories } = this.props;
+    const {
+      classes,
+      graphProps,
+      xBand,
+      leftAxis,
+      onChange,
+      onChangeCategory,
+      categories
+    } = this.props;
+    const { axis, axisLine, tick, axisLabel } = classes;
     const { scale, range, domain, size } = graphProps;
     const bottomScale = xBand.rangeRound([0, size.width]);
+    const bandWidth = xBand.bandwidth();
+    // for chartType "line", bandWidth will be 0, so we have to calculate it
+    const barWidth = bandWidth || scale.x(domain.max) / categories.length;
     const rowTickValues = getTickValues({ ...range, step: range.labelStep });
+
+    let rotate = 0;
+    let top = 0;
+
+    if (barWidth < 60) {
+      rotate = 25;
+      top = 15;
+    }
+    if (barWidth < 40) {
+      rotate = 45;
+      top = 30;
+    }
+    if (barWidth < 30) {
+      rotate = 75;
+      top = 50;
+    }
 
     return (
       <React.Fragment>
         {leftAxis && (
           <AxisLeft
             scale={scale.y}
-            className={classes.axis}
-            axisLineClassName={classes.axisLine}
+            className={axis}
+            axisLineClassName={axisLine}
             tickLength={10}
-            tickClassName={classes.tick}
+            tickClassName={tick}
             tickFormat={value => value}
             label={range.label}
-            labelClassName={classes.axisLabel}
+            labelClassName={axisLabel}
             tickValues={rowTickValues}
             tickLabelProps={value => {
               const digits = value.toLocaleString().length || 1;
@@ -46,36 +76,53 @@ class RawChartAxes extends React.Component {
           />
         )}
         <AxisBottom
-          axisLineClassName={classes.axisLine}
-          labelClassName={classes.axisLabel}
-          tickClassName={classes.tick}
+          axisLineClassName={axisLine}
+          labelClassName={axisLabel}
+          tickClassName={tick}
           scale={bottomScale}
+          label={domain.label}
+          labelProps={{ y: 50 }}
+          top={scale.y(range.min)}
+          textLabelProps={() => ({ textAnchor: 'middle' })}
+          tickFormat={count => count}
           tickComponent={props => {
-            const index = props.formattedValue.split('-')[0];
-            const item = index >= 0 && categories[index];
-            const { deletable } = item || {};
+            const index = parseInt(props.formattedValue.split('-')[0], 10);
+            const category = categories[index];
+            const { deletable, editable, interactive, label } = category || {};
+            const barX = xBand(bandKey({ label }, index));
 
             return (
               <g>
-                <text x={props.x} y={props.y} className={classes.tick}>
-                  {props.formattedValue.split('-')[1]}
-                </text>
+                <foreignObject
+                  x={bandWidth ? barX : props.x - barWidth / 2}
+                  y={6}
+                  width={barWidth}
+                  height={24}
+                  style={{ pointerEvents: 'none', overflow: 'visible' }}
+                >
+                  <MarkLabel
+                    inputRef={r => (this.input = r)}
+                    disabled={!(editable && interactive)}
+                    mark={category}
+                    graphProps={graphProps}
+                    onChange={newLabel => {
+                      onChangeCategory(index, { ...category, label: newLabel });
+                    }}
+                    barWidth={barWidth}
+                    rotate={rotate}
+                  />
+                </foreignObject>
                 {deletable && (
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    x={props.x}
-                    y={props.y}
+                    x={props.x - 8}
+                    y={props.y + 4 + top}
                     width={16}
                     height={16}
                     viewBox="0 0 512 512"
                     onClick={() => {
-                      const index = props.formattedValue.split('-')[0];
-
                       if (index >= 0) {
-                        onChange([
-                          ...categories.slice(0, parseInt(index, 10)),
-                          ...categories.slice(parseInt(index, 10) + 1)
-                        ]);
+                        onChange([...categories.slice(0, index), ...categories.slice(index + 1)]);
                       }
                     }}
                   >
@@ -85,12 +132,17 @@ class RawChartAxes extends React.Component {
               </g>
             );
           }}
-          label={domain.label}
-          labelProps={{ y: 50 }}
-          top={scale.y(range.min)}
-          textLabelProps={() => ({ textAnchor: 'middle' })}
-          tickFormat={count => count}
         />
+        {leftAxis && range.axisLabel && (
+          <text x={scale.x(0)} y={-10} textAnchor="middle">
+            {range.axisLabel}
+          </text>
+        )}
+        {domain.axisLabel && (
+          <text x={size.width + 20} y={scale.y(0) + 5} textAnchor="middle">
+            {domain.axisLabel}
+          </text>
+        )}
       </React.Fragment>
     );
   }

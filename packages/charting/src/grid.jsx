@@ -11,7 +11,7 @@ export class Grid extends React.Component {
     classes: PropTypes.object.isRequired,
     className: PropTypes.string,
     graphProps: types.GraphPropsType.isRequired,
-    xBand: PropTypes.object,
+    xBand: PropTypes.func,
     columnTickValues: PropTypes.array,
     rowTickValues: PropTypes.array
   };

@@ -8,7 +8,7 @@ class RawDragHandle extends React.Component {
   static propTypes = {
     x: PropTypes.number.isRequired,
     y: PropTypes.number.isRequired,
-    width: PropTypes.number.isRequired,
+    width: PropTypes.number,
     graphProps: types.GraphPropsType.isRequired,
     classes: PropTypes.object.isRequired,
     className: PropTypes.string,

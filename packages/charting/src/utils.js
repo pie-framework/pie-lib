@@ -50,7 +50,19 @@ export const getTickValues = (prop = {}) => {
 };
 
 export const getDomainAndRangeByChartType = (domain, range, chartType) => {
-  const { min, max, step } = range || {};
+  const { min, max } = range || {};
+  let { step } = range || {};
+  const numberMax = parseFloat(max);
+
+  if (!step) {
+    if (numberMax < 20) {
+      step = 1;
+    } else if (numberMax >= 20 && numberMax < 100) {
+      step = 5;
+    } else {
+      step = 10;
+    }
+  }
 
   switch (chartType) {
     // if chart is dot plot or line plot, we should ignore step and make sure that min & max are integer values
@@ -82,7 +94,7 @@ export const getDomainAndRangeByChartType = (domain, range, chartType) => {
         },
         range: {
           ...range,
-          step: !step ? 1 : step
+          step
         }
       };
   }

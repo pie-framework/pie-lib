@@ -72,18 +72,14 @@ export class RawPlot extends React.Component {
     log('label:', label, 'barX:', barX, 'v: ', v, 'barHeight:', barHeight, 'barWidth: ', barWidth);
 
     const values = [];
+
     for (let i = 0; i < v; i++) {
       values.push(i);
     }
-    const pointHeight = size.height / max;
-    const pointDiameter = (pointHeight > barWidth ? barWidth : pointHeight) - 12;
-    let Component;
 
-    if (interactive) {
-      Component = DraggableHandle;
-    } else {
-      Component = DragHandle;
-    }
+    const pointHeight = size.height / max;
+    const pointDiameter = (pointHeight > barWidth ? barWidth : pointHeight) * 0.8;
+    const Component = interactive ? DraggableHandle : DragHandle;
 
     return (
       <React.Fragment>

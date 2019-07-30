@@ -31,10 +31,16 @@ export class RawLine extends React.Component {
     xBand: PropTypes.func,
     index: PropTypes.number.isRequired,
     graphProps: types.GraphPropsType.isRequired,
-    data: PropTypes.arrayOf({
-      label: PropTypes.string,
-      value: PropTypes.number
-    })
+    data: PropTypes.arrayOf(
+      PropTypes.shape({
+        label: PropTypes.string,
+        value: PropTypes.number
+      })
+    )
+  };
+
+  static defaultProps = {
+    index: 0
   };
 
   constructor(props) {
@@ -85,13 +91,7 @@ export class RawLine extends React.Component {
         {lineToUse &&
           lineToUse.map((point, i) => {
             const r = 5;
-            let Component;
-
-            if (point.interactive) {
-              Component = DraggableHandle;
-            } else {
-              Component = DragHandle;
-            }
+            const Component = point.interactive ? DraggableHandle : DragHandle;
 
             return (
               <Component
@@ -138,8 +138,9 @@ export class Line extends React.Component {
   changeLine = (index, category) => {
     const { onChange } = this.props;
     const newLine = [...this.props.data];
+    const { dragValue, value } = category;
 
-    newLine[index].value = category.dragValue;
+    newLine[index].value = dragValue >= 0 ? dragValue : value;
 
     onChange(newLine);
   };

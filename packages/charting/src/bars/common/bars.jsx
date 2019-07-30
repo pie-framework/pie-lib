@@ -63,13 +63,7 @@ export class RawBar extends React.Component {
     const yy = range.max - rawY;
     log('label:', label, 'barX:', barX, 'v: ', v, 'barHeight:', barHeight, 'barWidth: ', barWidth);
 
-    let Component;
-
-    if (interactive) {
-      Component = DraggableHandle;
-    } else {
-      Component = DragHandle;
-    }
+    const Component = interactive ? DraggableHandle : DragHandle;
 
     return (
       <React.Fragment>

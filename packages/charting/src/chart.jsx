@@ -8,6 +8,7 @@ import ChartAxes from './axes';
 import debug from 'debug';
 import { dataToXBand, getDomainAndRangeByChartType, getGridLinesAndAxisByChartType } from './utils';
 import ToolMenu from './tool-menu';
+import chartTypes from './chart-types';
 
 const log = debug('pie-lib:charts:chart');
 
@@ -23,28 +24,56 @@ export class Chart extends React.Component {
     domain: PropTypes.shape({
       label: PropTypes.string,
       min: PropTypes.number,
-      max: PropTypes.number
+      max: PropTypes.number,
+      axisLabel: PropTypes.string
     }),
     data: PropTypes.arrayOf(PropTypes.shape({ label: PropTypes.string, value: PropTypes.number })),
     range: PropTypes.shape({
       label: PropTypes.string,
       min: PropTypes.number,
       max: PropTypes.number,
-      step: PropTypes.number
+      step: PropTypes.number,
+      labelStep: PropTypes.number,
+      axisLabel: PropTypes.string
     }),
     charts: PropTypes.array,
     title: PropTypes.string,
     onDataChange: PropTypes.func,
-    addCategoryDisabled: PropTypes.bool
+    addCategoryEnabled: PropTypes.bool,
+    editCategoryEnabled: PropTypes.bool
   };
 
   static defaultProps = {};
 
-  getChart = () => {
-    const { chartType, charts } = this.props;
-    log('chartType: ', chartType);
+  state = {
+    charts: [
+      chartTypes.Bar(),
+      chartTypes.Histogram(),
+      chartTypes.Line(),
+      chartTypes.DotPlot(),
+      chartTypes.LinePlot()
+    ]
+  };
 
-    return charts && charts.find(chart => chart.type === chartType);
+  getChart = () => {
+    const charts = this.props.charts || this.state.charts;
+    let { chartType } = this.props;
+    let ChartComponent = null;
+    let chart = null;
+
+    if (chartType) {
+      chart = charts && charts.find(chart => chart.type === chartType);
+      ChartComponent = chart && chart.Component;
+    } else {
+      chart = charts && charts[0];
+      ChartComponent = chart && chart.Component;
+      chartType = chart && chart.type;
+    }
+
+    return {
+      type: chartType,
+      ChartComponent
+    };
   };
 
   changeData = data => {
@@ -58,16 +87,12 @@ export class Chart extends React.Component {
 
     if (integerIndex >= 0) {
       const { data, onDataChange } = this.props;
-      const newData = [
-        ...data.slice(0, integerIndex),
-        {
-          ...data[integerIndex],
-          ...newCategory
-        },
-        ...data.slice(integerIndex + 1)
-      ];
+      data[integerIndex] = {
+        ...data[integerIndex],
+        ...newCategory
+      };
 
-      onDataChange(newData);
+      onDataChange(data);
     }
   };
 
@@ -77,7 +102,7 @@ export class Chart extends React.Component {
     onDataChange([
       ...data,
       {
-        label: chartType === 'line' ? 'New point name' : 'New bar',
+        label: chartType === 'line' ? 'New point' : 'New bar',
         value: range.step,
         deletable: true,
         editable: true,
@@ -86,36 +111,26 @@ export class Chart extends React.Component {
     ]);
   };
 
+  getFilteredCategories = () => {
+    const { data, editCategoryEnabled } = this.props;
+
+    return data
+      ? data.map(d => ({ ...d, editable: editCategoryEnabled, deletable: !d.initial }))
+      : [];
+  };
+
   render() {
-    const {
-      classes,
-      className,
-      domain,
-      range,
-      size,
-      title,
-      data,
-      charts,
-      addCategoryDisabled
-    } = this.props;
+    const { classes, className, domain, range, size, title, addCategoryEnabled } = this.props;
     let { chartType } = this.props;
-    let ChartComponent = null;
-    let chart = null;
+    const { width, height } = size;
 
-    if (chartType) {
-      chart = this.getChart();
-      ChartComponent = chart && chart.Component;
-    } else {
-      chart = charts && charts[0];
-      ChartComponent = chart && chart.Component;
-      chartType = chart && chart.type;
-    }
-
+    const { ChartComponent } = this.getChart();
+    const categories = this.getFilteredCategories();
+    const correctValues = getDomainAndRangeByChartType(domain, range, chartType);
     const { verticalLines, horizontalLines, leftAxis } = getGridLinesAndAxisByChartType(
-      range,
+      correctValues.range,
       chartType
     );
-    const correctValues = getDomainAndRangeByChartType(domain, range, chartType);
     const common = {
       graphProps: createGraphProps(
         correctValues.domain,
@@ -126,22 +141,19 @@ export class Chart extends React.Component {
     };
     log('[render] common:', common);
 
-    const maskSize = {
-      x: -10,
-      y: -10,
-      width: size.width + 20,
-      height: size.height + 20
-    };
-    const categories = data || [];
-
+    const maskSize = { x: -10, y: -10, width: width + 20, height: height + 20 };
     const { scale } = common.graphProps;
     const xBand = dataToXBand(scale.x, categories, size.width, chartType);
+
+    if (!ChartComponent) {
+      return null;
+    }
 
     return (
       <div className={classNames(classes.class, className)}>
         <div className={classes.controls}>
           <ToolMenu
-            disabled={addCategoryDisabled}
+            disabled={!addCategoryEnabled}
             addCategory={() => this.addCategory(chartType, correctValues.range)}
           />
         </div>
@@ -158,6 +170,7 @@ export class Chart extends React.Component {
             xBand={xBand}
             leftAxis={leftAxis}
             onChange={this.changeData}
+            onChangeCategory={this.changeCategory}
           />
           <mask id="myMask">
             <rect {...maskSize} fill="white" />
@@ -178,7 +191,7 @@ export class Chart extends React.Component {
 
 const styles = theme => ({
   graphBox: {
-    transform: 'translate(70px, 35px)'
+    transform: 'translate(60px, 35px)'
   },
   controls: {
     width: 'inherit',
