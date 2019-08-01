@@ -123,3 +123,35 @@ export const getGridLinesAndAxisByChartType = (range, chartType) => {
       };
   }
 };
+
+export const getRotateAngle = barWidth => {
+  if (barWidth < 30) {
+    return 75;
+  }
+
+  if (barWidth < 40) {
+    return 45;
+  }
+
+  if (barWidth < 60) {
+    return 25;
+  }
+
+  return 0;
+};
+
+export const getTopPadding = barWidth => {
+  if (barWidth < 30) {
+    return 50;
+  }
+
+  if (barWidth < 40) {
+    return 30;
+  }
+
+  if (barWidth < 60) {
+    return 15;
+  }
+
+  return 0;
+};

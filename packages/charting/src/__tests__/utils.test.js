@@ -69,4 +69,32 @@ describe('utils', () => {
       leftAxis: false
     });
   });
+
+  describe('getTopPadding', () => {
+    const assertGetTopPadding = (barWidth, topPadding) => {
+      it('returns proper top padding', () => {
+        const result = utils.getTopPadding(barWidth);
+        expect(result).toEqual(topPadding);
+      });
+    };
+
+    assertGetTopPadding(20, 50);
+    assertGetTopPadding(35, 30);
+    assertGetTopPadding(55, 15);
+    assertGetTopPadding(65, 0);
+  });
+
+  describe('getRotateAngle', () => {
+    const assertGetRotateAngle = (barWidth, rotateAngle) => {
+      it('returns proper rotate angle', () => {
+        const result = utils.getRotateAngle(barWidth);
+        expect(result).toEqual(rotateAngle);
+      });
+    };
+
+    assertGetRotateAngle(20, 75);
+    assertGetRotateAngle(35, 45);
+    assertGetRotateAngle(55, 25);
+    assertGetRotateAngle(65, 0);
+  });
 });

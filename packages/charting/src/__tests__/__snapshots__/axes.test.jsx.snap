@@ -44,3 +44,59 @@ exports[`ChartAxes snapshot renders 1`] = `
   }
 />
 `;
+
+exports[`TickComponent snapshot renders 1`] = `""`;
+
+exports[`TickComponent snapshot1 renders 1`] = `
+<g>
+  <foreignObject
+    height={24}
+    style={
+      Object {
+        "overflow": "visible",
+        "pointerEvents": "none",
+      }
+    }
+    x={NaN}
+    y={6}
+  >
+    <WithStyles(MarkLabel)
+      disabled={true}
+      graphProps={
+        Object {
+          "domain": Object {
+            "max": 1,
+            "min": 0,
+            "step": 1,
+          },
+          "range": Object {
+            "max": 1,
+            "min": 0,
+            "step": 1,
+          },
+          "scale": Object {
+            "x": [MockFunction],
+            "y": [MockFunction],
+          },
+          "size": Object {
+            "height": 400,
+            "width": 400,
+          },
+          "snap": Object {
+            "x": [MockFunction],
+            "y": [MockFunction],
+          },
+        }
+      }
+      inputRef={[Function]}
+      mark={
+        Object {
+          "label": "test",
+          "value": 1,
+        }
+      }
+      onChange={[Function]}
+    />
+  </foreignObject>
+</g>
+`;
