@@ -34,7 +34,7 @@ export class ChartDemo extends React.Component {
         }
       },
       model: {
-        chartType: 'line',
+        chartType: 'lineCross',
         title: 'This is a chart!',
         domain: {
           label: 'Fruits',
@@ -58,10 +58,14 @@ export class ChartDemo extends React.Component {
         charts: [
           chartTypes.Bar(),
           chartTypes.Histogram(),
-          chartTypes.Line(),
+          chartTypes.LineDot(),
+          chartTypes.LineCross(),
           chartTypes.DotPlot(),
           chartTypes.LinePlot()
-        ]
+        ],
+        editCategoryEnabled: true,
+        addCategoryEnabled: true,
+        categoryDefaultLabel: 'Category'
       }
     };
   }
@@ -107,8 +111,9 @@ export class ChartDemo extends React.Component {
               data={model.data}
               title={model.title}
               onDataChange={this.changeData}
-              editCategoryEnabled={true}
-              addCategoryEnabled={true}
+              editCategoryEnabled={model.editCategoryEnabled}
+              addCategoryEnabled={model.addCategoryEnabled}
+              categoryDefaultLabel={model.categoryDefaultLabel}
             />
           </div>
         </div>

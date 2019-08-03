@@ -51,7 +51,13 @@ describe('utils', () => {
       });
     };
 
-    assertGetGridLinesAndAxisByChartType({ min: 0, max: 1, step: 1 }, 'line', {
+    assertGetGridLinesAndAxisByChartType({ min: 0, max: 1, step: 1 }, 'lineDot', {
+      verticalLines: undefined,
+      horizontalLines: [0, 1],
+      leftAxis: true
+    });
+
+    assertGetGridLinesAndAxisByChartType({ min: 0, max: 1, step: 1 }, 'lineCross', {
       verticalLines: undefined,
       horizontalLines: [0, 1],
       leftAxis: true

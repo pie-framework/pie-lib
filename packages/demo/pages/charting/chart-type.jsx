@@ -26,7 +26,8 @@ const ChartType = withStyles(theme => ({
         >
           <MenuItem value={'histogram'}>Histogram</MenuItem>
           <MenuItem value={'bar'}>Bar</MenuItem>
-          <MenuItem value={'line'}>Line</MenuItem>
+          <MenuItem value={'lineDot'}>Line Dot</MenuItem>
+          <MenuItem value={'lineCross'}>Line Cross</MenuItem>
           <MenuItem value={'dotPlot'}>Dot Plot</MenuItem>
           <MenuItem value={'linePlot'}>Line Plot</MenuItem>
         </Select>

@@ -13,6 +13,7 @@ exports[`MarkLabel snapshot renders 1`] = `
     }
   }
   minWidth={1}
+  onBlur={[Function]}
   onChange={[Function]}
   style={
     Object {
@@ -41,6 +42,7 @@ exports[`MarkLabel snapshot renders 2`] = `
     }
   }
   minWidth={1}
+  onBlur={[Function]}
   onChange={[Function]}
   style={
     Object {

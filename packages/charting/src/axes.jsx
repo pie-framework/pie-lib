@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { types } from '@pie-lib/plot';
 import { AxisLeft, AxisBottom } from '@vx/axis';
-import { bandKey, getTickValues, getRotateAngle, getTopPadding } from './utils';
+import { bandKey, getTickValues, getRotateAngle } from './utils';
 import MarkLabel from './mark-label';
 
 export class TickComponent extends React.Component {
@@ -24,6 +24,7 @@ export class TickComponent extends React.Component {
 
   render() {
     const {
+      classes,
       categories,
       xBand,
       bandWidth,
@@ -65,6 +66,16 @@ export class TickComponent extends React.Component {
           />
         </foreignObject>
         {deletable && (
+          <line
+            x1={x}
+            y1={0}
+            x2={x}
+            y2={y + 4 + top}
+            className={classes.dottedLine}
+            strokeDasharray="4 2"
+          />
+        )}
+        {deletable && (
           <svg
             xmlns="http://www.w3.org/2000/svg"
             x={x - 8}
@@ -92,9 +103,10 @@ TickComponent.propTypes = {
   x: PropTypes.number,
   y: PropTypes.number,
   graphProps: PropTypes.object,
-  formattedValue: PropTypes.array,
+  formattedValue: PropTypes.string,
   onChangeCategory: PropTypes.func,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  classes: PropTypes.object
 };
 
 class RawChartAxes extends React.Component {
@@ -106,7 +118,8 @@ class RawChartAxes extends React.Component {
     xBand: PropTypes.func,
     leftAxis: PropTypes.bool,
     onChange: PropTypes.func,
-    onChangeCategory: PropTypes.func
+    onChangeCategory: PropTypes.func,
+    top: PropTypes.number
   };
 
   render() {
@@ -117,7 +130,8 @@ class RawChartAxes extends React.Component {
       leftAxis,
       onChange,
       onChangeCategory,
-      categories
+      categories,
+      top
     } = this.props;
     const { axis, axisLine, tick, axisLabel } = classes;
     const { scale, range, domain, size } = graphProps;
@@ -127,7 +141,6 @@ class RawChartAxes extends React.Component {
     const barWidth = bandWidth || scale.x(domain.max) / categories.length;
     const rowTickValues = getTickValues({ ...range, step: range.labelStep });
     const rotate = getRotateAngle(barWidth);
-    const top = getTopPadding(barWidth);
 
     const getTickLabelProps = value => ({
       dy: 4,
@@ -136,6 +149,7 @@ class RawChartAxes extends React.Component {
 
     const getTickComponent = props => {
       const properties = {
+        classes,
         categories,
         xBand,
         bandWidth,
@@ -175,7 +189,7 @@ class RawChartAxes extends React.Component {
           tickClassName={tick}
           scale={bottomScale}
           label={domain.label}
-          labelProps={{ y: 50 }}
+          labelProps={{ y: 50 + top }}
           top={scale.y(range.min)}
           textLabelProps={() => ({ textAnchor: 'middle' })}
           tickFormat={count => count}
@@ -219,6 +233,10 @@ const ChartAxes = withStyles(theme => ({
     fontFamily: theme.typography.body1.fontFamily,
     fontSize: theme.typography.overline.fontSize,
     textAnchor: 'middle'
+  },
+  dottedLine: {
+    stroke: theme.palette.primary.light,
+    opacity: 0.2
   }
 }))(RawChartAxes);
 

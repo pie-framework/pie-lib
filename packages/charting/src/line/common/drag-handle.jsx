@@ -12,17 +12,29 @@ class RawDragHandle extends React.Component {
     graphProps: types.GraphPropsType.isRequired,
     classes: PropTypes.object.isRequired,
     className: PropTypes.string,
-    interactive: PropTypes.bool
+    interactive: PropTypes.bool,
+    CustomDraggableComponent: PropTypes.func
   };
+
   render() {
-    const { x, y, graphProps, classes, className, interactive, ...rest } = this.props;
+    const {
+      x,
+      y,
+      graphProps,
+      classes,
+      className,
+      interactive,
+      CustomDraggableComponent,
+      ...rest
+    } = this.props;
     const { scale } = graphProps;
     return (
-      <circle
-        cx={scale.x(x)}
-        cy={scale.y(y)}
-        r={5}
-        className={classNames(classes.handle, className, !interactive && 'non-interactive')}
+      <CustomDraggableComponent
+        scale={scale}
+        x={x}
+        y={y}
+        classes={classes}
+        className={classNames(className, !interactive && 'non-interactive')}
         {...rest}
       />
     );
@@ -31,15 +43,23 @@ class RawDragHandle extends React.Component {
 
 export const DragHandle = withStyles(theme => ({
   handle: {
-    height: '3px',
     fill: theme.palette.secondary.main,
     transition: 'fill 200ms linear, height 200ms linear',
     '&:hover': {
-      fill: theme.palette.secondary.dark,
-      height: '12px'
+      fill: theme.palette.secondary.dark
     },
     '&.non-interactive': {
       fill: 'grey'
+    }
+  },
+  line: {
+    stroke: theme.palette.secondary.main,
+    transition: 'fill 200ms linear, height 200ms linear',
+    '&:hover': {
+      stroke: theme.palette.secondary.dark
+    },
+    '&.non-interactive': {
+      stroke: 'grey'
     }
   }
 }))(RawDragHandle);

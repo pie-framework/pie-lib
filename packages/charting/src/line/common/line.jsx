@@ -75,7 +75,7 @@ export class RawLine extends React.Component {
   };
 
   render() {
-    const { graphProps, data, classes } = this.props;
+    const { graphProps, data, classes, CustomDraggableComponent } = this.props;
     const { line: lineState, dragging } = this.state;
     const { scale } = graphProps;
     const lineToUse = dragging ? lineState : getData(data, graphProps.domain);
@@ -90,7 +90,7 @@ export class RawLine extends React.Component {
         />
         {lineToUse &&
           lineToUse.map((point, i) => {
-            const r = 5;
+            const r = 6;
             const Component = point.interactive ? DraggableHandle : DragHandle;
 
             return (
@@ -106,6 +106,7 @@ export class RawLine extends React.Component {
                 }
                 onDragStop={() => this.dragStop(i)}
                 graphProps={graphProps}
+                CustomDraggableComponent={CustomDraggableComponent}
               />
             );
           })}

@@ -122,6 +122,7 @@ exports[`ChartAxes snapshot renders 1`] = `
       leftAxis={true}
       onChange={[Function]}
       onChangeCategory={[Function]}
+      top={0}
       xBand={[Function]}
     />
     <mask
@@ -301,6 +302,7 @@ exports[`ChartAxes snapshot renders without chartType and charts properties 1`] 
       leftAxis={true}
       onChange={[Function]}
       onChangeCategory={[Function]}
+      top={0}
       xBand={[Function]}
     />
     <mask
@@ -478,6 +480,7 @@ exports[`ChartAxes snapshot renders without chartType property 1`] = `
       leftAxis={true}
       onChange={[Function]}
       onChangeCategory={[Function]}
+      top={0}
       xBand={[Function]}
     />
     <mask

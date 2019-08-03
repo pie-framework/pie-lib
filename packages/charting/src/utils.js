@@ -23,7 +23,8 @@ export const dataToXBand = (scaleX, data, width, type) => {
         domain: data && data.map(bandKey),
         padding: 0
       });
-    case 'line':
+    case 'lineCross':
+    case 'lineDot':
       return scalePoint({
         domain: data && data.map(bandKey),
         rangeRound: [0, width]
@@ -102,7 +103,8 @@ export const getDomainAndRangeByChartType = (domain, range, chartType) => {
 
 export const getGridLinesAndAxisByChartType = (range, chartType) => {
   switch (chartType) {
-    case 'line':
+    case 'lineDot':
+    case 'lineCross':
       return {
         verticalLines: undefined,
         horizontalLines: getTickValues(range),

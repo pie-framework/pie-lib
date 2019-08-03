@@ -5,18 +5,6 @@ import AutosizeInput from 'react-input-autosize';
 import PropTypes from 'prop-types';
 import { GraphPropsType } from '@pie-lib/plot/lib/types';
 
-const useDebounce = (value, delay) => {
-  const [debouncedValue, setDebouncedValue] = useState(value);
-
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedValue(value);
-    }, delay);
-    return () => clearTimeout(handler);
-  }, [value]);
-  return debouncedValue;
-};
-
 const styles = theme => ({
   input: {
     float: 'right',
@@ -29,25 +17,17 @@ const styles = theme => ({
 
 export const MarkLabel = props => {
   const [input, setInput] = useState(null);
-  const _ref = useCallback(node => setInput(node));
+  const _ref = useCallback(node => setInput(node), null);
 
   const { mark, classes, disabled, inputRef: externalInputRef, barWidth, rotate } = props;
   const [label, setLabel] = useState(mark.label);
   const onChange = e => setLabel(e.target.value);
-
-  const debouncedLabel = useDebounce(label, 200);
+  const onChangeProp = e => props.onChange(e.target.value);
 
   // useState only sets the value once, to synch props to state need useEffect
   useEffect(() => {
     setLabel(mark.label);
   }, [mark.label]);
-
-  // pick up the change to debouncedLabel and save it
-  useEffect(() => {
-    if (typeof debouncedLabel === 'string' && debouncedLabel !== mark.label) {
-      props.onChange(debouncedLabel);
-    }
-  }, [debouncedLabel]);
 
   return (
     <AutosizeInput
@@ -73,6 +53,7 @@ export const MarkLabel = props => {
         transform: `rotate(${rotate}deg)`
       }}
       onChange={onChange}
+      onBlur={onChangeProp}
     />
   );
 };

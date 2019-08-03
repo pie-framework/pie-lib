@@ -2,6 +2,7 @@
 
 exports[`LineChart snapshot renders 1`] = `
 <Line
+  CustomDraggableComponent={[Function]}
   className="className"
   classes={Object {}}
   graphProps={

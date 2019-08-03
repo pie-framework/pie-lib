@@ -3,10 +3,16 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import { Root, createGraphProps } from '@pie-lib/plot';
+import cloneDeep from 'lodash/cloneDeep';
 import ChartGrid from './grid';
 import ChartAxes from './axes';
 import debug from 'debug';
-import { dataToXBand, getDomainAndRangeByChartType, getGridLinesAndAxisByChartType } from './utils';
+import {
+  dataToXBand,
+  getDomainAndRangeByChartType,
+  getGridLinesAndAxisByChartType,
+  getTopPadding
+} from './utils';
 import ToolMenu from './tool-menu';
 import chartTypes from './chart-types';
 
@@ -40,7 +46,8 @@ export class Chart extends React.Component {
     title: PropTypes.string,
     onDataChange: PropTypes.func,
     addCategoryEnabled: PropTypes.bool,
-    editCategoryEnabled: PropTypes.bool
+    editCategoryEnabled: PropTypes.bool,
+    categoryDefaultLabel: PropTypes.string
   };
 
   static defaultProps = {};
@@ -49,7 +56,8 @@ export class Chart extends React.Component {
     charts: [
       chartTypes.Bar(),
       chartTypes.Histogram(),
-      chartTypes.Line(),
+      chartTypes.LineDot(),
+      chartTypes.LineCross(),
       chartTypes.DotPlot(),
       chartTypes.LinePlot()
     ]
@@ -97,12 +105,12 @@ export class Chart extends React.Component {
   };
 
   addCategory = (chartType, range) => {
-    const { onDataChange, data } = this.props;
+    const { onDataChange, data, categoryDefaultLabel } = this.props;
 
     onDataChange([
       ...data,
       {
-        label: chartType === 'line' ? 'New point' : 'New bar',
+        label: categoryDefaultLabel || 'New Bar',
         value: range.step,
         deletable: true,
         editable: true,
@@ -115,7 +123,11 @@ export class Chart extends React.Component {
     const { data, editCategoryEnabled } = this.props;
 
     return data
-      ? data.map(d => ({ ...d, editable: editCategoryEnabled, deletable: !d.initial }))
+      ? data.map(d => ({
+          ...d,
+          editable: !d.initial || (d.initial && editCategoryEnabled),
+          deletable: !d.initial
+        }))
       : [];
   };
 
@@ -149,6 +161,16 @@ export class Chart extends React.Component {
       return null;
     }
 
+    const bandWidth = xBand.bandwidth();
+    // for chartType "line", bandWidth will be 0, so we have to calculate it
+    const barWidth = bandWidth || scale.x(correctValues.domain.max) / categories.length;
+
+    // if there are many categories, we have to rotate their names in order to fit
+    // and we have to add extra value on top of some items
+    const top = getTopPadding(barWidth);
+    const rootCommon = cloneDeep(common);
+    rootCommon.graphProps.size.height += top;
+
     return (
       <div className={classNames(classes.class, className)}>
         <div className={classes.controls}>
@@ -157,7 +179,7 @@ export class Chart extends React.Component {
             addCategory={() => this.addCategory(chartType, correctValues.range)}
           />
         </div>
-        <Root title={title} classes={classes} rootRef={r => (this.rootNode = r)} {...common}>
+        <Root title={title} classes={classes} rootRef={r => (this.rootNode = r)} {...rootCommon}>
           <ChartGrid
             {...common}
             xBand={xBand}
@@ -171,6 +193,7 @@ export class Chart extends React.Component {
             leftAxis={leftAxis}
             onChange={this.changeData}
             onChangeCategory={this.changeCategory}
+            top={top}
           />
           <mask id="myMask">
             <rect {...maskSize} fill="white" />

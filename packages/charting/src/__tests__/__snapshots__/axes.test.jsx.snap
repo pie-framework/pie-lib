@@ -8,6 +8,7 @@ exports[`ChartAxes snapshot renders 1`] = `
       "axis": "RawChartAxes-axis-2",
       "axisLabel": "RawChartAxes-axisLabel-1",
       "axisLine": "RawChartAxes-axisLine-3",
+      "dottedLine": "RawChartAxes-dottedLine-5",
       "tick": "RawChartAxes-tick-4",
     }
   }
