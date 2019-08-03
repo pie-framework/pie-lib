@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme';
 import React from 'react';
-import Line, { Line as LineChart } from '../line';
+import Line, { LineCross as LineChart } from '../line-cross';
 import { graphProps } from './utils';
 
 describe('LineChart', () => {
@@ -27,7 +27,7 @@ describe('LineChart', () => {
     const chart = Line();
 
     expect(chart).toEqual({
-      type: 'line',
+      type: 'lineCross',
       Component: LineChart
     });
   });
