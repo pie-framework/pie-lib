@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.1.6...@pie-lib/charting@4.2.0) (2019-08-05)
+
+
+### Features
+
+* **charting:** Add/remove categories, edit categories, interactive category, calculate step if it is not defined. ([48520a7](https://github.com/pie-framework/pie-lib/commit/48520a7))
+* **charting:** Added Dot Plot chart type and Line Plot chart type. (WIP) ([b9cafc3](https://github.com/pie-framework/pie-lib/commit/b9cafc3))
+* **charting:** added Line with Crosses Chart Type. Add rotation on categories name if they do not fit. Fixed issue with editing category name. ([ae58893](https://github.com/pie-framework/pie-lib/commit/ae58893))
+* Added interactive (user can drag to change category value) and deletable (delete category) properties. ([b3b5377](https://github.com/pie-framework/pie-lib/commit/b3b5377))
+* **charting:** Completed Bar chart type, added Histogram chart type and added Line chart type. (WIP) ([271b173](https://github.com/pie-framework/pie-lib/commit/271b173))
+
+
+
+
+
 ## [4.1.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.1.5...@pie-lib/charting@4.1.6) (2019-07-08)
 
 **Note:** Version bump only for package @pie-lib/charting
