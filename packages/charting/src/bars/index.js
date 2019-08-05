@@ -1,1 +1,0 @@
-export Bars from './bars';

@@ -14,11 +14,6 @@ const ChartType = withStyles(theme => ({
     paddingTop: theme.spacing.unit * 2
   }
 }))(({ onChange, value, classes }) => {
-  const handleChange = event => {
-    onChange(event.target.value);
-    // this.setState({ [event.target.name]: event.target.value });
-  };
-
   return (
     <div className={classes.chartType}>
       <FormControl variant="outlined" className={classes.formControl}>
@@ -26,11 +21,15 @@ const ChartType = withStyles(theme => ({
 
         <Select
           value={value}
-          onChange={handleChange}
+          onChange={onChange}
           input={<OutlinedInput name="type" id="type-helper" />}
         >
-          <MenuItem value={'dot'}>Dot</MenuItem>
-          <MenuItem value={'bars'}>Bars</MenuItem>
+          <MenuItem value={'histogram'}>Histogram</MenuItem>
+          <MenuItem value={'bar'}>Bar</MenuItem>
+          <MenuItem value={'lineDot'}>Line Dot</MenuItem>
+          <MenuItem value={'lineCross'}>Line Cross</MenuItem>
+          <MenuItem value={'dotPlot'}>Dot Plot</MenuItem>
+          <MenuItem value={'linePlot'}>Line Plot</MenuItem>
         </Select>
       </FormControl>
     </div>

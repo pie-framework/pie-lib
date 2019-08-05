@@ -1,34 +1,50 @@
 import React from 'react';
 import classNames from 'classnames';
 import { gridDraggable, utils, types } from '@pie-lib/plot';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles/index';
 import PropTypes from 'prop-types';
 
-class RawDragHandle extends React.Component {
+export class RawDragHandle extends React.Component {
   static propTypes = {
     x: PropTypes.number.isRequired,
     y: PropTypes.number.isRequired,
-    width: PropTypes.number.isRequired,
+    width: PropTypes.number,
     graphProps: types.GraphPropsType.isRequired,
     classes: PropTypes.object.isRequired,
-    className: PropTypes.string
+    className: PropTypes.string,
+    interactive: PropTypes.bool
   };
   render() {
-    const { x, y, width, graphProps, classes, className, ...rest } = this.props;
+    const { x, y, width, graphProps, classes, className, interactive, ...rest } = this.props;
     const { scale } = graphProps;
     return (
       <rect
         x={x}
         y={scale.y(y) - 3}
         width={width}
-        className={classNames(classes.handle, className)}
+        className={classNames(classes.handle, className, !interactive && 'non-interactive')}
         {...rest}
       />
     );
   }
 }
 
-const D = gridDraggable({
+export const DragHandle = withStyles(theme => ({
+  handle: {
+    height: '3px',
+    fill: theme.palette.secondary.main,
+    transition: 'fill 200ms linear, height 200ms linear',
+    '&:hover': {
+      fill: theme.palette.secondary.dark,
+      height: '12px'
+    },
+    '&.non-interactive': {
+      fill: 'grey'
+    }
+  }
+}))(RawDragHandle);
+
+export const D = gridDraggable({
   axis: 'y',
   fromDelta: (props, delta) => {
     //TODO: should be in grid-draggable, if axis is y delta.x should always be 0.
@@ -43,18 +59,6 @@ const D = gridDraggable({
   anchorPoint: props => {
     return { x: props.x, y: props.y };
   }
-})(RawDragHandle);
+})(DragHandle);
 
-const DragHandle = withStyles(theme => ({
-  handle: {
-    height: '3px',
-    fill: theme.palette.secondary.main,
-    transition: 'fill 200ms linear, height 200ms linear',
-    '&:hover': {
-      fill: theme.palette.secondary.dark,
-      height: '12px'
-    }
-  }
-}))(D);
-
-export default DragHandle;
+export default D;

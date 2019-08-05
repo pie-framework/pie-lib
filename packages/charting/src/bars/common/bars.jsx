@@ -3,23 +3,24 @@ import PropTypes from 'prop-types';
 import { types } from '@pie-lib/plot';
 import { Group } from '@vx/group';
 import { Bar as VxBar } from '@vx/shape';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles/index';
 import { fade } from '@material-ui/core/styles/colorManipulator';
-import DragHandle from './drag-handle';
 import debug from 'debug';
-import { dataToXBand, bandKey } from '../utils';
+import { bandKey } from '../../utils';
+import DraggableHandle, { DragHandle } from '../../common/drag-handle';
 
 const log = debug('pie-lib:chart:bars');
 
-class RawBar extends React.Component {
+export class RawBar extends React.Component {
   static propTypes = {
-    onChange: PropTypes.func,
+    onChangeCategory: PropTypes.func,
     value: PropTypes.number,
     classes: PropTypes.object,
     label: PropTypes.string,
     xBand: PropTypes.func,
     index: PropTypes.number.isRequired,
-    graphProps: types.GraphPropsType.isRequired
+    graphProps: types.GraphPropsType.isRequired,
+    interactive: PropTypes.bool
   };
 
   constructor(props) {
@@ -29,19 +30,28 @@ class RawBar extends React.Component {
     };
   }
 
-  changeValue = (existing, next) => {
-    const { onChange, label } = this.props;
-    log('[changeValue]', existing, next);
-    onChange({ label, value: next });
+  setDragValue = dragValue => this.setState({ dragValue });
+
+  dragStop = () => {
+    const { label, onChangeCategory } = this.props;
+    const { dragValue } = this.state;
+    log('[dragStop]', dragValue);
+
+    if (dragValue !== undefined) {
+      onChangeCategory({ label, value: dragValue });
+    }
+
+    this.setDragValue(undefined);
   };
 
   dragValue = (existing, next) => {
     log('[dragValue] next:', next);
-    this.setState({ dragValue: next });
+
+    this.setDragValue(next);
   };
 
   render() {
-    const { graphProps, value, label, classes, xBand, index } = this.props;
+    const { graphProps, value, label, classes, xBand, index, interactive } = this.props;
     const { scale, range } = graphProps;
     const { dragValue } = this.state;
 
@@ -51,18 +61,10 @@ class RawBar extends React.Component {
     const barX = xBand(bandKey({ label }, index));
     const rawY = range.max - v;
     const yy = range.max - rawY;
-    log(
-      'label:',
-      label,
-      'barX:',
-      barX,
-      'v: ',
-      v,
-      'barHeight:',
-      barHeight,
-      'barWidth: ',
-      barWidth
-    );
+    log('label:', label, 'barX:', barX, 'v: ', v, 'barHeight:', barHeight, 'barWidth: ', barWidth);
+
+    const Component = interactive ? DraggableHandle : DragHandle;
+
     return (
       <React.Fragment>
         <VxBar
@@ -72,13 +74,13 @@ class RawBar extends React.Component {
           height={barHeight}
           className={classes.bar}
         />
-        <DragHandle
+        <Component
           x={barX}
-          y={value}
+          y={v}
+          interactive={interactive}
           width={barWidth}
-          onMove={v => this.changeValue(value, v)}
           onDrag={v => this.dragValue(value, v)}
-          onDragStop={() => this.setState({ dragValue: undefined })}
+          onDragStop={this.dragStop}
           graphProps={graphProps}
         />
       </React.Fragment>
@@ -95,34 +97,24 @@ const Bar = withStyles(theme => ({
 export class Bars extends React.Component {
   static propTypes = {
     data: PropTypes.array,
-    onChange: PropTypes.func,
+    onChangeCategory: PropTypes.func,
+    xBand: PropTypes.func,
     graphProps: types.GraphPropsType.isRequired
   };
 
-  changeBar = (index, next) => {
-    const { data, onChange } = this.props;
-
-    if (index >= 0) {
-      const update = [...data];
-      update.splice(index, 1, next);
-      onChange(update);
-    }
-  };
-
   render() {
-    const { data, graphProps } = this.props;
-    const { scale, size } = graphProps;
-    const xBand = dataToXBand(scale.x, data, size.width);
+    const { data, graphProps, xBand, onChangeCategory } = this.props;
     return (
       <Group>
         {(data || []).map((d, index) => (
           <Bar
             value={d.value}
+            interactive={d.interactive}
             label={d.label}
             xBand={xBand}
             index={index}
             key={`bar-${d.label}-${d.value}-${index}`}
-            onChange={next => this.changeBar(index, next)}
+            onChangeCategory={category => onChangeCategory(index, category)}
             graphProps={graphProps}
           />
         ))}

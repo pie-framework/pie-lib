@@ -4,25 +4,23 @@ import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 
 import { Grid as VxGrid } from '@vx/grid';
-import { utils, types } from '@pie-lib/plot';
-import { dataToXBand } from './utils';
+import { types } from '@pie-lib/plot';
 
 export class Grid extends React.Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     className: PropTypes.string,
-    data: PropTypes.array,
-    graphProps: types.GraphPropsType.isRequired
+    graphProps: types.GraphPropsType.isRequired,
+    xBand: PropTypes.func,
+    columnTickValues: PropTypes.array,
+    rowTickValues: PropTypes.array
   };
 
   static defaultProps = {};
 
   render() {
-    const { classes, className, data, graphProps } = this.props;
-
-    const { scale, range, size } = graphProps;
-
-    const xBand = dataToXBand(scale.x, data, size.width);
+    const { classes, className, graphProps, xBand, rowTickValues, columnTickValues } = this.props;
+    const { scale, size } = graphProps;
 
     return (
       <VxGrid
@@ -32,7 +30,8 @@ export class Grid extends React.Component {
         width={size.width}
         height={size.height}
         xOffset={xBand.bandwidth() / 2}
-        numTicksRows={utils.tickCount(range.min, range.max, 1)}
+        rowTickValues={rowTickValues}
+        columnTickValues={columnTickValues}
       />
     );
   }
