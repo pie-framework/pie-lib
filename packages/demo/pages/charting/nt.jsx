@@ -18,7 +18,7 @@ const Nt = withStyles(theme => ({
     type="number"
     variant="outlined"
     value={value}
-    onChange={e => onChange(parseInt(e.target.value, 10))}
+    onChange={e => onChange(parseFloat(e.target.value || 0))}
   />
 ));
 

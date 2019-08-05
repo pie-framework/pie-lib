@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Grid snapshot renders 1`] = `
+<r
+  className="className"
+  height={400}
+  width={400}
+  xOffset={NaN}
+  xScale={
+    Object {
+      "bandwidth": [Function],
+    }
+  }
+  yScale={[MockFunction]}
+/>
+`;

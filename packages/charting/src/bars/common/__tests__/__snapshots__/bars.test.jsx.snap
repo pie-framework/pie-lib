@@ -1,0 +1,98 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Bars snapshot renders 1`] = `
+<t>
+  <WithStyles(RawBar)
+    graphProps={
+      Object {
+        "domain": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "range": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "scale": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+        "size": Object {
+          "height": 400,
+          "width": 400,
+        },
+        "snap": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+      }
+    }
+    index={0}
+    key="bar-0-0-0"
+    label="0"
+    onChangeCategory={[Function]}
+    value={0}
+    xBand={[Function]}
+  />
+</t>
+`;
+
+exports[`RawBar snapshot renders 1`] = `
+<Fragment>
+  <P
+    height={NaN}
+    y={NaN}
+  />
+  <WithStyles(RawDragHandle)
+    graphProps={
+      Object {
+        "domain": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "range": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "scale": Object {
+          "x": [MockFunction],
+          "y": [MockFunction] {
+            "calls": Array [
+              Array [
+                NaN,
+              ],
+              Array [
+                NaN,
+              ],
+            ],
+            "results": Array [
+              Object {
+                "type": "return",
+                "value": NaN,
+              },
+              Object {
+                "type": "return",
+                "value": NaN,
+              },
+            ],
+          },
+        },
+        "size": Object {
+          "height": 400,
+          "width": 400,
+        },
+        "snap": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+      }
+    }
+    onDrag={[Function]}
+    onDragStop={[Function]}
+  />
+</Fragment>
+`;

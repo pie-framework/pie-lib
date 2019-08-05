@@ -1,0 +1,141 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Line snapshot renders 1`] = `
+<t>
+  <WithStyles(RawLine)
+    className="className"
+    classes={Object {}}
+    data={
+      Array [
+        Object {
+          "label": "0",
+          "value": 0,
+        },
+      ]
+    }
+    graphProps={
+      Object {
+        "domain": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "range": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "scale": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+        "size": Object {
+          "height": 400,
+          "width": 400,
+        },
+        "snap": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+      }
+    }
+    onChange={[Function]}
+    xBand={[Function]}
+  />
+</t>
+`;
+
+exports[`RawLine snapshot renders 1`] = `
+<Fragment>
+  <u
+    data={
+      Array [
+        Object {
+          "label": "A",
+          "value": 0,
+          "x": 0,
+          "y": 0,
+        },
+        Object {
+          "label": "B",
+          "value": 1,
+          "x": 1,
+          "y": 1,
+        },
+      ]
+    }
+    x={[Function]}
+    y={[Function]}
+  />
+  <WithStyles(RawDragHandle)
+    graphProps={
+      Object {
+        "domain": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "range": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "scale": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+        "size": Object {
+          "height": 400,
+          "width": 400,
+        },
+        "snap": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+      }
+    }
+    key="point-0-0"
+    onDrag={[Function]}
+    onDragStart={[Function]}
+    onDragStop={[Function]}
+    r={6}
+    x={0}
+    y={0}
+  />
+  <WithStyles(RawDragHandle)
+    graphProps={
+      Object {
+        "domain": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "range": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "scale": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+        "size": Object {
+          "height": 400,
+          "width": 400,
+        },
+        "snap": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+      }
+    }
+    key="point-1-1"
+    onDrag={[Function]}
+    onDragStart={[Function]}
+    onDragStop={[Function]}
+    r={6}
+    x={1}
+    y={1}
+  />
+</Fragment>
+`;

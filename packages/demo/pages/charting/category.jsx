@@ -3,6 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Nt from './nt';
 import PropTypes from 'prop-types';
+import Switch from '@material-ui/core/Switch';
 
 const styles = theme => ({
   category: {
@@ -18,7 +19,9 @@ class RawCategory extends React.Component {
   static propTypes = {
     label: PropTypes.string,
     value: PropTypes.number,
-    onChange: PropTypes.func
+    interactive: PropTypes.boolean,
+    onChange: PropTypes.func,
+    classes: PropTypes.object
   };
   changeLabel = event => {
     const { onChange, value } = this.props;
@@ -31,13 +34,19 @@ class RawCategory extends React.Component {
       }
     }, 1000);
   };
+
   changeValue = value => {
     const { onChange, label } = this.props;
     onChange(label, value);
   };
 
+  changeInteractive = event => {
+    const { onChange, label, value } = this.props;
+    onChange(label, value, event.target.checked);
+  };
+
   render() {
-    const { value, label, classes } = this.props;
+    const { value, label, interactive, classes } = this.props;
 
     return (
       <div className={classes.category}>
@@ -48,12 +57,8 @@ class RawCategory extends React.Component {
           inputRef={r => (this.tf = r)}
           onChange={this.changeLabel}
         />
-        <Nt
-          value={value}
-          label="Value"
-          onChange={this.changeValue}
-          className={classes.ntt}
-        />
+        <Nt value={value} label="Value" onChange={this.changeValue} className={classes.ntt} />
+        <Switch checked={interactive} onChange={this.changeInteractive} value={interactive} />
       </div>
     );
   }

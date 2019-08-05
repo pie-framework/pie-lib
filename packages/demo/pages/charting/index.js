@@ -4,10 +4,19 @@ import { withStyles } from '@material-ui/core/styles';
 import debug from 'debug';
 import withRoot from '../../src/withRoot';
 import Settings from './settings';
-import { Chart } from '@pie-lib/charting';
+import { Chart, chartTypes } from '@pie-lib/charting';
 import Options from './options';
 
 const log = debug('pie-lib:charting:graph-lines-demo');
+
+const createCategory = (label, value) => ({
+  label,
+  value,
+  initial: true,
+  interactive: true,
+  editable: true,
+  deletable: true
+});
 
 export class ChartDemo extends React.Component {
   static propTypes = {
@@ -25,19 +34,38 @@ export class ChartDemo extends React.Component {
         }
       },
       model: {
-        chartType: 'bars',
-        title: 'This is a chart',
+        chartType: 'lineCross',
+        title: 'This is a chart!',
         domain: {
-          label: 'Fruit',
-          max: 10,
-          min: 1
+          label: 'Fruits',
+          axisLabel: 'X'
         },
         range: {
           label: 'Amount',
-          max: 5,
-          min: 0
+          max: 5.5,
+          min: 0,
+          labelStep: 1,
+          axisLabel: 'Y'
         },
-        data: [{ label: 'Apples', value: 4 }, { label: 'Grapes', value: 1 }]
+        data: [
+          { ...createCategory('Apples', 5), interactive: false },
+          createCategory('Grapes', 3),
+          createCategory('Lemons', 0),
+          createCategory('Plums', 2),
+          createCategory('Peaches', 1),
+          createCategory('Melons', 4)
+        ],
+        charts: [
+          chartTypes.Bar(),
+          chartTypes.Histogram(),
+          chartTypes.LineDot(),
+          chartTypes.LineCross(),
+          chartTypes.DotPlot(),
+          chartTypes.LinePlot()
+        ],
+        editCategoryEnabled: true,
+        addCategoryEnabled: true,
+        categoryDefaultLabel: 'Category'
       }
     };
   }
@@ -61,11 +89,11 @@ export class ChartDemo extends React.Component {
   };
 
   render() {
-    log('render..');
     const { classes } = this.props;
-    const { model, settings, mounted, tabIndex = 0 } = this.state;
-    const charts = [];
+    const { model, settings, mounted } = this.state;
+
     log('settings:', settings);
+
     return mounted ? (
       <div>
         <div className={classes.demo}>
@@ -79,10 +107,13 @@ export class ChartDemo extends React.Component {
               size={settings.size}
               domain={model.domain}
               range={model.range}
-              charts={charts}
+              charts={model.charts}
               data={model.data}
               title={model.title}
               onDataChange={this.changeData}
+              editCategoryEnabled={model.editCategoryEnabled}
+              addCategoryEnabled={model.addCategoryEnabled}
+              categoryDefaultLabel={model.categoryDefaultLabel}
             />
           </div>
         </div>
