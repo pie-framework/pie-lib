@@ -31,7 +31,11 @@ export const ToolbarButton = props => {
       : hasBlock(props.value, props.type);
     log('[ToolbarButton] block:isActive: ', isActive);
     return (
-      <Button onClick={() => props.onClick(props.value, props.onChange)} active={isActive}>
+      <Button
+        active={isActive}
+        onClick={() => props.onClick(props.value, props.onChange)}
+        extraStyles={props.buttonStyles}
+      >
         {props.icon}
       </Button>
     );

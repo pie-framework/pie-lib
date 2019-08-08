@@ -24,10 +24,7 @@ export class RawButton extends React.Component {
   static propTypes = {
     onClick: PropTypes.func.isRequired,
     classes: PropTypes.object.isRequired,
-    children: PropTypes.oneOfType([
-      PropTypes.arrayOf(PropTypes.node),
-      PropTypes.node
-    ]).isRequired,
+    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
     active: PropTypes.bool
   };
 
@@ -43,11 +40,11 @@ export class RawButton extends React.Component {
   };
 
   render() {
-    const { classes, children, active } = this.props;
+    const { active, classes, children, extraStyles } = this.props;
     const names = classNames(classes.button, active && classes.active);
 
     return (
-      <div className={names} onMouseDown={this.onClick}>
+      <div style={extraStyles} className={names} onMouseDown={this.onClick}>
         {children}
       </div>
     );
@@ -60,10 +57,7 @@ export class RawMarkButton extends React.Component {
   static propTypes = {
     onToggle: PropTypes.func.isRequired,
     mark: PropTypes.string,
-    children: PropTypes.oneOfType([
-      PropTypes.arrayOf(PropTypes.node),
-      PropTypes.node
-    ]).isRequired,
+    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
     classes: PropTypes.object.isRequired,
     active: PropTypes.bool
   };

@@ -43,11 +43,14 @@ export const GripIcon = ({ style }) => {
 };
 
 export const ToolbarIcon = withStyles({
-  fontFamily: 'Cerebri Sans',
-  fontSize: '14px',
-  lineHeight: '14px',
-  position: 'relative',
-  top: '7px',
-  width: '110px',
-  height: '28px'
+  icon: {
+    fontFamily: 'Cerebri Sans',
+    fontSize: '14px',
+    fontWeight: 'bold',
+    lineHeight: '14px',
+    position: 'relative',
+    top: '7px',
+    width: '110px',
+    height: '28px'
+  }
 })(({ classes }) => <div className={classes.icon}>+ Response Area</div>);

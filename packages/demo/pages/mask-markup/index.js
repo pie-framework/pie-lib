@@ -33,7 +33,7 @@ class Demo extends React.Component {
     this.state = {
       constructedResponse: {
         markup,
-        value: {
+        choices: {
           0: 'blank'
         }
       },
