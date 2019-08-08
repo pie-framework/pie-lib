@@ -17,6 +17,9 @@ const elTypesArray = ['inline_dropdown', 'explicit_constructed_response', 'drag_
 export default function ResponseAreaPlugin(opts) {
   const toolbar = {
     icon: <ToolbarIcon />,
+    buttonStyles: {
+      margin: '0 20px 0 auto'
+    },
     onClick: (value, onChange) => {
       log('[toolbar] onClick');
       const change = value.change();
