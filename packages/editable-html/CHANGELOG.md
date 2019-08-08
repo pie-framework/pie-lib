@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.10.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.10.16...@pie-lib/editable-html@7.10.17) (2019-08-08)
+
+
+### Bug Fixes
+
+* **resparea:** moved the button for the response area functionality [ch1738] ([b3ffe68](https://github.com/pie-framework/pie-lib/commit/b3ffe68))
+
+
+
+
+
 ## [7.10.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.10.13...@pie-lib/editable-html@7.10.16) (2019-07-25)
 
 **Note:** Version bump only for package @pie-lib/editable-html

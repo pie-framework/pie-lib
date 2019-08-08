@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.0...@pie-lib/demo@5.3.1) (2019-08-08)
+
+
+### Bug Fixes
+
+* **resparea:** moved the button for the response area functionality [ch1738] ([b3ffe68](https://github.com/pie-framework/pie-lib/commit/b3ffe68))
+
+
+
+
+
 # [5.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.2.5...@pie-lib/demo@5.3.0) (2019-08-05)
 
 
