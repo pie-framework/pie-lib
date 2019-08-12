@@ -2,6 +2,7 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import Line, { LineDot as LineChart } from '../line-dot';
 import { graphProps } from './utils';
+import { Bar as BarChart } from '../../bars/bar';
 
 describe('LineChart', () => {
   const wrapper = extras => {
@@ -28,7 +29,8 @@ describe('LineChart', () => {
 
     expect(chart).toEqual({
       type: 'lineDot',
-      Component: LineChart
+      Component: LineChart,
+      name: 'Line Dot'
     });
   });
 });

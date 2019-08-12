@@ -54,5 +54,6 @@ export class DotPlot extends React.Component {
 
 export default () => ({
   type: 'dotPlot',
-  Component: DotPlot
+  Component: DotPlot,
+  name: 'Dot Plot'
 });

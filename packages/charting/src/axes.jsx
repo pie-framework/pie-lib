@@ -43,7 +43,7 @@ export class TickComponent extends React.Component {
 
     const index = parseInt(formattedValue.split('-')[0], 10);
     const category = categories[index];
-    const { deletable, editable, interactive, label } = category || {};
+    const { deletable, editable, interactive, label, correctness } = category || {};
     const barX = xBand(bandKey({ label }, index));
 
     return (
@@ -63,9 +63,10 @@ export class TickComponent extends React.Component {
             onChange={newLabel => this.changeCategory(index, newLabel)}
             barWidth={barWidth}
             rotate={rotate}
+            correctness={correctness}
           />
         </foreignObject>
-        {deletable && (
+        {deletable && !correctness && (
           <line
             x1={x}
             y1={0}
@@ -75,7 +76,7 @@ export class TickComponent extends React.Component {
             strokeDasharray="4 2"
           />
         )}
-        {deletable && (
+        {deletable && !correctness && (
           <svg
             xmlns="http://www.w3.org/2000/svg"
             x={x - 8}
@@ -195,16 +196,6 @@ class RawChartAxes extends React.Component {
           tickFormat={count => count}
           tickComponent={getTickComponent}
         />
-        {leftAxis && range.axisLabel && (
-          <text x={scale.x(0)} y={-10} textAnchor="middle">
-            {range.axisLabel}
-          </text>
-        )}
-        {domain.axisLabel && (
-          <text x={size.width + 20} y={scale.y(0) + 5} textAnchor="middle">
-            {domain.axisLabel}
-          </text>
-        )}
       </React.Fragment>
     );
   }

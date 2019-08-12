@@ -2,6 +2,7 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import Line, { LinePlot } from '../line';
 import { graphProps } from './utils';
+import { Bar as BarChart } from '../../bars/bar';
 
 describe('LinePlot', () => {
   const wrapper = extras => {
@@ -28,7 +29,8 @@ describe('LinePlot', () => {
 
     expect(chart).toEqual({
       type: 'linePlot',
-      Component: LinePlot
+      Component: LinePlot,
+      name: 'Line Plot'
     });
   });
 });

@@ -26,6 +26,23 @@ export class Options extends React.Component {
     onChange(out);
   };
 
+  changeKeyAndData = (key, value) => {
+    const { onChange, model } = this.props;
+    const out = { ...model };
+    const data = value
+      ? model.data.map((d, index) => ({
+          ...d,
+          correctness: {
+            value: index % 2 === 0 ? 'correct' : 'incorrect',
+            label: index % 2 !== 0 ? 'correct' : 'incorrect'
+          }
+        }))
+      : model.data.map(d => ({ ...d, correctness: undefined }));
+    set(out, 'data', data);
+    set(out, key, value);
+    onChange(out);
+  };
+
   changeCategory = (index, label, value, interactive) => {
     const { model, onChange } = this.props;
     const { data } = model;
@@ -79,6 +96,17 @@ export class Options extends React.Component {
           value={model.categoryDefaultLabel}
           onChange={e => this.change('categoryDefaultLabel', e.target.value)}
         />
+        <div>
+          Display with Correctness
+          <Switch
+            checked={model.displayWithCorrectness}
+            onChange={e => {
+              this.changeKeyAndData('displayWithCorrectness', e.target.checked);
+            }}
+            value={model.displayWithCorrectness}
+          />
+        </div>
+
         <div>
           Add Category
           <Switch
