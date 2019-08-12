@@ -883,5 +883,20 @@
     "committerDate": "2019-07-22 14:55:31 +0300",
     "isTagged": true,
     "tag": "@pie-lib/demo@5.3.0"
+  },
+  {
+    "type": "fix",
+    "scope": "resparea",
+    "subject": "moved the button for the response area functionality [ch1738]",
+    "merge": null,
+    "header": "fix(resparea): moved the button for the response area functionality [ch1738]",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "b3ffe6885932c671f8f83d7d2b17b8ffee492517",
+    "gitTags": "",
+    "committerDate": "2019-08-08 07:57:18 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/demo@5.3.1"
   }
 ]
