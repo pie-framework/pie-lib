@@ -2,6 +2,7 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import Dot, { DotPlot } from '../dot';
 import { graphProps } from './utils';
+import { Bar as BarChart } from '../../bars/bar';
 
 describe('DotPlot', () => {
   const wrapper = extras => {
@@ -28,7 +29,8 @@ describe('DotPlot', () => {
 
     expect(chart).toEqual({
       type: 'dotPlot',
-      Component: DotPlot
+      Component: DotPlot,
+      name: 'Dot Plot'
     });
   });
 });

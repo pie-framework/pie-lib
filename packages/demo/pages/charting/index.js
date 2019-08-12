@@ -34,7 +34,7 @@ export class ChartDemo extends React.Component {
         }
       },
       model: {
-        chartType: 'lineCross',
+        chartType: 'linePlot',
         title: 'This is a chart!',
         domain: {
           label: 'Fruits',

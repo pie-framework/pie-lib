@@ -2,6 +2,7 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import Line, { LineCross as LineChart } from '../line-cross';
 import { graphProps } from './utils';
+import { Bar as BarChart } from '../../bars/bar';
 
 describe('LineChart', () => {
   const wrapper = extras => {
@@ -28,7 +29,8 @@ describe('LineChart', () => {
 
     expect(chart).toEqual({
       type: 'lineCross',
-      Component: LineChart
+      Component: LineChart,
+      name: 'Line Cross'
     });
   });
 });

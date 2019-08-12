@@ -20,7 +20,11 @@ export class RawBar extends React.Component {
     xBand: PropTypes.func,
     index: PropTypes.number.isRequired,
     graphProps: types.GraphPropsType.isRequired,
-    interactive: PropTypes.bool
+    interactive: PropTypes.bool,
+    correctness: PropTypes.shape({
+      value: PropTypes.string,
+      label: PropTypes.string
+    })
   };
 
   constructor(props) {
@@ -51,7 +55,16 @@ export class RawBar extends React.Component {
   };
 
   render() {
-    const { graphProps, value, label, classes, xBand, index, interactive } = this.props;
+    const {
+      graphProps,
+      value,
+      label,
+      classes,
+      xBand,
+      index,
+      interactive,
+      correctness
+    } = this.props;
     const { scale, range } = graphProps;
     const { dragValue } = this.state;
 
@@ -82,6 +95,7 @@ export class RawBar extends React.Component {
           onDrag={v => this.dragValue(value, v)}
           onDragStop={this.dragStop}
           graphProps={graphProps}
+          correctness={correctness}
         />
       </React.Fragment>
     );
@@ -116,6 +130,7 @@ export class Bars extends React.Component {
             key={`bar-${d.label}-${d.value}-${index}`}
             onChangeCategory={category => onChangeCategory(index, category)}
             graphProps={graphProps}
+            correctness={d.correctness}
           />
         ))}
       </Group>

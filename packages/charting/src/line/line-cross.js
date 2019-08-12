@@ -8,10 +8,13 @@ import { dataToXBand } from '../utils';
 import RawLine from './common/line';
 
 const DraggableComponent = props => {
-  const { classes = {}, className, scale, x, y, r, ...rest } = props;
+  const { classes = {}, className, scale, x, y, r, correctness, ...rest } = props;
 
   return (
-    <Group {...rest} className={classNames(className, classes.line)}>
+    <Group
+      {...rest}
+      className={classNames(className, classes.line, correctness && correctness.value)}
+    >
       <LinePath
         data={[{ x: scale.x(x) - r, y: scale.y(y) + r }, { x: scale.x(x) + r, y: scale.y(y) - r }]}
         key={`point-${x}-${y}-1`}
@@ -36,7 +39,11 @@ DraggableComponent.propTypes = {
   y: PropTypes.number,
   r: PropTypes.number,
   className: PropTypes.string,
-  classes: PropTypes.object
+  classes: PropTypes.object,
+  correctness: PropTypes.shape({
+    value: PropTypes.string,
+    label: PropTypes.string
+  })
 };
 
 export class LineCross extends React.Component {
@@ -58,5 +65,6 @@ export class LineCross extends React.Component {
 
 export default () => ({
   type: 'lineCross',
-  Component: LineCross
+  Component: LineCross,
+  name: 'Line Cross'
 });

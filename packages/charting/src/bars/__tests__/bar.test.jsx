@@ -28,7 +28,8 @@ describe('BarChart', () => {
 
     expect(chart).toEqual({
       type: 'bar',
-      Component: BarChart
+      Component: BarChart,
+      name: 'Bar'
     });
   });
 });

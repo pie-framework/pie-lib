@@ -23,5 +23,6 @@ export class Histogram extends React.Component {
 
 export default () => ({
   type: 'histogram',
-  Component: Histogram
+  Component: Histogram,
+  name: 'Histogram'
 });

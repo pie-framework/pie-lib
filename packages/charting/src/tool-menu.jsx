@@ -73,7 +73,7 @@ export class ToolMenu extends React.Component {
 
     return (
       <div className={classNames(className)}>
-        <MiniButton disabled={disabled} value={'Add Category'} onClick={addCategory} />
+        {!disabled && <MiniButton value={'Add Category'} onClick={addCategory} />}
       </div>
     );
   }

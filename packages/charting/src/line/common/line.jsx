@@ -12,7 +12,7 @@ const getData = (data, domain) => {
   const length = data.length;
 
   if (!max || !length) {
-    return [{ x: 0, y: 0 }];
+    return [];
   }
 
   return data.map((el, i) => ({
@@ -107,6 +107,7 @@ export class RawLine extends React.Component {
                 onDragStop={() => this.dragStop(i)}
                 graphProps={graphProps}
                 CustomDraggableComponent={CustomDraggableComponent}
+                correctness={point.correctness}
               />
             );
           })}

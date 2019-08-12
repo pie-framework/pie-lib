@@ -6,6 +6,7 @@ import { withStyles } from '@material-ui/core/styles/index';
 import DraggableHandle, { DragHandle } from '../../common/drag-handle';
 import debug from 'debug';
 import { bandKey } from '../../utils';
+import { correct, incorrect } from '../../common/styles';
 
 const log = debug('pie-lib:chart:bars');
 
@@ -19,7 +20,11 @@ export class RawPlot extends React.Component {
     index: PropTypes.number.isRequired,
     graphProps: types.GraphPropsType.isRequired,
     CustomBarElement: PropTypes.func,
-    interactive: PropTypes.bool
+    interactive: PropTypes.bool,
+    correctness: PropTypes.shape({
+      value: PropTypes.string,
+      label: PropTypes.string
+    })
   };
 
   constructor(props) {
@@ -58,7 +63,8 @@ export class RawPlot extends React.Component {
       xBand,
       index,
       CustomBarElement,
-      interactive
+      interactive,
+      correctness
     } = this.props;
     const { scale, range, size } = graphProps;
     const { max } = range || {};
@@ -104,6 +110,7 @@ export class RawPlot extends React.Component {
           onDrag={v => this.dragValue(value, v)}
           onDragStop={this.dragStop}
           graphProps={graphProps}
+          correctness={correctness}
         />
       </React.Fragment>
     );
@@ -112,10 +119,14 @@ export class RawPlot extends React.Component {
 
 const Bar = withStyles(theme => ({
   dot: {
-    fill: theme.palette.primary.light
+    fill: theme.palette.primary.light,
+    '&.correct': correct('stroke'),
+    '&.incorrect': incorrect('stroke')
   },
   line: {
-    stroke: theme.palette.primary.light
+    stroke: theme.palette.primary.light,
+    '&.correct': correct('stroke'),
+    '&.incorrect': incorrect('stroke')
   }
 }))(RawPlot);
 
@@ -144,6 +155,7 @@ export class Plot extends React.Component {
             onChangeCategory={category => onChangeCategory(index, category)}
             graphProps={graphProps}
             CustomBarElement={CustomBarElement}
+            correctness={d.correctness}
           />
         ))}
       </Group>

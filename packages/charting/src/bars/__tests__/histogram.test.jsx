@@ -2,6 +2,7 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import Histogram, { Histogram as HistogramChart } from '../histogram';
 import { graphProps } from './utils';
+import { Bar as BarChart } from '../bar';
 
 describe('HistogramChart', () => {
   const wrapper = extras => {
@@ -28,7 +29,8 @@ describe('HistogramChart', () => {
 
     expect(chart).toEqual({
       type: 'histogram',
-      Component: HistogramChart
+      Component: HistogramChart,
+      name: 'Histogram'
     });
   });
 });
