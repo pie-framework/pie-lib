@@ -65,5 +65,6 @@ export class LinePlot extends React.Component {
 
 export default () => ({
   type: 'linePlot',
-  Component: LinePlot
+  Component: LinePlot,
+  name: 'Line Plot'
 });

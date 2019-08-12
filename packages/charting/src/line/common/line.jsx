@@ -107,6 +107,7 @@ export class RawLine extends React.Component {
                 onDragStop={() => this.dragStop(i)}
                 graphProps={graphProps}
                 CustomDraggableComponent={CustomDraggableComponent}
+                correctness={point.correctness}
               />
             );
           })}

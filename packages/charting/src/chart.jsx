@@ -175,6 +175,7 @@ export class Chart extends React.Component {
       <div className={classNames(classes.class, className)}>
         <div className={classes.controls}>
           <ToolMenu
+            className={classes.toolMenu}
             disabled={!addCategoryEnabled}
             addCategory={() => this.addCategory(chartType, correctValues.range)}
           />
@@ -226,6 +227,9 @@ const styles = theme => ({
     borderBottom: `solid 0px ${theme.palette.primary.dark}`,
     borderLeft: `solid 1px ${theme.palette.primary.dark}`,
     borderRight: `solid 1px ${theme.palette.primary.dark}`
+  },
+  toolMenu: {
+    minHeight: '36px'
   }
 });
 

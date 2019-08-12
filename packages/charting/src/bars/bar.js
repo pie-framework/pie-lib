@@ -23,5 +23,6 @@ export class Bar extends React.Component {
 
 export default () => ({
   type: 'bar',
-  Component: Bar
+  Component: Bar,
+  name: 'Bar'
 });

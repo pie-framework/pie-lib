@@ -5,12 +5,12 @@ import { dataToXBand } from '../utils';
 import RawLine from './common/line';
 import classNames from 'classnames';
 
-const DraggableComponent = ({ scale, x, y, className, classes, r, ...rest }) => (
+const DraggableComponent = ({ scale, x, y, className, classes, r, correctness, ...rest }) => (
   <circle
     cx={scale.x(x)}
     cy={scale.y(y)}
     r={r}
-    className={classNames(className, classes.handle)}
+    className={classNames(className, classes.handle, correctness && correctness.value)}
     {...rest}
   />
 );
@@ -21,7 +21,11 @@ DraggableComponent.propTypes = {
   y: PropTypes.number,
   r: PropTypes.number,
   className: PropTypes.string,
-  classes: PropTypes.object
+  classes: PropTypes.object,
+  correctness: PropTypes.shape({
+    value: PropTypes.string,
+    label: PropTypes.string
+  })
 };
 
 export class LineDot extends React.Component {
@@ -43,5 +47,6 @@ export class LineDot extends React.Component {
 
 export default () => ({
   type: 'lineDot',
-  Component: LineDot
+  Component: LineDot,
+  name: 'Line Dot'
 });

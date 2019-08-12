@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import { gridDraggable, utils, types } from '@pie-lib/plot';
 import { withStyles } from '@material-ui/core/styles/index';
 import PropTypes from 'prop-types';
+import { correct, incorrect } from './styles';
 
 export class RawDragHandle extends React.Component {
   static propTypes = {
@@ -12,17 +13,36 @@ export class RawDragHandle extends React.Component {
     graphProps: types.GraphPropsType.isRequired,
     classes: PropTypes.object.isRequired,
     className: PropTypes.string,
-    interactive: PropTypes.bool
+    interactive: PropTypes.bool,
+    correctness: PropTypes.shape({
+      value: PropTypes.string,
+      label: PropTypes.string
+    })
   };
   render() {
-    const { x, y, width, graphProps, classes, className, interactive, ...rest } = this.props;
+    const {
+      x,
+      y,
+      width,
+      graphProps,
+      classes,
+      className,
+      interactive,
+      correctness,
+      ...rest
+    } = this.props;
     const { scale } = graphProps;
     return (
       <rect
         x={x}
         y={scale.y(y) - 3}
         width={width}
-        className={classNames(classes.handle, className, !interactive && 'non-interactive')}
+        className={classNames(
+          classes.handle,
+          className,
+          !interactive && 'non-interactive',
+          correctness && correctness.value
+        )}
         {...rest}
       />
     );
@@ -40,7 +60,9 @@ export const DragHandle = withStyles(theme => ({
     },
     '&.non-interactive': {
       fill: 'grey'
-    }
+    },
+    '&.correct': correct('fill'),
+    '&.incorrect': incorrect('fill')
   }
 }))(RawDragHandle);
 
