@@ -154,6 +154,20 @@ export class RawAuthoring extends React.Component {
     onChange({ ...value, excludeZero: !value.excludeZero });
   };
 
+  shouldRenderPoint = (index, value) => {
+    if (!value.excludeZero) {
+      return true;
+    } else {
+      if (index < value.points.length - 1) {
+        return true;
+      } else if (index === value.points.length - 1) {
+        return false;
+      }
+
+      return true;
+    }
+  };
+
   render() {
     const { classes, className, value } = this.props;
 
@@ -174,28 +188,31 @@ export class RawAuthoring extends React.Component {
             <Droppable droppableId="droppable">
               {provided => (
                 <div {...provided.droppableProps} ref={provided.innerRef}>
-                  {value.points.map((p, index) => (
-                    <Draggable
-                      key={`${p.points}-${index}`}
-                      index={index}
-                      draggableId={index.toString()}
-                    >
-                      {provided => (
-                        <div
-                          className={classes.configHolder}
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
+                  {value.points.map(
+                    (p, index) =>
+                      this.shouldRenderPoint(index, value) && (
+                        <Draggable
+                          key={`${p.points}-${index}`}
+                          index={index}
+                          draggableId={index.toString()}
                         >
-                          <PointConfig
-                            points={value.points.length - (value.excludeZero ? 0 : 1) - index}
-                            content={p}
-                            onChange={this.changePoint.bind(this, index)}
-                          />
-                        </div>
-                      )}
-                    </Draggable>
-                  ))}
+                          {provided => (
+                            <div
+                              className={classes.configHolder}
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                            >
+                              <PointConfig
+                                points={value.points.length - 1 - index}
+                                content={p}
+                                onChange={this.changePoint.bind(this, index)}
+                              />
+                            </div>
+                          )}
+                        </Draggable>
+                      )
+                  )}
                   {provided.placeholder}
                 </div>
               )}
