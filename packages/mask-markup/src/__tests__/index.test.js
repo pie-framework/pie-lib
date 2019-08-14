@@ -8,7 +8,6 @@ describe('index', () => {
       const dropDownMarkup = componentize('{{0}} foo {{1}}', 'dropdown');
 
       expect(dropDownMarkup).toEqual({
-        ids: [],
         markup:
           '<span data-component="dropdown" data-id="0"></span> foo <span data-component="dropdown" data-id="1"></span>'
       });
