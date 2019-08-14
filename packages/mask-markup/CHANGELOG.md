@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.3.14...@pie-lib/mask-markup@1.4.0) (2019-08-14)
+
+
+### Features
+
+* **componentize:** removed unnecessary error thrown and variable ([f61d4c7](https://github.com/pie-framework/pie-lib/commit/f61d4c7))
+
+
+
+
+
 ## [1.3.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.3.11...@pie-lib/mask-markup@1.3.14) (2019-07-25)
 
 **Note:** Version bump only for package @pie-lib/mask-markup

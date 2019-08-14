@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.29](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.2.28...@pie-lib/rubric@0.2.29) (2019-08-14)
+
+
+### Bug Fixes
+
+* **rubric:** if excluding zeros, we should have 1-n options instead of 1-n+1 ([6f7611d](https://github.com/pie-framework/pie-lib/commit/6f7611d))
+* **rubric:** if excluding zeros, we should have 1-n options instead of 1-n+1 ([#155](https://github.com/pie-framework/pie-lib/issues/155)) ([b2bde5e](https://github.com/pie-framework/pie-lib/commit/b2bde5e))
+
+
+
+
+
 ## [0.2.28](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.2.27...@pie-lib/rubric@0.2.28) (2019-08-08)
 
 **Note:** Version bump only for package @pie-lib/rubric
