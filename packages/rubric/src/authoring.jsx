@@ -123,6 +123,7 @@ export class RawAuthoring extends React.Component {
   changeMaxPoints = maxPoints => {
     const { value, onChange } = this.props;
     const currentMax = value.points.length - 1;
+    let maximumPoints = maxPoints;
 
     log('current', currentMax, 'new: ', maxPoints);
     let points;
@@ -130,13 +131,15 @@ export class RawAuthoring extends React.Component {
       points = times(maxPoints - currentMax)
         .map(() => '')
         .concat(value.points);
+      maximumPoints = maxPoints;
     }
     if (maxPoints < currentMax) {
       log('less than');
       points = takeRight(value.points, maxPoints + 1);
     }
+
     if (points) {
-      onChange({ ...value, points });
+      onChange({ ...value, points, maxPoints: maximumPoints });
     }
   };
 
