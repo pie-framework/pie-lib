@@ -208,5 +208,35 @@
     "committerDate": "2019-07-18 17:10:24 -0400",
     "isTagged": true,
     "tag": "@pie-lib/rubric@0.2.25"
+  },
+  {
+    "type": "fix",
+    "scope": "rubric",
+    "subject": "if excluding zeros, we should have 1-n options instead of 1-n+1 (#155)",
+    "merge": null,
+    "header": "fix(rubric): if excluding zeros, we should have 1-n options instead of 1-n+1 (#155)",
+    "body": "* fix(rubric): if excluding zeros, we should have 1-n options instead of 1-n+1\n\n* chore(rubric): add unit tests suite",
+    "footer": null,
+    "notes": [],
+    "hash": "b2bde5ed424d1a266a999b6ea4b9009baa8c70d3",
+    "gitTags": "",
+    "committerDate": "2019-08-13 16:56:49 -0400",
+    "isTagged": true,
+    "tag": "@pie-lib/rubric@0.2.29"
+  },
+  {
+    "type": "fix",
+    "scope": "rubric",
+    "subject": "if excluding zeros, we should have 1-n options instead of 1-n+1",
+    "merge": null,
+    "header": "fix(rubric): if excluding zeros, we should have 1-n options instead of 1-n+1",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "6f7611d0891e06af9b82ba00caa6a9b292db639c",
+    "gitTags": "",
+    "committerDate": "2019-08-13 14:57:38 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/rubric@0.2.29"
   }
 ]
