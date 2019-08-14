@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import AutosizeInput from 'react-input-autosize';
 import PropTypes from 'prop-types';
 import { GraphPropsType } from '@pie-lib/plot/lib/types';
-import { correct, incorrect } from './common/styles';
+import { correct, incorrect, disabled } from './common/styles';
 
 const styles = theme => ({
   input: {
@@ -14,7 +14,8 @@ const styles = theme => ({
     border: 'none',
     color: theme.palette.primary.dark,
     '&.correct': correct('color'),
-    '&.incorrect': incorrect('color')
+    '&.incorrect': incorrect('color'),
+    '&.disabled': disabled('color')
   }
 });
 
@@ -47,7 +48,7 @@ export const MarkLabel = props => {
         externalInputRef(r);
       }}
       disabled={disabled}
-      inputClassName={cn(classes.input, correctness && correctness.value)}
+      inputClassName={cn(classes.input, correctness && correctness.label, disabled && 'disabled')}
       inputStyle={{
         minWidth: barWidth,
         textAlign: 'center',
