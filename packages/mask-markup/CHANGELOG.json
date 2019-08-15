@@ -328,5 +328,20 @@
     "committerDate": "2019-07-13 17:05:23 +0300",
     "isTagged": true,
     "tag": "@pie-lib/mask-markup@1.3.9"
+  },
+  {
+    "type": "feat",
+    "scope": "componentize",
+    "subject": "removed unnecessary error thrown and variable",
+    "merge": null,
+    "header": "feat(componentize): removed unnecessary error thrown and variable",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "f61d4c771ce07f8d74044388974c61ca9558fb02",
+    "gitTags": "",
+    "committerDate": "2019-08-14 07:28:33 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/mask-markup@1.4.0"
   }
 ]
