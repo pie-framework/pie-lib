@@ -238,5 +238,20 @@
     "committerDate": "2019-08-13 14:57:38 +0300",
     "isTagged": true,
     "tag": "@pie-lib/rubric@0.2.29"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "update maxPoints number.",
+    "merge": null,
+    "header": "fix: update maxPoints number.",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "a912b9bc5271e93bfc3a63ecbfdf04b1e953ac38",
+    "gitTags": " (origin/andreea/ch3283/from-ibx-rubric-models-not-correctly-generated)",
+    "committerDate": "2019-08-14 13:49:03 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/rubric@0.2.30"
   }
 ]
