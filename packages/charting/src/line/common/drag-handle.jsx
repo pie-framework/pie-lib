@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { gridDraggable, utils, types } from '@pie-lib/plot';
 import { withStyles } from '@material-ui/core/styles/index';
 import PropTypes from 'prop-types';
-import { correct, incorrect } from '../../common/styles';
+import { correct, incorrect, disabled } from '../../common/styles';
 
 class RawDragHandle extends React.Component {
   static propTypes = {
@@ -41,7 +41,7 @@ class RawDragHandle extends React.Component {
         y={y}
         classes={classes}
         className={classNames(className, !interactive && 'non-interactive')}
-        correctness={correctness}
+        correctness={interactive && correctness}
         {...rest}
       />
     );
@@ -55,11 +55,9 @@ export const DragHandle = withStyles(theme => ({
     '&:hover': {
       fill: theme.palette.secondary.dark
     },
-    '&.non-interactive': {
-      fill: 'grey'
-    },
     '&.correct': correct('fill'),
-    '&.incorrect': incorrect('fill')
+    '&.incorrect': incorrect('fill'),
+    '&.non-interactive': disabled('fill')
   },
   line: {
     stroke: theme.palette.secondary.main,
@@ -67,9 +65,7 @@ export const DragHandle = withStyles(theme => ({
     '&:hover': {
       stroke: theme.palette.secondary.dark
     },
-    '&.non-interactive': {
-      stroke: 'grey'
-    },
+    '&.non-interactive': disabled('stroke'),
     '&.correct': correct('stroke'),
     '&.incorrect': incorrect('stroke')
   }
