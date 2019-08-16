@@ -31,6 +31,12 @@ class Demo extends React.Component {
       <div ref={r => (this.root = r)}>
         Math Rendering
         <div>
+          <div>Some math here</div>
+          <span data-latex="" data-raw="4\sqrt{4}">
+            4\sqrt{4}
+          </span>
+        </div>
+        <div>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <mi>a</mi>
             <mo>&#x2260;</mo>

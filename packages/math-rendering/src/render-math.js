@@ -71,8 +71,6 @@ const bootstrap = opts => {
   const fontURL = `https://unpkg.com/mathjax3@${MATHJAX_VERSION}/mathjax3-ts/output/chtml/fonts/tex-woff-v2`;
   const htmlConfig = { fontURL };
 
-  fixMathElements();
-
   const html = MathJax.document(document, {
     InputJax: [new TeX(texConfig), new MathML(mmlConfig)],
     OutputJax: new CHTML(htmlConfig)
@@ -95,6 +93,8 @@ const bootstrap = opts => {
 };
 
 const renderMath = (el, renderOpts) => {
+  fixMathElements();
+
   if (!instance) {
     instance = bootstrap(renderOpts);
   }
