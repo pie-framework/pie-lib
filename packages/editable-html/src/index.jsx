@@ -31,19 +31,13 @@ export default class EditableHtml extends React.Component {
 
   constructor(props) {
     super(props);
-
     const v = htmlToValue(props.markup);
-    const mu = valueToHtml(v);
-
-    if (mu !== props.markup) {
-      props.onChange(mu);
-    }
-
     this.state = {
       value: v
     };
   }
 
+  // eslint-disable-next-line react/no-deprecated
   componentWillReceiveProps(props) {
     if (props.markup === this.props.markup) {
       return;
