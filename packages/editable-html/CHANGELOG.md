@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.10.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.10.17...@pie-lib/editable-html@7.10.18) (2019-08-16)
+
+
+### Bug Fixes
+
+* don't format to html / emit in constructor ([ac5c6f8](https://github.com/pie-framework/pie-lib/commit/ac5c6f8))
+
+
+
+
+
 ## [7.10.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.10.16...@pie-lib/editable-html@7.10.17) (2019-08-08)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.30](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.2.29...@pie-lib/rubric@0.2.30) (2019-08-16)
+
+
+### Bug Fixes
+
+* update maxPoints number. ([a912b9b](https://github.com/pie-framework/pie-lib/commit/a912b9b))
+
+
+
+
+
 ## [0.2.29](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.2.28...@pie-lib/rubric@0.2.29) (2019-08-14)
 
 
