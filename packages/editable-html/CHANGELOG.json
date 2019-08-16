@@ -2468,5 +2468,20 @@
     "committerDate": "2019-08-08 07:57:18 +0300",
     "isTagged": true,
     "tag": "@pie-lib/editable-html@7.10.17"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "don't format to html / emit in constructor",
+    "merge": null,
+    "header": "fix: don't format to html / emit in constructor",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "ac5c6f8a2461c724f9381dc68bae188189704e0e",
+    "gitTags": " (origin/ch3341/editable-html-causes-model-change-event-to)",
+    "committerDate": "2019-08-15 15:10:22 -0400",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.10.18"
   }
 ]
