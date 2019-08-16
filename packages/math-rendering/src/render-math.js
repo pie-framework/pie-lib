@@ -42,7 +42,9 @@ export const fixMathElement = element => {
     property = 'textContent';
   }
 
-  element[property] = wrapMath(unWrapMath(element[property]).unwrapped);
+  if (element[property]) {
+    element[property] = wrapMath(unWrapMath(element[property]).unwrapped);
+  }
 };
 
 export const fixMathElements = () => {
