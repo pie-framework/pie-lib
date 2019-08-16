@@ -408,5 +408,20 @@
     "committerDate": "2019-07-02 11:29:52 -0400",
     "isTagged": true,
     "tag": "@pie-lib/math-rendering@1.3.2"
+  },
+  {
+    "type": "fix",
+    "scope": "renderMath",
+    "subject": "fixed the math rendering all over the app [ch3365], and [ch1915]",
+    "merge": null,
+    "header": "fix(renderMath): fixed the math rendering all over the app [ch3365], and [ch1915]",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "2b0df915808db7e38852adc4b718398fcac5e910",
+    "gitTags": "",
+    "committerDate": "2019-08-16 17:44:00 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/math-rendering@1.3.5"
   }
 ]
