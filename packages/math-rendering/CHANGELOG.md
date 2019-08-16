@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@1.3.5...@pie-lib/math-rendering@1.3.6) (2019-08-16)
+
+
+### Bug Fixes
+
+* **renderMath:** added an if for elements that already have math rendered [ch3365], and [ch1915] ([3189a69](https://github.com/pie-framework/pie-lib/commit/3189a69))
+
+
+
+
+
 ## [1.3.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@1.3.4...@pie-lib/math-rendering@1.3.5) (2019-08-16)
 
 
