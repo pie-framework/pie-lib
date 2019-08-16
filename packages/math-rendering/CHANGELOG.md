@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@1.3.4...@pie-lib/math-rendering@1.3.5) (2019-08-16)
+
+
+### Bug Fixes
+
+* **renderMath:** fixed the math rendering all over the app [ch3365], and [ch1915] ([2b0df91](https://github.com/pie-framework/pie-lib/commit/2b0df91))
+
+
+
+
+
 ## [1.3.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@1.3.3...@pie-lib/math-rendering@1.3.4) (2019-07-08)
 
 **Note:** Version bump only for package @pie-lib/math-rendering
