@@ -343,5 +343,20 @@
     "committerDate": "2019-08-14 07:28:33 +0300",
     "isTagged": true,
     "tag": "@pie-lib/mask-markup@1.4.0"
+  },
+  {
+    "type": "fix",
+    "scope": "serialization",
+    "subject": "fixed math rendering issue with mask markup elements [ch3365]",
+    "merge": null,
+    "header": "fix(serialization): fixed math rendering issue with mask markup elements [ch3365]",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "cd5f1ce2cd6ef07576c4122ea3e013470eab5587",
+    "gitTags": "",
+    "committerDate": "2019-08-19 19:01:54 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/mask-markup@1.4.3"
   }
 ]
