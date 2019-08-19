@@ -2483,5 +2483,20 @@
     "committerDate": "2019-08-15 15:10:22 -0400",
     "isTagged": true,
     "tag": "@pie-lib/editable-html@7.10.18"
+  },
+  {
+    "type": "fix",
+    "scope": "serialization",
+    "subject": "fixed the issue with having more than a few new lines on after another [ch1530]",
+    "merge": null,
+    "header": "fix(serialization): fixed the issue with having more than a few new lines on after another [ch1530]",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "323bc323808fb5eb134d50e79672ec0440621dba",
+    "gitTags": "",
+    "committerDate": "2019-08-19 17:25:00 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.10.21"
   }
 ]
