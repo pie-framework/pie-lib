@@ -423,5 +423,20 @@
     "committerDate": "2019-08-16 17:44:00 +0300",
     "isTagged": true,
     "tag": "@pie-lib/math-rendering@1.3.5"
+  },
+  {
+    "type": "fix",
+    "scope": "renderMath",
+    "subject": "added an if for elements that already have math rendered [ch3365], and [ch1915]",
+    "merge": null,
+    "header": "fix(renderMath): added an if for elements that already have math rendered [ch3365], and [ch1915]",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "3189a69475f599765be6af66582a44880444e8c6",
+    "gitTags": "",
+    "committerDate": "2019-08-16 20:48:24 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/math-rendering@1.3.6"
   }
 ]
