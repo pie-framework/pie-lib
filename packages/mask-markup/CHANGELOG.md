@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.4.2...@pie-lib/mask-markup@1.4.3) (2019-08-19)
+
+
+### Bug Fixes
+
+* **serialization:** fixed math rendering issue with mask markup elements [ch3365] ([cd5f1ce](https://github.com/pie-framework/pie-lib/commit/cd5f1ce))
+
+
+
+
+
 ## [1.4.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.4.1...@pie-lib/mask-markup@1.4.2) (2019-08-16)
 
 **Note:** Version bump only for package @pie-lib/mask-markup
