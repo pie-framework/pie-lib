@@ -15,9 +15,8 @@ const attr = el => {
 
   for (i = 0; i < el.attributes.length; i++) {
     const a = el.attributes[i];
-    if (!a.name.startsWith('data-')) {
-      out[a.name] = a.value;
-    }
+
+    out[a.name] = a.value;
   }
 
   return out;
