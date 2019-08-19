@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.10.21](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.10.20...@pie-lib/editable-html@7.10.21) (2019-08-19)
+
+
+### Bug Fixes
+
+* **serialization:** fixed the issue with having more than a few new lines on after another [ch1530] ([323bc32](https://github.com/pie-framework/pie-lib/commit/323bc32))
+
+
+
+
+
 ## [7.10.20](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.10.19...@pie-lib/editable-html@7.10.20) (2019-08-16)
 
 **Note:** Version bump only for package @pie-lib/editable-html
