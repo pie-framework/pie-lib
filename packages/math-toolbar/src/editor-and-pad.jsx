@@ -85,7 +85,7 @@ export class EditorAndPad extends React.Component {
     const { onChange, noDecimal } = this.props;
 
     // if no decimals are allowed and the last change is a decimal dot, discard the change
-    if (noDecimal && (latex.indexOf('.') !== -1 || latex.indexOf(',') !== -1)) {
+    if (noDecimal && (latex.indexOf('.') !== -1 || latex.indexOf(',') !== -1) && this.input) {
       this.input.clear();
       this.input.write(latex.replace(decimalRegex, ''));
       return;
