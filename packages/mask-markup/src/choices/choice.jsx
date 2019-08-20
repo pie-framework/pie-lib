@@ -4,6 +4,8 @@ import { DragSource } from '@pie-lib/drag';
 import { withStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 import classnames from 'classnames';
+import ReactDOM from 'react-dom';
+import { renderMath } from '@pie-lib/math-rendering';
 
 export const DRAG_TYPE = 'MaskBlank';
 
@@ -15,12 +17,20 @@ class BlankContentComp extends React.Component {
     connectDragSource: PropTypes.func
   };
 
+  componentDidUpdate() {
+    renderMath(this.rootRef);
+  }
+
   render() {
     const { connectDragSource, choice, classes, disabled } = this.props;
 
     return connectDragSource(
       <span className={classnames(classes.choice, disabled && classes.disabled)}>
         <Chip
+          ref={ref => {
+            //eslint-disable-next-line
+            this.rootRef = ReactDOM.findDOMNode(ref);
+          }}
           className={classes.chip}
           label={
             <span
