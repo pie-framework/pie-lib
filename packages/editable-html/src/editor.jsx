@@ -285,13 +285,13 @@ export class Editor extends React.Component {
       /**
        * This is a temporary hack - @see changeData below for some more information.
        */
-      if (this.__TEMPORARY_CHANGE_DATA) {
-        const { key, data } = this.__TEMPORARY_CHANGE_DATA;
-        let change = this.state.value.change().setNodeByKey(key, { data });
-        this.setState({ value: change.value }, () => {
-          this.__TEMPORARY_CHANGE_DATA = null;
-        });
-      }
+      // if (this.__TEMPORARY_CHANGE_DATA) {
+      //   const { key, data } = this.__TEMPORARY_CHANGE_DATA;
+      //   let change = this.state.value.change().setNodeByKey(key, { data });
+      //   this.setState({ value: change.value }, () => {
+      //     this.__TEMPORARY_CHANGE_DATA = null;
+      //   });
+      // }
 
       this.stashValue();
       this.props.onFocus();
@@ -419,9 +419,9 @@ export class Editor extends React.Component {
      */
 
     // Uncomment this line to see the bug described above.
-    // this.setState({changeData: {key, data}})
+    this.setState({ changeData: { key, data } });
 
-    this.__TEMPORARY_CHANGE_DATA = { key, data };
+    //this.__TEMPORARY_CHANGE_DATA = { key, data };
   };
 
   render() {
