@@ -18,11 +18,11 @@
     "lodash": "^4.17.11"
   },
   "peerDependencies": {
-    "react": "^16.8.6"
+    "react": "^16.8.1"
   },
   "devDependencies": {
-    "react": "^16.8.6",
-    "react-dom": "^16.7.0"
+    "react": "^16.8.1",
+    "react-dom": "^16.9.0"
   },
   "gitHead": "f3345ae70660f4ae88450512261c7ea1601003c8"
 }

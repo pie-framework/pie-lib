@@ -35,11 +35,11 @@
   },
   "devDependencies": {
     "@pie-framework/mathquill": "^0.10.3",
-    "react": "^16.8.6",
-    "react-dom": "^16.7.0"
+    "react": "^16.8.1",
+    "react-dom": "^16.9.0"
   },
   "peerDependencies": {
-    "react": "^16.8.6"
+    "react": "^16.8.1"
   },
   "publishConfig": {
     "access": "public"

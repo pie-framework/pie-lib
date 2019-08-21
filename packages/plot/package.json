@@ -28,14 +28,14 @@
     "debug": "^4.1.1",
     "invariant": "^2.2.4",
     "lodash": "^4.17.11",
-    "react": "^16.8.6",
+    "react": "^16.8.1",
     "react-draggable": "^3.1.1",
     "react-redux": "^6.0.0",
     "redux": "^4.0.1",
     "redux-undo": "beta"
   },
   "peerDependencies": {
-    "react": "^16.8.6"
+    "react": "^16.8.1"
   },
   "gitHead": "f3345ae70660f4ae88450512261c7ea1601003c8",
   "scripts": {}
