@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.5...@pie-lib/math-toolbar@1.4.6) (2019-08-21)
+
+
+### Bug Fixes
+
+* **math-toolbar:** un-initialized input problem fix in case of no decimal flow ([0794237](https://github.com/pie-framework/pie-lib/commit/0794237))
+
+
+
+
+
 ## [1.4.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.4...@pie-lib/math-toolbar@1.4.5) (2019-07-08)
 
 
