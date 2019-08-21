@@ -24,8 +24,8 @@
     "keycode": "^2.2.0"
   },
   "peerDependencies": {
-    "react": "^16.8.6",
-    "react-dom": "^16.7.0"
+    "react": "^16.8.1",
+    "react-dom": "^16.9.0"
   },
   "devDependencies": {
     "@pie-lib/test-utils": "^0.2.1"
