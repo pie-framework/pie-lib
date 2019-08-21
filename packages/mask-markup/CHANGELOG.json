@@ -358,5 +358,20 @@
     "committerDate": "2019-08-19 19:01:54 +0300",
     "isTagged": true,
     "tag": "@pie-lib/mask-markup@1.4.3"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "Dragging a math element was causing rendering issues.",
+    "merge": null,
+    "header": "fix: Dragging a math element was causing rendering issues.",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "fc4f0acb52ba010fc45c49fbd67f7f527c3e37f2",
+    "gitTags": " (origin/andreea/ch2932/ditb-with-some-legacy-content-dragging-a)",
+    "committerDate": "2019-08-20 13:54:27 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/mask-markup@1.4.4"
   }
 ]
