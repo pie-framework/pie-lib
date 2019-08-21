@@ -618,5 +618,20 @@
     "committerDate": "2019-07-08 14:53:01 +0100",
     "isTagged": true,
     "tag": "@pie-lib/math-toolbar@1.4.5"
+  },
+  {
+    "type": "fix",
+    "scope": "math-toolbar",
+    "subject": "un-initialized input problem fix in case of no decimal flow",
+    "merge": null,
+    "header": "fix(math-toolbar): un-initialized input problem fix in case of no decimal flow",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "07942372f8dcd5267672d6db4db1d42ffed070f5",
+    "gitTags": " (origin/fix/math-toolbar-first-edit-fix)",
+    "committerDate": "2019-08-20 16:01:36 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/math-toolbar@1.4.6"
   }
 ]
