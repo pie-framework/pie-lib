@@ -443,5 +443,20 @@
     "committerDate": "2019-07-22 14:55:31 +0300",
     "isTagged": true,
     "tag": "@pie-lib/charting@4.2.0"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "add missing dep",
+    "merge": null,
+    "header": "fix: add missing dep",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "68170c5ece16d28dceea473af949b1f701065ddb",
+    "gitTags": " (develop)",
+    "committerDate": "2019-08-27 14:52:29 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/charting@4.2.4"
   }
 ]
