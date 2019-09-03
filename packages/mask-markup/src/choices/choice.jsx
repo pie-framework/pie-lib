@@ -36,10 +36,12 @@ class BlankContentComp extends React.Component {
             <span
               ref={ref => {
                 if (ref) {
-                  ref.innerHTML = choice.value;
+                  ref.innerHTML = choice.value || ' ';
                 }
               }}
-            />
+            >
+              {' '}
+            </span>
           }
           variant={disabled ? 'outlined' : undefined}
         />
