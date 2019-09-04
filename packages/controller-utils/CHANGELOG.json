@@ -13,5 +13,20 @@
     "committerDate": "2019-04-02 17:02:30 +0100",
     "isTagged": true,
     "tag": "@pie-lib/controller-utils@0.1.0"
+  },
+  {
+    "type": "feat",
+    "scope": null,
+    "subject": "implement a shuffle/persistence reusable method",
+    "merge": null,
+    "header": "feat: implement a shuffle/persistence reusable method",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "33cc7f3ea35019d9896b656134672950c145d28d",
+    "gitTags": "",
+    "committerDate": "2019-08-29 19:15:16 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/controller-utils@0.2.0"
   }
 ]
