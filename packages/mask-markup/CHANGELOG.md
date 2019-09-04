@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.4.5...@pie-lib/mask-markup@1.4.6) (2019-09-04)
+
+
+### Bug Fixes
+
+* **mask-markup:** dom nesting validation warning fix ([e288080](https://github.com/pie-framework/pie-lib/commit/e288080))
+
+
+
+
+
 ## [1.4.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.4.4...@pie-lib/mask-markup@1.4.5) (2019-08-21)
 
 **Note:** Version bump only for package @pie-lib/mask-markup
