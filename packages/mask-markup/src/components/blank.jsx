@@ -61,7 +61,9 @@ export class BlankContent extends React.Component {
                 ref.innerHTML = label || '';
               }
             }}
-          />
+          >
+            {' '}
+          </span>
         }
         className={classnames(classes.chip, {
           [classes.correct]: correct !== undefined && correct,
