@@ -83,6 +83,34 @@ export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
     typeContent: 'div'
   });
 
+  // fix outdated schema
+
+  if (core.schema && core.schema.blocks) {
+    Object.keys(core.schema.blocks).forEach(key => {
+      const block = core.schema.blocks[key];
+
+      if (block.parent) {
+        if (block.nodes[0].types) {
+          block.nodes[0] = {
+            type: block.nodes[0].types[0]
+          };
+        }
+
+        if (block.nodes[0].objects) {
+          block.nodes[0] = {
+            object: block.nodes[0].objects[0]
+          };
+        }
+
+        block.parent = {
+          type: block.parent.types[0]
+        };
+      } else {
+        block.nodes[0] = { type: block.nodes[0].types[0] };
+      }
+    });
+  }
+
   core.utils.getTableBlock = (containerNode, key) => {
     const node = containerNode.getDescendant(key);
     const ancestors = containerNode.getAncestors(key).push(node);
