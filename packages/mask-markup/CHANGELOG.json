@@ -373,5 +373,20 @@
     "committerDate": "2019-08-20 13:54:27 +0300",
     "isTagged": true,
     "tag": "@pie-lib/mask-markup@1.4.4"
+  },
+  {
+    "type": "fix",
+    "scope": "mask-markup",
+    "subject": "dom nesting validation warning fix",
+    "merge": null,
+    "header": "fix(mask-markup): dom nesting validation warning fix",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "e288080c9ab470946c6e2a7ca9d21a982842ad30",
+    "gitTags": " (origin/fix/mask-markup)",
+    "committerDate": "2019-09-03 10:08:42 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/mask-markup@1.4.6"
   }
 ]
