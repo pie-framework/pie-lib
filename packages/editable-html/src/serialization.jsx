@@ -171,7 +171,9 @@ const TEXT_RULE = {
 
       br.remove();
 
-      prevText.textContent += '\n';
+      if (prevText) {
+        prevText.textContent += '\n';
+      }
     });
 
     /**

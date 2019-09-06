@@ -183,17 +183,17 @@ class RteDemo extends React.Component {
      * then call handleInputFiles if checkCancelled is true.
      * It's set to false if a 'change' event is fired.
      */
-    document.body.onfocus = e => {
-      log('focus document...', this.fileInput.files);
-      document.body.onfocus = null;
-      this.setState({ checkCancelled: true }, () => {
-        setTimeout(() => {
-          if (this.state.checkCancelled) {
-            this.handleInputFiles(this.fileInput);
-          }
-        }, 200);
-      });
-    };
+    // document.body.onfocus = e => {
+    //   log('focus document...', this.fileInput.files);
+    //   document.body.onfocus = null;
+    //   this.setState({ checkCancelled: true }, () => {
+    //     setTimeout(() => {
+    //       if (this.state.checkCancelled) {
+    //         this.handleInputFiles(this.fileInput);
+    //       }
+    //     }, 200);
+    //   });
+    // };
   };
 
   onDeleteImage = (url, done) => {

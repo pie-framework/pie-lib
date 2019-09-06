@@ -204,9 +204,7 @@ export class Toolbar extends React.Component {
       [classes.autoWidth]: autoWidth,
       [classes.fullWidth]: !autoWidth
     });
-
-    return (
-      <div className={names} style={extraStyles} onClick={this.onClick}>
+    /** 
         {CustomToolbar ? (
           <CustomToolbar
             node={node}
@@ -225,14 +223,19 @@ export class Toolbar extends React.Component {
             onDone={handleDone}
           />
         )}
-
+    */
+    return (
+      <div className={names} style={extraStyles} onClick={this.onClick}>
         <div className={classes.shared}>
           {deletable && (
             <IconButton
               aria-label="Delete"
-              style={{ width: '28px', height: '28px' }}
+              // style={{ width: '28px', height: '28px' }}
               className={classes.iconRoot}
-              onClick={e => plugin.deleteNode(e, node, value, onChange)}
+              onClick={e => {
+                console.log('>>>>>>>>>>>>>>>>>> deleteNode: ', e);
+                // plugin.deleteNode(e, node, value, onChange);
+              }}
               classes={{
                 root: classes.iconRoot
               }}
@@ -240,7 +243,7 @@ export class Toolbar extends React.Component {
               <Delete />
             </IconButton>
           )}
-          {customToolbarShowDone && <DoneButton onClick={handleDone} />}
+          {/* {customToolbarShowDone && <DoneButton onClick={handleDone} />} */}
         </div>
       </div>
     );

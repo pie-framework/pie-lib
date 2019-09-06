@@ -64,3 +64,7 @@ cd out
 # you can now deploy using now (or if you have another static site handler)
 now .
 ```
+
+1. The blur happens before the click can go through
+1. how come italic works?
+1. how come it doesnt work at the start but works thereafter?

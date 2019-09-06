@@ -234,28 +234,29 @@ export class Editor extends React.Component {
 
   // Allowing time for onChange to take effect if it is called
   handleBlur = resolve => {
-    const { nonEmpty } = this.props;
-    const {
-      toolbarOpts: { doneOn }
-    } = this.state;
+    console.log('i am supposed to handle blur');
+    // const { nonEmpty } = this.props;
+    // const {
+    //   toolbarOpts: { doneOn }
+    // } = this.state;
 
-    this.setState({ toolbarInFocus: false, focusedNode: null });
+    // this.setState({ toolbarInFocus: false, focusedNode: null });
 
-    if (this.editor) {
-      this.editor.blur();
-    }
+    // if (this.editor) {
+    //   this.editor.blur();
+    // }
 
-    if (doneOn === 'blur') {
-      if (nonEmpty && this.state.value.startText.text.length === 0) {
-        this.resetValue(true).then(() => {
-          this.onEditingDone();
-          resolve();
-        });
-      } else {
-        this.onEditingDone();
-        resolve();
-      }
-    }
+    // if (doneOn === 'blur') {
+    //   if (nonEmpty && this.state.value.startText.text.length === 0) {
+    //     this.resetValue(true).then(() => {
+    //       this.onEditingDone();
+    //       resolve();
+    //     });
+    //   } else {
+    //     this.onEditingDone();
+    //     resolve();
+    //   }
+    // }
   };
 
   onBlur = event => {
@@ -266,9 +267,9 @@ export class Editor extends React.Component {
 
     log('[onBlur] node: ', node);
 
-    return new Promise(resolve => {
-      this.setState({ focusedNode: node }, this.handleBlur.bind(this, resolve));
-    });
+    // return new Promise(resolve => {
+    this.setState({ focusedNode: node }, this.handleBlur);
+    // });
   };
 
   /*
@@ -467,7 +468,7 @@ export class Editor extends React.Component {
           className={classes.slateEditor}
           style={{ height: sizeStyle.height }}
           pluginProps={pluginProps}
-          toolbarOpts={toolbarOpts}
+          toolbarOpts={{ ...toolbarOpts, alwaysVisible: true }}
           placeholder={placeholder}
           onDataChange={this.changeData}
         />
