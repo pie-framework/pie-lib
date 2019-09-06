@@ -49,6 +49,20 @@ export default options => {
     typeDefault: 'span'
   });
 
+  // fix outdated schema
+
+  if (core.schema && core.schema.blocks) {
+    Object.keys(core.schema.blocks).forEach(key => {
+      const block = core.schema.blocks[key];
+
+      if (block.parent) {
+        return;
+      }
+
+      block.nodes[0] = { type: block.nodes[0].types[0] };
+    });
+  }
+
   core.renderNode = props => {
     const { node, attributes, children } = props;
 
