@@ -6,8 +6,9 @@ export default withMask('dropdown', props => (node, data, onChange) => {
   const dataset = node.data ? node.data.dataset || {} : {};
   if (dataset.component === 'dropdown') {
     const { choices, disabled, feedback, showCorrectAnswer } = props;
-    const correctAnswer = props.choices[dataset.id].find(c => c.correct);
-    const finalChoice = showCorrectAnswer ? correctAnswer.value : data[dataset.id];
+    const correctAnswer =
+      choices && choices[dataset.id] && choices[dataset.id].find(c => c.correct);
+    const finalChoice = showCorrectAnswer ? correctAnswer && correctAnswer.value : data[dataset.id];
 
     return (
       <Dropdown
