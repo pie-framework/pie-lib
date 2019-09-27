@@ -232,7 +232,7 @@ export class Toolbar extends React.Component {
               aria-label="Delete"
               style={{ width: '28px', height: '28px' }}
               className={classes.iconRoot}
-              onClick={e => plugin.deleteNode(e, node, value, onChange)}
+              onMouseDown={e => plugin.deleteNode(e, node, value, onChange)}
               classes={{
                 root: classes.iconRoot
               }}
