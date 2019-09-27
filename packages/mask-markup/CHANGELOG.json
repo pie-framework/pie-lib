@@ -388,5 +388,20 @@
     "committerDate": "2019-09-03 10:08:42 +0300",
     "isTagged": true,
     "tag": "@pie-lib/mask-markup@1.4.6"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "check if correctAnswer is not undefined or null before trying to get it's value property.",
+    "merge": null,
+    "header": "fix: check if correctAnswer is not undefined or null before trying to get it's value property.",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "28ad6bceb7626cbe47641a113c95769ad643d688",
+    "gitTags": "",
+    "committerDate": "2019-09-19 10:36:56 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/mask-markup@1.4.7"
   }
 ]
