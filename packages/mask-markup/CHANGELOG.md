@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.4.6...@pie-lib/mask-markup@1.4.7) (2019-09-27)
+
+
+### Bug Fixes
+
+* check if correctAnswer is not undefined or null before trying to get it's value property. ([28ad6bc](https://github.com/pie-framework/pie-lib/commit/28ad6bc))
+
+
+
+
+
 ## [1.4.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.4.5...@pie-lib/mask-markup@1.4.6) (2019-09-04)
 
 
