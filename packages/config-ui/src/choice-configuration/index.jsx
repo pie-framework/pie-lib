@@ -249,13 +249,11 @@ const styles = theme => ({
   feedback: {
     flex: '0 1 auto',
     paddingTop: theme.spacing.unit,
-    paddingLeft: 0,
     marginLeft: 0,
-    paddingRight: theme.spacing.unit * 3
+    paddingRight: theme.spacing.unit
   },
   feedbackIcon: {
     margin: 0,
-    paddingLeft: 0,
     width: 'inherit'
   },
   deleteIcon: {
