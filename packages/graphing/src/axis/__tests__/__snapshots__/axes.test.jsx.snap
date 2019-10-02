@@ -3,13 +3,13 @@
 exports[`RawXAxis snapshot renders 1`] = `
 <Fragment>
   <F
-    hideZero={true}
     left={0}
     scale={[MockFunction]}
     tickFormat={[Function]}
     tickLabelProps={[Function]}
     tickValues={
       Array [
+        "0",
         0,
       ]
     }
