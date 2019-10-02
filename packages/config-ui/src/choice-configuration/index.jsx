@@ -249,8 +249,9 @@ const styles = theme => ({
   feedback: {
     flex: '0 1 auto',
     paddingTop: theme.spacing.unit,
+    paddingLeft: 0,
     marginLeft: 0,
-    paddingRight: theme.spacing.unit
+    paddingRight: theme.spacing.unit * 3
   },
   feedbackIcon: {
     margin: 0,
