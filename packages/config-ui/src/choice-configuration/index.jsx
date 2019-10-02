@@ -255,6 +255,7 @@ const styles = theme => ({
   },
   feedbackIcon: {
     margin: 0,
+    paddingLeft: 0,
     width: 'inherit'
   },
   deleteIcon: {
