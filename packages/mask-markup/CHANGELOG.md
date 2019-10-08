@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.4.7...@pie-lib/mask-markup@1.5.0) (2019-10-08)
+
+
+### Features
+
+* **serialization:** made sure the class attribute is handled properly [ch4706] ([90eea5f](https://github.com/pie-framework/pie-lib/commit/90eea5f))
+
+
+
+
+
 ## [1.4.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.4.6...@pie-lib/mask-markup@1.4.7) (2019-09-27)
 
 
