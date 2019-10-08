@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@1.2.4...@pie-lib/graphing@1.2.5) (2019-10-08)
+
+
+### Bug Fixes
+
+* **graphing:** Graphing: Origin should be labeled. ([9045d34](https://github.com/pie-framework/pie-lib/commit/9045d34))
+
+
+
+
+
 ## [1.2.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@1.2.3...@pie-lib/graphing@1.2.4) (2019-08-21)
 
 **Note:** Version bump only for package @pie-lib/graphing
