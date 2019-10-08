@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.10.24](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.10.23...@pie-lib/editable-html@7.10.24) (2019-09-27)
+
+
+### Bug Fixes
+
+* **editable-html:** fix outdated plugin validation schema ([ca4b848](https://github.com/pie-framework/pie-lib/commit/ca4b848))
+* **toolbar:** fixed delete image button not working [ch4162] ([9518a4e](https://github.com/pie-framework/pie-lib/commit/9518a4e))
+
+
+
+
+
 ## [7.10.23](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.10.22...@pie-lib/editable-html@7.10.23) (2019-08-21)
 
 **Note:** Version bump only for package @pie-lib/editable-html
