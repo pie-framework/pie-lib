@@ -498,5 +498,20 @@
     "committerDate": "2019-07-08 23:32:10 +0300",
     "isTagged": true,
     "tag": "@pie-lib/graphing@1.2.0"
+  },
+  {
+    "type": "fix",
+    "scope": "graphing",
+    "subject": "Graphing: Origin should be labeled.",
+    "merge": null,
+    "header": "fix(graphing): Graphing: Origin should be labeled.",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "9045d3467e2a7d751112ef3593742275cd82483c",
+    "gitTags": "",
+    "committerDate": "2019-10-02 10:38:14 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/graphing@1.2.5"
   }
 ]
