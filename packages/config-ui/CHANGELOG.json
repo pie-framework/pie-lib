@@ -1463,5 +1463,20 @@
     "committerDate": "2019-07-07 15:15:42 -0400",
     "isTagged": true,
     "tag": "@pie-lib/config-ui@10.7.12"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "Design fix.",
+    "merge": null,
+    "header": "fix: Design fix.",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "26e4390fb869771aaf8268381336a5eb785e4ac8",
+    "gitTags": "",
+    "committerDate": "2019-09-26 15:51:36 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/config-ui@10.7.34"
   }
 ]

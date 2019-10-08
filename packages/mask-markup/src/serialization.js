@@ -43,17 +43,37 @@ export const parseStyleString = s => {
 
 export const reactAttributes = o => toStyleObject(o, { camelize: true });
 
+const handleStyles = (el, attribute) => {
+  const styleString = el.getAttribute(attribute);
+
+  return reactAttributes(parseStyleString(styleString));
+};
+
+const handleClass = (el, acc, attribute) => {
+  const classNames = el.getAttribute(attribute);
+
+  delete acc.class;
+
+  return classNames;
+};
+
 const attributesToMap = el => (acc, attribute) => {
   const value = el.getAttribute(attribute);
+
   if (value) {
-    if (attribute === 'style') {
-      const styleString = el.getAttribute(attribute);
-      const reactStyleObject = reactAttributes(parseStyleString(styleString));
-      acc['style'] = reactStyleObject;
-    } else {
-      acc[attribute] = el.getAttribute(attribute);
+    switch (attribute) {
+      case 'style':
+        acc.style = handleStyles(el, attribute);
+        break;
+      case 'class':
+        acc.className = handleClass(el, acc, attribute);
+        break;
+      default:
+        acc[attribute] = el.getAttribute(attribute);
+        break;
     }
   }
+
   return acc;
 };
 
