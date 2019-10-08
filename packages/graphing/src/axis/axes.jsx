@@ -63,19 +63,20 @@ export class RawXAxis extends React.Component {
       <React.Fragment>
         <Axis
           axisLineClassName={classes.line}
-          hideZero={true}
           scale={scale.x}
           top={scale.y(0)}
           left={0}
           label={domain.label}
           tickClassName={classes.tick}
           tickFormat={value => value}
-          tickLabelProps={() => ({
+          tickLabelProps={label => ({
             ...tickLabelStyles,
-            y: '25',
-            dx: -4
+            y: 25,
+            dx: label === '0' ? 6 : -4
           })}
-          tickValues={columnTicksValues}
+          // Having 0 as a number in columnTicksValues does not make 0 to show up
+          // so we use this trick:
+          tickValues={['0', ...columnTicksValues]}
         />
         {includeArrows && (
           <Arrow direction="left" x={domain.min} y={0} className={classes.arrow} scale={scale} />
