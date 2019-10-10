@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.5.1...@pie-lib/mask-markup@1.5.2) (2019-10-10)
+
+
+### Bug Fixes
+
+* ch4723 - Prevent crashing if correctAnswer in not defined. ([5115ddb](https://github.com/pie-framework/pie-lib/commit/5115ddb))
+
+
+
+
+
 ## [1.5.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.5.0...@pie-lib/mask-markup@1.5.1) (2019-10-08)
 
 **Note:** Version bump only for package @pie-lib/mask-markup

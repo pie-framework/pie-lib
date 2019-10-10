@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/controller-utils@0.2.0...@pie-lib/controller-utils@0.2.1) (2019-10-10)
+
+
+### Bug Fixes
+
+* fix handling and saving of bad shuffled values [ch4723] ([186ff87](https://github.com/pie-framework/pie-lib/commit/186ff87))
+
+
+
+
+
 # [0.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/controller-utils@0.1.2...@pie-lib/controller-utils@0.2.0) (2019-08-30)
 
 
