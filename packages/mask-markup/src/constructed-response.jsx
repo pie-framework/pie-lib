@@ -7,8 +7,10 @@ export default withMask('input', props => (node, data, onChange) => {
   if (dataset.component === 'input') {
     const { disabled, feedback, showCorrectAnswer } = props;
     // the first answer is the correct one
-    const correctAnswer = (props.choices[dataset.id] || [])[0];
-    const finalValue = showCorrectAnswer ? correctAnswer.label : data[dataset.id] || '';
+    const correctAnswer = ((props.choices && dataset && props.choices[dataset.id]) || [])[0];
+    const finalValue = showCorrectAnswer
+      ? correctAnswer && correctAnswer.label
+      : data[dataset.id] || '';
 
     return (
       <Input
