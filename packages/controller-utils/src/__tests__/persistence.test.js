@@ -1,5 +1,4 @@
 import { getShuffledChoices } from '../persistence';
-import { array } from 'prop-types';
 
 describe('persistence', () => {
   let choices, session, updateSession, key;
