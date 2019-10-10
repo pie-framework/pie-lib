@@ -28,5 +28,20 @@
     "committerDate": "2019-08-29 19:15:16 +0300",
     "isTagged": true,
     "tag": "@pie-lib/controller-utils@0.2.0"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "fix handling and saving of bad shuffled values [ch4723]",
+    "merge": null,
+    "header": "fix: fix handling and saving of bad shuffled values [ch4723]",
+    "body": "* strip null/undefined from arrays, treat empty arrays as if no shuffle\nis set.\n* refuse to save stripped empty shuffled arrays",
+    "footer": null,
+    "notes": [],
+    "hash": "186ff87e9e8db7952203e1629ade8e0c49b56f6b",
+    "gitTags": "",
+    "committerDate": "2019-10-10 19:29:34 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/controller-utils@0.2.1"
   }
 ]
