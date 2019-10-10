@@ -4,6 +4,11 @@ describe('persistence', () => {
   let choices, session, updateSession, key;
 
   beforeEach(() => {
+    updateSession = jest.fn();
+    session = {
+      id: '1',
+      element: 'element'
+    };
     choices = [
       {
         value: 1
@@ -15,9 +20,35 @@ describe('persistence', () => {
     key = 'value';
   });
 
+  describe('handles null values in session', () => {
+    beforeEach(async () => {
+      const result = await getShuffledChoices(
+        choices,
+        { ...session, shuffledValues: [null] },
+        updateSession,
+        'value'
+      );
+    });
+
+    it('calls updateSession w/ new shuffle cos [null] is treated as empty', () => {
+      expect(updateSession).toHaveBeenCalledWith(session.id, session.element, {
+        shuffledValues: expect.arrayContaining([1, 2])
+      });
+    });
+  });
+
+  describe('bad shuffle generation does not call updateSession', () => {
+    beforeEach(async () => {
+      const result = await getShuffledChoices(choices, {}, updateSession, 'foo');
+    });
+    it('does not call update session', () => {
+      expect(updateSession).not.toHaveBeenCalled();
+    });
+  });
+
   describe('session does not exist', () => {
     it('returns undefined for empty session', async () => {
-      const result = await getShuffledChoices(choices, session, updateSession, key);
+      const result = await getShuffledChoices(choices, undefined, updateSession, key);
       expect(result).toEqual(undefined);
     });
   });
