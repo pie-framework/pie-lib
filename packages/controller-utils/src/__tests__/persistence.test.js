@@ -4,7 +4,7 @@ describe('persistence', () => {
   let choices, session, updateSession, key;
 
   beforeEach(() => {
-    updateSession = jest.fn();
+    updateSession = jest.fn().mockResolvedValue([]);
     session = {
       id: '1',
       element: 'element'
