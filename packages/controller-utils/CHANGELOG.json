@@ -43,5 +43,20 @@
     "committerDate": "2019-10-10 19:29:34 +0100",
     "isTagged": true,
     "tag": "@pie-lib/controller-utils@0.2.1"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "rm async",
+    "merge": null,
+    "header": "fix: rm async",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "3e96db3e5897896f95ed21ec1fc86a029c49b8d6",
+    "gitTags": " (origin/fix/rm-async, origin/develop, origin/HEAD, develop)",
+    "committerDate": "2019-10-14 13:47:35 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/controller-utils@0.2.2"
   }
 ]
