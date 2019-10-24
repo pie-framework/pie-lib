@@ -448,6 +448,7 @@ export class Editor extends React.Component {
 
     return (
       <div
+        data-ut="editable-html:editor"
         ref={ref => (this.wrapperRef = ref)}
         style={{ width: sizeStyle.width }}
         className={names}

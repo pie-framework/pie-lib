@@ -21,7 +21,13 @@ export const ToolbarButton = props => {
     const isActive = hasMark(props.value, props.type);
     log('[ToolbarButton] mark:isActive: ', isActive);
     return (
-      <MarkButton active={isActive} label={props.type} onToggle={onToggle} mark={props.type}>
+      <MarkButton
+        active={isActive}
+        label={props.type}
+        onToggle={onToggle}
+        mark={props.type}
+        data-ut={`mark-button:${props.type}`}
+      >
         {props.icon}
       </MarkButton>
     );
@@ -35,6 +41,7 @@ export const ToolbarButton = props => {
         active={isActive}
         onClick={() => props.onClick(props.value, props.onChange)}
         extraStyles={props.buttonStyles}
+        data-ut={`button:${props.type}`}
       >
         {props.icon}
       </Button>
