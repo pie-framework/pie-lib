@@ -958,5 +958,20 @@
     "committerDate": "2019-07-02 11:29:52 -0400",
     "isTagged": true,
     "tag": "@pie-lib/math-input@6.3.2"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "handle latex parsing errors PIE-145",
+    "merge": null,
+    "header": "fix: handle latex parsing errors PIE-145",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "99905ea9299bf3f56b546eab026803796c6d92d7",
+    "gitTags": "",
+    "committerDate": "2019-11-05 16:22:32 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/math-input@6.3.6"
   }
 ]
