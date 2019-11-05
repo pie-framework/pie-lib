@@ -2558,5 +2558,20 @@
     "committerDate": "2019-09-05 14:44:12 +0300",
     "isTagged": true,
     "tag": "@pie-lib/editable-html@7.10.24"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "Prevent crashing if prevText is null [PIE-150]",
+    "merge": null,
+    "header": "fix: Prevent crashing if prevText is null [PIE-150]",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "873e1f89d415a9b1a3cf39cf0d75c22a730a2cba",
+    "gitTags": " (origin/fix/pie-150, fix/pie-150)",
+    "committerDate": "2019-11-05 10:49:37 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.10.26"
   }
 ]
