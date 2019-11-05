@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.3.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.3.5...@pie-lib/math-input@6.3.6) (2019-11-05)
+
+
+### Bug Fixes
+
+* handle latex parsing errors PIE-145 ([99905ea](https://github.com/pie-framework/pie-lib/commit/99905ea))
+
+
+
+
+
 ## [6.3.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.3.4...@pie-lib/math-input@6.3.5) (2019-08-21)
 
 **Note:** Version bump only for package @pie-lib/math-input
