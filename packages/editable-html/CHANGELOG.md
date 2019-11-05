@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.10.26](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.10.25...@pie-lib/editable-html@7.10.26) (2019-11-05)
+
+
+### Bug Fixes
+
+* Prevent crashing if prevText is null [PIE-150] ([873e1f8](https://github.com/pie-framework/pie-lib/commit/873e1f8))
+
+
+
+
+
 ## [7.10.25](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.10.24...@pie-lib/editable-html@7.10.25) (2019-10-08)
 
 **Note:** Version bump only for package @pie-lib/editable-html
