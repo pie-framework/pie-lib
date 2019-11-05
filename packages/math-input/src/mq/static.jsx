@@ -83,16 +83,22 @@ export default class Static extends React.Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    const parsed = stripSpaces(this.mathField.parseLatex(nextProps.latex));
+    try {
+      const parsedLatex = this.mathField.parseLatex(nextProps.latex);
+      const stripped = stripSpaces(parsedLatex);
+      const newFieldCount = (nextProps.latex.match(REGEX) || []).length;
 
-    const newFieldCount = (nextProps.latex.match(REGEX) || []).length;
+      const out =
+        stripped !== stripSpaces(this.mathField.latex().trim()) ||
+        newFieldCount !== Object.keys(this.mathField.innerFields).length / 2;
 
-    const out =
-      parsed !== stripSpaces(this.mathField.latex().trim()) ||
-      newFieldCount !== Object.keys(this.mathField.innerFields).length / 2;
-
-    log('[shouldComponentUpdate] ', out);
-    return out;
+      log('[shouldComponentUpdate] ', out);
+      return out;
+    } catch (e) {
+      console.warn('Error parsing latex:', e.message, 'skip update');
+      console.warn(e);
+      return false;
+    }
   }
 
   onFocus = e => {
