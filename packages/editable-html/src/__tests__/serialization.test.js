@@ -1,4 +1,4 @@
-import { htmlToValue } from '../serialization';
+import { htmlToValue, TEXT_RULE } from '../serialization';
 
 jest.mock('../plugins/math', () => ({
   serialization: {
@@ -10,6 +10,46 @@ jest.mock('../plugins/math', () => ({
     })
   }
 }));
+
+describe('TEXT_RULE', () => {
+  const mkBr = previousSibling => {
+    return {
+      remove: jest.fn(),
+      previousSibling,
+      normalize: jest.fn().mockReturnThis(),
+      tagName: 'br'
+    };
+  };
+
+  const mkTextNode = (textContent = '') => ({
+    nodeName: '#text',
+    textContent,
+    normalize: jest.fn().mockReturnThis()
+  });
+
+  const mkEl = querySelectorAllResult => ({
+    querySelectorAll: jest.fn().mockReturnValue(querySelectorAllResult),
+    normalize: jest.fn().mockReturnThis()
+  });
+
+  describe('deserialize', () => {
+    it('adds new line to previous text node', () => {
+      const textNode = mkTextNode('hi');
+      const br = mkBr(textNode);
+      const el = mkEl([br]);
+      const out = TEXT_RULE.deserialize(el);
+      // this function operates on the dom children, but returns nothing
+      expect(out).toBeUndefined();
+      expect(textNode.textContent).toMatch('hi\n');
+    });
+
+    it('if no previous text node, no error is thrown', () => {
+      const br = mkBr();
+      const el = mkEl([br]);
+      expect(() => TEXT_RULE.deserialize(el)).not.toThrow();
+    });
+  });
+});
 
 describe('htmlToValue', () => {
   it('converts', () => {

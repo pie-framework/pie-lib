@@ -158,7 +158,7 @@ const findPreviousText = el => {
   return null;
 };
 
-const TEXT_RULE = {
+export const TEXT_RULE = {
   deserialize(el) {
     const brs = !el.querySelectorAll ? [] : el.querySelectorAll('br');
 
@@ -169,9 +169,10 @@ const TEXT_RULE = {
     brs.forEach(br => {
       const prevText = findPreviousText(br);
 
-      br.remove();
-
-      prevText.textContent += '\n';
+      if (prevText) {
+        br.remove();
+        prevText.textContent += '\n';
+      }
     });
 
     /**
