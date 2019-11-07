@@ -10,7 +10,6 @@ exports[`Mask render renders correctly a div 1`] = `
     >
       Foo
     </WithStyles(Component)>
-     
   </div>
 </div>
 `;

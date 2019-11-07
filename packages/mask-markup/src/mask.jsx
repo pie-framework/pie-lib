@@ -40,7 +40,7 @@ export const renderChildren = (layout, value, onChange, rootRenderChildren) => {
       if (n.nodes && n.nodes.length > 0) {
         children.push(
           <Tag key={key} {...n.data.attributes}>
-            {renderChildren(n, value, onChange, rootRenderChildren)}{' '}
+            {renderChildren(n, value, onChange, rootRenderChildren)}
           </Tag>
         );
       } else {
