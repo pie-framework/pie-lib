@@ -24,6 +24,10 @@ describe('math-evaluator', () => {
       allowDecimals: true
     });
   });
+  it.only('overleftrightarrow', () => {
+    areValuesEqual('1', '\\overleftrightarrow{1234}', { isLatex: true, allowDecimals: true });
+  });
+
   // assertEqual('custom latex')('1530', `\\odot`);
   //   assertNotEqual('evaluates simple expressions correctly')('0', 'x', '3x', '4x');
 
