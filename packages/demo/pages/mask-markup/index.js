@@ -9,6 +9,8 @@ import { withDragContext } from '@pie-lib/drag';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
+// const markup = `<table class=\"kds-fraction\"><tbody> <tr><td class=\"kds-numerator\"><strong><span style=\"font-family:'Times New Roman'; font-size:1.2em;\">π</span></strong></td></tr><tr> <td class=\"kds-denominator\"><strong>6</strong></td></tr></tbody></table><strong><em>t</em><b class=\"frac\">)</b>,</strong></div> <strong>where <em>t</em> represents the number of hours since midnight.<br><br>Based on this equation, after how many hours does the water level in the harbor first reach 10 feet?</strong><br><br> {{0}} <strong>hours</strong>`;
+// const markup = `<table class="KdsTable01"><tbody><tr>  <td>5</td>  </tr></tbody></table>`;
 const markup = `<div>
   <img src="https://image.shutterstock.com/image-vector/cow-jumped-over-moon-traditional-260nw-1152899330.jpg"></img>
    <h5>Hey Diddle Diddle <i>by ?</i></h5>

@@ -29,3 +29,15 @@ exports[`Mask render renders correctly with default props 1`] = `
   Foo
 </div>
 `;
+
+exports[`Mask render renders without space under tbody 1`] = `
+<div>
+  <tbody
+    key="tbody-0"
+  >
+    <tr
+      key="tr-1"
+    />
+  </tbody>
+</div>
+`;
