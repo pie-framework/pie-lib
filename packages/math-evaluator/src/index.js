@@ -7,6 +7,7 @@ const decimalWithThousandSeparatorNumberRegex = /^(?!0+\.00)(?=.{1,9}(\.|$))(?!0
 
 function rationalizeAllPossibleSubNodes(expression) {
   const tree = mathjs.parse(expression);
+  console.log('tree:', JSON.stringify(tree, null, '  '));
   const transformedTree = tree.transform(node => {
     try {
       const rationalizedNode = mathjs.rationalize(node);
@@ -21,17 +22,18 @@ function rationalizeAllPossibleSubNodes(expression) {
 }
 
 function prepareExpression(string, isLatex) {
-  let returnValue = string ? string.trim() : '';
+  return string;
+  // let returnValue = string ? string.trim() : '';
 
-  returnValue = returnValue.replace(decimalCommaRegex, '.');
+  // returnValue = returnValue.replace(decimalCommaRegex, '.');
 
-  returnValue = isLatex
-    ? mathExpressions.fromLatex(`${returnValue}`).toString()
-    : mathExpressions.fromText(`${returnValue}`).toString();
+  // returnValue = isLatex
+  //   ? mathExpressions.fromLatex(`${returnValue}`).toString()
+  //   : mathExpressions.fromText(`${returnValue}`).toString();
 
-  returnValue = returnValue.replace('=', '==');
+  // returnValue = returnValue.replace('=', '==');
 
-  return rationalizeAllPossibleSubNodes(returnValue);
+  // return rationalizeAllPossibleSubNodes(returnValue);
 }
 
 function shouldRationalizeEntireTree(tree) {
@@ -107,10 +109,24 @@ export default function areValuesEqual(valueOne, valueTwo, options = {}) {
     ? mathjs.rationalize(preparedValueTwo)
     : preparedValueTwo;
 
-  one = mathjs.simplify(one);
-  two = mathjs.simplify(two);
+  // one = mathjs.simplify(one);
+  // two = mathjs.simplify(two);
+
+  console.log('one:', one);
 
   const equals = one.equals(two);
 
   return inverse ? !equals : equals;
 }
+
+export const ave = (a, b) => {
+  const am = mathjs.parse(a);
+  const bm = mathjs.parse(b);
+
+  console.log(JSON.stringify(am, null, '  '));
+  console.log(JSON.stringify(bm, null, '  '));
+
+  const arm = mathjs.rationalize(am);
+  const brm = mathjs.rationalize(bm);
+  return arm.equals(brm);
+};

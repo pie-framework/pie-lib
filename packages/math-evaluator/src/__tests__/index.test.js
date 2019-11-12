@@ -1,4 +1,4 @@
-import areValuesEqual from '../index';
+import areValuesEqual, { ave } from '../index';
 import _ from 'lodash';
 
 describe('math-evaluator', () => {
@@ -18,14 +18,23 @@ describe('math-evaluator', () => {
 
   const assertEqual = assert(true);
   const assertNotEqual = assert(false);
-  it.only('??', () => {
-    areValuesEqual('1', '\\odot', {
-      isLatex: true,
-      allowDecimals: true
-    });
-  });
-  it.only('overleftrightarrow', () => {
-    areValuesEqual('1', '\\overleftrightarrow{1234}', { isLatex: true, allowDecimals: true });
+  // it.only('??', () => {
+  //   areValuesEqual('1', '\\odot', {
+  //     isLatex: true,
+  //     allowDecimals: true
+  //   });
+  // });
+  // it.only('overleftrightarrow', () => {
+  //   areValuesEqual('1', '\\overleftrightarrow{1234}', { isLatex: true, allowDecimals: true });
+  // });
+
+  it.only('?', () => {
+    // expect(areValuesEqual('foo * 3', 'foo 3', { isLatex: false })).toEqual(true);
+    // expect(areValuesEqual('3 * f', 'f * 3', { isLatex: true })).toEqual(true);
+    expect(ave('77 circledot 88', '88 circledot 77')).toEqual(true);
+    expect(ave('77 dot 88', '88 dot 77')).toEqual(true);
+    // expect(areValuesEqual('3 * foo', 'foo * 3', { isLatex: false })).toEqual(true);
+    // expect(areValuesEqual('3 * 2', '2 * 3', { isLatex: false })).toEqual(true);
   });
 
   // assertEqual('custom latex')('1530', `\\odot`);
