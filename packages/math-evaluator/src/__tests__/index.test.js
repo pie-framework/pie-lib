@@ -1,4 +1,5 @@
 import areValuesEqual from '../index';
+import mathExpressions from 'math-expressions';
 import _ from 'lodash';
 
 describe('math-evaluator', () => {
@@ -18,14 +19,105 @@ describe('math-evaluator', () => {
 
   const assertEqual = assert(true);
   const assertNotEqual = assert(false);
-  it.only('??', () => {
+
+  it.skip('??', () => {
     areValuesEqual('1', '\\odot', {
       isLatex: true,
       allowDecimals: true
     });
   });
-  it.only('overleftrightarrow', () => {
+  it.skip('overleftrightarrow', () => {
     areValuesEqual('1', '\\overleftrightarrow{1234}', { isLatex: true, allowDecimals: true });
+  });
+
+  describe('PIE-188-math-expressions', () => {
+    it('parses expressions correctly', async () => {
+      // comparisons
+
+      expect(mathExpressions.fromLatex('1 \\lt 2').toString()).toEqual('1 < 2');
+
+      expect(mathExpressions.fromLatex('1 \\gt 2').toString()).toEqual('1 > 2');
+
+      expect(mathExpressions.fromLatex('1 \\le 2').toString()).toEqual('1 ≤ 2');
+
+      expect(mathExpressions.fromLatex('1 \\ge 2').toString()).toEqual('1 ≥ 2');
+
+      // exponents
+
+      expect(mathExpressions.fromLatex('2^2').toString()).toEqual('2^2');
+
+      expect(mathExpressions.fromLatex('2^{3}').toString()).toEqual('2^3');
+
+      // roots
+
+      expect(mathExpressions.fromLatex('\\sqrt{2}').toString()).toEqual('sqrt(2)');
+
+      expect(mathExpressions.fromLatex('\\sqrt[{3}]{3}').toString()).toEqual('3^(1/3)');
+
+      // fractions
+
+      expect(mathExpressions.fromLatex('\\frac{3}{3}').toString()).toEqual('3/3');
+
+      expect(mathExpressions.fromLatex('\\frac{x}{3}').toString()).toEqual('x/3');
+
+      expect(mathExpressions.fromLatex('x\\frac{5}{3}').toString()).toEqual('x (5/3)');
+
+      // geometry
+
+      // TODO BROKEN
+      // expect(mathExpressions.fromLatex('\\overline{}').toString()).toEqual('x');
+      // expect(mathExpressions.fromLatex('\\overrightarrow{x}').toString()).toEqual('x');
+      // expect(mathExpressions.fromLatex('\\overleftrightarrow{x}').toString()).toEqual('x');
+      // expect(mathExpressions.fromLatex('\\parallel').toString()).toEqual('x');
+      // expect(mathExpressions.fromLatex('\\nparallel').toString()).toEqual('x');
+      // expect(mathExpressions.fromLatex('\\perp').toString()).toEqual('x');
+      // expect(mathExpressions.fromLatex('\\angle').toString()).toEqual('x');
+      // expect(mathExpressions.fromLatex('\\overarc').toString()).toEqual('x');
+      // expect(mathExpressions.fromLatex('\\measuredangle').toString()).toEqual('x');
+      // expect(mathExpressions.fromLatex('\\triangle').toString()).toEqual('x');
+      // expect(mathExpressions.fromLatex('\\parallelogram').toString()).toEqual('x');
+      // expect(mathExpressions.fromLatex('\\odot').toString()).toEqual('x');
+      // expect(mathExpressions.fromLatex('\\degree').toString()).toEqual('x');
+      // expect(mathExpressions.fromLatex('\\sim').toString()).toEqual('x');
+      // expect(mathExpressions.fromLatex('\\cong').toString()).toEqual('x');
+      // expect(mathExpressions.fromLatex('\\ncong').toString()).toEqual('x');
+
+      // logarithms
+
+      expect(mathExpressions.fromLatex("4'").toString()).toEqual("4'");
+      expect(mathExpressions.fromLatex('\\log 4').toString()).toEqual('log(4)');
+      expect(mathExpressions.fromLatex('\\ln 4').toString()).toEqual('ln(4)');
+
+      // TODO BROKEN
+      // expect(mathExpressions.fromLatex('\\log_{4}').toString()).toEqual('log(4)');
+      // expect(mathExpressions.fromLatex('\\pm').toString()).toEqual('+-');
+      // expect(mathExpressions.fromLatex('4%').toString()).toEqual('4%');
+      // expect(mathExpressions.fromLatex('\\approx').toString()).toEqual('x');
+      // expect(mathExpressions.fromLatex('\\napprox').toString()).toEqual('x');
+      // expect(mathExpressions.fromLatex('\\neq').toString()).toEqual('4%');
+      // expect(mathExpressions.fromLatex('\\sim').toString()).toEqual('4%');
+      // expect(mathExpressions.fromLatex('\\nim').toString()).toEqual('4%');
+      // expect(mathExpressions.fromLatex('\\overline{x}').toString()).toEqual('4');
+      // expect(mathExpressions.fromLatex('\\overline').toString()).toEqual('4');
+
+      expect(mathExpressions.fromLatex('|4|').toString()).toEqual('|4|');
+      expect(mathExpressions.fromLatex('(4)').toString()).toEqual('4');
+      expect(mathExpressions.fromLatex('(4 + x) * 5').toString()).toEqual('(4 + x) * 5');
+      expect(mathExpressions.fromLatex('[4]').toString()).toEqual('4');
+      expect(mathExpressions.fromLatex('\\mu').toString()).toEqual('μ');
+      expect(mathExpressions.fromLatex('\\Sigma').toString()).toEqual('Σ');
+      expect(mathExpressions.fromLatex('x^{15}').toString()).toEqual('x^15');
+      expect(mathExpressions.fromLatex('x_{15}').toString()).toEqual('x_15');
+
+      // Trigo
+
+      expect(mathExpressions.fromLatex('\\sin(x)').toString()).toEqual('sin(x)');
+      expect(mathExpressions.fromLatex('\\cos(x)').toString()).toEqual('cos(x)');
+      expect(mathExpressions.fromLatex('\\tan(x)').toString()).toEqual('tan(x)');
+      expect(mathExpressions.fromLatex('\\sec(x)').toString()).toEqual('sec(x)');
+      expect(mathExpressions.fromLatex('\\csc(x)').toString()).toEqual('csc(x)');
+      expect(mathExpressions.fromLatex('\\cot(x)').toString()).toEqual('cot(x)');
+    });
   });
 
   // assertEqual('custom latex')('1530', `\\odot`);
