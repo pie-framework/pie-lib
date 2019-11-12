@@ -64,12 +64,11 @@ describe('math-evaluator', () => {
 
       // geometry
 
-      // TODO BROKEN
-      // expect(mathExpressions.fromLatex('\\overline{}').toString()).toEqual('x');
-      // expect(mathExpressions.fromLatex('\\overrightarrow{x}').toString()).toEqual('x');
-      // expect(mathExpressions.fromLatex('\\overleftrightarrow{x}').toString()).toEqual('x');
+      // MULTIPLY WITH VARIABLE BASED
       // expect(mathExpressions.fromLatex('\\parallel').toString()).toEqual('x');
       // expect(mathExpressions.fromLatex('\\nparallel').toString()).toEqual('x');
+      // expect(mathExpressions.fromLatex('\\overrightarrow{x}').toString()).toEqual('x');
+      // expect(mathExpressions.fromLatex('\\overleftrightarrow{x}').toString()).toEqual('x');
       // expect(mathExpressions.fromLatex('\\perp').toString()).toEqual('x');
       // expect(mathExpressions.fromLatex('\\angle').toString()).toEqual('x');
       // expect(mathExpressions.fromLatex('\\overarc').toString()).toEqual('x');
@@ -81,24 +80,25 @@ describe('math-evaluator', () => {
       // expect(mathExpressions.fromLatex('\\sim').toString()).toEqual('x');
       // expect(mathExpressions.fromLatex('\\cong').toString()).toEqual('x');
       // expect(mathExpressions.fromLatex('\\ncong').toString()).toEqual('x');
+      // expect(mathExpressions.fromLatex('\\napprox').toString()).toEqual('x'); // UNRECOGNIZED BY LEARNOSITY
+      // expect(mathExpressions.fromLatex('\\nim').toString()).toEqual('4%'); // UNRECOGNIZED BY LEARNOSITY
+      // expect(mathExpressions.fromLatex('\\sim').toString()).toEqual('4%');
+
+      // ACTUAL OPERATOR BASED
+      // expect(mathExpressions.fromLatex('\\overline{}').toString()).toEqual('x');
+      // expect(mathExpressions.fromLatex('\\pm').toString()).toEqual('+-');
+      // expect(mathExpressions.fromLatex('4%').toString()).toEqual('4%');
+      // expect(mathExpressions.fromLatex('\\approx').toString()).toEqual('x');
+      // expect(mathExpressions.fromLatex('\\neq').toString()).toEqual('4%');
+      // expect(mathExpressions.fromLatex('\\overline{x}').toString()).toEqual('4');
+      // expect(mathExpressions.fromLatex('\\overline').toString()).toEqual('4');
 
       // logarithms
 
       expect(mathExpressions.fromLatex("4'").toString()).toEqual("4'");
       expect(mathExpressions.fromLatex('\\log 4').toString()).toEqual('log(4)');
+      expect(mathExpressions.fromLatex('\\log(4x)').toString()).toEqual('log(4 x)');
       expect(mathExpressions.fromLatex('\\ln 4').toString()).toEqual('ln(4)');
-
-      // TODO BROKEN
-      // expect(mathExpressions.fromLatex('\\log_{4}').toString()).toEqual('log(4)');
-      // expect(mathExpressions.fromLatex('\\pm').toString()).toEqual('+-');
-      // expect(mathExpressions.fromLatex('4%').toString()).toEqual('4%');
-      // expect(mathExpressions.fromLatex('\\approx').toString()).toEqual('x');
-      // expect(mathExpressions.fromLatex('\\napprox').toString()).toEqual('x');
-      // expect(mathExpressions.fromLatex('\\neq').toString()).toEqual('4%');
-      // expect(mathExpressions.fromLatex('\\sim').toString()).toEqual('4%');
-      // expect(mathExpressions.fromLatex('\\nim').toString()).toEqual('4%');
-      // expect(mathExpressions.fromLatex('\\overline{x}').toString()).toEqual('4');
-      // expect(mathExpressions.fromLatex('\\overline').toString()).toEqual('4');
 
       expect(mathExpressions.fromLatex('|4|').toString()).toEqual('|4|');
       expect(mathExpressions.fromLatex('(4)').toString()).toEqual('4');
