@@ -30,93 +30,98 @@ describe('math-evaluator', () => {
     areValuesEqual('1', '\\overleftrightarrow{1234}', { isLatex: true, allowDecimals: true });
   });
 
+  function fromLatexToString(latex, { unknownCommands = 'passthrough' } = {}) {
+    return mathExpressions.fromLatex(latex, { unknownCommands }).toString();
+  }
+
   describe('PIE-188-math-expressions', () => {
     it('parses expressions correctly', async () => {
       // comparisons
 
-      expect(mathExpressions.fromLatex('1 \\lt 2').toString()).toEqual('1 < 2');
+      expect(fromLatexToString('1 \\lt 2')).toEqual('1 < 2');
 
-      expect(mathExpressions.fromLatex('1 \\gt 2').toString()).toEqual('1 > 2');
+      expect(fromLatexToString('1 \\gt 2')).toEqual('1 > 2');
 
-      expect(mathExpressions.fromLatex('1 \\le 2').toString()).toEqual('1 ≤ 2');
+      expect(fromLatexToString('1 \\le 2')).toEqual('1 ≤ 2');
 
-      expect(mathExpressions.fromLatex('1 \\ge 2').toString()).toEqual('1 ≥ 2');
+      expect(fromLatexToString('1 \\ge 2')).toEqual('1 ≥ 2');
 
       // exponents
 
-      expect(mathExpressions.fromLatex('2^2').toString()).toEqual('2^2');
+      expect(fromLatexToString('2^2')).toEqual('2^2');
 
-      expect(mathExpressions.fromLatex('2^{3}').toString()).toEqual('2^3');
+      expect(fromLatexToString('2^{3}')).toEqual('2^3');
 
       // roots
 
-      expect(mathExpressions.fromLatex('\\sqrt{2}').toString()).toEqual('sqrt(2)');
+      expect(fromLatexToString('\\sqrt{2}')).toEqual('sqrt(2)');
 
-      expect(mathExpressions.fromLatex('\\sqrt[{3}]{3}').toString()).toEqual('3^(1/3)');
+      expect(fromLatexToString('\\sqrt[{3}]{3}')).toEqual('3^(1/3)');
 
       // fractions
 
-      expect(mathExpressions.fromLatex('\\frac{3}{3}').toString()).toEqual('3/3');
+      expect(fromLatexToString('\\frac{3}{3}')).toEqual('3/3');
 
-      expect(mathExpressions.fromLatex('\\frac{x}{3}').toString()).toEqual('x/3');
+      expect(fromLatexToString('\\frac{x}{3}')).toEqual('x/3');
 
-      expect(mathExpressions.fromLatex('x\\frac{5}{3}').toString()).toEqual('x (5/3)');
+      expect(fromLatexToString('x\\frac{5}{3}')).toEqual('x (5/3)');
 
       // geometry
 
       // MULTIPLY WITH VARIABLE BASED
-      // expect(mathExpressions.fromLatex('\\parallel').toString()).toEqual('x');
-      // expect(mathExpressions.fromLatex('\\nparallel').toString()).toEqual('x');
-      // expect(mathExpressions.fromLatex('\\overrightarrow{x}').toString()).toEqual('x');
-      // expect(mathExpressions.fromLatex('\\overleftrightarrow{x}').toString()).toEqual('x');
-      // expect(mathExpressions.fromLatex('\\perp').toString()).toEqual('x');
-      // expect(mathExpressions.fromLatex('\\angle').toString()).toEqual('x');
-      // expect(mathExpressions.fromLatex('\\overarc').toString()).toEqual('x');
-      // expect(mathExpressions.fromLatex('\\measuredangle').toString()).toEqual('x');
-      // expect(mathExpressions.fromLatex('\\triangle').toString()).toEqual('x');
-      // expect(mathExpressions.fromLatex('\\parallelogram').toString()).toEqual('x');
-      // expect(mathExpressions.fromLatex('\\odot').toString()).toEqual('x');
-      // expect(mathExpressions.fromLatex('\\degree').toString()).toEqual('x');
-      // expect(mathExpressions.fromLatex('\\sim').toString()).toEqual('x');
-      // expect(mathExpressions.fromLatex('\\cong').toString()).toEqual('x');
-      // expect(mathExpressions.fromLatex('\\ncong').toString()).toEqual('x');
-      // expect(mathExpressions.fromLatex('\\napprox').toString()).toEqual('x'); // UNRECOGNIZED BY LEARNOSITY
-      // expect(mathExpressions.fromLatex('\\nim').toString()).toEqual('4%'); // UNRECOGNIZED BY LEARNOSITY
-      // expect(mathExpressions.fromLatex('\\sim').toString()).toEqual('4%');
+      expect(fromLatexToString('\\parallel x')).toEqual('parallel x');
+      expect(fromLatexToString('\\nparallel x')).toEqual('nparallel x');
+      expect(fromLatexToString('\\overrightarrow{x}')).toEqual('overrightarrow x');
+      expect(fromLatexToString('\\overleftrightarrow{x}')).toEqual('overleftrightarrow x');
+      expect(fromLatexToString('\\perp x')).toEqual('perp x');
+      expect(fromLatexToString('\\angle x')).toEqual('angle x');
+      expect(fromLatexToString('\\overarc x')).toEqual('overarc x');
+      expect(fromLatexToString('\\measuredangle x')).toEqual('measuredangle x');
+      expect(fromLatexToString('\\triangle x')).toEqual('triangle x');
+      expect(fromLatexToString('\\parallelogram x')).toEqual('parallelogram x');
+      expect(fromLatexToString('\\odot x')).toEqual('odot x');
+      expect(fromLatexToString('\\degree x')).toEqual('degree x');
+      expect(fromLatexToString('\\sim x')).toEqual('sim x');
+      expect(fromLatexToString('\\cong x')).toEqual('cong x');
+      expect(fromLatexToString('\\ncong x')).toEqual('ncong x');
+      expect(fromLatexToString('\\napprox x')).toEqual('napprox x'); // UNRECOGNIZED BY LEARNOSITY
+      expect(fromLatexToString('\\nim x')).toEqual('nim x'); // UNRECOGNIZED BY LEARNOSITY
+      expect(fromLatexToString('\\sim x')).toEqual('sim x');
+      expect(() => fromLatexToString('\\sim 4', { unknownCommands: 'error' })).toThrow();
 
       // ACTUAL OPERATOR BASED
-      // expect(mathExpressions.fromLatex('\\overline{}').toString()).toEqual('x');
-      // expect(mathExpressions.fromLatex('\\pm').toString()).toEqual('+-');
-      // expect(mathExpressions.fromLatex('4%').toString()).toEqual('4%');
-      // expect(mathExpressions.fromLatex('\\approx').toString()).toEqual('x');
-      // expect(mathExpressions.fromLatex('\\neq').toString()).toEqual('4%');
-      // expect(mathExpressions.fromLatex('\\overline{x}').toString()).toEqual('4');
-      // expect(mathExpressions.fromLatex('\\overline').toString()).toEqual('4');
+      // expect(fromLatexToString('\\overline{}')).toEqual('x');
+      // expect(fromLatexToString('\\pm')).toEqual('+-');
+      // expect(fromLatexToString('4%')).toEqual('4%');
+      // expect(fromLatexToString('\\approx')).toEqual('x');
+      // expect(fromLatexToString('\\neq')).toEqual('4%');
+      // expect(fromLatexToString('\\overline{x}')).toEqual('4');
+      // expect(fromLatexToString('\\overline{x}')).toEqual('4');
 
       // logarithms
 
-      expect(mathExpressions.fromLatex("4'").toString()).toEqual("4'");
-      expect(mathExpressions.fromLatex('\\log 4').toString()).toEqual('log(4)');
-      expect(mathExpressions.fromLatex('\\log(4x)').toString()).toEqual('log(4 x)');
-      expect(mathExpressions.fromLatex('\\ln 4').toString()).toEqual('ln(4)');
+      expect(fromLatexToString("4'")).toEqual("4'");
+      expect(fromLatexToString('\\log 4')).toEqual('log(4)');
+      expect(fromLatexToString('\\log(4x)')).toEqual('log(4 x)');
+      expect(fromLatexToString('\\ln 4')).toEqual('ln(4)');
 
-      expect(mathExpressions.fromLatex('|4|').toString()).toEqual('|4|');
-      expect(mathExpressions.fromLatex('(4)').toString()).toEqual('4');
-      expect(mathExpressions.fromLatex('(4 + x) * 5').toString()).toEqual('(4 + x) * 5');
-      expect(mathExpressions.fromLatex('[4]').toString()).toEqual('4');
-      expect(mathExpressions.fromLatex('\\mu').toString()).toEqual('μ');
-      expect(mathExpressions.fromLatex('\\Sigma').toString()).toEqual('Σ');
-      expect(mathExpressions.fromLatex('x^{15}').toString()).toEqual('x^15');
-      expect(mathExpressions.fromLatex('x_{15}').toString()).toEqual('x_15');
+      expect(fromLatexToString('|4|')).toEqual('|4|');
+      expect(fromLatexToString('(4)')).toEqual('4');
+      expect(fromLatexToString('(4 + x) * 5')).toEqual('(4 + x) * 5');
+      expect(fromLatexToString('[4]')).toEqual('4');
+      expect(fromLatexToString('\\mu')).toEqual('μ');
+      expect(fromLatexToString('\\Sigma')).toEqual('Σ');
+      expect(fromLatexToString('x^{15}')).toEqual('x^15');
+      expect(fromLatexToString('x_{15}')).toEqual('x_15');
 
       // Trigo
 
-      expect(mathExpressions.fromLatex('\\sin(x)').toString()).toEqual('sin(x)');
-      expect(mathExpressions.fromLatex('\\cos(x)').toString()).toEqual('cos(x)');
-      expect(mathExpressions.fromLatex('\\tan(x)').toString()).toEqual('tan(x)');
-      expect(mathExpressions.fromLatex('\\sec(x)').toString()).toEqual('sec(x)');
-      expect(mathExpressions.fromLatex('\\csc(x)').toString()).toEqual('csc(x)');
-      expect(mathExpressions.fromLatex('\\cot(x)').toString()).toEqual('cot(x)');
+      expect(fromLatexToString('\\sin(x)')).toEqual('sin(x)');
+      expect(fromLatexToString('\\cos(x)')).toEqual('cos(x)');
+      expect(fromLatexToString('\\tan(x)')).toEqual('tan(x)');
+      expect(fromLatexToString('\\sec(x)')).toEqual('sec(x)');
+      expect(fromLatexToString('\\csc(x)')).toEqual('csc(x)');
+      expect(fromLatexToString('\\cot(x)')).toEqual('cot(x)');
     });
   });
 
