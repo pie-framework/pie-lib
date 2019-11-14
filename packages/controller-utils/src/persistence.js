@@ -9,19 +9,29 @@ const log = lg('log');
 const warn = lg('warn');
 const error = lg('error');
 
-export const getShuffledChoices = (choices, session, updateSession, key) =>
+export const getShuffledChoices = (choices, session, updateSession, key, extraKey) =>
+  // the extraKey property is currently used for ebsr, making the difference between partA and partB
   new Promise(resolve => {
     log('updateSession type: ', typeof updateSession);
     log('session: ', session);
 
-    const currentShuffled = compact((session || {}).shuffledValues);
+    const { shuffledValues: existingShuffledValues } = session || {};
+    let currentShuffled = [];
+
+    if (extraKey) {
+      currentShuffled = compact(existingShuffledValues && existingShuffledValues[extraKey]);
+    } else {
+      currentShuffled = compact(existingShuffledValues);
+    }
 
     if (!session) {
       // eslint-disable-next-line quotes
       warn("unable to save shuffled choices because there's no session.");
+
       resolve(undefined);
     } else if (!isEmpty(currentShuffled)) {
       debug('use shuffledValues to sort the choices...', session.shuffledValues);
+
       resolve(compact(currentShuffled.map(v => choices.find(c => c[key] === v))));
     } else {
       const shuffledChoices = shuffle(choices);
@@ -30,8 +40,10 @@ export const getShuffledChoices = (choices, session, updateSession, key) =>
         try {
           //Note: session.id refers to the id of the element within a session
           const shuffledValues = compact(shuffledChoices.map(c => c[key]));
+
           log('try to save shuffledValues to session...', shuffledValues);
           log('call updateSession... ', session.id, session.element);
+
           if (isEmpty(shuffledValues)) {
             error(
               `shuffledValues is an empty array? - refusing to call updateSession: shuffledChoices: ${JSON.stringify(
@@ -39,7 +51,20 @@ export const getShuffledChoices = (choices, session, updateSession, key) =>
               )}, key: ${key}`
             );
           } else {
-            updateSession(session.id, session.element, { shuffledValues }).catch(e =>
+            let nextShuffledValues;
+
+            if (extraKey) {
+              nextShuffledValues = {
+                ...session.shuffledValues,
+                [extraKey]: shuffledValues
+              };
+            } else {
+              nextShuffledValues = shuffledValues;
+            }
+
+            updateSession(session.id, session.element, {
+              shuffledValues: nextShuffledValues
+            }).catch(e =>
               // eslint-disable-next-line no-console
               console.error('update session failed for: ', session.id, e)
             );

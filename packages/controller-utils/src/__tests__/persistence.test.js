@@ -74,5 +74,40 @@ describe('persistence', () => {
         shuffledValues: expect.arrayContaining([1, 2])
       });
     });
+
+    it('calls updateSession as expected if there is an extraKey', async () => {
+      session = { id: '1', element: 'pie-element' };
+
+      await getShuffledChoices(choices, session, updateSession, key, 'extraKey');
+
+      expect(updateSession).toHaveBeenCalledWith('1', 'pie-element', {
+        shuffledValues: {
+          extraKey: expect.arrayContaining([1, 2])
+        }
+      });
+    });
+
+    it('calls updateSession as expected if there is an extraKey and shuffledValues was already defined', async () => {
+      await getShuffledChoices(
+        choices,
+        {
+          id: '1',
+          element: 'pie-element',
+          shuffledValues: {
+            extraKey: [1, 2]
+          }
+        },
+        updateSession,
+        key,
+        'extraExtraKey'
+      );
+
+      expect(updateSession).toHaveBeenCalledWith('1', 'pie-element', {
+        shuffledValues: {
+          extraKey: expect.arrayContaining([1, 2]),
+          extraExtraKey: expect.arrayContaining([1, 2])
+        }
+      });
+    });
   });
 });
