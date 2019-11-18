@@ -1,4 +1,5 @@
 import areValuesEqual, { ave } from '../index';
+import mathExpressions from 'math-expressions';
 import _ from 'lodash';
 
 describe('math-evaluator', () => {
@@ -18,23 +19,142 @@ describe('math-evaluator', () => {
 
   const assertEqual = assert(true);
   const assertNotEqual = assert(false);
-  // it.only('??', () => {
+
+  // it.skip('??', () => {
   //   areValuesEqual('1', '\\odot', {
   //     isLatex: true,
   //     allowDecimals: true
   //   });
   // });
-  // it.only('overleftrightarrow', () => {
+  // it.skip('overleftrightarrow', () => {
   //   areValuesEqual('1', '\\overleftrightarrow{1234}', { isLatex: true, allowDecimals: true });
   // });
 
-  it.only('?', () => {
-    // expect(areValuesEqual('foo * 3', 'foo 3', { isLatex: false })).toEqual(true);
-    // expect(areValuesEqual('3 * f', 'f * 3', { isLatex: true })).toEqual(true);
-    expect(ave('77 circledot 88', '88 circledot 77')).toEqual(true);
-    expect(ave('77 dot 88', '88 dot 77')).toEqual(true);
-    // expect(areValuesEqual('3 * foo', 'foo * 3', { isLatex: false })).toEqual(true);
-    // expect(areValuesEqual('3 * 2', '2 * 3', { isLatex: false })).toEqual(true);
+  function fromLatexToString(latex, { unknownCommands = 'passthrough' } = {}) {
+    return mathExpressions.fromLatex(latex, { unknownCommands }).toString();
+  }
+
+  // itify = (fn) => {
+
+  //   const root = fn;
+  //   root.only =
+  // }
+
+  // const ii = itify( it('a', () => {}))
+
+  const _amjs = only => (a, b, equal) => {
+    const fn = only ? it.only : it;
+    fn(`${a} === ${b} => ${equal}`, () => {
+      const as = fromLatexToString(a);
+      const bs = fromLatexToString(b);
+      expect(ave(as, bs)).toEqual(equal);
+    });
+  };
+
+  const assertThroughMathJs = _amjs(false);
+  assertThroughMathJs.only = _amjs(true);
+
+  const _als = only => (input, expected) => {
+    const fn = only ? it.only : it;
+    fn(`${input} => ${expected}`, () => {
+      expect(fromLatexToString(input)).toEqual(expected);
+    });
+  };
+
+  const assertLatextFromString = _als(false);
+  assertLatextFromString.only = _als(true);
+  describe('PIE-188-math-expressions', () => {
+    // it('parses expressions correctly', async () => {
+
+    // geometry
+
+    // MULTIPLY WITH VARIABLE BASED
+    // assertLatextFromString.only('\\parallel x', 'parallel x');
+    assertThroughMathJs.only('\\parallel x', '\\parallel x', true);
+    assertThroughMathJs.only('\\parallel x', '\\parallel   x', true);
+    assertThroughMathJs.only('\\parallel x', '\\parallel   0', false);
+    assertThroughMathJs.only('\\overrightarrow{x + 4}', '\\overrightarrow {4 + x}', true);
+    assertLatextFromString('\\nparallel x', 'nparallel x');
+    assertLatextFromString('\\overrightarrow{x}', 'overrightarrow x');
+    assertLatextFromString('\\overleftrightarrow{x}', 'overleftrightarrow x');
+    assertLatextFromString('\\perp x', 'perp x');
+    assertLatextFromString('\\angle x', 'angle x');
+    assertLatextFromString('\\overarc x', 'overarc x');
+    assertLatextFromString('\\measuredangle x', 'measuredangle x');
+    assertLatextFromString('\\triangle x', 'triangle x');
+    assertLatextFromString('\\parallelogram x', 'parallelogram x');
+    assertLatextFromString('\\odot x', 'odot x');
+    assertLatextFromString('\\degree x', 'degree x');
+    assertLatextFromString('\\sim x', 'sim x');
+    assertLatextFromString('\\cong x', 'cong x');
+    assertLatextFromString('\\ncong x', 'ncong x');
+    assertLatextFromString('\\napprox x', 'napprox x'); // UNRECOGNIZED BY LEARNOSITY
+    assertLatextFromString('\\nim x', 'nim x'); // UNRECOGNIZED BY LEARNOSITY
+    assertLatextFromString('\\sim x', 'sim x');
+    expect(() => fromLatexToString('\\sim 4', { unknownCommands: 'error' })).toThrow();
+
+    // comparisons
+
+    assertLatextFromString('1 \\lt 2', '1 < 2');
+
+    assertLatextFromString('1 \\gt 2', '1 > 2');
+
+    assertLatextFromString('1 \\le 2', '1 ≤ 2');
+
+    assertLatextFromString('1 \\ge 2', '1 ≥ 2');
+
+    // exponents
+
+    assertLatextFromString('2^2', '2^2');
+
+    assertLatextFromString('2^{3}', '2^3');
+
+    // roots
+
+    assertLatextFromString('\\sqrt{2}', 'sqrt(2)');
+
+    assertLatextFromString('\\sqrt[{3}]{3}', '3^(1/3)');
+
+    // fractions
+
+    assertLatextFromString('\\frac{3}{3}', '3/3');
+
+    assertLatextFromString('\\frac{x}{3}', 'x/3');
+
+    assertLatextFromString('x\\frac{5}{3}', 'x (5/3)');
+    // ACTUAL OPERATOR BASED
+    // assertLatextFromString('\\overline{}', 'x');
+    // assertLatextFromString('\\pm', '+-');
+    // assertLatextFromString('4%', '4%');
+    // assertLatextFromString('\\approx', 'x');
+    // assertLatextFromString('\\neq', '4%');
+    // assertLatextFromString('\\overline{x}', '4');
+    // assertLatextFromString('\\overline{x}', '4');
+
+    // logarithms
+
+    assertLatextFromString("4'", "4'");
+    assertLatextFromString('\\log 4', 'log(4)');
+    assertLatextFromString('\\log(4x)', 'log(4 x)');
+    assertLatextFromString('\\ln 4', 'ln(4)');
+
+    assertLatextFromString('|4|', '|4|');
+    assertLatextFromString('(4)', '4');
+    assertLatextFromString('(4 + x) * 5', '(4 + x) * 5');
+    assertLatextFromString('[4]', '4');
+    assertLatextFromString('\\mu', 'μ');
+    assertLatextFromString('\\Sigma', 'Σ');
+    assertLatextFromString('x^{15}', 'x^15');
+    assertLatextFromString('x_{15}', 'x_15');
+
+    // Trigo
+
+    assertLatextFromString('\\sin(x)', 'sin(x)');
+    assertLatextFromString('\\cos(x)', 'cos(x)');
+    assertLatextFromString('\\tan(x)', 'tan(x)');
+    assertLatextFromString('\\sec(x)', 'sec(x)');
+    assertLatextFromString('\\csc(x)', 'csc(x)');
+    assertLatextFromString('\\cot(x)', 'cot(x)');
   });
 
   // assertEqual('custom latex')('1530', `\\odot`);

@@ -120,11 +120,13 @@ export default function areValuesEqual(valueOne, valueTwo, options = {}) {
 }
 
 export const ave = (a, b) => {
+  console.log('a:', a);
+  console.log('b:', b);
   const am = mathjs.parse(a);
   const bm = mathjs.parse(b);
 
-  console.log(JSON.stringify(am, null, '  '));
-  console.log(JSON.stringify(bm, null, '  '));
+  // console.log(JSON.stringify(am, null, '  '));
+  // console.log(JSON.stringify(bm, null, '  '));
 
   const arm = mathjs.rationalize(am);
   const brm = mathjs.rationalize(bm);
