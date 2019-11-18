@@ -20,6 +20,20 @@ describe('persistence', () => {
     key = 'value';
   });
 
+  describe('0 key', () => {
+    it('calls update session w/ 0 as a key', async () => {
+      const result = await getShuffledChoices(
+        [{ value: 0 }, { value: 1 }],
+        session,
+        updateSession,
+        'value'
+      );
+      expect(updateSession).toHaveBeenCalledWith(session.id, session.element, {
+        shuffledValues: expect.arrayContaining([0, 1])
+      });
+    });
+  });
+
   describe('handles null values in session', () => {
     beforeEach(async () => {
       const result = await getShuffledChoices(
@@ -36,7 +50,6 @@ describe('persistence', () => {
       });
     });
   });
-
   describe('bad shuffle generation does not call updateSession', () => {
     beforeEach(async () => {
       const result = await getShuffledChoices(choices, {}, updateSession, 'foo');

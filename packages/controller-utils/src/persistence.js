@@ -1,6 +1,7 @@
 import shuffle from 'lodash/shuffle';
-import compact from 'lodash/compact';
 import isEmpty from 'lodash/isEmpty';
+import isNull from 'lodash/isNull';
+import isUndefined from 'lodash/isUndefined';
 
 // eslint-disable-next-line no-console
 const lg = n => console[n].bind(console, 'controller-utils:');
@@ -8,6 +9,13 @@ const debug = lg('debug');
 const log = lg('log');
 const warn = lg('warn');
 const error = lg('error');
+
+export const compact = arr => {
+  if (Array.isArray(arr)) {
+    return arr.filter(v => !isNull(v) && !isUndefined(v));
+  }
+  return arr;
+};
 
 export const getShuffledChoices = (choices, session, updateSession, key) =>
   new Promise(resolve => {
