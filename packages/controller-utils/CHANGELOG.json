@@ -58,5 +58,20 @@
     "committerDate": "2019-10-14 13:47:35 +0100",
     "isTagged": true,
     "tag": "@pie-lib/controller-utils@0.2.2"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "allow number 0 to be used as value in shuffledValues",
+    "merge": null,
+    "header": "fix: allow number 0 to be used as value in shuffledValues",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "874127ce12bcfa6403d7b883b469f3fd2f09a365",
+    "gitTags": " (origin/develop, origin/HEAD, develop)",
+    "committerDate": "2019-11-18 11:28:05 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/controller-utils@0.2.3"
   }
 ]
