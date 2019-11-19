@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.5.3...@pie-lib/mask-markup@1.5.4) (2019-11-18)
+
+
+### Bug Fixes
+
+* PIE-110 - trim some whitespace ([0dcefb4](https://github.com/pie-framework/pie-lib/commit/0dcefb4))
+
+
+
+
+
 ## [1.5.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.5.2...@pie-lib/mask-markup@1.5.3) (2019-11-07)
 
 **Note:** Version bump only for package @pie-lib/mask-markup

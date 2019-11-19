@@ -9,12 +9,26 @@ const Paragraph = withStyles(theme => ({
   }
 }))(props => <div className={props.classes.para}>{props.children}</div>);
 
-export const renderChildren = (layout, value, onChange, rootRenderChildren) => {
+const restrictWhitespaceTypes = ['tbody', 'tr'];
+
+const addText = (parentNode, text) => {
+  const isWhitespace = text.trim() === '';
+  const parentType = parentNode && parentNode.type;
+
+  if (isWhitespace && restrictWhitespaceTypes.includes(parentType)) {
+    return undefined;
+  } else {
+    return text;
+  }
+};
+
+export const renderChildren = (layout, value, onChange, rootRenderChildren, parentNode) => {
   if (!value) {
     return null;
   }
 
   const children = [];
+
   (layout.nodes || []).forEach((n, index) => {
     const key = `${n.type}-${index}`;
 
@@ -28,23 +42,28 @@ export const renderChildren = (layout, value, onChange, rootRenderChildren) => {
 
     if (n.object === 'text') {
       const content = n.leaves.reduce((acc, l) => {
-        return acc + l.text;
+        const t = l.text;
+        const extraText = addText(parentNode, t);
+        return extraText ? acc + extraText : acc;
       }, '');
-      children.push(content);
-    } else if (n.type === 'p' || n.type === 'paragraph') {
-      children.push(
-        <Paragraph key={key}>{renderChildren(n, value, onChange, rootRenderChildren)}</Paragraph>
-      );
+      if (content.length > 0) {
+        children.push(content);
+      }
     } else {
-      const Tag = n.type;
-      if (n.nodes && n.nodes.length > 0) {
-        children.push(
-          <Tag key={key} {...n.data.attributes}>
-            {renderChildren(n, value, onChange, rootRenderChildren)}
-          </Tag>
-        );
+      const subNodes = renderChildren(n, value, onChange, rootRenderChildren, n);
+      if (n.type === 'p' || n.type === 'paragraph') {
+        children.push(<Paragraph key={key}>{subNodes}</Paragraph>);
       } else {
-        children.push(<Tag key={key} {...n.data.attributes} />);
+        const Tag = n.type;
+        if (n.nodes && n.nodes.length > 0) {
+          children.push(
+            <Tag key={key} {...n.data.attributes}>
+              {subNodes}
+            </Tag>
+          );
+        } else {
+          children.push(<Tag key={key} {...n.data.attributes} />);
+        }
       }
     }
   });

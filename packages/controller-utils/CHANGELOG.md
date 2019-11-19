@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/controller-utils@0.2.2...@pie-lib/controller-utils@0.2.3) (2019-11-18)
+
+
+### Bug Fixes
+
+* allow number 0 to be used as value in shuffledValues ([874127c](https://github.com/pie-framework/pie-lib/commit/874127c))
+
+
+
+
+
 ## [0.2.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/controller-utils@0.2.1...@pie-lib/controller-utils@0.2.2) (2019-10-15)
 
 

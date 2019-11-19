@@ -30,6 +30,15 @@ const axisStyles = theme => ({
     '& > line': {
       stroke: theme.palette.primary.main
     }
+  },
+  axisLabelHolder: {
+    padding: 0,
+    margin: 0,
+    textAlign: 'center',
+    '* > *': {
+      margin: 0,
+      padding: 0
+    }
   }
 });
 
@@ -85,9 +94,9 @@ export class RawXAxis extends React.Component {
           <Arrow direction="right" x={domain.max} y={0} className={classes.arrow} scale={scale} />
         )}
         {domain.axisLabel && (
-          <text x={size.width + 20} y={scale.y(0) + 5} textAnchor="middle">
-            {domain.axisLabel}
-          </text>
+          <foreignObject x={size.width + 10} y={scale.y(0) - 10} width={100} height={20}>
+            <div dangerouslySetInnerHTML={{ __html: domain.axisLabel }}></div>
+          </foreignObject>
         )}
       </React.Fragment>
     );
@@ -147,9 +156,12 @@ export class RawYAxis extends React.Component {
           <Arrow direction="up" x={0} y={range.max} className={classes.arrow} scale={scale} />
         )}
         {range.axisLabel && (
-          <text x={scale.x(0)} y={-10} textAnchor="middle">
-            {range.axisLabel}
-          </text>
+          <foreignObject x={scale.x(0) - 50} y={-25} width="100" height="20">
+            <div
+              dangerouslySetInnerHTML={{ __html: range.axisLabel }}
+              className={classes.axisLabelHolder}
+            ></div>
+          </foreignObject>
         )}
       </React.Fragment>
     );
