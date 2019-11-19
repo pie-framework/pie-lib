@@ -70,10 +70,12 @@ describe('math-evaluator', () => {
 
     // MULTIPLY WITH VARIABLE BASED
     // assertLatextFromString.only('\\parallel x', 'parallel x');
-    assertThroughMathJs.only('\\parallel x', '\\parallel x', true);
-    assertThroughMathJs.only('\\parallel x', '\\parallel   x', true);
-    assertThroughMathJs.only('\\parallel x', '\\parallel   0', false);
-    assertThroughMathJs.only('\\overrightarrow{x + 4}', '\\overrightarrow {4 + x}', true);
+    assertThroughMathJs('\\parallel x', '\\parallel x', true);
+    assertThroughMathJs('\\parallel x', '\\parallel   x', true);
+    assertThroughMathJs('\\parallel x', '\\parallel   0', false);
+    assertThroughMathJs('\\overrightarrow{x + 4}', '\\overrightarrow {4 + x}', true);
+    assertThroughMathJs('\\overrightarrow{4x^2 + 4}', '\\overrightarrow {4x^2 + 8 - 4}', true);
+    assertThroughMathJs('\\overrightarrow{21*2*x}', '\\overrightarrow {42x}', true);
     assertLatextFromString('\\nparallel x', 'nparallel x');
     assertLatextFromString('\\overrightarrow{x}', 'overrightarrow x');
     assertLatextFromString('\\overleftrightarrow{x}', 'overleftrightarrow x');
@@ -122,14 +124,13 @@ describe('math-evaluator', () => {
     assertLatextFromString('\\frac{x}{3}', 'x/3');
 
     assertLatextFromString('x\\frac{5}{3}', 'x (5/3)');
+
     // ACTUAL OPERATOR BASED
-    // assertLatextFromString('\\overline{}', 'x');
-    // assertLatextFromString('\\pm', '+-');
-    // assertLatextFromString('4%', '4%');
-    // assertLatextFromString('\\approx', 'x');
-    // assertLatextFromString('\\neq', '4%');
-    // assertLatextFromString('\\overline{x}', '4');
-    // assertLatextFromString('\\overline{x}', '4');
+    assertLatextFromString('\\overline{x}', 'overline x');
+    assertLatextFromString('\\pm', 'pm');
+    assertLatextFromString('\\approx x', 'approx x');
+    // assertLatextFromString('3%', '3%');
+    // assertLatextFromString('\\neq{x}', 'neq x');
 
     // logarithms
 

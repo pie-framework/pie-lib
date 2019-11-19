@@ -5,23 +5,23 @@ const decimalCommaRegex = /,/g;
 const decimalRegex = /\.|,/g;
 const decimalWithThousandSeparatorNumberRegex = /^(?!0+\.00)(?=.{1,9}(\.|$))(?!0(?!\.))\d{1,3}(,\d{3})*(\.\d+)?$/;
 
-function rationalizeAllPossibleSubNodes(expression) {
-  const tree = mathjs.parse(expression);
-  console.log('tree:', JSON.stringify(tree, null, '  '));
-  const transformedTree = tree.transform(node => {
-    try {
-      const rationalizedNode = mathjs.rationalize(node);
+// function rationalizeAllPossibleSubNodes(expression) {
+//   const tree = mathjs.parse(expression);
+//   console.log('tree:', JSON.stringify(tree, null, '  '));
+//   const transformedTree = tree.transform(node => {
+//     try {
+//       const rationalizedNode = mathjs.rationalize(node);
+//
+//       return rationalizedNode;
+//     } catch {
+//       return node;
+//     }
+//   });
+//
+//   return transformedTree;
+// }
 
-      return rationalizedNode;
-    } catch {
-      return node;
-    }
-  });
-
-  return transformedTree;
-}
-
-function prepareExpression(string, isLatex) {
+function prepareExpression(string /*, isLatex*/) {
   return string;
   // let returnValue = string ? string.trim() : '';
 
@@ -109,10 +109,10 @@ export default function areValuesEqual(valueOne, valueTwo, options = {}) {
     ? mathjs.rationalize(preparedValueTwo)
     : preparedValueTwo;
 
-  // one = mathjs.simplify(one);
-  // two = mathjs.simplify(two);
+  one = mathjs.simplify(one);
+  two = mathjs.simplify(two);
 
-  console.log('one:', one);
+  // console.log('one:', one);
 
   const equals = one.equals(two);
 
@@ -120,15 +120,13 @@ export default function areValuesEqual(valueOne, valueTwo, options = {}) {
 }
 
 export const ave = (a, b) => {
-  console.log('a:', a);
-  console.log('b:', b);
   const am = mathjs.parse(a);
   const bm = mathjs.parse(b);
 
   // console.log(JSON.stringify(am, null, '  '));
   // console.log(JSON.stringify(bm, null, '  '));
 
-  const arm = mathjs.rationalize(am);
-  const brm = mathjs.rationalize(bm);
+  const arm = mathjs.simplify(am);
+  const brm = mathjs.simplify(bm);
   return arm.equals(brm);
 };
