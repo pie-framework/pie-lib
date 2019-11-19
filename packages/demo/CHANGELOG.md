@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.22](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.21...@pie-lib/demo@5.3.22) (2019-11-19)
+
+
+### Bug Fixes
+
+* ch3738 - support html in axis label ([82bfca1](https://github.com/pie-framework/pie-lib/commit/82bfca1))
+
+
+
+
+
 ## [5.3.21](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.20...@pie-lib/demo@5.3.21) (2019-11-18)
 
 **Note:** Version bump only for package @pie-lib/demo
