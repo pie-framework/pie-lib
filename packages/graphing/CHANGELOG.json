@@ -513,5 +513,20 @@
     "committerDate": "2019-10-02 10:38:14 +0300",
     "isTagged": true,
     "tag": "@pie-lib/graphing@1.2.5"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "ch3738 - support html in axis label",
+    "merge": null,
+    "header": "fix: ch3738 - support html in axis label",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "82bfca132c3524b7f4732cb6f382729f650ac9c9",
+    "gitTags": "",
+    "committerDate": "2019-11-19 19:10:08 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/graphing@1.2.6"
   }
 ]
