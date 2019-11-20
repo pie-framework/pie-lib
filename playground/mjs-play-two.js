@@ -222,12 +222,12 @@ const messing = () => {
 // tryEquals('overline(a + b) - c', 'c - overline(a + b)');
 // tryEquals('a * overline(a + b) * c', 'c * overline(a + b) * a');
 
-const a = math.parse('1 == 2');
-console.log(a);
-tryEquals('1 != 2', '2 != 1');
-tryEquals('a != b', 'b != a');
-tryEquals('overline(a + b) != foo(c + d)', 'foo(d + c) != overline(b + a)');
-tryEquals('a == b', 'b == a');
+// const a = math.parse('1 == 2');
+// console.log(a);
+// tryEquals('1 != 2', '2 != 1');
+// tryEquals('a != b', 'b != a');
+// tryEquals('overline(a + b) != foo(c + d)', 'foo(d + c) != overline(b + a)');
+// tryEquals('a == b', 'b == a');
 // tryEquals('a neq b', 'b neq a');
 // const result = sort(math.parse('(a + b) - c'));
 // console.log('>>');
@@ -268,3 +268,26 @@ tryEquals('a == b', 'b == a');
 // // // This will output:
 // // //
 // // //     6
+
+// class FooNode extends math.expression.node.OperatorNode {
+//   constructor(args) {
+//     super('foo', 'foo', args);
+//     console.log('args:', args);
+//   }
+// }
+
+// const latex = () => {
+//   const a = math.parse('1 lt 2', {
+//     nodes: {
+//       lt: function(args) {
+//         console.log('lt args:', args, arguments);
+//       }
+//     }
+//   });
+//   console.log(a);
+// };
+
+// latex();
+
+const n = parse('0 % 3');
+console.log(JSON.stringify(n, null, '  '));
