@@ -61,8 +61,8 @@ describe('math-evaluator', () => {
     });
   };
 
-  const assertLatextFromString = _als(false);
-  assertLatextFromString.only = _als(true);
+  const assertLatexFromString = _als(false);
+  assertLatexFromString.only = _als(true);
   describe('PIE-188-math-expressions', () => {
     // it('parses expressions correctly', async () => {
 
@@ -76,86 +76,86 @@ describe('math-evaluator', () => {
     assertThroughMathJs('\\overrightarrow{x + 4}', '\\overrightarrow {4 + x}', true);
     assertThroughMathJs('\\overrightarrow{4x^2 + 4}', '\\overrightarrow {4x^2 + 8 - 4}', true);
     assertThroughMathJs('\\overrightarrow{21*2*x}', '\\overrightarrow {42x}', true);
-    assertLatextFromString('\\nparallel x', 'nparallel x');
-    assertLatextFromString('\\overrightarrow{x}', 'overrightarrow x');
-    assertLatextFromString('\\overleftrightarrow{x}', 'overleftrightarrow x');
-    assertLatextFromString('\\perp x', 'perp x');
-    assertLatextFromString('\\angle x', 'angle x');
-    assertLatextFromString('\\overarc x', 'overarc x');
-    assertLatextFromString('\\measuredangle x', 'measuredangle x');
-    assertLatextFromString('\\triangle x', 'triangle x');
-    assertLatextFromString('\\parallelogram x', 'parallelogram x');
-    assertLatextFromString('\\odot x', 'odot x');
-    assertLatextFromString('\\degree x', 'degree x');
-    assertLatextFromString('\\sim x', 'sim x');
-    assertLatextFromString('\\cong x', 'cong x');
-    assertLatextFromString('\\ncong x', 'ncong x');
-    assertLatextFromString('\\napprox x', 'napprox x'); // UNRECOGNIZED BY LEARNOSITY
-    assertLatextFromString('\\nim x', 'nim x'); // UNRECOGNIZED BY LEARNOSITY
-    assertLatextFromString('\\sim x', 'sim x');
+    assertLatexFromString('\\nparallel x', 'nparallel x');
+    assertLatexFromString('\\overrightarrow{x}', 'overrightarrow x');
+    assertLatexFromString('\\overleftrightarrow{x}', 'overleftrightarrow x');
+    assertLatexFromString('\\perp x', 'perp x');
+    assertLatexFromString('\\angle x', 'angle x');
+    assertLatexFromString('\\overarc x', 'overarc x');
+    assertLatexFromString('\\measuredangle x', 'measuredangle x');
+    assertLatexFromString('\\triangle x', 'triangle x');
+    assertLatexFromString('\\parallelogram x', 'parallelogram x');
+    assertLatexFromString('\\odot x', 'odot x');
+    assertLatexFromString('\\degree x', 'degree x');
+    assertLatexFromString('\\sim x', 'sim x');
+    assertLatexFromString('\\cong x', 'cong x');
+    assertLatexFromString('\\ncong x', 'ncong x');
+    assertLatexFromString('\\napprox x', 'napprox x'); // UNRECOGNIZED BY LEARNOSITY
+    assertLatexFromString('\\nim x', 'nim x'); // UNRECOGNIZED BY LEARNOSITY
+    assertLatexFromString('\\sim x', 'sim x');
     expect(() => fromLatexToString('\\sim 4', { unknownCommands: 'error' })).toThrow();
 
     // comparisons
 
-    assertLatextFromString('1 \\lt 2', '1 < 2');
+    assertLatexFromString('1 \\lt 2', '1 < 2');
 
-    assertLatextFromString('1 \\gt 2', '1 > 2');
+    assertLatexFromString('1 \\gt 2', '1 > 2');
 
-    assertLatextFromString('1 \\le 2', '1 ≤ 2');
+    assertLatexFromString('1 \\le 2', '1 ≤ 2');
 
-    assertLatextFromString('1 \\ge 2', '1 ≥ 2');
+    assertLatexFromString('1 \\ge 2', '1 ≥ 2');
 
     // exponents
 
-    assertLatextFromString('2^2', '2^2');
+    assertLatexFromString('2^2', '2^2');
 
-    assertLatextFromString('2^{3}', '2^3');
+    assertLatexFromString('2^{3}', '2^3');
 
     // roots
 
-    assertLatextFromString('\\sqrt{2}', 'sqrt(2)');
+    assertLatexFromString('\\sqrt{2}', 'sqrt(2)');
 
-    assertLatextFromString('\\sqrt[{3}]{3}', '3^(1/3)');
+    assertLatexFromString('\\sqrt[{3}]{3}', '3^(1/3)');
 
     // fractions
 
-    assertLatextFromString('\\frac{3}{3}', '3/3');
+    assertLatexFromString('\\frac{3}{3}', '3/3');
 
-    assertLatextFromString('\\frac{x}{3}', 'x/3');
+    assertLatexFromString('\\frac{x}{3}', 'x/3');
 
-    assertLatextFromString('x\\frac{5}{3}', 'x (5/3)');
+    assertLatexFromString('x\\frac{5}{3}', 'x (5/3)');
 
     // ACTUAL OPERATOR BASED
-    assertLatextFromString('\\overline{x}', 'overline x');
-    assertLatextFromString('\\pm', 'pm');
-    assertLatextFromString('\\approx x', 'approx x');
+    assertLatexFromString('\\overline{x}', 'overline x');
+    assertLatexFromString('\\pm', 'pm');
+    assertLatexFromString('\\approx x', 'approx x');
     // assertLatextFromString('3%', '3%');
-    // assertLatextFromString('\\neq{x}', 'neq x');
+    assertLatexFromString.only('\\neq', 'neq');
 
     // logarithms
 
-    assertLatextFromString("4'", "4'");
-    assertLatextFromString('\\log 4', 'log(4)');
-    assertLatextFromString('\\log(4x)', 'log(4 x)');
-    assertLatextFromString('\\ln 4', 'ln(4)');
+    assertLatexFromString("4'", "4'");
+    assertLatexFromString('\\log 4', 'log(4)');
+    assertLatexFromString('\\log(4x)', 'log(4 x)');
+    assertLatexFromString('\\ln 4', 'ln(4)');
 
-    assertLatextFromString('|4|', '|4|');
-    assertLatextFromString('(4)', '4');
-    assertLatextFromString('(4 + x) * 5', '(4 + x) * 5');
-    assertLatextFromString('[4]', '4');
-    assertLatextFromString('\\mu', 'μ');
-    assertLatextFromString('\\Sigma', 'Σ');
-    assertLatextFromString('x^{15}', 'x^15');
-    assertLatextFromString('x_{15}', 'x_15');
+    assertLatexFromString('|4|', '|4|');
+    assertLatexFromString('(4)', '4');
+    assertLatexFromString('(4 + x) * 5', '(4 + x) * 5');
+    assertLatexFromString('[4]', '4');
+    assertLatexFromString('\\mu', 'μ');
+    assertLatexFromString('\\Sigma', 'Σ');
+    assertLatexFromString('x^{15}', 'x^15');
+    assertLatexFromString('x_{15}', 'x_15');
 
     // Trigo
 
-    assertLatextFromString('\\sin(x)', 'sin(x)');
-    assertLatextFromString('\\cos(x)', 'cos(x)');
-    assertLatextFromString('\\tan(x)', 'tan(x)');
-    assertLatextFromString('\\sec(x)', 'sec(x)');
-    assertLatextFromString('\\csc(x)', 'csc(x)');
-    assertLatextFromString('\\cot(x)', 'cot(x)');
+    assertLatexFromString('\\sin(x)', 'sin(x)');
+    assertLatexFromString('\\cos(x)', 'cos(x)');
+    assertLatexFromString('\\tan(x)', 'tan(x)');
+    assertLatexFromString('\\sec(x)', 'sec(x)');
+    assertLatexFromString('\\csc(x)', 'csc(x)');
+    assertLatexFromString('\\cot(x)', 'cot(x)');
   });
 
   // assertEqual('custom latex')('1530', `\\odot`);
