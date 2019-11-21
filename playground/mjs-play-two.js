@@ -289,5 +289,5 @@ const messing = () => {
 
 // latex();
 
-const n = parse('percent(0)');
+const n = parse('0 != 0');
 console.log(JSON.stringify(n, null, '  '));

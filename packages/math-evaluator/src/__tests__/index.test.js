@@ -1,8 +1,24 @@
-import areValuesEqual, { ave } from '../index';
+import areValuesEqual, { ave, latexToText } from '../index';
 import mathExpressions from 'math-expressions';
 import _ from 'lodash';
 
 describe('math-evaluator', () => {
+  describe.only('latexToText', () => {
+    const assertLatexToText = (input, expected) => {
+      it(`${input} => ${expected}`, () => {
+        const result = latexToText(input);
+        expect(result).toEqual(expected);
+      });
+    };
+    assertLatexToText('\\frac{ \\frac{1}{3}}{3}', '(1/3)/3');
+    assertLatexToText('\\neq', '0 != 0');
+    assertLatexToText('10 \\neq 20', '10 != 20');
+    assertLatexToText('10 \\neq', '10 != 0');
+    assertLatexToText('\\neq 10', '0 != 10');
+    assertLatexToText('40%', 'percent(40)');
+    assertLatexToText('%', 'percent(0)');
+  });
+
   const assert = isEqual => label =>
     function() {
       const args = Array.from(arguments);
@@ -119,7 +135,7 @@ describe('math-evaluator', () => {
 
     // fractions
 
-    assertLatexFromString('\\frac{3}{3}', '3/3');
+    assertLatexFromString.only('\\frac{3}{3}', '3/3');
 
     assertLatexFromString('\\frac{x}{3}', 'x/3');
 
@@ -130,7 +146,7 @@ describe('math-evaluator', () => {
     assertLatexFromString('\\pm', 'pm');
     assertLatexFromString('\\approx x', 'approx x');
     // assertLatextFromString('3%', '3%');
-    assertLatexFromString.only('\\neq', 'neq');
+    //assertLatexFromString.only('\\neq', 'neq');
 
     // logarithms
 

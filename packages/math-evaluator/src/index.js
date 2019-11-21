@@ -1,5 +1,6 @@
+/* eslint-disable no-console */
 import mathjs from 'mathjs';
-import mathExpressions from 'math-expressions';
+import me from 'math-expressions';
 
 const decimalCommaRegex = /,/g;
 const decimalRegex = /\.|,/g;
@@ -35,6 +36,35 @@ function prepareExpression(string /*, isLatex*/) {
 
   // return rationalizeAllPossibleSubNodes(returnValue);
 }
+
+const latexToAstOpts = {
+  missingFactor: (token, e) => {
+    console.warn('missing factor for: ', token.token_type);
+    return 0;
+  }
+};
+const astToTextOpts = {
+  unicode_operators: {
+    ne: function(operands) {
+      return operands.join(' != ');
+    },
+    '%': function(operands) {
+      return `percent(${operands[0]})`;
+    }
+  }
+};
+
+export const latexToText = latex => {
+  const la = new me.converters.latexToAstObj(latexToAstOpts);
+  const at = new me.converters.astToTextObj(astToTextOpts);
+  console.time('latex-to-ast');
+  const ast = la.convert(latex);
+  console.timeEnd('latex-to-ast');
+  console.time('ast-to-text');
+  const text = at.convert(ast);
+  console.timeEnd('ast-to-text');
+  return text;
+};
 
 function shouldRationalizeEntireTree(tree) {
   let shouldDoIt = true;
