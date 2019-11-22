@@ -1,5 +1,4 @@
 import areValuesEqual, { ave, latexToText } from '../index';
-import mathExpressions from 'math-expressions';
 import _ from 'lodash';
 
 describe('math-evaluator', () => {
@@ -36,15 +35,11 @@ describe('math-evaluator', () => {
   const assertEqual = assert(true);
   const assertNotEqual = assert(false);
 
-  function fromLatexToString(latex, { unknownCommands = 'passthrough' } = {}) {
-    return mathExpressions.fromLatex(latex, { unknownCommands }).toString();
-  }
-
   const _amjs = only => (a, b, equal) => {
     const fn = only ? it.only : it;
     fn(`${a} === ${b} => ${equal}`, () => {
-      const as = fromLatexToString(a);
-      const bs = fromLatexToString(b);
+      const as = latexToText(a);
+      const bs = latexToText(b);
       expect(ave(as, bs)).toEqual(equal);
     });
   };
@@ -55,7 +50,7 @@ describe('math-evaluator', () => {
   const _als = only => (input, expected) => {
     const fn = only ? it.only : it;
     fn(`${input} => ${expected}`, () => {
-      expect(fromLatexToString(input)).toEqual(expected);
+      expect(latexToText(input)).toEqual(expected);
     });
   };
 
@@ -91,7 +86,7 @@ describe('math-evaluator', () => {
     assertLatexFromString('\\napprox x', 'napprox x'); // UNRECOGNIZED BY LEARNOSITY
     assertLatexFromString('\\nim x', 'nim x'); // UNRECOGNIZED BY LEARNOSITY
     assertLatexFromString('\\sim x', 'sim x');
-    expect(() => fromLatexToString('\\sim 4', { unknownCommands: 'error' })).toThrow();
+    expect(() => latexToText('\\sim 4', { unknownCommandBehavior: 'error' })).toThrow();
 
     // comparisons
 

@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import mathjs from 'mathjs';
-import me from 'math-expressions';
+import me from '@pie-framework/math-expressions';
 
 const decimalCommaRegex = /,/g;
 const decimalRegex = /\.|,/g;
@@ -28,7 +28,7 @@ function prepareExpression(string, isLatex) {
   returnValue = returnValue.replace(decimalCommaRegex, '.');
 
   returnValue = isLatex
-    ? me.fromLatex(`${returnValue}`, { unknownCommands: 'passthrough' }).toString()
+    ? latexToText(`${returnValue}`)
     : me.fromText(`${returnValue}`, { unknownCommands: 'passthrough' }).toString();
 
   returnValue = returnValue.replace('=', '==');
@@ -40,7 +40,8 @@ const latexToAstOpts = {
   missingFactor: (token, e) => {
     console.warn('missing factor for: ', token.token_type);
     return 0;
-  }
+  },
+  unknownCommandBehavior: 'passthrough'
 };
 
 const astToTextOpts = {
@@ -54,10 +55,10 @@ const astToTextOpts = {
   }
 };
 
-export const latexToText = latex => {
-  const la = new me.converters.latexToAstObj(latexToAstOpts);
+export const latexToText = (latex, extraOtps = {}) => {
+  const la = new me.converters.latexToAstObj({ ...latexToAstOpts, ...extraOtps });
 
-  const at = new me.converters.astToTextObj(astToTextOpts);
+  const at = new me.converters.astToTextObj({ ...astToTextOpts, ...extraOtps });
 
   const ast = la.convert(latex);
 

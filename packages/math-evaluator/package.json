@@ -17,7 +17,7 @@
   "license": "ISC",
   "dependencies": {
     "jsesc": "^2.5.2",
-    "math-expressions": "^2.0.0-alpha1",
+    "@pie-framework/math-expressions": "2.0.0-alpha24",
     "mathjs": "^5.4.1"
   },
   "devDependencies": {
