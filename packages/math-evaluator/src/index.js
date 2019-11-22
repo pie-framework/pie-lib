@@ -8,7 +8,7 @@ const decimalWithThousandSeparatorNumberRegex = /^(?!0+\.00)(?=.{1,9}(\.|$))(?!0
 
 function rationalizeAllPossibleSubNodes(expression) {
   const tree = mathjs.parse(expression);
-  console.log('tree:', JSON.stringify(tree, null, '  '));
+
   const transformedTree = tree.transform(node => {
     try {
       const rationalizedNode = mathjs.rationalize(node);
@@ -23,15 +23,14 @@ function rationalizeAllPossibleSubNodes(expression) {
 }
 
 function prepareExpression(string, isLatex) {
-  // return string;
   let returnValue = string ? string.trim() : '';
 
   returnValue = returnValue.replace(decimalCommaRegex, '.');
-  //
+
   returnValue = isLatex
     ? me.fromLatex(`${returnValue}`, { unknownCommands: 'passthrough' }).toString()
     : me.fromText(`${returnValue}`, { unknownCommands: 'passthrough' }).toString();
-  //
+
   returnValue = returnValue.replace('=', '==');
 
   return rationalizeAllPossibleSubNodes(returnValue);
@@ -43,6 +42,7 @@ const latexToAstOpts = {
     return 0;
   }
 };
+
 const astToTextOpts = {
   unicode_operators: {
     ne: function(operands) {
@@ -56,14 +56,12 @@ const astToTextOpts = {
 
 export const latexToText = latex => {
   const la = new me.converters.latexToAstObj(latexToAstOpts);
+
   const at = new me.converters.astToTextObj(astToTextOpts);
-  console.time('latex-to-ast');
+
   const ast = la.convert(latex);
-  console.timeEnd('latex-to-ast');
-  console.time('ast-to-text');
-  const text = at.convert(ast);
-  console.timeEnd('ast-to-text');
-  return text;
+
+  return at.convert(ast);
 };
 
 function shouldRationalizeEntireTree(tree) {
