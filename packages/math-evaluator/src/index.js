@@ -6,35 +6,35 @@ const decimalCommaRegex = /,/g;
 const decimalRegex = /\.|,/g;
 const decimalWithThousandSeparatorNumberRegex = /^(?!0+\.00)(?=.{1,9}(\.|$))(?!0(?!\.))\d{1,3}(,\d{3})*(\.\d+)?$/;
 
-// function rationalizeAllPossibleSubNodes(expression) {
-//   const tree = mathjs.parse(expression);
-//   console.log('tree:', JSON.stringify(tree, null, '  '));
-//   const transformedTree = tree.transform(node => {
-//     try {
-//       const rationalizedNode = mathjs.rationalize(node);
-//
-//       return rationalizedNode;
-//     } catch {
-//       return node;
-//     }
-//   });
-//
-//   return transformedTree;
-// }
+function rationalizeAllPossibleSubNodes(expression) {
+  const tree = mathjs.parse(expression);
+  console.log('tree:', JSON.stringify(tree, null, '  '));
+  const transformedTree = tree.transform(node => {
+    try {
+      const rationalizedNode = mathjs.rationalize(node);
 
-function prepareExpression(string /*, isLatex*/) {
-  return string;
-  // let returnValue = string ? string.trim() : '';
+      return rationalizedNode;
+    } catch {
+      return node;
+    }
+  });
 
-  // returnValue = returnValue.replace(decimalCommaRegex, '.');
+  return transformedTree;
+}
 
-  // returnValue = isLatex
-  //   ? mathExpressions.fromLatex(`${returnValue}`).toString()
-  //   : mathExpressions.fromText(`${returnValue}`).toString();
+function prepareExpression(string, isLatex) {
+  // return string;
+  let returnValue = string ? string.trim() : '';
 
-  // returnValue = returnValue.replace('=', '==');
+  returnValue = returnValue.replace(decimalCommaRegex, '.');
+  //
+  returnValue = isLatex
+    ? me.fromLatex(`${returnValue}`, { unknownCommands: 'passthrough' }).toString()
+    : me.fromText(`${returnValue}`, { unknownCommands: 'passthrough' }).toString();
+  //
+  returnValue = returnValue.replace('=', '==');
 
-  // return rationalizeAllPossibleSubNodes(returnValue);
+  return rationalizeAllPossibleSubNodes(returnValue);
 }
 
 const latexToAstOpts = {
@@ -141,8 +141,6 @@ export default function areValuesEqual(valueOne, valueTwo, options = {}) {
 
   one = mathjs.simplify(one);
   two = mathjs.simplify(two);
-
-  // console.log('one:', one);
 
   const equals = one.equals(two);
 
