@@ -1,7 +1,23 @@
-import areValuesEqual from '../index';
+import areValuesEqual, { ave, latexToText } from '../index';
 import _ from 'lodash';
 
 describe('math-evaluator', () => {
+  describe('latexToText', () => {
+    const assertLatexToText = (input, expected) => {
+      it(`${input} => ${expected}`, () => {
+        const result = latexToText(input);
+        expect(result).toEqual(expected);
+      });
+    };
+    assertLatexToText('\\frac{ \\frac{1}{3}}{3}', '(1/3)/3');
+    assertLatexToText('\\neq', '0 != 0');
+    assertLatexToText('10 \\neq 20', '10 != 20');
+    assertLatexToText('10 \\neq', '10 != 0');
+    assertLatexToText('\\neq 10', '0 != 10');
+    assertLatexToText('40%', 'percent(40)');
+    assertLatexToText('%', 'percent(0)');
+  });
+
   const assert = isEqual => label =>
     function() {
       const args = Array.from(arguments);
@@ -19,6 +35,121 @@ describe('math-evaluator', () => {
   const assertEqual = assert(true);
   const assertNotEqual = assert(false);
 
+  const _amjs = only => (a, b, equal) => {
+    const fn = only ? it.only : it;
+    fn(`${a} === ${b} => ${equal}`, () => {
+      const as = latexToText(a);
+      const bs = latexToText(b);
+      expect(ave(as, bs)).toEqual(equal);
+    });
+  };
+
+  const assertThroughMathJs = _amjs(false);
+  assertThroughMathJs.only = _amjs(true);
+
+  const _als = only => (input, expected) => {
+    const fn = only ? it.only : it;
+    fn(`${input} => ${expected}`, () => {
+      expect(latexToText(input)).toEqual(expected);
+    });
+  };
+
+  const assertLatexFromString = _als(false);
+  assertLatexFromString.only = _als(true);
+
+  describe('PIE-188-math-expressions', () => {
+    // it('parses expressions correctly', async () => {
+
+    // geometry
+
+    // MULTIPLY WITH VARIABLE BASED
+    assertThroughMathJs('\\parallel x', '\\parallel x', true);
+    assertThroughMathJs('\\parallel x', '\\parallel   x', true);
+    assertThroughMathJs('\\parallel x', '\\parallel   0', false);
+    assertThroughMathJs('\\overrightarrow{x + 4}', '\\overrightarrow {4 + x}', true);
+    assertThroughMathJs('\\overrightarrow{4x^2 + 4}', '\\overrightarrow {4x^2 + 8 - 4}', true);
+    assertThroughMathJs('\\overrightarrow{21*2*x}', '\\overrightarrow {42x}', true);
+    assertLatexFromString('\\nparallel x', 'nparallel x');
+    assertLatexFromString('\\overrightarrow{x}', 'overrightarrow x');
+    assertLatexFromString('\\overleftrightarrow{x}', 'overleftrightarrow x');
+    assertLatexFromString('\\perp x', 'perp x');
+    assertLatexFromString('\\angle x', 'angle x');
+    assertLatexFromString('\\overarc x', 'overarc x');
+    assertLatexFromString('\\measuredangle x', 'measuredangle x');
+    assertLatexFromString('\\triangle x', 'triangle x');
+    assertLatexFromString('\\parallelogram x', 'parallelogram x');
+    assertLatexFromString('\\odot x', 'odot x');
+    assertLatexFromString('\\degree x', 'degree x');
+    assertLatexFromString('\\sim x', 'sim x');
+    assertLatexFromString('\\cong x', 'cong x');
+    assertLatexFromString('\\ncong x', 'ncong x');
+    assertLatexFromString('\\napprox x', 'napprox x'); // UNRECOGNIZED BY LEARNOSITY
+    assertLatexFromString('\\nim x', 'nim x'); // UNRECOGNIZED BY LEARNOSITY
+    assertLatexFromString('\\sim x', 'sim x');
+    expect(() => latexToText('\\sim 4', { unknownCommandBehavior: 'error' })).toThrow();
+
+    // comparisons
+
+    assertLatexFromString('1 \\lt 2', '1 < 2');
+
+    assertLatexFromString('1 \\gt 2', '1 > 2');
+
+    assertLatexFromString('1 \\le 2', '1 ≤ 2');
+
+    assertLatexFromString('1 \\ge 2', '1 ≥ 2');
+
+    // exponents
+
+    assertLatexFromString('2^2', '2^2');
+
+    assertLatexFromString('2^{3}', '2^3');
+
+    // roots
+
+    assertLatexFromString('\\sqrt{2}', 'sqrt(2)');
+
+    assertLatexFromString('\\sqrt[{3}]{3}', '3^(1/3)');
+
+    // fractions
+
+    assertLatexFromString('\\frac{3}{3}', '3/3');
+
+    assertLatexFromString('\\frac{x}{3}', 'x/3');
+
+    assertLatexFromString('x\\frac{5}{3}', 'x (5/3)');
+
+    // ACTUAL OPERATOR BASED
+    assertLatexFromString('\\overline{x}', 'overline x');
+    assertLatexFromString('\\pm', 'pm');
+    assertLatexFromString('\\approx x', 'approx x');
+
+    // logarithms
+
+    assertLatexFromString("4'", "4'");
+    assertLatexFromString('\\log 4', 'log(4)');
+    assertLatexFromString('\\log(4x)', 'log(4 x)');
+    assertLatexFromString('\\ln 4', 'ln(4)');
+
+    assertLatexFromString('|4|', '|4|');
+    assertLatexFromString('(4)', '4');
+    assertLatexFromString('(4 + x) * 5', '(4 + x) * 5');
+    assertLatexFromString('[4]', '4');
+    assertLatexFromString('\\mu', 'μ');
+    assertLatexFromString('\\Sigma', 'Σ');
+    assertLatexFromString('x^{15}', 'x^15');
+    assertLatexFromString('x_{15}', 'x_15');
+
+    // Trigo
+
+    assertLatexFromString('\\sin(x)', 'sin(x)');
+    assertLatexFromString('\\cos(x)', 'cos(x)');
+    assertLatexFromString('\\tan(x)', 'tan(x)');
+    assertLatexFromString('\\sec(x)', 'sec(x)');
+    assertLatexFromString('\\csc(x)', 'csc(x)');
+    assertLatexFromString('\\cot(x)', 'cot(x)');
+  });
+
+  // assertNotEqual('custom latex')('1530', `\\odot`);
   assertNotEqual('evaluates simple expressions correctly')('0', 'x', '3x', '4x');
 
   assertEqual('evaluates simple expressions correctly')('x', 'x', '2x', '2x');
@@ -204,7 +335,7 @@ describe('math-evaluator', () => {
     ).toEqual(true);
   });
 
-  it.skip('correctly creates math expressions 2', () => {
+  it('correctly creates math expressions 2', () => {
     expect(
       areValuesEqual('72\\div12=6\\text{eggs}', '72\\div12=6\\text{eggs}', {
         allowDecimals: true,

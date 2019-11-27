@@ -1,5 +1,6 @@
+/* eslint-disable no-console */
 import mathjs from 'mathjs';
-import mathExpressions from 'math-expressions';
+import me from '@pie-framework/math-expressions';
 
 const decimalCommaRegex = /,/g;
 const decimalRegex = /\.|,/g;
@@ -7,6 +8,7 @@ const decimalWithThousandSeparatorNumberRegex = /^(?!0+\.00)(?=.{1,9}(\.|$))(?!0
 
 function rationalizeAllPossibleSubNodes(expression) {
   const tree = mathjs.parse(expression);
+
   const transformedTree = tree.transform(node => {
     try {
       const rationalizedNode = mathjs.rationalize(node);
@@ -26,13 +28,42 @@ function prepareExpression(string, isLatex) {
   returnValue = returnValue.replace(decimalCommaRegex, '.');
 
   returnValue = isLatex
-    ? mathExpressions.fromLatex(`${returnValue}`).toString()
-    : mathExpressions.fromText(`${returnValue}`).toString();
+    ? latexToText(`${returnValue}`)
+    : me.fromText(`${returnValue}`, { unknownCommands: 'passthrough' }).toString();
 
   returnValue = returnValue.replace('=', '==');
 
   return rationalizeAllPossibleSubNodes(returnValue);
 }
+
+const latexToAstOpts = {
+  missingFactor: (token, e) => {
+    console.warn('missing factor for: ', token.token_type);
+    return 0;
+  },
+  unknownCommandBehavior: 'passthrough'
+};
+
+const astToTextOpts = {
+  unicode_operators: {
+    ne: function(operands) {
+      return operands.join(' != ');
+    },
+    '%': function(operands) {
+      return `percent(${operands[0]})`;
+    }
+  }
+};
+
+export const latexToText = (latex, extraOtps = {}) => {
+  const la = new me.converters.latexToAstObj({ ...latexToAstOpts, ...extraOtps });
+
+  const at = new me.converters.astToTextObj({ ...astToTextOpts, ...extraOtps });
+
+  const ast = la.convert(latex);
+
+  return at.convert(ast);
+};
 
 function shouldRationalizeEntireTree(tree) {
   let shouldDoIt = true;
@@ -114,3 +145,15 @@ export default function areValuesEqual(valueOne, valueTwo, options = {}) {
 
   return inverse ? !equals : equals;
 }
+
+export const ave = (a, b) => {
+  const am = mathjs.parse(a);
+  const bm = mathjs.parse(b);
+
+  // console.log(JSON.stringify(am, null, '  '));
+  // console.log(JSON.stringify(bm, null, '  '));
+
+  const arm = mathjs.simplify(am);
+  const brm = mathjs.simplify(bm);
+  return arm.equals(brm);
+};
