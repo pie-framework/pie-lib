@@ -32,7 +32,6 @@ const reorder = (list, startIndex, endIndex) => {
 };
 
 export const RubricType = PropTypes.shape({
-  maxPoints: PropTypes.number.isRequired,
   excludeZero: PropTypes.bool,
   points: PropTypes.arrayOf(PropTypes.string)
 });
@@ -123,7 +122,6 @@ export class RawAuthoring extends React.Component {
   changeMaxPoints = maxPoints => {
     const { value, onChange } = this.props;
     const currentMax = value.points.length - 1;
-    let maximumPoints = maxPoints;
 
     log('current', currentMax, 'new: ', maxPoints);
     let points;
@@ -131,15 +129,14 @@ export class RawAuthoring extends React.Component {
       points = times(maxPoints - currentMax)
         .map(() => '')
         .concat(value.points);
-      maximumPoints = maxPoints;
     }
+
     if (maxPoints < currentMax) {
       log('less than');
       points = takeRight(value.points, maxPoints + 1);
     }
-
     if (points) {
-      onChange({ ...value, points, maxPoints: maximumPoints });
+      onChange({ ...value, points });
     }
   };
 
@@ -173,6 +170,10 @@ export class RawAuthoring extends React.Component {
 
   render() {
     const { classes, className, value } = this.props;
+
+    if (value && Number.isFinite(value.maxPoints)) {
+      console.warn('maxPoints is deprecated - remove from model');
+    }
 
     return (
       <div className={classNames(classes.class, className)}>
