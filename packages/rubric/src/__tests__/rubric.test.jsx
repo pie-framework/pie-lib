@@ -1,42 +1,66 @@
-import { mount } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import React from 'react';
-import Rubric from '../authoring';
+import { RawAuthoring } from '../authoring';
 import { Draggable } from 'react-beautiful-dnd';
+import _ from 'lodash';
 
 describe('Rubric', () => {
   let w;
 
-  const defaultProps = extras => ({
-    classes: {},
-    className: 'className',
-    value: {
-      points: ['nothing right', 'a teeny bit right', 'mostly right', 'bingo'],
-      maxPoints: 4,
-      excludeZero: false,
-      ...extras
-    }
-  });
-
-  const wrapper = (extras, opts) => {
-    const props = { ...defaultProps(extras) };
-
-    return mount(<Rubric {...props} />, opts);
+  const points = ['nothing right', 'a teeny bit right', 'mostly right', 'bingo'];
+  const wrapper = (value, opts) => {
+    const props = {
+      classes: {},
+      onChange: jest.fn(),
+      className: 'className',
+      value: {
+        excludeZero: false,
+        points,
+        ...value
+      }
+    };
+    const fn = opts && opts.mount ? mount : shallow;
+    return fn(<RawAuthoring {...props} />, opts);
   };
 
-  describe('snapshot', () => {
-    it('renders', () => {
+  describe('render', () => {
+    it('snapshot', () => {
       w = wrapper();
       expect(w).toMatchSnapshot();
+    });
+
+    describe('draggable', () => {
+      it('renders correctly for excluded zeroes', () => {
+        let w = wrapper({ excludeZero: true }, { mount: true });
+        expect(w.find(Draggable).length).toEqual(3);
+      });
+      it('renders correctly for excluded zeroes', () => {
+        let w = wrapper({ excludeZero: false }, { mount: true });
+        expect(w.find(Draggable).length).toEqual(4);
+      });
     });
   });
 
   describe('logic', () => {
-    it('renders correctly for excluded zeroes', () => {
-      let w = wrapper({ excludeZero: true });
-      expect(w.find(Draggable).length).toEqual(3);
+    describe('rendering', () => {});
 
-      w = wrapper({ excludeZero: false });
-      expect(w.find(Draggable).length).toEqual(4);
+    describe('changeMaxPoints', () => {
+      const assertChangeMax = (points, excludeZero, expectedPoints) => {
+        it(`${points} calls onChange with: ${expectedPoints}`, () => {
+          let w = wrapper({ excludeZero });
+          w.instance().changeMaxPoints(points);
+          expect(w.instance().props.onChange).toHaveBeenCalledWith({
+            excludeZero,
+            points: expectedPoints
+          });
+        });
+      };
+
+      assertChangeMax(1, false, _.takeRight(points, 2));
+      assertChangeMax(1, true, _.takeRight(points, 2));
+      assertChangeMax(2, true, _.takeRight(points, 3));
+      assertChangeMax(2, false, _.takeRight(points, 3));
+      assertChangeMax(5, false, ['', ''].concat(points));
     });
   });
 });
