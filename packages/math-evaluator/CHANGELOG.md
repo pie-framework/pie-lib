@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@0.5.7...@pie-lib/math-evaluator@0.6.0) (2019-11-27)
+
+
+### Bug Fixes
+
+* **math-evaluator:** finalize fix for PIE-188 ([d7bd4a1](https://github.com/pie-framework/pie-lib/commit/d7bd4a1))
+* **math-evaluator:** finalize fix for PIE-188, custom and unrecognized latex commands ([b37184d](https://github.com/pie-framework/pie-lib/commit/b37184d))
+* **math-evaluator:** PIE-188 related fixes and tests ([76424c6](https://github.com/pie-framework/pie-lib/commit/76424c6))
+
+
+### Features
+
+* **math-evaluator:** change math-expressions to pie fork ([06e8b61](https://github.com/pie-framework/pie-lib/commit/06e8b61))
+
+
+
+
+
 ## [0.5.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@0.5.6...@pie-lib/math-evaluator@0.5.7) (2019-08-21)
 
 **Note:** Version bump only for package @pie-lib/math-evaluator
