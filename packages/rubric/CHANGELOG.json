@@ -253,5 +253,20 @@
     "committerDate": "2019-08-14 13:49:03 +0300",
     "isTagged": true,
     "tag": "@pie-lib/rubric@0.2.30"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "remove maxPoints from rubric model PIE-198",
+    "merge": null,
+    "header": "fix: remove maxPoints from rubric model PIE-198",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "1f173ad4d956d924742602a3034906893268adaf",
+    "gitTags": " (origin/fix/PIE-198-rubric-maxPoints)",
+    "committerDate": "2019-11-28 09:40:44 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/rubric@0.2.40"
   }
 ]
