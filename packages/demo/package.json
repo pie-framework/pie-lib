@@ -1,7 +1,7 @@
 {
   "name": "@pie-lib/demo",
   "private": true,
-  "version": "5.3.22",
+  "version": "5.3.23",
   "dependencies": {
     "@material-ui/core": "^3.8.3",
     "@material-ui/icons": "^3.0.2",
@@ -18,7 +18,7 @@
     "@pie-lib/math-rendering": "^1.3.7",
     "@pie-lib/math-toolbar": "^1.4.8",
     "@pie-lib/render-ui": "^4.4.5",
-    "@pie-lib/rubric": "^0.2.39",
+    "@pie-lib/rubric": "^0.2.40",
     "@pie-lib/scoring-config": "^3.5.43",
     "@pie-lib/style-utils": "^0.1.8",
     "@pie-lib/text-select": "^1.5.5",

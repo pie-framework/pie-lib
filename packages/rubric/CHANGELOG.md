@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.40](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.2.39...@pie-lib/rubric@0.2.40) (2019-11-28)
+
+
+### Bug Fixes
+
+* remove maxPoints from rubric model PIE-198 ([1f173ad](https://github.com/pie-framework/pie-lib/commit/1f173ad))
+
+
+
+
+
 ## [0.2.39](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.2.38...@pie-lib/rubric@0.2.39) (2019-11-05)
 
 **Note:** Version bump only for package @pie-lib/rubric
