@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.8...@pie-lib/math-toolbar@1.4.9) (2019-12-09)
+
+
+### Bug Fixes
+
+* ch4405: Added usage of onBlur function and hideDoneButton property for editor. ([24f072c](https://github.com/pie-framework/pie-lib/commit/24f072c))
+
+
+
+
+
 ## [1.4.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.7...@pie-lib/math-toolbar@1.4.8) (2019-11-05)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
