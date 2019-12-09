@@ -14,7 +14,7 @@ export class Histogram extends React.Component {
   render() {
     const props = this.props;
     const { data, graphProps } = props;
-    const { scale, size } = graphProps;
+    const { scale = {}, size = {} } = graphProps || {};
     const xBand = dataToXBand(scale.x, data, size.width, 'histogram');
 
     return <Bars {...props} xBand={xBand} />;

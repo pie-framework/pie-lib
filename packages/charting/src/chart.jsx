@@ -50,7 +50,12 @@ export class Chart extends React.Component {
     categoryDefaultLabel: PropTypes.string
   };
 
-  static defaultProps = {};
+  static defaultProps = {
+    size: {
+      width: 480,
+      height: 480
+    }
+  };
 
   state = {
     charts: [
@@ -134,7 +139,7 @@ export class Chart extends React.Component {
   render() {
     const { classes, className, domain, range, size, title, addCategoryEnabled } = this.props;
     let { chartType } = this.props;
-    const { width, height } = size;
+    const { width, height } = size || {};
 
     const { ChartComponent } = this.getChart();
     const categories = this.getFilteredCategories();
@@ -155,7 +160,7 @@ export class Chart extends React.Component {
 
     const maskSize = { x: -10, y: -10, width: width + 20, height: height + 20 };
     const { scale } = common.graphProps;
-    const xBand = dataToXBand(scale.x, categories, size.width, chartType);
+    const xBand = dataToXBand(scale.x, categories, width, chartType);
 
     if (!ChartComponent) {
       return null;

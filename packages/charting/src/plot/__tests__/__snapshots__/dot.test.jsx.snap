@@ -34,3 +34,12 @@ exports[`DotPlot snapshot renders 1`] = `
   xBand={[Function]}
 />
 `;
+
+exports[`DotPlot snapshot renders without graphProps 1`] = `
+<Plot
+  CustomBarElement={[Function]}
+  className="className"
+  classes={Object {}}
+  xBand={[Function]}
+/>
+`;

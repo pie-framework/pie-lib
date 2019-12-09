@@ -33,3 +33,11 @@ exports[`HistogramChart snapshot renders 1`] = `
   xBand={[Function]}
 />
 `;
+
+exports[`HistogramChart snapshot renders without graphProps 1`] = `
+<Bars
+  className="className"
+  classes={Object {}}
+  xBand={[Function]}
+/>
+`;

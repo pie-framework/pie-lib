@@ -34,3 +34,12 @@ exports[`LinePlot snapshot renders 1`] = `
   xBand={[Function]}
 />
 `;
+
+exports[`LinePlot snapshot renders without graphProps 1`] = `
+<Plot
+  CustomBarElement={[Function]}
+  className="className"
+  classes={Object {}}
+  xBand={[Function]}
+/>
+`;

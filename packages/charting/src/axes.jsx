@@ -110,7 +110,7 @@ TickComponent.propTypes = {
   classes: PropTypes.object
 };
 
-class RawChartAxes extends React.Component {
+export class RawChartAxes extends React.Component {
   static propTypes = {
     bottomScale: PropTypes.func,
     classes: PropTypes.object.isRequired,
@@ -131,15 +131,16 @@ class RawChartAxes extends React.Component {
       leftAxis,
       onChange,
       onChangeCategory,
-      categories,
+      categories = [],
       top
     } = this.props;
     const { axis, axisLine, tick, axisLabel } = classes;
-    const { scale, range, domain, size } = graphProps;
-    const bottomScale = xBand.rangeRound([0, size.width]);
-    const bandWidth = xBand.bandwidth();
+    const { scale = {}, range = {}, domain = {}, size = {} } = graphProps || {};
+    const bottomScale =
+      xBand && typeof xBand.rangeRound === 'function' && xBand.rangeRound([0, size.width]);
+    const bandWidth = xBand && typeof xBand.bandwidth === 'function' && xBand.bandwidth();
     // for chartType "line", bandWidth will be 0, so we have to calculate it
-    const barWidth = bandWidth || scale.x(domain.max) / categories.length;
+    const barWidth = bandWidth || (scale.x && scale.x(domain.max) / categories.length);
     const rowTickValues = getTickValues({ ...range, step: range.labelStep });
     const rotate = getRotateAngle(barWidth);
 
@@ -191,7 +192,7 @@ class RawChartAxes extends React.Component {
           scale={bottomScale}
           label={domain.label}
           labelProps={{ y: 50 + top }}
-          top={scale.y(range.min)}
+          top={scale.y && scale.y(range.min)}
           textLabelProps={() => ({ textAnchor: 'middle' })}
           tickFormat={count => count}
           tickComponent={getTickComponent}

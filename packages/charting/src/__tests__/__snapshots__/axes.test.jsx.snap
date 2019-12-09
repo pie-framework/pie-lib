@@ -46,6 +46,53 @@ exports[`ChartAxes snapshot renders 1`] = `
 />
 `;
 
+exports[`RawChartAxes snapshot renders 1`] = `
+<Fragment>
+  <k
+    labelProps={
+      Object {
+        "y": NaN,
+      }
+    }
+    textLabelProps={[Function]}
+    tickComponent={[Function]}
+    tickFormat={[Function]}
+    top={0}
+  />
+</Fragment>
+`;
+
+exports[`RawChartAxes snapshot renders if categories are not defined 1`] = `
+<Fragment>
+  <k
+    labelProps={
+      Object {
+        "y": NaN,
+      }
+    }
+    textLabelProps={[Function]}
+    tickComponent={[Function]}
+    tickFormat={[Function]}
+    top={0}
+  />
+</Fragment>
+`;
+
+exports[`RawChartAxes snapshot renders if graphProps is not defined 1`] = `
+<Fragment>
+  <k
+    labelProps={
+      Object {
+        "y": NaN,
+      }
+    }
+    textLabelProps={[Function]}
+    tickComponent={[Function]}
+    tickFormat={[Function]}
+  />
+</Fragment>
+`;
+
 exports[`TickComponent snapshot renders 1`] = `""`;
 
 exports[`TickComponent snapshot1 renders 1`] = `

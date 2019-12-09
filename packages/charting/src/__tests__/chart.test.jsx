@@ -41,6 +41,9 @@ describe('ChartAxes', () => {
   describe('snapshot', () => {
     it('renders', () => expect(wrapper()).toMatchSnapshot());
 
+    it('renders if size is not defined', () =>
+      expect(wrapper({ size: undefined })).toMatchSnapshot());
+
     it('renders without chartType property', () =>
       expect(wrapper({ chartType: null })).toMatchSnapshot());
 

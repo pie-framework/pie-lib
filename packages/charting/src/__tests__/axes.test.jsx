@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme';
 import React from 'react';
-import ChartAxes, { TickComponent } from '../axes';
+import ChartAxes, { TickComponent, RawChartAxes } from '../axes';
 import { graphProps } from '../__tests__/utils';
 
 describe('ChartAxes', () => {
@@ -16,8 +16,36 @@ describe('ChartAxes', () => {
     const props = { ...defaults, ...extras };
     return shallow(<ChartAxes {...props} />);
   };
+
   describe('snapshot', () => {
     it('renders', () => expect(wrapper()).toMatchSnapshot());
+  });
+});
+
+describe('RawChartAxes', () => {
+  const wrapper = extras => {
+    const defaults = {
+      classes: {},
+      className: 'className',
+      graphProps: graphProps(),
+      xBand: {
+        bandwidth: () => {},
+        rangeRound: () => {}
+      },
+      categories: []
+    };
+    const props = { ...defaults, ...extras };
+    return shallow(<RawChartAxes {...props} />);
+  };
+
+  describe('snapshot', () => {
+    it('renders', () => expect(wrapper()).toMatchSnapshot());
+
+    it('renders if graphProps is not defined', () =>
+      expect(wrapper({ graphProps: undefined })).toMatchSnapshot());
+
+    it('renders if categories are not defined', () =>
+      expect(wrapper({ categories: undefined })).toMatchSnapshot());
   });
 });
 
