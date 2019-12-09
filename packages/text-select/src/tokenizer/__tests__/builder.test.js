@@ -1,11 +1,4 @@
-import {
-  normalize,
-  sentences,
-  words,
-  paragraphs,
-  sort,
-  intersection
-} from '../builder';
+import { normalize, sentences, words, paragraphs, sort, intersection } from '../builder';
 
 const token = (start, end, text) => ({ start, end, text });
 
@@ -30,21 +23,9 @@ describe('builder', () => {
 
     assert(selection(2, 3), [token(0, 1)], []);
     assert(selection(1, 2), [token(0, 1)], []);
-    assert(
-      selection(0, 1),
-      [token(0, 1)],
-      [{ token: token(0, 1), type: 'exact-fit' }]
-    );
-    assert(
-      selection(0, 2),
-      [token(0, 1)],
-      [{ token: token(0, 1), type: 'within-selection' }]
-    );
-    assert(
-      selection(0, 2),
-      [token(1, 2)],
-      [{ token: token(1, 2), type: 'within-selection' }]
-    );
+    assert(selection(0, 1), [token(0, 1)], [{ token: token(0, 1), type: 'exact-fit' }]);
+    assert(selection(0, 2), [token(0, 1)], [{ token: token(0, 1), type: 'within-selection' }]);
+    assert(selection(0, 2), [token(1, 2)], [{ token: token(1, 2), type: 'within-selection' }]);
     assert(
       selection(0, 10),
       [token(1, 2), token(2, 3)],
@@ -56,10 +37,7 @@ describe('builder', () => {
     assert(
       selection(0, 10),
       [token(1, 2), token(2, 11)],
-      [
-        { token: token(1, 2), type: 'within-selection' },
-        { token: token(2, 11), type: 'overlap' }
-      ]
+      [{ token: token(1, 2), type: 'within-selection' }, { token: token(2, 11), type: 'overlap' }]
     );
   });
 
@@ -78,9 +56,7 @@ describe('builder', () => {
   });
   describe('normalize', () => {
     const assert = (input, tokens, expected) => {
-      it(`${input} + ${JSON.stringify(tokens)} -> ${JSON.stringify(
-        expected
-      )}`, () => {
+      it(`${input} + ${JSON.stringify(tokens)} -> ${JSON.stringify(expected)}`, () => {
         const out = normalize(input, tokens);
         expect(out).toEqual(expected);
       });
@@ -99,10 +75,7 @@ describe('builder', () => {
     assert(
       'abc',
       [{ text: 'c', start: 2, end: 3 }],
-      [
-        { text: 'ab', start: 0, end: 2 },
-        { text: 'c', start: 2, end: 3, predefined: true }
-      ]
+      [{ text: 'ab', start: 0, end: 2 }, { text: 'c', start: 2, end: 3, predefined: true }]
     );
 
     assert(
@@ -118,10 +91,7 @@ describe('builder', () => {
     assert(
       'abc',
       [{ text: 'a', start: 0, end: 1 }],
-      [
-        { text: 'a', start: 0, end: 1, predefined: true },
-        { text: 'bc', start: 1, end: 3 }
-      ]
+      [{ text: 'a', start: 0, end: 1, predefined: true }, { text: 'bc', start: 1, end: 3 }]
     );
 
     assert(
@@ -144,6 +114,25 @@ describe('builder', () => {
         { text: 'b', start: 1, end: 2 },
         { text: 'c', start: 2, end: 3 },
         { text: 'd', start: 3, end: 4 }
+      ],
+      [
+        { text: 'a', start: 0, end: 1 },
+        { text: 'b', start: 1, end: 2, predefined: true },
+        { text: 'c', start: 2, end: 3, predefined: true },
+        { text: 'd', start: 3, end: 4, predefined: true },
+        { text: 'e', start: 4, end: 5 }
+      ]
+    );
+
+    // same token defined multiple times
+    assert(
+      'abcde',
+      [
+        { text: 'c', start: 2, end: 3 },
+        { text: 'b', start: 1, end: 2 },
+        { text: 'c', start: 2, end: 3 },
+        { text: 'd', start: 3, end: 4 },
+        { text: 'c', start: 2, end: 3 }
       ],
       [
         { text: 'a', start: 0, end: 1 },

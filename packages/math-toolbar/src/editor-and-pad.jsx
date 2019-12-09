@@ -40,6 +40,7 @@ export class EditorAndPad extends React.Component {
     latex: PropTypes.string.isRequired,
     onAnswerBlockAdd: PropTypes.func,
     onFocus: PropTypes.func,
+    onBlur: PropTypes.func,
     onChange: PropTypes.func.isRequired,
     classes: PropTypes.object
   };
@@ -126,6 +127,7 @@ export class EditorAndPad extends React.Component {
       noDecimal,
       latex,
       onFocus,
+      onBlur,
       classes
     } = this.props;
     const shouldShowKeypad = !controlledKeypad || (controlledKeypad && showKeypad);
@@ -136,6 +138,7 @@ export class EditorAndPad extends React.Component {
       <div className={cx(classes.mathToolbar, classNames.mathToolbar)}>
         <mq.Input
           onFocus={onFocus}
+          onBlur={onBlur}
           className={cx(classes.mathEditor, classNames.editor)}
           innerRef={r => (this.input = r)}
           latex={latex}

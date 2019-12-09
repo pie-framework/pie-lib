@@ -23,7 +23,8 @@ export class MathToolbar extends React.Component {
     onChange: PropTypes.func,
     onDone: PropTypes.func.isRequired,
     onFocus: PropTypes.func,
-    onBlur: PropTypes.func
+    onBlur: PropTypes.func,
+    hideDoneButton: PropTypes.bool
   };
 
   static defaultProps = {
@@ -37,7 +38,8 @@ export class MathToolbar extends React.Component {
     additionalKeys: [],
     onChange: () => {},
     onAnswerBlockAdd: () => {},
-    onFocus: () => {}
+    onFocus: () => {},
+    hideDoneButton: false
   };
 
   constructor(props) {
@@ -73,7 +75,8 @@ export class MathToolbar extends React.Component {
       additionalKeys,
       showKeypad,
       onFocus,
-      onBlur
+      onBlur,
+      hideDoneButton
     } = this.props;
 
     return (
@@ -92,6 +95,7 @@ export class MathToolbar extends React.Component {
         onBlur={onBlur}
         showKeypad={showKeypad}
         controlledKeypad={controlledKeypad}
+        hideDoneButton={hideDoneButton}
       />
     );
   }
@@ -104,6 +108,7 @@ export class RawPureToolbar extends React.Component {
     keypadMode: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     onChange: PropTypes.func.isRequired,
     onDone: PropTypes.func.isRequired,
+    onBlur: PropTypes.func,
     onAnswerBlockAdd: PropTypes.func,
     additionalKeys: PropTypes.array,
     onFocus: PropTypes.func,
@@ -112,7 +117,8 @@ export class RawPureToolbar extends React.Component {
     noDecimal: PropTypes.bool,
     allowAnswerBlock: PropTypes.bool,
     controlledKeypad: PropTypes.bool,
-    showKeypad: PropTypes.bool
+    showKeypad: PropTypes.bool,
+    hideDoneButton: PropTypes.bool
   };
 
   render() {
@@ -130,6 +136,8 @@ export class RawPureToolbar extends React.Component {
       onChange,
       onDone,
       onFocus,
+      onBlur,
+      hideDoneButton,
       classes
     } = this.props;
 
@@ -149,8 +157,11 @@ export class RawPureToolbar extends React.Component {
           latex={latex}
           onChange={onChange}
           onFocus={onFocus}
+          onBlur={onBlur}
         />
-        {(!controlledKeypad || (controlledKeypad && showKeypad)) && <DoneButton onClick={onDone} />}
+        {(!controlledKeypad || (controlledKeypad && showKeypad)) && !hideDoneButton && (
+          <DoneButton onClick={onDone} />
+        )}
       </div>
     );
   }

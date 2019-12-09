@@ -161,8 +161,8 @@ export const normalize = (text, tokens) => {
   const out = sort(tokens).reduce(
     (acc, t, index, outer) => {
       let tokens = [];
-
       const lastIndex = acc.lastIndex;
+
       if (t.start === lastIndex) {
         tokens = [
           {
@@ -173,7 +173,7 @@ export const normalize = (text, tokens) => {
             correct: t.correct
           }
         ];
-      } else {
+      } else if (lastIndex < t.start) {
         tokens = [
           {
             text: text.substring(lastIndex, t.start),
@@ -200,7 +200,7 @@ export const normalize = (text, tokens) => {
       }
 
       return {
-        lastIndex: tokens[tokens.length - 1].end,
+        lastIndex: tokens.length ? tokens[tokens.length - 1].end : lastIndex,
         result: acc.result.concat(tokens)
       };
     },
