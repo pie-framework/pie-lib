@@ -22,6 +22,9 @@ describe('LinePlot', () => {
 
   describe('snapshot', () => {
     it('renders', () => expect(wrapper()).toMatchSnapshot());
+
+    it('renders without graphProps', () =>
+      expect(wrapper({ graphProps: undefined })).toMatchSnapshot());
   });
 
   describe('component', () => {

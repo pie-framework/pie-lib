@@ -19,5 +19,8 @@ describe('Grid', () => {
   };
   describe('snapshot', () => {
     it('renders', () => expect(wrapper()).toMatchSnapshot());
+
+    it('renders if graphProps is not defined', () =>
+      expect(wrapper({ graphProps: undefined })).toMatchSnapshot());
   });
 });

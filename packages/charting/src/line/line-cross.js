@@ -56,7 +56,7 @@ export class LineCross extends React.Component {
   render() {
     const props = this.props;
     const { data, graphProps } = props;
-    const { scale, size } = graphProps;
+    const { scale = {}, size = {} } = graphProps || {};
     const xBand = dataToXBand(scale.x, data, size.width, 'lineCross');
 
     return <RawLine {...props} xBand={xBand} CustomDraggableComponent={DraggableComponent} />;

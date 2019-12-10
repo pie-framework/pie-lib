@@ -20,7 +20,7 @@ export class Grid extends React.Component {
 
   render() {
     const { classes, className, graphProps, xBand, rowTickValues, columnTickValues } = this.props;
-    const { scale, size } = graphProps;
+    const { scale = {}, size = {} } = graphProps || {};
 
     return (
       <VxGrid

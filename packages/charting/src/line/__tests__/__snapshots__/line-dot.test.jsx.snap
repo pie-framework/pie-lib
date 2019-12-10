@@ -34,3 +34,12 @@ exports[`LineChart snapshot renders 1`] = `
   xBand={[Function]}
 />
 `;
+
+exports[`LineChart snapshot renders without graphProps 1`] = `
+<Line
+  CustomDraggableComponent={[Function]}
+  className="className"
+  classes={Object {}}
+  xBand={[Function]}
+/>
+`;

@@ -14,3 +14,15 @@ exports[`Grid snapshot renders 1`] = `
   yScale={[MockFunction]}
 />
 `;
+
+exports[`Grid snapshot renders if graphProps is not defined 1`] = `
+<r
+  className="className"
+  xOffset={NaN}
+  xScale={
+    Object {
+      "bandwidth": [Function],
+    }
+  }
+/>
+`;
