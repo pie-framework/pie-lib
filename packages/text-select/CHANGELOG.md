@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.5.5...@pie-lib/text-select@1.5.6) (2019-12-09)
+
+
+### Bug Fixes
+
+* ch5389: A Select Text item had incorrect text if some of the tokens were defined twice, because in the normalized array there were being added tokens where start value was bigger than the end value of the token. ([75ab455](https://github.com/pie-framework/pie-lib/commit/75ab455))
+
+
+
+
+
 ## [1.5.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.5.4...@pie-lib/text-select@1.5.5) (2019-08-21)
 
 **Note:** Version bump only for package @pie-lib/text-select
