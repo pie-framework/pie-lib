@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.2.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.2.4...@pie-lib/charting@4.2.5) (2019-12-10)
+
+
+### Bug Fixes
+
+* raised up in ch5875: Added sanity checks for `size` property. ([82b2352](https://github.com/pie-framework/pie-lib/commit/82b2352))
+
+
+
+
+
 ## [4.2.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.2.3...@pie-lib/charting@4.2.4) (2019-08-27)
 
 
