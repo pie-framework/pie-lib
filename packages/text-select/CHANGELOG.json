@@ -328,5 +328,20 @@
     "committerDate": "2019-07-02 11:29:52 -0400",
     "isTagged": true,
     "tag": "@pie-lib/text-select@1.5.2"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "ch5389: A Select Text item had incorrect text if some of the tokens were defined twice, because in the normalized array there were being added tokens where start value was bigger than the end value of the token.",
+    "merge": null,
+    "header": "fix: ch5389: A Select Text item had incorrect text if some of the tokens were defined twice, because in the normalized array there were being added tokens where start value was bigger than the end value of the token.",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "75ab455778ff5b4fd106526aada329228208570d",
+    "gitTags": " (origin/andreea/ch5389/a-select-text-item-has-incorrect-text-apparently)",
+    "committerDate": "2019-12-05 14:42:22 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/text-select@1.5.6"
   }
 ]

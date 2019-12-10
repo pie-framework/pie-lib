@@ -633,5 +633,20 @@
     "committerDate": "2019-08-20 16:01:36 +0300",
     "isTagged": true,
     "tag": "@pie-lib/math-toolbar@1.4.6"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "ch4405: Added usage of onBlur function and hideDoneButton property for editor.",
+    "merge": null,
+    "header": "fix: ch4405: Added usage of onBlur function and hideDoneButton property for editor.",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "24f072c47a720c8631583c16b157b0ed7812ddb2",
+    "gitTags": "",
+    "committerDate": "2019-12-04 11:27:41 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/math-toolbar@1.4.9"
   }
 ]
