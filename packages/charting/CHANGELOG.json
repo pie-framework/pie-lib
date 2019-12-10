@@ -458,5 +458,20 @@
     "committerDate": "2019-08-27 14:52:29 +0100",
     "isTagged": true,
     "tag": "@pie-lib/charting@4.2.4"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "raised up in ch5875: Added sanity checks for `size` property.",
+    "merge": null,
+    "header": "fix: raised up in ch5875: Added sanity checks for `size` property.",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "82b235277a1845c8f9399e22c8cd697880b9ea25",
+    "gitTags": " (origin/andreea/ch5875/problems-with-legacy-extended-response-and)",
+    "committerDate": "2019-12-09 16:09:18 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/charting@4.2.5"
   }
 ]
