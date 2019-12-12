@@ -91,6 +91,7 @@ const rules = [
           leaves: [{ text: el.textContent }]
         };
       }
+
       const type = el.tagName.toLowerCase();
 
       const normalAttrs = attr(el) || {};
@@ -107,7 +108,10 @@ const rules = [
   }
 ];
 
-// Create a new serializer instance with our `rules` from above.
-const html = new Html({ rules, defaultBlock: 'div' });
+/**
+ * Create a new serializer instance with our `rules` from above.
+ * Having a default div block will just put every div on it's own line, which is not ideal.
+ */
+const html = new Html({ rules, defaultBlock: 'span' });
 
 export const deserialize = s => html.deserialize(s, { toJSON: true });
