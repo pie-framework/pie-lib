@@ -448,5 +448,20 @@
     "committerDate": "2019-11-11 11:46:20 +0000",
     "isTagged": true,
     "tag": "@pie-lib/mask-markup@1.5.4"
+  },
+  {
+    "type": "feat",
+    "scope": "serialization",
+    "subject": "made sure that there are no unwanted line breaks [ch4264]",
+    "merge": null,
+    "header": "feat(serialization): made sure that there are no unwanted line breaks [ch4264]",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "94684bcc896429efc1b09779963293997a2a0dfa",
+    "gitTags": " (origin/ch4264/serialization-issue)",
+    "committerDate": "2019-12-12 11:43:35 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/mask-markup@1.6.0"
   }
 ]
