@@ -1,14 +1,14 @@
-import { MathJax } from 'mathjax3/mathjax3/mathjax';
-import { MathML } from 'mathjax3/mathjax3/input/mathml';
-import { TeX } from 'mathjax3/mathjax3/input/tex';
+import { mathjax } from 'mathjax-full/js/mathjax';
+import { MathML } from 'mathjax-full/js/input/mathml';
+import { TeX } from 'mathjax-full/js/input/tex';
 
-import { CHTML } from 'mathjax3/mathjax3/output/chtml';
-import { RegisterHTMLHandler } from 'mathjax3/mathjax3/handlers/html';
+import { CHTML } from 'mathjax-full/js/output/chtml';
+import { RegisterHTMLHandler } from 'mathjax-full/js/handlers/html';
 
-const MATHJAX_VERSION = '3.0.0-beta.4';
+const MATHJAX_VERSION = '3.0.0';
 
 if (typeof window !== 'undefined') {
-  const { browserAdaptor } = require('mathjax3/mathjax3/adaptors/browserAdaptor');
+  const { browserAdaptor } = require('mathjax-full/js/adaptors/browserAdaptor');
   RegisterHTMLHandler(browserAdaptor());
 }
 
@@ -19,6 +19,13 @@ const log = debug('pie-lib:math-rendering');
 
 let instance = null;
 
+if (typeof window !== 'undefined') {
+  window.pie = window.pie || {};
+  window.pie.mathRendering = window.pie.mathRendering || {};
+
+  instance = window.pie.mathRendering.instance;
+}
+
 /** Add temporary support for a global singleDollar override
  *  <code>
  *   // This will enable single dollar rendering
@@ -28,8 +35,7 @@ let instance = null;
  */
 const defaultOpts = () => {
   if (typeof window !== 'undefined') {
-    window.pie = window.pie || {};
-    return window.pie.mathRendering || {};
+    return window.pie.mathRendering;
   } else {
     return {};
   }
@@ -70,16 +76,15 @@ const bootstrap = opts => {
     : {};
 
   const mmlConfig = {};
-  const fontURL = `https://unpkg.com/mathjax3@${MATHJAX_VERSION}/mathjax3-ts/output/chtml/fonts/tex-woff-v2`;
+  const fontURL = `https://unpkg.com/mathjax-full@${MATHJAX_VERSION}/ts/output/chtml/fonts/tex-woff-v2`;
   const htmlConfig = { fontURL };
-
-  const html = MathJax.document(document, {
+  const html = mathjax.document(document, {
     InputJax: [new TeX(texConfig), new MathML(mmlConfig)],
     OutputJax: new CHTML(htmlConfig)
   });
 
   return {
-    version: MathJax.version,
+    version: mathjax.version,
     html: html,
 
     Typeset: function(...elements) {
@@ -99,6 +104,7 @@ const renderMath = (el, renderOpts) => {
 
   if (!instance) {
     instance = bootstrap(renderOpts);
+    window.pie.mathRendering.instance = instance;
   }
 
   if (!el) {
