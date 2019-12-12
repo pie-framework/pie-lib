@@ -13,4 +13,27 @@ describe('index', () => {
       });
     });
   });
+
+  describe('serialization', () => {
+    it('should have default node a span', () => {
+      expect(deserialize('something')).toEqual(
+        expect.objectContaining({
+          object: 'value',
+          document: {
+            object: 'document',
+            data: {},
+            nodes: [
+              {
+                object: 'block',
+                data: {},
+                isVoid: false,
+                type: 'span',
+                nodes: [{ object: 'text', leaves: [{ text: 'something' }] }]
+              }
+            ]
+          }
+        })
+      );
+    });
+  });
 });
