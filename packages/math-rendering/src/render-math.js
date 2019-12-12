@@ -5,8 +5,6 @@ import { TeX } from 'mathjax-full/js/input/tex';
 import { CHTML } from 'mathjax-full/js/output/chtml';
 import { RegisterHTMLHandler } from 'mathjax-full/js/handlers/html';
 
-const MATHJAX_VERSION = '3.0.0';
-
 if (typeof window !== 'undefined') {
   const { browserAdaptor } = require('mathjax-full/js/adaptors/browserAdaptor');
   RegisterHTMLHandler(browserAdaptor());
@@ -74,9 +72,8 @@ const bootstrap = opts => {
   const texConfig = opts.useSingleDollar
     ? { inlineMath: [['$', '$'], ['\\(', '\\)']], processEscapes: true }
     : {};
-
   const mmlConfig = {};
-  const fontURL = `https://unpkg.com/mathjax-full@${MATHJAX_VERSION}/ts/output/chtml/fonts/tex-woff-v2`;
+  const fontURL = `https://unpkg.com/mathjax-full@${mathjax.version}/ts/output/chtml/fonts/tex-woff-v2`;
   const htmlConfig = { fontURL };
   const html = mathjax.document(document, {
     InputJax: [new TeX(texConfig), new MathML(mmlConfig)],
