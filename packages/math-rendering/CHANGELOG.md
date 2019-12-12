@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@1.3.7...@pie-lib/math-rendering@1.4.0) (2019-12-12)
+
+
+### Features
+
+* upgrade to mathax-full@^3.0.0 ([994998d](https://github.com/pie-framework/pie-lib/commit/994998d))
+
+
+
+
+
 ## [1.3.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@1.3.6...@pie-lib/math-rendering@1.3.7) (2019-08-21)
 
 **Note:** Version bump only for package @pie-lib/math-rendering
