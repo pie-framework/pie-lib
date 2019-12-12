@@ -1,12 +1,12 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import renderMath, { fixMathElement } from '../render-math';
-import { MathJax } from 'mathjax3/mathjax3/mathjax';
+import { mathjax } from 'mathjax-full/js/mathjax';
 
 jest.mock(
-  'mathjax3/mathjax3/mathjax',
+  'mathjax-full/js/mathjax',
   () => ({
-    MathJax: {
+    mathjax: {
       document: jest.fn().mockReturnThis(),
       findMath: jest.fn().mockReturnThis(),
       compile: jest.fn().mockReturnThis(),
@@ -21,23 +21,23 @@ jest.mock(
   }
 );
 
-jest.mock('mathjax3/mathjax3/input/mathml', () => ({
+jest.mock('mathjax-full/js/input/mathml', () => ({
   MathML: jest.fn()
 }));
 
-jest.mock('mathjax3/mathjax3/input/tex', () => ({
+jest.mock('mathjax-full/js/input/tex', () => ({
   TeX: jest.fn()
 }));
 
-jest.mock('mathjax3/mathjax3/output/chtml', () => ({
+jest.mock('mathjax-full/js/output/chtml', () => ({
   CHTML: jest.fn()
 }));
 
-jest.mock('mathjax3/mathjax3/adaptors/browserAdaptor', () => ({
+jest.mock('mathjax-full/js/adaptors/browserAdaptor', () => ({
   browserAdaptor: jest.fn()
 }));
 
-jest.mock('mathjax3/mathjax3/handlers/html', () => ({
+jest.mock('mathjax-full/js/handlers/html', () => ({
   RegisterHTMLHandler: jest.fn()
 }));
 
@@ -45,8 +45,8 @@ describe.only('render-math', () => {
   it('calls MathJax render', () => {
     const div = document.createElement('div');
     renderMath(div);
-    expect(MathJax.document).toHaveBeenCalledTimes(1);
-    expect(MathJax.findMath).toHaveBeenCalledWith({ elements: [div] });
+    expect(mathjax.document).toHaveBeenCalledTimes(1);
+    expect(mathjax.findMath).toHaveBeenCalledWith({ elements: [div] });
   });
 
   it('call render math for an array of elements', () => {
@@ -55,8 +55,8 @@ describe.only('render-math', () => {
 
     renderMath([divOne, divTwo]);
 
-    expect(MathJax.document).toHaveBeenCalledTimes(1);
-    expect(MathJax.findMath).toHaveBeenCalledWith({
+    expect(mathjax.document).toHaveBeenCalledTimes(1);
+    expect(mathjax.findMath).toHaveBeenCalledWith({
       elements: [divOne, divTwo]
     });
   });
@@ -71,8 +71,6 @@ describe.only('render-math', () => {
 
     fixMathElement(spanElem);
 
-    expect(spanElem.textContent).toEqual(
-      '\\(420\\text{ cm}=4.2\\text{ meters}\\)'
-    );
+    expect(spanElem.textContent).toEqual('\\(420\\text{ cm}=4.2\\text{ meters}\\)');
   });
 });
