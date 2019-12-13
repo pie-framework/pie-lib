@@ -9,20 +9,27 @@ if (typeof window !== 'undefined') {
   const { browserAdaptor } = require('mathjax-full/js/adaptors/browserAdaptor');
   RegisterHTMLHandler(browserAdaptor());
 }
+import pkg from '../package.json';
 
 import debug from 'debug';
 import { wrapMath, unWrapMath } from './normalization';
 
 const log = debug('pie-lib:math-rendering');
 
-let instance = null;
+const getGlobal = () => {
+  const key = `${pkg.name}@${pkg.version.split('.')[0]}`;
 
-if (typeof window !== 'undefined') {
-  window.pie = window.pie || {};
-  window.pie.mathRendering = window.pie.mathRendering || {};
+  if (typeof window !== 'undefined') {
+    if (!window[key]) {
+      window[key] = {};
+    }
+    return window[key];
+  } else {
+    return {};
+  }
+};
 
-  instance = window.pie.mathRendering.instance;
-}
+let instance = getGlobal().instance;
 
 /** Add temporary support for a global singleDollar override
  *  <code>
@@ -31,13 +38,7 @@ if (typeof window !== 'undefined') {
  *   window.pie.mathRendering =  {useSingleDollar: true };
  *  </code>
  */
-const defaultOpts = () => {
-  if (typeof window !== 'undefined') {
-    return window.pie.mathRendering;
-  } else {
-    return {};
-  }
-};
+const defaultOpts = () => getGlobal().opts || {};
 
 export const fixMathElement = element => {
   let property = 'innerText';
@@ -101,7 +102,7 @@ const renderMath = (el, renderOpts) => {
 
   if (!instance) {
     instance = bootstrap(renderOpts);
-    window.pie.mathRendering.instance = instance;
+    getGlobal().instance = instance;
   }
 
   if (!el) {
