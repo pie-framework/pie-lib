@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.5.4...@pie-lib/mask-markup@1.7.0) (2019-12-12)
+
+
+### Features
+
+* **serialization:** made sure that there are no unwanted line breaks [ch4264] ([94684bc](https://github.com/pie-framework/pie-lib/commit/94684bc))
+
+
+
+
+
 # [1.6.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.5.4...@pie-lib/mask-markup@1.6.0) (2019-12-12)
 
 
