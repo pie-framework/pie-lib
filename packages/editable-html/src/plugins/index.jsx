@@ -5,6 +5,7 @@ import NumberedListIcon from '@material-ui/icons/FormatListNumbered';
 import ImagePlugin from './image';
 import Italic from '@material-ui/icons/FormatItalic';
 import MathPlugin from './math';
+import MathMLPlugin from './math-ml';
 import React from 'react';
 import Strikethrough from '@material-ui/icons/FormatStrikethrough';
 import ToolbarPlugin from './toolbar';
@@ -62,6 +63,7 @@ export const ALL_PLUGINS = [
   'numbered-list',
   'image',
   'math',
+  'mathml',
   'table',
   'responseArea'
 ];
@@ -76,6 +78,7 @@ export const buildPlugins = (activePlugins, opts) => {
   const addIf = (key, p) => activePlugins.includes(key) && p;
   const imagePlugin = opts.image && opts.image.onDelete && ImagePlugin(opts.image);
   const mathPlugin = MathPlugin(opts.math);
+  const mathMLPlugin = MathMLPlugin(opts.mathml);
   const respAreaPlugin =
     opts.responseArea &&
     opts.responseArea.type &&
@@ -97,6 +100,7 @@ export const buildPlugins = (activePlugins, opts) => {
     ),
     addIf('underline', MarkHotkey({ key: 'u', type: 'underline', icon: <Underline />, tag: 'u' })),
     addIf('image', imagePlugin),
+    addIf('mathml', mathMLPlugin),
     addIf('math', mathPlugin),
     addIf('bulleted-list', List({ key: 'l', type: 'ul_list', icon: <BulletedListIcon /> })),
     addIf('numbered-list', List({ key: 'n', type: 'ol_list', icon: <NumberedListIcon /> })),

@@ -24,6 +24,24 @@ const puppySrc = 'https://bit.ly/23yROY8';
  */
 const inputOptions = [
   {
+    label: 'Mathml in div',
+    html: `<div>math here: 
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mrow>
+    <msup>
+      <mfenced>
+        <mrow>
+          <mi>a</mi>
+          <mo>+</mo>
+          <mi>b</mi>
+        </mrow>
+      </mfenced>
+      <mn>2</mn>
+    </msup>
+  </mrow>
+    </math></div>`
+  },
+  {
     label: 'An image in a P tag',
     html: `<div><p><img src="${puppySrc}" style="width:170px;height:151px"/> bar</p><p><img src="${puppySrc}" style="width:170px;height:151px"/> bar</p></div>`
   },
@@ -58,7 +76,7 @@ const inputOptions = [
   }
 ];
 
-const html = inputOptions[1].html;
+const html = inputOptions[0].html;
 
 class RawMarkupPreview extends React.Component {
   static propTypes = {
