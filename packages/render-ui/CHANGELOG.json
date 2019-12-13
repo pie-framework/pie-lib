@@ -423,5 +423,20 @@
     "committerDate": "2019-06-10 15:24:32 +0100",
     "isTagged": true,
     "tag": "@pie-lib/render-ui@4.4.0"
+  },
+  {
+    "type": "feat",
+    "scope": null,
+    "subject": "add HtmlAndMath from @pie-lib/math-rendering",
+    "merge": null,
+    "header": "feat: add HtmlAndMath from @pie-lib/math-rendering",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "05121b39325ebb26dc4cec96d895ccbe6697eb09",
+    "gitTags": " (origin/develop, origin/HEAD)",
+    "committerDate": "2019-12-12 21:08:04 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/render-ui@4.5.0"
   }
 ]
