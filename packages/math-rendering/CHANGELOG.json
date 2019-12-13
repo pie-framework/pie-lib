@@ -488,5 +488,20 @@
     "committerDate": "2019-12-12 21:08:04 +0000",
     "isTagged": true,
     "tag": "@pie-lib/math-rendering@2.0.0"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "namespace global to pkg.name + major version",
+    "merge": null,
+    "header": "fix: namespace global to pkg.name + major version",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "0dc86501d1b18a136573763dc9b3f8eb7bcaba82",
+    "gitTags": "",
+    "committerDate": "2019-12-13 11:59:12 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/math-rendering@2.0.3"
   }
 ]
