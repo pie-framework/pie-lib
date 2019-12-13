@@ -453,5 +453,40 @@
     "committerDate": "2019-12-12 13:25:20 +0000",
     "isTagged": true,
     "tag": "@pie-lib/math-rendering@1.4.0"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "bump version to avoid conflict",
+    "merge": null,
+    "header": "fix: bump version to avoid conflict",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "0910cf9d814113aae940cf9a7513f4bfc3f78063",
+    "gitTags": " (develop)",
+    "committerDate": "2019-12-13 09:25:00 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/math-rendering@2.0.2"
+  },
+  {
+    "type": "feat",
+    "scope": null,
+    "subject": "remove HtmlAndMath",
+    "merge": null,
+    "header": "feat: remove HtmlAndMath",
+    "body": null,
+    "footer": "BREAKING CHANGE: `HtmlAndMath` is now in `@pie-lib/render-ui`.",
+    "notes": [
+      {
+        "title": "BREAKING CHANGE",
+        "text": "`HtmlAndMath` is now in `@pie-lib/render-ui`."
+      }
+    ],
+    "hash": "34a3d8df05f68587e966da85381bd93194555fd2",
+    "gitTags": "",
+    "committerDate": "2019-12-12 21:08:04 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/math-rendering@2.0.0"
   }
 ]
