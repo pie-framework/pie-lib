@@ -4,6 +4,7 @@ import { object as toStyleObject } from 'to-style';
 const INLINE = ['span'];
 const MARK = ['em', 'strong', 'u'];
 const TEXT_NODE = 3;
+const COMMENT_NODE = 8;
 
 const attr = el => {
   if (!el.attributes || el.attributes.length <= 0) {
@@ -58,6 +59,10 @@ const handleClass = (el, acc, attribute) => {
 };
 
 const attributesToMap = el => (acc, attribute) => {
+  if (!el.getAttribute) {
+    return acc;
+  }
+
   const value = el.getAttribute(attribute);
 
   if (value) {
@@ -85,6 +90,10 @@ const rules = [
      * deserialize everything, we're not fussy about the dom structure for now.
      */
     deserialize: (el, next) => {
+      if (el.nodeType === COMMENT_NODE) {
+        return undefined;
+      }
+
       if (el.nodeType === TEXT_NODE) {
         return {
           object: 'text',
