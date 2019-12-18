@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import { remove } from 'fs-extra';
 
 export const mkSet = category => o => ({ ...o, category });
 
@@ -42,7 +43,16 @@ export const transformToKeySetStructure = (data = []) => {
   return structure;
 };
 
+const latexAndNameDontExist = base => k => {
+  const flattened = _.flatten(base);
+  const latexExists = flattened.some(b => b.latex === k.latex);
+  const nameExists = flattened.some(b => b.name === k.name);
+  return !latexExists && !nameExists;
+};
+
 export const extendKeySet = (base = [], keySetData = []) => {
+  keySetData = keySetData.filter(latexAndNameDontExist(base));
+
   const final = [];
 
   _.times(5 - base.length, () => {
