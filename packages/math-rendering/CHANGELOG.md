@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.0.3...@pie-lib/math-rendering@2.1.0) (2019-12-18)
+
+
+### Features
+
+* **math:** made sure there is only one instance of mathjax on the page [ch6048] ([b0c7395](https://github.com/pie-framework/pie-lib/commit/b0c7395))
+
+
+
+
+
 ## [2.0.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.0.2...@pie-lib/math-rendering@2.0.3) (2019-12-13)
 
 
