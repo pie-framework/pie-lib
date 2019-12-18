@@ -2,6 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import renderMath, { fixMathElement } from '../render-math';
 import { mathjax } from 'mathjax-full/js/mathjax';
+import _ from 'lodash';
 
 jest.mock(
   'mathjax-full/js/mathjax',
@@ -42,6 +43,12 @@ jest.mock('mathjax-full/js/handlers/html', () => ({
 }));
 
 describe.only('render-math', () => {
+  it('calls mathjax.document once', () => {
+    const div = document.createElement('div');
+    _.times(10).forEach(i => renderMath(div));
+
+    expect(mathjax.document).toHaveBeenCalledTimes(1);
+  });
   it('calls MathJax render', () => {
     const div = document.createElement('div');
     renderMath(div);
