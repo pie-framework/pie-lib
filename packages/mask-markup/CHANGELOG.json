@@ -463,5 +463,20 @@
     "committerDate": "2019-12-12 11:43:35 +0200",
     "isTagged": true,
     "tag": "@pie-lib/mask-markup@1.6.0"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "do not add comments to document tree fixes [ch5774]",
+    "merge": null,
+    "header": "fix: do not add comments to document tree fixes [ch5774]",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "86366f1f4ec78cea763a40cc2db4abcfc47fe6cd",
+    "gitTags": "",
+    "committerDate": "2019-12-17 18:48:59 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/mask-markup@1.7.3"
   }
 ]
