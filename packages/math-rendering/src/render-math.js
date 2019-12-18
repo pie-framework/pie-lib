@@ -98,9 +98,13 @@ const bootstrap = opts => {
 };
 
 const renderMath = (el, renderOpts) => {
+  const currentInstance = getGlobal().instance;
+
   fixMathElements();
 
-  if (!instance) {
+  if (currentInstance) {
+    instance = currentInstance;
+  } else {
     instance = bootstrap(renderOpts);
     getGlobal().instance = instance;
   }
