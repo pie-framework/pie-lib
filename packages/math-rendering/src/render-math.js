@@ -9,6 +9,7 @@ if (typeof window !== 'undefined') {
   const { browserAdaptor } = require('mathjax-full/js/adaptors/browserAdaptor');
   RegisterHTMLHandler(browserAdaptor());
 }
+
 import pkg from '../package.json';
 
 import debug from 'debug';
@@ -28,8 +29,6 @@ const getGlobal = () => {
     return {};
   }
 };
-
-let instance = getGlobal().instance;
 
 /** Add temporary support for a global singleDollar override
  *  <code>
@@ -98,15 +97,10 @@ const bootstrap = opts => {
 };
 
 const renderMath = (el, renderOpts) => {
-  const currentInstance = getGlobal().instance;
-
   fixMathElements();
 
-  if (currentInstance) {
-    instance = currentInstance;
-  } else {
-    instance = bootstrap(renderOpts);
-    getGlobal().instance = instance;
+  if (!getGlobal().instance) {
+    getGlobal().instance = bootstrap(renderOpts);
   }
 
   if (!el) {
@@ -115,10 +109,10 @@ const renderMath = (el, renderOpts) => {
   }
 
   if (el instanceof Element) {
-    instance.Typeset(el);
+    getGlobal().instance.Typeset(el);
   } else if (el.length) {
     const arr = Array.from(el);
-    instance.Typeset(...arr);
+    getGlobal().instance.Typeset(...arr);
   }
 };
 
