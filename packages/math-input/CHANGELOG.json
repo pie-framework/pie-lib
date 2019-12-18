@@ -973,5 +973,20 @@
     "committerDate": "2019-11-05 16:22:32 +0000",
     "isTagged": true,
     "tag": "@pie-lib/math-input@6.3.6"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "do not add keys if they already exist in keyset [ch5653]",
+    "merge": null,
+    "header": "fix: do not add keys if they already exist in keyset [ch5653]",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "fbccf3bc49c111bceac1ca1099ccfc66ca7a4e07",
+    "gitTags": "",
+    "committerDate": "2019-12-18 14:39:04 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/math-input@6.3.7"
   }
 ]
