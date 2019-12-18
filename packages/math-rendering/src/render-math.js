@@ -97,6 +97,7 @@ const bootstrap = opts => {
 };
 
 const renderMath = (el, renderOpts) => {
+  //TODO: remove this - has nothing to do with math-rendering (it's from editable-html)
   fixMathElements();
 
   if (!getGlobal().instance) {
