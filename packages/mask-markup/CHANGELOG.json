@@ -474,7 +474,7 @@
     "footer": null,
     "notes": [],
     "hash": "86366f1f4ec78cea763a40cc2db4abcfc47fe6cd",
-    "gitTags": " (origin/develop, origin/ch5774/serialization-issue, origin/HEAD, develop)",
+    "gitTags": "",
     "committerDate": "2019-12-17 18:48:59 +0000",
     "isTagged": true,
     "tag": "@pie-lib/mask-markup@1.7.3"
