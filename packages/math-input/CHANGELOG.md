@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.3.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.3.6...@pie-lib/math-input@6.3.7) (2019-12-18)
+
+
+### Bug Fixes
+
+* do not add keys if they already exist in keyset [ch5653] ([fbccf3b](https://github.com/pie-framework/pie-lib/commit/fbccf3b))
+
+
+
+
+
 ## [6.3.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.3.5...@pie-lib/math-input@6.3.6) (2019-11-05)
 
 
