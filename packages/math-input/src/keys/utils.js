@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import { remove } from 'fs-extra';
 
 export const mkSet = category => o => ({ ...o, category });
 
