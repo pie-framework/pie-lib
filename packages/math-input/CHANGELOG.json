@@ -988,5 +988,20 @@
     "committerDate": "2019-12-18 14:39:04 +0000",
     "isTagged": true,
     "tag": "@pie-lib/math-input@6.3.7"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "rm bad import",
+    "merge": null,
+    "header": "fix: rm bad import",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "fe6673dc2d30d1866eebf81a3c024d6c23695807",
+    "gitTags": "",
+    "committerDate": "2019-12-19 09:21:29 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/math-input@6.3.8"
   }
 ]
