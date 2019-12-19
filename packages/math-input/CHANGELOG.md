@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.3.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.3.7...@pie-lib/math-input@6.3.8) (2019-12-19)
+
+
+### Bug Fixes
+
+* rm bad import ([fe6673d](https://github.com/pie-framework/pie-lib/commit/fe6673d))
+
+
+
+
+
 ## [6.3.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.3.6...@pie-lib/math-input@6.3.7) (2019-12-18)
 
 
