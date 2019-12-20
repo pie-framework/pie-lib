@@ -29,7 +29,7 @@ function prepareExpression(string, isLatex) {
 
   returnValue = isLatex
     ? latexToText(`${returnValue}`)
-    : me.fromText(`${returnValue}`, { unknownCommands: 'passthrough' }).toString();
+    : textToMathText(`${returnValue}`, { unknownCommands: 'passthrough' }).toString();
 
   returnValue = returnValue.replace('=', '==');
 
@@ -57,6 +57,16 @@ const astToTextOpts = {
 
 export const latexToText = (latex, extraOtps = {}) => {
   const la = new me.converters.latexToAstObj({ ...latexToAstOpts, ...extraOtps });
+
+  const at = new me.converters.astToTextObj({ ...astToTextOpts, ...extraOtps });
+
+  const ast = la.convert(latex);
+
+  return at.convert(ast);
+};
+
+export const textToMathText = (latex, extraOtps = {}) => {
+  const la = new me.converters.textToAstObj({ ...latexToAstOpts, ...extraOtps });
 
   const at = new me.converters.astToTextObj({ ...astToTextOpts, ...extraOtps });
 
