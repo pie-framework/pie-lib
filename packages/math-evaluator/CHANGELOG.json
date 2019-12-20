@@ -343,5 +343,20 @@
     "committerDate": "2019-11-19 13:16:36 +0200",
     "isTagged": true,
     "tag": "@pie-lib/math-evaluator@0.6.0"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "bump @pie-framework/math-expressions@^2.1.0 ch6456",
+    "merge": null,
+    "header": "fix: bump @pie-framework/math-expressions@^2.1.0 ch6456",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "d57971f1f1dd2943ced3ffa3dec0a324ba04e487",
+    "gitTags": " (origin/fix/ch6456-percent)",
+    "committerDate": "2019-12-20 11:14:25 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/math-evaluator@0.6.5"
   }
 ]
