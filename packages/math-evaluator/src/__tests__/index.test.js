@@ -16,9 +16,13 @@ describe('math-evaluator', () => {
     assertLatexToText('\\neq 10', '0 != 10');
     assertLatexToText('40%', 'percent(40)');
     assertLatexToText('%', 'percent(0)');
+    assertLatexToText('12%', 'percent(12)');
+    assertLatexToText('12\\%', 'percent(12)');
+    assertLatexToText('-12.5%', '- percent(12.5)');
+    assertLatexToText('-12.5\\%', '- percent(12.5)');
   });
 
-  const assert = isEqual => label =>
+  const assert = (isEqual, opts) => label =>
     function() {
       const args = Array.from(arguments);
       const pairs = _.chunk(args, 2);
@@ -26,7 +30,7 @@ describe('math-evaluator', () => {
       describe(label, () => {
         pairs.forEach(([a, b]) => {
           it(`${a} === ${b} ? ${isEqual}`, () => {
-            expect(areValuesEqual(a, b)).toBe(isEqual);
+            expect(areValuesEqual(a, b, opts)).toBe(isEqual);
           });
         });
       });
@@ -34,6 +38,9 @@ describe('math-evaluator', () => {
 
   const assertEqual = assert(true);
   const assertNotEqual = assert(false);
+
+  const assertLatexEqual = assert(true, { isLatex: true });
+  const assertLatexNotEqual = assert(false, { isLatex: true });
 
   const _amjs = only => (a, b, equal) => {
     const fn = only ? it.only : it;
@@ -56,6 +63,19 @@ describe('math-evaluator', () => {
 
   const assertLatexFromString = _als(false);
   assertLatexFromString.only = _als(true);
+
+  describe('ch6456', () => {
+    assertEqual('percent')('-12.5%', '-12.5%');
+    assertEqual('percent')('-12.5\\%', '-12.5%');
+    assertNotEqual('percent')('-11.5%', '-12.5%');
+  });
+
+  describe('ch6456 - latex', () => {
+    assertLatexEqual('percent')('\\frac{1}{2} -12.5%', '\\frac{2}{4} -12.5%');
+    assertLatexEqual('percent')('\\frac{1}{2} -12.5%', '\\frac{2}{4} -12.5\\%');
+    assertLatexNotEqual('percent')('\\frac{4}{2} -12.5%', '\\frac{2}{4} -12.5\\%');
+    assertLatexNotEqual('percent')('\\frac{2}{2} -12.5%', '\\frac{2}{4} -12.5\\%');
+  });
 
   describe('PIE-188-math-expressions', () => {
     // it('parses expressions correctly', async () => {
