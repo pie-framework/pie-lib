@@ -59,7 +59,8 @@ export const BlankContent = withStyles(theme => ({
     alignItems: 'center',
     display: 'inline-flex',
     height: 'initial',
-    minHeight: '32px'
+    minHeight: '32px',
+    fontSize: 'inherit'
   },
   disabled: {}
 }))(BlankContentComp);
