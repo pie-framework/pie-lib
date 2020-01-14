@@ -16,7 +16,8 @@ const useStyles = withStyles(theme => ({
     minWidth: '200px'
   },
   chip: {
-    minWidth: '90px'
+    minWidth: '90px',
+    fontSize: 'inherit'
   },
   correct: {
     border: 'solid 1px green'
