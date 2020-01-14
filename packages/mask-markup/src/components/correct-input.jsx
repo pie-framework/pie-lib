@@ -13,6 +13,9 @@ export default withStyles(() => ({
   },
   correct: correctStyle('green'),
   incorrect: correctStyle('red'),
+  box: {
+    fontSize: 'inherit'
+  },
   notchedOutline: {
     borderColor: 'green'
   }
