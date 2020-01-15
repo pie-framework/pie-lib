@@ -1,14 +1,19 @@
 import _ from 'lodash';
 
 export const enabled = (config, env, defaultValue) => {
-  if (env.partialScoring === true) {
-    return true;
-  }
-  if (env.partialScoring === false) {
+  // if model.partialScoring = false
+  //  - if env.partialScoring = false || env.partialScoring = true => use dichotomous scoring
+  // else if model.partialScoring = true || undefined
+  //  - if env.partialScoring = false, use dichotomous scoring
+  //  - else if env.partialScoring = true, use partial scoring
+  config = config || {};
+  env = env || {};
+
+  if (config.partialScoring === false) {
     return false;
   }
 
-  if (config.partialScoring === false) {
+  if (env.partialScoring === false) {
     return false;
   }
 
