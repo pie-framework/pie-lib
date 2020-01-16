@@ -32,9 +32,17 @@ class Demo extends React.Component {
 
     this.state = {
       constructedResponse: {
-        markup,
+        markup: '{{0}} pies de cerca',
         choices: {
-          0: 'blank'
+          0: [
+            {
+              label: '36',
+              value: '0'
+            }
+          ]
+        },
+        value: {
+          0: 'Test'
         }
       },
       inlineDropdown: {
