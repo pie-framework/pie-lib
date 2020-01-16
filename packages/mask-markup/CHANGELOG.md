@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.7.4...@pie-lib/mask-markup@1.7.5) (2020-01-16)
+
+
+### Bug Fixes
+
+* In IBX OT, Drag in the Blank items have draggable tokens with text that is too small to comfortably read: prevent using a fontSize of 0.8125rem (material-ui) and override that css property. ([d24516f](https://github.com/pie-framework/pie-lib/commit/d24516f))
+* text entry field for Explicit Constructed Response items renders text too small to comfortably read: prevent using a fontSize of 1rem (material-ui) and override that css property. ([cea881f](https://github.com/pie-framework/pie-lib/commit/cea881f))
+
+
+
+
+
 ## [1.7.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.7.3...@pie-lib/mask-markup@1.7.4) (2019-12-18)
 
 **Note:** Version bump only for package @pie-lib/mask-markup

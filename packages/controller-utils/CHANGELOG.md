@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/controller-utils@0.2.3...@pie-lib/controller-utils@0.2.4) (2020-01-16)
+
+
+### Bug Fixes
+
+* Updated using the given documentation. ([14c7b98](https://github.com/pie-framework/pie-lib/commit/14c7b98))
+
+
+
+
+
 ## [0.2.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/controller-utils@0.2.2...@pie-lib/controller-utils@0.2.3) (2019-11-18)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.36](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.35...@pie-lib/demo@5.3.36) (2020-01-16)
+
+
+### Bug Fixes
+
+* text entry field for Explicit Constructed Response items renders text too small to comfortably read: prevent using a fontSize of 1rem (material-ui) and override that css property. ([cea881f](https://github.com/pie-framework/pie-lib/commit/cea881f))
+
+
+
+
+
 ## [5.3.35](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.34...@pie-lib/demo@5.3.35) (2019-12-19)
 
 **Note:** Version bump only for package @pie-lib/demo
