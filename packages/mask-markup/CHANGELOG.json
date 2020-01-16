@@ -478,5 +478,35 @@
     "committerDate": "2019-12-17 18:48:59 +0000",
     "isTagged": true,
     "tag": "@pie-lib/mask-markup@1.7.3"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "text entry field for Explicit Constructed Response items renders text too small to comfortably read: prevent using a fontSize of 1rem (material-ui) and override that css property.",
+    "merge": null,
+    "header": "fix: text entry field for Explicit Constructed Response items renders text too small to comfortably read: prevent using a fontSize of 1rem (material-ui) and override that css property.",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "cea881ff4e3fdab7655fed2f3924ac0354428b13",
+    "gitTags": " (origin/andreea/ch6226/in-dna-ot-the-text-entry-field-for-explicit)",
+    "committerDate": "2020-01-14 17:22:55 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/mask-markup@1.7.5"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "In IBX OT, Drag in the Blank items have draggable tokens with text that is too small to comfortably read: prevent using a fontSize of 0.8125rem (material-ui) and override that css property.",
+    "merge": null,
+    "header": "fix: In IBX OT, Drag in the Blank items have draggable tokens with text that is too small to comfortably read: prevent using a fontSize of 0.8125rem (material-ui) and override that css property.",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "d24516febfaa68aa2e43c928cdaeb1fa1dc08399",
+    "gitTags": " (origin/andreea/ch6188/in-ibx-ot-drag-in-the-blank-items-have-draggable)",
+    "committerDate": "2020-01-10 19:08:46 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/mask-markup@1.7.5"
   }
 ]
