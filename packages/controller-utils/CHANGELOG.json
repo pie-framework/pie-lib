@@ -73,5 +73,20 @@
     "committerDate": "2019-11-18 11:28:05 +0000",
     "isTagged": true,
     "tag": "@pie-lib/controller-utils@0.2.3"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "Updated using the given documentation.",
+    "merge": null,
+    "header": "fix: Updated using the given documentation.",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "14c7b98d1fd3bc20ea3aefc1d3a7db4d4e9bcb14",
+    "gitTags": " (origin/fix/PIE-200-partial-scoring)",
+    "committerDate": "2020-01-15 13:25:30 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/controller-utils@0.2.4"
   }
 ]
