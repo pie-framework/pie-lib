@@ -19,7 +19,7 @@ const LatexButton = withStyles(theme => ({
     textTransform: 'none',
     padding: 0,
     margin: 0,
-    fontSize: '1.1rem'
+    fontSize: '110%'
   },
   latexButton: {
     pointerEvents: 'none',
@@ -34,17 +34,17 @@ const LatexButton = withStyles(theme => ({
     },
     '& .mq-overarrow.mq-arrow-both.mq-empty:after': {
       right: '-6px',
-      fontSize: '0.9rem',
+      fontSize: '80%',
       top: '-3px'
     },
     '& .mq-overarrow.mq-arrow-right.mq-empty:before': {
       right: '-5px',
-      fontSize: '0.9rem',
+      fontSize: '80%',
       top: '-3px'
     },
     '& .mq-overarrow.mq-arrow-both.mq-empty:before': {
       left: '-6px',
-      fontSize: '0.9rem',
+      fontSize: '80%',
       top: '-3px'
     }
   }
@@ -166,7 +166,7 @@ const styles = theme => ({
     padding: `${theme.spacing.unit}px 0 ${theme.spacing.unit}px 0`
   },
   labelButton: {
-    fontSize: '1.4rem',
+    fontSize: '140%',
     backgroundColor: lighten(theme.palette.primary.light, 0.5),
     '&:hover': {
       backgroundColor: lighten(theme.palette.primary.light, 0.7)
@@ -191,12 +191,12 @@ const styles = theme => ({
     }
   },
   comma: {
-    fontSize: '2.2rem',
-    lineHeight: '2.2rem'
+    fontSize: '200%',
+    lineHeight: '100%'
   },
   dot: {
-    fontSize: '2.2rem',
-    lineHeight: '2.2rem'
+    fontSize: '200%',
+    lineHeight: '100%'
   },
   icon: {
     height: '30px'
