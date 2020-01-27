@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.3.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.3.8...@pie-lib/math-input@6.3.9) (2020-01-27)
+
+
+### Bug Fixes
+
+* 6264: Math editor in OT has button labels that are very small and impact legibility and usability (don't use rem to determine font size, use percentage instead) ([94f9d3b](https://github.com/pie-framework/pie-lib/commit/94f9d3b))
+* 6264: Math editor in OT has button labels that are very small and impact legibility and usability (don't use rem to determine font size) ([da50c12](https://github.com/pie-framework/pie-lib/commit/da50c12))
+
+
+
+
+
 ## [6.3.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.3.7...@pie-lib/math-input@6.3.8) (2019-12-19)
 
 

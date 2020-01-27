@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@0.6.5...@pie-lib/math-evaluator@0.6.6) (2020-01-27)
+
+
+### Bug Fixes
+
+* bump @pie-framework/math-expressions@2.2.0 [ch7119] ([b7fa810](https://github.com/pie-framework/pie-lib/commit/b7fa810))
+
+
+
+
+
 ## [0.6.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@0.6.4...@pie-lib/math-evaluator@0.6.5) (2019-12-20)
 
 
