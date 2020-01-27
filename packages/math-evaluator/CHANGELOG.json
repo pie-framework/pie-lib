@@ -358,5 +358,20 @@
     "committerDate": "2019-12-20 11:14:25 +0000",
     "isTagged": true,
     "tag": "@pie-lib/math-evaluator@0.6.5"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "bump @pie-framework/math-expressions@2.2.0 [ch7119]",
+    "merge": null,
+    "header": "fix: bump @pie-framework/math-expressions@2.2.0 [ch7119]",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "b7fa81033d2980228e5f07f44904c63e0aea84c1",
+    "gitTags": "",
+    "committerDate": "2020-01-27 11:07:32 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/math-evaluator@0.6.6"
   }
 ]

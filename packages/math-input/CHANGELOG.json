@@ -1003,5 +1003,35 @@
     "committerDate": "2019-12-19 09:21:29 +0000",
     "isTagged": true,
     "tag": "@pie-lib/math-input@6.3.8"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "6264: Math editor in OT has button labels that are very small and impact legibility and usability (don't use rem to determine font size, use percentage instead)",
+    "merge": null,
+    "header": "fix: 6264: Math editor in OT has button labels that are very small and impact legibility and usability (don't use rem to determine font size, use percentage instead)",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "94f9d3b37bf5868e436ca184641f2b9fb65405c4",
+    "gitTags": " (origin/andreea/ch6264/math-editor-in-ot-has-button-labels-that)",
+    "committerDate": "2020-01-21 10:46:08 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/math-input@6.3.9"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "6264: Math editor in OT has button labels that are very small and impact legibility and usability (don't use rem to determine font size)",
+    "merge": null,
+    "header": "fix: 6264: Math editor in OT has button labels that are very small and impact legibility and usability (don't use rem to determine font size)",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "da50c12244e2910303422173c78d11e108100832",
+    "gitTags": "",
+    "committerDate": "2020-01-21 09:29:00 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/math-input@6.3.9"
   }
 ]
