@@ -174,6 +174,26 @@ describe('math-evaluator', () => {
 
   assertEqual('evaluates simple expressions correctly')('x', 'x', '2x', '2x');
 
+  describe('7119', () => {
+    it.each`
+      v                             | isEqual
+      ${'4.5'}                      | ${true}
+      ${'3.2 + 1.3'}                | ${true}
+      ${'(4 - \\frac{4}{5}) + 1.3'} | ${true}
+      ${'\\frac{9}{2}'}             | ${true}
+      ${'4 \\frac{1}{2}'}           | ${true}
+      ${'\\frac{10}{2} - 0.5'}      | ${true}
+      ${'4.55'}                     | ${false}
+    `('$a == $isEqual', ({ v, isEqual }) => {
+      const result = areValuesEqual('4 \\frac{1}{2}', v, { isLatex: true });
+      expect(result).toEqual(isEqual);
+    });
+
+    it('?', () => {
+      expect(latexToText('4\\frac{1}{2}')).toEqual('4 + 1/2');
+    });
+  });
+
   assertEqual('evaluates simple expressions correctly 2')(
     '100',
     '100',
