@@ -39,6 +39,9 @@ function prepareExpression(string, isLatex) {
 const latexToAstOpts = {
   missingFactor: (token, e) => {
     console.warn('missing factor for: ', token.token_type);
+    if (token.token_type === 'NUMBER') {
+      throw e;
+    }
     return 0;
   },
   unknownCommandBehavior: 'passthrough'

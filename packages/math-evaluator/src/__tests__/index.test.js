@@ -174,6 +174,13 @@ describe('math-evaluator', () => {
 
   assertEqual('evaluates simple expressions correctly')('x', 'x', '2x', '2x');
 
+  describe('bad frac throws error', () => {
+    it('throws an error', () => {
+      expect(() => areValuesEqual('\\frac12', '\\frac34', { isLatex: true })).toThrow(
+        'Expecting {'
+      );
+    });
+  });
   describe('7119', () => {
     it.each`
       v                             | isEqual
