@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@0.6.6...@pie-lib/math-evaluator@0.6.7) (2020-01-28)
+
+
+### Bug Fixes
+
+* throw error if number missing factor ([3b23b28](https://github.com/pie-framework/pie-lib/commit/3b23b28))
+
+
+
+
+
 ## [0.6.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@0.6.5...@pie-lib/math-evaluator@0.6.6) (2020-01-27)
 
 
