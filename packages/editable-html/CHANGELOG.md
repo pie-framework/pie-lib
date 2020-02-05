@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.10.39](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.10.38...@pie-lib/editable-html@7.10.39) (2020-02-05)
+
+
+### Bug Fixes
+
+* 5590: Force the image to keep its shape (IBX rendering of images in MC answer choices stretches them vertically (or squeezes them horizontally), causing distortion that invalidates some items) ([63f54fd](https://github.com/pie-framework/pie-lib/commit/63f54fd))
+
+
+
+
+
 ## [7.10.38](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.10.37...@pie-lib/editable-html@7.10.38) (2020-01-27)
 
 **Note:** Version bump only for package @pie-lib/editable-html

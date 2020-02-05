@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.3.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.3.9...@pie-lib/math-input@6.3.10) (2020-02-05)
+
+
+### Bug Fixes
+
+* 6287: Setting equation editor as a string (eg: '6') works as well (In OT, a math editor for an Equation Response item is missing a critical button as well as many other expected buttons) ([a21f04b](https://github.com/pie-framework/pie-lib/commit/a21f04b))
+
+
+
+
+
 ## [6.3.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.3.8...@pie-lib/math-input@6.3.9) (2020-01-27)
 
 
