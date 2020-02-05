@@ -21,7 +21,7 @@ describe('utils', () => {
   });
 
   describe('keysForGrade', () => {
-    it.only.each`
+    it.each`
       key                   | expected
       ${'1'}                | ${undefined}
       ${'2'}                | ${undefined}
