@@ -26,6 +26,7 @@ Array [
       style={
         Object {
           "height": "50px",
+          "objectFit": "contain",
           "width": "50px",
         }
       }

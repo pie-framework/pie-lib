@@ -25,9 +25,7 @@ export default function ImagePlugin(opts) {
 
       const change = value.change().insertInline(inline);
       onChange(change);
-      opts.insertImageRequested(
-        getValue => new InsertImageHandler(inline, getValue, onChange)
-      );
+      opts.insertImageRequested(getValue => new InsertImageHandler(inline, getValue, onChange));
     },
     supports: node => node.object === 'inline' && node.type === 'image',
     customToolbar: (node, value, onToolbarDone) => {
@@ -43,9 +41,7 @@ export default function ImagePlugin(opts) {
         onToolbarDone(change, false);
       };
 
-      const Tb = () => (
-        <ImageToolbar percent={percent || 100} onChange={onChange} />
-      );
+      const Tb = () => <ImageToolbar percent={percent || 100} onChange={onChange} />;
       return Tb;
     },
     showDone: true
@@ -57,9 +53,7 @@ export default function ImagePlugin(opts) {
     deleteNode: (e, node, value, onChange) => {
       e.preventDefault();
       if (opts.onDelete) {
-        const update = node.data.merge(
-          Data.create({ deleteStatus: 'pending' })
-        );
+        const update = node.data.merge(Data.create({ deleteStatus: 'pending' }));
 
         let change = value.change().setNodeByKey(node.key, { data: update });
 
@@ -71,10 +65,7 @@ export default function ImagePlugin(opts) {
             log('[error]: ', err);
             change = v
               .change()
-              .setNodeByKey(
-                node.key,
-                node.data.merge(Data.create({ deleteStatus: 'failed' }))
-              );
+              .setNodeByKey(node.key, node.data.merge(Data.create({ deleteStatus: 'failed' })));
           }
           onChange(change);
         });
@@ -119,11 +110,7 @@ export default function ImagePlugin(opts) {
         }
 
         if (d.type === 'image') {
-          if (
-            index > 0 &&
-            textNodeMap[index - 1] &&
-            textNodeMap[index - 1].text === ''
-          ) {
+          if (index > 0 && textNodeMap[index - 1] && textNodeMap[index - 1].text === '') {
             updateNodesArray.push(textNodeMap[index - 1]);
           }
         }
@@ -180,6 +167,8 @@ export const serialization = {
     if (height) {
       style.height = `${height}px`;
     }
+
+    style.objectFit = 'contain';
 
     const props = {
       src,

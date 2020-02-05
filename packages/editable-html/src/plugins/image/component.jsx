@@ -33,7 +33,7 @@ export class Component extends React.Component {
   };
 
   getPercentFromWidth = width => {
-    var floored = width / this.img.naturalWidth * 4;
+    var floored = (width / this.img.naturalWidth) * 4;
     return parseInt(floored.toFixed(0) * 25, 10);
   };
 
@@ -73,14 +73,14 @@ export class Component extends React.Component {
   getSize(data) {
     return {
       width: size(data.get('width')),
-      height: size(data.get('height'))
+      height: size(data.get('height')),
+      objectFit: 'contain'
     };
   }
 
   render() {
     const { node, editor, classes, attributes, onFocus } = this.props;
-    const active =
-      editor.value.isFocused && editor.value.selection.hasEdgeIn(node);
+    const active = editor.value.isFocused && editor.value.selection.hasEdgeIn(node);
     const src = node.data.get('src');
     const percent = node.data.get('percent');
     const loaded = node.data.get('loaded') !== false;
@@ -99,26 +99,19 @@ export class Component extends React.Component {
       deleteStatus === 'pending' && classes.pendingDelete
     );
 
-    const progressClasses = classNames(
-      classes.progress,
-      loaded && classes.hideProgress
-    );
+    const progressClasses = classNames(classes.progress, loaded && classes.hideProgress);
 
     return [
-      <span key={'sp1'}>
-        &nbsp;
-      </span>,
+      <span key={'sp1'}>&nbsp;</span>,
       <div key={'comp'} onFocus={onFocus} className={className}>
         <LinearProgress
           mode="determinate"
           value={percent > 0 ? percent : 0}
           className={progressClasses}
         />
-        <img src={src} {...attributes} ref={r => (this.img = r)} style={size}/>
+        <img src={src} {...attributes} ref={r => (this.img = r)} style={size} />
       </div>,
-      <span key={'sp2'}>
-        &nbsp;
-      </span>
+      <span key={'sp2'}>&nbsp;</span>
     ];
   }
 }
