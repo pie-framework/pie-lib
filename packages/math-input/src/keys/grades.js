@@ -52,7 +52,7 @@ const gradeSets = [
     ]
   },
   {
-    predicate: n => n === 6 || n === 7,
+    predicate: n => n >= 6 && n <= 7,
     set: [
       [vars.x, vars.y, exponent.squared, exponent.squareRoot, operators.circleDot],
       [fractions.xOverBlank, fractions.xBlankBlank, exponent.xToPowerOfN, exponent.nthRoot],
