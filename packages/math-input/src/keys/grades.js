@@ -173,6 +173,8 @@ export const gradeSets = [
 ];
 
 export const keysForGrade = n => {
+  const number = parseInt(n, 10);
+  n = isNaN(number) ? n : number;
   if (!n) {
     return [];
   }
