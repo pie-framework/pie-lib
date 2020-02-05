@@ -1,6 +1,7 @@
 import { extendKeySet } from '../utils';
-import { keysForGrade } from '../grades';
+import { keysForGrade, gradeSets } from '../grades';
 import * as comparison from '../../keys/comparison';
+
 describe('utils', () => {
   const base = [[comparison.lessThan]];
   describe('extendKeySet', () => {
@@ -16,6 +17,38 @@ describe('utils', () => {
       const result = extendKeySet(base, extras);
       const resultTwo = extendKeySet(base, []);
       expect(result).toEqual(resultTwo);
+    });
+  });
+
+  describe('keysForGrade', () => {
+    it.each`
+      key                   | expected
+      ${'1'}                | ${undefined}
+      ${'2'}                | ${undefined}
+      ${'3'}                | ${gradeSets[0].set}
+      ${'4'}                | ${gradeSets[0].set}
+      ${'5'}                | ${gradeSets[0].set}
+      ${'6'}                | ${gradeSets[1].set}
+      ${'7'}                | ${gradeSets[1].set}
+      ${'8'}                | ${gradeSets[2].set}
+      ${'9'}                | ${gradeSets[2].set}
+      ${'HS'}               | ${gradeSets[2].set}
+      ${'geometry'}         | ${gradeSets[3].set}
+      ${'everything'}       | ${gradeSets[4].set}
+      ${'advanced-algebra'} | ${gradeSets[5].set}
+      ${'statistics'}       | ${gradeSets[6].set}
+      ${'something else'}   | ${undefined}
+      ${undefined}          | ${[]}
+      ${null}               | ${[]}
+      ${0}                  | ${[]}
+      ${'0'}                | ${[]}
+    `('$key => $expected', ({ key, expected }) => {
+      expect(keysForGrade(key)).toEqual(expected);
+
+      const n = parseInt(key, 10);
+      if (!isNaN(n)) {
+        expect(keysForGrade(n)).toEqual(expected);
+      }
     });
   });
 });

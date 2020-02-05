@@ -42,7 +42,7 @@ const statisticsSet = (() => {
   return out;
 })();
 
-const gradeSets = [
+export const gradeSets = [
   {
     predicate: n => n >= 3 && n <= 5,
     set: [
@@ -52,7 +52,7 @@ const gradeSets = [
     ]
   },
   {
-    predicate: n => n === 6 || n === 7,
+    predicate: n => n >= 6 && n <= 7,
     set: [
       [vars.x, vars.y, exponent.squared, exponent.squareRoot, operators.circleDot],
       [fractions.xOverBlank, fractions.xBlankBlank, exponent.xToPowerOfN, exponent.nthRoot],
@@ -173,6 +173,8 @@ const gradeSets = [
 ];
 
 export const keysForGrade = n => {
+  const number = parseInt(n, 10);
+  n = isNaN(number) ? n : number;
   if (!n) {
     return [];
   }
@@ -184,6 +186,7 @@ export const keysForGrade = n => {
       return gs.predicate(n);
     }
   });
+
   if (match) {
     return match.set || [];
   }
