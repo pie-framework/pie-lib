@@ -2573,5 +2573,20 @@
     "committerDate": "2019-11-05 10:49:37 +0000",
     "isTagged": true,
     "tag": "@pie-lib/editable-html@7.10.26"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "5590: Force the image to keep its shape (IBX rendering of images in MC answer choices stretches them vertically (or squeezes them horizontally), causing distortion that invalidates some items)",
+    "merge": null,
+    "header": "fix: 5590: Force the image to keep its shape (IBX rendering of images in MC answer choices stretches them vertically (or squeezes them horizontally), causing distortion that invalidates some items)",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "63f54fddbed0da2a827cb907df4d767aea83d29b",
+    "gitTags": " (origin/andreea/ch5590/ibx-rendering-of-images-in-mc-answer-choices)",
+    "committerDate": "2020-02-05 08:39:09 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.10.39"
   }
 ]
