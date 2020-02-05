@@ -373,5 +373,20 @@
     "committerDate": "2020-01-27 11:07:32 +0000",
     "isTagged": true,
     "tag": "@pie-lib/math-evaluator@0.6.6"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "throw error if number missing factor",
+    "merge": null,
+    "header": "fix: throw error if number missing factor",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "3b23b28e851d07c49c414b05d747141d415e960e",
+    "gitTags": "",
+    "committerDate": "2020-01-28 11:27:09 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/math-evaluator@0.6.7"
   }
 ]
