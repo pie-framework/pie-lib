@@ -42,7 +42,7 @@ const statisticsSet = (() => {
   return out;
 })();
 
-const gradeSets = [
+export const gradeSets = [
   {
     predicate: n => n >= 3 && n <= 5,
     set: [
@@ -184,6 +184,7 @@ export const keysForGrade = n => {
       return gs.predicate(n);
     }
   });
+
   if (match) {
     return match.set || [];
   }
