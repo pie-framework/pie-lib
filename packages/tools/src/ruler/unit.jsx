@@ -9,11 +9,8 @@ const Tick = withStyles(theme => ({
     stroke: strokeColor(theme)
   }
 }))(({ x, height, bottom, classes, major, minor }) => {
-  const y1 = major
-    ? bottom - height * 2
-    : minor
-      ? bottom - height * 1.5
-      : bottom - height;
+  const y1 = major ? bottom - height * 2 : minor ? bottom - height * 1.5 : bottom - height;
+
   return <line y1={y1} y2={bottom} x1={x} x2={x} className={classes.tick} />;
 });
 
@@ -61,15 +58,8 @@ export class Unit extends React.Component {
     };
     return (
       <g style={style}>
-        {!last && (
-          <line
-            x1={width}
-            y1={0}
-            x2={width}
-            y2={height}
-            className={classes.endTick}
-          />
-        )}
+        {!last && <line x1={width} y1={0} x2={width} y2={height} className={classes.endTick} />}
+
         <Ticks count={config.ticks} width={width} height={height} />
         <text width={width} className={classes.label} x={width - 5} y={15}>
           {index}

@@ -16,8 +16,6 @@ const Anchor = withStyles(theme => ({
       backgroundColor: `var(--ruler-bg-hover, ${theme.palette.primary.light})`
     }
   }
-}))(({ classes, className }) => (
-  <div className={classNames(classes.anchor, className)} />
-));
+}))(({ classes, className }) => <div className={classNames(classes.anchor, className)} />);
 
 export default Anchor;

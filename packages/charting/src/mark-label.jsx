@@ -20,6 +20,7 @@ const styles = theme => ({
 });
 
 export const MarkLabel = props => {
+  // eslint-disable-next-line no-unused-vars
   const [input, setInput] = useState(null);
   const _ref = useCallback(node => setInput(node), null);
 

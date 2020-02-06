@@ -39,7 +39,7 @@ export class Grid extends React.Component {
   }
 }
 
-export default withStyles(theme => ({
+export default withStyles(() => ({
   grid: {
     stroke: 'purple'
   }

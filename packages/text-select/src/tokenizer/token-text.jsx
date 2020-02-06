@@ -7,10 +7,7 @@ import green from '@material-ui/core/colors/green';
 import debug from 'debug';
 import classNames from 'classnames';
 
-import {
-  clearSelection,
-  getCaretCharacterOffsetWithin
-} from './selection-utils';
+import { clearSelection, getCaretCharacterOffsetWithin } from './selection-utils';
 
 const log = debug('@pie-lib:text-select:token-text');
 
@@ -25,10 +22,8 @@ export const Text = withStyles(() => ({
   }
 }))(({ text, predefined, classes, onClick, correct }) => {
   if (predefined) {
-    const className = classNames(
-      classes.predefined,
-      correct && classes.correct
-    );
+    const className = classNames(classes.predefined, correct && classes.correct);
+
     return (
       <span onClick={onClick} className={className}>
         {text}
@@ -93,11 +88,7 @@ export default class TokenText extends React.Component {
     const normalized = normalize(text, tokens);
 
     return (
-      <div
-        className={className}
-        ref={r => (this.root = r)}
-        onMouseUp={this.mouseUp}
-      >
+      <div className={className} ref={r => (this.root = r)} onMouseUp={this.mouseUp}>
         {normalized.map((t, index) => {
           return <Text key={index} {...t} onClick={() => onTokenClick(t)} />;
         })}

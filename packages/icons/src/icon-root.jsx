@@ -3,11 +3,7 @@ import PropTypes from 'prop-types';
 import Sized from './sized';
 
 export const normalizeSize = size => {
-  return typeof size === 'string'
-    ? size
-    : typeof size === 'number'
-      ? `${size}px`
-      : '30px';
+  return typeof size === 'string' ? size : typeof size === 'number' ? `${size}px` : '30px';
 };
 
 export const IconRoot = ({ size, children }) => (
@@ -28,10 +24,7 @@ export const IconRoot = ({ size, children }) => (
 
 IconRoot.propTypes = {
   size: PropTypes.oneOf([PropTypes.string, PropTypes.number]),
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired
 };
 
 export const getStyles = (name, fg, bg) => ({
@@ -77,14 +70,9 @@ RoundFeedbackBox.propTypes = {
 };
 
 export const Circle = ({ className }) => (
-  <circle
-    transform="translate(-3, 0)"
-    className={className}
-    cx="23"
-    cy="20.4"
-    r="16"
-  />
+  <circle transform="translate(-3, 0)" className={className} cx="23" cy="20.4" r="16" />
 );
+
 Circle.propTypes = {
   className: PropTypes.string
 };

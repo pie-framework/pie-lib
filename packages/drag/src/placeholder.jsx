@@ -4,15 +4,8 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import grey from '@material-ui/core/colors/grey';
 
-export const PlaceHolder = ({
-  children,
-  classes,
-  className,
-  isOver,
-  type,
-  grid,
-  disabled
-}) => {
+export const PlaceHolder = props => {
+  const { children, classes, className, isOver, type, grid, disabled } = props;
   const names = classNames(
     classes.placeholder,
     disabled && classes.disabled,
@@ -42,10 +35,7 @@ PlaceHolder.propTypes = {
     columns: PropTypes.number,
     rows: PropTypes.number
   }),
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired,
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
   className: PropTypes.string,
   isOver: PropTypes.bool,
   index: PropTypes.number,

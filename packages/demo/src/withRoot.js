@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { MuiThemeProvider, withStyles } from '@material-ui/core/styles';
+import { MuiThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import getPageContext from './getPageContext';
 import Root from './root';
@@ -34,8 +34,11 @@ function withRoot(Component) {
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />
           <Root
+            // eslint-disable-next-line
             gitInfo={process.env.gitInfo}
+            // eslint-disable-next-line
             links={process.env.links}
+            // eslint-disable-next-line
             packageInfo={process.env.packageInfo}
           >
             <Component {...this.props} />

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import DragDropTile from './choice';
 
 export const onValueChange = (nodeProps, n, value) => {
@@ -35,7 +36,8 @@ export const onRemoveResponse = (nodeProps, value) => {
   });
 };
 
-export default ({ attributes, data, n, nodeProps, opts }) => {
+const DragDrop = props => {
+  const { attributes, data, n, nodeProps, opts } = props;
   const { inTable } = data;
 
   return (
@@ -64,3 +66,13 @@ export default ({ attributes, data, n, nodeProps, opts }) => {
     </span>
   );
 };
+
+DragDrop.propTypes = {
+  attributes: PropTypes.object,
+  data: PropTypes.object,
+  n: PropTypes.object,
+  nodeProps: PropTypes.object,
+  opts: PropTypes.object
+};
+
+export default DragDrop;

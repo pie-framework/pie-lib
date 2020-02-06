@@ -70,9 +70,7 @@ export class Controls extends React.Component {
           </Button>
         </div>
         <FormControlLabel
-          control={
-            <Switch checked={setCorrectMode} onChange={onToggleCorrectMode} />
-          }
+          control={<Switch checked={setCorrectMode} onChange={onToggleCorrectMode} />}
           label="Set correct answers"
         />
       </div>

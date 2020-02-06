@@ -46,12 +46,7 @@ const Text = withStyles(theme => ({
     ...noSelect()
   }
 }))(({ angle, classes }) => (
-  <text
-    transform={`rotate(${angle - 90}, 50.5, 50)`}
-    className={classes.text}
-    x="50"
-    y="12.5"
-  >
+  <text transform={`rotate(${angle - 90}, 50.5, 50)`} className={classes.text} x="50" y="12.5">
     {angle}
   </text>
 ));

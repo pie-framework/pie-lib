@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ChevronRight from '@material-ui/icons/ChevronRight';
 import MoreVert from '@material-ui/icons/MoreVert';
 import { withStyles } from '@material-ui/core/styles';
@@ -16,7 +17,8 @@ const getRotate = direction => {
   }
 };
 
-export const Chevron = ({ direction, style }) => {
+export const Chevron = props => {
+  const { direction, style } = props;
   const rotate = getRotate(direction);
 
   return (
@@ -27,6 +29,11 @@ export const Chevron = ({ direction, style }) => {
       }}
     />
   );
+};
+
+Chevron.propTypes = {
+  direction: PropTypes.string,
+  style: PropTypes.object
 };
 
 export const GripIcon = ({ style }) => {
@@ -40,6 +47,10 @@ export const GripIcon = ({ style }) => {
       <MoreVert />
     </span>
   );
+};
+
+GripIcon.propTypes = {
+  style: PropTypes.object
 };
 
 export const ToolbarIcon = withStyles({

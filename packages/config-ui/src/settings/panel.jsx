@@ -147,7 +147,7 @@ const tagMap = {
   numberField: NumberField
 };
 
-const Group = withStyles(theme => ({
+const Group = withStyles(() => ({
   group: {
     margin: '0 0 25px 0'
   },

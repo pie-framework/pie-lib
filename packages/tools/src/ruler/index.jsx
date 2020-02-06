@@ -61,16 +61,8 @@ export class Ruler extends React.Component {
           { class: 'rightAnchor', origin: 'bottom left' }
         ]}
       >
-        <div
-          className={classes.ruler}
-          style={{ width: `${width}px`, height: `${height}px` }}
-        >
-          <RulerGraphic
-            width={width}
-            height={height}
-            units={units}
-            unit={unit}
-          />
+        <div className={classes.ruler} style={{ width: `${width}px`, height: `${height}px` }}>
+          <RulerGraphic width={width} height={height} units={units} unit={unit} />
           <Anchor className={classNames('leftAnchor', classes.leftAnchor)} />
           <Anchor className={classNames('rightAnchor', classes.rightAnchor)} />
         </div>

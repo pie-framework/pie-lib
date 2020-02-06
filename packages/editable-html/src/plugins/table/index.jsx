@@ -8,11 +8,10 @@ import SlatePropTypes from 'slate-prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import convert from 'react-attr-converter';
 import { object as toStyleObject } from 'to-style';
-import { paramCase } from 'change-case';
 
 const log = debug('@pie-lib:editable-html:plugins:table');
 
-const Table = withStyles(theme => ({
+const Table = withStyles(() => ({
   table: {}
 }))(props => {
   const nodeAttributes = dataToAttributes(props.node.data);
@@ -47,7 +46,7 @@ TableRow.propTypes = {
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired
 };
 
-const TableCell = withStyles(theme => ({
+const TableCell = withStyles(() => ({
   td: {
     minWidth: '25px'
   }
@@ -194,7 +193,7 @@ export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
     }
   };
 
-  core.renderNode = props => {
+  const Node = props => {
     switch (props.node.type) {
       case 'table':
         return <Table {...props} onFocus={opts.onFocus} onBlur={opts.onBlur} />;
@@ -206,6 +205,11 @@ export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
         return null;
     }
   };
+  Node.propTypes = {
+    node: PropTypes.object
+  };
+
+  core.renderNode = Node;
 
   return core;
 };
@@ -220,13 +224,6 @@ export const parseStyleString = s => {
   return result;
 };
 
-const toStyleString = o => {
-  return Object.keys(o).reduce((acc, k) => {
-    const hyphenated = paramCase(k);
-    acc[hyphenated] = o[k];
-    return acc;
-  }, {});
-};
 export const reactAttributes = o => toStyleObject(o, { camelize: true });
 
 const attributesToMap = el => (acc, attribute) => {

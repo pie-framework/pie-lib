@@ -14,7 +14,8 @@ class RawLine extends React.Component {
     from: PropTypes.shape(PointType),
     to: PropTypes.shape(PointType),
     graphProps: types.GraphPropsType.isRequired,
-    disabled: PropTypes.bool
+    disabled: PropTypes.bool,
+    correctness: PropTypes.string
   };
 
   render() {

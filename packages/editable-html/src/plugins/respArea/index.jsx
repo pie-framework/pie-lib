@@ -1,6 +1,5 @@
 import React from 'react';
 import debug from 'debug';
-import { Inline } from 'slate';
 import isUndefined from 'lodash/isUndefined';
 
 import InlineDropdown from './inline-dropdown';

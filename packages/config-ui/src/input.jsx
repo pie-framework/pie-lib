@@ -15,8 +15,7 @@ export default class Input extends React.Component {
 
   static defaultProps = {
     type: 'text',
-    error: (value, type) =>
-      type === 'number' ? !value || isNaN(value) : !value,
+    error: (value, type) => (type === 'number' ? !value || isNaN(value) : !value),
     noModelUpdateOnError: false
   };
 
@@ -64,22 +63,10 @@ export default class Input extends React.Component {
 
     return label ? (
       <InputContainer label={label}>
-        <MaterialInput
-          type={type}
-          {...rest}
-          value={value}
-          onChange={this.onChange}
-          error={error}
-        />
+        <MaterialInput type={type} {...rest} value={value} onChange={this.onChange} error={error} />
       </InputContainer>
     ) : (
-      <MaterialInput
-        type={type}
-        {...rest}
-        value={value}
-        onChange={this.onChange}
-        error={error}
-      />
+      <MaterialInput type={type} {...rest} value={value} onChange={this.onChange} error={error} />
     );
   }
 }

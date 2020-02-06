@@ -1,13 +1,11 @@
 import React from 'react';
 import { BasePoint } from '../shared/point';
-import debug from 'debug';
 import { ToolPropTypeFields } from '../shared/types';
 import { types } from '@pie-lib/plot';
 import ReactDOM from 'react-dom';
 import MarkLabel from '../../mark-label';
 import isEqual from 'lodash/isEqual';
 import isEmpty from 'lodash/isEmpty';
-const log = debug('pie-lib:graphing:point');
 
 export class Point extends React.Component {
   static propTypes = {

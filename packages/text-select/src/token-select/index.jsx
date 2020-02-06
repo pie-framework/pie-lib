@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import clone from 'lodash/clone';
 import debug from 'debug';
 import { noSelect } from '@pie-lib/style-utils';
-import { renderToString } from 'react-dom/server'
+import { renderToString } from 'react-dom/server';
 
 const log = debug('@pie-lib:text-select:token-select');
 
@@ -18,7 +18,7 @@ export class TokenSelect extends React.Component {
     onChange: PropTypes.func.isRequired,
     disabled: PropTypes.bool,
     highlightChoices: PropTypes.bool,
-    maxNoOfSelections: PropTypes.number,
+    maxNoOfSelections: PropTypes.number
   };
 
   static defaultProps = {
@@ -31,15 +31,10 @@ export class TokenSelect extends React.Component {
 
   canSelectMore = selectedCount => {
     const { maxNoOfSelections } = this.props;
-    log(
-      '[canSelectMore] maxNoOfSelections: ',
-      maxNoOfSelections,
-      'selectedCount: ',
-      selectedCount
-    );
+
+    log('[canSelectMore] maxNoOfSelections: ', maxNoOfSelections, 'selectedCount: ', selectedCount);
     return (
-      maxNoOfSelections <= 0 ||
-      (isFinite(maxNoOfSelections) && selectedCount < maxNoOfSelections)
+      maxNoOfSelections <= 0 || (isFinite(maxNoOfSelections) && selectedCount < maxNoOfSelections)
     );
   };
 
@@ -51,54 +46,52 @@ export class TokenSelect extends React.Component {
     each token is wrapped into a span that has Token.rootClassName class and indexkey attribute (represents the index of the token)
     tokens are updated with the targeted token having the correct value set for 'selected' property
    */
-  toggleToken = (event) => {
+  toggleToken = event => {
     const { target } = event;
     const tokens = clone(this.props.tokens);
     const targetSpanWrapper = target.closest(`.${Token.rootClassName}`);
-    const targetedTokenIndex = targetSpanWrapper && targetSpanWrapper.dataset && targetSpanWrapper.dataset.indexkey;
+    const targetedTokenIndex =
+      targetSpanWrapper && targetSpanWrapper.dataset && targetSpanWrapper.dataset.indexkey;
     const t = targetedTokenIndex && tokens[targetedTokenIndex];
 
     if (t && t.correct === undefined) {
       const { onChange, maxNoOfSelections } = this.props;
       const selected = !t.selected;
-      if (
-        selected &&
-        maxNoOfSelections > 0 &&
-        this.selectedCount() >= maxNoOfSelections
-      ) {
+
+      if (selected && maxNoOfSelections > 0 && this.selectedCount() >= maxNoOfSelections) {
         log('skip toggle max reached');
         return;
       }
+
       const update = { ...t, selected: !t.selected };
+
       tokens.splice(targetedTokenIndex, 1, update);
       onChange(tokens);
     }
   };
 
   generateTokensInHtml = () => {
-    const {
-      tokens,
-      disabled,
-      highlightChoices,
-    } = this.props;
+    const { tokens, disabled, highlightChoices } = this.props;
     const selectedCount = this.selectedCount();
 
     const reducer = (accumulator, t, index) => {
-      const selectable =
-        t.selected || (t.selectable && this.canSelectMore(selectedCount));
+      const selectable = t.selected || (t.selectable && this.canSelectMore(selectedCount));
       const showCorrectAnswer = t.correct !== undefined && (t.selectable || t.selected);
 
-      if ((selectable && !disabled) || (showCorrectAnswer)) {
-        return accumulator + renderToString(
-          <Token
-            key={index}
-            disabled={disabled}
-            index={index}
-            {...t}
-            selectable={selectable}
-            highlight={highlightChoices}
-          />
-        )
+      if ((selectable && !disabled) || showCorrectAnswer) {
+        return (
+          accumulator +
+          renderToString(
+            <Token
+              key={index}
+              disabled={disabled}
+              index={index}
+              {...t}
+              selectable={selectable}
+              highlight={highlightChoices}
+            />
+          )
+        );
       } else {
         return accumulator + t.text;
       }
@@ -114,7 +107,8 @@ export class TokenSelect extends React.Component {
 
     return (
       <div
-        className={className} dangerouslySetInnerHTML={{ __html: html }}
+        className={className}
+        dangerouslySetInnerHTML={{ __html: html }}
         onClick={this.toggleToken}
       />
     );

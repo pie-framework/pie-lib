@@ -13,7 +13,8 @@ export class ToolMenu extends React.Component {
     onChange: PropTypes.func,
     onToggleLabelMode: PropTypes.func,
     labelModeEnabled: PropTypes.bool,
-    disabled: PropTypes.bool
+    disabled: PropTypes.bool,
+    hideLabel: PropTypes.bool
   };
 
   static defaultProps = {

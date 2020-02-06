@@ -37,7 +37,7 @@ const withUndoReset = WrappedComponent => {
     static propTypes = {
       classes: PropTypes.object,
       session: PropTypes.object,
-      onSessionChange: PropTypes.func,
+      onSessionChange: PropTypes.func
     };
 
     constructor(props) {
@@ -51,31 +51,36 @@ const withUndoReset = WrappedComponent => {
     }
 
     onSessionChange = session => {
-      this.setState(state => ({
-        session,
-        changes: [...state.changes, session]
-      }), () => this.props.onSessionChange(session));
-    }
+      this.setState(
+        state => ({ session, changes: [...state.changes, session] }),
+        () => this.props.onSessionChange(session)
+      );
+    };
 
     onUndo = () => {
-      this.setState(state => {
-        const newChanges = [...state.changes];
+      this.setState(
+        state => {
+          const newChanges = [...state.changes];
 
-        newChanges.pop();
+          newChanges.pop();
 
-        return ({
-          changes: newChanges,
-          session: newChanges.length ? newChanges[newChanges.length - 1] : state.sessionInitialValues
-        });
-      }, () => this.props.onSessionChange(this.state.session))
-    }
+          return {
+            changes: newChanges,
+            session: newChanges.length
+              ? newChanges[newChanges.length - 1]
+              : state.sessionInitialValues
+          };
+        },
+        () => this.props.onSessionChange(this.state.session)
+      );
+    };
 
     onReset = () => {
-      this.setState(state => ({
-        session: state.sessionInitialValues,
-        changes: []
-      }), () => this.props.onSessionChange(this.state.sessionInitialValues));
-    }
+      this.setState(
+        state => ({ session: state.sessionInitialValues, changes: [] }),
+        () => this.props.onSessionChange(this.state.sessionInitialValues)
+      );
+    };
 
     render() {
       const { classes, ...rest } = this.props;

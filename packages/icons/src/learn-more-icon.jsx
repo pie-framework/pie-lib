@@ -60,7 +60,8 @@ export class LearnMore extends React.Component {
               stroke="#CDC7C2"
               className="st1"
               d="M-121.3,141.8c0-3.7-3.3-6.6-7.1-5.8c-2.4,0.5-4.3,2.4-4.7,4.8c-0.4,2.3,0.6,4.4,2.2,5.7c0.4,0.3,0.6,0.8,0.6,1.3v1.9h6.1v-1.9c0-0.5,0.2-1,0.6-1.3C-122.2,145.3-121.3,143.7-121.3,141.8z"
-            />,
+            />
+            ,
             <path
               fill="#B3ABA4"
               stroke="#CDC7C2"

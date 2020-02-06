@@ -15,7 +15,10 @@ export class Tokenizer extends React.Component {
     text: PropTypes.string.isRequired,
     tokens: PropTypes.arrayOf(
       PropTypes.shape({
-        text: PropTypes.string
+        text: PropTypes.string,
+        correct: PropTypes.bool,
+        start: PropTypes.number,
+        end: PropTypes.number
       })
     ),
     classes: PropTypes.object.isRequired,
@@ -41,8 +44,7 @@ export class Tokenizer extends React.Component {
     });
   };
 
-  toggleCorrectMode = () =>
-    this.setState({ setCorrectMode: !this.state.setCorrectMode });
+  toggleCorrectMode = () => this.setState({ setCorrectMode: !this.state.setCorrectMode });
 
   clear = () => {
     this.onChangeHandler([], '');
@@ -75,10 +77,9 @@ export class Tokenizer extends React.Component {
 
   tokenIndex = token => {
     const { tokens } = this.props;
+
     return tokens.findIndex(t => {
-      return (
-        t.text == token.text && t.start == token.start && t.end == token.end
-      );
+      return t.text == token.text && t.start == token.start && t.end == token.end;
     });
   };
 
@@ -114,10 +115,7 @@ export class Tokenizer extends React.Component {
     const { text, tokens, classes, className } = this.props;
     const { setCorrectMode } = this.state;
 
-    const tokenClassName = classNames(
-      classes.text,
-      setCorrectMode && classes.noselect
-    );
+    const tokenClassName = classNames(classes.text, setCorrectMode && classes.noselect);
 
     const rootName = classNames(classes.tokenizer, className);
 
