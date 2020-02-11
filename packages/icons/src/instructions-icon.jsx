@@ -20,21 +20,14 @@ const Lines = () => {
 
 const Root = ({ children, size }) => (
   <Sized size={size}>
-    <svg
-      version="1.1"
-      viewBox="-128 129 31 31"
-      style={{ enableBackground: 'new -128 129 31 31' }}
-    >
+    <svg version="1.1" viewBox="-128 129 31 31" style={{ enableBackground: 'new -128 129 31 31' }}>
       {children}
     </svg>
   </Sized>
 );
 
 Root.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired,
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
   size: PropTypes.number
 };
 
@@ -92,13 +85,7 @@ const GreyInfo = () => {
         points="-120.6,149.8 -120.6,141.5 -125.8,141.5 -125.8,144.3 -123.3,144.3 -123.3,149.8 -126.4,149.8 
                   -126.4,152.5 -117.6,152.5 -117.6,149.8        "
       />
-      <rect
-        x="-125.5"
-        y="134"
-        style={{ fill: '#7FABC6' }}
-        width="4.1"
-        height="4.1"
-      />
+      <rect x="-125.5" y="134" style={{ fill: '#7FABC6' }} width="4.1" height="4.1" />
       <polygon
         style={{ fill: '#7FABC6' }}
         points="-121.4,149.1 -121.4,140.9 -126.5,140.9 -126.5,143.6 -124.1,143.6 -124.1,149.1 -127.1,149.1 
@@ -160,13 +147,7 @@ const BlueInfo = () => (
       points="-120.6,149.8 -120.6,141.5 -125.8,141.5 -125.8,144.3 -123.3,144.3 -123.3,149.8 -126.4,149.8 
                   -126.4,152.5 -117.6,152.5 -117.6,149.8        "
     />
-    <rect
-      x="-125.5"
-      y="134"
-      style={{ fill: '#1A9CFF' }}
-      width="4.1"
-      height="4.1"
-    />
+    <rect x="-125.5" y="134" style={{ fill: '#1A9CFF' }} width="4.1" height="4.1" />
     <polygon
       style={{ fill: '#1A9CFF' }}
       points="-121.4,149.1 -121.4,140.9 -126.5,140.9 -126.5,143.6 -124.1,143.6 -124.1,149.1 -127.1,149.1 

@@ -17,9 +17,6 @@ const Sized = ({ size, children }) => {
 
 Sized.propTypes = {
   size: PropTypes.number,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired
 };
 export default Sized;

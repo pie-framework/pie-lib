@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import Button from '@material-ui/core/Button';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -52,7 +51,7 @@ const styles = theme => ({
   }
 });
 
-const PageTitle = withRouter(({ router, href }) => {
+const PageTitle = withRouter(({ router }) => {
   const name = router.pathname.split('/')[1];
   const title = name ? `@pie-lib/${name}` : '@pie-lib';
 
@@ -95,10 +94,6 @@ const ActiveLink = withStyles(theme => ({
   })
 );
 
-const ChangelogButton = props => {
-  return <Button onClick={props.onClick}>Changelog</Button>;
-};
-
 class ClippedDrawer extends React.Component {
   //(props) {
 
@@ -137,11 +132,7 @@ class ClippedDrawer extends React.Component {
             )}
           >
             <PageTitle />
-            {/* <ChangelogButton
-              onClick={() => {
-                this.showChangeLog();
-              }}
-            /> */}
+
             <div className={classes.extras}>
               {gitInfo.branch}&nbsp;|&nbsp;
               <a href={`https://github.com/pie-framework/pie-lib/commit/${gitInfo.short}`}>

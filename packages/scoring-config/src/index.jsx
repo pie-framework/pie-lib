@@ -37,23 +37,16 @@ export class PartialScoringConfig extends React.Component {
   render() {
     const { classes, label } = this.props;
     const { checked } = this.state;
+    const textLabel =
+      label ||
+      'Each correct response is worth 1/X where X is the number of correct answer selections.';
 
     return (
       <div className={classes.scoringConfig}>
         <Typography type="subheading">Partial Scoring Rules</Typography>
         <br />
-        <Typography>
-          {
-            label
-              ? label
-              : 'Each correct response is worth 1/X where X is the number of correct answer selections.'
-          }
-        </Typography>
-        <Checkbox
-          checked={checked}
-          onChange={this.onCheckboxChanged}
-          label={''}
-        />
+        <Typography>{textLabel}</Typography>
+        <Checkbox checked={checked} onChange={this.onCheckboxChanged} label={''} />
       </div>
     );
   }

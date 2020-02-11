@@ -8,14 +8,8 @@ const styles = getStyles('partially-correct', '#4aaf46', '#c1e1ac');
 
 const Check = ({ className }) => (
   <g transform={'translate(0, 0)'}>
-    <polygon
-      className={className}
-      points="27.5,13.4 23.9,11.4 15.9,25.8 19.1,28.6"
-    />
-    <polygon
-      className={className}
-      points="16.2,20.6 14.4,19.2 11.8,22.3 14.1,24.3"
-    />
+    <polygon className={className} points="27.5,13.4 23.9,11.4 15.9,25.8 19.1,28.6" />
+    <polygon className={className} points="16.2,20.6 14.4,19.2 11.8,22.3 14.1,24.3" />
   </g>
 );
 

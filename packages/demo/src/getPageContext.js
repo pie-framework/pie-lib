@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
-
 import { SheetsRegistry } from 'jss';
 import { createMuiTheme, createGenerateClassName } from '@material-ui/core/styles';
+
 const theme = createMuiTheme({});
 
 function createPageContext() {
@@ -19,6 +19,7 @@ function createPageContext() {
 export default function getPageContext() {
   // Make sure to create a new context for every server-side request so that data
   // isn't shared between connections (which would be bad).
+  // eslint-disable-next-line
   if (!process.browser) {
     return createPageContext();
   }

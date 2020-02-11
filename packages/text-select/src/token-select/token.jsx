@@ -7,7 +7,7 @@ import classNames from 'classnames';
 
 export const TokenTypes = {
   text: PropTypes.string,
-  selectable: PropTypes.bool,
+  selectable: PropTypes.bool
 };
 
 export class Token extends React.Component {

@@ -4,11 +4,8 @@ import { types, utils } from '@pie-lib/plot';
 import PropTypes from 'prop-types';
 import Arrow from './arrow';
 import { withStyles } from '@material-ui/core';
-import debug from 'debug';
 import isEqual from 'lodash/isEqual';
 import { getTickValues } from '../utils';
-
-const log = debug('pie-lib:graphing:axes');
 
 const AxisPropTypes = {
   includeArrows: PropTypes.bool

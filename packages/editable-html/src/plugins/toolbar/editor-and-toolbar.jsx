@@ -17,6 +17,7 @@ export class EditorAndToolbar extends React.Component {
     plugins: PropTypes.array.isRequired,
     onChange: PropTypes.func.isRequired,
     onDone: PropTypes.func.isRequired,
+    onDataChange: PropTypes.func,
     focusedNode: SlatePropTypes.node,
     readOnly: PropTypes.bool,
     disableUnderline: PropTypes.bool,

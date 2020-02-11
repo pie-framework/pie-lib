@@ -102,6 +102,7 @@ const getShortestSide = (xh, yh) => {
     return 'x';
   }
 
+  // eslint-disable-next-line no-console
   console.warn('hypotenuse - which is shorter? x:', xh, 'y:', yh);
 };
 /**

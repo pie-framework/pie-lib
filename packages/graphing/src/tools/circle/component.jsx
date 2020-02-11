@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import debug from 'debug';
 import isEqual from 'lodash/isEqual';
 
 import { BasePoint } from '../shared/point';
@@ -10,8 +9,6 @@ import { point } from '../../utils';
 import classNames from 'classnames';
 import { types } from '@pie-lib/plot';
 import { rootEdgeComponent } from '../shared/line/with-root-edge';
-
-const log = debug('pie-lib:graphing:circle');
 
 const opacityPulsate = opacity => ({
   '0%': { opacity: '0.0' },

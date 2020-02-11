@@ -8,7 +8,7 @@ import { serialization as mathSerialization } from './plugins/math';
 import { serialization as listSerialization } from './plugins/list';
 import { serialization as tableSerialization } from './plugins/table';
 import { serialization as responseAreaSerialization } from './plugins/respArea';
-import { Mark, Value } from 'slate';
+import { Mark } from 'slate';
 
 const log = debug('@pie-lib:editable-html:serialization');
 

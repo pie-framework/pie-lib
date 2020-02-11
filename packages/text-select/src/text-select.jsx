@@ -27,9 +27,7 @@ export default class TextSelect extends React.Component {
     if (!onChange) {
       return;
     }
-    const out = tokens
-      .filter(t => t.selected)
-      .map(t => ({ start: t.start, end: t.end }));
+    const out = tokens.filter(t => t.selected).map(t => ({ start: t.start, end: t.end }));
 
     onChange(out);
   };
@@ -57,7 +55,7 @@ export default class TextSelect extends React.Component {
         ...t,
         selectable: !disabled && t.predefined,
         selected,
-        correct,
+        correct
       };
     });
 

@@ -104,7 +104,9 @@ export const notCongruentTo = set({
 export const primeArcminute = set({
   name: 'Prime',
   label: 'pam',
+  // eslint-disable-next-line
   latex: "'",
+  // eslint-disable-next-line
   write: "'"
 });
 export const doublePrimeArcSecond = set({

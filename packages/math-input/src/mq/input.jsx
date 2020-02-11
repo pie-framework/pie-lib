@@ -144,6 +144,6 @@ export class Input extends React.Component {
   }
 }
 
-const styles = theme => ({});
+const styles = () => ({});
 
 export default withStyles(styles)(Input);

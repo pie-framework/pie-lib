@@ -28,8 +28,5 @@ export default class Expander extends React.Component {
 Expander.propTypes = {
   show: PropTypes.bool.isRequired,
   className: PropTypes.string,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired
 };

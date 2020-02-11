@@ -36,7 +36,8 @@ export class RawLine extends React.Component {
         label: PropTypes.string,
         value: PropTypes.number
       })
-    )
+    ),
+    CustomDraggableComponent: PropTypes.func
   };
 
   static defaultProps = {

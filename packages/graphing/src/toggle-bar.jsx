@@ -99,7 +99,7 @@ export class ToggleBar extends React.Component {
     );
   }
 }
-const styles = theme => ({
+const styles = () => ({
   class: {},
   button: {
     marginRight: -1 //theme.spacing.unit

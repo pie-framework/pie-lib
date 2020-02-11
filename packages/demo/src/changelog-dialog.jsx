@@ -32,13 +32,10 @@ export class ChangelogDialog extends React.Component {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">
-          {activePackage.pkg.name}
-        </DialogTitle>
+        <DialogTitle id="alert-dialog-title">{activePackage.pkg.name}</DialogTitle>
+
         <DialogContent>
-          <Markdown className={classes.md}>
-            {activePackage.nextChangelog}
-          </Markdown>
+          <Markdown className={classes.md}>{activePackage.nextChangelog}</Markdown>
           <hr />
           <Markdown className={classes.md}>{activePackage.changelog}</Markdown>
         </DialogContent>
@@ -52,7 +49,7 @@ export class ChangelogDialog extends React.Component {
   }
 }
 
-const styles = theme => ({
+const styles = () => ({
   md: {
     fontFamily: 'sans-serif'
   }

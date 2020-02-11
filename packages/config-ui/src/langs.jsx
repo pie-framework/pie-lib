@@ -59,11 +59,7 @@ export class RawLangs extends React.Component {
           <InputLabel className={classes.inputLabel} htmlFor={this.uid}>
             {label}
           </InputLabel>
-          <Select
-            value={selected}
-            onChange={this.choose}
-            input={<Input id={this.uid} />}
-          >
+          <Select value={selected} onChange={this.choose} input={<Input id={this.uid} />}>
             {langs.map((l, index) => (
               <MenuItem key={index} value={l}>
                 {l}

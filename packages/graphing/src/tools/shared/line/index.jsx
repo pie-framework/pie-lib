@@ -3,10 +3,7 @@ import isEqual from 'lodash/isEqual';
 import { BasePoint } from '../point';
 import { types, utils, gridDraggable, trig } from '@pie-lib/plot';
 import PropTypes from 'prop-types';
-import debug from 'debug';
 import { disabled, correct, incorrect } from '../styles';
-
-const log = debug('pie-lib:graphing:line-tools');
 
 export const lineTool = (type, Component) => () => ({
   type,

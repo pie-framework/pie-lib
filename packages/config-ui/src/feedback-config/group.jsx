@@ -18,32 +18,29 @@ const styles = () => ({
   }
 });
 
-const Group = ({
-  feedbackLabels,
-  value,
-  classes,
-  className,
-  onChange,
-  keys
-}) => (
-  <div className={classNames(classes.choiceHolder, className)}>
-    {keys.map(key => {
-      return (
-        <div className={classes.choice} key={key}>
-          <RadioWithLabel
-            value={key}
-            checked={value === key}
-            classes={{
-              label: classes.radioLabel
-            }}
-            onChange={e => onChange(e.currentTarget.value)}
-            label={feedbackLabels[key]}
-          />
-        </div>
-      );
-    })}
-  </div>
-);
+const Group = props => {
+  const { feedbackLabels, value, classes, className, onChange, keys } = props;
+
+  return (
+    <div className={classNames(classes.choiceHolder, className)}>
+      {keys.map(key => {
+        return (
+          <div className={classes.choice} key={key}>
+            <RadioWithLabel
+              value={key}
+              checked={value === key}
+              classes={{
+                label: classes.radioLabel
+              }}
+              onChange={e => onChange(e.currentTarget.value)}
+              label={feedbackLabels[key]}
+            />
+          </div>
+        );
+      })}
+    </div>
+  );
+};
 
 Group.propTypes = {
   className: PropTypes.string,

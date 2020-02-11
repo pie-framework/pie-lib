@@ -24,15 +24,11 @@ export class InputChooser extends React.Component {
   }
 
   changeSelection = e => {
-    const newSelection = this.props.inputOptions.find(
-      i => i.html === e.target.value
-    );
-    this.setState(
-      { selected: newSelection, userHtml: newSelection.html },
-      () => {
-        this.props.onChange(this.state.userHtml);
-      }
-    );
+    const newSelection = this.props.inputOptions.find(i => i.html === e.target.value);
+
+    this.setState({ selected: newSelection, userHtml: newSelection.html }, () => {
+      this.props.onChange(this.state.userHtml);
+    });
   };
 
   render() {
@@ -42,8 +38,7 @@ export class InputChooser extends React.Component {
       <div>
         <div>
           <em className={classes.italic}>
-            You can enter your own markup here to see how it works with the
-            editor.
+            You can enter your own markup here to see how it works with the editor.
           </em>
         </div>
         <br />

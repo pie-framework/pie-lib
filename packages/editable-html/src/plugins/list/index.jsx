@@ -1,4 +1,5 @@
-import React from 'react'; // eslint-disable-line
+import React from 'react';
+import PropTypes from 'prop-types';
 import EditList from 'slate-edit-list';
 import debug from 'debug';
 
@@ -32,10 +33,11 @@ export const serialization = {
     if (object.type === 'list_item') {
       return <li>{children}</li>;
     }
+
     if (object.type === 'ul_list') {
-      const out = <ul>{children}</ul>;
-      return out;
+      return <ul>{children}</ul>;
     }
+
     if (object.type === 'ol_list') {
       return <ol>{children}</ol>;
     }
@@ -63,6 +65,7 @@ export default options => {
     });
   }
 
+  // eslint-disable-next-line react/display-name
   core.renderNode = props => {
     const { node, attributes, children } = props;
 
@@ -76,7 +79,7 @@ export default options => {
     }
   };
 
-  const toolbar = {
+  core.toolbar = {
     isMark: false,
     type,
     icon,
@@ -100,7 +103,11 @@ export default options => {
     }
   };
 
-  core.toolbar = toolbar;
+  core.renderNode.propTypes = {
+    node: PropTypes.object,
+    attributes: PropTypes.object,
+    children: PropTypes.func
+  };
 
   return core;
 };

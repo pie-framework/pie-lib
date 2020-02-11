@@ -8,9 +8,6 @@ import PropTypes from 'prop-types';
 import isEqual from 'lodash/isEqual';
 import { ActionCreators } from 'redux-undo';
 import GraphWithControls from '../graph-with-controls';
-import debug from 'debug';
-
-const log = debug('pie-lib:graph:container');
 
 const mapStateToProps = s => ({
   marks: s.marks.present

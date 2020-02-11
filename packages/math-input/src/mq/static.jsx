@@ -24,7 +24,11 @@ export default class Static extends React.Component {
     latex: PropTypes.string.isRequired,
     onFocus: PropTypes.func,
     onBlur: PropTypes.func,
-    className: PropTypes.string
+    className: PropTypes.string,
+    getFieldName: PropTypes.func,
+    onSubFieldChange: PropTypes.func,
+    onSubFieldFocus: PropTypes.func,
+    setInput: PropTypes.func
   };
 
   componentDidMount() {
@@ -33,17 +37,6 @@ export default class Static extends React.Component {
 
   componentDidUpdate() {
     this.update();
-  }
-
-  findName(field) {
-    if (!this.mathField) {
-      return;
-    }
-    const iter = this.mathField.innerFields.keys();
-    let v = iter.next();
-    do {
-      v = iter.next();
-    } while (!v.done);
   }
 
   onInputEdit(field) {
@@ -95,7 +88,9 @@ export default class Static extends React.Component {
       log('[shouldComponentUpdate] ', out);
       return out;
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.warn('Error parsing latex:', e.message, 'skip update');
+      // eslint-disable-next-line no-console
       console.warn(e);
       return false;
     }
@@ -115,6 +110,7 @@ export default class Static extends React.Component {
         this.props.onSubFieldFocus(name, innerField);
       }
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.error('error finding root block', err.message);
     }
   };

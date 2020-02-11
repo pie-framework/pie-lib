@@ -47,8 +47,10 @@ export class Toolbar extends React.Component {
     pluginProps: PropTypes.object,
     toolbarOpts: PropTypes.shape({
       position: PropTypes.oneOf(['bottom', 'top']),
-      alwaysVisible: PropTypes.bool
-    })
+      alwaysVisible: PropTypes.bool,
+      showDone: PropTypes.bool
+    }),
+    onDataChange: PropTypes.fun
   };
 
   constructor(props) {

@@ -25,7 +25,8 @@ export class RawButton extends React.Component {
     onClick: PropTypes.func.isRequired,
     classes: PropTypes.object.isRequired,
     children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
-    active: PropTypes.bool
+    active: PropTypes.bool,
+    extraStyles: PropTypes.object
   };
 
   constructor(props) {

@@ -70,7 +70,8 @@ class TwoChoice extends React.Component {
     onChange: PropTypes.func.isRequired,
     one: PropTypes.oneOfType([labelValue, PropTypes.string]),
     two: PropTypes.oneOfType([labelValue, PropTypes.string]),
-    className: PropTypes.string
+    className: PropTypes.string,
+    customLabel: PropTypes.func
   };
 
   render() {

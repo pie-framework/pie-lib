@@ -38,21 +38,9 @@ export class ImageToolbar extends React.Component {
     const { classes, percent } = this.props;
     return (
       <div className={classes.holder}>
-        <PercentButton
-          percent={25}
-          active={percent === 25}
-          onClick={this.onPercentClick}
-        />
-        <PercentButton
-          percent={50}
-          active={percent === 50}
-          onClick={this.onPercentClick}
-        />
-        <PercentButton
-          active={percent === 75}
-          percent={75}
-          onClick={this.onPercentClick}
-        />
+        <PercentButton percent={25} active={percent === 25} onClick={this.onPercentClick} />
+        <PercentButton percent={50} active={percent === 50} onClick={this.onPercentClick} />
+        <PercentButton active={percent === 75} percent={75} onClick={this.onPercentClick} />
         <PercentButton
           percent={100}
           active={percent === 100 || !percent}
