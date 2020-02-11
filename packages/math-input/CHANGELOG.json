@@ -1033,5 +1033,20 @@
     "committerDate": "2020-01-21 09:29:00 +0200",
     "isTagged": true,
     "tag": "@pie-lib/math-input@6.3.9"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "6287: Setting equation editor as a string (eg: '6') works as well (In OT, a math editor for an Equation Response item is missing a critical button as well as many other expected buttons)",
+    "merge": null,
+    "header": "fix: 6287: Setting equation editor as a string (eg: '6') works as well (In OT, a math editor for an Equation Response item is missing a critical button as well as many other expected buttons)",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "a21f04b6f4c4b0816291006bcc8777bfc621cbd8",
+    "gitTags": "",
+    "committerDate": "2020-02-05 11:31:44 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/math-input@6.3.10"
   }
 ]
