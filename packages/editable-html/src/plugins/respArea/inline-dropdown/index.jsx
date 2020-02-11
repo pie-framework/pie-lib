@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Chevron } from '../icons';
 
-export default ({ attributes, selectedItem }) => {
+const InlineDropdown = ({ attributes, selectedItem }) => {
   // TODO: Investigate
   // Needed because items with values inside have different positioning for some reason
   const html = selectedItem || '<div>&nbsp</div>';
@@ -53,3 +54,10 @@ export default ({ attributes, selectedItem }) => {
     </span>
   );
 };
+
+InlineDropdown.propTypes = {
+  attributes: PropTypes.object,
+  selectedItem: PropTypes.object
+};
+
+export default InlineDropdown;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import isUndefined from 'lodash/isUndefined';
 import { DragSource, DropTarget } from '@pie-lib/drag';
 import { renderMath } from '@pie-lib/math-rendering';
@@ -23,6 +24,15 @@ const useStyles = withStyles(theme => ({
 }));
 
 export class BlankContent extends React.Component {
+  static propTypes = {
+    n: PropTypes.object,
+    children: PropTypes.func,
+    isDragging: PropTypes.bool,
+    isOver: PropTypes.bool,
+    dragItem: PropTypes.object,
+    value: PropTypes.object
+  };
+
   componentDidUpdate() {
     if (this.elementRef) {
       renderMath(this.elementRef);

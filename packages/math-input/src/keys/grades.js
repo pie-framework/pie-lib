@@ -1,4 +1,3 @@
-import * as keys from './index';
 import * as comparison from './comparison';
 import * as vars from './vars';
 import * as fractions from './fractions';
@@ -7,8 +6,6 @@ import * as misc from './misc';
 import * as constants from './constants';
 import * as trigonometry from './trigonometry';
 import * as geometry from './geometry';
-import * as logic from './logic';
-import * as matrices from './matrices';
 import * as operators from './operators';
 import * as log from './log';
 import * as subSup from './sub-sup';

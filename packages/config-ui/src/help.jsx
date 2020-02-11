@@ -51,19 +51,13 @@ export const HelpDialog = ({ open, onClose, children, title }) => (
 HelpDialog.propTypes = {
   open: PropTypes.bool,
   onClose: PropTypes.func,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired,
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
   title: PropTypes.string.isRequired
 };
 
 class Help extends React.Component {
   static propTypes = {
-    children: PropTypes.oneOfType([
-      PropTypes.arrayOf(PropTypes.node),
-      PropTypes.node
-    ]).isRequired,
+    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
     title: PropTypes.string
   };
 
@@ -78,10 +72,7 @@ class Help extends React.Component {
     const { children, title } = this.props;
     return (
       <div>
-        <HelpButton
-          color="accent"
-          onClick={() => this.setState({ open: true })}
-        />
+        <HelpButton color="accent" onClick={() => this.setState({ open: true })} />
         <HelpDialog
           open={this.state.open}
           title={title}

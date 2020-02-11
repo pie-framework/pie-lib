@@ -1,11 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import {
-  getAnchor as calcAnchor,
-  distanceBetween,
-  arctangent
-} from './anchor-utils';
+import { getAnchor as calcAnchor, distanceBetween, arctangent } from './anchor-utils';
 import { Portal } from 'react-portal';
 import Point from '@mapbox/point-geometry';
 import { parse as parseOrigin } from './transform-origin';
@@ -30,14 +26,7 @@ const Anchor = withStyles({
           top: top - 10
         }}
       >
-        <circle
-          cx={10}
-          cy={10}
-          r={8}
-          strokeWidth={1}
-          stroke={color}
-          fill={fill}
-        />
+        <circle cx={10} cy={10} r={8} strokeWidth={1} stroke={color} fill={fill} />
       </svg>
     </Portal>
   );
@@ -50,10 +39,7 @@ const Anchor = withStyles({
 export class Rotatable extends React.Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
-    children: PropTypes.oneOfType([
-      PropTypes.arrayOf(PropTypes.node),
-      PropTypes.node
-    ]).isRequired,
+    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
     showAnchor: PropTypes.bool,
     handle: PropTypes.arrayOf(
       PropTypes.shape({
@@ -169,12 +155,7 @@ export class Rotatable extends React.Component {
     let diff = { x: 0, y: 0 };
     if (origin !== this.state.origin) {
       const { clientWidth: width, clientHeight: height } = this.rotatable;
-      diff = distanceBetween(
-        { width, height },
-        rotation,
-        this.state.origin,
-        origin
-      );
+      diff = distanceBetween({ width, height }, rotation, this.state.origin, origin);
     }
 
     this.setState(

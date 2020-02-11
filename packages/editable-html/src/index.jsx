@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import Editor, { DEFAULT_PLUGINS, ALL_PLUGINS } from './editor';
 import { htmlToValue, valueToHtml } from './serialization';

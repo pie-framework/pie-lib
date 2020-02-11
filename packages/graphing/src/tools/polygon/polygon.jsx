@@ -27,7 +27,8 @@ export class RawPolygon extends React.Component {
     disabled: PropTypes.bool,
     points: PropTypes.arrayOf(PropTypes.shape(PointType)),
     graphProps: types.GraphPropsType.isRequired,
-    closed: PropTypes.bool.isRequired
+    closed: PropTypes.bool.isRequired,
+    correctness: PropTypes.string
   };
 
   render() {

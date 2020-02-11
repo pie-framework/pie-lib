@@ -14,7 +14,8 @@ export class Component extends React.Component {
   static propTypes = {
     node: SlatePropTypes.node.isRequired,
     editor: PropTypes.shape({
-      change: PropTypes.func.isRequired
+      change: PropTypes.func.isRequired,
+      value: PropTypes.object
     }).isRequired,
     classes: PropTypes.object.isRequired,
     attributes: PropTypes.object,

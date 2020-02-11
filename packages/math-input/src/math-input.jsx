@@ -73,13 +73,7 @@ export class MathInput extends React.Component {
     const showKeypad = true; // TODO: add support for different displayModes - displayMode === 'block' || focused;
 
     return (
-      <div
-        className={classNames(
-          classes.mathInput,
-          className,
-          focused && classes.focused
-        )}
-      >
+      <div className={classNames(classes.mathInput, className, focused && classes.focused)}>
         <mq.Input
           className={classes.mqInput}
           innerRef={r => (this.input = r)}
@@ -90,11 +84,7 @@ export class MathInput extends React.Component {
         />
         {showKeypad && (
           <div className={classes.pad}>
-            <KeyPad
-              baseSet={baseSet}
-              additionalKeys={keyset}
-              onPress={this.keypadPress}
-            />
+            <KeyPad baseSet={baseSet} additionalKeys={keyset} onPress={this.keypadPress} />
           </div>
         )}
       </div>

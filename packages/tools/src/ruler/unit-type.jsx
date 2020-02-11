@@ -3,16 +3,9 @@ import PropTypes from 'prop-types';
 import { noSelect, strokeColor } from '../style-utils';
 import { withStyles } from '@material-ui/core/styles';
 
-export const UnitType = ({
-  classes,
-  label,
-  x,
-  y,
-  textAlign,
-  fill,
-  fontSize,
-  stroke
-}) => {
+export const UnitType = props => {
+  const { classes, label, x, y, textAlign, fill, fontSize, stroke } = props;
+
   return (
     <text
       className={classes.unitType}

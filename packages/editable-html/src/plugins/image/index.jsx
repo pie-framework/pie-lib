@@ -1,4 +1,4 @@
-import { Block, Data, Range, Inline } from 'slate';
+import { Data, Inline } from 'slate';
 
 import Image from '@material-ui/icons/Image';
 import ImageComponent from './component';

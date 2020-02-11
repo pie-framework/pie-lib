@@ -48,23 +48,17 @@ const MuiBox = withStyles(theme => {
       '&:after': {
         transform: 'scaleX(1)'
       }
-    },
-  }
+    }
+  };
 })(({ children, classes, focused }) => {
   const names = classNames(classes.muiBox, focused && classes.focused);
-  return (
-    <div className={names}>
-      {children}
-    </div>
-  )
+
+  return <div className={names}>{children}</div>;
 });
 
 MuiBox.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired,
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
   focused: PropTypes.bool.isRequired
-}
+};
 
 export default MuiBox;

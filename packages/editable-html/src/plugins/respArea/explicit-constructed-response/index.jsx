@@ -1,6 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export default ({ attributes, value }) => {
+const ExplicitConstructedResponse = props => {
+  const { attributes, value } = props;
+
   return (
     <span
       {...attributes}
@@ -33,3 +36,10 @@ export default ({ attributes, value }) => {
     </span>
   );
 };
+
+ExplicitConstructedResponse.propTypes = {
+  attributes: PropTypes.object,
+  value: PropTypes.object
+};
+
+export default ExplicitConstructedResponse;

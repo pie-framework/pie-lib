@@ -19,7 +19,7 @@ export const CustomToolbarComp = React.memo(
     const { math } = pluginProps || {};
     const { keypadMode } = math || {};
 
-    const onDone = (latex, b) => {
+    const onDone = latex => {
       const update = {
         ...node.data.toObject(),
         latex
@@ -81,7 +81,7 @@ CustomToolbarComp.propTypes = {
   onBlur: PropTypes.func
 };
 
-export default function MathPlugin(opts) {
+export default function MathPlugin() {
   return {
     name: 'math',
     toolbar: {

@@ -2,9 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { types } from '@pie-lib/plot';
-import debug from 'debug';
-
-const log = debug('pie-lib:graphing:labels');
 
 const rotations = {
   left: -90,
@@ -67,7 +64,8 @@ export class Labels extends React.Component {
   static propTypes = {
     classes: PropTypes.object,
     className: PropTypes.string,
-    value: PropTypes.shape(LabelType)
+    value: PropTypes.shape(LabelType),
+    graphProps: PropTypes.object
   };
 
   static defaultProps = {};

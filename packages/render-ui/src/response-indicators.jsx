@@ -85,11 +85,5 @@ const BuildIndicator = (Icon, correctness) => {
 
 export const Correct = BuildIndicator(icons.Correct, 'correct');
 export const Incorrect = BuildIndicator(icons.Incorrect, 'incorrect');
-export const PartiallyCorrect = BuildIndicator(
-  icons.PartiallyCorrect,
-  'partially-correct'
-);
-export const NothingSubmitted = BuildIndicator(
-  icons.NothingSubmitted,
-  'nothing-submitted'
-);
+export const PartiallyCorrect = BuildIndicator(icons.PartiallyCorrect, 'partially-correct');
+export const NothingSubmitted = BuildIndicator(icons.NothingSubmitted, 'nothing-submitted');

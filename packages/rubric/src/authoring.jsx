@@ -172,6 +172,7 @@ export class RawAuthoring extends React.Component {
     const { classes, className, value } = this.props;
 
     if (value && Number.isFinite(value.maxPoints)) {
+      // eslint-disable-next-line no-console
       console.warn('maxPoints is deprecated - remove from model');
     }
 

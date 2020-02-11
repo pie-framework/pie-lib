@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles, MuiThemeProvider } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 
 const Section = withStyles(theme => ({

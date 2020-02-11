@@ -1,7 +1,7 @@
 import Circle from './component';
 import isEqual from 'lodash/isEqual';
 
-export const tool = opts => ({
+export const tool = () => ({
   type: 'circle',
   Component: Circle,
   hover: (point, mark) => {

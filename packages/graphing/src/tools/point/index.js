@@ -1,6 +1,6 @@
 import Point from './component';
 
-export const tool = opts => ({
+export const tool = () => ({
   label: 'Point',
   type: 'point',
   Component: Point,

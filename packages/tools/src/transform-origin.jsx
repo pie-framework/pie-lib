@@ -23,12 +23,7 @@ const getValue = (s, length) => {
 };
 
 const normalize = a => {
-  if (
-    a[0] === 'bottom' ||
-    a[0] === 'top' ||
-    a[1] === 'left' ||
-    a[1] === 'right'
-  ) {
+  if (a[0] === 'bottom' || a[0] === 'top' || a[1] === 'left' || a[1] === 'right') {
     return [a[1], a[0]];
   } else {
     return a;

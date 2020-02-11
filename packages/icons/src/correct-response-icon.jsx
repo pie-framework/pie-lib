@@ -105,11 +105,7 @@ const CorrectResponse = ({ open, classes, className }) => (
     {open ? (
       <OpenIcon bg={classes.hideIconBg} fg={classes.hideIconFg} />
     ) : (
-      <CloseIcon
-        bg={classes.showIconBg}
-        border={classes.showIconBorder}
-        fg={classes.showIconFg}
-      />
+      <CloseIcon bg={classes.showIconBg} border={classes.showIconBorder} fg={classes.showIconFg} />
     )}
   </div>
 );

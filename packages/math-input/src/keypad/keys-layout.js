@@ -1,5 +1,4 @@
 import * as _ from 'lodash';
-import debug from 'debug';
 
 /**
  * Sort additional keys.
