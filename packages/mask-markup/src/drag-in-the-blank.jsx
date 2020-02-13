@@ -11,7 +11,7 @@ const Masked = withMask('blank', props => (node, data, onChange) => {
   if (dataset.component === 'blank') {
     const { disabled, duplicates, correctResponse, feedback, showCorrectAnswer } = props;
     const choiceId = showCorrectAnswer ? correctResponse[dataset.id] : data[dataset.id];
-    const choice = props.choices.find(c => c.id === choiceId);
+    const choice = choiceId && props.choices.find(c => c.id === choiceId);
 
     return (
       <Blank
