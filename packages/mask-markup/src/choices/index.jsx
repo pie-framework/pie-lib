@@ -40,12 +40,11 @@ export default class Choices extends React.Component {
   render() {
     const { disabled, duplicates, choices, value } = this.props;
     const filteredChoices = choices.filter(c => {
-      if (duplicates === false) {
+      if (duplicates === true) {
         return true;
-      } else {
-        const foundChoice = findKey(value, v => v === c.id);
-        return foundChoice === undefined;
       }
+      const foundChoice = findKey(value, v => v === c.id);
+      return foundChoice === undefined;
     });
     const elementStyle = this.getStyleForWrapper();
 
