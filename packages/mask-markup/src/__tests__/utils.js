@@ -1,1 +1,1 @@
-export const choice = v => ({ label: v, value: v });
+export const choice = (v, id) => ({ label: v, value: v, id });
