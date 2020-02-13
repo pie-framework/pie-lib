@@ -70,7 +70,7 @@ class Demo extends React.Component {
         ],
 
         value: {
-          0: undefined
+          //-2.8 0: undefined
         }
       },
       data: {
