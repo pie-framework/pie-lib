@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/drag",
-  "version": "1.1.22",
+  "version": "1.1.23",
   "description": "",
   "main": "lib/index.js",
   "dependencies": {

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.40](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.39...@pie-lib/demo@5.3.40) (2020-02-14)
+
+
+### Bug Fixes
+
+* bump react-dnd@^10 (no more esm default) ([06949d8](https://github.com/pie-framework/pie-lib/commit/06949d8))
+
+
+
+
+
 ## [5.3.39](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.38...@pie-lib/demo@5.3.39) (2020-02-11)
 
 **Note:** Version bump only for package @pie-lib/demo

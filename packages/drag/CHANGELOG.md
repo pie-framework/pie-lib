@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.23](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@1.1.22...@pie-lib/drag@1.1.23) (2020-02-14)
+
+
+### Bug Fixes
+
+* bump react-dnd@^10 (no more esm default) ([06949d8](https://github.com/pie-framework/pie-lib/commit/06949d8))
+
+
+
+
+
 ## [1.1.22](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@1.1.21...@pie-lib/drag@1.1.22) (2020-02-11)
 
 **Note:** Version bump only for package @pie-lib/drag
