@@ -8,7 +8,7 @@ describe('index', () => {
   describe('Choices', () => {
     const defaultProps = {
       disabled: false,
-      choices: [choice('Jumped'), choice('Laughed'), choice('Spoon')]
+      choices: [choice('Jumped', '0'), choice('Laughed', '1'), choice('Spoon', '2')]
     };
     let wrapper;
 
@@ -22,6 +22,15 @@ describe('index', () => {
 
     it('renders correctly with disabled prop as true', () => {
       wrapper.setProps({ disabled: true });
+      expect(wrapper).toMatchSnapshot();
+    });
+    it('renders without duplicates', () => {
+      wrapper.setProps({ duplicates: undefined, value: { 0: '0', 1: '1' } });
+      expect(wrapper).toMatchSnapshot();
+    });
+
+    it('renders with duplicates', () => {
+      wrapper.setProps({ duplicates: true, value: { 0: '0', 1: '1' } });
       expect(wrapper).toMatchSnapshot();
     });
   });

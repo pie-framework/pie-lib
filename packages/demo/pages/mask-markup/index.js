@@ -19,7 +19,7 @@ const markup = `<div>
  <p>5: To see such sport,</p>
  <p>6: And the dish ran away with the {{2}}.</p>
 </div>`;
-const choice = v => ({ label: v, value: v });
+const choice = (v, id) => ({ id, label: v, value: v });
 class Demo extends React.Component {
   constructor(props) {
     super(props);
@@ -61,16 +61,16 @@ class Demo extends React.Component {
       dragInTheBlank: {
         markup,
         choices: [
-          choice('Jumped'),
-          choice('Laughed'),
-          choice('Spoon'),
-          choice('Fork'),
-          choice('Bumped'),
-          choice('Smiled')
+          choice('Jumped', '0'),
+          choice('Laughed', '1'),
+          choice('Spoon', '2'),
+          choice('Fork', '3'),
+          choice('Bumped', '4'),
+          choice('Smiled', '5')
         ],
 
         value: {
-          0: undefined
+          0: '0'
         }
       },
       data: {
