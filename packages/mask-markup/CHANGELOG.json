@@ -508,5 +508,20 @@
     "committerDate": "2020-01-10 19:08:46 +0200",
     "isTagged": true,
     "tag": "@pie-lib/mask-markup@1.7.5"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "bump react-dnd@^10 (no more esm default)",
+    "merge": null,
+    "header": "fix: bump react-dnd@^10 (no more esm default)",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "06949d84759504b74ec7fe0ace0385f8b8915e7c",
+    "gitTags": "",
+    "committerDate": "2020-02-13 09:20:36 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/mask-markup@1.7.8"
   }
 ]
