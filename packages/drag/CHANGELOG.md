@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.24](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@1.1.23...@pie-lib/drag@1.1.24) (2020-02-15)
+
+
+### Bug Fixes
+
+* rollback dnd bump ([a3a6b75](https://github.com/pie-framework/pie-lib/commit/a3a6b75))
+
+
+
+
+
 ## [1.1.23](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@1.1.22...@pie-lib/drag@1.1.23) (2020-02-14)
 
 

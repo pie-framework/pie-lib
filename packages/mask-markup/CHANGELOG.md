@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.7.8...@pie-lib/mask-markup@1.7.9) (2020-02-15)
+
+
+### Bug Fixes
+
+* rollback dnd bump ([a3a6b75](https://github.com/pie-framework/pie-lib/commit/a3a6b75))
+
+
+
+
+
 ## [1.7.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.7.7...@pie-lib/mask-markup@1.7.8) (2020-02-14)
 
 
