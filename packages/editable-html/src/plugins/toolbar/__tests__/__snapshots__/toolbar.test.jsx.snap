@@ -38,12 +38,6 @@ exports[`toolbar renders custom toolbar 1`] = `
     <div
       ariaLabel="Delete"
       className="iconRoot"
-      style={
-        Object {
-          "height": "28px",
-          "width": "28px",
-        }
-      }
     />
   </div>
 </div>
