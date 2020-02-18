@@ -229,6 +229,8 @@ export class Graph extends React.Component {
         title={title}
         onMouseMove={this.mouseMove}
         rootRef={r => (this.rootNode = r)}
+        // left side requires an extra padding of 10, in order to fit next to tick labels like 1.5, 1.55...
+        paddingLeft={60}
         {...common}
       >
         <Grid {...common} />

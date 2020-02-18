@@ -24,7 +24,8 @@ export class Root extends React.Component {
     graphProps: GraphPropsType.isRequired,
     onMouseMove: PropTypes.func,
     classes: PropTypes.object.isRequired,
-    rootRef: PropTypes.func
+    rootRef: PropTypes.func,
+    paddingLeft: PropTypes.int
   };
 
   mouseMove = g => {
@@ -58,7 +59,7 @@ export class Root extends React.Component {
   }
 
   render() {
-    const { graphProps, children, classes, title, rootRef } = this.props;
+    const { graphProps, children, classes, title, rootRef, paddingLeft } = this.props;
     const { size } = graphProps;
     const padding = 50;
     const finalWidth = size.width + padding * 2;
@@ -76,7 +77,7 @@ export class Root extends React.Component {
               }
             }}
             className={classes.graphBox}
-            transform={`translate(${padding}, ${padding})`}
+            transform={`translate(${paddingLeft || padding}, ${padding})`}
           >
             {children}
           </g>

@@ -92,7 +92,7 @@ export class RawXAxis extends React.Component {
         )}
         {domain.axisLabel && (
           <foreignObject x={size.width + 10} y={scale.y(0) - 10} width={100} height={20}>
-            <div dangerouslySetInnerHTML={{ __html: domain.axisLabel }}></div>
+            <div dangerouslySetInnerHTML={{ __html: domain.axisLabel }} />
           </foreignObject>
         )}
       </React.Fragment>
@@ -139,7 +139,7 @@ export class RawYAxis extends React.Component {
             return {
               ...tickLabelStyles,
               dy: 4,
-              dx: -10 - digits * 5
+              dx: -8 - digits * 5
             };
           }}
           hideZero={true}
@@ -157,7 +157,7 @@ export class RawYAxis extends React.Component {
             <div
               dangerouslySetInnerHTML={{ __html: range.axisLabel }}
               className={classes.axisLabelHolder}
-            ></div>
+            />
           </foreignObject>
         )}
       </React.Fragment>
