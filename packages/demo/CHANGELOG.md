@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.42](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.41...@pie-lib/demo@5.3.42) (2020-02-18)
+
+
+### Bug Fixes
+
+* 5325: Graphing: Axis labels overlapping numeric labels ([678c61a](https://github.com/pie-framework/pie-lib/commit/678c61a))
+
+
+
+
+
 ## [5.3.41](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.40...@pie-lib/demo@5.3.41) (2020-02-15)
 
 
