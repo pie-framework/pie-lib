@@ -40,13 +40,24 @@ class RawLabel extends React.Component {
     const { size } = graphProps;
 
     const transform = getTransform(side, size.width, size.height);
+    const width = side === 'left' || side === 'right' ? size.height : size.width;
+    const height = 20;
+
     return (
-      <text textAnchor="middle" x={0} y={0} transform={transform}>
-        {text}
-      </text>
+      <foreignObject
+        x={-(width / 2)}
+        y={-height}
+        width={width}
+        height={20}
+        transform={transform}
+        textAnchor="middle"
+      >
+        <div style={{ textAlign: 'center' }} dangerouslySetInnerHTML={{ __html: text }} />
+      </foreignObject>
     );
   }
 }
+
 const Label = withStyles(theme => ({
   label: {
     fill: theme.palette.secondary.main
@@ -69,6 +80,7 @@ export class Labels extends React.Component {
   };
 
   static defaultProps = {};
+
   render() {
     const { value, graphProps } = this.props;
     return (
