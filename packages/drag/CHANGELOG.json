@@ -318,5 +318,20 @@
     "committerDate": "2019-07-02 11:29:52 -0400",
     "isTagged": true,
     "tag": "@pie-lib/drag@1.1.18"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "bump react-dnd@^10 (no more esm default)",
+    "merge": null,
+    "header": "fix: bump react-dnd@^10 (no more esm default)",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "06949d84759504b74ec7fe0ace0385f8b8915e7c",
+    "gitTags": "",
+    "committerDate": "2020-02-13 09:20:36 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/drag@1.1.23"
   }
 ]
