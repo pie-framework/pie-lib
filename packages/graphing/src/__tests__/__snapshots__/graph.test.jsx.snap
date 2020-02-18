@@ -30,6 +30,7 @@ exports[`Graph snapshot renders 1`] = `
     }
   }
   onMouseMove={[Function]}
+  paddingLeft={60}
   rootRef={[Function]}
 >
   <WithStyles(Grid)
