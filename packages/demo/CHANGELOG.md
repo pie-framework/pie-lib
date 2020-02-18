@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.41](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.40...@pie-lib/demo@5.3.41) (2020-02-15)
+
+
+### Bug Fixes
+
+* rollback dnd bump ([a3a6b75](https://github.com/pie-framework/pie-lib/commit/a3a6b75))
+
+
+
+
+
 ## [5.3.40](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.39...@pie-lib/demo@5.3.40) (2020-02-14)
 
 

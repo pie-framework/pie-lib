@@ -958,5 +958,20 @@
     "committerDate": "2020-02-13 09:20:36 +0000",
     "isTagged": true,
     "tag": "@pie-lib/demo@5.3.40"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "rollback dnd bump",
+    "merge": null,
+    "header": "fix: rollback dnd bump",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "a3a6b756b5a8a5fee788eb2955af0867c99c3726",
+    "gitTags": "",
+    "committerDate": "2020-02-15 21:38:32 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/demo@5.3.41"
   }
 ]
