@@ -27,6 +27,17 @@ export const getTransform = (side, width, height) => {
   }
 };
 
+const getY = (side, height) => {
+  switch (side) {
+    case 'left':
+      return -height;
+    case 'top':
+      return -height + 10;
+    default:
+      return 0;
+  }
+};
+
 class RawLabel extends React.Component {
   static propTypes = {
     text: PropTypes.string,
@@ -41,14 +52,15 @@ class RawLabel extends React.Component {
 
     const transform = getTransform(side, size.width, size.height);
     const width = side === 'left' || side === 'right' ? size.height : size.width;
-    const height = 20;
+    const height = 36;
+    const y = getY(side, height);
 
     return (
       <foreignObject
         x={-(width / 2)}
-        y={-height}
+        y={y}
         width={width}
-        height={20}
+        height={height}
         transform={transform}
         textAnchor="middle"
       >
