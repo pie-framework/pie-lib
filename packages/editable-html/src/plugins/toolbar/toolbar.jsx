@@ -10,6 +10,7 @@ import SlatePropTypes from 'slate-prop-types';
 import { findSingleNode, findParentNode } from '../utils';
 import { withStyles } from '@material-ui/core/styles';
 import DefaultToolbar from './default-toolbar';
+
 const log = debug('@pie-lib:editable-html:plugins:toolbar');
 
 const getCustomToolbar = (plugin, node, value, handleDone, onDataChange) => {
@@ -232,7 +233,6 @@ export class Toolbar extends React.Component {
           {deletable && (
             <IconButton
               aria-label="Delete"
-              style={{ width: '28px', height: '28px' }}
               className={classes.iconRoot}
               onMouseDown={e => plugin.deleteNode(e, node, value, onChange)}
               classes={{
@@ -281,7 +281,9 @@ const style = {
   },
   iconRoot: {
     width: '28px',
-    height: '28px'
+    height: '28px',
+    padding: '4px',
+    verticalAlign: 'top'
   },
   label: {
     color: 'var(--editable-html-toolbar-check, #00bb00)'
