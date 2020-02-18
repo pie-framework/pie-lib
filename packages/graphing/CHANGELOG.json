@@ -528,5 +528,35 @@
     "committerDate": "2019-11-19 19:10:08 +0000",
     "isTagged": true,
     "tag": "@pie-lib/graphing@1.2.6"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "5325: Graphing: Axis labels overlapping numeric labels",
+    "merge": null,
+    "header": "fix: 5325: Graphing: Axis labels overlapping numeric labels",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "678c61ada909fdd45074b7b5e70c33d798d2dda7",
+    "gitTags": "",
+    "committerDate": "2020-02-18 10:53:28 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/graphing@1.2.8"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "4044: A non-ASCII character in a Graphing domain label is represented by HTML-style markup.",
+    "merge": null,
+    "header": "fix: 4044: A non-ASCII character in a Graphing domain label is represented by HTML-style markup.",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "0493922c09b8b35423673c353b125962d499c270",
+    "gitTags": "",
+    "committerDate": "2020-02-18 09:46:15 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/graphing@1.2.8"
   }
 ]
