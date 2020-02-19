@@ -62,5 +62,40 @@ describe('utils', () => {
     assertGetTickValues({ min: 0, max: 3, step: 0.5 }, [0, 0.5, 1, 1.5, 2, 2.5, 3]);
     assertGetTickValues({ min: -0.2, max: 2, step: 0.6 }, [0, 0.6, 1.2, 1.8]);
     assertGetTickValues({ min: -3.4, max: 6.2, step: 1.2 }, [0, -1.2, -2.4, 1.2, 2.4, 3.6, 4.8, 6]);
+
+    assertGetTickValues({ min: 0.6, max: 4.8, step: 0.3 }, [
+      0.6,
+      0.9,
+      1.2,
+      1.5,
+      1.8,
+      2.1,
+      2.4,
+      2.7,
+      3.0,
+      3.3,
+      3.6,
+      3.9,
+      4.2,
+      4.5,
+      4.8
+    ]);
+    assertGetTickValues({ min: 0.5, max: 4.9, step: 0.3 }, [
+      0.6,
+      0.9,
+      1.2,
+      1.5,
+      1.8,
+      2.1,
+      2.4,
+      2.7,
+      3.0,
+      3.3,
+      3.6,
+      3.9,
+      4.2,
+      4.5,
+      4.8
+    ]);
   });
 });

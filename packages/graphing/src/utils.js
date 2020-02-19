@@ -24,7 +24,12 @@ export const getTickValues = prop => {
     tickVal = Math.round((tickVal + prop.step) * 100) / 100;
   }
 
-  return tickValues;
+  // return only ticks that are inside the min-max interval
+  if (tickValues) {
+    return tickValues.filter(tV => tV >= prop.min && tV <= prop.max);
+  }
+
+  return [];
 };
 
 export const polygonToArea = points => {
