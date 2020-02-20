@@ -1,6 +1,9 @@
 import React from 'react';
-import { normalizeSize } from './icon-root';
 import PropTypes from 'prop-types';
+
+export const normalizeSize = size => {
+  return typeof size === 'string' ? size : typeof size === 'number' ? `${size}px` : '30px';
+};
 
 const Sized = ({ size, children }) => {
   size = normalizeSize(size);
