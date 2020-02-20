@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.2.7...@pie-lib/correct-answer-toggle@2.2.8) (2020-02-20)
+
+
+### Bug Fixes
+
+*  missing peer dep for react-dom ([6698737](https://github.com/pie-framework/pie-lib/commit/6698737))
+
+
+
+
+
 ## [2.2.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.2.6...@pie-lib/correct-answer-toggle@2.2.7) (2020-02-11)
 
 **Note:** Version bump only for package @pie-lib/correct-answer-toggle
