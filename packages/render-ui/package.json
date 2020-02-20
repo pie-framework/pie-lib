@@ -14,7 +14,8 @@
     "@pie-lib/math-rendering": "^2.1.0",
     "classnames": "^2.2.6",
     "debug": "^4.1.1",
-    "react-transition-group": "^2.5.2"
+    "react-transition-group": "^2.5.2",
+    "prop-types": "^15.7.2"
   },
   "peerDependencies": {
     "react": "^16.8.1"
