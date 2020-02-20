@@ -358,5 +358,20 @@
     "committerDate": "2019-07-02 11:29:52 -0400",
     "isTagged": true,
     "tag": "@pie-lib/icons@2.4.2"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "circular dependency",
+    "merge": null,
+    "header": "fix: circular dependency",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "c3847d637d91f15232146cbdd3d8fd254eab90bc",
+    "gitTags": " (develop)",
+    "committerDate": "2020-02-20 12:44:45 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/icons@2.4.7"
   }
 ]
