@@ -438,5 +438,20 @@
     "committerDate": "2019-12-12 21:08:04 +0000",
     "isTagged": true,
     "tag": "@pie-lib/render-ui@4.5.0"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "missing dependency prop-types",
+    "merge": null,
+    "header": "fix: missing dependency prop-types",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "cfff0e9f49a4fd01db7656ee90dc646a8eb2862a",
+    "gitTags": " (develop)",
+    "committerDate": "2020-02-20 12:55:22 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/render-ui@4.5.6"
   }
 ]
