@@ -18,11 +18,12 @@
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
-    "react": "^16.8.1"
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1"
   },
   "devDependencies": {
     "react": "^16.8.1",
-    "react-dom": "^16.9.0"
+    "react-dom": "^16.8.1"
   },
   "gitHead": "1090bd26e31b37d067d32cde11a4185ef0b7dc52"
 }
