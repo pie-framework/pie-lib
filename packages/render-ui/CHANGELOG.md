@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.5.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.5.6...@pie-lib/render-ui@4.5.7) (2020-02-25)
+
+
+### Bug Fixes
+
+* add react-dom to peer deps ([1fb5a05](https://github.com/pie-framework/pie-lib/commit/1fb5a05))
+
+
+
+
+
 ## [4.5.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.5.5...@pie-lib/render-ui@4.5.6) (2020-02-20)
 
 
