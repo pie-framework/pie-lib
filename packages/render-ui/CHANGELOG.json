@@ -453,5 +453,20 @@
     "committerDate": "2020-02-20 12:55:22 +0000",
     "isTagged": true,
     "tag": "@pie-lib/render-ui@4.5.6"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "add react-dom to peer deps",
+    "merge": null,
+    "header": "fix: add react-dom to peer deps",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "1fb5a059e2f590d47de05a7566d683d18e5564d3",
+    "gitTags": "",
+    "committerDate": "2020-02-25 10:38:55 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/render-ui@4.5.7"
   }
 ]

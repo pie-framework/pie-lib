@@ -348,5 +348,20 @@
     "committerDate": "2020-02-15 21:38:32 +0000",
     "isTagged": true,
     "tag": "@pie-lib/drag@1.1.24"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "remove circular dependencies",
+    "merge": null,
+    "header": "fix: remove circular dependencies",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "3de14fadb9d372bf92c75cb79aaab90c8e1b93ed",
+    "gitTags": "",
+    "committerDate": "2020-02-25 10:39:37 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/drag@1.1.26"
   }
 ]

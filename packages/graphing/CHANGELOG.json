@@ -558,5 +558,20 @@
     "committerDate": "2020-02-18 09:46:15 +0200",
     "isTagged": true,
     "tag": "@pie-lib/graphing@1.2.8"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "ch5349, ch5736 & ch4155:",
+    "merge": null,
+    "header": "fix: ch5349, ch5736 & ch4155:",
+    "body": "- 5349: For Graphing items, move the origin label\n- 5736: In Graphing, the horizontal alignment of multi-digit numeric labels for the x-axis is off\n- 4155: Graphing item that wasn't supposed to have an x-axis or a y-axis still has them.",
+    "footer": null,
+    "notes": [],
+    "hash": "f0da1b7b38865f6e9b7ef040dba7375212509d7d",
+    "gitTags": " (origin/andreea/ch4155/graphing-item-that-wasn-t-supposed-to-have)",
+    "committerDate": "2020-02-19 15:31:01 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/graphing@1.2.9"
   }
 ]
