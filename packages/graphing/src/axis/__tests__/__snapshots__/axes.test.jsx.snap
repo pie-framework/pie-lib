@@ -9,7 +9,6 @@ exports[`RawXAxis snapshot renders 1`] = `
     tickLabelProps={[Function]}
     tickValues={
       Array [
-        "0",
         0,
       ]
     }

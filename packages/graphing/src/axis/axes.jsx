@@ -8,7 +8,8 @@ import isEqual from 'lodash/isEqual';
 import { getTickValues } from '../utils';
 
 const AxisPropTypes = {
-  includeArrows: PropTypes.bool
+  includeArrows: PropTypes.bool,
+  graphProps: PropTypes.object
 };
 const AxisDefaultProps = {
   includeArrows: true
@@ -62,8 +63,16 @@ export class RawXAxis extends React.Component {
   }
   render() {
     const { includeArrows, classes, graphProps } = this.props;
-    const { scale, domain, size } = graphProps;
+    const { scale, domain, size, range } = graphProps;
     const columnTicksValues = getTickValues({ ...domain, step: domain.labelStep });
+
+    // Having 0 as a number in columnTicksValues does not make 0 to show up
+    // so we use this trick, by defining it as a string:
+    const tickValues =
+      (domain.labelStep || range.labelStep) && domain.min <= 0
+        ? ['0', ...columnTicksValues]
+        : columnTicksValues;
+    // However, the '0' has to be displayed only if other tick labels (y-axis or x-axis) are displayed
 
     return (
       <React.Fragment>
@@ -77,12 +86,11 @@ export class RawXAxis extends React.Component {
           tickFormat={value => value}
           tickLabelProps={label => ({
             ...tickLabelStyles,
+            textAnchor: 'middle',
             y: 25,
-            dx: label === '0' ? 6 : -4
+            dx: label === '0' ? -16 : 0
           })}
-          // Having 0 as a number in columnTicksValues does not make 0 to show up
-          // so we use this trick:
-          tickValues={['0', ...columnTicksValues]}
+          tickValues={tickValues}
         />
         {includeArrows && (
           <Arrow direction="left" x={domain.min} y={0} className={classes.arrow} scale={scale} />
@@ -169,11 +177,16 @@ const YAxis = withStyles(axisStyles)(RawYAxis);
 export default class Axes extends React.Component {
   static propTypes = AxisPropTypes;
   static defaultProps = AxisDefaultProps;
+
   render() {
+    const { graphProps } = this.props;
+    const { domain, range } = graphProps;
+
+    // each axis has to be displayed only if the domain & range include it
     return (
       <React.Fragment>
-        <XAxis {...this.props} />
-        <YAxis {...this.props} />
+        {range.min <= 0 ? <XAxis {...this.props} /> : null}
+        {domain.min <= 0 ? <YAxis {...this.props} /> : null}
       </React.Fragment>
     );
   }
