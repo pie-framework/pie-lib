@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import grey from '@material-ui/core/colors/grey';
 
-import { DragSource } from './index';
+import { DragSource } from 'react-dnd';
 
 export const DRAG_TYPE = 'CHOICE';
 
