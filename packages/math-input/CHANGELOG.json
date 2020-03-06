@@ -1048,5 +1048,50 @@
     "committerDate": "2020-02-05 11:31:44 +0200",
     "isTagged": true,
     "tag": "@pie-lib/math-input@6.3.10"
+  },
+  {
+    "type": "feat",
+    "scope": null,
+    "subject": "bump @pie-framework/mathquill@^1.1.0",
+    "merge": null,
+    "header": "feat: bump @pie-framework/mathquill@^1.1.0",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "31dbed85c9c37ee0712be722ca22904daf988d22",
+    "gitTags": " (origin/feat/mathquill-bump)",
+    "committerDate": "2020-03-06 12:54:56 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/math-input@6.4.0"
+  },
+  {
+    "type": "feat",
+    "scope": null,
+    "subject": "bump @pie-framework/mathquill@^1.0.0",
+    "merge": null,
+    "header": "feat: bump @pie-framework/mathquill@^1.0.0",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "d43c5c582b36756633bff5c94d695cd6f85b51ea",
+    "gitTags": "",
+    "committerDate": "2020-03-06 10:34:40 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/math-input@6.4.0"
+  },
+  {
+    "type": "fix",
+    "scope": "math-input",
+    "subject": "fix Static rootblock logic, failsafe for finding math block id ch3518",
+    "merge": null,
+    "header": "fix(math-input): fix Static rootblock logic, failsafe for finding math block id ch3518",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "08df6db7160b2c45f6d9f03dfec403a1ddecab80",
+    "gitTags": "",
+    "committerDate": "2020-02-25 16:51:30 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/math-input@6.4.0"
   }
 ]
