@@ -98,8 +98,14 @@ export default class Static extends React.Component {
 
   onFocus = e => {
     try {
-      const rootBlock = e.target.parentElement.nextSibling;
-      const id = parseInt(rootBlock.getAttribute('mathquill-block-id'), 10);
+      let rootBlock = e.target.parentElement.nextSibling;
+      let id = parseInt(rootBlock.getAttribute('mathquill-block-id'), 10);
+
+      if (!id) {
+        rootBlock = rootBlock.parentElement;
+        id = parseInt(rootBlock.getAttribute('mathquill-block-id'), 10);
+      }
+
       const innerField = this.mathField.innerFields.find(f => f.id === id);
 
       if (innerField) {

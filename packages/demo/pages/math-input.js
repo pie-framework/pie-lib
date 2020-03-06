@@ -1,4 +1,4 @@
-import { MathInput, keysForGrade, keys, KeyPad, HorizontalKeypad } from '@pie-lib/math-input';
+import { mq, keysForGrade, keys, KeyPad, HorizontalKeypad } from '@pie-lib/math-input';
 import React from 'react';
 import withRoot from '../src/withRoot';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
@@ -9,7 +9,7 @@ import Select from '@material-ui/core/Select';
 import { withStyles } from '@material-ui/core';
 import grey from '@material-ui/core/colors/grey';
 import Section from '../src/formatting/section';
-
+console.log('mq:', mq);
 class Demo extends React.Component {
   constructor(props) {
     super(props);
@@ -98,7 +98,7 @@ class Demo extends React.Component {
             </Select>
           </FormControl>
 
-          <MathInput
+          <mq.Input
             keyset={keyset}
             latex={this.state.inputOne}
             onChange={latex => this.setState({ inputOne: latex })}
@@ -108,13 +108,9 @@ class Demo extends React.Component {
 
         <Section name="Custom keys (E261001)">
           <div>{customKeyMessage}</div>
-          <MathInput
+          <mq.Input
             displayMode={'block-on-focus'}
-            latex={
-              this.state.inputTwo / Users / lakatosandrei / CoreSpring / pie -
-              lib / packages / demo / pages / config -
-              ui / numbers.js
-            }
+            latex={this.state.inputTwo}
             onChange={latex => this.setState({ inputTwo: latex })}
             keyset={[
               [
@@ -134,10 +130,9 @@ class Demo extends React.Component {
           <pre className={classes.pre}>{this.state.inputTwo}</pre>
         </Section>
 
-        <Section name="keypad standalone">
+        {/* <Section name="keypad standalone">
           <p>The keypad can be rendered by itself and connected to whatever you like.</p>
-          <KeyPad />
-        </Section>
+        </Section> */}
 
         <Section name="Horizontal Keypad (for backward compatibility) w/ 4.x">
           <HorizontalKeypad
