@@ -2074,10 +2074,10 @@
     seedrandom "^3.0.5"
     xml-parser "*"
 
-"@pie-framework/mathquill@^0.10.3":
-  version "0.10.4"
-  resolved "https://registry.yarnpkg.com/@pie-framework/mathquill/-/mathquill-0.10.4.tgz#6725a1ab29381479d75439e97ad4934b86ed0991"
-  integrity sha512-qKGhcYgR9B0YfV0aAnJDM6JDAd+aYiYFpH2BSrBbWDb4C1WfaqzuceSZmZjOthl11Tatg1/coRaz5UKDWto3Rw==
+"@pie-framework/mathquill@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@pie-framework/mathquill/-/mathquill-1.1.0.tgz#282375c8a49f1ad194832abdb8782b3936801186"
+  integrity sha512-WvKGmWRaItxGabwbOnI0raqGM0NBnNx8KdudUW4+3YTJEAUO6yR/k/jtzObQKoX7+UBubc9uCYD6hTACWFBFOg==
   dependencies:
     jquery "^3.3.1"
 
