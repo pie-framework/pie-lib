@@ -61,6 +61,102 @@ describe('utils', () => {
       const result = buildDataPoints(-1, 1, { x: 0, y: 0 }, { x: 0, y: 0 }, 1, x => x);
       expect(result.map(p => p.x)).toEqual([-2, -1, 0, 1, 2]);
     });
+
+    const assertParabola = (
+      domain,
+      root,
+      edge,
+      mirror,
+      existingPoint1,
+      existingPoint2,
+      nonExistingPointOutsideRange
+    ) => {
+      it('generates points for parabola', () => {
+        const result = buildDataPoints(
+          domain.min,
+          domain.max,
+          root,
+          edge,
+          domain.step,
+          parabolaFromTwoPoints(root, edge)
+        );
+
+        expect(result).toContainEqual(root);
+        expect(result).toContainEqual(edge);
+        expect(result).toContainEqual(mirror);
+        expect(result).toContainEqual(existingPoint1);
+        expect(result).toContainEqual(existingPoint2);
+        expect(result).not.toContainEqual(nonExistingPointOutsideRange);
+      });
+    };
+
+    // a * x^2 + b * x + c
+
+    // a = 8, b = 4, c = 2
+    assertParabola(
+      { min: -1, max: 1, step: 0.25 },
+      { x: -0.25, y: 1.5 },
+      { x: 0.25, y: 3.5 },
+      { x: -0.75, y: 3.5 },
+      { x: -1, y: 6 },
+      { x: 1, y: 14 },
+      { x: 1.25, y: -19.5 }
+    );
+
+    // a = -8, b = -4, c = -2
+    assertParabola(
+      { min: -1, max: 1, step: 0.25 },
+      { x: -0.25, y: -1.5 },
+      { x: 0.25, y: -3.5 },
+      { x: -0.75, y: -3.5 },
+      { x: -1, y: -6 },
+      { x: 1, y: -14 },
+      { x: 1.25, y: 19.5 }
+    );
+
+    // a = 10, b = 0, c = -2
+    assertParabola(
+      { min: -1, max: 1, step: 0.25 },
+      { x: 0, y: -2 },
+      { x: 0.5, y: 0.5 },
+      { x: -0.5, y: 0.5 },
+      { x: -1, y: 8 },
+      { x: 1, y: 8 },
+      { x: 3, y: 88 }
+    );
+
+    // a = 10, b = -10, c = 0
+    assertParabola(
+      { min: -1, max: 1, step: 0.25 },
+      { x: 0.5, y: -2.5 },
+      { x: 0, y: 0 },
+      { x: 1, y: 0 },
+      { x: -1, y: 20 },
+      { x: 1.25, y: 3.125 },
+      { x: 3, y: 60 }
+    );
+
+    // a = 10, b = -10, c = 0
+    assertParabola(
+      { min: -1, max: 1, step: 0.5 },
+      { x: 0.5, y: -2.5 },
+      { x: 0, y: 0 },
+      { x: 1, y: 0 },
+      { x: -1, y: 20 },
+      { x: 1.5, y: 7.5 },
+      { x: 3, y: 60 }
+    );
+
+    // a = -4, b = 4, c = 0
+    assertParabola(
+      { min: -1, max: 5, step: 0.25 },
+      { x: 0.5, y: 1 },
+      { x: 0, y: 0 },
+      { x: 1, y: 0 },
+      { x: -0.5, y: -3 },
+      { x: 1.5, y: -3 },
+      { x: 3, y: 60 }
+    );
   });
 
   describe('pointsToABC', () => {
