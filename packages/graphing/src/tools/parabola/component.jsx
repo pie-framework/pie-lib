@@ -18,7 +18,7 @@ const Parabola = withRootEdge(props => {
           domain.max,
           root,
           edge,
-          interval,
+          domain.step || interval,
           parabolaFromTwoPoints(root, edge)
         );
   log('dataPoints:', dataPoints);

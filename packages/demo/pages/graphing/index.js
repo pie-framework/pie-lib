@@ -286,19 +286,19 @@ export class GridDemo extends React.PureComponent {
         title: undefined,
         domain: {
           axisLabel: '<i>domain</i>',
-          min: 0,
-          max: 10.6,
+          min: -4.3,
+          max: 5.9,
           padding: 0,
-          step: 1.6,
-          labelStep: 3.2
+          step: 0.25,
+          labelStep: 0.5
         },
         range: {
           axisLabel: '<em>range</em>',
-          min: 0,
-          max: 4.8,
+          min: -6.2,
+          max: 5.1,
           padding: 0,
-          step: 0.3,
-          labelStep: 0.9
+          step: 0.67,
+          labelStep: 0.67
         },
         backgroundMarks: backgroundMarks,
         marks: marks
