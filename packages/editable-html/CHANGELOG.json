@@ -2603,5 +2603,20 @@
     "committerDate": "2020-02-18 09:00:24 +0200",
     "isTagged": true,
     "tag": "@pie-lib/editable-html@7.10.43"
+  },
+  {
+    "type": "feat",
+    "scope": null,
+    "subject": "bump @pie-framework/mathquill@^1.1.0",
+    "merge": null,
+    "header": "feat: bump @pie-framework/mathquill@^1.1.0",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "31dbed85c9c37ee0712be722ca22904daf988d22",
+    "gitTags": " (origin/feat/mathquill-bump)",
+    "committerDate": "2020-03-06 12:54:56 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.11.0"
   }
 ]
