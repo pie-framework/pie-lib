@@ -111,6 +111,7 @@ exports[`lineBase render renders 1`] = `
 
 exports[`lineToolComponent snapshot renders 1`] = `
 <Component
+  changeMarkProps={[Function]}
   from={
     Object {
       "x": 0,
