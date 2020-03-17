@@ -1,5 +1,5 @@
 import EditableHTML from '@pie-lib/editable-html';
-import InputContainer from '../input-container';
+import { InputContainer } from '@pie-lib/render-ui';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
