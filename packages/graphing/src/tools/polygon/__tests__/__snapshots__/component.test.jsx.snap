@@ -33,3 +33,378 @@ exports[`RawBaseComponent snapshot renders 1`] = `
   />
 </g>
 `;
+
+exports[`RawBaseComponent snapshot renders with labels 1`] = `
+<g>
+  <WithStyles(RawPolygon)
+    graphProps={
+      Object {
+        "domain": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "range": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "scale": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+        "size": Object {
+          "height": 400,
+          "width": 400,
+        },
+        "snap": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+      }
+    }
+    points={
+      Array [
+        Object {
+          "index": 0,
+          "label": "A",
+          "x": 0,
+          "y": 0,
+        },
+        Object {
+          "index": 1,
+          "label": "B",
+          "x": 2,
+          "y": 2,
+        },
+        Object {
+          "index": 2,
+          "label": "C",
+          "x": 0,
+          "y": 2,
+        },
+      ]
+    }
+  />
+  <GridDraggable
+    from={
+      Object {
+        "index": 0,
+        "label": "A",
+        "x": 0,
+        "y": 0,
+      }
+    }
+    graphProps={
+      Object {
+        "domain": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "range": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "scale": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+        "size": Object {
+          "height": 400,
+          "width": 400,
+        },
+        "snap": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+      }
+    }
+    key="line-0"
+    onDrag={[Function]}
+    to={
+      Object {
+        "index": 1,
+        "label": "B",
+        "x": 2,
+        "y": 2,
+      }
+    }
+  />
+  <GridDraggable
+    from={
+      Object {
+        "index": 1,
+        "label": "B",
+        "x": 2,
+        "y": 2,
+      }
+    }
+    graphProps={
+      Object {
+        "domain": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "range": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "scale": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+        "size": Object {
+          "height": 400,
+          "width": 400,
+        },
+        "snap": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+      }
+    }
+    key="line-1"
+    onDrag={[Function]}
+    to={
+      Object {
+        "index": 2,
+        "label": "C",
+        "x": 0,
+        "y": 2,
+      }
+    }
+  />
+  <WithStyles(GridDraggable)
+    graphProps={
+      Object {
+        "domain": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "range": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "scale": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+        "size": Object {
+          "height": 400,
+          "width": 400,
+        },
+        "snap": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+      }
+    }
+    key="point-0"
+    onClick={[Function]}
+    onDrag={[Function]}
+    x={0}
+    y={0}
+  />
+  <Portal
+    containerInfo={<foreignobject />}
+  >
+    <WithStyles(MarkLabel)
+      disabled={true}
+      graphProps={
+        Object {
+          "domain": Object {
+            "max": 1,
+            "min": 0,
+            "step": 1,
+          },
+          "range": Object {
+            "max": 1,
+            "min": 0,
+            "step": 1,
+          },
+          "scale": Object {
+            "x": [MockFunction],
+            "y": [MockFunction],
+          },
+          "size": Object {
+            "height": 400,
+            "width": 400,
+          },
+          "snap": Object {
+            "x": [MockFunction],
+            "y": [MockFunction],
+          },
+        }
+      }
+      inputRef={[Function]}
+      mark={
+        Object {
+          "index": 0,
+          "label": "A",
+          "x": 0,
+          "y": 0,
+        }
+      }
+      onChange={[Function]}
+    />
+  </Portal>
+  <WithStyles(GridDraggable)
+    graphProps={
+      Object {
+        "domain": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "range": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "scale": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+        "size": Object {
+          "height": 400,
+          "width": 400,
+        },
+        "snap": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+      }
+    }
+    key="point-1"
+    onClick={[Function]}
+    onDrag={[Function]}
+    x={2}
+    y={2}
+  />
+  <Portal
+    containerInfo={<foreignobject />}
+  >
+    <WithStyles(MarkLabel)
+      disabled={true}
+      graphProps={
+        Object {
+          "domain": Object {
+            "max": 1,
+            "min": 0,
+            "step": 1,
+          },
+          "range": Object {
+            "max": 1,
+            "min": 0,
+            "step": 1,
+          },
+          "scale": Object {
+            "x": [MockFunction],
+            "y": [MockFunction],
+          },
+          "size": Object {
+            "height": 400,
+            "width": 400,
+          },
+          "snap": Object {
+            "x": [MockFunction],
+            "y": [MockFunction],
+          },
+        }
+      }
+      inputRef={[Function]}
+      mark={
+        Object {
+          "index": 1,
+          "label": "B",
+          "x": 2,
+          "y": 2,
+        }
+      }
+      onChange={[Function]}
+    />
+  </Portal>
+  <WithStyles(GridDraggable)
+    graphProps={
+      Object {
+        "domain": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "range": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "scale": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+        "size": Object {
+          "height": 400,
+          "width": 400,
+        },
+        "snap": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+      }
+    }
+    key="point-2"
+    onClick={[Function]}
+    onDrag={[Function]}
+    x={0}
+    y={2}
+  />
+  <Portal
+    containerInfo={<foreignobject />}
+  >
+    <WithStyles(MarkLabel)
+      disabled={true}
+      graphProps={
+        Object {
+          "domain": Object {
+            "max": 1,
+            "min": 0,
+            "step": 1,
+          },
+          "range": Object {
+            "max": 1,
+            "min": 0,
+            "step": 1,
+          },
+          "scale": Object {
+            "x": [MockFunction],
+            "y": [MockFunction],
+          },
+          "size": Object {
+            "height": 400,
+            "width": 400,
+          },
+          "snap": Object {
+            "x": [MockFunction],
+            "y": [MockFunction],
+          },
+        }
+      }
+      inputRef={[Function]}
+      mark={
+        Object {
+          "index": 2,
+          "label": "C",
+          "x": 0,
+          "y": 2,
+        }
+      }
+      onChange={[Function]}
+    />
+  </Portal>
+</g>
+`;

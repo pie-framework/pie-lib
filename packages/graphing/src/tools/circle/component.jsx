@@ -48,7 +48,7 @@ export class RawBaseCircle extends React.Component {
   };
 
   onChangePoint = point => {
-    if (!isEqual(point.from, point.to)) {
+    if (!isEqual({ x: point.from.x, y: point.from.y }, { x: point.to.x, y: point.to.y })) {
       this.props.onChange(point);
     }
   };

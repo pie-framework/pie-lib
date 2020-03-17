@@ -145,7 +145,8 @@ export const lineBase = (Comp, opts) => {
     };
 
     onChangePoint = point => {
-      if (!isEqual(point.from, point.to)) {
+      // because point.from.label and point.to.label can be different
+      if (!isEqual({ x: point.from.x, y: point.from.y }, { x: point.to.x, y: point.to.y })) {
         this.props.onChange(point);
       }
     };
