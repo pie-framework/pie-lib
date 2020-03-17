@@ -122,6 +122,8 @@ const dragOpts = () => ({
   }
 });
 
+const equalPoints = (p1, p2) => p1 && p2 && isEqual({ x: p1.x, y: p1.y }, { x: p2.x, y: p2.y });
+
 export const lineBase = (Comp, opts) => {
   const DraggableComp = gridDraggable(dragOpts())(Comp);
 
@@ -146,7 +148,7 @@ export const lineBase = (Comp, opts) => {
 
     onChangePoint = point => {
       // because point.from.label and point.to.label can be different
-      if (!isEqual({ x: point.from.x, y: point.from.y }, { x: point.to.x, y: point.to.y })) {
+      if (!equalPoints(point.from, point.to)) {
         this.props.onChange(point);
       }
     };
@@ -172,7 +174,9 @@ export const lineBase = (Comp, opts) => {
         draggedFrom.label = from.label;
       }
 
-      this.onChangePoint({ from: draggedFrom, to: to });
+      if (!equalPoints(draggedFrom, to)) {
+        this.onChangePoint({ from: draggedFrom, to: to });
+      }
     };
 
     dragTo = draggedTo => {
@@ -182,7 +186,9 @@ export const lineBase = (Comp, opts) => {
         draggedTo.label = to.label;
       }
 
-      this.onChangePoint({ from: from, to: draggedTo });
+      if (!equalPoints(from, draggedTo)) {
+        this.onChangePoint({ from: from, to: draggedTo });
+      }
     };
 
     labelChange = (point, type) => {

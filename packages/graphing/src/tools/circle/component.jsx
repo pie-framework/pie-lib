@@ -24,6 +24,8 @@ const getRadius = (from, outer) => {
   return c.dist(point(outer));
 };
 
+const equalPoints = (p1, p2) => p1 && p2 && isEqual({ x: p1.x, y: p1.y }, { x: p2.x, y: p2.y });
+
 export class RawBaseCircle extends React.Component {
   static propTypes = {
     building: PropTypes.bool,
@@ -49,7 +51,7 @@ export class RawBaseCircle extends React.Component {
 
   onChangePoint = point => {
     // because point.from.label and point.to.label can be different
-    if (!isEqual({ x: point.from.x, y: point.from.y }, { x: point.to.x, y: point.to.y })) {
+    if (!equalPoints(point.from, point.to)) {
       this.props.onChange(point);
     }
   };
@@ -61,7 +63,7 @@ export class RawBaseCircle extends React.Component {
       draggedFrom.label = from.label;
     }
 
-    if (!isEqual(draggedFrom, to)) {
+    if (!equalPoints(draggedFrom, to)) {
       this.onChangePoint({ from: draggedFrom, to });
     }
   };
@@ -73,7 +75,9 @@ export class RawBaseCircle extends React.Component {
       draggedTo.label = to.label;
     }
 
-    this.onChangePoint({ from, to: draggedTo });
+    if (!equalPoints(from, draggedTo)) {
+      this.onChangePoint({ from, to: draggedTo });
+    }
   };
 
   dragCircle = draggedFrom => {
