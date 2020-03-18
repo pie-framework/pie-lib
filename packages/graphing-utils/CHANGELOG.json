@@ -43,5 +43,20 @@
     "committerDate": "2019-07-02 08:01:12 -0400",
     "isTagged": true,
     "tag": "@pie-lib/graphing-utils@1.1.0"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "4136: Parabola graphing is amiss",
+    "merge": null,
+    "header": "fix: 4136: Parabola graphing is amiss",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "f915685ce9103b877928385f49318688c8a60d26",
+    "gitTags": " (origin/andreea/ch4136/parabola-graphing-is-amiss)",
+    "committerDate": "2020-03-09 12:16:32 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/graphing-utils@1.1.3"
   }
 ]

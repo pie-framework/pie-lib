@@ -573,5 +573,35 @@
     "committerDate": "2020-02-19 15:31:01 +0200",
     "isTagged": true,
     "tag": "@pie-lib/graphing@1.2.9"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "4156: On Graphing items that provide the Label tool, it cannot be used to label points that are used to define other plot objects.",
+    "merge": null,
+    "header": "fix: 4156: On Graphing items that provide the Label tool, it cannot be used to label points that are used to define other plot objects.",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "dc19bdb94990bc5a63e07803b04ecd652301380c",
+    "gitTags": "",
+    "committerDate": "2020-03-13 17:18:51 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/graphing@1.2.11"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "4136: Parabola graphing is amiss",
+    "merge": null,
+    "header": "fix: 4136: Parabola graphing is amiss",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "f915685ce9103b877928385f49318688c8a60d26",
+    "gitTags": " (origin/andreea/ch4136/parabola-graphing-is-amiss)",
+    "committerDate": "2020-03-09 12:16:32 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/graphing@1.2.11"
   }
 ]
