@@ -9,6 +9,9 @@ import { point } from '../../utils';
 import classNames from 'classnames';
 import { types } from '@pie-lib/plot';
 import { rootEdgeComponent } from '../shared/line/with-root-edge';
+import ReactDOM from 'react-dom';
+import MarkLabel from '../../mark-label';
+import isEmpty from 'lodash/isEmpty';
 
 const opacityPulsate = opacity => ({
   '0%': { opacity: '0.0' },
@@ -20,6 +23,8 @@ const getRadius = (from, outer) => {
   const c = point(from);
   return c.dist(point(outer));
 };
+
+const equalPoints = (p1, p2) => p1 && p2 && isEqual({ x: p1.x, y: p1.y }, { x: p2.x, y: p2.y });
 
 export class RawBaseCircle extends React.Component {
   static propTypes = {
@@ -34,7 +39,10 @@ export class RawBaseCircle extends React.Component {
     onDragStart: PropTypes.func,
     onDragStop: PropTypes.func,
     graphProps: types.GraphPropsType.isRequired,
-    onClick: PropTypes.func
+    onClick: PropTypes.func,
+    labelNode: PropTypes.object,
+    labelModeEnabled: PropTypes.bool,
+    changeMarkProps: PropTypes.func
   };
 
   static defaultProps = {
@@ -42,29 +50,50 @@ export class RawBaseCircle extends React.Component {
   };
 
   onChangePoint = point => {
-    if (!isEqual(point.from, point.to)) {
+    // because point.from.label and point.to.label can be different
+    if (!equalPoints(point.from, point.to)) {
       this.props.onChange(point);
     }
   };
 
-  dragFrom = from => {
-    const d = { from, to: this.props.to };
+  dragFrom = draggedFrom => {
+    const { from, to } = this.props;
 
-    if (!isEqual(d.from, d.to)) {
-      this.onChangePoint(d);
+    if (from.label) {
+      draggedFrom.label = from.label;
+    }
+
+    if (!equalPoints(draggedFrom, to)) {
+      this.onChangePoint({ from: draggedFrom, to });
     }
   };
 
-  dragTo = to => {
-    const d = { from: this.props.from, to };
-    this.onChangePoint(d);
+  dragTo = draggedTo => {
+    const { from, to } = this.props;
+
+    if (to.label) {
+      draggedTo.label = to.label;
+    }
+
+    if (!equalPoints(from, draggedTo)) {
+      this.onChangePoint({ from, to: draggedTo });
+    }
   };
 
-  dragCircle = from => {
-    const { onChange } = this.props;
-    const diff = point(this.props.from).sub(point(from));
-    const to = point(this.props.to).sub(diff);
-    const d = { from, to };
+  dragCircle = draggedFrom => {
+    const { from, to, onChange } = this.props;
+
+    const diff = point(from).sub(point(draggedFrom));
+    const draggedTo = point(to).sub(diff);
+
+    if (from.label) {
+      draggedFrom.label = from.label;
+    }
+
+    if (to.label) {
+      draggedTo.label = to.label;
+    }
+
     this.setState(
       {
         draggedroot: undefined,
@@ -72,10 +101,34 @@ export class RawBaseCircle extends React.Component {
         isCircleDrag: false
       },
       () => {
-        onChange(d);
+        onChange({ from: draggedFrom, to: draggedTo });
       }
     );
   };
+
+  labelChange = (point, type) => {
+    const { changeMarkProps } = this.props;
+    const update = { ...point };
+
+    if (!point.label || isEmpty(point.label)) {
+      delete update.label;
+    }
+
+    changeMarkProps({ [type]: update });
+  };
+
+  clickPoint = (point, type) => {
+    const { changeMarkProps, from, to } = this.props;
+
+    changeMarkProps({ from, to, [type]: { label: '', ...point } });
+
+    if (this.input[type]) {
+      this.input[type].focus();
+    }
+  };
+
+  // IMPORTANT, do not remove
+  input = {};
 
   render() {
     let {
@@ -88,7 +141,9 @@ export class RawBaseCircle extends React.Component {
       onDragStop,
       onClick,
       correctness,
-      graphProps
+      graphProps,
+      labelNode,
+      labelModeEnabled
     } = this.props;
 
     const common = { onDragStart, onDragStop, graphProps, onClick };
@@ -96,6 +151,37 @@ export class RawBaseCircle extends React.Component {
     to = to || from;
 
     const radius = getRadius(from, to);
+
+    let fromLabelNode = null;
+    let toLabelNode = null;
+
+    if (labelNode) {
+      if (from && from.hasOwnProperty('label')) {
+        fromLabelNode = ReactDOM.createPortal(
+          <MarkLabel
+            inputRef={r => (this.input.from = r)}
+            disabled={!labelModeEnabled}
+            mark={from}
+            graphProps={graphProps}
+            onChange={label => this.labelChange({ ...from, label }, 'from')}
+          />,
+          labelNode
+        );
+      }
+
+      if (to && to.hasOwnProperty('label')) {
+        toLabelNode = ReactDOM.createPortal(
+          <MarkLabel
+            inputRef={r => (this.input.to = r)}
+            disabled={!labelModeEnabled}
+            mark={to}
+            graphProps={graphProps}
+            onChange={label => this.labelChange({ ...to, label }, 'to')}
+          />,
+          labelNode
+        );
+      }
+    }
 
     return (
       <g>
@@ -109,6 +195,7 @@ export class RawBaseCircle extends React.Component {
           onDrag={this.dragCircle}
           {...common}
         />
+
         <BasePoint
           disabled={building || disabled}
           correctness={correctness}
@@ -116,7 +203,10 @@ export class RawBaseCircle extends React.Component {
           y={to.y}
           onDrag={this.dragTo}
           {...common}
+          onClick={labelModeEnabled ? () => this.clickPoint(to, 'to') : common.onClick}
         />
+        {toLabelNode}
+
         <BasePoint
           disabled={building || disabled}
           correctness={correctness}
@@ -125,7 +215,9 @@ export class RawBaseCircle extends React.Component {
           className={classes.from}
           onDrag={this.dragFrom}
           {...common}
+          onClick={labelModeEnabled ? () => this.clickPoint(from, 'from') : common.onClick}
         />
+        {fromLabelNode}
       </g>
     );
   }
