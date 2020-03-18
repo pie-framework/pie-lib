@@ -12,6 +12,10 @@ import DraggablePolygon, { Polygon } from './polygon';
 import { types } from '@pie-lib/plot';
 import invariant from 'invariant';
 import { isDomainRangeEqual } from '@pie-lib/plot/lib/utils';
+import ReactDOM from 'react-dom';
+import MarkLabel from '../../mark-label';
+import isEmpty from 'lodash/isEmpty';
+
 const log = debug('pie-lib:graphing:polygon');
 
 export const buildLines = (points, closed) => {
@@ -67,17 +71,25 @@ export class RawBaseComponent extends React.Component {
     onDragStop: PropTypes.func,
     onClick: PropTypes.func,
     graphProps: types.GraphPropsType.isRequired,
-    isToolActive: PropTypes.bool
+    isToolActive: PropTypes.bool,
+    labelNode: PropTypes.object,
+    labelModeEnabled: PropTypes.bool,
+    onChangeProps: PropTypes.func
   };
 
   dragPoint = (index, from, to) => {
     log('[dragPoint] from, to:', from, to);
-    const { onChange } = this.props;
+    const { onChange, points } = this.props;
+    const update = [...points];
 
     if (isEqual(from, to)) {
       return;
     }
-    const update = [...this.props.points];
+
+    if (points[index].label) {
+      to.label = points[index].label;
+    }
+
     update.splice(index, 1, to);
     onChange(update);
   };
@@ -85,6 +97,15 @@ export class RawBaseComponent extends React.Component {
   dragLine = (existing, next) => {
     log('[dragLine]: ', existing, next);
     const { onChange } = this.props;
+
+    if (existing.from.label) {
+      next.from.label = existing.from.label;
+    }
+
+    if (existing.to.label) {
+      next.to.label = existing.to.label;
+    }
+
     const points = swap(this.props.points, existing.from, next.from, existing.to, next.to);
     onChange(points);
   };
@@ -92,6 +113,13 @@ export class RawBaseComponent extends React.Component {
   dragPoly = (existing, next) => {
     log('[dragPoly] ', existing, next);
     const { onChange } = this.props;
+
+    next.forEach((point, index) => {
+      if (existing[index].label) {
+        next[index].label = existing[index].label;
+      }
+    });
+
     onChange(next);
   };
 
@@ -105,14 +133,51 @@ export class RawBaseComponent extends React.Component {
     }
   };
 
+  labelChange = (point, index) => {
+    const { points, onChangeProps } = this.props;
+    const updatedPoint = { ...point };
+
+    if (!point.label || isEmpty(point.label)) {
+      delete updatedPoint.label;
+    }
+
+    const update = [...points];
+
+    update.splice(index, 1, updatedPoint);
+    onChangeProps(update);
+  };
+
   clickPoint = (point, index, data) => {
-    const { closed, onClosePolygon, onClick, isToolActive } = this.props;
-    if (isToolActive && !closed && index === 0) {
-      onClosePolygon();
+    const {
+      closed,
+      onClosePolygon,
+      onClick,
+      isToolActive,
+      labelModeEnabled,
+      onChangeProps,
+      points
+    } = this.props;
+
+    if (labelModeEnabled) {
+      const update = [...points];
+
+      update.splice(index, 1, { label: '', ...point });
+      onChangeProps(update);
+
+      if (this.input[index]) {
+        this.input[index].focus();
+      }
     } else {
-      onClick(data);
+      if (isToolActive && !closed && index === 0) {
+        onClosePolygon();
+      } else {
+        onClick(data);
+      }
     }
   };
+
+  // IMPORTANT, do not remove
+  input = {};
 
   render() {
     const {
@@ -123,7 +188,9 @@ export class RawBaseComponent extends React.Component {
       onDragStart,
       onDragStop,
       points,
-      correctness
+      correctness,
+      labelNode,
+      labelModeEnabled
     } = this.props;
     const lines = buildLines(points, closed);
     const common = { onDragStart, onDragStop, graphProps, disabled, correctness };
@@ -152,7 +219,7 @@ export class RawBaseComponent extends React.Component {
         ))}
 
         {(points || []).map((p, index) => {
-          return (
+          return [
             <BasePoint
               key={`point-${index}`}
               onDrag={this.dragPoint.bind(this, index, p)}
@@ -160,8 +227,20 @@ export class RawBaseComponent extends React.Component {
               y={p.y}
               onClick={this.clickPoint.bind(this, p, index)}
               {...common}
-            />
-          );
+            />,
+            labelNode && p.hasOwnProperty('label')
+              ? ReactDOM.createPortal(
+                  <MarkLabel
+                    inputRef={r => (this.input[index] = r)}
+                    disabled={!labelModeEnabled}
+                    mark={p}
+                    graphProps={graphProps}
+                    onChange={label => this.labelChange({ ...p, label }, index)}
+                  />,
+                  labelNode
+                )
+              : null
+          ];
         })}
       </g>
     );
@@ -182,15 +261,23 @@ export default class Component extends React.Component {
     super(props);
     this.state = {};
   }
+
   change = points => {
     const mark = { ...this.state.mark, points };
     this.setState({ mark });
+  };
+
+  changeProps = points => {
+    const mark = { ...this.props.mark, points };
+
+    this.props.onChange(this.props.mark, mark);
   };
 
   closePolygon = () => {
     log('[closePolygon] ...');
     const { onComplete, mark } = this.props;
     const update = { ...mark, closed: true };
+
     onComplete(mark, update);
   };
 
@@ -213,20 +300,24 @@ export default class Component extends React.Component {
       !isEqual(this.state.mark, nextState.mark)
     );
   };
+
   render() {
-    const { mark, graphProps, onClick, isToolActive } = this.props;
+    const { mark, graphProps, onClick, isToolActive, labelNode, labelModeEnabled } = this.props;
     const { mark: stateMark } = this.state;
 
     return (
       <BaseComponent
         {...(stateMark || mark)}
         onChange={this.change}
+        onChangeProps={this.changeProps}
         onClosePolygon={this.closePolygon}
         onDragStart={this.dragStart}
         onDragStop={this.dragStop}
         onClick={onClick}
         graphProps={graphProps}
         isToolActive={isToolActive}
+        labelNode={labelNode}
+        labelModeEnabled={labelModeEnabled}
       />
     );
   }

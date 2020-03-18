@@ -4,6 +4,9 @@ import { BasePoint } from '../point';
 import { types, utils, gridDraggable, trig } from '@pie-lib/plot';
 import PropTypes from 'prop-types';
 import { disabled, correct, incorrect } from '../styles';
+import ReactDOM from 'react-dom';
+import MarkLabel from '../../../mark-label';
+import isEmpty from 'lodash/isEmpty';
 
 export const lineTool = (type, Component) => () => ({
   type,
@@ -46,6 +49,7 @@ export const lineToolComponent = Component => {
     stopDrag = () => {
       const { onChange } = this.props;
       const update = { ...this.state.mark };
+
       this.setState({ mark: undefined }, () => {
         if (!isEqual(this.props.mark, update)) {
           onChange(this.props.mark, update);
@@ -55,13 +59,31 @@ export const lineToolComponent = Component => {
 
     changeMark = ({ from, to }) => {
       const mark = { ...this.state.mark, from, to };
+
       this.setState({ mark });
     };
 
-    render() {
-      const { graphProps, onClick } = this.props;
+    changeMarkProps = ({ from, to }) => {
+      const { onChange, mark } = this.props;
+      let update = { ...mark, ...this.state.mark };
 
+      if (from) {
+        update = { ...update, from };
+      }
+
+      if (to) {
+        update = { ...update, to };
+      }
+
+      if (!isEqual(mark, update)) {
+        onChange(mark, update);
+      }
+    };
+
+    render() {
+      const { graphProps, onClick, labelNode, labelModeEnabled } = this.props;
       const mark = this.state.mark ? this.state.mark : this.props.mark;
+
       return (
         <Component
           disabled={mark.disabled}
@@ -70,9 +92,12 @@ export const lineToolComponent = Component => {
           to={mark.to}
           graphProps={graphProps}
           onChange={this.changeMark}
+          changeMarkProps={this.changeMarkProps}
           onClick={onClick}
           onDragStart={this.startDrag}
           onDragStop={this.stopDrag}
+          labelNode={labelNode}
+          labelModeEnabled={labelModeEnabled}
         />
       );
     }
@@ -97,6 +122,8 @@ const dragOpts = () => ({
   }
 });
 
+const equalPoints = (p1, p2) => p1 && p2 && isEqual({ x: p1.x, y: p1.y }, { x: p2.x, y: p2.y });
+
 export const lineBase = (Comp, opts) => {
   const DraggableComp = gridDraggable(dragOpts())(Comp);
 
@@ -113,27 +140,80 @@ export const lineBase = (Comp, opts) => {
       onDragStop: PropTypes.func,
       onClick: PropTypes.func,
       correctness: PropTypes.string,
-      disabled: PropTypes.bool
+      disabled: PropTypes.bool,
+      labelNode: PropTypes.object,
+      labelModeEnabled: PropTypes.bool,
+      changeMarkProps: PropTypes.func
     };
 
     onChangePoint = point => {
-      if (!isEqual(point.from, point.to)) {
+      // because point.from.label and point.to.label can be different
+      if (!equalPoints(point.from, point.to)) {
         this.props.onChange(point);
       }
     };
 
-    dragComp = ({ from, to }) => {
-      const { onChange } = this.props;
-      onChange({ from, to });
+    dragComp = ({ from: draggedFrom, to: draggedTo }) => {
+      const { from, to, onChange } = this.props;
+
+      if (from.label) {
+        draggedFrom.label = from.label;
+      }
+
+      if (to.label) {
+        draggedTo.label = to.label;
+      }
+
+      onChange({ from: draggedFrom, to: draggedTo });
     };
 
-    dragFrom = from => {
-      this.onChangePoint({ from, to: this.props.to });
+    dragFrom = draggedFrom => {
+      const { from, to } = this.props;
+
+      if (from.label) {
+        draggedFrom.label = from.label;
+      }
+
+      if (!equalPoints(draggedFrom, to)) {
+        this.onChangePoint({ from: draggedFrom, to: to });
+      }
     };
 
-    dragTo = to => {
-      this.onChangePoint({ from: this.props.from, to });
+    dragTo = draggedTo => {
+      const { from, to } = this.props;
+
+      if (to.label) {
+        draggedTo.label = to.label;
+      }
+
+      if (!equalPoints(from, draggedTo)) {
+        this.onChangePoint({ from: from, to: draggedTo });
+      }
     };
+
+    labelChange = (point, type) => {
+      const { changeMarkProps } = this.props;
+      const update = { ...point };
+
+      if (!point.label || isEmpty(point.label)) {
+        delete update.label;
+      }
+
+      changeMarkProps({ [type]: update });
+    };
+
+    clickPoint = (point, type) => {
+      const { changeMarkProps, from, to } = this.props;
+
+      changeMarkProps({ from, to, [type]: { label: '', ...point } });
+
+      if (this.input[type]) {
+        this.input[type].focus();
+      }
+    };
+
+    // IMPORTANT, do not remove
+    input = {};
 
     render() {
       const {
@@ -144,15 +224,57 @@ export const lineBase = (Comp, opts) => {
         to,
         disabled,
         correctness,
-        onClick
+        onClick,
+        labelNode,
+        labelModeEnabled
       } = this.props;
       const common = { graphProps, onDragStart, onDragStop, disabled, correctness, onClick };
       const angle = to ? trig.toDegrees(trig.angle(from, to)) : 0;
 
+      let fromLabelNode = null;
+      let toLabelNode = null;
+
+      if (labelNode) {
+        if (from && from.hasOwnProperty('label')) {
+          fromLabelNode = ReactDOM.createPortal(
+            <MarkLabel
+              inputRef={r => (this.input.from = r)}
+              disabled={!labelModeEnabled}
+              mark={from}
+              graphProps={graphProps}
+              onChange={label => this.labelChange({ ...from, label }, 'from')}
+            />,
+            labelNode
+          );
+        }
+
+        if (to && to.hasOwnProperty('label')) {
+          toLabelNode = ReactDOM.createPortal(
+            <MarkLabel
+              inputRef={r => (this.input.to = r)}
+              disabled={!labelModeEnabled}
+              mark={to}
+              graphProps={graphProps}
+              onChange={label => this.labelChange({ ...to, label }, 'to')}
+            />,
+            labelNode
+          );
+        }
+      }
+
       return (
         <g>
           {to && <DraggableComp from={from} to={to} onDrag={this.dragComp} {...common} />}
-          <FromPoint x={from.x} y={from.y} onDrag={this.dragFrom} {...common} />
+
+          <FromPoint
+            x={from.x}
+            y={from.y}
+            onDrag={this.dragFrom}
+            {...common}
+            onClick={labelModeEnabled ? () => this.clickPoint(from, 'from') : common.onClick}
+          />
+          {fromLabelNode}
+
           {to && (
             <ToPoint
               x={to.x}
@@ -160,8 +282,10 @@ export const lineBase = (Comp, opts) => {
               angle={angle} //angle + 45}
               onDrag={this.dragTo}
               {...common}
+              onClick={labelModeEnabled ? () => this.clickPoint(to, 'to') : common.onClick}
             />
           )}
+          {toLabelNode}
         </g>
       );
     }
