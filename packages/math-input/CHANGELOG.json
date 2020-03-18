@@ -1065,6 +1065,21 @@
     "tag": "@pie-lib/math-input@6.4.0"
   },
   {
+    "type": "feat",
+    "scope": null,
+    "subject": "bump @pie-framework/mathquill@^1.0.0",
+    "merge": null,
+    "header": "feat: bump @pie-framework/mathquill@^1.0.0",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "d43c5c582b36756633bff5c94d695cd6f85b51ea",
+    "gitTags": "",
+    "committerDate": "2020-03-06 10:34:40 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/math-input@6.4.0"
+  },
+  {
     "type": "fix",
     "scope": "math-input",
     "subject": "fix Static rootblock logic, failsafe for finding math block id ch3518",

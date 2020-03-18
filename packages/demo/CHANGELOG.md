@@ -3,6 +3,79 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.46](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.45...@pie-lib/demo@5.3.46) (2020-03-06)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [5.3.45](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.44...@pie-lib/demo@5.3.45) (2020-02-25)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [5.3.44](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.43...@pie-lib/demo@5.3.44) (2020-02-20)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [5.3.43](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.42...@pie-lib/demo@5.3.43) (2020-02-20)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [5.3.42](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.41...@pie-lib/demo@5.3.42) (2020-02-18)
+
+
+### Bug Fixes
+
+* 5325: Graphing: Axis labels overlapping numeric labels ([678c61a](https://github.com/pie-framework/pie-lib/commit/678c61a))
+
+
+
+
+
+## [5.3.41](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.40...@pie-lib/demo@5.3.41) (2020-02-15)
+
+
+### Bug Fixes
+
+* rollback dnd bump ([a3a6b75](https://github.com/pie-framework/pie-lib/commit/a3a6b75))
+
+
+
+
+
+## [5.3.40](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.39...@pie-lib/demo@5.3.40) (2020-02-14)
+
+
+### Bug Fixes
+
+* bump react-dnd@^10 (no more esm default) ([06949d8](https://github.com/pie-framework/pie-lib/commit/06949d8))
+
+
+
+
+
+## [5.3.39](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.38...@pie-lib/demo@5.3.39) (2020-02-11)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
 ## [5.3.38](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.37...@pie-lib/demo@5.3.38) (2020-02-05)
 
 **Note:** Version bump only for package @pie-lib/demo

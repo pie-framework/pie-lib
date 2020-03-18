@@ -393,5 +393,20 @@
     "committerDate": "2019-06-10 15:24:32 +0100",
     "isTagged": true,
     "tag": "@pie-lib/correct-answer-toggle@2.2.0"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": " missing peer dep for react-dom",
+    "merge": null,
+    "header": "fix:  missing peer dep for react-dom",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "669873759e2c4934129ac988c1eb25ef283c7d1e",
+    "gitTags": "",
+    "committerDate": "2020-02-20 12:42:54 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/correct-answer-toggle@2.2.8"
   }
 ]

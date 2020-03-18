@@ -333,5 +333,35 @@
     "committerDate": "2020-02-13 09:20:36 +0000",
     "isTagged": true,
     "tag": "@pie-lib/drag@1.1.23"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "rollback dnd bump",
+    "merge": null,
+    "header": "fix: rollback dnd bump",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "a3a6b756b5a8a5fee788eb2955af0867c99c3726",
+    "gitTags": "",
+    "committerDate": "2020-02-15 21:38:32 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/drag@1.1.24"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "remove circular dependencies",
+    "merge": null,
+    "header": "fix: remove circular dependencies",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "3de14fadb9d372bf92c75cb79aaab90c8e1b93ed",
+    "gitTags": "",
+    "committerDate": "2020-02-25 10:39:37 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/drag@1.1.26"
   }
 ]

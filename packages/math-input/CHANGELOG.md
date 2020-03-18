@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.3.11...@pie-lib/math-input@6.4.0) (2020-03-06)
+
+
+### Bug Fixes
+
+* **math-input:** fix Static rootblock logic, failsafe for finding math block id ch3518 ([08df6db](https://github.com/pie-framework/pie-lib/commit/08df6db))
+
+
+### Features
+
+* bump @pie-framework/mathquill@^1.0.0 ([d43c5c5](https://github.com/pie-framework/pie-lib/commit/d43c5c5))
+* bump @pie-framework/mathquill@^1.1.0 ([31dbed8](https://github.com/pie-framework/pie-lib/commit/31dbed8))
+
+
+
+
+
+## [6.3.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.3.10...@pie-lib/math-input@6.3.11) (2020-02-11)
+
+**Note:** Version bump only for package @pie-lib/math-input
+
+
+
+
+
 ## [6.3.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.3.9...@pie-lib/math-input@6.3.10) (2020-02-05)
 
 

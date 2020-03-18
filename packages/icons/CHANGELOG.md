@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.4.6...@pie-lib/icons@2.4.7) (2020-02-20)
+
+
+### Bug Fixes
+
+* circular dependency ([c3847d6](https://github.com/pie-framework/pie-lib/commit/c3847d6))
+
+
+
+
+
+## [2.4.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.4.5...@pie-lib/icons@2.4.6) (2020-02-11)
+
+**Note:** Version bump only for package @pie-lib/icons
+
+
+
+
+
 ## [2.4.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.4.4...@pie-lib/icons@2.4.5) (2019-08-21)
 
 **Note:** Version bump only for package @pie-lib/icons

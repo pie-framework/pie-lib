@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@1.3.2...@pie-lib/plot@1.3.3) (2020-02-18)
+
+
+### Bug Fixes
+
+* 5325: Graphing: Axis labels overlapping numeric labels ([678c61a](https://github.com/pie-framework/pie-lib/commit/678c61a))
+
+
+
+
+
+## [1.3.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@1.3.1...@pie-lib/plot@1.3.2) (2020-02-11)
+
+**Note:** Version bump only for package @pie-lib/plot
+
+
+
+
+
 ## [1.3.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@1.3.0...@pie-lib/plot@1.3.1) (2019-08-21)
 
 **Note:** Version bump only for package @pie-lib/plot

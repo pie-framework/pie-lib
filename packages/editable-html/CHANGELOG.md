@@ -3,6 +3,61 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.11.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.10.44...@pie-lib/editable-html@7.11.0) (2020-03-06)
+
+
+### Features
+
+* bump @pie-framework/mathquill@^1.0.0 ([d43c5c5](https://github.com/pie-framework/pie-lib/commit/d43c5c5))
+* bump @pie-framework/mathquill@^1.1.0 ([31dbed8](https://github.com/pie-framework/pie-lib/commit/31dbed8))
+
+
+
+
+
+## [7.10.44](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.10.43...@pie-lib/editable-html@7.10.44) (2020-02-25)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+## [7.10.43](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.10.42...@pie-lib/editable-html@7.10.43) (2020-02-18)
+
+
+### Bug Fixes
+
+* 6656: Vertical alignment issue with Image Delete button. ([c99e6c5](https://github.com/pie-framework/pie-lib/commit/c99e6c5))
+
+
+
+
+
+## [7.10.42](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.10.41...@pie-lib/editable-html@7.10.42) (2020-02-15)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+## [7.10.41](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.10.40...@pie-lib/editable-html@7.10.41) (2020-02-14)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+## [7.10.40](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.10.39...@pie-lib/editable-html@7.10.40) (2020-02-11)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
 ## [7.10.39](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.10.38...@pie-lib/editable-html@7.10.39) (2020-02-05)
 
 

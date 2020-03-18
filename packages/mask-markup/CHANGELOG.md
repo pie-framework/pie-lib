@@ -3,6 +3,60 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.7.11...@pie-lib/mask-markup@1.7.12) (2020-03-06)
+
+**Note:** Version bump only for package @pie-lib/mask-markup
+
+
+
+
+
+## [1.7.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.7.10...@pie-lib/mask-markup@1.7.11) (2020-02-25)
+
+**Note:** Version bump only for package @pie-lib/mask-markup
+
+
+
+
+
+## [1.7.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.7.9...@pie-lib/mask-markup@1.7.10) (2020-02-18)
+
+**Note:** Version bump only for package @pie-lib/mask-markup
+
+
+
+
+
+## [1.7.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.7.8...@pie-lib/mask-markup@1.7.9) (2020-02-15)
+
+
+### Bug Fixes
+
+* rollback dnd bump ([a3a6b75](https://github.com/pie-framework/pie-lib/commit/a3a6b75))
+
+
+
+
+
+## [1.7.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.7.7...@pie-lib/mask-markup@1.7.8) (2020-02-14)
+
+
+### Bug Fixes
+
+* bump react-dnd@^10 (no more esm default) ([06949d8](https://github.com/pie-framework/pie-lib/commit/06949d8))
+
+
+
+
+
+## [1.7.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.7.6...@pie-lib/mask-markup@1.7.7) (2020-02-11)
+
+**Note:** Version bump only for package @pie-lib/mask-markup
+
+
+
+
+
 ## [1.7.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.7.5...@pie-lib/mask-markup@1.7.6) (2020-01-27)
 
 **Note:** Version bump only for package @pie-lib/mask-markup

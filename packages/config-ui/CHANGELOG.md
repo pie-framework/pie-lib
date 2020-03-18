@@ -3,6 +3,62 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.7.56](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.7.55...@pie-lib/config-ui@10.7.56) (2020-03-06)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
+## [10.7.55](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.7.54...@pie-lib/config-ui@10.7.55) (2020-02-25)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
+## [10.7.54](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.7.53...@pie-lib/config-ui@10.7.54) (2020-02-20)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
+## [10.7.53](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.7.52...@pie-lib/config-ui@10.7.53) (2020-02-18)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
+## [10.7.52](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.7.51...@pie-lib/config-ui@10.7.52) (2020-02-15)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
+## [10.7.51](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.7.50...@pie-lib/config-ui@10.7.51) (2020-02-14)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
+## [10.7.50](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.7.49...@pie-lib/config-ui@10.7.50) (2020-02-11)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
 ## [10.7.49](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.7.48...@pie-lib/config-ui@10.7.49) (2020-02-05)
 
 **Note:** Version bump only for package @pie-lib/config-ui

@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.5.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.5.7...@pie-lib/render-ui@4.5.8) (2020-03-06)
+
+**Note:** Version bump only for package @pie-lib/render-ui
+
+
+
+
+
+## [4.5.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.5.6...@pie-lib/render-ui@4.5.7) (2020-02-25)
+
+
+### Bug Fixes
+
+* add react-dom to peer deps ([1fb5a05](https://github.com/pie-framework/pie-lib/commit/1fb5a05))
+
+
+
+
+
+## [4.5.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.5.5...@pie-lib/render-ui@4.5.6) (2020-02-20)
+
+
+### Bug Fixes
+
+* missing dependency prop-types ([cfff0e9](https://github.com/pie-framework/pie-lib/commit/cfff0e9))
+
+
+
+
+
+## [4.5.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.5.4...@pie-lib/render-ui@4.5.5) (2020-02-20)
+
+**Note:** Version bump only for package @pie-lib/render-ui
+
+
+
+
+
+## [4.5.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.5.3...@pie-lib/render-ui@4.5.4) (2020-02-11)
+
+**Note:** Version bump only for package @pie-lib/render-ui
+
+
+
+
+
 ## [4.5.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.5.2...@pie-lib/render-ui@4.5.3) (2019-12-18)
 
 **Note:** Version bump only for package @pie-lib/render-ui

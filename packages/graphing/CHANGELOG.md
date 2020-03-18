@@ -3,6 +3,45 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@1.2.9...@pie-lib/graphing@1.2.10) (2020-03-06)
+
+**Note:** Version bump only for package @pie-lib/graphing
+
+
+
+
+
+## [1.2.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@1.2.8...@pie-lib/graphing@1.2.9) (2020-02-25)
+
+
+### Bug Fixes
+
+* ch5349, ch5736 & ch4155: ([f0da1b7](https://github.com/pie-framework/pie-lib/commit/f0da1b7))
+
+
+
+
+
+## [1.2.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@1.2.7...@pie-lib/graphing@1.2.8) (2020-02-18)
+
+
+### Bug Fixes
+
+* 4044: A non-ASCII character in a Graphing domain label is represented by HTML-style markup. ([0493922](https://github.com/pie-framework/pie-lib/commit/0493922))
+* 5325: Graphing: Axis labels overlapping numeric labels ([678c61a](https://github.com/pie-framework/pie-lib/commit/678c61a))
+
+
+
+
+
+## [1.2.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@1.2.6...@pie-lib/graphing@1.2.7) (2020-02-11)
+
+**Note:** Version bump only for package @pie-lib/graphing
+
+
+
+
+
 ## [1.2.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@1.2.5...@pie-lib/graphing@1.2.6) (2019-11-19)
 
 

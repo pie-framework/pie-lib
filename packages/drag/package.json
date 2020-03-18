@@ -1,14 +1,14 @@
 {
   "name": "@pie-lib/drag",
-  "version": "1.1.21",
+  "version": "1.1.27",
   "description": "",
   "main": "lib/index.js",
   "dependencies": {
     "@material-ui/core": "^3.8.3",
     "classnames": "^2.2.6",
     "lodash": "^4.17.11",
-    "react-dnd": "^10.0.2",
-    "react-dnd-html5-backend": "^10.0.2"
+    "react-dnd": "^9.3.2",
+    "react-dnd-html5-backend": "^9.3.2"
   },
   "publishConfig": {
     "access": "public"

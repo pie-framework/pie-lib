@@ -3,6 +3,62 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.62](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@3.5.61...@pie-lib/scoring-config@3.5.62) (2020-03-06)
+
+**Note:** Version bump only for package @pie-lib/scoring-config
+
+
+
+
+
+## [3.5.61](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@3.5.60...@pie-lib/scoring-config@3.5.61) (2020-02-25)
+
+**Note:** Version bump only for package @pie-lib/scoring-config
+
+
+
+
+
+## [3.5.60](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@3.5.59...@pie-lib/scoring-config@3.5.60) (2020-02-20)
+
+**Note:** Version bump only for package @pie-lib/scoring-config
+
+
+
+
+
+## [3.5.59](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@3.5.58...@pie-lib/scoring-config@3.5.59) (2020-02-18)
+
+**Note:** Version bump only for package @pie-lib/scoring-config
+
+
+
+
+
+## [3.5.58](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@3.5.57...@pie-lib/scoring-config@3.5.58) (2020-02-15)
+
+**Note:** Version bump only for package @pie-lib/scoring-config
+
+
+
+
+
+## [3.5.57](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@3.5.56...@pie-lib/scoring-config@3.5.57) (2020-02-14)
+
+**Note:** Version bump only for package @pie-lib/scoring-config
+
+
+
+
+
+## [3.5.56](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@3.5.55...@pie-lib/scoring-config@3.5.56) (2020-02-11)
+
+**Note:** Version bump only for package @pie-lib/scoring-config
+
+
+
+
+
 ## [3.5.55](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@3.5.54...@pie-lib/scoring-config@3.5.55) (2020-02-05)
 
 **Note:** Version bump only for package @pie-lib/scoring-config
