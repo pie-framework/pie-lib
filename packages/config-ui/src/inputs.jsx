@@ -1,6 +1,6 @@
 import Checkbox from '@material-ui/core/Checkbox';
 import Radio from '@material-ui/core/Radio';
-import InputContainer from './input-container';
+import { InputContainer } from '@pie-lib/render-ui';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Switch from '@material-ui/core/Switch';

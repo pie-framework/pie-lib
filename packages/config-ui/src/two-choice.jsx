@@ -1,4 +1,4 @@
-import InputContainer from './input-container';
+import { InputContainer } from '@pie-lib/render-ui';
 import PropTypes from 'prop-types';
 import RadioWithLabel from './radio-with-label';
 import React from 'react';

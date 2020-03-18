@@ -9,7 +9,7 @@ export Checkbox from './checkbox';
 export FormSection from './form-section';
 export Help from './help';
 export Input from './input';
-export InputContainer from './input-container';
+export { InputContainer } from '@pie-lib/render-ui';
 export NumberTextField from './number-text-field';
 export TwoChoice, { NChoice } from './two-choice';
 export TagsInput from './tags-input';
