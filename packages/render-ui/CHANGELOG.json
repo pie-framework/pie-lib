@@ -513,5 +513,35 @@
     "committerDate": "2020-03-18 15:19:48 +0000",
     "isTagged": true,
     "tag": "@pie-lib/render-ui@4.6.2"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "es6 export syntax",
+    "merge": null,
+    "header": "fix: es6 export syntax",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "8a02dda1c1feb2d4656aae191bdca08cbe561081",
+    "gitTags": "",
+    "committerDate": "2020-03-18 15:29:19 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/render-ui@4.6.3"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "ignore __mocks__ in src",
+    "merge": null,
+    "header": "fix: ignore __mocks__ in src",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "c107bf8c3503387c8f3be3892e9954024c5a715f",
+    "gitTags": "",
+    "committerDate": "2020-03-18 15:25:00 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/render-ui@4.6.3"
   }
 ]
