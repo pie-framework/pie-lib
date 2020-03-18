@@ -468,5 +468,20 @@
     "committerDate": "2020-02-25 10:38:55 +0000",
     "isTagged": true,
     "tag": "@pie-lib/render-ui@4.5.7"
+  },
+  {
+    "type": "feat",
+    "scope": null,
+    "subject": "add module entry point",
+    "merge": null,
+    "header": "feat: add module entry point",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "59b0d09b71f6d217e5fb4ee5ba3dba38afd10398",
+    "gitTags": " (develop)",
+    "committerDate": "2020-03-18 14:58:19 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/render-ui@4.6.0"
   }
 ]
