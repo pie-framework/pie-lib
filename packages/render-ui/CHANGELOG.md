@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.6.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.5.9...@pie-lib/render-ui@4.6.0) (2020-03-18)
+
+
+### Features
+
+* add module entry point ([59b0d09](https://github.com/pie-framework/pie-lib/commit/59b0d09))
+
+
+
+
+
 ## [4.5.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.5.8...@pie-lib/render-ui@4.5.9) (2020-03-18)
 
 **Note:** Version bump only for package @pie-lib/render-ui
