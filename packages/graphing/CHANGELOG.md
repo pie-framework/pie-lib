@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@1.2.10...@pie-lib/graphing@1.2.11) (2020-03-18)
+
+
+### Bug Fixes
+
+* 4136: Parabola graphing is amiss ([f915685](https://github.com/pie-framework/pie-lib/commit/f915685))
+* 4156: On Graphing items that provide the Label tool, it cannot be used to label points that are used to define other plot objects. ([dc19bdb](https://github.com/pie-framework/pie-lib/commit/dc19bdb))
+
+
+
+
+
 ## [1.2.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@1.2.9...@pie-lib/graphing@1.2.10) (2020-03-06)
 
 **Note:** Version bump only for package @pie-lib/graphing

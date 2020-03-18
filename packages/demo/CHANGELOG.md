@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.47](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.46...@pie-lib/demo@5.3.47) (2020-03-18)
+
+
+### Bug Fixes
+
+* 4136: Parabola graphing is amiss ([f915685](https://github.com/pie-framework/pie-lib/commit/f915685))
+
+
+
+
+
 ## [5.3.46](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.45...@pie-lib/demo@5.3.46) (2020-03-06)
 
 **Note:** Version bump only for package @pie-lib/demo

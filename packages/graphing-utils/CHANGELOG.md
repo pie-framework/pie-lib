@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-utils@1.1.2...@pie-lib/graphing-utils@1.1.3) (2020-03-18)
+
+
+### Bug Fixes
+
+* 4136: Parabola graphing is amiss ([f915685](https://github.com/pie-framework/pie-lib/commit/f915685))
+
+
+
+
+
 ## [1.1.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-utils@1.1.1...@pie-lib/graphing-utils@1.1.2) (2019-07-08)
 
 **Note:** Version bump only for package @pie-lib/graphing-utils
