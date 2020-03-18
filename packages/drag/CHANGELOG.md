@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.27](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@1.1.26...@pie-lib/drag@1.1.27) (2020-03-06)
+
+**Note:** Version bump only for package @pie-lib/drag
+
+
+
+
+
 ## [1.1.26](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@1.1.25...@pie-lib/drag@1.1.26) (2020-02-25)
 
 
