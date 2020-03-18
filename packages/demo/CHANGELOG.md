@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.51](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.50...@pie-lib/demo@5.3.51) (2020-03-18)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
 ## [5.3.50](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.49...@pie-lib/demo@5.3.50) (2020-03-18)
 
 **Note:** Version bump only for package @pie-lib/demo

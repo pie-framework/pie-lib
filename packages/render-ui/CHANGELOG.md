@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.6.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.6.2...@pie-lib/render-ui@4.6.3) (2020-03-18)
+
+
+### Bug Fixes
+
+* es6 export syntax ([8a02dda](https://github.com/pie-framework/pie-lib/commit/8a02dda))
+* ignore __mocks__ in src ([c107bf8](https://github.com/pie-framework/pie-lib/commit/c107bf8))
+
+
+
+
+
 ## [4.6.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.6.1...@pie-lib/render-ui@4.6.2) (2020-03-18)
 
 
