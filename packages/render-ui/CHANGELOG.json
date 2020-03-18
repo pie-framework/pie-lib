@@ -498,5 +498,20 @@
     "committerDate": "2020-03-18 15:12:21 +0000",
     "isTagged": true,
     "tag": "@pie-lib/render-ui@4.6.1"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "ignore __tests__ in src",
+    "merge": null,
+    "header": "fix: ignore __tests__ in src",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "710b4836e32c2d4588cafbc74e35ff9f651d924c",
+    "gitTags": " (develop)",
+    "committerDate": "2020-03-18 15:19:48 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/render-ui@4.6.2"
   }
 ]
