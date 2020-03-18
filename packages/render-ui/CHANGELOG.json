@@ -483,5 +483,20 @@
     "committerDate": "2020-03-18 14:58:19 +0000",
     "isTagged": true,
     "tag": "@pie-lib/render-ui@4.6.0"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "add src to pkg",
+    "merge": null,
+    "header": "fix: add src to pkg",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "f37d16e2a598be7e1562ca397f71bfebea60d0c0",
+    "gitTags": "",
+    "committerDate": "2020-03-18 15:12:21 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/render-ui@4.6.1"
   }
 ]
