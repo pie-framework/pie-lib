@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.8.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.7.61...@pie-lib/config-ui@10.8.0) (2020-03-23)
+
+
+### Features
+
+* **index:** updated file to publish new element ([2dbed76](https://github.com/pie-framework/pie-lib/commit/2dbed76))
+* **packaging:** updated to the latest version of render-ui ([16ab637](https://github.com/pie-framework/pie-lib/commit/16ab637))
+
+
+
+
+
 ## [10.7.61](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.7.60...@pie-lib/config-ui@10.7.61) (2020-03-18)
 
 **Note:** Version bump only for package @pie-lib/config-ui

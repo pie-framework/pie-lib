@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.7.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.6.3...@pie-lib/render-ui@4.7.0) (2020-03-23)
+
+
+### Features
+
+* **es6:** updated index file and yarn ([2e04449](https://github.com/pie-framework/pie-lib/commit/2e04449))
+* **es6:** updated index file to update package ([646f225](https://github.com/pie-framework/pie-lib/commit/646f225))
+
+
+
+
+
 ## [4.6.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.6.2...@pie-lib/render-ui@4.6.3) (2020-03-18)
 
 
