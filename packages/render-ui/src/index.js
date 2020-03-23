@@ -4,13 +4,5 @@ import Collapsible from './collapsible';
 import withUndoReset from './withUndoReset';
 import PreviewLayout from './preview-layout';
 import HtmlAndMath from './html-and-math';
-import InputContainer from './input-container';
-export {
-  HtmlAndMath,
-  indicators,
-  withUndoReset,
-  Feedback,
-  PreviewLayout,
-  Collapsible,
-  InputContainer
-};
+export InputContainer from './input-container';
+export { HtmlAndMath, indicators, withUndoReset, Feedback, PreviewLayout, Collapsible };
