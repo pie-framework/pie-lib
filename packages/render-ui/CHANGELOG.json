@@ -573,5 +573,20 @@
     "committerDate": "2020-03-23 10:36:16 +0200",
     "isTagged": true,
     "tag": "@pie-lib/render-ui@4.7.0"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "proper export of InputContainer",
+    "merge": null,
+    "header": "fix: proper export of InputContainer",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "cd5d597fefb53a0145ac1220678223b1dabead44",
+    "gitTags": " (develop)",
+    "committerDate": "2020-03-23 22:08:11 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/render-ui@4.7.1"
   }
 ]
