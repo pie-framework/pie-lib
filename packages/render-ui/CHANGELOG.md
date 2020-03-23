@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.7.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.7.0...@pie-lib/render-ui@4.7.1) (2020-03-23)
+
+
+### Bug Fixes
+
+* proper export of InputContainer ([cd5d597](https://github.com/pie-framework/pie-lib/commit/cd5d597))
+
+
+
+
+
 # [4.7.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.6.3...@pie-lib/render-ui@4.7.0) (2020-03-23)
 
 
