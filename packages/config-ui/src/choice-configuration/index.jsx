@@ -18,6 +18,7 @@ const EditableHtmlContainer = withStyles(theme => ({
   }
 }))(({ label, classes, onChange, value, className, imageSupport, disabled, nonEmpty }) => {
   const names = classNames(classes.labelContainer, className);
+
   return (
     <InputContainer label={label} className={names}>
       <div className={classes.editorHolder}>
