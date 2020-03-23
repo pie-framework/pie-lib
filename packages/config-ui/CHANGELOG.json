@@ -1493,5 +1493,35 @@
     "committerDate": "2019-09-26 15:51:36 +0300",
     "isTagged": true,
     "tag": "@pie-lib/config-ui@10.7.34"
+  },
+  {
+    "type": "feat",
+    "scope": "index",
+    "subject": "updated file to publish new element",
+    "merge": null,
+    "header": "feat(index): updated file to publish new element",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "2dbed7613ec6e20bcac768c9676d886d8dc7ab73",
+    "gitTags": "",
+    "committerDate": "2020-03-23 09:08:55 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/config-ui@10.8.0"
+  },
+  {
+    "type": "feat",
+    "scope": "packaging",
+    "subject": "updated to the latest version of render-ui",
+    "merge": null,
+    "header": "feat(packaging): updated to the latest version of render-ui",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "16ab637bdc52cda1798ebac033d3398bcb6eab5d",
+    "gitTags": "",
+    "committerDate": "2020-03-23 08:57:36 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/config-ui@10.8.0"
   }
 ]

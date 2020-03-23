@@ -543,5 +543,35 @@
     "committerDate": "2020-03-18 15:25:00 +0000",
     "isTagged": true,
     "tag": "@pie-lib/render-ui@4.6.3"
+  },
+  {
+    "type": "feat",
+    "scope": "es6",
+    "subject": "updated index file and yarn",
+    "merge": null,
+    "header": "feat(es6): updated index file and yarn",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "2e044491eee7f5dd9a0186facff3496e12ffd445",
+    "gitTags": " (develop)",
+    "committerDate": "2020-03-23 10:41:00 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/render-ui@4.7.0"
+  },
+  {
+    "type": "feat",
+    "scope": "es6",
+    "subject": "updated index file to update package",
+    "merge": null,
+    "header": "feat(es6): updated index file to update package",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "646f225f876c7a6f5a3aed570a80a2a01a79aa17",
+    "gitTags": "",
+    "committerDate": "2020-03-23 10:36:16 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/render-ui@4.7.0"
   }
 ]
