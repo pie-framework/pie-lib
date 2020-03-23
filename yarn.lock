@@ -2105,6 +2105,28 @@
     prop-types "^15.6.2"
     react-measure "^2.2.2"
 
+"@pie-lib/icons@^2.4.8":
+  version "2.4.8"
+  resolved "https://registry.yarnpkg.com/@pie-lib/icons/-/icons-2.4.8.tgz#cc5632e50a4d86ca3268db804614b51c8c0e3328"
+  integrity sha512-EB6k8lHThsAuDq2IE+iD1wJEymxBjvvbYGN3gv08TGXzDg+C8HMbV4ROuDukCoWLBXMZ570NKfZruf5ysV8RIQ==
+  dependencies:
+    classnames "^2.2.6"
+    prop-types "^15.6.2"
+
+"@pie-lib/render-ui@^4.6.3":
+  version "4.6.3"
+  resolved "https://registry.yarnpkg.com/@pie-lib/render-ui/-/render-ui-4.6.3.tgz#f42d83818813e38104f6c08d0055e8cf58a3e79a"
+  integrity sha512-55vRlkilRf/84CN1w878PmxszAllDHINhpa72shw+fkKLzlmlV91ihLACP0G7Mx41vdwXrHeZkXXvtL80x+Vhw==
+  dependencies:
+    "@material-ui/core" "^3.8.3"
+    "@material-ui/icons" "^3.0.2"
+    "@pie-lib/icons" "^2.4.8"
+    "@pie-lib/math-rendering" "^2.1.0"
+    classnames "^2.2.6"
+    debug "^4.1.1"
+    prop-types "^15.7.2"
+    react-transition-group "^2.5.2"
+
 "@pie-lib/test-utils@^0.0.3":
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/@pie-lib/test-utils/-/test-utils-0.0.3.tgz#9bef3bfb236af4cda24e9ed6446794d9615175a0"
