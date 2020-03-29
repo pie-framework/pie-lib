@@ -253,5 +253,20 @@
     "committerDate": "2019-07-24 14:56:57 +0300",
     "isTagged": true,
     "tag": "@pie-lib/categorize@0.6.2"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "add module prop to package.json",
+    "merge": null,
+    "header": "fix: add module prop to package.json",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "9bbd2350b7067aeb3c9c4014138e438fd989a342",
+    "gitTags": "",
+    "committerDate": "2020-03-29 23:05:27 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/categorize@0.6.3"
   }
 ]

@@ -543,5 +543,20 @@
     "committerDate": "2019-06-10 15:24:32 +0100",
     "isTagged": true,
     "tag": "@pie-lib/scoring-config@3.5.0"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "add module prop",
+    "merge": null,
+    "header": "fix: add module prop",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "74ba11a0a5d8846b89f1f6e06c3d12d3132a881b",
+    "gitTags": "",
+    "committerDate": "2020-03-29 23:02:41 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/scoring-config@3.5.70"
   }
 ]
