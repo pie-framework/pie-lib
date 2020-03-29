@@ -88,5 +88,20 @@
     "committerDate": "2020-01-15 13:25:30 +0200",
     "isTagged": true,
     "tag": "@pie-lib/controller-utils@0.2.4"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "add module prop to package.json",
+    "merge": null,
+    "header": "fix: add module prop to package.json",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "8a1b445ad76ba8472a6d375d0c604baf951a3b25",
+    "gitTags": " (develop)",
+    "committerDate": "2020-03-29 23:12:09 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/controller-utils@0.2.6"
   }
 ]
