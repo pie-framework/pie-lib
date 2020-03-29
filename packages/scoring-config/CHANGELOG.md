@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.70](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@3.5.69...@pie-lib/scoring-config@3.5.70) (2020-03-29)
+
+
+### Bug Fixes
+
+* add module prop ([74ba11a](https://github.com/pie-framework/pie-lib/commit/74ba11a))
+
+
+
+
+
 ## [3.5.69](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@3.5.68...@pie-lib/scoring-config@3.5.69) (2020-03-23)
 
 **Note:** Version bump only for package @pie-lib/scoring-config
