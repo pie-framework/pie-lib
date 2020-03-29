@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.6.2...@pie-lib/categorize@0.6.3) (2020-03-29)
+
+
+### Bug Fixes
+
+* add module prop to package.json ([9bbd235](https://github.com/pie-framework/pie-lib/commit/9bbd235))
+
+
+
+
+
 ## [0.6.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.6.1...@pie-lib/categorize@0.6.2) (2019-07-24)
 
 
