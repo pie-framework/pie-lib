@@ -1,2 +1,3 @@
-export Chart from './chart';
-export chartTypes from './chart-types';
+import Chart from './chart';
+import chartTypes from './chart-types';
+export { Chart, chartTypes };
