@@ -283,5 +283,20 @@
     "committerDate": "2020-03-30 13:03:17 +0100",
     "isTagged": true,
     "tag": "@pie-lib/rubric@0.2.61"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "correct export syntax",
+    "merge": null,
+    "header": "fix: correct export syntax",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "db7fcc0fa1bddf9fc2d304978941db04001ec0ab",
+    "gitTags": "",
+    "committerDate": "2020-03-30 22:30:10 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/rubric@0.2.63"
   }
 ]

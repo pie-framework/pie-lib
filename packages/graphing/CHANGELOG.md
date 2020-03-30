@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@1.2.13...@pie-lib/graphing@1.2.14) (2020-03-30)
+
+
+### Bug Fixes
+
+* correct export syntax ([db7fcc0](https://github.com/pie-framework/pie-lib/commit/db7fcc0))
+
+
+
+
+
 ## [1.2.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@1.2.12...@pie-lib/graphing@1.2.13) (2020-03-30)
 
 

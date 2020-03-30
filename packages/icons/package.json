@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/icons",
-  "version": "2.4.10",
+  "version": "2.4.11",
   "description": "Some simple icons",
   "main": "lib/index.js",
   "module": "src/index.js",

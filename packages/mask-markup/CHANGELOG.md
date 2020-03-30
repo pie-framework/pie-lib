@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.7.15...@pie-lib/mask-markup@1.7.16) (2020-03-30)
+
+
+### Bug Fixes
+
+* correct export syntax ([db7fcc0](https://github.com/pie-framework/pie-lib/commit/db7fcc0))
+
+
+
+
+
 ## [1.7.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.7.14...@pie-lib/mask-markup@1.7.15) (2020-03-30)
 
 **Note:** Version bump only for package @pie-lib/mask-markup
