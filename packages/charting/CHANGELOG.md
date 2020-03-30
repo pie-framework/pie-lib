@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.2.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.2.10...@pie-lib/charting@4.2.11) (2020-03-30)
+
+
+### Bug Fixes
+
+* correct export syntax ([b7b6b57](https://github.com/pie-framework/pie-lib/commit/b7b6b57))
+
+
+
+
+
 ## [4.2.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.2.9...@pie-lib/charting@4.2.10) (2020-03-30)
 
 

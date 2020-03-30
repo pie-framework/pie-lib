@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.4.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.4.2...@pie-lib/math-input@6.4.3) (2020-03-30)
+
+
+### Bug Fixes
+
+* correct export syntax ([10c40b1](https://github.com/pie-framework/pie-lib/commit/10c40b1))
+
+
+
+
+
 ## [6.4.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.4.1...@pie-lib/math-input@6.4.2) (2020-03-30)
 
 

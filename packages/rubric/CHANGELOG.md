@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.62](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.2.61...@pie-lib/rubric@0.2.62) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/rubric
+
+
+
+
+
 ## [0.2.61](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.2.60...@pie-lib/rubric@0.2.61) (2020-03-30)
 
 
