@@ -13,6 +13,7 @@
   },
   "version": "2.2.9",
   "main": "lib/index.js",
+  "module": "src/index.js",
   "scripts": {},
   "dependencies": {
     "@material-ui/core": "^3.8.3",
