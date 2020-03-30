@@ -1,1 +1,2 @@
-export Authoring from './authoring';
+import Authoring from './authoring';
+export { Authoring };

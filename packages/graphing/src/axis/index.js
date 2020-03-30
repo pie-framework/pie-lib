@@ -1,1 +1,2 @@
-export Axes from './axes';
+import Axes from './axes';
+export { Axes };
