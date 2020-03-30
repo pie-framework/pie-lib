@@ -1,0 +1,12 @@
+#!/usr/bin/env node
+
+const fs = require('fs-extra');
+const path = require('path');
+const pkgRoot = path.resolve(__dirname, '../packages');
+const dirs = fs.readdirSync(pkgRoot);
+
+dirs.map(d => {
+  const pkg = fs.readJsonSync(path.join(pkgRoot, d, 'package.json'));
+
+  console.log(pkg.name, pkg.module);
+});
