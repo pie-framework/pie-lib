@@ -648,5 +648,20 @@
     "committerDate": "2020-03-30 13:01:41 +0100",
     "isTagged": true,
     "tag": "@pie-lib/graphing@1.2.12"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "correct export syntax",
+    "merge": null,
+    "header": "fix: correct export syntax",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "32d1fc228d92b7d312a7bba73d775e90c78b535a",
+    "gitTags": "",
+    "committerDate": "2020-03-30 22:07:47 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/graphing@1.2.13"
   }
 ]

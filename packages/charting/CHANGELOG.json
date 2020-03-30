@@ -488,5 +488,20 @@
     "committerDate": "2020-03-30 13:00:09 +0100",
     "isTagged": true,
     "tag": "@pie-lib/charting@4.2.10"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "correct export syntax",
+    "merge": null,
+    "header": "fix: correct export syntax",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "b7b6b57e1a56180417db679f215c3bd8d82453f7",
+    "gitTags": "",
+    "committerDate": "2020-03-30 22:07:39 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/charting@4.2.11"
   }
 ]
