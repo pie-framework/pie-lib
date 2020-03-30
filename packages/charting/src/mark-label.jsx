@@ -3,7 +3,7 @@ import cn from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import AutosizeInput from 'react-input-autosize';
 import PropTypes from 'prop-types';
-import { GraphPropsType } from '@pie-lib/plot/lib/types';
+import { types } from '@pie-lib/plot';
 import { correct, incorrect, disabled } from './common/styles';
 
 const styles = theme => ({
@@ -74,7 +74,7 @@ export const MarkLabel = props => {
 MarkLabel.propTypes = {
   disabled: PropTypes.bool,
   onChange: PropTypes.func,
-  graphProps: GraphPropsType,
+  graphProps: types.GraphPropsType,
   classes: PropTypes.object,
   inputRef: PropTypes.func,
   mark: PropTypes.object,
