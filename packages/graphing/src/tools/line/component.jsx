@@ -5,7 +5,6 @@ import { trig, types } from '@pie-lib/plot';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import { ArrowMarker, genUid } from '../shared/arrow-head';
-import { GraphPropsType } from '@pie-lib/plot/lib/types';
 const markerId = genUid();
 
 const lineStyles = theme => ({
@@ -56,7 +55,7 @@ ArrowedLine.propTypes = {
   classes: PropTypes.object,
   correctness: PropTypes.string,
   disabled: PropTypes.bool,
-  graphProps: GraphPropsType,
+  graphProps: types.GraphPropsType,
   from: types.PointType,
   to: types.PointType,
   markerId: PropTypes.string

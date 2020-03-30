@@ -2,7 +2,7 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import { Line } from '../component';
 import { graphProps as getGraphProps } from '../../../__tests__/utils';
-import { xy } from '@pie-lib/plot/lib/utils';
+import { utils } from '@pie-lib/plot';
 
 describe('Line', () => {
   let w;
@@ -11,8 +11,8 @@ describe('Line', () => {
       classes: {},
       className: 'className',
       graphProps: getGraphProps(),
-      from: xy(0, 0),
-      to: xy(1, 1)
+      from: utils.xy(0, 0),
+      to: utils.xy(1, 1)
     };
     const props = { ...defaults, ...extras };
     return shallow(<Line {...props} />);

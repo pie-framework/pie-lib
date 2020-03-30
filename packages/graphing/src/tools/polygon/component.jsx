@@ -9,9 +9,8 @@ import isEqual from 'lodash/isEqual';
 import debug from 'debug';
 import Line from './line';
 import DraggablePolygon, { Polygon } from './polygon';
-import { types } from '@pie-lib/plot';
+import { types, utils } from '@pie-lib/plot';
 import invariant from 'invariant';
-import { isDomainRangeEqual } from '@pie-lib/plot/lib/utils';
 import ReactDOM from 'react-dom';
 import MarkLabel from '../../mark-label';
 import isEmpty from 'lodash/isEmpty';
@@ -295,7 +294,7 @@ export default class Component extends React.Component {
     const { graphProps, mark } = this.props;
     const { graphProps: nextGraphProps } = nextProps;
     return (
-      !isDomainRangeEqual(graphProps, nextGraphProps) ||
+      !utils.isDomainRangeEqual(graphProps, nextGraphProps) ||
       !isEqual(mark, nextProps.mark) ||
       !isEqual(this.state.mark, nextState.mark)
     );
