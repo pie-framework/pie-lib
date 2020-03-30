@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.4.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.4.1...@pie-lib/math-input@6.4.2) (2020-03-30)
+
+
+### Bug Fixes
+
+* add module prop to package.json ([df40020](https://github.com/pie-framework/pie-lib/commit/df40020))
+
+
+
+
+
 ## [6.4.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.4.0...@pie-lib/math-input@6.4.1) (2020-03-18)
 
 **Note:** Version bump only for package @pie-lib/math-input

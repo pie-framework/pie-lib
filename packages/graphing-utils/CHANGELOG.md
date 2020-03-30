@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-utils@1.1.3...@pie-lib/graphing-utils@1.1.4) (2020-03-30)
+
+
+### Bug Fixes
+
+* add module prop to package.json ([12db87f](https://github.com/pie-framework/pie-lib/commit/12db87f))
+
+
+
+
+
 ## [1.1.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-utils@1.1.2...@pie-lib/graphing-utils@1.1.3) (2020-03-18)
 
 

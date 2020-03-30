@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.19](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.18...@pie-lib/math-toolbar@1.4.19) (2020-03-30)
+
+
+### Bug Fixes
+
+* add module prop to package.json ([dd549c5](https://github.com/pie-framework/pie-lib/commit/dd549c5))
+
+
+
+
+
 ## [1.4.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.17...@pie-lib/math-toolbar@1.4.18) (2020-03-18)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar

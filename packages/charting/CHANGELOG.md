@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.2.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.2.9...@pie-lib/charting@4.2.10) (2020-03-30)
+
+
+### Bug Fixes
+
+* add module prop to package.json ([0d81793](https://github.com/pie-framework/pie-lib/commit/0d81793))
+
+
+
+
+
 ## [4.2.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.2.8...@pie-lib/charting@4.2.9) (2020-03-18)
 
 **Note:** Version bump only for package @pie-lib/charting

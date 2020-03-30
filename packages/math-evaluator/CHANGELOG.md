@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@0.6.8...@pie-lib/math-evaluator@0.6.9) (2020-03-30)
+
+
+### Bug Fixes
+
+* add module prop to package.json ([f0d7718](https://github.com/pie-framework/pie-lib/commit/f0d7718))
+
+
+
+
+
 ## [0.6.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@0.6.7...@pie-lib/math-evaluator@0.6.8) (2020-02-05)
 
 **Note:** Version bump only for package @pie-lib/math-evaluator

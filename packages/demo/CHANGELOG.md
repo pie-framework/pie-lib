@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.56](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.55...@pie-lib/demo@5.3.56) (2020-03-30)
+
+
+### Bug Fixes
+
+* add module prop to package.json ([1145ec0](https://github.com/pie-framework/pie-lib/commit/1145ec0))
+* bad import accessing lib ([3a6115e](https://github.com/pie-framework/pie-lib/commit/3a6115e))
+
+
+
+
+
 ## [5.3.55](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.54...@pie-lib/demo@5.3.55) (2020-03-29)
 
 **Note:** Version bump only for package @pie-lib/demo
