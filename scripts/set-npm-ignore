@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+const { writeFileSync } = require('fs-extra');
+const path = require('path');
+
+const txt = `**/__tests__/**
+**/__mocks__/**
+*.tgz
+NEXT.CHANGELOG.json`;
+
+writeFileSync(path.join(process.cwd(), '.npmignore'), txt, 'utf8');
