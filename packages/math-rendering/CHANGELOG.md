@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.1.0...@pie-lib/math-rendering@2.1.1) (2020-03-30)
+
+
+### Bug Fixes
+
+* add module ([9e6db95](https://github.com/pie-framework/pie-lib/commit/9e6db95))
+
+
+
+
+
 # [2.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.0.3...@pie-lib/math-rendering@2.1.0) (2019-12-18)
 
 

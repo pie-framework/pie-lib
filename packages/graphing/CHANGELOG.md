@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@1.2.11...@pie-lib/graphing@1.2.12) (2020-03-30)
+
+
+### Bug Fixes
+
+* add module prop to package.json ([40fb305](https://github.com/pie-framework/pie-lib/commit/40fb305))
+* bad imports accessing lib ([518decc](https://github.com/pie-framework/pie-lib/commit/518decc))
+* correct bad import from a 'lib' dir ([e0adbbe](https://github.com/pie-framework/pie-lib/commit/e0adbbe))
+
+
+
+
+
 ## [1.2.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@1.2.10...@pie-lib/graphing@1.2.11) (2020-03-18)
 
 

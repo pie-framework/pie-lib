@@ -558,5 +558,20 @@
     "committerDate": "2020-03-29 23:02:41 +0100",
     "isTagged": true,
     "tag": "@pie-lib/scoring-config@3.5.70"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "add module prop to package.json",
+    "merge": null,
+    "header": "fix: add module prop to package.json",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "3bcf18e9686c572bf83ff9dfdba32ab5e40aa16d",
+    "gitTags": "",
+    "committerDate": "2020-03-30 13:03:26 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/scoring-config@3.5.72"
   }
 ]

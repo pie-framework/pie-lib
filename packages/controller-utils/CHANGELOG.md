@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/controller-utils@0.2.6...@pie-lib/controller-utils@0.2.7) (2020-03-30)
+
+
+### Bug Fixes
+
+* add module prop to package.json ([694b106](https://github.com/pie-framework/pie-lib/commit/694b106))
+
+
+
+
+
 ## [0.2.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/controller-utils@0.2.5...@pie-lib/controller-utils@0.2.6) (2020-03-29)
 
 

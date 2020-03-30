@@ -118,5 +118,20 @@
     "committerDate": "2019-06-10 15:24:32 +0100",
     "isTagged": true,
     "tag": "@pie-lib/test-utils@0.2.0"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "add module prop to package.json",
+    "merge": null,
+    "header": "fix: add module prop to package.json",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "e0cc5001b9edd219f54356b621db357260f19830",
+    "gitTags": "",
+    "committerDate": "2020-03-30 13:03:48 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/test-utils@0.2.3"
   }
 ]

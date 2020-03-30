@@ -518,5 +518,20 @@
     "committerDate": "2019-12-18 12:48:53 +0200",
     "isTagged": true,
     "tag": "@pie-lib/math-rendering@2.1.0"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "add module",
+    "merge": null,
+    "header": "fix: add module",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "9e6db951b236e22838b9e4d5dea685fed27b407f",
+    "gitTags": "",
+    "committerDate": "2020-03-30 12:58:44 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/math-rendering@2.1.1"
   }
 ]

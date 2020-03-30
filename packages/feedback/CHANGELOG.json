@@ -193,5 +193,20 @@
     "committerDate": "2020-03-29 23:09:02 +0100",
     "isTagged": true,
     "tag": "@pie-lib/feedback@0.4.10"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "add module prop to package.json",
+    "merge": null,
+    "header": "fix: add module prop to package.json",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "bb8039dc77228e49315cd52de46be4a423ddef7e",
+    "gitTags": "",
+    "committerDate": "2020-03-30 13:01:19 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/feedback@0.4.11"
   }
 ]

@@ -388,5 +388,20 @@
     "committerDate": "2020-01-28 11:27:09 +0000",
     "isTagged": true,
     "tag": "@pie-lib/math-evaluator@0.6.7"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "add module prop to package.json",
+    "merge": null,
+    "header": "fix: add module prop to package.json",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "f0d7718fe0c7ec5a3f0bbab23e8a981cac112488",
+    "gitTags": "",
+    "committerDate": "2020-03-30 13:02:17 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/math-evaluator@0.6.9"
   }
 ]

@@ -588,5 +588,20 @@
     "committerDate": "2020-03-23 22:08:11 +0000",
     "isTagged": true,
     "tag": "@pie-lib/render-ui@4.7.1"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "add module prop to package.json",
+    "merge": null,
+    "header": "fix: add module prop to package.json",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "494ace58f9aae2e1e3e1c1f6bb4a61264bc4561a",
+    "gitTags": "",
+    "committerDate": "2020-03-30 13:03:08 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/render-ui@4.7.4"
   }
 ]

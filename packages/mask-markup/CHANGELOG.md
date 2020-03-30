@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.7.13...@pie-lib/mask-markup@1.7.14) (2020-03-30)
+
+
+### Bug Fixes
+
+* add module prop to package.json ([3bb7f87](https://github.com/pie-framework/pie-lib/commit/3bb7f87))
+
+
+
+
+
 ## [1.7.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.7.12...@pie-lib/mask-markup@1.7.13) (2020-03-18)
 
 **Note:** Version bump only for package @pie-lib/mask-markup

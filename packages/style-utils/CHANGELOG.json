@@ -73,5 +73,20 @@
     "committerDate": "2018-05-08 13:59:16 -0400",
     "isTagged": true,
     "tag": "@pie-lib/style-utils@0.1.0"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "add module prop to package.json",
+    "merge": null,
+    "header": "fix: add module prop to package.json",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "6388436ef0f6e8fb9315462fe822850cbe5a6b10",
+    "gitTags": "",
+    "committerDate": "2020-03-30 13:03:36 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/style-utils@0.1.9"
   }
 ]

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.5.10...@pie-lib/text-select@1.5.11) (2020-03-30)
+
+
+### Bug Fixes
+
+* add module prop to package.json ([946c118](https://github.com/pie-framework/pie-lib/commit/946c118))
+
+
+
+
+
 ## [1.5.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.5.9...@pie-lib/text-select@1.5.10) (2020-03-18)
 
 **Note:** Version bump only for package @pie-lib/text-select

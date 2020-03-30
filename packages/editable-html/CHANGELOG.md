@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.11.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.11.1...@pie-lib/editable-html@7.11.2) (2020-03-30)
+
+
+### Bug Fixes
+
+* add module prop to package.json ([d20c9ca](https://github.com/pie-framework/pie-lib/commit/d20c9ca))
+
+
+
+
+
 ## [7.11.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.11.0...@pie-lib/editable-html@7.11.1) (2020-03-18)
 
 **Note:** Version bump only for package @pie-lib/editable-html

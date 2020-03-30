@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.2.9...@pie-lib/correct-answer-toggle@2.2.10) (2020-03-30)
+
+
+### Bug Fixes
+
+* add module prop to package.json ([aa3dce8](https://github.com/pie-framework/pie-lib/commit/aa3dce8))
+
+
+
+
+
 ## [2.2.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.2.8...@pie-lib/correct-answer-toggle@2.2.9) (2020-03-18)
 
 **Note:** Version bump only for package @pie-lib/correct-answer-toggle

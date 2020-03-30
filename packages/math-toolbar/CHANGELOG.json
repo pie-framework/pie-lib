@@ -648,5 +648,20 @@
     "committerDate": "2019-12-04 11:27:41 +0200",
     "isTagged": true,
     "tag": "@pie-lib/math-toolbar@1.4.9"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "add module prop to package.json",
+    "merge": null,
+    "header": "fix: add module prop to package.json",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "dd549c5b1cb047ff879b94ea4ddaf265fabfd4ad",
+    "gitTags": "",
+    "committerDate": "2020-03-30 13:02:46 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/math-toolbar@1.4.19"
   }
 ]
