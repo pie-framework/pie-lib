@@ -5,6 +5,7 @@
     "access": "public"
   },
   "main": "lib/index.js",
+  "module": "src/index.js",
   "dependencies": {
     "@material-ui/core": "^3.9.3",
     "@material-ui/icons": "^3.0.2",
