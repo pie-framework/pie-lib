@@ -1,10 +1,6 @@
-export Graph from './graph';
+import Graph from './graph';
 import GraphContainer from './container';
+import * as tools from './tools';
+import ToolMenu from './tool-menu';
 
-export * as tools from './tools';
-
-// export * as types from './types';
-
-export ToolMenu from './tool-menu';
-
-export { GraphContainer };
+export { Graph, GraphContainer, ToolMenu, tools };
