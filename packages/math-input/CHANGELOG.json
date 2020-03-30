@@ -1108,5 +1108,20 @@
     "committerDate": "2020-03-30 13:02:27 +0100",
     "isTagged": true,
     "tag": "@pie-lib/math-input@6.4.2"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "correct export syntax",
+    "merge": null,
+    "header": "fix: correct export syntax",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "10c40b1399e16a71f7eda321484d1d618d8378e2",
+    "gitTags": "",
+    "committerDate": "2020-03-30 22:07:55 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/math-input@6.4.3"
   }
 ]
