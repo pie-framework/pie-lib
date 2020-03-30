@@ -19,6 +19,9 @@ const getAssetPrefix = () => {
 module.exports = withCSS({
   webpack: (config /*opts*/) => {
     const publicPath = `${getAssetPrefix()}/_next/static`;
+
+    config.resolve.mainFields = ['browser', 'main'];
+
     config.module.rules.push({
       test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2|otf)$/,
       loader: 'url-loader',
