@@ -12,6 +12,7 @@
   ],
   "repository": "pie-framework/pie-lib",
   "main": "lib/index.js",
+  "module": "src/index.js",
   "author": "",
   "license": "ISC",
   "dependencies": {
