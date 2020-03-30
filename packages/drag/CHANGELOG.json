@@ -378,5 +378,20 @@
     "committerDate": "2020-03-30 12:57:57 +0100",
     "isTagged": true,
     "tag": "@pie-lib/drag@1.1.29"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "rm old exports from drag",
+    "merge": null,
+    "header": "fix: rm old exports from drag",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "f5d15becf4b6c197b3e2bb4c644e2ba5fc341747",
+    "gitTags": "",
+    "committerDate": "2020-03-30 23:04:24 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/drag@1.1.32"
   }
 ]
