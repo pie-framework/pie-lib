@@ -6,6 +6,7 @@
     "access": "public"
   },
   "main": "lib/index.js",
+  "module": "src/index.js",
   "author": "pie-framework developers",
   "license": "ISC",
   "dependencies": {
