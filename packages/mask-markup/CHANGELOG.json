@@ -583,5 +583,20 @@
     "committerDate": "2020-03-30 23:04:24 +0100",
     "isTagged": true,
     "tag": "@pie-lib/mask-markup@1.7.17"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "bad export in mask-markup",
+    "merge": null,
+    "header": "fix: bad export in mask-markup",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "24a0898137ccf190be6b145464d6d6fcb85a54fc",
+    "gitTags": "",
+    "committerDate": "2020-03-30 23:16:26 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/mask-markup@1.7.18"
   }
 ]
