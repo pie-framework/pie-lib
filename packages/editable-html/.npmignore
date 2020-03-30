@@ -1,8 +1,4 @@
-src
-playground
-yarn-error.log
-static.json
+**/__tests__/**
+**/__mocks__/**
 *.tgz
-deploy.sh
-node_modules
-
+NEXT.CHANGELOG.json
