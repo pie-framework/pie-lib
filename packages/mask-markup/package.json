@@ -16,7 +16,6 @@
     "immutable": ">=3.8.1",
     "prop-types": "^15.7.2",
     "react": "^16.8.1",
-    "react-dnd": "^9.3.2",
     "react-dnd-html5-backend": "^9.3.2",
     "slate": "^0.36.2",
     "slate-html-serializer": "^0.6.12",
