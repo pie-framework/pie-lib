@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.7.16...@pie-lib/mask-markup@1.7.17) (2020-03-30)
+
+
+### Bug Fixes
+
+* rm old exports from drag ([f5d15be](https://github.com/pie-framework/pie-lib/commit/f5d15be))
+
+
+
+
+
 ## [1.7.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.7.15...@pie-lib/mask-markup@1.7.16) (2020-03-30)
 
 
