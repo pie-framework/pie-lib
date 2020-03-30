@@ -1,1 +1,4 @@
-src
+**/__tests__/**
+**/__mocks__/**
+*.tgz
+NEXT.CHANGELOG.json
