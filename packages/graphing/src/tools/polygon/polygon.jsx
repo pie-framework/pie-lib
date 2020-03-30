@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { PointType } from '../shared/types';
 import { gridDraggable, types } from '@pie-lib/plot';
 import * as utils from '../../utils';
 import classNames from 'classnames';
@@ -25,7 +24,7 @@ export class RawPolygon extends React.Component {
     classes: PropTypes.object,
     className: PropTypes.string,
     disabled: PropTypes.bool,
-    points: PropTypes.arrayOf(PropTypes.shape(PointType)),
+    points: PropTypes.arrayOf(PropTypes.shape(types.PointType)),
     graphProps: types.GraphPropsType.isRequired,
     closed: PropTypes.bool.isRequired,
     correctness: PropTypes.string

@@ -1,2 +1,2 @@
-import Axes from './axes';
-export { Axes };
+import Axes, { AxisPropTypes } from './axes';
+export { Axes, AxisPropTypes };

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { PointType } from '../shared/types';
 import { types, gridDraggable } from '@pie-lib/plot';
 import * as utils from '../../utils';
 import classNames from 'classnames';
@@ -11,8 +10,8 @@ class RawLine extends React.Component {
   static propTypes = {
     className: PropTypes.string,
     classes: PropTypes.object,
-    from: PropTypes.shape(PointType),
-    to: PropTypes.shape(PointType),
+    from: PropTypes.shape(types.PointType),
+    to: PropTypes.shape(types.PointType),
     graphProps: types.GraphPropsType.isRequired,
     disabled: PropTypes.bool,
     correctness: PropTypes.string
