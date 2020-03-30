@@ -408,5 +408,20 @@
     "committerDate": "2020-02-20 12:42:54 +0000",
     "isTagged": true,
     "tag": "@pie-lib/correct-answer-toggle@2.2.8"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "add module prop to package.json",
+    "merge": null,
+    "header": "fix: add module prop to package.json",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "aa3dce85041f60249496d4f0b89acd99dc1890c8",
+    "gitTags": "",
+    "committerDate": "2020-03-30 13:00:47 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/correct-answer-toggle@2.2.10"
   }
 ]

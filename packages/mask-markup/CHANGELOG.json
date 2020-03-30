@@ -538,5 +538,20 @@
     "committerDate": "2020-02-15 21:38:32 +0000",
     "isTagged": true,
     "tag": "@pie-lib/mask-markup@1.7.9"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "add module prop to package.json",
+    "merge": null,
+    "header": "fix: add module prop to package.json",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "3bb7f87dcdddff466d0638a38bb1ab6dbb21afb4",
+    "gitTags": "",
+    "committerDate": "2020-03-30 13:02:04 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/mask-markup@1.7.14"
   }
 ]
