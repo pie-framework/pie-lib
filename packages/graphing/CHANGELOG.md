@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@1.2.16...@pie-lib/graphing@1.2.17) (2020-03-30)
+
+
+### Bug Fixes
+
+* bad exports ([b74730b](https://github.com/pie-framework/pie-lib/commit/b74730b))
+
+
+
+
+
 ## [1.2.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@1.2.15...@pie-lib/graphing@1.2.16) (2020-03-30)
 
 **Note:** Version bump only for package @pie-lib/graphing
