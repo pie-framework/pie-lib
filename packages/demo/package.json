@@ -6,7 +6,6 @@
     "@material-ui/core": "^3.8.3",
     "@material-ui/icons": "^3.0.2",
     "@pie-lib/charting": "^4.2.15",
-    "@pie-lib/charting-config": "^0.4.32",
     "@pie-lib/config-ui": "^10.8.9",
     "@pie-lib/correct-answer-toggle": "^2.2.15",
     "@pie-lib/drag": "^1.1.34",
