@@ -1138,5 +1138,20 @@
     "committerDate": "2020-03-30 22:30:10 +0100",
     "isTagged": true,
     "tag": "@pie-lib/math-input@6.4.4"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "correct module path",
+    "merge": null,
+    "header": "fix: correct module path",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "b6b5b6fde0ef452bf10f92eb7b30f86ee666954a",
+    "gitTags": "",
+    "committerDate": "2020-03-31 11:47:21 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/math-input@6.4.10"
   }
 ]

@@ -438,5 +438,20 @@
     "committerDate": "2020-03-31 00:10:01 +0100",
     "isTagged": true,
     "tag": "@pie-lib/correct-answer-toggle@2.2.16"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "correct module path",
+    "merge": null,
+    "header": "fix: correct module path",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "4644b3fa021db23e52bed36d673cf8dc93b44a39",
+    "gitTags": "",
+    "committerDate": "2020-03-31 11:47:09 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/correct-answer-toggle@2.2.18"
   }
 ]

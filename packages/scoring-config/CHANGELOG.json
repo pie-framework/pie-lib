@@ -573,5 +573,20 @@
     "committerDate": "2020-03-30 13:03:26 +0100",
     "isTagged": true,
     "tag": "@pie-lib/scoring-config@3.5.72"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "correct module path",
+    "merge": null,
+    "header": "fix: correct module path",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "2b2707181cc4bff6e6e663a4eb447bc5647dec2b",
+    "gitTags": "",
+    "committerDate": "2020-03-31 11:47:32 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/scoring-config@3.5.80"
   }
 ]
