@@ -1168,5 +1168,20 @@
     "committerDate": "2020-03-31 12:35:26 +0100",
     "isTagged": true,
     "tag": "@pie-lib/math-input@6.4.11"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "remove require (bad es import)",
+    "merge": null,
+    "header": "fix: remove require (bad es import)",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "5c1e025d8ee8acb9b13f85a4c5877839207fe2ea",
+    "gitTags": " (develop)",
+    "committerDate": "2020-03-31 15:48:16 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/math-input@6.4.12"
   }
 ]
