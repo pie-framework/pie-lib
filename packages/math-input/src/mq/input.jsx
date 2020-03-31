@@ -4,10 +4,10 @@ import { withStyles } from '@material-ui/core/styles';
 import debug from 'debug';
 import classNames from 'classnames';
 import { registerLineBreak } from './custom-elements';
+import MathQuill from '@pie-framework/mathquill';
 
 let MQ;
 if (typeof window !== 'undefined') {
-  const MathQuill = require('@pie-framework/mathquill');
   MQ = MathQuill.getInterface(2);
 
   if (MQ && MQ.registerEmbed) {
