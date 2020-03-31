@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.4.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.4.10...@pie-lib/math-input@6.4.11) (2020-03-31)
+
+
+### Bug Fixes
+
+* rm ExportNamespaceSpecifier ([970e2ed](https://github.com/pie-framework/pie-lib/commit/970e2ed))
+
+
+
+
+
 ## [6.4.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.4.9...@pie-lib/math-input@6.4.10) (2020-03-31)
 
 
