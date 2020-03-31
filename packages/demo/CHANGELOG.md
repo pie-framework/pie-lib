@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.63](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.62...@pie-lib/demo@5.3.63) (2020-03-31)
+
+
+### Bug Fixes
+
+* rm charting-config ([4e28693](https://github.com/pie-framework/pie-lib/commit/4e28693))
+
+
+
+
+
 ## [5.3.62](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.61...@pie-lib/demo@5.3.62) (2020-03-30)
 
 **Note:** Version bump only for package @pie-lib/demo

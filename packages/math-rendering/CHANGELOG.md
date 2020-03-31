@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.1.7...@pie-lib/math-rendering@2.1.8) (2020-03-31)
+
+
+### Bug Fixes
+
+* use es import ([3debced](https://github.com/pie-framework/pie-lib/commit/3debced))
+
+
+
+
+
 ## [2.1.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.1.6...@pie-lib/math-rendering@2.1.7) (2020-03-30)
 
 **Note:** Version bump only for package @pie-lib/math-rendering
