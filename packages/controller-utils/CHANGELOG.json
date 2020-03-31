@@ -118,5 +118,20 @@
     "committerDate": "2020-03-30 13:00:38 +0100",
     "isTagged": true,
     "tag": "@pie-lib/controller-utils@0.2.7"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "rm ExportNamespaceSpecifier",
+    "merge": null,
+    "header": "fix: rm ExportNamespaceSpecifier",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "970e2edcf797b8eea06449834c9174ac69d718d1",
+    "gitTags": "",
+    "committerDate": "2020-03-31 12:35:26 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/controller-utils@0.2.16"
   }
 ]
