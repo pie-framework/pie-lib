@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/controller-utils@0.2.14...@pie-lib/controller-utils@0.2.15) (2020-03-31)
+
+**Note:** Version bump only for package @pie-lib/controller-utils
+
+
+
+
+
 ## [0.2.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/controller-utils@0.2.13...@pie-lib/controller-utils@0.2.14) (2020-03-31)
 
 **Note:** Version bump only for package @pie-lib/controller-utils

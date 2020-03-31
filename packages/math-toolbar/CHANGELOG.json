@@ -663,5 +663,20 @@
     "committerDate": "2020-03-30 13:02:46 +0100",
     "isTagged": true,
     "tag": "@pie-lib/math-toolbar@1.4.19"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "correct module path",
+    "merge": null,
+    "header": "fix: correct module path",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "589e9e35c115b2405222a75fd1c78f38d185c321",
+    "gitTags": "",
+    "committerDate": "2020-03-31 11:47:27 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/math-toolbar@1.4.27"
   }
 ]

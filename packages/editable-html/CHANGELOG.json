@@ -2648,5 +2648,20 @@
     "committerDate": "2020-03-30 13:01:09 +0100",
     "isTagged": true,
     "tag": "@pie-lib/editable-html@7.11.2"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "correct module path",
+    "merge": null,
+    "header": "fix: correct module path",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "15ac0a379c763683ccb407187f9476a1036436ab",
+    "gitTags": "",
+    "committerDate": "2020-03-31 11:47:15 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.11.10"
   }
 ]
