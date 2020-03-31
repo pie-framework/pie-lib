@@ -533,5 +533,20 @@
     "committerDate": "2020-03-30 12:58:44 +0100",
     "isTagged": true,
     "tag": "@pie-lib/math-rendering@2.1.1"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "use es import",
+    "merge": null,
+    "header": "fix: use es import",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "3debced2ca60a7d9c6417a45c2ff01ce28c832a0",
+    "gitTags": "",
+    "committerDate": "2020-03-31 11:09:46 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/math-rendering@2.1.8"
   }
 ]
