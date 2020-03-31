@@ -4,7 +4,7 @@
   "description": "",
   "license": "ISC",
   "main": "lib/index.js",
-  "module": "src/index.js",
+  "module": "src/index.jsx",
   "author": "pie-framework developers",
   "dependencies": {
     "@material-ui/core": "^3.8.3",
