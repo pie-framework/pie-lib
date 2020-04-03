@@ -24,6 +24,7 @@ export class RawMathPreview extends React.Component {
     return (
       <div className={classNames(classes.root, isSelected && classes.selected)}>
         {' '}
+        <span className={classes.insideOverlay} />
         <mq.Static latex={latex} onFocus={onFocus} onBlur={onBlur} />
       </div>
     );
@@ -34,6 +35,7 @@ const mp = theme => ({
   root: {
     display: 'inline-flex',
     alignItems: 'center',
+    position: 'relative',
     '& > .mq-math-mode': {
       border: 'solid 1px lightgrey'
     },
@@ -49,6 +51,13 @@ const mp = theme => ({
     '& > .mq-math-mode': {
       border: 'solid 0px lightgrey'
     }
+  },
+  insideOverlay: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    top: 0
   }
 });
 

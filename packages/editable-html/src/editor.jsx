@@ -287,10 +287,15 @@ export class Editor extends React.Component {
        */
       if (this.__TEMPORARY_CHANGE_DATA) {
         const { key, data } = this.__TEMPORARY_CHANGE_DATA;
-        let change = this.state.value.change().setNodeByKey(key, { data });
-        this.setState({ value: change.value }, () => {
-          this.__TEMPORARY_CHANGE_DATA = null;
-        });
+        const domEl = document.querySelector(`[data-key="${key}"]`);
+
+        if (domEl) {
+          let change = this.state.value.change().setNodeByKey(key, { data });
+
+          this.setState({ value: change.value }, () => {
+            this.__TEMPORARY_CHANGE_DATA = null;
+          });
+        }
       }
 
       this.stashValue();
