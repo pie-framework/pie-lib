@@ -678,5 +678,20 @@
     "committerDate": "2020-03-31 11:47:27 +0100",
     "isTagged": true,
     "tag": "@pie-lib/math-toolbar@1.4.27"
+  },
+  {
+    "type": "feat",
+    "scope": "math",
+    "subject": "made sure that math is clickable inside table [ch3518]",
+    "merge": null,
+    "header": "feat(math): made sure that math is clickable inside table [ch3518]",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "23185dda2b1206f4a88b1f83127e87b2e93b8b7e",
+    "gitTags": "",
+    "committerDate": "2020-04-03 15:18:14 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/math-toolbar@1.5.0"
   }
 ]
