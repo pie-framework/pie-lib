@@ -373,5 +373,20 @@
     "committerDate": "2020-02-20 12:44:45 +0000",
     "isTagged": true,
     "tag": "@pie-lib/icons@2.4.7"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "add module prop to package.json",
+    "merge": null,
+    "header": "fix: add module prop to package.json",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "6613f3e643d56bd05f9fae018882c951570e7257",
+    "gitTags": "",
+    "committerDate": "2020-03-30 13:01:51 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/icons@2.4.10"
   }
 ]

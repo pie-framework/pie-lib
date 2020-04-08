@@ -363,5 +363,20 @@
     "committerDate": "2020-02-25 10:39:37 +0000",
     "isTagged": true,
     "tag": "@pie-lib/drag@1.1.26"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "add module",
+    "merge": null,
+    "header": "fix: add module",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "46deb26ae01512d512837b871b7b5400bb8b5b4d",
+    "gitTags": "",
+    "committerDate": "2020-03-30 12:57:57 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/drag@1.1.29"
   }
 ]

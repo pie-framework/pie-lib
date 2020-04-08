@@ -1523,5 +1523,35 @@
     "committerDate": "2020-03-23 08:57:36 +0200",
     "isTagged": true,
     "tag": "@pie-lib/config-ui@10.8.0"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "bad import accessing lib",
+    "merge": null,
+    "header": "fix: bad import accessing lib",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "fa2dcfbf4b7b4071af3ae40a9085030876197fc3",
+    "gitTags": "",
+    "committerDate": "2020-03-30 13:30:58 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/config-ui@10.8.10"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "add module prop to package.json",
+    "merge": null,
+    "header": "fix: add module prop to package.json",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "0d7cd6d30eeacc8732add16152f9a4be69652e40",
+    "gitTags": "",
+    "committerDate": "2020-03-30 13:00:20 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/config-ui@10.8.10"
   }
 ]

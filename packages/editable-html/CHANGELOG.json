@@ -2633,5 +2633,20 @@
     "committerDate": "2020-03-06 10:34:40 +0000",
     "isTagged": true,
     "tag": "@pie-lib/editable-html@7.11.0"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "add module prop to package.json",
+    "merge": null,
+    "header": "fix: add module prop to package.json",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "d20c9ca00b2b156b46ea9f59714aaef1e05e7753",
+    "gitTags": "",
+    "committerDate": "2020-03-30 13:01:09 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.11.10"
   }
 ]
