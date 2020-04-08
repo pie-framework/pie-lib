@@ -13,7 +13,9 @@ export const baseSet = [
   [nav.left, nav.right, edit.del, equals]
 ];
 
-export * as comparison from './comparison';
-export * as fractions from './fractions';
-export * as exponent from './exponent';
-export * as misc from './misc';
+import * as comparison from './comparison';
+import * as fractions from './fractions';
+import * as exponent from './exponent';
+import * as misc from './misc';
+
+export { comparison, fractions, exponent, misc };

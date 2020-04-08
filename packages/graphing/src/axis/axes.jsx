@@ -7,10 +7,11 @@ import { withStyles } from '@material-ui/core';
 import isEqual from 'lodash/isEqual';
 import { getTickValues } from '../utils';
 
-const AxisPropTypes = {
+export const AxisPropTypes = {
   includeArrows: PropTypes.bool,
   graphProps: PropTypes.object
 };
+
 const AxisDefaultProps = {
   includeArrows: true
 };

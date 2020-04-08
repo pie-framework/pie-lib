@@ -648,5 +648,50 @@
     "committerDate": "2020-03-30 13:01:41 +0100",
     "isTagged": true,
     "tag": "@pie-lib/graphing@1.2.12"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "correct export syntax",
+    "merge": null,
+    "header": "fix: correct export syntax",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "32d1fc228d92b7d312a7bba73d775e90c78b535a",
+    "gitTags": "",
+    "committerDate": "2020-03-30 22:07:47 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/graphing@1.2.13"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "correct export syntax",
+    "merge": null,
+    "header": "fix: correct export syntax",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "db7fcc0fa1bddf9fc2d304978941db04001ec0ab",
+    "gitTags": "",
+    "committerDate": "2020-03-30 22:30:10 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/graphing@1.2.14"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "bad exports",
+    "merge": null,
+    "header": "fix: bad exports",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "b74730b386e48112391ad6cdcc2a9d69ae74fc61",
+    "gitTags": "",
+    "committerDate": "2020-03-30 23:48:11 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/graphing@1.2.17"
   }
 ]

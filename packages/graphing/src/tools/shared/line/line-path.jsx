@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { PointType } from '../types';
 import { types } from '@pie-lib/plot';
 import classNames from 'classnames';
 import { disabled, correct, incorrect } from '../styles';
@@ -15,8 +14,8 @@ export class RawLinePath extends React.Component {
     graphProps: types.GraphPropsType.isRequired,
     disabled: PropTypes.bool,
     correctness: PropTypes.string,
-    from: PropTypes.shape(PointType).isRequired,
-    to: PropTypes.shape(PointType).isRequired,
+    from: PropTypes.shape(types.PointType).isRequired,
+    to: PropTypes.shape(types.PointType).isRequired,
     isDragging: PropTypes.bool
   };
 

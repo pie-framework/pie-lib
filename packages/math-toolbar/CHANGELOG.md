@@ -3,6 +3,100 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.29](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.28...@pie-lib/math-toolbar@1.4.29) (2020-03-31)
+
+**Note:** Version bump only for package @pie-lib/math-toolbar
+
+
+
+
+
+## [1.4.28](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.27...@pie-lib/math-toolbar@1.4.28) (2020-03-31)
+
+**Note:** Version bump only for package @pie-lib/math-toolbar
+
+
+
+
+
+## [1.4.27](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.26...@pie-lib/math-toolbar@1.4.27) (2020-03-31)
+
+
+### Bug Fixes
+
+* correct module path ([589e9e3](https://github.com/pie-framework/pie-lib/commit/589e9e3))
+
+
+
+
+
+## [1.4.26](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.25...@pie-lib/math-toolbar@1.4.26) (2020-03-31)
+
+**Note:** Version bump only for package @pie-lib/math-toolbar
+
+
+
+
+
+## [1.4.25](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.24...@pie-lib/math-toolbar@1.4.25) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/math-toolbar
+
+
+
+
+
+## [1.4.24](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.23...@pie-lib/math-toolbar@1.4.24) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/math-toolbar
+
+
+
+
+
+## [1.4.23](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.22...@pie-lib/math-toolbar@1.4.23) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/math-toolbar
+
+
+
+
+
+## [1.4.22](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.21...@pie-lib/math-toolbar@1.4.22) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/math-toolbar
+
+
+
+
+
+## [1.4.21](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.20...@pie-lib/math-toolbar@1.4.21) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/math-toolbar
+
+
+
+
+
+## [1.4.20](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.19...@pie-lib/math-toolbar@1.4.20) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/math-toolbar
+
+
+
+
+
+## [1.4.19](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.18...@pie-lib/math-toolbar@1.4.19) (2020-03-30)
+
+
+### Bug Fixes
+
+* add module prop to package.json ([dd549c5](https://github.com/pie-framework/pie-lib/commit/dd549c5))
+
+
+
+
+
 ## [1.4.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.17...@pie-lib/math-toolbar@1.4.18) (2020-03-18)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar

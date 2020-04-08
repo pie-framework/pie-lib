@@ -4,9 +4,9 @@ import { TeX } from 'mathjax-full/js/input/tex';
 
 import { CHTML } from 'mathjax-full/js/output/chtml';
 import { RegisterHTMLHandler } from 'mathjax-full/js/handlers/html';
+import { browserAdaptor } from 'mathjax-full/js/adaptors/browserAdaptor';
 
 if (typeof window !== 'undefined') {
-  const { browserAdaptor } = require('mathjax-full/js/adaptors/browserAdaptor');
   RegisterHTMLHandler(browserAdaptor());
 }
 

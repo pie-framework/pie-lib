@@ -8,6 +8,11 @@ export const tickCount = utils.tickCount;
 export const bounds = utils.bounds;
 export const point = utils.point;
 
+//TODO: This can be removed?
+export const getAngleDeg = () => 0;
+//TODO: This can be removed?
+export const arrowDimensions = () => 0;
+
 export const getTickValues = prop => {
   const tickValues = [];
   let tickVal = 0;

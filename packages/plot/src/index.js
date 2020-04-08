@@ -1,9 +1,9 @@
-export Root from './root';
-export Draggable from './draggable';
-export { gridDraggable } from './grid-draggable';
-export * as utils from './utils';
-export * as trig from './trig';
-export * as types from './types';
+import Root from './root';
+import Draggable from './draggable';
+import { gridDraggable } from './grid-draggable';
+import * as utils from './utils';
+import * as trig from './trig';
+import * as types from './types';
 import { create as createGraphProps } from './graph-props';
 
-export { createGraphProps };
+export { Root, Draggable, gridDraggable, utils, trig, types, createGraphProps };

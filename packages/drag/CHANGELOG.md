@@ -3,6 +3,92 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.38](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@1.1.37...@pie-lib/drag@1.1.38) (2020-03-31)
+
+**Note:** Version bump only for package @pie-lib/drag
+
+
+
+
+
+## [1.1.37](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@1.1.36...@pie-lib/drag@1.1.37) (2020-03-31)
+
+**Note:** Version bump only for package @pie-lib/drag
+
+
+
+
+
+## [1.1.36](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@1.1.35...@pie-lib/drag@1.1.36) (2020-03-31)
+
+**Note:** Version bump only for package @pie-lib/drag
+
+
+
+
+
+## [1.1.35](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@1.1.34...@pie-lib/drag@1.1.35) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/drag
+
+
+
+
+
+## [1.1.34](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@1.1.33...@pie-lib/drag@1.1.34) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/drag
+
+
+
+
+
+## [1.1.33](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@1.1.32...@pie-lib/drag@1.1.33) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/drag
+
+
+
+
+
+## [1.1.32](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@1.1.31...@pie-lib/drag@1.1.32) (2020-03-30)
+
+
+### Bug Fixes
+
+* rm old exports from drag ([f5d15be](https://github.com/pie-framework/pie-lib/commit/f5d15be))
+
+
+
+
+
+## [1.1.31](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@1.1.30...@pie-lib/drag@1.1.31) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/drag
+
+
+
+
+
+## [1.1.30](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@1.1.29...@pie-lib/drag@1.1.30) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/drag
+
+
+
+
+
+## [1.1.29](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@1.1.28...@pie-lib/drag@1.1.29) (2020-03-30)
+
+
+### Bug Fixes
+
+* add module ([46deb26](https://github.com/pie-framework/pie-lib/commit/46deb26))
+
+
+
+
+
 ## [1.1.28](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@1.1.27...@pie-lib/drag@1.1.28) (2020-03-18)
 
 **Note:** Version bump only for package @pie-lib/drag

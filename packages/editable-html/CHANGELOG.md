@@ -3,6 +3,100 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.11.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.11.11...@pie-lib/editable-html@7.11.12) (2020-03-31)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+## [7.11.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.11.10...@pie-lib/editable-html@7.11.11) (2020-03-31)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+## [7.11.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.11.9...@pie-lib/editable-html@7.11.10) (2020-03-31)
+
+
+### Bug Fixes
+
+* correct module path ([15ac0a3](https://github.com/pie-framework/pie-lib/commit/15ac0a3))
+
+
+
+
+
+## [7.11.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.11.8...@pie-lib/editable-html@7.11.9) (2020-03-31)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+## [7.11.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.11.7...@pie-lib/editable-html@7.11.8) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+## [7.11.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.11.6...@pie-lib/editable-html@7.11.7) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+## [7.11.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.11.5...@pie-lib/editable-html@7.11.6) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+## [7.11.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.11.4...@pie-lib/editable-html@7.11.5) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+## [7.11.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.11.3...@pie-lib/editable-html@7.11.4) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+## [7.11.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.11.2...@pie-lib/editable-html@7.11.3) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+## [7.11.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.11.1...@pie-lib/editable-html@7.11.2) (2020-03-30)
+
+
+### Bug Fixes
+
+* add module prop to package.json ([d20c9ca](https://github.com/pie-framework/pie-lib/commit/d20c9ca))
+
+
+
+
+
 ## [7.11.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.11.0...@pie-lib/editable-html@7.11.1) (2020-03-18)
 
 **Note:** Version bump only for package @pie-lib/editable-html

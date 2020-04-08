@@ -3,6 +3,92 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.2.19](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.2.18...@pie-lib/charting@4.2.19) (2020-03-31)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+
+
+
+
+## [4.2.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.2.17...@pie-lib/charting@4.2.18) (2020-03-31)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+
+
+
+
+## [4.2.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.2.16...@pie-lib/charting@4.2.17) (2020-03-31)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+
+
+
+
+## [4.2.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.2.15...@pie-lib/charting@4.2.16) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+
+
+
+
+## [4.2.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.2.14...@pie-lib/charting@4.2.15) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+
+
+
+
+## [4.2.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.2.13...@pie-lib/charting@4.2.14) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+
+
+
+
+## [4.2.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.2.12...@pie-lib/charting@4.2.13) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+
+
+
+
+## [4.2.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.2.11...@pie-lib/charting@4.2.12) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+
+
+
+
+## [4.2.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.2.10...@pie-lib/charting@4.2.11) (2020-03-30)
+
+
+### Bug Fixes
+
+* correct export syntax ([b7b6b57](https://github.com/pie-framework/pie-lib/commit/b7b6b57))
+
+
+
+
+
+## [4.2.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.2.9...@pie-lib/charting@4.2.10) (2020-03-30)
+
+
+### Bug Fixes
+
+* add module prop to package.json ([0d81793](https://github.com/pie-framework/pie-lib/commit/0d81793))
+
+
+
+
+
 ## [4.2.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.2.8...@pie-lib/charting@4.2.9) (2020-03-18)
 
 **Note:** Version bump only for package @pie-lib/charting

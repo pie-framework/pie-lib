@@ -3,6 +3,92 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/controller-utils@0.2.15...@pie-lib/controller-utils@0.2.16) (2020-03-31)
+
+
+### Bug Fixes
+
+* rm ExportNamespaceSpecifier ([970e2ed](https://github.com/pie-framework/pie-lib/commit/970e2ed))
+
+
+
+
+
+## [0.2.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/controller-utils@0.2.14...@pie-lib/controller-utils@0.2.15) (2020-03-31)
+
+**Note:** Version bump only for package @pie-lib/controller-utils
+
+
+
+
+
+## [0.2.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/controller-utils@0.2.13...@pie-lib/controller-utils@0.2.14) (2020-03-31)
+
+**Note:** Version bump only for package @pie-lib/controller-utils
+
+
+
+
+
+## [0.2.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/controller-utils@0.2.12...@pie-lib/controller-utils@0.2.13) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/controller-utils
+
+
+
+
+
+## [0.2.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/controller-utils@0.2.11...@pie-lib/controller-utils@0.2.12) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/controller-utils
+
+
+
+
+
+## [0.2.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/controller-utils@0.2.10...@pie-lib/controller-utils@0.2.11) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/controller-utils
+
+
+
+
+
+## [0.2.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/controller-utils@0.2.9...@pie-lib/controller-utils@0.2.10) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/controller-utils
+
+
+
+
+
+## [0.2.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/controller-utils@0.2.8...@pie-lib/controller-utils@0.2.9) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/controller-utils
+
+
+
+
+
+## [0.2.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/controller-utils@0.2.7...@pie-lib/controller-utils@0.2.8) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/controller-utils
+
+
+
+
+
+## [0.2.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/controller-utils@0.2.6...@pie-lib/controller-utils@0.2.7) (2020-03-30)
+
+
+### Bug Fixes
+
+* add module prop to package.json ([694b106](https://github.com/pie-framework/pie-lib/commit/694b106))
+
+
+
+
+
 ## [0.2.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/controller-utils@0.2.5...@pie-lib/controller-utils@0.2.6) (2020-03-29)
 
 

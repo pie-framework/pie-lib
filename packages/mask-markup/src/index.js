@@ -1,5 +1,14 @@
-export MaskMarkup from './with-mask';
-export DragInTheBlank from './drag-in-the-blank';
-export ConstructedResponse from './constructed-response';
-export InlineDropdown from './inline-dropdown';
-export componentize from './componentize';
+import { withMask, buildLayoutFromMarkup } from './with-mask';
+import DragInTheBlank from './drag-in-the-blank';
+import ConstructedResponse from './constructed-response';
+import InlineDropdown from './inline-dropdown';
+import componentize from './componentize';
+
+export {
+  withMask,
+  buildLayoutFromMarkup,
+  DragInTheBlank,
+  ConstructedResponse,
+  InlineDropdown,
+  componentize
+};

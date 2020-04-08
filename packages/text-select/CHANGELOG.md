@@ -3,6 +3,92 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.20](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.5.19...@pie-lib/text-select@1.5.20) (2020-03-31)
+
+**Note:** Version bump only for package @pie-lib/text-select
+
+
+
+
+
+## [1.5.19](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.5.18...@pie-lib/text-select@1.5.19) (2020-03-31)
+
+**Note:** Version bump only for package @pie-lib/text-select
+
+
+
+
+
+## [1.5.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.5.17...@pie-lib/text-select@1.5.18) (2020-03-31)
+
+**Note:** Version bump only for package @pie-lib/text-select
+
+
+
+
+
+## [1.5.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.5.16...@pie-lib/text-select@1.5.17) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/text-select
+
+
+
+
+
+## [1.5.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.5.15...@pie-lib/text-select@1.5.16) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/text-select
+
+
+
+
+
+## [1.5.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.5.14...@pie-lib/text-select@1.5.15) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/text-select
+
+
+
+
+
+## [1.5.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.5.13...@pie-lib/text-select@1.5.14) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/text-select
+
+
+
+
+
+## [1.5.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.5.12...@pie-lib/text-select@1.5.13) (2020-03-30)
+
+
+### Bug Fixes
+
+* correct export syntax ([db7fcc0](https://github.com/pie-framework/pie-lib/commit/db7fcc0))
+
+
+
+
+
+## [1.5.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.5.11...@pie-lib/text-select@1.5.12) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/text-select
+
+
+
+
+
+## [1.5.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.5.10...@pie-lib/text-select@1.5.11) (2020-03-30)
+
+
+### Bug Fixes
+
+* add module prop to package.json ([946c118](https://github.com/pie-framework/pie-lib/commit/946c118))
+
+
+
+
+
 ## [1.5.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.5.9...@pie-lib/text-select@1.5.10) (2020-03-18)
 
 **Note:** Version bump only for package @pie-lib/text-select

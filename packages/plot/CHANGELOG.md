@@ -3,6 +3,92 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@1.3.13...@pie-lib/plot@1.3.14) (2020-03-31)
+
+**Note:** Version bump only for package @pie-lib/plot
+
+
+
+
+
+## [1.3.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@1.3.12...@pie-lib/plot@1.3.13) (2020-03-31)
+
+**Note:** Version bump only for package @pie-lib/plot
+
+
+
+
+
+## [1.3.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@1.3.11...@pie-lib/plot@1.3.12) (2020-03-31)
+
+**Note:** Version bump only for package @pie-lib/plot
+
+
+
+
+
+## [1.3.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@1.3.10...@pie-lib/plot@1.3.11) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/plot
+
+
+
+
+
+## [1.3.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@1.3.9...@pie-lib/plot@1.3.10) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/plot
+
+
+
+
+
+## [1.3.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@1.3.8...@pie-lib/plot@1.3.9) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/plot
+
+
+
+
+
+## [1.3.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@1.3.7...@pie-lib/plot@1.3.8) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/plot
+
+
+
+
+
+## [1.3.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@1.3.6...@pie-lib/plot@1.3.7) (2020-03-30)
+
+
+### Bug Fixes
+
+* correct export syntax ([db7fcc0](https://github.com/pie-framework/pie-lib/commit/db7fcc0))
+
+
+
+
+
+## [1.3.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@1.3.5...@pie-lib/plot@1.3.6) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/plot
+
+
+
+
+
+## [1.3.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@1.3.4...@pie-lib/plot@1.3.5) (2020-03-30)
+
+
+### Bug Fixes
+
+* add module prop to package.json ([387232f](https://github.com/pie-framework/pie-lib/commit/387232f))
+
+
+
+
+
 ## [1.3.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@1.3.3...@pie-lib/plot@1.3.4) (2020-03-18)
 
 **Note:** Version bump only for package @pie-lib/plot

@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import debug from 'debug';
+import MathQuill from '@pie-framework/mathquill';
 
 let MQ;
 if (typeof window !== 'undefined') {
-  const MathQuill = require('@pie-framework/mathquill');
   MQ = MathQuill.getInterface(2);
 }
 

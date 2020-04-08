@@ -3,6 +3,89 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.20](https://github.com/pie-framework/pie-lib/compare/@pie-lib/feedback@0.4.19...@pie-lib/feedback@0.4.20) (2020-03-31)
+
+**Note:** Version bump only for package @pie-lib/feedback
+
+
+
+
+
+## [0.4.19](https://github.com/pie-framework/pie-lib/compare/@pie-lib/feedback@0.4.18...@pie-lib/feedback@0.4.19) (2020-03-31)
+
+**Note:** Version bump only for package @pie-lib/feedback
+
+
+
+
+
+## [0.4.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/feedback@0.4.17...@pie-lib/feedback@0.4.18) (2020-03-31)
+
+**Note:** Version bump only for package @pie-lib/feedback
+
+
+
+
+
+## [0.4.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/feedback@0.4.16...@pie-lib/feedback@0.4.17) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/feedback
+
+
+
+
+
+## [0.4.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/feedback@0.4.15...@pie-lib/feedback@0.4.16) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/feedback
+
+
+
+
+
+## [0.4.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/feedback@0.4.14...@pie-lib/feedback@0.4.15) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/feedback
+
+
+
+
+
+## [0.4.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/feedback@0.4.13...@pie-lib/feedback@0.4.14) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/feedback
+
+
+
+
+
+## [0.4.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/feedback@0.4.12...@pie-lib/feedback@0.4.13) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/feedback
+
+
+
+
+
+## [0.4.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/feedback@0.4.11...@pie-lib/feedback@0.4.12) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/feedback
+
+
+
+
+
+## [0.4.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/feedback@0.4.10...@pie-lib/feedback@0.4.11) (2020-03-30)
+
+
+### Bug Fixes
+
+* add module prop to package.json ([bb8039d](https://github.com/pie-framework/pie-lib/commit/bb8039d))
+
+
+
+
+
 ## [0.4.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/feedback@0.4.9...@pie-lib/feedback@0.4.10) (2020-03-29)
 
 

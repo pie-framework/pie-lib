@@ -3,6 +3,112 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.4.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.4.11...@pie-lib/math-input@6.4.12) (2020-03-31)
+
+
+### Bug Fixes
+
+* remove require (bad es import) ([5c1e025](https://github.com/pie-framework/pie-lib/commit/5c1e025))
+
+
+
+
+
+## [6.4.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.4.10...@pie-lib/math-input@6.4.11) (2020-03-31)
+
+
+### Bug Fixes
+
+* rm ExportNamespaceSpecifier ([970e2ed](https://github.com/pie-framework/pie-lib/commit/970e2ed))
+
+
+
+
+
+## [6.4.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.4.9...@pie-lib/math-input@6.4.10) (2020-03-31)
+
+
+### Bug Fixes
+
+* correct module path ([b6b5b6f](https://github.com/pie-framework/pie-lib/commit/b6b5b6f))
+
+
+
+
+
+## [6.4.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.4.8...@pie-lib/math-input@6.4.9) (2020-03-31)
+
+**Note:** Version bump only for package @pie-lib/math-input
+
+
+
+
+
+## [6.4.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.4.7...@pie-lib/math-input@6.4.8) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/math-input
+
+
+
+
+
+## [6.4.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.4.6...@pie-lib/math-input@6.4.7) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/math-input
+
+
+
+
+
+## [6.4.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.4.5...@pie-lib/math-input@6.4.6) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/math-input
+
+
+
+
+
+## [6.4.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.4.4...@pie-lib/math-input@6.4.5) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/math-input
+
+
+
+
+
+## [6.4.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.4.3...@pie-lib/math-input@6.4.4) (2020-03-30)
+
+
+### Bug Fixes
+
+* correct export syntax ([db7fcc0](https://github.com/pie-framework/pie-lib/commit/db7fcc0))
+
+
+
+
+
+## [6.4.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.4.2...@pie-lib/math-input@6.4.3) (2020-03-30)
+
+
+### Bug Fixes
+
+* correct export syntax ([10c40b1](https://github.com/pie-framework/pie-lib/commit/10c40b1))
+
+
+
+
+
+## [6.4.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.4.1...@pie-lib/math-input@6.4.2) (2020-03-30)
+
+
+### Bug Fixes
+
+* add module prop to package.json ([df40020](https://github.com/pie-framework/pie-lib/commit/df40020))
+
+
+
+
+
 ## [6.4.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.4.0...@pie-lib/math-input@6.4.1) (2020-03-18)
 
 **Note:** Version bump only for package @pie-lib/math-input

@@ -3,6 +3,89 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/test-utils@0.2.11...@pie-lib/test-utils@0.2.12) (2020-03-31)
+
+**Note:** Version bump only for package @pie-lib/test-utils
+
+
+
+
+
+## [0.2.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/test-utils@0.2.10...@pie-lib/test-utils@0.2.11) (2020-03-31)
+
+**Note:** Version bump only for package @pie-lib/test-utils
+
+
+
+
+
+## [0.2.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/test-utils@0.2.9...@pie-lib/test-utils@0.2.10) (2020-03-31)
+
+**Note:** Version bump only for package @pie-lib/test-utils
+
+
+
+
+
+## [0.2.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/test-utils@0.2.8...@pie-lib/test-utils@0.2.9) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/test-utils
+
+
+
+
+
+## [0.2.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/test-utils@0.2.7...@pie-lib/test-utils@0.2.8) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/test-utils
+
+
+
+
+
+## [0.2.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/test-utils@0.2.6...@pie-lib/test-utils@0.2.7) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/test-utils
+
+
+
+
+
+## [0.2.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/test-utils@0.2.5...@pie-lib/test-utils@0.2.6) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/test-utils
+
+
+
+
+
+## [0.2.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/test-utils@0.2.4...@pie-lib/test-utils@0.2.5) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/test-utils
+
+
+
+
+
+## [0.2.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/test-utils@0.2.3...@pie-lib/test-utils@0.2.4) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/test-utils
+
+
+
+
+
+## [0.2.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/test-utils@0.2.2...@pie-lib/test-utils@0.2.3) (2020-03-30)
+
+
+### Bug Fixes
+
+* add module prop to package.json ([e0cc500](https://github.com/pie-framework/pie-lib/commit/e0cc500))
+
+
+
+
+
 ## [0.2.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/test-utils@0.2.1...@pie-lib/test-utils@0.2.2) (2019-08-21)
 
 **Note:** Version bump only for package @pie-lib/test-utils

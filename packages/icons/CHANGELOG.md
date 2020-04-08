@@ -3,6 +3,89 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.4.17...@pie-lib/icons@2.4.18) (2020-03-31)
+
+**Note:** Version bump only for package @pie-lib/icons
+
+
+
+
+
+## [2.4.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.4.16...@pie-lib/icons@2.4.17) (2020-03-31)
+
+**Note:** Version bump only for package @pie-lib/icons
+
+
+
+
+
+## [2.4.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.4.15...@pie-lib/icons@2.4.16) (2020-03-31)
+
+**Note:** Version bump only for package @pie-lib/icons
+
+
+
+
+
+## [2.4.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.4.14...@pie-lib/icons@2.4.15) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/icons
+
+
+
+
+
+## [2.4.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.4.13...@pie-lib/icons@2.4.14) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/icons
+
+
+
+
+
+## [2.4.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.4.12...@pie-lib/icons@2.4.13) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/icons
+
+
+
+
+
+## [2.4.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.4.11...@pie-lib/icons@2.4.12) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/icons
+
+
+
+
+
+## [2.4.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.4.10...@pie-lib/icons@2.4.11) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/icons
+
+
+
+
+
+## [2.4.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.4.9...@pie-lib/icons@2.4.10) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/icons
+
+
+
+
+
+## [2.4.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.4.8...@pie-lib/icons@2.4.9) (2020-03-30)
+
+
+### Bug Fixes
+
+* add module prop to package.json ([6613f3e](https://github.com/pie-framework/pie-lib/commit/6613f3e))
+
+
+
+
+
 ## [2.4.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.4.7...@pie-lib/icons@2.4.8) (2020-03-18)
 
 **Note:** Version bump only for package @pie-lib/icons

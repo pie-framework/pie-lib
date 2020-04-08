@@ -3,6 +3,101 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.66](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.65...@pie-lib/demo@5.3.66) (2020-03-31)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [5.3.65](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.64...@pie-lib/demo@5.3.65) (2020-03-31)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [5.3.64](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.63...@pie-lib/demo@5.3.64) (2020-03-31)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [5.3.63](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.62...@pie-lib/demo@5.3.63) (2020-03-31)
+
+
+### Bug Fixes
+
+* rm charting-config ([4e28693](https://github.com/pie-framework/pie-lib/commit/4e28693))
+
+
+
+
+
+## [5.3.62](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.61...@pie-lib/demo@5.3.62) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [5.3.61](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.60...@pie-lib/demo@5.3.61) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [5.3.60](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.59...@pie-lib/demo@5.3.60) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [5.3.59](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.58...@pie-lib/demo@5.3.59) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [5.3.58](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.57...@pie-lib/demo@5.3.58) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [5.3.57](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.56...@pie-lib/demo@5.3.57) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [5.3.56](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.55...@pie-lib/demo@5.3.56) (2020-03-30)
+
+
+### Bug Fixes
+
+* add module prop to package.json ([1145ec0](https://github.com/pie-framework/pie-lib/commit/1145ec0))
+* bad import accessing lib ([3a6115e](https://github.com/pie-framework/pie-lib/commit/3a6115e))
+
+
+
+
+
 ## [5.3.55](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.54...@pie-lib/demo@5.3.55) (2020-03-29)
 
 **Note:** Version bump only for package @pie-lib/demo

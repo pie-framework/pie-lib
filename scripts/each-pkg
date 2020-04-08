@@ -6,7 +6,16 @@ const pkgRoot = path.resolve(__dirname, '../packages');
 const dirs = fs.readdirSync(pkgRoot);
 
 dirs.map(d => {
-  const pkg = fs.readJsonSync(path.join(pkgRoot, d, 'package.json'));
+  const pkgDir = path.join(pkgRoot, d);
+  const pkg = fs.readJsonSync(path.join(pkgDir, 'package.json'));
 
-  console.log(pkg.name, pkg.module);
+  const moduleExists = fs.pathExistsSync(pkgDir, pkg.module);
+  const mainExists = fs.pathExistsSync(pkgDir, pkg.main);
+  // console.log('moduleExists:', moduleExists);
+  // console.log('mainExists:', mainExists);
+
+  if (!moduleExists || !mainExists) {
+    console.error(pkg.name, 'module:', moduleExists, 'main:', mainExists);
+  }
+  // console.log(pkg.name, pkg.module);
 });

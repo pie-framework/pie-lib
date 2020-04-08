@@ -1033,5 +1033,20 @@
     "committerDate": "2020-03-30 13:04:38 +0100",
     "isTagged": true,
     "tag": "@pie-lib/demo@5.3.56"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "rm charting-config",
+    "merge": null,
+    "header": "fix: rm charting-config",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "4e28693ecb42edb39e115ec3fcdd14be383b7b61",
+    "gitTags": "",
+    "committerDate": "2020-03-31 11:10:04 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/demo@5.3.63"
   }
 ]

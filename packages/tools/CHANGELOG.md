@@ -3,6 +3,89 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.9.16...@pie-lib/tools@0.9.17) (2020-03-31)
+
+**Note:** Version bump only for package @pie-lib/tools
+
+
+
+
+
+## [0.9.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.9.15...@pie-lib/tools@0.9.16) (2020-03-31)
+
+**Note:** Version bump only for package @pie-lib/tools
+
+
+
+
+
+## [0.9.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.9.14...@pie-lib/tools@0.9.15) (2020-03-31)
+
+**Note:** Version bump only for package @pie-lib/tools
+
+
+
+
+
+## [0.9.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.9.13...@pie-lib/tools@0.9.14) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/tools
+
+
+
+
+
+## [0.9.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.9.12...@pie-lib/tools@0.9.13) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/tools
+
+
+
+
+
+## [0.9.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.9.11...@pie-lib/tools@0.9.12) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/tools
+
+
+
+
+
+## [0.9.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.9.10...@pie-lib/tools@0.9.11) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/tools
+
+
+
+
+
+## [0.9.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.9.9...@pie-lib/tools@0.9.10) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/tools
+
+
+
+
+
+## [0.9.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.9.8...@pie-lib/tools@0.9.9) (2020-03-30)
+
+**Note:** Version bump only for package @pie-lib/tools
+
+
+
+
+
+## [0.9.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.9.7...@pie-lib/tools@0.9.8) (2020-03-30)
+
+
+### Bug Fixes
+
+* add module prop to package.json ([09543ca](https://github.com/pie-framework/pie-lib/commit/09543ca))
+
+
+
+
+
 ## [0.9.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.9.6...@pie-lib/tools@0.9.7) (2020-03-18)
 
 **Note:** Version bump only for package @pie-lib/tools

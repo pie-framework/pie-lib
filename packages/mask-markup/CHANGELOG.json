@@ -553,5 +553,50 @@
     "committerDate": "2020-03-30 13:02:04 +0100",
     "isTagged": true,
     "tag": "@pie-lib/mask-markup@1.7.14"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "correct export syntax",
+    "merge": null,
+    "header": "fix: correct export syntax",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "db7fcc0fa1bddf9fc2d304978941db04001ec0ab",
+    "gitTags": "",
+    "committerDate": "2020-03-30 22:30:10 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/mask-markup@1.7.16"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "rm old exports from drag",
+    "merge": null,
+    "header": "fix: rm old exports from drag",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "f5d15becf4b6c197b3e2bb4c644e2ba5fc341747",
+    "gitTags": "",
+    "committerDate": "2020-03-30 23:04:24 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/mask-markup@1.7.17"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "bad export in mask-markup",
+    "merge": null,
+    "header": "fix: bad export in mask-markup",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "24a0898137ccf190be6b145464d6d6fcb85a54fc",
+    "gitTags": "",
+    "committerDate": "2020-03-30 23:16:26 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/mask-markup@1.7.18"
   }
 ]
