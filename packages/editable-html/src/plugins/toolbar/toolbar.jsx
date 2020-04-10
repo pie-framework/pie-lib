@@ -6,6 +6,7 @@ import React from 'react';
 import classNames from 'classnames';
 import debug from 'debug';
 import SlatePropTypes from 'slate-prop-types';
+import debounce from 'lodash/debounce';
 
 import { findSingleNode, findParentNode } from '../utils';
 import { withStyles } from '@material-ui/core/styles';
@@ -39,6 +40,7 @@ export class Toolbar extends React.Component {
     zIndex: PropTypes.number,
     value: SlatePropTypes.value.isRequired,
     plugins: PropTypes.array,
+    plugin: PropTypes.object,
     onImageClick: PropTypes.func,
     onDone: PropTypes.func.isRequired,
     classes: PropTypes.object.isRequired,
@@ -108,6 +110,16 @@ export class Toolbar extends React.Component {
         onDone();
       }
     }
+  };
+
+  onDeleteClick = debounce(
+    (e, plugin, node, value, onChange) => plugin.deleteNode(e, node, value, onChange),
+    500
+  );
+
+  onDeleteMouseDown = (e, plugin, node, value, onChange) => {
+    e.persist();
+    this.onDeleteClick(e, plugin, node, value, onChange);
   };
 
   render() {
@@ -234,7 +246,7 @@ export class Toolbar extends React.Component {
             <IconButton
               aria-label="Delete"
               className={classes.iconRoot}
-              onMouseDown={e => plugin.deleteNode(e, node, value, onChange)}
+              onMouseDown={e => this.onDeleteMouseDown(e, plugin, node, value, onChange)}
               classes={{
                 root: classes.iconRoot
               }}
