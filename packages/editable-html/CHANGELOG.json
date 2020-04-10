@@ -2663,5 +2663,20 @@
     "committerDate": "2020-03-31 11:47:15 +0100",
     "isTagged": true,
     "tag": "@pie-lib/editable-html@7.11.10"
+  },
+  {
+    "type": "feat",
+    "scope": "math",
+    "subject": "made sure that math is clickable inside table [ch3518]",
+    "merge": null,
+    "header": "feat(math): made sure that math is clickable inside table [ch3518]",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "23185dda2b1206f4a88b1f83127e87b2e93b8b7e",
+    "gitTags": "",
+    "committerDate": "2020-04-03 15:18:14 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.12.0"
   }
 ]
