@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.29...@pie-lib/math-toolbar@1.5.0) (2020-04-08)
+
+
+### Features
+
+* **math:** made sure that math is clickable inside table [ch3518] ([23185dd](https://github.com/pie-framework/pie-lib/commit/23185dd))
+
+
+
+
+
 ## [1.4.29](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.28...@pie-lib/math-toolbar@1.4.29) (2020-03-31)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
