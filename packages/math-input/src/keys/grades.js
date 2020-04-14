@@ -31,7 +31,6 @@ const advancedAlgebra = (() => {
 
 const statisticsSet = (() => {
   const out = [...hs.map(arr => [...arr])];
-  out[0][out[0].length - 1] = subSup.subscript;
   out[1].push(statistics.mu);
   out[2].push(statistics.xBar);
   out[3].push(statistics.yBar);
