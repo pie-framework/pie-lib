@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.4.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.4.13...@pie-lib/math-input@6.4.14) (2020-04-14)
+
+
+### Bug Fixes
+
+* **math-input:** remove extra subscript button from statistics keyset - PD-38 ([17a0659](https://github.com/pie-framework/pie-lib/commit/17a0659))
+
+
+
+
+
 ## [6.4.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.4.12...@pie-lib/math-input@6.4.13) (2020-04-08)
 
 **Note:** Version bump only for package @pie-lib/math-input
