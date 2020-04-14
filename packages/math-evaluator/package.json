@@ -19,7 +19,7 @@
   "dependencies": {
     "@pie-framework/math-expressions": "2.2.0",
     "jsesc": "^2.5.2",
-    "mathjs": "^5.4.1"
+    "mathjs": "^6.6.3"
   },
   "devDependencies": {
     "@pie-lib/test-utils": "^0.2.13"
