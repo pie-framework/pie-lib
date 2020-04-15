@@ -1183,5 +1183,20 @@
     "committerDate": "2020-03-31 15:48:16 +0100",
     "isTagged": true,
     "tag": "@pie-lib/math-input@6.4.12"
+  },
+  {
+    "type": "fix",
+    "scope": "math-input",
+    "subject": "remove extra subscript button from statistics keyset - PD-38",
+    "merge": null,
+    "header": "fix(math-input): remove extra subscript button from statistics keyset - PD-38",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "17a06599726422786effead98752840cca9f9dc6",
+    "gitTags": " (origin/fix/PD-38)",
+    "committerDate": "2020-04-14 15:08:14 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/math-input@6.4.14"
   }
 ]
