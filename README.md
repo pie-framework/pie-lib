@@ -42,6 +42,14 @@ Just point jest to the dir/file:
 - the packages use `independent` versioning, meaning that a change in 1 package won't bump another package's version.
 - use [conventional commits syntax][ccs] when commiting, lerna will detect the appropriate version bump.
 
+### rebase
+
+To skip husky during a rebase do:
+
+```shell
+HUSKY_SKIP_HOOKS=1 git rebase ...
+```
+
 ### dependencies
 
 [lerna]: https://lernajs.io/

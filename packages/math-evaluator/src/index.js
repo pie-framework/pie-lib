@@ -1,26 +1,23 @@
 /* eslint-disable no-console */
-import mathjs from 'mathjs';
+import * as mathjs from 'mathjs';
 import me from '@pie-framework/math-expressions';
 
 const decimalCommaRegex = /,/g;
 const decimalRegex = /\.|,/g;
 const decimalWithThousandSeparatorNumberRegex = /^(?!0+\.00)(?=.{1,9}(\.|$))(?!0(?!\.))\d{1,3}(,\d{3})*(\.\d+)?$/;
 
-function rationalizeAllPossibleSubNodes(expression) {
-  const tree = mathjs.parse(expression);
-
+const rationalizeAllPossibleSubNodes = expression => rationalize(mathjs.parse(expression));
+const rationalize = tree => {
   const transformedTree = tree.transform(node => {
     try {
       const rationalizedNode = mathjs.rationalize(node);
-
       return rationalizedNode;
     } catch {
       return node;
     }
   });
-
   return transformedTree;
-}
+};
 
 function prepareExpression(string, isLatex) {
   let returnValue = string ? string.trim() : '';
@@ -32,7 +29,6 @@ function prepareExpression(string, isLatex) {
     : textToMathText(`${returnValue}`, { unknownCommands: 'passthrough' }).toString();
 
   returnValue = returnValue.replace('=', '==');
-
   return rationalizeAllPossibleSubNodes(returnValue);
 }
 
@@ -114,8 +110,14 @@ function shouldRationalizeEntireTree(tree) {
 function containsDecimal(expression = '') {
   return expression.match(decimalRegex);
 }
+const SIMPLIFY_RULES = [
+  { l: 'n1^(1/n2)', r: 'nthRoot(n1, n2)' },
+  { l: 'sqrt(n1)', r: 'nthRoot(n1, 2)' }
+];
 
-export default function areValuesEqual(valueOne, valueTwo, options = {}) {
+const simplify = v => mathjs.simplify(v, SIMPLIFY_RULES.concat(mathjs.simplify.rules)); //.concat(SIMPLIFY_RULES));
+
+const areValuesEqual = (valueOne, valueTwo, options = {}) => {
   const {
     // if explicitly set to false, having a decimal value in either side will result in a false equality
     // regardless of mathematical correctness
@@ -151,19 +153,21 @@ export default function areValuesEqual(valueOne, valueTwo, options = {}) {
     ? mathjs.rationalize(preparedValueTwo)
     : preparedValueTwo;
 
-  one = mathjs.simplify(one);
-  two = mathjs.simplify(two);
+  one = simplify(one);
+  two = simplify(two);
 
   const equals = one.equals(two);
 
   return inverse ? !equals : equals;
-}
+};
 
 export const ave = (a, b) => {
   const am = mathjs.parse(a);
   const bm = mathjs.parse(b);
 
-  const arm = mathjs.simplify(am);
-  const brm = mathjs.simplify(bm);
+  const arm = simplify(am);
+  const brm = simplify(bm);
   return arm.equals(brm);
 };
+
+export default areValuesEqual;
