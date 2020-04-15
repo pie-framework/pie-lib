@@ -279,6 +279,13 @@ describe('math-evaluator', () => {
     '13/2'
   );
 
+  it.each`
+    a                        | b
+    ${'((x^2 + x) / x) - 1'} | ${'x'}
+  `('$a == $b', ({ a, b }) => {
+    expect(areValuesEqual(a, b)).toBe(true);
+  });
+
   assertEqual('evaluates simple variable expressions correctly')(
     'x',
     'x',
@@ -389,5 +396,21 @@ describe('math-evaluator', () => {
         isLatex: true
       })
     ).toEqual(true);
+  });
+
+  describe('PD-3', () => {
+    it.each`
+      a                                                               | b
+      ${'\\left(x\\right)^{ \\frac{1}{\\left(y + 3\\right)}}'}        | ${'\\sqrt[\\left(y + 3\\right)]{x}'}
+      ${'\\left(x\\right)^{\\frac{1}{3}}'}                            | ${'\\sqrt[3]{x}'}
+      ${'\\left(x\\right)^{\\frac{1}{n}}'}                            | ${'\\sqrt[n]{x}'}
+      ${'\\left(x\\right)^{\\frac{1}{2}}'}                            | ${'\\sqrt{x}'}
+      ${'\\left(x-1\\right)^{\\frac{1}{2}}+3'}                        | ${'\\sqrt{x-1}+3'}
+      ${'f^{-1}\\left(x\\right)=\\left(x-1\\right)^{\\frac{1}{2}}+3'}
+      ${'f^{-1}\\left(x\\right)=\\sqrt{x-1}+3'}
+    `('$a == $b', ({ a, b }) => {
+      const opts = { allowDecimals: true, isLatex: true };
+      expect(areValuesEqual(a, b, opts)).toBeTruthy();
+    });
   });
 });
