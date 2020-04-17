@@ -37,19 +37,69 @@ export const paragraphs = text => {
 
   return out;
 };
+
 export const sentences = text => {
-  const tree = new English().parse(text);
+  // Sentences that end with one-character-word (e.g.: "This is sentence 1.") are not parsed properly.
+  // Sentences are parsed properly however if there is a white space if front of the "." (e.g.: "This is sentence 1 .")
+
+  // To fix this, we insert a special group of characters in front of each "."
+  // that belongs to a sentence where the last word is a one-character-word
+  // and we remove the special group after that
+  // The special group that is inserted is "@_# "
+
+  // e.g.: "Sentence 1. Sentence 2. Sentence 3."
+  // I. gets transformed into: "Sentence 1@_# . Sentence 2@_# . Sentence 3@_# ."
+  // II.
+  // Sentence 1@_# .
+  //    1. start = 0 - 0 => token = { text: 'Sentence 1', start: 0, end: 11 }
+  //    2. eliminatedCharacters: 4, tokens: [{ text: 'Sentence 1', start: 0, end: 11 }]
+  // Sentence 2@_# .
+  //    1. start = 16 - 4 => token = { text: 'Sentence 2', start: 12, end: 23 }
+  //    2. eliminatedCharacters: 8, tokens: [{ text: 'Sentence 1', start: 0, end: 11 }, { text: 'Sentence 2', start: 12, end: 23 }]
+  // Sentence 3@_# .
+  //    1. start = 32 - 8 => token = { text: 'Sentence 3', start: 24, end: 35 }
+  //    2. eliminatedCharacters: 12, tokens: [{ text: 'Sentence 1', start: 0, end: 11 }, { text: 'Sentence 2', start: 12, end: 23 }, { text: 'Sentence 3', start: 24, end: 35 }]
+
+  // I. add "@_# " before ".", where needed
+  const prepareText = (text || '').replace(/( +.{1})\./g, '$1@_# .');
+
+  // parse sentences
+  const tree = new English().parse(prepareText);
+
+  // we will accumulate not only the tokens but also the number of characters (belonging to the Special Group) that were removed
+  const initialAccumulator = {
+    tokens: [],
+    eliminatedCharacters: 0
+  };
 
   const out = tree.children.reduce((acc, child) => {
     if (child.type === 'ParagraphNode') {
       return child.children.reduce((acc, child) => {
+        // II for each sentence
         if (child.type === 'SentenceNode') {
+          // get the current sentence value (value that contains the Special Groups: "@_# ")
+          const sentenceText = getSentence(child);
+          // remove all the Special Groups "@_# "
+          const parsedSentence = sentenceText.replace(/( +.{1})@_# \./g, '$1.');
+
+          // 1. we have to take the current offset - the number of previously removed "@_# "
+          const start = child.position.start.offset - acc.eliminatedCharacters;
+
           const sentence = {
-            text: getSentence(child),
-            start: child.position.start.offset,
-            end: child.position.end.offset
+            text: parsedSentence,
+            start,
+            end: start + parsedSentence.length
           };
-          return acc.concat([sentence]);
+
+          // how many special characters we eliminated in this sentence
+          // usually, we should not have more than one Special Group per sentence, but just to make sure:
+          const eliminatedCharactersInThisSentence = sentenceText.length - parsedSentence.length;
+
+          // 2. increase number of eliminated characters
+          return {
+            tokens: acc.tokens.concat([sentence]),
+            eliminatedCharacters: acc.eliminatedCharacters + eliminatedCharactersInThisSentence
+          };
         } else {
           return acc;
         }
@@ -57,10 +107,11 @@ export const sentences = text => {
     } else {
       return acc;
     }
-  }, []);
+  }, initialAccumulator);
 
-  return out;
+  return out.tokens;
 };
+
 export const words = text => {
   const tree = new English().parse(text);
 
@@ -105,6 +156,7 @@ class Intersection {
     return this.results.filter(r => r.type === 'within-selection').map(t => t.token);
   }
 }
+
 /**
  * get intersection info for the selection in relation to tokens.
  * @param {{start: number, end: number}} selection

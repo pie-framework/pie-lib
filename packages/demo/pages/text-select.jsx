@@ -4,17 +4,27 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { Header, Body } from '../src/formatting';
-import clone from 'lodash/clone';
 import classNames from 'classnames';
 import green from '@material-ui/core/colors/green';
 import orange from '@material-ui/core/colors/orange';
 import compact from 'lodash/compact';
 
 const text = () => [
+  'This is sentence a.',
+  'This is sentence b.',
   'Rachel cut out 8 stars in 6 minutes.',
   'Lovelle cut out 6 stars in 4 minutes.',
   'Rachel cut out 4 more stars than Lovelle.',
-  'Lovelle and Rachel cut the same number of stars in 6 minutes.'
+  'Lovelle and Rachel cut the same number of stars in 6 minutes.',
+  'I am Mrs. Pink.',
+  'This is sentence 1.',
+  'This is sentence 2.',
+  'This is sentence 3.',
+  'This is sentence 4.',
+  'Sentence 1.',
+  'Sentence 2.',
+  'Sentence 3.',
+  'Dr. A. says he will call in 2.'
 ];
 
 const raw = text().join(' ');

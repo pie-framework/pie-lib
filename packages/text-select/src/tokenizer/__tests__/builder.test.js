@@ -169,12 +169,30 @@ describe('builder', () => {
       expect(out[0]).toEqual({ text: 'This is foo.', start: 0, end: 12 });
       expect(out[1]).toEqual({ text: 'This is bar.', start: 13, end: 25 });
     });
+
     it('works', () => {
       const text =
         'On Jan. 20, former Sen. Barack Obama became the 44th President of the USA. Millions attended the Inauguration.';
 
       const out = sentences(text);
       expect(out.length).toEqual(2);
+    });
+
+    it('works for sentences ending in one-character-words', () => {
+      const text =
+        'This is Sentence 1. This is Sentence 2. This is Sentence 3. This is Sentence 4. Dr. A. said he\'ll call in 5.' ;
+
+      const out = sentences(text);
+
+      expect(out.length).toEqual(5);
+
+      expect(out).toEqual([
+        { text: 'This is Sentence 1.', start: 0, end: 19 },
+        { text: 'This is Sentence 2.', start: 20, end: 39 },
+        { text: 'This is Sentence 3.', start: 40, end: 59 },
+        { text: 'This is Sentence 4.', start: 60, end: 79 },
+        { text: 'Dr. A. said he\'ll call in 5.', start: 80, end: 108 },
+      ])
     });
   });
 
@@ -193,6 +211,7 @@ describe('builder', () => {
         end: 57
       });
     });
+
     it('works', () => {
       const text =
         'On Jan. 20, former Sen. Barack Obama became the 44th President of the USA. Millions attended the Inauguration.' +
