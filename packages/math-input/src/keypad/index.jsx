@@ -19,13 +19,19 @@ const LatexButton = withStyles(theme => ({
     textTransform: 'none',
     padding: 0,
     margin: 0,
-    fontSize: '110%'
+    fontSize: '110% !important'
   },
   latexButton: {
     pointerEvents: 'none',
     textTransform: 'none !important',
+    '& .mq-scaled.mq-sqrt-prefix': {
+      transform: 'scale(1, 0.9) !important'
+    },
+    '& .mq-sup-only .mq-sup': {
+      marginBottom: '0.9px !important'
+    },
     '& .mq-empty': {
-      backgroundColor: fade(theme.palette.secondary.main, 0.4)
+      backgroundColor: `${fade(theme.palette.secondary.main, 0.4)} !important`
     },
     '& .mq-overline .mq-overline-inner': {
       borderTop: '2px solid black'
@@ -37,7 +43,7 @@ const LatexButton = withStyles(theme => ({
         '&:before': {
           fontSize: '80%',
           left: 'calc(-13%)',
-          top: '-0.25em',
+          top: '-0.25em'
         },
         '&:after': {
           fontSize: '80%',
@@ -47,12 +53,12 @@ const LatexButton = withStyles(theme => ({
         '&.mq-empty:before': {
           fontSize: '80%',
           left: 'calc(-13%)',
-          top: '-0.25em',
+          top: '-0.25em'
         },
         '&.mq-empty:after': {
           fontSize: '80%',
           right: 'calc(-13%)',
-          top: '-0.25em',
+          top: '-0.25em'
         }
       },
       '&.mq-arrow-right:before': {
@@ -69,6 +75,21 @@ const LatexButton = withStyles(theme => ({
     },
     '& .mq-root-block': {
       padding: '5px'
+    },
+    '& .mq-overarrow.mq-arrow-both.mq-empty:after': {
+      right: '-6px',
+      fontSize: '80% !important',
+      top: '-3px'
+    },
+    '& .mq-overarrow.mq-arrow-right.mq-empty:before': {
+      right: '-5px',
+      fontSize: '80% !important',
+      top: '-3px'
+    },
+    '& .mq-overarrow.mq-arrow-both.mq-empty:before': {
+      left: '-6px',
+      fontSize: '80% !important',
+      top: '-3px'
     }
   }
 }))(props => (
@@ -189,7 +210,7 @@ const styles = theme => ({
     padding: `${theme.spacing.unit}px 0 ${theme.spacing.unit}px 0`
   },
   labelButton: {
-    fontSize: '140%',
+    fontSize: '140% !important',
     backgroundColor: lighten(theme.palette.primary.light, 0.5),
     '&:hover': {
       backgroundColor: lighten(theme.palette.primary.light, 0.7)
@@ -214,11 +235,11 @@ const styles = theme => ({
     }
   },
   comma: {
-    fontSize: '200%',
+    fontSize: '200% !important',
     lineHeight: '100%'
   },
   dot: {
-    fontSize: '200%',
+    fontSize: '200% !important',
     lineHeight: '100%'
   },
   icon: {

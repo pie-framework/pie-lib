@@ -403,5 +403,20 @@
     "committerDate": "2020-03-30 13:02:17 +0100",
     "isTagged": true,
     "tag": "@pie-lib/math-evaluator@0.6.9"
+  },
+  {
+    "type": "fix",
+    "scope": "math-evaluator",
+    "subject": "support `x^(1/y) == sqrt(x,y)` PD-3",
+    "merge": null,
+    "header": "fix(math-evaluator): support `x^(1/y) == sqrt(x,y)` PD-3",
+    "body": "* add a mathjs simplify rule to extend the default ruleset",
+    "footer": null,
+    "notes": [],
+    "hash": "fa148ff4db1703f572beefa2d6c929fdc445261a",
+    "gitTags": "",
+    "committerDate": "2020-04-15 13:13:15 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/math-evaluator@0.6.21"
   }
 ]

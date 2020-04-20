@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-utils@1.1.14...@pie-lib/graphing-utils@1.1.15) (2020-04-14)
+
+**Note:** Version bump only for package @pie-lib/graphing-utils
+
+
+
+
+
 ## [1.1.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-utils@1.1.13...@pie-lib/graphing-utils@1.1.14) (2020-04-08)
 
 **Note:** Version bump only for package @pie-lib/graphing-utils
