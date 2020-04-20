@@ -24,7 +24,7 @@ const LatexButton = withStyles(theme => ({
   latexButton: {
     pointerEvents: 'none',
     '& .mq-empty': {
-      backgroundColor: fade(theme.palette.secondary.main, 0.4)
+      backgroundColor: `${fade(theme.palette.secondary.main, 0.4)} !important`
     },
     '& .mq-overarrow': {
       width: '30px'
