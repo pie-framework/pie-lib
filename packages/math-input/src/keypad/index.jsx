@@ -23,6 +23,12 @@ const LatexButton = withStyles(theme => ({
   },
   latexButton: {
     pointerEvents: 'none',
+    '& .mq-scaled.mq-sqrt-prefix': {
+      transform: 'scale(1, 0.9) !important'
+    },
+    '& .mq-sup-only .mq-sup': {
+      marginBottom: '0.9px !important'
+    },
     '& .mq-empty': {
       backgroundColor: fade(theme.palette.secondary.main, 0.4)
     },
