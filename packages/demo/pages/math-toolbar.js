@@ -15,9 +15,19 @@ export class Demo extends React.Component {
   componentDidMount() {
     this.setState({ mounted: true });
   }
+
   render() {
     const { mounted } = this.state;
-    return mounted ? <MathToolbar latex={'\\frac{1}{2}'} /> : <div>loading</div>;
+    return mounted ? <div>
+      <MathToolbar keypadMode={1}/>
+      <MathToolbar keypadMode={3}/>
+      <MathToolbar keypadMode={6}/>
+      <MathToolbar keypadMode={8}/>
+      <MathToolbar keypadMode="geometry"/>
+      <MathToolbar keypadMode="advanced-algebra"/>
+      <MathToolbar keypadMode="statistics"/>
+      <MathToolbar latex={'\\frac{1}{2}'}/>
+    </div> : <div>loading</div>;
   }
 }
 

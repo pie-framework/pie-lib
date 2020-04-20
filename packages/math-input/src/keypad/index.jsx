@@ -23,6 +23,7 @@ const LatexButton = withStyles(theme => ({
   },
   latexButton: {
     pointerEvents: 'none',
+    textTransform: 'none !important',
     '& .mq-scaled.mq-sqrt-prefix': {
       transform: 'scale(1, 0.9) !important'
     },
@@ -32,8 +33,45 @@ const LatexButton = withStyles(theme => ({
     '& .mq-empty': {
       backgroundColor: `${fade(theme.palette.secondary.main, 0.4)} !important`
     },
+    '& .mq-overline .mq-overline-inner': {
+      borderTop: '2px solid black'
+    },
     '& .mq-overarrow': {
-      width: '30px'
+      width: '30px',
+      borderTop: '2px solid black',
+      '&.mq-arrow-both': {
+        '&:before': {
+          fontSize: '80%',
+          left: 'calc(-13%)',
+          top: '-0.25em'
+        },
+        '&:after': {
+          fontSize: '80%',
+          right: 'calc(-13%)',
+          top: '-1.5em'
+        },
+        '&.mq-empty:before': {
+          fontSize: '80%',
+          left: 'calc(-13%)',
+          top: '-0.25em'
+        },
+        '&.mq-empty:after': {
+          fontSize: '80%',
+          right: 'calc(-13%)',
+          top: '-0.25em'
+        }
+      },
+      '&.mq-arrow-right:before': {
+        fontSize: '80%',
+        right: 'calc(-13%)',
+        top: '-0.25em'
+      },
+      '& .mq-overarrow-inner': {
+        border: 'none !important'
+      },
+      '& .mq-overarrow-inner .mq-overarrow-inner-right': {
+        display: 'none !important'
+      }
     },
     '& .mq-root-block': {
       padding: '5px'
