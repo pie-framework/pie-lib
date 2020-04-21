@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.23](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.5.22...@pie-lib/text-select@1.5.23) (2020-04-21)
+
+
+### Bug Fixes
+
+* PD-19: Sentence parser was not working properly - updated the package version. ([057a88e](https://github.com/pie-framework/pie-lib/commit/057a88e))
+
+
+
+
+
 ## [1.5.22](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.5.21...@pie-lib/text-select@1.5.22) (2020-04-14)
 
 **Note:** Version bump only for package @pie-lib/text-select

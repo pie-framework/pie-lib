@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.4.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.4.14...@pie-lib/math-input@6.4.15) (2020-04-21)
+
+
+### Bug Fixes
+
+* PD-155: The "pink" background-color set on .mq-empty is overwritten by mathquill.css with "transparent". Added "important" to prevent this. ([18e4ef7](https://github.com/pie-framework/pie-lib/commit/18e4ef7))
+* PD-156: Formatting issues with math editor buttons, specifically in IBX. Updated design for arrows and line, fixed fonts issue (different then expected + various function buttons are capitalized). ([61be51c](https://github.com/pie-framework/pie-lib/commit/61be51c))
+* PD-157: In IBX specifically, characters on math editors are too small. (because they are overwritten) ([3792162](https://github.com/pie-framework/pie-lib/commit/3792162))
+* PD-158: In Item Preview specifically, in IBX only, the math editor radical button and the "squared" button are not correctly labeled ([12f3cd5](https://github.com/pie-framework/pie-lib/commit/12f3cd5))
+
+
+
+
+
 ## [6.4.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.4.13...@pie-lib/math-input@6.4.14) (2020-04-14)
 
 
