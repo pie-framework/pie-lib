@@ -373,5 +373,20 @@
     "committerDate": "2020-03-30 22:30:10 +0100",
     "isTagged": true,
     "tag": "@pie-lib/text-select@1.5.13"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "PD-19: Sentence parser was not working properly - updated the package version.",
+    "merge": null,
+    "header": "fix: PD-19: Sentence parser was not working properly - updated the package version.",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "057a88e17603f9d393b8f16c94904d65f9b404b7",
+    "gitTags": "",
+    "committerDate": "2020-04-21 13:09:37 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/text-select@1.5.23"
   }
 ]
