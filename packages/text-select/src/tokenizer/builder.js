@@ -1,5 +1,5 @@
 import compact from 'lodash/compact';
-import English from 'parse-english';
+import English from '@pie-framework/parse-english';
 import clone from 'lodash/clone';
 
 const g = (str, node) => {
