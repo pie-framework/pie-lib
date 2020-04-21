@@ -2675,6 +2675,16 @@
   dependencies:
     jquery "^3.3.1"
 
+"@pie-framework/parse-english@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@pie-framework/parse-english/-/parse-english-1.0.0.tgz#75557ae960be97625a9684169f7404b2b2b98290"
+  integrity sha512-LL2DTekKtT36af5Li+qWOZidXJMap6BECEZ7fSR82PgTZe38ktzK4TUw5m1UbyDyr1fONOZ3u8vhEi8UqbvG/g==
+  dependencies:
+    nlcst-to-string "^2.0.0"
+    parse-latin "^4.0.0"
+    unist-util-modify-children "^1.0.0"
+    unist-util-visit-children "^1.0.0"
+
 "@pie-lib/test-utils@^0.0.3":
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/@pie-lib/test-utils/-/test-utils-0.0.3.tgz#9bef3bfb236af4cda24e9ed6446794d9615175a0"
@@ -12140,15 +12150,6 @@ parse-asn1@^5.0.0:
     evp_bytestokey "^1.0.0"
     pbkdf2 "^3.0.3"
     safe-buffer "^5.1.1"
-
-"parse-english@git://github.com/pie-framework/parse-english.git#74325187d3dbe64c8164b408152fdcf1ce688b0e":
-  version "4.1.3"
-  resolved "git://github.com/pie-framework/parse-english.git#74325187d3dbe64c8164b408152fdcf1ce688b0e"
-  dependencies:
-    nlcst-to-string "^2.0.0"
-    parse-latin "^4.0.0"
-    unist-util-modify-children "^1.0.0"
-    unist-util-visit-children "^1.0.0"
 
 parse-github-repo-url@^1.3.0:
   version "1.4.1"
