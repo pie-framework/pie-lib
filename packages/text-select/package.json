@@ -22,7 +22,7 @@
     "debug": "^4.1.1",
     "invariant": "^2.2.4",
     "lodash": "^4.17.11",
-    "parse-english": "^4.1.1",
+    "parse-english": "git://github.com/pie-framework/parse-english.git#74325187d3dbe64c8164b408152fdcf1ce688b0e",
     "prop-types": "^15.6.2",
     "unist-util-inspect": "^4.1.3"
   },
