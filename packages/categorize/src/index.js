@@ -37,6 +37,8 @@ export const limitChoices = (choiceId, count, choices) => {
  * @param {*} limit
  */
 export const limitInArrays = (id, arrays, limit) => {
+  arrays = arrays || [];
+
   const result = arrays.reduce(
     (acc, array) => {
       const l = limit - acc.count;
@@ -59,6 +61,8 @@ export const limitInArrays = (id, arrays, limit) => {
  * @param {number} limit
  */
 export const limitInArray = (id, arr, limit) => {
+  arr = arr || [];
+
   if (limit === 0) {
     const stripped = arr.filter(v => v !== id);
     return { array: stripped, count: arr.length - stripped.length };
@@ -88,6 +92,8 @@ export const limitInArray = (id, arr, limit) => {
  * @param {{id:string,categoryCount:number}} choices
  */
 export const ensureNoExtraChoicesInAnswer = (answer, choices) => {
+  choices = choices || [];
+
   const out = choices.reduce((answerArray, choice) => {
     log('choice: ----> ', choice.id, 'categoryCount: ', choice.categoryCount);
     // log('answer array: ', answerArray);
