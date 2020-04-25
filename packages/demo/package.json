@@ -26,7 +26,6 @@
     "classnames": "^2.2.6",
     "jsesc": "^2.5.2",
     "markdown-to-jsx": "^6.9.1",
-    "math-expressions": "^2.0.0-alpha1",
     "mathjs": "^6.6.3",
     "react": "^16.8.1",
     "react-attr-converter": "^0.3.1",
