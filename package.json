@@ -7,7 +7,7 @@
     "scope": "none"
   },
   "engines": {
-    "node": "^11.2.0"
+    "node": ">=11.2.0"
   },
   "scripts": {
     "static": "./scripts/static",
