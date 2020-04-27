@@ -283,5 +283,20 @@
     "committerDate": "2020-03-30 12:59:50 +0100",
     "isTagged": true,
     "tag": "@pie-lib/categorize@0.6.5"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "PD-193: Categorize authoring feature not working on pie-website",
+    "merge": null,
+    "header": "fix: PD-193: Categorize authoring feature not working on pie-website",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "5b14396ebfc4b74b3ab5059364ff2e94fcc92ced",
+    "gitTags": " (origin/fix/PD-193-reduce-break)",
+    "committerDate": "2020-04-24 14:26:44 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/categorize@0.6.17"
   }
 ]

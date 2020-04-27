@@ -603,5 +603,20 @@
     "committerDate": "2020-03-30 13:03:08 +0100",
     "isTagged": true,
     "tag": "@pie-lib/render-ui@4.7.4"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "PD-54: Small font in Input Container.",
+    "merge": null,
+    "header": "fix: PD-54: Small font in Input Container.",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "0a32d3a0258c4a74c99cddd7044b24f1bad3a586",
+    "gitTags": " (origin/fix/PD-54-input-container-font-size)",
+    "committerDate": "2020-04-27 09:40:15 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/render-ui@4.7.16"
   }
 ]
