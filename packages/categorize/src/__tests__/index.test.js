@@ -47,6 +47,10 @@ describe('categorize', () => {
     assert('1', [['1'], ['1']], 1, [['1'], []]);
     assert('1', [['1'], ['1']], 2, [['1'], ['1']]);
     assert('1', [['1'], ['1'], ['1', '2']], 2, [['1'], ['1'], ['2']]);
+    assert('1', [undefined, [], null], 2, [[], [], []]);
+    assert('1', undefined, 2, []);
+    assert('1', null, 2, []);
+    assert('1', [], 2, []);
   });
 
   describe('limitInArray', () => {
@@ -62,6 +66,18 @@ describe('categorize', () => {
       expect(limitInArray('1', ['1', '2', '1'], 1)).toEqual({
         array: ['1', '2'],
         count: 1
+      });
+      expect(limitInArray('1', undefined, 1)).toEqual({
+        array: [],
+        count: 0
+      });
+      expect(limitInArray('1', null, 1)).toEqual({
+        array: [],
+        count: 0
+      });
+      expect(limitInArray('1', [], 1)).toEqual({
+        array: [],
+        count: 0
       });
     });
   });
@@ -153,6 +169,21 @@ describe('categorize', () => {
       [choice('1', 2)],
       [answer('1', ['1']), answer('2', ['1']), answer('3', [])]
     );
+
+    assert(
+      [answer('1', ['1', '1', '1'])],
+      [],
+      [answer('1', ['1', '1', '1'])]);
+
+    assert(
+      [answer('1', ['1', '1', '1'])],
+      undefined,
+      [answer('1', ['1', '1', '1'])]);
+
+    assert(
+      [answer('1', ['1', '1', '1'])],
+      null,
+      [answer('1', ['1', '1', '1'])]);
   });
 
   describe('countChosen', () => {
@@ -164,6 +195,8 @@ describe('categorize', () => {
       });
     };
 
+    assert(null, undefined, 0);
+    assert(null, [], 0);
     assert(null, null, 0);
     assert({}, null, 0);
     assert({ id: '1' }, [], 0);
