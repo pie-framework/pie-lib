@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.71](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.70...@pie-lib/demo@5.3.71) (2020-04-21)
+
+
+### Bug Fixes
+
+* PD-156: Formatting issues with math editor buttons, specifically in IBX. Updated design for arrows and line, fixed fonts issue (different then expected + various function buttons are capitalized). ([61be51c](https://github.com/pie-framework/pie-lib/commit/61be51c))
+* PD-19: Sentence parser was not working properly - updated the package version. ([057a88e](https://github.com/pie-framework/pie-lib/commit/057a88e))
+
+
+
+
+
 ## [5.3.70](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.69...@pie-lib/demo@5.3.70) (2020-04-15)
 
 

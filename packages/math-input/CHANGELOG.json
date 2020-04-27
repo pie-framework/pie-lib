@@ -1224,7 +1224,7 @@
     "footer": null,
     "notes": [],
     "hash": "12f3cd53b04770daca7493e88d489297c56a02b8",
-    "gitTags": "",
+    "gitTags": " (origin/fix/PD-158-math-input-scaled-items)",
     "committerDate": "2020-04-20 12:56:29 +0300",
     "isTagged": true,
     "tag": "@pie-lib/math-input@6.4.15"
@@ -1239,7 +1239,7 @@
     "footer": null,
     "notes": [],
     "hash": "379216285ab8ac6d3158f279f7a1967b3558364f",
-    "gitTags": "",
+    "gitTags": " (origin/fix/PD-157-math-input-font-size)",
     "committerDate": "2020-04-20 12:54:37 +0300",
     "isTagged": true,
     "tag": "@pie-lib/math-input@6.4.15"
@@ -1254,7 +1254,7 @@
     "footer": null,
     "notes": [],
     "hash": "18e4ef707a1929600b5cf7f5fd31405aedf49c3f",
-    "gitTags": "",
+    "gitTags": " (origin/fix/PD-155/mer-pink-highlight)",
     "committerDate": "2020-04-20 09:41:48 +0300",
     "isTagged": true,
     "tag": "@pie-lib/math-input@6.4.15"
