@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.7.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.7.15...@pie-lib/render-ui@4.7.16) (2020-04-27)
+
+
+### Bug Fixes
+
+* PD-54: Small font in Input Container. ([0a32d3a](https://github.com/pie-framework/pie-lib/commit/0a32d3a))
+
+
+
+
+
 ## [4.7.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.7.14...@pie-lib/render-ui@4.7.15) (2020-04-14)
 
 **Note:** Version bump only for package @pie-lib/render-ui

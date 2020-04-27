@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.6.16...@pie-lib/categorize@0.6.17) (2020-04-27)
+
+
+### Bug Fixes
+
+* PD-193: Categorize authoring feature not working on pie-website ([5b14396](https://github.com/pie-framework/pie-lib/commit/5b14396))
+
+
+
+
+
 ## [0.6.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.6.15...@pie-lib/categorize@0.6.16) (2020-04-14)
 
 **Note:** Version bump only for package @pie-lib/categorize
