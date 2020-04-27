@@ -35,6 +35,7 @@ export default withStyles(theme => ({
     minWidth: theme.spacing.unit * 4
   },
   label: {
+    fontSize: 'inherit',
     whiteSpace: 'nowrap'
   }
 }))(RawInputContainer);
