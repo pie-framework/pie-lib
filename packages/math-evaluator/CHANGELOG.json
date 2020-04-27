@@ -418,5 +418,25 @@
     "committerDate": "2020-04-15 13:13:15 +0100",
     "isTagged": true,
     "tag": "@pie-lib/math-evaluator@0.6.21"
+  },
+  {
+    "type": "feat",
+    "scope": null,
+    "subject": "major version bump",
+    "merge": null,
+    "header": "feat: major version bump",
+    "body": null,
+    "footer": "BREAKING CHANGE: The last release should have been breaking - this\nshould trigger a major bump now",
+    "notes": [
+      {
+        "title": "BREAKING CHANGE",
+        "text": "The last release should have been breaking - this\nshould trigger a major bump now"
+      }
+    ],
+    "hash": "78da9d590c5fe67dab54f3b2668995762634ba79",
+    "gitTags": " (develop)",
+    "committerDate": "2020-04-27 12:30:42 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/math-evaluator@2.0.0"
   }
 ]
