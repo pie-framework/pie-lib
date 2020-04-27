@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@0.6.22...@pie-lib/math-evaluator@2.0.0) (2020-04-27)
+
+
+### Features
+
+* major version bump ([78da9d5](https://github.com/pie-framework/pie-lib/commit/78da9d5))
+
+
+### BREAKING CHANGES
+
+* The last release should have been breaking - this
+should trigger a major bump now
+
+
+
+
+
 ## [0.6.22](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@0.6.21...@pie-lib/math-evaluator@0.6.22) (2020-04-27)
 
 **Note:** Version bump only for package @pie-lib/math-evaluator
