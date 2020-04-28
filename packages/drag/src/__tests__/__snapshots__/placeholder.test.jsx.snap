@@ -35,3 +35,17 @@ exports[`placeholder snapshot reqular 1`] = `
    Foo 
 </div>
 `;
+
+exports[`placeholder snapshot specific grid rowsRepeatValue 1`] = `
+<div
+  className="placeholder"
+  style={
+    Object {
+      "gridTemplateColumns": "repeat(1, 1fr)",
+      "gridTemplateRows": "repeat(2, min-content)",
+    }
+  }
+>
+   Foo 
+</div>
+`;

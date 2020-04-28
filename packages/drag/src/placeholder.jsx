@@ -20,7 +20,9 @@ export const PlaceHolder = props => {
     style.gridTemplateColumns = `repeat(${grid.columns}, 1fr)`;
   }
   if (grid && grid.rows) {
-    style.gridTemplateRows = `repeat(${grid.rows}, 1fr)`;
+    const repeatValue = grid.rowsRepeatValue || '1fr';
+
+    style.gridTemplateRows = `repeat(${grid.rows}, ${repeatValue})`;
   }
   return (
     <div style={style} className={names}>
@@ -33,7 +35,9 @@ PlaceHolder.propTypes = {
   classes: PropTypes.object.isRequired,
   grid: PropTypes.shape({
     columns: PropTypes.number,
-    rows: PropTypes.number
+    rows: PropTypes.number,
+    // if a different value then 1fr is wanted
+    rowsRepeatValue: PropTypes.string
   }),
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
   className: PropTypes.string,
