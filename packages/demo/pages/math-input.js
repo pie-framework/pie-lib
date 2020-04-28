@@ -9,7 +9,9 @@ import Select from '@material-ui/core/Select';
 import { withStyles } from '@material-ui/core';
 import grey from '@material-ui/core/colors/grey';
 import Section from '../src/formatting/section';
+
 console.log('mq:', mq);
+
 class Demo extends React.Component {
   constructor(props) {
     super(props);
@@ -18,7 +20,9 @@ class Demo extends React.Component {
       readOnly: true,
       editorType: 'geometry',
       labelWidth: 0,
-      inputOne: '\\frac{1}{3}'
+      inputOne: '\\frac{1}{3}',
+      latex1: '\\text{$}',
+      latex2: '\\\\\\\\text{$}',
     };
     this.onChange = this.onChange.bind(this);
   }
@@ -30,6 +34,7 @@ class Demo extends React.Component {
   onMathInputClick() {
     console.log('onMathInputClick', arguments);
   }
+
   onClick(data) {
     console.log('onClick', data.value, data.type);
   }
@@ -68,7 +73,7 @@ class Demo extends React.Component {
     return mounted ? (
       <div>
         <Section name="Equation editor with presets">
-          <br />
+          <br/>
           <FormControl variant="outlined">
             <InputLabel
               ref={ref => {
@@ -82,7 +87,7 @@ class Demo extends React.Component {
               value={this.state.editorType}
               label={'Preset'}
               onChange={this.changeEditorType}
-              input={<OutlinedInput labelWidth={this.state.labelWidth} name="Editor Type" />}
+              input={<OutlinedInput labelWidth={this.state.labelWidth} name="Editor Type"/>}
             >
               <MenuItem value="">
                 <em>None</em>
@@ -104,6 +109,20 @@ class Demo extends React.Component {
             onChange={latex => this.setState({ inputOne: latex })}
           />
           <pre className={classes.pre}>{this.state.inputOne}</pre>
+          <br/>
+          <br/>
+          <br/>
+          no extra slashes: <mq.Input
+          keyset={keyset}
+          latex={this.state.latex1}
+          onChange={latex => this.setState({ latex1: latex })}
+        /> - extra slashes:
+          <mq.Input
+            keyset={keyset}
+            latex={this.state.latex2}
+            onChange={latex => this.setState({ latex2: latex })}
+          />
+
         </Section>
 
         <Section name="Custom keys (E261001)">
@@ -143,7 +162,7 @@ class Demo extends React.Component {
         </Section>
       </div>
     ) : (
-      <div />
+      <div/>
     );
   }
 }
