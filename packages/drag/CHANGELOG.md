@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.41](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@1.1.40...@pie-lib/drag@1.1.41) (2020-04-28)
+
+
+### Bug Fixes
+
+* PD-40: Added the possibility to set custom repeat value for rows. Default is '1fr'. ([1f09319](https://github.com/pie-framework/pie-lib/commit/1f09319))
+
+
+
+
+
 ## [1.1.40](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@1.1.39...@pie-lib/drag@1.1.40) (2020-04-14)
 
 **Note:** Version bump only for package @pie-lib/drag

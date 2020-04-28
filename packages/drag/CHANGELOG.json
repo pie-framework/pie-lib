@@ -393,5 +393,20 @@
     "committerDate": "2020-03-30 23:04:24 +0100",
     "isTagged": true,
     "tag": "@pie-lib/drag@1.1.32"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "PD-40: Added the possibility to set custom repeat value for rows. Default is '1fr'.",
+    "merge": null,
+    "header": "fix: PD-40: Added the possibility to set custom repeat value for rows. Default is '1fr'.",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "1f093194a5d175dbc8cfb1f5e4f45953827d57ec",
+    "gitTags": " (origin/fix/PD-40-grid-template-rows)",
+    "committerDate": "2020-04-28 10:52:03 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/drag@1.1.41"
   }
 ]
