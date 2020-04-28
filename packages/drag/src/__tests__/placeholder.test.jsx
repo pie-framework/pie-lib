@@ -33,5 +33,17 @@ describe('placeholder', () => {
     it('className', () => {
       expect(wrapper({ className: 'bar' })).toMatchSnapshot();
     });
+
+    it('specific grid rowsRepeatValue', () => {
+      const w = wrapper({
+        grid: {
+          rows: 2,
+          columns: 1,
+          rowsRepeatValue: 'min-content'
+        }
+      });
+      expect(w).toMatchSnapshot();
+    });
+
   });
 });
