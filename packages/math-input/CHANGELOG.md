@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.4.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.4.16...@pie-lib/math-input@6.4.17) (2020-04-28)
+
+
+### Bug Fixes
+
+* PD-69: A legacy multi-part item consisting of two equation response interactions appears with no response areas ([fff4ec7](https://github.com/pie-framework/pie-lib/commit/fff4ec7))
+
+
+
+
+
 ## [6.4.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.4.15...@pie-lib/math-input@6.4.16) (2020-04-27)
 
 **Note:** Version bump only for package @pie-lib/math-input
