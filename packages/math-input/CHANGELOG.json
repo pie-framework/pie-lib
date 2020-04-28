@@ -1258,5 +1258,20 @@
     "committerDate": "2020-04-20 09:41:48 +0300",
     "isTagged": true,
     "tag": "@pie-lib/math-input@6.4.15"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "PD-69: A legacy multi-part item consisting of two equation response interactions appears with no response areas",
+    "merge": null,
+    "header": "fix: PD-69: A legacy multi-part item consisting of two equation response interactions appears with no response areas",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "fff4ec7f97c691cd4f03604b64d3c0ad1bc9d96d",
+    "gitTags": " (origin/fix/PD-69-no-resdered-response-area)",
+    "committerDate": "2020-04-28 16:19:52 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/math-input@6.4.17"
   }
 ]
