@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.22](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.2.21...@pie-lib/correct-answer-toggle@2.2.22) (2020-05-05)
+
+
+### Bug Fixes
+
+* PD-217 set visibility:'hidden' on toggle when not shown ([698c541](https://github.com/pie-framework/pie-lib/commit/698c541))
+
+
+
+
+
 ## [2.2.21](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.2.20...@pie-lib/correct-answer-toggle@2.2.21) (2020-04-14)
 
 **Note:** Version bump only for package @pie-lib/correct-answer-toggle
