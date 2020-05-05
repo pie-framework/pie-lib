@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.74](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.73...@pie-lib/demo@5.3.74) (2020-04-28)
+
+
+### Bug Fixes
+
+* PD-69: A legacy multi-part item consisting of two equation response interactions appears with no response areas ([fff4ec7](https://github.com/pie-framework/pie-lib/commit/fff4ec7))
+
+
+
+
+
+## [5.3.73](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.72...@pie-lib/demo@5.3.73) (2020-04-28)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
 ## [5.3.72](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.71...@pie-lib/demo@5.3.72) (2020-04-27)
 
 **Note:** Version bump only for package @pie-lib/demo

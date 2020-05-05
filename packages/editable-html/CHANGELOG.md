@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.12.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.12.5...@pie-lib/editable-html@7.12.6) (2020-04-28)
+
+
+### Bug Fixes
+
+* PD-69: A legacy multi-part item consisting of two equation response interactions appears with no response areas ([fff4ec7](https://github.com/pie-framework/pie-lib/commit/fff4ec7))
+
+
+
+
+
+## [7.12.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.12.4...@pie-lib/editable-html@7.12.5) (2020-04-28)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
 ## [7.12.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.12.3...@pie-lib/editable-html@7.12.4) (2020-04-27)
 
 **Note:** Version bump only for package @pie-lib/editable-html
