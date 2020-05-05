@@ -453,5 +453,20 @@
     "committerDate": "2020-03-31 11:47:09 +0100",
     "isTagged": true,
     "tag": "@pie-lib/correct-answer-toggle@2.2.18"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "PD-217 set visibility:'hidden' on toggle when not shown",
+    "merge": null,
+    "header": "fix: PD-217 set visibility:'hidden' on toggle when not shown",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "698c541624df9c4714912851baaaa2cfcdb75815",
+    "gitTags": "",
+    "committerDate": "2020-05-05 23:28:09 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/correct-answer-toggle@2.2.22"
   }
 ]
