@@ -6,7 +6,10 @@ import {
   ensureNoExtraChoicesInAnswer,
   limitInArray,
   limitInArrays,
-  removeAllChoices
+  removeAllChoices,
+  buildCategories,
+  buildChoices,
+  getAllPossibleResponses
 } from '../index';
 import range from 'lodash/range';
 import util from 'util';
@@ -261,7 +264,7 @@ describe('categorize', () => {
       [answer('1', '1')],
       [],
       {
-        categories: [{ ...cat('1'), choices: [choice('1')], correct: undefined }],
+        categories: [{ ...cat('1'), choices: [choice('1')] }],
         choices: [choice('1')]
       }
     );
@@ -437,5 +440,312 @@ describe('categorize', () => {
         choices: [{ ...choice('1', 0) }, { ...choice('2', 0) }]
       }
     );
+  });
+
+  // new tests
+
+  const baseCategories = [
+    { id: 's10', label: 'SUM=10' },
+    { id: 's11', label: 'SUM=11' },
+  ];
+  const baseChoices = [
+    { id: '3', content: '3' },
+    { id: '4', content: '4' },
+    { id: '5', content: '5' },
+    { id: '6', content: '6', categoryCount: 1 },
+    { id: '7', content: '7', categoryCount: 2 },
+  ];
+  const correctResponseNoAlternates = [
+    { category: 's10', choices: ['3', '7'] },
+    { category: 's11', choices: ['4', '7'] },
+  ];
+  const correctResponseWithAlternates = [
+    {
+      category: 's10',
+      choices: ['3', '7'],
+      alternateResponses: [['4', '6'], ['5', '5']]
+    },
+    {
+      category: 's11',
+      choices: ['4', '7'],
+      alternateResponses: [['3', '3', '5'], ['5', '6']]
+    },
+  ];
+
+  describe('buildState', () => {
+    // main response selections
+    const aC1 = [{ category: 's10', choices: ['3', '7'] }, { category: 's11', choices: ['4', '7'] }];
+    const aC1BestResponse = { s10: ['3', '7'], s11: ['4', '7'] };
+    const aC1BuiltCategories = [
+      {
+        id: 's10',
+        label: 'SUM=10',
+        correct: true,
+        choices: [{ ...baseChoices[0], correct: true }, { ...baseChoices[4], correct: true }]
+      },
+      {
+        id: 's11',
+        label: 'SUM=11',
+        correct: true,
+        choices: [{ ...baseChoices[1], correct: true }, { ...baseChoices[4], correct: true }]
+      },
+    ];
+
+    // alternate 1 response
+    const aC2 = [{ category: 's10', choices: ['4', '6'] }, { category: 's11', choices: ['3', '3', '5'] }];
+    const aC2BestResponse = { s10: ['4', '6'], s11: ['3', '3', '5'] };
+    const aC2BuiltCategories = [
+      {
+        id: 's10',
+        label: 'SUM=10',
+        correct: true,
+        choices: [{ ...baseChoices[1], correct: true }, { ...baseChoices[3], correct: true }]
+      },
+      {
+        id: 's11',
+        label: 'SUM=11',
+        correct: true,
+        choices: [{ ...baseChoices[0], correct: true }, { ...baseChoices[0], correct: true }, {
+          ...baseChoices[2],
+          correct: true
+        }]
+      },
+    ];
+    const aC2BuiltCategoriesNoAlt = [
+      {
+        id: 's10',
+        label: 'SUM=10',
+        correct: false,
+        choices: [{ ...baseChoices[1], correct: false }, { ...baseChoices[3], correct: false }]
+      },
+      {
+        id: 's11',
+        label: 'SUM=11',
+        correct: false,
+        choices: [{ ...baseChoices[0], correct: false }, { ...baseChoices[0], correct: false }, {
+          ...baseChoices[2],
+          correct: false
+        }]
+      },
+    ];
+
+    // alternate 2 response
+    const aC3 = [{ category: 's10', choices: ['5', '5'] }, { category: 's11', choices: ['5', '6'] }];
+    const aC3BestResponse = { s10: ['5', '5'], s11: ['5', '6'] };
+    const aC3BuiltCategories = [
+      {
+        id: 's10',
+        label: 'SUM=10',
+        correct: true,
+        choices: [{ ...baseChoices[2], correct: true }, { ...baseChoices[2], correct: true }]
+      },
+      {
+        id: 's11',
+        label: 'SUM=11',
+        correct: true,
+        choices: [{ ...baseChoices[2], correct: true }, { ...baseChoices[3], correct: true }]
+      },
+    ];
+    const aC3BuiltCategoriesNoAlt = [
+      {
+        id: 's10',
+        label: 'SUM=10',
+        correct: false,
+        choices: [{ ...baseChoices[2], correct: false }, { ...baseChoices[2], correct: false }]
+      },
+      {
+        id: 's11',
+        label: 'SUM=11',
+        correct: false,
+        choices: [{ ...baseChoices[2], correct: false }, { ...baseChoices[3], correct: false }]
+      },
+    ];
+
+    // alternate 1 response mixed with main response
+    const aM1 = [{ category: 's10', choices: ['4', '6'] }, { category: 's11', choices: ['4', '7'] }];
+    const aM1BestResponse = { s10: ['3', '7'], s11: ['4', '7'] };
+    const aM1BuiltCategories = [
+      {
+        id: 's10',
+        label: 'SUM=10',
+        correct: false,
+        choices: [{ ...baseChoices[1], correct: false }, { ...baseChoices[3], correct: false }]
+      },
+      {
+        id: 's11',
+        label: 'SUM=11',
+        correct: true,
+        choices: [{ ...baseChoices[1], correct: true }, { ...baseChoices[4], correct: true }]
+      },
+    ];
+    const aM1BuiltCategoriesNoAlt = [
+      {
+        id: 's10',
+        label: 'SUM=10',
+        correct: false,
+        choices: [{ ...baseChoices[1], correct: false }, { ...baseChoices[3], correct: false }]
+      },
+      {
+        id: 's11',
+        label: 'SUM=11',
+        correct: true,
+        choices: [{ ...baseChoices[1], correct: true }, { ...baseChoices[4], correct: true }]
+      },
+    ];
+
+    // alternate 1 response mixed with alternate 2 response
+    const aM2 = [{ category: 's10', choices: ['4', '6'] }, { category: 's11', choices: ['5', '6'] }];
+    const aM2BestResponse = { s10: ['3', '7'], s11: ['4', '7'] };
+    const aM2BuiltCategories = [
+      {
+        id: 's10',
+        label: 'SUM=10',
+        correct: false,
+        choices: [{ ...baseChoices[1], correct: false }, { ...baseChoices[3], correct: false }]
+      },
+      {
+        id: 's11',
+        label: 'SUM=11',
+        correct: false,
+        choices: [{ ...baseChoices[2], correct: false }, { ...baseChoices[3], correct: false }]
+      },
+    ];
+    const aM2BuiltCategoriesNoAlt = [
+      {
+        id: 's10',
+        label: 'SUM=10',
+        correct: false,
+        choices: [{ ...baseChoices[1], correct: false }, { ...baseChoices[3], correct: false }]
+      },
+      {
+        id: 's11',
+        label: 'SUM=11',
+        correct: false,
+        choices: [{ ...baseChoices[2], correct: false }, { ...baseChoices[3], correct: false }]
+      },
+    ];
+
+    // main response selections Incorrect
+    const aI1 = [{ category: 's10', choices: ['3', '6'] }, { category: 's11', choices: ['4', '4'] }];
+    const aI1BestResponse = { s10: ['3', '7'], s11: ['4', '7'] };
+    const aI1BuiltCategories = [
+      {
+        id: 's10',
+        label: 'SUM=10',
+        correct: false,
+        choices: [{ ...baseChoices[0], correct: true }, { ...baseChoices[3], correct: false }]
+      },
+      {
+        id: 's11',
+        label: 'SUM=11',
+        correct: false,
+        choices: [{ ...baseChoices[1], correct: true }, { ...baseChoices[1], correct: false }]
+      },
+    ];
+
+
+    // if there are alternates, looks for the best response
+    it.each`
+    label        |   answers    |   correctExpected   |   bestResponseExpected   |   builtCategories       |   builtChoices
+    ${'correct'} |   ${aC1}     |   ${true}           |   ${aC1BestResponse}     |   ${aC1BuiltCategories} |   ${[...baseChoices.slice(0, 4), { empty: true }]}
+    ${'correct'} |   ${aC2}     |   ${true}           |   ${aC2BestResponse}     |   ${aC2BuiltCategories} |   ${[...baseChoices.slice(0, 3), { empty: true }, baseChoices[4]]}
+    ${'correct'} |   ${aC3}     |   ${true}           |   ${aC3BestResponse}     |   ${aC3BuiltCategories} |   ${[...baseChoices.slice(0, 3), { empty: true }, baseChoices[4]]}
+    ${'incorrect'}|  ${aI1}     |   ${false}          |   ${aI1BestResponse}     |   ${aI1BuiltCategories} |   ${[...baseChoices.slice(0, 3), { empty: true }, baseChoices[4]]}
+    ${'mixed'}   |   ${aM1}     |   ${false}          |   ${aM1BestResponse}     |   ${aM1BuiltCategories} |   ${[...baseChoices.slice(0, 3), { empty: true }, baseChoices[4]]}
+    ${'mixed'}   |   ${aM2}     |   ${false}          |   ${aM2BestResponse}     |   ${aM2BuiltCategories} |   ${[...baseChoices.slice(0, 3), { empty: true }, baseChoices[4]]}
+    `('With Alternates, $label -> dychotomous: correct = correctExpected',
+      ({ answers, correctExpected, bestResponseExpected, builtCategories, builtChoices }) => {
+        const { choices, categories, correct, bestResponse } = buildState(baseCategories, baseChoices, answers, correctResponseWithAlternates);
+
+        expect(choices).toEqual(builtChoices);
+        expect(categories).toEqual(builtCategories);
+        expect(correctExpected).toEqual(correct);
+        expect(bestResponseExpected).toEqual(bestResponse);
+      });
+
+    // if there are no alternates, the best response is always the main one
+    it.each`
+    label        |   answers    |   correctExpected   |   bestResponseExpected   |   builtCategories            |   builtChoices
+    ${'correct'} |   ${aC1}     |   ${true}           |   ${aC1BestResponse}     |   ${aC1BuiltCategories}      |   ${[...baseChoices.slice(0, 4), { empty: true }]}
+    ${'correct'} |   ${aC2}     |   ${false}          |   ${aC1BestResponse}     |   ${aC2BuiltCategoriesNoAlt} |   ${[...baseChoices.slice(0, 3), { empty: true }, baseChoices[4]]}
+    ${'correct'} |   ${aC3}     |   ${false}          |   ${aC1BestResponse}     |   ${aC3BuiltCategoriesNoAlt} |   ${[...baseChoices.slice(0, 3), { empty: true }, baseChoices[4]]}
+    ${'correct'} |   ${aI1}     |   ${false}          |   ${aI1BestResponse}     |   ${aI1BuiltCategories}      |   ${[...baseChoices.slice(0, 3), { empty: true }, baseChoices[4]]}
+    ${'correct'} |   ${aM1}     |   ${false}          |   ${aC1BestResponse}     |   ${aM1BuiltCategoriesNoAlt} |   ${[...baseChoices.slice(0, 3), { empty: true }, baseChoices[4]]}
+    ${'correct'} |   ${aM2}     |   ${false}          |   ${aC1BestResponse}     |   ${aM2BuiltCategoriesNoAlt} |   ${[...baseChoices.slice(0, 3), { empty: true }, baseChoices[4]]}
+    `('Without Alternates, $label -> dychotomous: correct = correctExpected',
+      ({ answers, correctExpected, bestResponseExpected, builtCategories, builtChoices }) => {
+        const { choices, categories, correct, bestResponse } = buildState(baseCategories, baseChoices, answers, correctResponseNoAlternates);
+
+        expect(choices).toEqual(builtChoices);
+        expect(categories).toEqual(builtCategories);
+        expect(correctExpected).toEqual(correct);
+        expect(bestResponseExpected).toEqual(bestResponse);
+      });
+  });
+
+  describe('buildCategories', () => {
+    it.each`
+    categories       |     choices     |     answers     |     builtCategories
+    ${null}          |     ${null}     |     ${null}     |     ${[]}
+    ${undefined}     |     ${undefined}|     ${undefined}|     ${[]}
+    ${[]}            |     ${[]}       |     ${[]}       |     ${[]}
+    ${baseCategories}|  ${baseChoices} |     ${[]}       |     ${[{
+      id: 's10',
+      label: 'SUM=10',
+      choices: []
+    }, { id: 's11', label: 'SUM=11', choices: [] },]}
+    `('builtCategories = $builtCategories', ({ categories, choices, answers, builtCategories }) => {
+      expect(buildCategories(categories, choices, answers)).toEqual(builtCategories);
+    });
+  });
+
+  describe('buildChoices', () => {
+    const pRCA = ['3', '7'];
+    const pRCB = ['3', '3', '7'];
+
+    const bCC1 = [baseChoices[0], baseChoices[0]];
+    const bC1A = [{ ...baseChoices[0], correct: true }, {...baseChoices[0], correct: false}];
+    const bC1B = [{ ...baseChoices[0], correct: true }, {...baseChoices[0], correct: true}];
+
+    const bCC2 = [baseChoices[0], baseChoices[0], baseChoices[4]];
+    const bC2A = [{ ...baseChoices[0], correct: true }, {...baseChoices[0], correct: false}, {...baseChoices[4], correct: true}];
+    const bC2B = [{ ...baseChoices[0], correct: true }, {...baseChoices[0], correct: true}, {...baseChoices[4], correct: true}];
+
+    const bCC3 = baseChoices;
+    const bC3A = [{ ...baseChoices[0], correct: true }, {...baseChoices[1], correct: false}, {...baseChoices[2], correct: false}, {...baseChoices[3], correct: false}, {...baseChoices[4], correct: true}];
+
+    const bCC4 = [baseChoices[0], baseChoices[0], baseChoices[4], baseChoices[4]];
+    const bC4A = [{ ...baseChoices[0], correct: true }, {...baseChoices[0], correct: false}, {...baseChoices[4], correct: true}, {...baseChoices[4], correct: false}];
+    const bC4B = [{ ...baseChoices[0], correct: true }, {...baseChoices[0], correct: true}, {...baseChoices[4], correct: true}, {...baseChoices[4], correct: false}];
+
+    it.each`
+    possibleResponseChoices |    builtCategoryChoices    |      builtChoices
+    ${pRCA}                 |    ${[]}                   |      ${[]}       
+    ${pRCA}                 |    ${bCC1}                 |      ${bC1A}       
+    ${pRCB}                 |    ${bCC1}                 |      ${bC1B}       
+    ${pRCA}                 |    ${bCC2}                 |      ${bC2A}       
+    ${pRCB}                 |    ${bCC2}                 |      ${bC2B}       
+    ${pRCA}                 |    ${bCC3}                 |      ${bC3A}       
+    ${pRCB}                 |    ${bCC3}                 |      ${bC3A}       
+    ${pRCA}                 |    ${bCC4}                 |      ${bC4A}       
+    ${pRCB}                 |    ${bCC4}                 |      ${bC4B}       
+    `('builtChoices = builtChoices, correct = $correct', ({ possibleResponseChoices, builtCategoryChoices, builtChoices }) => {
+      const { builtChoices: builtChoicesResult } = buildChoices(possibleResponseChoices, builtCategoryChoices);
+
+      expect(builtChoicesResult).toEqual(builtChoices);
+    });
+  });
+
+  describe('getAllPossibleResponses', () => {
+    it.each`
+    correctResponse                 |     allResponses
+    ${correctResponseNoAlternates}  |     ${[{ s10: ['3', '7'], s11: ['4', '7'] }]}
+    ${correctResponseWithAlternates}|     ${[{ s10: ['3', '7'], s11: ['4', '7'] }, {
+      s10: ['4', '6'],
+      s11: ['3', '3', '5']
+    }, { s10: ['5', '5'], s11: ['5', '6'] }]}
+    `('allResponses = allResponses', ({ correctResponse, allResponses }) => {
+      expect(getAllPossibleResponses(correctResponse)).toEqual(allResponses);
+    });
   });
 });
