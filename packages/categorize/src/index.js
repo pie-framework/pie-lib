@@ -276,7 +276,7 @@ export const buildChoices = (possibleResponseChoices, builtCategoryChoices) => {
 };
 
 /**
- * returns result for this possible response
+ * returns corrected answer using this possible correct response
  * @param {Object} possibleResponse, has form: { CategoryId: ChoiceId[] }
  * @param {Object[]} builtCategories
  *
@@ -284,14 +284,16 @@ export const buildChoices = (possibleResponseChoices, builtCategoryChoices) => {
  * BuiltCategory = { id: categoryId, label: categoryLabel, correct: boolean, choices: BuiltChoice[] }
  * BuiltChoice = { id: choiceId, content: choiceContent, correct: boolean }
  */
-export const getResult = (possibleResponse, builtCategories) => {
-  // possibleResponse: { CategoryId: ChoiceId[] }
-  return builtCategories.reduce(
+export const getBuiltCategories = (possibleResponse, builtCategories) =>
+  builtCategories.reduce(
     (acc, builtCategory) => {
       const possibleResponseChoices = possibleResponse[builtCategory.id] || []; // the correct choices for this category
-      const builtCategoryChoices = builtCategory.choices || []; // the choices selected by user
+      const builtCategoryChoices = builtCategory.choices || []; // the choices in the answer
 
-      const { builtChoices, allChoicesAreCorrect } = buildChoices(possibleResponseChoices, builtCategoryChoices);
+      const { builtChoices, allChoicesAreCorrect } = buildChoices(
+        possibleResponseChoices,
+        builtCategoryChoices
+      );
       const allChoicesAreInAnswer = builtCategoryChoices.length === possibleResponseChoices.length;
 
       acc.builtCategories.push({
@@ -305,7 +307,6 @@ export const getResult = (possibleResponse, builtCategories) => {
     },
     { builtCategories: [], correct: true }
   );
-};
 
 /**
  * returns all the possible responses by combining the proper alternate responses
@@ -319,15 +320,15 @@ export const getAllPossibleResponses = correctResponse => {
     return [];
   }
 
-  const mainResponseKey = 0;
-
   return correctResponse.reduce((acc, cR) => {
-    if (acc[mainResponseKey]) {
-      acc[mainResponseKey][cR.category] = cR.choices;
+    // main response
+    if (acc[0]) {
+      acc[0][cR.category] = cR.choices;
     } else {
       acc.push({ [cR.category]: cR.choices });
     }
 
+    // alternate responses
     if (cR.alternateResponses) {
       cR.alternateResponses.forEach((aR, index) => {
         if (acc[index + 1]) {
@@ -388,11 +389,12 @@ export const buildState = (categories, choices, answers, correctResponse) => {
   let bestResponse;
   let entirelyCorrect;
 
+  // at least one defined correct response
   if (allResponses.length) {
     const builtData = allResponses.reduce(
       (acc, possibleResponse) => {
-        // build categories and get correctness for each possible response
-        const { builtCategories: categoriesWithChoices, correct } = getResult(
+        // set correctness for each possible response
+        const { builtCategories: categoriesWithChoices, correct } = getBuiltCategories(
           possibleResponse,
           builtCategories
         );
