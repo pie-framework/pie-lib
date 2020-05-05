@@ -12,19 +12,6 @@ export default {
     width: '100%',
     cursor: 'pointer'
   },
-  expander: {
-    position: 'relative',
-    height: 0,
-    transition: 'height ease-in 300ms',
-    overflow: 'hidden',
-    display: 'flex',
-    '&.show': {
-      height: '25px'
-    },
-    '&.hide': {
-      height: '0'
-    }
-  },
   content: {
     margin: '0 auto',
     textAlign: 'center',
@@ -34,7 +21,7 @@ export default {
     {
       width: '140px',
       // eslint-disable-next-line
-      fontFamily: '\'Roboto\', sans-serif',
+      fontFamily: "'Roboto', sans-serif",
       height: '25px',
       lineHeight: '25px',
       verticalAlign: 'middle',
