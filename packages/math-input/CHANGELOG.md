@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.4.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.4.17...@pie-lib/math-input@6.4.18) (2020-05-05)
+
+**Note:** Version bump only for package @pie-lib/math-input
+
+
+
+
+
 ## [6.4.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.4.16...@pie-lib/math-input@6.4.17) (2020-04-28)
 
 
