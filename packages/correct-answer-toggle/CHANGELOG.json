@@ -468,5 +468,20 @@
     "committerDate": "2020-05-05 23:28:09 +0100",
     "isTagged": true,
     "tag": "@pie-lib/correct-answer-toggle@2.2.22"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "fix init show/hide",
+    "merge": null,
+    "header": "fix: fix init show/hide",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "32e2a940293365c9a5a21c9fd942d3b313cbff70",
+    "gitTags": "",
+    "committerDate": "2020-05-06 12:20:11 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/correct-answer-toggle@2.2.23"
   }
 ]
