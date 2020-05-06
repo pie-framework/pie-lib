@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.23](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.2.22...@pie-lib/correct-answer-toggle@2.2.23) (2020-05-06)
+
+
+### Bug Fixes
+
+* fix init show/hide ([32e2a94](https://github.com/pie-framework/pie-lib/commit/32e2a94))
+
+
+
+
+
 ## [2.2.22](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.2.21...@pie-lib/correct-answer-toggle@2.2.22) (2020-05-05)
 
 

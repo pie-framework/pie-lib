@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.8.23](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.8.22...@pie-lib/config-ui@10.8.23) (2020-05-06)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
 ## [10.8.22](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.8.21...@pie-lib/config-ui@10.8.22) (2020-05-05)
 
 **Note:** Version bump only for package @pie-lib/config-ui
