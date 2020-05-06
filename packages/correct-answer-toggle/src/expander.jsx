@@ -1,16 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { CSSTransition } from 'react-transition-group';
 
-function Expander(props) {
+const Expander = props => {
   const { classes, show, children } = props;
+
   return (
-    <CSSTransition in={show} timeout={300} classNames={{ ...classes }}>
-      <div className={classes.rootName}>{children}</div>
+    <CSSTransition
+      in={show}
+      appear={true}
+      mountOnEnter={false}
+      timeout={300}
+      classNames={{ ...classes }}
+    >
+      <div className={classes.expander}>{children}</div>
     </CSSTransition>
   );
-}
+};
 
 Expander.propTypes = {
   show: PropTypes.bool.isRequired,
@@ -19,19 +26,17 @@ Expander.propTypes = {
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired
 };
 
+const transition = 'height ease-in 300ms, opacity ease-in 300ms';
+
 export default withStyles(() => ({
-  rootName: {
+  expander: {
     position: 'relative',
-    height: '25px',
-    transition: 'height ease-in 300ms, opacity ease-in 300ms',
+    height: 0,
     overflow: 'hidden',
     display: 'flex'
   },
-  appearDone: {
-    opacity: 1,
-    height: '25px'
-  },
   enter: {
+    transition,
     opacity: 1,
     height: '25px',
     visibility: 'visible'
@@ -40,6 +45,7 @@ export default withStyles(() => ({
     height: '25px'
   },
   exit: {
+    transition,
     opacity: 0,
     height: '0px'
   },

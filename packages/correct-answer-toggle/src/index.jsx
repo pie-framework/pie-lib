@@ -47,6 +47,7 @@ export class CorrectAnswerToggle extends React.Component {
   render() {
     const { classes, className, toggled, hideMessage, showMessage } = this.props;
 
+    console.log('show?', this.state.show);
     return (
       <div className={classNames(classes.root, className)}>
         <Expander show={this.state.show} className={classes.expander}>
