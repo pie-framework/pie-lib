@@ -13,7 +13,9 @@ export class Wrapper extends React.Component {
     super(props);
     this.state = {
       toggled: false,
-      show: true
+      show: false,
+      showTwo: true,
+      toggledTwo: true
     };
   }
 
@@ -61,6 +63,35 @@ export class Wrapper extends React.Component {
           toggled={this.state.toggled}
           onToggle={this.onToggle.bind(this)}
         />
+
+        <div>
+          <FormGroup row>
+            <FormControlLabel
+              label="Show"
+              control={
+                <Checkbox
+                  checked={this.state.showTwo}
+                  onClick={() => this.setState({ showTwo: !this.state.showTwo })}
+                />
+              }
+            />
+            <FormControlLabel
+              label="Toggle"
+              control={
+                <Checkbox
+                  checked={this.state.toggledTwo}
+                  onClick={() => this.setState({ toggledTwo: !this.state.toggledTwo })}
+                />
+              }
+            />
+          </FormGroup>
+          it will be hidden on mount:
+          <Toggle
+            show={this.state.showTwo}
+            toggled={this.state.toggledTwo}
+            onToggle={this.onToggle.bind(this)}
+          />
+        </div>
       </div>
     ) : (
       <div>loading...</div>
