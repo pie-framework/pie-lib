@@ -65,8 +65,7 @@ export const gradeSets = [
         fractions.xOverBlank,
         subSup.subscript,
         exponent.xToPowerOfN,
-        exponent.nthRoot,
-        subSup.subscript
+        exponent.nthRoot
       ],
       [
         comparison.lessThanEqual,
