@@ -6,7 +6,7 @@ import ToolMenu from '../tool-menu';
 describe('ToolMenu', () => {
   let w;
   let onChange = jest.fn();
-  const tools = [{ type: 'one' }, { type: 'two' }];
+  const tools = ['one', 'two'];
 
   const wrapper = extras => {
     const defaults = {
@@ -19,19 +19,11 @@ describe('ToolMenu', () => {
     const props = { ...defaults, ...extras };
     return shallow(<ToolMenu {...props} />);
   };
+
   describe('snapshot', () => {
     it('renders', () => {
       w = wrapper();
       expect(w).toMatchSnapshot();
-    });
-  });
-  describe('logic', () => {
-    describe('changeTool', () => {
-      it('calls onChange', () => {
-        w = wrapper();
-        w.instance().changeTool('two');
-        expect(onChange).toHaveBeenCalledWith('two');
-      });
     });
   });
 });

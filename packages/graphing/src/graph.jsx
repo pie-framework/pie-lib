@@ -1,203 +1,161 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import isEqual from 'lodash/isEqual';
+import { Root, types, createGraphProps } from '@pie-lib/plot';
+import debug from 'debug';
+
 import Labels from './labels';
 import { Axes, AxisPropTypes } from './axis';
 import Grid from './grid';
-import { Root, types, createGraphProps } from '@pie-lib/plot';
 import { LabelType } from './labels';
-import debug from 'debug';
 import Bg from './bg';
-import _ from 'lodash';
-import invariant from 'invariant';
-import isEqual from 'lodash/isEqual';
 
 const log = debug('pie-lib:graphing:graph');
 
 export const graphPropTypes = {
+  axesSettings: PropTypes.shape(AxisPropTypes),
+  backgroundMarks: PropTypes.array,
   className: PropTypes.string,
+  domain: types.DomainType,
+  labels: PropTypes.shape(LabelType),
+  labelModeEnabled: PropTypes.bool,
+  marks: PropTypes.array,
+  onChangeMarks: PropTypes.func,
+  range: types.DomainType,
   size: PropTypes.shape({
     width: PropTypes.number.isRequired,
     height: PropTypes.number.isRequired
   }),
-  domain: types.DomainType,
-  range: types.DomainType,
   title: PropTypes.string,
-  axesSettings: PropTypes.shape(AxisPropTypes),
-  labels: PropTypes.shape(LabelType),
-  marks: PropTypes.array,
-  backgroundMarks: PropTypes.array,
-  onChangeMarks: PropTypes.func.isRequired,
-  tools: PropTypes.array,
-  defaultTool: PropTypes.string,
-  labelModeEnabled: PropTypes.bool
+  tools: PropTypes.array
+};
+
+const getMaskSize = size => ({
+  x: -10,
+  y: -10,
+  width: size.width + 20,
+  height: size.height + 20
+});
+
+export const removeBuildingToolIfCurrentToolDiffers = ({ marks, currentTool, state }) => {
+  const buildingMark = marks.filter(m => m.building)[0];
+
+  if (state && !isEqual(state.currentTool, currentTool) && buildingMark) {
+    const index = marks.findIndex(m => isEqual(m, buildingMark));
+
+    if (index >= 0) {
+      marks.splice(index, 1);
+    }
+  }
+
+  return marks;
 };
 
 export class Graph extends React.Component {
   static propTypes = {
     ...graphPropTypes,
-    defaultTool: PropTypes.string,
     currentTool: PropTypes.object
   };
 
-  static defaultProps = {};
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      currentTool: props.defaultTool
-    };
-  }
-
-  getDefaultTool = () => {
-    const { tools, defaultTool } = this.props;
-
-    const d = tools.find(t => t.type === defaultTool);
-
-    if (d) {
-      return d;
-    } else {
-      return tools[0];
+  static defaultProps = {
+    onChangeMarks: () => {
     }
   };
+
+  state = {};
+
+  static getDerivedStateFromProps = (props, state) => {
+    props = props || {};
+    state = state || {};
+
+    const { currentTool, marks } = props;
+    let { tools } = props;
+    let newMarks = [...marks] || [];
+
+    tools = tools || [];
+    newMarks = removeBuildingToolIfCurrentToolDiffers({ marks: newMarks, state, currentTool });
+
+    return { currentTool, marks: newMarks, tools };
+  };
+
+  componentDidMount = () => this.setState({ labelNode: this.labelNode });
 
   changeMark = (oldMark, newMark) => {
-    const { marks, onChangeMarks } = this.props;
+    const { marks } = this.state;
+    const { onChangeMarks } = this.props;
 
-    if (!marks) {
-      throw new Error('no marks set?');
-    }
-
-    const index = marks.findIndex(m => _.isEqual(m, oldMark));
+    const index = marks.findIndex(m => isEqual(m, oldMark));
 
     if (index >= 0) {
-      const out = [...marks];
-      out.splice(index, 1, { ...newMark });
-      log('[changeMark] call onChangeMarks');
-      onChangeMarks(out);
+      marks.splice(index, 1, newMark);
+
+      onChangeMarks(marks);
     }
-  };
-
-  getBuildingMark = () => {
-    const { marks } = this.props;
-
-    const buildMarks = marks.filter(m => m.building);
-
-    const l = buildMarks.length;
-    invariant(l === 0 || l === 1, 'There can either be 0 or 1 build marks');
-    return l === 1 ? buildMarks[0] : undefined;
-  };
-
-  onBgClick = ({ x, y }) => {
-    const { currentTool } = this.props;
-    log('[onBgClick] x,y: ', x, y);
-
-    if (this.props.labelModeEnabled) {
-      log('label mode!!!');
-      return;
-    }
-
-    const buildingMark = this.getBuildingMark();
-    const tool = this.getTool();
-    //tools.find(t => t.type === currentTool) || this.getDefaultTool();
-    log('[onBgClick] currentTool: ', currentTool);
-
-    const updatedMark = tool.addPoint({ x, y }, buildingMark ? { ...buildingMark } : undefined);
-    log('[onBgClick] updatedMark: ', currentTool);
-
-    this.updateMarks(buildingMark, updatedMark, true);
   };
 
   completeMark = markData => {
-    log('[completeMark] -> ', markData);
-    const buildingMark = this.getBuildingMark();
+    const { marks, currentTool } = this.state;
+    const buildingMark = marks.filter(m => m.building)[0];
 
-    if (!buildingMark) {
-      return;
-    }
+    if (!buildingMark || !currentTool) return;
 
-    const tool = this.getTool();
-    const updatedMark = tool.complete(buildingMark, markData);
+    const updatedMark = currentTool.complete(buildingMark, markData);
 
     this.updateMarks(buildingMark, updatedMark);
   };
 
   updateMarks = (existing, update, addIfMissing = false) => {
-    const { marks, onChangeMarks } = this.props;
+    const { marks } = this.state;
+    const { onChangeMarks } = this.props;
 
     const index = marks.findIndex(m => isEqual(m, existing));
+
     if (index >= 0) {
-      log('[updateMarks] -> splicing update, from: ', existing, 'to:', update);
-      const out = [...this.props.marks];
-      out.splice(index, 1, update);
-      onChangeMarks(out);
-    } else {
-      if (addIfMissing) {
-        log('[updateMarks] -> adding to marks array');
-        onChangeMarks([...this.props.marks, update]);
-      }
+      marks.splice(index, 1, update);
+
+      onChangeMarks(marks);
+    } else if (addIfMissing) {
+      onChangeMarks([...marks, update]);
     }
   };
 
   getComponent = mark => {
-    if (!mark) {
-      return undefined;
-    }
+    if (!mark) return null;
 
-    const { tools } = this.props;
+    const tool = this.state.tools.find(t => t.type === mark.type);
 
-    const tool = (tools || []).find(t => t.type === mark.type);
-    if (tool && tool.Component) {
-      return tool.Component;
-    } else {
-      throw new Error(`No tool supports type ${mark.type}`);
-    }
-  };
-
-  getTool = () => {
-    const { tools, currentTool } = this.props;
-    return tools.find(t => t.type === currentTool) || this.getDefaultTool();
+    return (tool && tool.Component) || null;
   };
 
   mouseMove = e => {
-    let { buildingMark, dragging } = this.state;
+    let { buildingMark, dragging, currentTool } = this.state;
 
-    if (buildingMark && !dragging) {
-      log('[mouseMove] have buildmark + not dragging... SET THE STATE');
-      const tool = this.getTool();
-      buildingMark = tool.hover ? tool.hover(e, buildingMark) : buildingMark;
+    if (buildingMark && !dragging && currentTool) {
+      buildingMark = currentTool.hover ? currentTool.hover(e, buildingMark) : buildingMark;
+
       this.setState({ hoverPoint: e, buildingMark });
     }
   };
 
-  removeMark = mark => {
-    const { marks } = this.props;
-    const index = marks.findIndex(m => isEqual(m, mark));
-    if (index >= 0) {
-      const out = [...marks];
-      out.splice(index, 1);
-      return out;
-    }
+  onBgClick = ({ x, y }) => {
+    log('[onBgClick] x,y: ', x, y);
+
+    const { labelModeEnabled } = this.props;
+    const { marks, currentTool } = this.state;
+
+    if (labelModeEnabled || !currentTool) return;
+
+    const buildingMark = marks.filter(m => m.building)[0];
+
+    const updatedMark = currentTool.addPoint(
+      { x, y },
+      buildingMark ? { ...buildingMark } : undefined
+    );
+
+    this.updateMarks(buildingMark, updatedMark, true);
   };
 
-  componentDidUpdate(prevProps) {
-    const { onChangeMarks } = this.props;
-    const buildingMark = this.getBuildingMark();
-    if (!_.isEqual(prevProps.currentTool, this.props.currentTool) && buildingMark !== undefined) {
-      const marks = this.removeMark(buildingMark);
-      if (marks) {
-        onChangeMarks(marks);
-      }
-    }
-  }
-
-  clickComponent = point => {
-    log('click component!', point);
-    this.onBgClick(point);
-  };
-
-  componentDidMount = () => {
-    this.setState({ labelNode: this.labelNode });
-  };
+  clickComponent = point => this.onBgClick(point);
 
   render() {
     const {
@@ -210,27 +168,19 @@ export class Graph extends React.Component {
       labels,
       labelModeEnabled
     } = this.props;
-
-    const marks = this.state.marks ? this.state.marks : this.props.marks;
-    const tool = this.getTool();
-    log('[render]', marks);
+    const { marks, currentTool } = this.state;
 
     const graphProps = createGraphProps(domain, range, size, () => this.rootNode);
-    const maskSize = {
-      x: -10,
-      y: -10,
-      width: size.width + 20,
-      height: size.height + 20
-    };
+    const maskSize = getMaskSize(size);
     const common = { graphProps, labelModeEnabled };
 
     return (
       <Root
-        title={title}
-        onMouseMove={this.mouseMove}
-        rootRef={r => (this.rootNode = r)}
         // left side requires an extra padding of 10, in order to fit next to tick labels like 1.5, 1.55...
         paddingLeft={60}
+        onMouseMove={this.mouseMove}
+        rootRef={r => (this.rootNode = r)}
+        title={title}
         {...common}
       >
         <Grid {...common} />
@@ -238,24 +188,30 @@ export class Graph extends React.Component {
         <Bg {...size} onClick={this.onBgClick} {...common} />
         <Labels value={labels} {...common} />
         <mask id="myMask">
-          <rect {...maskSize} fill="white" />
+          <rect {...maskSize} fill="white"/>
         </mask>
+
         <g id="marks" mask="url('#myMask')">
           {(backgroundMarks || []).map((m, index) => {
             const Component = this.getComponent(m);
+            const markType = m.type;
+
             return (
               <Component
-                key={`${m.type}-${index}-bg`}
+                key={`${markType}-${index}-bg`}
                 mark={{ ...m, disabled: true }}
                 {...common}
               />
             );
           })}
-          {(marks || []).map((m, index) => {
+
+          {marks.map((m, index) => {
             const Component = this.getComponent(m);
+            const markType = m.type;
+
             return (
               <Component
-                key={`${m.type}-${index}`}
+                key={`${markType}-${index}`}
                 mark={m}
                 onChange={this.changeMark}
                 onComplete={this.completeMark}
@@ -263,11 +219,12 @@ export class Graph extends React.Component {
                 onDragStart={this.startDrag}
                 onDragStop={this.stopDrag}
                 labelNode={this.state.labelNode}
-                isToolActive={m.type === tool.type}
+                isToolActive={currentTool && markType === currentTool.type}
                 {...common}
               />
             );
           })}
+
           <foreignObject
             ref={labelNode => (this.labelNode = labelNode)}
             x="0"

@@ -24,10 +24,14 @@ export class RawPolygon extends React.Component {
     classes: PropTypes.object,
     className: PropTypes.string,
     disabled: PropTypes.bool,
-    points: PropTypes.arrayOf(PropTypes.shape(types.PointType)),
+    points: PropTypes.arrayOf(types.PointType),
     graphProps: types.GraphPropsType.isRequired,
     closed: PropTypes.bool.isRequired,
     correctness: PropTypes.string
+  };
+
+  static defaultProps = {
+    points: []
   };
 
   render() {
@@ -60,6 +64,7 @@ export class RawPolygon extends React.Component {
     );
   }
 }
+
 export const Polygon = withStyles(theme => ({
   closed: {
     fill: fade(theme.palette.primary.light, 0.2),
@@ -96,9 +101,6 @@ export default gridDraggable({
   fromDelta: (props, delta) => {
     const { points } = props;
 
-    const movedPoints = points.map(p => {
-      return utils.point(p).add(utils.point(delta));
-    });
-    return movedPoints;
+    return points.map(p => utils.point(p).add(utils.point(delta)));
   }
 })(Polygon);
