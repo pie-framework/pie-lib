@@ -29,7 +29,6 @@ exports[`Graph snapshot renders 1`] = `
       },
     }
   }
-  onMouseMove={[Function]}
   paddingLeft={60}
   rootRef={[Function]}
 >
@@ -205,51 +204,6 @@ exports[`Graph snapshot renders 1`] = `
           "type": "point",
           "x": 2,
           "y": 2,
-        }
-      }
-      onChange={[Function]}
-      onClick={[Function]}
-      onComplete={[Function]}
-    />
-    <LineToolComponent
-      graphProps={
-        Object {
-          "domain": Object {
-            "max": 1,
-            "min": 0,
-            "step": 1,
-          },
-          "getRootNode": [Function],
-          "range": Object {
-            "max": 1,
-            "min": 0,
-            "step": 1,
-          },
-          "scale": Object {
-            "x": [Function],
-            "y": [Function],
-          },
-          "size": Object {
-            "height": 400,
-            "width": 400,
-          },
-          "snap": Object {
-            "x": [Function],
-            "y": [Function],
-          },
-        }
-      }
-      isToolActive={false}
-      key="line-1"
-      mark={
-        Object {
-          "building": true,
-          "from": Object {
-            "x": 0,
-            "y": 0,
-          },
-          "label": "Line",
-          "type": "line",
         }
       }
       onChange={[Function]}

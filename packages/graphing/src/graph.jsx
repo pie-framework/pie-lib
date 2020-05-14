@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import isEqual from 'lodash/isEqual';
+import cloneDeep from 'lodash/cloneDeep';
 import { Root, types, createGraphProps } from '@pie-lib/plot';
 import debug from 'debug';
 
@@ -37,18 +38,19 @@ const getMaskSize = size => ({
   height: size.height + 20
 });
 
-export const removeBuildingToolIfCurrentToolDiffers = ({ marks, currentTool, state }) => {
+export const removeBuildingToolIfCurrentToolDiffers = ({ marks, currentTool }) => {
   const buildingMark = marks.filter(m => m.building)[0];
+  let newMarks = cloneDeep(marks);
 
-  if (state && !isEqual(state.currentTool, currentTool) && buildingMark) {
-    const index = marks.findIndex(m => isEqual(m, buildingMark));
+  if (buildingMark && currentTool && buildingMark.type !== currentTool.type) {
+    const index = newMarks.findIndex(m => isEqual(m, buildingMark));
 
     if (index >= 0) {
-      marks.splice(index, 1);
+      newMarks.splice(index, 1);
     }
   }
 
-  return marks;
+  return newMarks;
 };
 
 export class Graph extends React.Component {
@@ -64,37 +66,23 @@ export class Graph extends React.Component {
 
   state = {};
 
-  static getDerivedStateFromProps = (props, state) => {
-    props = props || {};
-    state = state || {};
-
-    const { currentTool, marks } = props;
-    let { tools } = props;
-    let newMarks = [...marks] || [];
-
-    tools = tools || [];
-    newMarks = removeBuildingToolIfCurrentToolDiffers({ marks: newMarks, state, currentTool });
-
-    return { currentTool, marks: newMarks, tools };
-  };
-
   componentDidMount = () => this.setState({ labelNode: this.labelNode });
 
   changeMark = (oldMark, newMark) => {
-    const { marks } = this.state;
-    const { onChangeMarks } = this.props;
+    const { onChangeMarks, marks } = this.props;
+    let newMarks = cloneDeep(marks);
 
-    const index = marks.findIndex(m => isEqual(m, oldMark));
+    const index = newMarks.findIndex(m => isEqual(m, oldMark));
 
     if (index >= 0) {
-      marks.splice(index, 1, newMark);
+      newMarks.splice(index, 1, newMark);
 
-      onChangeMarks(marks);
+      onChangeMarks(newMarks);
     }
   };
 
   completeMark = markData => {
-    const { marks, currentTool } = this.state;
+    const { currentTool, marks } = this.props;
     const buildingMark = marks.filter(m => m.building)[0];
 
     if (!buildingMark || !currentTool) return;
@@ -105,43 +93,32 @@ export class Graph extends React.Component {
   };
 
   updateMarks = (existing, update, addIfMissing = false) => {
-    const { marks } = this.state;
-    const { onChangeMarks } = this.props;
+    const { onChangeMarks, marks } = this.props;
+    let newMarks = cloneDeep(marks);
 
-    const index = marks.findIndex(m => isEqual(m, existing));
+    const index = newMarks.findIndex(m => isEqual(m, existing));
 
     if (index >= 0) {
-      marks.splice(index, 1, update);
+      newMarks.splice(index, 1, update);
 
-      onChangeMarks(marks);
+      onChangeMarks(newMarks);
     } else if (addIfMissing) {
-      onChangeMarks([...marks, update]);
+      onChangeMarks([...newMarks, update]);
     }
   };
 
   getComponent = mark => {
     if (!mark) return null;
 
-    const tool = this.state.tools.find(t => t.type === mark.type);
+    const tool = (this.props.tools || []).find(t => t.type === mark.type);
 
     return (tool && tool.Component) || null;
-  };
-
-  mouseMove = e => {
-    let { buildingMark, dragging, currentTool } = this.state;
-
-    if (buildingMark && !dragging && currentTool) {
-      buildingMark = currentTool.hover ? currentTool.hover(e, buildingMark) : buildingMark;
-
-      this.setState({ hoverPoint: e, buildingMark });
-    }
   };
 
   onBgClick = ({ x, y }) => {
     log('[onBgClick] x,y: ', x, y);
 
-    const { labelModeEnabled } = this.props;
-    const { marks, currentTool } = this.state;
+    const { labelModeEnabled, currentTool, marks } = this.props;
 
     if (labelModeEnabled || !currentTool) return;
 
@@ -160,6 +137,7 @@ export class Graph extends React.Component {
   render() {
     const {
       axesSettings,
+      currentTool,
       size,
       domain,
       backgroundMarks,
@@ -168,17 +146,18 @@ export class Graph extends React.Component {
       labels,
       labelModeEnabled
     } = this.props;
-    const { marks, currentTool } = this.state;
+    let { marks } = this.props;
 
     const graphProps = createGraphProps(domain, range, size, () => this.rootNode);
     const maskSize = getMaskSize(size);
     const common = { graphProps, labelModeEnabled };
 
+    marks = removeBuildingToolIfCurrentToolDiffers({ marks: marks || [], currentTool });
+
     return (
       <Root
         // left side requires an extra padding of 10, in order to fit next to tick labels like 1.5, 1.55...
         paddingLeft={60}
-        onMouseMove={this.mouseMove}
         rootRef={r => (this.rootNode = r)}
         title={title}
         {...common}
