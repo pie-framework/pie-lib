@@ -149,45 +149,4 @@ describe('GraphWithControls', () => {
       expect(w).toMatchSnapshot();
     });
   });
-
-  describe('logic', () => {
-    describe('getDerivedStateFromProps', () => {
-      it('removes duplicate toolbar tools', () => {
-        const result = GraphWithControls.getDerivedStateFromProps({
-          ...initialProps,
-          toolbarTools: [...allTools, ...allTools, ...allTools]
-        });
-
-        expect(result.toolbarTools).toEqual(allTools);
-      });
-
-      it('removes invalid toolbar tools', () => {
-        const result = GraphWithControls.getDerivedStateFromProps({
-          ...initialProps,
-          toolbarTools: [...allTools, { type: 'hei' }, ['text']]
-        });
-
-        expect(result.toolbarTools).toEqual(allTools);
-      });
-
-      it('removes invalid backgroundMarks', () => {
-        const result = GraphWithControls.getDerivedStateFromProps({
-          ...initialProps,
-          backgroundMarks: [{ type: 'point' }, { type: 'a' }, { type: 'b' }, { type: 'line' }, { type: 'c' }]
-        });
-
-        expect(result.backgroundMarks).toEqual([{ type: 'point' }, { type: 'line' }]);
-      });
-
-      it('returns tools with toolbar property set', () => {
-        const result = GraphWithControls.getDerivedStateFromProps({
-          ...initialProps,
-          toolbarTools: ['line']
-        });
-
-        expect(result.tools.find(tool => tool.type === 'line').toolbar).toEqual(true);
-        expect(result.tools.filter(tool => tool.type !== 'line').map(t => t.toolbar)).toEqual(new Array(toolsArr.length - 1).fill(false));
-      });
-    });
-  });
 });

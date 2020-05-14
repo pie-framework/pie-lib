@@ -8,6 +8,7 @@ exports[`GraphWithControls snapshot renders 1`] = `
     <ToolMenu
       currentToolType="circle"
       disabled={false}
+      labelModeEnabled={false}
       onChange={[Function]}
       onToggleLabelMode={[Function]}
       toolbarTools={
@@ -85,6 +86,7 @@ exports[`GraphWithControls snapshot renders 1`] = `
         "step": 1,
       }
     }
+    labelModeEnabled={false}
     labels={
       Object {
         "bottom": "d",

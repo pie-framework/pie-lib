@@ -11,10 +11,7 @@ import UndoRedo from './undo-redo';
 import { allTools, toolsArr } from './tools';
 
 export const setToolbarAvailability = toolbarTools =>
-  toolsArr.map(tA => ({
-    ...tA,
-    toolbar: !!toolbarTools.find(t => t === tA.type)
-  })) || [];
+  toolsArr.map(tA => ({ ...tA, toolbar: !!toolbarTools.find(t => t === tA.type) })) || [];
 
 export const toolIsAvailable = (tools, currentTool) =>
   currentTool && tools && (tools.find(tool => tool.type === currentTool.type) || {}).toolbar;
@@ -36,56 +33,18 @@ export class GraphWithControls extends React.Component {
     toolbarTools: PropTypes.arrayOf(PropTypes.string) // array of tool types that have to be displayed in the toolbar, same shape as 'allTools'
   };
 
-  static defaultProps = {
-    toolbarTools: []
-  };
+  static defaultProps = { toolbarTools: [] };
 
-  state = {};
+  state = { currentTool: null, labelModeEnabled: false };
 
-  static getDerivedStateFromProps = (props, state) => {
-    props = props || {};
-    state = state || {};
-
-    let { backgroundMarks, marks, toolbarTools } = props;
-    let { currentTool, labelModeEnabled } = state;
-
-    backgroundMarks = backgroundMarks || [];
-    marks = marks || [];
-    toolbarTools = uniq(toolbarTools || []).filter(tT => !!isString(tT)) || [];
-
-    const tools = setToolbarAvailability(toolbarTools);
-
-    // set current tool if there's no current tool or if the previous one is no longer available
-    if (!currentTool || !toolIsAvailable(tools, currentTool)) {
-      currentTool = getAvailableTool(tools);
-    }
-
-    return {
-      // keep only the backgroundMarks that have valid types
-      backgroundMarks: filterByValidToolTypes(backgroundMarks),
-      currentTool,
-      labelModeEnabled,
-      // keep only the marks that have types which appear in toolbar
-      marks: filterByVisibleToolTypes(toolbarTools, marks),
-      tools,
-      toolbarTools
-    };
-  };
-
-  changeCurrentTool = currentTool =>
-    this.setState(state => ({ currentTool: state.tools.find(tool => tool.type === currentTool) }));
+  changeCurrentTool = (tool, tools) =>
+    this.setState({ currentTool: tools.find(t => t.type === tool) });
 
   toggleLabelMode = () => this.setState(state => ({ labelModeEnabled: !state.labelModeEnabled }));
 
   render() {
-    const {
-      backgroundMarks,
-      currentTool,
-      labelModeEnabled,
-      marks,
-      tools,
-      toolbarTools
-    } = this.state;
+    let { currentTool, labelModeEnabled } = this.state;
+
     const {
       axesSettings,
       classes,
@@ -102,6 +61,24 @@ export class GraphWithControls extends React.Component {
       title
     } = this.props;
 
+    let { backgroundMarks, marks, toolbarTools } = this.props;
+
+    // make sure only valid tool types are kept (string) and without duplicates
+    toolbarTools = uniq(toolbarTools || []).filter(tT => !!isString(tT)) || [];
+
+    // keep only the backgroundMarks that have valid types
+    backgroundMarks = filterByValidToolTypes(backgroundMarks || []);
+
+    // keep only the marks that have types which appear in toolbar
+    marks = filterByVisibleToolTypes(toolbarTools, marks || []);
+
+    const tools = setToolbarAvailability(toolbarTools);
+
+    // set current tool if there's no current tool or if the existing one is no longer available
+    if (!currentTool || !toolIsAvailable(tools, currentTool)) {
+      currentTool = getAvailableTool(tools);
+    }
+
     return (
       <div className={classNames(classes.graphWithControls, className)}>
         <div className={classes.controls}>
@@ -109,15 +86,15 @@ export class GraphWithControls extends React.Component {
             currentToolType={currentTool && currentTool.type}
             disabled={!!disabled}
             labelModeEnabled={labelModeEnabled}
-            onChange={this.changeCurrentTool}
+            onChange={tool => this.changeCurrentTool(tool, tools)}
             onToggleLabelMode={this.toggleLabelMode}
             toolbarTools={toolbarTools}
           />
 
-          {!disabled && <UndoRedo onUndo={onUndo} onRedo={onRedo} onReset={onReset}/>}
+          {!disabled && <UndoRedo onUndo={onUndo} onRedo={onRedo} onReset={onReset} />}
         </div>
 
-        <div ref={r => (this.labelNode = r)}/>
+        <div ref={r => (this.labelNode = r)} />
 
         <Graph
           axesSettings={axesSettings}
