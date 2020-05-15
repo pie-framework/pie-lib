@@ -3,307 +3,63 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import debug from 'debug';
 import { GraphContainer as Graph, tools } from '@pie-lib/graphing';
-import { types } from '@pie-lib/plot';
 import withRoot from '../../src/withRoot';
-import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
-import classNames from 'classnames';
-import Settings from './settings';
-import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Button from '@material-ui/core/Button';
 import { marks, backgroundMarks } from './demo-data';
 import { Checkbox, FormControlLabel } from '@material-ui/core';
 
-function TabContainer(props) {
-  return (
-    <Typography component="div" style={{ padding: 8 * 3 }}>
-      {props.children}
-    </Typography>
-  );
-}
+import { Tabs, Tab0, Tab1 } from './components/tabs';
 
-TabContainer.propTypes = {
-  children: PropTypes.node.isRequired
-};
+const { allTools } = tools;
 
 const log = debug('pie-lib:charting:graph-lines-demo');
-
-const Nt = withStyles(theme => ({
-  nt: {
-    marginTop: theme.spacing.unit * 2,
-    paddingRight: theme.spacing.unit
-  },
-  thin: {
-    // maxWidth: '100px'
-  }
-}))(({ className, label, value, onChange, classes, variant }) => (
-  <TextField
-    label={label}
-    className={classNames(classes.nt, classes[variant], className)}
-    type="number"
-    variant="outlined"
-    value={value}
-    onChange={e => onChange(parseFloat(e.target.value))}
-  />
-));
-
-class RawMinMax extends React.Component {
-  static propTypes = {
-    model: PropTypes.shape(types.BaseDomainRangeType),
-    onChange: PropTypes.func.isRequired,
-    label: PropTypes.string.isRequired,
-    classes: PropTypes.object.isRequired
-  };
-
-  change = (key, pair) => {
-    const { model, onChange } = this.props;
-    onChange({ ...model, [key]: pair || 0 });
-  };
-
-  render() {
-    const { model, label, classes } = this.props;
-    return (
-      <div>
-        <Typography variant="overline">{label}</Typography>
-        <div className={classes.minMax}>
-          <Nt label="min" value={model.min} variant="thin" onChange={n => this.change('min', n)} />
-          <Nt label="max" value={model.max} variant="thin" onChange={n => this.change('max', n)} />
-        </div>
-        <Nt
-          label="tick frequency"
-          value={model.step}
-          className={classes.fill}
-          onChange={n => this.change('step', n)}
-        />
-        <Nt
-          label="tick label frequency"
-          value={model.labelStep}
-          className={classes.fill}
-          onChange={n => this.change('labelStep', n)}
-        />
-        <TextField
-          label="axis label"
-          value={model.axisLabel}
-          className={classes.fill}
-          onChange={e => this.change('axisLabel', e.target.value)}
-        />
-      </div>
-    );
-  }
-}
-
-const MinMax = withStyles(theme => ({
-  minMax: {
-    display: 'flex',
-    flex: '0 0 auto'
-  },
-  fill: {
-    width: '100%'
-  }
-}))(RawMinMax);
-
-export class RawLabels extends React.Component {
-  static propTypes = {
-    value: PropTypes.shape({
-      left: PropTypes.string,
-      top: PropTypes.string,
-      bottom: PropTypes.string,
-      right: PropTypes.string
-    }),
-    onChange: PropTypes.func,
-    classes: PropTypes.object
-  };
-
-  static defaultProps = {
-    left: '',
-    top: '',
-    bottom: '',
-    right: ''
-  };
-
-  change = (key, e) => {
-    const { onChange, value } = this.props;
-    onChange({ ...value, [key]: e.target.value });
-  };
-
-  render() {
-    let { value, classes } = this.props;
-
-    value = value || {};
-    return (
-      <div className={classes.labels}>
-        <div className={classes.row}>
-          <TextField
-            variant="outlined"
-            label="left label"
-            className={classes.field}
-            value={value.left}
-            onChange={e => this.change('left', e)}
-          />
-          <TextField
-            variant="outlined"
-            className={classNames(classes.field, classes.rightField)}
-            label="top label"
-            value={value.top}
-            onChange={e => this.change('top', e)}
-          />
-        </div>
-        <div className={classes.row}>
-          <TextField
-            variant="outlined"
-            label="bottom label"
-            className={classes.field}
-            value={value.bottom}
-            onChange={e => this.change('bottom', e)}
-          />
-          <TextField
-            variant="outlined"
-            className={classNames(classes.field, classes.rightField)}
-            label="right label"
-            value={value.right}
-            onChange={e => this.change('right', e)}
-          />
-        </div>
-      </div>
-    );
-  }
-}
-const LabelsConfig = withStyles(theme => ({
-  labels: {
-    width: '100%',
-    paddingRight: theme.spacing.unit
-  },
-  row: {
-    width: '100%',
-    display: 'flex',
-    paddingTop: theme.spacing.unit
-  },
-  field: {
-    width: '100%',
-    paddingRight: theme.spacing.unit
-  },
-  rightField: {
-    paddingRight: 0
-  }
-}))(RawLabels);
-
-export class RawOptions extends React.Component {
-  static propTypes = {
-    model: PropTypes.object,
-    classes: PropTypes.object,
-    onChange: PropTypes.func,
-    graphTitle: PropTypes.bool,
-    labels: PropTypes.bool
-  };
-  change = (name, value) => {
-    const { model, onChange } = this.props;
-    onChange({ ...model, [name]: value });
-  };
-
-  render = () => {
-    const { model, classes, graphTitle, labels } = this.props;
-    return (
-      <div className={classes.options}>
-        {graphTitle && (
-          <TextField
-            variant="outlined"
-            label="Graph Title"
-            className={classes.graphTitle}
-            value={model.title || ''}
-            onChange={e => this.change('title', e.target.value)}
-          />
-        )}
-        {labels && <LabelsConfig value={model.labels} onChange={l => this.change('labels', l)} />}
-        <div className={classes.domainAndRange}>
-          <MinMax
-            label={'Domain (X)'}
-            model={model.domain}
-            onChange={d => this.change('domain', d)}
-          />
-          <MinMax label={'Range (Y)'} model={model.range} onChange={d => this.change('range', d)} />
-        </div>
-      </div>
-    );
-  };
-}
-
-const Options = withStyles(theme => ({
-  domainAndRange: {
-    display: 'flex',
-    paddingTop: theme.spacing.unit
-  },
-  options: {
-    paddingTop: theme.spacing.unit
-  },
-  graphTitle: {
-    width: '100%',
-    paddingRight: theme.spacing.unit
-  }
-}))(RawOptions);
 
 export class GridDemo extends React.PureComponent {
   static propTypes = {
     classes: PropTypes.object.isRequired
   };
 
-  constructor(props) {
-    super(props);
-
-    const toolsArr = [
-      tools.point(),
-      tools.circle(),
-      tools.polygon(),
-      tools.segment(),
-      tools.vector(),
-      tools.ray(),
-      tools.line(),
-      tools.sine(),
-      tools.parabola()
-    ];
-
-    toolsArr.forEach(t => (t.toolbar = true));
-    this.state = {
-      currentTool: toolsArr[2].type,
-      tools: toolsArr,
-      settings: {
-        includeArrows: true,
-        labels: true,
-        graphTitle: false,
-        coordinatesOnHover: false,
-        size: {
-          width: 600,
-          height: 600
-        }
-      },
-      model: {
-        labels: {
-          bottom: 'TEST FOR THE LABELS',
-          top: 'TEST FOR THE LABELS',
-          left: 'TEST FOR THE LABELS',
-          right: 'TEST FOR THE LABELS'
-        },
-        title: undefined,
-        domain: {
-          axisLabel: '<i>domain</i>',
-          min: -4.3,
-          max: 5.9,
-          padding: 0,
-          step: 0.25,
-          labelStep: 0.5
-        },
-        range: {
-          axisLabel: '<em>range</em>',
-          min: -6.2,
-          max: 5.1,
-          padding: 0,
-          step: 0.67,
-          labelStep: 0.67
-        },
-        backgroundMarks: backgroundMarks,
-        marks: marks
+  state = {
+    tools: allTools,
+    settings: {
+      includeArrows: true,
+      labels: true,
+      graphTitle: false,
+      coordinatesOnHover: false,
+      size: {
+        width: 600,
+        height: 600
       }
-    };
+    },
+    model: {
+      labels: {
+        bottom: 'TEST FOR THE LABELS',
+        top: 'TEST FOR THE LABELS',
+        left: 'TEST FOR THE LABELS',
+        right: 'TEST FOR THE LABELS'
+      },
+      title: 'Title',
+      domain: {
+        axisLabel: '<i>domain</i>',
+        min: -4.3,
+        max: 5.9,
+        padding: 0,
+        step: 0.25,
+        labelStep: 0.5
+      },
+      range: {
+        axisLabel: '<em>range</em>',
+        min: -6.2,
+        max: 5.1,
+        padding: 0,
+        step: 0.67,
+        labelStep: 0.67
+      },
+      backgroundMarks: backgroundMarks,
+      marks: marks
+    }
   }
 
   componentDidMount() {
@@ -315,15 +71,9 @@ export class GridDemo extends React.PureComponent {
     this.setState({ model });
   };
 
-  changeTab = (event, tabIndex) => {
-    this.setState({ indexTab: tabIndex });
-  };
+  changeTab = (event, tabIndex) => this.setState({ indexTab: tabIndex });
 
-  changeMarks = marks => {
-    log('[changeMarks]  ---->', marks);
-    const model = { ...this.state.model, marks };
-    this.setState({ model });
-  };
+  changeMarks = marks => this.setState({ model: { ...this.state.model, marks } });
 
   addMark = mark => {
     const model = {
@@ -334,120 +84,112 @@ export class GridDemo extends React.PureComponent {
     this.setState({ model });
   };
 
-  changeCurrentTool = currentTool => {
-    this.setState({ currentTool });
-  };
+  toggleToolDisplay = tool => {
+    const index = this.state.tools.findIndex(t => t === tool);
 
-  toggleToolDisplay = (tool, e) => {
-    const index = this.state.tools.findIndex(t => t.type === tool.type);
+    if (index < 0) {
+      this.setState({ tools: [...this.state.tools, tool] });
 
-    if (index === -1) {
       return;
     }
+
     const update = [...this.state.tools];
-    tool.toolbar = !!e.target.checked;
-    update.splice(index, 1, tool);
+
+    update.splice(index, 1);
 
     this.setState({ tools: update });
   };
 
   setCorrectness = correctness => {
-    const marks = this.state.model.marks.map(m => ({ ...m, correctness }));
-    this.setState({ model: { ...this.state.model, marks } });
+    const { model } = this.state;
+
+    const marks = model.marks.map(m => ({ ...m, correctness }));
+
+    this.setState({ model: { ...model, marks } });
   };
+
+  renderToolsSelector = () => {
+    const { hideLabel, tools } = this.state;
+
+    return (
+      <div>
+        <Typography>Show tool in Toolbar:</Typography>
+        {allTools.map((t, index) => {
+          return (
+            <FormControlLabel
+              key={`${index}-${t}`}
+              label={t}
+              control={
+                <Checkbox
+                  checked={!!tools.find(tool => tool === t)}
+                  value={tools.find(tool => tool === t)}
+                  onChange={() => this.toggleToolDisplay(t)}
+                />
+              }
+            />
+          );
+        })}
+        <FormControlLabel
+          key="label"
+          label="label"
+          control={
+            <Checkbox
+              checked={!hideLabel}
+              value="hideLabel"
+              onChange={() => this.setState({ hideLabel: !hideLabel })}
+            />
+          }
+        />
+      </div>
+    );
+  };
+
   render() {
     log('render..');
     const { classes } = this.props;
-    const { model, settings, mounted, tabIndex = 0, hideLabel } = this.state;
+    const { model, settings, mounted, tabIndex = 0, hideLabel, tools: stateTools } = this.state;
 
-    log('settings:', settings);
     return mounted ? (
       <div>
         <div className={classes.demo}>
           <div>
             <Tabs value={tabIndex} onChange={this.changeTab}>
-              <Tab label="Config" />
-              <Tab label="State" />
+              <Tab label="Config"/>
+              <Tab label="State"/>
             </Tabs>
             {tabIndex === 0 && (
-              <TabContainer>
-                <Settings model={settings} onChange={settings => this.setState({ settings })} />
-                <Options
-                  model={model}
-                  graphTitle={settings.graphTitle}
-                  labels={settings.labels}
-                  onChange={this.change}
-                />
-              </TabContainer>
+              <Tab0
+                model={model}
+                settings={settings}
+                onChange={this.change}
+                onSettingsChange={settings => this.setState({ settings })}/>
             )}
-            {tabIndex === 1 && (
-              <TabContainer>
-                <pre>{JSON.stringify(this.state.model.marks, null, ' ')}</pre>
-              </TabContainer>
-            )}
+            {tabIndex === 1 && <Tab1 marks={model.marks}/>}
           </div>
+
           <div>
             <div>
               <Button onClick={() => this.setCorrectness('correct')}>Correct</Button>
               <Button onClick={() => this.setCorrectness('incorrect')}>Incorrect</Button>
               <Button onClick={() => this.setCorrectness()}>none</Button>
             </div>
-            <div>
-              <Typography>Show tool in Toolbar:</Typography>
-              {this.state.tools.map((t, index) => {
-                return (
-                  <FormControlLabel
-                    key={`${index}-${t.type || t.label}`}
-                    label={t.type || t.label}
-                    control={
-                      <Checkbox
-                        checked={t.toolbar}
-                        value={t.toolbar}
-                        onChange={this.toggleToolDisplay.bind(this, t)}
-                      />
-                    }
-                  />
-                );
-              })}
-              <FormControlLabel
-                key="label"
-                label="label"
-                control={
-                  <Checkbox
-                    checked={!hideLabel}
-                    value={!hideLabel}
-                    onChange={() => this.setState({ hideLabel: !hideLabel })}
-                  />
-                }
-              />
-            </div>
+
+            {this.renderToolsSelector()}
+
             <Graph
-              size={settings.size}
+              axesSettings={{ includeArrows: settings.includeArrows }}
+              backgroundMarks={model.backgroundMarks}
               domain={model.domain}
-              range={model.range}
-              title={model.title}
-              axesSettings={{
-                includeArrows: settings.includeArrows
-              }}
+              hideLabel={hideLabel}
               labels={settings.labels && model.labels}
               marks={model.marks}
-              backgroundMarks={model.backgroundMarks}
               onChangeMarks={this.changeMarks}
-              tools={this.state.tools}
-              currentTool={this.state.currentTool.Component}
-              defaultTool={this.state.tools[0].Component.type}
-              hideLabel={hideLabel}
+              range={model.range}
+              size={settings.size}
+              title={model.title}
+              toolbarTools={stateTools}
             />
           </div>
-        </div>
-
-        <div>
-          <h4>Question</h4>
-          <ul>
-            <li>How to delete marks? </li>
-            <li>Can marks be selected? </li>
-            <li>Padding toggle what does it do? </li>
-          </ul>
         </div>
       </div>
     ) : (
@@ -464,5 +206,5 @@ const styles = {
 };
 
 export const Styled = withStyles(styles)(GridDemo);
-const Demo = () => <Styled />;
+const Demo = () => <Styled/>;
 export default withRoot(Demo);

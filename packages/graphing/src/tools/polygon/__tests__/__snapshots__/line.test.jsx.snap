@@ -11,6 +11,7 @@ exports[`Line snapshot renders 1`] = `
       "line": "RawLine-line-1",
     }
   }
+  from={Object {}}
   graphProps={
     Object {
       "domain": Object {
@@ -37,5 +38,6 @@ exports[`Line snapshot renders 1`] = `
       },
     }
   }
+  to={Object {}}
 />
 `;

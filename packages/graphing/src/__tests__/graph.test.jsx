@@ -1,130 +1,154 @@
 import { shallow } from 'enzyme';
 import React from 'react';
-import Graph from '../graph';
+
 import { xy } from '../__tests__/utils';
 
+import Graph, { removeBuildingToolIfCurrentToolDiffers } from '../graph';
+import { toolsArr } from '../tools';
+
+describe('removeBuildingToolIfCurrentToolDiffers', () => {
+  let marks = [
+    {
+      type: 'point',
+      x: 2,
+      y: 2,
+      label: 'Point',
+      showLabel: true
+    },
+    {
+      type: 'line',
+      from: { x: 0, y: 0 },
+      label: 'Line',
+      building: true
+    },
+  ];
+
+  it('keeps all marks if currentTool is the same', () => {
+    expect(removeBuildingToolIfCurrentToolDiffers({ marks, currentTool: { type: 'line' } })).toEqual(marks)
+  });
+
+  it('removes building marks if currentTool is different', () => {
+    expect(removeBuildingToolIfCurrentToolDiffers({ marks, currentTool: { type: 'different' }, })).toEqual([marks[0]]);
+  });
+});
+
 describe('Graph', () => {
-  let w;
   let onChangeMarks = jest.fn();
-  const defaultProps = () => ({
+  let wrapper;
+
+  const complete = jest.fn();
+  const addPoint = jest.fn();
+  const currentTool = toolsArr[0];
+  currentTool.complete = complete;
+  currentTool.addPoint = addPoint;
+
+  const props = {
     classes: {},
     className: 'className',
     onChangeMarks,
-    tools: [
-      {
-        type: 'mark',
-        Component: () => <div />,
-        addPoint: jest.fn((pnt, m) => ({ ...m, pnt })),
-        complete: jest.fn((m, d) => ({ ...m, ...d }))
-      }
-    ],
+    tools: toolsArr,
     domain: { min: 0, max: 1, step: 1 },
     range: { min: 0, max: 1, step: 1 },
     size: { width: 400, height: 400 },
-    marks: []
-  });
-  const wrapper = (extras, opts) => {
-    const props = { ...defaultProps(), ...extras };
-
-    return shallow(<Graph {...props} />, opts);
+    currentTool
   };
+
+  beforeEach(() => {
+    wrapper = (extras, opts) => {
+      const properties = {
+        ...props,
+        marks: [
+          {
+            type: 'point',
+            x: 2,
+            y: 2,
+            label: 'Point',
+            showLabel: true
+          },
+          {
+            type: 'line',
+            from: { x: 0, y: 0 },
+            label: 'Line',
+            building: true
+          },
+        ],
+        ...extras
+      };
+      console.log('props', props.marks);
+      return shallow(<Graph {...properties} />, opts);
+    };
+  });
 
   describe('snapshot', () => {
     it('renders', () => {
-      w = wrapper();
-      expect(w).toMatchSnapshot();
+      expect(wrapper()).toMatchSnapshot();
     });
   });
+
   describe('logic', () => {
     describe('componentDidMount', () => {
       it('sets the labelNode to state', () => {
-        w = shallow(<Graph {...defaultProps()} />, { disableLifecycleMethods: true });
+        let w = shallow(<Graph {...props} />, { disableLifecycleMethods: true });
+
         w.instance().labelNode = {};
         w.instance().componentDidMount();
         expect(w.state('labelNode')).toEqual(w.instance().labelNode);
       });
     });
 
-    describe('getDefaultTool', () => {
-      it('returns the default specified in the props', () => {
-        const defaultTool = { type: 'default' };
-        w = wrapper({
-          tools: [{ type: 'one' }, defaultTool],
-          defaultTool: defaultTool.type
-        });
-
-        const t = w.instance().getDefaultTool();
-
-        expect(t).toEqual(defaultTool);
-      });
-      it('returns the first tool if not specified', () => {
-        const tools = [{ type: 'one' }, { type: 'other' }],
-          w = wrapper({
-            tools
-          });
-
-        const t = w.instance().getDefaultTool();
-        expect(t).toEqual(tools[0]);
-      });
-    });
-
     describe('changeMark', () => {
-      it('calls onChangeMarks', () => {
-        const marks = [{ type: 'mark', x: 1, y: 1 }];
+      it('does not call onChangeMarks', () => {
         const newMark = { type: 'mark', x: 2, y: 2 };
-        w = wrapper({
-          marks
-        });
+
+        let w = wrapper();
+        w.instance().changeMark(newMark, newMark);
+        expect(onChangeMarks).not.toBeCalled();
+      });
+
+      it('calls onChangeMarks', () => {
+        const newMark = { type: 'mark', x: 2, y: 2 };
+
+        let w = wrapper();
+        let marks = w.instance().props.marks;
+
+        console.log('w model', w.instance().props.marks);
         w.instance().changeMark(marks[0], newMark);
-        expect(onChangeMarks).toHaveBeenCalledWith([newMark]);
-      });
-    });
-
-    describe('getBuildingMark', () => {
-      it('returns mark that is building', () => {
-        const marks = [{ type: 'mark' }, { type: 'mark', building: true, x: 1, y: 1 }];
-        w = wrapper({ marks });
-        const result = w.instance().getBuildingMark();
-        expect(result).toEqual(marks[1]);
-      });
-    });
-
-    describe('onBgClick', () => {
-      it('calls updateMarks', () => {
-        const buildingMark = { type: 'mark', building: true, x: 1, y: 1 };
-
-        const updatedMark = { type: 'mark', msg: 'updated' };
-        const marks = [{ type: 'mark' }, buildingMark];
-
-        w = wrapper({ marks });
-        w.instance().props.tools[0].addPoint.mockReturnValue(updatedMark);
-        w.instance().updateMarks = jest.fn();
-        w.instance().onBgClick({ x: 3, y: 3 });
-        expect(w.instance().updateMarks).toHaveBeenCalledWith(buildingMark, updatedMark, true);
-      });
-
-      it('returns early of labelModeEnabled', () => {
-        w = wrapper({ labelModeEnabled: true });
-        w.instance().updateMarks = jest.fn();
-        w.instance().onBgClick({ x: 3, y: 3 });
-        expect(w.instance().updateMarks).not.toHaveBeenCalled();
+        expect(onChangeMarks).toHaveBeenCalledWith([newMark, marks[1]]);
       });
     });
 
     describe('completeMark', () => {
-      it('calls updateMarks', () => {
-        const buildingMark = { type: 'mark', building: true, x: 1, y: 1 };
+      it('does not call updateMarks if no building mark', () => {
+        const updateMarks = jest.fn();
+        let w = wrapper({ marks: [{ type: 'point', x: 1, y: 1 }] });
 
-        const completedMark = { type: 'mark', completed: true };
-        const marks = [{ type: 'mark' }, buildingMark];
-
-        w = wrapper({ marks });
-        w.instance().props.tools[0].complete.mockReturnValue(completedMark);
-        w.instance().updateMarks = jest.fn();
+        w.instance().updateMarks = updateMarks;
         w.instance().completeMark({ x: 3, y: 3 });
 
-        expect(w.instance().props.tools[0].complete).toHaveBeenCalledWith(buildingMark, xy(3, 3));
-        expect(w.instance().updateMarks).toHaveBeenCalledWith(buildingMark, completedMark);
+        expect(complete).not.toBeCalled();
+        expect(updateMarks).not.toBeCalled();
+      });
+
+      it('does not call updateMarks if no current tool', () => {
+        const updateMarks = jest.fn();
+        let w = wrapper({ currentTool: null });
+
+        w.instance().updateMarks = updateMarks;
+        w.instance().completeMark({ x: 3, y: 3 });
+
+        expect(complete).not.toBeCalled();
+        expect(updateMarks).not.toBeCalled();
+      });
+
+      it('calls updateMarks', () => {
+        const updateMarks = jest.fn();
+        let w = wrapper();
+
+        w.instance().updateMarks = updateMarks;
+        w.instance().completeMark({ x: 3, y: 3 });
+
+        expect(complete).toHaveBeenCalled();
+        expect(updateMarks).toHaveBeenCalled();
       });
     });
 
@@ -132,97 +156,68 @@ describe('Graph', () => {
       it('calls onChangeMarks', () => {
         const marks = [{ type: 'mark', ...xy(2, 2) }];
         const update = { type: 'mark', ...xy(4, 4) };
-        w = wrapper({ marks });
-        w.instance().updateMarks(marks[0], update, false);
+
+        wrapper({ marks }).instance().updateMarks(marks[0], update, false);
       });
 
       it('calls onChangeMarks with added mark', () => {
         const marks = [];
         const update = { type: 'mark', ...xy(4, 4) };
-        w = wrapper({ marks });
-        w.instance().updateMarks(marks[0], [update], true);
+
+        wrapper({ marks }).instance().updateMarks(marks[0], [update], true);
       });
     });
 
     describe('getComponent', () => {
-      let marks, compMock;
+      let compMock = jest.fn();
 
-      beforeEach(() => {
-        marks = [{ type: 'mark', ...xy(1, 1) }, { type: 'mark', ...xy(3, 3) }];
-        w = wrapper();
-        compMock = jest.fn();
+      it('returns null if no mark', () => {
+        let w = wrapper();
+
+        expect(w.instance().getComponent()).toEqual(null);
+        expect(w.instance().getComponent(undefined)).toEqual(null);
+        expect(w.instance().getComponent(null)).toEqual(null);
       });
 
       it('returns the component', () => {
+        let w = wrapper();
         w.instance().props.tools[0].Component = compMock;
-        const Comp = w.instance().getComponent(marks[1]);
+
+        const Comp = w.instance().getComponent({ type: toolsArr[0].type });
         expect(Comp).toEqual(compMock);
       });
 
-      it('throws an error if there is no tool', () => {
-        w.instance().props.tools.pop();
-        expect(() => w.instance().getComponent({ type: 'mark' })).toThrow(/No tool supports.*/);
+      it('returns null if there is no tool', () => {
+        let w = wrapper();
+        expect(w.instance().getComponent({ type: 'mark' })).toEqual(null);
       });
-      it('throws an error if there is no tool.Component', () => {
+
+      it('returns null if there is no tool.Component', () => {
+        let w = wrapper();
         w.instance().props.tools[0].Component = undefined;
-        expect(() => w.instance().getComponent({ type: 'mark' })).toThrow(/No tool supports.*/);
+
+        expect(w.instance().getComponent({ type: toolsArr[0].type })).toEqual(null);
       });
     });
 
-    describe('mouseMove', () => {
-      it('updates state if there is a buildingMark and !dragging', () => {
-        const marks = [{ type: 'mark' }];
-        w = wrapper({ marks });
-        w.setState({ buildingMark: { type: 'mark' } });
-        w.instance().mouseMove(xy(3, 3));
-        expect(w.state().hoverPoint).toEqual(xy(3, 3));
-      });
-      it('does not update state if there is no buildingMark', () => {
-        const marks = [{ type: 'mark' }];
-        w = wrapper({ marks });
-        w.instance().mouseMove(xy(3, 3));
-        expect(w.state().hoverPoint).toBeUndefined();
-      });
-      it('does not update state if dragging', () => {
-        const marks = [{ type: 'mark' }];
-        w = wrapper({ marks });
-        w.setState({ dragging: true });
-        w.instance().mouseMove(xy(3, 3));
-        expect(w.state().hoverPoint).toBeUndefined();
-      });
-    });
+    describe('onBgClick', () => {
+      it('calls updateMarks', () => {
+        const buildingMark = { type: 'mark', building: true, x: 1, y: 1 };
+        const marks = [{ type: 'mark' }, buildingMark];
 
-    describe('removeMark', () => {
-      it('removes the mark', () => {
-        const mark = { type: 'mark', ...xy(1, 1) };
-        w = wrapper({ marks: [mark, { type: 'mark', ...xy(3, 3) }] });
-        const result = w.instance().removeMark(mark);
-        expect(result).toEqual([{ type: 'mark', ...xy(3, 3) }]);
+        const updateMarks = jest.fn();
+
+        let w = wrapper({ marks });
+        w.instance().updateMarks = updateMarks;
+        w.instance().onBgClick({ x: 3, y: 3 });
+        expect(w.instance().updateMarks).toHaveBeenCalled();
       });
-    });
 
-    describe('componentDidUpdate', () => {
-      it('removes the building mark if the tool changes', () => {
-        const oldTool = { type: 'oldTool', Component: jest.fn() };
-        const currentTool = { type: 'current' };
-        const tools = [oldTool, currentTool];
-        w = wrapper(
-          {
-            currentTool,
-            tools,
-            marks: [
-              {
-                type: 'oldTool',
-                building: true
-              }
-            ]
-          },
-          { disableLifecycleMethods: true }
-        );
-
-        w.instance().componentDidUpdate({ currentTool: oldTool });
-
-        expect(onChangeMarks).toHaveBeenCalledWith([]);
+      it('returns early of labelModeEnabled', () => {
+        let w = wrapper({ labelModeEnabled: true });
+        w.instance().updateMarks = jest.fn();
+        w.instance().onBgClick({ x: 3, y: 3 });
+        expect(w.instance().updateMarks).not.toHaveBeenCalled();
       });
     });
   });

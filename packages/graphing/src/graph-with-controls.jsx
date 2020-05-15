@@ -2,100 +2,119 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
+import uniq from 'lodash/uniq';
+import isString from 'lodash/isString';
+
 import ToolMenu from './tool-menu';
 import Graph, { graphPropTypes } from './graph';
 import UndoRedo from './undo-redo';
+import { allTools, toolsArr } from './tools';
+
+export const setToolbarAvailability = toolbarTools =>
+  toolsArr.map(tA => ({ ...tA, toolbar: !!toolbarTools.find(t => t === tA.type) })) || [];
+
+export const toolIsAvailable = (tools, currentTool) =>
+  currentTool && tools && (tools.find(tool => tool.type === currentTool.type) || {}).toolbar;
+
+export const getAvailableTool = tools => tools.find(tool => tool.toolbar);
+
+export const filterByValidToolTypes = backgroundMarks =>
+  backgroundMarks.filter(bM => !!allTools.find(tool => tool === bM.type));
+
+export const filterByVisibleToolTypes = (toolbarTools, marks) =>
+  marks.filter(bM => !!toolbarTools.find(tool => tool === bM.type));
 
 export class GraphWithControls extends React.Component {
   static propTypes = {
     ...graphPropTypes,
     onUndo: PropTypes.func,
     onRedo: PropTypes.func,
-    onReset: PropTypes.func
+    onReset: PropTypes.func,
+    toolbarTools: PropTypes.arrayOf(PropTypes.string) // array of tool types that have to be displayed in the toolbar, same shape as 'allTools'
   };
 
-  static defaultProps = {};
+  static defaultProps = { toolbarTools: [] };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      currentTool: props.currentTool || (props.tools.length && props.tools[0].type) || undefined
-    };
-  }
+  state = { currentTool: null, labelModeEnabled: false };
 
-  changeCurrentTool = currentTool => {
-    this.setState({ currentTool });
-  };
+  changeCurrentTool = (tool, tools) =>
+    this.setState({ currentTool: tools.find(t => t.type === tool) });
 
-  componentDidUpdate() {
-    const { tools } = this.props;
-    const { currentTool } = this.state;
-    const t = tools.find(t => currentTool && t.type === currentTool);
-
-    if ((!t || !t.toolbar) && !!currentTool) {
-      this.setState({ currentTool: (tools.find(t => t.toolbar) || {}).type });
-    }
-  }
+  toggleLabelMode = () => this.setState(state => ({ labelModeEnabled: !state.labelModeEnabled }));
 
   render() {
+    let { currentTool, labelModeEnabled } = this.state;
+
     const {
       axesSettings,
       classes,
       className,
-      marks,
-      backgroundMarks,
-      size,
-      labels,
+      disabled,
       domain,
-      range,
-      title,
+      labels,
       onChangeMarks,
       onUndo,
       onRedo,
       onReset,
-      tools,
-      disabled,
-      hideLabel
+      range,
+      size,
+      title
     } = this.props;
-    const { currentTool, labelModeEnabled } = this.state;
 
-    // const enabled = !correctnessMarks;
+    let { backgroundMarks, marks, toolbarTools } = this.props;
+
+    // make sure only valid tool types are kept (string) and without duplicates
+    toolbarTools = uniq(toolbarTools || []).filter(tT => !!isString(tT)) || [];
+
+    // keep only the backgroundMarks that have valid types
+    backgroundMarks = filterByValidToolTypes(backgroundMarks || []);
+
+    // keep only the marks that have types which appear in toolbar
+    marks = filterByVisibleToolTypes(toolbarTools, marks || []);
+
+    const tools = setToolbarAvailability(toolbarTools);
+
+    // set current tool if there's no current tool or if the existing one is no longer available
+    if (!currentTool || !toolIsAvailable(tools, currentTool)) {
+      currentTool = getAvailableTool(tools);
+    }
 
     return (
       <div className={classNames(classes.graphWithControls, className)}>
         <div className={classes.controls}>
           <ToolMenu
-            disabled={disabled}
-            tools={tools}
-            currentTool={currentTool}
-            onChange={this.changeCurrentTool}
+            currentToolType={currentTool && currentTool.type}
+            disabled={!!disabled}
             labelModeEnabled={labelModeEnabled}
-            onToggleLabelMode={() =>
-              this.setState({ labelModeEnabled: !this.state.labelModeEnabled })
-            }
-            hideLabel={hideLabel}
+            onChange={tool => this.changeCurrentTool(tool, tools)}
+            onToggleLabelMode={this.toggleLabelMode}
+            toolbarTools={toolbarTools}
           />
+
           {!disabled && <UndoRedo onUndo={onUndo} onRedo={onRedo} onReset={onReset} />}
         </div>
+
         <div ref={r => (this.labelNode = r)} />
+
         <Graph
-          labelModeEnabled={labelModeEnabled}
-          size={size}
-          domain={domain}
-          range={range}
-          title={title}
           axesSettings={axesSettings}
-          labels={labels}
-          marks={marks}
           backgroundMarks={backgroundMarks}
-          onChangeMarks={disabled ? () => {} : onChangeMarks}
-          tools={tools}
           currentTool={currentTool}
+          domain={domain}
+          labels={labels}
+          labelModeEnabled={labelModeEnabled}
+          marks={marks}
+          onChangeMarks={!disabled ? onChangeMarks : undefined}
+          range={range}
+          size={size}
+          title={title}
+          tools={tools}
         />
       </div>
     );
   }
 }
+
 const styles = theme => ({
   graphWithControls: {},
   controls: {
@@ -110,4 +129,5 @@ const styles = theme => ({
     borderRight: `solid 1px ${theme.palette.primary.dark}`
   }
 });
+
 export default withStyles(styles)(GraphWithControls);

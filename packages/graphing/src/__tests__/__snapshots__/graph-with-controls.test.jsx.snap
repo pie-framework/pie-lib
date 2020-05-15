@@ -1,0 +1,213 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GraphWithControls snapshot renders 1`] = `
+<div
+  className=""
+>
+  <div>
+    <ToolMenu
+      currentToolType="circle"
+      disabled={false}
+      labelModeEnabled={false}
+      onChange={[Function]}
+      onToggleLabelMode={[Function]}
+      toolbarTools={
+        Array [
+          "circle",
+          "line",
+          "label",
+          "parabola",
+          "point",
+          "polygon",
+          "ray",
+          "segment",
+          "sine",
+          "vector",
+        ]
+      }
+    />
+    <UndoRedo />
+  </div>
+  <div />
+  <Graph
+    axesSettings={
+      Object {
+        "includeArrows": true,
+      }
+    }
+    backgroundMarks={
+      Array [
+        Object {
+          "label": "Point",
+          "showLabel": true,
+          "type": "point",
+          "x": 2,
+          "y": 2,
+        },
+        Object {
+          "building": true,
+          "from": Object {
+            "x": 0,
+            "y": 0,
+          },
+          "label": "Line",
+          "to": Object {
+            "x": 1,
+            "y": 1,
+          },
+          "type": "line",
+        },
+        Object {
+          "edge": Object {
+            "x": 0,
+            "y": 0,
+          },
+          "root": Object {
+            "x": 2,
+            "y": 2,
+          },
+          "type": "line",
+        },
+      ]
+    }
+    currentTool={
+      Object {
+        "Component": [Function],
+        "addPoint": [Function],
+        "hover": [Function],
+        "toolbar": true,
+        "type": "circle",
+      }
+    }
+    domain={
+      Object {
+        "max": 10,
+        "min": 0,
+        "step": 1,
+      }
+    }
+    labelModeEnabled={false}
+    labels={
+      Object {
+        "bottom": "d",
+        "left": "b",
+        "right": "c",
+        "top": "a",
+      }
+    }
+    marks={
+      Array [
+        Object {
+          "label": "Point",
+          "showLabel": true,
+          "type": "point",
+          "x": 2,
+          "y": 2,
+        },
+        Object {
+          "building": true,
+          "from": Object {
+            "x": 0,
+            "y": 0,
+          },
+          "label": "Line",
+          "to": Object {
+            "x": 1,
+            "y": 1,
+          },
+          "type": "line",
+        },
+        Object {
+          "edge": Object {
+            "x": 0,
+            "y": 0,
+          },
+          "root": Object {
+            "x": 2,
+            "y": 2,
+          },
+          "type": "line",
+        },
+      ]
+    }
+    onChangeMarks={[MockFunction]}
+    range={
+      Object {
+        "max": 10,
+        "min": 0,
+        "step": 1,
+      }
+    }
+    size={
+      Object {
+        "height": 500,
+        "width": 500,
+      }
+    }
+    title="Title"
+    tools={
+      Array [
+        Object {
+          "Component": [Function],
+          "addPoint": [Function],
+          "hover": [Function],
+          "toolbar": true,
+          "type": "circle",
+        },
+        Object {
+          "Component": [Function],
+          "addPoint": [Function],
+          "toolbar": true,
+          "type": "line",
+        },
+        Object {
+          "Component": [Function],
+          "addPoint": [Function],
+          "complete": [Function],
+          "toolbar": true,
+          "type": "parabola",
+        },
+        Object {
+          "Component": [Function],
+          "addPoint": [Function],
+          "label": "Point",
+          "toolbar": true,
+          "type": "point",
+        },
+        Object {
+          "Component": [Function],
+          "addPoint": [Function],
+          "complete": [Function],
+          "toolbar": true,
+          "type": "polygon",
+        },
+        Object {
+          "Component": [Function],
+          "addPoint": [Function],
+          "toolbar": true,
+          "type": "ray",
+        },
+        Object {
+          "Component": [Function],
+          "addPoint": [Function],
+          "toolbar": true,
+          "type": "segment",
+        },
+        Object {
+          "Component": [Function],
+          "addPoint": [Function],
+          "complete": [Function],
+          "toolbar": true,
+          "type": "sine",
+        },
+        Object {
+          "Component": [Function],
+          "addPoint": [Function],
+          "toolbar": true,
+          "type": "vector",
+        },
+      ]
+    }
+  />
+</div>
+`;
