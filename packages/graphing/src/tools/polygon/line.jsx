@@ -10,11 +10,16 @@ class RawLine extends React.Component {
   static propTypes = {
     className: PropTypes.string,
     classes: PropTypes.object,
-    from: PropTypes.shape(types.PointType),
-    to: PropTypes.shape(types.PointType),
+    from: types.PointType,
+    to: types.PointType,
     graphProps: types.GraphPropsType.isRequired,
     disabled: PropTypes.bool,
     correctness: PropTypes.string
+  };
+
+  static defaultProps = {
+    from: {},
+    to: {}
   };
 
   render() {

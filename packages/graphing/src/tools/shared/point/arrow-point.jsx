@@ -20,8 +20,13 @@ export class RawArrow extends React.Component {
     to: PropTypes.shape({
       x: PropTypes.number,
       y: PropTypes.number
-    }).isRequired,
+    }),
     graphProps: types.GraphPropsType.isRequired
+  };
+
+  static defaultProps = {
+    from: {},
+    to: {}
   };
 
   render() {

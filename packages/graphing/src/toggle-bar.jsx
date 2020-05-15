@@ -32,15 +32,14 @@ const buttonStyles = theme => ({
 
 export const MiniButton = withStyles(buttonStyles)(props => {
   const { disabled, classes, className, selected, value, onClick } = props;
+
   return (
     <Button
       size="small"
       disabled={disabled}
       color={selected ? 'secondary' : 'default'}
       className={cn(classes.root, selected && classes.selected, className)}
-      classes={{
-        disabled: cn(disabled && classes.disabled)
-      }}
+      classes={{ disabled: cn(disabled && classes.disabled) }}
       value={value}
       key={value}
       variant="outlined"
@@ -50,6 +49,7 @@ export const MiniButton = withStyles(buttonStyles)(props => {
     </Button>
   );
 });
+
 MiniButton.propTypes = {
   disabled: PropTypes.bool,
   className: PropTypes.string,
@@ -64,34 +64,31 @@ export class ToggleBar extends React.Component {
     classes: PropTypes.object.isRequired,
     className: PropTypes.string,
     options: PropTypes.arrayOf(PropTypes.string),
-    selected: PropTypes.string,
+    selectedToolType: PropTypes.string,
     disabled: PropTypes.bool,
     onChange: PropTypes.func
   };
 
   static defaultProps = {};
 
-  select = e => {
-    const { onChange } = this.props;
-    onChange(e.target.textContent);
-  };
+  select = e => this.props.onChange(e.target.textContent);
 
   render() {
-    const { classes, className, disabled, options, selected } = this.props;
+    const { classes, className, disabled, options, selectedToolType } = this.props;
     return (
-      <div className={cn(classes.class, className)}>
-        {(options || []).map(o => {
-          const isSelected = o === selected;
+      <div className={cn(className)}>
+        {(options || []).map(option => {
+          const isSelected = option === selectedToolType;
 
           return (
             <MiniButton
-              disableRipple={true}
-              key={o}
-              value={o}
-              disabled={disabled}
-              selected={isSelected}
+              key={option}
               className={cn(classes.button, isSelected && classes.selected)}
+              disabled={disabled}
+              disableRipple={true}
               onClick={this.select}
+              value={option}
+              selected={isSelected}
             />
           );
         })}
@@ -99,11 +96,9 @@ export class ToggleBar extends React.Component {
     );
   }
 }
+
 const styles = () => ({
-  class: {},
-  button: {
-    marginRight: -1 //theme.spacing.unit
-  }
+  button: { marginRight: -1 } //  theme.spacing.unit
 });
 
 export default withStyles(styles)(ToggleBar);

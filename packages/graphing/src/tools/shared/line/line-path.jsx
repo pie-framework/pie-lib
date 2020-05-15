@@ -14,9 +14,14 @@ export class RawLinePath extends React.Component {
     graphProps: types.GraphPropsType.isRequired,
     disabled: PropTypes.bool,
     correctness: PropTypes.string,
-    from: PropTypes.shape(types.PointType).isRequired,
-    to: PropTypes.shape(types.PointType).isRequired,
+    from: types.PointType,
+    to: types.PointType,
     isDragging: PropTypes.bool
+  };
+
+  static defaultProps = {
+    from: {},
+    to: {}
   };
 
   render() {

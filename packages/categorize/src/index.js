@@ -224,132 +224,211 @@ export const moveChoiceToCategory = (choiceId, from, to, choiceIndex, answers) =
   }
 };
 
+export const stillSelectable = (h, builtCategories) => {
+  if (h.categoryCount > 0) {
+    const count = countChosen(h, builtCategories);
+    return count < h.categoryCount;
+  } else {
+    return true;
+  }
+};
+
 /**
+ * returns all choices with property 'correct' set to boolean
+ * @param {string[]} possibleResponseChoices
+ * @param {Object[]} builtCategoryChoices
  *
+ * @returns {Object}, returns builtChoices: BuiltChoice[] and allChoicesAreCorrect: boolean
+ * BuiltChoice = { id: choiceId, content: choiceContent, correct: boolean }
+ */
+export const buildChoices = (possibleResponseChoices, builtCategoryChoices) => {
+  return builtCategoryChoices.reduce(
+    (acc, builtChoice) => {
+      // set correct value on each choice that was selected by user
+      const index = acc.copyOfPossibleResponse.findIndex(cRC => cRC === builtChoice.id);
+      // if the choice exists in the correct response
+      // set the correct: true
+      if (index >= 0) {
+        acc.builtChoices.push({
+          ...builtChoice,
+          correct: true
+        });
+        acc.copyOfPossibleResponse = [
+          ...acc.copyOfPossibleResponse.slice(0, index),
+          ...acc.copyOfPossibleResponse.slice(index + 1)
+        ];
+      } else {
+        acc.builtChoices.push({
+          ...builtChoice,
+          correct: false
+        });
+        acc.allChoicesAreCorrect = false;
+      }
+
+      return acc;
+    },
+    {
+      builtChoices: [],
+      copyOfPossibleResponse: [...possibleResponseChoices],
+      allChoicesAreCorrect: true
+    }
+  );
+};
+
+/**
+ * returns corrected answer using this possible correct response
+ * @param {Object} possibleResponse, has form: { CategoryId: ChoiceId[] }
+ * @param {Object[]} builtCategories
+ *
+ * @returns {Object}, returns builtCategories: BuiltCategory[] and correct: boolean
+ * BuiltCategory = { id: categoryId, label: categoryLabel, correct: boolean, choices: BuiltChoice[] }
+ * BuiltChoice = { id: choiceId, content: choiceContent, correct: boolean }
+ */
+export const getBuiltCategories = (possibleResponse, builtCategories) =>
+  builtCategories.reduce(
+    (acc, builtCategory) => {
+      const possibleResponseChoices = possibleResponse[builtCategory.id] || []; // the correct choices for this category
+      const builtCategoryChoices = builtCategory.choices || []; // the choices in the answer
+
+      const { builtChoices, allChoicesAreCorrect } = buildChoices(
+        possibleResponseChoices,
+        builtCategoryChoices
+      );
+      const allChoicesAreInAnswer = builtCategoryChoices.length === possibleResponseChoices.length;
+
+      acc.builtCategories.push({
+        ...builtCategory,
+        correct: allChoicesAreCorrect && allChoicesAreInAnswer,
+        choices: builtChoices
+      });
+      acc.correct = acc.correct && allChoicesAreCorrect && allChoicesAreInAnswer;
+
+      return acc;
+    },
+    { builtCategories: [], correct: true }
+  );
+
+/**
+ * returns all the possible responses by combining the proper alternate responses
+ * @param {Object[]} correctResponse
+ *
+ * @returns {Object[]}, returns Response[]
+ * Response = { CategoryId: ChoiceId[] },
+ */
+export const getAllPossibleResponses = correctResponse => {
+  if (!correctResponse) {
+    return [];
+  }
+
+  return correctResponse.reduce((acc, cR) => {
+    // main response
+    if (acc[0]) {
+      acc[0][cR.category] = cR.choices;
+    } else {
+      acc.push({ [cR.category]: cR.choices });
+    }
+
+    // alternate responses
+    if (cR.alternateResponses) {
+      cR.alternateResponses.forEach((aR, index) => {
+        if (acc[index + 1]) {
+          acc[index + 1][cR.category] = aR;
+        } else {
+          acc.push({ [cR.category]: aR });
+        }
+      });
+    }
+
+    return acc;
+  }, []);
+};
+
+/**
+ * build the categories to be displayed, where each category has its own list of choices
+ * @param {Object[]} categories
+ * @param {{id:string}[]} choices
+ * @param {{category: string, choices:string[]}[]} answers
+ *
+ * @returns {Object[]}, returns BuiltCategory[]
+ * BuiltCategory = { id: categoryId, label: categoryLabel, choices: BuiltChoice[]},
+ * BuiltChoice = { id: choiceId, content: choiceContent }
+ */
+export const buildCategories = (categories, choices, answers) => {
+  categories = categories || [];
+  answers = answers || [];
+  choices = choices || [];
+
+  return categories.map(category => {
+    const answer = answers.find(answer => answer.category === category.id);
+    const { choices: answerChoices = [] } = answer || {};
+
+    return {
+      ...category,
+      choices: answerChoices.map(chId => choices.find(ch => ch.id === chId))
+    };
+  });
+};
+
+/**
  * build the choice and category state
  * @param {Object[]} categories
  * @param {{id:string}[]} choices
  * @param {{category: string, choices:string[]}[]} answers
  *
  * @param correctResponse
- * @returns {categories: Category[], choices: Choice[]}
+ * @returns { categories: Category[], choices: Choice[], correct: boolean, bestResponse: Response }, where Response: { categoryId: choiceId[] }
  */
-export const buildState = (categories, choices, answers = [], correctResponse) => {
-  const generateChoices = (mappedChoices, correctChoices) =>
-    mappedChoices.reduce(
-      (acc, choice) => {
-        if (!acc.correct) {
-          acc.choices.push({ ...choice, correct: undefined });
-        } else {
-          const index = acc.correct.findIndex(id => id === choice.id);
-          const newChoice = { ...choice, correct: index !== -1 };
+export const buildState = (categories, choices, answers, correctResponse) => {
+  categories = categories || [];
+  choices = choices || [];
+  answers = answers || [];
 
-          if (newChoice.correct) {
-            acc.correctCount += 1;
-          }
+  const allResponses = getAllPossibleResponses(correctResponse) || [];
 
-          acc.choices.push(newChoice);
+  let builtCategories = buildCategories(categories, choices, answers);
+  let bestResponse;
+  let entirelyCorrect;
 
-          if (index !== -1) {
-            acc.correct.splice(index, 1);
-          }
+  // at least one defined correct response
+  if (allResponses.length) {
+    const builtData = allResponses.reduce(
+      (acc, possibleResponse) => {
+        // set correctness for each possible response
+        const { builtCategories: categoriesWithChoices, correct } = getBuiltCategories(
+          possibleResponse,
+          builtCategories
+        );
+
+        // if bestResponse not found yet OR no correct response found yet and this one is the correct one
+        if (acc.bestResponse === null || (!acc.entirelyCorrect && correct)) {
+          return {
+            bestResponse: possibleResponse,
+            builtCategories: categoriesWithChoices,
+            entirelyCorrect: correct
+          };
         }
 
         return acc;
       },
       {
-        choices: [],
-        correctCount: 0,
-        correct: correctChoices
+        bestResponse: null,
+        builtCategories: [],
+        entirelyCorrect: false
       }
     );
-  const getBestScenario = (mappedChoices, mainCorrectPossibility, correctResponse) => {
-    let result = generateChoices(mappedChoices, mainCorrectPossibility);
 
-    if (mainCorrectPossibility && correctResponse && correctResponse.alternateResponses) {
-      correctResponse.alternateResponses.forEach(choices => {
-        const newResult = generateChoices(mappedChoices, cloneDeep(choices));
+    builtCategories = builtData.builtCategories;
+    bestResponse = builtData.bestResponse;
+    entirelyCorrect = builtData.entirelyCorrect;
+  }
 
-        if (newResult.correctCount > result.correctCount) {
-          result = newResult;
-        }
-      });
-    }
+  const filteredChoices = choices.map(ch =>
+    stillSelectable(ch, builtCategories) ? ch : { empty: true });
 
-    return result;
+  return {
+    choices: filteredChoices,
+    categories: builtCategories,
+    correct: entirelyCorrect,
+    bestResponse
   };
-  const addChoices = category => {
-    const answer = answers.find(a => a.category === category.id);
-
-    const hasCorrectResponse = Array.isArray(correctResponse) && correctResponse.length > 0;
-
-    const cr = hasCorrectResponse
-      ? correctResponse.find(r => r.category === category.id)
-      : undefined;
-    const correctChoices = clone(cr ? cr.choices || [] : undefined);
-    const hasAlternateResponses = cr && !isUndefined(cr.alternateResponses);
-
-    if (answer) {
-      const mappedChoices = compact(
-        (answer.choices || []).map(id => choices.find(c => c.id === id))
-      );
-
-      const mainCorrectPossibility = hasCorrectResponse ? correctChoices || [] : undefined;
-      const out = getBestScenario(mappedChoices, mainCorrectPossibility, cr);
-
-      const ids = out.choices.map(c => c.id).sort();
-      const correctIds = clone(cr && Array.isArray(cr.choices) ? cr.choices : []).sort();
-
-      log('ids: ', ids, 'correctIds: ', correctIds);
-      let correct = hasCorrectResponse ? isEqual(ids, correctIds) : undefined;
-
-      if (correct !== true && hasAlternateResponses) {
-        cr.alternateResponses.forEach(choices => {
-          if (!correct) {
-            const altIds = out.choices.map(c => c.id).sort();
-            const altCorrectIds = clone(choices || []).sort();
-
-            correct = isEqual(altIds, altCorrectIds);
-          }
-        });
-      }
-
-      return {
-        ...category,
-        choices: out.choices,
-        correct
-      };
-    } else {
-      const correct = correctChoices === undefined ? true : correctChoices.length === 0;
-      log('empty choices is that correct?', correctChoices);
-      return {
-        ...category,
-        choices: [],
-        correct
-      };
-    }
-  };
-
-  const withChoices = categories.map(addChoices);
-
-  const correct = correctResponse ? every(withChoices, category => category.correct) : undefined;
-
-  const stillSelectable = h => {
-    if (h.categoryCount > 0) {
-      const count = countChosen(h, withChoices);
-      return count < h.categoryCount;
-    } else {
-      return true;
-    }
-  };
-
-  const filteredChoices = choices.map(h => {
-    if (stillSelectable(h)) {
-      return h;
-    } else {
-      return { empty: true };
-    }
-  });
-
-  return { choices: filteredChoices, categories: withChoices, correct };
 };

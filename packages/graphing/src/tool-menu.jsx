@@ -1,53 +1,49 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+
 import ToggleBar, { MiniButton } from './toggle-bar';
-import debug from 'debug';
-const log = debug('pie-lib:graphing:tool-menu');
 
 export class ToolMenu extends React.Component {
   static propTypes = {
     className: PropTypes.string,
-    tools: PropTypes.array,
-    currentTool: PropTypes.string,
+    currentToolType: PropTypes.string,
+    disabled: PropTypes.bool,
+    labelModeEnabled: PropTypes.bool,
     onChange: PropTypes.func,
     onToggleLabelMode: PropTypes.func,
-    labelModeEnabled: PropTypes.bool,
-    disabled: PropTypes.bool,
-    hideLabel: PropTypes.bool
+    toolbarTools: PropTypes.arrayOf(PropTypes.string)
   };
 
   static defaultProps = {
-    tools: []
-  };
-
-  changeTool = selected => {
-    log('[changeTool]: ', selected);
-    const { onChange } = this.props;
-    onChange(selected);
+    toolbarTools: []
   };
 
   render() {
     const {
       className,
+      currentToolType,
       disabled,
-      tools,
-      currentTool,
-      onToggleLabelMode,
       labelModeEnabled,
-      hideLabel
+      onToggleLabelMode,
+      onChange
     } = this.props;
+    let { toolbarTools } = this.props;
 
-    const t = tools.filter(t => t.toolbar);
+    const showLabel = toolbarTools && toolbarTools.some(t => t === 'label');
+
+    toolbarTools = (toolbarTools || []).filter(tT => tT !== 'label');
+
     return (
       <div className={classNames(className)}>
         <ToggleBar
           disabled={disabled}
-          options={t.map(t => t.type)}
-          selected={currentTool}
-          onChange={this.changeTool}
+          options={toolbarTools}
+          selectedToolType={currentToolType}
+          onChange={onChange}
         />
-        {!hideLabel && (
+
+        {showLabel && (
           <MiniButton
             disabled={disabled}
             value={'Label'}

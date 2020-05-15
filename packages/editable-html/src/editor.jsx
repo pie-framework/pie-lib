@@ -10,6 +10,7 @@ import { buildPlugins, ALL_PLUGINS, DEFAULT_PLUGINS } from './plugins';
 import debug from 'debug';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
+
 export { ALL_PLUGINS, DEFAULT_PLUGINS, serialization };
 
 const log = debug('editable-html:editor');
@@ -76,9 +77,11 @@ export class Editor extends React.Component {
 
   static defaultProps = {
     disableUnderline: true,
-    onFocus: () => {},
+    onFocus: () => {
+    },
     toolbarOpts: defaultToolbarOpts,
-    onKeyDown: () => {}
+    onKeyDown: () => {
+    }
   };
 
   constructor(props) {
@@ -486,7 +489,22 @@ const styles = {
     backgroundColor: 'rgba(0,0,0,0.06)'
   },
   slateEditor: {
-    fontFamily: 'Roboto, sans-serif'
+    fontFamily: 'Roboto, sans-serif',
+
+    '& table': {
+      borderCollapse: 'collapse'
+    },
+    '& tr': {
+      borderTop: '1px solid #dfe2e5',
+      '&:nth-child(2n)': {
+        backgroundColor: '#f6f8fa'
+      }
+    },
+    '& td, th': {
+      border: '1px solid #dfe2e5',
+      padding: '.6em 1em',
+      textAlign: 'center'
+    }
   },
   toolbarOnTop: {
     marginTop: '45px'

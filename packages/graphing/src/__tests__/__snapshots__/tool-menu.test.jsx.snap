@@ -5,16 +5,8 @@ exports[`ToolMenu snapshot renders 1`] = `
   className="className"
 >
   <WithStyles(ToggleBar)
-    onChange={[Function]}
+    onChange={[MockFunction]}
     options={Array []}
-    selected={
-      Object {
-        "type": "one",
-      }
-    }
-  />
-  <WithStyles(Component)
-    value="Label"
   />
 </div>
 `;

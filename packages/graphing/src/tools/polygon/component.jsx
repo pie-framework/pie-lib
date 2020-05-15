@@ -76,6 +76,10 @@ export class RawBaseComponent extends React.Component {
     onChangeProps: PropTypes.func
   };
 
+  static defaultProps = {
+    points: []
+  };
+
   dragPoint = (index, from, to) => {
     log('[dragPoint] from, to:', from, to);
     const { onChange, points } = this.props;

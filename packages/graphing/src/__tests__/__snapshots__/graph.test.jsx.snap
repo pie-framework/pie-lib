@@ -29,7 +29,6 @@ exports[`Graph snapshot renders 1`] = `
       },
     }
   }
-  onMouseMove={[Function]}
   paddingLeft={60}
   rootRef={[Function]}
 >
@@ -168,6 +167,49 @@ exports[`Graph snapshot renders 1`] = `
     id="marks"
     mask="url('#myMask')"
   >
+    <Point
+      graphProps={
+        Object {
+          "domain": Object {
+            "max": 1,
+            "min": 0,
+            "step": 1,
+          },
+          "getRootNode": [Function],
+          "range": Object {
+            "max": 1,
+            "min": 0,
+            "step": 1,
+          },
+          "scale": Object {
+            "x": [Function],
+            "y": [Function],
+          },
+          "size": Object {
+            "height": 400,
+            "width": 400,
+          },
+          "snap": Object {
+            "x": [Function],
+            "y": [Function],
+          },
+        }
+      }
+      isToolActive={false}
+      key="point-0"
+      mark={
+        Object {
+          "label": "Point",
+          "showLabel": true,
+          "type": "point",
+          "x": 2,
+          "y": 2,
+        }
+      }
+      onChange={[Function]}
+      onClick={[Function]}
+      onComplete={[Function]}
+    />
     <foreignObject
       height={400}
       style={

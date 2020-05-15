@@ -25,7 +25,7 @@ export class Root extends React.Component {
     onMouseMove: PropTypes.func,
     classes: PropTypes.object.isRequired,
     rootRef: PropTypes.func,
-    paddingLeft: PropTypes.int
+    paddingLeft: PropTypes.number
   };
 
   mouseMove = g => {
