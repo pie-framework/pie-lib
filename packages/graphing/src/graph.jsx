@@ -123,11 +123,13 @@ export class Graph extends React.Component {
     if (labelModeEnabled || !currentTool) return;
 
     const buildingMark = marks.filter(m => m.building)[0];
+    let updatedMark;
 
-    const updatedMark = currentTool.addPoint(
-      { x, y },
-      buildingMark ? { ...buildingMark } : undefined
-    );
+    if (buildingMark && currentTool && buildingMark.type === currentTool.type) {
+      updatedMark = currentTool.addPoint({ x, y }, { ...buildingMark });
+    } else {
+      updatedMark = currentTool.addPoint({ x, y }, undefined);
+    }
 
     this.updateMarks(buildingMark, updatedMark, true);
   };
