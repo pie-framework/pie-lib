@@ -2693,5 +2693,20 @@
     "committerDate": "2020-04-28 16:19:52 +0300",
     "isTagged": true,
     "tag": "@pie-lib/editable-html@7.12.6"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "table borders not visible.",
+    "merge": null,
+    "header": "fix: table borders not visible.",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "31500c4004b1b02bc01a34e66d599c37daabebd0",
+    "gitTags": " (origin/fix/table-not-visible)",
+    "committerDate": "2020-05-14 14:42:11 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.12.9"
   }
 ]

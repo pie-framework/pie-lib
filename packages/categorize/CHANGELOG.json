@@ -298,5 +298,20 @@
     "committerDate": "2020-04-24 14:26:44 +0300",
     "isTagged": true,
     "tag": "@pie-lib/categorize@0.6.17"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "PD-45: The best scenario is not properly found. (If alternates defined => dychotomous)",
+    "merge": null,
+    "header": "fix: PD-45: The best scenario is not properly found. (If alternates defined => dychotomous)",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "aa4d164a4e5033476fb1720ab5a6eef345a3e4c9",
+    "gitTags": "",
+    "committerDate": "2020-05-05 14:13:00 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/categorize@0.6.18"
   }
 ]

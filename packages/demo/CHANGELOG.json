@@ -1108,5 +1108,25 @@
     "committerDate": "2020-04-28 16:19:52 +0300",
     "isTagged": true,
     "tag": "@pie-lib/demo@5.3.74"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "Graphing issues and inconsistencies PD-123",
+    "merge": null,
+    "header": "fix: Graphing issues and inconsistencies PD-123",
+    "body": null,
+    "footer": "BREAKING CHANGE: tools, currentTool, defaultTool and hideLabel should not be used as params anymore, instead, send only toolbarTools, which is an array of strings, where each string should be a valid tool type. eg. ['point', 'line', 'label']",
+    "notes": [
+      {
+        "title": "BREAKING CHANGE",
+        "text": "tools, currentTool, defaultTool and hideLabel should not be used as params anymore, instead, send only toolbarTools, which is an array of strings, where each string should be a valid tool type. eg. ['point', 'line', 'label']"
+      }
+    ],
+    "hash": "291b0539884eaeafbd48987e595ffd267869a142",
+    "gitTags": "",
+    "committerDate": "2020-05-12 13:38:27 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/demo@6.0.0"
   }
 ]
