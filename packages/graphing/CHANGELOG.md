@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@1.2.23...@pie-lib/graphing@2.0.0) (2020-05-15)
+
+
+### Bug Fixes
+
+* Graphing issues and inconsistencies PD-123 ([291b053](https://github.com/pie-framework/pie-lib/commit/291b053))
+
+
+### BREAKING CHANGES
+
+* tools, currentTool, defaultTool and hideLabel should not be used as params anymore, instead, send only toolbarTools, which is an array of strings, where each string should be a valid tool type. eg. ['point', 'line', 'label']
+
+
+
+
+
 ## [1.2.23](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@1.2.22...@pie-lib/graphing@1.2.23) (2020-04-14)
 
 **Note:** Version bump only for package @pie-lib/graphing

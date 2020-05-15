@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.2.22](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.2.21...@pie-lib/charting@4.2.22) (2020-05-15)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+
+
+
+
 ## [4.2.21](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.2.20...@pie-lib/charting@4.2.21) (2020-04-14)
 
 **Note:** Version bump only for package @pie-lib/charting

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.6.17...@pie-lib/categorize@0.6.18) (2020-05-15)
+
+
+### Bug Fixes
+
+* PD-45: The best scenario is not properly found. (If alternates defined => dychotomous) ([aa4d164](https://github.com/pie-framework/pie-lib/commit/aa4d164))
+
+
+
+
+
 ## [0.6.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.6.16...@pie-lib/categorize@0.6.17) (2020-04-27)
 
 

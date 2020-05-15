@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.76...@pie-lib/demo@6.0.0) (2020-05-15)
+
+
+### Bug Fixes
+
+* Graphing issues and inconsistencies PD-123 ([291b053](https://github.com/pie-framework/pie-lib/commit/291b053))
+
+
+### BREAKING CHANGES
+
+* tools, currentTool, defaultTool and hideLabel should not be used as params anymore, instead, send only toolbarTools, which is an array of strings, where each string should be a valid tool type. eg. ['point', 'line', 'label']
+
+
+
+
+
 ## [5.3.76](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.75...@pie-lib/demo@5.3.76) (2020-05-06)
 
 **Note:** Version bump only for package @pie-lib/demo
