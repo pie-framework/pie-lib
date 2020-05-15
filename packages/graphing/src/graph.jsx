@@ -125,6 +125,7 @@ export class Graph extends React.Component {
     const buildingMark = marks.filter(m => m.building)[0];
     let updatedMark;
 
+    // if the building mark has a different type, we just replace it
     if (buildingMark && currentTool && buildingMark.type === currentTool.type) {
       updatedMark = currentTool.addPoint({ x, y }, { ...buildingMark });
     } else {
