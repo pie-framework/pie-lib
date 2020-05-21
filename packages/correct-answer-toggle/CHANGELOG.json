@@ -483,5 +483,20 @@
     "committerDate": "2020-05-06 12:20:11 +0100",
     "isTagged": true,
     "tag": "@pie-lib/correct-answer-toggle@2.2.23"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "remove console.log",
+    "merge": null,
+    "header": "fix: remove console.log",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "da9d3a3e0ba8bcf28a4e1eb4b510a29473a15133",
+    "gitTags": " (origin/develop, origin/HEAD, develop)",
+    "committerDate": "2020-05-21 23:20:16 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/correct-answer-toggle@2.2.24"
   }
 ]
