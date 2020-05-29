@@ -210,6 +210,7 @@ const styles = theme => ({
     padding: `${theme.spacing.unit}px 0 ${theme.spacing.unit}px 0`
   },
   labelButton: {
+    minWidth: 'auto',
     fontSize: '140% !important',
     backgroundColor: lighten(theme.palette.primary.light, 0.5),
     '&:hover': {
@@ -218,8 +219,12 @@ const styles = theme => ({
     borderRadius: 0
   },
   latexButton: {
-    backgroundColor: lighten(theme.palette.primary.main, 0.7),
-    borderRadius: 0
+    minWidth: 'auto',
+    borderRadius: 0,
+    backgroundColor: lighten(theme.palette.primary.light, 0.5),
+    '&:hover': {
+      backgroundColor: lighten(theme.palette.primary.light, 0.7)
+    }
   },
   base: {},
   operators: {
