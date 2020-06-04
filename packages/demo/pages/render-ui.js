@@ -1,7 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { indicators, Feedback } from '@pie-lib/render-ui';
-import { Collapsible } from '@pie-lib/render-ui';
+import { Collapsible, color } from '@pie-lib/render-ui';
 import withRoot from '../src/withRoot';
 const { Correct, Incorrect, PartiallyCorrect, NothingSubmitted } = indicators;
 
@@ -16,6 +16,12 @@ const Section = withStyles(theme => ({
     {children}
   </div>
 ));
+
+const ColorSample = ({ name }) => (
+  <div>
+    <pre>{`color.${name}() = ${color[name]()}`}</pre>
+  </div>
+);
 
 class App extends React.Component {
   constructor(props) {
@@ -67,6 +73,26 @@ class App extends React.Component {
               mollit anim id est laborum.
             </p>
           </Collapsible>
+        </Section>
+        <Section title="color">
+          <div>
+            This module provides css vars for defining the color in the ui. It is a simple version
+            of the material design color scheme, with a few additions. It allows the ui to be themed
+            by setting the custom properties.
+          </div>
+          <pre>{'import { color } from "@pie-lib/render-ui";'}</pre>
+          <ColorSample name="text" />
+          <ColorSample name="primary" />
+          <ColorSample name="primaryText" />
+          <ColorSample name="correct" />
+          <ColorSample name="incorrect" />
+          <ColorSample name="secondary" />
+          <ColorSample name="secondaryText" />
+          <ColorSample name="disabled" />
+          <ColorSample name="background" />
+          <br />
+          <div>To override a var simply set the style property on the appropriate selector</div>
+          <pre>{"document.body.style.setProperty('--pie-text', 'green');"}</pre>
         </Section>
       </div>
     ) : (
