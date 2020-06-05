@@ -438,5 +438,20 @@
     "committerDate": "2020-04-27 12:30:42 +0100",
     "isTagged": true,
     "tag": "@pie-lib/math-evaluator@2.0.0"
+  },
+  {
+    "type": "feat",
+    "scope": null,
+    "subject": "bump mathjs@^7.0.1",
+    "merge": null,
+    "header": "feat: bump mathjs@^7.0.1",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "865de4b8be0829cbbd083dfee9afeea0b1559eb2",
+    "gitTags": "",
+    "committerDate": "2020-06-05 12:56:06 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/math-evaluator@2.1.0"
   }
 ]
