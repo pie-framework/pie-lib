@@ -1143,5 +1143,20 @@
     "committerDate": "2020-06-05 11:18:15 +0100",
     "isTagged": true,
     "tag": "@pie-lib/demo@6.1.0"
+  },
+  {
+    "type": "feat",
+    "scope": null,
+    "subject": "bump mathjs@^7.0.1",
+    "merge": null,
+    "header": "feat: bump mathjs@^7.0.1",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "865de4b8be0829cbbd083dfee9afeea0b1559eb2",
+    "gitTags": " (develop)",
+    "committerDate": "2020-06-05 12:56:06 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/demo@6.2.0"
   }
 ]
