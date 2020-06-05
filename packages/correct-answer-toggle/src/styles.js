@@ -1,3 +1,5 @@
+import { color } from '@pie-lib/render-ui';
+
 const noTouch = {
   '-webkit-touchCcallout': 'none',
   '-webkit-user-select': 'none',
@@ -25,7 +27,7 @@ export default {
       height: '25px',
       lineHeight: '25px',
       verticalAlign: 'middle',
-      color: 'var(--correct-answer-toggle-label-color,  black)',
+      color: `var(--correct-answer-toggle-label-color,  ${color.text()})`,
       fontSize: '15px',
       fontWeight: 'normal'
     },

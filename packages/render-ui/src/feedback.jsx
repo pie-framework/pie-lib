@@ -7,6 +7,7 @@ import React from 'react';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import * as color from './color';
 
 const styleSheet = {
   corespringFeedback: {
@@ -20,7 +21,7 @@ const styleSheet = {
   },
   content: {
     '-webkit-font-smoothing': 'antialiased',
-    backgroundColor: 'var(--feedback-bg-color, grey)',
+    backgroundColor: `var(--feedback-bg-color, ${color.disabled()})`,
     borderRadius: '4px',
     fontFamily: '"Roboto", "Noto", sans-serif',
     fontSize: '12px',
@@ -31,10 +32,10 @@ const styleSheet = {
     color: 'var(--feedback-color, white)'
   },
   correct: {
-    backgroundColor: 'var(--feedback-correct-bg-color, green)'
+    backgroundColor: `var(--feedback-correct-bg-color, ${color.correct()})`
   },
   incorrect: {
-    backgroundColor: 'var(--feedback-incorrect-bg-color, orange)'
+    backgroundColor: `var(--feedback-incorrect-bg-color, ${color.incorrect()})`
   },
   feedbackEnter: {
     height: '1px'

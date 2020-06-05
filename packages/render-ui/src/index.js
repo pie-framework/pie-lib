@@ -5,6 +5,8 @@ import withUndoReset from './withUndoReset';
 import PreviewLayout from './preview-layout';
 import HtmlAndMath from './html-and-math';
 import InputContainer from './input-container';
+import * as color from './color';
+
 export {
   HtmlAndMath,
   indicators,
@@ -12,5 +14,6 @@ export {
   Feedback,
   PreviewLayout,
   Collapsible,
-  InputContainer
+  InputContainer,
+  color
 };
