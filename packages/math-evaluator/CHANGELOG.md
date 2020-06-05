@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.0.0...@pie-lib/math-evaluator@2.1.0) (2020-06-05)
+
+
+### Features
+
+* bump mathjs@^7.0.1 ([865de4b](https://github.com/pie-framework/pie-lib/commit/865de4b))
+
+
+
+
+
 # [2.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@0.6.22...@pie-lib/math-evaluator@2.0.0) (2020-04-27)
 
 
