@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.2.24...@pie-lib/correct-answer-toggle@2.3.0) (2020-06-05)
+
+
+### Features
+
+* add color custom properties PD-308 ([8d7bc2b](https://github.com/pie-framework/pie-lib/commit/8d7bc2b))
+
+
+
+
+
+## [2.2.24](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.2.23...@pie-lib/correct-answer-toggle@2.2.24) (2020-05-21)
+
+
+### Bug Fixes
+
+* remove console.log ([da9d3a3](https://github.com/pie-framework/pie-lib/commit/da9d3a3))
+
+
+
+
+
 ## [2.2.23](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.2.22...@pie-lib/correct-answer-toggle@2.2.23) (2020-05-06)
 
 

@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.0.1...@pie-lib/demo@6.1.0) (2020-06-05)
+
+
+### Features
+
+* add color custom properties PD-308 ([8d7bc2b](https://github.com/pie-framework/pie-lib/commit/8d7bc2b))
+
+
+
+
+
+## [6.0.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.0.0...@pie-lib/demo@6.0.1) (2020-05-21)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
 # [6.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.76...@pie-lib/demo@6.0.0) (2020-05-15)
 
 

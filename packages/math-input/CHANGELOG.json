@@ -1288,5 +1288,20 @@
     "committerDate": "2020-05-08 14:59:23 +0300",
     "isTagged": true,
     "tag": "@pie-lib/math-input@6.4.20"
+  },
+  {
+    "type": "feat",
+    "scope": "math-input",
+    "subject": "tooltip keypad support added",
+    "merge": null,
+    "header": "feat(math-input): tooltip keypad support added",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "7ae60a36ff944219e6cd3d2ef4129f0517e4a593",
+    "gitTags": " (origin/feat/tooltip-keypad)",
+    "committerDate": "2020-05-29 16:15:29 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/math-input@6.5.0"
   }
 ]

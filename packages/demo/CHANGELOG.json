@@ -1128,5 +1128,20 @@
     "committerDate": "2020-05-12 13:38:27 +0300",
     "isTagged": true,
     "tag": "@pie-lib/demo@6.0.0"
+  },
+  {
+    "type": "feat",
+    "scope": null,
+    "subject": "add color custom properties PD-308",
+    "merge": null,
+    "header": "feat: add color custom properties PD-308",
+    "body": "* add color module\n* update correct-answer-toggle to use `color.text()`\n* update feedback to use `color.correct()` and `color.incorrect()`",
+    "footer": null,
+    "notes": [],
+    "hash": "8d7bc2b07e151b1595e2fea471371fe8399816c9",
+    "gitTags": " (origin/feat/PD-308-colors)",
+    "committerDate": "2020-06-05 11:18:15 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/demo@6.1.0"
   }
 ]

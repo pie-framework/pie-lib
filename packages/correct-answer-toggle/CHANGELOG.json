@@ -494,9 +494,24 @@
     "footer": null,
     "notes": [],
     "hash": "da9d3a3e0ba8bcf28a4e1eb4b510a29473a15133",
-    "gitTags": "",
+    "gitTags": " (origin/develop, origin/HEAD, develop)",
     "committerDate": "2020-05-21 23:20:16 +0100",
     "isTagged": true,
     "tag": "@pie-lib/correct-answer-toggle@2.2.24"
+  },
+  {
+    "type": "feat",
+    "scope": null,
+    "subject": "add color custom properties PD-308",
+    "merge": null,
+    "header": "feat: add color custom properties PD-308",
+    "body": "* add color module\n* update correct-answer-toggle to use `color.text()`\n* update feedback to use `color.correct()` and `color.incorrect()`",
+    "footer": null,
+    "notes": [],
+    "hash": "8d7bc2b07e151b1595e2fea471371fe8399816c9",
+    "gitTags": " (origin/feat/PD-308-colors)",
+    "committerDate": "2020-06-05 11:18:15 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/correct-answer-toggle@2.3.0"
   }
 ]
