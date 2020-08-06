@@ -513,5 +513,20 @@
     "committerDate": "2020-06-05 11:18:15 +0100",
     "isTagged": true,
     "tag": "@pie-lib/correct-answer-toggle@2.3.0"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "PD-217 - fix visibility flag",
+    "merge": null,
+    "header": "fix: PD-217 - fix visibility flag",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "8d4044d9f35f84b55e519b4019e4c458633a1873",
+    "gitTags": " (develop)",
+    "committerDate": "2020-08-06 15:48:40 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/correct-answer-toggle@2.3.1"
   }
 ]

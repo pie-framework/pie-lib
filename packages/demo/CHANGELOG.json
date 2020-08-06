@@ -1154,7 +1154,7 @@
     "footer": null,
     "notes": [],
     "hash": "865de4b8be0829cbbd083dfee9afeea0b1559eb2",
-    "gitTags": "",
+    "gitTags": " (develop)",
     "committerDate": "2020-06-05 12:56:06 +0100",
     "isTagged": true,
     "tag": "@pie-lib/demo@6.2.0"

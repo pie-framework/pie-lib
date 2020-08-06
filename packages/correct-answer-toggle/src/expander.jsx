@@ -33,7 +33,8 @@ export default withStyles(() => ({
     position: 'relative',
     height: 0,
     overflow: 'hidden',
-    display: 'flex'
+    display: 'flex',
+    visibility: 'hidden'
   },
   enter: {
     transition,
@@ -42,12 +43,14 @@ export default withStyles(() => ({
     visibility: 'visible'
   },
   enterDone: {
-    height: '25px'
+    height: '25px',
+    visibility: 'visible'
   },
   exit: {
     transition,
     opacity: 0,
-    height: '0px'
+    height: '0px',
+    visibility: 'visible'
   },
   exitDone: {
     opacity: 0,
