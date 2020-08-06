@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.3.0...@pie-lib/correct-answer-toggle@2.3.1) (2020-08-06)
+
+
+### Bug Fixes
+
+* PD-217 - fix visibility flag ([8d4044d](https://github.com/pie-framework/pie-lib/commit/8d4044d))
+
+
+
+
+
 # [2.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.2.24...@pie-lib/correct-answer-toggle@2.3.0) (2020-06-05)
 
 
