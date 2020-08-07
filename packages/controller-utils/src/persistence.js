@@ -1,5 +1,7 @@
+import get from 'lodash/get';
 import shuffle from 'lodash/shuffle';
 import isEmpty from 'lodash/isEmpty';
+import isFunction from 'lodash/isFunction';
 import isNull from 'lodash/isNull';
 import isUndefined from 'lodash/isUndefined';
 
@@ -63,3 +65,46 @@ export const getShuffledChoices = (choices, session, updateSession, key) =>
       resolve(shuffledChoices);
     }
   });
+
+const decideSessionChanged = session =>
+  !isEmpty(get(session, 'answers', get(session, 'value', [])));
+
+export const decideLockChoiceOrder = (model, session, env, customDecideSession) => {
+  const decideSessionFn = isFunction(customDecideSession)
+    ? customDecideSession
+    : decideSessionChanged;
+  const hasSession = decideSessionFn(session);
+  // don't override if model lockChoiceOrder is true, otherwise take the value from the env
+  const lockChoiceOrder = get(model, 'lockChoiceOrder') || get(env, 'lockChoiceOrder');
+
+  log('hasSession: ', hasSession);
+  log('model.lockChoiceOrder value: ', model.lockChoiceOrder);
+  log('env.lockChoiceOrder value: ', env.lockChoiceOrder);
+
+  if (lockChoiceOrder) {
+    return true;
+  }
+
+  const role = get(env, 'role', 'student');
+
+  log('role: ', role);
+
+  if (role === 'instructor') {
+    // if there's a session, display the session order, otherwise the ordinal
+    return !!hasSession;
+  }
+
+  if (role === 'student') {
+    // if there's no session, we shuffle every time for the student
+    if (!hasSession) {
+      if (session) {
+        delete session.shuffledValues;
+      }
+    }
+
+    // otherwise we keep the session order (first shuffled option)
+    return false;
+  }
+
+  return true;
+};
