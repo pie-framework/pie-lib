@@ -19,7 +19,7 @@ export const compact = arr => {
   return arr;
 };
 
-export const getShuffledChoices = (choices, session, updateSession, key) =>
+export const getShuffledChoices = (choices, session, updateSession, choiceKey) =>
   new Promise(resolve => {
     log('updateSession type: ', typeof updateSession);
     log('session: ', session);
@@ -32,21 +32,21 @@ export const getShuffledChoices = (choices, session, updateSession, key) =>
       resolve(undefined);
     } else if (!isEmpty(currentShuffled)) {
       debug('use shuffledValues to sort the choices...', session.shuffledValues);
-      resolve(compact(currentShuffled.map(v => choices.find(c => c[key] === v))));
+      resolve(compact(currentShuffled.map(v => choices.find(c => c[choiceKey] === v))));
     } else {
       const shuffledChoices = shuffle(choices);
 
       if (updateSession && typeof updateSession === 'function') {
         try {
           //Note: session.id refers to the id of the element within a session
-          const shuffledValues = compact(shuffledChoices.map(c => c[key]));
+          const shuffledValues = compact(shuffledChoices.map(c => c[choiceKey]));
           log('try to save shuffledValues to session...', shuffledValues);
           log('call updateSession... ', session.id, session.element);
           if (isEmpty(shuffledValues)) {
             error(
               `shuffledValues is an empty array? - refusing to call updateSession: shuffledChoices: ${JSON.stringify(
                 shuffledChoices
-              )}, key: ${key}`
+              )}, key: ${choiceKey}`
             );
           } else {
             updateSession(session.id, session.element, { shuffledValues }).catch(e =>
@@ -107,4 +107,30 @@ export const decideLockChoiceOrder = (model, session, env, customDecideSession) 
   }
 
   return true;
+};
+
+const hasShuffledValues = s => !!(s || {}).shuffledValues;
+
+export const lockChoices = (model, session, env, isShuffled = hasShuffledValues) => {
+  if (model.lockChoiceOrder) {
+    return true;
+  }
+  if (get(env, ['@pie-element', 'lockChoiceOrder'], false)) {
+    return true;
+  }
+
+  const role = get(env, 'role', 'student');
+
+  if (role === 'instructor') {
+    const alreadyShuffled = isShuffled(session);
+    if (!alreadyShuffled) {
+      return true;
+    }
+
+    // TODO: .. in the future the instructor can toggle between ordinal and shuffled here
+    return false;
+  }
+
+  // here it's a student, so don't lock and it will shuffle if needs be
+  return false;
 };
