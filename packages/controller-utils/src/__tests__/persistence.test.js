@@ -1,4 +1,4 @@
-import { decideLockChoiceOrder, getShuffledChoices, lockChoices } from '../persistence';
+import { getShuffledChoices, lockChoices } from '../persistence';
 
 describe('getShuffledChoices', () => {
   let choices, session, updateSession, key;
@@ -92,7 +92,7 @@ describe('getShuffledChoices', () => {
 
 describe('lockChoices', () => {
   const env = (lockChoiceOrder, role = 'student') => ({
-    ...(lockChoiceOrder && { '@pie-element': { lockChoiceOrder } }),
+    '@pie-element': { lockChoiceOrder },
     role
   });
   const session = shuffledValues => ({ shuffledValues });
@@ -106,34 +106,25 @@ describe('lockChoices', () => {
     ${false}     | ${undefined}       | ${undefined}                | ${false}
     ${undefined} | ${session()}       | ${env(false)}               | ${false}
     ${undefined} | ${session()}       | ${env(undefined)}           | ${false}
-    ${false}     | ${session()}       | ${env(false, 'instructor')} | ${true}
-    ${false}     | ${session([0, 1])} | ${env(false, 'instructor')} | ${false}
-    ${false}     | ${session([0, 1])} | ${env(false, 'instructor')} | ${false}
-    ${false}     | ${undefined}       | ${env(false, 'instructor')} | ${true}
+    ${false}     | ${session()}       | ${env(false, 'instructor')} | ${false}
+    ${false}     | ${session([0, 1])} | ${env(false, 'instructor')} | ${true}
+    ${false}     | ${session([0, 1])} | ${env(false, 'instructor')} | ${true}
+    ${false}     | ${undefined}       | ${env(false, 'instructor')} | ${false}
   `(
-    'model.lockChoiceOrder: $modelLock, $session, $env => $expected',
+    '1. model.lockChoiceOrder: $modelLock, $session, $env => $expected',
     ({ modelLock, session, env, expected }) => {
       const model = { lockChoiceOrder: modelLock };
       const result = lockChoices(model, session, env);
       expect(result).toEqual(expected);
     }
   );
-
-  it('uses custom isShuffled fn that returns false', () => {
-    const isShuffled = () => false;
-    const result = lockChoices({}, {}, { role: 'instructor' }, isShuffled);
-    expect(result).toEqual(true);
-  });
-
-  it('uses custom isShuffled fn that returns true', () => {
-    const isShuffled = () => true;
-    const result = lockChoices({}, {}, { role: 'instructor' }, isShuffled);
-    expect(result).toEqual(false);
-  });
 });
 
-describe('decideLockChoiceOrder mod', () => {
-  const env = (lockChoiceOrder, role = 'student') => ({ lockChoiceOrder, role });
+describe('lockChoices mod', () => {
+  const env = (lockChoiceOrder, role = 'student') => ({
+    '@pie-element': { lockChoiceOrder },
+    role
+  });
   const session = (answers = ['foo', 'bar']) => ({ answers });
   it.each`
     modelLock    | session      | env                             | expected
@@ -143,21 +134,22 @@ describe('decideLockChoiceOrder mod', () => {
     ${false}     | ${session()} | ${env(false)}                   | ${false}
     ${undefined} | ${session()} | ${env(true)}                    | ${true}
     ${undefined} | ${session()} | ${env(undefined)}               | ${false}
-    ${undefined} | ${session()} | ${env(undefined, 'instructor')} | ${true}
+    ${undefined} | ${session()} | ${env(undefined, 'instructor')} | ${false}
   `(
     'model.lockChoiceOrder: $modelLock, $env => $expected',
     ({ modelLock, session, env, expected }) => {
       const model = { lockChoiceOrder: modelLock };
-      const result = decideLockChoiceOrder(model, session, env);
+      const result = lockChoices(model, session, env);
       expect(result).toEqual(expected);
     }
   );
 });
 
-describe('decideLockChoiceOrder', () => {
-  let result;
-
-  const env = (lockChoiceOrder, role = 'student') => ({ lockChoiceOrder, role });
+describe('lockChoices', () => {
+  const env = (lockChoiceOrder, role = 'student') => ({
+    '@pie-element': { lockChoiceOrder },
+    role
+  });
   const session = shuffledValues => ({ shuffledValues, answers: ['foo', 'bar'] });
   it.each`
     modelLock    | session      | env                             | expected
@@ -167,131 +159,13 @@ describe('decideLockChoiceOrder', () => {
     ${false}     | ${session()} | ${env(false)}                   | ${false}
     ${undefined} | ${session()} | ${env(true)}                    | ${true}
     ${undefined} | ${session()} | ${env(undefined)}               | ${false}
-    ${undefined} | ${session()} | ${env(undefined, 'instructor')} | ${true}
+    ${undefined} | ${session()} | ${env(undefined, 'instructor')} | ${false}
   `(
     'model.lockChoiceOrder: $modelLock, $env => $expected',
     ({ modelLock, session, env, expected }) => {
       const model = { lockChoiceOrder: modelLock };
-      const result = decideLockChoiceOrder(model, session, env);
+      const result = lockChoices(model, session, env);
       expect(result).toEqual(expected);
     }
   );
-
-  describe('model has lockChoiceOrder true', () => {
-    it('should return true if env has lockChoiceOrder as false', () => {
-      result = decideLockChoiceOrder(
-        {
-          lockChoiceOrder: true
-        },
-        {
-          answers: ['foo', 'bar']
-        },
-        {
-          lockChoiceOrder: false
-        }
-      );
-      expect(result).toEqual(true);
-    });
-  });
-
-  describe('model has lockChoiceOrder false or undefined', () => {
-    it('should return true if model has lockChoiceOrder false and, env has lockChoiceOrder as true', () => {
-      result = decideLockChoiceOrder(
-        {
-          lockChoiceOrder: false
-        },
-        {
-          answers: ['foo', 'bar']
-        },
-        {
-          lockChoiceOrder: true
-        }
-      );
-      expect(result).toEqual(true);
-    });
-
-    it('should return true if model has lockChoiceOrder false and, env has lockChoiceOrder as true', () => {
-      result = decideLockChoiceOrder(
-        {
-          lockChoiceOrder: undefined
-        },
-        {
-          answers: ['foo', 'bar']
-        },
-        {
-          lockChoiceOrder: true
-        }
-      );
-      expect(result).toEqual(true);
-    });
-  });
-
-  describe('role is student', () => {
-    it('should return false for when there is no session', () => {
-      result = decideLockChoiceOrder(
-        {
-          lockChoiceOrder: false
-        },
-        {
-          answers: undefined
-        },
-        {
-          lockChoiceOrder: false
-        }
-      );
-      expect(result).toEqual(false);
-    });
-
-    it('should return false and delete the shuffledValues when no answer is present', () => {
-      const session = {
-        shuffledValues: ['bar', 'foo']
-      };
-
-      result = decideLockChoiceOrder(
-        {
-          lockChoiceOrder: false
-        },
-        session,
-        {
-          lockChoiceOrder: false
-        }
-      );
-      expect(result).toEqual(false);
-      expect(session.shuffledValues).toEqual(undefined);
-    });
-  });
-
-  describe('role is instructor', () => {
-    it('should return true for when there is a session', () => {
-      result = decideLockChoiceOrder(
-        {
-          lockChoiceOrder: false
-        },
-        {
-          answers: ['foo', 'bar']
-        },
-        {
-          lockChoiceOrder: false,
-          role: 'instructor'
-        }
-      );
-      expect(result).toEqual(true);
-    });
-
-    it('should return false for when there is no session', () => {
-      result = decideLockChoiceOrder(
-        {
-          lockChoiceOrder: false
-        },
-        {
-          answers: undefined
-        },
-        {
-          lockChoiceOrder: false,
-          role: 'instructor'
-        }
-      );
-      expect(result).toEqual(false);
-    });
-  });
 });
