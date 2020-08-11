@@ -1,6 +1,6 @@
-import { getShuffledChoices } from '../persistence';
+import { getShuffledChoices, lockChoices } from '../persistence';
 
-describe('persistence', () => {
+describe('getShuffledChoices', () => {
   let choices, session, updateSession, key;
 
   beforeEach(() => {
@@ -88,4 +88,84 @@ describe('persistence', () => {
       });
     });
   });
+});
+
+describe('lockChoices', () => {
+  const env = (lockChoiceOrder, role = 'student') => ({
+    '@pie-element': { lockChoiceOrder },
+    role
+  });
+  const session = shuffledValues => ({ shuffledValues });
+  it.each`
+    modelLock    | session            | env                         | expected
+    ${true}      | ${session()}       | ${env(true)}                | ${true}
+    ${true}      | ${session()}       | ${env(false)}               | ${true}
+    ${false}     | ${session()}       | ${env(true)}                | ${true}
+    ${false}     | ${session()}       | ${env(false)}               | ${false}
+    ${false}     | ${session()}       | ${undefined}                | ${false}
+    ${false}     | ${undefined}       | ${undefined}                | ${false}
+    ${undefined} | ${session()}       | ${env(false)}               | ${false}
+    ${undefined} | ${session()}       | ${env(undefined)}           | ${false}
+    ${false}     | ${session()}       | ${env(false, 'instructor')} | ${false}
+    ${false}     | ${session([0, 1])} | ${env(false, 'instructor')} | ${true}
+    ${false}     | ${session([0, 1])} | ${env(false, 'instructor')} | ${true}
+    ${false}     | ${undefined}       | ${env(false, 'instructor')} | ${false}
+  `(
+    '1. model.lockChoiceOrder: $modelLock, $session, $env => $expected',
+    ({ modelLock, session, env, expected }) => {
+      const model = { lockChoiceOrder: modelLock };
+      const result = lockChoices(model, session, env);
+      expect(result).toEqual(expected);
+    }
+  );
+});
+
+describe('lockChoices mod', () => {
+  const env = (lockChoiceOrder, role = 'student') => ({
+    '@pie-element': { lockChoiceOrder },
+    role
+  });
+  const session = (answers = ['foo', 'bar']) => ({ answers });
+  it.each`
+    modelLock    | session      | env                             | expected
+    ${true}      | ${session()} | ${env(true)}                    | ${true}
+    ${true}      | ${session()} | ${env(false)}                   | ${true}
+    ${false}     | ${session()} | ${env(true)}                    | ${true}
+    ${false}     | ${session()} | ${env(false)}                   | ${false}
+    ${undefined} | ${session()} | ${env(true)}                    | ${true}
+    ${undefined} | ${session()} | ${env(undefined)}               | ${false}
+    ${undefined} | ${session()} | ${env(undefined, 'instructor')} | ${false}
+  `(
+    'model.lockChoiceOrder: $modelLock, $env => $expected',
+    ({ modelLock, session, env, expected }) => {
+      const model = { lockChoiceOrder: modelLock };
+      const result = lockChoices(model, session, env);
+      expect(result).toEqual(expected);
+    }
+  );
+});
+
+describe('lockChoices', () => {
+  const env = (lockChoiceOrder, role = 'student') => ({
+    '@pie-element': { lockChoiceOrder },
+    role
+  });
+  const session = shuffledValues => ({ shuffledValues, answers: ['foo', 'bar'] });
+  it.each`
+    modelLock    | session      | env                             | expected
+    ${true}      | ${session()} | ${env(true)}                    | ${true}
+    ${true}      | ${session()} | ${env(false)}                   | ${true}
+    ${false}     | ${session()} | ${env(true)}                    | ${true}
+    ${false}     | ${session()} | ${env(false)}                   | ${false}
+    ${undefined} | ${session()} | ${env(true)}                    | ${true}
+    ${undefined} | ${session()} | ${env(undefined)}               | ${false}
+    ${undefined} | ${session()} | ${env(undefined, 'instructor')} | ${false}
+  `(
+    'model.lockChoiceOrder: $modelLock, $env => $expected',
+    ({ modelLock, session, env, expected }) => {
+      const model = { lockChoiceOrder: modelLock };
+      const result = lockChoices(model, session, env);
+      expect(result).toEqual(expected);
+    }
+  );
 });
