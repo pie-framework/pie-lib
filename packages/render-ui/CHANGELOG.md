@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.8.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.8.1...@pie-lib/render-ui@4.8.2) (2020-08-21)
+
+
+### Bug Fixes
+
+* rm pie-background for now ([5fd024a](https://github.com/pie-framework/pie-lib/commit/5fd024a))
+
+
+
+
+
 ## [4.8.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.8.0...@pie-lib/render-ui@4.8.1) (2020-08-11)
 
 **Note:** Version bump only for package @pie-lib/render-ui
