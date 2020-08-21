@@ -633,5 +633,20 @@
     "committerDate": "2020-06-05 11:18:15 +0100",
     "isTagged": true,
     "tag": "@pie-lib/render-ui@4.8.0"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "rm pie-background for now",
+    "merge": null,
+    "header": "fix: rm pie-background for now",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "5fd024a878378b4ebb709c61c9bb246320f2d3ab",
+    "gitTags": " (develop)",
+    "committerDate": "2020-08-21 20:53:44 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/render-ui@4.8.2"
   }
 ]
