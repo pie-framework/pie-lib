@@ -32,4 +32,4 @@ export const incorrect = () => pv('incorrect', defaults.INCORRECT);
 export const primary = () => pv('primary', defaults.PRIMARY);
 export const secondary = () => pv('secondary', defaults.SECONDARY);
 export const secondaryText = () => pv('secondary-text', 'text', defaults.TEXT);
-export const background = () => pv('background', defaults.BACKGROUND);
+// export const background = () => pv('background', defaults.BACKGROUND);
