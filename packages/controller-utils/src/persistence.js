@@ -91,13 +91,14 @@ export const lockChoices = (model, session, env) => {
   const role = get(env, 'role', 'student');
 
   if (role === 'instructor') {
-    const alreadyShuffled = hasShuffledValues(session);
+    // TODO: .. in the future the instructor can toggle between ordinal and shuffled here, so keeping this code until then
+    /*const alreadyShuffled = hasShuffledValues(session);
 
     if (alreadyShuffled) {
       return false;
     }
 
-    // TODO: .. in the future the instructor can toggle between ordinal and shuffled here
+    return true;*/
     return true;
   }
 

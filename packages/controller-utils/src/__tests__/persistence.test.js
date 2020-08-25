@@ -107,7 +107,7 @@ describe('lockChoices', () => {
     ${undefined} | ${session()}       | ${env(false)}               | ${false}
     ${undefined} | ${session()}       | ${env(undefined)}           | ${false}
     ${false}     | ${session()}       | ${env(false, 'instructor')} | ${true}
-    ${false}     | ${session([0, 1])} | ${env(false, 'instructor')} | ${false}
+    ${false}     | ${session([0, 1])} | ${env(false, 'instructor')} | ${true}
     ${false}     | ${undefined}       | ${env(false, 'instructor')} | ${true}
   `(
     '1. model.lockChoiceOrder: $modelLock, $session, $env => $expected',
