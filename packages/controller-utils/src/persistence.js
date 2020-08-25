@@ -99,7 +99,7 @@ export const lockChoices = (model, session, env) => {
     }
 
     return true;*/
-    return false;
+    return true;
   }
 
   // here it's a student, so don't lock and it will shuffle if needs be
