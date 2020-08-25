@@ -106,10 +106,9 @@ describe('lockChoices', () => {
     ${false}     | ${undefined}       | ${undefined}                | ${false}
     ${undefined} | ${session()}       | ${env(false)}               | ${false}
     ${undefined} | ${session()}       | ${env(undefined)}           | ${false}
-    ${false}     | ${session()}       | ${env(false, 'instructor')} | ${false}
-    ${false}     | ${session([0, 1])} | ${env(false, 'instructor')} | ${true}
-    ${false}     | ${session([0, 1])} | ${env(false, 'instructor')} | ${true}
-    ${false}     | ${undefined}       | ${env(false, 'instructor')} | ${false}
+    ${false}     | ${session()}       | ${env(false, 'instructor')} | ${true}
+    ${false}     | ${session([0, 1])} | ${env(false, 'instructor')} | ${false}
+    ${false}     | ${undefined}       | ${env(false, 'instructor')} | ${true}
   `(
     '1. model.lockChoiceOrder: $modelLock, $session, $env => $expected',
     ({ modelLock, session, env, expected }) => {
@@ -134,9 +133,9 @@ describe('lockChoices mod', () => {
     ${false}     | ${session()} | ${env(false)}                   | ${false}
     ${undefined} | ${session()} | ${env(true)}                    | ${true}
     ${undefined} | ${session()} | ${env(undefined)}               | ${false}
-    ${undefined} | ${session()} | ${env(undefined, 'instructor')} | ${false}
+    ${undefined} | ${session()} | ${env(undefined, 'instructor')} | ${true}
   `(
-    'model.lockChoiceOrder: $modelLock, $env => $expected',
+    '2. model.lockChoiceOrder: $modelLock, $session, $env => $expected',
     ({ modelLock, session, env, expected }) => {
       const model = { lockChoiceOrder: modelLock };
       const result = lockChoices(model, session, env);
@@ -159,9 +158,9 @@ describe('lockChoices', () => {
     ${false}     | ${session()} | ${env(false)}                   | ${false}
     ${undefined} | ${session()} | ${env(true)}                    | ${true}
     ${undefined} | ${session()} | ${env(undefined)}               | ${false}
-    ${undefined} | ${session()} | ${env(undefined, 'instructor')} | ${false}
+    ${undefined} | ${session()} | ${env(undefined, 'instructor')} | ${true}
   `(
-    'model.lockChoiceOrder: $modelLock, $env => $expected',
+    '3. model.lockChoiceOrder: $modelLock, $env => $expected',
     ({ modelLock, session, env, expected }) => {
       const model = { lockChoiceOrder: modelLock };
       const result = lockChoices(model, session, env);
