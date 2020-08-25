@@ -67,6 +67,16 @@ export const getShuffledChoices = (choices, session, updateSession, choiceKey) =
 
 const hasShuffledValues = s => !!(s || {}).shuffledValues;
 
+/**
+ * If we return:
+ * - true - that means that the order of the choices will be ordinal (as is created in the configure item)
+ * - false - that means the getShuffledChoices above will be called and that in turn means that we either
+ * return the shuffled values on the session (if any exists) or we shuffle the choices
+ * @param model - model to check if we should lock order
+ * @param session - session to check if we should lock order
+ * @param env - env to check if we should lock order
+ * @returns {boolean}
+ */
 export const lockChoices = (model, session, env) => {
   if (model.lockChoiceOrder) {
     return true;
@@ -84,11 +94,11 @@ export const lockChoices = (model, session, env) => {
     const alreadyShuffled = hasShuffledValues(session);
 
     if (alreadyShuffled) {
-      return true;
+      return false;
     }
 
     // TODO: .. in the future the instructor can toggle between ordinal and shuffled here
-    return false;
+    return true;
   }
 
   // here it's a student, so don't lock and it will shuffle if needs be
