@@ -648,5 +648,20 @@
     "committerDate": "2020-08-21 20:53:44 +0100",
     "isTagged": true,
     "tag": "@pie-lib/render-ui@4.8.2"
+  },
+  {
+    "type": "fix",
+    "scope": "color",
+    "subject": "retain background",
+    "merge": null,
+    "header": "fix(color): retain background",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "077e6ce7fc4cf7eabb8976aabcf6fb6f98f7ef67",
+    "gitTags": " (develop)",
+    "committerDate": "2020-09-11 12:31:19 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/render-ui@4.8.3"
   }
 ]
