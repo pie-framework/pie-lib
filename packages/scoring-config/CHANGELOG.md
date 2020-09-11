@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.96](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@3.5.95...@pie-lib/scoring-config@3.5.96) (2020-09-11)
+
+**Note:** Version bump only for package @pie-lib/scoring-config
+
+
+
+
+
 ## [3.5.95](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@3.5.94...@pie-lib/scoring-config@3.5.95) (2020-08-21)
 
 **Note:** Version bump only for package @pie-lib/scoring-config

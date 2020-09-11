@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.8.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.8.2...@pie-lib/render-ui@4.8.3) (2020-09-11)
+
+
+### Bug Fixes
+
+* **color:** retain background ([077e6ce](https://github.com/pie-framework/pie-lib/commit/077e6ce))
+
+
+
+
+
 ## [4.8.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.8.1...@pie-lib/render-ui@4.8.2) (2020-08-21)
 
 
