@@ -11,9 +11,11 @@ if (typeof window !== 'undefined') {
 }
 
 import pkg from '../package.json';
-
+import { mmlNodes, chtmlNodes } from './mstack';
 import debug from 'debug';
 import { wrapMath, unWrapMath } from './normalization';
+import { MmlFactory } from 'mathjax-full/js/core/MmlTree/MmlFactory';
+import { CHTMLWrapperFactory } from 'mathjax-full/js/output/chtml/WrapperFactory';
 
 const log = debug('pie-lib:math-rendering');
 
@@ -72,13 +74,49 @@ const bootstrap = opts => {
   const texConfig = opts.useSingleDollar
     ? { inlineMath: [['$', '$'], ['\\(', '\\)']], processEscapes: true }
     : {};
-  const mmlConfig = {};
+
+  const mmlConfig = {
+    parseError: function(node) {
+      // function to process parsing errors
+      console.log('error:', node);
+      this.error(this.adaptor.textContent(node).replace(/\n.*/g, ''));
+    }
+  };
+
   const fontURL = `https://unpkg.com/mathjax-full@${mathjax.version}/ts/output/chtml/fonts/tex-woff-v2`;
-  const htmlConfig = { fontURL };
+  const htmlConfig = {
+    fontURL,
+
+    wrapperFactory: new CHTMLWrapperFactory({
+      ...CHTMLWrapperFactory.defaultNodes,
+      ...chtmlNodes
+    })
+  };
+
+  const mml = new MathML(mmlConfig);
+
+  const customMmlFactory = new MmlFactory({
+    ...MmlFactory.defaultNodes,
+    ...mmlNodes
+  });
+
   const html = mathjax.document(document, {
-    InputJax: [new TeX(texConfig), new MathML(mmlConfig)],
+    compileError: (mj, math, err) => {
+      console.log('bad math?:', math);
+      console.error(err);
+    },
+    typesetError: function(doc, math, err) {
+      console.log('typeset error');
+      console.error(err);
+      doc.typesetError(math, err);
+    },
+
+    InputJax: [new TeX(texConfig), mml],
     OutputJax: new CHTML(htmlConfig)
   });
+
+  // Note: we must set this *after* mathjax.document (no idea why)
+  mml.setMmlFactory(customMmlFactory);
 
   return {
     version: mathjax.version,
