@@ -32,11 +32,24 @@ class Demo extends React.Component {
         Math Rendering
         <div>
           <div>Some math here</div>
-          <span data-latex="" data-raw="4\sqrt{4}">
+
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <mstack charalign="center" stackalign="right">
+              <mn>3589</mn>
+              <msrow>
+                <mo>+</mo>
+                <mn>5123</mn>
+              </msrow>
+              <msline />
+              <msrow />
+            </mstack>
+          </math>
+          <br />
+          {/* <span data-latex="" data-raw="4\sqrt{4}">
             4\sqrt{4}
-          </span>
+          </span> */}
         </div>
-        <div>
+        {/* <div>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <mi>a</mi>
             <mo>&#x2260;</mo>
@@ -86,7 +99,7 @@ class Demo extends React.Component {
             </mrow>
             <mtext>.</mtext>
           </math>
-        </div>
+        </div> */}
       </div>
     ) : (
       <div>loading...</div>
