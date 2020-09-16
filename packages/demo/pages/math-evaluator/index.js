@@ -7,7 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 import areValuesEqual from '@pie-lib/math-evaluator';
-import mathExpressions from 'math-expressions';
+// import mathExpressions from 'math-expressions';
 import debug from 'debug';
 import jsesc from 'jsesc';
 
