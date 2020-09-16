@@ -37,14 +37,25 @@ class Demo extends React.Component {
       renderMath(this.root);
     });
   }
+
+  updateMathMl = mathml => {
+    this.setState({ mathml }, () => {
+      renderMath(this.root);
+    });
+  };
+
   render() {
     const { foo, mounted } = this.state;
-
+    const { classes } = this.props;
     return mounted ? (
       <div ref={r => (this.root = r)}>
         <Typography variant="display1">Math Rendering</Typography>
         <hr />
-        <textarea value={this.state.mathml} className={'ta'}></textarea>
+        <textarea
+          value={this.state.mathml}
+          onChange={e => this.updateMathMl(e.target.value)}
+          className={classes.ta}
+        ></textarea>
         <br />
         <Button variant="raised" onClick={this.updateMathJax}>
           Update
@@ -58,8 +69,8 @@ class Demo extends React.Component {
               <mi>b</mi>
             </mfrac>
           </math> */}
-
-          <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <div dangerouslySetInnerHTML={{ __html: this.state.mathml }}></div>
+          {/* <math xmlns="http://www.w3.org/1998/Math/MathML">
             <mstack charalign="center" stackalign="right">
               <mn>358999</mn>
               <msrow>
@@ -69,7 +80,7 @@ class Demo extends React.Component {
               <msline />
               <msrow />
             </mstack>
-          </math>
+          </math> */}
           <br />
           {/* <span data-latex="" data-raw="4\sqrt{4}">
             4\sqrt{4}
@@ -140,7 +151,8 @@ const styles = theme => ({
   },
   ta: {
     width: '100%',
-    height: '100%'
+    height: '100%',
+    minHeight: '300px'
   }
 });
 
