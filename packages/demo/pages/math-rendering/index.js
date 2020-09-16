@@ -3,6 +3,7 @@ import withRoot from '../../src/withRoot';
 import { withStyles } from '@material-ui/core/styles';
 import debug from 'debug';
 import { renderMath } from '@pie-lib/math-rendering';
+import { Button, Typography } from '@material-ui/core';
 
 const log = debug('demo:math-evaluator');
 
@@ -13,10 +14,22 @@ const renderOpts = {
   ]
 };
 
+const math = `<math xmlns="http://www.w3.org/1998/Math/MathML">
+            <mstack charalign="center" stackalign="right">
+              <mn>358999</mn>
+              <msrow>
+                <mo>+</mo>
+                <mn>223</mn>
+              </msrow>
+              <msline />
+              <msrow />
+            </mstack>
+          </math>`;
+
 class Demo extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { mounted: false };
+    this.state = { mounted: false, mathml: math };
   }
 
   componentDidMount() {
@@ -29,16 +42,29 @@ class Demo extends React.Component {
 
     return mounted ? (
       <div ref={r => (this.root = r)}>
-        Math Rendering
+        <Typography variant="display1">Math Rendering</Typography>
+        <hr />
+        <textarea value={this.state.mathml} className={'ta'}></textarea>
+        <br />
+        <Button variant="raised" onClick={this.updateMathJax}>
+          Update
+        </Button>
+        <br />
+        <br />
         <div>
-          <div>Some math here</div>
+          {/* <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <mfrac>
+              <mi>a</mi>
+              <mi>b</mi>
+            </mfrac>
+          </math> */}
 
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <mstack charalign="center" stackalign="right">
-              <mn>3589</mn>
+              <mn>358999</mn>
               <msrow>
                 <mo>+</mo>
-                <mn>5123</mn>
+                <mn>223</mn>
               </msrow>
               <msline />
               <msrow />
@@ -111,6 +137,10 @@ const styles = theme => ({
   sizeInput: {
     width: '60px',
     paddingLeft: theme.spacing.unit * 2
+  },
+  ta: {
+    width: '100%',
+    height: '100%'
   }
 });
 

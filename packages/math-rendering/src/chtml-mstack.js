@@ -29,47 +29,138 @@ const getCircularReplacer = () => {
 import _ from 'lodash';
 // JSON.stringify(circularReference, getCircularReplacer());
 
+const reduceText = (acc, n) => {
+  // console.log(':', n, n.text);
+
+  if (n.node && n.node.kind === 'text') {
+    acc += n.node.text;
+  }
+
+  return acc;
+};
+
+export class Line {
+  constructor() {
+    this.kind = 'line';
+  }
+
+  get columns() {
+    return [];
+  }
+}
+export class Row {
+  constructor(columns, operator) {
+    this.kind = 'row';
+    this.operator = operator;
+    this.columns = columns;
+  }
+
+  pad(count, direction = 'right') {
+    if (count < this.columns.length) {
+      throw new Error('no');
+    }
+
+    const diff = count - this.columns.length;
+
+    const padding = _.times(diff).map(n => '__pad__');
+    return direction === 'right' ? [...padding, ...this.columns] : [...this.columns, ...padding];
+  }
+}
+
+const mnToArray = mn => {
+  const text = mn.childNodes.reduce(reduceText, '');
+  return text.split('');
+};
+/**
+ *
+ * @param {*} child
+ * @return an array of column content
+ */
+const toColumnArray = child => {
+  if (!child || !child.kind) {
+    return [];
+  }
+
+  if (child.kind === 'msrow') {
+    throw new Error('msrow in msrow?');
+  }
+
+  if (child.kind === 'mo') {
+    throw new Error('mo must be first child of msrow');
+  }
+
+  if (child.kind === 'mn') {
+    return mnToArray(child);
+  }
+
+  if (child.toCHTML) {
+    return child;
+  }
+};
+
 const rowStack = child => {
   if (!child || !child.kind) {
     return;
   }
 
   if (child.kind === 'msrow') {
-    return _.flatten(child.childNodes.map(rowStack));
+    if (!child.childNodes || child.childNodes.length === 0) {
+      return new Row([]);
+    }
+    const f = _.first(child.childNodes);
+    console.log('f');
+    const nodes = f && f.kind === 'mo' ? _.tail(child.childNodes) : child.childNodes;
+
+    const columns = _.flatten(nodes.map(toColumnArray));
+
+    return new Row(columns, f.kind === 'mo' ? f : undefined);
   }
 
   if (child.kind === 'mn') {
-    const tn = child.childNodes[0];
-    const parts = tn.text.split('');
-    return parts;
+    const columns = mnToArray(child);
+    return new Row(columns, undefined);
   }
 
   if (child.kind === 'mo') {
-    const tn = child.childNodes[0];
-    return tn.text.split('');
+    console.warn('mo on its own row?');
+    return;
   }
 
   if (child.kind === 'msline') {
-    return ['line'];
+    return new Line();
+  }
+
+  if (child.toCHTML) {
+    return new Row([child]);
   }
 };
+
 export const getStackData = mstack => {
   if (!mstack || !mstack.childNodes) {
     return [];
   }
-
-  return mstack.childNodes.map(rowStack);
-  // return [];
+  return _.compact(mstack.childNodes.map(rowStack));
 };
 
 export class CHTMLmstack extends CHTMLWrapper {
   static styles = {
     'mjx-mstack > table': {
-      'border-spacing': '0.0rem 1rem',
+      'line-height': 'initial',
+      border: 'solid 0px red',
+      'border-spacing': '0em',
       'border-collapse': 'separate'
+    },
+    'mjx-mstack > table > tr': {
+      'line-height': 'initial'
     },
     'mjx-mstack > table > tr > td': {
       // padding: '1.2rem',
+      border: 'solid 0px blue',
+      'font-family': 'sans-serif',
+      'line-height': 'initial'
+    },
+    'mjx-mstack > table > tr > td.inner': {
+      'font-family': 'inherit'
     },
     'mjx-mstack > table > tr > .mjx-line': {
       padding: 0,
@@ -83,36 +174,12 @@ export class CHTMLmstack extends CHTMLWrapper {
     this.ce = this.adaptor.document.createElement.bind(this.adaptor.document);
   }
 
-  row(node, parent) {
-    if (!node || !node.kind) {
-      return;
-    }
-
-    if (node.kind === 'msrow') {
-      // msrow is implicit - so skip to the content
-      this.row(node.childNodes);
-    }
-
-    if (!node.childNodes || node.childNodes.length === 0) {
-      return;
-    }
-
-    const out = [];
-
-    node.childNodes.forEach(n => {
-      if (n.kind === 'mn') {
-        const numbers = n.childNodes[0].text;
-        out.push(number.split(''));
-      }
-    });
-  }
-
   /**
    * return an array of rows
    */
 
   mkStackData() {
-    return this.childNodes.map(n => this.row);
+    return this.childNodes.map(n => rowStack(n));
   }
   /**
    * @override
@@ -125,72 +192,67 @@ export class CHTMLmstack extends CHTMLWrapper {
 
     console.log('chtml: ', chtml); // => <mjx-mstack/>
 
-    console.log(JSON.stringify(this, ['kind', 'childNodes', 'node', 'text'], '  '));
+    // console.log(JSON.stringify(this, ['kind', 'childNodes', 'node', 'text'], '  '));
 
     //1. this.node == the math node and root of the AST that we want to work with.
     // only issue w/ this is what if we want chtml for this? we only have the math node here right?
 
-    console.log('>> childNodes: ', this.childNodes, this.childNodes.map(n => n.kind));
+    console.log('>>  childNodes: ', this.childNodes, this.childNodes.map(n => n.kind));
 
-    // const stackData = this.mkStackData();
+    const stackData = this.mkStackData();
 
-    // this.childNodes.forEach( ch => {
+    console.log('stackData:', stackData);
+    // const table = this.ce('table');
+    // chtml.appendChild(table);
 
-    //   this.row(ch, chtml)
-    // })
+    const maxCols = stackData.reduce((acc, r) => {
+      if (r && r.columns.length > acc) {
+        acc = r.columns.length;
+      }
 
-    // const stackData = [['', 3, 5, 8, 9], ['+', '', 1, 2, 3], ['line'], ['']];
-    // const ce = this.adaptor.document.createElement.bind(this.adaptor.document);
+      return acc;
+    }, 0);
 
-    // const createRow = maxCols => rowData => {
-    //   const tr = ce('tr');
+    console.log('maxCols:', maxCols);
 
-    //   const cells = rowData.map(r => {
-    //     const td = ce('td');
-    //     if (typeof r === 'number') {
-    //       td.textContent = r;
-    //     }
-    //     if (r === 'line') {
-    //       td.setAttribute('colspan', maxCols);
-    //       td.setAttribute('class', 'mjx-line');
-    //       // td.setAttribute('style', 'border-top: solid 1px black');
-    //       td.textContent = '';
-    //     } else if (typeof r === 'string') {
-    //       td.textContent = r;
-    //     }
+    const table = this.ce('table');
+    chtml.appendChild(table);
 
-    //     return td;
-    //   });
+    stackData.forEach(row => {
+      console.log('row:', row);
+      const tr = this.ce('tr');
+      table.appendChild(tr);
 
-    //   cells.forEach(c => tr.appendChild(c));
-    //   return tr;
-    // };
+      if (row.kind === 'row') {
+        const td = this.ce('td');
+        tr.appendChild(td);
+        if (row.operator && row.operator.toCHTML) {
+          row.operator.toCHTML(td);
+        } else {
+          td.textContent = '';
+        }
 
-    // const generateStack = (rows, parent) => {
-    //   const maxCols = rows.reduce((acc, r) => {
-    //     if (r && r.length > acc) {
-    //       acc = r.length;
-    //     }
-
-    //     return acc;
-    //   }, 0);
-
-    //   console.log('maxCols:', maxCols);
-
-    //   if (rows.length <= 0) {
-    //     return;
-    //   }
-
-    //   const table = ce('table');
-    //   parent.appendChild(table);
-
-    //   const tableRows = rows.map(createRow(maxCols));
-
-    //   tableRows.forEach(r => table.appendChild(r));
-    // };
-
-    // console.log('chtml?', chtml);
-
-    // generateStack(stackData, chtml);
+        // align right for now:
+        const cols = row.pad(maxCols, 'right');
+        cols.forEach(c => {
+          const t = this.ce('td');
+          tr.appendChild(t);
+          if (c === '__pad__') {
+            t.textContent = '';
+          } else if (typeof c === 'string') {
+            t.textContent = c;
+          } else if (c.toCHTML) {
+            t.setAttribute('class', 'inner');
+            c.toCHTML(t);
+          }
+        });
+      } else if (row.kind === 'line') {
+        const td = this.ce('td');
+        tr.appendChild(td);
+        td.setAttribute('colspan', maxCols + 1);
+        td.setAttribute('class', 'mjx-line');
+        td.textContent = '';
+      }
+    });
   }
 }

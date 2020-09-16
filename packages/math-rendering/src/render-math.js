@@ -156,6 +156,7 @@ const bootstrap = opts => {
   const fontURL = `https://unpkg.com/mathjax-full@${mathjax.version}/ts/output/chtml/fonts/tex-woff-v2`;
   const htmlConfig = {
     fontURL,
+
     wrapperFactory: new CHTMLWrapperFactory({
       ...CHTMLWrapperFactory.defaultNodes,
       mstack: CHTMLmstack
@@ -178,6 +179,12 @@ const bootstrap = opts => {
       console.log('bad math?:', math);
       console.error(err);
     },
+    typesetError: function(doc, math, err) {
+      console.log('typeset error');
+      console.error(err);
+      doc.typesetError(math, err);
+    },
+
     InputJax: [new TeX(texConfig), mml],
     OutputJax: new CHTML(htmlConfig)
   });
