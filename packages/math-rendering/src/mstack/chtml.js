@@ -161,7 +161,7 @@ export class CHTMLmstack extends CHTMLWrapper {
   toCHTML(parent) {
     const chtml = this.standardCHTMLnode(parent);
 
-    const stackData = this.childNodes.map(n => rowStack(n));
+    const stackData = getStackData(this);
 
     const maxCols = stackData.reduce((acc, r) => {
       if (r && r.columns.length > acc) {
