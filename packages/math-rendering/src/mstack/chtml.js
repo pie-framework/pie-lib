@@ -181,7 +181,6 @@ export class CHTMLmstack extends CHTMLWrapper {
         const td = this.ce('td');
         tr.appendChild(td);
         if (row.operator && row.operator.toCHTML) {
-          console.log('SET INNER for OPERATOR');
           td.setAttribute('class', 'inner');
           row.operator.toCHTML(td);
         } else {
