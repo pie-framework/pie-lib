@@ -11,5 +11,3 @@ export const mmlNodes = {
   msrow: MmlMsrow,
   none: MmlNone
 };
-
-console.log('mml nodes:', mmlNodes);

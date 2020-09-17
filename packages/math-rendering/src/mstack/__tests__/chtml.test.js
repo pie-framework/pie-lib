@@ -24,3 +24,19 @@ describe('getStackData', () => {
     expect(d).toEqual(expected);
   });
 });
+
+describe('Row', () => {
+  describe('pad', () => {
+    it.each`
+      cols   | count | expected
+      ${[]}  | ${0}  | ${[]}
+      ${[1]} | ${1}  | ${[1]}
+      ${[1]} | ${2}  | ${['__pad__', 1]}
+      ${[1]} | ${3}  | ${['__pad__', '__pad__', 1]}
+    `('pads to the right', ({ cols, count, expected }) => {
+      const r = new Row(cols);
+      const p = r.pad(count, 'right');
+      expect(p).toEqual(expected);
+    });
+  });
+});
