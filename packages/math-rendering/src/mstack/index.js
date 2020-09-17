@@ -1,4 +1,4 @@
-import { CHTMLmstack } from '../../lib/chtml-mstack';
+import { CHTMLmstack } from './chtml';
 import { MmlNone, MmlMsline, MmlMstack, MmlMsrow } from './mml';
 
 export const chtmlNodes = {
