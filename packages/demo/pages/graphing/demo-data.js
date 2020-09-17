@@ -1,4 +1,5 @@
-import { xy } from '../../../plot/lib/utils';
+import { utils } from '@pie-lib/plot';
+const { xy } = utils;
 const fromTo = (fx, fy, tx, ty) => ({ from: xy(fx, fy), to: xy(tx, ty) });
 
 export const marks = [
