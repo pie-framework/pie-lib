@@ -1,41 +1,10 @@
-import { CHTMLWrapper, CHTMLConstructor } from 'mathjax-full/js/output/chtml/Wrapper';
-//'../Wrapper.js';
-
-const getCircularReplacer = () => {
-  const seen = new WeakSet();
-  const ignoreKeys = [
-    'factory',
-    'parent',
-    'attributes',
-    'font',
-    'bbox',
-    'removedStyles',
-    'styles',
-    '_factory'
-  ];
-  return (key, value) => {
-    if (ignoreKeys.includes(key)) {
-      return;
-    }
-    if (typeof value === 'object' && value !== null) {
-      if (seen.has(value)) {
-        return;
-      }
-      seen.add(value);
-    }
-    return value;
-  };
-};
+import { CHTMLWrapper } from 'mathjax-full/js/output/chtml/Wrapper';
 import _ from 'lodash';
-// JSON.stringify(circularReference, getCircularReplacer());
 
 const reduceText = (acc, n) => {
-  // console.log(':', n, n.text);
-
   if (n.node && n.node.kind === 'text') {
     acc += n.node.text;
   }
-
   return acc;
 };
 
@@ -48,6 +17,7 @@ export class Line {
     return [];
   }
 }
+
 export class Row {
   constructor(columns, operator) {
     this.kind = 'row';
@@ -71,8 +41,9 @@ const mnToArray = mn => {
   const text = mn.childNodes.reduce(reduceText, '');
   return text.split('');
 };
+
 /**
- *
+ * Convert child a column entry
  * @param {*} child
  * @return an array of column content
  */
@@ -102,6 +73,11 @@ const toColumnArray = child => {
   }
 };
 
+/**
+ *  convert mstack chtml childNodes into a Row
+ *  @param child chtml child node of mstack
+ *  @return Row | Line
+ */
 const rowStack = child => {
   if (!child || !child.kind) {
     return;
@@ -112,7 +88,6 @@ const rowStack = child => {
       return new Row([]);
     }
     const f = _.first(child.childNodes);
-    console.log('f');
     const nodes = f && f.kind === 'mo' ? _.tail(child.childNodes) : child.childNodes;
 
     const columns = _.flatten(nodes.map(toColumnArray));
@@ -138,6 +113,11 @@ const rowStack = child => {
     return new Row([child]);
   }
 };
+
+/** convert MathJax chtml tree to Row[]
+ * @param mstack the root of the mathjax chtml tree
+ * @return Row[]
+ */
 
 export const getStackData = mstack => {
   if (!mstack || !mstack.childNodes) {
@@ -178,52 +158,22 @@ export class CHTMLmstack extends CHTMLWrapper {
     this.ce = this.adaptor.document.createElement.bind(this.adaptor.document);
   }
 
-  /**
-   * return an array of rows
-   */
-
-  mkStackData() {
-    return this.childNodes.map(n => rowStack(n));
-  }
-  /**
-   * @override
-   */
   toCHTML(parent) {
-    //
-    //  Create the rows inside an mjx-itable (which will be used to center the table on the math axis)
-    //
     const chtml = this.standardCHTMLnode(parent);
 
-    console.log('chtml: ', chtml); // => <mjx-mstack/>
-
-    // console.log(JSON.stringify(this, ['kind', 'childNodes', 'node', 'text'], '  '));
-
-    //1. this.node == the math node and root of the AST that we want to work with.
-    // only issue w/ this is what if we want chtml for this? we only have the math node here right?
-
-    console.log('>>  childNodes: ', this.childNodes, this.childNodes.map(n => n.kind));
-
-    const stackData = this.mkStackData();
-
-    console.log('stackData:', stackData);
-    // const table = this.ce('table');
-    // chtml.appendChild(table);
+    const stackData = this.childNodes.map(n => rowStack(n));
 
     const maxCols = stackData.reduce((acc, r) => {
       if (r && r.columns.length > acc) {
         acc = r.columns.length;
       }
-
       return acc;
     }, 0);
-
-    console.log('maxCols:', maxCols);
 
     const table = this.ce('table');
     chtml.appendChild(table);
 
     stackData.forEach(row => {
-      console.log('row:', row);
       const tr = this.ce('tr');
       table.appendChild(tr);
 

@@ -1,4 +1,4 @@
-import { getStackData, Line, Row } from '../chtml-mstack';
+import { getStackData, Line, Row } from '../chtml';
 
 const node = (kind, extras) => ({ kind, childNodes: [], ...extras });
 
@@ -10,13 +10,6 @@ const msrow = (...childNodes) => node('msrow', { childNodes });
 const mstack = (...rows) => node('mstack', { childNodes: rows });
 const msline = () => node('msline');
 describe('getStackData', () => {
-  // ${mstack(mn('1'), mn('1'))}                            | ${[['1'], ['1']]}
-  // ${mstack(msrow(mn('111')))}                            | ${[['1', '1', '1']]}
-  // ${mstack(msrow(mn('111')), mn('222'))}                 | ${[['1', '1', '1'], ['2', '2', '2']]}
-  // ${mstack(msrow(mn('111')), msrow(mo('+'), mn('222')))} | ${[['1', '1', '1'], ['+', '2', '2', '2']]}
-  // ${mstack(msline())}                                    | ${[['line']]}
-  // ${mstack(msrow(msline(), mn('1')))}                    | ${[['line', '1']]}
-  //${mstack(mn('111'))} | ${[new Row(['1', '1', '1'])]}
   it.each`
     input                                                 | expected
     ${mstack(msrow(mo('+'), mn('111')))}                  | ${[new Row(['1', '1', '1'], mo('+'))]}
@@ -31,11 +24,6 @@ describe('getStackData', () => {
     // const d = getStackData(mstack(msrow(mo('+'), mn('111'))));
     expect(d).toEqual(expected);
   });
-  // it('works', () => {
-  //   const d = getStackData(mstack(mn('111')));
-  //   // const d = getStackData(mstack(msrow(mo('+'), mn('111'))));
-  //   expect(d).toEqual([['1', '1', '1']]);
-  // });
 });
 
 const s = {
