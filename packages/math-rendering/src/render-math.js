@@ -18,6 +18,29 @@ import { MmlFactory } from 'mathjax-full/js/core/MmlTree/MmlFactory';
 import { AbstractMmlNode, TEXCLASS } from 'mathjax-full/js/core/MmlTree/MmlNode';
 import { CHTMLWrapperFactory } from 'mathjax-full/js/output/chtml/WrapperFactory';
 
+export class MmlNone extends AbstractMmlNode {
+  properties = {
+    useHeight: 1
+  };
+
+  texClass = TEXCLASS.ORD;
+
+  get kind() {
+    return 'none';
+  }
+
+  get linebreakContainer() {
+    return true;
+  }
+
+  setTeXclass(prev) {
+    this.getPrevClass(prev);
+    for (const child of this.childNodes) {
+      child.setTeXclass(null);
+    }
+    return this;
+  }
+}
 export class MmlMstack extends AbstractMmlNode {
   properties = {
     useHeight: 1
@@ -169,7 +192,8 @@ const bootstrap = opts => {
     ...MmlFactory.defaultNodes,
     mstack: MmlMstack,
     msrow: MmlMsrow,
-    msline: MmlMsline
+    msline: MmlMsline,
+    none: MmlNone
   });
   mml.setMmlFactory(customMmlFactory);
 

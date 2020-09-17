@@ -26,10 +26,31 @@ const math = `<math xmlns="http://www.w3.org/1998/Math/MathML">
             </mstack>
           </math>`;
 
+const mathTwo = `<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mstack charalign="center" stackalign="right">
+   <msrow>
+     <mn>1</mn>
+     <mo>.</mo>
+     <mn>5</mn>
+     <none/>
+     <none/>
+     <none/>
+   </msrow>
+   <msrow>     
+     <mo>+</mo>
+     <mn>0</mn>
+     <mo>.</mo>
+     <mn>0015</mn>
+   </msrow>
+   <msline/>
+   <msrow/>
+</mstack>
+</math>`;
+
 class Demo extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { mounted: false, mathml: math };
+    this.state = { mounted: false, mathml: mathTwo };
   }
 
   componentDidMount() {
@@ -51,15 +72,23 @@ class Demo extends React.Component {
       <div ref={r => (this.root = r)}>
         <Typography variant="display1">Math Rendering</Typography>
         <hr />
-        <textarea
-          value={this.state.mathml}
-          onChange={e => this.updateMathMl(e.target.value)}
-          className={classes.ta}
-        ></textarea>
-        <br />
-        <Button variant="raised" onClick={this.updateMathJax}>
-          Update
-        </Button>
+        <div className={classes.holder}>
+          <div className={classes.child}>
+            <textarea
+              value={this.state.mathml}
+              onChange={e => this.updateMathMl(e.target.value)}
+              className={classes.ta}
+            ></textarea>
+            <br />
+            <Button variant="raised" onClick={this.updateMathJax}>
+              Update
+            </Button>
+          </div>
+          <div
+            className={classes.child}
+            dangerouslySetInnerHTML={{ __html: this.state.mathml }}
+          ></div>
+        </div>
         <br />
         <br />
         <div>
@@ -69,7 +98,6 @@ class Demo extends React.Component {
               <mi>b</mi>
             </mfrac>
           </math> */}
-          <div dangerouslySetInnerHTML={{ __html: this.state.mathml }}></div>
           {/* <math xmlns="http://www.w3.org/1998/Math/MathML">
             <mstack charalign="center" stackalign="right">
               <mn>358999</mn>
@@ -148,6 +176,13 @@ const styles = theme => ({
   sizeInput: {
     width: '60px',
     paddingLeft: theme.spacing.unit * 2
+  },
+  holder: {
+    width: '100%',
+    display: 'flex'
+  },
+  child: {
+    flex: 1
   },
   ta: {
     width: '100%',

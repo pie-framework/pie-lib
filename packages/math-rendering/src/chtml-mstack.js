@@ -86,7 +86,11 @@ const toColumnArray = child => {
   }
 
   if (child.kind === 'mo') {
-    throw new Error('mo must be first child of msrow');
+    // We are going to treat this operator as a text array.
+    // It's probably going to be a decimal point
+    console.warn('mo that is not 1st node in msrow?');
+    return mnToArray(child);
+    // throw new Error('mo must be first child of msrow');
   }
 
   if (child.kind === 'mn') {
@@ -123,7 +127,7 @@ const rowStack = child => {
 
   if (child.kind === 'mo') {
     console.warn('mo on its own row?');
-    return;
+    return new Row([], child);
   }
 
   if (child.kind === 'msline') {
@@ -241,6 +245,8 @@ export class CHTMLmstack extends CHTMLWrapper {
             t.textContent = '';
           } else if (typeof c === 'string') {
             t.textContent = c;
+          } else if (c.kind === 'none') {
+            t.textContent = '';
           } else if (c.toCHTML) {
             t.setAttribute('class', 'inner');
             c.toCHTML(t);

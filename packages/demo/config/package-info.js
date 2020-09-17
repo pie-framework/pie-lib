@@ -13,7 +13,7 @@ const safeRead = (dir, file) => {
 exports.load = () => {
   const packages = getPackages(resolve(__dirname, '../../'));
 
-  const filtered = packages.filter(pk => !pk.dir.endsWith('demo'));
+  const filtered = packages.filter(pk => pk.dir.endsWith('math-rendering')); //pk => !pk.dir.endsWith('demo'));
 
   return filtered.map(pk => {
     const nextChangelog = safeRead(pk.dir, 'NEXT.CHANGELOG.md');
