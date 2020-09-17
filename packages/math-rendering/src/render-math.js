@@ -11,106 +11,11 @@ if (typeof window !== 'undefined') {
 }
 
 import pkg from '../package.json';
-import { CHTMLmstack } from './chtml-mstack';
+import { mmlNodes, chtmlNodes } from './mstack';
 import debug from 'debug';
 import { wrapMath, unWrapMath } from './normalization';
 import { MmlFactory } from 'mathjax-full/js/core/MmlTree/MmlFactory';
-import { AbstractMmlNode, TEXCLASS } from 'mathjax-full/js/core/MmlTree/MmlNode';
 import { CHTMLWrapperFactory } from 'mathjax-full/js/output/chtml/WrapperFactory';
-
-export class MmlNone extends AbstractMmlNode {
-  properties = {
-    useHeight: 1
-  };
-
-  texClass = TEXCLASS.ORD;
-
-  get kind() {
-    return 'none';
-  }
-
-  get linebreakContainer() {
-    return true;
-  }
-
-  setTeXclass(prev) {
-    this.getPrevClass(prev);
-    for (const child of this.childNodes) {
-      child.setTeXclass(null);
-    }
-    return this;
-  }
-}
-export class MmlMstack extends AbstractMmlNode {
-  properties = {
-    useHeight: 1
-  };
-
-  texClass = TEXCLASS.ORD;
-
-  get kind() {
-    return 'mstack';
-  }
-
-  get linebreakContainer() {
-    return true;
-  }
-
-  setTeXclass(prev) {
-    this.getPrevClass(prev);
-    for (const child of this.childNodes) {
-      child.setTeXclass(null);
-    }
-    return this;
-  }
-}
-
-export class MmlMsrow extends AbstractMmlNode {
-  properties = {
-    useHeight: 1
-  };
-
-  texClass = TEXCLASS.ORD;
-
-  get kind() {
-    return 'msrow';
-  }
-
-  get linebreakContainer() {
-    return true;
-  }
-
-  setTeXclass(prev) {
-    this.getPrevClass(prev);
-    for (const child of this.childNodes) {
-      child.setTeXclass(null);
-    }
-    return this;
-  }
-}
-export class MmlMsline extends AbstractMmlNode {
-  properties = {
-    useHeight: 1
-  };
-
-  texClass = TEXCLASS.ORD;
-
-  get kind() {
-    return 'msline';
-  }
-
-  get linebreakContainer() {
-    return true;
-  }
-
-  setTeXclass(prev) {
-    this.getPrevClass(prev);
-    for (const child of this.childNodes) {
-      child.setTeXclass(null);
-    }
-    return this;
-  }
-}
 
 const log = debug('pie-lib:math-rendering');
 
@@ -169,6 +74,7 @@ const bootstrap = opts => {
   const texConfig = opts.useSingleDollar
     ? { inlineMath: [['$', '$'], ['\\(', '\\)']], processEscapes: true }
     : {};
+
   const mmlConfig = {
     parseError: function(node) {
       // function to process parsing errors
@@ -176,13 +82,14 @@ const bootstrap = opts => {
       this.error(this.adaptor.textContent(node).replace(/\n.*/g, ''));
     }
   };
+
   const fontURL = `https://unpkg.com/mathjax-full@${mathjax.version}/ts/output/chtml/fonts/tex-woff-v2`;
   const htmlConfig = {
     fontURL,
 
     wrapperFactory: new CHTMLWrapperFactory({
       ...CHTMLWrapperFactory.defaultNodes,
-      mstack: CHTMLmstack
+      ...chtmlNodes
     })
   };
 
@@ -190,14 +97,9 @@ const bootstrap = opts => {
 
   const customMmlFactory = new MmlFactory({
     ...MmlFactory.defaultNodes,
-    mstack: MmlMstack,
-    msrow: MmlMsrow,
-    msline: MmlMsline,
-    none: MmlNone
+    ...mmlNodes
   });
-  mml.setMmlFactory(customMmlFactory);
 
-  const chtml = new CHTML(htmlConfig);
   const html = mathjax.document(document, {
     compileError: (mj, math, err) => {
       console.log('bad math?:', math);
@@ -212,6 +114,8 @@ const bootstrap = opts => {
     InputJax: [new TeX(texConfig), mml],
     OutputJax: new CHTML(htmlConfig)
   });
+
+  // Note: we must set this *after* mathjax.document (no idea why)
   mml.setMmlFactory(customMmlFactory);
 
   return {
