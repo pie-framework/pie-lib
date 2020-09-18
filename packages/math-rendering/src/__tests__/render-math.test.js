@@ -22,14 +22,27 @@ jest.mock(
   }
 );
 
-jest.mock('mathjax-full/js/input/mathml', () => ({
-  MathML: jest.fn()
-}));
+//jest.fn().mockReturnValue({ setMmlFactory: jest.fn() })
+jest.mock('mathjax-full/js/input/mathml', () => {
+  const mock = jest.fn().mockReturnThis();
+  mock.setMmlFactory = jest.fn();
+  return {
+    MathML: () => mock
+  };
+});
 
 jest.mock('mathjax-full/js/input/tex', () => ({
   TeX: jest.fn()
 }));
-
+jest.mock('mathjax-full/js/core/MmlTree/MmlFactory', () => {
+  const instance = {
+    setMmlFactory: jest.fn(),
+    defaultNodes: {}
+  };
+  return {
+    MmlFactory: () => instance
+  };
+});
 jest.mock('mathjax-full/js/output/chtml', () => ({
   CHTML: jest.fn()
 }));
@@ -42,7 +55,7 @@ jest.mock('mathjax-full/js/handlers/html', () => ({
   RegisterHTMLHandler: jest.fn()
 }));
 
-describe.only('render-math', () => {
+describe('render-math', () => {
   it('calls mathjax.document once', () => {
     const div = document.createElement('div');
     _.times(10).forEach(i => renderMath(div));
