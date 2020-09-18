@@ -37,7 +37,7 @@ export class Row {
   }
 }
 
-const mnToArray = mn => {
+const mathNodeToCharArray = mn => {
   const text = mn.childNodes.reduce(reduceText, '');
   return text.split('');
 };
@@ -60,12 +60,12 @@ const toColumnArray = child => {
     // We are going to treat this operator as a text array.
     // It's probably going to be a decimal point
     console.warn('mo that is not 1st node in msrow?');
-    return mnToArray(child);
+    return mathNodeToCharArray(child);
     // throw new Error('mo must be first child of msrow');
   }
 
   if (child.kind === 'mn') {
-    return mnToArray(child);
+    return mathNodeToCharArray(child);
   }
 
   if (child.toCHTML) {
@@ -96,7 +96,7 @@ const rowStack = child => {
   }
 
   if (child.kind === 'mn') {
-    const columns = mnToArray(child);
+    const columns = mathNodeToCharArray(child);
     return new Row(columns, undefined);
   }
 
@@ -163,6 +163,7 @@ export class CHTMLmstack extends CHTMLWrapper {
 
     const stackData = getStackData(this);
 
+    // console.log('stackData', stackData);
     const maxCols = stackData.reduce((acc, r) => {
       if (r && r.columns.length > acc) {
         acc = r.columns.length;

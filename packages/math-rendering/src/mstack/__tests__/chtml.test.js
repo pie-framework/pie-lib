@@ -1,10 +1,46 @@
-import { getStackData, Line, Row } from '../chtml';
+import { getStackData, Line, Row, CHTMLmstack } from '../chtml';
+// import { CHTMLWrapper, instance } from 'mathjax-full/js/output/chtml/Wrapper';
+import { JSDOM } from 'jsdom';
+
+jest.mock('mathjax-full/js/output/chtml/Wrapper', () => {
+  const instance = {
+    adaptor: {
+      document: {
+        createElement: jest.fn()
+      }
+    },
+    standardCHTMLnode: jest.fn()
+  };
+
+  return {
+    instance,
+    CHTMLWrapper: class {
+      constructor() {
+        this.adaptor = { document: { createElement: jest.fn() } };
+        this.document = {};
+        // return instance;
+      }
+    }
+  };
+});
 
 const node = (kind, extras) => ({ kind, childNodes: [], ...extras });
 
 const textNode = text => node('text', { text, node: { kind: 'text', text } });
 const mn = text => node('mn', { childNodes: [textNode(text)] });
-const mo = text => node('mo', { childNodes: [textNode(text)] });
+const mo = text =>
+  node('mo', {
+    childNodes: [textNode(text)]
+  });
+
+const mco = text => ({
+  ...mo(text),
+
+  toCHTML: n => {
+    const t = `mo:${text}`;
+    n.textContent = t;
+  }
+});
 
 const msrow = (...childNodes) => node('msrow', { childNodes });
 const mstack = (...rows) => node('mstack', { childNodes: rows });
@@ -21,7 +57,9 @@ describe('getStackData', () => {
     ${mstack(mn('1'), mn('1'))}                           | ${[new Row(['1']), new Row(['1'])]}
   `('$input => $expected', ({ input, expected }) => {
     const d = getStackData(input);
-    expect(d).toEqual(expected);
+    // console.log('d:', d);
+    // console.log('e:', expected);
+    expect({ ...d }).toEqual({ ...expected });
   });
 });
 
@@ -38,5 +76,29 @@ describe('Row', () => {
       const p = r.pad(count, 'right');
       expect(p).toEqual(expected);
     });
+  });
+});
+
+describe.each`
+  label                       | tree
+  ${'one row'}                | ${[msrow(mn('1'))]}
+  ${'implicit one row'}       | ${[mn('1')]}
+  ${'two rows'}               | ${[msrow(mn('1')), msrow(mn('2'))]}
+  ${'two rows with operator'} | ${[msrow(mn('1')), msrow(mco('+'), mn('2'))]}
+`('chtml', ({ label, tree }) => {
+  let html;
+
+  beforeEach(() => {
+    const chtml = new CHTMLmstack({}, {});
+    const dom = new JSDOM(`<!DOCTYPE html><body></body>`);
+    chtml.standardCHTMLnode = parent => parent;
+    chtml.ce = dom.window.document.createElement.bind(dom.window.document);
+    chtml.childNodes = tree;
+    chtml.toCHTML(dom.window.document.body);
+    html = dom.window.document.body.innerHTML;
+  });
+
+  it(label, () => {
+    expect(html).toMatchSnapshot();
   });
 });
