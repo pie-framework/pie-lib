@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import green from '@material-ui/core/colors/green';
-import orange from '@material-ui/core/colors/orange';
 import classNames from 'classnames';
+import { color } from '@pie-lib/render-ui';
 
 export const TokenTypes = {
   text: PropTypes.string,
@@ -77,46 +76,50 @@ export default withStyles(theme => {
   return {
     token: {
       cursor: 'pointer',
-      display: 'initial',
+      display: 'inline-block',
+      padding: theme.spacing.unit / 2,
       paddingRight: 0,
       transition: 'background-color 100ms ease-in'
     },
     disabled: {
       cursor: 'inherit',
-      color: 'grey'
+      color: 'grey' // TODO hardcoded color
     },
     disabledAndSelected: {
-      backgroundColor: 'pink'
+      backgroundColor: 'pink' // TODO hardcoded color
     },
     selectable: {
       '&:hover': {
-        backgroundColor: theme.palette.secondary.light,
+        backgroundColor: color.secondary(),
         '& > *': {
-          backgroundColor: theme.palette.secondary.light
+          backgroundColor: color.secondary()
         }
       }
     },
     selected: {
+      marginTop: theme.spacing.unit / 2,
       '&:hover': {
-        backgroundColor: theme.palette.primary.light
+        backgroundColor: color.secondary()
       },
-      backgroundColor: theme.palette.primary.light,
+      backgroundColor: color.secondary(),
       '& > *': {
-        backgroundColor: theme.palette.primary.light
+        backgroundColor: color.secondary()
       }
     },
     highlight: {
-      border: `dashed 1px ${theme.palette.primary.light}`
+      boxSizing: 'border-box',
+      marginTop: theme.spacing.unit / 2,
+      border: 'dashed 2px gray' //TODO hardcoded color
     },
 
     custom: {
       display: 'initial'
     },
     correct: {
-      backgroundColor: green[500]
+      backgroundColor: color.correct()
     },
     incorrect: {
-      backgroundColor: orange[500]
+      backgroundColor: color.incorrect()
     }
   };
 })(Token);
