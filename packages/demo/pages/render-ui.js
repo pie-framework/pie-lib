@@ -3,6 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { indicators, Feedback } from '@pie-lib/render-ui';
 import { Collapsible, color } from '@pie-lib/render-ui';
 import withRoot from '../src/withRoot';
+import { Typography } from '@material-ui/core';
 const { Correct, Incorrect, PartiallyCorrect, NothingSubmitted } = indicators;
 
 const Section = withStyles(theme => ({
@@ -17,11 +18,29 @@ const Section = withStyles(theme => ({
   </div>
 ));
 
-const ColorSample = ({ name }) => (
-  <div>
-    <pre>{`color.${name}() = ${color[name]()}`}</pre>
+const ColorSample = withStyles(theme => ({
+  colorSample: {
+    border: 'solid red 0px',
+    paddingBottom: theme.spacing.unit,
+    paddingTop: theme.spacing.unit
+  },
+  row: {
+    display: 'flex'
+  },
+  colorBox: {
+    width: '100px',
+    marginRight: theme.spacing.unit,
+    border: 'solid 1px lightgrey'
+  }
+}))(({ name, classes }) => (
+  <div className={classes.colorSample}>
+    <Typography variant="h5">{name}</Typography>
+    <div className={classes.row}>
+      <div className={classes.colorBox} style={{ backgroundColor: color[name]() }}></div>
+      <pre>{`color.${name}() //=> ${color[name]()}`}</pre>
+    </div>
   </div>
-);
+));
 
 class App extends React.Component {
   constructor(props) {
@@ -83,11 +102,19 @@ class App extends React.Component {
           <pre>{'import { color } from "@pie-lib/render-ui";'}</pre>
           <ColorSample name="text" />
           <ColorSample name="primary" />
+          <ColorSample name="primaryLight" />
+          <ColorSample name="primaryDark" />
           <ColorSample name="primaryText" />
+          <br />
+          <br />
+          <ColorSample name="secondary" />
+          <ColorSample name="secondaryLight" />
+          <ColorSample name="secondaryDark" />
+          <ColorSample name="secondaryText" />
+          <br />
+          <br />
           <ColorSample name="correct" />
           <ColorSample name="incorrect" />
-          <ColorSample name="secondary" />
-          <ColorSample name="secondaryText" />
           <ColorSample name="disabled" />
           <ColorSample name="background" />
           <br />

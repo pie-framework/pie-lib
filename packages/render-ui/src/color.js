@@ -9,7 +9,11 @@ export const defaults = {
   CORRECT: green[500],
   INCORRECT: orange[500],
   PRIMARY: indigo[500],
+  PRIMARY_LIGHT: indigo[200],
+  PRIMARY_DARK: indigo[800],
   SECONDARY: pink.A400,
+  SECONDARY_LIGHT: pink[200],
+  SECONDARY_DARK: pink[900],
   BACKGROUND: 'rgba(255,255,255,0)'
 };
 
@@ -25,11 +29,18 @@ export const v = prefix => (...args) => {
 const pv = v('pie');
 
 export const text = () => pv('text', defaults.TEXT);
-export const primaryText = () => pv('primary-text', 'text', defaults.TEXT);
 export const disabled = () => pv('disabled', defaults.DISABLED);
 export const correct = () => pv('correct', defaults.CORRECT);
 export const incorrect = () => pv('incorrect', defaults.INCORRECT);
+
 export const primary = () => pv('primary', defaults.PRIMARY);
+export const primaryLight = () => pv('primary-light', defaults.PRIMARY_LIGHT);
+export const primaryDark = () => pv('primary-dark', defaults.PRIMARY_DARK);
+export const primaryText = () => pv('primary-text', 'text', defaults.TEXT);
+
 export const secondary = () => pv('secondary', defaults.SECONDARY);
+export const secondaryLight = () => pv('secondary-light', defaults.SECONDARY_LIGHT);
+export const secondaryDark = () => pv('secondary-dark', defaults.SECONDARY_DARK);
+
 export const secondaryText = () => pv('secondary-text', 'text', defaults.TEXT);
 export const background = () => pv('background', defaults.BACKGROUND);
