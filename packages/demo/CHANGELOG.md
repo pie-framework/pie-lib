@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.2.5...@pie-lib/demo@6.3.0) (2020-09-25)
+
+
+### Features
+
+* add light/dark variations to primary/secondary ([97d1ac6](https://github.com/pie-framework/pie-lib/commit/97d1ac6))
+
+
+
+
+
 ## [6.2.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.2.4...@pie-lib/demo@6.2.5) (2020-09-18)
 
 **Note:** Version bump only for package @pie-lib/demo
