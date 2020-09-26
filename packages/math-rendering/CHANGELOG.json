@@ -548,5 +548,35 @@
     "committerDate": "2020-03-31 11:09:46 +0100",
     "isTagged": true,
     "tag": "@pie-lib/math-rendering@2.1.8"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "tests",
+    "merge": null,
+    "header": "fix: tests",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "72b0dec6b424240aeea87f0602a03aae2a8271c1",
+    "gitTags": " (origin/feat/PD-519-mstack)",
+    "committerDate": "2020-09-18 11:10:37 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/math-rendering@2.2.0"
+  },
+  {
+    "type": "feat",
+    "scope": null,
+    "subject": "add basic mstack support to mathjax PD-519",
+    "merge": null,
+    "header": "feat: add basic mstack support to mathjax PD-519",
+    "body": "* add mml nodes to MmlFactory\n* add chtmlNodes to CHTML wrapper\n* generate basic mstack layout using `table`",
+    "footer": null,
+    "notes": [],
+    "hash": "60eb3d10f556dc7bb40c5b3616cd302a8a7af5a9",
+    "gitTags": "",
+    "committerDate": "2020-09-17 14:21:30 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/math-rendering@2.2.0"
   }
 ]

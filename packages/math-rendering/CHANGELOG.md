@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.1.12...@pie-lib/math-rendering@2.2.0) (2020-09-18)
+
+
+### Bug Fixes
+
+* tests ([72b0dec](https://github.com/pie-framework/pie-lib/commit/72b0dec))
+
+
+### Features
+
+* add basic mstack support to mathjax PD-519 ([60eb3d1](https://github.com/pie-framework/pie-lib/commit/60eb3d1))
+
+
+
+
+
 ## [2.1.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.1.11...@pie-lib/math-rendering@2.1.12) (2020-04-14)
 
 **Note:** Version bump only for package @pie-lib/math-rendering
