@@ -1,34 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { color } from '@pie-lib/render-ui';
 
 import { withStyles } from '@material-ui/core/styles';
 import cn from 'classnames';
 import Button from '@material-ui/core/Button';
 
-const buttonStyles = theme => ({
+const buttonStyles = () => ({
   root: {
     '&:hover': {
       backgroundColor: 'rgb(255,255,255,0.5)'
     }
   },
   selected: {
-    backgroundColor: 'white',
+    backgroundColor: color.background(),
     '& span': {
-      color: theme.palette.primary.dark
+      color: color.primaryDark()
     }
   },
   notSelected: {
     '& span': {
-      color: theme.palette.primary.main
+      color: color.primary()
     },
-    backgroundColor: 'white'
+    backgroundColor: color.background()
   },
   disabled: {
     '& span': {
-      color: theme.palette.primary.main
+      color: color.primary()
     },
-    backgroundColor: 'rgb(255,255,255,0.8)'
+    backgroundColor: color.disabled()
   }
 });
 

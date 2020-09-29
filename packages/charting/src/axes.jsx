@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { types } from '@pie-lib/plot';
+import { color } from '@pie-lib/render-ui';
 import { AxisLeft, AxisBottom } from '@vx/axis';
 import { bandKey, getTickValues, getRotateAngle } from './utils';
 import MarkLabel from './mark-label';
@@ -206,28 +207,28 @@ const ChartAxes = withStyles(theme => ({
   axisLabel: {
     fontFamily: theme.typography.body1.fontFamily,
     fontSize: theme.typography.body1.fontSize,
-    fill: theme.palette.secondary.main
+    fill: color.secondary()
   },
   axis: {
-    stroke: theme.palette.primary.dark,
+    stroke: color.primaryDark(),
     strokeWidth: 2
   },
   axisLine: {
-    stroke: theme.palette.primary.dark,
+    stroke: color.primaryDark(),
     strokeWidth: 2
   },
   tick: {
     '& > line': {
-      stroke: theme.palette.primary.dark,
+      stroke: color.primaryDark(),
       strokeWidth: 2
     },
-    fill: theme.palette.primary.dark,
+    fill: color.primaryDark(),
     fontFamily: theme.typography.body1.fontFamily,
     fontSize: theme.typography.overline.fontSize,
     textAnchor: 'middle'
   },
   dottedLine: {
-    stroke: theme.palette.primary.light,
+    stroke: color.primaryLight(),
     opacity: 0.2
   }
 }))(RawChartAxes);
