@@ -5,6 +5,7 @@ import AutosizeInput from 'react-input-autosize';
 import PropTypes from 'prop-types';
 import { types } from '@pie-lib/plot';
 import { useDebounce } from './use-debounce';
+import { color } from '@pie-lib/render-ui';
 
 const styles = theme => ({
   input: {
@@ -12,13 +13,13 @@ const styles = theme => ({
     padding: theme.spacing.unit * 0.5,
     fontFamily: theme.typography.fontFamily,
     fontSize: theme.typography.fontSize,
-    border: `solid 1px ${theme.palette.secondary.main}`,
+    border: `solid 1px ${color.secondary()}`,
     borderRadius: '3px',
-    color: theme.palette.primary.dark
+    color: color.primaryDark()
   },
   disabled: {
-    border: `solid 1px ${theme.palette.primary.dark}`,
-    background: 'white'
+    border: `solid 1px ${color.primaryDark()}`,
+    background: color.background()
   }
 });
 

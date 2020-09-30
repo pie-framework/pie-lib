@@ -4,6 +4,7 @@ import * as utils from '../../../utils';
 import { disabled, correct, incorrect } from '../styles';
 import { RawBp } from './base-point';
 import { RawArrow } from './arrow-point';
+import { color } from '@pie-lib/render-ui';
 import BaseArrow from './arrow';
 
 const opts = {
@@ -23,12 +24,12 @@ const opts = {
   }
 };
 
-const styles = theme => {
+const styles = () => {
   return {
     point: {
       '& circle, & polygon': {
         cursor: 'pointer',
-        fill: `var(--point-bg, ${theme.palette.secondary.main})`
+        fill: color.secondary()
       }
     },
     disabled: {

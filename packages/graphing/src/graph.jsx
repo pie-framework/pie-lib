@@ -60,8 +60,7 @@ export class Graph extends React.Component {
   };
 
   static defaultProps = {
-    onChangeMarks: () => {
-    }
+    onChangeMarks: () => {}
   };
 
   state = {};
@@ -170,7 +169,7 @@ export class Graph extends React.Component {
         <Bg {...size} onClick={this.onBgClick} {...common} />
         <Labels value={labels} {...common} />
         <mask id="myMask">
-          <rect {...maskSize} fill="white"/>
+          <rect {...maskSize} fill="white" /> {/* TODO hardcoded color */}
         </mask>
 
         <g id="marks" mask="url('#myMask')">

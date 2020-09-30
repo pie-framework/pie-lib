@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { types } from '@pie-lib/plot';
+import { color } from '@pie-lib/render-ui';
 
 const rotations = {
   left: -90,
@@ -70,9 +71,9 @@ class RawLabel extends React.Component {
   }
 }
 
-const Label = withStyles(theme => ({
+const Label = withStyles(() => ({
   label: {
-    fill: theme.palette.secondary.main
+    fill: color.secondary()
   }
 }))(RawLabel);
 

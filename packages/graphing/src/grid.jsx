@@ -41,6 +41,6 @@ export class Grid extends React.Component {
 
 export default withStyles(() => ({
   grid: {
-    stroke: 'purple'
+    stroke: 'purple' // TODO hardcoded color
   }
 }))(Grid);
