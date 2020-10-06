@@ -90,16 +90,16 @@ export default withStyles(theme => {
     },
     selectable: {
       '&:hover': {
-        backgroundColor: color.secondary(),
+        backgroundColor: color.secondaryDark(),
         '& > *': {
-          backgroundColor: color.secondary()
+          backgroundColor: color.secondaryDark()
         }
       }
     },
     selected: {
       marginTop: theme.spacing.unit / 2,
       '&:hover': {
-        backgroundColor: color.secondary()
+        backgroundColor: color.secondaryDark()
       },
       backgroundColor: color.secondary(),
       '& > *': {
