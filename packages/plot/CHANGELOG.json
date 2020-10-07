@@ -258,5 +258,20 @@
     "committerDate": "2020-05-12 13:38:27 +0300",
     "isTagged": true,
     "tag": "@pie-lib/plot@2.0.0"
+  },
+  {
+    "type": "feat",
+    "scope": "charting",
+    "subject": "add color theme support",
+    "merge": null,
+    "header": "feat(charting): add color theme support",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "606d45e46f86cb8f56544befdb8b71fb8a451746",
+    "gitTags": "",
+    "committerDate": "2020-09-29 16:53:15 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/plot@2.1.0"
   }
 ]

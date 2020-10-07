@@ -2708,5 +2708,35 @@
     "committerDate": "2020-05-14 14:42:11 +0300",
     "isTagged": true,
     "tag": "@pie-lib/editable-html@7.12.9"
+  },
+  {
+    "type": "feat",
+    "scope": "editable-html",
+    "subject": "color theme support added",
+    "merge": null,
+    "header": "feat(editable-html): color theme support added",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "d7e32fd9aeb03eda08264840289c74e155304983",
+    "gitTags": "",
+    "committerDate": "2020-09-21 12:51:02 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.13.0"
+  },
+  {
+    "type": "feat",
+    "scope": "editable-html",
+    "subject": "initial commit for color treatment",
+    "merge": null,
+    "header": "feat(editable-html): initial commit for color treatment",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "970c4d1cad4973cc8c9a0417c8ef83c4b12d82e7",
+    "gitTags": "",
+    "committerDate": "2020-09-18 17:23:59 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.13.0"
   }
 ]

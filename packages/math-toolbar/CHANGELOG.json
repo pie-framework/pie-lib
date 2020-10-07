@@ -693,5 +693,20 @@
     "committerDate": "2020-04-03 15:18:14 +0300",
     "isTagged": true,
     "tag": "@pie-lib/math-toolbar@1.5.0"
+  },
+  {
+    "type": "feat",
+    "scope": "math-toolbar",
+    "subject": "add color theme support",
+    "merge": null,
+    "header": "feat(math-toolbar): add color theme support",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "732baf33da27a120875644422a0145780e616585",
+    "gitTags": "",
+    "committerDate": "2020-09-21 12:51:32 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/math-toolbar@1.6.0"
   }
 ]
