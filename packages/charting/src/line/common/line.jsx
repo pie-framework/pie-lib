@@ -6,6 +6,7 @@ import { types } from '@pie-lib/plot';
 import DraggableHandle, { DragHandle } from './drag-handle';
 import { withStyles } from '@material-ui/core/styles/index';
 import isEqual from 'lodash/isEqual';
+import { color } from '@pie-lib/render-ui';
 
 const getData = (data, domain) => {
   const { max } = domain || {};
@@ -120,12 +121,12 @@ export class RawLine extends React.Component {
 const StyledLine = withStyles(theme => ({
   line: {
     fill: 'transparent',
-    stroke: theme.palette.primary.light,
+    stroke: color.primaryLight(),
     strokeWidth: 3,
     transition: 'stroke 200ms ease-in, stroke-width 200ms ease-in',
     '&:hover': {
       strokeWidth: 6,
-      stroke: theme.palette.primary.dark
+      stroke: color.primaryDark()
     }
   }
 }))(RawLine);

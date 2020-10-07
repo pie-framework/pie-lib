@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { types, gridDraggable } from '@pie-lib/plot';
+import { color } from '@pie-lib/render-ui';
 import * as utils from '../../utils';
 import classNames from 'classnames';
 import { correct, disabled, incorrect } from '../shared/styles';
@@ -43,14 +44,14 @@ class RawLine extends React.Component {
   }
 }
 
-export const Line = withStyles(theme => ({
+export const Line = withStyles(() => ({
   line: {
     strokeWidth: 6,
     transition: 'stroke-width 200ms ease-in, stroke 200ms ease-in',
     stroke: 'transparent',
     '&:hover': {
       strokeWidth: 7,
-      stroke: theme.palette.secondary.light
+      stroke: color.secondary()
     }
   },
   disabled: {

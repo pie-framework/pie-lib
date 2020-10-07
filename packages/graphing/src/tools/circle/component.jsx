@@ -12,6 +12,7 @@ import { rootEdgeComponent } from '../shared/line/with-root-edge';
 import ReactDOM from 'react-dom';
 import MarkLabel from '../../mark-label';
 import isEmpty from 'lodash/isEmpty';
+import { color } from '@pie-lib/render-ui';
 
 const opacityPulsate = opacity => ({
   '0%': { opacity: '0.0' },
@@ -225,17 +226,17 @@ export class RawBaseCircle extends React.Component {
 
 export const BaseCircle = withStyles(theme => ({
   outerLine: {
-    fill: 'rgb(0,0,0,0)',
-    stroke: theme.palette.primary.light,
+    fill: 'rgb(0,0,0,0)', // TODO hardcoded color
+    stroke: color.primaryLight(),
     strokeWidth: 4,
     '&:hover': {
       strokeWidth: 6,
-      stroke: theme.palette.primary.dark
+      stroke: color.primaryDark()
     }
   },
   root: {},
   bgCircleBuilding: {
-    stroke: theme.palette.secondary.light,
+    stroke: color.secondaryLight(),
     animation: 'opacityPulse 2s ease-out',
     animationIterationCount: 'infinite',
     opacity: 1

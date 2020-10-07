@@ -162,6 +162,7 @@ exports[`Graph snapshot renders 1`] = `
       x={-10}
       y={-10}
     />
+     
   </mask>
   <g
     id="marks"

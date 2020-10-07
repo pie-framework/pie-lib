@@ -2,9 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core';
+import { color } from '@pie-lib/render-ui';
 
 export class UndoRedo extends React.Component {
   static propTypes = {
+    classes: PropTypes.object,
     className: PropTypes.string,
     onUndo: PropTypes.func.isRequired,
     onRedo: PropTypes.func.isRequired,
@@ -12,14 +15,31 @@ export class UndoRedo extends React.Component {
   };
   static defaultProps = {};
   render() {
-    const { className, onUndo, onRedo, onReset } = this.props;
+    const { classes, className, onUndo, onRedo, onReset } = this.props;
     return (
       <div className={classNames(className)}>
-        <Button onClick={onUndo}>Undo</Button>
-        <Button onClick={onRedo}>Redo</Button>
-        <Button onClick={onReset}>Reset</Button>
+        <Button classes={{ root: classes.button }} onClick={onUndo}>
+          Undo
+        </Button>
+        <Button classes={{ root: classes.button }} onClick={onRedo}>
+          Redo
+        </Button>
+        <Button classes={{ root: classes.button }} onClick={onReset}>
+          Reset
+        </Button>
       </div>
     );
   }
 }
-export default UndoRedo;
+
+const styles = theme => ({
+  button: {
+    color: color.text(),
+    backgroundColor: color.background(),
+    '&:not(:last-of-type)': {
+      marginRight: theme.spacing.unit / 2
+    }
+  }
+});
+
+export default withStyles(styles)(UndoRedo);

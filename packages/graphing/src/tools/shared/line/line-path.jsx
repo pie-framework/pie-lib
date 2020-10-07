@@ -5,6 +5,7 @@ import { types } from '@pie-lib/plot';
 import classNames from 'classnames';
 import { disabled, correct, incorrect } from '../styles';
 import * as vx from '@vx/shape';
+import { color } from '@pie-lib/render-ui';
 
 export class RawLinePath extends React.Component {
   static propTypes = {
@@ -68,16 +69,16 @@ export class RawLinePath extends React.Component {
   }
 }
 
-const dragging = theme => ({
+const dragging = () => ({
   strokeWidth: 7,
-  stroke: theme.palette.secondary.light
+  stroke: color.secondaryLight()
 });
 
 export const LinePath = withStyles(theme => ({
   drawLine: {
     fill: 'none',
     strokeWidth: 2,
-    stroke: theme.palette.secondary.light
+    stroke: color.secondaryLight()
   },
   line: {
     strokeWidth: 6,

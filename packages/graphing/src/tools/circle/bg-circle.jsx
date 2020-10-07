@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import { types, gridDraggable } from '@pie-lib/plot';
+import { color } from '@pie-lib/render-ui';
 import * as utils from '../../utils';
 import { disabled, correct, incorrect } from '../shared/styles';
 
@@ -66,15 +67,15 @@ const applyStyle = fn => ({
   }
 });
 
-const styles = theme => ({
+const styles = () => ({
   bgCircle: {
     fill: 'transparent',
-    stroke: theme.palette.primary.light,
+    stroke: color.primaryLight(),
     strokeWidth: 3,
     transition: 'stroke 200ms ease-in, stroke-width 200ms ease-in',
     '&:hover': {
       strokeWidth: 6,
-      stroke: theme.palette.primary.dark
+      stroke: color.primaryDark()
     }
   },
   disabled: applyStyle(disabled),

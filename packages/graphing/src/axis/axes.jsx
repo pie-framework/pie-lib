@@ -6,6 +6,7 @@ import Arrow from './arrow';
 import { withStyles } from '@material-ui/core';
 import isEqual from 'lodash/isEqual';
 import { getTickValues } from '../utils';
+import { color } from '@pie-lib/render-ui';
 
 export const AxisPropTypes = {
   includeArrows: PropTypes.bool,
@@ -18,16 +19,16 @@ const AxisDefaultProps = {
 
 const axisStyles = theme => ({
   line: {
-    stroke: theme.palette.primary.main,
+    stroke: color.primary(),
     strokeWidth: 5
   },
   arrow: {
-    fill: theme.palette.primary.main
+    fill: color.primary()
   },
   tick: {
-    fill: theme.palette.primary.main,
+    fill: color.primary(),
     '& > line': {
-      stroke: theme.palette.primary.main
+      stroke: color.primary()
     }
   },
   axisLabelHolder: {

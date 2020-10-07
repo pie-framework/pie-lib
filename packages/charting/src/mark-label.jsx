@@ -5,6 +5,7 @@ import AutosizeInput from 'react-input-autosize';
 import PropTypes from 'prop-types';
 import { types } from '@pie-lib/plot';
 import { correct, incorrect, disabled } from './common/styles';
+import { color } from '@pie-lib/render-ui';
 
 const styles = theme => ({
   input: {
@@ -12,7 +13,7 @@ const styles = theme => ({
     fontFamily: theme.typography.fontFamily,
     fontSize: theme.typography.fontSize,
     border: 'none',
-    color: theme.palette.primary.dark,
+    color: color.primaryDark(),
     '&.correct': correct('color'),
     '&.incorrect': incorrect('color'),
     '&.disabled': disabled('color')
