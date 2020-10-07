@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.5.24...@pie-lib/text-select@1.6.0) (2020-10-07)
+
+
+### Features
+
+* **text-select:** add color theme support ([8dd94e8](https://github.com/pie-framework/pie-lib/commit/8dd94e8))
+* **text-select:** color theme support - use wider palette ([2918cdd](https://github.com/pie-framework/pie-lib/commit/2918cdd))
+
+
+
+
+
 ## [1.5.24](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.5.23...@pie-lib/text-select@1.5.24) (2020-04-27)
 
 **Note:** Version bump only for package @pie-lib/text-select

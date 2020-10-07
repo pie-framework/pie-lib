@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.7.30...@pie-lib/mask-markup@1.8.0) (2020-10-07)
+
+
+### Features
+
+* **mask-markup:** add inline-dropdown color theme support ([ca23f1c](https://github.com/pie-framework/pie-lib/commit/ca23f1c))
+* **mask-markup:** add inline-dropdown color theme support for correct/incorrect ([3d48049](https://github.com/pie-framework/pie-lib/commit/3d48049))
+
+
+
+
+
 ## [1.7.30](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.7.29...@pie-lib/mask-markup@1.7.30) (2020-09-18)
 
 **Note:** Version bump only for package @pie-lib/mask-markup
