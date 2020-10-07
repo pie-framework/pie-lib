@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import { gridDraggable, utils, types } from '@pie-lib/plot';
 import { withStyles } from '@material-ui/core/styles/index';
 import PropTypes from 'prop-types';
+import { color } from '@pie-lib/render-ui';
 import { correct, incorrect, disabled } from './styles';
 
 export class RawDragHandle extends React.Component {
@@ -52,10 +53,10 @@ export class RawDragHandle extends React.Component {
 export const DragHandle = withStyles(theme => ({
   handle: {
     height: '3px',
-    fill: theme.palette.secondary.main,
+    fill: color.secondary(),
     transition: 'fill 200ms linear, height 200ms linear',
     '&:hover': {
-      fill: theme.palette.secondary.dark,
+      fill: color.secondaryDark(),
       height: '12px'
     },
     '&.correct': correct('fill'),

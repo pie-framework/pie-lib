@@ -2996,6 +2996,20 @@
     unist-util-modify-children "^1.0.0"
     unist-util-visit-children "^1.0.0"
 
+"@pie-lib/render-ui@^4.9.0":
+  version "4.9.0"
+  resolved "https://registry.yarnpkg.com/@pie-lib/render-ui/-/render-ui-4.9.0.tgz#992e94e49b5f61b269926a9d004c3fb6ee593175"
+  integrity sha512-fOOAJcwfZqafbtNTzKXdpTYoxo4CweN/NyAOtFJKWfSTb8PzU5+UDu4N+WDMWHDEikdhoEXT2/yUCgEHNIF4Sg==
+  dependencies:
+    "@material-ui/core" "^3.8.3"
+    "@material-ui/icons" "^3.0.2"
+    "@pie-lib/icons" "^2.4.20"
+    "@pie-lib/math-rendering" "^2.2.0"
+    classnames "^2.2.6"
+    debug "^4.1.1"
+    prop-types "^15.7.2"
+    react-transition-group "^2.5.2"
+
 "@pie-lib/test-utils@^0.0.3":
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/@pie-lib/test-utils/-/test-utils-0.0.3.tgz#9bef3bfb236af4cda24e9ed6446794d9615175a0"

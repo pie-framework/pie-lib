@@ -5,9 +5,11 @@ import Typography from '@material-ui/core/Typography';
 import { select, mouse } from 'd3-selection';
 import PropTypes from 'prop-types';
 import { GraphPropsType } from './types';
+import { color } from '@pie-lib/render-ui';
 
 export const GraphTitle = withStyles(theme => ({
   title: {
+    color: color.text(),
     textAlign: 'center',
     paddingTop: theme.spacing.unit * 2
   }
@@ -86,9 +88,11 @@ export class Root extends React.Component {
     );
   }
 }
-const styles = theme => ({
+const styles = () => ({
   root: {
-    border: `solid 1px ${theme.palette.primary.light}`
+    border: `solid 1px ${color.primaryLight()}`,
+    color: color.text(),
+    backgroundColor: color.background()
   },
   svg: {},
   graphBox: {

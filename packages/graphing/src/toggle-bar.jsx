@@ -3,30 +3,30 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import cn from 'classnames';
 import Button from '@material-ui/core/Button';
+import { color } from '@pie-lib/render-ui';
 
-const buttonStyles = theme => ({
+const buttonStyles = () => ({
   root: {
+    color: color.text(),
     '&:hover': {
-      backgroundColor: 'rgb(255,255,255,0.5)'
+      backgroundColor: 'rgb(255,255,255,0.5)' // TODO hardcoded color
     }
   },
   selected: {
-    backgroundColor: 'white',
-    '& span': {
-      color: theme.palette.primary.dark
-    }
+    backgroundColor: color.background(),
+    border: `1px solid ${color.secondary()}`
   },
   notSelected: {
     '& span': {
-      color: theme.palette.primary.main
+      color: color.primary()
     },
-    backgroundColor: 'white'
+    backgroundColor: color.background()
   },
   disabled: {
     '& span': {
-      color: theme.palette.primary.main
+      color: color.primary()
     },
-    backgroundColor: 'rgb(255,255,255,0.8)'
+    backgroundColor: color.disabled()
   }
 });
 
@@ -37,7 +37,6 @@ export const MiniButton = withStyles(buttonStyles)(props => {
     <Button
       size="small"
       disabled={disabled}
-      color={selected ? 'secondary' : 'default'}
       className={cn(classes.root, selected && classes.selected, className)}
       classes={{ disabled: cn(disabled && classes.disabled) }}
       value={value}
@@ -98,7 +97,11 @@ export class ToggleBar extends React.Component {
 }
 
 const styles = () => ({
-  button: { marginRight: -1 } //  theme.spacing.unit
+  button: {
+    marginRight: -1, //  theme.spacing.unit
+    color: color.text(),
+    backgroundColor: color.background()
+  }
 });
 
 export default withStyles(styles)(ToggleBar);

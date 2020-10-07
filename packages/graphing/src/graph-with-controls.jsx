@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import uniq from 'lodash/uniq';
 import isString from 'lodash/isString';
+import { color } from '@pie-lib/render-ui';
 
 import ToolMenu from './tool-menu';
 import Graph, { graphPropTypes } from './graph';
@@ -122,11 +123,12 @@ const styles = theme => ({
     display: 'flex',
     justifyContent: 'space-between',
     padding: theme.spacing.unit,
-    backgroundColor: theme.palette.primary.light,
-    borderTop: `solid 1px ${theme.palette.primary.dark}`,
-    borderBottom: `solid 0px ${theme.palette.primary.dark}`,
-    borderLeft: `solid 1px ${theme.palette.primary.dark}`,
-    borderRight: `solid 1px ${theme.palette.primary.dark}`
+    color: color.text(),
+    backgroundColor: color.primaryLight(),
+    borderTop: `solid 1px ${color.primaryDark()}`,
+    borderBottom: `solid 0px ${color.primaryDark()}`,
+    borderLeft: `solid 1px ${color.primaryDark()}`,
+    borderRight: `solid 1px ${color.primaryDark()}`
   }
 });
 
