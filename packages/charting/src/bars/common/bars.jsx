@@ -5,11 +5,9 @@ import { Group } from '@vx/group';
 import { color } from '@pie-lib/render-ui';
 import { Bar as VxBar } from '@vx/shape';
 import { withStyles } from '@material-ui/core/styles/index';
-import { fade } from '@material-ui/core/styles/colorManipulator';
 import debug from 'debug';
 import { bandKey } from '../../utils';
 import DraggableHandle, { DragHandle } from '../../common/drag-handle';
-import { primaryLight } from '@pie-lib/render-ui/src/color';
 
 const log = debug('pie-lib:chart:bars');
 
