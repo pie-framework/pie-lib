@@ -518,5 +518,20 @@
     "committerDate": "2020-09-29 16:53:15 +0300",
     "isTagged": true,
     "tag": "@pie-lib/charting@4.3.0"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "bad src import",
+    "merge": null,
+    "header": "fix: bad src import",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "a2d16abff04cbb118699113260de76d5a5ac45e5",
+    "gitTags": " (origin/develop, origin/HEAD, develop)",
+    "committerDate": "2020-10-08 10:38:03 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/charting@4.3.1"
   }
 ]
