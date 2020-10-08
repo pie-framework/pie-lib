@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.3.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.3.0...@pie-lib/charting@4.3.1) (2020-10-08)
+
+
+### Bug Fixes
+
+* bad src import ([a2d16ab](https://github.com/pie-framework/pie-lib/commit/a2d16ab))
+
+
+
+
+
 # [4.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.2.22...@pie-lib/charting@4.3.0) (2020-10-07)
 
 
