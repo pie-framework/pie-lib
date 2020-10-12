@@ -36,7 +36,7 @@ export const insertDialog = ({ type, callback }) => {
 
 const types = ['audio', 'video'];
 
-export default function MediaPlugin(type) {
+export default function MediaPlugin(type, opts) {
   const toolbar = {
     icon: type === 'audio' ? <VolumeUpIcon /> : <TheatersIcon />,
     onClick: (value, onChange) => {
@@ -59,14 +59,18 @@ export default function MediaPlugin(type) {
       insertDialog({
         type,
         callback: (val, data) => {
-          if (!val) {
-            const c = change.removeNodeByKey(inline.key);
+          const nodeIsThere = change.value.document.findDescendant(d => d.key === inline.key);
 
-            onChange(c);
+          if (nodeIsThere) {
+            if (!val) {
+              const c = change.removeNodeByKey(inline.key);
+              onChange(c, () => opts.focus());
+            } else {
+              const c = change.setNodeByKey(inline.key, { data });
+              onChange(c, () => opts.focus('beginning', nodeIsThere));
+            }
           } else {
-            const c = change.setNodeByKey(inline.key, { data });
-
-            onChange(c);
+            opts.focus();
           }
         }
       });

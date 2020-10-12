@@ -20,7 +20,10 @@ const matchYoutubeUrl = url => {
   return false;
 };
 
-const matchVimeoUrl = url => /https:\/\/vimeo.com\/\d{8}(?=\b|\/)/.test(url);
+const matchVimeoUrl = url =>
+  /(http|https)?:\/\/(www\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/([^/]*)\/videos\/|)(\d+)(?:|\/\?)/.test(
+    url
+  );
 
 const matchSoundCloudUrl = url => {
   const regexp = /^https?:\/\/(soundcloud\.com|snd\.sc)\/(.*)$/;
@@ -39,6 +42,11 @@ const makeApiRequest = async url => {
   return iframe.src;
 };
 
+const typeMap = {
+  video: 'Video',
+  audio: 'Audio'
+};
+
 export class MediaDialog extends React.Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
@@ -52,39 +60,42 @@ export class MediaDialog extends React.Component {
     ends: 0,
     url: null,
     height: 315,
+    invalid: false,
     starts: 0,
     title: '',
     width: 560
   };
 
   urlChange = async e => {
-    const { type } = this.props;
     const { value } = e.target || {};
-    const isAudio = type === 'audio';
 
-    if (isAudio) {
-      if (matchSoundCloudUrl(value)) {
-        const url = await makeApiRequest(value);
+    if (matchSoundCloudUrl(value)) {
+      const url = await makeApiRequest(value);
 
-        log('is audio');
+      log('is audio');
 
-        this.setState({
-          url
-        });
-      }
+      this.setState({
+        url,
+        invalid: false
+      });
 
       return;
     }
 
     if (matchYoutubeUrl(value)) {
-      const id = value.replace(/.*v=(.*)[&]{0,1}.*/g, '$1');
+      const regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+      const match = value.match(regExp);
+      const id = match[2];
       const url = `https://youtube.com/embed/${id}`;
 
       log('is youtube');
 
       this.setState({
-        url
+        url,
+        invalid: false
       });
+
+      return;
     }
 
     if (matchVimeoUrl(value)) {
@@ -94,9 +105,17 @@ export class MediaDialog extends React.Component {
       log('is vimeo');
 
       this.setState({
-        url
+        url,
+        invalid: false
       });
+
+      return;
     }
+
+    this.setState({
+      url: null,
+      invalid: true
+    });
   };
 
   changeHandler = type => e => this.setState({ [type]: e.target.value });
@@ -122,7 +141,7 @@ export class MediaDialog extends React.Component {
 
   render() {
     const { classes, open, disablePortal, type } = this.props;
-    const { ends, height, starts, title, width, url } = this.state;
+    const { ends, height, invalid, starts, title, width, url } = this.state;
 
     return (
       <Dialog
@@ -134,13 +153,15 @@ export class MediaDialog extends React.Component {
         onClose={() => this.handleDone(false)}
         aria-labelledby="form-dialog-title"
       >
-        <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+        <DialogTitle id="form-dialog-title">Insert {typeMap[type]}</DialogTitle>
         <DialogContent>
           <DialogContentText>
             {type === 'video' ? 'Insert YouTube or Vimeo URL' : 'Insert SoundCloud URL'}
           </DialogContentText>
           <TextField
             autoFocus
+            error={invalid}
+            helperText="Invalid URL"
             margin="dense"
             id="name"
             label="URL"
@@ -241,7 +262,11 @@ export class MediaDialog extends React.Component {
           <Button onClick={() => this.handleDone(false)} color="primary">
             Cancel
           </Button>
-          <Button onClick={() => this.handleDone(true)} color="primary">
+          <Button
+            disabled={invalid || url === null}
+            onClick={() => this.handleDone(true)}
+            color="primary"
+          >
             Insert
           </Button>
         </DialogActions>

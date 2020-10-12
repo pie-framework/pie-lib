@@ -37,6 +37,7 @@ export class Editor extends React.Component {
     onChange: PropTypes.func.isRequired,
     onFocus: PropTypes.func,
     onKeyDown: PropTypes.func,
+    focus: PropTypes.func.isRequired,
     value: SlateTypes.value.isRequired,
     imageSupport: PropTypes.object,
     width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -163,6 +164,9 @@ export class Editor extends React.Component {
           log('[table:onBlur]...');
           this.onPluginBlur();
         }
+      },
+      media: {
+        focus: this.focus
       }
     });
   }
@@ -431,6 +435,12 @@ export class Editor extends React.Component {
     this.__TEMPORARY_CHANGE_DATA = { key, data };
   };
 
+  focus = (pos, node) => {
+    const position = pos || 'end';
+
+    this.props.focus(position, node);
+  };
+
   render() {
     const {
       disabled,
@@ -463,6 +473,7 @@ export class Editor extends React.Component {
           plugins={this.plugins}
           ref={r => (this.editor = r && this.props.editorRef(r))}
           value={value}
+          focus={this.focus}
           onKeyDown={onKeyDown}
           onChange={this.onChange}
           onBlur={this.onBlur}
