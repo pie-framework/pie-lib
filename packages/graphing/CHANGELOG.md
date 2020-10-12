@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.0.0...@pie-lib/graphing@2.1.0) (2020-10-07)
+
+
+### Features
+
+* **graphing:** color theme support added ([489711a](https://github.com/pie-framework/pie-lib/commit/489711a))
+
+
+
+
+
 # [2.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@1.2.23...@pie-lib/graphing@2.0.0) (2020-05-15)
 
 

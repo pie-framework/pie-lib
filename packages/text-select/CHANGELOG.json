@@ -388,5 +388,35 @@
     "committerDate": "2020-04-21 13:09:37 +0300",
     "isTagged": true,
     "tag": "@pie-lib/text-select@1.5.23"
+  },
+  {
+    "type": "feat",
+    "scope": "text-select",
+    "subject": "color theme support - use wider palette",
+    "merge": null,
+    "header": "feat(text-select): color theme support - use wider palette",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "2918cdd98d46dd2822950c19445608d8abf6c4cc",
+    "gitTags": " (origin/feat/colors)",
+    "committerDate": "2020-10-06 20:44:23 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/text-select@1.6.0"
+  },
+  {
+    "type": "feat",
+    "scope": "text-select",
+    "subject": "add color theme support",
+    "merge": null,
+    "header": "feat(text-select): add color theme support",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "8dd94e8206b9277a077b0e6c40954ab4b9428146",
+    "gitTags": "",
+    "committerDate": "2020-09-24 18:50:27 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/text-select@1.6.0"
   }
 ]

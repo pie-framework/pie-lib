@@ -5,6 +5,7 @@ import classNames from 'classnames';
 
 import { Grid as VxGrid } from '@vx/grid';
 import { types } from '@pie-lib/plot';
+import { color } from '@pie-lib/render-ui';
 
 export class Grid extends React.Component {
   static propTypes = {
@@ -37,9 +38,9 @@ export class Grid extends React.Component {
   }
 }
 
-const styles = theme => ({
+const styles = () => ({
   grid: {
-    stroke: theme.palette.primary.light
+    stroke: color.primaryLight()
   }
 });
 

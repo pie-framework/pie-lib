@@ -45,7 +45,7 @@ describe('Dropdown', () => {
 
       wrapper.simulate('change', e);
 
-      expect(onChange).toHaveBeenCalledWith('1', e.target.value);
+      expect(onChange).toHaveBeenCalledWith({ target: { value: e.target.value } });
     });
   });
 });

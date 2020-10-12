@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.5.9...@pie-lib/math-toolbar@1.6.0) (2020-10-07)
+
+
+### Features
+
+* **math-toolbar:** add color theme support ([732baf3](https://github.com/pie-framework/pie-lib/commit/732baf3))
+
+
+
+
+
 ## [1.5.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.5.8...@pie-lib/math-toolbar@1.5.9) (2020-08-11)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar

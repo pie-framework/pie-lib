@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { gridDraggable, types } from '@pie-lib/plot';
 import * as utils from '../../utils';
 import classNames from 'classnames';
+import { color } from '@pie-lib/render-ui';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { correct, disabled, incorrect } from '../shared/styles';
 
@@ -67,14 +68,14 @@ export class RawPolygon extends React.Component {
 
 export const Polygon = withStyles(theme => ({
   closed: {
-    fill: fade(theme.palette.primary.light, 0.2),
+    fill: fade(theme.palette.primary.light, 0.2), // TODO hardcoded color
     strokeWidth: 2,
-    stroke: theme.palette.secondary.light
+    stroke: color.secondaryLight()
   },
   open: {
-    fill: fade(theme.palette.primary.light, 0.0),
+    fill: fade(theme.palette.primary.light, 0.0), // TODO hardcoded color
     strokeWidth: 2,
-    stroke: theme.palette.secondary.light,
+    stroke: color.secondaryLight(),
     pointerEvents: 'none'
   },
   disabled: {

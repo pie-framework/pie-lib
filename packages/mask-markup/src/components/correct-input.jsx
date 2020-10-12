@@ -2,6 +2,7 @@ import React from 'react';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import classnames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
+import { color } from '@pie-lib/render-ui';
 
 const correctStyle = color => ({
   borderColor: `${color} !important`
@@ -11,13 +12,13 @@ export default withStyles(() => ({
   input: {
     padding: '10px 20px 10px 10px'
   },
-  correct: correctStyle('green'),
-  incorrect: correctStyle('red'),
+  correct: correctStyle(color.correct()),
+  incorrect: correctStyle(color.incorrect()),
   box: {
     fontSize: 'inherit'
   },
   notchedOutline: {
-    borderColor: 'green'
+    borderColor: color.correct
   }
 }))(props => {
   const { correct, isBox, classes, ...rest } = props;

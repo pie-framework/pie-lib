@@ -598,5 +598,35 @@
     "committerDate": "2020-03-30 23:16:26 +0100",
     "isTagged": true,
     "tag": "@pie-lib/mask-markup@1.7.18"
+  },
+  {
+    "type": "feat",
+    "scope": "mask-markup",
+    "subject": "add inline-dropdown color theme support for correct/incorrect",
+    "merge": null,
+    "header": "feat(mask-markup): add inline-dropdown color theme support for correct/incorrect",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "3d48049859db566a2e2399cfe1b410c0daee06e7",
+    "gitTags": "",
+    "committerDate": "2020-09-28 15:37:37 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/mask-markup@1.8.0"
+  },
+  {
+    "type": "feat",
+    "scope": "mask-markup",
+    "subject": "add inline-dropdown color theme support",
+    "merge": null,
+    "header": "feat(mask-markup): add inline-dropdown color theme support",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "ca23f1c520ec8d76a48898f4cf1f9b4cbd0576fd",
+    "gitTags": "",
+    "committerDate": "2020-09-28 15:33:49 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/mask-markup@1.8.0"
   }
 ]

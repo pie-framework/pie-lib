@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.0.0...@pie-lib/plot@2.1.0) (2020-10-07)
+
+
+### Features
+
+* **charting:** add color theme support ([606d45e](https://github.com/pie-framework/pie-lib/commit/606d45e))
+
+
+
+
+
 # [2.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@1.3.16...@pie-lib/plot@2.0.0) (2020-05-15)
 
 

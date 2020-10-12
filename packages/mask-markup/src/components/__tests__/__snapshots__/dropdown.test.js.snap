@@ -1,115 +1,115 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Dropdown render renders correctly with correct as true 1`] = `
-<WithStyles(WithFormControlContext(Select))
-  MenuProps={
+<Dropdown
+  choices={
+    Array [
+      Object {
+        "id": undefined,
+        "label": "Jumped",
+        "value": "Jumped",
+      },
+      Object {
+        "id": undefined,
+        "label": "Laughed",
+        "value": "Laughed",
+      },
+      Object {
+        "id": undefined,
+        "label": "Smiled",
+        "value": "Smiled",
+      },
+    ]
+  }
+  classes={
     Object {
-      "disablePortal": true,
-      "keepMounted": true,
+      "icon": "Dropdown-icon-3",
+      "menuRoot": "Dropdown-menuRoot-5",
+      "root": "Dropdown-root-1",
+      "selectMenu": "Dropdown-selectMenu-2",
+      "selected": "Dropdown-selected-4",
     }
   }
+  correct={true}
   disabled={false}
-  input={
-    <WithStyles(Component)
-      correct={true}
-    />
-  }
-  onChange={[Function]}
+  id="1"
+  onChange={[MockFunction]}
   value="Jumped"
->
-  <WithStyles(MenuItem)
-    key="Jumped-0"
-    value="Jumped"
-  >
-    <span />
-  </WithStyles(MenuItem)>
-  <WithStyles(MenuItem)
-    key="Laughed-1"
-    value="Laughed"
-  >
-    <span />
-  </WithStyles(MenuItem)>
-  <WithStyles(MenuItem)
-    key="Smiled-2"
-    value="Smiled"
-  >
-    <span />
-  </WithStyles(MenuItem)>
-</WithStyles(WithFormControlContext(Select))>
+/>
 `;
 
 exports[`Dropdown render renders correctly with default props 1`] = `
-<WithStyles(WithFormControlContext(Select))
-  MenuProps={
+<Dropdown
+  choices={
+    Array [
+      Object {
+        "id": undefined,
+        "label": "Jumped",
+        "value": "Jumped",
+      },
+      Object {
+        "id": undefined,
+        "label": "Laughed",
+        "value": "Laughed",
+      },
+      Object {
+        "id": undefined,
+        "label": "Smiled",
+        "value": "Smiled",
+      },
+    ]
+  }
+  classes={
     Object {
-      "disablePortal": true,
-      "keepMounted": true,
+      "icon": "Dropdown-icon-3",
+      "menuRoot": "Dropdown-menuRoot-5",
+      "root": "Dropdown-root-1",
+      "selectMenu": "Dropdown-selectMenu-2",
+      "selected": "Dropdown-selected-4",
     }
   }
+  correct={false}
   disabled={false}
-  input={
-    <WithStyles(Component)
-      correct={false}
-    />
-  }
-  onChange={[Function]}
+  id="1"
+  onChange={[MockFunction]}
   value="Jumped"
->
-  <WithStyles(MenuItem)
-    key="Jumped-0"
-    value="Jumped"
-  >
-    <span />
-  </WithStyles(MenuItem)>
-  <WithStyles(MenuItem)
-    key="Laughed-1"
-    value="Laughed"
-  >
-    <span />
-  </WithStyles(MenuItem)>
-  <WithStyles(MenuItem)
-    key="Smiled-2"
-    value="Smiled"
-  >
-    <span />
-  </WithStyles(MenuItem)>
-</WithStyles(WithFormControlContext(Select))>
+/>
 `;
 
 exports[`Dropdown render renders correctly with disabled prop as true 1`] = `
-<WithStyles(WithFormControlContext(Select))
-  MenuProps={
+<Dropdown
+  choices={
+    Array [
+      Object {
+        "id": undefined,
+        "label": "Jumped",
+        "value": "Jumped",
+      },
+      Object {
+        "id": undefined,
+        "label": "Laughed",
+        "value": "Laughed",
+      },
+      Object {
+        "id": undefined,
+        "label": "Smiled",
+        "value": "Smiled",
+      },
+    ]
+  }
+  classes={
     Object {
-      "disablePortal": true,
-      "keepMounted": true,
+      "icon": "Dropdown-icon-3",
+      "menuRoot": "Dropdown-menuRoot-5",
+      "root": "Dropdown-root-1",
+      "selectMenu": "Dropdown-selectMenu-2",
+      "selected": "Dropdown-selected-4",
     }
   }
+  correct={false}
   disabled={true}
-  input={
-    <WithStyles(Component)
-      correct={false}
-    />
-  }
-  onChange={[Function]}
+  id="1"
+  onChange={[MockFunction]}
   value="Jumped"
->
-  <WithStyles(MenuItem)
-    key="Jumped-0"
-    value="Jumped"
-  >
-    <span />
-  </WithStyles(MenuItem)>
-  <WithStyles(MenuItem)
-    key="Laughed-1"
-    value="Laughed"
-  >
-    <span />
-  </WithStyles(MenuItem)>
-  <WithStyles(MenuItem)
-    key="Smiled-2"
-    value="Smiled"
-  >
-    <span />
-  </WithStyles(MenuItem)>
-</WithStyles(WithFormControlContext(Select))>
+/>
 `;

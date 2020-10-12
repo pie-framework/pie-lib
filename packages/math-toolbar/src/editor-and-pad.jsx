@@ -6,6 +6,7 @@ import cx from 'classnames';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 const log = debug('@pie-lib:math-toolbar:editor-and-pad');
+import { color } from '@pie-lib/render-ui';
 
 const decimalRegex = /\.|,/g;
 
@@ -170,6 +171,9 @@ export class EditorAndPad extends React.Component {
 
 const styles = theme => ({
   mathEditor: {
+    color: color.text(),
+    backgroundColor: color.background(),
+    padding: theme.spacing.unit,
     marginTop: theme.spacing.unit,
     marginBottom: theme.spacing.unit
   },

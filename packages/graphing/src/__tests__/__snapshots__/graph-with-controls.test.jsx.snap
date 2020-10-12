@@ -26,7 +26,7 @@ exports[`GraphWithControls snapshot renders 1`] = `
         ]
       }
     />
-    <UndoRedo />
+    <WithStyles(UndoRedo) />
   </div>
   <div />
   <Graph

@@ -713,5 +713,20 @@
     "committerDate": "2020-05-12 13:38:27 +0300",
     "isTagged": true,
     "tag": "@pie-lib/graphing@2.0.0"
+  },
+  {
+    "type": "feat",
+    "scope": "graphing",
+    "subject": "color theme support added",
+    "merge": null,
+    "header": "feat(graphing): color theme support added",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "489711a3bfb1704790290bd3097af4eac85d286e",
+    "gitTags": "",
+    "committerDate": "2020-09-30 16:17:28 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/graphing@2.1.0"
   }
 ]

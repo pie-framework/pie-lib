@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { types } from '@pie-lib/plot';
 import { Group } from '@vx/group';
+import { color } from '@pie-lib/render-ui';
 import { Bar as VxBar } from '@vx/shape';
 import { withStyles } from '@material-ui/core/styles/index';
-import { fade } from '@material-ui/core/styles/colorManipulator';
 import debug from 'debug';
 import { bandKey } from '../../utils';
 import DraggableHandle, { DragHandle } from '../../common/drag-handle';
@@ -102,9 +102,9 @@ export class RawBar extends React.Component {
   }
 }
 
-const Bar = withStyles(theme => ({
+const Bar = withStyles(() => ({
   bar: {
-    fill: fade(theme.palette.primary.main, 0.2)
+    fill: color.primaryLight()
   }
 }))(RawBar);
 

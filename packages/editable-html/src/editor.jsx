@@ -10,6 +10,7 @@ import { buildPlugins, ALL_PLUGINS, DEFAULT_PLUGINS } from './plugins';
 import debug from 'debug';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
+import { color } from '@pie-lib/render-ui';
 
 export { ALL_PLUGINS, DEFAULT_PLUGINS, serialization };
 
@@ -77,11 +78,9 @@ export class Editor extends React.Component {
 
   static defaultProps = {
     disableUnderline: true,
-    onFocus: () => {
-    },
+    onFocus: () => {},
     toolbarOpts: defaultToolbarOpts,
-    onKeyDown: () => {
-    }
+    onKeyDown: () => {}
   };
 
   constructor(props) {
@@ -484,6 +483,7 @@ export class Editor extends React.Component {
   }
 }
 
+// TODO color - hardcoded gray background and keypad colors will need to change too
 const styles = {
   withBg: {
     backgroundColor: 'rgba(0,0,0,0.06)'
@@ -492,13 +492,16 @@ const styles = {
     fontFamily: 'Roboto, sans-serif',
 
     '& table': {
-      borderCollapse: 'collapse'
+      borderCollapse: 'collapse',
+      color: color.text(),
+      backgroundColor: color.background()
     },
     '& tr': {
-      borderTop: '1px solid #dfe2e5',
-      '&:nth-child(2n)': {
-        backgroundColor: '#f6f8fa'
-      }
+      borderTop: '1px solid #dfe2e5'
+      // TODO perhaps secondary color for background, for now disable
+      // '&:nth-child(2n)': {
+      //   backgroundColor: '#f6f8fa'
+      // }
     },
     '& td, th': {
       border: '1px solid #dfe2e5',

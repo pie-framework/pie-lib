@@ -1,16 +1,15 @@
-import green from '@material-ui/core/colors/green';
-import orange from '@material-ui/core/colors/orange';
+import { color } from '@pie-lib/render-ui';
 
 export const disabled = (key = 'fill') => ({
-  [key]: `var(--graph-disabled, ${'rgba(0,0,0,0.2)'})`,
+  [key]: color.disabled(),
   pointerEvents: 'none'
 });
 
 export const correct = (key = 'fill') => ({
-  [key]: `var(--graph-correct, ${green[500]})`,
+  [key]: color.correct(),
   pointerEvents: 'none'
 });
 export const incorrect = (key = 'fill') => ({
-  [key]: `var(--graph-incorrect, ${orange[500]})`,
+  [key]: color.incorrect(),
   pointerEvents: 'none'
 });

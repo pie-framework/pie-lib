@@ -663,5 +663,20 @@
     "committerDate": "2020-09-11 12:31:19 +0100",
     "isTagged": true,
     "tag": "@pie-lib/render-ui@4.8.3"
+  },
+  {
+    "type": "feat",
+    "scope": null,
+    "subject": "add light/dark variations to primary/secondary",
+    "merge": null,
+    "header": "feat: add light/dark variations to primary/secondary",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "97d1ac69a7bcf799ae34c43b12fbded0e886f600",
+    "gitTags": " (origin/feat/color-extension)",
+    "committerDate": "2020-09-25 13:43:52 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/render-ui@4.9.0"
   }
 ]

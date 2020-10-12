@@ -7,6 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import SlatePropTypes from 'slate-prop-types';
 import { IS_FIREFOX } from 'slate-dev-environment';
+import { color } from '@pie-lib/render-ui';
 
 const log = debug('@pie-lib:editable-html:plugins:toolbar:editor-and-toolbar');
 
@@ -122,6 +123,8 @@ const style = {
     position: 'relative',
     padding: '0px',
     overflowY: 'scroll',
+    color: color.text(),
+    backgroundColor: color.background(),
     '&::before': {
       left: '0',
       right: '0',

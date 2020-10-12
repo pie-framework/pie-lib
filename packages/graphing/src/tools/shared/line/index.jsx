@@ -7,6 +7,7 @@ import { disabled, correct, incorrect } from '../styles';
 import ReactDOM from 'react-dom';
 import MarkLabel from '../../../mark-label';
 import isEmpty from 'lodash/isEmpty';
+import { color } from '@pie-lib/render-ui';
 
 export const lineTool = (type, Component) => () => ({
   type,
@@ -295,18 +296,18 @@ export const lineBase = (Comp, opts) => {
 };
 
 export const styles = {
-  line: theme => ({
+  line: () => ({
     fill: 'transparent',
-    stroke: theme.palette.primary.light,
+    stroke: color.primaryLight(),
     strokeWidth: 3,
     transition: 'stroke 200ms ease-in, stroke-width 200ms ease-in',
     '&:hover': {
       strokeWidth: 6,
-      stroke: theme.palette.primary.dark
+      stroke: color.primaryDark()
     }
   }),
-  arrow: theme => ({
-    fill: `var(--point-bg, ${theme.palette.secondary.main})`
+  arrow: () => ({
+    fill: color.secondary()
   }),
   disabledArrow: () => ({
     ...disabled()
