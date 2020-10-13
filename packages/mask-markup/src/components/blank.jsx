@@ -7,12 +7,13 @@ import { DragSource, DropTarget } from '@pie-lib/drag';
 import { withStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 import classnames from 'classnames';
+import { color } from '@pie-lib/render-ui';
 const log = debug('pie-lib:mask-markup:blank');
 export const DRAG_TYPE = 'MaskBlank';
 
-const useStyles = withStyles(theme => ({
+const useStyles = withStyles(() => ({
   content: {
-    border: `solid 0px ${theme.palette.primary.main}`,
+    border: `solid 0px ${color.primary()}`,
     minWidth: '200px'
   },
   chip: {
@@ -20,10 +21,10 @@ const useStyles = withStyles(theme => ({
     fontSize: 'inherit'
   },
   correct: {
-    border: 'solid 1px green'
+    border: `solid 1px ${color.correct()}`
   },
   incorrect: {
-    border: 'solid 1px red'
+    border: `solid 1px ${color.incorrect()}`
   }
 }));
 
