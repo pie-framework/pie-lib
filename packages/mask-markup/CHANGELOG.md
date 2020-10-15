@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.8.0...@pie-lib/mask-markup@1.9.0) (2020-10-15)
+
+
+### Features
+
+* **mask-markup:** color theme support finalized and disabled support ([463e91c](https://github.com/pie-framework/pie-lib/commit/463e91c))
+
+
+
+
+
 # [1.8.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.7.30...@pie-lib/mask-markup@1.8.0) (2020-10-07)
 
 

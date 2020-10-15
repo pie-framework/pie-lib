@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.3.1...@pie-lib/charting@4.4.0) (2020-10-15)
+
+
+### Features
+
+* **charting:** color theme support fixes ([e83f9bd](https://github.com/pie-framework/pie-lib/commit/e83f9bd))
+
+
+
+
+
 ## [4.3.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.3.0...@pie-lib/charting@4.3.1) (2020-10-08)
 
 
