@@ -9,7 +9,7 @@ const buttonStyles = () => ({
   root: {
     color: color.text(),
     '&:hover': {
-      backgroundColor: 'rgb(255,255,255,0.5)' // TODO hardcoded color
+      backgroundColor: color.primary()
     }
   },
   selected: {
@@ -96,9 +96,9 @@ export class ToggleBar extends React.Component {
   }
 }
 
-const styles = () => ({
+const styles = theme => ({
   button: {
-    marginRight: -1, //  theme.spacing.unit
+    marginRight: theme.spacing.unit / 2,
     color: color.text(),
     backgroundColor: color.background()
   }
