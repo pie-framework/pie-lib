@@ -70,7 +70,6 @@ const styles = () => ({
   root: {
     color: color.text(),
     backgroundColor: color.background(),
-    border: '1px solid gray',
     '& ul': {
       color: color.text(),
       backgroundColor: color.background()

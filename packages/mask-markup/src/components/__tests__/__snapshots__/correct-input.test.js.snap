@@ -8,7 +8,8 @@ exports[`CorrectInput render renders correctly with correct as false 1`] = `
       "correct": "Component-correct-2",
       "incorrect": "Component-incorrect-3",
       "input": "Component-input-1",
-      "notchedOutline": "Component-notchedOutline-5",
+      "notchedOutline": "Component-notchedOutline-6",
+      "outlinedInput": "Component-outlinedInput-5",
     }
   }
   correct={false}
@@ -27,7 +28,8 @@ exports[`CorrectInput render renders correctly with default props 1`] = `
       "correct": "Component-correct-2",
       "incorrect": "Component-incorrect-3",
       "input": "Component-input-1",
-      "notchedOutline": "Component-notchedOutline-5",
+      "notchedOutline": "Component-notchedOutline-6",
+      "outlinedInput": "Component-outlinedInput-5",
     }
   }
   correct={false}
@@ -46,7 +48,8 @@ exports[`CorrectInput render renders correctly with disabled prop as true 1`] = 
       "correct": "Component-correct-2",
       "incorrect": "Component-incorrect-3",
       "input": "Component-input-1",
-      "notchedOutline": "Component-notchedOutline-5",
+      "notchedOutline": "Component-notchedOutline-6",
+      "outlinedInput": "Component-outlinedInput-5",
     }
   }
   correct={false}
