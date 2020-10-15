@@ -533,5 +533,20 @@
     "committerDate": "2020-10-08 10:38:03 +0100",
     "isTagged": true,
     "tag": "@pie-lib/charting@4.3.1"
+  },
+  {
+    "type": "feat",
+    "scope": "charting",
+    "subject": "color theme support fixes",
+    "merge": null,
+    "header": "feat(charting): color theme support fixes",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "e83f9bda7da345f7e3da597d8dbeda40290ebca0",
+    "gitTags": " (origin/feat/color-support)",
+    "committerDate": "2020-10-14 07:44:37 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/charting@4.4.0"
   }
 ]
