@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.2.0...@pie-lib/math-rendering@2.2.1) (2020-10-19)
+
+
+### Bug Fixes
+
+* rm non-standard static prop ([6af197b](https://github.com/pie-framework/pie-lib/commit/6af197b))
+
+
+
+
+
 # [2.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.1.12...@pie-lib/math-rendering@2.2.0) (2020-09-18)
 
 
