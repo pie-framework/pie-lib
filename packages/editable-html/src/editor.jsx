@@ -166,7 +166,9 @@ export class Editor extends React.Component {
         }
       },
       media: {
-        focus: this.focus
+        focus: this.focus,
+        createChange: () => this.state.value.change(),
+        onChange: this.onChange
       }
     });
   }

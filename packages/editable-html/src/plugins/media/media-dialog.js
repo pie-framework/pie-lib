@@ -13,6 +13,10 @@ import TextField from '@material-ui/core/TextField';
 const log = debug('@pie-lib:editable-html:plugins:media:dialog');
 
 const matchYoutubeUrl = url => {
+  if (!url) {
+    return false;
+  }
+
   const p = /^(?:https?:\/\/)?(?:m\.|www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
   if (url.match(p)) {
     return url.match(p)[1];
@@ -21,25 +25,36 @@ const matchYoutubeUrl = url => {
 };
 
 const matchVimeoUrl = url =>
-  /(http|https)?:\/\/(www\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/([^/]*)\/videos\/|)(\d+)(?:|\/\?)/.test(
+  url &&
+  /(http|https)?:\/\/(www\.)?(player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/([^/]*)\/videos\/|)(video\/)?(\d+)(?:|\/\?)/.test(
     url
   );
 
 const matchSoundCloudUrl = url => {
+  if (!url) {
+    return false;
+  }
+
   const regexp = /^https?:\/\/(soundcloud\.com|snd\.sc)\/(.*)$/;
   return url.match(regexp) && url.match(regexp)[2];
 };
 
 const makeApiRequest = async url => {
-  const response = await fetch(`https://soundcloud.com/oembed?format=json&url=${url}`);
-  const json = await response.json();
-  const d = document.createElement('div');
+  try {
+    const response = await fetch(`https://soundcloud.com/oembed?format=json&url=${url}`);
+    const json = await response.json();
+    const d = document.createElement('div');
 
-  d.innerHTML = json.html;
+    d.innerHTML = json.html;
 
-  const iframe = d.querySelector('iframe');
+    const iframe = d.querySelector('iframe');
 
-  return iframe.src;
+    return iframe.src;
+  } catch (err) {
+    //
+  }
+
+  return '';
 };
 
 const typeMap = {
@@ -51,33 +66,103 @@ export class MediaDialog extends React.Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     open: PropTypes.bool,
+    edit: PropTypes.bool,
     disablePortal: PropTypes.bool,
     handleClose: PropTypes.func,
-    type: PropTypes.string
+    type: PropTypes.string,
+    src: PropTypes.string,
+    url: PropTypes.string,
+    urlToUse: PropTypes.string,
+    starts: PropTypes.number,
+    ends: PropTypes.number,
+    height: PropTypes.number,
+    width: PropTypes.number
   };
 
-  state = {
-    ends: 0,
-    url: null,
-    height: 315,
-    invalid: false,
-    starts: 0,
-    title: '',
-    width: 560
+  constructor(props) {
+    super(props);
+
+    const { src, starts, ends, height, url, urlToUse, width } = props;
+
+    this.state = {
+      ends: ends || 0,
+      url: url,
+      urlToUse: urlToUse,
+      formattedUrl: src,
+      height: height || 315,
+      invalid: false,
+      starts: starts || 0,
+      width: width || 560
+    };
+  }
+
+  componentDidMount() {
+    if (this.props.url) {
+      this.urlChange({
+        target: {
+          value: this.props.url
+        }
+      });
+    }
+  }
+
+  formatUrl = () => {
+    const { url, urlToUse, starts, ends } = this.state;
+    const isYoutube = matchYoutubeUrl(url);
+    const isVimeo = matchVimeoUrl(url);
+    let formattedUrl = urlToUse;
+
+    if ((isYoutube || isVimeo) && urlToUse) {
+      const params = [];
+
+      let paramName;
+      let paramStart;
+
+      switch (true) {
+        case isVimeo:
+          paramName = 't';
+          paramStart = '#';
+          break;
+        case isYoutube:
+          paramName = 'start';
+          paramStart = '?';
+          break;
+        default:
+          paramName = 'start';
+          paramStart = '?';
+      }
+
+      if (starts) {
+        params.push(`${paramName}=${starts}`);
+      }
+
+      if (ends) {
+        params.push(`end=${ends}`);
+      }
+
+      formattedUrl = `${urlToUse}${params.length ? paramStart : ''}${params.join('&')}`;
+    }
+
+    const callback = () => this.setState({ formattedUrl, updating: false });
+
+    this.setState({ formattedUrl: null, updating: true }, callback);
   };
 
-  urlChange = async e => {
+  handleStateChange = newState => this.setState(newState, this.formatUrl);
+
+  urlChange = e => {
     const { value } = e.target || {};
 
     if (matchSoundCloudUrl(value)) {
-      const url = await makeApiRequest(value);
+      (async () => {
+        const urlToUse = await makeApiRequest(value);
 
-      log('is audio');
-
-      this.setState({
-        url,
-        invalid: false
-      });
+        this.handleStateChange({
+          urlToUse,
+          invalid: !urlToUse,
+          url: value
+        });
+      })();
 
       return;
     }
@@ -86,12 +171,13 @@ export class MediaDialog extends React.Component {
       const regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
       const match = value.match(regExp);
       const id = match[2];
-      const url = `https://youtube.com/embed/${id}`;
+      const urlToUse = `https://youtube.com/embed/${id}`;
 
       log('is youtube');
 
-      this.setState({
-        url,
+      this.handleStateChange({
+        urlToUse,
+        url: value,
         invalid: false
       });
 
@@ -100,25 +186,27 @@ export class MediaDialog extends React.Component {
 
     if (matchVimeoUrl(value)) {
       const id = value.replace(/.*vimeo.com\/(.*)/g, '$1');
-      const url = `https://player.vimeo.com/video/${id}`;
+      const urlToUse = `https://player.vimeo.com/video/${id}`;
 
       log('is vimeo');
 
-      this.setState({
-        url,
+      this.handleStateChange({
+        urlToUse,
+        url: value,
+        ends: null,
         invalid: false
       });
 
       return;
     }
 
-    this.setState({
+    this.handleStateChange({
       url: null,
       invalid: true
     });
   };
 
-  changeHandler = type => e => this.setState({ [type]: e.target.value });
+  changeHandler = type => e => this.handleStateChange({ [type]: e.target.value });
 
   handleDone = val => {
     const { handleClose } = this.props;
@@ -126,22 +214,24 @@ export class MediaDialog extends React.Component {
     if (!val) {
       handleClose(val);
     } else {
-      const { ends, height, title, url, starts, width } = this.state;
+      const { ends, height, url, urlToUse, formattedUrl, starts, width } = this.state;
 
       handleClose(val, {
         ends,
         height,
         starts,
-        title,
         width,
-        src: url
+        url,
+        urlToUse,
+        src: formattedUrl
       });
     }
   };
 
   render() {
-    const { classes, open, disablePortal, type } = this.props;
-    const { ends, height, invalid, starts, title, width, url } = this.state;
+    const { classes, open, disablePortal, type, edit } = this.props;
+    const { ends, height, invalid, starts, width, url, formattedUrl, updating } = this.state;
+    const isYoutube = matchYoutubeUrl(url);
 
     return (
       <Dialog
@@ -161,13 +251,14 @@ export class MediaDialog extends React.Component {
           <TextField
             autoFocus
             error={invalid}
-            helperText="Invalid URL"
+            helperText={invalid ? 'Invalid URL' : ''}
             margin="dense"
             id="name"
             label="URL"
             placeholder={`Paste URL of ${type}...`}
             type="text"
             onChange={this.urlChange}
+            value={url}
             fullWidth
           />
           {type === 'video' && (
@@ -199,36 +290,18 @@ export class MediaDialog extends React.Component {
               />
             </DialogContent>
           )}
-          {url && (
+          {formattedUrl && (
             <iframe
               width={width}
               height={height}
-              src={url}
+              src={formattedUrl}
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             />
           )}
-          {type === 'video' && url && (
+          {type === 'video' && (formattedUrl || updating) && (
             <React.Fragment>
-              <DialogContent
-                classes={{
-                  root: classes.properties
-                }}
-              >
-                <TextField
-                  autoFocus
-                  margin="dense"
-                  id="title"
-                  label="Video Title"
-                  type="text"
-                  placeholder="Video Title"
-                  value={title}
-                  onChange={this.changeHandler('title')}
-                  fullWidth
-                />
-              </DialogContent>
-
               <DialogContent
                 classes={{
                   root: classes.properties
@@ -244,16 +317,18 @@ export class MediaDialog extends React.Component {
                   value={starts}
                   onChange={this.changeHandler('starts')}
                 />
-                <TextField
-                  autoFocus
-                  margin="dense"
-                  id="ends"
-                  label="Ends"
-                  type="number"
-                  placeholder="Ends"
-                  value={ends}
-                  onChange={this.changeHandler('ends')}
-                />
+                {isYoutube && (
+                  <TextField
+                    autoFocus
+                    margin="dense"
+                    id="ends"
+                    label="Ends"
+                    type="number"
+                    placeholder="Ends"
+                    value={ends}
+                    onChange={this.changeHandler('ends')}
+                  />
+                )}
               </DialogContent>
             </React.Fragment>
           )}
@@ -267,7 +342,7 @@ export class MediaDialog extends React.Component {
             onClick={() => this.handleDone(true)}
             color="primary"
           >
-            Insert
+            {edit ? 'Update' : 'Insert'}
           </Button>
         </DialogActions>
       </Dialog>

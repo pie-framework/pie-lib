@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Inline } from 'slate';
 import TheatersIcon from '@material-ui/icons/Theaters';
 import VolumeUpIcon from '@material-ui/icons/VolumeUp';
+import Settings from '@material-ui/icons/Settings';
 import debug from 'debug';
 
 import MediaDialog from './media-dialog';
@@ -15,8 +16,9 @@ const removeDialogs = () => {
   prevDialogs.forEach(s => s.remove());
 };
 
-export const insertDialog = ({ type, callback }) => {
+export const insertDialog = props => {
   const newEl = document.createElement('div');
+  const { type, callback, ...rest } = props;
 
   removeDialogs();
 
@@ -27,7 +29,9 @@ export const insertDialog = ({ type, callback }) => {
     newEl.remove();
   };
 
-  const el = <MediaDialog type={type} disablePortal={true} open={true} handleClose={handleClose} />;
+  const el = (
+    <MediaDialog {...rest} type={type} disablePortal={true} open={true} handleClose={handleClose} />
+  );
 
   ReactDOM.render(el, newEl);
 
@@ -45,11 +49,13 @@ export default function MediaPlugin(type, opts) {
         type: type,
         isVoid: true,
         data: {
+          editing: false,
           ends: undefined,
           height: undefined,
           title: undefined,
           starts: undefined,
           src: undefined,
+          url: undefined,
           width: undefined
         }
       });
@@ -89,17 +95,53 @@ export default function MediaPlugin(type, opts) {
     },
     renderNode(props) {
       if (props.node.type === type) {
-        const { data } = props.node;
+        const { node, key } = props;
+        const { data } = node;
         const jsonData = data.toJSON();
+        const { src, style, ...rest } = jsonData;
+        const handleEdit = () => {
+          const change = opts.createChange();
+          const c = change.setNodeByKey(key, {
+            data: {
+              ...jsonData,
+              editing: true
+            }
+          });
+
+          opts.onChange(c, () => {
+            insertDialog({
+              ...jsonData,
+              edit: true,
+              type,
+              callback: (val, data) => {
+                const { key } = node;
+
+                const nodeIsThere = change.value.document.findDescendant(
+                  d => d.type === type && d.data.get('editing')
+                );
+
+                if (nodeIsThere && val) {
+                  const c = change.setNodeByKey(key, { data, editing: false });
+                  opts.onChange(c, () => opts.focus('beginning', nodeIsThere));
+                } else {
+                  opts.focus();
+                }
+              }
+            });
+          });
+        };
 
         return (
-          <iframe
-            data-type={type}
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            {...jsonData}
-          />
+          <span data-type={type} {...rest}>
+            <iframe
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              src={src}
+              style={style}
+            />
+            <Settings onClick={handleEdit} />
+          </span>
         );
       }
     },
@@ -144,7 +186,7 @@ export const serialization = {
 
     if (typeIndex < 0) return;
 
-    const { ends, starts, title } = el.dataset || {};
+    const { ends, starts, title, editing, url } = el.dataset || {};
 
     log('deserialize: ', name);
     const style = el.style || { width: '', height: '' };
@@ -157,11 +199,13 @@ export const serialization = {
       isVoid: true,
       data: {
         src: el.getAttribute('src'),
+        editing,
         ends,
         height,
         starts,
         title,
-        width
+        width,
+        url
       }
     };
     log('return object: ', out);
@@ -175,12 +219,14 @@ export const serialization = {
     const type = types[typeIndex];
 
     const { data } = object;
+    const editing = data.get('editing');
     const ends = data.get('ends');
     const src = data.get('src');
     const starts = data.get('starts');
     const title = data.get('title');
     const width = data.get('width');
     const height = data.get('height');
+    const url = data.get('url');
     const style = {};
 
     if (width) {
@@ -193,22 +239,28 @@ export const serialization = {
 
     style.objectFit = 'contain';
 
-    const props = {
+    const divProps = {
+      'data-editing': editing,
       'data-ends': ends,
       'data-starts': starts,
       'data-title': title,
+      'data-url': url
+    };
+    const props = {
       src,
       style
     };
 
     return (
-      <iframe
-        data-type={type}
-        frameBorder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-        {...props}
-      />
+      <span data-type={type} src={src} {...divProps}>
+        <iframe
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          {...props}
+        />
+        <Settings />
+      </span>
     );
   }
 };
