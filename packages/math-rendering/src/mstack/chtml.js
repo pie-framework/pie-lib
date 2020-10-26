@@ -127,31 +127,6 @@ export const getStackData = mstack => {
 };
 
 export class CHTMLmstack extends CHTMLWrapper {
-  static styles = {
-    'mjx-mstack > table': {
-      'line-height': 'initial',
-      border: 'solid 0px red',
-      'border-spacing': '0em',
-      'border-collapse': 'separate'
-    },
-    'mjx-mstack > table > tr': {
-      'line-height': 'initial'
-    },
-    'mjx-mstack > table > tr > td': {
-      // padding: '1.2rem',
-      border: 'solid 0px blue',
-      'font-family': 'sans-serif',
-      'line-height': 'initial'
-    },
-    'mjx-mstack > table > tr > td.inner': {
-      'font-family': 'inherit'
-    },
-    'mjx-mstack > table > tr > .mjx-line': {
-      padding: 0,
-      'border-top': 'solid 1px black'
-    }
-  };
-
   constructor(factory, node, parent = null) {
     super(factory, node, parent);
 
@@ -214,3 +189,27 @@ export class CHTMLmstack extends CHTMLWrapper {
     });
   }
 }
+CHTMLmstack.styles = {
+  'mjx-mstack > table': {
+    'line-height': 'initial',
+    border: 'solid 0px red',
+    'border-spacing': '0em',
+    'border-collapse': 'separate'
+  },
+  'mjx-mstack > table > tr': {
+    'line-height': 'initial'
+  },
+  'mjx-mstack > table > tr > td': {
+    // padding: '1.2rem',
+    border: 'solid 0px blue',
+    'font-family': 'sans-serif',
+    'line-height': 'initial'
+  },
+  'mjx-mstack > table > tr > td.inner': {
+    'font-family': 'inherit'
+  },
+  'mjx-mstack > table > tr > .mjx-line': {
+    padding: 0,
+    'border-top': 'solid 1px black'
+  }
+};

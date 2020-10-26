@@ -3,265 +3,154 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.1.12...@pie-lib/math-rendering@2.2.0) (2020-09-18)
+## [2.2.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.2.1...@pie-lib/math-rendering@2.2.2) (2020-10-26)
 
+**Note:** Version bump only for package @pie-lib/math-rendering
+
+## [2.2.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.2.0...@pie-lib/math-rendering@2.2.1) (2020-10-19)
 
 ### Bug Fixes
 
-* tests ([72b0dec](https://github.com/pie-framework/pie-lib/commit/72b0dec))
+- rm non-standard static prop ([6af197b](https://github.com/pie-framework/pie-lib/commit/6af197b))
 
+# [2.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.1.12...@pie-lib/math-rendering@2.2.0) (2020-09-18)
+
+### Bug Fixes
+
+- tests ([72b0dec](https://github.com/pie-framework/pie-lib/commit/72b0dec))
 
 ### Features
 
-* add basic mstack support to mathjax PD-519 ([60eb3d1](https://github.com/pie-framework/pie-lib/commit/60eb3d1))
-
-
-
-
+- add basic mstack support to mathjax PD-519 ([60eb3d1](https://github.com/pie-framework/pie-lib/commit/60eb3d1))
 
 ## [2.1.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.1.11...@pie-lib/math-rendering@2.1.12) (2020-04-14)
 
 **Note:** Version bump only for package @pie-lib/math-rendering
 
-
-
-
-
 ## [2.1.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.1.10...@pie-lib/math-rendering@2.1.11) (2020-04-08)
 
 **Note:** Version bump only for package @pie-lib/math-rendering
-
-
-
-
 
 ## [2.1.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.1.9...@pie-lib/math-rendering@2.1.10) (2020-03-31)
 
 **Note:** Version bump only for package @pie-lib/math-rendering
 
-
-
-
-
 ## [2.1.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.1.8...@pie-lib/math-rendering@2.1.9) (2020-03-31)
 
 **Note:** Version bump only for package @pie-lib/math-rendering
 
-
-
-
-
 ## [2.1.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.1.7...@pie-lib/math-rendering@2.1.8) (2020-03-31)
-
 
 ### Bug Fixes
 
-* use es import ([3debced](https://github.com/pie-framework/pie-lib/commit/3debced))
-
-
-
-
+- use es import ([3debced](https://github.com/pie-framework/pie-lib/commit/3debced))
 
 ## [2.1.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.1.6...@pie-lib/math-rendering@2.1.7) (2020-03-30)
 
 **Note:** Version bump only for package @pie-lib/math-rendering
 
-
-
-
-
 ## [2.1.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.1.5...@pie-lib/math-rendering@2.1.6) (2020-03-30)
 
 **Note:** Version bump only for package @pie-lib/math-rendering
-
-
-
-
 
 ## [2.1.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.1.4...@pie-lib/math-rendering@2.1.5) (2020-03-30)
 
 **Note:** Version bump only for package @pie-lib/math-rendering
 
-
-
-
-
 ## [2.1.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.1.3...@pie-lib/math-rendering@2.1.4) (2020-03-30)
 
 **Note:** Version bump only for package @pie-lib/math-rendering
-
-
-
-
 
 ## [2.1.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.1.2...@pie-lib/math-rendering@2.1.3) (2020-03-30)
 
 **Note:** Version bump only for package @pie-lib/math-rendering
 
-
-
-
-
 ## [2.1.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.1.1...@pie-lib/math-rendering@2.1.2) (2020-03-30)
 
 **Note:** Version bump only for package @pie-lib/math-rendering
 
-
-
-
-
 ## [2.1.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.1.0...@pie-lib/math-rendering@2.1.1) (2020-03-30)
-
 
 ### Bug Fixes
 
-* add module ([9e6db95](https://github.com/pie-framework/pie-lib/commit/9e6db95))
-
-
-
-
+- add module ([9e6db95](https://github.com/pie-framework/pie-lib/commit/9e6db95))
 
 # [2.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.0.3...@pie-lib/math-rendering@2.1.0) (2019-12-18)
 
-
 ### Features
 
-* **math:** made sure there is only one instance of mathjax on the page [ch6048] ([b0c7395](https://github.com/pie-framework/pie-lib/commit/b0c7395))
-
-
-
-
+- **math:** made sure there is only one instance of mathjax on the page [ch6048](<[b0c7395](https://github.com/pie-framework/pie-lib/commit/b0c7395)>)
 
 ## [2.0.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.0.2...@pie-lib/math-rendering@2.0.3) (2019-12-13)
 
-
 ### Bug Fixes
 
-* namespace global to pkg.name + major version ([0dc8650](https://github.com/pie-framework/pie-lib/commit/0dc8650))
-
-
-
-
+- namespace global to pkg.name + major version ([0dc8650](https://github.com/pie-framework/pie-lib/commit/0dc8650))
 
 ## [2.0.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.0.0...@pie-lib/math-rendering@2.0.2) (2019-12-13)
 
-
 ### Bug Fixes
 
-* bump version to avoid conflict ([0910cf9](https://github.com/pie-framework/pie-lib/commit/0910cf9))
-
-
-
-
+- bump version to avoid conflict ([0910cf9](https://github.com/pie-framework/pie-lib/commit/0910cf9))
 
 # [2.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@1.3.7...@pie-lib/math-rendering@2.0.0) (2019-12-12)
 
-
 ### Features
 
-* remove HtmlAndMath ([34a3d8d](https://github.com/pie-framework/pie-lib/commit/34a3d8d))
-* upgrade to mathax-full@^3.0.0 ([994998d](https://github.com/pie-framework/pie-lib/commit/994998d))
-
+- remove HtmlAndMath ([34a3d8d](https://github.com/pie-framework/pie-lib/commit/34a3d8d))
+- upgrade to mathax-full@^3.0.0 ([994998d](https://github.com/pie-framework/pie-lib/commit/994998d))
 
 ### BREAKING CHANGES
 
-* `HtmlAndMath` is now in `@pie-lib/render-ui`.
-
-
-
-
+- `HtmlAndMath` is now in `@pie-lib/render-ui`.
 
 # [1.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@1.3.7...@pie-lib/math-rendering@1.4.0) (2019-12-12)
 
-
 ### Features
 
-* upgrade to mathax-full@^3.0.0 ([994998d](https://github.com/pie-framework/pie-lib/commit/994998d))
-
-
-
-
+- upgrade to mathax-full@^3.0.0 ([994998d](https://github.com/pie-framework/pie-lib/commit/994998d))
 
 ## [1.3.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@1.3.6...@pie-lib/math-rendering@1.3.7) (2019-08-21)
 
 **Note:** Version bump only for package @pie-lib/math-rendering
 
-
-
-
-
 ## [1.3.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@1.3.5...@pie-lib/math-rendering@1.3.6) (2019-08-16)
-
 
 ### Bug Fixes
 
-* **renderMath:** added an if for elements that already have math rendered [ch3365], and [ch1915] ([3189a69](https://github.com/pie-framework/pie-lib/commit/3189a69))
-
-
-
-
+- **renderMath:** added an if for elements that already have math rendered [ch3365], and [ch1915](<[3189a69](https://github.com/pie-framework/pie-lib/commit/3189a69)>)
 
 ## [1.3.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@1.3.4...@pie-lib/math-rendering@1.3.5) (2019-08-16)
 
-
 ### Bug Fixes
 
-* **renderMath:** fixed the math rendering all over the app [ch3365], and [ch1915] ([2b0df91](https://github.com/pie-framework/pie-lib/commit/2b0df91))
-
-
-
-
+- **renderMath:** fixed the math rendering all over the app [ch3365], and [ch1915](<[2b0df91](https://github.com/pie-framework/pie-lib/commit/2b0df91)>)
 
 ## [1.3.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@1.3.3...@pie-lib/math-rendering@1.3.4) (2019-07-08)
 
 **Note:** Version bump only for package @pie-lib/math-rendering
 
-
-
-
-
 ## [1.3.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@1.3.2...@pie-lib/math-rendering@1.3.3) (2019-07-05)
 
 **Note:** Version bump only for package @pie-lib/math-rendering
-
-
-
-
 
 ## [1.3.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@1.3.1...@pie-lib/math-rendering@1.3.2) (2019-07-02)
 
 **Note:** Version bump only for package @pie-lib/math-rendering
 
-
-
-
-
 ## [1.3.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@1.3.0...@pie-lib/math-rendering@1.3.1) (2019-06-17)
 
 **Note:** Version bump only for package @pie-lib/math-rendering
 
-
-
-
-
 # [1.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@1.2.12...@pie-lib/math-rendering@1.3.0) (2019-06-12)
-
 
 ### Features
 
-* version bumps ([23eb54f](https://github.com/pie-framework/pie-lib/commit/23eb54f))
-
-
-
-
+- version bumps ([23eb54f](https://github.com/pie-framework/pie-lib/commit/23eb54f))
 
 ## [1.2.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@1.2.11...@pie-lib/math-rendering@1.2.12) (2019-06-05)
 
 **Note:** Version bump only for package @pie-lib/math-rendering
-
-
-
-
 
 ## [1.2.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@1.2.10...@pie-lib/math-rendering@1.2.11) (2019-05-22)
 
