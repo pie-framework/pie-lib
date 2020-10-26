@@ -433,5 +433,20 @@
     "committerDate": "2020-10-26 14:01:51 +0200",
     "isTagged": true,
     "tag": "@pie-lib/text-select@1.7.0"
+  },
+  {
+    "type": "fix",
+    "scope": "select-text",
+    "subject": "fix text indent styling for tokens",
+    "merge": null,
+    "header": "fix(select-text): fix text indent styling for tokens",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "0d13170e2c2daf67ccb9b6ae80cc9223368581a9",
+    "gitTags": " (origin/feat/color-support)",
+    "committerDate": "2020-10-26 15:30:32 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/text-select@1.7.1"
   }
 ]
