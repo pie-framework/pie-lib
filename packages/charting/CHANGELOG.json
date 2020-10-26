@@ -548,5 +548,20 @@
     "committerDate": "2020-10-14 07:44:37 +0300",
     "isTagged": true,
     "tag": "@pie-lib/charting@4.4.0"
+  },
+  {
+    "type": "feat",
+    "scope": "charting",
+    "subject": "finalize color theme support",
+    "merge": null,
+    "header": "feat(charting): finalize color theme support",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "b304cada4e9a7f2e6db13b87e491ce2432d268f5",
+    "gitTags": "",
+    "committerDate": "2020-10-23 15:43:30 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/charting@4.5.0"
   }
 ]
