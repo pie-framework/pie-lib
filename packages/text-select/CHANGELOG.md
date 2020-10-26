@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.7.0...@pie-lib/text-select@1.7.1) (2020-10-26)
+
+
+### Bug Fixes
+
+* **select-text:** fix text indent styling for tokens ([0d13170](https://github.com/pie-framework/pie-lib/commit/0d13170))
+
+
+
+
+
 # [1.7.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.6.1...@pie-lib/text-select@1.7.0) (2020-10-26)
 
 ### Features
