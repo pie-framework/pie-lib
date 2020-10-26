@@ -7,6 +7,8 @@ import Settings from '@material-ui/icons/Settings';
 import debug from 'debug';
 
 import MediaDialog from './media-dialog';
+import MediaToolbar from './media-toolbar';
+import MediaWrapper from './media-wrapper';
 
 const log = debug('@pie-lib:editable-html:plugins:image');
 
@@ -130,9 +132,15 @@ export default function MediaPlugin(type, opts) {
             });
           });
         };
+        const handleDelete = () => {
+          const change = opts.createChange();
+          const c = change.removeNodeByKey(node.key);
+
+          opts.onChange(c);
+        };
 
         return (
-          <span data-type={type} {...rest}>
+          <MediaWrapper data-type={type} {...rest}>
             <iframe
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -140,8 +148,8 @@ export default function MediaPlugin(type, opts) {
               src={src}
               style={style}
             />
-            <Settings onClick={handleEdit} />
-          </span>
+            <MediaToolbar onEdit={handleEdit} onRemove={handleDelete} />
+          </MediaWrapper>
         );
       }
     },
@@ -252,15 +260,14 @@ export const serialization = {
     };
 
     return (
-      <span data-type={type} src={src} {...divProps}>
+      <MediaWrapper data-type={type} src={src} {...divProps}>
         <iframe
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
           {...props}
         />
-        <Settings />
-      </span>
+      </MediaWrapper>
     );
   }
 };
