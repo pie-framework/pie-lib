@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.6.1...@pie-lib/text-select@1.7.0) (2020-10-26)
+
+
+### Features
+
+* **text-select:** fix default colors in theme for hover and select ([f85b8f9](https://github.com/pie-framework/pie-lib/commit/f85b8f9))
+
+
+
+
+
 ## [1.6.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.6.0...@pie-lib/text-select@1.6.1) (2020-10-19)
 
 **Note:** Version bump only for package @pie-lib/text-select
