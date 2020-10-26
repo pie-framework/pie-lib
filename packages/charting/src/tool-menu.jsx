@@ -9,9 +9,11 @@ import Button from '@material-ui/core/Button';
 
 const buttonStyles = () => ({
   root: {
+    backgroundColor: color.background(),
     color: color.text(),
+    border: `1px solid ${color.secondary()}`,
     '&:hover': {
-      backgroundColor: 'rgb(255,255,255,0.5)'
+      backgroundColor: color.secondaryLight()
     }
   },
   selected: {
