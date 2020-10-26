@@ -9,7 +9,7 @@
     "@pie-lib/config-ui": "^10.8.31",
     "@pie-lib/correct-answer-toggle": "^2.3.6",
     "@pie-lib/drag": "^1.1.44",
-    "@pie-lib/editable-html": "^7.13.0",
+    "@pie-lib/editable-html": "^7.13.2",
     "@pie-lib/graphing": "^2.1.0",
     "@pie-lib/icons": "^2.4.20",
     "@pie-lib/mask-markup": "^1.8.0",
