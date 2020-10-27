@@ -4,8 +4,8 @@ import { withStyles } from '@material-ui/core/styles';
 
 const useStyles = withStyles(theme => ({
   root: {
-    position: 'absolute',
-    bottom: '-25px',
+    position: 'relative',
+    bottom: '5px',
     left: 0,
     width: '100%',
     background: 'white',

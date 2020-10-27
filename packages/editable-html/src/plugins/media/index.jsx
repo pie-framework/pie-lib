@@ -100,7 +100,7 @@ export default function MediaPlugin(type, opts) {
         const { node, key } = props;
         const { data } = node;
         const jsonData = data.toJSON();
-        const { src, style, ...rest } = jsonData;
+        const { src, height, width, ...rest } = jsonData;
         const handleEdit = () => {
           const change = opts.createChange();
           const c = change.setNodeByKey(key, {
@@ -138,15 +138,25 @@ export default function MediaPlugin(type, opts) {
 
           opts.onChange(c);
         };
+        const style = {};
+
+        if (width) {
+          style.width = `${width}px`;
+        }
+
+        if (height) {
+          style.height = `${height}px`;
+        }
 
         return (
-          <MediaWrapper data-type={type} {...rest}>
+          <MediaWrapper editor data-type={type} width={style.width} {...rest}>
             <iframe
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               src={src}
-              style={style}
+              {...rest}
+              {...style}
             />
             <MediaToolbar onEdit={handleEdit} onRemove={handleDelete} />
           </MediaWrapper>
@@ -197,9 +207,8 @@ export const serialization = {
     const { ends, starts, title, editing, url } = el.dataset || {};
 
     log('deserialize: ', name);
-    const style = el.style || { width: '', height: '' };
-    const width = parseInt(style.width.replace('px', ''), 10) || null;
-    const height = parseInt(style.height.replace('px', ''), 10) || null;
+    const width = parseInt(el.getAttribute('width'), 10) || null;
+    const height = parseInt(el.getAttribute('height'), 10) || null;
 
     const out = {
       object: 'inline',
@@ -255,19 +264,20 @@ export const serialization = {
       'data-url': url
     };
     const props = {
-      src,
-      style
+      ...style,
+      src
     };
 
     return (
-      <MediaWrapper data-type={type} src={src} {...divProps}>
-        <iframe
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-          {...props}
-        />
-      </MediaWrapper>
+      <iframe
+        data-type={type}
+        src={src}
+        {...divProps}
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+        {...props}
+      />
     );
   }
 };
