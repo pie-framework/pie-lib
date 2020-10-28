@@ -14,7 +14,7 @@ export class PreviewPrompt extends Component {
     render() {
         const { prompt, classes, tagName, className} = this.props;
         const CustomTag = tagName || "div";
-        const customClasses = `${classes.promptTable} ${(className) || ""} `
+        const customClasses = `${classes.promptTable} ${ classes[className] || ""} `
         return (
             <CustomTag className={customClasses}
                 dangerouslySetInnerHTML={{ __html: prompt }}
