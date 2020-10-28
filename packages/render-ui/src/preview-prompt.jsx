@@ -27,7 +27,7 @@ export class PreviewPrompt extends Component {
 const styles = (theme) => ({
     prompt: {
         verticalAlign: 'middle',
-        color: 'var(--pie-primary-text, var(--pie-text, #000000))',
+        color: color.text(),
     },
     rationale: {
         paddingLeft: theme.spacing.unit * 16,
