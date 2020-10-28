@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Cusom Tag Prompt  renders with custom tag "span" correctly renders 1`] = `
+<PreviewPrompt
+  className="prompt"
+  classes={
+    Object {
+      "label": "PreviewPrompt-label-3",
+      "prompt": "PreviewPrompt-prompt-1",
+      "promptTable": "PreviewPrompt-promptTable-4",
+      "rationale": "PreviewPrompt-rationale-2",
+    }
+  }
+  prompt="<h1> Preview Prompt </h1>"
+  tagName="span"
+/>
+`;
+
+exports[`Markup sent as a prompt param  default class with markup renders 1`] = `
+<PreviewPrompt
+  className=""
+  classes={
+    Object {
+      "label": "PreviewPrompt-label-3",
+      "prompt": "PreviewPrompt-prompt-1",
+      "promptTable": "PreviewPrompt-promptTable-4",
+      "rationale": "PreviewPrompt-rationale-2",
+    }
+  }
+  prompt="<h1> Preview Prompt </h1>"
+  tagName=""
+/>
+`;
