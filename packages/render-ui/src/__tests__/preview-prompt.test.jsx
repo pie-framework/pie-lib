@@ -25,7 +25,6 @@ describe('Prompt without Custom tag ', () => {
 
     describe('default class with markup', () => {
         it('renders', () => {
-            console.log(wrapper.find(PreviewPrompt));
             expect(wrapper.hasClass("prompt")).toEqual(false);
             expect(wrapper).toMatchSnapshot();
         });
@@ -54,7 +53,6 @@ describe('Prompt with Custom tag ', () => {
 
     describe('renders with custom tag "span" correctly', () => {
         it('renders', () => {
-            console.log(wrapper.debug());
             expect(wrapper.hasClass("prompt")).toEqual(true);
             expect(wrapper).toMatchSnapshot();
         });
