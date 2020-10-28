@@ -77,6 +77,7 @@ export default withStyles(theme => {
     token: {
       cursor: 'pointer',
       display: 'inline-block',
+      textIndent: 0,
       padding: theme.spacing.unit / 2,
       paddingRight: 0,
       transition: 'background-color 100ms ease-in'
@@ -90,20 +91,20 @@ export default withStyles(theme => {
     },
     selectable: {
       '&:hover': {
-        backgroundColor: color.secondaryDark(),
+        backgroundColor: color.primaryLight(),
         '& > *': {
-          backgroundColor: color.secondaryDark()
+          backgroundColor: color.primaryLight()
         }
       }
     },
     selected: {
       marginTop: theme.spacing.unit / 2,
       '&:hover': {
-        backgroundColor: color.secondaryDark()
+        backgroundColor: color.primaryLight()
       },
-      backgroundColor: color.secondary(),
+      backgroundColor: color.primaryLight(),
       '& > *': {
-        backgroundColor: color.secondary()
+        backgroundColor: color.primaryLight()
       }
     },
     highlight: {

@@ -578,5 +578,20 @@
     "committerDate": "2020-09-17 14:21:30 +0100",
     "isTagged": true,
     "tag": "@pie-lib/math-rendering@2.2.0"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "rm non-standard static prop",
+    "merge": null,
+    "header": "fix: rm non-standard static prop",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "6af197b7dc37efec5225ab9b624a49550da37477",
+    "gitTags": " (develop)",
+    "committerDate": "2020-10-19 20:50:15 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/math-rendering@2.2.1"
   }
 ]

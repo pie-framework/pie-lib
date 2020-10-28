@@ -418,5 +418,20 @@
     "committerDate": "2020-09-24 18:50:27 +0300",
     "isTagged": true,
     "tag": "@pie-lib/text-select@1.6.0"
+  },
+  {
+    "type": "feat",
+    "scope": "text-select",
+    "subject": "fix default colors in theme for hover and select",
+    "merge": null,
+    "header": "feat(text-select): fix default colors in theme for hover and select",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "f85b8f9585c11389ae0182632cc41d4cd5c082ee",
+    "gitTags": " (origin/feat/color-support)",
+    "committerDate": "2020-10-26 14:01:51 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/text-select@1.7.0"
   }
 ]

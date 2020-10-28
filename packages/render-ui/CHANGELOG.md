@@ -3,407 +3,223 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [4.9.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.8.4...@pie-lib/render-ui@4.9.0) (2020-09-25)
+## [4.9.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.9.1...@pie-lib/render-ui@4.9.2) (2020-10-26)
 
+**Note:** Version bump only for package @pie-lib/render-ui
+
+## [4.9.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.9.0...@pie-lib/render-ui@4.9.1) (2020-10-19)
+
+**Note:** Version bump only for package @pie-lib/render-ui
+
+# [4.9.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.8.4...@pie-lib/render-ui@4.9.0) (2020-09-25)
 
 ### Features
 
-* add light/dark variations to primary/secondary ([97d1ac6](https://github.com/pie-framework/pie-lib/commit/97d1ac6))
-
-
-
-
+- add light/dark variations to primary/secondary ([97d1ac6](https://github.com/pie-framework/pie-lib/commit/97d1ac6))
 
 ## [4.8.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.8.3...@pie-lib/render-ui@4.8.4) (2020-09-18)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 ## [4.8.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.8.2...@pie-lib/render-ui@4.8.3) (2020-09-11)
-
 
 ### Bug Fixes
 
-* **color:** retain background ([077e6ce](https://github.com/pie-framework/pie-lib/commit/077e6ce))
-
-
-
-
+- **color:** retain background ([077e6ce](https://github.com/pie-framework/pie-lib/commit/077e6ce))
 
 ## [4.8.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.8.1...@pie-lib/render-ui@4.8.2) (2020-08-21)
 
-
 ### Bug Fixes
 
-* rm pie-background for now ([5fd024a](https://github.com/pie-framework/pie-lib/commit/5fd024a))
-
-
-
-
+- rm pie-background for now ([5fd024a](https://github.com/pie-framework/pie-lib/commit/5fd024a))
 
 ## [4.8.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.8.0...@pie-lib/render-ui@4.8.1) (2020-08-11)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 # [4.8.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.7.16...@pie-lib/render-ui@4.8.0) (2020-06-05)
-
 
 ### Features
 
-* add color custom properties PD-308 ([8d7bc2b](https://github.com/pie-framework/pie-lib/commit/8d7bc2b))
-
-
-
-
+- add color custom properties PD-308 ([8d7bc2b](https://github.com/pie-framework/pie-lib/commit/8d7bc2b))
 
 ## [4.7.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.7.15...@pie-lib/render-ui@4.7.16) (2020-04-27)
 
-
 ### Bug Fixes
 
-* PD-54: Small font in Input Container. ([0a32d3a](https://github.com/pie-framework/pie-lib/commit/0a32d3a))
-
-
-
-
+- PD-54: Small font in Input Container. ([0a32d3a](https://github.com/pie-framework/pie-lib/commit/0a32d3a))
 
 ## [4.7.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.7.14...@pie-lib/render-ui@4.7.15) (2020-04-14)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 ## [4.7.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.7.13...@pie-lib/render-ui@4.7.14) (2020-04-08)
 
 **Note:** Version bump only for package @pie-lib/render-ui
-
-
-
-
 
 ## [4.7.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.7.12...@pie-lib/render-ui@4.7.13) (2020-03-31)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 ## [4.7.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.7.11...@pie-lib/render-ui@4.7.12) (2020-03-31)
 
 **Note:** Version bump only for package @pie-lib/render-ui
-
-
-
-
 
 ## [4.7.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.7.10...@pie-lib/render-ui@4.7.11) (2020-03-31)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 ## [4.7.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.7.9...@pie-lib/render-ui@4.7.10) (2020-03-30)
 
 **Note:** Version bump only for package @pie-lib/render-ui
-
-
-
-
 
 ## [4.7.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.7.8...@pie-lib/render-ui@4.7.9) (2020-03-30)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 ## [4.7.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.7.7...@pie-lib/render-ui@4.7.8) (2020-03-30)
 
 **Note:** Version bump only for package @pie-lib/render-ui
-
-
-
-
 
 ## [4.7.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.7.6...@pie-lib/render-ui@4.7.7) (2020-03-30)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 ## [4.7.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.7.5...@pie-lib/render-ui@4.7.6) (2020-03-30)
 
 **Note:** Version bump only for package @pie-lib/render-ui
-
-
-
-
 
 ## [4.7.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.7.4...@pie-lib/render-ui@4.7.5) (2020-03-30)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 ## [4.7.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.7.3...@pie-lib/render-ui@4.7.4) (2020-03-30)
-
 
 ### Bug Fixes
 
-* add module prop to package.json ([494ace5](https://github.com/pie-framework/pie-lib/commit/494ace5))
-
-
-
-
+- add module prop to package.json ([494ace5](https://github.com/pie-framework/pie-lib/commit/494ace5))
 
 ## [4.7.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.7.2...@pie-lib/render-ui@4.7.3) (2020-03-29)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 ## [4.7.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.7.1...@pie-lib/render-ui@4.7.2) (2020-03-29)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 ## [4.7.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.7.0...@pie-lib/render-ui@4.7.1) (2020-03-23)
-
 
 ### Bug Fixes
 
-* proper export of InputContainer ([cd5d597](https://github.com/pie-framework/pie-lib/commit/cd5d597))
-
-
-
-
+- proper export of InputContainer ([cd5d597](https://github.com/pie-framework/pie-lib/commit/cd5d597))
 
 # [4.7.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.6.3...@pie-lib/render-ui@4.7.0) (2020-03-23)
 
-
 ### Features
 
-* **es6:** updated index file and yarn ([2e04449](https://github.com/pie-framework/pie-lib/commit/2e04449))
-* **es6:** updated index file to update package ([646f225](https://github.com/pie-framework/pie-lib/commit/646f225))
-
-
-
-
+- **es6:** updated index file and yarn ([2e04449](https://github.com/pie-framework/pie-lib/commit/2e04449))
+- **es6:** updated index file to update package ([646f225](https://github.com/pie-framework/pie-lib/commit/646f225))
 
 ## [4.6.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.6.2...@pie-lib/render-ui@4.6.3) (2020-03-18)
 
-
 ### Bug Fixes
 
-* es6 export syntax ([8a02dda](https://github.com/pie-framework/pie-lib/commit/8a02dda))
-* ignore __mocks__ in src ([c107bf8](https://github.com/pie-framework/pie-lib/commit/c107bf8))
-
-
-
-
+- es6 export syntax ([8a02dda](https://github.com/pie-framework/pie-lib/commit/8a02dda))
+- ignore **mocks** in src ([c107bf8](https://github.com/pie-framework/pie-lib/commit/c107bf8))
 
 ## [4.6.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.6.1...@pie-lib/render-ui@4.6.2) (2020-03-18)
 
-
 ### Bug Fixes
 
-* ignore __tests__ in src ([710b483](https://github.com/pie-framework/pie-lib/commit/710b483))
-
-
-
-
+- ignore **tests** in src ([710b483](https://github.com/pie-framework/pie-lib/commit/710b483))
 
 ## [4.6.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.6.0...@pie-lib/render-ui@4.6.1) (2020-03-18)
 
-
 ### Bug Fixes
 
-* add src to pkg ([f37d16e](https://github.com/pie-framework/pie-lib/commit/f37d16e))
-
-
-
-
+- add src to pkg ([f37d16e](https://github.com/pie-framework/pie-lib/commit/f37d16e))
 
 # [4.6.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.5.9...@pie-lib/render-ui@4.6.0) (2020-03-18)
 
-
 ### Features
 
-* add module entry point ([59b0d09](https://github.com/pie-framework/pie-lib/commit/59b0d09))
-
-
-
-
+- add module entry point ([59b0d09](https://github.com/pie-framework/pie-lib/commit/59b0d09))
 
 ## [4.5.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.5.8...@pie-lib/render-ui@4.5.9) (2020-03-18)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 ## [4.5.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.5.7...@pie-lib/render-ui@4.5.8) (2020-03-06)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 ## [4.5.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.5.6...@pie-lib/render-ui@4.5.7) (2020-02-25)
-
 
 ### Bug Fixes
 
-* add react-dom to peer deps ([1fb5a05](https://github.com/pie-framework/pie-lib/commit/1fb5a05))
-
-
-
-
+- add react-dom to peer deps ([1fb5a05](https://github.com/pie-framework/pie-lib/commit/1fb5a05))
 
 ## [4.5.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.5.5...@pie-lib/render-ui@4.5.6) (2020-02-20)
 
-
 ### Bug Fixes
 
-* missing dependency prop-types ([cfff0e9](https://github.com/pie-framework/pie-lib/commit/cfff0e9))
-
-
-
-
+- missing dependency prop-types ([cfff0e9](https://github.com/pie-framework/pie-lib/commit/cfff0e9))
 
 ## [4.5.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.5.4...@pie-lib/render-ui@4.5.5) (2020-02-20)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 ## [4.5.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.5.3...@pie-lib/render-ui@4.5.4) (2020-02-11)
 
 **Note:** Version bump only for package @pie-lib/render-ui
-
-
-
-
 
 ## [4.5.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.5.2...@pie-lib/render-ui@4.5.3) (2019-12-18)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 ## [4.5.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.5.1...@pie-lib/render-ui@4.5.2) (2019-12-13)
 
 **Note:** Version bump only for package @pie-lib/render-ui
-
-
-
-
 
 ## [4.5.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.5.0...@pie-lib/render-ui@4.5.1) (2019-12-13)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 # [4.5.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.4.5...@pie-lib/render-ui@4.5.0) (2019-12-12)
-
 
 ### Features
 
-* add HtmlAndMath from @pie-lib/math-rendering ([05121b3](https://github.com/pie-framework/pie-lib/commit/05121b3))
-
-
-
-
+- add HtmlAndMath from @pie-lib/math-rendering ([05121b3](https://github.com/pie-framework/pie-lib/commit/05121b3))
 
 ## [4.4.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.4.4...@pie-lib/render-ui@4.4.5) (2019-08-21)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 ## [4.4.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.4.3...@pie-lib/render-ui@4.4.4) (2019-07-08)
 
 **Note:** Version bump only for package @pie-lib/render-ui
-
-
-
-
 
 ## [4.4.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.4.2...@pie-lib/render-ui@4.4.3) (2019-07-05)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 ## [4.4.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.4.1...@pie-lib/render-ui@4.4.2) (2019-07-02)
 
 **Note:** Version bump only for package @pie-lib/render-ui
-
-
-
-
 
 ## [4.4.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.4.0...@pie-lib/render-ui@4.4.1) (2019-06-17)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 # [4.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.3.14...@pie-lib/render-ui@4.4.0) (2019-06-12)
-
 
 ### Features
 
-* version bumps ([23eb54f](https://github.com/pie-framework/pie-lib/commit/23eb54f))
-
-
-
-
+- version bumps ([23eb54f](https://github.com/pie-framework/pie-lib/commit/23eb54f))
 
 ## [4.3.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.3.13...@pie-lib/render-ui@4.3.14) (2019-06-05)
 
 **Note:** Version bump only for package @pie-lib/render-ui
-
-
-
-
 
 ## [4.3.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.3.12...@pie-lib/render-ui@4.3.13) (2019-05-15)
 
