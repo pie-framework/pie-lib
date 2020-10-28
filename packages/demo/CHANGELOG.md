@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.3.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.3.6...@pie-lib/demo@6.3.7) (2020-10-28)
+
+
+### Bug Fixes
+
+* upgrade react-dnd ([f507025](https://github.com/pie-framework/pie-lib/commit/f507025))
+
+
+
+
+
 ## [6.3.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.3.5...@pie-lib/demo@6.3.6) (2020-10-26)
 
 **Note:** Version bump only for package @pie-lib/demo
