@@ -13,8 +13,8 @@ export class PreviewPrompt extends Component {
 
     render() {
         const { prompt, classes, tagName, className} = this.props;
-        const CustomTag = (tagName) ? tagName : "div";
-        const customClasses = `${(className) ? classes[className] : ""} ${classes.promptTable}`
+        const CustomTag = tagName || "div";
+        const customClasses = `${classes.promptTable} ${(className) || ""} `
         return (
             <CustomTag className={customClasses}
                 dangerouslySetInnerHTML={{ __html: prompt }}
@@ -33,7 +33,7 @@ const styles = (theme) => ({
         paddingLeft: theme.spacing.unit * 16,
       },
       label: {
-        color: color.text(), //'var(--choice-input-color, black)',
+        color: `${color.text()} !important`, //'var(--choice-input-color, black)',
         display: 'inline-block',
         verticalAlign: 'middle',
         cursor: 'pointer',
