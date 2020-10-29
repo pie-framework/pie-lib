@@ -16,6 +16,6 @@ export {
   PreviewLayout,
   Collapsible,
   InputContainer,
-  PreviewPrompt
+  PreviewPrompt,
   color
 };
