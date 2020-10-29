@@ -146,34 +146,9 @@ const marks = {
   }
 };
 
-const findPreviousText = el => {
-  if (el.nodeName === '#text') {
-    return el;
-  }
-
-  if (el.previousSibling) {
-    return findPreviousText(el.previousSibling);
-  }
-
-  return null;
-};
-
 export const TEXT_RULE = {
   deserialize(el) {
-    const brs = !el.querySelectorAll ? [] : el.querySelectorAll('br');
-
-    /**
-     * This is needed in order to replace all br tags with a new line character
-     * and after that we merge them below
-     */
-    brs.forEach(br => {
-      const prevText = findPreviousText(br);
-
-      if (prevText) {
-        br.remove();
-        prevText.textContent += '\n';
-      }
-    });
+    el.innerHTML = !!el.innerHTML && el.innerHTML.replace(/<br ?\/?>/g, "\n");
 
     /**
      * This needs to be called on the dom element in order to merge the adjacent text nodes together
