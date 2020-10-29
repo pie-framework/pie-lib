@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Cusom Tag Prompt  renders with custom tag "span" correctly renders 1`] = `
+exports[`Prompt with Custom tag  renders with custom tag "span" correctly renders 1`] = `
 <PreviewPrompt
   className="prompt"
   classes={
@@ -11,12 +11,12 @@ exports[`Cusom Tag Prompt  renders with custom tag "span" correctly renders 1`] 
       "rationale": "PreviewPrompt-rationale-2",
     }
   }
-  prompt="<h1> Preview Prompt </h1>"
+  prompt="Which of these northern European countries are EU members? <math><mstack><msrow><mn>111</mn></msrow><msline/></mstack></math>"
   tagName="span"
 />
 `;
 
-exports[`Markup sent as a prompt param  default class with markup renders 1`] = `
+exports[`Prompt without Custom tag  default class with markup renders 1`] = `
 <PreviewPrompt
   className=""
   classes={
@@ -27,7 +27,7 @@ exports[`Markup sent as a prompt param  default class with markup renders 1`] = 
       "rationale": "PreviewPrompt-rationale-2",
     }
   }
-  prompt="<h1> Preview Prompt </h1>"
+  prompt="Which of these northern European countries are EU members? <math><mstack><msrow><mn>111</mn></msrow><msline/></mstack></math>"
   tagName=""
 />
 `;
