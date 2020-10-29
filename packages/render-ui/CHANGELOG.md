@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.9.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.9.3...@pie-lib/render-ui@4.9.4) (2020-10-29)
+
+
+### Bug Fixes
+
+* Authored table borders are not visible in preview PD-342 ([cb86c55](https://github.com/pie-framework/pie-lib/commit/cb86c55))
+* formatting ([754bb75](https://github.com/pie-framework/pie-lib/commit/754bb75))
+* Modified code for suggested changes and addes snapshots PD-342 ([fbaa88e](https://github.com/pie-framework/pie-lib/commit/fbaa88e))
+* Modified code for suggested changes and addes snapshots PD-342 ([dd43627](https://github.com/pie-framework/pie-lib/commit/dd43627))
+* Modified code for suggested changes and addes snapshots PD-342 ([d9b76db](https://github.com/pie-framework/pie-lib/commit/d9b76db))
+* removed console log that are added in test file PD-342 ([2c9d2e5](https://github.com/pie-framework/pie-lib/commit/2c9d2e5))
+* snapshot test ([a86e5e8](https://github.com/pie-framework/pie-lib/commit/a86e5e8))
+* typo ([0cb17c9](https://github.com/pie-framework/pie-lib/commit/0cb17c9))
+
+
+
+
+
 ## [4.9.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.9.2...@pie-lib/render-ui@4.9.3) (2020-10-26)
 
 **Note:** Version bump only for package @pie-lib/render-ui
