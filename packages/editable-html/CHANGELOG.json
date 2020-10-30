@@ -2738,5 +2738,20 @@
     "committerDate": "2020-09-18 17:23:59 +0300",
     "isTagged": true,
     "tag": "@pie-lib/editable-html@7.13.0"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "missing dependency",
+    "merge": null,
+    "header": "fix: missing dependency",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "86b18d21c6c5d36fa19541ae75b419e05de46b80",
+    "gitTags": " (develop)",
+    "committerDate": "2020-10-30 21:56:52 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.13.5"
   }
 ]
