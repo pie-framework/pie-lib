@@ -6,6 +6,7 @@ import PreviewLayout from './preview-layout';
 import HtmlAndMath from './html-and-math';
 import InputContainer from './input-container';
 import PreviewPrompt from './preview-prompt';
+import Readable from './readable';
 import * as color from './color';
 
 export {
@@ -16,6 +17,7 @@ export {
   PreviewLayout,
   Collapsible,
   InputContainer,
-  PreviewPrompt
-  color
+  PreviewPrompt,
+  color,
+  Readable
 };
