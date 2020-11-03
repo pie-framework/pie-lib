@@ -16,9 +16,9 @@ const useStyles = withStyles(() => ({
 class MediaWrapper extends React.Component {
   static propTypes = {
     classes: PropTypes.object,
-    children: PropTypes.func,
+    children: PropTypes.array,
     editor: PropTypes.bool,
-    width: PropTypes.number
+    width: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
   };
 
   render() {

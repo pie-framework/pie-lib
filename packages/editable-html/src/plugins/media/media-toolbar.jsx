@@ -23,8 +23,7 @@ const useStyles = withStyles(theme => ({
     paddingRight: '5px'
   },
   removeContainer: {
-    cursor: 'pointer',
-    flex: 1
+    cursor: 'pointer'
   }
 }));
 

@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { Inline } from 'slate';
 import TheatersIcon from '@material-ui/icons/Theaters';
 import VolumeUpIcon from '@material-ui/icons/VolumeUp';
-import Settings from '@material-ui/icons/Settings';
 import debug from 'debug';
 
 import MediaDialog from './media-dialog';
@@ -100,7 +99,7 @@ export default function MediaPlugin(type, opts) {
         const { node, key } = props;
         const { data } = node;
         const jsonData = data.toJSON();
-        const { src, height, width, ...rest } = jsonData;
+        const { src, height, width, editing, ...rest } = jsonData;
         const handleEdit = () => {
           const change = opts.createChange();
           const c = change.setNodeByKey(key, {
@@ -155,6 +154,7 @@ export default function MediaPlugin(type, opts) {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               src={src}
+              editing={editing ? 1 : 0}
               {...rest}
               {...style}
             />
@@ -253,8 +253,6 @@ export const serialization = {
     if (height) {
       style.height = `${height}px`;
     }
-
-    style.objectFit = 'contain';
 
     const divProps = {
       'data-editing': editing,
