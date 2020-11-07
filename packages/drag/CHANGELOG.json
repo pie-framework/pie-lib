@@ -408,5 +408,20 @@
     "committerDate": "2020-04-28 10:52:03 +0300",
     "isTagged": true,
     "tag": "@pie-lib/drag@1.1.41"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "upgrade react-dnd",
+    "merge": null,
+    "header": "fix: upgrade react-dnd",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "f5070252356e869faf8b7c00b910a19ed8701bc5",
+    "gitTags": "",
+    "committerDate": "2020-10-28 11:21:18 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/drag@1.1.45"
   }
 ]
