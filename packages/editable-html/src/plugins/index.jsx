@@ -3,6 +3,7 @@ import Code from '@material-ui/icons/Code';
 import BulletedListIcon from '@material-ui/icons/FormatListBulleted';
 import NumberedListIcon from '@material-ui/icons/FormatListNumbered';
 import ImagePlugin from './image';
+import MediaPlugin from './media';
 import Italic from '@material-ui/icons/FormatItalic';
 import MathPlugin from './math';
 import React from 'react';
@@ -63,10 +64,12 @@ export const ALL_PLUGINS = [
   'image',
   'math',
   'table',
+  'video',
+  'audio',
   'responseArea'
 ];
 
-export const DEFAULT_PLUGINS = ALL_PLUGINS.slice(0, 10);
+export const DEFAULT_PLUGINS = ALL_PLUGINS.filter(plug => plug !== 'responseArea');
 
 export const buildPlugins = (activePlugins, opts) => {
   log('[buildPlugins] opts: ', opts);
@@ -97,6 +100,8 @@ export const buildPlugins = (activePlugins, opts) => {
     ),
     addIf('underline', MarkHotkey({ key: 'u', type: 'underline', icon: <Underline />, tag: 'u' })),
     addIf('image', imagePlugin),
+    addIf('video', MediaPlugin('video', opts.media)),
+    addIf('audio', MediaPlugin('audio', opts.media)),
     addIf('math', mathPlugin),
     addIf('bulleted-list', List({ key: 'l', type: 'ul_list', icon: <BulletedListIcon /> })),
     addIf('numbered-list', List({ key: 'n', type: 'ol_list', icon: <NumberedListIcon /> })),
