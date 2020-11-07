@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.14.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.13.5...@pie-lib/editable-html@7.14.0) (2020-11-07)
+
+
+### Features
+
+* **media:** fixed design and some warnings ([df7d84d](https://github.com/pie-framework/pie-lib/commit/df7d84d))
+* **media:** implemented editing functionality plus some error some more handlng ([66732a3](https://github.com/pie-framework/pie-lib/commit/66732a3))
+* **media:** implemented some error handling and fixed a couple of bugs with inserting the media embed [pd501] ([1616ba2](https://github.com/pie-framework/pie-lib/commit/1616ba2))
+* **media:** made sure width and height are used, and toolbar is relative positioned ([9061067](https://github.com/pie-framework/pie-lib/commit/9061067))
+
+
+
+
+
 ## [7.13.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.13.4...@pie-lib/editable-html@7.13.5) (2020-10-30)
 
 
