@@ -628,5 +628,20 @@
     "committerDate": "2020-09-28 15:33:49 +0300",
     "isTagged": true,
     "tag": "@pie-lib/mask-markup@1.8.0"
+  },
+  {
+    "type": "feat",
+    "scope": "mask-markup",
+    "subject": "color theme support finalized and disabled support",
+    "merge": null,
+    "header": "feat(mask-markup): color theme support finalized and disabled support",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "463e91cf03132abe88d0cb4a33856cfbadff36c6",
+    "gitTags": "",
+    "committerDate": "2020-10-13 08:46:41 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/mask-markup@1.9.0"
   }
 ]

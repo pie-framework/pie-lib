@@ -10,32 +10,54 @@ const correctStyle = color => ({
 
 export default withStyles(() => ({
   input: {
-    padding: '10px 20px 10px 10px'
+    color: color.text(),
+    backgroundColor: color.background(),
+    borderWidth: '1px',
+    borderStyle: 'solid',
+    padding: '10px 20px 10px 10px',
+    '&:disabled': {
+      opacity: 0.8,
+      cursor: 'not-allowed !important'
+    },
+    '&:hover': {
+      borderColor: color.primary(),
+      '&:disabled': {
+        borderColor: 'initial'
+      }
+    },
+    '&:focus': {
+      borderColor: color.primaryDark()
+    }
   },
   correct: correctStyle(color.correct()),
   incorrect: correctStyle(color.incorrect()),
   box: {
     fontSize: 'inherit'
   },
+  outlinedInput: {
+    '& fieldset': {
+      border: 0
+    }
+  },
   notchedOutline: {
-    borderColor: color.correct
+    borderColor: color.correct()
   }
 }))(props => {
-  const { correct, isBox, classes, ...rest } = props;
+  const { correct, isBox, classes, disabled, ...rest } = props;
   const label = typeof correct === 'boolean' ? (correct ? 'correct' : 'incorrect') : undefined;
 
   return (
     <OutlinedInput
       className={classnames({
-        [classes.box]: isBox
+        [classes.disabledInput]: disabled,
+        [classes.box]: isBox,
+        [classes.outlinedInput]: true
       })}
       classes={{
-        notchedOutline: classnames({
-          [classes[label]]: label
-        }),
-        input: classes.input
+        input: classnames({ [classes.input]: true, [classes[label]]: label })
       }}
       labelWidth={0}
+      disabled={disabled}
       {...rest}
     />
   );

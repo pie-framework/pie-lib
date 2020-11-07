@@ -70,7 +70,6 @@ const styles = () => ({
   root: {
     color: color.text(),
     backgroundColor: color.background(),
-    border: '1px solid gray',
     '& ul': {
       color: color.text(),
       backgroundColor: color.background()
@@ -88,14 +87,14 @@ const styles = () => ({
   },
   menuRoot: {
     color: color.primaryDark(),
-    backgroundColor: color.secondaryDark(),
+    backgroundColor: color.background(),
     '&:focus': {
       color: color.primary(),
-      backgroundColor: color.secondary()
+      backgroundColor: color.secondaryLight()
     },
     '&:hover': {
       color: color.primary(),
-      backgroundColor: color.secondary()
+      backgroundColor: color.secondaryLight()
     }
   }
 });

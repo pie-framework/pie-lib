@@ -38,6 +38,9 @@ const styles = theme => ({
     backgroundColor: color.background(),
     '&:not(:last-of-type)': {
       marginRight: theme.spacing.unit / 2
+    },
+    '&:hover': {
+      backgroundColor: color.primary()
     }
   }
 });

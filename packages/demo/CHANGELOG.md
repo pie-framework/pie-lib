@@ -3,774 +3,419 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.3.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.3.4...@pie-lib/demo@6.3.5) (2020-10-26)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+## [6.3.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.3.3...@pie-lib/demo@6.3.4) (2020-10-19)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+## [6.3.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.3.2...@pie-lib/demo@6.3.3) (2020-10-15)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+## [6.3.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.3.1...@pie-lib/demo@6.3.2) (2020-10-08)
+
+**Note:** Version bump only for package @pie-lib/demo
+
 ## [6.3.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.3.0...@pie-lib/demo@6.3.1) (2020-10-07)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 # [6.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.2.5...@pie-lib/demo@6.3.0) (2020-09-25)
-
 
 ### Features
 
-* add light/dark variations to primary/secondary ([97d1ac6](https://github.com/pie-framework/pie-lib/commit/97d1ac6))
-
-
-
-
+- add light/dark variations to primary/secondary ([97d1ac6](https://github.com/pie-framework/pie-lib/commit/97d1ac6))
 
 ## [6.2.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.2.4...@pie-lib/demo@6.2.5) (2020-09-18)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [6.2.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.2.3...@pie-lib/demo@6.2.4) (2020-09-11)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [6.2.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.2.2...@pie-lib/demo@6.2.3) (2020-08-21)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [6.2.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.2.1...@pie-lib/demo@6.2.2) (2020-08-11)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [6.2.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.2.0...@pie-lib/demo@6.2.1) (2020-08-06)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 # [6.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.1.0...@pie-lib/demo@6.2.0) (2020-06-05)
-
 
 ### Features
 
-* bump mathjs@^7.0.1 ([865de4b](https://github.com/pie-framework/pie-lib/commit/865de4b))
-
-
-
-
+- bump mathjs@^7.0.1 ([865de4b](https://github.com/pie-framework/pie-lib/commit/865de4b))
 
 # [6.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.0.1...@pie-lib/demo@6.1.0) (2020-06-05)
 
-
 ### Features
 
-* add color custom properties PD-308 ([8d7bc2b](https://github.com/pie-framework/pie-lib/commit/8d7bc2b))
-
-
-
-
+- add color custom properties PD-308 ([8d7bc2b](https://github.com/pie-framework/pie-lib/commit/8d7bc2b))
 
 ## [6.0.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.0.0...@pie-lib/demo@6.0.1) (2020-05-21)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 # [6.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.76...@pie-lib/demo@6.0.0) (2020-05-15)
-
 
 ### Bug Fixes
 
-* Graphing issues and inconsistencies PD-123 ([291b053](https://github.com/pie-framework/pie-lib/commit/291b053))
-
+- Graphing issues and inconsistencies PD-123 ([291b053](https://github.com/pie-framework/pie-lib/commit/291b053))
 
 ### BREAKING CHANGES
 
-* tools, currentTool, defaultTool and hideLabel should not be used as params anymore, instead, send only toolbarTools, which is an array of strings, where each string should be a valid tool type. eg. ['point', 'line', 'label']
-
-
-
-
+- tools, currentTool, defaultTool and hideLabel should not be used as params anymore, instead, send only toolbarTools, which is an array of strings, where each string should be a valid tool type. eg. ['point', 'line', 'label']
 
 ## [5.3.76](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.75...@pie-lib/demo@5.3.76) (2020-05-06)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.3.75](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.74...@pie-lib/demo@5.3.75) (2020-05-05)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.3.74](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.73...@pie-lib/demo@5.3.74) (2020-04-28)
-
 
 ### Bug Fixes
 
-* PD-69: A legacy multi-part item consisting of two equation response interactions appears with no response areas ([fff4ec7](https://github.com/pie-framework/pie-lib/commit/fff4ec7))
-
-
-
-
+- PD-69: A legacy multi-part item consisting of two equation response interactions appears with no response areas ([fff4ec7](https://github.com/pie-framework/pie-lib/commit/fff4ec7))
 
 ## [5.3.73](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.72...@pie-lib/demo@5.3.73) (2020-04-28)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.3.72](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.71...@pie-lib/demo@5.3.72) (2020-04-27)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.3.71](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.70...@pie-lib/demo@5.3.71) (2020-04-21)
-
 
 ### Bug Fixes
 
-* PD-156: Formatting issues with math editor buttons, specifically in IBX. Updated design for arrows and line, fixed fonts issue (different then expected + various function buttons are capitalized). ([61be51c](https://github.com/pie-framework/pie-lib/commit/61be51c))
-* PD-19: Sentence parser was not working properly - updated the package version. ([057a88e](https://github.com/pie-framework/pie-lib/commit/057a88e))
-
-
-
-
+- PD-156: Formatting issues with math editor buttons, specifically in IBX. Updated design for arrows and line, fixed fonts issue (different then expected + various function buttons are capitalized). ([61be51c](https://github.com/pie-framework/pie-lib/commit/61be51c))
+- PD-19: Sentence parser was not working properly - updated the package version. ([057a88e](https://github.com/pie-framework/pie-lib/commit/057a88e))
 
 ## [5.3.70](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.69...@pie-lib/demo@5.3.70) (2020-04-15)
 
-
 ### Bug Fixes
 
-* **math-evaluator:** support `x^(1/y) == sqrt(x,y)` PD-3 ([fa148ff](https://github.com/pie-framework/pie-lib/commit/fa148ff))
-
-
-
-
+- **math-evaluator:** support `x^(1/y) == sqrt(x,y)` PD-3 ([fa148ff](https://github.com/pie-framework/pie-lib/commit/fa148ff))
 
 ## [5.3.69](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.68...@pie-lib/demo@5.3.69) (2020-04-14)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.3.68](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.67...@pie-lib/demo@5.3.68) (2020-04-10)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [5.3.67](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.66...@pie-lib/demo@5.3.67) (2020-04-08)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.3.66](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.65...@pie-lib/demo@5.3.66) (2020-03-31)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [5.3.65](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.64...@pie-lib/demo@5.3.65) (2020-03-31)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.3.64](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.63...@pie-lib/demo@5.3.64) (2020-03-31)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.3.63](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.62...@pie-lib/demo@5.3.63) (2020-03-31)
-
 
 ### Bug Fixes
 
-* rm charting-config ([4e28693](https://github.com/pie-framework/pie-lib/commit/4e28693))
-
-
-
-
+- rm charting-config ([4e28693](https://github.com/pie-framework/pie-lib/commit/4e28693))
 
 ## [5.3.62](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.61...@pie-lib/demo@5.3.62) (2020-03-30)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.3.61](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.60...@pie-lib/demo@5.3.61) (2020-03-30)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [5.3.60](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.59...@pie-lib/demo@5.3.60) (2020-03-30)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.3.59](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.58...@pie-lib/demo@5.3.59) (2020-03-30)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [5.3.58](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.57...@pie-lib/demo@5.3.58) (2020-03-30)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.3.57](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.56...@pie-lib/demo@5.3.57) (2020-03-30)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.3.56](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.55...@pie-lib/demo@5.3.56) (2020-03-30)
-
 
 ### Bug Fixes
 
-* add module prop to package.json ([1145ec0](https://github.com/pie-framework/pie-lib/commit/1145ec0))
-* bad import accessing lib ([3a6115e](https://github.com/pie-framework/pie-lib/commit/3a6115e))
-
-
-
-
+- add module prop to package.json ([1145ec0](https://github.com/pie-framework/pie-lib/commit/1145ec0))
+- bad import accessing lib ([3a6115e](https://github.com/pie-framework/pie-lib/commit/3a6115e))
 
 ## [5.3.55](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.54...@pie-lib/demo@5.3.55) (2020-03-29)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.3.54](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.53...@pie-lib/demo@5.3.54) (2020-03-29)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [5.3.53](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.52...@pie-lib/demo@5.3.53) (2020-03-23)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.3.52](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.51...@pie-lib/demo@5.3.52) (2020-03-23)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [5.3.51](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.50...@pie-lib/demo@5.3.51) (2020-03-18)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.3.50](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.49...@pie-lib/demo@5.3.50) (2020-03-18)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [5.3.49](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.48...@pie-lib/demo@5.3.49) (2020-03-18)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.3.48](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.47...@pie-lib/demo@5.3.48) (2020-03-18)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.3.47](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.46...@pie-lib/demo@5.3.47) (2020-03-18)
-
 
 ### Bug Fixes
 
-* 4136: Parabola graphing is amiss ([f915685](https://github.com/pie-framework/pie-lib/commit/f915685))
-
-
-
-
+- 4136: Parabola graphing is amiss ([f915685](https://github.com/pie-framework/pie-lib/commit/f915685))
 
 ## [5.3.46](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.45...@pie-lib/demo@5.3.46) (2020-03-06)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.3.45](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.44...@pie-lib/demo@5.3.45) (2020-02-25)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [5.3.44](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.43...@pie-lib/demo@5.3.44) (2020-02-20)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.3.43](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.42...@pie-lib/demo@5.3.43) (2020-02-20)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.3.42](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.41...@pie-lib/demo@5.3.42) (2020-02-18)
-
 
 ### Bug Fixes
 
-* 5325: Graphing: Axis labels overlapping numeric labels ([678c61a](https://github.com/pie-framework/pie-lib/commit/678c61a))
-
-
-
-
+- 5325: Graphing: Axis labels overlapping numeric labels ([678c61a](https://github.com/pie-framework/pie-lib/commit/678c61a))
 
 ## [5.3.41](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.40...@pie-lib/demo@5.3.41) (2020-02-15)
 
-
 ### Bug Fixes
 
-* rollback dnd bump ([a3a6b75](https://github.com/pie-framework/pie-lib/commit/a3a6b75))
-
-
-
-
+- rollback dnd bump ([a3a6b75](https://github.com/pie-framework/pie-lib/commit/a3a6b75))
 
 ## [5.3.40](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.39...@pie-lib/demo@5.3.40) (2020-02-14)
 
-
 ### Bug Fixes
 
-* bump react-dnd@^10 (no more esm default) ([06949d8](https://github.com/pie-framework/pie-lib/commit/06949d8))
-
-
-
-
+- bump react-dnd@^10 (no more esm default) ([06949d8](https://github.com/pie-framework/pie-lib/commit/06949d8))
 
 ## [5.3.39](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.38...@pie-lib/demo@5.3.39) (2020-02-11)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.3.38](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.37...@pie-lib/demo@5.3.38) (2020-02-05)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [5.3.37](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.36...@pie-lib/demo@5.3.37) (2020-01-27)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.3.36](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.35...@pie-lib/demo@5.3.36) (2020-01-16)
-
 
 ### Bug Fixes
 
-* text entry field for Explicit Constructed Response items renders text too small to comfortably read: prevent using a fontSize of 1rem (material-ui) and override that css property. ([cea881f](https://github.com/pie-framework/pie-lib/commit/cea881f))
-
-
-
-
+- text entry field for Explicit Constructed Response items renders text too small to comfortably read: prevent using a fontSize of 1rem (material-ui) and override that css property. ([cea881f](https://github.com/pie-framework/pie-lib/commit/cea881f))
 
 ## [5.3.35](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.34...@pie-lib/demo@5.3.35) (2019-12-19)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.3.34](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.33...@pie-lib/demo@5.3.34) (2019-12-18)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [5.3.33](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.32...@pie-lib/demo@5.3.33) (2019-12-18)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.3.32](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.31...@pie-lib/demo@5.3.32) (2019-12-17)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [5.3.31](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.30...@pie-lib/demo@5.3.31) (2019-12-13)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.3.30](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.29...@pie-lib/demo@5.3.30) (2019-12-13)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [5.3.29](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.27...@pie-lib/demo@5.3.29) (2019-12-12)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.3.28](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.27...@pie-lib/demo@5.3.28) (2019-12-12)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [5.3.27](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.26...@pie-lib/demo@5.3.27) (2019-12-10)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.3.26](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.25...@pie-lib/demo@5.3.26) (2019-12-10)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [5.3.25](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.24...@pie-lib/demo@5.3.25) (2019-12-09)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.3.24](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.23...@pie-lib/demo@5.3.24) (2019-12-03)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [5.3.23](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.22...@pie-lib/demo@5.3.23) (2019-11-28)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.3.22](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.21...@pie-lib/demo@5.3.22) (2019-11-19)
-
 
 ### Bug Fixes
 
-* ch3738 - support html in axis label ([82bfca1](https://github.com/pie-framework/pie-lib/commit/82bfca1))
-
-
-
-
+- ch3738 - support html in axis label ([82bfca1](https://github.com/pie-framework/pie-lib/commit/82bfca1))
 
 ## [5.3.21](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.20...@pie-lib/demo@5.3.21) (2019-11-18)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.3.20](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.19...@pie-lib/demo@5.3.20) (2019-11-07)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [5.3.19](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.18...@pie-lib/demo@5.3.19) (2019-11-05)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.3.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.17...@pie-lib/demo@5.3.18) (2019-11-05)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [5.3.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.16...@pie-lib/demo@5.3.17) (2019-10-10)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.3.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.15...@pie-lib/demo@5.3.16) (2019-10-08)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [5.3.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.14...@pie-lib/demo@5.3.15) (2019-10-08)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.3.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.13...@pie-lib/demo@5.3.14) (2019-09-27)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [5.3.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.12...@pie-lib/demo@5.3.13) (2019-09-27)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.3.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.11...@pie-lib/demo@5.3.12) (2019-09-04)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [5.3.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.10...@pie-lib/demo@5.3.11) (2019-08-27)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.3.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.9...@pie-lib/demo@5.3.10) (2019-08-21)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [5.3.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.8...@pie-lib/demo@5.3.9) (2019-08-21)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.3.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.7...@pie-lib/demo@5.3.8) (2019-08-19)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [5.3.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.6...@pie-lib/demo@5.3.7) (2019-08-19)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.3.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.5...@pie-lib/demo@5.3.6) (2019-08-16)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.3.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.4...@pie-lib/demo@5.3.5) (2019-08-16)
-
 
 ### Bug Fixes
 
-* **renderMath:** fixed the math rendering all over the app [ch3365], and [ch1915] ([2b0df91](https://github.com/pie-framework/pie-lib/commit/2b0df91))
-
-
-
-
+- **renderMath:** fixed the math rendering all over the app [ch3365], and [ch1915](<[2b0df91](https://github.com/pie-framework/pie-lib/commit/2b0df91)>)
 
 ## [5.3.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.3...@pie-lib/demo@5.3.4) (2019-08-16)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.3.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.2...@pie-lib/demo@5.3.3) (2019-08-14)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [5.3.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.1...@pie-lib/demo@5.3.2) (2019-08-12)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [5.3.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.3.0...@pie-lib/demo@5.3.1) (2019-08-08)
-
 
 ### Bug Fixes
 
-* **resparea:** moved the button for the response area functionality [ch1738] ([b3ffe68](https://github.com/pie-framework/pie-lib/commit/b3ffe68))
-
-
-
-
+- **resparea:** moved the button for the response area functionality [ch1738](<[b3ffe68](https://github.com/pie-framework/pie-lib/commit/b3ffe68)>)
 
 # [5.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.2.5...@pie-lib/demo@5.3.0) (2019-08-05)
 
-
 ### Features
 
-* **charting:** Add/remove categories, edit categories, interactive category, calculate step if it is not defined. ([48520a7](https://github.com/pie-framework/pie-lib/commit/48520a7))
-* **charting:** Added Dot Plot chart type and Line Plot chart type. (WIP) ([b9cafc3](https://github.com/pie-framework/pie-lib/commit/b9cafc3))
-* **charting:** added Line with Crosses Chart Type. Add rotation on categories name if they do not fit. Fixed issue with editing category name. ([ae58893](https://github.com/pie-framework/pie-lib/commit/ae58893))
-* Added interactive (user can drag to change category value) and deletable (delete category) properties. ([b3b5377](https://github.com/pie-framework/pie-lib/commit/b3b5377))
-* **charting:** Completed Bar chart type, added Histogram chart type and added Line chart type. (WIP) ([271b173](https://github.com/pie-framework/pie-lib/commit/271b173))
-
-
-
-
+- **charting:** Add/remove categories, edit categories, interactive category, calculate step if it is not defined. ([48520a7](https://github.com/pie-framework/pie-lib/commit/48520a7))
+- **charting:** Added Dot Plot chart type and Line Plot chart type. (WIP) ([b9cafc3](https://github.com/pie-framework/pie-lib/commit/b9cafc3))
+- **charting:** added Line with Crosses Chart Type. Add rotation on categories name if they do not fit. Fixed issue with editing category name. ([ae58893](https://github.com/pie-framework/pie-lib/commit/ae58893))
+- Added interactive (user can drag to change category value) and deletable (delete category) properties. ([b3b5377](https://github.com/pie-framework/pie-lib/commit/b3b5377))
+- **charting:** Completed Bar chart type, added Histogram chart type and added Line chart type. (WIP) ([271b173](https://github.com/pie-framework/pie-lib/commit/271b173))
 
 ## [5.2.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@5.2.4...@pie-lib/demo@5.2.5) (2019-07-25)
 
