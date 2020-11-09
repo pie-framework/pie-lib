@@ -39,25 +39,25 @@ const matchSoundCloudUrl = url => {
   return url.match(regexp) && url.match(regexp)[2];
 };
 
-const makeApiRequest = async url => {
-  try {
-    fetch(`https://soundcloud.com/oembed?format=json&url=${url}`)
-      .then(response => response.json())
-      .then(json => {
-        const d = document.createElement('div');
+const makeApiRequest = url => {
+  return new Promise(resolve => {
+    try {
+      fetch(`https://soundcloud.com/oembed?format=json&url=${url}`)
+        .then(response => response.json())
+        .then(json => {
+          const d = document.createElement('div');
 
-        d.innerHTML = json.html;
+          d.innerHTML = json.html;
 
-        const iframe = d.querySelector('iframe');
+          const iframe = d.querySelector('iframe');
 
-        return iframe.src;
-      })
-      .catch(log);
-  } catch (err) {
-    //
-  }
-
-  return '';
+          resolve(iframe.src);
+        })
+        .catch(log);
+    } catch (err) {
+      resolve('');
+    }
+  });
 };
 
 const typeMap = {
