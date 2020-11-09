@@ -41,15 +41,18 @@ const matchSoundCloudUrl = url => {
 
 const makeApiRequest = async url => {
   try {
-    const response = await fetch(`https://soundcloud.com/oembed?format=json&url=${url}`);
-    const json = await response.json();
-    const d = document.createElement('div');
+    fetch(`https://soundcloud.com/oembed?format=json&url=${url}`)
+      .then(response => response.json())
+      .then(json => {
+        const d = document.createElement('div');
 
-    d.innerHTML = json.html;
+        d.innerHTML = json.html;
 
-    const iframe = d.querySelector('iframe');
+        const iframe = d.querySelector('iframe');
 
-    return iframe.src;
+        return iframe.src;
+      })
+      .catch(log);
   } catch (err) {
     //
   }
@@ -154,15 +157,15 @@ export class MediaDialog extends React.Component {
     const { value } = e.target || {};
 
     if (matchSoundCloudUrl(value)) {
-      (async () => {
-        const urlToUse = await makeApiRequest(value);
-
-        this.handleStateChange({
-          urlToUse,
-          invalid: !urlToUse,
-          url: value
-        });
-      })();
+      makeApiRequest(value)
+        .then(urlToUse => {
+          this.handleStateChange({
+            urlToUse,
+            invalid: !urlToUse,
+            url: value
+          });
+        })
+        .catch(log);
 
       return;
     }
