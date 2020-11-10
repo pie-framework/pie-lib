@@ -10,6 +10,12 @@ const log = debug('@pie-lib:editable-html:test');
 
 const value = htmlToValue('hi');
 
+const resizeWindow = (width, height) => {
+  window.innerWidth = width;
+  window.innerHeight = height;
+  window.dispatchEvent(new Event('resize'));
+};
+
 jest.mock('@pie-lib/math-toolbar', () => ({}));
 jest.mock('@pie-lib/math-input', () => {
   HorizontalKeypad: () => <div>HorizontalKeypad</div>;
@@ -100,5 +106,23 @@ describe('buildSizeStyle', () => {
       width: undefined,
       height: undefined
     });
+  });
+});
+
+describe('onResize ',  () => {
+  it('should display html of current state on Resize', () => {
+    const wrapper = shallow(
+      <Editor editorRef={jest.fn()} value={value} classes={{}} onChange={jest.fn()} />
+    );
+
+    resizeWindow(500, 300);
+    expect(wrapper.state('value')).toEqualHtml('<div>hi</div>');
+    
+    wrapper.instance().onChange({ value: htmlToValue('new value') });
+    resizeWindow(1024, 768);
+    expect(wrapper.state('value')).toEqualHtml('<div>new value</div>');
+    
+    resizeWindow(500, 300);
+    expect(wrapper.state('value')).toEqualHtml('<div>new value</div>');
   });
 });

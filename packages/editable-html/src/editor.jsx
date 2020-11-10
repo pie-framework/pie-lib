@@ -234,6 +234,25 @@ export class Editor extends React.Component {
     this.props.onChange(this.state.value, true);
   };
 
+  onResize = () => {
+    this.props.onChange(this.state.value, true);
+  }
+
+  /**
+   * Add onResize event listener
+   */
+  componentDidMount() {
+    window.addEventListener("resize", this.onResize.bind(this));
+  }
+
+  
+  /**
+   * Remove onResize event listener
+   */
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.onResize.bind(this));
+  }
+
   // Allowing time for onChange to take effect if it is called
   handleBlur = resolve => {
     const { nonEmpty } = this.props;
