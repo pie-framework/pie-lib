@@ -65,20 +65,31 @@ export default class EditableHtml extends React.Component {
     }
   };
 
-  focus = position => {
+  focus = (position, node) => {
     if (this.editorRef) {
       this.editorRef.change(c => {
-        const lastText = c.value.document.getLastText();
+        const lastText = node
+          ? c.value.document.getNextText(node.key)
+          : c.value.document.getLastText();
+        const editorDOM = document.querySelector(
+          `[data-key="${this.editorRef.value.document.key}"]`
+        );
 
-        document.activeElement.blur();
+        if (editorDOM !== document.activeElement) {
+          document.activeElement.blur();
+        }
 
         c.focus();
 
-        if (position === 'end') {
+        if (position === 'end' && lastText) {
           c.moveFocusTo(lastText.key, lastText.text.length).moveAnchorTo(
             lastText.key,
             lastText.text.length
           );
+        }
+
+        if (position === 'beginning' && lastText) {
+          c.moveFocusTo(lastText.key, 0).moveAnchorTo(lastText.key, 0);
         }
       });
     }
@@ -96,7 +107,8 @@ export default class EditableHtml extends React.Component {
       ...this.props,
       markup: null,
       value,
-      onChange: this.onChange
+      onChange: this.onChange,
+      focus: this.focus
     };
 
     return <Editor editorRef={ref => ref && (this.editorRef = ref)} {...props} />;
