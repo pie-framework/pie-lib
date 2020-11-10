@@ -239,14 +239,6 @@ export class Editor extends React.Component {
   }
 
   /**
-   * Add onResize event listener
-   */
-  componentDidMount() {
-    window.addEventListener("resize", this.onResize.bind(this));
-  }
-
-  
-  /**
    * Remove onResize event listener
    */
   componentWillUnmount() {
