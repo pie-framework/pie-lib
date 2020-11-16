@@ -3,6 +3,7 @@
 exports[`CustomToolbarComp render renders with default keypadMode 1`] = `
 <MathToolbar
   autoFocus={true}
+  controlledKeypadMode={true}
   keypadMode="geometry"
   latex="foo"
   onChange={[Function]}
@@ -13,6 +14,7 @@ exports[`CustomToolbarComp render renders with default keypadMode 1`] = `
 exports[`CustomToolbarComp render renders with default keypadMode 2`] = `
 <MathToolbar
   autoFocus={true}
+  controlledKeypadMode={true}
   keypadMode={3}
   latex="foo"
   onChange={[Function]}
@@ -23,6 +25,7 @@ exports[`CustomToolbarComp render renders with default keypadMode 2`] = `
 exports[`CustomToolbarComp render renders without default keypadMode 1`] = `
 <MathToolbar
   autoFocus={true}
+  controlledKeypadMode={true}
   latex="foo"
   onChange={[Function]}
   onDone={[Function]}
@@ -32,6 +35,7 @@ exports[`CustomToolbarComp render renders without default keypadMode 1`] = `
 exports[`CustomToolbarComp render renders without default keypadMode 2`] = `
 <MathToolbar
   autoFocus={true}
+  controlledKeypadMode={true}
   keypadMode={3}
   latex="foo"
   onChange={[Function]}
