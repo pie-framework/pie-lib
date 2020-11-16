@@ -643,5 +643,35 @@
     "committerDate": "2020-10-13 08:46:41 +0300",
     "isTagged": true,
     "tag": "@pie-lib/mask-markup@1.9.0"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "upgrade react-dnd",
+    "merge": null,
+    "header": "fix: upgrade react-dnd",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "f5070252356e869faf8b7c00b910a19ed8701bc5",
+    "gitTags": "",
+    "committerDate": "2020-10-28 11:21:18 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/mask-markup@1.9.4"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "dropdown colors",
+    "merge": null,
+    "header": "fix: dropdown colors",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "143853db5de89387c410b8ee59b28860c4c610dd",
+    "gitTags": "",
+    "committerDate": "2020-10-28 11:20:39 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/mask-markup@1.9.4"
   }
 ]
