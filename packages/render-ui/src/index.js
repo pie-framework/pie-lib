@@ -7,6 +7,7 @@ import HtmlAndMath from './html-and-math';
 import InputContainer from './input-container';
 import PreviewPrompt from './preview-prompt';
 import Readable from './readable';
+import Purpose from './purpose';
 import * as color from './color';
 
 export {
@@ -19,5 +20,6 @@ export {
   InputContainer,
   PreviewPrompt,
   color,
-  Readable
+  Readable,
+  Purpose
 };
