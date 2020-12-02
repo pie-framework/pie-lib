@@ -171,8 +171,9 @@ export const TEXT_RULE = {
       const prevText = findPreviousText(br);
 
       if (prevText) {
+        br.replaceWith('\n');
+      } else {
         br.remove();
-        prevText.textContent += '\n';
       }
     });
 
