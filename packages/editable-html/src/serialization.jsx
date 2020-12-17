@@ -333,7 +333,6 @@ serializer.deserialize = function deserialize(html) {
     return memo;
   }, []);
 
-  // TODO: pretty sure this is no longer needed.
   if (nodes.length === 0) {
     nodes = [
       _extends({ object: 'block', data: {}, isVoid: false }, defaultBlock, {

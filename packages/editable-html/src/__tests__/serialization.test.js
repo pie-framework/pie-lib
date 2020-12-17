@@ -132,4 +132,165 @@ describe('htmlToValue', () => {
 
     expect(v.toJSON()).toEqual(expected);
   });
+
+  it('does not break', () => {
+    /*
+     More than 12 iterations of the same kind would previously break the input. Here we have 16 text nodes, and now it works.
+     */
+    const expected = {
+      object: 'value',
+      document: {
+        object: 'document',
+        data: {},
+        nodes: [
+          {
+            object: 'block',
+            type: 'div',
+            isVoid: false,
+            data: { attributes: {} },
+            nodes: [
+              {
+                object: 'text',
+                leaves: [
+                  {
+                    object: 'leaf',
+                    text: 'Foo ',
+                    marks: []
+                  },
+                  {
+                    object: 'leaf',
+                    text: 'x',
+                    marks: [
+                      {
+                        object: 'mark',
+                        type: 'italic',
+                        data: {}
+                      }
+                    ]
+                  },
+                  {
+                    object: 'leaf',
+                    text: ' bar ',
+                    marks: []
+                  },
+                  {
+                    object: 'leaf',
+                    text: 'x',
+                    marks: [
+                      {
+                        object: 'mark',
+                        type: 'italic',
+                        data: {}
+                      }
+                    ]
+                  },
+                  {
+                    object: 'leaf',
+                    text: ' Foo ',
+                    marks: []
+                  },
+                  {
+                    object: 'leaf',
+                    text: 'x',
+                    marks: [
+                      {
+                        object: 'mark',
+                        type: 'italic',
+                        data: {}
+                      }
+                    ]
+                  },
+                  {
+                    object: 'leaf',
+                    text: ' bar ',
+                    marks: []
+                  },
+                  {
+                    object: 'leaf',
+                    text: 'x',
+                    marks: [
+                      {
+                        object: 'mark',
+                        type: 'italic',
+                        data: {}
+                      }
+                    ]
+                  },
+                  {
+                    object: 'leaf',
+                    text: ' Foo ',
+                    marks: []
+                  },
+                  {
+                    object: 'leaf',
+                    text: 'x',
+                    marks: [
+                      {
+                        object: 'mark',
+                        type: 'italic',
+                        data: {}
+                      }
+                    ]
+                  },
+                  {
+                    object: 'leaf',
+                    text: ' bar ',
+                    marks: []
+                  },
+                  {
+                    object: 'leaf',
+                    text: 'x',
+                    marks: [
+                      {
+                        object: 'mark',
+                        type: 'italic',
+                        data: {}
+                      }
+                    ]
+                  },
+                  {
+                    object: 'leaf',
+                    text: ' Foo ',
+                    marks: []
+                  },
+                  {
+                    object: 'leaf',
+                    text: 'x',
+                    marks: [
+                      {
+                        object: 'mark',
+                        type: 'italic',
+                        data: {}
+                      }
+                    ]
+                  },
+                  {
+                    object: 'leaf',
+                    text: ' bar ',
+                    marks: []
+                  },
+                  {
+                    object: 'leaf',
+                    text: 'x',
+                    marks: [
+                      {
+                        object: 'mark',
+                        type: 'italic',
+                        data: {}
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    };
+    const html =
+      '<div>Foo <em>x</em> bar <em>x</em> Foo <em>x</em> bar <em>x</em> Foo <em>x</em> bar <em>x</em> Foo <em>x</em> bar <em>x</em></div>';
+    const v = htmlToValue(html);
+
+    expect(v.toJSON()).toEqual(expected);
+  });
 });
