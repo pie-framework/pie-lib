@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import get from 'lodash/get';
 import { withStyles } from '@material-ui/core/styles';
+import { MARK_TAGS } from './serialization';
 
 const Paragraph = withStyles(theme => ({
   para: {
@@ -20,6 +22,16 @@ const addText = (parentNode, text) => {
   } else {
     return text;
   }
+};
+
+const getMark = n => {
+  const mark = n.leaves.find(leave => get(leave, 'marks', []).length);
+
+  if (mark) {
+    return mark.marks[0];
+  }
+
+  return null;
 };
 
 export const renderChildren = (layout, value, onChange, rootRenderChildren, parentNode) => {
@@ -46,7 +58,20 @@ export const renderChildren = (layout, value, onChange, rootRenderChildren, pare
         const extraText = addText(parentNode, t);
         return extraText ? acc + extraText : acc;
       }, '');
-      if (content.length > 0) {
+      const mark = getMark(n);
+
+      if (mark) {
+        let markKey;
+
+        for (markKey in MARK_TAGS) {
+          if (MARK_TAGS[markKey] === mark.type) {
+            const Tag = markKey;
+
+            children.push(<Tag>{content}</Tag>);
+            break;
+          }
+        }
+      } else if (content.length > 0) {
         children.push(content);
       }
     } else {

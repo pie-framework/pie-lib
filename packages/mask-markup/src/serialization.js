@@ -1,5 +1,9 @@
+import React from 'react';
 import Html from 'slate-html-serializer';
 import { object as toStyleObject } from 'to-style';
+import debug from 'debug';
+
+const log = debug('@pie-lib:mask-markup:serialization');
 
 const INLINE = ['span'];
 const MARK = ['em', 'strong', 'u'];
@@ -84,7 +88,35 @@ const attributesToMap = el => (acc, attribute) => {
 
 const attributes = ['border', 'class', 'style'];
 
+/**
+ * Tags to marks.
+ *
+ * @type {Object}
+ */
+
+export const MARK_TAGS = {
+  b: 'bold',
+  em: 'italic',
+  u: 'underline',
+  s: 'strikethrough',
+  code: 'code'
+};
+
+const marks = {
+  deserialize(el, next) {
+    const mark = MARK_TAGS[el.tagName.toLowerCase()];
+    if (!mark) return;
+    log('[deserialize] mark: ', mark);
+    return {
+      object: 'mark',
+      type: mark,
+      nodes: next(el.childNodes)
+    };
+  }
+};
+
 const rules = [
+  marks,
   {
     /**
      * deserialize everything, we're not fussy about the dom structure for now.
