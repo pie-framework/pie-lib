@@ -9,7 +9,7 @@ import { serialization as mediaSerialization } from './plugins/media';
 import { serialization as listSerialization } from './plugins/list';
 import { serialization as tableSerialization } from './plugins/table';
 import { serialization as responseAreaSerialization } from './plugins/respArea';
-import { Mark } from 'slate';
+import { Mark, Value } from 'slate';
 
 const log = debug('@pie-lib:editable-html:serialization');
 
@@ -194,7 +194,7 @@ export const TEXT_RULE = {
       };
     }
 
-    if (el.nodeName == '#text') {
+    if (el.nodeName === '#text') {
       if (el.nodeValue && el.nodeValue.match(/<!--.*?-->/)) return;
 
       log('[text:deserialize] return text object..');
@@ -213,7 +213,7 @@ export const TEXT_RULE = {
   serialize(obj, children) {
     if (obj.object === 'string') {
       return children.split('\n').reduce((array, text, i) => {
-        if (i != 0) array.push(<br />);
+        if (i !== 0) array.push(<br />);
         array.push(text);
         return array;
       }, []);
@@ -274,6 +274,103 @@ const serializer = new Html({
   rules: RULES,
   parseHtml
 });
+
+const _extends =
+  Object.assign ||
+  function(target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+/**
+ * This is needed in order to override the function that eventually leads
+ * to the max iteration of 12, which in most cases it's not enough. The newer versions
+ * have a different way to calculate this, but updating to a newer version of slate
+ * requires a lot of work fixing other issues. So we just increase the rules by 1000,
+ * which means a lot of iterations.
+ * Below is the code that calculates the max iterations.
+ * var max = schema.stack.plugins.length + schema.rules.length + 1;
+ */
+serializer.deserialize = function deserialize(html) {
+  const options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  const _options$toJSON = options.toJSON;
+  const toJSON = _options$toJSON === undefined ? false : _options$toJSON;
+  const defaultBlock = this.defaultBlock;
+  const parseHtml = this.parseHtml;
+
+  const fragment = parseHtml(html);
+  const children = Array.from(fragment.childNodes);
+  let nodes = this.deserializeElements(children);
+
+  // COMPAT: ensure that all top-level inline nodes are wrapped into a block.
+  nodes = nodes.reduce(function(memo, node, i, original) {
+    if (node.object === 'block') {
+      memo.push(node);
+      return memo;
+    }
+
+    if (i > 0 && original[i - 1].object !== 'block') {
+      const _block = memo[memo.length - 1];
+
+      _block.nodes.push(node);
+      return memo;
+    }
+
+    const block = _extends({ object: 'block', data: {}, isVoid: false }, defaultBlock, {
+      nodes: [node]
+    });
+
+    memo.push(block);
+    return memo;
+  }, []);
+
+  // TODO: pretty sure this is no longer needed.
+  if (nodes.length === 0) {
+    nodes = [
+      _extends({ object: 'block', data: {}, isVoid: false }, defaultBlock, {
+        nodes: [{ object: 'text', leaves: [{ object: 'leaf', text: '', marks: [] }] }]
+      })
+    ];
+  }
+
+  const json = {
+    object: 'value',
+    document: {
+      object: 'document',
+      data: {},
+      nodes: nodes
+    },
+    schema: {
+      rules: []
+    }
+  };
+
+  let i;
+
+  for (i = 0; i < 1000; i++) {
+    json.schema.rules.push({
+      match: { object: 'document' },
+      nodes: [{ match: { object: 'block' } }]
+    });
+  }
+
+  const ret = toJSON ? json : Value.fromJSON(json);
+
+  if (ret) {
+    return ret;
+  }
+
+  return null;
+};
 
 export const htmlToValue = html => serializer.deserialize(html);
 
