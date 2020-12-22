@@ -3,6 +3,10 @@ import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import * as color from './color';
 
+//Used these below to replace \\embed{newLine} with \\newline from prompt which will get parsed in MathJax  
+const NEWLINE_BLOCK_REGEX = /\\embed\{newLine\}\[\]/g;
+const NEWLINE_LATEX = "\\newline ";
+
 export class PreviewPrompt extends Component {
     static propTypes = {
         classes: PropTypes.object,
@@ -14,10 +18,11 @@ export class PreviewPrompt extends Component {
     render() {
         const { prompt, classes, tagName, className} = this.props;
         const CustomTag = tagName || "div";
-        const customClasses = `${classes.promptTable} ${ classes[className] || ""} `
+        const customClasses = `${classes.promptTable} ${ classes[className] || ""} `;
+
         return (
             <CustomTag className={customClasses}
-                dangerouslySetInnerHTML={{ __html: prompt }}
+                dangerouslySetInnerHTML={{ __html: prompt.replace(NEWLINE_BLOCK_REGEX, NEWLINE_LATEX) }}
             />
         )
     }
