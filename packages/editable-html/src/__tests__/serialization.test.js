@@ -16,6 +16,9 @@ describe('TEXT_RULE', () => {
     return {
       remove: jest.fn(),
       previousSibling,
+      replaceWith: foo => {
+        previousSibling.textContent = previousSibling.textContent.replace(/(<br>)|(<\/br>)/g, foo);
+      },
       normalize: jest.fn().mockReturnThis(),
       tagName: 'br'
     };
@@ -33,8 +36,8 @@ describe('TEXT_RULE', () => {
   });
 
   describe('deserialize', () => {
-    it('adds new line to previous text node', () => {
-      const textNode = mkTextNode('hi');
+    it('adds new line instead of breakpoint', () => {
+      const textNode = mkTextNode('hi<br>');
       const br = mkBr(textNode);
       const el = mkEl([br]);
       const out = TEXT_RULE.deserialize(el);
@@ -66,7 +69,6 @@ describe('htmlToValue', () => {
             data: {
               attributes: {}
             },
-            isVoid: false,
             nodes: [
               {
                 object: 'block',
@@ -75,7 +77,6 @@ describe('htmlToValue', () => {
                 data: {
                   attributes: {}
                 },
-                isVoid: false,
                 nodes: [
                   {
                     object: 'text',
@@ -127,6 +128,167 @@ describe('htmlToValue', () => {
       }
     };
     const html = `<div><p>foo<img src="blah.jpg"/>bar</p></div>`;
+    const v = htmlToValue(html);
+
+    expect(v.toJSON()).toEqual(expected);
+  });
+
+  it('does not break', () => {
+    /*
+     More than 12 iterations of the same kind would previously break the input. Here we have 16 text nodes, and now it works.
+     */
+    const expected = {
+      object: 'value',
+      document: {
+        object: 'document',
+        data: {},
+        nodes: [
+          {
+            object: 'block',
+            type: 'div',
+            isVoid: false,
+            data: { attributes: {} },
+            nodes: [
+              {
+                object: 'text',
+                leaves: [
+                  {
+                    object: 'leaf',
+                    text: 'Foo ',
+                    marks: []
+                  },
+                  {
+                    object: 'leaf',
+                    text: 'x',
+                    marks: [
+                      {
+                        object: 'mark',
+                        type: 'italic',
+                        data: {}
+                      }
+                    ]
+                  },
+                  {
+                    object: 'leaf',
+                    text: ' bar ',
+                    marks: []
+                  },
+                  {
+                    object: 'leaf',
+                    text: 'x',
+                    marks: [
+                      {
+                        object: 'mark',
+                        type: 'italic',
+                        data: {}
+                      }
+                    ]
+                  },
+                  {
+                    object: 'leaf',
+                    text: ' Foo ',
+                    marks: []
+                  },
+                  {
+                    object: 'leaf',
+                    text: 'x',
+                    marks: [
+                      {
+                        object: 'mark',
+                        type: 'italic',
+                        data: {}
+                      }
+                    ]
+                  },
+                  {
+                    object: 'leaf',
+                    text: ' bar ',
+                    marks: []
+                  },
+                  {
+                    object: 'leaf',
+                    text: 'x',
+                    marks: [
+                      {
+                        object: 'mark',
+                        type: 'italic',
+                        data: {}
+                      }
+                    ]
+                  },
+                  {
+                    object: 'leaf',
+                    text: ' Foo ',
+                    marks: []
+                  },
+                  {
+                    object: 'leaf',
+                    text: 'x',
+                    marks: [
+                      {
+                        object: 'mark',
+                        type: 'italic',
+                        data: {}
+                      }
+                    ]
+                  },
+                  {
+                    object: 'leaf',
+                    text: ' bar ',
+                    marks: []
+                  },
+                  {
+                    object: 'leaf',
+                    text: 'x',
+                    marks: [
+                      {
+                        object: 'mark',
+                        type: 'italic',
+                        data: {}
+                      }
+                    ]
+                  },
+                  {
+                    object: 'leaf',
+                    text: ' Foo ',
+                    marks: []
+                  },
+                  {
+                    object: 'leaf',
+                    text: 'x',
+                    marks: [
+                      {
+                        object: 'mark',
+                        type: 'italic',
+                        data: {}
+                      }
+                    ]
+                  },
+                  {
+                    object: 'leaf',
+                    text: ' bar ',
+                    marks: []
+                  },
+                  {
+                    object: 'leaf',
+                    text: 'x',
+                    marks: [
+                      {
+                        object: 'mark',
+                        type: 'italic',
+                        data: {}
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    };
+    const html =
+      '<div>Foo <em>x</em> bar <em>x</em> Foo <em>x</em> bar <em>x</em> Foo <em>x</em> bar <em>x</em> Foo <em>x</em> bar <em>x</em></div>';
     const v = htmlToValue(html);
 
     expect(v.toJSON()).toEqual(expected);

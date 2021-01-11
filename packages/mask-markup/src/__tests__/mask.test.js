@@ -92,6 +92,41 @@ describe('Mask', () => {
       expect(wrapper).toMatchSnapshot();
     });
 
+    it.only('renders correctly a em', () => {
+      wrapper.setProps({
+        layout: {
+          nodes: [
+            {
+              leaves: [{ text: 'Foo ' }],
+              object: 'text'
+            },
+            {
+              leaves: [
+                {
+                  marks: [
+                    {
+                      data: undefined,
+                      type: 'italic'
+                    }
+                  ],
+                  text: 'x'
+                }
+              ],
+              object: 'text'
+            },
+            {
+              leaves: [{ text: ' bar' }],
+              object: 'text'
+            }
+          ],
+          object: 'block',
+          type: 'div'
+        }
+      });
+
+      expect(wrapper).toMatchSnapshot();
+    });
+
     const da = () => ({ data: { attributes: {} } });
     it('renders without space under tbody', () => {
       wrapper.setProps({
