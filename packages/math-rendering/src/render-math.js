@@ -16,6 +16,7 @@ import debug from 'debug';
 import { wrapMath, unWrapMath } from './normalization';
 import { MmlFactory } from 'mathjax-full/js/core/MmlTree/MmlFactory';
 import { CHTMLWrapperFactory } from 'mathjax-full/js/output/chtml/WrapperFactory';
+import { CHTMLmspace } from 'mathjax-full/js/output/chtml/Wrappers/mspace';
 
 const log = debug('pie-lib:math-rendering');
 
@@ -154,5 +155,21 @@ const renderMath = (el, renderOpts) => {
     getGlobal().instance.Typeset(...arr);
   }
 };
+
+/**
+ * This style is added to overried default styling of mjx-mspace Mathjax tag
+ * In mathjax src code \newline latex gets parsed to <mjx-mspace></mjx-mspace>,
+ * but has the default style 
+ * 'mjx-mspace': {
+    "display": 'in-line',
+    "text-align": 'left'
+  } which prevents it from showing as a newline value
+ */
+CHTMLmspace.styles = {
+  'mjx-mspace': {
+    "display": 'block',
+    "text-align": 'center'
+  }
+}
 
 export default renderMath;
