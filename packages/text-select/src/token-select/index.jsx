@@ -78,7 +78,8 @@ export class TokenSelect extends React.Component {
       const selectable = t.selected || (t.selectable && this.canSelectMore(selectedCount));
       const showCorrectAnswer = t.correct !== undefined && (t.selectable || t.selected);
 
-      if ((selectable && !disabled) || showCorrectAnswer) {
+      if (!disabled || showCorrectAnswer) {
+        //modified (selectable && !disabled) to !disabled to fix PD-646
         return (
           accumulator +
           renderToString(

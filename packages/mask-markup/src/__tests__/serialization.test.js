@@ -11,7 +11,43 @@ describe('serialization', () => {
     expect(out.document.nodes[0]).toEqual(
       expect.objectContaining({
         type: 'div',
-        nodes: [expect.objectContaining({ object: 'text', leaves: [{ text: 'foo' }] })]
+        nodes: [
+          expect.objectContaining({
+            object: 'text',
+            leaves: [{ text: 'foo' }]
+          })
+        ]
+      })
+    );
+  });
+
+  it('deserializes an em', () => {
+    const out = deserialize(`<!-- hi --><div> <em>x</em> </div>`);
+    expect(out.document.nodes[0]).toEqual(
+      expect.objectContaining({
+        type: 'div',
+        nodes: [
+          expect.objectContaining({
+            object: 'text'
+          }),
+          expect.objectContaining({
+            leaves: [
+              {
+                marks: [
+                  {
+                    data: undefined,
+                    type: 'italic'
+                  }
+                ],
+                text: 'x'
+              }
+            ],
+            object: 'text'
+          }),
+          expect.objectContaining({
+            object: 'text'
+          })
+        ]
       })
     );
   });

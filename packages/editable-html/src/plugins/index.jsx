@@ -69,7 +69,9 @@ export const ALL_PLUGINS = [
   'responseArea'
 ];
 
-export const DEFAULT_PLUGINS = ALL_PLUGINS.filter(plug => plug !== 'responseArea' && plug !== 'audio' && plug !== 'video');
+export const DEFAULT_PLUGINS = ALL_PLUGINS.filter(
+  plug => plug !== 'responseArea' && plug !== 'audio' && plug !== 'video'
+);
 
 export const buildPlugins = (activePlugins, opts) => {
   log('[buildPlugins] opts: ', opts);

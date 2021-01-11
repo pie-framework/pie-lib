@@ -14,6 +14,16 @@ exports[`Mask render renders correctly a div 1`] = `
 </div>
 `;
 
+exports[`Mask render renders correctly a em 1`] = `
+<div>
+  Foo 
+  <em>
+    x
+  </em>
+   bar
+</div>
+`;
+
 exports[`Mask render renders correctly a paragraph 1`] = `
 <div>
   <WithStyles(Component)
