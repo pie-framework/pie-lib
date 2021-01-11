@@ -7,6 +7,9 @@ import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 const log = debug('@pie-lib:math-toolbar:editor-and-pad');
 import { color } from '@pie-lib/render-ui';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+import { InputContainer } from '@pie-lib/config-ui';
 
 const decimalRegex = /\.|,/g;
 
@@ -36,6 +39,7 @@ export class EditorAndPad extends React.Component {
     allowAnswerBlock: PropTypes.bool,
     showKeypad: PropTypes.bool,
     controlledKeypad: PropTypes.bool,
+    controlledKeypadMode: PropTypes.bool,
     noDecimal: PropTypes.bool,
     additionalKeys: PropTypes.array,
     latex: PropTypes.string.isRequired,
@@ -45,6 +49,12 @@ export class EditorAndPad extends React.Component {
     onChange: PropTypes.func.isRequired,
     classes: PropTypes.object
   };
+
+  constructor(props) {
+    super(props);
+
+    this.state = { equationEditor: 'everything' };
+  }
 
   componentDidMount() {
     if (this.input && this.props.autoFocus) {
@@ -98,7 +108,7 @@ export class EditorAndPad extends React.Component {
 
   /** Only render if the mathquill instance's latex is different
    * or the keypad state changed from one state to the other (shown / hidden) */
-  shouldComponentUpdate(nextProps) {
+  shouldComponentUpdate(nextProps, nextState) {
     const inputIsDifferent = this.input.mathField.latex() !== nextProps.latex;
     log('[shouldComponentUpdate] ', 'inputIsDifferent: ', inputIsDifferent);
 
@@ -110,12 +120,20 @@ export class EditorAndPad extends React.Component {
       return true;
     }
 
+    if (!inputIsDifferent && this.state.equationEditor !== nextState.equationEditor) {
+      return true;
+    }
+
     if (!inputIsDifferent && this.props.controlledKeypad) {
       return this.props.showKeypad !== nextProps.showKeypad;
     }
 
     return inputIsDifferent;
   }
+
+  onEditorTypeChange = evt => {
+    this.setState({ equationEditor: evt.target.value });
+  };
 
   render() {
     const {
@@ -124,6 +142,7 @@ export class EditorAndPad extends React.Component {
       allowAnswerBlock,
       additionalKeys,
       controlledKeypad,
+      controlledKeypadMode,
       showKeypad,
       noDecimal,
       latex,
@@ -137,14 +156,38 @@ export class EditorAndPad extends React.Component {
 
     return (
       <div className={cx(classes.mathToolbar, classNames.mathToolbar)}>
-        <mq.Input
-          onFocus={onFocus}
-          onBlur={onBlur}
-          className={cx(classes.mathEditor, classNames.editor)}
-          innerRef={r => (this.input = r)}
-          latex={latex}
-          onChange={this.onEditorChange}
-        />
+        <div className={classes.inputAndTypeContainer}>
+          {controlledKeypadMode && (
+            <InputContainer label="Equation Editor" className={classes.selectContainer}>
+              <Select
+                className={classes.select}
+                onChange={this.onEditorTypeChange}
+                value={this.state.equationEditor}
+              >
+                <MenuItem value={1}>Grade 1 - 2</MenuItem>
+                <MenuItem value={3}>Grade 3 - 5</MenuItem>
+                <MenuItem value={6}>Grade 6 - 7</MenuItem>
+                <MenuItem value={8}>Grade 8 - HS</MenuItem>
+                <MenuItem value={'geometry'}>Geometry</MenuItem>
+                <MenuItem value={'advanced-algebra'}>Advanced Algebra</MenuItem>
+                <MenuItem value={'statistics'}>Statistics</MenuItem>
+                <MenuItem value={'everything'}>Everything</MenuItem>
+              </Select>
+            </InputContainer>
+          )}
+          <mq.Input
+            onFocus={onFocus}
+            onBlur={onBlur}
+            className={cx(
+              classes.mathEditor,
+              classNames.editor,
+              !controlledKeypadMode ? classes.longMathEditor : ''
+            )}
+            innerRef={r => (this.input = r)}
+            latex={latex}
+            onChange={this.onEditorChange}
+          />
+        </div>
         {allowAnswerBlock && (
           <Button
             className={classes.addAnswerBlockButton}
@@ -159,7 +202,7 @@ export class EditorAndPad extends React.Component {
         {shouldShowKeypad && (
           <HorizontalKeypad
             additionalKeys={additionalKeys}
-            mode={keypadMode}
+            mode={controlledKeypadMode ? this.state.equationEditor : keypadMode}
             onClick={this.onClick}
             noDecimal={noDecimal}
           />
@@ -170,12 +213,29 @@ export class EditorAndPad extends React.Component {
 }
 
 const styles = theme => ({
+  inputAndTypeContainer: {
+    display: 'flex',
+    alignItems: 'center'
+  },
+  selectContainer: {
+    flex: 'initial',
+    width: '25%',
+    minWidth: '100px',
+    marginLeft: '15px',
+    marginTop: '5px',
+    marginBottom: '5px',
+    marginRight: '5px'
+  },
   mathEditor: {
+    maxWidth: '400px',
     color: color.text(),
     backgroundColor: color.background(),
     padding: theme.spacing.unit,
     marginTop: theme.spacing.unit,
     marginBottom: theme.spacing.unit
+  },
+  longMathEditor: {
+    maxWidth: '500px'
   },
   addAnswerBlockButton: {
     position: 'absolute',

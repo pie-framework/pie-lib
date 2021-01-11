@@ -4,12 +4,14 @@ exports[`snapshot renders 1`] = `
 <div
   className=""
 >
-  <WithStyles(Input)
-    className=""
-    innerRef={[Function]}
-    onBlur={[MockFunction]}
-    onChange={[Function]}
-  />
+  <div>
+    <WithStyles(Input)
+      className=""
+      innerRef={[Function]}
+      onBlur={[MockFunction]}
+      onChange={[Function]}
+    />
+  </div>
   <hr />
   <HorizontalKeypad
     additionalKeys={Array []}
