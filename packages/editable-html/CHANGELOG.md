@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.15.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.14.1...@pie-lib/editable-html@7.15.0) (2021-01-11)
+
+
+### Bug Fixes
+
+* Added fix for text wrapping into next line and also font style is overrided by parent styling ([60ff10f](https://github.com/pie-framework/pie-lib/commit/60ff10f))
+* Due to resize of window, editor text gets reverted to previous state value. PD-356 ([c710829](https://github.com/pie-framework/pie-lib/commit/c710829))
+* Due to resize of window, editor text gets reverted to previous state value. PD-356 ([9f6b988](https://github.com/pie-framework/pie-lib/commit/9f6b988))
+
+
+### Features
+
+* **editable-html:** add better math keypad support - PD-355 ([bc4e586](https://github.com/pie-framework/pie-lib/commit/bc4e586))
+
+
+
+
+
 ## [7.14.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.14.0...@pie-lib/editable-html@7.14.1) (2020-11-09)
 
 **Note:** Version bump only for package @pie-lib/editable-html

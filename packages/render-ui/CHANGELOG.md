@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.10.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.9.4...@pie-lib/render-ui@4.10.0) (2021-01-11)
+
+
+### Features
+
+* **render-ui:** add readable component for pie tagging ([5b76d67](https://github.com/pie-framework/pie-lib/commit/5b76d67))
+* **render-ui:** pie-purpose wrapper component added - PD-579 ([308f553](https://github.com/pie-framework/pie-lib/commit/308f553))
+
+
+
+
+
 ## [4.9.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.9.3...@pie-lib/render-ui@4.9.4) (2020-10-29)
 
 

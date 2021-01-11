@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.10.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.9.5...@pie-lib/mask-markup@1.10.0) (2021-01-11)
+
+
+### Features
+
+* **mask-markup:** inline-dropdown color treatment fixed ([60072de](https://github.com/pie-framework/pie-lib/commit/60072de))
+
+
+
+
+
 ## [1.9.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.9.4...@pie-lib/mask-markup@1.9.5) (2020-10-29)
 
 **Note:** Version bump only for package @pie-lib/mask-markup

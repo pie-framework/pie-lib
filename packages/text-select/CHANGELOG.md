@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.7.2...@pie-lib/text-select@1.7.3) (2021-01-11)
+
+
+### Bug Fixes
+
+* Added fix for style changes after selection of max tokens PD-646 ([30183a9](https://github.com/pie-framework/pie-lib/commit/30183a9))
+
+
+
+
+
 ## [1.7.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.7.1...@pie-lib/text-select@1.7.2) (2020-10-29)
 
 **Note:** Version bump only for package @pie-lib/text-select

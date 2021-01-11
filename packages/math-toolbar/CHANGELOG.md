@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.6.0...@pie-lib/math-toolbar@1.7.0) (2021-01-11)
+
+
+### Features
+
+* **math-toolbar:** add better math keypad support - PD-355 ([2a67078](https://github.com/pie-framework/pie-lib/commit/2a67078))
+
+
+
+
+
 # [1.6.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.5.9...@pie-lib/math-toolbar@1.6.0) (2020-10-07)
 
 
