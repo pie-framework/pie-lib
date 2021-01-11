@@ -708,5 +708,20 @@
     "committerDate": "2020-09-21 12:51:32 +0300",
     "isTagged": true,
     "tag": "@pie-lib/math-toolbar@1.6.0"
+  },
+  {
+    "type": "feat",
+    "scope": "math-toolbar",
+    "subject": "add better math keypad support - PD-355",
+    "merge": null,
+    "header": "feat(math-toolbar): add better math keypad support - PD-355",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "2a670788ec2d2f4c3ca65947608bff804d7c0f10",
+    "gitTags": "",
+    "committerDate": "2020-11-16 13:50:38 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/math-toolbar@1.7.0"
   }
 ]

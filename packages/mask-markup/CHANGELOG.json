@@ -673,5 +673,20 @@
     "committerDate": "2020-10-28 11:20:39 +0000",
     "isTagged": true,
     "tag": "@pie-lib/mask-markup@1.9.4"
+  },
+  {
+    "type": "feat",
+    "scope": "mask-markup",
+    "subject": "inline-dropdown color treatment fixed",
+    "merge": null,
+    "header": "feat(mask-markup): inline-dropdown color treatment fixed",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "60072de8e4171c6214f161b49e72ab1854df3e1a",
+    "gitTags": " (origin/feat/PD-508-inline-dropdown-special)",
+    "committerDate": "2020-11-26 13:45:03 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/mask-markup@1.10.0"
   }
 ]
