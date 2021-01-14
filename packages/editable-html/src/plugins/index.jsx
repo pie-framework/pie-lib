@@ -1,5 +1,5 @@
 import Bold from '@material-ui/icons/FormatBold';
-import Code from '@material-ui/icons/Code';
+// import Code from '@material-ui/icons/Code';
 import BulletedListIcon from '@material-ui/icons/FormatListBulleted';
 import NumberedListIcon from '@material-ui/icons/FormatListNumbered';
 import ImagePlugin from './image';
@@ -55,7 +55,7 @@ function MarkHotkey(options) {
 
 export const ALL_PLUGINS = [
   'bold',
-  'code',
+  // 'code',
   'italic',
   'underline',
   'strikethrough',
@@ -89,7 +89,7 @@ export const buildPlugins = (activePlugins, opts) => {
   return compact([
     addIf('table', TablePlugin(opts.table, compact([imagePlugin, mathPlugin, respAreaPlugin]))),
     addIf('bold', MarkHotkey({ key: 'b', type: 'bold', icon: <Bold />, tag: 'strong' })),
-    addIf('code', MarkHotkey({ key: '`', type: 'code', icon: <Code /> })),
+    // addIf('code', MarkHotkey({ key: '`', type: 'code', icon: <Code /> })),
     addIf('italic', MarkHotkey({ key: 'i', type: 'italic', icon: <Italic />, tag: 'em' })),
     addIf(
       'strikethrough',
