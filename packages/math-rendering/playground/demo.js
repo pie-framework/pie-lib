@@ -31,7 +31,19 @@ const MathJax = require('mathjax3/mathjax3/mathjax.js').MathJax; // MathJax core
 const MathML = require('mathjax3/mathjax3/input/mathml.js').MathML; // MathML input
 const CHTML = require('mathjax3/mathjax3/output/chtml.js').CHTML; // HTML output
 const adaptor = require('mathjax3/mathjax3/adaptors/browserAdaptor').browserAdaptor; // browser DOM
-
+const PACKAGES = [
+  'action',       'ams', 
+  'amscd',        'base',
+  'bbox',         'boldsymbol',
+  'braket',       'bussproofs',
+  'cancel',       'color',
+  'configmacros', 'enclose',
+  'extpfeil',     'html',
+  'mhchem',       'newcommand',
+  'noerrors',     'noundefined',
+  'tagformat',    'textmacros',
+  'unicode',      'verb'
+]
 //
 //  Register the HTML handler with the browser adaptor
 //
@@ -49,12 +61,13 @@ const htmlConfig = Object.assign(
   },
   MathJaxConfig.HTML || {}
 );
-
+const texConfig = { packages: PACKAGES, inlineMath: [['$', '$'], ['\\(', '\\)']], processEscapes: true, macros: {
+  parallelogram: '\\lower.2em{\\Large\\unicode{x25B1}}' }
 //
 //  Initialize mathjax with a DOM document.
 //
 const html = MathJax.document(document, {
-  InputJax: new MathML(mmlConfig),
+  InputJax: [new TeX(texConfig), new MathML(mmlConfig)],
   OutputJax: new CHTML(htmlConfig)
 });
 
@@ -64,7 +77,6 @@ const html = MathJax.document(document, {
 window.MathJax = {
   version: MathJax.version,
   html: html,
-
   Typeset: function(...elements) {
     this.html
       .findMath(elements.length ? { elements } : {})
