@@ -73,8 +73,10 @@ const bootstrap = opts => {
   }
 
   const texConfig = opts.useSingleDollar
-    ? { inlineMath: [['$', '$'], ['\\(', '\\)']], processEscapes: true }
-    : {};
+    ? { inlineMath: [['$', '$'], ['\\(', '\\)']], processEscapes: true, macros: {
+      parallelogram: '\\lower.2em{\\Large\\unicode{x25B1}}' } }
+    : { macros: {
+      parallelogram: '\\lower.2em{\\Large\\unicode{x25B1}}'}};
 
   const mmlConfig = {
     parseError: function(node) {
