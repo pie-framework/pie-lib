@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/render-ui",
-  "version": "4.10.0",
+  "version": "4.10.1",
   "description": "Some shared ui elements when rendering - but not worthy of their own package yet.",
   "module": "src/index.js",
   "main": "lib/index.js",
@@ -12,7 +12,7 @@
     "@material-ui/core": "^3.8.3",
     "@material-ui/icons": "^3.0.2",
     "@pie-lib/icons": "^2.4.20",
-    "@pie-lib/math-rendering": "^2.2.4",
+    "@pie-lib/math-rendering": "^2.3.0",
     "classnames": "^2.2.6",
     "debug": "^4.1.1",
     "prop-types": "^15.7.2",

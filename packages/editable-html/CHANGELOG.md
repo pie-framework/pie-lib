@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.16.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.15.0...@pie-lib/editable-html@7.16.0) (2021-01-25)
+
+
+### Features
+
+* **editable-html:** remove Code plugin - PD-463 ([d830231](https://github.com/pie-framework/pie-lib/commit/d830231))
+
+
+
+
+
 # [7.15.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.14.1...@pie-lib/editable-html@7.15.0) (2021-01-11)
 
 
