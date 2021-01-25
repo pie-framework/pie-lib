@@ -76,7 +76,6 @@ export default withStyles(theme => {
   return {
     token: {
       cursor: 'pointer',
-      display: 'inline-block',
       textIndent: 0,
       padding: theme.spacing.unit / 2,
       paddingRight: 0,
