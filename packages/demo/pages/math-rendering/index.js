@@ -47,10 +47,12 @@ const mathTwo = `<math xmlns="http://www.w3.org/1998/Math/MathML">
 </mstack>
 </math>`;
 
+const Latex = "\\(\\parallelogram\\)";
+
 class Demo extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { mounted: false, mathml: mathTwo };
+    this.state = { mounted: false, mathml: Latex };
   }
 
   componentDidMount() {
