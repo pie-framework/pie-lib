@@ -448,5 +448,20 @@
     "committerDate": "2020-10-26 15:30:32 +0200",
     "isTagged": true,
     "tag": "@pie-lib/text-select@1.7.1"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "Added fix for style changes after selection of max tokens PD-646",
+    "merge": null,
+    "header": "fix: Added fix for style changes after selection of max tokens PD-646",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "30183a9aa2524d3487bb2124f6cc487f3f8cefd3",
+    "gitTags": "",
+    "committerDate": "2020-11-17 13:47:26 +0530",
+    "isTagged": true,
+    "tag": "@pie-lib/text-select@1.7.3"
   }
 ]

@@ -768,5 +768,35 @@
     "committerDate": "2020-10-21 23:04:31 +0530",
     "isTagged": true,
     "tag": "@pie-lib/render-ui@4.9.4"
+  },
+  {
+    "type": "feat",
+    "scope": "render-ui",
+    "subject": "pie-purpose wrapper component added - PD-579",
+    "merge": null,
+    "header": "feat(render-ui): pie-purpose wrapper component added - PD-579",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "308f553463c428794f69ba48b14e096f99733c4e",
+    "gitTags": "",
+    "committerDate": "2020-11-17 14:16:25 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/render-ui@4.10.0"
+  },
+  {
+    "type": "feat",
+    "scope": "render-ui",
+    "subject": "add readable component for pie tagging",
+    "merge": null,
+    "header": "feat(render-ui): add readable component for pie tagging",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "5b76d67a89bb20cbc60bb1fc577296e6655fb3d6",
+    "gitTags": "",
+    "committerDate": "2020-11-02 16:42:12 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/render-ui@4.10.0"
   }
 ]
