@@ -608,5 +608,20 @@
     "committerDate": "2021-01-20 18:41:56 +0530",
     "isTagged": true,
     "tag": "@pie-lib/math-rendering@2.3.0"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "add lodash dependency",
+    "merge": null,
+    "header": "fix: add lodash dependency",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "de2227f0989b9e3db5e6b7c65d9f50d20b2d62e8",
+    "gitTags": "",
+    "committerDate": "2021-01-28 10:33:05 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/math-rendering@2.3.1"
   }
 ]
