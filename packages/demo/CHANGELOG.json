@@ -1188,5 +1188,20 @@
     "committerDate": "2020-10-28 11:21:18 +0000",
     "isTagged": true,
     "tag": "@pie-lib/demo@6.3.7"
+  },
+  {
+    "type": "feat",
+    "scope": null,
+    "subject": "demo changes include for the issue PD-368",
+    "merge": null,
+    "header": "feat: demo changes include for the issue PD-368",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "c493d9f47365035b8831d666e4225b9995dfc593",
+    "gitTags": "",
+    "committerDate": "2021-01-20 18:41:56 +0530",
+    "isTagged": true,
+    "tag": "@pie-lib/demo@6.4.0"
   }
 ]
