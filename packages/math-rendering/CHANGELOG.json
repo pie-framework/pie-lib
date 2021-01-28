@@ -593,5 +593,20 @@
     "committerDate": "2020-10-19 20:50:15 +0100",
     "isTagged": true,
     "tag": "@pie-lib/math-rendering@2.2.1"
+  },
+  {
+    "type": "feat",
+    "scope": null,
+    "subject": "demo changes include for the issue PD-368",
+    "merge": null,
+    "header": "feat: demo changes include for the issue PD-368",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "c493d9f47365035b8831d666e4225b9995dfc593",
+    "gitTags": "",
+    "committerDate": "2021-01-20 18:41:56 +0530",
+    "isTagged": true,
+    "tag": "@pie-lib/math-rendering@2.3.0"
   }
 ]

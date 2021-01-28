@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.3.12...@pie-lib/demo@6.4.0) (2021-01-25)
+
+
+### Features
+
+* demo changes include for the issue PD-368 ([c493d9f](https://github.com/pie-framework/pie-lib/commit/c493d9f))
+
+
+
+
+
 ## [6.3.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.3.11...@pie-lib/demo@6.3.12) (2021-01-11)
 
 **Note:** Version bump only for package @pie-lib/demo
