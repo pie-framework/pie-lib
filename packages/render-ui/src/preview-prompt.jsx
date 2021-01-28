@@ -23,7 +23,9 @@ export class PreviewPrompt extends Component {
     return (
       <CustomTag
         className={customClasses}
-        dangerouslySetInnerHTML={{ __html: prompt.replace(NEWLINE_BLOCK_REGEX, NEWLINE_LATEX) }}
+        dangerouslySetInnerHTML={{
+          __html: (prompt || '').replace(NEWLINE_BLOCK_REGEX, NEWLINE_LATEX)
+        }}
       />
     );
   }
@@ -38,7 +40,7 @@ const styles = theme => ({
     paddingLeft: theme.spacing.unit * 16
   },
   label: {
-    color: `${color.text()} !important`,
+    color: `${color.text()} !important`, //'var(--choice-input-color, black)',
     display: 'inline-block',
     verticalAlign: 'middle',
     cursor: 'pointer'

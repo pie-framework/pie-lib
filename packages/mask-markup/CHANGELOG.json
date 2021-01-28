@@ -684,7 +684,7 @@
     "footer": null,
     "notes": [],
     "hash": "60072de8e4171c6214f161b49e72ab1854df3e1a",
-    "gitTags": " (origin/feat/PD-508-inline-dropdown-special)",
+    "gitTags": "",
     "committerDate": "2020-11-26 13:45:03 +0200",
     "isTagged": true,
     "tag": "@pie-lib/mask-markup@1.10.0"
