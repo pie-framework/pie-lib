@@ -48,13 +48,14 @@ const RawInputCheckbox = props => {
         checked={checked}
         onChange={onChange}
         aria-label={label}
-        color={color || 'secondary'}
+        color={color}
       />
     </InputContainer>
   );
 };
 
 RawInputCheckbox.propTypes = { ...InputTypes };
+RawInputCheckbox.defaultProps = { color: 'secondary' };
 
 const RawInputRadio = props => {
   const { classes, className, label, checked, onChange, disabled, color } = props;
@@ -67,13 +68,14 @@ const RawInputRadio = props => {
         checked={checked}
         onChange={onChange}
         aria-label={label}
-        color={color || 'secondary'}
+        color={color}
       />
     </InputContainer>
   );
 };
 
 RawInputRadio.propTypes = { ...InputTypes };
+RawInputRadio.defaultProps = { color: 'secondary' };
 
 const InputCheckbox = withStyles({
   checkboxRoot: {
