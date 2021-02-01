@@ -6,10 +6,9 @@ import cx from 'classnames';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 const log = debug('@pie-lib:math-toolbar:editor-and-pad');
-import { color } from '@pie-lib/render-ui';
+import { color, InputContainer } from '@pie-lib/render-ui';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import { InputContainer } from '@pie-lib/config-ui';
 
 const decimalRegex = /\.|,/g;
 
