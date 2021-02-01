@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.10.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.10.2...@pie-lib/render-ui@4.10.3) (2021-01-28)
+
+
+### Bug Fixes
+
+* **render-ui:** make sure prompt replace has a value ([093fef7](https://github.com/pie-framework/pie-lib/commit/093fef7))
+
+
+
+
+
 ## [4.10.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.10.1...@pie-lib/render-ui@4.10.2) (2021-01-28)
 
 **Note:** Version bump only for package @pie-lib/render-ui

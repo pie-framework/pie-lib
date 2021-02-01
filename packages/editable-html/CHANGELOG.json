@@ -2873,5 +2873,20 @@
     "committerDate": "2020-11-10 12:52:02 +0530",
     "isTagged": true,
     "tag": "@pie-lib/editable-html@7.15.0"
+  },
+  {
+    "type": "feat",
+    "scope": "editable-html",
+    "subject": "remove Code plugin - PD-463",
+    "merge": null,
+    "header": "feat(editable-html): remove Code plugin - PD-463",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "d830231bfed94c3fa246e86d20a44be401130ddf",
+    "gitTags": " (origin/feat/PD-463)",
+    "committerDate": "2021-01-14 13:40:27 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.16.0"
   }
 ]
