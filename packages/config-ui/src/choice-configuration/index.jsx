@@ -104,7 +104,8 @@ export class ChoiceConfiguration extends React.Component {
       delete: PropTypes.func.isRequired
     }),
     allowFeedBack: PropTypes.bool,
-    allowDelete: PropTypes.bool
+    allowDelete: PropTypes.bool,
+    color: PropTypes.string
   };
 
   static defaultProps = {
@@ -112,7 +113,8 @@ export class ChoiceConfiguration extends React.Component {
     noLabels: false,
     useLetterOrdering: false,
     allowFeedBack: true,
-    allowDelete: true
+    allowDelete: true,
+    color: 'secondary'
   };
 
   _changeFn = key => update => {
@@ -170,7 +172,8 @@ export class ChoiceConfiguration extends React.Component {
       disabled,
       nonEmpty,
       allowFeedBack,
-      allowDelete
+      allowDelete,
+      color
     } = this.props;
 
     const InputToggle = mode === 'checkbox' ? InputCheckbox : InputRadio;
@@ -188,6 +191,7 @@ export class ChoiceConfiguration extends React.Component {
             onChange={this.onCheckedChange}
             label={!noLabels ? 'Correct' : ''}
             checked={!!data.correct}
+            color={color}
           />
           <div className={classes.middleColumn}>
             <EditableHtmlContainer

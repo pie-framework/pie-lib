@@ -38,7 +38,7 @@ const InputSwitch = withStyles({
 })(RawInputSwitch);
 
 const RawInputCheckbox = props => {
-  const { classes, className, label, checked, onChange, disabled } = props;
+  const { classes, className, label, checked, onChange, disabled, color } = props;
 
   return (
     <InputContainer className={className} label={label}>
@@ -48,6 +48,7 @@ const RawInputCheckbox = props => {
         checked={checked}
         onChange={onChange}
         aria-label={label}
+        color={color || 'secondary'}
       />
     </InputContainer>
   );
@@ -56,7 +57,7 @@ const RawInputCheckbox = props => {
 RawInputCheckbox.propTypes = { ...InputTypes };
 
 const RawInputRadio = props => {
-  const { classes, className, label, checked, onChange, disabled } = props;
+  const { classes, className, label, checked, onChange, disabled, color } = props;
 
   return (
     <InputContainer className={className} label={label}>
@@ -66,6 +67,7 @@ const RawInputRadio = props => {
         checked={checked}
         onChange={onChange}
         aria-label={label}
+        color={color || 'secondary'}
       />
     </InputContainer>
   );
