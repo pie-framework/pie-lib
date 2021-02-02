@@ -1,6 +1,6 @@
 import Checkbox from '@material-ui/core/Checkbox';
 import Radio from '@material-ui/core/Radio';
-import { InputContainer } from '@pie-lib/render-ui';
+import { InputContainer, color } from '@pie-lib/render-ui';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Switch from '@material-ui/core/Switch';
@@ -38,54 +38,62 @@ const InputSwitch = withStyles({
 })(RawInputSwitch);
 
 const RawInputCheckbox = props => {
-  const { classes, className, label, checked, onChange, disabled, color } = props;
+  const { classes, className, label, checked, onChange, disabled } = props;
 
   return (
     <InputContainer className={className} label={label}>
       <Checkbox
-        className={classes.checkboxRoot}
+        classes={{
+          root: classes.checkboxRoot,
+          checked: classes.checkboxChecked
+        }}
         disabled={disabled}
         checked={checked}
         onChange={onChange}
         aria-label={label}
-        color={color}
       />
     </InputContainer>
   );
 };
 
 RawInputCheckbox.propTypes = { ...InputTypes };
-RawInputCheckbox.defaultProps = { color: 'secondary' };
 
 const RawInputRadio = props => {
-  const { classes, className, label, checked, onChange, disabled, color } = props;
+  const { classes, className, label, checked, onChange, disabled } = props;
 
   return (
     <InputContainer className={className} label={label}>
       <Radio
-        className={classes.radioRoot}
+        classes={{
+          root: classes.radioRoot,
+          checked: classes.radioChecked
+        }}
         disabled={disabled}
         checked={checked}
         onChange={onChange}
         aria-label={label}
-        color={color}
       />
     </InputContainer>
   );
 };
 
 RawInputRadio.propTypes = { ...InputTypes };
-RawInputRadio.defaultProps = { color: 'secondary' };
 
 const InputCheckbox = withStyles({
   checkboxRoot: {
     transform: 'translate(-25%, 20%)'
+  },
+  checkboxChecked: {
+    color: `${color.primary()} !important`
   }
 })(RawInputCheckbox);
 
 const InputRadio = withStyles(() => ({
   radioRoot: {
     transform: 'translate(-20%, 20%)'
+  },
+  radioChecked: {
+    color: `${color.primary()} !important`
   }
 }))(RawInputRadio);
 
