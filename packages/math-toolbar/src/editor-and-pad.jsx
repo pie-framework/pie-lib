@@ -8,8 +8,9 @@ import { withStyles } from '@material-ui/core/styles';
 const log = debug('@pie-lib:math-toolbar:editor-and-pad');
 import { color } from '@pie-lib/render-ui';
 import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import { InputContainer } from '@pie-lib/config-ui';
+import InputLabel from '@material-ui/core/InputLabel';
 
 const decimalRegex = /\.|,/g;
 
@@ -158,7 +159,10 @@ export class EditorAndPad extends React.Component {
       <div className={cx(classes.mathToolbar, classNames.mathToolbar)}>
         <div className={classes.inputAndTypeContainer}>
           {controlledKeypadMode && (
-            <InputContainer label="Equation Editor" className={classes.selectContainer}>
+            <FormControl className={cx(classes.formControl, classes.selectContainer)}>
+              <InputLabel className={classes.label} shrink={true}>
+                Equation Editor
+              </InputLabel>
               <Select
                 className={classes.select}
                 onChange={this.onEditorTypeChange}
@@ -173,7 +177,7 @@ export class EditorAndPad extends React.Component {
                 <MenuItem value={'statistics'}>Statistics</MenuItem>
                 <MenuItem value={'everything'}>Everything</MenuItem>
               </Select>
-            </InputContainer>
+            </FormControl>
           )}
           <mq.Input
             onFocus={onFocus}
@@ -241,6 +245,18 @@ const styles = theme => ({
     position: 'absolute',
     right: '12px',
     border: '1px solid lightgrey'
+  },
+  formControl: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    paddingBottom: theme.spacing.unit,
+    flex: '1 0 auto',
+    minWidth: theme.spacing.unit * 4,
+    maxWidth: '160px'
+  },
+  label: {
+    fontSize: 'inherit',
+    whiteSpace: 'nowrap'
   },
   hr: {
     padding: 0,
