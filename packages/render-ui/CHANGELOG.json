@@ -798,5 +798,20 @@
     "committerDate": "2020-11-02 16:42:12 +0200",
     "isTagged": true,
     "tag": "@pie-lib/render-ui@4.10.0"
+  },
+  {
+    "type": "fix",
+    "scope": "render-ui",
+    "subject": "make sure prompt replace has a value",
+    "merge": null,
+    "header": "fix(render-ui): make sure prompt replace has a value",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "093fef7c25ac7bd52eb108430da791734eaff89f",
+    "gitTags": " (origin/fix/render-ui-prompt-fix)",
+    "committerDate": "2021-01-28 15:00:54 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/render-ui@4.10.3"
   }
 ]
