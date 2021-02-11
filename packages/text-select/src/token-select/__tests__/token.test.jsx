@@ -11,6 +11,20 @@ describe('token', () => {
             token: 'token',
             selectable: 'selectable'
           }}
+          text={'foo bar'}
+        />
+      );
+      expect(w).toMatchSnapshot();
+    });
+
+    it('renders with brs', () => {
+      const w = shallow(
+        <Token
+          classes={{
+            token: 'token',
+            selectable: 'selectable'
+          }}
+          text={'foo \nbar'}
         />
       );
       expect(w).toMatchSnapshot();

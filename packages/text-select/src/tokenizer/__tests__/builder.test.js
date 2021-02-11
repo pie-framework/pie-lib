@@ -62,6 +62,17 @@ describe('builder', () => {
       });
     };
     assert(
+      null,
+      [],
+      [
+        {
+          text: '',
+          start: 0,
+          end: 0
+        }
+      ]
+    );
+    assert(
       'abcde',
       [{ text: 'b', start: 1, end: 2 }, { text: 'd', start: 3, end: 4 }],
       [
@@ -169,6 +180,7 @@ describe('builder', () => {
       expect(out[0]).toEqual({ text: 'This is foo.', start: 0, end: 12 });
       expect(out[1]).toEqual({ text: 'This is bar.', start: 13, end: 25 });
     });
+
     it('works', () => {
       const text =
         'On Jan. 20, former Sen. Barack Obama became the 44th President of the USA. Millions attended the Inauguration.';
@@ -177,9 +189,16 @@ describe('builder', () => {
       expect(out.length).toEqual(2);
     });
 
+    it('works for sentences separated by \n', () => {
+      const text = 'This is foo\nThis is bar';
+      const out = sentences(text);
+      expect(out[0]).toEqual({ text: 'This is foo', start: 0, end: 11 });
+      expect(out[1]).toEqual({ text: 'This is bar', start: 12, end: 23 });
+    });
+
     it('works for sentences ending in one-character-words', () => {
       const text =
-        'This is Sentence 1. This is Sentence 2. This is Sentence 3. This is Sentence 4. Dr. A. said he\'ll call in 5.' ;
+        "This is Sentence 1. This is Sentence 2. This is Sentence 3. This is Sentence 4. Dr. A. said he'll call in 5.";
 
       const out = sentences(text);
 
@@ -190,8 +209,8 @@ describe('builder', () => {
         { text: 'This is Sentence 2.', start: 20, end: 39 },
         { text: 'This is Sentence 3.', start: 40, end: 59 },
         { text: 'This is Sentence 4.', start: 60, end: 79 },
-        { text: 'Dr. A. said he\'ll call in 5.', start: 80, end: 108 },
-      ])
+        { text: "Dr. A. said he'll call in 5.", start: 80, end: 108 }
+      ]);
     });
   });
 

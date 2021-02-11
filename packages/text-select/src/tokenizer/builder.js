@@ -37,6 +37,53 @@ export const paragraphs = text => {
 
   return out;
 };
+
+export const handleSentence = (child, acc) => {
+  const sentenceChilds = [];
+  // we parse the children of the sentence
+  let newAcc = child.children.reduce(function(acc, child) {
+    // if we find a whitespace node that's \n, we end the sentence
+    if (child.type === 'WhiteSpaceNode' && child.value === '\n') {
+      if (sentenceChilds.length) {
+        const firstWord = sentenceChilds[0];
+        // we create a sentence starting from the first word until the new line
+        const sentence = {
+          text: sentenceChilds.map(d => getSentence(d)).join(''),
+          start: firstWord.position.start.offset,
+          end: child.position.start.offset
+        };
+
+        // we remove all the elements from the array
+        sentenceChilds.splice(0, sentenceChilds.length);
+        return acc.concat([sentence]);
+      }
+    } else {
+      // otherwise we add it to the array that contains the child forming a sentence
+      sentenceChilds.push(child);
+    }
+
+    return acc;
+  }, acc);
+
+  // we treat the case when no \n character is found at the end
+  // so we create a sentence from the last words or white spaces found
+  if (sentenceChilds.length) {
+    const firstWord = sentenceChilds[0];
+    const lastWord = sentenceChilds[sentenceChilds.length - 1];
+    const sentence = {
+      text: sentenceChilds.map(d => getSentence(d)).join(''),
+      start: firstWord.position.start.offset,
+      end: lastWord.position.end.offset
+    };
+
+    newAcc = newAcc.concat([sentence]);
+
+    sentenceChilds.splice(0, sentenceChilds.length);
+  }
+
+  return newAcc;
+};
+
 export const sentences = text => {
   const tree = new English().parse(text);
 
@@ -44,12 +91,9 @@ export const sentences = text => {
     if (child.type === 'ParagraphNode') {
       return child.children.reduce((acc, child) => {
         if (child.type === 'SentenceNode') {
-          const sentence = {
-            text: getSentence(child),
-            start: child.position.start.offset,
-            end: child.position.end.offset
-          };
-          return acc.concat([sentence]);
+          const newAcc = handleSentence(child, acc);
+
+          return newAcc || acc;
         } else {
           return acc;
         }
@@ -148,7 +192,10 @@ export const sort = tokens => {
   }
 };
 
-export const normalize = (text, tokens) => {
+export const normalize = (textToNormalize, tokens) => {
+  // making sure text provided is a string
+  const text = textToNormalize || '';
+
   if (!Array.isArray(tokens) || tokens.length === 0) {
     return [
       {
@@ -158,6 +205,7 @@ export const normalize = (text, tokens) => {
       }
     ];
   }
+
   const out = sort(tokens).reduce(
     (acc, t, index, outer) => {
       let tokens = [];
