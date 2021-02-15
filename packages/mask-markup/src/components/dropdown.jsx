@@ -6,10 +6,6 @@ import CorrectInput from './correct-input';
 import { withStyles } from '@material-ui/core/styles';
 import { color } from '@pie-lib/render-ui';
 
-//Used these below to replace \\embed{newLine} with \\newline from prompt which will get parsed in MathJax
-const NEWLINE_BLOCK_REGEX = /\\embed\{newLine\}\[\]/g;
-const NEWLINE_LATEX = '\\newline ';
-
 class Dropdown extends React.Component {
   static propTypes = {
     id: PropTypes.string,
@@ -86,7 +82,7 @@ class Dropdown extends React.Component {
           >
             <span
               dangerouslySetInnerHTML={{
-                __html: c.label.replace(NEWLINE_BLOCK_REGEX, NEWLINE_LATEX)
+                __html: c.label
               }}
             />
             {showCheckmark && (
