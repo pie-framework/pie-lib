@@ -14,7 +14,8 @@ export const defaults = {
   SECONDARY: pink.A400,
   SECONDARY_LIGHT: pink[200],
   SECONDARY_DARK: pink[900],
-  BACKGROUND: 'rgba(255,255,255,0)'
+  BACKGROUND: 'rgba(255,255,255,0)',
+  SECONDARY_BACKGROUND: 'rgba(241,241,241,1)'
 };
 
 Object.freeze(defaults);
@@ -44,3 +45,4 @@ export const secondaryDark = () => pv('secondary-dark', defaults.SECONDARY_DARK)
 
 export const secondaryText = () => pv('secondary-text', 'text', defaults.TEXT);
 export const background = () => pv('background', defaults.BACKGROUND);
+export const secondaryBackground = () => pv('secondary-background', defaults.SECONDARY_BACKGROUND);
