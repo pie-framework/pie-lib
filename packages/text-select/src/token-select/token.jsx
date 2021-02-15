@@ -109,7 +109,8 @@ export default withStyles(theme => {
     highlight: {
       boxSizing: 'border-box',
       marginTop: theme.spacing.unit / 2,
-      border: 'dashed 2px gray' //TODO hardcoded color
+      border: 'dashed 2px gray', //TODO hardcoded color
+      lineHeight: '35px'
     },
 
     custom: {
