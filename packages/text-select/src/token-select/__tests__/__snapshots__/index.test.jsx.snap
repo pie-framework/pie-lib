@@ -5,7 +5,31 @@ exports[`token-select snapshot renders 1`] = `
   className=""
   dangerouslySetInnerHTML={
     Object {
-      "__html": "",
+      "__html": "<p><span class=\\"tokenRootClass Token-token-1 Token-selectable-4\\" data-indexkey=\\"0\\" data-reactroot=\\"\\">foo bar</span></p>",
+    }
+  }
+  onClick={[Function]}
+/>
+`;
+
+exports[`token-select snapshot renders paragraphs properly 1`] = `
+<div
+  className=""
+  dangerouslySetInnerHTML={
+    Object {
+      "__html": "<p><span class=\\"tokenRootClass Token-token-1 Token-selectable-4\\" data-indexkey=\\"0\\" data-reactroot=\\"\\">foo,</span></p><p><span class=\\"tokenRootClass Token-token-1 Token-selectable-4\\" data-indexkey=\\"2\\" data-reactroot=\\"\\">bar</span></p>",
+    }
+  }
+  onClick={[Function]}
+/>
+`;
+
+exports[`token-select snapshot renders sentences properly 1`] = `
+<div
+  className=""
+  dangerouslySetInnerHTML={
+    Object {
+      "__html": "<p><span class=\\"tokenRootClass Token-token-1 Token-selectable-4\\" data-indexkey=\\"0\\" data-reactroot=\\"\\">foo,</span><br><span class=\\"tokenRootClass Token-token-1 Token-selectable-4\\" data-indexkey=\\"2\\" data-reactroot=\\"\\">bar</span></p>",
     }
   }
   onClick={[Function]}

@@ -21,16 +21,20 @@ export const Text = withStyles(() => ({
     backgroundColor: green[500]
   }
 }))(({ text, predefined, classes, onClick, correct }) => {
+  const formattedText = (text || '').replace(/\n/g, '<br>');
+
   if (predefined) {
     const className = classNames(classes.predefined, correct && classes.correct);
 
     return (
-      <span onClick={onClick} className={className}>
-        {text}
-      </span>
+      <span
+        onClick={onClick}
+        className={className}
+        dangerouslySetInnerHTML={{ __html: formattedText }}
+      />
     );
   } else {
-    return text;
+    return <span dangerouslySetInnerHTML={{ __html: formattedText }} />;
   }
 });
 
