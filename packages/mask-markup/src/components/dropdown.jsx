@@ -80,12 +80,14 @@ class Dropdown extends React.Component {
             key={`${c.label}-${index}`}
             value={c.value}
           >
-            <span>
-              {c.label}
-              {showCheckmark && (
-                <span dangerouslySetInnerHTML={{ __html: c.value === value ? ' &check;' : '' }} />
-              )}
-            </span>
+            <span
+              dangerouslySetInnerHTML={{
+                __html: c.label
+              }}
+            />
+            {showCheckmark && (
+              <span dangerouslySetInnerHTML={{ __html: c.value === value ? ' &check;' : '' }} />
+            )}
           </MenuItem>
         ))}
       </Select>
