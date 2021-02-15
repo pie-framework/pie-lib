@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.24](https://github.com/pie-framework/pie-lib/compare/@pie-lib/feedback@0.4.22...@pie-lib/feedback@0.4.24) (2021-02-15)
+
+**Note:** Version bump only for package @pie-lib/feedback
+
+
+
+
+
 ## [0.4.22](https://github.com/pie-framework/pie-lib/compare/@pie-lib/feedback@0.4.21...@pie-lib/feedback@0.4.22) (2020-04-14)
 
 **Note:** Version bump only for package @pie-lib/feedback

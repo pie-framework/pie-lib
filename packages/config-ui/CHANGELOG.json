@@ -1568,5 +1568,50 @@
     "committerDate": "2020-03-30 22:30:10 +0100",
     "isTagged": true,
     "tag": "@pie-lib/config-ui@10.8.6"
+  },
+  {
+    "type": "fix",
+    "scope": "config-ui",
+    "subject": "fix choices map null check - PD-879",
+    "merge": null,
+    "header": "fix(config-ui): fix choices map null check - PD-879",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "bc38e4e276261adb1649bd8a2e6ff3be276f7fe7",
+    "gitTags": " (origin/fix/PD-879-fix-choices-map)",
+    "committerDate": "2021-02-08 15:14:20 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/config-ui@10.8.46"
+  },
+  {
+    "type": "fix",
+    "scope": "config-ui",
+    "subject": "update snapshots for tests",
+    "merge": null,
+    "header": "fix(config-ui): update snapshots for tests",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "869e30ca431f186b35f55b0c7e5a1419e494a0f2",
+    "gitTags": " (origin/fix/hide-feedback-if-disabled)",
+    "committerDate": "2021-02-04 17:04:37 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/config-ui@10.8.46"
+  },
+  {
+    "type": "fix",
+    "scope": "config-ui",
+    "subject": "hide feddback for author if feedback is not enabled",
+    "merge": null,
+    "header": "fix(config-ui): hide feddback for author if feedback is not enabled",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "56718c4fb513f26a9feb7107f28e384aa9cc083e",
+    "gitTags": "",
+    "committerDate": "2021-02-04 16:58:00 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/config-ui@10.8.46"
   }
 ]

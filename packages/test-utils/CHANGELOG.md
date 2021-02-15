@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/test-utils@0.2.14...@pie-lib/test-utils@0.2.16) (2021-02-15)
+
+**Note:** Version bump only for package @pie-lib/test-utils
+
+
+
+
+
 ## [0.2.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/test-utils@0.2.13...@pie-lib/test-utils@0.2.14) (2020-04-14)
 
 **Note:** Version bump only for package @pie-lib/test-utils

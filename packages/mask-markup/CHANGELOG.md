@@ -3,6 +3,93 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.10.5...@pie-lib/mask-markup@1.10.7) (2021-02-15)
+
+**Note:** Version bump only for package @pie-lib/mask-markup
+
+
+
+
+
+## [1.10.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.10.4...@pie-lib/mask-markup@1.10.5) (2021-02-15)
+
+**Note:** Version bump only for package @pie-lib/mask-markup
+
+
+
+
+
+## [1.10.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.10.3...@pie-lib/mask-markup@1.10.4) (2021-02-01)
+
+**Note:** Version bump only for package @pie-lib/mask-markup
+
+
+
+
+
+## [1.10.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.10.2...@pie-lib/mask-markup@1.10.3) (2021-01-28)
+
+**Note:** Version bump only for package @pie-lib/mask-markup
+
+
+
+
+
+## [1.10.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.10.1...@pie-lib/mask-markup@1.10.2) (2021-01-28)
+
+**Note:** Version bump only for package @pie-lib/mask-markup
+
+
+
+
+
+## [1.10.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.10.0...@pie-lib/mask-markup@1.10.1) (2021-01-25)
+
+**Note:** Version bump only for package @pie-lib/mask-markup
+
+
+
+
+
+# [1.10.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.9.5...@pie-lib/mask-markup@1.10.0) (2021-01-11)
+
+
+### Features
+
+* **mask-markup:** inline-dropdown color treatment fixed ([60072de](https://github.com/pie-framework/pie-lib/commit/60072de))
+
+
+
+
+
+## [1.9.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.9.4...@pie-lib/mask-markup@1.9.5) (2020-10-29)
+
+**Note:** Version bump only for package @pie-lib/mask-markup
+
+
+
+
+
+## [1.9.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.9.3...@pie-lib/mask-markup@1.9.4) (2020-10-28)
+
+
+### Bug Fixes
+
+* dropdown colors ([143853d](https://github.com/pie-framework/pie-lib/commit/143853d))
+* upgrade react-dnd ([f507025](https://github.com/pie-framework/pie-lib/commit/f507025))
+
+
+
+
+
+## [1.9.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.9.2...@pie-lib/mask-markup@1.9.3) (2020-10-26)
+
+**Note:** Version bump only for package @pie-lib/mask-markup
+
+
+
+
+
 ## [1.9.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.9.1...@pie-lib/mask-markup@1.9.2) (2020-10-26)
 
 **Note:** Version bump only for package @pie-lib/mask-markup

@@ -3,6 +3,124 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.4.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.4.5...@pie-lib/demo@6.4.7) (2021-02-15)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [6.4.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.4.4...@pie-lib/demo@6.4.5) (2021-02-15)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [6.4.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.4.3...@pie-lib/demo@6.4.4) (2021-02-04)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [6.4.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.4.2...@pie-lib/demo@6.4.3) (2021-02-01)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [6.4.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.4.1...@pie-lib/demo@6.4.2) (2021-01-28)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [6.4.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.4.0...@pie-lib/demo@6.4.1) (2021-01-28)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+# [6.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.3.12...@pie-lib/demo@6.4.0) (2021-01-25)
+
+
+### Features
+
+* demo changes include for the issue PD-368 ([c493d9f](https://github.com/pie-framework/pie-lib/commit/c493d9f))
+
+
+
+
+
+## [6.3.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.3.11...@pie-lib/demo@6.3.12) (2021-01-11)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [6.3.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.3.10...@pie-lib/demo@6.3.11) (2020-11-09)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [6.3.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.3.9...@pie-lib/demo@6.3.10) (2020-11-07)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [6.3.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.3.8...@pie-lib/demo@6.3.9) (2020-10-30)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [6.3.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.3.7...@pie-lib/demo@6.3.8) (2020-10-29)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [6.3.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.3.6...@pie-lib/demo@6.3.7) (2020-10-28)
+
+
+### Bug Fixes
+
+* upgrade react-dnd ([f507025](https://github.com/pie-framework/pie-lib/commit/f507025))
+
+
+
+
+
+## [6.3.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.3.5...@pie-lib/demo@6.3.6) (2020-10-26)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
 ## [6.3.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.3.4...@pie-lib/demo@6.3.5) (2020-10-26)
 
 **Note:** Version bump only for package @pie-lib/demo

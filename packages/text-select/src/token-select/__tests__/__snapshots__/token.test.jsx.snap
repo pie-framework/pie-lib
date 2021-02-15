@@ -5,7 +5,18 @@ exports[`token snapshot renders 1`] = `
   className="tokenRootClass token"
   dangerouslySetInnerHTML={
     Object {
-      "__html": "",
+      "__html": "foo bar",
+    }
+  }
+/>
+`;
+
+exports[`token snapshot renders with brs 1`] = `
+<span
+  className="tokenRootClass token"
+  dangerouslySetInnerHTML={
+    Object {
+      "__html": "foo <br>bar",
     }
   }
 />

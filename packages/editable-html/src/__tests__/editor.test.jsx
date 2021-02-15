@@ -109,7 +109,7 @@ describe('buildSizeStyle', () => {
   });
 });
 
-describe('onResize ',  () => {
+describe('onResize ', () => {
   it('should display html of current state on Resize', () => {
     const wrapper = shallow(
       <Editor editorRef={jest.fn()} value={value} classes={{}} onChange={jest.fn()} />
@@ -117,11 +117,11 @@ describe('onResize ',  () => {
 
     resizeWindow(500, 300);
     expect(wrapper.state('value')).toEqualHtml('<div>hi</div>');
-    
+
     wrapper.instance().onChange({ value: htmlToValue('new value') });
     resizeWindow(1024, 768);
     expect(wrapper.state('value')).toEqualHtml('<div>new value</div>');
-    
+
     resizeWindow(500, 300);
     expect(wrapper.state('value')).toEqualHtml('<div>new value</div>');
   });

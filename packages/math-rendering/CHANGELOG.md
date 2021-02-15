@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.3.1...@pie-lib/math-rendering@2.3.3) (2021-02-15)
+
+**Note:** Version bump only for package @pie-lib/math-rendering
+
+
+
+
+
+## [2.3.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.3.0...@pie-lib/math-rendering@2.3.1) (2021-01-28)
+
+
+### Bug Fixes
+
+* add lodash dependency ([de2227f](https://github.com/pie-framework/pie-lib/commit/de2227f))
+
+
+
+
+
+# [2.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.2.4...@pie-lib/math-rendering@2.3.0) (2021-01-25)
+
+
+### Features
+
+* demo changes include for the issue PD-368 ([c493d9f](https://github.com/pie-framework/pie-lib/commit/c493d9f))
+
+
+
+
+
+## [2.2.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.2.3...@pie-lib/math-rendering@2.2.4) (2021-01-11)
+
+**Note:** Version bump only for package @pie-lib/math-rendering
+
+
+
+
+
+## [2.2.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.2.2...@pie-lib/math-rendering@2.2.3) (2020-10-26)
+
+**Note:** Version bump only for package @pie-lib/math-rendering
+
+
+
+
+
 ## [2.2.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.2.1...@pie-lib/math-rendering@2.2.2) (2020-10-26)
 
 **Note:** Version bump only for package @pie-lib/math-rendering

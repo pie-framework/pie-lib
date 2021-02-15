@@ -723,5 +723,20 @@
     "committerDate": "2020-11-16 13:50:38 +0200",
     "isTagged": true,
     "tag": "@pie-lib/math-toolbar@1.7.0"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "dont import InputContainer from config-ui",
+    "merge": null,
+    "header": "fix: dont import InputContainer from config-ui",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "9cb7b688c5774c8dc67df471a2b0187f5d5e653d",
+    "gitTags": "",
+    "committerDate": "2021-02-01 21:26:34 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/math-toolbar@1.7.1"
   }
 ]

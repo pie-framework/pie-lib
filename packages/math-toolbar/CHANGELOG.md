@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.7.1...@pie-lib/math-toolbar@1.7.3) (2021-02-15)
+
+**Note:** Version bump only for package @pie-lib/math-toolbar
+
+
+
+
+
+## [1.7.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.7.0...@pie-lib/math-toolbar@1.7.1) (2021-02-01)
+
+
+### Bug Fixes
+
+* dont import InputContainer from config-ui ([9cb7b68](https://github.com/pie-framework/pie-lib/commit/9cb7b68))
+
+
+
+
+
+# [1.7.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.6.0...@pie-lib/math-toolbar@1.7.0) (2021-01-11)
+
+
+### Features
+
+* **math-toolbar:** add better math keypad support - PD-355 ([2a67078](https://github.com/pie-framework/pie-lib/commit/2a67078))
+
+
+
+
+
 # [1.6.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.5.9...@pie-lib/math-toolbar@1.6.0) (2020-10-07)
 
 

@@ -682,6 +682,36 @@
   {
     "type": "fix",
     "scope": null,
+    "subject": "formatting",
+    "merge": null,
+    "header": "fix: formatting",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "754bb7571081fd768b2e8a99e8fc3d726684a7ad",
+    "gitTags": " (develop)",
+    "committerDate": "2020-10-29 10:32:37 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/render-ui@4.9.4"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "typo",
+    "merge": null,
+    "header": "fix: typo",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "0cb17c9582f00002fdaf9dcac67443fbf6502b3f",
+    "gitTags": "",
+    "committerDate": "2020-10-29 10:27:04 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/render-ui@4.9.4"
+  },
+  {
+    "type": "fix",
+    "scope": null,
     "subject": "snapshot test",
     "merge": null,
     "header": "fix: snapshot test",
@@ -689,7 +719,7 @@
     "footer": null,
     "notes": [],
     "hash": "a86e5e85e03545e8c4ddaf808916553586141d80",
-    "gitTags": "",
+    "gitTags": " (origin/develop, origin/HEAD)",
     "committerDate": "2020-10-28 11:27:45 +0000",
     "isTagged": true,
     "tag": "@pie-lib/render-ui@4.9.4"
@@ -813,5 +843,20 @@
     "committerDate": "2021-01-28 15:00:54 +0200",
     "isTagged": true,
     "tag": "@pie-lib/render-ui@4.10.3"
+  },
+  {
+    "type": "feat",
+    "scope": "render-ui",
+    "subject": "add secondary background color",
+    "merge": null,
+    "header": "feat(render-ui): add secondary background color",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "c9cc0a8c3124128c598d4cd18ec141d0ac75211e",
+    "gitTags": " (origin/feat/render-ui-add-secondary-background-color)",
+    "committerDate": "2021-02-12 15:56:08 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/render-ui@4.11.0"
   }
 ]

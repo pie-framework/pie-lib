@@ -3,6 +3,110 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.101](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.2.99...@pie-lib/rubric@0.2.101) (2021-02-15)
+
+**Note:** Version bump only for package @pie-lib/rubric
+
+
+
+
+
+## [0.2.99](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.2.98...@pie-lib/rubric@0.2.99) (2021-02-15)
+
+**Note:** Version bump only for package @pie-lib/rubric
+
+
+
+
+
+## [0.2.98](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.2.97...@pie-lib/rubric@0.2.98) (2021-02-04)
+
+**Note:** Version bump only for package @pie-lib/rubric
+
+
+
+
+
+## [0.2.97](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.2.96...@pie-lib/rubric@0.2.97) (2021-02-01)
+
+**Note:** Version bump only for package @pie-lib/rubric
+
+
+
+
+
+## [0.2.96](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.2.95...@pie-lib/rubric@0.2.96) (2021-01-28)
+
+**Note:** Version bump only for package @pie-lib/rubric
+
+
+
+
+
+## [0.2.95](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.2.94...@pie-lib/rubric@0.2.95) (2021-01-28)
+
+**Note:** Version bump only for package @pie-lib/rubric
+
+
+
+
+
+## [0.2.94](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.2.93...@pie-lib/rubric@0.2.94) (2021-01-25)
+
+**Note:** Version bump only for package @pie-lib/rubric
+
+
+
+
+
+## [0.2.93](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.2.92...@pie-lib/rubric@0.2.93) (2021-01-11)
+
+**Note:** Version bump only for package @pie-lib/rubric
+
+
+
+
+
+## [0.2.92](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.2.91...@pie-lib/rubric@0.2.92) (2020-11-09)
+
+**Note:** Version bump only for package @pie-lib/rubric
+
+
+
+
+
+## [0.2.91](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.2.90...@pie-lib/rubric@0.2.91) (2020-11-07)
+
+**Note:** Version bump only for package @pie-lib/rubric
+
+
+
+
+
+## [0.2.90](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.2.89...@pie-lib/rubric@0.2.90) (2020-10-30)
+
+**Note:** Version bump only for package @pie-lib/rubric
+
+
+
+
+
+## [0.2.89](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.2.88...@pie-lib/rubric@0.2.89) (2020-10-28)
+
+**Note:** Version bump only for package @pie-lib/rubric
+
+
+
+
+
+## [0.2.88](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.2.87...@pie-lib/rubric@0.2.88) (2020-10-26)
+
+**Note:** Version bump only for package @pie-lib/rubric
+
+
+
+
+
 ## [0.2.87](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.2.86...@pie-lib/rubric@0.2.87) (2020-10-26)
 
 **Note:** Version bump only for package @pie-lib/rubric
