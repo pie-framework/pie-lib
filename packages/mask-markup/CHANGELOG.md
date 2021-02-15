@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.10.7...@pie-lib/mask-markup@1.10.8) (2021-02-15)
+
+
+### Bug Fixes
+
+* **inline-dropdown:** remove newline regex - PD-887 ([e9e14c8](https://github.com/pie-framework/pie-lib/commit/e9e14c8))
+
+
+
+
+
 ## [1.10.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.10.5...@pie-lib/mask-markup@1.10.7) (2021-02-15)
 
 **Note:** Version bump only for package @pie-lib/mask-markup

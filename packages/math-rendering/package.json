@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/math-rendering",
-  "version": "2.3.3",
+  "version": "2.3.4",
   "description": "math rendering utilities",
   "publishConfig": {
     "access": "public"

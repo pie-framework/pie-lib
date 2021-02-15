@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.4.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.4.7...@pie-lib/demo@6.4.8) (2021-02-15)
+
+
+### Bug Fixes
+
+* demo ([affa119](https://github.com/pie-framework/pie-lib/commit/affa119))
+
+
+
+
+
 ## [6.4.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.4.5...@pie-lib/demo@6.4.7) (2021-02-15)
 
 **Note:** Version bump only for package @pie-lib/demo
