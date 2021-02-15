@@ -2979,10 +2979,10 @@
     mathjs "^6.6.4"
     numeric "^1.2.6"
 
-"@pie-framework/mathquill@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@pie-framework/mathquill/-/mathquill-1.1.1.tgz#208a844eb1db30eb424209d21bc3ddc98f100e78"
-  integrity sha512-J0hTM8OHpAH9/NSmk3Brj+mXuhzLnXZ/+p+N3lLUW70Pilknd+6oyys63ZDYI/wXWNUgSmwSv/6RKNtqh9hzbQ==
+"@pie-framework/mathquill@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@pie-framework/mathquill/-/mathquill-1.1.2.tgz#ea644244364b9ea0cd3db0588e5a52e7dfc2dbb6"
+  integrity sha512-0nTq2oXqsr3YVQcrKyjmAfigBfDkieCPzkgMEcte/wtMIrO0Z7B5Wlor0pocw3dhIB7jzPLVPMBJkXTocRh5rQ==
   dependencies:
     jquery "^3.3.1"
 

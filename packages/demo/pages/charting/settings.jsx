@@ -24,7 +24,7 @@ export class Settings extends React.Component {
     const { model, classes, className } = this.props;
     return (
       <div className={classNames(classes.settings, className)}>
-        <DisplaySize label={'Chart Display Size'} size={model.size} onChange={this.updateSize} />
+        {/* <DisplaySize label={'Chart Display Size'} size={model.size} onChange={this.updateSize} />*/}
       </div>
     );
   }
