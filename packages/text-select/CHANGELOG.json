@@ -478,5 +478,20 @@
     "committerDate": "2021-01-18 14:18:09 +0200",
     "isTagged": true,
     "tag": "@pie-lib/text-select@1.7.4"
+  },
+  {
+    "type": "fix",
+    "scope": "text-select",
+    "subject": "fix space between lines",
+    "merge": null,
+    "header": "fix(text-select): fix space between lines",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "56335373404f08cac617845a19b68b3c5018debd",
+    "gitTags": " (origin/fix/text-select-add-line-height)",
+    "committerDate": "2021-02-02 12:16:28 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/text-select@1.7.10"
   }
 ]

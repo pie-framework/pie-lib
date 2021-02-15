@@ -313,5 +313,20 @@
     "committerDate": "2020-05-05 14:13:00 +0300",
     "isTagged": true,
     "tag": "@pie-lib/categorize@0.6.18"
+  },
+  {
+    "type": "fix",
+    "scope": "categorize",
+    "subject": "add alternate responses to updated model",
+    "merge": null,
+    "header": "fix(categorize): add alternate responses to updated model",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "b2cb43be670ea8432ad3a0fc4b896a706fba987f",
+    "gitTags": " (origin/fix/categorize-add-alternate-responses)",
+    "committerDate": "2021-02-02 16:17:48 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/categorize@0.6.19"
   }
 ]
