@@ -17,7 +17,7 @@ const mapDispatchToProps = dispatch => ({
   onChangeMarks: m => dispatch(changeMarks(m)),
   onUndo: () => dispatch(ActionCreators.undo()),
   onRedo: () => dispatch(ActionCreators.redo()),
-  onReset: () => dispatch(ActionCreators.jumpToPast(0))
+  onReset: () => dispatch(changeMarks([]))
 });
 
 export const GraphContainer = connect(
