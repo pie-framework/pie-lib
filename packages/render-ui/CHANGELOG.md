@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.11.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.10.4...@pie-lib/render-ui@4.11.0) (2021-02-15)
+
+
+### Features
+
+* **render-ui:** add secondary background color ([c9cc0a8](https://github.com/pie-framework/pie-lib/commit/c9cc0a8))
+
+
+
+
+
 ## [4.10.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.10.3...@pie-lib/render-ui@4.10.4) (2021-02-01)
 
 **Note:** Version bump only for package @pie-lib/render-ui

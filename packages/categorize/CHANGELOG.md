@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.19](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.6.18...@pie-lib/categorize@0.6.19) (2021-02-15)
+
+
+### Bug Fixes
+
+* **categorize:** add alternate responses to updated model ([b2cb43b](https://github.com/pie-framework/pie-lib/commit/b2cb43b))
+
+
+
+
+
 ## [0.6.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.6.17...@pie-lib/categorize@0.6.18) (2020-05-15)
 
 

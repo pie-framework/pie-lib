@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.8.46](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.8.45...@pie-lib/config-ui@10.8.46) (2021-02-15)
+
+
+### Bug Fixes
+
+* **config-ui:** fix choices map null check - PD-879 ([bc38e4e](https://github.com/pie-framework/pie-lib/commit/bc38e4e))
+* **config-ui:** hide feddback for author if feedback is not enabled ([56718c4](https://github.com/pie-framework/pie-lib/commit/56718c4))
+* **config-ui:** update snapshots for tests ([869e30c](https://github.com/pie-framework/pie-lib/commit/869e30c))
+
+
+
+
+
 ## [10.8.45](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.8.44...@pie-lib/config-ui@10.8.45) (2021-02-04)
 
 **Note:** Version bump only for package @pie-lib/config-ui
