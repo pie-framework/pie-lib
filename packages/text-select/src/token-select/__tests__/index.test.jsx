@@ -7,7 +7,84 @@ describe('token-select', () => {
     it('renders', () => {
       const w = shallow(
         <TokenSelect
-          tokens={[]}
+          tokens={[
+            {
+              text: 'foo bar',
+              start: 0,
+              end: 7,
+              predefined: true,
+              selectable: true,
+              selected: false
+            }
+          ]}
+          classes={{}}
+          onChange={jest.fn()}
+        />
+      );
+      expect(w).toMatchSnapshot();
+    });
+
+    it('renders sentences properly', () => {
+      const w = shallow(
+        <TokenSelect
+          tokens={[
+            {
+              text: 'foo,',
+              start: 0,
+              end: 4,
+              predefined: true,
+              selectable: true,
+              selected: false
+            },
+            {
+              text: '\n',
+              start: 4,
+              end: 5,
+              selected: false
+            },
+            {
+              text: 'bar',
+              start: 5,
+              end: 8,
+              predefined: true,
+              selectable: true,
+              selected: false
+            }
+          ]}
+          classes={{}}
+          onChange={jest.fn()}
+        />
+      );
+      expect(w).toMatchSnapshot();
+    });
+
+    it('renders paragraphs properly', () => {
+      const w = shallow(
+        <TokenSelect
+          tokens={[
+            {
+              text: 'foo,',
+              start: 0,
+              end: 4,
+              predefined: true,
+              selectable: true,
+              selected: false
+            },
+            {
+              text: '\n\n',
+              start: 4,
+              end: 5,
+              selected: false
+            },
+            {
+              text: 'bar',
+              start: 5,
+              end: 8,
+              predefined: true,
+              selectable: true,
+              selected: false
+            }
+          ]}
           classes={{}}
           onChange={jest.fn()}
         />
@@ -22,7 +99,18 @@ describe('token-select', () => {
       onChange = jest.fn();
       w = shallow(
         <TokenSelect
-          tokens={[{ selectable: true, text: 'foo' }]}
+          tokens={[
+            {
+              text: 'foo',
+              start: 0,
+              end: 3
+            },
+            {
+              text: 'bar',
+              start: 4,
+              end: 7
+            }
+          ]}
           classes={{}}
           onChange={onChange}
         />

@@ -198,12 +198,15 @@ export class ChoiceConfiguration extends React.Component {
               disabled={disabled}
               nonEmpty={nonEmpty}
             />
-            <Feedback
-              {...data.feedback}
-              correct={data.correct}
-              defaults={defaultFeedback}
-              onChange={this.onFeedbackValueChange}
-            />
+
+            {allowFeedBack && (
+              <Feedback
+                {...data.feedback}
+                correct={data.correct}
+                defaults={defaultFeedback}
+                onChange={this.onFeedbackValueChange}
+              />
+            )}
           </div>
           {allowFeedBack && (
             <InputContainer className={classes.feedback} label={!noLabels ? 'Feedback' : ''}>

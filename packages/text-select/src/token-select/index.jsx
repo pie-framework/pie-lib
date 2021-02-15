@@ -73,15 +73,26 @@ export class TokenSelect extends React.Component {
   generateTokensInHtml = () => {
     const { tokens, disabled, highlightChoices } = this.props;
     const selectedCount = this.selectedCount();
+    const isLineBreak = text => text === '\n';
+    const isNewParagraph = text => text === '\n\n';
 
     const reducer = (accumulator, t, index) => {
       const selectable = t.selected || (t.selectable && this.canSelectMore(selectedCount));
       const showCorrectAnswer = t.correct !== undefined && (t.selectable || t.selected);
+      let finalAcc = accumulator;
 
+      if (isNewParagraph(t.text)) {
+        return finalAcc + '</p><p>';
+      }
+
+      if (isLineBreak(t.text)) {
+        return finalAcc + '<br>';
+      }
+
+      //modified (selectable && !disabled) to !disabled to fix PD-646
       if (!disabled || showCorrectAnswer) {
-        //modified (selectable && !disabled) to !disabled to fix PD-646
         return (
-          accumulator +
+          finalAcc +
           renderToString(
             <Token
               key={index}
@@ -98,7 +109,9 @@ export class TokenSelect extends React.Component {
       }
     };
 
-    return tokens && tokens.reduce(reducer, '');
+    const reduceResult = (tokens || []).reduce(reducer, '<p>');
+
+    return reduceResult + '</p>';
   };
 
   render() {

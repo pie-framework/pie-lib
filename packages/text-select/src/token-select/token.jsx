@@ -65,7 +65,7 @@ export class Token extends React.Component {
     return (
       <span
         className={className}
-        dangerouslySetInnerHTML={{ __html: text }}
+        dangerouslySetInnerHTML={{ __html: (text || '').replace(/\n/g, '<br>') }}
         data-indexkey={index}
       />
     );
@@ -107,9 +107,13 @@ export default withStyles(theme => {
       }
     },
     highlight: {
+      // TODO hardcoded color,
+      border: 'dashed 2px gray',
+      lineHeight: '35px',
       boxSizing: 'border-box',
       marginTop: theme.spacing.unit / 2,
-      border: 'dashed 2px gray' //TODO hardcoded color
+      display: 'inline-block',
+      padding: theme.spacing.unit
     },
 
     custom: {

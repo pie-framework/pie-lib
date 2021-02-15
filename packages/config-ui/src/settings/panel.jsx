@@ -73,7 +73,7 @@ const Dropdown = withStyles({
     borderRadius: '4px',
     padding: '0 8px'
   }
-})(({ classes, label, value, onChange, choices }) => {
+})(({ classes, label, value, onChange, choices = [] }) => {
   return (
     <div>
       {label && <p className={classes.label}>{label}</p>}
