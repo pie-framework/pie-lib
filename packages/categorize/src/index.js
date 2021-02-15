@@ -103,7 +103,11 @@ export const ensureNoExtraChoicesInAnswer = (answer, choices) => {
       const choices = answerArray.map(a => a.choices);
       const result = limitInArrays(choice.id, choices, choice.categoryCount);
       const updatedArray = result.map((r, index) => {
-        return { category: answerArray[index].category, choices: r };
+        return {
+          category: answerArray[index].category,
+          alternateResponses: answerArray[index].alternateResponses,
+          choices: r
+        };
       });
       return updatedArray;
     }
@@ -423,7 +427,8 @@ export const buildState = (categories, choices, answers, correctResponse) => {
   }
 
   const filteredChoices = choices.map(ch =>
-    stillSelectable(ch, builtCategories) ? ch : { empty: true });
+    stillSelectable(ch, builtCategories) ? ch : { empty: true }
+  );
 
   return {
     choices: filteredChoices,
