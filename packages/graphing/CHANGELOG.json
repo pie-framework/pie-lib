@@ -743,5 +743,20 @@
     "committerDate": "2020-10-12 16:08:20 +0300",
     "isTagged": true,
     "tag": "@pie-lib/graphing@2.2.0"
+  },
+  {
+    "type": "fix",
+    "scope": "graphing",
+    "subject": "reset markups on pushing reset",
+    "merge": null,
+    "header": "fix(graphing): reset markups on pushing reset",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "3a10924518947acdadd30e81abc3d9b57a5bf018",
+    "gitTags": " (origin/fix/PD-789-graphing-reset-button)",
+    "committerDate": "2021-02-12 12:50:27 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/graphing@2.2.13"
   }
 ]

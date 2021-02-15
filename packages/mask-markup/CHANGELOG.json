@@ -688,5 +688,20 @@
     "committerDate": "2020-11-26 13:45:03 +0200",
     "isTagged": true,
     "tag": "@pie-lib/mask-markup@1.10.0"
+  },
+  {
+    "type": "fix",
+    "scope": "inline-dropdown",
+    "subject": "remove newline regex - PD-887",
+    "merge": null,
+    "header": "fix(inline-dropdown): remove newline regex - PD-887",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "e9e14c88508c09be5a9ae1ab5fc207a723c67fa1",
+    "gitTags": " (origin/fix/dropdown-render-item-as-html)",
+    "committerDate": "2021-02-15 14:30:34 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/mask-markup@1.10.8"
   }
 ]
