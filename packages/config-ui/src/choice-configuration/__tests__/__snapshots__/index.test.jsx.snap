@@ -248,42 +248,6 @@ exports[`index - snapshot renders correctly when feedback is not allowed 1`] = `
           </div>
         </div>
       </div>
-      <div
-        className="Component-feedbackContainer-56"
-      >
-        <svg
-          aria-hidden="true"
-          className="MuiSvgIcon-root-44 Component-arrowIcon-57"
-          focusable="false"
-          role="presentation"
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M0 0h24v24H0V0z"
-            fill="none"
-          />
-          <path
-            d="M19 15l-6 6-1.42-1.42L15.17 16H4V4h2v10h9.17l-3.59-3.58L13 9l6 6z"
-          />
-        </svg>
-        <div
-          className="MuiFormControl-root-4 RawInputContainer-formControl-2 Component-labelContainer-53 Component-text-55"
-        >
-          <label
-            className="MuiFormLabel-root-19 MuiInputLabel-root-8 MuiInputLabel-formControl-13 MuiInputLabel-animated-16 MuiInputLabel-shrink-15 RawInputContainer-label-3"
-            data-shrink={true}
-          >
-            Feedback Text
-          </label>
-          <div
-            className="Component-editorHolder-54"
-          >
-            <div>
-              EditableHtml
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
     <div
       className="MuiFormControl-root-4 RawInputContainer-formControl-2"
