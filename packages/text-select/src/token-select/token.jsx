@@ -97,6 +97,7 @@ export default withStyles(theme => {
       }
     },
     selected: {
+      lineHeight: 2,
       marginTop: theme.spacing.unit / 2,
       '&:hover': {
         backgroundColor: color.primaryLight()
@@ -109,7 +110,7 @@ export default withStyles(theme => {
     highlight: {
       // TODO hardcoded color,
       border: 'dashed 2px gray',
-      lineHeight: '35px',
+      lineHeight: 2,
       boxSizing: 'border-box',
       marginTop: theme.spacing.unit / 2,
       display: 'inline-block',
