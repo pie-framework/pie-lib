@@ -90,7 +90,8 @@ export class RawXAxis extends React.Component {
             ...tickLabelStyles,
             textAnchor: 'middle',
             y: 25,
-            dx: label === '0' ? -16 : 0
+            dx: label === '0' ? -10 : 0,
+            dy: label === '0' ? -7 : 0
           })}
           tickValues={tickValues}
         />
