@@ -7,7 +7,10 @@ export const parseHtmlHasText = input => {
 
   htmlDoc.innerHTML = input;
 
-  if (htmlDoc.innerText.trim()) {
+  // jest does not support innerText, so we use textContent for tests
+  const text = htmlDoc.innerText ? htmlDoc.innerText : htmlDoc.textContent;
+
+  if (text && text.trim()) {
     return true;
   } else {
     let hasText = false;
@@ -15,7 +18,8 @@ export const parseHtmlHasText = input => {
     const listArray = Array.from(listItems);
 
     listArray.forEach(item => {
-      if (item.innerText.trim()) {
+      const itemText = item.innerText ? item.innerText : item.textContent;
+      if (itemText && itemText.trim()) {
         hasText = true;
       }
     });
