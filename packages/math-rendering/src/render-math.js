@@ -20,6 +20,9 @@ import { CHTMLmspace } from 'mathjax-full/js/output/chtml/Wrappers/mspace';
 
 const log = debug('pie-lib:math-rendering');
 
+const NEWLINE_BLOCK_REGEX = /\\embed\{newLine\}\[\]/g;
+const NEWLINE_LATEX = '\\newline ';
+
 const getGlobal = () => {
   const key = `${pkg.name}@${pkg.version.split('.')[0]}`;
 
@@ -51,6 +54,9 @@ export const fixMathElement = element => {
 
   if (element[property]) {
     element[property] = wrapMath(unWrapMath(element[property]).unwrapped);
+    // because mathquill doesn't understand line breaks, sometimes we end up with custom elements on prompts/rationale/etc.
+    // we need to replace the custom embedded elements with valid latex that Mathjax can understand
+    element[property] = element[property].replace(NEWLINE_BLOCK_REGEX, NEWLINE_LATEX);
   }
 };
 
@@ -159,7 +165,7 @@ const renderMath = (el, renderOpts) => {
 /**
  * This style is added to overried default styling of mjx-mspace Mathjax tag
  * In mathjax src code \newline latex gets parsed to <mjx-mspace></mjx-mspace>,
- * but has the default style 
+ * but has the default style
  * 'mjx-mspace': {
     "display": 'in-line',
     "text-align": 'left'
