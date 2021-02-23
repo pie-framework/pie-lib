@@ -48,6 +48,18 @@ const tickLabelStyles = {
   cursor: 'inherit'
 };
 
+export const firstNegativeValue = interval => {
+  if (!interval.length) {
+    return;
+  } else {
+    for (let i = 0; i < interval.length; i++) {
+      if (interval[i] < 0) {
+        return interval[i];
+      }
+    }
+  }
+  return;
+};
 export class RawXAxis extends React.Component {
   static propTypes = {
     ...AxisPropTypes,
@@ -75,6 +87,22 @@ export class RawXAxis extends React.Component {
         ? ['0', ...columnTicksValues]
         : columnTicksValues;
     // However, the '0' has to be displayed only if other tick labels (y-axis or x-axis) are displayed
+    // if (this.props.yLength + 4 >= 25) {
+    //   tickValues.splice(2, 1)
+    // }
+
+    const firstNegative = firstNegativeValue(columnTicksValues);
+    const distantceFromOriginToFirstNegative = Math.abs(scale.y(0) - scale.y(firstNegative));
+
+    let skipValue;
+    if (
+      this.props.xLength < distantceFromOriginToFirstNegative + 5 &&
+      this.props.xLength > distantceFromOriginToFirstNegative - 5 &&
+      this.props.yLength < distantceFromOriginToFirstNegative + 5 &&
+      this.props.yLength > distantceFromOriginToFirstNegative - 5
+    ) {
+      skipValue = firstNegative;
+    }
 
     return (
       <React.Fragment>
@@ -90,7 +118,8 @@ export class RawXAxis extends React.Component {
             ...tickLabelStyles,
             textAnchor: 'middle',
             y: 25,
-            dx: label === '0' ? -16 : 0
+            dx: label === '0' ? -10 : label === skipValue ? -this.props.yLength / 2 : 0,
+            dy: label === '0' ? -7 : 0
           })}
           tickValues={tickValues}
         />
@@ -130,6 +159,18 @@ export class RawYAxis extends React.Component {
     const { scale, range, size } = graphProps;
     const rowTickValues = getTickValues({ ...range, step: range.labelStep });
 
+    const firstNegative = firstNegativeValue(rowTickValues);
+    const distantceFromOriginToFirstNegative = Math.abs(scale.x(0) - scale.x(firstNegative));
+
+    let skipValue;
+    if (
+      this.props.xLength < distantceFromOriginToFirstNegative + 5 &&
+      this.props.xLength > distantceFromOriginToFirstNegative - 5 &&
+      this.props.yLength < distantceFromOriginToFirstNegative + 5
+    ) {
+      skipValue = firstNegative;
+    }
+
     return (
       <React.Fragment>
         <Axis
@@ -142,10 +183,9 @@ export class RawYAxis extends React.Component {
           label={range.label}
           tickLength={10}
           tickClassName={classes.tick}
-          tickFormat={value => value}
+          tickFormat={value => (value === skipValue ? '' : value)}
           tickLabelProps={value => {
             const digits = value.toLocaleString().length || 1;
-
             return {
               ...tickLabelStyles,
               dy: 4,
@@ -156,6 +196,7 @@ export class RawYAxis extends React.Component {
           tickTextAnchor={'bottom'}
           tickValues={rowTickValues}
         />
+
         {includeArrows && (
           <Arrow direction="down" x={0} y={range.min} className={classes.arrow} scale={scale} />
         )}
