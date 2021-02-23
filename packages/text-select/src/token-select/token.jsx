@@ -79,6 +79,7 @@ export default withStyles(theme => {
       textIndent: 0,
       padding: theme.spacing.unit / 2,
       paddingRight: 0,
+      paddingLeft: 0,
       transition: 'background-color 100ms ease-in'
     },
     disabled: {
