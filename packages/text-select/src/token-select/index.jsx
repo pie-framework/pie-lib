@@ -104,6 +104,20 @@ export class TokenSelect extends React.Component {
             />
           )
         );
+      } else if (t.selected) {
+        return (
+          finalAcc +
+          renderToString(
+            <Token
+              key={index}
+              disabled={true}
+              index={index}
+              {...t}
+              selectable={false}
+              highlight={highlightChoices}
+            />
+          )
+        );
       } else {
         return accumulator + t.text;
       }
