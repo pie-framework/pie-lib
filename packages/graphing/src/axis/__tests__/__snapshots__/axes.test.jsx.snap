@@ -7,11 +7,6 @@ exports[`RawXAxis snapshot renders 1`] = `
     scale={[MockFunction]}
     tickFormat={[Function]}
     tickLabelProps={[Function]}
-    tickValues={
-      Array [
-        0,
-      ]
-    }
     top={0}
   />
   <WithStyles(Arrow)
@@ -75,11 +70,6 @@ exports[`RawYAxis snapshot renders 1`] = `
     tickLabelProps={[Function]}
     tickLength={10}
     tickTextAnchor="bottom"
-    tickValues={
-      Array [
-        0,
-      ]
-    }
     top={0}
   />
   <WithStyles(Arrow)

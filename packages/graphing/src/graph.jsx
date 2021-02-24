@@ -154,13 +154,6 @@ export class Graph extends React.Component {
     const maskSize = getMaskSize(size);
     const common = { graphProps, labelModeEnabled };
 
-    const xLength =
-      graphProps.size.width /
-      ((graphProps.domain.max - graphProps.domain.min) / graphProps.domain.labelStep);
-    const yLength =
-      graphProps.size.height /
-      ((graphProps.range.max - graphProps.range.min) / graphProps.range.labelStep);
-
     marks = removeBuildingToolIfCurrentToolDiffers({ marks: marks || [], currentTool });
 
     return (
@@ -172,7 +165,7 @@ export class Graph extends React.Component {
         {...common}
       >
         <Grid {...common} />
-        <Axes {...axesSettings} {...common} xLength={xLength} yLength={yLength} />
+        <Axes {...axesSettings} {...common} />
         <Bg {...size} onClick={this.onBgClick} {...common} />
         <Labels value={labels} {...common} />
         <mask id="myMask">
