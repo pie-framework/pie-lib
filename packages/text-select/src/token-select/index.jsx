@@ -132,6 +132,7 @@ export class TokenSelect extends React.Component {
 export default withStyles(() => ({
   tokenSelect: {
     backgroundColor: 'none',
+    whiteSpace: 'pre',
     ...noSelect()
   }
 }))(TokenSelect);
