@@ -2888,5 +2888,20 @@
     "committerDate": "2021-01-14 13:40:27 +0200",
     "isTagged": true,
     "tag": "@pie-lib/editable-html@7.16.0"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "demo",
+    "merge": null,
+    "header": "fix: demo",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "affa1194d31bee2f0f80c9988d04a7447a84e3fd",
+    "gitTags": "",
+    "committerDate": "2021-02-15 15:36:46 +0000",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.16.8"
   }
 ]
