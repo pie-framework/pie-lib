@@ -42,7 +42,9 @@ export class Token extends React.Component {
 
     let className;
 
-    if (correct !== undefined) {
+    if (correct === undefined && selected && disabled) {
+      className = classNames(classes.token, classes.selected, classes.disabled);
+    } else if (correct !== undefined) {
       className = classNames(
         Token.rootClassName,
         classes.custom,

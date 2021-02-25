@@ -90,7 +90,7 @@ export class TokenSelect extends React.Component {
       }
 
       //modified (selectable && !disabled) to !disabled to fix PD-646
-      if (!disabled || showCorrectAnswer) {
+      if (!disabled || showCorrectAnswer || t.selected) {
         return (
           finalAcc +
           renderToString(
