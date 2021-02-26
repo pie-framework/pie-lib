@@ -15,7 +15,7 @@ import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import InputChooser from '../src/editable-html/input-chooser';
-import { parseHtmlHasText } from '@pie-lib/render-ui';
+import { hasText } from '@pie-lib/render-ui';
 
 const log = debug('@pie-lib:editable-html:demo');
 const puppySrc = 'https://bit.ly/23yROY8';
@@ -104,7 +104,7 @@ class RteDemo extends React.Component {
       height: '',
       keypadMode: 'everything',
       markupText: html,
-      htmlHasText: true
+      hasText: true
     };
   }
 
@@ -115,8 +115,7 @@ class RteDemo extends React.Component {
 
   onChangeMarkupText = markupText => {
     log('onChangeMarkupText: ');
-    this.setState({ markupText });
-    this.setState({ htmlHasText: parseHtmlHasText(markupText) });
+    this.setState({ markupText, hasText: hasText(markupText) });
   };
 
   handleInputFiles = input => {
@@ -226,7 +225,7 @@ class RteDemo extends React.Component {
       mounted,
       keypadMode,
       markupText,
-      htmlHasText
+      hasText
     } = this.state;
     const imageSupport = {
       add: this.addImage,
@@ -329,7 +328,7 @@ class RteDemo extends React.Component {
         <MarkupPreview markup={markup} />
         <br />
         <Typography variant="h6">
-          Check if input contains text using the parseHtmlHasText function:
+          Check if input contains text using the hasText function:
         </Typography>
         <br />
         <EditableHtml
@@ -339,7 +338,7 @@ class RteDemo extends React.Component {
           height={height}
         />
         <br />
-        <div>{`Has text: ${htmlHasText}`}</div>
+        <div>{`Has text: ${hasText}`}</div>
       </div>
     ) : (
       <div>loading...</div>
