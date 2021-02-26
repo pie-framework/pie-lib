@@ -9,6 +9,7 @@ import PreviewPrompt from './preview-prompt';
 import Readable from './readable';
 import Purpose from './purpose';
 import * as color from './color';
+import { hasText } from './has-text';
 
 export {
   HtmlAndMath,
@@ -21,5 +22,6 @@ export {
   PreviewPrompt,
   color,
   Readable,
-  Purpose
+  Purpose,
+  hasText
 };
