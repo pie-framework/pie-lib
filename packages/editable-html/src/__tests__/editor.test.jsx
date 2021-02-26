@@ -80,7 +80,9 @@ describe('buildSizeStyle', () => {
     const w = wrapper({ width: 100 });
     expect(w.instance().buildSizeStyle()).toEqual({
       width: '100px',
-      height: undefined
+      height: undefined,
+      minHeight: undefined,
+      maxHeight: undefined
     });
   });
 
@@ -88,7 +90,9 @@ describe('buildSizeStyle', () => {
     const w = wrapper({ height: '100%', width: '100%' });
     expect(w.instance().buildSizeStyle()).toEqual({
       width: undefined,
-      height: undefined
+      height: undefined,
+      minHeight: undefined,
+      maxHeight: undefined
     });
   });
 
@@ -96,7 +100,39 @@ describe('buildSizeStyle', () => {
     const w = wrapper({ height: 100 });
     expect(w.instance().buildSizeStyle()).toEqual({
       width: undefined,
-      height: '100px'
+      height: '100px',
+      minHeight: undefined,
+      maxHeight: undefined
+    });
+  });
+
+  it('builds minHeight', () => {
+    const w = wrapper({ minHeight: 100 });
+    expect(w.instance().buildSizeStyle()).toEqual({
+      width: undefined,
+      height: undefined,
+      minHeight: '100px',
+      maxHeight: undefined
+    });
+  });
+
+  it('builds maxHeight', () => {
+    const w = wrapper({ maxHeight: 100 });
+    expect(w.instance().buildSizeStyle()).toEqual({
+      width: undefined,
+      height: undefined,
+      minHeight: undefined,
+      maxHeight: '100px'
+    });
+  });
+
+  it('builds width', () => {
+    const w = wrapper({ width: 100 });
+    expect(w.instance().buildSizeStyle()).toEqual({
+      width: '100px',
+      height: undefined,
+      minHeight: undefined,
+      maxHeight: undefined
     });
   });
 
@@ -104,7 +140,9 @@ describe('buildSizeStyle', () => {
     const w = wrapper({});
     expect(w.instance().buildSizeStyle()).toEqual({
       width: undefined,
-      height: undefined
+      height: undefined,
+      minHeight: undefined,
+      maxHeight: undefined
     });
   });
 });

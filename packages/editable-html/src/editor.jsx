@@ -42,6 +42,8 @@ export class Editor extends React.Component {
     imageSupport: PropTypes.object,
     width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    minHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    maxHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     classes: PropTypes.object.isRequired,
     highlightShape: PropTypes.bool,
     disabled: PropTypes.bool,
@@ -390,7 +392,7 @@ export class Editor extends React.Component {
     if (typeof v === 'string') {
       if (v.endsWith('%')) {
         return undefined;
-      } else if (v.endsWith('px')) {
+      } else if (v.endsWith('px') || v.endsWith('vh') || v.endsWith('vw')) {
         return v;
       } else {
         const value = parseInt(v, 10);
@@ -405,11 +407,13 @@ export class Editor extends React.Component {
   };
 
   buildSizeStyle() {
-    const { width, height } = this.props;
+    const { width, minHeight, height, maxHeight } = this.props;
 
     return {
       width: this.valueToSize(width),
-      height: this.valueToSize(height)
+      height: this.valueToSize(height),
+      minHeight: this.valueToSize(minHeight),
+      maxHeight: this.valueToSize(maxHeight)
     };
   }
 
@@ -496,7 +500,11 @@ export class Editor extends React.Component {
           normalize={this.normalize}
           readOnly={disabled}
           className={classes.slateEditor}
-          style={{ height: sizeStyle.height }}
+          style={{
+            minHeight: sizeStyle.minHeight,
+            height: sizeStyle.height,
+            maxHeight: sizeStyle.maxHeight
+          }}
           pluginProps={pluginProps}
           toolbarOpts={toolbarOpts}
           placeholder={placeholder}
