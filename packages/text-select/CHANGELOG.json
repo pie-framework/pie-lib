@@ -493,5 +493,50 @@
     "committerDate": "2021-02-02 12:16:28 +0200",
     "isTagged": true,
     "tag": "@pie-lib/text-select@1.7.10"
+  },
+  {
+    "type": "fix",
+    "scope": "text-select",
+    "subject": "fix layout for legacy items with line number",
+    "merge": null,
+    "header": "fix(text-select): fix layout for legacy items with line number",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "d50865ee7705c3889ec366ada54810334114fbe5",
+    "gitTags": " (origin/fix/select-text-with-line-number)",
+    "committerDate": "2021-02-25 13:53:20 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/text-select@1.7.12"
+  },
+  {
+    "type": "fix",
+    "scope": "text-select",
+    "subject": "show tokens if they are selected in view mode to fix PD-464",
+    "merge": null,
+    "header": "fix(text-select): show tokens if they are selected in view mode to fix PD-464",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "7821536264b822852b12caefcea7b5d84f4c4f03",
+    "gitTags": "",
+    "committerDate": "2021-02-24 16:38:15 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/text-select@1.7.12"
+  },
+  {
+    "type": "fix",
+    "scope": "text-select",
+    "subject": "fix padding for tokens in order to fix PD-860",
+    "merge": null,
+    "header": "fix(text-select): fix padding for tokens in order to fix PD-860",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "eacb81c1f28276b95c75a203515c7c041df39ee7",
+    "gitTags": " (origin/fix/select-text-token-padding)",
+    "committerDate": "2021-02-23 16:03:46 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/text-select@1.7.12"
   }
 ]

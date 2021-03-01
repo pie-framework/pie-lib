@@ -1218,5 +1218,20 @@
     "committerDate": "2021-02-15 15:36:46 +0000",
     "isTagged": true,
     "tag": "@pie-lib/demo@6.4.8"
+  },
+  {
+    "type": "fix",
+    "scope": "render-ui",
+    "subject": "create function that parses html in order to fix PD-771",
+    "merge": null,
+    "header": "fix(render-ui): create function that parses html in order to fix PD-771",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "6bf9c5dc88040fb18f7a66343746b9d698f405c0",
+    "gitTags": "",
+    "committerDate": "2021-02-22 12:50:12 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/demo@6.4.9"
   }
 ]

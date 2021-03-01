@@ -758,5 +758,20 @@
     "committerDate": "2021-02-12 12:50:27 +0200",
     "isTagged": true,
     "tag": "@pie-lib/graphing@2.2.13"
+  },
+  {
+    "type": "fix",
+    "scope": "graphing",
+    "subject": "in OT buttons and tool labels are too small, override fontSize of 0.8125rem and fontSize of 0.8125rem PD-24",
+    "merge": null,
+    "header": "fix(graphing): in OT buttons and tool labels are too small, override fontSize of 0.8125rem and fontSize of 0.8125rem PD-24",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "4f589521386006cd0bdba32dbfade16cc57be067",
+    "gitTags": " (origin/fix/PD-24)",
+    "committerDate": "2021-02-23 13:11:40 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/graphing@2.2.14"
   }
 ]
