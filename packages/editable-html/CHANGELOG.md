@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.16.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.16.8...@pie-lib/editable-html@7.16.9) (2021-03-01)
+
+
+### Bug Fixes
+
+* **editable-html:** add delete button for response area PD-778 ([234ba06](https://github.com/pie-framework/pie-lib/commit/234ba06))
+* **editable-html:** add min and max height to fix PD-694 ([955db39](https://github.com/pie-framework/pie-lib/commit/955db39))
+
+
+
+
+
 ## [7.16.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.16.7...@pie-lib/editable-html@7.16.8) (2021-02-15)
 
 

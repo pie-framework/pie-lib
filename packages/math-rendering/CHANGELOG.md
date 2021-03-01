@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.3.4...@pie-lib/math-rendering@2.3.5) (2021-03-01)
+
+
+### Bug Fixes
+
+* **math-rendering:** linebreak rendering fixed for mathquill custom elements - PD-787 ([5216f6a](https://github.com/pie-framework/pie-lib/commit/5216f6a))
+
+
+
+
+
 ## [2.3.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.3.3...@pie-lib/math-rendering@2.3.4) (2021-02-15)
 
 **Note:** Version bump only for package @pie-lib/math-rendering

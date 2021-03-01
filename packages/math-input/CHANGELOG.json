@@ -1318,5 +1318,20 @@
     "committerDate": "2021-02-15 15:36:46 +0000",
     "isTagged": true,
     "tag": "@pie-lib/math-input@6.5.4"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "In some situations, math editors will not accept keyboard entry. PD-655",
+    "merge": null,
+    "header": "fix: In some situations, math editors will not accept keyboard entry. PD-655",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "876de3133a8f36ac675ac4ec314c6c8aba7be6b7",
+    "gitTags": " (origin/fix/PD-655)",
+    "committerDate": "2021-02-24 10:31:08 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/math-input@6.5.5"
   }
 ]

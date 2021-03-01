@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.2.13...@pie-lib/graphing@2.2.14) (2021-03-01)
+
+
+### Bug Fixes
+
+* **graphing:** in OT buttons and tool labels are too small, override fontSize of 0.8125rem and fontSize of 0.8125rem PD-24 ([4f58952](https://github.com/pie-framework/pie-lib/commit/4f58952))
+
+
+
+
+
 ## [2.2.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.2.12...@pie-lib/graphing@2.2.13) (2021-02-15)
 
 

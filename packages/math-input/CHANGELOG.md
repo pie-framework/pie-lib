@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.5.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.5.4...@pie-lib/math-input@6.5.5) (2021-03-01)
+
+
+### Bug Fixes
+
+* In some situations, math editors will not accept keyboard entry. PD-655 ([876de31](https://github.com/pie-framework/pie-lib/commit/876de31))
+
+
+
+
+
 ## [6.5.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.5.3...@pie-lib/math-input@6.5.4) (2021-02-15)
 
 

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.11.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.11.3...@pie-lib/render-ui@4.11.4) (2021-03-01)
+
+
+### Bug Fixes
+
+* **render-ui:** create function that parses html in order to fix PD-771 ([6bf9c5d](https://github.com/pie-framework/pie-lib/commit/6bf9c5d))
+* **render-ui:** render math for collapsible to fix PD-772 ([f0ef384](https://github.com/pie-framework/pie-lib/commit/f0ef384))
+
+
+
+
+
 ## [4.11.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.11.2...@pie-lib/render-ui@4.11.3) (2021-02-15)
 
 **Note:** Version bump only for package @pie-lib/render-ui

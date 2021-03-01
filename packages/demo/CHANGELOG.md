@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.4.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.4.8...@pie-lib/demo@6.4.9) (2021-03-01)
+
+
+### Bug Fixes
+
+* **render-ui:** create function that parses html in order to fix PD-771 ([6bf9c5d](https://github.com/pie-framework/pie-lib/commit/6bf9c5d))
+
+
+
+
+
 ## [6.4.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.4.7...@pie-lib/demo@6.4.8) (2021-02-15)
 
 
