@@ -214,7 +214,10 @@ export class EditorAndPad extends React.Component {
 const styles = theme => ({
   inputAndTypeContainer: {
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
+    '& *': {
+      fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important'
+    }
   },
   selectContainer: {
     flex: 'initial',
