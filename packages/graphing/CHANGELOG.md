@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.2.14...@pie-lib/graphing@2.2.15) (2021-03-01)
+
+
+### Bug Fixes
+
+* **graphing:** positioning of the numeric labels on the x- and y- axes for 0 and -1 PD-529 ([c33c82b](https://github.com/pie-framework/pie-lib/commit/c33c82b))
+* **graphing:** where '-n' [x] and '-n' [y] would overlap if positioned normally, only one '-n' label should be displayed and centered PD-529 ([946657f](https://github.com/pie-framework/pie-lib/commit/946657f))
+
+
+
+
+
 ## [2.2.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.2.13...@pie-lib/graphing@2.2.14) (2021-03-01)
 
 

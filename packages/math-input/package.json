@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "6.5.5",
+  "version": "6.5.6",
   "main": "lib/index.js",
   "module": "src/index.jsx",
   "dependencies": {
