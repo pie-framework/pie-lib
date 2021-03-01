@@ -31,7 +31,8 @@ const styles = theme => ({
   choice: {
     backgroundColor: 'white',
     border: `solid 1px ${grey[400]}`,
-    padding: theme.spacing.unit
+    padding: theme.spacing.unit,
+    minHeight: '30px'
   }
 });
 

@@ -91,6 +91,41 @@ describe('token-select', () => {
       );
       expect(w).toMatchSnapshot();
     });
+
+    it('renders in view mode with selected tokens', () => {
+      const w = shallow(
+        <TokenSelect
+          disabled
+          tokens={[
+            {
+              text: 'foo,',
+              start: 0,
+              end: 4,
+              predefined: true,
+              selectable: true,
+              selected: true
+            },
+            {
+              text: '\n',
+              start: 4,
+              end: 5,
+              selected: false
+            },
+            {
+              text: 'bar',
+              start: 5,
+              end: 8,
+              predefined: true,
+              selectable: true,
+              selected: true
+            }
+          ]}
+          classes={{}}
+          onChange={jest.fn()}
+        />
+      );
+      expect(w).toMatchSnapshot();
+    });
   });
 
   describe('logic', () => {

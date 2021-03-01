@@ -1,7 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles/index';
 import Collapse from '@material-ui/core/Collapse/index';
-
+import { renderMath } from '@pie-lib/math-rendering';
 import PropTypes from 'prop-types';
 
 export class Collapsible extends React.Component {
@@ -27,12 +27,20 @@ export class Collapsible extends React.Component {
     this.setState(state => ({ expanded: !state.expanded }));
   };
 
+  componentDidMount() {
+    renderMath(this.root);
+  }
+
+  componentDidUpdate() {
+    renderMath(this.root);
+  }
+
   render() {
     const { classes, labels, children, className } = this.props;
     const title = this.state.expanded ? labels.visible || 'Hide' : labels.hidden || 'Show';
 
     return (
-      <div className={className}>
+      <div className={className} ref={r => (this.root = r)}>
         <div onClick={this.toggleExpanded}>
           <span className={classes.title}>{title}</span>
         </div>

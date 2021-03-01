@@ -42,7 +42,9 @@ export class Token extends React.Component {
 
     let className;
 
-    if (correct !== undefined) {
+    if (correct === undefined && selected && disabled) {
+      className = classNames(classes.token, classes.selected, classes.disabled);
+    } else if (correct !== undefined) {
       className = classNames(
         Token.rootClassName,
         classes.custom,
@@ -79,6 +81,7 @@ export default withStyles(theme => {
       textIndent: 0,
       padding: theme.spacing.unit / 2,
       paddingRight: 0,
+      paddingLeft: 0,
       transition: 'background-color 100ms ease-in'
     },
     disabled: {
@@ -97,6 +100,7 @@ export default withStyles(theme => {
       }
     },
     selected: {
+      lineHeight: 2,
       marginTop: theme.spacing.unit / 2,
       '&:hover': {
         backgroundColor: color.primaryLight()
@@ -109,7 +113,7 @@ export default withStyles(theme => {
     highlight: {
       // TODO hardcoded color,
       border: 'dashed 2px gray',
-      lineHeight: '35px',
+      lineHeight: 2,
       boxSizing: 'border-box',
       marginTop: theme.spacing.unit / 2,
       display: 'inline-block',

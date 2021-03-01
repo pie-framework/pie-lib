@@ -238,6 +238,7 @@ export class Toolbar extends React.Component {
             onChange={onChange}
             showDone={defaultToolbarShowDone}
             onDone={handleDone}
+            deletable={deletable}
           />
         )}
 
@@ -254,7 +255,7 @@ export class Toolbar extends React.Component {
               <Delete />
             </IconButton>
           )}
-          {customToolbarShowDone && <DoneButton onClick={handleDone} />}
+          {(customToolbarShowDone || deletable) && <DoneButton onClick={handleDone} />}
         </div>
       </div>
     );
@@ -299,6 +300,9 @@ const style = {
   },
   label: {
     color: 'var(--editable-html-toolbar-check, #00bb00)'
+  },
+  shared: {
+    display: 'flex'
   }
 };
 export default withStyles(style, { index: 1000 })(Toolbar);

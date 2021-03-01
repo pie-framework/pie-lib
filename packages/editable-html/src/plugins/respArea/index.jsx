@@ -72,6 +72,13 @@ export default function ResponseAreaPlugin(opts) {
 
       return plugins.filter(p => p.name !== 'response_area');
     },
+    deleteNode: (e, node, value, onChange) => {
+      e.preventDefault();
+
+      const change = value.change().removeNodeByKey(node.key);
+
+      onChange(change);
+    },
     renderNode(props) {
       const { attributes, node: n } = props;
 

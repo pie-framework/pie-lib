@@ -72,6 +72,11 @@ export class Input extends React.Component {
   focus() {
     log('focus mathfield...');
     this.mathField.focus();
+
+    setTimeout(() => {
+      this.mathField.blur();
+      this.mathField.focus();
+    }, 0);
   }
 
   command(v) {
