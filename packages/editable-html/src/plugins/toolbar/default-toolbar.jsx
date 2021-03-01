@@ -54,7 +54,8 @@ export const DefaultToolbar = ({
   onChange,
   onDone,
   classes,
-  showDone
+  showDone,
+  deletable
 }) => {
   const filtered = plugins.filter(isActiveToolbarPlugin(pluginProps)).map(p => p.toolbar);
 
@@ -65,7 +66,7 @@ export const DefaultToolbar = ({
           return <ToolbarButton {...p} key={index} value={value} onChange={onChange} />;
         })}
       </div>
-      {showDone && <DoneButton onClick={onDone} />}
+      {showDone && !deletable && <DoneButton onClick={onDone} />}
     </div>
   );
 };
@@ -78,7 +79,8 @@ DefaultToolbar.propTypes = {
   onChange: PropTypes.func.isRequired,
   onDone: PropTypes.func.isRequired,
   showDone: PropTypes.bool,
-  addArea: PropTypes.bool
+  addArea: PropTypes.bool,
+  deletable: PropTypes.bool
 };
 
 DefaultToolbar.defaultProps = {
