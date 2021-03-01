@@ -423,5 +423,20 @@
     "committerDate": "2020-10-28 11:21:18 +0000",
     "isTagged": true,
     "tag": "@pie-lib/drag@1.1.45"
+  },
+  {
+    "type": "fix",
+    "scope": "drag",
+    "subject": "min height for choices",
+    "merge": null,
+    "header": "fix(drag): min height for choices",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "6e14314c26cfa494a534900148c5ce3799cff6e4",
+    "gitTags": " (origin/fix/categorize-styles)",
+    "committerDate": "2021-02-16 16:43:27 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/drag@1.1.49"
   }
 ]

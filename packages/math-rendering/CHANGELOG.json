@@ -623,5 +623,20 @@
     "committerDate": "2021-01-28 10:33:05 +0000",
     "isTagged": true,
     "tag": "@pie-lib/math-rendering@2.3.1"
+  },
+  {
+    "type": "fix",
+    "scope": "math-rendering",
+    "subject": "linebreak rendering fixed for mathquill custom elements - PD-787",
+    "merge": null,
+    "header": "fix(math-rendering): linebreak rendering fixed for mathquill custom elements - PD-787",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "5216f6abf93385c58b0c35a34c0ad4145f5a8fbf",
+    "gitTags": "",
+    "committerDate": "2021-02-22 09:01:40 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/math-rendering@2.3.5"
   }
 ]

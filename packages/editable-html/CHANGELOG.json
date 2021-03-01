@@ -2903,5 +2903,35 @@
     "committerDate": "2021-02-15 15:36:46 +0000",
     "isTagged": true,
     "tag": "@pie-lib/editable-html@7.16.8"
+  },
+  {
+    "type": "fix",
+    "scope": "editable-html",
+    "subject": "add delete button for response area PD-778",
+    "merge": null,
+    "header": "fix(editable-html): add delete button for response area PD-778",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "234ba061a5208b9195553bfe5cfc5a9ae49fa6d5",
+    "gitTags": "",
+    "committerDate": "2021-02-26 17:41:11 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.16.9"
+  },
+  {
+    "type": "fix",
+    "scope": "editable-html",
+    "subject": "add min and max height to fix PD-694",
+    "merge": null,
+    "header": "fix(editable-html): add min and max height to fix PD-694",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "955db39747dbbb5c7a23eb01d1071fffe6f6ee2b",
+    "gitTags": "",
+    "committerDate": "2021-02-26 10:37:55 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.16.9"
   }
 ]
