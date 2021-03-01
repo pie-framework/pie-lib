@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.7.11...@pie-lib/text-select@1.7.12) (2021-03-01)
+
+
+### Bug Fixes
+
+* **text-select:** fix layout for legacy items with line number ([d50865e](https://github.com/pie-framework/pie-lib/commit/d50865e))
+* **text-select:** fix padding for tokens in order to fix PD-860 ([eacb81c](https://github.com/pie-framework/pie-lib/commit/eacb81c))
+* **text-select:** show tokens if they are selected in view mode to fix PD-464 ([7821536](https://github.com/pie-framework/pie-lib/commit/7821536))
+
+
+
+
+
 ## [1.7.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.7.10...@pie-lib/text-select@1.7.11) (2021-02-15)
 
 **Note:** Version bump only for package @pie-lib/text-select

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.49](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@1.1.48...@pie-lib/drag@1.1.49) (2021-03-01)
+
+
+### Bug Fixes
+
+* **drag:** min height for choices ([6e14314](https://github.com/pie-framework/pie-lib/commit/6e14314))
+
+
+
+
+
 ## [1.1.48](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@1.1.47...@pie-lib/drag@1.1.48) (2021-02-15)
 
 **Note:** Version bump only for package @pie-lib/drag
