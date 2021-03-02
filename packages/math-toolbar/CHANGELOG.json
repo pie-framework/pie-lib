@@ -738,5 +738,20 @@
     "committerDate": "2021-02-01 21:26:34 +0000",
     "isTagged": true,
     "tag": "@pie-lib/math-toolbar@1.7.1"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "override math input and math toolbar style for ibx PD-774",
+    "merge": null,
+    "header": "fix: override math input and math toolbar style for ibx PD-774",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "0969756e395e6ef3287bd1ff76507c4578794191",
+    "gitTags": "",
+    "committerDate": "2021-03-01 19:11:26 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/math-toolbar@1.7.7"
   }
 ]
