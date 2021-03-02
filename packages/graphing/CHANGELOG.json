@@ -773,5 +773,35 @@
     "committerDate": "2021-02-23 13:11:40 +0200",
     "isTagged": true,
     "tag": "@pie-lib/graphing@2.2.14"
+  },
+  {
+    "type": "fix",
+    "scope": "graphing",
+    "subject": "positioning of the numeric labels on the x- and y- axes for 0 and -1 PD-529",
+    "merge": null,
+    "header": "fix(graphing): positioning of the numeric labels on the x- and y- axes for 0 and -1 PD-529",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "c33c82b0dab09712d24e2802d9a0501a58a2ff32",
+    "gitTags": " (origin/fix/positioning-of-the-numeric-labels-on-x-and-y-axes-for-overlapping-elements)",
+    "committerDate": "2021-03-01 11:32:14 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/graphing@2.2.15"
+  },
+  {
+    "type": "fix",
+    "scope": "graphing",
+    "subject": "where '-n' [x] and '-n' [y] would overlap if positioned normally, only one '-n' label should be displayed and centered PD-529",
+    "merge": null,
+    "header": "fix(graphing): where '-n' [x] and '-n' [y] would overlap if positioned normally, only one '-n' label should be displayed and centered PD-529",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "946657f07fd0d22c9b06f9495ddec7b0a78f6976",
+    "gitTags": "",
+    "committerDate": "2021-02-24 15:13:51 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/graphing@2.2.15"
   }
 ]
