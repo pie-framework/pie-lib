@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.5.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.5.6...@pie-lib/math-input@6.5.7) (2021-03-02)
+
+
+### Bug Fixes
+
+* override math input and math toolbar style for ibx PD-774 ([0969756](https://github.com/pie-framework/pie-lib/commit/0969756))
+
+
+
+
+
 ## [6.5.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.5.5...@pie-lib/math-input@6.5.6) (2021-03-01)
 
 **Note:** Version bump only for package @pie-lib/math-input
