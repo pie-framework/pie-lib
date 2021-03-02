@@ -46,9 +46,9 @@ const LatexButton = withStyles(theme => ({
           top: '-0.25em'
         },
         '&:after': {
-          fontSize: '80%',
-          right: 'calc(-13%)',
-          top: '-1.5em'
+          fontSize: '80% !important',
+          right: 'calc(-13%) !important',
+          top: '-1.5em !important'
         },
         '&.mq-empty:before': {
           fontSize: '80%',
@@ -194,6 +194,9 @@ export class KeyPad extends React.Component {
 
 const styles = theme => ({
   keys: {
+    '& *': {
+      fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important'
+    },
     width: '100%',
     display: 'grid',
     gridTemplateRows: 'repeat(5, minmax(40px, 60px))',

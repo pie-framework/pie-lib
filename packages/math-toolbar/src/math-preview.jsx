@@ -44,6 +44,9 @@ const mp = theme => ({
       boxShadow: 'none',
       border: 'solid 1px black',
       borderRadius: '0px'
+    },
+    '& *': {
+      fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important'
     }
   },
   selected: {
