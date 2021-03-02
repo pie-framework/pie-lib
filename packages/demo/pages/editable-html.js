@@ -102,7 +102,7 @@ class RteDemo extends React.Component {
       disabled: false,
       width: '',
       height: '',
-      keypadMode: 'everything',
+      keypadMode: 'miscellaneous',
       markupText: html,
       hasText: true
     };
@@ -259,7 +259,7 @@ class RteDemo extends React.Component {
                   <MenuItem value="geometry">Geometry</MenuItem>
                   <MenuItem value="advanced-algebra">Advanced Algebra</MenuItem>
                   <MenuItem value="statistics">Statistics</MenuItem>
-                  <MenuItem value="everything">Everything</MenuItem>
+                  <MenuItem value="miscellaneous">Miscellaneous</MenuItem>
                 </Select>
               }
               label="Equation editor"

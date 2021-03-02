@@ -30,7 +30,7 @@ export class MathToolbar extends React.Component {
 
   static defaultProps = {
     classNames: {},
-    keypadMode: 'everything',
+    keypadMode: 'miscellaneous',
     autoFocus: false,
     allowAnswerBlock: false,
     controlledKeypad: false,

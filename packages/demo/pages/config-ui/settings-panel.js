@@ -92,7 +92,7 @@ class RawContainer extends React.Component {
                   'geometry',
                   'advanced-algebra',
                   'statistics',
-                  'everything'
+                  'miscellaneous'
                 ]),
                 graph: numberFields('Graph Display Size', {
                   domain: {
