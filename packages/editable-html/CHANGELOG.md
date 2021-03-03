@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.16.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.16.11...@pie-lib/editable-html@7.16.12) (2021-03-03)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
 ## [7.16.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.16.10...@pie-lib/editable-html@7.16.11) (2021-03-02)
 
 **Note:** Version bump only for package @pie-lib/editable-html
