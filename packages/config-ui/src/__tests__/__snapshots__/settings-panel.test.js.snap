@@ -60,7 +60,7 @@ exports[`Settings Panel snapshot renders 1`] = `
               "geometry",
               "advanced-algebra",
               "statistics",
-              "everything",
+              "miscellaneous",
             ],
             "isConfigProperty": false,
             "label": "Dropdown",

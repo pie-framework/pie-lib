@@ -26,7 +26,7 @@ describe('Settings Panel', () => {
           'geometry',
           'advanced-algebra',
           'statistics',
-          'everything'
+          'miscellaneous'
         ]),
         graph: numberFields('Graph Display Size', {
           domain: {

@@ -22,7 +22,7 @@ class Demo extends React.Component {
       labelWidth: 0,
       inputOne: '\\frac{1}{3}',
       latex1: '\\text{$}',
-      latex2: '\\\\\\\\text{$}',
+      latex2: '\\\\\\\\text{$}'
     };
     this.onChange = this.onChange.bind(this);
   }
@@ -73,7 +73,7 @@ class Demo extends React.Component {
     return mounted ? (
       <div>
         <Section name="Equation editor with presets">
-          <br/>
+          <br />
           <FormControl variant="outlined">
             <InputLabel
               ref={ref => {
@@ -87,7 +87,7 @@ class Demo extends React.Component {
               value={this.state.editorType}
               label={'Preset'}
               onChange={this.changeEditorType}
-              input={<OutlinedInput labelWidth={this.state.labelWidth} name="Editor Type"/>}
+              input={<OutlinedInput labelWidth={this.state.labelWidth} name="Editor Type" />}
             >
               <MenuItem value="">
                 <em>None</em>
@@ -99,30 +99,30 @@ class Demo extends React.Component {
               <MenuItem value={'geometry'}>Geometry</MenuItem>
               <MenuItem value={'advanced-algebra'}>Advanced Algebra</MenuItem>
               <MenuItem value={'statistics'}>Statistics</MenuItem>
-              <MenuItem value={'everything'}>Everything</MenuItem>
+              <MenuItem value={'miscellaneous'}>Miscellaneous</MenuItem>
             </Select>
           </FormControl>
-
           <mq.Input
             keyset={keyset}
             latex={this.state.inputOne}
             onChange={latex => this.setState({ inputOne: latex })}
           />
           <pre className={classes.pre}>{this.state.inputOne}</pre>
-          <br/>
-          <br/>
-          <br/>
-          no extra slashes: <mq.Input
-          keyset={keyset}
-          latex={this.state.latex1}
-          onChange={latex => this.setState({ latex1: latex })}
-        /> - extra slashes:
+          <br />
+          <br />
+          <br />
+          no extra slashes:{' '}
+          <mq.Input
+            keyset={keyset}
+            latex={this.state.latex1}
+            onChange={latex => this.setState({ latex1: latex })}
+          />{' '}
+          - extra slashes:
           <mq.Input
             keyset={keyset}
             latex={this.state.latex2}
             onChange={latex => this.setState({ latex2: latex })}
           />
-
         </Section>
 
         <Section name="Custom keys (E261001)">
@@ -162,7 +162,7 @@ class Demo extends React.Component {
         </Section>
       </div>
     ) : (
-      <div/>
+      <div />
     );
   }
 }
