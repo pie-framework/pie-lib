@@ -61,12 +61,7 @@ export const gradeSets = [
     predicate: n => n >= 8 || n === 'HS',
     set: [
       [vars.x, vars.y, exponent.squared, exponent.squareRoot, operators.circleDot],
-      [
-        fractions.xOverBlank,
-        subSup.subscript,
-        exponent.xToPowerOfN,
-        exponent.nthRoot
-      ],
+      [fractions.xOverBlank, subSup.subscript, exponent.xToPowerOfN, exponent.nthRoot],
       [
         comparison.lessThanEqual,
         comparison.greaterThanEqual,
@@ -113,7 +108,7 @@ export const gradeSets = [
     ]
   },
   {
-    predicate: 'everything',
+    predicate: 'miscellaneous',
     set: [
       [
         subSup.superscript,
@@ -157,6 +152,51 @@ export const gradeSets = [
       ]
     ]
   },
+  // {
+  //   predicate: 'everything',
+  //   set: [
+  //     [
+  //       subSup.superscript,
+  //       subSup.subscript,
+  //       fractions.blankOverBlank,
+  //       misc.percentage,
+  //       geometry.segment,
+  //       geometry.parallel
+  //     ],
+  //     [
+  //       exponent.squareRoot,
+  //       exponent.nthRoot,
+  //       misc.absValue,
+  //       misc.parenthesis,
+  //       geometry.perpindicular,
+  //       geometry.angle
+  //     ],
+  //     [
+  //       comparison.lessThan,
+  //       comparison.greaterThan,
+  //       geometry.degree,
+  //       misc.approx,
+  //       geometry.measureOfAngle,
+  //       geometry.triangle
+  //     ],
+  //     [
+  //       misc.nApprox,
+  //       misc.notEqual,
+  //       geometry.congruentTo,
+  //       geometry.notCongruentTo,
+  //       geometry.parallelogram,
+  //       geometry.circledDot
+  //     ],
+  //     [
+  //       misc.similar,
+  //       misc.notSimilar,
+  //       comparison.lessThanEqual,
+  //       comparison.greaterThanEqual,
+  //       vars.x,
+  //       vars.y
+  //     ]
+  //   ]
+  // },
   {
     predicate: 'advanced-algebra',
     set: advancedAlgebra

@@ -34,7 +34,7 @@ describe('utils', () => {
       ${'9'}                | ${gradeSets[2].set}
       ${'HS'}               | ${gradeSets[2].set}
       ${'geometry'}         | ${gradeSets[3].set}
-      ${'everything'}       | ${gradeSets[4].set}
+      ${'miscellaneous'}    | ${gradeSets[4].set}
       ${'advanced-algebra'} | ${gradeSets[5].set}
       ${'statistics'}       | ${gradeSets[6].set}
       ${'something else'}   | ${undefined}
