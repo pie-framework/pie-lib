@@ -36,7 +36,7 @@ export class RawDragHandle extends React.Component {
     return (
       <rect
         x={x}
-        y={scale.y(y) - 3}
+        y={scale.y(y) - 10}
         width={width}
         className={classNames(
           classes.handle,
@@ -52,12 +52,12 @@ export class RawDragHandle extends React.Component {
 
 export const DragHandle = withStyles(theme => ({
   handle: {
-    height: '3px',
+    height: '10px',
     fill: color.secondary(),
     transition: 'fill 200ms linear, height 200ms linear',
     '&:hover': {
       fill: color.secondaryDark(),
-      height: '12px'
+      height: '16px'
     },
     '&.correct': correct('fill'),
     '&.incorrect': incorrect('fill'),
