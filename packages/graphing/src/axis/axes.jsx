@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Arrow from './arrow';
 import { withStyles } from '@material-ui/core';
 import isEqual from 'lodash/isEqual';
-import { getTickValues } from '../utils';
+import { countWords, getTickValues } from '../utils';
 import { color } from '@pie-lib/render-ui';
 
 export const AxisPropTypes = {
@@ -125,6 +125,8 @@ export class RawXAxis extends React.Component {
       };
     };
 
+    const necessaryRows = countWords(domain.axisLabel);
+
     return (
       <React.Fragment>
         <Axis
@@ -145,7 +147,12 @@ export class RawXAxis extends React.Component {
           <Arrow direction="right" x={domain.max} y={0} className={classes.arrow} scale={scale} />
         )}
         {domain.axisLabel && (
-          <foreignObject x={size.width + 10} y={scale.y(0) - 10} width={100} height={20}>
+          <foreignObject
+            x={size.width + 10}
+            y={scale.y(0) - 10}
+            width={100}
+            height={20 * necessaryRows}
+          >
             <div dangerouslySetInnerHTML={{ __html: domain.axisLabel }} />
           </foreignObject>
         )}

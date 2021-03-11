@@ -3,6 +3,7 @@ import tail from 'lodash/tail';
 import { utils } from '@pie-lib/plot';
 import invariant from 'invariant';
 import isEqual from 'lodash/isEqual';
+import isEmpty from 'lodash/isEmpty';
 
 export const tickCount = utils.tickCount;
 export const bounds = utils.bounds;
@@ -35,6 +36,15 @@ export const getTickValues = prop => {
   }
 
   return [];
+};
+
+export const countWords = label => {
+  if (label == null || isEmpty(label)) {
+    return 1;
+  }
+
+  const words = label.split(' ');
+  return words.length;
 };
 
 export const polygonToArea = points => {

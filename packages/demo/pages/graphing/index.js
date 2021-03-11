@@ -37,7 +37,7 @@ export class GridDemo extends React.PureComponent {
       labels: {},
       title: 'Title',
       domain: {
-        axisLabel: '<i>verylongdomain domain</i>',
+        axisLabel: '<i>Imaginary Axis</i>',
         min: -4.3,
         max: 5.9,
         padding: 0,
