@@ -34,10 +34,15 @@ export class GridDemo extends React.PureComponent {
       }
     },
     model: {
-      labels: {},
+      labels: {
+        bottom: 'TEST FOR THE LABELS',
+        top: 'TEST FOR THE LABELS',
+        left: 'TEST FOR THE LABELS',
+        right: 'TEST FOR THE LABELS'
+      },
       title: 'Title',
       domain: {
-        axisLabel: '<i>Imaginary Axis</i>',
+        axisLabel: '<i>domain</i>',
         min: -4.3,
         max: 5.9,
         padding: 0,
@@ -45,7 +50,7 @@ export class GridDemo extends React.PureComponent {
         labelStep: 0.5
       },
       range: {
-        axisLabel: '<em>very long range range range buhuhuhu</em>',
+        axisLabel: '<em>range</em>',
         min: -6.2,
         max: 5.1,
         padding: 0,

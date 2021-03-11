@@ -47,6 +47,25 @@ export const countWords = label => {
   return words.length;
 };
 
+// findLongestWord is also used in plot
+export const findLongestWord = label => {
+  let longestWord = (label || '')
+    .replace(/<[^>]+>/g, '')
+    .split(' ')
+    .sort((a, b) => b.length - a.length);
+
+  return longestWord[0].length;
+};
+
+// amountToIncreaseWidth is also used in plot
+export const amountToIncreaseWidth = longestWord => {
+  if (!longestWord) {
+    return 0;
+  }
+
+  return longestWord * 10;
+};
+
 export const polygonToArea = points => {
   const h = head(points);
   const area = {
