@@ -139,8 +139,8 @@ export const isDomainRangeEqual = (graphProps, nextGraphProps) => {
   );
 };
 
-export const findLongestWord = str => {
-  var longestWord = (str || '').split(' ').sort(function(a, b) {
+export const findLongestWord = label => {
+  var longestWord = (label || '').split(' ').sort(function(a, b) {
     return b.length - a.length;
   });
   return longestWord[0].length;
@@ -157,7 +157,10 @@ export const amountToIncreaseWidth = longestWord => {
     case longestWord < 10:
       return 100;
 
-    default:
+    case longestWord >= 10:
       return 150;
+
+    default:
+      return 0;
   }
 };
