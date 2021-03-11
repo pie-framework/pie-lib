@@ -34,15 +34,10 @@ export class GridDemo extends React.PureComponent {
       }
     },
     model: {
-      labels: {
-        bottom: 'TEST FOR THE LABELS',
-        top: 'TEST FOR THE LABELS',
-        left: 'TEST FOR THE LABELS',
-        right: 'TEST FOR THE LABELS'
-      },
+      labels: {},
       title: 'Title',
       domain: {
-        axisLabel: '<i>domain</i>',
+        axisLabel: '<i>verylongdomain domain</i>',
         min: -4.3,
         max: 5.9,
         padding: 0,
@@ -50,7 +45,7 @@ export class GridDemo extends React.PureComponent {
         labelStep: 0.5
       },
       range: {
-        axisLabel: '<em>range</em>',
+        axisLabel: '<em>very long range range range buhuhuhu</em>',
         min: -6.2,
         max: 5.1,
         padding: 0,
@@ -60,7 +55,7 @@ export class GridDemo extends React.PureComponent {
       backgroundMarks: backgroundMarks,
       marks: marks
     }
-  }
+  };
 
   componentDidMount() {
     this.setState({ mounted: true });
@@ -154,17 +149,18 @@ export class GridDemo extends React.PureComponent {
         <div className={classes.demo}>
           <div>
             <Tabs value={tabIndex} onChange={this.changeTab}>
-              <Tab label="Config"/>
-              <Tab label="State"/>
+              <Tab label="Config" />
+              <Tab label="State" />
             </Tabs>
             {tabIndex === 0 && (
               <Tab0
                 model={model}
                 settings={settings}
                 onChange={this.change}
-                onSettingsChange={settings => this.setState({ settings })}/>
+                onSettingsChange={settings => this.setState({ settings })}
+              />
             )}
-            {tabIndex === 1 && <Tab1 marks={model.marks}/>}
+            {tabIndex === 1 && <Tab1 marks={model.marks} />}
           </div>
 
           <div>
@@ -206,5 +202,5 @@ const styles = {
 };
 
 export const Styled = withStyles(styles)(GridDemo);
-const Demo = () => <Styled/>;
+const Demo = () => <Styled />;
 export default withRoot(Demo);
