@@ -116,7 +116,7 @@ export default withStyles(theme => {
       lineHeight: 2,
       boxSizing: 'border-box',
       marginTop: theme.spacing.unit / 2,
-      display: 'inline-block',
+      display: 'inline',
       padding: theme.spacing.unit
     },
 
