@@ -68,13 +68,8 @@ export class Root extends React.Component {
     const longestWord = findLongestWord(domain.axisLabel);
     const increaseWidth = amountToIncreaseWidth(longestWord);
 
-    console.log('update');
-
     const finalWidth = size.width + padding * 2 + increaseWidth;
     const finalHeight = size.height + padding * 2;
-    console.log(increaseWidth, 'increaseWidth');
-    console.log('finalWidth', finalWidth);
-    console.log('finalidth', finalHeight);
 
     return (
       <div className={classes.root}>

@@ -223,7 +223,7 @@ export class RawYAxis extends React.Component {
           <Arrow direction="up" x={0} y={range.max} className={classes.arrow} scale={scale} />
         )}
         {range.axisLabel && (
-          <foreignObject x={scale.x(0) - 50} y={-25} width="100" height="20">
+          <foreignObject x={scale.x(0) - 100} y={-25} width="200" height="20">
             <div
               dangerouslySetInnerHTML={{ __html: range.axisLabel }}
               className={classes.axisLabelHolder}
