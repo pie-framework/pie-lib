@@ -6,6 +6,7 @@ import { select, mouse } from 'd3-selection';
 import PropTypes from 'prop-types';
 import { GraphPropsType } from './types';
 import { color } from '@pie-lib/render-ui';
+import { findLongestWord, amountToIncreaseWidth } from './utils';
 
 export const GraphTitle = withStyles(theme => ({
   title: {
@@ -62,9 +63,12 @@ export class Root extends React.Component {
 
   render() {
     const { graphProps, children, classes, title, rootRef, paddingLeft } = this.props;
-    const { size } = graphProps;
+    const { size, domain } = graphProps;
     const padding = 50;
-    const finalWidth = size.width + padding * 2;
+    const longestWord = findLongestWord(domain.axisLabel);
+    const increaseWidth = amountToIncreaseWidth(longestWord);
+
+    const finalWidth = size.width + padding * 2 + increaseWidth;
     const finalHeight = size.height + padding * 2;
 
     return (

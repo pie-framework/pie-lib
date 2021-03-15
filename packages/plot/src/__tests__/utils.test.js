@@ -184,4 +184,50 @@ describe('utils', () => {
       a({ major: 11, minor: 1 }, 0.25);
     });
   });
+
+  describe('findLongestWord', () => {
+    it('should return 0 if label is undefined', () => {
+      const label = undefined;
+      const result = utils.findLongestWord(label);
+
+      expect(result).toEqual(0);
+    });
+
+    it('should return 0 if label is null', () => {
+      const label = null;
+      const result = utils.findLongestWord(label);
+
+      expect(result).toEqual(0);
+    });
+
+    it('should return 6 if the longest word from label has 6 letters', () => {
+      const label = 'Number of months';
+      const result = utils.findLongestWord(label);
+
+      expect(result).toEqual(6);
+    });
+  });
+
+  describe('amountToIncreaseWidth', () => {
+    it('should return 0 if longestWord is undefined', () => {
+      const longestWord = undefined;
+      const result = utils.amountToIncreaseWidth(longestWord);
+
+      expect(result).toEqual(0);
+    });
+
+    it('should return 0 if longestWord is null', () => {
+      const longestWord = null;
+      const result = utils.amountToIncreaseWidth(longestWord);
+
+      expect(result).toEqual(0);
+    });
+
+    it('should return 150 if longestWord is 10', () => {
+      const longestWord = 10;
+      const result = utils.amountToIncreaseWidth(longestWord);
+
+      expect(result).toEqual(100);
+    });
+  });
 });

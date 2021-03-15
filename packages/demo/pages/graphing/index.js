@@ -60,7 +60,7 @@ export class GridDemo extends React.PureComponent {
       backgroundMarks: backgroundMarks,
       marks: marks
     }
-  }
+  };
 
   componentDidMount() {
     this.setState({ mounted: true });
@@ -154,17 +154,18 @@ export class GridDemo extends React.PureComponent {
         <div className={classes.demo}>
           <div>
             <Tabs value={tabIndex} onChange={this.changeTab}>
-              <Tab label="Config"/>
-              <Tab label="State"/>
+              <Tab label="Config" />
+              <Tab label="State" />
             </Tabs>
             {tabIndex === 0 && (
               <Tab0
                 model={model}
                 settings={settings}
                 onChange={this.change}
-                onSettingsChange={settings => this.setState({ settings })}/>
+                onSettingsChange={settings => this.setState({ settings })}
+              />
             )}
-            {tabIndex === 1 && <Tab1 marks={model.marks}/>}
+            {tabIndex === 1 && <Tab1 marks={model.marks} />}
           </div>
 
           <div>
@@ -206,5 +207,5 @@ const styles = {
 };
 
 export const Styled = withStyles(styles)(GridDemo);
-const Demo = () => <Styled/>;
+const Demo = () => <Styled />;
 export default withRoot(Demo);
