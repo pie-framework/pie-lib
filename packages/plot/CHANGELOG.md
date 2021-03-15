@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.1.3...@pie-lib/plot@2.1.4) (2021-03-15)
+
+
+### Bug Fixes
+
+* **graphing:** calculate the amount of necessary width for domain axis label PD-988 ([0085feb](https://github.com/pie-framework/pie-lib/commit/0085feb))
+* **graphing:** increase width and height for labels, depending on labels length PD-988 ([5f64c47](https://github.com/pie-framework/pie-lib/commit/5f64c47))
+* **graphing:** increase width for range  axisLabel PD-988 ([e4e5b8f](https://github.com/pie-framework/pie-lib/commit/e4e5b8f))
+
+
+
+
+
 ## [2.1.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.1.2...@pie-lib/plot@2.1.3) (2021-02-15)
 
 **Note:** Version bump only for package @pie-lib/plot

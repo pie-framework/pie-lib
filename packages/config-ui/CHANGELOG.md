@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.8.54](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.8.53...@pie-lib/config-ui@10.8.54) (2021-03-15)
+
+
+### Bug Fixes
+
+* **config-ui:** set same font-size for labels in settings panel PD-269 ([21749a0](https://github.com/pie-framework/pie-lib/commit/21749a0))
+
+
+
+
+
 ## [10.8.53](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.8.52...@pie-lib/config-ui@10.8.53) (2021-03-03)
 
 
