@@ -65,7 +65,7 @@ const StyledRadio = withStyles({
 const Dropdown = withStyles({
   label: {
     margin: 0,
-    fontSize: '0.85rem'
+    fontSize: '14px'
   },
   wrapper: {
     marginTop: '4px',
