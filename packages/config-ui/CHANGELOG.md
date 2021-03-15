@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.8.53](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.8.52...@pie-lib/config-ui@10.8.53) (2021-03-03)
+
+
+### Bug Fixes
+
+* rename the 'Everything' math editor as the 'Miscellaneous' math editor ([6b5c0b3](https://github.com/pie-framework/pie-lib/commit/6b5c0b3))
+
+
+
+
+
 ## [10.8.52](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.8.51...@pie-lib/config-ui@10.8.52) (2021-03-02)
 
 **Note:** Version bump only for package @pie-lib/config-ui

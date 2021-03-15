@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.5.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.5.7...@pie-lib/math-input@6.5.8) (2021-03-03)
+
+
+### Bug Fixes
+
+* rename the 'Everything' math editor as the 'Miscellaneous' math editor ([6b5c0b3](https://github.com/pie-framework/pie-lib/commit/6b5c0b3))
+
+
+
+
+
 ## [6.5.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.5.6...@pie-lib/math-input@6.5.7) (2021-03-02)
 
 
