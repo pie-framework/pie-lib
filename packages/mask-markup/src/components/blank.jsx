@@ -18,7 +18,9 @@ const useStyles = withStyles(() => ({
   },
   chip: {
     minWidth: '90px',
-    fontSize: 'inherit'
+    fontSize: 'inherit',
+    minHeight: '32px',
+    height: 'auto'
   },
   correct: {
     border: `solid 1px ${color.correct()}`
