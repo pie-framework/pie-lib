@@ -98,4 +98,27 @@ describe('utils', () => {
       4.8
     ]);
   });
+
+  describe('countWords', () => {
+    it('should return 1 if label is undefined', () => {
+      const label = undefined;
+      const result = utils.countWords(label);
+
+      expect(result).toEqual(1);
+    });
+
+    it('should return 1 if label is null', () => {
+      const label = null;
+      const result = utils.countWords(label);
+
+      expect(result).toEqual(1);
+    });
+
+    it('should return 3 if label has 3 words', () => {
+      const label = 'Number of months';
+      const result = utils.countWords(label);
+
+      expect(result).toEqual(3);
+    });
+  });
 });

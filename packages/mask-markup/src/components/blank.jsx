@@ -18,8 +18,10 @@ const useStyles = withStyles(() => ({
   },
   chip: {
     minWidth: '90px',
-    maxWidth: '374px',
-    fontSize: 'inherit'
+    fontSize: 'inherit',
+    minHeight: '32px',
+    height: 'auto',
+    maxWidth: '374px'
   },
   chipLabel: {
     whiteSpace: 'pre-wrap'

@@ -3,6 +3,7 @@ import tail from 'lodash/tail';
 import { utils } from '@pie-lib/plot';
 import invariant from 'invariant';
 import isEqual from 'lodash/isEqual';
+import isEmpty from 'lodash/isEmpty';
 
 export const tickCount = utils.tickCount;
 export const bounds = utils.bounds;
@@ -35,6 +36,34 @@ export const getTickValues = prop => {
   }
 
   return [];
+};
+
+export const countWords = label => {
+  if (label == null || isEmpty(label)) {
+    return 1;
+  }
+
+  const words = label.split(' ');
+  return words.length;
+};
+
+// findLongestWord is also used in plot
+export const findLongestWord = label => {
+  let longestWord = (label || '')
+    .replace(/<[^>]+>/g, '')
+    .split(' ')
+    .sort((a, b) => b.length - a.length);
+
+  return longestWord[0].length;
+};
+
+// amountToIncreaseWidth is also used in plot
+export const amountToIncreaseWidth = longestWord => {
+  if (!longestWord) {
+    return 0;
+  }
+
+  return longestWord * 10;
 };
 
 export const polygonToArea = points => {
