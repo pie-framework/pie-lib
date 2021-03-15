@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Arrow from './arrow';
 import { withStyles } from '@material-ui/core';
 import isEqual from 'lodash/isEqual';
-import { getTickValues } from '../utils';
+import { countWords, findLongestWord, amountToIncreaseWidth, getTickValues } from '../utils';
 import { color } from '@pie-lib/render-ui';
 
 export const AxisPropTypes = {
@@ -125,6 +125,10 @@ export class RawXAxis extends React.Component {
       };
     };
 
+    const necessaryRows = countWords(domain.axisLabel);
+    const longestWord = findLongestWord(domain.axisLabel);
+    const necessaryWidth = amountToIncreaseWidth(longestWord);
+
     return (
       <React.Fragment>
         <Axis
@@ -145,7 +149,12 @@ export class RawXAxis extends React.Component {
           <Arrow direction="right" x={domain.max} y={0} className={classes.arrow} scale={scale} />
         )}
         {domain.axisLabel && (
-          <foreignObject x={size.width + 10} y={scale.y(0) - 10} width={100} height={20}>
+          <foreignObject
+            x={size.width + 10}
+            y={scale.y(0) - 10}
+            width={necessaryWidth}
+            height={20 * necessaryRows}
+          >
             <div dangerouslySetInnerHTML={{ __html: domain.axisLabel }} />
           </foreignObject>
         )}
@@ -174,6 +183,8 @@ export class RawYAxis extends React.Component {
   render() {
     const { classes, includeArrows, graphProps, skipValues, rowTickValues } = this.props;
     const { scale, range, size } = graphProps || {};
+
+    const necessaryWidth = amountToIncreaseWidth(range.axisLabel.length);
 
     const customTickFormat = value => {
       if (skipValues && skipValues.indexOf(value) >= 0) {
@@ -216,7 +227,12 @@ export class RawYAxis extends React.Component {
           <Arrow direction="up" x={0} y={range.max} className={classes.arrow} scale={scale} />
         )}
         {range.axisLabel && (
-          <foreignObject x={scale.x(0) - 50} y={-25} width="100" height="20">
+          <foreignObject
+            x={scale.x(0) - necessaryWidth / 2}
+            y={-25}
+            width={necessaryWidth}
+            height="20"
+          >
             <div
               dangerouslySetInnerHTML={{ __html: range.axisLabel }}
               className={classes.axisLabelHolder}
