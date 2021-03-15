@@ -703,5 +703,20 @@
     "committerDate": "2021-02-15 14:30:34 +0200",
     "isTagged": true,
     "tag": "@pie-lib/mask-markup@1.10.8"
+  },
+  {
+    "type": "fix",
+    "scope": "mask-markup",
+    "subject": "increase height for drag-in-the-blank chip PD-726",
+    "merge": null,
+    "header": "fix(mask-markup): increase height for drag-in-the-blank chip PD-726",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "9cb037ed3c829592b77dbd5ae699d7942cc05f06",
+    "gitTags": " (origin/fix/drag-in-the-blank-increase-container-height)",
+    "committerDate": "2021-03-10 11:28:54 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/mask-markup@1.10.11"
   }
 ]

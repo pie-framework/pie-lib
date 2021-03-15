@@ -273,5 +273,50 @@
     "committerDate": "2020-09-29 16:53:15 +0300",
     "isTagged": true,
     "tag": "@pie-lib/plot@2.1.0"
+  },
+  {
+    "type": "fix",
+    "scope": "graphing",
+    "subject": "increase width and height for labels, depending on labels length PD-988",
+    "merge": null,
+    "header": "fix(graphing): increase width and height for labels, depending on labels length PD-988",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "5f64c472eedaa64882961f0da0e8aad5edefce4e",
+    "gitTags": " (origin/fix/PD-988)",
+    "committerDate": "2021-03-11 16:32:44 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/plot@2.1.4"
+  },
+  {
+    "type": "fix",
+    "scope": "graphing",
+    "subject": "increase width for range  axisLabel PD-988",
+    "merge": null,
+    "header": "fix(graphing): increase width for range  axisLabel PD-988",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "e4e5b8f3b12931a8ad2b05590921d01d99924e9f",
+    "gitTags": "",
+    "committerDate": "2021-03-11 12:47:38 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/plot@2.1.4"
+  },
+  {
+    "type": "fix",
+    "scope": "graphing",
+    "subject": "calculate the amount of necessary width for domain axis label PD-988",
+    "merge": null,
+    "header": "fix(graphing): calculate the amount of necessary width for domain axis label PD-988",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "0085feb879b6246a887de4ec025d0c1149c297b6",
+    "gitTags": "",
+    "committerDate": "2021-03-11 11:36:29 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/plot@2.1.4"
   }
 ]

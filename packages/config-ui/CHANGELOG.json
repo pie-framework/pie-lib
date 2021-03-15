@@ -1628,5 +1628,20 @@
     "committerDate": "2021-03-02 17:41:22 +0200",
     "isTagged": true,
     "tag": "@pie-lib/config-ui@10.8.53"
+  },
+  {
+    "type": "fix",
+    "scope": "config-ui",
+    "subject": "set same font-size for labels in settings panel PD-269",
+    "merge": null,
+    "header": "fix(config-ui): set same font-size for labels in settings panel PD-269",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "21749a0e00de07a75c3ea3dd57cbe40e524d8258",
+    "gitTags": " (origin/fix/font-size-label-settings-panel)",
+    "committerDate": "2021-03-10 12:25:37 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/config-ui@10.8.54"
   }
 ]
