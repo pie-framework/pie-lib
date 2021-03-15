@@ -264,6 +264,15 @@ const styles = theme => ({
       boxShadow: 'none',
       border: `dotted 1px ${theme.palette.primary.main}`,
       borderRadius: '0px'
+    },
+    '& .mq-overarrow-inner': {
+      border: 'none !important'
+    },
+    '& .mq-overarrow-inner-right': {
+      display: 'none !important'
+    },
+    '& .mq-overarrow-inner-left': {
+      display: 'none !important'
     }
   }
 });
