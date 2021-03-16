@@ -34,8 +34,30 @@ export default class Arrow extends React.Component {
 
     const scaledX = scale.x(x);
     const scaledY = scale.y(y);
-    const transform = `translate(${(size / 2) * -1}, ${(size / 2) * -1})
+
+    let transform;
+
+    switch (angle) {
+      case 0:
+        transform = `translate(${size * -1}, ${(size / 2) * -1})
       rotate(${-1 * angle} ${scaledX + size / 2} ${scaledY + size / 2})`;
+        break;
+      case 90:
+        transform = `translate(${(size / 2) * -1}, 0)
+      rotate(${-1 * angle} ${scaledX + size / 2} ${scaledY + size / 2})`;
+        break;
+      case 180:
+        transform = `translate(0, ${(size / 2) * -1})
+      rotate(${-1 * angle} ${scaledX + size / 2} ${scaledY + size / 2})`;
+        break;
+      case 270:
+        transform = `translate(${(size / 2) * -1}, ${size * -1})
+      rotate(${-1 * angle} ${scaledX + size / 2} ${scaledY + size / 2})`;
+        break;
+      default:
+        break;
+    }
+
     const points = `${scaledX},${scaledY}
      ${scaledX + size},${scaledY + size / 2}
       ${scaledX}, ${scaledY + size}`;
