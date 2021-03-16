@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.2.16...@pie-lib/graphing@2.2.17) (2021-03-16)
+
+
+### Bug Fixes
+
+* **graphing:** fix arrow positioning PD-495 ([36a87cf](https://github.com/pie-framework/pie-lib/commit/36a87cf))
+
+
+
+
+
 ## [2.2.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.2.15...@pie-lib/graphing@2.2.16) (2021-03-15)
 
 
