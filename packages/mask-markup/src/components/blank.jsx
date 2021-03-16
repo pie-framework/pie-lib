@@ -20,7 +20,11 @@ const useStyles = withStyles(() => ({
     minWidth: '90px',
     fontSize: 'inherit',
     minHeight: '32px',
-    height: 'auto'
+    height: 'auto',
+    maxWidth: '374px'
+  },
+  chipLabel: {
+    whiteSpace: 'pre-wrap'
   },
   correct: {
     border: `solid 1px ${color.correct()}`
@@ -60,6 +64,7 @@ export class BlankContent extends React.Component {
         component="span"
         label={
           <span
+            className={classes.chipLabel}
             ref={ref => {
               if (ref) {
                 ref.innerHTML = label || '';

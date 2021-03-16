@@ -5,8 +5,9 @@ exports[`index Choice render renders correctly with default props 1`] = `
   classes={
     Object {
       "chip": "BlankContentComp-chip-2",
+      "chipLabel": "BlankContentComp-chipLabel-3",
       "choice": "BlankContentComp-choice-1",
-      "disabled": "BlankContentComp-disabled-3",
+      "disabled": "BlankContentComp-disabled-4",
     }
   }
   disabled={false}
@@ -21,8 +22,9 @@ exports[`index Choice render renders correctly with disabled prop as true 1`] = 
   classes={
     Object {
       "chip": "BlankContentComp-chip-2",
+      "chipLabel": "BlankContentComp-chipLabel-3",
       "choice": "BlankContentComp-choice-1",
-      "disabled": "BlankContentComp-disabled-3",
+      "disabled": "BlankContentComp-disabled-4",
     }
   }
   disabled={true}
