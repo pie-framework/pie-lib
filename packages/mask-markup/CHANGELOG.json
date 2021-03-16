@@ -718,5 +718,35 @@
     "committerDate": "2021-03-10 11:28:54 +0200",
     "isTagged": true,
     "tag": "@pie-lib/mask-markup@1.10.11"
+  },
+  {
+    "type": "fix",
+    "scope": "drag-in-the-blank",
+    "subject": "add margin for tokens PD-745",
+    "merge": null,
+    "header": "fix(drag-in-the-blank): add margin for tokens PD-745",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "2df356f1cc8fe48f21634f3f7935327c7e004214",
+    "gitTags": "",
+    "committerDate": "2021-03-10 15:52:43 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/mask-markup@1.10.12"
+  },
+  {
+    "type": "fix",
+    "scope": "drag-in-the-blank",
+    "subject": "set max width for tokens PD-727",
+    "merge": null,
+    "header": "fix(drag-in-the-blank): set max width for tokens PD-727",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "b43b63022f55a5f4d4642cc8213e0b420f8291d6",
+    "gitTags": "",
+    "committerDate": "2021-03-10 15:50:53 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/mask-markup@1.10.12"
   }
 ]
