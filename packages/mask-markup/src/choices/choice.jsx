@@ -34,6 +34,7 @@ class BlankContentComp extends React.Component {
           className={classes.chip}
           label={
             <span
+              className={classes.chipLabel}
               ref={ref => {
                 if (ref) {
                   ref.innerHTML = choice.value || ' ';
@@ -60,7 +61,13 @@ export const BlankContent = withStyles(theme => ({
     display: 'inline-flex',
     height: 'initial',
     minHeight: '32px',
-    fontSize: 'inherit'
+    fontSize: 'inherit',
+    whiteSpace: 'pre-wrap',
+    maxWidth: '374px',
+    margin: '4px'
+  },
+  chipLabel: {
+    whiteSpace: 'pre-wrap'
   },
   disabled: {}
 }))(BlankContentComp);

@@ -9,8 +9,14 @@ export const tickCount = utils.tickCount;
 export const bounds = utils.bounds;
 export const point = utils.point;
 
-//TODO: This can be removed?
-export const getAngleDeg = () => 0;
+export const getAngleDeg = (cx, cy, ex, ey) => {
+  let dy = ey - cy;
+  let dx = ex - cx;
+  let theta = Math.atan2(dy, dx);
+  theta *= 180 / Math.PI;
+  return theta;
+};
+
 //TODO: This can be removed?
 export const arrowDimensions = () => 0;
 
