@@ -111,6 +111,24 @@ TickComponent.propTypes = {
   classes: PropTypes.object
 };
 
+export const calculateLabelStep = (range, scale) => {
+  const rowTickValues = getTickValues({ ...range, step: 1 });
+  let getFirstValue = rowTickValues && rowTickValues[1] ? rowTickValues[1] : undefined;
+  let segmentLength = Math.abs(scale.y(0) - scale.y(getFirstValue));
+
+  // tickWidth is set by tick fontSize, wich is 12
+  const tickWidth = 12;
+
+  // how many tickWidths fit in a segment
+  let tickWidthPerSegment = segmentLength / tickWidth;
+
+  const ticksToFitInOneSegment = 3;
+
+  const step = ticksToFitInOneSegment / tickWidthPerSegment;
+  const roundedStep = Math.ceil((step * 10) / 10);
+
+  return step > 0.25 ? roundedStep : step;
+};
 export class RawChartAxes extends React.Component {
   static propTypes = {
     bottomScale: PropTypes.func,
@@ -142,7 +160,9 @@ export class RawChartAxes extends React.Component {
     const bandWidth = xBand && typeof xBand.bandwidth === 'function' && xBand.bandwidth();
     // for chartType "line", bandWidth will be 0, so we have to calculate it
     const barWidth = bandWidth || (scale.x && scale.x(domain.max) / categories.length);
-    const rowTickValues = getTickValues({ ...range, step: range.labelStep });
+
+    const customLabelStep = range.labelStep ? range.labelStep : calculateLabelStep(range, scale);
+    const rowTickValues = getTickValues({ ...range, step: customLabelStep });
     const rotate = getRotateAngle(barWidth);
 
     const getTickLabelProps = value => ({

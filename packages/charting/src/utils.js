@@ -73,10 +73,6 @@ export const getDomainAndRangeByChartType = (domain, range, chartType) => {
     }
   }
 
-  if (!labelStep) {
-    labelStep = numberMax;
-  }
-
   switch (chartType) {
     // if chart is dot plot or line plot, we should ignore step and make sure that min & max are integer values
     case 'dotPlot':
