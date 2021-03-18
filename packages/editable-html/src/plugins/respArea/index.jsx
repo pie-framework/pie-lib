@@ -130,9 +130,13 @@ export default function ResponseAreaPlugin(opts) {
 
       allElements.forEach(el => {
         const prevText = node.getPreviousText(el.key);
+        const lastCharIsNewLine = prevText.text[prevText.text.length - 1] === '\n';
 
-        if (prevText.text.length === 0) {
-          addSpacesArray.push(prevText.key);
+        if (prevText.text.length === 0 || lastCharIsNewLine) {
+          addSpacesArray.push({
+            nr: lastCharIsNewLine ? 1 : 2,
+            key: prevText.key
+          });
         }
       });
 
@@ -142,10 +146,10 @@ export default function ResponseAreaPlugin(opts) {
 
       return change => {
         change.withoutNormalization(() => {
-          addSpacesArray.forEach(key => {
+          addSpacesArray.forEach(({ key, nr }) => {
             const node = change.value.document.getNode(key);
 
-            change.insertTextByKey(key, node.text.length, '\u00A0\u00A0');
+            change.insertTextByKey(key, node.text.length, '\u00A0'.repeat(nr));
           });
         });
       };
