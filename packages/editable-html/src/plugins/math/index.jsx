@@ -12,12 +12,21 @@ const log = debug('@pie-lib:editable-html:plugins:math');
 
 const TEXT_NODE = 3;
 
+function generateAdditionalKeys(keyData = []) {
+  return keyData.map(key => ({
+    name: key,
+    latex: key,
+    write: key,
+    label: key
+  }));
+}
+
 export const CustomToolbarComp = React.memo(
   props => {
     const { node, value, onFocus, onBlur, onClick } = props;
     const { pluginProps } = props || {};
     const { math } = pluginProps || {};
-    const { keypadMode, controlledKeypadMode = true } = math || {};
+    const { keypadMode, customKeys, controlledKeypadMode = true } = math || {};
 
     const onDone = latex => {
       const update = {
@@ -48,6 +57,7 @@ export const CustomToolbarComp = React.memo(
     return (
       <MathToolbar
         autoFocus
+        additionalKeys={generateAdditionalKeys(customKeys)}
         latex={latex}
         onChange={onChange}
         onDone={onDone}
