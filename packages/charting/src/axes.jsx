@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import { useTheme } from '@material-ui/core/styles';
 import { types } from '@pie-lib/plot';
 import { color } from '@pie-lib/render-ui';
 import { AxisLeft, AxisBottom } from '@vx/axis';
@@ -111,24 +112,6 @@ TickComponent.propTypes = {
   classes: PropTypes.object
 };
 
-export const calculateLabelStep = (range, scale) => {
-  const rowTickValues = getTickValues({ ...range, step: 1 });
-  let getFirstValue = rowTickValues && rowTickValues[1] ? rowTickValues[1] : undefined;
-  let segmentLength = Math.abs(scale.y(0) - scale.y(getFirstValue));
-
-  // tickWidth is set by tick fontSize, wich is 12
-  const tickWidth = 12;
-
-  // how many tickWidths fit in a segment
-  let tickWidthPerSegment = segmentLength / tickWidth;
-
-  const ticksToFitInOneSegment = 3;
-
-  const step = ticksToFitInOneSegment / tickWidthPerSegment;
-  const roundedStep = Math.ceil((step * 10) / 10);
-
-  return step > 0.25 ? roundedStep : step;
-};
 export class RawChartAxes extends React.Component {
   static propTypes = {
     bottomScale: PropTypes.func,
@@ -161,8 +144,7 @@ export class RawChartAxes extends React.Component {
     // for chartType "line", bandWidth will be 0, so we have to calculate it
     const barWidth = bandWidth || (scale.x && scale.x(domain.max) / categories.length);
 
-    const customLabelStep = range.labelStep ? range.labelStep : calculateLabelStep(range, scale);
-    const rowTickValues = getTickValues({ ...range, step: customLabelStep });
+    const rowTickValues = getTickValues({ ...range, step: range.labelStep });
     const rotate = getRotateAngle(barWidth);
 
     const getTickLabelProps = value => ({

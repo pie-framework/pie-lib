@@ -50,8 +50,32 @@ export const getTickValues = (prop = {}) => {
   return tickValues;
 };
 
-export const getDomainAndRangeByChartType = (domain, range, chartType) => {
+export const customLabelStep = (range, size, tickWidth) => {
+  const rangeMax = Math.ceil(range.max);
+  const segmentLength = size.height / rangeMax;
+
+  // how many ticksWidth fit in a segment
+  let tickWidthPerSegment = segmentLength / tickWidth;
+
+  const ticksToFitInOneSegment = 1;
+
+  const labelStep = ticksToFitInOneSegment / tickWidthPerSegment;
+  const roundedStep = Math.ceil((labelStep * 10) / 10);
+
+  return labelStep > 0.15 ? roundedStep : labelStep;
+};
+
+export const crowdedTicks = (range, size, tickWidth) => {
+  const rangeMax = Math.ceil(range.max);
+  const numberOfSegments = rangeMax * range.labelStep;
+
+  return size.height / numberOfSegments < tickWidth;
+};
+
+export const getDomainAndRangeByChartType = (domain, range, size, tickWidth, chartType) => {
   let { step, labelStep, min, max } = range || {};
+
+  const crowded = crowdedTicks(range, size, tickWidth);
 
   if (!min) {
     min = 0;
@@ -61,16 +85,20 @@ export const getDomainAndRangeByChartType = (domain, range, chartType) => {
     max = range.min + 1;
   }
 
-  const numberMax = parseFloat(max);
+  if (!labelStep || crowded) {
+    labelStep = customLabelStep(range, size, tickWidth);
+  }
 
-  if (!step) {
-    if (numberMax < 20) {
+  if (!step || step < labelStep) {
+    if (labelStep <= 4) {
       step = 1;
-    } else if (numberMax >= 20 && numberMax < 100) {
-      step = 5;
+    } else if (labelStep > 4 && labelStep < 10) {
+      step = labelStep / 2;
     } else {
-      step = 10;
+      step = labelStep / 3;
     }
+  } else {
+    step = labelStep;
   }
 
   switch (chartType) {
