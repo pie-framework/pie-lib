@@ -4,6 +4,7 @@ import { utils } from '@pie-lib/plot';
 export const tickCount = utils.tickCount;
 export const bounds = utils.bounds;
 export const point = utils.point;
+export const twelvePixels = 12;
 
 export const bandKey = (d, index) => `${index}-${d.label || '-'}`;
 
@@ -50,32 +51,35 @@ export const getTickValues = (prop = {}) => {
   return tickValues;
 };
 
-export const customLabelStep = (range, size, tickWidth) => {
-  const rangeMax = Math.ceil(range.max);
-  const segmentLength = size.height / rangeMax;
+export const customLabelStep = (rangeMax, size) => {
+  const ceilMax = Math.ceil(rangeMax);
+  const segmentLength = size.height / ceilMax;
 
   // how many ticksWidth fit in a segment
-  let tickWidthPerSegment = segmentLength / tickWidth;
+  let tickWidthPerSegment = segmentLength / twelvePixels;
 
   const ticksToFitInOneSegment = 1;
 
   const labelStep = ticksToFitInOneSegment / tickWidthPerSegment;
   const roundedStep = Math.ceil((labelStep * 10) / 10);
 
-  return labelStep > 0.15 ? roundedStep : labelStep;
+  return labelStep > 0.15 ? roundedStep : labelStep || 1;
 };
 
-export const crowdedTicks = (range, size, tickWidth) => {
-  const rangeMax = Math.ceil(range.max);
+export const crowdedTicks = (rangeMax, range, size) => {
+  const ceilMax = Math.ceil(rangeMax);
+
+  if (!range.labelStep) {
+    return;
+  }
+
   const numberOfSegments = rangeMax * range.labelStep;
 
-  return size.height / numberOfSegments < tickWidth;
+  return size.height / numberOfSegments < twelvePixels;
 };
 
-export const getDomainAndRangeByChartType = (domain, range, size, tickWidth, chartType) => {
+export const getDomainAndRangeByChartType = (domain, range, size, chartType) => {
   let { step, labelStep, min, max } = range || {};
-
-  const crowded = crowdedTicks(range, size, tickWidth);
 
   if (!min) {
     min = 0;
@@ -85,20 +89,22 @@ export const getDomainAndRangeByChartType = (domain, range, size, tickWidth, cha
     max = range.min + 1;
   }
 
+  const crowded = crowdedTicks(max, range, size);
+
   if (!labelStep || crowded) {
-    labelStep = customLabelStep(range, size, tickWidth);
+    labelStep = customLabelStep(max, size);
   }
 
-  if (!step || step < labelStep) {
-    if (labelStep <= 4) {
+  if (!step) {
+    if (labelStep <= 1) {
+      step = labelStep;
+    } else if (labelStep <= 4) {
       step = 1;
     } else if (labelStep > 4 && labelStep < 10) {
       step = labelStep / 2;
     } else {
       step = labelStep / 3;
     }
-  } else {
-    step = labelStep;
   }
 
   switch (chartType) {

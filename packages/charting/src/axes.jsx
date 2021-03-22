@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { useTheme } from '@material-ui/core/styles';
 import { types } from '@pie-lib/plot';
 import { color } from '@pie-lib/render-ui';
 import { AxisLeft, AxisBottom } from '@vx/axis';
-import { bandKey, getTickValues, getRotateAngle } from './utils';
+import { bandKey, getTickValues, getRotateAngle, twelvePixels } from './utils';
 import MarkLabel from './mark-label';
 
 export class TickComponent extends React.Component {
@@ -226,7 +225,7 @@ const ChartAxes = withStyles(theme => ({
     },
     fill: color.primaryDark(),
     fontFamily: theme.typography.body1.fontFamily,
-    fontSize: theme.typography.overline.fontSize,
+    fontSize: twelvePixels,
     textAnchor: 'middle'
   },
   dottedLine: {

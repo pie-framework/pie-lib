@@ -44,7 +44,6 @@ export class ChartDemo extends React.Component {
           label: 'Amount',
           max: 5.5,
           min: 0,
-          step: 1,
           axisLabel: 'Y'
         },
         data: [

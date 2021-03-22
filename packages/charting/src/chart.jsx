@@ -138,26 +138,14 @@ export class Chart extends React.Component {
   };
 
   render() {
-    const {
-      classes,
-      className,
-      domain,
-      range,
-      size,
-      title,
-      addCategoryEnabled,
-      theme
-    } = this.props;
+    const { classes, className, domain, range, size, title, addCategoryEnabled } = this.props;
     let { chartType } = this.props;
     const { width, height } = size || {};
 
     const { ChartComponent } = this.getChart();
     const categories = this.getFilteredCategories();
 
-    // transform rem to px
-    const tickWidth = theme ? parseFloat(theme.typography.overline.fontSize) * 16 : 12;
-
-    const correctValues = getDomainAndRangeByChartType(domain, range, size, tickWidth, chartType);
+    const correctValues = getDomainAndRangeByChartType(domain, range, size, chartType);
 
     const { verticalLines, horizontalLines, leftAxis } = getGridLinesAndAxisByChartType(
       correctValues.range,
@@ -253,4 +241,4 @@ const styles = theme => ({
   }
 });
 
-export default withStyles(styles, { withTheme: true })(Chart);
+export default withStyles(styles)(Chart);

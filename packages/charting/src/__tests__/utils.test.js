@@ -17,22 +17,9 @@ describe('utils', () => {
   });
 
   describe('getDomainAndRangeByChartType', () => {
-    const assertGetDomainAndRangeByChartType = (
-      domain,
-      range,
-      size,
-      tickWidth,
-      chartType,
-      correctValues
-    ) => {
+    const assertGetDomainAndRangeByChartType = (domain, range, size, chartType, correctValues) => {
       it('returns correct values for domain and range', () => {
-        const result = utils.getDomainAndRangeByChartType(
-          domain,
-          range,
-          size,
-          tickWidth,
-          chartType
-        );
+        const result = utils.getDomainAndRangeByChartType(domain, range, size, chartType);
         expect(result).toEqual(correctValues);
       });
     };
@@ -41,29 +28,26 @@ describe('utils', () => {
       { min: -1, max: 4 },
       { min: 1, max: 2, step: 1 },
       { height: 600 },
-      12,
       'line',
       {
         domain: { min: 0, max: 1, step: 1, labelStep: 1 },
-        range: { min: 1, max: 2, step: 0.04, labelStep: 0.04 }
+        range: { min: 1, max: 2, step: 1, labelStep: 0.04 }
       }
     );
     assertGetDomainAndRangeByChartType(
       { min: -1, max: 4 },
       { min: 0.1, max: 2, labelStep: 0.1 },
       { height: 600 },
-      12,
       'line',
       {
         domain: { min: 0, max: 1, step: 1, labelStep: 1 },
-        range: { min: 0.1, max: 2, step: 1, labelStep: 0.1 }
+        range: { min: 0.1, max: 2, step: 0.1, labelStep: 0.1 }
       }
     );
     assertGetDomainAndRangeByChartType(
       { min: -1, max: 4 },
       { min: 0.2, max: 2.4, step: 0.1 },
       { height: 600 },
-      12,
       'dotPlot',
       {
         domain: { min: 0, max: 1, step: 1, labelStep: 1 },
