@@ -2933,5 +2933,20 @@
     "committerDate": "2021-02-26 10:37:55 +0200",
     "isTagged": true,
     "tag": "@pie-lib/editable-html@7.16.9"
+  },
+  {
+    "type": "fix",
+    "scope": "editable-html",
+    "subject": "custom key fix for math keypad - PD-388",
+    "merge": null,
+    "header": "fix(editable-html): custom key fix for math keypad - PD-388",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "adba7f0735eb4c4bc05b6bda9072fafcfe21e71a",
+    "gitTags": " (origin/fix/PD-388-fix-custom-keys)",
+    "committerDate": "2021-03-19 18:21:28 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.16.14"
   }
 ]
