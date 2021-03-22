@@ -48,7 +48,7 @@ const LatexButton = withStyles(theme => ({
         '&:after': {
           fontSize: '80% !important',
           right: 'calc(-13%) !important',
-          top: '-1.5em !important'
+          top: '-1.5em'
         },
         '&.mq-empty:before': {
           fontSize: '80%',
