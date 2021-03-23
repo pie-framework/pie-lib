@@ -20,7 +20,6 @@ const useStyles = withStyles(() => ({
     minWidth: '90px',
     fontSize: 'inherit',
     minHeight: '32px',
-    height: 'auto',
     maxWidth: '374px'
   },
   chipLabel: {
@@ -47,8 +46,31 @@ export class BlankContent extends React.Component {
     onChange: PropTypes.func
   };
 
-  componentDidUpdate() {
+  constructor() {
+    super();
+    this.state = {
+      height: 0
+    };
+  }
+
+  componentDidUpdate(prevProps) {
     renderMath(this.rootRef);
+    const { choice: currentChoice } = this.props;
+    const { choice: prevChoice } = prevProps;
+
+    if (JSON.stringify(currentChoice) !== JSON.stringify(prevChoice)) {
+      if (!currentChoice) {
+        this.setState({
+          height: 0
+        });
+        return;
+      }
+      setTimeout(() => {
+        this.setState({
+          height: this.spanRef.offsetHeight
+        });
+      }, 300);
+    }
   }
 
   render() {
@@ -67,6 +89,8 @@ export class BlankContent extends React.Component {
             className={classes.chipLabel}
             ref={ref => {
               if (ref) {
+                //eslint-disable-next-line
+                this.spanRef = ReactDOM.findDOMNode(ref);
                 ref.innerHTML = label || '';
               }
             }}
@@ -79,6 +103,9 @@ export class BlankContent extends React.Component {
           [classes.incorrect]: correct !== undefined && !correct
         })}
         variant={disabled ? 'outlined' : undefined}
+        style={{
+          ...(this.state.height ? { height: this.state.height } : {})
+        }}
       />
     );
   }
