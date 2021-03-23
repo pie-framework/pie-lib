@@ -4,7 +4,7 @@ import { utils } from '@pie-lib/plot';
 export const tickCount = utils.tickCount;
 export const bounds = utils.bounds;
 export const point = utils.point;
-export const twelvePixels = 12;
+export const tickFontSize = 12;
 
 export const bandKey = (d, index) => `${index}-${d.label || '-'}`;
 
@@ -56,7 +56,7 @@ export const customLabelStep = (rangeMax, size) => {
   const segmentLength = size.height / ceilMax;
 
   // how many ticksWidth fit in a segment
-  let tickWidthPerSegment = segmentLength / twelvePixels;
+  let tickWidthPerSegment = segmentLength / tickFontSize;
 
   const ticksToFitInOneSegment = 1;
 
@@ -75,7 +75,7 @@ export const crowdedTicks = (rangeMax, range, size) => {
 
   const numberOfSegments = rangeMax * range.labelStep;
 
-  return size.height / numberOfSegments < twelvePixels;
+  return size.height / numberOfSegments < tickFontSize;
 };
 
 export const getDomainAndRangeByChartType = (domain, range, size, chartType) => {
