@@ -66,16 +66,12 @@ export const customLabelStep = (rangeMax, size) => {
   return labelStep > 0.15 ? roundedStep : labelStep || 1;
 };
 
-export const crowdedTicks = (rangeMax, range, size) => {
+export const crowdedTicks = (rangeMax, customLabelStep, size) => {
   const ceilMax = Math.ceil(rangeMax);
 
-  if (!range.labelStep) {
-    return;
-  }
+  const numberOfSegments = ceilMax * customLabelStep;
 
-  const numberOfSegments = rangeMax * range.labelStep;
-
-  return size.height / numberOfSegments < tickFontSize;
+  return size.height / numberOfSegments < tickFontSize && size.height / numberOfSegments > 0.5;
 };
 
 export const getDomainAndRangeByChartType = (domain, range, size, chartType) => {
@@ -89,13 +85,25 @@ export const getDomainAndRangeByChartType = (domain, range, size, chartType) => 
     max = range.min + 1;
   }
 
-  const crowded = crowdedTicks(max, range, size);
+  // const crowded = crowdedTicks(max, range, size);
+  if (labelStep && !step) {
+    step = labelStep;
+  }
+  if (!labelStep && step) {
+    let customLabelStep = step;
+    let crowded = crowdedTicks(max, customLabelStep, size);
 
-  if (!labelStep || crowded) {
-    labelStep = customLabelStep(max, size);
+    while (crowded) {
+      customLabelStep = customLabelStep + step;
+      crowded = crowdedTicks(max, customLabelStep, size);
+    }
+
+    labelStep = customLabelStep;
   }
 
-  if (!step) {
+  if (!step && !labelStep) {
+    labelStep = customLabelStep(max, size);
+
     if (labelStep <= 1) {
       step = labelStep;
     } else if (labelStep <= 4) {
@@ -106,6 +114,12 @@ export const getDomainAndRangeByChartType = (domain, range, size, chartType) => 
       step = labelStep / 3;
     }
   }
+
+  if (max % step !== 0) {
+    max = max + step;
+  }
+
+  range.max = max;
 
   switch (chartType) {
     // if chart is dot plot or line plot, we should ignore step and make sure that min & max are integer values
