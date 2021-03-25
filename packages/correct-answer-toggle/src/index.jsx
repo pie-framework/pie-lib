@@ -2,6 +2,7 @@ import styles from './styles';
 import { withStyles } from '@material-ui/core/styles';
 import CSSTransition from 'react-transition-group/CSSTransition';
 import { CorrectResponse } from '@pie-lib/icons';
+import { Readable } from '@pie-lib/render-ui';
 import Expander from './expander';
 import React from 'react';
 import classNames from 'classnames';
@@ -59,7 +60,9 @@ export class CorrectAnswerToggle extends React.Component {
                 <CorrectResponse open={toggled} key="correct-closed" className={classes.icon} />
               </CSSTransition>
             </div>
-            <div className={classes.label}>{toggled ? hideMessage : showMessage}</div>
+            <Readable false>
+              <div className={classes.label}>{toggled ? hideMessage : showMessage}</div>
+            </Readable>
           </div>
         </Expander>
       </div>
