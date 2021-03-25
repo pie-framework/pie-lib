@@ -7,14 +7,15 @@ import { withStyles } from '@material-ui/core/styles';
 import cn from 'classnames';
 import Button from '@material-ui/core/Button';
 
-const buttonStyles = () => ({
+const buttonStyles = theme => ({
   root: {
     backgroundColor: color.background(),
     color: color.text(),
     border: `1px solid ${color.secondary()}`,
     '&:hover': {
       backgroundColor: color.secondaryLight()
-    }
+    },
+    fontSize: theme.typography.fontSize
   },
   selected: {
     backgroundColor: color.background(),

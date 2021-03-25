@@ -206,7 +206,7 @@ export class RawChartAxes extends React.Component {
 const ChartAxes = withStyles(theme => ({
   axisLabel: {
     fontFamily: theme.typography.body1.fontFamily,
-    fontSize: theme.typography.body1.fontSize,
+    fontSize: theme.typography.fontSize,
     fill: color.secondary()
   },
   axis: {
@@ -224,7 +224,7 @@ const ChartAxes = withStyles(theme => ({
     },
     fill: color.primaryDark(),
     fontFamily: theme.typography.body1.fontFamily,
-    fontSize: theme.typography.overline.fontSize,
+    fontSize: theme.typography.fontSize,
     textAnchor: 'middle'
   },
   dottedLine: {
