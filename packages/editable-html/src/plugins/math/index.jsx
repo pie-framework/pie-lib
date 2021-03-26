@@ -12,12 +12,21 @@ const log = debug('@pie-lib:editable-html:plugins:math');
 
 const TEXT_NODE = 3;
 
+function generateAdditionalKeys(keyData = []) {
+  return keyData.map(key => ({
+    name: key,
+    latex: key,
+    write: key,
+    label: key
+  }));
+}
+
 export const CustomToolbarComp = React.memo(
   props => {
     const { node, value, onFocus, onBlur, onClick } = props;
     const { pluginProps } = props || {};
     const { math } = pluginProps || {};
-    const { keypadMode, controlledKeypadMode = true } = math || {};
+    const { keypadMode, customKeys, controlledKeypadMode = true } = math || {};
 
     const onDone = latex => {
       const update = {
@@ -48,6 +57,7 @@ export const CustomToolbarComp = React.memo(
     return (
       <MathToolbar
         autoFocus
+        additionalKeys={generateAdditionalKeys(customKeys)}
         latex={latex}
         onChange={onChange}
         onDone={onDone}
@@ -133,6 +143,42 @@ export default function MathPlugin() {
 
         return <span {...props.attributes} dangerouslySetInnerHTML={{ __html: html }} />;
       }
+    },
+
+    normalizeNode: node => {
+      if (node.object !== 'document') {
+        return;
+      }
+
+      const addSpacesArray = [];
+
+      const allElements = node.filterDescendants(d => d.type === 'math');
+
+      allElements.forEach(el => {
+        const prevText = node.getPreviousText(el.key);
+        const lastCharIsNewLine = prevText.text[prevText.text.length - 1] === '\n';
+
+        if (prevText.text.length === 0 || lastCharIsNewLine) {
+          addSpacesArray.push({
+            nr: lastCharIsNewLine ? 1 : 2,
+            key: prevText.key
+          });
+        }
+      });
+
+      if (!addSpacesArray.length) {
+        return;
+      }
+
+      return change => {
+        change.withoutNormalization(() => {
+          addSpacesArray.forEach(({ key, nr }) => {
+            const node = change.value.document.getNode(key);
+
+            change.insertTextByKey(key, node.text.length, '\u00A0'.repeat(nr));
+          });
+        });
+      };
     }
   };
 }
