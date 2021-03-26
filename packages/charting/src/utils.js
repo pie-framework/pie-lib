@@ -4,7 +4,6 @@ import { utils } from '@pie-lib/plot';
 export const tickCount = utils.tickCount;
 export const bounds = utils.bounds;
 export const point = utils.point;
-export const tickFontSize = 12;
 
 export const bandKey = (d, index) => `${index}-${d.label || '-'}`;
 
@@ -51,12 +50,12 @@ export const getTickValues = (prop = {}) => {
   return tickValues;
 };
 
-export const customLabelStep = (rangeMax, size) => {
+export const customLabelStep = (rangeMax, size, labelFontSize) => {
   const ceilMax = Math.ceil(rangeMax);
   const segmentLength = size.height / ceilMax;
 
   // how many ticksWidth fit in a segment
-  let tickWidthPerSegment = segmentLength / tickFontSize;
+  let tickWidthPerSegment = segmentLength / labelFontSize;
 
   const ticksToFitInOneSegment = 1;
 
@@ -66,15 +65,15 @@ export const customLabelStep = (rangeMax, size) => {
   return labelStep > 0.15 ? roundedStep : labelStep || 1;
 };
 
-export const crowdedTicks = (rangeMax, customLabelStep, size) => {
+export const crowdedTicks = (rangeMax, customLabelStep, size, labelFontSize) => {
   const ceilMax = Math.ceil(rangeMax);
 
   const numberOfSegments = ceilMax * customLabelStep;
 
-  return size.height / numberOfSegments < tickFontSize && size.height / numberOfSegments > 0.5;
+  return size.height / numberOfSegments < labelFontSize && size.height / numberOfSegments > 0.5;
 };
 
-export const getDomainAndRangeByChartType = (domain, range, size, chartType) => {
+export const getDomainAndRangeByChartType = (domain, range, size, chartType, labelFontSize) => {
   let { step, labelStep, min, max } = range || {};
 
   if (!min) {
@@ -91,18 +90,18 @@ export const getDomainAndRangeByChartType = (domain, range, size, chartType) => 
   }
   if (!labelStep && step) {
     let customLabelStep = step;
-    let crowded = crowdedTicks(max, customLabelStep, size);
+    let crowded = crowdedTicks(max, customLabelStep, size, labelFontSize);
 
     while (crowded) {
       customLabelStep = customLabelStep + step;
-      crowded = crowdedTicks(max, customLabelStep, size);
+      crowded = crowdedTicks(max, customLabelStep, size, labelFontSize);
     }
 
     labelStep = customLabelStep;
   }
 
   if (!step && !labelStep) {
-    labelStep = customLabelStep(max, size);
+    labelStep = customLabelStep(max, size, labelFontSize);
 
     if (labelStep <= 1) {
       step = labelStep;
