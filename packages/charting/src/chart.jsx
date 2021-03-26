@@ -48,7 +48,8 @@ export class Chart extends React.Component {
     onDataChange: PropTypes.func,
     addCategoryEnabled: PropTypes.bool,
     editCategoryEnabled: PropTypes.bool,
-    categoryDefaultLabel: PropTypes.string
+    categoryDefaultLabel: PropTypes.string,
+    theme: PropTypes.object
   };
 
   static defaultProps = {
@@ -138,14 +139,30 @@ export class Chart extends React.Component {
   };
 
   render() {
-    const { classes, className, domain, range, size, title, addCategoryEnabled } = this.props;
+    const {
+      classes,
+      className,
+      domain,
+      range,
+      size,
+      title,
+      addCategoryEnabled,
+      theme
+    } = this.props;
     let { chartType } = this.props;
     const { width, height } = size || {};
 
     const { ChartComponent } = this.getChart();
     const categories = this.getFilteredCategories();
 
-    const correctValues = getDomainAndRangeByChartType(domain, range, size, chartType);
+    const labelFontSize = (theme && theme.typography && theme.typography.fontSize) || 14;
+    const correctValues = getDomainAndRangeByChartType(
+      domain,
+      range,
+      size,
+      chartType,
+      labelFontSize
+    );
 
     const { verticalLines, horizontalLines, leftAxis } = getGridLinesAndAxisByChartType(
       correctValues.range,
@@ -241,4 +258,4 @@ const styles = theme => ({
   }
 });
 
-export default withStyles(styles)(Chart);
+export default withStyles(styles, { withTheme: true })(Chart);
