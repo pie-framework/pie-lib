@@ -130,7 +130,7 @@ const styles = theme => ({
     borderLeft: `solid 1px ${color.primaryDark()}`,
     borderRight: `solid 1px ${color.primaryDark()}`,
     '& button': {
-      fontSize: 'inherit'
+      fontSize: theme.typography.fontSize
     }
   }
 });

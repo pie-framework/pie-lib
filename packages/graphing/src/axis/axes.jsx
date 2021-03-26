@@ -31,6 +31,9 @@ const axisStyles = theme => ({
       stroke: color.primary()
     }
   },
+  labelFontSize: {
+    fontSize: theme.typography.fontSize
+  },
   axisLabelHolder: {
     padding: 0,
     margin: 0,
@@ -38,7 +41,8 @@ const axisStyles = theme => ({
     '* > *': {
       margin: 0,
       padding: 0
-    }
+    },
+    fontSize: theme.typography.fontSize
   }
 });
 
@@ -155,7 +159,10 @@ export class RawXAxis extends React.Component {
             width={necessaryWidth}
             height={20 * necessaryRows}
           >
-            <div dangerouslySetInnerHTML={{ __html: domain.axisLabel }} />
+            <div
+              dangerouslySetInnerHTML={{ __html: domain.axisLabel }}
+              className={classes.labelFontSize}
+            />
           </foreignObject>
         )}
       </React.Fragment>
