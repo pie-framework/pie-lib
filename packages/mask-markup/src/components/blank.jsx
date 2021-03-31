@@ -24,7 +24,10 @@ const useStyles = withStyles(() => ({
     maxWidth: '374px'
   },
   chipLabel: {
-    whiteSpace: 'pre-wrap'
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    maxWidth: '80px'
   },
   correct: {
     border: `solid 1px ${color.correct()}`
