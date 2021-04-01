@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/editable-html",
-  "version": "7.16.12",
+  "version": "7.16.14",
   "description": "",
   "license": "ISC",
   "main": "lib/index.js",
@@ -12,7 +12,7 @@
     "@material-ui/styles": "^3.0.0-alpha.10",
     "@pie-lib/drag": "^1.1.50",
     "@pie-lib/math-rendering": "^2.3.6",
-    "@pie-lib/math-toolbar": "^1.7.8",
+    "@pie-lib/math-toolbar": "^1.7.10",
     "@pie-lib/render-ui": "^4.11.5",
     "change-case": "^3.0.2",
     "classnames": "^2.2.6",

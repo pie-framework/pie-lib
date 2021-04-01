@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.19](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.2.18...@pie-lib/graphing@2.2.19) (2021-03-22)
+
+
+### Bug Fixes
+
+* **graphing:** fix arrow positioning for any angle PD-495 ([33cc936](https://github.com/pie-framework/pie-lib/commit/33cc936))
+
+
+
+
+
+## [2.2.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.2.17...@pie-lib/graphing@2.2.18) (2021-03-17)
+
+
+### Bug Fixes
+
+* **graphing:** ROLLBACK - fix arrow positioning PD-495 ([8af59e7](https://github.com/pie-framework/pie-lib/commit/8af59e7))
+
+
+
+
+
+## [2.2.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.2.16...@pie-lib/graphing@2.2.17) (2021-03-16)
+
+
+### Bug Fixes
+
+* **graphing:** fix arrow positioning PD-495 ([36a87cf](https://github.com/pie-framework/pie-lib/commit/36a87cf))
+
+
+
+
+
+## [2.2.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.2.15...@pie-lib/graphing@2.2.16) (2021-03-15)
+
+
+### Bug Fixes
+
+* **graphing:** increase width and height for labels, depending on labels length PD-988 ([5f64c47](https://github.com/pie-framework/pie-lib/commit/5f64c47))
+* **graphing:** increase width for range  axisLabel PD-988 ([e4e5b8f](https://github.com/pie-framework/pie-lib/commit/e4e5b8f))
+* **graphing:** set height depending on number of words of axisLabel PD-988 ([210b3af](https://github.com/pie-framework/pie-lib/commit/210b3af))
+
+
+
+
+
 ## [2.2.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.2.14...@pie-lib/graphing@2.2.15) (2021-03-01)
 
 

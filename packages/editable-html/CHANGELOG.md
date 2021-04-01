@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.16.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.16.13...@pie-lib/editable-html@7.16.14) (2021-03-22)
+
+
+### Bug Fixes
+
+* **editable-html:** custom key fix for math keypad - PD-388 ([adba7f0](https://github.com/pie-framework/pie-lib/commit/adba7f0))
+
+
+
+
+
+## [7.16.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.16.12...@pie-lib/editable-html@7.16.13) (2021-03-15)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
 ## [7.16.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.16.11...@pie-lib/editable-html@7.16.12) (2021-03-03)
 
 **Note:** Version bump only for package @pie-lib/editable-html
