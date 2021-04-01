@@ -21,16 +21,29 @@ const useStyles = withStyles(() => ({
     fontSize: 'inherit',
     minHeight: '32px',
     height: 'auto',
-    maxWidth: '374px'
+    maxWidth: '374px',
+    position: 'relative'
   },
   chipLabel: {
     whiteSpace: 'pre-wrap'
+  },
+  hidden: {
+    color: 'transparent'
+  },
+  dragged: {
+    position: 'absolute',
+    left: 14,
+    maxWidth: '60px'
   },
   correct: {
     border: `solid 1px ${color.correct()}`
   },
   incorrect: {
     border: `solid 1px ${color.incorrect()}`
+  },
+  over: {
+    whiteSpace: 'nowrap',
+    overflow: 'hidden'
   }
 }));
 
@@ -53,7 +66,8 @@ export class BlankContent extends React.Component {
 
   render() {
     const { disabled, choice, classes, isOver, dragItem, correct } = this.props;
-    const label = dragItem && isOver ? dragItem.choice.value : choice && choice.value;
+    const draggedLabel = dragItem && isOver && dragItem.choice.value;
+    const label = choice && choice.value;
 
     return (
       <Chip
@@ -63,22 +77,45 @@ export class BlankContent extends React.Component {
         }}
         component="span"
         label={
-          <span
-            className={classes.chipLabel}
-            ref={ref => {
-              if (ref) {
-                ref.innerHTML = label || '';
-              }
-            }}
-          >
-            {' '}
-          </span>
+          <React.Fragment>
+            <span
+              className={classnames(classes.chipLabel, isOver && classes.over, {
+                [classes.hidden]: draggedLabel
+              })}
+              ref={ref => {
+                if (ref) {
+                  ref.innerHTML = label || '';
+                }
+              }}
+            >
+              {' '}
+            </span>
+            {draggedLabel && (
+              <span
+                className={classnames(classes.chipLabel, isOver && classes.over, classes.dragged)}
+                ref={ref => {
+                  if (ref) {
+                    ref.innerHTML = draggedLabel || '';
+                  }
+                }}
+              >
+                {' '}
+              </span>
+            )}
+          </React.Fragment>
         }
-        className={classnames(classes.chip, {
-          [classes.correct]: correct !== undefined && correct,
-          [classes.incorrect]: correct !== undefined && !correct
-        })}
+        className={classnames(
+          classes.chip,
+          {
+            [classes.correct]: correct !== undefined && correct,
+            [classes.incorrect]: correct !== undefined && !correct
+          },
+          isOver && classes.over
+        )}
         variant={disabled ? 'outlined' : undefined}
+        classes={{
+          label: isOver && classes.over
+        }}
       />
     );
   }
