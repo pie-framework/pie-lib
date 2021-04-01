@@ -25,7 +25,10 @@ const useStyles = withStyles(() => ({
     position: 'relative'
   },
   chipLabel: {
-    whiteSpace: 'pre-wrap'
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    maxWidth: '80px'
   },
   hidden: {
     color: 'transparent'
