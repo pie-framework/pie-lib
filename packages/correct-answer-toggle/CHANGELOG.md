@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.22](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.3.21...@pie-lib/correct-answer-toggle@2.3.22) (2021-04-02)
+
+
+### Bug Fixes
+
+* **correct-answer-toggle:** denote label as non-readable ([79676a9](https://github.com/pie-framework/pie-lib/commit/79676a9))
+
+
+
+
+
 ## [2.3.21](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.3.20...@pie-lib/correct-answer-toggle@2.3.21) (2021-03-01)
 
 **Note:** Version bump only for package @pie-lib/correct-answer-toggle

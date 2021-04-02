@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.20](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.2.19...@pie-lib/graphing@2.2.20) (2021-04-02)
+
+
+### Bug Fixes
+
+* **graphing:** denote labels as non-readable ([a59a9ba](https://github.com/pie-framework/pie-lib/commit/a59a9ba))
+* **graphing:** Modified labels size and bug fixes ([e6dd79a](https://github.com/pie-framework/pie-lib/commit/e6dd79a))
+
+
+
+
+
 ## [2.2.19](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.2.18...@pie-lib/graphing@2.2.19) (2021-03-22)
 
 

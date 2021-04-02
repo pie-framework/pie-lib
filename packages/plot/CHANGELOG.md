@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.1.4...@pie-lib/plot@2.1.5) (2021-04-02)
+
+
+### Bug Fixes
+
+* **graphing:** Modified labels size and bug fixes ([e6dd79a](https://github.com/pie-framework/pie-lib/commit/e6dd79a))
+
+
+
+
+
 ## [2.1.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.1.3...@pie-lib/plot@2.1.4) (2021-03-15)
 
 

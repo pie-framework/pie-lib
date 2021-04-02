@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.10.12...@pie-lib/mask-markup@1.10.13) (2021-04-02)
+
+
+### Bug Fixes
+
+* **mask-markup:** fix dragging issue by overwriting material ui chip height PD-1034 ([f26db36](https://github.com/pie-framework/pie-lib/commit/f26db36))
+
+
+
+
+
 ## [1.10.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.10.11...@pie-lib/mask-markup@1.10.12) (2021-03-16)
 
 

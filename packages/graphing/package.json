@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "2.2.19",
+  "version": "2.2.20",
   "description": "Graphing components",
   "keywords": [
     "react",
@@ -19,7 +19,7 @@
     "@mapbox/point-geometry": "^0.1.0",
     "@material-ui/core": "^3.8.3",
     "@pie-lib/graphing-utils": "^1.1.18",
-    "@pie-lib/plot": "^2.1.4",
+    "@pie-lib/plot": "^2.1.5",
     "@pie-lib/render-ui": "^4.11.5",
     "@vx/axis": "^0.0.189",
     "@vx/clip-path": "^0.0.189",

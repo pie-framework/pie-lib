@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.5.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.5.5...@pie-lib/charting@4.5.6) (2021-04-02)
+
+
+### Bug Fixes
+
+* **charting:** align chart labels when they are rotated PD-921 ([1baf5b2](https://github.com/pie-framework/pie-lib/commit/1baf5b2))
+* **charting:** enlarge the height of the draggable target PD-43 ([3d1b7e8](https://github.com/pie-framework/pie-lib/commit/3d1b7e8))
+* **charting:** Increased labels size - PD-533 ([9d9095c](https://github.com/pie-framework/pie-lib/commit/9d9095c))
+
+
+
+
+
 ## [4.5.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.5.4...@pie-lib/charting@4.5.5) (2021-03-15)
 
 **Note:** Version bump only for package @pie-lib/charting
