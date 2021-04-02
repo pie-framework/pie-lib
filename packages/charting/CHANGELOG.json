@@ -428,5 +428,50 @@
     "committerDate": "2018-04-02 10:15:10 -0400",
     "isTagged": true,
     "tag": "@pie-lib/charting@0.1.0"
+  },
+  {
+    "type": "fix",
+    "scope": "charting",
+    "subject": "Increased labels size - PD-533",
+    "merge": null,
+    "header": "fix(charting): Increased labels size - PD-533",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "9d9095cef6cff56774794a41c1f76334e8f06d2b",
+    "gitTags": "",
+    "committerDate": "2021-03-25 14:42:45 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/charting@4.5.6"
+  },
+  {
+    "type": "fix",
+    "scope": "charting",
+    "subject": "enlarge the height of the draggable target PD-43",
+    "merge": null,
+    "header": "fix(charting): enlarge the height of the draggable target PD-43",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "3d1b7e8e28ce6f7e04e76e4595e2225879ca73aa",
+    "gitTags": "",
+    "committerDate": "2021-03-08 15:56:10 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/charting@4.5.6"
+  },
+  {
+    "type": "fix",
+    "scope": "charting",
+    "subject": "align chart labels when they are rotated PD-921",
+    "merge": null,
+    "header": "fix(charting): align chart labels when they are rotated PD-921",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "1baf5b2f94f44229eca54f9b0a1b2843760d883f",
+    "gitTags": "",
+    "committerDate": "2021-03-05 17:50:54 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/charting@4.5.6"
   }
 ]

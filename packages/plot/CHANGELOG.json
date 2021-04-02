@@ -318,5 +318,20 @@
     "committerDate": "2021-03-11 11:36:29 +0200",
     "isTagged": true,
     "tag": "@pie-lib/plot@2.1.4"
+  },
+  {
+    "type": "fix",
+    "scope": "graphing",
+    "subject": "Modified labels size and bug fixes",
+    "merge": null,
+    "header": "fix(graphing): Modified labels size and bug fixes",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "e6dd79a235728d21bfdd2ecdf0b4aed610b1291d",
+    "gitTags": "",
+    "committerDate": "2021-03-26 12:18:14 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/plot@2.1.5"
   }
 ]
