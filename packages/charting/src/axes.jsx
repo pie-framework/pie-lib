@@ -81,7 +81,7 @@ export class TickComponent extends React.Component {
           <svg
             xmlns="http://www.w3.org/2000/svg"
             x={x - 8}
-            y={y + 4 + top}
+            y={y + 10 + top}
             width={16}
             height={16}
             viewBox="0 0 512 512"
@@ -192,7 +192,7 @@ export class RawChartAxes extends React.Component {
           tickClassName={tick}
           scale={bottomScale}
           label={domain.label}
-          labelProps={{ y: 50 + top }}
+          labelProps={{ y: 60 + top }}
           top={scale.y && scale.y(range.min)}
           textLabelProps={() => ({ textAnchor: 'middle' })}
           tickFormat={count => count}
