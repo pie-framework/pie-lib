@@ -6,6 +6,8 @@ exports[`BasePoint snapshot renders 1`] = `
   classes={
     Object {
       "handle": "RawDragHandle-handle-1",
+      "handleContainer": "RawDragHandle-handleContainer-3",
+      "transparentHandle": "RawDragHandle-transparentHandle-2",
     }
   }
   graphProps={

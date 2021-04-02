@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { types } from '@pie-lib/plot';
-import { color } from '@pie-lib/render-ui';
+import { color, Readable } from '@pie-lib/render-ui';
 
 const rotations = {
   left: -90,
@@ -68,7 +68,9 @@ class RawLabel extends React.Component {
         transform={transform}
         textAnchor="middle"
       >
-        <div dangerouslySetInnerHTML={{ __html: text }} className={classes.axisLabel} />
+        <Readable false>
+          <div dangerouslySetInnerHTML={{ __html: text }} className={classes.axisLabel} />
+        </Readable>
       </foreignObject>
     );
   }
