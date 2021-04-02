@@ -38,6 +38,8 @@ export const MarkLabel = props => {
   const onChange = e => setLabel(e.target.value);
   const onChangeProp = e => props.onChange(e.target.value);
 
+  const left = rotate === 75 ? '9px' : 0;
+
   // useState only sets the value once, to synch props to state need useEffect
   useEffect(() => {
     setLabel(mark.label);
@@ -61,7 +63,7 @@ export const MarkLabel = props => {
         position: 'absolute',
         pointerEvents: 'auto',
         top: 0,
-        left: 0,
+        left,
         minWidth: barWidth,
         transformOrigin: 'left',
         transform: `rotate(${rotate}deg)`

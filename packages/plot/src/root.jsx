@@ -12,7 +12,8 @@ export const GraphTitle = withStyles(theme => ({
   title: {
     color: color.text(),
     textAlign: 'center',
-    paddingTop: theme.spacing.unit * 2
+    paddingTop: theme.spacing.unit * 2,
+    fontSize: theme.typography.fontSize + 6
   }
 }))(({ value, classes }) => (
   <Typography className={classes.title} variant="h5" color="primary">

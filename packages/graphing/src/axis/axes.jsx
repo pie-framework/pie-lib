@@ -6,7 +6,7 @@ import Arrow from './arrow';
 import { withStyles } from '@material-ui/core';
 import isEqual from 'lodash/isEqual';
 import { countWords, findLongestWord, amountToIncreaseWidth, getTickValues } from '../utils';
-import { color } from '@pie-lib/render-ui';
+import { color, Readable } from '@pie-lib/render-ui';
 
 export const AxisPropTypes = {
   includeArrows: PropTypes.bool,
@@ -31,6 +31,9 @@ const axisStyles = theme => ({
       stroke: color.primary()
     }
   },
+  labelFontSize: {
+    fontSize: theme.typography.fontSize
+  },
   axisLabelHolder: {
     padding: 0,
     margin: 0,
@@ -38,7 +41,8 @@ const axisStyles = theme => ({
     '* > *': {
       margin: 0,
       padding: 0
-    }
+    },
+    fontSize: theme.typography.fontSize
   }
 });
 
@@ -155,7 +159,10 @@ export class RawXAxis extends React.Component {
             width={necessaryWidth}
             height={20 * necessaryRows}
           >
-            <div dangerouslySetInnerHTML={{ __html: domain.axisLabel }} />
+            <div
+              dangerouslySetInnerHTML={{ __html: domain.axisLabel }}
+              className={classes.labelFontSize}
+            />
           </foreignObject>
         )}
       </React.Fragment>
@@ -204,6 +211,7 @@ export class RawYAxis extends React.Component {
           height={size.height}
           left={scale.x(0)}
           label={range.label}
+          labelProps={{ 'data-pie-readable': false }}
           tickLength={10}
           tickClassName={classes.tick}
           tickFormat={customTickFormat}
@@ -212,7 +220,8 @@ export class RawYAxis extends React.Component {
             return {
               ...tickLabelStyles,
               dy: 4,
-              dx: -8 - digits * 5
+              dx: -8 - digits * 5,
+              'data-pie-readable': false
             };
           }}
           hideZero={true}
@@ -233,10 +242,12 @@ export class RawYAxis extends React.Component {
             width={necessaryWidth}
             height="20"
           >
-            <div
-              dangerouslySetInnerHTML={{ __html: range.axisLabel }}
-              className={classes.axisLabelHolder}
-            />
+            <Readable false>
+              <div
+                dangerouslySetInnerHTML={{ __html: range.axisLabel }}
+                className={classes.axisLabelHolder}
+              />
+            </Readable>
           </foreignObject>
         )}
       </React.Fragment>

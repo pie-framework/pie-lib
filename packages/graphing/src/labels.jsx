@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { types } from '@pie-lib/plot';
-import { color } from '@pie-lib/render-ui';
+import { color, Readable } from '@pie-lib/render-ui';
 
 const rotations = {
   left: -90,
@@ -34,6 +34,8 @@ const getY = (side, height) => {
       return -height;
     case 'top':
       return -height + 10;
+    case 'right':
+      return -height + 10;
     default:
       return 0;
   }
@@ -43,11 +45,12 @@ class RawLabel extends React.Component {
   static propTypes = {
     text: PropTypes.string,
     side: PropTypes.string,
+    classes: PropTypes.object,
     graphProps: types.GraphPropsType.isRequired
   };
 
   render() {
-    const { text, side, graphProps } = this.props;
+    const { text, side, graphProps, classes } = this.props;
 
     const { size } = graphProps;
 
@@ -65,15 +68,21 @@ class RawLabel extends React.Component {
         transform={transform}
         textAnchor="middle"
       >
-        <div style={{ textAlign: 'center' }} dangerouslySetInnerHTML={{ __html: text }} />
+        <Readable false>
+          <div dangerouslySetInnerHTML={{ __html: text }} className={classes.axisLabel} />
+        </Readable>
       </foreignObject>
     );
   }
 }
 
-const Label = withStyles(() => ({
+const Label = withStyles(theme => ({
   label: {
     fill: color.secondary()
+  },
+  axisLabel: {
+    fontSize: theme.typography.fontSize,
+    textAlign: 'center'
   }
 }))(RawLabel);
 
@@ -93,7 +102,6 @@ export class Labels extends React.Component {
   };
 
   static defaultProps = {};
-
   render() {
     const { value, graphProps } = this.props;
     return (
