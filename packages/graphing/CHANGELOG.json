@@ -878,5 +878,20 @@
     "committerDate": "2021-03-16 19:00:17 +0200",
     "isTagged": true,
     "tag": "@pie-lib/graphing@2.2.18"
+  },
+  {
+    "type": "fix",
+    "scope": "graphing",
+    "subject": "fix arrow positioning for any angle PD-495",
+    "merge": null,
+    "header": "fix(graphing): fix arrow positioning for any angle PD-495",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "33cc93609fcda08be1d0ec4a495569d1af68dd31",
+    "gitTags": " (origin/fix/PD-495-fix-vectors-arrow)",
+    "committerDate": "2021-03-17 16:44:17 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/graphing@2.2.19"
   }
 ]
