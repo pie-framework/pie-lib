@@ -36,15 +36,6 @@ describe('TEXT_RULE', () => {
   });
 
   describe('deserialize', () => {
-    it('adds new line instead of breakpoint', () => {
-      const textNode = mkTextNode('hi<br>');
-      const br = mkBr(textNode);
-      const el = mkEl([br]);
-      const out = TEXT_RULE.deserialize(el);
-      // this function operates on the dom children, but returns nothing
-      expect(out).toBeUndefined();
-      expect(textNode.textContent).toMatch('hi\n');
-    });
 
     it('if no previous text node, no error is thrown', () => {
       const br = mkBr();
