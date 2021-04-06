@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.10.13...@pie-lib/mask-markup@1.10.14) (2021-04-06)
+
+
+### Bug Fixes
+
+* **mask-markup:** Changed choice preview design PD-605 ([d4b882e](https://github.com/pie-framework/pie-lib/commit/d4b882e))
+
+
+
+
+
 ## [1.10.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.10.12...@pie-lib/mask-markup@1.10.13) (2021-04-02)
 
 
