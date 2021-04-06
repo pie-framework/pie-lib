@@ -528,5 +528,20 @@
     "committerDate": "2020-08-06 15:48:40 +0100",
     "isTagged": true,
     "tag": "@pie-lib/correct-answer-toggle@2.3.1"
+  },
+  {
+    "type": "fix",
+    "scope": "correct-answer-toggle",
+    "subject": "denote label as non-readable",
+    "merge": null,
+    "header": "fix(correct-answer-toggle): denote label as non-readable",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "79676a9de36f5f4fe888c56704fd08286fa25d65",
+    "gitTags": "",
+    "committerDate": "2021-03-25 13:46:07 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/correct-answer-toggle@2.3.22"
   }
 ]
