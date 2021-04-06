@@ -27,7 +27,8 @@ const useStyles = withStyles(() => ({
     whiteSpace: 'pre-wrap'
   },
   hidden: {
-    color: 'transparent'
+    color: 'transparent',
+    opacity: 0
   },
   dragged: {
     position: 'absolute',
