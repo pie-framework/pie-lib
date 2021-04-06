@@ -3,6 +3,51 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.4.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.4.16...@pie-lib/demo@6.4.17) (2021-04-02)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [6.4.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.4.15...@pie-lib/demo@6.4.16) (2021-03-22)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [6.4.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.4.14...@pie-lib/demo@6.4.15) (2021-03-17)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [6.4.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.4.13...@pie-lib/demo@6.4.14) (2021-03-16)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [6.4.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.4.12...@pie-lib/demo@6.4.13) (2021-03-15)
+
+
+### Bug Fixes
+
+* **graphing:** calculate the amount of necessary width for domain axis label PD-988 ([0085feb](https://github.com/pie-framework/pie-lib/commit/0085feb))
+* **graphing:** increase width and height for labels, depending on labels length PD-988 ([5f64c47](https://github.com/pie-framework/pie-lib/commit/5f64c47))
+* **graphing:** set height depending on number of words of axisLabel PD-988 ([210b3af](https://github.com/pie-framework/pie-lib/commit/210b3af))
+
+
+
+
+
 ## [6.4.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.4.11...@pie-lib/demo@6.4.12) (2021-03-03)
 
 

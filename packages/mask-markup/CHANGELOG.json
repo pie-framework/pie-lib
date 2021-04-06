@@ -748,5 +748,20 @@
     "committerDate": "2021-03-10 15:50:53 +0200",
     "isTagged": true,
     "tag": "@pie-lib/mask-markup@1.10.12"
+  },
+  {
+    "type": "fix",
+    "scope": "mask-markup",
+    "subject": "fix dragging issue by overwriting material ui chip height PD-1034",
+    "merge": null,
+    "header": "fix(mask-markup): fix dragging issue by overwriting material ui chip height PD-1034",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "f26db36b293d5a6d3e8bcb3f78888c8eff760575",
+    "gitTags": "",
+    "committerDate": "2021-03-26 17:27:40 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/mask-markup@1.10.13"
   }
 ]

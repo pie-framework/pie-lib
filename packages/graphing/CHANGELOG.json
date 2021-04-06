@@ -859,7 +859,7 @@
     "footer": null,
     "notes": [],
     "hash": "36a87cfc04cd50b434a8f224eef65752c6943bf6",
-    "gitTags": "",
+    "gitTags": " (origin/fix/PD-495-fix-vectors-arrow)",
     "committerDate": "2021-03-16 12:10:35 +0000",
     "isTagged": true,
     "tag": "@pie-lib/graphing@2.2.17"
@@ -874,7 +874,7 @@
     "footer": null,
     "notes": [],
     "hash": "8af59e71fcc1784af2a8529d2282777929b704cd",
-    "gitTags": "",
+    "gitTags": " (origin/fix/PD-495-fix-vectors-arrow)",
     "committerDate": "2021-03-16 19:00:17 +0200",
     "isTagged": true,
     "tag": "@pie-lib/graphing@2.2.18"
