@@ -18,6 +18,7 @@ import EditableHtml from '@pie-lib/editable-html';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import debug from 'debug';
 import takeRight from 'lodash/takeRight';
+import PointMenu from './point-menu';
 
 import range from 'lodash/range';
 const log = debug('pie-lib:rubric:authoring');
@@ -33,7 +34,8 @@ const reorder = (list, startIndex, endIndex) => {
 
 export const RubricType = PropTypes.shape({
   excludeZero: PropTypes.bool,
-  points: PropTypes.arrayOf(PropTypes.string)
+  points: PropTypes.arrayOf(PropTypes.string),
+  sampleAnswers: PropTypes.arrayOf(PropTypes.string)
 });
 
 const MaxPoints = withStyles(theme => ({
@@ -68,7 +70,8 @@ export const PointConfig = withStyles(theme => ({
   pointConfig: {},
   row: {
     display: 'flex',
-    width: '100%'
+    width: '100%',
+    position: 'relative'
   },
   editor: {
     width: '100%',
@@ -82,10 +85,18 @@ export const PointConfig = withStyles(theme => ({
     color: grey[500],
     paddingBottom: theme.spacing.unit,
     textTransform: 'uppercase'
+  },
+  sampleAnswersEditor: {
+    paddingLeft: theme.spacing.unit * 3
+  },
+  pointMenu: {
+    position: 'absolute',
+    right: 0
   }
 }))(props => {
-  const { points, content, classes } = props;
+  const { points, content, classes, sampleAnswer } = props;
   const pointsLabel = `${points} ${points <= 1 ? 'pt' : 'pts'}`;
+
   return (
     <div className={classes.pointConfig}>
       <Typography variant="overline" className={classes.pointsLabel}>
@@ -94,7 +105,26 @@ export const PointConfig = withStyles(theme => ({
       <div className={classes.row}>
         <DragIndicator className={classes.dragIndicator} />
         <EditableHtml className={classes.editor} markup={content} onChange={props.onChange} />
+        <PointMenu
+          classes={{
+            icon: classes.pointMenu
+          }}
+          sampleAnswer={sampleAnswer}
+          onChange={props.onMenuChange}
+        />
       </div>
+      {sampleAnswer !== undefined && (
+        <div className={classes.sampleAnswersEditor}>
+          <Typography variant="overline" className={classes.dragIndicator}>
+            Sample Response
+          </Typography>
+          <EditableHtml
+            className={classes.editor}
+            markup={sampleAnswer}
+            onChange={props.onSampleChange}
+          />
+        </div>
+      )}
     </div>
   );
 });
@@ -116,7 +146,12 @@ export class RawAuthoring extends React.Component {
 
     const { value, onChange } = this.props;
     const points = reorder(value.points, result.source.index, result.destination.index);
-    onChange({ ...this.props.value, points });
+    const sampleAnswers = reorder(
+      value.sampleAnswers,
+      result.source.index,
+      result.destination.index
+    );
+    onChange({ ...this.props.value, points, sampleAnswers });
   };
 
   changeMaxPoints = maxPoints => {
@@ -124,19 +159,23 @@ export class RawAuthoring extends React.Component {
     const currentMax = value.points.length - 1;
 
     log('current', currentMax, 'new: ', maxPoints);
-    let points;
+    let points, sampleAnswers;
     if (maxPoints > currentMax) {
       points = times(maxPoints - currentMax)
         .map(() => '')
         .concat(value.points);
+      sampleAnswers = times(maxPoints - currentMax)
+        .map(() => undefined)
+        .concat(value.sampleAnswers);
     }
 
     if (maxPoints < currentMax) {
       log('less than');
       points = takeRight(value.points, maxPoints + 1);
+      sampleAnswers = takeRight(value.sampleAnswers, maxPoints + 1);
     }
     if (points) {
-      onChange({ ...value, points });
+      onChange({ ...value, points, sampleAnswers });
     }
   };
 
@@ -147,6 +186,15 @@ export class RawAuthoring extends React.Component {
     points.splice(index, 1, content);
     log('changePoint: points:', points);
     onChange({ ...value, points });
+  };
+
+  changeSampleAnswer = (index, content) => {
+    log('changeSampleAnswer:', index, content);
+    const { value, onChange } = this.props;
+    const sampleAnswers = Array.from(value.sampleAnswers);
+    sampleAnswers.splice(index, 1, content);
+    log('changeSampleAnswer: sampleAnswers:', sampleAnswers);
+    onChange({ ...value, sampleAnswers });
   };
 
   excludeZeros = () => {
@@ -165,6 +213,23 @@ export class RawAuthoring extends React.Component {
       }
 
       return true;
+    }
+  };
+
+  onPointMenuChange = (index, clickedItem) => {
+    const { value } = this.props;
+    const sampleAnswers = Array.from(value.sampleAnswers);
+
+    if (clickedItem === 'text') {
+      this.changePoint(index, 'Default text');
+    }
+
+    if (clickedItem === 'sample') {
+      if (sampleAnswers[index] === undefined) {
+        this.changeSampleAnswer(index, '');
+      } else {
+        this.changeSampleAnswer(index, undefined);
+      }
     }
   };
 
@@ -211,7 +276,10 @@ export class RawAuthoring extends React.Component {
                               <PointConfig
                                 points={value.points.length - 1 - index}
                                 content={p}
+                                sampleAnswer={value.sampleAnswers && value.sampleAnswers[index]}
                                 onChange={this.changePoint.bind(this, index)}
+                                onSampleChange={this.changeSampleAnswer.bind(this, index)}
+                                onMenuChange={this.onPointMenuChange.bind(this, index)}
                               />
                             </div>
                           )}
@@ -252,10 +320,24 @@ const StyledRawAuthoring = withStyles(styles)(RawAuthoring);
 
 const Reverse = props => {
   const points = Array.from(props.value.points).reverse();
-  const value = { ...props.value, points };
+  let sampleAnswers = Array.from(props.value.sampleAnswers || []).reverse();
+
+  if (points.length > sampleAnswers.length) {
+    sampleAnswers = times(points.length - sampleAnswers.length)
+      .map(() => undefined)
+      .concat(sampleAnswers);
+  }
+
+  const value = { ...props.value, points, sampleAnswers };
+
   const onChange = value => {
-    props.onChange({ ...value, points: Array.from(value.points).reverse() });
+    props.onChange({
+      ...value,
+      points: Array.from(value.points).reverse(),
+      sampleAnswers: Array.from(value.sampleAnswers).reverse()
+    });
   };
+
   return <StyledRawAuthoring value={value} onChange={onChange} />;
 };
 Reverse.propTypes = {
