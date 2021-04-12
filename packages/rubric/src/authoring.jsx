@@ -217,14 +217,15 @@ export class RawAuthoring extends React.Component {
   };
 
   onPointMenuChange = (index, clickedItem) => {
-    const { value } = this.props;
-    const sampleAnswers = Array.from(value.sampleAnswers);
-
     if (clickedItem === 'text') {
-      this.changePoint(index, 'Default text');
+      this.changePoint(index, '');
     }
 
     if (clickedItem === 'sample') {
+      const { value } = this.props;
+      const sampleAnswers = Array.from(value.sampleAnswers);
+
+      // an undefined content will not display the Sample Answer input field
       if (sampleAnswers[index] === undefined) {
         this.changeSampleAnswer(index, '');
       } else {
