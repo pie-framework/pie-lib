@@ -113,7 +113,7 @@ export const PointConfig = withStyles(theme => ({
           onChange={props.onMenuChange}
         />
       </div>
-      {sampleAnswer !== undefined && (
+      {sampleAnswer !== null && (
         <div className={classes.sampleAnswersEditor}>
           <Typography variant="overline" className={classes.dragIndicator}>
             Sample Response
@@ -165,7 +165,7 @@ export class RawAuthoring extends React.Component {
         .map(() => '')
         .concat(value.points);
       sampleAnswers = times(maxPoints - currentMax)
-        .map(() => undefined)
+        .map(() => null)
         .concat(value.sampleAnswers);
     }
 
@@ -225,11 +225,11 @@ export class RawAuthoring extends React.Component {
       const { value } = this.props;
       const sampleAnswers = Array.from(value.sampleAnswers);
 
-      // an undefined content will not display the Sample Answer input field
-      if (sampleAnswers[index] === undefined) {
+      // when the content is null, the Sample Answer input field will not be displayed
+      if (sampleAnswers[index] === null) {
         this.changeSampleAnswer(index, '');
       } else {
-        this.changeSampleAnswer(index, undefined);
+        this.changeSampleAnswer(index, null);
       }
     }
   };
@@ -325,7 +325,7 @@ const Reverse = props => {
 
   if (points.length > sampleAnswers.length) {
     sampleAnswers = times(points.length - sampleAnswers.length)
-      .map(() => undefined)
+      .map(() => null)
       .concat(sampleAnswers);
   }
 

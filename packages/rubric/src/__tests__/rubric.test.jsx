@@ -8,7 +8,7 @@ describe('Rubric', () => {
   let w;
 
   const points = ['nothing right', 'a teeny bit right', 'mostly right', 'bingo'];
-  const sampleAnswers = [undefined, 'just right', 'not left', undefined];
+  const sampleAnswers = [null, 'just right', 'not left', null];
   const wrapper = (value, opts) => {
     const props = {
       classes: {},
@@ -63,12 +63,7 @@ describe('Rubric', () => {
       assertChangeMax(1, true, _.takeRight(points, 2), _.takeRight(sampleAnswers, 2));
       assertChangeMax(2, true, _.takeRight(points, 3), _.takeRight(sampleAnswers, 3));
       assertChangeMax(2, false, _.takeRight(points, 3), _.takeRight(sampleAnswers, 3));
-      assertChangeMax(
-        5,
-        false,
-        ['', ''].concat(points),
-        [undefined, undefined].concat(sampleAnswers)
-      );
+      assertChangeMax(5, false, ['', ''].concat(points), [null, null].concat(sampleAnswers));
     });
 
     describe('changeSampleResponse', () => {
@@ -90,10 +85,10 @@ describe('Rubric', () => {
         });
       };
 
-      assertChangeSample(0, 'sample', false, points, ['', 'just right', 'not left', undefined]);
-      assertChangeSample(3, 'sample', false, points, [undefined, 'just right', 'not left', '']);
-      assertChangeSample(1, 'sample', true, points, [undefined, undefined, 'not left', undefined]);
-      assertChangeSample(3, 'sample', true, points, [undefined, 'just right', 'not left', '']);
+      assertChangeSample(0, 'sample', false, points, ['', 'just right', 'not left', null]);
+      assertChangeSample(3, 'sample', false, points, [null, 'just right', 'not left', '']);
+      assertChangeSample(1, 'sample', true, points, [null, null, 'not left', null]);
+      assertChangeSample(3, 'sample', true, points, [null, 'just right', 'not left', '']);
     });
 
     describe('useDefaultText', () => {

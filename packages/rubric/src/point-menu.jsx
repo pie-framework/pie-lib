@@ -31,7 +31,6 @@ export class IconMenu extends React.Component {
 
   render() {
     const { opts, onClick, classes } = this.props;
-
     const keys = Object.keys(opts);
 
     const handleMenuClick = key => () => {
@@ -39,7 +38,7 @@ export class IconMenu extends React.Component {
       this.handleRequestClose();
     };
 
-    const iconColor = this.state.open ? 'default' : 'disabled';
+    const iconColor = this.state.open ? 'inherit' : 'disabled';
 
     return (
       <div>
@@ -78,7 +77,7 @@ export default class PointMenu extends React.Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     classes: PropTypes.object.isRequired,
-    sampleAnswer: PropTypes.string.isRequired
+    sampleAnswer: PropTypes.string
   };
 
   static defaultProps = {
@@ -87,9 +86,7 @@ export default class PointMenu extends React.Component {
 
   render() {
     const { onChange, classes, sampleAnswer } = this.props;
-
-    const sampleText =
-      sampleAnswer === undefined ? 'Provide Sample Response' : 'Remove Sample Response';
+    const sampleText = sampleAnswer === null ? 'Provide Sample Response' : 'Remove Sample Response';
 
     return (
       <IconMenu
