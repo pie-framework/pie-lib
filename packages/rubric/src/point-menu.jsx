@@ -21,40 +21,33 @@ export class IconMenu extends React.Component {
     };
   }
 
-  handleClick = event => {
-    this.setState({ open: true, anchorEl: event.currentTarget });
-  };
+  handleClick = event => this.setState({ open: true, anchorEl: event.currentTarget });
 
-  handleRequestClose = () => {
-    this.setState({ open: false });
-  };
+  handleRequestClose = () => this.setState({ open: false });
 
   render() {
     const { opts, onClick, classes } = this.props;
-    const keys = Object.keys(opts);
+    const { open, anchorEl } = this.state;
+    const keys = Object.keys(opts) || [];
 
     const handleMenuClick = key => () => {
       onClick(key);
       this.handleRequestClose();
     };
 
-    const iconColor = this.state.open ? 'inherit' : 'disabled';
+    const iconColor = open ? 'inherit' : 'disabled';
 
     return (
       <div>
         <div onClick={this.handleClick}>
           <IconButton className={classes.icon}>
-            {this.state.open ? (
-              <MoreVertIcon color={iconColor} />
-            ) : (
-              <MoreHorizIcon color={iconColor} />
-            )}
+            {open ? <MoreVertIcon color={iconColor} /> : <MoreHorizIcon color={iconColor} />}
           </IconButton>
         </div>
         <Menu
           id="point-menu"
-          anchorEl={this.state.anchorEl}
-          open={this.state.open}
+          anchorEl={anchorEl}
+          open={open}
           onClose={this.handleRequestClose}
           style={{ transform: 'translate(-15px, -15px)' }}
           transformOrigin={{
@@ -77,7 +70,7 @@ export default class PointMenu extends React.Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     classes: PropTypes.object.isRequired,
-    sampleAnswer: PropTypes.string
+    showSampleAnswer: PropTypes.bool.isRequired
   };
 
   static defaultProps = {
@@ -85,8 +78,8 @@ export default class PointMenu extends React.Component {
   };
 
   render() {
-    const { onChange, classes, sampleAnswer } = this.props;
-    const sampleText = sampleAnswer === null ? 'Provide Sample Response' : 'Remove Sample Response';
+    const { onChange, classes, showSampleAnswer } = this.props;
+    const sampleText = showSampleAnswer ? 'Provide Sample Response' : 'Remove Sample Response';
 
     return (
       <IconMenu

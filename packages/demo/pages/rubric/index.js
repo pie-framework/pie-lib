@@ -13,6 +13,7 @@ class Demo extends React.Component {
         excludeZero: false,
         // the index is the points
         points: ['nothing right', 'a teeny bit right', 'mostly right', 'bingo'],
+        // null content is not showing the sample answer
         sampleAnswers: [null, 'just right', 'not left', null]
       }
     };

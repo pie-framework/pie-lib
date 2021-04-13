@@ -66,6 +66,10 @@ const MaxPoints = withStyles(theme => ({
   );
 });
 
+// when the content is null, the Sample Answer should not be displayed
+// an empty string should display an empty Sample Answer input field
+const checkSampleAnswer = sampleAnswer => sampleAnswer === null;
+
 export const PointConfig = withStyles(theme => ({
   pointConfig: {},
   row: {
@@ -109,11 +113,11 @@ export const PointConfig = withStyles(theme => ({
           classes={{
             icon: classes.pointMenu
           }}
-          sampleAnswer={sampleAnswer}
+          showSampleAnswer={checkSampleAnswer(sampleAnswer)}
           onChange={props.onMenuChange}
         />
       </div>
-      {sampleAnswer !== null && (
+      {!checkSampleAnswer(sampleAnswer) && (
         <div className={classes.sampleAnswersEditor}>
           <Typography variant="overline" className={classes.dragIndicator}>
             Sample Response
@@ -145,13 +149,15 @@ export class RawAuthoring extends React.Component {
     }
 
     const { value, onChange } = this.props;
+
     const points = reorder(value.points, result.source.index, result.destination.index);
     const sampleAnswers = reorder(
       value.sampleAnswers,
       result.source.index,
       result.destination.index
     );
-    onChange({ ...this.props.value, points, sampleAnswers });
+
+    onChange({ ...value, points, sampleAnswers });
   };
 
   changeMaxPoints = maxPoints => {
@@ -159,6 +165,7 @@ export class RawAuthoring extends React.Component {
     const currentMax = value.points.length - 1;
 
     log('current', currentMax, 'new: ', maxPoints);
+
     let points, sampleAnswers;
     if (maxPoints > currentMax) {
       points = times(maxPoints - currentMax)
@@ -174,31 +181,32 @@ export class RawAuthoring extends React.Component {
       points = takeRight(value.points, maxPoints + 1);
       sampleAnswers = takeRight(value.sampleAnswers, maxPoints + 1);
     }
+
     if (points) {
       onChange({ ...value, points, sampleAnswers });
     }
   };
 
-  changePoint = (index, content) => {
-    log('changePoint:', index, content);
+  changeContent = (index, content, type) => {
+    // type could be 'points' or 'sampleAnswers'
+    log(`changeModel[${type}]:`, index, content);
+
     const { value, onChange } = this.props;
-    const points = Array.from(value.points);
-    points.splice(index, 1, content);
-    log('changePoint: points:', points);
-    onChange({ ...value, points });
+    const items = Array.from(value[type]);
+
+    items.splice(index, 1, content);
+    log(`changeModel[${type}]:`, items);
+
+    onChange({ ...value, [type]: items });
   };
 
-  changeSampleAnswer = (index, content) => {
-    log('changeSampleAnswer:', index, content);
-    const { value, onChange } = this.props;
-    const sampleAnswers = Array.from(value.sampleAnswers);
-    sampleAnswers.splice(index, 1, content);
-    log('changeSampleAnswer: sampleAnswers:', sampleAnswers);
-    onChange({ ...value, sampleAnswers });
-  };
+  changePoint = (index, content) => this.changeContent(index, content, 'points');
+
+  changeSampleAnswer = (index, content) => this.changeContent(index, content, 'sampleAnswers');
 
   excludeZeros = () => {
     const { value, onChange } = this.props;
+
     onChange({ ...value, excludeZero: !value.excludeZero });
   };
 
@@ -225,10 +233,11 @@ export class RawAuthoring extends React.Component {
       const { value } = this.props;
       const sampleAnswers = Array.from(value.sampleAnswers);
 
-      // when the content is null, the Sample Answer input field will not be displayed
-      if (sampleAnswers[index] === null) {
+      if (checkSampleAnswer(sampleAnswers[index])) {
+        // an empty string will display an empty Sample Answer input field
         this.changeSampleAnswer(index, '');
       } else {
+        // when the content is null, the Sample Answer input field will not be displayed
         this.changeSampleAnswer(index, null);
       }
     }
@@ -278,9 +287,11 @@ export class RawAuthoring extends React.Component {
                                 points={value.points.length - 1 - index}
                                 content={p}
                                 sampleAnswer={value.sampleAnswers && value.sampleAnswers[index]}
-                                onChange={this.changePoint.bind(this, index)}
-                                onSampleChange={this.changeSampleAnswer.bind(this, index)}
-                                onMenuChange={this.onPointMenuChange.bind(this, index)}
+                                onChange={content => this.changePoint(index, content)}
+                                onSampleChange={content => this.changeSampleAnswer(index, content)}
+                                onMenuChange={clickedItem =>
+                                  this.onPointMenuChange(index, clickedItem)
+                                }
                               />
                             </div>
                           )}
@@ -341,9 +352,11 @@ const Reverse = props => {
 
   return <StyledRawAuthoring value={value} onChange={onChange} />;
 };
+
 Reverse.propTypes = {
   value: RubricType,
   getIndex: PropTypes.func,
   onChange: PropTypes.func
 };
+
 export default Reverse;
