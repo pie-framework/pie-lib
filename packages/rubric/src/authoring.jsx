@@ -66,8 +66,8 @@ const MaxPoints = withStyles(theme => ({
   );
 });
 
-// when the content is null, the Sample Answer should not be displayed
-// an empty string should display an empty Sample Answer input field
+// if the value is null, the Sample Answer input field for that point will not be dispalyed
+// if the value is '', the Sample Answer input field will be empty
 const checkSampleAnswer = sampleAnswer => sampleAnswer === null;
 
 export const PointConfig = withStyles(theme => ({
@@ -100,6 +100,7 @@ export const PointConfig = withStyles(theme => ({
 }))(props => {
   const { points, content, classes, sampleAnswer } = props;
   const pointsLabel = `${points} ${points <= 1 ? 'pt' : 'pts'}`;
+  const showSampleAnswer = checkSampleAnswer(sampleAnswer);
 
   return (
     <div className={classes.pointConfig}>
@@ -113,11 +114,11 @@ export const PointConfig = withStyles(theme => ({
           classes={{
             icon: classes.pointMenu
           }}
-          showSampleAnswer={checkSampleAnswer(sampleAnswer)}
+          showSampleAnswer={showSampleAnswer}
           onChange={props.onMenuChange}
         />
       </div>
-      {!checkSampleAnswer(sampleAnswer) && (
+      {!showSampleAnswer && (
         <div className={classes.sampleAnswersEditor}>
           <Typography variant="overline" className={classes.dragIndicator}>
             Sample Response
@@ -191,18 +192,18 @@ export class RawAuthoring extends React.Component {
     // type could be 'points' or 'sampleAnswers'
     log(`changeModel[${type}]:`, index, content);
 
+    if (type !== 'points' && type !== 'sampleAnswers') {
+      return;
+    }
+
     const { value, onChange } = this.props;
-    const items = Array.from(value[type]);
+    const items = value[type] && Array.from(value[type]);
 
     items.splice(index, 1, content);
     log(`changeModel[${type}]:`, items);
 
     onChange({ ...value, [type]: items });
   };
-
-  changePoint = (index, content) => this.changeContent(index, content, 'points');
-
-  changeSampleAnswer = (index, content) => this.changeContent(index, content, 'sampleAnswers');
 
   excludeZeros = () => {
     const { value, onChange } = this.props;
@@ -227,14 +228,14 @@ export class RawAuthoring extends React.Component {
   onPointMenuChange = (index, clickedItem) => {
     if (clickedItem === 'sample') {
       const { value } = this.props;
-      const sampleAnswers = Array.from(value.sampleAnswers);
+      const sampleAnswers = Array.from(value.sampleAnswers || []);
 
       if (checkSampleAnswer(sampleAnswers[index])) {
         // an empty string will display an empty Sample Answer input field
-        this.changeSampleAnswer(index, '');
+        this.changeContent(index, '', 'sampleAnswers');
       } else {
         // when the content is null, the Sample Answer input field will not be displayed
-        this.changeSampleAnswer(index, null);
+        this.changeContent(index, null, 'sampleAnswers');
       }
     }
   };
@@ -283,8 +284,10 @@ export class RawAuthoring extends React.Component {
                                 points={value.points.length - 1 - index}
                                 content={p}
                                 sampleAnswer={value.sampleAnswers && value.sampleAnswers[index]}
-                                onChange={content => this.changePoint(index, content)}
-                                onSampleChange={content => this.changeSampleAnswer(index, content)}
+                                onChange={content => this.changeContent(index, content, 'points')}
+                                onSampleChange={content =>
+                                  this.changeContent(index, content, 'sampleAnswers')
+                                }
                                 onMenuChange={clickedItem =>
                                   this.onPointMenuChange(index, clickedItem)
                                 }
@@ -327,7 +330,7 @@ const styles = theme => ({
 const StyledRawAuthoring = withStyles(styles)(RawAuthoring);
 
 const Reverse = props => {
-  const points = Array.from(props.value.points).reverse();
+  const points = Array.from(props.value.points || []).reverse();
   let sampleAnswers = Array.from(props.value.sampleAnswers || []).reverse();
 
   if (points.length > sampleAnswers.length) {
@@ -341,8 +344,8 @@ const Reverse = props => {
   const onChange = value => {
     props.onChange({
       ...value,
-      points: Array.from(value.points).reverse(),
-      sampleAnswers: Array.from(value.sampleAnswers).reverse()
+      points: Array.from(value.points || []).reverse(),
+      sampleAnswers: Array.from(value.sampleAnswers || []).reverse()
     });
   };
 
