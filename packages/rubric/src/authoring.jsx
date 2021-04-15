@@ -225,10 +225,6 @@ export class RawAuthoring extends React.Component {
   };
 
   onPointMenuChange = (index, clickedItem) => {
-    if (clickedItem === 'text') {
-      this.changePoint(index, '');
-    }
-
     if (clickedItem === 'sample') {
       const { value } = this.props;
       const sampleAnswers = Array.from(value.sampleAnswers);

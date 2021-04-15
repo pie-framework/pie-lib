@@ -90,40 +90,5 @@ describe('Rubric', () => {
       assertChangeSample(1, 'sample', true, points, [null, null, 'not left', null]);
       assertChangeSample(3, 'sample', true, points, [null, 'just right', 'not left', '']);
     });
-
-    describe('useDefaultText', () => {
-      const assertUseDefaultText = (
-        index,
-        clickedItem,
-        excludeZero,
-        expectedPoints,
-        expectedSampleAnswers
-      ) => {
-        it(`Point ${index} calls onChange with: ${expectedPoints} and ${expectedSampleAnswers}`, () => {
-          let w = wrapper({ excludeZero });
-          w.instance().onPointMenuChange(index, clickedItem);
-          expect(w.instance().props.onChange).toHaveBeenCalledWith({
-            excludeZero,
-            points: expectedPoints,
-            sampleAnswers: expectedSampleAnswers
-          });
-        });
-      };
-
-      assertUseDefaultText(
-        0,
-        'text',
-        false,
-        ['', 'a teeny bit right', 'mostly right', 'bingo'],
-        sampleAnswers
-      );
-      assertUseDefaultText(
-        1,
-        'text',
-        true,
-        ['nothing right', '', 'mostly right', 'bingo'],
-        sampleAnswers
-      );
-    });
   });
 });
