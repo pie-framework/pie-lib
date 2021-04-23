@@ -255,7 +255,7 @@ export class Toolbar extends React.Component {
               <Delete />
             </IconButton>
           )}
-          {(customToolbarShowDone || deletable) && <DoneButton onClick={handleDone} />}
+          {customToolbarShowDone && <DoneButton onClick={handleDone} />}
         </div>
       </div>
     );
