@@ -37,6 +37,7 @@ export class Editor extends React.Component {
     editorRef: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired,
     onFocus: PropTypes.func,
+    onBlur: PropTypes.func,
     onKeyDown: PropTypes.func,
     focus: PropTypes.func.isRequired,
     value: SlateTypes.value.isRequired,
@@ -85,7 +86,8 @@ export class Editor extends React.Component {
     disableUnderline: true,
     onFocus: () => {},
     toolbarOpts: defaultToolbarOpts,
-    onKeyDown: () => {}
+    onKeyDown: () => {},
+    onBlur: () => {}
   };
 
   constructor(props) {
@@ -291,6 +293,7 @@ export class Editor extends React.Component {
 
     return new Promise(resolve => {
       this.setState({ focusedNode: node }, this.handleBlur.bind(this, resolve));
+      this.props.onBlur(event);
     });
   };
 
