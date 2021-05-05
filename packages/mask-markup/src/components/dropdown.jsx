@@ -81,12 +81,16 @@ class Dropdown extends React.Component {
             value={c.value}
           >
             <span
+              className={classes.label}
               dangerouslySetInnerHTML={{
                 __html: c.label
               }}
             />
             {showCheckmark && (
-              <span dangerouslySetInnerHTML={{ __html: c.value === value ? ' &check;' : '' }} />
+              <span
+                className={classes.label}
+                dangerouslySetInnerHTML={{ __html: c.value === value ? ' &check;' : '' }}
+              />
             )}
           </MenuItem>
         ))}
@@ -148,6 +152,9 @@ const styles = () => ({
     '&:last-of-type': {
       borderRadius: '0 0 3px 3px'
     }
+  },
+  label: {
+    fontSize: 'max(1rem, 14px)'
   }
 });
 
