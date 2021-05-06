@@ -176,6 +176,8 @@ export class Editor extends React.Component {
   }
 
   componentDidMount() {
+    window.addEventListener('resize', this.onResize.bind(this));
+
     if (this.editor && this.props.autoFocus) {
       Promise.resolve().then(() => {
         if (this.editor) {
