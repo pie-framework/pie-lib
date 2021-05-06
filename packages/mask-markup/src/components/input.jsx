@@ -13,9 +13,11 @@ const Input = ({ disabled, correct, id, value, onChange, showCorrectAnswer }) =>
       onChange={e => {
         onChange(id, e.target.value);
       }}
+      hasMaxWidth={true}
     />
   );
 };
+
 Input.propTypes = {
   id: PropTypes.string,
   value: PropTypes.string,

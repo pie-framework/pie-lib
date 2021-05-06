@@ -41,9 +41,12 @@ export default withStyles(() => ({
   },
   notchedOutline: {
     borderColor: color.correct()
+  },
+  inputSmall: {
+    maxWidth: '4.7em'
   }
 }))(props => {
-  const { correct, isBox, classes, disabled, ...rest } = props;
+  const { correct, isBox, classes, disabled, hasMaxWidth, ...rest } = props;
   const label = typeof correct === 'boolean' ? (correct ? 'correct' : 'incorrect') : undefined;
 
   return (
@@ -54,7 +57,11 @@ export default withStyles(() => ({
         [classes.outlinedInput]: true
       })}
       classes={{
-        input: classnames({ [classes.input]: true, [classes[label]]: label })
+        input: classnames({
+          [classes.input]: true,
+          [classes[label]]: label,
+          [classes.inputSmall]: !!hasMaxWidth
+        })
       }}
       labelWidth={0}
       disabled={disabled}
