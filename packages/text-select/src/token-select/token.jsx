@@ -43,7 +43,7 @@ export class Token extends React.Component {
     let className;
 
     if (correct === undefined && selected && disabled) {
-      className = classNames(classes.token, classes.selected, classes.disabled);
+      className = classNames(classes.token, classes.selected, classes.disabledBlack);
     } else if (correct !== undefined) {
       className = classNames(
         Token.rootClassName,
@@ -87,6 +87,9 @@ export default withStyles(theme => {
     disabled: {
       cursor: 'inherit',
       color: 'grey' // TODO hardcoded color
+    },
+    disabledBlack: {
+      cursor: 'inherit'
     },
     disabledAndSelected: {
       backgroundColor: 'pink' // TODO hardcoded color
