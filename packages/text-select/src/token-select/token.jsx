@@ -93,9 +93,9 @@ export default withStyles(theme => {
     },
     selectable: {
       '&:hover': {
-        backgroundColor: color.primaryLight(),
+        backgroundColor: color.token(),
         '& > *': {
-          backgroundColor: color.primaryLight()
+          backgroundColor: color.token()
         }
       }
     },
@@ -103,11 +103,11 @@ export default withStyles(theme => {
       lineHeight: 2,
       marginTop: theme.spacing.unit / 2,
       '&:hover': {
-        backgroundColor: color.primaryLight()
+        backgroundColor: color.selectedToken()
       },
-      backgroundColor: color.primaryLight(),
+      backgroundColor: color.selectedToken(),
       '& > *': {
-        backgroundColor: color.primaryLight()
+        backgroundColor: color.selectedToken()
       }
     },
     highlight: {
