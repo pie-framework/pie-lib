@@ -15,7 +15,9 @@ export const defaults = {
   SECONDARY_LIGHT: pink[200],
   SECONDARY_DARK: pink[900],
   BACKGROUND: 'rgba(255,255,255,0)',
-  SECONDARY_BACKGROUND: 'rgba(241,241,241,1)'
+  SECONDARY_BACKGROUND: 'rgba(241,241,241,1)',
+  TOKEN: 'rgba(236, 237, 241, 1)',
+  SELECTED_TOKEN: 'rgba(253, 244, 97, 1)'
 };
 
 Object.freeze(defaults);
@@ -46,3 +48,5 @@ export const secondaryDark = () => pv('secondary-dark', defaults.SECONDARY_DARK)
 export const secondaryText = () => pv('secondary-text', 'text', defaults.TEXT);
 export const background = () => pv('background', defaults.BACKGROUND);
 export const secondaryBackground = () => pv('secondary-background', defaults.SECONDARY_BACKGROUND);
+export const token = () => pv('token', defaults.TOKEN);
+export const selectedToken = () => pv('selected-token', defaults.SELECTED_TOKEN);
