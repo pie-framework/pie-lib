@@ -53,7 +53,10 @@ const makeApiRequest = url => {
 
           resolve(iframe.src);
         })
-        .catch(log);
+        .catch(err => {
+          resolve('');
+          log(err);
+        });
     } catch (err) {
       resolve('');
     }
@@ -204,6 +207,7 @@ export class MediaDialog extends React.Component {
     }
 
     this.handleStateChange({
+      urlToUse: null,
       url: null,
       invalid: true
     });
@@ -303,7 +307,7 @@ export class MediaDialog extends React.Component {
               allowFullScreen
             />
           )}
-          {type === 'video' && (formattedUrl || updating) && (
+          {type === 'video' && (formattedUrl || updating) && !invalid && (
             <React.Fragment>
               <DialogContent
                 classes={{
