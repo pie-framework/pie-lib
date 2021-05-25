@@ -7,6 +7,7 @@ import clone from 'lodash/clone';
 import debug from 'debug';
 import { noSelect } from '@pie-lib/style-utils';
 import { renderToString } from 'react-dom/server';
+import isEqual from 'lodash/isEqual';
 
 const log = debug('@pie-lib:text-select:token-select');
 
@@ -31,6 +32,10 @@ export class TokenSelect extends React.Component {
 
   canSelectMore = selectedCount => {
     const { maxNoOfSelections } = this.props;
+
+    if (maxNoOfSelections === 1) {
+      return true;
+    }
 
     log('[canSelectMore] maxNoOfSelections: ', maxNoOfSelections, 'selectedCount: ', selectedCount);
     return (
@@ -58,15 +63,32 @@ export class TokenSelect extends React.Component {
       const { onChange, maxNoOfSelections } = this.props;
       const selected = !t.selected;
 
-      if (selected && maxNoOfSelections > 0 && this.selectedCount() >= maxNoOfSelections) {
-        log('skip toggle max reached');
-        return;
+      if (maxNoOfSelections === 1 && this.selectedCount() === 1) {
+        const selectedToken = this.props.tokens.filter(t => t.selected);
+
+        const updatedTokens = tokens.map(token => {
+          if (isEqual(token, selectedToken[0])) {
+            return { ...token, selected: false };
+          }
+
+          return { ...token, selectable: true };
+        });
+
+        const update = { ...t, selected: !t.selected };
+
+        updatedTokens.splice(targetedTokenIndex, 1, update);
+        onChange(updatedTokens);
+      } else {
+        if (selected && maxNoOfSelections > 0 && this.selectedCount() >= maxNoOfSelections) {
+          log('skip toggle max reached');
+          return;
+        }
+
+        const update = { ...t, selected: !t.selected };
+
+        tokens.splice(targetedTokenIndex, 1, update);
+        onChange(tokens);
       }
-
-      const update = { ...t, selected: !t.selected };
-
-      tokens.splice(targetedTokenIndex, 1, update);
-      onChange(tokens);
     }
   };
 
