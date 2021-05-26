@@ -53,20 +53,21 @@ export class TokenSelect extends React.Component {
    */
   toggleToken = event => {
     const { target } = event;
-    const tokens = clone(this.props.tokens);
+    const { tokens } = this.props;
+    const tokensCloned = clone(tokens);
     const targetSpanWrapper = target.closest(`.${Token.rootClassName}`);
     const targetedTokenIndex =
       targetSpanWrapper && targetSpanWrapper.dataset && targetSpanWrapper.dataset.indexkey;
-    const t = targetedTokenIndex && tokens[targetedTokenIndex];
+    const t = targetedTokenIndex && tokensCloned[targetedTokenIndex];
 
     if (t && t.correct === undefined) {
       const { onChange, maxNoOfSelections } = this.props;
       const selected = !t.selected;
 
       if (maxNoOfSelections === 1 && this.selectedCount() === 1) {
-        const selectedToken = this.props.tokens.filter(t => t.selected);
+        const selectedToken = (tokens || []).filter(t => t.selected);
 
-        const updatedTokens = tokens.map(token => {
+        const updatedTokens = tokensCloned.map(token => {
           if (isEqual(token, selectedToken[0])) {
             return { ...token, selected: false };
           }
@@ -86,8 +87,8 @@ export class TokenSelect extends React.Component {
 
         const update = { ...t, selected: !t.selected };
 
-        tokens.splice(targetedTokenIndex, 1, update);
-        onChange(tokens);
+        tokensCloned.splice(targetedTokenIndex, 1, update);
+        onChange(tokensCloned);
       }
     }
   };
