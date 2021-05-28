@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, useTheme, withTheme } from '@material-ui/core/styles';
 import { types } from '@pie-lib/plot';
 import { color } from '@pie-lib/render-ui';
 import { AxisLeft, AxisBottom } from '@vx/axis';
@@ -46,6 +46,14 @@ export class TickComponent extends React.Component {
     const category = categories[index];
     const { deletable, editable, interactive, label, correctness } = category || {};
     const barX = xBand(bandKey({ label }, index));
+    const longestCategory = (categories || []).reduce((a, b) => {
+      const lengthA = a && a.label ? a.label.length : 0;
+      const lengthB = b && b.label ? b.label.length : 0;
+
+      return lengthA > lengthB ? a : b;
+    });
+
+    const longestLabel = (longestCategory && longestCategory.label) || '';
 
     return (
       <g>
@@ -56,6 +64,21 @@ export class TickComponent extends React.Component {
           height={24}
           style={{ pointerEvents: 'none', overflow: 'visible' }}
         >
+          {index === 0 && (
+            <div
+              id="hiddenLabel"
+              style={{
+                position: 'absolute',
+                visibility: 'hidden',
+                wordBreak: 'break-word',
+                overflow: 'visible',
+                maxWidth: barWidth,
+                display: 'block'
+              }}
+            >
+              {longestLabel}
+            </div>
+          )}
           <MarkLabel
             inputRef={r => (this.input = r)}
             disabled={!(editable && interactive)}
@@ -121,8 +144,19 @@ export class RawChartAxes extends React.Component {
     leftAxis: PropTypes.bool,
     onChange: PropTypes.func,
     onChangeCategory: PropTypes.func,
-    top: PropTypes.number
+    top: PropTypes.number,
+    theme: PropTypes.object
   };
+
+  state = { height: 0 };
+
+  componentDidMount() {
+    const height = document.getElementById('hiddenLabel')
+      ? document.getElementById('hiddenLabel').offsetHeight
+      : 0;
+
+    this.setState({ height });
+  }
 
   render() {
     const {
@@ -133,17 +167,22 @@ export class RawChartAxes extends React.Component {
       onChange,
       onChangeCategory,
       categories = [],
-      top
+      top,
+      theme
     } = this.props;
+
     const { axis, axisLine, tick, axisLabel } = classes;
     const { scale = {}, range = {}, domain = {}, size = {} } = graphProps || {};
+    const { height } = this.state;
+
     const bottomScale =
       xBand && typeof xBand.rangeRound === 'function' && xBand.rangeRound([0, size.width]);
     const bandWidth = xBand && typeof xBand.bandwidth === 'function' && xBand.bandwidth();
     // for chartType "line", bandWidth will be 0, so we have to calculate it
     const barWidth = bandWidth || (scale.x && scale.x(domain.max) / categories.length);
     const rowTickValues = getTickValues({ ...range, step: range.labelStep });
-    const rotate = getRotateAngle(barWidth);
+    const fontSize = theme && theme.typography ? theme.typography.fontSize : 14;
+    const rotate = getRotateAngle(fontSize, height);
 
     const getTickLabelProps = value => ({
       dy: 4,
@@ -203,34 +242,37 @@ export class RawChartAxes extends React.Component {
   }
 }
 
-const ChartAxes = withStyles(theme => ({
-  axisLabel: {
-    fontFamily: theme.typography.body1.fontFamily,
-    fontSize: theme.typography.fontSize,
-    fill: color.secondary()
-  },
-  axis: {
-    stroke: color.primaryDark(),
-    strokeWidth: 2
-  },
-  axisLine: {
-    stroke: color.primaryDark(),
-    strokeWidth: 2
-  },
-  tick: {
-    '& > line': {
+const ChartAxes = withStyles(
+  theme => ({
+    axisLabel: {
+      fontFamily: theme.typography.body1.fontFamily,
+      fontSize: theme.typography.fontSize,
+      fill: color.secondary()
+    },
+    axis: {
       stroke: color.primaryDark(),
       strokeWidth: 2
     },
-    fill: color.primaryDark(),
-    fontFamily: theme.typography.body1.fontFamily,
-    fontSize: theme.typography.fontSize,
-    textAnchor: 'middle'
-  },
-  dottedLine: {
-    stroke: color.primaryLight(),
-    opacity: 0.2
-  }
-}))(RawChartAxes);
+    axisLine: {
+      stroke: color.primaryDark(),
+      strokeWidth: 2
+    },
+    tick: {
+      '& > line': {
+        stroke: color.primaryDark(),
+        strokeWidth: 2
+      },
+      fill: color.primaryDark(),
+      fontFamily: theme.typography.body1.fontFamily,
+      fontSize: theme.typography.fontSize,
+      textAnchor: 'middle'
+    },
+    dottedLine: {
+      stroke: color.primaryLight(),
+      opacity: 0.2
+    }
+  }),
+  { withTheme: true }
+)(RawChartAxes);
 
 export default ChartAxes;

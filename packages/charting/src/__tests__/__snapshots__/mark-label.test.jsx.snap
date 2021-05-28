@@ -8,7 +8,10 @@ exports[`MarkLabel snapshot renders 1`] = `
   inputStyle={
     Object {
       "background": "transparent",
+      "boxSizing": "border-box",
       "minWidth": undefined,
+      "paddingLeft": 0,
+      "paddingRight": 0,
       "textAlign": "center",
     }
   }
@@ -37,7 +40,10 @@ exports[`MarkLabel snapshot renders 2`] = `
   inputStyle={
     Object {
       "background": "transparent",
+      "boxSizing": "border-box",
       "minWidth": undefined,
+      "paddingLeft": 0,
+      "paddingRight": 0,
       "textAlign": "center",
     }
   }

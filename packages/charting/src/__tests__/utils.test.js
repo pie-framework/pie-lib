@@ -96,16 +96,15 @@ describe('utils', () => {
   });
 
   describe('getRotateAngle', () => {
-    const assertGetRotateAngle = (barWidth, rotateAngle) => {
+    const assertGetRotateAngle = ({fontSize, height}, rotateAngle) => {
       it('returns proper rotate angle', () => {
-        const result = utils.getRotateAngle(barWidth);
+        const result = utils.getRotateAngle(fontSize, height);
         expect(result).toEqual(rotateAngle);
       });
     };
 
-    assertGetRotateAngle(20, 75);
-    assertGetRotateAngle(35, 45);
-    assertGetRotateAngle(55, 25);
-    assertGetRotateAngle(65, 0);
+    assertGetRotateAngle({fontSize: 14, height: 14}, 0);
+    assertGetRotateAngle({fontSize: 14, height: 28}, 25);
+    assertGetRotateAngle({fontSize: 14, height: 42}, 25);
   });
 });

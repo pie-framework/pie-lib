@@ -37,8 +37,14 @@ export const MarkLabel = props => {
   const [label, setLabel] = useState(mark.label);
   const onChange = e => setLabel(e.target.value);
   const onChangeProp = e => props.onChange(e.target.value);
+  let extraStyle = {};
 
-  const left = rotate === 75 ? '9px' : 0;
+  if (rotate) {
+    extraStyle = {
+      width: 'unset',
+      textAlign: 'left'
+    };
+  }
 
   // useState only sets the value once, to synch props to state need useEffect
   useEffect(() => {
@@ -56,14 +62,18 @@ export const MarkLabel = props => {
       inputStyle={{
         minWidth: barWidth,
         textAlign: 'center',
-        background: 'transparent'
+        background: 'transparent',
+        boxSizing: 'border-box',
+        paddingLeft: 0,
+        paddingRight: 0,
+        ...extraStyle
       }}
       value={label}
       style={{
         position: 'absolute',
         pointerEvents: 'auto',
         top: 0,
-        left,
+        left: 0,
         minWidth: barWidth,
         transformOrigin: 'left',
         transform: `rotate(${rotate}deg)`
