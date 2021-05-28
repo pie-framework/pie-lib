@@ -103,8 +103,8 @@ describe('utils', () => {
       });
     };
 
-    assertGetRotateAngle({fontSize: 14, height: 14}, 0);
-    assertGetRotateAngle({fontSize: 14, height: 28}, 25);
-    assertGetRotateAngle({fontSize: 14, height: 42}, 25);
+    assertGetRotateAngle({ fontSize: 14, height: 14 }, 0);
+    assertGetRotateAngle({ fontSize: 14, height: 28 }, 25);
+    assertGetRotateAngle({ fontSize: 14, height: 42 }, 25);
   });
 });
