@@ -89,7 +89,14 @@ exports[`Graph snapshot renders 1`] = `
         },
       }
     }
-    includeArrows={true}
+    includeArrows={
+      Object {
+        "down": true,
+        "left": true,
+        "right": true,
+        "up": true,
+      }
+    }
   />
   <Bg
     graphProps={
