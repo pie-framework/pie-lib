@@ -54,3 +54,22 @@ export const numberFields = (label, fields, isConfigProperty = false) => {
     fields
   };
 };
+
+export const checkbox = (label, settings, isConfigProperty = false) => ({
+  ...settings,
+  label,
+  type: 'checkbox',
+  isConfigProperty
+});
+
+export const checkboxes = (label, choices, isConfigProperty = false) => {
+  Object.keys(choices).map(key => {
+    choices[key] = checkbox(choices[key].label, choices[key], isConfigProperty);
+  });
+
+  return {
+    type: 'checkboxes',
+    label,
+    choices
+  };
+};
