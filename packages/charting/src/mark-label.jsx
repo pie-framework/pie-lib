@@ -16,7 +16,8 @@ const styles = theme => ({
     color: color.primaryDark(),
     '&.correct': correct('color'),
     '&.incorrect': incorrect('color'),
-    '&.disabled': disabled('color')
+    '&.disabled': disabled('color'),
+    backgroundColor: 'transparent !important'
   }
 });
 
