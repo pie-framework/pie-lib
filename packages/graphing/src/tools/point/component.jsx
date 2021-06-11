@@ -61,7 +61,7 @@ export class Point extends React.Component {
     const { labelModeEnabled, onChange, onClick, mark } = this.props;
 
     if (labelModeEnabled) {
-      onChange(this.props.mark, { ...this.props.mark, label: '' });
+      onChange(mark, { label: '', ...mark });
       if (this.input) {
         this.input.focus();
       }
