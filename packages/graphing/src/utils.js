@@ -100,3 +100,22 @@ export const isDomainRangeEqual = (graphProps, nextGraphProps) => {
     isEqual(graphProps.range, nextGraphProps.range)
   );
 };
+
+const roundNumber = number => parseFloat(number.toFixed(3));
+
+export const sameAxes = (p1, p2) =>
+  p1 && p2 && (roundNumber(p1.x) === roundNumber(p2.x) || roundNumber(p1.y) === roundNumber(p2.y));
+
+export const equalPoints = (p1, p2) =>
+  p1 &&
+  p2 &&
+  isEqual(
+    {
+      x: roundNumber(p1.x),
+      y: roundNumber(p1.y)
+    },
+    {
+      x: roundNumber(p2.x),
+      y: roundNumber(p2.y)
+    }
+  );

@@ -1,11 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import isEqual from 'lodash/isEqual';
-
 import { BasePoint } from '../shared/point';
 import BgCircle from './bg-circle';
-import { point } from '../../utils';
+import { point, equalPoints } from '../../utils';
 import classNames from 'classnames';
 import { types } from '@pie-lib/plot';
 import { rootEdgeComponent } from '../shared/line/with-root-edge';
@@ -24,8 +22,6 @@ const getRadius = (from, outer) => {
   const c = point(from);
   return c.dist(point(outer));
 };
-
-const equalPoints = (p1, p2) => p1 && p2 && isEqual({ x: p1.x, y: p1.y }, { x: p2.x, y: p2.y });
 
 export class RawBaseCircle extends React.Component {
   static propTypes = {

@@ -14,6 +14,7 @@ import invariant from 'invariant';
 import ReactDOM from 'react-dom';
 import MarkLabel from '../../mark-label';
 import isEmpty from 'lodash/isEmpty';
+import { equalPoints } from '../../utils';
 
 const log = debug('pie-lib:graphing:polygon');
 
@@ -84,8 +85,9 @@ export class RawBaseComponent extends React.Component {
     log('[dragPoint] from, to:', from, to);
     const { onChange, points } = this.props;
     const update = [...points];
+    const overlapPoint = !!(points || []).find(p => equalPoints(p, to));
 
-    if (isEqual(from, to)) {
+    if (equalPoints(from, to) || overlapPoint) {
       return;
     }
 
@@ -151,15 +153,7 @@ export class RawBaseComponent extends React.Component {
   };
 
   clickPoint = (point, index, data) => {
-    const {
-      closed,
-      onClosePolygon,
-      onClick,
-      isToolActive,
-      labelModeEnabled,
-      onChangeProps,
-      points
-    } = this.props;
+    const { closed, onClick, isToolActive, labelModeEnabled, onChangeProps, points } = this.props;
 
     if (labelModeEnabled) {
       const update = [...points];
@@ -172,7 +166,7 @@ export class RawBaseComponent extends React.Component {
       }
     } else {
       if (isToolActive && !closed && index === 0) {
-        onClosePolygon();
+        this.close();
       } else {
         onClick(data);
       }
