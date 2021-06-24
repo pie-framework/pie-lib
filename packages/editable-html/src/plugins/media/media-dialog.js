@@ -158,52 +158,55 @@ export class MediaDialog extends React.Component {
 
   urlChange = e => {
     const { value } = e.target || {};
+    const { type } = this.props;
 
-    if (matchSoundCloudUrl(value)) {
-      makeApiRequest(value)
-        .then(urlToUse => {
-          this.handleStateChange({
-            urlToUse,
-            invalid: !urlToUse,
-            url: value
-          });
-        })
-        .catch(log);
+    if (type && type === 'audio') {
+      if (matchSoundCloudUrl(value)) {
+        makeApiRequest(value)
+          .then(urlToUse => {
+            this.handleStateChange({
+              urlToUse,
+              invalid: !urlToUse,
+              url: value
+            });
+          })
+          .catch(log);
 
-      return;
-    }
+        return;
+      }
+    } else if (type && type === 'video') {
+      if (matchYoutubeUrl(value)) {
+        const regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+        const match = value.match(regExp);
+        const id = match[2];
+        const urlToUse = `https://youtube.com/embed/${id}`;
 
-    if (matchYoutubeUrl(value)) {
-      const regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
-      const match = value.match(regExp);
-      const id = match[2];
-      const urlToUse = `https://youtube.com/embed/${id}`;
+        log('is youtube');
 
-      log('is youtube');
+        this.handleStateChange({
+          urlToUse,
+          url: value,
+          invalid: false
+        });
 
-      this.handleStateChange({
-        urlToUse,
-        url: value,
-        invalid: false
-      });
+        return;
+      }
 
-      return;
-    }
+      if (matchVimeoUrl(value)) {
+        const id = value.replace(/.*vimeo.com\/(.*)/g, '$1');
+        const urlToUse = `https://player.vimeo.com/video/${id}`;
 
-    if (matchVimeoUrl(value)) {
-      const id = value.replace(/.*vimeo.com\/(.*)/g, '$1');
-      const urlToUse = `https://player.vimeo.com/video/${id}`;
+        log('is vimeo');
 
-      log('is vimeo');
+        this.handleStateChange({
+          urlToUse,
+          url: value,
+          ends: null,
+          invalid: false
+        });
 
-      this.handleStateChange({
-        urlToUse,
-        url: value,
-        ends: null,
-        invalid: false
-      });
-
-      return;
+        return;
+      }
     }
 
     this.handleStateChange({
