@@ -20,14 +20,14 @@ export const getTickValues = prop => {
 
   while (tickVal >= prop.min && tickValues.indexOf(tickVal) < 0) {
     tickValues.push(tickVal);
-    tickVal = Math.round((tickVal - prop.step) * 100) / 100;
+    tickVal = Math.round((tickVal - prop.step) * 1000) / 1000;
   }
 
-  tickVal = Math.round(prop.step * 100) / 100;
+  tickVal = Math.round(prop.step * 1000) / 1000;
 
   while (tickVal <= prop.max && tickValues.indexOf(tickVal) < 0) {
     tickValues.push(tickVal);
-    tickVal = Math.round((tickVal + prop.step) * 100) / 100;
+    tickVal = Math.round((tickVal + prop.step) * 1000) / 1000;
   }
 
   // return only ticks that are inside the min-max interval
