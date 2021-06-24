@@ -18,6 +18,7 @@ const log = debug('editable-html:editor');
 
 const defaultToolbarOpts = {
   position: 'bottom',
+  alignment: 'left',
   alwaysVisible: false,
   showDone: true,
   doneOn: 'blur'
@@ -64,6 +65,7 @@ export class Editor extends React.Component {
     }),
     toolbarOpts: PropTypes.shape({
       position: PropTypes.oneOf(['bottom', 'top']),
+      alignment: PropTypes.oneOf(['left', 'right']),
       alwaysVisible: PropTypes.bool,
       showDone: PropTypes.bool,
       doneOn: PropTypes.string
@@ -197,7 +199,7 @@ export class Editor extends React.Component {
     const { toolbarOpts } = this.state;
     const newToolbarOpts = createToolbarOpts(nextProps.toolbarOpts);
 
-    if (isEqual(newToolbarOpts, toolbarOpts)) {
+    if (!isEqual(newToolbarOpts, toolbarOpts)) {
       this.setState({
         toolbarOpts: newToolbarOpts
       });
