@@ -133,6 +133,9 @@ export default withStyles(() => ({
   tokenSelect: {
     backgroundColor: 'none',
     whiteSpace: 'pre',
-    ...noSelect()
+    ...noSelect(),
+    '& p': {
+      whiteSpace: 'break-spaces'
+    }
   }
 }))(TokenSelect);
