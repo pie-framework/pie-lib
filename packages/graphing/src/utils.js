@@ -4,6 +4,7 @@ import { utils } from '@pie-lib/plot';
 import invariant from 'invariant';
 import isEqual from 'lodash/isEqual';
 import isEmpty from 'lodash/isEmpty';
+import cloneDeep from 'lodash/cloneDeep';
 
 export const tickCount = utils.tickCount;
 export const bounds = utils.bounds;
@@ -100,3 +101,15 @@ export const isDomainRangeEqual = (graphProps, nextGraphProps) => {
     isEqual(graphProps.range, nextGraphProps.range)
   );
 };
+
+export const getRightestPoints = points => {
+  const sortedPoints = cloneDeep(points);
+  sortedPoints.sort((a, b) => b.x - a.x);
+
+  return { a: sortedPoints[0], b: sortedPoints[1] };
+};
+
+export const getMiddleOfTwoPoints = (a, b) => ({
+  x: (a.x + b.x) / 2,
+  y: (a.y + b.y) / 2
+});
