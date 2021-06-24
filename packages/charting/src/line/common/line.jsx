@@ -18,7 +18,7 @@ const getData = (data, domain) => {
 
   return data.map((el, i) => ({
     ...el,
-    x: i * (max / (length - 1)),
+    x: length > 1 ? i * (max / (length - 1)) : 0.5,
     y: el.value
   }));
 };
