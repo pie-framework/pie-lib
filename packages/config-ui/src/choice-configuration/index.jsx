@@ -18,6 +18,10 @@ const EditableHtmlContainer = withStyles(theme => ({
   }
 }))(({ label, classes, onChange, value, className, imageSupport, disabled, nonEmpty }) => {
   const names = classNames(classes.labelContainer, className);
+  const choicePlugins = {
+    audio: { disabled: true },
+    video: { disabled: true }
+  };
 
   return (
     <InputContainer label={label} className={names}>
@@ -29,6 +33,7 @@ const EditableHtmlContainer = withStyles(theme => ({
           onChange={onChange}
           imageSupport={imageSupport}
           className={classes.editor}
+          pluginProps={choicePlugins}
         />
       </div>
     </InputContainer>

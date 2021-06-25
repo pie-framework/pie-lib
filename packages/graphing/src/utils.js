@@ -4,6 +4,7 @@ import { utils } from '@pie-lib/plot';
 import invariant from 'invariant';
 import isEqual from 'lodash/isEqual';
 import isEmpty from 'lodash/isEmpty';
+import cloneDeep from 'lodash/cloneDeep';
 
 export const tickCount = utils.tickCount;
 export const bounds = utils.bounds;
@@ -20,14 +21,14 @@ export const getTickValues = prop => {
 
   while (tickVal >= prop.min && tickValues.indexOf(tickVal) < 0) {
     tickValues.push(tickVal);
-    tickVal = Math.round((tickVal - prop.step) * 100) / 100;
+    tickVal = Math.round((tickVal - prop.step) * 1000) / 1000;
   }
 
-  tickVal = Math.round(prop.step * 100) / 100;
+  tickVal = Math.round(prop.step * 1000) / 1000;
 
   while (tickVal <= prop.max && tickValues.indexOf(tickVal) < 0) {
     tickValues.push(tickVal);
-    tickVal = Math.round((tickVal + prop.step) * 100) / 100;
+    tickVal = Math.round((tickVal + prop.step) * 1000) / 1000;
   }
 
   // return only ticks that are inside the min-max interval
@@ -100,3 +101,15 @@ export const isDomainRangeEqual = (graphProps, nextGraphProps) => {
     isEqual(graphProps.range, nextGraphProps.range)
   );
 };
+
+export const getRightestPoints = points => {
+  const sortedPoints = cloneDeep(points);
+  sortedPoints.sort((a, b) => b.x - a.x);
+
+  return { a: sortedPoints[0], b: sortedPoints[1] };
+};
+
+export const getMiddleOfTwoPoints = (a, b) => ({
+  x: (a.x + b.x) / 2,
+  y: (a.y + b.y) / 2
+});
