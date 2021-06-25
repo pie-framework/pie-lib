@@ -192,9 +192,15 @@ describe('RawBaseComponent', () => {
 
     const assertCallback = (isToolActive, closed, index, mock) => {
       it('calls onClosePolygon', () => {
-        const w = wrapper({ onClosePolygon, onClick, isToolActive, closed });
+        const w = wrapper({
+          points: [xy(1, 1), xy(2, 2), xy(3, 3)],
+          onClosePolygon,
+          onClick,
+          isToolActive,
+          closed
+        });
 
-        w.instance().clickPoint(xy(0, 0, 0), index, {});
+        w.instance().clickPoint(xy(1, 1, 0), index, {});
         expect(mock).toHaveBeenCalled();
       });
     };

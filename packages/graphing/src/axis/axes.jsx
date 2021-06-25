@@ -191,7 +191,7 @@ export class RawYAxis extends React.Component {
     const { classes, includeArrows, graphProps, skipValues, rowTickValues } = this.props;
     const { scale, range, size } = graphProps || {};
 
-    const necessaryWidth = amountToIncreaseWidth(range.axisLabel.length);
+    const necessaryWidth = range.axisLabel ? amountToIncreaseWidth(range.axisLabel.length) : 0;
 
     const customTickFormat = value => {
       if (skipValues && skipValues.indexOf(value) >= 0) {

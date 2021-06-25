@@ -1,6 +1,7 @@
 import Sine from './component';
-import isEqual from 'lodash/isEqual';
 import debug from 'debug';
+import { equalPoints, sameAxes } from '../../utils';
+
 const log = debug('pie-lib:graphing:sine');
 
 export const tool = () => ({
@@ -11,7 +12,7 @@ export const tool = () => ({
   },
   addPoint: (point, mark) => {
     log('add point to sine model: ', point, 'mark: ', mark);
-    if (mark && isEqual(mark.root, point)) {
+    if (mark && (equalPoints(mark.root, point) || sameAxes(mark.root, point))) {
       return mark;
     }
 

@@ -27,7 +27,8 @@ const useStyles = withStyles(() => ({
     whiteSpace: 'pre-wrap'
   },
   hidden: {
-    color: 'transparent'
+    color: 'transparent',
+    opacity: 0
   },
   dragged: {
     position: 'absolute',
@@ -86,6 +87,14 @@ export class BlankContent extends React.Component {
     }
   }
 
+  addDraggableFalseAttributes(parent) {
+    parent.childNodes.forEach(elem => {
+      if (elem instanceof Element || elem instanceof HTMLDocument) {
+        elem.setAttribute('draggable', false);
+      }
+    });
+  }
+
   render() {
     const { disabled, choice, classes, isOver, dragItem, correct } = this.props;
     const draggedLabel = dragItem && isOver && dragItem.choice.value;
@@ -109,6 +118,7 @@ export class BlankContent extends React.Component {
                   //eslint-disable-next-line
                   this.spanRef = ReactDOM.findDOMNode(ref);
                   ref.innerHTML = label || '';
+                  this.addDraggableFalseAttributes(ref);
                 }
               }}
             >
@@ -122,6 +132,7 @@ export class BlankContent extends React.Component {
                     //eslint-disable-next-line
                     this.spanRef = ReactDOM.findDOMNode(ref);
                     ref.innerHTML = draggedLabel || '';
+                    this.addDraggableFalseAttributes(ref);
                   }
                 }}
               >

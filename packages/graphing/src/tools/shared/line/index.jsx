@@ -8,12 +8,13 @@ import ReactDOM from 'react-dom';
 import MarkLabel from '../../../mark-label';
 import isEmpty from 'lodash/isEmpty';
 import { color } from '@pie-lib/render-ui';
+import { getMiddleOfTwoPoints, equalPoints, sameAxes } from '../../../utils';
 
 export const lineTool = (type, Component) => () => ({
   type,
   Component,
   addPoint: (point, mark) => {
-    if (mark && isEqual(mark.root, point)) {
+    if (mark && equalPoints(mark.root, point)) {
       return mark;
     }
 
@@ -25,7 +26,7 @@ export const lineTool = (type, Component) => () => ({
       };
     }
 
-    if (isEqual(point, mark.from)) {
+    if (equalPoints(point, mark.from)) {
       return { ...mark };
     }
 
@@ -48,23 +49,31 @@ export const lineToolComponent = Component => {
     startDrag = () => this.setState({ mark: { ...this.props.mark } });
 
     stopDrag = () => {
-      const { onChange } = this.props;
+      const { onChange, mark } = this.props;
       const update = { ...this.state.mark };
 
       this.setState({ mark: undefined }, () => {
-        if (!isEqual(this.props.mark, update)) {
-          onChange(this.props.mark, update);
+        const { type } = update;
+        const shouldNotChange =
+          type && (type === 'parabola' || type === 'sine') && sameAxes(update.from, update.to);
+
+        if (!isEqual(mark, update) && !shouldNotChange) {
+          onChange(mark, update);
         }
       });
     };
 
-    changeMark = ({ from, to }) => {
-      const mark = { ...this.state.mark, from, to };
+    changeMark = ({ from, to, middle }) => {
+      let mark = { ...this.state.mark, from, to };
+
+      if (middle) {
+        mark = { ...mark, middle };
+      }
 
       this.setState({ mark });
     };
 
-    changeMarkProps = ({ from, to }) => {
+    changeMarkProps = ({ from, to, middle }) => {
       const { onChange, mark } = this.props;
       let update = { ...mark, ...this.state.mark };
 
@@ -74,6 +83,10 @@ export const lineToolComponent = Component => {
 
       if (to) {
         update = { ...update, to };
+      }
+
+      if (middle) {
+        update = { ...update, middle };
       }
 
       if (!isEqual(mark, update)) {
@@ -91,6 +104,7 @@ export const lineToolComponent = Component => {
           correctness={mark.correctness}
           from={mark.from}
           to={mark.to}
+          middle={mark.middle}
           graphProps={graphProps}
           onChange={this.changeMark}
           changeMarkProps={this.changeMarkProps}
@@ -123,8 +137,6 @@ const dragOpts = () => ({
   }
 });
 
-const equalPoints = (p1, p2) => p1 && p2 && isEqual({ x: p1.x, y: p1.y }, { x: p2.x, y: p2.y });
-
 export const lineBase = (Comp, opts) => {
   const DraggableComp = gridDraggable(dragOpts())(Comp);
 
@@ -136,6 +148,7 @@ export const lineBase = (Comp, opts) => {
       graphProps: types.GraphPropsType,
       from: types.PointType,
       to: types.PointType,
+      middle: types.PointType,
       onChange: PropTypes.func,
       onDragStart: PropTypes.func,
       onDragStop: PropTypes.func,
@@ -148,14 +161,21 @@ export const lineBase = (Comp, opts) => {
     };
 
     onChangePoint = point => {
+      const { middle, onChange } = this.props;
+      const { from, to } = point;
+
       // because point.from.label and point.to.label can be different
-      if (!equalPoints(point.from, point.to)) {
-        this.props.onChange(point);
+      if (!equalPoints(from, to)) {
+        if (middle) {
+          point.middle = { ...middle, ...getMiddleOfTwoPoints(from, to) };
+        }
+
+        onChange(point);
       }
     };
 
     dragComp = ({ from: draggedFrom, to: draggedTo }) => {
-      const { from, to, onChange } = this.props;
+      const { from, to, onChange, middle } = this.props;
 
       if (from.label) {
         draggedFrom.label = from.label;
@@ -165,7 +185,13 @@ export const lineBase = (Comp, opts) => {
         draggedTo.label = to.label;
       }
 
-      onChange({ from: draggedFrom, to: draggedTo });
+      const updated = { from: draggedFrom, to: draggedTo };
+
+      if (middle) {
+        updated.middle = { ...middle, ...getMiddleOfTwoPoints(draggedFrom, draggedTo) };
+      }
+
+      onChange(updated);
     };
 
     dragFrom = draggedFrom => {
@@ -206,6 +232,10 @@ export const lineBase = (Comp, opts) => {
     clickPoint = (point, type) => {
       const { changeMarkProps, from, to } = this.props;
 
+      if (type === 'middle' && !point && from && to) {
+        point = { ...point, ...getMiddleOfTwoPoints(from, to) };
+      }
+
       changeMarkProps({ from, to, [type]: { label: '', ...point } });
 
       if (this.input[type]) {
@@ -223,6 +253,7 @@ export const lineBase = (Comp, opts) => {
         onDragStop,
         from,
         to,
+        middle,
         disabled,
         correctness,
         onClick,
@@ -234,6 +265,7 @@ export const lineBase = (Comp, opts) => {
 
       let fromLabelNode = null;
       let toLabelNode = null;
+      let lineLabelNode = null;
 
       if (labelNode) {
         if (from && from.hasOwnProperty('label')) {
@@ -261,11 +293,34 @@ export const lineBase = (Comp, opts) => {
             labelNode
           );
         }
+
+        if (middle && middle.hasOwnProperty('label')) {
+          lineLabelNode = ReactDOM.createPortal(
+            <MarkLabel
+              inputRef={r => (this.input.middle = r)}
+              disabled={!labelModeEnabled}
+              mark={middle}
+              graphProps={graphProps}
+              onChange={label => this.labelChange({ ...middle, label }, 'middle')}
+            />,
+            labelNode
+          );
+        }
       }
 
       return (
         <g>
-          {to && <DraggableComp from={from} to={to} onDrag={this.dragComp} {...common} />}
+          {to && (
+            <DraggableComp
+              from={from}
+              to={to}
+              middle={middle}
+              onDrag={this.dragComp}
+              {...common}
+              onClick={labelModeEnabled ? () => this.clickPoint(middle, 'middle') : common.onClick}
+            />
+          )}
+          {lineLabelNode}
 
           <FromPoint
             x={from.x}
