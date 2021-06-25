@@ -92,6 +92,79 @@ describe('table', () => {
         assertToggle('2', '0');
       });
     });
+
+    describe('normalizeNode', () => {
+      it('should exit the function if the node is not of type document', () => {
+        const tablePlugin = TablePlugin();
+        const returnValue = tablePlugin.normalizeNode({ object: 'table' });
+
+        expect(returnValue).toEqual(undefined);
+      });
+
+      it('should exit there are no changes needed', () => {
+        const tablePlugin = TablePlugin();
+        const nodes = {
+          size: 3,
+          findLastIndex: jest.fn().mockReturnValue(1)
+        };
+        const returnValue = tablePlugin.normalizeNode({
+          object: 'document',
+          nodes
+        });
+        expect(returnValue).toEqual(undefined);
+      });
+
+      it('should return a function if the last element in the document is a table', () => {
+        const tablePlugin = TablePlugin();
+        const nodes = {
+          size: 2,
+          findLastIndex: jest.fn().mockReturnValue(1),
+          get: jest.fn().mockReturnValue({
+            key: '99',
+            toJSON: jest.fn().mockReturnValue({ object: 'block', type: 'table' })
+          })
+        };
+        const findDescendant = jest.fn(callback => {
+          nodes.forEach(n => callback(n));
+        });
+        const change = {
+          withoutNormalization: jest.fn(callback => {
+            callback();
+          }),
+          insertBlock: jest.fn(),
+          removeNodeByKey: jest.fn(),
+          value: {
+            document: {
+              getPreviousText: jest.fn().mockReturnValue({ key: '1' })
+            }
+          }
+        };
+        change.moveFocusTo = jest.fn().mockReturnValue(change);
+        change.moveAnchorTo = jest.fn().mockReturnValue(change);
+
+        const returnValue = tablePlugin.normalizeNode({
+          object: 'document',
+          nodes,
+          findDescendant
+        });
+
+        expect(returnValue).toEqual(expect.any(Function));
+
+        returnValue(change);
+
+        expect(change.removeNodeByKey).toHaveBeenCalledWith('99');
+        expect(change.insertBlock).toHaveBeenCalledWith(expect.any(Object));
+
+        expect(change.withoutNormalization).toHaveBeenCalledWith(expect.any(Function));
+
+        expect(change.moveFocusTo).toHaveBeenCalledWith('1', 0);
+        expect(change.moveAnchorTo).toHaveBeenCalledWith('1', 0);
+
+        expect(change.insertBlock).toHaveBeenCalledWith(
+          expect.objectContaining({ object: 'block', type: 'table' })
+        );
+      });
+    });
   });
 });
 

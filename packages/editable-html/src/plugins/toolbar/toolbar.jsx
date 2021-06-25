@@ -50,6 +50,7 @@ export class Toolbar extends React.Component {
     pluginProps: PropTypes.object,
     toolbarOpts: PropTypes.shape({
       position: PropTypes.oneOf(['bottom', 'top']),
+      alignment: PropTypes.oneOf(['left', 'right']),
       alwaysVisible: PropTypes.bool,
       showDone: PropTypes.bool
     }),
@@ -215,6 +216,7 @@ export class Toolbar extends React.Component {
     const names = classNames(classes.toolbar, {
       [classes.toolbarWithNoDone]: !hasDoneButton,
       [classes.toolbarTop]: toolbarOpts.position === 'top',
+      [classes.toolbarRight]: toolbarOpts.alignment === 'right',
       [classes.focused]: toolbarOpts.alwaysVisible || isFocused,
       [classes.autoWidth]: autoWidth,
       [classes.fullWidth]: !autoWidth
@@ -255,7 +257,7 @@ export class Toolbar extends React.Component {
               <Delete />
             </IconButton>
           )}
-          {(customToolbarShowDone || deletable) && <DoneButton onClick={handleDone} />}
+          {customToolbarShowDone && <DoneButton onClick={handleDone} />}
         </div>
       </div>
     );
@@ -282,6 +284,9 @@ const style = {
   },
   toolbarTop: {
     top: '-45px'
+  },
+  toolbarRight: {
+    right: 0
   },
   fullWidth: {
     width: '100%'

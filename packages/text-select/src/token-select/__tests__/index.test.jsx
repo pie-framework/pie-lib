@@ -189,6 +189,11 @@ describe('token-select', () => {
         w.setProps({ maxNoOfSelections: 5 });
         expect(w.instance().canSelectMore(6)).toEqual(false);
       });
+
+      it('returns true for 1 max selections and count 1', () => {
+        w.setProps({ maxNoOfSelections: 1 });
+        expect(w.instance().canSelectMore(1)).toEqual(true);
+      });
     });
 
     describe('toggleToken', () => {
@@ -231,6 +236,21 @@ describe('token-select', () => {
         w.instance().toggleToken(mockedEvent);
 
         expect(onChange).not.toBeCalledWith([{ selected: true }]);
+      });
+
+      it('calls onChange if maxNoOfSelections is 1 and selectedCount is 1', () => {
+        w.setProps({ maxNoOfSelections: 1, tokens: [{ selected: true }] });
+
+        const closest = jest.fn().mockReturnValue({
+          dataset: {
+            indexkey: '0'
+          }
+        });
+        const mockedEvent = { target: { closest } };
+
+        w.instance().toggleToken(mockedEvent);
+
+        expect(onChange).toBeCalled();
       });
     });
   });
