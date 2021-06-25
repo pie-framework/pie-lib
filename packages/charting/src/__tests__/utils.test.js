@@ -96,7 +96,7 @@ describe('utils', () => {
   });
 
   describe('getRotateAngle', () => {
-    const assertGetRotateAngle = ({fontSize, height}, rotateAngle) => {
+    const assertGetRotateAngle = ({ fontSize, height }, rotateAngle) => {
       it('returns proper rotate angle', () => {
         const result = utils.getRotateAngle(fontSize, height);
         expect(result).toEqual(rotateAngle);

@@ -8,13 +8,13 @@ import ReactDOM from 'react-dom';
 import MarkLabel from '../../../mark-label';
 import isEmpty from 'lodash/isEmpty';
 import { color } from '@pie-lib/render-ui';
-import { getMiddleOfTwoPoints } from '../../../utils';
+import { getMiddleOfTwoPoints, equalPoints, sameAxes } from '../../../utils';
 
 export const lineTool = (type, Component) => () => ({
   type,
   Component,
   addPoint: (point, mark) => {
-    if (mark && isEqual(mark.root, point)) {
+    if (mark && equalPoints(mark.root, point)) {
       return mark;
     }
 
@@ -26,7 +26,7 @@ export const lineTool = (type, Component) => () => ({
       };
     }
 
-    if (isEqual(point, mark.from)) {
+    if (equalPoints(point, mark.from)) {
       return { ...mark };
     }
 
@@ -49,12 +49,16 @@ export const lineToolComponent = Component => {
     startDrag = () => this.setState({ mark: { ...this.props.mark } });
 
     stopDrag = () => {
-      const { onChange } = this.props;
+      const { onChange, mark } = this.props;
       const update = { ...this.state.mark };
 
       this.setState({ mark: undefined }, () => {
-        if (!isEqual(this.props.mark, update)) {
-          onChange(this.props.mark, update);
+        const { type } = update;
+        const shouldNotChange =
+          type && (type === 'parabola' || type === 'sine') && sameAxes(update.from, update.to);
+
+        if (!isEqual(mark, update) && !shouldNotChange) {
+          onChange(mark, update);
         }
       });
     };
@@ -132,8 +136,6 @@ const dragOpts = () => ({
     };
   }
 });
-
-const equalPoints = (p1, p2) => p1 && p2 && isEqual({ x: p1.x, y: p1.y }, { x: p2.x, y: p2.y });
 
 export const lineBase = (Comp, opts) => {
   const DraggableComp = gridDraggable(dragOpts())(Comp);

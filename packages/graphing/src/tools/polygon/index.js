@@ -1,5 +1,5 @@
 import Polygon from './component';
-import isEqual from 'lodash/isEqual';
+import { equalPoints } from '../../utils';
 
 export const addPointToArray = (point, arr) => {
   arr = arr || [];
@@ -7,17 +7,19 @@ export const addPointToArray = (point, arr) => {
   if (arr.length === 0) {
     return { points: [point], closed: false };
   } else if (arr.length === 1) {
-    if (isEqual(point, arr[0])) {
+    if (equalPoints(point, arr[0])) {
       return { points: arr, closed: false };
     } else {
       return { points: [...arr, point], closed: false };
     }
   } else if (arr.length >= 2) {
-    const closed = isEqual(point, arr[0]);
+    const closed = equalPoints(point, arr[0]);
+
     if (closed) {
       return { points: arr, closed };
     } else {
-      const hasPoint = !!arr.find(p => isEqual(p, point));
+      const hasPoint = !!arr.find(p => equalPoints(p, point));
+
       if (hasPoint) {
         return { points: arr, closed: false };
       } else {
@@ -43,6 +45,7 @@ export const tool = () => ({
       };
     } else {
       const { closed, points } = addPointToArray(point, mark.points);
+
       return { ...mark, closed, points, building: !closed };
     }
   }

@@ -241,7 +241,8 @@ describe('token-select', () => {
       it('calls onChange if maxNoOfSelections is 1 and selectedCount is 1', () => {
         w.setProps({ maxNoOfSelections: 1, tokens: [{ selected: true }] });
 
-        const closest = jest.fn().mockReturnValue({ dataset: {
+        const closest = jest.fn().mockReturnValue({
+          dataset: {
             indexkey: '0'
           }
         });
