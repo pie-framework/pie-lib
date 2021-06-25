@@ -778,5 +778,50 @@
     "committerDate": "2021-04-05 11:04:42 +0300",
     "isTagged": true,
     "tag": "@pie-lib/mask-markup@1.10.14"
+  },
+  {
+    "type": "fix",
+    "scope": "mask-markup",
+    "subject": "set max fontSize for dropdown items to fix PD-1142",
+    "merge": null,
+    "header": "fix(mask-markup): set max fontSize for dropdown items to fix PD-1142",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "704c2914df670f556afe251dc25dd422dda55343",
+    "gitTags": "",
+    "committerDate": "2021-05-05 14:53:55 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/mask-markup@1.10.15"
+  },
+  {
+    "type": "fix",
+    "scope": "mask-markup",
+    "subject": "Fixed DITB image-based tokens to be draggable - PD-1120",
+    "merge": null,
+    "header": "fix(mask-markup): Fixed DITB image-based tokens to be draggable - PD-1120",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "4cf2f4ae2a58488c3734e05f4532b415f7f1e9e2",
+    "gitTags": " (origin/fix/PD-1120)",
+    "committerDate": "2021-05-04 16:46:03 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/mask-markup@1.10.15"
+  },
+  {
+    "type": "fix",
+    "scope": "mask-markup",
+    "subject": "Fixed labels overlapping",
+    "merge": null,
+    "header": "fix(mask-markup): Fixed labels overlapping",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "3f7cff2ed4f5830242270ed1e82438fc7a9c7bb2",
+    "gitTags": " (origin/fix/mask-markup)",
+    "committerDate": "2021-04-06 16:45:04 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/mask-markup@1.10.15"
   }
 ]
