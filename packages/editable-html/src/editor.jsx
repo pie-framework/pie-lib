@@ -97,6 +97,10 @@ export class Editor extends React.Component {
       toolbarOpts: createToolbarOpts(props.toolbarOpts)
     };
 
+    this.onResize = () => {
+      props.onChange(this.state.value, true);
+    };
+
     this.plugins = buildPlugins(props.activePlugins, {
       math: {
         onClick: this.onMathClick,
@@ -180,6 +184,8 @@ export class Editor extends React.Component {
   }
 
   componentDidMount() {
+    window.addEventListener('resize', this.onResize);
+
     if (this.editor && this.props.autoFocus) {
       Promise.resolve().then(() => {
         if (this.editor) {
@@ -246,15 +252,11 @@ export class Editor extends React.Component {
     this.props.onChange(this.state.value, true);
   };
 
-  onResize = () => {
-    this.props.onChange(this.state.value, true);
-  };
-
   /**
    * Remove onResize event listener
    */
   componentWillUnmount() {
-    window.removeEventListener('resize', this.onResize.bind(this));
+    window.removeEventListener('resize', this.onResize);
   }
 
   // Allowing time for onChange to take effect if it is called
