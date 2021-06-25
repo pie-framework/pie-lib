@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.10.14...@pie-lib/mask-markup@1.10.15) (2021-06-25)
+
+
+### Bug Fixes
+
+* **mask-markup:** Fixed DITB image-based tokens to be draggable - PD-1120 ([4cf2f4a](https://github.com/pie-framework/pie-lib/commit/4cf2f4a))
+* **mask-markup:** Fixed labels overlapping ([3f7cff2](https://github.com/pie-framework/pie-lib/commit/3f7cff2))
+* **mask-markup:** set max fontSize for dropdown items to fix PD-1142 ([704c291](https://github.com/pie-framework/pie-lib/commit/704c291))
+
+
+
+
+
 ## [1.10.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.10.13...@pie-lib/mask-markup@1.10.14) (2021-04-06)
 
 

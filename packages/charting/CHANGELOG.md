@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.5.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.5.7...@pie-lib/charting@4.5.8) (2021-06-25)
+
+
+### Bug Fixes
+
+* **charting:** Fixed the wrong horizontal position of a point on Line Dot - PD-31 ([7f58120](https://github.com/pie-framework/pie-lib/commit/7f58120))
+* **charting:** override style to remove grey background behind labels in IBX PD-29 ([ee1a882](https://github.com/pie-framework/pie-lib/commit/ee1a882))
+* **charting:** rotate category labels according to their length PD-537 ([a2f42fe](https://github.com/pie-framework/pie-lib/commit/a2f42fe))
+* **charting:** Updated categories filtration - PD-535 ([a41cc00](https://github.com/pie-framework/pie-lib/commit/a41cc00))
+
+
+
+
+
 ## [4.5.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.5.6...@pie-lib/charting@4.5.7) (2021-04-06)
 
 **Note:** Version bump only for package @pie-lib/charting

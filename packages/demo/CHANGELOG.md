@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.5.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.4.18...@pie-lib/demo@6.5.0) (2021-06-25)
+
+
+### Features
+
+* **rubric:** Add sample answers support ([5f0e337](https://github.com/pie-framework/pie-lib/commit/5f0e337))
+* **rubric:** Added sanity checks ([f40fac6](https://github.com/pie-framework/pie-lib/commit/f40fac6))
+* **rubric:** Changed logic for displaying the sample answer ([4d5245c](https://github.com/pie-framework/pie-lib/commit/4d5245c))
+* **rubric:** Refactoring ([81bcd07](https://github.com/pie-framework/pie-lib/commit/81bcd07))
+
+
+
+
+
 ## [6.4.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.4.17...@pie-lib/demo@6.4.18) (2021-04-06)
 
 **Note:** Version bump only for package @pie-lib/demo

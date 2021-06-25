@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.9.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.8.57...@pie-lib/config-ui@10.9.0) (2021-06-25)
+
+
+### Features
+
+* **config-ui:** remove audio and video buttons from choice configuration label for multiple-choice and ebsr PD-1180 ([5988b02](https://github.com/pie-framework/pie-lib/commit/5988b02))
+
+
+
+
+
 ## [10.8.57](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.8.56...@pie-lib/config-ui@10.8.57) (2021-04-06)
 
 **Note:** Version bump only for package @pie-lib/config-ui

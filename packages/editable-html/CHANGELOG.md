@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.16.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.16.16...@pie-lib/editable-html@7.16.17) (2021-06-25)
+
+
+### Bug Fixes
+
+* **editable-html:** Fixed error checking makes it difficult to type a URL - PD-1082 ([42c5ad3](https://github.com/pie-framework/pie-lib/commit/42c5ad3))
+* **editable-html:** insert video should not accept audio and vice versa PD-832 ([4e1e0a3](https://github.com/pie-framework/pie-lib/commit/4e1e0a3))
+* **editable-html:** remove green checkmark next to the delete button on the toolbar PD-1125 ([b2cb463](https://github.com/pie-framework/pie-lib/commit/b2cb463))
+* **editable-html:** Text edits will remain when resize window - PD-356 ([c06caaf](https://github.com/pie-framework/pie-lib/commit/c06caaf))
+* **inline-dropdown:** Called onBlur on editable-html - PD-294 ([437ef1d](https://github.com/pie-framework/pie-lib/commit/437ef1d))
+* **multi-trait-rubric:** Added right and left alignment for the toolbar ([f3def8b](https://github.com/pie-framework/pie-lib/commit/f3def8b))
+* **table:** made sure table block is not the latest node in the document [PD-341] ([90bb47a](https://github.com/pie-framework/pie-lib/commit/90bb47a))
+
+
+
+
+
 ## [7.16.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.16.15...@pie-lib/editable-html@7.16.16) (2021-04-06)
 
 **Note:** Version bump only for package @pie-lib/editable-html

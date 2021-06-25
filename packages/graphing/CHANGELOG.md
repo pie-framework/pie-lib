@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.2.21...@pie-lib/graphing@2.3.0) (2021-06-25)
+
+
+### Bug Fixes
+
+* **graphing:** correctly calculate tick values for when step has 3 decimals. Add sanity check for graph label PD-991 ([5b1d85b](https://github.com/pie-framework/pie-lib/commit/5b1d85b))
+* **graphing:** Removed non-functional buttons PD-545 ([1884b9d](https://github.com/pie-framework/pie-lib/commit/1884b9d))
+
+
+### Features
+
+* **graphing:** Added the ability to label shapes other than point - PD-486 ([ad1ea5a](https://github.com/pie-framework/pie-lib/commit/ad1ea5a))
+* **graphing:** Disallowed invalid point movements and placements PD-484 ([88ad2c4](https://github.com/pie-framework/pie-lib/commit/88ad2c4))
+
+
+
+
+
 ## [2.2.21](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.2.20...@pie-lib/graphing@2.2.21) (2021-04-06)
 
 **Note:** Version bump only for package @pie-lib/graphing

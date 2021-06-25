@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.7.13...@pie-lib/text-select@1.8.0) (2021-06-25)
+
+
+### Bug Fixes
+
+* **text-select:** fix incorrect indenting PD-1038 ([4d56509](https://github.com/pie-framework/pie-lib/commit/4d56509))
+* **text-select:** select text view mode should use black for text color PD-1154 ([0db5b1e](https://github.com/pie-framework/pie-lib/commit/0db5b1e))
+
+
+### Features
+
+* **text-select:** when select-text item permits only one selection, change behavior of gather PD-958 ([c181314](https://github.com/pie-framework/pie-lib/commit/c181314))
+
+
+
+
+
 ## [1.7.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.7.12...@pie-lib/text-select@1.7.13) (2021-03-01)
 
 **Note:** Version bump only for package @pie-lib/text-select
