@@ -12,6 +12,7 @@ import Toggle from './toggle';
 import TwoChoice from '../two-choice';
 import SettingsRadioLabel from './settings-radio-label';
 import { NumberTextField } from '../index';
+import Checkbox from '../checkbox';
 
 const log = debug('pie-lib:config-ui:settings:panel');
 
@@ -23,6 +24,24 @@ const labelValue = {
 const baseTypes = {
   label: PropTypes.string,
   value: PropTypes.string,
+  onChange: PropTypes.func
+};
+
+const CheckboxChoice = ({ label, value, onChange }) => {
+  return (
+    <Checkbox
+      checked={value}
+      label={label}
+      onChange={event => {
+        onChange(event.target.checked);
+      }}
+    />
+  );
+};
+
+CheckboxChoice.propTypes = {
+  label: PropTypes.string,
+  value: PropTypes.bool,
   onChange: PropTypes.func
 };
 
@@ -144,7 +163,8 @@ const tagMap = {
   toggle: ToggleWrapper,
   radio: StyledRadio,
   dropdown: Dropdown,
-  numberField: NumberField
+  numberField: NumberField,
+  checkbox: CheckboxChoice
 };
 
 const Group = withStyles(() => ({
@@ -185,7 +205,7 @@ const Group = withStyles(() => ({
       return null;
     }
 
-    const { type, label, fields } = currentGroup;
+    const { type, label, fields, choices } = currentGroup;
 
     if (type === 'numberFields') {
       return (
@@ -193,6 +213,17 @@ const Group = withStyles(() => ({
           <p className={classes.numberFields}>{label}</p>
           {Object.keys(fields).map(fieldKey => {
             return getTag(group, `${key}.${fieldKey}`, `${key}.fields.${fieldKey}`);
+          })}
+        </div>
+      );
+    }
+
+    if (type === 'checkboxes') {
+      return (
+        <div key={`checkbox-${label}`}>
+          <p>{label}</p>
+          {Object.keys(choices).map(choiceKey => {
+            return getTag(group, `${key}.${choiceKey}`, `${key}.choices.${choiceKey}`);
           })}
         </div>
       );
