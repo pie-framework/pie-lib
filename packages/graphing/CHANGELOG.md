@@ -3,6 +3,98 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.3.0...@pie-lib/graphing@2.3.2) (2021-06-25)
+
+**Note:** Version bump only for package @pie-lib/graphing
+
+
+
+
+
+# [2.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.2.21...@pie-lib/graphing@2.3.0) (2021-06-25)
+
+
+### Bug Fixes
+
+* **graphing:** correctly calculate tick values for when step has 3 decimals. Add sanity check for graph label PD-991 ([5b1d85b](https://github.com/pie-framework/pie-lib/commit/5b1d85b))
+* **graphing:** Removed non-functional buttons PD-545 ([1884b9d](https://github.com/pie-framework/pie-lib/commit/1884b9d))
+
+
+### Features
+
+* **graphing:** Added the ability to label shapes other than point - PD-486 ([ad1ea5a](https://github.com/pie-framework/pie-lib/commit/ad1ea5a))
+* **graphing:** Disallowed invalid point movements and placements PD-484 ([88ad2c4](https://github.com/pie-framework/pie-lib/commit/88ad2c4))
+
+
+
+
+
+## [2.2.21](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.2.20...@pie-lib/graphing@2.2.21) (2021-04-06)
+
+**Note:** Version bump only for package @pie-lib/graphing
+
+
+
+
+
+## [2.2.20](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.2.19...@pie-lib/graphing@2.2.20) (2021-04-02)
+
+
+### Bug Fixes
+
+* **graphing:** denote labels as non-readable ([a59a9ba](https://github.com/pie-framework/pie-lib/commit/a59a9ba))
+* **graphing:** Modified labels size and bug fixes ([e6dd79a](https://github.com/pie-framework/pie-lib/commit/e6dd79a))
+
+
+
+
+
+## [2.2.19](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.2.18...@pie-lib/graphing@2.2.19) (2021-03-22)
+
+
+### Bug Fixes
+
+* **graphing:** fix arrow positioning for any angle PD-495 ([33cc936](https://github.com/pie-framework/pie-lib/commit/33cc936))
+
+
+
+
+
+## [2.2.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.2.17...@pie-lib/graphing@2.2.18) (2021-03-17)
+
+
+### Bug Fixes
+
+* **graphing:** ROLLBACK - fix arrow positioning PD-495 ([8af59e7](https://github.com/pie-framework/pie-lib/commit/8af59e7))
+
+
+
+
+
+## [2.2.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.2.16...@pie-lib/graphing@2.2.17) (2021-03-16)
+
+
+### Bug Fixes
+
+* **graphing:** fix arrow positioning PD-495 ([36a87cf](https://github.com/pie-framework/pie-lib/commit/36a87cf))
+
+
+
+
+
+## [2.2.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.2.15...@pie-lib/graphing@2.2.16) (2021-03-15)
+
+
+### Bug Fixes
+
+* **graphing:** increase width and height for labels, depending on labels length PD-988 ([5f64c47](https://github.com/pie-framework/pie-lib/commit/5f64c47))
+* **graphing:** increase width for range  axisLabel PD-988 ([e4e5b8f](https://github.com/pie-framework/pie-lib/commit/e4e5b8f))
+* **graphing:** set height depending on number of words of axisLabel PD-988 ([210b3af](https://github.com/pie-framework/pie-lib/commit/210b3af))
+
+
+
+
+
 ## [2.2.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.2.14...@pie-lib/graphing@2.2.15) (2021-03-01)
 
 

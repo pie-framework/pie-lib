@@ -24,6 +24,7 @@ exports[`Dropdown render renders correctly with correct as true 1`] = `
   classes={
     Object {
       "icon": "Dropdown-icon-3",
+      "label": "Dropdown-label-6",
       "menuRoot": "Dropdown-menuRoot-5",
       "root": "Dropdown-root-1",
       "selectMenu": "Dropdown-selectMenu-2",
@@ -62,6 +63,7 @@ exports[`Dropdown render renders correctly with default props 1`] = `
   classes={
     Object {
       "icon": "Dropdown-icon-3",
+      "label": "Dropdown-label-6",
       "menuRoot": "Dropdown-menuRoot-5",
       "root": "Dropdown-root-1",
       "selectMenu": "Dropdown-selectMenu-2",
@@ -100,6 +102,7 @@ exports[`Dropdown render renders correctly with disabled prop as true 1`] = `
   classes={
     Object {
       "icon": "Dropdown-icon-3",
+      "label": "Dropdown-label-6",
       "menuRoot": "Dropdown-menuRoot-5",
       "root": "Dropdown-root-1",
       "selectMenu": "Dropdown-selectMenu-2",

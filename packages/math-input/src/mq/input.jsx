@@ -72,11 +72,6 @@ export class Input extends React.Component {
   focus() {
     log('focus mathfield...');
     this.mathField.focus();
-
-    setTimeout(() => {
-      this.mathField.blur();
-      this.mathField.focus();
-    }, 0);
   }
 
   command(v) {
@@ -117,7 +112,21 @@ export class Input extends React.Component {
     }
   };
 
+  refresh = () => {
+    this.blur();
+    this.focus();
+  };
+
   onKeyPress = event => {
+    const keys = Object.keys(this.mathField.__controller.options);
+
+    if (keys.indexOf('ignoreNextMousedown') < 0) {
+      // It seems like the controller has the above handler as an option
+      // when all the right events are set and everything works fine
+      // this seems to work in all cases
+      this.refresh();
+    }
+
     if (event.charCode === 13) {
       // if enter's pressed, we're going for a custom embedded element that'll
       // have a block display (empty div) - for a hacked line break using ccs

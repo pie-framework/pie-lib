@@ -3,6 +3,72 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.10.15...@pie-lib/mask-markup@1.10.17) (2021-06-25)
+
+**Note:** Version bump only for package @pie-lib/mask-markup
+
+
+
+
+
+## [1.10.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.10.14...@pie-lib/mask-markup@1.10.15) (2021-06-25)
+
+
+### Bug Fixes
+
+* **mask-markup:** Fixed DITB image-based tokens to be draggable - PD-1120 ([4cf2f4a](https://github.com/pie-framework/pie-lib/commit/4cf2f4a))
+* **mask-markup:** Fixed labels overlapping ([3f7cff2](https://github.com/pie-framework/pie-lib/commit/3f7cff2))
+* **mask-markup:** set max fontSize for dropdown items to fix PD-1142 ([704c291](https://github.com/pie-framework/pie-lib/commit/704c291))
+
+
+
+
+
+## [1.10.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.10.13...@pie-lib/mask-markup@1.10.14) (2021-04-06)
+
+
+### Bug Fixes
+
+* **mask-markup:** Changed choice preview design PD-605 ([d4b882e](https://github.com/pie-framework/pie-lib/commit/d4b882e))
+
+
+
+
+
+## [1.10.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.10.12...@pie-lib/mask-markup@1.10.13) (2021-04-02)
+
+
+### Bug Fixes
+
+* **mask-markup:** fix dragging issue by overwriting material ui chip height PD-1034 ([f26db36](https://github.com/pie-framework/pie-lib/commit/f26db36))
+
+
+
+
+
+## [1.10.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.10.11...@pie-lib/mask-markup@1.10.12) (2021-03-16)
+
+
+### Bug Fixes
+
+* **drag-in-the-blank:** add margin for tokens PD-745 ([2df356f](https://github.com/pie-framework/pie-lib/commit/2df356f))
+* **drag-in-the-blank:** set max width for tokens PD-727 ([b43b630](https://github.com/pie-framework/pie-lib/commit/b43b630))
+
+
+
+
+
+## [1.10.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.10.10...@pie-lib/mask-markup@1.10.11) (2021-03-15)
+
+
+### Bug Fixes
+
+* **mask-markup:** increase height for drag-in-the-blank chip PD-726 ([9cb037e](https://github.com/pie-framework/pie-lib/commit/9cb037e))
+
+
+
+
+
 ## [1.10.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.10.9...@pie-lib/mask-markup@1.10.10) (2021-03-01)
 
 **Note:** Version bump only for package @pie-lib/mask-markup

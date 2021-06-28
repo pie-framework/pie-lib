@@ -7,6 +7,7 @@ import clone from 'lodash/clone';
 import debug from 'debug';
 import { noSelect } from '@pie-lib/style-utils';
 import { renderToString } from 'react-dom/server';
+import isEqual from 'lodash/isEqual';
 
 const log = debug('@pie-lib:text-select:token-select');
 
@@ -32,6 +33,10 @@ export class TokenSelect extends React.Component {
   canSelectMore = selectedCount => {
     const { maxNoOfSelections } = this.props;
 
+    if (maxNoOfSelections === 1) {
+      return true;
+    }
+
     log('[canSelectMore] maxNoOfSelections: ', maxNoOfSelections, 'selectedCount: ', selectedCount);
     return (
       maxNoOfSelections <= 0 || (isFinite(maxNoOfSelections) && selectedCount < maxNoOfSelections)
@@ -48,25 +53,43 @@ export class TokenSelect extends React.Component {
    */
   toggleToken = event => {
     const { target } = event;
-    const tokens = clone(this.props.tokens);
+    const { tokens } = this.props;
+    const tokensCloned = clone(tokens);
     const targetSpanWrapper = target.closest(`.${Token.rootClassName}`);
     const targetedTokenIndex =
       targetSpanWrapper && targetSpanWrapper.dataset && targetSpanWrapper.dataset.indexkey;
-    const t = targetedTokenIndex && tokens[targetedTokenIndex];
+    const t = targetedTokenIndex && tokensCloned[targetedTokenIndex];
 
     if (t && t.correct === undefined) {
       const { onChange, maxNoOfSelections } = this.props;
       const selected = !t.selected;
 
-      if (selected && maxNoOfSelections > 0 && this.selectedCount() >= maxNoOfSelections) {
-        log('skip toggle max reached');
-        return;
+      if (maxNoOfSelections === 1 && this.selectedCount() === 1) {
+        const selectedToken = (tokens || []).filter(t => t.selected);
+
+        const updatedTokens = tokensCloned.map(token => {
+          if (isEqual(token, selectedToken[0])) {
+            return { ...token, selected: false };
+          }
+
+          return { ...token, selectable: true };
+        });
+
+        const update = { ...t, selected: !t.selected };
+
+        updatedTokens.splice(targetedTokenIndex, 1, update);
+        onChange(updatedTokens);
+      } else {
+        if (selected && maxNoOfSelections > 0 && this.selectedCount() >= maxNoOfSelections) {
+          log('skip toggle max reached');
+          return;
+        }
+
+        const update = { ...t, selected: !t.selected };
+
+        tokensCloned.splice(targetedTokenIndex, 1, update);
+        onChange(tokensCloned);
       }
-
-      const update = { ...t, selected: !t.selected };
-
-      tokens.splice(targetedTokenIndex, 1, update);
-      onChange(tokens);
     }
   };
 
@@ -133,6 +156,9 @@ export default withStyles(() => ({
   tokenSelect: {
     backgroundColor: 'none',
     whiteSpace: 'pre',
-    ...noSelect()
+    ...noSelect(),
+    '& p': {
+      whiteSpace: 'break-spaces'
+    }
   }
 }))(TokenSelect);

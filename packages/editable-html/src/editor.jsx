@@ -18,6 +18,7 @@ const log = debug('editable-html:editor');
 
 const defaultToolbarOpts = {
   position: 'bottom',
+  alignment: 'left',
   alwaysVisible: false,
   showDone: true,
   doneOn: 'blur'
@@ -36,6 +37,7 @@ export class Editor extends React.Component {
     editorRef: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired,
     onFocus: PropTypes.func,
+    onBlur: PropTypes.func,
     onKeyDown: PropTypes.func,
     focus: PropTypes.func.isRequired,
     value: SlateTypes.value.isRequired,
@@ -64,6 +66,7 @@ export class Editor extends React.Component {
     }),
     toolbarOpts: PropTypes.shape({
       position: PropTypes.oneOf(['bottom', 'top']),
+      alignment: PropTypes.oneOf(['left', 'right']),
       alwaysVisible: PropTypes.bool,
       showDone: PropTypes.bool,
       doneOn: PropTypes.string
@@ -82,6 +85,7 @@ export class Editor extends React.Component {
   static defaultProps = {
     disableUnderline: true,
     onFocus: () => {},
+    onBlur: () => {},
     toolbarOpts: defaultToolbarOpts,
     onKeyDown: () => {}
   };
@@ -91,6 +95,10 @@ export class Editor extends React.Component {
     this.state = {
       value: props.value,
       toolbarOpts: createToolbarOpts(props.toolbarOpts)
+    };
+
+    this.onResize = () => {
+      props.onChange(this.state.value, true);
     };
 
     this.plugins = buildPlugins(props.activePlugins, {
@@ -176,6 +184,8 @@ export class Editor extends React.Component {
   }
 
   componentDidMount() {
+    window.addEventListener('resize', this.onResize);
+
     if (this.editor && this.props.autoFocus) {
       Promise.resolve().then(() => {
         if (this.editor) {
@@ -197,7 +207,7 @@ export class Editor extends React.Component {
     const { toolbarOpts } = this.state;
     const newToolbarOpts = createToolbarOpts(nextProps.toolbarOpts);
 
-    if (isEqual(newToolbarOpts, toolbarOpts)) {
+    if (!isEqual(newToolbarOpts, toolbarOpts)) {
       this.setState({
         toolbarOpts: newToolbarOpts
       });
@@ -242,15 +252,11 @@ export class Editor extends React.Component {
     this.props.onChange(this.state.value, true);
   };
 
-  onResize = () => {
-    this.props.onChange(this.state.value, true);
-  };
-
   /**
    * Remove onResize event listener
    */
   componentWillUnmount() {
-    window.removeEventListener('resize', this.onResize.bind(this));
+    window.removeEventListener('resize', this.onResize);
   }
 
   // Allowing time for onChange to take effect if it is called
@@ -289,6 +295,7 @@ export class Editor extends React.Component {
 
     return new Promise(resolve => {
       this.setState({ focusedNode: node }, this.handleBlur.bind(this, resolve));
+      this.props.onBlur(event);
     });
   };
 

@@ -3,6 +3,62 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.3.0...@pie-lib/rubric@0.3.2) (2021-06-25)
+
+**Note:** Version bump only for package @pie-lib/rubric
+
+
+
+
+
+# [0.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.2.110...@pie-lib/rubric@0.3.0) (2021-06-25)
+
+
+### Features
+
+* **rubric:** Add sample answers support ([5f0e337](https://github.com/pie-framework/pie-lib/commit/5f0e337))
+* **rubric:** Added sanity checks ([f40fac6](https://github.com/pie-framework/pie-lib/commit/f40fac6))
+* **rubric:** Added tests ([7d7a2bc](https://github.com/pie-framework/pie-lib/commit/7d7a2bc))
+* **rubric:** Changed logic for displaying the sample answer ([4d5245c](https://github.com/pie-framework/pie-lib/commit/4d5245c))
+* **rubric:** Refactoring ([81bcd07](https://github.com/pie-framework/pie-lib/commit/81bcd07))
+* **rubric:** Removed 'use default text' tests ([37c18a7](https://github.com/pie-framework/pie-lib/commit/37c18a7))
+
+
+
+
+
+## [0.2.110](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.2.109...@pie-lib/rubric@0.2.110) (2021-04-06)
+
+**Note:** Version bump only for package @pie-lib/rubric
+
+
+
+
+
+## [0.2.109](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.2.108...@pie-lib/rubric@0.2.109) (2021-04-02)
+
+**Note:** Version bump only for package @pie-lib/rubric
+
+
+
+
+
+## [0.2.108](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.2.107...@pie-lib/rubric@0.2.108) (2021-03-22)
+
+**Note:** Version bump only for package @pie-lib/rubric
+
+
+
+
+
+## [0.2.107](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.2.106...@pie-lib/rubric@0.2.107) (2021-03-15)
+
+**Note:** Version bump only for package @pie-lib/rubric
+
+
+
+
+
 ## [0.2.106](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.2.105...@pie-lib/rubric@0.2.106) (2021-03-03)
 
 **Note:** Version bump only for package @pie-lib/rubric

@@ -3,6 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.5.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.5.8...@pie-lib/charting@4.5.10) (2021-06-25)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+
+
+
+
+## [4.5.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.5.7...@pie-lib/charting@4.5.8) (2021-06-25)
+
+
+### Bug Fixes
+
+* **charting:** Fixed the wrong horizontal position of a point on Line Dot - PD-31 ([7f58120](https://github.com/pie-framework/pie-lib/commit/7f58120))
+* **charting:** override style to remove grey background behind labels in IBX PD-29 ([ee1a882](https://github.com/pie-framework/pie-lib/commit/ee1a882))
+* **charting:** rotate category labels according to their length PD-537 ([a2f42fe](https://github.com/pie-framework/pie-lib/commit/a2f42fe))
+* **charting:** Updated categories filtration - PD-535 ([a41cc00](https://github.com/pie-framework/pie-lib/commit/a41cc00))
+
+
+
+
+
+## [4.5.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.5.6...@pie-lib/charting@4.5.7) (2021-04-06)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+
+
+
+
+## [4.5.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.5.5...@pie-lib/charting@4.5.6) (2021-04-02)
+
+
+### Bug Fixes
+
+* **charting:** align chart labels when they are rotated PD-921 ([1baf5b2](https://github.com/pie-framework/pie-lib/commit/1baf5b2))
+* **charting:** enlarge the height of the draggable target PD-43 ([3d1b7e8](https://github.com/pie-framework/pie-lib/commit/3d1b7e8))
+* **charting:** Increased labels size - PD-533 ([9d9095c](https://github.com/pie-framework/pie-lib/commit/9d9095c))
+
+
+
+
+
+## [4.5.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.5.4...@pie-lib/charting@4.5.5) (2021-03-15)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+
+
+
+
 ## [4.5.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.5.3...@pie-lib/charting@4.5.4) (2021-02-15)
 
 **Note:** Version bump only for package @pie-lib/charting

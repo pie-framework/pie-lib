@@ -859,7 +859,7 @@
     "footer": null,
     "notes": [],
     "hash": "36a87cfc04cd50b434a8f224eef65752c6943bf6",
-    "gitTags": "",
+    "gitTags": " (origin/fix/PD-495-fix-vectors-arrow)",
     "committerDate": "2021-03-16 12:10:35 +0000",
     "isTagged": true,
     "tag": "@pie-lib/graphing@2.2.17"
@@ -874,7 +874,7 @@
     "footer": null,
     "notes": [],
     "hash": "8af59e71fcc1784af2a8529d2282777929b704cd",
-    "gitTags": "",
+    "gitTags": " (origin/fix/PD-495-fix-vectors-arrow)",
     "committerDate": "2021-03-16 19:00:17 +0200",
     "isTagged": true,
     "tag": "@pie-lib/graphing@2.2.18"
@@ -923,5 +923,65 @@
     "committerDate": "2021-03-25 13:46:35 +0200",
     "isTagged": true,
     "tag": "@pie-lib/graphing@2.2.20"
+  },
+  {
+    "type": "fix",
+    "scope": "graphing",
+    "subject": "Removed non-functional buttons PD-545",
+    "merge": null,
+    "header": "fix(graphing): Removed non-functional buttons PD-545",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "1884b9da7631d3c4ee79e305c05703310efe2e95",
+    "gitTags": " (origin/fix/PD-545)",
+    "committerDate": "2021-06-18 17:00:45 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/graphing@2.3.0"
+  },
+  {
+    "type": "feat",
+    "scope": "graphing",
+    "subject": "Disallowed invalid point movements and placements PD-484",
+    "merge": null,
+    "header": "feat(graphing): Disallowed invalid point movements and placements PD-484",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "88ad2c4cbae17fdbae24fe0e5ec7af490eb4de75",
+    "gitTags": "",
+    "committerDate": "2021-06-17 15:31:52 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/graphing@2.3.0"
+  },
+  {
+    "type": "feat",
+    "scope": "graphing",
+    "subject": "Added the ability to label shapes other than point - PD-486",
+    "merge": null,
+    "header": "feat(graphing): Added the ability to label shapes other than point - PD-486",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "ad1ea5a0b3db601388af326a806db3f135aea584",
+    "gitTags": " (origin/feat/PD-486)",
+    "committerDate": "2021-06-11 11:42:01 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/graphing@2.3.0"
+  },
+  {
+    "type": "fix",
+    "scope": "graphing",
+    "subject": "correctly calculate tick values for when step has 3 decimals. Add sanity check for graph label PD-991",
+    "merge": null,
+    "header": "fix(graphing): correctly calculate tick values for when step has 3 decimals. Add sanity check for graph label PD-991",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "5b1d85be62b21f4cdf1fc40425ae7f2dcb70ed44",
+    "gitTags": "",
+    "committerDate": "2021-05-07 15:49:55 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/graphing@2.3.0"
   }
 ]

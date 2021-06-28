@@ -3,6 +3,60 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.9.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.9.0...@pie-lib/config-ui@10.9.2) (2021-06-25)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
+# [10.9.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.8.57...@pie-lib/config-ui@10.9.0) (2021-06-25)
+
+
+### Features
+
+* **config-ui:** remove audio and video buttons from choice configuration label for multiple-choice and ebsr PD-1180 ([5988b02](https://github.com/pie-framework/pie-lib/commit/5988b02))
+
+
+
+
+
+## [10.8.57](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.8.56...@pie-lib/config-ui@10.8.57) (2021-04-06)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
+## [10.8.56](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.8.55...@pie-lib/config-ui@10.8.56) (2021-04-02)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
+## [10.8.55](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.8.54...@pie-lib/config-ui@10.8.55) (2021-03-22)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
+## [10.8.54](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.8.53...@pie-lib/config-ui@10.8.54) (2021-03-15)
+
+
+### Bug Fixes
+
+* **config-ui:** set same font-size for labels in settings panel PD-269 ([21749a0](https://github.com/pie-framework/pie-lib/commit/21749a0))
+
+
+
+
+
 ## [10.8.53](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.8.52...@pie-lib/config-ui@10.8.53) (2021-03-03)
 
 

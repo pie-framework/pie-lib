@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.5.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.5.12...@pie-lib/math-input@6.5.14) (2021-06-25)
+
+**Note:** Version bump only for package @pie-lib/math-input
+
+
+
+
+
+## [6.5.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.5.11...@pie-lib/math-input@6.5.12) (2021-06-25)
+
+**Note:** Version bump only for package @pie-lib/math-input
+
+
+
+
+
+## [6.5.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.5.10...@pie-lib/math-input@6.5.11) (2021-04-06)
+
+**Note:** Version bump only for package @pie-lib/math-input
+
+
+
+
+
+## [6.5.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.5.9...@pie-lib/math-input@6.5.10) (2021-03-22)
+
+
+### Bug Fixes
+
+* **math-toolbar:** fix double arrow button style mentioned in PD-48 ([145b060](https://github.com/pie-framework/pie-lib/commit/145b060))
+
+
+
+
+
+## [6.5.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.5.8...@pie-lib/math-input@6.5.9) (2021-03-15)
+
+**Note:** Version bump only for package @pie-lib/math-input
+
+
+
+
+
 ## [6.5.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.5.7...@pie-lib/math-input@6.5.8) (2021-03-03)
 
 

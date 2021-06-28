@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.7.12...@pie-lib/math-toolbar@1.7.14) (2021-06-25)
+
+**Note:** Version bump only for package @pie-lib/math-toolbar
+
+
+
+
+
+## [1.7.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.7.11...@pie-lib/math-toolbar@1.7.12) (2021-06-25)
+
+**Note:** Version bump only for package @pie-lib/math-toolbar
+
+
+
+
+
+## [1.7.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.7.10...@pie-lib/math-toolbar@1.7.11) (2021-04-06)
+
+**Note:** Version bump only for package @pie-lib/math-toolbar
+
+
+
+
+
+## [1.7.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.7.9...@pie-lib/math-toolbar@1.7.10) (2021-03-22)
+
+**Note:** Version bump only for package @pie-lib/math-toolbar
+
+
+
+
+
+## [1.7.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.7.8...@pie-lib/math-toolbar@1.7.9) (2021-03-15)
+
+
+### Bug Fixes
+
+* **math-toolbar:** override style for ray PD-48 ([b8492d5](https://github.com/pie-framework/pie-lib/commit/b8492d5))
+
+
+
+
+
 ## [1.7.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.7.7...@pie-lib/math-toolbar@1.7.8) (2021-03-03)
 
 

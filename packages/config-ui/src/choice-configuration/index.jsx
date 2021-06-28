@@ -16,6 +16,7 @@ const EditableHtmlContainer = withStyles(theme => ({
   editorHolder: {
     marginTop: theme.spacing.unit * 2
   }
+
 }))(
   ({
     label,
