@@ -60,7 +60,8 @@ export class FeedbackSelector extends React.Component {
     classes: PropTypes.object.isRequired,
     label: PropTypes.string.isRequired,
     feedback: PropTypes.shape(FeedbackType).isRequired,
-    onChange: PropTypes.func.isRequired
+    onChange: PropTypes.func.isRequired,
+    toolbarOpts: PropTypes.object
   };
 
   changeType = type => {
@@ -74,7 +75,7 @@ export class FeedbackSelector extends React.Component {
   };
 
   render() {
-    const { keys, classes, label, feedback } = this.props;
+    const { keys, classes, label, feedback, toolbarOpts } = this.props;
 
     const feedbackKeys = keys || Object.keys(feedbackLabels);
 
@@ -100,6 +101,7 @@ export class FeedbackSelector extends React.Component {
               className={classes.editor}
               onChange={this.changeCustom}
               markup={feedback.custom || ''}
+              toolbarOpts={toolbarOpts}
             />
           </div>
         )}

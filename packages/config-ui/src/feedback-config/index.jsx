@@ -39,7 +39,8 @@ export class FeedbackConfig extends React.Component {
       partial: PropTypes.shape(FeedbackType)
     }),
     onChange: PropTypes.func.isRequired,
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
+    toolbarOpts: PropTypes.object
   };
 
   static defaultProps = {
@@ -58,7 +59,7 @@ export class FeedbackConfig extends React.Component {
   onPartialChange = this.onChange.bind(this, 'partial');
 
   render() {
-    const { classes, allowPartial, feedback } = this.props;
+    const { classes, allowPartial, feedback, toolbarOpts } = this.props;
 
     return (
       <ExpansionPanel>
@@ -71,18 +72,21 @@ export class FeedbackConfig extends React.Component {
               label="If correct, show"
               feedback={feedback.correct}
               onChange={this.onCorrectChange}
+              toolbarOpts={toolbarOpts}
             />
             {allowPartial && (
               <FeedbackSelector
                 label="If partially correct, show"
                 feedback={feedback.partial}
                 onChange={this.onPartialChange}
+                toolbarOpts={toolbarOpts}
               />
             )}
             <FeedbackSelector
               label="If incorrect, show"
               feedback={feedback.incorrect}
               onChange={this.onIncorrectChange}
+              toolbarOpts={toolbarOpts}
             />
           </div>
         </ExpansionPanelDetails>

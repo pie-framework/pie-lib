@@ -16,29 +16,38 @@ const EditableHtmlContainer = withStyles(theme => ({
   editorHolder: {
     marginTop: theme.spacing.unit * 2
   }
-}))(({ label, classes, onChange, value, className, imageSupport, disabled, nonEmpty }) => {
-  const names = classNames(classes.labelContainer, className);
-  const choicePlugins = {
-    audio: { disabled: true },
-    video: { disabled: true }
-  };
 
-  return (
-    <InputContainer label={label} className={names}>
-      <div className={classes.editorHolder}>
-        <EditableHtml
-          markup={value || ''}
-          disabled={disabled}
-          nonEmpty={nonEmpty}
-          onChange={onChange}
-          imageSupport={imageSupport}
-          className={classes.editor}
-          pluginProps={choicePlugins}
-        />
-      </div>
-    </InputContainer>
-  );
-});
+}))(
+  ({
+    label,
+    classes,
+    onChange,
+    value,
+    className,
+    imageSupport,
+    disabled,
+    nonEmpty,
+    toolbarOpts
+  }) => {
+    const names = classNames(classes.labelContainer, className);
+
+    return (
+      <InputContainer label={label} className={names}>
+        <div className={classes.editorHolder}>
+          <EditableHtml
+            markup={value || ''}
+            disabled={disabled}
+            nonEmpty={nonEmpty}
+            onChange={onChange}
+            imageSupport={imageSupport}
+            className={classes.editor}
+            toolbarOpts={toolbarOpts}
+          />
+        </div>
+      </InputContainer>
+    );
+  }
+);
 
 const Feedback = withStyles(() => ({
   text: {
@@ -53,7 +62,7 @@ const Feedback = withStyles(() => ({
     position: 'absolute',
     top: 20
   }
-}))(({ value, onChange, type, correct, classes, defaults }) => {
+}))(({ value, onChange, type, correct, classes, defaults, toolbarOpts }) => {
   if (!type || type === 'none') {
     return null;
   } else if (type === 'default') {
@@ -76,6 +85,7 @@ const Feedback = withStyles(() => ({
           label="Feedback Text"
           value={value}
           onChange={onChange}
+          toolbarOpts={toolbarOpts}
         />
       </div>
     );
@@ -109,7 +119,8 @@ export class ChoiceConfiguration extends React.Component {
       delete: PropTypes.func.isRequired
     }),
     allowFeedBack: PropTypes.bool,
-    allowDelete: PropTypes.bool
+    allowDelete: PropTypes.bool,
+    toolbarOpts: PropTypes.object
   };
 
   static defaultProps = {
@@ -175,7 +186,8 @@ export class ChoiceConfiguration extends React.Component {
       disabled,
       nonEmpty,
       allowFeedBack,
-      allowDelete
+      allowDelete,
+      toolbarOpts
     } = this.props;
 
     const InputToggle = mode === 'checkbox' ? InputCheckbox : InputRadio;
@@ -202,6 +214,7 @@ export class ChoiceConfiguration extends React.Component {
               imageSupport={imageSupport}
               disabled={disabled}
               nonEmpty={nonEmpty}
+              toolbarOpts={toolbarOpts}
             />
 
             {allowFeedBack && (
@@ -210,6 +223,7 @@ export class ChoiceConfiguration extends React.Component {
                 correct={data.correct}
                 defaults={defaultFeedback}
                 onChange={this.onFeedbackValueChange}
+                toolbarOpts={toolbarOpts}
               />
             )}
           </div>
