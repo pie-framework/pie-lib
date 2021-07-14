@@ -57,7 +57,7 @@ const InlineDropdown = ({ attributes, selectedItem }) => {
 
 InlineDropdown.propTypes = {
   attributes: PropTypes.object,
-  selectedItem: PropTypes.object
+  selectedItem: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
 };
 
 export default InlineDropdown;

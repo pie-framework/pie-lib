@@ -54,7 +54,7 @@ export class Toolbar extends React.Component {
       alwaysVisible: PropTypes.bool,
       showDone: PropTypes.bool
     }),
-    onDataChange: PropTypes.fun
+    onDataChange: PropTypes.func
   };
 
   constructor(props) {
