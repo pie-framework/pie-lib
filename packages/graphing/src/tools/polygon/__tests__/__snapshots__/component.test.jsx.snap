@@ -208,6 +208,7 @@ exports[`RawBaseComponent snapshot renders with labels 1`] = `
       }
     }
     key="point-0"
+    labelNode={<foreignobject />}
     onClick={[Function]}
     onDrag={[Function]}
     x={0}
@@ -284,6 +285,7 @@ exports[`RawBaseComponent snapshot renders with labels 1`] = `
       }
     }
     key="point-1"
+    labelNode={<foreignobject />}
     onClick={[Function]}
     onDrag={[Function]}
     x={2}
@@ -360,6 +362,7 @@ exports[`RawBaseComponent snapshot renders with labels 1`] = `
       }
     }
     key="point-2"
+    labelNode={<foreignobject />}
     onClick={[Function]}
     onDrag={[Function]}
     x={0}
