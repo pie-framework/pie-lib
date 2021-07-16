@@ -50,6 +50,7 @@ export class GraphWithControls extends React.Component {
       axesSettings,
       classes,
       className,
+      coordinatesOnHover,
       disabled,
       domain,
       labels,
@@ -100,6 +101,7 @@ export class GraphWithControls extends React.Component {
         <Graph
           axesSettings={axesSettings}
           backgroundMarks={backgroundMarks}
+          coordinatesOnHover={coordinatesOnHover}
           currentTool={currentTool}
           domain={domain}
           labels={labels}

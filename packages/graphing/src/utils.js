@@ -114,7 +114,7 @@ export const getMiddleOfTwoPoints = (a, b) => ({
   y: (a.y + b.y) / 2
 });
 
-const roundNumber = number => parseFloat(number.toFixed(3));
+export const roundNumber = number => parseFloat(number.toFixed(3));
 
 export const sameAxes = (p1, p2) =>
   p1 && p2 && (roundNumber(p1.x) === roundNumber(p2.x) || roundNumber(p1.y) === roundNumber(p2.y));

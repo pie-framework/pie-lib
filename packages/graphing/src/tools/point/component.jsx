@@ -71,16 +71,19 @@ export class Point extends React.Component {
   };
 
   render() {
-    const { graphProps, labelNode, labelModeEnabled } = this.props;
+    const { coordinatesOnHover, graphProps, labelNode, labelModeEnabled } = this.props;
     const mark = this.state.mark ? this.state.mark : this.props.mark;
+
     return (
       <React.Fragment>
         <BasePoint
           {...mark}
+          coordinatesOnHover={coordinatesOnHover}
+          graphProps={graphProps}
+          labelNode={labelNode}
           onDrag={this.move}
           onDragStart={this.startDrag}
           onDragStop={this.stopDrag}
-          graphProps={graphProps}
           onClick={this.clickPoint}
         />
         {labelNode &&

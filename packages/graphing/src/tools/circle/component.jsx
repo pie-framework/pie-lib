@@ -28,6 +28,7 @@ export class RawBaseCircle extends React.Component {
     building: PropTypes.bool,
     classes: PropTypes.object.isRequired,
     className: PropTypes.string,
+    coordinatesOnHover: PropTypes.bool,
     correctness: PropTypes.string,
     from: types.PointType,
     disabled: PropTypes.bool,
@@ -151,6 +152,7 @@ export class RawBaseCircle extends React.Component {
       middle,
       disabled,
       classes,
+      coordinatesOnHover,
       building,
       onDragStart,
       onDragStop,
@@ -228,7 +230,9 @@ export class RawBaseCircle extends React.Component {
 
         <BasePoint
           disabled={building || disabled}
+          coordinatesOnHover={coordinatesOnHover}
           correctness={correctness}
+          labelNode={labelNode}
           x={to.x}
           y={to.y}
           onDrag={this.dragTo}
@@ -239,7 +243,9 @@ export class RawBaseCircle extends React.Component {
 
         <BasePoint
           disabled={building || disabled}
+          coordinatesOnHover={coordinatesOnHover}
           correctness={correctness}
+          labelNode={labelNode}
           x={from.x}
           y={from.y}
           className={classes.from}

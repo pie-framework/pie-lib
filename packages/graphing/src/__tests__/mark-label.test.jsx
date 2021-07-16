@@ -39,7 +39,7 @@ describe('position', () => {
   const assertPosition = (mark, rect, expected) => {
     it(`${mark.x},${mark.y} + ${rect.width},${rect.height} => ${expected}`, () => {
       // we set range.min to a value because in pixels - the greater the Y the lower down on the screen.
-      const graphProps = getGraphProps(0, 10, 10, 0);
+      const graphProps = getGraphProps(0, 12, 12, 0);
       const result = position(graphProps, mark, rect);
       expect(result).toEqual(expected);
     });

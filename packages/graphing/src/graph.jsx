@@ -20,6 +20,7 @@ export const graphPropTypes = {
   domain: types.DomainType,
   labels: PropTypes.shape(LabelType),
   labelModeEnabled: PropTypes.bool,
+  coordinatesOnHover: PropTypes.bool,
   marks: PropTypes.array,
   onChangeMarks: PropTypes.func,
   range: types.DomainType,
@@ -140,6 +141,7 @@ export class Graph extends React.Component {
     const {
       axesSettings,
       currentTool,
+      coordinatesOnHover,
       size,
       domain,
       backgroundMarks,
@@ -194,6 +196,7 @@ export class Graph extends React.Component {
               <Component
                 key={`${markType}-${index}`}
                 mark={m}
+                coordinatesOnHover={coordinatesOnHover}
                 onChange={this.changeMark}
                 onComplete={this.completeMark}
                 onClick={point => this.onBgClick(point, m)}

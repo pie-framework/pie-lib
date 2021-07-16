@@ -189,6 +189,7 @@ export class GridDemo extends React.PureComponent {
               size={settings.size}
               title={model.title}
               toolbarTools={stateTools}
+              coordinatesOnHover={settings.coordinatesOnHover}
             />
           </div>
         </div>

@@ -181,6 +181,7 @@ exports[`lineBase render renders with labels 1`] = `
         },
       }
     }
+    labelNode={<foreignobject />}
     onDrag={[Function]}
     x={0}
     y={0}
@@ -255,6 +256,7 @@ exports[`lineBase render renders with labels 1`] = `
         },
       }
     }
+    labelNode={<foreignobject />}
     onDrag={[Function]}
     x={1}
     y={1}

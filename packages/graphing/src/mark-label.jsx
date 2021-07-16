@@ -26,9 +26,10 @@ const styles = theme => ({
 export const position = (graphProps, mark, rect) => {
   rect = rect || { width: 0, height: 0 };
   const { scale, domain, range } = graphProps;
+  const shift = 10;
 
-  const rightEdge = scale.x(mark.x) + rect.width;
-  const bottomEdge = scale.y(mark.y) + rect.height;
+  const rightEdge = scale.x(mark.x) + rect.width + shift;
+  const bottomEdge = scale.y(mark.y) + rect.height + shift;
 
   const h = rightEdge >= scale.x(domain.max) ? 'left' : 'right';
   const v = bottomEdge >= scale.y(range.min) ? 'top' : 'bottom';
@@ -39,6 +40,7 @@ export const coordinates = (graphProps, mark, rect, position) => {
   const { scale } = graphProps;
   const shift = 10;
   rect = rect || { width: 0, height: 0 };
+
   switch (position) {
     case 'bottom-right': {
       return { left: scale.x(mark.x) + shift, top: scale.y(mark.y) + shift };

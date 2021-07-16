@@ -95,12 +95,13 @@ export const lineToolComponent = Component => {
     };
 
     render() {
-      const { graphProps, onClick, labelNode, labelModeEnabled } = this.props;
+      const { graphProps, onClick, labelNode, labelModeEnabled, coordinatesOnHover } = this.props;
       const mark = this.state.mark ? this.state.mark : this.props.mark;
 
       return (
         <Component
           disabled={mark.disabled}
+          coordinatesOnHover={coordinatesOnHover}
           correctness={mark.correctness}
           from={mark.from}
           to={mark.to}
@@ -145,6 +146,7 @@ export const lineBase = (Comp, opts) => {
 
   class LineBase extends React.Component {
     static propTypes = {
+      coordinatesOnHover: PropTypes.bool,
       graphProps: types.GraphPropsType,
       from: types.PointType,
       to: types.PointType,
@@ -248,6 +250,7 @@ export const lineBase = (Comp, opts) => {
 
     render() {
       const {
+        coordinatesOnHover,
         graphProps,
         onDragStart,
         onDragStop,
@@ -325,6 +328,8 @@ export const lineBase = (Comp, opts) => {
           <FromPoint
             x={from.x}
             y={from.y}
+            labelNode={labelNode}
+            coordinatesOnHover={coordinatesOnHover}
             onDrag={this.dragFrom}
             {...common}
             onClick={labelModeEnabled ? () => this.clickPoint(from, 'from') : common.onClick}
@@ -336,6 +341,8 @@ export const lineBase = (Comp, opts) => {
               x={to.x}
               y={to.y}
               angle={angle} //angle + 45}
+              labelNode={labelNode}
+              coordinatesOnHover={coordinatesOnHover}
               onDrag={this.dragTo}
               {...common}
               onClick={labelModeEnabled ? () => this.clickPoint(to, 'to') : common.onClick}
