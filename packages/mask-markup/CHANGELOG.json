@@ -823,5 +823,20 @@
     "committerDate": "2021-04-06 16:45:04 +0300",
     "isTagged": true,
     "tag": "@pie-lib/mask-markup@1.10.15"
+  },
+  {
+    "type": "fix",
+    "scope": "mask-markup",
+    "subject": "Updated serialization PD-859",
+    "merge": null,
+    "header": "fix(mask-markup): Updated serialization PD-859",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "4948f99d8c3f9f7b0b965689cd2ad86efb2af32f",
+    "gitTags": "",
+    "committerDate": "2021-07-02 16:41:08 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/mask-markup@1.10.18"
   }
 ]

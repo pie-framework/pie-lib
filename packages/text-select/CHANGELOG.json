@@ -583,5 +583,20 @@
     "committerDate": "2021-05-18 12:04:39 +0300",
     "isTagged": true,
     "tag": "@pie-lib/text-select@1.8.0"
+  },
+  {
+    "type": "fix",
+    "scope": "text-select",
+    "subject": "Fixed white space collapse PD-477",
+    "merge": null,
+    "header": "fix(text-select): Fixed white space collapse PD-477",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "1f9481fac827045491b8d4f827da944cfcd0a7b3",
+    "gitTags": " (origin/fix/PD-477)",
+    "committerDate": "2021-07-22 12:12:59 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/text-select@1.8.3"
   }
 ]

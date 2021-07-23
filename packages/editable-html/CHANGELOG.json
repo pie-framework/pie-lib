@@ -3053,5 +3053,50 @@
     "committerDate": "2021-04-20 18:08:11 +0300",
     "isTagged": true,
     "tag": "@pie-lib/editable-html@7.16.17"
+  },
+  {
+    "type": "fix",
+    "scope": "editable-html",
+    "subject": "add refs for editors, fix propTypes warnings for PD-1230",
+    "merge": null,
+    "header": "fix(editable-html): add refs for editors, fix propTypes warnings for PD-1230",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "c6e3a2abc105d2c08ecc12b1b4c7c089f857d966",
+    "gitTags": " (origin/fix/PD-1230)",
+    "committerDate": "2021-07-14 13:54:44 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.17.0"
+  },
+  {
+    "type": "feat",
+    "scope": "editable-html",
+    "subject": "add prop that allows editable-html fields to be validated PD-601",
+    "merge": null,
+    "header": "feat(editable-html): add prop that allows editable-html fields to be validated PD-601",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "2fe2b9bd362d4be7b3b0bd5f4c6012f99218a394",
+    "gitTags": " (origin/feat/PD-601/add-validation-editable-html)",
+    "committerDate": "2021-07-07 11:43:21 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.17.0"
+  },
+  {
+    "type": "fix",
+    "scope": "editable-html",
+    "subject": "Updated serialization PD-859",
+    "merge": null,
+    "header": "fix(editable-html): Updated serialization PD-859",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "5f30897d1a3413339b618e74d3f04db6e9fff470",
+    "gitTags": " (origin/fix/PD-859)",
+    "committerDate": "2021-07-02 16:44:38 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.17.0"
   }
 ]

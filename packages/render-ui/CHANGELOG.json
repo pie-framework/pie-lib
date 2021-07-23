@@ -888,5 +888,20 @@
     "committerDate": "2021-02-19 15:13:41 +0200",
     "isTagged": true,
     "tag": "@pie-lib/render-ui@4.11.4"
+  },
+  {
+    "type": "fix",
+    "scope": "editable-html",
+    "subject": "add refs for editors, fix propTypes warnings for PD-1230",
+    "merge": null,
+    "header": "fix(editable-html): add refs for editors, fix propTypes warnings for PD-1230",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "c6e3a2abc105d2c08ecc12b1b4c7c089f857d966",
+    "gitTags": " (origin/fix/PD-1230)",
+    "committerDate": "2021-07-14 13:54:44 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/render-ui@4.11.8"
   }
 ]

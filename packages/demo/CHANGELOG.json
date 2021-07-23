@@ -1353,5 +1353,20 @@
     "committerDate": "2021-04-09 17:15:38 +0300",
     "isTagged": true,
     "tag": "@pie-lib/demo@6.5.0"
+  },
+  {
+    "type": "feat",
+    "scope": "graphing",
+    "subject": "Display point coordinates on hover PD-188",
+    "merge": null,
+    "header": "feat(graphing): Display point coordinates on hover PD-188",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "ed38feff2c3e4936a5811e551c2ccc40ad4585f7",
+    "gitTags": "",
+    "committerDate": "2021-07-16 13:27:27 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/demo@6.6.0"
   }
 ]

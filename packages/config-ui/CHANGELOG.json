@@ -1658,5 +1658,20 @@
     "committerDate": "2021-06-03 13:47:40 +0300",
     "isTagged": true,
     "tag": "@pie-lib/config-ui@10.9.0"
+  },
+  {
+    "type": "feat",
+    "scope": "config-ui",
+    "subject": "add checkboxes option for settings panel PD-483",
+    "merge": null,
+    "header": "feat(config-ui): add checkboxes option for settings panel PD-483",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "04200ad78ec09d7f0de8fa8632ad4b7a90c43ccd",
+    "gitTags": "",
+    "committerDate": "2021-06-08 12:59:21 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/config-ui@10.10.0"
   }
 ]

@@ -983,5 +983,35 @@
     "committerDate": "2021-05-07 15:49:55 +0300",
     "isTagged": true,
     "tag": "@pie-lib/graphing@2.3.0"
+  },
+  {
+    "type": "feat",
+    "scope": "graphing",
+    "subject": "Display point coordinates on hover PD-188",
+    "merge": null,
+    "header": "feat(graphing): Display point coordinates on hover PD-188",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "ed38feff2c3e4936a5811e551c2ccc40ad4585f7",
+    "gitTags": "",
+    "committerDate": "2021-07-16 13:27:27 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/graphing@2.4.0"
+  },
+  {
+    "type": "feat",
+    "scope": "graphing",
+    "subject": "control over whether arrows are displayed PD-483",
+    "merge": null,
+    "header": "feat(graphing): control over whether arrows are displayed PD-483",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "dc9c8f8c5a3a6ed837bf7677e22ba7c137b2f391",
+    "gitTags": " (origin/feat/PD-483/graphing-control-arrows)",
+    "committerDate": "2021-06-08 13:00:24 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/graphing@2.4.0"
   }
 ]
