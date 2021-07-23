@@ -44,7 +44,8 @@ const MARK_TAGS = {
   em: 'italic',
   u: 'underline',
   s: 'strikethrough',
-  code: 'code'
+  code: 'code',
+  strong: 'bold'
 };
 
 export const parseStyleString = s => {

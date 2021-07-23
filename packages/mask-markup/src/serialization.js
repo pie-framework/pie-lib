@@ -99,7 +99,8 @@ export const MARK_TAGS = {
   em: 'italic',
   u: 'underline',
   s: 'strikethrough',
-  code: 'code'
+  code: 'code',
+  strong: 'strong'
 };
 
 const marks = {
