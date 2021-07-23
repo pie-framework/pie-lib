@@ -35,6 +35,7 @@ export class Editor extends React.Component {
   static propTypes = {
     autoFocus: PropTypes.bool,
     editorRef: PropTypes.func.isRequired,
+    onRef: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired,
     onFocus: PropTypes.func,
     onBlur: PropTypes.func,
@@ -184,6 +185,9 @@ export class Editor extends React.Component {
   }
 
   componentDidMount() {
+    // onRef is needed to get the ref of the component because we export it using withStyles
+    this.props.onRef(this);
+
     window.addEventListener('resize', this.onResize);
 
     if (this.editor && this.props.autoFocus) {
@@ -495,6 +499,11 @@ export class Editor extends React.Component {
       >
         <SlateEditor
           plugins={this.plugins}
+          innerRef={r => {
+            if (r) {
+              this.slateEditor = r;
+            }
+          }}
           ref={r => (this.editor = r && this.props.editorRef(r))}
           value={value}
           focus={this.focus}

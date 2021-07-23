@@ -113,6 +113,16 @@ export default class EditableHtml extends React.Component {
       focus: this.focus
     };
 
-    return <Editor editorRef={ref => ref && (this.editorRef = ref)} {...props} />;
+    return (
+      <Editor
+        onRef={ref => {
+          if (ref) {
+            this.rootRef = ref;
+          }
+        }}
+        editorRef={ref => ref && (this.editorRef = ref)}
+        {...props}
+      />
+    );
   }
 }

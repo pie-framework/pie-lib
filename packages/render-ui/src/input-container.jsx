@@ -20,7 +20,7 @@ const RawInputContainer = props => {
 };
 
 RawInputContainer.propTypes = {
-  label: PropTypes.string.isRequired,
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
   className: PropTypes.string,
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
   classes: PropTypes.object.isRequired
