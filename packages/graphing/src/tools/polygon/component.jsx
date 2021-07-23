@@ -65,6 +65,7 @@ export class RawBaseComponent extends React.Component {
     correctness: PropTypes.string,
     points: PropTypes.arrayOf(types.PointType),
     closed: PropTypes.bool,
+    coordinatesOnHover: PropTypes.bool,
     onChange: PropTypes.func.isRequired,
     onClosePolygon: PropTypes.func.isRequired,
     onDragStart: PropTypes.func,
@@ -195,13 +196,14 @@ export class RawBaseComponent extends React.Component {
   render() {
     const {
       closed,
+      coordinatesOnHover,
+      correctness,
       disabled,
       graphProps,
       onDragStart,
       onDragStop,
       points,
       middle,
-      correctness,
       labelNode,
       labelModeEnabled
     } = this.props;
@@ -254,9 +256,11 @@ export class RawBaseComponent extends React.Component {
           return [
             <BasePoint
               key={`point-${index}`}
-              onDrag={this.dragPoint.bind(this, index, p)}
+              coordinatesOnHover={coordinatesOnHover}
+              labelNode={labelNode}
               x={p.x}
               y={p.y}
+              onDrag={this.dragPoint.bind(this, index, p)}
               onClick={this.clickPoint.bind(this, p, index)}
               {...common}
             />,
@@ -340,22 +344,33 @@ export default class Component extends React.Component {
   };
 
   shouldComponentUpdate = (nextProps, nextState) => {
-    const { graphProps, mark } = this.props;
+    const { coordinatesOnHover, graphProps, mark } = this.props;
     const { graphProps: nextGraphProps } = nextProps;
+
     return (
       !utils.isDomainRangeEqual(graphProps, nextGraphProps) ||
       !isEqual(mark, nextProps.mark) ||
-      !isEqual(this.state.mark, nextState.mark)
+      !isEqual(this.state.mark, nextState.mark) ||
+      coordinatesOnHover !== nextProps.coordinatesOnHover
     );
   };
 
   render() {
-    const { mark, graphProps, onClick, isToolActive, labelNode, labelModeEnabled } = this.props;
+    const {
+      coordinatesOnHover,
+      mark,
+      graphProps,
+      onClick,
+      isToolActive,
+      labelNode,
+      labelModeEnabled
+    } = this.props;
     const { mark: stateMark } = this.state;
 
     return (
       <BaseComponent
         {...(stateMark || mark)}
+        coordinatesOnHover={coordinatesOnHover}
         onChange={this.change}
         onChangeLabelProps={this.changeLabelProps}
         onChangeProps={this.changeProps}
