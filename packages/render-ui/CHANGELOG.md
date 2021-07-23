@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.11.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.11.7...@pie-lib/render-ui@4.11.8) (2021-07-23)
+
+
+### Bug Fixes
+
+* **editable-html:** add refs for editors, fix propTypes warnings for PD-1230 ([c6e3a2a](https://github.com/pie-framework/pie-lib/commit/c6e3a2a))
+
+
+
+
+
 ## [4.11.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.11.5...@pie-lib/render-ui@4.11.7) (2021-06-25)
 
 **Note:** Version bump only for package @pie-lib/render-ui

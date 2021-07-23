@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.10.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.9.2...@pie-lib/config-ui@10.10.0) (2021-07-23)
+
+
+### Features
+
+* **config-ui:** add checkboxes option for settings panel PD-483 ([04200ad](https://github.com/pie-framework/pie-lib/commit/04200ad))
+
+
+
+
+
 ## [10.9.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.9.0...@pie-lib/config-ui@10.9.2) (2021-06-25)
 
 **Note:** Version bump only for package @pie-lib/config-ui

@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.17.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.16.19...@pie-lib/editable-html@7.17.0) (2021-07-23)
+
+
+### Bug Fixes
+
+* **editable-html:** add refs for editors, fix propTypes warnings for PD-1230 ([c6e3a2a](https://github.com/pie-framework/pie-lib/commit/c6e3a2a))
+* **editable-html:** Updated serialization PD-859 ([5f30897](https://github.com/pie-framework/pie-lib/commit/5f30897))
+
+
+### Features
+
+* **editable-html:** add prop that allows editable-html fields to be validated PD-601 ([2fe2b9b](https://github.com/pie-framework/pie-lib/commit/2fe2b9b))
+
+
+
+
+
 ## [7.16.19](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.16.17...@pie-lib/editable-html@7.16.19) (2021-06-25)
 
 **Note:** Version bump only for package @pie-lib/editable-html

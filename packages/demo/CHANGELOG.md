@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.6.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.5.2...@pie-lib/demo@6.6.0) (2021-07-23)
+
+
+### Features
+
+* **graphing:** Display point coordinates on hover PD-188 ([ed38fef](https://github.com/pie-framework/pie-lib/commit/ed38fef))
+
+
+
+
+
 ## [6.5.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.5.0...@pie-lib/demo@6.5.2) (2021-06-25)
 
 **Note:** Version bump only for package @pie-lib/demo

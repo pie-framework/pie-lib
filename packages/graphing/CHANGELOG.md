@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.3.2...@pie-lib/graphing@2.4.0) (2021-07-23)
+
+
+### Features
+
+* **graphing:** control over whether arrows are displayed PD-483 ([dc9c8f8](https://github.com/pie-framework/pie-lib/commit/dc9c8f8))
+* **graphing:** Display point coordinates on hover PD-188 ([ed38fef](https://github.com/pie-framework/pie-lib/commit/ed38fef))
+
+
+
+
+
 ## [2.3.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.3.0...@pie-lib/graphing@2.3.2) (2021-06-25)
 
 **Note:** Version bump only for package @pie-lib/graphing
