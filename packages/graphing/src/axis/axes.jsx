@@ -1,20 +1,24 @@
 import React from 'react';
 import { Axis } from '@vx/axis';
-import { types, utils } from '@pie-lib/plot';
+import { types } from '@pie-lib/plot';
 import PropTypes from 'prop-types';
 import Arrow from './arrow';
 import { withStyles } from '@material-ui/core';
-import isEqual from 'lodash/isEqual';
 import { countWords, findLongestWord, amountToIncreaseWidth, getTickValues } from '../utils';
 import { color, Readable } from '@pie-lib/render-ui';
 
 export const AxisPropTypes = {
-  includeArrows: PropTypes.bool,
+  includeArrows: PropTypes.object,
   graphProps: PropTypes.object
 };
 
 const AxisDefaultProps = {
-  includeArrows: true
+  includeArrows: {
+    left: true,
+    right: true,
+    up: true,
+    down: true
+  }
 };
 
 const axisStyles = theme => ({
@@ -85,14 +89,6 @@ export class RawXAxis extends React.Component {
   };
   static defaultProps = AxisDefaultProps;
 
-  shouldComponentUpdate(nextProps) {
-    const { data } = this.props;
-    return (
-      !utils.isDomainRangeEqual(this.props.graphProps, nextProps.graphProps) ||
-      !isEqual(data, nextProps.data)
-    );
-  }
-
   render() {
     const {
       includeArrows,
@@ -146,10 +142,10 @@ export class RawXAxis extends React.Component {
           tickLabelProps={labelProps}
           tickValues={tickValues}
         />
-        {includeArrows && (
+        {includeArrows && includeArrows.left && (
           <Arrow direction="left" x={domain.min} y={0} className={classes.arrow} scale={scale} />
         )}
-        {includeArrows && (
+        {includeArrows && includeArrows.right && (
           <Arrow direction="right" x={domain.max} y={0} className={classes.arrow} scale={scale} />
         )}
         {domain.axisLabel && (
@@ -178,14 +174,6 @@ export class RawYAxis extends React.Component {
     graphProps: types.GraphPropsType.isRequired
   };
   static defaultProps = AxisDefaultProps;
-
-  shouldComponentUpdate(nextProps) {
-    const { data } = this.props;
-    return (
-      !utils.isDomainRangeEqual(this.props.graphProps, nextProps.graphProps) ||
-      !isEqual(data, nextProps.data)
-    );
-  }
 
   render() {
     const { classes, includeArrows, graphProps, skipValues, rowTickValues } = this.props;
@@ -229,10 +217,10 @@ export class RawYAxis extends React.Component {
           tickValues={rowTickValues}
         />
 
-        {includeArrows && (
+        {includeArrows && includeArrows.down && (
           <Arrow direction="down" x={0} y={range.min} className={classes.arrow} scale={scale} />
         )}
-        {includeArrows && (
+        {includeArrows && includeArrows.up && (
           <Arrow direction="up" x={0} y={range.max} className={classes.arrow} scale={scale} />
         )}
         {range.axisLabel && (

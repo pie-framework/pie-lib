@@ -12,7 +12,13 @@ describe('RawXAxis', () => {
       classes: {},
       className: 'className',
       onChange,
-      graphProps: graphProps()
+      graphProps: graphProps(),
+      includeArrows: {
+        left: true,
+        right: true,
+        up: true,
+        down: true
+      }
     };
     const props = { ...defaults, ...extras };
     return shallow(<RawXAxis {...props} />);
@@ -33,7 +39,13 @@ describe('RawYAxis', () => {
       classes: {},
       className: 'className',
       onChange,
-      graphProps: graphProps()
+      graphProps: graphProps(),
+      includeArrows: {
+        left: true,
+        right: true,
+        up: true,
+        down: true
+      }
     };
     const props = { ...defaults, ...extras };
     return shallow(<RawYAxis {...props} />);
