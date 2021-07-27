@@ -3098,5 +3098,20 @@
     "committerDate": "2021-07-02 16:44:38 +0300",
     "isTagged": true,
     "tag": "@pie-lib/editable-html@7.17.0"
+  },
+  {
+    "type": "fix",
+    "scope": "table",
+    "subject": "made sure inserting a table at last position works [PD-1240]",
+    "merge": null,
+    "header": "fix(table): made sure inserting a table at last position works [PD-1240]",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "e81ba95d228b5348f513f8d47587148c8666dc3e",
+    "gitTags": " (origin/feat/PD-1240-insert-table-last-works)",
+    "committerDate": "2021-07-27 13:57:09 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.17.1"
   }
 ]
