@@ -253,8 +253,12 @@ export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
           // we get the text previous to the new block added
           const prevText = change.value.document.getPreviousText(newBlock.key);
 
-          // we move focus to the previous text
-          change.moveFocusTo(prevText.key, 0).moveAnchorTo(prevText.key, 0);
+          if (prevText) {
+            // we move focus to the previous text
+            change
+              .moveFocusTo(prevText.key, prevText.text.length)
+              .moveAnchorTo(prevText.key, prevText.text.length);
+          }
 
           // we insert the table block between the first block with text and the last block with text
           change.insertBlock(tableJSON);

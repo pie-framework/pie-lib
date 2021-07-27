@@ -127,6 +127,7 @@ describe('table', () => {
         const findDescendant = jest.fn(callback => {
           nodes.forEach(n => callback(n));
         });
+        const prevTextReturned = { key: '1', text: 'foobar' };
         const change = {
           withoutNormalization: jest.fn(callback => {
             callback();
@@ -135,7 +136,7 @@ describe('table', () => {
           removeNodeByKey: jest.fn(),
           value: {
             document: {
-              getPreviousText: jest.fn().mockReturnValue({ key: '1' })
+              getPreviousText: jest.fn().mockReturnValue(prevTextReturned)
             }
           }
         };
@@ -157,8 +158,8 @@ describe('table', () => {
 
         expect(change.withoutNormalization).toHaveBeenCalledWith(expect.any(Function));
 
-        expect(change.moveFocusTo).toHaveBeenCalledWith('1', 0);
-        expect(change.moveAnchorTo).toHaveBeenCalledWith('1', 0);
+        expect(change.moveFocusTo).toHaveBeenCalledWith('1', prevTextReturned.text.length);
+        expect(change.moveAnchorTo).toHaveBeenCalledWith('1', prevTextReturned.text.length);
 
         expect(change.insertBlock).toHaveBeenCalledWith(
           expect.objectContaining({ object: 'block', type: 'table' })
