@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.17.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.0...@pie-lib/editable-html@7.17.1) (2021-07-27)
+
+
+### Bug Fixes
+
+* **table:** made sure inserting a table at last position works [PD-1240] ([e81ba95](https://github.com/pie-framework/pie-lib/commit/e81ba95))
+
+
+
+
+
 # [7.17.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.16.19...@pie-lib/editable-html@7.17.0) (2021-07-23)
 
 
