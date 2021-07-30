@@ -53,6 +53,23 @@ function MarkHotkey(options) {
   };
 }
 
+function ParagraphPlugin() {
+  // Return our "plugin" object, containing the `renderNode` handler.
+  return {
+    renderNode(props) {
+      if (props.node.type === 'paragraph') {
+        const jsonData = props.node.data.toJSON();
+
+        return (
+          <p {...jsonData.attributes} style={{ wordBreak: 'break-word' }}>
+            {props.children}
+          </p>
+        );
+      }
+    }
+  };
+}
+
 export const ALL_PLUGINS = [
   'bold',
   // 'code',
@@ -107,6 +124,7 @@ export const buildPlugins = (activePlugins, opts) => {
     addIf('numbered-list', List({ key: 'n', type: 'ol_list', icon: <NumberedListIcon /> })),
     ToolbarPlugin(opts.toolbar),
     SoftBreakPlugin(),
+    ParagraphPlugin(),
     addIf('responseArea', respAreaPlugin)
   ]);
 };
