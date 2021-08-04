@@ -111,6 +111,7 @@ const style = {
     borderRadius: '4px',
     cursor: 'text',
     '& [data-slate-editor="true"]': {
+      wordBreak: 'break-word',
       overflow: 'visible',
       maxHeight: '500px',
       padding: '5px 0'

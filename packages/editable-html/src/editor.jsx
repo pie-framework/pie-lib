@@ -540,6 +540,8 @@ const styles = {
     fontFamily: 'Roboto, sans-serif',
 
     '& table': {
+      tableLayout: 'fixed',
+      width: '100%',
       borderCollapse: 'collapse',
       color: color.text(),
       backgroundColor: color.background()
