@@ -3113,5 +3113,35 @@
     "committerDate": "2021-07-27 13:57:09 +0300",
     "isTagged": true,
     "tag": "@pie-lib/editable-html@7.17.1"
+  },
+  {
+    "type": "fix",
+    "scope": "paragraph",
+    "subject": "made sure that long words are broken into separate lines regardless if they are in a paragraph or not [PD-194]",
+    "merge": null,
+    "header": "fix(paragraph): made sure that long words are broken into separate lines regardless if they are in a paragraph or not [PD-194]",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "df0f97d5c83dc55fc5c745a41c827e6023de92b5",
+    "gitTags": " (origin/feat/PD-194-expand-behaviour)",
+    "committerDate": "2021-07-30 12:06:15 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.17.2"
+  },
+  {
+    "type": "fix",
+    "scope": "paragraph",
+    "subject": "made sure the text is broken into separate lines and not expanding [PD-194]",
+    "merge": null,
+    "header": "fix(paragraph): made sure the text is broken into separate lines and not expanding [PD-194]",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "35c68078f2412fa3fc03b14b40542f9c9a2e4865",
+    "gitTags": "",
+    "committerDate": "2021-07-30 11:06:51 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.17.2"
   }
 ]
