@@ -12,16 +12,22 @@ export class PreviewPrompt extends Component {
     classes: PropTypes.object,
     prompt: PropTypes.string,
     tagName: PropTypes.string,
-    className: PropTypes.string
+    className: PropTypes.string,
+    onClick: PropTypes.func
+  };
+
+  static defaultProps = {
+    onClick: () => {}
   };
 
   render() {
-    const { prompt, classes, tagName, className } = this.props;
+    const { prompt, classes, tagName, className, onClick } = this.props;
     const CustomTag = tagName || 'div';
     const customClasses = `${classes.promptTable} ${classes[className] || ''} `;
 
     return (
       <CustomTag
+        onClick={onClick}
         className={customClasses}
         dangerouslySetInnerHTML={{
           __html: (prompt || '').replace(NEWLINE_BLOCK_REGEX, NEWLINE_LATEX)
