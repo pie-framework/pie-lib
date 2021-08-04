@@ -11,6 +11,7 @@ exports[`Prompt with Custom tag  renders with custom tag "span" correctly render
       "rationale": "PreviewPrompt-rationale-2",
     }
   }
+  onClick={[Function]}
   prompt="Which of these northern European countries are EU members? <math><mstack><msrow><mn>111</mn></msrow><msline/></mstack></math>"
   tagName="span"
 />
@@ -27,6 +28,7 @@ exports[`Prompt without Custom tag  default class with markup renders 1`] = `
       "rationale": "PreviewPrompt-rationale-2",
     }
   }
+  onClick={[Function]}
   prompt="Which of these northern European countries are EU members? <math><mstack><msrow><mn>111</mn></msrow><msline/></mstack></math>"
   tagName=""
 />
