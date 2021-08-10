@@ -47,6 +47,15 @@ const mp = theme => ({
     },
     '& *': {
       fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important'
+    },
+    '& .mq-overarrow-inner': {
+      border: 'none !important'
+    },
+    '& .mq-overarrow-inner-right': {
+      display: 'none !important'
+    },
+    '& .mq-overarrow-inner-left': {
+      display: 'none !important'
     }
   },
   selected: {
