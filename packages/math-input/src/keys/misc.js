@@ -10,7 +10,7 @@ export const plusMinus = set({
 
 export const absValue = set({
   name: 'Absolute Value',
-  latex: '||',
+  latex: '\\abs{}',
   symbol: '| |',
   command: '|'
 });
