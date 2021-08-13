@@ -38,6 +38,7 @@ const LatexButton = withStyles(theme => ({
     },
     '& .mq-overarrow': {
       width: '30px',
+      marginTop: '0 !important',
       borderTop: '2px solid black',
       '&.mq-arrow-both': {
         '&:before': {
@@ -59,6 +60,9 @@ const LatexButton = withStyles(theme => ({
           fontSize: '80%',
           right: 'calc(-13%)',
           top: '-0.25em'
+        },
+        '&.mq-empty': {
+          minHeight: '1.4em'
         }
       },
       '&.mq-arrow-right:before': {

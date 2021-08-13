@@ -217,6 +217,26 @@ const styles = theme => ({
     alignItems: 'center',
     '& *': {
       fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important'
+    },
+    '& .mq-overarrow.mq-arrow-both': {
+      minWidth: '1.23em',
+      '&:before': {
+        top: '-0.4em',
+        left: '-1px'
+      },
+      '&:after': {
+        top: '-2.36em',
+        right: '-1px'
+      },
+      '&.mq-empty:after': {
+        top: '-0.45em'
+      }
+    },
+    '& .mq-overarrow.mq-arrow-right': {
+      '&:before': {
+        top: '-0.4em',
+        right: '-1px'
+      }
     }
   },
   selectContainer: {
@@ -266,7 +286,8 @@ const styles = theme => ({
       borderRadius: '0px'
     },
     '& .mq-overarrow-inner': {
-      border: 'none !important'
+      border: 'none !important',
+      paddingTop: '0 !important'
     },
     '& .mq-overarrow-inner-right': {
       display: 'none !important'
