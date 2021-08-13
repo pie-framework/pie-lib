@@ -47,6 +47,9 @@ const mp = theme => ({
     },
     '& *': {
       fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important'
+    },
+    '& .mq-overarrow.mq-arrow-both': {
+      minWidth: '1.23em'
     }
   },
   selected: {
