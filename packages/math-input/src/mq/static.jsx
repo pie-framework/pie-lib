@@ -16,6 +16,16 @@ function stripSpaces(string = '') {
   return string.replace(WHITESPACE_REGEX, '');
 }
 
+// increase the font of parallel notation
+export const updateSpans = () => {
+  const spans = Array.from(document.querySelectorAll('span[mathquill-command-id]'));
+  (spans || []).forEach(span => {
+    if (span && span.innerText === '∥' && span.className !== 'mq-editable-field') {
+      span.style.fontSize = '32px';
+    }
+  });
+};
+
 /**
  * Wrapper for MathQuill MQ.MathField.
  */
@@ -33,10 +43,12 @@ export default class Static extends React.Component {
 
   componentDidMount() {
     this.update();
+    updateSpans();
   }
 
   componentDidUpdate() {
     this.update();
+    updateSpans();
   }
 
   onInputEdit(field) {
@@ -126,6 +138,7 @@ export default class Static extends React.Component {
 
     return (
       <span
+        style={this.input && this.input.innerText === '∥' ? { background: 'pink' } : {}}
         className={className}
         onFocus={this.onFocus}
         onBlur={onBlur}

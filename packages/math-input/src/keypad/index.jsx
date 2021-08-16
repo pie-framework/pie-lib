@@ -91,15 +91,28 @@ const LatexButton = withStyles(theme => ({
       fontSize: '80% !important',
       top: '-3px'
     }
+  },
+  parallelButton: {
+    fontStyle: 'italic'
   }
-}))(props => (
-  <Button className={classNames(props.classes.root, props.className)} onClick={props.onClick}>
-    <mq.Static
-      className={classNames(props.classes.latexButton, props.mqClassName)}
-      latex={props.latex}
-    />
-  </Button>
-));
+}))(props => {
+  let buttonClass;
+
+  if (props.latex === '\\parallel') {
+    buttonClass = classNames(
+      props.classes.latexButton,
+      props.mqClassName,
+      props.classes.parallelButton
+    );
+  } else {
+    buttonClass = classNames(props.classes.latexButton, props.mqClassName);
+  }
+  return (
+    <Button className={classNames(props.classes.root, props.className)} onClick={props.onClick}>
+      <mq.Static className={buttonClass} latex={props.latex} />
+    </Button>
+  );
+});
 
 export class KeyPad extends React.Component {
   static propTypes = {

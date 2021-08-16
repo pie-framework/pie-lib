@@ -9,6 +9,7 @@ const log = debug('@pie-lib:math-toolbar:editor-and-pad');
 import { color, InputContainer } from '@pie-lib/render-ui';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
+import { updateSpans } from '@pie-lib/math-input/src/mq/static';
 
 const decimalRegex = /\.|,/g;
 
@@ -94,6 +95,8 @@ export class EditorAndPad extends React.Component {
 
   onEditorChange = latex => {
     const { onChange, noDecimal } = this.props;
+
+    updateSpans();
 
     // if no decimals are allowed and the last change is a decimal dot, discard the change
     if (noDecimal && (latex.indexOf('.') !== -1 || latex.indexOf(',') !== -1) && this.input) {
