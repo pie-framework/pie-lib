@@ -88,7 +88,8 @@ const bootstrap = opts => {
   const macros = {
     parallelogram: '\\lower.2em{\\Huge\\unicode{x25B1}}',
     overarc: '\\overparen',
-    napprox: '\\not\\approx'
+    napprox: '\\not\\approx',
+    longdiv: '\\enclose{longdiv}'
   };
 
   const texConfig = opts.useSingleDollar
