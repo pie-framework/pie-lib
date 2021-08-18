@@ -9,7 +9,7 @@ const log = debug('@pie-lib:math-toolbar:editor-and-pad');
 import { color, InputContainer } from '@pie-lib/render-ui';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import { updateSpans } from '@pie-lib/math-input/src/mq/static';
+import { updateSpans } from '@pie-lib/math-input';
 
 const decimalRegex = /\.|,/g;
 
