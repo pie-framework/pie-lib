@@ -21,11 +21,13 @@ export default class EditableHtml extends React.Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     onDone: PropTypes.func,
-    markup: PropTypes.string.isRequired
+    markup: PropTypes.string.isRequired,
+    allowValidation: PropTypes.bool
   };
 
   static defaultProps = {
-    onDone: () => {}
+    onDone: () => {},
+    allowValidation: false
   };
 
   constructor(props) {
@@ -38,7 +40,7 @@ export default class EditableHtml extends React.Component {
 
   // eslint-disable-next-line react/no-deprecated
   componentWillReceiveProps(props) {
-    if (props.markup === this.props.markup) {
+    if (!props.allowValidation && props.markup === this.props.markup) {
       return;
     }
 
@@ -111,6 +113,16 @@ export default class EditableHtml extends React.Component {
       focus: this.focus
     };
 
-    return <Editor editorRef={ref => ref && (this.editorRef = ref)} {...props} />;
+    return (
+      <Editor
+        onRef={ref => {
+          if (ref) {
+            this.rootRef = ref;
+          }
+        }}
+        editorRef={ref => ref && (this.editorRef = ref)}
+        {...props}
+      />
+    );
   }
 }

@@ -3,24 +3,44 @@
 exports[`Blank render renders correctly with default props 1`] = `
 <WithStyles(Chip)
   className="undefined"
+  classes={
+    Object {
+      "label": false,
+    }
+  }
   component="span"
   label={
-    <span>
-       
-    </span>
+    <React.Fragment>
+      <span
+        className=""
+      >
+         
+      </span>
+    </React.Fragment>
   }
+  style={Object {}}
 />
 `;
 
 exports[`Blank render renders correctly with disabled prop as true 1`] = `
 <WithStyles(Chip)
   className="undefined"
+  classes={
+    Object {
+      "label": false,
+    }
+  }
   component="span"
   label={
-    <span>
-       
-    </span>
+    <React.Fragment>
+      <span
+        className=""
+      >
+         
+      </span>
+    </React.Fragment>
   }
+  style={Object {}}
   variant="outlined"
 />
 `;
@@ -28,23 +48,48 @@ exports[`Blank render renders correctly with disabled prop as true 1`] = `
 exports[`Blank render renders correctly with draggedItem 1`] = `
 <WithStyles(Chip)
   className="undefined"
+  classes={
+    Object {
+      "label": false,
+    }
+  }
   component="span"
   label={
-    <span>
-       
-    </span>
+    <React.Fragment>
+      <span
+        className=""
+      >
+         
+      </span>
+    </React.Fragment>
   }
+  style={Object {}}
 />
 `;
 
 exports[`Blank render renders correctly with draggedItem and isOver 1`] = `
 <WithStyles(Chip)
   className="undefined"
+  classes={
+    Object {
+      "label": undefined,
+    }
+  }
   component="span"
   label={
-    <span>
-       
-    </span>
+    <React.Fragment>
+      <span
+        className="undefined"
+      >
+         
+      </span>
+      <span
+        className=""
+      >
+         
+      </span>
+    </React.Fragment>
   }
+  style={Object {}}
 />
 `;

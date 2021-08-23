@@ -3,444 +3,253 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.7.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.7.7...@pie-lib/math-toolbar@1.7.8) (2021-03-03)
+## [1.7.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.7.12...@pie-lib/math-toolbar@1.7.14) (2021-06-25)
 
+**Note:** Version bump only for package @pie-lib/math-toolbar
+
+## [1.7.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.7.11...@pie-lib/math-toolbar@1.7.12) (2021-06-25)
+
+**Note:** Version bump only for package @pie-lib/math-toolbar
+
+## [1.7.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.7.10...@pie-lib/math-toolbar@1.7.11) (2021-04-06)
+
+**Note:** Version bump only for package @pie-lib/math-toolbar
+
+## [1.7.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.7.9...@pie-lib/math-toolbar@1.7.10) (2021-03-22)
+
+**Note:** Version bump only for package @pie-lib/math-toolbar
+
+## [1.7.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.7.8...@pie-lib/math-toolbar@1.7.9) (2021-03-15)
 
 ### Bug Fixes
 
-* rename the 'Everything' math editor as the 'Miscellaneous' math editor ([6b5c0b3](https://github.com/pie-framework/pie-lib/commit/6b5c0b3))
+- **math-toolbar:** override style for ray PD-48 ([b8492d5](https://github.com/pie-framework/pie-lib/commit/b8492d5))
 
+## [1.7.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.7.7...@pie-lib/math-toolbar@1.7.8) (2021-03-03)
 
+### Bug Fixes
 
-
+- rename the 'Everything' math editor as the 'Miscellaneous' math editor ([6b5c0b3](https://github.com/pie-framework/pie-lib/commit/6b5c0b3))
 
 ## [1.7.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.7.6...@pie-lib/math-toolbar@1.7.7) (2021-03-02)
 
-
 ### Bug Fixes
 
-* override math input and math toolbar style for ibx PD-774 ([0969756](https://github.com/pie-framework/pie-lib/commit/0969756))
-
-
-
-
+- override math input and math toolbar style for ibx PD-774 ([0969756](https://github.com/pie-framework/pie-lib/commit/0969756))
 
 ## [1.7.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.7.5...@pie-lib/math-toolbar@1.7.6) (2021-03-01)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
 
-
-
-
-
 ## [1.7.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.7.4...@pie-lib/math-toolbar@1.7.5) (2021-03-01)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
-
-
-
-
 
 ## [1.7.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.7.3...@pie-lib/math-toolbar@1.7.4) (2021-02-15)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
 
-
-
-
-
 ## [1.7.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.7.1...@pie-lib/math-toolbar@1.7.3) (2021-02-15)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
 
-
-
-
-
 ## [1.7.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.7.0...@pie-lib/math-toolbar@1.7.1) (2021-02-01)
-
 
 ### Bug Fixes
 
-* dont import InputContainer from config-ui ([9cb7b68](https://github.com/pie-framework/pie-lib/commit/9cb7b68))
-
-
-
-
+- dont import InputContainer from config-ui ([9cb7b68](https://github.com/pie-framework/pie-lib/commit/9cb7b68))
 
 # [1.7.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.6.0...@pie-lib/math-toolbar@1.7.0) (2021-01-11)
 
-
 ### Features
 
-* **math-toolbar:** add better math keypad support - PD-355 ([2a67078](https://github.com/pie-framework/pie-lib/commit/2a67078))
-
-
-
-
+- **math-toolbar:** add better math keypad support - PD-355 ([2a67078](https://github.com/pie-framework/pie-lib/commit/2a67078))
 
 # [1.6.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.5.9...@pie-lib/math-toolbar@1.6.0) (2020-10-07)
 
-
 ### Features
 
-* **math-toolbar:** add color theme support ([732baf3](https://github.com/pie-framework/pie-lib/commit/732baf3))
-
-
-
-
+- **math-toolbar:** add color theme support ([732baf3](https://github.com/pie-framework/pie-lib/commit/732baf3))
 
 ## [1.5.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.5.8...@pie-lib/math-toolbar@1.5.9) (2020-08-11)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
 
-
-
-
-
 ## [1.5.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.5.7...@pie-lib/math-toolbar@1.5.8) (2020-06-05)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
-
-
-
-
 
 ## [1.5.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.5.6...@pie-lib/math-toolbar@1.5.7) (2020-05-15)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
 
-
-
-
-
 ## [1.5.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.5.5...@pie-lib/math-toolbar@1.5.6) (2020-05-06)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
-
-
-
-
 
 ## [1.5.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.5.4...@pie-lib/math-toolbar@1.5.5) (2020-05-05)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
 
-
-
-
-
 ## [1.5.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.5.3...@pie-lib/math-toolbar@1.5.4) (2020-04-28)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
-
-
-
-
 
 ## [1.5.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.5.2...@pie-lib/math-toolbar@1.5.3) (2020-04-27)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
 
-
-
-
-
 ## [1.5.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.5.1...@pie-lib/math-toolbar@1.5.2) (2020-04-21)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
-
-
-
-
 
 ## [1.5.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.5.0...@pie-lib/math-toolbar@1.5.1) (2020-04-14)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
 
-
-
-
-
 # [1.5.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.29...@pie-lib/math-toolbar@1.5.0) (2020-04-08)
-
 
 ### Features
 
-* **math:** made sure that math is clickable inside table [ch3518] ([23185dd](https://github.com/pie-framework/pie-lib/commit/23185dd))
-
-
-
-
+- **math:** made sure that math is clickable inside table [ch3518](<[23185dd](https://github.com/pie-framework/pie-lib/commit/23185dd)>)
 
 ## [1.4.29](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.28...@pie-lib/math-toolbar@1.4.29) (2020-03-31)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
 
-
-
-
-
 ## [1.4.28](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.27...@pie-lib/math-toolbar@1.4.28) (2020-03-31)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
 
-
-
-
-
 ## [1.4.27](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.26...@pie-lib/math-toolbar@1.4.27) (2020-03-31)
-
 
 ### Bug Fixes
 
-* correct module path ([589e9e3](https://github.com/pie-framework/pie-lib/commit/589e9e3))
-
-
-
-
+- correct module path ([589e9e3](https://github.com/pie-framework/pie-lib/commit/589e9e3))
 
 ## [1.4.26](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.25...@pie-lib/math-toolbar@1.4.26) (2020-03-31)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
 
-
-
-
-
 ## [1.4.25](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.24...@pie-lib/math-toolbar@1.4.25) (2020-03-30)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
-
-
-
-
 
 ## [1.4.24](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.23...@pie-lib/math-toolbar@1.4.24) (2020-03-30)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
 
-
-
-
-
 ## [1.4.23](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.22...@pie-lib/math-toolbar@1.4.23) (2020-03-30)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
-
-
-
-
 
 ## [1.4.22](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.21...@pie-lib/math-toolbar@1.4.22) (2020-03-30)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
 
-
-
-
-
 ## [1.4.21](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.20...@pie-lib/math-toolbar@1.4.21) (2020-03-30)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
-
-
-
-
 
 ## [1.4.20](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.19...@pie-lib/math-toolbar@1.4.20) (2020-03-30)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
 
-
-
-
-
 ## [1.4.19](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.18...@pie-lib/math-toolbar@1.4.19) (2020-03-30)
-
 
 ### Bug Fixes
 
-* add module prop to package.json ([dd549c5](https://github.com/pie-framework/pie-lib/commit/dd549c5))
-
-
-
-
+- add module prop to package.json ([dd549c5](https://github.com/pie-framework/pie-lib/commit/dd549c5))
 
 ## [1.4.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.17...@pie-lib/math-toolbar@1.4.18) (2020-03-18)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
 
-
-
-
-
 ## [1.4.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.16...@pie-lib/math-toolbar@1.4.17) (2020-03-06)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
-
-
-
-
 
 ## [1.4.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.15...@pie-lib/math-toolbar@1.4.16) (2020-02-11)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
 
-
-
-
-
 ## [1.4.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.14...@pie-lib/math-toolbar@1.4.15) (2020-02-05)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
-
-
-
-
 
 ## [1.4.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.13...@pie-lib/math-toolbar@1.4.14) (2020-01-27)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
 
-
-
-
-
 ## [1.4.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.12...@pie-lib/math-toolbar@1.4.13) (2019-12-19)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
-
-
-
-
 
 ## [1.4.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.11...@pie-lib/math-toolbar@1.4.12) (2019-12-18)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
 
-
-
-
-
 ## [1.4.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.10...@pie-lib/math-toolbar@1.4.11) (2019-12-10)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
-
-
-
-
 
 ## [1.4.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.9...@pie-lib/math-toolbar@1.4.10) (2019-12-10)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
 
-
-
-
-
 ## [1.4.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.8...@pie-lib/math-toolbar@1.4.9) (2019-12-09)
-
 
 ### Bug Fixes
 
-* ch4405: Added usage of onBlur function and hideDoneButton property for editor. ([24f072c](https://github.com/pie-framework/pie-lib/commit/24f072c))
-
-
-
-
+- ch4405: Added usage of onBlur function and hideDoneButton property for editor. ([24f072c](https://github.com/pie-framework/pie-lib/commit/24f072c))
 
 ## [1.4.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.7...@pie-lib/math-toolbar@1.4.8) (2019-11-05)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
 
-
-
-
-
 ## [1.4.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.6...@pie-lib/math-toolbar@1.4.7) (2019-08-21)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
 
-
-
-
-
 ## [1.4.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.5...@pie-lib/math-toolbar@1.4.6) (2019-08-21)
-
 
 ### Bug Fixes
 
-* **math-toolbar:** un-initialized input problem fix in case of no decimal flow ([0794237](https://github.com/pie-framework/pie-lib/commit/0794237))
-
-
-
-
+- **math-toolbar:** un-initialized input problem fix in case of no decimal flow ([0794237](https://github.com/pie-framework/pie-lib/commit/0794237))
 
 ## [1.4.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.4...@pie-lib/math-toolbar@1.4.5) (2019-07-08)
 
-
 ### Bug Fixes
 
-* save math changes when editor is re-focused ([7674a86](https://github.com/pie-framework/pie-lib/commit/7674a86))
-
-
-
-
+- save math changes when editor is re-focused ([7674a86](https://github.com/pie-framework/pie-lib/commit/7674a86))
 
 ## [1.4.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.3...@pie-lib/math-toolbar@1.4.4) (2019-07-05)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
 
-
-
-
-
 ## [1.4.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.2...@pie-lib/math-toolbar@1.4.3) (2019-07-02)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
 
-
-
-
-
 ## [1.4.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.1...@pie-lib/math-toolbar@1.4.2) (2019-07-02)
-
 
 ### Bug Fixes
 
-* **math-toolbar:** fix width styling ([6b3788a](https://github.com/pie-framework/pie-lib/commit/6b3788a))
-
-
-
-
+- **math-toolbar:** fix width styling ([6b3788a](https://github.com/pie-framework/pie-lib/commit/6b3788a))
 
 ## [1.4.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.4.0...@pie-lib/math-toolbar@1.4.1) (2019-06-17)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
 
-
-
-
-
 # [1.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.3.1...@pie-lib/math-toolbar@1.4.0) (2019-06-12)
-
 
 ### Features
 
-* version bumps ([23eb54f](https://github.com/pie-framework/pie-lib/commit/23eb54f))
-
-
-
-
+- version bumps ([23eb54f](https://github.com/pie-framework/pie-lib/commit/23eb54f))
 
 ## [1.3.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.3.0...@pie-lib/math-toolbar@1.3.1) (2019-06-05)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
-
-
-
-
 
 # [1.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.2.4...@pie-lib/math-toolbar@1.3.0) (2019-05-15)
 

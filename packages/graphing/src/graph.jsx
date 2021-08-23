@@ -20,6 +20,7 @@ export const graphPropTypes = {
   domain: types.DomainType,
   labels: PropTypes.shape(LabelType),
   labelModeEnabled: PropTypes.bool,
+  coordinatesOnHover: PropTypes.bool,
   marks: PropTypes.array,
   onChangeMarks: PropTypes.func,
   range: types.DomainType,
@@ -114,12 +115,14 @@ export class Graph extends React.Component {
     return (tool && tool.Component) || null;
   };
 
-  onBgClick = ({ x, y }) => {
+  onBgClick = ({ x, y }, mark) => {
     log('[onBgClick] x,y: ', x, y);
 
     const { labelModeEnabled, currentTool, marks } = this.props;
 
-    if (labelModeEnabled || !currentTool) return;
+    if (labelModeEnabled || !currentTool || mark) {
+      return;
+    }
 
     const buildingMark = marks.filter(m => m.building)[0];
     let updatedMark;
@@ -134,12 +137,11 @@ export class Graph extends React.Component {
     this.updateMarks(buildingMark, updatedMark, true);
   };
 
-  clickComponent = point => this.onBgClick(point);
-
   render() {
     const {
       axesSettings,
       currentTool,
+      coordinatesOnHover,
       size,
       domain,
       backgroundMarks,
@@ -194,9 +196,10 @@ export class Graph extends React.Component {
               <Component
                 key={`${markType}-${index}`}
                 mark={m}
+                coordinatesOnHover={coordinatesOnHover}
                 onChange={this.changeMark}
                 onComplete={this.completeMark}
-                onClick={this.clickComponent}
+                onClick={point => this.onBgClick(point, m)}
                 onDragStart={this.startDrag}
                 onDragStop={this.stopDrag}
                 labelNode={this.state.labelNode}

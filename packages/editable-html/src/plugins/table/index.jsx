@@ -1,5 +1,6 @@
 import React from 'react';
 import EditTable from 'slate-edit-table';
+import { Block, Inline } from 'slate';
 import debug from 'debug';
 import GridOn from '@material-ui/icons/GridOn';
 import TableToolbar from './table-toolbar';
@@ -207,6 +208,63 @@ export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
   };
   Node.propTypes = {
     node: PropTypes.object
+  };
+
+  core.normalizeNode = node => {
+    if (node.object !== 'document') {
+      return;
+    }
+
+    let shouldAddTextAfterNode = false;
+    const indexToNotHaveTableOn = node.nodes.size - 1;
+    const indexOfLastTable = node.nodes.findLastIndex(d => d.type === 'table');
+
+    // if the last table in the document is of type table, we need to do the change
+    if (indexOfLastTable === indexToNotHaveTableOn) {
+      shouldAddTextAfterNode = true;
+    }
+
+    if (!shouldAddTextAfterNode) {
+      return;
+    }
+
+    const tableNode = node.nodes.get(indexOfLastTable);
+
+    return change => {
+      if (shouldAddTextAfterNode) {
+        const tableJSON = tableNode.toJSON();
+
+        // we remove the table node because otherwise we can't add the empty block after it
+        // we need a block that contains text in order to do it
+        change.removeNodeByKey(tableNode.key);
+
+        const newBlock = Block.create({
+          object: 'block',
+          type: 'div'
+        });
+
+        // we add an empty block but that it's going to be normalized
+        // because it will add the empty text to it like it should
+        change.insertBlock(newBlock);
+
+        change.withoutNormalization(() => {
+          // we do these changes without normalization
+
+          // we get the text previous to the new block added
+          const prevText = change.value.document.getPreviousText(newBlock.key);
+
+          if (prevText) {
+            // we move focus to the previous text
+            change
+              .moveFocusTo(prevText.key, prevText.text.length)
+              .moveAnchorTo(prevText.key, prevText.text.length);
+          }
+
+          // we insert the table block between the first block with text and the last block with text
+          change.insertBlock(tableJSON);
+        });
+      }
+    };
   };
 
   core.renderNode = Node;

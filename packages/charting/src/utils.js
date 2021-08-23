@@ -187,16 +187,8 @@ export const getGridLinesAndAxisByChartType = (range, chartType) => {
   }
 };
 
-export const getRotateAngle = barWidth => {
-  if (barWidth < 30) {
-    return 75;
-  }
-
-  if (barWidth < 40) {
-    return 45;
-  }
-
-  if (barWidth < 60) {
+export const getRotateAngle = (fontSize, height) => {
+  if (height >= fontSize * 2) {
     return 25;
   }
 

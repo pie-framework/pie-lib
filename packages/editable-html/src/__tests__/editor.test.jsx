@@ -36,7 +36,13 @@ expect.extend({
 describe('logic', () => {
   test('onFocus/onBlur saves the value', async () => {
     const wrapper = shallow(
-      <Editor editorRef={jest.fn()} value={value} classes={{}} onChange={jest.fn()} />
+      <Editor
+        editorRef={jest.fn()}
+        value={value}
+        classes={{}}
+        onChange={jest.fn()}
+        onRef={jest.fn()}
+      />
     );
 
     await wrapper.instance().onFocus();
@@ -60,7 +66,13 @@ describe('logic', () => {
 
 test('onFocus stashes the value', async () => {
   const wrapper = shallow(
-    <Editor editorRef={jest.fn()} value={value} classes={{}} onChange={jest.fn()} />
+    <Editor
+      editorRef={jest.fn()}
+      value={value}
+      classes={{}}
+      onChange={jest.fn()}
+      onRef={jest.fn()}
+    />
   );
 
   await wrapper.instance().onFocus();
@@ -72,7 +84,14 @@ describe('buildSizeStyle', () => {
   const wrapper = extras => {
     const props = Object.assign({}, extras);
     return shallow(
-      <Editor editorRef={jest.fn()} value={value} classes={{}} onChange={jest.fn()} {...props} />
+      <Editor
+        editorRef={jest.fn()}
+        value={value}
+        classes={{}}
+        onChange={jest.fn()}
+        onRef={jest.fn()}
+        {...props}
+      />
     );
   };
 
@@ -150,7 +169,13 @@ describe('buildSizeStyle', () => {
 describe('onResize ', () => {
   it('should display html of current state on Resize', () => {
     const wrapper = shallow(
-      <Editor editorRef={jest.fn()} value={value} classes={{}} onChange={jest.fn()} />
+      <Editor
+        editorRef={jest.fn()}
+        value={value}
+        classes={{}}
+        onChange={jest.fn()}
+        onRef={jest.fn()}
+      />
     );
 
     resizeWindow(500, 300);

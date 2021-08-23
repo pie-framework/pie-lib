@@ -56,7 +56,7 @@ describe('Component', () => {
         w.instance().clickPoint();
       });
       it('calls onChange if labelModeEnabeld', () => {
-        expect(onChange).toHaveBeenCalledWith(mark, { ...mark, label: '' });
+        expect(onChange).toHaveBeenCalledWith(mark, { label: '', ...mark });
       });
       it('calls input.focus', () => {
         expect(w.instance().input.focus).toHaveBeenCalled();

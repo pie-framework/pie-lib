@@ -34,34 +34,70 @@ export class RawDragHandle extends React.Component {
     } = this.props;
     const { scale } = graphProps;
     return (
-      <rect
+      <svg
         x={x}
-        y={scale.y(y) - 3}
+        y={scale.y(y) - 10}
         width={width}
+        overflow="visible"
         className={classNames(
-          classes.handle,
+          classes.handleContainer,
           className,
           !interactive && 'non-interactive',
           interactive && correctness && correctness.value
         )}
-        {...rest}
-      />
+      >
+        <rect
+          y={-10}
+          width={width}
+          className={classNames(classes.transparentHandle, className)}
+          {...rest}
+        />
+        <rect
+          width={width}
+          className={classNames(
+            classes.handle,
+            'handle',
+            className,
+            !interactive && 'non-interactive',
+            interactive && correctness && correctness.value
+          )}
+          {...rest}
+        />
+        <rect
+          y={10}
+          width={width}
+          className={classNames(classes.transparentHandle, className)}
+          {...rest}
+        />
+      </svg>
     );
   }
 }
 
 export const DragHandle = withStyles(theme => ({
   handle: {
-    height: '3px',
+    height: '10px',
     fill: color.secondary(),
     transition: 'fill 200ms linear, height 200ms linear',
-    '&:hover': {
-      fill: color.secondaryDark(),
-      height: '12px'
-    },
     '&.correct': correct('fill'),
     '&.incorrect': incorrect('fill'),
     '&.non-interactive': disabled('fill')
+  },
+  transparentHandle: {
+    height: '10px',
+    fill: 'transparent'
+  },
+  handleContainer: {
+    height: 30,
+    '&:hover': {
+      '& .handle': {
+        fill: color.secondaryDark(),
+        height: '16px'
+      }
+    },
+    '&.non-interactive': disabled('fill'),
+    '&.incorrect': incorrect('fill'),
+    '&.correct': correct('fill')
   }
 }))(RawDragHandle);
 

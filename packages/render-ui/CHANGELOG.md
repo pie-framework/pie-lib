@@ -3,125 +3,82 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.11.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.11.7...@pie-lib/render-ui@4.11.8) (2021-07-23)
+
+### Bug Fixes
+
+- **editable-html:** add refs for editors, fix propTypes warnings for PD-1230 ([c6e3a2a](https://github.com/pie-framework/pie-lib/commit/c6e3a2a))
+
+## [4.11.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.11.5...@pie-lib/render-ui@4.11.7) (2021-06-25)
+
+**Note:** Version bump only for package @pie-lib/render-ui
+
 ## [4.11.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.11.4...@pie-lib/render-ui@4.11.5) (2021-03-01)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 ## [4.11.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.11.3...@pie-lib/render-ui@4.11.4) (2021-03-01)
-
 
 ### Bug Fixes
 
-* **render-ui:** create function that parses html in order to fix PD-771 ([6bf9c5d](https://github.com/pie-framework/pie-lib/commit/6bf9c5d))
-* **render-ui:** render math for collapsible to fix PD-772 ([f0ef384](https://github.com/pie-framework/pie-lib/commit/f0ef384))
-
-
-
-
+- **render-ui:** create function that parses html in order to fix PD-771 ([6bf9c5d](https://github.com/pie-framework/pie-lib/commit/6bf9c5d))
+- **render-ui:** render math for collapsible to fix PD-772 ([f0ef384](https://github.com/pie-framework/pie-lib/commit/f0ef384))
 
 ## [4.11.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.11.2...@pie-lib/render-ui@4.11.3) (2021-02-15)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 ## [4.11.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.11.0...@pie-lib/render-ui@4.11.2) (2021-02-15)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 # [4.11.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.10.4...@pie-lib/render-ui@4.11.0) (2021-02-15)
-
 
 ### Features
 
-* **render-ui:** add secondary background color ([c9cc0a8](https://github.com/pie-framework/pie-lib/commit/c9cc0a8))
-
-
-
-
+- **render-ui:** add secondary background color ([c9cc0a8](https://github.com/pie-framework/pie-lib/commit/c9cc0a8))
 
 ## [4.10.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.10.3...@pie-lib/render-ui@4.10.4) (2021-02-01)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 ## [4.10.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.10.2...@pie-lib/render-ui@4.10.3) (2021-01-28)
-
 
 ### Bug Fixes
 
-* **render-ui:** make sure prompt replace has a value ([093fef7](https://github.com/pie-framework/pie-lib/commit/093fef7))
-
-
-
-
+- **render-ui:** make sure prompt replace has a value ([093fef7](https://github.com/pie-framework/pie-lib/commit/093fef7))
 
 ## [4.10.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.10.1...@pie-lib/render-ui@4.10.2) (2021-01-28)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 ## [4.10.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.10.0...@pie-lib/render-ui@4.10.1) (2021-01-25)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 # [4.10.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.9.4...@pie-lib/render-ui@4.10.0) (2021-01-11)
-
 
 ### Features
 
-* **render-ui:** add readable component for pie tagging ([5b76d67](https://github.com/pie-framework/pie-lib/commit/5b76d67))
-* **render-ui:** pie-purpose wrapper component added - PD-579 ([308f553](https://github.com/pie-framework/pie-lib/commit/308f553))
-
-
-
-
+- **render-ui:** add readable component for pie tagging ([5b76d67](https://github.com/pie-framework/pie-lib/commit/5b76d67))
+- **render-ui:** pie-purpose wrapper component added - PD-579 ([308f553](https://github.com/pie-framework/pie-lib/commit/308f553))
 
 ## [4.9.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.9.3...@pie-lib/render-ui@4.9.4) (2020-10-29)
 
-
 ### Bug Fixes
 
-* Authored table borders are not visible in preview PD-342 ([cb86c55](https://github.com/pie-framework/pie-lib/commit/cb86c55))
-* formatting ([754bb75](https://github.com/pie-framework/pie-lib/commit/754bb75))
-* Modified code for suggested changes and addes snapshots PD-342 ([fbaa88e](https://github.com/pie-framework/pie-lib/commit/fbaa88e))
-* Modified code for suggested changes and addes snapshots PD-342 ([dd43627](https://github.com/pie-framework/pie-lib/commit/dd43627))
-* Modified code for suggested changes and addes snapshots PD-342 ([d9b76db](https://github.com/pie-framework/pie-lib/commit/d9b76db))
-* removed console log that are added in test file PD-342 ([2c9d2e5](https://github.com/pie-framework/pie-lib/commit/2c9d2e5))
-* snapshot test ([a86e5e8](https://github.com/pie-framework/pie-lib/commit/a86e5e8))
-* typo ([0cb17c9](https://github.com/pie-framework/pie-lib/commit/0cb17c9))
-
-
-
-
+- Authored table borders are not visible in preview PD-342 ([cb86c55](https://github.com/pie-framework/pie-lib/commit/cb86c55))
+- formatting ([754bb75](https://github.com/pie-framework/pie-lib/commit/754bb75))
+- Modified code for suggested changes and addes snapshots PD-342 ([fbaa88e](https://github.com/pie-framework/pie-lib/commit/fbaa88e))
+- Modified code for suggested changes and addes snapshots PD-342 ([dd43627](https://github.com/pie-framework/pie-lib/commit/dd43627))
+- Modified code for suggested changes and addes snapshots PD-342 ([d9b76db](https://github.com/pie-framework/pie-lib/commit/d9b76db))
+- removed console log that are added in test file PD-342 ([2c9d2e5](https://github.com/pie-framework/pie-lib/commit/2c9d2e5))
+- snapshot test ([a86e5e8](https://github.com/pie-framework/pie-lib/commit/a86e5e8))
+- typo ([0cb17c9](https://github.com/pie-framework/pie-lib/commit/0cb17c9))
 
 ## [4.9.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.9.2...@pie-lib/render-ui@4.9.3) (2020-10-26)
 
 **Note:** Version bump only for package @pie-lib/render-ui
-
-
-
-
 
 ## [4.9.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.9.1...@pie-lib/render-ui@4.9.2) (2020-10-26)
 

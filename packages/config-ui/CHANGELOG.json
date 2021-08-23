@@ -1643,5 +1643,35 @@
     "committerDate": "2021-03-10 12:25:37 +0200",
     "isTagged": true,
     "tag": "@pie-lib/config-ui@10.8.54"
+  },
+  {
+    "type": "feat",
+    "scope": "config-ui",
+    "subject": "remove audio and video buttons from choice configuration label for multiple-choice and ebsr PD-1180",
+    "merge": null,
+    "header": "feat(config-ui): remove audio and video buttons from choice configuration label for multiple-choice and ebsr PD-1180",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "5988b02c5b9647784544784a2de673aca58b5a17",
+    "gitTags": " (origin/feat/PD-1180/choice-configuration-remove-audio-video-buttons)",
+    "committerDate": "2021-06-03 13:47:40 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/config-ui@10.9.0"
+  },
+  {
+    "type": "feat",
+    "scope": "config-ui",
+    "subject": "add checkboxes option for settings panel PD-483",
+    "merge": null,
+    "header": "feat(config-ui): add checkboxes option for settings panel PD-483",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "04200ad78ec09d7f0de8fa8632ad4b7a90c43ccd",
+    "gitTags": "",
+    "committerDate": "2021-06-08 12:59:21 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/config-ui@10.10.0"
   }
 ]

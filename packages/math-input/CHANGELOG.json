@@ -1363,5 +1363,20 @@
     "committerDate": "2021-03-02 17:41:22 +0200",
     "isTagged": true,
     "tag": "@pie-lib/math-input@6.5.8"
+  },
+  {
+    "type": "fix",
+    "scope": "math-toolbar",
+    "subject": "fix double arrow button style mentioned in PD-48",
+    "merge": null,
+    "header": "fix(math-toolbar): fix double arrow button style mentioned in PD-48",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "145b060adfedc340e132acf6a019351dbf40b644",
+    "gitTags": " (origin/fix/math-toolbar-double-arrow-button)",
+    "committerDate": "2021-03-19 14:17:26 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/math-input@6.5.10"
   }
 ]

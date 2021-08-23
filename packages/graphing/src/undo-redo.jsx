@@ -37,7 +37,8 @@ const styles = theme => ({
     color: color.text(),
     backgroundColor: color.background(),
     '&:not(:last-of-type)': {
-      marginRight: theme.spacing.unit / 2
+      marginRight: theme.spacing.unit / 2,
+      marginBottom: theme.spacing.unit / 2
     },
     '&:hover': {
       backgroundColor: color.primary()

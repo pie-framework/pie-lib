@@ -14,6 +14,7 @@ import invariant from 'invariant';
 import ReactDOM from 'react-dom';
 import MarkLabel from '../../mark-label';
 import isEmpty from 'lodash/isEmpty';
+import { getMiddleOfTwoPoints, getRightestPoints, equalPoints } from '../../utils';
 
 const log = debug('pie-lib:graphing:polygon');
 
@@ -64,6 +65,7 @@ export class RawBaseComponent extends React.Component {
     correctness: PropTypes.string,
     points: PropTypes.arrayOf(types.PointType),
     closed: PropTypes.bool,
+    coordinatesOnHover: PropTypes.bool,
     onChange: PropTypes.func.isRequired,
     onClosePolygon: PropTypes.func.isRequired,
     onDragStart: PropTypes.func,
@@ -73,6 +75,7 @@ export class RawBaseComponent extends React.Component {
     isToolActive: PropTypes.bool,
     labelNode: PropTypes.object,
     labelModeEnabled: PropTypes.bool,
+    onChangeLabelProps: PropTypes.func,
     onChangeProps: PropTypes.func
   };
 
@@ -84,8 +87,9 @@ export class RawBaseComponent extends React.Component {
     log('[dragPoint] from, to:', from, to);
     const { onChange, points } = this.props;
     const update = [...points];
+    const overlapPoint = !!(points || []).find(p => equalPoints(p, to));
 
-    if (isEqual(from, to)) {
+    if (equalPoints(from, to) || overlapPoint) {
       return;
     }
 
@@ -153,26 +157,33 @@ export class RawBaseComponent extends React.Component {
   clickPoint = (point, index, data) => {
     const {
       closed,
-      onClosePolygon,
       onClick,
       isToolActive,
       labelModeEnabled,
       onChangeProps,
+      onChangeLabelProps,
       points
     } = this.props;
 
     if (labelModeEnabled) {
-      const update = [...points];
+      if (points && index === points.length) {
+        const { a, b } = getRightestPoints(points);
+        const middle = { label: '', ...point, ...getMiddleOfTwoPoints(a, b) };
 
-      update.splice(index, 1, { label: '', ...point });
-      onChangeProps(update);
+        onChangeLabelProps(middle);
+      } else {
+        const update = [...points];
+
+        update.splice(index, 1, { label: '', ...point });
+        onChangeProps(update);
+      }
 
       if (this.input[index]) {
         this.input[index].focus();
       }
     } else {
       if (isToolActive && !closed && index === 0) {
-        onClosePolygon();
+        this.close();
       } else {
         onClick(data);
       }
@@ -185,28 +196,48 @@ export class RawBaseComponent extends React.Component {
   render() {
     const {
       closed,
+      coordinatesOnHover,
+      correctness,
       disabled,
       graphProps,
-      onClick,
       onDragStart,
       onDragStop,
       points,
-      correctness,
+      middle,
       labelNode,
       labelModeEnabled
     } = this.props;
     const lines = buildLines(points, closed);
     const common = { onDragStart, onDragStop, graphProps, disabled, correctness };
+    const polygonLabelIndex = (points && points.length) || 0;
+    let polygonLabelNode = null;
+
+    if (labelNode && middle && middle.hasOwnProperty('label')) {
+      polygonLabelNode = ReactDOM.createPortal(
+        <MarkLabel
+          inputRef={r => (this.input[polygonLabelIndex] = r)}
+          disabled={!labelModeEnabled}
+          mark={middle}
+          graphProps={graphProps}
+          onChange={() => {}}
+        />,
+        labelNode
+      );
+    }
+
     return (
       <g>
         {closed ? (
-          <DraggablePolygon
-            points={points}
-            onDrag={this.dragPoly.bind(this, points)}
-            closed={closed}
-            onClick={onClick}
-            {...common}
-          />
+          <React.Fragment>
+            <DraggablePolygon
+              points={points}
+              onDrag={this.dragPoly.bind(this, points)}
+              closed={closed}
+              {...common}
+              onClick={this.clickPoint.bind(this, middle, polygonLabelIndex)}
+            />
+            {polygonLabelNode}
+          </React.Fragment>
         ) : (
           <Polygon points={points} graphProps={graphProps} closed={closed} />
         )}
@@ -216,8 +247,8 @@ export class RawBaseComponent extends React.Component {
             from={l.from}
             to={l.to}
             onDrag={this.dragLine.bind(this, l)}
-            onClick={onClick}
             {...common}
+            onClick={this.clickPoint.bind(this, middle, polygonLabelIndex)}
           />
         ))}
 
@@ -225,9 +256,11 @@ export class RawBaseComponent extends React.Component {
           return [
             <BasePoint
               key={`point-${index}`}
-              onDrag={this.dragPoint.bind(this, index, p)}
+              coordinatesOnHover={coordinatesOnHover}
+              labelNode={labelNode}
               x={p.x}
               y={p.y}
+              onDrag={this.dragPoint.bind(this, index, p)}
               onClick={this.clickPoint.bind(this, p, index)}
               {...common}
             />,
@@ -266,7 +299,16 @@ export default class Component extends React.Component {
   }
 
   change = points => {
+    const {
+      mark: { middle }
+    } = this.props;
     const mark = { ...this.state.mark, points };
+
+    if (middle) {
+      const { a, b } = getRightestPoints(points);
+      mark.middle = { ...middle, ...getMiddleOfTwoPoints(a, b) };
+    }
+
     this.setState({ mark });
   };
 
@@ -274,6 +316,13 @@ export default class Component extends React.Component {
     const mark = { ...this.props.mark, points };
 
     this.props.onChange(this.props.mark, mark);
+  };
+
+  changeLabelProps = point => {
+    const { mark, onChange } = this.props;
+    const middle = { ...mark.middle, ...point };
+
+    onChange(mark, { ...mark, middle });
   };
 
   closePolygon = () => {
@@ -295,23 +344,35 @@ export default class Component extends React.Component {
   };
 
   shouldComponentUpdate = (nextProps, nextState) => {
-    const { graphProps, mark } = this.props;
+    const { coordinatesOnHover, graphProps, mark } = this.props;
     const { graphProps: nextGraphProps } = nextProps;
+
     return (
       !utils.isDomainRangeEqual(graphProps, nextGraphProps) ||
       !isEqual(mark, nextProps.mark) ||
-      !isEqual(this.state.mark, nextState.mark)
+      !isEqual(this.state.mark, nextState.mark) ||
+      coordinatesOnHover !== nextProps.coordinatesOnHover
     );
   };
 
   render() {
-    const { mark, graphProps, onClick, isToolActive, labelNode, labelModeEnabled } = this.props;
+    const {
+      coordinatesOnHover,
+      mark,
+      graphProps,
+      onClick,
+      isToolActive,
+      labelNode,
+      labelModeEnabled
+    } = this.props;
     const { mark: stateMark } = this.state;
 
     return (
       <BaseComponent
         {...(stateMark || mark)}
+        coordinatesOnHover={coordinatesOnHover}
         onChange={this.change}
+        onChangeLabelProps={this.changeLabelProps}
         onChangeProps={this.changeProps}
         onClosePolygon={this.closePolygon}
         onDragStart={this.dragStart}

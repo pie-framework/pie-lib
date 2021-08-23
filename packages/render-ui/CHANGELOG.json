@@ -888,5 +888,35 @@
     "committerDate": "2021-02-19 15:13:41 +0200",
     "isTagged": true,
     "tag": "@pie-lib/render-ui@4.11.4"
+  },
+  {
+    "type": "fix",
+    "scope": "editable-html",
+    "subject": "add refs for editors, fix propTypes warnings for PD-1230",
+    "merge": null,
+    "header": "fix(editable-html): add refs for editors, fix propTypes warnings for PD-1230",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "c6e3a2abc105d2c08ecc12b1b4c7c089f857d966",
+    "gitTags": " (origin/fix/PD-1230)",
+    "committerDate": "2021-07-14 13:54:44 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/render-ui@4.11.8"
+  },
+  {
+    "type": "fix",
+    "scope": "render-ui",
+    "subject": "text should serve as selector for multiple-choice questions PD-1227",
+    "merge": null,
+    "header": "fix(render-ui): text should serve as selector for multiple-choice questions PD-1227",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "133549b51ec52bfdfb2535c846c175fe661c015e",
+    "gitTags": " (origin/fix/PD-1227)",
+    "committerDate": "2021-08-04 11:33:03 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/render-ui@4.11.9"
   }
 ]

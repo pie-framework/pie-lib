@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import cn from 'classnames';
 import Button from '@material-ui/core/Button';
 import { color } from '@pie-lib/render-ui';
+import { allTools } from './tools/index';
 
 const buttonStyles = () => ({
   root: {
@@ -77,19 +78,21 @@ export class ToggleBar extends React.Component {
     return (
       <div className={cn(className)}>
         {(options || []).map(option => {
-          const isSelected = option === selectedToolType;
+          if ((allTools || []).includes(option)) {
+            const isSelected = option === selectedToolType;
 
-          return (
-            <MiniButton
-              key={option}
-              className={cn(classes.button, isSelected && classes.selected)}
-              disabled={disabled}
-              disableRipple={true}
-              onClick={this.select}
-              value={option}
-              selected={isSelected}
-            />
-          );
+            return (
+              <MiniButton
+                key={option}
+                className={cn(classes.button, isSelected && classes.selected)}
+                disabled={disabled}
+                disableRipple={true}
+                onClick={this.select}
+                value={option}
+                selected={isSelected}
+              />
+            );
+          }
         })}
       </div>
     );
@@ -99,6 +102,7 @@ export class ToggleBar extends React.Component {
 const styles = theme => ({
   button: {
     marginRight: theme.spacing.unit / 2,
+    marginBottom: theme.spacing.unit / 2,
     color: color.text(),
     backgroundColor: color.background()
   }

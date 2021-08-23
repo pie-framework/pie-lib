@@ -20,17 +20,30 @@ const useStyles = withStyles(() => ({
     minWidth: '90px',
     fontSize: 'inherit',
     minHeight: '32px',
-    height: 'auto',
-    maxWidth: '374px'
+    maxWidth: '374px',
+    position: 'relative'
   },
   chipLabel: {
     whiteSpace: 'pre-wrap'
+  },
+  hidden: {
+    color: 'transparent',
+    opacity: 0
+  },
+  dragged: {
+    position: 'absolute',
+    left: 14,
+    maxWidth: '60px'
   },
   correct: {
     border: `solid 1px ${color.correct()}`
   },
   incorrect: {
     border: `solid 1px ${color.incorrect()}`
+  },
+  over: {
+    whiteSpace: 'nowrap',
+    overflow: 'hidden'
   }
 }));
 
@@ -47,13 +60,45 @@ export class BlankContent extends React.Component {
     onChange: PropTypes.func
   };
 
-  componentDidUpdate() {
+  constructor() {
+    super();
+    this.state = {
+      height: 0
+    };
+  }
+
+  componentDidUpdate(prevProps) {
     renderMath(this.rootRef);
+    const { choice: currentChoice } = this.props;
+    const { choice: prevChoice } = prevProps;
+
+    if (JSON.stringify(currentChoice) !== JSON.stringify(prevChoice)) {
+      if (!currentChoice) {
+        this.setState({
+          height: 0
+        });
+        return;
+      }
+      setTimeout(() => {
+        this.setState({
+          height: this.spanRef.offsetHeight
+        });
+      }, 300);
+    }
+  }
+
+  addDraggableFalseAttributes(parent) {
+    parent.childNodes.forEach(elem => {
+      if (elem instanceof Element || elem instanceof HTMLDocument) {
+        elem.setAttribute('draggable', false);
+      }
+    });
   }
 
   render() {
     const { disabled, choice, classes, isOver, dragItem, correct } = this.props;
-    const label = dragItem && isOver ? dragItem.choice.value : choice && choice.value;
+    const draggedLabel = dragItem && isOver && dragItem.choice.value;
+    const label = choice && choice.value;
 
     return (
       <Chip
@@ -63,22 +108,50 @@ export class BlankContent extends React.Component {
         }}
         component="span"
         label={
-          <span
-            className={classes.chipLabel}
-            ref={ref => {
-              if (ref) {
-                ref.innerHTML = label || '';
-              }
-            }}
-          >
-            {' '}
-          </span>
+          <React.Fragment>
+            <span
+              className={classnames(classes.chipLabel, isOver && classes.over, {
+                [classes.hidden]: draggedLabel
+              })}
+              ref={ref => {
+                if (ref) {
+                  //eslint-disable-next-line
+                  this.spanRef = ReactDOM.findDOMNode(ref);
+                  ref.innerHTML = label || '';
+                  this.addDraggableFalseAttributes(ref);
+                }
+              }}
+            >
+              {' '}
+            </span>
+            {draggedLabel && (
+              <span
+                className={classnames(classes.chipLabel, isOver && classes.over, classes.dragged)}
+                ref={ref => {
+                  if (ref) {
+                    //eslint-disable-next-line
+                    this.spanRef = ReactDOM.findDOMNode(ref);
+                    ref.innerHTML = draggedLabel || '';
+                    this.addDraggableFalseAttributes(ref);
+                  }
+                }}
+              >
+                {' '}
+              </span>
+            )}
+          </React.Fragment>
         }
-        className={classnames(classes.chip, {
+        className={classnames(classes.chip, isOver && classes.over, {
           [classes.correct]: correct !== undefined && correct,
           [classes.incorrect]: correct !== undefined && !correct
         })}
         variant={disabled ? 'outlined' : undefined}
+        style={{
+          ...(this.state.height ? { height: this.state.height } : {})
+        }}
+        classes={{
+          label: isOver && classes.over
+        }}
       />
     );
   }
