@@ -84,11 +84,10 @@ export const getDomainAndRangeByChartType = (domain, range, size, chartType, lab
     max = range.min + 1;
   }
 
-  // const crowded = crowdedTicks(max, range, size);
   if (labelStep && !step) {
     step = labelStep;
   }
-  if (!labelStep && step) {
+  if (!labelStep || (isNaN(labelStep) && step)) {
     let customLabelStep = step;
     let crowded = crowdedTicks(max, customLabelStep, size, labelFontSize);
 
@@ -100,7 +99,7 @@ export const getDomainAndRangeByChartType = (domain, range, size, chartType, lab
     labelStep = customLabelStep;
   }
 
-  if (!step && !labelStep) {
+  if (!step || (isNaN(step) && !labelStep) || isNaN(labelStep)) {
     labelStep = customLabelStep(max, size, labelFontSize);
 
     if (labelStep <= 1) {

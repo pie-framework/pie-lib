@@ -34,7 +34,7 @@ export class ChartDemo extends React.Component {
         }
       },
       model: {
-        chartType: 'linePlot',
+        chartType: 'bar',
         title: 'This is a chart!',
         domain: {
           label: 'Fruits',
@@ -42,9 +42,11 @@ export class ChartDemo extends React.Component {
         },
         range: {
           label: 'Amount',
-          max: 5.5,
+          max: 20,
           min: 0,
-          axisLabel: 'Y'
+          axisLabel: 'Y',
+          step: undefined,
+          labelStep: 2
         },
         data: [
           { ...createCategory('Apples', 5), interactive: false },
