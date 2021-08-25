@@ -42,11 +42,11 @@ export class ChartDemo extends React.Component {
         },
         range: {
           label: 'Amount',
-          max: 20,
+          max: 10,
           min: 0,
           axisLabel: 'Y',
-          step: undefined,
-          labelStep: 2
+          step: null,
+          labelStep: null
         },
         data: [
           { ...createCategory('Apples', 5), interactive: false },
