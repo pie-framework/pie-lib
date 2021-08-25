@@ -57,20 +57,20 @@ export const customLabelStep = (rangeMax, size, labelFontSize) => {
 
   // how many ticksWidth fit in a segment
   const tickWidthPerSegment = segmentLength / labelFontSize;
-  const labelStep = ticksToFitInOneSegment / tickWidthPerSegment;
-  const roundedStep = Math.ceil((labelStep * 10) / 10);
+  const rawLabelStep = ticksToFitInOneSegment / tickWidthPerSegment;
+  const roundedStep = Math.ceil((rawLabelStep * 10) / 10);
 
-  let returnValue;
+  let labelStep;
 
-  if (labelStep > 0.15) {
-    returnValue = roundedStep;
-  } else if (labelStep < 0.05) {
-    returnValue = 0.1;
+  if (rawLabelStep > 0.15) {
+    labelStep = roundedStep;
+  } else if (rawLabelStep < 0.05) {
+    labelStep = 0.1;
   } else {
-    returnValue = 0.5;
+    labelStep = 0.5;
   }
 
-  return returnValue;
+  return labelStep;
 };
 
 export const crowdedTicks = (rangeMax, customLabelStep, size, labelFontSize) => {
@@ -108,8 +108,6 @@ export const getDomainAndRangeByChartType = (domain, range, size, chartType, lab
 
   if (!step || (isNaN(step) && !labelStep) || isNaN(labelStep)) {
     labelStep = customLabelStep(max, size, labelFontSize);
-
-    console.log(labelStep, 'label step');
 
     if (labelStep <= 1) {
       step = labelStep;
