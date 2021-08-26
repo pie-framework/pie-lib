@@ -47,6 +47,10 @@ const mp = theme => ({
     },
     '& *': {
       fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important'
+    },
+    '& .mq-longdiv-inner': {
+      borderTop: '1px solid !important',
+      paddingTop: '1.5px !important'
     }
   },
   selected: {

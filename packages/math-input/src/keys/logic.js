@@ -7,3 +7,9 @@ export const therefore = set({
   label: '∴',
   write: '∴'
 });
+
+export const longDivision = set({
+  name: 'Long division',
+  latex: '\\longdiv{}',
+  command: '\\longdiv'
+});
