@@ -312,6 +312,8 @@ export class Editor extends React.Component {
    * */
   onFocus = () =>
     new Promise(resolve => {
+      const editorDOM = document.querySelector(`[data-key="${this.state.value.document.key}"]`);
+
       log('[onFocus]', document.activeElement);
 
       /**
@@ -328,6 +330,21 @@ export class Editor extends React.Component {
             this.__TEMPORARY_CHANGE_DATA = null;
           });
         }
+      }
+
+      /**
+       * This is needed just in case the browser decides to make the editor
+       * lose focus without triggering the onBlur event (can happen in a few cases).
+       * This will also trigger onBlur if the user clicks outside of the page when the editor
+       * is focused.
+       */
+      if (editorDOM === document.activeElement) {
+        const handleDomBlur = e => {
+          editorDOM.removeEventListener('blur', handleDomBlur);
+          this.onBlur(e);
+        };
+
+        editorDOM.addEventListener('blur', handleDomBlur);
       }
 
       this.stashValue();
