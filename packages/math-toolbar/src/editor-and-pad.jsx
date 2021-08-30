@@ -9,6 +9,7 @@ const log = debug('@pie-lib:math-toolbar:editor-and-pad');
 import { color, InputContainer } from '@pie-lib/render-ui';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
+import { updateSpans } from '@pie-lib/math-input';
 
 const decimalRegex = /\.|,/g;
 
@@ -52,7 +53,7 @@ export class EditorAndPad extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { equationEditor: 'miscellaneous' };
+    this.state = { equationEditor: 8 };
   }
 
   componentDidMount() {
@@ -94,6 +95,8 @@ export class EditorAndPad extends React.Component {
 
   onEditorChange = latex => {
     const { onChange, noDecimal } = this.props;
+
+    updateSpans();
 
     // if no decimals are allowed and the last change is a decimal dot, discard the change
     if (noDecimal && (latex.indexOf('.') !== -1 || latex.indexOf(',') !== -1) && this.input) {
@@ -217,6 +220,26 @@ const styles = theme => ({
     alignItems: 'center',
     '& *': {
       fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important'
+    },
+    '& .mq-overarrow.mq-arrow-both': {
+      minWidth: '1.23em',
+      '&:before': {
+        top: '-0.4em',
+        left: '-1px'
+      },
+      '&:after': {
+        top: '-2.36em',
+        right: '-1px'
+      },
+      '&.mq-empty:after': {
+        top: '-0.45em'
+      }
+    },
+    '& .mq-overarrow.mq-arrow-right': {
+      '&:before': {
+        top: '-0.4em',
+        right: '-1px'
+      }
     }
   },
   selectContainer: {
@@ -266,7 +289,8 @@ const styles = theme => ({
       borderRadius: '0px'
     },
     '& .mq-overarrow-inner': {
-      border: 'none !important'
+      border: 'none !important',
+      paddingTop: '0 !important'
     },
     '& .mq-overarrow-inner-right': {
       display: 'none !important'
@@ -277,6 +301,9 @@ const styles = theme => ({
     '& .mq-longdiv-inner': {
       borderTop: '1px solid !important',
       paddingTop: '1.5px !important'
+    },
+    '& .mq-overarrow.mq-arrow-both': {
+      minWidth: '1.23em'
     }
   }
 });

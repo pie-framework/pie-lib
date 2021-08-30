@@ -38,6 +38,7 @@ const LatexButton = withStyles(theme => ({
     },
     '& .mq-overarrow': {
       width: '30px',
+      marginTop: '0 !important',
       borderTop: '2px solid black',
       '&.mq-arrow-both': {
         '&:before': {
@@ -59,6 +60,9 @@ const LatexButton = withStyles(theme => ({
           fontSize: '80%',
           right: 'calc(-13%)',
           top: '-0.25em'
+        },
+        '&.mq-empty': {
+          minHeight: '1.4em'
         }
       },
       '&.mq-arrow-right:before': {
@@ -95,15 +99,28 @@ const LatexButton = withStyles(theme => ({
       borderTop: '1px solid !important',
       paddingTop: '1.5px !important'
     }
+  },
+  parallelButton: {
+    fontStyle: 'italic'
   }
-}))(props => (
-  <Button className={classNames(props.classes.root, props.className)} onClick={props.onClick}>
-    <mq.Static
-      className={classNames(props.classes.latexButton, props.mqClassName)}
-      latex={props.latex}
-    />
-  </Button>
-));
+}))(props => {
+  let buttonClass;
+
+  if (props.latex === '\\parallel') {
+    buttonClass = classNames(
+      props.classes.latexButton,
+      props.mqClassName,
+      props.classes.parallelButton
+    );
+  } else {
+    buttonClass = classNames(props.classes.latexButton, props.mqClassName);
+  }
+  return (
+    <Button className={classNames(props.classes.root, props.className)} onClick={props.onClick}>
+      <mq.Static className={buttonClass} latex={props.latex} />
+    </Button>
+  );
+});
 
 export class KeyPad extends React.Component {
   static propTypes = {

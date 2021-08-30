@@ -13,7 +13,8 @@ export class PreviewPrompt extends Component {
     prompt: PropTypes.string,
     tagName: PropTypes.string,
     className: PropTypes.string,
-    onClick: PropTypes.func
+    onClick: PropTypes.func,
+    defaultClassName: PropTypes.string
   };
 
   static defaultProps = {
@@ -21,9 +22,10 @@ export class PreviewPrompt extends Component {
   };
 
   render() {
-    const { prompt, classes, tagName, className, onClick } = this.props;
+    const { prompt, classes, tagName, className, onClick, defaultClassName } = this.props;
     const CustomTag = tagName || 'div';
-    const customClasses = `${classes.promptTable} ${classes[className] || ''} `;
+    const customClasses = `${classes.promptTable} ${classes[className] || ''} ${defaultClassName ||
+      ''}`;
 
     return (
       <CustomTag

@@ -10,20 +10,22 @@ export const plusMinus = set({
 
 export const absValue = set({
   name: 'Absolute Value',
-  latex: '||',
+  latex: '\\abs{}',
   symbol: '| |',
   command: '|'
 });
 
 export const parenthesis = set({
   name: 'Parenthesis',
-  latex: '()',
+  latex: '\\left(\\right)',
+  symbol: '( )',
   command: '('
 });
 
 export const brackets = set({
   name: 'Brackets',
-  latex: '[ ]',
+  latex: '\\left[\\right]',
+  symbol: '[ ]',
   command: '['
 });
 

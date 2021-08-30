@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import debug from 'debug';
 import MathQuill from '@pie-framework/mathquill';
+import { updateSpans } from '../index';
 
 let MQ;
 if (typeof window !== 'undefined') {
@@ -33,10 +34,12 @@ export default class Static extends React.Component {
 
   componentDidMount() {
     this.update();
+    updateSpans();
   }
 
   componentDidUpdate() {
     this.update();
+    updateSpans();
   }
 
   onInputEdit(field) {

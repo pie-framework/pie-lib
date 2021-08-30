@@ -903,5 +903,20 @@
     "committerDate": "2021-07-14 13:54:44 +0300",
     "isTagged": true,
     "tag": "@pie-lib/render-ui@4.11.8"
+  },
+  {
+    "type": "fix",
+    "scope": "render-ui",
+    "subject": "text should serve as selector for multiple-choice questions PD-1227",
+    "merge": null,
+    "header": "fix(render-ui): text should serve as selector for multiple-choice questions PD-1227",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "133549b51ec52bfdfb2535c846c175fe661c015e",
+    "gitTags": " (origin/fix/PD-1227)",
+    "committerDate": "2021-08-04 11:33:03 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/render-ui@4.11.9"
   }
 ]
