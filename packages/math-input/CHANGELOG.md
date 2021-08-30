@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.6.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.5.14...@pie-lib/math-input@6.6.0) (2021-08-30)
+
+
+### Bug Fixes
+
+* **math-input:** Fixed custom keys behavior and changed label for (),[] and absolute value PD-1251 ([39f2ddb](https://github.com/pie-framework/pie-lib/commit/39f2ddb))
+* **math-toolbar:** Made segment, ray and line more consistent PD-1264 ([1a2ad37](https://github.com/pie-framework/pie-lib/commit/1a2ad37))
+* **math-toolbar & math-input:** render parallel sign with bigger font PD-1258 ([418fc28](https://github.com/pie-framework/pie-lib/commit/418fc28))
+
+
+### Features
+
+* **math-input, math-toolbar:** add long division button in math editor PD-888 ([3056990](https://github.com/pie-framework/pie-lib/commit/3056990))
+
+
+
+
+
 ## [6.5.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.5.12...@pie-lib/math-input@6.5.14) (2021-06-25)
 
 **Note:** Version bump only for package @pie-lib/math-input

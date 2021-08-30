@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.3.8...@pie-lib/math-rendering@2.3.9) (2021-08-30)
+
+
+### Bug Fixes
+
+* **math-rendering:** fix symbols in math markup that trigger undefined control sequence error PD-1267, PD-368, PD-1173 ([a7d9934](https://github.com/pie-framework/pie-lib/commit/a7d9934))
+
+
+
+
+
 ## [2.3.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.3.6...@pie-lib/math-rendering@2.3.8) (2021-06-25)
 
 **Note:** Version bump only for package @pie-lib/math-rendering

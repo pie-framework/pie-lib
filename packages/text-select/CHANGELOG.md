@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.8.4...@pie-lib/text-select@1.8.5) (2021-08-30)
+
+
+### Bug Fixes
+
+* **text-select:** move prepareText function from pie-elements ([0eaee81](https://github.com/pie-framework/pie-lib/commit/0eaee81))
+
+
+
+
+
 ## [1.8.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.8.3...@pie-lib/text-select@1.8.4) (2021-08-04)
 
 **Note:** Version bump only for package @pie-lib/text-select
