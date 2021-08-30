@@ -94,6 +94,10 @@ const LatexButton = withStyles(theme => ({
       left: '-6px',
       fontSize: '80% !important',
       top: '-3px'
+    },
+    '& .mq-longdiv-inner': {
+      borderTop: '1px solid !important',
+      paddingTop: '1.5px !important'
     }
   },
   parallelButton: {

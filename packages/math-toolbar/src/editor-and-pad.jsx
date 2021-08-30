@@ -298,6 +298,10 @@ const styles = theme => ({
     '& .mq-overarrow-inner-left': {
       display: 'none !important'
     },
+    '& .mq-longdiv-inner': {
+      borderTop: '1px solid !important',
+      paddingTop: '1.5px !important'
+    },
     '& .mq-overarrow.mq-arrow-both': {
       minWidth: '1.23em'
     }

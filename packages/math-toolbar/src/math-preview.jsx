@@ -77,6 +77,10 @@ const mp = theme => ({
     },
     '& .mq-overarrow-inner-left': {
       display: 'none !important'
+    },
+    '& .mq-longdiv-inner': {
+      borderTop: '1px solid !important',
+      paddingTop: '1.5px !important'
     }
   },
   selected: {

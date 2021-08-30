@@ -13,6 +13,7 @@ import * as statistics from './statistics';
 import * as basicOperators from './basic-operators';
 import * as matrices from './matrices';
 import digits from './digits';
+import * as logic from './logic';
 
 const hs = [
   [vars.x, vars.y, exponent.squared, exponent.squareRoot, vars.theta],
@@ -47,14 +48,14 @@ export const gradeSets = [
     set: [
       [comparison.lessThan, comparison.greaterThan],
       [fractions.xOverBlank, fractions.xBlankBlank],
-      [vars.x]
+      [vars.x, logic.longDivision]
     ]
   },
   {
     predicate: n => n >= 6 && n <= 7,
     set: [
       [vars.x, vars.y, exponent.squared, exponent.squareRoot, operators.circleDot],
-      [fractions.xOverBlank, fractions.xBlankBlank, exponent.xToPowerOfN, exponent.nthRoot],
+      [fractions.xOverBlank, fractions.xBlankBlank, exponent.xToPowerOfN, exponent.nthRoot, logic.longDivision],
       [comparison.lessThan, comparison.greaterThan, misc.plusMinus, misc.absValue],
       [comparison.lessThanEqual, comparison.greaterThanEqual, misc.parenthesis, constants.pi],
       [trigonometry.sin, trigonometry.cos, trigonometry.tan, geometry.degree]
