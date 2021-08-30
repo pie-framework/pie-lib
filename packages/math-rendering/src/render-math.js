@@ -5,6 +5,7 @@ import { TeX } from 'mathjax-full/js/input/tex';
 import { CHTML } from 'mathjax-full/js/output/chtml';
 import { RegisterHTMLHandler } from 'mathjax-full/js/handlers/html';
 import { browserAdaptor } from 'mathjax-full/js/adaptors/browserAdaptor';
+import { AllPackages } from 'mathjax-full/js/input/tex/AllPackages';
 
 if (typeof window !== 'undefined') {
   RegisterHTMLHandler(browserAdaptor());
@@ -78,9 +79,30 @@ const bootstrap = opts => {
     console.warn('[math-rendering] using $ is not advisable, please use $$..$$ or \\(...\\)');
   }
 
+  const packages = AllPackages.filter(name => name !== 'bussproofs'); // Bussproofs needs an output jax
+
+  // The autoload extension predefines all the macros from the extensions that haven't been loaded already
+  // so that they automatically load the needed extension when they are first used
+  packages.push('autoload');
+
+  const macros = {
+    parallelogram: '\\lower.2em{\\Huge\\unicode{x25B1}}',
+    overarc: '\\overparen',
+    napprox: '\\not\\approx',
+    longdiv: '\\enclose{longdiv}'
+  };
+
   const texConfig = opts.useSingleDollar
-    ? { inlineMath: [['$', '$'], ['\\(', '\\)']], processEscapes: true }
-    : {};
+    ? {
+        packages,
+        macros,
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        processEscapes: true
+      }
+    : {
+        packages,
+        macros
+      };
 
   const mmlConfig = {
     parseError: function(node) {
