@@ -49,7 +49,8 @@ const mp = theme => ({
       fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important'
     },
     '& .mq-overarrow-inner': {
-      paddingTop: '0 !important'
+      paddingTop: '0 !important',
+      border: 'none !important'
     },
     '& .mq-overarrow.mq-arrow-both': {
       minWidth: '1.23em',
@@ -70,6 +71,12 @@ const mp = theme => ({
         top: '-0.4em',
         right: '-1px'
       }
+    },
+    '& .mq-overarrow-inner-right': {
+      display: 'none !important'
+    },
+    '& .mq-overarrow-inner-left': {
+      display: 'none !important'
     }
   },
   selected: {

@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/render-ui",
-  "version": "4.11.8",
+  "version": "4.11.9",
   "description": "Some shared ui elements when rendering - but not worthy of their own package yet.",
   "module": "src/index.js",
   "main": "lib/index.js",
