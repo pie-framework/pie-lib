@@ -48,11 +48,29 @@ const mp = theme => ({
     '& *': {
       fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important'
     },
-    '& .mq-overarrow.mq-arrow-both': {
-      minWidth: '1.23em'
-    },
     '& .mq-overarrow-inner': {
+      paddingTop: '0 !important',
       border: 'none !important'
+    },
+    '& .mq-overarrow.mq-arrow-both': {
+      minWidth: '1.23em',
+      '&:before': {
+        top: '-0.4em',
+        left: '-1px'
+      },
+      '&:after': {
+        top: '-2.36em',
+        right: '-1px'
+      },
+      '&.mq-empty:after': {
+        top: '-0.45em'
+      }
+    },
+    '& .mq-overarrow.mq-arrow-right': {
+      '&:before': {
+        top: '-0.4em',
+        right: '-1px'
+      }
     },
     '& .mq-overarrow-inner-right': {
       display: 'none !important'
