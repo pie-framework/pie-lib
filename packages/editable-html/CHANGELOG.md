@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.17.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.1...@pie-lib/editable-html@7.17.2) (2021-08-04)
+
+
+### Bug Fixes
+
+* **paragraph:** made sure that long words are broken into separate lines regardless if they are in a paragraph or not [PD-194] ([df0f97d](https://github.com/pie-framework/pie-lib/commit/df0f97d))
+* **paragraph:** made sure the text is broken into separate lines and not expanding [PD-194] ([35c6807](https://github.com/pie-framework/pie-lib/commit/35c6807))
+
+
+
+
+
+## [7.17.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.0...@pie-lib/editable-html@7.17.1) (2021-07-27)
+
+
+### Bug Fixes
+
+* **table:** made sure inserting a table at last position works [PD-1240] ([e81ba95](https://github.com/pie-framework/pie-lib/commit/e81ba95))
+
+
+
+
+
 # [7.17.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.16.19...@pie-lib/editable-html@7.17.0) (2021-07-23)
 
 ### Bug Fixes
