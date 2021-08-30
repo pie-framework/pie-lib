@@ -52,7 +52,7 @@ export class EditorAndPad extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { equationEditor: 'miscellaneous' };
+    this.state = { equationEditor: 8 };
   }
 
   componentDidMount() {
@@ -273,6 +273,9 @@ const styles = theme => ({
     },
     '& .mq-overarrow-inner-left': {
       display: 'none !important'
+    },
+    '& .mq-overarrow.mq-arrow-both': {
+      minWidth: '1.23em'
     }
   }
 });
