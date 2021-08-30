@@ -638,5 +638,20 @@
     "committerDate": "2021-02-22 09:01:40 +0200",
     "isTagged": true,
     "tag": "@pie-lib/math-rendering@2.3.5"
+  },
+  {
+    "type": "fix",
+    "scope": "math-rendering",
+    "subject": "fix symbols in math markup that trigger undefined control sequence error PD-1267, PD-368, PD-1173",
+    "merge": null,
+    "header": "fix(math-rendering): fix symbols in math markup that trigger undefined control sequence error PD-1267, PD-368, PD-1173",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "a7d9934bea5d0305daa6d75820c007d1e76f3fbb",
+    "gitTags": "",
+    "committerDate": "2021-08-17 10:59:50 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/math-rendering@2.3.9"
   }
 ]

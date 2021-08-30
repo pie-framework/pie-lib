@@ -1378,5 +1378,35 @@
     "committerDate": "2021-03-19 14:17:26 +0200",
     "isTagged": true,
     "tag": "@pie-lib/math-input@6.5.10"
+  },
+  {
+    "type": "fix",
+    "scope": "math-toolbar",
+    "subject": "Made segment, ray and line more consistent PD-1264",
+    "merge": null,
+    "header": "fix(math-toolbar): Made segment, ray and line more consistent PD-1264",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "1a2ad3789f728e056d950a0da336818ea0128da5",
+    "gitTags": "",
+    "committerDate": "2021-08-13 16:44:42 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/math-input@6.6.0"
+  },
+  {
+    "type": "fix",
+    "scope": "math-input",
+    "subject": "Fixed custom keys behavior and changed label for (),[] and absolute value PD-1251",
+    "merge": null,
+    "header": "fix(math-input): Fixed custom keys behavior and changed label for (),[] and absolute value PD-1251",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "39f2ddbcf0c36c1f1f8b134d6e287f885f81fb63",
+    "gitTags": " (origin/fix/math-input-behavior)",
+    "committerDate": "2021-08-12 11:41:38 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/math-input@6.6.0"
   }
 ]

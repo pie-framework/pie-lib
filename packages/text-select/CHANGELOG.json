@@ -598,5 +598,20 @@
     "committerDate": "2021-07-22 12:12:59 +0300",
     "isTagged": true,
     "tag": "@pie-lib/text-select@1.8.3"
+  },
+  {
+    "type": "fix",
+    "scope": "text-select",
+    "subject": "move prepareText function from pie-elements",
+    "merge": null,
+    "header": "fix(text-select): move prepareText function from pie-elements",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "0eaee810bca925de966d43e2a1a27f358df6b19d",
+    "gitTags": " (origin/fix/text-select-refactor)",
+    "committerDate": "2021-08-09 09:58:13 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/text-select@1.8.5"
   }
 ]
