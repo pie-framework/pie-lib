@@ -273,6 +273,9 @@ const styles = theme => ({
     },
     '& .mq-overarrow-inner-left': {
       display: 'none !important'
+    },
+    '& .mq-overarrow.mq-arrow-both': {
+      minWidth: '1.23em'
     }
   }
 });
