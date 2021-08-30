@@ -10,6 +10,9 @@ import * as operators from './operators';
 import * as log from './log';
 import * as subSup from './sub-sup';
 import * as statistics from './statistics';
+import * as basicOperators from './basic-operators';
+import * as matrices from './matrices';
+import digits from './digits';
 
 const hs = [
   [vars.x, vars.y, exponent.squared, exponent.squareRoot, vars.theta],
@@ -225,4 +228,37 @@ export const keysForGrade = n => {
   if (match) {
     return match.set || [];
   }
+};
+
+const ALL_KEYS = [
+  ...Object.values(basicOperators),
+  ...Object.values(comparison),
+  ...Object.values(constants),
+  ...Object.values(digits),
+  ...Object.values(exponent),
+  ...Object.values(fractions),
+  ...Object.values(geometry),
+  ...Object.values(log),
+  ...Object.values(matrices),
+  ...Object.values(misc),
+  ...Object.values(operators),
+  ...Object.values(statistics),
+  ...Object.values(subSup),
+  ...Object.values(trigonometry),
+  ...Object.values(vars)
+];
+
+export const normalizeAdditionalKeys = additionalKeys => {
+  return (additionalKeys || []).map(additionalkey => {
+    const { latex } = additionalkey;
+    const predefinedKey = (ALL_KEYS || []).find(
+      key =>
+        latex === key.latex ||
+        latex === key.write ||
+        latex === key.command ||
+        latex === key.otherNotation
+    );
+
+    return predefinedKey || additionalkey;
+  });
 };

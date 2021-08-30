@@ -21,7 +21,8 @@ export const minus = set({
 export const divide = set({
   name: 'divide',
   label: DIVIDE,
-  command: '\\divide'
+  command: '\\divide',
+  otherNotation: '\\div'
 });
 
 export const multiply = set({

@@ -39,6 +39,7 @@ exports[`MathInput snapshot renders 1`] = `
               "command": "\\\\divide",
               "label": "÷",
               "name": "divide",
+              "otherNotation": "\\\\div",
             },
           ],
           Array [
