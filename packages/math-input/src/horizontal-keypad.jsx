@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { keysForGrade } from './keys/grades';
+import { keysForGrade, normalizeAdditionalKeys } from './keys/grades';
 import { extendKeySet } from './keys/utils';
 import Keypad from './keypad';
 
@@ -38,13 +38,14 @@ export default class HorizontalKeypad extends React.Component {
 
   render() {
     const { mode, onFocus, noDecimal, className, additionalKeys } = this.props;
+    const normalizedKeys = normalizeAdditionalKeys(additionalKeys);
 
     return (
       <Keypad
         className={className}
         onFocus={onFocus}
         noDecimal={noDecimal}
-        additionalKeys={extendKeySet(keysForGrade(mode), additionalKeys)}
+        additionalKeys={extendKeySet(keysForGrade(mode), normalizedKeys)}
         onPress={this.keypadPress}
       />
     );
