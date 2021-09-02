@@ -132,7 +132,7 @@ export default class Static extends React.Component {
 
   render() {
     const { onBlur, className } = this.props;
-    
+
     return (
       <span
         className={className}
