@@ -65,7 +65,13 @@ export default class Static extends React.Component {
       });
     }
 
-    this.mathField.latex(this.props.latex);
+    try {
+      this.mathField.parseLatex(this.props.latex);
+      this.mathField.latex(this.props.latex);
+    } catch (e) {
+      // default latex if received has errors
+      this.mathField.latex('\\MathQuillMathField[r1]{}');
+    }
   }
 
   blur() {
@@ -126,7 +132,7 @@ export default class Static extends React.Component {
 
   render() {
     const { onBlur, className } = this.props;
-
+    
     return (
       <span
         className={className}
