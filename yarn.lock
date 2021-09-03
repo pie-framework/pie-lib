@@ -3033,10 +3033,10 @@
     magic-string "^0.25.2"
     resolve "^1.11.0"
 
-"@pslb/pslb@^4.2.0":
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/@pslb/pslb/-/pslb-4.2.0.tgz#4cb1d4ad2fd6db5844dd5e24f52ea693cb983077"
-  integrity sha512-tK4u1d7EYRtFRAjzruo4VdK3vVGlEli/8IMUsR/ZipVgOWne6rPWIwhFbSqY/wQLp1NAmjY6P1Q05/6l7bA3ew==
+"@pslb/pslb@^4.3.1":
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/@pslb/pslb/-/pslb-4.3.1.tgz#7fd08c0eb5a750778b5ec0e0990516c01053c6eb"
+  integrity sha512-vz6D98P8yE+d5/wBNdI/y7NHWugKZZk7zEmLKOtazr9M/Q9T4LFSiHKldyYRyA8+Hbnb9n0RgY/Shka+zkt5ew==
   dependencies:
     "@pslb/estree-helper" "^4.2.0"
     "@pslb/plugin-commonjs" "^11.0.3"
