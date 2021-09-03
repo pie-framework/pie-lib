@@ -176,6 +176,7 @@ module.exports = {
           ],
           namespace: [
             '@material-ui/core/styles/colorManipulator',
+            '@material-ui/core/Collapse/index',
             '@material-ui/core/styles',
             '@material-ui/core',
             '@material-ui/icons',
