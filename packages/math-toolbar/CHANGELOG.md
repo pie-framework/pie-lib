@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.7.14...@pie-lib/math-toolbar@1.8.0) (2021-08-30)
+
+
+### Bug Fixes
+
+* **math-toolbar:** Added a min width for line notation PD-1263 ([92a560f](https://github.com/pie-framework/pie-lib/commit/92a560f))
+* **math-toolbar:** Made segment, ray and line more consistent PD-1264 ([1a2ad37](https://github.com/pie-framework/pie-lib/commit/1a2ad37))
+* **math-toolbar & math-input:** render parallel sign with bigger font PD-1258 ([418fc28](https://github.com/pie-framework/pie-lib/commit/418fc28))
+* override arrow style for ray PD-1265 ([815e3a5](https://github.com/pie-framework/pie-lib/commit/815e3a5))
+
+
+### Features
+
+* **math-input, math-toolbar:** add long division button in math editor PD-888 ([3056990](https://github.com/pie-framework/pie-lib/commit/3056990))
+* **math-toolbar:** default to the grade 8 editor PD-1266 ([0cd28a2](https://github.com/pie-framework/pie-lib/commit/0cd28a2))
+
+
+
+
+
 ## [1.7.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.7.12...@pie-lib/math-toolbar@1.7.14) (2021-06-25)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar

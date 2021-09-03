@@ -918,5 +918,20 @@
     "committerDate": "2021-08-04 11:33:03 +0300",
     "isTagged": true,
     "tag": "@pie-lib/render-ui@4.11.9"
+  },
+  {
+    "type": "feat",
+    "scope": "preview-prompt",
+    "subject": "add defaultClassName prop for static classname for pie-print",
+    "merge": null,
+    "header": "feat(preview-prompt): add defaultClassName prop for static classname for pie-print",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "7ca55ba0daaa807f9157f5cb1825ca620dba1672",
+    "gitTags": "",
+    "committerDate": "2021-08-30 11:27:45 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/render-ui@4.12.0"
   }
 ]

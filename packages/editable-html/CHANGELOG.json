@@ -3143,5 +3143,20 @@
     "committerDate": "2021-07-30 11:06:51 +0300",
     "isTagged": true,
     "tag": "@pie-lib/editable-html@7.17.2"
+  },
+  {
+    "type": "fix",
+    "scope": "editor",
+    "subject": "made sure that if the editor loses focus, the onBlur function is called no matter what [PD-1126]",
+    "merge": null,
+    "header": "fix(editor): made sure that if the editor loses focus, the onBlur function is called no matter what [PD-1126]",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "906046c3176d86934a40b0e22c0a4a0166714f4a",
+    "gitTags": "",
+    "committerDate": "2021-08-12 13:40:51 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.17.3"
   }
 ]

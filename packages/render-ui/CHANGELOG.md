@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.12.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.11.9...@pie-lib/render-ui@4.12.0) (2021-08-30)
+
+
+### Features
+
+* **preview-prompt:** add defaultClassName prop for static classname for pie-print ([7ca55ba](https://github.com/pie-framework/pie-lib/commit/7ca55ba))
+
+
+
+
+
 ## [4.11.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.11.8...@pie-lib/render-ui@4.11.9) (2021-08-04)
 
 

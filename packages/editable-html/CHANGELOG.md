@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.17.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.2...@pie-lib/editable-html@7.17.3) (2021-08-30)
+
+
+### Bug Fixes
+
+* **editor:** made sure that if the editor loses focus, the onBlur function is called no matter what [PD-1126] ([906046c](https://github.com/pie-framework/pie-lib/commit/906046c))
+
+
+
+
+
 ## [7.17.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.1...@pie-lib/editable-html@7.17.2) (2021-08-04)
 
 
