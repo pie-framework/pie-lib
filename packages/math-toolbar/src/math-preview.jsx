@@ -81,6 +81,9 @@ const mp = theme => ({
     '& .mq-longdiv-inner': {
       borderTop: '1px solid !important',
       paddingTop: '1.5px !important'
+    },
+    '& .mq-parallelogram': {
+      lineHeight: 0.8
     }
   },
   selected: {
