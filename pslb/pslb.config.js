@@ -160,6 +160,15 @@ module.exports = {
   libs: {
     repository: 'pie-framework/pie-lib',
     packages: [
+      {
+        name: '@pie-lib/math-rendering-module',
+        output: packagesDir,
+        repository: 'pie-framework/pie-lib',
+        extensions: { commonJs },
+        imports: {
+          namespace: ['@pie-lib/math-rendering']
+        }
+      },
       // core shared module lib
       {
         name: '@pie-lib/shared-module',
@@ -191,15 +200,6 @@ module.exports = {
         extensions: { commonJs },
         imports: {
           namespace: ['@pie-lib/drag']
-        }
-      },
-      {
-        name: '@pie-lib/math-rendering-module',
-        output: packagesDir,
-        repository: 'pie-framework/pie-lib',
-        extensions: { commonJs },
-        imports: {
-          namespace: ['@pie-lib/math-rendering']
         }
       },
       {
