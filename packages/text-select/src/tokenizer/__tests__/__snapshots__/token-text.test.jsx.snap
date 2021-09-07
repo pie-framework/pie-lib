@@ -5,12 +5,13 @@ exports[`token-text snapshot renders 1`] = `
   onMouseUp={[Function]}
 >
   <WithStyles(Component)
-    end={7}
+    end={13}
     key="0"
     onClick={[Function]}
     predefined={true}
     start={0}
-    text="foo bar"
+    text="lorem
+foo bar"
   />
 </div>
 `;

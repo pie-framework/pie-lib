@@ -76,6 +76,12 @@ export default class TokenText extends React.Component {
                 start: offset,
                 end: endIndex
               };
+              const newLineOffset = (text.slice(0, token.start).match(/\n/g) || '').length;
+
+              if (newLineOffset > 0) {
+                token.start += newLineOffset;
+                token.end += newLineOffset;
+              }
 
               onSelectToken(token, tokensToRemove);
               clearSelection();
