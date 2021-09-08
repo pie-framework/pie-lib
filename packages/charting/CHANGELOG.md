@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.5.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.5.10...@pie-lib/charting@4.5.11) (2021-09-08)
+
+
+### Bug Fixes
+
+* **charting:** calculate step and labelStep if they are not defined or if tickLabels are crowded PD-1016 ([d215ea0](https://github.com/pie-framework/pie-lib/commit/d215ea0))
+* **charting:** Updated label font size ([d7905e0](https://github.com/pie-framework/pie-lib/commit/d7905e0))
+
+
+
+
+
 ## [4.5.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.5.8...@pie-lib/charting@4.5.10) (2021-06-25)
 
 **Note:** Version bump only for package @pie-lib/charting

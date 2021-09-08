@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.6.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.6.0...@pie-lib/math-input@6.6.1) (2021-09-08)
+
+
+### Bug Fixes
+
+* **math-input:** default latex when received is wrong ([d872f60](https://github.com/pie-framework/pie-lib/commit/d872f60))
+* **math-input:** default latex when received is wrong (2) ([dc71307](https://github.com/pie-framework/pie-lib/commit/dc71307))
+* **math-input:** fix e button on advanced algebra math editor PD-1280 ([dbfb53b](https://github.com/pie-framework/pie-lib/commit/dbfb53b))
+* **math-input:** Fixed arrows button for pits ([66dd6a9](https://github.com/pie-framework/pie-lib/commit/66dd6a9))
+
+
+
+
+
 # [6.6.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.5.14...@pie-lib/math-input@6.6.0) (2021-08-30)
 
 

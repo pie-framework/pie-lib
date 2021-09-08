@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.8.0...@pie-lib/math-toolbar@1.8.1) (2021-09-08)
+
+
+### Bug Fixes
+
+* **math-toolbar:** Fixed arrows for pits ([f22208b](https://github.com/pie-framework/pie-lib/commit/f22208b))
+
+
+
+
+
 # [1.8.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.7.14...@pie-lib/math-toolbar@1.8.0) (2021-08-30)
 
 
