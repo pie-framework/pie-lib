@@ -533,5 +533,35 @@
     "committerDate": "2021-05-11 09:05:56 +0300",
     "isTagged": true,
     "tag": "@pie-lib/charting@4.5.10"
+  },
+  {
+    "type": "fix",
+    "scope": "charting",
+    "subject": "Updated label font size",
+    "merge": null,
+    "header": "fix(charting): Updated label font size",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "d7905e0fd66c7a2254ace1b8ab4492de371816b1",
+    "gitTags": "",
+    "committerDate": "2021-03-26 13:31:22 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/charting@4.5.11"
+  },
+  {
+    "type": "fix",
+    "scope": "charting",
+    "subject": "calculate step and labelStep if they are not defined or if tickLabels are crowded PD-1016",
+    "merge": null,
+    "header": "fix(charting): calculate step and labelStep if they are not defined or if tickLabels are crowded PD-1016",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "d215ea002c64505edaa13cd55a8e98c5190f053c",
+    "gitTags": "",
+    "committerDate": "2021-03-19 19:13:17 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/charting@4.5.11"
   }
 ]
