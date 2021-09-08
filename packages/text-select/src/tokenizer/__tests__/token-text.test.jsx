@@ -6,7 +6,7 @@ import { clearSelection, getCaretCharacterOffsetWithin } from '../selection-util
 
 jest.mock('../selection-utils', () => ({
   clearSelection: jest.fn(),
-  getCaretCharacterOffsetWithin: jest.fn().mockReturnValue(3)
+  getCaretCharacterOffsetWithin: jest.fn().mockReturnValue(10)
 }));
 
 jest.mock('../builder', () => ({
@@ -16,9 +16,9 @@ jest.mock('../builder', () => ({
   }),
   normalize: jest.fn().mockReturnValue([
     {
-      text: 'foo bar',
+      text: 'lorem\nfoo bar',
       start: 0,
-      end: 7,
+      end: 13,
       predefined: true
     }
   ])
@@ -28,7 +28,7 @@ const tokens = () => [
   {
     start: 0,
     end: 7,
-    text: 'foo bar'
+    text: 'lorem\nfoo bar'
   }
 ];
 
@@ -43,7 +43,7 @@ describe('token-text', () => {
         <TokenText
           onTokenClick={jest.fn()}
           onSelectToken={jest.fn()}
-          text="foo bar"
+          text="lorem\nfoo bar"
           tokens={tokens()}
         />
       );
@@ -67,7 +67,7 @@ describe('token-text', () => {
         <TokenText
           onTokenClick={onTokenClick}
           onSelectToken={onSelectToken}
-          text="foo bar"
+          text="lorem\nfoo bar"
           tokens={tokens()}
         />
       );
@@ -106,7 +106,7 @@ describe('token-text', () => {
         });
         w.instance().root = {};
         w.instance().mouseUp(event);
-        expect(onSelectToken).toBeCalledWith({ text: 'bar', start: 3, end: 6 }, []);
+        expect(onSelectToken).toBeCalledWith({ text: 'bar', start: 10, end: 13 }, []);
       });
     });
   });
