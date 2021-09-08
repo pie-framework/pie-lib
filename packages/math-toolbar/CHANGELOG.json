@@ -843,5 +843,20 @@
     "committerDate": "2021-08-10 09:31:29 +0300",
     "isTagged": true,
     "tag": "@pie-lib/math-toolbar@1.8.0"
+  },
+  {
+    "type": "fix",
+    "scope": "math-toolbar",
+    "subject": "Fixed arrows for pits",
+    "merge": null,
+    "header": "fix(math-toolbar): Fixed arrows for pits",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "f22208b9b7a29eba20415c92833b1d1b71f7f8cf",
+    "gitTags": "",
+    "committerDate": "2021-09-06 16:06:43 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/math-toolbar@1.8.1"
   }
 ]
