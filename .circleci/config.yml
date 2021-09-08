@@ -49,7 +49,7 @@ jobs:
       - restore_cache: *restore_cache
       - run: yarn install
       - save_cache: *save_cache
-      - run: scripts/build release --next --skipForcePublish
+      - run: scripts/build release --next --skipForcePublish --token $NPM_TOKEN
 
   release_build:
     <<: *defaults
@@ -59,7 +59,7 @@ jobs:
       - restore_cache: *restore_cache
       - run: yarn install
       - save_cache: *save_cache
-      - run: scripts/build release
+      - run: scripts/build release --token $NPM_TOKEN
 
   deploy_demo:
     <<: *defaults
