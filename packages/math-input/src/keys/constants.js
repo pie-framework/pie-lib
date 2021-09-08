@@ -14,5 +14,6 @@ export const eulers = set({
   name: 'Eulers',
   label: 'e',
   latex: 'e',
+  command: 'e',
   category: 'constants'
 });
