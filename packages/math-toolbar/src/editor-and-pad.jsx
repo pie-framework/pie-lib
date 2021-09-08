@@ -223,6 +223,9 @@ const styles = theme => ({
     },
     '& .mq-overarrow.mq-arrow-both': {
       minWidth: '1.23em',
+      '& *': {
+        lineHeight: '1 !important'
+      },
       '&:before': {
         top: '-0.4em',
         left: '-1px'

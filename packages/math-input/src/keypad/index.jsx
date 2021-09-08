@@ -41,6 +41,9 @@ const LatexButton = withStyles(theme => ({
       marginTop: '0 !important',
       borderTop: '2px solid black',
       '&.mq-arrow-both': {
+        '& *': {
+          lineHeight: '1 !important'
+        },
         '&:before': {
           fontSize: '80%',
           left: 'calc(-13%)',
