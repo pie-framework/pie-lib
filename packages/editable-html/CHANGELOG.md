@@ -39,253 +39,142 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [7.17.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.16.19...@pie-lib/editable-html@7.17.0) (2021-07-23)
 
-
 ### Bug Fixes
 
-* **editable-html:** add refs for editors, fix propTypes warnings for PD-1230 ([c6e3a2a](https://github.com/pie-framework/pie-lib/commit/c6e3a2a))
-* **editable-html:** Updated serialization PD-859 ([5f30897](https://github.com/pie-framework/pie-lib/commit/5f30897))
-
+- **editable-html:** add refs for editors, fix propTypes warnings for PD-1230 ([c6e3a2a](https://github.com/pie-framework/pie-lib/commit/c6e3a2a))
+- **editable-html:** Updated serialization PD-859 ([5f30897](https://github.com/pie-framework/pie-lib/commit/5f30897))
 
 ### Features
 
-* **editable-html:** add prop that allows editable-html fields to be validated PD-601 ([2fe2b9b](https://github.com/pie-framework/pie-lib/commit/2fe2b9b))
-
-
-
-
+- **editable-html:** add prop that allows editable-html fields to be validated PD-601 ([2fe2b9b](https://github.com/pie-framework/pie-lib/commit/2fe2b9b))
 
 ## [7.16.19](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.16.17...@pie-lib/editable-html@7.16.19) (2021-06-25)
 
 **Note:** Version bump only for package @pie-lib/editable-html
 
-
-
-
-
 ## [7.16.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.16.16...@pie-lib/editable-html@7.16.17) (2021-06-25)
-
 
 ### Bug Fixes
 
-* **editable-html:** Fixed error checking makes it difficult to type a URL - PD-1082 ([42c5ad3](https://github.com/pie-framework/pie-lib/commit/42c5ad3))
-* **editable-html:** insert video should not accept audio and vice versa PD-832 ([4e1e0a3](https://github.com/pie-framework/pie-lib/commit/4e1e0a3))
-* **editable-html:** remove green checkmark next to the delete button on the toolbar PD-1125 ([b2cb463](https://github.com/pie-framework/pie-lib/commit/b2cb463))
-* **editable-html:** Text edits will remain when resize window - PD-356 ([c06caaf](https://github.com/pie-framework/pie-lib/commit/c06caaf))
-* **inline-dropdown:** Called onBlur on editable-html - PD-294 ([437ef1d](https://github.com/pie-framework/pie-lib/commit/437ef1d))
-* **multi-trait-rubric:** Added right and left alignment for the toolbar ([f3def8b](https://github.com/pie-framework/pie-lib/commit/f3def8b))
-* **table:** made sure table block is not the latest node in the document [PD-341] ([90bb47a](https://github.com/pie-framework/pie-lib/commit/90bb47a))
-
-
-
-
+- **editable-html:** Fixed error checking makes it difficult to type a URL - PD-1082 ([42c5ad3](https://github.com/pie-framework/pie-lib/commit/42c5ad3))
+- **editable-html:** insert video should not accept audio and vice versa PD-832 ([4e1e0a3](https://github.com/pie-framework/pie-lib/commit/4e1e0a3))
+- **editable-html:** remove green checkmark next to the delete button on the toolbar PD-1125 ([b2cb463](https://github.com/pie-framework/pie-lib/commit/b2cb463))
+- **editable-html:** Text edits will remain when resize window - PD-356 ([c06caaf](https://github.com/pie-framework/pie-lib/commit/c06caaf))
+- **inline-dropdown:** Called onBlur on editable-html - PD-294 ([437ef1d](https://github.com/pie-framework/pie-lib/commit/437ef1d))
+- **multi-trait-rubric:** Added right and left alignment for the toolbar ([f3def8b](https://github.com/pie-framework/pie-lib/commit/f3def8b))
+- **table:** made sure table block is not the latest node in the document [PD-341](<[90bb47a](https://github.com/pie-framework/pie-lib/commit/90bb47a)>)
 
 ## [7.16.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.16.15...@pie-lib/editable-html@7.16.16) (2021-04-06)
 
 **Note:** Version bump only for package @pie-lib/editable-html
 
-
-
-
-
 ## [7.16.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.16.14...@pie-lib/editable-html@7.16.15) (2021-04-02)
 
 **Note:** Version bump only for package @pie-lib/editable-html
 
-
-
-
-
 ## [7.16.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.16.13...@pie-lib/editable-html@7.16.14) (2021-03-22)
-
 
 ### Bug Fixes
 
-* **editable-html:** custom key fix for math keypad - PD-388 ([adba7f0](https://github.com/pie-framework/pie-lib/commit/adba7f0))
-
-
-
-
+- **editable-html:** custom key fix for math keypad - PD-388 ([adba7f0](https://github.com/pie-framework/pie-lib/commit/adba7f0))
 
 ## [7.16.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.16.12...@pie-lib/editable-html@7.16.13) (2021-03-15)
 
 **Note:** Version bump only for package @pie-lib/editable-html
 
-
-
-
-
 ## [7.16.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.16.11...@pie-lib/editable-html@7.16.12) (2021-03-03)
 
 **Note:** Version bump only for package @pie-lib/editable-html
-
-
-
-
 
 ## [7.16.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.16.10...@pie-lib/editable-html@7.16.11) (2021-03-02)
 
 **Note:** Version bump only for package @pie-lib/editable-html
 
-
-
-
-
 ## [7.16.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.16.9...@pie-lib/editable-html@7.16.10) (2021-03-01)
 
 **Note:** Version bump only for package @pie-lib/editable-html
 
-
-
-
-
 ## [7.16.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.16.8...@pie-lib/editable-html@7.16.9) (2021-03-01)
-
 
 ### Bug Fixes
 
-* **editable-html:** add delete button for response area PD-778 ([234ba06](https://github.com/pie-framework/pie-lib/commit/234ba06))
-* **editable-html:** add min and max height to fix PD-694 ([955db39](https://github.com/pie-framework/pie-lib/commit/955db39))
-
-
-
-
+- **editable-html:** add delete button for response area PD-778 ([234ba06](https://github.com/pie-framework/pie-lib/commit/234ba06))
+- **editable-html:** add min and max height to fix PD-694 ([955db39](https://github.com/pie-framework/pie-lib/commit/955db39))
 
 ## [7.16.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.16.7...@pie-lib/editable-html@7.16.8) (2021-02-15)
 
-
 ### Bug Fixes
 
-* demo ([affa119](https://github.com/pie-framework/pie-lib/commit/affa119))
-
-
-
-
+- demo ([affa119](https://github.com/pie-framework/pie-lib/commit/affa119))
 
 ## [7.16.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.16.5...@pie-lib/editable-html@7.16.7) (2021-02-15)
 
 **Note:** Version bump only for package @pie-lib/editable-html
 
-
-
-
-
 ## [7.16.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.16.4...@pie-lib/editable-html@7.16.5) (2021-02-15)
 
 **Note:** Version bump only for package @pie-lib/editable-html
-
-
-
-
 
 ## [7.16.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.16.3...@pie-lib/editable-html@7.16.4) (2021-02-04)
 
 **Note:** Version bump only for package @pie-lib/editable-html
 
-
-
-
-
 ## [7.16.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.16.2...@pie-lib/editable-html@7.16.3) (2021-02-01)
 
 **Note:** Version bump only for package @pie-lib/editable-html
-
-
-
-
 
 ## [7.16.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.16.1...@pie-lib/editable-html@7.16.2) (2021-01-28)
 
 **Note:** Version bump only for package @pie-lib/editable-html
 
-
-
-
-
 ## [7.16.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.16.0...@pie-lib/editable-html@7.16.1) (2021-01-28)
 
 **Note:** Version bump only for package @pie-lib/editable-html
 
-
-
-
-
 # [7.16.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.15.0...@pie-lib/editable-html@7.16.0) (2021-01-25)
-
 
 ### Features
 
-* **editable-html:** remove Code plugin - PD-463 ([d830231](https://github.com/pie-framework/pie-lib/commit/d830231))
-
-
-
-
+- **editable-html:** remove Code plugin - PD-463 ([d830231](https://github.com/pie-framework/pie-lib/commit/d830231))
 
 # [7.15.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.14.1...@pie-lib/editable-html@7.15.0) (2021-01-11)
 
-
 ### Bug Fixes
 
-* Added fix for text wrapping into next line and also font style is overrided by parent styling ([60ff10f](https://github.com/pie-framework/pie-lib/commit/60ff10f))
-* Due to resize of window, editor text gets reverted to previous state value. PD-356 ([c710829](https://github.com/pie-framework/pie-lib/commit/c710829))
-* Due to resize of window, editor text gets reverted to previous state value. PD-356 ([9f6b988](https://github.com/pie-framework/pie-lib/commit/9f6b988))
-
+- Added fix for text wrapping into next line and also font style is overrided by parent styling ([60ff10f](https://github.com/pie-framework/pie-lib/commit/60ff10f))
+- Due to resize of window, editor text gets reverted to previous state value. PD-356 ([c710829](https://github.com/pie-framework/pie-lib/commit/c710829))
+- Due to resize of window, editor text gets reverted to previous state value. PD-356 ([9f6b988](https://github.com/pie-framework/pie-lib/commit/9f6b988))
 
 ### Features
 
-* **editable-html:** add better math keypad support - PD-355 ([bc4e586](https://github.com/pie-framework/pie-lib/commit/bc4e586))
-
-
-
-
+- **editable-html:** add better math keypad support - PD-355 ([bc4e586](https://github.com/pie-framework/pie-lib/commit/bc4e586))
 
 ## [7.14.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.14.0...@pie-lib/editable-html@7.14.1) (2020-11-09)
 
 **Note:** Version bump only for package @pie-lib/editable-html
 
-
-
-
-
 # [7.14.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.13.5...@pie-lib/editable-html@7.14.0) (2020-11-07)
-
 
 ### Features
 
-* **media:** fixed design and some warnings ([df7d84d](https://github.com/pie-framework/pie-lib/commit/df7d84d))
-* **media:** implemented editing functionality plus some error some more handlng ([66732a3](https://github.com/pie-framework/pie-lib/commit/66732a3))
-* **media:** implemented some error handling and fixed a couple of bugs with inserting the media embed [pd501] ([1616ba2](https://github.com/pie-framework/pie-lib/commit/1616ba2))
-* **media:** made sure width and height are used, and toolbar is relative positioned ([9061067](https://github.com/pie-framework/pie-lib/commit/9061067))
-
-
-
-
+- **media:** fixed design and some warnings ([df7d84d](https://github.com/pie-framework/pie-lib/commit/df7d84d))
+- **media:** implemented editing functionality plus some error some more handlng ([66732a3](https://github.com/pie-framework/pie-lib/commit/66732a3))
+- **media:** implemented some error handling and fixed a couple of bugs with inserting the media embed [pd501](<[1616ba2](https://github.com/pie-framework/pie-lib/commit/1616ba2)>)
+- **media:** made sure width and height are used, and toolbar is relative positioned ([9061067](https://github.com/pie-framework/pie-lib/commit/9061067))
 
 ## [7.13.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.13.4...@pie-lib/editable-html@7.13.5) (2020-10-30)
 
-
 ### Bug Fixes
 
-* missing dependency ([86b18d2](https://github.com/pie-framework/pie-lib/commit/86b18d2))
-
-
-
-
+- missing dependency ([86b18d2](https://github.com/pie-framework/pie-lib/commit/86b18d2))
 
 ## [7.13.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.13.3...@pie-lib/editable-html@7.13.4) (2020-10-28)
 
 **Note:** Version bump only for package @pie-lib/editable-html
 
-
-
-
-
 ## [7.13.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.13.2...@pie-lib/editable-html@7.13.3) (2020-10-26)
 
 **Note:** Version bump only for package @pie-lib/editable-html
-
-
-
-
 
 ## [7.13.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.13.1...@pie-lib/editable-html@7.13.2) (2020-10-26)
 

@@ -180,6 +180,7 @@ export class RawChartAxes extends React.Component {
     const bandWidth = xBand && typeof xBand.bandwidth === 'function' && xBand.bandwidth();
     // for chartType "line", bandWidth will be 0, so we have to calculate it
     const barWidth = bandWidth || (scale.x && scale.x(domain.max) / categories.length);
+
     const rowTickValues = getTickValues({ ...range, step: range.labelStep });
     const fontSize = theme && theme.typography ? theme.typography.fontSize : 14;
     const rotate = getRotateAngle(fontSize, height);

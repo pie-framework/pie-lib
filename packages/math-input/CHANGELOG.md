@@ -25,456 +25,244 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @pie-lib/math-input
 
-
-
-
-
 ## [6.5.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.5.11...@pie-lib/math-input@6.5.12) (2021-06-25)
 
 **Note:** Version bump only for package @pie-lib/math-input
-
-
-
-
 
 ## [6.5.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.5.10...@pie-lib/math-input@6.5.11) (2021-04-06)
 
 **Note:** Version bump only for package @pie-lib/math-input
 
-
-
-
-
 ## [6.5.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.5.9...@pie-lib/math-input@6.5.10) (2021-03-22)
-
 
 ### Bug Fixes
 
-* **math-toolbar:** fix double arrow button style mentioned in PD-48 ([145b060](https://github.com/pie-framework/pie-lib/commit/145b060))
-
-
-
-
+- **math-toolbar:** fix double arrow button style mentioned in PD-48 ([145b060](https://github.com/pie-framework/pie-lib/commit/145b060))
 
 ## [6.5.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.5.8...@pie-lib/math-input@6.5.9) (2021-03-15)
 
 **Note:** Version bump only for package @pie-lib/math-input
 
-
-
-
-
 ## [6.5.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.5.7...@pie-lib/math-input@6.5.8) (2021-03-03)
-
 
 ### Bug Fixes
 
-* rename the 'Everything' math editor as the 'Miscellaneous' math editor ([6b5c0b3](https://github.com/pie-framework/pie-lib/commit/6b5c0b3))
-
-
-
-
+- rename the 'Everything' math editor as the 'Miscellaneous' math editor ([6b5c0b3](https://github.com/pie-framework/pie-lib/commit/6b5c0b3))
 
 ## [6.5.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.5.6...@pie-lib/math-input@6.5.7) (2021-03-02)
 
-
 ### Bug Fixes
 
-* override math input and math toolbar style for ibx PD-774 ([0969756](https://github.com/pie-framework/pie-lib/commit/0969756))
-
-
-
-
+- override math input and math toolbar style for ibx PD-774 ([0969756](https://github.com/pie-framework/pie-lib/commit/0969756))
 
 ## [6.5.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.5.5...@pie-lib/math-input@6.5.6) (2021-03-01)
 
 **Note:** Version bump only for package @pie-lib/math-input
 
-
-
-
-
 ## [6.5.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.5.4...@pie-lib/math-input@6.5.5) (2021-03-01)
-
 
 ### Bug Fixes
 
-* In some situations, math editors will not accept keyboard entry. PD-655 ([876de31](https://github.com/pie-framework/pie-lib/commit/876de31))
-
-
-
-
+- In some situations, math editors will not accept keyboard entry. PD-655 ([876de31](https://github.com/pie-framework/pie-lib/commit/876de31))
 
 ## [6.5.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.5.3...@pie-lib/math-input@6.5.4) (2021-02-15)
 
-
 ### Bug Fixes
 
-* demo ([affa119](https://github.com/pie-framework/pie-lib/commit/affa119))
-
-
-
-
+- demo ([affa119](https://github.com/pie-framework/pie-lib/commit/affa119))
 
 ## [6.5.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.5.1...@pie-lib/math-input@6.5.3) (2021-02-15)
 
 **Note:** Version bump only for package @pie-lib/math-input
 
-
-
-
-
 ## [6.5.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.5.0...@pie-lib/math-input@6.5.1) (2020-08-11)
 
 **Note:** Version bump only for package @pie-lib/math-input
 
-
-
-
-
 # [6.5.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.4.20...@pie-lib/math-input@6.5.0) (2020-06-05)
-
 
 ### Features
 
-* **math-input:** tooltip keypad support added ([7ae60a3](https://github.com/pie-framework/pie-lib/commit/7ae60a3))
-
-
-
-
+- **math-input:** tooltip keypad support added ([7ae60a3](https://github.com/pie-framework/pie-lib/commit/7ae60a3))
 
 ## [6.4.20](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.4.19...@pie-lib/math-input@6.4.20) (2020-05-15)
 
-
 ### Bug Fixes
 
-* Remove duplicated key for Grade 8 - HS. PD-39 ([94497d0](https://github.com/pie-framework/pie-lib/commit/94497d0))
-
-
-
-
+- Remove duplicated key for Grade 8 - HS. PD-39 ([94497d0](https://github.com/pie-framework/pie-lib/commit/94497d0))
 
 ## [6.4.19](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.4.18...@pie-lib/math-input@6.4.19) (2020-05-06)
 
 **Note:** Version bump only for package @pie-lib/math-input
 
-
-
-
-
 ## [6.4.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.4.17...@pie-lib/math-input@6.4.18) (2020-05-05)
 
 **Note:** Version bump only for package @pie-lib/math-input
 
-
-
-
-
 ## [6.4.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.4.16...@pie-lib/math-input@6.4.17) (2020-04-28)
-
 
 ### Bug Fixes
 
-* PD-69: A legacy multi-part item consisting of two equation response interactions appears with no response areas ([fff4ec7](https://github.com/pie-framework/pie-lib/commit/fff4ec7))
-
-
-
-
+- PD-69: A legacy multi-part item consisting of two equation response interactions appears with no response areas ([fff4ec7](https://github.com/pie-framework/pie-lib/commit/fff4ec7))
 
 ## [6.4.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.4.15...@pie-lib/math-input@6.4.16) (2020-04-27)
 
 **Note:** Version bump only for package @pie-lib/math-input
 
-
-
-
-
 ## [6.4.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.4.14...@pie-lib/math-input@6.4.15) (2020-04-21)
-
 
 ### Bug Fixes
 
-* PD-155: The "pink" background-color set on .mq-empty is overwritten by mathquill.css with "transparent". Added "important" to prevent this. ([18e4ef7](https://github.com/pie-framework/pie-lib/commit/18e4ef7))
-* PD-156: Formatting issues with math editor buttons, specifically in IBX. Updated design for arrows and line, fixed fonts issue (different then expected + various function buttons are capitalized). ([61be51c](https://github.com/pie-framework/pie-lib/commit/61be51c))
-* PD-157: In IBX specifically, characters on math editors are too small. (because they are overwritten) ([3792162](https://github.com/pie-framework/pie-lib/commit/3792162))
-* PD-158: In Item Preview specifically, in IBX only, the math editor radical button and the "squared" button are not correctly labeled ([12f3cd5](https://github.com/pie-framework/pie-lib/commit/12f3cd5))
-
-
-
-
+- PD-155: The "pink" background-color set on .mq-empty is overwritten by mathquill.css with "transparent". Added "important" to prevent this. ([18e4ef7](https://github.com/pie-framework/pie-lib/commit/18e4ef7))
+- PD-156: Formatting issues with math editor buttons, specifically in IBX. Updated design for arrows and line, fixed fonts issue (different then expected + various function buttons are capitalized). ([61be51c](https://github.com/pie-framework/pie-lib/commit/61be51c))
+- PD-157: In IBX specifically, characters on math editors are too small. (because they are overwritten) ([3792162](https://github.com/pie-framework/pie-lib/commit/3792162))
+- PD-158: In Item Preview specifically, in IBX only, the math editor radical button and the "squared" button are not correctly labeled ([12f3cd5](https://github.com/pie-framework/pie-lib/commit/12f3cd5))
 
 ## [6.4.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.4.13...@pie-lib/math-input@6.4.14) (2020-04-14)
 
-
 ### Bug Fixes
 
-* **math-input:** remove extra subscript button from statistics keyset - PD-38 ([17a0659](https://github.com/pie-framework/pie-lib/commit/17a0659))
-
-
-
-
+- **math-input:** remove extra subscript button from statistics keyset - PD-38 ([17a0659](https://github.com/pie-framework/pie-lib/commit/17a0659))
 
 ## [6.4.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.4.12...@pie-lib/math-input@6.4.13) (2020-04-08)
 
 **Note:** Version bump only for package @pie-lib/math-input
 
-
-
-
-
 ## [6.4.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.4.11...@pie-lib/math-input@6.4.12) (2020-03-31)
-
 
 ### Bug Fixes
 
-* remove require (bad es import) ([5c1e025](https://github.com/pie-framework/pie-lib/commit/5c1e025))
-
-
-
-
+- remove require (bad es import) ([5c1e025](https://github.com/pie-framework/pie-lib/commit/5c1e025))
 
 ## [6.4.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.4.10...@pie-lib/math-input@6.4.11) (2020-03-31)
 
-
 ### Bug Fixes
 
-* rm ExportNamespaceSpecifier ([970e2ed](https://github.com/pie-framework/pie-lib/commit/970e2ed))
-
-
-
-
+- rm ExportNamespaceSpecifier ([970e2ed](https://github.com/pie-framework/pie-lib/commit/970e2ed))
 
 ## [6.4.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.4.9...@pie-lib/math-input@6.4.10) (2020-03-31)
 
-
 ### Bug Fixes
 
-* correct module path ([b6b5b6f](https://github.com/pie-framework/pie-lib/commit/b6b5b6f))
-
-
-
-
+- correct module path ([b6b5b6f](https://github.com/pie-framework/pie-lib/commit/b6b5b6f))
 
 ## [6.4.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.4.8...@pie-lib/math-input@6.4.9) (2020-03-31)
 
 **Note:** Version bump only for package @pie-lib/math-input
 
-
-
-
-
 ## [6.4.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.4.7...@pie-lib/math-input@6.4.8) (2020-03-30)
 
 **Note:** Version bump only for package @pie-lib/math-input
-
-
-
-
 
 ## [6.4.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.4.6...@pie-lib/math-input@6.4.7) (2020-03-30)
 
 **Note:** Version bump only for package @pie-lib/math-input
 
-
-
-
-
 ## [6.4.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.4.5...@pie-lib/math-input@6.4.6) (2020-03-30)
 
 **Note:** Version bump only for package @pie-lib/math-input
-
-
-
-
 
 ## [6.4.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.4.4...@pie-lib/math-input@6.4.5) (2020-03-30)
 
 **Note:** Version bump only for package @pie-lib/math-input
 
-
-
-
-
 ## [6.4.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.4.3...@pie-lib/math-input@6.4.4) (2020-03-30)
-
 
 ### Bug Fixes
 
-* correct export syntax ([db7fcc0](https://github.com/pie-framework/pie-lib/commit/db7fcc0))
-
-
-
-
+- correct export syntax ([db7fcc0](https://github.com/pie-framework/pie-lib/commit/db7fcc0))
 
 ## [6.4.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.4.2...@pie-lib/math-input@6.4.3) (2020-03-30)
 
-
 ### Bug Fixes
 
-* correct export syntax ([10c40b1](https://github.com/pie-framework/pie-lib/commit/10c40b1))
-
-
-
-
+- correct export syntax ([10c40b1](https://github.com/pie-framework/pie-lib/commit/10c40b1))
 
 ## [6.4.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.4.1...@pie-lib/math-input@6.4.2) (2020-03-30)
 
-
 ### Bug Fixes
 
-* add module prop to package.json ([df40020](https://github.com/pie-framework/pie-lib/commit/df40020))
-
-
-
-
+- add module prop to package.json ([df40020](https://github.com/pie-framework/pie-lib/commit/df40020))
 
 ## [6.4.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.4.0...@pie-lib/math-input@6.4.1) (2020-03-18)
 
 **Note:** Version bump only for package @pie-lib/math-input
 
-
-
-
-
 # [6.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.3.11...@pie-lib/math-input@6.4.0) (2020-03-06)
-
 
 ### Bug Fixes
 
-* **math-input:** fix Static rootblock logic, failsafe for finding math block id ch3518 ([08df6db](https://github.com/pie-framework/pie-lib/commit/08df6db))
-
+- **math-input:** fix Static rootblock logic, failsafe for finding math block id ch3518 ([08df6db](https://github.com/pie-framework/pie-lib/commit/08df6db))
 
 ### Features
 
-* bump @pie-framework/mathquill@^1.0.0 ([d43c5c5](https://github.com/pie-framework/pie-lib/commit/d43c5c5))
-* bump @pie-framework/mathquill@^1.1.0 ([31dbed8](https://github.com/pie-framework/pie-lib/commit/31dbed8))
-
-
-
-
+- bump @pie-framework/mathquill@^1.0.0 ([d43c5c5](https://github.com/pie-framework/pie-lib/commit/d43c5c5))
+- bump @pie-framework/mathquill@^1.1.0 ([31dbed8](https://github.com/pie-framework/pie-lib/commit/31dbed8))
 
 ## [6.3.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.3.10...@pie-lib/math-input@6.3.11) (2020-02-11)
 
 **Note:** Version bump only for package @pie-lib/math-input
 
-
-
-
-
 ## [6.3.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.3.9...@pie-lib/math-input@6.3.10) (2020-02-05)
-
 
 ### Bug Fixes
 
-* 6287: Setting equation editor as a string (eg: '6') works as well (In OT, a math editor for an Equation Response item is missing a critical button as well as many other expected buttons) ([a21f04b](https://github.com/pie-framework/pie-lib/commit/a21f04b))
-
-
-
-
+- 6287: Setting equation editor as a string (eg: '6') works as well (In OT, a math editor for an Equation Response item is missing a critical button as well as many other expected buttons) ([a21f04b](https://github.com/pie-framework/pie-lib/commit/a21f04b))
 
 ## [6.3.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.3.8...@pie-lib/math-input@6.3.9) (2020-01-27)
 
-
 ### Bug Fixes
 
-* 6264: Math editor in OT has button labels that are very small and impact legibility and usability (don't use rem to determine font size, use percentage instead) ([94f9d3b](https://github.com/pie-framework/pie-lib/commit/94f9d3b))
-* 6264: Math editor in OT has button labels that are very small and impact legibility and usability (don't use rem to determine font size) ([da50c12](https://github.com/pie-framework/pie-lib/commit/da50c12))
-
-
-
-
+- 6264: Math editor in OT has button labels that are very small and impact legibility and usability (don't use rem to determine font size, use percentage instead) ([94f9d3b](https://github.com/pie-framework/pie-lib/commit/94f9d3b))
+- 6264: Math editor in OT has button labels that are very small and impact legibility and usability (don't use rem to determine font size) ([da50c12](https://github.com/pie-framework/pie-lib/commit/da50c12))
 
 ## [6.3.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.3.7...@pie-lib/math-input@6.3.8) (2019-12-19)
 
-
 ### Bug Fixes
 
-* rm bad import ([fe6673d](https://github.com/pie-framework/pie-lib/commit/fe6673d))
-
-
-
-
+- rm bad import ([fe6673d](https://github.com/pie-framework/pie-lib/commit/fe6673d))
 
 ## [6.3.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.3.6...@pie-lib/math-input@6.3.7) (2019-12-18)
 
-
 ### Bug Fixes
 
-* do not add keys if they already exist in keyset [ch5653] ([fbccf3b](https://github.com/pie-framework/pie-lib/commit/fbccf3b))
-
-
-
-
+- do not add keys if they already exist in keyset [ch5653](<[fbccf3b](https://github.com/pie-framework/pie-lib/commit/fbccf3b)>)
 
 ## [6.3.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.3.5...@pie-lib/math-input@6.3.6) (2019-11-05)
 
-
 ### Bug Fixes
 
-* handle latex parsing errors PIE-145 ([99905ea](https://github.com/pie-framework/pie-lib/commit/99905ea))
-
-
-
-
+- handle latex parsing errors PIE-145 ([99905ea](https://github.com/pie-framework/pie-lib/commit/99905ea))
 
 ## [6.3.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.3.4...@pie-lib/math-input@6.3.5) (2019-08-21)
 
 **Note:** Version bump only for package @pie-lib/math-input
 
-
-
-
-
 ## [6.3.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.3.3...@pie-lib/math-input@6.3.4) (2019-07-08)
 
 **Note:** Version bump only for package @pie-lib/math-input
-
-
-
-
 
 ## [6.3.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.3.2...@pie-lib/math-input@6.3.3) (2019-07-05)
 
 **Note:** Version bump only for package @pie-lib/math-input
 
-
-
-
-
 ## [6.3.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.3.1...@pie-lib/math-input@6.3.2) (2019-07-02)
 
 **Note:** Version bump only for package @pie-lib/math-input
-
-
-
-
 
 ## [6.3.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.3.0...@pie-lib/math-input@6.3.1) (2019-06-17)
 
 **Note:** Version bump only for package @pie-lib/math-input
 
-
-
-
-
 # [6.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.2.5...@pie-lib/math-input@6.3.0) (2019-06-12)
-
 
 ### Features
 
-* version bumps ([23eb54f](https://github.com/pie-framework/pie-lib/commit/23eb54f))
-
-
-
-
+- version bumps ([23eb54f](https://github.com/pie-framework/pie-lib/commit/23eb54f))
 
 ## [6.2.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.2.4...@pie-lib/math-input@6.2.5) (2019-06-05)
 
 **Note:** Version bump only for package @pie-lib/math-input
-
-
-
-
 
 ## [6.2.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.2.3...@pie-lib/math-input@6.2.4) (2019-05-14)
 

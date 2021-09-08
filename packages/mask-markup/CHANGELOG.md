@@ -21,194 +21,105 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [1.10.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.10.17...@pie-lib/mask-markup@1.10.18) (2021-07-23)
 
-
 ### Bug Fixes
 
-* **mask-markup:** Updated serialization PD-859 ([4948f99](https://github.com/pie-framework/pie-lib/commit/4948f99))
-
-
-
-
+- **mask-markup:** Updated serialization PD-859 ([4948f99](https://github.com/pie-framework/pie-lib/commit/4948f99))
 
 ## [1.10.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.10.15...@pie-lib/mask-markup@1.10.17) (2021-06-25)
 
 **Note:** Version bump only for package @pie-lib/mask-markup
 
-
-
-
-
 ## [1.10.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.10.14...@pie-lib/mask-markup@1.10.15) (2021-06-25)
-
 
 ### Bug Fixes
 
-* **mask-markup:** Fixed DITB image-based tokens to be draggable - PD-1120 ([4cf2f4a](https://github.com/pie-framework/pie-lib/commit/4cf2f4a))
-* **mask-markup:** Fixed labels overlapping ([3f7cff2](https://github.com/pie-framework/pie-lib/commit/3f7cff2))
-* **mask-markup:** set max fontSize for dropdown items to fix PD-1142 ([704c291](https://github.com/pie-framework/pie-lib/commit/704c291))
-
-
-
-
+- **mask-markup:** Fixed DITB image-based tokens to be draggable - PD-1120 ([4cf2f4a](https://github.com/pie-framework/pie-lib/commit/4cf2f4a))
+- **mask-markup:** Fixed labels overlapping ([3f7cff2](https://github.com/pie-framework/pie-lib/commit/3f7cff2))
+- **mask-markup:** set max fontSize for dropdown items to fix PD-1142 ([704c291](https://github.com/pie-framework/pie-lib/commit/704c291))
 
 ## [1.10.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.10.13...@pie-lib/mask-markup@1.10.14) (2021-04-06)
 
-
 ### Bug Fixes
 
-* **mask-markup:** Changed choice preview design PD-605 ([d4b882e](https://github.com/pie-framework/pie-lib/commit/d4b882e))
-
-
-
-
+- **mask-markup:** Changed choice preview design PD-605 ([d4b882e](https://github.com/pie-framework/pie-lib/commit/d4b882e))
 
 ## [1.10.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.10.12...@pie-lib/mask-markup@1.10.13) (2021-04-02)
 
-
 ### Bug Fixes
 
-* **mask-markup:** fix dragging issue by overwriting material ui chip height PD-1034 ([f26db36](https://github.com/pie-framework/pie-lib/commit/f26db36))
-
-
-
-
+- **mask-markup:** fix dragging issue by overwriting material ui chip height PD-1034 ([f26db36](https://github.com/pie-framework/pie-lib/commit/f26db36))
 
 ## [1.10.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.10.11...@pie-lib/mask-markup@1.10.12) (2021-03-16)
 
-
 ### Bug Fixes
 
-* **drag-in-the-blank:** add margin for tokens PD-745 ([2df356f](https://github.com/pie-framework/pie-lib/commit/2df356f))
-* **drag-in-the-blank:** set max width for tokens PD-727 ([b43b630](https://github.com/pie-framework/pie-lib/commit/b43b630))
-
-
-
-
+- **drag-in-the-blank:** add margin for tokens PD-745 ([2df356f](https://github.com/pie-framework/pie-lib/commit/2df356f))
+- **drag-in-the-blank:** set max width for tokens PD-727 ([b43b630](https://github.com/pie-framework/pie-lib/commit/b43b630))
 
 ## [1.10.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.10.10...@pie-lib/mask-markup@1.10.11) (2021-03-15)
 
-
 ### Bug Fixes
 
-* **mask-markup:** increase height for drag-in-the-blank chip PD-726 ([9cb037e](https://github.com/pie-framework/pie-lib/commit/9cb037e))
-
-
-
-
+- **mask-markup:** increase height for drag-in-the-blank chip PD-726 ([9cb037e](https://github.com/pie-framework/pie-lib/commit/9cb037e))
 
 ## [1.10.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.10.9...@pie-lib/mask-markup@1.10.10) (2021-03-01)
 
 **Note:** Version bump only for package @pie-lib/mask-markup
 
-
-
-
-
 ## [1.10.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.10.8...@pie-lib/mask-markup@1.10.9) (2021-03-01)
 
 **Note:** Version bump only for package @pie-lib/mask-markup
 
-
-
-
-
 ## [1.10.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.10.7...@pie-lib/mask-markup@1.10.8) (2021-02-15)
-
 
 ### Bug Fixes
 
-* **inline-dropdown:** remove newline regex - PD-887 ([e9e14c8](https://github.com/pie-framework/pie-lib/commit/e9e14c8))
-
-
-
-
+- **inline-dropdown:** remove newline regex - PD-887 ([e9e14c8](https://github.com/pie-framework/pie-lib/commit/e9e14c8))
 
 ## [1.10.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.10.5...@pie-lib/mask-markup@1.10.7) (2021-02-15)
 
 **Note:** Version bump only for package @pie-lib/mask-markup
 
-
-
-
-
 ## [1.10.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.10.4...@pie-lib/mask-markup@1.10.5) (2021-02-15)
 
 **Note:** Version bump only for package @pie-lib/mask-markup
-
-
-
-
 
 ## [1.10.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.10.3...@pie-lib/mask-markup@1.10.4) (2021-02-01)
 
 **Note:** Version bump only for package @pie-lib/mask-markup
 
-
-
-
-
 ## [1.10.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.10.2...@pie-lib/mask-markup@1.10.3) (2021-01-28)
 
 **Note:** Version bump only for package @pie-lib/mask-markup
-
-
-
-
 
 ## [1.10.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.10.1...@pie-lib/mask-markup@1.10.2) (2021-01-28)
 
 **Note:** Version bump only for package @pie-lib/mask-markup
 
-
-
-
-
 ## [1.10.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.10.0...@pie-lib/mask-markup@1.10.1) (2021-01-25)
 
 **Note:** Version bump only for package @pie-lib/mask-markup
 
-
-
-
-
 # [1.10.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.9.5...@pie-lib/mask-markup@1.10.0) (2021-01-11)
-
 
 ### Features
 
-* **mask-markup:** inline-dropdown color treatment fixed ([60072de](https://github.com/pie-framework/pie-lib/commit/60072de))
-
-
-
-
+- **mask-markup:** inline-dropdown color treatment fixed ([60072de](https://github.com/pie-framework/pie-lib/commit/60072de))
 
 ## [1.9.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.9.4...@pie-lib/mask-markup@1.9.5) (2020-10-29)
 
 **Note:** Version bump only for package @pie-lib/mask-markup
 
-
-
-
-
 ## [1.9.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.9.3...@pie-lib/mask-markup@1.9.4) (2020-10-28)
-
 
 ### Bug Fixes
 
-* dropdown colors ([143853d](https://github.com/pie-framework/pie-lib/commit/143853d))
-* upgrade react-dnd ([f507025](https://github.com/pie-framework/pie-lib/commit/f507025))
-
-
-
-
+- dropdown colors ([143853d](https://github.com/pie-framework/pie-lib/commit/143853d))
+- upgrade react-dnd ([f507025](https://github.com/pie-framework/pie-lib/commit/f507025))
 
 ## [1.9.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.9.2...@pie-lib/mask-markup@1.9.3) (2020-10-26)
 
 **Note:** Version bump only for package @pie-lib/mask-markup
-
-
-
-
 
 ## [1.9.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.9.1...@pie-lib/mask-markup@1.9.2) (2020-10-26)
 

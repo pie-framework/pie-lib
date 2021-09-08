@@ -50,7 +50,38 @@ export const getTickValues = (prop = {}) => {
   return tickValues;
 };
 
-export const getDomainAndRangeByChartType = (domain, range, chartType) => {
+export const customLabelStep = (rangeMax, size, labelFontSize) => {
+  const ceilMax = Math.ceil(rangeMax);
+  const segmentLength = size.height / ceilMax;
+  const ticksToFitInOneSegment = 2;
+
+  // how many ticksWidth fit in a segment
+  const tickWidthPerSegment = segmentLength / labelFontSize;
+  const rawLabelStep = ticksToFitInOneSegment / tickWidthPerSegment;
+  const roundedStep = Math.ceil((rawLabelStep * 10) / 10);
+
+  let labelStep;
+
+  if (rawLabelStep > 0.15) {
+    labelStep = roundedStep;
+  } else if (rawLabelStep < 0.05) {
+    labelStep = 0.1;
+  } else {
+    labelStep = 0.5;
+  }
+
+  return labelStep;
+};
+
+export const crowdedTicks = (rangeMax, customLabelStep, size, labelFontSize) => {
+  const ceilMax = Math.ceil(rangeMax);
+
+  const numberOfSegments = ceilMax * customLabelStep;
+
+  return size.height / numberOfSegments < labelFontSize && size.height / numberOfSegments > 0.5;
+};
+
+export const getDomainAndRangeByChartType = (domain, range, size, chartType, labelFontSize) => {
   let { step, labelStep, min, max } = range || {};
 
   if (!min) {
@@ -61,21 +92,39 @@ export const getDomainAndRangeByChartType = (domain, range, chartType) => {
     max = range.min + 1;
   }
 
-  const numberMax = parseFloat(max);
+  if (labelStep && !step) {
+    step = labelStep;
+  }
+  if (!labelStep || (isNaN(labelStep) && step)) {
+    let customLabelStep = step;
+    let crowded = crowdedTicks(max, customLabelStep, size, labelFontSize);
 
-  if (!step) {
-    if (numberMax < 20) {
+    if (crowded) {
+      customLabelStep = customLabelStep * 2;
+    }
+
+    labelStep = customLabelStep;
+  }
+
+  if (!step || (isNaN(step) && !labelStep) || isNaN(labelStep)) {
+    labelStep = customLabelStep(max, size, labelFontSize);
+
+    if (labelStep <= 1) {
+      step = labelStep;
+    } else if (labelStep <= 4) {
       step = 1;
-    } else if (numberMax >= 20 && numberMax < 100) {
-      step = 5;
+    } else if (labelStep > 4 && labelStep < 10) {
+      step = labelStep / 2;
     } else {
-      step = 10;
+      step = labelStep / 3;
     }
   }
 
-  if (!labelStep) {
-    labelStep = numberMax;
+  if (max % step !== 0) {
+    max = max + step;
   }
+
+  range.max = max;
 
   switch (chartType) {
     // if chart is dot plot or line plot, we should ignore step and make sure that min & max are integer values

@@ -24,152 +24,84 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [1.8.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.8.2...@pie-lib/text-select@1.8.3) (2021-07-23)
 
-
 ### Bug Fixes
 
-* **text-select:** Fixed white space collapse PD-477 ([1f9481f](https://github.com/pie-framework/pie-lib/commit/1f9481f))
-
-
-
-
+- **text-select:** Fixed white space collapse PD-477 ([1f9481f](https://github.com/pie-framework/pie-lib/commit/1f9481f))
 
 ## [1.8.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.8.0...@pie-lib/text-select@1.8.2) (2021-06-25)
 
 **Note:** Version bump only for package @pie-lib/text-select
 
-
-
-
-
 # [1.8.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.7.13...@pie-lib/text-select@1.8.0) (2021-06-25)
-
 
 ### Bug Fixes
 
-* **text-select:** fix incorrect indenting PD-1038 ([4d56509](https://github.com/pie-framework/pie-lib/commit/4d56509))
-* **text-select:** select text view mode should use black for text color PD-1154 ([0db5b1e](https://github.com/pie-framework/pie-lib/commit/0db5b1e))
-
+- **text-select:** fix incorrect indenting PD-1038 ([4d56509](https://github.com/pie-framework/pie-lib/commit/4d56509))
+- **text-select:** select text view mode should use black for text color PD-1154 ([0db5b1e](https://github.com/pie-framework/pie-lib/commit/0db5b1e))
 
 ### Features
 
-* **text-select:** when select-text item permits only one selection, change behavior of gather PD-958 ([c181314](https://github.com/pie-framework/pie-lib/commit/c181314))
-
-
-
-
+- **text-select:** when select-text item permits only one selection, change behavior of gather PD-958 ([c181314](https://github.com/pie-framework/pie-lib/commit/c181314))
 
 ## [1.7.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.7.12...@pie-lib/text-select@1.7.13) (2021-03-01)
 
 **Note:** Version bump only for package @pie-lib/text-select
 
-
-
-
-
 ## [1.7.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.7.11...@pie-lib/text-select@1.7.12) (2021-03-01)
-
 
 ### Bug Fixes
 
-* **text-select:** fix layout for legacy items with line number ([d50865e](https://github.com/pie-framework/pie-lib/commit/d50865e))
-* **text-select:** fix padding for tokens in order to fix PD-860 ([eacb81c](https://github.com/pie-framework/pie-lib/commit/eacb81c))
-* **text-select:** show tokens if they are selected in view mode to fix PD-464 ([7821536](https://github.com/pie-framework/pie-lib/commit/7821536))
-
-
-
-
+- **text-select:** fix layout for legacy items with line number ([d50865e](https://github.com/pie-framework/pie-lib/commit/d50865e))
+- **text-select:** fix padding for tokens in order to fix PD-860 ([eacb81c](https://github.com/pie-framework/pie-lib/commit/eacb81c))
+- **text-select:** show tokens if they are selected in view mode to fix PD-464 ([7821536](https://github.com/pie-framework/pie-lib/commit/7821536))
 
 ## [1.7.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.7.10...@pie-lib/text-select@1.7.11) (2021-02-15)
 
 **Note:** Version bump only for package @pie-lib/text-select
 
-
-
-
-
 ## [1.7.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.7.8...@pie-lib/text-select@1.7.10) (2021-02-15)
 
 **Note:** Version bump only for package @pie-lib/text-select
 
-
-
-
-
 ## [1.7.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.7.7...@pie-lib/text-select@1.7.8) (2021-02-15)
-
 
 ### Bug Fixes
 
-* **text-select:** fix space between lines ([5633537](https://github.com/pie-framework/pie-lib/commit/5633537))
-
-
-
-
+- **text-select:** fix space between lines ([5633537](https://github.com/pie-framework/pie-lib/commit/5633537))
 
 ## [1.7.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.7.6...@pie-lib/text-select@1.7.7) (2021-02-01)
 
 **Note:** Version bump only for package @pie-lib/text-select
 
-
-
-
-
 ## [1.7.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.7.5...@pie-lib/text-select@1.7.6) (2021-01-28)
 
 **Note:** Version bump only for package @pie-lib/text-select
-
-
-
-
 
 ## [1.7.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.7.4...@pie-lib/text-select@1.7.5) (2021-01-28)
 
 **Note:** Version bump only for package @pie-lib/text-select
 
-
-
-
-
 ## [1.7.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.7.3...@pie-lib/text-select@1.7.4) (2021-01-25)
-
 
 ### Bug Fixes
 
-* **text-select:** fix token rendering issue - PD-642 ([89f3b70](https://github.com/pie-framework/pie-lib/commit/89f3b70))
-
-
-
-
+- **text-select:** fix token rendering issue - PD-642 ([89f3b70](https://github.com/pie-framework/pie-lib/commit/89f3b70))
 
 ## [1.7.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.7.2...@pie-lib/text-select@1.7.3) (2021-01-11)
 
-
 ### Bug Fixes
 
-* Added fix for style changes after selection of max tokens PD-646 ([30183a9](https://github.com/pie-framework/pie-lib/commit/30183a9))
-
-
-
-
+- Added fix for style changes after selection of max tokens PD-646 ([30183a9](https://github.com/pie-framework/pie-lib/commit/30183a9))
 
 ## [1.7.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.7.1...@pie-lib/text-select@1.7.2) (2020-10-29)
 
 **Note:** Version bump only for package @pie-lib/text-select
 
-
-
-
-
 ## [1.7.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.7.0...@pie-lib/text-select@1.7.1) (2020-10-26)
-
 
 ### Bug Fixes
 
-* **select-text:** fix text indent styling for tokens ([0d13170](https://github.com/pie-framework/pie-lib/commit/0d13170))
-
-
-
-
+- **select-text:** fix text indent styling for tokens ([0d13170](https://github.com/pie-framework/pie-lib/commit/0d13170))
 
 # [1.7.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.6.1...@pie-lib/text-select@1.7.0) (2020-10-26)
 
