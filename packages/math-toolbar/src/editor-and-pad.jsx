@@ -304,6 +304,9 @@ const styles = theme => ({
     },
     '& .mq-overarrow.mq-arrow-both': {
       minWidth: '1.23em'
+    },
+    '& .mq-parallelogram': {
+      lineHeight: 0.8
     }
   }
 });
