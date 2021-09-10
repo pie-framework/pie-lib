@@ -1,11 +1,11 @@
 {
   "name": "@pie-lib/demo",
   "private": true,
-  "version": "6.6.5",
+  "version": "6.6.6",
   "dependencies": {
     "@material-ui/core": "^3.8.3",
     "@material-ui/icons": "^3.0.2",
-    "@pie-lib/charting": "^4.5.12",
+    "@pie-lib/charting": "^4.5.13",
     "@pie-lib/config-ui": "^10.10.5",
     "@pie-lib/correct-answer-toggle": "^2.3.31",
     "@pie-lib/drag": "^1.1.52",

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.5.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.5.12...@pie-lib/charting@4.5.13) (2021-09-10)
+
+
+### Bug Fixes
+
+* **charting:** Displayed the entire rightmost category label when space available PD-531 ([4c96415](https://github.com/pie-framework/pie-lib/commit/4c96415))
+
+
+
+
+
 ## [4.5.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.5.11...@pie-lib/charting@4.5.12) (2021-09-08)
 
 **Note:** Version bump only for package @pie-lib/charting
