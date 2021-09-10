@@ -3,7 +3,7 @@ version: 2
 defaults: &defaults
   working_directory: ~/repo
   docker:
-    - image: circleci/node:15.4.0
+    - image: circleci/node:15.14.0
 
 reg_auth: &reg_auth
   name: Authenticate with registry
