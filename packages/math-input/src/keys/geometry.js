@@ -57,7 +57,7 @@ export const overArc = set({
 export const measureOfAngle = set({
   name: 'Measure Of Angle',
   latex: '\\measuredangle',
-  command: '\\measuredangle'
+  command: ['m', '\\angle']
 });
 
 export const triangle = set({
