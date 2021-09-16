@@ -653,5 +653,20 @@
     "committerDate": "2021-08-17 10:59:50 +0300",
     "isTagged": true,
     "tag": "@pie-lib/math-rendering@2.3.9"
+  },
+  {
+    "type": "fix",
+    "scope": null,
+    "subject": "wip",
+    "merge": null,
+    "header": "fix: wip",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "fe4316df075edfc2c0565641b58c4ca453057651",
+    "gitTags": " (origin/fix/fix-math-module)",
+    "committerDate": "2021-09-06 13:29:44 +0100",
+    "isTagged": true,
+    "tag": "@pie-lib/math-rendering@2.3.10"
   }
 ]
