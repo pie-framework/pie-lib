@@ -24,7 +24,12 @@ export class GridDemo extends React.PureComponent {
   state = {
     tools: allTools,
     settings: {
-      includeArrows: true,
+      includeArrows: {
+        left: true,
+        right: true,
+        up: true,
+        down: true
+      },
       labels: true,
       graphTitle: false,
       coordinatesOnHover: false,
@@ -187,7 +192,7 @@ export class GridDemo extends React.PureComponent {
               onChangeMarks={this.changeMarks}
               range={model.range}
               size={settings.size}
-              title={model.title}
+              title={settings.graphTitle && model.title}
               toolbarTools={stateTools}
               coordinatesOnHover={settings.coordinatesOnHover}
             />
