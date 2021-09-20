@@ -311,8 +311,10 @@ export class Editor extends React.Component {
         return;
       }
 
-      const editorElement = document.activeElement.closest('[class*=editorHolder]');
-      const toolbarElement = document.activeElement.closest('[class*=Toolbar-focused]');
+      const editorElement =
+        !editorDOM || document.activeElement.closest(`[class*="${editorDOM.className}"]`);
+      const toolbarElement =
+        !this.toolbarRef || document.activeElement.closest(`[class*="${this.toolbarRef.className}"]`);
       const isInCurrentComponent =
         this.wrapperRef.contains(editorElement) || this.wrapperRef.contains(toolbarElement);
 
@@ -539,6 +541,11 @@ export class Editor extends React.Component {
             }
           }}
           ref={r => (this.editor = r && this.props.editorRef(r))}
+          toolbarRef={r => {
+            if (r) {
+              this.toolbarRef = r;
+            }
+          }}
           value={value}
           focus={this.focus}
           onKeyDown={onKeyDown}

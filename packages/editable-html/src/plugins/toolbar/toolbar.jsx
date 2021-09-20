@@ -43,6 +43,7 @@ export class Toolbar extends React.Component {
     plugin: PropTypes.object,
     onImageClick: PropTypes.func,
     onDone: PropTypes.func.isRequired,
+    toolbarRef: PropTypes.func.isRequired,
     classes: PropTypes.object.isRequired,
     isFocused: PropTypes.bool,
     autoWidth: PropTypes.bool,
@@ -52,6 +53,7 @@ export class Toolbar extends React.Component {
       position: PropTypes.oneOf(['bottom', 'top']),
       alignment: PropTypes.oneOf(['left', 'right']),
       alwaysVisible: PropTypes.bool,
+      ref: PropTypes.obj,
       showDone: PropTypes.bool
     }),
     onDataChange: PropTypes.func
@@ -133,7 +135,8 @@ export class Toolbar extends React.Component {
       autoWidth,
       onChange,
       isFocused,
-      onDone
+      onDone,
+      toolbarRef
     } = this.props;
 
     const node = findSingleNode(value);
@@ -223,7 +226,7 @@ export class Toolbar extends React.Component {
     });
 
     return (
-      <div className={names} style={extraStyles} onClick={this.onClick}>
+      <div className={names} style={extraStyles} onClick={this.onClick} ref={toolbarRef}>
         {CustomToolbar ? (
           <CustomToolbar
             node={node}
