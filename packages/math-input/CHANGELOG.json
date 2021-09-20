@@ -1468,5 +1468,20 @@
     "committerDate": "2021-08-31 13:16:38 +0300",
     "isTagged": true,
     "tag": "@pie-lib/math-input@6.6.1"
+  },
+  {
+    "type": "fix",
+    "scope": "math-input",
+    "subject": "render measured angle as m + angle sign PD-368",
+    "merge": null,
+    "header": "fix(math-input): render measured angle as m + angle sign PD-368",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "670fb56c8c515cf45e57635454e01ac8290f6d42",
+    "gitTags": " (origin/fix/measured-angle)",
+    "committerDate": "2021-09-14 13:35:44 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/math-input@6.6.3"
   }
 ]
