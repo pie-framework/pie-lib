@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.8.3...@pie-lib/math-toolbar@1.8.4) (2021-09-20)
+
+
+### Bug Fixes
+
+* **math-input, math-toolbar:** Adjusted parallelogram button size ([699431e](https://github.com/pie-framework/pie-lib/commit/699431e))
+
+
+
+
+
 ## [1.8.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.8.2...@pie-lib/math-toolbar@1.8.3) (2021-09-16)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar

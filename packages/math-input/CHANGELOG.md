@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.6.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.6.3...@pie-lib/math-input@6.6.4) (2021-09-20)
+
+
+### Bug Fixes
+
+* **math-input, math-toolbar:** Adjusted parallelogram button size ([699431e](https://github.com/pie-framework/pie-lib/commit/699431e))
+
+
+
+
+
 ## [6.6.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.6.2...@pie-lib/math-input@6.6.3) (2021-09-16)
 
 
