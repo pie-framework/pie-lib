@@ -309,7 +309,7 @@ const styles = theme => ({
       minWidth: '1.23em'
     },
     '& .mq-parallelogram': {
-      lineHeight: 0.8
+      lineHeight: 0.85
     }
   }
 });

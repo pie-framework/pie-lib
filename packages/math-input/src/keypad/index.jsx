@@ -103,7 +103,7 @@ const LatexButton = withStyles(theme => ({
       paddingTop: '1.5px !important'
     },
     '& .mq-parallelogram': {
-      lineHeight: 0.8
+      lineHeight: 0.85
     }
   },
   parallelButton: {
