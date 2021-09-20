@@ -19,6 +19,7 @@ export class EditorAndToolbar extends React.Component {
     onChange: PropTypes.func.isRequired,
     onDone: PropTypes.func.isRequired,
     onDataChange: PropTypes.func,
+    toolbarRef: PropTypes.func,
     focusedNode: SlatePropTypes.node,
     readOnly: PropTypes.bool,
     disableUnderline: PropTypes.bool,
@@ -54,7 +55,8 @@ export class EditorAndToolbar extends React.Component {
       disableUnderline,
       pluginProps,
       toolbarOpts,
-      onDataChange
+      onDataChange,
+      toolbarRef
     } = this.props;
 
     const inFocus = value.isFocused || (focusedNode !== null && focusedNode !== undefined);
@@ -95,6 +97,7 @@ export class EditorAndToolbar extends React.Component {
           onChange={onChange}
           onDone={onDone}
           onDataChange={onDataChange}
+          toolbarRef={toolbarRef}
           pluginProps={pluginProps}
           toolbarOpts={toolbarOpts}
         />
