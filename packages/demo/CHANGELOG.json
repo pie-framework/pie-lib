@@ -1368,5 +1368,20 @@
     "committerDate": "2021-07-16 13:27:27 +0300",
     "isTagged": true,
     "tag": "@pie-lib/demo@6.6.0"
+  },
+  {
+    "type": "fix",
+    "scope": "graphing",
+    "subject": "Updated arrows controls",
+    "merge": null,
+    "header": "fix(graphing): Updated arrows controls",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "2e2460c27cd1b9790c669058fdb3ad07d56babe0",
+    "gitTags": " (origin/fix/graph-arrows)",
+    "committerDate": "2021-09-17 15:49:24 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/demo@6.6.8"
   }
 ]
