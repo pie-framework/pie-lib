@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.17.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.8...@pie-lib/editable-html@7.17.9) (2021-09-20)
+
+
+### Bug Fixes
+
+* **editor:** used dom refs in order to check if the editor is still in focus [PD-1126] ([99e0f72](https://github.com/pie-framework/pie-lib/commit/99e0f72))
+
+
+
+
+
 ## [7.17.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.7...@pie-lib/editable-html@7.17.8) (2021-09-20)
 
 
