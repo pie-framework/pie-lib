@@ -66,9 +66,9 @@ const MaxPoints = withStyles(theme => ({
   );
 });
 
-// if the value is null, the Sample Answer input field for that point will not be dispalyed
+// if the value is null or 'null', the Sample Answer input field for that point will not be dispalyed
 // if the value is '', the Sample Answer input field will be empty
-const checkSampleAnswer = sampleAnswer => sampleAnswer === null;
+const checkSampleAnswer = sampleAnswer => sampleAnswer === null || sampleAnswer === 'null';
 
 export const PointConfig = withStyles(theme => ({
   pointConfig: {},
@@ -234,7 +234,7 @@ export class RawAuthoring extends React.Component {
         // an empty string will display an empty Sample Answer input field
         this.changeContent(index, '', 'sampleAnswers');
       } else {
-        // when the content is null, the Sample Answer input field will not be displayed
+        // when the content is null or 'null', the Sample Answer input field will not be displayed
         this.changeContent(index, null, 'sampleAnswers');
       }
     }
