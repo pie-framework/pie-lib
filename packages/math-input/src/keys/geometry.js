@@ -14,7 +14,7 @@ export const overRightArrow = set({
 
 export const overLeftRightArrow = set({
   name: 'Overline',
-  latex: '\\overleftrightarrow{}',
+  latex: '\\overleftrightarrow{\\overline{}}',
   symbol: 'AB',
   command: '\\overleftrightarrow'
 });

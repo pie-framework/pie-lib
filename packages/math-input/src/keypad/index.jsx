@@ -108,6 +108,17 @@ const LatexButton = withStyles(theme => ({
   },
   parallelButton: {
     fontStyle: 'italic'
+  },
+  leftRightArrowButton: {
+    '& .mq-overarrow.mq-arrow-both': {
+      '& .mq-overline-inner': {
+        borderTop: 'none !important',
+        paddingTop: '0 !important'
+      },
+      '&:after': {
+        top: '-1.6em !important'
+      }
+    }
   }
 }))(props => {
   let buttonClass;
@@ -117,6 +128,12 @@ const LatexButton = withStyles(theme => ({
       props.classes.latexButton,
       props.mqClassName,
       props.classes.parallelButton
+    );
+  } else if (props.latex === '\\overleftrightarrow{\\overline{}}') {
+    buttonClass = classNames(
+      props.classes.latexButton,
+      props.mqClassName,
+      props.classes.leftRightArrowButton
     );
   } else {
     buttonClass = classNames(props.classes.latexButton, props.mqClassName);
