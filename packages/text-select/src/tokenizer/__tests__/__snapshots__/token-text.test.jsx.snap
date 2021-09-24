@@ -2,7 +2,7 @@
 
 exports[`token-text snapshot renders 1`] = `
 <div
-  onMouseUp={[Function]}
+  onClick={[Function]}
 >
   <WithStyles(Component)
     end={13}
