@@ -104,6 +104,13 @@ const LatexButton = withStyles(theme => ({
     },
     '& .mq-parallelogram': {
       lineHeight: 0.85
+    },
+    '& .mq-overarc': {
+      borderTop: '2px solid black !important',
+      '& .mq-overline-inner': {
+        borderTop: 'none !important',
+        paddingTop: '0 !important'
+      }
     }
   },
   parallelButton: {

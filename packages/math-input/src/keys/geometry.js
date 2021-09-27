@@ -14,7 +14,7 @@ export const overRightArrow = set({
 
 export const overLeftRightArrow = set({
   name: 'Overline',
-  latex: '\\overleftrightarrow{\\overline{}}',
+  latex: '\\overleftrightarrow{\\overline{}}', // used this notation to display the pink box
   symbol: 'AB',
   command: '\\overleftrightarrow'
 });
@@ -51,7 +51,7 @@ export const angle = set({
 });
 export const overArc = set({
   name: 'Over arc',
-  latex: '\\overarc{}',
+  latex: '\\overarc{\\overline{}}', // used this notation to display the pink box
   command: '\\overarc'
 });
 export const measureOfAngle = set({
