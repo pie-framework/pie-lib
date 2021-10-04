@@ -388,5 +388,20 @@
     "committerDate": "2021-04-09 17:15:38 +0300",
     "isTagged": true,
     "tag": "@pie-lib/rubric@0.3.0"
+  },
+  {
+    "type": "feat",
+    "scope": "rubric",
+    "subject": "Added Studio support: Treat 'null' as null value for sample answer PD-1313",
+    "merge": null,
+    "header": "feat(rubric): Added Studio support: Treat 'null' as null value for sample answer PD-1313",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "ce71c81a6cbd26ec104e7cb34fcda1f1d65a8bd2",
+    "gitTags": " (origin/fix/PD-1313)",
+    "committerDate": "2021-09-23 13:48:01 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/rubric@0.4.0"
   }
 ]

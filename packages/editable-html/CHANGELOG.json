@@ -3188,5 +3188,20 @@
     "committerDate": "2021-09-20 13:43:11 +0300",
     "isTagged": true,
     "tag": "@pie-lib/editable-html@7.17.9"
+  },
+  {
+    "type": "fix",
+    "scope": "serialization",
+    "subject": "made sure that units are not added to numbered values when they are encountered [PD-722]",
+    "merge": null,
+    "header": "fix(serialization): made sure that units are not added to numbered values when they are encountered [PD-722]",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "8d229cf92ce1cf68db194d281803a79c03141d8a",
+    "gitTags": " (origin/fix/PD-722-no-unit-adding)",
+    "committerDate": "2021-09-27 15:01:05 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.17.10"
   }
 ]
