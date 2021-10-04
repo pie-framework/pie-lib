@@ -3173,5 +3173,20 @@
     "committerDate": "2021-09-20 11:10:47 +0300",
     "isTagged": true,
     "tag": "@pie-lib/editable-html@7.17.8"
+  },
+  {
+    "type": "fix",
+    "scope": "editor",
+    "subject": "used dom refs in order to check if the editor is still in focus [PD-1126]",
+    "merge": null,
+    "header": "fix(editor): used dom refs in order to check if the editor is still in focus [PD-1126]",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "99e0f72de5a208c5760723bad4698b9115ac80e7",
+    "gitTags": " (origin/fix/editable-html-dom-blur-query-fix)",
+    "committerDate": "2021-09-20 13:43:11 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@7.17.9"
   }
 ]
