@@ -1483,5 +1483,50 @@
     "committerDate": "2021-09-14 13:35:44 +0300",
     "isTagged": true,
     "tag": "@pie-lib/math-input@6.6.3"
+  },
+  {
+    "type": "fix",
+    "scope": "math-input",
+    "subject": "Made overarc button consistent with the others PD-1315",
+    "merge": null,
+    "header": "fix(math-input): Made overarc button consistent with the others PD-1315",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "872646962368946f1cbefc9aab4a94e74cb9590f",
+    "gitTags": " (origin/fix/PD-1315)",
+    "committerDate": "2021-09-27 13:26:37 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/math-input@6.6.5"
+  },
+  {
+    "type": "fix",
+    "scope": "math-input",
+    "subject": "Made segment, ray and line buttons more consistent PD-1315",
+    "merge": null,
+    "header": "fix(math-input): Made segment, ray and line buttons more consistent PD-1315",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "e7e4e29e8eae6dd5f0a98040c523cb518b61de3e",
+    "gitTags": "",
+    "committerDate": "2021-09-24 14:53:08 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/math-input@6.6.5"
+  },
+  {
+    "type": "fix",
+    "scope": "math-input",
+    "subject": "create proper latex expression for log base button",
+    "merge": null,
+    "header": "fix(math-input): create proper latex expression for log base button",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "ca0c3f00b7cdb8ae2e5d6e1003cec7a4942fb6aa",
+    "gitTags": " (origin/fix/log-base-x-expression)",
+    "committerDate": "2021-09-23 13:38:33 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/math-input@6.6.5"
   }
 ]
