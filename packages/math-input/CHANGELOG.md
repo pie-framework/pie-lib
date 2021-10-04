@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.6.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.6.5...@pie-lib/math-input@6.6.6) (2021-10-04)
+
+
+### Bug Fixes
+
+* **math-input:** Fixed left-right arrow button ([6109149](https://github.com/pie-framework/pie-lib/commit/6109149))
+
+
+
+
+
 ## [6.6.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.6.4...@pie-lib/math-input@6.6.5) (2021-10-04)
 
 
