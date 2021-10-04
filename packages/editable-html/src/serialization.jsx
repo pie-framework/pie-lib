@@ -58,7 +58,7 @@ export const parseStyleString = s => {
   return result;
 };
 
-export const reactAttributes = o => toStyleObject(o, { camelize: true });
+export const reactAttributes = o => toStyleObject(o, { camelize: true, addUnits: false });
 
 const attributesToMap = el => (acc, attribute) => {
   const value = el.getAttribute(attribute);
