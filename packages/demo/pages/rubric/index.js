@@ -13,9 +13,9 @@ class Demo extends React.Component {
         excludeZero: false,
         // the index is the points
         points: ['nothing right', 'a teeny bit right', 'mostly right', 'bingo'],
-        // if the value is null, the Sample Answer input field for that point will not be dispalyed
+        // if the value is null or 'null', the Sample Answer input field for that point will not be dispalyed
         // if the value is '', the Sample Answer input field will be empty
-        sampleAnswers: [null, null, null, null]
+        sampleAnswers: [null, 'just right', 'not left', null]
       }
     };
   }
