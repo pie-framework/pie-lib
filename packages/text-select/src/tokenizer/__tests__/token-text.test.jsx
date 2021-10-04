@@ -1,7 +1,7 @@
 import { shallow } from 'enzyme';
 import React from 'react';
 import TokenText from '../token-text';
-import builder, { intersection } from '../builder';
+import { intersection } from '../builder';
 import { clearSelection, getCaretCharacterOffsetWithin } from '../selection-utils';
 
 jest.mock('../selection-utils', () => ({
@@ -16,7 +16,7 @@ jest.mock('../builder', () => ({
   }),
   normalize: jest.fn().mockReturnValue([
     {
-      text: 'lorem\nfoo bar',
+      text: `lorem\nfoo bar`,
       start: 0,
       end: 13,
       predefined: true
@@ -28,7 +28,7 @@ const tokens = () => [
   {
     start: 0,
     end: 7,
-    text: 'lorem\nfoo bar'
+    text: `lorem\nfoo bar`
   }
 ];
 
@@ -43,7 +43,7 @@ describe('token-text', () => {
         <TokenText
           onTokenClick={jest.fn()}
           onSelectToken={jest.fn()}
-          text="lorem\nfoo bar"
+          text={`lorem\nfoo bar`}
           tokens={tokens()}
         />
       );
@@ -67,7 +67,7 @@ describe('token-text', () => {
         <TokenText
           onTokenClick={onTokenClick}
           onSelectToken={onSelectToken}
-          text="lorem\nfoo bar"
+          text={`lorem\nfoo bar`}
           tokens={tokens()}
         />
       );
@@ -76,14 +76,14 @@ describe('token-text', () => {
     describe('mouseup', () => {
       it('calls event.preventDefault', () => {
         const event = mkEvent();
-        w.instance().mouseUp(event);
+        w.instance().onClick(event);
         expect(event.preventDefault).toBeCalled();
       });
 
       it('calls getCaretCharacterOffsetWithin', () => {
         const event = mkEvent();
         w.instance().root = {};
-        w.instance().mouseUp(event);
+        w.instance().onClick(event);
         expect(getCaretCharacterOffsetWithin).toBeCalledWith({});
       });
 
@@ -93,7 +93,7 @@ describe('token-text', () => {
         });
         const event = mkEvent();
         w.instance().root = {};
-        w.instance().mouseUp(event);
+        w.instance().onClick(event);
         expect(clearSelection).toBeCalled();
         expect(onSelectToken).not.toBeCalled();
       });
@@ -105,8 +105,36 @@ describe('token-text', () => {
           surroundedTokens: []
         });
         w.instance().root = {};
-        w.instance().mouseUp(event);
+        w.instance().onClick(event);
         expect(onSelectToken).toBeCalledWith({ text: 'bar', start: 10, end: 13 }, []);
+      });
+
+      it('does not call onSelectToken for ["\n", " ", "\t"]', () => {
+        const event = mkEvent();
+
+        intersection.mockReturnValue({
+          hasOverlap: false,
+          surroundedTokens: []
+        });
+        w.instance().root = {};
+
+        global.window.getSelection = jest.fn().mockReturnValue({
+          toString: () => '\n'
+        });
+        w.instance().onClick(event);
+        expect(onSelectToken).not.toBeCalled();
+
+        global.window.getSelection = jest.fn().mockReturnValue({
+          toString: () => ' '
+        });
+        w.instance().onClick(event);
+        expect(onSelectToken).not.toBeCalled();
+
+        global.window.getSelection = jest.fn().mockReturnValue({
+          toString: () => '\t'
+        });
+        w.instance().onClick(event);
+        expect(onSelectToken).not.toBeCalled();
       });
     });
   });

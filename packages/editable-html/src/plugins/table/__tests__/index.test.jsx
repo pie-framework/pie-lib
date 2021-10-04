@@ -201,7 +201,10 @@ describe('reactAttributes', () => {
       expect(result).toEqual(expected);
     });
   };
-  attributes({ 'border-width': '10px' }, { borderWidth: '10px' });
+  attributes(
+    { 'border-width': '10px', 'line-height': 1.56 },
+    { borderWidth: '10px', lineHeight: '1.56' }
+  );
 });
 
 describe('serialization', () => {

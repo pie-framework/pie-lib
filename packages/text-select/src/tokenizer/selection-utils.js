@@ -38,7 +38,7 @@ export const getCaretCharacterOffsetWithin = element => {
         caretOffset = preCaretRange.toString().length;
       }
     }
-  } else if ((sel = doc.selection) && sel.type != 'Control') {
+  } else if ((sel = doc.selection) && sel.type !== 'Control') {
     var textRange = sel.createRange();
     var preCaretTextRange = doc.body.createTextRange();
     preCaretTextRange.moveToElementText(element);
