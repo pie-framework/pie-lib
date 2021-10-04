@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.6.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.6.4...@pie-lib/math-input@6.6.5) (2021-10-04)
+
+
+### Bug Fixes
+
+* **math-input:** create proper latex expression for log base button ([ca0c3f0](https://github.com/pie-framework/pie-lib/commit/ca0c3f0))
+* **math-input:** Made overarc button consistent with the others PD-1315 ([8726469](https://github.com/pie-framework/pie-lib/commit/8726469))
+* **math-input:** Made segment, ray and line buttons more consistent PD-1315 ([e7e4e29](https://github.com/pie-framework/pie-lib/commit/e7e4e29))
+
+
+
+
+
 ## [6.6.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.6.3...@pie-lib/math-input@6.6.4) (2021-09-20)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.3.12...@pie-lib/rubric@0.4.0) (2021-10-04)
+
+
+### Features
+
+* **rubric:** Added Studio support: Treat 'null' as null value for sample answer PD-1313 ([ce71c81](https://github.com/pie-framework/pie-lib/commit/ce71c81))
+
+
+
+
+
 ## [0.3.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.3.11...@pie-lib/rubric@0.3.12) (2021-09-20)
 
 **Note:** Version bump only for package @pie-lib/rubric

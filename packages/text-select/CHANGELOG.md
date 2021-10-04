@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.8.7...@pie-lib/text-select@1.8.8) (2021-10-04)
+
+
+### Bug Fixes
+
+* **select-text:** made sure the new line characters are taken into consideration for offsets [PD-1145] ([a7bb44a](https://github.com/pie-framework/pie-lib/commit/a7bb44a))
+
+
+
+
+
 ## [1.8.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.8.6...@pie-lib/text-select@1.8.7) (2021-09-08)
 
 **Note:** Version bump only for package @pie-lib/text-select

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.17.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.9...@pie-lib/editable-html@7.17.10) (2021-10-04)
+
+
+### Bug Fixes
+
+* **serialization:** made sure that units are not added to numbered values when they are encountered [PD-722] ([8d229cf](https://github.com/pie-framework/pie-lib/commit/8d229cf))
+
+
+
+
+
 ## [7.17.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.8...@pie-lib/editable-html@7.17.9) (2021-09-20)
 
 

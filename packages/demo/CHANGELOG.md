@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.7.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.6.10...@pie-lib/demo@6.7.0) (2021-10-04)
+
+
+### Features
+
+* **rubric:** Added Studio support: Treat 'null' as null value for sample answer PD-1313 ([ce71c81](https://github.com/pie-framework/pie-lib/commit/ce71c81))
+
+
+
+
+
 ## [6.6.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.6.9...@pie-lib/demo@6.6.10) (2021-09-20)
 
 **Note:** Version bump only for package @pie-lib/demo
