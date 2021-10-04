@@ -123,7 +123,7 @@ const LatexButton = withStyles(theme => ({
         paddingTop: '0 !important'
       },
       '&:after': {
-        top: '-1.6em !important'
+        top: '-1.64em !important'
       }
     }
   }
