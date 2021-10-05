@@ -12,6 +12,7 @@ export default withStyles(() => ({
   input: {
     color: color.text(),
     backgroundColor: color.background(),
+    borderRadius: '4px',
     borderWidth: '1px',
     borderStyle: 'solid',
     padding: '10px 20px 10px 10px',
@@ -35,6 +36,8 @@ export default withStyles(() => ({
     fontSize: 'inherit'
   },
   outlinedInput: {
+    padding: '2px',
+    borderRadius: '4px',
     '& fieldset': {
       border: 0
     }
@@ -43,8 +46,9 @@ export default withStyles(() => ({
     borderColor: color.correct()
   }
 }))(props => {
-  const { correct, isBox, classes, disabled, ...rest } = props;
+  const { correct, isBox, classes, disabled, maxLength, ...rest } = props;
   const label = typeof correct === 'boolean' ? (correct ? 'correct' : 'incorrect') : undefined;
+  const extraSpace = maxLength / 10 + 1;
 
   return (
     <OutlinedInput
@@ -55,6 +59,12 @@ export default withStyles(() => ({
       })}
       classes={{
         input: classnames({ [classes.input]: true, [classes[label]]: label })
+      }}
+      inputProps={{
+        maxLength: maxLength,
+        style: {
+          width: `${maxLength + extraSpace}ch`
+        }
       }}
       labelWidth={0}
       disabled={disabled}
