@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.11.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.10.22...@pie-lib/mask-markup@1.11.0) (2021-10-18)
+
+
+### Features
+
+* **mask-markup:** Added a max limit of characters, adjusted the width and updated design PD-794 ([f46d544](https://github.com/pie-framework/pie-lib/commit/f46d544))
+* **mask-markup:** Made sure that the changes do not affect other components ([e3c5f8c](https://github.com/pie-framework/pie-lib/commit/e3c5f8c))
+
+
+
+
+
 ## [1.10.22](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.10.21...@pie-lib/mask-markup@1.10.22) (2021-09-08)
 
 **Note:** Version bump only for package @pie-lib/mask-markup
