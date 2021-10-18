@@ -59,7 +59,12 @@ class Dropdown extends React.Component {
 
     return (
       <Select
-        classes={{ root: classes.root, icon: classes.icon, selectMenu: classes.selectMenu }}
+        classes={{
+          root: classes.root,
+          icon: classes.icon,
+          selectMenu: classes.selectMenu,
+          select: classes.select
+        }}
         disabled={disabled}
         value={value || ''}
         onOpen={this.showCheckmarkAndOpen}
@@ -111,6 +116,11 @@ const styles = () => ({
       borderRadius: '5px',
       color: color.text(),
       backgroundColor: color.background()
+    }
+  },
+  select: {
+    '&:focus': {
+      borderRadius: '4px'
     }
   },
   selectMenu: {

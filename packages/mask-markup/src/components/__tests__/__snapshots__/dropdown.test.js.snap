@@ -23,12 +23,13 @@ exports[`Dropdown render renders correctly with correct as true 1`] = `
   }
   classes={
     Object {
-      "icon": "Dropdown-icon-3",
-      "label": "Dropdown-label-6",
-      "menuRoot": "Dropdown-menuRoot-5",
+      "icon": "Dropdown-icon-4",
+      "label": "Dropdown-label-7",
+      "menuRoot": "Dropdown-menuRoot-6",
       "root": "Dropdown-root-1",
-      "selectMenu": "Dropdown-selectMenu-2",
-      "selected": "Dropdown-selected-4",
+      "select": "Dropdown-select-2",
+      "selectMenu": "Dropdown-selectMenu-3",
+      "selected": "Dropdown-selected-5",
     }
   }
   correct={true}
@@ -62,12 +63,13 @@ exports[`Dropdown render renders correctly with default props 1`] = `
   }
   classes={
     Object {
-      "icon": "Dropdown-icon-3",
-      "label": "Dropdown-label-6",
-      "menuRoot": "Dropdown-menuRoot-5",
+      "icon": "Dropdown-icon-4",
+      "label": "Dropdown-label-7",
+      "menuRoot": "Dropdown-menuRoot-6",
       "root": "Dropdown-root-1",
-      "selectMenu": "Dropdown-selectMenu-2",
-      "selected": "Dropdown-selected-4",
+      "select": "Dropdown-select-2",
+      "selectMenu": "Dropdown-selectMenu-3",
+      "selected": "Dropdown-selected-5",
     }
   }
   correct={false}
@@ -101,12 +103,13 @@ exports[`Dropdown render renders correctly with disabled prop as true 1`] = `
   }
   classes={
     Object {
-      "icon": "Dropdown-icon-3",
-      "label": "Dropdown-label-6",
-      "menuRoot": "Dropdown-menuRoot-5",
+      "icon": "Dropdown-icon-4",
+      "label": "Dropdown-label-7",
+      "menuRoot": "Dropdown-menuRoot-6",
       "root": "Dropdown-root-1",
-      "selectMenu": "Dropdown-selectMenu-2",
-      "selected": "Dropdown-selected-4",
+      "select": "Dropdown-select-2",
+      "selectMenu": "Dropdown-selectMenu-3",
+      "selected": "Dropdown-selected-5",
     }
   }
   correct={false}
