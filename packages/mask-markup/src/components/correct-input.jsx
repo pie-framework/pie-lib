@@ -12,7 +12,7 @@ export default withStyles(() => ({
   input: {
     color: color.text(),
     backgroundColor: color.background(),
-    borderRadius: '4px',
+    borderRadius: '4px !important',
     borderWidth: '1px',
     borderStyle: 'solid',
     padding: '10px 20px 10px 10px',
