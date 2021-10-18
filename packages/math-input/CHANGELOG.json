@@ -1528,5 +1528,20 @@
     "committerDate": "2021-09-23 13:38:33 +0300",
     "isTagged": true,
     "tag": "@pie-lib/math-input@6.6.5"
+  },
+  {
+    "type": "fix",
+    "scope": "math-input",
+    "subject": "Fixed left-right arrow button",
+    "merge": null,
+    "header": "fix(math-input): Fixed left-right arrow button",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "6109149689e75bfaba2bf1677c909bb7cbaa3145",
+    "gitTags": " (origin/fix/math-input-arrow)",
+    "committerDate": "2021-10-04 13:14:10 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/math-input@6.6.6"
   }
 ]
