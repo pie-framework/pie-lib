@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CorrectInput from './correct-input';
 
-const Input = ({ disabled, correct, id, value, onChange, showCorrectAnswer }) => {
+const Input = ({ disabled, correct, id, value, onChange, showCorrectAnswer, maxLength }) => {
   return (
     <CorrectInput
       disabled={disabled}
@@ -10,6 +10,7 @@ const Input = ({ disabled, correct, id, value, onChange, showCorrectAnswer }) =>
       variant="outlined"
       value={value}
       isBox={true}
+      maxLength={maxLength}
       onChange={e => {
         onChange(id, e.target.value);
       }}
