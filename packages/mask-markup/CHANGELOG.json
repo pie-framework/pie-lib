@@ -838,5 +838,35 @@
     "committerDate": "2021-07-02 16:41:08 +0300",
     "isTagged": true,
     "tag": "@pie-lib/mask-markup@1.10.18"
+  },
+  {
+    "type": "feat",
+    "scope": "mask-markup",
+    "subject": "Made sure that the changes do not affect other components",
+    "merge": null,
+    "header": "feat(mask-markup): Made sure that the changes do not affect other components",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "e3c5f8ce419aa9e99d9c5b01367d9ab2ce54dce7",
+    "gitTags": " (origin/feat/PD-794)",
+    "committerDate": "2021-10-18 12:30:08 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/mask-markup@1.11.0"
+  },
+  {
+    "type": "feat",
+    "scope": "mask-markup",
+    "subject": "Added a max limit of characters, adjusted the width and updated design PD-794",
+    "merge": null,
+    "header": "feat(mask-markup): Added a max limit of characters, adjusted the width and updated design PD-794",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "f46d544caaf03fc638993670d05ed284e284d93e",
+    "gitTags": "",
+    "committerDate": "2021-10-05 15:36:43 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/mask-markup@1.11.0"
   }
 ]
