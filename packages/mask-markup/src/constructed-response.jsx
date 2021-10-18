@@ -5,7 +5,7 @@ import { withMask } from './with-mask';
 export default withMask('input', props => (node, data, onChange) => {
   const dataset = node.data ? node.data.dataset || {} : {};
   if (dataset.component === 'input') {
-    const { disabled, feedback, showCorrectAnswer } = props;
+    const { disabled, feedback, showCorrectAnswer, maxLength } = props;
     // the first answer is the correct one
     const correctAnswer = ((props.choices && dataset && props.choices[dataset.id]) || [])[0];
     const finalValue = showCorrectAnswer
@@ -21,6 +21,7 @@ export default withMask('input', props => (node, data, onChange) => {
         id={dataset.id}
         onChange={onChange}
         showCorrectAnswer={showCorrectAnswer}
+        maxLength={maxLength && maxLength[dataset.id]}
       />
     );
   }
