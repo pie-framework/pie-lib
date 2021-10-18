@@ -48,7 +48,15 @@ export default withStyles(() => ({
 }))(props => {
   const { correct, isBox, classes, disabled, maxLength, ...rest } = props;
   const label = typeof correct === 'boolean' ? (correct ? 'correct' : 'incorrect') : undefined;
-  const extraSpace = maxLength / 10 + 1;
+  const extraSpace = maxLength ? maxLength / 10 + 1 : 0; // used for capital letters
+  const inputProps = maxLength
+    ? {
+        maxLength: maxLength,
+        style: {
+          width: `${maxLength + extraSpace}ch`
+        }
+      }
+    : {};
 
   return (
     <OutlinedInput
@@ -60,12 +68,7 @@ export default withStyles(() => ({
       classes={{
         input: classnames({ [classes.input]: true, [classes[label]]: label })
       }}
-      inputProps={{
-        maxLength: maxLength,
-        style: {
-          width: `${maxLength + extraSpace}ch`
-        }
-      }}
+      inputProps={inputProps}
       labelWidth={0}
       disabled={disabled}
       {...rest}
