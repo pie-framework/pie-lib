@@ -24,7 +24,11 @@ const useStyles = withStyles(() => ({
     position: 'relative'
   },
   chipLabel: {
-    whiteSpace: 'pre-wrap'
+    whiteSpace: 'pre-wrap',
+    '& img': {
+      display: 'block',
+      padding: '2px 0'
+    }
   },
   hidden: {
     color: 'transparent',
