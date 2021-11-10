@@ -67,7 +67,11 @@ export const BlankContent = withStyles(theme => ({
     margin: '4px'
   },
   chipLabel: {
-    whiteSpace: 'pre-wrap'
+    whiteSpace: 'pre-wrap',
+    '& img': {
+      display: 'block',
+      padding: '2px 0'
+    }
   },
   disabled: {}
 }))(BlankContentComp);
