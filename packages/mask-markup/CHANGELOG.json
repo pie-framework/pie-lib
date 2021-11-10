@@ -868,5 +868,20 @@
     "committerDate": "2021-10-05 15:36:43 +0300",
     "isTagged": true,
     "tag": "@pie-lib/mask-markup@1.11.0"
+  },
+  {
+    "type": "fix",
+    "scope": "mask-markup",
+    "subject": "Fixed border radius in pits",
+    "merge": null,
+    "header": "fix(mask-markup): Fixed border radius in pits",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "41c0acd332cbe8bceb3ed9059fee1d52ea73ebec",
+    "gitTags": "",
+    "committerDate": "2021-10-18 14:06:30 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/mask-markup@1.11.1"
   }
 ]
