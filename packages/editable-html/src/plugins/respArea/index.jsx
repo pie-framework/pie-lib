@@ -66,7 +66,7 @@ export default function ResponseAreaPlugin(opts) {
     name: 'response_area',
     toolbar,
     filterPlugins: (node, plugins) => {
-      if (node.type === 'explicit_constructed_response') {
+      if (node.type === 'explicit_constructed_response' || node.type === 'drag_in_the_blank') {
         return [];
       }
 

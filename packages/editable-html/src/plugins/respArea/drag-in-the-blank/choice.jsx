@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import isUndefined from 'lodash/isUndefined';
 import { DragSource, DropTarget } from '@pie-lib/drag';
+import { color } from '@pie-lib/render-ui';
 import { renderMath } from '@pie-lib/math-rendering';
 import { withStyles } from '@material-ui/core/styles';
 import classnames from 'classnames';
@@ -20,6 +21,9 @@ const useStyles = withStyles(theme => ({
   },
   incorrect: {
     border: 'solid 1px red'
+  },
+  selected: {
+    border: `2px solid ${color.primaryDark()} !important`
   }
 }));
 
@@ -30,8 +34,35 @@ export class BlankContent extends React.Component {
     isDragging: PropTypes.bool,
     isOver: PropTypes.bool,
     dragItem: PropTypes.object,
-    value: PropTypes.object
+    value: PropTypes.object,
+    classes: PropTypes.object
   };
+
+  constructor(props) {
+    super(props);
+
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  componentDidMount() {
+    document.addEventListener('click', this.handleClick);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('click', this.handleClick);
+  }
+
+  handleClick(event) {
+    const { classes } = this.props;
+
+    if (this.elementRef) {
+      if (this.elementRef.contains(event.target)) {
+        this.elementRef.className = classes.selected;
+      } else {
+        this.elementRef.className = '';
+      }
+    }
+  }
 
   componentDidUpdate() {
     if (this.elementRef) {
