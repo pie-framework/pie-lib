@@ -56,11 +56,7 @@ export class BlankContent extends React.Component {
     const { classes } = this.props;
 
     if (this.elementRef) {
-      if (this.elementRef.contains(event.target)) {
-        this.elementRef.className = classes.selected;
-      } else {
-        this.elementRef.className = '';
-      }
+      this.elementRef.className = this.elementRef.contains(event.target) ? classes.selected : '';
     }
   }
 
