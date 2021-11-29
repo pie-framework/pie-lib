@@ -4,12 +4,13 @@ exports[`CorrectInput render renders correctly with correct as false 1`] = `
 <Component
   classes={
     Object {
-      "box": "Component-box-4",
-      "correct": "Component-correct-2",
-      "incorrect": "Component-incorrect-3",
+      "box": "Component-box-5",
+      "correct": "Component-correct-3",
+      "crInput": "Component-crInput-2",
+      "incorrect": "Component-incorrect-4",
       "input": "Component-input-1",
-      "notchedOutline": "Component-notchedOutline-6",
-      "outlinedInput": "Component-outlinedInput-5",
+      "notchedOutline": "Component-notchedOutline-7",
+      "outlinedInput": "Component-outlinedInput-6",
     }
   }
   correct={false}
@@ -24,12 +25,13 @@ exports[`CorrectInput render renders correctly with default props 1`] = `
 <Component
   classes={
     Object {
-      "box": "Component-box-4",
-      "correct": "Component-correct-2",
-      "incorrect": "Component-incorrect-3",
+      "box": "Component-box-5",
+      "correct": "Component-correct-3",
+      "crInput": "Component-crInput-2",
+      "incorrect": "Component-incorrect-4",
       "input": "Component-input-1",
-      "notchedOutline": "Component-notchedOutline-6",
-      "outlinedInput": "Component-outlinedInput-5",
+      "notchedOutline": "Component-notchedOutline-7",
+      "outlinedInput": "Component-outlinedInput-6",
     }
   }
   correct={false}
@@ -44,12 +46,13 @@ exports[`CorrectInput render renders correctly with disabled prop as true 1`] = 
 <Component
   classes={
     Object {
-      "box": "Component-box-4",
-      "correct": "Component-correct-2",
-      "incorrect": "Component-incorrect-3",
+      "box": "Component-box-5",
+      "correct": "Component-correct-3",
+      "crInput": "Component-crInput-2",
+      "incorrect": "Component-incorrect-4",
       "input": "Component-input-1",
-      "notchedOutline": "Component-notchedOutline-6",
-      "outlinedInput": "Component-outlinedInput-5",
+      "notchedOutline": "Component-notchedOutline-7",
+      "outlinedInput": "Component-outlinedInput-6",
     }
   }
   correct={false}
