@@ -34,27 +34,32 @@ export default withStyles(() => ({
     height: 0,
     overflow: 'hidden',
     display: 'flex',
-    visibility: 'hidden'
+    visibility: 'hidden',
+    width: 0
   },
   enter: {
     transition,
     opacity: 1,
     height: '25px',
+    width: 'auto',
     visibility: 'visible'
   },
   enterDone: {
     height: '25px',
-    visibility: 'visible'
+    visibility: 'visible',
+    width: 'auto'
   },
   exit: {
     transition,
     opacity: 0,
-    height: '0px',
-    visibility: 'visible'
+    height: 0,
+    visibility: 'visible',
+    width: 0
   },
   exitDone: {
     opacity: 0,
     visibility: 'hidden',
-    height: '0px'
+    height: 0,
+    width: 0
   }
 }))(Expander);

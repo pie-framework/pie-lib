@@ -95,6 +95,12 @@ export const renderChildren = (layout, value, onChange, rootRenderChildren, pare
   return children;
 };
 
+const MaskContainer = withStyles(() => ({
+  main: {
+    display: 'inherit'
+  }
+}))(props => <div className={props.classes.main}>{props.children}</div>);
+
 /**
  * Renders a layout that uses the slate.js Value model structure.
  */
@@ -115,6 +121,6 @@ export default class Mask extends React.Component {
     const { value, layout } = this.props;
     const children = renderChildren(layout, value, this.handleChange, this.props.renderChildren);
 
-    return <div>{children}</div>;
+    return <MaskContainer>{children}</MaskContainer>;
   }
 }
