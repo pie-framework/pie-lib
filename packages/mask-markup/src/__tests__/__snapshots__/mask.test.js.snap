@@ -15,13 +15,13 @@ exports[`Mask render renders correctly a div 1`] = `
 `;
 
 exports[`Mask render renders correctly a em 1`] = `
-<div>
+<WithStyles(Component)>
   Foo 
   <em>
     x
   </em>
    bar
-</div>
+</WithStyles(Component)>
 `;
 
 exports[`Mask render renders correctly a paragraph 1`] = `
