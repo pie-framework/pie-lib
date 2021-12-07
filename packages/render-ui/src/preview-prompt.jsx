@@ -58,13 +58,11 @@ const styles = theme => ({
       borderCollapse: 'collapse'
     },
     '&:not(.MathJax) > table tr': {
-      borderTop: '1px solid #dfe2e5',
       '&:nth-child(2n)': {
         backgroundColor: '#f6f8fa'
       }
     },
     '&:not(.MathJax) > table td, &:not(.MathJax) > table th': {
-      border: '1px solid #dfe2e5',
       padding: '.6em 1em',
       textAlign: 'center'
     }
