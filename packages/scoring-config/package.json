@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/scoring-config",
-  "version": "3.5.141",
+  "version": "3.5.142",
   "description": "",
   "main": "lib/index.js",
   "module": "src/index.jsx",
@@ -13,7 +13,7 @@
   "dependencies": {
     "@material-ui/core": "^3.8.3",
     "@material-ui/icons": "^3.0.2",
-    "@pie-lib/config-ui": "^10.10.12",
+    "@pie-lib/config-ui": "^10.10.13",
     "classnames": "^2.2.6",
     "debug": "^4.1.1",
     "lodash": "^4.17.11"
