@@ -1,6 +1,6 @@
 import React from 'react';
 import EditTable from 'slate-edit-table';
-import { Block, Inline } from 'slate';
+import { Block } from 'slate';
 import debug from 'debug';
 import GridOn from '@material-ui/icons/GridOn';
 import TableToolbar from './table-toolbar';
@@ -117,12 +117,30 @@ export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
     return ancestors.findLast(p => p.type === 'table');
   };
 
+  core.utils.createTableWithOptions = (row, columns, extra) => {
+    const createdTable = core.utils.createTable(row, columns);
+    const newTable = Block.create({
+      ...createdTable.toJSON(),
+      ...extra
+    });
+
+    return newTable;
+  };
+
   core.toolbar = {
     icon: <GridOn />,
     onClick: (value, onChange) => {
       log('insert table');
-      const c = core.changes.insertTable(value.change(), 2, 2);
-      onChange(c);
+      // const c = core.changes.insertTable(value.change(), 2, 2);
+      const change = value.change();
+      const newTable = core.utils.createTableWithOptions(2, 2, {
+        data: {
+          border: '1'
+        }
+      });
+
+      change.insertBlock(newTable);
+      onChange(change);
     },
     supports: (node, value) =>
       node && node.object === 'block' && core.utils.isSelectionInTable(value),
