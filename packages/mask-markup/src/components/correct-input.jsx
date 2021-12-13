@@ -30,6 +30,9 @@ export default withStyles(() => ({
       borderColor: color.primaryDark()
     }
   },
+  crInput: {
+    padding: '8px !important'
+  },
   correct: correctStyle(color.correct()),
   incorrect: correctStyle(color.incorrect()),
   box: {
@@ -46,17 +49,24 @@ export default withStyles(() => ({
     borderColor: color.correct()
   }
 }))(props => {
-  const { correct, isBox, classes, disabled, maxLength, ...rest } = props;
+  const {
+    correct,
+    charactersLimit,
+    classes,
+    disabled,
+    isBox,
+    isConstructedResponse,
+    width,
+    ...rest
+  } = props;
   const label = typeof correct === 'boolean' ? (correct ? 'correct' : 'incorrect') : undefined;
-  const extraSpace = maxLength ? maxLength / 10 + 1 : 0; // used for capital letters
-  const inputProps = maxLength
-    ? {
-        maxLength: maxLength,
-        style: {
-          width: `${maxLength + extraSpace}ch`
-        }
-      }
-    : {};
+  const inputProps = charactersLimit ? { maxLength: charactersLimit } : {};
+
+  if (width) {
+    inputProps.style = {
+      width: `${width + Math.round(width / 10) + 1}ch` // added some extra space for capital letters
+    };
+  }
 
   return (
     <OutlinedInput
@@ -66,7 +76,11 @@ export default withStyles(() => ({
         [classes.outlinedInput]: true
       })}
       classes={{
-        input: classnames({ [classes.input]: true, [classes[label]]: label })
+        input: classnames({
+          [classes.input]: true,
+          [classes[label]]: label,
+          [classes.crInput]: isConstructedResponse
+        })
       }}
       inputProps={inputProps}
       labelWidth={0}

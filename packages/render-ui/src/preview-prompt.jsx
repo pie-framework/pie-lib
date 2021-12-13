@@ -21,6 +21,25 @@ export class PreviewPrompt extends Component {
     onClick: () => {}
   };
 
+  parsedText = text => {
+    // fix imported audio content for Safari PD-1419
+    const div = document.createElement('div');
+    div.innerHTML = text;
+
+    const audio = div.querySelector('audio');
+    if (audio) {
+      const source = document.createElement('source');
+
+      source.setAttribute('type', 'audio/mp3');
+      source.setAttribute('src', audio.getAttribute('src'));
+
+      audio.removeAttribute('src');
+      audio.appendChild(source);
+    }
+
+    return div.innerHTML;
+  };
+
   render() {
     const { prompt, classes, tagName, className, onClick, defaultClassName } = this.props;
     const CustomTag = tagName || 'div';
@@ -32,7 +51,7 @@ export class PreviewPrompt extends Component {
         onClick={onClick}
         className={customClasses}
         dangerouslySetInnerHTML={{
-          __html: (prompt || '').replace(NEWLINE_BLOCK_REGEX, NEWLINE_LATEX)
+          __html: this.parsedText(prompt || '').replace(NEWLINE_BLOCK_REGEX, NEWLINE_LATEX)
         }}
       />
     );
@@ -58,13 +77,11 @@ const styles = theme => ({
       borderCollapse: 'collapse'
     },
     '&:not(.MathJax) > table tr': {
-      borderTop: '1px solid #dfe2e5',
       '&:nth-child(2n)': {
         backgroundColor: '#f6f8fa'
       }
     },
     '&:not(.MathJax) > table td, &:not(.MathJax) > table th': {
-      border: '1px solid #dfe2e5',
       padding: '.6em 1em',
       textAlign: 'center'
     }

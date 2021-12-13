@@ -196,7 +196,8 @@ const renderMath = (el, renderOpts) => {
 CHTMLmspace.styles = {
   'mjx-mspace': {
     display: 'block',
-    'text-align': 'center'
+    'text-align': 'center',
+    height: '5px'
   }
 };
 

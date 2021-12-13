@@ -587,7 +587,7 @@ const styles = {
       color: color.text(),
       backgroundColor: color.background()
     },
-    '& tr': {
+    '& table:not([border="1"]) tr': {
       borderTop: '1px solid #dfe2e5'
       // TODO perhaps secondary color for background, for now disable
       // '&:nth-child(2n)': {
@@ -595,9 +595,11 @@ const styles = {
       // }
     },
     '& td, th': {
-      border: '1px solid #dfe2e5',
       padding: '.6em 1em',
       textAlign: 'center'
+    },
+    '& table:not([border="1"]) td, th': {
+      border: '1px solid #dfe2e5'
     }
   },
   toolbarOnTop: {
