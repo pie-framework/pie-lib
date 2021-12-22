@@ -1,13 +1,18 @@
 import EditTable from 'slate-edit-table';
 import TablePlugin, { serialization, parseStyleString, reactAttributes } from '../index';
-import { Data } from 'slate';
+import { Data, Block } from 'slate';
 import React from 'react';
 
 jest.mock('slate-edit-table', () => {
   const mock = {
     default: jest.fn().mockReturnThis(),
     utils: {
-      isSelectionInTable: jest.fn().mockReturnValue(true)
+      isSelectionInTable: jest.fn().mockReturnValue(true),
+      createTable: jest.fn(function(c) {
+        return {
+          toJSON: jest.fn().mockReturnValue({ object: 'block', type: 'table' })
+        };
+      })
     },
     changes: {
       insertTable: jest.fn(function(c) {
@@ -22,12 +27,32 @@ jest.mock('slate-edit-table', () => {
 describe('table', () => {
   describe('toolbar', () => {
     describe('onClick', () => {
-      it('calls changes.insertTable', () => {
-        const plugin = TablePlugin();
-        const onChange = jest.fn();
-        plugin.toolbar.onClick({ change: jest.fn().mockReturnValue({}) }, onChange);
+      let plugin;
+      let onChange;
+      let insertBlock;
+      let changeMock;
 
-        expect(EditTable().changes.insertTable).toHaveBeenCalledWith({}, 2, 2);
+      beforeEach(() => {
+        plugin = TablePlugin();
+        onChange = jest.fn();
+        insertBlock = jest.fn();
+        changeMock = jest.fn().mockReturnValue({
+          insertBlock
+        });
+      });
+
+      it('calls utils.createTable', () => {
+        plugin.toolbar.onClick({ change: changeMock }, onChange);
+
+        expect(EditTable().utils.createTable).toHaveBeenCalledWith(2, 2);
+      });
+
+      it('creates table with border: 1 as default', () => {
+        plugin.toolbar.onClick({ change: changeMock }, onChange);
+
+        expect(insertBlock).toHaveBeenCalledWith(
+          Block.create({ key: '2', type: 'table', data: { border: '1' } })
+        );
       });
     });
 
