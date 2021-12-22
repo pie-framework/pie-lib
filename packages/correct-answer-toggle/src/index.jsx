@@ -61,7 +61,9 @@ export class CorrectAnswerToggle extends React.Component {
               </CSSTransition>
             </div>
             <Readable false>
-              <div className={classes.label}>{toggled ? hideMessage : showMessage}</div>
+              <div className={classes.label} aria-hidden={!this.state.show}>
+                {toggled ? hideMessage : showMessage}
+              </div>
             </Readable>
           </div>
         </Expander>
