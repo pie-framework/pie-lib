@@ -78,6 +78,20 @@ TableCell.propTypes = {
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired
 };
 
+export const moveFocusToBeginningOfTable = change => {
+  const addedTable = change.value.document.findDescendant(d => !!d.data && !!d.data.get('newTable'));
+
+  if (!addedTable) {
+    return;
+  }
+
+  change.collapseToStartOf(addedTable);
+
+  const update = addedTable.data.remove('newTable');
+
+  change.setNodeByKey(addedTable.key, { data: update });
+};
+
 export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
   const core = EditTable({
     typeContent: 'div'
@@ -131,15 +145,17 @@ export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
     icon: <GridOn />,
     onClick: (value, onChange) => {
       log('insert table');
-      // const c = core.changes.insertTable(value.change(), 2, 2);
       const change = value.change();
       const newTable = core.utils.createTableWithOptions(2, 2, {
         data: {
-          border: '1'
+          border: '1',
+          newTable: true
         }
       });
 
       change.insertBlock(newTable);
+
+      moveFocusToBeginningOfTable(change);
       onChange(change);
     },
     supports: (node, value) =>
@@ -279,7 +295,15 @@ export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
           }
 
           // we insert the table block between the first block with text and the last block with text
-          change.insertBlock(tableJSON);
+          change.insertBlock({
+            ...tableJSON,
+            data: {
+              ...tableJSON.data,
+              newTable: true
+            }
+          });
+
+          moveFocusToBeginningOfTable(change);
         });
       }
     };
