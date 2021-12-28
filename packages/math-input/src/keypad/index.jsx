@@ -192,9 +192,12 @@ export class KeyPad extends React.Component {
   };
 
   render() {
-    const { classes, className, baseSet, additionalKeys, onFocus } = this.props;
+    const { classes, className, baseSet, additionalKeys, onFocus, mode } = this.props;
 
-    const allKeys = this.flowKeys(baseSet, additionalKeys || []); //, ...sortKeys(additionalKeys)];
+    const noBaseSet = ['non-negative-integers', 'integers', 'decimals', 'fractions'];
+
+    const allKeys = noBaseSet.includes(mode) ? this.flowKeys([], additionalKeys || [])
+      : this.flowKeys(baseSet, additionalKeys || []); //, ...sortKeys(additionalKeys)];
 
     const shift = allKeys.length % 5 ? 1 : 0;
     const style = {

@@ -166,6 +166,10 @@ export class EditorAndPad extends React.Component {
                 onChange={this.onEditorTypeChange}
                 value={this.state.equationEditor}
               >
+                <MenuItem value="non-negative-integers">Numeric - Non-Negative Integers</MenuItem>
+                <MenuItem value="integers">Numeric - Integers</MenuItem>
+                <MenuItem value="decimals">Numeric - Decimals</MenuItem>
+                <MenuItem value="fractions">Numeric - Fractions</MenuItem>
                 <MenuItem value={1}>Grade 1 - 2</MenuItem>
                 <MenuItem value={3}>Grade 3 - 5</MenuItem>
                 <MenuItem value={6}>Grade 6 - 7</MenuItem>
@@ -173,7 +177,7 @@ export class EditorAndPad extends React.Component {
                 <MenuItem value={'geometry'}>Geometry</MenuItem>
                 <MenuItem value={'advanced-algebra'}>Advanced Algebra</MenuItem>
                 <MenuItem value={'statistics'}>Statistics</MenuItem>
-                <MenuItem value={'miscellaneous'}>Miscellaneous</MenuItem>
+                {/*<MenuItem value={'miscellaneous'}>Miscellaneous</MenuItem>*/}
               </Select>
             </InputContainer>
           )}
