@@ -14,9 +14,8 @@ import * as basicOperators from './basic-operators';
 import * as matrices from './matrices';
 import digits from './digits';
 import * as logic from './logic';
-import {divide, equals, minus, multiply, plus} from "./basic-operators";
-import * as nav from "./navigation";
-import * as edit from "./edit";
+import * as nav from './navigation';
+import * as edit from './edit';
 
 const hs = [
   [fractions.blankOverBlank, misc.percentage, vars.x, exponent.squared, exponent.squareRoot],
@@ -82,7 +81,7 @@ export const gradeSets = [
       [digits.seven, digits.eight, digits.nine],
       [digits.four, digits.five, digits.six],
       [digits.one, digits.two, digits.three],
-      [digits.zero],
+      [digits.zero, { name: '', latex: '', write: '' }, { name: '', latex: '', write: '' }],
       [nav.left, nav.right, edit.del]
     ]
   },
@@ -92,7 +91,7 @@ export const gradeSets = [
       [digits.seven, digits.eight, digits.nine],
       [digits.four, digits.five, digits.six],
       [digits.one, digits.two, digits.three],
-      [digits.zero, basicOperators.minus],
+      [digits.zero, { name: '', latex: '', write: '' }, basicOperators.minus],
       [nav.left, nav.right, edit.del]
     ]
   },
@@ -258,6 +257,71 @@ export const gradeSets = [
   {
     predicate: 'statistics',
     set: statisticsSet
+  },
+  {
+    predicate: 'item-authoring',
+    set: [
+      [
+        basicOperators.divide,
+        fractions.blankOverBlank,
+        logic.longDivision,
+        constants.halfInfinity,
+        exponent.squared,
+        exponent.squareRoot,
+        geometry.overline,
+        geometry.overRightArrow,
+        geometry.overLeftRightArrow,
+        log.log
+      ],
+      [
+        basicOperators.multiply,
+        digits.decimalPoint,
+        { name: '', latex: '', write: '' },
+        subSup.subscript,
+        exponent.xToPowerOfN,
+        exponent.nthRoot,
+        geometry.perpindicular,
+        geometry.parallel,
+        geometry.overArc,
+        log.logSubscript
+      ],
+      [
+        misc.plusMinus,
+        constants.pi,
+        vars.theta,
+        operators.circleDot,
+        geometry.angle,
+        geometry.leftArrow,
+        geometry.rightArrow,
+        geometry.triangle,
+        geometry.square,
+        log.ln
+      ],
+      [
+        misc.notEqual,
+        misc.absValue,
+        statistics.smallSigma,
+        statistics.mu,
+        logic.therefore,
+        statistics.sigma,
+        geometry.leftrightArrow,
+        trigonometry.sin,
+        trigonometry.cos,
+        trigonometry.tan
+      ],
+      [
+        comparison.lessThanEqual,
+        comparison.greaterThanEqual,
+        { name: '', latex: '', write: '' },
+        { name: '', latex: '', write: '' },
+        constants.infinity,
+        { name: '', latex: '', write: '' },
+        { name: '', latex: '', write: '' },
+        trigonometry.csc,
+        trigonometry.sec,
+        trigonometry.cot
+      ]
+    ]
   }
 ];
 

@@ -160,7 +160,8 @@ export class KeyPad extends React.Component {
     additionalKeys: PropTypes.array,
     onPress: PropTypes.func.isRequired,
     onFocus: PropTypes.func,
-    noDecimal: PropTypes.bool
+    noDecimal: PropTypes.bool,
+    mode: PropTypes.string
   };
   static defaultProps = {
     baseSet: baseSet,
@@ -194,9 +195,16 @@ export class KeyPad extends React.Component {
   render() {
     const { classes, className, baseSet, additionalKeys, onFocus, mode } = this.props;
 
-    const noBaseSet = ['non-negative-integers', 'integers', 'decimals', 'fractions'];
+    const noBaseSet = [
+      'non-negative-integers',
+      'integers',
+      'decimals',
+      'fractions',
+      'item-authoring'
+    ];
 
-    const allKeys = noBaseSet.includes(mode) ? this.flowKeys([], additionalKeys || [])
+    const allKeys = noBaseSet.includes(mode)
+      ? this.flowKeys([], additionalKeys || [])
       : this.flowKeys(baseSet, additionalKeys || []); //, ...sortKeys(additionalKeys)];
 
     const shift = allKeys.length % 5 ? 1 : 0;
@@ -217,7 +225,7 @@ export class KeyPad extends React.Component {
             onClick,
             className: classNames(
               classes.labelButton,
-              classes[k.category],
+              !noBaseSet.includes(mode) && classes[k.category],
               k.label === ',' && classes.comma,
               k.label === '.' && classes.dot
             ),

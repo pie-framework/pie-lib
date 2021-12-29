@@ -17,3 +17,19 @@ export const eulers = set({
   command: 'e',
   category: 'constants'
 });
+
+export const infinity = set({
+  name: 'Infinity',
+  label: '\\infty',
+  latex: '\\infty',
+  command: '\\infty',
+  category: 'constants'
+});
+
+export const halfInfinity = set({
+  name: 'Half Infinity',
+  label: '\\propto',
+  latex: '\\propto',
+  command: '\\propto',
+  category: 'constants'
+});

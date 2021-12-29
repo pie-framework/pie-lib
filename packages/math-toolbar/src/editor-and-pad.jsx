@@ -53,7 +53,7 @@ export class EditorAndPad extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { equationEditor: 8 };
+    this.state = { equationEditor: 'item-authoring' };
   }
 
   componentDidMount() {
@@ -177,7 +177,7 @@ export class EditorAndPad extends React.Component {
                 <MenuItem value={'geometry'}>Geometry</MenuItem>
                 <MenuItem value={'advanced-algebra'}>Advanced Algebra</MenuItem>
                 <MenuItem value={'statistics'}>Statistics</MenuItem>
-                {/*<MenuItem value={'miscellaneous'}>Miscellaneous</MenuItem>*/}
+                <MenuItem value={'item-authoring'}>Item Authoring</MenuItem>
               </Select>
             </InputContainer>
           )}
