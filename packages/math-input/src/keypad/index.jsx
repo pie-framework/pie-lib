@@ -203,7 +203,8 @@ export class KeyPad extends React.Component {
       'item-authoring'
     ];
 
-    const allKeys = noBaseSet.includes(mode)
+    const keysWithoutBaseSet = noBaseSet.includes(mode);
+    const allKeys = keysWithoutBaseSet
       ? this.flowKeys([], additionalKeys || [])
       : this.flowKeys(baseSet, additionalKeys || []); //, ...sortKeys(additionalKeys)];
 
@@ -225,7 +226,7 @@ export class KeyPad extends React.Component {
             onClick,
             className: classNames(
               classes.labelButton,
-              !noBaseSet.includes(mode) && classes[k.category],
+              !keysWithoutBaseSet && classes[k.category],
               k.label === ',' && classes.comma,
               k.label === '.' && classes.dot
             ),
