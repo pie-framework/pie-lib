@@ -66,6 +66,12 @@ export const triangle = set({
   command: '\\triangle'
 });
 
+export const square = set({
+  name: 'Square',
+  latex: '\\square',
+  command: '\\square'
+});
+
 export const parallelogram = set({
   name: 'Parallelogram',
   latex: '\\parallelogram',
@@ -113,4 +119,22 @@ export const doublePrimeArcSecond = set({
   name: 'Double Prime/Arcsecond',
   latex: '"',
   write: '"'
+});
+
+export const leftArrow = set({
+  name: 'Left Arrow',
+  latex: '\\leftarrow',
+  command: '\\leftarrow'
+});
+
+export const rightArrow = set({
+  name: 'Right Arrow',
+  latex: '\\rightarrow',
+  command: '\\rightarrow'
+});
+
+export const leftrightArrow = set({
+  name: 'Left Right Arrow',
+  latex: '\\leftrightarrow',
+  command: '\\leftrightarrow'
 });

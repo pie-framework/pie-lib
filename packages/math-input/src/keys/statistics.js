@@ -27,3 +27,10 @@ export const sigma = set({
   latex: '\\Sigma',
   write: '\\Sigma'
 });
+
+export const smallSigma = set({
+  name: 'sigma',
+  label: '\\sigma',
+  latex: '\\sigma',
+  write: '\\sigma'
+});

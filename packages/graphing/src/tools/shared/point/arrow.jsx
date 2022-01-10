@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { types } from '@pie-lib/plot';
 import { ArrowHead } from '../arrow-head';
+import { thinnerShapesNeeded } from '../../../utils';
 
 export default class Arrow extends React.Component {
   static propTypes = {
@@ -48,7 +49,7 @@ export default class Arrow extends React.Component {
       ...rest
     } = this.props;
 
-    const size = 14;
+    const size = thinnerShapesNeeded(graphProps) ? 12 : 14;
     const { scale } = graphProps;
 
     const scaledX = scale.x(x);

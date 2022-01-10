@@ -5,6 +5,7 @@ import { ArrowMarker, genUid } from '../shared/arrow-head';
 import { trig, types } from '@pie-lib/plot';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
+import { thinnerShapesNeeded } from '../../utils';
 
 const markerId = genUid();
 
@@ -28,6 +29,7 @@ export const RayLine = props => {
     <g>
       <defs>
         <ArrowMarker
+          size={thinnerShapesNeeded(graphProps) ? 4 : 5}
           id={`${props.markerId || markerId}-${suffix}`}
           className={classNames(classes[`${suffix}Arrow`])}
         />

@@ -22,26 +22,29 @@ describe('utils', () => {
 
   describe('keysForGrade', () => {
     it.each`
-      key                   | expected
-      ${'1'}                | ${undefined}
-      ${'2'}                | ${undefined}
-      ${'3'}                | ${gradeSets[0].set}
-      ${'4'}                | ${gradeSets[0].set}
-      ${'5'}                | ${gradeSets[0].set}
-      ${'6'}                | ${gradeSets[1].set}
-      ${'7'}                | ${gradeSets[1].set}
-      ${'8'}                | ${gradeSets[2].set}
-      ${'9'}                | ${gradeSets[2].set}
-      ${'HS'}               | ${gradeSets[2].set}
-      ${'geometry'}         | ${gradeSets[3].set}
-      ${'miscellaneous'}    | ${gradeSets[4].set}
-      ${'advanced-algebra'} | ${gradeSets[5].set}
-      ${'statistics'}       | ${gradeSets[6].set}
-      ${'something else'}   | ${undefined}
-      ${undefined}          | ${[]}
-      ${null}               | ${[]}
-      ${0}                  | ${[]}
-      ${'0'}                | ${[]}
+      key                         | expected
+      ${'1'}                      | ${undefined}
+      ${'2'}                      | ${undefined}
+      ${'3'}                      | ${gradeSets[0].set}
+      ${'4'}                      | ${gradeSets[0].set}
+      ${'5'}                      | ${gradeSets[0].set}
+      ${'6'}                      | ${gradeSets[1].set}
+      ${'7'}                      | ${gradeSets[1].set}
+      ${'8'}                      | ${gradeSets[2].set}
+      ${'9'}                      | ${gradeSets[2].set}
+      ${'HS'}                     | ${gradeSets[2].set}
+      ${'non-negative-integers'}  | ${gradeSets[3].set}
+      ${'integers'}               | ${gradeSets[4].set}
+      ${'decimals'}               | ${gradeSets[5].set}
+      ${'fractions'}              | ${gradeSets[6].set}
+      ${'geometry'}               | ${gradeSets[7].set}
+      ${'advanced-algebra'}       | ${gradeSets[8].set}
+      ${'statistics'}             | ${gradeSets[9].set}
+      ${'something else'}         | ${undefined}
+      ${undefined}                | ${[]}
+      ${null}                     | ${[]}
+      ${0}                        | ${[]}
+      ${'0'}                      | ${[]}
     `('$key => $expected', ({ key, expected }) => {
       expect(keysForGrade(key)).toEqual(expected);
 

@@ -5,6 +5,8 @@ import { trig, types } from '@pie-lib/plot';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import { ArrowMarker, genUid } from '../shared/arrow-head';
+import { thinnerShapesNeeded } from '../../utils';
+
 const markerId = genUid();
 
 const lineStyles = theme => ({
@@ -27,6 +29,7 @@ export const ArrowedLine = props => {
     <g>
       <defs>
         <ArrowMarker
+          size={thinnerShapesNeeded(graphProps) ? 4 : 5}
           id={`${props.markerId || markerId}-${suffix}`}
           className={classNames(classes[`${suffix}Arrow`])}
         />
