@@ -29,6 +29,7 @@ describe('table', () => {
     describe('onClick', () => {
       let plugin;
       let onChange;
+      let findDescendant;
       let insertBlock;
       let changeMock;
 
@@ -36,8 +37,14 @@ describe('table', () => {
         plugin = TablePlugin();
         onChange = jest.fn();
         insertBlock = jest.fn();
+        findDescendant = jest.fn();
         changeMock = jest.fn().mockReturnValue({
-          insertBlock
+          insertBlock,
+          value: {
+            document: {
+              findDescendant
+            }
+          }
         });
       });
 
@@ -51,8 +58,36 @@ describe('table', () => {
         plugin.toolbar.onClick({ change: changeMock }, onChange);
 
         expect(insertBlock).toHaveBeenCalledWith(
-          Block.create({ key: '2', type: 'table', data: { border: '1' } })
+          Block.create({ key: '2', type: 'table', data: { border: '1', newTable: true } })
         );
+      });
+
+      it('moves cursor to first cell of the table and removes the newTable property', () => {
+        const dataRemoveFn = jest.fn().mockReturnValue({ border: '1' });
+        const setNodeByKey = jest.fn();
+        const newTableBlock = {
+          key: '2',
+          data: {
+            remove: dataRemoveFn
+          }
+        };
+        const collapseToStartOf = jest.fn();
+
+        changeMock = jest.fn().mockReturnValue({
+          insertBlock,
+          collapseToStartOf,
+          setNodeByKey,
+          value: {
+            document: {
+              findDescendant: jest.fn().mockReturnValue(newTableBlock)
+            }
+          }
+        });
+        plugin.toolbar.onClick({ change: changeMock }, onChange);
+
+        expect(collapseToStartOf).toHaveBeenCalledWith(newTableBlock);
+        expect(dataRemoveFn).toHaveBeenCalledWith('newTable');
+        expect(setNodeByKey).toHaveBeenCalledWith('2', { data: { border: '1' } });
       });
     });
 
@@ -161,7 +196,8 @@ describe('table', () => {
           removeNodeByKey: jest.fn(),
           value: {
             document: {
-              getPreviousText: jest.fn().mockReturnValue(prevTextReturned)
+              getPreviousText: jest.fn().mockReturnValue(prevTextReturned),
+              findDescendant: jest.fn()
             }
           }
         };

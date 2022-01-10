@@ -47,6 +47,7 @@ export default class HorizontalKeypad extends React.Component {
         noDecimal={noDecimal}
         additionalKeys={extendKeySet(keysForGrade(mode), normalizedKeys)}
         onPress={this.keypadPress}
+        mode={mode}
       />
     );
   }
