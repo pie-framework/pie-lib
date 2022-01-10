@@ -14,18 +14,27 @@ import * as basicOperators from './basic-operators';
 import * as matrices from './matrices';
 import digits from './digits';
 import * as logic from './logic';
+import * as nav from './navigation';
+import * as edit from './edit';
 
 const hs = [
-  [vars.x, vars.y, exponent.squared, exponent.squareRoot, vars.theta],
-  [fractions.xOverBlank, subSup.subscript, exponent.xToPowerOfN, exponent.nthRoot],
-  [comparison.lessThanEqual, comparison.greaterThanEqual, misc.plusMinus, misc.absValue],
-  [constants.pi, { name: 'i', latex: 'i', write: 'i' }, misc.parenthesis, misc.brackets],
-  [trigonometry.sin, trigonometry.cos, trigonometry.tan, geometry.degree]
+  [fractions.blankOverBlank, misc.percentage, vars.x, exponent.squared, exponent.squareRoot],
+  [operators.circleDot, vars.y, subSup.subscript, exponent.xToPowerOfN, exponent.nthRoot],
+  [
+    misc.plusMinus,
+    comparison.lessThan,
+    comparison.greaterThan,
+    comparison.lessThanEqual,
+    comparison.greaterThanEqual
+  ],
+  [constants.pi, vars.theta, misc.parenthesis, misc.brackets, misc.absValue],
+  [misc.notEqual, trigonometry.sin, trigonometry.cos, trigonometry.tan, geometry.degree]
 ];
 
 const advancedAlgebra = (() => {
   const out = [...hs.map(arr => [...arr])];
 
+  out[0].push({ name: 'i', latex: 'i', write: 'i' });
   out[1].push(log.log);
   out[2].push(log.logSubscript);
   out[3].push(log.ln);
@@ -35,10 +44,11 @@ const advancedAlgebra = (() => {
 
 const statisticsSet = (() => {
   const out = [...hs.map(arr => [...arr])];
-  out[1].push(statistics.mu);
-  out[2].push(statistics.xBar);
-  out[3].push(statistics.yBar);
-  out[4].push(statistics.sigma);
+  out[0].push(statistics.mu);
+  out[1].push(statistics.xBar);
+  out[2].push(statistics.yBar);
+  out[3].push(statistics.sigma);
+  out[4].push(statistics.smallSigma);
   return out;
 })();
 
@@ -54,108 +64,147 @@ export const gradeSets = [
   {
     predicate: n => n >= 6 && n <= 7,
     set: [
-      [vars.x, vars.y, exponent.squared, exponent.squareRoot, operators.circleDot],
-      [fractions.xOverBlank, fractions.xBlankBlank, exponent.xToPowerOfN, exponent.nthRoot, logic.longDivision],
-      [comparison.lessThan, comparison.greaterThan, misc.plusMinus, misc.absValue],
-      [comparison.lessThanEqual, comparison.greaterThanEqual, misc.parenthesis, constants.pi],
-      [trigonometry.sin, trigonometry.cos, trigonometry.tan, geometry.degree]
+      [geometry.degree, comparison.lessThan, comparison.greaterThan],
+      [operators.circleDot, comparison.lessThanEqual, comparison.greaterThanEqual],
+      [vars.x, vars.y, exponent.squared, exponent.xToPowerOfN],
+      [misc.plusMinus, fractions.xOverBlank, fractions.xBlankBlank, exponent.squareRoot],
+      [constants.pi, misc.parenthesis, misc.absValue, exponent.nthRoot]
     ]
   },
   {
     predicate: n => n >= 8 || n === 'HS',
+    set: hs
+  },
+  {
+    predicate: 'non-negative-integers',
     set: [
-      [vars.x, vars.y, exponent.squared, exponent.squareRoot, operators.circleDot],
-      [fractions.xOverBlank, subSup.subscript, exponent.xToPowerOfN, exponent.nthRoot],
-      [
-        comparison.lessThanEqual,
-        comparison.greaterThanEqual,
-        misc.plusMinus,
-        misc.absValue
-        // matrices.singleCellMatrix
-      ],
-      [
-        constants.pi,
-        { name: 'i', latex: 'i', write: 'i' },
-        misc.parenthesis,
-        misc.brackets
-        // matrices.doubleCellMatrix
-      ],
-      [trigonometry.sin, trigonometry.cos, trigonometry.tan, geometry.degree]
+      [digits.seven, digits.eight, digits.nine],
+      [digits.four, digits.five, digits.six],
+      [digits.one, digits.two, digits.three],
+      [digits.zero, { name: '', latex: '', write: '' }, { name: '', latex: '', write: '' }],
+      [nav.left, nav.right, edit.del]
+    ]
+  },
+  {
+    predicate: 'integers',
+    set: [
+      [digits.seven, digits.eight, digits.nine],
+      [digits.four, digits.five, digits.six],
+      [digits.one, digits.two, digits.three],
+      [digits.zero, { name: '', latex: '', write: '' }, basicOperators.minus],
+      [nav.left, nav.right, edit.del]
+    ]
+  },
+  {
+    predicate: 'decimals',
+    set: [
+      [digits.seven, digits.eight, digits.nine],
+      [digits.four, digits.five, digits.six],
+      [digits.one, digits.two, digits.three],
+      [digits.zero, digits.decimalPoint, basicOperators.minus],
+      [nav.left, nav.right, edit.del]
+    ]
+  },
+  {
+    predicate: 'fractions',
+    set: [
+      [digits.seven, digits.eight, digits.nine],
+      [digits.four, digits.five, digits.six],
+      [digits.one, digits.two, digits.three],
+      [digits.zero, fractions.blankOverBlank, basicOperators.minus],
+      [nav.left, nav.right, edit.del]
     ]
   },
   {
     predicate: 'geometry',
     set: [
       [
+        fractions.blankOverBlank,
         geometry.degree,
         geometry.primeArcminute,
         geometry.doublePrimeArcSecond,
-        geometry.triangle,
-        fractions.xOverBlank
+        geometry.congruentTo,
+        geometry.similarTo
       ],
       [
+        operators.circleDot,
         geometry.angle,
         geometry.measureOfAngle,
-        geometry.similarTo,
-        geometry.congruentTo,
-        exponent.squareRoot
+        geometry.triangle,
+        geometry.notCongruentTo,
+        misc.notSimilar
       ],
-      [trigonometry.sin, trigonometry.cos, trigonometry.tan, trigonometry.sec, exponent.nthRoot],
-      [trigonometry.csc, trigonometry.cot, exponent.xToPowerOfN, constants.pi, subSup.subscript],
+      [
+        trigonometry.sin,
+        trigonometry.cos,
+        trigonometry.tan,
+        constants.pi,
+        exponent.squareRoot,
+        exponent.nthRoot
+      ],
+      [
+        trigonometry.csc,
+        trigonometry.sec,
+        trigonometry.cot,
+        vars.theta,
+        subSup.subscript,
+        exponent.xToPowerOfN
+      ],
       [
         geometry.overline,
         geometry.overRightArrow,
         geometry.overLeftRightArrow,
         geometry.overArc,
-        vars.theta
-      ]
-    ]
-  },
-  {
-    predicate: 'miscellaneous',
-    set: [
-      [
-        subSup.superscript,
-        subSup.subscript,
-        fractions.blankOverBlank,
-        misc.percentage,
-        geometry.segment,
-        geometry.parallel
-      ],
-      [
-        exponent.squareRoot,
-        exponent.nthRoot,
-        misc.absValue,
-        misc.parenthesis,
         geometry.perpindicular,
-        geometry.angle
-      ],
-      [
-        comparison.lessThan,
-        comparison.greaterThan,
-        geometry.degree,
-        misc.approx,
-        geometry.measureOfAngle,
-        geometry.triangle
-      ],
-      [
-        misc.nApprox,
-        misc.notEqual,
-        geometry.congruentTo,
-        geometry.notCongruentTo,
-        geometry.parallelogram,
-        geometry.circledDot
-      ],
-      [
-        misc.similar,
-        misc.notSimilar,
-        comparison.lessThanEqual,
-        comparison.greaterThanEqual,
-        vars.x,
-        vars.y
+        geometry.parallel
       ]
     ]
   },
+  // {
+  //   predicate: 'miscellaneous',
+  //   set: [
+  //     [
+  //       subSup.superscript,
+  //       subSup.subscript,
+  //       fractions.blankOverBlank,
+  //       misc.percentage,
+  //       geometry.segment,
+  //       geometry.parallel
+  //     ],
+  //     [
+  //       exponent.squareRoot,
+  //       exponent.nthRoot,
+  //       misc.absValue,
+  //       misc.parenthesis,
+  //       geometry.perpindicular,
+  //       geometry.angle
+  //     ],
+  //     [
+  //       comparison.lessThan,
+  //       comparison.greaterThan,
+  //       geometry.degree,
+  //       misc.approx,
+  //       geometry.measureOfAngle,
+  //       geometry.triangle
+  //     ],
+  //     [
+  //       misc.nApprox,
+  //       misc.notEqual,
+  //       geometry.congruentTo,
+  //       geometry.notCongruentTo,
+  //       geometry.parallelogram,
+  //       geometry.circledDot
+  //     ],
+  //     [
+  //       misc.similar,
+  //       misc.notSimilar,
+  //       comparison.lessThanEqual,
+  //       comparison.greaterThanEqual,
+  //       vars.x,
+  //       vars.y
+  //     ]
+  //   ]
+  // },
   // {
   //   predicate: 'everything',
   //   set: [
@@ -208,6 +257,71 @@ export const gradeSets = [
   {
     predicate: 'statistics',
     set: statisticsSet
+  },
+  {
+    predicate: 'item-authoring',
+    set: [
+      [
+        basicOperators.divide,
+        fractions.blankOverBlank,
+        logic.longDivision,
+        constants.halfInfinity,
+        exponent.squared,
+        exponent.squareRoot,
+        geometry.overline,
+        geometry.overRightArrow,
+        geometry.overLeftRightArrow,
+        log.log
+      ],
+      [
+        basicOperators.multiply,
+        digits.decimalPoint,
+        { name: '', latex: '', write: '' },
+        subSup.subscript,
+        exponent.xToPowerOfN,
+        exponent.nthRoot,
+        geometry.perpindicular,
+        geometry.parallel,
+        geometry.overArc,
+        log.logSubscript
+      ],
+      [
+        misc.plusMinus,
+        constants.pi,
+        vars.theta,
+        operators.circleDot,
+        geometry.angle,
+        geometry.leftArrow,
+        geometry.rightArrow,
+        geometry.triangle,
+        geometry.square,
+        log.ln
+      ],
+      [
+        misc.notEqual,
+        misc.absValue,
+        statistics.smallSigma,
+        statistics.mu,
+        logic.therefore,
+        statistics.sigma,
+        geometry.leftrightArrow,
+        trigonometry.sin,
+        trigonometry.cos,
+        trigonometry.tan
+      ],
+      [
+        comparison.lessThanEqual,
+        comparison.greaterThanEqual,
+        { name: '', latex: '', write: '' },
+        { name: '', latex: '', write: '' },
+        constants.infinity,
+        { name: '', latex: '', write: '' },
+        { name: '', latex: '', write: '' },
+        trigonometry.csc,
+        trigonometry.sec,
+        trigonometry.cot
+      ]
+    ]
   }
 ];
 
