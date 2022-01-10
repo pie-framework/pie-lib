@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { types } from '@pie-lib/plot';
 import CoordinatesLabel from '../../../coordinates-label';
 import ReactDOM from 'react-dom';
+import { thinnerShapesNeeded } from '../../../utils';
 
 export class RawBp extends React.Component {
   static propTypes = {
@@ -38,6 +39,7 @@ export class RawBp extends React.Component {
     } = this.props;
     const { showCoordinates } = this.state;
     const { scale } = graphProps;
+    const r = thinnerShapesNeeded(graphProps) ? 5 : 7;
 
     return (
       <g
@@ -51,7 +53,7 @@ export class RawBp extends React.Component {
         onMouseLeave={() => this.setState({ showCoordinates: false })}
         {...rest}
       >
-        <circle r="7" cx={scale.x(x)} cy={scale.y(y)} />
+        <circle r={r} cx={scale.x(x)} cy={scale.y(y)} />
         {labelNode &&
           coordinatesOnHover &&
           showCoordinates &&

@@ -132,3 +132,21 @@ export const equalPoints = (p1, p2) =>
       y: roundNumber(p2.y)
     }
   );
+
+const getDistanceBetweenTicks = (axis, size) => {
+  const { min, max, step } = axis;
+  const nbOfTicks = (max - min) / step;
+
+  return size / nbOfTicks;
+};
+
+export const thinnerShapesNeeded = graphProps => {
+  const {
+    domain,
+    range,
+    size: { width, height }
+  } = graphProps;
+
+  // 14 is the default width of a point
+  return getDistanceBetweenTicks(domain, width) < 14 || getDistanceBetweenTicks(range, height) < 14;
+};
