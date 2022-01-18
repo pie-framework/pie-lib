@@ -117,7 +117,8 @@ const style = {
       wordBreak: 'break-word',
       overflow: 'visible',
       maxHeight: '500px',
-      padding: '5px 0'
+      // needed in order to be able to put the focus before a void element when it is the first one in the editor
+      padding: '5px'
     }
   },
   children: {
