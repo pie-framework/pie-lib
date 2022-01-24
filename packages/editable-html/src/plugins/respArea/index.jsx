@@ -119,41 +119,6 @@ export default function ResponseAreaPlugin(opts) {
         });
       }
     },
-    normalizeNode: node => {
-      if (node.object !== 'document') {
-        return;
-      }
-
-      const addSpacesArray = [];
-
-      const allElements = node.filterDescendants(d => elTypesArray.indexOf(d.type) >= 0);
-
-      allElements.forEach(el => {
-        const prevText = node.getPreviousText(el.key);
-        const lastCharIsNewLine = prevText.text[prevText.text.length - 1] === '\n';
-
-        if (prevText.text.length === 0 || lastCharIsNewLine) {
-          addSpacesArray.push({
-            nr: lastCharIsNewLine ? 1 : 2,
-            key: prevText.key
-          });
-        }
-      });
-
-      if (!addSpacesArray.length) {
-        return;
-      }
-
-      return change => {
-        change.withoutNormalization(() => {
-          addSpacesArray.forEach(({ key, nr }) => {
-            const node = change.value.document.getNode(key);
-
-            change.insertTextByKey(key, node.text.length, '\u00A0'.repeat(nr));
-          });
-        });
-      };
-    },
     onDrop(event, change, editor) {
       const closestEl = event.target.closest('[data-key]');
       const inline = editor.value.document.findDescendant(d => d.key === closestEl.dataset.key);

@@ -218,6 +218,17 @@ export class Editor extends React.Component {
     }
   }
 
+  componentDidUpdate() {
+    // The cursor is on a zero width element and when that is placed near void elements, it is not visible
+    // so we increase the width to at least 2px in order for the user to see it
+    const zeroWidthEls = document.querySelectorAll('[data-slate-zero-width="z"]');
+
+    Array.from(zeroWidthEls).forEach(el => {
+      el.style.minWidth = '2px';
+      el.style.display = 'inline-block';
+    });
+  }
+
   onPluginBlur = e => {
     log('[onPluginBlur]', e && e.relatedTarget);
     const target = e && e.relatedTarget;

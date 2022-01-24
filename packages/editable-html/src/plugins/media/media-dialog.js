@@ -348,7 +348,7 @@ export class MediaDialog extends React.Component {
             Cancel
           </Button>
           <Button
-            disabled={invalid || url === null}
+            disabled={invalid || url === null || url === undefined}
             onClick={() => this.handleDone(true)}
             color="primary"
           >
