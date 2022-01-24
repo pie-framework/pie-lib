@@ -143,42 +143,6 @@ export default function MathPlugin() {
 
         return <span {...props.attributes} dangerouslySetInnerHTML={{ __html: html }} />;
       }
-    },
-
-    normalizeNode: node => {
-      if (node.object !== 'document') {
-        return;
-      }
-
-      const addSpacesArray = [];
-
-      const allElements = node.filterDescendants(d => d.type === 'math');
-
-      allElements.forEach(el => {
-        const prevText = node.getPreviousText(el.key);
-        const lastCharIsNewLine = prevText.text[prevText.text.length - 1] === '\n';
-
-        if (prevText.text.length === 0 || lastCharIsNewLine) {
-          addSpacesArray.push({
-            nr: lastCharIsNewLine ? 1 : 2,
-            key: prevText.key
-          });
-        }
-      });
-
-      if (!addSpacesArray.length) {
-        return;
-      }
-
-      return change => {
-        change.withoutNormalization(() => {
-          addSpacesArray.forEach(({ key, nr }) => {
-            const node = change.value.document.getNode(key);
-
-            change.insertTextByKey(key, node.text.length, '\u00A0'.repeat(nr));
-          });
-        });
-      };
     }
   };
 }
