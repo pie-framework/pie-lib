@@ -105,7 +105,7 @@ describe.only('Axes', () => {
       const result = w.instance().xValues();
       expect(result).toEqual({
         columnTicksValues: expect.arrayContaining([-2, -1, 0, 1, 2]),
-        distantceFromOriginToFirstNegativeX: 150,
+        distanceFromOriginToFirstNegativeX: 150,
         firstNegativeX: -1
       });
     });
@@ -116,7 +116,7 @@ describe.only('Axes', () => {
       const result = w.instance().yValues();
       expect(result).toEqual({
         rowTickValues: expect.arrayContaining([-2, -1, 0, 1, 2]),
-        distantceFromOriginToFirstNegativeY: 200,
+        distanceFromOriginToFirstNegativeY: 200,
         firstNegativeY: -1
       });
     });
@@ -151,20 +151,20 @@ describe('skipValue should be empty array if firstNegativeValue for one of the a
   // x
   const intervalX = [1, 2, 3, 4, 5, 6];
   const firstNegativeX = firstNegativeValue(intervalX);
-  const distantceFromOriginToFirstNegativeX = -22;
+  const distanceFromOriginToFirstNegativeX = -22;
 
   // y
   const intervalY = [-1, -2, 1, 2, 3, 4, 5, 6];
   const firstNegativeY = firstNegativeValue(intervalY);
-  const distantceFromOriginToFirstNegativeY = -22;
+  const distanceFromOriginToFirstNegativeY = -22;
 
   const deltaAllowance = 5;
 
   const result = sharedValues(
     firstNegativeX,
     firstNegativeY,
-    distantceFromOriginToFirstNegativeX,
-    distantceFromOriginToFirstNegativeY,
+    distanceFromOriginToFirstNegativeX,
+    distanceFromOriginToFirstNegativeY,
     deltaAllowance
   );
 
@@ -175,20 +175,20 @@ describe('skipValue should be empty array if firstNegativeX and firstNegativeY a
   // x
   const intervalX = [-1, -2, 1, 2, 3, 4, 5, 6];
   const firstNegativeX = firstNegativeValue(intervalX);
-  const distantceFromOriginToFirstNegativeX = -7;
+  const distanceFromOriginToFirstNegativeX = -7;
 
   // y
   const intervalY = [-1, -2, 1, 2, 3, 4, 5, 6];
   const firstNegativeY = firstNegativeValue(intervalY);
-  const distantceFromOriginToFirstNegativeY = -22;
+  const distanceFromOriginToFirstNegativeY = -22;
 
   const deltaAllowance = 5;
 
   const result = sharedValues(
     firstNegativeX,
     firstNegativeY,
-    distantceFromOriginToFirstNegativeX,
-    distantceFromOriginToFirstNegativeY,
+    distanceFromOriginToFirstNegativeX,
+    distanceFromOriginToFirstNegativeY,
     deltaAllowance
   );
 
@@ -199,20 +199,20 @@ describe('skipValue should be -1 if firstNegativeX and firstNegativeY are equal 
   // x
   const intervalX = [-1, -2, 1, 2, 3, 4, 5, 6];
   const firstNegativeX = firstNegativeValue(intervalX);
-  const distantceFromOriginToFirstNegativeX = -20;
+  const distanceFromOriginToFirstNegativeX = -20;
 
   // y
   const intervalY = [-1, -2, 1, 2, 3, 4, 5, 6];
   const firstNegativeY = firstNegativeValue(intervalY);
-  const distantceFromOriginToFirstNegativeY = -22;
+  const distanceFromOriginToFirstNegativeY = -22;
 
   const deltaAllowance = 5;
 
   const result = sharedValues(
     firstNegativeX,
     firstNegativeY,
-    distantceFromOriginToFirstNegativeX,
-    distantceFromOriginToFirstNegativeY,
+    distanceFromOriginToFirstNegativeX,
+    distanceFromOriginToFirstNegativeY,
     deltaAllowance
   );
 

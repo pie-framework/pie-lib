@@ -164,10 +164,10 @@ exports[`Graph snapshot renders 1`] = `
   >
     <rect
       fill="white"
-      height={420}
-      width={420}
-      x={-10}
-      y={-10}
+      height={446}
+      width={446}
+      x={-23}
+      y={-23}
     />
      
   </mask>
