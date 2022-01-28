@@ -37,7 +37,8 @@ export class Token extends React.Component {
       disabled,
       index,
       highlight,
-      correct
+      correct,
+      animationsDisabled
     } = this.props;
 
     let className;
@@ -60,6 +61,7 @@ export class Token extends React.Component {
         selected && !disabled && classes.selected,
         selected && disabled && classes.disabledAndSelected,
         highlight && selectable && !disabled && !selected && classes.highlight,
+        animationsDisabled && classes.print,
         classNameProp
       );
     }
@@ -121,6 +123,15 @@ export default withStyles(theme => {
       marginTop: theme.spacing.unit / 2,
       display: 'inline-block',
       padding: theme.spacing.unit
+    },
+    print: {
+      border: 'dashed 2px gray',
+      lineHeight: 2,
+      boxSizing: 'border-box',
+      marginTop: theme.spacing.unit / 2,
+      display: 'inline-block',
+      padding: theme.spacing.unit,
+      color: color.text()
     },
 
     custom: {
