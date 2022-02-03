@@ -5,7 +5,7 @@ import { trig, types } from '@pie-lib/plot';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import { ArrowMarker, genUid } from '../shared/arrow-head';
-import { thinnerShapesNeeded } from '../../utils';
+import { thinnerShapesNeeded, getAdjustedGraphLimits } from '../../utils';
 
 const markerId = genUid();
 
@@ -19,10 +19,12 @@ const lineStyles = theme => ({
   incorrect: styles.incorrect(theme, 'stroke'),
   incorrectArrow: styles.incorrect(theme)
 });
+
 export const ArrowedLine = props => {
   const { className, classes, correctness, disabled, graphProps, from, to, ...rest } = props;
   const { scale } = graphProps;
-  const [eFrom, eTo] = trig.edges(graphProps.domain, graphProps.range)(from, to);
+  const { domain, range } = getAdjustedGraphLimits(graphProps);
+  const [eFrom, eTo] = trig.edges(domain, range)(from, to);
   const suffix = correctness || (disabled && 'disabled') || 'enabled';
 
   return (

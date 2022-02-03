@@ -33,10 +33,10 @@ export const graphPropTypes = {
 };
 
 const getMaskSize = size => ({
-  x: -10,
-  y: -10,
-  width: size.width + 20,
-  height: size.height + 20
+  x: -23,
+  y: -23,
+  width: size.width + 46,
+  height: size.height + 46
 });
 
 export const removeBuildingToolIfCurrentToolDiffers = ({ marks, currentTool }) => {
