@@ -172,6 +172,36 @@ const getTagName = el => {
   return ((el && el.tagName) || '').toLowerCase();
 };
 
+/**
+ * Makes sure that strings that contain stuff like:
+ * x<y are not transformed into x by the DOMParser because it thinks
+ * that <y is the start of a dom element tag
+ * @param input
+ * @returns {*}
+ */
+const lessThanHandling = input => {
+  const arrowSplit = input.split('<');
+
+  // if we don't have at least 2 characters there's no point in checking
+  if (input.length > 2) {
+    return arrowSplit.reduce((st, part) => {
+      /*
+       We check if this element resulted is:
+       div - continuation of a beginning of a HTML element
+       /div - closing of a HTML tag
+       br/> - beginning and closing of a html TAG
+       */
+      if (part.match(/<[a-zA-Z/][\s\S]*>/ig)) {
+        return `${st}${st ? '<' : ''}${part}`;
+      }
+
+      return `${st}${st ? '&lt;' : ''}${part}`;
+    }, '');
+  }
+
+  return input;
+};
+
 export const serialization = {
   deserialize(el) {
     const tagName = getTagName(el);
@@ -233,7 +263,7 @@ export const serialization = {
       const l = object.data.get('latex');
       const wrapper = object.data.get('wrapper');
       log('[serialize] latex: ', l);
-      const decoded = htmlDecode(l);
+      const decoded = htmlDecode(lessThanHandling(l));
       return (
         <span data-latex="" data-raw={decoded}>
           {wrapMath(decoded, wrapper)}

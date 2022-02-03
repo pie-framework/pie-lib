@@ -5,7 +5,7 @@ import { ArrowMarker, genUid } from '../shared/arrow-head';
 import { trig, types } from '@pie-lib/plot';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
-import { thinnerShapesNeeded } from '../../utils';
+import { thinnerShapesNeeded, getAdjustedGraphLimits } from '../../utils';
 
 const markerId = genUid();
 
@@ -19,10 +19,12 @@ const rayStyles = theme => ({
   incorrect: styles.incorrect(theme, 'stroke'),
   incorrectArrow: styles.incorrect(theme)
 });
+
 export const RayLine = props => {
   const { graphProps, from, to, classes, disabled, correctness, className, ...rest } = props;
   const { scale } = graphProps;
-  const [aToB] = trig.edges(graphProps.domain, graphProps.range)(from, to);
+  const { domain, range } = getAdjustedGraphLimits(graphProps);
+  const [aToB] = trig.edges(domain, range)(from, to);
   const suffix = correctness || (disabled && 'disabled') || 'enabled';
 
   return (

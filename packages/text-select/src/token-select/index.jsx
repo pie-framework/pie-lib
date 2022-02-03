@@ -19,6 +19,7 @@ export class TokenSelect extends React.Component {
     onChange: PropTypes.func.isRequired,
     disabled: PropTypes.bool,
     highlightChoices: PropTypes.bool,
+    animationsDisabled: PropTypes.bool,
     maxNoOfSelections: PropTypes.number
   };
 
@@ -53,14 +54,14 @@ export class TokenSelect extends React.Component {
    */
   toggleToken = event => {
     const { target } = event;
-    const { tokens } = this.props;
+    const { tokens, animationsDisabled } = this.props;
     const tokensCloned = clone(tokens);
     const targetSpanWrapper = target.closest(`.${Token.rootClassName}`);
     const targetedTokenIndex =
       targetSpanWrapper && targetSpanWrapper.dataset && targetSpanWrapper.dataset.indexkey;
     const t = targetedTokenIndex && tokensCloned[targetedTokenIndex];
 
-    if (t && t.correct === undefined) {
+    if (t && t.correct === undefined && !animationsDisabled) {
       const { onChange, maxNoOfSelections } = this.props;
       const selected = !t.selected;
 
@@ -94,7 +95,7 @@ export class TokenSelect extends React.Component {
   };
 
   generateTokensInHtml = () => {
-    const { tokens, disabled, highlightChoices } = this.props;
+    const { tokens, disabled, highlightChoices, animationsDisabled } = this.props;
     const selectedCount = this.selectedCount();
     const isLineBreak = text => text === '\n';
     const isNewParagraph = text => text === '\n\n';
@@ -112,7 +113,12 @@ export class TokenSelect extends React.Component {
         return finalAcc + '<br>';
       }
 
-      if ((selectable && !disabled) || showCorrectAnswer || t.selected) {
+      if (
+        (selectable && !disabled) ||
+        showCorrectAnswer ||
+        t.selected ||
+        (animationsDisabled && t.predefined) // if we are in print mode
+      ) {
         return (
           finalAcc +
           renderToString(
@@ -123,6 +129,7 @@ export class TokenSelect extends React.Component {
               {...t}
               selectable={selectable}
               highlight={highlightChoices}
+              animationsDisabled={animationsDisabled}
             />
           )
         );

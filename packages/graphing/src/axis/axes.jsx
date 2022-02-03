@@ -59,8 +59,8 @@ const tickLabelStyles = {
 export const sharedValues = (
   firstNegativeX,
   firstNegativeY,
-  distantceFromOriginToFirstNegativeX,
-  distantceFromOriginToFirstNegativeY,
+  distanceFromOriginToFirstNegativeX,
+  distanceFromOriginToFirstNegativeY,
   deltaAllowance,
   dy
 ) => {
@@ -68,10 +68,10 @@ export const sharedValues = (
 
   if (
     firstNegativeX === firstNegativeY &&
-    distantceFromOriginToFirstNegativeX - deltaAllowance < distantceFromOriginToFirstNegativeY &&
-    distantceFromOriginToFirstNegativeY < distantceFromOriginToFirstNegativeX + deltaAllowance &&
-    distantceFromOriginToFirstNegativeX - deltaAllowance < dy &&
-    dy < distantceFromOriginToFirstNegativeX + deltaAllowance
+    distanceFromOriginToFirstNegativeX - deltaAllowance < distanceFromOriginToFirstNegativeY &&
+    distanceFromOriginToFirstNegativeY < distanceFromOriginToFirstNegativeX + deltaAllowance &&
+    distanceFromOriginToFirstNegativeX - deltaAllowance < dy &&
+    dy < distanceFromOriginToFirstNegativeX + deltaAllowance
   ) {
     result.push(firstNegativeX);
   }
@@ -96,7 +96,7 @@ export class RawXAxis extends React.Component {
       graphProps,
       columnTicksValues,
       skipValues,
-      distantceFromOriginToFirstNegativeY,
+      distanceFromOriginToFirstNegativeY,
       dy
     } = this.props;
     const { scale, domain, size, range } = graphProps || {};
@@ -110,11 +110,7 @@ export class RawXAxis extends React.Component {
     // However, the '0' has to be displayed only if other tick labels (y-axis or x-axis) are displayed
 
     const labelProps = label => {
-      let y = dy;
-
-      if (skipValues && skipValues[0] === label) {
-        y = distantceFromOriginToFirstNegativeY + 4;
-      }
+      const y = skipValues && skipValues[0] === label ? distanceFromOriginToFirstNegativeY + 4 : dy;
 
       return {
         ...tickLabelStyles,
@@ -137,6 +133,7 @@ export class RawXAxis extends React.Component {
           top={scale.y(0)}
           left={0}
           label={domain.label}
+          rangePadding={8}
           tickClassName={classes.tick}
           tickFormat={value => value}
           tickLabelProps={labelProps}
@@ -150,7 +147,7 @@ export class RawXAxis extends React.Component {
         )}
         {domain.axisLabel && (
           <foreignObject
-            x={size.width + 10}
+            x={size.width + 15}
             y={scale.y(0) - 10}
             width={necessaryWidth}
             height={20 * necessaryRows}
@@ -181,13 +178,7 @@ export class RawYAxis extends React.Component {
 
     const necessaryWidth = range.axisLabel ? amountToIncreaseWidth(range.axisLabel.length) : 0;
 
-    const customTickFormat = value => {
-      if (skipValues && skipValues.indexOf(value) >= 0) {
-        return '';
-      }
-
-      return value;
-    };
+    const customTickFormat = value => (skipValues && skipValues.indexOf(value) >= 0 ? '' : value);
 
     return (
       <React.Fragment>
@@ -200,6 +191,7 @@ export class RawYAxis extends React.Component {
           left={scale.x(0)}
           label={range.label}
           labelProps={{ 'data-pie-readable': false }}
+          rangePadding={8}
           tickLength={10}
           tickClassName={classes.tick}
           tickFormat={customTickFormat}
@@ -226,7 +218,7 @@ export class RawYAxis extends React.Component {
         {range.axisLabel && (
           <foreignObject
             x={scale.x(0) - necessaryWidth / 2}
-            y={-25}
+            y={-30}
             width={necessaryWidth}
             height="20"
           >
@@ -242,6 +234,7 @@ export class RawYAxis extends React.Component {
     );
   }
 }
+
 const YAxis = withStyles(axisStyles)(RawYAxis);
 
 export default class Axes extends React.Component {
@@ -255,6 +248,7 @@ export default class Axes extends React.Component {
   xValues = () => {
     const { graphProps } = this.props;
     const { scale, domain } = graphProps || {};
+
     if (!domain || !scale) {
       return;
     }
@@ -265,13 +259,14 @@ export default class Axes extends React.Component {
     return {
       columnTicksValues: ticks,
       firstNegativeX: negative,
-      distantceFromOriginToFirstNegativeX: Math.abs(scale.y(0) - scale.y(negative))
+      distanceFromOriginToFirstNegativeX: Math.abs(scale.y(0) - scale.y(negative))
     };
   };
 
   yValues = () => {
     const { graphProps } = this.props;
     const { scale, range } = graphProps || {};
+
     if (!range || !scale) {
       return;
     }
@@ -282,33 +277,27 @@ export default class Axes extends React.Component {
     return {
       rowTickValues: ticks,
       firstNegativeY: negative,
-      distantceFromOriginToFirstNegativeY: Math.abs(scale.x(0) - scale.x(negative))
+      distanceFromOriginToFirstNegativeY: Math.abs(scale.x(0) - scale.x(negative))
     };
   };
 
   render() {
     const { graphProps } = this.props;
     const { domain, range } = graphProps || {};
-
-    // x
     const {
       columnTicksValues,
       firstNegativeX,
-      distantceFromOriginToFirstNegativeX
+      distanceFromOriginToFirstNegativeX
     } = this.xValues();
-    const result = this.xValues();
-
-    // y
-    const { rowTickValues, firstNegativeY, distantceFromOriginToFirstNegativeY } = this.yValues();
-
+    const { rowTickValues, firstNegativeY, distanceFromOriginToFirstNegativeY } = this.yValues();
     const deltaAllowance = 6;
     const dy = 25;
 
     const skipValues = sharedValues(
       firstNegativeX,
       firstNegativeY,
-      distantceFromOriginToFirstNegativeX,
-      distantceFromOriginToFirstNegativeY,
+      distanceFromOriginToFirstNegativeX,
+      distanceFromOriginToFirstNegativeY,
       deltaAllowance,
       dy
     );
@@ -321,7 +310,7 @@ export default class Axes extends React.Component {
             {...this.props}
             skipValues={skipValues}
             columnTicksValues={columnTicksValues}
-            distantceFromOriginToFirstNegativeY={distantceFromOriginToFirstNegativeY}
+            distanceFromOriginToFirstNegativeY={distanceFromOriginToFirstNegativeY}
             dy={dy}
           />
         ) : null}
@@ -330,7 +319,7 @@ export default class Axes extends React.Component {
             {...this.props}
             skipValues={skipValues}
             rowTickValues={rowTickValues}
-            distantceFromOriginToFirstNegativeX={distantceFromOriginToFirstNegativeX}
+            distanceFromOriginToFirstNegativeX={distanceFromOriginToFirstNegativeX}
           />
         ) : null}
       </React.Fragment>

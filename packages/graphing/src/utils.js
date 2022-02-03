@@ -150,3 +150,28 @@ export const thinnerShapesNeeded = graphProps => {
   // 14 is the default width of a point
   return getDistanceBetweenTicks(domain, width) < 14 || getDistanceBetweenTicks(range, height) < 14;
 };
+
+export const getAdjustedGraphLimits = graphProps => {
+  const {
+    domain,
+    range,
+    size: { width, height }
+  } = graphProps;
+  const domainTicksDistance = getDistanceBetweenTicks(domain, width);
+  const rangeTicksDistance = getDistanceBetweenTicks(range, height);
+
+  // 15 is the distance required for the arrow to extend the graph
+  const domainPadding = domain.step / (domainTicksDistance / 15);
+  const rangePadding = range.step / (rangeTicksDistance / 15);
+
+  return {
+    domain: {
+      min: domain.min - domainPadding,
+      max: domain.max + domainPadding
+    },
+    range: {
+      min: range.min - rangePadding,
+      max: range.max + rangePadding
+    }
+  };
+};

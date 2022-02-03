@@ -4,7 +4,7 @@ exports[`Arrow snapshot down 1`] = `
 <path
   className="className"
   d="m 0,0 8,-5 0,10 -8,-5"
-  transform="translate(0, 7) rotate(270)"
+  transform="translate(0, 15) rotate(270)"
 />
 `;
 
@@ -12,7 +12,7 @@ exports[`Arrow snapshot left 1`] = `
 <path
   className="className"
   d="m 0,0 8,-5 0,10 -8,-5"
-  transform="translate(-7, 0) rotate(0)"
+  transform="translate(-15, 0) rotate(0)"
 />
 `;
 
@@ -20,7 +20,7 @@ exports[`Arrow snapshot right 1`] = `
 <path
   className="className"
   d="m 0,0 8,-5 0,10 -8,-5"
-  transform="translate(7, 0) rotate(180)"
+  transform="translate(15, 0) rotate(180)"
 />
 `;
 
@@ -28,6 +28,6 @@ exports[`Arrow snapshot up 1`] = `
 <path
   className="className"
   d="m 0,0 8,-5 0,10 -8,-5"
-  transform="translate(0, -7) rotate(90)"
+  transform="translate(0, -15) rotate(90)"
 />
 `;
