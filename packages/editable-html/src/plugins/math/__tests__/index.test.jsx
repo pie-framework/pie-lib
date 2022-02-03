@@ -118,6 +118,7 @@ describe('MathPlugin', () => {
        * Note that when this is converted to html it get's escaped - but that's an issue with the slate html-serializer.
        */
       assertSerialize('<', '\\(<\\)');
+      assertSerialize('x<y', '\\(x<y\\)');
     });
   });
 });

@@ -18,6 +18,7 @@ export default class TextSelect extends React.Component {
     text: PropTypes.string.isRequired,
     className: PropTypes.string,
     highlightChoices: PropTypes.bool,
+    animationsDisabled: PropTypes.bool,
     maxNoOfSelections: PropTypes.number
   };
 
@@ -40,7 +41,8 @@ export default class TextSelect extends React.Component {
       selectedTokens,
       className,
       highlightChoices,
-      maxNoOfSelections
+      maxNoOfSelections,
+      animationsDisabled
     } = this.props;
 
     const normalized = normalize(text, tokens);
@@ -67,6 +69,7 @@ export default class TextSelect extends React.Component {
         disabled={disabled}
         onChange={this.change}
         maxNoOfSelections={maxNoOfSelections}
+        animationsDisabled={animationsDisabled}
       />
     );
   }
