@@ -5,7 +5,6 @@ import { trig, types } from '@pie-lib/plot';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import { ArrowMarker, genUid } from '../shared/arrow-head';
-
 import { thinnerShapesNeeded, getAdjustedGraphLimits } from '../../utils';
 
 const markerId = genUid();
