@@ -275,7 +275,7 @@ export const gradeSets = [
       ],
       [
         basicOperators.multiply,
-        digits.decimalPoint,
+        operators.circleDot,
         { name: '', latex: '', write: '' },
         subSup.subscript,
         exponent.xToPowerOfN,
@@ -289,7 +289,7 @@ export const gradeSets = [
         misc.plusMinus,
         constants.pi,
         vars.theta,
-        operators.circleDot,
+        geometry.degree,
         geometry.angle,
         geometry.leftArrow,
         geometry.rightArrow,
