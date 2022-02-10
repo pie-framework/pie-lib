@@ -529,9 +529,6 @@ export class Editor extends React.Component {
       onKeyDown
     } = this.props;
 
-
-    console.log(this.props, "props")
-    console.log(pluginProps, "pluginProps")
     const { value, focusedNode, toolbarOpts } = this.state;
 
     log('[render] value: ', value);
