@@ -5,6 +5,7 @@ import TokenSelect from './token-select';
 import { normalize } from './tokenizer/builder';
 import { TokenTypes } from './token-select/token';
 import debug from 'debug';
+
 const log = debug('@pie-lib:text-select');
 /**
  * Built on TokenSelect uses build.normalize to build the token set.
@@ -28,7 +29,15 @@ export default class TextSelect extends React.Component {
     if (!onChange) {
       return;
     }
-    const out = tokens.filter(t => t.selected).map(t => ({ start: t.start, end: t.end }));
+    const out = tokens
+      .filter(t => t.selected)
+      .map(t => ({
+        start: t.start,
+        end: t.end,
+        // these are used for the tokens where start and end were recalculated
+        oldStart: t.oldStart,
+        oldEnd: t.oldEnd
+      }));
 
     onChange(out);
   };
