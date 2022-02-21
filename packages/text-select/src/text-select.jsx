@@ -29,15 +29,7 @@ export default class TextSelect extends React.Component {
     if (!onChange) {
       return;
     }
-    const out = tokens
-      .filter(t => t.selected)
-      .map(t => ({
-        start: t.start,
-        end: t.end,
-        // these are used for the tokens where start and end were recalculated
-        oldStart: t.oldStart,
-        oldEnd: t.oldEnd
-      }));
+    const out = tokens.filter(t => t.selected).map(t => ({ start: t.start, end: t.end }));
 
     onChange(out);
   };
