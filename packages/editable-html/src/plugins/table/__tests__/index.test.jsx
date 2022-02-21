@@ -169,7 +169,9 @@ describe('table', () => {
         };
         const returnValue = tablePlugin.normalizeNode({
           object: 'document',
-          nodes
+          nodes,
+          findDescendant: jest.fn().mockReturnValue({ object: 'block', type: 'table' }),
+          getParent: jest.fn().mockReturnValue(undefined)
         });
         expect(returnValue).toEqual(undefined);
       });
@@ -178,15 +180,16 @@ describe('table', () => {
         const tablePlugin = TablePlugin();
         const nodes = {
           size: 2,
-          findLastIndex: jest.fn().mockReturnValue(1),
-          get: jest.fn().mockReturnValue({
-            key: '99',
-            toJSON: jest.fn().mockReturnValue({ object: 'block', type: 'table' })
-          })
+          findLastIndex: jest.fn().mockReturnValue(1)
         };
-        const findDescendant = jest.fn(callback => {
-          nodes.forEach(n => callback(n));
-        });
+        const findDescendant = jest.fn().mockReturnValue(Block.create({
+          object: 'block',
+          type: 'table',
+          key: '99',
+          data: Data.create({
+            newTable: true
+          })
+        }));
         const prevTextReturned = { key: '1', text: 'foobar' };
         const change = {
           withoutNormalization: jest.fn(callback => {
@@ -207,7 +210,8 @@ describe('table', () => {
         const returnValue = tablePlugin.normalizeNode({
           object: 'document',
           nodes,
-          findDescendant
+          findDescendant,
+          getParent: jest.fn().mockReturnValue(undefined)
         });
 
         expect(returnValue).toEqual(expect.any(Function));

@@ -249,9 +249,16 @@ export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
       return;
     }
 
+    const tableAdded = node.findDescendant(d => d.data && d.data.get('newTable'));
+
+    if (!tableAdded) {
+      return;
+    }
+
+    const nodeToSearch = node.getParent(tableAdded.key) || node;
     let shouldAddTextAfterNode = false;
-    const indexToNotHaveTableOn = node.nodes.size - 1;
-    const indexOfLastTable = node.nodes.findLastIndex(d => d.type === 'table');
+    const indexToNotHaveTableOn = nodeToSearch.nodes.size - 1;
+    const indexOfLastTable = nodeToSearch.nodes.findLastIndex(d => d.type === 'table');
 
     // if the last table in the document is of type table, we need to do the change
     if (indexOfLastTable === indexToNotHaveTableOn) {
@@ -262,15 +269,13 @@ export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
       return;
     }
 
-    const tableNode = node.nodes.get(indexOfLastTable);
-
     return change => {
       if (shouldAddTextAfterNode) {
-        const tableJSON = tableNode.toJSON();
+        const tableJSON = tableAdded.toJSON();
 
         // we remove the table node because otherwise we can't add the empty block after it
         // we need a block that contains text in order to do it
-        change.removeNodeByKey(tableNode.key);
+        change.removeNodeByKey(tableAdded.key);
 
         const newBlock = Block.create({
           object: 'block',
