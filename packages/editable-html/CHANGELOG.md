@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.18.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.19...@pie-lib/editable-html@7.18.0) (2022-02-21)
+
+
+### Bug Fixes
+
+* **editable-html:** fix style for table rendering PD-1459 ([7c139b5](https://github.com/pie-framework/pie-lib/commit/7c139b5))
+* **editable-html:** Insert button from video/audio modal can't be pressed if the URL is empty PD-1488 ([6c7c1f6](https://github.com/pie-framework/pie-lib/commit/6c7c1f6))
+* **editor:** made sure space is added after table even when there is a div wrapper [PD-1614] ([5aa8bd1](https://github.com/pie-framework/pie-lib/commit/5aa8bd1))
+
+
+### Features
+
+* **editable-html:** drag-in-the-blank visually indicate when response area is selected, hide non-applicable tools PD-1383 ([a3b7d08](https://github.com/pie-framework/pie-lib/commit/a3b7d08))
+* **editor:** made sure cursor is visible before and after custom void elements [PD-1474] ([189ee2d](https://github.com/pie-framework/pie-lib/commit/189ee2d))
+* **editor:** made sure x<y is not removed from the math latex [PD-1475] ([ea94ad0](https://github.com/pie-framework/pie-lib/commit/ea94ad0))
+* **table:** made sure default border is 1 for tables [PD-1459] ([e8bd0d7](https://github.com/pie-framework/pie-lib/commit/e8bd0d7))
+* **table:** made sure focus is switched to first cell of the table when adding one [PD-1455] ([907c230](https://github.com/pie-framework/pie-lib/commit/907c230))
+
+
+
+
+
 ## [7.17.19](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.18...@pie-lib/editable-html@7.17.19) (2022-02-21)
 
 **Note:** Version bump only for package @pie-lib/editable-html
