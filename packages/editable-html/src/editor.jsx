@@ -50,6 +50,7 @@ export class Editor extends React.Component {
     classes: PropTypes.object.isRequired,
     highlightShape: PropTypes.bool,
     disabled: PropTypes.bool,
+    spellCheck: PropTypes.bool,
     nonEmpty: PropTypes.bool,
     disableUnderline: PropTypes.bool,
     autoWidthToolbar: PropTypes.bool,
@@ -519,6 +520,7 @@ export class Editor extends React.Component {
   render() {
     const {
       disabled,
+      spellCheck,
       highlightShape,
       classes,
       className,
@@ -526,6 +528,7 @@ export class Editor extends React.Component {
       pluginProps,
       onKeyDown
     } = this.props;
+
     const { value, focusedNode, toolbarOpts } = this.state;
 
     log('[render] value: ', value);
@@ -567,6 +570,7 @@ export class Editor extends React.Component {
           focusedNode={focusedNode}
           normalize={this.normalize}
           readOnly={disabled}
+          spellCheck={spellCheck}
           className={classes.slateEditor}
           style={{
             minHeight: sizeStyle.minHeight,

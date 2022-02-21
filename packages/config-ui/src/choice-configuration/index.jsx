@@ -25,6 +25,7 @@ const EditableHtmlContainer = withStyles(theme => ({
     className,
     imageSupport,
     disabled,
+    spellCheck,
     nonEmpty,
     toolbarOpts
   }) => {
@@ -36,6 +37,7 @@ const EditableHtmlContainer = withStyles(theme => ({
           <EditableHtml
             markup={value || ''}
             disabled={disabled}
+            spellCheck = {spellCheck}
             nonEmpty={nonEmpty}
             onChange={onChange}
             imageSupport={imageSupport}
@@ -183,6 +185,7 @@ export class ChoiceConfiguration extends React.Component {
       useLetterOrdering,
       imageSupport,
       disabled,
+      spellCheck,
       nonEmpty,
       allowFeedBack,
       allowDelete,
@@ -212,6 +215,7 @@ export class ChoiceConfiguration extends React.Component {
               onChange={this.onLabelChange}
               imageSupport={imageSupport}
               disabled={disabled}
+              spellCheck = {spellCheck}
               nonEmpty={nonEmpty}
               toolbarOpts={toolbarOpts}
             />

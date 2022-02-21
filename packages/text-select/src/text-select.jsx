@@ -5,6 +5,7 @@ import TokenSelect from './token-select';
 import { normalize } from './tokenizer/builder';
 import { TokenTypes } from './token-select/token';
 import debug from 'debug';
+
 const log = debug('@pie-lib:text-select');
 /**
  * Built on TokenSelect uses build.normalize to build the token set.
