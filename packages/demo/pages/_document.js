@@ -1,8 +1,7 @@
-import Document, { Head, Main, NextScript } from 'next/document';
+import Document, { Html, Head, Main, NextScript } from 'next/document';
 import React from 'react';
 import { JssProvider } from 'react-jss';
 import getPageContext from '../src/getPageContext';
-import flush from 'styled-jsx/server';
 
 export default class MyDocument extends Document {
   static getInitialProps(ctx) {
@@ -31,7 +30,6 @@ export default class MyDocument extends Document {
               __html: pageContext.sheetsRegistry.toString()
             }}
           />
-          {flush() || null}
         </React.Fragment>
       )
     };
@@ -42,7 +40,7 @@ export default class MyDocument extends Document {
     const { __NEXT_DATA__ } = this.props;
 
     return (
-      <html lang="en" dir="ltr">
+      <Html lang="en" dir="ltr">
         <Head>
           <title>{path}</title>
           <meta charSet="utf-8" />
@@ -65,7 +63,7 @@ export default class MyDocument extends Document {
           <Main />
           <NextScript />
         </body>
-      </html>
+      </Html>
     );
   }
 }
