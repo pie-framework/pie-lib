@@ -64,7 +64,7 @@ export class Editor extends React.Component {
       ]),
       options: PropTypes.object,
       respAreaToolbar: PropTypes.func,
-      onDelete: PropTypes.func
+      onHandleAreaChange: PropTypes.func
     }),
     toolbarOpts: PropTypes.shape({
       position: PropTypes.oneOf(['bottom', 'top']),
@@ -168,6 +168,7 @@ export class Editor extends React.Component {
         type: props.responseAreaProps && props.responseAreaProps.type,
         options: props.responseAreaProps && props.responseAreaProps.options,
         respAreaToolbar: props.responseAreaProps && props.responseAreaProps.respAreaToolbar,
+        onHandleAreaChange: props.responseAreaProps && props.responseAreaProps.onHandleAreaChange,
         onFocus: () => {
           log('[table:onFocus]...');
           this.onPluginFocus();

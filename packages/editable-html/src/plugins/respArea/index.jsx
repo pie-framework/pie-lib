@@ -11,7 +11,12 @@ import { ToolbarIcon } from './icons';
 const log = debug('@pie-lib:editable-html:plugins:respArea');
 
 const lastIndexMap = {};
-const elTypesArray = ['inline_dropdown', 'explicit_constructed_response', 'drag_in_the_blank'];
+const elTypesMap = {
+  'inline-dropdown': 'inline_dropdown',
+  'explicit-constructed-response': 'explicit_constructed_response',
+  'drag-in-the-blank': 'drag_in_the_blank'
+};
+const elTypesArray = Object.values(elTypesMap);
 
 export default function ResponseAreaPlugin(opts) {
   const toolbar = {
@@ -102,7 +107,7 @@ export default function ResponseAreaPlugin(opts) {
         return <InlineDropdown attributes={attributes} selectedItem={data.value} />;
       }
     },
-    onChange(change) {
+    onChange(change, editor) {
       const type = opts.type.replace(/-/g, '_');
 
       if (isUndefined(lastIndexMap[type])) {
@@ -117,6 +122,27 @@ export default function ResponseAreaPlugin(opts) {
             }
           }
         });
+      }
+
+      if (!editor.value) {
+        return;
+      }
+
+      const isOfCurrentType = d => d.type === opts.type || d.type === elTypesMap[opts.type];
+      const currentRespAreaList = change.value.document.filterDescendants(isOfCurrentType);
+      const oldRespAreaList = editor.value.document.filterDescendants(isOfCurrentType);
+
+      const arrayToFilter =
+        oldRespAreaList.size > currentRespAreaList.size ? oldRespAreaList : currentRespAreaList;
+      const arrayToUseForFilter =
+        arrayToFilter === oldRespAreaList ? currentRespAreaList : oldRespAreaList;
+
+      const elementsWithChangedStatus = arrayToFilter.filter(
+        d => !arrayToUseForFilter.find(e => e.data.get('index') === d.data.get('index'))
+      );
+
+      if (elementsWithChangedStatus.size) {
+        opts.onHandleAreaChange(elementsWithChangedStatus);
       }
     },
     onDrop(event, change, editor) {
