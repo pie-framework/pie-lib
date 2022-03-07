@@ -140,6 +140,13 @@ const rules = [
       const allAttrs = attributes.reduce(attributesToMap(el), { ...normalAttrs });
       const object = getObject(type);
 
+      if (el.tagName.toLowerCase() === 'math') {
+        return {
+          isMath: true,
+          nodes: [el]
+        };
+      }
+
       return {
         object,
         type,

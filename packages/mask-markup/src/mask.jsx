@@ -44,6 +44,13 @@ export const renderChildren = (layout, value, onChange, rootRenderChildren, pare
   (layout.nodes || []).forEach((n, index) => {
     const key = `${n.type}-${index}`;
 
+    if (n.isMath) {
+      children.push(
+        <span dangerouslySetInnerHTML={{ __html: `<math>${n.nodes[0].innerHTML}</math>` }} />
+      );
+      return children;
+    }
+
     if (rootRenderChildren) {
       const c = rootRenderChildren(n, value, onChange);
       if (c) {
