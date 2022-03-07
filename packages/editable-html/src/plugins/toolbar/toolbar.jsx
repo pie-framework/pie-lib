@@ -53,7 +53,7 @@ export class Toolbar extends React.Component {
       position: PropTypes.oneOf(['bottom', 'top']),
       alignment: PropTypes.oneOf(['left', 'right']),
       alwaysVisible: PropTypes.bool,
-      ref: PropTypes.obj,
+      ref: PropTypes.func,
       showDone: PropTypes.bool
     }),
     onDataChange: PropTypes.func
