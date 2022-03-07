@@ -175,3 +175,61 @@ export const getAdjustedGraphLimits = graphProps => {
     }
   };
 };
+
+const getDistanceBetweenTwoPoints = (a, b) =>
+  Math.sqrt((b.x - a.x) * (b.x - a.x) + (b.y - a.y) * (b.y - a.y));
+
+const sortPoints = array => (array || []).sort((a, b) => a.x - b.x || a.y - b.y);
+
+// check colliniarity of 3 points (source: https://www.geeksforgeeks.org/program-check-three-points-collinear/)
+const checkCollinearity = (a, b, c) => (a.x - b.x) * (c.y - b.y) === (c.x - b.x) * (a.y - b.y);
+
+// 2 lines are overlapping if all 4 points are collinear
+const isSameLine = (markA, markB) =>
+  checkCollinearity(markA.from, markB.from, markB.to) &&
+  checkCollinearity(markA.to, markB.from, markB.to);
+
+const isSameCircle = (markA, markB) =>
+  equalPoints(markA.root, markB.root) &&
+  getDistanceBetweenTwoPoints(markB.root, markB.edge) ===
+    getDistanceBetweenTwoPoints(markA.root, markA.edge);
+
+export const isDuplicatedMark = (mark, marks, oldMark) => {
+  const { type, building } = mark;
+
+  if (building) {
+    return false;
+  }
+
+  const filteredMarks = (marks || []).filter(m => m.type === type && !m.building);
+  const index = filteredMarks.findIndex(m => isEqual(m, oldMark));
+
+  if (index !== -1) {
+    filteredMarks.splice(index, 1);
+  }
+
+  const duplicated = filteredMarks.find(m => {
+    if (type === 'circle' || type === 'parabola' || type === 'sine') {
+      const { root, edge } = mark;
+
+      return (
+        (equalPoints(root, m.root) && equalPoints(edge, m.edge)) ||
+        (type === 'circle' && isSameCircle(m, mark))
+      );
+    } else if (type === 'line' || type === 'ray' || type === 'segment' || type === 'vector') {
+      const { from, to } = mark;
+
+      return (
+        (equalPoints(from, m.from) && equalPoints(to, m.to)) ||
+        (equalPoints(from, m.to) && equalPoints(to, m.from)) ||
+        (type === 'line' && isSameLine(m, mark))
+      );
+    } else if (type === 'polygon') {
+      return isEqual(sortPoints(cloneDeep(mark.points)), sortPoints(cloneDeep(m.points)));
+    } else if (type === 'point') {
+      return equalPoints(m, mark);
+    }
+  });
+
+  return !!duplicated;
+};

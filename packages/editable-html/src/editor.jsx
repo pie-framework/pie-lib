@@ -327,7 +327,8 @@ export class Editor extends React.Component {
       const editorElement =
         !editorDOM || document.activeElement.closest(`[class*="${editorDOM.className}"]`);
       const toolbarElement =
-        !this.toolbarRef || document.activeElement.closest(`[class*="${this.toolbarRef.className}"]`);
+        !this.toolbarRef ||
+        document.activeElement.closest(`[class*="${this.toolbarRef.className}"]`);
       const isInCurrentComponent =
         this.wrapperRef.contains(editorElement) || this.wrapperRef.contains(toolbarElement);
 
