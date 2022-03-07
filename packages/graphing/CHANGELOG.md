@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.4.9...@pie-lib/graphing@2.4.10) (2022-03-07)
+
+
+### Bug Fixes
+
+* **graphing:** Adjusted the thickness of the shapes when the distance between lines is too small PD-180 ([8ea20a6](https://github.com/pie-framework/pie-lib/commit/8ea20a61ea02d3e1084f3e10e645a76d580c39b5))
+* **graphing:** Extended the range and domain axes and also the line and ray endings PD-1509 ([97e43c6](https://github.com/pie-framework/pie-lib/commit/97e43c6ab0ab85dd314cff97fb84a85113ab39a0))
+* **graphing:** Increased the calculation accuracy and adjusted range labels PD-1596 ([7cc7570](https://github.com/pie-framework/pie-lib/commit/7cc75701fd759f7e7888e5cccc261978f6e036b0))
+* **graphing:** Should not be possible to plot duplicate/identical objects and should be able to choose a point from an existing object when defining a new object PD-1599 PD-1586 ([ac8502d](https://github.com/pie-framework/pie-lib/commit/ac8502dbe3c7e1a4a663bbe56f7f5ff8bab04430))
+
+
+
+
+
 ## [2.4.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.4.8...@pie-lib/graphing@2.4.9) (2022-02-04)
 
 **Note:** Version bump only for package @pie-lib/graphing

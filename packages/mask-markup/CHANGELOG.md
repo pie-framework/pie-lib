@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.12.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.11.4...@pie-lib/mask-markup@1.12.0) (2022-03-07)
+
+
+### Bug Fixes
+
+* **mask-markup:** fix style for drag-in-the-blank image tokens PD-1351 ([3302de1](https://github.com/pie-framework/pie-lib/commit/3302de16d94ad4dce3aa81c25a0b939bf0f19bc6))
+* **mask-markup:** render mathml correctly PD-397 ([c89862b](https://github.com/pie-framework/pie-lib/commit/c89862b8c0f4ec7f1394f966d85a68a9bf6ffc12))
+* **mask-markup:** Separated input width and characters limit PD-1395 PD-1396 ([c78ba6a](https://github.com/pie-framework/pie-lib/commit/c78ba6ad9325a6671d26eee14e855cb7ff979c91))
+* **serialization:** made sure units are not added to mask-markup elements [PD-722] ([b855b27](https://github.com/pie-framework/pie-lib/commit/b855b27803965528968d5d2165fa4fd342414685))
+
+
+### Features
+
+* **design:** masked markup inherits the container display property [PD-1418] ([3095d29](https://github.com/pie-framework/pie-lib/commit/3095d29c9ad1ae70f5f669abb5fb62abb5f8d955))
+
+
+
+
+
 ## [1.11.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.11.3...@pie-lib/mask-markup@1.11.4) (2021-12-13)
 
 **Note:** Version bump only for package @pie-lib/mask-markup

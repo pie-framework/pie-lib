@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.19.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.18.0...@pie-lib/editable-html@7.19.0) (2022-03-07)
+
+
+### Features
+
+* **editor:** added func callback property, called when the resp area els nr is changed in the markup [PD-1592] ([d35feee](https://github.com/pie-framework/pie-lib/commit/d35feee5c68c13375963aa5cad25b2ef6ffc39f3))
+
+
+
+
+
 # [7.18.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.19...@pie-lib/editable-html@7.18.0) (2022-02-21)
 
 
