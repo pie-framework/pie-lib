@@ -200,7 +200,7 @@ export class RawYAxis extends React.Component {
             return {
               ...tickLabelStyles,
               dy: 4,
-              dx: -8 - digits * 5,
+              dx: -4 - digits * 8,
               'data-pie-readable': false
             };
           }}

@@ -10,6 +10,7 @@ import { Axes, AxisPropTypes } from './axis';
 import Grid from './grid';
 import { LabelType } from './labels';
 import Bg from './bg';
+import { isDuplicatedMark } from './utils';
 
 const log = debug('pie-lib:graphing:graph');
 
@@ -74,7 +75,7 @@ export class Graph extends React.Component {
 
     const index = newMarks.findIndex(m => isEqual(m, oldMark));
 
-    if (index >= 0) {
+    if (index >= 0 && !isDuplicatedMark(newMark, marks, oldMark)) {
       newMarks.splice(index, 1, newMark);
 
       onChangeMarks(newMarks);
@@ -96,6 +97,10 @@ export class Graph extends React.Component {
     const { onChangeMarks, marks } = this.props;
     let newMarks = cloneDeep(marks);
 
+    if (!update.building && isDuplicatedMark(update, marks)) {
+      return;
+    }
+
     const index = newMarks.findIndex(m => isEqual(m, existing));
 
     if (index >= 0) {
@@ -115,12 +120,13 @@ export class Graph extends React.Component {
     return (tool && tool.Component) || null;
   };
 
-  onBgClick = ({ x, y }, mark) => {
-    log('[onBgClick] x,y: ', x, y);
-
+  onBgClick = point => {
+    const { x, y } = point;
     const { labelModeEnabled, currentTool, marks } = this.props;
 
-    if (labelModeEnabled || !currentTool || mark) {
+    log('[onBgClick] x,y: ', x, y);
+
+    if (labelModeEnabled || !currentTool) {
       return;
     }
 
@@ -199,7 +205,7 @@ export class Graph extends React.Component {
                 coordinatesOnHover={coordinatesOnHover}
                 onChange={this.changeMark}
                 onComplete={this.completeMark}
-                onClick={point => this.onBgClick(point, m)}
+                onClick={this.onBgClick}
                 onDragStart={this.startDrag}
                 onDragStop={this.stopDrag}
                 labelNode={this.state.labelNode}

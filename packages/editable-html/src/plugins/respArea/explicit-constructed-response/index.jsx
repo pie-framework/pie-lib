@@ -39,7 +39,7 @@ const ExplicitConstructedResponse = props => {
 
 ExplicitConstructedResponse.propTypes = {
   attributes: PropTypes.object,
-  value: PropTypes.object
+  value: PropTypes.string
 };
 
 export default ExplicitConstructedResponse;
