@@ -21,14 +21,14 @@ export const getTickValues = prop => {
 
   while (tickVal >= prop.min && tickValues.indexOf(tickVal) < 0) {
     tickValues.push(tickVal);
-    tickVal = Math.round((tickVal - prop.step) * 1000) / 1000;
+    tickVal = Math.round((tickVal - prop.step) * 10000) / 10000;
   }
 
-  tickVal = Math.round(prop.step * 1000) / 1000;
+  tickVal = Math.round(prop.step * 10000) / 10000;
 
   while (tickVal <= prop.max && tickValues.indexOf(tickVal) < 0) {
     tickValues.push(tickVal);
-    tickVal = Math.round((tickVal + prop.step) * 1000) / 1000;
+    tickVal = Math.round((tickVal + prop.step) * 10000) / 10000;
   }
 
   // return only ticks that are inside the min-max interval
@@ -114,7 +114,7 @@ export const getMiddleOfTwoPoints = (a, b) => ({
   y: (a.y + b.y) / 2
 });
 
-export const roundNumber = number => parseFloat(number.toFixed(3));
+export const roundNumber = number => parseFloat(number.toFixed(4));
 
 export const sameAxes = (p1, p2) =>
   p1 && p2 && (roundNumber(p1.x) === roundNumber(p2.x) || roundNumber(p1.y) === roundNumber(p2.y));
@@ -174,4 +174,62 @@ export const getAdjustedGraphLimits = graphProps => {
       max: range.max + rangePadding
     }
   };
+};
+
+const getDistanceBetweenTwoPoints = (a, b) =>
+  Math.sqrt((b.x - a.x) * (b.x - a.x) + (b.y - a.y) * (b.y - a.y));
+
+const sortPoints = array => (array || []).sort((a, b) => a.x - b.x || a.y - b.y);
+
+// check colliniarity of 3 points (source: https://www.geeksforgeeks.org/program-check-three-points-collinear/)
+const checkCollinearity = (a, b, c) => (a.x - b.x) * (c.y - b.y) === (c.x - b.x) * (a.y - b.y);
+
+// 2 lines are overlapping if all 4 points are collinear
+const isSameLine = (markA, markB) =>
+  checkCollinearity(markA.from, markB.from, markB.to) &&
+  checkCollinearity(markA.to, markB.from, markB.to);
+
+const isSameCircle = (markA, markB) =>
+  equalPoints(markA.root, markB.root) &&
+  getDistanceBetweenTwoPoints(markB.root, markB.edge) ===
+    getDistanceBetweenTwoPoints(markA.root, markA.edge);
+
+export const isDuplicatedMark = (mark, marks, oldMark) => {
+  const { type, building } = mark;
+
+  if (building) {
+    return false;
+  }
+
+  const filteredMarks = (marks || []).filter(m => m.type === type && !m.building);
+  const index = filteredMarks.findIndex(m => isEqual(m, oldMark));
+
+  if (index !== -1) {
+    filteredMarks.splice(index, 1);
+  }
+
+  const duplicated = filteredMarks.find(m => {
+    if (type === 'circle' || type === 'parabola' || type === 'sine') {
+      const { root, edge } = mark;
+
+      return (
+        (equalPoints(root, m.root) && equalPoints(edge, m.edge)) ||
+        (type === 'circle' && isSameCircle(m, mark))
+      );
+    } else if (type === 'line' || type === 'ray' || type === 'segment' || type === 'vector') {
+      const { from, to } = mark;
+
+      return (
+        (equalPoints(from, m.from) && equalPoints(to, m.to)) ||
+        (equalPoints(from, m.to) && equalPoints(to, m.from)) ||
+        (type === 'line' && isSameLine(m, mark))
+      );
+    } else if (type === 'polygon') {
+      return isEqual(sortPoints(cloneDeep(mark.points)), sortPoints(cloneDeep(m.points)));
+    } else if (type === 'point') {
+      return equalPoints(m, mark);
+    }
+  });
+
+  return !!duplicated;
 };
