@@ -141,7 +141,7 @@ export default function ResponseAreaPlugin(opts) {
         d => !arrayToUseForFilter.find(e => e.data.get('index') === d.data.get('index'))
       );
 
-      if (elementsWithChangedStatus.size) {
+      if (elementsWithChangedStatus.size && oldRespAreaList.size > currentRespAreaList.size) {
         opts.onHandleAreaChange(elementsWithChangedStatus);
       }
     },
