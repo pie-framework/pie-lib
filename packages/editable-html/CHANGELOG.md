@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.19.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.19.0...@pie-lib/editable-html@7.19.1) (2022-03-07)
+
+
+### Bug Fixes
+
+* **editable-html:** Called onHandleAreaChange only for delete ([ad1c8aa](https://github.com/pie-framework/pie-lib/commit/ad1c8aa83eef71bd8201cb55ec21513c008f77a6))
+
+
+
+
+
 # [7.19.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.18.0...@pie-lib/editable-html@7.19.0) (2022-03-07)
 
 
