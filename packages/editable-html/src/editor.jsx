@@ -24,6 +24,12 @@ const defaultToolbarOpts = {
   doneOn: 'blur'
 };
 
+const defaultResponseAreaProps = {
+  options: {},
+  respAreaToolbar: () => {},
+  onHandleAreaChange: () => {}
+};
+
 const createToolbarOpts = toolbarOpts => {
   return {
     ...defaultToolbarOpts,
@@ -88,8 +94,9 @@ export class Editor extends React.Component {
     disableUnderline: true,
     onFocus: () => {},
     onBlur: () => {},
+    onKeyDown: () => {},
     toolbarOpts: defaultToolbarOpts,
-    onKeyDown: () => {}
+    responseAreaProps: defaultResponseAreaProps
   };
 
   constructor(props) {
@@ -97,6 +104,11 @@ export class Editor extends React.Component {
     this.state = {
       value: props.value,
       toolbarOpts: createToolbarOpts(props.toolbarOpts)
+    };
+
+    const normalizedResponseAreaProps = {
+      ...defaultResponseAreaProps,
+      ...props.responseAreaProps
     };
 
     this.onResize = () => {
@@ -165,10 +177,10 @@ export class Editor extends React.Component {
         }
       },
       responseArea: {
-        type: props.responseAreaProps && props.responseAreaProps.type,
-        options: props.responseAreaProps && props.responseAreaProps.options,
-        respAreaToolbar: props.responseAreaProps && props.responseAreaProps.respAreaToolbar,
-        onHandleAreaChange: props.responseAreaProps && props.responseAreaProps.onHandleAreaChange,
+        type: normalizedResponseAreaProps.type,
+        options: normalizedResponseAreaProps.options,
+        respAreaToolbar: normalizedResponseAreaProps.respAreaToolbar,
+        onHandleAreaChange: normalizedResponseAreaProps.onHandleAreaChange,
         onFocus: () => {
           log('[table:onFocus]...');
           this.onPluginFocus();
