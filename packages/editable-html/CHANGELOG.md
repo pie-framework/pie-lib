@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.19.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.19.1...@pie-lib/editable-html@7.19.2) (2022-03-08)
+
+
+### Bug Fixes
+
+* **editable-html:** Added default values for responseAreaProps ([b49a919](https://github.com/pie-framework/pie-lib/commit/b49a919b4d5e336cb2a82e4e7926d72372369d3c))
+
+
+
+
+
 ## [7.19.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.19.0...@pie-lib/editable-html@7.19.1) (2022-03-07)
 
 
