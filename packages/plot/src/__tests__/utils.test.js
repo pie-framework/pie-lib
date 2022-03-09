@@ -223,11 +223,11 @@ describe('utils', () => {
       expect(result).toEqual(0);
     });
 
-    it('should return 150 if longestWord is 10', () => {
+    it('should return 200 if longestWord is 10', () => {
       const longestWord = 10;
       const result = utils.amountToIncreaseWidth(longestWord);
 
-      expect(result).toEqual(100);
+      expect(result).toEqual(200);
     });
   });
 });

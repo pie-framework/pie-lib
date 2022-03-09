@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import { select, mouse } from 'd3-selection';
 import PropTypes from 'prop-types';
 import { GraphPropsType } from './types';
-import { color } from '@pie-lib/render-ui';
+import { color } from '@pie-lib/render-ui/src/color';
 import { findLongestWord, amountToIncreaseWidth } from './utils';
 
 export const GraphTitle = withStyles(theme => ({

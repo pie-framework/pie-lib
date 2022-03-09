@@ -12,7 +12,8 @@ import {
 } from '../trig';
 import { xy } from '../utils';
 import debug from 'debug';
-import { getOpposingSide } from '../../lib/trig';
+import { getOpposingSide } from '../trig';
+
 const log = debug('pie-lib:plot:trig:test');
 
 const vs = v => {
