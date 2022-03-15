@@ -94,9 +94,19 @@ const bootstrap = opts => {
 
   const texConfig = opts.useSingleDollar
     ? {
+        loader: {
+          require: require
+        },
         packages,
         macros,
-        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        inlineMath: [
+          ['$', '$'],
+          ['\\(', '\\)']
+        ],
+        displayMath: [
+          ['$$', '$$'],
+          ['\\[', '\\]']
+        ],
         processEscapes: true
       }
     : {
@@ -105,6 +115,8 @@ const bootstrap = opts => {
       };
 
   const mmlConfig = {
+    parseAs: 'html',
+    forceReparse: false,
     parseError: function(node) {
       // function to process parsing errors
       console.log('error:', node);
@@ -123,6 +135,7 @@ const bootstrap = opts => {
   };
 
   const mml = new MathML(mmlConfig);
+  console.log([new TeX(texConfig), mml]);
 
   const customMmlFactory = new MmlFactory({
     ...MmlFactory.defaultNodes,
@@ -189,10 +202,10 @@ const renderMath = (el, renderOpts) => {
  * In mathjax src code \newline latex gets parsed to <mjx-mspace></mjx-mspace>,
  * but has the default style
  * 'mjx-mspace': {
-    "display": 'in-line',
-    "text-align": 'left'
-  } which prevents it from showing as a newline value
- */
+  "display": 'in-line',
+  "text-align": 'left'
+} which prevents it from showing as a newline value
+*/
 CHTMLmspace.styles = {
   'mjx-mspace': {
     display: 'block',
