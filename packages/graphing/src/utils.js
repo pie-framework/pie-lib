@@ -176,7 +176,7 @@ export const getAdjustedGraphLimits = graphProps => {
   };
 };
 
-const getDistanceBetweenTwoPoints = (a, b) =>
+export const getDistanceBetweenTwoPoints = (a, b) =>
   Math.sqrt((b.x - a.x) * (b.x - a.x) + (b.y - a.y) * (b.y - a.y));
 
 const sortPoints = array => (array || []).sort((a, b) => a.x - b.x || a.y - b.y);

@@ -17,25 +17,6 @@ export default class Arrow extends React.Component {
     graphProps: types.GraphPropsType.isRequired
   };
 
-  getRotation(currentAngle, referenceAngle, x, y) {
-    const breakpoint = referenceAngle + 10;
-    return `rotate(${-currentAngle - (currentAngle > breakpoint ? 15 : 0)}, ${x},${y})`;
-  }
-
-  getRotationWithBreakpoint(currentAngle, referenceAngle, x, y) {
-    const firstBreakpoint = referenceAngle + 10;
-    const secondBreakpoint = referenceAngle + 65;
-    let t;
-    if (currentAngle >= firstBreakpoint && currentAngle < secondBreakpoint) {
-      t = 15;
-    } else if (currentAngle > secondBreakpoint) {
-      t = 7;
-    } else {
-      t = 0;
-    }
-    return `rotate(${-currentAngle + t}, ${x},${y})`;
-  }
-
   render() {
     const {
       classes,
@@ -55,20 +36,10 @@ export default class Arrow extends React.Component {
     const scaledX = scale.x(x);
     const scaledY = scale.y(y);
 
-    let transform;
+    const transform = `rotate(${-angle}, ${scaledX},${scaledY})`;
     const points = `${scaledX},${scaledY}
         ${scaledX - size},${scaledY - size / 2}
         ${scaledX - size}, ${scaledY + size / 2}`;
-
-    if (angle >= 0 && angle < 90) {
-      transform = this.getRotation(angle, 0, scaledX, scaledY);
-    } else if (angle >= 90 && angle < 180) {
-      transform = this.getRotationWithBreakpoint(angle, 90, scaledX, scaledY);
-    } else if (angle >= 180 && angle < 270) {
-      transform = this.getRotation(angle, 180, scaledX, scaledY);
-    } else {
-      transform = this.getRotationWithBreakpoint(angle, 280, scaledX, scaledY);
-    }
 
     return (
       <g
