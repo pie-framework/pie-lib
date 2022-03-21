@@ -1,3 +1,4 @@
+const withCSS = require('@zeit/next-css');
 const { loadLinks } = require('./config/load-links');
 
 const gitInfo = require('./config/git-info')();
@@ -14,7 +15,7 @@ const getAssetPrefix = () => {
   return process.env.ASSET_PREFIX || ''; //eslint-disable-line
 };
 
-module.exports = {
+module.exports = withCSS({
   webpack: (config /*opts*/) => {
     const publicPath = `${getAssetPrefix()}/_next/static`;
 
@@ -54,4 +55,4 @@ module.exports = {
     gitInfo,
     packageInfo: packageInfo.load()
   }
-};
+});
