@@ -227,7 +227,7 @@ describe('utils', () => {
       const longestWord = 10;
       const result = utils.amountToIncreaseWidth(longestWord);
 
-      expect(result).toEqual(100);
+      expect(result).toEqual(200);
     });
   });
 });
