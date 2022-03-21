@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.4.11...@pie-lib/graphing@2.4.12) (2022-03-21)
+
+
+### Bug Fixes
+
+* **graphing:** Adjusted vector arrow orientation angle and fixed rendering issue PD-1602 ([0ebf305](https://github.com/pie-framework/pie-lib/commit/0ebf3059707c868145ef85a14c417cbe01f82491))
+
+
+
+
+
 ## [2.4.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.4.10...@pie-lib/graphing@2.4.11) (2022-03-21)
 
 **Note:** Version bump only for package @pie-lib/graphing
