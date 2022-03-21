@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { types } from '@pie-lib/plot';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
+import { getDistanceBetweenTwoPoints } from '../../utils';
 
 const lineStyles = theme => ({
   line: styles.line(theme),
@@ -14,8 +15,20 @@ const lineStyles = theme => ({
 });
 
 export const Line = props => {
-  const { className, classes, disabled, correctness, graphProps, from, to, ...rest } = props;
-  const { scale } = graphProps;
+  const {
+    className,
+    classes,
+    disabled,
+    correctness,
+    graphProps: { scale },
+    from,
+    to,
+    ...rest
+  } = props;
+  const startPoint = { x: scale.x(from.x), y: scale.y(from.y) };
+  const endPoint = { x: scale.x(to.x), y: scale.y(to.y) };
+  const length = getDistanceBetweenTwoPoints(startPoint, endPoint);
+
   return (
     <line
       className={classNames(
@@ -24,10 +37,11 @@ export const Line = props => {
         classes[correctness],
         className
       )}
-      x1={scale.x(from.x)}
-      y1={scale.y(from.y)}
-      x2={scale.x(to.x)}
-      y2={scale.y(to.y)}
+      x1={startPoint.x}
+      y1={startPoint.y}
+      x2={endPoint.x}
+      y2={endPoint.y}
+      strokeDasharray={length - 7}
       {...rest}
     />
   );
