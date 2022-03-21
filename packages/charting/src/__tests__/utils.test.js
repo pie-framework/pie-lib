@@ -41,7 +41,7 @@ describe('utils', () => {
       'line',
       {
         domain: { min: 0, max: 1, step: 1, labelStep: 1 },
-        range: { min: 0.1, max: 2.1, step: 0.1, labelStep: 0.1 }
+        range: { min: 0.1, max: 2, step: 0.1, labelStep: 0.1 }
       }
     );
     assertGetDomainAndRangeByChartType(
@@ -51,7 +51,7 @@ describe('utils', () => {
       'dotPlot',
       {
         domain: { min: 0, max: 1, step: 1, labelStep: 1 },
-        range: { min: 0, max: 3, step: 1, labelStep: 0.1 }
+        range: { min: 0, max: 2, step: 1, labelStep: 0.1 }
       }
     );
   });

@@ -155,5 +155,5 @@ export const amountToIncreaseWidth = longestWord => {
     return 0;
   }
 
-  return longestWord * 10;
+  return longestWord * 20;
 };

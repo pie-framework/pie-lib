@@ -81,6 +81,21 @@ export const crowdedTicks = (rangeMax, customLabelStep, size, labelFontSize) => 
   return size.height / numberOfSegments < labelFontSize && size.height / numberOfSegments > 0.5;
 };
 
+// multiply values with 10^number_of_decimals if needed because modulo function(%) is only defined for integers
+const modulo = (a, b) => {
+  if (Number.isInteger(b)) {
+    return a % b;
+  }
+
+  const decimals = b
+    .toString()
+    .split('.')
+    .pop().length;
+  const aux = Math.pow(10, decimals);
+
+  return (a * aux) % (b * aux);
+};
+
 export const getDomainAndRangeByChartType = (domain, range, size, chartType, labelFontSize) => {
   let { step, labelStep, min, max } = range || {};
 
@@ -120,7 +135,7 @@ export const getDomainAndRangeByChartType = (domain, range, size, chartType, lab
     }
   }
 
-  if (max % step !== 0) {
+  if (modulo(max, step) !== 0) {
     max = max + step;
   }
 

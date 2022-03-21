@@ -16,9 +16,12 @@ export const GraphTitle = withStyles(theme => ({
     fontSize: theme.typography.fontSize + 6
   }
 }))(({ value, classes }) => (
-  <Typography className={classes.title} variant="h5" color="primary">
-    {value}
-  </Typography>
+  <Typography
+    className={classes.title}
+    color="primary"
+    variant="h5"
+    dangerouslySetInnerHTML={{ __html: value }}
+  />
 ));
 
 export class Root extends React.Component {

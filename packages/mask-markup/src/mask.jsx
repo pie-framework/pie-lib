@@ -104,7 +104,7 @@ export const renderChildren = (layout, value, onChange, rootRenderChildren, pare
 
 const MaskContainer = withStyles(() => ({
   main: {
-    display: 'inherit'
+    display: 'initial'
   }
 }))(props => <div className={props.classes.main}>{props.children}</div>);
 
