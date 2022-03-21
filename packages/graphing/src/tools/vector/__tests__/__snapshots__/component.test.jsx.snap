@@ -3,6 +3,7 @@
 exports[`Line snapshot renders 1`] = `
 <line
   className="className"
+  strokeDasharray={-5.585786437626905}
   x1={0}
   x2={1}
   y1={0}
