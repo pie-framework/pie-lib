@@ -1,4 +1,5 @@
 const withCSS = require('@zeit/next-css');
+
 const { loadLinks } = require('./config/load-links');
 
 const gitInfo = require('./config/git-info')();

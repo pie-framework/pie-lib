@@ -31,7 +31,7 @@ export default class MyDocument extends Document {
               __html: pageContext.sheetsRegistry.toString()
             }}
           />
-         {flush() || null}
+          {flush() || null}
         </React.Fragment>
       )
     };
