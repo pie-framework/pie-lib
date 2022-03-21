@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.3.12...@pie-lib/math-rendering@2.3.13) (2022-03-21)
+
+
+### Bug Fixes
+
+* **math-rendering:** fix line spacing for mathjax mspace PD-1384 ([57fe827](https://github.com/pie-framework/pie-lib/commit/57fe827372c81138b35f294f16327c291872c8a2))
+
+
+
+
+
 ## [2.3.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.3.11...@pie-lib/math-rendering@2.3.12) (2021-11-29)
 
 **Note:** Version bump only for package @pie-lib/math-rendering

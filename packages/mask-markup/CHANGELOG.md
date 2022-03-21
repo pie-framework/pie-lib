@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.12.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.12.0...@pie-lib/mask-markup@1.12.1) (2022-03-21)
+
+
+### Bug Fixes
+
+* **blank:** made sure height is auto to adapt to content, until it is calculated [PD-1652] ([9c3032f](https://github.com/pie-framework/pie-lib/commit/9c3032fb2adff3a06e94bcea63ea6c3de520b9d4))
+* **mask:** made sure display inherit is not messing up div blocks ([8ae905c](https://github.com/pie-framework/pie-lib/commit/8ae905c48fb12002c007f0a62db2f1ead92fa881))
+
+
+
+
+
 # [1.12.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.11.4...@pie-lib/mask-markup@1.12.0) (2022-03-07)
 
 

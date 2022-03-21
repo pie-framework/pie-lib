@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.5.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.5.13...@pie-lib/charting@4.5.14) (2022-03-21)
+
+
+### Bug Fixes
+
+* **charting:** Added custom modulo function to work with decimals PD-1645 ([70951ef](https://github.com/pie-framework/pie-lib/commit/70951ef055630f217094a42ec2d15282cf680c6b))
+
+
+
+
+
 ## [4.5.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.5.12...@pie-lib/charting@4.5.13) (2021-09-10)
 
 
