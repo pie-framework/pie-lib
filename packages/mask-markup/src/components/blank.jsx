@@ -20,6 +20,7 @@ const useStyles = withStyles(() => ({
     minWidth: '90px',
     fontSize: 'inherit',
     minHeight: '32px',
+    height: 'auto',
     maxWidth: '374px',
     position: 'relative'
   },
