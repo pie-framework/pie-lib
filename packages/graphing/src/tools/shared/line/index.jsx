@@ -1,5 +1,6 @@
 import React from 'react';
 import isEqual from 'lodash/isEqual';
+import cloneDeep from 'lodash/cloneDeep';
 import { BasePoint } from '../point';
 import { types, utils, gridDraggable, trig } from '@pie-lib/plot';
 import PropTypes from 'prop-types';
@@ -98,18 +99,22 @@ export const lineToolComponent = Component => {
       const { graphProps, onClick, labelNode, labelModeEnabled, coordinatesOnHover } = this.props;
       const mark = this.state.mark ? this.state.mark : this.props.mark;
 
+      const from = cloneDeep(mark.from);
+      const to = cloneDeep(mark.to);
+      const middle = cloneDeep(mark.middle);
+
       // SET DISABLED
       // if it's a background mark, we need to force disable it
-      if (mark.from && mark.isBackground) {
-        mark.from.disabled = true;
+      if (from && mark.isBackground) {
+        from.disabled = true;
       }
 
-      if (mark.to && mark.isBackground) {
-        mark.to.disabled = true;
+      if (to && mark.isBackground) {
+        to.disabled = true;
       }
 
-      if (mark.middle && mark.isBackground) {
-        mark.middle.disabled = true;
+      if (middle && mark.isBackground) {
+        middle.disabled = true;
       }
 
       return (
@@ -117,9 +122,9 @@ export const lineToolComponent = Component => {
           disabled={mark.disabled}
           coordinatesOnHover={coordinatesOnHover}
           correctness={mark.correctness}
-          from={mark.from}
-          to={mark.to}
-          middle={mark.middle}
+          from={from}
+          to={to}
+          middle={middle}
           graphProps={graphProps}
           onChange={this.changeMark}
           changeMarkProps={this.changeMarkProps}
