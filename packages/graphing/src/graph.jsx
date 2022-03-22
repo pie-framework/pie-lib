@@ -188,7 +188,7 @@ export class Graph extends React.Component {
             return (
               <Component
                 key={`${markType}-${index}-bg`}
-                mark={{ ...m, disabled: true }}
+                mark={{ ...m, disabled: true, isBackground: true }}
                 labelNode={this.state.labelNode}
                 {...common}
               />
