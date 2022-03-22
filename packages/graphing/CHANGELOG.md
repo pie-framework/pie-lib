@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.4.15...@pie-lib/graphing@2.4.16) (2022-03-22)
+
+
+### Bug Fixes
+
+* Do not change object at address. Instead, create a clone. ([2b683d7](https://github.com/pie-framework/pie-lib/commit/2b683d76853bf057388e6a223671eef3a040dbbf))
+
+
+
+
+
 ## [2.4.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.4.14...@pie-lib/graphing@2.4.15) (2022-03-22)
 
 
