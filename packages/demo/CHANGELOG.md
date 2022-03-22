@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.7.19](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.7.18...@pie-lib/demo@6.7.19) (2022-03-22)
+
+
+### Bug Fixes
+
+* disable labels for the background marks ([c43a269](https://github.com/pie-framework/pie-lib/commit/c43a26941016490b2687f98b2e02c934a96c02ac))
+
+
+
+
+
 ## [6.7.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.7.17...@pie-lib/demo@6.7.18) (2022-03-21)
 
 **Note:** Version bump only for package @pie-lib/demo
