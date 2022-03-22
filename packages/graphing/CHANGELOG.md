@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.4.13...@pie-lib/graphing@2.4.14) (2022-03-22)
+
+
+### Bug Fixes
+
+* Apply different disable styles for background mark and when mark label is not in edit mode. ([a1657ec](https://github.com/pie-framework/pie-lib/commit/a1657ec7562c96bf760bbf936686816700a7d739))
+
+
+
+
+
 ## [2.4.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.4.12...@pie-lib/graphing@2.4.13) (2022-03-22)
 
 
