@@ -18,6 +18,10 @@ const styles = theme => ({
     color: color.primaryDark()
   },
   disabled: {
+    border: `solid 1px ${color.primaryDark()}`,
+    background: color.background()
+  },
+  disabledMark: {
     border: `solid 1px ${color.disabled()}`,
     background: color.background(),
     color: color.disabled()
@@ -106,7 +110,7 @@ export const MarkLabel = props => {
         externalInputRef(r);
       }}
       disabled={disabledInput}
-      inputClassName={cn(classes.input, disabledInput && classes.disabled)}
+      inputClassName={cn(classes.input, disabled && classes.disabled, mark.disabled && classes.disabledMark)}
       value={label}
       style={style}
       onChange={onChange}
