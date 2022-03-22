@@ -117,7 +117,146 @@ export const marks = [
   // }
 ];
 
-export const backgroundMarks = [];
+export const backgroundMarks = [
+  {
+    "type": "circle",
+    "building": false,
+    "root": {
+      "label": "bgf",
+      "x": -3.25,
+      "y": 4.02
+    },
+    "edge": {
+      "label": "fgb",
+      "x": -3,
+      "y": 3.35
+    }
+  },
+  {
+    "type": "line",
+    "building": false,
+    "from": {
+      "label": "afgb",
+      "x": -1.75,
+      "y": 4.69
+    },
+    "to": {
+      "label": "fgb",
+      "x": -0.75,
+      "y": 4.69
+    }
+  },
+  {
+    "type": "parabola",
+    "closed": true,
+    "building": false,
+    "root": {
+      "label": "fgb",
+      "x": -3.5,
+      "y": -5.36
+    },
+    "edge": {
+      "label": "gfb",
+      "x": -3,
+      "y": -6.03
+    }
+  },
+  {
+    "label": "fgbbg",
+    "type": "point",
+    "x": -3,
+    "y": -2.0100000000000007
+  },
+  {
+    "type": "polygon",
+    "points": [
+      {
+        "x": -3.75,
+        "y": 2.0099999999999993,
+        "label": "fgbgb"
+      },
+      {
+        "label": "bg",
+        "x": -2,
+        "y": 1.34
+      },
+      {
+        "label": "fgbbg",
+        "x": -0.25,
+        "y": 1.34
+      },
+      {
+        "label": "bgbgfb",
+        "x": -0.75,
+        "y": 3.35
+      },
+      {
+        "label": "gb",
+        "x": -2,
+        "y": 2.68
+      }
+    ],
+    "closed": true,
+    "building": false
+  },
+  {
+    "type": "ray",
+    "building": false,
+    "from": {
+      "label": "bg",
+      "x": 2,
+      "y": 1.34
+    },
+    "to": {
+      "label": "fgb",
+      "x": 3.25,
+      "y": 1.34
+    }
+  },
+  {
+    "type": "segment",
+    "building": false,
+    "from": {
+      "label": "fgb",
+      "x": 2.5,
+      "y": 2.68
+    },
+    "to": {
+      "label": "gb",
+      "x": 4,
+      "y": 2.68
+    }
+  },
+  {
+    "type": "sine",
+    "closed": true,
+    "building": false,
+    "root": {
+      "label": "fgb",
+      "x": -0.75,
+      "y": -4.69
+    },
+    "edge": {
+      "label": "fgb",
+      "x": 0,
+      "y": -5.36
+    }
+  },
+  {
+    "type": "vector",
+    "building": false,
+    "from": {
+      "label": "bg",
+      "x": 1.25,
+      "y": -2.01
+    },
+    "to": {
+      "label": "bfgb",
+      "x": 3.25,
+      "y": -2.01
+    }
+  }
+];
 //   {
 //     type: 'polygon',
 //     points: [

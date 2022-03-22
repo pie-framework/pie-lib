@@ -102,7 +102,7 @@ export const MarkLabel = props => {
         _ref(r);
         externalInputRef(r);
       }}
-      disabled={disabled}
+      disabled={disabled || mark.disabled}
       inputClassName={cn(classes.input, disabled && classes.disabled)}
       value={label}
       style={style}

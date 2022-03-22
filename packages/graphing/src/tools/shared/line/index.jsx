@@ -98,6 +98,21 @@ export const lineToolComponent = Component => {
       const { graphProps, onClick, labelNode, labelModeEnabled, coordinatesOnHover } = this.props;
       const mark = this.state.mark ? this.state.mark : this.props.mark;
 
+      // SET DISABLED
+      // "disabled" property is set on the entire mark; every mark (but the Point) contains 2 or more points
+      // so we have to set the disabled property on those points as well
+      if (mark.from && mark.disabled) {
+        mark.from.disabled = mark.disabled;
+      }
+
+      if (mark.to && mark.disabled) {
+        mark.to.disabled = mark.disabled;
+      }
+
+      if (mark.middle && mark.disabled) {
+        mark.middle.disabled = mark.disabled;
+      }
+
       return (
         <Component
           disabled={mark.disabled}
