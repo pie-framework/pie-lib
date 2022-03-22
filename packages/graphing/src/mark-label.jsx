@@ -18,8 +18,9 @@ const styles = theme => ({
     color: color.primaryDark()
   },
   disabled: {
-    border: `solid 1px ${color.primaryDark()}`,
-    background: color.background()
+    border: `solid 1px ${color.disabled()}`,
+    background: color.background(),
+    color: color.disabled()
   }
 });
 
@@ -96,14 +97,16 @@ export const MarkLabel = props => {
     ...leftTop
   };
 
+  const disabledInput = disabled || mark.disabled;
+
   return (
     <AutosizeInput
       inputRef={r => {
         _ref(r);
         externalInputRef(r);
       }}
-      disabled={disabled}
-      inputClassName={cn(classes.input, disabled && classes.disabled)}
+      disabled={disabledInput}
+      inputClassName={cn(classes.input, disabledInput && classes.disabled)}
       value={label}
       style={style}
       onChange={onChange}
