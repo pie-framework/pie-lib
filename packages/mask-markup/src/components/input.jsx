@@ -11,6 +11,7 @@ const Input = ({
   value,
   onChange,
   showCorrectAnswer,
+  spellCheck,
   width
 }) => {
   return (
@@ -21,6 +22,7 @@ const Input = ({
       variant="outlined"
       value={value}
       isConstructedResponse={isConstructedResponse}
+      spellCheck={spellCheck}
       isBox={true}
       width={width}
       onChange={e => {
@@ -35,6 +37,7 @@ Input.propTypes = {
   value: PropTypes.string,
   onChange: PropTypes.func,
   disabled: PropTypes.bool,
+  spellCheck: PropTypes.bool,
   correct: PropTypes.bool,
   showCorrectAnswer: PropTypes.bool
 };
