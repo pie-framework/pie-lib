@@ -57,6 +57,7 @@ export default withStyles(() => ({
     isBox,
     isConstructedResponse,
     width,
+    spellCheck,
     ...rest
   } = props;
   const label = typeof correct === 'boolean' ? (correct ? 'correct' : 'incorrect') : undefined;
@@ -85,6 +86,7 @@ export default withStyles(() => ({
       inputProps={inputProps}
       labelWidth={0}
       disabled={disabled}
+      spellCheck={spellCheck}
       {...rest}
     />
   );
