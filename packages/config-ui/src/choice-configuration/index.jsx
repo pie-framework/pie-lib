@@ -211,7 +211,6 @@ export class ChoiceConfiguration extends React.Component {
             onChange={this.onCheckedChange}
             label={!noLabels ? 'Correct' : ''}
             checked={!!data.correct}
-            style={{ color: 'red' }}
             error={noCorrectAnswerError}
           />
           <div className={classes.middleColumn}>
