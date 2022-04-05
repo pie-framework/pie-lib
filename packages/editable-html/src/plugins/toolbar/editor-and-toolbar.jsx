@@ -28,7 +28,8 @@ export class EditorAndToolbar extends React.Component {
     pluginProps: PropTypes.object,
     toolbarOpts: PropTypes.shape({
       position: PropTypes.oneOf(['bottom', 'top']),
-      alwaysVisible: PropTypes.bool
+      alwaysVisible: PropTypes.bool,
+      error: PropTypes.string
     })
   };
 
@@ -84,7 +85,7 @@ export class EditorAndToolbar extends React.Component {
     );
 
     return (
-      <div className={classes.root}>
+      <div className={classNames(classes.root, toolbarOpts && toolbarOpts.error && classes.error)}>
         <div className={holderNames}>
           <div className={classes.children}>{clonedChildren}</div>
         </div>
@@ -215,6 +216,9 @@ const style = {
         backgroundColor: primary
       }
     }
+  },
+  error: {
+    border: '2px solid red'
   }
 };
 

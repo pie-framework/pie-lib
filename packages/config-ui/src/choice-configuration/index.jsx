@@ -27,7 +27,8 @@ const EditableHtmlContainer = withStyles(theme => ({
     disabled,
     spellCheck,
     nonEmpty,
-    toolbarOpts
+    toolbarOpts,
+    error
   }) => {
     const names = classNames(classes.labelContainer, className);
 
@@ -37,12 +38,13 @@ const EditableHtmlContainer = withStyles(theme => ({
           <EditableHtml
             markup={value || ''}
             disabled={disabled}
-            spellCheck = {spellCheck}
+            spellCheck={spellCheck}
             nonEmpty={nonEmpty}
             onChange={onChange}
             imageSupport={imageSupport}
             className={classes.editor}
             toolbarOpts={toolbarOpts}
+            error={error}
           />
         </div>
       </InputContainer>
@@ -189,7 +191,9 @@ export class ChoiceConfiguration extends React.Component {
       nonEmpty,
       allowFeedBack,
       allowDelete,
-      toolbarOpts
+      toolbarOpts,
+      error,
+      noCorrectAnswerError
     } = this.props;
 
     const InputToggle = mode === 'checkbox' ? InputCheckbox : InputRadio;
@@ -207,6 +211,8 @@ export class ChoiceConfiguration extends React.Component {
             onChange={this.onCheckedChange}
             label={!noLabels ? 'Correct' : ''}
             checked={!!data.correct}
+            style={{ color: 'red' }}
+            error={noCorrectAnswerError}
           />
           <div className={classes.middleColumn}>
             <EditableHtmlContainer
@@ -215,10 +221,12 @@ export class ChoiceConfiguration extends React.Component {
               onChange={this.onLabelChange}
               imageSupport={imageSupport}
               disabled={disabled}
-              spellCheck = {spellCheck}
+              spellCheck={spellCheck}
               nonEmpty={nonEmpty}
               toolbarOpts={toolbarOpts}
+              error={error}
             />
+            {error && <div className={classes.errorText}>{error}</div>}
 
             {allowFeedBack && (
               <Feedback
@@ -298,6 +306,10 @@ const styles = theme => ({
     display: 'flex',
     flex: 1,
     flexDirection: 'column'
+  },
+  errorText: {
+    fontSize: '12px',
+    color: 'red'
   }
 });
 
