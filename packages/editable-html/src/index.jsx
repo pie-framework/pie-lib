@@ -105,6 +105,12 @@ export default class EditableHtml extends React.Component {
 
   render() {
     const { value } = this.state;
+    const { toolbarOpts, error } = this.props;
+
+    if (toolbarOpts) {
+      toolbarOpts.error = error;
+    }
+
     const props = {
       ...this.props,
       markup: null,
