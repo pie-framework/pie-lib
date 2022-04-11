@@ -145,6 +145,20 @@ const LatexButton = withStyles(theme => ({
   } else {
     buttonClass = classNames(props.classes.latexButton, props.mqClassName);
   }
+
+  try {
+    const MQ = MathQuill.getInterface(2);
+    const span = document.createElement('span');
+    span.innerHTML = '';
+    const mathField = MQ.StaticMath(span);
+
+    mathField.parseLatex(props.latex);
+    mathField.latex(props.latex);
+  } catch (e) {
+    // received latex has errors - do not create button
+    return <></>;
+  }
+
   return (
     <Button className={classNames(props.classes.root, props.className)} onClick={props.onClick}>
       <mq.Static className={buttonClass} latex={props.latex} />
