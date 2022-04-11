@@ -20,14 +20,17 @@ const removeDialogs = () => {
 export const insertDialog = props => {
   const newEl = document.createElement('div');
   const { type, callback, ...rest } = props;
+  const initialBodyOverflow = document.body.style.overflow;
 
   removeDialogs();
 
   newEl.className = 'insert-media-dialog';
+  document.body.style.overflow = 'hidden';
 
   const handleClose = (val, data) => {
     callback(val, data);
     newEl.remove();
+    document.body.style.overflow = initialBodyOverflow;
   };
 
   const el = (
