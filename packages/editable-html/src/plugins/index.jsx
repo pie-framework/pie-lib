@@ -106,7 +106,7 @@ export const buildPlugins = (activePlugins, opts) => {
     addIf('bulleted-list', List({ key: 'l', type: 'ul_list', icon: <BulletedListIcon /> })),
     addIf('numbered-list', List({ key: 'n', type: 'ol_list', icon: <NumberedListIcon /> })),
     ToolbarPlugin(opts.toolbar),
-    SoftBreakPlugin(),
+    SoftBreakPlugin({ shift: true }),
     addIf('responseArea', respAreaPlugin)
   ]);
 };

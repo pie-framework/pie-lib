@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Switch from '@material-ui/core/Switch';
 import { withStyles } from '@material-ui/core/styles';
+import classNames from 'classnames';
 
 const InputTypes = {
   classes: PropTypes.object.isRequired,
@@ -12,7 +13,8 @@ const InputTypes = {
   label: PropTypes.string,
   checked: PropTypes.bool,
   onChange: PropTypes.func,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  error: PropTypes.string
 };
 
 const RawInputSwitch = ({ classes, className, label, checked, onChange }) => {
@@ -38,12 +40,12 @@ const InputSwitch = withStyles({
 })(RawInputSwitch);
 
 const RawInputCheckbox = props => {
-  const { classes, className, label, checked, onChange, disabled } = props;
+  const { classes, className, label, checked, onChange, disabled, error } = props;
 
   return (
     <InputContainer className={className} label={label}>
       <Checkbox
-        className={classes.checkboxRoot}
+        className={classNames(classes.checkboxRoot, error && classes.error)}
         disabled={disabled}
         checked={checked}
         onChange={onChange}
@@ -56,12 +58,12 @@ const RawInputCheckbox = props => {
 RawInputCheckbox.propTypes = { ...InputTypes };
 
 const RawInputRadio = props => {
-  const { classes, className, label, checked, onChange, disabled } = props;
+  const { classes, className, label, checked, onChange, disabled, error } = props;
 
   return (
     <InputContainer className={className} label={label}>
       <Radio
-        className={classes.radioRoot}
+        className={classNames(classes.radioRoot, error && classes.error)}
         disabled={disabled}
         checked={checked}
         onChange={onChange}
@@ -76,12 +78,18 @@ RawInputRadio.propTypes = { ...InputTypes };
 const InputCheckbox = withStyles({
   checkboxRoot: {
     transform: 'translate(-25%, 20%)'
+  },
+  error: {
+    color: 'red'
   }
 })(RawInputCheckbox);
 
 const InputRadio = withStyles(() => ({
   radioRoot: {
     transform: 'translate(-20%, 20%)'
+  },
+  error: {
+    color: 'red'
   }
 }))(RawInputRadio);
 
