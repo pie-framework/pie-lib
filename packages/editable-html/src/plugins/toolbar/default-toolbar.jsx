@@ -14,25 +14,32 @@ const log = debug('@pie-lib:editable-html:plugins:toolbar');
 export const ToolbarButton = props => {
   const onToggle = () => {
     const c = props.onToggle(props.value.change(), props);
+
     props.onChange(c);
   };
 
   if (props.isMark) {
     const isActive = hasMark(props.value, props.type);
+
     log('[ToolbarButton] mark:isActive: ', isActive);
+
     return (
       <MarkButton active={isActive} label={props.type} onToggle={onToggle} mark={props.type}>
         {props.icon}
       </MarkButton>
     );
   } else {
+    const { disabled } = props;
     const isActive = props.isActive
       ? props.isActive(props.value, props.type)
       : hasBlock(props.value, props.type);
+
     log('[ToolbarButton] block:isActive: ', isActive);
+
     return (
       <Button
         active={isActive}
+        disabled={disabled}
         onClick={() => props.onClick(props.value, props.onChange)}
         extraStyles={props.buttonStyles}
       >
@@ -44,6 +51,7 @@ export const ToolbarButton = props => {
 
 const isActiveToolbarPlugin = props => plugin => {
   const isDisabled = (props[plugin.name] || {}).disabled;
+
   return plugin && plugin.toolbar && !isDisabled;
 };
 
