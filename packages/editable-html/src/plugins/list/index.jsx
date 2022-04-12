@@ -109,7 +109,7 @@ const createEditList = () => {
           const key = _ref.key;
           return change.unwrapNodeByKey(key, { normalize: false });
         });
-      } else {
+      } else if (node.type !== 'list_item') {
         change.wrapBlockByKey(node.key, 'list_item', {
           normalize: false
         });
@@ -150,7 +150,7 @@ export default options => {
         return false;
       }
       const current = core.utils.getCurrentList(value);
-      return current.type === type;
+      return current ? current.type === type : false;
     },
     onClick: (value, onChange) => {
       log('[onClick]', value);
