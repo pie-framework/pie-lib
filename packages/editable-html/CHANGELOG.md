@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.20.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.19.3...@pie-lib/editable-html@7.20.0) (2022-04-12)
+
+
+### Bug Fixes
+
+* **editable-html:** Removed overflow property that prevent body content from scrolling after closing dialog PD-1659 ([da2dc24](https://github.com/pie-framework/pie-lib/commit/da2dc2421448fa56d83369a043d864a568b1f886))
+* **list:** fixed list in list issues [PD-1229] ([46dcec0](https://github.com/pie-framework/pie-lib/commit/46dcec0e20fc2d09969c45fd75426f647931ec08))
+
+
+### Features
+
+* **config-ui, editable-html:** add ui/ux validation for choices and editable html fields ([d40148f](https://github.com/pie-framework/pie-lib/commit/d40148f0f4b1232ce1506867a7424aa56e26c5ec))
+
+
+
+
+
 ## [7.19.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.19.2...@pie-lib/editable-html@7.19.3) (2022-03-21)
 
 **Note:** Version bump only for package @pie-lib/editable-html

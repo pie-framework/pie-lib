@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.11.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.10.24...@pie-lib/config-ui@10.11.0) (2022-04-12)
+
+
+### Features
+
+* PD-1679 remove unwanted changes ([61982ef](https://github.com/pie-framework/pie-lib/commit/61982efc31296b0ed3e84d1bd1f74dcd4dbe9ac2))
+* **config-ui, editable-html:** add ui/ux validation for choices and editable html fields ([d40148f](https://github.com/pie-framework/pie-lib/commit/d40148f0f4b1232ce1506867a7424aa56e26c5ec))
+
+
+
+
+
 ## [10.10.24](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.10.23...@pie-lib/config-ui@10.10.24) (2022-03-21)
 
 **Note:** Version bump only for package @pie-lib/config-ui

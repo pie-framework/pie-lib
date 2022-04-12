@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.6.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.6.8...@pie-lib/math-input@6.6.9) (2022-04-12)
+
+
+### Bug Fixes
+
+* **math-input:** PD-1669 handle latex with errors in keypad buttons ([6b36f17](https://github.com/pie-framework/pie-lib/commit/6b36f175deffbd0a0fe021f4f7a11d7c4f14a014))
+
+
+
+
+
 ## [6.6.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.6.7...@pie-lib/math-input@6.6.8) (2022-02-04)
 
 **Note:** Version bump only for package @pie-lib/math-input
