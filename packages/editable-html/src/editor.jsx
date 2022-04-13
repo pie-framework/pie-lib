@@ -181,6 +181,7 @@ export class Editor extends React.Component {
         options: normalizedResponseAreaProps.options,
         respAreaToolbar: normalizedResponseAreaProps.respAreaToolbar,
         onHandleAreaChange: normalizedResponseAreaProps.onHandleAreaChange,
+        error: normalizedResponseAreaProps.error,
         onFocus: () => {
           log('[table:onFocus]...');
           this.onPluginFocus();

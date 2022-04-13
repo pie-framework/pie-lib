@@ -90,7 +90,13 @@ export default function ResponseAreaPlugin(opts) {
       if (n.type === 'explicit_constructed_response') {
         const data = n.data.toJSON();
 
-        return <ExplicitConstructedResponse attributes={attributes} value={data.value} />;
+        return (
+          <ExplicitConstructedResponse
+            attributes={attributes}
+            value={data.value}
+            error={opts.error && opts.error[data.value]}
+          />
+        );
       }
 
       if (n.type === 'drag_in_the_blank') {
