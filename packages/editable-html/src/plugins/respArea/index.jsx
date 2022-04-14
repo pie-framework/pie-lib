@@ -19,6 +19,8 @@ const elTypesMap = {
 const elTypesArray = Object.values(elTypesMap);
 
 export default function ResponseAreaPlugin(opts) {
+  const isOfCurrentType = d => d.type === opts.type || d.type === elTypesMap[opts.type];
+
   const toolbar = {
     icon: <ToolbarIcon />,
     buttonStyles: {
@@ -27,6 +29,12 @@ export default function ResponseAreaPlugin(opts) {
     onClick: (value, onChange) => {
       log('[toolbar] onClick');
       const change = value.change();
+      const currentRespAreaList = change.value.document.filterDescendants(isOfCurrentType);
+
+      if (currentRespAreaList.size >= opts.maxResponseAreas) {
+        return;
+      }
+
       const type = opts.type.replace(/-/g, '_');
       const prevIndex = lastIndexMap[type];
       const newIndex = prevIndex === 0 ? prevIndex : prevIndex + 1;
@@ -128,9 +136,14 @@ export default function ResponseAreaPlugin(opts) {
         return;
       }
 
-      const isOfCurrentType = d => d.type === opts.type || d.type === elTypesMap[opts.type];
       const currentRespAreaList = change.value.document.filterDescendants(isOfCurrentType);
       const oldRespAreaList = editor.value.document.filterDescendants(isOfCurrentType);
+
+      if (currentRespAreaList.size >= opts.maxResponseAreas) {
+        toolbar.disabled = true;
+      } else {
+        toolbar.disabled = false;
+      }
 
       const arrayToFilter =
         oldRespAreaList.size > currentRespAreaList.size ? oldRespAreaList : currentRespAreaList;

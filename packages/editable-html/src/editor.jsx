@@ -179,6 +179,7 @@ export class Editor extends React.Component {
       responseArea: {
         type: normalizedResponseAreaProps.type,
         options: normalizedResponseAreaProps.options,
+        maxResponseAreas: normalizedResponseAreaProps.maxResponseAreas,
         respAreaToolbar: normalizedResponseAreaProps.respAreaToolbar,
         onHandleAreaChange: normalizedResponseAreaProps.onHandleAreaChange,
         onFocus: () => {
