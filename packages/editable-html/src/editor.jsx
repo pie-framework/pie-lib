@@ -115,6 +115,8 @@ export class Editor extends React.Component {
       props.onChange(this.state.value, true);
     };
 
+    console.log('normalizedResponseAreaProps', normalizedResponseAreaProps);
+
     this.plugins = buildPlugins(props.activePlugins, {
       math: {
         onClick: this.onMathClick,
