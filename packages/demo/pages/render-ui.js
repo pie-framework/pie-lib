@@ -1,9 +1,9 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import { indicators, Feedback } from '@pie-lib/render-ui';
-import { Collapsible, color } from '@pie-lib/render-ui';
+import { AlertDialog, Collapsible, color, Feedback, indicators } from '@pie-lib/render-ui';
 import withRoot from '../src/withRoot';
-import { Typography } from '@material-ui/core';
+import { Typography, Button } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
+
 const { Correct, Incorrect, PartiallyCorrect, NothingSubmitted } = indicators;
 
 const Section = withStyles(theme => ({
@@ -45,16 +45,21 @@ const ColorSample = withStyles(theme => ({
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      openDialog: false
+    };
   }
 
   componentDidMount() {
     this.setState({ mounted: true });
   }
 
+  handleDialogOpen = value => this.setState({ openDialog: value });
+
   render() {
     const { classes } = this.props;
-    const { mounted } = this.state;
+    const { mounted, openDialog } = this.state;
+
     return mounted ? (
       <div className={classes.root}>
         <Section title="response indicators">
@@ -71,6 +76,7 @@ class App extends React.Component {
             <NothingSubmitted feedback="nothing submitted" />
           </div>
         </Section>
+
         <Section title="Feedback">
           <Feedback correctness="correct" feedback="Correct!" />
           <br />
@@ -93,6 +99,22 @@ class App extends React.Component {
             </p>
           </Collapsible>
         </Section>
+
+        <Section title="Alert Dialog">
+          <Button variant="outlined" onClick={() => this.handleDialogOpen(true)}>
+            Open alert dialog
+          </Button>
+          <AlertDialog
+            open={openDialog}
+            text={
+              'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text.'
+            }
+            title={'Dialog title'}
+            onClose={() => this.handleDialogOpen(false)}
+            onConfirm={() => this.handleDialogOpen(false)}
+          />
+        </Section>
+
         <Section title="color">
           <div>
             This module provides css vars for defining the color in the ui. It is a simple version

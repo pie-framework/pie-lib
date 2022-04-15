@@ -1,27 +1,29 @@
-import * as indicators from './response-indicators';
-import Feedback from './feedback';
+import AlertDialog from './alert-dialog';
+import * as color from './color';
 import Collapsible from './collapsible';
-import withUndoReset from './withUndoReset';
-import PreviewLayout from './preview-layout';
+import Feedback from './feedback';
+import { hasText } from './has-text';
 import HtmlAndMath from './html-and-math';
 import InputContainer from './input-container';
+import PreviewLayout from './preview-layout';
 import PreviewPrompt from './preview-prompt';
-import Readable from './readable';
 import Purpose from './purpose';
-import * as color from './color';
-import { hasText } from './has-text';
+import Readable from './readable';
+import * as indicators from './response-indicators';
+import withUndoReset from './withUndoReset';
 
 export {
-  HtmlAndMath,
-  indicators,
-  withUndoReset,
-  Feedback,
-  PreviewLayout,
-  Collapsible,
-  InputContainer,
-  PreviewPrompt,
+  AlertDialog,
   color,
-  Readable,
+  Collapsible,
+  Feedback,
+  hasText,
+  HtmlAndMath,
+  InputContainer,
+  PreviewLayout,
+  PreviewPrompt,
   Purpose,
-  hasText
+  Readable,
+  indicators,
+  withUndoReset
 };
