@@ -99,7 +99,7 @@ export default function ResponseAreaPlugin(opts) {
           <ExplicitConstructedResponse
             attributes={attributes}
             value={data.value}
-            error={error}
+            error={error && error[data.index] && error[data.index][0]}
           />
         );
       }
