@@ -36,9 +36,9 @@ const styles = theme => ({
   button: {
     color: color.text(),
     backgroundColor: color.background(),
+    marginBottom: theme.spacing.unit / 2,
     '&:not(:last-of-type)': {
-      marginRight: theme.spacing.unit / 2,
-      marginBottom: theme.spacing.unit / 2
+      marginRight: theme.spacing.unit / 2
     },
     '&:hover': {
       backgroundColor: color.primary()
