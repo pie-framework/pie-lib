@@ -80,6 +80,7 @@ export class EditorAndPad extends React.Component {
     } else if (c.type === 'cursor') {
       this.input.keystroke(c.value);
     } else if (c.type === 'answer') {
+      console.log(this.input.props.latex);
       this.input.write('%response%');
     } else {
       this.input.write(c.value);
@@ -137,6 +138,18 @@ export class EditorAndPad extends React.Component {
     this.setState({ equationEditor: evt.target.value });
   };
 
+  checkResponseAreasNumber = maxResponseAreas => {
+    const { latex } = (this.input && this.input.props) || {};
+    if (latex) {
+      const count = (latex.match(/answerBlock/g) || []).length;
+      console.log(count);
+      return count === maxResponseAreas;
+    }
+    console.log('maxResponseAreas', maxResponseAreas);
+    console.log('input latex', latex);
+    return false;
+  };
+
   render() {
     const {
       classNames,
@@ -150,11 +163,16 @@ export class EditorAndPad extends React.Component {
       latex,
       onFocus,
       onBlur,
-      classes
+      classes,
+      error,
+      maxResponseAreas
     } = this.props;
     const shouldShowKeypad = !controlledKeypad || (controlledKeypad && showKeypad);
 
     log('[render]', latex);
+
+    console.log(error, 'error');
+    const addDisabled = maxResponseAreas && this.checkResponseAreasNumber(maxResponseAreas);
 
     return (
       <div className={cx(classes.mathToolbar, classNames.mathToolbar)}>
@@ -181,18 +199,20 @@ export class EditorAndPad extends React.Component {
               </Select>
             </InputContainer>
           )}
-          <mq.Input
-            onFocus={onFocus}
-            onBlur={onBlur}
-            className={cx(
-              classes.mathEditor,
-              classNames.editor,
-              !controlledKeypadMode ? classes.longMathEditor : ''
-            )}
-            innerRef={r => (this.input = r)}
-            latex={latex}
-            onChange={this.onEditorChange}
-          />
+          <div className={cx(classes.inputContainer, error ? classes.error : '')}>
+            <mq.Input
+              onFocus={onFocus}
+              onBlur={onBlur}
+              className={cx(
+                classes.mathEditor,
+                classNames.editor,
+                !controlledKeypadMode ? classes.longMathEditor : ''
+              )}
+              innerRef={r => (this.input = r)}
+              latex={latex}
+              onChange={this.onEditorChange}
+            />
+          </div>
         </div>
         {allowAnswerBlock && (
           <Button
@@ -200,6 +220,7 @@ export class EditorAndPad extends React.Component {
             type="primary"
             style={{ bottom: shouldShowKeypad ? '320px' : '20px' }}
             onClick={this.onAnswerBlockClick}
+            disabled={addDisabled}
           >
             + Response Area
           </Button>
@@ -262,9 +283,7 @@ const styles = theme => ({
     maxWidth: '400px',
     color: color.text(),
     backgroundColor: color.background(),
-    padding: theme.spacing.unit,
-    marginTop: theme.spacing.unit,
-    marginBottom: theme.spacing.unit
+    padding: theme.spacing.unit
   },
   longMathEditor: {
     maxWidth: '500px'
@@ -315,6 +334,18 @@ const styles = theme => ({
     '& .mq-parallelogram': {
       lineHeight: 0.85
     }
+  },
+  inputContainer: {
+    minWidth: '500px',
+    maxWidth: '900px',
+    minHeight: '40px',
+    width: '100%',
+    display: 'flex',
+    marginTop: theme.spacing.unit,
+    marginBottom: theme.spacing.unit
+  },
+  error: {
+    border: '2px solid red'
   }
 });
 
