@@ -80,7 +80,6 @@ export class EditorAndPad extends React.Component {
     } else if (c.type === 'cursor') {
       this.input.keystroke(c.value);
     } else if (c.type === 'answer') {
-      console.log(this.input.props.latex);
       this.input.write('%response%');
     } else {
       this.input.write(c.value);
@@ -182,6 +181,7 @@ export class EditorAndPad extends React.Component {
     } = this.props;
     const shouldShowKeypad = !controlledKeypad || (controlledKeypad && showKeypad);
     const { addDisabled } = this.state;
+
     log('[render]', latex);
 
     return (
