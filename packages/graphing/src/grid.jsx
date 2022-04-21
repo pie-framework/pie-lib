@@ -9,6 +9,7 @@ import { getTickValues } from './utils';
 export class Grid extends React.Component {
   static propTypes = {
     disabled: PropTypes.bool,
+    disabledAdditionalGrid: PropTypes.bool,
     classes: PropTypes.object.isRequired,
     graphProps: types.GraphPropsType.isRequired
   };
@@ -20,8 +21,71 @@ export class Grid extends React.Component {
     return !utils.isDomainRangeEqual(graphProps, nextGraphProps);
   }
 
+  getAdditionalGridProps = (rowTickValues, columnTickValues) => {
+    const {
+      graphProps: {
+        scale,
+        size: { width, height },
+        domain,
+        range
+      }
+    } = this.props;
+    const rowTickLabelValues = getTickValues({
+      ...range,
+      step: range.labelStep
+    }).filter(value => rowTickValues.includes(value));
+    const columnTickLabelValues = getTickValues({
+      ...domain,
+      step: domain.labelStep
+    }).filter(value => columnTickValues.includes(value));
+
+    const minValueLength =
+      (rowTickLabelValues.length &&
+        Math.min(...rowTickLabelValues)
+          .toString()
+          .replace(/[.-]/g, '').length) ||
+      1;
+    const maxValueLength =
+      (rowTickLabelValues.length &&
+        Math.max(...rowTickLabelValues)
+          .toString()
+          .replace(/[.-]/g, '').length) ||
+      1;
+
+    const rowLabelLength = Math.max(minValueLength, maxValueLength) * 9 + 22;
+    const horizontalDistanceToZero = scale.x(0);
+    const verticalDistanceToZero = scale.y(0);
+    const columnLabelLength = 28;
+    const rowStrokeDasharray = `${horizontalDistanceToZero -
+      rowLabelLength} ${rowLabelLength} ${width}`;
+    const columnStrokeDasharray = `${verticalDistanceToZero} ${columnLabelLength} ${height}`;
+
+    const displayAdditionalGrid =
+      rowTickLabelValues &&
+      columnTickLabelValues &&
+      rowTickLabelValues.length > 1 &&
+      columnTickLabelValues.length > 1 &&
+      (rowTickLabelValues.length !== rowTickValues.length ||
+        columnTickLabelValues.length !== columnTickValues.length);
+
+    const filteredColumnValues = columnTickLabelValues.filter(
+      value => value >= 0 || horizontalDistanceToZero - scale.x(value) > rowLabelLength
+    );
+    const filteredRowValues = rowTickLabelValues.filter(
+      value => value >= 0 || scale.y(value) - verticalDistanceToZero > columnLabelLength
+    );
+
+    return {
+      rowTickLabelValues: filteredRowValues,
+      columnTickLabelValues: filteredColumnValues,
+      rowStrokeDasharray,
+      columnStrokeDasharray,
+      displayAdditionalGrid
+    };
+  };
+
   render() {
-    const { classes, graphProps } = this.props;
+    const { classes, disabledAdditionalGrid, graphProps } = this.props;
     const {
       scale,
       size: { height, width },
@@ -30,28 +94,13 @@ export class Grid extends React.Component {
     } = graphProps;
     const rowTickValues = getTickValues(range);
     const columnTickValues = getTickValues(domain);
-    const horizontalDistanceToZero = scale.x(0);
-    const verticalDistanceToZero = scale.y(0);
-
-    const rowTickLabelValues = getTickValues({ ...range, step: range.labelStep }).filter(value =>
-      rowTickValues.includes(value)
-    );
-    const columnTickLabelValues = getTickValues({
-      ...domain,
-      step: domain.labelStep
-    }).filter(value => columnTickValues.includes(value));
-
-    const displayDarkerGrid =
-      rowTickLabelValues.length > 1 &&
-      columnTickLabelValues.length > 1 &&
-      (rowTickLabelValues.length !== rowTickValues.length ||
-        columnTickLabelValues.length !== columnTickValues.length);
-
-    const minValueLength =
-      (rowTickLabelValues.length && Math.min(...rowTickLabelValues).toString().length) || 1;
-    const maxValueLength =
-      (rowTickLabelValues.length && Math.max(...rowTickLabelValues).toString().length) || 1;
-    const labelLength = Math.max(minValueLength, maxValueLength) * 8 + 16;
+    const {
+      rowTickLabelValues,
+      columnTickLabelValues,
+      rowStrokeDasharray,
+      columnStrokeDasharray,
+      displayAdditionalGrid
+    } = this.getAdditionalGridProps(rowTickValues, columnTickValues);
 
     return (
       <>
@@ -65,21 +114,21 @@ export class Grid extends React.Component {
           rowTickValues={rowTickValues}
           columnTickValues={columnTickValues}
         />
-        {displayDarkerGrid && (
+        {!disabledAdditionalGrid && displayAdditionalGrid && (
           <>
             <vx.GridRows
               scale={scale.y}
               width={width}
               tickValues={rowTickLabelValues}
               stroke={color.primary()}
-              strokeDasharray={`${horizontalDistanceToZero - labelLength} ${labelLength} ${width}`}
+              strokeDasharray={rowStrokeDasharray}
             />
             <vx.GridColumns
               scale={scale.x}
               height={height}
               tickValues={columnTickLabelValues}
               stroke={color.primary()}
-              strokeDasharray={`${verticalDistanceToZero} 28 ${height}`}
+              strokeDasharray={columnStrokeDasharray}
             />
           </>
         )}
