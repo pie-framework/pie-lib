@@ -53,7 +53,7 @@ export class EditorAndPad extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { equationEditor: 'item-authoring' };
+    this.state = { equationEditor: 'item-authoring', addDisabled: false };
   }
 
   componentDidMount() {
@@ -87,17 +87,31 @@ export class EditorAndPad extends React.Component {
     }
   };
 
+  updateDisable = isEdit => {
+    const { maxResponseAreas } = this.props;
+
+    if (maxResponseAreas) {
+      const shouldDisable = this.checkResponseAreasNumber(maxResponseAreas, isEdit);
+
+      this.setState({ addDisabled: shouldDisable });
+    }
+  };
+
   onAnswerBlockClick = () => {
     this.props.onAnswerBlockAdd();
     this.onClick({
       type: 'answer'
     });
+
+    this.updateDisable(true);
   };
 
   onEditorChange = latex => {
     const { onChange, noDecimal } = this.props;
 
     updateSpans();
+
+    this.updateDisable(true);
 
     // if no decimals are allowed and the last change is a decimal dot, discard the change
     if (noDecimal && (latex.indexOf('.') !== -1 || latex.indexOf(',') !== -1) && this.input) {
@@ -138,15 +152,15 @@ export class EditorAndPad extends React.Component {
     this.setState({ equationEditor: evt.target.value });
   };
 
-  checkResponseAreasNumber = maxResponseAreas => {
+  checkResponseAreasNumber = (maxResponseAreas, isEdit) => {
     const { latex } = (this.input && this.input.props) || {};
+
     if (latex) {
       const count = (latex.match(/answerBlock/g) || []).length;
-      console.log(count);
-      return count === maxResponseAreas;
+
+      return isEdit ? count === maxResponseAreas - 1 : count === maxResponseAreas;
     }
-    console.log('maxResponseAreas', maxResponseAreas);
-    console.log('input latex', latex);
+
     return false;
   };
 
@@ -164,15 +178,11 @@ export class EditorAndPad extends React.Component {
       onFocus,
       onBlur,
       classes,
-      error,
-      maxResponseAreas
+      error
     } = this.props;
     const shouldShowKeypad = !controlledKeypad || (controlledKeypad && showKeypad);
-
+    const { addDisabled } = this.state;
     log('[render]', latex);
-
-    console.log(error, 'error');
-    const addDisabled = maxResponseAreas && this.checkResponseAreasNumber(maxResponseAreas);
 
     return (
       <div className={cx(classes.mathToolbar, classNames.mathToolbar)}>
@@ -201,8 +211,14 @@ export class EditorAndPad extends React.Component {
           )}
           <div className={cx(classes.inputContainer, error ? classes.error : '')}>
             <mq.Input
-              onFocus={onFocus}
-              onBlur={onBlur}
+              onFocus={() => {
+                onFocus();
+                this.updateDisable(false);
+              }}
+              onBlur={() => {
+                this.updateDisable(false);
+                onBlur();
+              }}
               className={cx(
                 classes.mathEditor,
                 classNames.editor,
