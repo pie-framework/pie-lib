@@ -356,7 +356,16 @@ serializer.deserialize = function deserialize(html) {
   return null;
 };
 
-export const htmlToValue = html => serializer.deserialize(html);
+export const htmlToValue = html => {
+  try {
+    const value = serializer.deserialize(html);
+    console.log(value, 'value');
+    return value;
+  } catch {
+    console.log('deserialize is not possible');
+    return {};
+  }
+};
 
 export const valueToHtml = value => serializer.serialize(value);
 

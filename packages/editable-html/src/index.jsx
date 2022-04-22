@@ -47,7 +47,7 @@ export default class EditableHtml extends React.Component {
     const v = htmlToValue(props.markup);
     const current = htmlToValue(this.props.markup);
 
-    if (!v.equals(current)) {
+    if (v.equals && !v.equals(current)) {
       this.setState({ value: v });
     }
   }

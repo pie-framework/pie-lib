@@ -8805,8 +8805,6 @@ is-extendable@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/is-extendable/-/is-extendable-1.0.1.tgz#a7470f9e426733d81bd81e1155264e3a3507cab4"
   integrity sha512-arnXMxT1hhoKo9k1LZdmlNyJdDDfy2v0fXjFlmok4+i8ul/6WlbVge9bhM74OpNPQPMGUToDtz+KXa1PneJxOA==
-  dependencies:
-    is-plain-object "^2.0.4"
 
 is-extglob@^2.1.0, is-extglob@^2.1.1:
   version "2.1.1"
@@ -14639,6 +14637,21 @@ slate@^0.36.2:
     lodash "^4.17.4"
     slate-dev-logger "^0.1.42"
     slate-schema-violations "^0.1.24"
+    type-of "^2.0.1"
+
+slate@^0.39.0:
+  version "0.39.3"
+  resolved "https://registry.yarnpkg.com/slate/-/slate-0.39.3.tgz#fa7d5d9472d7bb47e976d0ffe6a2b4456d6aee87"
+  integrity sha512-YDPGboFsVvu2WKTsMFHr+nNzNE+cAQjmleAgK1Zq1ZqGN2wUu2taB9cAGhLC+r3yX0OAOwxYjVg3nPq0EZbCXw==
+  dependencies:
+    debug "^3.1.0"
+    direction "^0.1.5"
+    esrever "^0.2.0"
+    is-empty "^1.0.0"
+    is-plain-object "^2.0.4"
+    lodash "^4.17.4"
+    slate-dev-logger "^0.1.43"
+    slate-schema-violations "^0.1.39"
     type-of "^2.0.1"
 
 slice-ansi@0.0.4:
