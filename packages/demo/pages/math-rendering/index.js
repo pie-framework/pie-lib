@@ -47,7 +47,8 @@ const mathTwo = `<math xmlns="http://www.w3.org/1998/Math/MathML">
 </mstack>
 </math>`;
 
-const Latex = "\\(\\parallelogram\\)";
+// const Latex = "\\(\\triangle\\) \\(\\parallelogram\\) \\(2x\\ \\le4y\\ +\\ 8\\)";
+const Latex = "\\(2x\\ \\le4y\\ +\\ 8\\)";
 
 class Demo extends React.Component {
   constructor(props) {
