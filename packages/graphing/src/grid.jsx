@@ -61,6 +61,8 @@ export class Grid extends React.Component {
     const columnStrokeDasharray = `${verticalDistanceToZero} ${columnLabelLength} ${height}`;
 
     const displayAdditionalGrid =
+      domain.labelStep > 0 &&
+      range.labelStep > 0 &&
       rowTickLabelValues &&
       columnTickLabelValues &&
       rowTickLabelValues.length > 1 &&
@@ -85,7 +87,7 @@ export class Grid extends React.Component {
   };
 
   render() {
-    const { classes, disabledAdditionalGrid, graphProps } = this.props;
+    const { classes, graphProps } = this.props;
     const {
       scale,
       size: { height, width },
@@ -114,7 +116,7 @@ export class Grid extends React.Component {
           rowTickValues={rowTickValues}
           columnTickValues={columnTickValues}
         />
-        {!disabledAdditionalGrid && displayAdditionalGrid && (
+        {displayAdditionalGrid && (
           <>
             <vx.GridRows
               scale={scale.y}
