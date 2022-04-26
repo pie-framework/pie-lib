@@ -55,6 +55,10 @@ jest.mock('mathjax-full/js/handlers/html', () => ({
   RegisterHTMLHandler: jest.fn()
 }));
 
+jest.mock('mathjax-full/js/core/MmlTree/SerializedMmlVisitor', () => ({
+  SerializedMmlVisitor: jest.fn()
+}));
+
 describe('render-math', () => {
   it('calls mathjax.document once', () => {
     const div = document.createElement('div');
