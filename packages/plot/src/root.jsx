@@ -6,7 +6,6 @@ import { select, mouse } from 'd3-selection';
 import PropTypes from 'prop-types';
 import { GraphPropsType } from './types';
 import { color } from '@pie-lib/render-ui';
-import { findLongestWord, amountToIncreaseWidth } from './utils';
 
 export const GraphTitle = withStyles(theme => ({
   title: {
@@ -31,8 +30,7 @@ export class Root extends React.Component {
     graphProps: GraphPropsType.isRequired,
     onMouseMove: PropTypes.func,
     classes: PropTypes.object.isRequired,
-    rootRef: PropTypes.func,
-    paddingLeft: PropTypes.number
+    rootRef: PropTypes.func
   };
 
   mouseMove = g => {
@@ -66,14 +64,16 @@ export class Root extends React.Component {
   }
 
   render() {
-    const { graphProps, children, classes, title, rootRef, paddingLeft } = this.props;
-    const { size, domain } = graphProps;
-    const padding = 50;
-    const longestWord = findLongestWord(domain.axisLabel);
-    const increaseWidth = amountToIncreaseWidth(longestWord);
-
-    const finalWidth = size.width + padding * 2 + increaseWidth;
-    const finalHeight = size.height + padding * 2;
+    const { graphProps, children, classes, title, rootRef } = this.props;
+    const {
+      size: { width, height },
+      domain,
+      range
+    } = graphProps;
+    const topPadding = 50;
+    const leftPadding = topPadding + 10; // left side requires an extra padding of 10
+    const finalWidth = width + leftPadding * 2 + domain.padding * 2;
+    const finalHeight = height + topPadding * 2 + range.padding * 2;
 
     return (
       <div className={classes.root}>
@@ -87,7 +87,7 @@ export class Root extends React.Component {
               }
             }}
             className={classes.graphBox}
-            transform={`translate(${paddingLeft || padding}, ${padding})`}
+            transform={`translate(${leftPadding}, ${topPadding})`}
           >
             {children}
           </g>

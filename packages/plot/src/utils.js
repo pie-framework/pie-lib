@@ -139,7 +139,7 @@ export const isDomainRangeEqual = (graphProps, nextGraphProps) => {
   );
 };
 
-// findLongestWord is also used in grapghing
+// findLongestWord is also used in graphing
 export const findLongestWord = label => {
   let longestWord = (label || '')
     .replace(/<[^>]+>/g, '')
@@ -149,7 +149,7 @@ export const findLongestWord = label => {
   return longestWord[0].length;
 };
 
-// amountToIncreaseWidth is also used in grapghing
+// amountToIncreaseWidth is also used in graphing
 export const amountToIncreaseWidth = longestWord => {
   if (!longestWord) {
     return 0;
