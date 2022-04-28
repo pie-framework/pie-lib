@@ -15,6 +15,13 @@ const styles = () => ({
   },
   active: {
     color: 'black'
+  },
+  disabled: {
+    opacity: 0.7,
+    cursor: 'not-allowed',
+    '& :hover': {
+      color: 'grey'
+    }
   }
 });
 
@@ -26,6 +33,7 @@ export class RawButton extends React.Component {
     classes: PropTypes.object.isRequired,
     children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
     active: PropTypes.bool,
+    disabled: PropTypes.bool,
     extraStyles: PropTypes.object
   };
 
@@ -41,8 +49,11 @@ export class RawButton extends React.Component {
   };
 
   render() {
-    const { active, classes, children, extraStyles } = this.props;
-    const names = classNames(classes.button, active && classes.active);
+    const { active, classes, children, disabled, extraStyles } = this.props;
+    const names = classNames(classes.button, {
+      [classes.active]: active,
+      [classes.disabled]: disabled
+    });
 
     return (
       <div style={extraStyles} className={names} onMouseDown={this.onClick}>

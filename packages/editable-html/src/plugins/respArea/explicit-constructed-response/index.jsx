@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const ExplicitConstructedResponse = props => {
-  const { attributes, value } = props;
+  const { attributes, value, error } = props;
 
   return (
     <span
@@ -23,7 +23,7 @@ const ExplicitConstructedResponse = props => {
           minHeight: '36px',
           height: '36px',
           background: '#FFF',
-          border: '1px solid #C0C3CF',
+          border: `1px solid ${error ? 'red' : '#C0C3CF'}`,
           boxSizing: 'border-box',
           borderRadius: '3px',
           overflow: 'hidden',
