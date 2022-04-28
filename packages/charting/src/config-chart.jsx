@@ -22,16 +22,18 @@ const GridConfig = ({ classes, disabled, labelInterval, gridInterval, onChange }
 };
 
 const ConfigChart = props => {
-  const { charts, classes, config, model, onChange } = props;
+  const { classes, model, onChange } = props;
   const sizeProps = {
     min: 2,
     max: 10
   };
-  const { graph, range } = model;
-  console.log(props, 'CHARTING PROPS');
-  console.log(graph, 'graph');
 
-  console.log(graph.width, 'graph');
+  const { range } = model;
+  const size = model.graph;
+  console.log(props, 'CHARTING PROPS');
+  console.log(size, 'grasizeph');
+
+  console.log(size.width, 'grapsizeh');
   const gridProps = { min: 2, max: 41 };
 
   const onSizeChanged = (key, e) => {
@@ -40,8 +42,8 @@ const ConfigChart = props => {
     const max = 700;
     const value = parseInt(e.target.value);
     console.log(key, 'key');
-    console.log(graph[key], 'GRAPH KEY');
-    const nextValue = value <= graph[key] ? graph[key] - step : graph[key] + step;
+    console.log(size[key], 'GRsizeAPH KEY');
+    const nextValue = value <= size[key] ? size[key] - step : size[key] + step;
 
     console.log(nextValue, 'nextValue');
 
@@ -49,9 +51,10 @@ const ConfigChart = props => {
       return;
     }
 
-    const chart = { ...graph, [key]: nextValue };
+    const graph = { ...size, [key]: nextValue };
+    console.log(graph, 'chart');
 
-    onChange({ chart });
+    onChange({ ...model, graph });
   };
 
   const onDomainChanged = (key, e) => {
@@ -121,7 +124,7 @@ const ConfigChart = props => {
             <TextField
               label={'Width'}
               type={'number'}
-              value={graph.width}
+              value={size.width}
               //inputProps={sizeProps}
               variant={'outlined'}
               className={classes.smallTextField}
@@ -133,7 +136,7 @@ const ConfigChart = props => {
             <TextField
               label={'Height'}
               type={'number'}
-              value={graph.height}
+              value={size.height}
               inputProps={sizeProps}
               variant={'outlined'}
               className={classes.smallTextField}
