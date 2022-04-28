@@ -45,8 +45,7 @@ export default class EditableHtml extends React.Component {
     }
 
     const parsedMarkup = props.markup.replace(/(<br\s*\/?>){3,}/gi, '<br>');
-    console.log(parsedMarkup, 'parsedMarkup');
-    console.log(props.markup.replace(/(<br>)+/g, '<br>'), 'value in compoonentWillReceiveProps');
+
     const v = htmlToValue(parsedMarkup);
     const current = htmlToValue(this.props.markup);
 
@@ -56,7 +55,6 @@ export default class EditableHtml extends React.Component {
   }
 
   onChange = (value, done) => {
-    console.log(value, 'value in on change');
     const html = valueToHtml(value);
     const htmlParsed = parseDegrees(html);
 

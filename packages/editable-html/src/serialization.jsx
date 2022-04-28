@@ -360,7 +360,6 @@ export const htmlToValue = html => {
   try {
     return serializer.deserialize(html);
   } catch (e) {
-    console.log(html, 'html');
     console.log("Couldn't parse html: ", e);
     return {};
   }
