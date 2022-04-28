@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.21.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.20.0...@pie-lib/editable-html@7.21.0) (2022-04-28)
+
+
+### Features
+
+* **editable-html:** disabled add response area button when maxResponseArea value is reached PD-1699 ([9c28e5b](https://github.com/pie-framework/pie-lib/commit/9c28e5b1702995a497e8528038a1b9e71b72c84f))
+* **editable-html:** PD-1707 add validation ui/ux to responses areas in ecr ([7381c58](https://github.com/pie-framework/pie-lib/commit/7381c581e9f1099f48f8cfbe307f23dbd8776773))
+
+
+
+
+
 # [7.20.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.19.3...@pie-lib/editable-html@7.20.0) (2022-04-12)
 
 

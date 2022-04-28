@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.8.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.7.24...@pie-lib/demo@6.8.0) (2022-04-28)
+
+
+### Features
+
+* add data-mathml attribute on MathJax containers to be able to use with Text to Speech (TTS) PD-1499 ([df50318](https://github.com/pie-framework/pie-lib/commit/df503184814f0463ef588e468570db3f7d2651df))
+
+
+
+
+
 ## [6.7.24](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.7.23...@pie-lib/demo@6.7.24) (2022-04-12)
 
 **Note:** Version bump only for package @pie-lib/demo
