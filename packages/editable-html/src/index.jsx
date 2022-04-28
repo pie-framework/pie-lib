@@ -28,6 +28,7 @@ const reduceMultipleBrs = markup => {
 
   return markup;
 };
+
 export default class EditableHtml extends React.Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
