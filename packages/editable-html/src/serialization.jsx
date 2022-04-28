@@ -340,7 +340,7 @@ serializer.deserialize = function deserialize(html) {
 
   let i;
 
-  for (i = 0; i < 1000; i++) {
+  for (i = 0; i < 3000; i++) {
     json.schema.rules.push({
       match: { object: 'document' },
       nodes: [{ match: { object: 'block' } }]
