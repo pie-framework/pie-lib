@@ -29,107 +29,8 @@ exports[`Graph snapshot renders 1`] = `
       },
     }
   }
-  paddingLeft={60}
   rootRef={[Function]}
 >
-  <WithStyles(Grid)
-    graphProps={
-      Object {
-        "domain": Object {
-          "max": 1,
-          "min": 0,
-          "step": 1,
-        },
-        "getRootNode": [Function],
-        "range": Object {
-          "max": 1,
-          "min": 0,
-          "step": 1,
-        },
-        "scale": Object {
-          "x": [Function],
-          "y": [Function],
-        },
-        "size": Object {
-          "height": 400,
-          "width": 400,
-        },
-        "snap": Object {
-          "x": [Function],
-          "y": [Function],
-        },
-      }
-    }
-  />
-  <Axes
-    graphProps={
-      Object {
-        "domain": Object {
-          "max": 1,
-          "min": 0,
-          "step": 1,
-        },
-        "getRootNode": [Function],
-        "range": Object {
-          "max": 1,
-          "min": 0,
-          "step": 1,
-        },
-        "scale": Object {
-          "x": [Function],
-          "y": [Function],
-        },
-        "size": Object {
-          "height": 400,
-          "width": 400,
-        },
-        "snap": Object {
-          "x": [Function],
-          "y": [Function],
-        },
-      }
-    }
-    includeArrows={
-      Object {
-        "down": true,
-        "left": true,
-        "right": true,
-        "up": true,
-      }
-    }
-  />
-  <Bg
-    graphProps={
-      Object {
-        "domain": Object {
-          "max": 1,
-          "min": 0,
-          "step": 1,
-        },
-        "getRootNode": [Function],
-        "range": Object {
-          "max": 1,
-          "min": 0,
-          "step": 1,
-        },
-        "scale": Object {
-          "x": [Function],
-          "y": [Function],
-        },
-        "size": Object {
-          "height": 400,
-          "width": 400,
-        },
-        "snap": Object {
-          "x": [Function],
-          "y": [Function],
-        },
-      }
-    }
-    height={400}
-    onClick={[Function]}
-    width={400}
-  />
   <Labels
     graphProps={
       Object {
@@ -159,23 +60,10 @@ exports[`Graph snapshot renders 1`] = `
       }
     }
   />
-  <mask
-    id="myMask"
-  >
-    <rect
-      fill="white"
-      height={446}
-      width={446}
-      x={-23}
-      y={-23}
-    />
-     
-  </mask>
   <g
-    id="marks"
-    mask="url('#myMask')"
+    transform="translate(undefined, undefined)"
   >
-    <Point
+    <WithStyles(Grid)
       graphProps={
         Object {
           "domain": Object {
@@ -203,32 +91,147 @@ exports[`Graph snapshot renders 1`] = `
           },
         }
       }
-      isToolActive={false}
-      key="point-0"
-      mark={
+    />
+    <Axes
+      graphProps={
         Object {
-          "label": "Point",
-          "showLabel": true,
-          "type": "point",
-          "x": 2,
-          "y": 2,
+          "domain": Object {
+            "max": 1,
+            "min": 0,
+            "step": 1,
+          },
+          "getRootNode": [Function],
+          "range": Object {
+            "max": 1,
+            "min": 0,
+            "step": 1,
+          },
+          "scale": Object {
+            "x": [Function],
+            "y": [Function],
+          },
+          "size": Object {
+            "height": 400,
+            "width": 400,
+          },
+          "snap": Object {
+            "x": [Function],
+            "y": [Function],
+          },
         }
       }
-      onChange={[Function]}
-      onClick={[Function]}
-      onComplete={[Function]}
+      includeArrows={
+        Object {
+          "down": true,
+          "left": true,
+          "right": true,
+          "up": true,
+        }
+      }
     />
-    <foreignObject
+    <Bg
+      graphProps={
+        Object {
+          "domain": Object {
+            "max": 1,
+            "min": 0,
+            "step": 1,
+          },
+          "getRootNode": [Function],
+          "range": Object {
+            "max": 1,
+            "min": 0,
+            "step": 1,
+          },
+          "scale": Object {
+            "x": [Function],
+            "y": [Function],
+          },
+          "size": Object {
+            "height": 400,
+            "width": 400,
+          },
+          "snap": Object {
+            "x": [Function],
+            "y": [Function],
+          },
+        }
+      }
       height={400}
-      style={
-        Object {
-          "pointerEvents": "none",
-        }
-      }
+      onClick={[Function]}
       width={400}
-      x="0"
-      y="0"
     />
+    <mask
+      id="myMask"
+    >
+      <rect
+        fill="white"
+        height={446}
+        width={446}
+        x={-23}
+        y={-23}
+      />
+       
+    </mask>
+    <g
+      id="marks"
+      mask="url('#myMask')"
+    >
+      <Point
+        graphProps={
+          Object {
+            "domain": Object {
+              "max": 1,
+              "min": 0,
+              "step": 1,
+            },
+            "getRootNode": [Function],
+            "range": Object {
+              "max": 1,
+              "min": 0,
+              "step": 1,
+            },
+            "scale": Object {
+              "x": [Function],
+              "y": [Function],
+            },
+            "size": Object {
+              "height": 400,
+              "width": 400,
+            },
+            "snap": Object {
+              "x": [Function],
+              "y": [Function],
+            },
+          }
+        }
+        isToolActive={false}
+        key="point-0"
+        mark={
+          Object {
+            "label": "Point",
+            "showLabel": true,
+            "type": "point",
+            "x": 2,
+            "y": 2,
+          }
+        }
+        onChange={[Function]}
+        onClick={[Function]}
+        onComplete={[Function]}
+      />
+      <foreignObject
+        height={400}
+        style={
+          Object {
+            "pointerEvents": "none",
+          }
+        }
+        width={400}
+        x="0"
+        y="0"
+      />
+    </g>
   </g>
 </WithStyles(Root)>
 `;

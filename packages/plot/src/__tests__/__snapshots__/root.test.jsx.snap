@@ -3,11 +3,11 @@
 exports[`root snapshot matches 1`] = `
 <div>
   <svg
-    height={500}
-    width={500}
+    height={NaN}
+    width={NaN}
   >
     <g
-      transform="translate(50, 50)"
+      transform="translate(60, 50)"
     >
       hi
     </g>
