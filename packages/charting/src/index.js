@@ -1,5 +1,6 @@
 import Chart from './chart';
 import chartTypes from './chart-types';
-import ConfigChart from './config-chart';
+import ConfigureChartPanel from './config-chart';
+import ChartType from './chart-type';
 
-export { Chart, chartTypes, ConfigChart };
+export { Chart, chartTypes, ChartType, ConfigureChartPanel };

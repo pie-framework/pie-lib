@@ -6,13 +6,11 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import ChartType from './chart-type';
 
-const ConfigChart = props => {
+const ConfigureChartPanel = props => {
   const { classes, model, onChange } = props;
 
   const { range } = model;
   const size = model.graph;
-
-  const gridProps = { min: 2, max: 41 };
 
   const onSizeChanged = (key, e) => {
     const step = 1;
@@ -21,11 +19,8 @@ const ConfigChart = props => {
     const value = parseInt(e.target.value);
     const nextValue = value <= size[key] ? size[key] - step : size[key] + step;
 
-    console.log(nextValue, 'nextValue');
-
     if (nextValue < min || nextValue > max) {
       return;
-      s;
     }
 
     const graph = { ...size, [key]: nextValue };
@@ -109,7 +104,7 @@ const ConfigChart = props => {
   );
 };
 
-ConfigChart.propTypes = {
+ConfigureChartPanel.propTypes = {
   classes: PropTypes.object,
   sizeConstraints: PropTypes.object,
   domain: PropTypes.object,
@@ -166,4 +161,4 @@ const styles = theme => ({
   }
 });
 
-export default withStyles(styles)(ConfigChart);
+export default withStyles(styles)(ConfigureChartPanel);
