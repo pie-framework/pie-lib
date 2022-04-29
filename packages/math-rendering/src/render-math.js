@@ -16,8 +16,12 @@ import { mmlNodes, chtmlNodes } from './mstack';
 import debug from 'debug';
 import { wrapMath, unWrapMath } from './normalization';
 import { MmlFactory } from 'mathjax-full/js/core/MmlTree/MmlFactory';
+import { SerializedMmlVisitor } from 'mathjax-full/js/core/MmlTree/SerializedMmlVisitor';
 import { CHTMLWrapperFactory } from 'mathjax-full/js/output/chtml/WrapperFactory';
 import { CHTMLmspace } from 'mathjax-full/js/output/chtml/Wrappers/mspace';
+
+const visitor = new SerializedMmlVisitor();
+const toMMl = node => visitor.visitTree(node);
 
 const log = debug('pie-lib:math-rendering');
 
@@ -94,25 +98,25 @@ const bootstrap = opts => {
 
   const texConfig = opts.useSingleDollar
     ? {
-        loader: {
-          require: require
-        },
-        packages,
-        macros,
-        inlineMath: [
-          ['$', '$'],
-          ['\\(', '\\)']
-        ],
-        displayMath: [
-          ['$$', '$$'],
-          ['\\[', '\\]']
-        ],
-        processEscapes: true
-      }
+      loader: {
+        require: require
+      },
+      packages,
+      macros,
+      inlineMath: [
+        ['$', '$'],
+        ['\\(', '\\)']
+      ],
+      displayMath: [
+        ['$$', '$$'],
+        ['\\[', '\\]']
+      ],
+      processEscapes: true
+    }
     : {
-        packages,
-        macros
-      };
+      packages,
+      macros
+    };
 
   const mmlConfig = {
     parseAs: 'html',
@@ -163,15 +167,28 @@ const bootstrap = opts => {
   return {
     version: mathjax.version,
     html: html,
-
     Typeset: function(...elements) {
-      this.html
+      const updatedDocument = this.html
         .findMath(elements.length ? { elements } : {})
         .compile()
         .getMetrics()
         .typeset()
-        .updateDocument()
-        .clear();
+        .updateDocument();
+
+      try {
+        const list = updatedDocument.math.list;
+
+        for (let item = list.next; typeof item.data !== 'symbol'; item = item.next) {
+          const mathMl = toMMl(item.data.root);
+          const parsedMathMl = mathMl.replaceAll('\n', '');
+
+          item.data.typesetRoot.setAttribute('data-mathml', parsedMathMl);
+        }
+      } catch (e) {
+        console.error(e.toString());
+      }
+
+      updatedDocument.clear();
     }
   };
 };
@@ -205,7 +222,7 @@ const renderMath = (el, renderOpts) => {
   "display": 'in-line',
   "text-align": 'left'
 } which prevents it from showing as a newline value
-*/
+ */
 CHTMLmspace.styles = {
   'mjx-mspace': {
     display: 'block',
