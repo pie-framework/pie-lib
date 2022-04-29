@@ -20,8 +20,7 @@ export { htmlToValue, valueToHtml, Editor, DEFAULT_PLUGINS, ALL_PLUGINS };
 
 const reduceMultipleBrs = markup => {
   try {
-    const parsedMarkup = markup.replace(/(<br\s*\/?>){3,}/gi, '<br>');
-    return parsedMarkup;
+    return markup.replace(/(<br\s*\/?>){3,}/gi, '<br>');
   } catch (e) {
     console.log("Couldn't remove <br/> tags: ", e);
   }
