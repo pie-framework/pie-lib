@@ -97,12 +97,17 @@ export default function ResponseAreaPlugin(opts) {
 
       if (n.type === 'explicit_constructed_response') {
         const data = n.data.toJSON();
+        let error;
+
+        if (opts.error) {
+          error = opts.error();
+        }
 
         return (
           <ExplicitConstructedResponse
             attributes={attributes}
             value={data.value}
-            error={opts.error && opts.error[data.value]}
+            error={error && error[data.index] && error[data.index][0]}
           />
         );
       }
