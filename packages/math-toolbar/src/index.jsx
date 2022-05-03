@@ -79,7 +79,9 @@ export class MathToolbar extends React.Component {
       showKeypad,
       onFocus,
       onBlur,
-      hideDoneButton
+      hideDoneButton,
+      error,
+      maxResponseAreas
     } = this.props;
 
     return (
@@ -100,6 +102,8 @@ export class MathToolbar extends React.Component {
         controlledKeypad={controlledKeypad}
         controlledKeypadMode={controlledKeypadMode}
         hideDoneButton={hideDoneButton}
+        error={error}
+        maxResponseAreas={maxResponseAreas}
       />
     );
   }
@@ -144,7 +148,9 @@ export class RawPureToolbar extends React.Component {
       onFocus,
       onBlur,
       hideDoneButton,
-      classes
+      classes,
+      error,
+      maxResponseAreas
     } = this.props;
 
     return (
@@ -165,6 +171,8 @@ export class RawPureToolbar extends React.Component {
           onChange={onChange}
           onFocus={onFocus}
           onBlur={onBlur}
+          error={error}
+          maxResponseAreas={maxResponseAreas}
         />
         {(!controlledKeypad || (controlledKeypad && showKeypad)) && !hideDoneButton && (
           <DoneButton onClick={onDone} />
