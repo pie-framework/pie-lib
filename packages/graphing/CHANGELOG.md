@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.4.17...@pie-lib/graphing@2.5.0) (2022-05-03)
+
+
+### Features
+
+* **graphing:** updated store on model change PD-1608 ([a3744dd](https://github.com/pie-framework/pie-lib/commit/a3744dd74d90cca280b90657cbd558ce7ab9c288))
+
+
+
+
+
 ## [2.4.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.4.16...@pie-lib/graphing@2.4.17) (2022-04-28)
 
 **Note:** Version bump only for package @pie-lib/graphing

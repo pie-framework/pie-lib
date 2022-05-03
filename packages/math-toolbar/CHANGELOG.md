@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.8.9...@pie-lib/math-toolbar@1.9.0) (2022-05-03)
+
+
+### Features
+
+* **math-toolbar:** add validation ui/ux for math-inline inputs PD-1705 ([cbc7205](https://github.com/pie-framework/pie-lib/commit/cbc72051deaefd76765cd60a387e47eebd0abc2f))
+* **math-toolbar:** PD-1705 disable logic for add button in editor if maxResponseAreas is defined ([d68034c](https://github.com/pie-framework/pie-lib/commit/d68034cb4a2d24224f2c778fa4cf425ff157177a))
+
+
+
+
+
 ## [1.8.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.8.8...@pie-lib/math-toolbar@1.8.9) (2022-04-12)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.9.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.8.0...@pie-lib/demo@6.9.0) (2022-05-03)
+
+
+### Features
+
+* implemented an alert dialog ([7a82e03](https://github.com/pie-framework/pie-lib/commit/7a82e0351b5f3124fb78fbfce6eee406f0b9d030))
+
+
+
+
+
 # [6.8.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.7.24...@pie-lib/demo@6.8.0) (2022-04-28)
 
 

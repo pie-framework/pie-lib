@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.22.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.21.0...@pie-lib/editable-html@7.22.0) (2022-05-03)
+
+
+### Bug Fixes
+
+* use error as a function ([c767c8b](https://github.com/pie-framework/pie-lib/commit/c767c8bdc5ace6006e86862704a26095fa4b16f6))
+
+
+### Features
+
+* PD-1707 ([9762d1f](https://github.com/pie-framework/pie-lib/commit/9762d1f4ac1bd615db4f03dfd06809010213052d))
+* PD-1707 show validation errors in ecr ([bb7e95c](https://github.com/pie-framework/pie-lib/commit/bb7e95c824ae802452720856ad1117aa21c5766f))
+
+
+
+
+
 # [7.21.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.20.0...@pie-lib/editable-html@7.21.0) (2022-04-28)
 
 

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.12.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.11.1...@pie-lib/config-ui@10.12.0) (2022-05-03)
+
+
+### Features
+
+* **config-ui:** tweak form-section component for placement-ordering ui/ux PD-1744 ([2e7bc9e](https://github.com/pie-framework/pie-lib/commit/2e7bc9e2d133d90096f0651a302925b9595b1173))
+* implemented an alert dialog ([7a82e03](https://github.com/pie-framework/pie-lib/commit/7a82e0351b5f3124fb78fbfce6eee406f0b9d030))
+
+
+
+
+
 ## [10.11.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.11.0...@pie-lib/config-ui@10.11.1) (2022-04-28)
 
 **Note:** Version bump only for package @pie-lib/config-ui

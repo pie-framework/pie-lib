@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.4.16...@pie-lib/rubric@0.4.17) (2022-05-03)
+
+
+### Bug Fixes
+
+* add an alias for editable-html in rubric to prevent overriding the npm package ([d81bf53](https://github.com/pie-framework/pie-lib/commit/d81bf53961c8306bf39e2be27a9e8bf528d2ce9c))
+
+
+
+
+
 ## [0.4.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.4.15...@pie-lib/rubric@0.4.16) (2022-04-28)
 
 **Note:** Version bump only for package @pie-lib/rubric
