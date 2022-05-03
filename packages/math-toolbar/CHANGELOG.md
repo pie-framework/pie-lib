@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.9.0...@pie-lib/math-toolbar@1.9.1) (2022-05-03)
+
+
+### Bug Fixes
+
+* **math-toolbar:** add sanity checks ([e012294](https://github.com/pie-framework/pie-lib/commit/e012294184b6f0c1472e6306be01e76e650c8fa5))
+
+
+
+
+
 # [1.9.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.8.9...@pie-lib/math-toolbar@1.9.0) (2022-05-03)
 
 
