@@ -20,10 +20,7 @@ const mapDispatchToProps = dispatch => ({
   onReset: () => dispatch(changeMarks([]))
 });
 
-export const GraphContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(GraphWithControls);
+export const GraphContainer = connect(mapStateToProps, mapDispatchToProps)(GraphWithControls);
 
 /**
  * The graph component entry point with undo/redo
@@ -42,6 +39,15 @@ class Root extends React.Component {
     this.store = createStore(r, { marks: props.marks });
 
     this.store.subscribe(this.onStoreChange);
+  }
+
+  componentDidUpdate() {
+    const { marks } = this.props;
+    const storeState = this.store.getState();
+
+    if (!isEqual(storeState.marks.present, marks)) {
+      this.store.dispatch(changeMarks(marks));
+    }
   }
 
   onStoreChange = () => {
