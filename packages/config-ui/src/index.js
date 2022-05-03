@@ -1,3 +1,4 @@
+import AlertDialog from './alert-dialog';
 import FeedbackConfig, {
   FeedbackSelector,
   buildDefaults as feedbackConfigDefaults
@@ -25,6 +26,7 @@ import DisplaySize from './settings/display-size';
 import * as settings from './settings';
 
 export {
+  AlertDialog,
   FeedbackConfig,
   FeedbackSelector,
   feedbackConfigDefaults,

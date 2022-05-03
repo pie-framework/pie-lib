@@ -1,4 +1,5 @@
 import {
+  AlertDialog,
   ChoiceConfiguration,
   FeedbackConfig,
   FeedbackSelector,
@@ -17,9 +18,10 @@ import {
 } from '@pie-lib/config-ui';
 
 import React from 'react';
+import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import debug from 'debug';
 import { withStyles } from '@material-ui/core/styles';
+import debug from 'debug';
 import withRoot from '../../src/withRoot';
 
 const log = debug('demo:config-ui');
@@ -78,9 +80,12 @@ class RawContainer extends React.Component {
       }),
       lang: 'en-US',
       activeLang: 'en-US',
-      defaultLang: 'en-US'
+      defaultLang: 'en-US',
+      openDialog: false
     };
+
     log('state: ', this.state);
+
     this.updateOne = this.updateOne.bind(this);
   }
 
@@ -104,8 +109,10 @@ class RawContainer extends React.Component {
 
   render() {
     const { classes } = this.props;
-    const { mounted } = this.state;
+    const { mounted, openDialog } = this.state;
+
     console.log('this.state: ', this.state);
+
     return mounted ? (
       <div className={classes.root}>
         <div className={classes.left}>
@@ -227,6 +234,21 @@ class RawContainer extends React.Component {
               langs={['en-US', 'es-ES']}
               selected={this.state.lang}
               onChange={l => this.setState({ lang: l })}
+            />
+          </Section>
+
+          <Section name="Alert Dialog">
+            <Button variant="outlined" onClick={() => this.setState({ openDialog: true })}>
+              Open alert dialog
+            </Button>
+            <AlertDialog
+              open={openDialog}
+              text={
+                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text.'
+              }
+              title={'Dialog title'}
+              onClose={() => this.setState({ openDialog: false })}
+              onConfirm={() => this.setState({ openDialog: false })}
             />
           </Section>
         </div>
