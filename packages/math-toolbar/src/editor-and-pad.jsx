@@ -212,12 +212,12 @@ export class EditorAndPad extends React.Component {
           <div className={cx(classes.inputContainer, error ? classes.error : '')}>
             <mq.Input
               onFocus={() => {
-                onFocus();
+                onFocus && onFocus();
                 this.updateDisable(false);
               }}
               onBlur={() => {
                 this.updateDisable(false);
-                onBlur();
+                onBlur && onBlur();
               }}
               className={cx(
                 classes.mathEditor,
