@@ -9,8 +9,33 @@ import ChartType from './chart-type';
 const ConfigureChartPanel = props => {
   const { classes, model, onChange } = props;
 
-  const { range } = model;
+  const { chartType } = model;
   const size = model.graph;
+  const gprahRange = model.range;
+
+  console.log(gprahRange, 'range');
+  console.log(chartType, 'chartType');
+
+  const stepConfig = (
+    <div className={classes.rowView}>
+      <TextField
+        label={'Grid Interval'}
+        type={'number'}
+        value={gprahRange.step}
+        variant={'outlined'}
+        className={classes.textField}
+        onChange={v => onChange('step', v)}
+      />
+      <TextField
+        label={'Label Interval'}
+        type={'number'}
+        value={gprahRange.labelStep || 1}
+        variant={'outlined'}
+        className={classes.textField}
+        onChange={v => onChange('labelStep', v)}
+      />
+    </div>
+  );
 
   const onSizeChanged = (key, e) => {
     const step = 1;
@@ -31,7 +56,18 @@ const ConfigureChartPanel = props => {
 
   const onRangeChanged = (key, e) => {};
 
-  const onChartTypeChange = chartType => onChange({ ...model, chartType });
+  const onChartTypeChange = chartType => {
+    if (chartType.includes('Plot')) {
+      console.log('Plot-----------------------------');
+      // how to keep inital value of step and label step
+      const range = { ...gprahRange, step: 1, labelStep: 1 };
+      onChange({ ...model, range, chartType });
+
+      return;
+    }
+
+    onChange({ ...model, chartType });
+  };
 
   return (
     <div className={classes.wrapper}>
@@ -39,18 +75,18 @@ const ConfigureChartPanel = props => {
 
       <div className={classes.content}>
         <div className={classes.rowView}>
-          <ChartType value={model.chartType} onChange={e => onChartTypeChange(e.target.value)} />
+          <ChartType value={chartType} onChange={e => onChartTypeChange(e.target.value)} />
           <TextField
             label={'Max Value'}
             type={'number'}
-            value={range.max}
+            value={gprahRange.max}
             variant={'outlined'}
             //disabled={disabled}
             className={classes.textField}
             onChange={v => onChange('max', v)}
           />
         </div>
-        <div className={classes.rowView}>
+        {/* <div className={classes.rowView}>
           <TextField
             label={'Grid Interval'}
             type={'number'}
@@ -69,7 +105,8 @@ const ConfigureChartPanel = props => {
             className={classes.textField}
             onChange={v => onChange('labelStep', v)}
           />
-        </div>
+        </div> */}
+        {chartType.includes('Plot') ? null : stepConfig}
         <div className={classes.dimensions}>
           <div>
             <Typography>Dimensions(px)</Typography>
