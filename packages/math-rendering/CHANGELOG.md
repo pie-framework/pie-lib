@@ -3,6 +3,60 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.3.13...@pie-lib/math-rendering@2.4.0) (2022-04-28)
+
+
+### Bug Fixes
+
+* tests ([90d79c4](https://github.com/pie-framework/pie-lib/commit/90d79c4b8c61c029959a729ba1eea1d69a3f2cbe))
+
+
+### Features
+
+* add data-mathml attribute on MathJax containers to be able to use with Text to Speech (TTS) PD-1499 ([df50318](https://github.com/pie-framework/pie-lib/commit/df503184814f0463ef588e468570db3f7d2651df))
+
+
+
+
+
+## [2.3.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.3.12...@pie-lib/math-rendering@2.3.13) (2022-03-21)
+
+
+### Bug Fixes
+
+* **math-rendering:** fix line spacing for mathjax mspace PD-1384 ([57fe827](https://github.com/pie-framework/pie-lib/commit/57fe827372c81138b35f294f16327c291872c8a2))
+
+
+
+
+
+## [2.3.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.3.11...@pie-lib/math-rendering@2.3.12) (2021-11-29)
+
+**Note:** Version bump only for package @pie-lib/math-rendering
+
+
+
+
+
+## [2.3.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.3.10...@pie-lib/math-rendering@2.3.11) (2021-09-08)
+
+**Note:** Version bump only for package @pie-lib/math-rendering
+
+
+
+
+
+## [2.3.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.3.9...@pie-lib/math-rendering@2.3.10) (2021-09-08)
+
+
+### Bug Fixes
+
+* wip ([fe4316d](https://github.com/pie-framework/pie-lib/commit/fe4316d))
+
+
+
+
+
 ## [2.3.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.3.8...@pie-lib/math-rendering@2.3.9) (2021-08-30)
 
 

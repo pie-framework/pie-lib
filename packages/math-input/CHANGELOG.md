@@ -3,6 +3,101 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.6.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.6.8...@pie-lib/math-input@6.6.9) (2022-04-12)
+
+
+### Bug Fixes
+
+* **math-input:** PD-1669 handle latex with errors in keypad buttons ([6b36f17](https://github.com/pie-framework/pie-lib/commit/6b36f175deffbd0a0fe021f4f7a11d7c4f14a014))
+
+
+
+
+
+## [6.6.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.6.7...@pie-lib/math-input@6.6.8) (2022-02-04)
+
+**Note:** Version bump only for package @pie-lib/math-input
+
+
+
+
+
+## [6.6.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.6.6...@pie-lib/math-input@6.6.7) (2022-01-10)
+
+**Note:** Version bump only for package @pie-lib/math-input
+
+
+
+
+
+## [6.6.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.6.5...@pie-lib/math-input@6.6.6) (2021-10-04)
+
+
+### Bug Fixes
+
+* **math-input:** Fixed left-right arrow button ([6109149](https://github.com/pie-framework/pie-lib/commit/6109149))
+
+
+
+
+
+## [6.6.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.6.4...@pie-lib/math-input@6.6.5) (2021-10-04)
+
+
+### Bug Fixes
+
+* **math-input:** create proper latex expression for log base button ([ca0c3f0](https://github.com/pie-framework/pie-lib/commit/ca0c3f0))
+* **math-input:** Made overarc button consistent with the others PD-1315 ([8726469](https://github.com/pie-framework/pie-lib/commit/8726469))
+* **math-input:** Made segment, ray and line buttons more consistent PD-1315 ([e7e4e29](https://github.com/pie-framework/pie-lib/commit/e7e4e29))
+
+
+
+
+
+## [6.6.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.6.3...@pie-lib/math-input@6.6.4) (2021-09-20)
+
+
+### Bug Fixes
+
+* **math-input, math-toolbar:** Adjusted parallelogram button size ([699431e](https://github.com/pie-framework/pie-lib/commit/699431e))
+
+
+
+
+
+## [6.6.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.6.2...@pie-lib/math-input@6.6.3) (2021-09-16)
+
+
+### Bug Fixes
+
+* **math-input:** render measured angle as m + angle sign PD-368 ([670fb56](https://github.com/pie-framework/pie-lib/commit/670fb56))
+
+
+
+
+
+## [6.6.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.6.1...@pie-lib/math-input@6.6.2) (2021-09-08)
+
+**Note:** Version bump only for package @pie-lib/math-input
+
+
+
+
+
+## [6.6.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.6.0...@pie-lib/math-input@6.6.1) (2021-09-08)
+
+
+### Bug Fixes
+
+* **math-input:** default latex when received is wrong ([d872f60](https://github.com/pie-framework/pie-lib/commit/d872f60))
+* **math-input:** default latex when received is wrong (2) ([dc71307](https://github.com/pie-framework/pie-lib/commit/dc71307))
+* **math-input:** fix e button on advanced algebra math editor PD-1280 ([dbfb53b](https://github.com/pie-framework/pie-lib/commit/dbfb53b))
+* **math-input:** Fixed arrows button for pits ([66dd6a9](https://github.com/pie-framework/pie-lib/commit/66dd6a9))
+
+
+
+
+
 # [6.6.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.5.14...@pie-lib/math-input@6.6.0) (2021-08-30)
 
 

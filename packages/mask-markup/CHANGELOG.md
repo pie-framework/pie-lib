@@ -3,6 +3,124 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.12.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.12.3...@pie-lib/mask-markup@1.12.4) (2022-04-28)
+
+**Note:** Version bump only for package @pie-lib/mask-markup
+
+
+
+
+
+## [1.12.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.12.2...@pie-lib/mask-markup@1.12.3) (2022-03-28)
+
+**Note:** Version bump only for package @pie-lib/mask-markup
+
+
+
+
+
+## [1.12.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.12.1...@pie-lib/mask-markup@1.12.2) (2022-03-21)
+
+**Note:** Version bump only for package @pie-lib/mask-markup
+
+
+
+
+
+## [1.12.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.12.0...@pie-lib/mask-markup@1.12.1) (2022-03-21)
+
+
+### Bug Fixes
+
+* **blank:** made sure height is auto to adapt to content, until it is calculated [PD-1652] ([9c3032f](https://github.com/pie-framework/pie-lib/commit/9c3032fb2adff3a06e94bcea63ea6c3de520b9d4))
+* **mask:** made sure display inherit is not messing up div blocks ([8ae905c](https://github.com/pie-framework/pie-lib/commit/8ae905c48fb12002c007f0a62db2f1ead92fa881))
+
+
+
+
+
+# [1.12.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.11.4...@pie-lib/mask-markup@1.12.0) (2022-03-07)
+
+
+### Bug Fixes
+
+* **mask-markup:** fix style for drag-in-the-blank image tokens PD-1351 ([3302de1](https://github.com/pie-framework/pie-lib/commit/3302de16d94ad4dce3aa81c25a0b939bf0f19bc6))
+* **mask-markup:** render mathml correctly PD-397 ([c89862b](https://github.com/pie-framework/pie-lib/commit/c89862b8c0f4ec7f1394f966d85a68a9bf6ffc12))
+* **mask-markup:** Separated input width and characters limit PD-1395 PD-1396 ([c78ba6a](https://github.com/pie-framework/pie-lib/commit/c78ba6ad9325a6671d26eee14e855cb7ff979c91))
+* **serialization:** made sure units are not added to mask-markup elements [PD-722] ([b855b27](https://github.com/pie-framework/pie-lib/commit/b855b27803965528968d5d2165fa4fd342414685))
+
+
+### Features
+
+* **design:** masked markup inherits the container display property [PD-1418] ([3095d29](https://github.com/pie-framework/pie-lib/commit/3095d29c9ad1ae70f5f669abb5fb62abb5f8d955))
+
+
+
+
+
+## [1.11.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.11.3...@pie-lib/mask-markup@1.11.4) (2021-12-13)
+
+**Note:** Version bump only for package @pie-lib/mask-markup
+
+
+
+
+
+## [1.11.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.11.2...@pie-lib/mask-markup@1.11.3) (2021-11-29)
+
+**Note:** Version bump only for package @pie-lib/mask-markup
+
+
+
+
+
+## [1.11.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.11.1...@pie-lib/mask-markup@1.11.2) (2021-11-10)
+
+**Note:** Version bump only for package @pie-lib/mask-markup
+
+
+
+
+
+## [1.11.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.11.0...@pie-lib/mask-markup@1.11.1) (2021-10-18)
+
+
+### Bug Fixes
+
+* **mask-markup:** Fixed border radius in pits ([41c0acd](https://github.com/pie-framework/pie-lib/commit/41c0acd))
+
+
+
+
+
+# [1.11.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.10.22...@pie-lib/mask-markup@1.11.0) (2021-10-18)
+
+
+### Features
+
+* **mask-markup:** Added a max limit of characters, adjusted the width and updated design PD-794 ([f46d544](https://github.com/pie-framework/pie-lib/commit/f46d544))
+* **mask-markup:** Made sure that the changes do not affect other components ([e3c5f8c](https://github.com/pie-framework/pie-lib/commit/e3c5f8c))
+
+
+
+
+
+## [1.10.22](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.10.21...@pie-lib/mask-markup@1.10.22) (2021-09-08)
+
+**Note:** Version bump only for package @pie-lib/mask-markup
+
+
+
+
+
+## [1.10.21](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.10.20...@pie-lib/mask-markup@1.10.21) (2021-09-08)
+
+**Note:** Version bump only for package @pie-lib/mask-markup
+
+
+
+
+
 ## [1.10.20](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.10.19...@pie-lib/mask-markup@1.10.20) (2021-08-30)
 
 **Note:** Version bump only for package @pie-lib/mask-markup

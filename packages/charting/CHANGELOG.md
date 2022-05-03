@@ -3,6 +3,48 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.5.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.5.13...@pie-lib/charting@4.5.14) (2022-03-21)
+
+
+### Bug Fixes
+
+* **charting:** Added custom modulo function to work with decimals PD-1645 ([70951ef](https://github.com/pie-framework/pie-lib/commit/70951ef055630f217094a42ec2d15282cf680c6b))
+
+
+
+
+
+## [4.5.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.5.12...@pie-lib/charting@4.5.13) (2021-09-10)
+
+
+### Bug Fixes
+
+* **charting:** Displayed the entire rightmost category label when space available PD-531 ([4c96415](https://github.com/pie-framework/pie-lib/commit/4c96415))
+
+
+
+
+
+## [4.5.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.5.11...@pie-lib/charting@4.5.12) (2021-09-08)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+
+
+
+
+## [4.5.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.5.10...@pie-lib/charting@4.5.11) (2021-09-08)
+
+
+### Bug Fixes
+
+* **charting:** calculate step and labelStep if they are not defined or if tickLabels are crowded PD-1016 ([d215ea0](https://github.com/pie-framework/pie-lib/commit/d215ea0))
+* **charting:** Updated label font size ([d7905e0](https://github.com/pie-framework/pie-lib/commit/d7905e0))
+
+
+
+
+
 ## [4.5.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.5.8...@pie-lib/charting@4.5.10) (2021-06-25)
 
 **Note:** Version bump only for package @pie-lib/charting

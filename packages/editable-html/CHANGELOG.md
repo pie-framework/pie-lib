@@ -3,6 +3,235 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.21.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.20.0...@pie-lib/editable-html@7.21.0) (2022-04-28)
+
+
+### Features
+
+* **editable-html:** disabled add response area button when maxResponseArea value is reached PD-1699 ([9c28e5b](https://github.com/pie-framework/pie-lib/commit/9c28e5b1702995a497e8528038a1b9e71b72c84f))
+* **editable-html:** PD-1707 add validation ui/ux to responses areas in ecr ([7381c58](https://github.com/pie-framework/pie-lib/commit/7381c581e9f1099f48f8cfbe307f23dbd8776773))
+
+
+
+
+
+# [7.20.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.19.3...@pie-lib/editable-html@7.20.0) (2022-04-12)
+
+
+### Bug Fixes
+
+* **editable-html:** Removed overflow property that prevent body content from scrolling after closing dialog PD-1659 ([da2dc24](https://github.com/pie-framework/pie-lib/commit/da2dc2421448fa56d83369a043d864a568b1f886))
+* **list:** fixed list in list issues [PD-1229] ([46dcec0](https://github.com/pie-framework/pie-lib/commit/46dcec0e20fc2d09969c45fd75426f647931ec08))
+
+
+### Features
+
+* **config-ui, editable-html:** add ui/ux validation for choices and editable html fields ([d40148f](https://github.com/pie-framework/pie-lib/commit/d40148f0f4b1232ce1506867a7424aa56e26c5ec))
+
+
+
+
+
+## [7.19.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.19.2...@pie-lib/editable-html@7.19.3) (2022-03-21)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+## [7.19.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.19.1...@pie-lib/editable-html@7.19.2) (2022-03-08)
+
+
+### Bug Fixes
+
+* **editable-html:** Added default values for responseAreaProps ([b49a919](https://github.com/pie-framework/pie-lib/commit/b49a919b4d5e336cb2a82e4e7926d72372369d3c))
+
+
+
+
+
+## [7.19.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.19.0...@pie-lib/editable-html@7.19.1) (2022-03-07)
+
+
+### Bug Fixes
+
+* **editable-html:** Called onHandleAreaChange only for delete ([ad1c8aa](https://github.com/pie-framework/pie-lib/commit/ad1c8aa83eef71bd8201cb55ec21513c008f77a6))
+
+
+
+
+
+# [7.19.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.18.0...@pie-lib/editable-html@7.19.0) (2022-03-07)
+
+
+### Features
+
+* **editor:** added func callback property, called when the resp area els nr is changed in the markup [PD-1592] ([d35feee](https://github.com/pie-framework/pie-lib/commit/d35feee5c68c13375963aa5cad25b2ef6ffc39f3))
+
+
+
+
+
+# [7.18.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.19...@pie-lib/editable-html@7.18.0) (2022-02-21)
+
+
+### Bug Fixes
+
+* **editable-html:** fix style for table rendering PD-1459 ([7c139b5](https://github.com/pie-framework/pie-lib/commit/7c139b5))
+* **editable-html:** Insert button from video/audio modal can't be pressed if the URL is empty PD-1488 ([6c7c1f6](https://github.com/pie-framework/pie-lib/commit/6c7c1f6))
+* **editor:** made sure space is added after table even when there is a div wrapper [PD-1614] ([5aa8bd1](https://github.com/pie-framework/pie-lib/commit/5aa8bd1))
+
+
+### Features
+
+* **editable-html:** drag-in-the-blank visually indicate when response area is selected, hide non-applicable tools PD-1383 ([a3b7d08](https://github.com/pie-framework/pie-lib/commit/a3b7d08))
+* **editor:** made sure cursor is visible before and after custom void elements [PD-1474] ([189ee2d](https://github.com/pie-framework/pie-lib/commit/189ee2d))
+* **editor:** made sure x<y is not removed from the math latex [PD-1475] ([ea94ad0](https://github.com/pie-framework/pie-lib/commit/ea94ad0))
+* **table:** made sure default border is 1 for tables [PD-1459] ([e8bd0d7](https://github.com/pie-framework/pie-lib/commit/e8bd0d7))
+* **table:** made sure focus is switched to first cell of the table when adding one [PD-1455] ([907c230](https://github.com/pie-framework/pie-lib/commit/907c230))
+
+
+
+
+
+## [7.17.19](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.18...@pie-lib/editable-html@7.17.19) (2022-02-21)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+## [7.17.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.17...@pie-lib/editable-html@7.17.18) (2022-02-04)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+## [7.17.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.16...@pie-lib/editable-html@7.17.17) (2022-02-03)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+## [7.17.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.15...@pie-lib/editable-html@7.17.16) (2022-01-24)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+## [7.17.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.14...@pie-lib/editable-html@7.17.15) (2022-01-10)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+## [7.17.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.13...@pie-lib/editable-html@7.17.14) (2021-12-22)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+## [7.17.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.12...@pie-lib/editable-html@7.17.13) (2021-12-13)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+## [7.17.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.11...@pie-lib/editable-html@7.17.12) (2021-11-29)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+## [7.17.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.10...@pie-lib/editable-html@7.17.11) (2021-10-04)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+## [7.17.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.9...@pie-lib/editable-html@7.17.10) (2021-10-04)
+
+
+### Bug Fixes
+
+* **serialization:** made sure that units are not added to numbered values when they are encountered [PD-722] ([8d229cf](https://github.com/pie-framework/pie-lib/commit/8d229cf))
+
+
+
+
+
+## [7.17.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.8...@pie-lib/editable-html@7.17.9) (2021-09-20)
+
+
+### Bug Fixes
+
+* **editor:** used dom refs in order to check if the editor is still in focus [PD-1126] ([99e0f72](https://github.com/pie-framework/pie-lib/commit/99e0f72))
+
+
+
+
+
+## [7.17.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.7...@pie-lib/editable-html@7.17.8) (2021-09-20)
+
+
+### Bug Fixes
+
+* **editor:** made sure that if the editor loses focus, the onBlur function is called only if the focus is still not inside the dom element [PD-1126] ([e74f00a](https://github.com/pie-framework/pie-lib/commit/e74f00a))
+
+
+
+
+
+## [7.17.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.6...@pie-lib/editable-html@7.17.7) (2021-09-20)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+## [7.17.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.5...@pie-lib/editable-html@7.17.6) (2021-09-16)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+## [7.17.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.4...@pie-lib/editable-html@7.17.5) (2021-09-08)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+## [7.17.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.3...@pie-lib/editable-html@7.17.4) (2021-09-08)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
 ## [7.17.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.2...@pie-lib/editable-html@7.17.3) (2021-08-30)
 
 
