@@ -41,18 +41,10 @@ class Root extends React.Component {
     this.store.subscribe(this.onStoreChange);
   }
 
-  componentDidUpdate() {
-    const { marks } = this.props;
-    const storeState = this.store.getState();
-
-    if (!isEqual(storeState.marks.present, marks)) {
-      this.store.dispatch(changeMarks(marks));
-    }
-  }
-
   onStoreChange = () => {
     const { marks, onChangeMarks } = this.props;
     const storeState = this.store.getState();
+
     if (!isEqual(storeState.marks.present, marks)) {
       onChangeMarks(storeState.marks.present);
     }
