@@ -1,7 +1,7 @@
 {
   "name": "@pie-lib/demo",
   "private": true,
-  "version": "6.9.1",
+  "version": "6.9.2",
   "dependencies": {
     "@material-ui/core": "^3.8.3",
     "@material-ui/icons": "^3.0.2",
@@ -10,7 +10,7 @@
     "@pie-lib/correct-answer-toggle": "^2.3.36",
     "@pie-lib/drag": "^1.1.52",
     "@pie-lib/editable-html": "^7.22.1",
-    "@pie-lib/graphing": "^2.5.0",
+    "@pie-lib/graphing": "^2.5.1",
     "@pie-lib/icons": "^2.4.25",
     "@pie-lib/mask-markup": "^1.12.4",
     "@pie-lib/math-input": "^6.6.9",

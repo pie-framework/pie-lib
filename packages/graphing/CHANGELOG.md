@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.5.0...@pie-lib/graphing@2.5.1) (2022-05-04)
+
+
+### Bug Fixes
+
+* **graphing:** removed problematic componentDidUpdate ([9347554](https://github.com/pie-framework/pie-lib/commit/93475543422bbb7a62d82121751c2e10969904ec))
+
+
+
+
+
 # [2.5.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.4.17...@pie-lib/graphing@2.5.0) (2022-05-03)
 
 
