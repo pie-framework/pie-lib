@@ -9,30 +9,46 @@ import ChartType from './chart-type';
 const ConfigureChartPanel = props => {
   const { classes, model, onChange } = props;
 
-  const { chartType } = model;
+  const { chartType, range } = model;
   const size = model.graph;
-  const gprahRange = model.range;
 
-  console.log(gprahRange, 'range');
+  const rangeProps = { min: range.min, max: range.max };
+
+  //range console.log(gprahRange, 'range');
   console.log(chartType, 'chartType');
+
+  const onRangeChanged = (key, e) => {
+    const { value } = e.target;
+    const parsedValue = parseInt(value);
+    console.log(key, 'key');
+    console.log(parsedValue, 'parsedValue');
+
+    range[key] = parsedValue;
+    console.log(range, 'range');
+    console.log(range[key], 'range[key]', key, 'key');
+
+    onChange({ ...model, range });
+  };
 
   const stepConfig = (
     <div className={classes.rowView}>
       <TextField
         label={'Grid Interval'}
         type={'number'}
-        value={gprahRange.step}
+        value={range.step}
+        inputProps={rangeProps}
         variant={'outlined'}
         className={classes.textField}
-        onChange={v => onChange('step', v)}
+        onChange={v => onRangeChanged('step', v)}
       />
       <TextField
         label={'Label Interval'}
         type={'number'}
-        value={gprahRange.labelStep || 1}
+        value={range.labelStep}
+        inputProps={rangeProps}
         variant={'outlined'}
         className={classes.textField}
-        onChange={v => onChange('labelStep', v)}
+        onChange={v => onRangeChanged('labelStep', v)}
       />
     </div>
   );
@@ -54,13 +70,18 @@ const ConfigureChartPanel = props => {
     onChange({ ...model, graph });
   };
 
-  const onRangeChanged = (key, e) => {};
-
   const onChartTypeChange = chartType => {
     if (chartType.includes('Plot')) {
       console.log('Plot-----------------------------');
+      rangeProps.min = 3;
+      rangeProps.max = 10;
+
+      if (range.max > 10 || range.max < 3) {
+        range.max = 10;
+      }
       // how to keep inital value of step and label step
-      const range = { ...gprahRange, step: 1, labelStep: 1 };
+      range.step = 1;
+      range.labelStep = 1;
       onChange({ ...model, range, chartType });
 
       return;
@@ -79,33 +100,14 @@ const ConfigureChartPanel = props => {
           <TextField
             label={'Max Value'}
             type={'number'}
-            value={gprahRange.max}
+            value={range.max}
             variant={'outlined'}
+            inputProps={rangeProps}
             //disabled={disabled}
             className={classes.textField}
-            onChange={v => onChange('max', v)}
+            onChange={v => onRangeChanged('max', v)}
           />
         </div>
-        {/* <div className={classes.rowView}>
-          <TextField
-            label={'Grid Interval'}
-            type={'number'}
-            //  value={}
-            variant={'outlined'}
-            //  disabled={disabled}
-            className={classes.textField}
-            onChange={v => onChange('step', v)}
-          />
-          <TextField
-            label={'Label Interval'}
-            type={'number'}
-            //   value={}
-            variant={'outlined'}
-            //disabled={disabled}
-            className={classes.textField}
-            onChange={v => onChange('labelStep', v)}
-          />
-        </div> */}
         {chartType.includes('Plot') ? null : stepConfig}
         <div className={classes.dimensions}>
           <div>
