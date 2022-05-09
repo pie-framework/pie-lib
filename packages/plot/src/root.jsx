@@ -66,7 +66,7 @@ export class Root extends React.Component {
   render() {
     const { graphProps, children, classes, title, rootRef } = this.props;
     const {
-      size: { width, height },
+      size: { width = 500, height = 500 },
       domain,
       range
     } = graphProps;
