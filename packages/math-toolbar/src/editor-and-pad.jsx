@@ -215,9 +215,9 @@ export class EditorAndPad extends React.Component {
                 onFocus && onFocus();
                 this.updateDisable(false);
               }}
-              onBlur={() => {
+              onBlur={event => {
                 this.updateDisable(false);
-                onBlur && onBlur();
+                onBlur && onBlur(event);
               }}
               className={cx(
                 classes.mathEditor,
