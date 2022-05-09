@@ -3,8 +3,8 @@
 exports[`root snapshot matches 1`] = `
 <div>
   <svg
-    height={NaN}
-    width={NaN}
+    height={500}
+    width={520}
   >
     <g
       transform="translate(60, 50)"

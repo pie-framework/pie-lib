@@ -52,8 +52,8 @@ class RawLabel extends React.Component {
   render() {
     const { text, side, graphProps, classes } = this.props;
     const { size, domain, range } = graphProps;
-    const totalHeight = size.height + range.padding * 2;
-    const totalWidth = size.width + domain.padding * 2;
+    const totalHeight = size.height + (range.padding || 0) * 2;
+    const totalWidth = size.width + (domain.padding || 0) * 2;
 
     const transform = getTransform(side, totalWidth, totalHeight);
     const width = side === 'left' || side === 'right' ? totalHeight : totalWidth;

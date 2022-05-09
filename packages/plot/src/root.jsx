@@ -72,8 +72,8 @@ export class Root extends React.Component {
     } = graphProps;
     const topPadding = 50;
     const leftPadding = topPadding + 10; // left side requires an extra padding of 10
-    const finalWidth = width + leftPadding * 2 + domain.padding * 2;
-    const finalHeight = height + topPadding * 2 + range.padding * 2;
+    const finalWidth = width + leftPadding * 2 + (domain.padding || 0) * 2;
+    const finalHeight = height + topPadding * 2 + (range.padding || 0) * 2;
 
     return (
       <div className={classes.root}>
