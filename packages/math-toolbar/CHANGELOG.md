@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.9.1...@pie-lib/math-toolbar@1.9.2) (2022-05-09)
+
+
+### Bug Fixes
+
+* **math-toolbar:** fix simple response gather PD-1786 ([1769577](https://github.com/pie-framework/pie-lib/commit/176957700d75d3efa0e5fbf08e8e4c6ffe61320d))
+
+
+
+
+
 ## [1.9.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.9.0...@pie-lib/math-toolbar@1.9.1) (2022-05-03)
 
 
