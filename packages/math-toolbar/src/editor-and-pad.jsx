@@ -10,6 +10,7 @@ import { color, InputContainer } from '@pie-lib/render-ui';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import { updateSpans } from '@pie-lib/math-input';
+import isEqual from 'lodash/isEqual';
 
 const decimalRegex = /\.|,/g;
 
@@ -127,6 +128,10 @@ export class EditorAndPad extends React.Component {
   shouldComponentUpdate(nextProps, nextState) {
     const inputIsDifferent = this.input.mathField.latex() !== nextProps.latex;
     log('[shouldComponentUpdate] ', 'inputIsDifferent: ', inputIsDifferent);
+
+    if (!isEqual(this.props.error, nextProps.error)) {
+      return true;
+    }
 
     if (!inputIsDifferent && this.props.keypadMode !== nextProps.keypadMode) {
       return true;
