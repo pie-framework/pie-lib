@@ -1,23 +1,53 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Grid snapshot renders 1`] = `
-<r
-  columnTickValues={
-    Array [
-      0,
-      1,
-    ]
-  }
-  height={400}
-  innerRef={[Function]}
-  rowTickValues={
-    Array [
-      0,
-      1,
-    ]
-  }
-  width={400}
-  xScale={[MockFunction]}
-  yScale={[MockFunction]}
-/>
+<Fragment>
+  <r
+    columnTickValues={
+      Array [
+        0,
+        1,
+      ]
+    }
+    height={400}
+    innerRef={[Function]}
+    rowTickValues={
+      Array [
+        0,
+        1,
+      ]
+    }
+    width={400}
+    xScale={
+      [MockFunction] {
+        "calls": Array [
+          Array [
+            0,
+          ],
+        ],
+        "results": Array [
+          Object {
+            "type": "return",
+            "value": 0,
+          },
+        ],
+      }
+    }
+    yScale={
+      [MockFunction] {
+        "calls": Array [
+          Array [
+            0,
+          ],
+        ],
+        "results": Array [
+          Object {
+            "type": "return",
+            "value": 0,
+          },
+        ],
+      }
+    }
+  />
+</Fragment>
 `;

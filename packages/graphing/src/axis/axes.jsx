@@ -196,11 +196,12 @@ export class RawYAxis extends React.Component {
           tickClassName={classes.tick}
           tickFormat={customTickFormat}
           tickLabelProps={value => {
-            const digits = value.toLocaleString().length || 1;
+            let digits = value.toLocaleString().replace(/[.-]/g, '').length || 1;
+
             return {
               ...tickLabelStyles,
               dy: 4,
-              dx: -4 - digits * 8,
+              dx: -10 - digits * 9,
               'data-pie-readable': false
             };
           }}
