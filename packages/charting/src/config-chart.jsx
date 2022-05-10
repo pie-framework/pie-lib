@@ -12,21 +12,26 @@ const ConfigureChartPanel = props => {
   const { chartType, range } = model;
   const size = model.graph;
 
-  const rangeProps = { min: range.min, max: range.max };
-
-  //range console.log(gprahRange, 'range');
-  console.log(chartType, 'chartType');
+  const rangeProps = { min: 1, max: 10000 };
 
   const onRangeChanged = (key, e) => {
     const { value } = e.target;
-    const parsedValue = parseInt(value);
-    console.log(key, 'key');
-    console.log(parsedValue, 'parsedValue');
+    const parsedValue = parseFloat(value);
+    const minRangeAccepted = 0.05;
+    const rangePropsPlot = { min: 3, max: 10 };
+
+    if (key === 'max' && (parsedValue < minRangeAccepted || parsedValue > rangeProps.max)) {
+      return;
+    }
+
+    if (
+      model.chartType.includes('Plot') &&
+      (parsedValue < rangePropsPlot.min || parsedValue > rangePropsPlot.max)
+    ) {
+      return;
+    }
 
     range[key] = parsedValue;
-    console.log(range, 'range');
-    console.log(range[key], 'range[key]', key, 'key');
-
     onChange({ ...model, range });
   };
 
@@ -65,14 +70,12 @@ const ConfigureChartPanel = props => {
     }
 
     const graph = { ...size, [key]: nextValue };
-    console.log(graph, 'chart');
 
     onChange({ ...model, graph });
   };
 
   const onChartTypeChange = chartType => {
     if (chartType.includes('Plot')) {
-      console.log('Plot-----------------------------');
       rangeProps.min = 3;
       rangeProps.max = 10;
 
@@ -103,7 +106,6 @@ const ConfigureChartPanel = props => {
             value={range.max}
             variant={'outlined'}
             inputProps={rangeProps}
-            //disabled={disabled}
             className={classes.textField}
             onChange={v => onRangeChanged('max', v)}
           />
