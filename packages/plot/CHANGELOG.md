@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.1.10...@pie-lib/plot@2.2.0) (2022-05-10)
+
+
+### Features
+
+* **graphing, plot:** Added padding between labels and graph without changing the size of graph PD-1604 ([aa93191](https://github.com/pie-framework/pie-lib/commit/aa931910c56efddaf54d4586dc0730a9688e25e3))
+
+
+
+
+
 ## [2.1.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.1.9...@pie-lib/plot@2.1.10) (2022-03-21)
 
 

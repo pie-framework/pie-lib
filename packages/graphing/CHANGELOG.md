@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.5.1...@pie-lib/graphing@2.6.0) (2022-05-10)
+
+
+### Features
+
+* **graphing:** new design treatment for gridlines PD-1691 ([ee06081](https://github.com/pie-framework/pie-lib/commit/ee06081141cf343ed6767ef203a7629e6c873c5c))
+* **graphing, plot:** Added padding between labels and graph without changing the size of graph PD-1604 ([aa93191](https://github.com/pie-framework/pie-lib/commit/aa931910c56efddaf54d4586dc0730a9688e25e3))
+
+
+
+
+
 ## [2.5.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.5.0...@pie-lib/graphing@2.5.1) (2022-05-04)
 
 
