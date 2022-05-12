@@ -64,7 +64,7 @@ export class NumberTextField extends React.Component {
     step: 1,
     textAlign: 'center',
     variant: 'standard',
-    onlyIntegersAllowed: true
+    onlyIntegersAllowed: false
   };
 
   constructor(props) {
@@ -110,7 +110,7 @@ export class NumberTextField extends React.Component {
   onBlur = event => {
     const { onlyIntegersAllowed } = this.props;
     const { value } = event.target;
-    const rawNumber = onlyIntegersAllowed ? parseInt(value) : parseFloat(value);
+    const rawNumber = onlyIntegersAllowed ? parseInt(value) : parseFloat(value).toPrecision(12);
     const number = this.clamp(rawNumber);
 
     if (number !== this.state.value) {
@@ -129,7 +129,7 @@ export class NumberTextField extends React.Component {
 
     const { step, onlyIntegersAllowed } = this.props;
     const { value } = this.state;
-    const rawNumber = onlyIntegersAllowed ? parseInt(value) : parseFloat(value);
+    const rawNumber = onlyIntegersAllowed ? parseInt(value) : parseFloat(value).toPrecision(12);
     const updatedValue = rawNumber + step * sign;
     const number = this.clamp(updatedValue);
 
