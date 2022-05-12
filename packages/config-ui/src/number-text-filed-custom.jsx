@@ -130,7 +130,7 @@ export class NumberTextField extends React.Component {
     const { step, onlyIntegersAllowed } = this.props;
     const { value } = this.state;
     const rawNumber = onlyIntegersAllowed ? parseInt(value) : parseFloat(value);
-    const updatedValue = rawNumber + step * sign;
+    const updatedValue = (rawNumber * 10000 + step * sign * 10000) / 10000;
     const number = this.clamp(updatedValue);
 
     this.setState({ value: number.toString() });
