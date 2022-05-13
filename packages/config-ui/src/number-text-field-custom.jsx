@@ -127,7 +127,7 @@ export class NumberTextFieldCustom extends React.Component {
   changeValue(event, sign = 1, shouldUpdate = false) {
     event.preventDefault();
 
-    const { step, onlyIntegersAllowed } = this.props;
+    const { step, onlyIntegersAllowed, onChange } = this.props;
     const { value } = this.state;
     const rawNumber = onlyIntegersAllowed ? parseInt(value) : parseFloat(value);
     const updatedValue = (rawNumber * 10000 + step * sign * 10000) / 10000;
@@ -135,7 +135,7 @@ export class NumberTextFieldCustom extends React.Component {
 
     this.setState({ value: number.toString() }, () => {
       if (shouldUpdate) {
-        this.props.onChange(event, number);
+        onChange(event, number);
       }
     });
   }
