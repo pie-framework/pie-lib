@@ -42,7 +42,7 @@ const fallbackNumber = (min, max) => {
   }
 };
 
-export class NumberTextField extends React.Component {
+export class NumberTextFieldCustom extends React.Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     className: PropTypes.string,
@@ -210,4 +210,4 @@ export class NumberTextField extends React.Component {
   }
 }
 
-export default withStyles(styles)(NumberTextField);
+export default withStyles(styles)(NumberTextFieldCustom);
