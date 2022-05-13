@@ -124,7 +124,7 @@ export class NumberTextFieldCustom extends React.Component {
     this.setState({ value });
   }
 
-  changeValue(event, sign = 1) {
+  changeValue(event, sign = 1, shouldUpdate = false) {
     event.preventDefault();
 
     const { step, onlyIntegersAllowed } = this.props;
@@ -133,7 +133,11 @@ export class NumberTextFieldCustom extends React.Component {
     const updatedValue = (rawNumber * 10000 + step * sign * 10000) / 10000;
     const number = this.clamp(updatedValue);
 
-    this.setState({ value: number.toString() });
+    this.setState({ value: number.toString() }, () => {
+      if (shouldUpdate) {
+        this.props.onChange(event, number);
+      }
+    });
   }
 
   render() {
@@ -186,15 +190,23 @@ export class NumberTextFieldCustom extends React.Component {
           className: inputClassName,
           disableUnderline: disableUnderline,
           startAdornment: (
-            <InputAdornment position="start" onClick={e => this.changeValue(e, -1)}>
-              <IconButton className={classes.iconButton}>
+            <InputAdornment position="start">
+              <IconButton
+                className={classes.iconButton}
+                disabled={disabled}
+                onClick={e => this.changeValue(e, -1, true)}
+              >
                 <Remove fontSize="small" />
               </IconButton>
             </InputAdornment>
           ),
           endAdornment: (
-            <InputAdornment position="end" onClick={e => this.changeValue(e)}>
-              <IconButton className={classes.iconButton}>
+            <InputAdornment position="end">
+              <IconButton
+                className={classes.iconButton}
+                disabled={disabled}
+                onClick={e => this.changeValue(e, 1, true)}
+              >
                 <Add fontSize="small" />
               </IconButton>
             </InputAdornment>
