@@ -2,7 +2,7 @@ import {
   InputCheckbox,
   InputRadio,
   NumberTextField,
-  NumberTextFiledCustom
+  NumberTextFieldCustom
 } from '@pie-lib/config-ui';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -109,7 +109,7 @@ class RawContainer extends React.Component {
             />
           </Section>
           <Section name="custom">
-            <NumberTextFiledCustom
+            <NumberTextFieldCustom
               className={classes.textField}
               label="Custom"
               value={numberTextField.custom}
