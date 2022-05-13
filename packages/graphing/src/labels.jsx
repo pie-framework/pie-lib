@@ -51,11 +51,12 @@ class RawLabel extends React.Component {
 
   render() {
     const { text, side, graphProps, classes } = this.props;
+    const { size, domain, range } = graphProps;
+    const totalHeight = (size.height || 500) + (range.padding || 0) * 2;
+    const totalWidth = (size.width || 500) + (domain.padding || 0) * 2;
 
-    const { size } = graphProps;
-
-    const transform = getTransform(side, size.width, size.height);
-    const width = side === 'left' || side === 'right' ? size.height : size.width;
+    const transform = getTransform(side, totalWidth, totalHeight);
+    const width = side === 'left' || side === 'right' ? totalHeight : totalWidth;
     const height = 36;
     const y = getY(side, height);
 
@@ -102,8 +103,10 @@ export class Labels extends React.Component {
   };
 
   static defaultProps = {};
+
   render() {
     const { value, graphProps } = this.props;
+
     return (
       <React.Fragment>
         {value && value.left && (

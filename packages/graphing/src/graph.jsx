@@ -165,64 +165,60 @@ export class Graph extends React.Component {
     marks = removeBuildingToolIfCurrentToolDiffers({ marks: marks || [], currentTool });
 
     return (
-      <Root
-        // left side requires an extra padding of 10, in order to fit next to tick labels like 1.5, 1.55...
-        paddingLeft={60}
-        rootRef={r => (this.rootNode = r)}
-        title={title}
-        {...common}
-      >
-        <Grid {...common} />
-        <Axes {...axesSettings} {...common} />
-        <Bg {...size} onClick={this.onBgClick} {...common} />
+      <Root rootRef={r => (this.rootNode = r)} title={title} {...common}>
         <Labels value={labels} {...common} />
-        <mask id="myMask">
-          <rect {...maskSize} fill="white" /> {/* TODO hardcoded color */}
-        </mask>
+        <g transform={`translate(${domain.padding}, ${range.padding})`}>
+          <Grid {...common} />
+          <Axes {...axesSettings} {...common} />
+          <Bg {...size} onClick={this.onBgClick} {...common} />
+          <mask id="myMask">
+            <rect {...maskSize} fill="white" /> {/* TODO hardcoded color */}
+          </mask>
 
-        <g id="marks" mask="url('#myMask')">
-          {(backgroundMarks || []).map((m, index) => {
-            const Component = this.getComponent(m);
-            const markType = m.type;
+          <g id="marks" mask="url('#myMask')">
+            {(backgroundMarks || []).map((m, index) => {
+              const Component = this.getComponent(m);
+              const markType = m.type;
 
-            return (
-              <Component
-                key={`${markType}-${index}-bg`}
-                mark={{ ...m, disabled: true, isBackground: true }}
-                labelNode={this.state.labelNode}
-                {...common}
-              />
-            );
-          })}
+              return (
+                <Component
+                  key={`${markType}-${index}-bg`}
+                  mark={{ ...m, disabled: true, isBackground: true }}
+                  labelNode={this.state.labelNode}
+                  {...common}
+                />
+              );
+            })}
 
-          {marks.map((m, index) => {
-            const Component = this.getComponent(m);
-            const markType = m.type;
+            {marks.map((m, index) => {
+              const Component = this.getComponent(m);
+              const markType = m.type;
 
-            return (
-              <Component
-                key={`${markType}-${index}`}
-                mark={m}
-                coordinatesOnHover={coordinatesOnHover}
-                onChange={this.changeMark}
-                onComplete={this.completeMark}
-                onClick={this.onBgClick}
-                onDragStart={this.startDrag}
-                onDragStop={this.stopDrag}
-                labelNode={this.state.labelNode}
-                isToolActive={currentTool && markType === currentTool.type}
-                {...common}
-              />
-            );
-          })}
+              return (
+                <Component
+                  key={`${markType}-${index}`}
+                  mark={m}
+                  coordinatesOnHover={coordinatesOnHover}
+                  onChange={this.changeMark}
+                  onComplete={this.completeMark}
+                  onClick={this.onBgClick}
+                  onDragStart={this.startDrag}
+                  onDragStop={this.stopDrag}
+                  labelNode={this.state.labelNode}
+                  isToolActive={currentTool && markType === currentTool.type}
+                  {...common}
+                />
+              );
+            })}
 
-          <foreignObject
-            ref={labelNode => (this.labelNode = labelNode)}
-            x="0"
-            y="0"
-            {...size}
-            style={{ pointerEvents: 'none' }}
-          />
+            <foreignObject
+              ref={labelNode => (this.labelNode = labelNode)}
+              x="0"
+              y="0"
+              {...size}
+              style={{ pointerEvents: 'none' }}
+            />
+          </g>
         </g>
       </Root>
     );

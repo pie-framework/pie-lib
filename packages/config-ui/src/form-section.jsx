@@ -13,9 +13,9 @@ const styles = theme => ({
   }
 });
 
-export default withStyles(styles)(({ className, classes, label, children }) => (
+export default withStyles(styles)(({ className, classes, label, children, labelExtraStyle }) => (
   <div className={classNames(classes.formSection, className)}>
-    <Typography className={classes.label} type="subheading">
+    <Typography className={classes.label} type="subheading" style={labelExtraStyle}>
       {label}
     </Typography>
     {children}
