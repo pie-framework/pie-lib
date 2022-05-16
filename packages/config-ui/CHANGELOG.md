@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.13.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.12.3...@pie-lib/config-ui@10.13.0) (2022-05-16)
+
+
+### Features
+
+* **config-ui:** number text field UI improvements ([3b72537](https://github.com/pie-framework/pie-lib/commit/3b72537ebf29aab293bbb61d6be34888385a850b))
+* **config-ui:** number text field UI improvements ([ed8cdb6](https://github.com/pie-framework/pie-lib/commit/ed8cdb6d6f15763c3b85c9d2dfbeadf49bbcd5d8))
+* implemented custom number text field ([7e5dd09](https://github.com/pie-framework/pie-lib/commit/7e5dd09bb0d5ceb7e7214b8b2cc0b5ee1964b2bb))
+
+
+
+
+
 ## [10.12.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.12.2...@pie-lib/config-ui@10.12.3) (2022-05-10)
 
 **Note:** Version bump only for package @pie-lib/config-ui

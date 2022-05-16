@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.10.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.9.4...@pie-lib/demo@6.10.0) (2022-05-16)
+
+
+### Features
+
+* implemented custom number text field ([7e5dd09](https://github.com/pie-framework/pie-lib/commit/7e5dd09bb0d5ceb7e7214b8b2cc0b5ee1964b2bb))
+
+
+
+
+
 ## [6.9.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.9.3...@pie-lib/demo@6.9.4) (2022-05-10)
 
 **Note:** Version bump only for package @pie-lib/demo
