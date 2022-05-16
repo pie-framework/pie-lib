@@ -12,6 +12,7 @@ import Help from './help';
 import Input from './input';
 import { InputContainer } from '@pie-lib/render-ui';
 import NumberTextField from './number-text-field';
+import NumberTextFieldCustom from './number-text-field-custom';
 import TwoChoice, { NChoice } from './two-choice';
 import TagsInput from './tags-input';
 import MuiBox from './mui-box';
@@ -42,6 +43,7 @@ export {
   Input,
   InputContainer,
   NumberTextField,
+  NumberTextFieldCustom,
   TwoChoice,
   NChoice,
   TagsInput,

@@ -1,4 +1,9 @@
-import { NumberTextField, InputCheckbox, InputRadio } from '@pie-lib/config-ui';
+import {
+  InputCheckbox,
+  InputRadio,
+  NumberTextField,
+  NumberTextFieldCustom
+} from '@pie-lib/config-ui';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
@@ -18,13 +23,16 @@ class RawContainer extends React.Component {
     super(props);
     this.state = {
       numberTextField: {
-        one: undefined
+        one: 400,
+        custom: 350
       }
     };
   }
 
   update = key => (event, number) => {
-    const update = { ...this.state.numberTextField, [key]: number };
+    const { numberTextField } = this.state;
+    const update = { ...numberTextField, [key]: number };
+
     this.setState({ numberTextField: update });
   };
 
@@ -38,7 +46,7 @@ class RawContainer extends React.Component {
 
   render() {
     const { classes } = this.props;
-    const { mounted } = this.state;
+    const { mounted, numberTextField } = this.state;
     const initalValueMessage = `
     If there is no initial value, it'll be set to either the min or max if present, or 0
               if there is no min/max.`;
@@ -53,15 +61,17 @@ class RawContainer extends React.Component {
             </Typography>
             <NumberTextField
               label="1 - 10"
-              value={this.state.numberTextField.one}
+              value={numberTextField.one}
               max={10}
               min={0}
+              className={classes.smallTextField}
               onChange={this.update('one')}
             />
             <NumberTextField
               label={'no min/max'}
               className={classes.smallTextField}
-              value={this.state.numberTextField.two}
+              value={numberTextField.two}
+              className={classes.smallTextField}
               onChange={this.update('two')}
             />
           </Section>
@@ -69,9 +79,10 @@ class RawContainer extends React.Component {
             <NumberTextField
               label="1 - 10"
               suffix={'%'}
-              value={this.state.numberTextField.one}
+              value={numberTextField.one}
               max={10}
               min={1}
+              className={classes.smallTextField}
               onChange={this.update('one')}
             />
           </Section>
@@ -79,12 +90,12 @@ class RawContainer extends React.Component {
             <InputCheckbox label="Foo" />
             <NumberTextField
               label="1 - 10"
-              value={this.state.numberTextField.one}
+              value={numberTextField.one}
               max={10}
               min={1}
+              className={classes.smallTextField}
               onChange={this.update('one')}
             />
-            <InputRadio label="Foo" />
           </Section>
           <Section name="validation">
             <NumberTextField
@@ -92,8 +103,21 @@ class RawContainer extends React.Component {
               min={1}
               max={10}
               showErrorWhenOutsideRange={true}
-              value={this.state.numberTextField.validation}
+              value={numberTextField.validation}
+              className={classes.smallTextField}
               onChange={this.update('validation')}
+            />
+          </Section>
+          <Section name="custom">
+            <NumberTextFieldCustom
+              className={classes.textField}
+              label="Custom"
+              value={numberTextField.custom}
+              max={600}
+              min={310}
+              step={20}
+              variant={'outlined'}
+              onChange={this.update('custom')}
             />
           </Section>
         </div>
@@ -122,6 +146,10 @@ const Container = withStyles(() => ({
   },
   smallTextField: {
     width: '100px'
+  },
+  textField: {
+    width: '150px',
+    margin: '8px 0'
   }
 }))(RawContainer);
 
