@@ -71,6 +71,11 @@ export const fixMathElements = () => {
   mathElements.forEach(item => fixMathElement(item));
 };
 
+const adjustMathMLStyle = () => {
+  const nodes = document.querySelectorAll('math');
+  nodes.forEach(node => node.setAttribute('displaystyle', 'true'));
+};
+
 const bootstrap = opts => {
   if (typeof window === 'undefined') {
     return { Typeset: () => ({}) };
@@ -196,6 +201,7 @@ const bootstrap = opts => {
 const renderMath = (el, renderOpts) => {
   //TODO: remove this - has nothing to do with math-rendering (it's from editable-html)
   fixMathElements();
+  adjustMathMLStyle();
 
   if (!getGlobal().instance) {
     getGlobal().instance = bootstrap(renderOpts);
