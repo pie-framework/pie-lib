@@ -8,28 +8,26 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import TextField from '@material-ui/core/TextField';
-import { NumberTextField, Toggle } from '@pie-lib/config-ui';
+import { NumberTextFieldCustom, Toggle } from '@pie-lib/config-ui';
 
 const GridConfig = ({ classes, disabled, labelInterval, gridInterval, onChange }) => {
   return (
     <div className={classes.columnView}>
-      <TextField
+      <NumberTextFieldCustom
+        className={classes.textField}
         label={'Grid Interval'}
-        type={'number'}
         value={gridInterval}
         variant={'outlined'}
         disabled={disabled}
-        className={classes.textField}
-        onChange={v => onChange('step', v)}
+        onChange={(e, v) => onChange('step', v)}
       />
-      <TextField
+      <NumberTextFieldCustom
+        className={classes.textField}
         label={'Label Interval'}
-        type={'number'}
         value={labelInterval}
         variant={'outlined'}
         disabled={disabled}
-        className={classes.textField}
-        onChange={v => onChange('labelStep', v)}
+        onChange={(e, v) => onChange('labelStep', v)}
       />
     </div>
   );
@@ -42,31 +40,32 @@ const AxisConfig = ({ classes, disabled, label, maxValue, minValue, onChange, ty
         <i>{type === 'domain' ? 'x' : 'y'}</i>
         -axis
       </Typography>
-      <TextField
+      <NumberTextFieldCustom
+        className={classes.textField}
         label={'Min Value'}
-        type={'number'}
         value={minValue}
         variant={'outlined'}
         disabled={disabled}
-        className={classes.textField}
-        onChange={v => onChange('min', v)}
+        onChange={(e, v) => onChange('min', v)}
       />
-      <TextField
+      <NumberTextFieldCustom
+        className={classes.textField}
         label={'Max Value'}
-        type={'number'}
         value={maxValue}
         variant={'outlined'}
         disabled={disabled}
-        className={classes.textField}
-        onChange={v => onChange('max', v)}
+        onChange={(e, v) => onChange('max', v)}
       />
       <TextField
         label="Label"
         value={label}
-        inputProps={{ maxLength: 5 }}
+        inputProps={{
+          maxLength: 5,
+          style: { textAlign: 'center' }
+        }}
         variant={'outlined'}
         className={classes.textField}
-        onChange={v => onChange('axisLabel', v)}
+        onChange={e => onChange('axisLabel', e.target.value)}
       />
     </div>
   );
@@ -85,29 +84,30 @@ const GridSetup = props => {
     size,
     standardGrid
   } = props;
-  const sizeProps = {
-    min: sizeConstraints.min,
-    max: sizeConstraints.max
-  };
   const gridProps = { min: 2, max: 41 };
 
-  const onIncludeAxes = value => {
-    if (!value) {
-      range.min = 1;
-      range.max = range.max < gridProps.min || range.max > gridProps.max ? 16 : range.max;
-      range.step = 1;
-      range.labelStep = 0;
+  const onIncludeAxes = includeAxes => {
+    const noAxesConfig = type => {
+      const axis = type === 'domain' ? domain : range;
 
-      domain.min = 1;
-      domain.max = domain.max < gridProps.min || domain.max > gridProps.max ? 16 : domain.max;
-      domain.step = 1;
-      domain.labelStep = 0;
-    } else {
-      range.labelStep = 1;
-      domain.labelStep = 1;
-    }
+      return {
+        min: 1,
+        max: axis.max < gridProps.min || axis.max > gridProps.max ? 16 : axis.max,
+        step: 1,
+        labelStep: 0
+      };
+    };
 
-    onChange({ includeAxes: value, range, domain });
+    const updatedRange = {
+      ...range,
+      ...(includeAxes ? { labelStep: 1 } : noAxesConfig('range'))
+    };
+    const updatedDomain = {
+      ...domain,
+      ...(includeAxes ? { labelStep: 1 } : noAxesConfig('domain'))
+    };
+
+    onChange({ includeAxes, range: updatedRange, domain: updatedDomain });
   };
 
   const onStandardGridChanged = value => {
@@ -124,49 +124,28 @@ const GridSetup = props => {
     });
   };
 
-  const onSizeChanged = (key, e) => {
-    const { step, min, max } = sizeConstraints;
-    const value = parseInt(e.target.value);
-    const nextValue = value < size[key] ? size[key] - step : size[key] + step;
-
-    if (nextValue < min || nextValue > max) {
-      return;
-    }
-
-    const graph = { ...size, [key]: nextValue };
+  const onSizeChanged = (key, value) => {
+    const graph = { ...size, [key]: value };
 
     if (standardGrid) {
-      graph.height = nextValue;
+      graph.height = value;
     }
 
     onChange({ graph });
   };
 
-  const onDomainChanged = (key, e) => {
-    const { value } = e.target;
-    const parsedValue = key !== 'axisLabel' ? parseInt(value) : value;
-
-    if (!includeAxes && key === 'max' && (value < gridProps.min || value > gridProps.max)) {
-      return;
-    }
-
-    domain[key] = parsedValue;
+  const onDomainChanged = (key, value) => {
+    domain[key] = value;
 
     if (standardGrid && key !== 'axisLabel') {
-      range[key] = parsedValue;
+      range[key] = value;
     }
 
     onChange({ domain, range });
   };
 
-  const onRangeChanged = (key, e) => {
-    const { value } = e.target;
-
-    if (!includeAxes && key === 'max' && (value < gridProps.min || value > gridProps.max)) {
-      return;
-    }
-
-    range[key] = key !== 'axisLabel' ? parseInt(value) : value;
+  const onRangeChanged = (key, value) => {
+    range[key] = value;
 
     onChange({ range });
   };
@@ -221,24 +200,24 @@ const GridSetup = props => {
 
   const gridlinesConfig = (
     <div className={classes.columnView}>
-      <TextField
+      <NumberTextFieldCustom
         className={classes.largeTextField}
         label={'Number of Horizontal Gridlines'}
-        type={'number'}
         value={domain.max}
-        inputProps={!includeAxes && gridProps}
+        min={!includeAxes && gridProps.min}
+        max={!includeAxes && gridProps.max}
         variant={'outlined'}
-        onChange={v => onDomainChanged('max', v)}
+        onChange={(e, v) => onDomainChanged('max', v)}
       />
-      <TextField
+      <NumberTextFieldCustom
         className={classes.largeTextField}
-        disabled={standardGrid}
         label={'Number of Vertical Gridlines'}
-        type={'number'}
         value={range.max}
-        inputProps={!includeAxes && gridProps}
+        min={!includeAxes && gridProps.min}
+        max={!includeAxes && gridProps.max}
         variant={'outlined'}
-        onChange={v => onRangeChanged('max', v)}
+        disabled={standardGrid}
+        onChange={(e, v) => onRangeChanged('max', v)}
       />
     </div>
   );
@@ -267,24 +246,26 @@ const GridSetup = props => {
                 <Typography>Dimensions(px)</Typography>
                 <Typography className={classes.disabled}>Min 150, Max 700</Typography>
               </div>
-              <TextField
+              <NumberTextFieldCustom
+                className={classes.textField}
                 label={'Width'}
-                type={'number'}
                 value={size.width}
-                inputProps={sizeProps}
+                min={sizeConstraints.min}
+                max={sizeConstraints.max}
+                step={sizeConstraints.step}
                 variant={'outlined'}
-                className={classes.smallTextField}
-                onChange={v => onSizeChanged('width', v)}
+                onChange={(e, v) => onSizeChanged('width', v)}
               />
-              <TextField
+              <NumberTextFieldCustom
+                className={classes.textField}
                 label={'Height'}
-                type={'number'}
                 value={size.height}
-                inputProps={sizeProps}
+                min={sizeConstraints.min}
+                max={sizeConstraints.max}
+                step={sizeConstraints.step}
                 variant={'outlined'}
-                className={classes.smallTextField}
                 disabled={standardGrid}
-                onChange={v => onSizeChanged('height', v)}
+                onChange={(e, v) => onSizeChanged('height', v)}
               />
             </div>
           </div>
@@ -309,7 +290,7 @@ GridSetup.propTypes = {
 
 const styles = theme => ({
   wrapper: {
-    width: '400px'
+    width: '450px'
   },
   content: {
     display: 'flex',
@@ -326,12 +307,8 @@ const styles = theme => ({
     justifyContent: 'space-around',
     alignItems: 'center'
   },
-  smallTextField: {
-    width: '90px',
-    margin: `${theme.spacing.unit}px ${theme.spacing.unit / 2}px`
-  },
   textField: {
-    width: '120px',
+    width: '130px',
     margin: `${theme.spacing.unit}px ${theme.spacing.unit / 2}px`
   },
   largeTextField: {
