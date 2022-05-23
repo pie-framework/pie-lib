@@ -224,7 +224,7 @@ const GridSetup = props => {
 
   return (
     <div className={classes.wrapper}>
-      <ExpansionPanel expanded={true}>
+      <ExpansionPanel>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
           <Typography variant={'subtitle1'}>Customize Grid Setup</Typography>
         </ExpansionPanelSummary>
