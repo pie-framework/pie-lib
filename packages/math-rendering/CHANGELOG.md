@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.4.0...@pie-lib/math-rendering@2.4.1) (2022-05-24)
+
+
+### Bug Fixes
+
+* unable to load items locally ([a0ddf20](https://github.com/pie-framework/pie-lib/commit/a0ddf2095646e6e84569cb7e0de42d0cd9ea0fb6))
+
+
+
+
+
 # [2.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.3.13...@pie-lib/math-rendering@2.4.0) (2022-04-28)
 
 
