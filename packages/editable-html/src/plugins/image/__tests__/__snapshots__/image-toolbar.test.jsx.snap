@@ -3,30 +3,5 @@
 exports[`renders correctly 1`] = `
 <div
   className="ImageToolbar-holder-1 holder"
->
-  <span
-    className="RawMarkButton-button-0-1-1"
-    onMouseDown={[Function]}
-  >
-    25%
-  </span>
-  <span
-    className="RawMarkButton-button-0-1-1 RawMarkButton-active-0-1-2"
-    onMouseDown={[Function]}
-  >
-    50%
-  </span>
-  <span
-    className="RawMarkButton-button-0-1-1"
-    onMouseDown={[Function]}
-  >
-    75%
-  </span>
-  <span
-    className="RawMarkButton-button-0-1-1"
-    onMouseDown={[Function]}
-  >
-    100%
-  </span>
-</div>
+/>
 `;

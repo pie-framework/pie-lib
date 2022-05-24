@@ -20,7 +20,9 @@ export class Component extends React.Component {
     classes: PropTypes.object.isRequired,
     attributes: PropTypes.object,
     onFocus: PropTypes.func,
-    onBlur: PropTypes.func
+    onBlur: PropTypes.func,
+    maxImageWidth: PropTypes.number,
+    maxImageHeight: PropTypes.number,
   };
 
   getWidth = percent => {
@@ -41,30 +43,33 @@ export class Component extends React.Component {
   applySizeData = () => {
     const { node, editor } = this.props;
 
-    const resizePercent = node.data.get('resizePercent');
-    log('[applySizeData]: resizePercent: ', resizePercent);
-
     let update = node.data;
 
-    if (resizePercent) {
-      update = update.set('width', this.getWidth(resizePercent));
-      update = update.set('height', this.getHeight(resizePercent));
-    } else {
-      const w = update.get('width');
-      if (w) {
-        update = update.set('resizePercent', this.getPercentFromWidth(w));
-      }
+    const w = update.get('width');
+    if (w) {
+      update = update.set('resizePercent', this.getPercentFromWidth(w));
     }
 
-    log('[applySizeData] update: ', update);
+    log("[applySizeData] update: ", update);
 
     if (!update.equals(node.data)) {
       editor.change(c => c.setNodeByKey(node.key, { data: update }));
     }
   };
 
+  initialiseResize = () => {
+    window.addEventListener('mousemove', this.startResizing, false);
+    window.addEventListener('mouseup', this.stopResizing, false);
+  };
+
   componentDidMount() {
     this.applySizeData();
+
+    const resizeHandle = this.resize;
+
+    if (resizeHandle) {
+      resizeHandle.addEventListener('mousedown', this.initialiseResize, false);
+    }
   }
 
   componentDidUpdate() {
@@ -78,6 +83,117 @@ export class Component extends React.Component {
       objectFit: 'contain'
     };
   }
+
+  loadImage = () => {
+    let { maxImageWidth, maxImageHeight } = this.props || {};
+    maxImageWidth = maxImageWidth || 700;
+    maxImageHeight = maxImageHeight || 900;
+
+    const box = this.img;
+
+    //on first load
+    if (!box.style.width || box.style.width === 'auto') {
+      const dimensions = { width: box && box.naturalWidth || 100, height: box && box.naturalHeight || 100 };
+
+      const { width, height } = this.updateImageDimensions(
+        dimensions,
+        {
+          width: dimensions.width < maxImageWidth ? dimensions.width : maxImageWidth,
+          height: dimensions.height < maxImageHeight ? dimensions.height : maxImageHeight
+        },
+        true
+      );
+
+      box.style.width = `${width}px`;
+      box.style.height = `${height}px`;
+
+      this.setState({
+        dimensions: { height: height, width: width },
+      });
+
+      const { node, editor } = this.props;
+
+      let update = node.data;
+
+      update = update.set('width', width);
+      update = update.set('height', height);
+
+      if (!update.equals(node.data)) {
+        editor.change(c => c.setNodeByKey(node.key, { data: update }));
+      }
+    }
+  };
+
+  startResizing = (e) => {
+    const bounds = e.target.getBoundingClientRect();
+    const box = this.img;
+    const dimensions = { width: box && box.naturalWidth || 100, height: box && box.naturalHeight || 100};
+
+    const { width, height } = this.updateImageDimensions(
+      dimensions,
+      {
+        width: e.clientX - bounds.left,
+        height: e.clientY - bounds.top
+      },
+      true
+    );
+
+    const hasMinimumWidth = width > 50 && height > 50;
+    const hasDimensionsConstraints = width <= 700 && height <= 900;
+
+    if (hasMinimumWidth && hasDimensionsConstraints && box) {
+      box.style.width = `${width}px`;
+      box.style.height = `${height}px`;
+
+      this.setState({
+        dimensions: { height: height, width: width }
+      });
+
+      const { node, editor } = this.props;
+
+      let update = node.data;
+
+      update = update.set('width', width);
+      update = update.set('height', height);
+
+      if (!update.equals(node.data)) {
+        editor.change(c => c.setNodeByKey(node.key, { data: update }));
+      }
+    }
+  };
+
+  stopResizing = () => {
+    window.removeEventListener('mousemove', this.startResizing, false);
+    window.removeEventListener('mouseup', this.stopResizing, false);
+  };
+
+  updateImageDimensions = (initialDim, nextDim, keepAspectRatio, resizeType) => {
+    // if we want to keep image aspect ratio
+    if (keepAspectRatio) {
+      const imageAspectRatio = initialDim.width / initialDim.height;
+
+      if (resizeType === 'height') {
+        // if we want to change image height => we update the width accordingly
+        return {
+          width: nextDim.height * imageAspectRatio,
+          height: nextDim.height
+        }
+      }
+
+      // if we want to change image width => we update the height accordingly
+      return {
+        width: nextDim.width,
+        height: nextDim.width / imageAspectRatio
+      }
+    }
+
+    // if we don't want to keep aspect ratio, we just update both values
+    return {
+      width: nextDim.width,
+      height: nextDim.height
+    }
+  };
+
 
   render() {
     const { node, editor, classes, attributes, onFocus } = this.props;
@@ -95,7 +211,6 @@ export class Component extends React.Component {
 
     const className = classNames(
       classes.root,
-      active && classes.active,
       !loaded && classes.loading,
       deleteStatus === 'pending' && classes.pendingDelete
     );
@@ -110,7 +225,21 @@ export class Component extends React.Component {
           value={percent > 0 ? percent : 0}
           className={progressClasses}
         />
-        <img src={src} {...attributes} ref={r => (this.img = r)} style={size} />
+        <div className={classes.imageContainer}>
+          <img
+            {...attributes}
+            className={classNames(classes.image, active && classes.active)}
+            ref={ref => {
+              this.img = ref;
+            }}
+            src={src}
+            style={size}
+            onLoad={this.loadImage}
+          />
+          <div ref={ref => {
+            this.resize = ref;
+          }} className={classNames(classes.resize, 'resize')}/>
+        </div>
       </div>,
       <span key={'sp2'}>&nbsp;</span>
     ];
@@ -154,13 +283,36 @@ const styles = theme => ({
     display: 'inline-block',
     transition: 'opacity 200ms linear'
   },
-  active: {
-    border: `solid 1px ${theme.palette.primary.main}`
-  },
   delete: {
     position: 'absolute',
     right: 0
-  }
+  },
+  imageContainer: {
+    position: 'relative',
+    width: 'fit-content',
+    display: 'flex',
+    alignItems: 'center',
+
+    '&&:hover > .resize': {
+      display: 'block'
+    }
+  },
+  active: {
+    border: `solid 1px ${theme.palette.primary.main}`
+  },
+  resize: {
+    backgroundColor: theme.palette.primary.main,
+    cursor: 'col-resize',
+    height: '35px',
+    width: '5px',
+    borderRadius: 8,
+    marginLeft: '5px',
+    marginRight: '10px',
+    display: 'none'
+  },
+  drawableHeight: {
+    minHeight: 350,
+  },
 });
 
 export default withStyles(styles)(Component);

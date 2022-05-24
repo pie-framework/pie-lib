@@ -87,7 +87,9 @@ export class Editor extends React.Component {
         new Error(`Invalid values: ${values}, values must be one of [${ALL_PLUGINS.join(',')}]`)
       );
     }),
-    className: PropTypes.string
+    className: PropTypes.string,
+    maxImageWidth: PropTypes.number,
+    maxImageHeight: PropTypes.number,
   };
 
   static defaultProps = {
@@ -141,7 +143,9 @@ export class Editor extends React.Component {
             this.props.imageSupport.add(handler);
           }),
         onFocus: this.onPluginFocus,
-        onBlur: this.onPluginBlur
+        onBlur: this.onPluginBlur,
+        maxImageWidth: this.props.maxImageWidth,
+        maxImageHeight: this.props.maxImageHeight,
       },
       toolbar: {
         /**
