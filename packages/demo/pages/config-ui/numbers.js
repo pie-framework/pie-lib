@@ -24,7 +24,8 @@ class RawContainer extends React.Component {
     this.state = {
       numberTextField: {
         one: 400,
-        custom: 350
+        custom: 350,
+        custom2: 21
       }
     };
   }
@@ -119,6 +120,14 @@ class RawContainer extends React.Component {
               variant={'outlined'}
               onChange={this.update('custom')}
             />
+            <NumberTextFieldCustom
+              className={classes.textField}
+              label="Custom values"
+              value={numberTextField.custom2}
+              customValues={[1, 10, 20, 35, 64]}
+              variant={'outlined'}
+              onChange={this.update('custom2')}
+            />
           </Section>
         </div>
         <div className={classes.right}>
@@ -149,7 +158,7 @@ const Container = withStyles(() => ({
   },
   textField: {
     width: '150px',
-    margin: '8px 0'
+    margin: '8px'
   }
 }))(RawContainer);
 
