@@ -2630,15 +2630,6 @@
     lodash "^4.17.11"
     react-portal "^4.2.0"
 
-"@pie-lib/math-rendering@^2.4.0":
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/@pie-lib/math-rendering/-/math-rendering-2.4.0.tgz#bd49398ce13b3824c8e9b29fcd18f9f90c6b5d0b"
-  integrity sha512-qLi6T0FUOCLoC2byHxx5rPD4mv3hpMvo+KqdFPNSNJGCvPgJ/d8+hX72N+Si80A8pMsbPV+DWaKluACEkZ53Ew==
-  dependencies:
-    debug "^4.1.1"
-    lodash "^4.17.11"
-    mathjax-full "^3.2.0"
-
 "@pie-lib/math-toolbar@^1.8.9":
   version "1.8.9"
   resolved "https://registry.yarnpkg.com/@pie-lib/math-toolbar/-/math-toolbar-1.8.9.tgz#5f49e8b91099966f00150c57e7b14790704acb41"
@@ -8793,6 +8784,8 @@ is-extendable@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/is-extendable/-/is-extendable-1.0.1.tgz#a7470f9e426733d81bd81e1155264e3a3507cab4"
   integrity sha512-arnXMxT1hhoKo9k1LZdmlNyJdDDfy2v0fXjFlmok4+i8ul/6WlbVge9bhM74OpNPQPMGUToDtz+KXa1PneJxOA==
+  dependencies:
+    is-plain-object "^2.0.4"
 
 is-extglob@^2.1.0, is-extglob@^2.1.1:
   version "2.1.1"
