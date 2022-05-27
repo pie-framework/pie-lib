@@ -31,6 +31,15 @@ export class TickComponent extends React.Component {
     onChangeCategory(index, { ...category, interactive: !category.interactive });
   };
 
+  changeEditable = (index, value) => {
+    const { categories, onChangeCategory } = this.props;
+    const category = categories[index];
+    console.log(category.editable, 'category.editable');
+    console.log(!category.editable, '!category.editable');
+
+    onChangeCategory(index, { ...category, editable: !category.editable });
+  };
+
   render() {
     const {
       classes,
@@ -61,6 +70,8 @@ export class TickComponent extends React.Component {
 
       return lengthA > lengthB ? a : b;
     });
+
+    console.log(editable, 'editable');
 
     const longestLabel = (longestCategory && longestCategory.label) || '';
 
@@ -157,6 +168,31 @@ export class TickComponent extends React.Component {
             </tspan>
           </text>
         )}
+        {defineChart && index === 0 && (
+          <text
+            x={x - 80}
+            y={y + 80 + top}
+            width={barWidth}
+            height={4}
+            style={{
+              position: 'absolute',
+              pointerEvents: 'none',
+              wordBreak: 'break-word',
+              overflow: 'visible',
+              maxWidth: barWidth,
+              display: 'inline-block'
+            }}
+          >
+            <tspan x="0" dy=".6em">
+              {' '}
+              Student can{' '}
+            </tspan>
+            <tspan x="0" dy="1.2em">
+              {' '}
+              edit name
+            </tspan>
+          </text>
+        )}
         {defineChart && (
           <foreignObject
             x={x - 24}
@@ -168,6 +204,20 @@ export class TickComponent extends React.Component {
             <Checkbox
               checked={interactive}
               onChange={e => this.changeInteractive(index, e.target.checked)}
+            />
+          </foreignObject>
+        )}
+        {defineChart && (
+          <foreignObject
+            x={x - 24}
+            y={y + 70 + top}
+            width={barWidth}
+            height={4}
+            style={{ pointerEvents: 'visible', overflow: 'visible' }}
+          >
+            <Checkbox
+              checked={editable}
+              onChange={e => this.changeEditable(index, e.target.checked)}
             />
           </foreignObject>
         )}
