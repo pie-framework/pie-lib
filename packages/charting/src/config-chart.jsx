@@ -99,7 +99,11 @@ const ConfigureChartPanel = props => {
 
       <div className={classes.content}>
         <div className={classes.rowView}>
-          <ChartType value={chartType} onChange={e => onChartTypeChange(e.target.value)} />
+          <ChartType
+            className={classes.textField}
+            value={chartType}
+            onChange={e => onChartTypeChange(e.target.value)}
+          />
           <TextField
             label={'Max Value'}
             type={'number'}
@@ -112,9 +116,8 @@ const ConfigureChartPanel = props => {
         </div>
         {chartType.includes('Plot') ? null : stepConfig}
         <div className={classes.dimensions}>
-          <div>
-            <Typography>Dimensions(px)</Typography>
-          </div>
+          <Typography>Dimensions(px)</Typography>
+
           <div className={classes.columnView}>
             <TextField
               label={'Width'}
@@ -164,7 +167,9 @@ const styles = theme => ({
   content: {
     display: 'flex',
     flexDirection: 'column',
-    width: '100%'
+    width: '100%',
+    marginTop: '24px',
+    marginBottom: '24px'
   },
   columnView: {
     display: 'flex',
@@ -195,7 +200,8 @@ const styles = theme => ({
   dimensions: {
     display: 'flex',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginTop: '16px'
   },
   disabled: {
     color: color.disabled()

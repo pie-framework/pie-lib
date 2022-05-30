@@ -4,9 +4,8 @@ exports[`ChartType renders snapshot 1`] = `
 <Component
   classes={
     Object {
-      "chartType": "Component-chartType-2",
-      "chartTypeLabel": "Component-chartTypeLabel-3",
-      "formControl": "Component-formControl-1",
+      "chartType": "Component-chartType-1",
+      "chartTypeLabel": "Component-chartTypeLabel-2",
     }
   }
   onChange={[MockFunction]}
