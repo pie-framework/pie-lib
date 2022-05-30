@@ -127,11 +127,12 @@ export class Chart extends React.Component {
 
   getFilteredCategories = () => {
     const { data, addCategoryEnabled } = this.props;
+    console.log(this.props);
 
     return data
       ? data.map(d => ({
           ...d,
-          // editable: d.editable || false,
+          // editable: true,
           deletable: !d.initial || (d.initial && addCategoryEnabled)
         }))
       : [];

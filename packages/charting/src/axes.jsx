@@ -34,8 +34,6 @@ export class TickComponent extends React.Component {
   changeEditable = (index, value) => {
     const { categories, onChangeCategory } = this.props;
     const category = categories[index];
-    console.log(category.editable, 'category.editable');
-    console.log(!category.editable, '!category.editable');
 
     onChangeCategory(index, { ...category, editable: !category.editable });
   };
