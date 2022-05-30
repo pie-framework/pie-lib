@@ -47,7 +47,6 @@ export class Chart extends React.Component {
     title: PropTypes.string,
     onDataChange: PropTypes.func,
     addCategoryEnabled: PropTypes.bool,
-    editCategoryEnabled: PropTypes.bool,
     categoryDefaultLabel: PropTypes.string,
     theme: PropTypes.object
   };
@@ -127,12 +126,12 @@ export class Chart extends React.Component {
   };
 
   getFilteredCategories = () => {
-    const { data, editCategoryEnabled, addCategoryEnabled } = this.props;
+    const { data, addCategoryEnabled } = this.props;
 
     return data
       ? data.map(d => ({
           ...d,
-          editable: !d.initial || (d.initial && editCategoryEnabled),
+          // editable: d.editable || false,
           deletable: !d.initial || (d.initial && addCategoryEnabled)
         }))
       : [];
