@@ -1,3 +1,4 @@
+import AlertDialog from './alert-dialog';
 import FeedbackConfig, {
   FeedbackSelector,
   buildDefaults as feedbackConfigDefaults
@@ -11,6 +12,7 @@ import Help from './help';
 import Input from './input';
 import { InputContainer } from '@pie-lib/render-ui';
 import NumberTextField from './number-text-field';
+import NumberTextFieldCustom from './number-text-field-custom';
 import TwoChoice, { NChoice } from './two-choice';
 import TagsInput from './tags-input';
 import MuiBox from './mui-box';
@@ -25,6 +27,7 @@ import DisplaySize from './settings/display-size';
 import * as settings from './settings';
 
 export {
+  AlertDialog,
   FeedbackConfig,
   FeedbackSelector,
   feedbackConfigDefaults,
@@ -40,6 +43,7 @@ export {
   Input,
   InputContainer,
   NumberTextField,
+  NumberTextFieldCustom,
   TwoChoice,
   NChoice,
   TagsInput,

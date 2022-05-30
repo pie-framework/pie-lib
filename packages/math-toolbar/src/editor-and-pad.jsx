@@ -10,6 +10,7 @@ import { color, InputContainer } from '@pie-lib/render-ui';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import { updateSpans } from '@pie-lib/math-input';
+import isEqual from 'lodash/isEqual';
 
 const decimalRegex = /\.|,/g;
 
@@ -53,7 +54,7 @@ export class EditorAndPad extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { equationEditor: 'item-authoring' };
+    this.state = { equationEditor: 'item-authoring', addDisabled: false };
   }
 
   componentDidMount() {
@@ -86,17 +87,31 @@ export class EditorAndPad extends React.Component {
     }
   };
 
+  updateDisable = isEdit => {
+    const { maxResponseAreas } = this.props;
+
+    if (maxResponseAreas) {
+      const shouldDisable = this.checkResponseAreasNumber(maxResponseAreas, isEdit);
+
+      this.setState({ addDisabled: shouldDisable });
+    }
+  };
+
   onAnswerBlockClick = () => {
     this.props.onAnswerBlockAdd();
     this.onClick({
       type: 'answer'
     });
+
+    this.updateDisable(true);
   };
 
   onEditorChange = latex => {
     const { onChange, noDecimal } = this.props;
 
     updateSpans();
+
+    this.updateDisable(true);
 
     // if no decimals are allowed and the last change is a decimal dot, discard the change
     if (noDecimal && (latex.indexOf('.') !== -1 || latex.indexOf(',') !== -1) && this.input) {
@@ -113,6 +128,10 @@ export class EditorAndPad extends React.Component {
   shouldComponentUpdate(nextProps, nextState) {
     const inputIsDifferent = this.input.mathField.latex() !== nextProps.latex;
     log('[shouldComponentUpdate] ', 'inputIsDifferent: ', inputIsDifferent);
+
+    if (!isEqual(this.props.error, nextProps.error)) {
+      return true;
+    }
 
     if (!inputIsDifferent && this.props.keypadMode !== nextProps.keypadMode) {
       return true;
@@ -137,6 +156,18 @@ export class EditorAndPad extends React.Component {
     this.setState({ equationEditor: evt.target.value });
   };
 
+  checkResponseAreasNumber = (maxResponseAreas, isEdit) => {
+    const { latex } = (this.input && this.input.props) || {};
+
+    if (latex) {
+      const count = (latex.match(/answerBlock/g) || []).length;
+
+      return isEdit ? count === maxResponseAreas - 1 : count === maxResponseAreas;
+    }
+
+    return false;
+  };
+
   render() {
     const {
       classNames,
@@ -150,9 +181,11 @@ export class EditorAndPad extends React.Component {
       latex,
       onFocus,
       onBlur,
-      classes
+      classes,
+      error
     } = this.props;
     const shouldShowKeypad = !controlledKeypad || (controlledKeypad && showKeypad);
+    const { addDisabled } = this.state;
 
     log('[render]', latex);
 
@@ -181,18 +214,26 @@ export class EditorAndPad extends React.Component {
               </Select>
             </InputContainer>
           )}
-          <mq.Input
-            onFocus={onFocus}
-            onBlur={onBlur}
-            className={cx(
-              classes.mathEditor,
-              classNames.editor,
-              !controlledKeypadMode ? classes.longMathEditor : ''
-            )}
-            innerRef={r => (this.input = r)}
-            latex={latex}
-            onChange={this.onEditorChange}
-          />
+          <div className={cx(classes.inputContainer, error ? classes.error : '')}>
+            <mq.Input
+              onFocus={() => {
+                onFocus && onFocus();
+                this.updateDisable(false);
+              }}
+              onBlur={event => {
+                this.updateDisable(false);
+                onBlur && onBlur(event);
+              }}
+              className={cx(
+                classes.mathEditor,
+                classNames.editor,
+                !controlledKeypadMode ? classes.longMathEditor : ''
+              )}
+              innerRef={r => (this.input = r)}
+              latex={latex}
+              onChange={this.onEditorChange}
+            />
+          </div>
         </div>
         {allowAnswerBlock && (
           <Button
@@ -200,6 +241,7 @@ export class EditorAndPad extends React.Component {
             type="primary"
             style={{ bottom: shouldShowKeypad ? '320px' : '20px' }}
             onClick={this.onAnswerBlockClick}
+            disabled={addDisabled}
           >
             + Response Area
           </Button>
@@ -262,9 +304,7 @@ const styles = theme => ({
     maxWidth: '400px',
     color: color.text(),
     backgroundColor: color.background(),
-    padding: theme.spacing.unit,
-    marginTop: theme.spacing.unit,
-    marginBottom: theme.spacing.unit
+    padding: theme.spacing.unit
   },
   longMathEditor: {
     maxWidth: '500px'
@@ -315,6 +355,18 @@ const styles = theme => ({
     '& .mq-parallelogram': {
       lineHeight: 0.85
     }
+  },
+  inputContainer: {
+    minWidth: '500px',
+    maxWidth: '900px',
+    minHeight: '40px',
+    width: '100%',
+    display: 'flex',
+    marginTop: theme.spacing.unit,
+    marginBottom: theme.spacing.unit
+  },
+  error: {
+    border: '2px solid red'
   }
 });
 

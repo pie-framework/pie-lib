@@ -4,6 +4,9 @@ import { RawAuthoring } from '../authoring';
 import { Draggable } from 'react-beautiful-dnd';
 import _ from 'lodash';
 
+jest.mock('editable-html', () => () => <div/>);
+
+
 describe('Rubric', () => {
   let w;
 
@@ -44,7 +47,8 @@ describe('Rubric', () => {
   });
 
   describe('logic', () => {
-    describe('rendering', () => {});
+    describe('rendering', () => {
+    });
 
     describe('changeMaxPoints', () => {
       const assertChangeMax = (points, excludeZero, expectedPoints, expectedSampleAnswers) => {
