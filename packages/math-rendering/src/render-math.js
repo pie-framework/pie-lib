@@ -71,6 +71,11 @@ export const fixMathElements = () => {
   mathElements.forEach(item => fixMathElement(item));
 };
 
+const adjustMathMLStyle = () => {
+  const nodes = document.querySelectorAll('math');
+  nodes.forEach(node => node.setAttribute('displaystyle', 'true'));
+};
+
 const bootstrap = opts => {
   if (typeof window === 'undefined') {
     return { Typeset: () => ({}) };
@@ -98,29 +103,20 @@ const bootstrap = opts => {
 
   const texConfig = opts.useSingleDollar
     ? {
-      loader: {
-        require: require
-      },
-      packages,
-      macros,
-      inlineMath: [
-        ['$', '$'],
-        ['\\(', '\\)']
-      ],
-      displayMath: [
-        ['$$', '$$'],
-        ['\\[', '\\]']
-      ],
-      processEscapes: true
-    }
+        packages,
+        macros,
+        inlineMath: [
+          ['$', '$'],
+          ['\\(', '\\)']
+        ],
+        processEscapes: true
+      }
     : {
-      packages,
-      macros
-    };
+        packages,
+        macros
+      };
 
   const mmlConfig = {
-    parseAs: 'html',
-    forceReparse: false,
     parseError: function(node) {
       // function to process parsing errors
       console.log('error:', node);
@@ -139,7 +135,6 @@ const bootstrap = opts => {
   };
 
   const mml = new MathML(mmlConfig);
-  console.log([new TeX(texConfig), mml]);
 
   const customMmlFactory = new MmlFactory({
     ...MmlFactory.defaultNodes,
@@ -196,6 +191,7 @@ const bootstrap = opts => {
 const renderMath = (el, renderOpts) => {
   //TODO: remove this - has nothing to do with math-rendering (it's from editable-html)
   fixMathElements();
+  adjustMathMLStyle();
 
   if (!getGlobal().instance) {
     getGlobal().instance = bootstrap(renderOpts);
