@@ -103,29 +103,20 @@ const bootstrap = opts => {
 
   const texConfig = opts.useSingleDollar
     ? {
-      loader: {
-        require: require
-      },
-      packages,
-      macros,
-      inlineMath: [
-        ['$', '$'],
-        ['\\(', '\\)']
-      ],
-      displayMath: [
-        ['$$', '$$'],
-        ['\\[', '\\]']
-      ],
-      processEscapes: true
-    }
+        packages,
+        macros,
+        inlineMath: [
+          ['$', '$'],
+          ['\\(', '\\)']
+        ],
+        processEscapes: true
+      }
     : {
-      packages,
-      macros
-    };
+        packages,
+        macros
+      };
 
   const mmlConfig = {
-    parseAs: 'html',
-    forceReparse: false,
     parseError: function(node) {
       // function to process parsing errors
       console.log('error:', node);
@@ -144,7 +135,6 @@ const bootstrap = opts => {
   };
 
   const mml = new MathML(mmlConfig);
-  console.log([new TeX(texConfig), mml]);
 
   const customMmlFactory = new MmlFactory({
     ...MmlFactory.defaultNodes,
