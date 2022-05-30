@@ -9,6 +9,7 @@ describe('MarkLabel', () => {
   const wrapper = extras => {
     const defaults = {
       classes: {},
+      defineChart: false,
       className: 'className',
       onChange,
       mark: { x: 1, y: 1 },

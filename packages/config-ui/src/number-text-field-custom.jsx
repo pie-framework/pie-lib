@@ -46,6 +46,7 @@ export class NumberTextFieldCustom extends React.Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     className: PropTypes.string,
+    customValues: PropTypes.array,
     disabled: PropTypes.bool,
     error: PropTypes.bool,
     inputClassName: PropTypes.string,
@@ -62,6 +63,7 @@ export class NumberTextFieldCustom extends React.Component {
 
   static defaultProps = {
     step: 1,
+    customValues: [],
     textAlign: 'center',
     variant: 'standard',
     onlyIntegersAllowed: false
@@ -70,10 +72,18 @@ export class NumberTextFieldCustom extends React.Component {
   constructor(props) {
     super(props);
 
-    const value = this.clamp(props.value);
+    let value = this.clamp(props.value);
+    let currentIndex = (props.customValues || []).findIndex(val => val === value);
+
+    if ((props.customValues || []).length > 0 && currentIndex === -1) {
+      const closestValue = this.getClosestValue(value);
+      value = closestValue.value;
+      currentIndex = closestValue.index;
+    }
 
     this.state = {
-      value
+      value,
+      currentIndex
     };
 
     if (value !== props.value) {
@@ -90,7 +100,11 @@ export class NumberTextFieldCustom extends React.Component {
   }
 
   clamp(value) {
-    const { min, max } = this.props;
+    const { min, max, customValues } = this.props;
+
+    if ((customValues || []).length > 0) {
+      return value;
+    }
 
     if (!isFinite(value)) {
       return fallbackNumber(min, max);
@@ -107,14 +121,37 @@ export class NumberTextFieldCustom extends React.Component {
     return value;
   }
 
+  getClosestValue = number => {
+    const { customValues } = this.props;
+
+    return customValues.reduce(
+      (closest, value, index) =>
+        Math.abs(value - number) < Math.abs(closest.value - number) ? { value, index } : closest,
+      { value: customValues[0], index: 0 }
+    );
+  };
+
   onBlur = event => {
-    const { onlyIntegersAllowed } = this.props;
+    const { customValues, onlyIntegersAllowed } = this.props;
     const { value } = event.target;
     const rawNumber = onlyIntegersAllowed ? parseInt(value) : parseFloat(value);
-    const number = this.clamp(rawNumber);
+    let number = this.clamp(rawNumber);
+    let updatedIndex = (customValues || []).findIndex(val => val === number);
+
+    if (customValues.length > 0 && updatedIndex === -1) {
+      const closestValue = this.getClosestValue(number);
+      number = closestValue.value;
+      updatedIndex = closestValue.index;
+    }
 
     if (number !== this.state.value) {
-      this.setState({ value: number.toString() }, () => this.props.onChange(event, number));
+      this.setState(
+        {
+          value: number.toString(),
+          currentIndex: updatedIndex
+        },
+        () => this.props.onChange(event, number)
+      );
     }
   };
 
@@ -127,17 +164,34 @@ export class NumberTextFieldCustom extends React.Component {
   changeValue(event, sign = 1, shouldUpdate = false) {
     event.preventDefault();
 
-    const { step, onlyIntegersAllowed, onChange } = this.props;
-    const { value } = this.state;
-    const rawNumber = onlyIntegersAllowed ? parseInt(value) : parseFloat(value);
-    const updatedValue = (rawNumber * 10000 + step * sign * 10000) / 10000;
-    const number = this.clamp(updatedValue);
+    const { customValues, step, onlyIntegersAllowed, onChange } = this.props;
+    const { currentIndex, value } = this.state;
+    const updatedIndex = currentIndex + sign * 1;
+    let number;
 
-    this.setState({ value: number.toString() }, () => {
-      if (shouldUpdate) {
-        onChange(event, number);
+    if (customValues.length > 0) {
+      if (updatedIndex < 0 || updatedIndex >= customValues.length) {
+        return;
       }
-    });
+
+      number = customValues[updatedIndex];
+    } else {
+      const rawNumber = onlyIntegersAllowed ? parseInt(value) : parseFloat(value);
+      const updatedValue = (rawNumber * 10000 + step * sign * 10000) / 10000;
+      number = this.clamp(updatedValue);
+    }
+
+    this.setState(
+      {
+        value: number.toString(),
+        currentIndex: updatedIndex
+      },
+      () => {
+        if (shouldUpdate) {
+          onChange(event, number);
+        }
+      }
+    );
   }
 
   render() {
