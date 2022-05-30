@@ -7,38 +7,34 @@ import Select from '@material-ui/core/Select';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 
 const ChartType = withStyles(theme => ({
-  formControl: {
-    width: '100%'
-  },
   chartType: {
-    paddingTop: theme.spacing.unit * 2,
-    paddingBottom: theme.spacing.unit * 2
+    width: '120px',
+    margin: `${theme.spacing.unit}px ${theme.spacing.unit / 2}px`
   },
   chartTypeLabel: {
-    transform: 'translate(0px, -16px) scale(0.75) !important'
+    backgroundColor: 'transparent'
   }
 }))(({ onChange, value, classes }) => {
   return (
-    <div className={classes.chartType}>
-      <FormControl variant="outlined" className={classes.formControl}>
-        <InputLabel htmlFor="type-helper" className={classes.chartTypeLabel}>
-          ChartType
-        </InputLabel>
+    <FormControl variant={'outlined'} className={classes.chartType}>
+      <InputLabel htmlFor="type-helper" className={classes.chartTypeLabel}>
+        ChartType
+      </InputLabel>
 
-        <Select
-          value={value}
-          onChange={onChange}
-          input={<OutlinedInput name="type" id="type-helper" />}
-        >
-          <MenuItem value={'histogram'}>Histogram</MenuItem>
-          <MenuItem value={'bar'}>Bar</MenuItem>
-          <MenuItem value={'lineDot'}>Line Dot</MenuItem>
-          <MenuItem value={'lineCross'}>Line Cross</MenuItem>
-          <MenuItem value={'dotPlot'}>Dot Plot</MenuItem>
-          <MenuItem value={'linePlot'}>Line Plot</MenuItem>
-        </Select>
-      </FormControl>
-    </div>
+      <Select
+        value={value}
+        onChange={onChange}
+        variant="outlined"
+        input={<OutlinedInput name="type" id="type-helper" />}
+      >
+        <MenuItem value={'histogram'}>Histogram</MenuItem>
+        <MenuItem value={'bar'}>Bar</MenuItem>
+        <MenuItem value={'lineDot'}>Line Dot</MenuItem>
+        <MenuItem value={'lineCross'}>Line Cross</MenuItem>
+        <MenuItem value={'dotPlot'}>Dot Plot</MenuItem>
+        <MenuItem value={'linePlot'}>Line Plot</MenuItem>
+      </Select>
+    </FormControl>
   );
 });
 
