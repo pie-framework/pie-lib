@@ -127,12 +127,13 @@ export class Chart extends React.Component {
 
   getFilteredCategories = () => {
     const { data, addCategoryEnabled } = this.props;
-    console.log(this.props);
+
+    console.log(this.state, 'state');
+    console.log(this.props, 'props in getFilteredCategories');
 
     return data
       ? data.map(d => ({
           ...d,
-          // editable: true,
           deletable: !d.initial || (d.initial && addCategoryEnabled)
         }))
       : [];
@@ -177,6 +178,7 @@ export class Chart extends React.Component {
         () => this.rootNode
       )
     };
+
     log('[render] common:', common);
 
     const maskSize = { x: -10, y: -10, width: width + 20, height: height + 80 };

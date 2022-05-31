@@ -35,7 +35,9 @@ export class TickComponent extends React.Component {
     const { categories, onChangeCategory } = this.props;
     const category = categories[index];
 
-    onChangeCategory(index, { ...category, editable: !category.editable });
+    console.log(categories, 'categories');
+
+    onChangeCategory(index, { ...category, editable: !category.editable || false });
   };
 
   render() {
@@ -61,6 +63,8 @@ export class TickComponent extends React.Component {
     const index = parseInt(formattedValue.split('-')[0], 10);
     const category = categories[index];
     const { deletable, editable, interactive, label, correctness } = category || {};
+
+    console.log(category, 'category');
     const barX = xBand(bandKey({ label }, index));
     const longestCategory = (categories || []).reduce((a, b) => {
       const lengthA = a && a.label ? a.label.length : 0;
@@ -68,8 +72,6 @@ export class TickComponent extends React.Component {
 
       return lengthA > lengthB ? a : b;
     });
-
-    console.log(editable, 'editable');
 
     const longestLabel = (longestCategory && longestCategory.label) || '';
 
@@ -99,17 +101,7 @@ export class TickComponent extends React.Component {
           )}
           <MarkLabel
             inputRef={r => (this.input = r)}
-            disabled={!(editable && interactive)}
-            mark={category}
-            graphProps={graphProps}
-            onChange={newLabel => this.changeCategory(index, newLabel)}
-            barWidth={barWidth}
-            rotate={rotate}
-            correctness={correctness}
-          />
-          <MarkLabel
-            inputRef={r => (this.input = r)}
-            disabled={!(editable && interactive)}
+            disabled={!editable}
             mark={category}
             graphProps={graphProps}
             onChange={newLabel => this.changeCategory(index, newLabel)}
