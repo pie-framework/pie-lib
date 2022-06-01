@@ -128,9 +128,6 @@ export class Chart extends React.Component {
   getFilteredCategories = () => {
     const { data, addCategoryEnabled } = this.props;
 
-    console.log(this.state, 'state');
-    console.log(this.props, 'props in getFilteredCategories');
-
     return data
       ? data.map(d => ({
           ...d,

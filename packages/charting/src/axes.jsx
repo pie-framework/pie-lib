@@ -35,8 +35,6 @@ export class TickComponent extends React.Component {
     const { categories, onChangeCategory } = this.props;
     const category = categories[index];
 
-    console.log(categories, 'categories');
-
     onChangeCategory(index, { ...category, editable: !category.editable || false });
   };
 
@@ -63,8 +61,6 @@ export class TickComponent extends React.Component {
     const index = parseInt(formattedValue.split('-')[0], 10);
     const category = categories[index];
     const { deletable, editable, interactive, label, correctness } = category || {};
-
-    console.log(category, 'category');
     const barX = xBand(bandKey({ label }, index));
     const longestCategory = (categories || []).reduce((a, b) => {
       const lengthA = a && a.label ? a.label.length : 0;
