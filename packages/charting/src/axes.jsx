@@ -68,7 +68,7 @@ export class TickComponent extends React.Component {
 
       return lengthA > lengthB ? a : b;
     });
-    console.log(deletable, 'deletable');
+
     const longestLabel = (longestCategory && longestCategory.label) || '';
 
     return (
@@ -106,7 +106,7 @@ export class TickComponent extends React.Component {
             correctness={correctness}
           />
         </foreignObject>
-        {/* {deletable && !correctness && (
+        {deletable && !correctness && (
           <line
             x1={x}
             y1={0}
@@ -115,7 +115,7 @@ export class TickComponent extends React.Component {
             className={classes.dottedLine}
             strokeDasharray="4 2"
           />
-        )} */}
+        )}
         {deletable && !correctness && (
           <svg
             xmlns="http://www.w3.org/2000/svg"

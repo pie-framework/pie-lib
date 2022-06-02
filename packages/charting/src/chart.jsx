@@ -149,7 +149,6 @@ export class Chart extends React.Component {
     } = this.props;
     let { chartType } = this.props;
 
-    console.log(this.props, 'chart in');
     const defineChart = this.props.defineChart || false;
     const { width, height } = size || {};
 
