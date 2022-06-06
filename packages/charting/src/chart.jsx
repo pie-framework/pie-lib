@@ -8,6 +8,7 @@ import ChartGrid from './grid';
 import ChartAxes from './axes';
 import debug from 'debug';
 import { color } from '@pie-lib/render-ui';
+import Checkbox from '@material-ui/core/Checkbox';
 import {
   dataToXBand,
   getDomainAndRangeByChartType,
@@ -136,6 +137,13 @@ export class Chart extends React.Component {
       : [];
   };
 
+  changeAddRemoveEnabled = value => {
+    const { enableAddCategory } = this.props;
+    const addCategoryEnabled = value;
+
+    enableAddCategory(addCategoryEnabled);
+  };
+
   render() {
     const {
       classes,
@@ -148,6 +156,8 @@ export class Chart extends React.Component {
       theme
     } = this.props;
     let { chartType } = this.props;
+
+    console.log('this.props', this.props);
 
     const defineChart = this.props.defineChart || false;
     const { width, height } = size || {};
@@ -190,7 +200,7 @@ export class Chart extends React.Component {
     const bandWidth = xBand.bandwidth();
     // for chartType "line", bandWidth will be 0, so we have to calculate it
     const barWidth = bandWidth || scale.x(correctValues.domain.max) / categories.length;
-    const increaseHeight = defineChart ? 80 : 0;
+    const increaseHeight = defineChart ? 110 : 0;
 
     // if there are many categories, we have to rotate their names in order to fit
     // and we have to add extra value on top of some items
@@ -235,6 +245,21 @@ export class Chart extends React.Component {
               onChangeCategory={this.changeCategory}
             />
           </g>
+          {defineChart && (
+            <foreignObject
+              x={maskSize.x - 40}
+              y={maskSize.y + maskSize.height + 60}
+              width={maskSize.width}
+              height={maskSize.height}
+              style={{ pointerEvents: 'visible', overflow: 'visible' }}
+            >
+              <Checkbox
+                checked={addCategoryEnabled}
+                onChange={e => this.changeAddRemoveEnabled(e.target.checked)}
+              />
+              Student can add categories
+            </foreignObject>
+          )}
         </Root>
       </div>
     );
