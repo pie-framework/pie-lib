@@ -16,7 +16,7 @@ const GridConfig = props => {
   return (
     <div className={classes.columnView}>
       <NumberTextFieldCustom
-        className={classes.textField}
+        className={classes.mediumTextField}
         label="Grid Interval"
         value={gridValue}
         customValues={gridValues}
@@ -25,7 +25,7 @@ const GridConfig = props => {
         onChange={(e, v) => onChange('step', v)}
       />
       <NumberTextFieldCustom
-        className={classes.textField}
+        className={classes.mediumTextField}
         label="Label Interval"
         value={labelValue}
         customValues={labelValues}
@@ -47,17 +47,19 @@ const AxisConfig = props => {
         -axis
       </Typography>
       <NumberTextFieldCustom
-        className={classes.textField}
+        className={classes.mediumTextField}
         label="Min Value"
         value={minValue}
+        max={maxValue - 0.01}
         variant="outlined"
         disabled={disabled}
         onChange={(e, v) => onChange('min', v)}
       />
       <NumberTextFieldCustom
-        className={classes.textField}
+        className={classes.mediumTextField}
         label="Max Value"
         value={maxValue}
+        min={minValue + 0.01}
         variant="outlined"
         disabled={disabled}
         onChange={(e, v) => onChange('max', v)}
@@ -70,7 +72,7 @@ const AxisConfig = props => {
           style: { textAlign: 'center' }
         }}
         variant="outlined"
-        className={classes.textField}
+        className={classes.mediumTextField}
         onChange={e => onChange('axisLabel', e.target.value)}
       />
     </div>
@@ -83,9 +85,9 @@ const GridSetup = props => {
     sizeConstraints,
     domain,
     dimensionsEnabled,
-    gridValues,
+    gridValues = {},
     includeAxes,
-    labelValues,
+    labelValues = {},
     onChange,
     range,
     size,
@@ -189,8 +191,8 @@ const GridSetup = props => {
           classes={classes}
           gridValue={domain.step}
           labelValue={domain.labelStep}
-          gridValues={gridValues}
-          labelValues={labelValues}
+          gridValues={gridValues.domain || []}
+          labelValues={labelValues.domain || []}
           onChange={onDomainChanged}
         />
         <GridConfig
@@ -198,6 +200,8 @@ const GridSetup = props => {
           disabled={standardGrid}
           gridValue={range.step}
           labelValue={range.labelStep}
+          gridValues={gridValues.range || []}
+          labelValues={labelValues.range || []}
           onChange={onRangeChanged}
         />
       </div>
@@ -317,6 +321,10 @@ const styles = theme => ({
   },
   textField: {
     width: '130px',
+    margin: `${theme.spacing.unit}px ${theme.spacing.unit / 2}px`
+  },
+  mediumTextField: {
+    width: '160px',
     margin: `${theme.spacing.unit}px ${theme.spacing.unit / 2}px`
   },
   largeTextField: {
