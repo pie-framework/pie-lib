@@ -30,6 +30,8 @@ const defaultResponseAreaProps = {
   onHandleAreaChange: () => {}
 };
 
+const defaultLanguageCharactersProps = [];
+
 const createToolbarOpts = toolbarOpts => {
   return {
     ...defaultToolbarOpts,
@@ -72,6 +74,13 @@ export class Editor extends React.Component {
       respAreaToolbar: PropTypes.func,
       onHandleAreaChange: PropTypes.func
     }),
+    languageCharactersProps: PropTypes.arrayOf(
+      PropTypes.shape({
+        language: PropTypes.string,
+        characterIcon: PropTypes.string,
+        characters: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string))
+      })
+    ),
     toolbarOpts: PropTypes.shape({
       position: PropTypes.oneOf(['bottom', 'top']),
       alignment: PropTypes.oneOf(['left', 'right']),
@@ -96,7 +105,8 @@ export class Editor extends React.Component {
     onBlur: () => {},
     onKeyDown: () => {},
     toolbarOpts: defaultToolbarOpts,
-    responseAreaProps: defaultResponseAreaProps
+    responseAreaProps: defaultResponseAreaProps,
+    languageCharactersProps: defaultLanguageCharactersProps
   };
 
   constructor(props) {
@@ -106,13 +116,17 @@ export class Editor extends React.Component {
       toolbarOpts: createToolbarOpts(props.toolbarOpts)
     };
 
+    this.onResize = () => {
+      props.onChange(this.state.value, true);
+    };
+
+    this.handlePlugins(this.props);
+  }
+
+  handlePlugins = props => {
     const normalizedResponseAreaProps = {
       ...defaultResponseAreaProps,
       ...props.responseAreaProps
-    };
-
-    this.onResize = () => {
-      props.onChange(this.state.value, true);
     };
 
     this.plugins = buildPlugins(props.activePlugins, {
@@ -123,22 +137,22 @@ export class Editor extends React.Component {
       },
       image: {
         onDelete:
-          this.props.imageSupport &&
-          this.props.imageSupport.delete &&
+          props.imageSupport &&
+          props.imageSupport.delete &&
           ((src, done) => {
-            this.props.imageSupport.delete(src, e => {
+            props.imageSupport.delete(src, e => {
               done(e, this.state.value);
             });
           }),
         insertImageRequested:
-          this.props.imageSupport &&
+          props.imageSupport &&
           (getHandler => {
             /**
              * The handler is the object through which the outer context
              * communicates file upload events like: fileChosen, cancel, progress
              */
             const handler = getHandler(() => this.state.value);
-            this.props.imageSupport.add(handler);
+            props.imageSupport.add(handler);
           }),
         onFocus: this.onPluginFocus,
         onBlur: this.onPluginBlur
@@ -151,7 +165,7 @@ export class Editor extends React.Component {
         disableUnderline: props.disableUnderline,
         autoWidth: props.autoWidthToolbar,
         onDone: () => {
-          const { nonEmpty } = this.props;
+          const { nonEmpty } = props;
 
           log('[onDone]');
           this.setState({ toolbarInFocus: false, focusedNode: null });
@@ -192,13 +206,14 @@ export class Editor extends React.Component {
           this.onPluginBlur();
         }
       },
+      languageCharacters: props.languageCharactersProps,
       media: {
         focus: this.focus,
         createChange: () => this.state.value.change(),
         onChange: this.onChange
       }
     });
-  }
+  };
 
   componentDidMount() {
     // onRef is needed to get the ref of the component because we export it using withStyles
@@ -231,6 +246,10 @@ export class Editor extends React.Component {
       this.setState({
         toolbarOpts: newToolbarOpts
       });
+    }
+
+    if (!isEqual(nextProps.languageCharactersProps, this.props.languageCharactersProps)) {
+      this.handlePlugins(nextProps);
     }
   }
 

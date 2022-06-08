@@ -166,12 +166,25 @@ const LatexButton = withStyles(theme => ({
   );
 });
 
+const createCustomLayout = layoutObj => {
+  if (layoutObj) {
+    return {
+      gridTemplateColumns: `repeat(${layoutObj.columns}, minmax(min-content, 150px))`,
+      gridTemplateRows: `repeat(${layoutObj.rows}, minmax(40px, 60px))`,
+      gridAutoFlow: 'initial'
+    };
+  }
+
+  return {};
+};
+
 export class KeyPad extends React.Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     className: PropTypes.string,
     baseSet: PropTypes.array,
     additionalKeys: PropTypes.array,
+    layoutForKeyPad: PropTypes.object,
     onPress: PropTypes.func.isRequired,
     onFocus: PropTypes.func,
     noDecimal: PropTypes.bool,
@@ -207,14 +220,23 @@ export class KeyPad extends React.Component {
   };
 
   render() {
-    const { classes, className, baseSet, additionalKeys, onFocus, mode } = this.props;
+    const {
+      classes,
+      className,
+      baseSet,
+      additionalKeys,
+      layoutForKeyPad,
+      onFocus,
+      mode
+    } = this.props;
 
     const noBaseSet = [
       'non-negative-integers',
       'integers',
       'decimals',
       'fractions',
-      'item-authoring'
+      'item-authoring',
+      'language'
     ];
 
     const keysWithoutBaseSet = noBaseSet.includes(mode);
@@ -225,10 +247,15 @@ export class KeyPad extends React.Component {
     const shift = allKeys.length % 5 ? 1 : 0;
     const style = {
       gridTemplateColumns: `repeat(${Math.floor(allKeys.length / 5) +
-        shift}, minmax(min-content, 150px))`
+        shift}, minmax(min-content, 150px))`,
+      ...createCustomLayout(layoutForKeyPad)
     };
     return (
-      <div className={classNames(classes.keys, className)} style={style} onFocus={onFocus}>
+      <div
+        className={classNames(classes.keys, className, classes[mode])}
+        style={style}
+        onFocus={onFocus}
+      >
         {allKeys.map((k, index) => {
           const onClick = this.buttonClick.bind(this, k);
 
@@ -241,11 +268,13 @@ export class KeyPad extends React.Component {
             className: classNames(
               classes.labelButton,
               !keysWithoutBaseSet && classes[k.category],
+              classes[k.extraClass],
               k.label === ',' && classes.comma,
               k.label === '.' && classes.dot
             ),
             disabled: this.keyIsNotAllowed(k),
-            key: `${k.label || k.latex || k.command}-${index}`
+            key: `${k.label || k.latex || k.command}-${index}`,
+            ...(k.actions || {})
           };
 
           if (k.latex) {
@@ -280,6 +309,9 @@ const styles = theme => ({
     gridRowGap: '0px',
     gridColumnGap: '0px',
     gridAutoFlow: 'column'
+  },
+  character: {
+    textTransform: 'initial !important'
   },
   holder: {
     position: 'relative',
