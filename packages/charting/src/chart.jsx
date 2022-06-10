@@ -126,12 +126,12 @@ export class Chart extends React.Component {
   };
 
   getFilteredCategories = () => {
-    const { data, addCategoryEnabled } = this.props;
+    const { data, defineChart } = this.props;
 
     return data
       ? data.map(d => ({
           ...d,
-          deletable: !d.initial || (d.initial && addCategoryEnabled)
+          deletable: defineChart || d.deletable
         }))
       : [];
   };
@@ -148,6 +148,7 @@ export class Chart extends React.Component {
       theme
     } = this.props;
     let { chartType } = this.props;
+
     const defineChart = this.props.defineChart || false;
     const { width, height } = size || {};
 
