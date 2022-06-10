@@ -49,6 +49,7 @@ export class Editor extends React.Component {
     focus: PropTypes.func.isRequired,
     value: SlateTypes.value.isRequired,
     imageSupport: PropTypes.object,
+    charactersLimit: PropTypes.number,
     width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     minHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -440,7 +441,20 @@ export class Editor extends React.Component {
 
   onChange = (change, done) => {
     log('[onChange]');
-    this.setState({ value: change.value }, () => {
+
+    const { value } = change;
+    const { charactersLimit } = this.props;
+
+    if (
+      value &&
+      value.document &&
+      value.document.text &&
+      value.document.text.length > charactersLimit
+    ) {
+      return;
+    }
+
+    this.setState({ value }, () => {
       log('[onChange], call done()');
 
       if (done) {
