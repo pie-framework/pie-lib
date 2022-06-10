@@ -50,6 +50,7 @@ const AxisConfig = props => {
         className={classes.mediumTextField}
         label="Min Value"
         value={minValue}
+        min={-10000}
         max={maxValue - 0.01}
         variant="outlined"
         disabled={disabled}
@@ -60,6 +61,7 @@ const AxisConfig = props => {
         label="Max Value"
         value={maxValue}
         min={minValue + 0.01}
+        max={10000}
         variant="outlined"
         disabled={disabled}
         onChange={(e, v) => onChange('max', v)}
