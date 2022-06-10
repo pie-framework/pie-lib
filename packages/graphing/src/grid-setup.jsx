@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { color } from '@pie-lib/render-ui';
+import { color, InputContainer } from '@pie-lib/render-ui';
 import { withStyles } from '@material-ui/core/styles';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import TextField from '@material-ui/core/TextField';
 import { NumberTextFieldCustom, Toggle } from '@pie-lib/config-ui';
+import EditableHTML from '@pie-lib/editable-html';
 
 const GridConfig = props => {
   const { classes, disabled, labelValue, labelValues, gridValue, gridValues, onChange } = props;
@@ -39,6 +39,13 @@ const GridConfig = props => {
 
 const AxisConfig = props => {
   const { classes, disabled, label, maxValue, minValue, onChange, type } = props;
+  const activePlugins = [
+    'bold',
+    'italic',
+    'underline',
+    'strikethrough'
+    // 'languageCharacters'
+  ];
 
   return (
     <div className={classes.columnView}>
@@ -66,17 +73,15 @@ const AxisConfig = props => {
         disabled={disabled}
         onChange={(e, v) => onChange('max', v)}
       />
-      <TextField
-        label="Label"
-        value={label}
-        inputProps={{
-          maxLength: 5,
-          style: { textAlign: 'center' }
-        }}
-        variant="outlined"
-        className={classes.mediumTextField}
-        onChange={e => onChange('axisLabel', e.target.value)}
-      />
+      <InputContainer label="Label" className={classes.mediumTextField}>
+        <EditableHTML
+          className={classes.axisLabel}
+          onChange={value => onChange('axisLabel', value)}
+          markup={label || ''}
+          charactersLimit={5}
+          activePlugins={activePlugins}
+        />
+      </InputContainer>
     </div>
   );
 };
@@ -346,6 +351,9 @@ const styles = theme => ({
   },
   disabled: {
     color: color.disabled()
+  },
+  axisLabel: {
+    paddingTop: theme.spacing.unit * 2
   }
 });
 
