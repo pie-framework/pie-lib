@@ -82,7 +82,6 @@ const AxisConfig = props => {
 const GridSetup = props => {
   const {
     classes,
-    sizeConstraints,
     domain,
     dimensionsEnabled,
     gridValues = {},
@@ -91,6 +90,7 @@ const GridSetup = props => {
     onChange,
     range,
     size,
+    sizeConstraints,
     standardGrid
   } = props;
   const gridProps = { min: 2, max: 41 };
@@ -254,7 +254,9 @@ const GridSetup = props => {
               <div className={classes.dimensions}>
                 <div>
                   <Typography>Dimensions(px)</Typography>
-                  <Typography className={classes.disabled}>Min 150, Max 700</Typography>
+                  <Typography className={classes.disabled}>
+                    Min {sizeConstraints.min}, Max {sizeConstraints.max}
+                  </Typography>
                 </div>
                 <NumberTextFieldCustom
                   className={classes.textField}
