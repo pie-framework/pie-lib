@@ -3,6 +3,70 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.12.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.12.7...@pie-lib/render-ui@4.12.8) (2022-05-30)
+
+**Note:** Version bump only for package @pie-lib/render-ui
+
+
+
+
+
+## [4.12.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.12.6...@pie-lib/render-ui@4.12.7) (2022-05-24)
+
+**Note:** Version bump only for package @pie-lib/render-ui
+
+
+
+
+
+## [4.12.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.12.5...@pie-lib/render-ui@4.12.6) (2022-04-28)
+
+**Note:** Version bump only for package @pie-lib/render-ui
+
+
+
+
+
+## [4.12.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.12.4...@pie-lib/render-ui@4.12.5) (2022-03-21)
+
+**Note:** Version bump only for package @pie-lib/render-ui
+
+
+
+
+
+## [4.12.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.12.3...@pie-lib/render-ui@4.12.4) (2021-12-13)
+
+**Note:** Version bump only for package @pie-lib/render-ui
+
+
+
+
+
+## [4.12.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.12.2...@pie-lib/render-ui@4.12.3) (2021-11-29)
+
+**Note:** Version bump only for package @pie-lib/render-ui
+
+
+
+
+
+## [4.12.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.12.1...@pie-lib/render-ui@4.12.2) (2021-09-08)
+
+**Note:** Version bump only for package @pie-lib/render-ui
+
+
+
+
+
+## [4.12.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.12.0...@pie-lib/render-ui@4.12.1) (2021-09-08)
+
+**Note:** Version bump only for package @pie-lib/render-ui
+
+
+
+
+
 # [4.12.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.11.9...@pie-lib/render-ui@4.12.0) (2021-08-30)
 
 

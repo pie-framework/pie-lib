@@ -3,6 +3,129 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.9.2...@pie-lib/math-toolbar@1.9.3) (2022-05-10)
+
+
+### Bug Fixes
+
+* **math-toolbar:** make sure errors visually update for item validation ([d36fe40](https://github.com/pie-framework/pie-lib/commit/d36fe4071deb5cb10f61758cfe73b185574b27af))
+
+
+
+
+
+## [1.9.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.9.1...@pie-lib/math-toolbar@1.9.2) (2022-05-09)
+
+
+### Bug Fixes
+
+* **math-toolbar:** fix simple response gather PD-1786 ([1769577](https://github.com/pie-framework/pie-lib/commit/176957700d75d3efa0e5fbf08e8e4c6ffe61320d))
+
+
+
+
+
+## [1.9.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.9.0...@pie-lib/math-toolbar@1.9.1) (2022-05-03)
+
+
+### Bug Fixes
+
+* **math-toolbar:** add sanity checks ([e012294](https://github.com/pie-framework/pie-lib/commit/e012294184b6f0c1472e6306be01e76e650c8fa5))
+
+
+
+
+
+# [1.9.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.8.9...@pie-lib/math-toolbar@1.9.0) (2022-05-03)
+
+
+### Features
+
+* **math-toolbar:** add validation ui/ux for math-inline inputs PD-1705 ([cbc7205](https://github.com/pie-framework/pie-lib/commit/cbc72051deaefd76765cd60a387e47eebd0abc2f))
+* **math-toolbar:** PD-1705 disable logic for add button in editor if maxResponseAreas is defined ([d68034c](https://github.com/pie-framework/pie-lib/commit/d68034cb4a2d24224f2c778fa4cf425ff157177a))
+
+
+
+
+
+## [1.8.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.8.8...@pie-lib/math-toolbar@1.8.9) (2022-04-12)
+
+**Note:** Version bump only for package @pie-lib/math-toolbar
+
+
+
+
+
+## [1.8.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.8.7...@pie-lib/math-toolbar@1.8.8) (2022-02-04)
+
+**Note:** Version bump only for package @pie-lib/math-toolbar
+
+
+
+
+
+## [1.8.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.8.6...@pie-lib/math-toolbar@1.8.7) (2022-01-10)
+
+**Note:** Version bump only for package @pie-lib/math-toolbar
+
+
+
+
+
+## [1.8.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.8.5...@pie-lib/math-toolbar@1.8.6) (2021-10-04)
+
+**Note:** Version bump only for package @pie-lib/math-toolbar
+
+
+
+
+
+## [1.8.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.8.4...@pie-lib/math-toolbar@1.8.5) (2021-10-04)
+
+**Note:** Version bump only for package @pie-lib/math-toolbar
+
+
+
+
+
+## [1.8.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.8.3...@pie-lib/math-toolbar@1.8.4) (2021-09-20)
+
+
+### Bug Fixes
+
+* **math-input, math-toolbar:** Adjusted parallelogram button size ([699431e](https://github.com/pie-framework/pie-lib/commit/699431e))
+
+
+
+
+
+## [1.8.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.8.2...@pie-lib/math-toolbar@1.8.3) (2021-09-16)
+
+**Note:** Version bump only for package @pie-lib/math-toolbar
+
+
+
+
+
+## [1.8.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.8.1...@pie-lib/math-toolbar@1.8.2) (2021-09-08)
+
+**Note:** Version bump only for package @pie-lib/math-toolbar
+
+
+
+
+
+## [1.8.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.8.0...@pie-lib/math-toolbar@1.8.1) (2021-09-08)
+
+
+### Bug Fixes
+
+* **math-toolbar:** Fixed arrows for pits ([f22208b](https://github.com/pie-framework/pie-lib/commit/f22208b))
+
+
+
+
+
 # [1.8.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.7.14...@pie-lib/math-toolbar@1.8.0) (2021-08-30)
 
 

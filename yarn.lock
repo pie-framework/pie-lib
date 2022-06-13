@@ -2650,45 +2650,6 @@
     unist-util-modify-children "^1.0.0"
     unist-util-visit-children "^1.0.0"
 
-"@pie-lib/math-input@^6.6.9":
-  version "6.6.9"
-  resolved "https://registry.yarnpkg.com/@pie-lib/math-input/-/math-input-6.6.9.tgz#d4b33785cf352ccc0d1c8f26dec26b094d32aeed"
-  integrity sha512-0CMN5CZh59ZJ37kw70kZPV3JYj7qSJy2ECsyCGy5CUWdu9RdRY+hfqaTqgWWa9UKBmvypnxkAvwZedRJLRnxPg==
-  dependencies:
-    "@material-ui/core" "^3.8.3"
-    "@material-ui/icons" "^3.0.2"
-    "@pie-framework/mathquill" "^1.1.2"
-    debug "^4.1.1"
-    lodash "^4.17.11"
-    react-portal "^4.2.0"
-
-"@pie-lib/math-toolbar@^1.9.3":
-  version "1.9.3"
-  resolved "https://registry.yarnpkg.com/@pie-lib/math-toolbar/-/math-toolbar-1.9.3.tgz#be2caf4e5a58f009008154912d29f91092958394"
-  integrity sha512-1aTu8ustvDN5+uaQ+ZllOFyc1u50zNevEXTINOG4A0sppWDf79o3YGEAdL3EKl9WyYBihTlwoBu52JKscP2NwQ==
-  dependencies:
-    "@material-ui/core" "^3.8.3"
-    "@material-ui/icons" "^3.0.2"
-    "@pie-lib/math-input" "^6.6.9"
-    classnames "^2.2.6"
-    debug "^4.1.1"
-    keycode "^2.2.0"
-    lodash "^4.17.11"
-
-"@pie-lib/render-ui@^4.12.6":
-  version "4.12.6"
-  resolved "https://registry.yarnpkg.com/@pie-lib/render-ui/-/render-ui-4.12.6.tgz#3baa2ed6429250049892a25403d16a6c0c50721e"
-  integrity sha512-Xrxc15AfTpBCuA2gFJ3UTcLTX4cM7UfZumOrdEmI8zXAsqRJhYkHtDwXzBj50CYEO1iYvx76RzUma4DZ/3KpMw==
-  dependencies:
-    "@material-ui/core" "^3.8.3"
-    "@material-ui/icons" "^3.0.2"
-    "@pie-lib/icons" "^2.4.25"
-    "@pie-lib/math-rendering" "^2.4.0"
-    classnames "^2.2.6"
-    debug "^4.1.1"
-    prop-types "^15.7.2"
-    react-transition-group "^2.5.2"
-
 "@pie-lib/test-utils@^0.0.3":
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/@pie-lib/test-utils/-/test-utils-0.0.3.tgz#9bef3bfb236af4cda24e9ed6446794d9615175a0"
@@ -6495,18 +6456,18 @@ ecc-jsbn@~0.1.1:
     jsbn "~0.1.0"
     safer-buffer "^2.1.0"
 
-"editable-html@npm:@pie-lib/editable-html@^7.17.3":
-  version "7.22.3"
-  resolved "https://registry.yarnpkg.com/@pie-lib/editable-html/-/editable-html-7.22.3.tgz#b2f735e8e33a075306475f0a81029d4704c3af34"
-  integrity sha512-ecEcecWz4NBM/DNtQ/NyRLpahtVcAxHo0cAXTgPlabjlj94ZRhk8f/lJAjmB9kbccMrsedgKocmjADApGQTSsA==
+"editable-html@npm:@pie-lib/editable-html@^7.21.0":
+  version "7.22.5"
+  resolved "https://registry.yarnpkg.com/@pie-lib/editable-html/-/editable-html-7.22.5.tgz#43fb3dcf018413799fa57e643e4fc52ee656be79"
+  integrity sha512-MPPKccWBBvBbTCnbbQrDAfEOM7pUvFrzN5FUbmht6mobs6X413Hv7BegozHX/GCItK1w+0B07HUaOVUsnlShrg==
   dependencies:
     "@material-ui/core" "^3.8.3"
     "@material-ui/icons" "^3.0.2"
     "@material-ui/styles" "^3.0.0-alpha.10"
     "@pie-lib/drag" "^1.1.52"
-    "@pie-lib/math-rendering" "^2.4.0"
+    "@pie-lib/math-rendering" "^2.4.2"
     "@pie-lib/math-toolbar" "^1.9.3"
-    "@pie-lib/render-ui" "^4.12.6"
+    "@pie-lib/render-ui" "^4.12.8"
     change-case "^3.0.2"
     classnames "^2.2.6"
     debug "^4.1.1"
