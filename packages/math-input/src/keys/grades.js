@@ -374,6 +374,6 @@ export const normalizeAdditionalKeys = additionalKeys => {
         latex === key.otherNotation
     );
 
-    return predefinedKey || additionalkey;
+    return !latex ? additionalkey : predefinedKey || additionalkey;
   });
 };

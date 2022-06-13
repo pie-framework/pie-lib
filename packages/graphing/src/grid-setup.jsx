@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { color } from '@pie-lib/render-ui';
+import { color, InputContainer } from '@pie-lib/render-ui';
 import { withStyles } from '@material-ui/core/styles';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import TextField from '@material-ui/core/TextField';
 import { NumberTextFieldCustom, Toggle } from '@pie-lib/config-ui';
+import EditableHTML from '@pie-lib/editable-html';
 
 const GridConfig = props => {
   const { classes, disabled, labelValue, labelValues, gridValue, gridValues, onChange } = props;
@@ -16,7 +16,7 @@ const GridConfig = props => {
   return (
     <div className={classes.columnView}>
       <NumberTextFieldCustom
-        className={classes.textField}
+        className={classes.mediumTextField}
         label="Grid Interval"
         value={gridValue}
         customValues={gridValues}
@@ -25,7 +25,7 @@ const GridConfig = props => {
         onChange={(e, v) => onChange('step', v)}
       />
       <NumberTextFieldCustom
-        className={classes.textField}
+        className={classes.mediumTextField}
         label="Label Interval"
         value={labelValue}
         customValues={labelValues}
@@ -39,6 +39,13 @@ const GridConfig = props => {
 
 const AxisConfig = props => {
   const { classes, disabled, label, maxValue, minValue, onChange, type } = props;
+  const activePlugins = [
+    'bold',
+    'italic',
+    'underline',
+    'strikethrough'
+    // 'languageCharacters'
+  ];
 
   return (
     <div className={classes.columnView}>
@@ -47,32 +54,34 @@ const AxisConfig = props => {
         -axis
       </Typography>
       <NumberTextFieldCustom
-        className={classes.textField}
+        className={classes.mediumTextField}
         label="Min Value"
         value={minValue}
+        min={-10000}
+        max={maxValue - 0.01}
         variant="outlined"
         disabled={disabled}
         onChange={(e, v) => onChange('min', v)}
       />
       <NumberTextFieldCustom
-        className={classes.textField}
+        className={classes.mediumTextField}
         label="Max Value"
         value={maxValue}
+        min={minValue + 0.01}
+        max={10000}
         variant="outlined"
         disabled={disabled}
         onChange={(e, v) => onChange('max', v)}
       />
-      <TextField
-        label="Label"
-        value={label}
-        inputProps={{
-          maxLength: 5,
-          style: { textAlign: 'center' }
-        }}
-        variant="outlined"
-        className={classes.textField}
-        onChange={e => onChange('axisLabel', e.target.value)}
-      />
+      <InputContainer label="Label" className={classes.mediumTextField}>
+        <EditableHTML
+          className={classes.axisLabel}
+          onChange={value => onChange('axisLabel', value)}
+          markup={label || ''}
+          charactersLimit={5}
+          activePlugins={activePlugins}
+        />
+      </InputContainer>
     </div>
   );
 };
@@ -80,15 +89,15 @@ const AxisConfig = props => {
 const GridSetup = props => {
   const {
     classes,
-    sizeConstraints,
     domain,
     dimensionsEnabled,
-    gridValues,
+    gridValues = {},
     includeAxes,
-    labelValues,
+    labelValues = {},
     onChange,
     range,
     size,
+    sizeConstraints,
     standardGrid
   } = props;
   const gridProps = { min: 2, max: 41 };
@@ -189,8 +198,8 @@ const GridSetup = props => {
           classes={classes}
           gridValue={domain.step}
           labelValue={domain.labelStep}
-          gridValues={gridValues}
-          labelValues={labelValues}
+          gridValues={gridValues.domain || []}
+          labelValues={labelValues.domain || []}
           onChange={onDomainChanged}
         />
         <GridConfig
@@ -198,6 +207,8 @@ const GridSetup = props => {
           disabled={standardGrid}
           gridValue={range.step}
           labelValue={range.labelStep}
+          gridValues={gridValues.range || []}
+          labelValues={labelValues.range || []}
           onChange={onRangeChanged}
         />
       </div>
@@ -250,7 +261,9 @@ const GridSetup = props => {
               <div className={classes.dimensions}>
                 <div>
                   <Typography>Dimensions(px)</Typography>
-                  <Typography className={classes.disabled}>Min 150, Max 700</Typography>
+                  <Typography className={classes.disabled}>
+                    Min {sizeConstraints.min}, Max {sizeConstraints.max}
+                  </Typography>
                 </div>
                 <NumberTextFieldCustom
                   className={classes.textField}
@@ -319,6 +332,10 @@ const styles = theme => ({
     width: '130px',
     margin: `${theme.spacing.unit}px ${theme.spacing.unit / 2}px`
   },
+  mediumTextField: {
+    width: '160px',
+    margin: `${theme.spacing.unit}px ${theme.spacing.unit / 2}px`
+  },
   largeTextField: {
     width: '230px',
     margin: `${theme.spacing.unit}px ${theme.spacing.unit / 2}px`
@@ -334,6 +351,9 @@ const styles = theme => ({
   },
   disabled: {
     color: color.disabled()
+  },
+  axisLabel: {
+    paddingTop: theme.spacing.unit * 2
   }
 });
 
