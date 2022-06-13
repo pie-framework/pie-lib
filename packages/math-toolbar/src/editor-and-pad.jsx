@@ -42,6 +42,9 @@ export class EditorAndPad extends React.Component {
     controlledKeypad: PropTypes.bool,
     controlledKeypadMode: PropTypes.bool,
     noDecimal: PropTypes.bool,
+    hideInput: PropTypes.bool,
+    noLatexHandling: PropTypes.bool,
+    layoutForKeyPad: PropTypes.object,
     additionalKeys: PropTypes.array,
     latex: PropTypes.string.isRequired,
     onAnswerBlockAdd: PropTypes.func,
@@ -64,9 +67,14 @@ export class EditorAndPad extends React.Component {
   }
 
   onClick = data => {
-    const { noDecimal } = this.props;
+    const { noDecimal, noLatexHandling, onChange } = this.props;
     const c = toNodeData(data);
     log('mathChange: ', c);
+
+    if (noLatexHandling) {
+      onChange(c.value);
+      return;
+    }
 
     // if decimals are not allowed for this response, we discard the input
     if (noDecimal && (c.value === '.' || c.value === ',')) {
@@ -178,6 +186,8 @@ export class EditorAndPad extends React.Component {
       controlledKeypadMode,
       showKeypad,
       noDecimal,
+      hideInput,
+      layoutForKeyPad,
       latex,
       onFocus,
       onBlur,
@@ -191,7 +201,7 @@ export class EditorAndPad extends React.Component {
 
     return (
       <div className={cx(classes.mathToolbar, classNames.mathToolbar)}>
-        <div className={classes.inputAndTypeContainer}>
+        <div className={cx(classes.inputAndTypeContainer, { [classes.hide]: hideInput })}>
           {controlledKeypadMode && (
             <InputContainer label="Equation Editor" className={classes.selectContainer}>
               <Select
@@ -211,6 +221,7 @@ export class EditorAndPad extends React.Component {
                 <MenuItem value={'advanced-algebra'}>Advanced Algebra</MenuItem>
                 <MenuItem value={'statistics'}>Statistics</MenuItem>
                 <MenuItem value={'item-authoring'}>Item Authoring</MenuItem>
+                <MenuItem value={'language'}>Language</MenuItem>
               </Select>
             </InputContainer>
           )}
@@ -249,6 +260,7 @@ export class EditorAndPad extends React.Component {
         <hr className={classes.hr} />
         {shouldShowKeypad && (
           <HorizontalKeypad
+            layoutForKeyPad={layoutForKeyPad}
             additionalKeys={additionalKeys}
             mode={controlledKeypadMode ? this.state.equationEditor : keypadMode}
             onClick={this.onClick}
@@ -290,6 +302,9 @@ const styles = theme => ({
         right: '-1px'
       }
     }
+  },
+  hide: {
+    display: 'none'
   },
   selectContainer: {
     flex: 'initial',

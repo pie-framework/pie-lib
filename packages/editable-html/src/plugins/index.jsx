@@ -4,6 +4,7 @@ import BulletedListIcon from '@material-ui/icons/FormatListBulleted';
 import NumberedListIcon from '@material-ui/icons/FormatListNumbered';
 import ImagePlugin from './image';
 import MediaPlugin from './media';
+import CharactersPlugin from './characters';
 import Italic from '@material-ui/icons/FormatItalic';
 import MathPlugin from './math';
 import React from 'react';
@@ -63,6 +64,7 @@ export const ALL_PLUGINS = [
   'numbered-list',
   'image',
   'math',
+  'languageCharacters',
   'table',
   'video',
   'audio',
@@ -103,6 +105,7 @@ export const buildPlugins = (activePlugins, opts) => {
     addIf('video', MediaPlugin('video', opts.media)),
     addIf('audio', MediaPlugin('audio', opts.media)),
     addIf('math', mathPlugin),
+    ...opts.languageCharacters.map(config => addIf('languageCharacters', CharactersPlugin(config))),
     addIf('bulleted-list', List({ key: 'l', type: 'ul_list', icon: <BulletedListIcon /> })),
     addIf('numbered-list', List({ key: 'n', type: 'ol_list', icon: <NumberedListIcon /> })),
     ToolbarPlugin(opts.toolbar),

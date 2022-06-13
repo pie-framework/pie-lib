@@ -114,6 +114,9 @@ export class RawPureToolbar extends React.Component {
     classNames: PropTypes.object,
     latex: PropTypes.string.isRequired,
     keypadMode: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    hideInput: PropTypes.bool,
+    noLatexHandling: PropTypes.bool,
+    layoutForKeyPad: PropTypes.object,
     onChange: PropTypes.func.isRequired,
     onDone: PropTypes.func.isRequired,
     onBlur: PropTypes.func,
@@ -142,6 +145,9 @@ export class RawPureToolbar extends React.Component {
       showKeypad,
       keypadMode,
       noDecimal,
+      hideInput,
+      noLatexHandling,
+      layoutForKeyPad,
       latex,
       onChange,
       onDone,
@@ -163,6 +169,9 @@ export class RawPureToolbar extends React.Component {
           controlledKeypad={controlledKeypad}
           controlledKeypadMode={controlledKeypadMode}
           noDecimal={noDecimal}
+          hideInput={hideInput}
+          noLatexHandling={noLatexHandling}
+          layoutForKeyPad={layoutForKeyPad}
           showKeypad={showKeypad}
           additionalKeys={additionalKeys}
           allowAnswerBlock={allowAnswerBlock}
