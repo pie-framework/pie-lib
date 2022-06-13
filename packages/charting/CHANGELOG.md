@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.5.18...@pie-lib/charting@5.0.0) (2022-06-13)
+
+
+### Bug Fixes
+
+* updated shapshot ([4f4975d](https://github.com/pie-framework/pie-lib/commit/4f4975d9abd2c52365f7081e280d860149e7edd0))
+
+
+### Features
+
+* **charting:** remove editCategoryEnabled property checkbox and usage ([3181fc0](https://github.com/pie-framework/pie-lib/commit/3181fc02ea83e408af5d930d5e10a85a2ded3dd4))
+* **charting:** remove editCategoryEnabled property checkbox and usage ([b72de39](https://github.com/pie-framework/pie-lib/commit/b72de39525c0f9c0439204e65b2a7d330bb9061d))
+
+
+### BREAKING CHANGES
+
+* **charting:** The editCategoryEnabled checkbox and property was removed.
+Enabeled property will be used for each category.
+* **charting:** The editCategoryEnabled propery has been removed
+
+
+
+
+
 ## [4.5.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.5.17...@pie-lib/charting@4.5.18) (2022-06-13)
 
 
