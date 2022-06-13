@@ -879,7 +879,7 @@
     "footer": null,
     "notes": [],
     "hash": "41c0acd332cbe8bceb3ed9059fee1d52ea73ebec",
-    "gitTags": " (origin/fix/mask-markup-border-radius)",
+    "gitTags": "",
     "committerDate": "2021-10-18 14:06:30 +0300",
     "isTagged": true,
     "tag": "@pie-lib/mask-markup@1.11.1"
