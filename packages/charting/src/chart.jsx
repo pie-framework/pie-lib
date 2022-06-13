@@ -47,6 +47,7 @@ export class Chart extends React.Component {
     title: PropTypes.string,
     onDataChange: PropTypes.func,
     addCategoryEnabled: PropTypes.bool,
+    editCategoryEnabled: PropTypes.bool,
     categoryDefaultLabel: PropTypes.string,
     theme: PropTypes.object
   };
@@ -126,12 +127,13 @@ export class Chart extends React.Component {
   };
 
   getFilteredCategories = () => {
-    const { data, defineChart } = this.props;
+    const { data, editCategoryEnabled, addCategoryEnabled } = this.props;
 
     return data
       ? data.map(d => ({
           ...d,
-          deletable: defineChart || d.deletable
+          editable: !d.initial || (d.initial && editCategoryEnabled),
+          deletable: !d.initial || (d.initial && addCategoryEnabled)
         }))
       : [];
   };
@@ -148,7 +150,6 @@ export class Chart extends React.Component {
       theme
     } = this.props;
     let { chartType } = this.props;
-
     const defineChart = this.props.defineChart || false;
     const { width, height } = size || {};
 
@@ -176,10 +177,9 @@ export class Chart extends React.Component {
         () => this.rootNode
       )
     };
-
     log('[render] common:', common);
 
-    const maskSize = { x: -10, y: -10, width: width + 20, height: height + 80 };
+    const maskSize = { x: -10, y: -10, width: width + 20, height: height + 50 };
     const { scale } = common.graphProps;
     const xBand = dataToXBand(scale.x, categories, width, chartType);
 
@@ -190,7 +190,7 @@ export class Chart extends React.Component {
     const bandWidth = xBand.bandwidth();
     // for chartType "line", bandWidth will be 0, so we have to calculate it
     const barWidth = bandWidth || scale.x(correctValues.domain.max) / categories.length;
-    const increaseHeight = defineChart ? 80 : 0;
+    const increaseHeight = defineChart ? 50 : 0;
 
     // if there are many categories, we have to rotate their names in order to fit
     // and we have to add extra value on top of some items
