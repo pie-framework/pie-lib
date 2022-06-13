@@ -31,6 +31,13 @@ export class TickComponent extends React.Component {
     onChangeCategory(index, { ...category, interactive: !category.interactive });
   };
 
+  changeEditable = (index, value) => {
+    const { categories, onChangeCategory } = this.props;
+    const category = categories[index];
+
+    onChangeCategory(index, { ...category, editable: !category.editable || false });
+  };
+
   render() {
     const {
       classes,
@@ -90,17 +97,7 @@ export class TickComponent extends React.Component {
           )}
           <MarkLabel
             inputRef={r => (this.input = r)}
-            disabled={!(editable && interactive)}
-            mark={category}
-            graphProps={graphProps}
-            onChange={newLabel => this.changeCategory(index, newLabel)}
-            barWidth={barWidth}
-            rotate={rotate}
-            correctness={correctness}
-          />
-          <MarkLabel
-            inputRef={r => (this.input = r)}
-            disabled={!(editable && interactive)}
+            disabled={!editable}
             mark={category}
             graphProps={graphProps}
             onChange={newLabel => this.changeCategory(index, newLabel)}
@@ -157,6 +154,31 @@ export class TickComponent extends React.Component {
             </tspan>
           </text>
         )}
+        {defineChart && index === 0 && (
+          <text
+            x={x - 80}
+            y={y + 80 + top}
+            width={barWidth}
+            height={4}
+            style={{
+              position: 'absolute',
+              pointerEvents: 'none',
+              wordBreak: 'break-word',
+              overflow: 'visible',
+              maxWidth: barWidth,
+              display: 'inline-block'
+            }}
+          >
+            <tspan x="0" dy=".6em">
+              {' '}
+              Student can{' '}
+            </tspan>
+            <tspan x="0" dy="1.2em">
+              {' '}
+              edit name
+            </tspan>
+          </text>
+        )}
         {defineChart && (
           <foreignObject
             x={x - 24}
@@ -168,6 +190,20 @@ export class TickComponent extends React.Component {
             <Checkbox
               checked={interactive}
               onChange={e => this.changeInteractive(index, e.target.checked)}
+            />
+          </foreignObject>
+        )}
+        {defineChart && (
+          <foreignObject
+            x={x - 24}
+            y={y + 70 + top}
+            width={barWidth}
+            height={4}
+            style={{ pointerEvents: 'visible', overflow: 'visible' }}
+          >
+            <Checkbox
+              checked={editable}
+              onChange={e => this.changeEditable(index, e.target.checked)}
             />
           </foreignObject>
         )}
