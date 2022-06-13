@@ -134,7 +134,7 @@ exports[`ChartAxes snapshot renders 1`] = `
     >
       <rect
         fill="white"
-        height={150}
+        height={180}
         width={120}
         x={-10}
         y={-10}
@@ -317,7 +317,7 @@ exports[`ChartAxes snapshot renders if size is not defined 1`] = `
     >
       <rect
         fill="white"
-        height={530}
+        height={560}
         width={500}
         x={-10}
         y={-10}
@@ -502,7 +502,7 @@ exports[`ChartAxes snapshot renders without chartType and charts properties 1`] 
     >
       <rect
         fill="white"
-        height={150}
+        height={180}
         width={120}
         x={-10}
         y={-10}
@@ -685,7 +685,7 @@ exports[`ChartAxes snapshot renders without chartType property 1`] = `
     >
       <rect
         fill="white"
-        height={150}
+        height={180}
         width={120}
         x={-10}
         y={-10}
