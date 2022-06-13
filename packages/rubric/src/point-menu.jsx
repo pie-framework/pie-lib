@@ -85,7 +85,6 @@ export default class PointMenu extends React.Component {
       <IconMenu
         onClick={key => onChange(key)}
         opts={{
-          text: 'Use Default Text',
           sample: sampleText
         }}
         classes={classes}

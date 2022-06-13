@@ -14,13 +14,6 @@ export class Grid extends React.Component {
     graphProps: types.GraphPropsType.isRequired
   };
 
-  shouldComponentUpdate(nextProps) {
-    const { graphProps } = this.props;
-    const { graphProps: nextGraphProps } = nextProps;
-
-    return !utils.isDomainRangeEqual(graphProps, nextGraphProps);
-  }
-
   getAdditionalGridProps = (rowTickValues, columnTickValues) => {
     const {
       graphProps: {
