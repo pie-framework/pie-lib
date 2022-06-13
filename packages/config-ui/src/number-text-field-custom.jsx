@@ -72,14 +72,7 @@ export class NumberTextFieldCustom extends React.Component {
   constructor(props) {
     super(props);
 
-    let value = this.clamp(props.value);
-    let currentIndex = (props.customValues || []).findIndex(val => val === value);
-
-    if ((props.customValues || []).length > 0 && currentIndex === -1) {
-      const closestValue = this.getClosestValue(value);
-      value = closestValue.value;
-      currentIndex = closestValue.index;
-    }
+    const { value, currentIndex } = this.normalizeValueAndIndex(props.customValues, props.value);
 
     this.state = {
       value,
@@ -94,9 +87,9 @@ export class NumberTextFieldCustom extends React.Component {
   }
 
   UNSAFE_componentWillReceiveProps(props) {
-    const value = this.clamp(props.value);
+    const { value, currentIndex } = this.normalizeValueAndIndex(props.customValues, props.value);
 
-    this.setState({ value });
+    this.setState({ value, currentIndex });
   }
 
   clamp(value) {
@@ -121,34 +114,38 @@ export class NumberTextFieldCustom extends React.Component {
     return value;
   }
 
-  getClosestValue = number => {
-    const { customValues } = this.props;
+  normalizeValueAndIndex = (customValues, number) => {
+    const value = this.clamp(number);
+    const currentIndex = (customValues || []).findIndex(val => val === value);
 
-    return customValues.reduce(
+    if ((customValues || []).length > 0 && currentIndex === -1) {
+      const closestValue = this.getClosestValue(customValues, value);
+
+      return { value: closestValue.value, currentIndex: closestValue.index };
+    }
+
+    return { value, currentIndex };
+  };
+
+  getClosestValue = (customValues, number) =>
+    customValues.reduce(
       (closest, value, index) =>
         Math.abs(value - number) < Math.abs(closest.value - number) ? { value, index } : closest,
       { value: customValues[0], index: 0 }
     );
-  };
 
   onBlur = event => {
     const { customValues, onlyIntegersAllowed } = this.props;
     const { value } = event.target;
     const rawNumber = onlyIntegersAllowed ? parseInt(value) : parseFloat(value);
-    let number = this.clamp(rawNumber);
-    let updatedIndex = (customValues || []).findIndex(val => val === number);
 
-    if (customValues.length > 0 && updatedIndex === -1) {
-      const closestValue = this.getClosestValue(number);
-      number = closestValue.value;
-      updatedIndex = closestValue.index;
-    }
+    const { value: number, currentIndex } = this.normalizeValueAndIndex(customValues, rawNumber);
 
     if (number !== this.state.value) {
       this.setState(
         {
           value: number.toString(),
-          currentIndex: updatedIndex
+          currentIndex
         },
         () => this.props.onChange(event, number)
       );
