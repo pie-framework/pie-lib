@@ -25,6 +25,8 @@ export const filterByValidToolTypes = backgroundMarks =>
 export const filterByVisibleToolTypes = (toolbarTools, marks) =>
   marks.filter(bM => !!toolbarTools.find(tool => tool === bM.type));
 
+const getDefaultCurrentTool = toolType => toolsArr.find(tool => tool.type === toolType) || null;
+
 export class GraphWithControls extends React.Component {
   static propTypes = {
     ...graphPropTypes,
@@ -36,7 +38,24 @@ export class GraphWithControls extends React.Component {
 
   static defaultProps = { toolbarTools: [] };
 
-  state = { currentTool: null, labelModeEnabled: false };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      currentTool: getDefaultCurrentTool(props.defaultTool),
+      labelModeEnabled: false
+    };
+  }
+
+  componentDidUpdate(prevProps) {
+    const { defaultTool } = this.props;
+
+    if (prevProps.defaultTool !== defaultTool) {
+      const currentTool = getDefaultCurrentTool(defaultTool);
+
+      this.setState({ currentTool });
+    }
+  }
 
   changeCurrentTool = (tool, tools) =>
     this.setState({ currentTool: tools.find(t => t.type === tool) });
