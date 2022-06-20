@@ -6,6 +6,7 @@ import { color } from '@pie-lib/render-ui';
 import { AxisLeft, AxisBottom } from '@vx/axis';
 import { bandKey, getTickValues, getRotateAngle } from './utils';
 import MarkLabel from './mark-label';
+import Checkbox from '@material-ui/core/Checkbox';
 
 export class TickComponent extends React.Component {
   changeCategory = (index, newLabel) => {
@@ -23,6 +24,20 @@ export class TickComponent extends React.Component {
     }
   };
 
+  changeInteractive = (index, value) => {
+    const { categories, onChangeCategory } = this.props;
+    const category = categories[index];
+
+    onChangeCategory(index, { ...category, interactive: !category.interactive });
+  };
+
+  changeEditable = (index, value) => {
+    const { categories, onChangeCategory } = this.props;
+    const category = categories[index];
+
+    onChangeCategory(index, { ...category, editable: !category.editable || false });
+  };
+
   render() {
     const {
       classes,
@@ -33,6 +48,7 @@ export class TickComponent extends React.Component {
       rotate,
       top,
       graphProps,
+      defineChart,
       x,
       y,
       formattedValue
@@ -61,7 +77,7 @@ export class TickComponent extends React.Component {
           x={bandWidth ? barX : x - barWidth / 2}
           y={6}
           width={barWidth}
-          height={24}
+          height={4}
           style={{ pointerEvents: 'none', overflow: 'visible' }}
         >
           {index === 0 && (
@@ -81,7 +97,7 @@ export class TickComponent extends React.Component {
           )}
           <MarkLabel
             inputRef={r => (this.input = r)}
-            disabled={!(editable && interactive)}
+            disabled={!editable}
             mark={category}
             graphProps={graphProps}
             onChange={newLabel => this.changeCategory(index, newLabel)}
@@ -112,6 +128,84 @@ export class TickComponent extends React.Component {
           >
             <path d="M128 405.429C128 428.846 147.198 448 170.667 448h170.667C364.802 448 384 428.846 384 405.429V160H128v245.429zM416 96h-80l-26.785-32H202.786L176 96H96v32h320V96z" />
           </svg>
+        )}
+        {defineChart && index === 0 && (
+          <text
+            x={x - 80}
+            y={y + 40 + top}
+            width={barWidth}
+            height={4}
+            style={{
+              position: 'absolute',
+              pointerEvents: 'none',
+              wordBreak: 'break-word',
+              overflow: 'visible',
+              maxWidth: barWidth,
+              display: 'inline-block'
+            }}
+          >
+            <tspan x="0" dy=".6em">
+              {' '}
+              Student can{' '}
+            </tspan>
+            <tspan x="0" dy="1.2em">
+              {' '}
+              set value
+            </tspan>
+          </text>
+        )}
+        {defineChart && index === 0 && (
+          <text
+            x={x - 80}
+            y={y + 80 + top}
+            width={barWidth}
+            height={4}
+            style={{
+              position: 'absolute',
+              pointerEvents: 'none',
+              wordBreak: 'break-word',
+              overflow: 'visible',
+              maxWidth: barWidth,
+              display: 'inline-block'
+            }}
+          >
+            <tspan x="0" dy=".6em">
+              {' '}
+              Student can{' '}
+            </tspan>
+            <tspan x="0" dy="1.2em">
+              {' '}
+              edit name
+            </tspan>
+          </text>
+        )}
+        {defineChart && (
+          <foreignObject
+            x={x - 24}
+            y={y + 20 + top}
+            width={barWidth}
+            height={4}
+            style={{ pointerEvents: 'visible', overflow: 'visible' }}
+          >
+            <Checkbox
+              checked={interactive}
+              onChange={e => this.changeInteractive(index, e.target.checked)}
+            />
+          </foreignObject>
+        )}
+        {defineChart && (
+          <foreignObject
+            x={x - 24}
+            y={y + 70 + top}
+            width={barWidth}
+            height={4}
+            style={{ pointerEvents: 'visible', overflow: 'visible' }}
+          >
+            <Checkbox
+              checked={editable}
+              onChange={e => this.changeEditable(index, e.target.checked)}
+            />
+          </foreignObject>
         )}
       </g>
     );
@@ -168,6 +262,7 @@ export class RawChartAxes extends React.Component {
       onChangeCategory,
       categories = [],
       top,
+      defineChart,
       theme
     } = this.props;
 
@@ -177,6 +272,7 @@ export class RawChartAxes extends React.Component {
 
     const bottomScale =
       xBand && typeof xBand.rangeRound === 'function' && xBand.rangeRound([0, size.width]);
+
     const bandWidth = xBand && typeof xBand.bandwidth === 'function' && xBand.bandwidth();
     // for chartType "line", bandWidth will be 0, so we have to calculate it
     const barWidth = bandWidth || (scale.x && scale.x(domain.max) / categories.length);
@@ -199,6 +295,7 @@ export class RawChartAxes extends React.Component {
         barWidth,
         rotate,
         top,
+        defineChart,
         onChangeCategory,
         onChange,
         graphProps,

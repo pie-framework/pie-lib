@@ -460,7 +460,7 @@ exports[`TickComponent snapshot renders 1`] = `""`;
 exports[`TickComponent snapshot1 renders 1`] = `
 <g>
   <foreignObject
-    height={24}
+    height={4}
     style={
       Object {
         "overflow": "visible",

@@ -79,7 +79,9 @@ export class MathToolbar extends React.Component {
       showKeypad,
       onFocus,
       onBlur,
-      hideDoneButton
+      hideDoneButton,
+      error,
+      maxResponseAreas
     } = this.props;
 
     return (
@@ -100,6 +102,8 @@ export class MathToolbar extends React.Component {
         controlledKeypad={controlledKeypad}
         controlledKeypadMode={controlledKeypadMode}
         hideDoneButton={hideDoneButton}
+        error={error}
+        maxResponseAreas={maxResponseAreas}
       />
     );
   }
@@ -110,6 +114,9 @@ export class RawPureToolbar extends React.Component {
     classNames: PropTypes.object,
     latex: PropTypes.string.isRequired,
     keypadMode: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    hideInput: PropTypes.bool,
+    noLatexHandling: PropTypes.bool,
+    layoutForKeyPad: PropTypes.object,
     onChange: PropTypes.func.isRequired,
     onDone: PropTypes.func.isRequired,
     onBlur: PropTypes.func,
@@ -138,13 +145,18 @@ export class RawPureToolbar extends React.Component {
       showKeypad,
       keypadMode,
       noDecimal,
+      hideInput,
+      noLatexHandling,
+      layoutForKeyPad,
       latex,
       onChange,
       onDone,
       onFocus,
       onBlur,
       hideDoneButton,
-      classes
+      classes,
+      error,
+      maxResponseAreas
     } = this.props;
 
     return (
@@ -157,6 +169,9 @@ export class RawPureToolbar extends React.Component {
           controlledKeypad={controlledKeypad}
           controlledKeypadMode={controlledKeypadMode}
           noDecimal={noDecimal}
+          hideInput={hideInput}
+          noLatexHandling={noLatexHandling}
+          layoutForKeyPad={layoutForKeyPad}
           showKeypad={showKeypad}
           additionalKeys={additionalKeys}
           allowAnswerBlock={allowAnswerBlock}
@@ -165,6 +180,8 @@ export class RawPureToolbar extends React.Component {
           onChange={onChange}
           onFocus={onFocus}
           onBlur={onBlur}
+          error={error}
+          maxResponseAreas={maxResponseAreas}
         />
         {(!controlledKeypad || (controlledKeypad && showKeypad)) && !hideDoneButton && (
           <DoneButton onClick={onDone} />

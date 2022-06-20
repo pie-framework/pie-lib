@@ -1,5 +1,5 @@
 import invariant from 'invariant';
-import { buildSizeArray, snapTo } from './utils';
+import { snapTo } from './utils';
 import { scaleLinear } from 'd3-scale';
 
 const createSnapMinAndMax = ({ min, max, step }) => {
@@ -16,19 +16,16 @@ export const create = (domain, range, size, getRootNode) => {
   invariant(domain.min < domain.max, 'domain: min must be less than max');
   invariant(range.min < range.max, 'range: min must be less than max');
 
-  const widthArray = buildSizeArray(size.width, domain.padding);
-  const heightArray = buildSizeArray(size.height, range.padding);
-
   const domainMinMax = createSnapMinAndMax(domain);
   const rangeMinMax = createSnapMinAndMax(range);
 
   const scale = {
     x: scaleLinear()
       .domain([domain.min, domain.max])
-      .range(widthArray),
+      .range([0, size.width]),
     y: scaleLinear()
       .domain([range.max, range.min])
-      .range(heightArray)
+      .range([0, size.height])
   };
 
   const snap = {
