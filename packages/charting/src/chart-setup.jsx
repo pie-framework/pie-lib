@@ -3,71 +3,64 @@ import PropTypes from 'prop-types';
 import { color } from '@pie-lib/render-ui';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
 import ChartType from './chart-type';
+import { NumberTextFieldCustom } from '@pie-lib/config-ui';
 
 const ConfigureChartPanel = props => {
   const { classes, model, onChange } = props;
-
   const { range } = model;
   const size = model.graph;
 
-  const onSizeChanged = (key, e) => {
-    const step = 1;
-    const min = 50;
-    const max = 700;
-    const value = parseInt(e.target.value);
-    const nextValue = value <= size[key] ? size[key] - step : size[key] + step;
-
-    if (nextValue < min || nextValue > max) {
-      return;
-    }
-
-    const graph = { ...size, [key]: nextValue };
-    console.log(graph, 'chart');
+  const onSizeChanged = (key, value) => {
+    const graph = { ...size, [key]: value };
 
     onChange({ ...model, graph });
   };
 
-  const onRangeChanged = (key, e) => {};
+  const onRangeChanged = (key, value) => {
+    const parsedValue = parseInt(value);
+
+    range[key] = parsedValue;
+
+    onChange({ ...model, range });
+  };
 
   const onChartTypeChange = chartType => onChange({ ...model, chartType });
 
   return (
     <div className={classes.wrapper}>
       <Typography variant={'subtitle1'}>Configure Chart</Typography>
-
       <div className={classes.content}>
         <div className={classes.rowView}>
           <ChartType value={model.chartType} onChange={e => onChartTypeChange(e.target.value)} />
-          <TextField
-            label={'Max Value'}
-            type={'number'}
+          <NumberTextFieldCustom
+            className={classes.mediumTextField}
+            label="Max Value"
             value={range.max}
-            variant={'outlined'}
-            //disabled={disabled}
-            className={classes.textField}
-            onChange={v => onChange('max', v)}
+            min={0}
+            max={10000}
+            variant="outlined"
+            onChange={(e, v) => onRangeChanged('max', v)}
           />
         </div>
         <div className={classes.rowView}>
-          <TextField
-            label={'Grid Interval'}
-            type={'number'}
-            //  value={}
-            variant={'outlined'}
-            //  disabled={disabled}
-            className={classes.textField}
-            onChange={v => onChange('step', v)}
+          <NumberTextFieldCustom
+            className={classes.mediumTextField}
+            label="Grid Interval"
+            value={range.step}
+            min={0}
+            max={10000}
+            variant="outlined"
+            onChange={(e, v) => onRangeChanged('step', v)}
           />
-          <TextField
+          <NumberTextFieldCustom
+            className={classes.mediumTextField}
             label={'Label Interval'}
-            type={'number'}
-            //   value={}
+            value={range.labelStep}
+            min={0}
+            max={10000}
             variant={'outlined'}
-            //disabled={disabled}
-            className={classes.textField}
-            onChange={v => onChange('labelStep', v)}
+            onChange={(e, v) => onRangeChanged('labelStep', v)}
           />
         </div>
         <div className={classes.dimensions}>
@@ -75,26 +68,26 @@ const ConfigureChartPanel = props => {
             <Typography>Dimensions(px)</Typography>
           </div>
           <div className={classes.columnView}>
-            <TextField
+            <NumberTextFieldCustom
+              className={classes.textField}
               label={'Width'}
-              type={'number'}
               value={size.width}
-              //inputProps={sizeProps}
+              min={50}
+              max={700}
               variant={'outlined'}
-              className={classes.smallTextField}
-              onChange={v => onSizeChanged('width', v)}
+              onChange={(e, v) => onSizeChanged('width', v)}
             />
             <Typography className={classes.disabled}>Min 50, Max 700</Typography>
           </div>
           <div className={classes.columnView}>
-            <TextField
+            <NumberTextFieldCustom
+              className={classes.textField}
               label={'Height'}
-              type={'number'}
               value={size.height}
-              // inputProps={sizeProps}
+              min={400}
+              max={700}
               variant={'outlined'}
-              className={classes.smallTextField}
-              onChange={v => onSizeChanged('height', v)}
+              onChange={(e, v) => onSizeChanged('height', v)}
             />
             <Typography className={classes.disabled}>Min 400, Max 700</Typography>
           </div>
@@ -118,12 +111,13 @@ ConfigureChartPanel.propTypes = {
 
 const styles = theme => ({
   wrapper: {
-    width: '400px'
+    width: '450px'
   },
   content: {
     display: 'flex',
     flexDirection: 'column',
-    width: '100%'
+    width: '100%',
+    marginTop: '24px'
   },
   columnView: {
     display: 'flex',
@@ -135,12 +129,12 @@ const styles = theme => ({
     justifyContent: 'space-around',
     alignItems: 'center'
   },
-  smallTextField: {
-    width: '90px',
+  textField: {
+    width: '130px',
     margin: `${theme.spacing.unit}px ${theme.spacing.unit / 2}px`
   },
-  textField: {
-    width: '120px',
+  mediumTextField: {
+    width: '160px',
     margin: `${theme.spacing.unit}px ${theme.spacing.unit / 2}px`
   },
   largeTextField: {
@@ -154,7 +148,8 @@ const styles = theme => ({
   dimensions: {
     display: 'flex',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
+    margin: '24px 0px'
   },
   disabled: {
     color: color.disabled()

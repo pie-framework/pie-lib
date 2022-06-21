@@ -7,20 +7,16 @@ import Select from '@material-ui/core/Select';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 
 const ChartType = withStyles(theme => ({
-  formControl: {
-    width: '100%'
-  },
   chartType: {
-    paddingTop: theme.spacing.unit * 2,
-    paddingBottom: theme.spacing.unit * 2
+    width: '160px'
   },
   chartTypeLabel: {
-    transform: 'translate(0px, -16px) scale(0.75) !important'
+    backgroundColor: 'transparent'
   }
 }))(({ onChange, value, classes }) => {
   return (
     <div className={classes.chartType}>
-      <FormControl variant="outlined" className={classes.formControl}>
+      <FormControl variant={'outlined'} className={classes.chartType}>
         <InputLabel htmlFor="type-helper" className={classes.chartTypeLabel}>
           ChartType
         </InputLabel>
