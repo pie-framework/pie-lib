@@ -32,6 +32,7 @@ export class RawLine extends React.Component {
     xBand: PropTypes.func,
     index: PropTypes.number.isRequired,
     graphProps: types.GraphPropsType.isRequired,
+    defineChart: PropTypes.bool,
     data: PropTypes.arrayOf(
       PropTypes.shape({
         label: PropTypes.string,

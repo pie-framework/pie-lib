@@ -113,6 +113,7 @@ export class Bars extends React.Component {
   static propTypes = {
     data: PropTypes.array,
     onChangeCategory: PropTypes.func,
+    defineChart: PropTypes.bool,
     xBand: PropTypes.func,
     graphProps: types.GraphPropsType.isRequired
   };

@@ -137,6 +137,7 @@ export class Plot extends React.Component {
     onChangeCategory: PropTypes.func,
     xBand: PropTypes.func,
     graphProps: types.GraphPropsType.isRequired,
+    defineChart: PropTypes.bool,
     CustomBarElement: PropTypes.func
   };
 

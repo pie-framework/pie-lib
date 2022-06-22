@@ -48,6 +48,7 @@ export class Chart extends React.Component {
     onDataChange: PropTypes.func,
     addCategoryEnabled: PropTypes.bool,
     categoryDefaultLabel: PropTypes.string,
+    defineChart: PropTypes.bool,
     theme: PropTypes.object
   };
 
