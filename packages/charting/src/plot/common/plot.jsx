@@ -67,6 +67,7 @@ export class RawPlot extends React.Component {
       interactive,
       correctness
     } = this.props;
+
     const { scale, range, size } = graphProps;
     const { max } = range || {};
     const { dragValue } = this.state;
