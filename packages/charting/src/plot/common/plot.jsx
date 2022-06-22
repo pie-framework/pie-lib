@@ -141,7 +141,7 @@ export class Plot extends React.Component {
   };
 
   render() {
-    const { data, graphProps, xBand, CustomBarElement, onChangeCategory } = this.props;
+    const { data, graphProps, xBand, CustomBarElement, onChangeCategory, defineChart } = this.props;
 
     return (
       <Group>
@@ -149,7 +149,7 @@ export class Plot extends React.Component {
           <Bar
             value={d.value}
             label={d.label}
-            interactive={d.interactive}
+            interactive={defineChart ? true : d.interactive}
             xBand={xBand}
             index={index}
             key={`bar-${d.label}-${d.value}-${index}`}

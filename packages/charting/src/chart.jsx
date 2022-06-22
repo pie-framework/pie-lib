@@ -231,6 +231,7 @@ export class Chart extends React.Component {
             <ChartComponent
               {...common}
               data={categories}
+              defineChart={defineChart}
               onChange={this.changeData}
               onChangeCategory={this.changeCategory}
             />

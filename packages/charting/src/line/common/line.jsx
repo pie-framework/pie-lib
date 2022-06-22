@@ -77,7 +77,7 @@ export class RawLine extends React.Component {
   };
 
   render() {
-    const { graphProps, data, classes, CustomDraggableComponent } = this.props;
+    const { graphProps, data, classes, CustomDraggableComponent, defineChart } = this.props;
     const { line: lineState, dragging } = this.state;
     const { scale } = graphProps;
     const lineToUse = dragging ? lineState : getData(data, graphProps.domain);
@@ -93,14 +93,15 @@ export class RawLine extends React.Component {
         {lineToUse &&
           lineToUse.map((point, i) => {
             const r = 6;
-            const Component = point.interactive ? DraggableHandle : DragHandle;
+            const enableDraggable = defineChart ? true : point.interactive;
+            const Component = enableDraggable ? DraggableHandle : DragHandle;
 
             return (
               <Component
                 key={`point-${point.x}-${i}`}
                 x={point.x}
                 y={point.dragValue !== undefined ? point.dragValue : point.y}
-                interactive={point.interactive}
+                interactive={enableDraggable}
                 r={r}
                 onDragStart={() => this.setState({ dragging: true })}
                 onDrag={v =>
