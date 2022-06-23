@@ -51,6 +51,10 @@ const getGlobal = () => {
 const defaultOpts = () => getGlobal().opts || {};
 
 export const fixMathElement = element => {
+  if (element.dataset.mathHandled) {
+    return;
+  }
+
   let property = 'innerText';
 
   if (element.textContent) {
@@ -62,6 +66,7 @@ export const fixMathElement = element => {
     // because mathquill doesn't understand line breaks, sometimes we end up with custom elements on prompts/rationale/etc.
     // we need to replace the custom embedded elements with valid latex that Mathjax can understand
     element[property] = element[property].replace(NEWLINE_BLOCK_REGEX, NEWLINE_LATEX);
+    element.dataset.mathHandled = true;
   }
 };
 
