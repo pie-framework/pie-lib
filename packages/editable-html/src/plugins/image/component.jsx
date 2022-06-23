@@ -22,7 +22,7 @@ export class Component extends React.Component {
     onFocus: PropTypes.func,
     onBlur: PropTypes.func,
     maxImageWidth: PropTypes.number,
-    maxImageHeight: PropTypes.number,
+    maxImageHeight: PropTypes.number
   };
 
   getWidth = percent => {
@@ -50,7 +50,7 @@ export class Component extends React.Component {
       update = update.set('resizePercent', this.getPercentFromWidth(w));
     }
 
-    log("[applySizeData] update: ", update);
+    log('[applySizeData] update: ', update);
 
     if (!update.equals(node.data)) {
       editor.change(c => c.setNodeByKey(node.key, { data: update }));
@@ -93,7 +93,10 @@ export class Component extends React.Component {
 
     //on first load
     if (!box.style.width || box.style.width === 'auto') {
-      const dimensions = { width: box && box.naturalWidth || 100, height: box && box.naturalHeight || 100 };
+      const dimensions = {
+        width: (box && box.naturalWidth) || 100,
+        height: (box && box.naturalHeight) || 100
+      };
 
       const { width, height } = this.updateImageDimensions(
         dimensions,
@@ -108,7 +111,7 @@ export class Component extends React.Component {
       box.style.height = `${height}px`;
 
       this.setState({
-        dimensions: { height: height, width: width },
+        dimensions: { height: height, width: width }
       });
 
       const { node, editor } = this.props;
@@ -124,10 +127,13 @@ export class Component extends React.Component {
     }
   };
 
-  startResizing = (e) => {
+  startResizing = e => {
     const bounds = e.target.getBoundingClientRect();
     const box = this.img;
-    const dimensions = { width: box && box.naturalWidth || 100, height: box && box.naturalHeight || 100};
+    const dimensions = {
+      width: (box && box.naturalWidth) || 100,
+      height: (box && box.naturalHeight) || 100
+    };
 
     const { width, height } = this.updateImageDimensions(
       dimensions,
@@ -177,23 +183,22 @@ export class Component extends React.Component {
         return {
           width: nextDim.height * imageAspectRatio,
           height: nextDim.height
-        }
+        };
       }
 
       // if we want to change image width => we update the height accordingly
       return {
         width: nextDim.width,
         height: nextDim.width / imageAspectRatio
-      }
+      };
     }
 
     // if we don't want to keep aspect ratio, we just update both values
     return {
       width: nextDim.width,
       height: nextDim.height
-    }
+    };
   };
-
 
   render() {
     const { node, editor, classes, attributes, onFocus } = this.props;
@@ -203,6 +208,23 @@ export class Component extends React.Component {
     const loaded = node.data.get('loaded') !== false;
     const deleteStatus = node.data.get('deleteStatus');
 
+    const alignment = node.data.get('alignment');
+    let justifyContent;
+
+    switch (alignment) {
+      case 'left':
+        justifyContent = 'flex-start';
+        break;
+      case 'center':
+        justifyContent = 'center';
+        break;
+      case 'right':
+        justifyContent = 'flex-end';
+        break;
+      default:
+        justifyContent = 'flex-start';
+        break;
+    }
     log('[render] node.data:', node.data);
 
     const size = this.getSize(node.data);
@@ -219,7 +241,7 @@ export class Component extends React.Component {
 
     return [
       <span key={'sp1'}>&nbsp;</span>,
-      <div key={'comp'} onFocus={onFocus} className={className}>
+      <div key={'comp'} onFocus={onFocus} className={className} style={{ justifyContent }}>
         <LinearProgress
           mode="determinate"
           value={percent > 0 ? percent : 0}
@@ -236,9 +258,12 @@ export class Component extends React.Component {
             style={size}
             onLoad={this.loadImage}
           />
-          <div ref={ref => {
-            this.resize = ref;
-          }} className={classNames(classes.resize, 'resize')}/>
+          <div
+            ref={ref => {
+              this.resize = ref;
+            }}
+            className={classNames(classes.resize, 'resize')}
+          />
         </div>
       </div>,
       <span key={'sp2'}>&nbsp;</span>
@@ -280,8 +305,9 @@ const styles = theme => ({
   root: {
     position: 'relative',
     border: 'solid 1px white',
-    display: 'inline-block',
-    transition: 'opacity 200ms linear'
+    display: 'flex',
+    transition: 'opacity 200ms linear',
+    justifyContent: 'center' //aici alignment
   },
   delete: {
     position: 'absolute',
@@ -311,8 +337,8 @@ const styles = theme => ({
     display: 'none'
   },
   drawableHeight: {
-    minHeight: 350,
-  },
+    minHeight: 350
+  }
 });
 
 export default withStyles(styles)(Component);

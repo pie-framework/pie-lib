@@ -29,19 +29,18 @@ export default function ImagePlugin(opts) {
     },
     supports: node => node.object === 'inline' && node.type === 'image',
     customToolbar: (node, value, onToolbarDone) => {
-      const percent = node.data.get('resizePercent');
-
-      const onChange = resizePercent => {
+      const alignment = node.data.get('alignment');
+      const onChange = alignment => {
         const update = {
           ...node.data.toObject(),
-          resizePercent
+          alignment
         };
 
         const change = value.change().setNodeByKey(node.key, { data: update });
         onToolbarDone(change, false);
       };
 
-      const Tb = () => <ImageToolbar percent={percent || 100} onChange={onChange} />;
+      const Tb = () => <ImageToolbar alignment={alignment || 'left'} onChange={onChange} />;
       return Tb;
     },
     showDone: true
@@ -92,7 +91,7 @@ export default function ImagePlugin(opts) {
             onFocus: opts.onFocus,
             onBlur: opts.onBlur,
             maxImageWidth: opts.maxImageWidth,
-            maxImageHeight: opts.maxImageHeight,
+            maxImageHeight: opts.maxImageHeight
           },
           props
         );
