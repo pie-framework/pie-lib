@@ -65,6 +65,7 @@ export class RawBar extends React.Component {
       interactive,
       correctness
     } = this.props;
+
     const { scale, range } = graphProps;
     const { dragValue } = this.state;
 
@@ -112,18 +113,20 @@ export class Bars extends React.Component {
   static propTypes = {
     data: PropTypes.array,
     onChangeCategory: PropTypes.func,
+    defineChart: PropTypes.bool,
     xBand: PropTypes.func,
     graphProps: types.GraphPropsType.isRequired
   };
 
   render() {
-    const { data, graphProps, xBand, onChangeCategory } = this.props;
+    const { data, graphProps, xBand, onChangeCategory, defineChart } = this.props;
+
     return (
       <Group>
         {(data || []).map((d, index) => (
           <Bar
             value={d.value}
-            interactive={d.interactive}
+            interactive={defineChart ? true : d.interactive}
             label={d.label}
             xBand={xBand}
             index={index}

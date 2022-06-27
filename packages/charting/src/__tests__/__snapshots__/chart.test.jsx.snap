@@ -146,6 +146,7 @@ exports[`ChartAxes snapshot renders 1`] = `
     >
       <Component
         data={Array []}
+        defineChart={false}
         graphProps={
           Object {
             "domain": Object {
@@ -329,6 +330,7 @@ exports[`ChartAxes snapshot renders if size is not defined 1`] = `
     >
       <Component
         data={Array []}
+        defineChart={false}
         graphProps={
           Object {
             "domain": Object {
@@ -514,6 +516,7 @@ exports[`ChartAxes snapshot renders without chartType and charts properties 1`] 
     >
       <Bar
         data={Array []}
+        defineChart={false}
         graphProps={
           Object {
             "domain": Object {
@@ -697,6 +700,7 @@ exports[`ChartAxes snapshot renders without chartType property 1`] = `
     >
       <Component
         data={Array []}
+        defineChart={false}
         graphProps={
           Object {
             "domain": Object {

@@ -67,6 +67,7 @@ export class RawPlot extends React.Component {
       interactive,
       correctness
     } = this.props;
+
     const { scale, range, size } = graphProps;
     const { max } = range || {};
     const { dragValue } = this.state;
@@ -137,11 +138,12 @@ export class Plot extends React.Component {
     onChangeCategory: PropTypes.func,
     xBand: PropTypes.func,
     graphProps: types.GraphPropsType.isRequired,
+    defineChart: PropTypes.bool,
     CustomBarElement: PropTypes.func
   };
 
   render() {
-    const { data, graphProps, xBand, CustomBarElement, onChangeCategory } = this.props;
+    const { data, graphProps, xBand, CustomBarElement, onChangeCategory, defineChart } = this.props;
 
     return (
       <Group>
@@ -149,7 +151,7 @@ export class Plot extends React.Component {
           <Bar
             value={d.value}
             label={d.label}
-            interactive={d.interactive}
+            interactive={defineChart ? true : d.interactive}
             xBand={xBand}
             index={index}
             key={`bar-${d.label}-${d.value}-${index}`}
