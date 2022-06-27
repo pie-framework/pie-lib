@@ -572,6 +572,9 @@ export class Editor extends React.Component {
   };
 
   onDropPaste = async (event, change, dropContext) => {
+    if (!this.props.imageSupport) {
+      return;
+    }
     const editor = change.editor;
     const transfer = getEventTransfer(event);
     const file = transfer.files[0];
