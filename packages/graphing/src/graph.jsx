@@ -18,6 +18,8 @@ export const graphPropTypes = {
   axesSettings: PropTypes.shape(AxisPropTypes),
   backgroundMarks: PropTypes.array,
   className: PropTypes.string,
+  collapsibleToolbar: PropTypes.bool,
+  collapsibleToolbarTitle: PropTypes.string,
   domain: types.DomainType,
   labels: PropTypes.shape(LabelType),
   labelModeEnabled: PropTypes.bool,

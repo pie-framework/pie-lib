@@ -10,6 +10,13 @@ import ToolMenu from './tool-menu';
 import Graph, { graphPropTypes } from './graph';
 import UndoRedo from './undo-redo';
 import { allTools, toolsArr } from './tools';
+import {
+  ExpansionPanel,
+  ExpansionPanelDetails,
+  ExpansionPanelSummary,
+  Typography
+} from '@material-ui/core';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 export const setToolbarAvailability = toolbarTools =>
   toolsArr.map(tA => ({ ...tA, toolbar: !!toolbarTools.find(t => t === tA.type) })) || [];
@@ -27,6 +34,26 @@ export const filterByVisibleToolTypes = (toolbarTools, marks) =>
 
 const getDefaultCurrentTool = toolType => toolsArr.find(tool => tool.type === toolType) || null;
 
+const Collapsible = ({ classes, children, title }) => (
+  <ExpansionPanel
+    elevation={0}
+    className={classes.expansionPanel}
+    disabledGutters={true}
+    square={true}
+  >
+    <ExpansionPanelSummary
+      classes={{
+        root: classes.summaryRoot,
+        content: classes.summaryContent
+      }}
+      expandIcon={<ExpandMoreIcon />}
+    >
+      <Typography variant="subheading">{title}</Typography>
+    </ExpansionPanelSummary>
+    <ExpansionPanelDetails className={classes.details}>{children}</ExpansionPanelDetails>
+  </ExpansionPanel>
+);
+
 export class GraphWithControls extends React.Component {
   static propTypes = {
     ...graphPropTypes,
@@ -36,7 +63,11 @@ export class GraphWithControls extends React.Component {
     toolbarTools: PropTypes.arrayOf(PropTypes.string) // array of tool types that have to be displayed in the toolbar, same shape as 'allTools'
   };
 
-  static defaultProps = { toolbarTools: [] };
+  static defaultProps = {
+    collapsibleToolbar: false,
+    collapsibleToolbarTitle: '',
+    toolbarTools: []
+  };
 
   constructor(props) {
     super(props);
@@ -64,12 +95,13 @@ export class GraphWithControls extends React.Component {
 
   render() {
     let { currentTool, labelModeEnabled } = this.state;
-
     const {
       axesSettings,
       classes,
       className,
       coordinatesOnHover,
+      collapsibleToolbar,
+      collapsibleToolbarTitle,
       disabled,
       domain,
       labels,
@@ -81,7 +113,6 @@ export class GraphWithControls extends React.Component {
       size,
       title
     } = this.props;
-
     let { backgroundMarks, marks, toolbarTools } = this.props;
 
     // make sure only valid tool types are kept (string) and without duplicates
@@ -100,19 +131,31 @@ export class GraphWithControls extends React.Component {
       currentTool = getAvailableTool(tools);
     }
 
+    const graphActions = (
+      <React.Fragment>
+        <ToolMenu
+          currentToolType={currentTool && currentTool.type}
+          disabled={!!disabled}
+          labelModeEnabled={labelModeEnabled}
+          onChange={tool => this.changeCurrentTool(tool, tools)}
+          onToggleLabelMode={this.toggleLabelMode}
+          toolbarTools={toolbarTools}
+        />
+
+        {!disabled && <UndoRedo onUndo={onUndo} onRedo={onRedo} onReset={onReset} />}
+      </React.Fragment>
+    );
+
     return (
       <div className={classNames(classes.graphWithControls, className)}>
         <div className={classes.controls}>
-          <ToolMenu
-            currentToolType={currentTool && currentTool.type}
-            disabled={!!disabled}
-            labelModeEnabled={labelModeEnabled}
-            onChange={tool => this.changeCurrentTool(tool, tools)}
-            onToggleLabelMode={this.toggleLabelMode}
-            toolbarTools={toolbarTools}
-          />
-
-          {!disabled && <UndoRedo onUndo={onUndo} onRedo={onRedo} onReset={onReset} />}
+          {collapsibleToolbar ? (
+            <Collapsible classes={classes} title={collapsibleToolbarTitle}>
+              {graphActions}
+            </Collapsible>
+          ) : (
+            graphActions
+          )}
         </div>
 
         <div ref={r => (this.labelNode = r)} />
@@ -153,6 +196,20 @@ const styles = theme => ({
     '& button': {
       fontSize: theme.typography.fontSize
     }
+  },
+  expansionPanel: {
+    backgroundColor: color.primaryLight()
+  },
+  summaryRoot: {
+    padding: `0 ${theme.spacing.unit}px`,
+    minHeight: '32px !important'
+  },
+  summaryContent: {
+    margin: '4px 0 !important'
+  },
+  details: {
+    padding: 0,
+    marginTop: theme.spacing.unit
   }
 });
 

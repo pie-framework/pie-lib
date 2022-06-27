@@ -21,14 +21,14 @@ const GridConfig = props => {
     gridValues,
     onChange
   } = props;
-  const { labelStep, step } = displayedFields;
+  const { labelStep = {}, step = {} } = displayedFields;
 
   return (
     <div className={classes.columnView}>
-      {step.enabled && (
+      {step && step.enabled && (
         <NumberTextFieldCustom
           className={classes.mediumTextField}
-          label={step.label}
+          label={step.label || ''}
           value={gridValue}
           customValues={gridValues}
           variant="outlined"
@@ -36,10 +36,10 @@ const GridConfig = props => {
           onChange={(e, v) => onChange('step', v)}
         />
       )}
-      {labelStep.enabled && (
+      {labelStep && labelStep.enabled && (
         <NumberTextFieldCustom
           className={classes.mediumTextField}
-          label={labelStep.label}
+          label={labelStep.label || ''}
           value={labelValue}
           customValues={labelValues}
           variant="outlined"
@@ -63,7 +63,7 @@ const AxisConfig = props => {
     onChange,
     type
   } = props;
-  const { axisLabel, min, max } = displayedFields;
+  const { axisLabel = {}, min = {}, max = {} } = displayedFields;
   const activePlugins = [
     'bold',
     'italic',
@@ -80,10 +80,10 @@ const AxisConfig = props => {
           -axis
         </Typography>
       )}
-      {min.enabled && (
+      {min && min.enabled && (
         <NumberTextFieldCustom
           className={classes.mediumTextField}
-          label={min.label}
+          label={min.label || ''}
           value={minValue}
           min={-10000}
           max={maxValue - 0.01}
@@ -92,10 +92,10 @@ const AxisConfig = props => {
           onChange={(e, v) => onChange('min', v)}
         />
       )}
-      {max.enabled && (
+      {max && max.enabled && (
         <NumberTextFieldCustom
           className={classes.mediumTextField}
-          label={max.label}
+          label={max.label || ''}
           value={maxValue}
           min={minValue + 0.01}
           max={10000}
@@ -104,8 +104,8 @@ const AxisConfig = props => {
           onChange={(e, v) => onChange('max', v)}
         />
       )}
-      {axisLabel.enabled && (
-        <InputContainer label={axisLabel.label} className={classes.mediumTextField}>
+      {axisLabel && axisLabel.enabled && (
+        <InputContainer label={axisLabel.label || ''} className={classes.mediumTextField}>
           <EditableHTML
             className={classes.axisLabel}
             onChange={value => onChange('axisLabel', value)}
@@ -123,7 +123,7 @@ const GridSetup = props => {
   const {
     classes,
     domain,
-    displayedFields,
+    displayedFields = {},
     gridValues = {},
     includeAxes,
     labelValues = {},
@@ -135,15 +135,15 @@ const GridSetup = props => {
   } = props;
   const gridProps = { min: 2, max: 41 };
   const {
-    axisLabel,
+    axisLabel = {},
     dimensionsEnabled,
     includeAxesEnabled,
-    labelStep,
-    min,
-    max,
+    labelStep = {},
+    min = {},
+    max = {},
     standardGridEnabled,
-    step
-  } = displayedFields;
+    step = {}
+  } = displayedFields || {};
   const displayAxisType =
     min.enabled || max.enabled || axisLabel.enabled || step.enabled || labelStep.enabled;
   const gridConfigFields = { step, labelStep };
