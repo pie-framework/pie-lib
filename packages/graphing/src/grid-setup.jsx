@@ -11,34 +11,59 @@ import { NumberTextFieldCustom, Toggle } from '@pie-lib/config-ui';
 import EditableHTML from '@pie-lib/editable-html';
 
 const GridConfig = props => {
-  const { classes, disabled, labelValue, labelValues, gridValue, gridValues, onChange } = props;
+  const {
+    classes,
+    disabled,
+    displayedFields,
+    labelValue,
+    labelValues,
+    gridValue,
+    gridValues,
+    onChange
+  } = props;
+  const { labelStep = {}, step = {} } = displayedFields;
 
   return (
     <div className={classes.columnView}>
-      <NumberTextFieldCustom
-        className={classes.mediumTextField}
-        label="Grid Interval"
-        value={gridValue}
-        customValues={gridValues}
-        variant="outlined"
-        disabled={disabled}
-        onChange={(e, v) => onChange('step', v)}
-      />
-      <NumberTextFieldCustom
-        className={classes.mediumTextField}
-        label="Label Interval"
-        value={labelValue}
-        customValues={labelValues}
-        variant="outlined"
-        disabled={disabled}
-        onChange={(e, v) => onChange('labelStep', v)}
-      />
+      {step && step.enabled && (
+        <NumberTextFieldCustom
+          className={classes.mediumTextField}
+          label={step.label || ''}
+          value={gridValue}
+          customValues={gridValues}
+          variant="outlined"
+          disabled={disabled}
+          onChange={(e, v) => onChange('step', v)}
+        />
+      )}
+      {labelStep && labelStep.enabled && (
+        <NumberTextFieldCustom
+          className={classes.mediumTextField}
+          label={labelStep.label || ''}
+          value={labelValue}
+          customValues={labelValues}
+          variant="outlined"
+          disabled={disabled}
+          onChange={(e, v) => onChange('labelStep', v)}
+        />
+      )}
     </div>
   );
 };
 
 const AxisConfig = props => {
-  const { classes, disabled, label, maxValue, minValue, onChange, type } = props;
+  const {
+    classes,
+    disabled,
+    displayedFields,
+    displayHeader,
+    label,
+    maxValue,
+    minValue,
+    onChange,
+    type
+  } = props;
+  const { axisLabel = {}, min = {}, max = {} } = displayedFields;
   const activePlugins = [
     'bold',
     'italic',
@@ -49,39 +74,47 @@ const AxisConfig = props => {
 
   return (
     <div className={classes.columnView}>
-      <Typography variant="subtitle2">
-        <i>{type === 'domain' ? 'x' : 'y'}</i>
-        -axis
-      </Typography>
-      <NumberTextFieldCustom
-        className={classes.mediumTextField}
-        label="Min Value"
-        value={minValue}
-        min={-10000}
-        max={maxValue - 0.01}
-        variant="outlined"
-        disabled={disabled}
-        onChange={(e, v) => onChange('min', v)}
-      />
-      <NumberTextFieldCustom
-        className={classes.mediumTextField}
-        label="Max Value"
-        value={maxValue}
-        min={minValue + 0.01}
-        max={10000}
-        variant="outlined"
-        disabled={disabled}
-        onChange={(e, v) => onChange('max', v)}
-      />
-      <InputContainer label="Label" className={classes.mediumTextField}>
-        <EditableHTML
-          className={classes.axisLabel}
-          onChange={value => onChange('axisLabel', value)}
-          markup={label || ''}
-          charactersLimit={5}
-          activePlugins={activePlugins}
+      {displayHeader && (
+        <Typography variant="subtitle2">
+          <i>{type === 'domain' ? 'x' : 'y'}</i>
+          -axis
+        </Typography>
+      )}
+      {min && min.enabled && (
+        <NumberTextFieldCustom
+          className={classes.mediumTextField}
+          label={min.label || ''}
+          value={minValue}
+          min={-10000}
+          max={maxValue - 0.01}
+          variant="outlined"
+          disabled={disabled}
+          onChange={(e, v) => onChange('min', v)}
         />
-      </InputContainer>
+      )}
+      {max && max.enabled && (
+        <NumberTextFieldCustom
+          className={classes.mediumTextField}
+          label={max.label || ''}
+          value={maxValue}
+          min={minValue + 0.01}
+          max={10000}
+          variant="outlined"
+          disabled={disabled}
+          onChange={(e, v) => onChange('max', v)}
+        />
+      )}
+      {axisLabel && axisLabel.enabled && (
+        <InputContainer label={axisLabel.label || ''} className={classes.mediumTextField}>
+          <EditableHTML
+            className={classes.axisLabel}
+            onChange={value => onChange('axisLabel', value)}
+            markup={label || ''}
+            charactersLimit={5}
+            activePlugins={activePlugins}
+          />
+        </InputContainer>
+      )}
     </div>
   );
 };
@@ -90,7 +123,7 @@ const GridSetup = props => {
   const {
     classes,
     domain,
-    dimensionsEnabled,
+    displayedFields = {},
     gridValues = {},
     includeAxes,
     labelValues = {},
@@ -101,6 +134,20 @@ const GridSetup = props => {
     standardGrid
   } = props;
   const gridProps = { min: 2, max: 41 };
+  const {
+    axisLabel = {},
+    dimensionsEnabled,
+    includeAxesEnabled,
+    labelStep = {},
+    min = {},
+    max = {},
+    standardGridEnabled,
+    step = {}
+  } = displayedFields || {};
+  const displayAxisType =
+    min.enabled || max.enabled || axisLabel.enabled || step.enabled || labelStep.enabled;
+  const gridConfigFields = { step, labelStep };
+  const axisConfigFields = { min, max, axisLabel };
 
   const onIncludeAxes = includeAxes => {
     const noAxesConfig = type => {
@@ -171,6 +218,8 @@ const GridSetup = props => {
       <div className={classes.rowView}>
         <AxisConfig
           classes={classes}
+          displayedFields={axisConfigFields}
+          displayHeader={displayAxisType}
           type="domain"
           minValue={domain.min}
           maxValue={domain.max}
@@ -180,6 +229,8 @@ const GridSetup = props => {
         />
         <AxisConfig
           classes={classes}
+          displayedFields={axisConfigFields}
+          displayHeader={displayAxisType}
           type="range"
           minValue={range.min}
           maxValue={range.max}
@@ -189,36 +240,44 @@ const GridSetup = props => {
           onChange={onRangeChanged}
         />
       </div>
-      <Typography className={classes.text}>
-        If you want the axis to be visible, use a zero or negative Min Value, and a positive Max
-        Value
-      </Typography>
-      <div className={classes.rowView}>
-        <GridConfig
-          classes={classes}
-          gridValue={domain.step}
-          labelValue={domain.labelStep}
-          gridValues={gridValues.domain || []}
-          labelValues={labelValues.domain || []}
-          onChange={onDomainChanged}
-        />
-        <GridConfig
-          classes={classes}
-          disabled={standardGrid}
-          gridValue={range.step}
-          labelValue={range.labelStep}
-          gridValues={gridValues.range || []}
-          labelValues={labelValues.range || []}
-          onChange={onRangeChanged}
-        />
-      </div>
-      <Typography className={classes.text}>
-        For unnumbered gridlines, enter a label interval of 0
-      </Typography>
+      {(min.enabled || max.enabled) && (
+        <Typography className={classes.text}>
+          If you want the axis to be visible, use a zero or negative Min Value, and a positive Max
+          Value
+        </Typography>
+      )}
+      {(step.enabled || labelStep.enabled) && (
+        <div className={classes.rowView}>
+          <GridConfig
+            classes={classes}
+            displayedFields={gridConfigFields}
+            gridValue={domain.step}
+            labelValue={domain.labelStep}
+            gridValues={gridValues.domain || []}
+            labelValues={labelValues.domain || []}
+            onChange={onDomainChanged}
+          />
+          <GridConfig
+            classes={classes}
+            disabled={standardGrid}
+            displayedFields={gridConfigFields}
+            gridValue={range.step}
+            labelValue={range.labelStep}
+            gridValues={gridValues.range || []}
+            labelValues={labelValues.range || []}
+            onChange={onRangeChanged}
+          />
+        </div>
+      )}
+      {labelStep.enabled && (
+        <Typography className={classes.text}>
+          For unnumbered gridlines, enter a label interval of 0
+        </Typography>
+      )}
     </React.Fragment>
   );
 
-  const gridlinesConfig = (
+  const gridlinesConfig = max.enabled ? (
     <div className={classes.columnView}>
       <NumberTextFieldCustom
         className={classes.largeTextField}
@@ -240,7 +299,7 @@ const GridSetup = props => {
         onChange={(e, v) => onRangeChanged('max', v)}
       />
     </div>
-  );
+  ) : null;
 
   return (
     <div className={classes.wrapper}>
@@ -250,12 +309,20 @@ const GridSetup = props => {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <div className={classes.content}>
-            <Toggle label="Include axes and labels?" toggle={onIncludeAxes} checked={includeAxes} />
-            <Toggle
-              label="Constrain to standard coordinate grid?"
-              toggle={onStandardGridChanged}
-              checked={standardGrid}
-            />
+            {includeAxesEnabled && (
+              <Toggle
+                label="Include axes and labels?"
+                toggle={onIncludeAxes}
+                checked={includeAxes}
+              />
+            )}
+            {standardGridEnabled && (
+              <Toggle
+                label="Constrain to standard coordinate grid?"
+                toggle={onStandardGridChanged}
+                checked={standardGrid}
+              />
+            )}
             {includeAxes ? axesConfig : gridlinesConfig}
             {dimensionsEnabled && (
               <div className={classes.dimensions}>
@@ -298,7 +365,7 @@ const GridSetup = props => {
 GridSetup.propTypes = {
   classes: PropTypes.object,
   domain: PropTypes.object,
-  dimensionsEnabled: PropTypes.object,
+  displayedFields: PropTypes.object,
   gridValues: PropTypes.object,
   includeAxes: PropTypes.bool,
   labelValues: PropTypes.object,
