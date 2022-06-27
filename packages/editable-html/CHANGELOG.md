@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@8.0.0...@pie-lib/editable-html@8.1.0) (2022-06-27)
+
+
+### Features
+
+* **editable-html:** allow drop & paste images  PD-581 ([f7ec0d4](https://github.com/pie-framework/pie-lib/commit/f7ec0d4578ededc095422356471fb5e9f2b29af9))
+
+
+
+
+
 # [8.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.22.6...@pie-lib/editable-html@8.0.0) (2022-06-27)
 
 
