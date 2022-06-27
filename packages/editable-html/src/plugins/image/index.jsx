@@ -90,7 +90,9 @@ export default function ImagePlugin(opts) {
           {
             onDelete: opts.onDelete,
             onFocus: opts.onFocus,
-            onBlur: opts.onBlur
+            onBlur: opts.onBlur,
+            maxImageWidth: opts.maxImageWidth,
+            maxImageHeight: opts.maxImageHeight,
           },
           props
         );

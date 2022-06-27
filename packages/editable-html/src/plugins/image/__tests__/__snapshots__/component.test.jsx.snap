@@ -22,15 +22,22 @@ Array [
         style={Object {}}
       />
     </div>
-    <img
-      style={
-        Object {
-          "height": "50px",
-          "objectFit": "contain",
-          "width": "50px",
+    <div>
+      <img
+        className=""
+        onLoad={[Function]}
+        style={
+          Object {
+            "height": "50px",
+            "objectFit": "contain",
+            "width": "50px",
+          }
         }
-      }
-    />
+      />
+      <div
+        className="resize"
+      />
+    </div>
   </div>,
   <span>
      

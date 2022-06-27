@@ -14,7 +14,6 @@ describe('ImageToolbar', () => {
 
   const mkWrapper = extras => {
     const props = {
-      percent: 100,
       onChange,
       classes: {},
       ...extras
@@ -24,10 +23,8 @@ describe('ImageToolbar', () => {
   };
 
   describe('onChange', () => {
-    it('calls onChange with percent', () => {
-      const w = mkWrapper();
-      w.instance().onPercentClick(25);
-      expect(onChange).toHaveBeenCalledWith(25);
-    });
+      it('renders', function () {
+        return expect(mkWrapper()).toMatchSnapshot();
+      });
   });
 });
