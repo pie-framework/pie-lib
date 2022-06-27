@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.22.6...@pie-lib/editable-html@8.0.0) (2022-06-27)
+
+
+### Features
+
+* **editable-html:** Added characters limit support PD-1681 ([9e7f6ad](https://github.com/pie-framework/pie-lib/commit/9e7f6add3f846d32265990aca98dfb5b4847bb95))
+* **editable-html:** image resize functionality PD-1801 ([6f46903](https://github.com/pie-framework/pie-lib/commit/6f46903acdf791716263be33abe49235572421ad))
+* **plugins:** added special characters adding capabilities [PD-1462] ([b9f41e1](https://github.com/pie-framework/pie-lib/commit/b9f41e11f44df140a66145d0b04558ca2b0ea48e))
+
+
+### BREAKING CHANGES
+
+* **editable-html:** Removed the percent buttons from editable-html image button. Added resize functionality.
+
+
+
+
+
 ## [7.22.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.22.5...@pie-lib/editable-html@7.22.6) (2022-06-13)
 
 **Note:** Version bump only for package @pie-lib/editable-html

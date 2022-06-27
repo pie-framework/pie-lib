@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.0.0...@pie-lib/charting@5.1.0) (2022-06-27)
+
+
+### Features
+
+* **charting:** add constraints on max value for charting setup panel ([595c301](https://github.com/pie-framework/pie-lib/commit/595c301c6b10caf1921aa25f38897729c56ed47c))
+
+
+
+
+
 # [5.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.5.18...@pie-lib/charting@5.0.0) (2022-06-13)
 
 

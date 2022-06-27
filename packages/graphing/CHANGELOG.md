@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.6.3...@pie-lib/graphing@2.7.0) (2022-06-27)
+
+
+### Features
+
+* **graphing:** added collapsible panel for graph toolbar PD-1693 ([4268bb0](https://github.com/pie-framework/pie-lib/commit/4268bb06093d1fabf82d9f5c2d8fd81f9788a4fe))
+* **graphing:** Added default value for current drawing tool PD-1689 ([bc9b1b0](https://github.com/pie-framework/pie-lib/commit/bc9b1b00d64d50d138f3ab0991957d9fecaed17b))
+* **graphing:** Added the ability to control the fields displayed into Grid Setup PD-1688 ([1f0f3eb](https://github.com/pie-framework/pie-lib/commit/1f0f3eb58c5dcd923e2452a0071bf1de40535bb2))
+* added support for graph configuration constraints PD-1683 PD-1684 PD-1686 ([8da7426](https://github.com/pie-framework/pie-lib/commit/8da74260b28332b976fa1c50796e74679fd46a13))
+* created setup panel and added basic functionalities PD-1679 ([183eda1](https://github.com/pie-framework/pie-lib/commit/183eda10b2f4128cd831c5b27f14ebccb6b3e7b2))
+
+
+
+
+
 ## [2.6.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.6.2...@pie-lib/graphing@2.6.3) (2022-06-13)
 
 **Note:** Version bump only for package @pie-lib/graphing
