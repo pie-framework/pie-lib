@@ -11,6 +11,10 @@ const ConfigureChartPanel = props => {
   const { range } = model;
   const size = model.graph;
 
+  const rangeProps = chartType => {
+    return chartType.includes('Plot') ? { min: 3, max: 10 } : { min: 0.05, max: 10000 };
+  };
+
   const onSizeChanged = (key, value) => {
     const graph = { ...size, [key]: value };
 
@@ -37,8 +41,8 @@ const ConfigureChartPanel = props => {
             className={classes.mediumTextField}
             label="Max Value"
             value={range.max}
-            min={0}
-            max={10000}
+            min={rangeProps(model.chartType).min}
+            max={rangeProps(model.chartType).max}
             variant="outlined"
             onChange={(e, v) => onRangeChanged('max', v)}
           />
