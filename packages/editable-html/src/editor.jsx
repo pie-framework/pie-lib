@@ -576,7 +576,7 @@ export class Editor extends React.Component {
     this.props.focus(position, node);
   };
 
-  onDropPaste = (event, change, dropContext) => {
+  onDropPaste = async (event, change, dropContext) => {
     if (!this.props.imageSupport) {
       return;
     }
@@ -585,32 +585,32 @@ export class Editor extends React.Component {
     const file = transfer.files[0];
 
     if (file.type === 'image/jpeg' || file.type === 'image/jpg' || file.type === 'image/png') {
-      log('[onDropPaste]');
-
-      getBase64(file)
-        .then(src => {
-          const inline = Inline.create({
-            type: 'image',
-            isVoid: true,
-            data: {
-              loading: false,
-              src
-            }
-          });
-
-          if (dropContext) {
-            this.focus();
-          } else {
-            const range = getEventRange(event, editor);
-            if (range) {
-              change.select(range);
-            }
+      try {
+        log('[onDropPaste]');
+        const src = await getBase64(file);
+        const inline = Inline.create({
+          type: 'image',
+          isVoid: true,
+          data: {
+            loading: false,
+            src
           }
+        });
 
-          const ch = change.insertInline(inline);
-          this.onChange(ch);
-        })
-        .catch(err => log('[onDropPaste] error: ', err));
+        if (dropContext) {
+          this.focus();
+        } else {
+          const range = getEventRange(event, editor);
+          if (range) {
+            change.select(range);
+          }
+        }
+
+        const ch = change.insertInline(inline);
+        this.onChange(ch);
+      } catch (err) {
+        log('[onDropPaste] error: ', err);
+      }
     }
   };
 
