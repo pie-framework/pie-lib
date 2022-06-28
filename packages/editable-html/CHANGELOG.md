@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.1.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@8.1.0...@pie-lib/editable-html@8.1.1) (2022-06-28)
+
+
+### Bug Fixes
+
+* running locally does not work ([e2fbb74](https://github.com/pie-framework/pie-lib/commit/e2fbb74c79bbb2ad6e9af447af51687391d89ad3))
+* **editable-html:** fix image remove ([0f446b3](https://github.com/pie-framework/pie-lib/commit/0f446b38d93fec1548b9ff5c73cc48f2f10d9397))
+
+
+
+
+
 # [8.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@8.0.0...@pie-lib/editable-html@8.1.0) (2022-06-27)
 
 
