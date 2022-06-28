@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.1.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@8.1.1...@pie-lib/editable-html@8.1.2) (2022-06-28)
+
+
+### Bug Fixes
+
+* running locally does not work ([ce2d09a](https://github.com/pie-framework/pie-lib/commit/ce2d09a3556937aea4a1c8075a2dbc7c1131fd5f))
+
+
+
+
+
 ## [8.1.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@8.1.0...@pie-lib/editable-html@8.1.1) (2022-06-28)
 
 
