@@ -27,8 +27,10 @@ const defaultToolbarOpts = {
 
 const defaultResponseAreaProps = {
   options: {},
-  respAreaToolbar: () => {},
-  onHandleAreaChange: () => {}
+  respAreaToolbar: () => {
+  },
+  onHandleAreaChange: () => {
+  }
 };
 
 const defaultLanguageCharactersProps = [];
@@ -105,9 +107,12 @@ export class Editor extends React.Component {
 
   static defaultProps = {
     disableUnderline: true,
-    onFocus: () => {},
-    onBlur: () => {},
-    onKeyDown: () => {},
+    onFocus: () => {
+    },
+    onBlur: () => {
+    },
+    onKeyDown: () => {
+    },
     toolbarOpts: defaultToolbarOpts,
     responseAreaProps: defaultResponseAreaProps,
     languageCharactersProps: defaultLanguageCharactersProps
@@ -580,30 +585,32 @@ export class Editor extends React.Component {
     const file = transfer.files[0];
 
     if (file.type === 'image/jpeg' || file.type === 'image/jpg' || file.type === 'image/png') {
-      try {
-        log('[onDropPaste]');
-        const src = await getBase64(file);
-        const inline = Inline.create({
-          type: 'image',
-          isVoid: true,
-          data: {
-            loading: false,
-            src
+      log('[onDropPaste]');
+
+      getBase64(file)
+        .then(src => {
+          const inline = Inline.create({
+            type: 'image',
+            isVoid: true,
+            data: {
+              loading: false,
+              src
+            }
+          });
+
+          if (dropContext) {
+            this.focus();
+          } else {
+            const range = getEventRange(event, editor);
+            if (range) {
+              change.select(range);
+            }
           }
-        });
-        if (dropContext) {
-          this.focus();
-        } else {
-          const range = getEventRange(event, editor);
-          if (range) {
-            change.select(range);
-          }
-        }
-        const ch = change.insertInline(inline);
-        this.onChange(ch);
-      } catch (err) {
-        log('[onDropPaste] error: ', err);
-      }
+
+          const ch = change.insertInline(inline);
+          this.onChange(ch);
+        })
+        .catch(err => log('[onDropPaste] error: ', err));
     }
   };
 
