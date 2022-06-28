@@ -1,12 +1,14 @@
-import { DoneButton } from './done-button';
+import React from 'react';
+import { Change } from 'slate';
 import Delete from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import PropTypes from 'prop-types';
-import React from 'react';
 import classNames from 'classnames';
 import debug from 'debug';
 import SlatePropTypes from 'slate-prop-types';
 import debounce from 'lodash/debounce';
+
+import { DoneButton } from './done-button';
 
 import { findSingleNode, findParentNode } from '../utils';
 import { withStyles } from '@material-ui/core/styles';
@@ -167,6 +169,11 @@ export class Toolbar extends React.Component {
     log('[render] plugin: ', plugin);
 
     const handleDone = (change, done) => {
+      // use handler only if this is an actual Slate Change
+      if (!(change instanceof Change)) {
+        return;
+      }
+
       let handler = onDone;
 
       if (plugin && plugin.toolbar && plugin.toolbar.customToolbar) {
