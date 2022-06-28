@@ -576,7 +576,7 @@ export class Editor extends React.Component {
     this.props.focus(position, node);
   };
 
-  onDropPaste = async (event, change, dropContext) => {
+  onDropPaste = (event, change, dropContext) => {
     if (!this.props.imageSupport) {
       return;
     }
