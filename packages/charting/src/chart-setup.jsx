@@ -29,7 +29,22 @@ const ConfigureChartPanel = props => {
     onChange({ ...model, range });
   };
 
-  const onChartTypeChange = chartType => onChange({ ...model, chartType });
+  const onChartTypeChange = chartType => {
+    if (chartType.includes('Plot')) {
+      rangeProps.min = 3;
+      rangeProps.max = 10;
+
+      if (range.max > 10 || range.max < 3) {
+        range.max = 10;
+      }
+
+      onChange({ ...model, range, chartType });
+
+      return;
+    }
+
+    onChange({ ...model, chartType });
+  };
 
   return (
     <div className={classes.wrapper}>
