@@ -58,6 +58,15 @@ export const parseStyleString = s => {
   return result;
 };
 
+export const getBase64 = file => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  });
+};
+
 export const reactAttributes = o => toStyleObject(o, { camelize: true, addUnits: false });
 
 const attributesToMap = el => (acc, attribute) => {

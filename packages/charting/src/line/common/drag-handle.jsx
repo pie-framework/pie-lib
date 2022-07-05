@@ -34,6 +34,7 @@ class RawDragHandle extends React.Component {
       correctness,
       ...rest
     } = this.props;
+
     const { scale } = graphProps;
     return (
       <CustomDraggableComponent
@@ -42,7 +43,7 @@ class RawDragHandle extends React.Component {
         y={y}
         classes={classes}
         className={classNames(className, !interactive && 'non-interactive')}
-        correctness={interactive && correctness}
+        correctness={correctness}
         {...rest}
       />
     );

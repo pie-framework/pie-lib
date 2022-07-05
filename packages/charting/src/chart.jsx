@@ -47,8 +47,8 @@ export class Chart extends React.Component {
     title: PropTypes.string,
     onDataChange: PropTypes.func,
     addCategoryEnabled: PropTypes.bool,
-    editCategoryEnabled: PropTypes.bool,
     categoryDefaultLabel: PropTypes.string,
+    defineChart: PropTypes.bool,
     theme: PropTypes.object
   };
 
@@ -127,13 +127,12 @@ export class Chart extends React.Component {
   };
 
   getFilteredCategories = () => {
-    const { data, editCategoryEnabled, addCategoryEnabled } = this.props;
+    const { data, defineChart } = this.props;
 
     return data
       ? data.map(d => ({
           ...d,
-          editable: !d.initial || (d.initial && editCategoryEnabled),
-          deletable: !d.initial || (d.initial && addCategoryEnabled)
+          deletable: defineChart || d.deletable
         }))
       : [];
   };
@@ -150,6 +149,8 @@ export class Chart extends React.Component {
       theme
     } = this.props;
     let { chartType } = this.props;
+
+    const defineChart = this.props.defineChart || false;
     const { width, height } = size || {};
 
     const { ChartComponent } = this.getChart();
@@ -176,9 +177,10 @@ export class Chart extends React.Component {
         () => this.rootNode
       )
     };
+
     log('[render] common:', common);
 
-    const maskSize = { x: -10, y: -10, width: width + 20, height: height + 20 };
+    const maskSize = { x: -10, y: -10, width: width + 20, height: height + 80 };
     const { scale } = common.graphProps;
     const xBand = dataToXBand(scale.x, categories, width, chartType);
 
@@ -189,12 +191,13 @@ export class Chart extends React.Component {
     const bandWidth = xBand.bandwidth();
     // for chartType "line", bandWidth will be 0, so we have to calculate it
     const barWidth = bandWidth || scale.x(correctValues.domain.max) / categories.length;
+    const increaseHeight = defineChart ? 80 : 0;
 
     // if there are many categories, we have to rotate their names in order to fit
     // and we have to add extra value on top of some items
     const top = getTopPadding(barWidth);
     const rootCommon = cloneDeep(common);
-    rootCommon.graphProps.size.height += top;
+    rootCommon.graphProps.size.height += top + increaseHeight;
 
     return (
       <div className={classNames(classes.class, className)}>
@@ -214,6 +217,7 @@ export class Chart extends React.Component {
           />
           <ChartAxes
             {...common}
+            defineChart={defineChart}
             categories={categories}
             xBand={xBand}
             leftAxis={leftAxis}
@@ -228,6 +232,7 @@ export class Chart extends React.Component {
             <ChartComponent
               {...common}
               data={categories}
+              defineChart={defineChart}
               onChange={this.changeData}
               onChangeCategory={this.changeCategory}
             />

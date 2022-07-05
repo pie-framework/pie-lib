@@ -51,6 +51,10 @@ const getGlobal = () => {
 const defaultOpts = () => getGlobal().opts || {};
 
 export const fixMathElement = element => {
+  if (element.dataset.mathHandled) {
+    return;
+  }
+
   let property = 'innerText';
 
   if (element.textContent) {
@@ -62,6 +66,7 @@ export const fixMathElement = element => {
     // because mathquill doesn't understand line breaks, sometimes we end up with custom elements on prompts/rationale/etc.
     // we need to replace the custom embedded elements with valid latex that Mathjax can understand
     element[property] = element[property].replace(NEWLINE_BLOCK_REGEX, NEWLINE_LATEX);
+    element.dataset.mathHandled = true;
   }
 };
 
@@ -69,6 +74,11 @@ export const fixMathElements = () => {
   const mathElements = document.querySelectorAll('[data-latex]');
 
   mathElements.forEach(item => fixMathElement(item));
+};
+
+const adjustMathMLStyle = () => {
+  const nodes = document.querySelectorAll('math');
+  nodes.forEach(node => node.setAttribute('displaystyle', 'true'));
 };
 
 const bootstrap = opts => {
@@ -98,29 +108,20 @@ const bootstrap = opts => {
 
   const texConfig = opts.useSingleDollar
     ? {
-      loader: {
-        require: require
-      },
-      packages,
-      macros,
-      inlineMath: [
-        ['$', '$'],
-        ['\\(', '\\)']
-      ],
-      displayMath: [
-        ['$$', '$$'],
-        ['\\[', '\\]']
-      ],
-      processEscapes: true
-    }
+        packages,
+        macros,
+        inlineMath: [
+          ['$', '$'],
+          ['\\(', '\\)']
+        ],
+        processEscapes: true
+      }
     : {
-      packages,
-      macros
-    };
+        packages,
+        macros
+      };
 
   const mmlConfig = {
-    parseAs: 'html',
-    forceReparse: false,
     parseError: function(node) {
       // function to process parsing errors
       console.log('error:', node);
@@ -139,7 +140,6 @@ const bootstrap = opts => {
   };
 
   const mml = new MathML(mmlConfig);
-  console.log([new TeX(texConfig), mml]);
 
   const customMmlFactory = new MmlFactory({
     ...MmlFactory.defaultNodes,
@@ -196,6 +196,7 @@ const bootstrap = opts => {
 const renderMath = (el, renderOpts) => {
   //TODO: remove this - has nothing to do with math-rendering (it's from editable-html)
   fixMathElements();
+  adjustMathMLStyle();
 
   if (!getGlobal().instance) {
     getGlobal().instance = bootstrap(renderOpts);

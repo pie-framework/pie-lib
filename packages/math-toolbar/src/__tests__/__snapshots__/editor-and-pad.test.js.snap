@@ -4,7 +4,9 @@ exports[`snapshot renders 1`] = `
 <div
   className=""
 >
-  <div>
+  <div
+    className=""
+  >
     <div
       className=""
     >

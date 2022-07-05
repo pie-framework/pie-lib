@@ -1,16 +1,17 @@
-import { Editor as SlateEditor, findNode } from 'slate-react';
+import { Editor as SlateEditor, findNode, getEventRange, getEventTransfer } from 'slate-react';
 import SlateTypes from 'slate-prop-types';
 
 import isEqual from 'lodash/isEqual';
 import * as serialization from './serialization';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Value, Block } from 'slate';
+import { Value, Block, Inline } from 'slate';
 import { buildPlugins, ALL_PLUGINS, DEFAULT_PLUGINS } from './plugins';
 import debug from 'debug';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import { color } from '@pie-lib/render-ui';
+import { getBase64 } from './serialization';
 
 export { ALL_PLUGINS, DEFAULT_PLUGINS, serialization };
 
@@ -26,9 +27,13 @@ const defaultToolbarOpts = {
 
 const defaultResponseAreaProps = {
   options: {},
-  respAreaToolbar: () => {},
-  onHandleAreaChange: () => {}
+  respAreaToolbar: () => {
+  },
+  onHandleAreaChange: () => {
+  }
 };
+
+const defaultLanguageCharactersProps = [];
 
 const createToolbarOpts = toolbarOpts => {
   return {
@@ -49,6 +54,7 @@ export class Editor extends React.Component {
     focus: PropTypes.func.isRequired,
     value: SlateTypes.value.isRequired,
     imageSupport: PropTypes.object,
+    charactersLimit: PropTypes.number,
     width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     minHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -72,6 +78,13 @@ export class Editor extends React.Component {
       respAreaToolbar: PropTypes.func,
       onHandleAreaChange: PropTypes.func
     }),
+    languageCharactersProps: PropTypes.arrayOf(
+      PropTypes.shape({
+        language: PropTypes.string,
+        characterIcon: PropTypes.string,
+        characters: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string))
+      })
+    ),
     toolbarOpts: PropTypes.shape({
       position: PropTypes.oneOf(['bottom', 'top']),
       alignment: PropTypes.oneOf(['left', 'right']),
@@ -94,11 +107,15 @@ export class Editor extends React.Component {
 
   static defaultProps = {
     disableUnderline: true,
-    onFocus: () => {},
-    onBlur: () => {},
-    onKeyDown: () => {},
+    onFocus: () => {
+    },
+    onBlur: () => {
+    },
+    onKeyDown: () => {
+    },
     toolbarOpts: defaultToolbarOpts,
-    responseAreaProps: defaultResponseAreaProps
+    responseAreaProps: defaultResponseAreaProps,
+    languageCharactersProps: defaultLanguageCharactersProps
   };
 
   constructor(props) {
@@ -108,13 +125,17 @@ export class Editor extends React.Component {
       toolbarOpts: createToolbarOpts(props.toolbarOpts)
     };
 
+    this.onResize = () => {
+      props.onChange(this.state.value, true);
+    };
+
+    this.handlePlugins(this.props);
+  }
+
+  handlePlugins = props => {
     const normalizedResponseAreaProps = {
       ...defaultResponseAreaProps,
       ...props.responseAreaProps
-    };
-
-    this.onResize = () => {
-      props.onChange(this.state.value, true);
     };
 
     this.plugins = buildPlugins(props.activePlugins, {
@@ -125,27 +146,27 @@ export class Editor extends React.Component {
       },
       image: {
         onDelete:
-          this.props.imageSupport &&
-          this.props.imageSupport.delete &&
+          props.imageSupport &&
+          props.imageSupport.delete &&
           ((src, done) => {
-            this.props.imageSupport.delete(src, e => {
+            props.imageSupport.delete(src, e => {
               done(e, this.state.value);
             });
           }),
         insertImageRequested:
-          this.props.imageSupport &&
+          props.imageSupport &&
           (getHandler => {
             /**
              * The handler is the object through which the outer context
              * communicates file upload events like: fileChosen, cancel, progress
              */
             const handler = getHandler(() => this.state.value);
-            this.props.imageSupport.add(handler);
+            props.imageSupport.add(handler);
           }),
         onFocus: this.onPluginFocus,
         onBlur: this.onPluginBlur,
         maxImageWidth: this.props.maxImageWidth,
-        maxImageHeight: this.props.maxImageHeight,
+        maxImageHeight: this.props.maxImageHeight
       },
       toolbar: {
         /**
@@ -155,7 +176,7 @@ export class Editor extends React.Component {
         disableUnderline: props.disableUnderline,
         autoWidth: props.autoWidthToolbar,
         onDone: () => {
-          const { nonEmpty } = this.props;
+          const { nonEmpty } = props;
 
           log('[onDone]');
           this.setState({ toolbarInFocus: false, focusedNode: null });
@@ -196,13 +217,14 @@ export class Editor extends React.Component {
           this.onPluginBlur();
         }
       },
+      languageCharacters: props.languageCharactersProps,
       media: {
         focus: this.focus,
         createChange: () => this.state.value.change(),
         onChange: this.onChange
       }
     });
-  }
+  };
 
   componentDidMount() {
     // onRef is needed to get the ref of the component because we export it using withStyles
@@ -235,6 +257,10 @@ export class Editor extends React.Component {
       this.setState({
         toolbarOpts: newToolbarOpts
       });
+    }
+
+    if (!isEqual(nextProps.languageCharactersProps, this.props.languageCharactersProps)) {
+      this.handlePlugins(nextProps);
     }
   }
 
@@ -444,7 +470,20 @@ export class Editor extends React.Component {
 
   onChange = (change, done) => {
     log('[onChange]');
-    this.setState({ value: change.value }, () => {
+
+    const { value } = change;
+    const { charactersLimit } = this.props;
+
+    if (
+      value &&
+      value.document &&
+      value.document.text &&
+      value.document.text.length > charactersLimit
+    ) {
+      return;
+    }
+
+    this.setState({ value }, () => {
       log('[onChange], call done()');
 
       if (done) {
@@ -537,6 +576,44 @@ export class Editor extends React.Component {
     this.props.focus(position, node);
   };
 
+  onDropPaste = async (event, change, dropContext) => {
+    if (!this.props.imageSupport) {
+      return;
+    }
+    const editor = change.editor;
+    const transfer = getEventTransfer(event);
+    const file = transfer.files[0];
+
+    if (file.type === 'image/jpeg' || file.type === 'image/jpg' || file.type === 'image/png') {
+      try {
+        log('[onDropPaste]');
+        const src = await getBase64(file);
+        const inline = Inline.create({
+          type: 'image',
+          isVoid: true,
+          data: {
+            loading: false,
+            src
+          }
+        });
+
+        if (dropContext) {
+          this.focus();
+        } else {
+          const range = getEventRange(event, editor);
+          if (range) {
+            change.select(range);
+          }
+        }
+
+        const ch = change.insertInline(inline);
+        this.onChange(ch);
+      } catch (err) {
+        log('[onDropPaste] error: ', err);
+      }
+    }
+  };
+
   render() {
     const {
       disabled,
@@ -585,6 +662,8 @@ export class Editor extends React.Component {
           onKeyDown={onKeyDown}
           onChange={this.onChange}
           onBlur={this.onBlur}
+          onDrop={(event, editor) => this.onDropPaste(event, editor, true)}
+          onPaste={(event, editor) => this.onDropPaste(event, editor)}
           onFocus={this.onFocus}
           onEditingDone={this.onEditingDone}
           focusedNode={focusedNode}
