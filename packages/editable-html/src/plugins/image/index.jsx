@@ -190,7 +190,7 @@ export const serialization = {
           break;
         case 'right':
           style.justifyContent = 'flex-end';
-          style.margin = 'auto 0 0 auto ';
+          style.margin = 'auto 0 0 auto';
           break;
         default:
           style.justifyContent = 'flex-start';

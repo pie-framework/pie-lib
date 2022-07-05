@@ -22,7 +22,7 @@ export class Component extends React.Component {
     onFocus: PropTypes.func,
     onBlur: PropTypes.func,
     maxImageWidth: PropTypes.number,
-    maxImageHeight: PropTypes.number,
+    maxImageHeight: PropTypes.number
   };
 
   getWidth = percent => {
@@ -262,9 +262,12 @@ export class Component extends React.Component {
             style={size}
             onLoad={this.loadImage}
           />
-          <div ref={ref => {
-            this.resize = ref;
-          }} className={classNames(classes.resize, 'resize')}/>
+          <div
+            ref={ref => {
+              this.resize = ref;
+            }}
+            className={classNames(classes.resize, 'resize')}
+          />
         </div>
         <div className={classes.imageContainer}>
           <img
@@ -325,8 +328,7 @@ const styles = theme => ({
     position: 'relative',
     border: 'solid 1px white',
     display: 'flex',
-    transition: 'opacity 200ms linear',
-    justifyContent: 'center' //aici alignment
+    transition: 'opacity 200ms linear'
   },
   delete: {
     position: 'absolute',
