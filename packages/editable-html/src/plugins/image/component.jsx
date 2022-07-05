@@ -204,25 +204,29 @@ export class Component extends React.Component {
     const { node, editor, classes, attributes, onFocus } = this.props;
     const active = editor.value.isFocused && editor.value.selection.hasEdgeIn(node);
     const src = node.data.get('src');
-    const percent = node.data.get('percent');
     const loaded = node.data.get('loaded') !== false;
     const deleteStatus = node.data.get('deleteStatus');
-
     const alignment = node.data.get('alignment');
+    const percent = node.data.get('percent');
+    let margin;
     let justifyContent;
 
     switch (alignment) {
       case 'left':
         justifyContent = 'flex-start';
+        margin = '0';
         break;
       case 'center':
         justifyContent = 'center';
+        margin = '0 auto';
         break;
       case 'right':
         justifyContent = 'flex-end';
+        margin = 'auto 0 0 auto ';
         break;
       default:
         justifyContent = 'flex-start';
+        margin = '0';
         break;
     }
     log('[render] node.data:', node.data);
@@ -255,7 +259,7 @@ export class Component extends React.Component {
               this.img = ref;
             }}
             src={src}
-            style={size}
+            style={{ ...size, margin }}
             onLoad={this.loadImage}
           />
           <div
@@ -289,7 +293,7 @@ const styles = theme => ({
   progress: {
     position: 'absolute',
     left: '0',
-    width: '100%',
+    width: 'fit-content',
     top: '0%',
     transition: 'opacity 200ms linear'
   },

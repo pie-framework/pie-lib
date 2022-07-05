@@ -34,6 +34,7 @@ Array [
         style={
           Object {
             "height": "50px",
+            "margin": "0",
             "objectFit": "contain",
             "width": "50px",
           }

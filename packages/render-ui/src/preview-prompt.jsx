@@ -61,7 +61,12 @@ export class PreviewPrompt extends Component {
 const styles = theme => ({
   prompt: {
     verticalAlign: 'middle',
-    color: color.text()
+    color: color.text(),
+    display: 'flex',
+    flexDirection: 'column',
+    '& > *': {
+      display: 'flex'
+    }
   },
   rationale: {
     paddingLeft: theme.spacing.unit * 16
