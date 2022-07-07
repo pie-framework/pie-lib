@@ -279,7 +279,6 @@ const styles = theme => ({
     alignItems: 'center',
     '& .mq-root-block': {
       marginTop: '8px',
-      overflow: 'visible'
     },
     '& .mq-math-mode .mq-overarrow': {
       fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important'
