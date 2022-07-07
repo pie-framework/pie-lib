@@ -342,9 +342,11 @@ const styles = theme => ({
         marginTop: '-2px !important',
         paddingTop: '5px !important'
       },
+
       '& .mq-supsub ': {
         fontSize: '70.7%'
       },
+
       '& .mq-math-mode .mq-supsub.mq-sup-only': {
         verticalAlign: '-0.1em !important',
 
@@ -367,11 +369,11 @@ const styles = theme => ({
     marginTop: '5px',
     marginBottom: '5px',
     marginRight: '5px',
-    fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important',
 
     '& label': {
       fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important'
     },
+
     '& div': {
       fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important'
     }
