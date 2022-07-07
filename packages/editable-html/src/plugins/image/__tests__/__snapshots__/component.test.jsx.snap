@@ -43,23 +43,6 @@ Array [
         className="resize"
       />
     </div>
-    <div>
-      <img
-        className=""
-        onLoad={[Function]}
-        style={
-          Object {
-            "height": "50px",
-            "margin": "0",
-            "objectFit": "contain",
-            "width": "50px",
-          }
-        }
-      />
-      <div
-        className="resize"
-      />
-    </div>
   </div>,
   <span>
      

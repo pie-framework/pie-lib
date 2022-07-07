@@ -269,24 +269,6 @@ export class Component extends React.Component {
             className={classNames(classes.resize, 'resize')}
           />
         </div>
-        <div className={classes.imageContainer}>
-          <img
-            {...attributes}
-            className={classNames(classes.image, active && classes.active)}
-            ref={ref => {
-              this.img = ref;
-            }}
-            src={src}
-            style={{ ...size, margin }}
-            onLoad={this.loadImage}
-          />
-          <div
-            ref={ref => {
-              this.resize = ref;
-            }}
-            className={classNames(classes.resize, 'resize')}
-          />
-        </div>
       </div>,
       <span key={'sp2'}>&nbsp;</span>
     ];
