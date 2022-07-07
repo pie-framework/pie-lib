@@ -40,14 +40,17 @@ const LatexButton = withStyles(theme => ({
       width: '30px',
       marginTop: '0 !important',
       borderTop: '2px solid black',
+      fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important',
+
       '&.mq-arrow-both': {
+        top: '5px !important',
         '& *': {
           lineHeight: '1 !important'
         },
         '&:before': {
           fontSize: '80%',
           left: 'calc(-13%)',
-          top: '-0.25em'
+          top: '-0.31em'
         },
         '&:after': {
           fontSize: '80% !important',
@@ -123,7 +126,7 @@ const LatexButton = withStyles(theme => ({
         paddingTop: '0 !important'
       },
       '&:after': {
-        top: '-1.64em !important'
+        top: '-2.8em !important'
       }
     }
   }
