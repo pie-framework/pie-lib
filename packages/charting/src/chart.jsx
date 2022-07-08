@@ -166,11 +166,16 @@ export class Chart extends React.Component {
     );
 
     const { verticalLines, horizontalLines, leftAxis } = getGridLinesAndAxisByChartType(
-      range,
+      correctValues.range,
       chartType
     );
     const common = {
-      graphProps: createGraphProps(domain, range, size, () => this.rootNode)
+      graphProps: createGraphProps(
+        correctValues.domain,
+        correctValues.range,
+        size,
+        () => this.rootNode
+      )
     };
 
     log('[render] common:', common);
