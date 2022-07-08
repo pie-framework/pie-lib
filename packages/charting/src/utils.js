@@ -50,28 +50,28 @@ export const getTickValues = (prop = {}) => {
   return tickValues;
 };
 
-export const customLabelStep = (rangeMax, size, labelFontSize) => {
-  const ceilMax = Math.ceil(rangeMax);
-  const segmentLength = size.height / ceilMax;
-  const ticksToFitInOneSegment = 2;
+// export const customLabelStep = (rangeMax, size, labelFontSize) => {
+//   const ceilMax = Math.ceil(rangeMax);
+//   const segmentLength = size.height / ceilMax;
+//   const ticksToFitInOneSegment = 2;
 
-  // how many ticksWidth fit in a segment
-  const tickWidthPerSegment = segmentLength / labelFontSize;
-  const rawLabelStep = ticksToFitInOneSegment / tickWidthPerSegment;
-  const roundedStep = Math.ceil((rawLabelStep * 10) / 10);
+//   // how many ticksWidth fit in a segment
+//   const tickWidthPerSegment = segmentLength / labelFontSize;
+//   const rawLabelStep = ticksToFitInOneSegment / tickWidthPerSegment;
+//   const roundedStep = Math.ceil((rawLabelStep * 10) / 10);
 
-  let labelStep;
+//   let labelStep;
 
-  if (rawLabelStep > 0.15) {
-    labelStep = roundedStep;
-  } else if (rawLabelStep < 0.05) {
-    labelStep = 0.1;
-  } else {
-    labelStep = 0.5;
-  }
+//   if (rawLabelStep > 0.15) {
+//     labelStep = roundedStep;
+//   } else if (rawLabelStep < 0.05) {
+//     labelStep = 0.1;
+//   } else {
+//     labelStep = 0.5;
+//   }
 
-  return labelStep;
-};
+//   return labelStep;
+// };
 
 export const crowdedTicks = (rangeMax, customLabelStep, size, labelFontSize) => {
   const ceilMax = Math.ceil(rangeMax);
@@ -111,33 +111,26 @@ export const getDomainAndRangeByChartType = (domain, range, size, chartType, lab
     step = labelStep;
   }
   if (!labelStep || (isNaN(labelStep) && step)) {
-    let customLabelStep = step;
-    let crowded = crowdedTicks(max, customLabelStep, size, labelFontSize);
-
-    if (crowded) {
-      customLabelStep = customLabelStep * 2;
-    }
-
-    labelStep = customLabelStep;
+    labelStep = step
   }
 
-  if (!step || (isNaN(step) && !labelStep) || isNaN(labelStep)) {
-    labelStep = customLabelStep(max, size, labelFontSize);
+  // if (!step || (isNaN(step) && !labelStep) || isNaN(labelStep)) {
+  //   labelStep = customLabelStep(max, size, labelFontSize);
 
-    if (labelStep <= 1) {
-      step = labelStep;
-    } else if (labelStep <= 4) {
-      step = 1;
-    } else if (labelStep > 4 && labelStep < 10) {
-      step = labelStep / 2;
-    } else {
-      step = labelStep / 3;
-    }
-  }
+  //   if (labelStep <= 1) {
+  //     step = labelStep;
+  //   } else if (labelStep <= 4) {
+  //     step = 1;
+  //   } else if (labelStep > 4 && labelStep < 10) {
+  //     step = labelStep / 2;
+  //   } else {
+  //     step = labelStep / 3;
+  //   }
+  // }
 
-  if (modulo(max, step) !== 0) {
-    max = max + step;
-  }
+  // if (modulo(max, step) !== 0) {
+  //   max = max + step;
+  // }
 
   range.max = max;
 
