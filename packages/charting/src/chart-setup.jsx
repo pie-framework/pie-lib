@@ -7,9 +7,12 @@ import ChartType from './chart-type';
 import { NumberTextFieldCustom } from '@pie-lib/config-ui';
 
 const ConfigureChartPanel = props => {
-  const { classes, model, onChange } = props;
+  const { classes, model, onChange, gridValues = {}, labelValues = {} } = props;
   const { range } = model;
   const size = model.graph;
+
+  console.log(gridValues, 'grid values');
+  console.log(labelValues, 'label values');
 
   const rangeProps = chartType => {
     return chartType.includes('Plot') ? { min: 3, max: 10 } : { min: 0.05, max: 10000 };
@@ -54,6 +57,7 @@ const ConfigureChartPanel = props => {
             value={range.step}
             min={0}
             max={10000}
+            customValues={gridValues.range || []}
             variant="outlined"
             onChange={(e, v) => onRangeChanged('step', v)}
           />
@@ -63,6 +67,7 @@ const ConfigureChartPanel = props => {
             value={range.labelStep}
             min={0}
             max={10000}
+            customValues={labelValues.range || []}
             variant={'outlined'}
             onChange={(e, v) => onRangeChanged('labelStep', v)}
           />
