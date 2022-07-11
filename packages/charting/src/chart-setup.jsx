@@ -11,9 +11,6 @@ const ConfigureChartPanel = props => {
   const { range } = model;
   const size = model.graph;
 
-  console.log(gridValues, 'grid values');
-  console.log(labelValues, 'label values');
-
   const rangeProps = chartType => {
     return chartType.includes('Plot') ? { min: 3, max: 10 } : { min: 0.05, max: 10000 };
   };
