@@ -156,14 +156,7 @@ export class Chart extends React.Component {
     const { ChartComponent } = this.getChart();
     const categories = this.getFilteredCategories();
 
-    const labelFontSize = (theme && theme.typography && theme.typography.fontSize) || 14;
-    const correctValues = getDomainAndRangeByChartType(
-      domain,
-      range,
-      size,
-      chartType,
-      labelFontSize
-    );
+    const correctValues = getDomainAndRangeByChartType(domain, range, chartType);
 
     const { verticalLines, horizontalLines, leftAxis } = getGridLinesAndAxisByChartType(
       correctValues.range,

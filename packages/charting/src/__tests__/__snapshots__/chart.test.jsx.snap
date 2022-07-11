@@ -22,10 +22,10 @@ exports[`ChartAxes snapshot renders 1`] = `
         },
         "getRootNode": [Function],
         "range": Object {
-          "labelStep": 3,
+          "labelStep": undefined,
           "max": 10,
           "min": 0,
-          "step": 1,
+          "step": undefined,
         },
         "scale": Object {
           "x": [Function],
@@ -55,10 +55,10 @@ exports[`ChartAxes snapshot renders 1`] = `
           },
           "getRootNode": [Function],
           "range": Object {
-            "labelStep": 3,
+            "labelStep": undefined,
             "max": 10,
             "min": 0,
-            "step": 1,
+            "step": undefined,
           },
           "scale": Object {
             "x": [Function],
@@ -77,16 +77,6 @@ exports[`ChartAxes snapshot renders 1`] = `
       rowTickValues={
         Array [
           0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9,
-          10,
         ]
       }
       xBand={[Function]}
@@ -104,10 +94,10 @@ exports[`ChartAxes snapshot renders 1`] = `
           },
           "getRootNode": [Function],
           "range": Object {
-            "labelStep": 3,
+            "labelStep": undefined,
             "max": 10,
             "min": 0,
-            "step": 1,
+            "step": undefined,
           },
           "scale": Object {
             "x": [Function],
@@ -157,10 +147,10 @@ exports[`ChartAxes snapshot renders 1`] = `
             },
             "getRootNode": [Function],
             "range": Object {
-              "labelStep": 3,
+              "labelStep": undefined,
               "max": 10,
               "min": 0,
-              "step": 1,
+              "step": undefined,
             },
             "scale": Object {
               "x": [Function],
@@ -206,10 +196,10 @@ exports[`ChartAxes snapshot renders if size is not defined 1`] = `
         },
         "getRootNode": [Function],
         "range": Object {
-          "labelStep": 1,
+          "labelStep": undefined,
           "max": 10,
           "min": 0,
-          "step": 1,
+          "step": undefined,
         },
         "scale": Object {
           "x": [Function],
@@ -239,10 +229,10 @@ exports[`ChartAxes snapshot renders if size is not defined 1`] = `
           },
           "getRootNode": [Function],
           "range": Object {
-            "labelStep": 1,
+            "labelStep": undefined,
             "max": 10,
             "min": 0,
-            "step": 1,
+            "step": undefined,
           },
           "scale": Object {
             "x": [Function],
@@ -261,16 +251,6 @@ exports[`ChartAxes snapshot renders if size is not defined 1`] = `
       rowTickValues={
         Array [
           0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9,
-          10,
         ]
       }
       xBand={[Function]}
@@ -288,10 +268,10 @@ exports[`ChartAxes snapshot renders if size is not defined 1`] = `
           },
           "getRootNode": [Function],
           "range": Object {
-            "labelStep": 1,
+            "labelStep": undefined,
             "max": 10,
             "min": 0,
-            "step": 1,
+            "step": undefined,
           },
           "scale": Object {
             "x": [Function],
@@ -341,10 +321,10 @@ exports[`ChartAxes snapshot renders if size is not defined 1`] = `
             },
             "getRootNode": [Function],
             "range": Object {
-              "labelStep": 1,
+              "labelStep": undefined,
               "max": 10,
               "min": 0,
-              "step": 1,
+              "step": undefined,
             },
             "scale": Object {
               "x": [Function],
@@ -392,10 +372,10 @@ exports[`ChartAxes snapshot renders without chartType and charts properties 1`] 
         },
         "getRootNode": [Function],
         "range": Object {
-          "labelStep": 3,
+          "labelStep": undefined,
           "max": 10,
           "min": 0,
-          "step": 1,
+          "step": undefined,
         },
         "scale": Object {
           "x": [Function],
@@ -425,10 +405,10 @@ exports[`ChartAxes snapshot renders without chartType and charts properties 1`] 
           },
           "getRootNode": [Function],
           "range": Object {
-            "labelStep": 3,
+            "labelStep": undefined,
             "max": 10,
             "min": 0,
-            "step": 1,
+            "step": undefined,
           },
           "scale": Object {
             "x": [Function],
@@ -447,16 +427,6 @@ exports[`ChartAxes snapshot renders without chartType and charts properties 1`] 
       rowTickValues={
         Array [
           0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9,
-          10,
         ]
       }
       xBand={[Function]}
@@ -474,10 +444,10 @@ exports[`ChartAxes snapshot renders without chartType and charts properties 1`] 
           },
           "getRootNode": [Function],
           "range": Object {
-            "labelStep": 3,
+            "labelStep": undefined,
             "max": 10,
             "min": 0,
-            "step": 1,
+            "step": undefined,
           },
           "scale": Object {
             "x": [Function],
@@ -527,10 +497,10 @@ exports[`ChartAxes snapshot renders without chartType and charts properties 1`] 
             },
             "getRootNode": [Function],
             "range": Object {
-              "labelStep": 3,
+              "labelStep": undefined,
               "max": 10,
               "min": 0,
-              "step": 1,
+              "step": undefined,
             },
             "scale": Object {
               "x": [Function],
@@ -576,10 +546,10 @@ exports[`ChartAxes snapshot renders without chartType property 1`] = `
         },
         "getRootNode": [Function],
         "range": Object {
-          "labelStep": 3,
+          "labelStep": undefined,
           "max": 10,
           "min": 0,
-          "step": 1,
+          "step": undefined,
         },
         "scale": Object {
           "x": [Function],
@@ -609,10 +579,10 @@ exports[`ChartAxes snapshot renders without chartType property 1`] = `
           },
           "getRootNode": [Function],
           "range": Object {
-            "labelStep": 3,
+            "labelStep": undefined,
             "max": 10,
             "min": 0,
-            "step": 1,
+            "step": undefined,
           },
           "scale": Object {
             "x": [Function],
@@ -631,16 +601,6 @@ exports[`ChartAxes snapshot renders without chartType property 1`] = `
       rowTickValues={
         Array [
           0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9,
-          10,
         ]
       }
       xBand={[Function]}
@@ -658,10 +618,10 @@ exports[`ChartAxes snapshot renders without chartType property 1`] = `
           },
           "getRootNode": [Function],
           "range": Object {
-            "labelStep": 3,
+            "labelStep": undefined,
             "max": 10,
             "min": 0,
-            "step": 1,
+            "step": undefined,
           },
           "scale": Object {
             "x": [Function],
@@ -711,10 +671,10 @@ exports[`ChartAxes snapshot renders without chartType property 1`] = `
             },
             "getRootNode": [Function],
             "range": Object {
-              "labelStep": 3,
+              "labelStep": undefined,
               "max": 10,
               "min": 0,
-              "step": 1,
+              "step": undefined,
             },
             "scale": Object {
               "x": [Function],

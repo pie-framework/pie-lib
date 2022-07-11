@@ -50,53 +50,7 @@ export const getTickValues = (prop = {}) => {
   return tickValues;
 };
 
-// export const customLabelStep = (rangeMax, size, labelFontSize) => {
-//   const ceilMax = Math.ceil(rangeMax);
-//   const segmentLength = size.height / ceilMax;
-//   const ticksToFitInOneSegment = 2;
-
-//   // how many ticksWidth fit in a segment
-//   const tickWidthPerSegment = segmentLength / labelFontSize;
-//   const rawLabelStep = ticksToFitInOneSegment / tickWidthPerSegment;
-//   const roundedStep = Math.ceil((rawLabelStep * 10) / 10);
-
-//   let labelStep;
-
-//   if (rawLabelStep > 0.15) {
-//     labelStep = roundedStep;
-//   } else if (rawLabelStep < 0.05) {
-//     labelStep = 0.1;
-//   } else {
-//     labelStep = 0.5;
-//   }
-
-//   return labelStep;
-// };
-
-export const crowdedTicks = (rangeMax, customLabelStep, size, labelFontSize) => {
-  const ceilMax = Math.ceil(rangeMax);
-
-  const numberOfSegments = ceilMax * customLabelStep;
-
-  return size.height / numberOfSegments < labelFontSize && size.height / numberOfSegments > 0.5;
-};
-
-// multiply values with 10^number_of_decimals if needed because modulo function(%) is only defined for integers
-const modulo = (a, b) => {
-  if (Number.isInteger(b)) {
-    return a % b;
-  }
-
-  const decimals = b
-    .toString()
-    .split('.')
-    .pop().length;
-  const aux = Math.pow(10, decimals);
-
-  return (a * aux) % (b * aux);
-};
-
-export const getDomainAndRangeByChartType = (domain, range, size, chartType, labelFontSize) => {
+export const getDomainAndRangeByChartType = (domain, range, chartType) => {
   let { step, labelStep, min, max } = range || {};
 
   if (!min) {
@@ -111,26 +65,8 @@ export const getDomainAndRangeByChartType = (domain, range, size, chartType, lab
     step = labelStep;
   }
   if (!labelStep || (isNaN(labelStep) && step)) {
-    labelStep = step
+    labelStep = step;
   }
-
-  // if (!step || (isNaN(step) && !labelStep) || isNaN(labelStep)) {
-  //   labelStep = customLabelStep(max, size, labelFontSize);
-
-  //   if (labelStep <= 1) {
-  //     step = labelStep;
-  //   } else if (labelStep <= 4) {
-  //     step = 1;
-  //   } else if (labelStep > 4 && labelStep < 10) {
-  //     step = labelStep / 2;
-  //   } else {
-  //     step = labelStep / 3;
-  //   }
-  // }
-
-  // if (modulo(max, step) !== 0) {
-  //   max = max + step;
-  // }
 
   range.max = max;
 
