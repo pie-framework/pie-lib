@@ -25,9 +25,7 @@ const ConfigureChartPanel = props => {
   };
 
   const onRangeChanged = (key, value) => {
-    const parsedValue = parseInt(value);
-
-    range[key] = parsedValue;
+    range[key] = value;
 
     onChange({ ...model, range });
   };
@@ -55,8 +53,6 @@ const ConfigureChartPanel = props => {
             className={classes.mediumTextField}
             label="Grid Interval"
             value={range.step}
-            min={0}
-            max={10000}
             customValues={gridValues.range || []}
             variant="outlined"
             onChange={(e, v) => onRangeChanged('step', v)}
@@ -65,8 +61,6 @@ const ConfigureChartPanel = props => {
             className={classes.mediumTextField}
             label={'Label Interval'}
             value={range.labelStep}
-            min={0}
-            max={10000}
             customValues={labelValues.range || []}
             variant={'outlined'}
             onChange={(e, v) => onRangeChanged('labelStep', v)}
