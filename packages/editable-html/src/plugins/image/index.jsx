@@ -30,17 +30,20 @@ export default function ImagePlugin(opts) {
     supports: node => node.object === 'inline' && node.type === 'image',
     customToolbar: (node, value, onToolbarDone) => {
       const alignment = node.data.get('alignment');
-      const onChange = alignment => {
+      const alt = node.data.get('alt');
+      const onChange = newValues => {
         const update = {
           ...node.data.toObject(),
-          alignment
+          ...newValues
         };
 
         const change = value.change().setNodeByKey(node.key, { data: update });
         onToolbarDone(change, false);
       };
 
-      const Tb = () => <ImageToolbar alignment={alignment || 'left'} onChange={onChange} />;
+      const Tb = () => (
+        <ImageToolbar alt={alt} alignment={alignment || 'left'} onChange={onChange} />
+      );
       return Tb;
     },
     showDone: true
@@ -150,7 +153,8 @@ export const serialization = {
         height,
         margin: el.style.margin,
         justifyContent: el.style.justifyContent,
-        alignment: el.getAttribute('alignment')
+        alignment: el.getAttribute('alignment'),
+        alt: el.getAttribute('alt')
       }
     };
     log('return object: ', out);
@@ -166,6 +170,7 @@ export const serialization = {
     const alignment = data.get('alignment');
     const margin = data.get('margin');
     const justifyContent = data.get('margin');
+    const alt = data.get('alt');
     const style = {};
     if (width) {
       style.width = `${width}px`;
@@ -203,7 +208,8 @@ export const serialization = {
     const props = {
       src,
       style,
-      alignment
+      alignment,
+      alt
     };
 
     return <img {...props} />;

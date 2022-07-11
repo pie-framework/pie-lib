@@ -22,5 +22,10 @@ exports[`renders correctly 1`] = `
   >
     right
   </span>
+  <span
+    onMouseDown={[Function]}
+  >
+    Alt text
+  </span>
 </div>
 `;

@@ -17,5 +17,10 @@ exports[`ImageToolbar onChange renders 1`] = `
     alignment="right"
     onClick={[Function]}
   />
+  <span
+    onMouseDown={[Function]}
+  >
+    Alt text
+  </span>
 </div>
 `;
