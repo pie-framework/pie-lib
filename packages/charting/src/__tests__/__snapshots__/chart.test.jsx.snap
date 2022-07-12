@@ -22,7 +22,7 @@ exports[`ChartAxes snapshot renders 1`] = `
         },
         "getRootNode": [Function],
         "range": Object {
-          "labelStep": 3,
+          "labelStep": 1,
           "max": 10,
           "min": 0,
           "step": 1,
@@ -55,7 +55,7 @@ exports[`ChartAxes snapshot renders 1`] = `
           },
           "getRootNode": [Function],
           "range": Object {
-            "labelStep": 3,
+            "labelStep": 1,
             "max": 10,
             "min": 0,
             "step": 1,
@@ -104,7 +104,7 @@ exports[`ChartAxes snapshot renders 1`] = `
           },
           "getRootNode": [Function],
           "range": Object {
-            "labelStep": 3,
+            "labelStep": 1,
             "max": 10,
             "min": 0,
             "step": 1,
@@ -157,7 +157,7 @@ exports[`ChartAxes snapshot renders 1`] = `
             },
             "getRootNode": [Function],
             "range": Object {
-              "labelStep": 3,
+              "labelStep": 1,
               "max": 10,
               "min": 0,
               "step": 1,
@@ -392,7 +392,7 @@ exports[`ChartAxes snapshot renders without chartType and charts properties 1`] 
         },
         "getRootNode": [Function],
         "range": Object {
-          "labelStep": 3,
+          "labelStep": 1,
           "max": 10,
           "min": 0,
           "step": 1,
@@ -425,7 +425,7 @@ exports[`ChartAxes snapshot renders without chartType and charts properties 1`] 
           },
           "getRootNode": [Function],
           "range": Object {
-            "labelStep": 3,
+            "labelStep": 1,
             "max": 10,
             "min": 0,
             "step": 1,
@@ -474,7 +474,7 @@ exports[`ChartAxes snapshot renders without chartType and charts properties 1`] 
           },
           "getRootNode": [Function],
           "range": Object {
-            "labelStep": 3,
+            "labelStep": 1,
             "max": 10,
             "min": 0,
             "step": 1,
@@ -527,7 +527,7 @@ exports[`ChartAxes snapshot renders without chartType and charts properties 1`] 
             },
             "getRootNode": [Function],
             "range": Object {
-              "labelStep": 3,
+              "labelStep": 1,
               "max": 10,
               "min": 0,
               "step": 1,
@@ -576,7 +576,7 @@ exports[`ChartAxes snapshot renders without chartType property 1`] = `
         },
         "getRootNode": [Function],
         "range": Object {
-          "labelStep": 3,
+          "labelStep": 1,
           "max": 10,
           "min": 0,
           "step": 1,
@@ -609,7 +609,7 @@ exports[`ChartAxes snapshot renders without chartType property 1`] = `
           },
           "getRootNode": [Function],
           "range": Object {
-            "labelStep": 3,
+            "labelStep": 1,
             "max": 10,
             "min": 0,
             "step": 1,
@@ -658,7 +658,7 @@ exports[`ChartAxes snapshot renders without chartType property 1`] = `
           },
           "getRootNode": [Function],
           "range": Object {
-            "labelStep": 3,
+            "labelStep": 1,
             "max": 10,
             "min": 0,
             "step": 1,
@@ -711,7 +711,7 @@ exports[`ChartAxes snapshot renders without chartType property 1`] = `
             },
             "getRootNode": [Function],
             "range": Object {
-              "labelStep": 3,
+              "labelStep": 1,
               "max": 10,
               "min": 0,
               "step": 1,

@@ -7,9 +7,14 @@ import ChartType from './chart-type';
 import { NumberTextFieldCustom } from '@pie-lib/config-ui';
 
 const ConfigureChartPanel = props => {
-  const { classes, model, onChange } = props;
+  const { classes, model, onChange, gridValues = {}, labelValues = {} } = props;
   const { range } = model;
   const size = model.graph;
+
+  const gridOptions =
+    gridValues && gridValues.range ? { customValues: gridValues.range } : { min: 0, max: 10000 };
+  const labelOptions =
+    labelValues && labelValues.range ? { customValues: labelValues.range } : { min: 0, max: 10000 };
 
   const stepConfig = (
     <div className={classes.rowView}>
@@ -17,19 +22,17 @@ const ConfigureChartPanel = props => {
         className={classes.mediumTextField}
         label="Grid Interval"
         value={range.step}
-        min={0}
-        max={10000}
         variant="outlined"
         onChange={(e, v) => onRangeChanged('step', v)}
+        {...gridOptions}
       />
       <NumberTextFieldCustom
         className={classes.mediumTextField}
         label={'Label Interval'}
         value={range.labelStep}
-        min={0}
-        max={10000}
         variant={'outlined'}
         onChange={(e, v) => onRangeChanged('labelStep', v)}
+        {...labelOptions}
       />
     </div>
   );
@@ -45,9 +48,7 @@ const ConfigureChartPanel = props => {
   };
 
   const onRangeChanged = (key, value) => {
-    const parsedValue = parseInt(value);
-
-    range[key] = parsedValue;
+    range[key] = value;
 
     onChange({ ...model, range });
   };
