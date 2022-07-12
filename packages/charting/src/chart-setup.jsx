@@ -11,6 +11,29 @@ const ConfigureChartPanel = props => {
   const { range } = model;
   const size = model.graph;
 
+  const stepConfig = (
+    <div className={classes.rowView}>
+      <NumberTextFieldCustom
+        className={classes.mediumTextField}
+        label="Grid Interval"
+        value={range.step}
+        min={0}
+        max={10000}
+        variant="outlined"
+        onChange={(e, v) => onRangeChanged('step', v)}
+      />
+      <NumberTextFieldCustom
+        className={classes.mediumTextField}
+        label={'Label Interval'}
+        value={range.labelStep}
+        min={0}
+        max={10000}
+        variant={'outlined'}
+        onChange={(e, v) => onRangeChanged('labelStep', v)}
+      />
+    </div>
+  );
+
   const rangeProps = chartType => {
     return chartType.includes('Plot') ? { min: 3, max: 10 } : { min: 0.05, max: 10000 };
   };
@@ -38,6 +61,8 @@ const ConfigureChartPanel = props => {
         range.max = 10;
       }
 
+      range.step = 1;
+      range.labelStep = 1;
       onChange({ ...model, range, chartType });
 
       return;
@@ -62,26 +87,7 @@ const ConfigureChartPanel = props => {
             onChange={(e, v) => onRangeChanged('max', v)}
           />
         </div>
-        <div className={classes.rowView}>
-          <NumberTextFieldCustom
-            className={classes.mediumTextField}
-            label="Grid Interval"
-            value={range.step}
-            min={0}
-            max={10000}
-            variant="outlined"
-            onChange={(e, v) => onRangeChanged('step', v)}
-          />
-          <NumberTextFieldCustom
-            className={classes.mediumTextField}
-            label={'Label Interval'}
-            value={range.labelStep}
-            min={0}
-            max={10000}
-            variant={'outlined'}
-            onChange={(e, v) => onRangeChanged('labelStep', v)}
-          />
-        </div>
+        {!model.chartType.includes('Plot') && stepConfig}
         <div className={classes.dimensions}>
           <div>
             <Typography>Dimensions(px)</Typography>
