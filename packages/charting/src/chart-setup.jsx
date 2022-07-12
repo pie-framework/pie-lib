@@ -11,12 +11,10 @@ const ConfigureChartPanel = props => {
   const { range } = model;
   const size = model.graph;
 
-  const gridOptions = gridValues.range
-    ? { customValues: gridValues.range }
-    : { min: 0, max: 10000 };
-  const labelOptions = labelValues.range
-    ? { customValues: labelValues.range }
-    : { min: 0, max: 10000 };
+  const gridOptions =
+    gridValues && gridValues.range ? { customValues: gridValues.range } : { min: 0, max: 10000 };
+  const labelOptions =
+    labelValues && labelValues.range ? { customValues: labelValues.range } : { min: 0, max: 10000 };
 
   const stepConfig = (
     <div className={classes.rowView}>
