@@ -11,6 +11,27 @@ const ConfigureChartPanel = props => {
   const { range } = model;
   const size = model.graph;
 
+  const stepConfig = (
+    <div className={classes.rowView}>
+      <NumberTextFieldCustom
+        className={classes.mediumTextField}
+        label="Grid Interval"
+        value={range.step}
+        customValues={gridValues.range || []}
+        variant="outlined"
+        onChange={(e, v) => onRangeChanged('step', v)}
+      />
+      <NumberTextFieldCustom
+        className={classes.mediumTextField}
+        label={'Label Interval'}
+        value={range.labelStep}
+        customValues={labelValues.range || []}
+        variant={'outlined'}
+        onChange={(e, v) => onRangeChanged('labelStep', v)}
+      />
+    </div>
+  );
+
   const rangeProps = chartType => {
     return chartType.includes('Plot') ? { min: 3, max: 10 } : { min: 0.05, max: 10000 };
   };
@@ -63,24 +84,7 @@ const ConfigureChartPanel = props => {
             onChange={(e, v) => onRangeChanged('max', v)}
           />
         </div>
-        <div className={classes.rowView}>
-          <NumberTextFieldCustom
-            className={classes.mediumTextField}
-            label="Grid Interval"
-            value={range.step}
-            customValues={gridValues.range || []}
-            variant="outlined"
-            onChange={(e, v) => onRangeChanged('step', v)}
-          />
-          <NumberTextFieldCustom
-            className={classes.mediumTextField}
-            label={'Label Interval'}
-            value={range.labelStep}
-            customValues={labelValues.range || []}
-            variant={'outlined'}
-            onChange={(e, v) => onRangeChanged('labelStep', v)}
-          />
-        </div>
+        {!model.chartType.includes('Plot') && stepConfig}
         <div className={classes.dimensions}>
           <div>
             <Typography>Dimensions(px)</Typography>
