@@ -94,7 +94,7 @@ export class RawLine extends React.Component {
         {lineToUse &&
           lineToUse.map((point, i) => {
             const r = 6;
-            const enableDraggable = defineChart ? true : point.interactive;
+            const enableDraggable = defineChart || point.interactive;
             const Component = enableDraggable ? DraggableHandle : DragHandle;
 
             return (
