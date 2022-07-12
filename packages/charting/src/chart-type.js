@@ -13,29 +13,27 @@ const ChartType = withStyles(theme => ({
   chartTypeLabel: {
     backgroundColor: 'transparent'
   }
-}))(({ onChange, value, classes }) => {
-  return (
-    <div className={classes.chartType}>
-      <FormControl variant={'outlined'} className={classes.chartType}>
-        <InputLabel htmlFor="type-helper" className={classes.chartTypeLabel}>
-          ChartType
-        </InputLabel>
+}))(({ onChange, value, classes }) => (
+  <div className={classes.chartType}>
+    <FormControl variant={'outlined'} className={classes.chartType}>
+      <InputLabel htmlFor="type-helper" className={classes.chartTypeLabel}>
+        ChartType
+      </InputLabel>
 
-        <Select
-          value={value}
-          onChange={onChange}
-          input={<OutlinedInput name="type" id="type-helper" />}
-        >
-          <MenuItem value={'histogram'}>Histogram</MenuItem>
-          <MenuItem value={'bar'}>Bar</MenuItem>
-          <MenuItem value={'lineDot'}>Line Dot</MenuItem>
-          <MenuItem value={'lineCross'}>Line Cross</MenuItem>
-          <MenuItem value={'dotPlot'}>Dot Plot</MenuItem>
-          <MenuItem value={'linePlot'}>Line Plot</MenuItem>
-        </Select>
-      </FormControl>
-    </div>
-  );
-});
+      <Select
+        value={value}
+        onChange={onChange}
+        input={<OutlinedInput name="type" id="type-helper" />}
+      >
+        <MenuItem value={'histogram'}>Histogram</MenuItem>
+        <MenuItem value={'bar'}>Bar</MenuItem>
+        <MenuItem value={'lineDot'}>Line Dot</MenuItem>
+        <MenuItem value={'lineCross'}>Line Cross</MenuItem>
+        <MenuItem value={'dotPlot'}>Dot Plot</MenuItem>
+        <MenuItem value={'linePlot'}>Line Plot</MenuItem>
+      </Select>
+    </FormControl>
+  </div>
+));
 
 export default ChartType;
