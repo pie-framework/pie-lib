@@ -61,11 +61,11 @@ export const getDomainAndRangeByChartType = (domain, range, chartType) => {
     max = range.min + 1;
   }
 
-  if (labelStep && !step) {
-    step = labelStep;
+  if (!step) {
+    step = labelStep || 1;
   }
   if (!labelStep || (isNaN(labelStep) && step)) {
-    labelStep = step;
+    labelStep = step || 1;
   }
 
   range.max = max;

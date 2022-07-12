@@ -11,23 +11,30 @@ const ConfigureChartPanel = props => {
   const { range } = model;
   const size = model.graph;
 
+  const gridOptions = gridValues.range
+    ? { customValues: gridValues.range }
+    : { min: 0, max: 10000 };
+  const labelOptions = labelValues.range
+    ? { customValues: labelValues.range }
+    : { min: 0, max: 10000 };
+
   const stepConfig = (
     <div className={classes.rowView}>
       <NumberTextFieldCustom
         className={classes.mediumTextField}
         label="Grid Interval"
         value={range.step}
-        customValues={gridValues.range || []}
         variant="outlined"
         onChange={(e, v) => onRangeChanged('step', v)}
+        {...gridOptions}
       />
       <NumberTextFieldCustom
         className={classes.mediumTextField}
         label={'Label Interval'}
         value={range.labelStep}
-        customValues={labelValues.range || []}
         variant={'outlined'}
         onChange={(e, v) => onRangeChanged('labelStep', v)}
+        {...labelOptions}
       />
     </div>
   );
