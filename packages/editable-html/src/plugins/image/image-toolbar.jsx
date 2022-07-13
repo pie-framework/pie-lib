@@ -11,6 +11,7 @@ import TextField from '@material-ui/core/TextField';
 import DialogActions from '@material-ui/core/DialogActions';
 
 import { MarkButton } from '../toolbar/toolbar-buttons';
+import MediaDialog from '../media/media-dialog';
 
 const log = debug('@pie-lib:editable-html:plugins:image:image-toolbar');
 
@@ -43,28 +44,22 @@ export class ImageToolbar extends React.Component {
     this.props.onChange({ alignment });
   };
 
-  closePopOver = () => {
-    const prevPopOvers = document.querySelectorAll('#text-dialog');
+  closeDialog = () => {
+    const allDialogs = document.querySelectorAll('#text-dialog');
 
-    prevPopOvers.forEach(function(s) {
+    allDialogs.forEach(function(s) {
       return s.remove();
     });
   };
 
-  renderPopOver = () => {
-    const { alt } = this.props;
+  renderDialog = () => {
+    const { alt, classes } = this.props;
     const popoverEl = document.createElement('div');
 
-    ReactDOM.render(
-      <Dialog
-        hideBackdrop
-        onClose={this.closePopOver}
-        open
-        id={'text-dialog'}
-        disableEnforceFocus
-        style={{ pointerEvents: 'none' }}
-        PaperProps={{ style: { pointerEvents: 'auto' } }}
-      >
+    document.body.style.overflow = 'hidden';
+
+    const el = (
+      <Dialog open={true} disablePortal={true} onClose={this.closeDialog} id={'text-dialog'}>
         <DialogContent>
           <div style={{ display: 'flex' }}>
             <ArrowBackIos style={{ paddingTop: '6px' }} />
@@ -80,15 +75,22 @@ export class ImageToolbar extends React.Component {
           </div>
         </DialogContent>
         <DialogActions>
-          <Button onClick={this.closePopOver}>Done</Button>
+          <Button onClick={this.closeDialog}>Done</Button>
         </DialogActions>
-      </Dialog>,
-      popoverEl
+      </Dialog>
     );
+
+    ReactDOM.render(el, popoverEl);
+
+    document.body.appendChild(popoverEl);
+
+    document.activeElement.blur();
   };
 
   render() {
     const { classes, alignment } = this.props;
+
+    window.renderDialog = this.renderDialog;
 
     return (
       <div className={classes.holder}>
@@ -107,7 +109,7 @@ export class ImageToolbar extends React.Component {
           active={alignment === 'right'}
           onClick={this.onAlignmentClick}
         />
-        <span onMouseDown={event => this.renderPopOver(event)}>Alt text</span>
+        <span onMouseDown={event => this.renderDialog(event)}>Alt text</span>
       </div>
     );
   }
@@ -118,6 +120,12 @@ const styles = theme => ({
     paddingLeft: theme.spacing.unit,
     display: 'flex',
     alignItems: 'center'
+  },
+  root: {
+    // position: 'absolute',
+  },
+  backdrop: {
+    // position: 'absolute',
   }
 });
 

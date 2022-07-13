@@ -27,10 +27,8 @@ const defaultToolbarOpts = {
 
 const defaultResponseAreaProps = {
   options: {},
-  respAreaToolbar: () => {
-  },
-  onHandleAreaChange: () => {
-  }
+  respAreaToolbar: () => {},
+  onHandleAreaChange: () => {}
 };
 
 const defaultLanguageCharactersProps = [];
@@ -102,17 +100,14 @@ export class Editor extends React.Component {
     }),
     className: PropTypes.string,
     maxImageWidth: PropTypes.number,
-    maxImageHeight: PropTypes.number,
+    maxImageHeight: PropTypes.number
   };
 
   static defaultProps = {
     disableUnderline: true,
-    onFocus: () => {
-    },
-    onBlur: () => {
-    },
-    onKeyDown: () => {
-    },
+    onFocus: () => {},
+    onBlur: () => {},
+    onKeyDown: () => {},
     toolbarOpts: defaultToolbarOpts,
     responseAreaProps: defaultResponseAreaProps,
     languageCharactersProps: defaultLanguageCharactersProps
@@ -355,7 +350,7 @@ export class Editor extends React.Component {
     log('[onBlur] node: ', node);
 
     return new Promise(resolve => {
-      this.setState({ focusedNode: node }, this.handleBlur.bind(this, resolve));
+      this.setState({ focusedNode: !node ? null : node }, this.handleBlur.bind(this, resolve));
       this.props.onBlur(event);
     });
   };

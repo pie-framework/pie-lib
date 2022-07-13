@@ -60,6 +60,7 @@ export class EditorAndToolbar extends React.Component {
       toolbarRef
     } = this.props;
 
+    // const inFocus = value.isFocused || (focusedNode !== null && focusedNode !== undefined);
     const inFocus = value.isFocused || (focusedNode !== null && focusedNode !== undefined);
     const holderNames = classNames(
       classes.editorHolder,
