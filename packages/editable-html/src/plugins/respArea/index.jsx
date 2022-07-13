@@ -48,6 +48,11 @@ export default function ResponseAreaPlugin(opts) {
         } else {
           // If the markup is empty and there's no focus
           const lastText = value.document.getLastText();
+
+          if (!lastText) {
+            return;
+
+          }
           const parentNode = value.document.getParent(lastText.key);
 
           if (parentNode) {
