@@ -166,7 +166,7 @@ export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
     customToolbar: (node, value, onToolbarDone) => {
       log('[customToolbar] node.data: ', node.data);
 
-      const tableBlock = core.utils.getTableBlock(value.document, node.key);
+      const tableBlock = core.utils.getTableBlock(value.document, node?.key);
       log('[customToolbar] tableBlock: ', tableBlock);
 
       const hasBorder = () =>
