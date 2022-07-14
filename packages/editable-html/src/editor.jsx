@@ -27,13 +27,11 @@ const defaultToolbarOpts = {
 
 const defaultResponseAreaProps = {
   options: {},
-  respAreaToolbar: () => {
-  },
-  onHandleAreaChange: () => {
-  }
+  respAreaToolbar: () => {},
+  onHandleAreaChange: () => {}
 };
 
-const defaultLanguageCharactersProps = [];
+const defaultLanguageCharactersProps = [{ language: 'spanish' }, { language: 'special' }];
 
 const createToolbarOpts = toolbarOpts => {
   return {
@@ -107,12 +105,9 @@ export class Editor extends React.Component {
 
   static defaultProps = {
     disableUnderline: true,
-    onFocus: () => {
-    },
-    onBlur: () => {
-    },
-    onKeyDown: () => {
-    },
+    onFocus: () => {},
+    onBlur: () => {},
+    onKeyDown: () => {},
     toolbarOpts: defaultToolbarOpts,
     responseAreaProps: defaultResponseAreaProps,
     languageCharactersProps: defaultLanguageCharactersProps
