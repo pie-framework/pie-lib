@@ -182,7 +182,7 @@ export class Editor extends React.Component {
           this.setState({ toolbarInFocus: false, focusedNode: null });
           this.editor.blur();
 
-          if (nonEmpty && this.state.value.startText.text.length === 0) {
+          if (nonEmpty && this.state.value.startText?.text?.length === 0) {
             this.resetValue(true).then(() => {
               this.onEditingDone();
             });
@@ -334,7 +334,7 @@ export class Editor extends React.Component {
     }
 
     if (doneOn === 'blur') {
-      if (nonEmpty && this.state.value.startText.text.length === 0) {
+      if (nonEmpty && this.state.value.startText?.text?.length === 0) {
         this.resetValue(true).then(() => {
           this.onEditingDone();
           resolve();
