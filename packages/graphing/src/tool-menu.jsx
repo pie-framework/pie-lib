@@ -9,9 +9,11 @@ export class ToolMenu extends React.Component {
     className: PropTypes.string,
     currentToolType: PropTypes.string,
     disabled: PropTypes.bool,
+    draggableTools: PropTypes.bool,
     labelModeEnabled: PropTypes.bool,
     onChange: PropTypes.func,
     onToggleLabelMode: PropTypes.func,
+    onChangeTools: PropTypes.func,
     toolbarTools: PropTypes.arrayOf(PropTypes.string)
   };
 
@@ -19,11 +21,22 @@ export class ToolMenu extends React.Component {
     toolbarTools: []
   };
 
+  updateToolsOrder = (tools, showLabel) => {
+    const { onChangeTools } = this.props;
+
+    if (showLabel) {
+      tools.push('label');
+    }
+
+    onChangeTools(tools);
+  };
+
   render() {
     const {
       className,
       currentToolType,
       disabled,
+      draggableTools,
       labelModeEnabled,
       onToggleLabelMode,
       onChange
@@ -38,9 +51,11 @@ export class ToolMenu extends React.Component {
       <div className={classNames(className)}>
         <ToggleBar
           disabled={disabled}
+          draggableTools={draggableTools}
           options={toolbarTools}
           selectedToolType={currentToolType}
           onChange={onChange}
+          onChangeToolsOrder={tools => this.updateToolsOrder(tools, showLabel)}
         />
 
         {showLabel && (
