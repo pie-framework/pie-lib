@@ -68,10 +68,6 @@ export class Toolbar extends React.Component {
     };
   }
 
-  componentWillReceiveProps(nextProps, nextContext) {
-    console.log(nextProps, this.props);
-  }
-
   hasMark = type => {
     const { value } = this.props;
     return value.marks.some(mark => mark.type == type);

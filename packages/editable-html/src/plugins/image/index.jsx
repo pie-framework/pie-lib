@@ -31,6 +31,7 @@ export default function ImagePlugin(opts) {
     customToolbar: (node, value, onToolbarDone) => {
       const alignment = node.data.get('alignment');
       const alt = node.data.get('alt');
+      const imageLoaded = node.data.get('loaded') !== false;
       const onChange = newValues => {
         const update = {
           ...node.data.toObject(),
@@ -42,7 +43,7 @@ export default function ImagePlugin(opts) {
       };
 
       const Tb = () => (
-        <ImageToolbar alt={alt} alignment={alignment || 'left'} onChange={onChange} />
+        <ImageToolbar alt={alt} imageLoaded={imageLoaded} alignment={alignment || 'left'} onChange={onChange} />
       );
       return Tb;
     },
