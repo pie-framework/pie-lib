@@ -6,7 +6,6 @@ import Button from '@material-ui/core/Button';
 import { color } from '@pie-lib/render-ui';
 import { allTools } from './tools/index';
 import { withDragContext, DragSource, DropTarget } from '@pie-lib/drag';
-import ReactDOM from 'react-dom';
 
 const buttonStyles = () => ({
   root: {
@@ -96,6 +95,7 @@ export class ToggleBar extends React.Component {
         {(options || []).map((option, index) => {
           if ((allTools || []).includes(option)) {
             const isSelected = option === selectedToolType;
+            const toolRef = React.createRef();
 
             return (
               <DragTool
@@ -104,6 +104,7 @@ export class ToggleBar extends React.Component {
                 draggable={draggableTools}
                 moveTool={this.moveTool}
                 classes={classes}
+                toolRef={toolRef}
               >
                 <MiniButton
                   className={cn(classes.button, isSelected && classes.selected)}
@@ -172,11 +173,12 @@ export class Item extends React.Component {
       connectDragSource,
       connectDropTarget,
       connectDragPreview,
-      isDragging
+      isDragging,
+      toolRef
     } = this.props;
 
     return (
-      <div className={classes.wrapper}>
+      <div className={classes.wrapper} ref={toolRef}>
         {connectDragSource(
           connectDropTarget(<div className={isDragging && classes.hidden}>{children}</div>)
         )}
@@ -198,15 +200,15 @@ const itemSource = {
 };
 
 const itemTarget = {
-  hover(props, monitor, component) {
+  hover(props, monitor) {
     const dragIndex = monitor.getItem().index;
-    const hoverIndex = props.index;
+    const { toolRef, index: hoverIndex } = props;
 
-    if (dragIndex === hoverIndex) {
+    if (dragIndex === hoverIndex || !toolRef.current) {
       return;
     }
 
-    const hoverBoundingRect = ReactDOM.findDOMNode(component).getBoundingClientRect();
+    const hoverBoundingRect = toolRef.current?.getBoundingClientRect();
     const hoverMiddleX = (hoverBoundingRect.right - hoverBoundingRect.left) / 2;
     const clientOffset = monitor.getClientOffset();
     const hoverClientX = clientOffset.x - hoverBoundingRect.left;

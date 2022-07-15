@@ -35,7 +35,6 @@
     "invariant": "^2.2.4",
     "lodash": "^4.17.11",
     "react": "^16.8.1",
-    "react-dom": "^18.2.0",
     "react-draggable": "^3.3.0",
     "react-input-autosize": "^2.2.1",
     "react-redux": "^6.0.0",
