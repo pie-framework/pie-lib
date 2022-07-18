@@ -29,19 +29,18 @@ export default function ImagePlugin(opts) {
     },
     supports: node => node.object === 'inline' && node.type === 'image',
     customToolbar: (node, value, onToolbarDone) => {
-      const percent = node.data.get('resizePercent');
-
-      const onChange = resizePercent => {
+      const alignment = node.data.get('alignment');
+      const onChange = alignment => {
         const update = {
           ...node.data.toObject(),
-          resizePercent
+          alignment
         };
 
         const change = value.change().setNodeByKey(node.key, { data: update });
         onToolbarDone(change, false);
       };
 
-      const Tb = () => <ImageToolbar percent={percent || 100} onChange={onChange} />;
+      const Tb = () => <ImageToolbar alignment={alignment || 'left'} onChange={onChange} />;
       return Tb;
     },
     showDone: true
@@ -92,7 +91,7 @@ export default function ImagePlugin(opts) {
             onFocus: opts.onFocus,
             onBlur: opts.onBlur,
             maxImageWidth: opts.maxImageWidth,
-            maxImageHeight: opts.maxImageHeight,
+            maxImageHeight: opts.maxImageHeight
           },
           props
         );
@@ -137,7 +136,7 @@ export const serialization = {
     if (name !== 'img') return;
 
     log('deserialize: ', name);
-    const style = el.style || { width: '', height: '' };
+    const style = el.style || { width: '', height: '', margin: '', justifyContent: '' };
     const width = parseInt(style.width.replace('px', ''), 10) || null;
     const height = parseInt(style.height.replace('px', ''), 10) || null;
 
@@ -148,7 +147,10 @@ export const serialization = {
       data: {
         src: el.getAttribute('src'),
         width,
-        height
+        height,
+        margin: el.style.margin,
+        justifyContent: el.style.justifyContent,
+        alignment: el.getAttribute('alignment')
       }
     };
     log('return object: ', out);
@@ -161,6 +163,9 @@ export const serialization = {
     const src = data.get('src');
     const width = data.get('width');
     const height = data.get('height');
+    const alignment = data.get('alignment');
+    const margin = data.get('margin');
+    const justifyContent = data.get('margin');
     const style = {};
     if (width) {
       style.width = `${width}px`;
@@ -170,11 +175,35 @@ export const serialization = {
       style.height = `${height}px`;
     }
 
+    style.margin = margin;
+    style.justifyContent = justifyContent;
+
+    if (alignment) {
+      switch (alignment) {
+        case 'left':
+          style.justifyContent = 'flex-start';
+          style.margin = '0';
+          break;
+        case 'center':
+          style.justifyContent = 'center';
+          style.margin = '0 auto';
+          break;
+        case 'right':
+          style.justifyContent = 'flex-end';
+          style.margin = 'auto 0 0 auto';
+          break;
+        default:
+          style.justifyContent = 'flex-start';
+          break;
+      }
+    }
+
     style.objectFit = 'contain';
 
     const props = {
       src,
-      style
+      style,
+      alignment
     };
 
     return <img {...props} />;

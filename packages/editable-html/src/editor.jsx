@@ -102,7 +102,7 @@ export class Editor extends React.Component {
     }),
     className: PropTypes.string,
     maxImageWidth: PropTypes.number,
-    maxImageHeight: PropTypes.number
+    maxImageHeight: PropTypes.number,
   };
 
   static defaultProps = {

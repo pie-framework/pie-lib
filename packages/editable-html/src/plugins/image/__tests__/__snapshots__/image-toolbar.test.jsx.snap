@@ -3,5 +3,24 @@
 exports[`renders correctly 1`] = `
 <div
   className="ImageToolbar-holder-1 holder"
-/>
+>
+  <span
+    className="RawMarkButton-button-0-2-1"
+    onMouseDown={[Function]}
+  >
+    left
+  </span>
+  <span
+    className="RawMarkButton-button-0-2-1"
+    onMouseDown={[Function]}
+  >
+    center
+  </span>
+  <span
+    className="RawMarkButton-button-0-2-1"
+    onMouseDown={[Function]}
+  >
+    right
+  </span>
+</div>
 `;

@@ -84,7 +84,10 @@ describe('htmlToValue', () => {
                     data: {
                       src: 'blah.jpg',
                       width: null,
-                      height: null
+                      height: null,
+                      alignment: null,
+                      margin: '',
+                      justifyContent: ''
                     },
                     isVoid: true,
                     nodes: [

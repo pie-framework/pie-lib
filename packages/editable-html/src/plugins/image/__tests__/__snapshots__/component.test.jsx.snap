@@ -7,6 +7,11 @@ Array [
   </span>,
   <div
     className=""
+    style={
+      Object {
+        "justifyContent": "flex-start",
+      }
+    }
   >
     <div
       className="MuiLinearProgress-root-1 MuiLinearProgress-colorPrimary-2 MuiLinearProgress-indeterminate-5"
