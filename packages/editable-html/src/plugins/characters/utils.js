@@ -28,7 +28,8 @@ export const specialConfig = {
         unicode: 'U+00B4',
         description: 'ACUTE ACCENT',
         write: '´',
-        label: '´'
+        label: '´',
+        extraProps: { style: { gridRow: 'span 2' } }
       },
       {
         unicode: 'U+00E1',
@@ -134,7 +135,8 @@ export const specialConfig = {
         unicode: 'U+005E',
         description: 'CIRCUMFLEX ACCENT',
         write: '^',
-        label: '^'
+        label: '^',
+        extraProps: { style: { gridRow: 'span 2' } }
       },
       {
         unicode: 'U+00E2',
@@ -240,7 +242,8 @@ export const specialConfig = {
         unicode: 'U+00A8',
         description: 'DIAERESIS',
         write: '¨',
-        label: '¨'
+        label: '¨',
+        extraProps: { style: { gridRow: 'span 2' } }
       },
       {
         unicode: 'U+00E4',
@@ -346,7 +349,8 @@ export const specialConfig = {
         unicode: 'U+0060',
         description: 'GRAVE ACCENT',
         write: '`',
-        label: '`'
+        label: '`',
+        extraProps: { style: { gridRow: 'span 2' } }
       },
       {
         unicode: 'U+00E0',

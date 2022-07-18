@@ -7,10 +7,8 @@ it('renders correctly', () => {
   const node = Block.fromJSON({
     type: 'image',
     data: Data.create({
-      resizePercent: 50,
       width: 50,
-      height: 50,
-      percent: 50
+      height: 50
     })
   });
 
@@ -28,24 +26,16 @@ it('renders correctly', () => {
   };
 
   const tree = renderer
-    .create(
-      <Component
-        node={node}
-        editor={editor}
-        classes={classes}
-        onDelete={onDelete}
-      />,
-      {
-        createNodeMock: el => {
-          if (el.type === 'img') {
-            return {
-              naturalWidth: 100,
-              naturalHeight: 100
-            };
-          }
+    .create(<Component node={node} editor={editor} classes={classes} onDelete={onDelete} />, {
+      createNodeMock: el => {
+        if (el.type === 'img') {
+          return {
+            naturalWidth: 100,
+            naturalHeight: 100
+          };
         }
       }
-    )
+    })
     .toJSON();
   expect(tree).toMatchSnapshot();
 });

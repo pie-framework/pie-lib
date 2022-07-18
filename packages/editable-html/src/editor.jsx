@@ -27,13 +27,11 @@ const defaultToolbarOpts = {
 
 const defaultResponseAreaProps = {
   options: {},
-  respAreaToolbar: () => {
-  },
-  onHandleAreaChange: () => {
-  }
+  respAreaToolbar: () => {},
+  onHandleAreaChange: () => {}
 };
 
-const defaultLanguageCharactersProps = [];
+const defaultLanguageCharactersProps = [{ language: 'spanish' }, { language: 'special' }];
 
 const createToolbarOpts = toolbarOpts => {
   return {
@@ -102,17 +100,14 @@ export class Editor extends React.Component {
     }),
     className: PropTypes.string,
     maxImageWidth: PropTypes.number,
-    maxImageHeight: PropTypes.number
+    maxImageHeight: PropTypes.number,
   };
 
   static defaultProps = {
     disableUnderline: true,
-    onFocus: () => {
-    },
-    onBlur: () => {
-    },
-    onKeyDown: () => {
-    },
+    onFocus: () => {},
+    onBlur: () => {},
+    onKeyDown: () => {},
     toolbarOpts: defaultToolbarOpts,
     responseAreaProps: defaultResponseAreaProps,
     languageCharactersProps: defaultLanguageCharactersProps
@@ -182,7 +177,7 @@ export class Editor extends React.Component {
           this.setState({ toolbarInFocus: false, focusedNode: null });
           this.editor.blur();
 
-          if (nonEmpty && this.state.value.startText.text.length === 0) {
+          if (nonEmpty && this.state.value.startText?.text?.length === 0) {
             this.resetValue(true).then(() => {
               this.onEditingDone();
             });
@@ -334,7 +329,7 @@ export class Editor extends React.Component {
     }
 
     if (doneOn === 'blur') {
-      if (nonEmpty && this.state.value.startText.text.length === 0) {
+      if (nonEmpty && this.state.value.startText?.text?.length === 0) {
         this.resetValue(true).then(() => {
           this.onEditingDone();
           resolve();
@@ -584,7 +579,7 @@ export class Editor extends React.Component {
     const transfer = getEventTransfer(event);
     const file = transfer.files[0];
 
-    if (file.type === 'image/jpeg' || file.type === 'image/jpg' || file.type === 'image/png') {
+    if (file && file.type === 'image/jpeg' || file.type === 'image/jpg' || file.type === 'image/png') {
       try {
         log('[onDropPaste]');
         const src = await getBase64(file);
@@ -714,7 +709,30 @@ const styles = {
     },
     '& table:not([border="1"]) td, th': {
       border: '1px solid #dfe2e5'
-    }
+    },
+    '& .RawMathPreview-root-143 *': {
+      fontFamily: 'MJXZERO, MJXTEX !important'
+    },
+    '& .mq-math-mode var, .mq-math-mode i, .mq-math-mode i.mq-font': {
+      fontFamily: 'MJXZERO, MJXTEX-I !important'
+    },
+    '& .mq-math-mode .mq-sqrt-stem': {
+      borderTop: '0.07em solid',
+      marginLeft: '-1.5px',
+      marginTop: '-2px !important',
+      paddingTop: '5px !important'
+    },
+    '& .mq-supsub ': {
+      fontSize: '70.7%'
+    },
+    '& .mq-math-mode .mq-supsub.mq-sup-only': {
+      verticalAlign: '-0.1em !important',
+
+      '& .mq-sup': {
+        marginBottom: '0px !important'
+      }
+    },
+    '-webkit-font-smoothing': 'antialiased !important'
   },
   toolbarOnTop: {
     marginTop: '45px'

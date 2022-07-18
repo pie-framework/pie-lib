@@ -166,7 +166,7 @@ export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
     customToolbar: (node, value, onToolbarDone) => {
       log('[customToolbar] node.data: ', node.data);
 
-      const tableBlock = core.utils.getTableBlock(value.document, node.key);
+      const tableBlock = core.utils.getTableBlock(value.document, node?.key);
       log('[customToolbar] tableBlock: ', tableBlock);
 
       const hasBorder = () =>
@@ -295,8 +295,8 @@ export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
           if (prevText) {
             // we move focus to the previous text
             change
-              .moveFocusTo(prevText.key, prevText.text.length)
-              .moveAnchorTo(prevText.key, prevText.text.length);
+              .moveFocusTo(prevText.key, prevText.text?.length)
+              .moveAnchorTo(prevText.key, prevText.text?.length);
           }
 
           // we insert the table block between the first block with text and the last block with text

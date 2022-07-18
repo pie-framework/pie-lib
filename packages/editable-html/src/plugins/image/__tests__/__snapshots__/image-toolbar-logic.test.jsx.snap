@@ -1,3 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ImageToolbar onChange renders 1`] = `<div />`;
+exports[`ImageToolbar onChange renders 1`] = `
+<div>
+  <AlignmentButton
+    active={false}
+    alignment="left"
+    onClick={[Function]}
+  />
+  <AlignmentButton
+    active={false}
+    alignment="center"
+    onClick={[Function]}
+  />
+  <AlignmentButton
+    active={false}
+    alignment="right"
+    onClick={[Function]}
+  />
+</div>
+`;
