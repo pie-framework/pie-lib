@@ -4,8 +4,9 @@ exports[`ToolMenu snapshot renders 1`] = `
 <div
   className="className"
 >
-  <WithStyles(ToggleBar)
+  <Component
     onChange={[MockFunction]}
+    onChangeToolsOrder={[Function]}
     options={Array []}
   />
 </div>
