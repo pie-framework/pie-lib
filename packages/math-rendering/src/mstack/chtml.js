@@ -211,8 +211,5 @@ CHTMLmstack.styles = {
   'mjx-mstack > table > tr > .mjx-line': {
     padding: 0,
     'border-top': 'solid 1px black'
-  },
-  '.TEX-A': {
-    'font-family': 'MJXZERO, MJXTEX !important'
   }
 };
