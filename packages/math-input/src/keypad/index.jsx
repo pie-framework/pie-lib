@@ -60,12 +60,12 @@ const LatexButton = withStyles(theme => ({
         '&.mq-empty:before': {
           fontSize: '80%',
           left: 'calc(-13%)',
-          top: '-0.26em'
+          top: '-0.25em'
         },
         '&.mq-empty:after': {
           fontSize: '80%',
           right: 'calc(-13%)',
-          top: '-0.26em'
+          top: '-0.25em'
         },
         '&.mq-empty': {
           minHeight: '1.4em'
