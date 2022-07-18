@@ -177,7 +177,7 @@ export class Editor extends React.Component {
           this.setState({ toolbarInFocus: false, focusedNode: null });
           this.editor.blur();
 
-          if (nonEmpty && this.state.value.startText.text.length === 0) {
+          if (nonEmpty && this.state.value.startText?.text?.length === 0) {
             this.resetValue(true).then(() => {
               this.onEditingDone();
             });
@@ -329,7 +329,7 @@ export class Editor extends React.Component {
     }
 
     if (doneOn === 'blur') {
-      if (nonEmpty && this.state.value.startText.text.length === 0) {
+      if (nonEmpty && this.state.value.startText?.text?.length === 0) {
         this.resetValue(true).then(() => {
           this.onEditingDone();
           resolve();
@@ -579,7 +579,7 @@ export class Editor extends React.Component {
     const transfer = getEventTransfer(event);
     const file = transfer.files[0];
 
-    if (file.type === 'image/jpeg' || file.type === 'image/jpg' || file.type === 'image/png') {
+    if (file && file.type === 'image/jpeg' || file.type === 'image/jpg' || file.type === 'image/png') {
       try {
         log('[onDropPaste]');
         const src = await getBase64(file);
