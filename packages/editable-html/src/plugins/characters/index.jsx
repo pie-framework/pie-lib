@@ -131,6 +131,13 @@ const insertDialog = ({ value, callback, opts }) => {
             label: get(k, 'label') || k,
             category: 'character',
             extraClass: 'character',
+            extraProps: {
+              ...(k.extraProps || {}),
+              style: {
+                ...(k.extraProps || {}).style,
+                border: '1px solid #000'
+              }
+            },
             ...(configToUse.hasPreview
               ? {
                   actions: { onMouseEnter: ev => renderPopOver(ev, k), onMouseLeave: closePopOver }
