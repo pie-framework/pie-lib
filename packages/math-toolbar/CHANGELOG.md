@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.10.0...@pie-lib/math-toolbar@1.10.1) (2022-07-18)
+
+
+### Reverts
+
+* Revert "feat(math-toolbar): Make math-toolbar style inline with mathjax from Numeric to Grade 8HS PD-1521" ([f604ddd](https://github.com/pie-framework/pie-lib/commit/f604ddd8402b81f101e3f50b1baa4cc1bd5eec34))
+* Revert "feat(math-toolbar): Make math-toolbar preview style inline with mathjax" ([bb86c35](https://github.com/pie-framework/pie-lib/commit/bb86c35ed56228c673020faf5ea089fb99418fd8))
+* Revert "tweak" ([0c59e89](https://github.com/pie-framework/pie-lib/commit/0c59e89d5ca923e93a742051b3df7e9c8b2b90cc))
+* Revert "tweaks" ([647904f](https://github.com/pie-framework/pie-lib/commit/647904f3dc4f59b86064be1d7b9bbd2a4184f96b))
+
+
+
+
+
 # [1.10.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.9.4...@pie-lib/math-toolbar@1.10.0) (2022-07-18)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.0.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.0.0...@pie-lib/editable-html@9.0.1) (2022-07-18)
+
+
+### Reverts
+
+* Revert "feat(editable-html): Make editable-html style inline with mathjax: font, radical, exponential, italicize variables PD-1521" ([c07213c](https://github.com/pie-framework/pie-lib/commit/c07213c627609a47089f9cfec1e16366fc5dcfd3))
+
+
+
+
+
 # [9.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@8.1.2...@pie-lib/editable-html@9.0.0) (2022-07-18)
 
 

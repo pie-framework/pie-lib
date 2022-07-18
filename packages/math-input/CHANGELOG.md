@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.7.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.7.0...@pie-lib/math-input@6.7.1) (2022-07-18)
+
+
+### Reverts
+
+* Revert "feat(math-toolbar): Make math-toolbar style inline with mathjax for Geometry" ([fee3f22](https://github.com/pie-framework/pie-lib/commit/fee3f22897a03d1d5c892f731dfc441dba9ed10f))
+* Revert "feat(math-toolbar): Make math-toolbar preview style inline with mathjax" ([bb86c35](https://github.com/pie-framework/pie-lib/commit/bb86c35ed56228c673020faf5ea089fb99418fd8))
+
+
+
+
+
 # [6.7.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.6.10...@pie-lib/math-input@6.7.0) (2022-07-18)
 
 

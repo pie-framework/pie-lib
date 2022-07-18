@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.4.4...@pie-lib/math-rendering@2.4.5) (2022-07-18)
+
+
+### Reverts
+
+* Revert "fix(math-rendering): potential fix for box PD-1521" ([dac9a34](https://github.com/pie-framework/pie-lib/commit/dac9a34d599bb30bbb7c87c6e49df562fd486e5e))
+
+
+
+
+
 ## [2.4.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.4.3...@pie-lib/math-rendering@2.4.4) (2022-07-18)
 
 
