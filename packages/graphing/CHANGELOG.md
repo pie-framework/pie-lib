@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.7.0...@pie-lib/graphing@2.8.0) (2022-07-18)
+
+
+### Features
+
+* **graphing:** added drag and drop sorting for toolbar tools PD-1607 ([2463c86](https://github.com/pie-framework/pie-lib/commit/2463c86bf6ff42222e98e4344fc6c9fd040d9774))
+
+
+
+
+
 # [2.7.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.6.3...@pie-lib/graphing@2.7.0) (2022-06-27)
 
 

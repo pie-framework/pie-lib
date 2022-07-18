@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.4.3...@pie-lib/math-rendering@2.4.4) (2022-07-18)
+
+
+### Bug Fixes
+
+* **math-rendering:** potential fix for box PD-1521 ([9eefd91](https://github.com/pie-framework/pie-lib/commit/9eefd91b03644513d379bb1c46f4107b661ba4f3))
+* Perplexing problem with math rendering: arcs, rays, and lines PD-1828 ([c43d2f8](https://github.com/pie-framework/pie-lib/commit/c43d2f8031e2ba3b8bb3cfa28c92a2a78c3c3db2))
+* unable to load items locally ([d870dcd](https://github.com/pie-framework/pie-lib/commit/d870dcd547bd171f083a1cae08c1ccaa4b68629b))
+* **math-rendering:** increase mathml formulas vertical space ([efa0c28](https://github.com/pie-framework/pie-lib/commit/efa0c28181a4a711dc35b34c075547230ae0315a))
+
+
+
+
+
 ## [2.4.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.4.2...@pie-lib/math-rendering@2.4.3) (2022-06-13)
 
 **Note:** Version bump only for package @pie-lib/math-rendering

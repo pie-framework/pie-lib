@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.10.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.9.4...@pie-lib/math-toolbar@1.10.0) (2022-07-18)
+
+
+### Bug Fixes
+
+* **math-toolbar:** add sanity check for clicking in editor-and-pad ([4c5dc18](https://github.com/pie-framework/pie-lib/commit/4c5dc18e077fca9a50f9c638f64ba08bba3b0884))
+
+
+### Features
+
+* **math-toolbar:** Make math-toolbar preview style inline with mathjax ([266b1bc](https://github.com/pie-framework/pie-lib/commit/266b1bc9a277530fd653edfacbb836596957dd33))
+* **math-toolbar:** Make math-toolbar style inline with mathjax from Numeric to Grade 8HS PD-1521 ([5c49326](https://github.com/pie-framework/pie-lib/commit/5c493262ccf2ca8ba4c80af42e566b4e7a8c3571))
+* **plugins:** added special characters adding capabilities [PD-1462] ([b9f41e1](https://github.com/pie-framework/pie-lib/commit/b9f41e11f44df140a66145d0b04558ca2b0ea48e))
+
+
+
+
+
 ## [1.9.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.9.3...@pie-lib/math-toolbar@1.9.4) (2022-06-13)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar

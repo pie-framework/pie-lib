@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@8.1.2...@pie-lib/editable-html@9.0.0) (2022-07-18)
+
+
+### Bug Fixes
+
+* **editable-html:** add another sanity checks ([d872981](https://github.com/pie-framework/pie-lib/commit/d87298124408b55d75d42598c0272294a0881043))
+* **editable-html:** add sanity check for drop / paste file - sentry ([d27d252](https://github.com/pie-framework/pie-lib/commit/d27d2522d0567333e0af1ce49a3793ebc44ef032))
+* **editable-html:** add sanity check in respArea - toolbar ([1e4c9f2](https://github.com/pie-framework/pie-lib/commit/1e4c9f21be612409deee08cca6790f019f5d01d3))
+* **editable-html:** potential fix - sanity check for node key in table - sentry ([f417c72](https://github.com/pie-framework/pie-lib/commit/f417c724c49e50e8c3c514b46b42f5d410da2942))
+* code tweaks ([a390dcb](https://github.com/pie-framework/pie-lib/commit/a390dcbe22e9d37776b91071ec1502bbad59ff2a))
+* duplicate image issue ([924a4df](https://github.com/pie-framework/pie-lib/commit/924a4df45cf9f1601704dd48c2a757dd02e2e7a3))
+* tests ([41caca9](https://github.com/pie-framework/pie-lib/commit/41caca9855aa8099f5cb7286cc6660dd20d5c622))
+
+
+### Features
+
+* **characters:** special character accents span 2 rows, added border for visibility [PD-1462] ([c60b0bc](https://github.com/pie-framework/pie-lib/commit/c60b0bc8ff45cc01f53bc752fd5dd64da623f6be))
+* **editable-html:** add image alignment buttons ([a076a41](https://github.com/pie-framework/pie-lib/commit/a076a4193c82dc552bd21de7a8f928d8481e73e6))
+* **editable-html:** BREAKING CHANGE add image alignment buttons in image toolbar PD-1802 ([bcb59e5](https://github.com/pie-framework/pie-lib/commit/bcb59e5737fe61560fac8de01276baf187888048))
+* **editable-html:** image resize functionality PD-1801. BREAKING CHANGE removed percent buttons from image toolbar ([1d5c33d](https://github.com/pie-framework/pie-lib/commit/1d5c33d4bcd224fa1b38310d7f0f21fba0888f12))
+* **editable-html:** Make editable-html style inline with mathjax: font, radical, exponential, italicize variables PD-1521 ([20752ad](https://github.com/pie-framework/pie-lib/commit/20752ad453880da881bc0a2880c6ef9a10b9589d))
+* **editable-html, render-ui:** wrap up PD-1802 ([e10babf](https://github.com/pie-framework/pie-lib/commit/e10babf2e80aed67c856e9e021e37072e3df33fb))
+* **editor:** added insert spanish and special characters as default [PD-1883] ([26655ec](https://github.com/pie-framework/pie-lib/commit/26655ec87cb4b8a82357e88b62faad3fdc7c296a))
+
+
+### BREAKING CHANGES
+
+* **editable-html:** Added new buttons in image toolbar.
+The buttons control image horizontal alignment.
+
+
+
+
+
 ## [8.1.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@8.1.1...@pie-lib/editable-html@8.1.2) (2022-06-28)
 
 

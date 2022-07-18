@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.7.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.6.10...@pie-lib/math-input@6.7.0) (2022-07-18)
+
+
+### Features
+
+* **characters:** special character accents span 2 rows, added border for visibility [PD-1462] ([c60b0bc](https://github.com/pie-framework/pie-lib/commit/c60b0bc8ff45cc01f53bc752fd5dd64da623f6be))
+* **math-toolbar:** Make math-toolbar preview style inline with mathjax ([266b1bc](https://github.com/pie-framework/pie-lib/commit/266b1bc9a277530fd653edfacbb836596957dd33))
+* **math-toolbar:** Make math-toolbar style inline with mathjax for Geometry ([811bde0](https://github.com/pie-framework/pie-lib/commit/811bde0aa97633822fa3260666e298e841b6b9f7))
+* **plugins:** added special characters adding capabilities [PD-1462] ([b9f41e1](https://github.com/pie-framework/pie-lib/commit/b9f41e11f44df140a66145d0b04558ca2b0ea48e))
+
+
+
+
+
 ## [6.6.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.6.9...@pie-lib/math-input@6.6.10) (2022-06-13)
 
 **Note:** Version bump only for package @pie-lib/math-input
