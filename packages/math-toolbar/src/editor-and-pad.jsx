@@ -260,7 +260,6 @@ export class EditorAndPad extends React.Component {
         <hr className={classes.hr} />
         {shouldShowKeypad && (
           <HorizontalKeypad
-            className={classes.keyboard}
             layoutForKeyPad={layoutForKeyPad}
             additionalKeys={additionalKeys}
             mode={controlledKeypadMode ? this.state.equationEditor : keypadMode}
@@ -383,43 +382,6 @@ const styles = theme => ({
   },
   error: {
     border: '2px solid red'
-  },
-  keyboard: {
-    '& *': {
-      fontFamily: 'MJXZERO, MJXTEX-I !important',
-
-      '& .mq-math-mode .mq-empty': {
-        padding: '9px 1px !important'
-      },
-
-      '& .mq-longdiv-inner': {
-        marginTop: '-1px',
-        marginLeft: '5px !important;',
-
-        '& > .mq-empty': {
-          padding: '0 !important',
-          marginLeft: '0px !important',
-          marginTop: '2px'
-        }
-      },
-
-      '& .mq-math-mode .mq-longdiv': {
-        display: 'flex !important'
-      },
-
-      '& .mq-math-mode .mq-supsub': {
-        fontSize: '70.7% !important'
-      },
-
-      '& .mq-math-mode .mq-sqrt-stem': {
-        marginTop: '-5px',
-        paddingTop: '4px'
-      },
-
-      '& .mq-math-mode .mq-paren': {
-        verticalAlign: 'middle !important'
-      }
-    }
   }
 });
 
