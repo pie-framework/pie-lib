@@ -126,7 +126,7 @@ export class Bars extends React.Component {
         {(data || []).map((d, index) => (
           <Bar
             value={d.value}
-            interactive={defineChart ? true : d.interactive}
+            interactive={defineChart || d.interactive}
             label={d.label}
             xBand={xBand}
             index={index}

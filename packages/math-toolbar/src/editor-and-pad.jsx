@@ -81,6 +81,10 @@ export class EditorAndPad extends React.Component {
       return;
     }
 
+    if (!c) {
+      return;
+    }
+
     if (c.type === 'clear') {
       log('call clear...');
       this.input.clear();

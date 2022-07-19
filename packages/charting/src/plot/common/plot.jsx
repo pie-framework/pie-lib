@@ -151,7 +151,7 @@ export class Plot extends React.Component {
           <Bar
             value={d.value}
             label={d.label}
-            interactive={defineChart ? true : d.interactive}
+            interactive={defineChart || d.interactive}
             xBand={xBand}
             index={index}
             key={`bar-${d.label}-${d.value}-${index}`}

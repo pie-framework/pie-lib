@@ -54,6 +54,12 @@ const Collapsible = ({ classes, children, title }) => (
   </ExpansionPanel>
 );
 
+Collapsible.propTypes = {
+  classes: PropTypes.object,
+  children: PropTypes.array,
+  title: PropTypes.string
+};
+
 export class GraphWithControls extends React.Component {
   static propTypes = {
     ...graphPropTypes,
@@ -104,8 +110,10 @@ export class GraphWithControls extends React.Component {
       collapsibleToolbarTitle,
       disabled,
       domain,
+      draggableTools,
       labels,
       onChangeMarks,
+      onChangeTools,
       onUndo,
       onRedo,
       onReset,
@@ -136,10 +144,12 @@ export class GraphWithControls extends React.Component {
         <ToolMenu
           currentToolType={currentTool && currentTool.type}
           disabled={!!disabled}
+          draggableTools={draggableTools}
           labelModeEnabled={labelModeEnabled}
           onChange={tool => this.changeCurrentTool(tool, tools)}
           onToggleLabelMode={this.toggleLabelMode}
           toolbarTools={toolbarTools}
+          onChangeTools={onChangeTools}
         />
 
         {!disabled && <UndoRedo onUndo={onUndo} onRedo={onRedo} onReset={onReset} />}

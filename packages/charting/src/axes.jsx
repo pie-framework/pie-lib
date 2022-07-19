@@ -97,7 +97,7 @@ export class TickComponent extends React.Component {
           )}
           <MarkLabel
             inputRef={r => (this.input = r)}
-            disabled={defineChart ? false : !editable}
+            disabled={!defineChart && !editable}
             mark={category}
             graphProps={graphProps}
             onChange={newLabel => this.changeCategory(index, newLabel)}

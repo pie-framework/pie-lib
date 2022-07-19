@@ -11,6 +11,8 @@ import debug from 'debug';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import { color } from '@pie-lib/render-ui';
+import Plain from 'slate-plain-serializer';
+
 import { getBase64 } from './serialization';
 
 export { ALL_PLUGINS, DEFAULT_PLUGINS, serialization };
@@ -31,7 +33,7 @@ const defaultResponseAreaProps = {
   onHandleAreaChange: () => {}
 };
 
-const defaultLanguageCharactersProps = [];
+const defaultLanguageCharactersProps = [{ language: 'spanish' }, { language: 'special' }];
 
 const createToolbarOpts = toolbarOpts => {
   return {
@@ -177,7 +179,7 @@ export class Editor extends React.Component {
           this.setState({ toolbarInFocus: false, focusedNode: null });
           this.editor.blur();
 
-          if (nonEmpty && this.state.value.startText.text.length === 0) {
+          if (nonEmpty && this.state.value.startText?.text?.length === 0) {
             this.resetValue(true).then(() => {
               this.onEditingDone();
             });
@@ -329,7 +331,7 @@ export class Editor extends React.Component {
     }
 
     if (doneOn === 'blur') {
-      if (nonEmpty && this.state.value.startText.text.length === 0) {
+      if (nonEmpty && this.state.value.startText?.text?.length === 0) {
         this.resetValue(true).then(() => {
           this.onEditingDone();
           resolve();
@@ -572,14 +574,21 @@ export class Editor extends React.Component {
   };
 
   onDropPaste = async (event, change, dropContext) => {
-    if (!this.props.imageSupport) {
-      return;
-    }
     const editor = change.editor;
     const transfer = getEventTransfer(event);
-    const file = transfer.files[0];
+    const file = transfer.files && transfer.files[0];
 
-    if (file.type === 'image/jpeg' || file.type === 'image/jpg' || file.type === 'image/png') {
+    const type = transfer.type;
+    const fragment = transfer.fragment;
+    const text = transfer.text;
+
+    if (
+      file &&
+      (file.type === 'image/jpeg' || file.type === 'image/jpg' || file.type === 'image/png')
+    ) {
+      if (!this.props.imageSupport) {
+        return;
+      }
       try {
         log('[onDropPaste]');
         const src = await getBase64(file);
@@ -606,6 +615,27 @@ export class Editor extends React.Component {
       } catch (err) {
         log('[onDropPaste] error: ', err);
       }
+    } else if (type === 'fragment') {
+      change.insertFragment(fragment);
+    } else if (type === 'text' || type === 'html') {
+      if (!text) {
+        return;
+      }
+      const {
+        value: { document, selection, startBlock }
+      } = change;
+
+      if (startBlock.isVoid) {
+        return;
+      }
+
+      const defaultBlock = startBlock;
+      const defaultMarks = document.getInsertMarksAtRange(selection);
+      const frag = Plain.deserialize(text, {
+        defaultBlock,
+        defaultMarks
+      }).document;
+      change.insertFragment(frag);
     }
   };
 

@@ -274,7 +274,8 @@ export class KeyPad extends React.Component {
             ),
             disabled: this.keyIsNotAllowed(k),
             key: `${k.label || k.latex || k.command}-${index}`,
-            ...(k.actions || {})
+            ...(k.actions || {}),
+            ...(k.extraProps || {})
           };
 
           if (k.latex) {
