@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.7.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.7.1...@pie-lib/math-input@6.7.2) (2022-07-19)
+
+
+### Bug Fixes
+
+* bump mathquill to 1.1.3 ([48b84c5](https://github.com/pie-framework/pie-lib/commit/48b84c534cbf519e172a80d18a48b26eda3cf7e6))
+
+
+
+
+
 ## [6.7.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.7.0...@pie-lib/math-input@6.7.1) (2022-07-18)
 
 

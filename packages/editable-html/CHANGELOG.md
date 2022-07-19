@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.0.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.0.1...@pie-lib/editable-html@9.0.2) (2022-07-19)
+
+
+### Bug Fixes
+
+* bump mathquill to 1.1.3 ([48b84c5](https://github.com/pie-framework/pie-lib/commit/48b84c534cbf519e172a80d18a48b26eda3cf7e6))
+
+
+
+
+
 ## [9.0.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.0.0...@pie-lib/editable-html@9.0.1) (2022-07-18)
 
 
