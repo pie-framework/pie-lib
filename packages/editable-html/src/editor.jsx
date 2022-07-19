@@ -11,6 +11,8 @@ import debug from 'debug';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import { color } from '@pie-lib/render-ui';
+import Plain from 'slate-plain-serializer';
+
 import { getBase64 } from './serialization';
 
 export { ALL_PLUGINS, DEFAULT_PLUGINS, serialization };
@@ -100,7 +102,7 @@ export class Editor extends React.Component {
     }),
     className: PropTypes.string,
     maxImageWidth: PropTypes.number,
-    maxImageHeight: PropTypes.number,
+    maxImageHeight: PropTypes.number
   };
 
   static defaultProps = {
@@ -572,14 +574,21 @@ export class Editor extends React.Component {
   };
 
   onDropPaste = async (event, change, dropContext) => {
-    if (!this.props.imageSupport) {
-      return;
-    }
     const editor = change.editor;
     const transfer = getEventTransfer(event);
-    const file = transfer.files[0];
+    const file = transfer.files && transfer.files[0];
 
-    if (file && file.type === 'image/jpeg' || file.type === 'image/jpg' || file.type === 'image/png') {
+    const type = transfer.type;
+    const fragment = transfer.fragment;
+    const text = transfer.text;
+
+    if (
+      file &&
+      (file.type === 'image/jpeg' || file.type === 'image/jpg' || file.type === 'image/png')
+    ) {
+      if (!this.props.imageSupport) {
+        return;
+      }
       try {
         log('[onDropPaste]');
         const src = await getBase64(file);
@@ -606,6 +615,27 @@ export class Editor extends React.Component {
       } catch (err) {
         log('[onDropPaste] error: ', err);
       }
+    } else if (type === 'fragment') {
+      change.insertFragment(fragment);
+    } else if (type === 'text' || type === 'html') {
+      if (!text) {
+        return;
+      }
+      const {
+        value: { document, selection, startBlock }
+      } = change;
+
+      if (startBlock.isVoid) {
+        return;
+      }
+
+      const defaultBlock = startBlock;
+      const defaultMarks = document.getInsertMarksAtRange(selection);
+      const frag = Plain.deserialize(text, {
+        defaultBlock,
+        defaultMarks
+      }).document;
+      change.insertFragment(frag);
     }
   };
 
