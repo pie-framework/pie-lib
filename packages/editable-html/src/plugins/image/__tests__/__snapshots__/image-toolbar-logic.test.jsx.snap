@@ -18,6 +18,7 @@ exports[`ImageToolbar onChange renders 1`] = `
     onClick={[Function]}
   />
   <span
+    className="undefined"
     onMouseDown={[Function]}
   >
     Alt text

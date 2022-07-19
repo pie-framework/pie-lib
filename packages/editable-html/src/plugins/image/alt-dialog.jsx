@@ -43,7 +43,7 @@ export class AltDialog extends React.Component {
     const { value } = this.state;
 
     return (
-      <Dialog open disablePortal onClose={this.closeDialog} id="text-dialog">
+      <Dialog open disablePortal onClose={this.closeDialog} id="text-dialog" hideBackdrop>
         <DialogContent>
           <div style={{ display: 'flex' }}>
             <ArrowBackIos style={{ paddingTop: '6px' }} />

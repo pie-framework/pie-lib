@@ -77,7 +77,8 @@ export class ImageToolbar extends React.Component {
         />
         <span
           className={classNames({
-            [classes.disabled]: !imageLoaded
+            [classes.disabled]: !imageLoaded,
+            [classes.altButton]: true
           })}
           onMouseDown={event => imageLoaded && this.renderDialog(event)}
         >
@@ -97,12 +98,11 @@ const styles = theme => ({
   disabled: {
     opacity: 0.5
   },
-  root: {
-    // position: 'absolute',
+  altButton: {
+    borderLeft: '1px solid grey',
+    paddingLeft: 8,
+    marginLeft: 4,
   },
-  backdrop: {
-    // position: 'absolute',
-  }
 });
 
 export default withStyles(styles)(ImageToolbar);
