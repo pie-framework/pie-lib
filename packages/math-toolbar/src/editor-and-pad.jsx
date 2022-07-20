@@ -225,7 +225,6 @@ export class EditorAndPad extends React.Component {
                 <MenuItem value={'advanced-algebra'}>Advanced Algebra</MenuItem>
                 <MenuItem value={'statistics'}>Statistics</MenuItem>
                 <MenuItem value={'item-authoring'}>Item Authoring</MenuItem>
-                <MenuItem value={'language'}>Language</MenuItem>
               </Select>
             </InputContainer>
           )}
