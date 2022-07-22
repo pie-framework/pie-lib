@@ -260,6 +260,7 @@ export class EditorAndPad extends React.Component {
         <hr className={classes.hr} />
         {shouldShowKeypad && (
           <HorizontalKeypad
+            className={classes.keyboard}
             layoutForKeyPad={layoutForKeyPad}
             additionalKeys={additionalKeys}
             mode={controlledKeypadMode ? this.state.equationEditor : keypadMode}
@@ -276,7 +277,10 @@ const styles = theme => ({
   inputAndTypeContainer: {
     display: 'flex',
     alignItems: 'center',
-    '& *': {
+    '& .mq-root-block': {
+      marginTop: '8px'
+    },
+    '& .mq-math-mode .mq-overarrow': {
       fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important'
     },
     '& .mq-overarrow.mq-arrow-both': {
@@ -301,6 +305,70 @@ const styles = theme => ({
         top: '-0.4em',
         right: '-1px'
       }
+    },
+    '& *': {
+      fontFamily: 'MJXZERO, MJXTEX-I !important',
+
+      '& .mq-math-mode .mq-sqrt-prefix': {
+        verticalAlign: 'bottom !important',
+        top: '0.2em !important',
+        left: '-0.1em !important'
+      },
+
+      '& .mq-math-mode sup.mq-nthroot': {
+        fontSize: '70% !important',
+        verticalAlign: '0.5em !important',
+        paddingRight: '0.15em'
+      },
+
+      '& .mq-math-mode .mq-empty': {
+        padding: '9px 1px !important'
+      },
+
+      '& .mq-longdiv-inner': {
+        marginTop: '-1px',
+        marginLeft: '5px !important;',
+
+        '& > .mq-empty': {
+          padding: '0 !important',
+          marginLeft: '0px !important',
+          marginTop: '2px'
+        }
+      },
+
+      '& .mq-math-mode .mq-longdiv': {
+        display: 'flex !important'
+      },
+
+      '& .mq-math-mode .mq-supsub': {
+        fontSize: '70.7% !important'
+      },
+
+      '& .mq-math-mode .mq-paren': {
+        verticalAlign: 'top !important',
+        padding: '4px 0.1em !important'
+      },
+
+      '& .mq-math-mode .mq-sqrt-stem': {
+        borderTop: '0.07em solid',
+        marginLeft: '-1.5px',
+        marginTop: '-2px !important',
+        paddingTop: '5px !important'
+      },
+
+      '& .mq-supsub ': {
+        fontSize: '70.7%'
+      },
+
+      '& .mq-math-mode .mq-supsub.mq-sup-only': {
+        verticalAlign: '-0.1em !important',
+
+        '& .mq-sup': {
+          marginBottom: '0px !important'
+        }
+      },
+
+      '-webkit-font-smoothing': 'antialiased !important'
     }
   },
   hide: {
@@ -313,7 +381,15 @@ const styles = theme => ({
     marginLeft: '15px',
     marginTop: '5px',
     marginBottom: '5px',
-    marginRight: '5px'
+    marginRight: '5px',
+
+    '& label': {
+      fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important'
+    },
+
+    '& div': {
+      fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important'
+    }
   },
   mathEditor: {
     maxWidth: '400px',
@@ -378,10 +454,51 @@ const styles = theme => ({
     width: '100%',
     display: 'flex',
     marginTop: theme.spacing.unit,
-    marginBottom: theme.spacing.unit
+    marginBottom: theme.spacing.unit,
+
+    '& .mq-sqrt-prefix .mq-scaled': {
+      verticalAlign: 'middle !important'
+    }
   },
   error: {
     border: '2px solid red'
+  },
+  keyboard: {
+    '& *': {
+      fontFamily: 'MJXZERO, MJXTEX-I !important',
+
+      '& .mq-math-mode .mq-empty': {
+        padding: '9px 1px !important'
+      },
+
+      '& .mq-longdiv-inner': {
+        marginTop: '-1px',
+        marginLeft: '5px !important;',
+
+        '& > .mq-empty': {
+          padding: '0 !important',
+          marginLeft: '0px !important',
+          marginTop: '2px'
+        }
+      },
+
+      '& .mq-math-mode .mq-longdiv': {
+        display: 'flex !important'
+      },
+
+      '& .mq-math-mode .mq-supsub': {
+        fontSize: '70.7% !important'
+      },
+
+      '& .mq-math-mode .mq-sqrt-stem': {
+        marginTop: '-5px',
+        paddingTop: '4px'
+      },
+
+      '& .mq-math-mode .mq-paren': {
+        verticalAlign: 'middle !important'
+      }
+    }
   }
 });
 
