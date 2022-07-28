@@ -112,11 +112,12 @@ export class Chart extends React.Component {
   };
 
   addCategory = (chartType, range) => {
-    const { onDataChange, data, categoryDefaultLabel } = this.props;
-
+    const { onDataChange, data, categoryDefaultLabel, defineChart } = this.props;
+    console.log(defineChart, 'defineChart');
     onDataChange([
       ...data,
       {
+        inDefineChart: defineChart,
         autoFocus: true,
         label: categoryDefaultLabel || 'New Bar',
         value: range.step,
