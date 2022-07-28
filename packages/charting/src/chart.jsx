@@ -117,6 +117,7 @@ export class Chart extends React.Component {
     onDataChange([
       ...data,
       {
+        autoFocus: true,
         label: categoryDefaultLabel || 'New Bar',
         value: range.step,
         deletable: true,
