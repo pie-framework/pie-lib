@@ -3,6 +3,86 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.32](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.4.31...@pie-lib/rubric@0.4.32) (2022-07-22)
+
+**Note:** Version bump only for package @pie-lib/rubric
+
+
+
+
+
+## [0.4.31](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.4.30...@pie-lib/rubric@0.4.31) (2022-07-19)
+
+**Note:** Version bump only for package @pie-lib/rubric
+
+
+
+
+
+## [0.4.30](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.4.29...@pie-lib/rubric@0.4.30) (2022-07-19)
+
+**Note:** Version bump only for package @pie-lib/rubric
+
+
+
+
+
+## [0.4.29](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.4.28...@pie-lib/rubric@0.4.29) (2022-07-18)
+
+**Note:** Version bump only for package @pie-lib/rubric
+
+
+
+
+
+## [0.4.28](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.4.27...@pie-lib/rubric@0.4.28) (2022-07-18)
+
+**Note:** Version bump only for package @pie-lib/rubric
+
+
+
+
+
+## [0.4.27](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.4.26...@pie-lib/rubric@0.4.27) (2022-06-28)
+
+**Note:** Version bump only for package @pie-lib/rubric
+
+
+
+
+
+## [0.4.26](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.4.25...@pie-lib/rubric@0.4.26) (2022-06-28)
+
+**Note:** Version bump only for package @pie-lib/rubric
+
+
+
+
+
+## [0.4.25](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.4.24...@pie-lib/rubric@0.4.25) (2022-06-27)
+
+**Note:** Version bump only for package @pie-lib/rubric
+
+
+
+
+
+## [0.4.24](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.4.23...@pie-lib/rubric@0.4.24) (2022-06-27)
+
+**Note:** Version bump only for package @pie-lib/rubric
+
+
+
+
+
+## [0.4.23](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.4.22...@pie-lib/rubric@0.4.23) (2022-06-13)
+
+**Note:** Version bump only for package @pie-lib/rubric
+
+
+
+
+
 ## [0.4.22](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.4.21...@pie-lib/rubric@0.4.22) (2022-05-30)
 
 **Note:** Version bump only for package @pie-lib/rubric

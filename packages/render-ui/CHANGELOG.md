@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.13.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.13.0...@pie-lib/render-ui@4.13.1) (2022-07-18)
+
+**Note:** Version bump only for package @pie-lib/render-ui
+
+
+
+
+
+# [4.13.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.12.9...@pie-lib/render-ui@4.13.0) (2022-07-18)
+
+
+### Features
+
+* **editable-html, render-ui:** wrap up PD-1802 ([e10babf](https://github.com/pie-framework/pie-lib/commit/e10babf2e80aed67c856e9e021e37072e3df33fb))
+
+
+
+
+
+## [4.12.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.12.8...@pie-lib/render-ui@4.12.9) (2022-06-13)
+
+**Note:** Version bump only for package @pie-lib/render-ui
+
+
+
+
+
 ## [4.12.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.12.7...@pie-lib/render-ui@4.12.8) (2022-05-30)
 
 **Note:** Version bump only for package @pie-lib/render-ui

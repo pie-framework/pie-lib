@@ -3,6 +3,96 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.0.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.0.7...@pie-lib/config-ui@11.0.8) (2022-07-22)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
+## [11.0.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.0.6...@pie-lib/config-ui@11.0.7) (2022-07-19)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
+## [11.0.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.0.5...@pie-lib/config-ui@11.0.6) (2022-07-19)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
+## [11.0.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.0.4...@pie-lib/config-ui@11.0.5) (2022-07-18)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
+## [11.0.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.0.3...@pie-lib/config-ui@11.0.4) (2022-07-18)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
+## [11.0.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.0.2...@pie-lib/config-ui@11.0.3) (2022-06-28)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
+## [11.0.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.0.1...@pie-lib/config-ui@11.0.2) (2022-06-28)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
+## [11.0.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.0.0...@pie-lib/config-ui@11.0.1) (2022-06-27)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
+# [11.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.13.3...@pie-lib/config-ui@11.0.0) (2022-06-27)
+
+
+### Features
+
+* **editable-html:** image resize functionality PD-1801 ([6f46903](https://github.com/pie-framework/pie-lib/commit/6f46903acdf791716263be33abe49235572421ad))
+* added support for graph configuration constraints PD-1683 PD-1684 PD-1686 ([8da7426](https://github.com/pie-framework/pie-lib/commit/8da74260b28332b976fa1c50796e74679fd46a13))
+* **config-ui:** Added custom values array support for custom number textfield PD-1684 ([32ae671](https://github.com/pie-framework/pie-lib/commit/32ae6710779823355c276363a04a417c4f07ba36))
+
+
+### BREAKING CHANGES
+
+* **editable-html:** Removed the percent buttons from editable-html image button. Added resize functionality.
+
+
+
+
+
+## [10.13.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.13.2...@pie-lib/config-ui@10.13.3) (2022-06-13)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
 ## [10.13.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.13.1...@pie-lib/config-ui@10.13.2) (2022-05-30)
 
 
