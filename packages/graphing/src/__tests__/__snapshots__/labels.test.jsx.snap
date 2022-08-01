@@ -1,3 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Labels snapshot renders 1`] = `<Fragment />`;
+exports[`Labels snapshot renders 1`] = `
+<Fragment>
+  <WithStyles(RawLabel)
+    key="left"
+    onChange={[Function]}
+    side="left"
+  />
+  <WithStyles(RawLabel)
+    key="top"
+    onChange={[Function]}
+    side="top"
+  />
+  <WithStyles(RawLabel)
+    key="bottom"
+    onChange={[Function]}
+    side="bottom"
+  />
+  <WithStyles(RawLabel)
+    key="right"
+    onChange={[Function]}
+    side="right"
+  />
+</Fragment>
+`;

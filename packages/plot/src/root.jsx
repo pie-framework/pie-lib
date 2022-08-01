@@ -1,27 +1,12 @@
 import React from 'react';
 import { ChildrenType } from './types';
 import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
 import { select, mouse } from 'd3-selection';
 import PropTypes from 'prop-types';
 import { GraphPropsType } from './types';
 import { color } from '@pie-lib/render-ui';
-
-export const GraphTitle = withStyles(theme => ({
-  title: {
-    color: color.text(),
-    textAlign: 'center',
-    paddingTop: theme.spacing.unit * 2,
-    fontSize: theme.typography.fontSize + 6
-  }
-}))(({ value, classes }) => (
-  <Typography
-    className={classes.title}
-    color="primary"
-    variant="h5"
-    dangerouslySetInnerHTML={{ __html: value }}
-  />
-));
+import EditableHtml from '@pie-lib/editable-html';
+import cn from 'classnames';
 
 export class Root extends React.Component {
   static propTypes = {
@@ -30,6 +15,7 @@ export class Root extends React.Component {
     graphProps: GraphPropsType.isRequired,
     onMouseMove: PropTypes.func,
     classes: PropTypes.object.isRequired,
+    showTitle: PropTypes.bool,
     rootRef: PropTypes.func
   };
 
@@ -64,7 +50,16 @@ export class Root extends React.Component {
   }
 
   render() {
-    const { graphProps, children, classes, title, rootRef } = this.props;
+    const {
+      disabledTitle,
+      graphProps,
+      children,
+      classes,
+      onChangeTitle,
+      showTitle,
+      title,
+      rootRef
+    } = this.props;
     const {
       size: { width = 500, height = 500 },
       domain,
@@ -75,9 +70,32 @@ export class Root extends React.Component {
     const finalWidth = width + leftPadding * 2 + (domain.padding || 0) * 2;
     const finalHeight = height + topPadding * 2 + (range.padding || 0) * 2;
 
+    const activeTitlePlugins = [
+      'bold',
+      'italic',
+      'underline',
+      'strikethrough'
+      // 'languageCharacters'
+    ];
+
     return (
       <div className={classes.root}>
-        {title && <GraphTitle value={title} />}
+        {showTitle && (
+          <EditableHtml
+            className={cn(
+              {
+                [classes.disabledTitle]: disabledTitle
+              },
+              classes.graphTitle
+            )}
+            markup={title || ''}
+            width={finalWidth}
+            onChange={onChangeTitle}
+            placeholder={!disabledTitle && 'Click here to add a title for this graph'}
+            toolbarOpts={{ noBorder: true }}
+            activePlugins={activeTitlePlugins}
+          />
+        )}
         <svg width={finalWidth} height={finalHeight} className={classes.svg}>
           <g
             ref={r => {
@@ -96,7 +114,7 @@ export class Root extends React.Component {
     );
   }
 }
-const styles = () => ({
+const styles = theme => ({
   root: {
     border: `solid 1px ${color.primaryLight()}`,
     color: color.text(),
@@ -106,6 +124,15 @@ const styles = () => ({
   graphBox: {
     cursor: 'pointer',
     userSelect: 'none'
+  },
+  graphTitle: {
+    color: color.text(),
+    fontSize: theme.typography.fontSize + 2,
+    padding: '8px 50px 0',
+    textAlign: 'center'
+  },
+  disabledTitle: {
+    pointerEvents: 'none'
   }
 });
 

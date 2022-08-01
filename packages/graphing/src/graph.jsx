@@ -20,17 +20,23 @@ export const graphPropTypes = {
   className: PropTypes.string,
   collapsibleToolbar: PropTypes.bool,
   collapsibleToolbarTitle: PropTypes.string,
+  disabledLabels: PropTypes.bool,
+  disabledTitle: PropTypes.bool,
   domain: types.DomainType,
   labels: PropTypes.shape(LabelType),
   labelModeEnabled: PropTypes.bool,
   coordinatesOnHover: PropTypes.bool,
   marks: PropTypes.array,
+  onChangeLabels: PropTypes.func,
   onChangeMarks: PropTypes.func,
+  onChangeTitle: PropTypes.func,
   range: types.DomainType,
   size: PropTypes.shape({
     width: PropTypes.number.isRequired,
     height: PropTypes.number.isRequired
   }),
+  showLabels: PropTypes.bool,
+  showTitle: PropTypes.bool,
   title: PropTypes.string,
   tools: PropTypes.array
 };
@@ -64,7 +70,9 @@ export class Graph extends React.Component {
   };
 
   static defaultProps = {
-    onChangeMarks: () => {}
+    onChangeMarks: () => {},
+    disabledLabels: false,
+    disabledTitle: false
   };
 
   state = {};
@@ -151,12 +159,18 @@ export class Graph extends React.Component {
       currentTool,
       coordinatesOnHover,
       size,
+      disabledLabels,
+      disabledTitle,
       domain,
       backgroundMarks,
       range,
       title,
       labels,
-      labelModeEnabled
+      labelModeEnabled,
+      showLabels,
+      showTitle,
+      onChangeLabels,
+      onChangeTitle
     } = this.props;
     let { marks } = this.props;
 
@@ -167,8 +181,14 @@ export class Graph extends React.Component {
     marks = removeBuildingToolIfCurrentToolDiffers({ marks: marks || [], currentTool });
 
     return (
-      <Root rootRef={r => (this.rootNode = r)} title={title} {...common}>
-        <Labels value={labels} {...common} />
+      <Root
+        rootRef={r => (this.rootNode = r)}
+        disabledTitle={disabledTitle}
+        showTitle={showTitle}
+        title={title}
+        onChangeTitle={onChangeTitle}
+        {...common}
+      >
         <g transform={`translate(${domain.padding}, ${range.padding})`}>
           <Grid {...common} />
           <Axes {...axesSettings} {...common} />
@@ -222,6 +242,14 @@ export class Graph extends React.Component {
             />
           </g>
         </g>
+        {showLabels && (
+          <Labels
+            disabledLabels={disabledLabels}
+            value={labels}
+            onChange={onChangeLabels}
+            {...common}
+          />
+        )}
       </Root>
     );
   }

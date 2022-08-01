@@ -80,6 +80,8 @@ exports[`GraphWithControls snapshot renders 1`] = `
         "type": "circle",
       }
     }
+    disabledLabels={false}
+    disabledTitle={false}
     domain={
       Object {
         "max": 10,
@@ -139,6 +141,8 @@ exports[`GraphWithControls snapshot renders 1`] = `
         "step": 1,
       }
     }
+    showLabels={true}
+    showTitle={true}
     size={
       Object {
         "height": 500,

@@ -639,6 +639,31 @@ export class Editor extends React.Component {
     }
   };
 
+  renderPlaceholder = props => {
+    const { editor } = props;
+    const { document } = editor.value;
+
+    if (!editor.props.placeholder || document.text !== '' || document.nodes.size !== 1) {
+      return false;
+    }
+
+    return (
+      <span
+        contentEditable={false}
+        style={{
+          display: 'inline-block',
+          width: 'fit-content', // for centering the placeholder if text-align is set to center
+          maxWidth: '100%',
+          whiteSpace: 'nowrap',
+          opacity: '0.33',
+          pointerEvents: 'none'
+        }}
+      >
+        {editor.props.placeholder}
+      </span>
+    );
+  };
+
   render() {
     const {
       disabled,
@@ -704,6 +729,7 @@ export class Editor extends React.Component {
           pluginProps={pluginProps}
           toolbarOpts={toolbarOpts}
           placeholder={placeholder}
+          renderPlaceholder={this.renderPlaceholder}
           onDataChange={this.changeData}
         />
       </div>
