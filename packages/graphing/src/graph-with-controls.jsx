@@ -74,6 +74,8 @@ export class GraphWithControls extends React.Component {
     collapsibleToolbarTitle: '',
     disabledLabels: false,
     disabledTitle: false,
+    showLabels: true,
+    showTitle: true,
     toolbarTools: []
   };
 
@@ -125,6 +127,8 @@ export class GraphWithControls extends React.Component {
       onReset,
       range,
       size,
+      showLabels,
+      showTitle,
       title
     } = this.props;
     let { backgroundMarks, marks, toolbarTools } = this.props;
@@ -192,6 +196,8 @@ export class GraphWithControls extends React.Component {
           onChangeTitle={onChangeTitle}
           range={range}
           size={size}
+          showLabels={showLabels}
+          showTitle={showTitle}
           title={title}
           tools={tools}
         />

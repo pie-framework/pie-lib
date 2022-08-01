@@ -15,6 +15,7 @@ export class Root extends React.Component {
     graphProps: GraphPropsType.isRequired,
     onMouseMove: PropTypes.func,
     classes: PropTypes.object.isRequired,
+    showTitle: PropTypes.bool,
     rootRef: PropTypes.func
   };
 
@@ -55,6 +56,7 @@ export class Root extends React.Component {
       children,
       classes,
       onChangeTitle,
+      showTitle,
       title,
       rootRef
     } = this.props;
@@ -78,20 +80,22 @@ export class Root extends React.Component {
 
     return (
       <div className={classes.root}>
-        <EditableHtml
-          className={cn(
-            {
-              [classes.disabledTitle]: disabledTitle
-            },
-            classes.graphTitle
-          )}
-          markup={title || ''}
-          width={finalWidth}
-          onChange={onChangeTitle}
-          placeholder={!disabledTitle && 'Click here to add a title for this graph'}
-          toolbarOpts={{ noBorder: true }}
-          activePlugins={activeTitlePlugins}
-        />
+        {showTitle && (
+          <EditableHtml
+            className={cn(
+              {
+                [classes.disabledTitle]: disabledTitle
+              },
+              classes.graphTitle
+            )}
+            markup={title || ''}
+            width={finalWidth}
+            onChange={onChangeTitle}
+            placeholder={!disabledTitle && 'Click here to add a title for this graph'}
+            toolbarOpts={{ noBorder: true }}
+            activePlugins={activeTitlePlugins}
+          />
+        )}
         <svg width={finalWidth} height={finalHeight} className={classes.svg}>
           <g
             ref={r => {

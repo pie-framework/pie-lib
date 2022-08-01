@@ -35,6 +35,8 @@ export const graphPropTypes = {
     width: PropTypes.number.isRequired,
     height: PropTypes.number.isRequired
   }),
+  showLabels: PropTypes.bool,
+  showTitle: PropTypes.bool,
   title: PropTypes.string,
   tools: PropTypes.array
 };
@@ -165,6 +167,8 @@ export class Graph extends React.Component {
       title,
       labels,
       labelModeEnabled,
+      showLabels,
+      showTitle,
       onChangeLabels,
       onChangeTitle
     } = this.props;
@@ -180,6 +184,7 @@ export class Graph extends React.Component {
       <Root
         rootRef={r => (this.rootNode = r)}
         disabledTitle={disabledTitle}
+        showTitle={showTitle}
         title={title}
         onChangeTitle={onChangeTitle}
         {...common}
@@ -237,12 +242,14 @@ export class Graph extends React.Component {
             />
           </g>
         </g>
-        <Labels
-          disabledLabels={disabledLabels}
-          value={labels}
-          onChange={onChangeLabels}
-          {...common}
-        />
+        {showLabels && (
+          <Labels
+            disabledLabels={disabledLabels}
+            value={labels}
+            onChange={onChangeLabels}
+            {...common}
+          />
+        )}
       </Root>
     );
   }

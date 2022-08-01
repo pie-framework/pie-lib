@@ -141,6 +141,8 @@ exports[`GraphWithControls snapshot renders 1`] = `
         "step": 1,
       }
     }
+    showLabels={true}
+    showTitle={true}
     size={
       Object {
         "height": 500,

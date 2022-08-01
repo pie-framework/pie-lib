@@ -2,25 +2,6 @@
 
 exports[`root snapshot matches 1`] = `
 <div>
-  <_default
-    activePlugins={
-      Array [
-        "bold",
-        "italic",
-        "underline",
-        "strikethrough",
-      ]
-    }
-    className=""
-    markup=""
-    placeholder="Click here to add a title for this graph"
-    toolbarOpts={
-      Object {
-        "noBorder": true,
-      }
-    }
-    width={520}
-  />
   <svg
     height={500}
     width={520}
