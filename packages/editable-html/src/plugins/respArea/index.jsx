@@ -51,7 +51,6 @@ export default function ResponseAreaPlugin(opts) {
 
           if (!lastText) {
             return;
-
           }
           const parentNode = value.document.getParent(lastText.key);
 
