@@ -6,8 +6,11 @@ exports[`toolbar renders 1`] = `
 >
   <div
     className="editorHolder editorInFocus"
+    id="holder"
   >
-    <div>
+    <div
+      className=""
+    >
       children
     </div>
   </div>
