@@ -33,7 +33,8 @@ export const MarkLabel = props => {
     inputRef: externalInputRef,
     barWidth,
     rotate,
-    correctness
+    correctness,
+    autoFocus
   } = props;
   const [label, setLabel] = useState(mark.label);
   const onChange = e => setLabel(e.target.value);
@@ -54,6 +55,7 @@ export const MarkLabel = props => {
 
   return (
     <AutosizeInput
+      autoFocus={autoFocus}
       inputRef={r => {
         _ref(r);
         externalInputRef(r);

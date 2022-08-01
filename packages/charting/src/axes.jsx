@@ -60,7 +60,8 @@ export class TickComponent extends React.Component {
 
     const index = parseInt(formattedValue.split('-')[0], 10);
     const category = categories[index];
-    const { deletable, editable, interactive, label, correctness } = category || {};
+    const { deletable, editable, interactive, label, correctness, autoFocus, inDefineChart } =
+      category || {};
     const barX = xBand(bandKey({ label }, index));
     const longestCategory = (categories || []).reduce((a, b) => {
       const lengthA = a && a.label ? a.label.length : 0;
@@ -96,6 +97,7 @@ export class TickComponent extends React.Component {
             </div>
           )}
           <MarkLabel
+            autoFocus={inDefineChart ? defineChart && autoFocus : autoFocus}
             inputRef={r => (this.input = r)}
             disabled={!defineChart && !editable}
             mark={category}

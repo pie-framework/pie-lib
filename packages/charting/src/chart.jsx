@@ -111,12 +111,14 @@ export class Chart extends React.Component {
     }
   };
 
-  addCategory = (chartType, range) => {
-    const { onDataChange, data, categoryDefaultLabel } = this.props;
+  addCategory = range => {
+    const { onDataChange, data, categoryDefaultLabel, defineChart } = this.props;
 
     onDataChange([
       ...data,
       {
+        inDefineChart: defineChart,
+        autoFocus: true,
         label: categoryDefaultLabel || 'New Bar',
         value: range.step,
         deletable: true,
@@ -138,16 +140,7 @@ export class Chart extends React.Component {
   };
 
   render() {
-    const {
-      classes,
-      className,
-      domain,
-      range,
-      size,
-      title,
-      addCategoryEnabled,
-      theme
-    } = this.props;
+    const { classes, className, domain, range, size, title, addCategoryEnabled } = this.props;
     let { chartType } = this.props;
 
     const defineChart = this.props.defineChart || false;
@@ -198,7 +191,7 @@ export class Chart extends React.Component {
           <ToolMenu
             className={classes.toolMenu}
             disabled={!addCategoryEnabled}
-            addCategory={() => this.addCategory(chartType, correctValues.range)}
+            addCategory={() => this.addCategory(correctValues.range)}
           />
         </div>
         <Root title={title} classes={classes} rootRef={r => (this.rootNode = r)} {...rootCommon}>
