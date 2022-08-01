@@ -95,9 +95,9 @@ export default class EditableHtml extends React.Component {
         c.focus();
 
         if (position === 'end' && lastText) {
-          c.moveFocusTo(lastText.key, lastText.text.length).moveAnchorTo(
+          c.moveFocusTo(lastText.key, lastText.text?.length).moveAnchorTo(
             lastText.key,
-            lastText.text.length
+            lastText.text?.length
           );
         }
 
