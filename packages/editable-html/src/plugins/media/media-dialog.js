@@ -238,13 +238,20 @@ export class MediaDialog extends React.Component {
 
   handleDone = val => {
     const { handleClose } = this.props;
+    const { tabValue, fileUpload } = this.state;
+    const isInsertURL = tabValue === 0;
 
     if (!val) {
+      if (fileUpload.publicURL) {
+        this.handleRemoveFile();
+      }
+
       handleClose(val);
-    } else {
+    } else if (isInsertURL) {
       const { ends, height, url, urlToUse, formattedUrl, starts, width } = this.state;
 
       handleClose(val, {
+        tag: 'iframe',
         ends,
         height,
         starts,
@@ -252,6 +259,11 @@ export class MediaDialog extends React.Component {
         url,
         urlToUse,
         src: formattedUrl
+      });
+    } else {
+      handleClose(val, {
+        tag: 'audio',
+        src: fileUpload.publicURL
       });
     }
   };
@@ -332,9 +344,7 @@ export class MediaDialog extends React.Component {
     }
   };
 
-  handleRemoveFile = async e => {
-    e.preventDefault();
-
+  handleRemoveFile = async () => {
     this.setState({
       fileUpload: {
         ...this.state.fileUpload,
@@ -416,6 +426,9 @@ export class MediaDialog extends React.Component {
     const isYoutube = matchYoutubeUrl(url);
     const isInsertURL = tabValue === 0;
     const isUploadMedia = tabValue === 1;
+    const submitIsDisabled = isInsertURL
+      ? invalid || url === null || url === undefined
+      : !fileUpload.publicURL;
 
     return (
       <Dialog
@@ -575,11 +588,7 @@ export class MediaDialog extends React.Component {
           <Button onClick={() => this.handleDone(false)} color="primary">
             Cancel
           </Button>
-          <Button
-            disabled={invalid || url === null || url === undefined}
-            onClick={() => this.handleDone(true)}
-            color="primary"
-          >
+          <Button disabled={submitIsDisabled} onClick={() => this.handleDone(true)} color="primary">
             {edit ? 'Update' : 'Insert'}
           </Button>
         </DialogActions>
@@ -613,6 +622,9 @@ const styles = () => ({
   error: {
     marginTop: '12px',
     color: 'red'
+  },
+  deleteIcon: {
+    marginLeft: '12px'
   }
 });
 
