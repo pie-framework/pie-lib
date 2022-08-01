@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.9.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.8.1...@pie-lib/graphing@2.9.0) (2022-08-01)
+
+
+### Features
+
+* **graphing, editable-html, plot:** Added the ability to edit/center title and lables PD-1605 PD-1690 ([dd18f92](https://github.com/pie-framework/pie-lib/commit/dd18f92e19d8be98917cd4f19eb7211122d2b7fb))
+
+
+
+
+
 ## [2.8.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.8.0...@pie-lib/graphing@2.8.1) (2022-07-18)
 
 **Note:** Version bump only for package @pie-lib/graphing

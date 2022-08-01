@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.0.5...@pie-lib/editable-html@9.1.0) (2022-08-01)
+
+
+### Features
+
+* **graphing, editable-html, plot:** Added the ability to edit/center title and lables PD-1605 PD-1690 ([dd18f92](https://github.com/pie-framework/pie-lib/commit/dd18f92e19d8be98917cd4f19eb7211122d2b7fb))
+
+
+
+
+
 ## [9.0.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.0.4...@pie-lib/editable-html@9.0.5) (2022-08-01)
 
 **Note:** Version bump only for package @pie-lib/editable-html

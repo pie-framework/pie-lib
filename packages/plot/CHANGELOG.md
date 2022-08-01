@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.2.0...@pie-lib/plot@2.3.0) (2022-08-01)
+
+
+### Features
+
+* **graphing, editable-html, plot:** Added the ability to edit/center title and lables PD-1605 PD-1690 ([dd18f92](https://github.com/pie-framework/pie-lib/commit/dd18f92e19d8be98917cd4f19eb7211122d2b7fb))
+
+
+
+
+
 # [2.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.1.10...@pie-lib/plot@2.2.0) (2022-05-10)
 
 
