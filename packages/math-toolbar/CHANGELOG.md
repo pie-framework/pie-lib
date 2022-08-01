@@ -3,6 +3,54 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.10.1...@pie-lib/math-toolbar@1.10.2) (2022-07-19)
+
+**Note:** Version bump only for package @pie-lib/math-toolbar
+
+
+
+
+
+## [1.10.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.10.0...@pie-lib/math-toolbar@1.10.1) (2022-07-18)
+
+
+### Reverts
+
+* Revert "feat(math-toolbar): Make math-toolbar style inline with mathjax from Numeric to Grade 8HS PD-1521" ([f604ddd](https://github.com/pie-framework/pie-lib/commit/f604ddd8402b81f101e3f50b1baa4cc1bd5eec34))
+* Revert "feat(math-toolbar): Make math-toolbar preview style inline with mathjax" ([bb86c35](https://github.com/pie-framework/pie-lib/commit/bb86c35ed56228c673020faf5ea089fb99418fd8))
+* Revert "tweak" ([0c59e89](https://github.com/pie-framework/pie-lib/commit/0c59e89d5ca923e93a742051b3df7e9c8b2b90cc))
+* Revert "tweaks" ([647904f](https://github.com/pie-framework/pie-lib/commit/647904f3dc4f59b86064be1d7b9bbd2a4184f96b))
+
+
+
+
+
+# [1.10.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.9.4...@pie-lib/math-toolbar@1.10.0) (2022-07-18)
+
+
+### Bug Fixes
+
+* **math-toolbar:** add sanity check for clicking in editor-and-pad ([4c5dc18](https://github.com/pie-framework/pie-lib/commit/4c5dc18e077fca9a50f9c638f64ba08bba3b0884))
+
+
+### Features
+
+* **math-toolbar:** Make math-toolbar preview style inline with mathjax ([266b1bc](https://github.com/pie-framework/pie-lib/commit/266b1bc9a277530fd653edfacbb836596957dd33))
+* **math-toolbar:** Make math-toolbar style inline with mathjax from Numeric to Grade 8HS PD-1521 ([5c49326](https://github.com/pie-framework/pie-lib/commit/5c493262ccf2ca8ba4c80af42e566b4e7a8c3571))
+* **plugins:** added special characters adding capabilities [PD-1462] ([b9f41e1](https://github.com/pie-framework/pie-lib/commit/b9f41e11f44df140a66145d0b04558ca2b0ea48e))
+
+
+
+
+
+## [1.9.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.9.3...@pie-lib/math-toolbar@1.9.4) (2022-06-13)
+
+**Note:** Version bump only for package @pie-lib/math-toolbar
+
+
+
+
+
 ## [1.9.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.9.2...@pie-lib/math-toolbar@1.9.3) (2022-05-10)
 
 

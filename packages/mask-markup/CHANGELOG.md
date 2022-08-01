@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.12.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.12.8...@pie-lib/mask-markup@1.12.9) (2022-07-18)
+
+**Note:** Version bump only for package @pie-lib/mask-markup
+
+
+
+
+
+## [1.12.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.12.7...@pie-lib/mask-markup@1.12.8) (2022-07-18)
+
+**Note:** Version bump only for package @pie-lib/mask-markup
+
+
+
+
+
+## [1.12.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.12.6...@pie-lib/mask-markup@1.12.7) (2022-06-13)
+
+**Note:** Version bump only for package @pie-lib/mask-markup
+
+
+
+
+
 ## [1.12.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.12.5...@pie-lib/mask-markup@1.12.6) (2022-05-30)
 
 

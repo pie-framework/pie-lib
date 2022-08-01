@@ -3,6 +3,51 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.7.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.7.1...@pie-lib/math-input@6.7.2) (2022-07-19)
+
+
+### Bug Fixes
+
+* bump mathquill to 1.1.3 ([48b84c5](https://github.com/pie-framework/pie-lib/commit/48b84c534cbf519e172a80d18a48b26eda3cf7e6))
+
+
+
+
+
+## [6.7.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.7.0...@pie-lib/math-input@6.7.1) (2022-07-18)
+
+
+### Reverts
+
+* Revert "feat(math-toolbar): Make math-toolbar style inline with mathjax for Geometry" ([fee3f22](https://github.com/pie-framework/pie-lib/commit/fee3f22897a03d1d5c892f731dfc441dba9ed10f))
+* Revert "feat(math-toolbar): Make math-toolbar preview style inline with mathjax" ([bb86c35](https://github.com/pie-framework/pie-lib/commit/bb86c35ed56228c673020faf5ea089fb99418fd8))
+
+
+
+
+
+# [6.7.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.6.10...@pie-lib/math-input@6.7.0) (2022-07-18)
+
+
+### Features
+
+* **characters:** special character accents span 2 rows, added border for visibility [PD-1462] ([c60b0bc](https://github.com/pie-framework/pie-lib/commit/c60b0bc8ff45cc01f53bc752fd5dd64da623f6be))
+* **math-toolbar:** Make math-toolbar preview style inline with mathjax ([266b1bc](https://github.com/pie-framework/pie-lib/commit/266b1bc9a277530fd653edfacbb836596957dd33))
+* **math-toolbar:** Make math-toolbar style inline with mathjax for Geometry ([811bde0](https://github.com/pie-framework/pie-lib/commit/811bde0aa97633822fa3260666e298e841b6b9f7))
+* **plugins:** added special characters adding capabilities [PD-1462] ([b9f41e1](https://github.com/pie-framework/pie-lib/commit/b9f41e11f44df140a66145d0b04558ca2b0ea48e))
+
+
+
+
+
+## [6.6.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.6.9...@pie-lib/math-input@6.6.10) (2022-06-13)
+
+**Note:** Version bump only for package @pie-lib/math-input
+
+
+
+
+
 ## [6.6.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.6.8...@pie-lib/math-input@6.6.9) (2022-04-12)
 
 
