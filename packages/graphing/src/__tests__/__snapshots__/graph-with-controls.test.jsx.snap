@@ -80,6 +80,8 @@ exports[`GraphWithControls snapshot renders 1`] = `
         "type": "circle",
       }
     }
+    disabledLabels={false}
+    disabledTitle={false}
     domain={
       Object {
         "max": 10,

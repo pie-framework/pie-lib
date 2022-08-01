@@ -85,9 +85,26 @@ export class EditorAndToolbar extends React.Component {
     );
 
     return (
-      <div className={classNames(classes.root, toolbarOpts && toolbarOpts.error && classes.error)}>
-        <div className={holderNames}>
-          <div className={classes.children}>{clonedChildren}</div>
+      <div
+        className={classNames(
+          {
+            [classes.noBorder]: toolbarOpts && toolbarOpts.noBorder,
+            [classes.error]: toolbarOpts && toolbarOpts.error
+          },
+          classes.root
+        )}
+      >
+        <div className={holderNames} id={'holder'}>
+          <div
+            className={classNames(
+              {
+                [classes.noPadding]: toolbarOpts && toolbarOpts.noBorder
+              },
+              classes.children
+            )}
+          >
+            {clonedChildren}
+          </div>
         </div>
         <Toolbar
           autoWidth={autoWidth}
@@ -219,6 +236,12 @@ const style = {
   },
   error: {
     border: '2px solid red'
+  },
+  noBorder: {
+    border: 'none'
+  },
+  noPadding: {
+    padding: 0
   }
 };
 

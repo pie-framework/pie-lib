@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { types } from '@pie-lib/plot';
 import { color, Readable } from '@pie-lib/render-ui';
+import EditableHtml from '@pie-lib/editable-html';
+import cn from 'classnames';
 
 const rotations = {
   left: -90,
@@ -31,13 +33,13 @@ export const getTransform = (side, width, height) => {
 const getY = (side, height) => {
   switch (side) {
     case 'left':
-      return -height;
+      return -height + 6;
     case 'top':
-      return -height + 10;
+      return -height + 6;
     case 'right':
-      return -height + 10;
+      return -height;
     default:
-      return 0;
+      return -height - 15;
   }
 };
 
@@ -46,11 +48,12 @@ class RawLabel extends React.Component {
     text: PropTypes.string,
     side: PropTypes.string,
     classes: PropTypes.object,
+    disabledLabel: PropTypes.bool,
     graphProps: types.GraphPropsType.isRequired
   };
 
   render() {
-    const { text, side, graphProps, classes } = this.props;
+    const { disabledLabel, text, side, graphProps, classes, onChange } = this.props;
     const { size, domain, range } = graphProps;
     const totalHeight = (size.height || 500) + (range.padding || 0) * 2;
     const totalWidth = (size.width || 500) + (domain.padding || 0) * 2;
@@ -60,17 +63,41 @@ class RawLabel extends React.Component {
     const height = 36;
     const y = getY(side, height);
 
+    const activePlugins = [
+      'bold',
+      'italic',
+      'underline',
+      'strikethrough'
+      // 'languageCharacters'
+    ];
+
     return (
       <foreignObject
         x={-(width / 2)}
         y={y}
         width={width}
-        height={height}
+        height={height * 2}
         transform={transform}
         textAnchor="middle"
       >
         <Readable false>
-          <div dangerouslySetInnerHTML={{ __html: text }} className={classes.axisLabel} />
+          <EditableHtml
+            className={cn(
+              {
+                [classes.bottomLabel]: side === 'bottom',
+                [classes.disabledAxisLabel]: disabledLabel
+              },
+              classes.axisLabel
+            )}
+            markup={text || ''}
+            onChange={onChange}
+            placeholder={!disabledLabel && `Click here to add a ${side} label`}
+            toolbarOpts={{
+              position: side === 'bottom' ? 'top' : 'bottom',
+              noBorder: true
+            }}
+            activePlugins={activePlugins}
+          />
         </Readable>
       </foreignObject>
     );
@@ -82,8 +109,14 @@ const Label = withStyles(theme => ({
     fill: color.secondary()
   },
   axisLabel: {
-    fontSize: theme.typography.fontSize,
+    fontSize: theme.typography.fontSize - 2,
     textAlign: 'center'
+  },
+  disabledAxisLabel: {
+    pointerEvents: 'none'
+  },
+  bottomLabel: {
+    marginTop: '44px'
   }
 }))(RawLabel);
 
@@ -98,29 +131,60 @@ export class Labels extends React.Component {
   static propTypes = {
     classes: PropTypes.object,
     className: PropTypes.string,
+    disabledLabels: PropTypes.bool,
     value: PropTypes.shape(LabelType),
     graphProps: PropTypes.object
   };
 
   static defaultProps = {};
 
+  onChangeLabel = (newValue, side) => {
+    const { value, onChange } = this.props;
+    const labels = {
+      ...value,
+      [side]: newValue
+    };
+
+    onChange(labels);
+  };
+
   render() {
-    const { value, graphProps } = this.props;
+    const { disabledLabels, value = {}, graphProps } = this.props;
 
     return (
       <React.Fragment>
-        {value && value.left && (
-          <Label key="left" side="left" text={value.left} graphProps={graphProps} />
-        )}
-        {value && value.top && (
-          <Label key="top" side="top" text={value.top} graphProps={graphProps} />
-        )}
-        {value && value.bottom && (
-          <Label key="bottom" side="bottom" text={value.bottom} graphProps={graphProps} />
-        )}
-        {value && value.right && (
-          <Label key="right" side="right" text={value.right} graphProps={graphProps} />
-        )}
+        <Label
+          key="left"
+          side="left"
+          text={value.left}
+          disabledLabel={disabledLabels}
+          graphProps={graphProps}
+          onChange={value => this.onChangeLabel(value, 'left')}
+        />
+        <Label
+          key="top"
+          side="top"
+          text={value.top}
+          disabledLabel={disabledLabels}
+          graphProps={graphProps}
+          onChange={value => this.onChangeLabel(value, 'top')}
+        />
+        <Label
+          key="bottom"
+          side="bottom"
+          text={value.bottom}
+          disabledLabel={disabledLabels}
+          graphProps={graphProps}
+          onChange={value => this.onChangeLabel(value, 'bottom')}
+        />
+        <Label
+          key="right"
+          side="right"
+          text={value.right}
+          disabledLabel={disabledLabels}
+          graphProps={graphProps}
+          onChange={value => this.onChangeLabel(value, 'right')}
+        />
       </React.Fragment>
     );
   }

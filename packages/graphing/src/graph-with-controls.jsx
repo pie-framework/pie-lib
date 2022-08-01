@@ -72,6 +72,8 @@ export class GraphWithControls extends React.Component {
   static defaultProps = {
     collapsibleToolbar: false,
     collapsibleToolbarTitle: '',
+    disabledLabels: false,
+    disabledTitle: false,
     toolbarTools: []
   };
 
@@ -109,10 +111,14 @@ export class GraphWithControls extends React.Component {
       collapsibleToolbar,
       collapsibleToolbarTitle,
       disabled,
+      disabledLabels,
+      disabledTitle,
       domain,
       draggableTools,
       labels,
+      onChangeLabels,
       onChangeMarks,
+      onChangeTitle,
       onChangeTools,
       onUndo,
       onRedo,
@@ -175,11 +181,15 @@ export class GraphWithControls extends React.Component {
           backgroundMarks={backgroundMarks}
           coordinatesOnHover={coordinatesOnHover}
           currentTool={currentTool}
+          disabledLabels={disabledLabels}
+          disabledTitle={disabledTitle}
           domain={domain}
           labels={labels}
           labelModeEnabled={labelModeEnabled}
           marks={marks}
           onChangeMarks={!disabled ? onChangeMarks : undefined}
+          onChangeLabels={onChangeLabels}
+          onChangeTitle={onChangeTitle}
           range={range}
           size={size}
           title={title}

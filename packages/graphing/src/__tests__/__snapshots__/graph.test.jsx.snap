@@ -2,6 +2,7 @@
 
 exports[`Graph snapshot renders 1`] = `
 <WithStyles(Root)
+  disabledTitle={false}
   graphProps={
     Object {
       "domain": Object {
@@ -31,35 +32,6 @@ exports[`Graph snapshot renders 1`] = `
   }
   rootRef={[Function]}
 >
-  <Labels
-    graphProps={
-      Object {
-        "domain": Object {
-          "max": 1,
-          "min": 0,
-          "step": 1,
-        },
-        "getRootNode": [Function],
-        "range": Object {
-          "max": 1,
-          "min": 0,
-          "step": 1,
-        },
-        "scale": Object {
-          "x": [Function],
-          "y": [Function],
-        },
-        "size": Object {
-          "height": 400,
-          "width": 400,
-        },
-        "snap": Object {
-          "x": [Function],
-          "y": [Function],
-        },
-      }
-    }
-  />
   <g
     transform="translate(undefined, undefined)"
   >
@@ -233,5 +205,35 @@ exports[`Graph snapshot renders 1`] = `
       />
     </g>
   </g>
+  <Labels
+    disabledLabels={false}
+    graphProps={
+      Object {
+        "domain": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "getRootNode": [Function],
+        "range": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "scale": Object {
+          "x": [Function],
+          "y": [Function],
+        },
+        "size": Object {
+          "height": 400,
+          "width": 400,
+        },
+        "snap": Object {
+          "x": [Function],
+          "y": [Function],
+        },
+      }
+    }
+  />
 </WithStyles(Root)>
 `;
