@@ -1,16 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import debug from 'debug';
+import { color } from '@pie-lib/render-ui';
 import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
+import MuiTabs from '@material-ui/core/Tabs';
+import MuiTab from '@material-ui/core/Tab';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogActions from '@material-ui/core/DialogActions';
-import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import ActionDelete from '@material-ui/icons/Delete';
 
 const log = debug('@pie-lib:editable-html:plugins:media:dialog');
+
+const PIE_GQL_URL = 'https://develop.pie-api.io/services';
+const PIE_ACCESS_TOKEN =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2kiOiJlMzE5MWNlZS00MWNjLTRhZWItYWNjMy1iZTA4MmQ4N2FlOTYiLCJqdGkiOiJiZTdhYmUyMC0xMTdlLTExZWQtOTJkYy01Yjg5MjQ1NzhjOTkiLCJpYXQiOjE2NTkzNDcxNTcsImV4cCI6MTY1OTQzMzU1Nywic2NvcGVzIjpbXX0.EKoI_gJaaOMUWMUtiAslIFxMLJVHYGI00Rv8C7Zsg6w';
 
 const matchYoutubeUrl = url => {
   if (!url) {
@@ -98,7 +108,15 @@ export class MediaDialog extends React.Component {
       height: height || 315,
       invalid: false,
       starts: starts || 0,
-      width: width || 560
+      width: width || 560,
+      tabValue: 0,
+      fileUpload: {
+        uploadIsLoading: false,
+        deleteIsLoading: false,
+        publicURL: '',
+        signedURL: '',
+        error: null
+      }
     };
   }
 
@@ -238,10 +256,166 @@ export class MediaDialog extends React.Component {
     }
   };
 
+  handleUploadFile = async e => {
+    e.preventDefault();
+
+    this.setState({
+      fileUpload: {
+        ...this.state.fileUpload,
+        uploadIsLoading: true
+      }
+    });
+
+    const fileToUpload = e.target.files[0];
+
+    const { type } = fileToUpload;
+    const typeParsed = type.replace('x-', '');
+
+    const url = `${PIE_GQL_URL}/graphql`;
+    const requestHeaders = {
+      accept: 'application/json',
+      'content-type': 'application/json',
+      Authorization: `Bearer ${PIE_ACCESS_TOKEN}`
+    };
+
+    const query = JSON.stringify({
+      query: `mutation {
+        registerUploadRequest(contentType: "${typeParsed}") {
+          publicURL
+          signedURL    
+        }
+      }`
+    });
+
+    try {
+      const r = await fetch(url, {
+        method: 'POST',
+        headers: requestHeaders,
+        body: query
+      });
+      const json = await r.json();
+
+      const {
+        data: {
+          registerUploadRequest: { publicURL, signedURL }
+        }
+      } = json;
+
+      const uploadHeaders = new Headers();
+      uploadHeaders.append('Content-Type', typeParsed);
+      const requestOptions = {
+        method: 'PUT',
+        headers: uploadHeaders,
+        body: fileToUpload,
+        redirect: 'follow'
+      };
+
+      await fetch(signedURL, requestOptions);
+
+      this.setState({
+        fileUpload: {
+          ...this.state.fileUpload,
+          uploadIsLoading: false,
+          signedURL,
+          publicURL
+        }
+      });
+    } catch (err) {
+      log(err);
+      this.setState({
+        fileUpload: {
+          uploadIsLoading: false,
+          url: '',
+          error: 'Something bad happened. Make sure the token you\'re using is valid.'
+        }
+      });
+    }
+  };
+
+  handleRemoveFile = async e => {
+    e.preventDefault();
+
+    this.setState({
+      fileUpload: {
+        ...this.state.fileUpload,
+        deleteIsLoading: true
+      }
+    });
+
+    const url = `${PIE_GQL_URL}/graphql`;
+    const requestHeaders = {
+      accept: 'application/json',
+      'content-type': 'application/json',
+      Authorization: `Bearer ${PIE_ACCESS_TOKEN}`
+    };
+
+    const query = JSON.stringify({
+      query: `mutation {
+        registerDeleteRequest(url: "${this.state.fileUpload.signedURL}") {
+          signedURL    
+        }
+      }`
+    });
+
+    try {
+      const r = await fetch(url, {
+        method: 'POST',
+        headers: requestHeaders,
+        body: query
+      });
+      const json = await r.json();
+
+      const {
+        data: {
+          registerDeleteRequest: { signedURL }
+        }
+      } = json;
+
+      const requestOptions = {
+        method: 'DELETE',
+        redirect: 'follow'
+      };
+
+      const deleteFile = await fetch(signedURL, requestOptions);
+
+      this.setState({
+        fileUpload: {
+          ...this.state.fileUpload,
+          deleteIsLoading: false,
+          publicURL: '',
+          signedURLURL: ''
+        }
+      });
+    } catch (err) {
+      log(err);
+      this.setState({
+        fileUpload: {
+          ...this.state.fileUpload,
+          deleteIsLoading: false,
+          url: '',
+          error: 'Something bad happened. Make sure the token you\'re using is valid.'
+        }
+      });
+    }
+  };
+
   render() {
     const { classes, open, disablePortal, type, edit } = this.props;
-    const { ends, height, invalid, starts, width, url, formattedUrl, updating } = this.state;
+    const {
+      ends,
+      height,
+      invalid,
+      starts,
+      width,
+      url,
+      formattedUrl,
+      updating,
+      tabValue,
+      fileUpload
+    } = this.state;
     const isYoutube = matchYoutubeUrl(url);
+    const isInsertURL = tabValue === 0;
+    const isUploadMedia = tabValue === 1;
 
     return (
       <Dialog
@@ -255,93 +429,147 @@ export class MediaDialog extends React.Component {
       >
         <DialogTitle id="form-dialog-title">Insert {typeMap[type]}</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            {type === 'video' ? 'Insert YouTube or Vimeo URL' : 'Insert SoundCloud URL'}
-          </DialogContentText>
-          <TextField
-            autoFocus
-            error={invalid}
-            helperText={invalid ? 'Invalid URL' : ''}
-            margin="dense"
-            id="name"
-            label="URL"
-            placeholder={`Paste URL of ${type}...`}
-            type="text"
-            onChange={this.urlChange}
-            value={url}
-            fullWidth
-          />
-          {type === 'video' && (
-            <DialogContent
-              classes={{
-                root: classes.properties
-              }}
-            >
-              <DialogContentText>Video Properties</DialogContentText>
-              <TextField
-                autoFocus
-                margin="dense"
-                id="width"
-                label="Width"
-                type="number"
-                placeholder="Width"
-                value={width}
-                onChange={this.changeHandler('width')}
-              />
-              <TextField
-                autoFocus
-                margin="dense"
-                id="height"
-                label="Height"
-                type="number"
-                placeholder="Height"
-                value={height}
-                onChange={this.changeHandler('height')}
-              />
-            </DialogContent>
-          )}
-          {formattedUrl && (
-            <iframe
-              width={width}
-              height={height}
-              src={formattedUrl}
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          )}
-          {type === 'video' && (formattedUrl || updating) && !invalid && (
-            <React.Fragment>
-              <DialogContent
-                classes={{
-                  root: classes.properties
+          <div>
+            <div className={classes.row}>
+              <MuiTabs
+                indicatorColor="primary"
+                value={tabValue}
+                onChange={(event, value) => {
+                  this.setState({ tabValue: value });
                 }}
               >
+                <MuiTab
+                  label={type === 'video' ? 'Insert YouTube or Vimeo URL' : 'Insert SoundCloud URL'}
+                />
+                <MuiTab disabled={type === 'video'} label="Upload file" />
+              </MuiTabs>
+            </div>
+            {isInsertURL && (
+              <div>
                 <TextField
                   autoFocus
+                  error={invalid}
+                  helperText={invalid ? 'Invalid URL' : ''}
                   margin="dense"
-                  id="starts"
-                  label="Starts"
-                  type="number"
-                  placeholder="Starts"
-                  value={starts}
-                  onChange={this.changeHandler('starts')}
+                  id="name"
+                  label="URL"
+                  placeholder={`Paste URL of ${type}...`}
+                  type="text"
+                  onChange={this.urlChange}
+                  value={url}
+                  fullWidth
                 />
-                {isYoutube && (
-                  <TextField
-                    autoFocus
-                    margin="dense"
-                    id="ends"
-                    label="Ends"
-                    type="number"
-                    placeholder="Ends"
-                    value={ends}
-                    onChange={this.changeHandler('ends')}
+                {type === 'video' && (
+                  <DialogContent
+                    classes={{
+                      root: classes.properties
+                    }}
+                  >
+                    <DialogContentText>Video Properties</DialogContentText>
+                    <TextField
+                      autoFocus
+                      margin="dense"
+                      id="width"
+                      label="Width"
+                      type="number"
+                      placeholder="Width"
+                      value={width}
+                      onChange={this.changeHandler('width')}
+                    />
+                    <TextField
+                      autoFocus
+                      margin="dense"
+                      id="height"
+                      label="Height"
+                      type="number"
+                      placeholder="Height"
+                      value={height}
+                      onChange={this.changeHandler('height')}
+                    />
+                  </DialogContent>
+                )}
+                {formattedUrl && (
+                  <iframe
+                    width={width}
+                    height={height}
+                    src={formattedUrl}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
                   />
                 )}
-              </DialogContent>
-            </React.Fragment>
-          )}
+                {type === 'video' && (formattedUrl || updating) && !invalid && (
+                  <React.Fragment>
+                    <DialogContent
+                      classes={{
+                        root: classes.properties
+                      }}
+                    >
+                      <TextField
+                        autoFocus
+                        margin="dense"
+                        id="starts"
+                        label="Starts"
+                        type="number"
+                        placeholder="Starts"
+                        value={starts}
+                        onChange={this.changeHandler('starts')}
+                      />
+                      {isYoutube && (
+                        <TextField
+                          autoFocus
+                          margin="dense"
+                          id="ends"
+                          label="Ends"
+                          type="number"
+                          placeholder="Ends"
+                          value={ends}
+                          onChange={this.changeHandler('ends')}
+                        />
+                      )}
+                    </DialogContent>
+                  </React.Fragment>
+                )}
+              </div>
+            )}
+            {isUploadMedia && (
+              <div className={classes.uploadInput}>
+                {fileUpload.uploadIsLoading ? (
+                  <Typography variant="subheading">Loading...</Typography>
+                ) : (
+                  <div>
+                    {fileUpload.publicURL ? (
+                      <div className={classes.row}>
+                        <audio controls="controls">
+                          <source type="audio/mp3" src={fileUpload.publicURL} />
+                        </audio>
+                        <IconButton
+                          disabled={fileUpload.deleteIsLoading}
+                          aria-label="delete"
+                          className={classes.deleteIcon}
+                          onClick={this.handleRemoveFile}
+                        >
+                          <ActionDelete />
+                        </IconButton>
+                      </div>
+                    ) : (
+                      <input
+                        accept="audio/*"
+                        className={classes.input}
+                        onChange={this.handleUploadFile}
+                        type="file"
+                      />
+                    )}
+                    {!!fileUpload.error && (
+                      <Typography className={classes.error} variant="caption">
+                        {fileUpload.error}
+                      </Typography>
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
         </DialogContent>
         <DialogActions>
           <Button onClick={() => this.handleDone(false)} color="primary">
@@ -366,6 +594,25 @@ const styles = () => ({
   },
   properties: {
     padding: 0
+  },
+  row: {
+    display: 'flex',
+    flexDirection: 'space-between'
+  },
+  rowItem: {
+    marginRight: '12px',
+    cursor: 'pointer'
+  },
+  active: {
+    color: color.primary(),
+    borderBottom: `2px solid ${color.primary()}`
+  },
+  uploadInput: {
+    marginTop: '12px'
+  },
+  error: {
+    marginTop: '12px',
+    color: 'red'
   }
 });
 
