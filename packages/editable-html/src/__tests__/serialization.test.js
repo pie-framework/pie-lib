@@ -86,6 +86,7 @@ describe('htmlToValue', () => {
                       width: null,
                       height: null,
                       alignment: null,
+                      alt: null,
                       margin: '',
                       justifyContent: ''
                     },

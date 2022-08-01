@@ -352,7 +352,7 @@ export class Editor extends React.Component {
     log('[onBlur] node: ', node);
 
     return new Promise(resolve => {
-      this.setState({ focusedNode: node }, this.handleBlur.bind(this, resolve));
+      this.setState({ focusedNode: !node ? null : node }, this.handleBlur.bind(this, resolve));
       this.props.onBlur(event);
     });
   };

@@ -208,6 +208,7 @@ export class Component extends React.Component {
     const deleteStatus = node.data.get('deleteStatus');
     const alignment = node.data.get('alignment');
     const percent = node.data.get('percent');
+    const alt = node.data.get('alt');
     let margin;
     let justifyContent;
 
@@ -261,6 +262,7 @@ export class Component extends React.Component {
             src={src}
             style={size}
             onLoad={this.loadImage}
+            alt={alt}
           />
           <div
             ref={ref => {

@@ -79,7 +79,9 @@ TableCell.propTypes = {
 };
 
 export const moveFocusToBeginningOfTable = change => {
-  const addedTable = change.value.document.findDescendant(d => !!d.data && !!d.data.get('newTable'));
+  const addedTable = change.value.document.findDescendant(
+    d => !!d.data && !!d.data.get('newTable')
+  );
 
   if (!addedTable) {
     return;
