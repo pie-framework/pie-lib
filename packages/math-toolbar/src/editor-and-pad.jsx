@@ -325,6 +325,10 @@ const styles = theme => ({
         padding: '9px 1px !important'
       },
 
+      '& .mq-math-mode .mq-root-block': {
+        paddingTop: '6px'
+      },
+
       '& .mq-longdiv-inner': {
         marginTop: '-1px',
         marginLeft: '5px !important;',
@@ -395,7 +399,7 @@ const styles = theme => ({
     maxWidth: '400px',
     color: color.text(),
     backgroundColor: color.background(),
-    padding: theme.spacing.unit
+    padding: '2px'
   },
   longMathEditor: {
     maxWidth: '500px'

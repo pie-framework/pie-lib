@@ -46,7 +46,68 @@ const mp = theme => ({
       borderRadius: '0px'
     },
     '& *': {
-      fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important'
+      fontFamily: 'MJXZERO, MJXTEX-I !important',
+      // marginTop: '1px',
+      // marginBottom: '-3px',
+
+      '-webkit-font-smoothing': 'antialiased !important'
+    },
+    // '& > .mq-math-mode .mq-root-block': {
+    //   paddingTop: '5px !important'
+    // },
+    '& > .mq-math-mode .mq-sqrt-prefix': {
+      verticalAlign: 'bottom !important',
+      top: '0.2em !important',
+      left: '-0.1em !important'
+    },
+
+    '& > .mq-math-mode sup.mq-nthroot': {
+      fontSize: '70.7% !important',
+      verticalAlign: '0.5em !important',
+      paddingRight: '0.15em'
+    },
+    '& > .mq-math-mode .mq-empty': {
+      padding: '9px 1px !important'
+    },
+    '& > .mq-longdiv-inner': {
+      marginTop: '-1px',
+      marginLeft: '5px !important;',
+
+      '& > .mq-empty': {
+        padding: '0 !important',
+        marginLeft: '0px !important',
+        marginTop: '2px'
+      }
+    },
+    '& > .mq-math-mode .mq-longdiv': {
+      display: 'flex !important'
+    },
+
+    '& > .mq-math-mode .mq-supsub': {
+      fontSize: '70.7% !important'
+    },
+
+    '& > .mq-math-mode .mq-paren': {
+      verticalAlign: 'top !important',
+      padding: '4px 0.1em !important'
+    },
+
+    '& > .mq-math-mode .mq-sqrt-stem': {
+      borderTop: '0.07em solid',
+      marginLeft: '-1.5px',
+      marginTop: '-2px !important',
+      paddingTop: '5px !important'
+    },
+    '& > .mq-supsub ': {
+      fontSize: '70.7%'
+    },
+
+    '& > .mq-math-mode .mq-supsub.mq-sup-only': {
+      verticalAlign: '-0.1em !important',
+
+      '& .mq-sup': {
+        marginBottom: '0px !important'
+      }
     },
     '& .mq-overarrow-inner': {
       paddingTop: '0 !important',
