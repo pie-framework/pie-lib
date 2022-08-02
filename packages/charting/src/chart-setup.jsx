@@ -11,22 +11,17 @@ const ConfigureChartPanel = props => {
   const { range } = model;
   const size = model.graph;
   const { showInConfigPanel, width, height } = chartDimensions || {};
-  console.log('chartDimension', chartDimensions);
 
   const widthConstraints = {
-    min: Math.max(50, width.min),
-    max: Math.min(700, width.max),
-    step: width.step >= 1 ? Math.min(200, width.step) : 20
+    min: width?.min ? Math.max(50, width.min) : 50,
+    max: width?.max ? Math.min(700, width.max) : 700,
+    step: width?.step >= 1 ? Math.min(200, width.step) : 20
   };
   const heightConstraints = {
-    min: Math.max(400, height.min),
-    max: Math.min(700, height.max),
-    step: height.step >= 1 ? Math.min(200, height.step) : 20
+    min: height?.min ? Math.max(400, height.min) : 400,
+    max: height?.max ? Math.min(700, height.max) : 700,
+    step: height?.step >= 1 ? Math.min(200, height.step) : 20
   };
-
-  console.log(chartDimensions, 'chart dimension');
-  console.log(widthConstraints, 'widthConstraints');
-  console.log(heightConstraints, 'heightConstraints');
 
   const gridOptions =
     gridValues && gridValues.range ? { customValues: gridValues.range } : { min: 0, max: 10000 };
