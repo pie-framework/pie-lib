@@ -7,9 +7,26 @@ import ChartType from './chart-type';
 import { NumberTextFieldCustom } from '@pie-lib/config-ui';
 
 const ConfigureChartPanel = props => {
-  const { classes, model, onChange, gridValues = {}, labelValues = {} } = props;
+  const { classes, model, onChange, chartDimensions, gridValues = {}, labelValues = {} } = props;
   const { range } = model;
   const size = model.graph;
+  const { showInConfigPanel, width, height } = chartDimensions || {};
+  console.log('chartDimension', chartDimensions);
+
+  const widthConstraints = {
+    min: Math.max(50, width.min),
+    max: Math.min(700, width.max),
+    step: width.step >= 1 ? Math.min(200, width.step) : 20
+  };
+  const heightConstraints = {
+    min: Math.max(400, height.min),
+    max: Math.min(700, height.max),
+    step: height.step >= 1 ? Math.min(200, height.step) : 20
+  };
+
+  console.log(chartDimensions, 'chart dimension');
+  console.log(widthConstraints, 'widthConstraints');
+  console.log(heightConstraints, 'heightConstraints');
 
   const gridOptions =
     gridValues && gridValues.range ? { customValues: gridValues.range } : { min: 0, max: 10000 };
@@ -90,35 +107,39 @@ const ConfigureChartPanel = props => {
           />
         </div>
         {!model.chartType.includes('Plot') && stepConfig}
-        <div className={classes.dimensions}>
-          <div>
-            <Typography>Dimensions(px)</Typography>
+        {showInConfigPanel && (
+          <div className={classes.dimensions}>
+            <div>
+              <Typography>Dimensions(px)</Typography>
+            </div>
+            <div className={classes.columnView}>
+              <NumberTextFieldCustom
+                className={classes.textField}
+                label={'Width'}
+                value={size.width}
+                min={widthConstraints.min}
+                max={widthConstraints.max}
+                step={widthConstraints.step}
+                variant={'outlined'}
+                onChange={(e, v) => onSizeChanged('width', v)}
+              />
+              <Typography className={classes.disabled}>Min 50, Max 700</Typography>
+            </div>
+            <div className={classes.columnView}>
+              <NumberTextFieldCustom
+                className={classes.textField}
+                label={'Height'}
+                value={size.height}
+                min={heightConstraints.min}
+                max={heightConstraints.max}
+                step={heightConstraints.step}
+                variant={'outlined'}
+                onChange={(e, v) => onSizeChanged('height', v)}
+              />
+              <Typography className={classes.disabled}>Min 400, Max 700</Typography>
+            </div>
           </div>
-          <div className={classes.columnView}>
-            <NumberTextFieldCustom
-              className={classes.textField}
-              label={'Width'}
-              value={size.width}
-              min={50}
-              max={700}
-              variant={'outlined'}
-              onChange={(e, v) => onSizeChanged('width', v)}
-            />
-            <Typography className={classes.disabled}>Min 50, Max 700</Typography>
-          </div>
-          <div className={classes.columnView}>
-            <NumberTextFieldCustom
-              className={classes.textField}
-              label={'Height'}
-              value={size.height}
-              min={400}
-              max={700}
-              variant={'outlined'}
-              onChange={(e, v) => onSizeChanged('height', v)}
-            />
-            <Typography className={classes.disabled}>Min 400, Max 700</Typography>
-          </div>
-        </div>
+        )}
       </div>
     </div>
   );
@@ -126,13 +147,10 @@ const ConfigureChartPanel = props => {
 
 ConfigureChartPanel.propTypes = {
   classes: PropTypes.object,
-  sizeConstraints: PropTypes.object,
   domain: PropTypes.object,
-  gridIntervalValues: PropTypes.object,
-  includeAxes: PropTypes.bool,
-  labelIntervalValues: PropTypes.object,
   onChange: PropTypes.function,
   range: PropTypes.object,
+  chartDimension: PropTypes.object,
   size: PropTypes.object
 };
 
