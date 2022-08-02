@@ -731,7 +731,7 @@ const styles = {
       fontSize: '70.7%'
     },
     '& .mq-math-mode .mq-supsub.mq-sup-only': {
-      verticalAlign: '0.4em !important',
+      verticalAlign: '-0.1em !important',
 
       '& .mq-sup': {
         marginBottom: '0px !important'
