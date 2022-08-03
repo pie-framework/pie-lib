@@ -36,6 +36,10 @@ const mp = theme => ({
     display: 'inline-flex',
     alignItems: 'center',
     position: 'relative',
+    '& *': {
+      fontFamily: 'MJXZERO, MJXTEX-I !important',
+      '-webkit-font-smoothing': 'antialiased !important'
+    },
     '& > .mq-math-mode': {
       border: 'solid 1px lightgrey'
     },
@@ -45,16 +49,10 @@ const mp = theme => ({
       border: 'solid 1px black',
       borderRadius: '0px'
     },
-    '& *': {
-      fontFamily: 'MJXZERO, MJXTEX-I !important',
-      // marginTop: '1px',
-      // marginBottom: '-3px',
-
-      '-webkit-font-smoothing': 'antialiased !important'
+    '& > .mq-math-mode .mq-root-block': {
+      paddingTop: '7px !important',
+      marginTop: '8px'
     },
-    // '& > .mq-math-mode .mq-root-block': {
-    //   paddingTop: '5px !important'
-    // },
     '& > .mq-math-mode .mq-sqrt-prefix': {
       verticalAlign: 'bottom !important',
       top: '0.2em !important',
@@ -65,9 +63,6 @@ const mp = theme => ({
       fontSize: '70.7% !important',
       verticalAlign: '0.5em !important',
       paddingRight: '0.15em'
-    },
-    '& > .mq-math-mode .mq-empty': {
-      padding: '9px 1px !important'
     },
     '& > .mq-longdiv-inner': {
       marginTop: '-1px',
@@ -80,13 +75,21 @@ const mp = theme => ({
       }
     },
     '& > .mq-math-mode .mq-longdiv': {
-      display: 'flex !important'
+      display: 'inline-flex !important'
     },
-
+    '& > .mq-math-mode .mq-longdiv .mq-longdiv-inner .mq-empty': {
+      paddingTop: '6px !important',
+      paddingLeft: '4px !important'
+    },
+    '& > .mq-math-mode .mq-longdiv .mq-longdiv-inner': {
+      marginLeft: '0 !important'
+    },
     '& > .mq-math-mode .mq-supsub': {
       fontSize: '70.7% !important'
     },
-
+    '& > .mq-math-mode .mq-overarrow': {
+      fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important'
+    },
     '& > .mq-math-mode .mq-paren': {
       verticalAlign: 'top !important',
       padding: '4px 0.1em !important'
@@ -123,8 +126,8 @@ const mp = theme => ({
         left: '-1px'
       },
       '&:after': {
-        top: '-2.36em',
-        right: '-1px'
+        top: '-3.15em',
+        right: '-2px'
       },
       '&.mq-empty:after': {
         top: '-0.45em'

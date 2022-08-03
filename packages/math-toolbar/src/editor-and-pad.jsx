@@ -293,8 +293,8 @@ const styles = theme => ({
         left: '-1px'
       },
       '&:after': {
-        top: '-2.36em',
-        right: '-1px'
+        top: '-3.15em',
+        right: '-2px'
       },
       '&.mq-empty:after': {
         top: '-0.45em'
@@ -341,7 +341,13 @@ const styles = theme => ({
       },
 
       '& .mq-math-mode .mq-longdiv': {
-        display: 'flex !important'
+        display: 'inline-flex !important'
+      },
+
+      '& .mq-math-mode .mq-longdiv .mq-longdiv-inner': {
+        marginLeft: '4px !important',
+        paddingTop: '6px !important',
+        paddingLeft: '6px !important'
       },
 
       '& .mq-math-mode .mq-supsub': {
@@ -487,7 +493,7 @@ const styles = theme => ({
       },
 
       '& .mq-math-mode .mq-longdiv': {
-        display: 'flex !important'
+        display: 'inline-flex !important'
       },
 
       '& .mq-math-mode .mq-supsub': {
