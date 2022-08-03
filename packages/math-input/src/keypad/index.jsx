@@ -74,7 +74,7 @@ const LatexButton = withStyles(theme => ({
       '&.mq-arrow-right:before': {
         fontSize: '80%',
         right: 'calc(-13%)',
-        top: '-0.25em'
+        top: '-0.26em'
       },
       '& .mq-overarrow-inner': {
         border: 'none !important'
