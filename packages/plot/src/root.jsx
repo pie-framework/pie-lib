@@ -57,6 +57,7 @@ export class Root extends React.Component {
       classes,
       onChangeTitle,
       showTitle,
+      thisIsChart,
       title,
       rootRef
     } = this.props;
@@ -77,10 +78,13 @@ export class Root extends React.Component {
       'strikethrough'
       // 'languageCharacters'
     ];
+    const placeholderMessage = thisIsChart
+      ? 'Click here to add a title'
+      : !disabledTitle && 'Click here to add a title for this graph';
 
     return (
       <div className={classes.root}>
-        {showTitle && (
+        {(showTitle || thisIsChart) && (
           <EditableHtml
             className={cn(
               {
@@ -91,7 +95,7 @@ export class Root extends React.Component {
             markup={title || ''}
             width={finalWidth}
             onChange={onChangeTitle}
-            placeholder={!disabledTitle && 'Click here to add a title for this graph'}
+            placeholder={placeholderMessage}
             toolbarOpts={{ noBorder: true }}
             activePlugins={activeTitlePlugins}
           />
@@ -114,6 +118,7 @@ export class Root extends React.Component {
     );
   }
 }
+
 const styles = theme => ({
   root: {
     border: `solid 1px ${color.primaryLight()}`,

@@ -140,7 +140,16 @@ export class Chart extends React.Component {
   };
 
   render() {
-    const { classes, className, domain, range, size, title, addCategoryEnabled } = this.props;
+    const {
+      classes,
+      className,
+      domain,
+      range,
+      size,
+      title,
+      onChangeTitle,
+      addCategoryEnabled
+    } = this.props;
     let { chartType } = this.props;
 
     const defineChart = this.props.defineChart || false;
@@ -194,7 +203,14 @@ export class Chart extends React.Component {
             addCategory={() => this.addCategory(correctValues.range)}
           />
         </div>
-        <Root title={title} classes={classes} rootRef={r => (this.rootNode = r)} {...rootCommon}>
+        <Root
+          title={title}
+          thisIsChart={defineChart}
+          onChangeTitle={onChangeTitle}
+          classes={classes}
+          rootRef={r => (this.rootNode = r)}
+          {...rootCommon}
+        >
           <ChartGrid
             {...common}
             xBand={xBand}
