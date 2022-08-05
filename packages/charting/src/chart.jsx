@@ -16,6 +16,7 @@ import {
 } from './utils';
 import ToolMenu from './tool-menu';
 import chartTypes from './chart-types';
+import Labels from './labels';
 
 const log = debug('pie-lib:charts:chart');
 
@@ -148,6 +149,8 @@ export class Chart extends React.Component {
       size,
       title,
       onChangeTitle,
+      onChangeLabels,
+      placeholderMessages,
       addCategoryEnabled
     } = this.props;
     let { chartType } = this.props;
@@ -207,6 +210,8 @@ export class Chart extends React.Component {
           title={title}
           thisIsChart={defineChart}
           onChangeTitle={onChangeTitle}
+          disabledTitle={!defineChart}
+          placeholder={placeholderMessages?.title || ''}
           classes={classes}
           rootRef={r => (this.rootNode = r)}
           {...rootCommon}
@@ -239,6 +244,12 @@ export class Chart extends React.Component {
               onChangeCategory={this.changeCategory}
             />
           </g>
+          <Labels
+            disabledLabels={!defineChart}
+            //  value={labels}
+            onChange={onChangeLabels}
+            {...common}
+          />
         </Root>
       </div>
     );

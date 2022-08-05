@@ -262,6 +262,7 @@ export class RawChartAxes extends React.Component {
       leftAxis,
       onChange,
       onChangeCategory,
+      onChangeLabels,
       categories = [],
       top,
       defineChart,

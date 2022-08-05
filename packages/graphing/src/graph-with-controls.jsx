@@ -129,6 +129,7 @@ export class GraphWithControls extends React.Component {
       size,
       showLabels,
       showTitle,
+      placeholder,
       title
     } = this.props;
     let { backgroundMarks, marks, toolbarTools } = this.props;
@@ -187,6 +188,7 @@ export class GraphWithControls extends React.Component {
           currentTool={currentTool}
           disabledLabels={disabledLabels}
           disabledTitle={disabledTitle}
+          placeholder={placeholder || 'Click here to add a title for this graph'}
           domain={domain}
           labels={labels}
           labelModeEnabled={labelModeEnabled}
