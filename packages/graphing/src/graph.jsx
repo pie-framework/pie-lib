@@ -36,6 +36,7 @@ export const graphPropTypes = {
     height: PropTypes.number.isRequired
   }),
   showLabels: PropTypes.bool,
+  showPixelGuides: PropTypes.bool,
   showTitle: PropTypes.bool,
   title: PropTypes.string,
   tools: PropTypes.array
@@ -168,6 +169,7 @@ export class Graph extends React.Component {
       labels,
       labelModeEnabled,
       showLabels,
+      showPixelGuides,
       showTitle,
       onChangeLabels,
       onChangeTitle
@@ -184,6 +186,7 @@ export class Graph extends React.Component {
       <Root
         rootRef={r => (this.rootNode = r)}
         disabledTitle={disabledTitle}
+        showPixelGuides={showPixelGuides}
         showTitle={showTitle}
         title={title}
         onChangeTitle={onChangeTitle}

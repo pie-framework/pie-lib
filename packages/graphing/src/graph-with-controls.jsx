@@ -128,6 +128,7 @@ export class GraphWithControls extends React.Component {
       range,
       size,
       showLabels,
+      showPixelGuides,
       showTitle,
       title
     } = this.props;
@@ -197,6 +198,7 @@ export class GraphWithControls extends React.Component {
           range={range}
           size={size}
           showLabels={showLabels}
+          showPixelGuides={showPixelGuides}
           showTitle={showTitle}
           title={title}
           tools={tools}
@@ -224,7 +226,8 @@ const styles = theme => ({
     }
   },
   expansionPanel: {
-    backgroundColor: color.primaryLight()
+    backgroundColor: color.primaryLight(),
+    width: '100%'
   },
   summaryRoot: {
     padding: `0 ${theme.spacing.unit}px`,
@@ -235,7 +238,9 @@ const styles = theme => ({
   },
   details: {
     padding: 0,
-    marginTop: theme.spacing.unit
+    marginTop: theme.spacing.unit,
+    display: 'flex',
+    justifyContent: 'space-between'
   }
 });
 
