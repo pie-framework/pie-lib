@@ -209,9 +209,12 @@ export class GraphWithControls extends React.Component {
 }
 
 const styles = theme => ({
-  graphWithControls: {},
+  graphWithControls: {
+    display: 'flex',
+    flexDirection: 'column',
+    width: 'min-content'
+  },
   controls: {
-    width: 'inherit',
     display: 'flex',
     justifyContent: 'space-between',
     padding: theme.spacing.unit,
