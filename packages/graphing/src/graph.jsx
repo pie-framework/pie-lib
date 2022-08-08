@@ -189,6 +189,7 @@ export class Graph extends React.Component {
         rootRef={r => (this.rootNode = r)}
         disabledTitle={disabledTitle}
         showPixelGuides={showPixelGuides}
+        showLabels={showLabels}
         showTitle={showTitle}
         title={title}
         titlePlaceholder={titlePlaceholder}

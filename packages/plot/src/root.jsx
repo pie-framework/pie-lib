@@ -17,6 +17,7 @@ export class Root extends React.Component {
     onChangeTitle: PropTypes.func,
     onMouseMove: PropTypes.func,
     classes: PropTypes.object.isRequired,
+    showLabels: PropTypes.bool,
     showTitle: PropTypes.bool,
     showPixelGuides: PropTypes.bool,
     rootRef: PropTypes.func
@@ -59,6 +60,7 @@ export class Root extends React.Component {
       children,
       classes,
       onChangeTitle,
+      showLabels,
       showPixelGuides,
       showTitle,
       title,
@@ -70,10 +72,10 @@ export class Root extends React.Component {
       range
     } = graphProps;
 
-    const topPadding = 50;
-    const leftPadding = topPadding + 10; // left side requires an extra padding of 10
-    const finalWidth = width + leftPadding * 2 + (domain.padding || 0) * 2 + 10; // 10 is the right padding
-    const finalHeight = height + topPadding * 2 + (range.padding || 0) * 2;
+    const padding = showLabels ? 70 : 40;
+    const extraPadding = showLabels ? 16 : 40;
+    const finalWidth = width + padding * 2 + (domain.padding || 0) * 2 + extraPadding;
+    const finalHeight = height + padding * 2 + (range.padding || 0) * 2;
 
     const activeTitlePlugins = [
       'bold',
@@ -128,7 +130,7 @@ export class Root extends React.Component {
                 }
               }}
               className={classes.graphBox}
-              transform={`translate(${leftPadding}, ${topPadding})`}
+              transform={`translate(${padding}, ${padding})`}
             >
               {children}
             </g>
@@ -164,7 +166,7 @@ const styles = theme => ({
   graphTitle: {
     color: color.text(),
     fontSize: theme.typography.fontSize + 2,
-    paddingTop: '8px',
+    padding: '12px 4px 0',
     textAlign: 'center'
   },
   disabledTitle: {

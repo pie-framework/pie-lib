@@ -33,13 +33,13 @@ export const getTransform = (side, width, height) => {
 const getY = (side, height) => {
   switch (side) {
     case 'left':
-      return -height + 6;
-    case 'top':
-      return -height + 6;
-    case 'right':
       return -height;
+    case 'top':
+      return -height;
+    case 'right':
+      return -height - 10;
     default:
-      return -height - 15;
+      return -height + 10;
   }
 };
 
@@ -63,6 +63,7 @@ class RawLabel extends React.Component {
     const width = side === 'left' || side === 'right' ? totalHeight : totalWidth;
     const height = 36;
     const y = getY(side, height);
+    const finalHeight = side === 'bottom' ? height + 22 : height + 18;
 
     const activePlugins = [
       'bold',
@@ -77,7 +78,7 @@ class RawLabel extends React.Component {
         x={-(width / 2)}
         y={y}
         width={width}
-        height={height * 2}
+        height={finalHeight}
         transform={transform}
         textAnchor="middle"
       >
@@ -111,7 +112,8 @@ const Label = withStyles(theme => ({
   },
   axisLabel: {
     fontSize: theme.typography.fontSize - 2,
-    textAlign: 'center'
+    textAlign: 'center',
+    padding: '0 4px'
   },
   disabledAxisLabel: {
     pointerEvents: 'none'
