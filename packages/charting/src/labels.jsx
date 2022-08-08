@@ -70,7 +70,7 @@ class RawLabel extends React.Component {
             )}
             markup={text || ''}
             onChange={onChange}
-            placeholder={!disabledLabel && `Click here to add a label for this axis`}
+            placeholder={!disabledLabel && 'Click here to add a label for this axis'}
             toolbarOpts={{
               position: side === 'bottom' ? 'top' : 'bottom',
               noBorder: true
