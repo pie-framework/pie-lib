@@ -134,6 +134,7 @@ exports[`GraphWithControls snapshot renders 1`] = `
       ]
     }
     onChangeMarks={[MockFunction]}
+    placeholder="Click here to add a title for this graph"
     range={
       Object {
         "max": 10,

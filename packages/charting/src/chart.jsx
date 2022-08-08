@@ -150,7 +150,7 @@ export class Chart extends React.Component {
       title,
       onChangeTitle,
       onChangeLeftLabel,
-              onChangeRightLabel,
+      onChangeRightLabel,
       labels,
       placeholderMessages,
       addCategoryEnabled
@@ -213,6 +213,7 @@ export class Chart extends React.Component {
           thisIsChart={defineChart}
           onChangeTitle={onChangeTitle}
           disabledTitle={!defineChart}
+          showTitle={true}
           titlePlaceholder={placeholderMessages?.title || ''}
           classes={classes}
           rootRef={r => (this.rootNode = r)}
@@ -251,7 +252,7 @@ export class Chart extends React.Component {
             titlePlaceholder={placeholderMessages?.labels || ''}
             value={labels}
             onChangeLeftLabel={onChangeLeftLabel}
-              onChangeRightLabel={onChangeRightLabel}
+            onChangeRightLabel={onChangeRightLabel}
             {...common}
           />
         </Root>

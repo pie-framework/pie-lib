@@ -72,8 +72,6 @@ export class Root extends React.Component {
     const finalWidth = width + leftPadding * 2 + (domain.padding || 0) * 2;
     const finalHeight = height + topPadding * 2 + (range.padding || 0) * 2;
 
-    console.log(titlePlaceholder, 'placeholderTitle');
-
     const activeTitlePlugins = [
       'bold',
       'italic',
