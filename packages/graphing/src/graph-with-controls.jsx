@@ -118,6 +118,7 @@ export class GraphWithControls extends React.Component {
       domain,
       draggableTools,
       labels,
+      labelsPlaceholders,
       onChangeLabels,
       onChangeMarks,
       onChangeTitle,
@@ -130,7 +131,8 @@ export class GraphWithControls extends React.Component {
       showLabels,
       showPixelGuides,
       showTitle,
-      title
+      title,
+      titlePlaceholder
     } = this.props;
     let { backgroundMarks, marks, toolbarTools } = this.props;
 
@@ -191,6 +193,7 @@ export class GraphWithControls extends React.Component {
           domain={domain}
           labels={labels}
           labelModeEnabled={labelModeEnabled}
+          labelsPlaceholders={labelsPlaceholders}
           marks={marks}
           onChangeMarks={!disabled ? onChangeMarks : undefined}
           onChangeLabels={onChangeLabels}
@@ -201,6 +204,7 @@ export class GraphWithControls extends React.Component {
           showPixelGuides={showPixelGuides}
           showTitle={showTitle}
           title={title}
+          titlePlaceholder={titlePlaceholder}
           tools={tools}
         />
       </div>

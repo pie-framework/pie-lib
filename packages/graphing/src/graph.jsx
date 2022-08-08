@@ -168,9 +168,11 @@ export class Graph extends React.Component {
       title,
       labels,
       labelModeEnabled,
+      labelsPlaceholders,
       showLabels,
       showPixelGuides,
       showTitle,
+      titlePlaceholder,
       onChangeLabels,
       onChangeTitle
     } = this.props;
@@ -189,6 +191,7 @@ export class Graph extends React.Component {
         showPixelGuides={showPixelGuides}
         showTitle={showTitle}
         title={title}
+        titlePlaceholder={titlePlaceholder}
         onChangeTitle={onChangeTitle}
         {...common}
       >
@@ -248,6 +251,7 @@ export class Graph extends React.Component {
         {showLabels && (
           <Labels
             disabledLabels={disabledLabels}
+            placeholders={labelsPlaceholders}
             value={labels}
             onChange={onChangeLabels}
             {...common}
