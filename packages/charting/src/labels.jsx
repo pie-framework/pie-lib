@@ -31,11 +31,18 @@ class RawLabel extends React.Component {
   };
 
   render() {
-    const { disabledLabel, text, side, graphProps, classes, onChange } = this.props;
+    const {
+      disabledLabel,
+      text,
+      side,
+      graphProps,
+      classes,
+      onChange,
+      titlePlaceholder
+    } = this.props;
     const { size, domain, range } = graphProps;
     const totalHeight = (size.height || 500) + (range.padding || 0) * 2;
     const totalWidth = (size.width || 500) + (domain.padding || 0) * 2;
-
     const transform = getTransform(side, totalWidth, totalHeight);
     const width = side === 'left' ? totalHeight : totalWidth;
     const height = 32;
@@ -70,7 +77,7 @@ class RawLabel extends React.Component {
             )}
             markup={text || ''}
             onChange={onChange}
-            placeholder={!disabledLabel && 'Click here to add a label for this axis'}
+            placeholder={!disabledLabel && titlePlaceholder}
             toolbarOpts={{
               position: side === 'bottom' ? 'top' : 'bottom',
               noBorder: true
@@ -85,11 +92,10 @@ class RawLabel extends React.Component {
 
 const Label = withStyles(theme => ({
   label: {
-    color: !color.secondary()
+    color: color.secondary()
   },
   axisLabel: {
-    fontSize: theme.typography.fontSize - 2,
-    color: !color.secondary(),
+    fontSize: theme.typography.fontSize,
     textAlign: 'center'
   },
   disabledAxisLabel: {
@@ -102,9 +108,7 @@ const Label = withStyles(theme => ({
 
 export const LabelType = {
   left: PropTypes.string,
-  top: PropTypes.string,
-  bottom: PropTypes.string,
-  right: PropTypes.string
+  bottom: PropTypes.string
 };
 
 export class Labels extends React.Component {
@@ -118,18 +122,14 @@ export class Labels extends React.Component {
 
   static defaultProps = {};
 
-  onChangeLabel = (newValue, side) => {
-    const { value, onChange } = this.props;
-    const labels = {
-      ...value,
-      [side]: newValue
-    };
+  onRangeChanged = (key, value) => {
+    range[key] = value;
 
-    onChange(labels);
+    onChange({ ...model, range });
   };
 
   render() {
-    const { disabledLabels, value = {}, graphProps } = this.props;
+    const { disabledLabels, value = {}, graphProps, titlePlaceholder } = this.props;
 
     return (
       <React.Fragment>
@@ -138,16 +138,18 @@ export class Labels extends React.Component {
           side="left"
           text={value.left}
           disabledLabel={disabledLabels}
+          titlePlaceholder={titlePlaceholder}
           graphProps={graphProps}
-          onChange={value => this.onChangeLabel(value, 'left')}
+          onChange={value => this.onRangeChanged('label', value)}
         />
         <Label
           key="bottom"
           side="bottom"
           text={value.bottom}
           disabledLabel={disabledLabels}
+          titlePlaceholder={titlePlaceholder}
           graphProps={graphProps}
-          onChange={value => this.onChangeLabel(value, 'bottom')}
+          onChange={value => this.onRangeChanged('label', value)}
         />
       </React.Fragment>
     );

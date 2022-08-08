@@ -150,6 +150,8 @@ export class Chart extends React.Component {
       title,
       onChangeTitle,
       onChangeLabels,
+      onChange,
+      labels,
       placeholderMessages,
       addCategoryEnabled
     } = this.props;
@@ -246,8 +248,9 @@ export class Chart extends React.Component {
           </g>
           <Labels
             disabledLabels={!defineChart}
-            //  value={labels}
-            onChange={onChangeLabels}
+            titlePlaceholder={placeholderMessages?.labels || ''}
+            value={labels}
+            onChange={onChange}
             {...common}
           />
         </Root>
