@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "2.9.0",
+  "version": "2.9.1",
   "description": "Graphing components",
   "keywords": [
     "react",
@@ -21,7 +21,7 @@
     "@pie-lib/drag": "^1.1.52",
     "@pie-lib/graphing-utils": "^1.1.20",
     "@pie-lib/plot": "^2.3.0",
-    "@pie-lib/render-ui": "^4.13.1",
+    "@pie-lib/render-ui": "^4.13.2",
     "@vx/axis": "^0.0.189",
     "@vx/clip-path": "^0.0.189",
     "@vx/event": "^0.0.189",

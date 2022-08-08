@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.13.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.13.1...@pie-lib/render-ui@4.13.2) (2022-08-08)
+
+
+### Bug Fixes
+
+* reverted changes for PD-1802 since it's causing PD-1937 ([b02fecb](https://github.com/pie-framework/pie-lib/commit/b02fecb54d8e243c34b864e4e5d3378899cb56d7))
+
+
+
+
+
 ## [4.13.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.13.0...@pie-lib/render-ui@4.13.1) (2022-07-18)
 
 **Note:** Version bump only for package @pie-lib/render-ui
