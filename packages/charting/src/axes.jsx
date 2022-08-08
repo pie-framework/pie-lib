@@ -268,7 +268,7 @@ export class RawChartAxes extends React.Component {
       theme
     } = this.props;
 
-    const { axis, axisLine, tick, axisLabel } = classes;
+    const { axis, axisLine, tick } = classes;
     const { scale = {}, range = {}, domain = {}, size = {} } = graphProps || {};
     const { height } = this.state;
 
@@ -319,19 +319,15 @@ export class RawChartAxes extends React.Component {
             tickLength={10}
             tickClassName={tick}
             tickFormat={value => value}
-            label={range.label}
-            labelClassName={axisLabel}
             tickValues={rowTickValues}
             tickLabelProps={getTickLabelProps}
           />
         )}
         <AxisBottom
           axisLineClassName={axisLine}
-          labelClassName={axisLabel}
           tickClassName={tick}
           scale={bottomScale}
           height={100}
-          label={domain.label}
           labelProps={{ y: 60 + top }}
           top={scale.y && scale.y(range.min)}
           textLabelProps={() => ({ textAnchor: 'middle' })}
@@ -345,11 +341,6 @@ export class RawChartAxes extends React.Component {
 
 const ChartAxes = withStyles(
   theme => ({
-    axisLabel: {
-      fontFamily: theme.typography.body1.fontFamily,
-      fontSize: theme.typography.fontSize,
-      fill: color.secondary()
-    },
     axis: {
       stroke: color.primaryDark(),
       strokeWidth: 2
