@@ -59,7 +59,7 @@ export class Root extends React.Component {
       showTitle,
       thisIsChart,
       title,
-      placeholder,
+      titlePlaceholder,
       rootRef
     } = this.props;
     const {
@@ -71,6 +71,8 @@ export class Root extends React.Component {
     const leftPadding = topPadding + 10; // left side requires an extra padding of 10
     const finalWidth = width + leftPadding * 2 + (domain.padding || 0) * 2;
     const finalHeight = height + topPadding * 2 + (range.padding || 0) * 2;
+
+    console.log(titlePlaceholder, 'placeholderTitle');
 
     const activeTitlePlugins = [
       'bold',
@@ -93,7 +95,7 @@ export class Root extends React.Component {
             markup={title || ''}
             width={finalWidth}
             onChange={onChangeTitle}
-            placeholder={!disabledTitle && placeholder}
+            placeholder={!disabledTitle && titlePlaceholder}
             toolbarOpts={{ noBorder: true }}
             activePlugins={activeTitlePlugins}
           />
@@ -129,7 +131,7 @@ const styles = theme => ({
     userSelect: 'none'
   },
   graphTitle: {
-    color: color.text(),
+    color: 'red',
     fontSize: theme.typography.fontSize + 2,
     padding: '8px 50px 0',
     textAlign: 'center'

@@ -8,9 +8,7 @@ import cn from 'classnames';
 
 const rotations = {
   left: -90,
-  top: 0,
-  bottom: 0,
-  right: 90
+  bottom: 0
 };
 
 export const getTransform = (side, width, height) => {
@@ -20,22 +18,7 @@ export const getTransform = (side, width, height) => {
     return t(-20, height / 2, rotations[side]);
   }
 
-  if (side === 'bottom') {
-    return t(width / 2, height + 30, rotations[side]);
-  }
-};
-
-const getY = (side, height) => {
-  switch (side) {
-    case 'left':
-      return -height + 6;
-    case 'top':
-      return -height + 6;
-    case 'right':
-      return -height;
-    default:
-      return -height - 15;
-  }
+  return t(width / 2, height + 30, rotations[side]);
 };
 
 class RawLabel extends React.Component {
@@ -54,9 +37,9 @@ class RawLabel extends React.Component {
     const totalWidth = (size.width || 500) + (domain.padding || 0) * 2;
 
     const transform = getTransform(side, totalWidth, totalHeight);
-    const width = side === 'left' || side === 'right' ? totalHeight : totalWidth;
-    const height = 36;
-    const y = getY(side, height);
+    const width = side === 'left' ? totalHeight : totalWidth;
+    const height = 32;
+    const y = side === 'left' ? -height : -height * 2;
 
     const activePlugins = [
       'bold',
@@ -71,7 +54,7 @@ class RawLabel extends React.Component {
         x={-(width / 2)}
         y={y}
         width={width}
-        height={height * 2}
+        height={height * 3}
         transform={transform}
         textAnchor="middle"
       >
@@ -82,11 +65,12 @@ class RawLabel extends React.Component {
                 [classes.bottomLabel]: side === 'bottom',
                 [classes.disabledAxisLabel]: disabledLabel
               },
-              classes.axisLabel
+              classes.axisLabel,
+              classes.label
             )}
             markup={text || ''}
             onChange={onChange}
-            placeholder={!disabledLabel && `Click here to add a ${side} label`}
+            placeholder={!disabledLabel && `Click here to add a label for this axis`}
             toolbarOpts={{
               position: side === 'bottom' ? 'top' : 'bottom',
               noBorder: true
@@ -101,10 +85,11 @@ class RawLabel extends React.Component {
 
 const Label = withStyles(theme => ({
   label: {
-    fill: color.secondary()
+    color: !color.secondary()
   },
   axisLabel: {
     fontSize: theme.typography.fontSize - 2,
+    color: !color.secondary(),
     textAlign: 'center'
   },
   disabledAxisLabel: {

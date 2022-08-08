@@ -170,7 +170,6 @@ export class Graph extends React.Component {
       showLabels,
       showTitle,
       onChangeLabels,
-      placeholder,
       onChangeTitle
     } = this.props;
     let { marks } = this.props;
@@ -186,7 +185,6 @@ export class Graph extends React.Component {
         rootRef={r => (this.rootNode = r)}
         disabledTitle={disabledTitle}
         showTitle={showTitle}
-        placeholder={placeholder}
         title={title}
         onChangeTitle={onChangeTitle}
         {...common}
