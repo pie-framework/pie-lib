@@ -149,8 +149,8 @@ export class Chart extends React.Component {
       size,
       title,
       onChangeTitle,
-      onChangeLabels,
-      onChange,
+      onChangeLeftLabel,
+              onChangeRightLabel,
       labels,
       placeholderMessages,
       addCategoryEnabled
@@ -250,7 +250,8 @@ export class Chart extends React.Component {
             disabledLabels={!defineChart}
             titlePlaceholder={placeholderMessages?.labels || ''}
             value={labels}
-            onChange={onChange}
+            onChangeLeftLabel={onChangeLeftLabel}
+              onChangeRightLabel={onChangeRightLabel}
             {...common}
           />
         </Root>

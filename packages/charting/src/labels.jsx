@@ -31,15 +31,7 @@ class RawLabel extends React.Component {
   };
 
   render() {
-    const {
-      disabledLabel,
-      text,
-      side,
-      graphProps,
-      classes,
-      onChange,
-      titlePlaceholder
-    } = this.props;
+    const { disabledLabel, text, side, graphProps, classes, onChange, titlePlaceholder } = this.props;
     const { size, domain, range } = graphProps;
     const totalHeight = (size.height || 500) + (range.padding || 0) * 2;
     const totalWidth = (size.width || 500) + (domain.padding || 0) * 2;
@@ -108,7 +100,7 @@ const Label = withStyles(theme => ({
 
 export const LabelType = {
   left: PropTypes.string,
-  bottom: PropTypes.string
+  bottom: PropTypes.string,
 };
 
 export class Labels extends React.Component {
@@ -122,11 +114,22 @@ export class Labels extends React.Component {
 
   static defaultProps = {};
 
-  onRangeChanged = (key, value) => {
-    range[key] = value;
+  onChangeLabel = (newValue, side) => {
+    const { onChangeLeftLabel, onChangeRightLabel, graphProps } = this.props;
 
-    onChange({ ...model, range });
+    if (side === 'left') {
+      const range = { ...graphProps.range, "label": newValue }
+
+      onChangeLeftLabel(range);
+
+    } else {
+      const domain = { ...graphProps.domain, "label": newValue }
+
+      onChangeRightLabel(domain);
+    }
   };
+
+
 
   render() {
     const { disabledLabels, value = {}, graphProps, titlePlaceholder } = this.props;
@@ -140,7 +143,7 @@ export class Labels extends React.Component {
           disabledLabel={disabledLabels}
           titlePlaceholder={titlePlaceholder}
           graphProps={graphProps}
-          onChange={value => this.onRangeChanged('label', value)}
+          onChange={value => this.onChangeLabel(value, 'left')}
         />
         <Label
           key="bottom"
@@ -149,7 +152,7 @@ export class Labels extends React.Component {
           disabledLabel={disabledLabels}
           titlePlaceholder={titlePlaceholder}
           graphProps={graphProps}
-          onChange={value => this.onRangeChanged('label', value)}
+          onChange={value => this.onChangeLabel(value, 'bottom')}
         />
       </React.Fragment>
     );
