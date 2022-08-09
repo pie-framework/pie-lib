@@ -277,11 +277,17 @@ const styles = theme => ({
   inputAndTypeContainer: {
     display: 'flex',
     alignItems: 'center',
-    '& .mq-root-block': {
-      marginTop: '8px'
+    '& .mq-editable-field .mq-cursor': {
+      top: '-4px'
+    },
+    '& .mq-math-mode .mq-selection, .mq-editable-field .mq-selection': {
+      paddingTop: '18px'
     },
     '& .mq-math-mode .mq-overarrow': {
       fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important'
+    },
+    '& .mq-math-mode .mq-overline .mq-overline-inner': {
+      paddingTop: '0.4em !important'
     },
     '& .mq-overarrow.mq-arrow-both': {
       minWidth: '1.23em',
@@ -307,11 +313,11 @@ const styles = theme => ({
       }
     },
     '& *': {
-      fontFamily: 'MJXZERO, MJXTEX-I !important',
+      fontFamily: 'MJXZERO, MJXTEX !important',
 
       '& .mq-math-mode .mq-sqrt-prefix': {
         verticalAlign: 'bottom !important',
-        top: '0.2em !important',
+        top: '0 !important',
         left: '-0.1em !important'
       },
 
@@ -326,7 +332,11 @@ const styles = theme => ({
       },
 
       '& .mq-math-mode .mq-root-block': {
-        paddingTop: '6px'
+        paddingTop: '10px'
+      },
+
+      '& .mq-scaled .mq-sqrt-prefix': {
+        top: '0 !important'
       },
 
       '& .mq-longdiv-inner': {
@@ -356,7 +366,7 @@ const styles = theme => ({
 
       '& .mq-math-mode .mq-paren': {
         verticalAlign: 'top !important',
-        padding: '4px 0.1em !important'
+        padding: '1px 0.1em !important'
       },
 
       '& .mq-math-mode .mq-sqrt-stem': {
@@ -376,6 +386,17 @@ const styles = theme => ({
         '& .mq-sup': {
           marginBottom: '0px !important'
         }
+      },
+
+      '& .mq-math-mode .mq-denominator': {
+        marginTop: '-5px !important',
+        padding: '0.5em 0.1em 0.1em !important'
+      },
+
+      '& .mq-math-mode .mq-numerator, .mq-math-mode .mq-over': {
+        padding: '0 0.1em !important',
+        paddingBottom: '0 !important',
+        marginBottom: '4.5px'
       },
 
       '-webkit-font-smoothing': 'antialiased !important'
@@ -451,6 +472,8 @@ const styles = theme => ({
       paddingTop: '1.5px !important'
     },
     '& .mq-overarrow.mq-arrow-both': {
+      top: '7.8px',
+      marginTop: '0px',
       minWidth: '1.23em'
     },
     '& .mq-parallelogram': {
@@ -460,7 +483,7 @@ const styles = theme => ({
   inputContainer: {
     minWidth: '500px',
     maxWidth: '900px',
-    minHeight: '40px',
+    minHeight: '30px',
     width: '100%',
     display: 'flex',
     marginTop: theme.spacing.unit,
@@ -475,7 +498,11 @@ const styles = theme => ({
   },
   keyboard: {
     '& *': {
-      fontFamily: 'MJXZERO, MJXTEX-I !important',
+      fontFamily: 'MJXZERO, MJXTEX !important',
+
+      '& .mq-math-mode .mq-sqrt-prefix': {
+        top: '0 !important'
+      },
 
       '& .mq-math-mode .mq-empty': {
         padding: '9px 1px !important'
@@ -507,6 +534,14 @@ const styles = theme => ({
 
       '& .mq-math-mode .mq-paren': {
         verticalAlign: 'middle !important'
+      },
+
+      '& .mq-math-mode .mq-overarrow .mq-overarrow-inner .mq-empty': {
+        padding: '0 !important'
+      },
+
+      '& .mq-math-mode .mq-overline .mq-overline-inner .mq-empty ': {
+        padding: '0 !important'
       }
     }
   }
