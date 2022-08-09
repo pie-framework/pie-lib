@@ -327,7 +327,6 @@ export class RawChartAxes extends React.Component {
           axisLineClassName={axisLine}
           tickClassName={tick}
           scale={bottomScale}
-          height={100}
           labelProps={{ y: 60 + top }}
           top={scale.y && scale.y(range.min)}
           textLabelProps={() => ({ textAnchor: 'middle' })}

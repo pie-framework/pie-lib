@@ -210,7 +210,6 @@ export class Chart extends React.Component {
         </div>
         <Root
           title={title}
-          thisIsChart={defineChart}
           onChangeTitle={onChangeTitle}
           disabledTitle={!defineChart}
           showTitle={true}

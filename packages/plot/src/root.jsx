@@ -57,7 +57,6 @@ export class Root extends React.Component {
       classes,
       onChangeTitle,
       showTitle,
-      thisIsChart,
       title,
       titlePlaceholder,
       rootRef
@@ -82,7 +81,7 @@ export class Root extends React.Component {
 
     return (
       <div className={classes.root}>
-        {(showTitle || thisIsChart) && (
+        {showTitle && (
           <EditableHtml
             className={cn(
               {
@@ -129,7 +128,7 @@ const styles = theme => ({
     userSelect: 'none'
   },
   graphTitle: {
-    color: 'red',
+    color: color.text(),
     fontSize: theme.typography.fontSize + 2,
     padding: '8px 50px 0',
     textAlign: 'center'
