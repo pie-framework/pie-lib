@@ -216,6 +216,12 @@ exports[`ChartAxes snapshot renders 1`] = `
         }
       }
       titlePlaceholder=""
+      value={
+        Object {
+          "bottom": "",
+          "left": "",
+        }
+      }
     />
   </WithStyles(Root)>
 </div>
@@ -437,6 +443,12 @@ exports[`ChartAxes snapshot renders if size is not defined 1`] = `
         }
       }
       titlePlaceholder=""
+      value={
+        Object {
+          "bottom": "",
+          "left": "",
+        }
+      }
     />
   </WithStyles(Root)>
 </div>
@@ -660,6 +672,12 @@ exports[`ChartAxes snapshot renders without chartType and charts properties 1`] 
         }
       }
       titlePlaceholder=""
+      value={
+        Object {
+          "bottom": "",
+          "left": "",
+        }
+      }
     />
   </WithStyles(Root)>
 </div>
@@ -881,6 +899,12 @@ exports[`ChartAxes snapshot renders without chartType property 1`] = `
         }
       }
       titlePlaceholder=""
+      value={
+        Object {
+          "bottom": "",
+          "left": "",
+        }
+      }
     />
   </WithStyles(Root)>
 </div>
