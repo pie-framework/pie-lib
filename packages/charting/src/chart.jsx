@@ -151,7 +151,6 @@ export class Chart extends React.Component {
       onChangeTitle,
       onChangeLeftLabel,
       onChangeRightLabel,
-      labels,
       placeholderMessages,
       addCategoryEnabled
     } = this.props;
@@ -159,6 +158,7 @@ export class Chart extends React.Component {
 
     const defineChart = this.props.defineChart || false;
     const { width, height } = size || {};
+    const labels = { left: range?.label || '', bottom: domain.label || '' };
 
     const { ChartComponent } = this.getChart();
     const categories = this.getFilteredCategories();
