@@ -719,7 +719,7 @@ const styles = {
       fontFamily: 'MJXZERO, MJXTEX !important'
     },
     '& .mq-math-mode var, .mq-math-mode i, .mq-math-mode i.mq-font': {
-      fontFamily: 'MJXZERO, MJXTEX-I !important'
+      fontFamily: 'MJXZERO, MJXTEX !important'
     },
     '& .mq-math-mode .mq-sqrt-stem': {
       borderTop: '0.07em solid',
