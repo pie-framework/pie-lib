@@ -37,7 +37,7 @@ const mp = theme => ({
     alignItems: 'center',
     position: 'relative',
     '& *': {
-      fontFamily: 'MJXZERO, MJXTEX-I !important',
+      fontFamily: 'MJXZERO, MJXTEX !important',
       '-webkit-font-smoothing': 'antialiased !important'
     },
     '& > .mq-math-mode': {
@@ -50,15 +50,22 @@ const mp = theme => ({
       borderRadius: '0px'
     },
     '& > .mq-math-mode .mq-root-block': {
-      paddingTop: '7px !important',
-      marginTop: '8px'
+      paddingTop: '7px !important'
     },
     '& > .mq-math-mode .mq-sqrt-prefix': {
       verticalAlign: 'bottom !important',
-      top: '0.2em !important',
+      top: '0 !important',
       left: '-0.1em !important'
     },
-
+    '& > .mq-math-mode .mq-denominator': {
+      marginTop: '-5px !important',
+      padding: '0.5em 0.1em 0.1em !important'
+    },
+    '& > .mq-math-mode .mq-numerator, .mq-math-mode .mq-over': {
+      padding: '0 0.1em !important',
+      paddingBottom: '0 !important',
+      marginBottom: '4.5px'
+    },
     '& > .mq-math-mode sup.mq-nthroot': {
       fontSize: '70.7% !important',
       verticalAlign: '0.5em !important',
@@ -92,7 +99,7 @@ const mp = theme => ({
     },
     '& > .mq-math-mode .mq-paren': {
       verticalAlign: 'top !important',
-      padding: '4px 0.1em !important'
+      padding: '1px 0.1em !important'
     },
 
     '& > .mq-math-mode .mq-sqrt-stem': {
@@ -116,7 +123,12 @@ const mp = theme => ({
       paddingTop: '0 !important',
       border: 'none !important'
     },
+    '& .mq-editable-field .mq-cursor': {
+      marginTop: '-15px !important'
+    },
     '& .mq-overarrow.mq-arrow-both': {
+      top: '7.5px',
+      marginTop: '0px',
       minWidth: '1.23em',
       '& *': {
         lineHeight: '1 !important'
