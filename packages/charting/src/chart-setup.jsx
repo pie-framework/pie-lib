@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { color } from '@pie-lib/render-ui';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import ChartType from './chart-type';
 import { NumberTextFieldCustom } from '@pie-lib/config-ui';
+import { AlertDialog } from '@pie-lib/config-ui';
 
 const ConfigureChartPanel = props => {
   const { classes, model, onChange, gridValues = {}, labelValues = {} } = props;
+  const [showAlert, setShowAlert] = useState(false);
+  console.log(props, "props in configure chart panel");
   const { range } = model;
   const size = model.graph;
 
@@ -37,6 +40,11 @@ const ConfigureChartPanel = props => {
     </div>
   );
 
+  const handleAlertDialog = (open, callback) =>
+    setShowAlert({
+      showAlert: open
+    }, callback);
+
   const rangeProps = chartType => {
     return chartType.includes('Plot') ? { min: 3, max: 10 } : { min: 0.05, max: 10000 };
   };
@@ -50,9 +58,37 @@ const ConfigureChartPanel = props => {
   const onRangeChanged = (key, value) => {
     range[key] = value;
 
-    onChange({ ...model, range });
+    if (key === 'max') {
+      // check all the values are smaller than step
+      const outOfRange = model.data.find(d => d.value > value);
+
+      if (outOfRange) {
+        setShowAlert({
+          showAlert: {
+            open: true,
+            title: 'Warning',
+            text: `This change will remove values defined for one or more categories`,
+            onConfirm: () => handleAlertDialog(
+              false, onChange({ ...model, range })),
+            onClose: () => handleAlertDialog(false)
+          }
+
+        })
+
+      } else {
+        onChange({ ...model, range });
+      }
+
+      console.log(outOfRange, "out of range");
+    } else {
+      onChange({ ...model, range });
+    }
   };
 
+  useEffect(() => {
+    console.log('Do something after counter has changed', showAlert);
+  }, [showAlert]);;
+  console.log(showAlert)
   const onChartTypeChange = chartType => {
     if (chartType.includes('Plot')) {
       rangeProps.min = 3;
@@ -120,6 +156,13 @@ const ConfigureChartPanel = props => {
           </div>
         </div>
       </div>
+      <AlertDialog
+        open={showAlert.open}
+        title={showAlert.title}
+        text={showAlert.text}
+        onClose={showAlert.onClose}
+        onConfirm={showAlert.onConfirm}
+      />
     </div>
   );
 };
