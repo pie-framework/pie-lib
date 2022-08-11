@@ -51,7 +51,8 @@ export class TickComponent extends React.Component {
         dialog: {
           open: true,
           title: 'Warning',
-          text: `This will remove the correct answer value that has been defined for this category.`,
+          text:
+            'This will remove the correct answer value that has been defined for this category.',
           onConfirm: () =>
             this.handleAlertDialog(
               false,
@@ -69,7 +70,24 @@ export class TickComponent extends React.Component {
     const { categories, onChangeCategory } = this.props;
     const category = categories[index];
 
-    onChangeCategory(index, { ...category, editable: !category.editable || false });
+    if (!value) {
+      this.setState({
+        dialog: {
+          open: true,
+          title: 'Warning',
+          text:
+            'This will remove the correct answer category name that has been defined for this category.',
+          onConfirm: () =>
+            this.handleAlertDialog(
+              false,
+              onChangeCategory(index, { ...category, editable: !category.editable || false })
+            ),
+          onClose: () => this.handleAlertDialog(false)
+        }
+      });
+    } else {
+      onChangeCategory(index, { ...category, editable: !category.editable || false });
+    }
   };
 
   render() {
