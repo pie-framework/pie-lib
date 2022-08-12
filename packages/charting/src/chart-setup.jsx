@@ -68,27 +68,7 @@ const ConfigureChartPanel = props => {
 
       if (outOfRange) {
         setShow(true)
-        useEffect((key,value) => {
-          console.log(showAlert, "show alert in useEffect");
-          console.log(show, "show")
-          console.log(key,value,"key and value");
-          if (show) {
-            setShowAlert({
-           
-                open: true,
-                title: 'Warning',
-                text: `This change will remove values defined for one or more categories`,
-                onConfirm: () => {
-                  range[key] = value;
-                  handleAlertDialog(
-                    false, onChange({ ...model, range }))
-                },
-                onClose: () => handleAlertDialog(false)
-              
-      
-            })
-          }
-        }, [show]);
+
         console.log(showAlert, "show alert in rangeChanded");
       } else {
         onChange({ ...model, range });
@@ -102,7 +82,27 @@ const ConfigureChartPanel = props => {
     
   };
 
-  
+  useEffect((key,value) => {
+    console.log(showAlert, "show alert in useEffect");
+    console.log(show, "show")
+    console.log(key,value,"key and value");
+    if (show) {
+      setShowAlert({
+     
+          open: true,
+          title: 'Warning',
+          text: `This change will remove values defined for one or more categories`,
+          onConfirm: () => {
+            range[key] = value;
+            handleAlertDialog(
+              false, onChange({ ...model, range }))
+          },
+          onClose: () => handleAlertDialog(false)
+        
+
+      })
+    }
+  }, [show]);
 
   const onChartTypeChange = chartType => {
     if (chartType.includes('Plot')) {
