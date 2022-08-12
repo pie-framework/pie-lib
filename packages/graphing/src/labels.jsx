@@ -69,7 +69,8 @@ class RawLabel extends React.Component {
       'bold',
       'italic',
       'underline',
-      'strikethrough'
+      'strikethrough',
+      'math'
       // 'languageCharacters'
     ];
 
