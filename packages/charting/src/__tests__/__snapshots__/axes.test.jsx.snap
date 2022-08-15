@@ -523,5 +523,20 @@ exports[`TickComponent snapshot1 renders 1`] = `
       onChange={[Function]}
     />
   </foreignObject>
+  <foreignObject
+    height={4}
+    style={
+      Object {
+        "overflow": "visible",
+        "pointerEvents": "visible",
+      }
+    }
+    x={NaN}
+    y={NaN}
+  >
+    <AlertDialog
+      open={false}
+    />
+  </foreignObject>
 </g>
 `;
