@@ -118,6 +118,7 @@ export class GraphWithControls extends React.Component {
       domain,
       draggableTools,
       labels,
+      labelsPlaceholders,
       onChangeLabels,
       onChangeMarks,
       onChangeTitle,
@@ -128,8 +129,10 @@ export class GraphWithControls extends React.Component {
       range,
       size,
       showLabels,
+      showPixelGuides,
       showTitle,
-      title
+      title,
+      titlePlaceholder
     } = this.props;
     let { backgroundMarks, marks, toolbarTools } = this.props;
 
@@ -190,6 +193,7 @@ export class GraphWithControls extends React.Component {
           domain={domain}
           labels={labels}
           labelModeEnabled={labelModeEnabled}
+          labelsPlaceholders={labelsPlaceholders}
           marks={marks}
           onChangeMarks={!disabled ? onChangeMarks : undefined}
           onChangeLabels={onChangeLabels}
@@ -197,8 +201,10 @@ export class GraphWithControls extends React.Component {
           range={range}
           size={size}
           showLabels={showLabels}
+          showPixelGuides={showPixelGuides}
           showTitle={showTitle}
           title={title}
+          titlePlaceholder={titlePlaceholder}
           tools={tools}
         />
       </div>
@@ -207,9 +213,12 @@ export class GraphWithControls extends React.Component {
 }
 
 const styles = theme => ({
-  graphWithControls: {},
+  graphWithControls: {
+    display: 'flex',
+    flexDirection: 'column',
+    width: 'min-content'
+  },
   controls: {
-    width: 'inherit',
     display: 'flex',
     justifyContent: 'space-between',
     padding: theme.spacing.unit,
@@ -224,7 +233,8 @@ const styles = theme => ({
     }
   },
   expansionPanel: {
-    backgroundColor: color.primaryLight()
+    backgroundColor: color.primaryLight(),
+    width: '100%'
   },
   summaryRoot: {
     padding: `0 ${theme.spacing.unit}px`,
@@ -235,7 +245,9 @@ const styles = theme => ({
   },
   details: {
     padding: 0,
-    marginTop: theme.spacing.unit
+    marginTop: theme.spacing.unit,
+    display: 'flex',
+    justifyContent: 'space-between'
   }
 });
 

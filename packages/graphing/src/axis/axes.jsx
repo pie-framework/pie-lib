@@ -123,7 +123,7 @@ export class RawXAxis extends React.Component {
 
     const necessaryRows = countWords(domain.axisLabel);
     const longestWord = findLongestWord(domain.axisLabel);
-    const necessaryWidth = amountToIncreaseWidth(longestWord);
+    const necessaryWidth = amountToIncreaseWidth(longestWord) + 2;
 
     return (
       <React.Fragment>
@@ -147,8 +147,8 @@ export class RawXAxis extends React.Component {
         )}
         {domain.axisLabel && (
           <foreignObject
-            x={size.width + 15}
-            y={scale.y(0) - 10}
+            x={size.width + 17}
+            y={scale.y(0) - 9}
             width={necessaryWidth}
             height={20 * necessaryRows}
           >
@@ -219,7 +219,7 @@ export class RawYAxis extends React.Component {
         {range.axisLabel && (
           <foreignObject
             x={scale.x(0) - necessaryWidth / 2}
-            y={-30}
+            y={-33}
             width={necessaryWidth}
             height="20"
           >
