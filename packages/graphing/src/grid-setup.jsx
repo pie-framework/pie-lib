@@ -51,6 +51,17 @@ const GridConfig = props => {
   );
 };
 
+GridConfig.propTypes = {
+  classes: PropTypes.object,
+  disabled: PropTypes.bool,
+  displayedFields: PropTypes.object,
+  labelValue: PropTypes.number,
+  labelValues: PropTypes.array,
+  gridValue: PropTypes.number,
+  gridValues: PropTypes.array,
+  onChange: PropTypes.func
+};
+
 const AxisConfig = props => {
   const {
     classes,
@@ -128,6 +139,7 @@ const GridSetup = props => {
     includeAxes,
     labelValues = {},
     onChange,
+    onChangeView,
     range,
     size,
     sizeConstraints,
@@ -303,7 +315,7 @@ const GridSetup = props => {
 
   return (
     <div className={classes.wrapper}>
-      <ExpansionPanel>
+      <ExpansionPanel onChange={onChangeView}>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
           <Typography variant="subtitle1">Customize Grid Setup</Typography>
         </ExpansionPanelSummary>
@@ -370,6 +382,7 @@ GridSetup.propTypes = {
   includeAxes: PropTypes.bool,
   labelValues: PropTypes.object,
   onChange: PropTypes.function,
+  onChangeView: PropTypes.function,
   range: PropTypes.object,
   size: PropTypes.object,
   sizeConstraints: PropTypes.object,

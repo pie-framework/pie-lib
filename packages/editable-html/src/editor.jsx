@@ -720,7 +720,12 @@ export class Editor extends React.Component {
           normalize={this.normalize}
           readOnly={disabled}
           spellCheck={spellCheck}
-          className={classes.slateEditor}
+          className={classNames(
+            {
+              [classes.noPadding]: toolbarOpts && toolbarOpts.noBorder
+            },
+            classes.slateEditor
+          )}
           style={{
             minHeight: sizeStyle.minHeight,
             height: sizeStyle.height,
@@ -769,6 +774,9 @@ const styles = {
   },
   toolbarOnTop: {
     marginTop: '45px'
+  },
+  noPadding: {
+    padding: '0 !important'
   }
 };
 

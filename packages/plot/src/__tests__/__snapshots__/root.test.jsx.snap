@@ -2,15 +2,17 @@
 
 exports[`root snapshot matches 1`] = `
 <div>
-  <svg
-    height={500}
-    width={520}
-  >
-    <g
-      transform="translate(60, 50)"
+  <div>
+    <svg
+      height={480}
+      width={520}
     >
-      hi
-    </g>
-  </svg>
+      <g
+        transform="translate(40, 40)"
+      >
+        hi
+      </g>
+    </svg>
+  </div>
 </div>
 `;
