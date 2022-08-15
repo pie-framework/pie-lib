@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.10.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.9.1...@pie-lib/graphing@2.10.0) (2022-08-15)
+
+
+### Features
+
+* **graphing, plot:** added pixel guide lines + ui improvements ([02ddff1](https://github.com/pie-framework/pie-lib/commit/02ddff1aed6a279b8a4ae1fcf100c766596c29c4))
+
+
+
+
+
 ## [2.9.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.9.0...@pie-lib/graphing@2.9.1) (2022-08-08)
 
 **Note:** Version bump only for package @pie-lib/graphing

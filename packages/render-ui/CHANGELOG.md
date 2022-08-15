@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.13.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.13.2...@pie-lib/render-ui@4.13.3) (2022-08-15)
+
+
+### Bug Fixes
+
+* PD-1802 set style only to img parent ([d113b4e](https://github.com/pie-framework/pie-lib/commit/d113b4e48978c7619b4d9d4cfbf4996f400068e7))
+
+
+
+
+
 ## [4.13.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.13.1...@pie-lib/render-ui@4.13.2) (2022-08-08)
 
 
