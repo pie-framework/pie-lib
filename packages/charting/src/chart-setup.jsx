@@ -11,7 +11,9 @@ const ConfigureChartPanel = props => {
   const { classes, model, onChange, gridValues = {}, labelValues = {} } = props;
   const [showAlert, setShowAlert] = useState(false);
   const [show, setShow] = useState(false);
-  console.log(props, "props in configure chart panel");
+  const [key, setKey] = useState('');
+  const [resetValue, setResetValues] = useState(0);
+
   const { range } = model;
   const size = model.graph;
 
@@ -25,7 +27,7 @@ const ConfigureChartPanel = props => {
       <NumberTextFieldCustom
         className={classes.mediumTextField}
         label="Grid Interval"
-        value={range.step}
+        value={model.range.step}
         variant="outlined"
         onChange={(e, v) => onRangeChanged('step', v)}
         {...gridOptions}
@@ -33,7 +35,7 @@ const ConfigureChartPanel = props => {
       <NumberTextFieldCustom
         className={classes.mediumTextField}
         label={'Label Interval'}
-        value={range.labelStep}
+        value={model.range.labelStep}
         variant={'outlined'}
         onChange={(e, v) => onRangeChanged('labelStep', v)}
         {...labelOptions}
@@ -42,12 +44,14 @@ const ConfigureChartPanel = props => {
   );
 
   const handleAlertDialog = (open, callback) => {
-    setShowAlert({
-      showAlert: open
-    }, callback);
-    setShow(false)
-  }
- 
+    setShowAlert(
+      {
+        showAlert: open
+      },
+      callback
+    );
+    setShow(false);
+  };
 
   const rangeProps = chartType => {
     return chartType.includes('Plot') ? { min: 3, max: 10 } : { min: 0.05, max: 10000 };
@@ -59,48 +63,40 @@ const ConfigureChartPanel = props => {
     onChange({ ...model, graph });
   };
 
-
-
   const onRangeChanged = (key, value) => {
+    setResetValues(range[key]);
+    setKey(key);
+    range[key] = value;
+
     if (key === 'max') {
       // check all the values are smaller than step
       const outOfRange = model.data.find(d => d.value > value);
 
       if (outOfRange) {
-        setShow(true)
-
-        console.log(showAlert, "show alert in rangeChanded");
+        setShow(true);
       } else {
         onChange({ ...model, range });
       }
-
-      console.log(outOfRange, "out of range");
+      console.log(outOfRange, 'out of range');
     } else {
-      range[key] = value;
       onChange({ ...model, range });
     }
-    
   };
 
-  useEffect((key,value) => {
-    console.log(showAlert, "show alert in useEffect");
-    console.log(show, "show")
-    console.log(key,value,"key and value");
+  useEffect(() => {
     if (show) {
       setShowAlert({
-     
-          open: true,
-          title: 'Warning',
-          text: `This change will remove values defined for one or more categories`,
-          onConfirm: () => {
-            range[key] = value;
-            handleAlertDialog(
-              false, onChange({ ...model, range }))
-          },
-          onClose: () => handleAlertDialog(false)
-        
-
-      })
+        open: true,
+        title: 'Warning',
+        text: 'This change will remove values defined for one or more categories',
+        onConfirm: () => {
+          handleAlertDialog(false, onChange({ ...model, range }));
+        },
+        onClose: () => {
+          range[key] = resetValue;
+          handleAlertDialog(false);
+        }
+      });
     }
   }, [show]);
 
@@ -109,7 +105,7 @@ const ConfigureChartPanel = props => {
       rangeProps.min = 3;
       rangeProps.max = 10;
 
-      if (range.max > 10 || range.max < 3) {
+      if (model.range.max > 10 || model.range.max < 3) {
         range.max = 10;
       }
 
@@ -133,7 +129,7 @@ const ConfigureChartPanel = props => {
           <NumberTextFieldCustom
             className={classes.mediumTextField}
             label="Max Value"
-            value={range.max}
+            value={model.range.max}
             min={rangeProps(model.chartType).min}
             max={rangeProps(model.chartType).max}
             variant="outlined"
@@ -171,7 +167,7 @@ const ConfigureChartPanel = props => {
           </div>
         </div>
       </div>
-      {console.log(showAlert, "show alert in component")}
+      {console.log(showAlert, 'show alert in component')}
       <AlertDialog
         open={showAlert.open}
         title={showAlert.title}
