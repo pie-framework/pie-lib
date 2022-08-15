@@ -94,7 +94,7 @@ export class EditorAndToolbar extends React.Component {
           classes.root
         )}
       >
-        <div className={holderNames} id={'holder'}>
+        <div className={holderNames}>
           <div
             className={classNames(
               {

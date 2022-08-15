@@ -33,13 +33,13 @@ export const getTransform = (side, width, height) => {
 const getY = (side, height) => {
   switch (side) {
     case 'left':
-      return -height + 6;
-    case 'top':
-      return -height + 6;
-    case 'right':
       return -height;
+    case 'top':
+      return -height;
+    case 'right':
+      return -height - 10;
     default:
-      return -height - 15;
+      return -height + 10;
   }
 };
 
@@ -49,11 +49,12 @@ class RawLabel extends React.Component {
     side: PropTypes.string,
     classes: PropTypes.object,
     disabledLabel: PropTypes.bool,
+    placeholder: PropTypes.string,
     graphProps: types.GraphPropsType.isRequired
   };
 
   render() {
-    const { disabledLabel, text, side, graphProps, classes, onChange } = this.props;
+    const { disabledLabel, placeholder, text, side, graphProps, classes, onChange } = this.props;
     const { size, domain, range } = graphProps;
     const totalHeight = (size.height || 500) + (range.padding || 0) * 2;
     const totalWidth = (size.width || 500) + (domain.padding || 0) * 2;
@@ -62,12 +63,14 @@ class RawLabel extends React.Component {
     const width = side === 'left' || side === 'right' ? totalHeight : totalWidth;
     const height = 36;
     const y = getY(side, height);
+    const finalHeight = side === 'bottom' ? height + 22 : height + 18;
 
     const activePlugins = [
       'bold',
       'italic',
       'underline',
-      'strikethrough'
+      'strikethrough',
+      'math'
       // 'languageCharacters'
     ];
 
@@ -76,7 +79,7 @@ class RawLabel extends React.Component {
         x={-(width / 2)}
         y={y}
         width={width}
-        height={height * 2}
+        height={finalHeight}
         transform={transform}
         textAnchor="middle"
       >
@@ -91,7 +94,7 @@ class RawLabel extends React.Component {
             )}
             markup={text || ''}
             onChange={onChange}
-            placeholder={!disabledLabel && `Click here to add a ${side} label`}
+            placeholder={!disabledLabel && placeholder}
             toolbarOpts={{
               position: side === 'bottom' ? 'top' : 'bottom',
               noBorder: true
@@ -110,7 +113,8 @@ const Label = withStyles(theme => ({
   },
   axisLabel: {
     fontSize: theme.typography.fontSize - 2,
-    textAlign: 'center'
+    textAlign: 'center',
+    padding: '0 4px'
   },
   disabledAxisLabel: {
     pointerEvents: 'none'
@@ -132,6 +136,7 @@ export class Labels extends React.Component {
     classes: PropTypes.object,
     className: PropTypes.string,
     disabledLabels: PropTypes.bool,
+    placeholders: PropTypes.object,
     value: PropTypes.shape(LabelType),
     graphProps: PropTypes.object
   };
@@ -149,7 +154,7 @@ export class Labels extends React.Component {
   };
 
   render() {
-    const { disabledLabels, value = {}, graphProps } = this.props;
+    const { disabledLabels, placeholders = {}, value = {}, graphProps } = this.props;
 
     return (
       <React.Fragment>
@@ -158,6 +163,7 @@ export class Labels extends React.Component {
           side="left"
           text={value.left}
           disabledLabel={disabledLabels}
+          placeholder={placeholders.left}
           graphProps={graphProps}
           onChange={value => this.onChangeLabel(value, 'left')}
         />
@@ -166,6 +172,7 @@ export class Labels extends React.Component {
           side="top"
           text={value.top}
           disabledLabel={disabledLabels}
+          placeholder={placeholders.top}
           graphProps={graphProps}
           onChange={value => this.onChangeLabel(value, 'top')}
         />
@@ -174,6 +181,7 @@ export class Labels extends React.Component {
           side="bottom"
           text={value.bottom}
           disabledLabel={disabledLabels}
+          placeholder={placeholders.bottom}
           graphProps={graphProps}
           onChange={value => this.onChangeLabel(value, 'bottom')}
         />
@@ -182,6 +190,7 @@ export class Labels extends React.Component {
           side="right"
           text={value.right}
           disabledLabel={disabledLabels}
+          placeholder={placeholders.right}
           graphProps={graphProps}
           onChange={value => this.onChangeLabel(value, 'right')}
         />

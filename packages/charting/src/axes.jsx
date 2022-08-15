@@ -3,12 +3,30 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { types } from '@pie-lib/plot';
 import { color } from '@pie-lib/render-ui';
+import { AlertDialog } from '@pie-lib/config-ui';
 import { AxisLeft, AxisBottom } from '@vx/axis';
 import { bandKey, getTickValues, getRotateAngle } from './utils';
 import MarkLabel from './mark-label';
 import Checkbox from '@material-ui/core/Checkbox';
 
 export class TickComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      dialog: {
+        open: false
+      }
+    };
+  }
+
+  handleAlertDialog = (open, callback) =>
+    this.setState(
+      {
+        dialog: { open }
+      },
+      callback
+    );
+
   changeCategory = (index, newLabel) => {
     const { categories, onChangeCategory } = this.props;
     const category = categories[index];
@@ -28,14 +46,48 @@ export class TickComponent extends React.Component {
     const { categories, onChangeCategory } = this.props;
     const category = categories[index];
 
-    onChangeCategory(index, { ...category, interactive: !category.interactive });
+    if (!value) {
+      this.setState({
+        dialog: {
+          open: true,
+          title: 'Warning',
+          text:
+            'This will remove the correct answer value that has been defined for this category.',
+          onConfirm: () =>
+            this.handleAlertDialog(
+              false,
+              onChangeCategory(index, { ...category, interactive: !category.interactive })
+            ),
+          onClose: () => this.handleAlertDialog(false)
+        }
+      });
+    } else {
+      onChangeCategory(index, { ...category, interactive: !category.interactive });
+    }
   };
 
   changeEditable = (index, value) => {
     const { categories, onChangeCategory } = this.props;
     const category = categories[index];
 
-    onChangeCategory(index, { ...category, editable: !category.editable || false });
+    if (!value) {
+      this.setState({
+        dialog: {
+          open: true,
+          title: 'Warning',
+          text:
+            'This will remove the correct answer category name that has been defined for this category.',
+          onConfirm: () =>
+            this.handleAlertDialog(
+              false,
+              onChangeCategory(index, { ...category, editable: !category.editable || false })
+            ),
+          onClose: () => this.handleAlertDialog(false)
+        }
+      });
+    } else {
+      onChangeCategory(index, { ...category, editable: !category.editable || false });
+    }
   };
 
   render() {
@@ -58,6 +110,7 @@ export class TickComponent extends React.Component {
       return null;
     }
 
+    const { dialog } = this.state;
     const index = parseInt(formattedValue.split('-')[0], 10);
     const category = categories[index];
     const { deletable, editable, interactive, label, correctness, autoFocus, inDefineChart } =
@@ -209,6 +262,21 @@ export class TickComponent extends React.Component {
             />
           </foreignObject>
         )}
+        <foreignObject
+          x={x - 24}
+          y={y + 100 + top}
+          width={barWidth}
+          height={4}
+          style={{ pointerEvents: 'visible', overflow: 'visible' }}
+        >
+          <AlertDialog
+            open={dialog.open}
+            title={dialog.title}
+            text={dialog.text}
+            onClose={dialog.onClose}
+            onConfirm={dialog.onConfirm}
+          />
+        </foreignObject>
       </g>
     );
   }

@@ -40,6 +40,18 @@ export class PreviewPrompt extends Component {
     return div.innerHTML;
   };
 
+  componentDidUpdate() {
+    // set image parent style so it can be horizontally aligned
+    const previewPrompt = document.querySelector('#preview-prompt');
+    const images = previewPrompt && previewPrompt.getElementsByTagName('img');
+
+    if (images && images.length) {
+      for (let image of images) {
+        image.parentElement.style.display = 'flex';
+      }
+    }
+  }
+
   render() {
     const { prompt, classes, tagName, className, onClick, defaultClassName } = this.props;
     const CustomTag = tagName || 'div';
@@ -48,6 +60,7 @@ export class PreviewPrompt extends Component {
 
     return (
       <CustomTag
+        id={'preview-prompt'}
         onClick={onClick}
         className={customClasses}
         dangerouslySetInnerHTML={{
@@ -61,12 +74,7 @@ export class PreviewPrompt extends Component {
 const styles = theme => ({
   prompt: {
     verticalAlign: 'middle',
-    color: color.text(),
-    display: 'flex',
-    flexDirection: 'column',
-    '& > *': {
-      display: 'flex'
-    }
+    color: color.text()
   },
   rationale: {
     paddingLeft: theme.spacing.unit * 16
