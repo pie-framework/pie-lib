@@ -111,55 +111,55 @@ class Demo extends React.Component {
           <br />
           <br />
           <br />
-          no extra slashes:{' '}
-          <mq.Input
-            keyset={keyset}
-            latex={this.state.latex1}
-            onChange={latex => this.setState({ latex1: latex })}
-          />{' '}
-          - extra slashes:
-          <mq.Input
-            keyset={keyset}
-            latex={this.state.latex2}
-            onChange={latex => this.setState({ latex2: latex })}
-          />
+          {/*no extra slashes:{' '}*/}
+          {/*<mq.Input*/}
+          {/*  keyset={keyset}*/}
+          {/*  latex={this.state.latex1}*/}
+          {/*  onChange={latex => this.setState({ latex1: latex })}*/}
+          {/*/>{' '}*/}
+          {/*- extra slashes:*/}
+          {/*<mq.Input*/}
+          {/*  keyset={keyset}*/}
+          {/*  latex={this.state.latex2}*/}
+          {/*  onChange={latex => this.setState({ latex2: latex })}*/}
+          {/*/>*/}
         </Section>
 
-        <Section name="Custom keys (E261001)">
-          <div>{customKeyMessage}</div>
-          <mq.Input
-            displayMode={'block-on-focus'}
-            latex={this.state.inputTwo}
-            onChange={latex => this.setState({ inputTwo: latex })}
-            keyset={[
-              [
-                { label: 'a', write: 'a' },
-                { label: 'b', write: 'b' },
-                { label: 'c', write: 'c' },
-                { label: 'y', write: 'y' }
-              ],
-              [
-                keys.misc.parenthesis,
-                keys.fractions.xBlankBlank,
-                keys.exponent.xToPowerOfN,
-                keys.exponent.squareRoot
-              ]
-            ]}
-          />
-          <pre className={classes.pre}>{this.state.inputTwo}</pre>
-        </Section>
+        {/*<Section name="Custom keys (E261001)">*/}
+        {/*  <div>{customKeyMessage}</div>*/}
+        {/*  <mq.Input*/}
+        {/*    displayMode={'block-on-focus'}*/}
+        {/*    latex={this.state.inputTwo}*/}
+        {/*    onChange={latex => this.setState({ inputTwo: latex })}*/}
+        {/*    keyset={[*/}
+        {/*      [*/}
+        {/*        { label: 'a', write: 'a' },*/}
+        {/*        { label: 'b', write: 'b' },*/}
+        {/*        { label: 'c', write: 'c' },*/}
+        {/*        { label: 'y', write: 'y' }*/}
+        {/*      ],*/}
+        {/*      [*/}
+        {/*        keys.misc.parenthesis,*/}
+        {/*        keys.fractions.xBlankBlank,*/}
+        {/*        keys.exponent.xToPowerOfN,*/}
+        {/*        keys.exponent.squareRoot*/}
+        {/*      ]*/}
+        {/*    ]}*/}
+        {/*  />*/}
+        {/*  <pre className={classes.pre}>{this.state.inputTwo}</pre>*/}
+        {/*</Section>*/}
 
         {/* <Section name="keypad standalone">
           <p>The keypad can be rendered by itself and connected to whatever you like.</p>
         </Section> */}
 
-        <Section name="Horizontal Keypad (for backward compatibility) w/ 4.x">
-          <HorizontalKeypad
-            onClick={d => {
-              console.log('d:', d);
-            }}
-          />
-        </Section>
+        {/*<Section name="Horizontal Keypad (for backward compatibility) w/ 4.x">*/}
+        {/*  <HorizontalKeypad*/}
+        {/*    onClick={d => {*/}
+        {/*      console.log('d:', d);*/}
+        {/*    }}*/}
+        {/*  />*/}
+        {/*</Section>*/}
       </div>
     ) : (
       <div />
