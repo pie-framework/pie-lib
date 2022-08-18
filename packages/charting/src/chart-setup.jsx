@@ -9,8 +9,8 @@ import { AlertDialog } from '@pie-lib/config-ui';
 
 const ConfigureChartPanel = props => {
   const { classes, model, onChange, gridValues = {}, labelValues = {} } = props;
-  const [showAlert, setShowAlert] = useState(false);
-  const [show, setShow] = useState(false);
+  const [alertDialog, setAlertDialog] = useState(false);
+  const [open, setOpen] = useState(false);
   const [key, setKey] = useState('');
   const [resetValue, setResetValues] = useState(0);
 
@@ -27,7 +27,7 @@ const ConfigureChartPanel = props => {
       <NumberTextFieldCustom
         className={classes.mediumTextField}
         label="Grid Interval"
-        value={model.range.step}
+        value={range.step}
         variant="outlined"
         onChange={(e, v) => onRangeChanged('step', v)}
         {...gridOptions}
@@ -35,7 +35,7 @@ const ConfigureChartPanel = props => {
       <NumberTextFieldCustom
         className={classes.mediumTextField}
         label={'Label Interval'}
-        value={model.range.labelStep}
+        value={range.labelStep}
         variant={'outlined'}
         onChange={(e, v) => onRangeChanged('labelStep', v)}
         {...labelOptions}
@@ -44,13 +44,13 @@ const ConfigureChartPanel = props => {
   );
 
   const handleAlertDialog = (open, callback) => {
-    setShowAlert(
+    setAlertDialog(
       {
-        showAlert: open
+        alertDialog: open
       },
       callback
     );
-    setShow(false);
+    setOpen(false);
   };
 
   const rangeProps = chartType => {
@@ -64,16 +64,20 @@ const ConfigureChartPanel = props => {
   };
 
   const onRangeChanged = (key, value) => {
+    // use this values to reset range to default values
     setResetValues(range[key]);
     setKey(key);
+
     range[key] = value;
 
     if (key === 'max') {
       // check all the values are smaller than step
-      const outOfRange = model.data.find(d => d.value > value);
+      const outOfRange =
+        model.data.find(d => d.value > value) ||
+        model.correctAnswer.data.find(d => d.value > value);
 
       if (outOfRange) {
-        setShow(true);
+        setOpen(true);
       } else {
         onChange({ ...model, range });
       }
@@ -84,8 +88,8 @@ const ConfigureChartPanel = props => {
   };
 
   useEffect(() => {
-    if (show) {
-      setShowAlert({
+    if (open) {
+      setAlertDialog({
         open: true,
         title: 'Warning',
         text: 'This change will remove values defined for one or more categories',
@@ -98,14 +102,14 @@ const ConfigureChartPanel = props => {
         }
       });
     }
-  }, [show]);
+  }, [open]);
 
   const onChartTypeChange = chartType => {
     if (chartType.includes('Plot')) {
       rangeProps.min = 3;
       rangeProps.max = 10;
 
-      if (model.range.max > 10 || model.range.max < 3) {
+      if (range.max > 10 || range.max < 3) {
         range.max = 10;
       }
 
@@ -129,7 +133,7 @@ const ConfigureChartPanel = props => {
           <NumberTextFieldCustom
             className={classes.mediumTextField}
             label="Max Value"
-            value={model.range.max}
+            value={range.max}
             min={rangeProps(model.chartType).min}
             max={rangeProps(model.chartType).max}
             variant="outlined"
@@ -167,13 +171,12 @@ const ConfigureChartPanel = props => {
           </div>
         </div>
       </div>
-      {console.log(showAlert, 'show alert in component')}
       <AlertDialog
-        open={showAlert.open}
-        title={showAlert.title}
-        text={showAlert.text}
-        onClose={showAlert.onClose}
-        onConfirm={showAlert.onConfirm}
+        open={alertDialog.open}
+        title={alertDialog.title}
+        text={alertDialog.text}
+        onClose={alertDialog.onClose}
+        onConfirm={alertDialog.onConfirm}
       />
     </div>
   );
