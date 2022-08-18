@@ -295,7 +295,7 @@ const styles = theme => ({
         lineHeight: '1 !important'
       },
       '&:before': {
-        top: '-0.4em',
+        top: '-0.45em',
         left: '-1px'
       },
       '&:after': {
@@ -319,6 +319,10 @@ const styles = theme => ({
         verticalAlign: 'bottom !important',
         top: '0 !important',
         left: '-0.1em !important'
+      },
+
+      '& .mq-math-mode .mq-overarc ': {
+        paddingTop: '0.45em !important'
       },
 
       '& .mq-math-mode sup.mq-nthroot': {

@@ -52,6 +52,9 @@ const mp = theme => ({
     '& > .mq-math-mode .mq-root-block': {
       paddingTop: '7px !important'
     },
+    '& > .mq-math-mode .mq-overarc ': {
+      paddingTop: '0.45em !important'
+    },
     '& > .mq-math-mode .mq-sqrt-prefix': {
       verticalAlign: 'bottom !important',
       top: '0 !important',
