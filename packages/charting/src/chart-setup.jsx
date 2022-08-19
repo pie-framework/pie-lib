@@ -14,7 +14,7 @@ const ConfigureChartPanel = props => {
   const [key, setKey] = useState('');
   const [resetValue, setResetValues] = useState(0);
 
-  const { range } = model;
+  const { range, correctAnswer } = model;
   const size = model.graph;
 
   const gridOptions =
@@ -51,6 +51,29 @@ const ConfigureChartPanel = props => {
       callback
     );
     setOpen(false);
+  };
+
+  const removeOutOfRangeValues = () => {
+    const { correctAnswer, data } = model;
+    data.forEach(d => {
+      if (d.value > range.max) {
+        console.log(d.value, 'd.value > range.max');
+        console.log(range.max, 'ramge max');
+        d.value = 0;
+      }
+    });
+
+    correctAnswer.data.forEach(d => {
+      if (d.value > range.max) {
+        console.log(d.value, 'd.value > range.max');
+        console.log(range.max, 'ramge max');
+        d.value = 0;
+
+        console.log(model, 'model');
+      }
+    });
+
+    console.log(model, 'model');
   };
 
   const rangeProps = chartType => {
@@ -94,7 +117,9 @@ const ConfigureChartPanel = props => {
         title: 'Warning',
         text: 'This change will remove values defined for one or more categories',
         onConfirm: () => {
-          handleAlertDialog(false, onChange({ ...model, range }));
+          removeOutOfRangeValues();
+          // removeOutOfRangeValues(model.correctAnswer.data);
+          handleAlertDialog(false, onChange({ ...model, range, correctAnswer }));
         },
         onClose: () => {
           range[key] = resetValue;
