@@ -40,6 +40,18 @@ const mp = theme => ({
       fontFamily: 'MJXZERO, MJXTEX !important',
       '-webkit-font-smoothing': 'antialiased !important'
     },
+    '& > .mq-math-mode > span > var': {
+      fontFamily: 'MJXZERO, MJXTEX-I !important'
+    },
+    '& > .mq-math-mode span var': {
+      fontFamily: 'MJXZERO, MJXTEX-I !important'
+    },
+    '& > .mq-math-mode .mq-nonSymbola': {
+      fontFamily: 'MJXZERO, MJXTEX-I !important'
+    },
+    '& > .mq-math-mode > span > var.mq-operator-name': {
+      fontFamily: 'MJXZERO, MJXTEX !important'
+    },
     '& > .mq-math-mode': {
       border: 'solid 1px lightgrey'
     },

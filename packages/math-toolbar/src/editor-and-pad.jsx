@@ -315,6 +315,19 @@ const styles = theme => ({
     '& *': {
       fontFamily: 'MJXZERO, MJXTEX !important',
 
+      '& .mq-math-mode > span > var': {
+        fontFamily: 'MJXZERO, MJXTEX-I !important'
+      },
+      '& .mq-math-mode span var': {
+        fontFamily: 'MJXZERO, MJXTEX-I !important'
+      },
+      '& .mq-math-mode .mq-nonSymbola': {
+        fontFamily: 'MJXZERO, MJXTEX-I !important'
+      },
+      '& .mq-math-mode > span > var.mq-operator-name': {
+        fontFamily: 'MJXZERO, MJXTEX !important'
+      },
+
       '& .mq-math-mode .mq-sqrt-prefix': {
         verticalAlign: 'bottom !important',
         top: '0 !important',
@@ -503,6 +516,19 @@ const styles = theme => ({
   keyboard: {
     '& *': {
       fontFamily: 'MJXZERO, MJXTEX !important',
+
+      '& .mq-math-mode > span > var': {
+        fontFamily: 'MJXZERO, MJXTEX-I !important'
+      },
+      '& .mq-math-mode span var': {
+        fontFamily: 'MJXZERO, MJXTEX-I !important'
+      },
+      '& .mq-math-mode .mq-nonSymbola': {
+        fontFamily: 'MJXZERO, MJXTEX-I !important'
+      },
+      '& .mq-math-mode > span > var.mq-operator-name': {
+        fontFamily: 'MJXZERO, MJXTEX !important'
+      },
 
       '& .mq-math-mode .mq-sqrt-prefix': {
         top: '0 !important'
