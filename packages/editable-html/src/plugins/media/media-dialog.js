@@ -18,10 +18,6 @@ import ActionDelete from '@material-ui/icons/Delete';
 
 const log = debug('@pie-lib:editable-html:plugins:media:dialog');
 
-const PIE_GQL_URL = 'https://develop.pie-api.io/services';
-const PIE_ACCESS_TOKEN =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2kiOiJlMzE5MWNlZS00MWNjLTRhZWItYWNjMy1iZTA4MmQ4N2FlOTYiLCJqdGkiOiJiZTdhYmUyMC0xMTdlLTExZWQtOTJkYy01Yjg5MjQ1NzhjOTkiLCJpYXQiOjE2NTkzNDcxNTcsImV4cCI6MTY1OTQzMzU1Nywic2NvcGVzIjpbXX0.EKoI_gJaaOMUWMUtiAslIFxMLJVHYGI00Rv8C7Zsg6w';
-
 const matchYoutubeUrl = url => {
   if (!url) {
     return false;
@@ -85,6 +81,10 @@ export class MediaDialog extends React.Component {
     edit: PropTypes.bool,
     disablePortal: PropTypes.bool,
     handleClose: PropTypes.func,
+    pieApi: PropTypes.shape({
+      token: PropTypes.string,
+      host: PropTypes.string
+    }),
     type: PropTypes.string,
     src: PropTypes.string,
     url: PropTypes.string,
@@ -283,11 +283,11 @@ export class MediaDialog extends React.Component {
     const { type } = fileToUpload;
     const typeParsed = type.replace('x-', '');
 
-    const url = `${PIE_GQL_URL}/graphql`;
+    const url = `${this.props.pieApi.host}/services/graphql`;
     const requestHeaders = {
       accept: 'application/json',
       'content-type': 'application/json',
-      Authorization: `Bearer ${PIE_ACCESS_TOKEN}`
+      Authorization: `Bearer ${this.props.pieApi.token}`
     };
 
     const query = JSON.stringify({
@@ -352,11 +352,12 @@ export class MediaDialog extends React.Component {
       }
     });
 
-    const url = `${PIE_GQL_URL}/graphql`;
+    const url = `${this.props.pieApi.host}/services/graphql`;
+
     const requestHeaders = {
       accept: 'application/json',
       'content-type': 'application/json',
-      Authorization: `Bearer ${PIE_ACCESS_TOKEN}`
+      Authorization: `Bearer ${this.props.pieApi.token}`
     };
 
     const query = JSON.stringify({
@@ -410,7 +411,7 @@ export class MediaDialog extends React.Component {
   };
 
   render() {
-    const { classes, open, disablePortal, type, edit } = this.props;
+    const { classes, open, disablePortal, type, edit, pieApi } = this.props;
     const {
       ends,
       height,
@@ -454,7 +455,7 @@ export class MediaDialog extends React.Component {
                 <MuiTab
                   label={type === 'video' ? 'Insert YouTube or Vimeo URL' : 'Insert SoundCloud URL'}
                 />
-                <MuiTab disabled={type === 'video'} label="Upload file" />
+                {pieApi?.token && pieApi?.host && type !== 'video' ? <MuiTab label="Upload file" /> : null}
               </MuiTabs>
             </div>
             {isInsertURL && (

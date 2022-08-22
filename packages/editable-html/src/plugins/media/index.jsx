@@ -19,7 +19,7 @@ const removeDialogs = () => {
 
 export const insertDialog = props => {
   const newEl = document.createElement('div');
-  const { type, callback, ...rest } = props;
+  const { type, callback, opts, ...rest } = props;
   const initialBodyOverflow = document.body.style.overflow;
 
   removeDialogs();
@@ -34,7 +34,7 @@ export const insertDialog = props => {
   };
 
   const el = (
-    <MediaDialog {...rest} type={type} disablePortal={true} open={true} handleClose={handleClose} />
+    <MediaDialog {...rest} pieApi={opts.pieApi} type={type} disablePortal={true} open={true} handleClose={handleClose} />
   );
 
   ReactDOM.render(el, newEl);
@@ -68,6 +68,7 @@ export default function MediaPlugin(type, opts) {
       onChange(change);
       insertDialog({
         type,
+        opts,
         callback: (val, data) => {
           const nodeIsThere = change.value.document.findDescendant(d => d.key === inline.key);
 
@@ -117,6 +118,7 @@ export default function MediaPlugin(type, opts) {
               ...jsonData,
               edit: true,
               type,
+              opts,
               callback: (val, data) => {
                 const { key } = node;
 
