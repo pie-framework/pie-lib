@@ -201,7 +201,7 @@ const CharacterIcon = ({ letter }) => (
 export default function CharactersPlugin(opts) {
   removeDialogs();
   return {
-    name: 'math',
+    name: 'characters',
     toolbar: {
       icon: <CharacterIcon letter={opts.characterIcon || characterIcons[opts.language] || 'ñ'} />,
       onClick: (value, onChange) => {
