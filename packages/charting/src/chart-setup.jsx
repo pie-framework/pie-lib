@@ -55,14 +55,11 @@ const ConfigureChartPanel = props => {
 
   const removeOutOfRangeValues = () => {
     const { correctAnswer, data } = model;
-    console.log(range, 'range');
+
     data.forEach(d => {
       const remainder = d.value - range.step * Math.floor(d.value / range.step);
-      console.log(remainder, 'remainder');
+
       if (d.value > range.max || remainder !== 0) {
-        console.log(d.value, 'd.value');
-        console.log(range.max, 'ramge max');
-        console.log(d.value, range.step, d.value % range.step, 'restul');
         d.value = 0;
       }
     });
@@ -70,8 +67,6 @@ const ConfigureChartPanel = props => {
     correctAnswer.data.forEach(d => {
       const remainder = d.value - range.step * Math.floor(d.value / range.step);
       if (d.value > range.max || remainder !== 0) {
-        // console.log(d.value, 'd.value > range.max');
-        // console.log(range.max, 'ramge max');
         d.value = 0;
       }
     });
@@ -92,8 +87,6 @@ const ConfigureChartPanel = props => {
     setResetValues(range[key]);
     setKey(key);
 
-    console.log(value, 'value');
-    console.log(value.toPrecision(7), 'value.toPrecision(7)');
     range[key] = value;
 
     if (key === 'max' || key === 'step') {
@@ -106,8 +99,6 @@ const ConfigureChartPanel = props => {
         model.correctAnswer.data.find(
           d => d.value > range.max || d.value - range.step * Math.floor(d.value / range.step) !== 0
         );
-
-      console.log(outOfRange, 'outOfRange');
 
       if (outOfRange) {
         setOpen(true);

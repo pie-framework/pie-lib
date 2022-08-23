@@ -69,10 +69,8 @@ export class RawBar extends React.Component {
     const { scale, range } = graphProps;
     const { dragValue } = this.state;
 
-    console.log(dragValue, 'drag value in bar');
-    console.log(value, 'value in bar');
     const v = Number.isFinite(dragValue) ? dragValue : value;
-    console.log(v, 'v in bar');
+
     const barWidth = xBand.bandwidth();
     const barHeight = scale.y(range.max - v);
     const barX = xBand(bandKey({ label }, index));
