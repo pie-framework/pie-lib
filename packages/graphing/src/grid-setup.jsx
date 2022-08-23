@@ -208,7 +208,7 @@ const GridSetup = props => {
   };
 
   const onRangeChanged = (key, value) => {
-    range[key] = value;
+    range[key] = value.toPrecision(5);
 
     onChange({ range });
   };

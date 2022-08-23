@@ -33,6 +33,8 @@ export class RawDragHandle extends React.Component {
       ...rest
     } = this.props;
     const { scale } = graphProps;
+    console.log(this.props, 'props in drag handle');
+    console.log(graphProps, 'graphProps in drag handle');
     return (
       <svg
         x={x}

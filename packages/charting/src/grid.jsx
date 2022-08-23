@@ -21,7 +21,9 @@ export class Grid extends React.Component {
 
   render() {
     const { classes, className, graphProps, xBand, rowTickValues, columnTickValues } = this.props;
+    console.log(this.props, 'this props in grid');
     const { scale = {}, size = {} } = graphProps || {};
+    console.log(graphProps, 'graph props in grid');
 
     return (
       <VxGrid
