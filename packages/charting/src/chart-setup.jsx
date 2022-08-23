@@ -11,8 +11,8 @@ const ConfigureChartPanel = props => {
   const { classes, model, onChange, gridValues = {}, labelValues = {} } = props;
   const [alertDialog, setAlertDialog] = useState(false);
   const [open, setOpen] = useState(false);
-  const [key, setKey] = useState('');
-  const [resetValue, setResetValues] = useState(0);
+  const [rangeKey, setRangeKey] = useState('');
+  const [resetValue, setResetValue] = useState(0);
 
   const { range, correctAnswer } = model;
   const size = model.graph;
@@ -53,9 +53,7 @@ const ConfigureChartPanel = props => {
     setOpen(false);
   };
 
-  const removeOutOfRangeValues = () => {
-    const { correctAnswer, data } = model;
-
+  const resetValues = data =>
     data.forEach(d => {
       const remainder = d.value - range.step * Math.floor(d.value / range.step);
 
@@ -64,12 +62,11 @@ const ConfigureChartPanel = props => {
       }
     });
 
-    correctAnswer.data.forEach(d => {
-      const remainder = d.value - range.step * Math.floor(d.value / range.step);
-      if (d.value > range.max || remainder !== 0) {
-        d.value = 0;
-      }
-    });
+  const removeOutOfRangeValues = () => {
+    const { correctAnswer, data } = model;
+
+    resetValues(data);
+    resetValues(correctAnswer.data);
   };
 
   const rangeProps = chartType => {
@@ -83,15 +80,14 @@ const ConfigureChartPanel = props => {
   };
 
   const onRangeChanged = (key, value) => {
-    // use this values to reset range to default values
-    setResetValues(range[key]);
-    setKey(key);
+    // use reset values to restore range to initial values
+    setResetValue(range[key]);
+    setRangeKey(key);
 
     range[key] = value;
 
     if (key === 'max' || key === 'step') {
-      // check all the values are smaller than step
-
+      // check if current chart values are invalid for given range step/max
       const outOfRange =
         model.data.find(
           d => d.value > range.max || d.value - range.step * Math.floor(d.value / range.step) !== 0
@@ -118,11 +114,10 @@ const ConfigureChartPanel = props => {
         text: 'This change will remove values defined for one or more categories',
         onConfirm: () => {
           removeOutOfRangeValues();
-          // removeOutOfRangeValues(model.correctAnswer.data);
           handleAlertDialog(false, onChange({ ...model, range, correctAnswer }));
         },
         onClose: () => {
-          range[key] = resetValue;
+          range[rangeKey] = resetValue;
           handleAlertDialog(false);
         }
       });

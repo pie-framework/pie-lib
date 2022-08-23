@@ -57,16 +57,9 @@ export const gridDraggable = opts => Comp => {
     };
     position = () => {
       const { x, y } = opts.anchorPoint(this.props);
-      console.log(this.props, 'this prps');
-      console.log(opts.anchorPoint(this.props), 'opts anchor point');
-
       const { graphProps } = this.props;
       const { scale, snap } = graphProps;
 
-      const getx = deltaFn(scale.x, snap.x, x);
-      const gety = deltaFn(scale.y, snap.y, y);
-      console.log(getx, 'getx');
-      console.log(gety, 'gety');
       return {
         anchorPoint: {
           x,
