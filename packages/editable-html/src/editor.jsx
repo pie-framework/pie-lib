@@ -715,29 +715,6 @@ const styles = {
     '& table:not([border="1"]) td, th': {
       border: '1px solid #dfe2e5'
     },
-    '& .RawMathPreview-root-143 *': {
-      fontFamily: 'MJXZERO, MJXTEX !important'
-    },
-    '& .mq-math-mode var, .mq-math-mode i, .mq-math-mode i.mq-font': {
-      fontFamily: 'MJXZERO, MJXTEX !important'
-    },
-    '& .mq-math-mode .mq-sqrt-stem': {
-      borderTop: '0.07em solid',
-      marginLeft: '-1.5px',
-      marginTop: '-2px !important',
-      paddingTop: '5px !important'
-    },
-    '& .mq-supsub ': {
-      fontSize: '70.7%'
-    },
-    '& .mq-math-mode .mq-supsub.mq-sup-only': {
-      verticalAlign: '-0.1em !important',
-
-      '& .mq-sup': {
-        marginBottom: '0px !important'
-      }
-    },
-    '-webkit-font-smoothing': 'antialiased !important'
   },
   toolbarOnTop: {
     marginTop: '45px'
