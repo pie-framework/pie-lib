@@ -714,7 +714,7 @@ const styles = {
     },
     '& table:not([border="1"]) td, th': {
       border: '1px solid #dfe2e5'
-    },
+    }
   },
   toolbarOnTop: {
     marginTop: '45px'
