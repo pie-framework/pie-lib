@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.10.21](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.10.20...@pie-lib/demo@6.10.21) (2022-08-29)
+
+
+### Bug Fixes
+
+* **editable-html:** In extended-text-entry, the Insert Special Character and Insert Spanish Character buttons have an incorrect dependency on Insert Math PD-1924 ([0813ee7](https://github.com/pie-framework/pie-lib/commit/0813ee7240ae2d21307e87e4a162f12023695a8d))
+
+
+
+
+
 ## [6.10.20](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.10.19...@pie-lib/demo@6.10.20) (2022-08-15)
 
 **Note:** Version bump only for package @pie-lib/demo

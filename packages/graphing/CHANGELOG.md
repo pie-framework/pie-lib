@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.10.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.10.0...@pie-lib/graphing@2.10.1) (2022-08-29)
+
+
+### Bug Fixes
+
+* **graphing:** fix errors that appear in IBX in console ([b07b7c7](https://github.com/pie-framework/pie-lib/commit/b07b7c718bef596b3963a1f9b626f12ff575a86a))
+
+
+
+
+
 # [2.10.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.9.1...@pie-lib/graphing@2.10.0) (2022-08-15)
 
 

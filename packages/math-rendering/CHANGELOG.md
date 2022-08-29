@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.4.5...@pie-lib/math-rendering@2.5.0) (2022-08-29)
+
+
+### Features
+
+* **math-rendering:** Make math-rendering style inline with mathjax's one ([84a1ab3](https://github.com/pie-framework/pie-lib/commit/84a1ab3cde01d2fc330da8feb44b277c3e8cd51b))
+
+
+
+
+
 ## [2.4.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.4.4...@pie-lib/math-rendering@2.4.5) (2022-07-18)
 
 

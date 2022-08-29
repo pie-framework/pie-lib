@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.8.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.7.2...@pie-lib/math-input@6.8.0) (2022-08-29)
+
+
+### Features
+
+* parse latex when there's an integer and a space before a fraction (remove white space) - wip - PD-1858 ([13995de](https://github.com/pie-framework/pie-lib/commit/13995de67283a3c800f41ee8221f6d2e3f10a7ad))
+* parse latex when there's an integer and a space before a fraction (remove white space) PD-1858 ([85654e5](https://github.com/pie-framework/pie-lib/commit/85654e54b9feef656c0002e9d1b2bda2394f398e))
+* **math-input:** feedback ([6b6ee68](https://github.com/pie-framework/pie-lib/commit/6b6ee6852c6226c446a498ad64c2b43e23f9c154))
+* **math-input:** Make math-input style inline with mathjax's one ([e988f63](https://github.com/pie-framework/pie-lib/commit/e988f635f6f75cbe882b3bf7efb716de13fd893d))
+
+
+
+
+
 ## [6.7.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.7.1...@pie-lib/math-input@6.7.2) (2022-07-19)
 
 

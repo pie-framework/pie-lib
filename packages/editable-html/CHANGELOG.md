@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.1.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.1.2...@pie-lib/editable-html@9.1.3) (2022-08-29)
+
+
+### Bug Fixes
+
+* **plugins:** can scroll on insert character toolbar, toolbar closes when not focused, not closing automatically on insert ([cc203db](https://github.com/pie-framework/pie-lib/commit/cc203dbb534f4989a0c2d840e4e83ed53fda15e5))
+
+
+
+
+
 ## [9.1.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.1.1...@pie-lib/editable-html@9.1.2) (2022-08-15)
 
 **Note:** Version bump only for package @pie-lib/editable-html

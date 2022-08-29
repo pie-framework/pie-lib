@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.11.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.10.3...@pie-lib/math-toolbar@1.11.0) (2022-08-29)
+
+
+### Features
+
+* **math-toolbar:** feedback ([f3ef92d](https://github.com/pie-framework/pie-lib/commit/f3ef92d2dad55e0e0aff6dc216cc491f1fde94f2))
+* **math-toolbar:** feedback ([85e4b58](https://github.com/pie-framework/pie-lib/commit/85e4b585dfb389a026629607ce54f6e3ac7d15fb))
+* **math-toolbar:** feedback ([b1d925f](https://github.com/pie-framework/pie-lib/commit/b1d925f1caf67a0851eadb07467ed042df4513ea))
+* **math-toolbar:** Make math-toolbar style inline with mathjax's one ([043ab63](https://github.com/pie-framework/pie-lib/commit/043ab63dda1914c992821d3f90992fe65817c597))
+* **math-toolbar:** Make math-toolbar style inline with mathjax's one ([8b7a7ed](https://github.com/pie-framework/pie-lib/commit/8b7a7ed46eb5e597589dd0f999663bfeb20edaa9))
+* **math-toolbar:** Make math-toolbar style inline with mathjax's one ([85ca9bd](https://github.com/pie-framework/pie-lib/commit/85ca9bdd12227054d1d3045e610544211251a699))
+* **math-toolbar:** updates fonts accordingly - variables use italic MJXTEX-I ([9a0b157](https://github.com/pie-framework/pie-lib/commit/9a0b1579c9c17d77a94f62eeb4cc160c21ab2f81))
+
+
+
+
+
 ## [1.10.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.10.2...@pie-lib/math-toolbar@1.10.3) (2022-08-01)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar

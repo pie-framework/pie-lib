@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.1.5...@pie-lib/charting@5.1.6) (2022-08-29)
+
+
+### Bug Fixes
+
+* **charting:** override grey background in IBX for chart disabled labels ([be882d4](https://github.com/pie-framework/pie-lib/commit/be882d40b7ebf88531bfb546252221673fa74dab))
+* do not change range on cancel ([1a7c990](https://github.com/pie-framework/pie-lib/commit/1a7c990a0ddf5d0b8c05aa68d6af324dd386b7d3))
+
+
+
+
+
 ## [5.1.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.1.4...@pie-lib/charting@5.1.5) (2022-08-15)
 
 **Note:** Version bump only for package @pie-lib/charting
