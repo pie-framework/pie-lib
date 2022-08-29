@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.1.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.1.3...@pie-lib/editable-html@9.1.4) (2022-08-29)
+
+
+### Bug Fixes
+
+* revert defaults to empty ([d7905be](https://github.com/pie-framework/pie-lib/commit/d7905be52adcda0af2ae92ec537b02beb1313439))
+
+
+
+
+
 ## [9.1.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.1.2...@pie-lib/editable-html@9.1.3) (2022-08-29)
 
 
