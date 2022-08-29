@@ -8,14 +8,27 @@ import { NumberTextFieldCustom } from '@pie-lib/config-ui';
 import { AlertDialog } from '@pie-lib/config-ui';
 
 const ConfigureChartPanel = props => {
-  const { classes, model, onChange, gridValues = {}, labelValues = {} } = props;
+  const { classes, model, onChange, chartDimensions, gridValues = {}, labelValues = {} } = props;
   const [alertDialog, setAlertDialog] = useState(false);
   const [open, setOpen] = useState(false);
   const [rangeKey, setRangeKey] = useState('');
   const [resetValue, setResetValue] = useState(0);
 
   const { range, correctAnswer } = model;
+
   const size = model.graph;
+  const { showInConfigPanel, width, height } = chartDimensions || {};
+
+  const widthConstraints = {
+    min: width?.min ? Math.max(50, width.min) : 50,
+    max: width?.max ? Math.min(700, width.max) : 700,
+    step: width?.step >= 1 ? Math.min(200, width.step) : 20
+  };
+  const heightConstraints = {
+    min: height?.min ? Math.max(400, height.min) : 400,
+    max: height?.max ? Math.min(700, height.max) : 700,
+    step: height?.step >= 1 ? Math.min(200, height.step) : 20
+  };
 
   const gridOptions =
     gridValues && gridValues.range ? { customValues: gridValues.range } : { min: 0, max: 10000 };
@@ -50,7 +63,7 @@ const ConfigureChartPanel = props => {
       },
       callback
     );
-    setOpen(false);
+    setOpen(open);
   };
 
   const resetValues = data =>
@@ -161,35 +174,39 @@ const ConfigureChartPanel = props => {
           />
         </div>
         {!model.chartType.includes('Plot') && stepConfig}
-        <div className={classes.dimensions}>
-          <div>
-            <Typography>Dimensions(px)</Typography>
+        {showInConfigPanel && (
+          <div className={classes.dimensions}>
+            <div>
+              <Typography>Dimensions(px)</Typography>
+            </div>
+            <div className={classes.columnView}>
+              <NumberTextFieldCustom
+                className={classes.textField}
+                label={'Width'}
+                value={size.width}
+                min={widthConstraints.min}
+                max={widthConstraints.max}
+                step={widthConstraints.step}
+                variant={'outlined'}
+                onChange={(e, v) => onSizeChanged('width', v)}
+              />
+              <Typography className={classes.disabled}>Min 50, Max 700</Typography>
+            </div>
+            <div className={classes.columnView}>
+              <NumberTextFieldCustom
+                className={classes.textField}
+                label={'Height'}
+                value={size.height}
+                min={heightConstraints.min}
+                max={heightConstraints.max}
+                step={heightConstraints.step}
+                variant={'outlined'}
+                onChange={(e, v) => onSizeChanged('height', v)}
+              />
+              <Typography className={classes.disabled}>Min 400, Max 700</Typography>
+            </div>
           </div>
-          <div className={classes.columnView}>
-            <NumberTextFieldCustom
-              className={classes.textField}
-              label={'Width'}
-              value={size.width}
-              min={50}
-              max={700}
-              variant={'outlined'}
-              onChange={(e, v) => onSizeChanged('width', v)}
-            />
-            <Typography className={classes.disabled}>Min 50, Max 700</Typography>
-          </div>
-          <div className={classes.columnView}>
-            <NumberTextFieldCustom
-              className={classes.textField}
-              label={'Height'}
-              value={size.height}
-              min={400}
-              max={700}
-              variant={'outlined'}
-              onChange={(e, v) => onSizeChanged('height', v)}
-            />
-            <Typography className={classes.disabled}>Min 400, Max 700</Typography>
-          </div>
-        </div>
+        )}
       </div>
       <AlertDialog
         open={alertDialog.open}
@@ -204,13 +221,10 @@ const ConfigureChartPanel = props => {
 
 ConfigureChartPanel.propTypes = {
   classes: PropTypes.object,
-  sizeConstraints: PropTypes.object,
   domain: PropTypes.object,
-  gridIntervalValues: PropTypes.object,
-  includeAxes: PropTypes.bool,
-  labelIntervalValues: PropTypes.object,
   onChange: PropTypes.function,
   range: PropTypes.object,
+  chartDimension: PropTypes.object,
   size: PropTypes.object
 };
 

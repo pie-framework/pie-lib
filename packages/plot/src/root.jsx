@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { select, mouse } from 'd3-selection';
 import PropTypes from 'prop-types';
 import { GraphPropsType } from './types';
-import { color } from '@pie-lib/render-ui';
+import { color, Readable } from '@pie-lib/render-ui';
 import EditableHtml from '@pie-lib/editable-html';
 import cn from 'classnames';
 
@@ -12,10 +12,14 @@ export class Root extends React.Component {
   static propTypes = {
     title: PropTypes.string,
     children: ChildrenType,
+    disabledTitle: PropTypes.bool,
     graphProps: GraphPropsType.isRequired,
+    onChangeTitle: PropTypes.func,
     onMouseMove: PropTypes.func,
     classes: PropTypes.object.isRequired,
+    showLabels: PropTypes.bool,
     showTitle: PropTypes.bool,
+    showPixelGuides: PropTypes.bool,
     rootRef: PropTypes.func
   };
 
@@ -56,6 +60,8 @@ export class Root extends React.Component {
       children,
       classes,
       onChangeTitle,
+      showLabels,
+      showPixelGuides,
       showTitle,
       title,
       rootRef
@@ -65,21 +71,39 @@ export class Root extends React.Component {
       domain,
       range
     } = graphProps;
-    const topPadding = 50;
-    const leftPadding = topPadding + 10; // left side requires an extra padding of 10
-    const finalWidth = width + leftPadding * 2 + (domain.padding || 0) * 2;
-    const finalHeight = height + topPadding * 2 + (range.padding || 0) * 2;
+
+    const padding = showLabels ? 70 : 40;
+    const extraPadding = showLabels ? 16 : 40;
+    const finalWidth = width + padding * 2 + (domain.padding || 0) * 2 + extraPadding;
+    const finalHeight = height + padding * 2 + (range.padding || 0) * 2;
 
     const activeTitlePlugins = [
       'bold',
       'italic',
       'underline',
-      'strikethrough'
+      'strikethrough',
+      'math'
       // 'languageCharacters'
     ];
 
+    const nbOfVerticalLines = parseInt(width / 100);
+    const nbOfHorizontalLines = parseInt(height / 100);
+    const sideGridlinesPadding = parseInt(height % 100);
+
     return (
       <div className={classes.root}>
+        {showPixelGuides && (
+          <div className={classes.topPixelGuides}>
+            {[...Array(nbOfVerticalLines + 1).keys()].map(value => (
+              <Readable false key={`top-guide-${value}`}>
+                <div className={classes.topPixelIndicator}>
+                  <div>{value * 100}px</div>
+                  <div>|</div>
+                </div>
+              </Readable>
+            ))}
+          </div>
+        )}
         {showTitle && (
           <EditableHtml
             className={cn(
@@ -96,20 +120,31 @@ export class Root extends React.Component {
             activePlugins={activeTitlePlugins}
           />
         )}
-        <svg width={finalWidth} height={finalHeight} className={classes.svg}>
-          <g
-            ref={r => {
-              this.g = r;
-              if (rootRef) {
-                rootRef(r);
-              }
-            }}
-            className={classes.graphBox}
-            transform={`translate(${leftPadding}, ${topPadding})`}
-          >
-            {children}
-          </g>
-        </svg>
+        <div className={classes.wrapper}>
+          <svg width={finalWidth} height={finalHeight} className={classes.svg}>
+            <g
+              ref={r => {
+                this.g = r;
+                if (rootRef) {
+                  rootRef(r);
+                }
+              }}
+              className={classes.graphBox}
+              transform={`translate(${padding}, ${padding})`}
+            >
+              {children}
+            </g>
+          </svg>
+          {showPixelGuides && (
+            <div className={classes.sidePixelGuides} style={{ paddingTop: sideGridlinesPadding }}>
+              {[...Array(nbOfHorizontalLines + 1).keys()].reverse().map(value => (
+                <Readable false key={`top-guide-${value}`}>
+                  <div className={classes.sidePixelIndicator}>━ {value * 100}px</div>
+                </Readable>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     );
   }
@@ -120,6 +155,9 @@ const styles = theme => ({
     color: color.text(),
     backgroundColor: color.background()
   },
+  wrapper: {
+    display: 'flex'
+  },
   svg: {},
   graphBox: {
     cursor: 'pointer',
@@ -128,11 +166,43 @@ const styles = theme => ({
   graphTitle: {
     color: color.text(),
     fontSize: theme.typography.fontSize + 2,
-    padding: '8px 50px 0',
+    padding: '12px 4px 0',
     textAlign: 'center'
   },
   disabledTitle: {
     pointerEvents: 'none'
+  },
+  topPixelGuides: {
+    display: 'flex',
+    paddingTop: '6px',
+    marginLeft: '10px'
+  },
+  topPixelIndicator: {
+    color: color.primaryLight(),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    width: '100px',
+    pointerEvents: 'none',
+    userSelect: 'none'
+  },
+  sidePixelGuides: {
+    width: '70px',
+    display: 'flex',
+    flexDirection: 'column',
+    marginTop: '40px',
+    marginRight: '6px'
+  },
+  sidePixelIndicator: {
+    color: color.primaryLight(),
+    textAlign: 'right',
+    height: '20px',
+    pointerEvents: 'none',
+    userSelect: 'none',
+
+    '&:not(:last-child)': {
+      marginBottom: '80px'
+    }
   }
 });
 
