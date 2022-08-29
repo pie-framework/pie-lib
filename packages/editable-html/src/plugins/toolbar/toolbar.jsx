@@ -13,6 +13,7 @@ import { DoneButton } from './done-button';
 import { findSingleNode, findParentNode } from '../utils';
 import { withStyles } from '@material-ui/core/styles';
 import DefaultToolbar from './default-toolbar';
+import { removeDialogs as removeCharacterDialogs } from '../characters';
 
 const log = debug('@pie-lib:editable-html:plugins:toolbar');
 
@@ -50,6 +51,7 @@ export class Toolbar extends React.Component {
     isFocused: PropTypes.bool,
     autoWidth: PropTypes.bool,
     onChange: PropTypes.func.isRequired,
+    getFocusedValue: PropTypes.func.isRequired,
     pluginProps: PropTypes.object,
     toolbarOpts: PropTypes.shape({
       position: PropTypes.oneOf(['bottom', 'top']),
@@ -66,6 +68,10 @@ export class Toolbar extends React.Component {
     this.state = {
       change: null
     };
+  }
+
+  componentWillUnmount() {
+    removeCharacterDialogs();
   }
 
   hasMark = type => {
@@ -136,6 +142,7 @@ export class Toolbar extends React.Component {
       value,
       autoWidth,
       onChange,
+      getFocusedValue,
       isFocused,
       onDone,
       toolbarRef
@@ -248,6 +255,7 @@ export class Toolbar extends React.Component {
             pluginProps={pluginProps}
             value={value}
             onChange={onChange}
+            getFocusedValue={getFocusedValue}
             showDone={defaultToolbarShowDone}
             onDone={handleDone}
             deletable={deletable}

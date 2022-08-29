@@ -81,6 +81,7 @@ class RawMarkupPreview extends React.Component {
     );
   }
 }
+
 const MarkupPreview = withStyles(() => ({
   prettyPrint: {
     whiteSpace: 'normal',
@@ -104,7 +105,9 @@ class RteDemo extends React.Component {
       height: '',
       keypadMode: 'miscellaneous',
       markupText: html,
-      hasText: true
+      hasText: true,
+      mathEnabled: true,
+      languageCharactersProps: []
     };
   }
 
@@ -225,7 +228,9 @@ class RteDemo extends React.Component {
       mounted,
       keypadMode,
       markupText,
-      hasText
+      hasText,
+      mathEnabled,
+      languageCharactersProps
     } = this.state;
     const imageSupport = {
       add: this.addImage,
@@ -303,6 +308,45 @@ class RteDemo extends React.Component {
               value={height}
               onChange={event => this.setState({ height: event.target.value })}
             />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={mathEnabled}
+                  onChange={event => this.setState({ mathEnabled: event.target.checked })}
+                />
+              }
+              label="math enabled"
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={languageCharactersProps.filter(a => a.language === 'spanish').length}
+                  onChange={event =>
+                    this.setState({
+                      languageCharactersProps: event.target.checked
+                        ? languageCharactersProps.concat([{ language: 'spanish' }])
+                        : languageCharactersProps.filter(a => a.language !== 'spanish')
+                    })
+                  }
+                />
+              }
+              label="spanish enabled"
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={languageCharactersProps.filter(a => a.language === 'special').length}
+                  onChange={event =>
+                    this.setState({
+                      languageCharactersProps: event.target.checked
+                        ? languageCharactersProps.concat([{ language: 'special' }])
+                        : languageCharactersProps.filter(a => a.language !== 'special')
+                    })
+                  }
+                />
+              }
+              label="special enabled"
+            />
           </FormGroup>
         </div>
         <EditableHtml
@@ -317,11 +361,13 @@ class RteDemo extends React.Component {
               disabled: disableImageUpload
             },
             math: {
+              disabled: !mathEnabled,
               keypadMode: this.state.keypadMode
             }
           }}
           width={width}
           height={height}
+          languageCharactersProps={languageCharactersProps}
         />
         <input type="file" hidden ref={r => (this.fileInput = r)} />
         <br />

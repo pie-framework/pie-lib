@@ -5,17 +5,10 @@ import get from 'lodash/get';
 
 import { PureToolbar } from '@pie-lib/math-toolbar';
 
-import CustomPopOver from './custom-popover';
+import CustomPopper from './custom-popper';
 import { insertSnackBar } from '../respArea/utils';
 import { characterIcons, spanishConfig, specialConfig } from './utils';
 const log = debug('@pie-lib:editable-html:plugins:characters');
-
-const removeDialogs = () => {
-  const prevDialogs = document.querySelectorAll('.insert-character-dialog');
-
-  log('[characters:removeDialogs]');
-  prevDialogs.forEach(s => s.remove());
-};
 
 const removePopOvers = () => {
   const prevPopOvers = document.querySelectorAll('#mouse-over-popover');
@@ -24,16 +17,22 @@ const removePopOvers = () => {
   prevPopOvers.forEach(s => s.remove());
 };
 
-const insertDialog = ({ value, callback, opts }) => {
+export const removeDialogs = () => {
+  const prevDialogs = document.querySelectorAll('.insert-character-dialog');
+
+  log('[characters:removeDialogs]');
+  prevDialogs.forEach(s => s.remove());
+  removePopOvers();
+};
+
+const insertDialog = ({ editorDOM, value, callback, opts }) => {
   const newEl = document.createElement('div');
-  const initialBodyOverflow = document.body.style.overflow;
 
   log('[characters:insertDialog]');
 
   removeDialogs();
 
   newEl.className = 'insert-character-dialog';
-  document.body.style.overflow = 'hidden';
 
   let configToUse;
 
@@ -85,33 +84,48 @@ const insertDialog = ({ value, callback, opts }) => {
 
     popoverEl = document.createElement('div');
     ReactDOM.render(
-      <CustomPopOver onClose={closePopOver} anchorEl={event.currentTarget}>
+      <CustomPopper onClose={closePopOver} anchorEl={event.currentTarget}>
         <div>{el.label}</div>
 
         <div style={infoStyle}>{el.description}</div>
 
         <div style={infoStyle}>{el.unicode}</div>
-      </CustomPopOver>,
+      </CustomPopper>,
       popoverEl
     );
 
     document.body.appendChild(newEl);
   };
 
+  let firstCallMade = false;
+
+  const listener = e => {
+    // this will be triggered right after setting it because
+    // this toolbar is added on the mousedown event
+    // so right after mouseup, the click will be triggered
+    if (firstCallMade) {
+      const focusIsInModals =
+        newEl.contains(e.target) || (popoverEl && popoverEl.contains(e.target));
+      const focusIsInEditor = editorDOM.contains(e.target);
+
+      if (!(focusIsInModals || focusIsInEditor)) {
+        handleClose();
+      }
+    } else {
+      firstCallMade = true;
+    }
+  };
+
   const handleClose = () => {
+    callback(undefined, true);
     newEl.remove();
     closePopOver();
-    document.body.style.overflow = initialBodyOverflow;
-    callback(undefined, true);
+    document.body.removeEventListener('click', listener);
   };
 
   const handleChange = val => {
     if (typeof val === 'string') {
-      callback(val);
-    }
-
-    if (configToUse.autoClose) {
-      handleClose();
+      callback(val, true);
     }
   };
 
@@ -158,31 +172,40 @@ const insertDialog = ({ value, callback, opts }) => {
     const cursorItem = document.querySelector(`[data-key="${value.anchorKey}"]`);
 
     if (cursorItem) {
+      const bodyRect = document.body.getBoundingClientRect();
       const boundRect = cursorItem.getBoundingClientRect();
 
       document.body.appendChild(newEl);
-      newEl.style.position = 'fixed';
-      newEl.style.top = `${boundRect.top - newEl.offsetHeight - 10}px`;
-      newEl.style.left = `${boundRect.left + cursorItem.offsetWidth + 10}px`;
+      newEl.style.position = 'absolute';
+      newEl.style.top = `${boundRect.top + Math.abs(bodyRect.top) - newEl.offsetHeight - 10}px`;
       newEl.style.zIndex = 99999;
 
-      let firstCallMade = false;
+      const leftValue = `${boundRect.left +
+        Math.abs(bodyRect.left) +
+        cursorItem.offsetWidth +
+        10}px`;
 
-      const listener = () => {
-        // this will be triggered right after setting it because
-        // this toolbar is added on the mousedown event
-        // so right after mouseup, the click will be triggered
-        if (firstCallMade) {
-          document.body.removeEventListener('click', listener);
-          handleClose();
-        } else {
-          firstCallMade = true;
-        }
-      };
+      const rightValue = `${boundRect.x}px`;
 
-      if (configToUse.autoClose) {
-        document.body.addEventListener('click', listener);
+      newEl.style.left = leftValue;
+
+      const leftAlignedWidth = newEl.offsetWidth;
+
+      newEl.style.left = 'unset';
+      newEl.style.right = rightValue;
+
+      const rightAlignedWidth = newEl.offsetWidth;
+
+      newEl.style.left = 'unset';
+      newEl.style.right = 'unset';
+
+      if (leftAlignedWidth >= rightAlignedWidth) {
+        newEl.style.left = leftValue;
+      } else {
+        newEl.style.right = rightValue;
       }
+
+      document.body.addEventListener('click', listener);
     }
   });
 };
@@ -201,12 +224,15 @@ const CharacterIcon = ({ letter }) => (
 export default function CharactersPlugin(opts) {
   removeDialogs();
   return {
-    name: 'math',
+    name: 'characters',
     toolbar: {
       icon: <CharacterIcon letter={opts.characterIcon || characterIcons[opts.language] || 'ñ'} />,
-      onClick: (value, onChange) => {
+      onClick: (value, onChange, getFocusedValue) => {
+        const editorDOM = document.querySelector(`[data-key="${value.document.key}"]`);
         let valueToUse = value;
         const callback = (char, focus) => {
+          valueToUse = getFocusedValue();
+
           if (char) {
             const change = valueToUse
               .change()
@@ -220,15 +246,13 @@ export default function CharactersPlugin(opts) {
           log('[characters:click]');
 
           if (focus) {
-            const editorDOM = document.querySelector(`[data-key="${valueToUse.document.key}"]`);
-
             if (editorDOM) {
               editorDOM.focus();
             }
           }
         };
 
-        insertDialog({ value: valueToUse, callback, opts });
+        insertDialog({ editorDOM, value: valueToUse, callback, opts });
       }
     },
 

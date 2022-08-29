@@ -196,7 +196,13 @@ export class Graph extends React.Component {
         onChangeTitle={onChangeTitle}
         {...common}
       >
-        <g transform={`translate(${domain.padding}, ${range.padding})`}>
+        <g
+          transform={
+            domain && domain.padding && domain.range
+              ? `translate(${domain.padding}, ${range.padding})`
+              : undefined
+          }
+        >
           <Grid {...common} />
           <Axes {...axesSettings} {...common} />
           <Bg {...size} onClick={this.onBgClick} {...common} />

@@ -17,6 +17,7 @@ export class EditorAndToolbar extends React.Component {
     value: SlatePropTypes.value.isRequired,
     plugins: PropTypes.array.isRequired,
     onChange: PropTypes.func.isRequired,
+    getFocusedValue: PropTypes.func.isRequired,
     onDone: PropTypes.func.isRequired,
     onDataChange: PropTypes.func,
     toolbarRef: PropTypes.func,
@@ -49,6 +50,7 @@ export class EditorAndToolbar extends React.Component {
       value,
       plugins,
       onChange,
+      getFocusedValue,
       onDone,
       focusedNode,
       autoWidth,
@@ -113,6 +115,7 @@ export class EditorAndToolbar extends React.Component {
           value={value}
           isFocused={inFocus}
           onChange={onChange}
+          getFocusedValue={getFocusedValue}
           onDone={onDone}
           onDataChange={onDataChange}
           toolbarRef={toolbarRef}

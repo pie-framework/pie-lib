@@ -53,6 +53,10 @@ class RawLabel extends React.Component {
     graphProps: types.GraphPropsType.isRequired
   };
 
+  static defaultProps = {
+    onChange: () => {}
+  };
+
   render() {
     const { disabledLabel, placeholder, text, side, graphProps, classes, onChange } = this.props;
     const { size, domain, range } = graphProps;

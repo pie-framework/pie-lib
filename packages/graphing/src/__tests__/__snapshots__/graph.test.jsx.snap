@@ -32,9 +32,7 @@ exports[`Graph snapshot renders 1`] = `
   }
   rootRef={[Function]}
 >
-  <g
-    transform="translate(undefined, undefined)"
-  >
+  <g>
     <WithStyles(Grid)
       graphProps={
         Object {

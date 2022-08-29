@@ -47,6 +47,7 @@ export class Chart extends React.Component {
     title: PropTypes.string,
     onDataChange: PropTypes.func,
     addCategoryEnabled: PropTypes.bool,
+    showPixelGuides: PropTypes.bool,
     categoryDefaultLabel: PropTypes.string,
     defineChart: PropTypes.bool,
     theme: PropTypes.object
@@ -140,7 +141,16 @@ export class Chart extends React.Component {
   };
 
   render() {
-    const { classes, className, domain, range, size, title, addCategoryEnabled } = this.props;
+    const {
+      classes,
+      className,
+      domain,
+      range,
+      size,
+      title,
+      addCategoryEnabled,
+      showPixelGuides
+    } = this.props;
     let { chartType } = this.props;
 
     const defineChart = this.props.defineChart || false;
@@ -194,7 +204,14 @@ export class Chart extends React.Component {
             addCategory={() => this.addCategory(correctValues.range)}
           />
         </div>
-        <Root title={title} classes={classes} rootRef={r => (this.rootNode = r)} {...rootCommon}>
+        <Root
+          title={title}
+          thisIsChart={defineChart}
+          showPixelGuides={showPixelGuides}
+          classes={classes}
+          rootRef={r => (this.rootNode = r)}
+          {...rootCommon}
+        >
           <ChartGrid
             {...common}
             xBand={xBand}
