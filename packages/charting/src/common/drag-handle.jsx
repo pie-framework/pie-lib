@@ -33,6 +33,7 @@ export class RawDragHandle extends React.Component {
       ...rest
     } = this.props;
     const { scale } = graphProps;
+
     return (
       <svg
         x={x}
@@ -107,6 +108,7 @@ export const D = gridDraggable({
     //TODO: should be in grid-draggable, if axis is y delta.x should always be 0.
     delta.x = 0;
     const newPoint = utils.point(props).add(utils.point(delta));
+
     return newPoint.y;
   },
   bounds: (props, { domain, range }) => {

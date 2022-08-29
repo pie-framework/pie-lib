@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { color } from '@pie-lib/render-ui';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import ChartType from './chart-type';
 import { NumberTextFieldCustom } from '@pie-lib/config-ui';
+import { AlertDialog } from '@pie-lib/config-ui';
 
 const ConfigureChartPanel = props => {
   const { classes, model, onChange, chartDimensions, gridValues = {}, labelValues = {} } = props;
-  const { range } = model;
+  const [alertDialog, setAlertDialog] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [rangeKey, setRangeKey] = useState('');
+  const [resetValue, setResetValue] = useState(0);
+
+  const { range, correctAnswer } = model;
+
   const size = model.graph;
   const { showInConfigPanel, width, height } = chartDimensions || {};
 
@@ -49,6 +56,32 @@ const ConfigureChartPanel = props => {
     </div>
   );
 
+  const handleAlertDialog = (open, callback) => {
+    setAlertDialog(
+      {
+        alertDialog: open
+      },
+      callback
+    );
+    setOpen(open);
+  };
+
+  const resetValues = data =>
+    data.forEach(d => {
+      const remainder = d.value - range.step * Math.floor(d.value / range.step);
+
+      if (d.value > range.max || remainder !== 0) {
+        d.value = 0;
+      }
+    });
+
+  const removeOutOfRangeValues = () => {
+    const { correctAnswer, data } = model;
+
+    resetValues(data);
+    resetValues(correctAnswer.data);
+  };
+
   const rangeProps = chartType => {
     return chartType.includes('Plot') ? { min: 3, max: 10 } : { min: 0.05, max: 10000 };
   };
@@ -60,10 +93,49 @@ const ConfigureChartPanel = props => {
   };
 
   const onRangeChanged = (key, value) => {
+    // use reset values to restore range to initial values
+    setResetValue(range[key]);
+    setRangeKey(key);
+
     range[key] = value;
 
-    onChange({ ...model, range });
+    if (key === 'max' || key === 'step') {
+      // check if current chart values are invalid for given range step/max
+      const outOfRange =
+        model.data.find(
+          d => d.value > range.max || d.value - range.step * Math.floor(d.value / range.step) !== 0
+        ) ||
+        model.correctAnswer.data.find(
+          d => d.value > range.max || d.value - range.step * Math.floor(d.value / range.step) !== 0
+        );
+
+      if (outOfRange) {
+        setOpen(true);
+      } else {
+        onChange({ ...model, range });
+      }
+    } else {
+      onChange({ ...model, range });
+    }
   };
+
+  useEffect(() => {
+    if (open) {
+      setAlertDialog({
+        open: true,
+        title: 'Warning',
+        text: 'This change will remove values defined for one or more categories',
+        onConfirm: () => {
+          removeOutOfRangeValues();
+          handleAlertDialog(false, onChange({ ...model, range, correctAnswer }));
+        },
+        onClose: () => {
+          range[rangeKey] = resetValue;
+          handleAlertDialog(false);
+        }
+      });
+    }
+  }, [open]);
 
   const onChartTypeChange = chartType => {
     if (chartType.includes('Plot')) {
@@ -136,6 +208,13 @@ const ConfigureChartPanel = props => {
           </div>
         )}
       </div>
+      <AlertDialog
+        open={alertDialog.open}
+        title={alertDialog.title}
+        text={alertDialog.text}
+        onClose={alertDialog.onClose}
+        onConfirm={alertDialog.onConfirm}
+      />
     </div>
   );
 };

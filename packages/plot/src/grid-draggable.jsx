@@ -60,6 +60,7 @@ export const gridDraggable = opts => Comp => {
       const { x, y } = opts.anchorPoint(this.props);
       const { graphProps } = this.props;
       const { scale, snap } = graphProps;
+
       return {
         anchorPoint: {
           x,
