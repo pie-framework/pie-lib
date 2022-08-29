@@ -60,6 +60,7 @@ export class Root extends React.Component {
       children,
       classes,
       onChangeTitle,
+      thisIsChart,
       showLabels,
       showPixelGuides,
       showTitle,
@@ -72,6 +73,7 @@ export class Root extends React.Component {
       range
     } = graphProps;
 
+    const chartPadding = thisIsChart ? 45 : 0;
     const padding = showLabels ? 70 : 40;
     const extraPadding = showLabels ? 16 : 40;
     const finalWidth = width + padding * 2 + (domain.padding || 0) * 2 + extraPadding;
@@ -136,8 +138,11 @@ export class Root extends React.Component {
             </g>
           </svg>
           {showPixelGuides && (
-            <div className={classes.sidePixelGuides} style={{ paddingTop: sideGridlinesPadding }}>
-              {[...Array(nbOfHorizontalLines + 1).keys()].reverse().map(value => (
+            <div
+              className={classes.sidePixelGuides}
+              style={{ paddingTop: sideGridlinesPadding + chartPadding }}
+            >
+              {[...Array(nbOfHorizontalLines + 1 - thisIsChart).keys()].reverse().map(value => (
                 <Readable false key={`top-guide-${value}`}>
                   <div className={classes.sidePixelIndicator}>━ {value * 100}px</div>
                 </Readable>
@@ -190,7 +195,7 @@ const styles = theme => ({
     width: '70px',
     display: 'flex',
     flexDirection: 'column',
-    marginTop: '40px',
+
     marginRight: '6px'
   },
   sidePixelIndicator: {
