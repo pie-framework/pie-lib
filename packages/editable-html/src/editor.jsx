@@ -33,7 +33,7 @@ const defaultResponseAreaProps = {
   onHandleAreaChange: () => {}
 };
 
-const defaultLanguageCharactersProps = [{ language: 'spanish' }, { language: 'special' }];
+const defaultLanguageCharactersProps = [];
 
 const createToolbarOpts = toolbarOpts => {
   return {
