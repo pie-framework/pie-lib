@@ -1,10 +1,12 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import Popover from '@material-ui/core/Popover';
+import Popper from '@material-ui/core/Popper';
 import Typography from '@material-ui/core/Typography';
 
 const styles = () => ({
   popover: {
+    background: '#fff',
+    padding: '10px',
     pointerEvents: 'none',
     zIndex: 99999
   },
@@ -19,8 +21,8 @@ const styles = () => ({
   }
 });
 
-const CustomPopOver = withStyles(styles)(({ classes, children, ...props }) => (
-  <Popover
+const CustomPopper = withStyles(styles)(({ classes, children, ...props }) => (
+  <Popper
     id="mouse-over-popover"
     open
     className={classes.popover}
@@ -36,10 +38,11 @@ const CustomPopOver = withStyles(styles)(({ classes, children, ...props }) => (
       horizontal: 'left'
     }}
     disableRestoreFocus
+    disableAutoFocus
     {...props}
   >
     <Typography classes={{ root: classes.typography }}>{children}</Typography>
-  </Popover>
+  </Popper>
 ));
 
-export default CustomPopOver;
+export default CustomPopper;

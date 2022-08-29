@@ -4,8 +4,7 @@ export const spanishConfig = {
     ['Á', 'É', 'Í', 'Ó', 'Ú'],
     ['—', '«', '»', 'ñ', 'ü'],
     ['-', '¿', '¡', 'Ñ', 'Ü']
-  ],
-  autoClose: true
+  ]
 };
 
 export const specialConfig = {
