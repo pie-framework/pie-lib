@@ -153,7 +153,8 @@ const mp = theme => ({
         left: '-1px'
       },
       '&:after': {
-        top: '-3.15em',
+        top: '0px !important',
+        position: 'absolute',
         right: '-2px'
       },
       '&.mq-empty:after': {

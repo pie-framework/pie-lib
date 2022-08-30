@@ -302,7 +302,8 @@ const styles = theme => ({
         left: '-1px'
       },
       '&:after': {
-        top: '-3.15em',
+        position: 'absolute',
+        top: '0px !important',
         right: '-2px'
       },
       '&.mq-empty:after': {
