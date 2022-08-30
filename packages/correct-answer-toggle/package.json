@@ -18,7 +18,7 @@
   "dependencies": {
     "@material-ui/core": "^3.8.3",
     "@pie-lib/icons": "^2.4.25",
-    "@pie-lib/render-ui": "^4.13.1",
+    "@pie-lib/render-ui": "^4.13.4",
     "classnames": "^2.2.6",
     "lodash": "^4.17.11",
     "prop-types": "^15.6.2",
