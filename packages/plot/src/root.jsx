@@ -73,7 +73,6 @@ export class Root extends React.Component {
       range
     } = graphProps;
 
-    const chartPadding = thisIsChart ? 45 : 0;
     const padding = showLabels ? 70 : 40;
     const extraPadding = showLabels ? 16 : 40;
     const finalWidth = width + padding * 2 + (domain.padding || 0) * 2 + extraPadding;
@@ -88,14 +87,15 @@ export class Root extends React.Component {
       // 'languageCharacters'
     ];
 
+    const actualHeight = thisIsChart && showPixelGuides ? height - 80 : height;
     const nbOfVerticalLines = parseInt(width / 100);
-    const nbOfHorizontalLines = parseInt(height / 100);
-    const sideGridlinesPadding = parseInt(height % 100);
+    const nbOfHorizontalLines = parseInt(actualHeight / 100);
+    const sideGridlinesPadding = parseInt(actualHeight % 100);
 
     return (
       <div className={classes.root}>
         {showPixelGuides && (
-          <div className={classes.topPixelGuides}>
+          <div className={classes.topPixelGuides} style={{ marginLeft: thisIsChart ? 10 : 20 }}>
             {[...Array(nbOfVerticalLines + 1).keys()].map(value => (
               <Readable false key={`top-guide-${value}`}>
                 <div className={classes.topPixelIndicator}>
@@ -140,9 +140,12 @@ export class Root extends React.Component {
           {showPixelGuides && (
             <div
               className={classes.sidePixelGuides}
-              style={{ paddingTop: sideGridlinesPadding + chartPadding }}
+              style={{
+                paddingTop: sideGridlinesPadding,
+                marginTop: thisIsChart ? 25 : 60
+              }}
             >
-              {[...Array(nbOfHorizontalLines + 1 - thisIsChart).keys()].reverse().map(value => (
+              {[...Array(nbOfHorizontalLines + 1).keys()].reverse().map(value => (
                 <Readable false key={`top-guide-${value}`}>
                   <div className={classes.sidePixelIndicator}>━ {value * 100}px</div>
                 </Readable>
@@ -179,8 +182,7 @@ const styles = theme => ({
   },
   topPixelGuides: {
     display: 'flex',
-    paddingTop: '6px',
-    marginLeft: '10px'
+    paddingTop: '6px'
   },
   topPixelIndicator: {
     color: color.primaryLight(),
@@ -195,7 +197,6 @@ const styles = theme => ({
     width: '70px',
     display: 'flex',
     flexDirection: 'column',
-
     marginRight: '6px'
   },
   sidePixelIndicator: {
