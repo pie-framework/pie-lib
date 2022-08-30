@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.4.1...@pie-lib/plot@2.4.2) (2022-08-30)
+
+
+### Bug Fixes
+
+* **plot, charting, graphing:** adjusted side pixel guides, fixed graphing rendering issue, adjusted charting dimensions PD-1963 ([5043231](https://github.com/pie-framework/pie-lib/commit/5043231ba73a0aa475115fb5fe9af29e0e67a4b6))
+
+
+
+
+
 ## [2.4.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.4.0...@pie-lib/plot@2.4.1) (2022-08-29)
 
 **Note:** Version bump only for package @pie-lib/plot

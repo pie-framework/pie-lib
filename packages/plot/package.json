@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "2.4.1",
+  "version": "2.4.2",
   "description": "Some underlying components for building charts/graphs",
   "keywords": [
     "react",

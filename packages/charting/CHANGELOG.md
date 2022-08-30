@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.1.6...@pie-lib/charting@5.1.7) (2022-08-30)
+
+
+### Bug Fixes
+
+* **plot, charting, graphing:** adjusted side pixel guides, fixed graphing rendering issue, adjusted charting dimensions PD-1963 ([5043231](https://github.com/pie-framework/pie-lib/commit/5043231ba73a0aa475115fb5fe9af29e0e67a4b6))
+
+
+
+
+
 ## [5.1.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.1.5...@pie-lib/charting@5.1.6) (2022-08-29)
 
 
