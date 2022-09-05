@@ -9,10 +9,6 @@ export const TokenTypes = {
   selectable: PropTypes.bool
 };
 
-function is_touch_enabled() {
-  return 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
-}
-
 export class Token extends React.Component {
   static rootClassName = 'tokenRootClass';
 
@@ -48,7 +44,6 @@ export class Token extends React.Component {
       !('ontouchstart' in window) || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
 
     let className;
-    console.log(isTouchEnabled, 'is touch nabled');
 
     if (correct === undefined && selected && disabled) {
       className = classNames(classes.token, classes.selected, classes.disabledBlack);
