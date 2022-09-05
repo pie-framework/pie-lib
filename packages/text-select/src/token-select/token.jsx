@@ -9,6 +9,10 @@ export const TokenTypes = {
   selectable: PropTypes.bool
 };
 
+function is_touch_enabled() {
+  return 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+}
+
 export class Token extends React.Component {
   static rootClassName = 'tokenRootClass';
 
@@ -40,8 +44,11 @@ export class Token extends React.Component {
       correct,
       animationsDisabled
     } = this.props;
+    const isTouchEnabled =
+      !('ontouchstart' in window) || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
 
     let className;
+    console.log(isTouchEnabled, 'is touch nabled');
 
     if (correct === undefined && selected && disabled) {
       className = classNames(classes.token, classes.selected, classes.disabledBlack);
@@ -57,7 +64,7 @@ export class Token extends React.Component {
         Token.rootClassName,
         classes.token,
         disabled && classes.disabled,
-        selectable && !disabled && classes.selectable,
+        selectable && !disabled && isTouchEnabled && classes.selectable,
         selected && !disabled && classes.selected,
         selected && disabled && classes.disabledAndSelected,
         highlight && selectable && !disabled && !selected && classes.highlight,
@@ -97,10 +104,12 @@ export default withStyles(theme => {
       backgroundColor: 'pink' // TODO hardcoded color
     },
     selectable: {
-      '&:hover': {
-        backgroundColor: color.primaryLight(),
-        '& > *': {
-          backgroundColor: color.primaryLight()
+      [theme.breakpoints.up(769)]: {
+        '&:hover': {
+          backgroundColor: color.primaryLight(),
+          '& > *': {
+            backgroundColor: color.primaryLight()
+          }
         }
       }
     },
