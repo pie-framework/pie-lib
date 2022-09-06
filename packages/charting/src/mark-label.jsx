@@ -13,15 +13,12 @@ const styles = theme => ({
     fontFamily: theme.typography.fontFamily,
     fontSize: theme.typography.fontSize,
     border: 'none',
-    webkitTextFillColor: 'currentcolor',
-    opacity: 1,
     color: color.primaryDark(),
     '&.correct': correct('color'),
     '&.incorrect': incorrect('color'),
     '&.disabled': {
       ...disabled('color'),
-      backgroundColor: 'transparent !important',
-      color: color.disabled()
+      backgroundColor: 'transparent !important'
     }
   }
 });
