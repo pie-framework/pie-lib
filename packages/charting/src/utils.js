@@ -44,7 +44,7 @@ export const getTickValues = (prop = {}) => {
 
   while (tickVal <= prop.max) {
     tickValues.push(tickVal);
-    tickVal = Math.round((tickVal + prop.step) * 100) / 100;
+    tickVal = Math.round((tickVal + prop.step) * 10000) / 10000;
   }
 
   return tickValues;
