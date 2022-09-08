@@ -283,7 +283,7 @@ export class MediaDialog extends React.Component {
     const { type } = fileToUpload;
     const typeParsed = type.replace('x-', '');
 
-    const url = `${this.props.pieApi.host}/services/graphql`;
+    const url = `${this.props.pieApi.host}/graphql`;
     const requestHeaders = {
       accept: 'application/json',
       'content-type': 'application/json',
@@ -352,7 +352,7 @@ export class MediaDialog extends React.Component {
       }
     });
 
-    const url = `${this.props.pieApi.host}/services/graphql`;
+    const url = `${this.props.pieApi.host}/graphql`;
 
     const requestHeaders = {
       accept: 'application/json',
