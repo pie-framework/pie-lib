@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.4.39...@pie-lib/rubric@0.5.0) (2022-09-12)
+
+
+### Features
+
+* **rubric:** create new object for rubric types ([3ef5861](https://github.com/pie-framework/pie-lib/commit/3ef5861e5bffc436ae29ffc79663ebd70fb296b3))
+
+
+
+
+
 ## [0.4.39](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.4.38...@pie-lib/rubric@0.4.39) (2022-08-30)
 
 **Note:** Version bump only for package @pie-lib/rubric
