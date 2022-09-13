@@ -40,7 +40,7 @@ export const ToolbarButton = props => {
       <Button
         active={isActive}
         disabled={disabled}
-        onClick={() => props.onClick(props.value, props.onChange)}
+        onClick={() => props.onClick(props.value, props.onChange, props.getFocusedValue)}
         extraStyles={props.buttonStyles}
       >
         {props.icon}
@@ -60,6 +60,7 @@ export const DefaultToolbar = ({
   pluginProps,
   value,
   onChange,
+  getFocusedValue,
   onDone,
   classes,
   showDone,
@@ -71,7 +72,15 @@ export const DefaultToolbar = ({
     <div className={classes.defaultToolbar}>
       <div className={classes.buttonsContainer}>
         {filtered.map((p, index) => {
-          return <ToolbarButton {...p} key={index} value={value} onChange={onChange} />;
+          return (
+            <ToolbarButton
+              {...p}
+              key={index}
+              value={value}
+              onChange={onChange}
+              getFocusedValue={getFocusedValue}
+            />
+          );
         })}
       </div>
       {showDone && !deletable && <DoneButton onClick={onDone} />}
@@ -85,6 +94,7 @@ DefaultToolbar.propTypes = {
   pluginProps: PropTypes.object,
   value: SlatePropTypes.value.isRequired,
   onChange: PropTypes.func.isRequired,
+  getFocusedValue: PropTypes.func.isRequired,
   onDone: PropTypes.func.isRequired,
   showDone: PropTypes.bool,
   addArea: PropTypes.bool,

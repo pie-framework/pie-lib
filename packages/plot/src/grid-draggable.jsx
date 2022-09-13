@@ -7,12 +7,18 @@ import * as utils from './utils';
 import isFunction from 'lodash/isFunction';
 import invariant from 'invariant';
 import { clientPoint } from 'd3-selection';
+
 const log = debug('pie-lib:plot:grid-draggable');
+
 export const deltaFn = (scale, snap, val) => delta => {
   const normalized = delta + scale(0);
   const inverted = scale.invert(normalized);
-  return snap(val + inverted);
+
+  const fixDecimalsArithmetic = (snap(val + inverted).toFixed(4) * 1000) / 1000;
+
+  return fixDecimalsArithmetic;
 };
+
 /**
  * Creates a Component that is draggable, within a bounded grid.
  * @param {*} opts
@@ -54,6 +60,7 @@ export const gridDraggable = opts => Comp => {
       const { x, y } = opts.anchorPoint(this.props);
       const { graphProps } = this.props;
       const { scale, snap } = graphProps;
+
       return {
         anchorPoint: {
           x,

@@ -352,7 +352,10 @@ export class Editor extends React.Component {
     log('[onBlur] node: ', node);
 
     return new Promise(resolve => {
-      this.setState({ focusedNode: !node ? null : node }, this.handleBlur.bind(this, resolve));
+      this.setState(
+        { preBlurValue: this.state.value, focusedNode: !node ? null : node },
+        this.handleBlur.bind(this, resolve)
+      );
       this.props.onBlur(event);
     });
   };
@@ -361,6 +364,8 @@ export class Editor extends React.Component {
     const editorDOM = document.querySelector(`[data-key="${this.state.value.document.key}"]`);
 
     setTimeout(() => {
+      const { value: stateValue } = this.state;
+
       if (!this.wrapperRef) {
         return;
       }
@@ -375,7 +380,10 @@ export class Editor extends React.Component {
 
       if (!isInCurrentComponent) {
         editorDOM.removeEventListener('blur', this.handleDomBlur);
-        this.onBlur(e);
+
+        if (stateValue.isFocused) {
+          this.onBlur(e);
+        }
       }
     }, 50);
   };
@@ -487,6 +495,14 @@ export class Editor extends React.Component {
         done();
       }
     });
+  };
+
+  getFocusedValue = () => {
+    if (this.state.value.isFocused) {
+      return this.state.value;
+    }
+
+    return this.state.preBlurValue;
   };
 
   UNSAFE_componentWillReceiveProps(props) {
@@ -711,6 +727,7 @@ export class Editor extends React.Component {
           focus={this.focus}
           onKeyDown={onKeyDown}
           onChange={this.onChange}
+          getFocusedValue={this.getFocusedValue}
           onBlur={this.onBlur}
           onDrop={(event, editor) => this.onDropPaste(event, editor, true)}
           onPaste={(event, editor) => this.onDropPaste(event, editor)}

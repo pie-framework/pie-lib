@@ -44,6 +44,7 @@ exports[`ChartAxes snapshot renders 1`] = `
     }
     rootRef={[Function]}
     showTitle={true}
+    thisIsChart={false}
     titlePlaceholder=""
   >
     <WithStyles(Grid)
@@ -270,6 +271,7 @@ exports[`ChartAxes snapshot renders if size is not defined 1`] = `
     }
     rootRef={[Function]}
     showTitle={true}
+    thisIsChart={false}
     titlePlaceholder=""
   >
     <WithStyles(Grid)
@@ -498,6 +500,7 @@ exports[`ChartAxes snapshot renders without chartType and charts properties 1`] 
     }
     rootRef={[Function]}
     showTitle={true}
+    thisIsChart={false}
     titlePlaceholder=""
   >
     <WithStyles(Grid)
@@ -724,6 +727,7 @@ exports[`ChartAxes snapshot renders without chartType property 1`] = `
     }
     rootRef={[Function]}
     showTitle={true}
+    thisIsChart={false}
     titlePlaceholder=""
   >
     <WithStyles(Grid)

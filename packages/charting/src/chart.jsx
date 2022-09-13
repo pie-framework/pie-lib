@@ -48,6 +48,7 @@ export class Chart extends React.Component {
     title: PropTypes.string,
     onDataChange: PropTypes.func,
     addCategoryEnabled: PropTypes.bool,
+    showPixelGuides: PropTypes.bool,
     categoryDefaultLabel: PropTypes.string,
     defineChart: PropTypes.bool,
     theme: PropTypes.object
@@ -152,7 +153,8 @@ export class Chart extends React.Component {
       onChangeLeftLabel,
       onChangeRightLabel,
       placeholderMessages,
-      addCategoryEnabled
+      addCategoryEnabled,
+      showPixelGuides
     } = this.props;
     let { chartType } = this.props;
 
@@ -200,7 +202,7 @@ export class Chart extends React.Component {
     rootCommon.graphProps.size.height += top + increaseHeight;
 
     return (
-      <div className={classNames(classes.class, className)}>
+      <div className={classNames(classes.chart, className)}>
         <div className={classes.controls}>
           <ToolMenu
             className={classes.toolMenu}
@@ -214,6 +216,8 @@ export class Chart extends React.Component {
           disabledTitle={!defineChart}
           showTitle={true}
           titlePlaceholder={placeholderMessages?.title || ''}
+          thisIsChart={defineChart}
+          showPixelGuides={showPixelGuides}
           classes={classes}
           rootRef={r => (this.rootNode = r)}
           {...rootCommon}
@@ -264,8 +268,12 @@ const styles = theme => ({
   graphBox: {
     transform: 'translate(60px, 35px)'
   },
+  chart: {
+    display: 'flex',
+    flexDirection: 'column',
+    width: 'min-content'
+  },
   controls: {
-    width: 'inherit',
     display: 'flex',
     justifyContent: 'space-between',
     padding: theme.spacing.unit,
@@ -274,12 +282,6 @@ const styles = theme => ({
     borderBottom: `solid 0px ${color.primaryDark()}`,
     borderLeft: `solid 1px ${color.primaryDark()}`,
     borderRight: `solid 1px ${color.primaryDark()}`
-  },
-  root: {
-    overflow: 'hidden'
-  },
-  svg: {
-    overflow: 'visible'
   },
   toolMenu: {
     minHeight: '36px'
