@@ -8,12 +8,14 @@ const log = debug('@pie-lib:editable-html:image:insert-image-handler');
  * @param {Block} placeholderBlock - a block that has been added to the editor as a place holder for the image
  * @param {Function} getValue - a function to return the value of the editor
  * @param {Function} onChange - callback to notify changes applied by the handler
+ * @param {Boolean} isPasted - a boolean that keeps track if the file is pasted
  */
 class InsertImageHandler {
-  constructor(placeholderBlock, getValue, onChange) {
+  constructor(placeholderBlock, getValue, onChange, isPasted = false) {
     this.placeholderBlock = placeholderBlock;
     this.getValue = getValue;
     this.onChange = onChange;
+    this.isPasted = isPasted;
   }
 
   getPlaceholderInDocument(value) {

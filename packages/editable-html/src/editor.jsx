@@ -14,6 +14,7 @@ import { color } from '@pie-lib/render-ui';
 import Plain from 'slate-plain-serializer';
 
 import { getBase64 } from './serialization';
+import InsertImageHandler from './plugins/image/insert-image-handler';
 
 export { ALL_PLUGINS, DEFAULT_PLUGINS, serialization };
 
@@ -628,6 +629,8 @@ export class Editor extends React.Component {
 
         const ch = change.insertInline(inline);
         this.onChange(ch);
+        const handler = new InsertImageHandler(inline, () => this.state.value, this.onChange, true);
+        this.props.imageSupport.add(handler);
       } catch (err) {
         log('[onDropPaste] error: ', err);
       }
