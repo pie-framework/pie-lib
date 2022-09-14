@@ -78,6 +78,8 @@ export class Root extends React.Component {
     const extraPadding = showLabels ? 16 : 40;
     const finalWidth = width + padding * 2 + (domain.padding || 0) * 2 + extraPadding;
     const finalHeight = height + padding * 2 + (range.padding || 0) * 2;
+    console.log(finalHeight, 'height');
+    console.log(finalWidth, 'final width');
 
     const activeTitlePlugins = [
       'bold',
@@ -88,7 +90,8 @@ export class Root extends React.Component {
       // 'languageCharacters'
     ];
 
-    const actualHeight = thisIsChart && showPixelGuides ? height - 80 : height;
+    const actualHeight = thisIsChart && showPixelGuides ? height - 150 : height;
+    console.log(actualHeight, 'heactualHeightight');
     const nbOfVerticalLines = parseInt(width / 100);
     const nbOfHorizontalLines = parseInt(actualHeight / 100);
     const sideGridlinesPadding = parseInt(actualHeight % 100);

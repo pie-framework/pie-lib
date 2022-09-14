@@ -31,14 +31,22 @@ class RawLabel extends React.Component {
   };
 
   render() {
-    const { disabledLabel, text, side, graphProps, classes, onChange, titlePlaceholder } = this.props;
+    const {
+      disabledLabel,
+      text,
+      side,
+      graphProps,
+      classes,
+      onChange,
+      titlePlaceholder
+    } = this.props;
     const { size, domain, range } = graphProps;
     const totalHeight = (size.height || 500) + (range.padding || 0) * 2;
     const totalWidth = (size.width || 500) + (domain.padding || 0) * 2;
     const transform = getTransform(side, totalWidth, totalHeight);
     const width = side === 'left' ? totalHeight : totalWidth;
     const height = 32;
-    const y = side === 'left' ? -height : -height * 2;
+    const y = side === 'left' ? -height : -35;
 
     const activePlugins = [
       'bold',
@@ -100,7 +108,7 @@ const Label = withStyles(theme => ({
 
 export const LabelType = {
   left: PropTypes.string,
-  bottom: PropTypes.string,
+  bottom: PropTypes.string
 };
 
 export class Labels extends React.Component {
@@ -118,18 +126,15 @@ export class Labels extends React.Component {
     const { onChangeLeftLabel, onChangeRightLabel, graphProps } = this.props;
 
     if (side === 'left') {
-      const range = { ...graphProps.range, "label": newValue }
+      const range = { ...graphProps.range, label: newValue };
 
       onChangeLeftLabel(range);
-
     } else {
-      const domain = { ...graphProps.domain, "label": newValue }
+      const domain = { ...graphProps.domain, label: newValue };
 
       onChangeRightLabel(domain);
     }
   };
-
-
 
   render() {
     const { disabledLabels, value = {}, graphProps, titlePlaceholder } = this.props;

@@ -193,13 +193,15 @@ export class Chart extends React.Component {
     const bandWidth = xBand.bandwidth();
     // for chartType "line", bandWidth will be 0, so we have to calculate it
     const barWidth = bandWidth || scale.x(correctValues.domain.max) / categories.length;
-    const increaseHeight = defineChart ? 100 : 0;
+    const increaseHeight = defineChart ? 150 : 40;
 
     // if there are many categories, we have to rotate their names in order to fit
     // and we have to add extra value on top of some items
     const top = getTopPadding(barWidth);
     const rootCommon = cloneDeep(common);
     rootCommon.graphProps.size.height += top + increaseHeight;
+
+    console.log(rootCommon.graphProps.size.height, 'graph props');
 
     return (
       <div className={classNames(classes.chart, className)}>

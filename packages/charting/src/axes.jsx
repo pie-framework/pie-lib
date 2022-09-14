@@ -175,7 +175,7 @@ export class TickComponent extends React.Component {
           <svg
             xmlns="http://www.w3.org/2000/svg"
             x={x - 8}
-            y={y + 35 + top}
+            y={y + 70 + top}
             width={16}
             height={16}
             viewBox="0 0 512 512"
@@ -187,7 +187,7 @@ export class TickComponent extends React.Component {
         {defineChart && index === 0 && (
           <text
             x={x - 80}
-            y={y + 65 + top}
+            y={y + 100 + top}
             width={barWidth}
             height={4}
             style={{
@@ -212,7 +212,7 @@ export class TickComponent extends React.Component {
         {defineChart && index === 0 && (
           <text
             x={x - 80}
-            y={y + 105 + top}
+            y={y + 140 + top}
             width={barWidth}
             height={4}
             style={{
@@ -237,7 +237,7 @@ export class TickComponent extends React.Component {
         {defineChart && (
           <foreignObject
             x={x - 24}
-            y={y + 45 + top}
+            y={y + 80 + top}
             width={barWidth}
             height={4}
             style={{ pointerEvents: 'visible', overflow: 'visible' }}
@@ -252,7 +252,7 @@ export class TickComponent extends React.Component {
         {defineChart && (
           <foreignObject
             x={x - 24}
-            y={y + 95 + top}
+            y={y + 130 + top}
             width={barWidth}
             height={4}
             style={{ pointerEvents: 'visible', overflow: 'visible' }}
