@@ -81,9 +81,9 @@ export class MediaDialog extends React.Component {
     edit: PropTypes.bool,
     disablePortal: PropTypes.bool,
     handleClose: PropTypes.func,
-    pieApi: PropTypes.shape({
-      token: PropTypes.string,
-      host: PropTypes.string
+    uploadSoundSupport: PropTypes.shape({
+      add: PropTypes.func,
+      delete: PropTypes.func
     }),
     type: PropTypes.string,
     src: PropTypes.string,
@@ -112,9 +112,7 @@ export class MediaDialog extends React.Component {
       tabValue: 0,
       fileUpload: {
         uploadIsLoading: false,
-        deleteIsLoading: false,
-        publicURL: '',
-        signedURL: '',
+        localUrl: '',
         error: null
       }
     };
@@ -242,7 +240,7 @@ export class MediaDialog extends React.Component {
     const isInsertURL = tabValue === 0;
 
     if (!val) {
-      if (fileUpload.publicURL) {
+      if (fileUpload.localUrl) {
         this.handleRemoveFile();
       }
 
@@ -263,7 +261,7 @@ export class MediaDialog extends React.Component {
     } else {
       handleClose(val, {
         tag: 'audio',
-        src: fileUpload.publicURL
+        src: fileUpload.localUrl
       });
     }
   };
@@ -280,138 +278,40 @@ export class MediaDialog extends React.Component {
 
     const fileToUpload = e.target.files[0];
 
-    const { type } = fileToUpload;
-    const typeParsed = type.replace('x-', '');
+    const reader = new FileReader();
 
-    const url = `${this.props.pieApi.host}/graphql`;
-    const requestHeaders = {
-      accept: 'application/json',
-      'content-type': 'application/json',
-      Authorization: `Bearer ${this.props.pieApi.token}`
-    };
-
-    const query = JSON.stringify({
-      query: `mutation {
-        registerUploadRequest(contentType: "${typeParsed}") {
-          publicURL
-          signedURL    
-        }
-      }`
+    this.setState({
+      fileUpload: {
+        ...this.state.fileUpload,
+        uploadIsLoading: true
+      }
     });
 
-    try {
-      const r = await fetch(url, {
-        method: 'POST',
-        headers: requestHeaders,
-        body: query
-      });
-      const json = await r.json();
-
-      const {
-        data: {
-          registerUploadRequest: { publicURL, signedURL }
-        }
-      } = json;
-
-      const uploadHeaders = new Headers();
-      uploadHeaders.append('Content-Type', typeParsed);
-      const requestOptions = {
-        method: 'PUT',
-        headers: uploadHeaders,
-        body: fileToUpload,
-        redirect: 'follow'
-      };
-
-      await fetch(signedURL, requestOptions);
+    reader.onload = () => {
+      const dataURL = reader.result;
 
       this.setState({
         fileUpload: {
           ...this.state.fileUpload,
-          uploadIsLoading: false,
-          signedURL,
-          publicURL
+          localUrl: dataURL,
+          uploadIsLoading: false
         }
       });
-    } catch (err) {
-      log(err);
-      this.setState({
-        fileUpload: {
-          uploadIsLoading: false,
-          url: '',
-          error: 'Something bad happened. Make sure the token you\'re using is valid.'
-        }
-      });
-    }
+    };
+    reader.readAsDataURL(fileToUpload);
   };
 
   handleRemoveFile = async () => {
     this.setState({
       fileUpload: {
         ...this.state.fileUpload,
-        deleteIsLoading: true
+        localUrl: ''
       }
     });
-
-    const url = `${this.props.pieApi.host}/graphql`;
-
-    const requestHeaders = {
-      accept: 'application/json',
-      'content-type': 'application/json',
-      Authorization: `Bearer ${this.props.pieApi.token}`
-    };
-
-    const query = JSON.stringify({
-      query: `mutation {
-        registerDeleteRequest(url: "${this.state.fileUpload.signedURL}") {
-          signedURL    
-        }
-      }`
-    });
-
-    try {
-      const r = await fetch(url, {
-        method: 'POST',
-        headers: requestHeaders,
-        body: query
-      });
-      const json = await r.json();
-
-      const {
-        data: {
-          registerDeleteRequest: { signedURL }
-        }
-      } = json;
-
-      const requestOptions = {
-        method: 'DELETE',
-        redirect: 'follow'
-      };
-
-      const deleteFile = await fetch(signedURL, requestOptions);
-
-      this.setState({
-        fileUpload: {
-          ...this.state.fileUpload,
-          deleteIsLoading: false,
-          publicURL: '',
-          signedURLURL: ''
-        }
-      });
-    } catch (err) {
-      log(err);
-      this.setState({
-        fileUpload: {
-          ...this.state.fileUpload,
-          deleteIsLoading: false,
-          url: '',
-          error: 'Something bad happened. Make sure the token you\'re using is valid.'
-        }
-      });
-    }
   };
 
   render() {
-    const { classes, open, disablePortal, type, edit, pieApi } = this.props;
+    const { classes, open, disablePortal, type, edit, uploadSoundSupport } = this.props;
     const {
       ends,
       height,
@@ -429,7 +329,7 @@ export class MediaDialog extends React.Component {
     const isUploadMedia = tabValue === 1;
     const submitIsDisabled = isInsertURL
       ? invalid || url === null || url === undefined
-      : !fileUpload.publicURL;
+      : !fileUpload.localUrl;
 
     return (
       <Dialog
@@ -455,7 +355,7 @@ export class MediaDialog extends React.Component {
                 <MuiTab
                   label={type === 'video' ? 'Insert YouTube or Vimeo URL' : 'Insert SoundCloud URL'}
                 />
-                {pieApi?.token && pieApi?.host && type !== 'video' ? <MuiTab label="Upload file" /> : null}
+                {uploadSoundSupport?.add && uploadSoundSupport?.delete && type !== 'video' ? <MuiTab label="Upload file" /> : null}
               </MuiTabs>
             </div>
             {isInsertURL && (
@@ -552,13 +452,12 @@ export class MediaDialog extends React.Component {
                   <Typography variant="subheading">Loading...</Typography>
                 ) : (
                   <div>
-                    {fileUpload.publicURL ? (
+                    {fileUpload.localUrl ? (
                       <div className={classes.row}>
                         <audio controls="controls">
-                          <source type="audio/mp3" src={fileUpload.publicURL} />
+                          <source type="audio/mp3" src={fileUpload.localUrl} />
                         </audio>
                         <IconButton
-                          disabled={fileUpload.deleteIsLoading}
                           aria-label="delete"
                           className={classes.deleteIcon}
                           onClick={this.handleRemoveFile}

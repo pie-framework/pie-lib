@@ -54,9 +54,9 @@ export class Editor extends React.Component {
     focus: PropTypes.func.isRequired,
     value: SlateTypes.value.isRequired,
     imageSupport: PropTypes.object,
-    pieApi: PropTypes.shape({
-      token: PropTypes.string,
-      host: PropTypes.string
+    uploadSoundSupport: PropTypes.shape({
+      add: PropTypes.func,
+      delete: PropTypes.func
     }),
     charactersLimit: PropTypes.number,
     width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -223,7 +223,7 @@ export class Editor extends React.Component {
         focus: this.focus,
         createChange: () => this.state.value.change(),
         onChange: this.onChange,
-        pieApi: props.pieApi
+        uploadSoundSupport: props.uploadSoundSupport
       }
     });
   };

@@ -34,7 +34,14 @@ export const insertDialog = props => {
   };
 
   const el = (
-    <MediaDialog {...rest} pieApi={opts.pieApi} type={type} disablePortal={true} open={true} handleClose={handleClose} />
+    <MediaDialog
+      {...rest}
+      uploadSoundSupport={opts.uploadSoundSupport}
+      type={type}
+      disablePortal={true}
+      open={true}
+      handleClose={handleClose}
+    />
   );
 
   ReactDOM.render(el, newEl);
