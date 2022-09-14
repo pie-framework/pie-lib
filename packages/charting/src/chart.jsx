@@ -201,8 +201,6 @@ export class Chart extends React.Component {
     const rootCommon = cloneDeep(common);
     rootCommon.graphProps.size.height += top + increaseHeight;
 
-    console.log(rootCommon.graphProps.size.height, 'graph props');
-
     return (
       <div className={classNames(classes.chart, className)}>
         <div className={classes.controls}>
