@@ -192,7 +192,6 @@ export class TickComponent extends React.Component {
             }}
           >
             <text
-              x={x - 80}
               y={y + 40 + top}
               width={barWidth}
               height={4}
@@ -200,7 +199,6 @@ export class TickComponent extends React.Component {
                 position: 'absolute',
                 pointerEvents: 'none',
                 wordBreak: 'break-word',
-                overflow: 'visible',
                 maxWidth: barWidth,
                 display: 'inline-block'
               }}
@@ -215,7 +213,6 @@ export class TickComponent extends React.Component {
               </tspan>
             </text>
             <text
-              x={x - 80}
               y={y + 80 + top}
               width={barWidth}
               height={4}
@@ -223,7 +220,6 @@ export class TickComponent extends React.Component {
                 position: 'absolute',
                 pointerEvents: 'none',
                 wordBreak: 'break-word',
-                overflow: 'visible',
                 maxWidth: barWidth,
                 display: 'inline-block'
               }}
