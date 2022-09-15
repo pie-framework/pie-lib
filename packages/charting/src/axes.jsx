@@ -185,54 +185,59 @@ export class TickComponent extends React.Component {
           </svg>
         )}
         {defineChart && index === 0 && (
-          <text
-            x={x - 80}
-            y={y + 40 + top}
-            width={barWidth}
-            height={4}
+          <svg
+            x={-55}
             style={{
-              position: 'absolute',
-              pointerEvents: 'none',
-              wordBreak: 'break-word',
-              overflow: 'visible',
-              maxWidth: barWidth,
-              display: 'inline-block'
+              overflow: 'visible'
             }}
           >
-            <tspan x="0" dy=".6em">
-              {' '}
-              Student can{' '}
-            </tspan>
-            <tspan x="0" dy="1.2em">
-              {' '}
-              set value
-            </tspan>
-          </text>
-        )}
-        {defineChart && index === 0 && (
-          <text
-            x={x - 80}
-            y={y + 80 + top}
-            width={barWidth}
-            height={4}
-            style={{
-              position: 'absolute',
-              pointerEvents: 'none',
-              wordBreak: 'break-word',
-              overflow: 'visible',
-              maxWidth: barWidth,
-              display: 'inline-block'
-            }}
-          >
-            <tspan x="0" dy=".6em">
-              {' '}
-              Student can{' '}
-            </tspan>
-            <tspan x="0" dy="1.2em">
-              {' '}
-              edit name
-            </tspan>
-          </text>
+            <text
+              x={x - 80}
+              y={y + 40 + top}
+              width={barWidth}
+              height={4}
+              style={{
+                position: 'absolute',
+                pointerEvents: 'none',
+                wordBreak: 'break-word',
+                overflow: 'visible',
+                maxWidth: barWidth,
+                display: 'inline-block'
+              }}
+            >
+              <tspan x="0" dy=".6em">
+                {' '}
+                Student can{' '}
+              </tspan>
+              <tspan x="0" dy="1.2em">
+                {' '}
+                set value
+              </tspan>
+            </text>
+            <text
+              x={x - 80}
+              y={y + 80 + top}
+              width={barWidth}
+              height={4}
+              style={{
+                position: 'absolute',
+                pointerEvents: 'none',
+                wordBreak: 'break-word',
+                overflow: 'visible',
+                maxWidth: barWidth,
+                display: 'inline-block'
+              }}
+            >
+              <tspan x="0" dy=".6em">
+                {' '}
+                Student can{' '}
+              </tspan>
+              <tspan x="0" dy="1.2em">
+                {' '}
+                edit name
+              </tspan>
+            </text>
+          </svg>
         )}
         {defineChart && (
           <foreignObject

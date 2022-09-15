@@ -95,7 +95,7 @@ export class Root extends React.Component {
     return (
       <div className={classes.root}>
         {showPixelGuides && (
-          <div className={classes.topPixelGuides} style={{ marginLeft: thisIsChart ? 10 : 20 }}>
+          <div className={classes.topPixelGuides} style={{ marginLeft: thisIsChart ? 60 : 20 }}>
             {[...Array(nbOfVerticalLines + 1).keys()].map(value => (
               <Readable false key={`top-guide-${value}`}>
                 <div className={classes.topPixelIndicator}>
@@ -123,7 +123,11 @@ export class Root extends React.Component {
           />
         )}
         <div className={classes.wrapper}>
-          <svg width={finalWidth} height={finalHeight} className={classes.svg}>
+          <svg
+            width={finalWidth}
+            height={finalHeight}
+            className={thisIsChart ? classes.chart : classes.svg}
+          >
             <g
               ref={r => {
                 this.g = r;
@@ -167,6 +171,10 @@ const styles = theme => ({
     display: 'flex'
   },
   svg: {},
+  chart: {
+    paddingLeft: '50px',
+    overflow: 'visible'
+  },
   graphBox: {
     cursor: 'pointer',
     userSelect: 'none'
