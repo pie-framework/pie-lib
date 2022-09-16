@@ -85,7 +85,7 @@ export const DragHandle = withStyles(theme => ({
     '&.non-interactive': disabled('fill')
   },
   transparentHandle: {
-    height: '10px',
+    height: '20px',
     fill: 'transparent'
   },
   handleContainer: {
