@@ -161,7 +161,8 @@ const styles = theme => ({
   root: {
     border: `solid 1px ${color.primaryLight()}`,
     color: color.text(),
-    backgroundColor: color.background()
+    backgroundColor: color.background(),
+    touchAction: 'none'
   },
   wrapper: {
     display: 'flex'
