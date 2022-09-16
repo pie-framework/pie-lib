@@ -43,7 +43,7 @@ const LatexButton = withStyles(theme => ({
       fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important',
 
       '&.mq-arrow-both': {
-        top: '5px !important',
+        top: '0px !important',
         '& *': {
           lineHeight: '1 !important'
         },
@@ -126,7 +126,8 @@ const LatexButton = withStyles(theme => ({
         paddingTop: '0 !important'
       },
       '&:after': {
-        top: '-1.94em !important'
+        position: 'absolute !important',
+        top: '0px !important'
       }
     }
   }

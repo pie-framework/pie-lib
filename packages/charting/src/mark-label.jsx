@@ -16,7 +16,10 @@ const styles = theme => ({
     color: color.primaryDark(),
     '&.correct': correct('color'),
     '&.incorrect': incorrect('color'),
-    '&.disabled': { ...disabled('color'), backgroundColor: 'transparent !important' }
+    '&.disabled': {
+      ...disabled('color'),
+      backgroundColor: 'transparent !important'
+    }
   }
 });
 
@@ -72,7 +75,7 @@ export const MarkLabel = props => {
       }}
       value={label}
       style={{
-        position: 'absolute',
+        position: 'fixed',
         pointerEvents: 'auto',
         top: 0,
         left: 0,
