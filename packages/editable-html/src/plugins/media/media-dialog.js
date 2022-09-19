@@ -276,7 +276,7 @@ export class MediaDialog extends React.Component {
       }
     });
 
-    const fileToUpload = e.target.files[0];
+    const fileChosen = e.target.files[0];
 
     const reader = new FileReader();
 
@@ -298,10 +298,21 @@ export class MediaDialog extends React.Component {
         }
       });
     };
-    reader.readAsDataURL(fileToUpload);
+    reader.readAsDataURL(fileChosen);
+
+    this.props.uploadSoundSupport.add({
+      fileChosen,
+      done: e => {
+        console.log('add done: ', e);
+      }
+    });
   };
 
   handleRemoveFile = async () => {
+    this.props.uploadSoundSupport.delete(this.state.fileUpload.localUrl, e => {
+      console.log('delete done', e);
+    });
+
     this.setState({
       fileUpload: {
         ...this.state.fileUpload,
@@ -355,7 +366,9 @@ export class MediaDialog extends React.Component {
                 <MuiTab
                   label={type === 'video' ? 'Insert YouTube or Vimeo URL' : 'Insert SoundCloud URL'}
                 />
-                {uploadSoundSupport?.add && uploadSoundSupport?.delete && type !== 'video' ? <MuiTab label="Upload file" /> : null}
+                {uploadSoundSupport?.add && uploadSoundSupport?.delete && type !== 'video' ? (
+                  <MuiTab label="Upload file" />
+                ) : null}
               </MuiTabs>
             </div>
             {isInsertURL && (
