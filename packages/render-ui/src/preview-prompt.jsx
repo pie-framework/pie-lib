@@ -40,17 +40,17 @@ export class PreviewPrompt extends Component {
     return div.innerHTML;
   };
 
-  componentDidUpdate() {
-    // set image parent style so it can be horizontally aligned
-    const previewPrompt = document.querySelector('#preview-prompt');
-    const images = previewPrompt && previewPrompt.getElementsByTagName('img');
-
-    if (images && images.length) {
-      for (let image of images) {
-        image.parentElement.style.display = 'flex';
-      }
-    }
-  }
+  // componentDidUpdate() {
+  //   // set image parent style so it can be horizontally aligned
+  //   const previewPrompt = document.querySelector('#preview-prompt');
+  //   const images = previewPrompt && previewPrompt.getElementsByTagName('img');
+  //
+  //   if (images && images.length) {
+  //     for (let image of images) {
+  //       image.parentElement.style.display = 'flex';
+  //     }
+  //   }
+  // }
 
   render() {
     const { prompt, classes, tagName, className, onClick, defaultClassName } = this.props;

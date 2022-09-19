@@ -268,12 +268,8 @@ const styles = theme => ({
   graphBox: {
     transform: 'translate(60px, 35px)'
   },
-  chart: {
-    display: 'flex',
-    flexDirection: 'column',
-    width: 'min-content'
-  },
   controls: {
+    width: 'inherit',
     display: 'flex',
     justifyContent: 'space-between',
     padding: theme.spacing.unit,
@@ -282,6 +278,12 @@ const styles = theme => ({
     borderBottom: `solid 0px ${color.primaryDark()}`,
     borderLeft: `solid 1px ${color.primaryDark()}`,
     borderRight: `solid 1px ${color.primaryDark()}`
+  },
+  root: {
+    overflow: 'hidden'
+  },
+  svg: {
+    overflow: 'visible'
   },
   toolMenu: {
     minHeight: '36px'

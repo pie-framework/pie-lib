@@ -5,7 +5,6 @@ import cloneDeep from 'lodash/cloneDeep';
 import { Root, types, createGraphProps } from '@pie-lib/plot';
 import debug from 'debug';
 
-import Labels from './labels';
 import { Axes, AxisPropTypes } from './axis';
 import Grid from './grid';
 import { LabelType } from './labels';
@@ -188,12 +187,16 @@ export class Graph extends React.Component {
       <Root
         rootRef={r => (this.rootNode = r)}
         disabledTitle={disabledTitle}
+        disabledLabels={disabledLabels}
+        labels={labels}
+        labelsPlaceholders={labelsPlaceholders || {}}
         showPixelGuides={showPixelGuides}
         showLabels={showLabels}
         showTitle={showTitle}
         title={title}
         titlePlaceholder={titlePlaceholder}
         onChangeTitle={onChangeTitle}
+        onChangeLabels={onChangeLabels}
         {...common}
       >
         <g
@@ -255,15 +258,6 @@ export class Graph extends React.Component {
             />
           </g>
         </g>
-        {showLabels && (
-          <Labels
-            disabledLabels={disabledLabels}
-            placeholders={labelsPlaceholders}
-            value={labels}
-            onChange={onChangeLabels}
-            {...common}
-          />
-        )}
       </Root>
     );
   }

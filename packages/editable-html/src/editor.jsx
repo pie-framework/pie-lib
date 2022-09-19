@@ -672,7 +672,8 @@ export class Editor extends React.Component {
           maxWidth: '100%',
           whiteSpace: 'nowrap',
           opacity: '0.33',
-          pointerEvents: 'none'
+          pointerEvents: 'none',
+          userSelect: 'none'
         }}
       >
         {editor.props.placeholder}
