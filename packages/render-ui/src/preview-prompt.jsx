@@ -47,22 +47,27 @@ export class PreviewPrompt extends Component {
 
     if (images && images.length) {
       for (let image of images) {
-        const parentNode = image.parentElement;
+        // check if alignment property was set
+        if (image.attributes && image.attributes.alignment && image.attributes.alignment.value) {
+          const parentNode = image.parentElement;
 
-        // check if div was already added to dom
-        if (
-          image.parentElement.tagName === 'DIV' &&
-          image.parentElement.style.display === 'flex' &&
-          image.parentElement.style.width === '100%'
-        ) {
-          return;
+          // check if div was already added to dom
+          if (
+            !(
+              parentNode.tagName === 'DIV' &&
+              parentNode.style.display === 'flex' &&
+              parentNode.style.width === '100%'
+            )
+          ) {
+            const div = document.createElement('div');
+            div.style.display = 'flex';
+            div.style.width = '100%';
+
+            const copyImage = image.cloneNode(true);
+            div.appendChild(copyImage);
+            parentNode.replaceChild(div, image);
+          }
         }
-
-        const div = document.createElement('div');
-        div.style.display = 'flex';
-        div.style.width = '100%';
-        div.appendChild(image);
-        parentNode.appendChild(div);
       }
     }
   }
