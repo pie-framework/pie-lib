@@ -51,7 +51,7 @@ export class PreviewPrompt extends Component {
         if (image.attributes && image.attributes.alignment && image.attributes.alignment.value) {
           const parentNode = image.parentElement;
 
-          // check if div was already added to dom
+          // check if div is not already added to dom and replace current image with wrapped image
           if (
             !(
               parentNode.tagName === 'DIV' &&
