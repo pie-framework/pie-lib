@@ -215,6 +215,9 @@ export class Chart extends React.Component {
           onChangeTitle={onChangeTitle}
           disabledTitle={!defineChart}
           showTitle={true}
+          labels={labels}
+          onChangeRightLabel={onChangeRightLabel}
+          onChangeLeftLabel={onChangeLeftLabel}
           titlePlaceholder={placeholderMessages?.title || ''}
           thisIsChart={defineChart}
           showPixelGuides={showPixelGuides}
@@ -250,14 +253,14 @@ export class Chart extends React.Component {
               onChangeCategory={this.changeCategory}
             />
           </g>
-          <Labels
+          {/* <Labels
             disabledLabels={!defineChart}
             titlePlaceholder={placeholderMessages?.labels || ''}
             value={labels}
             onChangeLeftLabel={onChangeLeftLabel}
             onChangeRightLabel={onChangeRightLabel}
             {...common}
-          />
+          /> */}
         </Root>
       </div>
     );

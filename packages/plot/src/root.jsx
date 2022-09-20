@@ -63,6 +63,20 @@ export class Root extends React.Component {
     });
   };
 
+  onChangeLabelCharting = (newValue, side) => {
+    const { onChangeLeftLabel, onChangeRightLabel, graphProps } = this.props;
+
+    if (side === 'left') {
+      const range = { ...graphProps.range, label: newValue };
+
+      onChangeLeftLabel(range);
+    } else {
+      const domain = { ...graphProps.domain, label: newValue };
+
+      onChangeRightLabel(domain);
+    }
+  };
+
   render() {
     const {
       disabledTitle,
@@ -79,6 +93,7 @@ export class Root extends React.Component {
       showTitle,
       title,
       titlePlaceholder,
+      onChangeLabels,
       rootRef
     } = this.props;
     const {
@@ -86,6 +101,8 @@ export class Root extends React.Component {
       domain,
       range
     } = graphProps;
+
+    console.log(labels, 'labels');
 
     const topPadding = 40;
     const leftPadding = showLabels ? 80 : 60;
@@ -159,10 +176,21 @@ export class Root extends React.Component {
               placeholder={labelsPlaceholders.left}
               graphHeight={finalHeight}
               graphWidth={finalWidth}
-              onChange={value => this.onChangeLabel(value, 'left')}
+              onChange={value => onChangeLabels(value, 'left')}
             />
           )}
-          <svg width={finalWidth} height={finalHeight} className={classes.svg}>
+          {thisIsChart && (
+            <Label
+              side="left"
+              text={labels.left}
+              disabledLabel={disabledLabels}
+              placeholder={'test'}
+              graphHeight={finalHeight}
+              graphWidth={finalWidth}
+              onChange={value => this.onChangeLabelCharting(value, 'left')}
+            />
+          )}
+          <svg width={finalWidth} height={finalHeight} className={classes.chart}>
             <g
               ref={r => {
                 this.g = r;
@@ -214,6 +242,17 @@ export class Root extends React.Component {
             onChange={value => this.onChangeLabel(value, 'bottom')}
           />
         )}
+        {thisIsChart && (
+          <Label
+            side="bottom"
+            text={labels.bottom}
+            disabledLabel={disabledLabels}
+            placeholder={'test'}
+            graphHeight={finalHeight}
+            graphWidth={finalWidth}
+            onChange={value => this.onChangeLabelCharting(value, 'bottom')}
+          />
+        )}
       </div>
     );
   }
@@ -230,6 +269,9 @@ const styles = theme => ({
     position: 'relative'
   },
   svg: {},
+  chart: {
+    overflow: 'visible'
+  },
   graphBox: {
     cursor: 'pointer',
     userSelect: 'none'
