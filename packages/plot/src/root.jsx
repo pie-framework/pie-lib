@@ -136,6 +136,7 @@ export class Root extends React.Component {
               placeholder={!disabledTitle && 'Click here to add a title for this graph'}
               toolbarOpts={{ noBorder: true }}
               activePlugins={activeTitlePlugins}
+              disableScrollbar
             />
           ))}
         {showLabels && (

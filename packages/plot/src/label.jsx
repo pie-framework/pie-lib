@@ -62,6 +62,7 @@ const LabelComponent = props => {
               position: side === 'bottom' ? 'top' : 'bottom',
               noBorder: true
             }}
+            disableScrollbar
             activePlugins={activePlugins}
             onDone={() => setRotatedToHorizontal(false)}
           />

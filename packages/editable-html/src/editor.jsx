@@ -68,6 +68,7 @@ export class Editor extends React.Component {
     disabled: PropTypes.bool,
     spellCheck: PropTypes.bool,
     nonEmpty: PropTypes.bool,
+    disableScrollbar: PropTypes.bool,
     disableUnderline: PropTypes.bool,
     autoWidthToolbar: PropTypes.bool,
     pluginProps: PropTypes.any,
@@ -174,6 +175,7 @@ export class Editor extends React.Component {
          * To minimize converting html -> state -> html
          * We only emit markup once 'done' is clicked.
          */
+        disableScrollbar: !!props.disableScrollbar,
         disableUnderline: props.disableUnderline,
         autoWidth: props.autoWidthToolbar,
         onDone: () => {
