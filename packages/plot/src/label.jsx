@@ -28,7 +28,6 @@ const LabelComponent = props => {
   ];
 
   const chartValue = side === 'left' && isChartLeftLabel && graphHeight - 148;
-  console.log(chartValue, side, isChartLeftLabel);
   const defaultStyle = {
     width: chartValue || (side === 'left' || side === 'right' ? graphHeight - 8 : graphWidth - 8),
     top:
@@ -48,7 +47,6 @@ const LabelComponent = props => {
   const rotateLabel = () =>
     !disabledLabel && (side === 'left' || side === 'right') && setRotatedToHorizontal(true);
 
-  console.log(isChartBottomLabel, side);
   return (
     <Readable false>
       <div

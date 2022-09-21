@@ -16,7 +16,6 @@ import {
 } from './utils';
 import ToolMenu from './tool-menu';
 import chartTypes from './chart-types';
-import Labels from './labels';
 
 const log = debug('pie-lib:charts:chart');
 
@@ -156,8 +155,6 @@ export class Chart extends React.Component {
       showPixelGuides
     } = this.props;
     let { chartType } = this.props;
-
-    console.log(placeholderMessages, 'placeholderMessages');
 
     const defineChart = this.props.defineChart || false;
     const { width, height } = size || {};
