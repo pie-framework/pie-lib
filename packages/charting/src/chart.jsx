@@ -150,13 +150,14 @@ export class Chart extends React.Component {
       size,
       title,
       onChangeTitle,
-      onChangeLeftLabel,
-      onChangeRightLabel,
+      onChangeLabels,
       placeholderMessages,
       addCategoryEnabled,
       showPixelGuides
     } = this.props;
     let { chartType } = this.props;
+
+    console.log(placeholderMessages, 'placeholderMessages');
 
     const defineChart = this.props.defineChart || false;
     const { width, height } = size || {};
@@ -193,7 +194,7 @@ export class Chart extends React.Component {
     const bandWidth = xBand.bandwidth();
     // for chartType "line", bandWidth will be 0, so we have to calculate it
     const barWidth = bandWidth || scale.x(correctValues.domain.max) / categories.length;
-    const increaseHeight = defineChart ? 150 : 40;
+    const increaseHeight = defineChart ? 150 : 0;
 
     // if there are many categories, we have to rotate their names in order to fit
     // and we have to add extra value on top of some items
@@ -215,11 +216,13 @@ export class Chart extends React.Component {
           onChangeTitle={onChangeTitle}
           disabledTitle={!defineChart}
           showTitle={true}
+          showLabels={true}
           labels={labels}
-          onChangeRightLabel={onChangeRightLabel}
-          onChangeLeftLabel={onChangeLeftLabel}
+          onChangeLabels={onChangeLabels}
+          labelsPlaceholders={placeholderMessages}
           titlePlaceholder={placeholderMessages?.title || ''}
-          thisIsChart={defineChart}
+          defineChart={defineChart}
+          isChart={true}
           showPixelGuides={showPixelGuides}
           classes={classes}
           rootRef={r => (this.rootNode = r)}
@@ -253,14 +256,6 @@ export class Chart extends React.Component {
               onChangeCategory={this.changeCategory}
             />
           </g>
-          {/* <Labels
-            disabledLabels={!defineChart}
-            titlePlaceholder={placeholderMessages?.labels || ''}
-            value={labels}
-            onChangeLeftLabel={onChangeLeftLabel}
-            onChangeRightLabel={onChangeRightLabel}
-            {...common}
-          /> */}
         </Root>
       </div>
     );

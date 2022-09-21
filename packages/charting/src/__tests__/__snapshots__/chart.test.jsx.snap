@@ -12,6 +12,7 @@ exports[`ChartAxes snapshot renders 1`] = `
   </div>
   <WithStyles(Root)
     classes={Object {}}
+    defineChart={false}
     disabledTitle={true}
     graphProps={
       Object {
@@ -33,7 +34,7 @@ exports[`ChartAxes snapshot renders 1`] = `
           "y": [Function],
         },
         "size": Object {
-          "height": 140,
+          "height": 100,
           "width": 100,
         },
         "snap": Object {
@@ -42,9 +43,16 @@ exports[`ChartAxes snapshot renders 1`] = `
         },
       }
     }
+    isChart={true}
+    labels={
+      Object {
+        "bottom": "",
+        "left": "",
+      }
+    }
     rootRef={[Function]}
+    showLabels={true}
     showTitle={true}
-    thisIsChart={false}
     titlePlaceholder=""
   >
     <WithStyles(Grid)
@@ -184,45 +192,6 @@ exports[`ChartAxes snapshot renders 1`] = `
         onChangeCategory={[Function]}
       />
     </g>
-    <Labels
-      disabledLabels={true}
-      graphProps={
-        Object {
-          "domain": Object {
-            "labelStep": 1,
-            "max": 1,
-            "min": 0,
-            "step": 1,
-          },
-          "getRootNode": [Function],
-          "range": Object {
-            "labelStep": 1,
-            "max": 10,
-            "min": 0,
-            "step": 1,
-          },
-          "scale": Object {
-            "x": [Function],
-            "y": [Function],
-          },
-          "size": Object {
-            "height": 100,
-            "width": 100,
-          },
-          "snap": Object {
-            "x": [Function],
-            "y": [Function],
-          },
-        }
-      }
-      titlePlaceholder=""
-      value={
-        Object {
-          "bottom": "",
-          "left": "",
-        }
-      }
-    />
   </WithStyles(Root)>
 </div>
 `;
@@ -239,6 +208,7 @@ exports[`ChartAxes snapshot renders if size is not defined 1`] = `
   </div>
   <WithStyles(Root)
     classes={Object {}}
+    defineChart={false}
     disabledTitle={true}
     graphProps={
       Object {
@@ -260,7 +230,7 @@ exports[`ChartAxes snapshot renders if size is not defined 1`] = `
           "y": [Function],
         },
         "size": Object {
-          "height": 520,
+          "height": 480,
           "width": 480,
         },
         "snap": Object {
@@ -269,9 +239,16 @@ exports[`ChartAxes snapshot renders if size is not defined 1`] = `
         },
       }
     }
+    isChart={true}
+    labels={
+      Object {
+        "bottom": "",
+        "left": "",
+      }
+    }
     rootRef={[Function]}
+    showLabels={true}
     showTitle={true}
-    thisIsChart={false}
     titlePlaceholder=""
   >
     <WithStyles(Grid)
@@ -411,45 +388,6 @@ exports[`ChartAxes snapshot renders if size is not defined 1`] = `
         onChangeCategory={[Function]}
       />
     </g>
-    <Labels
-      disabledLabels={true}
-      graphProps={
-        Object {
-          "domain": Object {
-            "labelStep": 1,
-            "max": 1,
-            "min": 0,
-            "step": 1,
-          },
-          "getRootNode": [Function],
-          "range": Object {
-            "labelStep": 1,
-            "max": 10,
-            "min": 0,
-            "step": 1,
-          },
-          "scale": Object {
-            "x": [Function],
-            "y": [Function],
-          },
-          "size": Object {
-            "height": 480,
-            "width": 480,
-          },
-          "snap": Object {
-            "x": [Function],
-            "y": [Function],
-          },
-        }
-      }
-      titlePlaceholder=""
-      value={
-        Object {
-          "bottom": "",
-          "left": "",
-        }
-      }
-    />
   </WithStyles(Root)>
 </div>
 `;
@@ -468,6 +406,7 @@ exports[`ChartAxes snapshot renders without chartType and charts properties 1`] 
   </div>
   <WithStyles(Root)
     classes={Object {}}
+    defineChart={false}
     disabledTitle={true}
     graphProps={
       Object {
@@ -489,7 +428,7 @@ exports[`ChartAxes snapshot renders without chartType and charts properties 1`] 
           "y": [Function],
         },
         "size": Object {
-          "height": 140,
+          "height": 100,
           "width": 100,
         },
         "snap": Object {
@@ -498,9 +437,16 @@ exports[`ChartAxes snapshot renders without chartType and charts properties 1`] 
         },
       }
     }
+    isChart={true}
+    labels={
+      Object {
+        "bottom": "",
+        "left": "",
+      }
+    }
     rootRef={[Function]}
+    showLabels={true}
     showTitle={true}
-    thisIsChart={false}
     titlePlaceholder=""
   >
     <WithStyles(Grid)
@@ -640,45 +586,6 @@ exports[`ChartAxes snapshot renders without chartType and charts properties 1`] 
         onChangeCategory={[Function]}
       />
     </g>
-    <Labels
-      disabledLabels={true}
-      graphProps={
-        Object {
-          "domain": Object {
-            "labelStep": 1,
-            "max": 1,
-            "min": 0,
-            "step": 1,
-          },
-          "getRootNode": [Function],
-          "range": Object {
-            "labelStep": 1,
-            "max": 10,
-            "min": 0,
-            "step": 1,
-          },
-          "scale": Object {
-            "x": [Function],
-            "y": [Function],
-          },
-          "size": Object {
-            "height": 100,
-            "width": 100,
-          },
-          "snap": Object {
-            "x": [Function],
-            "y": [Function],
-          },
-        }
-      }
-      titlePlaceholder=""
-      value={
-        Object {
-          "bottom": "",
-          "left": "",
-        }
-      }
-    />
   </WithStyles(Root)>
 </div>
 `;
@@ -695,6 +602,7 @@ exports[`ChartAxes snapshot renders without chartType property 1`] = `
   </div>
   <WithStyles(Root)
     classes={Object {}}
+    defineChart={false}
     disabledTitle={true}
     graphProps={
       Object {
@@ -716,7 +624,7 @@ exports[`ChartAxes snapshot renders without chartType property 1`] = `
           "y": [Function],
         },
         "size": Object {
-          "height": 140,
+          "height": 100,
           "width": 100,
         },
         "snap": Object {
@@ -725,9 +633,16 @@ exports[`ChartAxes snapshot renders without chartType property 1`] = `
         },
       }
     }
+    isChart={true}
+    labels={
+      Object {
+        "bottom": "",
+        "left": "",
+      }
+    }
     rootRef={[Function]}
+    showLabels={true}
     showTitle={true}
-    thisIsChart={false}
     titlePlaceholder=""
   >
     <WithStyles(Grid)
@@ -867,45 +782,6 @@ exports[`ChartAxes snapshot renders without chartType property 1`] = `
         onChangeCategory={[Function]}
       />
     </g>
-    <Labels
-      disabledLabels={true}
-      graphProps={
-        Object {
-          "domain": Object {
-            "labelStep": 1,
-            "max": 1,
-            "min": 0,
-            "step": 1,
-          },
-          "getRootNode": [Function],
-          "range": Object {
-            "labelStep": 1,
-            "max": 10,
-            "min": 0,
-            "step": 1,
-          },
-          "scale": Object {
-            "x": [Function],
-            "y": [Function],
-          },
-          "size": Object {
-            "height": 100,
-            "width": 100,
-          },
-          "snap": Object {
-            "x": [Function],
-            "y": [Function],
-          },
-        }
-      }
-      titlePlaceholder=""
-      value={
-        Object {
-          "bottom": "",
-          "left": "",
-        }
-      }
-    />
   </WithStyles(Root)>
 </div>
 `;

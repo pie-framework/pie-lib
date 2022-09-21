@@ -175,7 +175,7 @@ export class TickComponent extends React.Component {
           <svg
             xmlns="http://www.w3.org/2000/svg"
             x={x - 8}
-            y={y + 70 + top}
+            y={y + 60 + top}
             width={16}
             height={16}
             viewBox="0 0 512 512"
