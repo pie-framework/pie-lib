@@ -31,17 +31,20 @@ class MediaToolbar extends React.Component {
   static propTypes = {
     classes: PropTypes.object,
     onEdit: PropTypes.func,
+    hideEdit: PropTypes.bool,
     onRemove: PropTypes.func
   };
 
   render() {
-    const { classes, onEdit, onRemove } = this.props;
+    const { classes, hideEdit, onEdit, onRemove } = this.props;
 
     return (
       <span className={classes.root}>
-        <span className={classes.editContainer} onClick={onEdit}>
-          Edit Settings
-        </span>
+        {hideEdit ? null : (
+          <span className={classes.editContainer} onClick={onEdit}>
+            Edit Settings
+          </span>
+        )}
         <span className={classes.removeContainer} onClick={onRemove}>
           Remove
         </span>
