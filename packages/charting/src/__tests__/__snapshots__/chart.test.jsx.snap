@@ -13,6 +13,7 @@ exports[`ChartAxes snapshot renders 1`] = `
   <WithStyles(Root)
     classes={Object {}}
     defineChart={false}
+    disabledLabels={true}
     disabledTitle={true}
     graphProps={
       Object {
@@ -53,7 +54,6 @@ exports[`ChartAxes snapshot renders 1`] = `
     rootRef={[Function]}
     showLabels={true}
     showTitle={true}
-    titlePlaceholder=""
   >
     <WithStyles(Grid)
       columnTickValues={Array []}
@@ -209,6 +209,7 @@ exports[`ChartAxes snapshot renders if size is not defined 1`] = `
   <WithStyles(Root)
     classes={Object {}}
     defineChart={false}
+    disabledLabels={true}
     disabledTitle={true}
     graphProps={
       Object {
@@ -249,7 +250,6 @@ exports[`ChartAxes snapshot renders if size is not defined 1`] = `
     rootRef={[Function]}
     showLabels={true}
     showTitle={true}
-    titlePlaceholder=""
   >
     <WithStyles(Grid)
       columnTickValues={Array []}
@@ -407,6 +407,7 @@ exports[`ChartAxes snapshot renders without chartType and charts properties 1`] 
   <WithStyles(Root)
     classes={Object {}}
     defineChart={false}
+    disabledLabels={true}
     disabledTitle={true}
     graphProps={
       Object {
@@ -447,7 +448,6 @@ exports[`ChartAxes snapshot renders without chartType and charts properties 1`] 
     rootRef={[Function]}
     showLabels={true}
     showTitle={true}
-    titlePlaceholder=""
   >
     <WithStyles(Grid)
       columnTickValues={Array []}
@@ -603,6 +603,7 @@ exports[`ChartAxes snapshot renders without chartType property 1`] = `
   <WithStyles(Root)
     classes={Object {}}
     defineChart={false}
+    disabledLabels={true}
     disabledTitle={true}
     graphProps={
       Object {
@@ -643,7 +644,6 @@ exports[`ChartAxes snapshot renders without chartType property 1`] = `
     rootRef={[Function]}
     showLabels={true}
     showTitle={true}
-    titlePlaceholder=""
   >
     <WithStyles(Grid)
       columnTickValues={Array []}

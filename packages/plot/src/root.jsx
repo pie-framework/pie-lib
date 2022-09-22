@@ -79,6 +79,7 @@ export class Root extends React.Component {
       disabledLabels,
       labels,
       labelsPlaceholders,
+      titlePlaceholder,
       graphProps,
       children,
       classes,
@@ -144,7 +145,10 @@ export class Root extends React.Component {
               className={cn({ [classes.rightMargin]: showPixelGuides }, classes.graphTitle)}
               markup={title || ''}
               onChange={onChangeTitle}
-              placeholder={!disabledTitle && 'Click here to add a title for this graph'}
+              placeholder={
+                (defineChart && titlePlaceholder) ||
+                (!disabledTitle && 'Click here to add a title for this graph')
+              }
               toolbarOpts={{ noBorder: true }}
               activePlugins={activeTitlePlugins}
             />
@@ -154,7 +158,7 @@ export class Root extends React.Component {
             side="top"
             text={labels.top}
             disabledLabel={disabledLabels}
-            placeholder={labelsPlaceholders.top}
+            placeholder={labelsPlaceholders?.top}
             graphHeight={finalHeight}
             graphWidth={finalWidth}
             onChange={value => this.onChangeLabel(value, 'top')}
@@ -166,7 +170,7 @@ export class Root extends React.Component {
               side="left"
               text={labels.left}
               disabledLabel={disabledLabels}
-              placeholder={isChart ? labelsPlaceholders?.labels : labelsPlaceholders.left}
+              placeholder={labelsPlaceholders?.left}
               graphHeight={finalHeight}
               graphWidth={finalWidth}
               isChartLeftLabel={isChart && defineChart}
@@ -192,7 +196,7 @@ export class Root extends React.Component {
               side="right"
               text={labels.right}
               disabledLabel={disabledLabels}
-              placeholder={labelsPlaceholders.right}
+              placeholder={labelsPlaceholders?.right}
               graphHeight={finalHeight}
               graphWidth={finalWidth}
               onChange={value => this.onChangeLabel(value, 'right')}
@@ -219,7 +223,7 @@ export class Root extends React.Component {
             side="bottom"
             text={labels.bottom}
             disabledLabel={disabledLabels}
-            placeholder={isChart ? labelsPlaceholders?.labels : labelsPlaceholders.left}
+            placeholder={labelsPlaceholders?.bottom}
             graphHeight={finalHeight}
             graphWidth={finalWidth}
             isChartBottomLabel={isChart && defineChart}
