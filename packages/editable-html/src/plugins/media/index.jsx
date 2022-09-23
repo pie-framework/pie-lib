@@ -19,7 +19,7 @@ const removeDialogs = () => {
 
 export const insertDialog = props => {
   const newEl = document.createElement('div');
-  const { type, callback, ...rest } = props;
+  const { type, callback, opts, ...rest } = props;
   const initialBodyOverflow = document.body.style.overflow;
 
   removeDialogs();
@@ -34,7 +34,14 @@ export const insertDialog = props => {
   };
 
   const el = (
-    <MediaDialog {...rest} type={type} disablePortal={true} open={true} handleClose={handleClose} />
+    <MediaDialog
+      {...rest}
+      uploadSoundSupport={opts.uploadSoundSupport}
+      type={type}
+      disablePortal={true}
+      open={true}
+      handleClose={handleClose}
+    />
   );
 
   ReactDOM.render(el, newEl);
@@ -68,6 +75,7 @@ export default function MediaPlugin(type, opts) {
       onChange(change);
       insertDialog({
         type,
+        opts,
         callback: (val, data) => {
           const nodeIsThere = change.value.document.findDescendant(d => d.key === inline.key);
 
@@ -102,7 +110,7 @@ export default function MediaPlugin(type, opts) {
         const { node, key } = props;
         const { data } = node;
         const jsonData = data.toJSON();
-        const { src, height, width, editing, ...rest } = jsonData;
+        const { src, height, width, editing, tag, ...rest } = jsonData;
         const handleEdit = () => {
           const change = opts.createChange();
           const c = change.setNodeByKey(key, {
@@ -117,6 +125,7 @@ export default function MediaPlugin(type, opts) {
               ...jsonData,
               edit: true,
               type,
+              opts,
               callback: (val, data) => {
                 const { key } = node;
 
@@ -148,6 +157,17 @@ export default function MediaPlugin(type, opts) {
 
         if (height) {
           style.height = `${height}px`;
+        }
+
+        if (tag === 'audio') {
+          return (
+            <MediaWrapper editor data-type={type} width={style.width} {...rest}>
+              <audio controls="controls">
+                <source type="audio/mp3" src={src} />
+              </audio>
+              <MediaToolbar onEdit={handleEdit} onRemove={handleDelete} />
+            </MediaWrapper>
+          );
         }
 
         return (
@@ -202,10 +222,20 @@ export default function MediaPlugin(type, opts) {
 
 export const serialization = {
   deserialize(el /*, next*/) {
-    const type = el.dataset && el.dataset.type;
+    let type = el.dataset && el.dataset.type;
+    let tag = 'iframe';
+    let src;
     const typeIndex = types.indexOf(type);
 
-    if (typeIndex < 0) return;
+    if (typeIndex < 0) {
+      if (el instanceof Element && el.tagName.toLowerCase() === 'audio') {
+        type = 'audio';
+        tag = 'audio';
+        src = el.firstChild.getAttribute('src');
+      } else {
+        return;
+      }
+    }
 
     const { ends, starts, title, editing, url } = el.dataset || {};
 
@@ -218,7 +248,8 @@ export const serialization = {
       type: type,
       isVoid: true,
       data: {
-        src: el.getAttribute('src'),
+        tag,
+        src: src || el.getAttribute('src'),
         editing,
         ends,
         height,
@@ -240,6 +271,7 @@ export const serialization = {
 
     const { data } = object;
     const editing = data.get('editing');
+    const tag = data.get('tag');
     const ends = data.get('ends');
     const src = data.get('src');
     const starts = data.get('starts');
@@ -268,6 +300,14 @@ export const serialization = {
       ...style,
       src
     };
+
+    if (tag === 'audio') {
+      return (
+        <audio controls="controls">
+          <source type="audio/mp3" src={src} />
+        </audio>
+      );
+    }
 
     return (
       <iframe
