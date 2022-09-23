@@ -192,7 +192,7 @@ export class TickComponent extends React.Component {
             }}
           >
             <text
-              y={y + 40 + top}
+              y={y + 90 + top}
               width={barWidth}
               height={4}
               style={{
@@ -213,7 +213,7 @@ export class TickComponent extends React.Component {
               </tspan>
             </text>
             <text
-              y={y + 80 + top}
+              y={y + 145 + top}
               width={barWidth}
               height={4}
               style={{

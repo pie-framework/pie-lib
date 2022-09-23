@@ -122,8 +122,7 @@ export class Root extends React.Component {
         {showPixelGuides && (
           <div
             className={classes.topPixelGuides}
-            style={{ marginLeft: thisIsChart ? 10 : showLabels ? 30 : 10 }}
-            //style={{ marginLeft: thisIsChart ? 60 : 20 }}
+            style={{ marginLeft: isChart ? 60 : showLabels ? 30 : 10 }}
           >
             {[...Array(nbOfVerticalLines + 1).keys()].map(value => (
               <Readable false key={`top-guide-${value}`}>
@@ -178,7 +177,11 @@ export class Root extends React.Component {
               onChange={value => this.onChangeLabel(value, 'left')}
             />
           )}
-          <svg width={finalWidth} height={finalHeight} className={classes.chart}>
+          <svg
+            width={finalWidth}
+            height={finalHeight}
+            className={defineChart ? classes.defineChart : classes.chart}
+          >
             <g
               ref={r => {
                 this.g = r;
@@ -248,8 +251,11 @@ const styles = theme => ({
     position: 'relative'
   },
   svg: {},
-  chart: {
+  defineChart: {
     paddingLeft: '50px',
+    overflow: 'visible'
+  },
+  chart: {
     overflow: 'visible'
   },
   graphBox: {

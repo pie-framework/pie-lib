@@ -35,7 +35,10 @@ const LabelComponent = props => {
       (side === 'left' && `${graphHeight - 8}px`) ||
       (side === 'bottom' && `${graphHeight - 90}px`) ||
       0,
-    left: (side === 'right' && `${graphWidth - 8}px`) || 0
+    left:
+      (side === 'right' && `${graphWidth - 8}px`) ||
+      ((isChartLeftLabel || isChartBottomLabel) && '50px') ||
+      0
   };
 
   const rotatedStyle = {
