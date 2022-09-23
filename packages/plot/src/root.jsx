@@ -55,7 +55,17 @@ export class Root extends React.Component {
   }
 
   onChangeLabel = (newValue, side) => {
-    const { labels, onChangeLabels } = this.props;
+    const { labels, onChangeLabels, isChart } = this.props;
+
+    if (isChart) {
+      if (side === 'left') {
+        onChangeLabels('range', newValue);
+      } else {
+        onChangeLabels('domain', newValue);
+      }
+
+      return;
+    }
 
     onChangeLabels({
       ...labels,
@@ -69,11 +79,13 @@ export class Root extends React.Component {
       disabledLabels,
       labels,
       labelsPlaceholders,
+      titlePlaceholder,
       graphProps,
       children,
       classes,
+      defineChart,
       onChangeTitle,
-      thisIsChart,
+      isChart,
       showLabels,
       showPixelGuides,
       showTitle,
@@ -100,7 +112,7 @@ export class Root extends React.Component {
       // 'languageCharacters'
     ];
 
-    const actualHeight = thisIsChart && showPixelGuides ? height - 80 : height;
+    const actualHeight = defineChart && showPixelGuides ? height - 150 : height;
     const nbOfVerticalLines = parseInt(width / 100);
     const nbOfHorizontalLines = parseInt(actualHeight / 100);
     const sideGridlinesPadding = parseInt(actualHeight % 100);
@@ -134,17 +146,20 @@ export class Root extends React.Component {
               className={cn({ [classes.rightMargin]: showPixelGuides }, classes.graphTitle)}
               markup={title || ''}
               onChange={onChangeTitle}
-              placeholder={!disabledTitle && 'Click here to add a title for this graph'}
+              placeholder={
+                (defineChart && titlePlaceholder) ||
+                (!disabledTitle && 'Click here to add a title for this graph')
+              }
               toolbarOpts={{ noBorder: true }}
               activePlugins={activeTitlePlugins}
             />
           ))}
-        {showLabels && (
+        {showLabels && !isChart && (
           <Label
             side="top"
             text={labels.top}
             disabledLabel={disabledLabels}
-            placeholder={labelsPlaceholders.top}
+            placeholder={labelsPlaceholders?.top}
             graphHeight={finalHeight}
             graphWidth={finalWidth}
             onChange={value => this.onChangeLabel(value, 'top')}
@@ -156,13 +171,14 @@ export class Root extends React.Component {
               side="left"
               text={labels.left}
               disabledLabel={disabledLabels}
-              placeholder={labelsPlaceholders.left}
+              placeholder={labelsPlaceholders?.left}
               graphHeight={finalHeight}
               graphWidth={finalWidth}
+              isChartLeftLabel={isChart && defineChart}
               onChange={value => this.onChangeLabel(value, 'left')}
             />
           )}
-          <svg width={finalWidth} height={finalHeight} className={classes.svg}>
+          <svg width={finalWidth} height={finalHeight} className={classes.chart}>
             <g
               ref={r => {
                 this.g = r;
@@ -176,12 +192,12 @@ export class Root extends React.Component {
               {children}
             </g>
           </svg>
-          {showLabels && (
+          {showLabels && !isChart && (
             <Label
               side="right"
               text={labels.right}
               disabledLabel={disabledLabels}
-              placeholder={labelsPlaceholders.right}
+              placeholder={labelsPlaceholders?.right}
               graphHeight={finalHeight}
               graphWidth={finalWidth}
               onChange={value => this.onChangeLabel(value, 'right')}
@@ -192,7 +208,7 @@ export class Root extends React.Component {
               className={classes.sidePixelGuides}
               style={{
                 paddingTop: sideGridlinesPadding,
-                marginTop: thisIsChart ? 25 : 31
+                marginTop: defineChart ? 25 : 31
               }}
             >
               {[...Array(nbOfHorizontalLines + 1).keys()].reverse().map(value => (
@@ -208,9 +224,10 @@ export class Root extends React.Component {
             side="bottom"
             text={labels.bottom}
             disabledLabel={disabledLabels}
-            placeholder={labelsPlaceholders.bottom}
+            placeholder={labelsPlaceholders?.bottom}
             graphHeight={finalHeight}
             graphWidth={finalWidth}
+            isChartBottomLabel={isChart && defineChart}
             onChange={value => this.onChangeLabel(value, 'bottom')}
           />
         )}
@@ -218,11 +235,13 @@ export class Root extends React.Component {
     );
   }
 }
+
 const styles = theme => ({
   root: {
     border: `solid 1px ${color.primaryLight()}`,
     color: color.text(),
-    backgroundColor: color.background()
+    backgroundColor: color.background(),
+    position: 'relative'
   },
   wrapper: {
     display: 'flex',

@@ -10,6 +10,8 @@ const LabelComponent = props => {
     disabledLabel,
     graphHeight,
     graphWidth,
+    isChartBottomLabel,
+    isChartLeftLabel,
     placeholder,
     text,
     side,
@@ -25,9 +27,14 @@ const LabelComponent = props => {
     // 'languageCharacters'
   ];
 
+  const chartValue = side === 'left' && isChartLeftLabel && graphHeight - 148;
   const defaultStyle = {
-    width: side === 'left' || side === 'right' ? graphHeight - 8 : graphWidth - 8,
-    top: (side === 'left' && `${graphHeight - 8}px`) || 0,
+    width: chartValue || (side === 'left' || side === 'right' ? graphHeight - 8 : graphWidth - 8),
+    top:
+      chartValue ||
+      (side === 'left' && `${graphHeight - 8}px`) ||
+      (side === 'bottom' && `${graphHeight - 90}px`) ||
+      0,
     left: (side === 'right' && `${graphWidth - 8}px`) || 0
   };
 
@@ -46,7 +53,8 @@ const LabelComponent = props => {
         className={cn(classes.axisLabel, {
           [classes.rotateLeftLabel]: side === 'left' && !rotatedToHorizontal,
           [classes.rotateRightLabel]: side === 'right' && !rotatedToHorizontal,
-          [classes.editLabel]: rotatedToHorizontal
+          [classes.editLabel]: rotatedToHorizontal,
+          [classes.customBottom]: isChartBottomLabel
         })}
         style={rotatedToHorizontal ? rotatedStyle : defaultStyle}
         onClick={rotateLabel}
@@ -102,6 +110,9 @@ export default withStyles(theme => ({
     rotate: '90deg',
     transformOrigin: '0 0',
     transformStyle: 'preserve-3d',
+    position: 'absolute'
+  },
+  customBottom: {
     position: 'absolute'
   }
 }))(LabelComponent);

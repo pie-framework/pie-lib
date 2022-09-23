@@ -148,6 +148,10 @@ export class Chart extends React.Component {
       range,
       size,
       title,
+      onChangeTitle,
+      onChangeLabels,
+      labelsPlaceholders,
+      titlePlaceholder,
       addCategoryEnabled,
       showPixelGuides
     } = this.props;
@@ -155,6 +159,7 @@ export class Chart extends React.Component {
 
     const defineChart = this.props.defineChart || false;
     const { width, height } = size || {};
+    const labels = { left: range?.label || '', bottom: domain.label || '' };
 
     const { ChartComponent } = this.getChart();
     const categories = this.getFilteredCategories();
@@ -187,7 +192,7 @@ export class Chart extends React.Component {
     const bandWidth = xBand.bandwidth();
     // for chartType "line", bandWidth will be 0, so we have to calculate it
     const barWidth = bandWidth || scale.x(correctValues.domain.max) / categories.length;
-    const increaseHeight = defineChart ? 80 : 0;
+    const increaseHeight = defineChart ? 150 : 0;
 
     // if there are many categories, we have to rotate their names in order to fit
     // and we have to add extra value on top of some items
@@ -206,7 +211,17 @@ export class Chart extends React.Component {
         </div>
         <Root
           title={title}
-          thisIsChart={defineChart}
+          onChangeTitle={onChangeTitle}
+          disabledTitle={!defineChart}
+          showTitle={true}
+          showLabels={true}
+          labels={labels}
+          onChangeLabels={onChangeLabels}
+          labelsPlaceholders={labelsPlaceholders}
+          titlePlaceholder={titlePlaceholder}
+          defineChart={defineChart}
+          disabledLabels={!defineChart}
+          isChart={true}
           showPixelGuides={showPixelGuides}
           classes={classes}
           rootRef={r => (this.rootNode = r)}
