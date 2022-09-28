@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.1.8...@pie-lib/charting@5.2.0) (2022-09-28)
+
+
+### Bug Fixes
+
+* **charting:** arrange the position of the checkboxes labels, fix style amd arrangement ([c5f2f7a](https://github.com/pie-framework/pie-lib/commit/c5f2f7acf60898e77ecc0b47b190256537605c8e))
+* **charting:** change position for checbox labels in order to fit without overlapping the checboxes ([98a56cb](https://github.com/pie-framework/pie-lib/commit/98a56cbae47c4bcadd0d4087d6b7df3c4d5d3e2e))
+* **charting:** fix conflicts ([2b3da1b](https://github.com/pie-framework/pie-lib/commit/2b3da1b4b87a518b5c18daf6f6c57db1ccc1c536))
+* **charting:** increase height for category draggable zone ([922e107](https://github.com/pie-framework/pie-lib/commit/922e107101981358647937c12133fef6b78a6ea9))
+
+
+### Features
+
+* **charting:** refactor ability to edit chart title and labels, fix style ([6edcdfb](https://github.com/pie-framework/pie-lib/commit/6edcdfbfbd83806a8487c29c42ae447b11850ac7))
+* **charting:** try to set up labels for charting, work in progress ([c6cd049](https://github.com/pie-framework/pie-lib/commit/c6cd049723dadab329748511da2f6c4f1fa943db))
+* **graphing, plot:** moved graphing labels to plot package + fixed math input + added support for labels rotation PD-1962 ([a85ec39](https://github.com/pie-framework/pie-lib/commit/a85ec3911dd1f6bc89e4eb20a19ef8f957deebf1))
+
+
+
+
+
 ## [5.1.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.1.7...@pie-lib/charting@5.1.8) (2022-09-12)
 
 **Note:** Version bump only for package @pie-lib/charting

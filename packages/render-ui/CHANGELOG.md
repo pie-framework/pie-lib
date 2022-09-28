@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.13.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.13.5...@pie-lib/render-ui@4.13.6) (2022-09-28)
+
+
+### Bug Fixes
+
+* update comment ([5374bb3](https://github.com/pie-framework/pie-lib/commit/5374bb30db1c9e399885a99c76a419cd558acc65))
+* **render-ui:** add parent div to image tag PD-1802 ([153db34](https://github.com/pie-framework/pie-lib/commit/153db34a317810fa49953286299b3fda1506be94))
+* **render-ui:** fix image alignment in preview-prompt PD-1802 ([27390c1](https://github.com/pie-framework/pie-lib/commit/27390c1a6ab7b72b980f3b3f0f59a39674a9c307))
+
+
+
+
+
 ## [4.13.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.13.4...@pie-lib/render-ui@4.13.5) (2022-09-14)
 
 

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.11.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.10.3...@pie-lib/graphing@2.11.0) (2022-09-28)
+
+
+### Bug Fixes
+
+* **editable-html, graphing:** Add support to remove scrollbar from editable-html and removed scrollbar from graphing labels PD-1968 ([d04a0d3](https://github.com/pie-framework/pie-lib/commit/d04a0d3bc66d4b861f60b24198301459c15bd151))
+
+
+### Features
+
+* **graphing, plot:** moved graphing labels to plot package + fixed math input + added support for labels rotation PD-1962 ([a85ec39](https://github.com/pie-framework/pie-lib/commit/a85ec3911dd1f6bc89e4eb20a19ef8f957deebf1))
+
+
+
+
+
 ## [2.10.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.10.2...@pie-lib/graphing@2.10.3) (2022-09-14)
 
 **Note:** Version bump only for package @pie-lib/graphing

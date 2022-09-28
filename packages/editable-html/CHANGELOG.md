@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.1.6...@pie-lib/editable-html@9.2.0) (2022-09-28)
+
+
+### Bug Fixes
+
+* **editable-html, graphing:** Add support to remove scrollbar from editable-html and removed scrollbar from graphing labels PD-1968 ([d04a0d3](https://github.com/pie-framework/pie-lib/commit/d04a0d3bc66d4b861f60b24198301459c15bd151))
+
+
+### Features
+
+* add upload logic in pie lib (wip) PD-23-updated ([c666f68](https://github.com/pie-framework/pie-lib/commit/c666f68682bf4e9746cea3d7e18c1b1e1948131d))
+* add upload logic in pie lib (wip) PD-23-updated ([0ece29e](https://github.com/pie-framework/pie-lib/commit/0ece29e256ee7d7c84202d1be97244e7d4b70411))
+* hide edit uploaded sound in editable-html for now ([88882e6](https://github.com/pie-framework/pie-lib/commit/88882e6704f5f5f889328666a9b0fe03554339cd))
+* UI improvements and bit of cleanup for PD-23-updated ([37e88e8](https://github.com/pie-framework/pie-lib/commit/37e88e8fb04698eadb805c26b5ee2c57cc0b51a8))
+* **editable-html:** allow audio file upload (editable-html & rendering logic) ([f5df32d](https://github.com/pie-framework/pie-lib/commit/f5df32d1e53859435556f866e8727fef077896d4))
+* **editable-html:** allow audio file upload (modal logic) ([f57cff1](https://github.com/pie-framework/pie-lib/commit/f57cff12d861d1182ab2fa84c8ce2a89f144b222))
+* **editable-html:** finalize audio upload implementation (it works via new prop `pieApi: { token, host }`) PD-23 ([4fa7389](https://github.com/pie-framework/pie-lib/commit/4fa7389e5a6eff8b58c9d893424f82197b574f02))
+* **graphing, plot:** moved graphing labels to plot package + fixed math input + added support for labels rotation PD-1962 ([a85ec39](https://github.com/pie-framework/pie-lib/commit/a85ec3911dd1f6bc89e4eb20a19ef8f957deebf1))
+
+
+
+
+
 ## [9.1.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.1.5...@pie-lib/editable-html@9.1.6) (2022-09-14)
 
 **Note:** Version bump only for package @pie-lib/editable-html

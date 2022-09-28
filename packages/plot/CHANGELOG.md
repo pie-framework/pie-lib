@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.4.2...@pie-lib/plot@2.5.0) (2022-09-28)
+
+
+### Bug Fixes
+
+* **charting:** arrange the position of the checkboxes labels, fix style amd arrangement ([c5f2f7a](https://github.com/pie-framework/pie-lib/commit/c5f2f7acf60898e77ecc0b47b190256537605c8e))
+* **charting:** change position for checbox labels in order to fit without overlapping the checboxes ([98a56cb](https://github.com/pie-framework/pie-lib/commit/98a56cbae47c4bcadd0d4087d6b7df3c4d5d3e2e))
+* **charting:** fix conflicts ([2b3da1b](https://github.com/pie-framework/pie-lib/commit/2b3da1b4b87a518b5c18daf6f6c57db1ccc1c536))
+* **charting:** prevent page scroll on devices when a charting category is dragged ([6fe37ff](https://github.com/pie-framework/pie-lib/commit/6fe37ffa0e2c387d7174d0daf5cfc1cf9e8abf80))
+* **editable-html, graphing:** Add support to remove scrollbar from editable-html and removed scrollbar from graphing labels PD-1968 ([d04a0d3](https://github.com/pie-framework/pie-lib/commit/d04a0d3bc66d4b861f60b24198301459c15bd151))
+
+
+### Features
+
+* **charting:** refactor ability to edit chart title and labels, fix style ([6edcdfb](https://github.com/pie-framework/pie-lib/commit/6edcdfbfbd83806a8487c29c42ae447b11850ac7))
+* **charting:** try to set up labels for charting, work in progress ([c6cd049](https://github.com/pie-framework/pie-lib/commit/c6cd049723dadab329748511da2f6c4f1fa943db))
+* **graphing, plot:** moved graphing labels to plot package + fixed math input + added support for labels rotation PD-1962 ([a85ec39](https://github.com/pie-framework/pie-lib/commit/a85ec3911dd1f6bc89e4eb20a19ef8f957deebf1))
+
+
+
+
+
 ## [2.4.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.4.1...@pie-lib/plot@2.4.2) (2022-08-30)
 
 
