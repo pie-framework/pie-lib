@@ -23,6 +23,7 @@ export class EditorAndToolbar extends React.Component {
     toolbarRef: PropTypes.func,
     focusedNode: SlatePropTypes.node,
     readOnly: PropTypes.bool,
+    disableScrollbar: PropTypes.bool,
     disableUnderline: PropTypes.bool,
     autoWidth: PropTypes.bool,
     classes: PropTypes.object.isRequired,
@@ -55,6 +56,7 @@ export class EditorAndToolbar extends React.Component {
       focusedNode,
       autoWidth,
       readOnly,
+      disableScrollbar,
       disableUnderline,
       pluginProps,
       toolbarOpts,
@@ -63,12 +65,12 @@ export class EditorAndToolbar extends React.Component {
     } = this.props;
 
     const inFocus = value.isFocused || (focusedNode !== null && focusedNode !== undefined);
-    const holderNames = classNames(
-      classes.editorHolder,
-      inFocus && classes.editorInFocus,
-      readOnly && classes.readOnly,
-      disableUnderline && classes.disabledUnderline
-    );
+    const holderNames = classNames(classes.editorHolder, {
+      [classes.editorInFocus]: inFocus,
+      [classes.readOnly]: readOnly,
+      [classes.disabledUnderline]: disableUnderline,
+      [classes.disabledScrollbar]: disableScrollbar
+    });
     let clonedChildren = children;
 
     if (typeof children !== 'string') {
@@ -197,7 +199,13 @@ const style = {
       display: 'none'
     }
   },
-
+  disabledScrollbar: {
+    '&::-webkit-scrollbar': {
+      display: 'none'
+    },
+    scrollbarWidth: 'none',
+    '-ms-overflow-style': 'none'
+  },
   readOnly: {
     '&::before': {
       background: 'transparent',

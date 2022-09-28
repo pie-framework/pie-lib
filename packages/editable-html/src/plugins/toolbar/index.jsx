@@ -13,6 +13,7 @@ export default function ToolbarPlugin(opts) {
       <EditorAndToolbar
         {...props}
         mainEditorRef={opts.mainEditorRef}
+        disableScrollbar={opts.disableScrollbar}
         disableUnderline={opts.disableUnderline}
         onDone={opts.onDone}
       />

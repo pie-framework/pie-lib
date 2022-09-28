@@ -5,11 +5,10 @@ exports[`ChartAxes snapshot renders 1`] = `
   className="className"
   classes={
     Object {
-      "axis": "RawChartAxes-axis-2",
-      "axisLabel": "RawChartAxes-axisLabel-1",
-      "axisLine": "RawChartAxes-axisLine-3",
-      "dottedLine": "RawChartAxes-dottedLine-5",
-      "tick": "RawChartAxes-tick-4",
+      "axis": "RawChartAxes-axis-1",
+      "axisLine": "RawChartAxes-axisLine-2",
+      "dottedLine": "RawChartAxes-dottedLine-4",
+      "tick": "RawChartAxes-tick-3",
     }
   }
   graphProps={

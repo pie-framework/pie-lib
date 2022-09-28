@@ -2,6 +2,7 @@
 
 exports[`Graph snapshot renders 1`] = `
 <WithStyles(Root)
+  disabledLabels={false}
   disabledTitle={false}
   graphProps={
     Object {
@@ -30,6 +31,7 @@ exports[`Graph snapshot renders 1`] = `
       },
     }
   }
+  labelsPlaceholders={Object {}}
   rootRef={[Function]}
 >
   <g>
