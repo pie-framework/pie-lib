@@ -333,5 +333,20 @@
     "committerDate": "2021-03-26 12:18:14 +0200",
     "isTagged": true,
     "tag": "@pie-lib/plot@2.1.5"
+  },
+  {
+    "type": "fix",
+    "scope": "charting",
+    "subject": "fix conflicts",
+    "merge": null,
+    "header": "fix(charting): fix conflicts",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "2b3da1b4b87a518b5c18daf6f6c57db1ccc1c536",
+    "gitTags": "",
+    "committerDate": "2022-09-19 15:27:23 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/plot@2.5.0"
   }
 ]
