@@ -175,7 +175,7 @@ export class TickComponent extends React.Component {
           <svg
             xmlns="http://www.w3.org/2000/svg"
             x={x - 8}
-            y={y + 10 + top}
+            y={y + 60 + top}
             width={16}
             height={16}
             viewBox="0 0 512 512"
@@ -185,59 +185,60 @@ export class TickComponent extends React.Component {
           </svg>
         )}
         {defineChart && index === 0 && (
-          <text
-            x={x - 80}
-            y={y + 40 + top}
-            width={barWidth}
-            height={4}
+          <svg
+            x={-55}
             style={{
-              position: 'absolute',
-              pointerEvents: 'none',
-              wordBreak: 'break-word',
-              overflow: 'visible',
-              maxWidth: barWidth,
-              display: 'inline-block'
+              overflow: 'visible'
             }}
           >
-            <tspan x="0" dy=".6em">
-              {' '}
-              Student can{' '}
-            </tspan>
-            <tspan x="0" dy="1.2em">
-              {' '}
-              set value
-            </tspan>
-          </text>
-        )}
-        {defineChart && index === 0 && (
-          <text
-            x={x - 80}
-            y={y + 80 + top}
-            width={barWidth}
-            height={4}
-            style={{
-              position: 'absolute',
-              pointerEvents: 'none',
-              wordBreak: 'break-word',
-              overflow: 'visible',
-              maxWidth: barWidth,
-              display: 'inline-block'
-            }}
-          >
-            <tspan x="0" dy=".6em">
-              {' '}
-              Student can{' '}
-            </tspan>
-            <tspan x="0" dy="1.2em">
-              {' '}
-              edit name
-            </tspan>
-          </text>
+            <text
+              y={y + 90 + top}
+              width={barWidth}
+              height={4}
+              style={{
+                position: 'absolute',
+                pointerEvents: 'none',
+                wordBreak: 'break-word',
+                maxWidth: barWidth,
+                display: 'inline-block'
+              }}
+            >
+              <tspan x="0" dy=".6em">
+                {' '}
+                Student can{' '}
+              </tspan>
+              <tspan x="0" dy="1.2em">
+                {' '}
+                set value
+              </tspan>
+            </text>
+            <text
+              y={y + 145 + top}
+              width={barWidth}
+              height={4}
+              style={{
+                position: 'absolute',
+                pointerEvents: 'none',
+                wordBreak: 'break-word',
+                maxWidth: barWidth,
+                display: 'inline-block'
+              }}
+            >
+              <tspan x="0" dy=".6em">
+                {' '}
+                Student can{' '}
+              </tspan>
+              <tspan x="0" dy="1.2em">
+                {' '}
+                edit name
+              </tspan>
+            </text>
+          </svg>
         )}
         {defineChart && (
           <foreignObject
             x={x - 24}
-            y={y + 20 + top}
+            y={y + 80 + top}
             width={barWidth}
             height={4}
             style={{ pointerEvents: 'visible', overflow: 'visible' }}
@@ -252,7 +253,7 @@ export class TickComponent extends React.Component {
         {defineChart && (
           <foreignObject
             x={x - 24}
-            y={y + 70 + top}
+            y={y + 130 + top}
             width={barWidth}
             height={4}
             style={{ pointerEvents: 'visible', overflow: 'visible' }}
@@ -338,7 +339,7 @@ export class RawChartAxes extends React.Component {
       theme
     } = this.props;
 
-    const { axis, axisLine, tick, axisLabel } = classes;
+    const { axis, axisLine, tick } = classes;
     const { scale = {}, range = {}, domain = {}, size = {} } = graphProps || {};
     const { height } = this.state;
 
@@ -389,18 +390,14 @@ export class RawChartAxes extends React.Component {
             tickLength={10}
             tickClassName={tick}
             tickFormat={value => value}
-            label={range.label}
-            labelClassName={axisLabel}
             tickValues={rowTickValues}
             tickLabelProps={getTickLabelProps}
           />
         )}
         <AxisBottom
           axisLineClassName={axisLine}
-          labelClassName={axisLabel}
           tickClassName={tick}
           scale={bottomScale}
-          label={domain.label}
           labelProps={{ y: 60 + top }}
           top={scale.y && scale.y(range.min)}
           textLabelProps={() => ({ textAnchor: 'middle' })}
@@ -414,11 +411,6 @@ export class RawChartAxes extends React.Component {
 
 const ChartAxes = withStyles(
   theme => ({
-    axisLabel: {
-      fontFamily: theme.typography.body1.fontFamily,
-      fontSize: theme.typography.fontSize,
-      fill: color.secondary()
-    },
     axis: {
       stroke: color.primaryDark(),
       strokeWidth: 2
