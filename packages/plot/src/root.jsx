@@ -244,6 +244,7 @@ const styles = theme => ({
     border: `solid 1px ${color.primaryLight()}`,
     color: color.text(),
     backgroundColor: color.background(),
+    touchAction: 'none',
     position: 'relative'
   },
   wrapper: {
