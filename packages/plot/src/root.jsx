@@ -151,6 +151,7 @@ export class Root extends React.Component {
               }
               toolbarOpts={{ noBorder: true }}
               activePlugins={activeTitlePlugins}
+              disableScrollbar
             />
           ))}
         {showLabels && !isChart && (
