@@ -578,5 +578,20 @@
     "committerDate": "2021-03-19 19:13:17 +0200",
     "isTagged": true,
     "tag": "@pie-lib/charting@4.5.11"
+  },
+  {
+    "type": "fix",
+    "scope": "charting",
+    "subject": "fix conflicts",
+    "merge": null,
+    "header": "fix(charting): fix conflicts",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "2b3da1b4b87a518b5c18daf6f6c57db1ccc1c536",
+    "gitTags": "",
+    "committerDate": "2022-09-19 15:27:23 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/charting@5.2.0"
   }
 ]
