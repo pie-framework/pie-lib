@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.2.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.2.0...@pie-lib/editable-html@9.2.1) (2022-09-28)
+
+
+### Bug Fixes
+
+* fire add image method when copy-paste image is used ([23d525e](https://github.com/pie-framework/pie-lib/commit/23d525efda2d41a8bfd603460b4cc4fda5d2a184))
+
+
+
+
+
 # [9.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.1.6...@pie-lib/editable-html@9.2.0) (2022-09-28)
 
 
