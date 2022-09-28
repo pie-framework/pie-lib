@@ -165,7 +165,7 @@ export default function MediaPlugin(type, opts) {
               <audio controls="controls">
                 <source type="audio/mp3" src={src} />
               </audio>
-              <MediaToolbar onEdit={handleEdit} onRemove={handleDelete} />
+              <MediaToolbar hideEdit onRemove={handleDelete} />
             </MediaWrapper>
           );
         }

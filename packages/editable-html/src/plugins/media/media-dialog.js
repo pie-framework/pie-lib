@@ -111,8 +111,8 @@ export class MediaDialog extends React.Component {
       width: width || 560,
       tabValue: 0,
       fileUpload: {
-        uploadIsLoading: false,
-        localUrl: '',
+        loading: false,
+        url: '',
         error: null
       }
     };
@@ -240,7 +240,7 @@ export class MediaDialog extends React.Component {
     const isInsertURL = tabValue === 0;
 
     if (!val) {
-      if (fileUpload.localUrl) {
+      if (fileUpload.url) {
         this.handleRemoveFile();
       }
 
@@ -261,7 +261,7 @@ export class MediaDialog extends React.Component {
     } else {
       handleClose(val, {
         tag: 'audio',
-        src: fileUpload.localUrl
+        src: fileUpload.url
       });
     }
   };
@@ -272,7 +272,8 @@ export class MediaDialog extends React.Component {
     this.setState({
       fileUpload: {
         ...this.state.fileUpload,
-        uploadIsLoading: true
+        error: null,
+        loading: true
       }
     });
 
@@ -280,21 +281,13 @@ export class MediaDialog extends React.Component {
 
     const reader = new FileReader();
 
-    this.setState({
-      fileUpload: {
-        ...this.state.fileUpload,
-        uploadIsLoading: true
-      }
-    });
-
     reader.onload = () => {
       const dataURL = reader.result;
 
       this.setState({
         fileUpload: {
           ...this.state.fileUpload,
-          localUrl: dataURL,
-          uploadIsLoading: false
+          url: dataURL
         }
       });
     };
@@ -302,21 +295,51 @@ export class MediaDialog extends React.Component {
 
     this.props.uploadSoundSupport.add({
       fileChosen,
-      done: e => {
-        console.log('add done: ', e);
+      done: (err, src) => {
+        log('done: err:', err);
+        if (err) {
+          //eslint-disable-next-line
+          console.log(err);
+          this.setState({
+            fileUpload: {
+              ...this.state.fileUpload,
+              loading: false,
+              error: err
+            }
+          });
+        } else {
+          this.setState({
+            fileUpload: {
+              ...this.state.fileUpload,
+              loading: false,
+              url: src
+            }
+          });
+        }
       }
     });
   };
 
   handleRemoveFile = async () => {
-    this.props.uploadSoundSupport.delete(this.state.fileUpload.localUrl, e => {
-      console.log('delete done', e);
+    this.props.uploadSoundSupport.delete(this.state.fileUpload.url, err => {
+      if (err) {
+        //eslint-disable-next-line
+        console.log(err);
+        this.setState({
+          fileUpload: {
+            ...this.state.fileUpload,
+            error: err
+          }
+        });
+      }
     });
 
+    // we should put it inside uploadSoundSupport.delete but we can leave it here for testing purposes
     this.setState({
       fileUpload: {
         ...this.state.fileUpload,
-        localUrl: ''
+        loading: false,
+        url: ''
       }
     });
   };
@@ -340,7 +363,7 @@ export class MediaDialog extends React.Component {
     const isUploadMedia = tabValue === 1;
     const submitIsDisabled = isInsertURL
       ? invalid || url === null || url === undefined
-      : !fileUpload.localUrl;
+      : !fileUpload.url;
 
     return (
       <Dialog
@@ -461,14 +484,12 @@ export class MediaDialog extends React.Component {
             )}
             {isUploadMedia && (
               <div className={classes.uploadInput}>
-                {fileUpload.uploadIsLoading ? (
-                  <Typography variant="subheading">Loading...</Typography>
-                ) : (
-                  <div>
-                    {fileUpload.localUrl ? (
+                <div>
+                  {fileUpload.url ? (
+                    <>
                       <div className={classes.row}>
                         <audio controls="controls">
-                          <source type="audio/mp3" src={fileUpload.localUrl} />
+                          <source type="audio/mp3" src={fileUpload.url} />
                         </audio>
                         <IconButton
                           aria-label="delete"
@@ -478,21 +499,24 @@ export class MediaDialog extends React.Component {
                           <ActionDelete />
                         </IconButton>
                       </div>
-                    ) : (
-                      <input
-                        accept="audio/*"
-                        className={classes.input}
-                        onChange={this.handleUploadFile}
-                        type="file"
-                      />
-                    )}
-                    {!!fileUpload.error && (
-                      <Typography className={classes.error} variant="caption">
-                        {fileUpload.error}
-                      </Typography>
-                    )}
-                  </div>
-                )}
+                      {fileUpload.loading ? (
+                        <Typography variant="subheading">Loading...</Typography>
+                      ) : null}
+                    </>
+                  ) : !fileUpload.loading ? (
+                    <input
+                      accept="audio/*"
+                      className={classes.input}
+                      onChange={this.handleUploadFile}
+                      type="file"
+                    />
+                  ) : null}
+                  {!!fileUpload.error && (
+                    <Typography className={classes.error} variant="caption">
+                      {fileUpload.error}
+                    </Typography>
+                  )}
+                </div>
               </div>
             )}
           </div>
