@@ -35,7 +35,7 @@ exports[`ChartAxes snapshot renders 1`] = `
           "y": [Function],
         },
         "size": Object {
-          "height": 100,
+          "height": 160,
           "width": 100,
         },
         "snap": Object {
@@ -231,7 +231,7 @@ exports[`ChartAxes snapshot renders if size is not defined 1`] = `
           "y": [Function],
         },
         "size": Object {
-          "height": 480,
+          "height": 540,
           "width": 480,
         },
         "snap": Object {
@@ -429,7 +429,7 @@ exports[`ChartAxes snapshot renders without chartType and charts properties 1`] 
           "y": [Function],
         },
         "size": Object {
-          "height": 100,
+          "height": 160,
           "width": 100,
         },
         "snap": Object {
@@ -625,7 +625,7 @@ exports[`ChartAxes snapshot renders without chartType property 1`] = `
           "y": [Function],
         },
         "size": Object {
-          "height": 100,
+          "height": 160,
           "width": 100,
         },
         "snap": Object {
