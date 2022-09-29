@@ -276,9 +276,6 @@ const styles = theme => ({
     borderLeft: `solid 1px ${color.primaryDark()}`,
     borderRight: `solid 1px ${color.primaryDark()}`
   },
-  root: {
-    overflow: 'hidden'
-  },
   svg: {
     overflow: 'visible'
   },
