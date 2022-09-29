@@ -174,7 +174,8 @@ export class Root extends React.Component {
               placeholder={labelsPlaceholders?.left}
               graphHeight={finalHeight}
               graphWidth={finalWidth}
-              isChartLeftLabel={isChart && defineChart}
+              isChartLeftLabel={isChart && !defineChart}
+              isDefineChartLeftLabel={isChart && defineChart}
               onChange={value => this.onChangeLabel(value, 'left')}
             />
           )}

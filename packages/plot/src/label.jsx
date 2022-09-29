@@ -13,6 +13,7 @@ const LabelComponent = props => {
     isChartBottomLabel,
     isDefineChartBottomLabel,
     isChartLeftLabel,
+    isDefineChartLeftLabel,
     placeholder,
     text,
     side,
@@ -28,19 +29,20 @@ const LabelComponent = props => {
     // 'languageCharacters'
   ];
 
-  const chartValue = side === 'left' && isChartLeftLabel && graphHeight - 148;
+  const chartValue = side === 'left' && isDefineChartLeftLabel && graphHeight - 220;
   const defaultStyle = {
     width: chartValue || (side === 'left' || side === 'right' ? graphHeight - 8 : graphWidth - 8),
     top:
       chartValue ||
+      (isChartLeftLabel && `${graphHeight - 70}px`) ||
       (side === 'left' && `${graphHeight - 8}px`) ||
       (isChartBottomLabel && `${graphHeight - 40}px`) ||
       (side === 'bottom' && `${graphHeight - 90}px`) ||
       0,
     left:
       (side === 'right' && `${graphWidth - 8}px`) ||
-      ((isChartLeftLabel || isDefineChartBottomLabel) && '40px') ||
-      ((isChartLeftLabel || isChartBottomLabel) && '-10px') ||
+      ((isDefineChartLeftLabel || isDefineChartBottomLabel) && '40px') ||
+      (isChartBottomLabel && '-10px') ||
       0
   };
 
