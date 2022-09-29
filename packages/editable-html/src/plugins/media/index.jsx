@@ -231,7 +231,7 @@ export const serialization = {
       if (el instanceof Element && el.tagName.toLowerCase() === 'audio') {
         type = 'audio';
         tag = 'audio';
-        src = el.firstChild.getAttribute('src');
+        src = el.firstChild?.getAttribute('src');
       } else {
         return;
       }
