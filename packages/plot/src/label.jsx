@@ -11,6 +11,7 @@ const LabelComponent = props => {
     graphHeight,
     graphWidth,
     isChartBottomLabel,
+    isDefineChartBottomLabel,
     isChartLeftLabel,
     placeholder,
     text,
@@ -33,11 +34,13 @@ const LabelComponent = props => {
     top:
       chartValue ||
       (side === 'left' && `${graphHeight - 8}px`) ||
+      (isChartBottomLabel && `${graphHeight - 40}px`) ||
       (side === 'bottom' && `${graphHeight - 90}px`) ||
       0,
     left:
       (side === 'right' && `${graphWidth - 8}px`) ||
-      ((isChartLeftLabel || isChartBottomLabel) && '50px') ||
+      ((isChartLeftLabel || isDefineChartBottomLabel) && '40px') ||
+      ((isChartLeftLabel || isChartBottomLabel) && '-10px') ||
       0
   };
 
@@ -57,7 +60,7 @@ const LabelComponent = props => {
           [classes.rotateLeftLabel]: side === 'left' && !rotatedToHorizontal,
           [classes.rotateRightLabel]: side === 'right' && !rotatedToHorizontal,
           [classes.editLabel]: rotatedToHorizontal,
-          [classes.customBottom]: isChartBottomLabel
+          [classes.customBottom]: isChartBottomLabel || isDefineChartBottomLabel
         })}
         style={rotatedToHorizontal ? rotatedStyle : defaultStyle}
         onClick={rotateLabel}

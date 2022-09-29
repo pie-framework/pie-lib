@@ -112,7 +112,7 @@ export class Root extends React.Component {
       // 'languageCharacters'
     ];
 
-    const actualHeight = defineChart && showPixelGuides ? height - 150 : height;
+    const actualHeight = defineChart && showPixelGuides ? height - 160 : height;
     const nbOfVerticalLines = parseInt(width / 100);
     const nbOfHorizontalLines = parseInt(actualHeight / 100);
     const sideGridlinesPadding = parseInt(actualHeight % 100);
@@ -231,7 +231,8 @@ export class Root extends React.Component {
             placeholder={labelsPlaceholders?.bottom}
             graphHeight={finalHeight}
             graphWidth={finalWidth}
-            isChartBottomLabel={isChart && defineChart}
+            isChartBottomLabel={isChart && !defineChart}
+            isDefineChartBottomLabel={isChart && defineChart}
             onChange={value => this.onChangeLabel(value, 'bottom')}
           />
         )}
