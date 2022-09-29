@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.2.0...@pie-lib/charting@5.2.1) (2022-09-29)
+
+
+### Bug Fixes
+
+* **charting:** fix left label position for define correct response and player chart ([4a50663](https://github.com/pie-framework/pie-lib/commit/4a5066351901cbe400180b1d19d9a54781eb726e))
+* **charting:** make space for delete category buttons in define correct response and in player ([7c0f653](https://github.com/pie-framework/pie-lib/commit/7c0f6536f106099da9a9ab5a7328fed827841c5c))
+
+
+
+
+
 # [5.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.1.8...@pie-lib/charting@5.2.0) (2022-09-28)
 
 

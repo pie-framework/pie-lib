@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.2.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.2.1...@pie-lib/editable-html@9.2.2) (2022-09-29)
+
+
+### Bug Fixes
+
+* **editable-html:** handle use case were there no child in audio tag ([dbc5410](https://github.com/pie-framework/pie-lib/commit/dbc54109fbe7201aea5ea6d5a6226f8ce9c797a0))
+
+
+### Reverts
+
+* Revert "PD-1886 updated slate js version" ([0069bc8](https://github.com/pie-framework/pie-lib/commit/0069bc829175194e663a9601f284a31d7285d7eb))
+
+
+
+
+
 ## [9.2.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.2.0...@pie-lib/editable-html@9.2.1) (2022-09-28)
 
 
