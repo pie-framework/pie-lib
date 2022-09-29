@@ -102,9 +102,6 @@ export class Root extends React.Component {
     const leftPadding = showLabels ? 80 : 60;
     const finalWidth = width + leftPadding * 2 + (domain.padding || 0) * 2;
     const finalHeight = height + topPadding * 2 + (range.padding || 0) * 2;
-    const rightMargin = finalWidth - width;
-    console.log(graphProps, 'graphprops');
-    console.log(rightMargin, 'rightMargin');
 
     const activeTitlePlugins = [
       'bold',
@@ -119,8 +116,6 @@ export class Root extends React.Component {
     const nbOfVerticalLines = parseInt(width / 100);
     const nbOfHorizontalLines = parseInt(actualHeight / 100);
     const sideGridlinesPadding = parseInt(actualHeight % 100);
-
-    console.log(isChart && !defineChart, 'isChart && !defineChart');
 
     return (
       <div className={classes.root}>
@@ -152,9 +147,11 @@ export class Root extends React.Component {
             />
           ) : (
             <EditableHtml
-              style={{
-                width: finalWidth
-              }}
+              style={
+                isChart && {
+                  width: finalWidth
+                }
+              }
               className={cn({ [classes.rightMargin]: showPixelGuides }, classes.graphTitle)}
               markup={title || ''}
               onChange={onChangeTitle}
