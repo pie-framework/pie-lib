@@ -154,9 +154,7 @@ const ConfigureChartPanel = props => {
   const onChartTypeChange = chartType => {
     if (chartType.includes('Plot')) {
       // The selected chart type does not support the current chart configuration
-      console.log(isValidPlot, 'ISvALID plot');
       if (!isValidPlot) {
-        // ask for user validation
         setAlertDialog({
           open: true,
           title: 'Warning',
@@ -165,13 +163,14 @@ const ConfigureChartPanel = props => {
           onConfirm: () => {
             getPlotConfiguration();
             removeOutOfRangeValues();
-            console.log(range, 'range on confirm');
             handleAlertDialog(false, onChange({ ...model, range, chartType }));
           },
           onClose: () => {
             handleAlertDialog(false);
           }
         });
+
+        return;
       }
 
       rangeProps.min = 3;
