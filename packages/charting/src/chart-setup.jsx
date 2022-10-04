@@ -137,19 +137,31 @@ const ConfigureChartPanel = props => {
     }
   }, [open]);
 
+  const isValidPlot = () =>
+    range.step === 1 && range.labelStep === 1 && 3 <= range.max && range.max <= 10;
+
+  const getPlotConfiguration = () => {
+    rangeProps.min = 3;
+    rangeProps.max = 10;
+
+    range.max = 10;
+    range.step = 1;
+    range.labelStep = 1;
+
+    onChange({ ...model, range });
+  };
+
   const onChartTypeChange = chartType => {
     if (chartType.includes('Plot')) {
+      // The selected chart type does not support the current chart configuration
+      if (!isValidPlot) {
+        // ask for user validation
+      }
+
       rangeProps.min = 3;
       rangeProps.max = 10;
 
-      if (range.max > 10 || range.max < 3) {
-        range.max = 10;
-      }
-
-      range.step = 1;
-      range.labelStep = 1;
-
-      onChange({ ...model, range, chartType });
+      onChange({ ...model, chartType });
 
       return;
     }
