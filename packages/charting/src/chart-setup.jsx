@@ -164,6 +164,7 @@ const ConfigureChartPanel = props => {
             'The selected chart type does not support the current chart configuration. Reset chart configuration?',
           onConfirm: () => {
             getPlotConfiguration();
+            removeOutOfRangeValues();
             console.log(range, 'range on confirm');
             handleAlertDialog(false, onChange({ ...model, range, chartType }));
           },
