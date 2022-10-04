@@ -239,7 +239,7 @@ export class NumberTextFieldCustom extends React.Component {
         className={names}
         InputProps={{
           className: inputClassName,
-          disableUnderline: disableunderline,
+          disableUnderline: disableUnderline,
           startAdornment: (
             <InputAdornment position="start">
               <IconButton
