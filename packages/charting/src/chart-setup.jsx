@@ -137,7 +137,7 @@ const ConfigureChartPanel = props => {
     }
   }, [open]);
 
-  const isValidPlot = () =>
+  const isValidPlot =
     range.step === 1 && range.labelStep === 1 && 3 <= range.max && range.max <= 10;
 
   const getPlotConfiguration = () => {
@@ -154,8 +154,23 @@ const ConfigureChartPanel = props => {
   const onChartTypeChange = chartType => {
     if (chartType.includes('Plot')) {
       // The selected chart type does not support the current chart configuration
+      console.log(isValidPlot, 'ISvALID plot');
       if (!isValidPlot) {
         // ask for user validation
+        setAlertDialog({
+          open: true,
+          title: 'Warning',
+          text:
+            'The selected chart type does not support the current chart configuration. Reset chart configuration?',
+          onConfirm: () => {
+            getPlotConfiguration();
+            console.log(range, 'range on confirm');
+            handleAlertDialog(false, onChange({ ...model, range, chartType }));
+          },
+          onClose: () => {
+            handleAlertDialog(false);
+          }
+        });
       }
 
       rangeProps.min = 3;
