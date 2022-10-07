@@ -53,7 +53,6 @@ export class RawBp extends React.Component {
         onMouseLeave={() => this.setState({ showCoordinates: false })}
         {...rest}
       >
-        <circle style={{ fill: 'transparent' }} r={r * 2} cx={2 * scale.x(x)} cy={2 * scale.y(y)} />
         <circle r={r} cx={scale.x(x)} cy={scale.y(y)} />
         {labelNode &&
           coordinatesOnHover &&
