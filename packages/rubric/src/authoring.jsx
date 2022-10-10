@@ -242,6 +242,7 @@ export class RawAuthoring extends React.Component {
 
   render() {
     const { classes, className, value } = this.props;
+    let { excludeZeroEnabled = true, maxPointsEnabled = true } = value || {};
 
     if (value && Number.isFinite(value.maxPoints)) {
       // eslint-disable-next-line no-console
@@ -254,11 +255,15 @@ export class RawAuthoring extends React.Component {
           Rubric
         </Typography>
         <FormGroup row>
-          <MaxPoints max={10} value={value.points.length - 1} onChange={this.changeMaxPoints} />
-          <FormControlLabel
-            label="Exclude zeros"
-            control={<Checkbox checked={value.excludeZero} onChange={this.excludeZeros} />}
-          />
+          {maxPointsEnabled && (
+            <MaxPoints max={10} value={value.points.length - 1} onChange={this.changeMaxPoints} />
+          )}
+          {excludeZeroEnabled && (
+            <FormControlLabel
+              label="Exclude zeros"
+              control={<Checkbox checked={value.excludeZero} onChange={this.excludeZeros} />}
+            />
+          )}
         </FormGroup>
         <div className={classes.container}>
           <DragDropContext onDragEnd={this.dragEnd}>
