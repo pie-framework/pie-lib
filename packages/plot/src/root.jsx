@@ -142,7 +142,10 @@ export class Root extends React.Component {
                   width: finalWidth
                 }
               }
-              className={cn(classes.graphTitle, classes.disabledTitle)}
+              className={cn(
+                isChart ? classes.chartTitle : classes.graphTitle,
+                classes.disabledTitle
+              )}
               dangerouslySetInnerHTML={{ __html: title || '' }}
             />
           ) : (
@@ -152,7 +155,10 @@ export class Root extends React.Component {
                   width: finalWidth
                 }
               }
-              className={cn({ [classes.rightMargin]: showPixelGuides }, classes.graphTitle)}
+              className={cn(
+                { [classes.rightMargin]: showPixelGuides },
+                isChart ? classes.chartTitle : classes.graphTitle
+              )}
               markup={title || ''}
               onChange={onChangeTitle}
               placeholder={
@@ -279,6 +285,12 @@ const styles = theme => ({
   graphTitle: {
     color: color.text(),
     fontSize: theme.typography.fontSize + 2,
+    padding: '12px 4px 0',
+    textAlign: 'center'
+  },
+  chartTitle: {
+    color: color.text(),
+    fontSize: theme.typography.fontSize + 4,
     padding: '12px 4px 0',
     textAlign: 'center'
   },
