@@ -18,20 +18,21 @@ const EditableHtmlContainer = withStyles(theme => ({
   }
 }))(
   ({
-     label,
-     classes,
-     onChange,
-     value,
-     className,
-     imageSupport,
-     disabled,
-     spellCheck,
-     nonEmpty,
-     toolbarOpts,
-     error,
-     maxImageWidth,
-     maxImageHeight
-   }) => {
+    label,
+    classes,
+    onChange,
+    value,
+    className,
+    imageSupport,
+    disabled,
+    spellCheck,
+    nonEmpty,
+    toolbarOpts,
+    error,
+    maxImageWidth,
+    maxImageHeight,
+    uploadSoundSupport
+  }) => {
     const names = classNames(classes.labelContainer, className);
 
     return (
@@ -49,6 +50,7 @@ const EditableHtmlContainer = withStyles(theme => ({
             error={error}
             maxImageWidth={maxImageWidth}
             maxImageHeight={maxImageHeight}
+            uploadSoundSupport={uploadSoundSupport}
           />
         </div>
       </InputContainer>
@@ -197,7 +199,8 @@ export class ChoiceConfiguration extends React.Component {
       allowDelete,
       toolbarOpts,
       error,
-      noCorrectAnswerError
+      noCorrectAnswerError,
+      uploadSoundSupport
     } = this.props;
 
     const InputToggle = mode === 'checkbox' ? InputCheckbox : InputRadio;
@@ -228,6 +231,7 @@ export class ChoiceConfiguration extends React.Component {
               nonEmpty={nonEmpty}
               toolbarOpts={toolbarOpts}
               error={error}
+              uploadSoundSupport={uploadSoundSupport}
             />
             {error && <div className={classes.errorText}>{error}</div>}
 
