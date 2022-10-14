@@ -18,20 +18,20 @@ const EditableHtmlContainer = withStyles(theme => ({
   }
 }))(
   ({
-     label,
-     classes,
-     onChange,
-     value,
-     className,
-     imageSupport,
-     disabled,
-     spellCheck,
-     nonEmpty,
-     toolbarOpts,
-     error,
-     maxImageWidth,
-     maxImageHeight
-   }) => {
+    label,
+    classes,
+    onChange,
+    value,
+    className,
+    imageSupport,
+    disabled,
+    spellCheck,
+    nonEmpty,
+    toolbarOpts,
+    error,
+    maxImageWidth,
+    maxImageHeight
+  }) => {
     const names = classNames(classes.labelContainer, className);
 
     return (
@@ -49,6 +49,7 @@ const EditableHtmlContainer = withStyles(theme => ({
             error={error}
             maxImageWidth={maxImageWidth}
             maxImageHeight={maxImageHeight}
+            languageCharactersProps={[{ language: 'spanish' }, { language: 'special' }]}
           />
         </div>
       </InputContainer>
