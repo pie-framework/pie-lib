@@ -365,8 +365,6 @@ export class MediaDialog extends React.Component {
       ? invalid || url === null || url === undefined
       : !fileUpload.url;
 
-    console.log(uploadSoundSupport, 'upload Sound Support');
-
     return (
       <Dialog
         classes={{
