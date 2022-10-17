@@ -23,6 +23,7 @@ const ChartType = withStyles(theme => ({
       <Select
         value={value}
         onChange={onChange}
+        labelWidth={0}
         input={<OutlinedInput name="type" id="type-helper" />}
       >
         <MenuItem value={'histogram'}>Histogram</MenuItem>
