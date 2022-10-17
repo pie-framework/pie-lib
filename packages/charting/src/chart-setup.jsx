@@ -137,19 +137,46 @@ const ConfigureChartPanel = props => {
     }
   }, [open]);
 
+  const isValidPlot =
+    range.step === 1 && range.labelStep === 1 && 3 <= range.max && range.max <= 10;
+
+  const getPlotConfiguration = () => {
+    rangeProps.min = 3;
+    rangeProps.max = 10;
+
+    range.max = 10;
+    range.step = 1;
+    range.labelStep = 1;
+
+    onChange({ ...model, range });
+  };
+
   const onChartTypeChange = chartType => {
     if (chartType.includes('Plot')) {
+      // The selected chart type does not support the current chart configuration
+      if (!isValidPlot) {
+        setAlertDialog({
+          open: true,
+          title: 'Warning',
+          text:
+            'The selected chart type does not support the current chart configuration. Reset chart configuration?',
+          onConfirm: () => {
+            getPlotConfiguration();
+            removeOutOfRangeValues();
+            handleAlertDialog(false, onChange({ ...model, range, chartType }));
+          },
+          onClose: () => {
+            handleAlertDialog(false);
+          }
+        });
+
+        return;
+      }
+
       rangeProps.min = 3;
       rangeProps.max = 10;
 
-      if (range.max > 10 || range.max < 3) {
-        range.max = 10;
-      }
-
-      range.step = 1;
-      range.labelStep = 1;
-
-      onChange({ ...model, range, chartType });
+      onChange({ ...model, chartType });
 
       return;
     }
@@ -222,7 +249,7 @@ const ConfigureChartPanel = props => {
 ConfigureChartPanel.propTypes = {
   classes: PropTypes.object,
   domain: PropTypes.object,
-  onChange: PropTypes.function,
+  onChange: PropTypes.func,
   range: PropTypes.object,
   chartDimension: PropTypes.object,
   size: PropTypes.object
