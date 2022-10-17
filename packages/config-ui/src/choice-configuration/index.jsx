@@ -51,6 +51,7 @@ const EditableHtmlContainer = withStyles(theme => ({
             maxImageWidth={maxImageWidth}
             maxImageHeight={maxImageHeight}
             uploadSoundSupport={uploadSoundSupport}
+            languageCharactersProps={[{ language: 'spanish' }, { language: 'special' }]}
           />
         </div>
       </InputContainer>

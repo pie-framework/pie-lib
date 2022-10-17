@@ -102,6 +102,7 @@ export class FeedbackSelector extends React.Component {
               onChange={this.changeCustom}
               markup={feedback.custom || ''}
               toolbarOpts={toolbarOpts}
+              languageCharactersProps={[{ language: 'spanish' }, { language: 'special' }]}
             />
           </div>
         )}

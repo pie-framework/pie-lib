@@ -29,6 +29,9 @@ const LabelComponent = props => {
     // 'languageCharacters'
   ];
 
+  const isChart =
+    isChartBottomLabel || isChartLeftLabel || isDefineChartBottomLabel || isDefineChartLeftLabel;
+
   const chartValue = side === 'left' && isDefineChartLeftLabel && graphHeight - 220;
   const defaultStyle = {
     width: chartValue || (side === 'left' || side === 'right' ? graphHeight - 8 : graphWidth - 8),
@@ -58,7 +61,7 @@ const LabelComponent = props => {
   return (
     <Readable false>
       <div
-        className={cn(classes.axisLabel, {
+        className={cn(isChart ? classes.chartLabel : classes.axisLabel, {
           [classes.rotateLeftLabel]: side === 'left' && !rotatedToHorizontal,
           [classes.rotateRightLabel]: side === 'right' && !rotatedToHorizontal,
           [classes.editLabel]: rotatedToHorizontal,
@@ -94,6 +97,12 @@ export default withStyles(theme => ({
   },
   axisLabel: {
     fontSize: theme.typography.fontSize - 2,
+    textAlign: 'center',
+    margin: '4px',
+    padding: '4px 0'
+  },
+  chartLabel: {
+    fontSize: theme.typography.fontSize + 2,
     textAlign: 'center',
     margin: '4px',
     padding: '4px 0'
