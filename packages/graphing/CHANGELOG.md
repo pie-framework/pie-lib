@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.11.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.11.1...@pie-lib/graphing@2.11.2) (2022-10-17)
+
+
+### Bug Fixes
+
+* **graphing:** increase draggable zone for graphing base point for better interaction with touchscreen devices ([50fc498](https://github.com/pie-framework/pie-lib/commit/50fc49825c14bf2248e773b4cbaecb309a4fb814))
+
+
+
+
+
 ## [2.11.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.11.0...@pie-lib/graphing@2.11.1) (2022-09-29)
 
 **Note:** Version bump only for package @pie-lib/graphing

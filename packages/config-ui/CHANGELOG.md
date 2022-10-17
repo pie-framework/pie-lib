@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.0.20](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.0.19...@pie-lib/config-ui@11.0.20) (2022-10-17)
+
+
+### Bug Fixes
+
+* **config:** added extra character plugin to config-ui inputs [PD-2130] ([08bb177](https://github.com/pie-framework/pie-lib/commit/08bb177abe72556d1138d6a5652aefaee40957be))
+* **multiple-choice:** add upload file option in choices ([3452207](https://github.com/pie-framework/pie-lib/commit/3452207f774b4a35736168bbca8eb08d921974b4))
+
+
+
+
+
 ## [11.0.19](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.0.18...@pie-lib/config-ui@11.0.19) (2022-09-29)
 
 **Note:** Version bump only for package @pie-lib/config-ui

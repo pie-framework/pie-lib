@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.2.1...@pie-lib/charting@5.3.0) (2022-10-17)
+
+
+### Features
+
+* **charting:** check configuration when changing chartType ([e3a0222](https://github.com/pie-framework/pie-lib/commit/e3a0222d4d2a2b2854d85f90114b1efffa2bc453))
+
+
+
+
+
 ## [5.2.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.2.0...@pie-lib/charting@5.2.1) (2022-09-29)
 
 

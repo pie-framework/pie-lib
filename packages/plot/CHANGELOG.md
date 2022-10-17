@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.5.1...@pie-lib/plot@2.5.2) (2022-10-17)
+
+
+### Bug Fixes
+
+* **charting:** increase font size for axis labels and title ([50a10c4](https://github.com/pie-framework/pie-lib/commit/50a10c43a758726106cd6320191b992613389839))
+
+
+
+
+
 ## [2.5.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.5.0...@pie-lib/plot@2.5.1) (2022-09-29)
 
 
