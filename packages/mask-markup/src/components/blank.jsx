@@ -102,6 +102,7 @@ export class BlankContent extends React.Component {
 
   render() {
     const { disabled, choice, classes, isOver, dragItem, correct } = this.props;
+    console.log(this.props, 'this props in blank');
     const draggedLabel = dragItem && isOver && dragItem.choice.value;
     const label = choice && choice.value;
 

@@ -7,6 +7,7 @@ import { deserialize } from './serialization';
 export const buildLayoutFromMarkup = (markup, type) => {
   const { markup: processed } = componentize(markup, type);
   const value = deserialize(processed);
+  console.log(value.document, 'value.document');
   return value.document;
 };
 
@@ -27,6 +28,7 @@ export const withMask = (type, renderChildren) => {
 
     render() {
       const { markup, layout, value, onChange } = this.props;
+      console.log(layout, 'layout');
 
       const maskLayout = layout ? layout : buildLayoutFromMarkup(markup, type);
       return (

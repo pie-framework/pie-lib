@@ -5,7 +5,7 @@ import debug from 'debug';
 
 const log = debug('@pie-lib:mask-markup:serialization');
 
-const INLINE = ['span'];
+const INLINE = ['span', 'source'];
 const MARK = ['em', 'strong', 'u'];
 const TEXT_NODE = 3;
 const COMMENT_NODE = 8;
@@ -28,6 +28,7 @@ const attr = el => {
 };
 
 const getObject = type => {
+  console.log(type, 'type');
   if (INLINE.includes(type)) {
     return 'inline';
   } else if (MARK.includes(type)) {
@@ -116,6 +117,25 @@ const marks = {
   }
 };
 
+const parsedText = text => {
+  // fix imported audio content for Safari PD-1419
+  const div = document.createElement('div');
+  div.innerHTML = text;
+
+  const audio = div.querySelector('audio');
+  if (audio) {
+    const source = document.createElement('source');
+
+    source.setAttribute('type', 'audio/mp3');
+    source.setAttribute('src', audio.getAttribute('src'));
+
+    audio.removeAttribute('src');
+    audio.appendChild(source);
+  }
+
+  return div.innerHTML;
+};
+
 const rules = [
   marks,
   {
@@ -134,7 +154,11 @@ const rules = [
         };
       }
 
+      console.log(el.nodeType, 'el.nodetype');
+
       const type = el.tagName.toLowerCase();
+
+      console.log(type, 'type', el, 'el');
 
       const normalAttrs = attr(el) || {};
       const allAttrs = attributes.reduce(attributesToMap(el), { ...normalAttrs });
@@ -146,6 +170,25 @@ const rules = [
           nodes: [el]
         };
       }
+
+      //   if (type == 'audio') {
+      //     console.log("I'm in")
+      //   //  const audio = el.querySelector('audio');
+      //  //   if (audio) {
+      //       // const source = document.createElement('source');
+
+      //       // source.setAttribute('type', 'audio/mp3');
+      //       // source.setAttribute('src', el.getAttribute('src'));
+
+      //       // el.removeAttribute('src');
+      //       // el.appendChild(source);
+      //       return {
+      //         object,
+      //         type,
+      //         data: { dataset: { ...el.dataset }, attributes: { ...allAttrs } },
+      //         nodes: next(el.childNodes)
+      //       };
+      // }
 
       return {
         object,
