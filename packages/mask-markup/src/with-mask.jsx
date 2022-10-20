@@ -5,6 +5,7 @@ import componentize from './componentize';
 import { deserialize } from './serialization';
 
 export const buildLayoutFromMarkup = (markup, type) => {
+  console.log(markup, 'markup');
   const { markup: processed } = componentize(markup, type);
   const value = deserialize(processed);
   console.log(value.document, 'value.document');
@@ -42,3 +43,5 @@ export const withMask = (type, renderChildren) => {
     }
   };
 };
+
+//<span> <iframe data-type="audio" data-editing="false" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></span>

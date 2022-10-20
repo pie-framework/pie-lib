@@ -171,24 +171,33 @@ const rules = [
         };
       }
 
-      //   if (type == 'audio') {
-      //     console.log("I'm in")
-      //   //  const audio = el.querySelector('audio');
-      //  //   if (audio) {
-      //       // const source = document.createElement('source');
+      if (type == 'audio') {
+        console.log(
+          "I'm in",
+          object,
+          'object',
+          type,
+          'type',
+          { dataset: { ...el.dataset }, attributes: { ...allAttrs } },
+          'dataset',
+          next(el.childNodes, 'nodes')
+        );
+        //   //  const audio = el.querySelector('audio');
+        //  //   if (audio) {
+        //       // const source = document.createElement('source');
 
-      //       // source.setAttribute('type', 'audio/mp3');
-      //       // source.setAttribute('src', el.getAttribute('src'));
+        //       // source.setAttribute('type', 'audio/mp3');
+        //       // source.setAttribute('src', el.getAttribute('src'));
 
-      //       // el.removeAttribute('src');
-      //       // el.appendChild(source);
-      //       return {
-      //         object,
-      //         type,
-      //         data: { dataset: { ...el.dataset }, attributes: { ...allAttrs } },
-      //         nodes: next(el.childNodes)
-      //       };
-      // }
+        //       // el.removeAttribute('src');
+        //       // el.appendChild(source);
+        //       return {
+        //         object,
+        //         type,
+        //         data: { dataset: { ...el.dataset }, attributes: { ...allAttrs } },
+        //         nodes: next(el.childNodes)
+        //       };
+      }
 
       return {
         object,

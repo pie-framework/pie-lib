@@ -46,7 +46,11 @@ export const renderChildren = (layout, value, onChange, rootRenderChildren, pare
 
     if (n.isMath) {
       children.push(
-        <span dangerouslySetInnerHTML={{ __html: `<math displaystyle="true">${n.nodes[0].innerHTML}</math>` }} />
+        <span
+          dangerouslySetInnerHTML={{
+            __html: `<math displaystyle="true">${n.nodes[0].innerHTML}</math>`
+          }}
+        />
       );
       return children;
     }
@@ -106,7 +110,7 @@ const MaskContainer = withStyles(() => ({
   main: {
     display: 'initial'
   }
-}))(props => <div className={props.classes.main}>{props.children}</div>);
+}))(props => <div className={props.classes.main}>{testaudio}</div>);
 
 /**
  * Renders a layout that uses the slate.js Value model structure.
@@ -127,7 +131,16 @@ export default class Mask extends React.Component {
   render() {
     const { value, layout } = this.props;
     const children = renderChildren(layout, value, this.handleChange, this.props.renderChildren);
+    console.log("I'm still linked 3");
 
-    return <MaskContainer>{children}</MaskContainer>;
+    return (
+      <>
+        <span>
+          <audio controls='\"\"'>
+            <source type='\"audio/ogg\"' src='\"horse.ogg\"' />
+          </audio>
+        </span>
+      </>
+    );
   }
 }
