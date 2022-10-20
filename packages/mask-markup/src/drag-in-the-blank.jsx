@@ -7,7 +7,6 @@ import { withMask } from './with-mask';
 
 const Masked = withMask('blank', props => (node, data, onChange) => {
   const dataset = node.data ? node.data.dataset || {} : {};
-  console.log(props, 'props in markup');
   if (dataset.component === 'blank') {
     const { disabled, duplicates, correctResponse, feedback, showCorrectAnswer } = props;
     const choiceId = showCorrectAnswer ? correctResponse[dataset.id] : data[dataset.id];

@@ -28,7 +28,6 @@ const attr = el => {
 };
 
 const getObject = type => {
-  console.log(type, 'type');
   if (INLINE.includes(type)) {
     return 'inline';
   } else if (MARK.includes(type)) {
@@ -117,25 +116,6 @@ const marks = {
   }
 };
 
-const parsedText = text => {
-  // fix imported audio content for Safari PD-1419
-  const div = document.createElement('div');
-  div.innerHTML = text;
-
-  const audio = div.querySelector('audio');
-  if (audio) {
-    const source = document.createElement('source');
-
-    source.setAttribute('type', 'audio/mp3');
-    source.setAttribute('src', audio.getAttribute('src'));
-
-    audio.removeAttribute('src');
-    audio.appendChild(source);
-  }
-
-  return div.innerHTML;
-};
-
 const rules = [
   marks,
   {
@@ -154,13 +134,16 @@ const rules = [
         };
       }
 
-      console.log(el.nodeType, 'el.nodetype');
-
       const type = el.tagName.toLowerCase();
 
-      console.log(type, 'type', el, 'el');
+      let normalAttrs;
 
-      const normalAttrs = attr(el) || {};
+      if (type == 'audio' && attr(el)?.controls == '') {
+        normalAttrs = { controls: true };
+      } else {
+        normalAttrs = attr(el) || {};
+      }
+
       const allAttrs = attributes.reduce(attributesToMap(el), { ...normalAttrs });
       const object = getObject(type);
 
@@ -169,34 +152,6 @@ const rules = [
           isMath: true,
           nodes: [el]
         };
-      }
-
-      if (type == 'audio') {
-        console.log(
-          "I'm in",
-          object,
-          'object',
-          type,
-          'type',
-          { dataset: { ...el.dataset }, attributes: { ...allAttrs } },
-          'dataset',
-          next(el.childNodes, 'nodes')
-        );
-        //   //  const audio = el.querySelector('audio');
-        //  //   if (audio) {
-        //       // const source = document.createElement('source');
-
-        //       // source.setAttribute('type', 'audio/mp3');
-        //       // source.setAttribute('src', el.getAttribute('src'));
-
-        //       // el.removeAttribute('src');
-        //       // el.appendChild(source);
-        //       return {
-        //         object,
-        //         type,
-        //         data: { dataset: { ...el.dataset }, attributes: { ...allAttrs } },
-        //         nodes: next(el.childNodes)
-        //       };
       }
 
       return {

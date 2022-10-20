@@ -110,7 +110,7 @@ const MaskContainer = withStyles(() => ({
   main: {
     display: 'initial'
   }
-}))(props => <div className={props.classes.main}>{testaudio}</div>);
+}))(props => <div className={props.classes.main}>{props.children}</div>);
 
 /**
  * Renders a layout that uses the slate.js Value model structure.
@@ -131,16 +131,7 @@ export default class Mask extends React.Component {
   render() {
     const { value, layout } = this.props;
     const children = renderChildren(layout, value, this.handleChange, this.props.renderChildren);
-    console.log("I'm still linked 3");
 
-    return (
-      <>
-        <span>
-          <audio controls='\"\"'>
-            <source type='\"audio/ogg\"' src='\"horse.ogg\"' />
-          </audio>
-        </span>
-      </>
-    );
+    return <MaskContainer>{children}</MaskContainer>;
   }
 }
