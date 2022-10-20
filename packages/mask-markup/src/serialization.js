@@ -5,7 +5,7 @@ import debug from 'debug';
 
 const log = debug('@pie-lib:mask-markup:serialization');
 
-const INLINE = ['span', 'source'];
+const INLINE = ['span'];
 const MARK = ['em', 'strong', 'u'];
 const TEXT_NODE = 3;
 const COMMENT_NODE = 8;
@@ -136,12 +136,10 @@ const rules = [
 
       const type = el.tagName.toLowerCase();
 
-      let normalAttrs;
+      const normalAttrs = attr(el) || {};
 
-      if (type == 'audio' && attr(el)?.controls == '') {
-        normalAttrs = { controls: true };
-      } else {
-        normalAttrs = attr(el) || {};
+      if (type == 'audio' && normalAttrs.controls == '') {
+        normalAttrs.controls = true;
       }
 
       const allAttrs = attributes.reduce(attributesToMap(el), { ...normalAttrs });
