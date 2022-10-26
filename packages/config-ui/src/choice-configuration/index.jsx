@@ -36,7 +36,6 @@ const EditableHtmlContainer = withStyles(theme => ({
   }) => {
     const names = classNames(classes.labelContainer, className);
 
-    console.log('showImageToolbar config ui', disableImageAlignmentButtons);
     return (
       <InputContainer label={label} className={names}>
         <div className={classes.editorHolder}>
