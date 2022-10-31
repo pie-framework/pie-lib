@@ -55,6 +55,7 @@ export class Editor extends React.Component {
     focus: PropTypes.func.isRequired,
     value: SlateTypes.value.isRequired,
     imageSupport: PropTypes.object,
+    disableImageAlignmentButtons: PropTypes.bool,
     uploadSoundSupport: PropTypes.shape({
       add: PropTypes.func,
       delete: PropTypes.func
@@ -148,6 +149,7 @@ export class Editor extends React.Component {
         onBlur: this.onPluginBlur
       },
       image: {
+        disableImageAlignmentButtons: props.disableImageAlignmentButtons,
         onDelete:
           props.imageSupport &&
           props.imageSupport.delete &&
