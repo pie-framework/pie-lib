@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.2.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.2.2...@pie-lib/editable-html@9.2.3) (2022-10-31)
+
+
+### Bug Fixes
+
+* **editable-html:** increase helper text font size in alt dialog PD-2087 ([013cecb](https://github.com/pie-framework/pie-lib/commit/013cecbae73b5b8b6199aa814feb34d9627ed26f))
+* **editable-html:** send autoWidth property to toolbar to fix PD-2129 ([f001ddb](https://github.com/pie-framework/pie-lib/commit/f001ddbf51bd8a2b3294603811351b26587bfc0b))
+
+
+
+
+
 ## [9.2.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.2.1...@pie-lib/editable-html@9.2.2) (2022-09-29)
 
 

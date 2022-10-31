@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.12.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.12.14...@pie-lib/mask-markup@1.12.15) (2022-10-31)
+
+
+### Bug Fixes
+
+* **drag-in-the-blank:** refactor and cleanup ([582f104](https://github.com/pie-framework/pie-lib/commit/582f104f1f40c6214d70c2938ecfd81f6ac5c51b))
+* **drag-in-the-blank:** render audio content in define temlpate ([366d400](https://github.com/pie-framework/pie-lib/commit/366d400cd4fddf6804ef76a6fc5841c5ac3fd705))
+
+
+
+
+
 ## [1.12.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.12.13...@pie-lib/mask-markup@1.12.14) (2022-09-28)
 
 **Note:** Version bump only for package @pie-lib/mask-markup
