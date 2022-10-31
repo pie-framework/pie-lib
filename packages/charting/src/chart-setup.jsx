@@ -14,7 +14,7 @@ const ConfigureChartPanel = props => {
   const [rangeKey, setRangeKey] = useState('');
   const [resetValue, setResetValue] = useState(0);
 
-  const { range, correctAnswer } = model;
+  const { range = {}, correctAnswer } = model;
 
   const size = model.graph;
   const { showInConfigPanel, width, height } = chartDimensions || {};
