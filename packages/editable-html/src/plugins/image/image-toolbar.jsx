@@ -30,7 +30,8 @@ export class ImageToolbar extends React.Component {
     classes: PropTypes.object.isRequired,
     alignment: PropTypes.string,
     alt: PropTypes.string,
-    imageLoaded: PropTypes.bool
+    imageLoaded: PropTypes.bool,
+    disableImageAlignmentButtons: PropTypes.bool
   };
 
   onAltTextDone = newAlt => {
@@ -56,29 +57,32 @@ export class ImageToolbar extends React.Component {
   };
 
   render() {
-    const { classes, alignment, imageLoaded } = this.props;
-
+    const { classes, alignment, imageLoaded, disableImageAlignmentButtons } = this.props;
     return (
       <div className={classes.holder}>
-        <AlignmentButton
-          alignment={'left'}
-          active={alignment === 'left'}
-          onClick={this.onAlignmentClick}
-        />
-        <AlignmentButton
-          alignment={'center'}
-          active={alignment === 'center'}
-          onClick={this.onAlignmentClick}
-        />
-        <AlignmentButton
-          alignment={'right'}
-          active={alignment === 'right'}
-          onClick={this.onAlignmentClick}
-        />
+        {!disableImageAlignmentButtons && (
+          <>
+            <AlignmentButton
+              alignment={'left'}
+              active={alignment === 'left'}
+              onClick={this.onAlignmentClick}
+            />
+            <AlignmentButton
+              alignment={'center'}
+              active={alignment === 'center'}
+              onClick={this.onAlignmentClick}
+            />
+            <AlignmentButton
+              alignment={'right'}
+              active={alignment === 'right'}
+              onClick={this.onAlignmentClick}
+            />
+          </>
+        )}
         <span
           className={classNames({
             [classes.disabled]: !imageLoaded,
-            [classes.altButton]: true
+            [classes.altButton]: !disableImageAlignmentButtons
           })}
           onMouseDown={event => imageLoaded && this.renderDialog(event)}
         >
@@ -101,8 +105,8 @@ const styles = theme => ({
   altButton: {
     borderLeft: '1px solid grey',
     paddingLeft: 8,
-    marginLeft: 4,
-  },
+    marginLeft: 4
+  }
 });
 
 export default withStyles(styles)(ImageToolbar);

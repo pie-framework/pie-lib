@@ -24,6 +24,7 @@ const EditableHtmlContainer = withStyles(theme => ({
     value,
     className,
     imageSupport,
+    disableImageAlignmentButtons,
     disabled,
     spellCheck,
     nonEmpty,
@@ -45,6 +46,7 @@ const EditableHtmlContainer = withStyles(theme => ({
             nonEmpty={nonEmpty}
             onChange={onChange}
             imageSupport={imageSupport}
+            disableImageAlignmentButtons={disableImageAlignmentButtons}
             className={classes.editor}
             toolbarOpts={toolbarOpts}
             error={error}
@@ -128,6 +130,7 @@ export class ChoiceConfiguration extends React.Component {
       add: PropTypes.func.isRequired,
       delete: PropTypes.func.isRequired
     }),
+    disableImageAlignmentButtons: PropTypes.bool,
     allowFeedBack: PropTypes.bool,
     allowDelete: PropTypes.bool,
     toolbarOpts: PropTypes.object
@@ -193,6 +196,7 @@ export class ChoiceConfiguration extends React.Component {
       noLabels,
       useLetterOrdering,
       imageSupport,
+      disableImageAlignmentButtons,
       disabled,
       spellCheck,
       nonEmpty,
@@ -227,6 +231,7 @@ export class ChoiceConfiguration extends React.Component {
               value={data.label}
               onChange={this.onLabelChange}
               imageSupport={imageSupport}
+              disableImageAlignmentButtons={disableImageAlignmentButtons}
               disabled={disabled}
               spellCheck={spellCheck}
               nonEmpty={nonEmpty}

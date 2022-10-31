@@ -43,7 +43,13 @@ export default function ImagePlugin(opts) {
       };
 
       const Tb = () => (
-        <ImageToolbar alt={alt} imageLoaded={imageLoaded} alignment={alignment || 'left'} onChange={onChange} />
+        <ImageToolbar
+          disableImageAlignmentButtons={opts.disableImageAlignmentButtons}
+          alt={alt}
+          imageLoaded={imageLoaded}
+          alignment={alignment || 'left'}
+          onChange={onChange}
+        />
       );
       return Tb;
     },

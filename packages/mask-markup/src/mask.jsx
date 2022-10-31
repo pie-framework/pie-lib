@@ -46,7 +46,11 @@ export const renderChildren = (layout, value, onChange, rootRenderChildren, pare
 
     if (n.isMath) {
       children.push(
-        <span dangerouslySetInnerHTML={{ __html: `<math displaystyle="true">${n.nodes[0].innerHTML}</math>` }} />
+        <span
+          dangerouslySetInnerHTML={{
+            __html: `<math displaystyle="true">${n.nodes[0].innerHTML}</math>`
+          }}
+        />
       );
       return children;
     }

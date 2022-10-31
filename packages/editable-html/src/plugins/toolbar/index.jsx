@@ -15,6 +15,7 @@ export default function ToolbarPlugin(opts) {
         mainEditorRef={opts.mainEditorRef}
         disableScrollbar={opts.disableScrollbar}
         disableUnderline={opts.disableUnderline}
+        autoWidth={opts.autoWidth}
         onDone={opts.onDone}
       />
     )

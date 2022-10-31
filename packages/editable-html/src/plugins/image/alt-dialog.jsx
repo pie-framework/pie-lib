@@ -5,7 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 export class AltDialog extends React.Component {
   static propTypes = {
@@ -55,6 +55,7 @@ export class AltDialog extends React.Component {
               }
               value={value}
               onChange={event => this.setState({ value: event.target.value })}
+              FormHelperTextProps={{ style: { fontSize: 14 } }}
             />
           </div>
         </DialogContent>

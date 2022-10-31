@@ -137,6 +137,11 @@ const rules = [
       const type = el.tagName.toLowerCase();
 
       const normalAttrs = attr(el) || {};
+
+      if (type == 'audio' && normalAttrs.controls == '') {
+        normalAttrs.controls = true;
+      }
+
       const allAttrs = attributes.reduce(attributesToMap(el), { ...normalAttrs });
       const object = getObject(type);
 
