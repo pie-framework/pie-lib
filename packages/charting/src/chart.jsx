@@ -144,8 +144,8 @@ export class Chart extends React.Component {
     const {
       classes,
       className,
-      domain,
-      range,
+      domain = {},
+      range = {},
       size,
       title,
       onChangeTitle,
