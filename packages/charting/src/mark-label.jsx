@@ -14,6 +14,7 @@ const styles = theme => ({
     fontSize: theme.typography.fontSize,
     border: 'none',
     color: color.primaryDark(),
+    '&.error': { border: 'solid 2px red' },
     '&.correct': correct('color'),
     '&.incorrect': incorrect('color'),
     '&.disabled': {
@@ -22,7 +23,7 @@ const styles = theme => ({
     }
   }
 });
-
+console.log("I'm linked");
 export const MarkLabel = props => {
   // eslint-disable-next-line no-unused-vars
   const [input, setInput] = useState(null);
@@ -36,7 +37,8 @@ export const MarkLabel = props => {
     barWidth,
     rotate,
     correctness,
-    autoFocus
+    autoFocus,
+    error
   } = props;
   const [label, setLabel] = useState(mark.label);
   const onChange = e => setLabel(e.target.value);
@@ -63,7 +65,12 @@ export const MarkLabel = props => {
         externalInputRef(r);
       }}
       disabled={disabled}
-      inputClassName={cn(classes.input, correctness && correctness.label, disabled && 'disabled')}
+      inputClassName={cn(
+        classes.input,
+        correctness && correctness.label,
+        disabled && 'disabled',
+        error && 'error'
+      )}
       inputStyle={{
         minWidth: barWidth,
         textAlign: 'center',
