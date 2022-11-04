@@ -148,7 +148,7 @@ export class Input extends React.Component {
       // be transformed from 12\ \frac{34}{|} to 12\frac{34}{|}.
       const latex = this.mathField.latex();
 
-      if (latex.match(/([1-9])\\ /)) {
+      if (latex.match(/([0-9]*)\\ /)) {
         event.preventDefault();
         event.stopPropagation();
 
