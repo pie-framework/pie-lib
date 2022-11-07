@@ -162,25 +162,10 @@ export class TickComponent extends React.Component {
             correctness={correctness}
             error={error}
           />
-          {error && (
-            <div
-              style={{
-                fontSize: '12px',
-                color: 'red'
-              }}
-            ></div>
-          )}
+          {error && <div className={classes.error}></div>}
         </foreignObject>
         {error && error[index] && (
-          <text
-            style={{
-              fontSize: '12px',
-              fill: 'red'
-            }}
-            x={x}
-            y={y + 22}
-            height={4}
-          >
+          <text className={classes.error} x={x} y={y + 23} height={4}>
             {error[index]}
           </text>
         )}
@@ -457,6 +442,10 @@ const ChartAxes = withStyles(
     dottedLine: {
       stroke: color.primaryLight(),
       opacity: 0.2
+    },
+    error: {
+      fontSize: '12px',
+      fill: 'red'
     }
   }),
   { withTheme: true }

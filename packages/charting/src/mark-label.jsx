@@ -23,7 +23,7 @@ const styles = theme => ({
     }
   }
 });
-console.log("I'm linked");
+
 export const MarkLabel = props => {
   // eslint-disable-next-line no-unused-vars
   const [input, setInput] = useState(null);
