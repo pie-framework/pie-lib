@@ -168,11 +168,22 @@ export class TickComponent extends React.Component {
                 fontSize: '12px',
                 color: 'red'
               }}
-            >
-              {error}
-            </div>
+            ></div>
           )}
         </foreignObject>
+        {error && error[index] && (
+          <text
+            style={{
+              fontSize: '12px',
+              fill: 'red'
+            }}
+            x={x}
+            y={y + 22}
+            height={4}
+          >
+            {error[index]}
+          </text>
+        )}
         {deletable && !correctness && (
           <line
             x1={x}
