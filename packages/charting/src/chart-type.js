@@ -27,11 +27,11 @@ const ChartType = withStyles(theme => ({
         input={<OutlinedInput name="type" id="type-helper" />}
       >
         <MenuItem value={'histogram'}>Histogram</MenuItem>
-        <MenuItem value={'bar'}>Bar</MenuItem>
-        <MenuItem value={'lineDot'}>Line Dot</MenuItem>
-        <MenuItem value={'lineCross'}>Line Cross</MenuItem>
-        <MenuItem value={'dotPlot'}>Dot Plot</MenuItem>
-        <MenuItem value={'linePlot'}>Line Plot</MenuItem>
+        <MenuItem value={'bar'}>Bar Chart</MenuItem>
+        <MenuItem value={'lineDot'}>Line Chart &#9679;</MenuItem>
+        <MenuItem value={'lineCross'}>Line Chart &#128939;</MenuItem>
+        <MenuItem value={'dotPlot'}>Dot/Line Plot &#11044;</MenuItem>
+        <MenuItem value={'linePlot'}>Dot/Line Plot &#128473;</MenuItem>
       </Select>
     </FormControl>
   </div>
