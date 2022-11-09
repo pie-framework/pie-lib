@@ -29,9 +29,9 @@ const ChartType = withStyles(theme => ({
         <MenuItem value={'histogram'}>Histogram</MenuItem>
         <MenuItem value={'bar'}>Bar Chart</MenuItem>
         <MenuItem value={'lineDot'}>Line Chart &#9679;</MenuItem>
-        <MenuItem value={'lineCross'}>Line Chart &#128939;</MenuItem>
+        <MenuItem value={'lineCross'}>Line Chart x</MenuItem>
         <MenuItem value={'dotPlot'}>Dot/Line Plot &#11044;</MenuItem>
-        <MenuItem value={'linePlot'}>Dot/Line Plot &#128473;</MenuItem>
+        <MenuItem value={'linePlot'}>Dot/Line Plot X</MenuItem>
       </Select>
     </FormControl>
   </div>
