@@ -132,6 +132,20 @@ export class EditorAndPad extends React.Component {
       return;
     }
 
+    // eslint-disable-next-line no-useless-escape
+    const regexMatch = latex.match(/[0-9]\\ \\frac\{[^\{]*\}\{ \}/);
+
+    if (this.input && regexMatch && regexMatch?.length) {
+      try {
+        this.input.mathField.__controller.cursor.insLeftOf(this.input.mathField.__controller.cursor.parent[-1].parent)
+        this.input.mathField.el().dispatchEvent(new KeyboardEvent('keydown', { keyCode: 8 }));
+      } catch (e) {
+        console.error(e.toString());
+      }
+
+      return;
+    }
+
     onChange(latex);
   };
 
