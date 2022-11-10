@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import grey from '@material-ui/core/colors/grey';
 
 export const PlaceHolder = props => {
-  const { children, classes, className, isOver, type, grid, disabled } = props;
+  const { children, classes, className, isOver, type, grid, disabled, choiceBoard } = props;
   const names = classNames(
     classes.placeholder,
     disabled && classes.disabled,
@@ -14,6 +14,8 @@ export const PlaceHolder = props => {
     className
   );
 
+  console.log('choice board', choiceBoard);
+  console.log("i'm linked");
   const style = {};
 
   if (grid && grid.columns) {
@@ -25,7 +27,7 @@ export const PlaceHolder = props => {
     style.gridTemplateRows = `repeat(${grid.rows}, ${repeatValue})`;
   }
   return (
-    <div style={style} className={names}>
+    <div style={style} className={choiceBoard ? classes.board : names}>
       {children}
     </div>
   );
@@ -67,6 +69,14 @@ const styles = theme => ({
   over: {
     border: `1px solid ${grey[500]}`,
     backgroundColor: `${grey[300]}`
+  },
+  board: {
+    border: '1px solid #D1D1D1',
+    padding: '4px',
+    display: 'flex',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 });
 
