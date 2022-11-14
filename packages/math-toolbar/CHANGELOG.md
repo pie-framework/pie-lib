@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.11.1...@pie-lib/math-toolbar@1.11.2) (2022-11-14)
+
+
+### Bug Fixes
+
+* PD-1858 (Math editor tweak to better handle the entry of mixed numbers) - not working with a mixed number if the integer part is multi-digit PD-1858, PD-2029, PD-2030, PD-2031 ([158e76a](https://github.com/pie-framework/pie-lib/commit/158e76a48bec66b1f026811bb1856fa4af5668f3))
+
+
+
+
+
 ## [1.11.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.11.0...@pie-lib/math-toolbar@1.11.1) (2022-08-30)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
