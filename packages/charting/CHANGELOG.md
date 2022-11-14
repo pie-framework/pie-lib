@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.3.1...@pie-lib/charting@5.4.0) (2022-11-14)
+
+
+### Features
+
+* **charting:** add error message for empty category labels and non unique category labels ([8daa572](https://github.com/pie-framework/pie-lib/commit/8daa572b3f04b8b097f937cfb28ba527b6ea51f1))
+* **charting:** rename chart types ([01bbcaa](https://github.com/pie-framework/pie-lib/commit/01bbcaad7702c2a2ddcc3c225a76ca94cfeea702))
+* **charting:** rename chart types ([316389b](https://github.com/pie-framework/pie-lib/commit/316389b5315de50518aa39d0de3dbee23cc9f53c))
+* **charting:** validation for category labels ([9f190fa](https://github.com/pie-framework/pie-lib/commit/9f190fa3626135f14e28bd7ac3517939af1aaf7a))
+
+
+
+
+
 ## [5.3.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.3.0...@pie-lib/charting@5.3.1) (2022-10-31)
 
 
