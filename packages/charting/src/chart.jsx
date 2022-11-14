@@ -16,10 +16,20 @@ import {
 } from './utils';
 import ToolMenu from './tool-menu';
 import chartTypes from './chart-types';
+import { AlertDialog } from '@pie-lib/config-ui';
 
 const log = debug('pie-lib:charts:chart');
 
 export class Chart extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      dialog: {
+        open: false
+      }
+    };
+  }
+
   static propTypes = {
     classes: PropTypes.object.isRequired,
     className: PropTypes.string,
@@ -71,6 +81,14 @@ export class Chart extends React.Component {
     ]
   };
 
+  handleAlertDialog = (open, callback) =>
+    this.setState(
+      {
+        dialog: { open }
+      },
+      callback
+    );
+
   getChart = () => {
     const charts = this.props.charts || this.state.charts;
     let { chartType } = this.props;
@@ -115,18 +133,29 @@ export class Chart extends React.Component {
   addCategory = range => {
     const { onDataChange, data, categoryDefaultLabel, defineChart } = this.props;
 
-    onDataChange([
-      ...data,
-      {
-        inDefineChart: defineChart,
-        autoFocus: true,
-        label: categoryDefaultLabel || 'New Bar',
-        value: range.step,
-        deletable: true,
-        editable: true,
-        interactive: true
-      }
-    ]);
+    if (!defineChart && data.length > 19) {
+      this.setState({
+        dialog: {
+          open: true,
+          title: 'Warning',
+          text: "There can't be more than 20 categories.",
+          onConfirm: () => this.handleAlertDialog(false)
+        }
+      });
+    } else {
+      onDataChange([
+        ...data,
+        {
+          inDefineChart: defineChart,
+          autoFocus: true,
+          label: categoryDefaultLabel || 'New Bar',
+          value: range.step,
+          deletable: true,
+          editable: true,
+          interactive: true
+        }
+      ]);
+    }
   };
 
   getFilteredCategories = () => {
@@ -153,10 +182,12 @@ export class Chart extends React.Component {
       labelsPlaceholders,
       titlePlaceholder,
       addCategoryEnabled,
-      showPixelGuides
+      showPixelGuides,
+      error
     } = this.props;
     let { chartType } = this.props;
 
+    const { dialog } = this.state;
     const defineChart = this.props.defineChart || false;
     const { width, height } = size || {};
     const labels = { left: range?.label || '', bottom: domain.label || '' };
@@ -209,6 +240,7 @@ export class Chart extends React.Component {
             addCategory={() => this.addCategory(correctValues.range)}
           />
         </div>
+
         <Root
           title={title}
           onChangeTitle={onChangeTitle}
@@ -242,6 +274,7 @@ export class Chart extends React.Component {
             onChange={this.changeData}
             onChangeCategory={this.changeCategory}
             top={top}
+            error={error}
           />
           <mask id="myMask">
             <rect {...maskSize} fill="white" />
@@ -256,6 +289,13 @@ export class Chart extends React.Component {
             />
           </g>
         </Root>
+        <AlertDialog
+          open={dialog.open}
+          title={dialog.title}
+          text={dialog.text}
+          onClose={dialog.onClose}
+          onConfirm={dialog.onConfirm}
+        />
       </div>
     );
   }

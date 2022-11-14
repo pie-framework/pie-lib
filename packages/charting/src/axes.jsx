@@ -103,7 +103,8 @@ export class TickComponent extends React.Component {
       defineChart,
       x,
       y,
-      formattedValue
+      formattedValue,
+      error
     } = this.props;
 
     if (!formattedValue) {
@@ -159,8 +160,14 @@ export class TickComponent extends React.Component {
             barWidth={barWidth}
             rotate={rotate}
             correctness={correctness}
+            error={error}
           />
         </foreignObject>
+        {error && error[index] && (
+          <text className={classes.error} x={x} y={y + 23} height={4}>
+            {error[index]}
+          </text>
+        )}
         {deletable && !correctness && (
           <line
             x1={x}
@@ -336,7 +343,8 @@ export class RawChartAxes extends React.Component {
       categories = [],
       top,
       defineChart,
-      theme
+      theme,
+      error
     } = this.props;
 
     const { axis, axisLine, tick } = classes;
@@ -369,6 +377,7 @@ export class RawChartAxes extends React.Component {
         rotate,
         top,
         defineChart,
+        error,
         onChangeCategory,
         onChange,
         graphProps,
@@ -432,6 +441,10 @@ const ChartAxes = withStyles(
     dottedLine: {
       stroke: color.primaryLight(),
       opacity: 0.2
+    },
+    error: {
+      fontSize: '12px',
+      fill: 'red'
     }
   }),
   { withTheme: true }
