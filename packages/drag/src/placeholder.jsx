@@ -14,8 +14,6 @@ export const PlaceHolder = props => {
     className
   );
 
-  console.log('choice board', choiceBoard);
-  console.log("i'm linked");
   const style = {};
 
   if (grid && grid.columns) {
