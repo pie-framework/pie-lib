@@ -162,7 +162,6 @@ export class TickComponent extends React.Component {
             correctness={correctness}
             error={error}
           />
-          {error && <div className={classes.error}></div>}
         </foreignObject>
         {error && error[index] && (
           <text className={classes.error} x={x} y={y + 23} height={4}>
