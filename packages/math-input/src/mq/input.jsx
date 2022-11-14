@@ -134,41 +134,6 @@ export class Input extends React.Component {
       this.write('\\embed{newLine}[]');
       this.onInputEdit();
     }
-
-    if (event.charCode === 47) {
-      // Whenever the math editor cursor is positioned after an integer
-      // (i.e. a sequence of 1 or more digits) followed immediately by a space followed immediately by another integer,
-      // then a side effect of pressing the forward slash key or clicking the B fraction button should be to remove
-      // the space between the first integer and the second integer (which is now the numerator of a new fraction).
-      // E.g. if the user were trying to enter the mixed number one and two-thirds, and typed [1], [space], [2], [forward slash],
-      // producing the latex 1\ \frac{2}{|} (where | is not actually part of the representation, but rather
-      // represents the position of the cursor), this should be automatically transformed to 1\frac{2}{|}
-      // (with | again representing the position of the cursor).
-      // Similarly, if the user had typed [1], [2], [space], [3], [4], [forward slash], then the resulting representation should
-      // be transformed from 12\ \frac{34}{|} to 12\frac{34}{|}.
-      const latex = this.mathField.latex();
-
-      if (latex.match(/([1-9])\\ /)) {
-        event.preventDefault();
-        event.stopPropagation();
-
-        this.clear();
-
-        const indexOfSpace = latex.lastIndexOf('\\ ');
-        // split the latex by the last space added
-        const firstPart = latex.slice(0, indexOfSpace);
-        const secondPart = latex.slice(indexOfSpace + 2);
-
-        // reconstruct the latex without the extra space
-        const newLatex = firstPart + '\\frac{' + secondPart + '}{}';
-
-        this.mathField.latex(newLatex);
-        // trigger pressing keydown to move focus on the denominator
-        this.mathField.el().dispatchEvent(new KeyboardEvent('keydown', { keyCode: 37 }));
-
-        this.onInputEdit();
-      }
-    }
   };
 
   shouldComponentUpdate(nextProps) {
