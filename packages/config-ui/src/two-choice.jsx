@@ -35,7 +35,6 @@ class RawNChoice extends React.Component {
 
   render() {
     const { header, className, classes, customLabel, opts, value, direction } = this.props;
-
     const preppedOpts = opts.map(o => {
       return typeof o === 'string' ? { label: o, value: o } : o;
     });
