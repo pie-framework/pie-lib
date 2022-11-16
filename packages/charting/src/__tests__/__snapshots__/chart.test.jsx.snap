@@ -193,6 +193,9 @@ exports[`ChartAxes snapshot renders 1`] = `
       />
     </g>
   </WithStyles(Root)>
+  <AlertDialog
+    open={false}
+  />
 </div>
 `;
 
@@ -389,206 +392,15 @@ exports[`ChartAxes snapshot renders if size is not defined 1`] = `
       />
     </g>
   </WithStyles(Root)>
+  <AlertDialog
+    open={false}
+  />
 </div>
 `;
 
 exports[`ChartAxes snapshot renders with chartType property and empty charts property 1`] = `""`;
 
-exports[`ChartAxes snapshot renders without chartType and charts properties 1`] = `
-<div
-  className="className"
->
-  <div>
-    <ToolMenu
-      addCategory={[Function]}
-      disabled={true}
-    />
-  </div>
-  <WithStyles(Root)
-    classes={Object {}}
-    defineChart={false}
-    disabledLabels={true}
-    disabledTitle={true}
-    graphProps={
-      Object {
-        "domain": Object {
-          "labelStep": 1,
-          "max": 1,
-          "min": 0,
-          "step": 1,
-        },
-        "getRootNode": [Function],
-        "range": Object {
-          "labelStep": 1,
-          "max": 10,
-          "min": 0,
-          "step": 1,
-        },
-        "scale": Object {
-          "x": [Function],
-          "y": [Function],
-        },
-        "size": Object {
-          "height": 160,
-          "width": 100,
-        },
-        "snap": Object {
-          "x": [Function],
-          "y": [Function],
-        },
-      }
-    }
-    isChart={true}
-    labels={
-      Object {
-        "bottom": "",
-        "left": "",
-      }
-    }
-    rootRef={[Function]}
-    showLabels={true}
-    showTitle={true}
-  >
-    <WithStyles(Grid)
-      columnTickValues={Array []}
-      graphProps={
-        Object {
-          "domain": Object {
-            "labelStep": 1,
-            "max": 1,
-            "min": 0,
-            "step": 1,
-          },
-          "getRootNode": [Function],
-          "range": Object {
-            "labelStep": 1,
-            "max": 10,
-            "min": 0,
-            "step": 1,
-          },
-          "scale": Object {
-            "x": [Function],
-            "y": [Function],
-          },
-          "size": Object {
-            "height": 100,
-            "width": 100,
-          },
-          "snap": Object {
-            "x": [Function],
-            "y": [Function],
-          },
-        }
-      }
-      rowTickValues={
-        Array [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9,
-          10,
-        ]
-      }
-      xBand={[Function]}
-    />
-    <WithStyles(RawChartAxes)
-      categories={Array []}
-      defineChart={false}
-      graphProps={
-        Object {
-          "domain": Object {
-            "labelStep": 1,
-            "max": 1,
-            "min": 0,
-            "step": 1,
-          },
-          "getRootNode": [Function],
-          "range": Object {
-            "labelStep": 1,
-            "max": 10,
-            "min": 0,
-            "step": 1,
-          },
-          "scale": Object {
-            "x": [Function],
-            "y": [Function],
-          },
-          "size": Object {
-            "height": 100,
-            "width": 100,
-          },
-          "snap": Object {
-            "x": [Function],
-            "y": [Function],
-          },
-        }
-      }
-      leftAxis={true}
-      onChange={[Function]}
-      onChangeCategory={[Function]}
-      top={0}
-      xBand={[Function]}
-    />
-    <mask
-      id="myMask"
-    >
-      <rect
-        fill="white"
-        height={180}
-        width={120}
-        x={-10}
-        y={-10}
-      />
-    </mask>
-    <g
-      id="marks"
-      mask="url('#myMask')"
-    >
-      <Bar
-        data={Array []}
-        defineChart={false}
-        graphProps={
-          Object {
-            "domain": Object {
-              "labelStep": 1,
-              "max": 1,
-              "min": 0,
-              "step": 1,
-            },
-            "getRootNode": [Function],
-            "range": Object {
-              "labelStep": 1,
-              "max": 10,
-              "min": 0,
-              "step": 1,
-            },
-            "scale": Object {
-              "x": [Function],
-              "y": [Function],
-            },
-            "size": Object {
-              "height": 100,
-              "width": 100,
-            },
-            "snap": Object {
-              "x": [Function],
-              "y": [Function],
-            },
-          }
-        }
-        onChange={[Function]}
-        onChangeCategory={[Function]}
-      />
-    </g>
-  </WithStyles(Root)>
-</div>
-`;
+exports[`ChartAxes snapshot renders without chartType and charts properties 1`] = `""`;
 
 exports[`ChartAxes snapshot renders without chartType property 1`] = `
 <div
@@ -783,6 +595,9 @@ exports[`ChartAxes snapshot renders without chartType property 1`] = `
       />
     </g>
   </WithStyles(Root)>
+  <AlertDialog
+    open={false}
+  />
 </div>
 `;
 

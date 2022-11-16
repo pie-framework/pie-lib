@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.8.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.8.1...@pie-lib/math-input@6.8.2) (2022-11-14)
+
+
+### Bug Fixes
+
+* PD-1858 (Math editor tweak to better handle the entry of mixed numbers) - not working with a mixed number if the integer part is multi-digit PD-1858, PD-2029, PD-2030, PD-2031 ([158e76a](https://github.com/pie-framework/pie-lib/commit/158e76a48bec66b1f026811bb1856fa4af5668f3))
+* PD-1858 not working with a mixed number if the integer part is multi-digit PD-2029 ([773f51c](https://github.com/pie-framework/pie-lib/commit/773f51cc54a2af72a1e9bd225ba9be27d8b1de52))
+
+
+
+
+
 ## [6.8.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.8.0...@pie-lib/math-input@6.8.1) (2022-08-30)
 
 **Note:** Version bump only for package @pie-lib/math-input
