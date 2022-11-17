@@ -47,8 +47,21 @@ export default class Static extends React.Component {
       return;
     }
     const name = this.props.getFieldName(field, this.mathField.innerFields);
+
     if (this.props.onSubFieldChange) {
-      this.props.onSubFieldChange(name, field.latex());
+      // eslint-disable-next-line no-useless-escape
+      const regexMatch = field.latex().match(/[0-9]\\ \\frac\{[^\{]*\}\{ \}/);
+
+      if (this.input && regexMatch && regexMatch?.length) {
+        try {
+          field.__controller.cursor.insLeftOf(field.__controller.cursor.parent[-1].parent);
+          field.el().dispatchEvent(new KeyboardEvent("keydown", { keyCode: 8 }));
+        } catch (e) {
+          console.error(e.toString());
+        }
+      } else {
+        this.props.onSubFieldChange(name, field.latex());
+      }
     }
   }
 
