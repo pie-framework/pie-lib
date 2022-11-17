@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.8.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.8.2...@pie-lib/math-input@6.8.3) (2022-11-17)
+
+
+### Bug Fixes
+
+* PD-1858 not working with the fraction button in Advanced Multi mode (mq.Static) PD-2030 PD-2031 ([46d1168](https://github.com/pie-framework/pie-lib/commit/46d116874c063524c764cb6d7035fed6bfa84dfb))
+
+
+
+
+
 ## [6.8.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.8.1...@pie-lib/math-input@6.8.2) (2022-11-14)
 
 
