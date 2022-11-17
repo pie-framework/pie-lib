@@ -74,7 +74,9 @@ const styles = theme => ({
     display: 'flex',
     flexWrap: 'wrap',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginLeft: '20px',
+    minHeight: '200px'
   }
 });
 
