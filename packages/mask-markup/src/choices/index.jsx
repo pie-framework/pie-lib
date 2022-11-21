@@ -2,8 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import findKey from 'lodash/findKey';
 import Choice from './choice';
+import { DropTarget } from 'react-dnd';
+import { uid } from '@pie-lib/drag';
 
-export default class Choices extends React.Component {
+export class Choices extends React.Component {
   static propTypes = {
     disabled: PropTypes.bool,
     duplicates: PropTypes.bool,
@@ -24,6 +26,7 @@ export default class Choices extends React.Component {
         };
       case 'below':
         return {
+          backgroundColor: 'red',
           margin: '40px 0 0 0'
         };
       case 'right':
@@ -38,7 +41,7 @@ export default class Choices extends React.Component {
   };
 
   render() {
-    const { disabled, duplicates, choices, value } = this.props;
+    const { disabled, duplicates, choices, value, connectDropTarget } = this.props;
     const filteredChoices = choices.filter(c => {
       if (duplicates === true) {
         return true;
@@ -48,7 +51,7 @@ export default class Choices extends React.Component {
     });
     const elementStyle = this.getStyleForWrapper();
 
-    return (
+    return connectDropTarget(
       <div style={elementStyle}>
         {filteredChoices.map((c, index) => (
           <Choice key={`${c.value}-${index}`} disabled={disabled} choice={c} />
@@ -57,3 +60,25 @@ export default class Choices extends React.Component {
     );
   }
 }
+
+export const spec = {
+  drop: (props, monitor) => {
+    log('[drop] props: ', props);
+    // const item = monitor.getItem();
+    // props.onDropChoice(item);
+  },
+  canDrop: (props /*, monitor*/) => {
+    return !props.disabled;
+  }
+};
+
+const WithTarget = DropTarget(
+  ({ uid }) => uid,
+  spec,
+  (connect, monitor) => ({
+    connectDropTarget: connect.dropTarget(),
+    isOver: monitor.isOver()
+  })
+)(Choices);
+
+export default uid.withUid(WithTarget);
