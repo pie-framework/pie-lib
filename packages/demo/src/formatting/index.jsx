@@ -5,14 +5,14 @@ import { withStyles } from '@material-ui/core/styles';
 import _ from 'lodash';
 
 const comp = (variant, styles) => {
-  const out = withStyles(theme => {
+  const out = withStyles((theme) => {
     styles = _.isFunction(styles) ? styles(theme) : styles;
     return {
       comp: {
         paddingTop: theme.spacing.unit,
         paddingBottom: theme.spacing.unit,
-        ...styles
-      }
+        ...styles,
+      },
     };
   })(({ children, classes }) => (
     <Typography className={classes.comp} variant={variant}>
@@ -21,7 +21,7 @@ const comp = (variant, styles) => {
   ));
 
   out.propTypes = {
-    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired
+    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
   };
 
   return out;

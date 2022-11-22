@@ -6,7 +6,7 @@ import * as _ from 'lodash';
  * Expects an array of rows.
  * @param {} keys
  */
-export const sortKeys = keys => {
+export const sortKeys = (keys) => {
   // add any missing rows
   _.times(5 - keys.length, () => {
     keys.push([]);

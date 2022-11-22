@@ -6,14 +6,14 @@ import { graphProps } from '../../../__tests__/utils';
 describe('BgCircle', () => {
   let w;
   let onChange = jest.fn();
-  const wrapper = extras => {
+  const wrapper = (extras) => {
     const defaults = {
       classes: {},
       className: 'className',
       onChange,
       x: 0,
       y: 0,
-      graphProps: graphProps()
+      graphProps: graphProps(),
     };
     const props = { ...defaults, ...extras };
     return shallow(<BgCircle {...props} />);

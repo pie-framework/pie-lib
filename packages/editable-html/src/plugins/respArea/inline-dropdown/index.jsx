@@ -14,7 +14,7 @@ const InlineDropdown = ({ attributes, selectedItem }) => {
         display: 'inline-flex',
         height: '50px',
         margin: '0 5px',
-        cursor: 'pointer'
+        cursor: 'pointer',
       }}
     >
       <div
@@ -26,7 +26,7 @@ const InlineDropdown = ({ attributes, selectedItem }) => {
           border: '1px solid #C0C3CF',
           boxSizing: 'border-box',
           borderRadius: '3px',
-          position: 'relative'
+          position: 'relative',
         }}
       >
         <div
@@ -36,10 +36,10 @@ const InlineDropdown = ({ attributes, selectedItem }) => {
             padding: '0 25px 0 8px',
             whiteSpace: 'nowrap',
             textOverflow: 'ellipsis',
-            lineHeight: '35px'
+            lineHeight: '35px',
           }}
           dangerouslySetInnerHTML={{
-            __html: html
+            __html: html,
           }}
         />
         <Chevron
@@ -47,7 +47,7 @@ const InlineDropdown = ({ attributes, selectedItem }) => {
           style={{
             position: 'absolute',
             top: '5px',
-            right: '5px'
+            right: '5px',
           }}
         />
       </div>
@@ -57,7 +57,7 @@ const InlineDropdown = ({ attributes, selectedItem }) => {
 
 InlineDropdown.propTypes = {
   attributes: PropTypes.object,
-  selectedItem: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
+  selectedItem: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 };
 
 export default InlineDropdown;

@@ -9,8 +9,8 @@ export const onValueChange = (nodeProps, n, value) => {
   change.setNodeByKey(n.key, {
     data: {
       ...value,
-      index: n.data.get('index')
-    }
+      index: n.data.get('index'),
+    },
   });
 
   nodeProps.editor.props.onChange(change, () => {
@@ -21,14 +21,12 @@ export const onValueChange = (nodeProps, n, value) => {
 export const onRemoveResponse = (nodeProps, value) => {
   const val = nodeProps.editor.value;
   const change = val.change();
-  const dragInTheBlank = val.document.findDescendant(
-    n => n.data && n.data.get('index') === value.index
-  );
+  const dragInTheBlank = val.document.findDescendant((n) => n.data && n.data.get('index') === value.index);
 
   change.setNodeByKey(dragInTheBlank.key, {
     data: {
-      index: dragInTheBlank.data.get('index')
-    }
+      index: dragInTheBlank.data.get('index'),
+    },
   });
 
   nodeProps.editor.props.onChange(change, () => {
@@ -36,7 +34,7 @@ export const onRemoveResponse = (nodeProps, value) => {
   });
 };
 
-const DragDrop = props => {
+const DragDrop = (props) => {
   const { attributes, data, n, nodeProps, opts } = props;
   const { inTable } = data;
 
@@ -49,7 +47,7 @@ const DragDrop = props => {
         minWidth: '178px',
         position: 'relative',
         margin: inTable ? '10px' : '0 10px',
-        cursor: 'pointer'
+        cursor: 'pointer',
       }}
     >
       <DragDropTile
@@ -58,8 +56,8 @@ const DragDrop = props => {
         targetId="0"
         value={data}
         duplicates={opts.options.duplicates}
-        onChange={value => onValueChange(nodeProps, n, value)}
-        removeResponse={value => onRemoveResponse(nodeProps, value)}
+        onChange={(value) => onValueChange(nodeProps, n, value)}
+        removeResponse={(value) => onRemoveResponse(nodeProps, value)}
       >
         {nodeProps.children}
       </DragDropTile>
@@ -72,7 +70,7 @@ DragDrop.propTypes = {
   data: PropTypes.object,
   n: PropTypes.object,
   nodeProps: PropTypes.object,
-  opts: PropTypes.object
+  opts: PropTypes.object,
 };
 
 export default DragDrop;

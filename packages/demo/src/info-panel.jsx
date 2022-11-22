@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 export default class InfoPanel extends React.Component {
   static propTypes = {
     model: PropTypes.object,
-    className: PropTypes.string
+    className: PropTypes.string,
   };
 
   render() {

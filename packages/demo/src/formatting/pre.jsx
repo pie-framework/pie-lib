@@ -6,19 +6,15 @@ export class Pre extends React.Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     className: PropTypes.string,
-    value: PropTypes.any
+    value: PropTypes.any,
   };
   static defaultProps = {};
   render() {
     const { classes, className, value } = this.props;
-    return (
-      <pre className={classNames(classes.class, className)}>
-        {JSON.stringify(value, null, '  ')}
-      </pre>
-    );
+    return <pre className={classNames(classes.class, className)}>{JSON.stringify(value, null, '  ')}</pre>;
   }
 }
 const styles = () => ({
-  class: {}
+  class: {},
 });
 export default withStyles(styles)(Pre);

@@ -4,10 +4,10 @@ import { withStyles } from '@material-ui/core/styles';
 import { noSelect, strokeColor } from '../style-utils';
 import range from 'lodash/range';
 
-const Tick = withStyles(theme => ({
+const Tick = withStyles((theme) => ({
   tick: {
-    stroke: strokeColor(theme)
-  }
+    stroke: strokeColor(theme),
+  },
 }))(({ x, height, bottom, classes, major, minor }) => {
   const y1 = major ? bottom - height * 2 : minor ? bottom - height * 1.5 : bottom - height;
 
@@ -17,7 +17,7 @@ const Tick = withStyles(theme => ({
 const Ticks = ({ count, width, height }) => {
   return (
     <React.Fragment>
-      {range(1, count).map(r => {
+      {range(1, count).map((r) => {
         return (
           <Tick
             key={r}
@@ -37,7 +37,7 @@ const Ticks = ({ count, width, height }) => {
 Ticks.propTypes = {
   count: PropTypes.number.isRequired,
   width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired
+  height: PropTypes.number.isRequired,
 };
 
 export class Unit extends React.Component {
@@ -47,14 +47,14 @@ export class Unit extends React.Component {
     height: PropTypes.number.isRequired,
     classes: PropTypes.object.isRequired,
     last: PropTypes.bool.isRequired,
-    config: PropTypes.object.isRequired
+    config: PropTypes.object.isRequired,
   };
 
   render() {
     const { index, width, height, classes, last, config } = this.props;
 
     const style = {
-      transform: `translate(${width * (index - 1)}px, 0px)`
+      transform: `translate(${width * (index - 1)}px, 0px)`,
     };
     return (
       <g style={style}>
@@ -69,19 +69,19 @@ export class Unit extends React.Component {
   }
 }
 
-export default withStyles(theme => ({
+export default withStyles((theme) => ({
   endTick: {
     stroke: strokeColor(theme),
-    strokeWidth: 1
+    strokeWidth: 1,
   },
   label: {
     textAnchor: 'end',
     fontSize: '12px',
     fill: strokeColor(theme),
-    ...noSelect()
+    ...noSelect(),
   },
   base: {
     fill: 'none',
-    stroke: 'red'
-  }
+    stroke: 'red',
+  },
 }))(Unit);

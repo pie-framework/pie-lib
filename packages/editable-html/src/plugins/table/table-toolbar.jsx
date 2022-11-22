@@ -24,16 +24,16 @@ export class TableToolbar extends React.Component {
     onToggleBorder: PropTypes.func.isRequired,
     hasBorder: PropTypes.bool,
     onDone: PropTypes.func.isRequired,
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
   };
 
   static defaultProps = {
     plugins: [],
     value: {},
-    onChange: () => {}
+    onChange: () => {},
   };
 
-  onDone = e => {
+  onDone = (e) => {
     const { onDone } = this.props;
     e.preventDefault();
     onDone();
@@ -51,7 +51,7 @@ export class TableToolbar extends React.Component {
       onRemoveTable,
       onToggleBorder,
       hasBorder,
-      classes
+      classes,
     } = this.props;
     log('[render] hasBorder:', hasBorder);
 
@@ -74,12 +74,7 @@ export class TableToolbar extends React.Component {
             <RemoveTable />
           </Button>
           {plugins.map((p, index) => (
-            <ToolbarButton
-              key={`plugin-${index}`}
-              {...p.toolbar}
-              value={value}
-              onChange={onChange}
-            />
+            <ToolbarButton key={`plugin-${index}`} {...p.toolbar} value={value} onChange={onChange} />
           ))}
           <Button onClick={onToggleBorder} active={hasBorder}>
             <BorderAll />
@@ -95,10 +90,10 @@ const styles = () => ({
   tableToolbar: {
     width: '100%',
     display: 'flex',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   toolbarButtons: {
-    display: 'flex'
-  }
+    display: 'flex',
+  },
 });
 export default withStyles(styles)(TableToolbar);

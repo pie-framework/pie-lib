@@ -21,14 +21,14 @@ percent.rawArgs = false;
 // import the new function in the math namespace
 
 mathjs.import({
-  percent
+  percent,
 });
 
 // const r = v => mathjs.rationalize(v);
 // const a = mathjs.parse('4 x');
 // const b = mathjs.parse('x 4');
 
-const mo = tree => JSON.stringify(tree, null, '  ');
+const mo = (tree) => JSON.stringify(tree, null, '  ');
 // // console.log('a:', mo(a));
 // // console.log('b:', mo(b));
 // // console.log(a.equals(b));

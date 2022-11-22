@@ -5,7 +5,7 @@ const getBranch = () =>
     .toString()
     .trim();
 
-const getSha = short =>
+const getSha = (short) =>
   execSync(`git rev-parse ${short ? '--short' : ''} HEAD`)
     .toString()
     .trim();

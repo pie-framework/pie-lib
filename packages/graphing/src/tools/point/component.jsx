@@ -10,7 +10,7 @@ import isEmpty from 'lodash/isEmpty';
 export class Point extends React.Component {
   static propTypes = {
     graphProps: types.GraphPropsType.isRequired,
-    ...ToolPropTypeFields
+    ...ToolPropTypeFields,
   };
 
   static defaultProps = {};
@@ -20,7 +20,7 @@ export class Point extends React.Component {
     this.state = {};
   }
 
-  move = p => {
+  move = (p) => {
     const mark = { ...this.state.mark, ...p };
     this.setState({ mark });
   };
@@ -44,7 +44,7 @@ export class Point extends React.Component {
     });
   };
 
-  labelChange = label => {
+  labelChange = (label) => {
     const { onChange } = this.props;
     const update = { ...this.props.mark, label };
 
@@ -90,13 +90,13 @@ export class Point extends React.Component {
           mark.hasOwnProperty('label') &&
           ReactDOM.createPortal(
             <MarkLabel
-              inputRef={r => (this.input = r)}
+              inputRef={(r) => (this.input = r)}
               disabled={!labelModeEnabled}
               mark={mark}
               graphProps={graphProps}
               onChange={this.labelChange}
             />,
-            labelNode
+            labelNode,
           )}
       </React.Fragment>
     );

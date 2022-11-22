@@ -9,7 +9,7 @@ const PAIRS = {
   [BracketTypes.ROUND_BRACKETS]: ['\\(', '\\)'],
   [BracketTypes.SQUARE_BRACKETS]: ['\\[', '\\]'],
   [BracketTypes.DOLLAR]: ['$', '$'],
-  [BracketTypes.DOUBLE_DOLLAR]: ['$$', '$$']
+  [BracketTypes.DOUBLE_DOLLAR]: ['$$', '$$'],
 };
 
 export const wrapMath = (content, wrapType) => {
@@ -26,7 +26,7 @@ export const wrapMath = (content, wrapType) => {
   return `${start}${content}${end}`;
 };
 
-export const unWrapMath = content => {
+export const unWrapMath = (content) => {
   const displayStyleIndex = content.indexOf('\\displaystyle');
   if (displayStyleIndex !== -1) {
     console.warn('\\displaystyle is not supported - removing'); // eslint-disable-line
@@ -37,13 +37,13 @@ export const unWrapMath = content => {
     console.warn('$$ syntax is not yet supported'); // eslint-disable-line
     return {
       unwrapped: content.substring(2, content.length - 2),
-      wrapType: BracketTypes.DOLLAR
+      wrapType: BracketTypes.DOLLAR,
     };
   }
   if (content.startsWith('$') && content.endsWith('$')) {
     return {
       unwrapped: content.substring(1, content.length - 1),
-      wrapType: BracketTypes.DOLLAR
+      wrapType: BracketTypes.DOLLAR,
     };
   }
 
@@ -51,19 +51,19 @@ export const unWrapMath = content => {
     console.warn('\\[..\\] syntax is not yet supported'); // eslint-disable-line
     return {
       unwrapped: content.substring(2, content.length - 2),
-      wrapType: BracketTypes.ROUND_BRACKETS
+      wrapType: BracketTypes.ROUND_BRACKETS,
     };
   }
 
   if (content.startsWith('\\(') && content.endsWith('\\)')) {
     return {
       unwrapped: content.substring(2, content.length - 2),
-      wrapType: BracketTypes.ROUND_BRACKETS
+      wrapType: BracketTypes.ROUND_BRACKETS,
     };
   }
 
   return {
     unwrapped: content,
-    wrapType: BracketTypes.ROUND_BRACKETS
+    wrapType: BracketTypes.ROUND_BRACKETS,
   };
 };

@@ -28,12 +28,12 @@ module.exports = withCSS({
       options: {
         limit: 10000,
         outputPath: 'static',
-        publicPath
-      }
+        publicPath,
+      },
     });
     return config;
   },
-  webpackDevMiddleware: config => {
+  webpackDevMiddleware: (config) => {
     //in dev mode - we want to watch for changes in node_modules coming from babel updates
     const out = Object.assign({}, config);
     out.watch = true;
@@ -47,13 +47,13 @@ module.exports = withCSS({
         acc[l.path] = { page: l.path };
         return acc;
       },
-      { '/': { page: '/' } }
+      { '/': { page: '/' } },
     );
   },
   assetPrefix: getAssetPrefix(),
   env: {
     links,
     gitInfo,
-    packageInfo: packageInfo.load()
-  }
+    packageInfo: packageInfo.load(),
+  },
 });

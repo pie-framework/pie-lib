@@ -24,25 +24,14 @@ export function mockComponents() {
 
 export function mockIconButton() {
   jest.mock('@material-ui/core/IconButton', () => {
-    return props => (
-      <div
-        className={props.className}
-        style={props.style}
-        ariaLabel={props['aria-label']}
-      />
-    );
+    return (props) => <div className={props.className} style={props.style} ariaLabel={props['aria-label']} />;
   });
 }
 
 export function mockMathInput() {
   jest.mock('@pie-lib/math-input', () => ({
-    addBrackets: jest.fn(s => s),
-    removeBrackets: jest.fn(s => s),
-    ...mockComponents(
-      'Keypad',
-      'MathQuillInput',
-      'EditableMathInput',
-      'HorizontalKeypad'
-    )
+    addBrackets: jest.fn((s) => s),
+    removeBrackets: jest.fn((s) => s),
+    ...mockComponents('Keypad', 'MathQuillInput', 'EditableMathInput', 'HorizontalKeypad'),
   }));
 }

@@ -18,7 +18,7 @@ export const addPointToArray = (point, arr) => {
     if (closed) {
       return { points: arr, closed };
     } else {
-      const hasPoint = !!arr.find(p => equalPoints(p, point));
+      const hasPoint = !!arr.find((p) => equalPoints(p, point));
 
       if (hasPoint) {
         return { points: arr, closed: false };
@@ -41,12 +41,12 @@ export const tool = () => ({
         type: 'polygon',
         points: [point],
         closed: false,
-        building: true
+        building: true,
       };
     } else {
       const { closed, points } = addPointToArray(point, mark.points);
 
       return { ...mark, closed, points, building: !closed };
     }
-  }
+  },
 });

@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
 
-const RawInputContainer = props => {
+const RawInputContainer = (props) => {
   const { label, className, children, classes } = props;
   const names = classNames(classes.formControl, className);
 
@@ -23,19 +23,19 @@ RawInputContainer.propTypes = {
   label: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
   className: PropTypes.string,
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(theme => ({
+export default withStyles((theme) => ({
   formControl: {
     marginLeft: 0,
     marginRight: theme.spacing.unit,
     paddingBottom: theme.spacing.unit,
     flex: '1 0 auto',
-    minWidth: theme.spacing.unit * 4
+    minWidth: theme.spacing.unit * 4,
   },
   label: {
     fontSize: 'inherit',
-    whiteSpace: 'nowrap'
-  }
+    whiteSpace: 'nowrap',
+  },
 }))(RawInputContainer);

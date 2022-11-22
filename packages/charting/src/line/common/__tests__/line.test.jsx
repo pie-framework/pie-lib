@@ -8,14 +8,14 @@ describe('Line', () => {
   xBand.bandwidth = () => {};
   const onChange = jest.fn();
 
-  const wrapper = extras => {
+  const wrapper = (extras) => {
     const defaults = {
       classes: {},
       className: 'className',
       graphProps: graphProps(),
       xBand,
       onChange,
-      data: [{ value: 0, label: '0' }]
+      data: [{ value: 0, label: '0' }],
     };
     const props = { ...defaults, ...extras };
     return shallow(<Line {...props} />);
@@ -41,16 +41,19 @@ describe('RawLine', () => {
   xBand.bandwidth = () => {};
   const onChange = jest.fn();
 
-  const wrapper = extras => {
+  const wrapper = (extras) => {
     const defaults = {
       classes: {},
       className: 'className',
       graphProps: graphProps(),
       xBand,
       onChange,
-      data: [{ label: 'A', value: 0 }, { label: 'B', value: 1 }],
+      data: [
+        { label: 'A', value: 0 },
+        { label: 'B', value: 1 },
+      ],
       label: 'label',
-      CustomBarElement: () => <div />
+      CustomBarElement: () => <div />,
     };
     const props = { ...defaults, ...extras };
     return shallow(<RawLine {...props} />);
@@ -65,7 +68,10 @@ describe('RawLine', () => {
 
     it('dragStop', () => {
       w.instance().setState({
-        line: [{ x: 0, y: 0, dragValue: 2 }, { x: 1, y: 1 }]
+        line: [
+          { x: 0, y: 0, dragValue: 2 },
+          { x: 1, y: 1 },
+        ],
       });
 
       w.instance().dragStop(0);

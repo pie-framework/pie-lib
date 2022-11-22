@@ -16,8 +16,8 @@ const log = debug('demo:math-evaluator');
 const renderOpts = {
   delimiters: [
     { left: '\\(', right: '\\)', display: false },
-    { left: '$', right: '$', display: false }
-  ]
+    { left: '$', right: '$', display: false },
+  ],
 };
 
 const html = '<div><span data-latex=""></span></div>';
@@ -25,7 +25,7 @@ const html = '<div><span data-latex=""></span></div>';
 class RawMarkupPreview extends React.Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
-    markup: PropTypes.string.isRequired
+    markup: PropTypes.string.isRequired,
   };
 
   render() {
@@ -33,7 +33,7 @@ class RawMarkupPreview extends React.Component {
     return (
       <div>
         <Typography variant="h6">Markup</Typography>
-        <div ref={r => (this.preview = r)} dangerouslySetInnerHTML={{ __html: markup }} />
+        <div ref={(r) => (this.preview = r)} dangerouslySetInnerHTML={{ __html: markup }} />
         <hr />
         <Typography variant="subtitle1">Raw</Typography>
         <pre className={classes.prettyPrint}>{markup}</pre>
@@ -45,11 +45,11 @@ class RawMarkupPreview extends React.Component {
 const MarkupPreview = withStyles(() => ({
   prettyPrint: {
     whiteSpace: 'normal',
-    width: '100%'
-  }
+    width: '100%',
+  },
 }))(RawMarkupPreview);
 
-const EscapeInput = props => (
+const EscapeInput = (props) => (
   <div>
     Input:
     <br />
@@ -57,9 +57,9 @@ const EscapeInput = props => (
   </div>
 );
 
-const escape = s => jsesc(s);
+const escape = (s) => jsesc(s);
 
-const expr = s => {
+const expr = (s) => {
   try {
     return mathExpressions.fromLatex(s).toString();
   } catch (e) {
@@ -68,7 +68,7 @@ const expr = s => {
   }
 };
 
-const EscapePreview = props => (
+const EscapePreview = (props) => (
   <div>
     <div>
       raw: <pre>{props.value}</pre>
@@ -88,11 +88,11 @@ class EscapeDemo extends React.Component {
     this.state = {
       one: '1^{12^{2^{2^3}}}+3_4 + \\frac{1}{2}+4',
       two: '1^{12^{2^{2^3}}}+3_4 + \\frac{1}{2}+4',
-      equal: true
+      equal: true,
     };
   }
 
-  onChange = id => e => {
+  onChange = (id) => (e) => {
     const other = id === 'one' ? 'two' : 'one';
     let equal = false;
     try {
@@ -106,7 +106,7 @@ class EscapeDemo extends React.Component {
 
     this.setState({
       [id]: e.target.value,
-      equal
+      equal,
     });
   };
 
@@ -120,9 +120,7 @@ class EscapeDemo extends React.Component {
         <br />
         <EscapeInput value={this.state.two} onChange={this.onChange('two')} />
         <EscapePreview value={this.state.two} />
-        <h1 style={{ color: this.state.equal ? 'green' : 'red' }}>
-          {this.state.equal ? 'EQUAL' : 'NOT EQUAL'}
-        </h1>
+        <h1 style={{ color: this.state.equal ? 'green' : 'red' }}>{this.state.equal ? 'EQUAL' : 'NOT EQUAL'}</h1>
       </div>
     );
   }
@@ -141,11 +139,11 @@ class Demo extends React.Component {
       showHighlight: false,
       disabled: false,
       width: '',
-      height: ''
+      height: '',
     };
   }
 
-  onChange = input => markup => {
+  onChange = (input) => (markup) => {
     this.setState({ [input]: markup });
   };
 
@@ -157,23 +155,13 @@ class Demo extends React.Component {
     this.setState({
       equal: areValuesEqual(exprOne, exprTwo, {
         inverse: this.state.inverse,
-        isLatex: this.state.isLatex
-      })
+        isLatex: this.state.isLatex,
+      }),
     });
   };
 
   render() {
-    const {
-      exampleMarkup,
-      showHighlight,
-      disabled,
-      width,
-      height,
-      mounted,
-      equal,
-      inverse,
-      isLatex
-    } = this.state;
+    const { exampleMarkup, showHighlight, disabled, width, height, mounted, equal, inverse, isLatex } = this.state;
 
     return mounted ? (
       <div>
@@ -185,23 +173,13 @@ class Demo extends React.Component {
           <label>
             {' '}
             Inverse
-            <input
-              type="checkbox"
-              checked={inverse}
-              onChange={() => this.setState({ inverse: !this.state.inverse })}
-            />
+            <input type="checkbox" checked={inverse} onChange={() => this.setState({ inverse: !this.state.inverse })} />
           </label>
-          <p>
-            This is a checkbox to indicate whether the compared values will be latex format or not
-          </p>
+          <p>This is a checkbox to indicate whether the compared values will be latex format or not</p>
           <label>
             {' '}
             Latex Values
-            <input
-              type="checkbox"
-              checked={isLatex}
-              onChange={() => this.setState({ isLatex: !this.state.isLatex })}
-            />
+            <input type="checkbox" checked={isLatex} onChange={() => this.setState({ isLatex: !this.state.isLatex })} />
           </label>
         </div>
         <br />
@@ -209,20 +187,18 @@ class Demo extends React.Component {
           <Input
             label="Expression One"
             value={this.state.exprOne}
-            onChange={evt => this.setState({ exprOne: evt.target.value })}
+            onChange={(evt) => this.setState({ exprOne: evt.target.value })}
           />
           <br />
           <br />
           <Input
             label="Expression Two"
             value={this.state.exprTwo}
-            onChange={evt => this.setState({ exprTwo: evt.target.value })}
+            onChange={(evt) => this.setState({ exprTwo: evt.target.value })}
           />
           <br />
           <br />
-          <Button onClick={() => this.isResponseCorrect(this.state.exprOne, this.state.exprTwo)}>
-            Evaluate
-          </Button>
+          <Button onClick={() => this.isResponseCorrect(this.state.exprOne, this.state.exprTwo)}>Evaluate</Button>
         </div>
         <Typography>
           Values are: <b>{equal ? ' EQUAL ' : ' NOT EQUAL '}</b>
@@ -247,11 +223,11 @@ class Demo extends React.Component {
   }
 }
 
-const styles = theme => ({
+const styles = (theme) => ({
   sizeInput: {
     width: '60px',
-    paddingLeft: theme.spacing.unit * 2
-  }
+    paddingLeft: theme.spacing.unit * 2,
+  },
 });
 
 export default withRoot(withStyles(styles)(Demo));

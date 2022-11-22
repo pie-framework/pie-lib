@@ -19,23 +19,23 @@ export default function ImagePlugin(opts) {
         isVoid: true,
         data: {
           loaded: false,
-          src: undefined
-        }
+          src: undefined,
+        },
       });
 
       const change = value.change().insertInline(inline);
       onChange(change);
-      opts.insertImageRequested(getValue => new InsertImageHandler(inline, getValue, onChange));
+      opts.insertImageRequested((getValue) => new InsertImageHandler(inline, getValue, onChange));
     },
-    supports: node => node.object === 'inline' && node.type === 'image',
+    supports: (node) => node.object === 'inline' && node.type === 'image',
     customToolbar: (node, value, onToolbarDone) => {
       const alignment = node.data.get('alignment');
       const alt = node.data.get('alt');
       const imageLoaded = node.data.get('loaded') !== false;
-      const onChange = newValues => {
+      const onChange = (newValues) => {
         const update = {
           ...node.data.toObject(),
-          ...newValues
+          ...newValues,
         };
 
         const change = value.change().setNodeByKey(node.key, { data: update });
@@ -53,7 +53,7 @@ export default function ImagePlugin(opts) {
       );
       return Tb;
     },
-    showDone: true
+    showDone: true,
   };
 
   return {
@@ -72,9 +72,7 @@ export default function ImagePlugin(opts) {
             change = v.change().removeNodeByKey(node.key);
           } else {
             log('[error]: ', err);
-            change = v
-              .change()
-              .setNodeByKey(node.key, node.data.merge(Data.create({ deleteStatus: 'failed' })));
+            change = v.change().setNodeByKey(node.key, node.data.merge(Data.create({ deleteStatus: 'failed' })));
           }
           onChange(change);
         });
@@ -83,8 +81,8 @@ export default function ImagePlugin(opts) {
         onChange(change);
       }
     },
-    stopReset: value => {
-      const imgPendingInsertion = value.document.findDescendant(n => {
+    stopReset: (value) => {
+      const imgPendingInsertion = value.document.findDescendant((n) => {
         if (n.type !== 'image') {
           return;
         }
@@ -101,21 +99,21 @@ export default function ImagePlugin(opts) {
             onFocus: opts.onFocus,
             onBlur: opts.onBlur,
             maxImageWidth: opts.maxImageWidth,
-            maxImageHeight: opts.maxImageHeight
+            maxImageHeight: opts.maxImageHeight,
           },
-          props
+          props,
         );
         return <ImageComponent {...all} />;
       }
     },
-    normalizeNode: node => {
+    normalizeNode: (node) => {
       const textNodeMap = {};
       const updateNodesArray = [];
       let index = 0;
 
       if (node.object !== 'document') return;
 
-      node.findDescendant(d => {
+      node.findDescendant((d) => {
         if (d.object === 'text') {
           textNodeMap[index] = d;
         }
@@ -131,12 +129,12 @@ export default function ImagePlugin(opts) {
 
       if (!updateNodesArray.length) return;
 
-      return change => {
+      return (change) => {
         change.withoutNormalization(() => {
-          updateNodesArray.forEach(n => change.insertTextByKey(n.key, 0, ' '));
+          updateNodesArray.forEach((n) => change.insertTextByKey(n.key, 0, ' '));
         });
       };
-    }
+    },
   };
 }
 
@@ -161,8 +159,8 @@ export const serialization = {
         margin: el.style.margin,
         justifyContent: el.style.justifyContent,
         alignment: el.getAttribute('alignment'),
-        alt: el.getAttribute('alt')
-      }
+        alt: el.getAttribute('alt'),
+      },
     };
     log('return object: ', out);
     return out;
@@ -216,9 +214,9 @@ export const serialization = {
       src,
       style,
       alignment,
-      alt
+      alt,
     };
 
     return <img {...props} />;
-  }
+  },
 };

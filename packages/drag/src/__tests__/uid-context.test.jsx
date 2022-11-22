@@ -2,11 +2,11 @@ import { createContext, createElement } from 'react';
 import { withUid } from '../uid-context';
 
 jest.mock('react', () => ({
-  createElement: jest.fn(c => c),
+  createElement: jest.fn((c) => c),
   createContext: jest.fn().mockReturnValue({
-    Consumer: jest.fn(fn => fn),
-    Provider: jest.fn()
-  })
+    Consumer: jest.fn((fn) => fn),
+    Provider: jest.fn(),
+  }),
 }));
 
 describe('id-context', () => {
@@ -15,11 +15,7 @@ describe('id-context', () => {
       const Wrapped = withUid(() => ({}));
 
       const Consumer = Wrapped({});
-      expect(createElement).toBeCalledWith(
-        expect.any(Function),
-        null,
-        expect.anything()
-      );
+      expect(createElement).toBeCalledWith(expect.any(Function), null, expect.anything());
     });
   });
 });

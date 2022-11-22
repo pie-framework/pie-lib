@@ -13,7 +13,7 @@ export class Choice extends React.Component {
     classes: PropTypes.object.isRequired,
     className: PropTypes.string,
     children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
-    connectDragSource: PropTypes.func.isRequired
+    connectDragSource: PropTypes.func.isRequired,
   };
 
   static defaultProps = {};
@@ -21,19 +21,17 @@ export class Choice extends React.Component {
   render() {
     const { classes, className, children, connectDragSource } = this.props;
 
-    return connectDragSource(
-      <div className={classNames(classes.choice, className)}>{children}</div>
-    );
+    return connectDragSource(<div className={classNames(classes.choice, className)}>{children}</div>);
   }
 }
 
-const styles = theme => ({
+const styles = (theme) => ({
   choice: {
     backgroundColor: 'white',
     border: `solid 1px ${grey[400]}`,
     padding: theme.spacing.unit,
-    minHeight: '30px'
-  }
+    minHeight: '30px',
+  },
 });
 
 const choiceSource = {
@@ -42,12 +40,12 @@ const choiceSource = {
   },
   beginDrag(props) {
     return props;
-  }
+  },
 };
 
 const styledChoice = withStyles(styles)(Choice);
 
 export default DragSource(DRAG_TYPE, choiceSource, (connect, monitor) => ({
   connectDragSource: connect.dragSource(),
-  isDragging: monitor.isDragging()
+  isDragging: monitor.isDragging(),
 }))(styledChoice);

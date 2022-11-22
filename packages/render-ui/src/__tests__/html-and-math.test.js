@@ -6,14 +6,14 @@ import { renderMath } from '@pie-lib/math-rendering';
 jest.mock('@pie-lib/math-rendering', () => ({ renderMath: jest.fn() }));
 
 describe('html-and-math', () => {
-  const mkWrapper = extras => {
+  const mkWrapper = (extras) => {
     const props = {
       html: '<p>hi</p>',
-      ...extras
+      ...extras,
     };
 
     return shallow(<HtmlAndMath {...props} />, {
-      disableLifecycleMethods: true
+      disableLifecycleMethods: true,
     });
   };
 

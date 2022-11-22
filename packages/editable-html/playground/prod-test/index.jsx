@@ -6,7 +6,7 @@ class ProdTest extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      markup: 'hi'
+      markup: 'hi',
     };
   }
 
@@ -15,10 +15,7 @@ class ProdTest extends React.Component {
       <div>
         EditableHtml and react production
         <hr />
-        <EditableHtml
-          markup={this.state.markup}
-          onChange={markup => this.setState({ markup })}
-        />
+        <EditableHtml markup={this.state.markup} onChange={(markup) => this.setState({ markup })} />
       </div>
     );
   }

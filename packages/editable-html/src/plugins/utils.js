@@ -1,4 +1,4 @@
-export const findSingleNode = value => {
+export const findSingleNode = (value) => {
   if (!value || !value.isCollapsed || !value.startKey) {
     return;
   }
@@ -24,9 +24,8 @@ export const findParentNode = (value, node) => {
   return value.document.getParent(node.key);
 };
 
-export const hasMark = (value, type) => value && value.marks.some(mark => mark.type == type);
+export const hasMark = (value, type) => value && value.marks.some((mark) => mark.type == type);
 
-export const hasBlock = (value, type) => value && value.blocks.some(node => node.type == type);
+export const hasBlock = (value, type) => value && value.blocks.some((node) => node.type == type);
 
-export const hasNode = ({ document }, type) =>
-  document && document.nodes.some(node => node.type == type);
+export const hasNode = ({ document }, type) => document && document.nodes.some((node) => node.type == type);

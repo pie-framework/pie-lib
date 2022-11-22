@@ -7,8 +7,8 @@ import { types } from '@pie-lib/plot';
 
 const style = {
   root: {
-    fill: 'var(--arrow-color, black)'
-  }
+    fill: 'var(--arrow-color, black)',
+  },
 };
 
 export class Arrow extends React.Component {
@@ -50,13 +50,13 @@ Arrow.propTypes = {
   direction: PropTypes.oneOf(['left', 'right', 'up', 'down']),
   classes: PropTypes.object.isRequired,
   className: PropTypes.string,
-  scale: types.ScaleType.isRequired
+  scale: types.ScaleType.isRequired,
 };
 
 Arrow.defaultProps = {
   y: 0,
   x: 0,
-  direction: 'left'
+  direction: 'left',
 };
 
 export default withStyles(style)(Arrow);

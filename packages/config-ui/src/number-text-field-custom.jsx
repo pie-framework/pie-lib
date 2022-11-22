@@ -9,23 +9,23 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import Remove from '@material-ui/icons/Remove';
 import Add from '@material-ui/icons/Add';
 
-const styles = theme => ({
+const styles = (theme) => ({
   input: {
     '& input[type=number]': {
-      '-moz-appearance': 'textfield'
+      '-moz-appearance': 'textfield',
     },
     '& input[type=number]::-webkit-outer-spin-button': {
       '-webkit-appearance': 'none',
-      margin: 0
+      margin: 0,
     },
     '& input[type=number]::-webkit-inner-spin-button': {
       '-webkit-appearance': 'none',
-      margin: 0
-    }
+      margin: 0,
+    },
   },
   iconButton: {
-    padding: '2px'
-  }
+    padding: '2px',
+  },
 });
 
 const fallbackNumber = (min, max) => {
@@ -58,7 +58,7 @@ export class NumberTextFieldCustom extends React.Component {
     step: PropTypes.number,
     label: PropTypes.string,
     disableUnderline: PropTypes.bool,
-    variant: PropTypes.string
+    variant: PropTypes.string,
   };
 
   static defaultProps = {
@@ -66,7 +66,7 @@ export class NumberTextFieldCustom extends React.Component {
     customValues: [],
     textAlign: 'center',
     variant: 'standard',
-    onlyIntegersAllowed: false
+    onlyIntegersAllowed: false,
   };
 
   constructor(props) {
@@ -76,7 +76,7 @@ export class NumberTextFieldCustom extends React.Component {
 
     this.state = {
       value,
-      currentIndex
+      currentIndex,
     };
 
     if (value !== props.value) {
@@ -116,7 +116,7 @@ export class NumberTextFieldCustom extends React.Component {
 
   normalizeValueAndIndex = (customValues, number) => {
     const value = this.clamp(number);
-    const currentIndex = (customValues || []).findIndex(val => val === value);
+    const currentIndex = (customValues || []).findIndex((val) => val === value);
 
     if ((customValues || []).length > 0 && currentIndex === -1) {
       const closestValue = this.getClosestValue(customValues, value);
@@ -131,10 +131,10 @@ export class NumberTextFieldCustom extends React.Component {
     customValues.reduce(
       (closest, value, index) =>
         Math.abs(value - number) < Math.abs(closest.value - number) ? { value, index } : closest,
-      { value: customValues[0], index: 0 }
+      { value: customValues[0], index: 0 },
     );
 
-  onBlur = event => {
+  onBlur = (event) => {
     const { customValues, onlyIntegersAllowed } = this.props;
     const { value } = event.target;
     const rawNumber = onlyIntegersAllowed ? parseInt(value) : parseFloat(value);
@@ -145,9 +145,9 @@ export class NumberTextFieldCustom extends React.Component {
       this.setState(
         {
           value: number.toString(),
-          currentIndex
+          currentIndex,
         },
-        () => this.props.onChange(event, number)
+        () => this.props.onChange(event, number),
       );
     }
   };
@@ -181,13 +181,13 @@ export class NumberTextFieldCustom extends React.Component {
     this.setState(
       {
         value: number.toString(),
-        currentIndex: updatedIndex
+        currentIndex: updatedIndex,
       },
       () => {
         if (shouldUpdate) {
           onChange(event, number);
         }
-      }
+      },
     );
   }
 
@@ -204,7 +204,7 @@ export class NumberTextFieldCustom extends React.Component {
       disableUnderline,
       helperText,
       variant,
-      textAlign
+      textAlign,
     } = this.props;
     const { value } = this.state;
     const names = classNames(className, classes.input);
@@ -212,7 +212,7 @@ export class NumberTextFieldCustom extends React.Component {
     return (
       <TextField
         variant={variant}
-        inputRef={ref => (this.inputRef = ref)}
+        inputRef={(ref) => (this.inputRef = ref)}
         disabled={disabled}
         label={label}
         value={value}
@@ -220,13 +220,13 @@ export class NumberTextFieldCustom extends React.Component {
         helperText={helperText}
         onChange={this.onChange}
         onBlur={this.onBlur}
-        onKeyPress={e => {
+        onKeyPress={(e) => {
           // once the Enter key is pressed, we force input blur
           if (e.key === 'Enter' && this.inputRef) {
             this.inputRef.blur();
           }
         }}
-        onKeyDown={e => {
+        onKeyDown={(e) => {
           if (e.key === 'ArrowUp') {
             this.changeValue(e);
           }
@@ -245,7 +245,7 @@ export class NumberTextFieldCustom extends React.Component {
               <IconButton
                 className={classes.iconButton}
                 disabled={disabled}
-                onClick={e => this.changeValue(e, -1, true)}
+                onClick={(e) => this.changeValue(e, -1, true)}
               >
                 <Remove fontSize="small" />
               </IconButton>
@@ -256,17 +256,17 @@ export class NumberTextFieldCustom extends React.Component {
               <IconButton
                 className={classes.iconButton}
                 disabled={disabled}
-                onClick={e => this.changeValue(e, 1, true)}
+                onClick={(e) => this.changeValue(e, 1, true)}
               >
                 <Add fontSize="small" />
               </IconButton>
             </InputAdornment>
-          )
+          ),
         }}
         inputProps={{
           style: { textAlign },
           min,
-          max
+          max,
         }}
       />
     );

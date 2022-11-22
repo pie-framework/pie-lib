@@ -25,11 +25,11 @@ const rawLinks = [
   { label: 'ruler', path: '/tools/ruler' },
   { label: 'protractor', path: '/tools/protractor' },
   { label: 'rotatable', path: '/tools/rotatable' },
-  { label: 'drag', path: '/drag' }
+  { label: 'drag', path: '/drag' },
 ];
 
 module.exports.loadLinks = () => {
-  return rawLinks.map(l => {
+  return rawLinks.map((l) => {
     const pkgPath = resolve(__dirname, '../../', l.label, 'package.json');
     if (pathExistsSync(pkgPath)) {
       const pkg = readJsonSync(pkgPath);

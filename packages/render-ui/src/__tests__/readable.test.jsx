@@ -10,7 +10,7 @@ describe('Readable', () => {
       wrapper = mount(
         <Readable>
           <div>text</div>
-        </Readable>
+        </Readable>,
       );
       expect(wrapper.find('div')).toHaveLength(1);
       expect(wrapper.html().includes('data-pie-readable="true"')).toEqual(true);
@@ -24,7 +24,7 @@ describe('Readable', () => {
             <div>text1</div>
             <div>text2</div>
           </div>
-        </Readable>
+        </Readable>,
       );
       expect(wrapper.find('div')).toHaveLength(3);
       expect(wrapper.html().includes('data-pie-readable="true"')).toEqual(true);
@@ -39,7 +39,7 @@ describe('Readable', () => {
             <div>text1</div>
             <div>text2</div>
           </div>
-        </Readable>
+        </Readable>,
       );
       expect(wrapper.find('div')).toHaveLength(3);
       expect(wrapper.html().includes('data-pie-readable="false"')).toEqual(true);
@@ -54,7 +54,7 @@ describe('Readable', () => {
             <div>text1</div>
             <div>text2</div>
           </div>
-        </Readable>
+        </Readable>,
       );
       expect(wrapper.find('div')).toHaveLength(3);
       expect(wrapper.html().includes('data-pie-readable="false"')).toEqual(true);

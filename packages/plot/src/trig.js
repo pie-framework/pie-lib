@@ -3,8 +3,8 @@ import Point from '@mapbox/point-geometry';
 import debug from 'debug';
 const log = debug('pie-lib:plot:trig');
 
-export const toDegrees = radians => radians * (180 / Math.PI);
-export const toRadians = degrees => degrees * (Math.PI / 180);
+export const toDegrees = (radians) => radians * (180 / Math.PI);
+export const toRadians = (degrees) => degrees * (Math.PI / 180);
 /**
  * return angle in radians between 2 points using counting degrees counter clockwise
  *
@@ -25,7 +25,7 @@ const NINETY = Math.PI / 2;
 const ONE_EIGHTY = Math.PI;
 const TWO_SEVENTY = ONE_EIGHTY + NINETY;
 
-export const acuteXAngle = a => {
+export const acuteXAngle = (a) => {
   log(toDegrees(a));
 
   if (a < NINETY) {
@@ -43,7 +43,7 @@ export const acuteXAngle = a => {
   return Math.abs(Math.PI * 2 - a);
 };
 
-export const acuteYAngle = a => NINETY - acuteXAngle(a);
+export const acuteYAngle = (a) => NINETY - acuteXAngle(a);
 
 export const hypotenuse = (a, alpha) => {
   const out = Math.abs(a / Math.sin(alpha));
@@ -137,9 +137,7 @@ export const diffEdge = (bounds, a, b) => {
     throw new Error('Cant decide which hypotenuse to use');
   }
   const point =
-    side === 'x'
-      ? new Point(xSide, getOpposingSide(xH, xRadians))
-      : new Point(getOpposingSide(yH, yRadians), ySide);
+    side === 'x' ? new Point(xSide, getOpposingSide(xH, xRadians)) : new Point(getOpposingSide(yH, yRadians), ySide);
 
   l('point:', point);
   const multiplier = new Point(b.x < a.x ? -1 : 1, b.y < a.y ? -1 : 1);

@@ -10,7 +10,7 @@ describe('Input', () => {
     variant: 'outlined',
     value: 'Cow',
     id: '1',
-    onChange
+    onChange,
   };
   let wrapper;
 
@@ -35,8 +35,8 @@ describe('Input', () => {
   });
 
   describe('onChange', () => {
-    const event = value => ({
-      target: { value }
+    const event = (value) => ({
+      target: { value },
     });
 
     it('should be called', () => {

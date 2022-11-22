@@ -10,41 +10,31 @@ import ToolMenu from './tool-menu';
 import Graph, { graphPropTypes } from './graph';
 import UndoRedo from './undo-redo';
 import { allTools, toolsArr } from './tools';
-import {
-  ExpansionPanel,
-  ExpansionPanelDetails,
-  ExpansionPanelSummary,
-  Typography
-} from '@material-ui/core';
+import { ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary, Typography } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-export const setToolbarAvailability = toolbarTools =>
-  toolsArr.map(tA => ({ ...tA, toolbar: !!toolbarTools.find(t => t === tA.type) })) || [];
+export const setToolbarAvailability = (toolbarTools) =>
+  toolsArr.map((tA) => ({ ...tA, toolbar: !!toolbarTools.find((t) => t === tA.type) })) || [];
 
 export const toolIsAvailable = (tools, currentTool) =>
-  currentTool && tools && (tools.find(tool => tool.type === currentTool.type) || {}).toolbar;
+  currentTool && tools && (tools.find((tool) => tool.type === currentTool.type) || {}).toolbar;
 
-export const getAvailableTool = tools => tools.find(tool => tool.toolbar);
+export const getAvailableTool = (tools) => tools.find((tool) => tool.toolbar);
 
-export const filterByValidToolTypes = backgroundMarks =>
-  backgroundMarks.filter(bM => !!allTools.find(tool => tool === bM.type));
+export const filterByValidToolTypes = (backgroundMarks) =>
+  backgroundMarks.filter((bM) => !!allTools.find((tool) => tool === bM.type));
 
 export const filterByVisibleToolTypes = (toolbarTools, marks) =>
-  marks.filter(bM => !!toolbarTools.find(tool => tool === bM.type));
+  marks.filter((bM) => !!toolbarTools.find((tool) => tool === bM.type));
 
-const getDefaultCurrentTool = toolType => toolsArr.find(tool => tool.type === toolType) || null;
+const getDefaultCurrentTool = (toolType) => toolsArr.find((tool) => tool.type === toolType) || null;
 
 const Collapsible = ({ classes, children, title }) => (
-  <ExpansionPanel
-    elevation={0}
-    className={classes.expansionPanel}
-    disabledGutters={true}
-    square={true}
-  >
+  <ExpansionPanel elevation={0} className={classes.expansionPanel} disabledGutters={true} square={true}>
     <ExpansionPanelSummary
       classes={{
         root: classes.summaryRoot,
-        content: classes.summaryContent
+        content: classes.summaryContent,
       }}
       expandIcon={<ExpandMoreIcon />}
     >
@@ -57,7 +47,7 @@ const Collapsible = ({ classes, children, title }) => (
 Collapsible.propTypes = {
   classes: PropTypes.object,
   children: PropTypes.array,
-  title: PropTypes.string
+  title: PropTypes.string,
 };
 
 export class GraphWithControls extends React.Component {
@@ -66,7 +56,7 @@ export class GraphWithControls extends React.Component {
     onUndo: PropTypes.func,
     onRedo: PropTypes.func,
     onReset: PropTypes.func,
-    toolbarTools: PropTypes.arrayOf(PropTypes.string) // array of tool types that have to be displayed in the toolbar, same shape as 'allTools'
+    toolbarTools: PropTypes.arrayOf(PropTypes.string), // array of tool types that have to be displayed in the toolbar, same shape as 'allTools'
   };
 
   static defaultProps = {
@@ -76,7 +66,7 @@ export class GraphWithControls extends React.Component {
     disabledTitle: false,
     showLabels: true,
     showTitle: true,
-    toolbarTools: []
+    toolbarTools: [],
   };
 
   constructor(props) {
@@ -84,7 +74,7 @@ export class GraphWithControls extends React.Component {
 
     this.state = {
       currentTool: getDefaultCurrentTool(props.defaultTool),
-      labelModeEnabled: false
+      labelModeEnabled: false,
     };
   }
 
@@ -98,10 +88,9 @@ export class GraphWithControls extends React.Component {
     }
   }
 
-  changeCurrentTool = (tool, tools) =>
-    this.setState({ currentTool: tools.find(t => t.type === tool) });
+  changeCurrentTool = (tool, tools) => this.setState({ currentTool: tools.find((t) => t.type === tool) });
 
-  toggleLabelMode = () => this.setState(state => ({ labelModeEnabled: !state.labelModeEnabled }));
+  toggleLabelMode = () => this.setState((state) => ({ labelModeEnabled: !state.labelModeEnabled }));
 
   render() {
     let { currentTool, labelModeEnabled } = this.state;
@@ -132,12 +121,12 @@ export class GraphWithControls extends React.Component {
       showPixelGuides,
       showTitle,
       title,
-      titlePlaceholder
+      titlePlaceholder,
     } = this.props;
     let { backgroundMarks, marks, toolbarTools } = this.props;
 
     // make sure only valid tool types are kept (string) and without duplicates
-    toolbarTools = uniq(toolbarTools || []).filter(tT => !!isString(tT)) || [];
+    toolbarTools = uniq(toolbarTools || []).filter((tT) => !!isString(tT)) || [];
 
     // keep only the backgroundMarks that have valid types
     backgroundMarks = filterByValidToolTypes(backgroundMarks || []);
@@ -159,7 +148,7 @@ export class GraphWithControls extends React.Component {
           disabled={!!disabled}
           draggableTools={draggableTools}
           labelModeEnabled={labelModeEnabled}
-          onChange={tool => this.changeCurrentTool(tool, tools)}
+          onChange={(tool) => this.changeCurrentTool(tool, tools)}
           onToggleLabelMode={this.toggleLabelMode}
           toolbarTools={toolbarTools}
           onChangeTools={onChangeTools}
@@ -181,7 +170,7 @@ export class GraphWithControls extends React.Component {
           )}
         </div>
 
-        <div ref={r => (this.labelNode = r)} />
+        <div ref={(r) => (this.labelNode = r)} />
 
         <Graph
           axesSettings={axesSettings}
@@ -212,11 +201,11 @@ export class GraphWithControls extends React.Component {
   }
 }
 
-const styles = theme => ({
+const styles = (theme) => ({
   graphWithControls: {
     display: 'flex',
     flexDirection: 'column',
-    width: 'min-content'
+    width: 'min-content',
   },
   controls: {
     display: 'flex',
@@ -229,26 +218,26 @@ const styles = theme => ({
     borderLeft: `solid 1px ${color.primaryDark()}`,
     borderRight: `solid 1px ${color.primaryDark()}`,
     '& button': {
-      fontSize: theme.typography.fontSize
-    }
+      fontSize: theme.typography.fontSize,
+    },
   },
   expansionPanel: {
     backgroundColor: color.primaryLight(),
-    width: '100%'
+    width: '100%',
   },
   summaryRoot: {
     padding: `0 ${theme.spacing.unit}px`,
-    minHeight: '32px !important'
+    minHeight: '32px !important',
   },
   summaryContent: {
-    margin: '4px 0 !important'
+    margin: '4px 0 !important',
   },
   details: {
     padding: 0,
     marginTop: theme.spacing.unit,
     display: 'flex',
-    justifyContent: 'space-between'
-  }
+    justifyContent: 'space-between',
+  },
 });
 
 export default withStyles(styles)(GraphWithControls);

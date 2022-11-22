@@ -14,17 +14,17 @@ const lastIndexMap = {};
 const elTypesMap = {
   'inline-dropdown': 'inline_dropdown',
   'explicit-constructed-response': 'explicit_constructed_response',
-  'drag-in-the-blank': 'drag_in_the_blank'
+  'drag-in-the-blank': 'drag_in_the_blank',
 };
 const elTypesArray = Object.values(elTypesMap);
 
 export default function ResponseAreaPlugin(opts) {
-  const isOfCurrentType = d => d.type === opts.type || d.type === elTypesMap[opts.type];
+  const isOfCurrentType = (d) => d.type === opts.type || d.type === elTypesMap[opts.type];
 
   const toolbar = {
     icon: <ToolbarIcon />,
     buttonStyles: {
-      margin: '0 20px 0 auto'
+      margin: '0 20px 0 auto',
     },
     onClick: (value, onChange) => {
       log('[toolbar] onClick');
@@ -75,8 +75,8 @@ export default function ResponseAreaPlugin(opts) {
       }
     },
     customToolbar: opts.respAreaToolbar,
-    supports: node => node.object === 'inline' && elTypesArray.indexOf(node.type) >= 0,
-    showDone: false
+    supports: (node) => node.object === 'inline' && elTypesArray.indexOf(node.type) >= 0,
+    showDone: false,
   };
 
   return {
@@ -87,7 +87,7 @@ export default function ResponseAreaPlugin(opts) {
         return [];
       }
 
-      return plugins.filter(p => p.name !== 'response_area');
+      return plugins.filter((p) => p.name !== 'response_area');
     },
     deleteNode: (e, node, value, onChange) => {
       e.preventDefault();
@@ -119,9 +119,7 @@ export default function ResponseAreaPlugin(opts) {
       if (n.type === 'drag_in_the_blank') {
         const data = n.data.toJSON();
 
-        return (
-          <DragInTheBlank attributes={attributes} data={data} n={n} nodeProps={props} opts={opts} />
-        );
+        return <DragInTheBlank attributes={attributes} data={data} n={n} nodeProps={props} opts={opts} />;
       }
 
       if (n.type === 'inline_dropdown') {
@@ -136,7 +134,7 @@ export default function ResponseAreaPlugin(opts) {
       if (isUndefined(lastIndexMap[type])) {
         lastIndexMap[type] = 0;
 
-        change.value.document.forEachDescendant(d => {
+        change.value.document.forEachDescendant((d) => {
           if (d.type === type) {
             const newIndex = parseInt(d.data.get('index'), 10);
 
@@ -160,13 +158,11 @@ export default function ResponseAreaPlugin(opts) {
         toolbar.disabled = false;
       }
 
-      const arrayToFilter =
-        oldRespAreaList.size > currentRespAreaList.size ? oldRespAreaList : currentRespAreaList;
-      const arrayToUseForFilter =
-        arrayToFilter === oldRespAreaList ? currentRespAreaList : oldRespAreaList;
+      const arrayToFilter = oldRespAreaList.size > currentRespAreaList.size ? oldRespAreaList : currentRespAreaList;
+      const arrayToUseForFilter = arrayToFilter === oldRespAreaList ? currentRespAreaList : oldRespAreaList;
 
       const elementsWithChangedStatus = arrayToFilter.filter(
-        d => !arrayToUseForFilter.find(e => e.data.get('index') === d.data.get('index'))
+        (d) => !arrayToUseForFilter.find((e) => e.data.get('index') === d.data.get('index')),
       );
 
       if (elementsWithChangedStatus.size && oldRespAreaList.size > currentRespAreaList.size) {
@@ -175,12 +171,12 @@ export default function ResponseAreaPlugin(opts) {
     },
     onDrop(event, change, editor) {
       const closestEl = event.target.closest('[data-key]');
-      const inline = editor.value.document.findDescendant(d => d.key === closestEl.dataset.key);
+      const inline = editor.value.document.findDescendant((d) => d.key === closestEl.dataset.key);
 
       if (inline.type === 'drag_in_the_blank') {
         return false;
       }
-    }
+    },
   };
 }
 
@@ -196,8 +192,8 @@ export const serialization = {
           isVoid: true,
           data: {
             index: el.dataset.index,
-            value: el.dataset.value
-          }
+            value: el.dataset.value,
+          },
         };
       case 'explicit_constructed_response':
         return {
@@ -206,8 +202,8 @@ export const serialization = {
           isVoid: true,
           data: {
             index: el.dataset.index,
-            value: el.dataset.value
-          }
+            value: el.dataset.value,
+          },
         };
       case 'drag_in_the_blank':
         return {
@@ -218,8 +214,8 @@ export const serialization = {
             index: el.dataset.index,
             id: el.dataset.id,
             value: el.dataset.value,
-            inTable: el.dataset.inTable
-          }
+            inTable: el.dataset.inTable,
+          },
         };
     }
   },
@@ -237,13 +233,7 @@ export const serialization = {
       case 'explicit_constructed_response': {
         const data = object.data.toJSON();
 
-        return (
-          <span
-            data-type="explicit_constructed_response"
-            data-index={data.index}
-            data-value={data.value}
-          />
-        );
+        return <span data-type="explicit_constructed_response" data-index={data.index} data-value={data.value} />;
       }
       case 'drag_in_the_blank': {
         const data = object.data.toJSON();
@@ -259,5 +249,5 @@ export const serialization = {
         );
       }
     }
-  }
+  },
 };

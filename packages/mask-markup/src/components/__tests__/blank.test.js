@@ -11,7 +11,7 @@ describe('Blank', () => {
     isOver: false,
     dragItem: {},
     correct: false,
-    onChange
+    onChange,
   };
   let wrapper;
 

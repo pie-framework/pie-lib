@@ -19,11 +19,11 @@ const Emoji = ({ className }) => (
 );
 
 Emoji.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 Emoji.defaultProps = {
-  x: 0
+  x: 0,
 };
 
 const Check = ({ className, x, y }) => (
@@ -37,12 +37,12 @@ const Check = ({ className, x, y }) => (
 Check.propTypes = {
   x: PropTypes.number,
   y: PropTypes.number,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 Check.defaultProps = {
   x: 0,
-  y: 0
+  y: 0,
 };
 
 export const Correct = IconBase(Check, Emoji);
@@ -51,14 +51,14 @@ Correct.propTypes = {
   iconSet: PropTypes.oneOf(['emoji', 'check']),
   shape: PropTypes.oneOf(['round', 'square']),
   category: PropTypes.oneOf(['feedback', undefined]),
-  open: PropTypes.bool
+  open: PropTypes.bool,
 };
 
 Correct.defaultProps = {
   iconSet: 'check',
   shape: 'round',
   category: undefined,
-  open: false
+  open: false,
 };
 
 export default withStyles(styles)(Correct);

@@ -8,7 +8,7 @@ const D = ({ classes }) => <Typography variant={'title'}>Welcome to the @pie-lib
 export default withRoot(
   withStyles({
     root: {
-      backgroundColor: 'blue'
-    }
-  })(D)
+      backgroundColor: 'blue',
+    },
+  })(D),
 );

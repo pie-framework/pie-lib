@@ -28,7 +28,7 @@ export class Input extends React.Component {
     onChange: PropTypes.func,
     latex: PropTypes.string,
     onFocus: PropTypes.func,
-    onBlur: PropTypes.func
+    onBlur: PropTypes.func,
   };
 
   componentDidMount() {
@@ -38,8 +38,8 @@ export class Input extends React.Component {
 
     this.mathField = MQ.MathField(this.input, {
       handlers: {
-        edit: this.onInputEdit.bind(this)
-      }
+        edit: this.onInputEdit.bind(this),
+      },
     });
 
     this.updateLatex();
@@ -77,7 +77,7 @@ export class Input extends React.Component {
   command(v) {
     log('command: ', v);
     if (Array.isArray(v)) {
-      v.forEach(vv => {
+      v.forEach((vv) => {
         this.mathField.cmd(vv);
       });
     } else {
@@ -117,7 +117,7 @@ export class Input extends React.Component {
     this.focus();
   };
 
-  onKeyPress = event => {
+  onKeyPress = (event) => {
     const keys = Object.keys(this.mathField.__controller.options);
 
     if (keys.indexOf('ignoreNextMousedown') < 0) {
@@ -152,7 +152,7 @@ export class Input extends React.Component {
         onClick={onClick}
         onFocus={onFocus}
         onBlur={onBlur}
-        ref={r => (this.input = r)}
+        ref={(r) => (this.input = r)}
       />
     );
   }

@@ -9,22 +9,22 @@ import classnames from 'classnames';
 
 import { GripIcon } from '../icons';
 
-const useStyles = withStyles(theme => ({
+const useStyles = withStyles((theme) => ({
   content: {
-    border: `solid 0px ${theme.palette.primary.main}`
+    border: `solid 0px ${theme.palette.primary.main}`,
   },
   chip: {
-    minWidth: '90px'
+    minWidth: '90px',
   },
   correct: {
-    border: 'solid 1px green'
+    border: 'solid 1px green',
   },
   incorrect: {
-    border: 'solid 1px red'
+    border: 'solid 1px red',
   },
   selected: {
-    border: `2px solid ${color.primaryDark()} !important`
-  }
+    border: `2px solid ${color.primaryDark()} !important`,
+  },
 }));
 
 export class BlankContent extends React.Component {
@@ -35,7 +35,7 @@ export class BlankContent extends React.Component {
     isOver: PropTypes.bool,
     dragItem: PropTypes.object,
     value: PropTypes.object,
-    classes: PropTypes.object
+    classes: PropTypes.object,
   };
 
   constructor(props) {
@@ -75,7 +75,7 @@ export class BlankContent extends React.Component {
 
     return (
       <div
-        ref={ref => (this.elementRef = ref)}
+        ref={(ref) => (this.elementRef = ref)}
         style={{
           display: 'inline-flex',
           minWidth: '178px',
@@ -86,7 +86,7 @@ export class BlankContent extends React.Component {
           borderRadius: '3px',
           overflow: 'hidden',
           position: 'relative',
-          padding: '8px 8px 8px 35px'
+          padding: '8px 8px 8px 35px',
         }}
         data-key={n.key}
         contentEditable={false}
@@ -97,14 +97,14 @@ export class BlankContent extends React.Component {
               position: 'absolute',
               top: '6px',
               left: '15px',
-              color: '#9B9B9B'
+              color: '#9B9B9B',
             }}
             contentEditable={false}
           />
         )}
         <span
           dangerouslySetInnerHTML={{
-            __html: finalLabel
+            __html: finalLabel,
           }}
         />
         {children}
@@ -119,9 +119,7 @@ const connectedBlankContent = useStyles(({ connectDropTarget, connectDragSource,
   const { classes, isOver, value } = props;
   const dragContent = <StyledBlankContent {...props} />;
   const dragEl = !value ? dragContent : connectDragSource(<span>{dragContent}</span>);
-  const content = (
-    <span className={classnames(classes.content, isOver && classes.over)}>{dragEl}</span>
-  );
+  const content = <span className={classnames(classes.content, isOver && classes.over)}>{dragEl}</span>;
 
   return connectDropTarget ? connectDropTarget(content) : content;
 });
@@ -139,20 +137,20 @@ export const tileTarget = {
     }
 
     return {
-      dropped: shouldDrop
+      dropped: shouldDrop,
     };
   },
   canDrop(props, monitor) {
     const draggedItem = monitor.getItem();
 
     return draggedItem.instanceId === props.instanceId;
-  }
+  },
 };
 
 const DropTile = DropTarget('drag-in-the-blank-choice', tileTarget, (connect, monitor) => ({
   connectDropTarget: connect.dropTarget(),
   isOver: monitor.isOver(),
-  dragItem: monitor.getItem()
+  dragItem: monitor.getItem(),
 }))(connectedBlankContent);
 
 export const tileSource = {
@@ -164,7 +162,7 @@ export const tileSource = {
       id: props.targetId,
       value: props.value,
       instanceId: props.instanceId,
-      fromChoice: true
+      fromChoice: true,
     };
   },
   endDrag(props, monitor) {
@@ -178,10 +176,10 @@ export const tileSource = {
         props.removeResponse(draggedItem.value);
       }
     }
-  }
+  },
 };
 
 export default DragSource('drag-in-the-blank-choice', tileSource, (connect, monitor) => ({
   connectDragSource: connect.dragSource(),
-  isDragging: monitor.isDragging()
+  isDragging: monitor.isDragging(),
 }))(DropTile);

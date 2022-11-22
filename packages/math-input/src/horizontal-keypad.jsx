@@ -4,7 +4,7 @@ import { keysForGrade, normalizeAdditionalKeys } from './keys/grades';
 import { extendKeySet } from './keys/utils';
 import Keypad from './keypad';
 
-const toOldModel = d => {
+const toOldModel = (d) => {
   if (d.command) {
     return { value: d.command, type: 'command' };
   } else if (d.write) {
@@ -22,16 +22,16 @@ export default class HorizontalKeypad extends React.Component {
     onClick: PropTypes.func.isRequired,
     onFocus: PropTypes.func,
     noDecimal: PropTypes.bool,
-    additionalKeys: PropTypes.array
+    additionalKeys: PropTypes.array,
   };
 
   static defaultProps = {
     mode: 'scientific',
     noDecimal: false,
-    additionalKeys: []
+    additionalKeys: [],
   };
 
-  keypadPress = data => {
+  keypadPress = (data) => {
     const { onClick } = this.props;
 
     onClick(toOldModel(data));

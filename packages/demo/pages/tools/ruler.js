@@ -8,7 +8,7 @@ import Link from 'next/link';
 
 class Demo extends React.Component {
   static propTypes = {
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
   };
 
   constructor(props) {

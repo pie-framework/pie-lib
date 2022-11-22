@@ -13,7 +13,7 @@ export class Settings extends React.Component {
     classes: PropTypes.object.isRequired,
     className: PropTypes.string,
     model: PropTypes.object.isRequired,
-    onChange: PropTypes.func.isRequired
+    onChange: PropTypes.func.isRequired,
   };
 
   static defaultProps = {};
@@ -31,7 +31,7 @@ export class Settings extends React.Component {
     onChange({ ...model, includeArrows });
   };
 
-  size = size => {
+  size = (size) => {
     const { model, onChange } = this.props;
 
     onChange({ ...model, size });
@@ -49,37 +49,33 @@ export class Settings extends React.Component {
             <Checkbox
               label={'left'}
               checked={includeArrows.left}
-              onChange={event => this.changeArrows('left', event.target.checked)}
+              onChange={(event) => this.changeArrows('left', event.target.checked)}
             />
             <Checkbox
               label={'right'}
               checked={includeArrows.right}
-              onChange={event => this.changeArrows('right', event.target.checked)}
+              onChange={(event) => this.changeArrows('right', event.target.checked)}
             />
             <Checkbox
               label={'up'}
               checked={includeArrows.up}
-              onChange={event => this.changeArrows('up', event.target.checked)}
+              onChange={(event) => this.changeArrows('up', event.target.checked)}
             />
             <Checkbox
               label={'down'}
               checked={includeArrows.down}
-              onChange={event => this.changeArrows('down', event.target.checked)}
+              onChange={(event) => this.changeArrows('down', event.target.checked)}
             />
           </div>
 
-          <Toggle
-            label={'Graph Title'}
-            toggle={v => this.toggle('graphTitle', v)}
-            checked={graphTitle}
-          />
-          <Toggle label={'Labels'} toggle={v => this.toggle('labels', v)} checked={labels} />
+          <Toggle label={'Graph Title'} toggle={(v) => this.toggle('graphTitle', v)} checked={graphTitle} />
+          <Toggle label={'Labels'} toggle={(v) => this.toggle('labels', v)} checked={labels} />
 
           <div>
             <DisplaySize label={'Graph Display Size'} size={size} onChange={this.size} />
             <Toggle
               label={'Coordinates on Hover'}
-              toggle={v => this.toggle('coordinatesOnHover', v)}
+              toggle={(v) => this.toggle('coordinatesOnHover', v)}
               checked={coordinatesOnHover}
             />
             <Typography variant="overline">Properties</Typography>
@@ -90,21 +86,21 @@ export class Settings extends React.Component {
     );
   }
 }
-const styles = theme => ({
+const styles = (theme) => ({
   class: {
     display: 'block',
     maxWidth: '300px',
     backgroundColor: '#eaeaea',
     border: 'solid 1px #cccccc',
-    padding: theme.spacing.unit
+    padding: theme.spacing.unit,
   },
   holder: {
-    width: '100%'
+    width: '100%',
   },
   displaySize: {
     display: 'flex',
-    paddingTop: theme.spacing.unit
-  }
+    paddingTop: theme.spacing.unit,
+  },
 });
 
 export default withStyles(styles)(Settings);

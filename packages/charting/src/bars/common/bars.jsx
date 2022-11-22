@@ -23,18 +23,18 @@ export class RawBar extends React.Component {
     interactive: PropTypes.bool,
     correctness: PropTypes.shape({
       value: PropTypes.string,
-      label: PropTypes.string
-    })
+      label: PropTypes.string,
+    }),
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      dragValue: undefined
+      dragValue: undefined,
     };
   }
 
-  setDragValue = dragValue => this.setState({ dragValue });
+  setDragValue = (dragValue) => this.setState({ dragValue });
 
   dragStop = () => {
     const { label, onChangeCategory } = this.props;
@@ -55,16 +55,7 @@ export class RawBar extends React.Component {
   };
 
   render() {
-    const {
-      graphProps,
-      value,
-      label,
-      classes,
-      xBand,
-      index,
-      interactive,
-      correctness
-    } = this.props;
+    const { graphProps, value, label, classes, xBand, index, interactive, correctness } = this.props;
 
     const { scale, range } = graphProps;
     const { dragValue } = this.state;
@@ -81,19 +72,13 @@ export class RawBar extends React.Component {
 
     return (
       <React.Fragment>
-        <VxBar
-          x={barX}
-          y={scale.y(yy)}
-          width={barWidth}
-          height={barHeight}
-          className={classes.bar}
-        />
+        <VxBar x={barX} y={scale.y(yy)} width={barWidth} height={barHeight} className={classes.bar} />
         <Component
           x={barX}
           y={v}
           interactive={interactive}
           width={barWidth}
-          onDrag={v => this.dragValue(value, v)}
+          onDrag={(v) => this.dragValue(value, v)}
           onDragStop={this.dragStop}
           graphProps={graphProps}
           correctness={correctness}
@@ -105,8 +90,8 @@ export class RawBar extends React.Component {
 
 const Bar = withStyles(() => ({
   bar: {
-    fill: color.primaryLight()
-  }
+    fill: color.primaryLight(),
+  },
 }))(RawBar);
 
 export class Bars extends React.Component {
@@ -115,7 +100,7 @@ export class Bars extends React.Component {
     onChangeCategory: PropTypes.func,
     defineChart: PropTypes.bool,
     xBand: PropTypes.func,
-    graphProps: types.GraphPropsType.isRequired
+    graphProps: types.GraphPropsType.isRequired,
   };
 
   render() {
@@ -131,7 +116,7 @@ export class Bars extends React.Component {
             xBand={xBand}
             index={index}
             key={`bar-${d.label}-${d.value}-${index}`}
-            onChangeCategory={category => onChangeCategory(index, category)}
+            onChangeCategory={(category) => onChangeCategory(index, category)}
             graphProps={graphProps}
             correctness={d.correctness}
           />

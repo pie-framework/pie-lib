@@ -34,32 +34,30 @@ class RawTextSelectDemo extends React.Component {
         <TextSelect {...rest} selectedTokens={selectedTokens} />
         <div className={classes.info}>
           selected tokens:
-          <pre className={classes.pre}>
-            {JSON.stringify(selectedTokens, null, '  ')}
-          </pre>
+          <pre className={classes.pre}>{JSON.stringify(selectedTokens, null, '  ')}</pre>
         </div>
       </div>
     );
   }
 }
 
-const withCorrect = tokens => {
+const withCorrect = (tokens) => {
   return tokens.map((t, index) => {
     return { ...t, correct: index % 2 === 0 };
   });
 };
-const TextSelectDemo = withStyles(theme => ({
+const TextSelectDemo = withStyles((theme) => ({
   textSelectDemo: {
-    display: 'flex'
+    display: 'flex',
   },
   info: {
-    paddingLeft: theme.spacing.unit
-  }
+    paddingLeft: theme.spacing.unit,
+  },
 }))(RawTextSelectDemo);
 
 class Demo extends React.Component {
   static propTypes = {
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
   };
 
   static defaultProps = {};
@@ -80,42 +78,42 @@ class Demo extends React.Component {
       tokens: [
         {
           text: mathText,
-          selectable: true
+          selectable: true,
         },
         {
           text: 'hi there how are you?',
-          selectable: true
+          selectable: true,
         },
         {
           text: 'foo',
-          selectable: true
+          selectable: true,
         },
         {
           text: 'bar',
-          selectable: false
+          selectable: false,
         },
         {
           text: 'baz',
-          selectable: true
+          selectable: true,
         },
         {
           text: '<div><h1>Hi</h1></div>',
-          selected: true
+          selected: true,
         },
         {
           text: '<h1>h1 only</h1>',
-          selectable: true
+          selectable: true,
         },
         {
           text: 'not selectable',
-          selectable: false
+          selectable: false,
         },
         {
           text: 'i am selectable',
           selectable: true,
-          selected: true
-        }
-      ]
+          selected: true,
+        },
+      ],
     };
   }
 
@@ -137,15 +135,13 @@ class Demo extends React.Component {
     const { classes } = this.props;
     const { mounted } = this.state;
     return mounted ? (
-      <div ref={r => (this.root = r)} className={classes.demo}>
+      <div ref={(r) => (this.root = r)} className={classes.demo}>
         <Section name={'TextSelect Math Sample'}>
           <TextSelectDemo
             text={this.state.mathSampleText}
             tokens={this.state.mathSampleTokens}
             selectedTokens={this.state.mathSampleSelected}
-            onChange={mathSampleSelected =>
-              this.setState({ mathSampleSelected })
-            }
+            onChange={(mathSampleSelected) => this.setState({ mathSampleSelected })}
           />
           <TextSelectDemo
             disabled={true}
@@ -157,19 +153,15 @@ class Demo extends React.Component {
             disabled={true}
             text={this.state.mathSampleText}
             tokens={withCorrect(this.state.mathSampleTokens)}
-            selectedTokens={this.state.mathSampleTokens.filter(
-              (t, i) => i % 2 === 0
-            )}
+            selectedTokens={this.state.mathSampleTokens.filter((t, i) => i % 2 === 0)}
           />
         </Section>
         <Section name={'TextSelect'}>
           <TextSelectDemo
             text={this.state.simpleText}
             tokens={withCorrect(this.state.simpleTokens)}
-            selectedTokens={this.state.simpleTokens.filter(
-              (t, i) => i % 2 === 0
-            )}
-            onChange={simpleSelected => this.setState({ simpleSelected })}
+            selectedTokens={this.state.simpleTokens.filter((t, i) => i % 2 === 0)}
+            onChange={(simpleSelected) => this.setState({ simpleSelected })}
           />
         </Section>
         <Section name={'TokenSelect'}>
@@ -178,19 +170,13 @@ class Demo extends React.Component {
               highlightChoices={true}
               className={classes.tokenSelect}
               tokens={this.state.tokens}
-              onChange={tokens => this.setState({ tokens })}
+              onChange={(tokens) => this.setState({ tokens })}
             />
-            <pre className={classes.pre}>
-              {JSON.stringify(this.state.tokens, null, '  ')}
-            </pre>
+            <pre className={classes.pre}>{JSON.stringify(this.state.tokens, null, '  ')}</pre>
           </div>
         </Section>
         <Section name={'Tokens'}>
-          <Token
-            text={mathText}
-            selected={this.state.tokenSelected}
-            onClick={this.tokenClick}
-          />
+          <Token text={mathText} selected={this.state.tokenSelected} onClick={this.tokenClick} />
         </Section>
       </div>
     ) : (
@@ -199,31 +185,31 @@ class Demo extends React.Component {
   }
 }
 
-const StyledDemo = withStyles(theme => ({
+const StyledDemo = withStyles((theme) => ({
   pre: {
     flex: '0.5',
     whiteSpace: 'pre-wrap',
-    paddingLeft: theme.spacing.unit
+    paddingLeft: theme.spacing.unit,
   },
   demo: {
-    backgroundColor: 'none'
+    backgroundColor: 'none',
   },
   row: {
-    display: 'flex'
+    display: 'flex',
     // flexWrap: 'wrap'
   },
   description: {
     paddingTop: theme.spacing.unit,
-    paddingBottom: theme.spacing.unit
+    paddingBottom: theme.spacing.unit,
   },
   tokenSelect: {
     flex: '0.5',
     backgroundColor: 'none',
     padding: theme.spacing.unit,
-    border: `solid 1px ${theme.palette.primary.light}`
+    border: `solid 1px ${theme.palette.primary.light}`,
   },
   textSelect: {
-    paddingBottom: theme.spacing.unit * 3
-  }
+    paddingBottom: theme.spacing.unit * 3,
+  },
 }))(Demo);
 export default withRoot(StyledDemo);

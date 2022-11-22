@@ -5,7 +5,7 @@ import { graphProps } from '../__tests__/utils';
 
 describe('ChartAxes', () => {
   let onDataChange = jest.fn();
-  const wrapper = extras => {
+  const wrapper = (extras) => {
     const defaults = {
       classes: {},
       onDataChange,
@@ -13,26 +13,26 @@ describe('ChartAxes', () => {
       graphProps: graphProps(),
       xBand: () => {
         return {
-          bandwidth: () => {}
+          bandwidth: () => {},
         };
       },
       charts: [
         {
           type: 'bar',
-          Component: () => <div />
-        }
+          Component: () => <div />,
+        },
       ],
       chartType: 'bar',
       domain: {},
       range: {
         min: 0,
-        max: 10
+        max: 10,
       },
       size: {
         width: 100,
-        height: 100
+        height: 100,
       },
-      data: []
+      data: [],
     };
     const props = { ...defaults, ...extras };
     return shallow(<Chart {...props} />);
@@ -41,11 +41,9 @@ describe('ChartAxes', () => {
   describe('snapshot', () => {
     it('renders', () => expect(wrapper()).toMatchSnapshot());
 
-    it('renders if size is not defined', () =>
-      expect(wrapper({ size: undefined })).toMatchSnapshot());
+    it('renders if size is not defined', () => expect(wrapper({ size: undefined })).toMatchSnapshot());
 
-    it('renders without chartType property', () =>
-      expect(wrapper({ chartType: null })).toMatchSnapshot());
+    it('renders without chartType property', () => expect(wrapper({ chartType: null })).toMatchSnapshot());
 
     it('renders without chartType and charts properties', () =>
       expect(wrapper({ chartType: null, charts: null })).toMatchSnapshot());

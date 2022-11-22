@@ -7,17 +7,17 @@ describe('snapshot', () => {
   let wrapper;
 
   beforeAll(() => {
-    wrapper = extras => {
+    wrapper = (extras) => {
       const defaults = {
         node: {
           data: {
-            get: jest.fn().mockReturnValue('sqrt(5)')
-          }
+            get: jest.fn().mockReturnValue('sqrt(5)'),
+          },
         },
         classes: {},
         isSelected: false,
         onFocus: jest.fn(),
-        onBlur: jest.fn()
+        onBlur: jest.fn(),
       };
       const props = { ...defaults, ...extras };
 

@@ -10,7 +10,7 @@ export class InputChooser extends React.Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     inputOptions: PropTypes.array.isRequired,
-    onChange: PropTypes.func.isRequired
+    onChange: PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -19,12 +19,12 @@ export class InputChooser extends React.Component {
     const selected = props.inputOptions[0];
     this.state = {
       selected,
-      userHtml: selected.html
+      userHtml: selected.html,
     };
   }
 
-  changeSelection = e => {
-    const newSelection = this.props.inputOptions.find(i => i.html === e.target.value);
+  changeSelection = (e) => {
+    const newSelection = this.props.inputOptions.find((i) => i.html === e.target.value);
 
     this.setState({ selected: newSelection, userHtml: newSelection.html }, () => {
       this.props.onChange(this.state.userHtml);
@@ -37,9 +37,7 @@ export class InputChooser extends React.Component {
     return (
       <div>
         <div>
-          <em className={classes.italic}>
-            You can enter your own markup here to see how it works with the editor.
-          </em>
+          <em className={classes.italic}>You can enter your own markup here to see how it works with the editor.</em>
         </div>
         <br />
         <FormControl className={classes.formControl}>
@@ -49,10 +47,10 @@ export class InputChooser extends React.Component {
             onChange={this.changeSelection}
             inputProps={{
               name: 'markup',
-              id: 'markup'
+              id: 'markup',
             }}
           >
-            {inputOptions.map(i => (
+            {inputOptions.map((i) => (
               <MenuItem key={i.label} value={i.html}>
                 {i.label}
               </MenuItem>
@@ -63,14 +61,10 @@ export class InputChooser extends React.Component {
         <br />
         <textarea
           className={classes.textArea}
-          onChange={e => this.setState({ userHtml: e.target.value })}
+          onChange={(e) => this.setState({ userHtml: e.target.value })}
           value={userHtml}
         />
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => this.props.onChange(this.state.userHtml)}
-        >
+        <Button variant="contained" color="primary" onClick={() => this.props.onChange(this.state.userHtml)}>
           Update Editor
         </Button>
       </div>
@@ -80,15 +74,15 @@ export class InputChooser extends React.Component {
 
 const styles = {
   formControl: {
-    width: '100%'
+    width: '100%',
   },
   italic: {
-    fontSize: '11px'
+    fontSize: '11px',
   },
   textArea: {
     width: '100%',
-    height: '100px'
-  }
+    height: '100px',
+  },
 };
 
 export default withStyles(styles)(InputChooser);

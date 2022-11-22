@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 export class AltDialog extends React.Component {
   static propTypes = {
     onDone: PropTypes.func.isRequired,
-    alt: PropTypes.string
+    alt: PropTypes.string,
   };
 
   constructor(props) {
@@ -19,7 +19,7 @@ export class AltDialog extends React.Component {
     const { alt } = props;
 
     this.state = {
-      value: alt
+      value: alt,
     };
   }
 
@@ -54,7 +54,7 @@ export class AltDialog extends React.Component {
                 'Users with visual limitations rely on Alt Text, since screen readers cannot otherwise describe the contents of an image.'
               }
               value={value}
-              onChange={event => this.setState({ value: event.target.value })}
+              onChange={(event) => this.setState({ value: event.target.value })}
               FormHelperTextProps={{ style: { fontSize: 14 } }}
             />
           </div>

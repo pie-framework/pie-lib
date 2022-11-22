@@ -7,7 +7,7 @@ import Axes, { RawXAxis, RawYAxis, firstNegativeValue, sharedValues } from '../a
 describe('RawXAxis', () => {
   let w;
   let onChange = jest.fn();
-  const wrapper = extras => {
+  const wrapper = (extras) => {
     const defaults = {
       classes: {},
       className: 'className',
@@ -17,8 +17,8 @@ describe('RawXAxis', () => {
         left: true,
         right: true,
         up: true,
-        down: true
-      }
+        down: true,
+      },
     };
     const props = { ...defaults, ...extras };
     return shallow(<RawXAxis {...props} />);
@@ -34,7 +34,7 @@ describe('RawXAxis', () => {
 describe('RawYAxis', () => {
   let w;
   let onChange = jest.fn();
-  const wrapper = extras => {
+  const wrapper = (extras) => {
     const defaults = {
       classes: {},
       className: 'className',
@@ -44,8 +44,8 @@ describe('RawYAxis', () => {
         left: true,
         right: true,
         up: true,
-        down: true
-      }
+        down: true,
+      },
     };
     const props = { ...defaults, ...extras };
     return shallow(<RawYAxis {...props} />);
@@ -58,9 +58,9 @@ describe('RawYAxis', () => {
   });
 });
 
-const customScaleMock = distance => {
-  const fn = jest.fn(n => n * distance);
-  fn.invert = jest.fn(n => n * distance);
+const customScaleMock = (distance) => {
+  const fn = jest.fn((n) => n * distance);
+  fn.invert = jest.fn((n) => n * distance);
   return fn;
 };
 
@@ -74,26 +74,26 @@ describe.only('Axes', () => {
       min: -2,
       max: 2,
       labelStep: 1,
-      step: 1
+      step: 1,
     },
     range: {
       min: -2,
       max: 2,
       step: 1,
-      labelStep: 1
+      labelStep: 1,
     },
     scale: {
       x: customScaleMock(200),
-      y: customScaleMock(150)
-    }
+      y: customScaleMock(150),
+    },
   };
 
-  const wrapper = extras => {
+  const wrapper = (extras) => {
     const defaults = {
       classes: {},
       className: 'className',
       onChange,
-      graphProps: customGraphProps
+      graphProps: customGraphProps,
     };
 
     const props = { ...defaults, ...extras };
@@ -106,7 +106,7 @@ describe.only('Axes', () => {
       expect(result).toEqual({
         columnTicksValues: expect.arrayContaining([-2, -1, 0, 1, 2]),
         distanceFromOriginToFirstNegativeX: 150,
-        firstNegativeX: -1
+        firstNegativeX: -1,
       });
     });
   });
@@ -117,7 +117,7 @@ describe.only('Axes', () => {
       expect(result).toEqual({
         rowTickValues: expect.arrayContaining([-2, -1, 0, 1, 2]),
         distanceFromOriginToFirstNegativeY: 200,
-        firstNegativeY: -1
+        firstNegativeY: -1,
       });
     });
   });
@@ -165,7 +165,7 @@ describe('skipValue should be empty array if firstNegativeValue for one of the a
     firstNegativeY,
     distanceFromOriginToFirstNegativeX,
     distanceFromOriginToFirstNegativeY,
-    deltaAllowance
+    deltaAllowance,
   );
 
   expect(result).toEqual([]);
@@ -189,7 +189,7 @@ describe('skipValue should be empty array if firstNegativeX and firstNegativeY a
     firstNegativeY,
     distanceFromOriginToFirstNegativeX,
     distanceFromOriginToFirstNegativeY,
-    deltaAllowance
+    deltaAllowance,
   );
 
   expect(result).toEqual([]);
@@ -213,7 +213,7 @@ describe('skipValue should be -1 if firstNegativeX and firstNegativeY are equal 
     firstNegativeY,
     distanceFromOriginToFirstNegativeX,
     distanceFromOriginToFirstNegativeY,
-    deltaAllowance
+    deltaAllowance,
   );
 
   expect(result).toEqual([-1]);

@@ -10,42 +10,42 @@ export default class Input extends React.Component {
     label: PropTypes.string,
     type: PropTypes.string.isRequired,
     error: PropTypes.func,
-    noModelUpdateOnError: PropTypes.bool
+    noModelUpdateOnError: PropTypes.bool,
   };
 
   static defaultProps = {
     type: 'text',
     error: (value, type) => (type === 'number' ? !value || isNaN(value) : !value),
-    noModelUpdateOnError: false
+    noModelUpdateOnError: false,
   };
 
   constructor(props) {
     super(props);
 
     this.state = {
-      value: props.value
+      value: props.value,
     };
   }
 
   componentWillReceiveProps(newProps) {
     this.setState({
-      value: newProps.value
+      value: newProps.value,
     });
   }
 
-  onChange = event => {
+  onChange = (event) => {
     const { type, onChange, error } = this.props;
     const value = event.target.value;
 
     if (error(value, type)) {
       this.setState({
         error: true,
-        value: event.target.value
+        value: event.target.value,
       });
     } else {
       this.setState({
         error: false,
-        value: event.target.value
+        value: event.target.value,
       });
 
       onChange(event);

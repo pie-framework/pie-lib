@@ -6,7 +6,7 @@ import Plot from './common/plot';
 import { LinePath } from '@vx/shape';
 import { Group } from '@vx/group';
 
-const CustomBarElement = props => {
+const CustomBarElement = (props) => {
   const { index, pointDiameter, barX, barWidth, pointHeight, label, value, classes, scale } = props;
 
   const x = barX + (barWidth - pointDiameter) / 2;
@@ -15,19 +15,25 @@ const CustomBarElement = props => {
   return (
     <Group>
       <LinePath
-        data={[{ x, y }, { x: x + pointDiameter, y: y - pointDiameter }]}
+        data={[
+          { x, y },
+          { x: x + pointDiameter, y: y - pointDiameter },
+        ]}
         key={`point-${label}-${value}-${index}-1`}
         className={classes.line}
-        x={d => d.x}
-        y={d => d.y}
+        x={(d) => d.x}
+        y={(d) => d.y}
         strokeWidth={pointDiameter / 5}
       />
       <LinePath
-        data={[{ x, y: y - pointDiameter }, { x: x + pointDiameter, y }]}
+        data={[
+          { x, y: y - pointDiameter },
+          { x: x + pointDiameter, y },
+        ]}
         key={`point-${label}-${value}-${index}-2`}
         className={classes.line}
-        x={d => d.x}
-        y={d => d.y}
+        x={(d) => d.x}
+        y={(d) => d.y}
         strokeWidth={pointDiameter / 5}
       />
     </Group>
@@ -43,14 +49,14 @@ CustomBarElement.propTypes = {
   value: PropTypes.number,
   label: PropTypes.string,
   classes: PropTypes.object,
-  scale: PropTypes.object
+  scale: PropTypes.object,
 };
 
 export class LinePlot extends React.Component {
   static propTypes = {
     data: PropTypes.array,
     onChange: PropTypes.func,
-    graphProps: types.GraphPropsType.isRequired
+    graphProps: types.GraphPropsType.isRequired,
   };
 
   render() {
@@ -66,5 +72,5 @@ export class LinePlot extends React.Component {
 export default () => ({
   type: 'linePlot',
   Component: LinePlot,
-  name: 'Line Plot'
+  name: 'Line Plot',
 });

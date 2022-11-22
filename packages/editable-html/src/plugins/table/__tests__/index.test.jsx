@@ -10,15 +10,15 @@ jest.mock('slate-edit-table', () => {
       isSelectionInTable: jest.fn().mockReturnValue(true),
       createTable: jest.fn(function(c) {
         return {
-          toJSON: jest.fn().mockReturnValue({ object: 'block', type: 'table' })
+          toJSON: jest.fn().mockReturnValue({ object: 'block', type: 'table' }),
         };
-      })
+      }),
     },
     changes: {
       insertTable: jest.fn(function(c) {
         return c;
-      })
-    }
+      }),
+    },
   };
 
   return jest.fn().mockReturnValue(mock);
@@ -42,9 +42,9 @@ describe('table', () => {
           insertBlock,
           value: {
             document: {
-              findDescendant
-            }
-          }
+              findDescendant,
+            },
+          },
         });
       });
 
@@ -58,7 +58,7 @@ describe('table', () => {
         plugin.toolbar.onClick({ change: changeMock }, onChange);
 
         expect(insertBlock).toHaveBeenCalledWith(
-          Block.create({ key: '2', type: 'table', data: { border: '1', newTable: true } })
+          Block.create({ key: '2', type: 'table', data: { border: '1', newTable: true } }),
         );
       });
 
@@ -68,8 +68,8 @@ describe('table', () => {
         const newTableBlock = {
           key: '2',
           data: {
-            remove: dataRemoveFn
-          }
+            remove: dataRemoveFn,
+          },
         };
         const collapseToStartOf = jest.fn();
 
@@ -79,9 +79,9 @@ describe('table', () => {
           setNodeByKey,
           value: {
             document: {
-              findDescendant: jest.fn().mockReturnValue(newTableBlock)
-            }
-          }
+              findDescendant: jest.fn().mockReturnValue(newTableBlock),
+            },
+          },
         });
         plugin.toolbar.onClick({ change: changeMock }, onChange);
 
@@ -117,15 +117,15 @@ describe('table', () => {
             beforeEach(() => {
               const plugin = TablePlugin();
               change = {
-                setNodeByKey: jest.fn().mockReturnThis()
+                setNodeByKey: jest.fn().mockReturnThis(),
               };
               plugin.utils.getTableBlock = jest.fn().mockReturnValue({
                 key: 'tableKey',
-                data: Data.create({ border })
+                data: Data.create({ border }),
               });
               const node = { key: 'nodeKey' };
               const value = {
-                change: jest.fn().mockReturnValue(change)
+                change: jest.fn().mockReturnValue(change),
               };
               done = jest.fn();
               const Comp = plugin.toolbar.customToolbar(node, value, done);
@@ -135,7 +135,7 @@ describe('table', () => {
 
             it(`calls setNodeByKey with ${expectedBorder}`, () => {
               expect(change.setNodeByKey).toHaveBeenCalledWith('tableKey', {
-                data: Data.create({ border: expectedBorder })
+                data: Data.create({ border: expectedBorder }),
               });
             });
 
@@ -165,13 +165,13 @@ describe('table', () => {
         const tablePlugin = TablePlugin();
         const nodes = {
           size: 3,
-          findLastIndex: jest.fn().mockReturnValue(1)
+          findLastIndex: jest.fn().mockReturnValue(1),
         };
         const returnValue = tablePlugin.normalizeNode({
           object: 'document',
           nodes,
           findDescendant: jest.fn().mockReturnValue({ object: 'block', type: 'table' }),
-          getParent: jest.fn().mockReturnValue(undefined)
+          getParent: jest.fn().mockReturnValue(undefined),
         });
         expect(returnValue).toEqual(undefined);
       });
@@ -180,19 +180,21 @@ describe('table', () => {
         const tablePlugin = TablePlugin();
         const nodes = {
           size: 2,
-          findLastIndex: jest.fn().mockReturnValue(1)
+          findLastIndex: jest.fn().mockReturnValue(1),
         };
-        const findDescendant = jest.fn().mockReturnValue(Block.create({
-          object: 'block',
-          type: 'table',
-          key: '99',
-          data: Data.create({
-            newTable: true
-          })
-        }));
+        const findDescendant = jest.fn().mockReturnValue(
+          Block.create({
+            object: 'block',
+            type: 'table',
+            key: '99',
+            data: Data.create({
+              newTable: true,
+            }),
+          }),
+        );
         const prevTextReturned = { key: '1', text: 'foobar' };
         const change = {
-          withoutNormalization: jest.fn(callback => {
+          withoutNormalization: jest.fn((callback) => {
             callback();
           }),
           insertBlock: jest.fn(),
@@ -200,9 +202,9 @@ describe('table', () => {
           value: {
             document: {
               getPreviousText: jest.fn().mockReturnValue(prevTextReturned),
-              findDescendant: jest.fn()
-            }
-          }
+              findDescendant: jest.fn(),
+            },
+          },
         };
         change.moveFocusTo = jest.fn().mockReturnValue(change);
         change.moveAnchorTo = jest.fn().mockReturnValue(change);
@@ -211,7 +213,7 @@ describe('table', () => {
           object: 'document',
           nodes,
           findDescendant,
-          getParent: jest.fn().mockReturnValue(undefined)
+          getParent: jest.fn().mockReturnValue(undefined),
         });
 
         expect(returnValue).toEqual(expect.any(Function));
@@ -226,9 +228,7 @@ describe('table', () => {
         expect(change.moveFocusTo).toHaveBeenCalledWith('1', prevTextReturned.text.length);
         expect(change.moveAnchorTo).toHaveBeenCalledWith('1', prevTextReturned.text.length);
 
-        expect(change.insertBlock).toHaveBeenCalledWith(
-          expect.objectContaining({ object: 'block', type: 'table' })
-        );
+        expect(change.insertBlock).toHaveBeenCalledWith(expect.objectContaining({ object: 'block', type: 'table' }));
       });
     });
   });
@@ -246,7 +246,7 @@ describe('parseStyleString', () => {
   parses(' border-width: 10px; ', { 'border-width': '10px' });
   parses(' border: solid 1px red; height: 1px', {
     border: 'solid 1px red',
-    height: '1px'
+    height: '1px',
   });
 });
 
@@ -266,10 +266,7 @@ describe('reactAttributes', () => {
       expect(result).toEqual(expected);
     });
   };
-  attributes(
-    { 'border-width': '10px', 'line-height': 1.56 },
-    { borderWidth: '10px', lineHeight: '1.56' }
-  );
+  attributes({ 'border-width': '10px', 'line-height': 1.56 }, { borderWidth: '10px', lineHeight: '1.56' });
 });
 
 describe('serialization', () => {
@@ -287,7 +284,7 @@ describe('serialization', () => {
         el = {
           tagName: 'table',
           children: [],
-          getAttribute: jest.fn(name => {
+          getAttribute: jest.fn((name) => {
             switch (name) {
               case 'border':
                 return '1';
@@ -300,7 +297,7 @@ describe('serialization', () => {
               case 'style':
                 return 'width: 10px';
             }
-          })
+          }),
         };
         out = serialization.deserialize(el, next);
       });
@@ -320,7 +317,7 @@ describe('serialization', () => {
         expect(out).toMatchObject({
           object: 'block',
           type: 'table',
-          nodes: []
+          nodes: [],
         });
       });
     });
@@ -328,7 +325,7 @@ describe('serialization', () => {
     it('deserializes tr', () => {
       const el = {
         tagName: 'tr',
-        children: []
+        children: [],
       };
 
       const out = serialization.deserialize(el, next);
@@ -336,7 +333,7 @@ describe('serialization', () => {
       expect(out).toEqual({
         object: 'block',
         type: 'table_row',
-        nodes: []
+        nodes: [],
       });
     });
 
@@ -348,10 +345,10 @@ describe('serialization', () => {
           const o = {
             class: 'class name',
             colspan: '1',
-            rowspan: '1'
+            rowspan: '1',
           };
           return o[name];
-        })
+        }),
       };
 
       const out = serialization.deserialize(el, next);
@@ -364,8 +361,8 @@ describe('serialization', () => {
           colspan: '1',
           rowspan: '1',
           class: 'class name',
-          header: false
-        }
+          header: false,
+        },
       });
     });
   });
@@ -379,14 +376,14 @@ describe('serialization', () => {
         data: Data.create({
           border: '1',
           cellpadding: '2',
-          cellspacing: '3'
-        })
+          cellspacing: '3',
+        }),
       });
 
       expect(el).toEqual(
         <table border="1" cellPadding="2" cellSpacing="3">
           <tbody />
-        </table>
+        </table>,
       );
     });
 
@@ -394,7 +391,7 @@ describe('serialization', () => {
       const el = serialization.serialize({
         object: 'block',
         type: 'table_row',
-        nodes: []
+        nodes: [],
       });
 
       expect(el).toEqual(<tr />);
@@ -407,8 +404,8 @@ describe('serialization', () => {
         data: Data.create({
           header: false,
           style: { width: '10px' },
-          class: 'foo'
-        })
+          class: 'foo',
+        }),
       });
 
       expect(el).toEqual(<td style={{ width: '10px' }} className={'foo'} />);

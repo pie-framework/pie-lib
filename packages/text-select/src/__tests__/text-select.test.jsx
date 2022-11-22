@@ -6,13 +6,7 @@ describe('text-select', () => {
   describe('snapshot', () => {
     it('renders', () => {
       const w = shallow(
-        <TextSelect
-          text="foo"
-          tokens={[]}
-          selectedTokens={[]}
-          onChange={jest.fn()}
-          maxNoOfSelections={4}
-        />
+        <TextSelect text="foo" tokens={[]} selectedTokens={[]} onChange={jest.fn()} maxNoOfSelections={4} />,
       );
       expect(w).toMatchSnapshot();
     });
@@ -22,21 +16,14 @@ describe('text-select', () => {
     let w, onChange;
     beforeEach(() => {
       onChange = jest.fn();
-      w = shallow(
-        <TextSelect
-          text="foo"
-          tokens={[]}
-          selectedTokens={[]}
-          onChange={onChange}
-        />
-      );
+      w = shallow(<TextSelect text="foo" tokens={[]} selectedTokens={[]} onChange={onChange} />);
     });
 
     describe('change', () => {
       it('calls onChange', () => {
         const changeArgs = [
           { start: 0, end: 1, selected: true },
-          { start: 1, end: 2 }
+          { start: 1, end: 2 },
         ];
 
         w.instance().change(changeArgs);

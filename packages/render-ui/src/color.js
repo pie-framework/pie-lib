@@ -15,12 +15,12 @@ export const defaults = {
   SECONDARY_LIGHT: pink[200],
   SECONDARY_DARK: pink[900],
   BACKGROUND: 'rgba(255,255,255,0)',
-  SECONDARY_BACKGROUND: 'rgba(241,241,241,1)'
+  SECONDARY_BACKGROUND: 'rgba(241,241,241,1)',
 };
 
 Object.freeze(defaults);
 
-export const v = prefix => (...args) => {
+export const v = (prefix) => (...args) => {
   const fallback = args.pop();
   return args.reduceRight((acc, v) => {
     return `var(--${prefix}-${v}, ${acc})`;

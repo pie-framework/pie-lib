@@ -24,15 +24,15 @@ DraggableComponent.propTypes = {
   classes: PropTypes.object,
   correctness: PropTypes.shape({
     value: PropTypes.string,
-    label: PropTypes.string
-  })
+    label: PropTypes.string,
+  }),
 };
 
 export class LineDot extends React.Component {
   static propTypes = {
     data: PropTypes.array,
     onChange: PropTypes.func,
-    graphProps: types.GraphPropsType.isRequired
+    graphProps: types.GraphPropsType.isRequired,
   };
 
   render() {
@@ -48,5 +48,5 @@ export class LineDot extends React.Component {
 export default () => ({
   type: 'lineDot',
   Component: LineDot,
-  name: 'Line Dot'
+  name: 'Line Dot',
 });

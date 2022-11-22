@@ -12,10 +12,10 @@ describe('graphic', () => {
           height={100}
           units={12}
           unit={{
-            type: 'in'
+            type: 'in',
           }}
           classes={{ bg: 'bg' }}
-        />
+        />,
       );
       expect(toJson(wrapper)).toMatchSnapshot();
     });

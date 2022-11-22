@@ -6,13 +6,13 @@ import { types } from '@pie-lib/plot';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 
-const lineStyles = theme => ({
+const lineStyles = (theme) => ({
   line: styles.line(theme),
   disabled: styles.disabled(theme),
   correct: styles.correct(theme, 'stroke'),
-  incorrect: styles.incorrect(theme, 'stroke')
+  incorrect: styles.incorrect(theme, 'stroke'),
 });
-export const Line = props => {
+export const Line = (props) => {
   const { className, classes, correctness, disabled, graphProps, from, to, ...rest } = props;
   const { scale } = graphProps;
 
@@ -24,12 +24,7 @@ export const Line = props => {
       y1={scale.y(from.y)}
       x2={scale.x(to.x)}
       y2={scale.y(to.y)}
-      className={classNames(
-        classes.line,
-        disabled && classes.disabled,
-        classes[correctness],
-        className
-      )}
+      className={classNames(classes.line, disabled && classes.disabled, classes[correctness], className)}
       {...rest}
     />
   );
@@ -42,7 +37,7 @@ Line.propTypes = {
   disabled: PropTypes.bool,
   graphProps: PropTypes.any,
   from: types.PointType,
-  to: types.PointType
+  to: types.PointType,
 };
 
 const StyledLine = withStyles(lineStyles)(Line);

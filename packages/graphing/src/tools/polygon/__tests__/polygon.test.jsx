@@ -7,12 +7,12 @@ const xy = (x, y) => ({ x, y });
 
 describe('Polygon', () => {
   let w;
-  const wrapper = extras => {
+  const wrapper = (extras) => {
     const defaults = {
       classes: {},
       className: 'className',
       graphProps: graphProps(),
-      closed: false
+      closed: false,
     };
     const props = { ...defaults, ...extras };
     return shallow(<Polygon {...props} />);
@@ -30,8 +30,8 @@ describe('getPointString', () => {
   const assertString = (arr, expected) => {
     it('creates: ', () => {
       const result = getPointString(arr, {
-        x: jest.fn(n => n),
-        y: jest.fn(n => n)
+        x: jest.fn((n) => n),
+        y: jest.fn((n) => n),
       });
 
       expect(result).toEqual(expected);

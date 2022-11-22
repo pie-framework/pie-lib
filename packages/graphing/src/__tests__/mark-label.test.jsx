@@ -4,21 +4,21 @@ import { MarkLabel, position, coordinates } from '../mark-label';
 import { graphProps as getGraphProps } from '../__tests__/utils';
 
 const xyFn = () => {
-  const out = jest.fn(n => n);
-  out.invert = jest.fn(n => n);
+  const out = jest.fn((n) => n);
+  out.invert = jest.fn((n) => n);
   return out;
 };
 
 describe('MarkLabel', () => {
   let w;
   let onChange = jest.fn();
-  const wrapper = extras => {
+  const wrapper = (extras) => {
     const defaults = {
       classes: {},
       className: 'className',
       onChange,
       mark: { x: 1, y: 1 },
-      graphProps: getGraphProps(0, 10, 0, 10)
+      graphProps: getGraphProps(0, 10, 0, 10),
     };
     const props = { ...defaults, ...extras };
     return shallow(<MarkLabel {...props} />);
@@ -63,6 +63,6 @@ describe('coordinates', () => {
   assertCoordinates({ x: 0, y: 0 }, { width: 0, height: 0 }, 'top-right', { left: 10, top: -10 });
   assertCoordinates({ x: 0, y: 0 }, { width: 0, height: 0 }, 'bottom-right', {
     left: 10,
-    top: 10
+    top: 10,
   });
 });
