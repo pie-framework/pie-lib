@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { renderMath } from '@pie-lib/math-rendering';
-import { Choices } from './choices';
+import DragChoices from './choices';
 import Blank from './components/blank';
 import { withMask } from './with-mask';
+import { withDragContext, uid } from '@pie-lib/drag';
 
 const Masked = withMask('blank', props => (node, data, onChange) => {
   const dataset = node.data ? node.data.dataset || {} : {};
@@ -26,7 +27,7 @@ const Masked = withMask('blank', props => (node, data, onChange) => {
   }
 });
 
-export default class DragInTheBlank extends React.Component {
+export class DragInTheBlank extends React.Component {
   static propTypes = {
     markup: PropTypes.string,
     layout: PropTypes.object,
@@ -98,7 +99,7 @@ export default class DragInTheBlank extends React.Component {
 
     return (
       <div ref={ref => ref && (this.rootRef = ref)} style={style}>
-        <Choices
+        <DragChoices
           choicePosition={choicePosition}
           duplicates={duplicates}
           choices={choices}
@@ -121,3 +122,20 @@ export default class DragInTheBlank extends React.Component {
     );
   }
 }
+
+class DragInTheBlankProvider extends React.Component {
+  constructor(props) {
+    super(props);
+    this.uid = uid.generateId();
+  }
+
+  render() {
+    return (
+      <uid.Provider value={this.uid}>
+        <DragInTheBlank {...this.props} />
+      </uid.Provider>
+    );
+  }
+}
+
+export default withDragContext(DragInTheBlankProvider);

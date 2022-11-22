@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import findKey from 'lodash/findKey';
 import Choice from './choice';
-import { DropTarget } from 'react-dnd';
+import { DropTarget } from '@pie-lib/drag';
 import { uid } from '@pie-lib/drag';
 
 export class Choices extends React.Component {
@@ -42,6 +42,7 @@ export class Choices extends React.Component {
 
   render() {
     const { disabled, duplicates, choices, value, connectDropTarget } = this.props;
+    console.log(connectDropTarget, 'connectDrop target');
     const filteredChoices = choices.filter(c => {
       if (duplicates === true) {
         return true;
@@ -52,7 +53,7 @@ export class Choices extends React.Component {
     const elementStyle = this.getStyleForWrapper();
 
     return connectDropTarget(
-      <div style={elementStyle}>
+      <div>
         {filteredChoices.map((c, index) => (
           <Choice key={`${c.value}-${index}`} disabled={disabled} choice={c} />
         ))}
@@ -64,8 +65,8 @@ export class Choices extends React.Component {
 export const spec = {
   drop: (props, monitor) => {
     log('[drop] props: ', props);
-    // const item = monitor.getItem();
-    // props.onDropChoice(item);
+    const item = monitor.getItem();
+    props.onDropChoice(item);
   },
   canDrop: (props /*, monitor*/) => {
     return !props.disabled;
