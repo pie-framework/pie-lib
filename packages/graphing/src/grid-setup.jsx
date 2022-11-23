@@ -10,17 +10,8 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { NumberTextFieldCustom, Toggle } from '@pie-lib/config-ui';
 import EditableHTML from '@pie-lib/editable-html';
 
-const GridConfig = props => {
-  const {
-    classes,
-    disabled,
-    displayedFields,
-    labelValue,
-    labelValues,
-    gridValue,
-    gridValues,
-    onChange
-  } = props;
+const GridConfig = (props) => {
+  const { classes, disabled, displayedFields, labelValue, labelValues, gridValue, gridValues, onChange } = props;
   const { labelStep = {}, step = {} } = displayedFields;
 
   return (
@@ -59,27 +50,17 @@ GridConfig.propTypes = {
   labelValues: PropTypes.array,
   gridValue: PropTypes.number,
   gridValues: PropTypes.array,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
 };
 
-const AxisConfig = props => {
-  const {
-    classes,
-    disabled,
-    displayedFields,
-    displayHeader,
-    label,
-    maxValue,
-    minValue,
-    onChange,
-    type
-  } = props;
+const AxisConfig = (props) => {
+  const { classes, disabled, displayedFields, displayHeader, label, maxValue, minValue, onChange, type } = props;
   const { axisLabel = {}, min = {}, max = {} } = displayedFields;
   const activePlugins = [
     'bold',
     'italic',
     'underline',
-    'strikethrough'
+    'strikethrough',
     // 'languageCharacters'
   ];
 
@@ -119,7 +100,7 @@ const AxisConfig = props => {
         <InputContainer label={axisLabel.label || ''} className={classes.mediumTextField}>
           <EditableHTML
             className={classes.axisLabel}
-            onChange={value => onChange('axisLabel', value)}
+            onChange={(value) => onChange('axisLabel', value)}
             markup={label || ''}
             charactersLimit={5}
             activePlugins={activePlugins}
@@ -130,7 +111,7 @@ const AxisConfig = props => {
   );
 };
 
-const GridSetup = props => {
+const GridSetup = (props) => {
   const {
     classes,
     domain,
@@ -143,7 +124,7 @@ const GridSetup = props => {
     range,
     size,
     sizeConstraints,
-    standardGrid
+    standardGrid,
   } = props;
   const gridProps = { min: 2, max: 41 };
   const {
@@ -154,48 +135,47 @@ const GridSetup = props => {
     min = {},
     max = {},
     standardGridEnabled,
-    step = {}
+    step = {},
   } = displayedFields || {};
-  const displayAxisType =
-    min.enabled || max.enabled || axisLabel.enabled || step.enabled || labelStep.enabled;
+  const displayAxisType = min.enabled || max.enabled || axisLabel.enabled || step.enabled || labelStep.enabled;
   const gridConfigFields = { step, labelStep };
   const axisConfigFields = { min, max, axisLabel };
 
-  const onIncludeAxes = includeAxes => {
-    const noAxesConfig = type => {
+  const onIncludeAxes = (includeAxes) => {
+    const noAxesConfig = (type) => {
       const axis = type === 'domain' ? domain : range;
 
       return {
         min: 1,
         max: axis.max < gridProps.min || axis.max > gridProps.max ? 16 : axis.max,
         step: 1,
-        labelStep: 0
+        labelStep: 0,
       };
     };
 
     const updatedRange = {
       ...range,
-      ...(includeAxes ? { labelStep: 1 } : noAxesConfig('range'))
+      ...(includeAxes ? { labelStep: 1 } : noAxesConfig('range')),
     };
     const updatedDomain = {
       ...domain,
-      ...(includeAxes ? { labelStep: 1 } : noAxesConfig('domain'))
+      ...(includeAxes ? { labelStep: 1 } : noAxesConfig('domain')),
     };
 
     onChange({ includeAxes, range: updatedRange, domain: updatedDomain });
   };
 
-  const onStandardGridChanged = value => {
+  const onStandardGridChanged = (value) => {
     onChange({
       standardGrid: value,
       range: {
         ...domain,
-        axisLabel: range.axisLabel
+        axisLabel: range.axisLabel,
       },
       graph: {
         ...size,
-        height: size.width
-      }
+        height: size.width,
+      },
     });
   };
 
@@ -254,8 +234,7 @@ const GridSetup = props => {
       </div>
       {(min.enabled || max.enabled) && (
         <Typography className={classes.text}>
-          If you want the axis to be visible, use a zero or negative Min Value, and a positive Max
-          Value
+          If you want the axis to be visible, use a zero or negative Min Value, and a positive Max Value
         </Typography>
       )}
       {(step.enabled || labelStep.enabled) && (
@@ -282,9 +261,7 @@ const GridSetup = props => {
         </div>
       )}
       {labelStep.enabled && (
-        <Typography className={classes.text}>
-          For unnumbered gridlines, enter a label interval of 0
-        </Typography>
+        <Typography className={classes.text}>For unnumbered gridlines, enter a label interval of 0</Typography>
       )}
     </React.Fragment>
   );
@@ -322,11 +299,7 @@ const GridSetup = props => {
         <ExpansionPanelDetails>
           <div className={classes.content}>
             {includeAxesEnabled && (
-              <Toggle
-                label="Include axes and labels?"
-                toggle={onIncludeAxes}
-                checked={includeAxes}
-              />
+              <Toggle label="Include axes and labels?" toggle={onIncludeAxes} checked={includeAxes} />
             )}
             {standardGridEnabled && (
               <Toggle
@@ -386,55 +359,55 @@ GridSetup.propTypes = {
   range: PropTypes.object,
   size: PropTypes.object,
   sizeConstraints: PropTypes.object,
-  standardGrid: PropTypes.bool
+  standardGrid: PropTypes.bool,
 };
 
-const styles = theme => ({
+const styles = (theme) => ({
   wrapper: {
-    width: '450px'
+    width: '450px',
   },
   content: {
     display: 'flex',
     flexDirection: 'column',
-    width: '100%'
+    width: '100%',
   },
   columnView: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   rowView: {
     display: 'flex',
     justifyContent: 'space-around',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   textField: {
     width: '130px',
-    margin: `${theme.spacing.unit}px ${theme.spacing.unit / 2}px`
+    margin: `${theme.spacing.unit}px ${theme.spacing.unit / 2}px`,
   },
   mediumTextField: {
     width: '160px',
-    margin: `${theme.spacing.unit}px ${theme.spacing.unit / 2}px`
+    margin: `${theme.spacing.unit}px ${theme.spacing.unit / 2}px`,
   },
   largeTextField: {
     width: '230px',
-    margin: `${theme.spacing.unit}px ${theme.spacing.unit / 2}px`
+    margin: `${theme.spacing.unit}px ${theme.spacing.unit / 2}px`,
   },
   text: {
     fontStyle: 'italic',
-    margin: `${theme.spacing.unit}px 0`
+    margin: `${theme.spacing.unit}px 0`,
   },
   dimensions: {
     display: 'flex',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   disabled: {
-    color: color.disabled()
+    color: color.disabled(),
   },
   axisLabel: {
-    paddingTop: theme.spacing.unit * 2
-  }
+    paddingTop: theme.spacing.unit * 2,
+  },
 });
 
 export default withStyles(styles)(GridSetup);

@@ -11,13 +11,13 @@ const Glint = ({ fill }) => (
 );
 
 Glint.propTypes = {
-  fill: PropTypes.string
+  fill: PropTypes.string,
 };
 
 export class LearnMore extends React.Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
-    size: PropTypes.number
+    size: PropTypes.number,
   };
 
   render() {
@@ -86,22 +86,22 @@ export class LearnMore extends React.Component {
 
 const styles = {
   showBg: {
-    fill: '#1a9cff'
+    fill: '#1a9cff',
   },
   hideFg: {
-    fill: '#1a9cff'
+    fill: '#1a9cff',
   },
   hideBg: {
-    fill: '#bce2ff'
-  }
+    fill: '#bce2ff',
+  },
 };
 
 LearnMore.propTypes = {
-  open: PropTypes.bool
+  open: PropTypes.bool,
 };
 
 LearnMore.defaultProps = {
-  open: false
+  open: false,
 };
 
 export default withStyles(styles)(LearnMore);

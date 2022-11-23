@@ -31,8 +31,8 @@ export class EditorAndToolbar extends React.Component {
     toolbarOpts: PropTypes.shape({
       position: PropTypes.oneOf(['bottom', 'top']),
       alwaysVisible: PropTypes.bool,
-      error: PropTypes.string
-    })
+      error: PropTypes.string,
+    }),
   };
 
   /** This is an interim fix until this PR is merged in slate:
@@ -61,7 +61,7 @@ export class EditorAndToolbar extends React.Component {
       pluginProps,
       toolbarOpts,
       onDataChange,
-      toolbarRef
+      toolbarRef,
     } = this.props;
 
     const inFocus = value.isFocused || (focusedNode !== null && focusedNode !== undefined);
@@ -69,42 +69,35 @@ export class EditorAndToolbar extends React.Component {
       [classes.editorInFocus]: inFocus,
       [classes.readOnly]: readOnly,
       [classes.disabledUnderline]: disableUnderline,
-      [classes.disabledScrollbar]: disableScrollbar
+      [classes.disabledScrollbar]: disableScrollbar,
     });
     let clonedChildren = children;
 
     if (typeof children !== 'string') {
       clonedChildren = React.cloneElement(children, {
-        ref: el => (this.editorRef = el)
+        ref: (el) => (this.editorRef = el),
       });
     }
 
-    log(
-      '[render] inFocus: ',
-      inFocus,
-      'value.isFocused:',
-      value.isFocused,
-      'focused node: ',
-      focusedNode
-    );
+    log('[render] inFocus: ', inFocus, 'value.isFocused:', value.isFocused, 'focused node: ', focusedNode);
 
     return (
       <div
         className={classNames(
           {
             [classes.noBorder]: toolbarOpts && toolbarOpts.noBorder,
-            [classes.error]: toolbarOpts && toolbarOpts.error
+            [classes.error]: toolbarOpts && toolbarOpts.error,
           },
-          classes.root
+          classes.root,
         )}
       >
         <div className={holderNames}>
           <div
             className={classNames(
               {
-                [classes.noPadding]: toolbarOpts && toolbarOpts.noBorder
+                [classes.noPadding]: toolbarOpts && toolbarOpts.noBorder,
               },
-              classes.children
+              classes.children,
             )}
           >
             {clonedChildren}
@@ -141,11 +134,11 @@ const style = {
       overflow: 'visible',
       maxHeight: '500px',
       // needed in order to be able to put the focus before a void element when it is the first one in the editor
-      padding: '5px'
-    }
+      padding: '5px',
+    },
   },
   children: {
-    padding: '10px 16px'
+    padding: '10px 16px',
   },
   editorHolder: {
     position: 'relative',
@@ -162,7 +155,7 @@ const style = {
       position: 'absolute',
       transition: 'background-color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       pointerEvents: 'none',
-      backgroundColor: 'rgba(0, 0, 0, 0.42)'
+      backgroundColor: 'rgba(0, 0, 0, 0.42)',
     },
     '&::after': {
       left: '0',
@@ -172,39 +165,38 @@ const style = {
       content: '""',
       position: 'absolute',
       transform: 'scaleX(0)',
-      transition:
-        'transform 200ms cubic-bezier(0.0, 0.0, 0.2, 1) 0ms, background-color 200ms linear',
-      backgroundColor: 'rgba(0, 0, 0, 0.42)'
+      transition: 'transform 200ms cubic-bezier(0.0, 0.0, 0.2, 1) 0ms, background-color 200ms linear',
+      backgroundColor: 'rgba(0, 0, 0, 0.42)',
     },
     '&:focus': {
       '&::after': {
         transform: 'scaleX(1)',
         backgroundColor: primary,
-        height: '2px'
-      }
+        height: '2px',
+      },
     },
     '&:hover': {
       '&::after': {
         transform: 'scaleX(1)',
         backgroundColor: 'black',
-        height: '2px'
-      }
-    }
+        height: '2px',
+      },
+    },
   },
   disabledUnderline: {
     '&::before': {
-      display: 'none'
+      display: 'none',
     },
     '&::after': {
-      display: 'none'
-    }
+      display: 'none',
+    },
   },
   disabledScrollbar: {
     '&::-webkit-scrollbar': {
-      display: 'none'
+      display: 'none',
     },
     scrollbarWidth: 'none',
-    '-ms-overflow-style': 'none'
+    '-ms-overflow-style': 'none',
   },
   readOnly: {
     '&::before': {
@@ -212,7 +204,7 @@ const style = {
       backgroundSize: '5px 1px',
       backgroundImage: 'linear-gradient(to right, rgba(0, 0, 0, 0.42) 33%, transparent 0%)',
       backgroundRepeat: 'repeat-x',
-      backgroundPosition: 'left top'
+      backgroundPosition: 'left top',
     },
     '&::after': {
       left: '0',
@@ -223,37 +215,37 @@ const style = {
       position: 'absolute',
       transform: 'scaleX(0)',
       transition: 'transform 200ms cubic-bezier(0.0, 0.0, 0.2, 1) 0ms, background-color 0ms linear',
-      backgroundColor: 'rgba(0, 0, 0, 0)'
+      backgroundColor: 'rgba(0, 0, 0, 0)',
     },
     '&:hover': {
       '&::after': {
         transform: 'scaleX(0)',
         backgroundColor: 'black',
-        height: '2px'
-      }
-    }
+        height: '2px',
+      },
+    },
   },
   editorInFocus: {
     '&::after': {
       transform: 'scaleX(1)',
       backgroundColor: primary,
-      height: '2px'
+      height: '2px',
     },
     '&:hover': {
       '&::after': {
-        backgroundColor: primary
-      }
-    }
+        backgroundColor: primary,
+      },
+    },
   },
   error: {
-    border: '2px solid red'
+    border: '2px solid red',
   },
   noBorder: {
-    border: 'none'
+    border: 'none',
   },
   noPadding: {
-    padding: 0
-  }
+    padding: 0,
+  },
 };
 
 export default withStyles(style)(EditorAndToolbar);

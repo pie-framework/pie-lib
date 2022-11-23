@@ -11,7 +11,7 @@ describe('Component', () => {
   let onChange = jest.fn();
   let changeMarkProps = jest.fn();
 
-  const wrapper = extras => {
+  const wrapper = (extras) => {
     const defaults = {
       classes: {},
       className: 'className',
@@ -19,7 +19,7 @@ describe('Component', () => {
       changeMarkProps,
       graphProps: graphProps(),
       from: xy(0, 0),
-      to: xy(1, 1)
+      to: xy(1, 1),
     };
     const props = { ...defaults, ...extras };
 
@@ -34,7 +34,7 @@ describe('Component', () => {
     wrapper({
       labelNode: labelNode,
       from: fromWithLabel,
-      to: toWithLabel
+      to: toWithLabel,
     });
 
   describe('snapshot', () => {
@@ -59,13 +59,13 @@ describe('Component', () => {
         w.instance().dragFrom(xy(1, 1));
         expect(onChange).not.toHaveBeenCalledWith({
           from: xy(1, 1),
-          to: xy(1, 1)
+          to: xy(1, 1),
         });
 
         w.instance().dragFrom(xy(2, 2));
         expect(onChange).toHaveBeenCalledWith({
           from: xy(2, 2),
-          to: xy(1, 1)
+          to: xy(1, 1),
         });
       });
     });
@@ -80,14 +80,14 @@ describe('Component', () => {
         // won't change because points overlap
         expect(onChange).not.toHaveBeenCalledWith({
           from: xyLabel(1, 1, 'A'),
-          to: toWithLabel
+          to: toWithLabel,
         });
 
         // wil change and will keep labels
         w.instance().dragFrom({ x: 2, y: 2 });
         expect(onChange).toHaveBeenCalledWith({
           from: xyLabel(2, 2, 'A'),
-          to: toWithLabel
+          to: toWithLabel,
         });
       });
     });
@@ -97,7 +97,7 @@ describe('Component', () => {
         w.instance().dragTo(xy(4, 4));
         expect(onChange).toHaveBeenCalledWith({
           from: xy(0, 0),
-          to: xy(4, 4)
+          to: xy(4, 4),
         });
       });
     });
@@ -110,14 +110,14 @@ describe('Component', () => {
         w.instance().dragTo({ x: 0, y: 0 });
         expect(onChange).not.toHaveBeenCalledWith({
           from: fromWithLabel,
-          to: xyLabel(1, 1, 'B')
+          to: xyLabel(1, 1, 'B'),
         });
 
         // wil change and will keep labels
         w.instance().dragTo({ x: 2, y: 2 });
         expect(onChange).toHaveBeenCalledWith({
           from: fromWithLabel,
-          to: xyLabel(2, 2, 'B')
+          to: xyLabel(2, 2, 'B'),
         });
       });
     });
@@ -127,7 +127,7 @@ describe('Component', () => {
         w.instance().dragCircle(xy(1, 1));
         expect(onChange).toHaveBeenCalledWith({
           from: xy(1, 1),
-          to: xy(2, 2)
+          to: xy(2, 2),
         });
       });
     });
@@ -140,14 +140,14 @@ describe('Component', () => {
         w.instance().dragCircle({ x: 10, y: 10 });
         expect(onChange).toHaveBeenCalledWith({
           from: xyLabel(10, 10, 'A'),
-          to: xyLabel(11, 11, 'B')
+          to: xyLabel(11, 11, 'B'),
         });
 
         // wil change and will keep labels
         w.instance().dragCircle({ x: 2, y: 2 });
         expect(onChange).toHaveBeenCalledWith({
           from: xyLabel(2, 2, 'A'),
-          to: xyLabel(3, 3, 'B')
+          to: xyLabel(3, 3, 'B'),
         });
       });
     });
@@ -158,12 +158,12 @@ describe('Component', () => {
 
         w.instance().labelChange(xyLabel(0, 0, 'Label A'), 'from');
         expect(changeMarkProps).toBeCalledWith({
-          from: xyLabel(0, 0, 'Label A')
+          from: xyLabel(0, 0, 'Label A'),
         });
 
         w.instance().labelChange(xyLabel(0, 0, 'Label B'), 'to');
         expect(changeMarkProps).toBeCalledWith({
-          to: xyLabel(0, 0, 'Label B')
+          to: xyLabel(0, 0, 'Label B'),
         });
       });
 
@@ -172,12 +172,12 @@ describe('Component', () => {
 
         w.instance().labelChange(xyLabel(0, 0, ''), 'from');
         expect(changeMarkProps).toBeCalledWith({
-          from: xy(0, 0)
+          from: xy(0, 0),
         });
 
         w.instance().labelChange(xyLabel(0, 0, ''), 'to');
         expect(changeMarkProps).toBeCalledWith({
-          to: xy(0, 0)
+          to: xy(0, 0),
         });
       });
     });
@@ -189,13 +189,13 @@ describe('Component', () => {
         w.instance().clickPoint(xy(0, 0), 'from');
         expect(changeMarkProps).toBeCalledWith({
           from: xyLabel(0, 0, ''),
-          to: xyLabel(1, 1, 'B')
+          to: xyLabel(1, 1, 'B'),
         });
 
         w.instance().clickPoint(xy(1, 1), 'to');
         expect(changeMarkProps).toBeCalledWith({
           from: xyLabel(0, 0, 'A'),
-          to: xyLabel(1, 1, '')
+          to: xyLabel(1, 1, ''),
         });
       });
 
@@ -205,13 +205,13 @@ describe('Component', () => {
         w.instance().clickPoint(fromWithLabel, 'from');
         expect(changeMarkProps).toBeCalledWith({
           from: fromWithLabel,
-          to: xyLabel(1, 1, 'B')
+          to: xyLabel(1, 1, 'B'),
         });
 
         w.instance().clickPoint(toWithLabel, 'to');
         expect(changeMarkProps).toBeCalledWith({
           from: xyLabel(0, 0, 'A'),
-          to: toWithLabel
+          to: toWithLabel,
         });
       });
     });

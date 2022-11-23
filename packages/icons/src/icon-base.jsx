@@ -7,7 +7,7 @@ export default (Action, Emoji) => {
   class IconBase extends React.Component {
     static propTypes = {
       classes: PropTypes.object.isRequired,
-      size: PropTypes.number
+      size: PropTypes.number,
     };
     constructor(props) {
       super(props);
@@ -38,8 +38,8 @@ export default (Action, Emoji) => {
                 <IconRoot size={size}>
                   <Emoji className={classes.bg} />
                 </IconRoot>
-              )
-            }
+              ),
+            },
           },
           square: {
             check: (
@@ -64,9 +64,9 @@ export default (Action, Emoji) => {
                 <IconRoot size={size}>
                   <Emoji className={classes.bg} />
                 </IconRoot>
-              )
-            }
-          }
+              ),
+            },
+          },
         },
         round: {
           check: (
@@ -91,8 +91,8 @@ export default (Action, Emoji) => {
               <IconRoot size={size}>
                 <Emoji className={classes.bg} />
               </IconRoot>
-            )
-          }
+            ),
+          },
         },
         square: {
           check: (
@@ -117,9 +117,9 @@ export default (Action, Emoji) => {
               <IconRoot size={size}>
                 <Emoji className={classes.bg} />
               </IconRoot>
-            )
-          }
-        }
+            ),
+          },
+        },
       };
     }
 
@@ -144,14 +144,14 @@ export default (Action, Emoji) => {
     iconSet: PropTypes.oneOf(['emoji', 'check']),
     shape: PropTypes.oneOf(['round', 'square']),
     category: PropTypes.oneOf(['feedback', undefined]),
-    open: PropTypes.bool
+    open: PropTypes.bool,
   };
 
   IconBase.defaultProps = {
     iconSet: 'check',
     shape: 'round',
     category: undefined,
-    open: false
+    open: false,
   };
 
   return IconBase;

@@ -37,7 +37,7 @@ export const xPoints = (root, freq, min, max) => {
  * Calculate y for x value using amp, freq and shift
  * https://www.desmos.com/calculator/f1psfoiiv6
  */
-export const sinY = (amplitude, freq, shift) => x => {
+export const sinY = (amplitude, freq, shift) => (x) => {
   shift = { phase: 0, vertical: 0, ...shift };
   const TWO_PI = Math.PI * 2;
   const num = TWO_PI * (x - shift.phase);
@@ -83,7 +83,7 @@ export const pointsToABC = (one, two, three) => {
 /**
  * y=ax^2+bx+c
  */
-export const parabola = (a, b, c) => x => a * Math.pow(x, 2) + b * x + c;
+export const parabola = (a, b, c) => (x) => a * Math.pow(x, 2) + b * x + c;
 
 /**
  * Generate a set of data points, add spacing before min and after max if there is space between minx + min and maxX and max
@@ -103,5 +103,5 @@ export const buildDataPoints = (min, max, root, edge, interval, yFn) => {
   const rightSpace = max - maxX;
   const xs = xPoints(minX, interval, min - rightSpace, max - leftSpace);
   log('[buildDataPoints]:xs:', xs);
-  return xs.map(v => new Point(v, yFn(v)));
+  return xs.map((v) => new Point(v, yFn(v)));
 };

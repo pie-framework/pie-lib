@@ -11,9 +11,7 @@ import renderer from 'react-test-renderer';
 mockMathInput();
 
 jest.mock('@material-ui/core/IconButton', () => {
-  return props => (
-    <div className={props.className} style={props.style} ariaLabel={props['aria-label']} />
-  );
+  return (props) => <div className={props.className} style={props.style} ariaLabel={props['aria-label']} />;
 });
 
 let node = Inline.fromJSON({ type: 'i' });
@@ -24,7 +22,7 @@ describe('default-toolbar', () => {
   let w;
   let onDone = jest.fn();
   let onChange = jest.fn();
-  const wrapper = extras => {
+  const wrapper = (extras) => {
     const defaults = {
       classes: {},
       value: Value.fromJSON({}),
@@ -33,7 +31,7 @@ describe('default-toolbar', () => {
       onDone,
       onChange,
       deletable: false,
-      showDone: true
+      showDone: true,
     };
     const props = { ...defaults, ...extras };
     return shallow(<DefaultToolbar {...props} />);
@@ -45,14 +43,17 @@ describe('default-toolbar', () => {
     });
     it('renders 1 plugins', () => {
       w = wrapper({
-        plugins: [{ toolbar: {}, name: 'plugin-one' }]
+        plugins: [{ toolbar: {}, name: 'plugin-one' }],
       });
       expect(w).toMatchSnapshot();
       expect(w.find(ToolbarButton)).toHaveLength(1);
     });
     it('renders 2 plugins', () => {
       w = wrapper({
-        plugins: [{ toolbar: {}, name: 'plugin-one' }, { toolbar: {}, name: 'plugin-two' }]
+        plugins: [
+          { toolbar: {}, name: 'plugin-one' },
+          { toolbar: {}, name: 'plugin-two' },
+        ],
       });
       expect(w).toMatchSnapshot();
       expect(w.find(ToolbarButton)).toHaveLength(2);
@@ -61,17 +62,20 @@ describe('default-toolbar', () => {
       w = wrapper({
         pluginProps: {
           'plugin-one': {
-            disabled: true
-          }
+            disabled: true,
+          },
         },
-        plugins: [{ toolbar: {}, name: 'plugin-one' }, { toolbar: {}, name: 'plugin-two' }]
+        plugins: [
+          { toolbar: {}, name: 'plugin-one' },
+          { toolbar: {}, name: 'plugin-two' },
+        ],
       });
       expect(w).toMatchSnapshot();
       expect(w.find(ToolbarButton)).toHaveLength(1);
     });
     it('renders without done button', () => {
       w = wrapper({
-        deletable: false
+        deletable: false,
       });
 
       expect(w).toMatchSnapshot();
@@ -79,7 +83,7 @@ describe('default-toolbar', () => {
     });
     it('renders with done button', () => {
       w = wrapper({
-        deletable: true
+        deletable: true,
       });
 
       expect(w).toMatchSnapshot();

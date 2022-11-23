@@ -14,7 +14,7 @@ export class Grid extends React.Component {
     graphProps: types.GraphPropsType.isRequired,
     xBand: PropTypes.func,
     columnTickValues: PropTypes.array,
-    rowTickValues: PropTypes.array
+    rowTickValues: PropTypes.array,
   };
 
   static defaultProps = {};
@@ -40,8 +40,8 @@ export class Grid extends React.Component {
 
 const styles = () => ({
   grid: {
-    stroke: color.primaryLight()
-  }
+    stroke: color.primaryLight(),
+  },
 });
 
 export default withStyles(styles)(Grid);

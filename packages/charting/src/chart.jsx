@@ -8,12 +8,7 @@ import ChartGrid from './grid';
 import ChartAxes from './axes';
 import debug from 'debug';
 import { color } from '@pie-lib/render-ui';
-import {
-  dataToXBand,
-  getDomainAndRangeByChartType,
-  getGridLinesAndAxisByChartType,
-  getTopPadding
-} from './utils';
+import { dataToXBand, getDomainAndRangeByChartType, getGridLinesAndAxisByChartType, getTopPadding } from './utils';
 import ToolMenu from './tool-menu';
 import chartTypes from './chart-types';
 import { AlertDialog } from '@pie-lib/config-ui';
@@ -25,8 +20,8 @@ export class Chart extends React.Component {
     super(props);
     this.state = {
       dialog: {
-        open: false
-      }
+        open: false,
+      },
     };
   }
 
@@ -36,13 +31,13 @@ export class Chart extends React.Component {
     chartType: PropTypes.string.isRequired,
     size: PropTypes.shape({
       width: PropTypes.number,
-      height: PropTypes.number
+      height: PropTypes.number,
     }),
     domain: PropTypes.shape({
       label: PropTypes.string,
       min: PropTypes.number,
       max: PropTypes.number,
-      axisLabel: PropTypes.string
+      axisLabel: PropTypes.string,
     }),
     data: PropTypes.arrayOf(PropTypes.shape({ label: PropTypes.string, value: PropTypes.number })),
     range: PropTypes.shape({
@@ -51,7 +46,7 @@ export class Chart extends React.Component {
       max: PropTypes.number,
       step: PropTypes.number,
       labelStep: PropTypes.number,
-      axisLabel: PropTypes.string
+      axisLabel: PropTypes.string,
     }),
     charts: PropTypes.array,
     title: PropTypes.string,
@@ -60,14 +55,14 @@ export class Chart extends React.Component {
     showPixelGuides: PropTypes.bool,
     categoryDefaultLabel: PropTypes.string,
     defineChart: PropTypes.bool,
-    theme: PropTypes.object
+    theme: PropTypes.object,
   };
 
   static defaultProps = {
     size: {
       width: 480,
-      height: 480
-    }
+      height: 480,
+    },
   };
 
   state = {
@@ -77,16 +72,16 @@ export class Chart extends React.Component {
       chartTypes.LineDot(),
       chartTypes.LineCross(),
       chartTypes.DotPlot(),
-      chartTypes.LinePlot()
-    ]
+      chartTypes.LinePlot(),
+    ],
   };
 
   handleAlertDialog = (open, callback) =>
     this.setState(
       {
-        dialog: { open }
+        dialog: { open },
       },
-      callback
+      callback,
     );
 
   getChart = () => {
@@ -96,7 +91,7 @@ export class Chart extends React.Component {
     let chart = null;
 
     if (chartType) {
-      chart = charts && charts.find(chart => chart.type === chartType);
+      chart = charts && charts.find((chart) => chart.type === chartType);
       ChartComponent = chart && chart.Component;
     } else {
       chart = charts && charts[0];
@@ -106,11 +101,11 @@ export class Chart extends React.Component {
 
     return {
       type: chartType,
-      ChartComponent
+      ChartComponent,
     };
   };
 
-  changeData = data => {
+  changeData = (data) => {
     const { onDataChange } = this.props;
 
     onDataChange(data);
@@ -123,14 +118,14 @@ export class Chart extends React.Component {
       const { data, onDataChange } = this.props;
       data[integerIndex] = {
         ...data[integerIndex],
-        ...newCategory
+        ...newCategory,
       };
 
       onDataChange(data);
     }
   };
 
-  addCategory = range => {
+  addCategory = (range) => {
     const { onDataChange, data, categoryDefaultLabel, defineChart } = this.props;
 
     if (!defineChart && data.length > 19) {
@@ -139,8 +134,8 @@ export class Chart extends React.Component {
           open: true,
           title: 'Warning',
           text: "There can't be more than 20 categories.",
-          onConfirm: () => this.handleAlertDialog(false)
-        }
+          onConfirm: () => this.handleAlertDialog(false),
+        },
       });
     } else {
       onDataChange([
@@ -152,8 +147,8 @@ export class Chart extends React.Component {
           value: range.step,
           deletable: true,
           editable: true,
-          interactive: true
-        }
+          interactive: true,
+        },
       ]);
     }
   };
@@ -162,9 +157,9 @@ export class Chart extends React.Component {
     const { data, defineChart } = this.props;
 
     return data
-      ? data.map(d => ({
+      ? data.map((d) => ({
           ...d,
-          deletable: defineChart || d.deletable
+          deletable: defineChart || d.deletable,
         }))
       : [];
   };
@@ -183,7 +178,7 @@ export class Chart extends React.Component {
       titlePlaceholder,
       addCategoryEnabled,
       showPixelGuides,
-      error
+      error,
     } = this.props;
     let { chartType } = this.props;
 
@@ -197,17 +192,9 @@ export class Chart extends React.Component {
 
     const correctValues = getDomainAndRangeByChartType(domain, range, chartType);
 
-    const { verticalLines, horizontalLines, leftAxis } = getGridLinesAndAxisByChartType(
-      correctValues.range,
-      chartType
-    );
+    const { verticalLines, horizontalLines, leftAxis } = getGridLinesAndAxisByChartType(correctValues.range, chartType);
     const common = {
-      graphProps: createGraphProps(
-        correctValues.domain,
-        correctValues.range,
-        size,
-        () => this.rootNode
-      )
+      graphProps: createGraphProps(correctValues.domain, correctValues.range, size, () => this.rootNode),
     };
 
     log('[render] common:', common);
@@ -256,15 +243,10 @@ export class Chart extends React.Component {
           isChart={true}
           showPixelGuides={showPixelGuides}
           classes={classes}
-          rootRef={r => (this.rootNode = r)}
+          rootRef={(r) => (this.rootNode = r)}
           {...rootCommon}
         >
-          <ChartGrid
-            {...common}
-            xBand={xBand}
-            rowTickValues={horizontalLines}
-            columnTickValues={verticalLines}
-          />
+          <ChartGrid {...common} xBand={xBand} rowTickValues={horizontalLines} columnTickValues={verticalLines} />
           <ChartAxes
             {...common}
             defineChart={defineChart}
@@ -301,9 +283,9 @@ export class Chart extends React.Component {
   }
 }
 
-const styles = theme => ({
+const styles = (theme) => ({
   graphBox: {
-    transform: 'translate(60px, 35px)'
+    transform: 'translate(60px, 35px)',
   },
   controls: {
     width: 'inherit',
@@ -314,14 +296,14 @@ const styles = theme => ({
     borderTop: `solid 1px ${color.primaryDark()}`,
     borderBottom: `solid 0px ${color.primaryDark()}`,
     borderLeft: `solid 1px ${color.primaryDark()}`,
-    borderRight: `solid 1px ${color.primaryDark()}`
+    borderRight: `solid 1px ${color.primaryDark()}`,
   },
   svg: {
-    overflow: 'visible'
+    overflow: 'visible',
   },
   toolMenu: {
-    minHeight: '36px'
-  }
+    minHeight: '36px',
+  },
 });
 
 export default withStyles(styles, { withTheme: true })(Chart);

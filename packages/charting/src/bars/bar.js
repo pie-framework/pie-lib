@@ -8,7 +8,7 @@ export class Bar extends React.Component {
   static propTypes = {
     data: PropTypes.array,
     onChange: PropTypes.func,
-    graphProps: types.GraphPropsType.isRequired
+    graphProps: types.GraphPropsType.isRequired,
   };
 
   render() {
@@ -24,5 +24,5 @@ export class Bar extends React.Component {
 export default () => ({
   type: 'bar',
   Component: Bar,
-  name: 'Bar'
+  name: 'Bar',
 });

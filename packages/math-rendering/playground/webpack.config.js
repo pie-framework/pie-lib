@@ -10,20 +10,20 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['env']
-          }
-        }
-      }
-    ]
+            presets: ['env'],
+          },
+        },
+      },
+    ],
   },
   entry: {
     demo: './demo.js',
-    main: './main.js'
+    main: './main.js',
   },
   output: {
-    filename: '[name].bundle.js'
+    filename: '[name].bundle.js',
   },
   resolveLoader: {
-    modules: ['node_modules', '../../../node_modules']
-  }
+    modules: ['node_modules', '../../../node_modules'],
+  },
 };

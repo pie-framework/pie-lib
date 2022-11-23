@@ -18,7 +18,7 @@ describe('lineTool', () => {
       expect(result).toEqual({
         type: 'lineType',
         building: true,
-        from: xy(1, 1)
+        from: xy(1, 1),
       });
     });
 
@@ -27,7 +27,7 @@ describe('lineTool', () => {
       expect(result).toEqual({
         building: false,
         from: xy(0, 0),
-        to: xy(1, 1)
+        to: xy(1, 1),
       });
     });
   });
@@ -38,11 +38,11 @@ describe('lineToolComponent', () => {
   let mark;
   let onChange;
   let w;
-  const wrapper = extras => {
+  const wrapper = (extras) => {
     const defaults = {
       mark,
       onChange: jest.fn(),
-      graphProps: getGraphProps()
+      graphProps: getGraphProps(),
     };
     const props = { ...defaults, ...extras };
 
@@ -93,13 +93,13 @@ describe('lineBase', () => {
     Comp = lineBase(() => <text />);
   });
 
-  const wrapper = extras => {
+  const wrapper = (extras) => {
     const defaults = {
       onChange,
       changeMarkProps,
       graphProps: getGraphProps(),
       from: xy(0, 0),
-      to: xy(1, 1)
+      to: xy(1, 1),
     };
     const props = { ...defaults, ...extras };
 
@@ -112,7 +112,7 @@ describe('lineBase', () => {
     wrapper({
       labelNode: labelNode,
       from: xyLabel(0, 0, 'A'),
-      to: xyLabel(1, 1, 'B')
+      to: xyLabel(1, 1, 'B'),
     });
 
   describe('render', () => {
@@ -153,7 +153,7 @@ describe('lineBase', () => {
       const update = { from: xy(2, 2), to: xy(4, 4) };
       assertCallsOnChangeWithLabels('dragComp', [update], {
         from: xyLabel(2, 2, 'A'),
-        to: xyLabel(4, 4, 'B')
+        to: xyLabel(4, 4, 'B'),
       });
     });
 
@@ -164,7 +164,7 @@ describe('lineBase', () => {
     describe('dragFrom keeps labels on "from"', () => {
       assertCallsOnChangeWithLabels('dragFrom', [xy(2, 2)], {
         from: xyLabel(2, 2, 'A'),
-        to: xyLabel(1, 1, 'B')
+        to: xyLabel(1, 1, 'B'),
       });
     });
 
@@ -175,7 +175,7 @@ describe('lineBase', () => {
     describe('dragTo keeps labels on "to"', () => {
       assertCallsOnChangeWithLabels('dragTo', [xy(3, 3)], {
         from: xyLabel(0, 0, 'A'),
-        to: xyLabel(3, 3, 'B')
+        to: xyLabel(3, 3, 'B'),
       });
     });
 
@@ -185,12 +185,12 @@ describe('lineBase', () => {
 
         w.instance().labelChange(xyLabel(0, 0, 'Label A'), 'from');
         expect(changeMarkProps).toBeCalledWith({
-          from: xyLabel(0, 0, 'Label A')
+          from: xyLabel(0, 0, 'Label A'),
         });
 
         w.instance().labelChange(xyLabel(0, 0, 'Label B'), 'to');
         expect(changeMarkProps).toBeCalledWith({
-          to: xyLabel(0, 0, 'Label B')
+          to: xyLabel(0, 0, 'Label B'),
         });
       });
 
@@ -199,12 +199,12 @@ describe('lineBase', () => {
 
         w.instance().labelChange(xyLabel(0, 0, ''), 'from');
         expect(changeMarkProps).toBeCalledWith({
-          from: xy(0, 0)
+          from: xy(0, 0),
         });
 
         w.instance().labelChange(xyLabel(0, 0, ''), 'to');
         expect(changeMarkProps).toBeCalledWith({
-          to: xy(0, 0)
+          to: xy(0, 0),
         });
       });
     });
@@ -216,13 +216,13 @@ describe('lineBase', () => {
         w.instance().clickPoint(xy(0, 0), 'from');
         expect(changeMarkProps).toBeCalledWith({
           from: xyLabel(0, 0, ''),
-          to: xyLabel(1, 1, 'B')
+          to: xyLabel(1, 1, 'B'),
         });
 
         w.instance().clickPoint(xy(1, 1), 'to');
         expect(changeMarkProps).toBeCalledWith({
           from: xyLabel(0, 0, 'A'),
-          to: xyLabel(1, 1, '')
+          to: xyLabel(1, 1, ''),
         });
       });
 
@@ -232,13 +232,13 @@ describe('lineBase', () => {
         w.instance().clickPoint(xyLabel(0, 0, 'Label A'), 'from');
         expect(changeMarkProps).toBeCalledWith({
           from: xyLabel(0, 0, 'Label A'),
-          to: xyLabel(1, 1, 'B')
+          to: xyLabel(1, 1, 'B'),
         });
 
         w.instance().clickPoint(xyLabel(1, 1, 'Label B'), 'to');
         expect(changeMarkProps).toBeCalledWith({
           from: xyLabel(0, 0, 'A'),
-          to: xyLabel(1, 1, 'Label B')
+          to: xyLabel(1, 1, 'Label B'),
         });
       });
     });

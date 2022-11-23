@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 
 class Demo extends React.Component {
   static propTypes = {
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
   };
 
   constructor(props) {

@@ -28,7 +28,7 @@ const OpenIcon = ({ bg, fg }) => (
 
 OpenIcon.propTypes = {
   bg: PropTypes.string,
-  fg: PropTypes.string
+  fg: PropTypes.string,
 };
 
 const CloseIcon = ({ bg, fg, border }) => (
@@ -45,7 +45,7 @@ const CloseIcon = ({ bg, fg, border }) => (
         fill: '#D0CAC5',
         stroke: '#E6E3E0',
         strokeWidth: 0.75,
-        strokeMiterlimit: 10
+        strokeMiterlimit: 10,
       }}
       d="M-112.9,160.4c-8.5,0-15.5-6.9-15.5-15.5c0-8.5,6.9-15.5,15.5-15.5s15.5,6.9,15.5,15.5
     C-97.4,153.5-104.3,160.4-112.9,160.4z"
@@ -55,7 +55,7 @@ const CloseIcon = ({ bg, fg, border }) => (
         fill: '#B3ABA4',
         stroke: '#CDC7C2',
         strokeWidth: 0.5,
-        strokeMiterlimit: 10
+        strokeMiterlimit: 10,
       }}
       d="M-113.2,159c-8,0-14.5-6.5-14.5-14.5s6.5-14.5,14.5-14.5s14.5,6.5,14.5,14.5S-105.2,159-113.2,159z"
     />
@@ -65,39 +65,36 @@ const CloseIcon = ({ bg, fg, border }) => (
       d="M-114.2,158c-8,0-14.5-6.5-14.5-14.5s6.5-14.5,14.5-14.5s14.5,6.5,14.5,14.5S-106.2,158-114.2,158z
     M-114.2,130c-7.4,0-13.5,6.1-13.5,13.5s6.1,13.5,13.5,13.5s13.5-6.1,13.5-13.5S-106.8,130-114.2,130z"
     />
-    <polygon
-      className={fg}
-      points="-114.8,150.7 -121.6,144.8 -119,141.8 -115.9,144.5 -111.3,136.3 -107.8,138.2"
-    />
+    <polygon className={fg} points="-114.8,150.7 -121.6,144.8 -119,141.8 -115.9,144.5 -111.3,136.3 -107.8,138.2" />
   </svg>
 );
 
 CloseIcon.propTypes = {
   bg: PropTypes.string,
   fg: PropTypes.string,
-  border: PropTypes.string
+  border: PropTypes.string,
 };
 
 const styles = {
   root: {
-    width: props => props.size || '25px',
-    height: props => props.size || '25px'
+    width: (props) => props.size || '25px',
+    height: (props) => props.size || '25px',
   },
   hideIconBg: {
-    fill: '#bce2ff'
+    fill: '#bce2ff',
   },
   hideIconFg: {
-    fill: '#1a9cff'
+    fill: '#1a9cff',
   },
   showIconBg: {
-    fill: 'white'
+    fill: 'white',
   },
   showIconFg: {
-    fill: '#1a9cff'
+    fill: '#1a9cff',
   },
   showIconBorder: {
-    fill: '#bce2ff'
-  }
+    fill: '#bce2ff',
+  },
 };
 
 const CorrectResponse = ({ open, classes, className }) => (
@@ -114,11 +111,11 @@ CorrectResponse.propTypes = {
   classes: PropTypes.object.isRequired,
   open: PropTypes.bool,
   size: PropTypes.string,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 CorrectResponse.defaultProps = {
-  open: false
+  open: false,
 };
 
 export default withStyles(styles)(CorrectResponse);

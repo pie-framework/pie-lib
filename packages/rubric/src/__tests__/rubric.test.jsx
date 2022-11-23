@@ -20,8 +20,8 @@ describe('Rubric', () => {
         excludeZero: false,
         points,
         sampleAnswers,
-        ...value
-      }
+        ...value,
+      },
     };
     const fn = opts && opts.mount ? mount : shallow;
     return fn(<RawAuthoring {...props} />, opts);
@@ -56,7 +56,7 @@ describe('Rubric', () => {
           expect(w.instance().props.onChange).toHaveBeenCalledWith({
             excludeZero,
             points: expectedPoints,
-            sampleAnswers: expectedSampleAnswers
+            sampleAnswers: expectedSampleAnswers,
           });
         });
       };
@@ -69,20 +69,14 @@ describe('Rubric', () => {
     });
 
     describe('changeSampleResponse', () => {
-      const assertChangeSample = (
-        index,
-        clickedItem,
-        excludeZero,
-        expectedPoints,
-        expectedSampleAnswers
-      ) => {
+      const assertChangeSample = (index, clickedItem, excludeZero, expectedPoints, expectedSampleAnswers) => {
         it(`Point ${index} calls onChange with: ${expectedPoints} and ${expectedSampleAnswers}`, () => {
           let w = wrapper({ excludeZero });
           w.instance().onPointMenuChange(index, clickedItem);
           expect(w.instance().props.onChange).toHaveBeenCalledWith({
             excludeZero,
             points: expectedPoints,
-            sampleAnswers: expectedSampleAnswers
+            sampleAnswers: expectedSampleAnswers,
           });
         });
       };

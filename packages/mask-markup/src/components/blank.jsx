@@ -14,7 +14,7 @@ export const DRAG_TYPE = 'MaskBlank';
 const useStyles = withStyles(() => ({
   content: {
     border: `solid 0px ${color.primary()}`,
-    minWidth: '200px'
+    minWidth: '200px',
   },
   chip: {
     minWidth: '90px',
@@ -22,34 +22,34 @@ const useStyles = withStyles(() => ({
     minHeight: '32px',
     height: 'auto',
     maxWidth: '374px',
-    position: 'relative'
+    position: 'relative',
   },
   chipLabel: {
     whiteSpace: 'pre-wrap',
     '& img': {
       display: 'block',
-      padding: '2px 0'
-    }
+      padding: '2px 0',
+    },
   },
   hidden: {
     color: 'transparent',
-    opacity: 0
+    opacity: 0,
   },
   dragged: {
     position: 'absolute',
     left: 14,
-    maxWidth: '60px'
+    maxWidth: '60px',
   },
   correct: {
-    border: `solid 1px ${color.correct()}`
+    border: `solid 1px ${color.correct()}`,
   },
   incorrect: {
-    border: `solid 1px ${color.incorrect()}`
+    border: `solid 1px ${color.incorrect()}`,
   },
   over: {
     whiteSpace: 'nowrap',
-    overflow: 'hidden'
-  }
+    overflow: 'hidden',
+  },
 }));
 
 export class BlankContent extends React.Component {
@@ -62,13 +62,13 @@ export class BlankContent extends React.Component {
     isOver: PropTypes.bool,
     dragItem: PropTypes.object,
     correct: PropTypes.bool,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
   };
 
   constructor() {
     super();
     this.state = {
-      height: 0
+      height: 0,
     };
   }
 
@@ -80,20 +80,20 @@ export class BlankContent extends React.Component {
     if (JSON.stringify(currentChoice) !== JSON.stringify(prevChoice)) {
       if (!currentChoice) {
         this.setState({
-          height: 0
+          height: 0,
         });
         return;
       }
       setTimeout(() => {
         this.setState({
-          height: this.spanRef.offsetHeight
+          height: this.spanRef.offsetHeight,
         });
       }, 300);
     }
   }
 
   addDraggableFalseAttributes(parent) {
-    parent.childNodes.forEach(elem => {
+    parent.childNodes.forEach((elem) => {
       if (elem instanceof Element || elem instanceof HTMLDocument) {
         elem.setAttribute('draggable', false);
       }
@@ -107,7 +107,7 @@ export class BlankContent extends React.Component {
 
     return (
       <Chip
-        ref={ref => {
+        ref={(ref) => {
           //eslint-disable-next-line
           this.rootRef = ReactDOM.findDOMNode(ref);
         }}
@@ -116,9 +116,9 @@ export class BlankContent extends React.Component {
           <React.Fragment>
             <span
               className={classnames(classes.chipLabel, isOver && classes.over, {
-                [classes.hidden]: draggedLabel
+                [classes.hidden]: draggedLabel,
               })}
-              ref={ref => {
+              ref={(ref) => {
                 if (ref) {
                   //eslint-disable-next-line
                   this.spanRef = ReactDOM.findDOMNode(ref);
@@ -132,7 +132,7 @@ export class BlankContent extends React.Component {
             {draggedLabel && (
               <span
                 className={classnames(classes.chipLabel, isOver && classes.over, classes.dragged)}
-                ref={ref => {
+                ref={(ref) => {
                   if (ref) {
                     //eslint-disable-next-line
                     this.spanRef = ReactDOM.findDOMNode(ref);
@@ -148,14 +148,14 @@ export class BlankContent extends React.Component {
         }
         className={classnames(classes.chip, isOver && classes.over, {
           [classes.correct]: correct !== undefined && correct,
-          [classes.incorrect]: correct !== undefined && !correct
+          [classes.incorrect]: correct !== undefined && !correct,
         })}
         variant={disabled ? 'outlined' : undefined}
         style={{
-          ...(this.state.height ? { height: this.state.height } : {})
+          ...(this.state.height ? { height: this.state.height } : {}),
         }}
         classes={{
-          label: isOver && classes.over
+          label: isOver && classes.over,
         }}
       />
     );
@@ -171,8 +171,8 @@ const connectedBlankContent = useStyles(({ connectDragSource, connectDropTarget,
     connectDragSource(
       <span className={classnames(classes.content, isOver && classes.over)}>
         <StyledBlankContent {...props} />
-      </span>
-    )
+      </span>,
+    ),
   );
 });
 
@@ -187,20 +187,20 @@ const tileTarget = {
     }
 
     return {
-      dropped: draggedItem.id !== props.id
+      dropped: draggedItem.id !== props.id,
     };
   },
   canDrop(props, monitor) {
     const draggedItem = monitor.getItem();
 
     return draggedItem.instanceId === props.instanceId;
-  }
+  },
 };
 
 const DropTile = DropTarget(DRAG_TYPE, tileTarget, (connect, monitor) => ({
   connectDropTarget: connect.dropTarget(),
   isOver: monitor.isOver(),
-  dragItem: monitor.getItem()
+  dragItem: monitor.getItem(),
 }))(connectedBlankContent);
 
 const tileSource = {
@@ -212,7 +212,7 @@ const tileSource = {
       id: props.id,
       choice: props.choice,
       instanceId: props.instanceId,
-      fromChoice: true
+      fromChoice: true,
     };
   },
   endDrag(props, monitor) {
@@ -226,12 +226,12 @@ const tileSource = {
         props.onChange(props.id, undefined);
       }
     }
-  }
+  },
 };
 
 const DragDropTile = DragSource(DRAG_TYPE, tileSource, (connect, monitor) => ({
   connectDragSource: connect.dragSource(),
-  isDragging: monitor.isDragging()
+  isDragging: monitor.isDragging(),
 }))(DropTile);
 
 export default DragDropTile;

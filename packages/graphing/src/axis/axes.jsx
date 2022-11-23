@@ -9,7 +9,7 @@ import { color, Readable } from '@pie-lib/render-ui';
 
 export const AxisPropTypes = {
   includeArrows: PropTypes.object,
-  graphProps: PropTypes.object
+  graphProps: PropTypes.object,
 };
 
 const AxisDefaultProps = {
@@ -17,26 +17,26 @@ const AxisDefaultProps = {
     left: true,
     right: true,
     up: true,
-    down: true
-  }
+    down: true,
+  },
 };
 
-const axisStyles = theme => ({
+const axisStyles = (theme) => ({
   line: {
     stroke: color.primary(),
-    strokeWidth: 5
+    strokeWidth: 5,
   },
   arrow: {
-    fill: color.primary()
+    fill: color.primary(),
   },
   tick: {
     fill: color.primary(),
     '& > line': {
-      stroke: color.primary()
-    }
+      stroke: color.primary(),
+    },
   },
   labelFontSize: {
-    fontSize: theme.typography.fontSize
+    fontSize: theme.typography.fontSize,
   },
   axisLabelHolder: {
     padding: 0,
@@ -44,16 +44,16 @@ const axisStyles = theme => ({
     textAlign: 'center',
     '* > *': {
       margin: 0,
-      padding: 0
+      padding: 0,
     },
-    fontSize: theme.typography.fontSize
-  }
+    fontSize: theme.typography.fontSize,
+  },
 });
 
 const tickLabelStyles = {
   fontFamily: 'Roboto',
   fontSize: '14px',
-  cursor: 'inherit'
+  cursor: 'inherit',
 };
 
 export const sharedValues = (
@@ -62,7 +62,7 @@ export const sharedValues = (
   distanceFromOriginToFirstNegativeX,
   distanceFromOriginToFirstNegativeY,
   deltaAllowance,
-  dy
+  dy,
 ) => {
   let result = [];
 
@@ -79,13 +79,13 @@ export const sharedValues = (
   return result;
 };
 
-export const firstNegativeValue = interval => (interval || []).find(element => element < 0);
+export const firstNegativeValue = (interval) => (interval || []).find((element) => element < 0);
 
 export class RawXAxis extends React.Component {
   static propTypes = {
     ...AxisPropTypes,
     classes: PropTypes.object,
-    graphProps: types.GraphPropsType.isRequired
+    graphProps: types.GraphPropsType.isRequired,
   };
   static defaultProps = AxisDefaultProps;
 
@@ -97,19 +97,17 @@ export class RawXAxis extends React.Component {
       columnTicksValues,
       skipValues,
       distanceFromOriginToFirstNegativeY,
-      dy
+      dy,
     } = this.props;
     const { scale, domain, size, range } = graphProps || {};
 
     // Having 0 as a number in columnTicksValues does not make 0 to show up
     // so we use this trick, by defining it as a string:
     const tickValues =
-      (domain.labelStep || range.labelStep) && domain.min <= 0
-        ? ['0', ...columnTicksValues]
-        : columnTicksValues;
+      (domain.labelStep || range.labelStep) && domain.min <= 0 ? ['0', ...columnTicksValues] : columnTicksValues;
     // However, the '0' has to be displayed only if other tick labels (y-axis or x-axis) are displayed
 
-    const labelProps = label => {
+    const labelProps = (label) => {
       const y = skipValues && skipValues[0] === label ? distanceFromOriginToFirstNegativeY + 4 : dy;
 
       return {
@@ -117,7 +115,7 @@ export class RawXAxis extends React.Component {
         textAnchor: 'middle',
         y: y,
         dx: label === '0' ? -10 : 0,
-        dy: label === '0' ? -7 : 0
+        dy: label === '0' ? -7 : 0,
       };
     };
 
@@ -135,7 +133,7 @@ export class RawXAxis extends React.Component {
           label={domain.label}
           rangePadding={8}
           tickClassName={classes.tick}
-          tickFormat={value => value}
+          tickFormat={(value) => value}
           tickLabelProps={labelProps}
           tickValues={tickValues}
         />
@@ -146,16 +144,8 @@ export class RawXAxis extends React.Component {
           <Arrow direction="right" x={domain.max} y={0} className={classes.arrow} scale={scale} />
         )}
         {domain.axisLabel && (
-          <foreignObject
-            x={size.width + 17}
-            y={scale.y(0) - 9}
-            width={necessaryWidth}
-            height={20 * necessaryRows}
-          >
-            <div
-              dangerouslySetInnerHTML={{ __html: domain.axisLabel }}
-              className={classes.labelFontSize}
-            />
+          <foreignObject x={size.width + 17} y={scale.y(0) - 9} width={necessaryWidth} height={20 * necessaryRows}>
+            <div dangerouslySetInnerHTML={{ __html: domain.axisLabel }} className={classes.labelFontSize} />
           </foreignObject>
         )}
       </React.Fragment>
@@ -168,7 +158,7 @@ const XAxis = withStyles(axisStyles)(RawXAxis);
 export class RawYAxis extends React.Component {
   static propTypes = {
     ...AxisPropTypes,
-    graphProps: types.GraphPropsType.isRequired
+    graphProps: types.GraphPropsType.isRequired,
   };
   static defaultProps = AxisDefaultProps;
 
@@ -178,7 +168,7 @@ export class RawYAxis extends React.Component {
 
     const necessaryWidth = range.axisLabel ? amountToIncreaseWidth(range.axisLabel.length) : 0;
 
-    const customTickFormat = value => (skipValues && skipValues.indexOf(value) >= 0 ? '' : value);
+    const customTickFormat = (value) => (skipValues && skipValues.indexOf(value) >= 0 ? '' : value);
 
     return (
       <React.Fragment>
@@ -195,14 +185,14 @@ export class RawYAxis extends React.Component {
           tickLength={10}
           tickClassName={classes.tick}
           tickFormat={customTickFormat}
-          tickLabelProps={value => {
+          tickLabelProps={(value) => {
             let digits = value.toLocaleString().replace(/[.-]/g, '').length || 1;
 
             return {
               ...tickLabelStyles,
               dy: 4,
               dx: -10 - digits * 9,
-              'data-pie-readable': false
+              'data-pie-readable': false,
             };
           }}
           hideZero={true}
@@ -217,17 +207,9 @@ export class RawYAxis extends React.Component {
           <Arrow direction="up" x={0} y={range.max} className={classes.arrow} scale={scale} />
         )}
         {range.axisLabel && (
-          <foreignObject
-            x={scale.x(0) - necessaryWidth / 2}
-            y={-33}
-            width={necessaryWidth}
-            height="20"
-          >
+          <foreignObject x={scale.x(0) - necessaryWidth / 2} y={-33} width={necessaryWidth} height="20">
             <Readable false>
-              <div
-                dangerouslySetInnerHTML={{ __html: range.axisLabel }}
-                className={classes.axisLabelHolder}
-              />
+              <div dangerouslySetInnerHTML={{ __html: range.axisLabel }} className={classes.axisLabelHolder} />
             </Readable>
           </foreignObject>
         )}
@@ -242,7 +224,7 @@ export default class Axes extends React.Component {
   static propTypes = {
     ...AxisPropTypes,
     classes: PropTypes.object,
-    graphProps: types.GraphPropsType.isRequired
+    graphProps: types.GraphPropsType.isRequired,
   };
   static defaultProps = AxisDefaultProps;
 
@@ -260,7 +242,7 @@ export default class Axes extends React.Component {
     return {
       columnTicksValues: ticks,
       firstNegativeX: negative,
-      distanceFromOriginToFirstNegativeX: Math.abs(scale.y(0) - scale.y(negative))
+      distanceFromOriginToFirstNegativeX: Math.abs(scale.y(0) - scale.y(negative)),
     };
   };
 
@@ -278,18 +260,14 @@ export default class Axes extends React.Component {
     return {
       rowTickValues: ticks,
       firstNegativeY: negative,
-      distanceFromOriginToFirstNegativeY: Math.abs(scale.x(0) - scale.x(negative))
+      distanceFromOriginToFirstNegativeY: Math.abs(scale.x(0) - scale.x(negative)),
     };
   };
 
   render() {
     const { graphProps } = this.props;
     const { domain, range } = graphProps || {};
-    const {
-      columnTicksValues,
-      firstNegativeX,
-      distanceFromOriginToFirstNegativeX
-    } = this.xValues();
+    const { columnTicksValues, firstNegativeX, distanceFromOriginToFirstNegativeX } = this.xValues();
     const { rowTickValues, firstNegativeY, distanceFromOriginToFirstNegativeY } = this.yValues();
     const deltaAllowance = 6;
     const dy = 25;
@@ -300,7 +278,7 @@ export default class Axes extends React.Component {
       distanceFromOriginToFirstNegativeX,
       distanceFromOriginToFirstNegativeY,
       deltaAllowance,
-      dy
+      dy,
     );
 
     // each axis has to be displayed only if the domain & range include it

@@ -6,7 +6,7 @@ import { color } from '@pie-lib/render-ui';
 
 export const TokenTypes = {
   text: PropTypes.string,
-  selectable: PropTypes.bool
+  selectable: PropTypes.bool,
 };
 
 export class Token extends React.Component {
@@ -19,12 +19,12 @@ export class Token extends React.Component {
     disabled: PropTypes.bool,
     highlight: PropTypes.bool,
     correct: PropTypes.bool,
-    text: PropTypes.string.isRequired
+    text: PropTypes.string.isRequired,
   };
 
   static defaultProps = {
     selectable: false,
-    text: ''
+    text: '',
   };
 
   render() {
@@ -38,7 +38,7 @@ export class Token extends React.Component {
       index,
       highlight,
       correct,
-      animationsDisabled
+      animationsDisabled,
     } = this.props;
     const isTouchEnabled =
       !('ontouchstart' in window) || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
@@ -52,7 +52,7 @@ export class Token extends React.Component {
         Token.rootClassName,
         classes.custom,
         correct === true && classes.correct,
-        correct === false && classes.incorrect
+        correct === false && classes.incorrect,
       );
     } else {
       className = classNames(
@@ -64,7 +64,7 @@ export class Token extends React.Component {
         selected && disabled && classes.disabledAndSelected,
         highlight && selectable && !disabled && !selected && classes.highlight,
         animationsDisabled && classes.print,
-        classNameProp
+        classNameProp,
       );
     }
 
@@ -78,7 +78,7 @@ export class Token extends React.Component {
   }
 }
 
-export default withStyles(theme => {
+export default withStyles((theme) => {
   return {
     token: {
       cursor: 'pointer',
@@ -86,38 +86,38 @@ export default withStyles(theme => {
       padding: theme.spacing.unit / 2,
       paddingRight: 0,
       paddingLeft: 0,
-      transition: 'background-color 100ms ease-in'
+      transition: 'background-color 100ms ease-in',
     },
     disabled: {
       cursor: 'inherit',
-      color: 'grey' // TODO hardcoded color
+      color: 'grey', // TODO hardcoded color
     },
     disabledBlack: {
-      cursor: 'inherit'
+      cursor: 'inherit',
     },
     disabledAndSelected: {
-      backgroundColor: 'pink' // TODO hardcoded color
+      backgroundColor: 'pink', // TODO hardcoded color
     },
     selectable: {
       [theme.breakpoints.up(769)]: {
         '&:hover': {
           backgroundColor: color.primaryLight(),
           '& > *': {
-            backgroundColor: color.primaryLight()
-          }
-        }
-      }
+            backgroundColor: color.primaryLight(),
+          },
+        },
+      },
     },
     selected: {
       lineHeight: 2,
       marginTop: theme.spacing.unit / 2,
       '&:hover': {
-        backgroundColor: color.primaryLight()
+        backgroundColor: color.primaryLight(),
       },
       backgroundColor: color.primaryLight(),
       '& > *': {
-        backgroundColor: color.primaryLight()
-      }
+        backgroundColor: color.primaryLight(),
+      },
     },
     highlight: {
       // TODO hardcoded color,
@@ -126,7 +126,7 @@ export default withStyles(theme => {
       boxSizing: 'border-box',
       marginTop: theme.spacing.unit / 2,
       display: 'inline-block',
-      padding: theme.spacing.unit
+      padding: theme.spacing.unit,
     },
     print: {
       border: 'dashed 2px gray',
@@ -135,17 +135,17 @@ export default withStyles(theme => {
       marginTop: theme.spacing.unit / 2,
       display: 'inline-block',
       padding: theme.spacing.unit,
-      color: color.text()
+      color: color.text(),
     },
 
     custom: {
-      display: 'initial'
+      display: 'initial',
     },
     correct: {
-      backgroundColor: color.correct()
+      backgroundColor: color.correct(),
     },
     incorrect: {
-      backgroundColor: color.incorrect()
-    }
+      backgroundColor: color.incorrect(),
+    },
   };
 })(Token);

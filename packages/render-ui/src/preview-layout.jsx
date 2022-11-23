@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 class PreviewLayout extends React.Component {
   static propTypes = {
     children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
-    classes: PropTypes.object
+    classes: PropTypes.object,
   };
 
   render() {
@@ -19,38 +19,38 @@ const styles = () => ({
   container: {
     display: 'flex',
     flexDirection: 'column',
-    position: 'relative'
-  }
+    position: 'relative',
+  },
 });
 
 const theme = createMuiTheme({
   typography: {
-    useNextVariants: true
+    useNextVariants: true,
   },
   palette: {
     action: {
-      disabled: 'rgba(0, 0, 0, 0.54);'
-    }
+      disabled: 'rgba(0, 0, 0, 0.54);',
+    },
   },
   overrides: {
     MuiRadio: {
       root: {
         '&$checked': {
-          color: '#3f51b5 !important'
-        }
-      }
+          color: '#3f51b5 !important',
+        },
+      },
     },
     MuiCheckbox: {
       root: {
         '&$checked': {
-          color: '#3f51b5 !important'
-        }
-      }
+          color: '#3f51b5 !important',
+        },
+      },
     },
     MuiTabs: {
       root: {
-        borderBottom: '1px solid #eee'
-      }
+        borderBottom: '1px solid #eee',
+      },
     },
     MuiSwitch: {
       root: {
@@ -58,17 +58,17 @@ const theme = createMuiTheme({
           color: '#3f51b5 !important',
           '& + $bar': {
             backgroundColor: '#3f51b5 !important',
-            opacity: 0.5
-          }
-        }
-      }
-    }
-  }
+            opacity: 0.5,
+          },
+        },
+      },
+    },
+  },
 });
 
 const Styled = withStyles(styles)(PreviewLayout);
 
-const RootElem = props => (
+const RootElem = (props) => (
   <MuiThemeProvider theme={theme}>
     <Styled {...props} />
   </MuiThemeProvider>

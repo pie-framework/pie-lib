@@ -1,27 +1,27 @@
-const set = o => ({ ...o, category: 'comparison' });
+const set = (o) => ({ ...o, category: 'comparison' });
 
 export const lessThan = set({
   name: 'Less than',
   latex: '<',
-  command: '\\lt'
+  command: '\\lt',
 });
 
 export const greaterThan = set({
   name: 'Greater than',
   latex: '>',
-  command: '\\gt'
+  command: '\\gt',
 });
 
 export const lessThanEqual = set({
   name: 'Less than or equal',
   latex: '\\le',
   symbol: '<=',
-  command: '\\le'
+  command: '\\le',
 });
 
 export const greaterThanEqual = set({
   name: 'Greater than or equal',
   symbol: '>=',
   command: '\\ge',
-  latex: '\\ge'
+  latex: '\\ge',
 });

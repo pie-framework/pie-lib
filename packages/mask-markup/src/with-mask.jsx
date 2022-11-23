@@ -22,21 +22,14 @@ export const withMask = (type, renderChildren) => {
        */
       layout: PropTypes.object,
       value: PropTypes.object,
-      onChange: PropTypes.func
+      onChange: PropTypes.func,
     };
 
     render() {
       const { markup, layout, value, onChange } = this.props;
 
       const maskLayout = layout ? layout : buildLayoutFromMarkup(markup, type);
-      return (
-        <Mask
-          layout={maskLayout}
-          value={value}
-          onChange={onChange}
-          renderChildren={renderChildren(this.props)}
-        />
-      );
+      return <Mask layout={maskLayout} value={value} onChange={onChange} renderChildren={renderChildren(this.props)} />;
     }
   };
 };

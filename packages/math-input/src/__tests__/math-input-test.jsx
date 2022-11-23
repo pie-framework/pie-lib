@@ -9,11 +9,11 @@ describe('MathInput', () => {
   beforeEach(() => {
     onChange = jest.fn();
   });
-  const wrapper = extras => {
+  const wrapper = (extras) => {
     const defaults = {
       classes: {},
       className: 'className',
-      onChange
+      onChange,
     };
     const props = { ...defaults, ...extras };
     return shallow(<MathInput {...props} />);
@@ -30,7 +30,7 @@ describe('MathInput', () => {
       w.instance().input = {
         write: jest.fn(),
         command: jest.fn(),
-        keystroke: jest.fn()
+        keystroke: jest.fn(),
       };
     });
     describe('keypadPress', () => {

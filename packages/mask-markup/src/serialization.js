@@ -10,7 +10,7 @@ const MARK = ['em', 'strong', 'u'];
 const TEXT_NODE = 3;
 const COMMENT_NODE = 8;
 
-const attr = el => {
+const attr = (el) => {
   if (!el.attributes || el.attributes.length <= 0) {
     return undefined;
   }
@@ -27,7 +27,7 @@ const attr = el => {
   return out;
 };
 
-const getObject = type => {
+const getObject = (type) => {
   if (INLINE.includes(type)) {
     return 'inline';
   } else if (MARK.includes(type)) {
@@ -36,7 +36,7 @@ const getObject = type => {
   return 'block';
 };
 
-export const parseStyleString = s => {
+export const parseStyleString = (s) => {
   const regex = /([\w-]*)\s*:\s*([^;]*)/g;
   let match;
   const result = {};
@@ -46,7 +46,7 @@ export const parseStyleString = s => {
   return result;
 };
 
-export const reactAttributes = o => toStyleObject(o, { camelize: true, addUnits: false });
+export const reactAttributes = (o) => toStyleObject(o, { camelize: true, addUnits: false });
 
 const handleStyles = (el, attribute) => {
   const styleString = el.getAttribute(attribute);
@@ -62,7 +62,7 @@ const handleClass = (el, acc, attribute) => {
   return classNames;
 };
 
-const attributesToMap = el => (acc, attribute) => {
+const attributesToMap = (el) => (acc, attribute) => {
   if (!el.getAttribute) {
     return acc;
   }
@@ -100,7 +100,7 @@ export const MARK_TAGS = {
   u: 'underline',
   s: 'strikethrough',
   code: 'code',
-  strong: 'strong'
+  strong: 'strong',
 };
 
 const marks = {
@@ -111,9 +111,9 @@ const marks = {
     return {
       object: 'mark',
       type: mark,
-      nodes: next(el.childNodes)
+      nodes: next(el.childNodes),
     };
-  }
+  },
 };
 
 const rules = [
@@ -130,7 +130,7 @@ const rules = [
       if (el.nodeType === TEXT_NODE) {
         return {
           object: 'text',
-          leaves: [{ text: el.textContent }]
+          leaves: [{ text: el.textContent }],
         };
       }
 
@@ -148,7 +148,7 @@ const rules = [
       if (el.tagName.toLowerCase() === 'math') {
         return {
           isMath: true,
-          nodes: [el]
+          nodes: [el],
         };
       }
 
@@ -156,10 +156,10 @@ const rules = [
         object,
         type,
         data: { dataset: { ...el.dataset }, attributes: { ...allAttrs } },
-        nodes: next(el.childNodes)
+        nodes: next(el.childNodes),
       };
-    }
-  }
+    },
+  },
 ];
 
 /**
@@ -168,4 +168,4 @@ const rules = [
  */
 const html = new Html({ rules, defaultBlock: 'span' });
 
-export const deserialize = s => html.deserialize(s, { toJSON: true });
+export const deserialize = (s) => html.deserialize(s, { toJSON: true });

@@ -4,14 +4,14 @@ import ChartAxes, { TickComponent, RawChartAxes } from '../axes';
 import { graphProps } from '../__tests__/utils';
 
 describe('ChartAxes', () => {
-  const wrapper = extras => {
+  const wrapper = (extras) => {
     const defaults = {
       classes: {},
       className: 'className',
       graphProps: graphProps(),
       xBand: {
-        bandwidth: () => {}
-      }
+        bandwidth: () => {},
+      },
     };
     const props = { ...defaults, ...extras };
     return shallow(<ChartAxes {...props} />);
@@ -23,16 +23,16 @@ describe('ChartAxes', () => {
 });
 
 describe('RawChartAxes', () => {
-  const wrapper = extras => {
+  const wrapper = (extras) => {
     const defaults = {
       classes: {},
       className: 'className',
       graphProps: graphProps(),
       xBand: {
         bandwidth: () => {},
-        rangeRound: () => {}
+        rangeRound: () => {},
       },
-      categories: []
+      categories: [],
     };
     const props = { ...defaults, ...extras };
     return shallow(<RawChartAxes {...props} />);
@@ -41,22 +41,20 @@ describe('RawChartAxes', () => {
   describe('snapshot', () => {
     it('renders', () => expect(wrapper()).toMatchSnapshot());
 
-    it('renders if graphProps is not defined', () =>
-      expect(wrapper({ graphProps: undefined })).toMatchSnapshot());
+    it('renders if graphProps is not defined', () => expect(wrapper({ graphProps: undefined })).toMatchSnapshot());
 
-    it('renders if categories are not defined', () =>
-      expect(wrapper({ categories: undefined })).toMatchSnapshot());
+    it('renders if categories are not defined', () => expect(wrapper({ categories: undefined })).toMatchSnapshot());
   });
 });
 
 describe('TickComponent', () => {
-  const wrapper = extras => {
+  const wrapper = (extras) => {
     const xBand = jest.fn();
     xBand.bandwidth = jest.fn();
 
     const defaults = {
       graphProps: graphProps(),
-      xBand
+      xBand,
     };
     const props = { ...defaults, ...extras };
     return shallow(<TickComponent {...props} />);
@@ -71,8 +69,8 @@ describe('TickComponent', () => {
       expect(
         wrapper({
           formattedValue: '0-test',
-          categories: [{ value: 1, label: 'test' }]
-        })
+          categories: [{ value: 1, label: 'test' }],
+        }),
       ).toMatchSnapshot());
   });
 
@@ -83,7 +81,7 @@ describe('TickComponent', () => {
       formattedValue: '0-test',
       categories: [{ value: 1, label: 'test' }],
       onChange,
-      onChangeCategory
+      onChangeCategory,
     });
 
     it('calls onChangeCategory', () => {

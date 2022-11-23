@@ -10,18 +10,18 @@ const log = debug('pie-libs:render-ui:response-indicators');
 
 const styles = () => ({
   responseIndicator: {
-    cursor: 'pointer'
+    cursor: 'pointer',
   },
   paper: {
     padding: '0',
-    borderRadius: '4px'
+    borderRadius: '4px',
   },
   popover: {
-    cursor: 'pointer'
+    cursor: 'pointer',
   },
   popperClose: {
-    cursor: 'pointer'
-  }
+    cursor: 'pointer',
+  },
 });
 
 const BuildIndicator = (Icon, correctness) => {
@@ -31,7 +31,7 @@ const BuildIndicator = (Icon, correctness) => {
       this.state = {};
     }
 
-    handlePopoverOpen = event => {
+    handlePopoverOpen = (event) => {
       log('[handlePopoverOpen]', event.target);
       this.setState({ anchorEl: event.target });
     };
@@ -45,7 +45,7 @@ const BuildIndicator = (Icon, correctness) => {
       const { anchorEl } = this.state;
       return (
         <div className={feedback && classes.responseIndicator}>
-          <span ref={r => (this.icon = r)} onClick={this.handlePopoverOpen}>
+          <span ref={(r) => (this.icon = r)} onClick={this.handlePopoverOpen}>
             <Icon />
           </span>
 
@@ -53,17 +53,17 @@ const BuildIndicator = (Icon, correctness) => {
             <Popover
               className={classes.popover}
               classes={{
-                paper: classes.paper
+                paper: classes.paper,
               }}
               open={!!anchorEl}
               anchorEl={anchorEl}
               anchorOrigin={{
                 vertical: 'bottom',
-                horizontal: 'left'
+                horizontal: 'left',
               }}
               transformOrigin={{
                 vertical: 'top',
-                horizontal: 'left'
+                horizontal: 'left',
               }}
               onClose={this.handlePopoverClose}
             >
@@ -77,7 +77,7 @@ const BuildIndicator = (Icon, correctness) => {
 
   RawIndicator.propTypes = {
     feedback: PropTypes.string,
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
   };
 
   return withStyles(styles)(RawIndicator);

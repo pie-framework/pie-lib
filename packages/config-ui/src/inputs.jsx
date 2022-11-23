@@ -14,18 +14,13 @@ const InputTypes = {
   checked: PropTypes.bool,
   onChange: PropTypes.func,
   disabled: PropTypes.bool,
-  error: PropTypes.string
+  error: PropTypes.string,
 };
 
 const RawInputSwitch = ({ classes, className, label, checked, onChange }) => {
   return (
     <InputContainer className={className} label={label}>
-      <Switch
-        className={classes.switchRoot}
-        checked={checked}
-        onChange={onChange}
-        aria-label={label}
-      />
+      <Switch className={classes.switchRoot} checked={checked} onChange={onChange} aria-label={label} />
     </InputContainer>
   );
 };
@@ -35,11 +30,11 @@ RawInputSwitch.propTypes = { ...InputTypes };
 const InputSwitch = withStyles({
   switchRoot: {
     justifyContent: 'inherit',
-    transform: 'translate(-20%, 20%)'
-  }
+    transform: 'translate(-20%, 20%)',
+  },
 })(RawInputSwitch);
 
-const RawInputCheckbox = props => {
+const RawInputCheckbox = (props) => {
   const { classes, className, label, checked, onChange, disabled, error } = props;
 
   return (
@@ -57,7 +52,7 @@ const RawInputCheckbox = props => {
 
 RawInputCheckbox.propTypes = { ...InputTypes };
 
-const RawInputRadio = props => {
+const RawInputRadio = (props) => {
   const { classes, className, label, checked, onChange, disabled, error } = props;
 
   return (
@@ -77,20 +72,20 @@ RawInputRadio.propTypes = { ...InputTypes };
 
 const InputCheckbox = withStyles({
   checkboxRoot: {
-    transform: 'translate(-25%, 20%)'
+    transform: 'translate(-25%, 20%)',
   },
   error: {
-    color: 'red'
-  }
+    color: 'red',
+  },
 })(RawInputCheckbox);
 
 const InputRadio = withStyles(() => ({
   radioRoot: {
-    transform: 'translate(-20%, 20%)'
+    transform: 'translate(-20%, 20%)',
   },
   error: {
-    color: 'red'
-  }
+    color: 'red',
+  },
 }))(RawInputRadio);
 
 export { InputSwitch, InputCheckbox, InputRadio };

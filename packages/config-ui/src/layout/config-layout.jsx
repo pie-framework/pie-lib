@@ -6,29 +6,25 @@ import SettingsBox from './settings-box';
 
 class ConfigLayout extends React.Component {
   static propTypes = {
-    children: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.arrayOf(PropTypes.element),
-      PropTypes.element
-    ]),
+    children: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.element), PropTypes.element]),
     settings: PropTypes.element,
     className: PropTypes.string,
     classes: PropTypes.object,
-    sidePanelMinWidth: PropTypes.number
+    sidePanelMinWidth: PropTypes.number,
   };
 
   static defaultProps = {
-    sidePanelMinWidth: 950
+    sidePanelMinWidth: 950,
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      layoutMode: undefined
+      layoutMode: undefined,
     };
   }
 
-  onResize = contentRect => {
+  onResize = (contentRect) => {
     const { bounds } = contentRect;
     const { sidePanelMinWidth } = this.props;
     const layoutMode = bounds.width >= sidePanelMinWidth ? 'inline' : 'tabbed';
@@ -47,9 +43,7 @@ class ConfigLayout extends React.Component {
             <div ref={measureRef}>
               <LayoutContents
                 mode={layoutMode}
-                secondary={
-                  layoutMode === 'inline' ? <SettingsBox>{settings}</SettingsBox> : settings
-                }
+                secondary={layoutMode === 'inline' ? <SettingsBox>{settings}</SettingsBox> : settings}
               >
                 {children}
               </LayoutContents>

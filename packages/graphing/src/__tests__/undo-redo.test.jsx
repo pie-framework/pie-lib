@@ -7,11 +7,11 @@ describe('UndoRedo', () => {
   let onUndo = jest.fn();
   let onRedo = jest.fn();
   let onReset = jest.fn();
-  const wrapper = extras => {
+  const wrapper = (extras) => {
     const defaults = {
       onUndo,
       onRedo,
-      onReset
+      onReset,
     };
     const props = { ...defaults, ...extras };
     return shallow(<UndoRedo {...props} />);

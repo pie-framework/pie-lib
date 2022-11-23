@@ -14,18 +14,13 @@ function TabContainer(props) {
 }
 
 TabContainer.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
 };
 
 const Tab0 = ({ settings, model, onChange, onSettingsChange }) => (
   <TabContainer>
-    <Settings model={settings} onChange={onSettingsChange}/>
-    <Options
-      model={model}
-      graphTitle={settings.graphTitle}
-      labels={settings.labels}
-      onChange={onChange}
-    />
+    <Settings model={settings} onChange={onSettingsChange} />
+    <Options model={model} graphTitle={settings.graphTitle} labels={settings.labels} onChange={onChange} />
   </TabContainer>
 );
 

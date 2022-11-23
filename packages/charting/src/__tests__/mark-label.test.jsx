@@ -6,14 +6,14 @@ import { graphProps as getGraphProps } from '../__tests__/utils';
 describe('MarkLabel', () => {
   let w;
   let onChange = jest.fn();
-  const wrapper = extras => {
+  const wrapper = (extras) => {
     const defaults = {
       classes: {},
       defineChart: false,
       className: 'className',
       onChange,
       mark: { x: 1, y: 1 },
-      graphProps: getGraphProps(0, 10, 0, 10)
+      graphProps: getGraphProps(0, 10, 0, 10),
     };
     const props = { ...defaults, ...extras };
     return shallow(<MarkLabel {...props} />);

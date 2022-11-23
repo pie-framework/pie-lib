@@ -5,7 +5,7 @@ import includes from 'lodash/includes';
  * @param {Object} model the model to normalize
  * @return {Object} the updated model
  */
-export const normalizeChoices = model => {
+export const normalizeChoices = (model) => {
   const choices = model.choices.map((c, index) => {
     if (!c.value) {
       c.value = `${index}`;

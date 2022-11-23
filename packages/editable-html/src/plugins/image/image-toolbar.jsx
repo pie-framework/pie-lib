@@ -21,7 +21,7 @@ const AlignmentButton = ({ alignment, active, onClick }) => {
 AlignmentButton.propTypes = {
   alignment: PropTypes.string.isRequired,
   active: PropTypes.bool.isRequired,
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired,
 };
 
 export class ImageToolbar extends React.Component {
@@ -31,16 +31,16 @@ export class ImageToolbar extends React.Component {
     alignment: PropTypes.string,
     alt: PropTypes.string,
     imageLoaded: PropTypes.bool,
-    disableImageAlignmentButtons: PropTypes.bool
+    disableImageAlignmentButtons: PropTypes.bool,
   };
 
-  onAltTextDone = newAlt => {
+  onAltTextDone = (newAlt) => {
     log('[onAltTextDone]: alt:', newAlt);
 
     this.props.onChange({ alt: newAlt });
   };
 
-  onAlignmentClick = alignment => {
+  onAlignmentClick = (alignment) => {
     log('[onAlignmentClick]: alignment:', alignment);
     this.props.onChange({ alignment });
   };
@@ -62,29 +62,17 @@ export class ImageToolbar extends React.Component {
       <div className={classes.holder}>
         {!disableImageAlignmentButtons && (
           <>
-            <AlignmentButton
-              alignment={'left'}
-              active={alignment === 'left'}
-              onClick={this.onAlignmentClick}
-            />
-            <AlignmentButton
-              alignment={'center'}
-              active={alignment === 'center'}
-              onClick={this.onAlignmentClick}
-            />
-            <AlignmentButton
-              alignment={'right'}
-              active={alignment === 'right'}
-              onClick={this.onAlignmentClick}
-            />
+            <AlignmentButton alignment={'left'} active={alignment === 'left'} onClick={this.onAlignmentClick} />
+            <AlignmentButton alignment={'center'} active={alignment === 'center'} onClick={this.onAlignmentClick} />
+            <AlignmentButton alignment={'right'} active={alignment === 'right'} onClick={this.onAlignmentClick} />
           </>
         )}
         <span
           className={classNames({
             [classes.disabled]: !imageLoaded,
-            [classes.altButton]: !disableImageAlignmentButtons
+            [classes.altButton]: !disableImageAlignmentButtons,
           })}
-          onMouseDown={event => imageLoaded && this.renderDialog(event)}
+          onMouseDown={(event) => imageLoaded && this.renderDialog(event)}
         >
           Alt text
         </span>
@@ -93,20 +81,20 @@ export class ImageToolbar extends React.Component {
   }
 }
 
-const styles = theme => ({
+const styles = (theme) => ({
   holder: {
     paddingLeft: theme.spacing.unit,
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   disabled: {
-    opacity: 0.5
+    opacity: 0.5,
   },
   altButton: {
     borderLeft: '1px solid grey',
     paddingLeft: 8,
-    marginLeft: 4
-  }
+    marginLeft: 4,
+  },
 });
 
 export default withStyles(styles)(ImageToolbar);

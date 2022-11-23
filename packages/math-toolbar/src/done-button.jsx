@@ -12,7 +12,7 @@ export const RawDoneButton = ({ classes, onClick }) => (
     onClick={onClick}
     classes={{
       label: classes.label,
-      root: classes.iconRoot
+      root: classes.iconRoot,
     }}
   >
     <Check />
@@ -21,7 +21,7 @@ export const RawDoneButton = ({ classes, onClick }) => (
 
 RawDoneButton.propTypes = {
   classes: PropTypes.object.isRequired,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
 };
 
 const styles = {
@@ -29,11 +29,11 @@ const styles = {
     verticalAlign: 'top',
     width: '28px',
     height: '28px',
-    color: '#00bb00'
+    color: '#00bb00',
   },
   label: {
     position: 'absolute',
-    top: '2px'
-  }
+    top: '2px',
+  },
 };
 export const DoneButton = withStyles(styles)(RawDoneButton);

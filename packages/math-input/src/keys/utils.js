@@ -1,21 +1,21 @@
 import _ from 'lodash';
 
-export const mkSet = category => o => ({ ...o, category });
+export const mkSet = (category) => (o) => ({ ...o, category });
 
-export const toArray = o => Object.keys(o).map(k => o[k]);
+export const toArray = (o) => Object.keys(o).map((k) => o[k]);
 
-export const toKey = category => v => {
+export const toKey = (category) => (v) => {
   if (typeof v === 'string') {
     return {
       name: v,
       label: v,
       category,
-      write: v
+      write: v,
     };
   } else {
     return {
       ...v,
-      category
+      category,
     };
   }
 };
@@ -42,10 +42,10 @@ export const transformToKeySetStructure = (data = []) => {
   return structure;
 };
 
-const latexAndNameDontExist = base => k => {
+const latexAndNameDontExist = (base) => (k) => {
   const flattened = _.flatten(base);
-  const latexExists = flattened.some(b => b.latex === k.latex);
-  const nameExists = flattened.some(b => b.name === k.name);
+  const latexExists = flattened.some((b) => b.latex === k.latex);
+  const nameExists = flattened.some((b) => b.name === k.name);
   return !latexExists && !nameExists;
 };
 

@@ -2,12 +2,12 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 
-const Section = withStyles(theme => ({
+const Section = withStyles((theme) => ({
   section: {
     padding: '0px',
     paddingTop: '40px',
     paddingBottom: '40px',
-    position: 'relative'
+    position: 'relative',
   },
   header: {
     position: 'relative',
@@ -21,9 +21,9 @@ const Section = withStyles(theme => ({
       right: '0',
       height: '1px',
       content: '""',
-      backgroundColor: 'rgba(0,0,0,0.2)'
-    }
-  }
+      backgroundColor: 'rgba(0,0,0,0.2)',
+    },
+  },
 }))(({ name, children, classes }) => (
   <div className={classes.section}>
     <Typography variant="h5" className={classes.header}>

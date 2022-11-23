@@ -17,7 +17,7 @@ describe('layout - snapshot', () => {
           <div>Foo</div>
           <div>Bar</div>
         </div>
-      </ConfigLayout>
+      </ConfigLayout>,
     );
     expect(tree).toMatchSnapshot();
   });
@@ -35,7 +35,7 @@ describe('layout - snapshot', () => {
           <div>Foo</div>
           <div>Bar</div>
         </div>
-      </ConfigLayout>
+      </ConfigLayout>,
     );
     expect(tree).toMatchSnapshot();
   });

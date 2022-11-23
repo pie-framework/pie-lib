@@ -36,14 +36,14 @@ PartiallyCorrect.propTypes = {
   iconSet: PropTypes.oneOf(['emoji', 'check']),
   shape: PropTypes.oneOf(['round', 'square']),
   category: PropTypes.oneOf(['feedback', undefined]),
-  open: PropTypes.bool
+  open: PropTypes.bool,
 };
 
 PartiallyCorrect.defaultProps = {
   iconSet: 'check',
   shape: 'round',
   category: undefined,
-  open: false
+  open: false,
 };
 
 export default withStyles(styles)(PartiallyCorrect);

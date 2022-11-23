@@ -11,7 +11,7 @@ import debug from 'debug';
 
 const log = debug('@pie-lib:editable-html:plugins:toolbar');
 
-export const ToolbarButton = props => {
+export const ToolbarButton = (props) => {
   const onToggle = () => {
     const c = props.onToggle(props.value.change(), props);
 
@@ -30,9 +30,7 @@ export const ToolbarButton = props => {
     );
   } else {
     const { disabled } = props;
-    const isActive = props.isActive
-      ? props.isActive(props.value, props.type)
-      : hasBlock(props.value, props.type);
+    const isActive = props.isActive ? props.isActive(props.value, props.type) : hasBlock(props.value, props.type);
 
     log('[ToolbarButton] block:isActive: ', isActive);
 
@@ -49,7 +47,7 @@ export const ToolbarButton = props => {
   }
 };
 
-const isActiveToolbarPlugin = props => plugin => {
+const isActiveToolbarPlugin = (props) => (plugin) => {
   const isDisabled = (props[plugin.name] || {}).disabled;
 
   return plugin && plugin.toolbar && !isDisabled;
@@ -64,22 +62,16 @@ export const DefaultToolbar = ({
   onDone,
   classes,
   showDone,
-  deletable
+  deletable,
 }) => {
-  const filtered = plugins.filter(isActiveToolbarPlugin(pluginProps)).map(p => p.toolbar);
+  const filtered = plugins.filter(isActiveToolbarPlugin(pluginProps)).map((p) => p.toolbar);
 
   return (
     <div className={classes.defaultToolbar}>
       <div className={classes.buttonsContainer}>
         {filtered.map((p, index) => {
           return (
-            <ToolbarButton
-              {...p}
-              key={index}
-              value={value}
-              onChange={onChange}
-              getFocusedValue={getFocusedValue}
-            />
+            <ToolbarButton {...p} key={index} value={value} onChange={onChange} getFocusedValue={getFocusedValue} />
           );
         })}
       </div>
@@ -98,24 +90,24 @@ DefaultToolbar.propTypes = {
   onDone: PropTypes.func.isRequired,
   showDone: PropTypes.bool,
   addArea: PropTypes.bool,
-  deletable: PropTypes.bool
+  deletable: PropTypes.bool,
 };
 
 DefaultToolbar.defaultProps = {
-  pluginProps: {}
+  pluginProps: {},
 };
 
 const toolbarStyles = () => ({
   defaultToolbar: {
     display: 'flex',
     width: '100%',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   buttonsContainer: {
     alignItems: 'center',
     display: 'flex',
-    width: '100%'
-  }
+    width: '100%',
+  },
 });
 
 export default withStyles(toolbarStyles)(DefaultToolbar);

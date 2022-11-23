@@ -8,7 +8,7 @@ export class Demo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      mounted: false
+      mounted: false,
     };
   }
 
@@ -18,19 +18,23 @@ export class Demo extends React.Component {
 
   render() {
     const { mounted } = this.state;
-    return mounted ? <div>
-      <MathToolbar keypadMode={1}/>
-      <MathToolbar keypadMode={3}/>
-      <MathToolbar keypadMode={6}/>
-      <MathToolbar keypadMode={8}/>
-      <MathToolbar keypadMode="geometry"/>
-      <MathToolbar keypadMode="advanced-algebra"/>
-      <MathToolbar keypadMode="statistics"/>
-      <MathToolbar latex={'\\frac{1}{2}'}/>
-    </div> : <div>loading</div>;
+    return mounted ? (
+      <div>
+        <MathToolbar keypadMode={1} />
+        <MathToolbar keypadMode={3} />
+        <MathToolbar keypadMode={6} />
+        <MathToolbar keypadMode={8} />
+        <MathToolbar keypadMode="geometry" />
+        <MathToolbar keypadMode="advanced-algebra" />
+        <MathToolbar keypadMode="statistics" />
+        <MathToolbar latex={'\\frac{1}{2}'} />
+      </div>
+    ) : (
+      <div>loading</div>
+    );
   }
 }
 
-const styles = theme => ({});
+const styles = (theme) => ({});
 const Styled = withStyles(styles)(Demo);
 export default withRoot(Styled);

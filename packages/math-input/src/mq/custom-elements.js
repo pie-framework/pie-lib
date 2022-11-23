@@ -3,7 +3,7 @@ const registerLineBreak = function(MQ) {
     return {
       htmlString: '<div class="newLine"></div>',
       text: () => 'testText',
-      latex: () => '\\embed{newLine}[]'
+      latex: () => '\\embed{newLine}[]',
     };
   });
 };

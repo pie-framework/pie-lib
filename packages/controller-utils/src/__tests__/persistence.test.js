@@ -7,46 +7,36 @@ describe('getShuffledChoices', () => {
     updateSession = jest.fn().mockResolvedValue([]);
     session = {
       id: '1',
-      element: 'element'
+      element: 'element',
     };
     choices = [
       {
-        value: 1
+        value: 1,
       },
       {
-        value: 2
-      }
+        value: 2,
+      },
     ];
     key = 'value';
   });
 
   describe('0 key', () => {
     it('calls update session w/ 0 as a key', async () => {
-      const result = await getShuffledChoices(
-        [{ value: 0 }, { value: 1 }],
-        session,
-        updateSession,
-        'value'
-      );
+      const result = await getShuffledChoices([{ value: 0 }, { value: 1 }], session, updateSession, 'value');
       expect(updateSession).toHaveBeenCalledWith(session.id, session.element, {
-        shuffledValues: expect.arrayContaining([0, 1])
+        shuffledValues: expect.arrayContaining([0, 1]),
       });
     });
   });
 
   describe('handles null values in session', () => {
     beforeEach(async () => {
-      const result = await getShuffledChoices(
-        choices,
-        { ...session, shuffledValues: [null] },
-        updateSession,
-        'value'
-      );
+      const result = await getShuffledChoices(choices, { ...session, shuffledValues: [null] }, updateSession, 'value');
     });
 
     it('calls updateSession w/ new shuffle cos [null] is treated as empty', () => {
       expect(updateSession).toHaveBeenCalledWith(session.id, session.element, {
-        shuffledValues: expect.arrayContaining([1, 2])
+        shuffledValues: expect.arrayContaining([1, 2]),
       });
     });
   });
@@ -84,7 +74,7 @@ describe('getShuffledChoices', () => {
       session = { id: '1', element: 'pie-element' };
       await getShuffledChoices(choices, session, updateSession, key);
       expect(updateSession).toHaveBeenCalledWith('1', 'pie-element', {
-        shuffledValues: expect.arrayContaining([1, 2])
+        shuffledValues: expect.arrayContaining([1, 2]),
       });
     });
   });
@@ -93,9 +83,9 @@ describe('getShuffledChoices', () => {
 describe('lockChoices', () => {
   const env = (lockChoiceOrder, role = 'student') => ({
     '@pie-element': { lockChoiceOrder },
-    role
+    role,
   });
-  const session = shuffledValues => ({ shuffledValues });
+  const session = (shuffledValues) => ({ shuffledValues });
   it.each`
     modelLock    | session            | env                         | expected
     ${true}      | ${session()}       | ${env(true)}                | ${true}
@@ -109,20 +99,17 @@ describe('lockChoices', () => {
     ${false}     | ${session()}       | ${env(false, 'instructor')} | ${true}
     ${false}     | ${session([0, 1])} | ${env(false, 'instructor')} | ${true}
     ${false}     | ${undefined}       | ${env(false, 'instructor')} | ${true}
-  `(
-    '1. model.lockChoiceOrder: $modelLock, $session, $env => $expected',
-    ({ modelLock, session, env, expected }) => {
-      const model = { lockChoiceOrder: modelLock };
-      const result = lockChoices(model, session, env);
-      expect(result).toEqual(expected);
-    }
-  );
+  `('1. model.lockChoiceOrder: $modelLock, $session, $env => $expected', ({ modelLock, session, env, expected }) => {
+    const model = { lockChoiceOrder: modelLock };
+    const result = lockChoices(model, session, env);
+    expect(result).toEqual(expected);
+  });
 });
 
 describe('lockChoices mod', () => {
   const env = (lockChoiceOrder, role = 'student') => ({
     '@pie-element': { lockChoiceOrder },
-    role
+    role,
   });
   const session = (answers = ['foo', 'bar']) => ({ answers });
   it.each`
@@ -134,22 +121,19 @@ describe('lockChoices mod', () => {
     ${undefined} | ${session()} | ${env(true)}                    | ${true}
     ${undefined} | ${session()} | ${env(undefined)}               | ${false}
     ${undefined} | ${session()} | ${env(undefined, 'instructor')} | ${true}
-  `(
-    '2. model.lockChoiceOrder: $modelLock, $session, $env => $expected',
-    ({ modelLock, session, env, expected }) => {
-      const model = { lockChoiceOrder: modelLock };
-      const result = lockChoices(model, session, env);
-      expect(result).toEqual(expected);
-    }
-  );
+  `('2. model.lockChoiceOrder: $modelLock, $session, $env => $expected', ({ modelLock, session, env, expected }) => {
+    const model = { lockChoiceOrder: modelLock };
+    const result = lockChoices(model, session, env);
+    expect(result).toEqual(expected);
+  });
 });
 
 describe('lockChoices', () => {
   const env = (lockChoiceOrder, role = 'student') => ({
     '@pie-element': { lockChoiceOrder },
-    role
+    role,
   });
-  const session = shuffledValues => ({ shuffledValues, answers: ['foo', 'bar'] });
+  const session = (shuffledValues) => ({ shuffledValues, answers: ['foo', 'bar'] });
   it.each`
     modelLock    | session      | env                             | expected
     ${true}      | ${session()} | ${env(true)}                    | ${true}
@@ -159,12 +143,9 @@ describe('lockChoices', () => {
     ${undefined} | ${session()} | ${env(true)}                    | ${true}
     ${undefined} | ${session()} | ${env(undefined)}               | ${false}
     ${undefined} | ${session()} | ${env(undefined, 'instructor')} | ${true}
-  `(
-    '3. model.lockChoiceOrder: $modelLock, $env => $expected',
-    ({ modelLock, session, env, expected }) => {
-      const model = { lockChoiceOrder: modelLock };
-      const result = lockChoices(model, session, env);
-      expect(result).toEqual(expected);
-    }
-  );
+  `('3. model.lockChoiceOrder: $modelLock, $env => $expected', ({ modelLock, session, env, expected }) => {
+    const model = { lockChoiceOrder: modelLock };
+    const result = lockChoices(model, session, env);
+    expect(result).toEqual(expected);
+  });
 });

@@ -5,11 +5,11 @@ const set = mkSet('logic');
 export const therefore = set({
   name: 'Therefore',
   label: '∴',
-  write: '∴'
+  write: '∴',
 });
 
 export const longDivision = set({
   name: 'Long division',
   latex: '\\longdiv{}',
-  command: '\\longdiv'
+  command: '\\longdiv',
 });

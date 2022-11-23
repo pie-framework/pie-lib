@@ -16,10 +16,10 @@ export const tool = () => ({
       return {
         type: 'circle',
         root: point,
-        building: true
+        building: true,
       };
     } else {
       return { ...mark, edge: point, building: false };
     }
-  }
+  },
 });

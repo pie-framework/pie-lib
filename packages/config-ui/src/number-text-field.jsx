@@ -8,8 +8,8 @@ import isFinite from 'lodash/isFinite';
 import InputAdornment from '@material-ui/core/InputAdornment';
 const log = debug('@pie-lib:config-ui:number-text-field');
 
-const styles = theme => ({
-  root: { marginRight: theme.spacing.unit }
+const styles = (theme) => ({
+  root: { marginRight: theme.spacing.unit },
 });
 
 const fallbackNumber = (min, max) => {
@@ -39,11 +39,11 @@ export class NumberTextField extends React.Component {
     suffix: PropTypes.string,
     showErrorWhenOutsideRange: PropTypes.bool,
     disableUnderline: PropTypes.bool,
-    variant: PropTypes.string
+    variant: PropTypes.string,
   };
 
   static defaultProps = {
-    showErrorWhenOutsideRange: false
+    showErrorWhenOutsideRange: false,
   };
 
   constructor(props) {
@@ -52,7 +52,7 @@ export class NumberTextField extends React.Component {
     const value = this.clamp(props.value);
 
     this.state = {
-      value
+      value,
     };
 
     if (value !== props.value) {
@@ -87,7 +87,7 @@ export class NumberTextField extends React.Component {
    * on Blur (this can be triggered by pressing Enter, see below)
    * we check the entered value and reset it if needed
    */
-  onBlur = event => {
+  onBlur = (event) => {
     const value = event.target.value;
 
     const rawNumber = parseFloat(value);
@@ -149,7 +149,7 @@ export class NumberTextField extends React.Component {
       inputClassName,
       disableUnderline,
       showErrorWhenOutsideRange,
-      variant
+      variant,
     } = this.props;
     const names = classNames(classes.root, className);
 
@@ -157,7 +157,7 @@ export class NumberTextField extends React.Component {
     return (
       <TextField
         variant={variant || 'standard'}
-        inputRef={ref => {
+        inputRef={(ref) => {
           this.inputRef = ref;
         }}
         disabled={disabled}
@@ -167,7 +167,7 @@ export class NumberTextField extends React.Component {
         helperText={error}
         onChange={this.onChange}
         onBlur={this.onBlur}
-        onKeyPress={e => {
+        onKeyPress={(e) => {
           // once the Enter key is pressed, we force input blur
           if (e.key === 'Enter' && this.inputRef) {
             this.inputRef.blur();
@@ -176,16 +176,16 @@ export class NumberTextField extends React.Component {
         type="number"
         className={names}
         InputLabelProps={{
-          shrink: true
+          shrink: true,
         }}
         InputProps={{
           endAdornment: suffix && <InputAdornment position="end">{suffix}</InputAdornment>,
           className: inputClassName,
-          disableUnderline: disableUnderline
+          disableUnderline: disableUnderline,
         }}
         inputProps={{
           min,
-          max
+          max,
         }}
         margin="normal"
       />

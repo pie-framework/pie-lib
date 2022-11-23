@@ -10,7 +10,7 @@ const digitMap = {
   6: 'six',
   7: 'seven',
   8: 'eight',
-  9: 'nine'
+  9: 'nine',
 };
 
 const comma = { name: 'comma', label: ',', write: ',', category: 'digit' };
@@ -19,16 +19,16 @@ const decimalPoint = {
   name: 'decimal-point',
   label: '.',
   write: '.',
-  category: 'digit'
+  category: 'digit',
 };
 
 export default times(10, String)
-  .map(n => {
+  .map((n) => {
     return {
       name: digitMap[n],
       write: n,
       label: n,
-      category: 'digit'
+      category: 'digit',
     };
   })
   .reduce(
@@ -36,5 +36,5 @@ export default times(10, String)
       acc[o.name] = o;
       return acc;
     },
-    { comma, decimalPoint }
+    { comma, decimalPoint },
   );

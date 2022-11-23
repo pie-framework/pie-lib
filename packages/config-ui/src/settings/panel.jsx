@@ -18,13 +18,13 @@ const log = debug('pie-lib:config-ui:settings:panel');
 
 const labelValue = {
   label: PropTypes.string,
-  value: PropTypes.string
+  value: PropTypes.string,
 };
 
 const baseTypes = {
   label: PropTypes.string,
   value: PropTypes.string,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
 };
 
 const CheckboxChoice = ({ label, value, onChange }) => {
@@ -32,7 +32,7 @@ const CheckboxChoice = ({ label, value, onChange }) => {
     <Checkbox
       checked={value}
       label={label}
-      onChange={event => {
+      onChange={(event) => {
         onChange(event.target.checked);
       }}
     />
@@ -42,7 +42,7 @@ const CheckboxChoice = ({ label, value, onChange }) => {
 CheckboxChoice.propTypes = {
   label: PropTypes.string,
   value: PropTypes.bool,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
 };
 
 const Radio = ({ classes, label, value, onChange, choices }) => {
@@ -70,28 +70,28 @@ const StyledRadio = withStyles({
     '& > label': {
       color: 'rgba(0, 0, 0, 0.89)',
       transform: 'translate(0, 10px) scale(1)',
-      fontSize: '14px'
+      fontSize: '14px',
     },
     '& > div': {
-      marginTop: '20px'
-    }
+      marginTop: '20px',
+    },
   },
   label: {
-    display: 'none'
-  }
+    display: 'none',
+  },
 })(Radio);
 
 const Dropdown = withStyles({
   label: {
     margin: 0,
-    fontSize: '14px'
+    fontSize: '14px',
   },
   wrapper: {
     marginTop: '4px',
     border: '2px solid lightgrey',
     borderRadius: '4px',
-    padding: '0 8px'
-  }
+    padding: '0 8px',
+  },
 })(({ classes, label, value, onChange, choices = [] }) => {
   return (
     <div>
@@ -119,14 +119,14 @@ const NumberField = withStyles({
   field: {
     width: '35%',
     marginRight: '24px',
-    marginTop: '8px'
+    marginTop: '8px',
   },
   wrapper: {
     marginTop: '4px',
     border: '2px solid lightgrey',
     borderRadius: '4px',
-    padding: '0 8px'
-  }
+    padding: '0 8px',
+  },
 })(({ classes, label, value, onChange = () => {}, suffix, min, max }) => {
   return (
     <NumberTextField
@@ -150,12 +150,10 @@ NumberField.propTypes = {
   suffix: PropTypes.string,
   min: PropTypes.number,
   max: PropTypes.number,
-  value: PropTypes.number
+  value: PropTypes.number,
 };
 
-const ToggleWrapper = ({ label, value, onChange }) => (
-  <Toggle label={label} checked={!!value} toggle={onChange} />
-);
+const ToggleWrapper = ({ label, value, onChange }) => <Toggle label={label} checked={!!value} toggle={onChange} />;
 
 ToggleWrapper.propTypes = { ...baseTypes, value: PropTypes.bool };
 
@@ -164,24 +162,24 @@ const tagMap = {
   radio: StyledRadio,
   dropdown: Dropdown,
   numberField: NumberField,
-  checkbox: CheckboxChoice
+  checkbox: CheckboxChoice,
 };
 
 const Group = withStyles(() => ({
   group: {
-    margin: '0 0 25px 0'
+    margin: '0 0 25px 0',
   },
   groupHeader: {
     color: '#495B8F',
     fontSize: '16px',
     fontWeight: 600,
-    marginBottom: '8px'
+    marginBottom: '8px',
   },
   numberFields: {
     fontSize: '0.85rem',
-    marginBottom: 0
-  }
-}))(props => {
+    marginBottom: 0,
+  },
+}))((props) => {
   const { classes, model, label, group, configuration, onChange } = props;
 
   /**
@@ -195,7 +193,7 @@ const Group = withStyles(() => ({
     const tagProps = { ...properties, key, value };
     const Tag = tagMap[tagProps.type];
 
-    return <Tag key={key} {...tagProps} onChange={v => onChange(key, v, isConfigProperty)} />;
+    return <Tag key={key} {...tagProps} onChange={(v) => onChange(key, v, isConfigProperty)} />;
   };
 
   const content = (group, key) => {
@@ -211,7 +209,7 @@ const Group = withStyles(() => ({
       return (
         <div key={`numberField-${label}`}>
           <p className={classes.numberFields}>{label}</p>
-          {Object.keys(fields).map(fieldKey => {
+          {Object.keys(fields).map((fieldKey) => {
             return getTag(group, `${key}.${fieldKey}`, `${key}.fields.${fieldKey}`);
           })}
         </div>
@@ -222,7 +220,7 @@ const Group = withStyles(() => ({
       return (
         <div key={`checkbox-${label}`}>
           <p>{label}</p>
-          {Object.keys(choices).map(choiceKey => {
+          {Object.keys(choices).map((choiceKey) => {
             return getTag(group, `${key}.${choiceKey}`, `${key}.choices.${choiceKey}`);
           })}
         </div>
@@ -237,7 +235,7 @@ const Group = withStyles(() => ({
     <div className={classes.group}>
       <div className={classes.groupHeader}>{label}</div>
 
-      {Object.keys(group).map(key => {
+      {Object.keys(group).map((key) => {
         return content(group, key);
       })}
     </div>
@@ -250,12 +248,12 @@ export class Panel extends React.Component {
     configuration: PropTypes.object,
     groups: PropTypes.object,
     onChangeModel: PropTypes.func,
-    onChangeConfiguration: PropTypes.func
+    onChangeConfiguration: PropTypes.func,
   };
 
   static defaultProps = {
     onChangeModel: () => {},
-    onChangeConfiguration: () => {}
+    onChangeConfiguration: () => {},
   };
 
   change = (key, value, isConfigProperty = false) => {
@@ -279,7 +277,7 @@ export class Panel extends React.Component {
 
     return (
       <div>
-        {Object.keys(groups).map(g => (
+        {Object.keys(groups).map((g) => (
           <Group
             label={g}
             key={g}

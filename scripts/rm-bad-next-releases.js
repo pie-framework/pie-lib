@@ -7,7 +7,7 @@ const _ = require('lodash');
 
 const pkgs = getPackages(resolve(__dirname, '..', 'packages'));
 
-pkgs.forEach(p => {
+pkgs.forEach((p) => {
   const version = p.pkg.version;
 
   if (!p.pkg.private) {
@@ -16,7 +16,7 @@ pkgs.forEach(p => {
     const s = buffer.toString().trim();
 
     const arr = JSON.parse(s);
-    const greaterThan = arr.filter(v => {
+    const greaterThan = arr.filter((v) => {
       const isNewer = semver.gt(v, p.pkg.version) > 0;
       const isPrerelease = semver.prerelease(v) !== null;
       return isNewer && !isPrerelease;

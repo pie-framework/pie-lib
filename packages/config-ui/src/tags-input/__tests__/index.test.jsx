@@ -6,13 +6,7 @@ import React from 'react';
 describe('TagsInput', () => {
   describe('snapshots', () => {
     it('renders', () => {
-      const wrapper = mount(
-        <TagsInput
-          classes={{ tagsInput: 'tagsInput' }}
-          tags={['foo']}
-          onChange={jest.fn()}
-        />
-      );
+      const wrapper = mount(<TagsInput classes={{ tagsInput: 'tagsInput' }} tags={['foo']} onChange={jest.fn()} />);
       expect(toJson(wrapper)).toMatchSnapshot();
     });
   });
@@ -21,9 +15,7 @@ describe('TagsInput', () => {
     let onChange;
     const mkWrapper = () => {
       onChange = jest.fn();
-      return shallow(
-        <TagsInput onChange={onChange} classes={{}} tags={['foo']} />
-      );
+      return shallow(<TagsInput onChange={onChange} classes={{}} tags={['foo']} />);
     };
 
     describe('onFocus', () => {

@@ -14,7 +14,7 @@ import {
   TagsInput,
   TwoChoice,
   feedbackConfigDefaults,
-  MuiBox
+  MuiBox,
 } from '@pie-lib/config-ui';
 
 import React from 'react';
@@ -41,9 +41,9 @@ const Section = withStyles({
       right: '0',
       height: '2px',
       content: '""',
-      backgroundColor: 'rgba(0,0,0,0.2)'
-    }
-  }
+      backgroundColor: 'rgba(0,0,0,0.2)',
+    },
+  },
 })(({ name, children, classes }) => (
   <div className={classes.section}>
     <Typography>{name}</Typography>
@@ -60,8 +60,8 @@ class RawContainer extends React.Component {
         label: 'Apple',
         value: 'apple',
         feedback: {
-          type: 'none'
-        }
+          type: 'none',
+        },
       },
       tags: ['apple', 'banana', 'carrot', 'donut', 'eggs', 'fries', 'hops', 'ice cream'],
       twoChoice: 'one',
@@ -69,19 +69,19 @@ class RawContainer extends React.Component {
       selector: {
         type: 'default',
         customFeedback: undefined,
-        default: 'This is the default feedback'
+        default: 'This is the default feedback',
       },
       numberTextField: {
         one: 1,
-        two: 2
+        two: 2,
       },
       feedback: feedbackConfigDefaults({
-        correct: { type: 'custom', custom: 'custom message' }
+        correct: { type: 'custom', custom: 'custom message' },
       }),
       lang: 'en-US',
       activeLang: 'en-US',
       defaultLang: 'en-US',
-      openDialog: false
+      openDialog: false,
     };
 
     log('state: ', this.state);
@@ -93,8 +93,8 @@ class RawContainer extends React.Component {
     console.log('number: ', number);
     this.setState({
       numberTextField: Object.assign({}, this.state.numberTextField, {
-        one: number
-      })
+        one: number,
+      }),
     });
   }
 
@@ -102,7 +102,7 @@ class RawContainer extends React.Component {
     this.setState({ mounted: true });
   }
 
-  onChoiceConfigChange = update => {
+  onChoiceConfigChange = (update) => {
     console.log('update: ', update);
     this.setState({ choiceConfig: update });
   };
@@ -118,8 +118,7 @@ class RawContainer extends React.Component {
         <div className={classes.left}>
           <Section name="Choice Configuration">
             <Typography>
-              This is a single choice configuration that can be used where the user can build up a
-              list of choices
+              This is a single choice configuration that can be used where the user can build up a list of choices
             </Typography>
             <br />
             <br />
@@ -129,7 +128,7 @@ class RawContainer extends React.Component {
               data={this.state.choiceConfig}
               defaultFeedback={{
                 correct: 'Correct',
-                incorrect: 'Incorrect'
+                incorrect: 'Incorrect',
               }}
               onChange={this.onChoiceConfigChange}
             />
@@ -140,7 +139,7 @@ class RawContainer extends React.Component {
           </Section>
           <Section name="Tag Input">
             <div style={{ maxWidth: '300px' }}>
-              <TagsInput tags={this.state.tags} onChange={tags => this.setState({ tags })} />
+              <TagsInput tags={this.state.tags} onChange={(tags) => this.setState({ tags })} />
             </div>
           </Section>
           <Section name="Input Container">
@@ -158,29 +157,29 @@ class RawContainer extends React.Component {
               <TwoChoice
                 header="two-choice"
                 value={this.state.twoChoice}
-                onChange={twoChoice => this.setState({ twoChoice })}
+                onChange={(twoChoice) => this.setState({ twoChoice })}
                 one={{ label: 'one', value: 'one' }}
                 two={{ label: 'two', value: 'two' }}
               />
               <NChoice
                 header="n-choice"
                 value={this.state.nChoice}
-                onChange={nChoice => this.setState({ nChoice })}
+                onChange={(nChoice) => this.setState({ nChoice })}
                 opts={[
                   { label: 'left', value: 'left' },
                   { label: 'center', value: 'center' },
-                  { label: 'right', value: 'right' }
+                  { label: 'right', value: 'right' },
                 ]}
               />
               <NChoice
                 header="n-choice vertical"
                 direction={'vertical'}
                 value={this.state.nChoice}
-                onChange={nChoice => this.setState({ nChoice })}
+                onChange={(nChoice) => this.setState({ nChoice })}
                 opts={[
                   { label: 'left', value: 'left' },
                   { label: 'center', value: 'center' },
-                  { label: 'right', value: 'right' }
+                  { label: 'right', value: 'right' },
                 ]}
               />
             </div>
@@ -209,14 +208,11 @@ class RawContainer extends React.Component {
             <FeedbackSelector
               label={'Some Feedback:'}
               feedback={this.state.selector}
-              onChange={feedback => this.setState({ selector: feedback })}
+              onChange={(feedback) => this.setState({ selector: feedback })}
             />
           </Section>
           <Section name="FeedbackConfig">
-            <FeedbackConfig
-              feedback={this.state.feedback}
-              onChange={feedback => this.setState({ feedback })}
-            />
+            <FeedbackConfig feedback={this.state.feedback} onChange={(feedback) => this.setState({ feedback })} />
           </Section>
 
           <Section name="Language Controls">
@@ -224,8 +220,8 @@ class RawContainer extends React.Component {
               langs={['en-US', 'es-ES']}
               activeLang={this.state.activeLang}
               defaultLang={this.state.defaultLang}
-              onActiveLangChange={activeLang => this.setState({ activeLang })}
-              onDefaultLangChange={defaultLang => this.setState({ defaultLang })}
+              onActiveLangChange={(activeLang) => this.setState({ activeLang })}
+              onDefaultLangChange={(defaultLang) => this.setState({ defaultLang })}
             />
           </Section>
           <Section name="Langs">
@@ -233,7 +229,7 @@ class RawContainer extends React.Component {
               label="label"
               langs={['en-US', 'es-ES']}
               selected={this.state.lang}
-              onChange={l => this.setState({ lang: l })}
+              onChange={(l) => this.setState({ lang: l })}
             />
           </Section>
 
@@ -262,22 +258,22 @@ class RawContainer extends React.Component {
   }
 }
 
-const Container = withStyles(theme => ({
+const Container = withStyles((theme) => ({
   root: {
-    display: 'flex'
+    display: 'flex',
   },
   left: {
-    flex: 1
+    flex: 1,
   },
   code: {
-    position: 'fixed'
+    position: 'fixed',
   },
   right: {
-    flex: 0.3
+    flex: 0.3,
   },
   numberField: {
-    width: '270px'
-  }
+    width: '270px',
+  },
 }))(RawContainer);
 
 export default withRoot(Container);

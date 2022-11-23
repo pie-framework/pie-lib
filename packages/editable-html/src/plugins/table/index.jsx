@@ -13,8 +13,8 @@ import { object as toStyleObject } from 'to-style';
 const log = debug('@pie-lib:editable-html:plugins:table');
 
 const Table = withStyles(() => ({
-  table: {}
-}))(props => {
+  table: {},
+}))((props) => {
   const nodeAttributes = dataToAttributes(props.node.data);
 
   return (
@@ -35,23 +35,23 @@ Table.propTypes = {
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
   node: SlatePropTypes.node,
-  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
 };
 
-const TableRow = props => <tr {...props.attributes}>{props.children}</tr>;
+const TableRow = (props) => <tr {...props.attributes}>{props.children}</tr>;
 
 TableRow.propTypes = {
   attributes: PropTypes.object,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
-  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
 };
 
 const TableCell = withStyles(() => ({
   td: {
-    minWidth: '25px'
-  }
-}))(props => {
+    minWidth: '25px',
+  },
+}))((props) => {
   const Tag = props.node.data.get('header') ? 'th' : 'td';
 
   const nodeAttributes = dataToAttributes(props.node.data);
@@ -75,13 +75,11 @@ TableCell.propTypes = {
   attributes: PropTypes.object,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
-  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
 };
 
-export const moveFocusToBeginningOfTable = change => {
-  const addedTable = change.value.document.findDescendant(
-    d => !!d.data && !!d.data.get('newTable')
-  );
+export const moveFocusToBeginningOfTable = (change) => {
+  const addedTable = change.value.document.findDescendant((d) => !!d.data && !!d.data.get('newTable'));
 
   if (!addedTable) {
     return;
@@ -96,30 +94,30 @@ export const moveFocusToBeginningOfTable = change => {
 
 export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
   const core = EditTable({
-    typeContent: 'div'
+    typeContent: 'div',
   });
 
   // fix outdated schema
 
   if (core.schema && core.schema.blocks) {
-    Object.keys(core.schema.blocks).forEach(key => {
+    Object.keys(core.schema.blocks).forEach((key) => {
       const block = core.schema.blocks[key];
 
       if (block.parent) {
         if (block.nodes[0].types) {
           block.nodes[0] = {
-            type: block.nodes[0].types[0]
+            type: block.nodes[0].types[0],
           };
         }
 
         if (block.nodes[0].objects) {
           block.nodes[0] = {
-            object: block.nodes[0].objects[0]
+            object: block.nodes[0].objects[0],
           };
         }
 
         block.parent = {
-          type: block.parent.types[0]
+          type: block.parent.types[0],
         };
       } else {
         block.nodes[0] = { type: block.nodes[0].types[0] };
@@ -130,14 +128,14 @@ export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
   core.utils.getTableBlock = (containerNode, key) => {
     const node = containerNode.getDescendant(key);
     const ancestors = containerNode.getAncestors(key).push(node);
-    return ancestors.findLast(p => p.type === 'table');
+    return ancestors.findLast((p) => p.type === 'table');
   };
 
   core.utils.createTableWithOptions = (row, columns, extra) => {
     const createdTable = core.utils.createTable(row, columns);
     const newTable = Block.create({
       ...createdTable.toJSON(),
-      ...extra
+      ...extra,
     });
 
     return newTable;
@@ -151,8 +149,8 @@ export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
       const newTable = core.utils.createTableWithOptions(2, 2, {
         data: {
           border: '1',
-          newTable: true
-        }
+          newTable: true,
+        },
       });
 
       change.insertBlock(newTable);
@@ -160,8 +158,7 @@ export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
       moveFocusToBeginningOfTable(change);
       onChange(change);
     },
-    supports: (node, value) =>
-      node && node.object === 'block' && core.utils.isSelectionInTable(value),
+    supports: (node, value) => node && node.object === 'block' && core.utils.isSelectionInTable(value),
     /**
      * Note - the node may not be a table node - it may be a node inside a table.
      */
@@ -171,8 +168,7 @@ export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
       const tableBlock = core.utils.getTableBlock(value.document, node?.key);
       log('[customToolbar] tableBlock: ', tableBlock);
 
-      const hasBorder = () =>
-        tableBlock.data.get('border') && tableBlock.data.get('border') !== '0';
+      const hasBorder = () => tableBlock.data.get('border') && tableBlock.data.get('border') !== '0';
       const addRow = () => {
         const change = core.changes.insertRow(value.change());
         onToolbarDone(change, false);
@@ -214,7 +210,7 @@ export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
       const Tb = () => (
         <TableToolbar
           plugins={toolbarPlugins}
-          onChange={c => onToolbarDone(c, false)}
+          onChange={(c) => onToolbarDone(c, false)}
           value={value}
           onAddRow={addRow}
           onRemoveRow={removeRow}
@@ -227,10 +223,10 @@ export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
         />
       );
       return Tb;
-    }
+    },
   };
 
-  const Node = props => {
+  const Node = (props) => {
     switch (props.node.type) {
       case 'table':
         return <Table {...props} onFocus={opts.onFocus} onBlur={opts.onBlur} />;
@@ -243,15 +239,15 @@ export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
     }
   };
   Node.propTypes = {
-    node: PropTypes.object
+    node: PropTypes.object,
   };
 
-  core.normalizeNode = node => {
+  core.normalizeNode = (node) => {
     if (node.object !== 'document') {
       return;
     }
 
-    const tableAdded = node.findDescendant(d => d.data && d.data.get('newTable'));
+    const tableAdded = node.findDescendant((d) => d.data && d.data.get('newTable'));
 
     if (!tableAdded) {
       return;
@@ -260,7 +256,7 @@ export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
     const nodeToSearch = node.getParent(tableAdded.key) || node;
     let shouldAddTextAfterNode = false;
     const indexToNotHaveTableOn = nodeToSearch.nodes.size - 1;
-    const indexOfLastTable = nodeToSearch.nodes.findLastIndex(d => d.type === 'table');
+    const indexOfLastTable = nodeToSearch.nodes.findLastIndex((d) => d.type === 'table');
 
     // if the last table in the document is of type table, we need to do the change
     if (indexOfLastTable === indexToNotHaveTableOn) {
@@ -271,7 +267,7 @@ export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
       return;
     }
 
-    return change => {
+    return (change) => {
       if (shouldAddTextAfterNode) {
         const tableJSON = tableAdded.toJSON();
 
@@ -281,7 +277,7 @@ export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
 
         const newBlock = Block.create({
           object: 'block',
-          type: 'div'
+          type: 'div',
         });
 
         // we add an empty block but that it's going to be normalized
@@ -296,9 +292,7 @@ export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
 
           if (prevText) {
             // we move focus to the previous text
-            change
-              .moveFocusTo(prevText.key, prevText.text?.length)
-              .moveAnchorTo(prevText.key, prevText.text?.length);
+            change.moveFocusTo(prevText.key, prevText.text?.length).moveAnchorTo(prevText.key, prevText.text?.length);
           }
 
           // we insert the table block between the first block with text and the last block with text
@@ -306,8 +300,8 @@ export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
             ...tableJSON,
             data: {
               ...tableJSON.data,
-              newTable: true
-            }
+              newTable: true,
+            },
           });
 
           moveFocusToBeginningOfTable(change);
@@ -321,7 +315,7 @@ export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
   return core;
 };
 
-export const parseStyleString = s => {
+export const parseStyleString = (s) => {
   const regex = /([\w-]*)\s*:\s*([^;]*)/g;
   let match;
   const result = {};
@@ -331,9 +325,9 @@ export const parseStyleString = s => {
   return result;
 };
 
-export const reactAttributes = o => toStyleObject(o, { camelize: true, addUnits: false });
+export const reactAttributes = (o) => toStyleObject(o, { camelize: true, addUnits: false });
 
-const attributesToMap = el => (acc, attribute) => {
+const attributesToMap = (el) => (acc, attribute) => {
   const value = el.getAttribute(attribute);
   if (value) {
     if (attribute === 'style') {
@@ -347,7 +341,7 @@ const attributesToMap = el => (acc, attribute) => {
   return acc;
 };
 
-const dataToAttributes = data => {
+const dataToAttributes = (data) => {
   if (!data || !data.get) {
     return {};
   }
@@ -380,7 +374,7 @@ export const serialization = {
           object: 'block',
           type: 'table',
           nodes: next(c),
-          data: attributes.reduce(attributesToMap(el), {})
+          data: attributes.reduce(attributesToMap(el), {}),
         };
       }
       case 'th': {
@@ -388,14 +382,14 @@ export const serialization = {
           object: 'block',
           type: 'table_cell',
           nodes: next(el.childNodes),
-          data: cellAttributes.reduce(attributesToMap(el), { header: true })
+          data: cellAttributes.reduce(attributesToMap(el), { header: true }),
         };
       }
       case 'tr': {
         return {
           object: 'block',
           type: 'table_row',
-          nodes: next(Array.from(el.children))
+          nodes: next(Array.from(el.children)),
         };
       }
       case 'td': {
@@ -403,7 +397,7 @@ export const serialization = {
           object: 'block',
           type: 'table_cell',
           nodes: next(Array.from(el.childNodes)),
-          data: cellAttributes.reduce(attributesToMap(el), { header: false })
+          data: cellAttributes.reduce(attributesToMap(el), { header: false }),
         };
       }
     }
@@ -435,5 +429,5 @@ export const serialization = {
         }
       }
     }
-  }
+  },
 };

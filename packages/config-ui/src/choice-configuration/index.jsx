@@ -11,11 +11,11 @@ import ActionDelete from '@material-ui/icons/Delete';
 import ArrowRight from '@material-ui/icons/SubdirectoryArrowRight';
 import IconButton from '@material-ui/core/IconButton';
 
-const EditableHtmlContainer = withStyles(theme => ({
+const EditableHtmlContainer = withStyles((theme) => ({
   labelContainer: {},
   editorHolder: {
-    marginTop: theme.spacing.unit * 2
-  }
+    marginTop: theme.spacing.unit * 2,
+  },
 }))(
   ({
     label,
@@ -32,7 +32,7 @@ const EditableHtmlContainer = withStyles(theme => ({
     error,
     maxImageWidth,
     maxImageHeight,
-    uploadSoundSupport
+    uploadSoundSupport,
   }) => {
     const names = classNames(classes.labelContainer, className);
 
@@ -58,22 +58,22 @@ const EditableHtmlContainer = withStyles(theme => ({
         </div>
       </InputContainer>
     );
-  }
+  },
 );
 
 const Feedback = withStyles(() => ({
   text: {
-    width: '100%'
+    width: '100%',
   },
   feedbackContainer: {
-    position: 'relative'
+    position: 'relative',
   },
   arrowIcon: {
     fill: '#ccc',
     left: -56,
     position: 'absolute',
-    top: 20
-  }
+    top: 20,
+  },
 }))(({ value, onChange, type, correct, classes, defaults, toolbarOpts }) => {
   if (!type || type === 'none') {
     return null;
@@ -120,20 +120,20 @@ export class ChoiceConfiguration extends React.Component {
       correct: PropTypes.bool,
       feedback: PropTypes.shape({
         type: PropTypes.string,
-        value: PropTypes.string
-      })
+        value: PropTypes.string,
+      }),
     }),
     onDelete: PropTypes.func,
     onChange: PropTypes.func,
     index: PropTypes.number,
     imageSupport: PropTypes.shape({
       add: PropTypes.func.isRequired,
-      delete: PropTypes.func.isRequired
+      delete: PropTypes.func.isRequired,
     }),
     disableImageAlignmentButtons: PropTypes.bool,
     allowFeedBack: PropTypes.bool,
     allowDelete: PropTypes.bool,
-    toolbarOpts: PropTypes.object
+    toolbarOpts: PropTypes.object,
   };
 
   static defaultProps = {
@@ -141,10 +141,10 @@ export class ChoiceConfiguration extends React.Component {
     noLabels: false,
     useLetterOrdering: false,
     allowFeedBack: true,
-    allowDelete: true
+    allowDelete: true,
   };
 
-  _changeFn = key => update => {
+  _changeFn = (key) => (update) => {
     const { data, onChange } = this.props;
     if (onChange) {
       onChange({ ...data, [key]: update });
@@ -153,7 +153,7 @@ export class ChoiceConfiguration extends React.Component {
 
   onLabelChange = this._changeFn('label');
 
-  onCheckedChange = event => {
+  onCheckedChange = (event) => {
     const correct = event.target.checked;
     const { data, onChange } = this.props;
 
@@ -162,7 +162,7 @@ export class ChoiceConfiguration extends React.Component {
     }
   };
 
-  onFeedbackValueChange = v => {
+  onFeedbackValueChange = (v) => {
     const { data, onChange } = this.props;
 
     if (data.feedback.type !== 'custom') {
@@ -174,7 +174,7 @@ export class ChoiceConfiguration extends React.Component {
     if (onChange) onChange({ ...data, feedback: fb });
   };
 
-  onFeedbackTypeChange = t => {
+  onFeedbackTypeChange = (t) => {
     const { data, onChange } = this.props;
     const fb = { ...data.feedback, type: t };
     if (fb.type !== 'custom') {
@@ -205,7 +205,7 @@ export class ChoiceConfiguration extends React.Component {
       toolbarOpts,
       error,
       noCorrectAnswerError,
-      uploadSoundSupport
+      uploadSoundSupport,
     } = this.props;
 
     const InputToggle = mode === 'checkbox' ? InputCheckbox : InputRadio;
@@ -257,7 +257,7 @@ export class ChoiceConfiguration extends React.Component {
                 onChange={this.onFeedbackTypeChange}
                 value={data.feedback}
                 classes={{
-                  icon: classes.feedbackIcon
+                  icon: classes.feedbackIcon,
                 }}
               />
             </InputContainer>
@@ -275,55 +275,55 @@ export class ChoiceConfiguration extends React.Component {
   }
 }
 
-const styles = theme => ({
+const styles = (theme) => ({
   index: {
-    padding: '24px 10px 0 0'
+    padding: '24px 10px 0 0',
   },
   choiceConfiguration: {},
   topRow: {
-    display: 'flex'
+    display: 'flex',
   },
   value: {
     flex: '0.5',
-    paddingRight: theme.spacing.unit
+    paddingRight: theme.spacing.unit,
   },
   editorHolder: {
-    marginTop: theme.spacing.unit * 2
+    marginTop: theme.spacing.unit * 2,
   },
   toggle: {
-    flex: '0 1 auto'
+    flex: '0 1 auto',
   },
   feedback: {
     flex: '0 1 auto',
     paddingTop: theme.spacing.unit,
     paddingLeft: 0,
     marginLeft: 0,
-    paddingRight: theme.spacing.unit * 3
+    paddingRight: theme.spacing.unit * 3,
   },
   feedbackIcon: {
     margin: 0,
     paddingLeft: 0,
-    width: 'inherit'
+    width: 'inherit',
   },
   deleteIcon: {
     margin: 0,
-    width: 'inherit'
+    width: 'inherit',
   },
   delete: {
     flex: '0 1 auto',
     paddingTop: theme.spacing.unit,
     paddingLeft: 0,
-    marginLeft: 0
+    marginLeft: 0,
   },
   middleColumn: {
     display: 'flex',
     flex: 1,
-    flexDirection: 'column'
+    flexDirection: 'column',
   },
   errorText: {
     fontSize: '12px',
-    color: 'red'
-  }
+    color: 'red',
+  },
 });
 
 export default withStyles(styles)(ChoiceConfiguration);

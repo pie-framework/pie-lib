@@ -9,7 +9,7 @@ Enzyme.configure({ adapter: new Adapter() });
 
 const defaultFeedback = {
   correct: 'Correct',
-  incorrect: 'Incorrect'
+  incorrect: 'Incorrect',
 };
 
 const data = {
@@ -17,36 +17,25 @@ const data = {
   value: 'foo',
   label: 'Foo',
   feedback: {
-    type: 'custom'
-  }
+    type: 'custom',
+  },
 };
 
 const classes = {
-  choiceConfiguration: 'choiceConfiguration'
+  choiceConfiguration: 'choiceConfiguration',
 };
 
 describe('index - snapshot', () => {
   it('renders correctly with default props', () => {
     const tree = renderer
-      .create(
-        <ChoiceConfiguration
-          classes={classes}
-          defaultFeedback={defaultFeedback}
-          data={data}
-        />
-      )
+      .create(<ChoiceConfiguration classes={classes} defaultFeedback={defaultFeedback} data={data} />)
       .toJSON();
     expect(tree).toMatchSnapshot();
   });
   it('renders correctly when feedback is not allowed', () => {
     const tree = renderer
       .create(
-        <ChoiceConfiguration
-          allowFeedBack={false}
-          classes={classes}
-          defaultFeedback={defaultFeedback}
-          data={data}
-        />
+        <ChoiceConfiguration allowFeedBack={false} classes={classes} defaultFeedback={defaultFeedback} data={data} />,
       )
       .toJSON();
     expect(tree).toMatchSnapshot();
@@ -54,12 +43,7 @@ describe('index - snapshot', () => {
   it('renders correctly when delete is not allowed', () => {
     const tree = renderer
       .create(
-        <ChoiceConfiguration
-          allowDelete={false}
-          classes={classes}
-          defaultFeedback={defaultFeedback}
-          data={data}
-        />
+        <ChoiceConfiguration allowDelete={false} classes={classes} defaultFeedback={defaultFeedback} data={data} />,
       )
       .toJSON();
     expect(tree).toMatchSnapshot();
@@ -73,12 +57,7 @@ describe('index - logic', () => {
     onChange = jest.fn();
 
     wrapper = shallow(
-      <ChoiceConfiguration
-        classes={classes}
-        defaultFeedback={defaultFeedback}
-        data={data}
-        onChange={onChange}
-      />
+      <ChoiceConfiguration classes={classes} defaultFeedback={defaultFeedback} data={data} onChange={onChange} />,
     );
     instance = wrapper.instance();
   });
@@ -95,7 +74,7 @@ describe('index - logic', () => {
     it('calls onChange', () => {
       instance.onFeedbackTypeChange('default');
       expect(onChange.mock.calls[0][0]).toMatchObject({
-        feedback: { type: 'default' }
+        feedback: { type: 'default' },
       });
     });
   });
@@ -104,7 +83,7 @@ describe('index - logic', () => {
     it('calls onChange', () => {
       instance.onFeedbackValueChange('new feedback');
       expect(onChange.mock.calls[0][0]).toMatchObject({
-        feedback: { value: 'new feedback' }
+        feedback: { value: 'new feedback' },
       });
     });
   });

@@ -5,15 +5,15 @@ import { Arrow } from '../arrow';
 describe('Arrow', () => {
   let w;
   let onChange = jest.fn();
-  const wrapper = extras => {
+  const wrapper = (extras) => {
     const defaults = {
       classes: {},
       className: 'className',
       onChange,
       scale: {
-        x: jest.fn(n => n),
-        y: jest.fn(n => n)
-      }
+        x: jest.fn((n) => n),
+        y: jest.fn((n) => n),
+      },
     };
     const props = { ...defaults, ...extras };
     return shallow(<Arrow {...props} />);

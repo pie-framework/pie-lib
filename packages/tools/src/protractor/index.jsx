@@ -13,13 +13,13 @@ export class Protractor extends React.Component {
     className: PropTypes.string,
     startPosition: PropTypes.shape({
       left: PropTypes.number,
-      top: PropTypes.number
-    })
+      top: PropTypes.number,
+    }),
   };
 
   static defaultProps = {
     width: 450,
-    startPosition: { left: 0, top: 0 }
+    startPosition: { left: 0, top: 0 },
   };
 
   render() {
@@ -31,12 +31,12 @@ export class Protractor extends React.Component {
         handle={[
           {
             class: 'leftAnchor',
-            origin: `${width * 0.495}px ${width * 0.49}px`
+            origin: `${width * 0.495}px ${width * 0.49}px`,
           },
           {
             class: 'rightAnchor',
-            origin: `${width * 0.495}px ${width * 0.49}px`
-          }
+            origin: `${width * 0.495}px ${width * 0.49}px`,
+          },
         ]}
       >
         <div className={classes.protractor} style={{ width: `${width}px` }}>
@@ -55,11 +55,11 @@ export default withStyles(() => ({
   leftAnchor: {
     position: 'absolute',
     left: 0,
-    bottom: 0
+    bottom: 0,
   },
   rightAnchor: {
     position: 'absolute',
     right: 0,
-    bottom: 0
-  }
+    bottom: 0,
+  },
 }))(Protractor);

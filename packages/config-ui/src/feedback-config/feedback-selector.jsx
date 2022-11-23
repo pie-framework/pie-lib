@@ -8,7 +8,7 @@ import Group from './group';
 const feedbackLabels = {
   default: 'Simple Feedback',
   none: 'No Feedback',
-  custom: 'Customized Feedback'
+  custom: 'Customized Feedback',
 };
 
 const holder = (theme, extras) => ({
@@ -16,42 +16,42 @@ const holder = (theme, extras) => ({
   background: '#e0dee0',
   padding: theme.spacing.unit * 0.9,
   marginBottom: theme.spacing.unit * 2,
-  ...extras
+  ...extras,
 });
 
-const style = theme => ({
+const style = (theme) => ({
   feedbackSelector: {
-    marginBottom: theme.spacing.unit
+    marginBottom: theme.spacing.unit,
   },
   label: {
-    cursor: 'pointer'
+    cursor: 'pointer',
   },
   inputContainerLabel: {
-    transform: 'translateY(-20%)'
+    transform: 'translateY(-20%)',
   },
   feedbackInputContainer: {
-    paddingBottom: 0
+    paddingBottom: 0,
   },
   customHolder: holder(theme, {
     background: '#e0dee0',
-    padding: 0
+    padding: 0,
   }),
   defaultHolder: holder(theme, {
     fontFamily: theme.typography.fontFamily,
-    cursor: 'default'
+    cursor: 'default',
   }),
   editor: {
-    fontFamily: theme.typography.fontFamily
+    fontFamily: theme.typography.fontFamily,
   },
   group: {
-    paddingTop: theme.spacing.unit
-  }
+    paddingTop: theme.spacing.unit,
+  },
 });
 
 export const FeedbackType = {
   type: PropTypes.oneOf(['default', 'custom', 'none']),
   default: PropTypes.string,
-  custom: PropTypes.string
+  custom: PropTypes.string,
 };
 
 export class FeedbackSelector extends React.Component {
@@ -61,15 +61,15 @@ export class FeedbackSelector extends React.Component {
     label: PropTypes.string.isRequired,
     feedback: PropTypes.shape(FeedbackType).isRequired,
     onChange: PropTypes.func.isRequired,
-    toolbarOpts: PropTypes.object
+    toolbarOpts: PropTypes.object,
   };
 
-  changeType = type => {
+  changeType = (type) => {
     const { onChange, feedback } = this.props;
     onChange({ ...feedback, type });
   };
 
-  changeCustom = custom => {
+  changeCustom = (custom) => {
     const { onChange, feedback } = this.props;
     onChange({ ...feedback, type: 'custom', custom });
   };
@@ -106,9 +106,7 @@ export class FeedbackSelector extends React.Component {
             />
           </div>
         )}
-        {feedback.type === 'default' && (
-          <div className={classes.defaultHolder}> {feedback.default}</div>
-        )}
+        {feedback.type === 'default' && <div className={classes.defaultHolder}> {feedback.default}</div>}
       </div>
     );
   }

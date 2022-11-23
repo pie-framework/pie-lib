@@ -14,21 +14,11 @@ export default class Arrow extends React.Component {
     x: PropTypes.number.isRequired,
     y: PropTypes.number.isRequired,
     angle: PropTypes.number.isRequired,
-    graphProps: types.GraphPropsType.isRequired
+    graphProps: types.GraphPropsType.isRequired,
   };
 
   render() {
-    const {
-      classes,
-      angle,
-      className,
-      x,
-      y,
-      disabled,
-      correctness,
-      graphProps,
-      ...rest
-    } = this.props;
+    const { classes, angle, className, x, y, disabled, correctness, graphProps, ...rest } = this.props;
 
     const size = thinnerShapesNeeded(graphProps) ? 12 : 14;
     const { scale } = graphProps;
@@ -42,15 +32,7 @@ export default class Arrow extends React.Component {
         ${scaledX - size}, ${scaledY + size / 2}`;
 
     return (
-      <g
-        className={classNames(
-          classes.point,
-          disabled && classes.disabled,
-          classes[correctness],
-          className
-        )}
-        {...rest}
-      >
+      <g className={classNames(classes.point, disabled && classes.disabled, classes[correctness], className)} {...rest}>
         <ArrowHead size={size} transform={transform} points={points} />
       </g>
     );

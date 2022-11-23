@@ -99,9 +99,9 @@ const multipleArgs = () => {
 };
 
 const multiplyNode = (a, b) => new expression.node.OperatorNode('*', 'multiply', [a, b]);
-const constantNode = v => new expression.node.ConstantNode(v);
+const constantNode = (v) => new expression.node.ConstantNode(v);
 
-const parse = s => {
+const parse = (s) => {
   const tree = math.parse(s);
   return tree.transform((node, path, parent) => {
     // console.log('node:', node.name, node.fn); // JSON.stringify(node));
@@ -110,7 +110,7 @@ const parse = s => {
       return new expression.node.OperatorNode(
         '*',
         'multiply',
-        node.args.concat(new expression.node.ConstantNode(0.01))
+        node.args.concat(new expression.node.ConstantNode(0.01)),
       );
     }
 
@@ -128,9 +128,9 @@ const parse = s => {
 };
 
 const COMMUTATIVE_FNS = ['multiply', 'add', 'equal', 'unequal'];
-const isCommutativeOperator = n => n && n.type === 'OperatorNode' && COMMUTATIVE_FNS.includes(n.fn);
+const isCommutativeOperator = (n) => n && n.type === 'OperatorNode' && COMMUTATIVE_FNS.includes(n.fn);
 
-const liftArgs = op => node => {
+const liftArgs = (op) => (node) => {
   if (isCommutativeOperator(node) && node.op === op) {
     return _.flatten(node.args.map(liftArgs(op)));
   }
@@ -140,14 +140,14 @@ const liftArgs = op => node => {
   return [node];
 };
 
-const noSymbols = node => {
-  const symbols = node.filter(n => {
+const noSymbols = (node) => {
+  const symbols = node.filter((n) => {
     return n.isSymbolNode;
   });
   return symbols.length === 0;
 };
 
-const sort = n => {
+const sort = (n) => {
   // console.log('[sort]', n.toString());
   // return math.simplify(n);
   // const simplified = math.simplify(n);
@@ -168,7 +168,7 @@ const sort = n => {
       // console.log('>>>>>>> sortedArgs:', args.map(a => a.toString()));
       // const outerSort = node.args.sort((a, b) => a.toString().localeCompare(b.toString()));
 
-      const sorted = sortedArgs.map(n => {
+      const sorted = sortedArgs.map((n) => {
         // console.log('now sort args:', n.toString());
         return sort(n);
       });

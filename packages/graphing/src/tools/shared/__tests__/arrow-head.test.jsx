@@ -4,7 +4,7 @@ import { ArrowHead, ArrowMarker } from '../arrow-head';
 describe('ArrowHead', () => {
   let w;
   let onChange = jest.fn();
-  const wrapper = extras => {
+  const wrapper = (extras) => {
     const defaults = { size: 10, transform: '' };
     const props = { ...defaults, ...extras };
     return shallow(<ArrowHead {...props} />);
@@ -20,7 +20,7 @@ describe('ArrowHead', () => {
 describe('ArrowMarker', () => {
   let w;
   let onChange = jest.fn();
-  const wrapper = extras => {
+  const wrapper = (extras) => {
     const defaults = { id: 'id', size: 10, className: 'className' };
     const props = { ...defaults, ...extras };
     return shallow(<ArrowMarker {...props} />);

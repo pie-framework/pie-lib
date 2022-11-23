@@ -23,9 +23,9 @@ const Section = withStyles({
       right: '0',
       height: '2px',
       content: '""',
-      backgroundColor: 'rgba(0,0,0,0.2)'
-    }
-  }
+      backgroundColor: 'rgba(0,0,0,0.2)',
+    },
+  },
 })(({ name, children, classes }) => (
   <div className={classes.section}>
     <Typography>{name}</Typography>
@@ -40,7 +40,7 @@ class RawContainer extends React.Component {
     this.state = {
       twoChoice: 'one',
       nChoice: 'left',
-      layoutMode: 'inline'
+      layoutMode: 'inline',
     };
     log('state: ', this.state);
   }
@@ -71,7 +71,7 @@ class RawContainer extends React.Component {
                   <TwoChoice
                     header="two-choice"
                     value={this.state.twoChoice}
-                    onChange={twoChoice => this.setState({ twoChoice })}
+                    onChange={(twoChoice) => this.setState({ twoChoice })}
                     one={{ label: 'one', value: 'one' }}
                     two={{ label: 'two', value: 'two' }}
                   />
@@ -84,8 +84,8 @@ class RawContainer extends React.Component {
 
           <Section name="LayoutContents">
             <Typography>
-              This is the underlying component of ConfigLayout. It renders secondary content in a
-              tab or to the right of children
+              This is the underlying component of ConfigLayout. It renders secondary content in a tab or to the right of
+              children
             </Typography>
             <br />
             <TwoChoice
@@ -93,7 +93,7 @@ class RawContainer extends React.Component {
               value={layoutMode}
               one={'inline'}
               two={'tabbed'}
-              onChange={layoutMode => this.setState({ layoutMode })}
+              onChange={(layoutMode) => this.setState({ layoutMode })}
             />
             <br />
             <layout.LayoutContents mode={layoutMode} secondary={<div>secondary</div>}>
@@ -108,7 +108,7 @@ class RawContainer extends React.Component {
                   <TwoChoice
                     header="two-choice"
                     value={this.state.twoChoice}
-                    onChange={twoChoice => this.setState({ twoChoice })}
+                    onChange={(twoChoice) => this.setState({ twoChoice })}
                     one={{ label: 'one', value: 'one' }}
                     two={{ label: 'two', value: 'two' }}
                   />
@@ -129,22 +129,22 @@ class RawContainer extends React.Component {
   }
 }
 
-const Container = withStyles(theme => ({
+const Container = withStyles((theme) => ({
   root: {
-    display: 'flex'
+    display: 'flex',
   },
   left: {
-    flex: 1
+    flex: 1,
   },
   code: {
-    position: 'fixed'
+    position: 'fixed',
   },
   right: {
-    flex: 0.3
+    flex: 0.3,
   },
   numberField: {
-    width: '270px'
-  }
+    width: '270px',
+  },
 }))(RawContainer);
 
 export default withRoot(Container);

@@ -8,19 +8,19 @@ describe('image plugin', () => {
 
   const imageSupport = {
     delete: jest.fn(),
-    add: jest.fn()
+    add: jest.fn(),
   };
 
   const imagePlugin = ImageToolbar({
-    onDelete: ((src, done) => {
-      imageSupport.delete(src, e => {
+    onDelete: (src, done) => {
+      imageSupport.delete(src, (e) => {
         done(e, value);
       });
-    }),
-    insertImageRequested: getHandler => {
+    },
+    insertImageRequested: (getHandler) => {
       const handler = getHandler(() => value);
       imageSupport.add(handler);
-    }
+    },
   });
 
   describe('normalizeNode', () => {
@@ -34,21 +34,21 @@ describe('image plugin', () => {
       const nodes = [
         {
           object: 'text',
-          text: 'Before Image'
+          text: 'Before Image',
         },
         {
-          type: 'image'
+          type: 'image',
         },
         {
           object: 'text',
-          text: 'After Image'
-        }
+          text: 'After Image',
+        },
       ];
       const returnValue = imagePlugin.normalizeNode({
         object: 'document',
         findDescendant: jest.fn((callback) => {
-          nodes.forEach(n => callback(n));
-        })
+          nodes.forEach((n) => callback(n));
+        }),
       });
       expect(returnValue).toEqual(undefined);
     });
@@ -58,30 +58,30 @@ describe('image plugin', () => {
         {
           object: 'text',
           text: '',
-          key: '1'
+          key: '1',
         },
         {
           type: 'image',
-          key: '2'
+          key: '2',
         },
         {
           object: 'text',
           text: 'After Image',
-          key: '3'
-        }
+          key: '3',
+        },
       ];
       const findDescendant = jest.fn((callback) => {
-        nodes.forEach(n => callback(n));
+        nodes.forEach((n) => callback(n));
       });
       const change = {
         withoutNormalization: jest.fn((callback) => {
           callback();
         }),
-        insertTextByKey: jest.fn()
+        insertTextByKey: jest.fn(),
       };
       const returnValue = imagePlugin.normalizeNode({
         object: 'document',
-        findDescendant
+        findDescendant,
       });
 
       expect(returnValue).toEqual(expect.any(Function));

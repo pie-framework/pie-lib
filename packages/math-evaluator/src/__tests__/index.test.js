@@ -22,7 +22,7 @@ describe('math-evaluator', () => {
     assertLatexToText('-12.5\\%', '- percent(12.5)');
   });
 
-  const assert = (isEqual, opts) => label =>
+  const assert = (isEqual, opts) => (label) =>
     function() {
       const args = Array.from(arguments);
       const pairs = _.chunk(args, 2);
@@ -42,7 +42,7 @@ describe('math-evaluator', () => {
   const assertLatexEqual = assert(true, { isLatex: true });
   const assertLatexNotEqual = assert(false, { isLatex: true });
 
-  const _amjs = only => (a, b, equal) => {
+  const _amjs = (only) => (a, b, equal) => {
     const fn = only ? it.only : it;
     fn(`${a} === ${b} => ${equal}`, () => {
       const as = latexToText(a);
@@ -54,7 +54,7 @@ describe('math-evaluator', () => {
   const assertThroughMathJs = _amjs(false);
   assertThroughMathJs.only = _amjs(true);
 
-  const _als = only => (input, expected) => {
+  const _als = (only) => (input, expected) => {
     const fn = only ? it.only : it;
     fn(`${input} => ${expected}`, () => {
       expect(latexToText(input)).toEqual(expected);
@@ -176,9 +176,7 @@ describe('math-evaluator', () => {
 
   describe('bad frac throws error', () => {
     it('throws an error', () => {
-      expect(() => areValuesEqual('\\frac12', '\\frac34', { isLatex: true })).toThrow(
-        'Expecting {'
-      );
+      expect(() => areValuesEqual('\\frac12', '\\frac34', { isLatex: true })).toThrow('Expecting {');
     });
   });
   describe('7119', () => {
@@ -209,7 +207,7 @@ describe('math-evaluator', () => {
     '200 / 2',
     '20 * 5',
     '2.5 * 40',
-    '10 * 10'
+    '10 * 10',
   );
 
   assertNotEqual('evaluates simple expressions correctly 2')(
@@ -220,7 +218,7 @@ describe('math-evaluator', () => {
     '44 + 57',
     '100',
     '44 + 57',
-    '50 * 3'
+    '50 * 3',
   );
 
   assertEqual('evaluates simple expressions correctly 3')(
@@ -231,7 +229,7 @@ describe('math-evaluator', () => {
     '2 + 2',
     '4',
     '1/2 + .5',
-    '1'
+    '1',
   );
 
   assertNotEqual('evaluates simple expressions correctly 3')(
@@ -242,7 +240,7 @@ describe('math-evaluator', () => {
     '1/2 + .5',
     '1.9',
     '1/2 + .5',
-    '1.1'
+    '1.1',
   );
 
   assertEqual('evaluates simple expressions correctly 4')(
@@ -261,7 +259,7 @@ describe('math-evaluator', () => {
     '6 + 1/2',
     '13/2',
     '6.5',
-    '13/2'
+    '13/2',
   );
 
   assertNotEqual('evaluates simple expressions correctly 4')(
@@ -276,7 +274,7 @@ describe('math-evaluator', () => {
     '14/2',
     '13/2',
     '6.6',
-    '13/2'
+    '13/2',
   );
 
   it.each`
@@ -304,7 +302,7 @@ describe('math-evaluator', () => {
     'x^2 + 4(x+1)',
     '(x + 2)^2',
     'x^2 + 8 ((x+1) / 2)',
-    '(x + 2)^2'
+    '(x + 2)^2',
   );
 
   assertNotEqual('evaluates simple variable expressions correctly')(
@@ -315,7 +313,7 @@ describe('math-evaluator', () => {
     'x^3 + 4x + 4',
     '(x + 2)^2',
     'x^2 + 4(x+2)',
-    '(x + 2)^2'
+    '(x + 2)^2',
   );
 
   assertEqual('evaluates simple variable expressions correctly 2')(
@@ -326,28 +324,28 @@ describe('math-evaluator', () => {
     'x^2 + 4(x+1)',
     '(x + 2)^2',
     'x^2 + 8 ((x+1) / 2)',
-    '(x + 2)^2'
+    '(x + 2)^2',
   );
 
   assertEqual('evaluates expressions correctly with variable exponents')(
     '(2 + x)^2x',
     '(x + 2)^2x',
     'y^(2 x)',
-    'y^(x+x)'
+    'y^(x+x)',
   );
 
   assertEqual('evaluates function expressions correctly with variable parameters')(
     'sqrt(4x)',
     'sqrt(2x+2x)',
     'sqrt(x^2)',
-    'sqrt(((x+1)^2) - ((x+1)^2) + x^2)'
+    'sqrt(((x+1)^2) - ((x+1)^2) + x^2)',
   );
 
   assertNotEqual('evaluates simple variable expressions correctly 2')(
     'x^3 + 4x + 4',
     '(x + 2)^2',
     'x^2 + 4(x+2)',
-    '(x + 2)^2'
+    '(x + 2)^2',
   );
 
   it('correctly consumes allowDecimals option', () => {
@@ -381,11 +379,10 @@ describe('math-evaluator', () => {
 
   it('correctly creates math expressions 1', () => {
     expect(
-      areValuesEqual(
-        'f^{-1}\\left(x\\right)=\\sqrt{x-1}+3',
-        'f^{-1}\\left(x\\right)=\\sqrt{x-1}+3',
-        { allowDecimals: true, isLatex: true }
-      )
+      areValuesEqual('f^{-1}\\left(x\\right)=\\sqrt{x-1}+3', 'f^{-1}\\left(x\\right)=\\sqrt{x-1}+3', {
+        allowDecimals: true,
+        isLatex: true,
+      }),
     ).toEqual(true);
   });
 
@@ -393,8 +390,8 @@ describe('math-evaluator', () => {
     expect(
       areValuesEqual('72\\div12=6\\text{eggs}', '72\\div12=6\\text{eggs}', {
         allowDecimals: true,
-        isLatex: true
-      })
+        isLatex: true,
+      }),
     ).toEqual(true);
   });
 

@@ -15,8 +15,8 @@ class Demo extends React.Component {
         points: ['nothing right', 'a teeny bit right', 'mostly right', 'bingo'],
         // if the value is null or 'null', the Sample Answer input field for that point will not be dispalyed
         // if the value is '', the Sample Answer input field will be empty
-        sampleAnswers: [null, 'just right', 'not left', null]
-      }
+        sampleAnswers: [null, 'just right', 'not left', null],
+      },
     };
   }
 
@@ -31,7 +31,7 @@ class Demo extends React.Component {
       <div>
         <Section name="Rubric Authoring">
           <br />
-          <Authoring value={rubric} onChange={rubric => this.setState({ rubric })} />
+          <Authoring value={rubric} onChange={(rubric) => this.setState({ rubric })} />
           <Pre />
         </Section>
       </div>
@@ -41,6 +41,6 @@ class Demo extends React.Component {
   }
 }
 
-const Styled = withStyles(theme => ({}))(Demo);
+const Styled = withStyles((theme) => ({}))(Demo);
 
 export default withRoot(Styled);

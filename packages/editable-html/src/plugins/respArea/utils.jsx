@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom';
 import { Inline } from 'slate';
 import Snackbar from '@material-ui/core/Snackbar';
 
-export const isNumber = val => !isNaN(parseFloat(val)) && isFinite(val);
+export const isNumber = (val) => !isNaN(parseFloat(val)) && isFinite(val);
 
-export const insertSnackBar = message => {
+export const insertSnackBar = (message) => {
   const prevSnacks = document.querySelectorAll('.response-area-alert');
 
-  prevSnacks.forEach(s => s.remove());
+  prevSnacks.forEach((s) => s.remove());
 
   const newEl = document.createElement('div');
 
@@ -19,7 +19,7 @@ export const insertSnackBar = message => {
       anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
       open={true}
       ContentProps={{
-        'aria-describedby': 'message-id'
+        'aria-describedby': 'message-id',
       }}
       message={<span id="message-id">{message}</span>}
     />
@@ -34,13 +34,13 @@ export const insertSnackBar = message => {
   }, 2000);
 };
 
-export const defaultECR = index =>
+export const defaultECR = (index) =>
   Inline.create({
     type: 'explicit_constructed_response',
     isVoid: true,
     data: {
-      index
-    }
+      index,
+    },
   });
 
 export const defaultDIB = (opts, index) =>
@@ -50,18 +50,18 @@ export const defaultDIB = (opts, index) =>
     data: {
       index,
       duplicates: opts.options.duplicates,
-      value: null
-    }
+      value: null,
+    },
   });
 
-export const defaultIDD = index =>
+export const defaultIDD = (index) =>
   Inline.create({
     object: 'inline',
     type: 'inline_dropdown',
     isVoid: true,
     data: {
-      index
-    }
+      index,
+    },
   });
 
 export const getDefaultElement = (opts, index) => {
