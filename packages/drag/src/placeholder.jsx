@@ -24,6 +24,7 @@ export const PlaceHolder = props => {
 
     style.gridTemplateRows = `repeat(${grid.rows}, ${repeatValue})`;
   }
+
   return (
     <div style={style} className={names}>
       {children}
