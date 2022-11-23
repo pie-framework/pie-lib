@@ -19,7 +19,7 @@ const getData = (data, domain) => {
   return data.map((el, i) => ({
     ...el,
     x: length > 1 ? i * (max / (length - 1)) : 0.5,
-    y: el.value
+    y: el.value,
   }));
 };
 
@@ -36,35 +36,35 @@ export class RawLine extends React.Component {
     data: PropTypes.arrayOf(
       PropTypes.shape({
         label: PropTypes.string,
-        value: PropTypes.number
-      })
+        value: PropTypes.number,
+      }),
     ),
-    CustomDraggableComponent: PropTypes.func
+    CustomDraggableComponent: PropTypes.func,
   };
 
   static defaultProps = {
-    index: 0
+    index: 0,
   };
 
   constructor(props) {
     super(props);
     this.state = {
       dragValue: undefined,
-      line: getData(props.data, props.graphProps.domain)
+      line: getData(props.data, props.graphProps.domain),
     };
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (!isEqual(this.props.data, nextProps.data)) {
       this.setState({
-        line: getData(nextProps.data, nextProps.graphProps.domain)
+        line: getData(nextProps.data, nextProps.graphProps.domain),
       });
     }
   }
 
-  setDragValue = line => this.setState({ line });
+  setDragValue = (line) => this.setState({ line });
 
-  dragStop = index => {
+  dragStop = (index) => {
     const { onChange } = this.props;
     this.setState({ dragging: false }, () => {
       onChange(index, this.state.line[index]);
@@ -87,8 +87,8 @@ export class RawLine extends React.Component {
       <React.Fragment>
         <LinePath
           data={lineToUse}
-          x={d => scale.x(d.x)}
-          y={d => scale.y(d.dragValue !== undefined ? d.dragValue : d.y)}
+          x={(d) => scale.x(d.x)}
+          y={(d) => scale.y(d.dragValue !== undefined ? d.dragValue : d.y)}
           className={classes.line}
         />
         {lineToUse &&
@@ -105,9 +105,7 @@ export class RawLine extends React.Component {
                 interactive={enableDraggable}
                 r={r}
                 onDragStart={() => this.setState({ dragging: true })}
-                onDrag={v =>
-                  this.dragValue(i, point.dragValue !== undefined ? point.dragValue : point.y, v)
-                }
+                onDrag={(v) => this.dragValue(i, point.dragValue !== undefined ? point.dragValue : point.y, v)}
                 onDragStop={() => this.dragStop(i)}
                 graphProps={graphProps}
                 CustomDraggableComponent={CustomDraggableComponent}
@@ -120,7 +118,7 @@ export class RawLine extends React.Component {
   }
 }
 
-const StyledLine = withStyles(theme => ({
+const StyledLine = withStyles((theme) => ({
   line: {
     fill: 'transparent',
     stroke: color.primaryLight(),
@@ -128,9 +126,9 @@ const StyledLine = withStyles(theme => ({
     transition: 'stroke 200ms ease-in, stroke-width 200ms ease-in',
     '&:hover': {
       strokeWidth: 6,
-      stroke: color.primaryDark()
-    }
-  }
+      stroke: color.primaryDark(),
+    },
+  },
 }))(RawLine);
 
 export class Line extends React.Component {
@@ -138,7 +136,7 @@ export class Line extends React.Component {
     data: PropTypes.array,
     onChange: PropTypes.func,
     xBand: PropTypes.func,
-    graphProps: types.GraphPropsType.isRequired
+    graphProps: types.GraphPropsType.isRequired,
   };
 
   changeLine = (index, category) => {

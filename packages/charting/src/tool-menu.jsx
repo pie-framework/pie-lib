@@ -7,37 +7,37 @@ import { withStyles } from '@material-ui/core/styles';
 import cn from 'classnames';
 import Button from '@material-ui/core/Button';
 
-const buttonStyles = theme => ({
+const buttonStyles = (theme) => ({
   root: {
     backgroundColor: color.background(),
     color: color.text(),
     border: `1px solid ${color.secondary()}`,
     '&:hover': {
-      backgroundColor: color.secondaryLight()
+      backgroundColor: color.secondaryLight(),
     },
-    fontSize: theme.typography.fontSize
+    fontSize: theme.typography.fontSize,
   },
   selected: {
     backgroundColor: color.background(),
     '& span': {
-      color: color.primaryDark()
-    }
+      color: color.primaryDark(),
+    },
   },
   notSelected: {
     '& span': {
-      color: color.primary()
+      color: color.primary(),
     },
-    backgroundColor: color.background()
+    backgroundColor: color.background(),
   },
   disabled: {
     '& span': {
-      color: color.primary()
+      color: color.primary(),
     },
-    backgroundColor: color.disabled()
-  }
+    backgroundColor: color.disabled(),
+  },
 });
 
-export const MiniButton = withStyles(buttonStyles)(props => {
+export const MiniButton = withStyles(buttonStyles)((props) => {
   const { disabled, classes, className, selected, value, onClick } = props;
   return (
     <Button
@@ -61,14 +61,14 @@ MiniButton.propTypes = {
   disabledClassName: PropTypes.string,
   selected: PropTypes.bool,
   value: PropTypes.string,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
 };
 
 export class ToolMenu extends React.Component {
   static propTypes = {
     className: PropTypes.string,
     addCategory: PropTypes.func,
-    disabled: PropTypes.bool
+    disabled: PropTypes.bool,
   };
 
   static defaultProps = {};

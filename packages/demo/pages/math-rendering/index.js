@@ -10,8 +10,8 @@ const log = debug('demo:math-evaluator');
 const renderOpts = {
   delimiters: [
     { left: '\\(', right: '\\)', display: false },
-    { left: '$', right: '$', display: false }
-  ]
+    { left: '$', right: '$', display: false },
+  ],
 };
 
 const math = `<math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -48,7 +48,7 @@ const mathTwo = `<math xmlns="http://www.w3.org/1998/Math/MathML">
 </math>`;
 
 // const Latex = "\\(\\triangle\\) \\(\\parallelogram\\) \\(2x\\ \\le4y\\ +\\ 8\\)";
-const Latex = "\\(2x\\ \\le4y\\ +\\ 8\\)";
+const Latex = '\\(2x\\ \\le4y\\ +\\ 8\\)';
 
 class Demo extends React.Component {
   constructor(props) {
@@ -62,7 +62,7 @@ class Demo extends React.Component {
     });
   }
 
-  updateMathMl = mathml => {
+  updateMathMl = (mathml) => {
     this.setState({ mathml }, () => {
       renderMath(this.root);
     });
@@ -72,14 +72,14 @@ class Demo extends React.Component {
     const { foo, mounted } = this.state;
     const { classes } = this.props;
     return mounted ? (
-      <div ref={r => (this.root = r)}>
+      <div ref={(r) => (this.root = r)}>
         <Typography variant="display1">Math Rendering</Typography>
         <hr />
         <div className={classes.holder}>
           <div className={classes.child}>
             <textarea
               value={this.state.mathml}
-              onChange={e => this.updateMathMl(e.target.value)}
+              onChange={(e) => this.updateMathMl(e.target.value)}
               className={classes.ta}
             ></textarea>
             <br />
@@ -87,10 +87,7 @@ class Demo extends React.Component {
               Update
             </Button>
           </div>
-          <div
-            className={classes.child}
-            dangerouslySetInnerHTML={{ __html: this.state.mathml }}
-          ></div>
+          <div className={classes.child} dangerouslySetInnerHTML={{ __html: this.state.mathml }}></div>
         </div>
         <br />
         <br />
@@ -175,23 +172,23 @@ class Demo extends React.Component {
   }
 }
 
-const styles = theme => ({
+const styles = (theme) => ({
   sizeInput: {
     width: '60px',
-    paddingLeft: theme.spacing.unit * 2
+    paddingLeft: theme.spacing.unit * 2,
   },
   holder: {
     width: '100%',
-    display: 'flex'
+    display: 'flex',
   },
   child: {
-    flex: 1
+    flex: 1,
   },
   ta: {
     width: '100%',
     height: '100%',
-    minHeight: '300px'
-  }
+    minHeight: '300px',
+  },
 });
 
 export default withRoot(withStyles(styles)(Demo));

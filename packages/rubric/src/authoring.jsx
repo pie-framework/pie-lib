@@ -35,15 +35,15 @@ const reorder = (list, startIndex, endIndex) => {
 export const RubricType = PropTypes.shape({
   excludeZero: PropTypes.bool,
   points: PropTypes.arrayOf(PropTypes.string),
-  sampleAnswers: PropTypes.arrayOf(PropTypes.string)
+  sampleAnswers: PropTypes.arrayOf(PropTypes.string),
 });
 
-const MaxPoints = withStyles(theme => ({
+const MaxPoints = withStyles((theme) => ({
   formControl: {
     minWidth: '120px',
-    margin: theme.spacing.unit
-  }
-}))(props => {
+    margin: theme.spacing.unit,
+  },
+}))((props) => {
   const { value, onChange, max, classes } = props;
 
   return (
@@ -51,12 +51,8 @@ const MaxPoints = withStyles(theme => ({
       <InputLabel width={100} htmlFor="...">
         Max Points
       </InputLabel>
-      <Select
-        value={value}
-        onChange={e => onChange(e.target.value)}
-        input={<OutlinedInput labelWidth={80} />}
-      >
-        {range(1, max).map(v => (
+      <Select value={value} onChange={(e) => onChange(e.target.value)} input={<OutlinedInput labelWidth={80} />}>
+        {range(1, max).map((v) => (
           <MenuItem key={`${v}`} value={v}>
             {v}
           </MenuItem>
@@ -68,36 +64,36 @@ const MaxPoints = withStyles(theme => ({
 
 // if the value is null or 'null', the Sample Answer input field for that point will not be dispalyed
 // if the value is '', the Sample Answer input field will be empty
-const checkSampleAnswer = sampleAnswer => sampleAnswer === null || sampleAnswer === 'null';
+const checkSampleAnswer = (sampleAnswer) => sampleAnswer === null || sampleAnswer === 'null';
 
-export const PointConfig = withStyles(theme => ({
+export const PointConfig = withStyles((theme) => ({
   pointConfig: {},
   row: {
     display: 'flex',
     width: '100%',
-    position: 'relative'
+    position: 'relative',
   },
   editor: {
     width: '100%',
-    backgroundColor: 'white !important'
+    backgroundColor: 'white !important',
   },
   dragIndicator: {
     paddingTop: theme.spacing.unit,
-    color: grey[500]
+    color: grey[500],
   },
   pointsLabel: {
     color: grey[500],
     paddingBottom: theme.spacing.unit,
-    textTransform: 'uppercase'
+    textTransform: 'uppercase',
   },
   sampleAnswersEditor: {
-    paddingLeft: theme.spacing.unit * 3
+    paddingLeft: theme.spacing.unit * 3,
   },
   pointMenu: {
     position: 'absolute',
-    right: 0
-  }
-}))(props => {
+    right: 0,
+  },
+}))((props) => {
   const { points, content, classes, sampleAnswer } = props;
   const pointsLabel = `${points} ${points <= 1 ? 'pt' : 'pts'}`;
   const showSampleAnswer = checkSampleAnswer(sampleAnswer);
@@ -112,7 +108,7 @@ export const PointConfig = withStyles(theme => ({
         <EditableHtml className={classes.editor} markup={content} onChange={props.onChange} />
         <PointMenu
           classes={{
-            icon: classes.pointMenu
+            icon: classes.pointMenu,
           }}
           showSampleAnswer={showSampleAnswer}
           onChange={props.onMenuChange}
@@ -123,11 +119,7 @@ export const PointConfig = withStyles(theme => ({
           <Typography variant="overline" className={classes.dragIndicator}>
             Sample Response
           </Typography>
-          <EditableHtml
-            className={classes.editor}
-            markup={sampleAnswer}
-            onChange={props.onSampleChange}
-          />
+          <EditableHtml className={classes.editor} markup={sampleAnswer} onChange={props.onSampleChange} />
         </div>
       )}
     </div>
@@ -139,12 +131,12 @@ export class RawAuthoring extends React.Component {
     classes: PropTypes.object.isRequired,
     className: PropTypes.string,
     value: RubricType,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
   };
 
   static defaultProps = {};
 
-  dragEnd = result => {
+  dragEnd = (result) => {
     if (!result.destination) {
       return;
     }
@@ -152,16 +144,12 @@ export class RawAuthoring extends React.Component {
     const { value, onChange } = this.props;
 
     const points = reorder(value.points, result.source.index, result.destination.index);
-    const sampleAnswers = reorder(
-      value.sampleAnswers,
-      result.source.index,
-      result.destination.index
-    );
+    const sampleAnswers = reorder(value.sampleAnswers, result.source.index, result.destination.index);
 
     onChange({ ...value, points, sampleAnswers });
   };
 
-  changeMaxPoints = maxPoints => {
+  changeMaxPoints = (maxPoints) => {
     const { value, onChange } = this.props;
     const currentMax = value.points.length - 1;
 
@@ -255,9 +243,7 @@ export class RawAuthoring extends React.Component {
           Rubric
         </Typography>
         <FormGroup row>
-          {maxPointsEnabled && (
-            <MaxPoints max={10} value={value.points.length - 1} onChange={this.changeMaxPoints} />
-          )}
+          {maxPointsEnabled && <MaxPoints max={10} value={value.points.length - 1} onChange={this.changeMaxPoints} />}
           {excludeZeroEnabled && (
             <FormControlLabel
               label="Exclude zeros"
@@ -268,17 +254,13 @@ export class RawAuthoring extends React.Component {
         <div className={classes.container}>
           <DragDropContext onDragEnd={this.dragEnd}>
             <Droppable droppableId="droppable">
-              {provided => (
+              {(provided) => (
                 <div {...provided.droppableProps} ref={provided.innerRef}>
                   {value.points.map(
                     (p, index) =>
                       this.shouldRenderPoint(index, value) && (
-                        <Draggable
-                          key={`${p.points}-${index}`}
-                          index={index}
-                          draggableId={index.toString()}
-                        >
-                          {provided => (
+                        <Draggable key={`${p.points}-${index}`} index={index} draggableId={index.toString()}>
+                          {(provided) => (
                             <div
                               className={classes.configHolder}
                               ref={provided.innerRef}
@@ -289,18 +271,14 @@ export class RawAuthoring extends React.Component {
                                 points={value.points.length - 1 - index}
                                 content={p}
                                 sampleAnswer={value.sampleAnswers && value.sampleAnswers[index]}
-                                onChange={content => this.changeContent(index, content, 'points')}
-                                onSampleChange={content =>
-                                  this.changeContent(index, content, 'sampleAnswers')
-                                }
-                                onMenuChange={clickedItem =>
-                                  this.onPointMenuChange(index, clickedItem)
-                                }
+                                onChange={(content) => this.changeContent(index, content, 'points')}
+                                onSampleChange={(content) => this.changeContent(index, content, 'sampleAnswers')}
+                                onMenuChange={(clickedItem) => this.onPointMenuChange(index, clickedItem)}
                               />
                             </div>
                           )}
                         </Draggable>
-                      )
+                      ),
                   )}
                   {provided.placeholder}
                 </div>
@@ -313,28 +291,28 @@ export class RawAuthoring extends React.Component {
   }
 }
 
-const styles = theme => ({
+const styles = (theme) => ({
   container: {
     backgroundColor: grey[200],
     borderWidth: 1,
     borderStyle: 'solid',
     borderColor: grey[300],
     padding: theme.spacing.unit * 2,
-    margin: theme.spacing.unit
+    margin: theme.spacing.unit,
   },
   configHolder: {
     paddingTop: theme.spacing.unit,
-    paddingBottom: theme.spacing.unit
+    paddingBottom: theme.spacing.unit,
   },
   rubricTitle: {
     paddingLeft: theme.spacing.unit,
-    margin: theme.spacing.unit
-  }
+    margin: theme.spacing.unit,
+  },
 });
 
 const StyledRawAuthoring = withStyles(styles)(RawAuthoring);
 
-const Reverse = props => {
+const Reverse = (props) => {
   const points = Array.from(props.value.points || []).reverse();
   let sampleAnswers = Array.from(props.value.sampleAnswers || []).reverse();
 
@@ -346,11 +324,11 @@ const Reverse = props => {
 
   const value = { ...props.value, points, sampleAnswers };
 
-  const onChange = value => {
+  const onChange = (value) => {
     props.onChange({
       ...value,
       points: Array.from(value.points || []).reverse(),
-      sampleAnswers: Array.from(value.sampleAnswers || []).reverse()
+      sampleAnswers: Array.from(value.sampleAnswers || []).reverse(),
     });
   };
 
@@ -360,7 +338,7 @@ const Reverse = props => {
 Reverse.propTypes = {
   value: RubricType,
   getIndex: PropTypes.func,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
 };
 
 export default Reverse;

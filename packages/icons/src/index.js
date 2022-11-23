@@ -15,5 +15,5 @@ export {
   LearnMore,
   NothingSubmitted,
   PartiallyCorrect,
-  ShowRationale
+  ShowRationale,
 };

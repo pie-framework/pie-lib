@@ -6,7 +6,7 @@ const log = debug('pie-lib:graphing:sine');
 
 log('sine...');
 
-const Sine = withRootEdge(props => {
+const Sine = withRootEdge((props) => {
   const { domain } = props.graphProps;
 
   const { root, edge } = props;
@@ -23,7 +23,7 @@ const Sine = withRootEdge(props => {
           root,
           edge,
           interval,
-          sinY(amplitude, freq, { phase: root.x, vertical: root.y })
+          sinY(amplitude, freq, { phase: root.x, vertical: root.y }),
         );
   return { root: props.root, edge: props.edge, dataPoints };
 });

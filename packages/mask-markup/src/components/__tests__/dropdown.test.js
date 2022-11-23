@@ -11,7 +11,7 @@ describe('Dropdown', () => {
     correct: false,
     disabled: false,
     value: 'Jumped',
-    choices: [choice('Jumped'), choice('Laughed'), choice('Smiled')]
+    choices: [choice('Jumped'), choice('Laughed'), choice('Smiled')],
   };
   let wrapper;
 
@@ -36,8 +36,8 @@ describe('Dropdown', () => {
   });
 
   describe('onChange', () => {
-    const event = value => ({
-      target: { value }
+    const event = (value) => ({
+      target: { value },
     });
 
     it('should be called with an appropriate value', () => {

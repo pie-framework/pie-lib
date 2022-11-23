@@ -12,16 +12,16 @@ jest.mock('../../../../utils', () => {
   return {
     pointsToArea: jest.fn().mockReturnValue({}),
     bounds: jest.fn().mockReturnValue({}),
-    point: a.point
+    point: a.point,
   };
 });
 
 jest.mock('@pie-lib/plot', () => {
   const a = jest.requireActual('@pie-lib/plot');
   return {
-    gridDraggable: jest.fn(opts => jest.fn()),
+    gridDraggable: jest.fn((opts) => jest.fn()),
     types: a.types,
-    utils: a.utils
+    utils: a.utils,
   };
 });
 
@@ -32,14 +32,14 @@ describe('LinePath', () => {
   beforeEach(() => {
     LinePath = require('../line-path').LinePath;
   });
-  const wrapper = extras => {
+  const wrapper = (extras) => {
     const defaults = {
       classes: {},
       className: 'className',
       onChange,
       graphProps: getGraphProps(),
       from: xy(0, 0, 0),
-      to: xy(1, 1, 0)
+      to: xy(1, 1, 0),
     };
     const props = { ...defaults, ...extras };
     return shallow(<LinePath {...props} />);

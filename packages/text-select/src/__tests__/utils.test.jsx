@@ -1,7 +1,6 @@
 import { prepareText } from '../utils';
 
 describe('logic', () => {
-
   it('returns text if no html elements', () => {
     const formattedText = prepareText(`foo bar`);
 
@@ -25,5 +24,4 @@ describe('logic', () => {
 
     expect(formattedText).toEqual('foo\nbar\nfoo');
   });
-
 });

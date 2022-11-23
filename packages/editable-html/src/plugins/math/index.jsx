@@ -13,25 +13,25 @@ const log = debug('@pie-lib:editable-html:plugins:math');
 const TEXT_NODE = 3;
 
 function generateAdditionalKeys(keyData = []) {
-  return keyData.map(key => ({
+  return keyData.map((key) => ({
     name: key,
     latex: key,
     write: key,
-    label: key
+    label: key,
   }));
 }
 
 export const CustomToolbarComp = React.memo(
-  props => {
+  (props) => {
     const { node, value, onFocus, onBlur, onClick } = props;
     const { pluginProps } = props || {};
     const { math } = pluginProps || {};
     const { keypadMode, customKeys, controlledKeypadMode = true } = math || {};
 
-    const onDone = latex => {
+    const onDone = (latex) => {
       const update = {
         ...node.data.toObject(),
-        latex
+        latex,
       };
       const change = value.change().setNodeByKey(node.key, { data: update });
 
@@ -42,10 +42,10 @@ export const CustomToolbarComp = React.memo(
       props.onToolbarDone(change, false);
     };
 
-    const onChange = latex => {
+    const onChange = (latex) => {
       const update = {
         ...node.data.toObject(),
-        latex
+        latex,
       };
       const change = value.change().setNodeByKey(node.key, { data: update });
       log('call onToolbarChange:', change);
@@ -73,16 +73,14 @@ export const CustomToolbarComp = React.memo(
     const { node, pluginProps: { math: { keypadMode, controlledKeypadMode } = {} } = {} } = prev;
     const {
       node: nodeNext,
-      pluginProps: {
-        math: { keypadMode: keypadModeNext, controlledKeypadMode: controlledKeypadModeNext } = {}
-      } = {}
+      pluginProps: { math: { keypadMode: keypadModeNext, controlledKeypadMode: controlledKeypadModeNext } = {} } = {},
     } = next;
     const keypadModeChanged = keypadMode !== keypadModeNext;
     const controlledKeypadModeChanged = controlledKeypadMode !== controlledKeypadModeNext;
 
     const equal = node.equals(nodeNext);
     return equal && !keypadModeChanged && !controlledKeypadModeChanged;
-  }
+  },
 );
 
 CustomToolbarComp.propTypes = {
@@ -92,7 +90,7 @@ CustomToolbarComp.propTypes = {
   onDataChange: PropTypes.func,
   onFocus: PropTypes.func,
   onClick: PropTypes.func,
-  onBlur: PropTypes.func
+  onBlur: PropTypes.func,
 };
 
 export default function MathPlugin() {
@@ -106,7 +104,7 @@ export default function MathPlugin() {
         const change = value.change().insertInline(math);
         onChange(change);
       },
-      supports: node => node && node.object === 'inline' && node.type === 'math',
+      supports: (node) => node && node.object === 'inline' && node.type === 'math',
       /**
        * Return a react component function
        * @param node {Slate.Node}
@@ -114,22 +112,22 @@ export default function MathPlugin() {
        * @param onDone {(change?: Slate.Change, finishEditing :boolea) => void} - a function to call once the toolbar
        *   has made any changes, call with the node.key and a data object.
        */
-      CustomToolbarComp
+      CustomToolbarComp,
     },
     schema: {
-      document: { match: [{ type: 'math' }] }
+      document: { match: [{ type: 'math' }] },
     },
 
     pluginStyles: (node, parentNode, p) => {
       if (p) {
         return {
           position: 'absolute',
-          top: 'initial'
+          top: 'initial',
         };
       }
     },
 
-    renderNode: props => {
+    renderNode: (props) => {
       if (props.node.type === 'math') {
         log('[renderNode]: data:', props.node.data);
         return <MathPreview {...props} />;
@@ -143,7 +141,7 @@ export default function MathPlugin() {
 
         return <span {...props.attributes} dangerouslySetInnerHTML={{ __html: html }} />;
       }
-    }
+    },
   };
 }
 
@@ -158,17 +156,17 @@ export const inlineMath = () =>
     type: 'math',
     isVoid: true,
     data: {
-      latex: ''
-    }
+      latex: '',
+    },
   });
 
-const htmlDecode = input => {
+const htmlDecode = (input) => {
   const doc = new DOMParser().parseFromString(input, 'text/html');
 
   return doc.documentElement.textContent;
 };
 
-const getTagName = el => {
+const getTagName = (el) => {
   return ((el && el.tagName) || '').toLowerCase();
 };
 
@@ -179,7 +177,7 @@ const getTagName = el => {
  * @param input
  * @returns {*}
  */
-const lessThanHandling = input => {
+const lessThanHandling = (input) => {
   const arrowSplit = input.split('<');
 
   // if we don't have at least 2 characters there's no point in checking
@@ -191,7 +189,7 @@ const lessThanHandling = input => {
        /div - closing of a HTML tag
        br/> - beginning and closing of a html TAG
        */
-      if (part.match(/<[a-zA-Z/][\s\S]*>/ig)) {
+      if (part.match(/<[a-zA-Z/][\s\S]*>/gi)) {
         return `${st}${st ? '<' : ''}${part}`;
       }
 
@@ -212,8 +210,7 @@ export const serialization = {
      * an inline child and the block is of type block
      * This is for legacy content only since our math rendering is valid for the core slate rules
      */
-    const hasMathChild =
-      BLOCK_TAGS[tagName] && el.childNodes.length === 1 && getTagName(el.firstChild) === 'math';
+    const hasMathChild = BLOCK_TAGS[tagName] && el.childNodes.length === 1 && getTagName(el.firstChild) === 'math';
     log('[deserialize] name: ', tagName);
 
     /**
@@ -227,8 +224,8 @@ export const serialization = {
         isVoid: true,
         type: 'mathml',
         data: {
-          html: newHtml
-        }
+          html: newHtml,
+        },
       };
     }
 
@@ -253,8 +250,8 @@ export const serialization = {
         nodes: [],
         data: {
           latex: unwrapped,
-          wrapper: wrapType
-        }
+          wrapper: wrapType,
+        },
       };
     }
   },
@@ -279,5 +276,5 @@ export const serialization = {
 
       return <span data-type="mathml" dangerouslySetInnerHTML={{ __html: html }} />;
     }
-  }
+  },
 };

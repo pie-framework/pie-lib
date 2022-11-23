@@ -4,11 +4,4 @@ import ConstructedResponse from './constructed-response';
 import InlineDropdown from './inline-dropdown';
 import componentize from './componentize';
 
-export {
-  withMask,
-  buildLayoutFromMarkup,
-  DragInTheBlank,
-  ConstructedResponse,
-  InlineDropdown,
-  componentize
-};
+export { withMask, buildLayoutFromMarkup, DragInTheBlank, ConstructedResponse, InlineDropdown, componentize };

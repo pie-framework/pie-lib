@@ -9,7 +9,7 @@ const createSnapMinAndMax = ({ min, max, step }) => {
   return {
     step,
     min: parseInt(min / step) * step,
-    max: parseInt(max / step) * step
+    max: parseInt(max / step) * step,
   };
 };
 
@@ -26,12 +26,12 @@ export const create = (domain, range, size, getRootNode) => {
       .range([0, size.width]),
     y: scaleLinear()
       .domain([range.max, range.min])
-      .range([0, size.height])
+      .range([0, size.height]),
   };
 
   const snap = {
     x: snapTo.bind(null, domainMinMax.min, domainMinMax.max, domainMinMax.step),
-    y: snapTo.bind(null, rangeMinMax.min, rangeMinMax.max, rangeMinMax.step)
+    y: snapTo.bind(null, rangeMinMax.min, rangeMinMax.max, rangeMinMax.step),
   };
 
   return { scale, snap, domain, range, size, getRootNode };

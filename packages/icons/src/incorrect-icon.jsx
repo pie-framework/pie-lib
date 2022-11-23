@@ -26,7 +26,7 @@ const Ex = ({ className }) => (
 );
 
 Ex.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 const Emoji = ({ className }) => (
   <g transform={'translate(1,0)'}>
@@ -37,7 +37,7 @@ const Emoji = ({ className }) => (
 );
 
 Emoji.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 const styles = getStyles('incorrect', '#fbf2e3', '#fcb733');
@@ -50,12 +50,12 @@ Incorrect.propTypes = {
   iconSet: PropTypes.oneOf(['emoji', 'check']),
   shape: PropTypes.oneOf(['round', 'square']),
   category: PropTypes.oneOf(['feedback', undefined]),
-  open: PropTypes.bool
+  open: PropTypes.bool,
 };
 
 Incorrect.defaultProps = {
   iconSet: 'check',
   shape: 'round',
   category: undefined,
-  open: false
+  open: false,
 };

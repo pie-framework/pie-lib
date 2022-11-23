@@ -7,32 +7,32 @@ jest.mock('../plugins/math', () => ({
     }),
     deserialize: jest.fn((el, next) => {
       return undefined;
-    })
-  }
+    }),
+  },
 }));
 
 describe('TEXT_RULE', () => {
-  const mkBr = previousSibling => {
+  const mkBr = (previousSibling) => {
     return {
       remove: jest.fn(),
       previousSibling,
-      replaceWith: foo => {
+      replaceWith: (foo) => {
         previousSibling.textContent = previousSibling.textContent.replace(/(<br>)|(<\/br>)/g, foo);
       },
       normalize: jest.fn().mockReturnThis(),
-      tagName: 'br'
+      tagName: 'br',
     };
   };
 
   const mkTextNode = (textContent = '') => ({
     nodeName: '#text',
     textContent,
-    normalize: jest.fn().mockReturnThis()
+    normalize: jest.fn().mockReturnThis(),
   });
 
-  const mkEl = querySelectorAllResult => ({
+  const mkEl = (querySelectorAllResult) => ({
     querySelectorAll: jest.fn().mockReturnValue(querySelectorAllResult),
-    normalize: jest.fn().mockReturnThis()
+    normalize: jest.fn().mockReturnThis(),
   });
 
   describe('deserialize', () => {
@@ -57,7 +57,7 @@ describe('htmlToValue', () => {
             type: 'div',
             isVoid: false,
             data: {
-              attributes: {}
+              attributes: {},
             },
             nodes: [
               {
@@ -65,7 +65,7 @@ describe('htmlToValue', () => {
                 type: 'paragraph',
                 isVoid: false,
                 data: {
-                  attributes: {}
+                  attributes: {},
                 },
                 nodes: [
                   {
@@ -74,9 +74,9 @@ describe('htmlToValue', () => {
                       {
                         object: 'leaf',
                         text: 'foo',
-                        marks: []
-                      }
-                    ]
+                        marks: [],
+                      },
+                    ],
                   },
                   {
                     object: 'inline',
@@ -88,7 +88,7 @@ describe('htmlToValue', () => {
                       alignment: null,
                       alt: null,
                       margin: '',
-                      justifyContent: ''
+                      justifyContent: '',
                     },
                     isVoid: true,
                     nodes: [
@@ -98,11 +98,11 @@ describe('htmlToValue', () => {
                           {
                             object: 'leaf',
                             text: '',
-                            marks: []
-                          }
-                        ]
-                      }
-                    ]
+                            marks: [],
+                          },
+                        ],
+                      },
+                    ],
                   },
                   {
                     object: 'text',
@@ -110,16 +110,16 @@ describe('htmlToValue', () => {
                       {
                         object: 'leaf',
                         text: 'bar',
-                        marks: []
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
+                        marks: [],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
     };
     const html = `<div><p>foo<img src="blah.jpg"/>bar</p></div>`;
     const v = htmlToValue(html);
@@ -149,7 +149,7 @@ describe('htmlToValue', () => {
                   {
                     object: 'leaf',
                     text: 'Foo ',
-                    marks: []
+                    marks: [],
                   },
                   {
                     object: 'leaf',
@@ -158,14 +158,14 @@ describe('htmlToValue', () => {
                       {
                         object: 'mark',
                         type: 'italic',
-                        data: {}
-                      }
-                    ]
+                        data: {},
+                      },
+                    ],
                   },
                   {
                     object: 'leaf',
                     text: ' bar ',
-                    marks: []
+                    marks: [],
                   },
                   {
                     object: 'leaf',
@@ -174,14 +174,14 @@ describe('htmlToValue', () => {
                       {
                         object: 'mark',
                         type: 'italic',
-                        data: {}
-                      }
-                    ]
+                        data: {},
+                      },
+                    ],
                   },
                   {
                     object: 'leaf',
                     text: ' Foo ',
-                    marks: []
+                    marks: [],
                   },
                   {
                     object: 'leaf',
@@ -190,14 +190,14 @@ describe('htmlToValue', () => {
                       {
                         object: 'mark',
                         type: 'italic',
-                        data: {}
-                      }
-                    ]
+                        data: {},
+                      },
+                    ],
                   },
                   {
                     object: 'leaf',
                     text: ' bar ',
-                    marks: []
+                    marks: [],
                   },
                   {
                     object: 'leaf',
@@ -206,14 +206,14 @@ describe('htmlToValue', () => {
                       {
                         object: 'mark',
                         type: 'italic',
-                        data: {}
-                      }
-                    ]
+                        data: {},
+                      },
+                    ],
                   },
                   {
                     object: 'leaf',
                     text: ' Foo ',
-                    marks: []
+                    marks: [],
                   },
                   {
                     object: 'leaf',
@@ -222,14 +222,14 @@ describe('htmlToValue', () => {
                       {
                         object: 'mark',
                         type: 'italic',
-                        data: {}
-                      }
-                    ]
+                        data: {},
+                      },
+                    ],
                   },
                   {
                     object: 'leaf',
                     text: ' bar ',
-                    marks: []
+                    marks: [],
                   },
                   {
                     object: 'leaf',
@@ -238,14 +238,14 @@ describe('htmlToValue', () => {
                       {
                         object: 'mark',
                         type: 'italic',
-                        data: {}
-                      }
-                    ]
+                        data: {},
+                      },
+                    ],
                   },
                   {
                     object: 'leaf',
                     text: ' Foo ',
-                    marks: []
+                    marks: [],
                   },
                   {
                     object: 'leaf',
@@ -254,14 +254,14 @@ describe('htmlToValue', () => {
                       {
                         object: 'mark',
                         type: 'italic',
-                        data: {}
-                      }
-                    ]
+                        data: {},
+                      },
+                    ],
                   },
                   {
                     object: 'leaf',
                     text: ' bar ',
-                    marks: []
+                    marks: [],
                   },
                   {
                     object: 'leaf',
@@ -270,16 +270,16 @@ describe('htmlToValue', () => {
                       {
                         object: 'mark',
                         type: 'italic',
-                        data: {}
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
+                        data: {},
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
     };
     const html =
       '<div>Foo <em>x</em> bar <em>x</em> Foo <em>x</em> bar <em>x</em> Foo <em>x</em> bar <em>x</em> Foo <em>x</em> bar <em>x</em></div>';

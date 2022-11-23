@@ -7,11 +7,9 @@ export default class Choices extends React.Component {
   static propTypes = {
     disabled: PropTypes.bool,
     duplicates: PropTypes.bool,
-    choices: PropTypes.arrayOf(
-      PropTypes.shape({ label: PropTypes.string, value: PropTypes.string })
-    ),
+    choices: PropTypes.arrayOf(PropTypes.shape({ label: PropTypes.string, value: PropTypes.string })),
     value: PropTypes.object,
-    choicePosition: PropTypes.string.isRequired
+    choicePosition: PropTypes.string.isRequired,
   };
 
   getStyleForWrapper = () => {
@@ -20,30 +18,30 @@ export default class Choices extends React.Component {
     switch (choicePosition) {
       case 'above':
         return {
-          margin: '0 0 40px 0'
+          margin: '0 0 40px 0',
         };
       case 'below':
         return {
-          margin: '40px 0 0 0'
+          margin: '40px 0 0 0',
         };
       case 'right':
         return {
-          margin: '0 0 0 40px'
+          margin: '0 0 0 40px',
         };
       default:
         return {
-          margin: '0 40px 0 0'
+          margin: '0 40px 0 0',
         };
     }
   };
 
   render() {
     const { disabled, duplicates, choices, value } = this.props;
-    const filteredChoices = choices.filter(c => {
+    const filteredChoices = choices.filter((c) => {
       if (duplicates === true) {
         return true;
       }
-      const foundChoice = findKey(value, v => v === c.id);
+      const foundChoice = findKey(value, (v) => v === c.id);
       return foundChoice === undefined;
     });
     const elementStyle = this.getStyleForWrapper();

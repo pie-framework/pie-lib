@@ -13,9 +13,9 @@ describe('feedback-selector', () => {
         onChange={onChange}
         feedback={{
           type: 'default',
-          default: 'hi'
+          default: 'hi',
         }}
-      />
+      />,
     );
   };
 
@@ -37,7 +37,7 @@ describe('feedback-selector', () => {
         expect(onChange).toBeCalledWith({
           type: 'custom',
           custom: 'bar',
-          default: 'hi'
+          default: 'hi',
         });
       });
     });

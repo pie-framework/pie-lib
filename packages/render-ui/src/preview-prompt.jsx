@@ -14,14 +14,14 @@ export class PreviewPrompt extends Component {
     tagName: PropTypes.string,
     className: PropTypes.string,
     onClick: PropTypes.func,
-    defaultClassName: PropTypes.string
+    defaultClassName: PropTypes.string,
   };
 
   static defaultProps = {
-    onClick: () => {}
+    onClick: () => {},
   };
 
-  parsedText = text => {
+  parsedText = (text) => {
     // fix imported audio content for Safari PD-1419
     const div = document.createElement('div');
     div.innerHTML = text;
@@ -53,11 +53,7 @@ export class PreviewPrompt extends Component {
 
           // check if div is not already added to dom and replace current image with wrapped image
           if (
-            !(
-              parentNode.tagName === 'DIV' &&
-              parentNode.style.display === 'flex' &&
-              parentNode.style.width === '100%'
-            )
+            !(parentNode.tagName === 'DIV' && parentNode.style.display === 'flex' && parentNode.style.width === '100%')
           ) {
             const div = document.createElement('div');
             div.style.display = 'flex';
@@ -75,8 +71,7 @@ export class PreviewPrompt extends Component {
   render() {
     const { prompt, classes, tagName, className, onClick, defaultClassName } = this.props;
     const CustomTag = tagName || 'div';
-    const customClasses = `${classes.promptTable} ${classes[className] || ''} ${defaultClassName ||
-      ''}`;
+    const customClasses = `${classes.promptTable} ${classes[className] || ''} ${defaultClassName || ''}`;
 
     return (
       <CustomTag
@@ -84,40 +79,40 @@ export class PreviewPrompt extends Component {
         onClick={onClick}
         className={customClasses}
         dangerouslySetInnerHTML={{
-          __html: this.parsedText(prompt || '').replace(NEWLINE_BLOCK_REGEX, NEWLINE_LATEX)
+          __html: this.parsedText(prompt || '').replace(NEWLINE_BLOCK_REGEX, NEWLINE_LATEX),
         }}
       />
     );
   }
 }
 
-const styles = theme => ({
+const styles = (theme) => ({
   prompt: {
     verticalAlign: 'middle',
-    color: color.text()
+    color: color.text(),
   },
   rationale: {
-    paddingLeft: theme.spacing.unit * 16
+    paddingLeft: theme.spacing.unit * 16,
   },
   label: {
     color: `${color.text()} !important`, //'var(--choice-input-color, black)',
     display: 'inline-block',
     verticalAlign: 'middle',
-    cursor: 'pointer'
+    cursor: 'pointer',
   },
   promptTable: {
     '&:not(.MathJax) > table': {
-      borderCollapse: 'collapse'
+      borderCollapse: 'collapse',
     },
     '&:not(.MathJax) > table tr': {
       '&:nth-child(2n)': {
-        backgroundColor: '#f6f8fa'
-      }
+        backgroundColor: '#f6f8fa',
+      },
     },
     '&:not(.MathJax) > table td, &:not(.MathJax) > table th': {
       padding: '.6em 1em',
-      textAlign: 'center'
-    }
-  }
+      textAlign: 'center',
+    },
+  },
 });
 export default withStyles(styles)(PreviewPrompt);

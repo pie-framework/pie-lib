@@ -12,7 +12,7 @@ const Input = ({
   onChange,
   showCorrectAnswer,
   spellCheck,
-  width
+  width,
 }) => {
   return (
     <CorrectInput
@@ -25,7 +25,7 @@ const Input = ({
       spellCheck={spellCheck}
       isBox={true}
       width={width}
-      onChange={e => {
+      onChange={(e) => {
         onChange(id, e.target.value);
       }}
     />
@@ -39,7 +39,7 @@ Input.propTypes = {
   disabled: PropTypes.bool,
   spellCheck: PropTypes.bool,
   correct: PropTypes.bool,
-  showCorrectAnswer: PropTypes.bool
+  showCorrectAnswer: PropTypes.bool,
 };
 
 export default Input;

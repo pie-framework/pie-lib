@@ -10,7 +10,11 @@ describe('test-utils', () => {
     function simpleHoC(WrappedComponent) {
       return class extends React.Component {
         render() {
-          return <div><WrappedComponent oneMoreProp="hello" {...this.props} /></div>;
+          return (
+            <div>
+              <WrappedComponent oneMoreProp="hello" {...this.props} />
+            </div>
+          );
         }
       };
     }
@@ -32,7 +36,7 @@ describe('test-utils', () => {
 
     it('overwrites specific props when passed into the closure', () => {
       const wrapper = shallowChild(simpleHoC(SimpleComponent), null, 1);
-      const shallowComponent = wrapper({ oneMoreProp: 'helloToo'  });
+      const shallowComponent = wrapper({ oneMoreProp: 'helloToo' });
 
       expect(shallowComponent.find(SimpleComponent).length).toEqual(1);
       expect(shallowComponent.props().children.props.oneMoreProp).toEqual('helloToo');

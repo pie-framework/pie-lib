@@ -3,14 +3,14 @@ import React from 'react';
 import { PlaceHolder } from '../placeholder';
 
 describe('placeholder', () => {
-  const wrapper = extras => {
+  const wrapper = (extras) => {
     const defaults = {
       classes: {
         placeholder: 'placeholder',
         disabled: 'disabled',
         over: 'over',
-        number: 'number'
-      }
+        number: 'number',
+      },
     };
     const props = { ...defaults, ...extras };
     return shallow(<PlaceHolder {...props}> Foo </PlaceHolder>);
@@ -39,11 +39,10 @@ describe('placeholder', () => {
         grid: {
           rows: 2,
           columns: 1,
-          rowsRepeatValue: 'min-content'
-        }
+          rowsRepeatValue: 'min-content',
+        },
       });
       expect(w).toMatchSnapshot();
     });
-
   });
 });

@@ -6,10 +6,10 @@ jest.mock('mathjax-full/js/output/chtml/Wrapper', () => {
   const instance = {
     adaptor: {
       document: {
-        createElement: jest.fn()
-      }
+        createElement: jest.fn(),
+      },
     },
-    standardCHTMLnode: jest.fn()
+    standardCHTMLnode: jest.fn(),
   };
 
   return {
@@ -20,26 +20,26 @@ jest.mock('mathjax-full/js/output/chtml/Wrapper', () => {
         this.document = {};
         // return instance;
       }
-    }
+    },
   };
 });
 
 const node = (kind, extras) => ({ kind, childNodes: [], ...extras });
 
-const textNode = text => node('text', { text, node: { kind: 'text', text } });
-const mn = text => node('mn', { childNodes: [textNode(text)] });
-const mo = text =>
+const textNode = (text) => node('text', { text, node: { kind: 'text', text } });
+const mn = (text) => node('mn', { childNodes: [textNode(text)] });
+const mo = (text) =>
   node('mo', {
-    childNodes: [textNode(text)]
+    childNodes: [textNode(text)],
   });
 
-const mco = text => ({
+const mco = (text) => ({
   ...mo(text),
 
-  toCHTML: n => {
+  toCHTML: (n) => {
     const t = `mo:${text}`;
     n.textContent = t;
-  }
+  },
 });
 
 const msrow = (...childNodes) => node('msrow', { childNodes });
@@ -91,7 +91,7 @@ describe.each`
   beforeEach(() => {
     const chtml = new CHTMLmstack({}, {});
     const dom = new JSDOM(`<!DOCTYPE html><body></body>`);
-    chtml.standardCHTMLnode = parent => parent;
+    chtml.standardCHTMLnode = (parent) => parent;
     chtml.ce = dom.window.document.createElement.bind(dom.window.document);
     chtml.childNodes = tree;
     chtml.toCHTML(dom.window.document.body);

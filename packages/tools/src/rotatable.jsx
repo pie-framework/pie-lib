@@ -12,8 +12,8 @@ const Anchor = withStyles({
     position: 'absolute',
     zIndex: 100,
     width: '200px',
-    height: '80px'
-  }
+    height: '80px',
+  },
 })(({ classes, left, top, color, fill }) => {
   color = color || 'green';
   fill = fill || 'white';
@@ -23,7 +23,7 @@ const Anchor = withStyles({
         className={classes.anchor}
         style={{
           left: left - 10,
-          top: top - 10
+          top: top - 10,
         }}
       >
         <circle cx={10} cy={10} r={8} strokeWidth={1} stroke={color} fill={fill} />
@@ -44,19 +44,19 @@ export class Rotatable extends React.Component {
     handle: PropTypes.arrayOf(
       PropTypes.shape({
         class: PropTypes.string.isRequired,
-        origin: PropTypes.string
-      })
+        origin: PropTypes.string,
+      }),
     ),
     className: PropTypes.string,
     startPosition: PropTypes.shape({
       left: PropTypes.number,
-      top: PropTypes.number
-    })
+      top: PropTypes.number,
+    }),
   };
 
   static defaultProps = {
     showAnchor: false,
-    startPosition: { left: 0, top: 0 }
+    startPosition: { left: 0, top: 0 },
   };
 
   constructor(props) {
@@ -68,8 +68,8 @@ export class Rotatable extends React.Component {
       angle: 0,
       position: {
         left: props.startPosition.left,
-        top: props.startPosition.top
-      }
+        top: props.startPosition.top,
+      },
     };
   }
 
@@ -78,7 +78,7 @@ export class Rotatable extends React.Component {
     document.removeEventListener('mousemove', this.drag);
     document.removeEventListener('mousemove', this.rotate);
 
-    this.handles.forEach(h => {
+    this.handles.forEach((h) => {
       h.el.removeEventListener('mousedown', h.mousedownHandler);
       h.el.removeEventListener('mouseup', this.rotateStop);
     });
@@ -94,7 +94,7 @@ export class Rotatable extends React.Component {
 
     if (Array.isArray(handle)) {
       this.handles = [];
-      handle.forEach(h => {
+      handle.forEach((h) => {
         const el = this.rotatable.querySelector(`.${h.class}`);
 
         if (el) {
@@ -111,7 +111,7 @@ export class Rotatable extends React.Component {
     document.addEventListener('mouseup', this.rotateStop);
   };
 
-  originToXY = origin => {
+  originToXY = (origin) => {
     const { clientWidth: width, clientHeight: height } = this.rotatable;
     return parseOrigin({ width, height }, origin);
   };
@@ -120,7 +120,7 @@ export class Rotatable extends React.Component {
    * Get the anchor point for the given element, origin and rotation.
    * @returns {{left:number, top: number}} - the co-ordinates of the anchor point relative to the whole page.
    */
-  getAnchor = origin => {
+  getAnchor = (origin) => {
     const { rotation } = this.state;
     const { clientWidth, clientHeight } = this.rotatable;
     const { top, left } = this.rotatable.getBoundingClientRect();
@@ -128,19 +128,19 @@ export class Rotatable extends React.Component {
     const { top: anchorTop, left: anchorLeft } = calcAnchor(
       {
         width: clientWidth,
-        height: clientHeight
+        height: clientHeight,
       },
       xy,
-      rotation
+      rotation,
     );
 
     return {
       top: top + anchorTop,
-      left: left + anchorLeft
+      left: left + anchorLeft,
     };
   };
 
-  rotateStart = origin => e => {
+  rotateStart = (origin) => (e) => {
     const { isRotating } = this.state;
     if (isRotating) {
       return;
@@ -166,16 +166,16 @@ export class Rotatable extends React.Component {
         anchor,
         position: {
           left: this.state.position.left + diff.x,
-          top: this.state.position.top + diff.y
-        }
+          top: this.state.position.top + diff.y,
+        },
       },
       () => {
         document.addEventListener('mousemove', this.rotate);
-      }
+      },
     );
   };
 
-  rotateStop = e => {
+  rotateStop = (e) => {
     const { isRotating } = this.state;
 
     if (!isRotating) {
@@ -189,12 +189,12 @@ export class Rotatable extends React.Component {
         isRotating: false,
         angle: this.state.rotation,
         anchor: null,
-        current: null
+        current: null,
       },
       () => {
         document.removeEventListener('mousemove', this.rotate);
         document.removeEventListener('mousemove', this.drag);
-      }
+      },
     );
   };
 
@@ -204,7 +204,7 @@ export class Rotatable extends React.Component {
     return { angle: arctangent(x, y), x, y };
   }
 
-  rotate = e => {
+  rotate = (e) => {
     const { isRotating } = this.state;
     if (!isRotating) {
       return;
@@ -220,22 +220,22 @@ export class Rotatable extends React.Component {
     this.setState({ rotation, diff, current, computedAnchor });
   };
 
-  mouseDown = e => {
-    const handle = this.handles.find(h => h.el === e.target);
+  mouseDown = (e) => {
+    const handle = this.handles.find((h) => h.el === e.target);
 
     if (!handle) {
       this.dragStart(e);
     }
   };
 
-  dragStart = e => {
+  dragStart = (e) => {
     const dragPoint = new Point(e.pageX, e.pageY);
     this.setState({ dragPoint }, () => {
       document.addEventListener('mousemove', this.drag);
     });
   };
 
-  drag = e => {
+  drag = (e) => {
     e.preventDefault();
     const current = new Point(e.pageX, e.pageY);
     const translate = current.sub(this.state.dragPoint);
@@ -251,7 +251,7 @@ export class Rotatable extends React.Component {
 
     const position = {
       left: lastPosition.left + translate.x,
-      top: lastPosition.top + translate.y
+      top: lastPosition.top + translate.y,
     };
 
     document.removeEventListener('mousemove', this.drag);
@@ -268,14 +268,14 @@ export class Rotatable extends React.Component {
       left: position.left,
       top: position.top,
       transformOrigin: origin,
-      transform: `${t} rotate(${rotation}deg)`
+      transform: `${t} rotate(${rotation}deg)`,
     };
 
     return (
       <div
         className={classNames(classes.rotatable, className)}
         style={style}
-        ref={r => (this.rotatable = r)}
+        ref={(r) => (this.rotatable = r)}
         onMouseDown={this.mouseDown}
         onMouseUp={this.mouseUp}
       >
@@ -290,6 +290,6 @@ export default withStyles({
   rotatable: {
     position: 'relative',
     display: 'inline-block',
-    cursor: 'move'
-  }
+    cursor: 'move',
+  },
 })(Rotatable);

@@ -53,7 +53,7 @@ export const swap = (arr, ...rest) => {
         return acc;
       }
     },
-    [...arr]
+    [...arr],
   );
 };
 
@@ -76,18 +76,18 @@ export class RawBaseComponent extends React.Component {
     labelNode: PropTypes.object,
     labelModeEnabled: PropTypes.bool,
     onChangeLabelProps: PropTypes.func,
-    onChangeProps: PropTypes.func
+    onChangeProps: PropTypes.func,
   };
 
   static defaultProps = {
-    points: []
+    points: [],
   };
 
   dragPoint = (index, from, to) => {
     log('[dragPoint] from, to:', from, to);
     const { onChange, points } = this.props;
     const update = [...points];
-    const overlapPoint = !!(points || []).find(p => equalPoints(p, to));
+    const overlapPoint = !!(points || []).find((p) => equalPoints(p, to));
 
     if (equalPoints(from, to) || overlapPoint) {
       return;
@@ -155,15 +155,7 @@ export class RawBaseComponent extends React.Component {
   };
 
   clickPoint = (point, index, data) => {
-    const {
-      closed,
-      onClick,
-      isToolActive,
-      labelModeEnabled,
-      onChangeProps,
-      onChangeLabelProps,
-      points
-    } = this.props;
+    const { closed, onClick, isToolActive, labelModeEnabled, onChangeProps, onChangeLabelProps, points } = this.props;
 
     if (labelModeEnabled) {
       if (points && index === points.length) {
@@ -205,7 +197,7 @@ export class RawBaseComponent extends React.Component {
       points,
       middle,
       labelNode,
-      labelModeEnabled
+      labelModeEnabled,
     } = this.props;
     const lines = buildLines(points, closed);
     const common = { onDragStart, onDragStop, graphProps, disabled, correctness };
@@ -215,13 +207,13 @@ export class RawBaseComponent extends React.Component {
     if (labelNode && middle && middle.hasOwnProperty('label')) {
       polygonLabelNode = ReactDOM.createPortal(
         <MarkLabel
-          inputRef={r => (this.input[polygonLabelIndex] = r)}
+          inputRef={(r) => (this.input[polygonLabelIndex] = r)}
           disabled={!labelModeEnabled}
           mark={middle}
           graphProps={graphProps}
           onChange={() => {}}
         />,
-        labelNode
+        labelNode,
       );
     }
 
@@ -267,15 +259,15 @@ export class RawBaseComponent extends React.Component {
             labelNode && p.hasOwnProperty('label')
               ? ReactDOM.createPortal(
                   <MarkLabel
-                    inputRef={r => (this.input[index] = r)}
+                    inputRef={(r) => (this.input[index] = r)}
                     disabled={!labelModeEnabled}
                     mark={p}
                     graphProps={graphProps}
-                    onChange={label => this.labelChange({ ...p, label }, index)}
+                    onChange={(label) => this.labelChange({ ...p, label }, index)}
                   />,
-                  labelNode
+                  labelNode,
                 )
-              : null
+              : null,
           ];
         })}
       </g>
@@ -288,7 +280,7 @@ export const BaseComponent = withStyles(() => ({}))(RawBaseComponent);
 export default class Component extends React.Component {
   static propTypes = {
     ...ToolPropTypeFields,
-    graphProps: types.GraphPropsType.isRequired
+    graphProps: types.GraphPropsType.isRequired,
   };
 
   static defaultProps = {};
@@ -298,9 +290,9 @@ export default class Component extends React.Component {
     this.state = {};
   }
 
-  change = points => {
+  change = (points) => {
     const {
-      mark: { middle }
+      mark: { middle },
     } = this.props;
     const mark = { ...this.state.mark, points };
 
@@ -312,13 +304,13 @@ export default class Component extends React.Component {
     this.setState({ mark });
   };
 
-  changeProps = points => {
+  changeProps = (points) => {
     const mark = { ...this.props.mark, points };
 
     this.props.onChange(this.props.mark, mark);
   };
 
-  changeLabelProps = point => {
+  changeLabelProps = (point) => {
     const { mark, onChange } = this.props;
     const middle = { ...mark.middle, ...point };
 
@@ -356,15 +348,7 @@ export default class Component extends React.Component {
   };
 
   render() {
-    const {
-      coordinatesOnHover,
-      mark,
-      graphProps,
-      onClick,
-      isToolActive,
-      labelNode,
-      labelModeEnabled
-    } = this.props;
+    const { coordinatesOnHover, mark, graphProps, onClick, isToolActive, labelNode, labelModeEnabled } = this.props;
     const { mark: stateMark } = this.state;
 
     return (

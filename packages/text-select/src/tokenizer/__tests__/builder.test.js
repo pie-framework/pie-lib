@@ -31,13 +31,16 @@ describe('builder', () => {
       [token(1, 2), token(2, 3)],
       [
         { token: token(1, 2), type: 'within-selection' },
-        { token: token(2, 3), type: 'within-selection' }
-      ]
+        { token: token(2, 3), type: 'within-selection' },
+      ],
     );
     assert(
       selection(0, 10),
       [token(1, 2), token(2, 11)],
-      [{ token: token(1, 2), type: 'within-selection' }, { token: token(2, 11), type: 'overlap' }]
+      [
+        { token: token(1, 2), type: 'within-selection' },
+        { token: token(2, 11), type: 'overlap' },
+      ],
     );
   });
 
@@ -68,41 +71,53 @@ describe('builder', () => {
         {
           text: '',
           start: 0,
-          end: 0
-        }
-      ]
+          end: 0,
+        },
+      ],
     );
     assert(
       'abcde',
-      [{ text: 'b', start: 1, end: 2 }, { text: 'd', start: 3, end: 4 }],
+      [
+        { text: 'b', start: 1, end: 2 },
+        { text: 'd', start: 3, end: 4 },
+      ],
       [
         { text: 'a', start: 0, end: 1 },
         { text: 'b', start: 1, end: 2, predefined: true },
         { text: 'c', start: 2, end: 3 },
         { text: 'd', start: 3, end: 4, predefined: true },
-        { text: 'e', start: 4, end: 5 }
-      ]
+        { text: 'e', start: 4, end: 5 },
+      ],
     );
     assert(
       'abc',
       [{ text: 'c', start: 2, end: 3 }],
-      [{ text: 'ab', start: 0, end: 2 }, { text: 'c', start: 2, end: 3, predefined: true }]
+      [
+        { text: 'ab', start: 0, end: 2 },
+        { text: 'c', start: 2, end: 3, predefined: true },
+      ],
     );
 
     assert(
       'abc',
-      [{ text: 'c', start: 2, end: 3 }, { text: 'b', start: 1, end: 2 }],
+      [
+        { text: 'c', start: 2, end: 3 },
+        { text: 'b', start: 1, end: 2 },
+      ],
       [
         { text: 'a', start: 0, end: 1 },
         { text: 'b', start: 1, end: 2, predefined: true },
-        { text: 'c', start: 2, end: 3, predefined: true }
-      ]
+        { text: 'c', start: 2, end: 3, predefined: true },
+      ],
     );
 
     assert(
       'abc',
       [{ text: 'a', start: 0, end: 1 }],
-      [{ text: 'a', start: 0, end: 1, predefined: true }, { text: 'bc', start: 1, end: 3 }]
+      [
+        { text: 'a', start: 0, end: 1, predefined: true },
+        { text: 'bc', start: 1, end: 3 },
+      ],
     );
 
     assert(
@@ -110,29 +125,29 @@ describe('builder', () => {
       [
         { text: 'b', start: 1, end: 2 },
         { text: 'c', start: 2, end: 3 },
-        { text: 'd', start: 3, end: 4 }
-      ],
-      [
-        { text: 'a', start: 0, end: 1 },
-        { text: 'b', start: 1, end: 2, predefined: true },
-        { text: 'c', start: 2, end: 3, predefined: true },
-        { text: 'd', start: 3, end: 4, predefined: true }
-      ]
-    );
-    assert(
-      'abcde',
-      [
-        { text: 'b', start: 1, end: 2 },
-        { text: 'c', start: 2, end: 3 },
-        { text: 'd', start: 3, end: 4 }
+        { text: 'd', start: 3, end: 4 },
       ],
       [
         { text: 'a', start: 0, end: 1 },
         { text: 'b', start: 1, end: 2, predefined: true },
         { text: 'c', start: 2, end: 3, predefined: true },
         { text: 'd', start: 3, end: 4, predefined: true },
-        { text: 'e', start: 4, end: 5 }
-      ]
+      ],
+    );
+    assert(
+      'abcde',
+      [
+        { text: 'b', start: 1, end: 2 },
+        { text: 'c', start: 2, end: 3 },
+        { text: 'd', start: 3, end: 4 },
+      ],
+      [
+        { text: 'a', start: 0, end: 1 },
+        { text: 'b', start: 1, end: 2, predefined: true },
+        { text: 'c', start: 2, end: 3, predefined: true },
+        { text: 'd', start: 3, end: 4, predefined: true },
+        { text: 'e', start: 4, end: 5 },
+      ],
     );
 
     // same token defined multiple times
@@ -143,15 +158,15 @@ describe('builder', () => {
         { text: 'b', start: 1, end: 2 },
         { text: 'c', start: 2, end: 3 },
         { text: 'd', start: 3, end: 4 },
-        { text: 'c', start: 2, end: 3 }
+        { text: 'c', start: 2, end: 3 },
       ],
       [
         { text: 'a', start: 0, end: 1 },
         { text: 'b', start: 1, end: 2, predefined: true },
         { text: 'c', start: 2, end: 3, predefined: true },
         { text: 'd', start: 3, end: 4, predefined: true },
-        { text: 'e', start: 4, end: 5 }
-      ]
+        { text: 'e', start: 4, end: 5 },
+      ],
     );
   });
 
@@ -162,13 +177,13 @@ describe('builder', () => {
         {
           text: 'foo.',
           start: 0,
-          end: 4
+          end: 4,
         },
         {
           text: 'bar',
           start: 5,
-          end: 8
-        }
+          end: 8,
+        },
       ]);
     });
   });
@@ -209,7 +224,7 @@ describe('builder', () => {
         { text: 'This is Sentence 2.', start: 20, end: 39 },
         { text: 'This is Sentence 3.', start: 40, end: 59 },
         { text: 'This is Sentence 4.', start: 60, end: 79 },
-        { text: "Dr. A. said he'll call in 5.", start: 80, end: 108 }
+        { text: "Dr. A. said he'll call in 5.", start: 80, end: 108 },
       ]);
     });
   });
@@ -221,12 +236,12 @@ describe('builder', () => {
       expect(out[0]).toEqual({
         text: 'This is foo. This is bar.',
         start: 0,
-        end: 25
+        end: 25,
       });
       expect(out[1]).toEqual({
         text: 'This is foobar. This is barfoo.',
         start: 26,
-        end: 57
+        end: 57,
       });
     });
     it('works', () => {

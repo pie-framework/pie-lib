@@ -16,8 +16,8 @@ const styleSheet = {
     display: 'block',
     overflow: 'hidden',
     '&:.incorrect': {
-      color: '#946202'
-    }
+      color: '#946202',
+    },
   },
   content: {
     '-webkit-font-smoothing': 'antialiased',
@@ -29,35 +29,35 @@ const styleSheet = {
     margin: '0px',
     padding: '10px',
     verticalAlign: 'middle',
-    color: 'var(--feedback-color, white)'
+    color: 'var(--feedback-color, white)',
   },
   correct: {
-    backgroundColor: `var(--feedback-correct-bg-color, ${color.correct()})`
+    backgroundColor: `var(--feedback-correct-bg-color, ${color.correct()})`,
   },
   incorrect: {
-    backgroundColor: `var(--feedback-incorrect-bg-color, ${color.incorrect()})`
+    backgroundColor: `var(--feedback-incorrect-bg-color, ${color.incorrect()})`,
   },
   feedbackEnter: {
-    height: '1px'
+    height: '1px',
   },
   feedbackEnterActive: {
     height: '45px',
-    transition: 'height 500ms'
+    transition: 'height 500ms',
   },
   feedbackLeave: {
-    height: '45px'
+    height: '45px',
   },
   feedbackLeaveActive: {
     height: '1px',
-    transition: 'height 200ms'
-  }
+    transition: 'height 200ms',
+  },
 };
 
 export class Feedback extends React.Component {
   static propTypes = {
     correctness: PropTypes.string,
     feedback: PropTypes.string,
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
   };
 
   render() {
@@ -71,7 +71,7 @@ export class Feedback extends React.Component {
               enter: classes.feedbackEnter,
               enterActive: classes.feedbackEnterActive,
               leave: classes.feedbackLeave,
-              leaveActive: classes.feedbackLeaveActive
+              leaveActive: classes.feedbackLeaveActive,
             }}
             key="hasFeedback"
             timeout={{ enter: 500, exit: 300 }}

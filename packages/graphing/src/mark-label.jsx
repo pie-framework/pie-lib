@@ -7,7 +7,7 @@ import { types } from '@pie-lib/plot';
 import { useDebounce } from './use-debounce';
 import { color } from '@pie-lib/render-ui';
 
-const styles = theme => ({
+const styles = (theme) => ({
   input: {
     float: 'right',
     padding: theme.spacing.unit * 0.5,
@@ -15,17 +15,17 @@ const styles = theme => ({
     fontSize: theme.typography.fontSize,
     border: `solid 1px ${color.secondary()}`,
     borderRadius: '3px',
-    color: color.primaryDark()
+    color: color.primaryDark(),
   },
   disabled: {
     border: `solid 1px ${color.primaryDark()}`,
-    background: color.background()
+    background: color.background(),
   },
   disabledMark: {
     border: `solid 1px ${color.disabled()}`,
     background: color.background(),
-    color: color.disabled()
-  }
+    color: color.disabled(),
+  },
 });
 
 export const position = (graphProps, mark, rect) => {
@@ -56,26 +56,26 @@ export const coordinates = (graphProps, mark, rect, position) => {
     case 'top-left': {
       return {
         left: scale.x(mark.x) - shift - rect.width,
-        top: scale.y(mark.y) - shift - rect.height
+        top: scale.y(mark.y) - shift - rect.height,
       };
     }
     case 'top-right': {
       return {
         left: scale.x(mark.x) + shift,
-        top: scale.y(mark.y) - shift - rect.height
+        top: scale.y(mark.y) - shift - rect.height,
       };
     }
   }
 };
 
-export const MarkLabel = props => {
+export const MarkLabel = (props) => {
   const [input, setInput] = useState(null);
-  const _ref = useCallback(node => setInput(node));
+  const _ref = useCallback((node) => setInput(node));
 
   const { mark, graphProps, classes, disabled, inputRef: externalInputRef } = props;
   const [label, setLabel] = useState(mark.label);
 
-  const onChange = e => setLabel(e.target.value);
+  const onChange = (e) => setLabel(e.target.value);
 
   const debouncedLabel = useDebounce(label, 200);
 
@@ -98,14 +98,14 @@ export const MarkLabel = props => {
   const style = {
     position: 'absolute',
     pointerEvents: 'auto',
-    ...leftTop
+    ...leftTop,
   };
 
   const disabledInput = disabled || mark.disabled;
 
   return (
     <AutosizeInput
-      inputRef={r => {
+      inputRef={(r) => {
         _ref(r);
         externalInputRef(r);
       }}
@@ -124,7 +124,7 @@ MarkLabel.propTypes = {
   graphProps: types.GraphPropsType,
   classes: PropTypes.object,
   inputRef: PropTypes.func,
-  mark: PropTypes.object
+  mark: PropTypes.object,
 };
 
 export default withStyles(styles)(MarkLabel);

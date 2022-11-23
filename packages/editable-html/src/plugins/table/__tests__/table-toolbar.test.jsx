@@ -2,13 +2,7 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import { TableToolbar } from '../table-toolbar';
 describe('table-toolbar', () => {
-  let onDone,
-    onAddColumn,
-    onAddRow,
-    onRemoveColumn,
-    onRemoveRow,
-    onRemoveTable,
-    onToggleBorder;
+  let onDone, onAddColumn, onAddRow, onRemoveColumn, onRemoveRow, onRemoveTable, onToggleBorder;
 
   beforeEach(() => {
     onAddColumn = jest.fn();
@@ -20,7 +14,7 @@ describe('table-toolbar', () => {
     onToggleBorder = jest.fn();
   });
 
-  const mkWrapper = extras => {
+  const mkWrapper = (extras) => {
     const props = {
       onDone,
       onAddRow,
@@ -31,9 +25,9 @@ describe('table-toolbar', () => {
       hasBorder: true,
       onToggleBorder,
       classes: {
-        tableToolbar: 'table-toolbar'
+        tableToolbar: 'table-toolbar',
       },
-      ...extras
+      ...extras,
     };
 
     return shallow(<TableToolbar {...props} />);

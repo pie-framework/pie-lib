@@ -6,7 +6,7 @@ import { RawBaseComponent, buildLines, swap } from '../component';
 
 const xyLabel = (x, y, index, label) => ({
   ...xy(x, y, index),
-  label
+  label,
 });
 
 describe('buildLines', () => {
@@ -17,7 +17,7 @@ describe('buildLines', () => {
       const result = buildLines(points);
       expect(result).toMatchObject([
         { from: xy(0, 0, 0), to: xy(1, 1, 1) },
-        { from: xy(1, 1, 1), to: xy(1, 0, 2) }
+        { from: xy(1, 1, 1), to: xy(1, 0, 2) },
       ]);
     });
   };
@@ -36,7 +36,7 @@ describe('RawBaseComponent', () => {
   let w;
   let onChange = jest.fn();
   let onChangeProps = jest.fn();
-  const wrapper = extras => {
+  const wrapper = (extras) => {
     const defaults = {
       classes: {},
       className: 'className',
@@ -44,7 +44,7 @@ describe('RawBaseComponent', () => {
       onChangeProps,
       onClosePolygon: jest.fn(),
       graphProps: graphProps(),
-      points: []
+      points: [],
     };
     const props = { ...defaults, ...extras };
 
@@ -54,11 +54,11 @@ describe('RawBaseComponent', () => {
   // used to test items that have labels attached to points
   const labelNode = document.createElement('foreignObject');
   const points = [xyLabel(0, 0, 0, 'A'), xyLabel(2, 2, 1, 'B'), xyLabel(0, 2, 2, 'C')];
-  const wrapperWithLabels = extras =>
+  const wrapperWithLabels = (extras) =>
     wrapper({
       labelNode: labelNode,
       points: points,
-      ...extras
+      ...extras,
     });
 
   describe('snapshot', () => {
@@ -94,10 +94,7 @@ describe('RawBaseComponent', () => {
     describe('dragLine', () => {
       it('calls onChange', () => {
         w = wrapper({ points: [xy(1, 1, 0), xy(2, 2, 1)], onChange });
-        w.instance().dragLine(
-          { from: xy(1, 1, 0), to: xy(2, 2, 1) },
-          { from: xy(2, 2, 0), to: xy(4, 4, 1) }
-        );
+        w.instance().dragLine({ from: xy(1, 1, 0), to: xy(2, 2, 1) }, { from: xy(2, 2, 0), to: xy(4, 4, 1) });
         expect(onChange).toHaveBeenCalledWith([xy(2, 2, 0), xy(4, 4, 1)]);
       });
 
@@ -109,14 +106,10 @@ describe('RawBaseComponent', () => {
           { from: points[0], to: points[1] },
           {
             from: xy(0, 1, 0),
-            to: xy(2, 3, 1)
-          }
+            to: xy(2, 3, 1),
+          },
         );
-        expect(onChange).toHaveBeenCalledWith([
-          xyLabel(0, 1, 0, 'A'),
-          xyLabel(2, 3, 1, 'B'),
-          points[2]
-        ]);
+        expect(onChange).toHaveBeenCalledWith([xyLabel(0, 1, 0, 'A'), xyLabel(2, 3, 1, 'B'), points[2]]);
       });
     });
 
@@ -134,11 +127,7 @@ describe('RawBaseComponent', () => {
         w = wrapperWithLabels(onChange);
 
         w.instance().dragPoly(points, [xy(0, 1, 0), xy(2, 3, 1), xy(0, 3, 2)]);
-        expect(onChange).toHaveBeenCalledWith([
-          xyLabel(0, 1, 0, 'A'),
-          xyLabel(2, 3, 1, 'B'),
-          xyLabel(0, 3, 2, 'C')
-        ]);
+        expect(onChange).toHaveBeenCalledWith([xyLabel(0, 1, 0, 'A'), xyLabel(2, 3, 1, 'B'), xyLabel(0, 3, 2, 'C')]);
       });
     });
 
@@ -147,18 +136,10 @@ describe('RawBaseComponent', () => {
         w = wrapperWithLabels();
 
         w.instance().labelChange({ ...points[0], label: 'Label A' }, 0);
-        expect(onChangeProps).toBeCalledWith([
-          { ...points[0], label: 'Label A' },
-          points[1],
-          points[2]
-        ]);
+        expect(onChangeProps).toBeCalledWith([{ ...points[0], label: 'Label A' }, points[1], points[2]]);
 
         w.instance().labelChange({ ...points[1], label: 'Label B' }, 1);
-        expect(onChangeProps).toBeCalledWith([
-          points[0],
-          { ...points[1], label: 'Label B' },
-          points[2]
-        ]);
+        expect(onChangeProps).toBeCalledWith([points[0], { ...points[1], label: 'Label B' }, points[2]]);
       });
 
       it('removes "label" property if the field is empty', () => {
@@ -197,7 +178,7 @@ describe('RawBaseComponent', () => {
           onClosePolygon,
           onClick,
           isToolActive,
-          closed
+          closed,
         });
 
         w.instance().clickPoint(xy(1, 1, 0), index, {});
@@ -215,7 +196,7 @@ describe('RawBaseComponent', () => {
       const w = wrapperWithLabels({
         labelModeEnabled: true,
         onChangeProps,
-        points: [xy(0, 0, 0), xy(2, 2, 1), xy(0, 2, 2)]
+        points: [xy(0, 0, 0), xy(2, 2, 1), xy(0, 2, 2)],
       });
 
       w.instance().clickPoint(xy(0, 0, 0), 0, {});

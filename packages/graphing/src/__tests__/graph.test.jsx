@@ -13,22 +13,22 @@ describe('removeBuildingToolIfCurrentToolDiffers', () => {
       x: 2,
       y: 2,
       label: 'Point',
-      showLabel: true
+      showLabel: true,
     },
     {
       type: 'line',
       from: { x: 0, y: 0 },
       label: 'Line',
-      building: true
+      building: true,
     },
   ];
 
   it('keeps all marks if currentTool is the same', () => {
-    expect(removeBuildingToolIfCurrentToolDiffers({ marks, currentTool: { type: 'line' } })).toEqual(marks)
+    expect(removeBuildingToolIfCurrentToolDiffers({ marks, currentTool: { type: 'line' } })).toEqual(marks);
   });
 
   it('removes building marks if currentTool is different', () => {
-    expect(removeBuildingToolIfCurrentToolDiffers({ marks, currentTool: { type: 'different' }, })).toEqual([marks[0]]);
+    expect(removeBuildingToolIfCurrentToolDiffers({ marks, currentTool: { type: 'different' } })).toEqual([marks[0]]);
   });
 });
 
@@ -50,7 +50,7 @@ describe('Graph', () => {
     domain: { min: 0, max: 1, step: 1 },
     range: { min: 0, max: 1, step: 1 },
     size: { width: 400, height: 400 },
-    currentTool
+    currentTool,
   };
 
   beforeEach(() => {
@@ -63,16 +63,16 @@ describe('Graph', () => {
             x: 2,
             y: 2,
             label: 'Point',
-            showLabel: true
+            showLabel: true,
           },
           {
             type: 'line',
             from: { x: 0, y: 0 },
             label: 'Line',
-            building: true
+            building: true,
           },
         ],
-        ...extras
+        ...extras,
       };
       console.log('props', props.marks);
       return shallow(<Graph {...properties} />, opts);
@@ -157,14 +157,18 @@ describe('Graph', () => {
         const marks = [{ type: 'mark', ...xy(2, 2) }];
         const update = { type: 'mark', ...xy(4, 4) };
 
-        wrapper({ marks }).instance().updateMarks(marks[0], update, false);
+        wrapper({ marks })
+          .instance()
+          .updateMarks(marks[0], update, false);
       });
 
       it('calls onChangeMarks with added mark', () => {
         const marks = [];
         const update = { type: 'mark', ...xy(4, 4) };
 
-        wrapper({ marks }).instance().updateMarks(marks[0], [update], true);
+        wrapper({ marks })
+          .instance()
+          .updateMarks(marks[0], [update], true);
       });
     });
 

@@ -6,56 +6,56 @@ import { getDelta } from '../utils';
 import { clientPoint } from 'd3-selection';
 
 jest.mock('d3-selection', () => ({
-  clientPoint: jest.fn().mockReturnValue([0, 0])
+  clientPoint: jest.fn().mockReturnValue([0, 0]),
 }));
 
 jest.mock('../draggable', () => ({
-  DraggableCore: jest.fn((type, props, children) => children)
+  DraggableCore: jest.fn((type, props, children) => children),
 }));
 
 jest.mock('../utils', () => ({
-  getDelta: jest.fn()
+  getDelta: jest.fn(),
 }));
 
 const xyFn = () => {
-  const out = jest.fn(n => n);
-  out.invert = jest.fn(n => n);
+  const out = jest.fn((n) => n);
+  out.invert = jest.fn((n) => n);
   return out;
 };
 const getGraphProps = () => ({
   scale: {
     x: xyFn(),
-    y: xyFn()
+    y: xyFn(),
   },
   snap: {
     x: xyFn(),
-    y: xyFn()
+    y: xyFn(),
   },
   domain: {
     min: 0,
     max: 1,
-    step: 1
+    step: 1,
   },
   range: {
     min: 0,
     max: 1,
-    step: 1
+    step: 1,
   },
   size: {
     width: 500,
-    height: 500
+    height: 500,
   },
-  getRootNode: () => ({})
+  getRootNode: () => ({}),
 });
 
 describe('gridDraggable', () => {
   const wrapper = (opts, extras) => {
     const defaults = {
-      graphProps: getGraphProps()
+      graphProps: getGraphProps(),
     };
 
-    defaults.graphProps.scale.x.invert = jest.fn(x => x);
-    defaults.graphProps.scale.y.invert = jest.fn(x => x);
+    defaults.graphProps.scale.x.invert = jest.fn((x) => x);
+    defaults.graphProps.scale.y.invert = jest.fn((x) => x);
 
     const props = { ...defaults, ...extras };
 
@@ -63,7 +63,7 @@ describe('gridDraggable', () => {
       anchorPoint: jest.fn().mockReturnValue({ x: 0, y: 0 }),
       bounds: jest.fn().mockReturnValue({ left: 0, top: 0, bottom: 0, right: 0 }),
       fromDelta: jest.fn(),
-      ...opts
+      ...opts,
     };
 
     const Comp = gridDraggable(opts)(() => <div />);
@@ -83,14 +83,14 @@ describe('gridDraggable', () => {
           domain: {
             min: -1.5,
             max: 1.6,
-            step: 0.3
+            step: 0.3,
           },
           range: {
             min: -2,
             max: 3,
-            step: 0.2
-          }
-        }
+            step: 0.2,
+          },
+        },
       );
       expect(w).toMatchSnapshot();
     });
@@ -118,8 +118,8 @@ describe('gridDraggable', () => {
         const w = wrapper(
           {},
           {
-            onDragStart
-          }
+            onDragStart,
+          },
         );
         w.instance().onStart({ clientX: 100, clientY: 100 });
         expect(onDragStart).toHaveBeenCalled();
@@ -133,12 +133,12 @@ describe('gridDraggable', () => {
 
         const anchorPoint = {
           x: 0,
-          y: 0
+          y: 0,
         };
         expect(pos).toEqual({
           anchorPoint,
           x: expect.any(Function),
-          y: expect.any(Function)
+          y: expect.any(Function),
         });
       });
     });
@@ -203,27 +203,54 @@ describe('gridDraggable', () => {
     describe('skipDragOutsideOfBounds', () => {
       let w;
       const assertSkipDrag = (dd, rawXFn, rawYFn, expected) => {
-        rawXFn = rawXFn || (x => x);
-        rawYFn = rawYFn || (y => y);
+        rawXFn = rawXFn || ((x) => x);
+        rawYFn = rawYFn || ((y) => y);
 
         it(`${dd.deltaX}, ${dd.deltaY}, ${expected}`, () => {
           w = wrapper({});
           const gp = getGraphProps();
           clientPoint.mockClear();
-          clientPoint.mockReturnValue([
-            rawXFn(gp.domain.min, gp.domain.max),
-            rawYFn(gp.range.min, gp.range.max)
-          ]);
+          clientPoint.mockReturnValue([rawXFn(gp.domain.min, gp.domain.max), rawYFn(gp.range.min, gp.range.max)]);
           const result = w.instance().skipDragOutsideOfBounds(dd, {}, gp);
           expect(result).toEqual(expected);
         });
       };
-      assertSkipDrag({ deltaX: 1 }, (min, max) => min - 1, (min, max) => min, true);
-      assertSkipDrag({ deltaX: -1 }, (min, max) => max + 1, (min, max) => min, true);
-      assertSkipDrag({ deltaY: 1 }, (min, max) => max, (min, max) => max + 1, true);
-      assertSkipDrag({ deltaY: -1 }, (min, max) => max, (min, max) => min - 1, true);
-      assertSkipDrag({ deltaY: 1 }, (min, max) => max, (min, max) => max, false);
-      assertSkipDrag({ deltaY: -1 }, (min, max) => max, (min, max) => min, false);
+      assertSkipDrag(
+        { deltaX: 1 },
+        (min, max) => min - 1,
+        (min, max) => min,
+        true,
+      );
+      assertSkipDrag(
+        { deltaX: -1 },
+        (min, max) => max + 1,
+        (min, max) => min,
+        true,
+      );
+      assertSkipDrag(
+        { deltaY: 1 },
+        (min, max) => max,
+        (min, max) => max + 1,
+        true,
+      );
+      assertSkipDrag(
+        { deltaY: -1 },
+        (min, max) => max,
+        (min, max) => min - 1,
+        true,
+      );
+      assertSkipDrag(
+        { deltaY: 1 },
+        (min, max) => max,
+        (min, max) => max,
+        false,
+      );
+      assertSkipDrag(
+        { deltaY: -1 },
+        (min, max) => max,
+        (min, max) => min,
+        false,
+      );
     });
 
     describe('getDelta', () => {
@@ -232,10 +259,10 @@ describe('gridDraggable', () => {
         w.instance().position = jest.fn().mockReturnValue({
           anchorPoint: {
             x: 0,
-            y: 0
+            y: 0,
           },
-          x: jest.fn(x => x),
-          y: jest.fn(y => y)
+          x: jest.fn((x) => x),
+          y: jest.fn((y) => y),
         });
         w.instance().getDelta({ x: 1, y: 1 });
         expect(getDelta).toHaveBeenCalledWith({ x: 0, y: 0 }, { x: 1, y: 1 });

@@ -9,7 +9,7 @@ class RawLayoutContents extends React.Component {
     mode: PropTypes.oneOf(['tabbed', 'inline']),
     secondary: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
     children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
-    classes: PropTypes.object
+    classes: PropTypes.object,
   };
 
   render() {
@@ -24,11 +24,7 @@ class RawLayoutContents extends React.Component {
           </div>
         )}
         {mode === 'tabbed' && (
-          <Tabs
-            onChange={this.onTabsChange}
-            contentClassName={classes.contentContainer}
-            indicatorColor="primary"
-          >
+          <Tabs onChange={this.onTabsChange} contentClassName={classes.contentContainer} indicatorColor="primary">
             <div title="Design">{children}</div>
             <div title="settings">{secondary}</div>
           </Tabs>
@@ -41,20 +37,20 @@ class RawLayoutContents extends React.Component {
 const styles = () => ({
   flow: {
     display: 'flex',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   container: {
     display: 'flex',
     flexDirection: 'column',
-    position: 'relative'
+    position: 'relative',
   },
   contentContainer: {
-    padding: '32px 16px 0 16px'
+    padding: '32px 16px 0 16px',
   },
   configContainer: {
     flex: '1',
-    marginRight: '20px'
-  }
+    marginRight: '20px',
+  },
 });
 
 export default withStyles(styles)(RawLayoutContents);

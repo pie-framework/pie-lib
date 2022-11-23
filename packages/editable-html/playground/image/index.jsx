@@ -15,7 +15,7 @@ class Img extends React.Component {
 
 const ImgPlugin = () => {
   return {
-    renderNode: props => {
+    renderNode: (props) => {
       if (props.node.type === 'image') {
         return <Img {...props} />;
       }
@@ -33,11 +33,11 @@ const ImgPlugin = () => {
           focusKey: block.key,
           focusOffset: 0,
           isFocused: true,
-          isBackward: false
+          isBackward: false,
         });
         change.insertBlockAtRange(change.value.selection, block).select(range);
       }
-    }
+    },
   };
 };
 
@@ -47,7 +47,7 @@ class ImageDemo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: Value.fromJSON(imageData)
+      value: Value.fromJSON(imageData),
     };
 
     this.plugins = [ImgPlugin()];
@@ -59,17 +59,12 @@ class ImageDemo extends React.Component {
       <div>
         ImageDemo
         <hr />
-        This demo tests adding text between images. click on the image and type
-        some text...
+        This demo tests adding text between images. click on the image and type some text...
         <hr />
-        <Editor
-          value={value}
-          onChange={change => this.setState({ value: change.value })}
-          plugins={this.plugins}
-        />
+        <Editor value={value} onChange={(change) => this.setState({ value: change.value })} plugins={this.plugins} />
         <EditableEditor
           value={value}
-          onChange={change => this.setState({ value: change.value })}
+          onChange={(change) => this.setState({ value: change.value })}
           plugins={this.plugins}
         />
       </div>

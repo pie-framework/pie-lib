@@ -14,21 +14,21 @@ describe('media plugin', () => {
       const nodes = [
         {
           object: 'text',
-          text: 'Before Media'
+          text: 'Before Media',
         },
         {
-          type: 'video'
+          type: 'video',
         },
         {
           object: 'text',
-          text: 'After Media'
-        }
+          text: 'After Media',
+        },
       ];
       const returnValue = imagePlugin.normalizeNode({
         object: 'document',
-        findDescendant: jest.fn(callback => {
-          nodes.forEach(n => callback(n));
-        })
+        findDescendant: jest.fn((callback) => {
+          nodes.forEach((n) => callback(n));
+        }),
       });
       expect(returnValue).toEqual(undefined);
     });
@@ -38,30 +38,30 @@ describe('media plugin', () => {
         {
           object: 'text',
           text: '',
-          key: '1'
+          key: '1',
         },
         {
           type: 'video',
-          key: '2'
+          key: '2',
         },
         {
           object: 'text',
           text: 'After Media',
-          key: '3'
-        }
+          key: '3',
+        },
       ];
-      const findDescendant = jest.fn(callback => {
-        nodes.forEach(n => callback(n));
+      const findDescendant = jest.fn((callback) => {
+        nodes.forEach((n) => callback(n));
       });
       const change = {
-        withoutNormalization: jest.fn(callback => {
+        withoutNormalization: jest.fn((callback) => {
           callback();
         }),
-        insertTextByKey: jest.fn()
+        insertTextByKey: jest.fn(),
       };
       const returnValue = imagePlugin.normalizeNode({
         object: 'document',
-        findDescendant
+        findDescendant,
       });
 
       expect(returnValue).toEqual(expect.any(Function));

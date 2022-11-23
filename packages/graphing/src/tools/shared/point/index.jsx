@@ -14,14 +14,14 @@ const opts = {
 
     return utils.bounds(area, domain, range);
   },
-  anchorPoint: props => {
+  anchorPoint: (props) => {
     const { x, y } = props;
 
     return { x, y };
   },
   fromDelta: (props, delta) => {
     return utils.point(props).add(utils.point(delta));
-  }
+  },
 };
 
 const styles = () => {
@@ -29,24 +29,24 @@ const styles = () => {
     point: {
       '& circle, & polygon': {
         cursor: 'pointer',
-        fill: color.secondary()
-      }
+        fill: color.secondary(),
+      },
     },
     disabled: {
       '& circle, & polygon': {
-        ...disabled()
-      }
+        ...disabled(),
+      },
     },
     correct: {
       '& circle, & polygon': {
-        ...correct()
-      }
+        ...correct(),
+      },
     },
     incorrect: {
       '& circle, & polygon': {
-        ...incorrect()
-      }
-    }
+        ...incorrect(),
+      },
+    },
   };
 };
 

@@ -5,22 +5,14 @@ import { dataToXBand } from '../utils';
 import Plot from './common/plot';
 import { Circle } from '@vx/shape';
 
-const CustomBarElement = props => {
+const CustomBarElement = (props) => {
   const { index, pointDiameter, barX, barWidth, pointHeight, label, value, classes, scale } = props;
 
   const r = pointDiameter / 2;
   const cx = barX + (barWidth - pointDiameter) / 2 + r;
   const cy = scale.y(index) - (pointHeight - pointDiameter) / 2 - r;
 
-  return (
-    <Circle
-      key={`point-${label}-${value}-${index}`}
-      className={classes.dot}
-      cx={cx}
-      cy={cy}
-      r={r}
-    />
-  );
+  return <Circle key={`point-${label}-${value}-${index}`} className={classes.dot} cx={cx} cy={cy} r={r} />;
 };
 
 CustomBarElement.propTypes = {
@@ -32,14 +24,14 @@ CustomBarElement.propTypes = {
   value: PropTypes.number,
   label: PropTypes.string,
   classes: PropTypes.object,
-  scale: PropTypes.object
+  scale: PropTypes.object,
 };
 
 export class DotPlot extends React.Component {
   static propTypes = {
     data: PropTypes.array,
     onChange: PropTypes.func,
-    graphProps: types.GraphPropsType.isRequired
+    graphProps: types.GraphPropsType.isRequired,
   };
 
   render() {
@@ -55,5 +47,5 @@ export class DotPlot extends React.Component {
 export default () => ({
   type: 'dotPlot',
   Component: DotPlot,
-  name: 'Dot Plot'
+  name: 'Dot Plot',
 });

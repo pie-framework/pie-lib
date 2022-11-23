@@ -9,7 +9,7 @@ import { thinnerShapesNeeded, getAdjustedGraphLimits } from '../../utils';
 
 const markerId = genUid();
 
-const lineStyles = theme => ({
+const lineStyles = (theme) => ({
   line: styles.line(theme),
   enabledArrow: styles.arrow(theme),
   disabledArrow: styles.disabledArrow(theme),
@@ -17,10 +17,10 @@ const lineStyles = theme => ({
   correct: styles.correct(theme, 'stroke'),
   correctArrow: styles.correct(theme),
   incorrect: styles.incorrect(theme, 'stroke'),
-  incorrectArrow: styles.incorrect(theme)
+  incorrectArrow: styles.incorrect(theme),
 });
 
-export const ArrowedLine = props => {
+export const ArrowedLine = (props) => {
   const { className, classes, correctness, disabled, graphProps, from, to, ...rest } = props;
   const { scale } = graphProps;
   const { domain, range } = getAdjustedGraphLimits(graphProps);
@@ -41,12 +41,7 @@ export const ArrowedLine = props => {
         y1={scale.y(eFrom.y)}
         x2={scale.x(eTo.x)}
         y2={scale.y(eTo.y)}
-        className={classNames(
-          classes.line,
-          disabled && classes.disabled,
-          classes[correctness],
-          className
-        )}
+        className={classNames(classes.line, disabled && classes.disabled, classes[correctness], className)}
         markerEnd={`url(#${props.markerId || markerId}-${suffix})`}
         markerStart={`url(#${props.markerId || markerId}-${suffix})`}
         {...rest}
@@ -63,7 +58,7 @@ ArrowedLine.propTypes = {
   graphProps: types.GraphPropsType,
   from: types.PointType,
   to: types.PointType,
-  markerId: PropTypes.string
+  markerId: PropTypes.string,
 };
 
 const StyledArrowedLine = withStyles(lineStyles)(ArrowedLine);

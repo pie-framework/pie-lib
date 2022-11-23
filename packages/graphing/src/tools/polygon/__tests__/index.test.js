@@ -14,11 +14,11 @@ describe('polygon', () => {
     assertAddPoint(xy(0, 0), [xy(0, 0)], { closed: false, points: [xy(0, 0)] });
     assertAddPoint(xy(1, 1), [xy(0, 0)], {
       closed: false,
-      points: [xy(0, 0), xy(1, 1)]
+      points: [xy(0, 0), xy(1, 1)],
     });
     assertAddPoint(xy(1, 1), [xy(0, 0)], {
       closed: false,
-      points: [xy(0, 0), xy(1, 1)]
+      points: [xy(0, 0), xy(1, 1)],
     });
   });
 });
@@ -46,7 +46,7 @@ describe('tool', () => {
         type: 'polygon',
         points: [{ x: 0, y: 0 }],
         closed: false,
-        building: true
+        building: true,
       });
     });
 
@@ -55,7 +55,10 @@ describe('tool', () => {
       expect(mark).toEqual({
         building: true,
         closed: false,
-        points: [{ x: 1, y: 1 }, { x: 0, y: 0 }]
+        points: [
+          { x: 1, y: 1 },
+          { x: 0, y: 0 },
+        ],
       });
     });
   });

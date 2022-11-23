@@ -26,26 +26,16 @@ describe('utils', () => {
 
     assertGetDomainAndRangeByChartType({ min: -1, max: 4 }, { min: 1, max: 2, step: 1 }, 'line', {
       domain: { min: 0, max: 1, step: 1, labelStep: 1 },
-      range: { min: 1, max: 2, step: 1, labelStep: 1 }
+      range: { min: 1, max: 2, step: 1, labelStep: 1 },
     });
-    assertGetDomainAndRangeByChartType(
-      { min: -1, max: 4 },
-      { min: 0.1, max: 2, labelStep: 0.1 },
-      'line',
-      {
-        domain: { min: 0, max: 1, step: 1, labelStep: 1 },
-        range: { min: 0.1, max: 2, step: 0.1, labelStep: 0.1 }
-      }
-    );
-    assertGetDomainAndRangeByChartType(
-      { min: -1, max: 4 },
-      { min: 0.2, max: 2.4, step: 0.1 },
-      'dotPlot',
-      {
-        domain: { min: 0, max: 1, step: 1, labelStep: 1 },
-        range: { min: 0, max: 2, step: 1, labelStep: 0.1 }
-      }
-    );
+    assertGetDomainAndRangeByChartType({ min: -1, max: 4 }, { min: 0.1, max: 2, labelStep: 0.1 }, 'line', {
+      domain: { min: 0, max: 1, step: 1, labelStep: 1 },
+      range: { min: 0.1, max: 2, step: 0.1, labelStep: 0.1 },
+    });
+    assertGetDomainAndRangeByChartType({ min: -1, max: 4 }, { min: 0.2, max: 2.4, step: 0.1 }, 'dotPlot', {
+      domain: { min: 0, max: 1, step: 1, labelStep: 1 },
+      range: { min: 0, max: 2, step: 1, labelStep: 0.1 },
+    });
   });
 
   describe('getGridLinesAndAxisByChartType', () => {
@@ -59,25 +49,25 @@ describe('utils', () => {
     assertGetGridLinesAndAxisByChartType({ min: 0, max: 1, step: 1 }, 'lineDot', {
       verticalLines: undefined,
       horizontalLines: [0, 1],
-      leftAxis: true
+      leftAxis: true,
     });
 
     assertGetGridLinesAndAxisByChartType({ min: 0, max: 1, step: 1 }, 'lineCross', {
       verticalLines: undefined,
       horizontalLines: [0, 1],
-      leftAxis: true
+      leftAxis: true,
     });
 
     assertGetGridLinesAndAxisByChartType({ min: 0, max: 1, step: 1 }, 'bar', {
       verticalLines: [],
       horizontalLines: [0, 1],
-      leftAxis: true
+      leftAxis: true,
     });
 
     assertGetGridLinesAndAxisByChartType({ min: 0, max: 1, step: 1 }, 'dotPlot', {
       verticalLines: [],
       horizontalLines: [],
-      leftAxis: false
+      leftAxis: false,
     });
   });
 

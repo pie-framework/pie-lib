@@ -1,6 +1,6 @@
 import React from 'react';
 
-const comp = name => () => <div>{name}</div>;
+const comp = (name) => () => <div>{name}</div>;
 
 export const CorrectResponse = () => <div>CorrectResponse</div>;
 export const Correct = comp('correct');

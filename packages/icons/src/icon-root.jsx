@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Sized from './sized';
 
-export const normalizeSize = size => {
+export const normalizeSize = (size) => {
   return typeof size === 'string' ? size : typeof size === 'number' ? `${size}px` : '30px';
 };
 
@@ -24,38 +24,31 @@ export const IconRoot = ({ size, children }) => (
 
 IconRoot.propTypes = {
   size: PropTypes.oneOf([PropTypes.string, PropTypes.number]),
-  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
 };
 
 export const getStyles = (name, fg, bg) => ({
   bg: {
-    fill: `var(--icons-${name}-bg, ${bg})`
+    fill: `var(--icons-${name}-bg, ${bg})`,
   },
   fg: {
-    fill: `var(--icons-${name}-fg, ${fg})`
-  }
+    fill: `var(--icons-${name}-fg, ${fg})`,
+  },
 });
 
 export const Tick = ({ className }) => (
-  <polygon
-    className={className}
-    points="17.4,26.9 10.1,20.6 12.8,17.5 16.3,20.5 22.3,9.7 25.9,11.7"
-  />
+  <polygon className={className} points="17.4,26.9 10.1,20.6 12.8,17.5 16.3,20.5 22.3,9.7 25.9,11.7" />
 );
 
 Tick.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export const SquareFeedbackBox = ({ className }) => (
-  <polygon
-    transform="translate(2, 0)"
-    className={className}
-    points="34.1,28.6 34.1,2.2 2,2.2 2,34.3 40.1,34.3"
-  />
+  <polygon transform="translate(2, 0)" className={className} points="34.1,28.6 34.1,2.2 2,2.2 2,34.3 40.1,34.3" />
 );
 SquareFeedbackBox.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export const RoundFeedbackBox = ({ className }) => (
@@ -66,7 +59,7 @@ export const RoundFeedbackBox = ({ className }) => (
   />
 );
 RoundFeedbackBox.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export const Circle = ({ className }) => (
@@ -74,12 +67,10 @@ export const Circle = ({ className }) => (
 );
 
 Circle.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
-export const Square = ({ className }) => (
-  <rect x="3.6" y="4.1" className={className} width="32" height="32" />
-);
+export const Square = ({ className }) => <rect x="3.6" y="4.1" className={className} width="32" height="32" />;
 Square.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };

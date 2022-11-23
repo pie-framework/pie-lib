@@ -20,7 +20,7 @@ export const base = {
     labelFrequency: 1,
     step: 1,
     snap: 1,
-    padding: 100
+    padding: 100,
   },
   //range is the y-axis
   range: {
@@ -29,21 +29,21 @@ export const base = {
     label: 'y',
     step: 1,
     snap: 1,
-    padding: 100
-  }
+    padding: 100,
+  },
 };
 
 export const plotPoints = Object.assign(
   {
     maxNoOfPoints: 3,
     points: [
-      { x: 1, y: 1, label: 'foo' }
+      { x: 1, y: 1, label: 'foo' },
       // { x: -2, y: -4 },
       // { x: 0, y: 10 },
       // { x: 10, y: 3 }
-    ]
+    ],
   },
-  base
+  base,
 );
 
 //expressions: ['2x+1', '(1/3)x+2', '-2x+5']
@@ -51,10 +51,10 @@ export const graphLines = Object.assign(
   {
     lines: [
       // { from: { x: -10, y: -2 }, to: { x: 6, y: 5 } },
-      { from: { x: -1, y: -1 }, to: { x: 2, y: 2 } }
-    ]
+      { from: { x: -1, y: -1 }, to: { x: 2, y: 2 } },
+    ],
   },
-  base
+  base,
 );
 export const legacy = [
   {
@@ -67,7 +67,7 @@ export const legacy = [
     feedback: {
       correctFeedbackType: 'none',
       partialFeedbackType: 'none',
-      incorrectFeedbackType: 'none'
+      incorrectFeedbackType: 'none',
     },
     model: {
       config: {
@@ -96,9 +96,9 @@ export const legacy = [
         showPointLabels: true,
         showInputs: true,
         showAxisLabels: true,
-        showFeedback: true
-      }
-    }
+        showFeedback: true,
+      },
+    },
   },
   {
     weight: 1,
@@ -109,7 +109,7 @@ export const legacy = [
     correctResponse: '',
     feedback: {
       correctFeedbackType: 'none',
-      incorrectFeedbackType: 'none'
+      incorrectFeedbackType: 'none',
     },
     model: {
       config: {
@@ -135,9 +135,9 @@ export const legacy = [
         showPointLabels: true,
         showInputs: true,
         showAxisLabels: true,
-        showFeedback: true
-      }
-    }
+        showFeedback: true,
+      },
+    },
   },
   {
     weight: 1,
@@ -151,7 +151,7 @@ export const legacy = [
     feedback: {
       correctFeedbackType: 'none',
       partialFeedbackType: 'none',
-      incorrectFeedbackType: 'none'
+      incorrectFeedbackType: 'none',
     },
     model: {
       config: {
@@ -185,10 +185,10 @@ export const legacy = [
             equation: '',
             intialLine: '',
             label: '',
-            colorIndex: 0
-          }
-        ]
-      }
-    }
-  }
+            colorIndex: 0,
+          },
+        ],
+      },
+    },
+  },
 ];

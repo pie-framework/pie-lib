@@ -15,14 +15,7 @@ describe('NumberTextField', () => {
         onChange = jest.fn();
         onBlur = jest.fn();
         component = shallow(
-          <NumberTextField
-            value={value}
-            min={min}
-            max={max}
-            classes={{}}
-            onChange={onChange}
-            onBlur={onBlur}
-          />
+          <NumberTextField value={value} min={min} max={max} classes={{}} onChange={onChange} onBlur={onBlur} />,
         );
         textField = component.find(TextField);
       });
@@ -62,8 +55,8 @@ describe('NumberTextField', () => {
         });
 
         describe('onBlur', () => {
-          const event = value => ({
-            target: { value }
+          const event = (value) => ({
+            target: { value },
           });
 
           describe('called with valid string representation of int', () => {

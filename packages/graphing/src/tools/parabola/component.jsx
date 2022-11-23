@@ -4,7 +4,7 @@ import { withRootEdge, rootEdgeComponent } from '../shared/line/with-root-edge';
 
 const log = debug('pie-lib:graphing:sine');
 
-const Parabola = withRootEdge(props => {
+const Parabola = withRootEdge((props) => {
   const { domain } = props.graphProps;
 
   const { root, edge } = props;
@@ -13,14 +13,7 @@ const Parabola = withRootEdge(props => {
   const dataPoints =
     edge && edge.x === root.x
       ? []
-      : buildDataPoints(
-          domain.min,
-          domain.max,
-          root,
-          edge,
-          domain.step || interval,
-          parabolaFromTwoPoints(root, edge)
-        );
+      : buildDataPoints(domain.min, domain.max, root, edge, domain.step || interval, parabolaFromTwoPoints(root, edge));
   log('dataPoints:', dataPoints);
   return { root: props.root, edge: props.edge, dataPoints };
 });

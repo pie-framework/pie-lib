@@ -4,8 +4,8 @@ import classnames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import { color } from '@pie-lib/render-ui';
 
-const correctStyle = color => ({
-  borderColor: `${color} !important`
+const correctStyle = (color) => ({
+  borderColor: `${color} !important`,
 });
 
 export default withStyles(() => ({
@@ -18,37 +18,37 @@ export default withStyles(() => ({
     padding: '10px 20px 10px 10px',
     '&:disabled': {
       opacity: 0.8,
-      cursor: 'not-allowed !important'
+      cursor: 'not-allowed !important',
     },
     '&:hover': {
       borderColor: color.primary(),
       '&:disabled': {
-        borderColor: 'initial'
-      }
+        borderColor: 'initial',
+      },
     },
     '&:focus': {
-      borderColor: color.primaryDark()
-    }
+      borderColor: color.primaryDark(),
+    },
   },
   crInput: {
-    padding: '8px !important'
+    padding: '8px !important',
   },
   correct: correctStyle(color.correct()),
   incorrect: correctStyle(color.incorrect()),
   box: {
-    fontSize: 'inherit'
+    fontSize: 'inherit',
   },
   outlinedInput: {
     padding: '2px',
     borderRadius: '4px',
     '& fieldset': {
-      border: 0
-    }
+      border: 0,
+    },
   },
   notchedOutline: {
-    borderColor: color.correct()
-  }
-}))(props => {
+    borderColor: color.correct(),
+  },
+}))((props) => {
   const {
     correct,
     charactersLimit,
@@ -65,7 +65,7 @@ export default withStyles(() => ({
 
   if (width) {
     inputProps.style = {
-      width: `${width + Math.round(width / 10) + 1}ch` // added some extra space for capital letters
+      width: `${width + Math.round(width / 10) + 1}ch`, // added some extra space for capital letters
     };
   }
 
@@ -74,14 +74,14 @@ export default withStyles(() => ({
       className={classnames({
         [classes.disabledInput]: disabled,
         [classes.box]: isBox,
-        [classes.outlinedInput]: true
+        [classes.outlinedInput]: true,
       })}
       classes={{
         input: classnames({
           [classes.input]: true,
           [classes[label]]: label,
-          [classes.crInput]: isConstructedResponse
-        })
+          [classes.crInput]: isConstructedResponse,
+        }),
       }}
       inputProps={inputProps}
       labelWidth={0}

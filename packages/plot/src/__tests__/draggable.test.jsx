@@ -7,7 +7,7 @@ const wrapper = () => {
     <Draggable>
       <div>hellow</div>
     </Draggable>,
-    { disableLifecycleMethods: true }
+    { disableLifecycleMethods: true },
   );
 };
 

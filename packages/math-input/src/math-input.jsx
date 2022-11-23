@@ -16,22 +16,22 @@ export class MathInput extends React.Component {
     keyset: PropTypes.array,
     displayMode: PropTypes.oneOf(['block', 'block-on-focus']),
     latex: PropTypes.string,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
   };
 
   static defaultProps = {
     keyset: [],
-    displayMode: 'block'
+    displayMode: 'block',
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      focused: false
+      focused: false,
     };
   }
 
-  keypadPress = key => {
+  keypadPress = (key) => {
     log('[keypadPress] key:', key);
 
     if (!this.input) {
@@ -57,7 +57,7 @@ export class MathInput extends React.Component {
     this.setState({ focused: false });
   };
 
-  changeLatex = l => {
+  changeLatex = (l) => {
     const { onChange } = this.props;
 
     if (onChange && l !== this.props.latex) {
@@ -76,7 +76,7 @@ export class MathInput extends React.Component {
       <div className={classNames(classes.mathInput, className, focused && classes.focused)}>
         <mq.Input
           className={classes.mqInput}
-          innerRef={r => (this.input = r)}
+          innerRef={(r) => (this.input = r)}
           onFocus={this.inputFocus}
           onBlur={this.inputBlur}
           latex={latex}
@@ -93,25 +93,25 @@ export class MathInput extends React.Component {
 }
 
 const grey = 'rgba(0, 0, 0, 0.23)';
-const styles = theme => ({
+const styles = (theme) => ({
   formGroup: {
     display: 'flex',
     textAlign: 'right',
-    float: 'right'
+    float: 'right',
   },
   pad: {
     width: '100%',
-    display: 'flex'
+    display: 'flex',
   },
   mathInput: {
     borderRadius: '4px',
     border: `solid 1px ${grey}`,
     marginTop: theme.spacing.unit,
     marginBottom: theme.spacing.unit,
-    transition: 'border 200ms linear'
+    transition: 'border 200ms linear',
   },
   focused: {
-    border: `solid 1px ${theme.palette.primary.main}`
+    border: `solid 1px ${theme.palette.primary.main}`,
   },
   mqInput: {
     width: '100%',
@@ -121,8 +121,8 @@ const styles = theme => ({
     '&.mq-focused': {
       outline: 'none',
       boxShadow: 'none',
-      border: `solid 0px ${theme.palette.primary.dark}`
-    }
-  }
+      border: `solid 0px ${theme.palette.primary.dark}`,
+    },
+  },
 });
 export default withStyles(styles)(MathInput);

@@ -5,12 +5,12 @@ import { withStyles } from '@material-ui/core/styles';
 
 const useStyles = withStyles(() => ({
   root: {
-    position: 'relative'
+    position: 'relative',
   },
   editor: {
     display: 'inline-block',
-    overflow: 'hidden'
-  }
+    overflow: 'hidden',
+  },
 }));
 
 class MediaWrapper extends React.Component {
@@ -18,7 +18,7 @@ class MediaWrapper extends React.Component {
     classes: PropTypes.object,
     children: PropTypes.array,
     editor: PropTypes.bool,
-    width: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+    width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   };
 
   render() {
@@ -27,11 +27,11 @@ class MediaWrapper extends React.Component {
     return (
       <span
         className={classNames(classes.root, {
-          [classes.editor]: editor
+          [classes.editor]: editor,
         })}
         {...rest}
         style={{
-          width: width || 300
+          width: width || 300,
         }}
       >
         {children}

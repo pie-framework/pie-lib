@@ -17,7 +17,7 @@ describe('Button', () => {
       .create(
         <RawButton onClick={jest.fn()} classes={classes}>
           children
-        </RawButton>
+        </RawButton>,
       )
       .toJSON();
     expect(tree).toMatchSnapshot();
@@ -30,14 +30,9 @@ describe('MarkButton', () => {
   it('renders not active', () => {
     const tree = renderer
       .create(
-        <RawMarkButton
-          mark={'i'}
-          onToggle={jest.fn()}
-          active={false}
-          classes={classes}
-        >
+        <RawMarkButton mark={'i'} onToggle={jest.fn()} active={false} classes={classes}>
           children
-        </RawMarkButton>
+        </RawMarkButton>,
       )
       .toJSON();
     expect(tree).toMatchSnapshot();
@@ -46,14 +41,9 @@ describe('MarkButton', () => {
   it('renders active', () => {
     const tree = renderer
       .create(
-        <RawMarkButton
-          mark={'i'}
-          onToggle={jest.fn()}
-          active={true}
-          classes={classes}
-        >
+        <RawMarkButton mark={'i'} onToggle={jest.fn()} active={true} classes={classes}>
           children
-        </RawMarkButton>
+        </RawMarkButton>,
       )
       .toJSON();
     expect(tree).toMatchSnapshot();

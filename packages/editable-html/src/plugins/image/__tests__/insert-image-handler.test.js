@@ -9,18 +9,16 @@ expect.extend({
     const pass = argData.equals(received.data);
     if (pass) {
       return {
-        message: () =>
-          `expected ${received.toJSON()} not to be divisible by ${argData.toJSON()}`,
-        pass: true
+        message: () => `expected ${received.toJSON()} not to be divisible by ${argData.toJSON()}`,
+        pass: true,
       };
     } else {
       return {
-        message: () =>
-          `expected ${received.toJSON()} to be divisible by ${argData.toJSON()}`,
-        pass: false
+        message: () => `expected ${received.toJSON()} to be divisible by ${argData.toJSON()}`,
+        pass: false,
       };
     }
-  }
+  },
 });
 describe('insert image handler', () => {
   let change, document, value;
@@ -29,7 +27,7 @@ describe('insert image handler', () => {
     change = new MockChange();
     value = {
       change: () => change,
-      document
+      document,
     };
   });
 
@@ -46,7 +44,7 @@ describe('insert image handler', () => {
     let fileReader;
     beforeEach(() => {
       fileReader = {
-        readAsDataURL: jest.fn()
+        readAsDataURL: jest.fn(),
       };
 
       global.FileReader = () => fileReader;
@@ -62,7 +60,7 @@ describe('insert image handler', () => {
       fileReader.onload();
       expect(change.setNodeByKey).toBeCalledWith(block.key, expect.anything());
       expect(change.setNodeByKey.mock.calls[0][1]).toMatchData({
-        src: 'dataURL'
+        src: 'dataURL',
       });
       expect(onChange).toBeCalledWith(change);
     });
@@ -74,7 +72,7 @@ describe('insert image handler', () => {
       expect(change.setNodeByKey).toBeCalledWith(block.key, expect.anything());
 
       expect(change.setNodeByKey.mock.calls[0][1].data.toJS()).toMatchObject({
-        percent: 40
+        percent: 40,
       });
     });
   });
@@ -88,7 +86,7 @@ describe('insert image handler', () => {
       expect(change.setNodeByKey.mock.calls[0][1].data.toJS()).toMatchObject({
         src: 'src',
         loaded: true,
-        percent: 100
+        percent: 100,
       });
     });
   });

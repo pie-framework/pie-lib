@@ -9,15 +9,15 @@ import isEqual from 'lodash/isEqual';
 import { ActionCreators } from 'redux-undo';
 import GraphWithControls from '../graph-with-controls';
 
-const mapStateToProps = s => ({
-  marks: s.marks.present
+const mapStateToProps = (s) => ({
+  marks: s.marks.present,
 });
 
-const mapDispatchToProps = dispatch => ({
-  onChangeMarks: m => dispatch(changeMarks(m)),
+const mapDispatchToProps = (dispatch) => ({
+  onChangeMarks: (m) => dispatch(changeMarks(m)),
   onUndo: () => dispatch(ActionCreators.undo()),
   onRedo: () => dispatch(ActionCreators.redo()),
-  onReset: () => dispatch(changeMarks([]))
+  onReset: () => dispatch(changeMarks([])),
 });
 
 export const GraphContainer = connect(mapStateToProps, mapDispatchToProps)(GraphWithControls);
@@ -29,7 +29,7 @@ export const GraphContainer = connect(mapStateToProps, mapDispatchToProps)(Graph
 class Root extends React.Component {
   static propTypes = {
     onChangeMarks: PropTypes.func,
-    marks: PropTypes.array
+    marks: PropTypes.array,
   };
 
   constructor(props) {
@@ -53,7 +53,7 @@ class Root extends React.Component {
   render() {
     // eslint-disable-next-line no-unused-vars
     const { onChangeMarks, marks, ...rest } = this.props;
-    const correctnessSet = marks && marks.find(m => m.correctness);
+    const correctnessSet = marks && marks.find((m) => m.correctness);
 
     if (correctnessSet) {
       return <GraphWithControls {...rest} marks={marks} disabled={correctnessSet} />;

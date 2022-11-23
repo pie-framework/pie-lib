@@ -6,13 +6,13 @@ import { utils } from '@pie-lib/plot';
 
 describe('Line', () => {
   let w;
-  const wrapper = extras => {
+  const wrapper = (extras) => {
     const defaults = {
       classes: {},
       className: 'className',
       graphProps: getGraphProps(),
       from: utils.xy(0, 0),
-      to: utils.xy(1, 1)
+      to: utils.xy(1, 1),
     };
     const props = { ...defaults, ...extras };
     return shallow(<Line {...props} />);

@@ -8,8 +8,8 @@ describe('enabled', () => {
     });
   };
 
-  const config = v => ({ partialScoring: v });
-  const env = v => ({ partialScoring: v });
+  const config = (v) => ({ partialScoring: v });
+  const env = (v) => ({ partialScoring: v });
 
   assertEnabled(config(undefined), env(undefined), true);
   assertEnabled(config(undefined), env(true), true);

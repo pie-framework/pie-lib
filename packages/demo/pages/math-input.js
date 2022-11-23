@@ -22,7 +22,7 @@ class Demo extends React.Component {
       labelWidth: 0,
       inputOne: '\\frac{1}{3}',
       latex1: '\\text{$}',
-      latex2: '\\\\\\\\text{$}'
+      latex2: '\\\\\\\\text{$}',
     };
     this.onChange = this.onChange.bind(this);
   }
@@ -51,7 +51,7 @@ class Demo extends React.Component {
     this.setState({ mounted: true });
   }
 
-  changeEditorType = event => {
+  changeEditorType = (event) => {
     this.setState({ editorType: event.target.value });
   };
 
@@ -76,7 +76,7 @@ class Demo extends React.Component {
           <br />
           <FormControl variant="outlined">
             <InputLabel
-              ref={ref => {
+              ref={(ref) => {
                 this.InputLabelRef = ref;
               }}
               htmlFor="outlined-age-simple"
@@ -105,7 +105,7 @@ class Demo extends React.Component {
           <mq.Input
             keyset={keyset}
             latex={this.state.inputOne}
-            onChange={latex => this.setState({ inputOne: latex })}
+            onChange={(latex) => this.setState({ inputOne: latex })}
           />
           <pre className={classes.pre}>{this.state.inputOne}</pre>
           <br />
@@ -115,14 +115,10 @@ class Demo extends React.Component {
           <mq.Input
             keyset={keyset}
             latex={this.state.latex1}
-            onChange={latex => this.setState({ latex1: latex })}
+            onChange={(latex) => this.setState({ latex1: latex })}
           />{' '}
           - extra slashes:
-          <mq.Input
-            keyset={keyset}
-            latex={this.state.latex2}
-            onChange={latex => this.setState({ latex2: latex })}
-          />
+          <mq.Input keyset={keyset} latex={this.state.latex2} onChange={(latex) => this.setState({ latex2: latex })} />
         </Section>
 
         <Section name="Custom keys (E261001)">
@@ -130,20 +126,15 @@ class Demo extends React.Component {
           <mq.Input
             displayMode={'block-on-focus'}
             latex={this.state.inputTwo}
-            onChange={latex => this.setState({ inputTwo: latex })}
+            onChange={(latex) => this.setState({ inputTwo: latex })}
             keyset={[
               [
                 { label: 'a', write: 'a' },
                 { label: 'b', write: 'b' },
                 { label: 'c', write: 'c' },
-                { label: 'y', write: 'y' }
+                { label: 'y', write: 'y' },
               ],
-              [
-                keys.misc.parenthesis,
-                keys.fractions.xBlankBlank,
-                keys.exponent.xToPowerOfN,
-                keys.exponent.squareRoot
-              ]
+              [keys.misc.parenthesis, keys.fractions.xBlankBlank, keys.exponent.xToPowerOfN, keys.exponent.squareRoot],
             ]}
           />
           <pre className={classes.pre}>{this.state.inputTwo}</pre>
@@ -155,7 +146,7 @@ class Demo extends React.Component {
 
         <Section name="Horizontal Keypad (for backward compatibility) w/ 4.x">
           <HorizontalKeypad
-            onClick={d => {
+            onClick={(d) => {
               console.log('d:', d);
             }}
           />
@@ -167,24 +158,24 @@ class Demo extends React.Component {
   }
 }
 
-const Styled = withStyles(theme => ({
+const Styled = withStyles((theme) => ({
   oldK: {
-    width: '200px'
+    width: '200px',
   },
   pre: {
     padding: theme.spacing.unit,
-    backgroundColor: grey[300]
+    backgroundColor: grey[300],
   },
   iconsHolder: {
     display: 'flex',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
   },
   iconAndText: {
-    padding: theme.spacing.unit
+    padding: theme.spacing.unit,
   },
   icon: {
-    width: '50px;'
-  }
+    width: '50px;',
+  },
 }))(Demo);
 
 export default withRoot(Styled);

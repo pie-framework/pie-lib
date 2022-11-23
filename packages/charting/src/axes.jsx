@@ -14,17 +14,17 @@ export class TickComponent extends React.Component {
     super(props);
     this.state = {
       dialog: {
-        open: false
-      }
+        open: false,
+      },
     };
   }
 
   handleAlertDialog = (open, callback) =>
     this.setState(
       {
-        dialog: { open }
+        dialog: { open },
       },
-      callback
+      callback,
     );
 
   changeCategory = (index, newLabel) => {
@@ -34,7 +34,7 @@ export class TickComponent extends React.Component {
     onChangeCategory(index, { ...category, label: newLabel });
   };
 
-  deleteCategory = index => {
+  deleteCategory = (index) => {
     const { categories, onChange } = this.props;
 
     if (index >= 0 && categories[index]) {
@@ -51,15 +51,11 @@ export class TickComponent extends React.Component {
         dialog: {
           open: true,
           title: 'Warning',
-          text:
-            'This will remove the correct answer value that has been defined for this category.',
+          text: 'This will remove the correct answer value that has been defined for this category.',
           onConfirm: () =>
-            this.handleAlertDialog(
-              false,
-              onChangeCategory(index, { ...category, interactive: !category.interactive })
-            ),
-          onClose: () => this.handleAlertDialog(false)
-        }
+            this.handleAlertDialog(false, onChangeCategory(index, { ...category, interactive: !category.interactive })),
+          onClose: () => this.handleAlertDialog(false),
+        },
       });
     } else {
       onChangeCategory(index, { ...category, interactive: !category.interactive });
@@ -75,15 +71,14 @@ export class TickComponent extends React.Component {
         dialog: {
           open: true,
           title: 'Warning',
-          text:
-            'This will remove the correct answer category name that has been defined for this category.',
+          text: 'This will remove the correct answer category name that has been defined for this category.',
           onConfirm: () =>
             this.handleAlertDialog(
               false,
-              onChangeCategory(index, { ...category, editable: !category.editable || false })
+              onChangeCategory(index, { ...category, editable: !category.editable || false }),
             ),
-          onClose: () => this.handleAlertDialog(false)
-        }
+          onClose: () => this.handleAlertDialog(false),
+        },
       });
     } else {
       onChangeCategory(index, { ...category, editable: !category.editable || false });
@@ -104,7 +99,7 @@ export class TickComponent extends React.Component {
       x,
       y,
       formattedValue,
-      error
+      error,
     } = this.props;
 
     if (!formattedValue) {
@@ -114,8 +109,7 @@ export class TickComponent extends React.Component {
     const { dialog } = this.state;
     const index = parseInt(formattedValue.split('-')[0], 10);
     const category = categories[index];
-    const { deletable, editable, interactive, label, correctness, autoFocus, inDefineChart } =
-      category || {};
+    const { deletable, editable, interactive, label, correctness, autoFocus, inDefineChart } = category || {};
     const barX = xBand(bandKey({ label }, index));
     const longestCategory = (categories || []).reduce((a, b) => {
       const lengthA = a && a.label ? a.label.length : 0;
@@ -144,7 +138,7 @@ export class TickComponent extends React.Component {
                 wordBreak: 'break-word',
                 overflow: 'visible',
                 maxWidth: barWidth,
-                display: 'block'
+                display: 'block',
               }}
             >
               {longestLabel}
@@ -152,11 +146,11 @@ export class TickComponent extends React.Component {
           )}
           <MarkLabel
             autoFocus={inDefineChart ? defineChart && autoFocus : autoFocus}
-            inputRef={r => (this.input = r)}
+            inputRef={(r) => (this.input = r)}
             disabled={!defineChart && !editable}
             mark={category}
             graphProps={graphProps}
-            onChange={newLabel => this.changeCategory(index, newLabel)}
+            onChange={(newLabel) => this.changeCategory(index, newLabel)}
             barWidth={barWidth}
             rotate={rotate}
             correctness={correctness}
@@ -169,14 +163,7 @@ export class TickComponent extends React.Component {
           </text>
         )}
         {deletable && !correctness && (
-          <line
-            x1={x}
-            y1={0}
-            x2={x}
-            y2={y + 4 + top}
-            className={classes.dottedLine}
-            strokeDasharray="4 2"
-          />
+          <line x1={x} y1={0} x2={x} y2={y + 4 + top} className={classes.dottedLine} strokeDasharray="4 2" />
         )}
         {deletable && !correctness && (
           <svg
@@ -195,7 +182,7 @@ export class TickComponent extends React.Component {
           <svg
             x={-55}
             style={{
-              overflow: 'visible'
+              overflow: 'visible',
             }}
           >
             <text
@@ -207,7 +194,7 @@ export class TickComponent extends React.Component {
                 pointerEvents: 'none',
                 wordBreak: 'break-word',
                 maxWidth: barWidth,
-                display: 'inline-block'
+                display: 'inline-block',
               }}
             >
               <tspan x="0" dy=".6em">
@@ -228,7 +215,7 @@ export class TickComponent extends React.Component {
                 pointerEvents: 'none',
                 wordBreak: 'break-word',
                 maxWidth: barWidth,
-                display: 'inline-block'
+                display: 'inline-block',
               }}
             >
               <tspan x="0" dy=".6em">
@@ -253,7 +240,7 @@ export class TickComponent extends React.Component {
             <Checkbox
               style={{ position: 'fixed' }}
               checked={interactive}
-              onChange={e => this.changeInteractive(index, e.target.checked)}
+              onChange={(e) => this.changeInteractive(index, e.target.checked)}
             />
           </foreignObject>
         )}
@@ -268,7 +255,7 @@ export class TickComponent extends React.Component {
             <Checkbox
               style={{ position: 'fixed' }}
               checked={editable}
-              onChange={e => this.changeEditable(index, e.target.checked)}
+              onChange={(e) => this.changeEditable(index, e.target.checked)}
             />
           </foreignObject>
         )}
@@ -305,7 +292,7 @@ TickComponent.propTypes = {
   formattedValue: PropTypes.string,
   onChangeCategory: PropTypes.func,
   onChange: PropTypes.func,
-  classes: PropTypes.object
+  classes: PropTypes.object,
 };
 
 export class RawChartAxes extends React.Component {
@@ -319,15 +306,13 @@ export class RawChartAxes extends React.Component {
     onChange: PropTypes.func,
     onChangeCategory: PropTypes.func,
     top: PropTypes.number,
-    theme: PropTypes.object
+    theme: PropTypes.object,
   };
 
   state = { height: 0 };
 
   componentDidMount() {
-    const height = document.getElementById('hiddenLabel')
-      ? document.getElementById('hiddenLabel').offsetHeight
-      : 0;
+    const height = document.getElementById('hiddenLabel') ? document.getElementById('hiddenLabel').offsetHeight : 0;
 
     this.setState({ height });
   }
@@ -344,15 +329,14 @@ export class RawChartAxes extends React.Component {
       top,
       defineChart,
       theme,
-      error
+      error,
     } = this.props;
 
     const { axis, axisLine, tick } = classes;
     const { scale = {}, range = {}, domain = {}, size = {} } = graphProps || {};
     const { height } = this.state;
 
-    const bottomScale =
-      xBand && typeof xBand.rangeRound === 'function' && xBand.rangeRound([0, size.width]);
+    const bottomScale = xBand && typeof xBand.rangeRound === 'function' && xBand.rangeRound([0, size.width]);
 
     const bandWidth = xBand && typeof xBand.bandwidth === 'function' && xBand.bandwidth();
     // for chartType "line", bandWidth will be 0, so we have to calculate it
@@ -362,12 +346,12 @@ export class RawChartAxes extends React.Component {
     const fontSize = theme && theme.typography ? theme.typography.fontSize : 14;
     const rotate = getRotateAngle(fontSize, height);
 
-    const getTickLabelProps = value => ({
+    const getTickLabelProps = (value) => ({
       dy: 4,
-      dx: -10 - (value.toLocaleString().length || 1) * 5
+      dx: -10 - (value.toLocaleString().length || 1) * 5,
     });
 
-    const getTickComponent = props => {
+    const getTickComponent = (props) => {
       const properties = {
         classes,
         categories,
@@ -383,7 +367,7 @@ export class RawChartAxes extends React.Component {
         graphProps,
         x: props.x,
         y: props.y,
-        formattedValue: props.formattedValue
+        formattedValue: props.formattedValue,
       };
 
       return <TickComponent {...properties} />;
@@ -398,7 +382,7 @@ export class RawChartAxes extends React.Component {
             axisLineClassName={axisLine}
             tickLength={10}
             tickClassName={tick}
-            tickFormat={value => value}
+            tickFormat={(value) => value}
             tickValues={rowTickValues}
             tickLabelProps={getTickLabelProps}
           />
@@ -410,7 +394,7 @@ export class RawChartAxes extends React.Component {
           labelProps={{ y: 60 + top }}
           top={scale.y && scale.y(range.min)}
           textLabelProps={() => ({ textAnchor: 'middle' })}
-          tickFormat={count => count}
+          tickFormat={(count) => count}
           tickComponent={getTickComponent}
         />
       </React.Fragment>
@@ -419,35 +403,35 @@ export class RawChartAxes extends React.Component {
 }
 
 const ChartAxes = withStyles(
-  theme => ({
+  (theme) => ({
     axis: {
       stroke: color.primaryDark(),
-      strokeWidth: 2
+      strokeWidth: 2,
     },
     axisLine: {
       stroke: color.primaryDark(),
-      strokeWidth: 2
+      strokeWidth: 2,
     },
     tick: {
       '& > line': {
         stroke: color.primaryDark(),
-        strokeWidth: 2
+        strokeWidth: 2,
       },
       fill: color.primaryDark(),
       fontFamily: theme.typography.body1.fontFamily,
       fontSize: theme.typography.fontSize,
-      textAnchor: 'middle'
+      textAnchor: 'middle',
     },
     dottedLine: {
       stroke: color.primaryLight(),
-      opacity: 0.2
+      opacity: 0.2,
     },
     error: {
       fontSize: '12px',
-      fill: 'red'
-    }
+      fill: 'red',
+    },
   }),
-  { withTheme: true }
+  { withTheme: true },
 )(RawChartAxes);
 
 export default ChartAxes;

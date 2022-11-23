@@ -23,10 +23,10 @@ const h1 = '<h1>this is a h1</h1>';
 const arr = [foo, bar, math, notSelectableOne, div, notSelectableTwo, h1];
 export const text = arr.join(' ');
 
-export const tokens = [foo, bar, math, div, h1].map(s => {
+export const tokens = [foo, bar, math, div, h1].map((s) => {
   const start = text.indexOf(s);
   return {
     start,
-    end: start + s.length
+    end: start + s.length,
   };
 });

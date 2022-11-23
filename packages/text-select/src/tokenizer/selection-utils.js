@@ -19,7 +19,7 @@ export const clearSelection = () => {
   }
 };
 
-export const getCaretCharacterOffsetWithin = element => {
+export const getCaretCharacterOffsetWithin = (element) => {
   var caretOffset = 0;
   var doc = element.ownerDocument || element.document;
   var win = doc.defaultView || doc.parentWindow;

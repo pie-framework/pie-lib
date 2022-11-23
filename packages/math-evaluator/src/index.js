@@ -6,9 +6,9 @@ const decimalCommaRegex = /,/g;
 const decimalRegex = /\.|,/g;
 const decimalWithThousandSeparatorNumberRegex = /^(?!0+\.00)(?=.{1,9}(\.|$))(?!0(?!\.))\d{1,3}(,\d{3})*(\.\d+)?$/;
 
-const rationalizeAllPossibleSubNodes = expression => rationalize(mathjs.parse(expression));
-const rationalize = tree => {
-  const transformedTree = tree.transform(node => {
+const rationalizeAllPossibleSubNodes = (expression) => rationalize(mathjs.parse(expression));
+const rationalize = (tree) => {
+  const transformedTree = tree.transform((node) => {
     try {
       const rationalizedNode = mathjs.rationalize(node);
       return rationalizedNode;
@@ -40,7 +40,7 @@ const latexToAstOpts = {
     }
     return 0;
   },
-  unknownCommandBehavior: 'passthrough'
+  unknownCommandBehavior: 'passthrough',
 };
 
 const astToTextOpts = {
@@ -50,8 +50,8 @@ const astToTextOpts = {
     },
     '%': function(operands) {
       return `percent(${operands[0]})`;
-    }
-  }
+    },
+  },
 };
 
 export const latexToText = (latex, extraOtps = {}) => {
@@ -79,7 +79,7 @@ function shouldRationalizeEntireTree(tree) {
 
   // we need to iterate the entire tree to check for some conditions that might make rationalization impossible
   try {
-    tree.traverse(node => {
+    tree.traverse((node) => {
       // if we have a variable as an exponent for power operation, we should not rationalize
       // try to see if there are power operations with variable exponents
       if (node.type === 'OperatorNode' && node.fn === 'pow') {
@@ -112,10 +112,10 @@ function containsDecimal(expression = '') {
 }
 const SIMPLIFY_RULES = [
   { l: 'n1^(1/n2)', r: 'nthRoot(n1, n2)' },
-  { l: 'sqrt(n1)', r: 'nthRoot(n1, 2)' }
+  { l: 'sqrt(n1)', r: 'nthRoot(n1, 2)' },
 ];
 
-const simplify = v => mathjs.simplify(v, SIMPLIFY_RULES.concat(mathjs.simplify.rules)); //.concat(SIMPLIFY_RULES));
+const simplify = (v) => mathjs.simplify(v, SIMPLIFY_RULES.concat(mathjs.simplify.rules)); //.concat(SIMPLIFY_RULES));
 
 const areValuesEqual = (valueOne, valueTwo, options = {}) => {
   const {
@@ -123,7 +123,7 @@ const areValuesEqual = (valueOne, valueTwo, options = {}) => {
     // regardless of mathematical correctness
     allowDecimals,
     isLatex, // if the passed in values are latex, they need to be escaped
-    inverse // returns inverse for the comparison result
+    inverse, // returns inverse for the comparison result
   } = options;
 
   let valueOneToUse = valueOne;
@@ -146,12 +146,8 @@ const areValuesEqual = (valueOne, valueTwo, options = {}) => {
   const preparedValueOne = prepareExpression(valueOneToUse, isLatex, allowDecimals);
   const preparedValueTwo = prepareExpression(valueTwoToUse, isLatex, allowDecimals);
 
-  let one = shouldRationalizeEntireTree(preparedValueOne)
-    ? mathjs.rationalize(preparedValueOne)
-    : preparedValueOne;
-  let two = shouldRationalizeEntireTree(preparedValueTwo)
-    ? mathjs.rationalize(preparedValueTwo)
-    : preparedValueTwo;
+  let one = shouldRationalizeEntireTree(preparedValueOne) ? mathjs.rationalize(preparedValueOne) : preparedValueOne;
+  let two = shouldRationalizeEntireTree(preparedValueTwo) ? mathjs.rationalize(preparedValueTwo) : preparedValueTwo;
 
   one = simplify(one);
   two = simplify(two);

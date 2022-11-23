@@ -1,7 +1,4 @@
-import {
-  clearSelection,
-  getCaretCharacterOffsetWithin
-} from '../selection-utils';
+import { clearSelection, getCaretCharacterOffsetWithin } from '../selection-utils';
 
 describe('selection-utils', () => {
   let selection;
@@ -10,7 +7,7 @@ describe('selection-utils', () => {
     selection = {
       removeAllRanges: jest.fn(),
       addRange: jest.fn(),
-      getRangeAt: jest.fn().mockReturnValue(range)
+      getRangeAt: jest.fn().mockReturnValue(range),
     };
     global.document.getSelection = jest.fn().mockReturnValue(selection);
     global.document.createRange = jest.fn();

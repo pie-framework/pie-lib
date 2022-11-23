@@ -14,8 +14,8 @@ const TargetContainer = withStyles(() => ({
     border: '1px solid black',
     height: '500px',
     marginTop: '40px',
-    width: '500px'
-  }
+    width: '500px',
+  },
 }))(({ classes, connectDropTarget, val }) => {
   return connectDropTarget(<div className={classes.container}>{val}</div>);
 });
@@ -27,18 +27,18 @@ const tileTarget = {
     props.onDrop(item.children);
 
     return {
-      dropped: true
+      dropped: true,
     };
   },
   canDrop() {
     return true;
-  }
+  },
 };
 
 const DropContainer = DropTarget(DRAG_TYPE, tileTarget, (connect, monitor) => ({
   connectDropTarget: connect.dropTarget(),
   isOver: monitor.isOver(),
-  dragItem: monitor.getItem()
+  dragItem: monitor.getItem(),
 }))(TargetContainer);
 
 export class Wrapper extends React.Component {
@@ -46,13 +46,13 @@ export class Wrapper extends React.Component {
     super(props);
     this.state = {
       toggled: false,
-      show: true
+      show: true,
     };
   }
 
-  onDrop = children => {
+  onDrop = (children) => {
     this.setState({
-      containerVal: children
+      containerVal: children,
     });
   };
 
@@ -114,16 +114,16 @@ export class Wrapper extends React.Component {
   }
 }
 
-const StyledWrapper = withStyles(theme => ({
+const StyledWrapper = withStyles((theme) => ({
   root: {
-    backgroundColor: 'blue'
+    backgroundColor: 'blue',
   },
   grid: {
-    marginTop: theme.spacing.unit
+    marginTop: theme.spacing.unit,
   },
   redLabel: {
-    '--correct-answer-toggle-label-color': 'red'
-  }
+    '--correct-answer-toggle-label-color': 'red',
+  },
 }))(Wrapper);
 
 const DndWrapper = withDragContext(StyledWrapper);
