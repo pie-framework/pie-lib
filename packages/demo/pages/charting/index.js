@@ -15,12 +15,12 @@ const createCategory = (label, value) => ({
   initial: true,
   interactive: true,
   editable: true,
-  deletable: true
+  deletable: true,
 });
 
 export class ChartDemo extends React.Component {
   static propTypes = {
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
   };
 
   constructor(props) {
@@ -30,15 +30,15 @@ export class ChartDemo extends React.Component {
       settings: {
         size: {
           width: 600,
-          height: 600
-        }
+          height: 600,
+        },
       },
       model: {
         chartType: 'bar',
         title: 'This is a chart!',
         domain: {
           label: 'Fruits',
-          axisLabel: 'X'
+          axisLabel: 'X',
         },
         range: {
           label: 'Amount',
@@ -46,7 +46,7 @@ export class ChartDemo extends React.Component {
           min: 0,
           axisLabel: 'Y',
           step: null,
-          labelStep: null
+          labelStep: null,
         },
         data: [
           { ...createCategory('Apples', 5), interactive: false },
@@ -54,7 +54,7 @@ export class ChartDemo extends React.Component {
           createCategory('Lemons', 0),
           createCategory('Plums', 2),
           createCategory('Peaches', 1),
-          createCategory('Melons', 4)
+          createCategory('Melons', 4),
         ],
         charts: [
           chartTypes.Bar(),
@@ -62,12 +62,12 @@ export class ChartDemo extends React.Component {
           chartTypes.LineDot(),
           chartTypes.LineCross(),
           chartTypes.DotPlot(),
-          chartTypes.LinePlot()
+          chartTypes.LinePlot(),
         ],
         editCategoryEnabled: true,
         addCategoryEnabled: true,
-        categoryDefaultLabel: 'Category'
-      }
+        categoryDefaultLabel: 'Category',
+      },
     };
   }
 
@@ -75,7 +75,7 @@ export class ChartDemo extends React.Component {
     this.setState({ mounted: true });
   }
 
-  change = model => {
+  change = (model) => {
     log('[change] model:', model);
     this.setState({ model });
   };
@@ -84,7 +84,7 @@ export class ChartDemo extends React.Component {
     this.setState({ indexTab: tabIndex });
   };
 
-  changeData = data => {
+  changeData = (data) => {
     const model = { ...this.state.model, data };
     this.setState({ model });
   };
@@ -99,7 +99,7 @@ export class ChartDemo extends React.Component {
       <div>
         <div className={classes.demo}>
           <div>
-            <Settings model={settings} onChange={settings => this.setState({ settings })} />
+            <Settings model={settings} onChange={(settings) => this.setState({ settings })} />
             <Options model={model} onChange={this.change} />
           </div>
           <div>
@@ -128,8 +128,8 @@ export class ChartDemo extends React.Component {
 const styles = {
   demo: {
     width: '100%',
-    display: 'flex'
-  }
+    display: 'flex',
+  },
 };
 
 export const Styled = withStyles(styles)(ChartDemo);

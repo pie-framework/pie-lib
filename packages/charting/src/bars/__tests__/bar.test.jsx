@@ -4,16 +4,16 @@ import Bar, { Bar as BarChart } from '../bar';
 import { graphProps } from './utils';
 
 describe('BarChart', () => {
-  const wrapper = extras => {
+  const wrapper = (extras) => {
     const defaults = {
       classes: {},
       className: 'className',
       graphProps: graphProps(),
       xBand: () => {
         return {
-          bandwidth: () => {}
+          bandwidth: () => {},
         };
-      }
+      },
     };
     const props = { ...defaults, ...extras };
     return shallow(<BarChart {...props} />);
@@ -22,8 +22,7 @@ describe('BarChart', () => {
   describe('snapshot', () => {
     it('renders', () => expect(wrapper()).toMatchSnapshot());
 
-    it('renders without graphProps', () =>
-      expect(wrapper({ graphProps: undefined })).toMatchSnapshot());
+    it('renders without graphProps', () => expect(wrapper({ graphProps: undefined })).toMatchSnapshot());
   });
 
   describe('component', () => {
@@ -32,7 +31,7 @@ describe('BarChart', () => {
     expect(chart).toEqual({
       type: 'bar',
       Component: BarChart,
-      name: 'Bar'
+      name: 'Bar',
     });
   });
 });

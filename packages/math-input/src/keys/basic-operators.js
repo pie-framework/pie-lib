@@ -5,28 +5,28 @@ const set = mkSet('operators');
 
 export const equals = set({
   write: '=',
-  label: '='
+  label: '=',
 });
 
 export const plus = set({
   write: '+',
-  label: '+'
+  label: '+',
 });
 
 export const minus = set({
   write: '−',
-  label: '−'
+  label: '−',
 });
 
 export const divide = set({
   name: 'divide',
   label: DIVIDE,
   command: '\\divide',
-  otherNotation: '\\div'
+  otherNotation: '\\div',
 });
 
 export const multiply = set({
   name: 'multiply',
   label: MULTIPLY,
-  command: '\\times'
+  command: '\\times',
 });

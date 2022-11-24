@@ -7,26 +7,29 @@ import classNames from 'classnames';
 import { dataToXBand } from '../utils';
 import RawLine from './common/line';
 
-const DraggableComponent = props => {
+const DraggableComponent = (props) => {
   const { classes = {}, className, scale, x, y, r, correctness, ...rest } = props;
 
   return (
-    <Group
-      {...rest}
-      className={classNames(className, classes.line, correctness && correctness.value)}
-    >
+    <Group {...rest} className={classNames(className, classes.line, correctness && correctness.value)}>
       <LinePath
-        data={[{ x: scale.x(x) - r, y: scale.y(y) + r }, { x: scale.x(x) + r, y: scale.y(y) - r }]}
+        data={[
+          { x: scale.x(x) - r, y: scale.y(y) + r },
+          { x: scale.x(x) + r, y: scale.y(y) - r },
+        ]}
         key={`point-${x}-${y}-1`}
-        x={d => d.x}
-        y={d => d.y}
+        x={(d) => d.x}
+        y={(d) => d.y}
         strokeWidth={5}
       />
       <LinePath
-        data={[{ x: scale.x(x) - r, y: scale.y(y) - r }, { x: scale.x(x) + r, y: scale.y(y) + r }]}
+        data={[
+          { x: scale.x(x) - r, y: scale.y(y) - r },
+          { x: scale.x(x) + r, y: scale.y(y) + r },
+        ]}
         key={`point-${x}-${y}-2`}
-        x={d => d.x}
-        y={d => d.y}
+        x={(d) => d.x}
+        y={(d) => d.y}
         strokeWidth={5}
       />
     </Group>
@@ -42,15 +45,15 @@ DraggableComponent.propTypes = {
   classes: PropTypes.object,
   correctness: PropTypes.shape({
     value: PropTypes.string,
-    label: PropTypes.string
-  })
+    label: PropTypes.string,
+  }),
 };
 
 export class LineCross extends React.Component {
   static propTypes = {
     data: PropTypes.array,
     onChange: PropTypes.func,
-    graphProps: types.GraphPropsType.isRequired
+    graphProps: types.GraphPropsType.isRequired,
   };
 
   render() {
@@ -66,5 +69,5 @@ export class LineCross extends React.Component {
 export default () => ({
   type: 'lineCross',
   Component: LineCross,
-  name: 'Line Cross'
+  name: 'Line Cross',
 });

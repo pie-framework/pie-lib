@@ -4,7 +4,7 @@ const { join, resolve, basename } = require('path');
 const { writeJsonSync } = require('fs-extra');
 const pkgs = getPackages(resolve(__dirname, '..', 'packages'));
 
-pkgs.forEach(p => {
+pkgs.forEach((p) => {
   if (p.pkg.scripts) {
     delete p.pkg.scripts.prepack;
   }

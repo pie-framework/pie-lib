@@ -20,7 +20,7 @@ describe('CorrectAnswerToggle', () => {
         toggled={toggled}
         classes={{
           root: 'root',
-          label: 'label'
+          label: 'label',
         }}
         onToggle={onToggle}
         hideMessage={msgs.hide}
@@ -28,8 +28,8 @@ describe('CorrectAnswerToggle', () => {
         sheet={sheet}
       />,
       {
-        context: {}
-      }
+        context: {},
+      },
     );
   };
 
@@ -39,8 +39,8 @@ describe('CorrectAnswerToggle', () => {
     sheet = {
       classes: {
         root: 'root',
-        label: 'label'
-      }
+        label: 'label',
+      },
     };
     onToggle = jest.fn();
     wrapper = mkWrapper();

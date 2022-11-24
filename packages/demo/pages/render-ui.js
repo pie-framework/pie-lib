@@ -6,11 +6,11 @@ import withRoot from '../src/withRoot';
 import { Typography } from '@material-ui/core';
 const { Correct, Incorrect, PartiallyCorrect, NothingSubmitted } = indicators;
 
-const Section = withStyles(theme => ({
+const Section = withStyles((theme) => ({
   label: {},
   section: {
-    padding: theme.spacing.unit
-  }
+    padding: theme.spacing.unit,
+  },
 }))(({ title, children, classes }) => (
   <div className={classes.section}>
     <h4>{title}</h4>
@@ -18,20 +18,20 @@ const Section = withStyles(theme => ({
   </div>
 ));
 
-const ColorSample = withStyles(theme => ({
+const ColorSample = withStyles((theme) => ({
   colorSample: {
     border: 'solid red 0px',
     paddingBottom: theme.spacing.unit,
-    paddingTop: theme.spacing.unit
+    paddingTop: theme.spacing.unit,
   },
   row: {
-    display: 'flex'
+    display: 'flex',
   },
   colorBox: {
     width: '100px',
     marginRight: theme.spacing.unit,
-    border: 'solid 1px lightgrey'
-  }
+    border: 'solid 1px lightgrey',
+  },
 }))(({ name, classes }) => (
   <div className={classes.colorSample}>
     <Typography variant="h5">{name}</Typography>
@@ -78,26 +78,21 @@ class App extends React.Component {
         </Section>
 
         <Section title="Collapsible">
-          <Collapsible
-            labels={{ visible: 'Hide Content', hidden: 'Show Content' }}
-            className={classes.collapsible}
-          >
+          <Collapsible labels={{ visible: 'Hide Content', hidden: 'Show Content' }} className={classes.collapsible}>
             This is the collapsed content.
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-              dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+              ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+              fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
               mollit anim id est laborum.
             </p>
           </Collapsible>
         </Section>
         <Section title="color">
           <div>
-            This module provides css vars for defining the color in the ui. It is a simple version
-            of the material design color scheme, with a few additions. It allows the ui to be themed
-            by setting the custom properties.
+            This module provides css vars for defining the color in the ui. It is a simple version of the material
+            design color scheme, with a few additions. It allows the ui to be themed by setting the custom properties.
           </div>
           <pre>{'import { color } from "@pie-lib/render-ui";'}</pre>
           <ColorSample name="text" />
@@ -128,20 +123,20 @@ class App extends React.Component {
   }
 }
 
-const StyledApp = withStyles(theme => ({
+const StyledApp = withStyles((theme) => ({
   root: {
-    fontFamily: theme.typography.fontFamily
+    fontFamily: theme.typography.fontFamily,
   },
   flow: {
     display: 'flex',
     alignItems: 'center',
     '& > *': {
-      paddingLeft: '20px'
-    }
+      paddingLeft: '20px',
+    },
   },
   collapsible: {
-    paddingTop: theme.spacing.unit
-  }
+    paddingTop: theme.spacing.unit,
+  },
 }))(App);
 
 export default withRoot(StyledApp);

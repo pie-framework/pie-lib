@@ -8,7 +8,7 @@ const { xy } = utils;
 jest.mock('../index', () => {
   const out = {
     lineBase: jest.fn().mockReturnValue(() => <div />),
-    lineToolComponent: jest.fn().mockReturnValue(() => <div />)
+    lineToolComponent: jest.fn().mockReturnValue(() => <div />),
   };
   return out;
 });
@@ -20,10 +20,10 @@ describe('rootEdgeToToFromWRapper', () => {
   beforeEach(() => {
     Comp = rootEdgeToFromToWrapper(() => <div />);
   });
-  const wrapper = extras => {
+  const wrapper = (extras) => {
     const defaults = {
       mark: { root: xy(1, 1), edge: xy(2, 2) },
-      onChange
+      onChange,
     };
     const props = { ...defaults, ...extras };
     return shallow(<Comp {...props} />);
@@ -42,10 +42,7 @@ describe('rootEdgeToToFromWRapper', () => {
   it('calls onChange with root edge ', () => {
     w = wrapper();
     w.props().onChange({ from: xy(1, 1), to: xy(2, 2) }, { from: xy(3, 3), to: xy(4, 4) });
-    expect(onChange).toHaveBeenCalledWith(
-      { root: xy(1, 1), edge: xy(2, 2) },
-      { root: xy(3, 3), edge: xy(4, 4) }
-    );
+    expect(onChange).toHaveBeenCalledWith({ root: xy(1, 1), edge: xy(2, 2) }, { root: xy(3, 3), edge: xy(4, 4) });
   });
 });
 describe('rootEdgeComponent', () => {
@@ -61,7 +58,7 @@ describe('rootEdgeComponent', () => {
     const defaults = {
       mark,
       graphProps: getGraphProps(),
-      onChange
+      onChange,
     };
 
     const props = { ...defaults, ...extras };

@@ -3,14 +3,14 @@ import Typography from '@material-ui/core/Typography';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 
-const styles = theme => ({
+const styles = (theme) => ({
   formSection: {
     marginTop: theme.spacing.unit * 2,
-    marginBottom: theme.spacing.unit * 2
+    marginBottom: theme.spacing.unit * 2,
   },
   label: {
-    marginBottom: theme.spacing.unit
-  }
+    marginBottom: theme.spacing.unit,
+  },
 });
 
 export default withStyles(styles)(({ className, classes, label, children, labelExtraStyle }) => (

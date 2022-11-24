@@ -14,14 +14,14 @@ const removePopOvers = () => {
   const prevPopOvers = document.querySelectorAll('#mouse-over-popover');
 
   log('[characters:removePopOvers]');
-  prevPopOvers.forEach(s => s.remove());
+  prevPopOvers.forEach((s) => s.remove());
 };
 
 export const removeDialogs = () => {
   const prevDialogs = document.querySelectorAll('.insert-character-dialog');
 
   log('[characters:removeDialogs]');
-  prevDialogs.forEach(s => s.remove());
+  prevDialogs.forEach((s) => s.remove());
   removePopOvers();
 };
 
@@ -60,7 +60,7 @@ const insertDialog = ({ editorDOM, value, callback, opts }) => {
 
       return obj;
     },
-    { rows: configToUse.characters.length, columns: 0 }
+    { rows: configToUse.characters.length, columns: 0 },
   );
 
   let popoverEl;
@@ -91,7 +91,7 @@ const insertDialog = ({ editorDOM, value, callback, opts }) => {
 
         <div style={infoStyle}>{el.unicode}</div>
       </CustomPopper>,
-      popoverEl
+      popoverEl,
     );
 
     document.body.appendChild(newEl);
@@ -99,13 +99,12 @@ const insertDialog = ({ editorDOM, value, callback, opts }) => {
 
   let firstCallMade = false;
 
-  const listener = e => {
+  const listener = (e) => {
     // this will be triggered right after setting it because
     // this toolbar is added on the mousedown event
     // so right after mouseup, the click will be triggered
     if (firstCallMade) {
-      const focusIsInModals =
-        newEl.contains(e.target) || (popoverEl && popoverEl.contains(e.target));
+      const focusIsInModals = newEl.contains(e.target) || (popoverEl && popoverEl.contains(e.target));
       const focusIsInEditor = editorDOM.contains(e.target);
 
       if (!(focusIsInModals || focusIsInEditor)) {
@@ -123,7 +122,7 @@ const insertDialog = ({ editorDOM, value, callback, opts }) => {
     document.body.removeEventListener('click', listener);
   };
 
-  const handleChange = val => {
+  const handleChange = (val) => {
     if (typeof val === 'string') {
       callback(val, true);
     }
@@ -139,7 +138,7 @@ const insertDialog = ({ editorDOM, value, callback, opts }) => {
       additionalKeys={configToUse.characters.reduce((arr, n) => {
         arr = [
           ...arr,
-          ...n.map(k => ({
+          ...n.map((k) => ({
             name: get(k, 'name') || k,
             write: get(k, 'write') || k,
             label: get(k, 'label') || k,
@@ -149,15 +148,15 @@ const insertDialog = ({ editorDOM, value, callback, opts }) => {
               ...(k.extraProps || {}),
               style: {
                 ...(k.extraProps || {}).style,
-                border: '1px solid #000'
-              }
+                border: '1px solid #000',
+              },
             },
             ...(configToUse.hasPreview
               ? {
-                  actions: { onMouseEnter: ev => renderPopOver(ev, k), onMouseLeave: closePopOver }
+                  actions: { onMouseEnter: (ev) => renderPopOver(ev, k), onMouseLeave: closePopOver },
                 }
-              : {})
-          }))
+              : {}),
+          })),
         ];
 
         return arr;
@@ -180,10 +179,7 @@ const insertDialog = ({ editorDOM, value, callback, opts }) => {
       newEl.style.top = `${boundRect.top + Math.abs(bodyRect.top) - newEl.offsetHeight - 10}px`;
       newEl.style.zIndex = 99999;
 
-      const leftValue = `${boundRect.left +
-        Math.abs(bodyRect.left) +
-        cursorItem.offsetWidth +
-        10}px`;
+      const leftValue = `${boundRect.left + Math.abs(bodyRect.left) + cursorItem.offsetWidth + 10}px`;
 
       const rightValue = `${boundRect.x}px`;
 
@@ -214,7 +210,7 @@ const CharacterIcon = ({ letter }) => (
   <div
     style={{
       fontSize: '25px',
-      lineHeight: '15px'
+      lineHeight: '15px',
     }}
   >
     {letter}
@@ -234,9 +230,7 @@ export default function CharactersPlugin(opts) {
           valueToUse = getFocusedValue();
 
           if (char) {
-            const change = valueToUse
-              .change()
-              .insertTextByKey(valueToUse.anchorKey, valueToUse.anchorOffset, char);
+            const change = valueToUse.change().insertTextByKey(valueToUse.anchorKey, valueToUse.anchorOffset, char);
 
             valueToUse = change.value;
             log('[characters:insert]: ', value);
@@ -253,16 +247,16 @@ export default function CharactersPlugin(opts) {
         };
 
         insertDialog({ editorDOM, value: valueToUse, callback, opts });
-      }
+      },
     },
 
     pluginStyles: (node, parentNode, p) => {
       if (p) {
         return {
           position: 'absolute',
-          top: 'initial'
+          top: 'initial',
         };
       }
-    }
+    },
   };
 }

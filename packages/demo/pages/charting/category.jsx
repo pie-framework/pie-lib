@@ -5,14 +5,14 @@ import Nt from './nt';
 import PropTypes from 'prop-types';
 import Switch from '@material-ui/core/Switch';
 
-const styles = theme => ({
+const styles = (theme) => ({
   category: {
     display: 'flex',
-    marginTop: theme.spacing.unit * 2
+    marginTop: theme.spacing.unit * 2,
   },
   ntt: {
-    marginTop: 0
-  }
+    marginTop: 0,
+  },
 });
 
 class RawCategory extends React.Component {
@@ -21,9 +21,9 @@ class RawCategory extends React.Component {
     value: PropTypes.number,
     interactive: PropTypes.boolean,
     onChange: PropTypes.func,
-    classes: PropTypes.object
+    classes: PropTypes.object,
   };
-  changeLabel = event => {
+  changeLabel = (event) => {
     const { onChange, value } = this.props;
     const label = event.target.value;
     onChange(label, value);
@@ -35,12 +35,12 @@ class RawCategory extends React.Component {
     }, 1000);
   };
 
-  changeValue = value => {
+  changeValue = (value) => {
     const { onChange, label } = this.props;
     onChange(label, value);
   };
 
-  changeInteractive = event => {
+  changeInteractive = (event) => {
     const { onChange, label, value } = this.props;
     onChange(label, value, event.target.checked);
   };
@@ -54,7 +54,7 @@ class RawCategory extends React.Component {
           value={label}
           variant="outlined"
           label="Label"
-          inputRef={r => (this.tf = r)}
+          inputRef={(r) => (this.tf = r)}
           onChange={this.changeLabel}
         />
         <Nt value={value} label="Value" onChange={this.changeValue} className={classes.ntt} />

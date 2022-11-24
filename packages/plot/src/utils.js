@@ -63,7 +63,7 @@ export function snapTo(min, max, interval, value) {
 
   let rng = mkRange(min, max, interval);
 
-  rng = rng.filter(v => {
+  rng = rng.filter((v) => {
     return Math.abs(value - v) <= interval;
   });
 
@@ -86,18 +86,18 @@ export function buildTickModel(domain, ticks, interval, scaleFn) {
     return {
       value: r,
       major: isMajor,
-      x: scaleFn(r)
+      x: scaleFn(r),
     };
   });
 }
 
-export const polygonToArea = points => {
+export const polygonToArea = (points) => {
   const h = head(points);
   const area = {
     left: h.x,
     top: h.y,
     bottom: h.y,
-    right: h.x
+    right: h.x,
   };
   return tail(points).reduce((a, p) => {
     a.left = Math.min(a.left, p.x);
@@ -121,11 +121,11 @@ export const bounds = (area, domain, range) => {
     left: domain.min - area.left,
     right: Math.abs(area.right - domain.max),
     top: Math.abs(area.top - range.max),
-    bottom: range.min - area.bottom
+    bottom: range.min - area.bottom,
   };
 };
 
-export const point = o => new Point(o.x, o.y);
+export const point = (o) => new Point(o.x, o.y);
 export const getDelta = (from, to) => {
   return point(to).sub(point(from));
 };
@@ -133,14 +133,11 @@ export const getDelta = (from, to) => {
 export const bandKey = (d, index) => `${index}-${d.label || '-'}`;
 
 export const isDomainRangeEqual = (graphProps, nextGraphProps) => {
-  return (
-    isEqual(graphProps.domain, nextGraphProps.domain) &&
-    isEqual(graphProps.range, nextGraphProps.range)
-  );
+  return isEqual(graphProps.domain, nextGraphProps.domain) && isEqual(graphProps.range, nextGraphProps.range);
 };
 
 // findLongestWord is also used in graphing
-export const findLongestWord = label => {
+export const findLongestWord = (label) => {
   let longestWord = (label || '')
     .replace(/<[^>]+>/g, '')
     .split(' ')
@@ -150,7 +147,7 @@ export const findLongestWord = label => {
 };
 
 // amountToIncreaseWidth is also used in graphing
-export const amountToIncreaseWidth = longestWord => {
+export const amountToIncreaseWidth = (longestWord) => {
   if (!longestWord) {
     return 0;
   }

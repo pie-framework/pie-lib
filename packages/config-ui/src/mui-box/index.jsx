@@ -6,7 +6,7 @@ import classNames from 'classnames';
 
 const log = debug('pie-elements:config-ui:mui-box');
 
-const MuiBox = withStyles(theme => {
+const MuiBox = withStyles((theme) => {
   const light = theme.palette.type === 'light';
   const bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
 
@@ -26,10 +26,10 @@ const MuiBox = withStyles(theme => {
         position: 'absolute',
         transition: 'background-color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
         pointerEvents: 'none',
-        backgroundColor: bottomLineColor
+        backgroundColor: bottomLineColor,
       },
       '&:hover:before': {
-        height: '2px'
+        height: '2px',
       },
       '&:after': {
         left: 0,
@@ -41,14 +41,14 @@ const MuiBox = withStyles(theme => {
         transform: 'scaleX(0)',
         transition: 'transform 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms',
         pointerEvents: 'none',
-        backgroundColor: theme.palette.primary[theme.palette.type] //'#304ffe'
-      }
+        backgroundColor: theme.palette.primary[theme.palette.type], //'#304ffe'
+      },
     },
     focused: {
       '&:after': {
-        transform: 'scaleX(1)'
-      }
-    }
+        transform: 'scaleX(1)',
+      },
+    },
   };
 })(({ children, classes, focused }) => {
   const names = classNames(classes.muiBox, focused && classes.focused);
@@ -58,7 +58,7 @@ const MuiBox = withStyles(theme => {
 
 MuiBox.propTypes = {
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
-  focused: PropTypes.bool.isRequired
+  focused: PropTypes.bool.isRequired,
 };
 
 export default MuiBox;

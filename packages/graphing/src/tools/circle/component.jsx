@@ -12,10 +12,10 @@ import MarkLabel from '../../mark-label';
 import isEmpty from 'lodash/isEmpty';
 import { color } from '@pie-lib/render-ui';
 
-const opacityPulsate = opacity => ({
+const opacityPulsate = (opacity) => ({
   '0%': { opacity: '0.0' },
   '50%': { opacity },
-  '100%': { opacity: '0.0' }
+  '100%': { opacity: '0.0' },
 });
 
 const getRadius = (from, outer) => {
@@ -41,14 +41,14 @@ export class RawBaseCircle extends React.Component {
     onClick: PropTypes.func,
     labelNode: PropTypes.object,
     labelModeEnabled: PropTypes.bool,
-    changeMarkProps: PropTypes.func
+    changeMarkProps: PropTypes.func,
   };
 
   static defaultProps = {
-    onClick: () => ({})
+    onClick: () => ({}),
   };
 
-  onChangePoint = point => {
+  onChangePoint = (point) => {
     const { middle, onChange } = this.props;
     const { from, to } = point;
 
@@ -62,7 +62,7 @@ export class RawBaseCircle extends React.Component {
     }
   };
 
-  dragFrom = draggedFrom => {
+  dragFrom = (draggedFrom) => {
     const { from, to } = this.props;
 
     if (from.label) {
@@ -74,7 +74,7 @@ export class RawBaseCircle extends React.Component {
     }
   };
 
-  dragTo = draggedTo => {
+  dragTo = (draggedTo) => {
     const { from, to } = this.props;
 
     if (to.label) {
@@ -86,7 +86,7 @@ export class RawBaseCircle extends React.Component {
     }
   };
 
-  dragCircle = draggedFrom => {
+  dragCircle = (draggedFrom) => {
     const { from, to, onChange, middle } = this.props;
     const diff = point(from).sub(point(draggedFrom));
     const draggedTo = point(to).sub(diff);
@@ -109,11 +109,11 @@ export class RawBaseCircle extends React.Component {
       {
         draggedroot: undefined,
         draggedOuter: undefined,
-        isCircleDrag: false
+        isCircleDrag: false,
       },
       () => {
         onChange(updated);
-      }
+      },
     );
   };
 
@@ -160,7 +160,7 @@ export class RawBaseCircle extends React.Component {
       correctness,
       graphProps,
       labelNode,
-      labelModeEnabled
+      labelModeEnabled,
     } = this.props;
     const common = { onDragStart, onDragStop, graphProps, onClick };
 
@@ -176,39 +176,39 @@ export class RawBaseCircle extends React.Component {
       if (from && from.hasOwnProperty('label')) {
         fromLabelNode = ReactDOM.createPortal(
           <MarkLabel
-            inputRef={r => (this.input.from = r)}
+            inputRef={(r) => (this.input.from = r)}
             disabled={!labelModeEnabled}
             mark={from}
             graphProps={graphProps}
-            onChange={label => this.labelChange({ ...from, label }, 'from')}
+            onChange={(label) => this.labelChange({ ...from, label }, 'from')}
           />,
-          labelNode
+          labelNode,
         );
       }
 
       if (to && to.hasOwnProperty('label')) {
         toLabelNode = ReactDOM.createPortal(
           <MarkLabel
-            inputRef={r => (this.input.to = r)}
+            inputRef={(r) => (this.input.to = r)}
             disabled={!labelModeEnabled}
             mark={to}
             graphProps={graphProps}
-            onChange={label => this.labelChange({ ...to, label }, 'to')}
+            onChange={(label) => this.labelChange({ ...to, label }, 'to')}
           />,
-          labelNode
+          labelNode,
         );
       }
 
       if (middle && middle.hasOwnProperty('label')) {
         circleLabelNode = ReactDOM.createPortal(
           <MarkLabel
-            inputRef={r => (this.input.middle = r)}
+            inputRef={(r) => (this.input.middle = r)}
             disabled={!labelModeEnabled}
             mark={middle}
             graphProps={graphProps}
-            onChange={label => this.labelChange({ ...middle, label }, 'middle')}
+            onChange={(label) => this.labelChange({ ...middle, label }, 'middle')}
           />,
-          labelNode
+          labelNode,
         );
       }
     }
@@ -259,24 +259,24 @@ export class RawBaseCircle extends React.Component {
   }
 }
 
-export const BaseCircle = withStyles(theme => ({
+export const BaseCircle = withStyles((theme) => ({
   outerLine: {
     fill: 'rgb(0,0,0,0)', // TODO hardcoded color
     stroke: color.primaryLight(),
     strokeWidth: 4,
     '&:hover': {
       strokeWidth: 6,
-      stroke: color.primaryDark()
-    }
+      stroke: color.primaryDark(),
+    },
   },
   root: {},
   bgCircleBuilding: {
     stroke: color.secondaryLight(),
     animation: 'opacityPulse 2s ease-out',
     animationIterationCount: 'infinite',
-    opacity: 1
+    opacity: 1,
   },
-  '@keyframes opacityPulse': opacityPulsate('0.3')
+  '@keyframes opacityPulse': opacityPulsate('0.3'),
 }))(RawBaseCircle);
 
 const Component = rootEdgeComponent(BaseCircle);

@@ -14,10 +14,10 @@ const log = debug('@pie-lib:editable-html:plugins:image');
 const removeDialogs = () => {
   const prevDialogs = document.querySelectorAll('.insert-media-dialog');
 
-  prevDialogs.forEach(s => s.remove());
+  prevDialogs.forEach((s) => s.remove());
 };
 
-export const insertDialog = props => {
+export const insertDialog = (props) => {
   const newEl = document.createElement('div');
   const { type, callback, opts, ...rest } = props;
   const initialBodyOverflow = document.body.style.overflow;
@@ -67,8 +67,8 @@ export default function MediaPlugin(type, opts) {
           starts: undefined,
           src: undefined,
           url: undefined,
-          width: undefined
-        }
+          width: undefined,
+        },
       });
 
       const change = value.change().insertInline(inline);
@@ -77,7 +77,7 @@ export default function MediaPlugin(type, opts) {
         type,
         opts,
         callback: (val, data) => {
-          const nodeIsThere = change.value.document.findDescendant(d => d.key === inline.key);
+          const nodeIsThere = change.value.document.findDescendant((d) => d.key === inline.key);
 
           if (nodeIsThere) {
             if (!val) {
@@ -90,10 +90,10 @@ export default function MediaPlugin(type, opts) {
           } else {
             opts.focus();
           }
-        }
+        },
       });
     },
-    supports: node => node.object === 'inline' && node.type === type
+    supports: (node) => node.object === 'inline' && node.type === type,
   };
 
   return {
@@ -116,8 +116,8 @@ export default function MediaPlugin(type, opts) {
           const c = change.setNodeByKey(key, {
             data: {
               ...jsonData,
-              editing: true
-            }
+              editing: true,
+            },
           });
 
           opts.onChange(c, () => {
@@ -130,7 +130,7 @@ export default function MediaPlugin(type, opts) {
                 const { key } = node;
 
                 const nodeIsThere = change.value.document.findDescendant(
-                  d => d.type === type && d.data.get('editing')
+                  (d) => d.type === type && d.data.get('editing'),
                 );
 
                 if (nodeIsThere && val) {
@@ -139,7 +139,7 @@ export default function MediaPlugin(type, opts) {
                 } else {
                   opts.focus();
                 }
-              }
+              },
             });
           });
         };
@@ -186,14 +186,14 @@ export default function MediaPlugin(type, opts) {
         );
       }
     },
-    normalizeNode: node => {
+    normalizeNode: (node) => {
       const textNodeMap = {};
       const updateNodesArray = [];
       let index = 0;
 
       if (node.object !== 'document') return;
 
-      node.findDescendant(d => {
+      node.findDescendant((d) => {
         if (d.object === 'text') {
           textNodeMap[index] = d;
         }
@@ -211,12 +211,12 @@ export default function MediaPlugin(type, opts) {
 
       if (!updateNodesArray.length) return;
 
-      return change => {
+      return (change) => {
         change.withoutNormalization(() => {
-          updateNodesArray.forEach(n => change.insertTextByKey(n.key, 0, ' '));
+          updateNodesArray.forEach((n) => change.insertTextByKey(n.key, 0, ' '));
         });
       };
-    }
+    },
   };
 }
 
@@ -256,8 +256,8 @@ export const serialization = {
         starts,
         title,
         width,
-        url
-      }
+        url,
+      },
     };
     log('return object: ', out);
     return out;
@@ -294,11 +294,11 @@ export const serialization = {
       'data-ends': ends,
       'data-starts': starts,
       'data-title': title,
-      'data-url': url
+      'data-url': url,
     };
     const props = {
       ...style,
-      src
+      src,
     };
 
     if (tag === 'audio') {
@@ -320,5 +320,5 @@ export const serialization = {
         {...props}
       />
     );
-  }
+  },
 };

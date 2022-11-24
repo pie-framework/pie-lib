@@ -18,8 +18,8 @@ class RawDragHandle extends React.Component {
     CustomDraggableComponent: PropTypes.func,
     correctness: PropTypes.shape({
       value: PropTypes.string,
-      label: PropTypes.string
-    })
+      label: PropTypes.string,
+    }),
   };
 
   render() {
@@ -50,27 +50,27 @@ class RawDragHandle extends React.Component {
   }
 }
 
-export const DragHandle = withStyles(theme => ({
+export const DragHandle = withStyles((theme) => ({
   handle: {
     fill: color.secondary(),
     transition: 'fill 200ms linear, height 200ms linear',
     '&:hover': {
-      fill: color.secondaryDark()
+      fill: color.secondaryDark(),
     },
     '&.correct': correct('fill'),
     '&.incorrect': incorrect('fill'),
-    '&.non-interactive': disabled('fill')
+    '&.non-interactive': disabled('fill'),
   },
   line: {
     stroke: color.secondary(),
     transition: 'fill 200ms linear, height 200ms linear',
     '&:hover': {
-      stroke: color.secondaryDark()
+      stroke: color.secondaryDark(),
     },
     '&.non-interactive': disabled('stroke'),
     '&.correct': correct('stroke'),
-    '&.incorrect': incorrect('stroke')
-  }
+    '&.incorrect': incorrect('stroke'),
+  },
 }))(RawDragHandle);
 
 const DraggableHandle = gridDraggable({
@@ -85,9 +85,9 @@ const DraggableHandle = gridDraggable({
     const area = { left: 0, top: props.y, bottom: props.y, right: 0 };
     return utils.bounds(area, domain, range);
   },
-  anchorPoint: props => {
+  anchorPoint: (props) => {
     return { x: props.x, y: props.y };
-  }
+  },
 })(DragHandle);
 
 export default DraggableHandle;

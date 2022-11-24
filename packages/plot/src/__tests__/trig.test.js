@@ -8,14 +8,14 @@ import {
   toDegrees,
   acuteXAngle,
   acuteYAngle,
-  diffEdge
+  diffEdge,
 } from '../trig';
 import { xy } from '../utils';
 import debug from 'debug';
 import { getOpposingSide } from '../../lib/trig';
 const log = debug('pie-lib:plot:trig:test');
 
-const vs = v => {
+const vs = (v) => {
   if (!v) {
     return '';
   }

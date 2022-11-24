@@ -10,19 +10,19 @@ const styles = () => ({
     display: 'inline-flex',
     padding: '2px',
     '& :hover': {
-      color: 'black'
-    }
+      color: 'black',
+    },
   },
   active: {
-    color: 'black'
+    color: 'black',
   },
   disabled: {
     opacity: 0.7,
     cursor: 'not-allowed',
     '& :hover': {
-      color: 'grey'
-    }
-  }
+      color: 'grey',
+    },
+  },
 });
 
 const log = debug('pie-elements:editable-html:raw-button');
@@ -34,14 +34,14 @@ export class RawButton extends React.Component {
     children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
     active: PropTypes.bool,
     disabled: PropTypes.bool,
-    extraStyles: PropTypes.object
+    extraStyles: PropTypes.object,
   };
 
   constructor(props) {
     super(props);
   }
 
-  onClick = e => {
+  onClick = (e) => {
     log('[onClick]');
     e.preventDefault();
     const { onClick } = this.props;
@@ -52,7 +52,7 @@ export class RawButton extends React.Component {
     const { active, classes, children, disabled, extraStyles } = this.props;
     const names = classNames(classes.button, {
       [classes.active]: active,
-      [classes.disabled]: disabled
+      [classes.disabled]: disabled,
     });
 
     return (
@@ -71,14 +71,14 @@ export class RawMarkButton extends React.Component {
     mark: PropTypes.string,
     children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
     classes: PropTypes.object.isRequired,
-    active: PropTypes.bool
+    active: PropTypes.bool,
   };
 
   constructor(props) {
     super(props);
   }
 
-  onToggle = e => {
+  onToggle = (e) => {
     e.preventDefault();
     this.props.onToggle(this.props.mark);
   };

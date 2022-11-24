@@ -11,28 +11,28 @@ const buttonStyles = () => ({
   root: {
     color: color.text(),
     '&:hover': {
-      backgroundColor: color.primary()
-    }
+      backgroundColor: color.primary(),
+    },
   },
   selected: {
     backgroundColor: color.background(),
-    border: `1px solid ${color.secondary()}`
+    border: `1px solid ${color.secondary()}`,
   },
   notSelected: {
     '& span': {
-      color: color.primary()
+      color: color.primary(),
     },
-    backgroundColor: color.background()
+    backgroundColor: color.background(),
   },
   disabled: {
     '& span': {
-      color: color.primary()
+      color: color.primary(),
     },
-    backgroundColor: color.disabled()
-  }
+    backgroundColor: color.disabled(),
+  },
 });
 
-export const MiniButton = withStyles(buttonStyles)(props => {
+export const MiniButton = withStyles(buttonStyles)((props) => {
   const { disabled, classes, className, selected, value, onClick } = props;
 
   return (
@@ -58,7 +58,7 @@ MiniButton.propTypes = {
   disabledClassName: PropTypes.string,
   selected: PropTypes.bool,
   value: PropTypes.string,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
 };
 
 export class ToggleBar extends React.Component {
@@ -70,12 +70,12 @@ export class ToggleBar extends React.Component {
     disabled: PropTypes.bool,
     draggableTools: PropTypes.bool,
     onChange: PropTypes.func,
-    onChangeToolsOrder: PropTypes.func
+    onChangeToolsOrder: PropTypes.func,
   };
 
   static defaultProps = {};
 
-  select = e => this.props.onChange(e.target.textContent);
+  select = (e) => this.props.onChange(e.target.textContent);
 
   moveTool = (dragIndex, hoverIndex) => {
     const { options, onChangeToolsOrder } = this.props;
@@ -123,30 +123,30 @@ export class ToggleBar extends React.Component {
   }
 }
 
-const styles = theme => ({
+const styles = (theme) => ({
   toolsContainer: {
     display: 'flex',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
   },
   button: {
     marginRight: theme.spacing.unit / 2,
     marginBottom: theme.spacing.unit / 2,
     color: color.text(),
-    backgroundColor: color.background()
+    backgroundColor: color.background(),
   },
   under: {
     position: 'absolute',
     top: 0,
     left: 0,
     zIndex: -1,
-    pointerEvents: 'none'
+    pointerEvents: 'none',
   },
   wrapper: {
-    position: 'relative'
+    position: 'relative',
   },
   hidden: {
-    opacity: 0
-  }
+    opacity: 0,
+  },
 });
 
 export default withDragContext(withStyles(styles)(ToggleBar));
@@ -161,7 +161,7 @@ export class Item extends React.Component {
     connectDragSource: PropTypes.func.isRequired,
     connectDragPreview: PropTypes.func.isRequired,
     connectDropTarget: PropTypes.func.isRequired,
-    isDragging: PropTypes.bool
+    isDragging: PropTypes.bool,
   };
 
   static defaultProps = {};
@@ -174,14 +174,12 @@ export class Item extends React.Component {
       connectDropTarget,
       connectDragPreview,
       isDragging,
-      toolRef
+      toolRef,
     } = this.props;
 
     return (
       <div className={classes.wrapper} ref={toolRef}>
-        {connectDragSource(
-          connectDropTarget(<div className={isDragging && classes.hidden}>{children}</div>)
-        )}
+        {connectDragSource(connectDropTarget(<div className={isDragging && classes.hidden}>{children}</div>))}
         {connectDragPreview(<div className={classes.under}>{children}</div>)}
       </div>
     );
@@ -194,9 +192,9 @@ const itemSource = {
   },
   beginDrag(props) {
     return {
-      index: props.index
+      index: props.index,
     };
-  }
+  },
 };
 
 const itemTarget = {
@@ -223,19 +221,19 @@ const itemTarget = {
 
     props.moveTool(dragIndex, hoverIndex);
     monitor.getItem().index = hoverIndex;
-  }
+  },
 };
 
-const collectTarget = connect => ({ connectDropTarget: connect.dropTarget() });
+const collectTarget = (connect) => ({ connectDropTarget: connect.dropTarget() });
 
 const collectSource = (connect, monitor) => ({
   connectDragSource: connect.dragSource(),
   connectDragPreview: connect.dragPreview(),
-  isDragging: monitor.isDragging()
+  isDragging: monitor.isDragging(),
 });
 
 const DragTool = DropTarget(
   DRAG_TYPE,
   itemTarget,
-  collectTarget
+  collectTarget,
 )(DragSource(DRAG_TYPE, itemSource, collectSource)(Item));

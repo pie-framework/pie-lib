@@ -9,7 +9,7 @@ import { thinnerShapesNeeded, getAdjustedGraphLimits } from '../../utils';
 
 const markerId = genUid();
 
-const rayStyles = theme => ({
+const rayStyles = (theme) => ({
   line: styles.line(theme),
   enabledArrow: styles.arrow(theme),
   disabledArrow: styles.disabledArrow(theme),
@@ -17,10 +17,10 @@ const rayStyles = theme => ({
   correct: styles.correct(theme, 'stroke'),
   correctArrow: styles.correct(theme),
   incorrect: styles.incorrect(theme, 'stroke'),
-  incorrectArrow: styles.incorrect(theme)
+  incorrectArrow: styles.incorrect(theme),
 });
 
-export const RayLine = props => {
+export const RayLine = (props) => {
   const { graphProps, from, to, classes, disabled, correctness, className, ...rest } = props;
   const { scale } = graphProps;
   const { domain, range } = getAdjustedGraphLimits(graphProps);
@@ -42,12 +42,7 @@ export const RayLine = props => {
         x2={scale.x(aToB.x)}
         y2={scale.y(aToB.y)}
         {...rest}
-        className={classNames(
-          classes.line,
-          disabled && classes.disabled,
-          classes[correctness],
-          className
-        )}
+        className={classNames(classes.line, disabled && classes.disabled, classes[correctness], className)}
         markerEnd={`url(#${props.markerId || markerId}-${suffix})`}
       />
     </g>
@@ -62,7 +57,7 @@ RayLine.propTypes = {
   graphProps: PropTypes.any,
   from: types.PointType,
   to: types.PointType,
-  markerId: PropTypes.string
+  markerId: PropTypes.string,
 };
 
 const StyledRay = withStyles(rayStyles)(RayLine);

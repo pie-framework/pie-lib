@@ -9,7 +9,7 @@ describe('index', () => {
 
       expect(dropDownMarkup).toEqual({
         markup:
-          '<span data-component="dropdown" data-id="0"></span> foo <span data-component="dropdown" data-id="1"></span>'
+          '<span data-component="dropdown" data-id="0"></span> foo <span data-component="dropdown" data-id="1"></span>',
       });
     });
   });
@@ -28,11 +28,11 @@ describe('index', () => {
                 data: {},
                 isVoid: false,
                 type: 'span',
-                nodes: [{ object: 'text', leaves: [{ text: 'something' }] }]
-              }
-            ]
-          }
-        })
+                nodes: [{ object: 'text', leaves: [{ text: 'something' }] }],
+              },
+            ],
+          },
+        }),
       );
     });
   });

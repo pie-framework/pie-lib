@@ -21,7 +21,7 @@ import { CHTMLWrapperFactory } from 'mathjax-full/js/output/chtml/WrapperFactory
 import { CHTMLmspace } from 'mathjax-full/js/output/chtml/Wrappers/mspace';
 
 const visitor = new SerializedMmlVisitor();
-const toMMl = node => visitor.visitTree(node);
+const toMMl = (node) => visitor.visitTree(node);
 
 const log = debug('pie-lib:math-rendering');
 
@@ -50,7 +50,7 @@ const getGlobal = () => {
  */
 const defaultOpts = () => getGlobal().opts || {};
 
-export const fixMathElement = element => {
+export const fixMathElement = (element) => {
   if (element.dataset.mathHandled) {
     return;
   }
@@ -73,15 +73,15 @@ export const fixMathElement = element => {
 export const fixMathElements = () => {
   const mathElements = document.querySelectorAll('[data-latex]');
 
-  mathElements.forEach(item => fixMathElement(item));
+  mathElements.forEach((item) => fixMathElement(item));
 };
 
 const adjustMathMLStyle = () => {
   const nodes = document.querySelectorAll('math');
-  nodes.forEach(node => node.setAttribute('displaystyle', 'true'));
+  nodes.forEach((node) => node.setAttribute('displaystyle', 'true'));
 };
 
-const bootstrap = opts => {
+const bootstrap = (opts) => {
   if (typeof window === 'undefined') {
     return { Typeset: () => ({}) };
   }
@@ -93,7 +93,7 @@ const bootstrap = opts => {
     console.warn('[math-rendering] using $ is not advisable, please use $$..$$ or \\(...\\)');
   }
 
-  const packages = AllPackages.filter(name => name !== 'bussproofs'); // Bussproofs needs an output jax
+  const packages = AllPackages.filter((name) => name !== 'bussproofs'); // Bussproofs needs an output jax
 
   // The autoload extension predefines all the macros from the extensions that haven't been loaded already
   // so that they automatically load the needed extension when they are first used
@@ -103,7 +103,7 @@ const bootstrap = opts => {
     parallelogram: '\\lower.2em{\\Huge\\unicode{x25B1}}',
     overarc: '\\overparen',
     napprox: '\\not\\approx',
-    longdiv: '\\enclose{longdiv}'
+    longdiv: '\\enclose{longdiv}',
   };
 
   const texConfig = opts.useSingleDollar
@@ -112,13 +112,13 @@ const bootstrap = opts => {
         macros,
         inlineMath: [
           ['$', '$'],
-          ['\\(', '\\)']
+          ['\\(', '\\)'],
         ],
-        processEscapes: true
+        processEscapes: true,
       }
     : {
         packages,
-        macros
+        macros,
       };
 
   const mmlConfig = {
@@ -126,7 +126,7 @@ const bootstrap = opts => {
       // function to process parsing errors
       console.log('error:', node);
       this.error(this.adaptor.textContent(node).replace(/\n.*/g, ''));
-    }
+    },
   };
 
   const fontURL = `https://unpkg.com/mathjax-full@${mathjax.version}/ts/output/chtml/fonts/tex-woff-v2`;
@@ -135,15 +135,15 @@ const bootstrap = opts => {
 
     wrapperFactory: new CHTMLWrapperFactory({
       ...CHTMLWrapperFactory.defaultNodes,
-      ...chtmlNodes
-    })
+      ...chtmlNodes,
+    }),
   };
 
   const mml = new MathML(mmlConfig);
 
   const customMmlFactory = new MmlFactory({
     ...MmlFactory.defaultNodes,
-    ...mmlNodes
+    ...mmlNodes,
   });
 
   const html = mathjax.document(document, {
@@ -158,7 +158,7 @@ const bootstrap = opts => {
     },
 
     InputJax: [new TeX(texConfig), mml],
-    OutputJax: new CHTML(htmlConfig)
+    OutputJax: new CHTML(htmlConfig),
   });
 
   // Note: we must set this *after* mathjax.document (no idea why)
@@ -189,7 +189,7 @@ const bootstrap = opts => {
       }
 
       updatedDocument.clear();
-    }
+    },
   };
 };
 
@@ -228,8 +228,8 @@ CHTMLmspace.styles = {
   'mjx-mspace': {
     display: 'block',
     'text-align': 'center',
-    height: '5px'
-  }
+    height: '5px',
+  },
 };
 
 export default renderMath;

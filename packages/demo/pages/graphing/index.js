@@ -18,7 +18,7 @@ const log = debug('pie-lib:charting:graph-lines-demo');
 
 export class GridDemo extends React.PureComponent {
   static propTypes = {
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
   };
 
   state = {
@@ -28,22 +28,22 @@ export class GridDemo extends React.PureComponent {
         left: true,
         right: true,
         up: true,
-        down: true
+        down: true,
       },
       labels: true,
       graphTitle: false,
       coordinatesOnHover: false,
       size: {
         width: 600,
-        height: 600
-      }
+        height: 600,
+      },
     },
     model: {
       labels: {
         bottom: 'TEST FOR THE LABELS',
         top: 'TEST FOR THE LABELS',
         left: 'TEST FOR THE LABELS',
-        right: 'TEST FOR THE LABELS'
+        right: 'TEST FOR THE LABELS',
       },
       title: 'Title',
       domain: {
@@ -52,7 +52,7 @@ export class GridDemo extends React.PureComponent {
         max: 5.9,
         padding: 0,
         step: 0.25,
-        labelStep: 0.5
+        labelStep: 0.5,
       },
       range: {
         axisLabel: '<em>range</em>',
@@ -60,37 +60,37 @@ export class GridDemo extends React.PureComponent {
         max: 5.1,
         padding: 0,
         step: 0.67,
-        labelStep: 0.67
+        labelStep: 0.67,
       },
       backgroundMarks: backgroundMarks,
-      marks: marks
-    }
+      marks: marks,
+    },
   };
 
   componentDidMount() {
     this.setState({ mounted: true });
   }
 
-  change = model => {
+  change = (model) => {
     log('[change] model:', model);
     this.setState({ model });
   };
 
   changeTab = (event, tabIndex) => this.setState({ indexTab: tabIndex });
 
-  changeMarks = marks => this.setState({ model: { ...this.state.model, marks } });
+  changeMarks = (marks) => this.setState({ model: { ...this.state.model, marks } });
 
-  addMark = mark => {
+  addMark = (mark) => {
     const model = {
       ...this.state.model,
-      marks: this.state.model.marks.concat(mark)
+      marks: this.state.model.marks.concat(mark),
     };
 
     this.setState({ model });
   };
 
-  toggleToolDisplay = tool => {
-    const index = this.state.tools.findIndex(t => t === tool);
+  toggleToolDisplay = (tool) => {
+    const index = this.state.tools.findIndex((t) => t === tool);
 
     if (index < 0) {
       this.setState({ tools: [...this.state.tools, tool] });
@@ -105,10 +105,10 @@ export class GridDemo extends React.PureComponent {
     this.setState({ tools: update });
   };
 
-  setCorrectness = correctness => {
+  setCorrectness = (correctness) => {
     const { model } = this.state;
 
-    const marks = model.marks.map(m => ({ ...m, correctness }));
+    const marks = model.marks.map((m) => ({ ...m, correctness }));
 
     this.setState({ model: { ...model, marks } });
   };
@@ -126,8 +126,8 @@ export class GridDemo extends React.PureComponent {
               label={t}
               control={
                 <Checkbox
-                  checked={!!tools.find(tool => tool === t)}
-                  value={tools.find(tool => tool === t)}
+                  checked={!!tools.find((tool) => tool === t)}
+                  value={tools.find((tool) => tool === t)}
                   onChange={() => this.toggleToolDisplay(t)}
                 />
               }
@@ -167,7 +167,7 @@ export class GridDemo extends React.PureComponent {
                 model={model}
                 settings={settings}
                 onChange={this.change}
-                onSettingsChange={settings => this.setState({ settings })}
+                onSettingsChange={(settings) => this.setState({ settings })}
               />
             )}
             {tabIndex === 1 && <Tab1 marks={model.marks} />}
@@ -208,8 +208,8 @@ export class GridDemo extends React.PureComponent {
 const styles = {
   demo: {
     width: '100%',
-    display: 'flex'
-  }
+    display: 'flex',
+  },
 };
 
 export const Styled = withStyles(styles)(GridDemo);

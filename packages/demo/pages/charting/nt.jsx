@@ -3,14 +3,14 @@ import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import TextField from '@material-ui/core/TextField';
 
-const Nt = withStyles(theme => ({
+const Nt = withStyles((theme) => ({
   nt: {
     marginTop: theme.spacing.unit * 2,
-    paddingRight: theme.spacing.unit
+    paddingRight: theme.spacing.unit,
   },
   thin: {
     // maxWidth: '100px'
-  }
+  },
 }))(({ className, label, value, onChange, classes, variant }) => (
   <TextField
     label={label}
@@ -18,7 +18,7 @@ const Nt = withStyles(theme => ({
     type="number"
     variant="outlined"
     value={value}
-    onChange={e => onChange(parseFloat(e.target.value || 0))}
+    onChange={(e) => onChange(parseFloat(e.target.value || 0))}
   />
 ));
 

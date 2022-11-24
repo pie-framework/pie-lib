@@ -10,7 +10,7 @@ const Checkbox = ({ mini, checked, onChange, value, label, classes }) => (
   <FormControlLabel
     className={classNames(classes.mini)}
     classes={{
-      label: classNames(classes.label, mini && classes.miniLabel)
+      label: classNames(classes.label, mini && classes.miniLabel),
     }}
     control={
       <MuiCheckbox
@@ -30,34 +30,34 @@ Checkbox.propTypes = {
   checked: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string,
-  label: PropTypes.string.isRequired
+  label: PropTypes.string.isRequired,
 };
 
 Checkbox.defaultProps = {
   value: '',
-  mini: false
+  mini: false,
 };
 
-export default withStyles(theme => ({
+export default withStyles((theme) => ({
   label: {
     fontSize: '13px',
     transform: 'translate(-4%, 2%)',
-    color: 'rgba(0,0,0,1.0)'
+    color: 'rgba(0,0,0,1.0)',
   },
   miniCheckbox: {
     margin: 0,
     padding: 0,
     width: theme.spacing.unit * 3,
-    height: theme.spacing.unit * 3
+    height: theme.spacing.unit * 3,
   },
   miniLabel: {
     marginLeft: theme.spacing.unit,
     color: grey[700],
-    fontSize: '11px'
+    fontSize: '11px',
   },
   mini: {
     margin: 0,
     marginLeft: 0,
-    padding: 0
-  }
+    padding: 0,
+  },
 }))(Checkbox);

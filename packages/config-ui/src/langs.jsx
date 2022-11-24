@@ -11,21 +11,21 @@ import debug from 'debug';
 
 const log = debug('pie-elements:config-ui:langs');
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     flexDirection: 'column',
     alignItems: 'start',
     display: 'flex',
     position: 'relative',
     paddingTop: '0px',
-    paddingRight: '0px'
+    paddingRight: '0px',
   },
   formControl: {
-    position: 'initial'
+    position: 'initial',
   },
   inputLabel: {
-    paddingBottom: theme.spacing.unit
-  }
+    paddingBottom: theme.spacing.unit,
+  },
 });
 
 export class RawLangs extends React.Component {
@@ -35,7 +35,7 @@ export class RawLangs extends React.Component {
     selected: PropTypes.string,
     label: PropTypes.string,
     classes: PropTypes.object.isRequired,
-    uid: PropTypes.string
+    uid: PropTypes.string,
   };
 
   constructor(props) {
@@ -43,7 +43,7 @@ export class RawLangs extends React.Component {
     this.uid = props.uid || (Math.random() * 10000).toFixed();
   }
 
-  choose = event => {
+  choose = (event) => {
     log('[choose] event: ', event);
     if (this.props.onChange) {
       this.props.onChange(event.target.value);
@@ -80,43 +80,28 @@ export const LanguageControls = withStyles({
     display: 'grid',
     gridAutoFlow: 'column',
     gridAutoColumns: '1fr',
-    gridGap: '8px'
-  }
-})(
-  ({
-    classes,
-    langs,
-    activeLang,
-    defaultLang,
-    onActiveLangChange,
-    onDefaultLangChange,
-    className
-  }) => {
-    const names = classNames(classes.languageControls, className);
+    gridGap: '8px',
+  },
+})(({ classes, langs, activeLang, defaultLang, onActiveLangChange, onDefaultLangChange, className }) => {
+  const names = classNames(classes.languageControls, className);
 
-    return (
-      <div className={names}>
-        <Langs
-          label="Choose language to edit"
-          langs={langs}
-          selected={activeLang}
-          onChange={l => onActiveLangChange(l)}
-        />
-        <Langs
-          label="Default language"
-          langs={langs}
-          selected={defaultLang}
-          onChange={l => onDefaultLangChange(l)}
-        />
-      </div>
-    );
-  }
-);
+  return (
+    <div className={names}>
+      <Langs
+        label="Choose language to edit"
+        langs={langs}
+        selected={activeLang}
+        onChange={(l) => onActiveLangChange(l)}
+      />
+      <Langs label="Default language" langs={langs} selected={defaultLang} onChange={(l) => onDefaultLangChange(l)} />
+    </div>
+  );
+});
 
 LanguageControls.propTypes = {
   langs: PropTypes.array,
   activeLang: PropTypes.string.isRequired,
   defaultLang: PropTypes.string.isRequired,
   onActiveLangChange: PropTypes.func.isRequired,
-  onDefaultLangChange: PropTypes.func.isRequired
+  onDefaultLangChange: PropTypes.func.isRequired,
 };

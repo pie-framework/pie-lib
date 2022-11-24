@@ -28,21 +28,15 @@ expect.extend({
 
     return {
       pass,
-      message: () => `expected ${html} to match ${v}`
+      message: () => `expected ${html} to match ${v}`,
     };
-  }
+  },
 });
 
 describe('logic', () => {
   test('onFocus/onBlur saves the value', async () => {
     const wrapper = shallow(
-      <Editor
-        editorRef={jest.fn()}
-        value={value}
-        classes={{}}
-        onChange={jest.fn()}
-        onRef={jest.fn()}
-      />
+      <Editor editorRef={jest.fn()} value={value} classes={{}} onChange={jest.fn()} onRef={jest.fn()} />,
     );
 
     await wrapper.instance().onFocus();
@@ -66,13 +60,7 @@ describe('logic', () => {
 
 test('onFocus stashes the value', async () => {
   const wrapper = shallow(
-    <Editor
-      editorRef={jest.fn()}
-      value={value}
-      classes={{}}
-      onChange={jest.fn()}
-      onRef={jest.fn()}
-    />
+    <Editor editorRef={jest.fn()} value={value} classes={{}} onChange={jest.fn()} onRef={jest.fn()} />,
   );
 
   await wrapper.instance().onFocus();
@@ -81,17 +69,10 @@ test('onFocus stashes the value', async () => {
 });
 
 describe('buildSizeStyle', () => {
-  const wrapper = extras => {
+  const wrapper = (extras) => {
     const props = Object.assign({}, extras);
     return shallow(
-      <Editor
-        editorRef={jest.fn()}
-        value={value}
-        classes={{}}
-        onChange={jest.fn()}
-        onRef={jest.fn()}
-        {...props}
-      />
+      <Editor editorRef={jest.fn()} value={value} classes={{}} onChange={jest.fn()} onRef={jest.fn()} {...props} />,
     );
   };
 
@@ -101,7 +82,7 @@ describe('buildSizeStyle', () => {
       width: '100px',
       height: undefined,
       minHeight: undefined,
-      maxHeight: undefined
+      maxHeight: undefined,
     });
   });
 
@@ -111,7 +92,7 @@ describe('buildSizeStyle', () => {
       width: undefined,
       height: undefined,
       minHeight: undefined,
-      maxHeight: undefined
+      maxHeight: undefined,
     });
   });
 
@@ -121,7 +102,7 @@ describe('buildSizeStyle', () => {
       width: undefined,
       height: '100px',
       minHeight: undefined,
-      maxHeight: undefined
+      maxHeight: undefined,
     });
   });
 
@@ -131,7 +112,7 @@ describe('buildSizeStyle', () => {
       width: undefined,
       height: undefined,
       minHeight: '100px',
-      maxHeight: undefined
+      maxHeight: undefined,
     });
   });
 
@@ -141,7 +122,7 @@ describe('buildSizeStyle', () => {
       width: undefined,
       height: undefined,
       minHeight: undefined,
-      maxHeight: '100px'
+      maxHeight: '100px',
     });
   });
 
@@ -151,7 +132,7 @@ describe('buildSizeStyle', () => {
       width: '100px',
       height: undefined,
       minHeight: undefined,
-      maxHeight: undefined
+      maxHeight: undefined,
     });
   });
 
@@ -161,7 +142,7 @@ describe('buildSizeStyle', () => {
       width: undefined,
       height: undefined,
       minHeight: undefined,
-      maxHeight: undefined
+      maxHeight: undefined,
     });
   });
 });
@@ -169,13 +150,7 @@ describe('buildSizeStyle', () => {
 describe('onResize ', () => {
   it('should display html of current state on Resize', () => {
     const wrapper = shallow(
-      <Editor
-        editorRef={jest.fn()}
-        value={value}
-        classes={{}}
-        onChange={jest.fn()}
-        onRef={jest.fn()}
-      />
+      <Editor editorRef={jest.fn()} value={value} classes={{}} onChange={jest.fn()} onRef={jest.fn()} />,
     );
 
     resizeWindow(500, 300);

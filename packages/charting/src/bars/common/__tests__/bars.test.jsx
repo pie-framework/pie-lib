@@ -8,14 +8,14 @@ describe('Bars', () => {
   xBand.bandwidth = () => {};
   const onChange = jest.fn();
 
-  const wrapper = extras => {
+  const wrapper = (extras) => {
     const defaults = {
       classes: {},
       className: 'className',
       graphProps: graphProps(),
       xBand,
       onChange,
-      data: [{ value: 0, label: '0' }]
+      data: [{ value: 0, label: '0' }],
     };
     const props = { ...defaults, ...extras };
     return shallow(<Bars {...props} />);
@@ -31,7 +31,7 @@ describe('RawBar', () => {
   xBand.bandwidth = () => {};
   const onChangeCategory = jest.fn();
 
-  const wrapper = extras => {
+  const wrapper = (extras) => {
     const defaults = {
       classes: {},
       className: 'className',
@@ -39,7 +39,7 @@ describe('RawBar', () => {
       xBand,
       onChangeCategory,
       data: [],
-      label: 'label'
+      label: 'label',
     };
     const props = { ...defaults, ...extras };
     return shallow(<RawBar {...props} />);
@@ -58,7 +58,7 @@ describe('RawBar', () => {
       expect(onChangeCategory).not.toHaveBeenCalled();
 
       w.instance().setState({
-        dragValue: 2
+        dragValue: 2,
       });
 
       w.instance().dragStop(0);

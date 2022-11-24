@@ -5,16 +5,16 @@ import { graphProps } from './utils';
 import { Bar as BarChart } from '../../bars/bar';
 
 describe('DotPlot', () => {
-  const wrapper = extras => {
+  const wrapper = (extras) => {
     const defaults = {
       classes: {},
       className: 'className',
       graphProps: graphProps(),
       xBand: () => {
         return {
-          bandwidth: () => {}
+          bandwidth: () => {},
         };
-      }
+      },
     };
     const props = { ...defaults, ...extras };
     return shallow(<DotPlot {...props} />);
@@ -23,8 +23,7 @@ describe('DotPlot', () => {
   describe('snapshot', () => {
     it('renders', () => expect(wrapper()).toMatchSnapshot());
 
-    it('renders without graphProps', () =>
-      expect(wrapper({ graphProps: undefined })).toMatchSnapshot());
+    it('renders without graphProps', () => expect(wrapper({ graphProps: undefined })).toMatchSnapshot());
   });
 
   describe('component', () => {
@@ -33,7 +32,7 @@ describe('DotPlot', () => {
     expect(chart).toEqual({
       type: 'dotPlot',
       Component: DotPlot,
-      name: 'Dot Plot'
+      name: 'Dot Plot',
     });
   });
 });

@@ -9,28 +9,28 @@ jest.mock('../../../../utils', () => {
   const { point } = jest.requireActual('../../../../utils');
   return {
     bounds: jest.fn(),
-    point
+    point,
   };
 });
 
 jest.mock('@pie-lib/plot', () => {
   const { types, utils } = jest.requireActual('@pie-lib/plot');
   return {
-    gridDraggable: jest.fn(opts => Comp => Comp),
+    gridDraggable: jest.fn((opts) => (Comp) => Comp),
     types,
-    utils
+    utils,
   };
 });
 
 describe('BasePoint', () => {
   let w;
   let onChange = jest.fn();
-  const wrapper = extras => {
+  const wrapper = (extras) => {
     const defaults = {
       classes: {},
       className: 'className',
       onChange,
-      graphProps: graphProps()
+      graphProps: graphProps(),
     };
     const props = { ...defaults, ...extras };
     return shallow(<BasePoint {...props} />);
@@ -50,12 +50,12 @@ describe('BasePoint', () => {
       domain = {
         min: 0,
         max: 1,
-        step: 1
+        step: 1,
       };
       range = {
         min: 0,
         max: 1,
-        step: 1
+        step: 1,
       };
       const w = wrapper();
       opts = gridDraggable.mock.calls[0][0];
@@ -64,11 +64,7 @@ describe('BasePoint', () => {
     describe('bounds', () => {
       it('calls utils.bounds with area', () => {
         const result = opts.bounds({ x: 0, y: 0 }, { domain, range });
-        expect(bounds).toHaveBeenCalledWith(
-          { left: 0, top: 0, bottom: 0, right: 0 },
-          domain,
-          range
-        );
+        expect(bounds).toHaveBeenCalledWith({ left: 0, top: 0, bottom: 0, right: 0 }, domain, range);
       });
     });
     describe('anchorPoint', () => {

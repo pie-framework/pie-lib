@@ -1,9 +1,4 @@
-import {
-  InputCheckbox,
-  InputRadio,
-  NumberTextField,
-  NumberTextFieldCustom
-} from '@pie-lib/config-ui';
+import { InputCheckbox, InputRadio, NumberTextField, NumberTextFieldCustom } from '@pie-lib/config-ui';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
@@ -17,7 +12,7 @@ const log = debug('demo:config-ui');
 
 class RawContainer extends React.Component {
   static propTypes = {
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
   };
   constructor(props) {
     super(props);
@@ -25,12 +20,12 @@ class RawContainer extends React.Component {
       numberTextField: {
         one: 400,
         custom: 350,
-        custom2: 21
-      }
+        custom2: 21,
+      },
     };
   }
 
-  update = key => (event, number) => {
+  update = (key) => (event, number) => {
     const { numberTextField } = this.state;
     const update = { ...numberTextField, [key]: number };
 
@@ -41,7 +36,7 @@ class RawContainer extends React.Component {
     this.setState({ mounted: true });
   }
 
-  onChoiceConfigChange = update => {
+  onChoiceConfigChange = (update) => {
     this.setState({ choiceConfig: update });
   };
 
@@ -142,24 +137,24 @@ class RawContainer extends React.Component {
 
 const Container = withStyles(() => ({
   root: {
-    display: 'flex'
+    display: 'flex',
   },
   left: {
-    flex: 1
+    flex: 1,
   },
   code: {
-    position: 'fixed'
+    position: 'fixed',
   },
   right: {
-    flex: 0.3
+    flex: 0.3,
   },
   smallTextField: {
-    width: '100px'
+    width: '100px',
   },
   textField: {
     width: '150px',
-    margin: '8px'
-  }
+    margin: '8px',
+  },
 }))(RawContainer);
 
 export default withRoot(Container);

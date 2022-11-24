@@ -14,10 +14,10 @@ describe('serialization', () => {
         nodes: [
           expect.objectContaining({
             object: 'text',
-            leaves: [{ text: 'foo' }]
-          })
-        ]
-      })
+            leaves: [{ text: 'foo' }],
+          }),
+        ],
+      }),
     );
   });
 
@@ -28,7 +28,7 @@ describe('serialization', () => {
         type: 'div',
         nodes: [
           expect.objectContaining({
-            object: 'text'
+            object: 'text',
           }),
           expect.objectContaining({
             leaves: [
@@ -36,19 +36,19 @@ describe('serialization', () => {
                 marks: [
                   {
                     data: undefined,
-                    type: 'italic'
-                  }
+                    type: 'italic',
+                  },
                 ],
-                text: 'x'
-              }
+                text: 'x',
+              },
             ],
-            object: 'text'
+            object: 'text',
           }),
           expect.objectContaining({
-            object: 'text'
-          })
-        ]
-      })
+            object: 'text',
+          }),
+        ],
+      }),
     );
   });
 });

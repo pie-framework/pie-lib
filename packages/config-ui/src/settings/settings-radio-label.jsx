@@ -8,8 +8,8 @@ export default withStyles({
     color: 'rgba(0, 0, 0, 0.89)',
     fontSize: '12px',
     left: '-5px',
-    position: 'relative'
-  }
+    position: 'relative',
+  },
 })(({ label, value, checked, onChange, classes }) => (
   <FormControlLabel
     value={value}

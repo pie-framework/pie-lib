@@ -3,136 +3,82 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.5.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.4.5...@pie-lib/math-rendering@2.5.0) (2022-08-29)
+## [2.5.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.5.0...@pie-lib/math-rendering@2.5.1) (2022-11-23)
 
+**Note:** Version bump only for package @pie-lib/math-rendering
+
+# [2.5.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.4.5...@pie-lib/math-rendering@2.5.0) (2022-08-29)
 
 ### Features
 
-* **math-rendering:** Make math-rendering style inline with mathjax's one ([84a1ab3](https://github.com/pie-framework/pie-lib/commit/84a1ab3cde01d2fc330da8feb44b277c3e8cd51b))
-
-
-
-
+- **math-rendering:** Make math-rendering style inline with mathjax's one ([84a1ab3](https://github.com/pie-framework/pie-lib/commit/84a1ab3cde01d2fc330da8feb44b277c3e8cd51b))
 
 ## [2.4.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.4.4...@pie-lib/math-rendering@2.4.5) (2022-07-18)
 
-
 ### Reverts
 
-* Revert "fix(math-rendering): potential fix for box PD-1521" ([dac9a34](https://github.com/pie-framework/pie-lib/commit/dac9a34d599bb30bbb7c87c6e49df562fd486e5e))
-
-
-
-
+- Revert "fix(math-rendering): potential fix for box PD-1521" ([dac9a34](https://github.com/pie-framework/pie-lib/commit/dac9a34d599bb30bbb7c87c6e49df562fd486e5e))
 
 ## [2.4.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.4.3...@pie-lib/math-rendering@2.4.4) (2022-07-18)
 
-
 ### Bug Fixes
 
-* **math-rendering:** potential fix for box PD-1521 ([9eefd91](https://github.com/pie-framework/pie-lib/commit/9eefd91b03644513d379bb1c46f4107b661ba4f3))
-* Perplexing problem with math rendering: arcs, rays, and lines PD-1828 ([c43d2f8](https://github.com/pie-framework/pie-lib/commit/c43d2f8031e2ba3b8bb3cfa28c92a2a78c3c3db2))
-* unable to load items locally ([d870dcd](https://github.com/pie-framework/pie-lib/commit/d870dcd547bd171f083a1cae08c1ccaa4b68629b))
-* **math-rendering:** increase mathml formulas vertical space ([efa0c28](https://github.com/pie-framework/pie-lib/commit/efa0c28181a4a711dc35b34c075547230ae0315a))
-
-
-
-
+- **math-rendering:** potential fix for box PD-1521 ([9eefd91](https://github.com/pie-framework/pie-lib/commit/9eefd91b03644513d379bb1c46f4107b661ba4f3))
+- Perplexing problem with math rendering: arcs, rays, and lines PD-1828 ([c43d2f8](https://github.com/pie-framework/pie-lib/commit/c43d2f8031e2ba3b8bb3cfa28c92a2a78c3c3db2))
+- unable to load items locally ([d870dcd](https://github.com/pie-framework/pie-lib/commit/d870dcd547bd171f083a1cae08c1ccaa4b68629b))
+- **math-rendering:** increase mathml formulas vertical space ([efa0c28](https://github.com/pie-framework/pie-lib/commit/efa0c28181a4a711dc35b34c075547230ae0315a))
 
 ## [2.4.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.4.2...@pie-lib/math-rendering@2.4.3) (2022-06-13)
 
 **Note:** Version bump only for package @pie-lib/math-rendering
 
-
-
-
-
 ## [2.4.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.4.1...@pie-lib/math-rendering@2.4.2) (2022-05-30)
-
 
 ### Bug Fixes
 
-* unable to load items locally ([17ab686](https://github.com/pie-framework/pie-lib/commit/17ab6864557288aef6ec1d9a130cb508e2591562))
-
-
-
-
+- unable to load items locally ([17ab686](https://github.com/pie-framework/pie-lib/commit/17ab6864557288aef6ec1d9a130cb508e2591562))
 
 ## [2.4.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.4.0...@pie-lib/math-rendering@2.4.1) (2022-05-24)
 
-
 ### Bug Fixes
 
-* unable to load items locally ([a0ddf20](https://github.com/pie-framework/pie-lib/commit/a0ddf2095646e6e84569cb7e0de42d0cd9ea0fb6))
-
-
-
-
+- unable to load items locally ([a0ddf20](https://github.com/pie-framework/pie-lib/commit/a0ddf2095646e6e84569cb7e0de42d0cd9ea0fb6))
 
 # [2.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.3.13...@pie-lib/math-rendering@2.4.0) (2022-04-28)
 
-
 ### Bug Fixes
 
-* tests ([90d79c4](https://github.com/pie-framework/pie-lib/commit/90d79c4b8c61c029959a729ba1eea1d69a3f2cbe))
-
+- tests ([90d79c4](https://github.com/pie-framework/pie-lib/commit/90d79c4b8c61c029959a729ba1eea1d69a3f2cbe))
 
 ### Features
 
-* add data-mathml attribute on MathJax containers to be able to use with Text to Speech (TTS) PD-1499 ([df50318](https://github.com/pie-framework/pie-lib/commit/df503184814f0463ef588e468570db3f7d2651df))
-
-
-
-
+- add data-mathml attribute on MathJax containers to be able to use with Text to Speech (TTS) PD-1499 ([df50318](https://github.com/pie-framework/pie-lib/commit/df503184814f0463ef588e468570db3f7d2651df))
 
 ## [2.3.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.3.12...@pie-lib/math-rendering@2.3.13) (2022-03-21)
 
-
 ### Bug Fixes
 
-* **math-rendering:** fix line spacing for mathjax mspace PD-1384 ([57fe827](https://github.com/pie-framework/pie-lib/commit/57fe827372c81138b35f294f16327c291872c8a2))
-
-
-
-
+- **math-rendering:** fix line spacing for mathjax mspace PD-1384 ([57fe827](https://github.com/pie-framework/pie-lib/commit/57fe827372c81138b35f294f16327c291872c8a2))
 
 ## [2.3.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.3.11...@pie-lib/math-rendering@2.3.12) (2021-11-29)
 
 **Note:** Version bump only for package @pie-lib/math-rendering
 
-
-
-
-
 ## [2.3.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.3.10...@pie-lib/math-rendering@2.3.11) (2021-09-08)
 
 **Note:** Version bump only for package @pie-lib/math-rendering
 
-
-
-
-
 ## [2.3.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.3.9...@pie-lib/math-rendering@2.3.10) (2021-09-08)
-
 
 ### Bug Fixes
 
-* wip ([fe4316d](https://github.com/pie-framework/pie-lib/commit/fe4316d))
-
-
-
-
+- wip ([fe4316d](https://github.com/pie-framework/pie-lib/commit/fe4316d))
 
 ## [2.3.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.3.8...@pie-lib/math-rendering@2.3.9) (2021-08-30)
 
-
 ### Bug Fixes
 
-* **math-rendering:** fix symbols in math markup that trigger undefined control sequence error PD-1267, PD-368, PD-1173 ([a7d9934](https://github.com/pie-framework/pie-lib/commit/a7d9934))
-
-
-
-
+- **math-rendering:** fix symbols in math markup that trigger undefined control sequence error PD-1267, PD-368, PD-1173 ([a7d9934](https://github.com/pie-framework/pie-lib/commit/a7d9934))
 
 ## [2.3.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.3.6...@pie-lib/math-rendering@2.3.8) (2021-06-25)
 

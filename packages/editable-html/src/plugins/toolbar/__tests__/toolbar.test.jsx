@@ -10,14 +10,12 @@ import renderer from 'react-test-renderer';
 mockMathInput();
 
 jest.mock('@material-ui/core/IconButton', () => {
-  return props => (
-    <div className={props.className} style={props.style} ariaLabel={props['aria-label']} />
-  );
+  return (props) => <div className={props.className} style={props.style} ariaLabel={props['aria-label']} />;
 });
 
 let node = Inline.fromJSON({ type: 'i' });
 let parentNode = Inline.fromJSON({
-  type: 'i'
+  type: 'i',
 });
 let value;
 const log = debug('@pie-lib:editable-html:test:toolbar');
@@ -30,25 +28,25 @@ describe('toolbar', () => {
 
     toolbarOpts = {
       position: 'bottom',
-      alwaysVisible: false
+      alwaysVisible: false,
     };
 
     value = Value.fromJSON({});
     document = {
       getClosestInline: jest.fn().mockReturnValue(node),
-      getParent: jest.fn().mockReturnValue()
+      getParent: jest.fn().mockReturnValue(),
     };
 
     Object.defineProperties(value, {
       isCollapsed: {
-        get: jest.fn(() => true)
+        get: jest.fn(() => true),
       },
       startKey: {
-        get: jest.fn(() => '1')
+        get: jest.fn(() => '1'),
       },
       document: {
-        get: jest.fn(() => document)
-      }
+        get: jest.fn(() => document),
+      },
     });
 
     classes = classObject('iconRoot', 'inline', 'toolbar', 'focused', 'shared', 'inline');
@@ -60,9 +58,9 @@ describe('toolbar', () => {
         deleteNode: () => true,
         toolbar: {
           supports: () => true,
-          customToolbar: () => () => <div> --------- custom toolbar ----------- </div>
-        }
-      }
+          customToolbar: () => () => <div> --------- custom toolbar ----------- </div>,
+        },
+      },
     ];
 
     const tree = renderer
@@ -74,7 +72,7 @@ describe('toolbar', () => {
           value={value}
           onDone={jest.fn()}
           onChange={jest.fn()}
-        />
+        />,
       )
       .toJSON();
 
@@ -99,7 +97,7 @@ describe('toolbar', () => {
             value={value}
             onDone={jest.fn()}
             onChange={jest.fn()}
-          />
+          />,
         )
         .toJSON();
       expect(tree).toMatchSnapshot();

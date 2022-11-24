@@ -18,7 +18,7 @@ import ActionDelete from '@material-ui/icons/Delete';
 
 const log = debug('@pie-lib:editable-html:plugins:media:dialog');
 
-const matchYoutubeUrl = url => {
+const matchYoutubeUrl = (url) => {
   if (!url) {
     return false;
   }
@@ -30,13 +30,13 @@ const matchYoutubeUrl = url => {
   return false;
 };
 
-const matchVimeoUrl = url =>
+const matchVimeoUrl = (url) =>
   url &&
   /(http|https)?:\/\/(www\.)?(player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/([^/]*)\/videos\/|)(video\/)?(\d+)(?:|\/\?)/.test(
-    url
+    url,
   );
 
-const matchSoundCloudUrl = url => {
+const matchSoundCloudUrl = (url) => {
   if (!url) {
     return false;
   }
@@ -45,12 +45,12 @@ const matchSoundCloudUrl = url => {
   return url.match(regexp) && url.match(regexp)[2];
 };
 
-const makeApiRequest = url => {
-  return new Promise(resolve => {
+const makeApiRequest = (url) => {
+  return new Promise((resolve) => {
     try {
       fetch(`https://soundcloud.com/oembed?format=json&url=${url}`)
-        .then(response => response.json())
-        .then(json => {
+        .then((response) => response.json())
+        .then((json) => {
           const d = document.createElement('div');
 
           d.innerHTML = json.html;
@@ -59,7 +59,7 @@ const makeApiRequest = url => {
 
           resolve(iframe.src);
         })
-        .catch(err => {
+        .catch((err) => {
           resolve('');
           log(err);
         });
@@ -71,7 +71,7 @@ const makeApiRequest = url => {
 
 const typeMap = {
   video: 'Video',
-  audio: 'Audio'
+  audio: 'Audio',
 };
 
 export class MediaDialog extends React.Component {
@@ -83,7 +83,7 @@ export class MediaDialog extends React.Component {
     handleClose: PropTypes.func,
     uploadSoundSupport: PropTypes.shape({
       add: PropTypes.func,
-      delete: PropTypes.func
+      delete: PropTypes.func,
     }),
     type: PropTypes.string,
     src: PropTypes.string,
@@ -92,7 +92,7 @@ export class MediaDialog extends React.Component {
     starts: PropTypes.number,
     ends: PropTypes.number,
     height: PropTypes.number,
-    width: PropTypes.number
+    width: PropTypes.number,
   };
 
   constructor(props) {
@@ -113,8 +113,8 @@ export class MediaDialog extends React.Component {
       fileUpload: {
         loading: false,
         url: '',
-        error: null
-      }
+        error: null,
+      },
     };
   }
 
@@ -122,8 +122,8 @@ export class MediaDialog extends React.Component {
     if (this.props.url) {
       this.urlChange({
         target: {
-          value: this.props.url
-        }
+          value: this.props.url,
+        },
       });
     }
   }
@@ -170,20 +170,20 @@ export class MediaDialog extends React.Component {
     this.setState({ formattedUrl: null, updating: true }, callback);
   };
 
-  handleStateChange = newState => this.setState(newState, this.formatUrl);
+  handleStateChange = (newState) => this.setState(newState, this.formatUrl);
 
-  urlChange = e => {
+  urlChange = (e) => {
     const { value } = e.target || {};
     const { type } = this.props;
 
     if (type && type === 'audio') {
       if (matchSoundCloudUrl(value)) {
         makeApiRequest(value)
-          .then(urlToUse => {
+          .then((urlToUse) => {
             this.handleStateChange({
               urlToUse,
               invalid: !urlToUse,
-              url: value
+              url: value,
             });
           })
           .catch(log);
@@ -202,7 +202,7 @@ export class MediaDialog extends React.Component {
         this.handleStateChange({
           urlToUse,
           url: value,
-          invalid: false
+          invalid: false,
         });
 
         return;
@@ -218,7 +218,7 @@ export class MediaDialog extends React.Component {
           urlToUse,
           url: value,
           ends: null,
-          invalid: false
+          invalid: false,
         });
 
         return;
@@ -228,13 +228,13 @@ export class MediaDialog extends React.Component {
     this.handleStateChange({
       urlToUse: null,
       url: null,
-      invalid: true
+      invalid: true,
     });
   };
 
-  changeHandler = type => e => this.handleStateChange({ [type]: e.target.value });
+  changeHandler = (type) => (e) => this.handleStateChange({ [type]: e.target.value });
 
-  handleDone = val => {
+  handleDone = (val) => {
     const { handleClose } = this.props;
     const { tabValue, fileUpload } = this.state;
     const isInsertURL = tabValue === 0;
@@ -256,25 +256,25 @@ export class MediaDialog extends React.Component {
         width,
         url,
         urlToUse,
-        src: formattedUrl
+        src: formattedUrl,
       });
     } else {
       handleClose(val, {
         tag: 'audio',
-        src: fileUpload.url
+        src: fileUpload.url,
       });
     }
   };
 
-  handleUploadFile = async e => {
+  handleUploadFile = async (e) => {
     e.preventDefault();
 
     this.setState({
       fileUpload: {
         ...this.state.fileUpload,
         error: null,
-        loading: true
-      }
+        loading: true,
+      },
     });
 
     const fileChosen = e.target.files[0];
@@ -287,8 +287,8 @@ export class MediaDialog extends React.Component {
       this.setState({
         fileUpload: {
           ...this.state.fileUpload,
-          url: dataURL
-        }
+          url: dataURL,
+        },
       });
     };
     reader.readAsDataURL(fileChosen);
@@ -304,32 +304,32 @@ export class MediaDialog extends React.Component {
             fileUpload: {
               ...this.state.fileUpload,
               loading: false,
-              error: err
-            }
+              error: err,
+            },
           });
         } else {
           this.setState({
             fileUpload: {
               ...this.state.fileUpload,
               loading: false,
-              url: src
-            }
+              url: src,
+            },
           });
         }
-      }
+      },
     });
   };
 
   handleRemoveFile = async () => {
-    this.props.uploadSoundSupport.delete(this.state.fileUpload.url, err => {
+    this.props.uploadSoundSupport.delete(this.state.fileUpload.url, (err) => {
       if (err) {
         //eslint-disable-next-line
         console.log(err);
         this.setState({
           fileUpload: {
             ...this.state.fileUpload,
-            error: err
-          }
+            error: err,
+          },
         });
       }
     });
@@ -339,36 +339,23 @@ export class MediaDialog extends React.Component {
       fileUpload: {
         ...this.state.fileUpload,
         loading: false,
-        url: ''
-      }
+        url: '',
+      },
     });
   };
 
   render() {
     const { classes, open, disablePortal, type, edit, uploadSoundSupport } = this.props;
-    const {
-      ends,
-      height,
-      invalid,
-      starts,
-      width,
-      url,
-      formattedUrl,
-      updating,
-      tabValue,
-      fileUpload
-    } = this.state;
+    const { ends, height, invalid, starts, width, url, formattedUrl, updating, tabValue, fileUpload } = this.state;
     const isYoutube = matchYoutubeUrl(url);
     const isInsertURL = tabValue === 0;
     const isUploadMedia = tabValue === 1;
-    const submitIsDisabled = isInsertURL
-      ? invalid || url === null || url === undefined
-      : !fileUpload.url;
+    const submitIsDisabled = isInsertURL ? invalid || url === null || url === undefined : !fileUpload.url;
 
     return (
       <Dialog
         classes={{
-          paper: classes.paper
+          paper: classes.paper,
         }}
         disablePortal={disablePortal}
         open={open}
@@ -386,9 +373,7 @@ export class MediaDialog extends React.Component {
                   this.setState({ tabValue: value });
                 }}
               >
-                <MuiTab
-                  label={type === 'video' ? 'Insert YouTube or Vimeo URL' : 'Insert SoundCloud URL'}
-                />
+                <MuiTab label={type === 'video' ? 'Insert YouTube or Vimeo URL' : 'Insert SoundCloud URL'} />
                 {uploadSoundSupport?.add && uploadSoundSupport?.delete && type !== 'video' ? (
                   <MuiTab label="Upload file" />
                 ) : null}
@@ -412,7 +397,7 @@ export class MediaDialog extends React.Component {
                 {type === 'video' && (
                   <DialogContent
                     classes={{
-                      root: classes.properties
+                      root: classes.properties,
                     }}
                   >
                     <DialogContentText>Video Properties</DialogContentText>
@@ -452,7 +437,7 @@ export class MediaDialog extends React.Component {
                   <React.Fragment>
                     <DialogContent
                       classes={{
-                        root: classes.properties
+                        root: classes.properties,
                       }}
                     >
                       <TextField
@@ -491,25 +476,14 @@ export class MediaDialog extends React.Component {
                         <audio controls="controls">
                           <source type="audio/mp3" src={fileUpload.url} />
                         </audio>
-                        <IconButton
-                          aria-label="delete"
-                          className={classes.deleteIcon}
-                          onClick={this.handleRemoveFile}
-                        >
+                        <IconButton aria-label="delete" className={classes.deleteIcon} onClick={this.handleRemoveFile}>
                           <ActionDelete />
                         </IconButton>
                       </div>
-                      {fileUpload.loading ? (
-                        <Typography variant="subheading">Loading...</Typography>
-                      ) : null}
+                      {fileUpload.loading ? <Typography variant="subheading">Loading...</Typography> : null}
                     </>
                   ) : !fileUpload.loading ? (
-                    <input
-                      accept="audio/*"
-                      className={classes.input}
-                      onChange={this.handleUploadFile}
-                      type="file"
-                    />
+                    <input accept="audio/*" className={classes.input} onChange={this.handleUploadFile} type="file" />
                   ) : null}
                   {!!fileUpload.error && (
                     <Typography className={classes.error} variant="caption">
@@ -536,33 +510,33 @@ export class MediaDialog extends React.Component {
 
 const styles = () => ({
   paper: {
-    minWidth: '500px'
+    minWidth: '500px',
   },
   properties: {
-    padding: 0
+    padding: 0,
   },
   row: {
     display: 'flex',
-    flexDirection: 'space-between'
+    flexDirection: 'space-between',
   },
   rowItem: {
     marginRight: '12px',
-    cursor: 'pointer'
+    cursor: 'pointer',
   },
   active: {
     color: color.primary(),
-    borderBottom: `2px solid ${color.primary()}`
+    borderBottom: `2px solid ${color.primary()}`,
   },
   uploadInput: {
-    marginTop: '12px'
+    marginTop: '12px',
   },
   error: {
     marginTop: '12px',
-    color: 'red'
+    color: 'red',
   },
   deleteIcon: {
-    marginLeft: '12px'
-  }
+    marginLeft: '12px',
+  },
 });
 
 export default withStyles(styles)(MediaDialog);

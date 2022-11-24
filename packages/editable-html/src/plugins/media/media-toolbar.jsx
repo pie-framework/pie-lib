@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
-const useStyles = withStyles(theme => ({
+const useStyles = withStyles((theme) => ({
   root: {
     position: 'relative',
     bottom: '5px',
@@ -11,7 +11,7 @@ const useStyles = withStyles(theme => ({
     background: 'white',
     display: 'inline-flex',
     padding: '5px',
-    boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)'
+    boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
   },
   editContainer: {
     cursor: 'pointer',
@@ -20,11 +20,11 @@ const useStyles = withStyles(theme => ({
     textAlign: 'right',
     borderWidth: '0 2px 0 0',
     marginRight: '5px',
-    paddingRight: '5px'
+    paddingRight: '5px',
   },
   removeContainer: {
-    cursor: 'pointer'
-  }
+    cursor: 'pointer',
+  },
 }));
 
 class MediaToolbar extends React.Component {
@@ -32,7 +32,7 @@ class MediaToolbar extends React.Component {
     classes: PropTypes.object,
     onEdit: PropTypes.func,
     hideEdit: PropTypes.bool,
-    onRemove: PropTypes.func
+    onRemove: PropTypes.func,
   };
 
   render() {

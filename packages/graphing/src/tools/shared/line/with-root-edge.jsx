@@ -5,7 +5,7 @@ import { LinePath } from '../line/line-path';
 import { curveMonotoneX } from '@vx/curve';
 import { lineBase, lineToolComponent } from './index';
 
-const toRootEdge = m => {
+const toRootEdge = (m) => {
   const out = { ...m };
   out.root = { ...m.from };
   out.edge = m.to ? { ...m.to } : undefined;
@@ -14,7 +14,7 @@ const toRootEdge = m => {
   return out;
 };
 
-const toFromTo = m => {
+const toFromTo = (m) => {
   const out = { ...m };
   out.from = { ...m.root };
   out.to = m.edge ? { ...m.edge } : undefined;
@@ -23,8 +23,8 @@ const toFromTo = m => {
   return out;
 };
 
-export const rootEdgeToFromToWrapper = BaseComp => {
-  const Wrapper = props => {
+export const rootEdgeToFromToWrapper = (BaseComp) => {
+  const Wrapper = (props) => {
     const m = toFromTo(props.mark);
 
     const onChange = (current, next) => {
@@ -36,38 +36,27 @@ export const rootEdgeToFromToWrapper = BaseComp => {
 
   Wrapper.propTypes = {
     onChange: PropTypes.func,
-    mark: PropTypes.object
+    mark: PropTypes.object,
   };
 
   return Wrapper;
 };
 
-export const rootEdgeComponent = RootEdgeComp => {
+export const rootEdgeComponent = (RootEdgeComp) => {
   const BaseComponent = lineToolComponent(RootEdgeComp);
   return rootEdgeToFromToWrapper(BaseComponent);
 };
 
-const withPointsGenerationLinePath = getPoints => {
-  const LinePathComponent = props => {
-    const {
-      graphProps,
-      from,
-      to,
-      onClick,
-      onDragStart,
-      onDragStop,
-      onChange,
-      disabled,
-      correctness,
-      ...rest
-    } = props;
+const withPointsGenerationLinePath = (getPoints) => {
+  const LinePathComponent = (props) => {
+    const { graphProps, from, to, onClick, onDragStart, onDragStop, onChange, disabled, correctness, ...rest } = props;
 
     const { dataPoints } = getPoints({
       graphProps: props.graphProps,
       root: from,
-      edge: to
+      edge: to,
     });
-    const raw = dataPoints.map(d => [graphProps.scale.x(d.x), graphProps.scale.y(d.y)]);
+    const raw = dataPoints.map((d) => [graphProps.scale.x(d.x), graphProps.scale.y(d.y)]);
 
     const common = {
       onClick,
@@ -76,7 +65,7 @@ const withPointsGenerationLinePath = getPoints => {
       onDragStop,
       onChange,
       disabled,
-      correctness
+      correctness,
     };
 
     return <LinePath data={raw} from={from} to={to} curve={curveMonotoneX} {...common} {...rest} />;
@@ -90,12 +79,12 @@ const withPointsGenerationLinePath = getPoints => {
     onDragStop: PropTypes.func,
     onChange: PropTypes.func,
     disabled: PropTypes.bool,
-    correctness: PropTypes.string
+    correctness: PropTypes.string,
   };
   return LinePathComponent;
 };
 
-export const withRootEdge = getPoints => {
+export const withRootEdge = (getPoints) => {
   const LinePathComp = withPointsGenerationLinePath(getPoints);
   return lineBase(LinePathComp);
 };

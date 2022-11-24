@@ -14,7 +14,7 @@ const Info = ({ fg }) => (
 );
 
 Info.propTypes = {
-  fg: PropTypes.string
+  fg: PropTypes.string,
 };
 
 const Border = ({ className }) => (
@@ -24,7 +24,7 @@ const Border = ({ className }) => (
   />
 );
 Border.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 const Circle = () => (
   <g>
@@ -33,7 +33,7 @@ const Circle = () => (
         fill: '#D0CAC5',
         stroke: '#E6E3E0',
         strokeWidth: 0.75,
-        strokeMiterlimit: 10
+        strokeMiterlimit: 10,
       }}
       d="M-111.7,160.9c-8.5,0-15.5-6.9-15.5-15.5c0-8.5,6.9-15.5,15.5-15.5s15.5,6.9,15.5,15.5C-96.2,154-103.1,160.9-111.7,160.9z"
     />
@@ -42,7 +42,7 @@ const Circle = () => (
         fill: '#B3ABA4',
         stroke: '#CDC7C2',
         strokeWidth: 0.5,
-        strokeMiterlimit: 10
+        strokeMiterlimit: 10,
       }}
       d="M-112,159.5c-8,0-14.5-6.5-14.5-14.5s6.5-14.5,14.5-14.5s14.5,6.5,14.5,14.5S-104,159.5-112,159.5z"
     />
@@ -56,7 +56,7 @@ const Root = ({ children, size }) => {
     height: size,
     width: size,
     display: 'inline-block',
-    position: 'relative'
+    position: 'relative',
   };
 
   return (
@@ -69,27 +69,27 @@ const Root = ({ children, size }) => {
 };
 Root.propTypes = {
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
-  size: PropTypes.number
+  size: PropTypes.number,
 };
 
 const styles = {
   fg: {
-    fill: '#1a9cff'
+    fill: '#1a9cff',
   },
   bg: {
-    fill: '#bce2ff'
+    fill: '#bce2ff',
   },
   border: {
-    fill: '#bbe3fd'
+    fill: '#bbe3fd',
   },
   whiteBorder: {
-    fill: 'white'
-  }
+    fill: 'white',
+  },
 };
 
 export class ShowRationale extends React.Component {
   static propTypes = {
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
   };
 
   constructor(props) {
@@ -127,8 +127,8 @@ export class ShowRationale extends React.Component {
             <circle style={{ fill: '#FFFFFF' }} cx="-113" cy="144" r="14" />
             <Info fg={classes.bg} border={classes.border} />
           </Root>
-        )
-      }
+        ),
+      },
     };
 
     if (this.props.open === true) {
@@ -141,12 +141,12 @@ export class ShowRationale extends React.Component {
 
 ShowRationale.propTypes = {
   iconSet: PropTypes.oneOf(['emoji', 'check']),
-  open: PropTypes.bool
+  open: PropTypes.bool,
 };
 
 ShowRationale.defaultProps = {
   iconSet: 'check',
-  open: false
+  open: false,
 };
 
 export default withStyles(styles)(ShowRationale);

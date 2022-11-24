@@ -18,7 +18,7 @@ export { htmlToValue, valueToHtml, Editor, DEFAULT_PLUGINS, ALL_PLUGINS };
  * `markup` api whilst avoiding the serialization mismatch. We should be making better use of schemas w/ normalize.
  */
 
-const reduceMultipleBrs = markup => {
+const reduceMultipleBrs = (markup) => {
   try {
     return markup.replace(/(<br\s*\/?>){3,}/gi, '<br>');
   } catch (e) {
@@ -33,19 +33,19 @@ export default class EditableHtml extends React.Component {
     onChange: PropTypes.func.isRequired,
     onDone: PropTypes.func,
     markup: PropTypes.string.isRequired,
-    allowValidation: PropTypes.bool
+    allowValidation: PropTypes.bool,
   };
 
   static defaultProps = {
     onDone: () => {},
-    allowValidation: false
+    allowValidation: false,
   };
 
   constructor(props) {
     super(props);
     const v = htmlToValue(props.markup);
     this.state = {
-      value: v
+      value: v,
     };
   }
 
@@ -80,13 +80,9 @@ export default class EditableHtml extends React.Component {
 
   focus = (position, node) => {
     if (this.editorRef) {
-      this.editorRef.change(c => {
-        const lastText = node
-          ? c.value.document.getNextText(node.key)
-          : c.value.document.getLastText();
-        const editorDOM = document.querySelector(
-          `[data-key="${this.editorRef.value.document.key}"]`
-        );
+      this.editorRef.change((c) => {
+        const lastText = node ? c.value.document.getNextText(node.key) : c.value.document.getLastText();
+        const editorDOM = document.querySelector(`[data-key="${this.editorRef.value.document.key}"]`);
 
         if (editorDOM !== document.activeElement) {
           document.activeElement.blur();
@@ -95,10 +91,7 @@ export default class EditableHtml extends React.Component {
         c.focus();
 
         if (position === 'end' && lastText) {
-          c.moveFocusTo(lastText.key, lastText.text?.length).moveAnchorTo(
-            lastText.key,
-            lastText.text?.length
-          );
+          c.moveFocusTo(lastText.key, lastText.text?.length).moveAnchorTo(lastText.key, lastText.text?.length);
         }
 
         if (position === 'beginning' && lastText) {
@@ -127,17 +120,17 @@ export default class EditableHtml extends React.Component {
       markup: null,
       value,
       onChange: this.onChange,
-      focus: this.focus
+      focus: this.focus,
     };
 
     return (
       <Editor
-        onRef={ref => {
+        onRef={(ref) => {
           if (ref) {
             this.rootRef = ref;
           }
         }}
-        editorRef={ref => ref && (this.editorRef = ref)}
+        editorRef={(ref) => ref && (this.editorRef = ref)}
         {...props}
       />
     );

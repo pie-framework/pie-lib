@@ -15,25 +15,25 @@ export const dataToXBand = (scaleX, data, width, type) => {
       return scaleBand({
         rangeRound: [0, width],
         domain: data && data.map(bandKey),
-        padding: 0.2
+        padding: 0.2,
       });
     case 'histogram':
       return scaleBand({
         rangeRound: [0, width],
         domain: data && data.map(bandKey),
-        padding: 0
+        padding: 0,
       });
     case 'lineCross':
     case 'lineDot':
       return scalePoint({
         domain: data && data.map(bandKey),
-        rangeRound: [0, width]
+        rangeRound: [0, width],
       });
     default:
       return scaleBand({
         range: [0, width],
         domain: data && data.map(bandKey),
-        padding: 0
+        padding: 0,
       });
   }
 };
@@ -83,15 +83,15 @@ export const getDomainAndRangeByChartType = (domain, range, chartType) => {
           step: 1,
           labelStep: 1,
           min: 0,
-          max: 1
+          max: 1,
         },
         range: {
           ...range,
           min: intMin,
           max: intMin === intMax ? intMin + 1 : intMax,
           labelStep,
-          step: 1
-        }
+          step: 1,
+        },
       };
     }
     default:
@@ -101,13 +101,13 @@ export const getDomainAndRangeByChartType = (domain, range, chartType) => {
           step: 1,
           labelStep: 1,
           min: 0,
-          max: 1
+          max: 1,
         },
         range: {
           ...range,
           labelStep,
-          step
-        }
+          step,
+        },
       };
   }
 };
@@ -119,20 +119,20 @@ export const getGridLinesAndAxisByChartType = (range, chartType) => {
       return {
         verticalLines: undefined,
         horizontalLines: getTickValues(range),
-        leftAxis: true
+        leftAxis: true,
       };
     case 'dotPlot':
     case 'linePlot':
       return {
         verticalLines: [],
         horizontalLines: [],
-        leftAxis: false
+        leftAxis: false,
       };
     default:
       return {
         verticalLines: [],
         horizontalLines: getTickValues(range),
-        leftAxis: true
+        leftAxis: true,
       };
   }
 };
@@ -145,7 +145,7 @@ export const getRotateAngle = (fontSize, height) => {
   return 0;
 };
 
-export const getTopPadding = barWidth => {
+export const getTopPadding = (barWidth) => {
   if (barWidth < 30) {
     return 50;
   }

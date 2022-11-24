@@ -9,11 +9,11 @@ describe('Input', () => {
   beforeEach(() => {
     onChange = jest.fn();
   });
-  const wrapper = extras => {
+  const wrapper = (extras) => {
     const defaults = {
       classes: {},
       className: 'className',
-      onChange
+      onChange,
     };
     const props = { ...defaults, ...extras };
     const out = shallow(<Input {...props} />);
@@ -66,8 +66,7 @@ describe('Input', () => {
       beforeEach(() => {
         w.instance().keystroke('9');
       });
-      it('calls keystroke', () =>
-        expect(w.mathField().keystroke).toHaveBeenCalledWith('9'));
+      it('calls keystroke', () => expect(w.mathField().keystroke).toHaveBeenCalledWith('9'));
       it('calls focus', () => expect(w.mathField().focus).toHaveBeenCalled());
       it('calls latex', () => expect(w.mathField().latex).toHaveBeenCalled());
     });
@@ -76,8 +75,7 @@ describe('Input', () => {
       beforeEach(() => {
         w.instance().write('hi');
       });
-      it('calls write', () =>
-        expect(w.mathField().write).toHaveBeenCalledWith('hi'));
+      it('calls write', () => expect(w.mathField().write).toHaveBeenCalledWith('hi'));
       it('calls focus', () => expect(w.mathField().focus).toHaveBeenCalled());
       it('calls latex', () => expect(w.mathField().latex).toHaveBeenCalled());
     });

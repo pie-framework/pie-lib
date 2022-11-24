@@ -7,14 +7,14 @@ import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import { getDistanceBetweenTwoPoints } from '../../utils';
 
-const lineStyles = theme => ({
+const lineStyles = (theme) => ({
   line: styles.line(theme),
   disabled: styles.disabled(theme),
   correct: styles.correct(theme, 'stroke'),
-  incorrect: styles.incorrect(theme, 'stroke')
+  incorrect: styles.incorrect(theme, 'stroke'),
 });
 
-export const Line = props => {
+export const Line = (props) => {
   const {
     className,
     classes,
@@ -31,12 +31,7 @@ export const Line = props => {
 
   return (
     <line
-      className={classNames(
-        classes.line,
-        disabled && classes.disabled,
-        classes[correctness],
-        className
-      )}
+      className={classNames(classes.line, disabled && classes.disabled, classes[correctness], className)}
       x1={startPoint.x}
       y1={startPoint.y}
       x2={endPoint.x}
@@ -54,7 +49,7 @@ Line.propTypes = {
   correctness: PropTypes.string,
   graphProps: PropTypes.any,
   from: types.PointType,
-  to: types.PointType
+  to: types.PointType,
 };
 
 const StyledLine = withStyles(lineStyles)(Line);

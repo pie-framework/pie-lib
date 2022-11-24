@@ -10,7 +10,7 @@ const log = debug('@pie-lib:editable-html:plugins:list');
 const b = (type, next, childNodes) => ({
   object: 'block',
   type,
-  nodes: next(childNodes)
+  nodes: next(childNodes),
 });
 
 export const serialization = {
@@ -43,17 +43,17 @@ export const serialization = {
     if (object.type === 'ol_list') {
       return <ol>{children}</ol>;
     }
-  }
+  },
 };
 
 const createEditList = () => {
   const core = EditList({
-    typeDefault: 'span'
+    typeDefault: 'span',
   });
 
   // fix outdated schema
   if (core.schema && core.schema.blocks) {
-    Object.keys(core.schema.blocks).forEach(key => {
+    Object.keys(core.schema.blocks).forEach((key) => {
       const block = core.schema.blocks[key];
 
       if (block.parent) {
@@ -73,7 +73,7 @@ const createEditList = () => {
   /**
    * Returns the highest list of blocks that cover the current selection
    */
-  const getHighestSelectedBlocks = value => {
+  const getHighestSelectedBlocks = (value) => {
     const range = value.selection;
     const document = value.document;
 
@@ -111,7 +111,7 @@ const createEditList = () => {
         });
       } else if (node.type !== 'list_item') {
         change.wrapBlockByKey(node.key, 'list_item', {
-          normalize: false
+          normalize: false,
         });
       }
     });
@@ -122,13 +122,13 @@ const createEditList = () => {
   return core;
 };
 
-export default options => {
+export default (options) => {
   const { type, icon } = options;
 
   const core = createEditList();
 
   // eslint-disable-next-line react/display-name
-  core.renderNode = props => {
+  core.renderNode = (props) => {
     const { node, attributes, children } = props;
 
     switch (node.type) {
@@ -162,13 +162,13 @@ export default options => {
         const change = value.change().call(core.changes.wrapInList, type);
         onChange(change);
       }
-    }
+    },
   };
 
   core.renderNode.propTypes = {
     node: PropTypes.object,
     attributes: PropTypes.object,
-    children: PropTypes.func
+    children: PropTypes.func,
   };
 
   return core;

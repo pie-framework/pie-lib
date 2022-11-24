@@ -29,10 +29,10 @@ function MarkHotkey(options) {
       isMark: true,
       type,
       icon,
-      onToggle: change => {
+      onToggle: (change) => {
         log('[onToggleMark] type: ', type);
         return change.toggleMark(type);
-      }
+      },
     },
     renderMark(props) {
       if (props.mark.type === type) {
@@ -50,7 +50,7 @@ function MarkHotkey(options) {
       // Toggle the mark `type`.
       change.toggleMark(type);
       return true;
-    }
+    },
   };
 }
 
@@ -68,10 +68,10 @@ export const ALL_PLUGINS = [
   'table',
   'video',
   'audio',
-  'responseArea'
+  'responseArea',
 ];
 
-export const DEFAULT_PLUGINS = ALL_PLUGINS.filter(plug => plug !== 'responseArea');
+export const DEFAULT_PLUGINS = ALL_PLUGINS.filter((plug) => plug !== 'responseArea');
 
 export const buildPlugins = (activePlugins, opts) => {
   log('[buildPlugins] opts: ', opts);
@@ -82,9 +82,7 @@ export const buildPlugins = (activePlugins, opts) => {
   const imagePlugin = opts.image && opts.image.onDelete && ImagePlugin(opts.image);
   const mathPlugin = MathPlugin(opts.math);
   const respAreaPlugin =
-    opts.responseArea &&
-    opts.responseArea.type &&
-    RespAreaPlugin(opts.responseArea, compact([mathPlugin]));
+    opts.responseArea && opts.responseArea.type && RespAreaPlugin(opts.responseArea, compact([mathPlugin]));
 
   return compact([
     addIf('table', TablePlugin(opts.table, compact([imagePlugin, mathPlugin, respAreaPlugin]))),
@@ -97,19 +95,19 @@ export const buildPlugins = (activePlugins, opts) => {
         key: '~',
         type: 'strikethrough',
         icon: <Strikethrough />,
-        tag: 'del'
-      })
+        tag: 'del',
+      }),
     ),
     addIf('underline', MarkHotkey({ key: 'u', type: 'underline', icon: <Underline />, tag: 'u' })),
     addIf('image', imagePlugin),
     addIf('video', MediaPlugin('video', opts.media)),
     addIf('audio', MediaPlugin('audio', opts.media)),
     addIf('math', mathPlugin),
-    ...opts.languageCharacters.map(config => addIf('languageCharacters', CharactersPlugin(config))),
+    ...opts.languageCharacters.map((config) => addIf('languageCharacters', CharactersPlugin(config))),
     addIf('bulleted-list', List({ key: 'l', type: 'ul_list', icon: <BulletedListIcon /> })),
     addIf('numbered-list', List({ key: 'n', type: 'ol_list', icon: <NumberedListIcon /> })),
     ToolbarPlugin(opts.toolbar),
     SoftBreakPlugin({ shift: true }),
-    addIf('responseArea', respAreaPlugin)
+    addIf('responseArea', respAreaPlugin),
   ]);
 };

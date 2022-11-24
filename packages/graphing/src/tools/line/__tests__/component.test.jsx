@@ -10,21 +10,21 @@ jest.mock('@pie-lib/plot', () => {
     gridDraggable: a.gridDraggable,
     utils: a.utils,
     trig: {
-      edges: jest.fn(() => jest.fn().mockReturnValue([0, 0]))
-    }
+      edges: jest.fn(() => jest.fn().mockReturnValue([0, 0])),
+    },
   };
 });
 
 describe('ArrowedLine', () => {
   let w;
   let onChange = jest.fn();
-  const wrapper = extras => {
+  const wrapper = (extras) => {
     const defaults = {
       classes: {},
       className: 'className',
       onChange,
       markerId: '1',
-      graphProps: getGraphProps()
+      graphProps: getGraphProps(),
     };
     const props = { ...defaults, ...extras };
     return shallow(<ArrowedLine {...props} />);

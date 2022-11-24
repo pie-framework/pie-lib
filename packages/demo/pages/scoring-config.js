@@ -6,7 +6,7 @@ class Container extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      partialScoring: false
+      partialScoring: false,
     };
   }
 
@@ -18,7 +18,7 @@ class Container extends React.Component {
         <ScoringConfig
           partialScoring={this.state.partialScoring}
           numberOfCorrectResponses={4}
-          onChange={partialScoring => this.setState({ partialScoring })}
+          onChange={(partialScoring) => this.setState({ partialScoring })}
         />
       </div>
     );

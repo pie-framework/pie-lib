@@ -13,24 +13,19 @@ describe('FeedbackConfig', () => {
       correctFeedback: undefined,
       correctFeedbackType: 'default',
       incorrectFeedback: undefined,
-      incorrectFeedbackType: 'default'
+      incorrectFeedbackType: 'default',
     };
 
     let defaults = {
       correct: 'Correct',
       incorrect: 'Incorrect',
-      partial: 'Nearly'
+      partial: 'Nearly',
     };
 
     describe('Feedback Config Component', () => {
       it('should exist', () => {
         component = shallow(
-          <FeedbackConfig
-            feedback={feedback}
-            defaults={defaults}
-            onChange={jest.fn()}
-            classes={{}}
-          />
+          <FeedbackConfig feedback={feedback} defaults={defaults} onChange={jest.fn()} classes={{}} />,
         );
 
         selectors = component.find(FeedbackSelector);
@@ -47,7 +42,7 @@ describe('FeedbackConfig', () => {
               defaults={defaults}
               onChange={jest.fn()}
               classes={{}}
-            />
+            />,
           );
 
           selectors = component.find(FeedbackSelector);
@@ -65,7 +60,7 @@ describe('FeedbackConfig', () => {
               defaults={defaults}
               onChange={jest.fn()}
               classes={{}}
-            />
+            />,
           );
 
           expect(component).toMatchSnapshot();

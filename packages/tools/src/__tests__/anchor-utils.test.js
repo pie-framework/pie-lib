@@ -1,9 +1,4 @@
-import {
-  getAnchor,
-  normalizeAngle,
-  getAngleAndHypotenuse,
-  getTranslateXY
-} from '../anchor-utils';
+import { getAnchor, normalizeAngle, getAngleAndHypotenuse, getTranslateXY } from '../anchor-utils';
 
 const o = (strings, ...exp) => {
   return strings.reduce((acc, v, index) => {
@@ -34,10 +29,10 @@ describe('getAnchor', () => {
       const result = getAnchor(
         {
           width: 400,
-          height: 100
+          height: 100,
         },
         { x: 0, y: 100 },
-        0
+        0,
       );
       expect(result.top).not.toBeUndefined();
       expect(result.left).not.toBeUndefined();
@@ -45,120 +40,72 @@ describe('getAnchor', () => {
   });
   describe('square', () => {
     it('square @ 45', () => {
-      const result = getAnchor(
-        { width: 100, height: 100 },
-        { x: 50, y: 50 },
-        45
-      );
+      const result = getAnchor({ width: 100, height: 100 }, { x: 50, y: 50 }, 45);
       expect(result.top).toBeCloseTo(70.71);
       expect(result.left).toBeCloseTo(70.71);
     });
     it('square @ 90', () => {
-      const result = getAnchor(
-        { width: 100, height: 100 },
-        { x: 50, y: 50 },
-        90
-      );
+      const result = getAnchor({ width: 100, height: 100 }, { x: 50, y: 50 }, 90);
       expect(result.top).toBeCloseTo(50);
       expect(result.left).toBeCloseTo(50);
     });
 
     it('square @ 180', () => {
-      const result = getAnchor(
-        { width: 100, height: 100 },
-        { x: 50, y: 50 },
-        180
-      );
+      const result = getAnchor({ width: 100, height: 100 }, { x: 50, y: 50 }, 180);
       expect(result.top).toBeCloseTo(50);
       expect(result.left).toBeCloseTo(50);
     });
 
     it('square @ 270', () => {
-      const result = getAnchor(
-        { width: 100, height: 100 },
-        { x: 50, y: 50 },
-        180
-      );
+      const result = getAnchor({ width: 100, height: 100 }, { x: 50, y: 50 }, 180);
       expect(result.top).toBeCloseTo(50);
       expect(result.left).toBeCloseTo(50);
     });
 
     it('square @ -45 - bottom right anchor', () => {
-      const result = getAnchor(
-        { width: 100, height: 100 },
-        { x: 100, y: 100 },
-        -45
-      );
+      const result = getAnchor({ width: 100, height: 100 }, { x: 100, y: 100 }, -45);
       expect(result.left).toBeCloseTo(141.42);
       expect(result.top).toBeCloseTo(70.71);
     });
 
     it('square @ 45 - bottom right anchor', () => {
-      const result = getAnchor(
-        { width: 100, height: 100 },
-        { x: 100, y: 100 },
-        45
-      );
+      const result = getAnchor({ width: 100, height: 100 }, { x: 100, y: 100 }, 45);
       expect(result.top).toBeCloseTo(141.42);
       expect(result.left).toBeCloseTo(70.71);
     });
 
     it('square @ 20 - bottom right anchor', () => {
-      const result = getAnchor(
-        { width: 100, height: 100 },
-        { x: 100, y: 100 },
-        20
-      );
+      const result = getAnchor({ width: 100, height: 100 }, { x: 100, y: 100 }, 20);
 
       expect(result.top).toBeCloseTo(128.17);
       expect(result.left).toBeCloseTo(93.969);
     });
 
     it('square @ 45, shifted center', () => {
-      const result = getAnchor(
-        { width: 100, height: 100 },
-        { x: 25, y: 25 },
-        45
-      );
+      const result = getAnchor({ width: 100, height: 100 }, { x: 25, y: 25 }, 45);
       expect(result.top).toBeCloseTo(35.36);
       expect(result.left).toBeCloseTo(70.71);
     });
 
     it('square @ 20, shifted center', () => {
-      const result = getAnchor(
-        { width: 100, height: 100 },
-        { x: 25, y: 25 },
-        20
-      );
+      const result = getAnchor({ width: 100, height: 100 }, { x: 25, y: 25 }, 20);
       expect(result.top).toBeCloseTo(32.04);
       expect(result.left).toBeCloseTo(49.14);
     });
 
     it('square @ 20', () => {
-      const result = getAnchor(
-        { width: 100, height: 100 },
-        { x: 50, y: 50 },
-        20
-      );
+      const result = getAnchor({ width: 100, height: 100 }, { x: 50, y: 50 }, 20);
       expect(result.top).toBeCloseTo(64.085);
       expect(result.left).toBeCloseTo(64.085);
     });
 
     it('square @ 135', () => {
-      const result = getAnchor(
-        { width: 100, height: 100 },
-        { x: 50, y: 50 },
-        135
-      );
+      const result = getAnchor({ width: 100, height: 100 }, { x: 50, y: 50 }, 135);
       expect(result.top).toBeCloseTo(70.71);
       expect(result.left).toBeCloseTo(70.71);
     });
     it('square @ 225', () => {
-      const result = getAnchor(
-        { width: 100, height: 100 },
-        { x: 50, y: 50 },
-        135
-      );
+      const result = getAnchor({ width: 100, height: 100 }, { x: 50, y: 50 }, 135);
       expect(result.top).toBeCloseTo(70.71);
       expect(result.left).toBeCloseTo(70.71);
     });

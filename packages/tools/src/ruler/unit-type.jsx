@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { noSelect, strokeColor } from '../style-utils';
 import { withStyles } from '@material-ui/core/styles';
 
-export const UnitType = props => {
+export const UnitType = (props) => {
   const { classes, label, x, y, textAlign, fill, fontSize, stroke } = props;
 
   return (
@@ -29,7 +29,7 @@ UnitType.propTypes = {
   textAlign: PropTypes.string,
   fill: PropTypes.string,
   fontSize: PropTypes.number,
-  stroke: PropTypes.string
+  stroke: PropTypes.string,
 };
 
 UnitType.defaultProps = {
@@ -37,9 +37,9 @@ UnitType.defaultProps = {
   fontSize: 11,
   stroke: 'none',
   x: 8,
-  y: 14
+  y: 14,
 };
 
-export default withStyles(theme => ({
-  unitType: { ...noSelect(), fill: strokeColor(theme) }
+export default withStyles((theme) => ({
+  unitType: { ...noSelect(), fill: strokeColor(theme) },
 }))(UnitType);

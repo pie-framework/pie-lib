@@ -37,26 +37,26 @@ class Demo extends React.Component {
           0: [
             {
               label: '36',
-              value: '0'
-            }
-          ]
+              value: '0',
+            },
+          ],
         },
         value: {
-          0: 'Test'
-        }
+          0: 'Test',
+        },
       },
       inlineDropdown: {
         markup,
         value: {
           0: 'Climbed',
           1: '',
-          2: ''
+          2: '',
         },
         choices: {
           0: [choice('Jumped'), choice('Climbed'), choice('Flew')],
           1: [choice('Laughed'), choice('Cried'), choice('Sang')],
-          2: [choice('Spoon'), choice('Fork'), choice('Knife')]
-        }
+          2: [choice('Spoon'), choice('Fork'), choice('Knife')],
+        },
       },
       dragInTheBlank: {
         markup,
@@ -66,19 +66,22 @@ class Demo extends React.Component {
           choice('Spoon', '2'),
           choice('Fork', '3'),
           choice('Bumped', '4'),
-          choice('Smiled', '5')
+          choice('Smiled', '5'),
         ],
 
         value: {
-          0: '0'
-        }
+          0: '0',
+        },
       },
       data: {
         1: 'this is one',
-        2: 'carrot'
+        2: 'carrot',
       },
       choices: {
-        2: [{ label: 'foo', value: 'foo' }, { label: 'bar', value: 'bar' }]
+        2: [
+          { label: 'foo', value: 'foo' },
+          { label: 'bar', value: 'bar' },
+        ],
       },
       layout: {
         object: 'block',
@@ -92,16 +95,16 @@ class Demo extends React.Component {
                 object: 'inline',
                 type: 'input',
                 data: {
-                  id: '1'
-                }
+                  id: '1',
+                },
               },
               { object: 'text', content: 'foo' },
-              { object: 'inline', type: 'blank', data: { id: '2' } }
-            ]
+              { object: 'inline', type: 'blank', data: { id: '2' } },
+            ],
           },
           { object: 'text', content: 'hi' },
-          { object: 'inline', type: 'span', nodes: [{ object: 'text', content: ' in span' }] }
-        ]
+          { object: 'inline', type: 'span', nodes: [{ object: 'text', content: ' in span' }] },
+        ],
       },
       disabled: false,
       evaluate: false,
@@ -109,15 +112,15 @@ class Demo extends React.Component {
       markup,
       value: {
         1: {
-          value: undefined
+          value: undefined,
         },
         2: {
-          value: ''
+          value: '',
         },
         3: {
-          value: ''
-        }
-      }
+          value: '',
+        },
+      },
     };
 
     this.msPlugins = [inputPlugin({ onChange: this.inputChange })];
@@ -127,7 +130,7 @@ class Demo extends React.Component {
     this.setState({ mounted: true });
   }
 
-  getFeedback = obj => {
+  getFeedback = (obj) => {
     const { evaluate } = this.state;
 
     if (!evaluate) {
@@ -137,16 +140,16 @@ class Demo extends React.Component {
     return {
       0: {
         value: obj.value['0'],
-        correct: obj.value['0'] === 'Jumped'
+        correct: obj.value['0'] === 'Jumped',
       },
       1: {
         value: obj.value['1'],
-        correct: obj.value['1'] === 'Laughed'
+        correct: obj.value['1'] === 'Laughed',
       },
       2: {
         value: obj.value['2'],
-        correct: obj.value['2'] === 'Spoon'
-      }
+        correct: obj.value['2'] === 'Spoon',
+      },
     };
   };
 
@@ -159,7 +162,7 @@ class Demo extends React.Component {
       evaluate,
       dragInTheBlank,
       constructedResponse,
-      inlineDropdown
+      inlineDropdown,
     } = this.state;
 
     const dragFeedback = this.getFeedback(dragInTheBlank);
@@ -171,21 +174,11 @@ class Demo extends React.Component {
       <div>
         <div>
           <FormControlLabel
-            control={
-              <Switch
-                checked={disabled}
-                onChange={() => this.setState({ disabled: !this.state.disabled })}
-              />
-            }
+            control={<Switch checked={disabled} onChange={() => this.setState({ disabled: !this.state.disabled })} />}
             label="Disabled"
           />
           <FormControlLabel
-            control={
-              <Switch
-                checked={evaluate}
-                onChange={() => this.setState({ evaluate: !this.state.evaluate })}
-              />
-            }
+            control={<Switch checked={evaluate} onChange={() => this.setState({ evaluate: !this.state.evaluate })} />}
             label="Evaluate"
           />
         </div>
@@ -202,9 +195,7 @@ class Demo extends React.Component {
             feedback={dragFeedback}
             disabled={disabled}
             {...dragInTheBlank}
-            onChange={value =>
-              this.setState({ dragInTheBlank: { ...this.state.dragInTheBlank, value } })
-            }
+            onChange={(value) => this.setState({ dragInTheBlank: { ...this.state.dragInTheBlank, value } })}
           />
           <Pre value={this.state.dragInTheBlank.value} />
         </Section>
@@ -213,7 +204,7 @@ class Demo extends React.Component {
             disabled={disabled}
             {...constructedResponse}
             feedback={crFeedback}
-            onChange={value => {
+            onChange={(value) => {
               this.setState({ constructedResponse: { ...this.state.constructedResponse, value } });
             }}
           />
@@ -224,7 +215,7 @@ class Demo extends React.Component {
             disabled={disabled}
             {...inlineDropdown}
             feedback={idFeedback}
-            onChange={value => {
+            onChange={(value) => {
               this.setState({ inlineDropdown: { ...this.state.inlineDropdown, value } });
             }}
           />
@@ -285,6 +276,6 @@ class Demo extends React.Component {
   }
 }
 
-const Styled = withStyles(theme => ({}))(Demo);
+const Styled = withStyles((theme) => ({}))(Demo);
 
 export default withDragContext(withRoot(Styled));

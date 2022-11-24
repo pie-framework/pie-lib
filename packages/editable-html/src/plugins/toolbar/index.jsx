@@ -9,7 +9,7 @@ import EditorAndToolbar from './editor-and-toolbar';
 export default function ToolbarPlugin(opts) {
   return {
     /* eslint-disable-next-line */
-    renderEditor: props => (
+    renderEditor: (props) => (
       <EditorAndToolbar
         {...props}
         mainEditorRef={opts.mainEditorRef}
@@ -18,6 +18,6 @@ export default function ToolbarPlugin(opts) {
         autoWidth={opts.autoWidth}
         onDone={opts.onDone}
       />
-    )
+    ),
   };
 }

@@ -6,12 +6,12 @@ import Blank from './components/blank';
 import { withMask } from './with-mask';
 import { withDragContext, uid } from '@pie-lib/drag';
 
-const Masked = withMask('blank', props => (node, data, onChange) => {
+const Masked = withMask('blank', (props) => (node, data, onChange) => {
   const dataset = node.data ? node.data.dataset || {} : {};
   if (dataset.component === 'blank') {
     const { disabled, duplicates, correctResponse, feedback, showCorrectAnswer } = props;
     const choiceId = showCorrectAnswer ? correctResponse[dataset.id] : data[dataset.id];
-    const choice = choiceId && props.choices.find(c => c.id === choiceId);
+    const choice = choiceId && props.choices.find((c) => c.id === choiceId);
 
     return (
       <Blank
@@ -32,16 +32,14 @@ export class DragInTheBlank extends React.Component {
     markup: PropTypes.string,
     layout: PropTypes.object,
     choicesPosition: PropTypes.string,
-    choices: PropTypes.arrayOf(
-      PropTypes.shape({ label: PropTypes.string, value: PropTypes.string })
-    ),
+    choices: PropTypes.arrayOf(PropTypes.shape({ label: PropTypes.string, value: PropTypes.string })),
     value: PropTypes.object,
     onChange: PropTypes.func,
     duplicates: PropTypes.bool,
     disabled: PropTypes.bool,
     feedback: PropTypes.object,
     correctResponse: PropTypes.object,
-    showCorrectAnswer: PropTypes.bool
+    showCorrectAnswer: PropTypes.bool,
   };
 
   componentWillReceiveProps() {
@@ -54,7 +52,7 @@ export class DragInTheBlank extends React.Component {
     renderMath(this.rootRef);
   }
 
-  getPositionDirection = choicePosition => {
+  getPositionDirection = (choicePosition) => {
     let flexDirection;
 
     switch (choicePosition) {
@@ -88,17 +86,17 @@ export class DragInTheBlank extends React.Component {
       correctResponse,
       disabled,
       feedback,
-      showCorrectAnswer
+      showCorrectAnswer,
     } = this.props;
 
     const choicePosition = choicesPosition || 'below';
     const style = {
       display: 'flex',
-      flexDirection: this.getPositionDirection(choicePosition)
+      flexDirection: this.getPositionDirection(choicePosition),
     };
 
     return (
-      <div ref={ref => ref && (this.rootRef = ref)} style={style}>
+      <div ref={(ref) => ref && (this.rootRef = ref)} style={style}>
         <DragChoices
           choicePosition={choicePosition}
           duplicates={duplicates}

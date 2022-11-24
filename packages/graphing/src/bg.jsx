@@ -9,7 +9,7 @@ export default class Bg extends React.Component {
     width: PropTypes.number.isRequired,
     height: PropTypes.number.isRequired,
     onClick: PropTypes.func.isRequired,
-    graphProps: types.GraphPropsType.isRequired
+    graphProps: types.GraphPropsType.isRequired,
   };
 
   static defaultProps = {};
@@ -30,7 +30,7 @@ export default class Bg extends React.Component {
    * Note: we use d3 click + mouse to give us domain values directly.
    * Saves us having to calculate them ourselves from a MouseEvent.
    */
-  onRectClick = rect => {
+  onRectClick = (rect) => {
     const { onClick, graphProps } = this.props;
     const { scale } = graphProps;
     const coords = mouse(rect._groups[0][0]);
@@ -65,14 +65,6 @@ export default class Bg extends React.Component {
 
   render() {
     const { width, height } = this.props;
-    return (
-      <rect
-        ref={rect => (this.rect = rect)}
-        fill="red"
-        fillOpacity="0.0"
-        width={width}
-        height={height}
-      />
-    );
+    return <rect ref={(rect) => (this.rect = rect)} fill="red" fillOpacity="0.0" width={width} height={height} />;
   }
 }

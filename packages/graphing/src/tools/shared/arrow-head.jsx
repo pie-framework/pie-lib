@@ -7,12 +7,12 @@ export const ArrowHead = ({ size, transform, points }) => (
 ArrowHead.propTypes = {
   points: PropTypes.string,
   size: PropTypes.number,
-  transform: PropTypes.string
+  transform: PropTypes.string,
 };
 ArrowHead.defaultProps = {
   points: '',
   size: 10,
-  transform: ''
+  transform: '',
 };
 export const genUid = () => {
   const v = (Math.random() * 1000).toFixed(0);
@@ -37,8 +37,8 @@ export const ArrowMarker = ({ id, size, className }) => {
 ArrowMarker.propTypes = {
   id: PropTypes.string,
   size: PropTypes.number,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 ArrowMarker.defaultProps = {
-  size: 5
+  size: 5,
 };

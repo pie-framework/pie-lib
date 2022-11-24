@@ -26,37 +26,37 @@ const puppySrc = 'https://bit.ly/23yROY8';
 const inputOptions = [
   {
     label: 'An image in a P tag',
-    html: `<div><p><img src="${puppySrc}" style="width:170px;height:151px"/> bar</p><p><img src="${puppySrc}" style="width:170px;height:151px"/> bar</p></div>`
+    html: `<div><p><img src="${puppySrc}" style="width:170px;height:151px"/> bar</p><p><img src="${puppySrc}" style="width:170px;height:151px"/> bar</p></div>`,
   },
   {
     label: 'Latex \\(..\\)',
-    html: '<div><span data-latex="">\\(\\frac{1}{2}\\)</span></div>'
+    html: '<div><span data-latex="">\\(\\frac{1}{2}\\)</span></div>',
   },
   {
     label: 'Latex $..$',
-    html: '<div><span data-latex="">$\\frac{1}{2}$</span></div>'
+    html: '<div><span data-latex="">$\\frac{1}{2}$</span></div>',
   },
   {
     label: 'Latex \\displaystyle',
-    html: '<div><span data-latex="">\\(\\displaystyle - \\frac{36}{55}\\)</span></div>'
+    html: '<div><span data-latex="">\\(\\displaystyle - \\frac{36}{55}\\)</span></div>',
   },
   {
     label: 'Nested div w/ image',
-    html: '<div>​<div><img src="foo.com/img.png"/></div>​</div>'
+    html: '<div>​<div><img src="foo.com/img.png"/></div>​</div>',
   },
   {
     label: 'Nested div w/ text',
-    html: '<div>​<div>hi</div>​</div>'
+    html: '<div>​<div>hi</div>​</div>',
   },
   {
     label: 'Table',
-    html: '<table border="1"><tr><td>a</td><td>b</td></tr></table>'
+    html: '<table border="1"><tr><td>a</td><td>b</td></tr></table>',
   },
   {
     label: 'Table Complex',
     html:
-      '<table cellspacing="0" cellpadding="4" class="borderall"> <tbody> <tr> <td style="width:140px" class="center bold">Trial</td> <td style="width:140px" class="center bold">Mass NH<sub>3</sub></td> <td style="width:140px" class="center bold">Mass HCl</td> <td style="width:140px" class="center bold">Mass NH<sub>4</sub>Cl</td> </tr> <tr> <td class="center">1</td> <td class="center">3.40 g</td> <td class="center">7.30 g</td> <td class="center">10.70 g</td> </tr> <tr> <td class="center">2</td> <td class="center">?</td> <td class="center">?</td> <td class="center">32.10 g</td> </tr> </tbody></table>'
-  }
+      '<table cellspacing="0" cellpadding="4" class="borderall"> <tbody> <tr> <td style="width:140px" class="center bold">Trial</td> <td style="width:140px" class="center bold">Mass NH<sub>3</sub></td> <td style="width:140px" class="center bold">Mass HCl</td> <td style="width:140px" class="center bold">Mass NH<sub>4</sub>Cl</td> </tr> <tr> <td class="center">1</td> <td class="center">3.40 g</td> <td class="center">7.30 g</td> <td class="center">10.70 g</td> </tr> <tr> <td class="center">2</td> <td class="center">?</td> <td class="center">?</td> <td class="center">32.10 g</td> </tr> </tbody></table>',
+  },
 ];
 
 const html = inputOptions[1].html;
@@ -64,7 +64,7 @@ const html = inputOptions[1].html;
 class RawMarkupPreview extends React.Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
-    markup: PropTypes.string.isRequired
+    markup: PropTypes.string.isRequired,
   };
 
   render() {
@@ -72,7 +72,7 @@ class RawMarkupPreview extends React.Component {
     return (
       <div>
         <Typography variant="h6">Markup</Typography>
-        <div ref={r => (this.preview = r)} dangerouslySetInnerHTML={{ __html: markup }} />
+        <div ref={(r) => (this.preview = r)} dangerouslySetInnerHTML={{ __html: markup }} />
         <hr />
         <Typography variant="subtitle1">Raw</Typography>
         <pre className={classes.prettyPrint}>{markup}</pre>
@@ -85,13 +85,13 @@ class RawMarkupPreview extends React.Component {
 const MarkupPreview = withStyles(() => ({
   prettyPrint: {
     whiteSpace: 'normal',
-    width: '100%'
-  }
+    width: '100%',
+  },
 }))(RawMarkupPreview);
 
 class RteDemo extends React.Component {
   static propTypes = {
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
   };
 
   constructor(props) {
@@ -107,21 +107,21 @@ class RteDemo extends React.Component {
       markupText: html,
       hasText: true,
       mathEnabled: true,
-      languageCharactersProps: []
+      languageCharactersProps: [],
     };
   }
 
-  onChange = markup => {
+  onChange = (markup) => {
     log('onChange: ');
     this.setState({ markup });
   };
 
-  onChangeMarkupText = markupText => {
+  onChangeMarkupText = (markupText) => {
     log('onChangeMarkupText: ');
     this.setState({ markupText, hasText: hasText(markupText) });
   };
 
-  handleInputFiles = input => {
+  handleInputFiles = (input) => {
     log('[handleInputFiles] input: ', input);
 
     const { imageHandler } = this.state;
@@ -144,7 +144,7 @@ class RteDemo extends React.Component {
       log('call readAsDataUrl...', file);
       let progress = 0;
       imageHandler.progress(progress);
-      _.range(1, 100).forEach(n => {
+      _.range(1, 100).forEach((n) => {
         setTimeout(() => {
           imageHandler.progress(n);
         }, n * 20);
@@ -153,7 +153,7 @@ class RteDemo extends React.Component {
     }
   };
 
-  handleFileSelect = event => {
+  handleFileSelect = (event) => {
     log('[handleFileSelect] event: ', event);
     //disable the check cancelled call
     this.setState({ checkCancelled: false }, () => {
@@ -183,7 +183,7 @@ class RteDemo extends React.Component {
     this.fileInput.removeEventListener('change', this.handleFileSelect);
   }
 
-  addImage = imageHandler => {
+  addImage = (imageHandler) => {
     log('[addImage]', imageHandler);
     this.setState({ imageHandler });
     this.fileInput.click();
@@ -194,7 +194,7 @@ class RteDemo extends React.Component {
      * then call handleInputFiles if checkCancelled is true.
      * It's set to false if a 'change' event is fired.
      */
-    document.body.onfocus = e => {
+    document.body.onfocus = (e) => {
       log('focus document...', this.fileInput.files);
       document.body.onfocus = null;
       this.setState({ checkCancelled: true }, () => {
@@ -230,11 +230,11 @@ class RteDemo extends React.Component {
       markupText,
       hasText,
       mathEnabled,
-      languageCharactersProps
+      languageCharactersProps,
     } = this.state;
     const imageSupport = {
       add: this.addImage,
-      delete: this.onDeleteImage
+      delete: this.onDeleteImage,
     };
 
     log('this.state', this.state);
@@ -245,7 +245,7 @@ class RteDemo extends React.Component {
         <Typography variant="h6">EditableHtml</Typography>
         <Typography variant="body2">A rich text editor with a material design look.</Typography>
         <br />
-        <InputChooser inputOptions={inputOptions} onChange={markup => this.setState({ markup })} />
+        <InputChooser inputOptions={inputOptions} onChange={(markup) => this.setState({ markup })} />
         <div className={classes.controls}>
           <Typography variant="headline">Runtime Options</Typography>
           <FormGroup row>
@@ -254,7 +254,7 @@ class RteDemo extends React.Component {
                 <Select
                   name="keypadMode"
                   value={keypadMode}
-                  onChange={event => this.setState({ keypadMode: event.target.value })}
+                  onChange={(event) => this.setState({ keypadMode: event.target.value })}
                   input={<Input id="keypadMode" />}
                 >
                   <MenuItem value="1">Grade 1 - 2</MenuItem>
@@ -273,7 +273,7 @@ class RteDemo extends React.Component {
               control={
                 <Checkbox
                   checked={showHighlight}
-                  onChange={event => this.setState({ showHighlight: event.target.checked })}
+                  onChange={(event) => this.setState({ showHighlight: event.target.checked })}
                 />
               }
               label="show highlight"
@@ -282,17 +282,14 @@ class RteDemo extends React.Component {
               control={
                 <Checkbox
                   checked={disableImageUpload}
-                  onChange={event => this.setState({ disableImageUpload: event.target.checked })}
+                  onChange={(event) => this.setState({ disableImageUpload: event.target.checked })}
                 />
               }
               label="disable image upload"
             />
             <FormControlLabel
               control={
-                <Checkbox
-                  checked={disabled}
-                  onChange={event => this.setState({ disabled: event.target.checked })}
-                />
+                <Checkbox checked={disabled} onChange={(event) => this.setState({ disabled: event.target.checked })} />
               }
               label="disabled"
             />
@@ -300,19 +297,19 @@ class RteDemo extends React.Component {
               className={classes.sizeInput}
               placeholder={'width'}
               value={width}
-              onChange={event => this.setState({ width: event.target.value })}
+              onChange={(event) => this.setState({ width: event.target.value })}
             />
             <TextField
               className={classes.sizeInput}
               placeholder={'height'}
               value={height}
-              onChange={event => this.setState({ height: event.target.value })}
+              onChange={(event) => this.setState({ height: event.target.value })}
             />
             <FormControlLabel
               control={
                 <Checkbox
                   checked={mathEnabled}
-                  onChange={event => this.setState({ mathEnabled: event.target.checked })}
+                  onChange={(event) => this.setState({ mathEnabled: event.target.checked })}
                 />
               }
               label="math enabled"
@@ -320,12 +317,12 @@ class RteDemo extends React.Component {
             <FormControlLabel
               control={
                 <Checkbox
-                  checked={languageCharactersProps.filter(a => a.language === 'spanish').length}
-                  onChange={event =>
+                  checked={languageCharactersProps.filter((a) => a.language === 'spanish').length}
+                  onChange={(event) =>
                     this.setState({
                       languageCharactersProps: event.target.checked
                         ? languageCharactersProps.concat([{ language: 'spanish' }])
-                        : languageCharactersProps.filter(a => a.language !== 'spanish')
+                        : languageCharactersProps.filter((a) => a.language !== 'spanish'),
                     })
                   }
                 />
@@ -335,12 +332,12 @@ class RteDemo extends React.Component {
             <FormControlLabel
               control={
                 <Checkbox
-                  checked={languageCharactersProps.filter(a => a.language === 'special').length}
-                  onChange={event =>
+                  checked={languageCharactersProps.filter((a) => a.language === 'special').length}
+                  onChange={(event) =>
                     this.setState({
                       languageCharactersProps: event.target.checked
                         ? languageCharactersProps.concat([{ language: 'special' }])
-                        : languageCharactersProps.filter(a => a.language !== 'special')
+                        : languageCharactersProps.filter((a) => a.language !== 'special'),
                     })
                   }
                 />
@@ -358,31 +355,24 @@ class RteDemo extends React.Component {
           highlightShape={showHighlight}
           pluginProps={{
             image: {
-              disabled: disableImageUpload
+              disabled: disableImageUpload,
             },
             math: {
               disabled: !mathEnabled,
-              keypadMode: this.state.keypadMode
-            }
+              keypadMode: this.state.keypadMode,
+            },
           }}
           width={width}
           height={height}
           languageCharactersProps={languageCharactersProps}
         />
-        <input type="file" hidden ref={r => (this.fileInput = r)} />
+        <input type="file" hidden ref={(r) => (this.fileInput = r)} />
         <br />
         <MarkupPreview markup={markup} />
         <br />
-        <Typography variant="h6">
-          Check if input contains text using the hasText function:
-        </Typography>
+        <Typography variant="h6">Check if input contains text using the hasText function:</Typography>
         <br />
-        <EditableHtml
-          markup={markupText}
-          onChange={this.onChangeMarkupText}
-          width={width}
-          height={height}
-        />
+        <EditableHtml markup={markupText} onChange={this.onChangeMarkupText} width={width} height={height} />
         <br />
         <div>{`Has text: ${hasText}`}</div>
       </div>
@@ -392,17 +382,17 @@ class RteDemo extends React.Component {
   }
 }
 
-const styles = theme => ({
+const styles = (theme) => ({
   controls: {
     backgroundColor: grey[200],
     padding: theme.spacing.unit,
     marginTop: theme.spacing.unit,
-    marginBottom: theme.spacing.unit
+    marginBottom: theme.spacing.unit,
   },
   sizeInput: {
     width: '60px',
-    paddingLeft: theme.spacing.unit * 2
-  }
+    paddingLeft: theme.spacing.unit * 2,
+  },
 });
 
 export default withRoot(withStyles(styles)(RteDemo));

@@ -6,18 +6,18 @@ const noTouch = {
   '-khtml-user-select': 'none',
   '-moz-user-select': 'none',
   '-ms-user-select': 'none',
-  'user-select': 'none'
+  'user-select': 'none',
 };
 
 export default {
   root: {
     width: '100%',
-    cursor: 'pointer'
+    cursor: 'pointer',
   },
   content: {
     margin: '0 auto',
     textAlign: 'center',
-    display: 'flex'
+    display: 'flex',
   },
   label: Object.assign(
     {
@@ -29,32 +29,32 @@ export default {
       verticalAlign: 'middle',
       color: `var(--correct-answer-toggle-label-color,  ${color.text()})`,
       fontSize: '15px',
-      fontWeight: 'normal'
+      fontWeight: 'normal',
     },
-    noTouch
+    noTouch,
   ),
   icon: {
     position: 'absolute',
-    width: '25px'
+    width: '25px',
   },
   iconHolder: {
     width: '25px',
-    marginRight: '5px'
+    marginRight: '5px',
   },
   enter: {
-    opacity: '0'
+    opacity: '0',
   },
   enterActive: {
     opacity: '1',
-    transition: 'opacity 0.3s ease-in'
+    transition: 'opacity 0.3s ease-in',
   },
   exit: {
-    opacity: '1'
+    opacity: '1',
   },
   exitActive: {
     opacity: '0',
-    transition: 'opacity 0.3s ease-in'
-  }
+    transition: 'opacity 0.3s ease-in',
+  },
 };
 
 export const animationStyles = {};

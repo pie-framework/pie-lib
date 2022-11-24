@@ -9,23 +9,23 @@ jest.mock('../../../utils', () => {
   const { point } = jest.requireActual('../../../utils');
   return {
     bounds: jest.fn(),
-    point
+    point,
   };
 });
 
 jest.mock('@pie-lib/plot', () => {
   const { types, utils } = jest.requireActual('@pie-lib/plot');
   return {
-    gridDraggable: jest.fn(opts => Comp => Comp),
+    gridDraggable: jest.fn((opts) => (Comp) => Comp),
     types,
-    utils
+    utils,
   };
 });
 
 describe('BasePoint', () => {
   let w;
   let onChange = jest.fn();
-  const wrapper = extras => {
+  const wrapper = (extras) => {
     const defaults = {
       classes: {},
       className: 'className',
@@ -33,7 +33,7 @@ describe('BasePoint', () => {
       graphProps: graphProps(),
       x: 0,
       y: 0,
-      width: 100
+      width: 100,
     };
     const props = { ...defaults, ...extras };
     return shallow(<DragHandle {...props} />);
@@ -53,12 +53,12 @@ describe('BasePoint', () => {
       domain = {
         min: 0,
         max: 1,
-        step: 1
+        step: 1,
       };
       range = {
         min: 0,
         max: 1,
-        step: 1
+        step: 1,
       };
       const w = wrapper();
       opts = gridDraggable.mock.calls[0][0];
