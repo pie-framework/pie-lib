@@ -5,7 +5,7 @@ import Choice from './choice';
 import { DropTarget } from '@pie-lib/drag';
 import { uid } from '@pie-lib/drag';
 
-export class Choices extends React.Component {
+export default class Choices extends React.Component {
   static propTypes = {
     disabled: PropTypes.bool,
     duplicates: PropTypes.bool,
@@ -50,34 +50,12 @@ export class Choices extends React.Component {
     });
     const elementStyle = this.getStyleForWrapper();
 
-    return connectDropTarget(
+    return (
       <div>
         {filteredChoices.map((c, index) => (
           <Choice key={`${c.value}-${index}`} disabled={disabled} choice={c} />
         ))}
-      </div>,
+      </div>
     );
   }
 }
-
-export const spec = {
-  drop: (props, monitor) => {
-    log('[drop] props: ', props);
-    const item = monitor.getItem();
-    props.onDropChoice(item);
-  },
-  canDrop: (props /*, monitor*/) => {
-    return !props.disabled;
-  },
-};
-
-const WithTarget = DropTarget(
-  ({ uid }) => uid,
-  spec,
-  (connect, monitor) => ({
-    connectDropTarget: connect.dropTarget(),
-    isOver: monitor.isOver(),
-  }),
-)(Choices);
-
-export default uid.withUid(WithTarget);
