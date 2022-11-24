@@ -4,6 +4,7 @@ import findKey from 'lodash/findKey';
 import Choice from './choice';
 import { DropTarget } from '@pie-lib/drag';
 import { uid } from '@pie-lib/drag';
+import PlaceHolder from './droppable-placeholder';
 
 export default class Choices extends React.Component {
   static propTypes = {
@@ -38,6 +39,15 @@ export default class Choices extends React.Component {
     }
   };
 
+  onDropChoice = (choices) =>
+    choices.filter((c) => {
+      if (duplicates === true) {
+        return true;
+      }
+      const foundChoice = findKey(value, (v) => v === c.id);
+      return foundChoice === undefined;
+    });
+
   render() {
     const { disabled, duplicates, choices, value, connectDropTarget } = this.props;
     console.log(connectDropTarget, 'connectDrop target');
@@ -51,11 +61,11 @@ export default class Choices extends React.Component {
     const elementStyle = this.getStyleForWrapper();
 
     return (
-      <div>
+      <PlaceHolder onDropChoice={this.onDropChoice} disabled={disabled} isOver={false} delayUpdate={true}>
         {filteredChoices.map((c, index) => (
-          <Choice key={`${c.value}-${index}`} disabled={disabled} choice={c} />
+          <Choice key={`${c.value}-${index}`} disabled={disabled} choice={c} {...c} />
         ))}
-      </div>
+      </PlaceHolder>
     );
   }
 }
