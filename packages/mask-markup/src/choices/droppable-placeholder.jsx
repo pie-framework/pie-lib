@@ -1,7 +1,7 @@
 import React from 'react';
 import { PlaceHolder } from '@pie-lib/drag';
 import PropTypes from 'prop-types';
-import { DropTarget } from '@pie-lib/drag';
+import { DropTarget } from 'react-dnd';
 import { uid } from '@pie-lib/drag';
 import debug from 'debug';
 
@@ -18,7 +18,7 @@ export class DroppablePlaceholder extends React.Component {
   };
   render() {
     const { children, connectDropTarget, onDropChoice, disabled } = this.props;
-    console.log(children);
+
     // console.log(this.props)
 
     return connectDropTarget(
@@ -33,7 +33,7 @@ export const spec = {
   drop: (props, monitor) => {
     log('[drop] props: ', props);
     const item = monitor.getItem();
-    //   props.onDropChoice(item);
+    props.onDropChoice(item);
   },
   canDrop: (props /*, monitor*/) => {
     return !props.disabled;

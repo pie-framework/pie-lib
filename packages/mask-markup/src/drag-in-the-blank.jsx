@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { renderMath } from '@pie-lib/math-rendering';
-import Choices from './choices';
+import DC from './choices';
 import Blank from './components/blank';
 import { withMask } from './with-mask';
 import { withDragContext, uid } from '@pie-lib/drag';
@@ -27,7 +27,7 @@ const Masked = withMask('blank', (props) => (node, data, onChange) => {
   }
 });
 
-export default class DragInTheBlank extends React.Component {
+export class DragIn extends React.Component {
   static propTypes = {
     markup: PropTypes.string,
     layout: PropTypes.object,
@@ -97,7 +97,7 @@ export default class DragInTheBlank extends React.Component {
 
     return (
       <div ref={(ref) => ref && (this.rootRef = ref)} style={style}>
-        <Choices
+        <DC
           delayUpdate={true}
           choicePosition={choicePosition}
           duplicates={duplicates}
@@ -121,3 +121,5 @@ export default class DragInTheBlank extends React.Component {
     );
   }
 }
+
+export default withDragContext(DragIn);
