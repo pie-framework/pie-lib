@@ -1,8 +1,7 @@
 import React from 'react';
-import { PlaceHolder } from '@pie-lib/drag';
 import PropTypes from 'prop-types';
-import { DropTarget } from 'react-dnd';
-import { uid } from '@pie-lib/drag';
+import { PlaceHolder, DropTarget, withDragContext } from '@pie-lib/drag';
+//import { withDragContext } from '@pie-lib/drag';
 import debug from 'debug';
 
 const log = debug('@pie-ui:categorize:droppable-placeholder');
@@ -19,34 +18,39 @@ export class DroppablePlaceholder extends React.Component {
   render() {
     const { children, connectDropTarget, onDropChoice, disabled } = this.props;
 
-    // console.log(this.props)
-
     return connectDropTarget(
       <div style={{ flex: 1 }}>
-        <PlaceHolder>{children}</PlaceHolder>
+        <PlaceHolder choiceBoard={true} onDropChoice={onDropChoice}>
+          {children}
+        </PlaceHolder>
       </div>,
     );
   }
 }
 
 export const spec = {
-  drop: (props, monitor) => {
-    log('[drop] props: ', props);
-    const item = monitor.getItem();
-    props.onDropChoice(item);
+  drop(monitor) {
+    const draggedItem = monitor.getItem();
+    console.log('I drag', draggedItem);
+
+    return {
+      dropped: true,
+    };
   },
-  canDrop: (props /*, monitor*/) => {
-    return !props.disabled;
+  canDrop(monitor) {
+    const draggedItem = monitor.getItem();
+
+    return true;
   },
 };
 
-const WithTarget = DropTarget(
-  ({ uid }) => uid,
-  spec,
-  (connect, monitor) => ({
+export const DRAG_TYPE = 'CHOICE';
+
+const WithTarget = withDragContext(
+  DropTarget(DRAG_TYPE, spec, (connect, monitor) => ({
     connectDropTarget: connect.dropTarget(),
     isOver: monitor.isOver(),
-  }),
-)(DroppablePlaceholder);
+  }))(DroppablePlaceholder),
+);
 
-export default uid.withUid(WithTarget);
+export default WithTarget;

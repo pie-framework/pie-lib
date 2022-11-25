@@ -179,7 +179,7 @@ const connectedBlankContent = useStyles(({ connectDragSource, connectDropTarget,
 const tileTarget = {
   drop(props, monitor) {
     const draggedItem = monitor.getItem();
-
+    console.log('I drag');
     log('props.instanceId', props.instanceId, 'draggedItem.instanceId:', draggedItem.instanceId);
 
     if (draggedItem.id !== props.id) {
