@@ -110,7 +110,7 @@ export default function MediaPlugin(type, opts) {
         const { node, key } = props;
         const { data } = node;
         const jsonData = data.toJSON();
-        const { src, height, width, editing, tag, ...rest } = jsonData;
+        const { src, height, width, tag, ...rest } = jsonData;
         const handleEdit = () => {
           const change = opts.createChange();
           const c = change.setNodeByKey(key, {
@@ -177,7 +177,6 @@ export default function MediaPlugin(type, opts) {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               src={src}
-              editing={editing ? 1 : 0}
               {...rest}
               {...style}
             />
