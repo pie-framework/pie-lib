@@ -97,7 +97,6 @@ export default class DragInTheBlank extends React.Component {
     return (
       <div ref={(ref) => ref && (this.rootRef = ref)} style={style}>
         <Choices
-          delayUpdate={true}
           choicePosition={choicePosition}
           duplicates={duplicates}
           choices={choices}

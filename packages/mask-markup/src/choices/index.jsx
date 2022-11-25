@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import findKey from 'lodash/findKey';
 import Choice from './choice';
 import Placeholder from './droppable-placeholder';
-import { filter } from 'lodash';
 
 export default class Choices extends React.Component {
   static propTypes = {
@@ -38,12 +37,13 @@ export default class Choices extends React.Component {
   };
 
   render() {
-    const { disabled, duplicates, choices, value } = this.props;
+    const { disabled, duplicates, choices, value, isOver } = this.props;
     const filteredChoices = choices.filter((c) => {
       if (duplicates === true) {
         return true;
       }
       const foundChoice = findKey(value, (v) => v === c.id);
+
       return foundChoice === undefined;
     });
 
@@ -51,7 +51,7 @@ export default class Choices extends React.Component {
 
     return (
       <div style={elementStyle}>
-        <Placeholder>
+        <Placeholder isOver={isOver}>
           {filteredChoices.map((c, index) => (
             <Choice key={`${c.value}-${index}`} disabled={disabled} choice={c} {...c} />
           ))}
