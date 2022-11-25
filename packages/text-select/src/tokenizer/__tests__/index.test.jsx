@@ -7,8 +7,8 @@ const tokens = () => [
   {
     start: 0,
     end: 1,
-    text: 'f'
-  }
+    text: 'f',
+  },
 ];
 
 const eff = () => tokens()[0];
@@ -16,19 +16,12 @@ const eff = () => tokens()[0];
 jest.mock('../builder', () => ({
   words: jest.fn().mockReturnValue([{ start: 0, end: 3, text: 'foo' }]),
   sentences: jest.fn().mockReturnValue([{ start: 0, end: 3, text: 'foo' }]),
-  paragraphs: jest.fn().mockReturnValue([{ start: 0, end: 3, text: 'foo' }])
+  paragraphs: jest.fn().mockReturnValue([{ start: 0, end: 3, text: 'foo' }]),
 }));
 describe('tokenizer', () => {
   describe('snapshot', () => {
     it('renders', () => {
-      const w = shallow(
-        <Tokenizer
-          text="foo"
-          classes={{}}
-          onChange={jest.fn()}
-          tokens={tokens()}
-        />
-      );
+      const w = shallow(<Tokenizer text="foo" classes={{}} onChange={jest.fn()} tokens={tokens()} />);
       expect(w).toMatchSnapshot();
     });
   });
@@ -39,14 +32,7 @@ describe('tokenizer', () => {
 
     beforeEach(() => {
       onChange = jest.fn();
-      w = shallow(
-        <Tokenizer
-          text="foo"
-          classes={{}}
-          onChange={onChange}
-          tokens={tokens()}
-        />
-      );
+      w = shallow(<Tokenizer text="foo" classes={{}} onChange={onChange} tokens={tokens()} />);
     });
     describe('tokenIndex', () => {
       it('returns 0', () => {
@@ -85,11 +71,7 @@ describe('tokenizer', () => {
 
     describe('selectToken', () => {
       it('calls onChange', () => {
-        w
-          .instance()
-          .selectToken({ start: 1, end: 3, text: 'oo' }, [
-            { start: 0, end: 1, text: 'f' }
-          ]);
+        w.instance().selectToken({ start: 1, end: 3, text: 'oo' }, [{ start: 0, end: 1, text: 'f' }]);
         expect(onChange).toBeCalledWith([{ start: 1, end: 3, text: 'oo' }], '');
       });
     });
@@ -133,18 +115,14 @@ describe('tokenizer', () => {
     describe('setCorrect', () => {
       it('calls onChange', () => {
         w.instance().setCorrect({ start: 0, end: 1, text: 'f' });
-        expect(onChange).toBeCalledWith([
-          { start: 0, end: 1, text: 'f', correct: true }
-        ], '');
+        expect(onChange).toBeCalledWith([{ start: 0, end: 1, text: 'f', correct: true }], '');
       });
       it('calls onChange w/ correct: false', () => {
         w.setProps({
-          tokens: [{ start: 0, end: 1, text: 'f', correct: true }]
+          tokens: [{ start: 0, end: 1, text: 'f', correct: true }],
         });
         w.instance().setCorrect({ start: 0, end: 1, text: 'f' });
-        expect(onChange).toBeCalledWith([
-          { start: 0, end: 1, text: 'f', correct: false }
-        ], '');
+        expect(onChange).toBeCalledWith([{ start: 0, end: 1, text: 'f', correct: false }], '');
       });
     });
 

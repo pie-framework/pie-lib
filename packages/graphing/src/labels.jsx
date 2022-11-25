@@ -10,7 +10,7 @@ const rotations = {
   left: -90,
   top: 0,
   bottom: 0,
-  right: 90
+  right: 90,
 };
 
 export const getTransform = (side, width, height) => {
@@ -50,11 +50,11 @@ class RawLabel extends React.Component {
     classes: PropTypes.object,
     disabledLabel: PropTypes.bool,
     placeholder: PropTypes.string,
-    graphProps: types.GraphPropsType.isRequired
+    graphProps: types.GraphPropsType.isRequired,
   };
 
   static defaultProps = {
-    onChange: () => {}
+    onChange: () => {},
   };
 
   render() {
@@ -74,7 +74,7 @@ class RawLabel extends React.Component {
       'italic',
       'underline',
       'strikethrough',
-      'math'
+      'math',
       // 'languageCharacters'
     ];
 
@@ -92,16 +92,16 @@ class RawLabel extends React.Component {
             className={cn(
               {
                 [classes.bottomLabel]: side === 'bottom',
-                [classes.disabledAxisLabel]: disabledLabel
+                [classes.disabledAxisLabel]: disabledLabel,
               },
-              classes.axisLabel
+              classes.axisLabel,
             )}
             markup={text || ''}
             onChange={onChange}
             placeholder={!disabledLabel && placeholder}
             toolbarOpts={{
               position: side === 'bottom' ? 'top' : 'bottom',
-              noBorder: true
+              noBorder: true,
             }}
             activePlugins={activePlugins}
           />
@@ -111,28 +111,28 @@ class RawLabel extends React.Component {
   }
 }
 
-const Label = withStyles(theme => ({
+const Label = withStyles((theme) => ({
   label: {
-    fill: color.secondary()
+    fill: color.secondary(),
   },
   axisLabel: {
     fontSize: theme.typography.fontSize - 2,
     textAlign: 'center',
-    padding: '0 4px'
+    padding: '0 4px',
   },
   disabledAxisLabel: {
-    pointerEvents: 'none'
+    pointerEvents: 'none',
   },
   bottomLabel: {
-    marginTop: '44px'
-  }
+    marginTop: '44px',
+  },
 }))(RawLabel);
 
 export const LabelType = {
   left: PropTypes.string,
   top: PropTypes.string,
   bottom: PropTypes.string,
-  right: PropTypes.string
+  right: PropTypes.string,
 };
 
 export class Labels extends React.Component {
@@ -142,7 +142,7 @@ export class Labels extends React.Component {
     disabledLabels: PropTypes.bool,
     placeholders: PropTypes.object,
     value: PropTypes.shape(LabelType),
-    graphProps: PropTypes.object
+    graphProps: PropTypes.object,
   };
 
   static defaultProps = {};
@@ -151,7 +151,7 @@ export class Labels extends React.Component {
     const { value, onChange } = this.props;
     const labels = {
       ...value,
-      [side]: newValue
+      [side]: newValue,
     };
 
     onChange(labels);
@@ -169,7 +169,7 @@ export class Labels extends React.Component {
           disabledLabel={disabledLabels}
           placeholder={placeholders.left}
           graphProps={graphProps}
-          onChange={value => this.onChangeLabel(value, 'left')}
+          onChange={(value) => this.onChangeLabel(value, 'left')}
         />
         <Label
           key="top"
@@ -178,7 +178,7 @@ export class Labels extends React.Component {
           disabledLabel={disabledLabels}
           placeholder={placeholders.top}
           graphProps={graphProps}
-          onChange={value => this.onChangeLabel(value, 'top')}
+          onChange={(value) => this.onChangeLabel(value, 'top')}
         />
         <Label
           key="bottom"
@@ -187,7 +187,7 @@ export class Labels extends React.Component {
           disabledLabel={disabledLabels}
           placeholder={placeholders.bottom}
           graphProps={graphProps}
-          onChange={value => this.onChangeLabel(value, 'bottom')}
+          onChange={(value) => this.onChangeLabel(value, 'bottom')}
         />
         <Label
           key="right"
@@ -196,7 +196,7 @@ export class Labels extends React.Component {
           disabledLabel={disabledLabels}
           placeholder={placeholders.right}
           graphProps={graphProps}
-          onChange={value => this.onChangeLabel(value, 'right')}
+          onChange={(value) => this.onChangeLabel(value, 'right')}
         />
       </React.Fragment>
     );

@@ -10,18 +10,18 @@ export class IconMenu extends React.Component {
   static propTypes = {
     opts: PropTypes.object,
     onClick: PropTypes.func.isRequired,
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
   };
 
   constructor(props) {
     super(props);
     this.state = {
       anchorEl: undefined,
-      open: false
+      open: false,
     };
   }
 
-  handleClick = event => this.setState({ open: true, anchorEl: event.currentTarget });
+  handleClick = (event) => this.setState({ open: true, anchorEl: event.currentTarget });
 
   handleRequestClose = () => this.setState({ open: false });
 
@@ -30,7 +30,7 @@ export class IconMenu extends React.Component {
     const { open, anchorEl } = this.state;
     const keys = Object.keys(opts) || [];
 
-    const handleMenuClick = key => () => {
+    const handleMenuClick = (key) => () => {
       onClick(key);
       this.handleRequestClose();
     };
@@ -52,7 +52,7 @@ export class IconMenu extends React.Component {
           style={{ transform: 'translate(-15px, -15px)' }}
           transformOrigin={{
             vertical: 'center',
-            horizontal: 'right'
+            horizontal: 'right',
           }}
         >
           {keys.map((k, index) => (
@@ -70,11 +70,11 @@ export default class PointMenu extends React.Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     classes: PropTypes.object.isRequired,
-    showSampleAnswer: PropTypes.bool.isRequired
+    showSampleAnswer: PropTypes.bool.isRequired,
   };
 
   static defaultProps = {
-    classes: {}
+    classes: {},
   };
 
   render() {
@@ -83,9 +83,9 @@ export default class PointMenu extends React.Component {
 
     return (
       <IconMenu
-        onClick={key => onChange(key)}
+        onClick={(key) => onChange(key)}
         opts={{
-          sample: sampleText
+          sample: sampleText,
         }}
         classes={classes}
       />

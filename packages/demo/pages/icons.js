@@ -6,7 +6,7 @@ import {
   LearnMore,
   NothingSubmitted,
   PartiallyCorrect,
-  ShowRationale
+  ShowRationale,
 } from '@pie-lib/icons';
 import withRoot from '../src/withRoot';
 
@@ -50,9 +50,7 @@ class DemoApp extends React.Component {
             </td>
             <td>
               <pre>
-                <code>
-                  &#x3C;Correct iconSet=&#x22;emoji&#x22; shape=&#x22;square&#x22; /&#x3E;
-                </code>
+                <code>&#x3C;Correct iconSet=&#x22;emoji&#x22; shape=&#x22;square&#x22; /&#x3E;</code>
               </pre>
             </td>
           </tr>
@@ -62,9 +60,7 @@ class DemoApp extends React.Component {
             </td>
             <td>
               <pre>
-                <code>
-                  &#x3C;Correct iconSet=&#x22;check&#x22; shape=&#x22;square&#x22; /&#x3E;
-                </code>
+                <code>&#x3C;Correct iconSet=&#x22;check&#x22; shape=&#x22;square&#x22; /&#x3E;</code>
               </pre>
             </td>
           </tr>
@@ -75,8 +71,7 @@ class DemoApp extends React.Component {
             <td>
               <pre>
                 <code>
-                  &#x3C;Correct iconSet=&#x22;emoji&#x22; shape=&#x22;square&#x22;
-                  open=&#123;true&#125; /&#x3E;
+                  &#x3C;Correct iconSet=&#x22;emoji&#x22; shape=&#x22;square&#x22; open=&#123;true&#125; /&#x3E;
                 </code>
               </pre>
             </td>
@@ -88,8 +83,7 @@ class DemoApp extends React.Component {
             <td>
               <pre>
                 <code>
-                  &#x3C;Correct iconSet=&#x22;emoji&#x22; shape=&#x22;round&#x22;
-                  open=&#123;true&#125; /&#x3E;
+                  &#x3C;Correct iconSet=&#x22;emoji&#x22; shape=&#x22;round&#x22; open=&#123;true&#125; /&#x3E;
                 </code>
               </pre>
             </td>
@@ -101,8 +95,7 @@ class DemoApp extends React.Component {
             <td>
               <pre>
                 <code>
-                  &#x3C;Correct iconSet=&#x22;check&#x22; shape=&#x22;square&#x22;
-                  open=&#123;true&#125; /&#x3E;
+                  &#x3C;Correct iconSet=&#x22;check&#x22; shape=&#x22;square&#x22; open=&#123;true&#125; /&#x3E;
                 </code>
               </pre>
             </td>
@@ -114,8 +107,7 @@ class DemoApp extends React.Component {
             <td>
               <pre>
                 <code>
-                  &#x3C;Correct iconSet=&#x22;check&#x22; shape=&#x22;round&#x22;
-                  open=&#123;true&#125; /&#x3E;
+                  &#x3C;Correct iconSet=&#x22;check&#x22; shape=&#x22;round&#x22; open=&#123;true&#125; /&#x3E;
                 </code>
               </pre>
             </td>
@@ -126,9 +118,7 @@ class DemoApp extends React.Component {
             </td>
             <td>
               <pre>
-                <code>
-                  &#x3C;Correct iconSet=&#x22;emoji&#x22; category=&#x22;feedback&#x22; /&#x3E;
-                </code>
+                <code>&#x3C;Correct iconSet=&#x22;emoji&#x22; category=&#x22;feedback&#x22; /&#x3E;</code>
               </pre>
             </td>
           </tr>
@@ -138,9 +128,7 @@ class DemoApp extends React.Component {
             </td>
             <td>
               <pre>
-                <code>
-                  &#x3C;Correct iconSet=&#x22;check&#x22; category=&#x22;feedback&#x22; /&#x3E;
-                </code>
+                <code>&#x3C;Correct iconSet=&#x22;check&#x22; category=&#x22;feedback&#x22; /&#x3E;</code>
               </pre>
             </td>
           </tr>
@@ -151,8 +139,7 @@ class DemoApp extends React.Component {
             <td>
               <pre>
                 <code>
-                  &#x3C;Correct iconSet=&#x22;emoji&#x22; category=&#x22;feedback&#x22;
-                  shape=&#x22;square&#x22; /&#x3E;
+                  &#x3C;Correct iconSet=&#x22;emoji&#x22; category=&#x22;feedback&#x22; shape=&#x22;square&#x22; /&#x3E;
                 </code>
               </pre>
             </td>
@@ -164,8 +151,7 @@ class DemoApp extends React.Component {
             <td>
               <pre>
                 <code>
-                  &#x3C;Correct iconSet=&#x22;check&#x22; category=&#x22;feedback&#x22;
-                  shape=&#x22;square&#x22; /&#x3E;
+                  &#x3C;Correct iconSet=&#x22;check&#x22; category=&#x22;feedback&#x22; shape=&#x22;square&#x22; /&#x3E;
                 </code>
               </pre>
             </td>
@@ -177,8 +163,8 @@ class DemoApp extends React.Component {
             <td>
               <pre>
                 <code>
-                  &#x3C;Correct iconSet=&#x22;emoji&#x22; category=&#x22;feedback&#x22;
-                  shape=&#x22;round&#x22; open=&#123;true&#125; /&#x3E;
+                  &#x3C;Correct iconSet=&#x22;emoji&#x22; category=&#x22;feedback&#x22; shape=&#x22;round&#x22;
+                  open=&#123;true&#125; /&#x3E;
                 </code>
               </pre>
             </td>
@@ -190,8 +176,8 @@ class DemoApp extends React.Component {
             <td>
               <pre>
                 <code>
-                  &#x3C;Correct iconSet=&#x22;check&#x22; category=&#x22;feedback&#x22;
-                  shape=&#x22;round&#x22; open=&#123;true&#125; /&#x3E;
+                  &#x3C;Correct iconSet=&#x22;check&#x22; category=&#x22;feedback&#x22; shape=&#x22;round&#x22;
+                  open=&#123;true&#125; /&#x3E;
                 </code>
               </pre>
             </td>
@@ -203,8 +189,8 @@ class DemoApp extends React.Component {
             <td>
               <pre>
                 <code>
-                  &#x3C;Correct iconSet=&#x22;emoji&#x22; category=&#x22;feedback&#x22;
-                  shape=&#x22;square&#x22; open=&#123;true&#125; /&#x3E;
+                  &#x3C;Correct iconSet=&#x22;emoji&#x22; category=&#x22;feedback&#x22; shape=&#x22;square&#x22;
+                  open=&#123;true&#125; /&#x3E;
                 </code>
               </pre>
             </td>
@@ -216,8 +202,8 @@ class DemoApp extends React.Component {
             <td>
               <pre>
                 <code>
-                  &#x3C;Correct iconSet=&#x22;check&#x22; category=&#x22;feedback&#x22;
-                  shape=&#x22;square&#x22; open=&#123;true&#125; /&#x3E;
+                  &#x3C;Correct iconSet=&#x22;check&#x22; category=&#x22;feedback&#x22; shape=&#x22;square&#x22;
+                  open=&#123;true&#125; /&#x3E;
                 </code>
               </pre>
             </td>
@@ -248,9 +234,7 @@ class DemoApp extends React.Component {
             </td>
             <td>
               <pre>
-                <code>
-                  &#x3C;PartiallyCorrect iconSet=&#x22;emoji&#x22; shape=&#x22;square&#x22; /&#x3E;
-                </code>
+                <code>&#x3C;PartiallyCorrect iconSet=&#x22;emoji&#x22; shape=&#x22;square&#x22; /&#x3E;</code>
               </pre>
             </td>
           </tr>
@@ -260,9 +244,7 @@ class DemoApp extends React.Component {
             </td>
             <td>
               <pre>
-                <code>
-                  &#x3C;PartiallyCorrect iconSet=&#x22;check&#x22; shape=&#x22;square&#x22; /&#x3E;
-                </code>
+                <code>&#x3C;PartiallyCorrect iconSet=&#x22;check&#x22; shape=&#x22;square&#x22; /&#x3E;</code>
               </pre>
             </td>
           </tr>
@@ -273,8 +255,8 @@ class DemoApp extends React.Component {
             <td>
               <pre>
                 <code>
-                  &#x3C;PartiallyCorrect iconSet=&#x22;emoji&#x22; shape=&#x22;square&#x22;
-                  open=&#123;true&#125; /&#x3E;
+                  &#x3C;PartiallyCorrect iconSet=&#x22;emoji&#x22; shape=&#x22;square&#x22; open=&#123;true&#125;
+                  /&#x3E;
                 </code>
               </pre>
             </td>
@@ -286,8 +268,7 @@ class DemoApp extends React.Component {
             <td>
               <pre>
                 <code>
-                  &#x3C;PartiallyCorrect iconSet=&#x22;emoji&#x22; shape=&#x22;round&#x22;
-                  open=&#123;true&#125; /&#x3E;
+                  &#x3C;PartiallyCorrect iconSet=&#x22;emoji&#x22; shape=&#x22;round&#x22; open=&#123;true&#125; /&#x3E;
                 </code>
               </pre>
             </td>
@@ -299,8 +280,8 @@ class DemoApp extends React.Component {
             <td>
               <pre>
                 <code>
-                  &#x3C;PartiallyCorrect iconSet=&#x22;check&#x22; shape=&#x22;square&#x22;
-                  open=&#123;true&#125; /&#x3E;
+                  &#x3C;PartiallyCorrect iconSet=&#x22;check&#x22; shape=&#x22;square&#x22; open=&#123;true&#125;
+                  /&#x3E;
                 </code>
               </pre>
             </td>
@@ -312,8 +293,7 @@ class DemoApp extends React.Component {
             <td>
               <pre>
                 <code>
-                  &#x3C;PartiallyCorrect iconSet=&#x22;check&#x22; shape=&#x22;round&#x22;
-                  open=&#123;true&#125; /&#x3E;
+                  &#x3C;PartiallyCorrect iconSet=&#x22;check&#x22; shape=&#x22;round&#x22; open=&#123;true&#125; /&#x3E;
                 </code>
               </pre>
             </td>
@@ -324,10 +304,7 @@ class DemoApp extends React.Component {
             </td>
             <td>
               <pre>
-                <code>
-                  &#x3C;PartiallyCorrect iconSet=&#x22;emoji&#x22; category=&#x22;feedback&#x22;
-                  /&#x3E;
-                </code>
+                <code>&#x3C;PartiallyCorrect iconSet=&#x22;emoji&#x22; category=&#x22;feedback&#x22; /&#x3E;</code>
               </pre>
             </td>
           </tr>
@@ -337,10 +314,7 @@ class DemoApp extends React.Component {
             </td>
             <td>
               <pre>
-                <code>
-                  &#x3C;PartiallyCorrect iconSet=&#x22;check&#x22; category=&#x22;feedback&#x22;
-                  /&#x3E;
-                </code>
+                <code>&#x3C;PartiallyCorrect iconSet=&#x22;check&#x22; category=&#x22;feedback&#x22; /&#x3E;</code>
               </pre>
             </td>
           </tr>
@@ -377,8 +351,8 @@ class DemoApp extends React.Component {
             <td>
               <pre>
                 <code>
-                  &#x3C;PartiallyCorrect iconSet=&#x22;emoji&#x22; category=&#x22;feedback&#x22;
-                  shape=&#x22;round&#x22; open=&#123;true&#125; /&#x3E;
+                  &#x3C;PartiallyCorrect iconSet=&#x22;emoji&#x22; category=&#x22;feedback&#x22; shape=&#x22;round&#x22;
+                  open=&#123;true&#125; /&#x3E;
                 </code>
               </pre>
             </td>
@@ -390,8 +364,8 @@ class DemoApp extends React.Component {
             <td>
               <pre>
                 <code>
-                  &#x3C;PartiallyCorrect iconSet=&#x22;check&#x22; category=&#x22;feedback&#x22;
-                  shape=&#x22;round&#x22; open=&#123;true&#125; /&#x3E;
+                  &#x3C;PartiallyCorrect iconSet=&#x22;check&#x22; category=&#x22;feedback&#x22; shape=&#x22;round&#x22;
+                  open=&#123;true&#125; /&#x3E;
                 </code>
               </pre>
             </td>
@@ -448,9 +422,7 @@ class DemoApp extends React.Component {
             </td>
             <td>
               <pre>
-                <code>
-                  &#x3C;Incorrect iconSet=&#x22;emoji&#x22; shape=&#x22;square&#x22; /&#x3E;
-                </code>
+                <code>&#x3C;Incorrect iconSet=&#x22;emoji&#x22; shape=&#x22;square&#x22; /&#x3E;</code>
               </pre>
             </td>
           </tr>
@@ -460,9 +432,7 @@ class DemoApp extends React.Component {
             </td>
             <td>
               <pre>
-                <code>
-                  &#x3C;Incorrect iconSet=&#x22;check&#x22; shape=&#x22;square&#x22; /&#x3E;
-                </code>
+                <code>&#x3C;Incorrect iconSet=&#x22;check&#x22; shape=&#x22;square&#x22; /&#x3E;</code>
               </pre>
             </td>
           </tr>
@@ -473,8 +443,7 @@ class DemoApp extends React.Component {
             <td>
               <pre>
                 <code>
-                  &#x3C;Incorrect iconSet=&#x22;emoji&#x22; shape=&#x22;square&#x22;
-                  open=&#123;true&#125; /&#x3E;
+                  &#x3C;Incorrect iconSet=&#x22;emoji&#x22; shape=&#x22;square&#x22; open=&#123;true&#125; /&#x3E;
                 </code>
               </pre>
             </td>
@@ -486,8 +455,7 @@ class DemoApp extends React.Component {
             <td>
               <pre>
                 <code>
-                  &#x3C;Incorrect iconSet=&#x22;emoji&#x22; shape=&#x22;round&#x22;
-                  open=&#123;true&#125; /&#x3E;
+                  &#x3C;Incorrect iconSet=&#x22;emoji&#x22; shape=&#x22;round&#x22; open=&#123;true&#125; /&#x3E;
                 </code>
               </pre>
             </td>
@@ -499,8 +467,7 @@ class DemoApp extends React.Component {
             <td>
               <pre>
                 <code>
-                  &#x3C;Incorrect iconSet=&#x22;check&#x22; shape=&#x22;square&#x22;
-                  open=&#123;true&#125; /&#x3E;
+                  &#x3C;Incorrect iconSet=&#x22;check&#x22; shape=&#x22;square&#x22; open=&#123;true&#125; /&#x3E;
                 </code>
               </pre>
             </td>
@@ -512,8 +479,7 @@ class DemoApp extends React.Component {
             <td>
               <pre>
                 <code>
-                  &#x3C;Incorrect iconSet=&#x22;check&#x22; shape=&#x22;round&#x22;
-                  open=&#123;true&#125; /&#x3E;
+                  &#x3C;Incorrect iconSet=&#x22;check&#x22; shape=&#x22;round&#x22; open=&#123;true&#125; /&#x3E;
                 </code>
               </pre>
             </td>
@@ -524,9 +490,7 @@ class DemoApp extends React.Component {
             </td>
             <td>
               <pre>
-                <code>
-                  &#x3C;Incorrect iconSet=&#x22;emoji&#x22; category=&#x22;feedback&#x22; /&#x3E;
-                </code>
+                <code>&#x3C;Incorrect iconSet=&#x22;emoji&#x22; category=&#x22;feedback&#x22; /&#x3E;</code>
               </pre>
             </td>
           </tr>
@@ -536,9 +500,7 @@ class DemoApp extends React.Component {
             </td>
             <td>
               <pre>
-                <code>
-                  &#x3C;Incorrect iconSet=&#x22;check&#x22; category=&#x22;feedback&#x22; /&#x3E;
-                </code>
+                <code>&#x3C;Incorrect iconSet=&#x22;check&#x22; category=&#x22;feedback&#x22; /&#x3E;</code>
               </pre>
             </td>
           </tr>
@@ -549,8 +511,8 @@ class DemoApp extends React.Component {
             <td>
               <pre>
                 <code>
-                  &#x3C;Incorrect iconSet=&#x22;emoji&#x22; category=&#x22;feedback&#x22;
-                  shape=&#x22;square&#x22; /&#x3E;
+                  &#x3C;Incorrect iconSet=&#x22;emoji&#x22; category=&#x22;feedback&#x22; shape=&#x22;square&#x22;
+                  /&#x3E;
                 </code>
               </pre>
             </td>
@@ -562,8 +524,8 @@ class DemoApp extends React.Component {
             <td>
               <pre>
                 <code>
-                  &#x3C;Incorrect iconSet=&#x22;check&#x22; category=&#x22;feedback&#x22;
-                  shape=&#x22;square&#x22; /&#x3E;
+                  &#x3C;Incorrect iconSet=&#x22;check&#x22; category=&#x22;feedback&#x22; shape=&#x22;square&#x22;
+                  /&#x3E;
                 </code>
               </pre>
             </td>
@@ -575,8 +537,8 @@ class DemoApp extends React.Component {
             <td>
               <pre>
                 <code>
-                  &#x3C;Incorrect iconSet=&#x22;emoji&#x22; category=&#x22;feedback&#x22;
-                  shape=&#x22;round&#x22; open=&#123;true&#125; /&#x3E;
+                  &#x3C;Incorrect iconSet=&#x22;emoji&#x22; category=&#x22;feedback&#x22; shape=&#x22;round&#x22;
+                  open=&#123;true&#125; /&#x3E;
                 </code>
               </pre>
             </td>
@@ -588,8 +550,8 @@ class DemoApp extends React.Component {
             <td>
               <pre>
                 <code>
-                  &#x3C;Incorrect iconSet=&#x22;check&#x22; category=&#x22;feedback&#x22;
-                  shape=&#x22;round&#x22; open=&#123;true&#125; /&#x3E;
+                  &#x3C;Incorrect iconSet=&#x22;check&#x22; category=&#x22;feedback&#x22; shape=&#x22;round&#x22;
+                  open=&#123;true&#125; /&#x3E;
                 </code>
               </pre>
             </td>
@@ -601,8 +563,8 @@ class DemoApp extends React.Component {
             <td>
               <pre>
                 <code>
-                  &#x3C;Incorrect iconSet=&#x22;emoji&#x22; category=&#x22;feedback&#x22;
-                  shape=&#x22;square&#x22; open=&#123;true&#125; /&#x3E;
+                  &#x3C;Incorrect iconSet=&#x22;emoji&#x22; category=&#x22;feedback&#x22; shape=&#x22;square&#x22;
+                  open=&#123;true&#125; /&#x3E;
                 </code>
               </pre>
             </td>
@@ -614,8 +576,8 @@ class DemoApp extends React.Component {
             <td>
               <pre>
                 <code>
-                  &#x3C;Incorrect iconSet=&#x22;check&#x22; category=&#x22;feedback&#x22;
-                  shape=&#x22;square&#x22; open=&#123;true&#125; /&#x3E;
+                  &#x3C;Incorrect iconSet=&#x22;check&#x22; category=&#x22;feedback&#x22; shape=&#x22;square&#x22;
+                  open=&#123;true&#125; /&#x3E;
                 </code>
               </pre>
             </td>
@@ -646,10 +608,7 @@ class DemoApp extends React.Component {
             </td>
             <td>
               <pre>
-                <code>
-                  &#x3C;NothingSubmitted iconSet=&#x22;check&#x22; category=&#x22;feedback&#x22;
-                  /&#x3E;
-                </code>
+                <code>&#x3C;NothingSubmitted iconSet=&#x22;check&#x22; category=&#x22;feedback&#x22; /&#x3E;</code>
               </pre>
             </td>
           </tr>
@@ -659,10 +618,7 @@ class DemoApp extends React.Component {
             </td>
             <td>
               <pre>
-                <code>
-                  &#x3C;NothingSubmitted iconSet=&#x22;emoji&#x22; category=&#x22;feedback&#x22;
-                  /&#x3E;
-                </code>
+                <code>&#x3C;NothingSubmitted iconSet=&#x22;emoji&#x22; category=&#x22;feedback&#x22; /&#x3E;</code>
               </pre>
             </td>
           </tr>
@@ -744,9 +700,7 @@ class DemoApp extends React.Component {
             </td>
             <td>
               <pre>
-                <code>
-                  &#x3C;ShowRationale iconSet=&#x22;emoji&#x22; open=&#123;true&#125; /&#x3E;
-                </code>
+                <code>&#x3C;ShowRationale iconSet=&#x22;emoji&#x22; open=&#123;true&#125; /&#x3E;</code>
               </pre>
             </td>
           </tr>
@@ -756,9 +710,7 @@ class DemoApp extends React.Component {
             </td>
             <td>
               <pre>
-                <code>
-                  &#x3C;ShowRationale iconSet=&#x22;check&#x22; open=&#123;true&#125; /&#x3E;
-                </code>
+                <code>&#x3C;ShowRationale iconSet=&#x22;check&#x22; open=&#123;true&#125; /&#x3E;</code>
               </pre>
             </td>
           </tr>

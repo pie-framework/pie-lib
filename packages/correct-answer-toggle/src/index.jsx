@@ -18,20 +18,20 @@ export class CorrectAnswerToggle extends React.Component {
     hideMessage: PropTypes.string,
     showMessage: PropTypes.string,
     classes: PropTypes.object.isRequired,
-    className: PropTypes.string
+    className: PropTypes.string,
   };
 
   static defaultProps = {
     showMessage: 'Show correct answer',
     hideMessage: 'Hide correct answer',
     show: false,
-    toggled: false
+    toggled: false,
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      show: props.show
+      show: props.show,
     };
   }
 
@@ -41,7 +41,7 @@ export class CorrectAnswerToggle extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      show: nextProps.show
+      show: nextProps.show,
     });
   }
 

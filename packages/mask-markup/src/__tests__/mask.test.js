@@ -14,13 +14,13 @@ describe('Mask', () => {
           object: 'text',
           leaves: [
             {
-              text: 'Foo'
-            }
-          ]
-        }
-      ]
+              text: 'Foo',
+            },
+          ],
+        },
+      ],
     },
-    value: {}
+    value: {},
   };
   let wrapper;
 
@@ -44,14 +44,14 @@ describe('Mask', () => {
                   object: 'text',
                   leaves: [
                     {
-                      text: 'Foo'
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        }
+                      text: 'Foo',
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
       });
 
       expect(wrapper).toMatchSnapshot();
@@ -64,29 +64,29 @@ describe('Mask', () => {
             {
               type: 'div',
               data: {
-                attributes: {}
+                attributes: {},
               },
               nodes: [
                 {
                   type: 'p',
                   data: {
-                    attributes: {}
+                    attributes: {},
                   },
                   nodes: [
                     {
                       object: 'text',
                       leaves: [
                         {
-                          text: 'Foo'
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        }
+                          text: 'Foo',
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
       });
 
       expect(wrapper).toMatchSnapshot();
@@ -98,7 +98,7 @@ describe('Mask', () => {
           nodes: [
             {
               leaves: [{ text: 'Foo ' }],
-              object: 'text'
+              object: 'text',
             },
             {
               leaves: [
@@ -106,22 +106,22 @@ describe('Mask', () => {
                   marks: [
                     {
                       data: undefined,
-                      type: 'italic'
-                    }
+                      type: 'italic',
+                    },
                   ],
-                  text: 'x'
-                }
+                  text: 'x',
+                },
               ],
-              object: 'text'
+              object: 'text',
             },
             {
               leaves: [{ text: ' bar' }],
-              object: 'text'
-            }
+              object: 'text',
+            },
           ],
           object: 'block',
-          type: 'div'
-        }
+          type: 'div',
+        },
       });
 
       expect(wrapper).toMatchSnapshot();
@@ -138,13 +138,13 @@ describe('Mask', () => {
               nodes: [
                 {
                   object: 'text',
-                  leaves: [{ text: ' ' }]
+                  leaves: [{ text: ' ' }],
                 },
-                { type: 'tr', ...da(), nodes: [] }
-              ]
-            }
-          ]
-        }
+                { type: 'tr', ...da(), nodes: [] },
+              ],
+            },
+          ],
+        },
       });
       expect(wrapper).toMatchSnapshot();
     });

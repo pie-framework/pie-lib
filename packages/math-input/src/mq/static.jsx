@@ -29,7 +29,7 @@ export default class Static extends React.Component {
     getFieldName: PropTypes.func,
     onSubFieldChange: PropTypes.func,
     onSubFieldFocus: PropTypes.func,
-    setInput: PropTypes.func
+    setInput: PropTypes.func,
   };
 
   componentDidMount() {
@@ -47,8 +47,21 @@ export default class Static extends React.Component {
       return;
     }
     const name = this.props.getFieldName(field, this.mathField.innerFields);
+
     if (this.props.onSubFieldChange) {
-      this.props.onSubFieldChange(name, field.latex());
+      // eslint-disable-next-line no-useless-escape
+      const regexMatch = field.latex().match(/[0-9]\\ \\frac\{[^\{]*\}\{ \}/);
+
+      if (this.input && regexMatch && regexMatch?.length) {
+        try {
+          field.__controller.cursor.insLeftOf(field.__controller.cursor.parent[-1].parent);
+          field.el().dispatchEvent(new KeyboardEvent('keydown', { keyCode: 8 }));
+        } catch (e) {
+          console.error(e.toString());
+        }
+      } else {
+        this.props.onSubFieldChange(name, field.latex());
+      }
     }
   }
 
@@ -60,8 +73,8 @@ export default class Static extends React.Component {
     if (!this.mathField) {
       this.mathField = MQ.StaticMath(this.input, {
         handlers: {
-          edit: this.onInputEdit.bind(this)
-        }
+          edit: this.onInputEdit.bind(this),
+        },
       });
     }
 
@@ -105,7 +118,7 @@ export default class Static extends React.Component {
     }
   }
 
-  onFocus = e => {
+  onFocus = (e) => {
     try {
       let rootBlock = e.target.parentElement.nextSibling;
       let id = parseInt(rootBlock.getAttribute('mathquill-block-id'), 10);
@@ -115,7 +128,7 @@ export default class Static extends React.Component {
         id = parseInt(rootBlock.getAttribute('mathquill-block-id'), 10);
       }
 
-      const innerField = this.mathField.innerFields.find(f => f.id === id);
+      const innerField = this.mathField.innerFields.find((f) => f.id === id);
 
       if (innerField) {
         const name = this.props.getFieldName(innerField, this.mathField.innerFields);
@@ -133,13 +146,6 @@ export default class Static extends React.Component {
   render() {
     const { onBlur, className } = this.props;
 
-    return (
-      <span
-        className={className}
-        onFocus={this.onFocus}
-        onBlur={onBlur}
-        ref={r => (this.input = r)}
-      />
-    );
+    return <span className={className} onFocus={this.onFocus} onBlur={onBlur} ref={(r) => (this.input = r)} />;
   }
 }

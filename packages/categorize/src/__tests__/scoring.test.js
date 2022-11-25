@@ -3,7 +3,7 @@ import util from 'util';
 
 describe('scoring', () => {
   describe('score', () => {
-    const _assert = only => (label, categories, scoring, expected) => {
+    const _assert = (only) => (label, categories, scoring, expected) => {
       const fn = only ? it.only : it;
       fn(label, async () => {
         const result = await score(categories, scoring);
@@ -22,8 +22,8 @@ describe('scoring', () => {
           {
             id: '1',
             correct: false,
-            choices: [{ correct: true }]
-          }
+            choices: [{ correct: true }],
+          },
         ],
         {
           partial: {
@@ -31,14 +31,14 @@ describe('scoring', () => {
             rules: [
               {
                 category: '1',
-                rules: [{ count: 1, percent: 20 }]
-              }
-            ]
-          }
+                rules: [{ count: 1, percent: 20 }],
+              },
+            ],
+          },
         },
         {
-          score: 0.2
-        }
+          score: 0.2,
+        },
       );
 
       assert(
@@ -47,13 +47,13 @@ describe('scoring', () => {
           {
             id: '1',
             correct: false,
-            choices: [{ correct: true }]
+            choices: [{ correct: true }],
           },
           {
             id: '2',
             correct: false,
-            choices: [{ correct: true }, { correct: true }]
-          }
+            choices: [{ correct: true }, { correct: true }],
+          },
         ],
         {
           partial: {
@@ -61,18 +61,18 @@ describe('scoring', () => {
             rules: [
               {
                 category: '1',
-                rules: [{ count: 1, percent: 20 }]
+                rules: [{ count: 1, percent: 20 }],
               },
               {
                 category: '2',
-                rules: [{ count: 2, percent: 85 }]
-              }
-            ]
-          }
+                rules: [{ count: 2, percent: 85 }],
+              },
+            ],
+          },
         },
         {
-          score: 0.53
-        }
+          score: 0.53,
+        },
       );
 
       assert(
@@ -81,36 +81,36 @@ describe('scoring', () => {
           {
             id: '1',
             correct: false,
-            choices: [{ correct: true }]
+            choices: [{ correct: true }],
           },
           {
             id: '2',
             correct: false,
-            choices: [{ correct: true }, { correct: true }]
-          }
+            choices: [{ correct: true }, { correct: true }],
+          },
         ],
         {
           weighting: {
             enabled: true,
-            rules: [{ category: '2', points: 3 }]
+            rules: [{ category: '2', points: 3 }],
           },
           partial: {
             enabled: true,
             rules: [
               {
                 category: '1',
-                rules: [{ count: 1, percent: 20 }]
+                rules: [{ count: 1, percent: 20 }],
               },
               {
                 category: '2',
-                rules: [{ count: 2, percent: 85 }]
-              }
-            ]
-          }
+                rules: [{ count: 2, percent: 85 }],
+              },
+            ],
+          },
         },
         {
-          score: 0.69
-        }
+          score: 0.69,
+        },
       );
 
       assert(
@@ -119,32 +119,32 @@ describe('scoring', () => {
           {
             id: '1',
             correct: false,
-            choices: [{ correct: true }]
+            choices: [{ correct: true }],
           },
           {
             id: '2',
             correct: false,
-            choices: [{ correct: true }, { correct: true }]
-          }
+            choices: [{ correct: true }, { correct: true }],
+          },
         ],
         {
           weighting: {
             enabled: true,
-            rules: [{ category: '2', points: 3 }]
+            rules: [{ category: '2', points: 3 }],
           },
           partial: {
             enabled: true,
             rules: [
               {
                 category: '1',
-                rules: [{ count: 1, percent: 20 }]
-              }
-            ]
-          }
+                rules: [{ count: 1, percent: 20 }],
+              },
+            ],
+          },
         },
         {
-          score: 0.05
-        }
+          score: 0.05,
+        },
       );
     });
 
@@ -157,22 +157,40 @@ describe('scoring', () => {
             weighting: {
               rules: [
                 { category: '1', points: 1 },
-                { category: '2', points: 1 }
-              ]
-            }
+                { category: '2', points: 1 },
+              ],
+            },
           },
-          expected
+          expected,
         );
 
-      a([{ id: '1', correct: true }, { id: '2', correct: true }], {
-        score: 1.0
-      });
-      a([{ id: '1', correct: false }, { id: '2', correct: true }], {
-        score: 0.5
-      });
-      a([{ id: '1', correct: false }, { id: '2', correct: false }], {
-        score: 0.0
-      });
+      a(
+        [
+          { id: '1', correct: true },
+          { id: '2', correct: true },
+        ],
+        {
+          score: 1.0,
+        },
+      );
+      a(
+        [
+          { id: '1', correct: false },
+          { id: '2', correct: true },
+        ],
+        {
+          score: 0.5,
+        },
+      );
+      a(
+        [
+          { id: '1', correct: false },
+          { id: '2', correct: false },
+        ],
+        {
+          score: 0.0,
+        },
+      );
     });
 
     describe('2 unequal weights', () => {
@@ -185,27 +203,51 @@ describe('scoring', () => {
               enabled: true,
               rules: [
                 { category: '1', points: 3 },
-                { category: '2', points: 1 }
-              ]
-            }
+                { category: '2', points: 1 },
+              ],
+            },
           },
-          expected
+          expected,
         );
 
-      a([{ id: '1', correct: true }, { id: '2', correct: true }], {
-        score: 1.0
-      });
-      a([{ id: '1', correct: false }, { id: '2', correct: true }], {
-        score: 0.25
-      });
+      a(
+        [
+          { id: '1', correct: true },
+          { id: '2', correct: true },
+        ],
+        {
+          score: 1.0,
+        },
+      );
+      a(
+        [
+          { id: '1', correct: false },
+          { id: '2', correct: true },
+        ],
+        {
+          score: 0.25,
+        },
+      );
 
-      a([{ id: '1', correct: true }, { id: '2', correct: false }], {
-        score: 0.75
-      });
+      a(
+        [
+          { id: '1', correct: true },
+          { id: '2', correct: false },
+        ],
+        {
+          score: 0.75,
+        },
+      );
 
-      a([{ id: '1', correct: false }, { id: '2', correct: false }], {
-        score: 0.0
-      });
+      a(
+        [
+          { id: '1', correct: false },
+          { id: '2', correct: false },
+        ],
+        {
+          score: 0.0,
+        },
+      );
     });
 
     describe('2 unequal weights with recurring number', () => {
@@ -219,16 +261,22 @@ describe('scoring', () => {
               enabled: true,
               rules: [
                 { category: '1', points: 2 },
-                { category: '2', points: 1 }
-              ]
-            }
+                { category: '2', points: 1 },
+              ],
+            },
           },
-          expected
+          expected,
         );
 
-      a([{ id: '1', correct: false }, { id: '2', correct: true }], {
-        score: 0.33
-      });
+      a(
+        [
+          { id: '1', correct: false },
+          { id: '2', correct: true },
+        ],
+        {
+          score: 0.33,
+        },
+      );
     });
   });
 });

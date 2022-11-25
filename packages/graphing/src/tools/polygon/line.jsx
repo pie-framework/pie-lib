@@ -15,12 +15,12 @@ class RawLine extends React.Component {
     to: types.PointType,
     graphProps: types.GraphPropsType.isRequired,
     disabled: PropTypes.bool,
-    correctness: PropTypes.string
+    correctness: PropTypes.string,
   };
 
   static defaultProps = {
     from: {},
-    to: {}
+    to: {},
   };
 
   render() {
@@ -32,12 +32,7 @@ class RawLine extends React.Component {
         y1={scale.y(from.y)}
         x2={scale.x(to.x)}
         y2={scale.y(to.y)}
-        className={classNames(
-          classes.line,
-          disabled && classes.disabled,
-          className,
-          classes[correctness]
-        )}
+        className={classNames(classes.line, disabled && classes.disabled, className, classes[correctness])}
         {...rest}
       />
     );
@@ -51,15 +46,15 @@ export const Line = withStyles(() => ({
     stroke: 'transparent',
     '&:hover': {
       strokeWidth: 7,
-      stroke: color.secondary()
-    }
+      stroke: color.secondary(),
+    },
   },
   disabled: {
     ...disabled('stroke'),
-    strokeWidth: 2
+    strokeWidth: 2,
   },
   correct: correct('stoke'),
-  incorrect: incorrect('stroke')
+  incorrect: incorrect('stroke'),
 }))(RawLine);
 
 export default gridDraggable({
@@ -68,7 +63,7 @@ export default gridDraggable({
     const area = utils.lineToArea(from, to);
     return utils.bounds(area, domain, range);
   },
-  anchorPoint: props => {
+  anchorPoint: (props) => {
     const { from } = props;
     return from;
   },
@@ -76,7 +71,7 @@ export default gridDraggable({
     const { from, to } = props;
     return {
       from: utils.point(from).add(utils.point(delta)),
-      to: utils.point(to).add(utils.point(delta))
+      to: utils.point(to).add(utils.point(delta)),
     };
-  }
+  },
 })(Line);

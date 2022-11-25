@@ -27,10 +27,7 @@ function withRoot(Component) {
     render() {
       // MuiThemeProvider makes the theme available down the React tree thanks to React context.
       return (
-        <MuiThemeProvider
-          theme={this.pageContext.theme}
-          sheetsManager={this.pageContext.sheetsManager}
-        >
+        <MuiThemeProvider theme={this.pageContext.theme} sheetsManager={this.pageContext.sheetsManager}>
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />
           <Root
@@ -49,10 +46,10 @@ function withRoot(Component) {
   }
 
   WithRoot.propTypes = {
-    pageContext: PropTypes.object
+    pageContext: PropTypes.object,
   };
 
-  WithRoot.getInitialProps = ctx => {
+  WithRoot.getInitialProps = (ctx) => {
     if (Component.getInitialProps) {
       return Component.getInitialProps(ctx);
     }

@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.0.0...@pie-lib/drag@2.0.1) (2022-11-23)
+
+**Note:** Version bump only for package @pie-lib/drag
+
+# [2.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@1.1.52...@pie-lib/drag@2.0.0) (2022-11-23)
+
+### Features
+
+- update react-dnd and react-dnd-html5-backend versions ([be0cbe8](https://github.com/pie-framework/pie-lib/commit/be0cbe83d4014e03e1b5dd6218d6176cf3c28cc6))
+
+### BREAKING CHANGES
+
+- updated react-dnd and react-dnd-html5-backend versions
+  The update was made in a previous commit, but breaking changes might occur so that's the role for this commit.
+
 ## [1.1.52](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@1.1.50...@pie-lib/drag@1.1.52) (2021-06-25)
 
 **Note:** Version bump only for package @pie-lib/drag

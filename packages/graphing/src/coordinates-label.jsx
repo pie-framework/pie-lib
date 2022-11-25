@@ -6,17 +6,17 @@ import { withStyles } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
 import { roundNumber } from './utils';
 
-const styles = theme => ({
+const styles = (theme) => ({
   input: {
     fontFamily: theme.typography.fontFamily,
     fontSize: theme.typography.fontSize,
     borderRadius: '8px',
     background: '#FFFFFF',
-    color: color.primaryDark()
+    color: color.primaryDark(),
   },
   inputLabel: {
-    padding: 0
-  }
+    padding: 0,
+  },
 });
 
 export const getLabelPosition = (graphProps, x, y, labelLength) => {
@@ -28,13 +28,13 @@ export const getLabelPosition = (graphProps, x, y, labelLength) => {
   if (rightEdge >= scale.x(domain.max)) {
     return {
       left: scale.x(x) - leftShift - labelLength,
-      top: scale.y(y) - topShift
+      top: scale.y(y) - topShift,
     };
   }
 
   return {
     left: scale.x(x) + leftShift,
-    top: scale.y(y) - topShift
+    top: scale.y(y) - topShift,
   };
 };
 
@@ -48,7 +48,7 @@ export const CoordinatesLabel = ({ x, y, graphProps, classes }) => {
     pointerEvents: 'auto',
     width: labelLength,
     padding: 0,
-    ...labelPosition
+    ...labelPosition,
   };
 
   return (
@@ -66,7 +66,7 @@ CoordinatesLabel.propTypes = {
   graphProps: types.GraphPropsType,
   classes: PropTypes.object,
   x: PropTypes.number,
-  y: PropTypes.number
+  y: PropTypes.number,
 };
 
 export default withStyles(styles)(CoordinatesLabel);

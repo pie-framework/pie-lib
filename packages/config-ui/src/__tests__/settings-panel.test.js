@@ -10,10 +10,10 @@ describe('Settings Panel', () => {
     orientationLabel: 'Orientation',
 
     settingsOrientation: true,
-    editChoiceLabel: false
+    editChoiceLabel: false,
   };
   let model = {
-    choiceAreaLayout: 'vertical'
+    choiceAreaLayout: 'vertical',
   };
 
   let groups = ({ configure }) => ({
@@ -21,35 +21,33 @@ describe('Settings Panel', () => {
       choiceAreaLayout: configure.settingsOrientation && {
         type: 'radio',
         label: configure.orientationLabel,
-        choices: [{ label: 'opt1', value: 'opt1' }, { label: 'opt2', value: 'opt2' }],
-        equationEditor: dropdown('Dropdown', [
-          'geometry',
-          'advanced-algebra',
-          'statistics',
-          'miscellaneous'
-        ]),
+        choices: [
+          { label: 'opt1', value: 'opt1' },
+          { label: 'opt2', value: 'opt2' },
+        ],
+        equationEditor: dropdown('Dropdown', ['geometry', 'advanced-algebra', 'statistics', 'miscellaneous']),
         graph: numberFields('Graph Display Size', {
           domain: {
             label: 'Domain',
-            suffix: 'px'
+            suffix: 'px',
           },
           range: {
             label: 'Range',
-            suffix: 'px'
+            suffix: 'px',
           },
           width: {
             label: 'Width',
             suffix: 'px',
             min: 50,
-            max: 250
-          }
-        })
+            max: 250,
+          },
+        }),
       },
-      editChoiceLabel: { type: 'toggle', label: 'Edit choice label', isConfigProperty: true }
-    }
+      editChoiceLabel: { type: 'toggle', label: 'Edit choice label', isConfigProperty: true },
+    },
   });
 
-  const wrapper = extras => {
+  const wrapper = (extras) => {
     return shallow(
       <Panel
         model={model}
@@ -58,7 +56,7 @@ describe('Settings Panel', () => {
         onChangeConfiguration={onChange}
         groups={groups({ configure })}
         {...extras}
-      />
+      />,
     );
   };
 
@@ -74,9 +72,9 @@ describe('Settings Panel', () => {
         groups: groups({
           configure: {
             ...configure,
-            settingsOrientation: false
-          }
-        })
+            settingsOrientation: false,
+          },
+        }),
       });
 
       expect(w).toMatchSnapshot();
@@ -91,9 +89,9 @@ describe('Settings Panel', () => {
         expect(onChange).toBeCalledWith(
           {
             ...model,
-            test: false
+            test: false,
           },
-          'test'
+          'test',
         );
       });
 
@@ -104,10 +102,10 @@ describe('Settings Panel', () => {
           {
             ...configure,
             test: {
-              test: true
-            }
+              test: true,
+            },
           },
-          'test.test'
+          'test.test',
         );
       });
     });
@@ -121,7 +119,7 @@ describe('toggle', () => {
     expect(setting).toEqual({
       label: 'Label',
       type: 'toggle',
-      isConfigProperty: false
+      isConfigProperty: false,
     });
   });
 });
@@ -137,13 +135,13 @@ describe('radio', () => {
       choices: [
         {
           label: 'one',
-          value: 'one'
+          value: 'one',
         },
         {
           label: 'two',
-          value: 'two'
-        }
-      ]
+          value: 'two',
+        },
+      ],
     });
   });
 });
@@ -156,7 +154,7 @@ describe('dropdown', () => {
       label: 'Dropdown',
       type: 'dropdown',
       isConfigProperty: false,
-      choices: ['one', 'two']
+      choices: ['one', 'two'],
     });
   });
 });
@@ -169,7 +167,7 @@ describe('numberField', () => {
       label: 'Number Field',
       type: 'numberField',
       isConfigProperty: true,
-      max: 12
+      max: 12,
     });
   });
 });
@@ -178,11 +176,11 @@ describe('numberFields', () => {
   it('returns a numberFields type object', () => {
     const setting = numberFields('Number Fields', {
       one: {
-        label: 'One'
+        label: 'One',
       },
       two: {
-        label: 'Two'
-      }
+        label: 'Two',
+      },
     });
 
     expect(setting).toEqual({
@@ -192,14 +190,14 @@ describe('numberFields', () => {
         one: {
           type: 'numberField',
           label: 'One',
-          isConfigProperty: false
+          isConfigProperty: false,
         },
         two: {
           type: 'numberField',
           label: 'Two',
-          isConfigProperty: false
-        }
-      }
+          isConfigProperty: false,
+        },
+      },
     });
   });
 });

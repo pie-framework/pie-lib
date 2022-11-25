@@ -13,9 +13,9 @@ module.exports = {
                 object: 'text',
                 leaves: [
                   {
-                    text: 'foo'
-                  }
-                ]
+                    text: 'foo',
+                  },
+                ],
               },
 
               {
@@ -24,21 +24,21 @@ module.exports = {
                 isVoid: true,
                 data: {
                   src:
-                    'https://img.washingtonpost.com/wp-apps/imrs.php?src=https://img.washingtonpost.com/news/speaking-of-science/wp-content/uploads/sites/36/2015/10/as12-49-7278-1024x1024.jpg&w=1484'
-                }
+                    'https://img.washingtonpost.com/wp-apps/imrs.php?src=https://img.washingtonpost.com/news/speaking-of-science/wp-content/uploads/sites/36/2015/10/as12-49-7278-1024x1024.jpg&w=1484',
+                },
               },
 
               {
                 object: 'text',
                 leaves: [
                   {
-                    text: 'bar'
-                  }
-                ]
-              }
-            ]
-          }
-        ]
+                    text: 'bar',
+                  },
+                ],
+              },
+            ],
+          },
+        ],
       },
       {
         object: 'block',
@@ -48,12 +48,12 @@ module.exports = {
             object: 'text',
             leaves: [
               {
-                text: 'text'
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  }
+                text: 'text',
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
 };

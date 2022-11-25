@@ -6,8 +6,8 @@ import { withStyles } from '@material-ui/core/styles';
 export default withStyles({
   label: {
     left: '-5px',
-    position: 'relative'
-  }
+    position: 'relative',
+  },
 })(({ label, value, checked, onChange, classes }) => (
   <FormControlLabel
     value={value}

@@ -1,13 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle
-} from '@material-ui/core';
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@material-ui/core';
 
 const AlertDialog = ({ text, title, onClose, onConfirm, open }) => (
   <Dialog open={open} onClose={onClose}>
@@ -37,7 +30,7 @@ AlertDialog.propTypes = {
   title: PropTypes.string,
   onClose: PropTypes.func,
   onConfirm: PropTypes.func,
-  open: PropTypes.bool
+  open: PropTypes.bool,
 };
 
 export default AlertDialog;

@@ -14,12 +14,12 @@ jest.mock(
       getMetrics: jest.fn().mockReturnThis(),
       typeset: jest.fn().mockReturnThis(),
       updateDocument: jest.fn().mockReturnThis(),
-      clear: jest.fn().mockReturnThis()
-    }
+      clear: jest.fn().mockReturnThis(),
+    },
   }),
   {
-    virtual: true
-  }
+    virtual: true,
+  },
 );
 
 //jest.fn().mockReturnValue({ setMmlFactory: jest.fn() })
@@ -27,42 +27,42 @@ jest.mock('mathjax-full/js/input/mathml', () => {
   const mock = jest.fn().mockReturnThis();
   mock.setMmlFactory = jest.fn();
   return {
-    MathML: () => mock
+    MathML: () => mock,
   };
 });
 
 jest.mock('mathjax-full/js/input/tex', () => ({
-  TeX: jest.fn()
+  TeX: jest.fn(),
 }));
 jest.mock('mathjax-full/js/core/MmlTree/MmlFactory', () => {
   const instance = {
     setMmlFactory: jest.fn(),
-    defaultNodes: {}
+    defaultNodes: {},
   };
   return {
-    MmlFactory: () => instance
+    MmlFactory: () => instance,
   };
 });
 jest.mock('mathjax-full/js/output/chtml', () => ({
-  CHTML: jest.fn()
+  CHTML: jest.fn(),
 }));
 
 jest.mock('mathjax-full/js/adaptors/browserAdaptor', () => ({
-  browserAdaptor: jest.fn()
+  browserAdaptor: jest.fn(),
 }));
 
 jest.mock('mathjax-full/js/handlers/html', () => ({
-  RegisterHTMLHandler: jest.fn()
+  RegisterHTMLHandler: jest.fn(),
 }));
 
 jest.mock('mathjax-full/js/core/MmlTree/SerializedMmlVisitor', () => ({
-  SerializedMmlVisitor: jest.fn()
+  SerializedMmlVisitor: jest.fn(),
 }));
 
 describe('render-math', () => {
   it('calls mathjax.document once', () => {
     const div = document.createElement('div');
-    _.times(10).forEach(i => renderMath(div));
+    _.times(10).forEach((i) => renderMath(div));
 
     expect(mathjax.document).toHaveBeenCalledTimes(1);
   });
@@ -81,7 +81,7 @@ describe('render-math', () => {
 
     expect(mathjax.document).toHaveBeenCalledTimes(1);
     expect(mathjax.findMath).toHaveBeenCalledWith({
-      elements: [divOne, divTwo]
+      elements: [divOne, divTwo],
     });
   });
 
@@ -89,7 +89,7 @@ describe('render-math', () => {
     const wrapper = mount(
       <div>
         <span data-latex="">{'420\\text{ cm}=4.2\\text{ meters}'}</span>
-      </div>
+      </div>,
     );
     const spanElem = wrapper.instance();
 

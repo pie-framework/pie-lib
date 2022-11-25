@@ -17,40 +17,24 @@ export class RawLinePath extends React.Component {
     correctness: PropTypes.string,
     from: types.PointType,
     to: types.PointType,
-    isDragging: PropTypes.bool
+    isDragging: PropTypes.bool,
   };
 
   static defaultProps = {
     from: {},
-    to: {}
+    to: {},
   };
 
   render() {
     /* eslint-disable no-unused-vars */
-    const {
-      data,
-      classes,
-      className,
-      disabled,
-      correctness,
-      from,
-      to,
-      graphProps,
-      isDragging,
-      ...rest
-    } = this.props;
+    const { data, classes, className, disabled, correctness, from, to, graphProps, isDragging, ...rest } = this.props;
     /* eslint-enable */
 
     return (
       <React.Fragment>
         <vx.LinePath
           data={data}
-          className={classNames(
-            classes.drawLine,
-            disabled && classes.disabled,
-            classes[correctness],
-            className
-          )}
+          className={classNames(classes.drawLine, disabled && classes.disabled, classes[correctness], className)}
           {...rest}
         />
         <vx.LinePath
@@ -60,7 +44,7 @@ export class RawLinePath extends React.Component {
             isDragging && classes.dragging,
             disabled && classes.disabled,
             classes[correctness],
-            className
+            className,
           )}
           {...rest}
         />
@@ -71,31 +55,31 @@ export class RawLinePath extends React.Component {
 
 const dragging = () => ({
   strokeWidth: 7,
-  stroke: color.secondaryLight()
+  stroke: color.secondaryLight(),
 });
 
-export const LinePath = withStyles(theme => ({
+export const LinePath = withStyles((theme) => ({
   drawLine: {
     fill: 'none',
     strokeWidth: 2,
-    stroke: color.secondaryLight()
+    stroke: color.secondaryLight(),
   },
   line: {
     strokeWidth: 6,
     fill: 'none',
     transition: 'stroke-width 200ms ease-in, stroke 200ms ease-in',
     stroke: 'transparent',
-    '&:hover': dragging(theme)
+    '&:hover': dragging(theme),
   },
   dragging: dragging(theme),
   disabled: {
     ...disabled('stroke'),
-    strokeWidth: 2
+    strokeWidth: 2,
   },
   correct: {
-    ...correct('stroke')
+    ...correct('stroke'),
   },
   incorrect: {
-    ...incorrect('stroke')
-  }
+    ...incorrect('stroke'),
+  },
 }))(RawLinePath);

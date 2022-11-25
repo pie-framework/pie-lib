@@ -12,7 +12,7 @@ describe('Component', () => {
       classes: {},
       className: 'className',
       onChange,
-      graphProps: graphProps()
+      graphProps: graphProps(),
     };
     const props = { ...defaults, ...extras };
     return shallow(<Component {...props} />, opts);
@@ -51,7 +51,7 @@ describe('Component', () => {
         mark = { label: 'foo' };
         w = wrapper({ mark, labelModeEnabled: true }, { disableLifecycleMethods: true });
         w.instance().input = {
-          focus: jest.fn()
+          focus: jest.fn(),
         };
         w.instance().clickPoint();
       });

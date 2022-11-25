@@ -4,11 +4,11 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import NumberTextField from '../number-text-field';
 
-const DisplaySize = withStyles(theme => ({
+const DisplaySize = withStyles((theme) => ({
   displaySize: {
     display: 'flex',
-    paddingTop: theme.spacing.unit
-  }
+    paddingTop: theme.spacing.unit,
+  },
 }))(({ size, label, classes, onChange }) => {
   const updateSize = (key, v) => {
     onChange({ ...size, [key]: v });
@@ -43,10 +43,10 @@ const DisplaySize = withStyles(theme => ({
 DisplaySize.propTypes = {
   size: PropTypes.shape({
     width: PropTypes.number.isRequired,
-    height: PropTypes.number.isRequired
+    height: PropTypes.number.isRequired,
   }).isRequired,
   label: PropTypes.string.isRequired,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
 };
 
 export default DisplaySize;

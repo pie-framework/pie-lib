@@ -5,5 +5,5 @@ export const tokens = [
   { start: 583, end: 1465 },
   { start: 1474, end: 2218 },
   { start: 2227, end: 2797 },
-  { start: 2806, end: 3112 }
+  { start: 2806, end: 3112 },
 ];

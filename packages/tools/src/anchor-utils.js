@@ -4,10 +4,10 @@ import debug from 'debug';
 import { parse as parseOrigin } from './transform-origin';
 const log = debug('@pie-lib:tools:anchor-utils');
 
-export const toDegrees = radians => radians * (180 / Math.PI);
-export const toRadians = degrees => degrees * (Math.PI / 180);
+export const toDegrees = (radians) => radians * (180 / Math.PI);
+export const toRadians = (degrees) => degrees * (Math.PI / 180);
 
-export const normalizeAngle = a => {
+export const normalizeAngle = (a) => {
   if (a > 360) {
     return a % 360;
   } else if (a < 0) {
@@ -95,20 +95,20 @@ const getPosition = (side, rect, point, angle, calcAngle) => {
 
   const t = {
     angles: { 0: ra, 1: 90 },
-    sides: { 1: hypotenuse }
+    sides: { 1: hypotenuse },
   };
   const out = trigCalculator(t);
   return out.sides[2];
 };
 
 export const getTop = (rect, point, angle) => {
-  return getPosition('top', rect, point, angle, degrees => {
+  return getPosition('top', rect, point, angle, (degrees) => {
     return Math.abs(angle + degrees);
   });
 };
 
 export const getLeft = (rect, point, angle) => {
-  return getPosition('left', rect, point, angle, degrees => {
+  return getPosition('left', rect, point, angle, (degrees) => {
     return Math.abs(angle + degrees + 90);
   });
 };
@@ -139,7 +139,7 @@ export const getAnchor = (rect, point, angle) => {
   return { top, left };
 };
 
-const anglePoints = angle => {
+const anglePoints = (angle) => {
   if (angle <= 90) {
     return { top: 'top-left', left: 'bottom-left' };
   } else if (angle > 90 && angle <= 180) {

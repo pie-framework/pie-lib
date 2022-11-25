@@ -12,7 +12,7 @@ export const RawDoneButton = ({ classes, onClick }) => (
     onClick={onClick}
     classes={{
       label: classes.label,
-      root: classes.iconRoot
+      root: classes.iconRoot,
     }}
   >
     <Check />
@@ -21,7 +21,7 @@ export const RawDoneButton = ({ classes, onClick }) => (
 
 RawDoneButton.propTypes = {
   classes: PropTypes.object.isRequired,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
 };
 
 const styles = {
@@ -30,7 +30,7 @@ const styles = {
     width: '28px',
     height: '28px',
     color: 'var(--editable-html-toolbar-check, #00bb00)',
-    padding: '4px'
-  }
+    padding: '4px',
+  },
 };
 export const DoneButton = withStyles(styles)(RawDoneButton);

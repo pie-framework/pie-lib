@@ -20,12 +20,12 @@ export const tool = () => ({
         root: point,
         edge: undefined,
         closed: false,
-        building: true
+        building: true,
       };
     } else if (mark && !mark.root) {
       throw new Error('no root - should never happen');
     } else {
       return { ...mark, edge: point, closed: true, building: false };
     }
-  }
+  },
 });

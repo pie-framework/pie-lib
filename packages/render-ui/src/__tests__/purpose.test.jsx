@@ -10,7 +10,7 @@ describe('Purpose', () => {
       wrapper = mount(
         <Purpose>
           <div>text</div>
-        </Purpose>
+        </Purpose>,
       );
       expect(wrapper.find('div')).toHaveLength(1);
       expect(wrapper.html().includes('data-pie-purpose=""')).toEqual(false);
@@ -21,7 +21,7 @@ describe('Purpose', () => {
       wrapper = mount(
         <Purpose purpose="passage">
           <div>text</div>
-        </Purpose>
+        </Purpose>,
       );
       expect(wrapper.find('div')).toHaveLength(1);
       expect(wrapper.html().includes('data-pie-purpose="passage"')).toEqual(true);
@@ -35,7 +35,7 @@ describe('Purpose', () => {
             <div>text1</div>
             <div>text2</div>
           </div>
-        </Purpose>
+        </Purpose>,
       );
       expect(wrapper.find('div')).toHaveLength(3);
       expect(wrapper.html().includes('data-pie-purpose="something"')).toEqual(true);

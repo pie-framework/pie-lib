@@ -15,7 +15,7 @@ export class Options extends React.Component {
     classes: PropTypes.object.isRequired,
     className: PropTypes.string,
     model: PropTypes.object.isRequired,
-    onChange: PropTypes.func.isRequired
+    onChange: PropTypes.func.isRequired,
   };
   static defaultProps = {};
 
@@ -34,10 +34,10 @@ export class Options extends React.Component {
           ...d,
           correctness: {
             value: index % 2 === 0 ? 'correct' : 'incorrect',
-            label: index % 2 !== 0 ? 'correct' : 'incorrect'
-          }
+            label: index % 2 !== 0 ? 'correct' : 'incorrect',
+          },
         }))
-      : model.data.map(d => ({ ...d, correctness: undefined }));
+      : model.data.map((d) => ({ ...d, correctness: undefined }));
     set(out, 'data', data);
     set(out, key, value);
     onChange(out);
@@ -53,13 +53,13 @@ export class Options extends React.Component {
     onChange({ ...model, data: update });
   };
 
-  getValue = category => {
+  getValue = (category) => {
     const { model } = this.props;
-    const m = model.data.find(d => d.category === category);
+    const m = model.data.find((d) => d.category === category);
     return m.value;
   };
 
-  changeNumberOfCategories = count => {
+  changeNumberOfCategories = (count) => {
     const { model, onChange } = this.props;
     const { data } = model;
     if (count === data.length) {
@@ -78,29 +78,26 @@ export class Options extends React.Component {
     const { classes, className, model } = this.props;
     return (
       <div className={classNames(classes.options, className)}>
-        <ChartType
-          value={model.chartType}
-          onChange={e => this.change('chartType', e.target.value)}
-        />
+        <ChartType value={model.chartType} onChange={(e) => this.change('chartType', e.target.value)} />
         <TextField
           variant="outlined"
           label="Chart Title"
           className={classNames(classes.textField, classes.title)}
           value={model.title}
-          onChange={e => this.change('title', e.target.value)}
+          onChange={(e) => this.change('title', e.target.value)}
         />
         <TextField
           className={classes.textField}
           label="Default Category Label"
           variant="outlined"
           value={model.categoryDefaultLabel}
-          onChange={e => this.change('categoryDefaultLabel', e.target.value)}
+          onChange={(e) => this.change('categoryDefaultLabel', e.target.value)}
         />
         <div>
           Display with Correctness
           <Switch
             checked={model.displayWithCorrectness}
-            onChange={e => {
+            onChange={(e) => {
               this.changeKeyAndData('displayWithCorrectness', e.target.checked);
             }}
             value={model.displayWithCorrectness}
@@ -111,7 +108,7 @@ export class Options extends React.Component {
           Add Category
           <Switch
             checked={model.addCategoryEnabled}
-            onChange={e => {
+            onChange={(e) => {
               this.change('addCategoryEnabled', e.target.checked);
             }}
             value={model.addCategoryEnabled}
@@ -121,7 +118,7 @@ export class Options extends React.Component {
           Edit Category
           <Switch
             checked={model.editCategoryEnabled}
-            onChange={e => {
+            onChange={(e) => {
               this.change('editCategoryEnabled', e.target.checked);
             }}
             value={model.editCategoryEnabled}
@@ -133,33 +130,33 @@ export class Options extends React.Component {
             label="X axis label"
             variant="outlined"
             value={model.domain.label}
-            onChange={e => this.change('domain.label', e.target.value)}
+            onChange={(e) => this.change('domain.label', e.target.value)}
           />
           <TextField
             label="Y axis label"
             className={classes.textField}
             variant="outlined"
             value={model.range.label}
-            onChange={e => this.change('range.label', e.target.value)}
+            onChange={(e) => this.change('range.label', e.target.value)}
           />
         </div>
         <Nt
           label="Max Y Value"
           className={classes.textField}
           value={model.range.max}
-          onChange={v => this.change('range.max', v)}
+          onChange={(v) => this.change('range.max', v)}
         />
         <Nt
           label="Range Step Value"
           className={classes.textField}
           value={model.range.step}
-          onChange={v => this.change('range.step', v)}
+          onChange={(v) => this.change('range.step', v)}
         />
         <Nt
           label="Range Label Step Value"
           className={classes.textField}
           value={model.range.labelStep}
-          onChange={v => this.change('range.labelStep', v)}
+          onChange={(v) => this.change('range.labelStep', v)}
         />
 
         <div className={classes.categories}>
@@ -174,26 +171,24 @@ export class Options extends React.Component {
             key={index}
             index={index}
             // key={`${d.label || ''}_${d.value}_${index}`}
-            onChange={(label, value, interactive) =>
-              this.changeCategory(index, label, value, interactive)
-            }
+            onChange={(label, value, interactive) => this.changeCategory(index, label, value, interactive)}
           />
         ))}
       </div>
     );
   }
 }
-const styles = theme => ({
+const styles = (theme) => ({
   title: {
-    width: '100%'
+    width: '100%',
   },
   textField: {
-    marginTop: theme.spacing.unit * 2
+    marginTop: theme.spacing.unit * 2,
   },
   categories: {
     display: 'flex',
-    justifyContent: 'space-between'
-  }
+    justifyContent: 'space-between',
+  },
 });
 
 export default withStyles(styles)(Options);

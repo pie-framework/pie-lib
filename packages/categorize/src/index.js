@@ -23,7 +23,7 @@ export const limitChoices = (choiceId, count, choices) => {
       }
       return acc;
     },
-    { choices: [] }
+    { choices: [] },
   );
 
   return out.choices;
@@ -47,7 +47,7 @@ export const limitInArrays = (id, arrays, limit) => {
       acc.count = acc.count + (result.count || 0);
       return acc;
     },
-    { out: [], count: 0 }
+    { out: [], count: 0 },
   );
 
   return result.out;
@@ -64,7 +64,7 @@ export const limitInArray = (id, arr, limit) => {
   arr = arr || [];
 
   if (limit === 0) {
-    const stripped = arr.filter(v => v !== id);
+    const stripped = arr.filter((v) => v !== id);
     return { array: stripped, count: arr.length - stripped.length };
   } else {
     const result = arr.reduce(
@@ -79,7 +79,7 @@ export const limitInArray = (id, arr, limit) => {
         }
         return acc;
       },
-      { out: [], count: 0 }
+      { out: [], count: 0 },
     );
 
     return { array: result.out, count: result.count };
@@ -100,13 +100,13 @@ export const ensureNoExtraChoicesInAnswer = (answer, choices) => {
     if (choice.categoryCount === undefined || choice.categoryCount === 0) {
       return answerArray;
     } else {
-      const choices = answerArray.map(a => a.choices);
+      const choices = answerArray.map((a) => a.choices);
       const result = limitInArrays(choice.id, choices, choice.categoryCount);
       const updatedArray = result.map((r, index) => {
         return {
           category: answerArray[index].category,
           alternateResponses: answerArray[index].alternateResponses,
-          choices: r
+          choices: r,
         };
       });
       return updatedArray;
@@ -126,8 +126,7 @@ export const countInAnswer = (choiceId, answer) => {
   return out;
 };
 
-export const countInChoices = (choiceId, choices) =>
-  (choices || []).filter(c => c === choiceId).length;
+export const countInChoices = (choiceId, choices) => (choices || []).filter((c) => c === choiceId).length;
 
 /**
  * Count the number of times a choice has been selected in categories.
@@ -144,7 +143,7 @@ export const countChosen = (choice, categories) => {
   }
 
   return categories.reduce((acc, c) => {
-    const count = (c.choices || []).filter(h => h.id === choice.id).length;
+    const count = (c.choices || []).filter((h) => h.id === choice.id).length;
     return acc + count;
   }, 0);
 };
@@ -153,8 +152,7 @@ export const countChosen = (choice, categories) => {
  * @param {string?} categoryId
  * @param {{category:string, choices: string[]}} answers
  */
-export const removeCategory = (categoryId, answers) =>
-  answers.filter(a => a.category !== categoryId);
+export const removeCategory = (categoryId, answers) => answers.filter((a) => a.category !== categoryId);
 
 /**
  * @param {string} choiceId
@@ -162,10 +160,10 @@ export const removeCategory = (categoryId, answers) =>
  * @param {string?} categoryId - optional categegory id
  */
 export const removeAllChoices = (choiceId, answers, categoryId) => {
-  return answers.map(a => {
+  return answers.map((a) => {
     if (!categoryId || a.category === categoryId) {
       const cloned = clone(a.choices);
-      remove(cloned, v => v === choiceId);
+      remove(cloned, (v) => v === choiceId);
       return { ...a, choices: cloned };
     } else {
       return a;
@@ -176,7 +174,7 @@ export const removeAllChoices = (choiceId, answers, categoryId) => {
 export const removeChoiceFromCategory = (choiceId, categoryId, choiceIndex, answers) => {
   log('[removeChoiceFromCategory] choiceIndex:', choiceIndex);
 
-  return answers.map(a => {
+  return answers.map((a) => {
     if (a.category === categoryId) {
       const cloned = clone(a.choices);
       const index = cloned.findIndex((v, index) => {
@@ -193,16 +191,7 @@ export const removeChoiceFromCategory = (choiceId, categoryId, choiceIndex, answ
 };
 
 export const moveChoiceToCategory = (choiceId, from, to, choiceIndex, answers) => {
-  log(
-    '[moveChoiceToCategory] choice: ',
-    choiceId,
-    'from: ',
-    from,
-    'to: ',
-    to,
-    'answers: ',
-    answers
-  );
+  log('[moveChoiceToCategory] choice: ', choiceId, 'from: ', from, 'to: ', to, 'answers: ', answers);
 
   if (from === to) {
     return answers;
@@ -212,12 +201,12 @@ export const moveChoiceToCategory = (choiceId, from, to, choiceIndex, answers) =
     answers = removeChoiceFromCategory(choiceId, from, choiceIndex, answers);
   }
 
-  const index = answers.findIndex(a => a.category === to);
+  const index = answers.findIndex((a) => a.category === to);
   if (index === -1) {
     answers.push({ category: to, choices: [choiceId] });
     return answers;
   } else {
-    return answers.map(a => {
+    return answers.map((a) => {
       if (a.category === to) {
         a.choices = a.choices || [];
         a.choices.push(choiceId);
@@ -249,22 +238,22 @@ export const buildChoices = (possibleResponseChoices, builtCategoryChoices) => {
   return builtCategoryChoices.reduce(
     (acc, builtChoice) => {
       // set correct value on each choice that was selected by user
-      const index = acc.copyOfPossibleResponse.findIndex(cRC => cRC === builtChoice.id);
+      const index = acc.copyOfPossibleResponse.findIndex((cRC) => cRC === builtChoice.id);
       // if the choice exists in the correct response
       // set the correct: true
       if (index >= 0) {
         acc.builtChoices.push({
           ...builtChoice,
-          correct: true
+          correct: true,
         });
         acc.copyOfPossibleResponse = [
           ...acc.copyOfPossibleResponse.slice(0, index),
-          ...acc.copyOfPossibleResponse.slice(index + 1)
+          ...acc.copyOfPossibleResponse.slice(index + 1),
         ];
       } else {
         acc.builtChoices.push({
           ...builtChoice,
-          correct: false
+          correct: false,
         });
         acc.allChoicesAreCorrect = false;
       }
@@ -274,8 +263,8 @@ export const buildChoices = (possibleResponseChoices, builtCategoryChoices) => {
     {
       builtChoices: [],
       copyOfPossibleResponse: [...possibleResponseChoices],
-      allChoicesAreCorrect: true
-    }
+      allChoicesAreCorrect: true,
+    },
   );
 };
 
@@ -294,22 +283,19 @@ export const getBuiltCategories = (possibleResponse, builtCategories) =>
       const possibleResponseChoices = possibleResponse[builtCategory.id] || []; // the correct choices for this category
       const builtCategoryChoices = builtCategory.choices || []; // the choices in the answer
 
-      const { builtChoices, allChoicesAreCorrect } = buildChoices(
-        possibleResponseChoices,
-        builtCategoryChoices
-      );
+      const { builtChoices, allChoicesAreCorrect } = buildChoices(possibleResponseChoices, builtCategoryChoices);
       const allChoicesAreInAnswer = builtCategoryChoices.length === possibleResponseChoices.length;
 
       acc.builtCategories.push({
         ...builtCategory,
         correct: allChoicesAreCorrect && allChoicesAreInAnswer,
-        choices: builtChoices
+        choices: builtChoices,
       });
       acc.correct = acc.correct && allChoicesAreCorrect && allChoicesAreInAnswer;
 
       return acc;
     },
-    { builtCategories: [], correct: true }
+    { builtCategories: [], correct: true },
   );
 
 /**
@@ -319,7 +305,7 @@ export const getBuiltCategories = (possibleResponse, builtCategories) =>
  * @returns {Object[]}, returns Response[]
  * Response = { CategoryId: ChoiceId[] },
  */
-export const getAllPossibleResponses = correctResponse => {
+export const getAllPossibleResponses = (correctResponse) => {
   if (!correctResponse) {
     return [];
   }
@@ -362,13 +348,13 @@ export const buildCategories = (categories, choices, answers) => {
   answers = answers || [];
   choices = choices || [];
 
-  return categories.map(category => {
-    const answer = answers.find(answer => answer.category === category.id);
+  return categories.map((category) => {
+    const answer = answers.find((answer) => answer.category === category.id);
     const { choices: answerChoices = [] } = answer || {};
 
     return {
       ...category,
-      choices: answerChoices.map(chId => choices.find(ch => ch.id === chId))
+      choices: answerChoices.map((chId) => choices.find((ch) => ch.id === chId)),
     };
   });
 };
@@ -400,7 +386,7 @@ export const buildState = (categories, choices, answers, correctResponse) => {
         // set correctness for each possible response
         const { builtCategories: categoriesWithChoices, correct } = getBuiltCategories(
           possibleResponse,
-          builtCategories
+          builtCategories,
         );
 
         // if bestResponse not found yet OR no correct response found yet and this one is the correct one
@@ -408,7 +394,7 @@ export const buildState = (categories, choices, answers, correctResponse) => {
           return {
             bestResponse: possibleResponse,
             builtCategories: categoriesWithChoices,
-            entirelyCorrect: correct
+            entirelyCorrect: correct,
           };
         }
 
@@ -417,8 +403,8 @@ export const buildState = (categories, choices, answers, correctResponse) => {
       {
         bestResponse: null,
         builtCategories: [],
-        entirelyCorrect: false
-      }
+        entirelyCorrect: false,
+      },
     );
 
     builtCategories = builtData.builtCategories;
@@ -426,14 +412,12 @@ export const buildState = (categories, choices, answers, correctResponse) => {
     entirelyCorrect = builtData.entirelyCorrect;
   }
 
-  const filteredChoices = choices.map(ch =>
-    stillSelectable(ch, builtCategories) ? ch : { empty: true }
-  );
+  const filteredChoices = choices.map((ch) => (stillSelectable(ch, builtCategories) ? ch : { empty: true }));
 
   return {
     choices: filteredChoices,
     categories: builtCategories,
     correct: entirelyCorrect,
-    bestResponse
+    bestResponse,
   };
 };

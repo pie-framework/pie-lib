@@ -6,46 +6,41 @@ import { clearSelection, getCaretCharacterOffsetWithin } from '../selection-util
 
 jest.mock('../selection-utils', () => ({
   clearSelection: jest.fn(),
-  getCaretCharacterOffsetWithin: jest.fn().mockReturnValue(10)
+  getCaretCharacterOffsetWithin: jest.fn().mockReturnValue(10),
 }));
 
 jest.mock('../builder', () => ({
   intersection: jest.fn().mockReturnValue({
     hasOverlap: jest.fn().mockReturnValue(false),
-    surroundedTokens: jest.fn().mockReturnValue([])
+    surroundedTokens: jest.fn().mockReturnValue([]),
   }),
   normalize: jest.fn().mockReturnValue([
     {
       text: `lorem\nfoo bar`,
       start: 0,
       end: 13,
-      predefined: true
-    }
-  ])
+      predefined: true,
+    },
+  ]),
 }));
 
 const tokens = () => [
   {
     start: 0,
     end: 7,
-    text: `lorem\nfoo bar`
-  }
+    text: `lorem\nfoo bar`,
+  },
 ];
 
 const mkEvent = () => ({
-  preventDefault: jest.fn()
+  preventDefault: jest.fn(),
 });
 
 describe('token-text', () => {
   describe('snapshot', () => {
     it('renders', () => {
       const w = shallow(
-        <TokenText
-          onTokenClick={jest.fn()}
-          onSelectToken={jest.fn()}
-          text={`lorem\nfoo bar`}
-          tokens={tokens()}
-        />
+        <TokenText onTokenClick={jest.fn()} onSelectToken={jest.fn()} text={`lorem\nfoo bar`} tokens={tokens()} />,
       );
       expect(w).toMatchSnapshot();
     });
@@ -57,7 +52,7 @@ describe('token-text', () => {
     let onTokenClick;
     beforeEach(() => {
       global.window.getSelection = jest.fn().mockReturnValue({
-        toString: () => 'bar'
+        toString: () => 'bar',
       });
 
       onSelectToken = jest.fn();
@@ -69,7 +64,7 @@ describe('token-text', () => {
           onSelectToken={onSelectToken}
           text={`lorem\nfoo bar`}
           tokens={tokens()}
-        />
+        />,
       );
     });
 
@@ -89,7 +84,7 @@ describe('token-text', () => {
 
       it('calls clear selection if there is an overlap', () => {
         intersection.mockReturnValue({
-          hasOverlap: true
+          hasOverlap: true,
         });
         const event = mkEvent();
         w.instance().root = {};
@@ -102,7 +97,7 @@ describe('token-text', () => {
         const event = mkEvent();
         intersection.mockReturnValue({
           hasOverlap: false,
-          surroundedTokens: []
+          surroundedTokens: [],
         });
         w.instance().root = {};
         w.instance().onClick(event);
@@ -114,24 +109,24 @@ describe('token-text', () => {
 
         intersection.mockReturnValue({
           hasOverlap: false,
-          surroundedTokens: []
+          surroundedTokens: [],
         });
         w.instance().root = {};
 
         global.window.getSelection = jest.fn().mockReturnValue({
-          toString: () => '\n'
+          toString: () => '\n',
         });
         w.instance().onClick(event);
         expect(onSelectToken).not.toBeCalled();
 
         global.window.getSelection = jest.fn().mockReturnValue({
-          toString: () => ' '
+          toString: () => ' ',
         });
         w.instance().onClick(event);
         expect(onSelectToken).not.toBeCalled();
 
         global.window.getSelection = jest.fn().mockReturnValue({
-          toString: () => '\t'
+          toString: () => '\t',
         });
         w.instance().onClick(event);
         expect(onSelectToken).not.toBeCalled();

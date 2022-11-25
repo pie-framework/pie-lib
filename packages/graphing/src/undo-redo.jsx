@@ -11,7 +11,7 @@ export class UndoRedo extends React.Component {
     className: PropTypes.string,
     onUndo: PropTypes.func.isRequired,
     onRedo: PropTypes.func.isRequired,
-    onReset: PropTypes.func.isRequired
+    onReset: PropTypes.func.isRequired,
   };
   static defaultProps = {};
   render() {
@@ -32,18 +32,18 @@ export class UndoRedo extends React.Component {
   }
 }
 
-const styles = theme => ({
+const styles = (theme) => ({
   button: {
     color: color.text(),
     backgroundColor: color.background(),
     marginBottom: theme.spacing.unit / 2,
     '&:not(:last-of-type)': {
-      marginRight: theme.spacing.unit / 2
+      marginRight: theme.spacing.unit / 2,
     },
     '&:hover': {
-      backgroundColor: color.primary()
-    }
-  }
+      backgroundColor: color.primary(),
+    },
+  },
 });
 
 export default withStyles(styles)(UndoRedo);

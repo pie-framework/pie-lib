@@ -3,114 +3,73 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.5.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.5.1...@pie-lib/plot@2.5.2) (2022-10-17)
+## [2.5.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.5.2...@pie-lib/plot@2.5.3) (2022-11-23)
 
+**Note:** Version bump only for package @pie-lib/plot
+
+## [2.5.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.5.1...@pie-lib/plot@2.5.2) (2022-10-17)
 
 ### Bug Fixes
 
-* **charting:** increase font size for axis labels and title ([50a10c4](https://github.com/pie-framework/pie-lib/commit/50a10c43a758726106cd6320191b992613389839))
-
-
-
-
+- **charting:** increase font size for axis labels and title ([50a10c4](https://github.com/pie-framework/pie-lib/commit/50a10c43a758726106cd6320191b992613389839))
 
 ## [2.5.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.5.0...@pie-lib/plot@2.5.1) (2022-09-29)
 
-
 ### Bug Fixes
 
-* **charting:** center Chart Title ([2b7e39f](https://github.com/pie-framework/pie-lib/commit/2b7e39f2aa39e0db0a003f154abdfa4852f3b141))
-* **charting:** fix left label position for define correct response and player chart ([4a50663](https://github.com/pie-framework/pie-lib/commit/4a5066351901cbe400180b1d19d9a54781eb726e))
-* **charting:** make space for delete category buttons in define correct response and in player ([7c0f653](https://github.com/pie-framework/pie-lib/commit/7c0f6536f106099da9a9ab5a7328fed827841c5c))
-
-
-
-
+- **charting:** center Chart Title ([2b7e39f](https://github.com/pie-framework/pie-lib/commit/2b7e39f2aa39e0db0a003f154abdfa4852f3b141))
+- **charting:** fix left label position for define correct response and player chart ([4a50663](https://github.com/pie-framework/pie-lib/commit/4a5066351901cbe400180b1d19d9a54781eb726e))
+- **charting:** make space for delete category buttons in define correct response and in player ([7c0f653](https://github.com/pie-framework/pie-lib/commit/7c0f6536f106099da9a9ab5a7328fed827841c5c))
 
 # [2.5.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.4.2...@pie-lib/plot@2.5.0) (2022-09-28)
 
-
 ### Bug Fixes
 
-* **charting:** arrange the position of the checkboxes labels, fix style amd arrangement ([c5f2f7a](https://github.com/pie-framework/pie-lib/commit/c5f2f7acf60898e77ecc0b47b190256537605c8e))
-* **charting:** change position for checbox labels in order to fit without overlapping the checboxes ([98a56cb](https://github.com/pie-framework/pie-lib/commit/98a56cbae47c4bcadd0d4087d6b7df3c4d5d3e2e))
-* **charting:** fix conflicts ([2b3da1b](https://github.com/pie-framework/pie-lib/commit/2b3da1b4b87a518b5c18daf6f6c57db1ccc1c536))
-* **charting:** prevent page scroll on devices when a charting category is dragged ([6fe37ff](https://github.com/pie-framework/pie-lib/commit/6fe37ffa0e2c387d7174d0daf5cfc1cf9e8abf80))
-* **editable-html, graphing:** Add support to remove scrollbar from editable-html and removed scrollbar from graphing labels PD-1968 ([d04a0d3](https://github.com/pie-framework/pie-lib/commit/d04a0d3bc66d4b861f60b24198301459c15bd151))
-
+- **charting:** arrange the position of the checkboxes labels, fix style amd arrangement ([c5f2f7a](https://github.com/pie-framework/pie-lib/commit/c5f2f7acf60898e77ecc0b47b190256537605c8e))
+- **charting:** change position for checbox labels in order to fit without overlapping the checboxes ([98a56cb](https://github.com/pie-framework/pie-lib/commit/98a56cbae47c4bcadd0d4087d6b7df3c4d5d3e2e))
+- **charting:** fix conflicts ([2b3da1b](https://github.com/pie-framework/pie-lib/commit/2b3da1b4b87a518b5c18daf6f6c57db1ccc1c536))
+- **charting:** prevent page scroll on devices when a charting category is dragged ([6fe37ff](https://github.com/pie-framework/pie-lib/commit/6fe37ffa0e2c387d7174d0daf5cfc1cf9e8abf80))
+- **editable-html, graphing:** Add support to remove scrollbar from editable-html and removed scrollbar from graphing labels PD-1968 ([d04a0d3](https://github.com/pie-framework/pie-lib/commit/d04a0d3bc66d4b861f60b24198301459c15bd151))
 
 ### Features
 
-* **charting:** refactor ability to edit chart title and labels, fix style ([6edcdfb](https://github.com/pie-framework/pie-lib/commit/6edcdfbfbd83806a8487c29c42ae447b11850ac7))
-* **charting:** try to set up labels for charting, work in progress ([c6cd049](https://github.com/pie-framework/pie-lib/commit/c6cd049723dadab329748511da2f6c4f1fa943db))
-* **graphing, plot:** moved graphing labels to plot package + fixed math input + added support for labels rotation PD-1962 ([a85ec39](https://github.com/pie-framework/pie-lib/commit/a85ec3911dd1f6bc89e4eb20a19ef8f957deebf1))
-
-
-
-
+- **charting:** refactor ability to edit chart title and labels, fix style ([6edcdfb](https://github.com/pie-framework/pie-lib/commit/6edcdfbfbd83806a8487c29c42ae447b11850ac7))
+- **charting:** try to set up labels for charting, work in progress ([c6cd049](https://github.com/pie-framework/pie-lib/commit/c6cd049723dadab329748511da2f6c4f1fa943db))
+- **graphing, plot:** moved graphing labels to plot package + fixed math input + added support for labels rotation PD-1962 ([a85ec39](https://github.com/pie-framework/pie-lib/commit/a85ec3911dd1f6bc89e4eb20a19ef8f957deebf1))
 
 ## [2.4.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.4.1...@pie-lib/plot@2.4.2) (2022-08-30)
 
-
 ### Bug Fixes
 
-* **plot, charting, graphing:** adjusted side pixel guides, fixed graphing rendering issue, adjusted charting dimensions PD-1963 ([5043231](https://github.com/pie-framework/pie-lib/commit/5043231ba73a0aa475115fb5fe9af29e0e67a4b6))
-
-
-
-
+- **plot, charting, graphing:** adjusted side pixel guides, fixed graphing rendering issue, adjusted charting dimensions PD-1963 ([5043231](https://github.com/pie-framework/pie-lib/commit/5043231ba73a0aa475115fb5fe9af29e0e67a4b6))
 
 ## [2.4.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.4.0...@pie-lib/plot@2.4.1) (2022-08-29)
 
 **Note:** Version bump only for package @pie-lib/plot
 
-
-
-
-
 # [2.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.3.0...@pie-lib/plot@2.4.0) (2022-08-15)
-
 
 ### Features
 
-* **graphing, plot:** added pixel guide lines + ui improvements ([02ddff1](https://github.com/pie-framework/pie-lib/commit/02ddff1aed6a279b8a4ae1fcf100c766596c29c4))
-
-
-
-
+- **graphing, plot:** added pixel guide lines + ui improvements ([02ddff1](https://github.com/pie-framework/pie-lib/commit/02ddff1aed6a279b8a4ae1fcf100c766596c29c4))
 
 # [2.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.2.0...@pie-lib/plot@2.3.0) (2022-08-01)
 
-
 ### Features
 
-* **graphing, editable-html, plot:** Added the ability to edit/center title and lables PD-1605 PD-1690 ([dd18f92](https://github.com/pie-framework/pie-lib/commit/dd18f92e19d8be98917cd4f19eb7211122d2b7fb))
-
-
-
-
+- **graphing, editable-html, plot:** Added the ability to edit/center title and lables PD-1605 PD-1690 ([dd18f92](https://github.com/pie-framework/pie-lib/commit/dd18f92e19d8be98917cd4f19eb7211122d2b7fb))
 
 # [2.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.1.10...@pie-lib/plot@2.2.0) (2022-05-10)
 
-
 ### Features
 
-* **graphing, plot:** Added padding between labels and graph without changing the size of graph PD-1604 ([aa93191](https://github.com/pie-framework/pie-lib/commit/aa931910c56efddaf54d4586dc0730a9688e25e3))
-
-
-
-
+- **graphing, plot:** Added padding between labels and graph without changing the size of graph PD-1604 ([aa93191](https://github.com/pie-framework/pie-lib/commit/aa931910c56efddaf54d4586dc0730a9688e25e3))
 
 ## [2.1.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.1.9...@pie-lib/plot@2.1.10) (2022-03-21)
 
-
 ### Bug Fixes
 
-* **plot:** Added HTML-encoded characters support PD-1597 ([0ca23fc](https://github.com/pie-framework/pie-lib/commit/0ca23fc3276f73df875c6c9176e64890a2265d47))
-
-
-
-
+- **plot:** Added HTML-encoded characters support PD-1597 ([0ca23fc](https://github.com/pie-framework/pie-lib/commit/0ca23fc3276f73df875c6c9176e64890a2265d47))
 
 ## [2.1.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.1.7...@pie-lib/plot@2.1.9) (2021-06-25)
 

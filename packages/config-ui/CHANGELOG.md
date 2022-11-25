@@ -3,491 +3,268 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [11.0.22](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.0.21...@pie-lib/config-ui@11.0.22) (2022-11-14)
+## [11.0.25](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.0.24...@pie-lib/config-ui@11.0.25) (2022-11-23)
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
+## [11.0.24](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.0.23...@pie-lib/config-ui@11.0.24) (2022-11-23)
 
+**Note:** Version bump only for package @pie-lib/config-ui
 
+## [11.0.23](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.0.22...@pie-lib/config-ui@11.0.23) (2022-11-17)
 
+**Note:** Version bump only for package @pie-lib/config-ui
+
+## [11.0.22](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.0.21...@pie-lib/config-ui@11.0.22) (2022-11-14)
+
+**Note:** Version bump only for package @pie-lib/config-ui
 
 ## [11.0.21](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.0.20...@pie-lib/config-ui@11.0.21) (2022-10-31)
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
-
-
-
-
 ## [11.0.20](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.0.19...@pie-lib/config-ui@11.0.20) (2022-10-17)
-
 
 ### Bug Fixes
 
-* **config:** added extra character plugin to config-ui inputs [PD-2130] ([08bb177](https://github.com/pie-framework/pie-lib/commit/08bb177abe72556d1138d6a5652aefaee40957be))
-* **multiple-choice:** add upload file option in choices ([3452207](https://github.com/pie-framework/pie-lib/commit/3452207f774b4a35736168bbca8eb08d921974b4))
-
-
-
-
+- **config:** added extra character plugin to config-ui inputs [PD-2130](<[08bb177](https://github.com/pie-framework/pie-lib/commit/08bb177abe72556d1138d6a5652aefaee40957be)>)
+- **multiple-choice:** add upload file option in choices ([3452207](https://github.com/pie-framework/pie-lib/commit/3452207f774b4a35736168bbca8eb08d921974b4))
 
 ## [11.0.19](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.0.18...@pie-lib/config-ui@11.0.19) (2022-09-29)
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
-
-
-
-
 ## [11.0.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.0.17...@pie-lib/config-ui@11.0.18) (2022-09-28)
 
 **Note:** Version bump only for package @pie-lib/config-ui
-
-
-
-
 
 ## [11.0.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.0.16...@pie-lib/config-ui@11.0.17) (2022-09-28)
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
-
-
-
-
 ## [11.0.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.0.15...@pie-lib/config-ui@11.0.16) (2022-09-14)
 
 **Note:** Version bump only for package @pie-lib/config-ui
-
-
-
-
 
 ## [11.0.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.0.14...@pie-lib/config-ui@11.0.15) (2022-08-30)
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
-
-
-
-
 ## [11.0.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.0.13...@pie-lib/config-ui@11.0.14) (2022-08-29)
 
 **Note:** Version bump only for package @pie-lib/config-ui
-
-
-
-
 
 ## [11.0.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.0.12...@pie-lib/config-ui@11.0.13) (2022-08-29)
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
-
-
-
-
 ## [11.0.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.0.11...@pie-lib/config-ui@11.0.12) (2022-08-15)
 
 **Note:** Version bump only for package @pie-lib/config-ui
-
-
-
-
 
 ## [11.0.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.0.10...@pie-lib/config-ui@11.0.11) (2022-08-08)
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
-
-
-
-
 ## [11.0.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.0.9...@pie-lib/config-ui@11.0.10) (2022-08-01)
 
 **Note:** Version bump only for package @pie-lib/config-ui
-
-
-
-
 
 ## [11.0.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.0.8...@pie-lib/config-ui@11.0.9) (2022-08-01)
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
-
-
-
-
 ## [11.0.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.0.7...@pie-lib/config-ui@11.0.8) (2022-07-22)
 
 **Note:** Version bump only for package @pie-lib/config-ui
-
-
-
-
 
 ## [11.0.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.0.6...@pie-lib/config-ui@11.0.7) (2022-07-19)
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
-
-
-
-
 ## [11.0.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.0.5...@pie-lib/config-ui@11.0.6) (2022-07-19)
 
 **Note:** Version bump only for package @pie-lib/config-ui
-
-
-
-
 
 ## [11.0.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.0.4...@pie-lib/config-ui@11.0.5) (2022-07-18)
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
-
-
-
-
 ## [11.0.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.0.3...@pie-lib/config-ui@11.0.4) (2022-07-18)
 
 **Note:** Version bump only for package @pie-lib/config-ui
-
-
-
-
 
 ## [11.0.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.0.2...@pie-lib/config-ui@11.0.3) (2022-06-28)
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
-
-
-
-
 ## [11.0.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.0.1...@pie-lib/config-ui@11.0.2) (2022-06-28)
 
 **Note:** Version bump only for package @pie-lib/config-ui
-
-
-
-
 
 ## [11.0.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.0.0...@pie-lib/config-ui@11.0.1) (2022-06-27)
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
-
-
-
-
 # [11.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.13.3...@pie-lib/config-ui@11.0.0) (2022-06-27)
-
 
 ### Features
 
-* **editable-html:** image resize functionality PD-1801 ([6f46903](https://github.com/pie-framework/pie-lib/commit/6f46903acdf791716263be33abe49235572421ad))
-* added support for graph configuration constraints PD-1683 PD-1684 PD-1686 ([8da7426](https://github.com/pie-framework/pie-lib/commit/8da74260b28332b976fa1c50796e74679fd46a13))
-* **config-ui:** Added custom values array support for custom number textfield PD-1684 ([32ae671](https://github.com/pie-framework/pie-lib/commit/32ae6710779823355c276363a04a417c4f07ba36))
-
+- **editable-html:** image resize functionality PD-1801 ([6f46903](https://github.com/pie-framework/pie-lib/commit/6f46903acdf791716263be33abe49235572421ad))
+- added support for graph configuration constraints PD-1683 PD-1684 PD-1686 ([8da7426](https://github.com/pie-framework/pie-lib/commit/8da74260b28332b976fa1c50796e74679fd46a13))
+- **config-ui:** Added custom values array support for custom number textfield PD-1684 ([32ae671](https://github.com/pie-framework/pie-lib/commit/32ae6710779823355c276363a04a417c4f07ba36))
 
 ### BREAKING CHANGES
 
-* **editable-html:** Removed the percent buttons from editable-html image button. Added resize functionality.
-
-
-
-
+- **editable-html:** Removed the percent buttons from editable-html image button. Added resize functionality.
 
 ## [10.13.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.13.2...@pie-lib/config-ui@10.13.3) (2022-06-13)
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
-
-
-
-
 ## [10.13.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.13.1...@pie-lib/config-ui@10.13.2) (2022-05-30)
-
 
 ### Bug Fixes
 
-* unable to load items locally ([17ab686](https://github.com/pie-framework/pie-lib/commit/17ab6864557288aef6ec1d9a130cb508e2591562))
-
-
-
-
+- unable to load items locally ([17ab686](https://github.com/pie-framework/pie-lib/commit/17ab6864557288aef6ec1d9a130cb508e2591562))
 
 ## [10.13.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.13.0...@pie-lib/config-ui@10.13.1) (2022-05-24)
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
-
-
-
-
 # [10.13.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.12.3...@pie-lib/config-ui@10.13.0) (2022-05-16)
-
 
 ### Features
 
-* **config-ui:** number text field UI improvements ([3b72537](https://github.com/pie-framework/pie-lib/commit/3b72537ebf29aab293bbb61d6be34888385a850b))
-* **config-ui:** number text field UI improvements ([ed8cdb6](https://github.com/pie-framework/pie-lib/commit/ed8cdb6d6f15763c3b85c9d2dfbeadf49bbcd5d8))
-* implemented custom number text field ([7e5dd09](https://github.com/pie-framework/pie-lib/commit/7e5dd09bb0d5ceb7e7214b8b2cc0b5ee1964b2bb))
-
-
-
-
+- **config-ui:** number text field UI improvements ([3b72537](https://github.com/pie-framework/pie-lib/commit/3b72537ebf29aab293bbb61d6be34888385a850b))
+- **config-ui:** number text field UI improvements ([ed8cdb6](https://github.com/pie-framework/pie-lib/commit/ed8cdb6d6f15763c3b85c9d2dfbeadf49bbcd5d8))
+- implemented custom number text field ([7e5dd09](https://github.com/pie-framework/pie-lib/commit/7e5dd09bb0d5ceb7e7214b8b2cc0b5ee1964b2bb))
 
 ## [10.12.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.12.2...@pie-lib/config-ui@10.12.3) (2022-05-10)
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
-
-
-
-
 ## [10.12.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.12.1...@pie-lib/config-ui@10.12.2) (2022-05-09)
 
 **Note:** Version bump only for package @pie-lib/config-ui
-
-
-
-
 
 ## [10.12.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.12.0...@pie-lib/config-ui@10.12.1) (2022-05-03)
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
-
-
-
-
 # [10.12.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.11.1...@pie-lib/config-ui@10.12.0) (2022-05-03)
-
 
 ### Features
 
-* **config-ui:** tweak form-section component for placement-ordering ui/ux PD-1744 ([2e7bc9e](https://github.com/pie-framework/pie-lib/commit/2e7bc9e2d133d90096f0651a302925b9595b1173))
-* implemented an alert dialog ([7a82e03](https://github.com/pie-framework/pie-lib/commit/7a82e0351b5f3124fb78fbfce6eee406f0b9d030))
-
-
-
-
+- **config-ui:** tweak form-section component for placement-ordering ui/ux PD-1744 ([2e7bc9e](https://github.com/pie-framework/pie-lib/commit/2e7bc9e2d133d90096f0651a302925b9595b1173))
+- implemented an alert dialog ([7a82e03](https://github.com/pie-framework/pie-lib/commit/7a82e0351b5f3124fb78fbfce6eee406f0b9d030))
 
 ## [10.11.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.11.0...@pie-lib/config-ui@10.11.1) (2022-04-28)
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
-
-
-
-
 # [10.11.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.10.24...@pie-lib/config-ui@10.11.0) (2022-04-12)
-
 
 ### Features
 
-* PD-1679 remove unwanted changes ([61982ef](https://github.com/pie-framework/pie-lib/commit/61982efc31296b0ed3e84d1bd1f74dcd4dbe9ac2))
-* **config-ui, editable-html:** add ui/ux validation for choices and editable html fields ([d40148f](https://github.com/pie-framework/pie-lib/commit/d40148f0f4b1232ce1506867a7424aa56e26c5ec))
-
-
-
-
+- PD-1679 remove unwanted changes ([61982ef](https://github.com/pie-framework/pie-lib/commit/61982efc31296b0ed3e84d1bd1f74dcd4dbe9ac2))
+- **config-ui, editable-html:** add ui/ux validation for choices and editable html fields ([d40148f](https://github.com/pie-framework/pie-lib/commit/d40148f0f4b1232ce1506867a7424aa56e26c5ec))
 
 ## [10.10.24](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.10.23...@pie-lib/config-ui@10.10.24) (2022-03-21)
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
-
-
-
-
 ## [10.10.23](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.10.22...@pie-lib/config-ui@10.10.23) (2022-03-08)
 
 **Note:** Version bump only for package @pie-lib/config-ui
-
-
-
-
 
 ## [10.10.22](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.10.21...@pie-lib/config-ui@10.10.22) (2022-03-07)
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
-
-
-
-
 ## [10.10.21](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.10.20...@pie-lib/config-ui@10.10.21) (2022-03-07)
 
 **Note:** Version bump only for package @pie-lib/config-ui
-
-
-
-
 
 ## [10.10.20](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.10.19...@pie-lib/config-ui@10.10.20) (2022-02-21)
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
-
-
-
-
 ## [10.10.19](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.10.18...@pie-lib/config-ui@10.10.19) (2022-02-21)
 
 **Note:** Version bump only for package @pie-lib/config-ui
-
-
-
-
 
 ## [10.10.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.10.17...@pie-lib/config-ui@10.10.18) (2022-02-04)
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
-
-
-
-
 ## [10.10.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.10.16...@pie-lib/config-ui@10.10.17) (2022-02-03)
 
 **Note:** Version bump only for package @pie-lib/config-ui
-
-
-
-
 
 ## [10.10.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.10.15...@pie-lib/config-ui@10.10.16) (2022-01-24)
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
-
-
-
-
 ## [10.10.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.10.14...@pie-lib/config-ui@10.10.15) (2022-01-10)
 
 **Note:** Version bump only for package @pie-lib/config-ui
-
-
-
-
 
 ## [10.10.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.10.13...@pie-lib/config-ui@10.10.14) (2021-12-22)
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
-
-
-
-
 ## [10.10.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.10.12...@pie-lib/config-ui@10.10.13) (2021-12-13)
 
 **Note:** Version bump only for package @pie-lib/config-ui
-
-
-
-
 
 ## [10.10.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.10.11...@pie-lib/config-ui@10.10.12) (2021-11-29)
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
-
-
-
-
 ## [10.10.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.10.10...@pie-lib/config-ui@10.10.11) (2021-10-04)
 
 **Note:** Version bump only for package @pie-lib/config-ui
-
-
-
-
 
 ## [10.10.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.10.9...@pie-lib/config-ui@10.10.10) (2021-10-04)
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
-
-
-
-
 ## [10.10.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.10.8...@pie-lib/config-ui@10.10.9) (2021-09-20)
 
 **Note:** Version bump only for package @pie-lib/config-ui
-
-
-
-
 
 ## [10.10.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.10.7...@pie-lib/config-ui@10.10.8) (2021-09-20)
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
-
-
-
-
 ## [10.10.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.10.6...@pie-lib/config-ui@10.10.7) (2021-09-20)
 
 **Note:** Version bump only for package @pie-lib/config-ui
-
-
-
-
 
 ## [10.10.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.10.5...@pie-lib/config-ui@10.10.6) (2021-09-16)
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
-
-
-
-
 ## [10.10.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.10.4...@pie-lib/config-ui@10.10.5) (2021-09-08)
 
 **Note:** Version bump only for package @pie-lib/config-ui
-
-
-
-
 
 ## [10.10.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.10.3...@pie-lib/config-ui@10.10.4) (2021-09-08)
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
-
-
-
-
 ## [10.10.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.10.2...@pie-lib/config-ui@10.10.3) (2021-08-30)
 
 **Note:** Version bump only for package @pie-lib/config-ui
-
-
-
-
 
 ## [10.10.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.10.1...@pie-lib/config-ui@10.10.2) (2021-08-04)
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
-
-
-
-
 ## [10.10.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.10.0...@pie-lib/config-ui@10.10.1) (2021-07-27)
 
 **Note:** Version bump only for package @pie-lib/config-ui
-
-
-
-
 
 # [10.10.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@10.9.2...@pie-lib/config-ui@10.10.0) (2021-07-23)
 

@@ -11,7 +11,7 @@ export class Grid extends React.Component {
     disabled: PropTypes.bool,
     disabledAdditionalGrid: PropTypes.bool,
     classes: PropTypes.object.isRequired,
-    graphProps: types.GraphPropsType.isRequired
+    graphProps: types.GraphPropsType.isRequired,
   };
 
   getAdditionalGridProps = (rowTickValues, columnTickValues) => {
@@ -20,17 +20,17 @@ export class Grid extends React.Component {
         scale,
         size: { width, height },
         domain,
-        range
-      }
+        range,
+      },
     } = this.props;
     const rowTickLabelValues = getTickValues({
       ...range,
-      step: range.labelStep
-    }).filter(value => rowTickValues.includes(value));
+      step: range.labelStep,
+    }).filter((value) => rowTickValues.includes(value));
     const columnTickLabelValues = getTickValues({
       ...domain,
-      step: domain.labelStep
-    }).filter(value => columnTickValues.includes(value));
+      step: domain.labelStep,
+    }).filter((value) => columnTickValues.includes(value));
 
     const minValueLength =
       (rowTickLabelValues.length &&
@@ -49,8 +49,7 @@ export class Grid extends React.Component {
     const horizontalDistanceToZero = scale.x(0);
     const verticalDistanceToZero = scale.y(0);
     const columnLabelLength = 28;
-    const rowStrokeDasharray = `${horizontalDistanceToZero -
-      rowLabelLength} ${rowLabelLength} ${width}`;
+    const rowStrokeDasharray = `${horizontalDistanceToZero - rowLabelLength} ${rowLabelLength} ${width}`;
     const columnStrokeDasharray = `${verticalDistanceToZero} ${columnLabelLength} ${height}`;
 
     const displayAdditionalGrid =
@@ -60,14 +59,13 @@ export class Grid extends React.Component {
       columnTickLabelValues &&
       rowTickLabelValues.length > 1 &&
       columnTickLabelValues.length > 1 &&
-      (rowTickLabelValues.length !== rowTickValues.length ||
-        columnTickLabelValues.length !== columnTickValues.length);
+      (rowTickLabelValues.length !== rowTickValues.length || columnTickLabelValues.length !== columnTickValues.length);
 
     const filteredColumnValues = columnTickLabelValues.filter(
-      value => value >= 0 || horizontalDistanceToZero - scale.x(value) > rowLabelLength
+      (value) => value >= 0 || horizontalDistanceToZero - scale.x(value) > rowLabelLength,
     );
     const filteredRowValues = rowTickLabelValues.filter(
-      value => value >= 0 || scale.y(value) - verticalDistanceToZero > columnLabelLength
+      (value) => value >= 0 || scale.y(value) - verticalDistanceToZero > columnLabelLength,
     );
 
     return {
@@ -75,7 +73,7 @@ export class Grid extends React.Component {
       columnTickLabelValues: filteredColumnValues,
       rowStrokeDasharray,
       columnStrokeDasharray,
-      displayAdditionalGrid
+      displayAdditionalGrid,
     };
   };
 
@@ -85,7 +83,7 @@ export class Grid extends React.Component {
       scale,
       size: { height, width },
       domain,
-      range
+      range,
     } = graphProps;
     const rowTickValues = getTickValues(range);
     const columnTickValues = getTickValues(domain);
@@ -94,13 +92,13 @@ export class Grid extends React.Component {
       columnTickLabelValues,
       rowStrokeDasharray,
       columnStrokeDasharray,
-      displayAdditionalGrid
+      displayAdditionalGrid,
     } = this.getAdditionalGridProps(rowTickValues, columnTickValues);
 
     return (
       <>
         <vx.Grid
-          innerRef={r => (this.grid = r)}
+          innerRef={(r) => (this.grid = r)}
           xScale={scale.x}
           yScale={scale.y}
           width={width}
@@ -134,6 +132,6 @@ export class Grid extends React.Component {
 
 export default withStyles(() => ({
   grid: {
-    stroke: 'purple' // TODO hardcoded color
-  }
+    stroke: 'purple', // TODO hardcoded color
+  },
 }))(Grid);

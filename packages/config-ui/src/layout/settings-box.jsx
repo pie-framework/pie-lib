@@ -6,7 +6,7 @@ export class SettingsBox extends React.Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     className: PropTypes.string,
-    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired
+    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
   };
   static defaultProps = {};
   render() {
@@ -25,7 +25,7 @@ const styles = () => ({
     maxWidth: '300px',
     padding: '24px 8px 24px 24px',
     width: '80%',
-    zIndex: 99
-  }
+    zIndex: 99,
+  },
 });
 export default withStyles(styles)(SettingsBox);

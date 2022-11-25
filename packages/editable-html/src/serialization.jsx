@@ -30,7 +30,7 @@ export const BLOCK_TAGS = {
   h3: 'heading-three',
   h4: 'heading-four',
   h5: 'heading-five',
-  h6: 'heading-six'
+  h6: 'heading-six',
 };
 
 /**
@@ -45,10 +45,10 @@ const MARK_TAGS = {
   u: 'underline',
   s: 'strikethrough',
   code: 'code',
-  strong: 'bold'
+  strong: 'bold',
 };
 
-export const parseStyleString = s => {
+export const parseStyleString = (s) => {
   const regex = /([\w-]*)\s*:\s*([^;]*)/g;
   let match;
   const result = {};
@@ -58,18 +58,18 @@ export const parseStyleString = s => {
   return result;
 };
 
-export const getBase64 = file => {
+export const getBase64 = (file) => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => resolve(reader.result);
-    reader.onerror = error => reject(error);
+    reader.onerror = (error) => reject(error);
   });
 };
 
-export const reactAttributes = o => toStyleObject(o, { camelize: true, addUnits: false });
+export const reactAttributes = (o) => toStyleObject(o, { camelize: true, addUnits: false });
 
-const attributesToMap = el => (acc, attribute) => {
+const attributesToMap = (el) => (acc, attribute) => {
   const value = el.getAttribute(attribute);
   if (value) {
     if (attribute === 'style') {
@@ -113,7 +113,7 @@ const blocks = {
        * Here for rendering styles for all block elements
        */
       data: { attributes: attributes.reduce(attributesToMap(el), {}) },
-      nodes: next(el.childNodes)
+      nodes: next(el.childNodes),
     };
   },
   serialize: (object, children) => {
@@ -131,7 +131,7 @@ const blocks = {
         return <Tag {...jsonData.attributes}>{children}</Tag>;
       }
     }
-  }
+  },
 };
 
 const marks = {
@@ -142,7 +142,7 @@ const marks = {
     return {
       object: 'mark',
       type: mark,
-      nodes: next(el.childNodes)
+      nodes: next(el.childNodes),
     };
   },
   serialize(object, children) {
@@ -154,10 +154,10 @@ const marks = {
         }
       }
     }
-  }
+  },
 };
 
-const findPreviousText = el => {
+const findPreviousText = (el) => {
   if (el.nodeName === '#text') {
     return el;
   }
@@ -182,9 +182,9 @@ export const TEXT_RULE = {
         leaves: [
           {
             object: 'leaf',
-            text: '\n'
-          }
-        ]
+            text: '\n',
+          },
+        ],
       };
     }
 
@@ -197,9 +197,9 @@ export const TEXT_RULE = {
         leaves: [
           {
             object: 'leaf',
-            text: el.nodeValue
-          }
-        ]
+            text: el.nodeValue,
+          },
+        ],
       };
     }
   },
@@ -212,7 +212,7 @@ export const TEXT_RULE = {
         return array;
       }, []);
     }
-  }
+  },
 };
 
 const RULES = [
@@ -224,7 +224,7 @@ const RULES = [
   responseAreaSerialization,
   TEXT_RULE,
   blocks,
-  marks
+  marks,
 ];
 
 function allWhitespace(node) {
@@ -235,7 +235,7 @@ function allWhitespace(node) {
 function defaultParseHtml(html) {
   if (typeof DOMParser === 'undefined') {
     throw new Error(
-      'The native `DOMParser` global which the `Html` serializer uses by default is not present in this environment. You must supply the `options.parseHtml` function instead.'
+      'The native `DOMParser` global which the `Html` serializer uses by default is not present in this environment. You must supply the `options.parseHtml` function instead.',
     );
   }
 
@@ -259,14 +259,14 @@ function defaultParseHtml(html) {
 const parseHtml =
   typeof window === 'undefined'
     ? () => ({
-        childNodes: []
+        childNodes: [],
       })
     : defaultParseHtml;
 
 const serializer = new Html({
   defaultBlock: 'div',
   rules: RULES,
-  parseHtml
+  parseHtml,
 });
 
 const _extends =
@@ -320,7 +320,7 @@ serializer.deserialize = function deserialize(html) {
     }
 
     const block = _extends({ object: 'block', data: {}, isVoid: false }, defaultBlock, {
-      nodes: [node]
+      nodes: [node],
     });
 
     memo.push(block);
@@ -330,8 +330,8 @@ serializer.deserialize = function deserialize(html) {
   if (nodes.length === 0) {
     nodes = [
       _extends({ object: 'block', data: {}, isVoid: false }, defaultBlock, {
-        nodes: [{ object: 'text', leaves: [{ object: 'leaf', text: '', marks: [] }] }]
-      })
+        nodes: [{ object: 'text', leaves: [{ object: 'leaf', text: '', marks: [] }] }],
+      }),
     ];
   }
 
@@ -340,11 +340,11 @@ serializer.deserialize = function deserialize(html) {
     document: {
       object: 'document',
       data: {},
-      nodes: nodes
+      nodes: nodes,
     },
     schema: {
-      rules: []
-    }
+      rules: [],
+    },
   };
 
   let i;
@@ -352,7 +352,7 @@ serializer.deserialize = function deserialize(html) {
   for (i = 0; i < 3000; i++) {
     json.schema.rules.push({
       match: { object: 'document' },
-      nodes: [{ match: { object: 'block' } }]
+      nodes: [{ match: { object: 'block' } }],
     });
   }
 
@@ -365,7 +365,7 @@ serializer.deserialize = function deserialize(html) {
   return null;
 };
 
-export const htmlToValue = html => {
+export const htmlToValue = (html) => {
   try {
     return serializer.deserialize(html);
   } catch (e) {
@@ -374,7 +374,7 @@ export const htmlToValue = html => {
   }
 };
 
-export const valueToHtml = value => serializer.serialize(value);
+export const valueToHtml = (value) => serializer.serialize(value);
 
 /**
  *

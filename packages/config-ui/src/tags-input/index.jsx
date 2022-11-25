@@ -10,32 +10,30 @@ const ENTER = 13;
 const Tag = withStyles(() => ({
   tag: {
     padding: '0px',
-    margin: '1px'
-  }
-}))(({ classes, label, onDelete }) => (
-  <Chip className={classes.tag} label={label} onDelete={onDelete} />
-));
+    margin: '1px',
+  },
+}))(({ classes, label, onDelete }) => <Chip className={classes.tag} label={label} onDelete={onDelete} />);
 
 Tag.propTypes = {
   label: PropTypes.string.isRequired,
-  onDelete: PropTypes.func.isRequired
+  onDelete: PropTypes.func.isRequired,
 };
 
 export class TagsInput extends React.Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     tags: PropTypes.arrayOf(PropTypes.string).isRequired,
-    onChange: PropTypes.func.isRequired
+    onChange: PropTypes.func.isRequired,
   };
 
   constructor(props) {
     super(props);
     this.state = {
       value: '',
-      focused: false
+      focused: false,
     };
 
-    this.onKeyDown = event => {
+    this.onKeyDown = (event) => {
       if (event.keyCode === ENTER && this.state.value !== '') {
         const tag = this.state.value.trim();
         const newTags = uniq(this.props.tags.concat([tag]));
@@ -47,11 +45,11 @@ export class TagsInput extends React.Component {
       }
     };
 
-    this.onChange = event => {
+    this.onChange = (event) => {
       this.setState({ value: event.target.value });
     };
 
-    this.deleteTag = tag => {
+    this.deleteTag = (tag) => {
       const { tags } = this.props;
 
       const tagIndex = tags.indexOf(tag);
@@ -80,7 +78,7 @@ export class TagsInput extends React.Component {
             <Tag key={index} label={t} onDelete={() => this.deleteTag(t)} />
           ))}
           <input
-            ref={r => (this.input = r)}
+            ref={(r) => (this.input = r)}
             onKeyDown={this.onKeyDown}
             onChange={this.onChange}
             className={classes.input}
@@ -95,11 +93,11 @@ export class TagsInput extends React.Component {
   }
 }
 
-const styles = theme => ({
+const styles = (theme) => ({
   tagsInput: {
     border: 'solid 0px white',
     display: 'flex',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
   },
   input: {
     padding: '2px',
@@ -113,9 +111,9 @@ const styles = theme => ({
     fontFamily: theme.typography.fontFamily,
     outline: 'none',
     '&:focus': {
-      outline: 'none'
-    }
-  }
+      outline: 'none',
+    },
+  },
 });
 
 export default withStyles(styles)(TagsInput);

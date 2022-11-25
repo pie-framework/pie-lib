@@ -14,7 +14,7 @@ class BlankContentComp extends React.Component {
     disabled: PropTypes.bool,
     choice: PropTypes.object,
     classes: PropTypes.object,
-    connectDragSource: PropTypes.func
+    connectDragSource: PropTypes.func,
   };
 
   componentDidUpdate() {
@@ -27,7 +27,7 @@ class BlankContentComp extends React.Component {
     return connectDragSource(
       <span className={classnames(classes.choice, disabled && classes.disabled)}>
         <Chip
-          ref={ref => {
+          ref={(ref) => {
             //eslint-disable-next-line
             this.rootRef = ReactDOM.findDOMNode(ref);
           }}
@@ -35,7 +35,7 @@ class BlankContentComp extends React.Component {
           label={
             <span
               className={classes.chipLabel}
-              ref={ref => {
+              ref={(ref) => {
                 if (ref) {
                   ref.innerHTML = choice.value || ' ';
                 }
@@ -47,14 +47,14 @@ class BlankContentComp extends React.Component {
           variant={disabled ? 'outlined' : undefined}
         />
       </span>,
-      {}
+      {},
     );
   }
 }
 
-export const BlankContent = withStyles(theme => ({
+export const BlankContent = withStyles((theme) => ({
   choice: {
-    border: `solid 0px ${theme.palette.primary.main}`
+    border: `solid 0px ${theme.palette.primary.main}`,
   },
   chip: {
     alignItems: 'center',
@@ -64,16 +64,16 @@ export const BlankContent = withStyles(theme => ({
     fontSize: 'inherit',
     whiteSpace: 'pre-wrap',
     maxWidth: '374px',
-    margin: '4px'
+    margin: '4px',
   },
   chipLabel: {
     whiteSpace: 'pre-wrap',
     '& img': {
       display: 'block',
-      padding: '2px 0'
-    }
+      padding: '2px 0',
+    },
   },
-  disabled: {}
+  disabled: {},
 }))(BlankContentComp);
 
 const tileSource = {
@@ -83,14 +83,14 @@ const tileSource = {
   beginDrag(props) {
     return {
       choice: props.choice,
-      instanceId: props.instanceId
+      instanceId: props.instanceId,
     };
-  }
+  },
 };
 
 const DragDropTile = DragSource(DRAG_TYPE, tileSource, (connect, monitor) => ({
   connectDragSource: connect.dragSource(),
-  isDragging: monitor.isDragging()
+  isDragging: monitor.isDragging(),
 }))(BlankContent);
 
 export default DragDropTile;

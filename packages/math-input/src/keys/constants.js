@@ -7,7 +7,7 @@ export const pi = set({
   label: 'π',
   latex: '\\pi',
   command: '\\pi',
-  category: 'constants'
+  category: 'constants',
 });
 
 export const eulers = set({
@@ -15,7 +15,7 @@ export const eulers = set({
   label: 'e',
   latex: 'e',
   command: 'e',
-  category: 'constants'
+  category: 'constants',
 });
 
 export const infinity = set({
@@ -23,7 +23,7 @@ export const infinity = set({
   label: '\\infty',
   latex: '\\infty',
   command: '\\infty',
-  category: 'constants'
+  category: 'constants',
 });
 
 export const halfInfinity = set({
@@ -31,5 +31,5 @@ export const halfInfinity = set({
   label: '\\propto',
   latex: '\\propto',
   command: '\\propto',
-  category: 'constants'
+  category: 'constants',
 });

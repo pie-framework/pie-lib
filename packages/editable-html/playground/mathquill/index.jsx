@@ -19,7 +19,7 @@ export default class Editor extends React.Component {
     latex: PropTypes.string.isRequired,
     onFocus: PropTypes.func,
     onBlur: PropTypes.func,
-    className: PropTypes.string
+    className: PropTypes.string,
   };
 
   componentDidMount() {
@@ -28,8 +28,8 @@ export default class Editor extends React.Component {
     }
     this.mathField = MQ.MathField(this.input, {
       handlers: {
-        edit: this.onInputEdit.bind(this)
-      }
+        edit: this.onInputEdit.bind(this),
+      },
     });
     this.mathField.latex(this.props.latex);
   }
@@ -80,7 +80,7 @@ export default class Editor extends React.Component {
     }
   }
 
-  _onInputEdit = event => {
+  _onInputEdit = (event) => {
     log('[onInputEdit] ...', event);
 
     if (!this.mathField) {
@@ -94,7 +94,7 @@ export default class Editor extends React.Component {
 
   onInputEdit = debounce(this._onInputEdit, 300, {
     leading: false,
-    trailing: true
+    trailing: true,
   });
 
   latexIsEqual = (a, b) => {
@@ -108,12 +108,7 @@ export default class Editor extends React.Component {
   };
 
   shouldComponentUpdate(nextProps) {
-    log(
-      '[shouldComponentUpdate] nextProps.latex: ',
-      nextProps.latex,
-      'current: ',
-      this.mathField.latex()
-    );
+    log('[shouldComponentUpdate] nextProps.latex: ', nextProps.latex, 'current: ', this.mathField.latex());
     const isEqual = this.latexIsEqual(nextProps.latex, this.mathField.latex());
     log('[shouldComponentUpdate] isEqual? ', isEqual);
     return !isEqual;
@@ -124,13 +119,7 @@ export default class Editor extends React.Component {
     const { onClick, onFocus, onBlur, className } = this.props;
 
     return (
-      <span
-        onClick={onClick}
-        onFocus={onFocus}
-        onBlur={onBlur}
-        className={className}
-        ref={r => (this.input = r)}
-      />
+      <span onClick={onClick} onFocus={onFocus} onBlur={onBlur} className={className} ref={(r) => (this.input = r)} />
     );
   }
 }

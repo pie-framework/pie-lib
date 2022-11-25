@@ -6,10 +6,10 @@ const createElementFromHTML = (htmlString = '') => {
   return div;
 };
 
-export const parseBrs = dom => {
+export const parseBrs = (dom) => {
   const brs = dom.querySelectorAll('br');
 
-  brs.forEach(br => br.replaceWith('\n'));
+  brs.forEach((br) => br.replaceWith('\n'));
 
   dom.innerHTML = dom.innerHTML.replace(/\n\n/g, '\n');
 };
@@ -22,7 +22,7 @@ export const parseParagraph = (paragraph, end) => {
   return `${paragraph.innerHTML}\n\n`;
 };
 
-export const parseParagraphs = dom => {
+export const parseParagraphs = (dom) => {
   const paragraphs = dom.querySelectorAll('p');
   // separate variable for easily debugging, if needed
   let str = '';
@@ -34,7 +34,7 @@ export const parseParagraphs = dom => {
   return str || null;
 };
 
-export const prepareText = text => {
+export const prepareText = (text) => {
   let txtDom = createElementFromHTML(text);
   const allDomElements = Array.from(txtDom.querySelectorAll('*'));
 

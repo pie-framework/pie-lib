@@ -3,350 +3,200 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.11.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.11.1...@pie-lib/graphing@2.11.2) (2022-10-17)
+## [2.11.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.11.3...@pie-lib/graphing@2.11.4) (2022-11-23)
 
+**Note:** Version bump only for package @pie-lib/graphing
+
+## [2.11.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.11.2...@pie-lib/graphing@2.11.3) (2022-11-23)
+
+**Note:** Version bump only for package @pie-lib/graphing
+
+## [2.11.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.11.1...@pie-lib/graphing@2.11.2) (2022-10-17)
 
 ### Bug Fixes
 
-* **graphing:** increase draggable zone for graphing base point for better interaction with touchscreen devices ([50fc498](https://github.com/pie-framework/pie-lib/commit/50fc49825c14bf2248e773b4cbaecb309a4fb814))
-
-
-
-
+- **graphing:** increase draggable zone for graphing base point for better interaction with touchscreen devices ([50fc498](https://github.com/pie-framework/pie-lib/commit/50fc49825c14bf2248e773b4cbaecb309a4fb814))
 
 ## [2.11.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.11.0...@pie-lib/graphing@2.11.1) (2022-09-29)
 
 **Note:** Version bump only for package @pie-lib/graphing
 
-
-
-
-
 # [2.11.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.10.3...@pie-lib/graphing@2.11.0) (2022-09-28)
-
 
 ### Bug Fixes
 
-* **editable-html, graphing:** Add support to remove scrollbar from editable-html and removed scrollbar from graphing labels PD-1968 ([d04a0d3](https://github.com/pie-framework/pie-lib/commit/d04a0d3bc66d4b861f60b24198301459c15bd151))
-
+- **editable-html, graphing:** Add support to remove scrollbar from editable-html and removed scrollbar from graphing labels PD-1968 ([d04a0d3](https://github.com/pie-framework/pie-lib/commit/d04a0d3bc66d4b861f60b24198301459c15bd151))
 
 ### Features
 
-* **graphing, plot:** moved graphing labels to plot package + fixed math input + added support for labels rotation PD-1962 ([a85ec39](https://github.com/pie-framework/pie-lib/commit/a85ec3911dd1f6bc89e4eb20a19ef8f957deebf1))
-
-
-
-
+- **graphing, plot:** moved graphing labels to plot package + fixed math input + added support for labels rotation PD-1962 ([a85ec39](https://github.com/pie-framework/pie-lib/commit/a85ec3911dd1f6bc89e4eb20a19ef8f957deebf1))
 
 ## [2.10.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.10.2...@pie-lib/graphing@2.10.3) (2022-09-14)
 
 **Note:** Version bump only for package @pie-lib/graphing
 
-
-
-
-
 ## [2.10.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.10.1...@pie-lib/graphing@2.10.2) (2022-08-30)
 
 **Note:** Version bump only for package @pie-lib/graphing
 
-
-
-
-
 ## [2.10.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.10.0...@pie-lib/graphing@2.10.1) (2022-08-29)
-
 
 ### Bug Fixes
 
-* **graphing:** fix errors that appear in IBX in console ([b07b7c7](https://github.com/pie-framework/pie-lib/commit/b07b7c718bef596b3963a1f9b626f12ff575a86a))
-
-
-
-
+- **graphing:** fix errors that appear in IBX in console ([b07b7c7](https://github.com/pie-framework/pie-lib/commit/b07b7c718bef596b3963a1f9b626f12ff575a86a))
 
 # [2.10.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.9.1...@pie-lib/graphing@2.10.0) (2022-08-15)
 
-
 ### Features
 
-* **graphing, plot:** added pixel guide lines + ui improvements ([02ddff1](https://github.com/pie-framework/pie-lib/commit/02ddff1aed6a279b8a4ae1fcf100c766596c29c4))
-
-
-
-
+- **graphing, plot:** added pixel guide lines + ui improvements ([02ddff1](https://github.com/pie-framework/pie-lib/commit/02ddff1aed6a279b8a4ae1fcf100c766596c29c4))
 
 ## [2.9.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.9.0...@pie-lib/graphing@2.9.1) (2022-08-08)
 
 **Note:** Version bump only for package @pie-lib/graphing
 
-
-
-
-
 # [2.9.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.8.1...@pie-lib/graphing@2.9.0) (2022-08-01)
-
 
 ### Features
 
-* **graphing, editable-html, plot:** Added the ability to edit/center title and lables PD-1605 PD-1690 ([dd18f92](https://github.com/pie-framework/pie-lib/commit/dd18f92e19d8be98917cd4f19eb7211122d2b7fb))
-
-
-
-
+- **graphing, editable-html, plot:** Added the ability to edit/center title and lables PD-1605 PD-1690 ([dd18f92](https://github.com/pie-framework/pie-lib/commit/dd18f92e19d8be98917cd4f19eb7211122d2b7fb))
 
 ## [2.8.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.8.0...@pie-lib/graphing@2.8.1) (2022-07-18)
 
 **Note:** Version bump only for package @pie-lib/graphing
 
-
-
-
-
 # [2.8.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.7.0...@pie-lib/graphing@2.8.0) (2022-07-18)
-
 
 ### Features
 
-* **graphing:** added drag and drop sorting for toolbar tools PD-1607 ([2463c86](https://github.com/pie-framework/pie-lib/commit/2463c86bf6ff42222e98e4344fc6c9fd040d9774))
-
-
-
-
+- **graphing:** added drag and drop sorting for toolbar tools PD-1607 ([2463c86](https://github.com/pie-framework/pie-lib/commit/2463c86bf6ff42222e98e4344fc6c9fd040d9774))
 
 # [2.7.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.6.3...@pie-lib/graphing@2.7.0) (2022-06-27)
 
-
 ### Features
 
-* **graphing:** added collapsible panel for graph toolbar PD-1693 ([4268bb0](https://github.com/pie-framework/pie-lib/commit/4268bb06093d1fabf82d9f5c2d8fd81f9788a4fe))
-* **graphing:** Added default value for current drawing tool PD-1689 ([bc9b1b0](https://github.com/pie-framework/pie-lib/commit/bc9b1b00d64d50d138f3ab0991957d9fecaed17b))
-* **graphing:** Added the ability to control the fields displayed into Grid Setup PD-1688 ([1f0f3eb](https://github.com/pie-framework/pie-lib/commit/1f0f3eb58c5dcd923e2452a0071bf1de40535bb2))
-* added support for graph configuration constraints PD-1683 PD-1684 PD-1686 ([8da7426](https://github.com/pie-framework/pie-lib/commit/8da74260b28332b976fa1c50796e74679fd46a13))
-* created setup panel and added basic functionalities PD-1679 ([183eda1](https://github.com/pie-framework/pie-lib/commit/183eda10b2f4128cd831c5b27f14ebccb6b3e7b2))
-
-
-
-
+- **graphing:** added collapsible panel for graph toolbar PD-1693 ([4268bb0](https://github.com/pie-framework/pie-lib/commit/4268bb06093d1fabf82d9f5c2d8fd81f9788a4fe))
+- **graphing:** Added default value for current drawing tool PD-1689 ([bc9b1b0](https://github.com/pie-framework/pie-lib/commit/bc9b1b00d64d50d138f3ab0991957d9fecaed17b))
+- **graphing:** Added the ability to control the fields displayed into Grid Setup PD-1688 ([1f0f3eb](https://github.com/pie-framework/pie-lib/commit/1f0f3eb58c5dcd923e2452a0071bf1de40535bb2))
+- added support for graph configuration constraints PD-1683 PD-1684 PD-1686 ([8da7426](https://github.com/pie-framework/pie-lib/commit/8da74260b28332b976fa1c50796e74679fd46a13))
+- created setup panel and added basic functionalities PD-1679 ([183eda1](https://github.com/pie-framework/pie-lib/commit/183eda10b2f4128cd831c5b27f14ebccb6b3e7b2))
 
 ## [2.6.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.6.2...@pie-lib/graphing@2.6.3) (2022-06-13)
 
 **Note:** Version bump only for package @pie-lib/graphing
 
-
-
-
-
 ## [2.6.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.6.1...@pie-lib/graphing@2.6.2) (2022-05-30)
-
 
 ### Bug Fixes
 
-* unable to load items locally ([17ab686](https://github.com/pie-framework/pie-lib/commit/17ab6864557288aef6ec1d9a130cb508e2591562))
-
-
-
-
+- unable to load items locally ([17ab686](https://github.com/pie-framework/pie-lib/commit/17ab6864557288aef6ec1d9a130cb508e2591562))
 
 ## [2.6.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.6.0...@pie-lib/graphing@2.6.1) (2022-05-24)
 
 **Note:** Version bump only for package @pie-lib/graphing
 
-
-
-
-
 # [2.6.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.5.1...@pie-lib/graphing@2.6.0) (2022-05-10)
-
 
 ### Features
 
-* **graphing:** new design treatment for gridlines PD-1691 ([ee06081](https://github.com/pie-framework/pie-lib/commit/ee06081141cf343ed6767ef203a7629e6c873c5c))
-* **graphing, plot:** Added padding between labels and graph without changing the size of graph PD-1604 ([aa93191](https://github.com/pie-framework/pie-lib/commit/aa931910c56efddaf54d4586dc0730a9688e25e3))
-
-
-
-
+- **graphing:** new design treatment for gridlines PD-1691 ([ee06081](https://github.com/pie-framework/pie-lib/commit/ee06081141cf343ed6767ef203a7629e6c873c5c))
+- **graphing, plot:** Added padding between labels and graph without changing the size of graph PD-1604 ([aa93191](https://github.com/pie-framework/pie-lib/commit/aa931910c56efddaf54d4586dc0730a9688e25e3))
 
 ## [2.5.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.5.0...@pie-lib/graphing@2.5.1) (2022-05-04)
 
-
 ### Bug Fixes
 
-* **graphing:** removed problematic componentDidUpdate ([9347554](https://github.com/pie-framework/pie-lib/commit/93475543422bbb7a62d82121751c2e10969904ec))
-
-
-
-
+- **graphing:** removed problematic componentDidUpdate ([9347554](https://github.com/pie-framework/pie-lib/commit/93475543422bbb7a62d82121751c2e10969904ec))
 
 # [2.5.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.4.17...@pie-lib/graphing@2.5.0) (2022-05-03)
 
-
 ### Features
 
-* **graphing:** updated store on model change PD-1608 ([a3744dd](https://github.com/pie-framework/pie-lib/commit/a3744dd74d90cca280b90657cbd558ce7ab9c288))
-
-
-
-
+- **graphing:** updated store on model change PD-1608 ([a3744dd](https://github.com/pie-framework/pie-lib/commit/a3744dd74d90cca280b90657cbd558ce7ab9c288))
 
 ## [2.4.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.4.16...@pie-lib/graphing@2.4.17) (2022-04-28)
 
 **Note:** Version bump only for package @pie-lib/graphing
 
-
-
-
-
 ## [2.4.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.4.15...@pie-lib/graphing@2.4.16) (2022-03-22)
-
 
 ### Bug Fixes
 
-* Do not change object at address. Instead, create a clone. ([2b683d7](https://github.com/pie-framework/pie-lib/commit/2b683d76853bf057388e6a223671eef3a040dbbf))
-
-
-
-
+- Do not change object at address. Instead, create a clone. ([2b683d7](https://github.com/pie-framework/pie-lib/commit/2b683d76853bf057388e6a223671eef3a040dbbf))
 
 ## [2.4.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.4.14...@pie-lib/graphing@2.4.15) (2022-03-22)
 
-
 ### Bug Fixes
 
-* Force disable for background marks ([755cfbc](https://github.com/pie-framework/pie-lib/commit/755cfbcb0c878c8857be28aaeeff6e4a8d6b4e71))
-
-
-
-
+- Force disable for background marks ([755cfbc](https://github.com/pie-framework/pie-lib/commit/755cfbcb0c878c8857be28aaeeff6e4a8d6b4e71))
 
 ## [2.4.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.4.13...@pie-lib/graphing@2.4.14) (2022-03-22)
 
-
 ### Bug Fixes
 
-* Apply different disable styles for background mark and when mark label is not in edit mode. ([a1657ec](https://github.com/pie-framework/pie-lib/commit/a1657ec7562c96bf760bbf936686816700a7d739))
-
-
-
-
+- Apply different disable styles for background mark and when mark label is not in edit mode. ([a1657ec](https://github.com/pie-framework/pie-lib/commit/a1657ec7562c96bf760bbf936686816700a7d739))
 
 ## [2.4.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.4.12...@pie-lib/graphing@2.4.13) (2022-03-22)
 
-
 ### Bug Fixes
 
-* add UI indicator for disabled labels ([d274b3e](https://github.com/pie-framework/pie-lib/commit/d274b3eb024ab909a06d345bf17bc9f23e5d2db0))
-* disable labels for the background marks ([c43a269](https://github.com/pie-framework/pie-lib/commit/c43a26941016490b2687f98b2e02c934a96c02ac))
-
-
-
-
+- add UI indicator for disabled labels ([d274b3e](https://github.com/pie-framework/pie-lib/commit/d274b3eb024ab909a06d345bf17bc9f23e5d2db0))
+- disable labels for the background marks ([c43a269](https://github.com/pie-framework/pie-lib/commit/c43a26941016490b2687f98b2e02c934a96c02ac))
 
 ## [2.4.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.4.11...@pie-lib/graphing@2.4.12) (2022-03-21)
 
-
 ### Bug Fixes
 
-* **graphing:** Adjusted vector arrow orientation angle and fixed rendering issue PD-1602 ([0ebf305](https://github.com/pie-framework/pie-lib/commit/0ebf3059707c868145ef85a14c417cbe01f82491))
-
-
-
-
+- **graphing:** Adjusted vector arrow orientation angle and fixed rendering issue PD-1602 ([0ebf305](https://github.com/pie-framework/pie-lib/commit/0ebf3059707c868145ef85a14c417cbe01f82491))
 
 ## [2.4.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.4.10...@pie-lib/graphing@2.4.11) (2022-03-21)
 
 **Note:** Version bump only for package @pie-lib/graphing
 
-
-
-
-
 ## [2.4.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.4.9...@pie-lib/graphing@2.4.10) (2022-03-07)
-
 
 ### Bug Fixes
 
-* **graphing:** Adjusted the thickness of the shapes when the distance between lines is too small PD-180 ([8ea20a6](https://github.com/pie-framework/pie-lib/commit/8ea20a61ea02d3e1084f3e10e645a76d580c39b5))
-* **graphing:** Extended the range and domain axes and also the line and ray endings PD-1509 ([97e43c6](https://github.com/pie-framework/pie-lib/commit/97e43c6ab0ab85dd314cff97fb84a85113ab39a0))
-* **graphing:** Increased the calculation accuracy and adjusted range labels PD-1596 ([7cc7570](https://github.com/pie-framework/pie-lib/commit/7cc75701fd759f7e7888e5cccc261978f6e036b0))
-* **graphing:** Should not be possible to plot duplicate/identical objects and should be able to choose a point from an existing object when defining a new object PD-1599 PD-1586 ([ac8502d](https://github.com/pie-framework/pie-lib/commit/ac8502dbe3c7e1a4a663bbe56f7f5ff8bab04430))
-
-
-
-
+- **graphing:** Adjusted the thickness of the shapes when the distance between lines is too small PD-180 ([8ea20a6](https://github.com/pie-framework/pie-lib/commit/8ea20a61ea02d3e1084f3e10e645a76d580c39b5))
+- **graphing:** Extended the range and domain axes and also the line and ray endings PD-1509 ([97e43c6](https://github.com/pie-framework/pie-lib/commit/97e43c6ab0ab85dd314cff97fb84a85113ab39a0))
+- **graphing:** Increased the calculation accuracy and adjusted range labels PD-1596 ([7cc7570](https://github.com/pie-framework/pie-lib/commit/7cc75701fd759f7e7888e5cccc261978f6e036b0))
+- **graphing:** Should not be possible to plot duplicate/identical objects and should be able to choose a point from an existing object when defining a new object PD-1599 PD-1586 ([ac8502d](https://github.com/pie-framework/pie-lib/commit/ac8502dbe3c7e1a4a663bbe56f7f5ff8bab04430))
 
 ## [2.4.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.4.8...@pie-lib/graphing@2.4.9) (2022-02-04)
 
 **Note:** Version bump only for package @pie-lib/graphing
 
-
-
-
-
 ## [2.4.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.4.7...@pie-lib/graphing@2.4.8) (2022-02-03)
 
 **Note:** Version bump only for package @pie-lib/graphing
-
-
-
-
 
 ## [2.4.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.4.6...@pie-lib/graphing@2.4.7) (2022-01-10)
 
 **Note:** Version bump only for package @pie-lib/graphing
 
-
-
-
-
 ## [2.4.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.4.5...@pie-lib/graphing@2.4.6) (2021-12-13)
 
 **Note:** Version bump only for package @pie-lib/graphing
-
-
-
-
 
 ## [2.4.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.4.4...@pie-lib/graphing@2.4.5) (2021-11-29)
 
 **Note:** Version bump only for package @pie-lib/graphing
 
-
-
-
-
 ## [2.4.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.4.3...@pie-lib/graphing@2.4.4) (2021-09-08)
 
 **Note:** Version bump only for package @pie-lib/graphing
-
-
-
-
 
 ## [2.4.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.4.2...@pie-lib/graphing@2.4.3) (2021-09-08)
 
 **Note:** Version bump only for package @pie-lib/graphing
 
-
-
-
-
 ## [2.4.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.4.1...@pie-lib/graphing@2.4.2) (2021-08-30)
 
 **Note:** Version bump only for package @pie-lib/graphing
 
-
-
-
-
 ## [2.4.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.4.0...@pie-lib/graphing@2.4.1) (2021-08-04)
 
 **Note:** Version bump only for package @pie-lib/graphing
-
-
-
-
 
 # [2.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.3.2...@pie-lib/graphing@2.4.0) (2021-07-23)
 

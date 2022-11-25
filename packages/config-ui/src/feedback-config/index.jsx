@@ -14,19 +14,19 @@ export { FeedbackSelector };
 const style = {
   feedbackContainer: {
     display: 'flex',
-    flexDirection: 'column'
-  }
+    flexDirection: 'column',
+  },
 };
 
-export const buildDefaults = input => {
+export const buildDefaults = (input) => {
   return merge(
     {},
     {
       correct: { type: 'default', default: 'Correct' },
       incorrect: { type: 'default', default: 'Incorrect' },
-      partial: { type: 'default', default: 'Nearly' }
+      partial: { type: 'default', default: 'Nearly' },
     },
-    input
+    input,
   );
 };
 
@@ -36,16 +36,16 @@ export class FeedbackConfig extends React.Component {
     feedback: PropTypes.shape({
       correct: PropTypes.shape(FeedbackType),
       incorrect: PropTypes.shape(FeedbackType),
-      partial: PropTypes.shape(FeedbackType)
+      partial: PropTypes.shape(FeedbackType),
     }),
     onChange: PropTypes.func.isRequired,
     classes: PropTypes.object.isRequired,
-    toolbarOpts: PropTypes.object
+    toolbarOpts: PropTypes.object,
   };
 
   static defaultProps = {
     allowPartial: true,
-    feedback: buildDefaults()
+    feedback: buildDefaults(),
   };
 
   onChange(key, config) {

@@ -6,7 +6,7 @@ const xy = utils.xy;
 const tick = (isMajor, v) => ({
   major: isMajor,
   value: v,
-  x: v
+  x: v,
 });
 
 const major = tick.bind(null, true);
@@ -39,13 +39,13 @@ describe('utils', () => {
       left: 0,
       top: 1,
       bottom: -1,
-      right: 1
+      right: 1,
     });
     assertPolygon([xy(0, 0), xy(3, 0), xy(2, -1), xy(4, -3), xy(1, -4), xy(2, -2)], {
       left: 0,
       top: 0,
       bottom: -4,
-      right: 4
+      right: 4,
     });
   });
 
@@ -114,7 +114,7 @@ describe('utils', () => {
         expect(() => {
           let result = utils.convertFrequencyToInterval(
             { min: 11, max: 10, tickFrequency: 1, betweenTickCount: 0 },
-            { interval: 10, major: 10 }
+            { interval: 10, major: 10 },
           );
           console.log('result: ', result);
         }).toThrow(Error);
@@ -124,7 +124,7 @@ describe('utils', () => {
         expect(() => {
           let result = utils.convertFrequencyToInterval(
             { min: 10, max: 10, tickFrequency: 1, betweenTickCount: 0 },
-            { interval: 10, major: 10 }
+            { interval: 10, major: 10 },
           );
           console.log('result: ', result);
         }).toThrow(Error);
@@ -144,7 +144,7 @@ describe('utils', () => {
         expect(() => {
           let result = utils.convertFrequencyToInterval(
             { min: 0, max: 10, tickFrequency: 1, betweenTickCount: 0 },
-            { interval: 10, major: 10 }
+            { interval: 10, major: 10 },
           );
           console.log('result: ', result);
         }).toThrow(Error);

@@ -21,10 +21,10 @@ export class Root extends React.Component {
     showLabels: PropTypes.bool,
     showTitle: PropTypes.bool,
     showPixelGuides: PropTypes.bool,
-    rootRef: PropTypes.func
+    rootRef: PropTypes.func,
   };
 
-  mouseMove = g => {
+  mouseMove = (g) => {
     const { graphProps, onMouseMove } = this.props;
 
     if (!onMouseMove) {
@@ -38,7 +38,7 @@ export class Root extends React.Component {
 
     const snapped = {
       x: snap.x(x),
-      y: snap.y(y)
+      y: snap.y(y),
     };
 
     onMouseMove(snapped);
@@ -69,7 +69,7 @@ export class Root extends React.Component {
 
     onChangeLabels({
       ...labels,
-      [side]: newValue
+      [side]: newValue,
     });
   };
 
@@ -90,12 +90,12 @@ export class Root extends React.Component {
       showPixelGuides,
       showTitle,
       title,
-      rootRef
+      rootRef,
     } = this.props;
     const {
       size: { width = 500, height = 500 },
       domain,
-      range
+      range,
     } = graphProps;
 
     const topPadding = 40;
@@ -108,7 +108,7 @@ export class Root extends React.Component {
       'italic',
       'underline',
       'strikethrough',
-      'math'
+      'math',
       // 'languageCharacters'
     ];
 
@@ -120,11 +120,8 @@ export class Root extends React.Component {
     return (
       <div className={classes.root}>
         {showPixelGuides && (
-          <div
-            className={classes.topPixelGuides}
-            style={{ marginLeft: isChart ? 60 : showLabels ? 30 : 10 }}
-          >
-            {[...Array(nbOfVerticalLines + 1).keys()].map(value => (
+          <div className={classes.topPixelGuides} style={{ marginLeft: isChart ? 60 : showLabels ? 30 : 10 }}>
+            {[...Array(nbOfVerticalLines + 1).keys()].map((value) => (
               <Readable false key={`top-guide-${value}`}>
                 <div className={classes.topPixelIndicator}>
                   <div>{value * 100}px</div>
@@ -139,31 +136,27 @@ export class Root extends React.Component {
             <div
               style={
                 isChart && {
-                  width: finalWidth
+                  width: finalWidth,
                 }
               }
-              className={cn(
-                isChart ? classes.chartTitle : classes.graphTitle,
-                classes.disabledTitle
-              )}
+              className={cn(isChart ? classes.chartTitle : classes.graphTitle, classes.disabledTitle)}
               dangerouslySetInnerHTML={{ __html: title || '' }}
             />
           ) : (
             <EditableHtml
               style={
                 isChart && {
-                  width: finalWidth
+                  width: finalWidth,
                 }
               }
               className={cn(
                 { [classes.rightMargin]: showPixelGuides },
-                isChart ? classes.chartTitle : classes.graphTitle
+                isChart ? classes.chartTitle : classes.graphTitle,
               )}
               markup={title || ''}
               onChange={onChangeTitle}
               placeholder={
-                (defineChart && titlePlaceholder) ||
-                (!disabledTitle && 'Click here to add a title for this graph')
+                (defineChart && titlePlaceholder) || (!disabledTitle && 'Click here to add a title for this graph')
               }
               toolbarOpts={{ noBorder: true }}
               activePlugins={activeTitlePlugins}
@@ -178,7 +171,7 @@ export class Root extends React.Component {
             placeholder={labelsPlaceholders?.top}
             graphHeight={finalHeight}
             graphWidth={finalWidth}
-            onChange={value => this.onChangeLabel(value, 'top')}
+            onChange={(value) => this.onChangeLabel(value, 'top')}
           />
         )}
         <div className={classes.wrapper}>
@@ -192,16 +185,12 @@ export class Root extends React.Component {
               graphWidth={finalWidth}
               isChartLeftLabel={isChart && !defineChart}
               isDefineChartLeftLabel={isChart && defineChart}
-              onChange={value => this.onChangeLabel(value, 'left')}
+              onChange={(value) => this.onChangeLabel(value, 'left')}
             />
           )}
-          <svg
-            width={finalWidth}
-            height={finalHeight}
-            className={defineChart ? classes.defineChart : classes.chart}
-          >
+          <svg width={finalWidth} height={finalHeight} className={defineChart ? classes.defineChart : classes.chart}>
             <g
-              ref={r => {
+              ref={(r) => {
                 this.g = r;
                 if (rootRef) {
                   rootRef(r);
@@ -221,7 +210,7 @@ export class Root extends React.Component {
               placeholder={labelsPlaceholders?.right}
               graphHeight={finalHeight}
               graphWidth={finalWidth}
-              onChange={value => this.onChangeLabel(value, 'right')}
+              onChange={(value) => this.onChangeLabel(value, 'right')}
             />
           )}
           {showPixelGuides && (
@@ -229,10 +218,10 @@ export class Root extends React.Component {
               className={classes.sidePixelGuides}
               style={{
                 paddingTop: sideGridlinesPadding,
-                marginTop: defineChart ? 25 : 31
+                marginTop: defineChart ? 25 : 31,
               }}
             >
-              {[...Array(nbOfHorizontalLines + 1).keys()].reverse().map(value => (
+              {[...Array(nbOfHorizontalLines + 1).keys()].reverse().map((value) => (
                 <Readable false key={`top-guide-${value}`}>
                   <div className={classes.sidePixelIndicator}>━ {value * 100}px</div>
                 </Readable>
@@ -250,7 +239,7 @@ export class Root extends React.Component {
             graphWidth={finalWidth}
             isChartBottomLabel={isChart && !defineChart}
             isDefineChartBottomLabel={isChart && defineChart}
-            onChange={value => this.onChangeLabel(value, 'bottom')}
+            onChange={(value) => this.onChangeLabel(value, 'bottom')}
           />
         )}
       </div>
@@ -258,51 +247,51 @@ export class Root extends React.Component {
   }
 }
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     border: `solid 1px ${color.primaryLight()}`,
     color: color.text(),
     backgroundColor: color.background(),
     touchAction: 'none',
-    position: 'relative'
+    position: 'relative',
   },
   wrapper: {
     display: 'flex',
-    position: 'relative'
+    position: 'relative',
   },
   svg: {},
   defineChart: {
     paddingLeft: '50px',
-    overflow: 'visible'
+    overflow: 'visible',
   },
   chart: {
-    overflow: 'visible'
+    overflow: 'visible',
   },
   graphBox: {
     cursor: 'pointer',
-    userSelect: 'none'
+    userSelect: 'none',
   },
   graphTitle: {
     color: color.text(),
     fontSize: theme.typography.fontSize + 2,
     padding: '12px 4px 0',
-    textAlign: 'center'
+    textAlign: 'center',
   },
   chartTitle: {
     color: color.text(),
     fontSize: theme.typography.fontSize + 4,
     padding: '12px 4px 0',
-    textAlign: 'center'
+    textAlign: 'center',
   },
   disabledTitle: {
-    pointerEvents: 'none'
+    pointerEvents: 'none',
   },
   rightMargin: {
-    marginRight: '74px'
+    marginRight: '74px',
   },
   topPixelGuides: {
     display: 'flex',
-    paddingTop: '6px'
+    paddingTop: '6px',
   },
   topPixelIndicator: {
     color: color.primaryLight(),
@@ -311,13 +300,13 @@ const styles = theme => ({
     alignItems: 'center',
     width: '100px',
     pointerEvents: 'none',
-    userSelect: 'none'
+    userSelect: 'none',
   },
   sidePixelGuides: {
     width: '70px',
     display: 'flex',
     flexDirection: 'column',
-    marginRight: '6px'
+    marginRight: '6px',
   },
   sidePixelIndicator: {
     color: color.primaryLight(),
@@ -327,9 +316,9 @@ const styles = theme => ({
     userSelect: 'none',
 
     '&:not(:last-child)': {
-      marginBottom: '80px'
-    }
-  }
+      marginBottom: '80px',
+    },
+  },
 });
 
 export default withStyles(styles)(Root);

@@ -4,7 +4,7 @@ import cn from 'classnames';
 import EditableHtml from '@pie-lib/editable-html';
 import { withStyles } from '@material-ui/core/styles';
 
-const LabelComponent = props => {
+const LabelComponent = (props) => {
   const {
     classes,
     disabledLabel,
@@ -17,7 +17,7 @@ const LabelComponent = props => {
     placeholder,
     text,
     side,
-    onChange
+    onChange,
   } = props;
   const [rotatedToHorizontal, setRotatedToHorizontal] = useState(false);
   const activePlugins = [
@@ -25,12 +25,11 @@ const LabelComponent = props => {
     'italic',
     'underline',
     'strikethrough',
-    'math'
+    'math',
     // 'languageCharacters'
   ];
 
-  const isChart =
-    isChartBottomLabel || isChartLeftLabel || isDefineChartBottomLabel || isDefineChartLeftLabel;
+  const isChart = isChartBottomLabel || isChartLeftLabel || isDefineChartBottomLabel || isDefineChartLeftLabel;
 
   const chartValue = side === 'left' && isDefineChartLeftLabel && graphHeight - 220;
   const defaultStyle = {
@@ -46,17 +45,16 @@ const LabelComponent = props => {
       (side === 'right' && `${graphWidth - 8}px`) ||
       ((isDefineChartLeftLabel || isDefineChartBottomLabel) && '40px') ||
       (isChartBottomLabel && '-10px') ||
-      0
+      0,
   };
 
   const rotatedStyle = {
     width: graphWidth - 8,
     top: (side === 'right' && `${graphHeight - 22}px`) || 0,
-    left: 0
+    left: 0,
   };
 
-  const rotateLabel = () =>
-    !disabledLabel && (side === 'left' || side === 'right') && setRotatedToHorizontal(true);
+  const rotateLabel = () => !disabledLabel && (side === 'left' || side === 'right') && setRotatedToHorizontal(true);
 
   return (
     <Readable false>
@@ -65,7 +63,7 @@ const LabelComponent = props => {
           [classes.rotateLeftLabel]: side === 'left' && !rotatedToHorizontal,
           [classes.rotateRightLabel]: side === 'right' && !rotatedToHorizontal,
           [classes.editLabel]: rotatedToHorizontal,
-          [classes.customBottom]: isChartBottomLabel || isDefineChartBottomLabel
+          [classes.customBottom]: isChartBottomLabel || isDefineChartBottomLabel,
         })}
         style={rotatedToHorizontal ? rotatedStyle : defaultStyle}
         onClick={rotateLabel}
@@ -79,7 +77,7 @@ const LabelComponent = props => {
             placeholder={!disabledLabel && placeholder}
             toolbarOpts={{
               position: side === 'bottom' ? 'top' : 'bottom',
-              noBorder: true
+              noBorder: true,
             }}
             disableScrollbar
             activePlugins={activePlugins}
@@ -91,46 +89,46 @@ const LabelComponent = props => {
   );
 };
 
-export default withStyles(theme => ({
+export default withStyles((theme) => ({
   label: {
-    fill: color.secondary()
+    fill: color.secondary(),
   },
   axisLabel: {
     fontSize: theme.typography.fontSize - 2,
     textAlign: 'center',
     margin: '4px',
-    padding: '4px 0'
+    padding: '4px 0',
   },
   chartLabel: {
     fontSize: theme.typography.fontSize + 2,
     textAlign: 'center',
     margin: '4px',
-    padding: '4px 0'
+    padding: '4px 0',
   },
   disabledLabel: {
     pointerEvents: 'none',
-    width: '100%'
+    width: '100%',
   },
   editLabel: {
     position: 'absolute',
     backgroundColor: 'white',
     borderRadius: '4px',
     boxShadow: '0px 5px 8px rgba(0, 0, 0, 0.15)',
-    zIndex: 10
+    zIndex: 10,
   },
   rotateLeftLabel: {
     rotate: '-90deg',
     transformOrigin: '0 0',
     transformStyle: 'preserve-3d',
-    position: 'absolute'
+    position: 'absolute',
   },
   rotateRightLabel: {
     rotate: '90deg',
     transformOrigin: '0 0',
     transformStyle: 'preserve-3d',
-    position: 'absolute'
+    position: 'absolute',
   },
   customBottom: {
-    position: 'absolute'
-  }
+    position: 'absolute',
+  },
 }))(LabelComponent);

@@ -25,12 +25,12 @@ describe('DragInTheBlank', () => {
       choice('Spoon', '2'),
       choice('Fork', '3'),
       choice('Bumped', '4'),
-      choice('Smiled', '5')
+      choice('Smiled', '5'),
     ],
 
     value: {
-      0: undefined
-    }
+      0: undefined,
+    },
   };
   let wrapper;
 
@@ -53,17 +53,17 @@ describe('DragInTheBlank', () => {
         feedback: {
           0: {
             value: 'Jumped',
-            correct: 'Jumped'
+            correct: 'Jumped',
           },
           1: {
             value: 'Laughed',
-            correct: 'Laughed'
+            correct: 'Laughed',
           },
           2: {
             value: 'Spoon',
-            correct: 'Spoon'
-          }
-        }
+            correct: 'Spoon',
+          },
+        },
       });
       expect(wrapper).toMatchSnapshot();
     });

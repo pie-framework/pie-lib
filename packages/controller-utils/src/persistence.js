@@ -5,21 +5,21 @@ import isNull from 'lodash/isNull';
 import isUndefined from 'lodash/isUndefined';
 
 // eslint-disable-next-line no-console
-const lg = n => console[n].bind(console, 'controller-utils:');
+const lg = (n) => console[n].bind(console, 'controller-utils:');
 const debug = lg('debug');
 const log = lg('log');
 const warn = lg('warn');
 const error = lg('error');
 
-export const compact = arr => {
+export const compact = (arr) => {
   if (Array.isArray(arr)) {
-    return arr.filter(v => !isNull(v) && !isUndefined(v));
+    return arr.filter((v) => !isNull(v) && !isUndefined(v));
   }
   return arr;
 };
 
 export const getShuffledChoices = (choices, session, updateSession, choiceKey) =>
-  new Promise(resolve => {
+  new Promise((resolve) => {
     log('updateSession type: ', typeof updateSession);
     log('session: ', session);
 
@@ -31,26 +31,26 @@ export const getShuffledChoices = (choices, session, updateSession, choiceKey) =
       resolve(undefined);
     } else if (!isEmpty(currentShuffled)) {
       debug('use shuffledValues to sort the choices...', session.shuffledValues);
-      resolve(compact(currentShuffled.map(v => choices.find(c => c[choiceKey] === v))));
+      resolve(compact(currentShuffled.map((v) => choices.find((c) => c[choiceKey] === v))));
     } else {
       const shuffledChoices = shuffle(choices);
 
       if (updateSession && typeof updateSession === 'function') {
         try {
           //Note: session.id refers to the id of the element within a session
-          const shuffledValues = compact(shuffledChoices.map(c => c[choiceKey]));
+          const shuffledValues = compact(shuffledChoices.map((c) => c[choiceKey]));
           log('try to save shuffledValues to session...', shuffledValues);
           log('call updateSession... ', session.id, session.element);
           if (isEmpty(shuffledValues)) {
             error(
               `shuffledValues is an empty array? - refusing to call updateSession: shuffledChoices: ${JSON.stringify(
-                shuffledChoices
-              )}, key: ${choiceKey}`
+                shuffledChoices,
+              )}, key: ${choiceKey}`,
             );
           } else {
-            updateSession(session.id, session.element, { shuffledValues }).catch(e =>
+            updateSession(session.id, session.element, { shuffledValues }).catch((e) =>
               // eslint-disable-next-line no-console
-              console.error('update session failed for: ', session.id, e)
+              console.error('update session failed for: ', session.id, e),
             );
           }
         } catch (e) {
@@ -65,7 +65,7 @@ export const getShuffledChoices = (choices, session, updateSession, choiceKey) =
     }
   });
 
-const hasShuffledValues = s => !!(s || {}).shuffledValues;
+const hasShuffledValues = (s) => !!(s || {}).shuffledValues;
 
 /**
  * If we return:

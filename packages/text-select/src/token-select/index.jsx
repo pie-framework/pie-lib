@@ -20,18 +20,18 @@ export class TokenSelect extends React.Component {
     disabled: PropTypes.bool,
     highlightChoices: PropTypes.bool,
     animationsDisabled: PropTypes.bool,
-    maxNoOfSelections: PropTypes.number
+    maxNoOfSelections: PropTypes.number,
   };
 
   static defaultProps = {
     highlightChoices: false,
     maxNoOfSelections: 0,
-    tokens: []
+    tokens: [],
   };
 
-  selectedCount = () => this.props.tokens.filter(t => t.selected).length;
+  selectedCount = () => this.props.tokens.filter((t) => t.selected).length;
 
-  canSelectMore = selectedCount => {
+  canSelectMore = (selectedCount) => {
     const { maxNoOfSelections } = this.props;
 
     if (maxNoOfSelections === 1) {
@@ -39,9 +39,7 @@ export class TokenSelect extends React.Component {
     }
 
     log('[canSelectMore] maxNoOfSelections: ', maxNoOfSelections, 'selectedCount: ', selectedCount);
-    return (
-      maxNoOfSelections <= 0 || (isFinite(maxNoOfSelections) && selectedCount < maxNoOfSelections)
-    );
+    return maxNoOfSelections <= 0 || (isFinite(maxNoOfSelections) && selectedCount < maxNoOfSelections);
   };
 
   /**
@@ -52,13 +50,12 @@ export class TokenSelect extends React.Component {
     each token is wrapped into a span that has Token.rootClassName class and indexkey attribute (represents the index of the token)
     tokens are updated with the targeted token having the correct value set for 'selected' property
    */
-  toggleToken = event => {
+  toggleToken = (event) => {
     const { target } = event;
     const { tokens, animationsDisabled } = this.props;
     const tokensCloned = clone(tokens);
     const targetSpanWrapper = target.closest(`.${Token.rootClassName}`);
-    const targetedTokenIndex =
-      targetSpanWrapper && targetSpanWrapper.dataset && targetSpanWrapper.dataset.indexkey;
+    const targetedTokenIndex = targetSpanWrapper && targetSpanWrapper.dataset && targetSpanWrapper.dataset.indexkey;
     const t = targetedTokenIndex && tokensCloned[targetedTokenIndex];
 
     if (t && t.correct === undefined && !animationsDisabled) {
@@ -66,9 +63,9 @@ export class TokenSelect extends React.Component {
       const selected = !t.selected;
 
       if (maxNoOfSelections === 1 && this.selectedCount() === 1) {
-        const selectedToken = (tokens || []).filter(t => t.selected);
+        const selectedToken = (tokens || []).filter((t) => t.selected);
 
-        const updatedTokens = tokensCloned.map(token => {
+        const updatedTokens = tokensCloned.map((token) => {
           if (isEqual(token, selectedToken[0])) {
             return { ...token, selected: false };
           }
@@ -97,8 +94,8 @@ export class TokenSelect extends React.Component {
   generateTokensInHtml = () => {
     const { tokens, disabled, highlightChoices, animationsDisabled } = this.props;
     const selectedCount = this.selectedCount();
-    const isLineBreak = text => text === '\n';
-    const isNewParagraph = text => text === '\n\n';
+    const isLineBreak = (text) => text === '\n';
+    const isNewParagraph = (text) => text === '\n\n';
 
     const reducer = (accumulator, t, index) => {
       const selectable = t.selected || (t.selectable && this.canSelectMore(selectedCount));
@@ -130,7 +127,7 @@ export class TokenSelect extends React.Component {
               selectable={selectable}
               highlight={highlightChoices}
               animationsDisabled={animationsDisabled}
-            />
+            />,
           )
         );
       } else {
@@ -148,13 +145,7 @@ export class TokenSelect extends React.Component {
     const className = classNames(classes.tokenSelect, classNameProp);
     const html = this.generateTokensInHtml();
 
-    return (
-      <div
-        className={className}
-        dangerouslySetInnerHTML={{ __html: html }}
-        onClick={this.toggleToken}
-      />
-    );
+    return <div className={className} dangerouslySetInnerHTML={{ __html: html }} onClick={this.toggleToken} />;
   }
 }
 
@@ -164,7 +155,7 @@ export default withStyles(() => ({
     whiteSpace: 'pre',
     ...noSelect(),
     '& p': {
-      whiteSpace: 'break-spaces'
-    }
-  }
+      whiteSpace: 'break-spaces',
+    },
+  },
 }))(TokenSelect);

@@ -10,13 +10,13 @@ export class Tabs extends React.Component {
     classes: PropTypes.object,
     className: PropTypes.string,
     contentClassName: PropTypes.string,
-    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired
+    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      value: 0
+      value: 0,
     };
   }
 
@@ -29,15 +29,13 @@ export class Tabs extends React.Component {
     const { children, className, contentClassName, classes } = this.props;
 
     const tabClasses = {
-      root: classes.tabRoot
+      root: classes.tabRoot,
     };
     return (
       <div className={className}>
         <MuiTabs indicatorColor="primary" value={value} onChange={this.handleChange}>
           {React.Children.map(children, (c, index) =>
-            c && c.props.title ? (
-              <MuiTab classes={tabClasses} key={index} label={c.props.title} />
-            ) : null
+            c && c.props.title ? <MuiTab classes={tabClasses} key={index} label={c.props.title} /> : null,
           )}
         </MuiTabs>
         <div className={contentClassName}>{children[value]}</div>
@@ -47,5 +45,5 @@ export class Tabs extends React.Component {
 }
 
 export default withStyles(() => ({
-  tabRoot: {}
+  tabRoot: {},
 }))(Tabs);

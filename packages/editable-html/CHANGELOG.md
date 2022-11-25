@@ -3,603 +3,359 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.2.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.2.6...@pie-lib/editable-html@9.2.7) (2022-11-23)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+## [9.2.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.2.5...@pie-lib/editable-html@9.2.6) (2022-11-23)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+## [9.2.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.2.4...@pie-lib/editable-html@9.2.5) (2022-11-17)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
 ## [9.2.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.2.3...@pie-lib/editable-html@9.2.4) (2022-11-14)
 
 **Note:** Version bump only for package @pie-lib/editable-html
 
-
-
-
-
 ## [9.2.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.2.2...@pie-lib/editable-html@9.2.3) (2022-10-31)
-
 
 ### Bug Fixes
 
-* **editable-html:** increase helper text font size in alt dialog PD-2087 ([013cecb](https://github.com/pie-framework/pie-lib/commit/013cecbae73b5b8b6199aa814feb34d9627ed26f))
-* **editable-html:** send autoWidth property to toolbar to fix PD-2129 ([f001ddb](https://github.com/pie-framework/pie-lib/commit/f001ddbf51bd8a2b3294603811351b26587bfc0b))
-
-
-
-
+- **editable-html:** increase helper text font size in alt dialog PD-2087 ([013cecb](https://github.com/pie-framework/pie-lib/commit/013cecbae73b5b8b6199aa814feb34d9627ed26f))
+- **editable-html:** send autoWidth property to toolbar to fix PD-2129 ([f001ddb](https://github.com/pie-framework/pie-lib/commit/f001ddbf51bd8a2b3294603811351b26587bfc0b))
 
 ## [9.2.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.2.1...@pie-lib/editable-html@9.2.2) (2022-09-29)
 
-
 ### Bug Fixes
 
-* **editable-html:** handle use case were there no child in audio tag ([dbc5410](https://github.com/pie-framework/pie-lib/commit/dbc54109fbe7201aea5ea6d5a6226f8ce9c797a0))
-
+- **editable-html:** handle use case were there no child in audio tag ([dbc5410](https://github.com/pie-framework/pie-lib/commit/dbc54109fbe7201aea5ea6d5a6226f8ce9c797a0))
 
 ### Reverts
 
-* Revert "PD-1886 updated slate js version" ([0069bc8](https://github.com/pie-framework/pie-lib/commit/0069bc829175194e663a9601f284a31d7285d7eb))
-
-
-
-
+- Revert "PD-1886 updated slate js version" ([0069bc8](https://github.com/pie-framework/pie-lib/commit/0069bc829175194e663a9601f284a31d7285d7eb))
 
 ## [9.2.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.2.0...@pie-lib/editable-html@9.2.1) (2022-09-28)
 
-
 ### Bug Fixes
 
-* fire add image method when copy-paste image is used ([23d525e](https://github.com/pie-framework/pie-lib/commit/23d525efda2d41a8bfd603460b4cc4fda5d2a184))
-
-
-
-
+- fire add image method when copy-paste image is used ([23d525e](https://github.com/pie-framework/pie-lib/commit/23d525efda2d41a8bfd603460b4cc4fda5d2a184))
 
 # [9.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.1.6...@pie-lib/editable-html@9.2.0) (2022-09-28)
 
-
 ### Bug Fixes
 
-* **editable-html, graphing:** Add support to remove scrollbar from editable-html and removed scrollbar from graphing labels PD-1968 ([d04a0d3](https://github.com/pie-framework/pie-lib/commit/d04a0d3bc66d4b861f60b24198301459c15bd151))
-
+- **editable-html, graphing:** Add support to remove scrollbar from editable-html and removed scrollbar from graphing labels PD-1968 ([d04a0d3](https://github.com/pie-framework/pie-lib/commit/d04a0d3bc66d4b861f60b24198301459c15bd151))
 
 ### Features
 
-* add upload logic in pie lib (wip) PD-23-updated ([c666f68](https://github.com/pie-framework/pie-lib/commit/c666f68682bf4e9746cea3d7e18c1b1e1948131d))
-* add upload logic in pie lib (wip) PD-23-updated ([0ece29e](https://github.com/pie-framework/pie-lib/commit/0ece29e256ee7d7c84202d1be97244e7d4b70411))
-* hide edit uploaded sound in editable-html for now ([88882e6](https://github.com/pie-framework/pie-lib/commit/88882e6704f5f5f889328666a9b0fe03554339cd))
-* UI improvements and bit of cleanup for PD-23-updated ([37e88e8](https://github.com/pie-framework/pie-lib/commit/37e88e8fb04698eadb805c26b5ee2c57cc0b51a8))
-* **editable-html:** allow audio file upload (editable-html & rendering logic) ([f5df32d](https://github.com/pie-framework/pie-lib/commit/f5df32d1e53859435556f866e8727fef077896d4))
-* **editable-html:** allow audio file upload (modal logic) ([f57cff1](https://github.com/pie-framework/pie-lib/commit/f57cff12d861d1182ab2fa84c8ce2a89f144b222))
-* **editable-html:** finalize audio upload implementation (it works via new prop `pieApi: { token, host }`) PD-23 ([4fa7389](https://github.com/pie-framework/pie-lib/commit/4fa7389e5a6eff8b58c9d893424f82197b574f02))
-* **graphing, plot:** moved graphing labels to plot package + fixed math input + added support for labels rotation PD-1962 ([a85ec39](https://github.com/pie-framework/pie-lib/commit/a85ec3911dd1f6bc89e4eb20a19ef8f957deebf1))
-
-
-
-
+- add upload logic in pie lib (wip) PD-23-updated ([c666f68](https://github.com/pie-framework/pie-lib/commit/c666f68682bf4e9746cea3d7e18c1b1e1948131d))
+- add upload logic in pie lib (wip) PD-23-updated ([0ece29e](https://github.com/pie-framework/pie-lib/commit/0ece29e256ee7d7c84202d1be97244e7d4b70411))
+- hide edit uploaded sound in editable-html for now ([88882e6](https://github.com/pie-framework/pie-lib/commit/88882e6704f5f5f889328666a9b0fe03554339cd))
+- UI improvements and bit of cleanup for PD-23-updated ([37e88e8](https://github.com/pie-framework/pie-lib/commit/37e88e8fb04698eadb805c26b5ee2c57cc0b51a8))
+- **editable-html:** allow audio file upload (editable-html & rendering logic) ([f5df32d](https://github.com/pie-framework/pie-lib/commit/f5df32d1e53859435556f866e8727fef077896d4))
+- **editable-html:** allow audio file upload (modal logic) ([f57cff1](https://github.com/pie-framework/pie-lib/commit/f57cff12d861d1182ab2fa84c8ce2a89f144b222))
+- **editable-html:** finalize audio upload implementation (it works via new prop `pieApi: { token, host }`) PD-23 ([4fa7389](https://github.com/pie-framework/pie-lib/commit/4fa7389e5a6eff8b58c9d893424f82197b574f02))
+- **graphing, plot:** moved graphing labels to plot package + fixed math input + added support for labels rotation PD-1962 ([a85ec39](https://github.com/pie-framework/pie-lib/commit/a85ec3911dd1f6bc89e4eb20a19ef8f957deebf1))
 
 ## [9.1.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.1.5...@pie-lib/editable-html@9.1.6) (2022-09-14)
 
 **Note:** Version bump only for package @pie-lib/editable-html
 
-
-
-
-
 ## [9.1.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.1.4...@pie-lib/editable-html@9.1.5) (2022-08-30)
 
 **Note:** Version bump only for package @pie-lib/editable-html
 
-
-
-
-
 ## [9.1.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.1.3...@pie-lib/editable-html@9.1.4) (2022-08-29)
-
 
 ### Bug Fixes
 
-* revert defaults to empty ([d7905be](https://github.com/pie-framework/pie-lib/commit/d7905be52adcda0af2ae92ec537b02beb1313439))
-
-
-
-
+- revert defaults to empty ([d7905be](https://github.com/pie-framework/pie-lib/commit/d7905be52adcda0af2ae92ec537b02beb1313439))
 
 ## [9.1.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.1.2...@pie-lib/editable-html@9.1.3) (2022-08-29)
 
-
 ### Bug Fixes
 
-* **plugins:** can scroll on insert character toolbar, toolbar closes when not focused, not closing automatically on insert ([cc203db](https://github.com/pie-framework/pie-lib/commit/cc203dbb534f4989a0c2d840e4e83ed53fda15e5))
-
-
-
-
+- **plugins:** can scroll on insert character toolbar, toolbar closes when not focused, not closing automatically on insert ([cc203db](https://github.com/pie-framework/pie-lib/commit/cc203dbb534f4989a0c2d840e4e83ed53fda15e5))
 
 ## [9.1.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.1.1...@pie-lib/editable-html@9.1.2) (2022-08-15)
 
 **Note:** Version bump only for package @pie-lib/editable-html
 
-
-
-
-
 ## [9.1.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.1.0...@pie-lib/editable-html@9.1.1) (2022-08-08)
 
 **Note:** Version bump only for package @pie-lib/editable-html
 
-
-
-
-
 # [9.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.0.5...@pie-lib/editable-html@9.1.0) (2022-08-01)
-
 
 ### Features
 
-* **graphing, editable-html, plot:** Added the ability to edit/center title and lables PD-1605 PD-1690 ([dd18f92](https://github.com/pie-framework/pie-lib/commit/dd18f92e19d8be98917cd4f19eb7211122d2b7fb))
-
-
-
-
+- **graphing, editable-html, plot:** Added the ability to edit/center title and lables PD-1605 PD-1690 ([dd18f92](https://github.com/pie-framework/pie-lib/commit/dd18f92e19d8be98917cd4f19eb7211122d2b7fb))
 
 ## [9.0.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.0.4...@pie-lib/editable-html@9.0.5) (2022-08-01)
 
 **Note:** Version bump only for package @pie-lib/editable-html
 
-
-
-
-
 ## [9.0.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.0.3...@pie-lib/editable-html@9.0.4) (2022-07-22)
 
 **Note:** Version bump only for package @pie-lib/editable-html
 
-
-
-
-
 ## [9.0.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.0.2...@pie-lib/editable-html@9.0.3) (2022-07-19)
-
 
 ### Bug Fixes
 
-* **editable-html:** fix paste text PD-1899 ([a1e8477](https://github.com/pie-framework/pie-lib/commit/a1e847763ceb14912592fcdf20317fb9a309a912))
-
-
-
-
+- **editable-html:** fix paste text PD-1899 ([a1e8477](https://github.com/pie-framework/pie-lib/commit/a1e847763ceb14912592fcdf20317fb9a309a912))
 
 ## [9.0.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.0.1...@pie-lib/editable-html@9.0.2) (2022-07-19)
 
-
 ### Bug Fixes
 
-* bump mathquill to 1.1.3 ([48b84c5](https://github.com/pie-framework/pie-lib/commit/48b84c534cbf519e172a80d18a48b26eda3cf7e6))
-
-
-
-
+- bump mathquill to 1.1.3 ([48b84c5](https://github.com/pie-framework/pie-lib/commit/48b84c534cbf519e172a80d18a48b26eda3cf7e6))
 
 ## [9.0.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.0.0...@pie-lib/editable-html@9.0.1) (2022-07-18)
 
-
 ### Reverts
 
-* Revert "feat(editable-html): Make editable-html style inline with mathjax: font, radical, exponential, italicize variables PD-1521" ([c07213c](https://github.com/pie-framework/pie-lib/commit/c07213c627609a47089f9cfec1e16366fc5dcfd3))
-
-
-
-
+- Revert "feat(editable-html): Make editable-html style inline with mathjax: font, radical, exponential, italicize variables PD-1521" ([c07213c](https://github.com/pie-framework/pie-lib/commit/c07213c627609a47089f9cfec1e16366fc5dcfd3))
 
 # [9.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@8.1.2...@pie-lib/editable-html@9.0.0) (2022-07-18)
 
-
 ### Bug Fixes
 
-* **editable-html:** add another sanity checks ([d872981](https://github.com/pie-framework/pie-lib/commit/d87298124408b55d75d42598c0272294a0881043))
-* **editable-html:** add sanity check for drop / paste file - sentry ([d27d252](https://github.com/pie-framework/pie-lib/commit/d27d2522d0567333e0af1ce49a3793ebc44ef032))
-* **editable-html:** add sanity check in respArea - toolbar ([1e4c9f2](https://github.com/pie-framework/pie-lib/commit/1e4c9f21be612409deee08cca6790f019f5d01d3))
-* **editable-html:** potential fix - sanity check for node key in table - sentry ([f417c72](https://github.com/pie-framework/pie-lib/commit/f417c724c49e50e8c3c514b46b42f5d410da2942))
-* code tweaks ([a390dcb](https://github.com/pie-framework/pie-lib/commit/a390dcbe22e9d37776b91071ec1502bbad59ff2a))
-* duplicate image issue ([924a4df](https://github.com/pie-framework/pie-lib/commit/924a4df45cf9f1601704dd48c2a757dd02e2e7a3))
-* tests ([41caca9](https://github.com/pie-framework/pie-lib/commit/41caca9855aa8099f5cb7286cc6660dd20d5c622))
-
+- **editable-html:** add another sanity checks ([d872981](https://github.com/pie-framework/pie-lib/commit/d87298124408b55d75d42598c0272294a0881043))
+- **editable-html:** add sanity check for drop / paste file - sentry ([d27d252](https://github.com/pie-framework/pie-lib/commit/d27d2522d0567333e0af1ce49a3793ebc44ef032))
+- **editable-html:** add sanity check in respArea - toolbar ([1e4c9f2](https://github.com/pie-framework/pie-lib/commit/1e4c9f21be612409deee08cca6790f019f5d01d3))
+- **editable-html:** potential fix - sanity check for node key in table - sentry ([f417c72](https://github.com/pie-framework/pie-lib/commit/f417c724c49e50e8c3c514b46b42f5d410da2942))
+- code tweaks ([a390dcb](https://github.com/pie-framework/pie-lib/commit/a390dcbe22e9d37776b91071ec1502bbad59ff2a))
+- duplicate image issue ([924a4df](https://github.com/pie-framework/pie-lib/commit/924a4df45cf9f1601704dd48c2a757dd02e2e7a3))
+- tests ([41caca9](https://github.com/pie-framework/pie-lib/commit/41caca9855aa8099f5cb7286cc6660dd20d5c622))
 
 ### Features
 
-* **characters:** special character accents span 2 rows, added border for visibility [PD-1462] ([c60b0bc](https://github.com/pie-framework/pie-lib/commit/c60b0bc8ff45cc01f53bc752fd5dd64da623f6be))
-* **editable-html:** add image alignment buttons ([a076a41](https://github.com/pie-framework/pie-lib/commit/a076a4193c82dc552bd21de7a8f928d8481e73e6))
-* **editable-html:** BREAKING CHANGE add image alignment buttons in image toolbar PD-1802 ([bcb59e5](https://github.com/pie-framework/pie-lib/commit/bcb59e5737fe61560fac8de01276baf187888048))
-* **editable-html:** image resize functionality PD-1801. BREAKING CHANGE removed percent buttons from image toolbar ([1d5c33d](https://github.com/pie-framework/pie-lib/commit/1d5c33d4bcd224fa1b38310d7f0f21fba0888f12))
-* **editable-html:** Make editable-html style inline with mathjax: font, radical, exponential, italicize variables PD-1521 ([20752ad](https://github.com/pie-framework/pie-lib/commit/20752ad453880da881bc0a2880c6ef9a10b9589d))
-* **editable-html, render-ui:** wrap up PD-1802 ([e10babf](https://github.com/pie-framework/pie-lib/commit/e10babf2e80aed67c856e9e021e37072e3df33fb))
-* **editor:** added insert spanish and special characters as default [PD-1883] ([26655ec](https://github.com/pie-framework/pie-lib/commit/26655ec87cb4b8a82357e88b62faad3fdc7c296a))
-
+- **characters:** special character accents span 2 rows, added border for visibility [PD-1462](<[c60b0bc](https://github.com/pie-framework/pie-lib/commit/c60b0bc8ff45cc01f53bc752fd5dd64da623f6be)>)
+- **editable-html:** add image alignment buttons ([a076a41](https://github.com/pie-framework/pie-lib/commit/a076a4193c82dc552bd21de7a8f928d8481e73e6))
+- **editable-html:** BREAKING CHANGE add image alignment buttons in image toolbar PD-1802 ([bcb59e5](https://github.com/pie-framework/pie-lib/commit/bcb59e5737fe61560fac8de01276baf187888048))
+- **editable-html:** image resize functionality PD-1801. BREAKING CHANGE removed percent buttons from image toolbar ([1d5c33d](https://github.com/pie-framework/pie-lib/commit/1d5c33d4bcd224fa1b38310d7f0f21fba0888f12))
+- **editable-html:** Make editable-html style inline with mathjax: font, radical, exponential, italicize variables PD-1521 ([20752ad](https://github.com/pie-framework/pie-lib/commit/20752ad453880da881bc0a2880c6ef9a10b9589d))
+- **editable-html, render-ui:** wrap up PD-1802 ([e10babf](https://github.com/pie-framework/pie-lib/commit/e10babf2e80aed67c856e9e021e37072e3df33fb))
+- **editor:** added insert spanish and special characters as default [PD-1883](<[26655ec](https://github.com/pie-framework/pie-lib/commit/26655ec87cb4b8a82357e88b62faad3fdc7c296a)>)
 
 ### BREAKING CHANGES
 
-* **editable-html:** Added new buttons in image toolbar.
-The buttons control image horizontal alignment.
-
-
-
-
+- **editable-html:** Added new buttons in image toolbar.
+  The buttons control image horizontal alignment.
 
 ## [8.1.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@8.1.1...@pie-lib/editable-html@8.1.2) (2022-06-28)
 
-
 ### Bug Fixes
 
-* running locally does not work ([ce2d09a](https://github.com/pie-framework/pie-lib/commit/ce2d09a3556937aea4a1c8075a2dbc7c1131fd5f))
-
-
-
-
+- running locally does not work ([ce2d09a](https://github.com/pie-framework/pie-lib/commit/ce2d09a3556937aea4a1c8075a2dbc7c1131fd5f))
 
 ## [8.1.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@8.1.0...@pie-lib/editable-html@8.1.1) (2022-06-28)
 
-
 ### Bug Fixes
 
-* running locally does not work ([e2fbb74](https://github.com/pie-framework/pie-lib/commit/e2fbb74c79bbb2ad6e9af447af51687391d89ad3))
-* **editable-html:** fix image remove ([0f446b3](https://github.com/pie-framework/pie-lib/commit/0f446b38d93fec1548b9ff5c73cc48f2f10d9397))
-
-
-
-
+- running locally does not work ([e2fbb74](https://github.com/pie-framework/pie-lib/commit/e2fbb74c79bbb2ad6e9af447af51687391d89ad3))
+- **editable-html:** fix image remove ([0f446b3](https://github.com/pie-framework/pie-lib/commit/0f446b38d93fec1548b9ff5c73cc48f2f10d9397))
 
 # [8.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@8.0.0...@pie-lib/editable-html@8.1.0) (2022-06-27)
 
-
 ### Features
 
-* **editable-html:** allow drop & paste images  PD-581 ([f7ec0d4](https://github.com/pie-framework/pie-lib/commit/f7ec0d4578ededc095422356471fb5e9f2b29af9))
-
-
-
-
+- **editable-html:** allow drop & paste images PD-581 ([f7ec0d4](https://github.com/pie-framework/pie-lib/commit/f7ec0d4578ededc095422356471fb5e9f2b29af9))
 
 # [8.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.22.6...@pie-lib/editable-html@8.0.0) (2022-06-27)
 
-
 ### Features
 
-* **editable-html:** Added characters limit support PD-1681 ([9e7f6ad](https://github.com/pie-framework/pie-lib/commit/9e7f6add3f846d32265990aca98dfb5b4847bb95))
-* **editable-html:** image resize functionality PD-1801 ([6f46903](https://github.com/pie-framework/pie-lib/commit/6f46903acdf791716263be33abe49235572421ad))
-* **plugins:** added special characters adding capabilities [PD-1462] ([b9f41e1](https://github.com/pie-framework/pie-lib/commit/b9f41e11f44df140a66145d0b04558ca2b0ea48e))
-
+- **editable-html:** Added characters limit support PD-1681 ([9e7f6ad](https://github.com/pie-framework/pie-lib/commit/9e7f6add3f846d32265990aca98dfb5b4847bb95))
+- **editable-html:** image resize functionality PD-1801 ([6f46903](https://github.com/pie-framework/pie-lib/commit/6f46903acdf791716263be33abe49235572421ad))
+- **plugins:** added special characters adding capabilities [PD-1462](<[b9f41e1](https://github.com/pie-framework/pie-lib/commit/b9f41e11f44df140a66145d0b04558ca2b0ea48e)>)
 
 ### BREAKING CHANGES
 
-* **editable-html:** Removed the percent buttons from editable-html image button. Added resize functionality.
-
-
-
-
+- **editable-html:** Removed the percent buttons from editable-html image button. Added resize functionality.
 
 ## [7.22.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.22.5...@pie-lib/editable-html@7.22.6) (2022-06-13)
 
 **Note:** Version bump only for package @pie-lib/editable-html
 
-
-
-
-
 ## [7.22.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.22.4...@pie-lib/editable-html@7.22.5) (2022-05-30)
 
 **Note:** Version bump only for package @pie-lib/editable-html
-
-
-
-
 
 ## [7.22.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.22.3...@pie-lib/editable-html@7.22.4) (2022-05-24)
 
 **Note:** Version bump only for package @pie-lib/editable-html
 
-
-
-
-
 ## [7.22.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.22.2...@pie-lib/editable-html@7.22.3) (2022-05-10)
 
 **Note:** Version bump only for package @pie-lib/editable-html
-
-
-
-
 
 ## [7.22.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.22.1...@pie-lib/editable-html@7.22.2) (2022-05-09)
 
 **Note:** Version bump only for package @pie-lib/editable-html
 
-
-
-
-
 ## [7.22.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.22.0...@pie-lib/editable-html@7.22.1) (2022-05-03)
 
 **Note:** Version bump only for package @pie-lib/editable-html
 
-
-
-
-
 # [7.22.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.21.0...@pie-lib/editable-html@7.22.0) (2022-05-03)
-
 
 ### Bug Fixes
 
-* use error as a function ([c767c8b](https://github.com/pie-framework/pie-lib/commit/c767c8bdc5ace6006e86862704a26095fa4b16f6))
-
+- use error as a function ([c767c8b](https://github.com/pie-framework/pie-lib/commit/c767c8bdc5ace6006e86862704a26095fa4b16f6))
 
 ### Features
 
-* PD-1707 ([9762d1f](https://github.com/pie-framework/pie-lib/commit/9762d1f4ac1bd615db4f03dfd06809010213052d))
-* PD-1707 show validation errors in ecr ([bb7e95c](https://github.com/pie-framework/pie-lib/commit/bb7e95c824ae802452720856ad1117aa21c5766f))
-
-
-
-
+- PD-1707 ([9762d1f](https://github.com/pie-framework/pie-lib/commit/9762d1f4ac1bd615db4f03dfd06809010213052d))
+- PD-1707 show validation errors in ecr ([bb7e95c](https://github.com/pie-framework/pie-lib/commit/bb7e95c824ae802452720856ad1117aa21c5766f))
 
 # [7.21.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.20.0...@pie-lib/editable-html@7.21.0) (2022-04-28)
 
-
 ### Features
 
-* **editable-html:** disabled add response area button when maxResponseArea value is reached PD-1699 ([9c28e5b](https://github.com/pie-framework/pie-lib/commit/9c28e5b1702995a497e8528038a1b9e71b72c84f))
-* **editable-html:** PD-1707 add validation ui/ux to responses areas in ecr ([7381c58](https://github.com/pie-framework/pie-lib/commit/7381c581e9f1099f48f8cfbe307f23dbd8776773))
-
-
-
-
+- **editable-html:** disabled add response area button when maxResponseArea value is reached PD-1699 ([9c28e5b](https://github.com/pie-framework/pie-lib/commit/9c28e5b1702995a497e8528038a1b9e71b72c84f))
+- **editable-html:** PD-1707 add validation ui/ux to responses areas in ecr ([7381c58](https://github.com/pie-framework/pie-lib/commit/7381c581e9f1099f48f8cfbe307f23dbd8776773))
 
 # [7.20.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.19.3...@pie-lib/editable-html@7.20.0) (2022-04-12)
 
-
 ### Bug Fixes
 
-* **editable-html:** Removed overflow property that prevent body content from scrolling after closing dialog PD-1659 ([da2dc24](https://github.com/pie-framework/pie-lib/commit/da2dc2421448fa56d83369a043d864a568b1f886))
-* **list:** fixed list in list issues [PD-1229] ([46dcec0](https://github.com/pie-framework/pie-lib/commit/46dcec0e20fc2d09969c45fd75426f647931ec08))
-
+- **editable-html:** Removed overflow property that prevent body content from scrolling after closing dialog PD-1659 ([da2dc24](https://github.com/pie-framework/pie-lib/commit/da2dc2421448fa56d83369a043d864a568b1f886))
+- **list:** fixed list in list issues [PD-1229](<[46dcec0](https://github.com/pie-framework/pie-lib/commit/46dcec0e20fc2d09969c45fd75426f647931ec08)>)
 
 ### Features
 
-* **config-ui, editable-html:** add ui/ux validation for choices and editable html fields ([d40148f](https://github.com/pie-framework/pie-lib/commit/d40148f0f4b1232ce1506867a7424aa56e26c5ec))
-
-
-
-
+- **config-ui, editable-html:** add ui/ux validation for choices and editable html fields ([d40148f](https://github.com/pie-framework/pie-lib/commit/d40148f0f4b1232ce1506867a7424aa56e26c5ec))
 
 ## [7.19.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.19.2...@pie-lib/editable-html@7.19.3) (2022-03-21)
 
 **Note:** Version bump only for package @pie-lib/editable-html
 
-
-
-
-
 ## [7.19.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.19.1...@pie-lib/editable-html@7.19.2) (2022-03-08)
-
 
 ### Bug Fixes
 
-* **editable-html:** Added default values for responseAreaProps ([b49a919](https://github.com/pie-framework/pie-lib/commit/b49a919b4d5e336cb2a82e4e7926d72372369d3c))
-
-
-
-
+- **editable-html:** Added default values for responseAreaProps ([b49a919](https://github.com/pie-framework/pie-lib/commit/b49a919b4d5e336cb2a82e4e7926d72372369d3c))
 
 ## [7.19.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.19.0...@pie-lib/editable-html@7.19.1) (2022-03-07)
 
-
 ### Bug Fixes
 
-* **editable-html:** Called onHandleAreaChange only for delete ([ad1c8aa](https://github.com/pie-framework/pie-lib/commit/ad1c8aa83eef71bd8201cb55ec21513c008f77a6))
-
-
-
-
+- **editable-html:** Called onHandleAreaChange only for delete ([ad1c8aa](https://github.com/pie-framework/pie-lib/commit/ad1c8aa83eef71bd8201cb55ec21513c008f77a6))
 
 # [7.19.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.18.0...@pie-lib/editable-html@7.19.0) (2022-03-07)
 
-
 ### Features
 
-* **editor:** added func callback property, called when the resp area els nr is changed in the markup [PD-1592] ([d35feee](https://github.com/pie-framework/pie-lib/commit/d35feee5c68c13375963aa5cad25b2ef6ffc39f3))
-
-
-
-
+- **editor:** added func callback property, called when the resp area els nr is changed in the markup [PD-1592](<[d35feee](https://github.com/pie-framework/pie-lib/commit/d35feee5c68c13375963aa5cad25b2ef6ffc39f3)>)
 
 # [7.18.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.19...@pie-lib/editable-html@7.18.0) (2022-02-21)
 
-
 ### Bug Fixes
 
-* **editable-html:** fix style for table rendering PD-1459 ([7c139b5](https://github.com/pie-framework/pie-lib/commit/7c139b5))
-* **editable-html:** Insert button from video/audio modal can't be pressed if the URL is empty PD-1488 ([6c7c1f6](https://github.com/pie-framework/pie-lib/commit/6c7c1f6))
-* **editor:** made sure space is added after table even when there is a div wrapper [PD-1614] ([5aa8bd1](https://github.com/pie-framework/pie-lib/commit/5aa8bd1))
-
+- **editable-html:** fix style for table rendering PD-1459 ([7c139b5](https://github.com/pie-framework/pie-lib/commit/7c139b5))
+- **editable-html:** Insert button from video/audio modal can't be pressed if the URL is empty PD-1488 ([6c7c1f6](https://github.com/pie-framework/pie-lib/commit/6c7c1f6))
+- **editor:** made sure space is added after table even when there is a div wrapper [PD-1614](<[5aa8bd1](https://github.com/pie-framework/pie-lib/commit/5aa8bd1)>)
 
 ### Features
 
-* **editable-html:** drag-in-the-blank visually indicate when response area is selected, hide non-applicable tools PD-1383 ([a3b7d08](https://github.com/pie-framework/pie-lib/commit/a3b7d08))
-* **editor:** made sure cursor is visible before and after custom void elements [PD-1474] ([189ee2d](https://github.com/pie-framework/pie-lib/commit/189ee2d))
-* **editor:** made sure x<y is not removed from the math latex [PD-1475] ([ea94ad0](https://github.com/pie-framework/pie-lib/commit/ea94ad0))
-* **table:** made sure default border is 1 for tables [PD-1459] ([e8bd0d7](https://github.com/pie-framework/pie-lib/commit/e8bd0d7))
-* **table:** made sure focus is switched to first cell of the table when adding one [PD-1455] ([907c230](https://github.com/pie-framework/pie-lib/commit/907c230))
-
-
-
-
+- **editable-html:** drag-in-the-blank visually indicate when response area is selected, hide non-applicable tools PD-1383 ([a3b7d08](https://github.com/pie-framework/pie-lib/commit/a3b7d08))
+- **editor:** made sure cursor is visible before and after custom void elements [PD-1474](<[189ee2d](https://github.com/pie-framework/pie-lib/commit/189ee2d)>)
+- **editor:** made sure x<y is not removed from the math latex [PD-1475](<[ea94ad0](https://github.com/pie-framework/pie-lib/commit/ea94ad0)>)
+- **table:** made sure default border is 1 for tables [PD-1459](<[e8bd0d7](https://github.com/pie-framework/pie-lib/commit/e8bd0d7)>)
+- **table:** made sure focus is switched to first cell of the table when adding one [PD-1455](<[907c230](https://github.com/pie-framework/pie-lib/commit/907c230)>)
 
 ## [7.17.19](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.18...@pie-lib/editable-html@7.17.19) (2022-02-21)
 
 **Note:** Version bump only for package @pie-lib/editable-html
 
-
-
-
-
 ## [7.17.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.17...@pie-lib/editable-html@7.17.18) (2022-02-04)
 
 **Note:** Version bump only for package @pie-lib/editable-html
-
-
-
-
 
 ## [7.17.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.16...@pie-lib/editable-html@7.17.17) (2022-02-03)
 
 **Note:** Version bump only for package @pie-lib/editable-html
 
-
-
-
-
 ## [7.17.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.15...@pie-lib/editable-html@7.17.16) (2022-01-24)
 
 **Note:** Version bump only for package @pie-lib/editable-html
-
-
-
-
 
 ## [7.17.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.14...@pie-lib/editable-html@7.17.15) (2022-01-10)
 
 **Note:** Version bump only for package @pie-lib/editable-html
 
-
-
-
-
 ## [7.17.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.13...@pie-lib/editable-html@7.17.14) (2021-12-22)
 
 **Note:** Version bump only for package @pie-lib/editable-html
-
-
-
-
 
 ## [7.17.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.12...@pie-lib/editable-html@7.17.13) (2021-12-13)
 
 **Note:** Version bump only for package @pie-lib/editable-html
 
-
-
-
-
 ## [7.17.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.11...@pie-lib/editable-html@7.17.12) (2021-11-29)
 
 **Note:** Version bump only for package @pie-lib/editable-html
-
-
-
-
 
 ## [7.17.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.10...@pie-lib/editable-html@7.17.11) (2021-10-04)
 
 **Note:** Version bump only for package @pie-lib/editable-html
 
-
-
-
-
 ## [7.17.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.9...@pie-lib/editable-html@7.17.10) (2021-10-04)
-
 
 ### Bug Fixes
 
-* **serialization:** made sure that units are not added to numbered values when they are encountered [PD-722] ([8d229cf](https://github.com/pie-framework/pie-lib/commit/8d229cf))
-
-
-
-
+- **serialization:** made sure that units are not added to numbered values when they are encountered [PD-722](<[8d229cf](https://github.com/pie-framework/pie-lib/commit/8d229cf)>)
 
 ## [7.17.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.8...@pie-lib/editable-html@7.17.9) (2021-09-20)
 
-
 ### Bug Fixes
 
-* **editor:** used dom refs in order to check if the editor is still in focus [PD-1126] ([99e0f72](https://github.com/pie-framework/pie-lib/commit/99e0f72))
-
-
-
-
+- **editor:** used dom refs in order to check if the editor is still in focus [PD-1126](<[99e0f72](https://github.com/pie-framework/pie-lib/commit/99e0f72)>)
 
 ## [7.17.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.7...@pie-lib/editable-html@7.17.8) (2021-09-20)
 
-
 ### Bug Fixes
 
-* **editor:** made sure that if the editor loses focus, the onBlur function is called only if the focus is still not inside the dom element [PD-1126] ([e74f00a](https://github.com/pie-framework/pie-lib/commit/e74f00a))
-
-
-
-
+- **editor:** made sure that if the editor loses focus, the onBlur function is called only if the focus is still not inside the dom element [PD-1126](<[e74f00a](https://github.com/pie-framework/pie-lib/commit/e74f00a)>)
 
 ## [7.17.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.6...@pie-lib/editable-html@7.17.7) (2021-09-20)
 
 **Note:** Version bump only for package @pie-lib/editable-html
 
-
-
-
-
 ## [7.17.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.5...@pie-lib/editable-html@7.17.6) (2021-09-16)
 
 **Note:** Version bump only for package @pie-lib/editable-html
-
-
-
-
 
 ## [7.17.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.4...@pie-lib/editable-html@7.17.5) (2021-09-08)
 
 **Note:** Version bump only for package @pie-lib/editable-html
 
-
-
-
-
 ## [7.17.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.3...@pie-lib/editable-html@7.17.4) (2021-09-08)
 
 **Note:** Version bump only for package @pie-lib/editable-html
 
-
-
-
-
 ## [7.17.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.2...@pie-lib/editable-html@7.17.3) (2021-08-30)
-
 
 ### Bug Fixes
 
-* **editor:** made sure that if the editor loses focus, the onBlur function is called no matter what [PD-1126] ([906046c](https://github.com/pie-framework/pie-lib/commit/906046c))
-
-
-
-
+- **editor:** made sure that if the editor loses focus, the onBlur function is called no matter what [PD-1126](<[906046c](https://github.com/pie-framework/pie-lib/commit/906046c)>)
 
 ## [7.17.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.1...@pie-lib/editable-html@7.17.2) (2021-08-04)
 
-
 ### Bug Fixes
 
-* **paragraph:** made sure that long words are broken into separate lines regardless if they are in a paragraph or not [PD-194] ([df0f97d](https://github.com/pie-framework/pie-lib/commit/df0f97d))
-* **paragraph:** made sure the text is broken into separate lines and not expanding [PD-194] ([35c6807](https://github.com/pie-framework/pie-lib/commit/35c6807))
-
-
-
-
+- **paragraph:** made sure that long words are broken into separate lines regardless if they are in a paragraph or not [PD-194](<[df0f97d](https://github.com/pie-framework/pie-lib/commit/df0f97d)>)
+- **paragraph:** made sure the text is broken into separate lines and not expanding [PD-194](<[35c6807](https://github.com/pie-framework/pie-lib/commit/35c6807)>)
 
 ## [7.17.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.17.0...@pie-lib/editable-html@7.17.1) (2021-07-27)
 
-
 ### Bug Fixes
 
-* **table:** made sure inserting a table at last position works [PD-1240] ([e81ba95](https://github.com/pie-framework/pie-lib/commit/e81ba95))
-
-
-
-
+- **table:** made sure inserting a table at last position works [PD-1240](<[e81ba95](https://github.com/pie-framework/pie-lib/commit/e81ba95)>)
 
 # [7.17.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@7.16.19...@pie-lib/editable-html@7.17.0) (2021-07-23)
 

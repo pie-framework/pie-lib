@@ -11,11 +11,11 @@ export class Settings extends React.Component {
     classes: PropTypes.object.isRequired,
     className: PropTypes.string,
     model: PropTypes.object,
-    onChange: PropTypes.func.isRequired
+    onChange: PropTypes.func.isRequired,
   };
   static defaultProps = {};
 
-  updateSize = size => {
+  updateSize = (size) => {
     const { model, onChange } = this.props;
     onChange({ ...model, size });
   };
@@ -30,12 +30,12 @@ export class Settings extends React.Component {
   }
 }
 
-const styles = theme => ({
+const styles = (theme) => ({
   settings: {
     padding: theme.spacing.unit,
     background: grey[100],
-    border: `solid 1px ${grey[300]}`
-  }
+    border: `solid 1px ${grey[300]}`,
+  },
 });
 
 export default withStyles(styles)(Settings);

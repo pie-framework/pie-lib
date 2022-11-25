@@ -5,16 +5,16 @@ import React from 'react';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 
-const styles = theme => ({
+const styles = (theme) => ({
   group: {
     display: 'flex',
     flexWrap: 'wrap',
     paddingLeft: 0,
-    marginTop: theme.spacing.unit
+    marginTop: theme.spacing.unit,
   },
   vertical: {
-    flexDirection: 'column'
-  }
+    flexDirection: 'column',
+  },
 });
 
 class RawNChoice extends React.Component {
@@ -26,17 +26,17 @@ class RawNChoice extends React.Component {
     value: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     direction: PropTypes.oneOf(['horizontal', 'vertical']),
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
   };
 
-  handleChange = event => {
+  handleChange = (event) => {
     this.props.onChange(event.currentTarget.value);
   };
 
   render() {
     const { header, className, classes, customLabel, opts, value, direction } = this.props;
 
-    const preppedOpts = opts.map(o => {
+    const preppedOpts = opts.map((o) => {
       return typeof o === 'string' ? { label: o, value: o } : o;
     });
     const LabelComponent = customLabel || RadioWithLabel;
@@ -71,7 +71,7 @@ class TwoChoice extends React.Component {
     one: PropTypes.oneOfType([labelValue, PropTypes.string]),
     two: PropTypes.oneOfType([labelValue, PropTypes.string]),
     className: PropTypes.string,
-    customLabel: PropTypes.func
+    customLabel: PropTypes.func,
   };
 
   render() {

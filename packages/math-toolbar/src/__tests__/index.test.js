@@ -6,11 +6,11 @@ describe('snapshot', () => {
   let wrapper;
 
   beforeAll(() => {
-    wrapper = extras => {
+    wrapper = (extras) => {
       const defaults = {
         classes: {},
         controlledKeypad: true,
-        showKeypad: true
+        showKeypad: true,
       };
       const props = { ...defaults, ...extras };
 

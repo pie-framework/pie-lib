@@ -4,9 +4,7 @@ import renderer from 'react-test-renderer';
 
 describe('feedback-menu', () => {
   it('renders correctly', () => {
-    const tree = renderer
-      .create(<FeedbackMenu onChange={jest.fn()} />)
-      .toJSON();
+    const tree = renderer.create(<FeedbackMenu onChange={jest.fn()} />).toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

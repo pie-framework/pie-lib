@@ -8,7 +8,7 @@ describe('keys-layout', () => {
       expect(result).toEqual([
         [1, undefined, undefined, undefined, undefined],
         [2, undefined, undefined, undefined, undefined],
-        [3, undefined, undefined, undefined, undefined]
+        [3, undefined, undefined, undefined, undefined],
       ]);
     });
   });

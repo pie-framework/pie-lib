@@ -15,24 +15,18 @@ export const Text = withStyles(() => ({
   predefined: {
     cursor: 'pointer',
     backgroundColor: yellow[100],
-    border: `dashed 0px ${yellow[700]}`
+    border: `dashed 0px ${yellow[700]}`,
   },
   correct: {
-    backgroundColor: green[500]
-  }
+    backgroundColor: green[500],
+  },
 }))(({ text, predefined, classes, onClick, correct }) => {
   const formattedText = (text || '').replace(/\n/g, '<br>');
 
   if (predefined) {
     const className = classNames(classes.predefined, correct && classes.correct);
 
-    return (
-      <span
-        onClick={onClick}
-        className={className}
-        dangerouslySetInnerHTML={{ __html: formattedText }}
-      />
-    );
+    return <span onClick={onClick} className={className} dangerouslySetInnerHTML={{ __html: formattedText }} />;
   } else {
     return <span dangerouslySetInnerHTML={{ __html: formattedText }} />;
   }
@@ -46,7 +40,7 @@ export default class TokenText extends React.Component {
     tokens: PropTypes.array.isRequired,
     onTokenClick: PropTypes.func.isRequired,
     onSelectToken: PropTypes.func.isRequired,
-    className: PropTypes.string
+    className: PropTypes.string,
   };
 
   /*
@@ -62,7 +56,7 @@ export default class TokenText extends React.Component {
    this.removeToken(token);
    }
    */
-  onClick = event => {
+  onClick = (event) => {
     const { onSelectToken, text, tokens } = this.props;
 
     event.preventDefault();
@@ -103,7 +97,7 @@ export default class TokenText extends React.Component {
               const token = {
                 text: textSelected,
                 start: offset,
-                end: endIndex
+                end: endIndex,
               };
 
               onSelectToken(token, tokensToRemove);
@@ -120,7 +114,7 @@ export default class TokenText extends React.Component {
     const normalized = normalize(text, tokens);
 
     return (
-      <div className={className} ref={r => (this.root = r)} onClick={this.onClick}>
+      <div className={className} ref={(r) => (this.root = r)} onClick={this.onClick}>
         {normalized.map((t, index) => {
           return <Text key={index} {...t} onClick={() => onTokenClick(t)} />;
         })}

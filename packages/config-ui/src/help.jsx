@@ -14,7 +14,7 @@ import { withStyles } from '@material-ui/core/styles';
 const RawHelpButton = ({ onClick, classes }) => (
   <IconButton
     classes={{
-      label: classes.icon
+      label: classes.icon,
     }}
     onClick={onClick}
   >
@@ -23,15 +23,15 @@ const RawHelpButton = ({ onClick, classes }) => (
 );
 RawHelpButton.propTypes = {
   onClick: PropTypes.func,
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 };
 
 export const HelpButton = withStyles({
   icon: {
     '&:hover': {
-      color: '#ddd'
-    }
-  }
+      color: '#ddd',
+    },
+  },
 })(RawHelpButton);
 
 export const HelpDialog = ({ open, onClose, children, title }) => (
@@ -52,19 +52,19 @@ HelpDialog.propTypes = {
   open: PropTypes.bool,
   onClose: PropTypes.func,
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
 };
 
 class Help extends React.Component {
   static propTypes = {
     children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
-    title: PropTypes.string
+    title: PropTypes.string,
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      open: false
+      open: false,
     };
   }
 
@@ -73,11 +73,7 @@ class Help extends React.Component {
     return (
       <div>
         <HelpButton color="accent" onClick={() => this.setState({ open: true })} />
-        <HelpDialog
-          open={this.state.open}
-          title={title}
-          onClose={() => this.setState({ open: false })}
-        >
+        <HelpDialog open={this.state.open} title={title} onClose={() => this.setState({ open: false })}>
           {children}
         </HelpDialog>
       </div>

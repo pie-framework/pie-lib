@@ -6,33 +6,33 @@ import classNames from 'classnames';
 
 const styles = () => ({
   radioLabel: {
-    fontSize: '12px'
+    fontSize: '12px',
   },
   choice: {
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   choiceHolder: {
     display: 'flex',
-    alignItems: 'center'
-  }
+    alignItems: 'center',
+  },
 });
 
-const Group = props => {
+const Group = (props) => {
   const { feedbackLabels, value, classes, className, onChange, keys } = props;
 
   return (
     <div className={classNames(classes.choiceHolder, className)}>
-      {keys.map(key => {
+      {keys.map((key) => {
         return (
           <div className={classes.choice} key={key}>
             <RadioWithLabel
               value={key}
               checked={value === key}
               classes={{
-                label: classes.radioLabel
+                label: classes.radioLabel,
               }}
-              onChange={e => onChange(e.currentTarget.value)}
+              onChange={(e) => onChange(e.currentTarget.value)}
               label={feedbackLabels[key]}
             />
           </div>
@@ -48,7 +48,7 @@ Group.propTypes = {
   value: PropTypes.string.isRequired,
   classes: PropTypes.object.isRequired,
   keys: PropTypes.arrayOf(PropTypes.string),
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
 };
 
 export default withStyles(styles)(Group);

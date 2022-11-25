@@ -25,7 +25,7 @@ export class MathToolbar extends React.Component {
     onDone: PropTypes.func.isRequired,
     onFocus: PropTypes.func,
     onBlur: PropTypes.func,
-    hideDoneButton: PropTypes.bool
+    hideDoneButton: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -41,13 +41,13 @@ export class MathToolbar extends React.Component {
     onChange: () => {},
     onAnswerBlockAdd: () => {},
     onFocus: () => {},
-    hideDoneButton: false
+    hideDoneButton: false,
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      latex: props.latex
+      latex: props.latex,
     };
   }
 
@@ -59,7 +59,7 @@ export class MathToolbar extends React.Component {
     this.setState({ latex: nextProps.latex });
   }
 
-  onChange = latex => {
+  onChange = (latex) => {
     this.setState({ latex });
     this.props.onChange(latex);
   };
@@ -81,7 +81,7 @@ export class MathToolbar extends React.Component {
       onBlur,
       hideDoneButton,
       error,
-      maxResponseAreas
+      maxResponseAreas,
     } = this.props;
 
     return (
@@ -130,7 +130,7 @@ export class RawPureToolbar extends React.Component {
     controlledKeypad: PropTypes.bool,
     controlledKeypadMode: PropTypes.bool,
     showKeypad: PropTypes.bool,
-    hideDoneButton: PropTypes.bool
+    hideDoneButton: PropTypes.bool,
   };
 
   render() {
@@ -156,7 +156,7 @@ export class RawPureToolbar extends React.Component {
       hideDoneButton,
       classes,
       error,
-      maxResponseAreas
+      maxResponseAreas,
     } = this.props;
 
     return (
@@ -183,9 +183,7 @@ export class RawPureToolbar extends React.Component {
           error={error}
           maxResponseAreas={maxResponseAreas}
         />
-        {(!controlledKeypad || (controlledKeypad && showKeypad)) && !hideDoneButton && (
-          <DoneButton onClick={onDone} />
-        )}
+        {(!controlledKeypad || (controlledKeypad && showKeypad)) && !hideDoneButton && <DoneButton onClick={onDone} />}
       </div>
     );
   }
@@ -195,8 +193,8 @@ const styles = () => ({
     display: 'flex',
     width: '100%',
     zIndex: 8,
-    alignItems: 'center'
-  }
+    alignItems: 'center',
+  },
 });
 
 export const PureToolbar = withStyles(styles)(RawPureToolbar);

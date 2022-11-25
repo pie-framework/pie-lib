@@ -32,12 +32,12 @@ export class Row {
 
     const diff = count - this.columns.length;
 
-    const padding = _.times(diff).map(n => '__pad__');
+    const padding = _.times(diff).map((n) => '__pad__');
     return direction === 'right' ? [...padding, ...this.columns] : [...this.columns, ...padding];
   }
 }
 
-const mathNodeToCharArray = mn => {
+const mathNodeToCharArray = (mn) => {
   const text = mn.childNodes.reduce(reduceText, '');
   return text.split('');
 };
@@ -47,7 +47,7 @@ const mathNodeToCharArray = mn => {
  * @param {*} child
  * @return an array of column content
  */
-const toColumnArray = child => {
+const toColumnArray = (child) => {
   if (!child || !child.kind) {
     return [];
   }
@@ -78,7 +78,7 @@ const toColumnArray = child => {
  *  @param child chtml child node of mstack
  *  @return Row | Line
  */
-const rowStack = child => {
+const rowStack = (child) => {
   if (!child || !child.kind) {
     return;
   }
@@ -119,7 +119,7 @@ const rowStack = child => {
  * @return Row[]
  */
 
-export const getStackData = mstack => {
+export const getStackData = (mstack) => {
   if (!mstack || !mstack.childNodes) {
     return [];
   }
@@ -149,7 +149,7 @@ export class CHTMLmstack extends CHTMLWrapper {
     const table = this.ce('table');
     chtml.appendChild(table);
 
-    stackData.forEach(row => {
+    stackData.forEach((row) => {
       const tr = this.ce('tr');
       table.appendChild(tr);
 
@@ -165,7 +165,7 @@ export class CHTMLmstack extends CHTMLWrapper {
 
         // align right for now:
         const cols = row.pad(maxCols, 'right');
-        cols.forEach(c => {
+        cols.forEach((c) => {
           const t = this.ce('td');
           tr.appendChild(t);
           if (c === '__pad__') {
@@ -194,25 +194,25 @@ CHTMLmstack.styles = {
     'line-height': 'initial',
     border: 'solid 0px red',
     'border-spacing': '0em',
-    'border-collapse': 'separate'
+    'border-collapse': 'separate',
   },
   'mjx-mstack > table > tr': {
-    'line-height': 'initial'
+    'line-height': 'initial',
   },
   'mjx-mstack > table > tr > td': {
     // padding: '1.2rem',
     border: 'solid 0px blue',
     'font-family': 'sans-serif',
-    'line-height': 'initial'
+    'line-height': 'initial',
   },
   'mjx-mstack > table > tr > td.inner': {
-    'font-family': 'inherit'
+    'font-family': 'inherit',
   },
   'mjx-mstack > table > tr > .mjx-line': {
     padding: 0,
-    'border-top': 'solid 1px black'
+    'border-top': 'solid 1px black',
   },
   '.TEX-A': {
-    'font-family': 'MJXZERO, MJXTEX !important'
-  }
+    'font-family': 'MJXZERO, MJXTEX !important',
+  },
 };

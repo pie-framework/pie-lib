@@ -22,33 +22,18 @@ class RawCircle extends React.Component {
     x: PropTypes.number.isRequired,
     y: PropTypes.number.isRequired,
     radius: PropTypes.number,
-    graphProps: types.GraphPropsType.isRequired
+    graphProps: types.GraphPropsType.isRequired,
   };
 
   render() {
-    const {
-      classes,
-      disabled,
-      className,
-      correctness,
-      x,
-      y,
-      radius,
-      graphProps,
-      ...rest
-    } = this.props;
+    const { classes, disabled, className, correctness, x, y, radius, graphProps, ...rest } = this.props;
     const { scale } = graphProps;
     const rx = Math.abs(scale.x(x + radius) - scale.x(x));
     const ry = Math.abs(scale.y(y + radius) - scale.y(y));
 
     return (
       <ellipse
-        className={classNames(
-          classes.bgCircle,
-          disabled && classes.disabled,
-          classes[correctness],
-          className
-        )}
+        className={classNames(classes.bgCircle, disabled && classes.disabled, classes[correctness], className)}
         cx={scale.x(x)}
         cy={scale.y(y)}
         rx={rx}
@@ -59,12 +44,12 @@ class RawCircle extends React.Component {
   }
 }
 
-const applyStyle = fn => ({
+const applyStyle = (fn) => ({
   ...fn('stroke'),
   '&:hover': {
     strokeWidth: 3,
-    ...fn('stroke')
-  }
+    ...fn('stroke'),
+  },
 });
 
 const styles = () => ({
@@ -75,12 +60,12 @@ const styles = () => ({
     transition: 'stroke 200ms ease-in, stroke-width 200ms ease-in',
     '&:hover': {
       strokeWidth: 6,
-      stroke: color.primaryDark()
-    }
+      stroke: color.primaryDark(),
+    },
   },
   disabled: applyStyle(disabled),
   correct: applyStyle(correct),
-  incorrect: applyStyle(incorrect)
+  incorrect: applyStyle(incorrect),
 });
 
 export const BgCircle = withStyles(styles)(RawCircle);
@@ -91,12 +76,12 @@ export default gridDraggable({
     const area = { left: x, top: y, bottom: y, right: x };
     return utils.bounds(area, domain, range);
   },
-  anchorPoint: props => {
+  anchorPoint: (props) => {
     const { x, y } = props;
     return { x, y };
   },
   fromDelta: (props, delta) => {
     const newPoint = utils.point(props).add(utils.point(delta));
     return newPoint;
-  }
+  },
 })(BgCircle);

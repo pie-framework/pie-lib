@@ -13,32 +13,18 @@ export class Controls extends React.Component {
     onSentences: PropTypes.func.isRequired,
     onParagraphs: PropTypes.func.isRequired,
     setCorrectMode: PropTypes.bool.isRequired,
-    onToggleCorrectMode: PropTypes.func.isRequired
+    onToggleCorrectMode: PropTypes.func.isRequired,
   };
 
   static defaultProps = {};
 
   render() {
-    const {
-      classes,
-      onClear,
-      onWords,
-      onSentences,
-      onParagraphs,
-      setCorrectMode,
-      onToggleCorrectMode
-    } = this.props;
+    const { classes, onClear, onWords, onSentences, onParagraphs, setCorrectMode, onToggleCorrectMode } = this.props;
 
     return (
       <div className={classes.controls}>
         <div>
-          <Button
-            onClick={onWords}
-            className={classes.button}
-            size="small"
-            color="primary"
-            disabled={setCorrectMode}
-          >
+          <Button onClick={onWords} className={classes.button} size="small" color="primary" disabled={setCorrectMode}>
             Words
           </Button>
           <Button
@@ -59,13 +45,7 @@ export class Controls extends React.Component {
           >
             Paragraphs
           </Button>
-          <Button
-            className={classes.button}
-            size="small"
-            color="secondary"
-            onClick={onClear}
-            disabled={setCorrectMode}
-          >
+          <Button className={classes.button} size="small" color="secondary" onClick={onClear} disabled={setCorrectMode}>
             Clear
           </Button>
         </div>
@@ -77,13 +57,13 @@ export class Controls extends React.Component {
     );
   }
 }
-export default withStyles(theme => ({
+export default withStyles((theme) => ({
   button: {
-    marginRight: theme.spacing.unit
+    marginRight: theme.spacing.unit,
   },
   controls: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'space-between'
-  }
+    justifyContent: 'space-between',
+  },
 }))(Controls);

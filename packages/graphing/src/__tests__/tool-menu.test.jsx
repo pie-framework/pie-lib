@@ -8,13 +8,13 @@ describe('ToolMenu', () => {
   let onChange = jest.fn();
   const tools = ['one', 'two'];
 
-  const wrapper = extras => {
+  const wrapper = (extras) => {
     const defaults = {
       classes: {},
       className: 'className',
       onChange,
       currentTool: tools[0],
-      tools
+      tools,
     };
     const props = { ...defaults, ...extras };
     return shallow(<ToolMenu {...props} />);

@@ -14,7 +14,7 @@ import isEqual from 'lodash/isEqual';
 
 const decimalRegex = /\.|,/g;
 
-const toNodeData = data => {
+const toNodeData = (data) => {
   if (!data) {
     return;
   }
@@ -51,7 +51,7 @@ export class EditorAndPad extends React.Component {
     onFocus: PropTypes.func,
     onBlur: PropTypes.func,
     onChange: PropTypes.func.isRequired,
-    classes: PropTypes.object
+    classes: PropTypes.object,
   };
 
   constructor(props) {
@@ -66,7 +66,7 @@ export class EditorAndPad extends React.Component {
     }
   }
 
-  onClick = data => {
+  onClick = (data) => {
     const { noDecimal, noLatexHandling, onChange } = this.props;
     const c = toNodeData(data);
     log('mathChange: ', c);
@@ -99,7 +99,7 @@ export class EditorAndPad extends React.Component {
     }
   };
 
-  updateDisable = isEdit => {
+  updateDisable = (isEdit) => {
     const { maxResponseAreas } = this.props;
 
     if (maxResponseAreas) {
@@ -112,13 +112,13 @@ export class EditorAndPad extends React.Component {
   onAnswerBlockClick = () => {
     this.props.onAnswerBlockAdd();
     this.onClick({
-      type: 'answer'
+      type: 'answer',
     });
 
     this.updateDisable(true);
   };
 
-  onEditorChange = latex => {
+  onEditorChange = (latex) => {
     const { onChange, noDecimal } = this.props;
 
     updateSpans();
@@ -137,7 +137,7 @@ export class EditorAndPad extends React.Component {
 
     if (this.input && regexMatch && regexMatch?.length) {
       try {
-        this.input.mathField.__controller.cursor.insLeftOf(this.input.mathField.__controller.cursor.parent[-1].parent)
+        this.input.mathField.__controller.cursor.insLeftOf(this.input.mathField.__controller.cursor.parent[-1].parent);
         this.input.mathField.el().dispatchEvent(new KeyboardEvent('keydown', { keyCode: 8 }));
       } catch (e) {
         console.error(e.toString());
@@ -178,7 +178,7 @@ export class EditorAndPad extends React.Component {
     return inputIsDifferent;
   }
 
-  onEditorTypeChange = evt => {
+  onEditorTypeChange = (evt) => {
     this.setState({ equationEditor: evt.target.value });
   };
 
@@ -210,7 +210,7 @@ export class EditorAndPad extends React.Component {
       onFocus,
       onBlur,
       classes,
-      error
+      error,
     } = this.props;
     const shouldShowKeypad = !controlledKeypad || (controlledKeypad && showKeypad);
     const { addDisabled } = this.state;
@@ -222,11 +222,7 @@ export class EditorAndPad extends React.Component {
         <div className={cx(classes.inputAndTypeContainer, { [classes.hide]: hideInput })}>
           {controlledKeypadMode && (
             <InputContainer label="Equation Editor" className={classes.selectContainer}>
-              <Select
-                className={classes.select}
-                onChange={this.onEditorTypeChange}
-                value={this.state.equationEditor}
-              >
+              <Select className={classes.select} onChange={this.onEditorTypeChange} value={this.state.equationEditor}>
                 <MenuItem value="non-negative-integers">Numeric - Non-Negative Integers</MenuItem>
                 <MenuItem value="integers">Numeric - Integers</MenuItem>
                 <MenuItem value="decimals">Numeric - Decimals</MenuItem>
@@ -248,16 +244,12 @@ export class EditorAndPad extends React.Component {
                 onFocus && onFocus();
                 this.updateDisable(false);
               }}
-              onBlur={event => {
+              onBlur={(event) => {
                 this.updateDisable(false);
                 onBlur && onBlur(event);
               }}
-              className={cx(
-                classes.mathEditor,
-                classNames.editor,
-                !controlledKeypadMode ? classes.longMathEditor : ''
-              )}
-              innerRef={r => (this.input = r)}
+              className={cx(classes.mathEditor, classNames.editor, !controlledKeypadMode ? classes.longMathEditor : '')}
+              innerRef={(r) => (this.input = r)}
               latex={latex}
               onChange={this.onEditorChange}
             />
@@ -290,88 +282,88 @@ export class EditorAndPad extends React.Component {
   }
 }
 
-const styles = theme => ({
+const styles = (theme) => ({
   inputAndTypeContainer: {
     display: 'flex',
     alignItems: 'center',
     '& .mq-editable-field .mq-cursor': {
-      top: '-4px'
+      top: '-4px',
     },
     '& .mq-math-mode .mq-selection, .mq-editable-field .mq-selection': {
-      paddingTop: '18px'
+      paddingTop: '18px',
     },
     '& .mq-math-mode .mq-overarrow': {
-      fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important'
+      fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important',
     },
     '& .mq-math-mode .mq-overline .mq-overline-inner': {
-      paddingTop: '0.4em !important'
+      paddingTop: '0.4em !important',
     },
     '& .mq-overarrow.mq-arrow-both': {
       minWidth: '1.23em',
       '& *': {
-        lineHeight: '1 !important'
+        lineHeight: '1 !important',
       },
       '&:before': {
         top: '-0.45em',
-        left: '-1px'
+        left: '-1px',
       },
       '&:after': {
         position: 'absolute',
         top: '0px !important',
-        right: '-2px'
+        right: '-2px',
       },
       '&.mq-empty:after': {
-        top: '-0.45em'
-      }
+        top: '-0.45em',
+      },
     },
     '& .mq-overarrow.mq-arrow-right': {
       '&:before': {
         top: '-0.4em',
-        right: '-1px'
-      }
+        right: '-1px',
+      },
     },
     '& *': {
       fontFamily: 'MJXZERO, MJXTEX !important',
 
       '& .mq-math-mode > span > var': {
-        fontFamily: 'MJXZERO, MJXTEX-I !important'
+        fontFamily: 'MJXZERO, MJXTEX-I !important',
       },
       '& .mq-math-mode span var': {
-        fontFamily: 'MJXZERO, MJXTEX-I !important'
+        fontFamily: 'MJXZERO, MJXTEX-I !important',
       },
       '& .mq-math-mode .mq-nonSymbola': {
-        fontFamily: 'MJXZERO, MJXTEX-I !important'
+        fontFamily: 'MJXZERO, MJXTEX-I !important',
       },
       '& .mq-math-mode > span > var.mq-operator-name': {
-        fontFamily: 'MJXZERO, MJXTEX !important'
+        fontFamily: 'MJXZERO, MJXTEX !important',
       },
 
       '& .mq-math-mode .mq-sqrt-prefix': {
         verticalAlign: 'bottom !important',
         top: '0 !important',
-        left: '-0.1em !important'
+        left: '-0.1em !important',
       },
 
       '& .mq-math-mode .mq-overarc ': {
-        paddingTop: '0.45em !important'
+        paddingTop: '0.45em !important',
       },
 
       '& .mq-math-mode sup.mq-nthroot': {
         fontSize: '70% !important',
         verticalAlign: '0.5em !important',
-        paddingRight: '0.15em'
+        paddingRight: '0.15em',
       },
 
       '& .mq-math-mode .mq-empty': {
-        padding: '9px 1px !important'
+        padding: '9px 1px !important',
       },
 
       '& .mq-math-mode .mq-root-block': {
-        paddingTop: '10px'
+        paddingTop: '10px',
       },
 
       '& .mq-scaled .mq-sqrt-prefix': {
-        top: '0 !important'
+        top: '0 !important',
       },
 
       '& .mq-longdiv-inner': {
@@ -381,64 +373,64 @@ const styles = theme => ({
         '& > .mq-empty': {
           padding: '0 !important',
           marginLeft: '0px !important',
-          marginTop: '2px'
-        }
+          marginTop: '2px',
+        },
       },
 
       '& .mq-math-mode .mq-longdiv': {
-        display: 'inline-flex !important'
+        display: 'inline-flex !important',
       },
 
       '& .mq-math-mode .mq-longdiv .mq-longdiv-inner': {
         marginLeft: '4px !important',
         paddingTop: '6px !important',
-        paddingLeft: '6px !important'
+        paddingLeft: '6px !important',
       },
 
       '& .mq-math-mode .mq-supsub': {
-        fontSize: '70.7% !important'
+        fontSize: '70.7% !important',
       },
 
       '& .mq-math-mode .mq-paren': {
         verticalAlign: 'top !important',
-        padding: '1px 0.1em !important'
+        padding: '1px 0.1em !important',
       },
 
       '& .mq-math-mode .mq-sqrt-stem': {
         borderTop: '0.07em solid',
         marginLeft: '-1.5px',
         marginTop: '-2px !important',
-        paddingTop: '5px !important'
+        paddingTop: '5px !important',
       },
 
       '& .mq-supsub ': {
-        fontSize: '70.7%'
+        fontSize: '70.7%',
       },
 
       '& .mq-math-mode .mq-supsub.mq-sup-only': {
         verticalAlign: '-0.1em !important',
 
         '& .mq-sup': {
-          marginBottom: '0px !important'
-        }
+          marginBottom: '0px !important',
+        },
       },
 
       '& .mq-math-mode .mq-denominator': {
         marginTop: '-5px !important',
-        padding: '0.5em 0.1em 0.1em !important'
+        padding: '0.5em 0.1em 0.1em !important',
       },
 
       '& .mq-math-mode .mq-numerator, .mq-math-mode .mq-over': {
         padding: '0 0.1em !important',
         paddingBottom: '0 !important',
-        marginBottom: '4.5px'
+        marginBottom: '4.5px',
       },
 
-      '-webkit-font-smoothing': 'antialiased !important'
-    }
+      '-webkit-font-smoothing': 'antialiased !important',
+    },
   },
   hide: {
-    display: 'none'
+    display: 'none',
   },
   selectContainer: {
     flex: 'initial',
@@ -450,33 +442,33 @@ const styles = theme => ({
     marginRight: '5px',
 
     '& label': {
-      fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important'
+      fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important',
     },
 
     '& div': {
-      fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important'
-    }
+      fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important',
+    },
   },
   mathEditor: {
     maxWidth: '400px',
     color: color.text(),
     backgroundColor: color.background(),
-    padding: '2px'
+    padding: '2px',
   },
   longMathEditor: {
-    maxWidth: '500px'
+    maxWidth: '500px',
   },
   addAnswerBlockButton: {
     position: 'absolute',
     right: '12px',
-    border: '1px solid lightgrey'
+    border: '1px solid lightgrey',
   },
   hr: {
     padding: 0,
     margin: 0,
     height: '1px',
     border: 'none',
-    borderBottom: `solid 1px ${theme.palette.primary.main}`
+    borderBottom: `solid 1px ${theme.palette.primary.main}`,
   },
   mathToolbar: {
     zIndex: 9,
@@ -484,36 +476,36 @@ const styles = theme => ({
     textAlign: 'center',
     width: 'auto',
     '& > .mq-math-mode': {
-      border: 'solid 1px lightgrey'
+      border: 'solid 1px lightgrey',
     },
     '& > .mq-focused': {
       outline: 'none',
       boxShadow: 'none',
       border: `dotted 1px ${theme.palette.primary.main}`,
-      borderRadius: '0px'
+      borderRadius: '0px',
     },
     '& .mq-overarrow-inner': {
       border: 'none !important',
-      paddingTop: '0 !important'
+      paddingTop: '0 !important',
     },
     '& .mq-overarrow-inner-right': {
-      display: 'none !important'
+      display: 'none !important',
     },
     '& .mq-overarrow-inner-left': {
-      display: 'none !important'
+      display: 'none !important',
     },
     '& .mq-longdiv-inner': {
       borderTop: '1px solid !important',
-      paddingTop: '1.5px !important'
+      paddingTop: '1.5px !important',
     },
     '& .mq-overarrow.mq-arrow-both': {
       top: '7.8px',
       marginTop: '0px',
-      minWidth: '1.23em'
+      minWidth: '1.23em',
     },
     '& .mq-parallelogram': {
-      lineHeight: 0.85
-    }
+      lineHeight: 0.85,
+    },
   },
   inputContainer: {
     minWidth: '500px',
@@ -525,35 +517,35 @@ const styles = theme => ({
     marginBottom: theme.spacing.unit,
 
     '& .mq-sqrt-prefix .mq-scaled': {
-      verticalAlign: 'middle !important'
-    }
+      verticalAlign: 'middle !important',
+    },
   },
   error: {
-    border: '2px solid red'
+    border: '2px solid red',
   },
   keyboard: {
     '& *': {
       fontFamily: 'MJXZERO, MJXTEX !important',
 
       '& .mq-math-mode > span > var': {
-        fontFamily: 'MJXZERO, MJXTEX-I !important'
+        fontFamily: 'MJXZERO, MJXTEX-I !important',
       },
       '& .mq-math-mode span var': {
-        fontFamily: 'MJXZERO, MJXTEX-I !important'
+        fontFamily: 'MJXZERO, MJXTEX-I !important',
       },
       '& .mq-math-mode .mq-nonSymbola': {
-        fontFamily: 'MJXZERO, MJXTEX-I !important'
+        fontFamily: 'MJXZERO, MJXTEX-I !important',
       },
       '& .mq-math-mode > span > var.mq-operator-name': {
-        fontFamily: 'MJXZERO, MJXTEX !important'
+        fontFamily: 'MJXZERO, MJXTEX !important',
       },
 
       '& .mq-math-mode .mq-sqrt-prefix': {
-        top: '0 !important'
+        top: '0 !important',
       },
 
       '& .mq-math-mode .mq-empty': {
-        padding: '9px 1px !important'
+        padding: '9px 1px !important',
       },
 
       '& .mq-longdiv-inner': {
@@ -563,36 +555,36 @@ const styles = theme => ({
         '& > .mq-empty': {
           padding: '0 !important',
           marginLeft: '0px !important',
-          marginTop: '2px'
-        }
+          marginTop: '2px',
+        },
       },
 
       '& .mq-math-mode .mq-longdiv': {
-        display: 'inline-flex !important'
+        display: 'inline-flex !important',
       },
 
       '& .mq-math-mode .mq-supsub': {
-        fontSize: '70.7% !important'
+        fontSize: '70.7% !important',
       },
 
       '& .mq-math-mode .mq-sqrt-stem': {
         marginTop: '-5px',
-        paddingTop: '4px'
+        paddingTop: '4px',
       },
 
       '& .mq-math-mode .mq-paren': {
-        verticalAlign: 'middle !important'
+        verticalAlign: 'middle !important',
       },
 
       '& .mq-math-mode .mq-overarrow .mq-overarrow-inner .mq-empty': {
-        padding: '0 !important'
+        padding: '0 !important',
       },
 
       '& .mq-math-mode .mq-overline .mq-overline-inner .mq-empty ': {
-        padding: '0 !important'
-      }
-    }
-  }
+        padding: '0 !important',
+      },
+    },
+  },
 });
 
 export default withStyles(styles)(EditorAndPad);

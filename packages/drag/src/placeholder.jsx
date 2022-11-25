@@ -4,14 +4,14 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import grey from '@material-ui/core/colors/grey';
 
-export const PlaceHolder = props => {
+export const PlaceHolder = (props) => {
   const { children, classes, className, isOver, type, grid, disabled, choiceBoard } = props;
   const names = classNames(
     classes.placeholder,
     disabled && classes.disabled,
     isOver && classes.over,
     classes[type],
-    className
+    className,
   );
 
   const style = {};
@@ -24,6 +24,7 @@ export const PlaceHolder = props => {
 
     style.gridTemplateRows = `repeat(${grid.rows}, ${repeatValue})`;
   }
+
   return (
     <div style={style} className={choiceBoard ? classes.board : names}>
       {children}
@@ -37,17 +38,17 @@ PlaceHolder.propTypes = {
     columns: PropTypes.number,
     rows: PropTypes.number,
     // if a different value then 1fr is wanted
-    rowsRepeatValue: PropTypes.string
+    rowsRepeatValue: PropTypes.string,
   }),
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
   className: PropTypes.string,
   isOver: PropTypes.bool,
   index: PropTypes.number,
   type: PropTypes.string,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
 };
 
-const styles = theme => ({
+const styles = (theme) => ({
   placeholder: {
     width: '100%',
     height: '100%',
@@ -58,15 +59,15 @@ const styles = theme => ({
     display: 'grid',
     gridRowGap: `${theme.spacing.unit}px`,
     gridColumnGap: `${theme.spacing.unit}px`,
-    padding: theme.spacing.unit * 1
+    padding: theme.spacing.unit * 1,
   },
   disabled: {
     boxShadow: 'none',
-    background: 'white'
+    background: 'white',
   },
   over: {
     border: `1px solid ${grey[500]}`,
-    backgroundColor: `${grey[300]}`
+    backgroundColor: `${grey[300]}`,
   },
   board: {
     border: '1px solid #D1D1D1',
@@ -76,8 +77,8 @@ const styles = theme => ({
     alignItems: 'center',
     justifyContent: 'center',
     marginLeft: '20px',
-    minHeight: '200px'
-  }
+    minHeight: '200px',
+  },
 });
 
 export default withStyles(styles)(PlaceHolder);

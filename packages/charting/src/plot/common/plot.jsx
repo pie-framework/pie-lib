@@ -24,18 +24,18 @@ export class RawPlot extends React.Component {
     interactive: PropTypes.bool,
     correctness: PropTypes.shape({
       value: PropTypes.string,
-      label: PropTypes.string
-    })
+      label: PropTypes.string,
+    }),
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      dragValue: undefined
+      dragValue: undefined,
     };
   }
 
-  setDragValue = dragValue => this.setState({ dragValue });
+  setDragValue = (dragValue) => this.setState({ dragValue });
 
   dragStop = () => {
     const { label, onChangeCategory } = this.props;
@@ -56,17 +56,7 @@ export class RawPlot extends React.Component {
   };
 
   render() {
-    const {
-      graphProps,
-      value,
-      label,
-      classes,
-      xBand,
-      index,
-      CustomBarElement,
-      interactive,
-      correctness
-    } = this.props;
+    const { graphProps, value, label, classes, xBand, index, CustomBarElement, interactive, correctness } = this.props;
 
     const { scale, range, size } = graphProps;
     const { max } = range || {};
@@ -91,7 +81,7 @@ export class RawPlot extends React.Component {
 
     return (
       <React.Fragment>
-        {values.map(index =>
+        {values.map((index) =>
           CustomBarElement({
             index,
             pointDiameter,
@@ -101,15 +91,15 @@ export class RawPlot extends React.Component {
             label,
             value,
             classes,
-            scale
-          })
+            scale,
+          }),
         )}
         <Component
           x={barX}
           y={v}
           interactive={interactive}
           width={barWidth}
-          onDrag={v => this.dragValue(value, v)}
+          onDrag={(v) => this.dragValue(value, v)}
           onDragStop={this.dragStop}
           graphProps={graphProps}
           correctness={correctness}
@@ -119,17 +109,17 @@ export class RawPlot extends React.Component {
   }
 }
 
-const Bar = withStyles(theme => ({
+const Bar = withStyles((theme) => ({
   dot: {
     fill: color.primaryLight(),
     '&.correct': correct('stroke'),
-    '&.incorrect': incorrect('stroke')
+    '&.incorrect': incorrect('stroke'),
   },
   line: {
     stroke: color.primaryLight(),
     '&.correct': correct('stroke'),
-    '&.incorrect': incorrect('stroke')
-  }
+    '&.incorrect': incorrect('stroke'),
+  },
 }))(RawPlot);
 
 export class Plot extends React.Component {
@@ -139,7 +129,7 @@ export class Plot extends React.Component {
     xBand: PropTypes.func,
     graphProps: types.GraphPropsType.isRequired,
     defineChart: PropTypes.bool,
-    CustomBarElement: PropTypes.func
+    CustomBarElement: PropTypes.func,
   };
 
   render() {
@@ -155,7 +145,7 @@ export class Plot extends React.Component {
             xBand={xBand}
             index={index}
             key={`bar-${d.label}-${d.value}-${index}`}
-            onChangeCategory={category => onChangeCategory(index, category)}
+            onChangeCategory={(category) => onChangeCategory(index, category)}
             graphProps={graphProps}
             CustomBarElement={CustomBarElement}
             correctness={d.correctness}
