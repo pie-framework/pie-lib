@@ -36,7 +36,7 @@ describe('ImageToolbar', () => {
     it('calls onChange with alt text', () => {
       const w = mkWrapper();
       w.instance().onAltTextDone('alt text');
-      expect(onChange).toHaveBeenCalledWith({ alt: 'alt text' });
+      expect(onChange).toHaveBeenCalledWith({ alt: 'alt text' }, true);
     });
   });
 });

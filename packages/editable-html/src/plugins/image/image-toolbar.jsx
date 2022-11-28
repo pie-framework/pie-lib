@@ -37,7 +37,7 @@ export class ImageToolbar extends React.Component {
   onAltTextDone = (newAlt) => {
     log('[onAltTextDone]: alt:', newAlt);
 
-    this.props.onChange({ alt: newAlt });
+    this.props.onChange({ alt: newAlt }, true);
   };
 
   onAlignmentClick = (alignment) => {
