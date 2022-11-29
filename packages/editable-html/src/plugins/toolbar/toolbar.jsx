@@ -58,15 +58,15 @@ export class Toolbar extends React.Component {
       alignment: PropTypes.oneOf(['left', 'right']),
       alwaysVisible: PropTypes.bool,
       ref: PropTypes.func,
-      showDone: PropTypes.bool
+      showDone: PropTypes.bool,
     }),
-    onDataChange: PropTypes.func
+    onDataChange: PropTypes.func,
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      change: null
+      change: null,
     };
   }
 
@@ -74,17 +74,17 @@ export class Toolbar extends React.Component {
     removeCharacterDialogs();
   }
 
-  hasMark = type => {
+  hasMark = (type) => {
     const { value } = this.props;
-    return value.marks.some(mark => mark.type == type);
+    return value.marks.some((mark) => mark.type == type);
   };
 
-  hasBlock = type => {
+  hasBlock = (type) => {
     const { value } = this.props;
-    return value.blocks.some(node => node.type == type);
+    return value.blocks.some((node) => node.type == type);
   };
 
-  onToggle = plugin => {
+  onToggle = (plugin) => {
     const { value, onChange } = this.props;
 
     if (!plugin.onToggle) return;
@@ -93,13 +93,13 @@ export class Toolbar extends React.Component {
     onChange(change);
   };
 
-  onClick = e => {
+  onClick = (e) => {
     log('[onClick]');
     e.preventDefault();
   };
 
-  onButtonClick = fn => {
-    return e => {
+  onButtonClick = (fn) => {
+    return (e) => {
       e.preventDefault();
       fn();
     };
@@ -123,10 +123,7 @@ export class Toolbar extends React.Component {
     }
   };
 
-  onDeleteClick = debounce(
-    (e, plugin, node, value, onChange) => plugin.deleteNode(e, node, value, onChange),
-    500
-  );
+  onDeleteClick = debounce((e, plugin, node, value, onChange) => plugin.deleteNode(e, node, value, onChange), 500);
 
   onDeleteMouseDown = (e, plugin, node, value, onChange) => {
     e.persist();
@@ -145,7 +142,7 @@ export class Toolbar extends React.Component {
       getFocusedValue,
       isFocused,
       onDone,
-      toolbarRef
+      toolbarRef,
     } = this.props;
 
     const node = findSingleNode(value);
@@ -154,7 +151,7 @@ export class Toolbar extends React.Component {
     log(' --------------> [render] node: ', node);
     log('[render] node: ', node);
 
-    const plugin = plugins.find(p => {
+    const plugin = plugins.find((p) => {
       if (!node) {
         return;
       }
@@ -163,7 +160,7 @@ export class Toolbar extends React.Component {
         return p.toolbar.supports && p.toolbar.supports(node, value);
       }
     });
-    const parentPlugin = plugins.find(p => {
+    const parentPlugin = plugins.find((p) => {
       if (!parentNode) {
         return;
       }
@@ -198,27 +195,17 @@ export class Toolbar extends React.Component {
       this.props.onDataChange(key, data);
     };
 
-    const CustomToolbar = getCustomToolbar(
-      plugin,
-      node,
-      value,
-      handleDone,
-      this.props.onDataChange
-    );
+    const CustomToolbar = getCustomToolbar(plugin, node, value, handleDone, this.props.onDataChange);
 
-    const filteredPlugins =
-      plugin && plugin.filterPlugins ? plugin.filterPlugins(node, plugins) : plugins;
+    const filteredPlugins = plugin && plugin.filterPlugins ? plugin.filterPlugins(node, plugins) : plugins;
 
     log('[render] CustomToolbar: ', CustomToolbar);
     const parentExtraStyles =
-      parentPlugin && parentPlugin.pluginStyles
-        ? parentPlugin.pluginStyles(node, parentNode, plugin)
-        : {};
-    const pluginExtraStyles =
-      plugin && plugin.pluginStyles ? plugin.pluginStyles(node, parentNode, plugin) : {};
+      parentPlugin && parentPlugin.pluginStyles ? parentPlugin.pluginStyles(node, parentNode, plugin) : {};
+    const pluginExtraStyles = plugin && plugin.pluginStyles ? plugin.pluginStyles(node, parentNode, plugin) : {};
     const extraStyles = {
       ...pluginExtraStyles,
-      ...parentExtraStyles
+      ...parentExtraStyles,
     };
 
     const deletable = node && plugin && plugin.deleteNode;
@@ -236,7 +223,7 @@ export class Toolbar extends React.Component {
       [classes.toolbarRight]: toolbarOpts.alignment === 'right',
       [classes.focused]: toolbarOpts.alwaysVisible || isFocused,
       [classes.autoWidth]: autoWidth,
-      [classes.fullWidth]: !autoWidth
+      [classes.fullWidth]: !autoWidth,
     });
 
     return (
@@ -267,9 +254,9 @@ export class Toolbar extends React.Component {
             <IconButton
               aria-label="Delete"
               className={classes.iconRoot}
-              onMouseDown={e => this.onDeleteMouseDown(e, plugin, node, value, onChange)}
+              onMouseDown={(e) => this.onDeleteMouseDown(e, plugin, node, value, onChange)}
               classes={{
-                root: classes.iconRoot
+                root: classes.iconRoot,
               }}
             >
               <Delete />
@@ -295,37 +282,37 @@ const style = {
     boxShadow:
       '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
     boxSizing: 'border-box',
-    display: 'none'
+    display: 'none',
   },
   toolbarWithNoDone: {
-    minWidth: '265px'
+    minWidth: '265px',
   },
   toolbarTop: {
-    top: '-45px'
+    top: '-45px',
   },
   toolbarRight: {
-    right: 0
+    right: 0,
   },
   fullWidth: {
-    width: '100%'
+    width: '100%',
   },
   autoWidth: {
-    width: 'auto'
+    width: 'auto',
   },
   focused: {
-    display: 'flex'
+    display: 'flex',
   },
   iconRoot: {
     width: '28px',
     height: '28px',
     padding: '4px',
-    verticalAlign: 'top'
+    verticalAlign: 'top',
   },
   label: {
-    color: 'var(--editable-html-toolbar-check, #00bb00)'
+    color: 'var(--editable-html-toolbar-check, #00bb00)',
   },
   shared: {
-    display: 'flex'
-  }
+    display: 'flex',
+  },
 };
 export default withStyles(style, { index: 1000 })(Toolbar);

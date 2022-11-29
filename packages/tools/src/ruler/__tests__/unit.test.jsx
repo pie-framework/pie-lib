@@ -7,14 +7,7 @@ describe('unit', () => {
   describe('snapshot', () => {
     it('renders', () => {
       const wrapper = shallow(
-        <Unit
-          index={2}
-          width={30}
-          height={20}
-          last={false}
-          config={{ ticks: 10 }}
-          classes={{}}
-        />
+        <Unit index={2} width={30} height={20} last={false} config={{ ticks: 10 }} classes={{}} />,
       );
       expect(toJson(wrapper)).toMatchSnapshot();
     });

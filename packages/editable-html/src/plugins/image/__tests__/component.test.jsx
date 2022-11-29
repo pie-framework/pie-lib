@@ -8,13 +8,13 @@ it('renders correctly', () => {
     type: 'image',
     data: Data.create({
       width: 50,
-      height: 50
-    })
+      height: 50,
+    }),
   });
 
   const editor = {
     value: {},
-    change: jest.fn()
+    change: jest.fn(),
   };
 
   const onDelete = jest.fn();
@@ -22,19 +22,19 @@ it('renders correctly', () => {
   const classes = {
     active: 'active',
     loading: 'loading',
-    pendingDelete: 'pendingDelete'
+    pendingDelete: 'pendingDelete',
   };
 
   const tree = renderer
     .create(<Component node={node} editor={editor} classes={classes} onDelete={onDelete} />, {
-      createNodeMock: el => {
+      createNodeMock: (el) => {
         if (el.type === 'img') {
           return {
             naturalWidth: 100,
-            naturalHeight: 100
+            naturalHeight: 100,
           };
         }
-      }
+      },
     })
     .toJSON();
   expect(tree).toMatchSnapshot();

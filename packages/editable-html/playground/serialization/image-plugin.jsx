@@ -11,7 +11,7 @@ class Img extends React.Component {
 
 const ImgPlugin = () => {
   return {
-    renderNode: props => {
+    renderNode: (props) => {
       if (props.node.type === 'image') {
         return <Img {...props} />;
       }
@@ -29,11 +29,11 @@ const ImgPlugin = () => {
           focusKey: block.key,
           focusOffset: 0,
           isFocused: true,
-          isBackward: false
+          isBackward: false,
         });
         change.insertBlockAtRange(change.value.selection, block).select(range);
       }
-    }
+    },
   };
 };
 

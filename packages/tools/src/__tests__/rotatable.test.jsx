@@ -13,7 +13,7 @@ jest.mock('../anchor-utils', () => ({
   toPoint: jest.fn(() => ({ x: 0, y: 0 })),
   getAnchor: jest.fn(() => ({ left: 0, top: 0 })),
   toDegrees: jest.fn(() => 90),
-  arctangent: jest.fn(() => 90)
+  arctangent: jest.fn(() => 90),
 }));
 
 const event = (x = 0, y = 0) => ({
@@ -21,7 +21,7 @@ const event = (x = 0, y = 0) => ({
   pageY: y,
   clientX: x,
   clientY: y,
-  preventDefault: jest.fn()
+  preventDefault: jest.fn(),
 });
 
 describe('rotatable', () => {
@@ -37,10 +37,10 @@ describe('rotatable', () => {
       wrapper.setState({
         translate: {
           x: 10,
-          y: 10
+          y: 10,
         },
         rotation: 10,
-        origin: 'bottom left'
+        origin: 'bottom left',
       });
       expect(toJson(wrapper)).toMatchSnapshot();
     });
@@ -52,17 +52,14 @@ describe('rotatable', () => {
     beforeEach(() => {
       el = {
         addEventListener: jest.fn(),
-        removeEventListener: jest.fn()
+        removeEventListener: jest.fn(),
       };
       wrapper = TestRenderer.create(
-        <Rotatable
-          handle={[{ class: 'foo', origin: 'bottom left' }]}
-          classes={{ rotatable: 'rotatable' }}
-        >
+        <Rotatable handle={[{ class: 'foo', origin: 'bottom left' }]} classes={{ rotatable: 'rotatable' }}>
           <div className={'foo'}>foo</div>
         </Rotatable>,
         {
-          createNodeMock: e => {
+          createNodeMock: (e) => {
             if (e.props.className === 'rotatable') {
               return {
                 querySelector: jest.fn(() => el),
@@ -70,12 +67,12 @@ describe('rotatable', () => {
                   left: 0,
                   top: 0,
                   width: 100,
-                  height: 100
-                }))
+                  height: 100,
+                })),
               };
             }
-          }
-        }
+          },
+        },
       );
 
       document.addEventListener = jest.fn();
@@ -86,16 +83,10 @@ describe('rotatable', () => {
     describe('rotate', () => {
       describe('init', () => {
         it('call el.addEventListener(mousedown)', () => {
-          expect(el.addEventListener).toBeCalledWith(
-            'mousedown',
-            expect.anything()
-          );
+          expect(el.addEventListener).toBeCalledWith('mousedown', expect.anything());
         });
         it('call el.addEventListener(mouseup)', () => {
-          expect(el.addEventListener).toBeCalledWith(
-            'mouseup',
-            instance.rotateStop
-          );
+          expect(el.addEventListener).toBeCalledWith('mouseup', instance.rotateStop);
         });
       });
 
@@ -106,13 +97,13 @@ describe('rotatable', () => {
 
           distanceBetween.mockReturnValue({
             x: 22,
-            y: 4
+            y: 4,
           });
           instance.state.origin = 'bottom right';
 
           instance.state.position = {
             left: 0,
-            top: 0
+            top: 0,
           };
 
           instance.rotateStart('bottom left')(e);
@@ -126,7 +117,7 @@ describe('rotatable', () => {
         it('updates the position if origin has change', () => {
           expect(instance.state.position).toMatchObject({
             left: 22,
-            top: 4
+            top: 4,
           });
         });
 
@@ -137,7 +128,7 @@ describe('rotatable', () => {
         it('updates the anchor', () => {
           expect(instance.state.anchor).toMatchObject({
             left: 0,
-            top: 0
+            top: 0,
           });
         });
       });
@@ -149,7 +140,7 @@ describe('rotatable', () => {
 
           instance.state.anchor = {
             left: 0,
-            top: 0
+            top: 0,
           };
 
           instance.state.isRotating = true;
@@ -180,16 +171,10 @@ describe('rotatable', () => {
         });
 
         it('calls document.removeEventListener(mousemove, rotate)', () => {
-          expect(document.removeEventListener).toBeCalledWith(
-            'mousemove',
-            instance.rotate
-          );
+          expect(document.removeEventListener).toBeCalledWith('mousemove', instance.rotate);
         });
         it('calls document.removeEventListener(mousemove), drag', () => {
-          expect(document.removeEventListener).toBeCalledWith(
-            'mousemove',
-            instance.drag
-          );
+          expect(document.removeEventListener).toBeCalledWith('mousemove', instance.drag);
         });
       });
     });
@@ -199,10 +184,7 @@ describe('rotatable', () => {
         it('calls document.addEventListener(mousemove)', () => {
           instance.mouseDown(event());
 
-          expect(document.addEventListener).toBeCalledWith(
-            'mousemove',
-            instance.drag
-          );
+          expect(document.addEventListener).toBeCalledWith('mousemove', instance.drag);
         });
       });
 
@@ -211,10 +193,7 @@ describe('rotatable', () => {
           instance.state.translate = { x: 10, y: 10 };
           instance.mouseUp({});
 
-          expect(document.removeEventListener).toBeCalledWith(
-            'mousemove',
-            instance.drag
-          );
+          expect(document.removeEventListener).toBeCalledWith('mousemove', instance.drag);
         });
 
         it('updates the state', () => {
@@ -224,7 +203,7 @@ describe('rotatable', () => {
 
           expect(instance.state.position).toEqual({
             left: 10,
-            top: 10
+            top: 10,
           });
         });
       });

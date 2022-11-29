@@ -18,12 +18,12 @@ export class Tokenizer extends React.Component {
         text: PropTypes.string,
         correct: PropTypes.bool,
         start: PropTypes.number,
-        end: PropTypes.number
-      })
+        end: PropTypes.number,
+      }),
     ),
     classes: PropTypes.object.isRequired,
     className: PropTypes.string,
-    onChange: PropTypes.func.isRequired
+    onChange: PropTypes.func.isRequired,
   };
 
   static defaultProps = {};
@@ -32,7 +32,7 @@ export class Tokenizer extends React.Component {
     super(props);
     this.state = {
       setCorrectMode: false,
-      mode: ''
+      mode: '',
     };
   }
 
@@ -40,7 +40,7 @@ export class Tokenizer extends React.Component {
     this.props.onChange(token, mode);
 
     this.setState({
-      mode
+      mode,
     });
   };
 
@@ -65,7 +65,7 @@ export class Tokenizer extends React.Component {
     this.onChangeHandler(update, this.state.mode);
   };
 
-  tokenClick = token => {
+  tokenClick = (token) => {
     const { setCorrectMode } = this.state;
 
     if (setCorrectMode) {
@@ -75,15 +75,15 @@ export class Tokenizer extends React.Component {
     }
   };
 
-  tokenIndex = token => {
+  tokenIndex = (token) => {
     const { tokens } = this.props;
 
-    return tokens.findIndex(t => {
+    return tokens.findIndex((t) => {
       return t.text == token.text && t.start == token.start && t.end == token.end;
     });
   };
 
-  setCorrect = token => {
+  setCorrect = (token) => {
     const { tokens } = this.props;
     const index = this.tokenIndex(token);
     if (index !== -1) {
@@ -98,7 +98,7 @@ export class Tokenizer extends React.Component {
     }
   };
 
-  removeToken = token => {
+  removeToken = (token) => {
     const { tokens } = this.props;
 
     const index = this.tokenIndex(token);
@@ -141,12 +141,12 @@ export class Tokenizer extends React.Component {
   }
 }
 
-export default withStyles(theme => ({
+export default withStyles((theme) => ({
   text: {
     whiteSpace: 'pre-wrap',
     marginTop: theme.spacing.unit,
     paddingTop: theme.spacing.unit,
-    paddingBottom: theme.spacing.unit
+    paddingBottom: theme.spacing.unit,
   },
-  noselect: { ...noSelect() }
+  noselect: { ...noSelect() },
 }))(Tokenizer);

@@ -4,7 +4,7 @@ import ChevronRight from '@material-ui/icons/ChevronRight';
 import MoreVert from '@material-ui/icons/MoreVert';
 import { withStyles } from '@material-ui/core/styles';
 
-const getRotate = direction => {
+const getRotate = (direction) => {
   switch (direction) {
     case 'down':
       return 90;
@@ -17,7 +17,7 @@ const getRotate = direction => {
   }
 };
 
-export const Chevron = props => {
+export const Chevron = (props) => {
   const { direction, style } = props;
   const rotate = getRotate(direction);
 
@@ -25,7 +25,7 @@ export const Chevron = props => {
     <ChevronRight
       style={{
         transform: `rotate(${rotate}deg)`,
-        ...style
+        ...style,
       }}
     />
   );
@@ -33,7 +33,7 @@ export const Chevron = props => {
 
 Chevron.propTypes = {
   direction: PropTypes.string,
-  style: PropTypes.object
+  style: PropTypes.object,
 };
 
 export const GripIcon = ({ style }) => {
@@ -41,7 +41,7 @@ export const GripIcon = ({ style }) => {
     <span style={style}>
       <MoreVert
         style={{
-          margin: '0 -16px'
+          margin: '0 -16px',
         }}
       />
       <MoreVert />
@@ -50,7 +50,7 @@ export const GripIcon = ({ style }) => {
 };
 
 GripIcon.propTypes = {
-  style: PropTypes.object
+  style: PropTypes.object,
 };
 
 export const ToolbarIcon = withStyles({
@@ -63,6 +63,6 @@ export const ToolbarIcon = withStyles({
     top: '7px',
     width: '110px',
     height: '28px',
-    whiteSpace: 'nowrap'
-  }
+    whiteSpace: 'nowrap',
+  },
 })(({ classes }) => <div className={classes.icon}>+ Response Area</div>);

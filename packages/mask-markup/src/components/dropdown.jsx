@@ -14,10 +14,8 @@ class Dropdown extends React.Component {
     onChange: PropTypes.func,
     classes: PropTypes.object,
     correct: PropTypes.bool,
-    choices: PropTypes.arrayOf(
-      PropTypes.shape({ value: PropTypes.string, label: PropTypes.string })
-    ),
-    showCorrectAnswer: PropTypes.bool
+    choices: PropTypes.arrayOf(PropTypes.shape({ value: PropTypes.string, label: PropTypes.string })),
+    showCorrectAnswer: PropTypes.bool,
   };
 
   constructor(props) {
@@ -25,35 +23,26 @@ class Dropdown extends React.Component {
 
     this.state = {
       showCheckmark: false,
-      open: false
+      open: false,
     };
   }
 
   showCheckmarkAndOpen = () => {
     this.setState({
       showCheckmark: true,
-      open: true
+      open: true,
     });
   };
 
   hideCheckmarkAndClose = () => {
     this.setState({
       showCheckmark: false,
-      open: false
+      open: false,
     });
   };
 
   render() {
-    const {
-      classes,
-      id,
-      correct,
-      disabled,
-      value,
-      onChange,
-      choices,
-      showCorrectAnswer
-    } = this.props;
+    const { classes, id, correct, disabled, value, onChange, choices, showCorrectAnswer } = this.props;
 
     const { showCheckmark, open } = this.state;
 
@@ -63,7 +52,7 @@ class Dropdown extends React.Component {
           root: classes.root,
           icon: classes.icon,
           selectMenu: classes.selectMenu,
-          select: classes.select
+          select: classes.select,
         }}
         disabled={disabled}
         value={value || ''}
@@ -73,9 +62,9 @@ class Dropdown extends React.Component {
         input={<CorrectInput correct={showCorrectAnswer || correct} />}
         MenuProps={{
           keepMounted: true,
-          disablePortal: true
+          disablePortal: true,
         }}
-        onChange={e => {
+        onChange={(e) => {
           onChange(id, e.target.value);
         }}
       >
@@ -88,7 +77,7 @@ class Dropdown extends React.Component {
             <span
               className={classes.label}
               dangerouslySetInnerHTML={{
-                __html: c.label
+                __html: c.label,
               }}
             />
             {showCheckmark && (
@@ -115,57 +104,57 @@ const styles = () => ({
       border: `1px solid ${color.text()}`,
       borderRadius: '5px',
       color: color.text(),
-      backgroundColor: color.background()
-    }
+      backgroundColor: color.background(),
+    },
   },
   select: {
     '&:focus': {
-      borderRadius: '4px'
-    }
+      borderRadius: '4px',
+    },
   },
   selectMenu: {
     backgroundColor: color.background(),
     '&:hover': {
-      borderColor: 'initial'
+      borderColor: 'initial',
     },
     '&:focus': {
-      borderColor: 'initial'
-    }
+      borderColor: 'initial',
+    },
   },
   icon: {
-    color: color.text()
+    color: color.text(),
   },
   selected: {
     color: `${color.text()} !important`,
     backgroundColor: `${color.background()} !important`,
     '&:hover': {
       color: color.text(),
-      backgroundColor: `${color.secondaryLight()} !important`
-    }
+      backgroundColor: `${color.secondaryLight()} !important`,
+    },
   },
   menuRoot: {
     color: color.text(),
     backgroundColor: color.background(),
     '&:focus': {
       color: color.text(),
-      backgroundColor: color.background()
+      backgroundColor: color.background(),
     },
     '&:hover': {
       color: color.text(),
-      backgroundColor: color.secondaryLight()
+      backgroundColor: color.secondaryLight(),
     },
     boxSizing: 'border-box',
     padding: '25px',
     '&:first-of-type': {
-      borderRadius: '3px 3px 0 0'
+      borderRadius: '3px 3px 0 0',
     },
     '&:last-of-type': {
-      borderRadius: '0 0 3px 3px'
-    }
+      borderRadius: '0 0 3px 3px',
+    },
   },
   label: {
-    fontSize: 'max(1rem, 14px)'
-  }
+    fontSize: 'max(1rem, 14px)',
+  },
 });
 
 export default withStyles(styles)(Dropdown);

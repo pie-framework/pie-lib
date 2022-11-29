@@ -28,7 +28,7 @@ const text = () => [
   'Sentence 123.',
   'Sentence 1234.',
   'Dr. A. says he will call in 2.',
-  'Who said? Y! 123!'
+  'Who said? Y! 123!',
 ];
 
 const raw = text().join(' ');
@@ -43,9 +43,9 @@ const tokens = compact(
     return {
       text: t,
       start,
-      end
+      end,
     };
-  })
+  }),
 );
 
 const correctedTokens = tokens.map((t, index) => {
@@ -57,7 +57,7 @@ class RawCustomToken extends React.Component {
     ...TokenTypes,
     classes: PropTypes.object.isRequired,
     correct: PropTypes.bool,
-    selected: PropTypes.bool
+    selected: PropTypes.bool,
   };
 
   render() {
@@ -65,24 +65,24 @@ class RawCustomToken extends React.Component {
     const className = classNames(
       classes.custom,
       correct && selected && classes.correct,
-      !correct && selected && classes.incorrect
+      !correct && selected && classes.incorrect,
     );
     return <span className={className}>!!{text}</span>;
   }
 }
 
-const CustomToken = withStyles(theme => ({
+const CustomToken = withStyles((theme) => ({
   correct: {
-    backgroundColor: green[500]
+    backgroundColor: green[500],
   },
   incorrect: {
-    backgroundColor: orange[500]
-  }
+    backgroundColor: orange[500],
+  },
 }))(RawCustomToken);
 
 class Demo extends React.Component {
   static propTypes = {
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
   };
 
   static defaultProps = {};
@@ -94,9 +94,9 @@ class Demo extends React.Component {
       mounted: false,
       textSelect: {
         selected: tokens.filter((t, index) => index % 2 === 0),
-        withCorrect: tokens.filter((t, index) => index === 0 || index === 1)
+        withCorrect: tokens.filter((t, index) => index === 0 || index === 1),
       },
-      tokenizerTokens: []
+      tokenizerTokens: [],
     };
   }
 
@@ -119,9 +119,9 @@ class Demo extends React.Component {
           text={raw}
           tokens={tokens}
           selectedTokens={this.state.textSelect.selected}
-          onChange={tokens =>
+          onChange={(tokens) =>
             this.setState({
-              textSelect: { ...this.state.textSelect, selected: tokens }
+              textSelect: { ...this.state.textSelect, selected: tokens },
             })
           }
         />
@@ -141,9 +141,9 @@ class Demo extends React.Component {
           text={raw}
           tokens={correctedTokens}
           selectedTokens={this.state.textSelect.withCorrect}
-          onChange={tokens =>
+          onChange={(tokens) =>
             this.setState({
-              textSelect: { ...this.state.textSelect, withCorrect: tokens }
+              textSelect: { ...this.state.textSelect, withCorrect: tokens },
             })
           }
         />
@@ -153,7 +153,7 @@ class Demo extends React.Component {
         <Tokenizer
           text={text().join(' ')}
           tokens={this.state.tokenizerTokens}
-          onChange={tokenizerTokens => this.setState({ tokenizerTokens })}
+          onChange={(tokenizerTokens) => this.setState({ tokenizerTokens })}
         />
 
         <div>
@@ -173,21 +173,21 @@ class Demo extends React.Component {
   }
 }
 
-const StyledDemo = withStyles(theme => ({
+const StyledDemo = withStyles((theme) => ({
   demo: {
-    backgroundColor: 'none'
+    backgroundColor: 'none',
   },
   description: {
     paddingTop: theme.spacing.unit,
-    paddingBottom: theme.spacing.unit
+    paddingBottom: theme.spacing.unit,
   },
   tokenSelect: {
     backgroundColor: 'none',
     padding: theme.spacing.unit,
-    border: `solid 1px ${theme.palette.primary.light}`
+    border: `solid 1px ${theme.palette.primary.light}`,
   },
   textSelect: {
-    paddingBottom: theme.spacing.unit * 3
-  }
+    paddingBottom: theme.spacing.unit * 3,
+  },
 }))(Demo);
 export default withRoot(StyledDemo);

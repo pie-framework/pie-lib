@@ -14,17 +14,13 @@ describe('ruler', () => {
 
   describe('logic', () => {
     it('sets unit for imperial', () => {
-      const wrapper = shallow(
-        <Ruler measure={'imperial'} classes={{}} label={'in'} />
-      );
+      const wrapper = shallow(<Ruler measure={'imperial'} classes={{}} label={'in'} />);
       const r = wrapper.find(RulerGraphic);
       expect(r.prop('unit')).toEqual({ ticks: 16, type: 'in' });
     });
 
     it('sets unit for metric', () => {
-      const wrapper = shallow(
-        <Ruler measure={'metric'} classes={{}} label={'cm'} />
-      );
+      const wrapper = shallow(<Ruler measure={'metric'} classes={{}} label={'cm'} />);
       const r = wrapper.find(RulerGraphic);
       expect(r.prop('unit')).toEqual({ ticks: 10, type: 'cm' });
     });

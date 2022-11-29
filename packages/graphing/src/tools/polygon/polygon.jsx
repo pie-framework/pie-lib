@@ -10,10 +10,10 @@ import { correct, disabled, incorrect } from '../shared/styles';
 
 export const getPointString = (points, scale) => {
   return (points || [])
-    .map(p => {
+    .map((p) => {
       const scaledPoint = {
         x: scale.x(p.x),
-        y: scale.y(p.y)
+        y: scale.y(p.y),
       };
       return `${scaledPoint.x},${scaledPoint.y}`;
     })
@@ -28,24 +28,15 @@ export class RawPolygon extends React.Component {
     points: PropTypes.arrayOf(types.PointType),
     graphProps: types.GraphPropsType.isRequired,
     closed: PropTypes.bool.isRequired,
-    correctness: PropTypes.string
+    correctness: PropTypes.string,
   };
 
   static defaultProps = {
-    points: []
+    points: [],
   };
 
   render() {
-    const {
-      points,
-      classes,
-      className,
-      disabled,
-      correctness,
-      graphProps,
-      closed,
-      ...rest
-    } = this.props;
+    const { points, classes, className, disabled, correctness, graphProps, closed, ...rest } = this.props;
     const { scale } = graphProps;
 
     const pointString = getPointString(points, scale);
@@ -58,7 +49,7 @@ export class RawPolygon extends React.Component {
           !closed && classes.open,
           disabled && classes.disabled,
           classes[correctness],
-          className
+          className,
         )}
         {...rest}
       />
@@ -66,27 +57,27 @@ export class RawPolygon extends React.Component {
   }
 }
 
-export const Polygon = withStyles(theme => ({
+export const Polygon = withStyles((theme) => ({
   closed: {
     fill: fade(theme.palette.primary.light, 0.2), // TODO hardcoded color
     strokeWidth: 2,
-    stroke: color.secondaryLight()
+    stroke: color.secondaryLight(),
   },
   open: {
     fill: fade(theme.palette.primary.light, 0.0), // TODO hardcoded color
     strokeWidth: 2,
     stroke: color.secondaryLight(),
-    pointerEvents: 'none'
+    pointerEvents: 'none',
   },
   disabled: {
-    ...disabled('stroke')
+    ...disabled('stroke'),
   },
   correct: {
-    ...correct('stroke')
+    ...correct('stroke'),
   },
   incorrect: {
-    ...incorrect('stroke')
-  }
+    ...incorrect('stroke'),
+  },
 }))(RawPolygon);
 
 export default gridDraggable({
@@ -95,13 +86,13 @@ export default gridDraggable({
     const area = utils.polygonToArea(points);
     return utils.bounds(area, domain, range);
   },
-  anchorPoint: props => {
+  anchorPoint: (props) => {
     const { points } = props;
     return points[0];
   },
   fromDelta: (props, delta) => {
     const { points } = props;
 
-    return points.map(p => utils.point(p).add(utils.point(delta)));
-  }
+    return points.map((p) => utils.point(p).add(utils.point(delta)));
+  },
 })(Polygon);

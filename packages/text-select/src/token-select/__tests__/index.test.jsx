@@ -14,12 +14,12 @@ describe('token-select', () => {
               end: 7,
               predefined: true,
               selectable: true,
-              selected: false
-            }
+              selected: false,
+            },
           ]}
           classes={{}}
           onChange={jest.fn()}
-        />
+        />,
       );
       expect(w).toMatchSnapshot();
     });
@@ -34,13 +34,13 @@ describe('token-select', () => {
               end: 4,
               predefined: true,
               selectable: true,
-              selected: false
+              selected: false,
             },
             {
               text: '\n',
               start: 4,
               end: 5,
-              selected: false
+              selected: false,
             },
             {
               text: 'bar',
@@ -48,12 +48,12 @@ describe('token-select', () => {
               end: 8,
               predefined: true,
               selectable: true,
-              selected: false
-            }
+              selected: false,
+            },
           ]}
           classes={{}}
           onChange={jest.fn()}
-        />
+        />,
       );
       expect(w).toMatchSnapshot();
     });
@@ -68,13 +68,13 @@ describe('token-select', () => {
               end: 4,
               predefined: true,
               selectable: true,
-              selected: false
+              selected: false,
             },
             {
               text: '\n\n',
               start: 4,
               end: 5,
-              selected: false
+              selected: false,
             },
             {
               text: 'bar',
@@ -82,12 +82,12 @@ describe('token-select', () => {
               end: 8,
               predefined: true,
               selectable: true,
-              selected: false
-            }
+              selected: false,
+            },
           ]}
           classes={{}}
           onChange={jest.fn()}
-        />
+        />,
       );
       expect(w).toMatchSnapshot();
     });
@@ -103,13 +103,13 @@ describe('token-select', () => {
               end: 4,
               predefined: true,
               selectable: true,
-              selected: true
+              selected: true,
             },
             {
               text: '\n',
               start: 4,
               end: 5,
-              selected: false
+              selected: false,
             },
             {
               text: 'bar',
@@ -117,12 +117,12 @@ describe('token-select', () => {
               end: 8,
               predefined: true,
               selectable: true,
-              selected: true
-            }
+              selected: true,
+            },
           ]}
           classes={{}}
           onChange={jest.fn()}
-        />
+        />,
       );
       expect(w).toMatchSnapshot();
     });
@@ -138,17 +138,17 @@ describe('token-select', () => {
             {
               text: 'foo',
               start: 0,
-              end: 3
+              end: 3,
             },
             {
               text: 'bar',
               start: 4,
-              end: 7
-            }
+              end: 7,
+            },
           ]}
           classes={{}}
           onChange={onChange}
-        />
+        />,
       );
     });
     describe('selectedCount', () => {
@@ -213,8 +213,8 @@ describe('token-select', () => {
 
         const closest = jest.fn().mockReturnValue({
           dataset: {
-            indexkey: '0'
-          }
+            indexkey: '0',
+          },
         });
         const mockedEvent = { target: { closest } };
 
@@ -228,8 +228,8 @@ describe('token-select', () => {
 
         const closest = jest.fn().mockReturnValue({
           dataset: {
-            indexkey: '0'
-          }
+            indexkey: '0',
+          },
         });
         const mockedEvent = { target: { closest } };
 
@@ -243,8 +243,8 @@ describe('token-select', () => {
 
         const closest = jest.fn().mockReturnValue({
           dataset: {
-            indexkey: '0'
-          }
+            indexkey: '0',
+          },
         });
         const mockedEvent = { target: { closest } };
 

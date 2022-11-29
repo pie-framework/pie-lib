@@ -1,7 +1,7 @@
-export const cat = id => ({ id });
+export const cat = (id) => ({ id });
 
-export const cats = choices => ({
-  choices: choices.map(cat)
+export const cats = (choices) => ({
+  choices: choices.map(cat),
 });
 
 export const choice = (id, categoryCount, correct) => {

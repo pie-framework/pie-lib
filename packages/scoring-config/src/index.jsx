@@ -9,11 +9,11 @@ export class PartialScoringConfig extends React.Component {
     label: PropTypes.string,
     partialScoring: PropTypes.bool,
     classes: PropTypes.object.isRequired,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
   };
 
   state = {
-    checked: false
+    checked: false,
   };
 
   constructor(props) {
@@ -29,7 +29,7 @@ export class PartialScoringConfig extends React.Component {
     const { onChange } = this.props;
 
     this.setState({
-      checked
+      checked,
     });
     onChange(checked);
   };
@@ -37,9 +37,7 @@ export class PartialScoringConfig extends React.Component {
   render() {
     const { classes, label } = this.props;
     const { checked } = this.state;
-    const textLabel =
-      label ||
-      'Each correct response is worth 1/X where X is the number of correct answer selections.';
+    const textLabel = label || 'Each correct response is worth 1/X where X is the number of correct answer selections.';
 
     return (
       <div className={classes.scoringConfig}>
@@ -54,6 +52,6 @@ export class PartialScoringConfig extends React.Component {
 
 export default withStyles({
   scoringConfig: {
-    paddingTop: '10px'
-  }
+    paddingTop: '10px',
+  },
 })(PartialScoringConfig);

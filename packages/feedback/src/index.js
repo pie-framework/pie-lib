@@ -5,8 +5,8 @@ export const defaults = {
   unanswered: {
     type: 'default',
     default: 'You have not entered a response',
-    custom: 'You have not entered a response'
-  }
+    custom: 'You have not entered a response',
+  },
 };
 
 /**
@@ -21,7 +21,7 @@ export const defaults = {
  *  @property {FeedbackConfig} partial
  */
 
-const normalizeCorrectness = c => {
+const normalizeCorrectness = (c) => {
   if (c === 'partially-correct') {
     return 'partial';
   }
@@ -35,12 +35,12 @@ const normalizeCorrectness = c => {
  * @param {Feedback} feedback
  */
 export const getFeedbackForCorrectness = (correctness, feedback) =>
-  new Promise(resolve => {
+  new Promise((resolve) => {
     feedback = { ...defaults, ...feedback };
     correctness = normalizeCorrectness(correctness);
     const fb = feedback[correctness] || defaults[correctness] || {};
     const d = defaults[correctness] || {};
-    getFeedback(fb, d[fb.type || 'default']).then(result => resolve(result));
+    getFeedback(fb, d[fb.type || 'default']).then((result) => resolve(result));
   });
 
 /**
@@ -50,7 +50,7 @@ export const getFeedbackForCorrectness = (correctness, feedback) =>
  * @param {string} fallback
  */
 export const getFeedback = (feedback, fallback) =>
-  new Promise(resolve => {
+  new Promise((resolve) => {
     if (!feedback || feedback.type === 'none') {
       resolve(undefined);
       return;

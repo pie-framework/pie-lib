@@ -11,20 +11,20 @@ export class Collapsible extends React.Component {
     children: PropTypes.object,
     labels: PropTypes.shape({
       visible: PropTypes.string,
-      hidden: PropTypes.string
-    })
+      hidden: PropTypes.string,
+    }),
   };
 
   static defaultProps = {
-    labels: {}
+    labels: {},
   };
 
   state = {
-    expanded: false
+    expanded: false,
   };
 
   toggleExpanded = () => {
-    this.setState(state => ({ expanded: !state.expanded }));
+    this.setState((state) => ({ expanded: !state.expanded }));
   };
 
   componentDidMount() {
@@ -40,16 +40,11 @@ export class Collapsible extends React.Component {
     const title = this.state.expanded ? labels.visible || 'Hide' : labels.hidden || 'Show';
 
     return (
-      <div className={className} ref={r => (this.root = r)}>
+      <div className={className} ref={(r) => (this.root = r)}>
         <div onClick={this.toggleExpanded}>
           <span className={classes.title}>{title}</span>
         </div>
-        <Collapse
-          in={this.state.expanded}
-          timeout="auto"
-          unmountOnExit
-          className={classes.collapsible}
-        >
+        <Collapse in={this.state.expanded} timeout="auto" unmountOnExit className={classes.collapsible}>
           {children}
         </Collapse>
       </div>
@@ -57,12 +52,12 @@ export class Collapsible extends React.Component {
   }
 }
 
-export default withStyles(theme => ({
+export default withStyles((theme) => ({
   title: {
     color: theme.palette.primary.light,
-    borderBottom: `1px dotted ${theme.palette.primary.light}`
+    borderBottom: `1px dotted ${theme.palette.primary.light}`,
   },
   collapsible: {
-    paddingTop: theme.spacing.unit * 2
-  }
+    paddingTop: theme.spacing.unit * 2,
+  },
 }))(Collapsible);

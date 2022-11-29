@@ -9,18 +9,18 @@ export class IconMenu extends React.Component {
   static propTypes = {
     opts: PropTypes.object,
     onClick: PropTypes.func.isRequired,
-    iconButtonElement: PropTypes.any
+    iconButtonElement: PropTypes.any,
   };
 
   constructor(props) {
     super(props);
     this.state = {
       anchorEl: undefined,
-      open: false
+      open: false,
     };
   }
 
-  handleClick = event => {
+  handleClick = (event) => {
     this.setState({ open: true, anchorEl: event.currentTarget });
   };
 
@@ -33,7 +33,7 @@ export class IconMenu extends React.Component {
 
     const keys = Object.keys(opts);
 
-    const handleMenuClick = key => () => {
+    const handleMenuClick = (key) => () => {
       onClick(key);
       this.handleRequestClose();
     };
@@ -41,12 +41,7 @@ export class IconMenu extends React.Component {
     return (
       <div>
         <div onClick={this.handleClick}>{this.props.iconButtonElement}</div>
-        <Menu
-          id="simple-menu"
-          anchorEl={this.state.anchorEl}
-          open={this.state.open}
-          onClose={this.handleRequestClose}
-        >
+        <Menu id="simple-menu" anchorEl={this.state.anchorEl} open={this.state.open} onClose={this.handleRequestClose}>
           {keys.map((k, index) => (
             <MenuItem key={index} onClick={handleMenuClick(k)}>
               {opts[k]}
@@ -62,11 +57,11 @@ export default class FeedbackMenu extends React.Component {
   static propTypes = {
     value: PropTypes.object,
     onChange: PropTypes.func.isRequired,
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
   };
 
   static defaultProps = {
-    classes: {}
+    classes: {},
   };
 
   render() {
@@ -75,12 +70,7 @@ export default class FeedbackMenu extends React.Component {
     const t = value && value.type;
     const iconColor = t === 'custom' || t === 'default' ? 'primary' : 'disabled';
 
-    const tooltip =
-      t === 'custom'
-        ? 'Custom Feedback'
-        : t === 'default'
-        ? 'Default Feedback'
-        : 'Feedback disabled';
+    const tooltip = t === 'custom' ? 'Custom Feedback' : t === 'default' ? 'Default Feedback' : 'Feedback disabled';
 
     const icon = (
       <IconButton className={classes.icon} aria-label={tooltip}>
@@ -91,11 +81,11 @@ export default class FeedbackMenu extends React.Component {
     return (
       <IconMenu
         iconButtonElement={icon}
-        onClick={key => onChange(key)}
+        onClick={(key) => onChange(key)}
         opts={{
           none: 'No Feedback',
           default: 'Default',
-          custom: 'Custom'
+          custom: 'Custom',
         }}
       />
     );

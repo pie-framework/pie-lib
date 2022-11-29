@@ -23,5 +23,5 @@ export {
   color,
   Readable,
   Purpose,
-  hasText
+  hasText,
 };

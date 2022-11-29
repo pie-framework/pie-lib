@@ -6,13 +6,13 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 
-const ChartType = withStyles(theme => ({
+const ChartType = withStyles((theme) => ({
   chartType: {
-    width: '160px'
+    width: '160px',
   },
   chartTypeLabel: {
-    backgroundColor: 'transparent'
-  }
+    backgroundColor: 'transparent',
+  },
 }))(({ onChange, value, classes }) => (
   <div className={classes.chartType}>
     <FormControl variant={'outlined'} className={classes.chartType}>
@@ -20,12 +20,7 @@ const ChartType = withStyles(theme => ({
         ChartType
       </InputLabel>
 
-      <Select
-        value={value}
-        onChange={onChange}
-        labelWidth={0}
-        input={<OutlinedInput name="type" id="type-helper" />}
-      >
+      <Select value={value} onChange={onChange} labelWidth={0} input={<OutlinedInput name="type" id="type-helper" />}>
         <MenuItem value={'histogram'}>Histogram</MenuItem>
         <MenuItem value={'bar'}>Bar Chart</MenuItem>
         <MenuItem value={'lineDot'}>Line Chart &#9679;</MenuItem>

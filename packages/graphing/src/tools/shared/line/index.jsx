@@ -23,7 +23,7 @@ export const lineTool = (type, Component) => () => ({
       return {
         type,
         building: true,
-        from: point
+        from: point,
       };
     }
 
@@ -32,14 +32,14 @@ export const lineTool = (type, Component) => () => ({
     }
 
     return { ...mark, building: false, to: point };
-  }
+  },
 });
 
-export const lineToolComponent = Component => {
+export const lineToolComponent = (Component) => {
   return class LineToolComponent extends React.Component {
     static propTypes = {
       ...types.ToolPropTypeFields,
-      graphProps: types.GraphPropsType.isRequired
+      graphProps: types.GraphPropsType.isRequired,
     };
 
     constructor(props) {
@@ -55,8 +55,7 @@ export const lineToolComponent = Component => {
 
       this.setState({ mark: undefined }, () => {
         const { type } = update;
-        const shouldNotChange =
-          type && (type === 'parabola' || type === 'sine') && sameAxes(update.from, update.to);
+        const shouldNotChange = type && (type === 'parabola' || type === 'sine') && sameAxes(update.from, update.to);
 
         if (!isEqual(mark, update) && !shouldNotChange) {
           onChange(mark, update);
@@ -144,7 +143,7 @@ const dragOpts = () => ({
     const area = utils.lineToArea(props.from, props.to);
     return utils.bounds(area, domain, range);
   },
-  anchorPoint: props => {
+  anchorPoint: (props) => {
     const { from } = props;
     return from;
   },
@@ -152,9 +151,9 @@ const dragOpts = () => ({
     const { from, to } = props;
     return {
       from: utils.point(from).add(utils.point(delta)),
-      to: utils.point(to).add(utils.point(delta))
+      to: utils.point(to).add(utils.point(delta)),
     };
-  }
+  },
 });
 
 export const lineBase = (Comp, opts) => {
@@ -178,10 +177,10 @@ export const lineBase = (Comp, opts) => {
       disabled: PropTypes.bool,
       labelNode: PropTypes.object,
       labelModeEnabled: PropTypes.bool,
-      changeMarkProps: PropTypes.func
+      changeMarkProps: PropTypes.func,
     };
 
-    onChangePoint = point => {
+    onChangePoint = (point) => {
       const { middle, onChange } = this.props;
       const { from, to } = point;
 
@@ -215,7 +214,7 @@ export const lineBase = (Comp, opts) => {
       onChange(updated);
     };
 
-    dragFrom = draggedFrom => {
+    dragFrom = (draggedFrom) => {
       const { from, to } = this.props;
 
       if (from.label) {
@@ -227,7 +226,7 @@ export const lineBase = (Comp, opts) => {
       }
     };
 
-    dragTo = draggedTo => {
+    dragTo = (draggedTo) => {
       const { from, to } = this.props;
 
       if (to.label) {
@@ -280,7 +279,7 @@ export const lineBase = (Comp, opts) => {
         correctness,
         onClick,
         labelNode,
-        labelModeEnabled
+        labelModeEnabled,
       } = this.props;
       const common = { graphProps, onDragStart, onDragStop, disabled, correctness, onClick };
       const angle = to ? trig.toDegrees(trig.angle(from, to)) : 0;
@@ -293,39 +292,39 @@ export const lineBase = (Comp, opts) => {
         if (from && from.hasOwnProperty('label')) {
           fromLabelNode = ReactDOM.createPortal(
             <MarkLabel
-              inputRef={r => (this.input.from = r)}
+              inputRef={(r) => (this.input.from = r)}
               disabled={!labelModeEnabled}
               mark={from}
               graphProps={graphProps}
-              onChange={label => this.labelChange({ ...from, label }, 'from')}
+              onChange={(label) => this.labelChange({ ...from, label }, 'from')}
             />,
-            labelNode
+            labelNode,
           );
         }
 
         if (to && to.hasOwnProperty('label')) {
           toLabelNode = ReactDOM.createPortal(
             <MarkLabel
-              inputRef={r => (this.input.to = r)}
+              inputRef={(r) => (this.input.to = r)}
               disabled={!labelModeEnabled}
               mark={to}
               graphProps={graphProps}
-              onChange={label => this.labelChange({ ...to, label }, 'to')}
+              onChange={(label) => this.labelChange({ ...to, label }, 'to')}
             />,
-            labelNode
+            labelNode,
           );
         }
 
         if (middle && middle.hasOwnProperty('label')) {
           lineLabelNode = ReactDOM.createPortal(
             <MarkLabel
-              inputRef={r => (this.input.middle = r)}
+              inputRef={(r) => (this.input.middle = r)}
               disabled={!labelModeEnabled}
               mark={middle}
               graphProps={graphProps}
-              onChange={label => this.labelChange({ ...middle, label }, 'middle')}
+              onChange={(label) => this.labelChange({ ...middle, label }, 'middle')}
             />,
-            labelNode
+            labelNode,
           );
         }
       }
@@ -384,23 +383,23 @@ export const styles = {
     transition: 'stroke 200ms ease-in, stroke-width 200ms ease-in',
     '&:hover': {
       strokeWidth: 6,
-      stroke: color.primaryDark()
-    }
+      stroke: color.primaryDark(),
+    },
   }),
   arrow: () => ({
-    fill: color.secondary()
+    fill: color.secondary(),
   }),
   disabledArrow: () => ({
-    ...disabled()
+    ...disabled(),
   }),
   disabled: () => ({
     ...disabled('stroke'),
-    strokeWidth: 2
+    strokeWidth: 2,
   }),
   correct: (theme, key) => ({
-    ...correct(key)
+    ...correct(key),
   }),
   incorrect: (theme, key) => ({
-    ...incorrect(key)
-  })
+    ...incorrect(key),
+  }),
 };

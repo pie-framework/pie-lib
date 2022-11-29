@@ -7,7 +7,7 @@ import { types } from '@pie-lib/plot';
 import { correct, incorrect, disabled } from './common/styles';
 import { color } from '@pie-lib/render-ui';
 
-const styles = theme => ({
+const styles = (theme) => ({
   input: {
     float: 'right',
     fontFamily: theme.typography.fontFamily,
@@ -19,15 +19,15 @@ const styles = theme => ({
     '&.incorrect': incorrect('color'),
     '&.disabled': {
       ...disabled('color'),
-      backgroundColor: 'transparent !important'
-    }
-  }
+      backgroundColor: 'transparent !important',
+    },
+  },
 });
 
-export const MarkLabel = props => {
+export const MarkLabel = (props) => {
   // eslint-disable-next-line no-unused-vars
   const [input, setInput] = useState(null);
-  const _ref = useCallback(node => setInput(node), null);
+  const _ref = useCallback((node) => setInput(node), null);
 
   const {
     mark,
@@ -38,17 +38,17 @@ export const MarkLabel = props => {
     rotate,
     correctness,
     autoFocus,
-    error
+    error,
   } = props;
   const [label, setLabel] = useState(mark.label);
-  const onChange = e => setLabel(e.target.value);
-  const onChangeProp = e => props.onChange(e.target.value);
+  const onChange = (e) => setLabel(e.target.value);
+  const onChangeProp = (e) => props.onChange(e.target.value);
   let extraStyle = {};
 
   if (rotate) {
     extraStyle = {
       width: 'unset',
-      textAlign: 'left'
+      textAlign: 'left',
     };
   }
 
@@ -60,17 +60,12 @@ export const MarkLabel = props => {
   return (
     <AutosizeInput
       autoFocus={autoFocus}
-      inputRef={r => {
+      inputRef={(r) => {
         _ref(r);
         externalInputRef(r);
       }}
       disabled={disabled}
-      inputClassName={cn(
-        classes.input,
-        correctness && correctness.label,
-        disabled && 'disabled',
-        error && 'error'
-      )}
+      inputClassName={cn(classes.input, correctness && correctness.label, disabled && 'disabled', error && 'error')}
       inputStyle={{
         minWidth: barWidth,
         textAlign: 'center',
@@ -78,7 +73,7 @@ export const MarkLabel = props => {
         boxSizing: 'border-box',
         paddingLeft: 0,
         paddingRight: 0,
-        ...extraStyle
+        ...extraStyle,
       }}
       value={label}
       style={{
@@ -88,7 +83,7 @@ export const MarkLabel = props => {
         left: 0,
         minWidth: barWidth,
         transformOrigin: 'left',
-        transform: `rotate(${rotate}deg)`
+        transform: `rotate(${rotate}deg)`,
       }}
       onChange={onChange}
       onBlur={onChangeProp}
@@ -107,8 +102,8 @@ MarkLabel.propTypes = {
   rotate: PropTypes.number,
   correctness: PropTypes.shape({
     value: PropTypes.string,
-    label: PropTypes.string
-  })
+    label: PropTypes.string,
+  }),
 };
 
 export default withStyles(styles)(MarkLabel);

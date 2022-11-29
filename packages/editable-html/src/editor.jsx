@@ -25,21 +25,21 @@ const defaultToolbarOpts = {
   alignment: 'left',
   alwaysVisible: false,
   showDone: true,
-  doneOn: 'blur'
+  doneOn: 'blur',
 };
 
 const defaultResponseAreaProps = {
   options: {},
   respAreaToolbar: () => {},
-  onHandleAreaChange: () => {}
+  onHandleAreaChange: () => {},
 };
 
 const defaultLanguageCharactersProps = [];
 
-const createToolbarOpts = toolbarOpts => {
+const createToolbarOpts = (toolbarOpts) => {
   return {
     ...defaultToolbarOpts,
-    ...toolbarOpts
+    ...toolbarOpts,
   };
 };
 
@@ -58,7 +58,7 @@ export class Editor extends React.Component {
     disableImageAlignmentButtons: PropTypes.bool,
     uploadSoundSupport: PropTypes.shape({
       add: PropTypes.func,
-      delete: PropTypes.func
+      delete: PropTypes.func,
     }),
     charactersLimit: PropTypes.number,
     width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -76,40 +76,33 @@ export class Editor extends React.Component {
     pluginProps: PropTypes.any,
     placeholder: PropTypes.string,
     responseAreaProps: PropTypes.shape({
-      type: PropTypes.oneOf([
-        'explicit-constructed-response',
-        'inline-dropdown',
-        'drag-in-the-blank'
-      ]),
+      type: PropTypes.oneOf(['explicit-constructed-response', 'inline-dropdown', 'drag-in-the-blank']),
       options: PropTypes.object,
       respAreaToolbar: PropTypes.func,
-      onHandleAreaChange: PropTypes.func
+      onHandleAreaChange: PropTypes.func,
     }),
     languageCharactersProps: PropTypes.arrayOf(
       PropTypes.shape({
         language: PropTypes.string,
         characterIcon: PropTypes.string,
-        characters: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string))
-      })
+        characters: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)),
+      }),
     ),
     toolbarOpts: PropTypes.shape({
       position: PropTypes.oneOf(['bottom', 'top']),
       alignment: PropTypes.oneOf(['left', 'right']),
       alwaysVisible: PropTypes.bool,
       showDone: PropTypes.bool,
-      doneOn: PropTypes.string
+      doneOn: PropTypes.string,
     }),
-    activePlugins: PropTypes.arrayOf(values => {
-      const allValid = values.every(v => ALL_PLUGINS.includes(v));
+    activePlugins: PropTypes.arrayOf((values) => {
+      const allValid = values.every((v) => ALL_PLUGINS.includes(v));
 
-      return (
-        !allValid &&
-        new Error(`Invalid values: ${values}, values must be one of [${ALL_PLUGINS.join(',')}]`)
-      );
+      return !allValid && new Error(`Invalid values: ${values}, values must be one of [${ALL_PLUGINS.join(',')}]`);
     }),
     className: PropTypes.string,
     maxImageWidth: PropTypes.number,
-    maxImageHeight: PropTypes.number
+    maxImageHeight: PropTypes.number,
   };
 
   static defaultProps = {
@@ -119,14 +112,14 @@ export class Editor extends React.Component {
     onKeyDown: () => {},
     toolbarOpts: defaultToolbarOpts,
     responseAreaProps: defaultResponseAreaProps,
-    languageCharactersProps: defaultLanguageCharactersProps
+    languageCharactersProps: defaultLanguageCharactersProps,
   };
 
   constructor(props) {
     super(props);
     this.state = {
       value: props.value,
-      toolbarOpts: createToolbarOpts(props.toolbarOpts)
+      toolbarOpts: createToolbarOpts(props.toolbarOpts),
     };
 
     this.onResize = () => {
@@ -136,17 +129,17 @@ export class Editor extends React.Component {
     this.handlePlugins(this.props);
   }
 
-  handlePlugins = props => {
+  handlePlugins = (props) => {
     const normalizedResponseAreaProps = {
       ...defaultResponseAreaProps,
-      ...props.responseAreaProps
+      ...props.responseAreaProps,
     };
 
     this.plugins = buildPlugins(props.activePlugins, {
       math: {
         onClick: this.onMathClick,
         onFocus: this.onPluginFocus,
-        onBlur: this.onPluginBlur
+        onBlur: this.onPluginBlur,
       },
       image: {
         disableImageAlignmentButtons: props.disableImageAlignmentButtons,
@@ -154,13 +147,13 @@ export class Editor extends React.Component {
           props.imageSupport &&
           props.imageSupport.delete &&
           ((src, done) => {
-            props.imageSupport.delete(src, e => {
+            props.imageSupport.delete(src, (e) => {
               done(e, this.state.value);
             });
           }),
         insertImageRequested:
           props.imageSupport &&
-          (getHandler => {
+          ((getHandler) => {
             /**
              * The handler is the object through which the outer context
              * communicates file upload events like: fileChosen, cancel, progress
@@ -171,7 +164,7 @@ export class Editor extends React.Component {
         onFocus: this.onPluginFocus,
         onBlur: this.onPluginBlur,
         maxImageWidth: this.props.maxImageWidth,
-        maxImageHeight: this.props.maxImageHeight
+        maxImageHeight: this.props.maxImageHeight,
       },
       toolbar: {
         /**
@@ -195,7 +188,7 @@ export class Editor extends React.Component {
           } else {
             this.onEditingDone();
           }
-        }
+        },
       },
       table: {
         onFocus: () => {
@@ -205,7 +198,7 @@ export class Editor extends React.Component {
         onBlur: () => {
           log('[table:onBlur]...');
           this.onPluginBlur();
-        }
+        },
       },
       responseArea: {
         type: normalizedResponseAreaProps.type,
@@ -221,15 +214,15 @@ export class Editor extends React.Component {
         onBlur: () => {
           log('[table:onBlur]...');
           this.onPluginBlur();
-        }
+        },
       },
       languageCharacters: props.languageCharactersProps,
       media: {
         focus: this.focus,
         createChange: () => this.state.value.change(),
         onChange: this.onChange,
-        uploadSoundSupport: props.uploadSoundSupport
-      }
+        uploadSoundSupport: props.uploadSoundSupport,
+      },
     });
   };
 
@@ -242,9 +235,7 @@ export class Editor extends React.Component {
     if (this.editor && this.props.autoFocus) {
       Promise.resolve().then(() => {
         if (this.editor) {
-          const editorDOM = document.querySelector(
-            `[data-key="${this.editor.value.document.key}"]`
-          );
+          const editorDOM = document.querySelector(`[data-key="${this.editor.value.document.key}"]`);
 
           this.editor.focus();
 
@@ -262,7 +253,7 @@ export class Editor extends React.Component {
 
     if (!isEqual(newToolbarOpts, toolbarOpts)) {
       this.setState({
-        toolbarOpts: newToolbarOpts
+        toolbarOpts: newToolbarOpts,
       });
     }
 
@@ -276,13 +267,13 @@ export class Editor extends React.Component {
     // so we increase the width to at least 2px in order for the user to see it
     const zeroWidthEls = document.querySelectorAll('[data-slate-zero-width="z"]');
 
-    Array.from(zeroWidthEls).forEach(el => {
+    Array.from(zeroWidthEls).forEach((el) => {
       el.style.minWidth = '2px';
       el.style.display = 'inline-block';
     });
   }
 
-  onPluginBlur = e => {
+  onPluginBlur = (e) => {
     log('[onPluginBlur]', e && e.relatedTarget);
     const target = e && e.relatedTarget;
 
@@ -293,7 +284,7 @@ export class Editor extends React.Component {
     });
   };
 
-  onPluginFocus = e => {
+  onPluginFocus = (e) => {
     log('[onPluginFocus]', e && e.target);
     const target = e && e.target;
     if (target) {
@@ -308,8 +299,8 @@ export class Editor extends React.Component {
     this.stashValue();
   };
 
-  onMathClick = node => {
-    this.editor.change(c => c.collapseToStartOf(node));
+  onMathClick = (node) => {
+    this.editor.change((c) => c.collapseToStartOf(node));
     this.setState({ selectedNode: node });
   };
 
@@ -328,10 +319,10 @@ export class Editor extends React.Component {
   }
 
   // Allowing time for onChange to take effect if it is called
-  handleBlur = resolve => {
+  handleBlur = (resolve) => {
     const { nonEmpty } = this.props;
     const {
-      toolbarOpts: { doneOn }
+      toolbarOpts: { doneOn },
     } = this.state;
 
     this.setState({ toolbarInFocus: false, focusedNode: null });
@@ -353,7 +344,7 @@ export class Editor extends React.Component {
     }
   };
 
-  onBlur = event => {
+  onBlur = (event) => {
     log('[onBlur]');
     const target = event.relatedTarget;
 
@@ -361,16 +352,16 @@ export class Editor extends React.Component {
 
     log('[onBlur] node: ', node);
 
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       this.setState(
         { preBlurValue: this.state.value, focusedNode: !node ? null : node },
-        this.handleBlur.bind(this, resolve)
+        this.handleBlur.bind(this, resolve),
       );
       this.props.onBlur(event);
     });
   };
 
-  handleDomBlur = e => {
+  handleDomBlur = (e) => {
     const editorDOM = document.querySelector(`[data-key="${this.state.value.document.key}"]`);
 
     setTimeout(() => {
@@ -380,13 +371,10 @@ export class Editor extends React.Component {
         return;
       }
 
-      const editorElement =
-        !editorDOM || document.activeElement.closest(`[class*="${editorDOM.className}"]`);
+      const editorElement = !editorDOM || document.activeElement.closest(`[class*="${editorDOM.className}"]`);
       const toolbarElement =
-        !this.toolbarRef ||
-        document.activeElement.closest(`[class*="${this.toolbarRef.className}"]`);
-      const isInCurrentComponent =
-        this.wrapperRef.contains(editorElement) || this.wrapperRef.contains(toolbarElement);
+        !this.toolbarRef || document.activeElement.closest(`[class*="${this.toolbarRef.className}"]`);
+      const isInCurrentComponent = this.wrapperRef.contains(editorElement) || this.wrapperRef.contains(toolbarElement);
 
       if (!isInCurrentComponent) {
         editorDOM.removeEventListener('blur', this.handleDomBlur);
@@ -406,7 +394,7 @@ export class Editor extends React.Component {
    * Note: The use of promises has been causing issues with MathQuill
    * */
   onFocus = () =>
-    new Promise(resolve => {
+    new Promise((resolve) => {
       const editorDOM = document.querySelector(`[data-key="${this.state.value.document.key}"]`);
 
       log('[onFocus]', document.activeElement);
@@ -454,7 +442,7 @@ export class Editor extends React.Component {
   /**
    * Reset the value if the user didn't click done.
    */
-  resetValue = force => {
+  resetValue = (force) => {
     const { value, focusedNode } = this.state;
 
     const stopReset = this.plugins.reduce((s, p) => {
@@ -470,7 +458,7 @@ export class Editor extends React.Component {
       const newValue = Value.fromJSON(this.state.stashedValue.toJSON());
 
       log('newValue: ', newValue.document);
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         setTimeout(() => {
           this.setState({ value: newValue, stashedValue: null }, () => {
             log('value now: ', this.state.value.document.toJSON());
@@ -489,12 +477,7 @@ export class Editor extends React.Component {
     const { value } = change;
     const { charactersLimit } = this.props;
 
-    if (
-      value &&
-      value.document &&
-      value.document.text &&
-      value.document.text.length > charactersLimit
-    ) {
+    if (value && value.document && value.document.text && value.document.text.length > charactersLimit) {
       return;
     }
 
@@ -519,12 +502,12 @@ export class Editor extends React.Component {
     if (!props.value.document.equals(this.props.value.document)) {
       this.setState({
         focus: false,
-        value: props.value
+        value: props.value,
       });
     }
   }
 
-  valueToSize = v => {
+  valueToSize = (v) => {
     if (!v) {
       return;
     }
@@ -553,11 +536,11 @@ export class Editor extends React.Component {
       width: this.valueToSize(width),
       height: this.valueToSize(height),
       minHeight: this.valueToSize(minHeight),
-      maxHeight: this.valueToSize(maxHeight)
+      maxHeight: this.valueToSize(maxHeight),
     };
   }
 
-  validateNode = node => {
+  validateNode = (node) => {
     if (node.object !== 'block') return;
 
     const last = node.nodes.last();
@@ -608,10 +591,7 @@ export class Editor extends React.Component {
     const fragment = transfer.fragment;
     const text = transfer.text;
 
-    if (
-      file &&
-      (file.type === 'image/jpeg' || file.type === 'image/jpg' || file.type === 'image/png')
-    ) {
+    if (file && (file.type === 'image/jpeg' || file.type === 'image/jpg' || file.type === 'image/png')) {
       if (!this.props.imageSupport) {
         return;
       }
@@ -623,8 +603,8 @@ export class Editor extends React.Component {
           isVoid: true,
           data: {
             loading: false,
-            src
-          }
+            src,
+          },
         });
 
         if (dropContext) {
@@ -650,7 +630,7 @@ export class Editor extends React.Component {
         return;
       }
       const {
-        value: { document, selection, startBlock }
+        value: { document, selection, startBlock },
       } = change;
 
       if (startBlock.isVoid) {
@@ -661,13 +641,13 @@ export class Editor extends React.Component {
       const defaultMarks = document.getInsertMarksAtRange(selection);
       const frag = Plain.deserialize(text, {
         defaultBlock,
-        defaultMarks
+        defaultMarks,
       }).document;
       change.insertFragment(frag);
     }
   };
 
-  renderPlaceholder = props => {
+  renderPlaceholder = (props) => {
     const { editor } = props;
     const { document } = editor.value;
 
@@ -685,7 +665,7 @@ export class Editor extends React.Component {
           whiteSpace: 'nowrap',
           opacity: '0.33',
           pointerEvents: 'none',
-          userSelect: 'none'
+          userSelect: 'none',
         }}
       >
         {editor.props.placeholder}
@@ -702,7 +682,7 @@ export class Editor extends React.Component {
       className,
       placeholder,
       pluginProps,
-      onKeyDown
+      onKeyDown,
     } = this.props;
 
     const { value, focusedNode, toolbarOpts } = this.state;
@@ -712,26 +692,22 @@ export class Editor extends React.Component {
     const names = classNames(
       {
         [classes.withBg]: highlightShape,
-        [classes.toolbarOnTop]: toolbarOpts.alwaysVisible && toolbarOpts.position === 'top'
+        [classes.toolbarOnTop]: toolbarOpts.alwaysVisible && toolbarOpts.position === 'top',
       },
-      className
+      className,
     );
 
     return (
-      <div
-        ref={ref => (this.wrapperRef = ref)}
-        style={{ width: sizeStyle.width }}
-        className={names}
-      >
+      <div ref={(ref) => (this.wrapperRef = ref)} style={{ width: sizeStyle.width }} className={names}>
         <SlateEditor
           plugins={this.plugins}
-          innerRef={r => {
+          innerRef={(r) => {
             if (r) {
               this.slateEditor = r;
             }
           }}
-          ref={r => (this.editor = r && this.props.editorRef(r))}
-          toolbarRef={r => {
+          ref={(r) => (this.editor = r && this.props.editorRef(r))}
+          toolbarRef={(r) => {
             if (r) {
               this.toolbarRef = r;
             }
@@ -752,14 +728,14 @@ export class Editor extends React.Component {
           spellCheck={spellCheck}
           className={classNames(
             {
-              [classes.noPadding]: toolbarOpts && toolbarOpts.noBorder
+              [classes.noPadding]: toolbarOpts && toolbarOpts.noBorder,
             },
-            classes.slateEditor
+            classes.slateEditor,
           )}
           style={{
             minHeight: sizeStyle.minHeight,
             height: sizeStyle.height,
-            maxHeight: sizeStyle.maxHeight
+            maxHeight: sizeStyle.maxHeight,
           }}
           pluginProps={pluginProps}
           toolbarOpts={toolbarOpts}
@@ -775,7 +751,7 @@ export class Editor extends React.Component {
 // TODO color - hardcoded gray background and keypad colors will need to change too
 const styles = {
   withBg: {
-    backgroundColor: 'rgba(0,0,0,0.06)'
+    backgroundColor: 'rgba(0,0,0,0.06)',
   },
   slateEditor: {
     fontFamily: 'Roboto, sans-serif',
@@ -785,10 +761,10 @@ const styles = {
       width: '100%',
       borderCollapse: 'collapse',
       color: color.text(),
-      backgroundColor: color.background()
+      backgroundColor: color.background(),
     },
     '& table:not([border="1"]) tr': {
-      borderTop: '1px solid #dfe2e5'
+      borderTop: '1px solid #dfe2e5',
       // TODO perhaps secondary color for background, for now disable
       // '&:nth-child(2n)': {
       //   backgroundColor: '#f6f8fa'
@@ -796,18 +772,18 @@ const styles = {
     },
     '& td, th': {
       padding: '.6em 1em',
-      textAlign: 'center'
+      textAlign: 'center',
     },
     '& table:not([border="1"]) td, th': {
-      border: '1px solid #dfe2e5'
-    }
+      border: '1px solid #dfe2e5',
+    },
   },
   toolbarOnTop: {
-    marginTop: '45px'
+    marginTop: '45px',
   },
   noPadding: {
-    padding: '0 !important'
-  }
+    padding: '0 !important',
+  },
 };
 
 export default withStyles(styles)(Editor);

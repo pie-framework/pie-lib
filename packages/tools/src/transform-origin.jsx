@@ -1,4 +1,4 @@
-const keyWordToPercent = v => {
+const keyWordToPercent = (v) => {
   if (v === 'left' || v === 'top') {
     return 0;
   } else if (v === 'right' || v === 'bottom') {
@@ -22,7 +22,7 @@ const getValue = (s, length) => {
   }
 };
 
-const normalize = a => {
+const normalize = (a) => {
   if (a[0] === 'bottom' || a[0] === 'top' || a[1] === 'left' || a[1] === 'right') {
     return [a[1], a[0]];
   } else {
@@ -40,7 +40,7 @@ export const parse = (rect, value) => {
   if (!value) {
     return {
       x: rect.width / 2,
-      y: rect.height / 2
+      y: rect.height / 2,
     };
   }
   const arr = value.split(' ');

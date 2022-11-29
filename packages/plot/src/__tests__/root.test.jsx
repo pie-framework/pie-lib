@@ -4,41 +4,41 @@ import { Root } from '../root';
 import { select, mouse } from 'd3-selection';
 
 const scaleMock = () => {
-  const fn = jest.fn(n => n);
-  fn.invert = jest.fn(n => n);
+  const fn = jest.fn((n) => n);
+  fn.invert = jest.fn((n) => n);
   return fn;
 };
 
 const graphProps = () => ({
   scale: {
     x: scaleMock(),
-    y: scaleMock()
+    y: scaleMock(),
   },
   snap: {
-    x: jest.fn(n => n),
-    y: jest.fn(n => n)
+    x: jest.fn((n) => n),
+    y: jest.fn((n) => n),
   },
   domain: {
     min: 0,
     max: 1,
-    step: 1
+    step: 1,
   },
   range: {
     min: 0,
     max: 1,
-    step: 1
+    step: 1,
   },
   size: {
     width: 400,
-    height: 400
-  }
+    height: 400,
+  },
 });
 
-const wrapper = props => {
+const wrapper = (props) => {
   props = {
     classes: {},
     graphProps: graphProps(),
-    ...props
+    ...props,
   };
 
   return shallow(<Root {...props}>hi</Root>, { disableLifecycleMethods: true });
@@ -46,7 +46,7 @@ const wrapper = props => {
 
 jest.mock('d3-selection', () => ({
   select: jest.fn(),
-  mouse: jest.fn()
+  mouse: jest.fn(),
 }));
 
 describe('root', () => {
@@ -63,7 +63,7 @@ describe('root', () => {
         it('adds mousemove listener on compenentDidMount', () => {
           const w = wrapper();
           const g = {
-            on: jest.fn()
+            on: jest.fn(),
           };
           select.mockReturnValue(g);
           w.instance().componentDidMount();
@@ -72,7 +72,7 @@ describe('root', () => {
         it('unsets mousemove listener on componentWillUnmount', () => {
           const w = wrapper();
           const g = {
-            on: jest.fn()
+            on: jest.fn(),
           };
           select.mockReturnValue(g);
           w.instance().componentWillUnmount();
@@ -87,7 +87,7 @@ describe('root', () => {
           gp = graphProps();
           w = wrapper({
             onMouseMove,
-            graphProps: gp
+            graphProps: gp,
           });
           mouse.mockReturnValue([0, 0]);
           const g = { _groups: [[[0, 0]]] };

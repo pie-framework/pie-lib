@@ -32,28 +32,28 @@ export const graphPropTypes = {
   range: types.DomainType,
   size: PropTypes.shape({
     width: PropTypes.number.isRequired,
-    height: PropTypes.number.isRequired
+    height: PropTypes.number.isRequired,
   }),
   showLabels: PropTypes.bool,
   showPixelGuides: PropTypes.bool,
   showTitle: PropTypes.bool,
   title: PropTypes.string,
-  tools: PropTypes.array
+  tools: PropTypes.array,
 };
 
-const getMaskSize = size => ({
+const getMaskSize = (size) => ({
   x: -23,
   y: -23,
   width: size.width + 46,
-  height: size.height + 46
+  height: size.height + 46,
 });
 
 export const removeBuildingToolIfCurrentToolDiffers = ({ marks, currentTool }) => {
-  const buildingMark = marks.filter(m => m.building)[0];
+  const buildingMark = marks.filter((m) => m.building)[0];
   let newMarks = cloneDeep(marks);
 
   if (buildingMark && currentTool && buildingMark.type !== currentTool.type) {
-    const index = newMarks.findIndex(m => isEqual(m, buildingMark));
+    const index = newMarks.findIndex((m) => isEqual(m, buildingMark));
 
     if (index >= 0) {
       newMarks.splice(index, 1);
@@ -66,13 +66,13 @@ export const removeBuildingToolIfCurrentToolDiffers = ({ marks, currentTool }) =
 export class Graph extends React.Component {
   static propTypes = {
     ...graphPropTypes,
-    currentTool: PropTypes.object
+    currentTool: PropTypes.object,
   };
 
   static defaultProps = {
     onChangeMarks: () => {},
     disabledLabels: false,
-    disabledTitle: false
+    disabledTitle: false,
   };
 
   state = {};
@@ -83,7 +83,7 @@ export class Graph extends React.Component {
     const { onChangeMarks, marks } = this.props;
     let newMarks = cloneDeep(marks);
 
-    const index = newMarks.findIndex(m => isEqual(m, oldMark));
+    const index = newMarks.findIndex((m) => isEqual(m, oldMark));
 
     if (index >= 0 && !isDuplicatedMark(newMark, marks, oldMark)) {
       newMarks.splice(index, 1, newMark);
@@ -92,9 +92,9 @@ export class Graph extends React.Component {
     }
   };
 
-  completeMark = markData => {
+  completeMark = (markData) => {
     const { currentTool, marks } = this.props;
-    const buildingMark = marks.filter(m => m.building)[0];
+    const buildingMark = marks.filter((m) => m.building)[0];
 
     if (!buildingMark || !currentTool) return;
 
@@ -111,7 +111,7 @@ export class Graph extends React.Component {
       return;
     }
 
-    const index = newMarks.findIndex(m => isEqual(m, existing));
+    const index = newMarks.findIndex((m) => isEqual(m, existing));
 
     if (index >= 0) {
       newMarks.splice(index, 1, update);
@@ -122,15 +122,15 @@ export class Graph extends React.Component {
     }
   };
 
-  getComponent = mark => {
+  getComponent = (mark) => {
     if (!mark) return null;
 
-    const tool = (this.props.tools || []).find(t => t.type === mark.type);
+    const tool = (this.props.tools || []).find((t) => t.type === mark.type);
 
     return (tool && tool.Component) || null;
   };
 
-  onBgClick = point => {
+  onBgClick = (point) => {
     const { x, y } = point;
     const { labelModeEnabled, currentTool, marks } = this.props;
 
@@ -140,7 +140,7 @@ export class Graph extends React.Component {
       return;
     }
 
-    const buildingMark = marks.filter(m => m.building)[0];
+    const buildingMark = marks.filter((m) => m.building)[0];
     let updatedMark;
 
     // if the building mark has a different type, we just replace it
@@ -173,7 +173,7 @@ export class Graph extends React.Component {
       showTitle,
       titlePlaceholder,
       onChangeLabels,
-      onChangeTitle
+      onChangeTitle,
     } = this.props;
     let { marks } = this.props;
 
@@ -185,7 +185,7 @@ export class Graph extends React.Component {
 
     return (
       <Root
-        rootRef={r => (this.rootNode = r)}
+        rootRef={(r) => (this.rootNode = r)}
         disabledTitle={disabledTitle}
         disabledLabels={disabledLabels}
         labels={labels}
@@ -201,9 +201,7 @@ export class Graph extends React.Component {
       >
         <g
           transform={
-            domain && domain.padding && domain.range
-              ? `translate(${domain.padding}, ${range.padding})`
-              : undefined
+            domain && domain.padding && domain.range ? `translate(${domain.padding}, ${range.padding})` : undefined
           }
         >
           <Grid {...common} />
@@ -250,7 +248,7 @@ export class Graph extends React.Component {
             })}
 
             <foreignObject
-              ref={labelNode => (this.labelNode = labelNode)}
+              ref={(labelNode) => (this.labelNode = labelNode)}
               x="0"
               y="0"
               {...size}

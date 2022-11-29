@@ -6,12 +6,12 @@ import { ToggleBar } from '../toggle-bar';
 describe('ToggleBar', () => {
   let w;
   let onChange = jest.fn();
-  const wrapper = extras => {
+  const wrapper = (extras) => {
     const defaults = {
       classes: {},
       className: 'className',
       onChange,
-      options: ['one', 'two']
+      options: ['one', 'two'],
     };
     const props = { ...defaults, ...extras };
     return shallow(<ToggleBar {...props} />);

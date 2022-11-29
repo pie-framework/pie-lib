@@ -10,7 +10,7 @@ export const baseSet = [
   [four, five, six, multiply],
   [one, two, three, minus],
   [zero, decimalPoint, comma, plus],
-  [nav.left, nav.right, edit.del, equals]
+  [nav.left, nav.right, edit.del, equals],
 ];
 
 import * as comparison from './comparison';

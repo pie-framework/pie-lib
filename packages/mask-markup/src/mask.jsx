@@ -4,12 +4,12 @@ import get from 'lodash/get';
 import { withStyles } from '@material-ui/core/styles';
 import { MARK_TAGS } from './serialization';
 
-const Paragraph = withStyles(theme => ({
+const Paragraph = withStyles((theme) => ({
   para: {
     paddingTop: 2 * theme.spacing.unit,
-    paddingBottom: 2 * theme.spacing.unit
-  }
-}))(props => <div className={props.classes.para}>{props.children}</div>);
+    paddingBottom: 2 * theme.spacing.unit,
+  },
+}))((props) => <div className={props.classes.para}>{props.children}</div>);
 
 const restrictWhitespaceTypes = ['tbody', 'tr'];
 
@@ -24,8 +24,8 @@ const addText = (parentNode, text) => {
   }
 };
 
-const getMark = n => {
-  const mark = n.leaves.find(leave => get(leave, 'marks', []).length);
+const getMark = (n) => {
+  const mark = n.leaves.find((leave) => get(leave, 'marks', []).length);
 
   if (mark) {
     return mark.marks[0];
@@ -48,9 +48,9 @@ export const renderChildren = (layout, value, onChange, rootRenderChildren, pare
       children.push(
         <span
           dangerouslySetInnerHTML={{
-            __html: `<math displaystyle="true">${n.nodes[0].innerHTML}</math>`
+            __html: `<math displaystyle="true">${n.nodes[0].innerHTML}</math>`,
           }}
-        />
+        />,
       );
       return children;
     }
@@ -95,7 +95,7 @@ export const renderChildren = (layout, value, onChange, rootRenderChildren, pare
           children.push(
             <Tag key={key} {...n.data.attributes}>
               {subNodes}
-            </Tag>
+            </Tag>,
           );
         } else {
           children.push(<Tag key={key} {...n.data.attributes} />);
@@ -108,9 +108,9 @@ export const renderChildren = (layout, value, onChange, rootRenderChildren, pare
 
 const MaskContainer = withStyles(() => ({
   main: {
-    display: 'initial'
-  }
-}))(props => <div className={props.classes.main}>{props.children}</div>);
+    display: 'initial',
+  },
+}))((props) => <div className={props.classes.main}>{props.children}</div>);
 
 /**
  * Renders a layout that uses the slate.js Value model structure.
@@ -120,7 +120,7 @@ export default class Mask extends React.Component {
     renderChildren: PropTypes.func,
     layout: PropTypes.object,
     value: PropTypes.object,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
   };
 
   handleChange = (id, value) => {

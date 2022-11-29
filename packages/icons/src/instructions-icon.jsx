@@ -6,7 +6,7 @@ const Lines = () => {
     fill: 'none',
     stroke: '#BCE2FF',
     strokeWidth: 2,
-    strokeMiterlimit: 10
+    strokeMiterlimit: 10,
   };
 
   return (
@@ -28,7 +28,7 @@ const Root = ({ children, size }) => (
 
 Root.propTypes = {
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
-  size: PropTypes.number
+  size: PropTypes.number,
 };
 
 const GreyInfo = () => {
@@ -42,7 +42,7 @@ const GreyInfo = () => {
           stroke: '#E6E3E0',
           strokeWidth: 0.75,
           strokeLinejoin: 'round',
-          strokeMiterlimit: 10
+          strokeMiterlimit: 10,
         }}
         width="4.1"
         height="4.1"
@@ -53,7 +53,7 @@ const GreyInfo = () => {
           stroke: '#E6E3E0',
           strokeWidth: 0.75,
           strokeLinejoin: 'round',
-          strokeMiterlimit: 10
+          strokeMiterlimit: 10,
         }}
         points="-119.8,150.4 -119.8,142.2 -125,142.2 -125,144.9 -122.6,144.9 -122.6,150.4 -125.6,150.4 
                   -125.6,153.2 -116.8,153.2 -116.8,150.4        "
@@ -67,7 +67,7 @@ const GreyInfo = () => {
           strokeWidth: 0.5,
           strokeLinecap: 'round',
           strokeLinejoin: 'round',
-          strokeMiterlimit: 10
+          strokeMiterlimit: 10,
         }}
         width="4.1"
         height="4.1"
@@ -80,7 +80,7 @@ const GreyInfo = () => {
           strokeWidth: 0.5,
           strokeLinecap: 'round',
           strokeLinejoin: 'round',
-          strokeMiterlimit: 10
+          strokeMiterlimit: 10,
         }}
         points="-120.6,149.8 -120.6,141.5 -125.8,141.5 -125.8,144.3 -123.3,144.3 -123.3,149.8 -126.4,149.8 
                   -126.4,152.5 -117.6,152.5 -117.6,149.8        "
@@ -105,7 +105,7 @@ const BlueInfo = () => (
         stroke: '#E6E3E0',
         strokeWidth: 0.75,
         strokeLinejoin: 'round',
-        strokeMiterlimit: 10
+        strokeMiterlimit: 10,
       }}
       width="4.1"
       height="4.1"
@@ -116,7 +116,7 @@ const BlueInfo = () => (
         stroke: '#E6E3E0',
         strokeWidth: 0.75,
         strokeLinejoin: 'round',
-        strokeMiterlimit: 10
+        strokeMiterlimit: 10,
       }}
       points="-119.8,150.4 -119.8,142.2 -125,142.2 -125,144.9 -122.6,144.9 -122.6,150.4 -125.6,150.4 
                   -125.6,153.2 -116.8,153.2 -116.8,150.4        "
@@ -130,7 +130,7 @@ const BlueInfo = () => (
         strokeWidth: 0.5,
         strokeLinecap: 'round',
         strokeLinejoin: 'round',
-        strokeMiterlimit: 10
+        strokeMiterlimit: 10,
       }}
       width="4.1"
       height="4.1"
@@ -142,7 +142,7 @@ const BlueInfo = () => (
         strokeWidth: 0.5,
         strokeLinecap: 'round',
         strokeLinejoin: 'round',
-        strokeMiterlimit: 10
+        strokeMiterlimit: 10,
       }}
       points="-120.6,149.8 -120.6,141.5 -125.8,141.5 -125.8,144.3 -123.3,144.3 -123.3,149.8 -126.4,149.8 
                   -126.4,152.5 -117.6,152.5 -117.6,149.8        "
@@ -181,9 +181,9 @@ export default class Instructions extends React.Component {
 }
 
 Instructions.propTypes = {
-  open: PropTypes.bool
+  open: PropTypes.bool,
 };
 
 Instructions.defaultProps = {
-  open: false
+  open: false,
 };

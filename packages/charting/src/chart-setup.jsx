@@ -7,7 +7,7 @@ import ChartType from './chart-type';
 import { NumberTextFieldCustom } from '@pie-lib/config-ui';
 import { AlertDialog } from '@pie-lib/config-ui';
 
-const ConfigureChartPanel = props => {
+const ConfigureChartPanel = (props) => {
   const { classes, model, onChange, chartDimensions, gridValues = {}, labelValues = {} } = props;
   const [alertDialog, setAlertDialog] = useState(false);
   const [open, setOpen] = useState(false);
@@ -22,18 +22,16 @@ const ConfigureChartPanel = props => {
   const widthConstraints = {
     min: width?.min ? Math.max(50, width.min) : 50,
     max: width?.max ? Math.min(700, width.max) : 700,
-    step: width?.step >= 1 ? Math.min(200, width.step) : 20
+    step: width?.step >= 1 ? Math.min(200, width.step) : 20,
   };
   const heightConstraints = {
     min: height?.min ? Math.max(400, height.min) : 400,
     max: height?.max ? Math.min(700, height.max) : 700,
-    step: height?.step >= 1 ? Math.min(200, height.step) : 20
+    step: height?.step >= 1 ? Math.min(200, height.step) : 20,
   };
 
-  const gridOptions =
-    gridValues && gridValues.range ? { customValues: gridValues.range } : { min: 0, max: 10000 };
-  const labelOptions =
-    labelValues && labelValues.range ? { customValues: labelValues.range } : { min: 0, max: 10000 };
+  const gridOptions = gridValues && gridValues.range ? { customValues: gridValues.range } : { min: 0, max: 10000 };
+  const labelOptions = labelValues && labelValues.range ? { customValues: labelValues.range } : { min: 0, max: 10000 };
 
   const stepConfig = (
     <div className={classes.rowView}>
@@ -59,15 +57,15 @@ const ConfigureChartPanel = props => {
   const handleAlertDialog = (open, callback) => {
     setAlertDialog(
       {
-        alertDialog: open
+        alertDialog: open,
       },
-      callback
+      callback,
     );
     setOpen(open);
   };
 
-  const resetValues = data =>
-    data.forEach(d => {
+  const resetValues = (data) =>
+    data.forEach((d) => {
       const remainder = d.value - range.step * Math.floor(d.value / range.step);
 
       if (d.value > range.max || remainder !== 0) {
@@ -82,7 +80,7 @@ const ConfigureChartPanel = props => {
     resetValues(correctAnswer.data);
   };
 
-  const rangeProps = chartType => {
+  const rangeProps = (chartType) => {
     return chartType.includes('Plot') ? { min: 3, max: 10 } : { min: 0.05, max: 10000 };
   };
 
@@ -132,13 +130,12 @@ const ConfigureChartPanel = props => {
         onClose: () => {
           range[rangeKey] = resetValue;
           handleAlertDialog(false);
-        }
+        },
       });
     }
   }, [open]);
 
-  const isValidPlot =
-    range.step === 1 && range.labelStep === 1 && 3 <= range.max && range.max <= 10;
+  const isValidPlot = range.step === 1 && range.labelStep === 1 && 3 <= range.max && range.max <= 10;
 
   const getPlotConfiguration = () => {
     rangeProps.min = 3;
@@ -151,15 +148,14 @@ const ConfigureChartPanel = props => {
     onChange({ ...model, range });
   };
 
-  const onChartTypeChange = chartType => {
+  const onChartTypeChange = (chartType) => {
     if (chartType.includes('Plot')) {
       // The selected chart type does not support the current chart configuration
       if (!isValidPlot) {
         setAlertDialog({
           open: true,
           title: 'Warning',
-          text:
-            'The selected chart type does not support the current chart configuration. Reset chart configuration?',
+          text: 'The selected chart type does not support the current chart configuration. Reset chart configuration?',
           onConfirm: () => {
             getPlotConfiguration();
             removeOutOfRangeValues();
@@ -167,7 +163,7 @@ const ConfigureChartPanel = props => {
           },
           onClose: () => {
             handleAlertDialog(false);
-          }
+          },
         });
 
         return;
@@ -189,7 +185,7 @@ const ConfigureChartPanel = props => {
       <Typography variant={'subtitle1'}>Configure Chart</Typography>
       <div className={classes.content}>
         <div className={classes.rowView}>
-          <ChartType value={model.chartType} onChange={e => onChartTypeChange(e.target.value)} />
+          <ChartType value={model.chartType} onChange={(e) => onChartTypeChange(e.target.value)} />
           <NumberTextFieldCustom
             className={classes.mediumTextField}
             label="Max Value"
@@ -252,54 +248,54 @@ ConfigureChartPanel.propTypes = {
   onChange: PropTypes.func,
   range: PropTypes.object,
   chartDimension: PropTypes.object,
-  size: PropTypes.object
+  size: PropTypes.object,
 };
 
-const styles = theme => ({
+const styles = (theme) => ({
   wrapper: {
-    width: '450px'
+    width: '450px',
   },
   content: {
     display: 'flex',
     flexDirection: 'column',
     width: '100%',
-    marginTop: '24px'
+    marginTop: '24px',
   },
   columnView: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   rowView: {
     display: 'flex',
     justifyContent: 'space-around',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   textField: {
     width: '130px',
-    margin: `${theme.spacing.unit}px ${theme.spacing.unit / 2}px`
+    margin: `${theme.spacing.unit}px ${theme.spacing.unit / 2}px`,
   },
   mediumTextField: {
     width: '160px',
-    margin: `${theme.spacing.unit}px ${theme.spacing.unit / 2}px`
+    margin: `${theme.spacing.unit}px ${theme.spacing.unit / 2}px`,
   },
   largeTextField: {
     width: '230px',
-    margin: `${theme.spacing.unit}px ${theme.spacing.unit / 2}px`
+    margin: `${theme.spacing.unit}px ${theme.spacing.unit / 2}px`,
   },
   text: {
     fontStyle: 'italic',
-    margin: `${theme.spacing.unit}px 0`
+    margin: `${theme.spacing.unit}px 0`,
   },
   dimensions: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    margin: '24px 0px'
+    margin: '24px 0px',
   },
   disabled: {
-    color: color.disabled()
-  }
+    color: color.disabled(),
+  },
 });
 
 export default withStyles(styles)(ConfigureChartPanel);

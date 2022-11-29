@@ -9,24 +9,24 @@ const schema = {
   document: {
     nodes: [
       {
-        match: [{ type: 'paragraph' }, { type: 'image' }]
-      }
-    ]
+        match: [{ type: 'paragraph' }, { type: 'image' }],
+      },
+    ],
   },
   blocks: {
     paragraph: {
       nodes: [
         {
-          match: [{ type: 'image' }, { object: 'text' }]
-        }
-      ]
-    }
+          match: [{ type: 'image' }, { object: 'text' }],
+        },
+      ],
+    },
   },
   inlines: {
     image: {
-      isVoid: true
-    }
-  }
+      isVoid: true,
+    },
+  },
 };
 
 // const raw = new Schema();
@@ -71,7 +71,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: Value.fromJSON(data, { normalize: false })
+      value: Value.fromJSON(data, { normalize: false }),
     };
     console.log('this.state.value', this.state.value);
     this.plugins = [ImgPlugin()];
@@ -84,7 +84,7 @@ class App extends React.Component {
         plugins={this.plugins}
         schema={schema}
         renderNode={this.renderNode}
-        onChange={change => this.setState({ value: change.value })}
+        onChange={(change) => this.setState({ value: change.value })}
       />
     );
   }

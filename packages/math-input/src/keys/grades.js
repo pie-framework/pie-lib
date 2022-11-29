@@ -20,19 +20,13 @@ import * as edit from './edit';
 const hs = [
   [fractions.blankOverBlank, misc.percentage, vars.x, exponent.squared, exponent.squareRoot],
   [operators.circleDot, vars.y, subSup.subscript, exponent.xToPowerOfN, exponent.nthRoot],
-  [
-    misc.plusMinus,
-    comparison.lessThan,
-    comparison.greaterThan,
-    comparison.lessThanEqual,
-    comparison.greaterThanEqual
-  ],
+  [misc.plusMinus, comparison.lessThan, comparison.greaterThan, comparison.lessThanEqual, comparison.greaterThanEqual],
   [constants.pi, vars.theta, misc.parenthesis, misc.brackets, misc.absValue],
-  [misc.notEqual, trigonometry.sin, trigonometry.cos, trigonometry.tan, geometry.degree]
+  [misc.notEqual, trigonometry.sin, trigonometry.cos, trigonometry.tan, geometry.degree],
 ];
 
 const advancedAlgebra = (() => {
-  const out = [...hs.map(arr => [...arr])];
+  const out = [...hs.map((arr) => [...arr])];
 
   out[0].push({ name: 'i', latex: 'i', write: 'i' });
   out[1].push(log.log);
@@ -43,7 +37,7 @@ const advancedAlgebra = (() => {
 })();
 
 const statisticsSet = (() => {
-  const out = [...hs.map(arr => [...arr])];
+  const out = [...hs.map((arr) => [...arr])];
   out[0].push(statistics.mu);
   out[1].push(statistics.xBar);
   out[2].push(statistics.yBar);
@@ -54,26 +48,26 @@ const statisticsSet = (() => {
 
 export const gradeSets = [
   {
-    predicate: n => n >= 3 && n <= 5,
+    predicate: (n) => n >= 3 && n <= 5,
     set: [
       [comparison.lessThan, comparison.greaterThan],
       [fractions.xOverBlank, fractions.xBlankBlank],
-      [vars.x, logic.longDivision]
-    ]
+      [vars.x, logic.longDivision],
+    ],
   },
   {
-    predicate: n => n >= 6 && n <= 7,
+    predicate: (n) => n >= 6 && n <= 7,
     set: [
       [geometry.degree, comparison.lessThan, comparison.greaterThan],
       [operators.circleDot, comparison.lessThanEqual, comparison.greaterThanEqual],
       [vars.x, vars.y, exponent.squared, exponent.xToPowerOfN],
       [misc.plusMinus, fractions.xOverBlank, fractions.xBlankBlank, exponent.squareRoot],
-      [constants.pi, misc.parenthesis, misc.absValue, exponent.nthRoot]
-    ]
+      [constants.pi, misc.parenthesis, misc.absValue, exponent.nthRoot],
+    ],
   },
   {
-    predicate: n => n >= 8 || n === 'HS',
-    set: hs
+    predicate: (n) => n >= 8 || n === 'HS',
+    set: hs,
   },
   {
     predicate: 'non-negative-integers',
@@ -82,8 +76,8 @@ export const gradeSets = [
       [digits.four, digits.five, digits.six],
       [digits.one, digits.two, digits.three],
       [digits.zero, { name: '', latex: '', write: '' }, { name: '', latex: '', write: '' }],
-      [nav.left, nav.right, edit.del]
-    ]
+      [nav.left, nav.right, edit.del],
+    ],
   },
   {
     predicate: 'integers',
@@ -92,8 +86,8 @@ export const gradeSets = [
       [digits.four, digits.five, digits.six],
       [digits.one, digits.two, digits.three],
       [digits.zero, { name: '', latex: '', write: '' }, basicOperators.minus],
-      [nav.left, nav.right, edit.del]
-    ]
+      [nav.left, nav.right, edit.del],
+    ],
   },
   {
     predicate: 'decimals',
@@ -102,8 +96,8 @@ export const gradeSets = [
       [digits.four, digits.five, digits.six],
       [digits.one, digits.two, digits.three],
       [digits.zero, digits.decimalPoint, basicOperators.minus],
-      [nav.left, nav.right, edit.del]
-    ]
+      [nav.left, nav.right, edit.del],
+    ],
   },
   {
     predicate: 'fractions',
@@ -112,8 +106,8 @@ export const gradeSets = [
       [digits.four, digits.five, digits.six],
       [digits.one, digits.two, digits.three],
       [digits.zero, fractions.blankOverBlank, basicOperators.minus],
-      [nav.left, nav.right, edit.del]
-    ]
+      [nav.left, nav.right, edit.del],
+    ],
   },
   {
     predicate: 'geometry',
@@ -124,7 +118,7 @@ export const gradeSets = [
         geometry.primeArcminute,
         geometry.doublePrimeArcSecond,
         geometry.congruentTo,
-        geometry.similarTo
+        geometry.similarTo,
       ],
       [
         operators.circleDot,
@@ -132,33 +126,19 @@ export const gradeSets = [
         geometry.measureOfAngle,
         geometry.triangle,
         geometry.notCongruentTo,
-        misc.notSimilar
+        misc.notSimilar,
       ],
-      [
-        trigonometry.sin,
-        trigonometry.cos,
-        trigonometry.tan,
-        constants.pi,
-        exponent.squareRoot,
-        exponent.nthRoot
-      ],
-      [
-        trigonometry.csc,
-        trigonometry.sec,
-        trigonometry.cot,
-        vars.theta,
-        subSup.subscript,
-        exponent.xToPowerOfN
-      ],
+      [trigonometry.sin, trigonometry.cos, trigonometry.tan, constants.pi, exponent.squareRoot, exponent.nthRoot],
+      [trigonometry.csc, trigonometry.sec, trigonometry.cot, vars.theta, subSup.subscript, exponent.xToPowerOfN],
       [
         geometry.overline,
         geometry.overRightArrow,
         geometry.overLeftRightArrow,
         geometry.overArc,
         geometry.perpindicular,
-        geometry.parallel
-      ]
-    ]
+        geometry.parallel,
+      ],
+    ],
   },
   // {
   //   predicate: 'miscellaneous',
@@ -252,11 +232,11 @@ export const gradeSets = [
   // },
   {
     predicate: 'advanced-algebra',
-    set: advancedAlgebra
+    set: advancedAlgebra,
   },
   {
     predicate: 'statistics',
-    set: statisticsSet
+    set: statisticsSet,
   },
   {
     predicate: 'item-authoring',
@@ -271,7 +251,7 @@ export const gradeSets = [
         geometry.overline,
         geometry.overRightArrow,
         geometry.overLeftRightArrow,
-        log.log
+        log.log,
       ],
       [
         basicOperators.multiply,
@@ -283,7 +263,7 @@ export const gradeSets = [
         geometry.perpindicular,
         geometry.parallel,
         geometry.overArc,
-        log.logSubscript
+        log.logSubscript,
       ],
       [
         misc.plusMinus,
@@ -295,7 +275,7 @@ export const gradeSets = [
         geometry.rightArrow,
         geometry.triangle,
         geometry.square,
-        log.ln
+        log.ln,
       ],
       [
         misc.notEqual,
@@ -307,7 +287,7 @@ export const gradeSets = [
         geometry.leftrightArrow,
         trigonometry.sin,
         trigonometry.cos,
-        trigonometry.tan
+        trigonometry.tan,
       ],
       [
         comparison.lessThanEqual,
@@ -319,20 +299,20 @@ export const gradeSets = [
         { name: '', latex: '', write: '' },
         trigonometry.csc,
         trigonometry.sec,
-        trigonometry.cot
-      ]
-    ]
-  }
+        trigonometry.cot,
+      ],
+    ],
+  },
 ];
 
-export const keysForGrade = n => {
+export const keysForGrade = (n) => {
   const number = parseInt(n, 10);
   n = isNaN(number) ? n : number;
   if (!n) {
     return [];
   }
 
-  const match = gradeSets.find(gs => {
+  const match = gradeSets.find((gs) => {
     if (typeof gs.predicate === 'string') {
       return gs.predicate === n;
     } else {
@@ -360,18 +340,14 @@ const ALL_KEYS = [
   ...Object.values(statistics),
   ...Object.values(subSup),
   ...Object.values(trigonometry),
-  ...Object.values(vars)
+  ...Object.values(vars),
 ];
 
-export const normalizeAdditionalKeys = additionalKeys => {
-  return (additionalKeys || []).map(additionalkey => {
+export const normalizeAdditionalKeys = (additionalKeys) => {
+  return (additionalKeys || []).map((additionalkey) => {
     const { latex } = additionalkey;
     const predefinedKey = (ALL_KEYS || []).find(
-      key =>
-        latex === key.latex ||
-        latex === key.write ||
-        latex === key.command ||
-        latex === key.otherNotation
+      (key) => latex === key.latex || latex === key.write || latex === key.command || latex === key.otherNotation,
     );
 
     return !latex ? additionalkey : predefinedKey || additionalkey;

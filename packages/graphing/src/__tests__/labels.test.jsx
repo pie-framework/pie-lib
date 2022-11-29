@@ -6,11 +6,11 @@ import Labels, { getTransform } from '../labels';
 describe('Labels', () => {
   let w;
   let onChange = jest.fn();
-  const wrapper = extras => {
+  const wrapper = (extras) => {
     const defaults = {
       classes: {},
       className: 'className',
-      onChange
+      onChange,
     };
     const props = { ...defaults, ...extras };
     return shallow(<Labels {...props} />);

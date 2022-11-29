@@ -10,12 +10,12 @@ jest.mock('@pie-lib/graphing-utils', () => ({
   buildDataPoints: jest.fn().mockReturnValue([]),
   parabolaFromTwoPoints: jest.fn(() => jest.fn()),
   getAmplitudeAndFreq: jest.fn().mockReturnValue({ freq: 4, amplitude: 1 }),
-  FREQ_DIVIDER: 16
+  FREQ_DIVIDER: 16,
 }));
 
 jest.mock('../../shared/line/with-root-edge', () => ({
   withRootEdge: jest.fn(),
-  rootEdgeComponent: jest.fn()
+  rootEdgeComponent: jest.fn(),
 }));
 describe('Parabola', () => {
   let fnBody;
@@ -38,14 +38,7 @@ describe('Parabola', () => {
 
   it('calls buildDataPoints', () => {
     const { domain } = graphProps;
-    expect(buildDataPoints).toHaveBeenCalledWith(
-      domain.min,
-      domain.max,
-      root,
-      edge,
-      0.25,
-      expect.anything()
-    );
+    expect(buildDataPoints).toHaveBeenCalledWith(domain.min, domain.max, root, edge, 0.25, expect.anything());
   });
 
   it('calls sinY', () => {

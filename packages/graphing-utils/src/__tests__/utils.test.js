@@ -1,11 +1,4 @@
-import {
-  xPoints,
-  sinY,
-  buildDataPoints,
-  pointsToABC,
-  parabola,
-  parabolaFromTwoPoints
-} from '../index';
+import { xPoints, sinY, buildDataPoints, pointsToABC, parabola, parabolaFromTwoPoints } from '../index';
 
 import _ from 'lodash';
 
@@ -32,7 +25,7 @@ describe('utils', () => {
       const v = shift ? shift.vertical : 0;
       it(` sin of ${input} (>${p} ^${v}) = ${expected}`, () => {
         const fn = sinY(amp, freq, shift);
-        const result = Array.isArray(input) ? input.map(x => fn(x)) : fn(input);
+        const result = Array.isArray(input) ? input.map((x) => fn(x)) : fn(input);
         expect(result).toEqual(expected);
       });
     };
@@ -58,8 +51,8 @@ describe('utils', () => {
 
   describe('buildDataPoints', () => {
     it('generates points', () => {
-      const result = buildDataPoints(-1, 1, { x: 0, y: 0 }, { x: 0, y: 0 }, 1, x => x);
-      expect(result.map(p => p.x)).toEqual([-2, -1, 0, 1, 2]);
+      const result = buildDataPoints(-1, 1, { x: 0, y: 0 }, { x: 0, y: 0 }, 1, (x) => x);
+      expect(result.map((p) => p.x)).toEqual([-2, -1, 0, 1, 2]);
     });
 
     const assertParabola = (
@@ -69,7 +62,7 @@ describe('utils', () => {
       mirror,
       existingPoint1,
       existingPoint2,
-      nonExistingPointOutsideRange
+      nonExistingPointOutsideRange,
     ) => {
       it('generates points for parabola', () => {
         const result = buildDataPoints(
@@ -78,7 +71,7 @@ describe('utils', () => {
           root,
           edge,
           domain.step,
-          parabolaFromTwoPoints(root, edge)
+          parabolaFromTwoPoints(root, edge),
         );
 
         expect(result).toContainEqual(root);
@@ -100,7 +93,7 @@ describe('utils', () => {
       { x: -0.75, y: 3.5 },
       { x: -1, y: 6 },
       { x: 1, y: 14 },
-      { x: 1.25, y: -19.5 }
+      { x: 1.25, y: -19.5 },
     );
 
     // a = -8, b = -4, c = -2
@@ -111,7 +104,7 @@ describe('utils', () => {
       { x: -0.75, y: -3.5 },
       { x: -1, y: -6 },
       { x: 1, y: -14 },
-      { x: 1.25, y: 19.5 }
+      { x: 1.25, y: 19.5 },
     );
 
     // a = 10, b = 0, c = -2
@@ -122,7 +115,7 @@ describe('utils', () => {
       { x: -0.5, y: 0.5 },
       { x: -1, y: 8 },
       { x: 1, y: 8 },
-      { x: 3, y: 88 }
+      { x: 3, y: 88 },
     );
 
     // a = 10, b = -10, c = 0
@@ -133,7 +126,7 @@ describe('utils', () => {
       { x: 1, y: 0 },
       { x: -1, y: 20 },
       { x: 1.25, y: 3.125 },
-      { x: 3, y: 60 }
+      { x: 3, y: 60 },
     );
 
     // a = 10, b = -10, c = 0
@@ -144,7 +137,7 @@ describe('utils', () => {
       { x: 1, y: 0 },
       { x: -1, y: 20 },
       { x: 1.5, y: 7.5 },
-      { x: 3, y: 60 }
+      { x: 3, y: 60 },
     );
 
     // a = -4, b = 4, c = 0
@@ -155,7 +148,7 @@ describe('utils', () => {
       { x: 1, y: 0 },
       { x: -0.5, y: -3 },
       { x: 1.5, y: -3 },
-      { x: 3, y: 60 }
+      { x: 3, y: 60 },
     );
   });
 

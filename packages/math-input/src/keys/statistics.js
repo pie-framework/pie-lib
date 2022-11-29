@@ -5,32 +5,32 @@ export const xBar = set({
   name: 'X Bar',
   label: 'x̄',
   latex: '\\overline{x}',
-  write: '\\overline{x}'
+  write: '\\overline{x}',
 });
 
 export const yBar = set({
   name: 'Y Bar',
   latex: '\\overline{y}',
-  write: '\\overline{y}'
+  write: '\\overline{y}',
 });
 
 export const mu = set({
   name: 'mu',
   label: 'mu',
   latex: '\\mu',
-  write: '\\mu'
+  write: '\\mu',
 });
 
 export const sigma = set({
   name: 'Sigma',
   label: '\\Sigma',
   latex: '\\Sigma',
-  write: '\\Sigma'
+  write: '\\Sigma',
 });
 
 export const smallSigma = set({
   name: 'sigma',
   label: '\\sigma',
   latex: '\\sigma',
-  write: '\\sigma'
+  write: '\\sigma',
 });

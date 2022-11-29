@@ -3,7 +3,7 @@ import React from 'react';
 import { shallow, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-configure({adapter: new Adapter()});
+configure({ adapter: new Adapter() });
 
 describe('controls', () => {
   describe('snapshot', () => {
@@ -17,7 +17,7 @@ describe('controls', () => {
           onParagraphs={jest.fn()}
           setCorrectMode={false}
           onToggleCorrectMode={jest.fn()}
-        />
+        />,
       );
       expect(w).toMatchSnapshot();
     });

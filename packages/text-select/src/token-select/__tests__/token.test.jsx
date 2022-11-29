@@ -9,10 +9,10 @@ describe('token', () => {
         <Token
           classes={{
             token: 'token',
-            selectable: 'selectable'
+            selectable: 'selectable',
           }}
           text={'foo bar'}
-        />
+        />,
       );
       expect(w).toMatchSnapshot();
     });
@@ -22,10 +22,10 @@ describe('token', () => {
         <Token
           classes={{
             token: 'token',
-            selectable: 'selectable'
+            selectable: 'selectable',
           }}
           text={'foo \nbar'}
-        />
+        />,
       );
       expect(w).toMatchSnapshot();
     });

@@ -8,17 +8,17 @@ const styles = () => ({
     background: '#fff',
     padding: '10px',
     pointerEvents: 'none',
-    zIndex: 99999
+    zIndex: 99999,
   },
   paper: {
     padding: 20,
     height: 'auto',
-    width: 'auto'
+    width: 'auto',
   },
   typography: {
     fontSize: 50,
-    textAlign: 'center'
-  }
+    textAlign: 'center',
+  },
 });
 
 const CustomPopper = withStyles(styles)(({ classes, children, ...props }) => (
@@ -27,15 +27,15 @@ const CustomPopper = withStyles(styles)(({ classes, children, ...props }) => (
     open
     className={classes.popover}
     classes={{
-      paper: classes.paper
+      paper: classes.paper,
     }}
     anchorOrigin={{
       vertical: 'bottom',
-      horizontal: 'left'
+      horizontal: 'left',
     }}
     transformOrigin={{
       vertical: 'top',
-      horizontal: 'left'
+      horizontal: 'left',
     }}
     disableRestoreFocus
     disableAutoFocus

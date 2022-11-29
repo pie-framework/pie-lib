@@ -16,39 +16,39 @@ import ChangelogDialog from './changelog-dialog';
 
 const drawerWidth = 240;
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     flexGrow: 1,
     zIndex: 1,
     overflow: 'hidden',
     position: 'relative',
     display: 'flex',
-    fontFamily: '"Roboto", sans-serif'
+    fontFamily: '"Roboto", sans-serif',
   },
   appBar: {
-    zIndex: theme.zIndex.drawer + 1
+    zIndex: theme.zIndex.drawer + 1,
   },
   drawerPaper: {
     position: 'relative',
-    width: drawerWidth
+    width: drawerWidth,
   },
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3,
-    minWidth: 0 // So the Typography noWrap works
+    minWidth: 0, // So the Typography noWrap works
   },
   toolbar: {
     ...theme.mixins.toolbar,
     display: 'flex',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   devToolbar: {
-    backgroundColor: 'orange'
+    backgroundColor: 'orange',
   },
   extras: {
-    float: 'right'
-  }
+    float: 'right',
+  },
 });
 
 const PageTitle = withRouter(({ router }) => {
@@ -62,17 +62,17 @@ const PageTitle = withRouter(({ router }) => {
   );
 });
 
-const ActiveLink = withStyles(theme => ({
+const ActiveLink = withStyles((theme) => ({
   active: {
-    color: theme.palette.primary.main
+    color: theme.palette.primary.main,
   },
   version: {
     fontSize: '11px',
-    color: theme.palette.secondary.main
+    color: theme.palette.secondary.main,
   },
   versionActive: {
-    color: theme.palette.primary.main
-  }
+    color: theme.palette.primary.main,
+  },
 }))(
   withRouter(({ router, path, primary, classes, version, onVersionClick }) => {
     const isActive = path === router.pathname;
@@ -91,7 +91,7 @@ const ActiveLink = withStyles(theme => ({
         </ListItem>
       </Link>
     );
-  })
+  }),
 );
 
 class ClippedDrawer extends React.Component {
@@ -100,11 +100,11 @@ class ClippedDrawer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      changelogOpen: false
+      changelogOpen: false,
     };
   }
 
-  showChangeLog = path => {
+  showChangeLog = (path) => {
     this.setState({ changelogOpen: true, changelogPath: path });
   };
 
@@ -117,7 +117,7 @@ class ClippedDrawer extends React.Component {
     const { changelogOpen, changelogPath } = this.state;
 
     const clPackage = changelogOpen
-      ? packageInfo.find(pi => {
+      ? packageInfo.find((pi) => {
           return pi.dir.endsWith(changelogPath);
         })
       : undefined;
@@ -125,26 +125,19 @@ class ClippedDrawer extends React.Component {
     return (
       <div className={classes.root}>
         <AppBar position="absolute" className={classes.appBar}>
-          <Toolbar
-            className={classNames(
-              classes.toolbar,
-              gitInfo.branch !== 'master' && classes.devToolbar
-            )}
-          >
+          <Toolbar className={classNames(classes.toolbar, gitInfo.branch !== 'master' && classes.devToolbar)}>
             <PageTitle />
 
             <div className={classes.extras}>
               {gitInfo.branch}&nbsp;|&nbsp;
-              <a href={`https://github.com/pie-framework/pie-lib/commit/${gitInfo.short}`}>
-                {gitInfo.short}
-              </a>
+              <a href={`https://github.com/pie-framework/pie-lib/commit/${gitInfo.short}`}>{gitInfo.short}</a>
             </div>
           </Toolbar>
         </AppBar>
         <Drawer
           variant="permanent"
           classes={{
-            paper: classes.drawerPaper
+            paper: classes.drawerPaper,
           }}
         >
           <div className={classes.toolbar} />
@@ -178,11 +171,11 @@ ClippedDrawer.propTypes = {
   links: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string.isRequired,
-      path: PropTypes.string.isRequired
-    })
+      path: PropTypes.string.isRequired,
+    }),
   ).isRequired,
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(ClippedDrawer);

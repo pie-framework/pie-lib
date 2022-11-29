@@ -11,12 +11,12 @@ const log = debug('demo:config-ui');
 
 class RawContainer extends React.Component {
   static propTypes = {
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
   };
   constructor(props) {
     super(props);
     this.state = {
-      mounted: false
+      mounted: false,
     };
   }
 
@@ -45,23 +45,23 @@ class RawContainer extends React.Component {
   }
 }
 
-const Container = withStyles(theme => ({
+const Container = withStyles((theme) => ({
   root: {},
   tabContent: {
-    padding: theme.spacing.unit
+    padding: theme.spacing.unit,
   },
   left: {
-    flex: 1
+    flex: 1,
   },
   code: {
-    position: 'fixed'
+    position: 'fixed',
   },
   right: {
-    flex: 0.3
+    flex: 0.3,
   },
   smallTextField: {
-    width: '100px'
-  }
+    width: '100px',
+  },
 }))(RawContainer);
 
 export default withRoot(Container);

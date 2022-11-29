@@ -9,7 +9,7 @@ describe('CorrectInput', () => {
     correct: false,
     variant: 'outlined',
     value: 'Cow',
-    onChange
+    onChange,
   };
   let wrapper;
 
@@ -34,8 +34,8 @@ describe('CorrectInput', () => {
   });
 
   describe('onChange', () => {
-    const event = value => ({
-      target: { value }
+    const event = (value) => ({
+      target: { value },
     });
 
     it('should be called', () => {

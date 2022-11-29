@@ -12,10 +12,7 @@ const Exclamation = ({ className }) => (
 );
 
 const Octagon = ({ className }) => (
-  <polygon
-    className={className}
-    points="14.8,4.5 5.6,13.8 5.6,27 14.8,36.5 28.1,36.5 37.6,27 37.6,13.8 28.1,4.5"
-  />
+  <polygon className={className} points="14.8,4.5 5.6,13.8 5.6,27 14.8,36.5 28.1,36.5 37.6,27 37.6,13.8 28.1,4.5" />
 );
 
 const Emoji = ({ className }) => (
@@ -31,13 +28,13 @@ const Emoji = ({ className }) => (
 );
 
 Emoji.propTypes = Octagon.propTypes = Exclamation.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 const styles = getStyles('nothing-submitted', 'white', '#464146');
 
 export class NothingSubmitted extends React.Component {
   static propTypes = {
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
   };
 
   constructor(props) {
@@ -92,10 +89,10 @@ export class NothingSubmitted extends React.Component {
               <IconRoot>
                 <Emoji className={classes.bg} />
               </IconRoot>
-            )
-          }
-        }
-      }
+            ),
+          },
+        },
+      },
     };
   }
 
@@ -120,14 +117,14 @@ NothingSubmitted.propTypes = {
   iconSet: PropTypes.oneOf(['emoji', 'check', undefined]),
   shape: PropTypes.oneOf(['square', undefined]),
   category: PropTypes.oneOf(['feedback', undefined]),
-  open: PropTypes.bool
+  open: PropTypes.bool,
 };
 
 NothingSubmitted.defaultProps = {
   iconSet: 'check',
   shape: undefined,
   category: undefined,
-  open: false
+  open: false,
 };
 
 export default withStyles(styles)(NothingSubmitted);

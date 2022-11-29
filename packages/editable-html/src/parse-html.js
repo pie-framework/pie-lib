@@ -1,4 +1,4 @@
-export const parseDegrees = html =>
+export const parseDegrees = (html) =>
   html
     // removes \(   use case: 50°
     .replace(/\\[(]/g, '')

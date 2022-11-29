@@ -16,7 +16,7 @@ export class RawBp extends React.Component {
     labelNode: PropTypes.object,
     x: PropTypes.number,
     y: PropTypes.number,
-    graphProps: types.GraphPropsType.isRequired
+    graphProps: types.GraphPropsType.isRequired,
   };
 
   constructor(props) {
@@ -43,12 +43,7 @@ export class RawBp extends React.Component {
 
     return (
       <g
-        className={classNames(
-          classes.point,
-          disabled && classes.disabled,
-          classes[correctness],
-          className
-        )}
+        className={classNames(classes.point, disabled && classes.disabled, classes[correctness], className)}
         onMouseEnter={() => this.setState({ showCoordinates: true })}
         onMouseLeave={() => this.setState({ showCoordinates: false })}
         {...rest}
@@ -58,10 +53,7 @@ export class RawBp extends React.Component {
         {labelNode &&
           coordinatesOnHover &&
           showCoordinates &&
-          ReactDOM.createPortal(
-            <CoordinatesLabel graphProps={graphProps} x={x} y={y} />,
-            labelNode
-          )}
+          ReactDOM.createPortal(<CoordinatesLabel graphProps={graphProps} x={x} y={y} />, labelNode)}
       </g>
     );
   }

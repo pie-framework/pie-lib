@@ -10,7 +10,7 @@ import { clientPoint } from 'd3-selection';
 
 const log = debug('pie-lib:plot:grid-draggable');
 
-export const deltaFn = (scale, snap, val) => delta => {
+export const deltaFn = (scale, snap, val) => (delta) => {
   const normalized = delta + scale(0);
   const inverted = scale.invert(normalized);
 
@@ -23,10 +23,10 @@ export const deltaFn = (scale, snap, val) => delta => {
  * Creates a Component that is draggable, within a bounded grid.
  * @param {*} opts
  */
-export const gridDraggable = opts => Comp => {
+export const gridDraggable = (opts) => (Comp) => {
   invariant(
     !!opts && isFunction(opts.fromDelta) && isFunction(opts.bounds) && isFunction(opts.anchorPoint),
-    'You must supply an object with: { anchorPoint: Function, fromDelta: Function, bounds: Function }'
+    'You must supply an object with: { anchorPoint: Function, fromDelta: Function, bounds: Function }',
   );
   return class GridDraggable extends React.Component {
     static propTypes = {
@@ -36,17 +36,17 @@ export const gridDraggable = opts => Comp => {
       onDragStop: PropTypes.func,
       onClick: PropTypes.func,
       onMove: PropTypes.func,
-      graphProps: GraphPropsType.isRequired
+      graphProps: GraphPropsType.isRequired,
     };
     grid = () => {
       const { graphProps } = this.props;
       const { scale, domain, range } = graphProps;
       return {
         x: scale.x(domain.step) - scale.x(0),
-        y: scale.y(range.step) - scale.y(0)
+        y: scale.y(range.step) - scale.y(0),
       };
     };
-    onStart = e => {
+    onStart = (e) => {
       const { onDragStart } = this.props;
       if (document.activeElement) {
         document.activeElement.blur();
@@ -64,10 +64,10 @@ export const gridDraggable = opts => Comp => {
       return {
         anchorPoint: {
           x,
-          y
+          y,
         },
         x: deltaFn(scale.x, snap.x, x),
-        y: deltaFn(scale.y, snap.y, y)
+        y: deltaFn(scale.y, snap.y, y),
       };
     };
 
@@ -90,7 +90,7 @@ export const gridDraggable = opts => Comp => {
         left: (bounds.left / grid.interval) * grid.x,
         right: (bounds.right / grid.interval) * grid.x,
         top: (bounds.top / grid.interval) * grid.y,
-        bottom: (bounds.bottom / grid.interval) * grid.y
+        bottom: (bounds.bottom / grid.interval) * grid.y,
       };
       log('[getScaledBounds]: ', scaled);
       return scaled;
@@ -145,18 +145,18 @@ export const gridDraggable = opts => Comp => {
       }
     };
 
-    getDelta = point => {
+    getDelta = (point) => {
       const pos = this.position();
 
       const p = {
         x: pos.x(point.x),
-        y: pos.y(point.y)
+        y: pos.y(point.y),
       };
 
       return utils.getDelta(pos.anchorPoint, p);
     };
 
-    applyDelta = point => {
+    applyDelta = (point) => {
       const delta = this.getDelta(point);
       log('[applyDelta] delta:', delta);
       return opts.fromDelta(this.props, delta);
@@ -202,7 +202,7 @@ export const gridDraggable = opts => Comp => {
 
       const grid = this.grid();
       //prevent the text select icon from rendering.
-      const onMouseDown = e => e.nativeEvent.preventDefault();
+      const onMouseDown = (e) => e.nativeEvent.preventDefault();
 
       /**
        * TODO: This shouldnt be necessary, we should be able to use the r-d classnames.

@@ -5,7 +5,7 @@ jest.useFakeTimers();
 
 jest.mock('react', () => ({
   useState: jest.fn(),
-  useEffect: jest.fn((fn, deps) => fn())
+  useEffect: jest.fn((fn, deps) => fn()),
 }));
 
 describe('useDebounce', () => {

@@ -14,7 +14,7 @@ export class ChangelogDialog extends React.Component {
     className: PropTypes.string,
     onClose: PropTypes.func.isRequired,
     open: PropTypes.bool.isRequired,
-    activePackage: PropTypes.object
+    activePackage: PropTypes.object,
   };
   static defaultProps = {};
 
@@ -51,7 +51,7 @@ export class ChangelogDialog extends React.Component {
 
 const styles = () => ({
   md: {
-    fontFamily: 'sans-serif'
-  }
+    fontFamily: 'sans-serif',
+  },
 });
 export default withStyles(styles)(ChangelogDialog);

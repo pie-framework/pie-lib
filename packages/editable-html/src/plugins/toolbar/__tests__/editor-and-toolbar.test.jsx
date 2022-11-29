@@ -26,15 +26,9 @@ describe('toolbar', () => {
 
     const tree = renderer
       .create(
-        <EditorAndToolbar
-          classes={classes}
-          value={value}
-          plugins={[]}
-          onDone={jest.fn()}
-          onChange={jest.fn()}
-        >
+        <EditorAndToolbar classes={classes} value={value} plugins={[]} onDone={jest.fn()} onChange={jest.fn()}>
           children
-        </EditorAndToolbar>
+        </EditorAndToolbar>,
       )
       .toJSON();
     log('tree: ', JSON.stringify(tree, null, '  '));

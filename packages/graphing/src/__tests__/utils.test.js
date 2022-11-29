@@ -5,7 +5,7 @@ const xy = (x, y) => ({ x, y });
 const tick = (isMajor, v) => ({
   major: isMajor,
   value: v,
-  x: v
+  x: v,
 });
 
 const major = tick.bind(null, true);
@@ -23,13 +23,13 @@ describe('utils', () => {
       left: 0,
       top: 1,
       bottom: -1,
-      right: 1
+      right: 1,
     });
     assertPolygon([xy(0, 0), xy(3, 0), xy(2, -1), xy(4, -3), xy(1, -4), xy(2, -2)], {
       left: 0,
       top: 0,
       bottom: -4,
-      right: 4
+      right: 4,
     });
   });
 
@@ -46,7 +46,7 @@ describe('utils', () => {
       left: -1,
       top: 4,
       bottom: -3,
-      right: 4
+      right: 4,
     });
   });
 
@@ -78,7 +78,7 @@ describe('utils', () => {
       3.9,
       4.2,
       4.5,
-      4.8
+      4.8,
     ]);
     assertGetTickValues({ min: 0.5, max: 4.9, step: 0.3 }, [
       0.6,
@@ -95,7 +95,7 @@ describe('utils', () => {
       3.9,
       4.2,
       4.5,
-      4.8
+      4.8,
     ]);
     assertGetTickValues({ min: 0, max: 3, step: 0.125 }, [
       0,
@@ -122,7 +122,7 @@ describe('utils', () => {
       2.625,
       2.75,
       2.875,
-      3
+      3,
     ]);
   });
 

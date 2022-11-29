@@ -20,16 +20,16 @@ export default class TextSelect extends React.Component {
     className: PropTypes.string,
     highlightChoices: PropTypes.bool,
     animationsDisabled: PropTypes.bool,
-    maxNoOfSelections: PropTypes.number
+    maxNoOfSelections: PropTypes.number,
   };
 
-  change = tokens => {
+  change = (tokens) => {
     const { onChange } = this.props;
 
     if (!onChange) {
       return;
     }
-    const out = tokens.filter(t => t.selected).map(t => ({ start: t.start, end: t.end }));
+    const out = tokens.filter((t) => t.selected).map((t) => ({ start: t.start, end: t.end }));
 
     onChange(out);
   };
@@ -43,13 +43,13 @@ export default class TextSelect extends React.Component {
       className,
       highlightChoices,
       maxNoOfSelections,
-      animationsDisabled
+      animationsDisabled,
     } = this.props;
 
     const normalized = normalize(text, tokens);
     log('normalized: ', normalized);
-    const prepped = normalized.map(t => {
-      const selectedIndex = selectedTokens.findIndex(s => {
+    const prepped = normalized.map((t) => {
+      const selectedIndex = selectedTokens.findIndex((s) => {
         return s.start === t.start && s.end === t.end;
       });
       const selected = selectedIndex !== -1;
@@ -58,7 +58,7 @@ export default class TextSelect extends React.Component {
         ...t,
         selectable: !disabled && t.predefined,
         selected,
-        correct
+        correct,
       };
     });
 

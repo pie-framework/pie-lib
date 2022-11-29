@@ -11,10 +11,10 @@ describe('ChartType', () => {
     props = {
       classes: {},
       value: 'bar',
-      onChange
+      onChange,
     };
 
-    wrapper = newProps => {
+    wrapper = (newProps) => {
       const configureProps = { ...props, newProps };
 
       return shallow(<ChartType {...configureProps} />);

@@ -15,7 +15,7 @@ export class Wrapper extends React.Component {
       toggled: false,
       show: false,
       showTwo: true,
-      toggledTwo: true
+      toggledTwo: true,
     };
   }
 
@@ -48,14 +48,9 @@ export class Wrapper extends React.Component {
             control={<Checkbox checked={this.state.toggled} onClick={this.onToggle.bind(this)} />}
           />
         </FormGroup>
-        <Toggle
-          show={this.state.show}
-          toggled={this.state.toggled}
-          onToggle={this.onToggle.bind(this)}
-        />
+        <Toggle show={this.state.show} toggled={this.state.toggled} onToggle={this.onToggle.bind(this)} />
         <div hidden={!this.state.show}>
-          You can set the color of the label by using{' '}
-          <code>--correct-answer-toggle-label-color</code> css variable
+          You can set the color of the label by using <code>--correct-answer-toggle-label-color</code> css variable
         </div>
         <Toggle
           className={classes.redLabel}
@@ -86,11 +81,7 @@ export class Wrapper extends React.Component {
             />
           </FormGroup>
           it will be hidden on mount:
-          <Toggle
-            show={this.state.showTwo}
-            toggled={this.state.toggledTwo}
-            onToggle={this.onToggle.bind(this)}
-          />
+          <Toggle show={this.state.showTwo} toggled={this.state.toggledTwo} onToggle={this.onToggle.bind(this)} />
         </div>
       </div>
     ) : (
@@ -102,10 +93,10 @@ export class Wrapper extends React.Component {
 export default withRoot(
   withStyles({
     root: {
-      backgroundColor: 'blue'
+      backgroundColor: 'blue',
     },
     redLabel: {
-      '--correct-answer-toggle-label-color': 'red'
-    }
-  })(Wrapper)
+      '--correct-answer-toggle-label-color': 'red',
+    },
+  })(Wrapper),
 );

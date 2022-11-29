@@ -7,11 +7,11 @@ describe('snapshot', () => {
   let onBlur = jest.fn();
 
   beforeAll(() => {
-    wrapper = extras => {
+    wrapper = (extras) => {
       const defaults = {
         classes: {},
         classNames: {},
-        onBlur
+        onBlur,
       };
       const props = { ...defaults, ...extras };
 

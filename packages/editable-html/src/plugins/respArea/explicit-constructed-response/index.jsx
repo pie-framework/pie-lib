@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ExplicitConstructedResponse = props => {
+const ExplicitConstructedResponse = (props) => {
   const { attributes, value, error } = props;
 
   return (
@@ -13,7 +13,7 @@ const ExplicitConstructedResponse = props => {
         minWidth: '178px',
         position: 'relative',
         margin: '0 5px',
-        cursor: 'pointer'
+        cursor: 'pointer',
       }}
     >
       <div
@@ -27,10 +27,10 @@ const ExplicitConstructedResponse = props => {
           boxSizing: 'border-box',
           borderRadius: '3px',
           overflow: 'hidden',
-          padding: '8px'
+          padding: '8px',
         }}
         dangerouslySetInnerHTML={{
-          __html: value || '<div>&nbsp;</div>'
+          __html: value || '<div>&nbsp;</div>',
         }}
       />
     </span>
@@ -39,7 +39,7 @@ const ExplicitConstructedResponse = props => {
 
 ExplicitConstructedResponse.propTypes = {
   attributes: PropTypes.object,
-  value: PropTypes.string
+  value: PropTypes.string,
 };
 
 export default ExplicitConstructedResponse;

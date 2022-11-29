@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.25](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.9.24...@pie-lib/tools@0.9.25) (2022-11-23)
+
+**Note:** Version bump only for package @pie-lib/tools
+
+
+
+
+
 ## [0.9.24](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.9.22...@pie-lib/tools@0.9.24) (2021-06-25)
 
 **Note:** Version bump only for package @pie-lib/tools

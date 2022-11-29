@@ -6,14 +6,12 @@ import range from 'lodash/range';
 import Unit from './unit';
 import { strokeColor, fillColor } from '../style-utils';
 
-const Bg = ({ width, height, className }) => (
-  <rect width={width} height={height} cx={0} cy={0} className={className} />
-);
+const Bg = ({ width, height, className }) => <rect width={width} height={height} cx={0} cy={0} className={className} />;
 
 Bg.propTypes = {
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
-  className: PropTypes.string.isRequired
+  className: PropTypes.string.isRequired,
 };
 
 export class Graphic extends React.PureComponent {
@@ -22,7 +20,7 @@ export class Graphic extends React.PureComponent {
     height: PropTypes.number.isRequired,
     units: PropTypes.number.isRequired,
     unit: PropTypes.object.isRequired,
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
   };
 
   render() {
@@ -35,26 +33,19 @@ export class Graphic extends React.PureComponent {
       <svg viewBox={viewBox}>
         <Bg width={width} height={height} className={classes.bg} />
         <UnitType label={unit.type} />
-        {range(1, units + 1).map(r => (
-          <Unit
-            width={unitWidth}
-            height={unitHeight}
-            key={r}
-            index={r}
-            config={unit}
-            last={r === units}
-          />
+        {range(1, units + 1).map((r) => (
+          <Unit width={unitWidth} height={unitHeight} key={r} index={r} config={unit} last={r === units} />
         ))}
       </svg>
     );
   }
 }
-const styles = theme => ({
+const styles = (theme) => ({
   bg: {
     stroke: strokeColor(theme),
     strokeWidth: '2px',
-    fill: fillColor(theme)
-  }
+    fill: fillColor(theme),
+  },
 });
 
 export default withStyles(styles)(Graphic);

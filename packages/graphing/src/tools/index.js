@@ -8,29 +8,8 @@ import { tool as segment } from './segment';
 import { tool as ray } from './ray';
 import { tool as vector } from './vector';
 
-const allTools = [
-  'circle',
-  'line',
-  'label',
-  'parabola',
-  'point',
-  'polygon',
-  'ray',
-  'segment',
-  'sine',
-  'vector'
-];
+const allTools = ['circle', 'line', 'label', 'parabola', 'point', 'polygon', 'ray', 'segment', 'sine', 'vector'];
 
-const toolsArr = [
-  circle(),
-  line(),
-  parabola(),
-  point(),
-  polygon(),
-  ray(),
-  segment(),
-  sine(),
-  vector()
-];
+const toolsArr = [circle(), line(), parabola(), point(), polygon(), ray(), segment(), sine(), vector()];
 
 export { allTools, toolsArr, circle, line, point, parabola, polygon, ray, sine, vector };

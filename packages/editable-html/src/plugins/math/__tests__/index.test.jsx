@@ -8,11 +8,11 @@ import { MathToolbar } from '@pie-lib/math-toolbar';
 jest.mock('@pie-framework/mathquill', () => ({
   StaticMath: jest.fn(),
   getInterface: jest.fn().mockReturnThis(),
-  registerEmbed: jest.fn()
+  registerEmbed: jest.fn(),
 }));
 jest.mock('@pie-lib/math-toolbar', () => ({
   MathPreview: () => <div />,
-  MathToolbar: () => <div />
+  MathToolbar: () => <div />,
 }));
 const log = debug('@pie-lib:editable-html:test:math');
 
@@ -25,16 +25,14 @@ describe('MathPlugin', () => {
         plugin = MathPlugin({});
         mockChange = new MockChange();
         value = {
-          change: jest.fn(() => mockChange)
+          change: jest.fn(() => mockChange),
         };
         onChange = jest.fn();
         plugin.toolbar.onClick(value, onChange);
       });
 
       test('calls insertInline', () => {
-        expect(mockChange.insertInline).toBeCalledWith(
-          expect.objectContaining({ data: inlineMath().data })
-        );
+        expect(mockChange.insertInline).toBeCalledWith(expect.objectContaining({ data: inlineMath().data }));
       });
 
       test('it calls onChange', () => {
@@ -60,7 +58,7 @@ describe('MathPlugin', () => {
             childNodes: [],
             getAttribute: jest.fn(() => ''),
             hasAttribute: jest.fn(() => true),
-            innerHTML: html
+            innerHTML: html,
           };
           const next = jest.fn();
 
@@ -72,8 +70,8 @@ describe('MathPlugin', () => {
             nodes: [],
             data: {
               latex: expected,
-              wrapper: wrapType
-            }
+              wrapper: wrapType,
+            },
           });
         });
       };
@@ -95,7 +93,7 @@ describe('MathPlugin', () => {
             type: 'math',
             isVoid: true,
             nodes: [],
-            data: Data.create({ latex, wrapper })
+            data: Data.create({ latex, wrapper }),
           };
           const children = [];
 
@@ -104,7 +102,7 @@ describe('MathPlugin', () => {
           expect(out).toEqual(
             <span data-latex="" data-raw={latex}>
               {expectedHtml}
-            </span>
+            </span>,
           );
         });
       };
@@ -127,27 +125,27 @@ describe('CustomToolbarComp', () => {
   let onDataChange;
   let onToolbarDone;
 
-  const wrapper = extras => {
+  const wrapper = (extras) => {
     let mockChange = new MockChange();
     const defaults = {
       node: {
         key: '1',
         data: Data.create({ latex: 'foo' }),
-        equals: () => true
+        equals: () => true,
       },
       value: {
         document: {
-          getNextText: jest.fn().mockReturnValue({ key: 'nt' })
+          getNextText: jest.fn().mockReturnValue({ key: 'nt' }),
         },
-        change: jest.fn().mockReturnValue(mockChange)
+        change: jest.fn().mockReturnValue(mockChange),
       },
       onDataChange,
-      onToolbarDone
+      onToolbarDone,
     };
 
     const props = {
       ...defaults,
-      ...extras
+      ...extras,
     };
 
     return shallow(<CustomToolbarComp {...props} />);

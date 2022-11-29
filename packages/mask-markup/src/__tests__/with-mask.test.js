@@ -7,11 +7,11 @@ describe('WithMask', () => {
   const defaultProps = {
     markup: '<p>Foo bar {{0}} over the moon;</p>',
     value: {
-      0: 'blank'
+      0: 'blank',
     },
-    onChange
+    onChange,
   };
-  const Masked = withMask('foo', props => node => {
+  const Masked = withMask('foo', (props) => (node) => {
     const dataset = node.data ? node.data.dataset || {} : {};
 
     if (dataset.component === 'foo') {
@@ -32,8 +32,8 @@ describe('WithMask', () => {
   });
 
   describe('onChange', () => {
-    const event = value => ({
-      target: { value }
+    const event = (value) => ({
+      target: { value },
     });
 
     it('should call the function', () => {
@@ -43,8 +43,8 @@ describe('WithMask', () => {
 
       expect(onChange).toHaveBeenCalledWith({
         target: {
-          value: 'ceva'
-        }
+          value: 'ceva',
+        },
       });
     });
   });

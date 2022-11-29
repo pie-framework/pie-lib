@@ -11,15 +11,15 @@ const listPackages = () => {
 
   return _.compact(
     files
-      .filter(f => !f.includes('@'))
-      .filter(f => fs.lstatSync(path.join(packagesDir, f)).isDirectory())
-      .map(f => {
+      .filter((f) => !f.includes('@'))
+      .filter((f) => fs.lstatSync(path.join(packagesDir, f)).isDirectory())
+      .map((f) => {
         const p = fs.readJsonSync(path.join(packagesDir, f, 'package.json'));
         if (!p.module) {
           return;
         }
         return p.name;
-      })
+      }),
   );
 };
 
@@ -65,8 +65,8 @@ module.exports = {
         repository: 'pie-framework/pie-lib',
         extensions: { commonJs },
         imports: {
-          namespace: ['@pie-lib/math-rendering']
-        }
+          namespace: ['@pie-lib/math-rendering'],
+        },
       },
       // core shared module lib
       {
@@ -80,7 +80,7 @@ module.exports = {
             '@pie-lib/correct-answer-toggle',
             'lodash',
             'classnames',
-            'debug'
+            'debug',
           ],
           namespace: [
             '@material-ui/core/styles/colorManipulator',
@@ -88,9 +88,9 @@ module.exports = {
             '@material-ui/core/styles',
             '@material-ui/core',
             '@material-ui/icons',
-            '@pie-lib/render-ui'
-          ]
-        }
+            '@pie-lib/render-ui',
+          ],
+        },
       },
       {
         name: '@pie-lib/drag-module',
@@ -98,28 +98,28 @@ module.exports = {
         repository: 'pie-framework/pie-lib',
         extensions: { commonJs },
         imports: {
-          namespace: ['@pie-lib/drag']
-        }
+          namespace: ['@pie-lib/drag'],
+        },
       },
       {
         name: '@pie-lib/math-edit-module',
         // eslint-disable-next-line no-undef
         imports: {
           default: ['@pie-framework/mathquill'],
-          namespace: ['@pie-lib/math-input', '@pie-lib/math-toolbar']
-        }
+          namespace: ['@pie-lib/math-input', '@pie-lib/math-toolbar'],
+        },
       },
       {
         name: '@pie-lib/editable-html-module',
         imports: {
-          default: ['@pie-lib/editable-html']
-        }
+          default: ['@pie-lib/editable-html'],
+        },
       },
       {
         name: '@pie-lib/config-module',
         imports: {
-          namespace: ['@pie-lib/config-ui']
-        }
+          namespace: ['@pie-lib/config-ui'],
+        },
       },
 
       {
@@ -133,10 +133,10 @@ module.exports = {
             '@pie-lib/graphing',
             // take d3-scale from the repo root... so 2.x
             'd3-scale',
-            'd3-selection'
-          ]
-        }
-      }
-    ]
-  }
+            'd3-selection',
+          ],
+        },
+      },
+    ],
+  },
 };
