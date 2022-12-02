@@ -3,7 +3,7 @@ import PlaceHolder from './placeholder';
 import PropTypes from 'prop-types';
 import { DropTarget } from 'react-dnd';
 
-const DRAG_TYPE = window.demo.markup.includes('match-list') ? 'Answer' : 'MaskBlank';
+const DRAG_TYPE = window.demo?.markup?.includes('match-list') ? 'Answer' : 'MaskBlank';
 
 class DroppablePlaceholder extends React.Component {
   static propTypes = {
