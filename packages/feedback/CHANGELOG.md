@@ -7,10 +7,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @pie-lib/feedback
 
-
-
-
-
 ## [0.4.27](https://github.com/pie-framework/pie-lib/compare/@pie-lib/feedback@0.4.25...@pie-lib/feedback@0.4.27) (2021-06-25)
 
 **Note:** Version bump only for package @pie-lib/feedback

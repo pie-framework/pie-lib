@@ -7,161 +7,81 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @pie-lib/correct-answer-toggle
 
-
-
-
-
 ## [2.3.46](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.3.45...@pie-lib/correct-answer-toggle@2.3.46) (2022-09-28)
 
 **Note:** Version bump only for package @pie-lib/correct-answer-toggle
-
-
-
-
 
 ## [2.3.45](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.3.44...@pie-lib/correct-answer-toggle@2.3.45) (2022-09-14)
 
 **Note:** Version bump only for package @pie-lib/correct-answer-toggle
 
-
-
-
-
 ## [2.3.44](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.3.43...@pie-lib/correct-answer-toggle@2.3.44) (2022-08-29)
 
 **Note:** Version bump only for package @pie-lib/correct-answer-toggle
-
-
-
-
 
 ## [2.3.43](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.3.42...@pie-lib/correct-answer-toggle@2.3.43) (2022-08-15)
 
 **Note:** Version bump only for package @pie-lib/correct-answer-toggle
 
-
-
-
-
 ## [2.3.42](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.3.41...@pie-lib/correct-answer-toggle@2.3.42) (2022-08-08)
 
 **Note:** Version bump only for package @pie-lib/correct-answer-toggle
-
-
-
-
 
 ## [2.3.41](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.3.40...@pie-lib/correct-answer-toggle@2.3.41) (2022-07-18)
 
 **Note:** Version bump only for package @pie-lib/correct-answer-toggle
 
-
-
-
-
 ## [2.3.40](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.3.39...@pie-lib/correct-answer-toggle@2.3.40) (2022-07-18)
 
 **Note:** Version bump only for package @pie-lib/correct-answer-toggle
-
-
-
-
 
 ## [2.3.39](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.3.38...@pie-lib/correct-answer-toggle@2.3.39) (2022-06-13)
 
 **Note:** Version bump only for package @pie-lib/correct-answer-toggle
 
-
-
-
-
 ## [2.3.38](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.3.37...@pie-lib/correct-answer-toggle@2.3.38) (2022-05-30)
 
 **Note:** Version bump only for package @pie-lib/correct-answer-toggle
-
-
-
-
 
 ## [2.3.37](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.3.36...@pie-lib/correct-answer-toggle@2.3.37) (2022-05-24)
 
 **Note:** Version bump only for package @pie-lib/correct-answer-toggle
 
-
-
-
-
 ## [2.3.36](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.3.35...@pie-lib/correct-answer-toggle@2.3.36) (2022-04-28)
 
 **Note:** Version bump only for package @pie-lib/correct-answer-toggle
-
-
-
-
 
 ## [2.3.35](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.3.34...@pie-lib/correct-answer-toggle@2.3.35) (2022-03-21)
 
 **Note:** Version bump only for package @pie-lib/correct-answer-toggle
 
-
-
-
-
 ## [2.3.34](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.3.33...@pie-lib/correct-answer-toggle@2.3.34) (2021-12-22)
 
 **Note:** Version bump only for package @pie-lib/correct-answer-toggle
-
-
-
-
 
 ## [2.3.33](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.3.32...@pie-lib/correct-answer-toggle@2.3.33) (2021-12-13)
 
 **Note:** Version bump only for package @pie-lib/correct-answer-toggle
 
-
-
-
-
 ## [2.3.32](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.3.31...@pie-lib/correct-answer-toggle@2.3.32) (2021-11-29)
 
 **Note:** Version bump only for package @pie-lib/correct-answer-toggle
-
-
-
-
 
 ## [2.3.31](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.3.30...@pie-lib/correct-answer-toggle@2.3.31) (2021-09-08)
 
 **Note:** Version bump only for package @pie-lib/correct-answer-toggle
 
-
-
-
-
 ## [2.3.30](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.3.29...@pie-lib/correct-answer-toggle@2.3.30) (2021-09-08)
 
 **Note:** Version bump only for package @pie-lib/correct-answer-toggle
-
-
-
-
 
 ## [2.3.29](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.3.28...@pie-lib/correct-answer-toggle@2.3.29) (2021-08-30)
 
 **Note:** Version bump only for package @pie-lib/correct-answer-toggle
 
-
-
-
-
 ## [2.3.28](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.3.27...@pie-lib/correct-answer-toggle@2.3.28) (2021-08-04)
 
 **Note:** Version bump only for package @pie-lib/correct-answer-toggle
-
-
-
-
 
 ## [2.3.27](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.3.26...@pie-lib/correct-answer-toggle@2.3.27) (2021-07-23)
 

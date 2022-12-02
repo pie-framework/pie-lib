@@ -7,264 +7,151 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @pie-lib/charting
 
-
-
-
-
 # [5.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.3.1...@pie-lib/charting@5.4.0) (2022-11-14)
-
 
 ### Features
 
-* **charting:** add error message for empty category labels and non unique category labels ([8daa572](https://github.com/pie-framework/pie-lib/commit/8daa572b3f04b8b097f937cfb28ba527b6ea51f1))
-* **charting:** rename chart types ([01bbcaa](https://github.com/pie-framework/pie-lib/commit/01bbcaad7702c2a2ddcc3c225a76ca94cfeea702))
-* **charting:** rename chart types ([316389b](https://github.com/pie-framework/pie-lib/commit/316389b5315de50518aa39d0de3dbee23cc9f53c))
-* **charting:** validation for category labels ([9f190fa](https://github.com/pie-framework/pie-lib/commit/9f190fa3626135f14e28bd7ac3517939af1aaf7a))
-
-
-
-
+- **charting:** add error message for empty category labels and non unique category labels ([8daa572](https://github.com/pie-framework/pie-lib/commit/8daa572b3f04b8b097f937cfb28ba527b6ea51f1))
+- **charting:** rename chart types ([01bbcaa](https://github.com/pie-framework/pie-lib/commit/01bbcaad7702c2a2ddcc3c225a76ca94cfeea702))
+- **charting:** rename chart types ([316389b](https://github.com/pie-framework/pie-lib/commit/316389b5315de50518aa39d0de3dbee23cc9f53c))
+- **charting:** validation for category labels ([9f190fa](https://github.com/pie-framework/pie-lib/commit/9f190fa3626135f14e28bd7ac3517939af1aaf7a))
 
 ## [5.3.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.3.0...@pie-lib/charting@5.3.1) (2022-10-31)
 
-
 ### Bug Fixes
 
-* **charting:** add sanity checks for range and domain ([b30ea68](https://github.com/pie-framework/pie-lib/commit/b30ea68c586115c0a081d8d974f508bd9c11be2f))
-
-
-
-
+- **charting:** add sanity checks for range and domain ([b30ea68](https://github.com/pie-framework/pie-lib/commit/b30ea68c586115c0a081d8d974f508bd9c11be2f))
 
 # [5.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.2.1...@pie-lib/charting@5.3.0) (2022-10-17)
 
-
 ### Features
 
-* **charting:** check configuration when changing chartType ([e3a0222](https://github.com/pie-framework/pie-lib/commit/e3a0222d4d2a2b2854d85f90114b1efffa2bc453))
-
-
-
-
+- **charting:** check configuration when changing chartType ([e3a0222](https://github.com/pie-framework/pie-lib/commit/e3a0222d4d2a2b2854d85f90114b1efffa2bc453))
 
 ## [5.2.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.2.0...@pie-lib/charting@5.2.1) (2022-09-29)
 
-
 ### Bug Fixes
 
-* **charting:** fix left label position for define correct response and player chart ([4a50663](https://github.com/pie-framework/pie-lib/commit/4a5066351901cbe400180b1d19d9a54781eb726e))
-* **charting:** make space for delete category buttons in define correct response and in player ([7c0f653](https://github.com/pie-framework/pie-lib/commit/7c0f6536f106099da9a9ab5a7328fed827841c5c))
-
-
-
-
+- **charting:** fix left label position for define correct response and player chart ([4a50663](https://github.com/pie-framework/pie-lib/commit/4a5066351901cbe400180b1d19d9a54781eb726e))
+- **charting:** make space for delete category buttons in define correct response and in player ([7c0f653](https://github.com/pie-framework/pie-lib/commit/7c0f6536f106099da9a9ab5a7328fed827841c5c))
 
 # [5.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.1.8...@pie-lib/charting@5.2.0) (2022-09-28)
 
-
 ### Bug Fixes
 
-* **charting:** arrange the position of the checkboxes labels, fix style amd arrangement ([c5f2f7a](https://github.com/pie-framework/pie-lib/commit/c5f2f7acf60898e77ecc0b47b190256537605c8e))
-* **charting:** change position for checbox labels in order to fit without overlapping the checboxes ([98a56cb](https://github.com/pie-framework/pie-lib/commit/98a56cbae47c4bcadd0d4087d6b7df3c4d5d3e2e))
-* **charting:** fix conflicts ([2b3da1b](https://github.com/pie-framework/pie-lib/commit/2b3da1b4b87a518b5c18daf6f6c57db1ccc1c536))
-* **charting:** increase height for category draggable zone ([922e107](https://github.com/pie-framework/pie-lib/commit/922e107101981358647937c12133fef6b78a6ea9))
-
+- **charting:** arrange the position of the checkboxes labels, fix style amd arrangement ([c5f2f7a](https://github.com/pie-framework/pie-lib/commit/c5f2f7acf60898e77ecc0b47b190256537605c8e))
+- **charting:** change position for checbox labels in order to fit without overlapping the checboxes ([98a56cb](https://github.com/pie-framework/pie-lib/commit/98a56cbae47c4bcadd0d4087d6b7df3c4d5d3e2e))
+- **charting:** fix conflicts ([2b3da1b](https://github.com/pie-framework/pie-lib/commit/2b3da1b4b87a518b5c18daf6f6c57db1ccc1c536))
+- **charting:** increase height for category draggable zone ([922e107](https://github.com/pie-framework/pie-lib/commit/922e107101981358647937c12133fef6b78a6ea9))
 
 ### Features
 
-* **charting:** refactor ability to edit chart title and labels, fix style ([6edcdfb](https://github.com/pie-framework/pie-lib/commit/6edcdfbfbd83806a8487c29c42ae447b11850ac7))
-* **charting:** try to set up labels for charting, work in progress ([c6cd049](https://github.com/pie-framework/pie-lib/commit/c6cd049723dadab329748511da2f6c4f1fa943db))
-* **graphing, plot:** moved graphing labels to plot package + fixed math input + added support for labels rotation PD-1962 ([a85ec39](https://github.com/pie-framework/pie-lib/commit/a85ec3911dd1f6bc89e4eb20a19ef8f957deebf1))
-
-
-
-
+- **charting:** refactor ability to edit chart title and labels, fix style ([6edcdfb](https://github.com/pie-framework/pie-lib/commit/6edcdfbfbd83806a8487c29c42ae447b11850ac7))
+- **charting:** try to set up labels for charting, work in progress ([c6cd049](https://github.com/pie-framework/pie-lib/commit/c6cd049723dadab329748511da2f6c4f1fa943db))
+- **graphing, plot:** moved graphing labels to plot package + fixed math input + added support for labels rotation PD-1962 ([a85ec39](https://github.com/pie-framework/pie-lib/commit/a85ec3911dd1f6bc89e4eb20a19ef8f957deebf1))
 
 ## [5.1.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.1.7...@pie-lib/charting@5.1.8) (2022-09-12)
 
 **Note:** Version bump only for package @pie-lib/charting
 
-
-
-
-
 ## [5.1.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.1.6...@pie-lib/charting@5.1.7) (2022-08-30)
-
 
 ### Bug Fixes
 
-* **plot, charting, graphing:** adjusted side pixel guides, fixed graphing rendering issue, adjusted charting dimensions PD-1963 ([5043231](https://github.com/pie-framework/pie-lib/commit/5043231ba73a0aa475115fb5fe9af29e0e67a4b6))
-
-
-
-
+- **plot, charting, graphing:** adjusted side pixel guides, fixed graphing rendering issue, adjusted charting dimensions PD-1963 ([5043231](https://github.com/pie-framework/pie-lib/commit/5043231ba73a0aa475115fb5fe9af29e0e67a4b6))
 
 ## [5.1.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.1.5...@pie-lib/charting@5.1.6) (2022-08-29)
 
-
 ### Bug Fixes
 
-* **charting:** override grey background in IBX for chart disabled labels ([be882d4](https://github.com/pie-framework/pie-lib/commit/be882d40b7ebf88531bfb546252221673fa74dab))
-* do not change range on cancel ([1a7c990](https://github.com/pie-framework/pie-lib/commit/1a7c990a0ddf5d0b8c05aa68d6af324dd386b7d3))
-
-
-
-
+- **charting:** override grey background in IBX for chart disabled labels ([be882d4](https://github.com/pie-framework/pie-lib/commit/be882d40b7ebf88531bfb546252221673fa74dab))
+- do not change range on cancel ([1a7c990](https://github.com/pie-framework/pie-lib/commit/1a7c990a0ddf5d0b8c05aa68d6af324dd386b7d3))
 
 ## [5.1.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.1.4...@pie-lib/charting@5.1.5) (2022-08-15)
 
 **Note:** Version bump only for package @pie-lib/charting
 
-
-
-
-
 ## [5.1.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.1.3...@pie-lib/charting@5.1.4) (2022-08-01)
 
 **Note:** Version bump only for package @pie-lib/charting
-
-
-
-
 
 ## [5.1.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.1.2...@pie-lib/charting@5.1.3) (2022-08-01)
 
 **Note:** Version bump only for package @pie-lib/charting
 
-
-
-
-
 ## [5.1.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.1.1...@pie-lib/charting@5.1.2) (2022-07-12)
 
 **Note:** Version bump only for package @pie-lib/charting
-
-
-
-
 
 ## [5.1.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.1.0...@pie-lib/charting@5.1.1) (2022-07-12)
 
 **Note:** Version bump only for package @pie-lib/charting
 
-
-
-
-
 # [5.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.0.0...@pie-lib/charting@5.1.0) (2022-06-27)
-
 
 ### Features
 
-* **charting:** add constraints on max value for charting setup panel ([595c301](https://github.com/pie-framework/pie-lib/commit/595c301c6b10caf1921aa25f38897729c56ed47c))
-
-
-
-
+- **charting:** add constraints on max value for charting setup panel ([595c301](https://github.com/pie-framework/pie-lib/commit/595c301c6b10caf1921aa25f38897729c56ed47c))
 
 # [5.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.5.18...@pie-lib/charting@5.0.0) (2022-06-13)
 
-
 ### Bug Fixes
 
-* updated shapshot ([4f4975d](https://github.com/pie-framework/pie-lib/commit/4f4975d9abd2c52365f7081e280d860149e7edd0))
-
+- updated shapshot ([4f4975d](https://github.com/pie-framework/pie-lib/commit/4f4975d9abd2c52365f7081e280d860149e7edd0))
 
 ### Features
 
-* **charting:** remove editCategoryEnabled property checkbox and usage ([3181fc0](https://github.com/pie-framework/pie-lib/commit/3181fc02ea83e408af5d930d5e10a85a2ded3dd4))
-* **charting:** remove editCategoryEnabled property checkbox and usage ([b72de39](https://github.com/pie-framework/pie-lib/commit/b72de39525c0f9c0439204e65b2a7d330bb9061d))
-
+- **charting:** remove editCategoryEnabled property checkbox and usage ([3181fc0](https://github.com/pie-framework/pie-lib/commit/3181fc02ea83e408af5d930d5e10a85a2ded3dd4))
+- **charting:** remove editCategoryEnabled property checkbox and usage ([b72de39](https://github.com/pie-framework/pie-lib/commit/b72de39525c0f9c0439204e65b2a7d330bb9061d))
 
 ### BREAKING CHANGES
 
-* **charting:** The editCategoryEnabled checkbox and property was removed.
-Enabeled property will be used for each category.
-* **charting:** The editCategoryEnabled propery has been removed
-
-
-
-
+- **charting:** The editCategoryEnabled checkbox and property was removed.
+  Enabeled property will be used for each category.
+- **charting:** The editCategoryEnabled propery has been removed
 
 ## [4.5.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.5.17...@pie-lib/charting@4.5.18) (2022-06-13)
 
-
 ### Bug Fixes
 
-* revert possible breaking changes ([75acdf4](https://github.com/pie-framework/pie-lib/commit/75acdf4eb571694fc2069e7f7088ac25a7b3aceb))
-
-
-
-
+- revert possible breaking changes ([75acdf4](https://github.com/pie-framework/pie-lib/commit/75acdf4eb571694fc2069e7f7088ac25a7b3aceb))
 
 ## [4.5.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.5.16...@pie-lib/charting@4.5.17) (2022-06-13)
 
 **Note:** Version bump only for package @pie-lib/charting
 
-
-
-
-
 ## [4.5.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.5.15...@pie-lib/charting@4.5.16) (2022-05-30)
-
 
 ### Bug Fixes
 
-* unable to load items locally ([17ab686](https://github.com/pie-framework/pie-lib/commit/17ab6864557288aef6ec1d9a130cb508e2591562))
-
-
-
-
+- unable to load items locally ([17ab686](https://github.com/pie-framework/pie-lib/commit/17ab6864557288aef6ec1d9a130cb508e2591562))
 
 ## [4.5.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.5.14...@pie-lib/charting@4.5.15) (2022-05-10)
 
 **Note:** Version bump only for package @pie-lib/charting
 
-
-
-
-
 ## [4.5.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.5.13...@pie-lib/charting@4.5.14) (2022-03-21)
-
 
 ### Bug Fixes
 
-* **charting:** Added custom modulo function to work with decimals PD-1645 ([70951ef](https://github.com/pie-framework/pie-lib/commit/70951ef055630f217094a42ec2d15282cf680c6b))
-
-
-
-
+- **charting:** Added custom modulo function to work with decimals PD-1645 ([70951ef](https://github.com/pie-framework/pie-lib/commit/70951ef055630f217094a42ec2d15282cf680c6b))
 
 ## [4.5.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.5.12...@pie-lib/charting@4.5.13) (2021-09-10)
 
-
 ### Bug Fixes
 
-* **charting:** Displayed the entire rightmost category label when space available PD-531 ([4c96415](https://github.com/pie-framework/pie-lib/commit/4c96415))
-
-
-
-
+- **charting:** Displayed the entire rightmost category label when space available PD-531 ([4c96415](https://github.com/pie-framework/pie-lib/commit/4c96415))
 
 ## [4.5.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.5.11...@pie-lib/charting@4.5.12) (2021-09-08)
 
 **Note:** Version bump only for package @pie-lib/charting
 
-
-
-
-
 ## [4.5.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.5.10...@pie-lib/charting@4.5.11) (2021-09-08)
-
 
 ### Bug Fixes
 
-* **charting:** calculate step and labelStep if they are not defined or if tickLabels are crowded PD-1016 ([d215ea0](https://github.com/pie-framework/pie-lib/commit/d215ea0))
-* **charting:** Updated label font size ([d7905e0](https://github.com/pie-framework/pie-lib/commit/d7905e0))
-
-
-
-
+- **charting:** calculate step and labelStep if they are not defined or if tickLabels are crowded PD-1016 ([d215ea0](https://github.com/pie-framework/pie-lib/commit/d215ea0))
+- **charting:** Updated label font size ([d7905e0](https://github.com/pie-framework/pie-lib/commit/d7905e0))
 
 ## [4.5.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@4.5.8...@pie-lib/charting@4.5.10) (2021-06-25)
 

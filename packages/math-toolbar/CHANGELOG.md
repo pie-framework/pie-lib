@@ -7,252 +7,143 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
 
-
-
-
-
 ## [1.11.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.11.2...@pie-lib/math-toolbar@1.11.3) (2022-11-17)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
 
-
-
-
-
 ## [1.11.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.11.1...@pie-lib/math-toolbar@1.11.2) (2022-11-14)
-
 
 ### Bug Fixes
 
-* PD-1858 (Math editor tweak to better handle the entry of mixed numbers) - not working with a mixed number if the integer part is multi-digit PD-1858, PD-2029, PD-2030, PD-2031 ([158e76a](https://github.com/pie-framework/pie-lib/commit/158e76a48bec66b1f026811bb1856fa4af5668f3))
-
-
-
-
+- PD-1858 (Math editor tweak to better handle the entry of mixed numbers) - not working with a mixed number if the integer part is multi-digit PD-1858, PD-2029, PD-2030, PD-2031 ([158e76a](https://github.com/pie-framework/pie-lib/commit/158e76a48bec66b1f026811bb1856fa4af5668f3))
 
 ## [1.11.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.11.0...@pie-lib/math-toolbar@1.11.1) (2022-08-30)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
 
-
-
-
-
 # [1.11.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.10.3...@pie-lib/math-toolbar@1.11.0) (2022-08-29)
-
 
 ### Features
 
-* **math-toolbar:** feedback ([f3ef92d](https://github.com/pie-framework/pie-lib/commit/f3ef92d2dad55e0e0aff6dc216cc491f1fde94f2))
-* **math-toolbar:** feedback ([85e4b58](https://github.com/pie-framework/pie-lib/commit/85e4b585dfb389a026629607ce54f6e3ac7d15fb))
-* **math-toolbar:** feedback ([b1d925f](https://github.com/pie-framework/pie-lib/commit/b1d925f1caf67a0851eadb07467ed042df4513ea))
-* **math-toolbar:** Make math-toolbar style inline with mathjax's one ([043ab63](https://github.com/pie-framework/pie-lib/commit/043ab63dda1914c992821d3f90992fe65817c597))
-* **math-toolbar:** Make math-toolbar style inline with mathjax's one ([8b7a7ed](https://github.com/pie-framework/pie-lib/commit/8b7a7ed46eb5e597589dd0f999663bfeb20edaa9))
-* **math-toolbar:** Make math-toolbar style inline with mathjax's one ([85ca9bd](https://github.com/pie-framework/pie-lib/commit/85ca9bdd12227054d1d3045e610544211251a699))
-* **math-toolbar:** updates fonts accordingly - variables use italic MJXTEX-I ([9a0b157](https://github.com/pie-framework/pie-lib/commit/9a0b1579c9c17d77a94f62eeb4cc160c21ab2f81))
-
-
-
-
+- **math-toolbar:** feedback ([f3ef92d](https://github.com/pie-framework/pie-lib/commit/f3ef92d2dad55e0e0aff6dc216cc491f1fde94f2))
+- **math-toolbar:** feedback ([85e4b58](https://github.com/pie-framework/pie-lib/commit/85e4b585dfb389a026629607ce54f6e3ac7d15fb))
+- **math-toolbar:** feedback ([b1d925f](https://github.com/pie-framework/pie-lib/commit/b1d925f1caf67a0851eadb07467ed042df4513ea))
+- **math-toolbar:** Make math-toolbar style inline with mathjax's one ([043ab63](https://github.com/pie-framework/pie-lib/commit/043ab63dda1914c992821d3f90992fe65817c597))
+- **math-toolbar:** Make math-toolbar style inline with mathjax's one ([8b7a7ed](https://github.com/pie-framework/pie-lib/commit/8b7a7ed46eb5e597589dd0f999663bfeb20edaa9))
+- **math-toolbar:** Make math-toolbar style inline with mathjax's one ([85ca9bd](https://github.com/pie-framework/pie-lib/commit/85ca9bdd12227054d1d3045e610544211251a699))
+- **math-toolbar:** updates fonts accordingly - variables use italic MJXTEX-I ([9a0b157](https://github.com/pie-framework/pie-lib/commit/9a0b1579c9c17d77a94f62eeb4cc160c21ab2f81))
 
 ## [1.10.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.10.2...@pie-lib/math-toolbar@1.10.3) (2022-08-01)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
 
-
-
-
-
 ## [1.10.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.10.1...@pie-lib/math-toolbar@1.10.2) (2022-07-19)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
 
-
-
-
-
 ## [1.10.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.10.0...@pie-lib/math-toolbar@1.10.1) (2022-07-18)
-
 
 ### Reverts
 
-* Revert "feat(math-toolbar): Make math-toolbar style inline with mathjax from Numeric to Grade 8HS PD-1521" ([f604ddd](https://github.com/pie-framework/pie-lib/commit/f604ddd8402b81f101e3f50b1baa4cc1bd5eec34))
-* Revert "feat(math-toolbar): Make math-toolbar preview style inline with mathjax" ([bb86c35](https://github.com/pie-framework/pie-lib/commit/bb86c35ed56228c673020faf5ea089fb99418fd8))
-* Revert "tweak" ([0c59e89](https://github.com/pie-framework/pie-lib/commit/0c59e89d5ca923e93a742051b3df7e9c8b2b90cc))
-* Revert "tweaks" ([647904f](https://github.com/pie-framework/pie-lib/commit/647904f3dc4f59b86064be1d7b9bbd2a4184f96b))
-
-
-
-
+- Revert "feat(math-toolbar): Make math-toolbar style inline with mathjax from Numeric to Grade 8HS PD-1521" ([f604ddd](https://github.com/pie-framework/pie-lib/commit/f604ddd8402b81f101e3f50b1baa4cc1bd5eec34))
+- Revert "feat(math-toolbar): Make math-toolbar preview style inline with mathjax" ([bb86c35](https://github.com/pie-framework/pie-lib/commit/bb86c35ed56228c673020faf5ea089fb99418fd8))
+- Revert "tweak" ([0c59e89](https://github.com/pie-framework/pie-lib/commit/0c59e89d5ca923e93a742051b3df7e9c8b2b90cc))
+- Revert "tweaks" ([647904f](https://github.com/pie-framework/pie-lib/commit/647904f3dc4f59b86064be1d7b9bbd2a4184f96b))
 
 # [1.10.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.9.4...@pie-lib/math-toolbar@1.10.0) (2022-07-18)
 
-
 ### Bug Fixes
 
-* **math-toolbar:** add sanity check for clicking in editor-and-pad ([4c5dc18](https://github.com/pie-framework/pie-lib/commit/4c5dc18e077fca9a50f9c638f64ba08bba3b0884))
-
+- **math-toolbar:** add sanity check for clicking in editor-and-pad ([4c5dc18](https://github.com/pie-framework/pie-lib/commit/4c5dc18e077fca9a50f9c638f64ba08bba3b0884))
 
 ### Features
 
-* **math-toolbar:** Make math-toolbar preview style inline with mathjax ([266b1bc](https://github.com/pie-framework/pie-lib/commit/266b1bc9a277530fd653edfacbb836596957dd33))
-* **math-toolbar:** Make math-toolbar style inline with mathjax from Numeric to Grade 8HS PD-1521 ([5c49326](https://github.com/pie-framework/pie-lib/commit/5c493262ccf2ca8ba4c80af42e566b4e7a8c3571))
-* **plugins:** added special characters adding capabilities [PD-1462] ([b9f41e1](https://github.com/pie-framework/pie-lib/commit/b9f41e11f44df140a66145d0b04558ca2b0ea48e))
-
-
-
-
+- **math-toolbar:** Make math-toolbar preview style inline with mathjax ([266b1bc](https://github.com/pie-framework/pie-lib/commit/266b1bc9a277530fd653edfacbb836596957dd33))
+- **math-toolbar:** Make math-toolbar style inline with mathjax from Numeric to Grade 8HS PD-1521 ([5c49326](https://github.com/pie-framework/pie-lib/commit/5c493262ccf2ca8ba4c80af42e566b4e7a8c3571))
+- **plugins:** added special characters adding capabilities [PD-1462](<[b9f41e1](https://github.com/pie-framework/pie-lib/commit/b9f41e11f44df140a66145d0b04558ca2b0ea48e)>)
 
 ## [1.9.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.9.3...@pie-lib/math-toolbar@1.9.4) (2022-06-13)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
 
-
-
-
-
 ## [1.9.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.9.2...@pie-lib/math-toolbar@1.9.3) (2022-05-10)
-
 
 ### Bug Fixes
 
-* **math-toolbar:** make sure errors visually update for item validation ([d36fe40](https://github.com/pie-framework/pie-lib/commit/d36fe4071deb5cb10f61758cfe73b185574b27af))
-
-
-
-
+- **math-toolbar:** make sure errors visually update for item validation ([d36fe40](https://github.com/pie-framework/pie-lib/commit/d36fe4071deb5cb10f61758cfe73b185574b27af))
 
 ## [1.9.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.9.1...@pie-lib/math-toolbar@1.9.2) (2022-05-09)
 
-
 ### Bug Fixes
 
-* **math-toolbar:** fix simple response gather PD-1786 ([1769577](https://github.com/pie-framework/pie-lib/commit/176957700d75d3efa0e5fbf08e8e4c6ffe61320d))
-
-
-
-
+- **math-toolbar:** fix simple response gather PD-1786 ([1769577](https://github.com/pie-framework/pie-lib/commit/176957700d75d3efa0e5fbf08e8e4c6ffe61320d))
 
 ## [1.9.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.9.0...@pie-lib/math-toolbar@1.9.1) (2022-05-03)
 
-
 ### Bug Fixes
 
-* **math-toolbar:** add sanity checks ([e012294](https://github.com/pie-framework/pie-lib/commit/e012294184b6f0c1472e6306be01e76e650c8fa5))
-
-
-
-
+- **math-toolbar:** add sanity checks ([e012294](https://github.com/pie-framework/pie-lib/commit/e012294184b6f0c1472e6306be01e76e650c8fa5))
 
 # [1.9.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.8.9...@pie-lib/math-toolbar@1.9.0) (2022-05-03)
 
-
 ### Features
 
-* **math-toolbar:** add validation ui/ux for math-inline inputs PD-1705 ([cbc7205](https://github.com/pie-framework/pie-lib/commit/cbc72051deaefd76765cd60a387e47eebd0abc2f))
-* **math-toolbar:** PD-1705 disable logic for add button in editor if maxResponseAreas is defined ([d68034c](https://github.com/pie-framework/pie-lib/commit/d68034cb4a2d24224f2c778fa4cf425ff157177a))
-
-
-
-
+- **math-toolbar:** add validation ui/ux for math-inline inputs PD-1705 ([cbc7205](https://github.com/pie-framework/pie-lib/commit/cbc72051deaefd76765cd60a387e47eebd0abc2f))
+- **math-toolbar:** PD-1705 disable logic for add button in editor if maxResponseAreas is defined ([d68034c](https://github.com/pie-framework/pie-lib/commit/d68034cb4a2d24224f2c778fa4cf425ff157177a))
 
 ## [1.8.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.8.8...@pie-lib/math-toolbar@1.8.9) (2022-04-12)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
 
-
-
-
-
 ## [1.8.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.8.7...@pie-lib/math-toolbar@1.8.8) (2022-02-04)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
-
-
-
-
 
 ## [1.8.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.8.6...@pie-lib/math-toolbar@1.8.7) (2022-01-10)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
 
-
-
-
-
 ## [1.8.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.8.5...@pie-lib/math-toolbar@1.8.6) (2021-10-04)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
-
-
-
-
 
 ## [1.8.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.8.4...@pie-lib/math-toolbar@1.8.5) (2021-10-04)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
 
-
-
-
-
 ## [1.8.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.8.3...@pie-lib/math-toolbar@1.8.4) (2021-09-20)
-
 
 ### Bug Fixes
 
-* **math-input, math-toolbar:** Adjusted parallelogram button size ([699431e](https://github.com/pie-framework/pie-lib/commit/699431e))
-
-
-
-
+- **math-input, math-toolbar:** Adjusted parallelogram button size ([699431e](https://github.com/pie-framework/pie-lib/commit/699431e))
 
 ## [1.8.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.8.2...@pie-lib/math-toolbar@1.8.3) (2021-09-16)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
 
-
-
-
-
 ## [1.8.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.8.1...@pie-lib/math-toolbar@1.8.2) (2021-09-08)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
 
-
-
-
-
 ## [1.8.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.8.0...@pie-lib/math-toolbar@1.8.1) (2021-09-08)
-
 
 ### Bug Fixes
 
-* **math-toolbar:** Fixed arrows for pits ([f22208b](https://github.com/pie-framework/pie-lib/commit/f22208b))
-
-
-
-
+- **math-toolbar:** Fixed arrows for pits ([f22208b](https://github.com/pie-framework/pie-lib/commit/f22208b))
 
 # [1.8.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.7.14...@pie-lib/math-toolbar@1.8.0) (2021-08-30)
 
-
 ### Bug Fixes
 
-* **math-toolbar:** Added a min width for line notation PD-1263 ([92a560f](https://github.com/pie-framework/pie-lib/commit/92a560f))
-* **math-toolbar:** Made segment, ray and line more consistent PD-1264 ([1a2ad37](https://github.com/pie-framework/pie-lib/commit/1a2ad37))
-* **math-toolbar & math-input:** render parallel sign with bigger font PD-1258 ([418fc28](https://github.com/pie-framework/pie-lib/commit/418fc28))
-* override arrow style for ray PD-1265 ([815e3a5](https://github.com/pie-framework/pie-lib/commit/815e3a5))
-
+- **math-toolbar:** Added a min width for line notation PD-1263 ([92a560f](https://github.com/pie-framework/pie-lib/commit/92a560f))
+- **math-toolbar:** Made segment, ray and line more consistent PD-1264 ([1a2ad37](https://github.com/pie-framework/pie-lib/commit/1a2ad37))
+- **math-toolbar & math-input:** render parallel sign with bigger font PD-1258 ([418fc28](https://github.com/pie-framework/pie-lib/commit/418fc28))
+- override arrow style for ray PD-1265 ([815e3a5](https://github.com/pie-framework/pie-lib/commit/815e3a5))
 
 ### Features
 
-* **math-input, math-toolbar:** add long division button in math editor PD-888 ([3056990](https://github.com/pie-framework/pie-lib/commit/3056990))
-* **math-toolbar:** default to the grade 8 editor PD-1266 ([0cd28a2](https://github.com/pie-framework/pie-lib/commit/0cd28a2))
-
-
-
-
+- **math-input, math-toolbar:** add long division button in math editor PD-888 ([3056990](https://github.com/pie-framework/pie-lib/commit/3056990))
+- **math-toolbar:** default to the grade 8 editor PD-1266 ([0cd28a2](https://github.com/pie-framework/pie-lib/commit/0cd28a2))
 
 ## [1.7.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.7.12...@pie-lib/math-toolbar@1.7.14) (2021-06-25)
 

@@ -7,212 +7,122 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @pie-lib/math-input
 
-
-
-
-
 ## [6.8.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.8.2...@pie-lib/math-input@6.8.3) (2022-11-17)
-
 
 ### Bug Fixes
 
-* PD-1858 not working with the fraction button in Advanced Multi mode (mq.Static) PD-2030 PD-2031 ([46d1168](https://github.com/pie-framework/pie-lib/commit/46d116874c063524c764cb6d7035fed6bfa84dfb))
-
-
-
-
+- PD-1858 not working with the fraction button in Advanced Multi mode (mq.Static) PD-2030 PD-2031 ([46d1168](https://github.com/pie-framework/pie-lib/commit/46d116874c063524c764cb6d7035fed6bfa84dfb))
 
 ## [6.8.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.8.1...@pie-lib/math-input@6.8.2) (2022-11-14)
 
-
 ### Bug Fixes
 
-* PD-1858 (Math editor tweak to better handle the entry of mixed numbers) - not working with a mixed number if the integer part is multi-digit PD-1858, PD-2029, PD-2030, PD-2031 ([158e76a](https://github.com/pie-framework/pie-lib/commit/158e76a48bec66b1f026811bb1856fa4af5668f3))
-* PD-1858 not working with a mixed number if the integer part is multi-digit PD-2029 ([773f51c](https://github.com/pie-framework/pie-lib/commit/773f51cc54a2af72a1e9bd225ba9be27d8b1de52))
-
-
-
-
+- PD-1858 (Math editor tweak to better handle the entry of mixed numbers) - not working with a mixed number if the integer part is multi-digit PD-1858, PD-2029, PD-2030, PD-2031 ([158e76a](https://github.com/pie-framework/pie-lib/commit/158e76a48bec66b1f026811bb1856fa4af5668f3))
+- PD-1858 not working with a mixed number if the integer part is multi-digit PD-2029 ([773f51c](https://github.com/pie-framework/pie-lib/commit/773f51cc54a2af72a1e9bd225ba9be27d8b1de52))
 
 ## [6.8.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.8.0...@pie-lib/math-input@6.8.1) (2022-08-30)
 
 **Note:** Version bump only for package @pie-lib/math-input
 
-
-
-
-
 # [6.8.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.7.2...@pie-lib/math-input@6.8.0) (2022-08-29)
-
 
 ### Features
 
-* parse latex when there's an integer and a space before a fraction (remove white space) - wip - PD-1858 ([13995de](https://github.com/pie-framework/pie-lib/commit/13995de67283a3c800f41ee8221f6d2e3f10a7ad))
-* parse latex when there's an integer and a space before a fraction (remove white space) PD-1858 ([85654e5](https://github.com/pie-framework/pie-lib/commit/85654e54b9feef656c0002e9d1b2bda2394f398e))
-* **math-input:** feedback ([6b6ee68](https://github.com/pie-framework/pie-lib/commit/6b6ee6852c6226c446a498ad64c2b43e23f9c154))
-* **math-input:** Make math-input style inline with mathjax's one ([e988f63](https://github.com/pie-framework/pie-lib/commit/e988f635f6f75cbe882b3bf7efb716de13fd893d))
-
-
-
-
+- parse latex when there's an integer and a space before a fraction (remove white space) - wip - PD-1858 ([13995de](https://github.com/pie-framework/pie-lib/commit/13995de67283a3c800f41ee8221f6d2e3f10a7ad))
+- parse latex when there's an integer and a space before a fraction (remove white space) PD-1858 ([85654e5](https://github.com/pie-framework/pie-lib/commit/85654e54b9feef656c0002e9d1b2bda2394f398e))
+- **math-input:** feedback ([6b6ee68](https://github.com/pie-framework/pie-lib/commit/6b6ee6852c6226c446a498ad64c2b43e23f9c154))
+- **math-input:** Make math-input style inline with mathjax's one ([e988f63](https://github.com/pie-framework/pie-lib/commit/e988f635f6f75cbe882b3bf7efb716de13fd893d))
 
 ## [6.7.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.7.1...@pie-lib/math-input@6.7.2) (2022-07-19)
 
-
 ### Bug Fixes
 
-* bump mathquill to 1.1.3 ([48b84c5](https://github.com/pie-framework/pie-lib/commit/48b84c534cbf519e172a80d18a48b26eda3cf7e6))
-
-
-
-
+- bump mathquill to 1.1.3 ([48b84c5](https://github.com/pie-framework/pie-lib/commit/48b84c534cbf519e172a80d18a48b26eda3cf7e6))
 
 ## [6.7.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.7.0...@pie-lib/math-input@6.7.1) (2022-07-18)
 
-
 ### Reverts
 
-* Revert "feat(math-toolbar): Make math-toolbar style inline with mathjax for Geometry" ([fee3f22](https://github.com/pie-framework/pie-lib/commit/fee3f22897a03d1d5c892f731dfc441dba9ed10f))
-* Revert "feat(math-toolbar): Make math-toolbar preview style inline with mathjax" ([bb86c35](https://github.com/pie-framework/pie-lib/commit/bb86c35ed56228c673020faf5ea089fb99418fd8))
-
-
-
-
+- Revert "feat(math-toolbar): Make math-toolbar style inline with mathjax for Geometry" ([fee3f22](https://github.com/pie-framework/pie-lib/commit/fee3f22897a03d1d5c892f731dfc441dba9ed10f))
+- Revert "feat(math-toolbar): Make math-toolbar preview style inline with mathjax" ([bb86c35](https://github.com/pie-framework/pie-lib/commit/bb86c35ed56228c673020faf5ea089fb99418fd8))
 
 # [6.7.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.6.10...@pie-lib/math-input@6.7.0) (2022-07-18)
 
-
 ### Features
 
-* **characters:** special character accents span 2 rows, added border for visibility [PD-1462] ([c60b0bc](https://github.com/pie-framework/pie-lib/commit/c60b0bc8ff45cc01f53bc752fd5dd64da623f6be))
-* **math-toolbar:** Make math-toolbar preview style inline with mathjax ([266b1bc](https://github.com/pie-framework/pie-lib/commit/266b1bc9a277530fd653edfacbb836596957dd33))
-* **math-toolbar:** Make math-toolbar style inline with mathjax for Geometry ([811bde0](https://github.com/pie-framework/pie-lib/commit/811bde0aa97633822fa3260666e298e841b6b9f7))
-* **plugins:** added special characters adding capabilities [PD-1462] ([b9f41e1](https://github.com/pie-framework/pie-lib/commit/b9f41e11f44df140a66145d0b04558ca2b0ea48e))
-
-
-
-
+- **characters:** special character accents span 2 rows, added border for visibility [PD-1462](<[c60b0bc](https://github.com/pie-framework/pie-lib/commit/c60b0bc8ff45cc01f53bc752fd5dd64da623f6be)>)
+- **math-toolbar:** Make math-toolbar preview style inline with mathjax ([266b1bc](https://github.com/pie-framework/pie-lib/commit/266b1bc9a277530fd653edfacbb836596957dd33))
+- **math-toolbar:** Make math-toolbar style inline with mathjax for Geometry ([811bde0](https://github.com/pie-framework/pie-lib/commit/811bde0aa97633822fa3260666e298e841b6b9f7))
+- **plugins:** added special characters adding capabilities [PD-1462](<[b9f41e1](https://github.com/pie-framework/pie-lib/commit/b9f41e11f44df140a66145d0b04558ca2b0ea48e)>)
 
 ## [6.6.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.6.9...@pie-lib/math-input@6.6.10) (2022-06-13)
 
 **Note:** Version bump only for package @pie-lib/math-input
 
-
-
-
-
 ## [6.6.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.6.8...@pie-lib/math-input@6.6.9) (2022-04-12)
-
 
 ### Bug Fixes
 
-* **math-input:** PD-1669 handle latex with errors in keypad buttons ([6b36f17](https://github.com/pie-framework/pie-lib/commit/6b36f175deffbd0a0fe021f4f7a11d7c4f14a014))
-
-
-
-
+- **math-input:** PD-1669 handle latex with errors in keypad buttons ([6b36f17](https://github.com/pie-framework/pie-lib/commit/6b36f175deffbd0a0fe021f4f7a11d7c4f14a014))
 
 ## [6.6.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.6.7...@pie-lib/math-input@6.6.8) (2022-02-04)
 
 **Note:** Version bump only for package @pie-lib/math-input
 
-
-
-
-
 ## [6.6.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.6.6...@pie-lib/math-input@6.6.7) (2022-01-10)
 
 **Note:** Version bump only for package @pie-lib/math-input
 
-
-
-
-
 ## [6.6.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.6.5...@pie-lib/math-input@6.6.6) (2021-10-04)
-
 
 ### Bug Fixes
 
-* **math-input:** Fixed left-right arrow button ([6109149](https://github.com/pie-framework/pie-lib/commit/6109149))
-
-
-
-
+- **math-input:** Fixed left-right arrow button ([6109149](https://github.com/pie-framework/pie-lib/commit/6109149))
 
 ## [6.6.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.6.4...@pie-lib/math-input@6.6.5) (2021-10-04)
 
-
 ### Bug Fixes
 
-* **math-input:** create proper latex expression for log base button ([ca0c3f0](https://github.com/pie-framework/pie-lib/commit/ca0c3f0))
-* **math-input:** Made overarc button consistent with the others PD-1315 ([8726469](https://github.com/pie-framework/pie-lib/commit/8726469))
-* **math-input:** Made segment, ray and line buttons more consistent PD-1315 ([e7e4e29](https://github.com/pie-framework/pie-lib/commit/e7e4e29))
-
-
-
-
+- **math-input:** create proper latex expression for log base button ([ca0c3f0](https://github.com/pie-framework/pie-lib/commit/ca0c3f0))
+- **math-input:** Made overarc button consistent with the others PD-1315 ([8726469](https://github.com/pie-framework/pie-lib/commit/8726469))
+- **math-input:** Made segment, ray and line buttons more consistent PD-1315 ([e7e4e29](https://github.com/pie-framework/pie-lib/commit/e7e4e29))
 
 ## [6.6.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.6.3...@pie-lib/math-input@6.6.4) (2021-09-20)
 
-
 ### Bug Fixes
 
-* **math-input, math-toolbar:** Adjusted parallelogram button size ([699431e](https://github.com/pie-framework/pie-lib/commit/699431e))
-
-
-
-
+- **math-input, math-toolbar:** Adjusted parallelogram button size ([699431e](https://github.com/pie-framework/pie-lib/commit/699431e))
 
 ## [6.6.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.6.2...@pie-lib/math-input@6.6.3) (2021-09-16)
 
-
 ### Bug Fixes
 
-* **math-input:** render measured angle as m + angle sign PD-368 ([670fb56](https://github.com/pie-framework/pie-lib/commit/670fb56))
-
-
-
-
+- **math-input:** render measured angle as m + angle sign PD-368 ([670fb56](https://github.com/pie-framework/pie-lib/commit/670fb56))
 
 ## [6.6.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.6.1...@pie-lib/math-input@6.6.2) (2021-09-08)
 
 **Note:** Version bump only for package @pie-lib/math-input
 
-
-
-
-
 ## [6.6.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.6.0...@pie-lib/math-input@6.6.1) (2021-09-08)
-
 
 ### Bug Fixes
 
-* **math-input:** default latex when received is wrong ([d872f60](https://github.com/pie-framework/pie-lib/commit/d872f60))
-* **math-input:** default latex when received is wrong (2) ([dc71307](https://github.com/pie-framework/pie-lib/commit/dc71307))
-* **math-input:** fix e button on advanced algebra math editor PD-1280 ([dbfb53b](https://github.com/pie-framework/pie-lib/commit/dbfb53b))
-* **math-input:** Fixed arrows button for pits ([66dd6a9](https://github.com/pie-framework/pie-lib/commit/66dd6a9))
-
-
-
-
+- **math-input:** default latex when received is wrong ([d872f60](https://github.com/pie-framework/pie-lib/commit/d872f60))
+- **math-input:** default latex when received is wrong (2) ([dc71307](https://github.com/pie-framework/pie-lib/commit/dc71307))
+- **math-input:** fix e button on advanced algebra math editor PD-1280 ([dbfb53b](https://github.com/pie-framework/pie-lib/commit/dbfb53b))
+- **math-input:** Fixed arrows button for pits ([66dd6a9](https://github.com/pie-framework/pie-lib/commit/66dd6a9))
 
 # [6.6.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.5.14...@pie-lib/math-input@6.6.0) (2021-08-30)
 
-
 ### Bug Fixes
 
-* **math-input:** Fixed custom keys behavior and changed label for (),[] and absolute value PD-1251 ([39f2ddb](https://github.com/pie-framework/pie-lib/commit/39f2ddb))
-* **math-toolbar:** Made segment, ray and line more consistent PD-1264 ([1a2ad37](https://github.com/pie-framework/pie-lib/commit/1a2ad37))
-* **math-toolbar & math-input:** render parallel sign with bigger font PD-1258 ([418fc28](https://github.com/pie-framework/pie-lib/commit/418fc28))
-
+- **math-input:** Fixed custom keys behavior and changed label for (),[] and absolute value PD-1251 ([39f2ddb](https://github.com/pie-framework/pie-lib/commit/39f2ddb))
+- **math-toolbar:** Made segment, ray and line more consistent PD-1264 ([1a2ad37](https://github.com/pie-framework/pie-lib/commit/1a2ad37))
+- **math-toolbar & math-input:** render parallel sign with bigger font PD-1258 ([418fc28](https://github.com/pie-framework/pie-lib/commit/418fc28))
 
 ### Features
 
-* **math-input, math-toolbar:** add long division button in math editor PD-888 ([3056990](https://github.com/pie-framework/pie-lib/commit/3056990))
-
-
-
-
+- **math-input, math-toolbar:** add long division button in math editor PD-888 ([3056990](https://github.com/pie-framework/pie-lib/commit/3056990))
 
 ## [6.5.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.5.12...@pie-lib/math-input@6.5.14) (2021-06-25)
 

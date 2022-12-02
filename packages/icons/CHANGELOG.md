@@ -7,10 +7,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @pie-lib/icons
 
-
-
-
-
 ## [2.4.25](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.4.23...@pie-lib/icons@2.4.25) (2021-06-25)
 
 **Note:** Version bump only for package @pie-lib/icons

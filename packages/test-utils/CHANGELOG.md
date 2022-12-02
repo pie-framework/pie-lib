@@ -7,10 +7,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @pie-lib/test-utils
 
-
-
-
-
 ## [0.2.19](https://github.com/pie-framework/pie-lib/compare/@pie-lib/test-utils@0.2.17...@pie-lib/test-utils@0.2.19) (2021-06-25)
 
 **Note:** Version bump only for package @pie-lib/test-utils

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import findKey from 'lodash/findKey';
 import Choice from './choice';
+import Placeholder from './droppable-placeholder';
 
 export default class Choices extends React.Component {
   static propTypes = {
@@ -36,21 +37,25 @@ export default class Choices extends React.Component {
   };
 
   render() {
-    const { disabled, duplicates, choices, value } = this.props;
+    const { disabled, duplicates, choices, value, isOver } = this.props;
     const filteredChoices = choices.filter((c) => {
       if (duplicates === true) {
         return true;
       }
       const foundChoice = findKey(value, (v) => v === c.id);
+
       return foundChoice === undefined;
     });
+
     const elementStyle = this.getStyleForWrapper();
 
     return (
       <div style={elementStyle}>
-        {filteredChoices.map((c, index) => (
-          <Choice key={`${c.value}-${index}`} disabled={disabled} choice={c} />
-        ))}
+        <Placeholder isOver={isOver}>
+          {filteredChoices.map((c, index) => (
+            <Choice key={`${c.value}-${index}`} disabled={disabled} choice={c} {...c} />
+          ))}
+        </Placeholder>
       </div>
     );
   }

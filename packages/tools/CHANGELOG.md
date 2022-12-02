@@ -7,10 +7,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @pie-lib/tools
 
-
-
-
-
 ## [0.9.24](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.9.22...@pie-lib/tools@0.9.24) (2021-06-25)
 
 **Note:** Version bump only for package @pie-lib/tools

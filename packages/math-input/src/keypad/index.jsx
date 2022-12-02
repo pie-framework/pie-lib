@@ -252,16 +252,20 @@ export class KeyPad extends React.Component {
           };
 
           if (k.latex) {
-            return <LatexButton latex={k.latex} {...common} className={classes.latexButton} />;
+            return <LatexButton key={index} latex={k.latex} {...common} className={classes.latexButton} />;
           }
 
           if (k.label) {
-            return <Button {...common}>{k.label}</Button>;
+            return (
+              <Button key={index} {...common}>
+                {k.label}
+              </Button>
+            );
           } else {
             const Icon = k.icon ? k.icon : 'div';
 
             return (
-              <IconButton tabIndex={'-1'} {...common}>
+              <IconButton key={index} tabIndex={'-1'} {...common}>
                 <Icon className={classes.icon} />
               </IconButton>
             );

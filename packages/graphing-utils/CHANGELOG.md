@@ -7,10 +7,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @pie-lib/graphing-utils
 
-
-
-
-
 ## [1.1.20](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-utils@1.1.18...@pie-lib/graphing-utils@1.1.20) (2021-06-25)
 
 **Note:** Version bump only for package @pie-lib/graphing-utils
