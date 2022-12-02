@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import findKey from 'lodash/findKey';
 import Choice from './choice';
-import Placeholder from './droppable-placeholder';
-
+//import { DroppablePlaceholder } from '@pie-lib/drag';
+import DroppablePlaceholder from '@pie-lib/drag/lib/droppable-placeholder';
 export default class Choices extends React.Component {
   static propTypes = {
     disabled: PropTypes.bool,
@@ -37,7 +37,8 @@ export default class Choices extends React.Component {
   };
 
   render() {
-    const { disabled, duplicates, choices, value, isOver } = this.props;
+    const { disabled, duplicates, choices, value } = this.props;
+
     const filteredChoices = choices.filter((c) => {
       if (duplicates === true) {
         return true;
@@ -51,11 +52,11 @@ export default class Choices extends React.Component {
 
     return (
       <div style={elementStyle}>
-        <Placeholder isOver={isOver}>
+        <DroppablePlaceholder disabled={disabled}>
           {filteredChoices.map((c, index) => (
             <Choice key={`${c.value}-${index}`} disabled={disabled} choice={c} {...c} />
           ))}
-        </Placeholder>
+        </DroppablePlaceholder>
       </div>
     );
   }

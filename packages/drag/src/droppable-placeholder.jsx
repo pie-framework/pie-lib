@@ -30,9 +30,7 @@ export const spec = {
   canDrop: (props /*, monitor*/) => {
     return !props.disabled;
   },
-  drop: (props) => {
-    log('[drop] props: ', props);
-  },
+  drop: () => {},
 };
 
 const WithTarget = DropTarget(DRAG_TYPE, spec, (connect, monitor) => ({
