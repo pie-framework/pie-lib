@@ -278,7 +278,7 @@ export class Panel extends React.Component {
     // probably a better way to do this
     const mutatedGroups = [];
     Object.keys(groups).forEach((group) => {
-      const props = groups[group];
+      const props = { ...groups[group] };
       mutatedGroups.push({
         group,
         props,

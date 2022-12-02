@@ -14,7 +14,7 @@ class RawLayoutContents extends React.Component {
 
   render() {
     const { mode, secondary, children, classes } = this.props;
-    const hasSettingsPanel = Object.entries(secondary.props.configuration).some(([propName, obj]) => obj?.settings);
+    const hasSettingsPanel = Object.entries(secondary.props.configuration).some(([propName, obj]) => !!obj?.settings);
 
     return (
       <div className={classnames(classes.container)}>
