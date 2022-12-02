@@ -275,27 +275,17 @@ export class Panel extends React.Component {
     const { groups, model, configuration } = this.props;
     log('render:', model);
 
-    // probably a better way to do this
-    const mutatedGroups = [];
-    Object.keys(groups).forEach((group) => {
-      const props = { ...groups[group] };
-      mutatedGroups.push({
-        group,
-        props,
-        showGroup: Object.entries(props).some(([propName, propVal]) => !!propVal),
-      });
-    });
-
-    const renderedGroups = mutatedGroups
-      .map((grpObj) => {
-        if (grpObj.showGroup) {
+    const renderedGroups = Object.keys(groups)
+      .map((group) => {
+        const showGroup = Object.entries(groups[group]).some(([propName, propVal]) => !!propVal);
+        if (showGroup) {
           return (
             <Group
-              label={grpObj.group}
-              key={grpObj.group}
+              label={group}
+              key={group}
               model={model}
               configuration={configuration}
-              group={grpObj.props}
+              group={groups[group]}
               onChange={this.change}
             />
           );
