@@ -42,7 +42,9 @@ exports[`index Choices renders correctly with default props 1`] = `
     }
   }
 >
-  <DropTarget(DroppablePlaceholder)>
+  <DropTarget(DroppablePlaceholder)
+    disabled={false}
+  >
     <DragSource(WithStyles(BlankContentComp))
       choice={
         Object {
@@ -97,7 +99,9 @@ exports[`index Choices renders correctly with disabled prop as true 1`] = `
     }
   }
 >
-  <DropTarget(DroppablePlaceholder)>
+  <DropTarget(DroppablePlaceholder)
+    disabled={true}
+  >
     <DragSource(WithStyles(BlankContentComp))
       choice={
         Object {
@@ -152,7 +156,9 @@ exports[`index Choices renders with duplicates 1`] = `
     }
   }
 >
-  <DropTarget(DroppablePlaceholder)>
+  <DropTarget(DroppablePlaceholder)
+    disabled={false}
+  >
     <DragSource(WithStyles(BlankContentComp))
       choice={
         Object {
@@ -207,7 +213,9 @@ exports[`index Choices renders without duplicates 1`] = `
     }
   }
 >
-  <DropTarget(DroppablePlaceholder)>
+  <DropTarget(DroppablePlaceholder)
+    disabled={false}
+  >
     <DragSource(WithStyles(BlankContentComp))
       choice={
         Object {
