@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import findKey from 'lodash/findKey';
 import Choice from './choice';
-//import { DroppablePlaceholder } from '@pie-lib/drag';
 import DroppablePlaceholder from '@pie-lib/drag/lib/droppable-placeholder';
 export default class Choices extends React.Component {
   static propTypes = {
