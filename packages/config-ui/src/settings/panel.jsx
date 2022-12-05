@@ -275,23 +275,22 @@ export class Panel extends React.Component {
     const { groups, model, configuration } = this.props;
     log('render:', model);
 
-    const renderedGroups = Object.keys(groups)
-      .map((group) => {
-        const showGroup = Object.entries(groups[group]).some(([propName, propVal]) => !!propVal);
-        if (showGroup) {
-          return (
-            <Group
-              label={group}
-              key={group}
-              model={model}
-              configuration={configuration}
-              group={groups[group]}
-              onChange={this.change}
-            />
-          );
-        }
-      })
-      .filter((item) => !!item);
+    const renderedGroups = Object.keys(groups || {}).map((group) => {
+      const showGroup = Object.entries(groups[group]).some(([propName, propVal]) => !!propVal);
+      if (showGroup) {
+        return (
+          <Group
+            label={group}
+            key={group}
+            model={model}
+            configuration={configuration}
+            group={groups[group]}
+            onChange={this.change}
+          />
+        );
+      }
+      return null;
+    });
 
     return <div>{renderedGroups}</div>;
   }
