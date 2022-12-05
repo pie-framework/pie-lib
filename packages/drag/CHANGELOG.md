@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.0.1...@pie-lib/drag@2.0.2) (2022-11-29)
+
+
+### Bug Fixes
+
+* react-dnd issue ([a39cb6d](https://github.com/pie-framework/pie-lib/commit/a39cb6dfa290840f3521f390ac3bd8091acee3d1))
+
+
+
+
+
 ## [2.0.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.0.0...@pie-lib/drag@2.0.1) (2022-11-23)
 
 **Note:** Version bump only for package @pie-lib/drag
