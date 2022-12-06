@@ -16,7 +16,8 @@ class RawLayoutContents extends React.Component {
     const { mode, secondary, children, classes } = this.props;
     // in config-layout, layout content gets called like this:
     // <LayoutContents secondary={layoutMode === 'inline' ? <SettingsBox>{settings}</SettingsBox> : settings}>
-    const { configuration } = secondary?.props || secondary?.props?.children?.props || {};
+    const configuration =
+      secondary?.props?.configuration || secondary?.props?.children?.props?.configuration || undefined;
     const hasSettingsPanel = Object.entries(configuration || {}).some(([propName, obj]) => !!obj?.settings);
 
     return (
