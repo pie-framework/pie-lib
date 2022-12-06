@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.1.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.1.0...@pie-lib/config-ui@11.1.1) (2022-12-06)
+
+
+### Bug Fixes
+
+* Settings Panel not showing up sometimes PD-2407 ([7b92956](https://github.com/pie-framework/pie-lib/commit/7b9295648d0a48c50a567c9ea1dc98bb30a358c0))
+
+
+
+
+
 # [11.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.0.26...@pie-lib/config-ui@11.1.0) (2022-12-06)
 
 
