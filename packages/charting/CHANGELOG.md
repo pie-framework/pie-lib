@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.4.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.4.1...@pie-lib/charting@5.4.2) (2022-12-06)
+
+
+### Bug Fixes
+
+* **charting:** add sanity check for correctResponse data ([9f6ccd3](https://github.com/pie-framework/pie-lib/commit/9f6ccd39e8bae29c0a3efe6f5149942a0577c5d7))
+
+
+
+
+
 ## [5.4.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.4.0...@pie-lib/charting@5.4.1) (2022-11-23)
 
 **Note:** Version bump only for package @pie-lib/charting

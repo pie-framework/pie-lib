@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.2.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.2.8...@pie-lib/editable-html@9.2.9) (2022-12-06)
+
+
+### Bug Fixes
+
+* **editable-html:** close image toolbar after insertion of alt text to prevent blocked state PD-2083 ([76be3dd](https://github.com/pie-framework/pie-lib/commit/76be3dd3ef9c1c314c131d39bfdb99b2c7f076d4))
+
+
+
+
+
 ## [9.2.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.2.7...@pie-lib/editable-html@9.2.8) (2022-11-29)
 
 **Note:** Version bump only for package @pie-lib/editable-html
