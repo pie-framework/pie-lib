@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.0.26...@pie-lib/config-ui@11.1.0) (2022-12-06)
+
+
+### Features
+
+* **config-ui:** add space-PD-1980 ([b0a5745](https://github.com/pie-framework/pie-lib/commit/b0a5745b8456641244614a81a8266afe6ca0c895))
+* **config-ui:** addressing PR comments PD-1998 ([2ce7138](https://github.com/pie-framework/pie-lib/commit/2ce713808b8fcec166458e6bb0be328a83d67b61))
+* **config-ui:** empty settings panels should not be shown; empty groups should not be shown; test fixes still in progress PD-1998 ([1704ecd](https://github.com/pie-framework/pie-lib/commit/1704ecd5488ea20b88f18f5b0c526583ba646a9b))
+* **config-ui:** prettier fixes PD-1998 ([e817fea](https://github.com/pie-framework/pie-lib/commit/e817fea76821fcaf55c545bcb9118d229ddc49c4))
+* **config-ui:** remove unneeded forEach loop PD-1998 ([75be19e](https://github.com/pie-framework/pie-lib/commit/75be19e9bbb790f1c9a4ead3e8b3b3c47def14fe))
+* **config-ui:** update radio settings to have more options than only 2-PD-1980 ([63b65d5](https://github.com/pie-framework/pie-lib/commit/63b65d57460b776bb4d70bb48043ad3a943ae70f))
+
+
+
+
+
 ## [11.0.26](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.0.25...@pie-lib/config-ui@11.0.26) (2022-11-29)
 
 **Note:** Version bump only for package @pie-lib/config-ui

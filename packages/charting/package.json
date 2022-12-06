@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "5.4.1",
+  "version": "5.4.2",
   "description": "charting",
   "keywords": [
     "react",

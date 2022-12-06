@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.0.2...@pie-lib/drag@2.0.3) (2022-12-06)
+
+
+### Bug Fixes
+
+* **categorize:** reduce lag when removing a token from a category PD-1953 ([f3bdb44](https://github.com/pie-framework/pie-lib/commit/f3bdb44360131fc61150fd42ec988eb1c5f15eaa))
+
+
+
+
+
 ## [2.0.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.0.1...@pie-lib/drag@2.0.2) (2022-11-29)
 
 
