@@ -9,7 +9,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import debug from 'debug';
 
 import Toggle from './toggle';
-import TwoChoice from '../two-choice';
+import { NChoice } from '../two-choice';
 import SettingsRadioLabel from './settings-radio-label';
 import { NumberTextField } from '../index';
 import Checkbox from '../checkbox';
@@ -47,14 +47,13 @@ CheckboxChoice.propTypes = {
 
 const Radio = ({ classes, label, value, onChange, choices }) => {
   return (
-    <TwoChoice
+    <NChoice
       className={classes.radioSettings}
-      direction="vertical"
+      direction="horizontal"
       customLabel={SettingsRadioLabel}
       value={value}
       header={label}
-      one={choices[0]}
-      two={choices[1]}
+      opts={choices}
       onChange={onChange}
     />
   );
@@ -275,20 +274,24 @@ export class Panel extends React.Component {
     const { groups, model, configuration } = this.props;
     log('render:', model);
 
-    return (
-      <div>
-        {Object.keys(groups).map((g) => (
+    const renderedGroups = Object.keys(groups || {}).map((group) => {
+      const showGroup = Object.entries(groups[group]).some(([propName, propVal]) => !!propVal);
+      if (showGroup) {
+        return (
           <Group
-            label={g}
-            key={g}
+            label={group}
+            key={group}
             model={model}
             configuration={configuration}
-            group={groups[g]}
+            group={groups[group]}
             onChange={this.change}
           />
-        ))}
-      </div>
-    );
+        );
+      }
+      return null;
+    });
+
+    return <div>{renderedGroups}</div>;
   }
 }
 

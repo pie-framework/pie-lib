@@ -32,14 +32,14 @@ export default function ImagePlugin(opts) {
       const alignment = node.data.get('alignment');
       const alt = node.data.get('alt');
       const imageLoaded = node.data.get('loaded') !== false;
-      const onChange = (newValues) => {
+      const onChange = (newValues, done) => {
         const update = {
           ...node.data.toObject(),
           ...newValues,
         };
 
         const change = value.change().setNodeByKey(node.key, { data: update });
-        onToolbarDone(change, false);
+        onToolbarDone(change, done);
       };
 
       const Tb = () => (

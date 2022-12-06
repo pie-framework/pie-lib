@@ -109,7 +109,8 @@ export class Toolbar extends React.Component {
     log('[onToolbarDone] change: ', change, 'finishEditing: ', finishEditing);
     const { onChange, onDone } = this.props;
 
-    if (change) {
+    // use handler only if this is an actual Slate Change
+    if (change instanceof Change) {
       onChange(change, () => {
         if (finishEditing) {
           onDone();
@@ -173,11 +174,6 @@ export class Toolbar extends React.Component {
     log('[render] plugin: ', plugin);
 
     const handleDone = (change, done) => {
-      // use handler only if this is an actual Slate Change
-      if (!(change instanceof Change)) {
-        return;
-      }
-
       let handler = onDone;
 
       if (plugin && plugin.toolbar && plugin.toolbar.customToolbar) {

@@ -100,9 +100,11 @@ const ConfigureChartPanel = (props) => {
     if (key === 'max' || key === 'step') {
       // check if current chart values are invalid for given range step/max
       const outOfRange =
-        model.data.find((d) => d.value > range.max || d.value - range.step * Math.floor(d.value / range.step) !== 0) ||
-        model.correctAnswer.data.find(
-          (d) => d.value > range.max || d.value - range.step * Math.floor(d.value / range.step) !== 0,
+        model.data.find(
+          d => d.value > range.max || d.value - range.step * Math.floor(d.value / range.step) !== 0
+        ) ||
+        (model.correctAnswer.data || []).find(
+          d => d.value > range.max || d.value - range.step * Math.floor(d.value / range.step) !== 0
         );
 
       if (outOfRange) {
