@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.1.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.1.1...@pie-lib/config-ui@11.1.2) (2022-12-07)
+
+
+### Bug Fixes
+
+* **config-ui:** need to specifically check whether configuration exists PD-2407 ([36bd8e7](https://github.com/pie-framework/pie-lib/commit/36bd8e715508ac9220f2263c1cc0283437197078))
+* **config-ui:** prettier fixes PD-2407 ([36c182f](https://github.com/pie-framework/pie-lib/commit/36c182fad4fe2e2f416927b34eec90a5220d1ed2))
+
+
+
+
+
+## [11.1.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.1.0...@pie-lib/config-ui@11.1.1) (2022-12-06)
+
+
+### Bug Fixes
+
+* Settings Panel not showing up sometimes PD-2407 ([7b92956](https://github.com/pie-framework/pie-lib/commit/7b9295648d0a48c50a567c9ea1dc98bb30a358c0))
+
+
+
+
+
 # [11.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.0.26...@pie-lib/config-ui@11.1.0) (2022-12-06)
 
 
