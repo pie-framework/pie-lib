@@ -10,6 +10,20 @@ import { bandKey } from '../../utils';
 import DraggableHandle, { DragHandle } from '../../common/drag-handle';
 
 const log = debug('pie-lib:chart:bars');
+const histogramColors = [
+  '#006699',
+  '#F59B00',
+  '#08916D',
+  '#529EE0',
+  '#52B7D8',
+  '#D9A6C2',
+  '#FFB03B',
+  '#54A77B',
+  '#E16032',
+  '#4FD2D2',
+  '#F0E442',
+  '#E287B2',
+];
 
 export class RawBar extends React.Component {
   static propTypes = {
@@ -55,8 +69,7 @@ export class RawBar extends React.Component {
   };
 
   render() {
-    const { graphProps, value, label, classes, xBand, index, interactive, correctness, color } = this.props;
-    console.log(color, 'color');
+    const { graphProps, value, label, classes, xBand, index, interactive, correctness, barColor } = this.props;
     const { scale, range } = graphProps;
     const { dragValue } = this.state;
 
@@ -72,7 +85,14 @@ export class RawBar extends React.Component {
 
     return (
       <React.Fragment>
-        <VxBar x={barX} y={scale.y(yy)} width={barWidth} height={barHeight} style={{ fill: color }} />
+        <VxBar
+          x={barX}
+          y={scale.y(yy)}
+          width={barWidth}
+          height={barHeight}
+          className={classes.bar}
+          style={barColor && { fill: barColor }}
+        />
         <Component
           x={barX}
           y={v}
@@ -104,21 +124,7 @@ export class Bars extends React.Component {
   };
 
   render() {
-    const { data, graphProps, xBand, onChangeCategory, defineChart } = this.props;
-    const colors = [
-      '#006699',
-      '#F59B00',
-      '#08916D',
-      '#529EE0',
-      '#52B7D8',
-      '#D9A6C2',
-      '#FFB03B',
-      '#54A77B',
-      '#E16032',
-      '#4FD2D2',
-      '#F0E442',
-      '#E287B2',
-    ];
+    const { data, graphProps, xBand, onChangeCategory, defineChart, histogram } = this.props;
 
     return (
       <Group>
@@ -133,7 +139,10 @@ export class Bars extends React.Component {
             onChangeCategory={(category) => onChangeCategory(index, category)}
             graphProps={graphProps}
             correctness={d.correctness}
-            color={colors[index] ? colors[index] : colors[index % colors.length]}
+            barColor={
+              histogram &&
+              (histogramColors[index] ? histogramColors[index] : histogramColors[index % histogramColors.length])
+            }
           />
         ))}
       </Group>
