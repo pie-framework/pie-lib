@@ -55,8 +55,8 @@ export class RawBar extends React.Component {
   };
 
   render() {
-    const { graphProps, value, label, classes, xBand, index, interactive, correctness } = this.props;
-
+    const { graphProps, value, label, classes, xBand, index, interactive, correctness, color } = this.props;
+    console.log(color, 'color');
     const { scale, range } = graphProps;
     const { dragValue } = this.state;
 
@@ -72,7 +72,7 @@ export class RawBar extends React.Component {
 
     return (
       <React.Fragment>
-        <VxBar x={barX} y={scale.y(yy)} width={barWidth} height={barHeight} className={classes.bar} />
+        <VxBar x={barX} y={scale.y(yy)} width={barWidth} height={barHeight} style={{ fill: color }} />
         <Component
           x={barX}
           y={v}
@@ -105,6 +105,20 @@ export class Bars extends React.Component {
 
   render() {
     const { data, graphProps, xBand, onChangeCategory, defineChart } = this.props;
+    const colors = [
+      '#006699',
+      '#F59B00',
+      '#08916D',
+      '#529EE0',
+      '#52B7D8',
+      '#D9A6C2',
+      '#FFB03B',
+      '#54A77B',
+      '#E16032',
+      '#4FD2D2',
+      '#F0E442',
+      '#E287B2',
+    ];
 
     return (
       <Group>
@@ -119,6 +133,7 @@ export class Bars extends React.Component {
             onChangeCategory={(category) => onChangeCategory(index, category)}
             graphProps={graphProps}
             correctness={d.correctness}
+            color={colors[index] ? colors[index] : colors[index % colors.length]}
           />
         ))}
       </Group>
