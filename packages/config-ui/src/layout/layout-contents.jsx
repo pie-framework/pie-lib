@@ -20,6 +20,9 @@ class RawLayoutContents extends React.Component {
       secondary?.props?.configuration || secondary?.props?.children?.props?.configuration || undefined;
     const hasSettingsPanel = Object.entries(configuration || {}).some(([propName, obj]) => !!obj?.settings);
 
+
+
+    
     return (
       <div className={classnames(classes.container)}>
         {mode === 'inline' && (
