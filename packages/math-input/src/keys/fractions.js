@@ -20,4 +20,5 @@ export const xBlankBlank = set({
   latex: 'x\\frac{}{}',
   label: 'x([]/[])',
   command: '\\frac',
+  ariaLabel: 'mixed number',
 });

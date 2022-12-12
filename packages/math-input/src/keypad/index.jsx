@@ -156,7 +156,11 @@ const LatexButton = withStyles((theme) => ({
   }
 
   return (
-    <Button className={classNames(props.classes.root, props.className)} onClick={props.onClick}>
+    <Button
+      className={classNames(props.classes.root, props.className)}
+      onClick={props.onClick}
+      aria-label={props.ariaLabel ? props.ariaLabel : props.label}
+    >
       <mq.Static className={buttonClass} latex={props.latex} />
     </Button>
   );
@@ -252,7 +256,14 @@ export class KeyPad extends React.Component {
           };
 
           if (k.latex) {
-            return <LatexButton latex={k.latex} {...common} className={classes.latexButton} />;
+            return (
+              <LatexButton
+                latex={k.latex}
+                {...common}
+                className={classes.latexButton}
+                ariaLabel={k.ariaLabel ? k.ariaLabel : k.name}
+              />
+            );
           }
 
           if (k.label) {
