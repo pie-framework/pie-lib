@@ -3,7 +3,7 @@ import { mkSet } from './utils';
 const set = mkSet('misc');
 
 export const plusMinus = set({
-  name: 'plus or minus',
+  name: 'Plus or Minus',
   latex: '\\pm',
   write: '\\pm',
 });
@@ -30,7 +30,7 @@ export const brackets = set({
 });
 
 export const percentage = set({
-  name: 'percent',
+  name: 'Percent',
   latex: '%',
   command: '%',
 });
@@ -50,7 +50,7 @@ export const nApprox = set({
 export const notEqual = set({
   latex: '\\neq',
   command: '\\neq',
-  ariaLabel: 'not equals',
+  ariaLabel: 'Not equals',
 });
 
 export const similar = set({
