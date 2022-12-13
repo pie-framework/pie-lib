@@ -6,4 +6,5 @@ export const circleDot = set({
   name: 'CircleDot',
   label: '⋅',
   write: '\\cdot',
+  ariaLabel: 'dot multiplier',
 });

@@ -267,7 +267,11 @@ export class KeyPad extends React.Component {
           }
 
           if (k.label) {
-            return <Button {...common}>{k.label}</Button>;
+            return (
+              <Button {...common} aria-label={k.ariaLabel ? k.ariaLabel : k.label}>
+                {k.label}
+              </Button>
+            );
           } else {
             const Icon = k.icon ? k.icon : 'div';
 

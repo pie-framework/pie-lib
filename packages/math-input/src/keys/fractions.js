@@ -6,6 +6,7 @@ export const blankOverBlank = set({
   name: 'blank/blank',
   latex: '\\frac{}{}',
   command: '\\frac',
+  ariaLabel: 'fraction',
 });
 
 export const xOverBlank = set({
@@ -13,6 +14,7 @@ export const xOverBlank = set({
   name: 'X/blank',
   label: 'x/[]',
   command: '/',
+  ariaLabel: 'x over blank fraction',
 });
 
 export const xBlankBlank = set({
