@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import grey from '@material-ui/core/colors/grey';
 
 import { DragSource } from 'react-dnd';
+import { withUid } from './uid-context';
 
 export const DRAG_TYPE = 'CHOICE';
 
@@ -39,13 +40,35 @@ const choiceSource = {
     return !props.disabled;
   },
   beginDrag(props) {
-    return props;
+    const out = {
+      choiceId: props.choice.id,
+      from: props.category.id,
+      alternateResponseIndex: props.alternateResponseIndex,
+      choiceIndex: props.choiceIndex,
+    };
+    return out;
+  },
+
+  endDrag: (props, monitor) => {
+    if (!monitor.didDrop()) {
+      const item = monitor.getItem();
+      if (item.from) {
+        props.onRemoveChoice(item);
+      }
+    }
   },
 };
 
 const styledChoice = withStyles(styles)(Choice);
 
-export default DragSource(DRAG_TYPE, choiceSource, (connect, monitor) => ({
-  connectDragSource: connect.dragSource(),
-  isDragging: monitor.isDragging(),
-}))(styledChoice);
+const DraggableChoice = DragSource(
+  ({ uid }) => uid,
+  choiceSource,
+  (connect, monitor) => ({
+    connectDragSource: connect.dragSource(),
+    connectDragPreview: connect.dragPreview(),
+    isDragging: monitor.isDragging(),
+  }),
+)(styledChoice);
+
+export default withUid(DraggableChoice);
