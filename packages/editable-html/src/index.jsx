@@ -4,6 +4,7 @@ import Editor, { DEFAULT_PLUGINS, ALL_PLUGINS } from './editor';
 import { htmlToValue, valueToHtml } from './serialization';
 import { parseDegrees } from './parse-html';
 import debug from 'debug';
+import { Range } from 'slate';
 
 const log = debug('@pie-lib:editable-html');
 /**
@@ -78,7 +79,7 @@ export default class EditableHtml extends React.Component {
     }
   };
 
-  focus = (position, node) => {
+  focus = (position, node, select = false) => {
     if (this.editorRef) {
       this.editorRef.change((c) => {
         const lastText = node ? c.value.document.getNextText(node.key) : c.value.document.getLastText();
@@ -92,6 +93,17 @@ export default class EditableHtml extends React.Component {
 
         if (position === 'end' && lastText) {
           c.moveFocusTo(lastText.key, lastText.text?.length).moveAnchorTo(lastText.key, lastText.text?.length);
+          if (select) {
+            const range = Range.fromJSON({
+              anchorKey: lastText.key,
+              anchorOffset: 0,
+              focusKey: lastText.key,
+              focusOffset: lastText.text?.length,
+              isFocused: true,
+              isBackward: false,
+            });
+            c.select(range);
+          }
         }
 
         if (position === 'beginning' && lastText) {
