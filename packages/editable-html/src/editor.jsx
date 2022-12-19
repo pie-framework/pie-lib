@@ -726,6 +726,7 @@ export class Editor extends React.Component {
           normalize={this.normalize}
           readOnly={disabled}
           spellCheck={spellCheck}
+          autoCorrect={spellCheck}
           className={classNames(
             {
               [classes.noPadding]: toolbarOpts && toolbarOpts.noBorder,
