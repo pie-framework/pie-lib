@@ -21,9 +21,12 @@ const log = debug('pie-lib:graphing:polygon');
 export const buildLines = (points, closed) => {
   const expanded = points.reduce((acc, p, index) => {
     acc.push({ ...p, index });
+
     const isLast = index === points.length - 1;
     const next = isLast ? 0 : index + 1;
+
     acc.push({ ...points[next], index: next });
+
     return acc;
   }, []);
 
@@ -36,15 +39,20 @@ export const buildLines = (points, closed) => {
 
 export const swap = (arr, ...rest) => {
   const pairs = chunk(rest, 2);
+
   return pairs.reduce(
     (acc, pr) => {
       if (pr.length === 2) {
         let [e, replacement] = pr;
+
         invariant(Number.isFinite(e.index), 'Index must be defined');
+
         const index = e.index;
         // const i = acc.findIndex(pt => pt.x === e.x && pt.y === e.y);
+
         if (index >= 0) {
           acc.splice(index, 1, replacement);
+
           return acc;
         } else {
           return acc;
@@ -133,6 +141,7 @@ export class RawBaseComponent extends React.Component {
   close = () => {
     const { points, onClosePolygon } = this.props;
     log('[close] ...');
+
     if (points.length >= 3) {
       onClosePolygon();
     } else {
@@ -192,6 +201,7 @@ export class RawBaseComponent extends React.Component {
       correctness,
       disabled,
       graphProps,
+      onChangeLabelProps,
       onDragStart,
       onDragStop,
       points,
@@ -211,7 +221,7 @@ export class RawBaseComponent extends React.Component {
           disabled={!labelModeEnabled}
           mark={middle}
           graphProps={graphProps}
-          onChange={() => {}}
+          onChange={(label) => onChangeLabelProps({ ...middle, label })}
         />,
         labelNode,
       );
@@ -298,6 +308,7 @@ export default class Component extends React.Component {
 
     if (middle) {
       const { a, b } = getRightestPoints(points);
+
       mark.middle = { ...middle, ...getMiddleOfTwoPoints(a, b) };
     }
 
@@ -330,6 +341,7 @@ export default class Component extends React.Component {
   dragStop = () => {
     const { onChange } = this.props;
     const m = { ...this.state.mark };
+
     this.setState({ mark: undefined }, () => {
       onChange(this.props.mark, m);
     });
