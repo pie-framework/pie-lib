@@ -10,6 +10,7 @@ exports[`Keypad snapshot renders 1`] = `
   }
 >
   <WithStyles(Button)
+    aria-label="seven"
     className=""
     disabled={false}
     key="7-0"
@@ -18,6 +19,7 @@ exports[`Keypad snapshot renders 1`] = `
     7
   </WithStyles(Button)>
   <WithStyles(Button)
+    aria-label="four"
     className=""
     disabled={false}
     key="4-1"
@@ -26,6 +28,7 @@ exports[`Keypad snapshot renders 1`] = `
     4
   </WithStyles(Button)>
   <WithStyles(Button)
+    aria-label="one"
     className=""
     disabled={false}
     key="1-2"
@@ -34,6 +37,7 @@ exports[`Keypad snapshot renders 1`] = `
     1
   </WithStyles(Button)>
   <WithStyles(Button)
+    aria-label="zero"
     className=""
     disabled={false}
     key="0-3"
@@ -42,6 +46,7 @@ exports[`Keypad snapshot renders 1`] = `
     0
   </WithStyles(Button)>
   <WithStyles(Button)
+    aria-label="Move cursor left"
     className=""
     disabled={false}
     key="◀-4"
@@ -50,6 +55,7 @@ exports[`Keypad snapshot renders 1`] = `
     ◀
   </WithStyles(Button)>
   <WithStyles(Button)
+    aria-label="eight"
     className=""
     disabled={false}
     key="8-5"
@@ -58,6 +64,7 @@ exports[`Keypad snapshot renders 1`] = `
     8
   </WithStyles(Button)>
   <WithStyles(Button)
+    aria-label="five"
     className=""
     disabled={false}
     key="5-6"
@@ -66,6 +73,7 @@ exports[`Keypad snapshot renders 1`] = `
     5
   </WithStyles(Button)>
   <WithStyles(Button)
+    aria-label="two"
     className=""
     disabled={false}
     key="2-7"
@@ -74,6 +82,7 @@ exports[`Keypad snapshot renders 1`] = `
     2
   </WithStyles(Button)>
   <WithStyles(Button)
+    aria-label="decimal-point"
     className=""
     disabled={false}
     key=".-8"
@@ -82,6 +91,7 @@ exports[`Keypad snapshot renders 1`] = `
     .
   </WithStyles(Button)>
   <WithStyles(Button)
+    aria-label="Move cursor right"
     className=""
     disabled={false}
     key="▶-9"
@@ -90,6 +100,7 @@ exports[`Keypad snapshot renders 1`] = `
     ▶
   </WithStyles(Button)>
   <WithStyles(Button)
+    aria-label="nine"
     className=""
     disabled={false}
     key="9-10"
@@ -98,6 +109,7 @@ exports[`Keypad snapshot renders 1`] = `
     9
   </WithStyles(Button)>
   <WithStyles(Button)
+    aria-label="six"
     className=""
     disabled={false}
     key="6-11"
@@ -106,6 +118,7 @@ exports[`Keypad snapshot renders 1`] = `
     6
   </WithStyles(Button)>
   <WithStyles(Button)
+    aria-label="three"
     className=""
     disabled={false}
     key="3-12"
@@ -114,6 +127,7 @@ exports[`Keypad snapshot renders 1`] = `
     3
   </WithStyles(Button)>
   <WithStyles(Button)
+    aria-label="comma"
     className=""
     disabled={false}
     key=",-13"
@@ -122,6 +136,7 @@ exports[`Keypad snapshot renders 1`] = `
     ,
   </WithStyles(Button)>
   <WithStyles(Button)
+    aria-label="Delete"
     className=""
     disabled={false}
     key="⌫-14"
@@ -130,6 +145,7 @@ exports[`Keypad snapshot renders 1`] = `
     ⌫
   </WithStyles(Button)>
   <WithStyles(Button)
+    aria-label="divide"
     className=""
     disabled={false}
     key="÷-15"
@@ -138,6 +154,7 @@ exports[`Keypad snapshot renders 1`] = `
     ÷
   </WithStyles(Button)>
   <WithStyles(Button)
+    aria-label="multiply"
     className=""
     disabled={false}
     key="×-16"
@@ -146,6 +163,7 @@ exports[`Keypad snapshot renders 1`] = `
     ×
   </WithStyles(Button)>
   <WithStyles(Button)
+    aria-label="−"
     className=""
     disabled={false}
     key="−-17"
@@ -154,6 +172,7 @@ exports[`Keypad snapshot renders 1`] = `
     −
   </WithStyles(Button)>
   <WithStyles(Button)
+    aria-label="+"
     className=""
     disabled={false}
     key="+-18"
@@ -162,6 +181,7 @@ exports[`Keypad snapshot renders 1`] = `
     +
   </WithStyles(Button)>
   <WithStyles(Button)
+    aria-label="="
     className=""
     disabled={false}
     key="=-19"

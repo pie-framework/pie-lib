@@ -1,19 +1,19 @@
 const set = (o) => ({ ...o, category: 'geometry' });
 
 export const overline = set({
-  name: 'Overline',
+  name: 'Line',
   latex: '\\overline{}',
   command: '\\overline',
 });
 
 export const overRightArrow = set({
-  name: 'Overline',
+  name: 'Ray',
   latex: '\\overrightarrow{}',
   command: '\\overrightarrow',
 });
 
 export const overLeftRightArrow = set({
-  name: 'Overline',
+  name: 'Segment',
   latex: '\\overleftrightarrow{\\overline{}}', // used this notation to display the pink box
   symbol: 'AB',
   command: '\\overleftrightarrow',
@@ -55,7 +55,7 @@ export const overArc = set({
   command: '\\overarc',
 });
 export const measureOfAngle = set({
-  name: 'Measure Of Angle',
+  name: 'Measured Angle',
   latex: '\\measuredangle',
   command: ['m', '\\angle'],
 });
@@ -91,7 +91,7 @@ export const degree = set({
 });
 
 export const similarTo = set({
-  name: 'Similar To',
+  name: 'Similar',
   command: '\\sim',
   latex: '\\sim',
 });
@@ -116,7 +116,7 @@ export const primeArcminute = set({
   write: "'",
 });
 export const doublePrimeArcSecond = set({
-  name: 'Double Prime/Arcsecond',
+  name: 'Double Prime',
   latex: '"',
   write: '"',
 });
@@ -134,7 +134,7 @@ export const rightArrow = set({
 });
 
 export const leftrightArrow = set({
-  name: 'Left Right Arrow',
+  name: 'Left and Right Arrow',
   latex: '\\leftrightarrow',
   command: '\\leftrightarrow',
 });

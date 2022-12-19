@@ -3,6 +3,6 @@ import { mkSet } from './utils';
 
 const set = mkSet('navigation');
 
-export const left = set({ label: LEFT_ARROW, keystroke: 'Left' });
+export const left = set({ label: LEFT_ARROW, keystroke: 'Left', ariaLabel: 'Move cursor left' });
 
-export const right = set({ label: RIGHT_ARROW, keystroke: 'Right' });
+export const right = set({ label: RIGHT_ARROW, keystroke: 'Right', ariaLabel: 'Move cursor right' });

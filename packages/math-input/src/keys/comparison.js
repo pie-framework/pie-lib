@@ -17,6 +17,7 @@ export const lessThanEqual = set({
   latex: '\\le',
   symbol: '<=',
   command: '\\le',
+  ariaLabel: 'less than or equal to',
 });
 
 export const greaterThanEqual = set({

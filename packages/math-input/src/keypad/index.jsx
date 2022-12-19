@@ -156,7 +156,11 @@ const LatexButton = withStyles((theme) => ({
   }
 
   return (
-    <Button className={classNames(props.classes.root, props.className)} onClick={props.onClick}>
+    <Button
+      className={classNames(props.classes.root, props.className)}
+      onClick={props.onClick}
+      aria-label={props.ariaLabel}
+    >
       <mq.Static className={buttonClass} latex={props.latex} />
     </Button>
   );
@@ -227,6 +231,7 @@ export class KeyPad extends React.Component {
       gridTemplateColumns: `repeat(${Math.floor(allKeys.length / 5) + shift}, minmax(min-content, 150px))`,
       ...createCustomLayout(layoutForKeyPad),
     };
+
     return (
       <div className={classNames(classes.keys, className, classes[mode])} style={style} onFocus={onFocus}>
         {allKeys.map((k, index) => {
@@ -252,11 +257,22 @@ export class KeyPad extends React.Component {
           };
 
           if (k.latex) {
-            return <LatexButton latex={k.latex} {...common} className={classes.latexButton} />;
+            return (
+              <LatexButton
+                latex={k.latex}
+                {...common}
+                className={classes.latexButton}
+                ariaLabel={k.ariaLabel ? k.ariaLabel : (k.name || k.label)}
+              />
+            );
           }
 
           if (k.label) {
-            return <Button {...common}>{k.label}</Button>;
+            return (
+              <Button {...common} aria-label={k.ariaLabel ? k.ariaLabel : (k.name || k.label)}>
+                {k.label}
+              </Button>
+            );
           } else {
             const Icon = k.icon ? k.icon : 'div';
 

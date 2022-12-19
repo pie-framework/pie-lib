@@ -23,6 +23,7 @@ export const mu = set({
 
 export const sigma = set({
   name: 'Sigma',
+  ariaLabel: 'Uppercase Sigma',
   label: '\\Sigma',
   latex: '\\Sigma',
   write: '\\Sigma',
@@ -30,6 +31,7 @@ export const sigma = set({
 
 export const smallSigma = set({
   name: 'sigma',
+  ariaLabel: 'Lowercase Sigma',
   label: '\\sigma',
   latex: '\\sigma',
   write: '\\sigma',
