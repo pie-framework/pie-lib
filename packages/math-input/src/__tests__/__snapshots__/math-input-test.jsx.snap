@@ -120,16 +120,19 @@ exports[`MathInput snapshot renders 1`] = `
           ],
           Array [
             Object {
+              "ariaLabel": "Move cursor left",
               "category": "navigation",
               "keystroke": "Left",
               "label": "◀",
             },
             Object {
+              "ariaLabel": "Move cursor right",
               "category": "navigation",
               "keystroke": "Right",
               "label": "▶",
             },
             Object {
+              "ariaLabel": "Delete",
               "category": "edit",
               "keystroke": "Backspace",
               "label": "⌫",

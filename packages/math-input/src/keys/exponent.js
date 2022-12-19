@@ -12,6 +12,7 @@ export const xToPowerOfN = set({
   name: 'X to the power of n',
   latex: 'x^{}',
   command: '^',
+  ariaLabel: 'exponent',
 });
 
 export const squareRoot = set({

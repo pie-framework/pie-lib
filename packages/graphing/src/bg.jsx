@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { select, mouse } from 'd3-selection';
 import { types, utils } from '@pie-lib/plot';
-import { getTickValues } from './utils';
+import { getTickValues, thinnerShapesNeeded } from './utils';
 
 export default class Bg extends React.Component {
   static propTypes = {
@@ -16,6 +16,7 @@ export default class Bg extends React.Component {
 
   componentDidMount() {
     const rect = select(this.rect);
+
     rect.on('click', this.onRectClick.bind(this, rect));
   }
 
@@ -45,6 +46,7 @@ export default class Bg extends React.Component {
         ticks.reduce((prev, curr) => {
           const currentDistance = Math.abs(curr - value);
           const previousDistance = Math.abs(prev - value);
+
           return currentDistance <= previousDistance ? curr : prev;
         })
       );
@@ -64,7 +66,18 @@ export default class Bg extends React.Component {
   };
 
   render() {
-    const { width, height } = this.props;
-    return <rect ref={(rect) => (this.rect = rect)} fill="red" fillOpacity="0.0" width={width} height={height} />;
+    const { width, height, graphProps } = this.props;
+    const padding = thinnerShapesNeeded(graphProps) ? 6 : 10;
+
+    return (
+      <rect
+        ref={(rect) => (this.rect = rect)}
+        transform={`translate(-${padding}, -${padding})`}
+        fill="red"
+        fillOpacity="0.0"
+        width={width + padding * 2}
+        height={height + padding * 2}
+      />
+    );
   }
 }
