@@ -27,11 +27,12 @@ class DroppablePlaceholder extends React.Component {
 }
 
 export const spec = {
-  canDrop: (props /*, monitor*/) => {
+  canDrop: (props) => {
     return !props.disabled;
   },
-  drop: () => {
-    return true;
+  drop: (props, monitor) => {
+    const item = monitor.getItem();
+    props.onRemoveAnswer(item.promptId);
   },
 };
 
