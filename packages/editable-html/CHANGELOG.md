@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.2.9...@pie-lib/editable-html@9.3.0) (2022-12-19)
+
+
+### Bug Fixes
+
+* **editable-html:** fix spellCheck functionality on mobile devices for extended-text-entry player PD-2144 ([bb70090](https://github.com/pie-framework/pie-lib/commit/bb7009076da301a063754f3fb3b09c800bfae262))
+
+
+### Features
+
+* **editable-html:** select text at focus-PD-1971 ([f7c7bce](https://github.com/pie-framework/pie-lib/commit/f7c7bce8abc72aa3aa3b3c7adbf281ea34253d35))
+
+
+
+
+
 ## [9.2.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.2.8...@pie-lib/editable-html@9.2.9) (2022-12-06)
 
 
