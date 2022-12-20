@@ -23,13 +23,29 @@ class RawLayoutContents extends React.Component {
     return (
       <div className={classnames(classes.container)}>
         {mode === 'inline' && (
-          <div className={classes.flow}>
-            <div className={classes.configContainer}>{children}</div>
+          <div className={classes.flow} style={{ maxWidth: configuration.maxWidth || 'unset' }}>
+            <div
+              className={classnames(
+                classes.configContainer,
+                configuration.maxWidth && classes.contentContainerMaxWidth,
+              )}
+              style={{ maxWidth: configuration.maxWidth ? `calc(${configuration.maxWidth} - 330px)` : 'unset' }}
+            >
+              {children}
+            </div>
             {hasSettingsPanel && <div>{secondary}</div>}
           </div>
         )}
         {mode === 'tabbed' && hasSettingsPanel && (
-          <Tabs onChange={this.onTabsChange} contentClassName={classes.contentContainer} indicatorColor="primary">
+          <Tabs
+            onChange={this.onTabsChange}
+            contentClassName={classnames(
+              classes.contentContainer,
+              configuration.maxWidth && classes.contentContainerMaxWidth,
+            )}
+            contentStyle={{ maxWidth: configuration.maxWidth || 'unset' }}
+            indicatorColor="primary"
+          >
             <div title="Design">{children}</div>
             <div title="settings">{secondary}</div>
           </Tabs>
@@ -52,6 +68,10 @@ const styles = () => ({
   },
   contentContainer: {
     padding: '32px 16px 0 16px',
+  },
+  contentContainerMaxWidth: {
+    display: 'flex',
+    overflow: 'scroll',
   },
   configContainer: {
     flex: '1',

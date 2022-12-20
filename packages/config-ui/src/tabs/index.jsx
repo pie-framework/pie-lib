@@ -10,6 +10,7 @@ export class Tabs extends React.Component {
     classes: PropTypes.object,
     className: PropTypes.string,
     contentClassName: PropTypes.string,
+    contentStyle: PropTypes.object,
     children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
   };
 
@@ -26,7 +27,7 @@ export class Tabs extends React.Component {
 
   render() {
     const { value } = this.state;
-    const { children, className, contentClassName, classes } = this.props;
+    const { children, className, contentClassName, contentStyle, classes } = this.props;
 
     const tabClasses = {
       root: classes.tabRoot,
@@ -38,7 +39,9 @@ export class Tabs extends React.Component {
             c && c.props.title ? <MuiTab classes={tabClasses} key={index} label={c.props.title} /> : null,
           )}
         </MuiTabs>
-        <div className={contentClassName}>{children[value]}</div>
+        <div className={contentClassName} style={contentStyle}>
+          {children[value]}
+        </div>
       </div>
     );
   }
