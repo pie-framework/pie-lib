@@ -32,7 +32,14 @@ export const spec = {
   },
   drop: (props, monitor) => {
     const item = monitor.getItem();
-    props.onRemoveAnswer(item.promptId);
+
+    if (DRAG_TYPE === 'Answer') {
+      props.onRemoveAnswer(item.promptId);
+    } else if (item.id) {
+      return {
+        dropped: true,
+      };
+    }
   },
 };
 
