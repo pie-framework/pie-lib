@@ -9,13 +9,13 @@ export const log = set({
   latex: '\\log',
 });
 export const logSubscript = set({
-  name: 'Log with subscript',
+  name: 'log base n',
   label: 'log s',
   latex: '\\log_{}',
   command: ['\\log', '_', ' '],
 });
 export const ln = set({
-  name: 'Ln',
+  name: 'natural log',
   label: 'ln',
   command: '\\ln',
   latex: '\\ln',

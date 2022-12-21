@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.5.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.4.2...@pie-lib/charting@5.5.0) (2022-12-19)
+
+
+### Features
+
+* **charting:** add color scheme for charting bars ([0e3cb02](https://github.com/pie-framework/pie-lib/commit/0e3cb021e646efebf84111ec9a1016495e6a4a39))
+* **charting:** update snapshots ([1e61ad2](https://github.com/pie-framework/pie-lib/commit/1e61ad27b8b78842cd56b4bdb8ce1215760f2d35))
+* **charting:** use colors for bars only in histogram chart type ([d7bef94](https://github.com/pie-framework/pie-lib/commit/d7bef947996282270f6343afd2d332f73ef64e31))
+
+
+
+
+
+## [5.4.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.4.1...@pie-lib/charting@5.4.2) (2022-12-06)
+
+
+### Bug Fixes
+
+* **charting:** add sanity check for correctResponse data ([9f6ccd3](https://github.com/pie-framework/pie-lib/commit/9f6ccd39e8bae29c0a3efe6f5149942a0577c5d7))
+
+
+
+
+
 ## [5.4.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.4.0...@pie-lib/charting@5.4.1) (2022-11-23)
 
 **Note:** Version bump only for package @pie-lib/charting

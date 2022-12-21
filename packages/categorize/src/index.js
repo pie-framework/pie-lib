@@ -217,6 +217,40 @@ export const moveChoiceToCategory = (choiceId, from, to, choiceIndex, answers) =
   }
 };
 
+export const moveChoiceToAlternate = (choiceId, from, to, choiceIndex, answers, alternateIndex, categoryCount) => {
+  log(
+    '[moveChoiceToAlternate] choice: ',
+    choiceId,
+    'from: ',
+    from,
+    'to: ',
+    to,
+    'answers: ',
+    answers,
+    'chocieIndex: ',
+    choiceIndex,
+  );
+
+  if (from === to) {
+    return answers;
+  }
+
+  return answers.map((a) => {
+    if (a.category === to) {
+      if (categoryCount !== 0) {
+        a.alternateResponses[alternateIndex] = a.alternateResponses[alternateIndex].filter((resp) => resp != choiceId);
+      }
+      a.alternateResponses[alternateIndex].push(choiceId);
+    }
+
+    if (a.category === from && categoryCount !== 0) {
+      a.alternateResponses[alternateIndex] = a.alternateResponses[alternateIndex].filter((resp) => resp != choiceId);
+    }
+
+    return a;
+  });
+};
+
 export const stillSelectable = (h, builtCategories) => {
   if (h.categoryCount > 0) {
     const count = countChosen(h, builtCategories);

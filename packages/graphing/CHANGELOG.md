@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.11.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.11.6...@pie-lib/graphing@2.11.7) (2022-12-19)
+
+
+### Bug Fixes
+
+* **garphing:** update model when polygon labels have changed PD-993 ([cb8e0a7](https://github.com/pie-framework/pie-lib/commit/cb8e0a75533a3944d81984d0775b3b79134265f2))
+* **graphing:** adjust clickable area for plotable shapes PD-1958 ([6396096](https://github.com/pie-framework/pie-lib/commit/63960962aea5db5fa6584e464e5478972db7feb8))
+* **graphing:** update graph store if marks are changed ([90d7176](https://github.com/pie-framework/pie-lib/commit/90d717675abc32788086edd02fcd96706b5a50f6))
+
+
+
+
+
+## [2.11.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.11.5...@pie-lib/graphing@2.11.6) (2022-12-06)
+
+**Note:** Version bump only for package @pie-lib/graphing
+
+
+
+
+
 ## [2.11.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.11.4...@pie-lib/graphing@2.11.5) (2022-11-29)
 
 **Note:** Version bump only for package @pie-lib/graphing

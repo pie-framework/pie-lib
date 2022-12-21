@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.9.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.8.4...@pie-lib/math-input@6.9.0) (2022-12-19)
+
+
+### Features
+
+* **math-input:** add aria label property for latex buttons ([5aa5b35](https://github.com/pie-framework/pie-lib/commit/5aa5b351c969e13a6a225c7c3d5015e70a3d1c18))
+* **math-input:** add labels to math-operators and buttons that screen readers can use ([ad64881](https://github.com/pie-framework/pie-lib/commit/ad648818c060de1fad9c30b62d3bf73d8d7481fb))
+* **math-input:** refactor ([71bd61c](https://github.com/pie-framework/pie-lib/commit/71bd61cb1e0efb5b2a3e0119eea0239a4863e9ac))
+* **math-input:** update snapshots ([4fe88e1](https://github.com/pie-framework/pie-lib/commit/4fe88e1264667218b59ecfd956e205ae22d0f2a6))
+
+
+
+
+
 ## [6.8.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.8.3...@pie-lib/math-input@6.8.4) (2022-11-23)
 
 **Note:** Version bump only for package @pie-lib/math-input

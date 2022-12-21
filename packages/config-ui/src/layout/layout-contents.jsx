@@ -14,21 +14,27 @@ class RawLayoutContents extends React.Component {
 
   render() {
     const { mode, secondary, children, classes } = this.props;
+    // in config-layout, layout content gets called like this:
+    // <LayoutContents secondary={layoutMode === 'inline' ? <SettingsBox>{settings}</SettingsBox> : settings}>
+    const configuration =
+      secondary?.props?.configuration || secondary?.props?.children?.props?.configuration || undefined;
+    const hasSettingsPanel = Object.entries(configuration || {}).some(([propName, obj]) => !!obj?.settings);
 
     return (
       <div className={classnames(classes.container)}>
         {mode === 'inline' && (
           <div className={classes.flow}>
             <div className={classes.configContainer}>{children}</div>
-            <div>{secondary}</div>
+            {hasSettingsPanel && <div>{secondary}</div>}
           </div>
         )}
-        {mode === 'tabbed' && (
+        {mode === 'tabbed' && hasSettingsPanel && (
           <Tabs onChange={this.onTabsChange} contentClassName={classes.contentContainer} indicatorColor="primary">
             <div title="Design">{children}</div>
             <div title="settings">{secondary}</div>
           </Tabs>
         )}
+        {mode === 'tabbed' && !hasSettingsPanel && <div>{children}</div>}
       </div>
     );
   }
