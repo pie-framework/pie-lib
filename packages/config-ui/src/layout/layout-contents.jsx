@@ -18,7 +18,17 @@ class RawLayoutContents extends React.Component {
     // <LayoutContents secondary={layoutMode === 'inline' ? <SettingsBox>{settings}</SettingsBox> : settings}>
     const configuration =
       secondary?.props?.configuration || secondary?.props?.children?.props?.configuration || undefined;
-    const hasSettingsPanel = Object.entries(configuration || {}).some(([propName, obj]) => !!obj?.settings);
+    let hasSettingsPanel = Object.entries(configuration || {}).some(([propName, obj]) => !!obj?.settings);
+    // ebsr has configuration.partA and configuration.partB
+    // because we might have nested configuration for other item types as well, let's add this simple regex to check values for settings
+
+    if (!hasSettingsPanel) {
+      try {
+        hasSettingsPanel = JSON.stringify(configuration).match(/settings":true/).length;
+      } catch (e) {
+        console.log(e.toString());
+      }
+    }
 
     return (
       <div className={classnames(classes.container)}>
