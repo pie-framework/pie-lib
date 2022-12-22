@@ -250,7 +250,7 @@ export class Editor extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     const { toolbarOpts } = this.state;
-    const newToolbarOpts = createToolbarOpts(nextProps.toolbarOpts);
+    const newToolbarOpts = createToolbarOpts(nextProps.toolbarOpts, nextProps.error);
 
     if (!isEqual(newToolbarOpts, toolbarOpts)) {
       this.setState({
