@@ -36,10 +36,11 @@ const defaultResponseAreaProps = {
 
 const defaultLanguageCharactersProps = [];
 
-const createToolbarOpts = (toolbarOpts) => {
+const createToolbarOpts = (toolbarOpts, error) => {
   return {
     ...defaultToolbarOpts,
     ...toolbarOpts,
+    error,
   };
 };
 
@@ -119,7 +120,7 @@ export class Editor extends React.Component {
     super(props);
     this.state = {
       value: props.value,
-      toolbarOpts: createToolbarOpts(props.toolbarOpts),
+      toolbarOpts: createToolbarOpts(props.toolbarOpts, props.error),
     };
 
     this.onResize = () => {
