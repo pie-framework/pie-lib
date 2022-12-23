@@ -171,6 +171,14 @@ export const removeAllChoices = (choiceId, answers, categoryId) => {
   });
 };
 
+export const rearrangeChoices = (choices, indexFrom, indexTo) => {
+  if (choices.length === 0) {
+    return choices;
+  }
+  choices.splice(indexFrom, 1, choices.splice(indexTo, 1, choices[indexFrom])[0]);
+  return choices;
+};
+
 export const removeChoiceFromCategory = (choiceId, categoryId, choiceIndex, answers) => {
   log('[removeChoiceFromCategory] choiceIndex:', choiceIndex);
 
