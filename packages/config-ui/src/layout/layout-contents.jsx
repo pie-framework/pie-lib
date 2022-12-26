@@ -29,7 +29,7 @@ class RawLayoutContents extends React.Component {
                 classes.configContainer,
                 configuration.maxWidth && classes.contentContainerMaxWidth,
               )}
-              style={{ maxWidth: configuration.maxWidth ? `calc(${configuration.maxWidth} - 330px)` : 'unset' }}
+              style={configuration.maxWidth ? { maxWidth: `calc(${configuration.maxWidth} - 330px)` } : {}}
             >
               {children}
             </div>
@@ -43,10 +43,10 @@ class RawLayoutContents extends React.Component {
               classes.contentContainer,
               configuration.maxWidth && classes.contentContainerMaxWidth,
             )}
-            contentStyle={{ maxWidth: configuration.maxWidth || 'unset' }}
+            contentStyle={configuration.maxWidth ? { maxWidth: configuration.maxWidth } : {}}
             indicatorColor="primary"
           >
-            <div className={classes.contentContainerDesign} title="Design">
+            <div title="Design" style={configuration.maxWidth ? { flex: 1 } : {}}>
               {children}
             </div>
             <div title="settings">{secondary}</div>
@@ -78,9 +78,6 @@ const styles = () => ({
   configContainer: {
     flex: '1',
     marginRight: '20px',
-  },
-  contentContainerDesign: {
-    width: '100%',
   },
 });
 
