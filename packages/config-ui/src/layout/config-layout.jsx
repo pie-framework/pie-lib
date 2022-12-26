@@ -7,27 +7,27 @@ import SettingsBox from './settings-box';
 class ConfigLayout extends React.Component {
   static propTypes = {
     children: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.element), PropTypes.element]),
-    settings: PropTypes.element,
     className: PropTypes.string,
     classes: PropTypes.object,
+    settings: PropTypes.element,
     sidePanelMinWidth: PropTypes.number,
+    hideSettings: PropTypes.bool,
   };
 
   static defaultProps = {
     sidePanelMinWidth: 950,
+    hideSettings: false,
   };
 
   constructor(props) {
     super(props);
-    this.state = {
-      layoutMode: undefined,
-    };
+    this.state = { layoutMode: undefined };
   }
 
   onResize = (contentRect) => {
     const { bounds } = contentRect;
-    const { sidePanelMinWidth } = this.props;
-    const layoutMode = bounds.width >= sidePanelMinWidth ? 'inline' : 'tabbed';
+    const { sidePanelMinWidth, hideSettings } = this.props;
+    const layoutMode = bounds.width >= sidePanelMinWidth || hideSettings ? 'inline' : 'tabbed';
 
     this.setState({ layoutMode });
   };
@@ -36,15 +36,15 @@ class ConfigLayout extends React.Component {
     return (
       <Measure bounds onResize={this.onResize}>
         {({ measureRef }) => {
-          const { settings, children } = this.props;
+          const { children, settings, hideSettings } = this.props;
           const { layoutMode } = this.state;
+
+          const settingsPanel = layoutMode === 'inline' ? <SettingsBox>{settings}</SettingsBox> : settings;
+          const secondaryContent = hideSettings ? null : settingsPanel;
 
           return (
             <div ref={measureRef}>
-              <LayoutContents
-                mode={layoutMode}
-                secondary={layoutMode === 'inline' ? <SettingsBox>{settings}</SettingsBox> : settings}
-              >
+              <LayoutContents mode={layoutMode} secondary={secondaryContent}>
                 {children}
               </LayoutContents>
             </div>

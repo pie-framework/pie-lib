@@ -14,8 +14,7 @@ class RawLayoutContents extends React.Component {
 
   getConfiguration = () => {
     const { secondary } = this.props;
-    // in config-layout, layout content gets called like this:
-    // <LayoutContents secondary={layoutMode === 'inline' ? <SettingsBox>{settings}</SettingsBox> : settings}>
+    // in config-layout, secondary can be: <SettingsBox>{settings}</SettingsBox>, settings, null
 
     return secondary?.props?.configuration || secondary?.props?.children?.props?.configuration || undefined;
   };
@@ -77,6 +76,7 @@ class RawLayoutContents extends React.Component {
             {hasSettingsPanel && <div>{secondary}</div>}
           </div>
         )}
+
         {mode === 'tabbed' && hasSettingsPanel && (
           <Tabs
             onChange={this.onTabsChange}
@@ -93,6 +93,7 @@ class RawLayoutContents extends React.Component {
             <div title="settings">{secondary}</div>
           </Tabs>
         )}
+
         {mode === 'tabbed' && !hasSettingsPanel && <div>{children}</div>}
       </div>
     );
