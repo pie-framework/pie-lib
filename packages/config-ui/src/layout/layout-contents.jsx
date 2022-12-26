@@ -49,7 +49,17 @@ class RawLayoutContents extends React.Component {
     const { mode, secondary, children, classes } = this.props;
     const configuration = this.getConfiguration();
 
-    const hasSettingsPanel = Object.entries(configuration || {}).some(([propName, obj]) => !!obj?.settings);
+    let hasSettingsPanel = Object.entries(configuration || {}).some(([propName, obj]) => !!obj?.settings);
+    // ebsr has configuration.partA and configuration.partB
+    // because we might have nested configuration for other item types as well, let's add this simple regex to check values for settings
+
+    if (!hasSettingsPanel) {
+      try {
+        hasSettingsPanel = JSON.stringify(configuration).match(/settings":true/).length;
+      } catch (e) {
+        console.log(e.toString());
+      }
+    }
 
     return (
       <div className={classnames(classes.container)}>

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.1.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.1.3...@pie-lib/config-ui@11.1.4) (2022-12-21)
+
+
+### Bug Fixes
+
+* EBSR does not display Settings Panel DNA-16097 ([15472b1](https://github.com/pie-framework/pie-lib/commit/15472b1332d700a15e3a3a804a6eba303ae7d05b))
+
+
+
+
+
 ## [11.1.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.1.2...@pie-lib/config-ui@11.1.3) (2022-12-19)
 
 **Note:** Version bump only for package @pie-lib/config-ui
