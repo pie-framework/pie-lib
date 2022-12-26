@@ -46,7 +46,9 @@ class RawLayoutContents extends React.Component {
             contentStyle={{ maxWidth: configuration.maxWidth || 'unset' }}
             indicatorColor="primary"
           >
-            <div title="Design">{children}</div>
+            <div className={configuration.contentContainerDesign} title="Design">
+              {children}
+            </div>
             <div title="settings">{secondary}</div>
           </Tabs>
         )}
@@ -76,6 +78,9 @@ const styles = () => ({
   configContainer: {
     flex: '1',
     marginRight: '20px',
+  },
+  contentContainerDesign: {
+    width: '100%',
   },
 });
 
