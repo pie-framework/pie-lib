@@ -26,8 +26,8 @@ class ConfigLayout extends React.Component {
 
   onResize = (contentRect) => {
     const { bounds } = contentRect;
-    const { sidePanelMinWidth, hideSettings } = this.props;
-    const layoutMode = bounds.width >= sidePanelMinWidth || hideSettings ? 'inline' : 'tabbed';
+    const { sidePanelMinWidth } = this.props;
+    const layoutMode = bounds.width >= sidePanelMinWidth ? 'inline' : 'tabbed';
 
     this.setState({ layoutMode });
   };

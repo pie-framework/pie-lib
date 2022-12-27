@@ -94,7 +94,9 @@ class RawLayoutContents extends React.Component {
           </Tabs>
         )}
 
-        {mode === 'tabbed' && !hasSettingsPanel && <div>{children}</div>}
+        {mode === 'tabbed' && !hasSettingsPanel && (
+          <div style={configuration?.maxWidth ? { maxWidth: configuration?.maxWidth } : {}}>{children}</div>
+        )}
       </div>
     );
   }
