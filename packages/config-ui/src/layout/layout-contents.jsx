@@ -70,7 +70,7 @@ class RawLayoutContents extends React.Component {
                 classes.configContainer,
                 configuration?.maxWidth && classes.contentContainerMaxWidth,
               )}
-              style={configuration?.maxWidth ? { maxWidth: `calc(${configuration?.maxWidth} - 330px)` } : {}}
+              style={configuration?.maxWidth ? { maxWidth: `calc(${configuration?.maxWidth} - ${hasSettingsPanel ? '330px' : '0'})` } : {}}
             >
               {children}
             </div>
