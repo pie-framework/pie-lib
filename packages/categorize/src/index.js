@@ -179,6 +179,29 @@ export const rearrangeChoices = (choices, indexFrom, indexTo) => {
   return choices;
 };
 
+export const verifyAllowMultiplePlacements = (choice, categoryId, answers) => {
+  return answers.map((a) => {
+    if (a.category !== categoryId) {
+      a.choices = (a.choices || []).filter((c) => c !== choice.id);
+      return a;
+    } else {
+      a.choices = a.choices.reduce((acc, currentValue) => {
+        if (currentValue.id === choice.id) {
+          const foundIndex = acc.findIndex((c) => c.id === choice.id);
+          if (foundIndex === -1) {
+            acc.push(currentValue);
+          }
+        } else {
+          acc.push(currentValue);
+        }
+
+        return acc;
+      }, []);
+      return a;
+    }
+  });
+};
+
 export const removeChoiceFromCategory = (choiceId, categoryId, choiceIndex, answers) => {
   log('[removeChoiceFromCategory] choiceIndex:', choiceIndex);
 
@@ -246,13 +269,13 @@ export const moveChoiceToAlternate = (choiceId, from, to, choiceIndex, answers, 
   return answers.map((a) => {
     if (a.category === to) {
       if (categoryCount !== 0) {
-        a.alternateResponses[alternateIndex] = a.alternateResponses[alternateIndex].filter((resp) => resp != choiceId);
+        a.alternateResponses[alternateIndex] = a.alternateResponses[alternateIndex].filter((resp) => resp !== choiceId);
       }
       a.alternateResponses[alternateIndex].push(choiceId);
     }
 
     if (a.category === from && categoryCount !== 0) {
-      a.alternateResponses[alternateIndex] = a.alternateResponses[alternateIndex].filter((resp) => resp != choiceId);
+      a.alternateResponses[alternateIndex] = a.alternateResponses[alternateIndex].filter((resp) => resp !== choiceId);
     }
 
     return a;
