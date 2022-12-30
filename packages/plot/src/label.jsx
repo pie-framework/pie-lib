@@ -117,13 +117,13 @@ export default withStyles((theme) => ({
     zIndex: 10,
   },
   rotateLeftLabel: {
-    rotate: '-90deg',
+    '-webkit-transform': 'rotate(-90deg)',
     transformOrigin: '0 0',
     transformStyle: 'preserve-3d',
     position: 'absolute',
   },
   rotateRightLabel: {
-    rotate: '90deg',
+    '-webkit-transform': 'rotate(90deg)',
     transformOrigin: '0 0',
     transformStyle: 'preserve-3d',
     position: 'absolute',
