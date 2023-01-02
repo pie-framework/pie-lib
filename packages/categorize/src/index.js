@@ -116,6 +116,59 @@ export const ensureNoExtraChoicesInAnswer = (answer, choices) => {
 };
 
 /**
+ * Ensure that there are no extra choices in alternate responses, if a choice.categoryCount is > 0.
+ * @param {{category: string, choices: string[]}[]} answer
+ * @param {{id:string,categoryCount:number}} choices
+ */
+
+export const ensureNoExtraChoicesInAlternate = (answer, choices) => {
+  choices = choices || [];
+
+  const out = choices.reduce((answerArray, choice) => {
+    log('choice: ----> ', choice.id, 'categoryCount: ', choice.categoryCount);
+    // log('answer array: ', answerArray);
+    if (choice.categoryCount === undefined || choice.categoryCount === 0) {
+      return answerArray;
+    } else {
+      let alternatePair = {};
+      answerArray.forEach((answer) =>
+        (answer.alternateResponses || []).forEach((alternate, index) => {
+          if (index in alternatePair) {
+            alternatePair[index].push(alternate);
+          } else {
+            alternatePair[index] = [];
+            alternatePair[index].push(alternate);
+          }
+        }),
+      );
+
+      const recreatedAlternate = [];
+      Object.keys(alternatePair).forEach((k) => {
+        const limitAlternate = limitInArrays(choice.id, alternatePair[k], choice.categoryCount);
+        alternatePair[k] = limitAlternate;
+        alternatePair[k].forEach((item, index) => {
+          if (!recreatedAlternate[index]) {
+            recreatedAlternate[index] = [];
+            recreatedAlternate[index].push(item);
+          } else {
+            recreatedAlternate[index].push(item);
+          }
+        });
+      });
+
+      const updatedArray = answerArray.map((answer, index) => {
+        return {
+          category: answer.category,
+          alternateResponses: recreatedAlternate[index] || answer.alternateResponses,
+          choices: answer.choices,
+        };
+      });
+      return updatedArray;
+    }
+  }, answer);
+  return out;
+};
+/**
  * Count the number of choice ids in a given answer array
  * @param {string} choiceId
  * @param {{category: string, choices: string[]}[]} answer
@@ -268,13 +321,19 @@ export const moveChoiceToAlternate = (choiceId, from, to, choiceIndex, answers, 
 
   return answers.map((a) => {
     if (a.category === to) {
-      if (categoryCount !== 0) {
-        a.alternateResponses[alternateIndex] = a.alternateResponses[alternateIndex].filter((resp) => resp !== choiceId);
+      if (categoryCount !== 0 && a.alternateResponses) {
+        a.alternateResponses[alternateIndex] = (a.alternateResponses[alternateIndex] || []).filter(
+          (resp) => resp !== choiceId,
+        );
+      }
+      if (!a.alternateResponses) {
+        a.alternateResponses = [];
+        a.alternateResponses[alternateIndex] = [];
       }
       a.alternateResponses[alternateIndex].push(choiceId);
     }
 
-    if (a.category === from && categoryCount !== 0) {
+    if (a.category === from && categoryCount !== 0 && a.alternateResponses && a.alternateResponses[alternateIndex]) {
       a.alternateResponses[alternateIndex] = a.alternateResponses[alternateIndex].filter((resp) => resp !== choiceId);
     }
 
