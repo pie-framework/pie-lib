@@ -328,5 +328,20 @@
     "committerDate": "2021-02-02 16:17:48 +0200",
     "isTagged": true,
     "tag": "@pie-lib/categorize@0.6.19"
+  },
+  {
+    "type": "feat",
+    "scope": "categorize",
+    "subject": "conclude merge",
+    "merge": null,
+    "header": "feat(categorize): conclude merge",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "da8b33228705490c504be56d250f61e14ca5530d",
+    "gitTags": "",
+    "committerDate": "2023-01-03 11:36:51 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/categorize@0.7.0"
   }
 ]
