@@ -19,30 +19,30 @@ class RawLayoutContents extends React.Component {
     return secondary?.props?.configuration || secondary?.props?.children?.props?.configuration || undefined;
   };
 
-  // eslint-disable-next-line no-unused-vars
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    const configuration = this.getConfiguration();
-    const { mode } = this.props;
-
-    // promptHolder class is used to wrap up inputs:
-    // we don't want inputs to fill the entire scrollable container,
-    // but instead we want inputs to fit in the first view,
-    // so we calculate the maximum space inputs need
-    try {
-      if (
-        configuration?.maxWidth &&
-        getComputedStyle(document.documentElement).getPropertyValue('--pie-prompt-holder-max-width') !==
-          configuration?.maxWidth
-      ) {
-        document.documentElement.style.setProperty(
-          '--pie-prompt-holder-max-width',
-          mode === 'inline' ? `calc(${configuration.maxWidth} - 340px)` : configuration.maxWidth,
-        );
-      }
-    } catch (e) {
-      console.log(e.toString());
-    }
-  }
+  // // eslint-disable-next-line no-unused-vars
+  // componentDidUpdate(prevProps, prevState, snapshot) {
+  //   const configuration = this.getConfiguration();
+  //   const { mode } = this.props;
+  //
+  //   // promptHolder class is used to wrap up inputs:
+  //   // we don't want inputs to fill the entire scrollable container,
+  //   // but instead we want inputs to fit in the first view,
+  //   // so we calculate the maximum space inputs need
+  //   try {
+  //     if (
+  //       configuration?.maxWidth &&
+  //       getComputedStyle(document.documentElement).getPropertyValue('--pie-prompt-holder-max-width') !==
+  //         configuration?.maxWidth
+  //     ) {
+  //       document.documentElement.style.setProperty(
+  //         '--pie-prompt-holder-max-width',
+  //         mode === 'inline' ? `calc(${configuration.maxWidth} - 340px)` : configuration.maxWidth,
+  //       );
+  //     }
+  //   } catch (e) {
+  //     console.log(e.toString());
+  //   }
+  // }
 
   render() {
     const { mode, secondary, children, classes } = this.props;
@@ -63,45 +63,18 @@ class RawLayoutContents extends React.Component {
     return (
       <div className={classnames(classes.container)}>
         {mode === 'inline' && (
-          <div className={classes.flow} style={{ maxWidth: configuration?.maxWidth || 'unset' }}>
-            <div
-              className={classnames(
-                classes.configContainer,
-                configuration?.maxWidth && classes.contentContainerMaxWidth,
-              )}
-              style={configuration?.maxWidth ? { maxWidth: `calc(${configuration?.maxWidth} - ${hasSettingsPanel ? '330px' : '0'})` } : {}}
-            >
-              {children}
-            </div>
+          <div className={classes.flow}>
+            <div className={classes.configContainer}>{children}</div>
             {hasSettingsPanel && <div>{secondary}</div>}
           </div>
         )}
-
         {mode === 'tabbed' && hasSettingsPanel && (
-          <Tabs
-            onChange={this.onTabsChange}
-            contentClassName={classnames(
-              classes.contentContainer,
-              configuration?.maxWidth && classes.contentContainerMaxWidth,
-            )}
-            contentStyle={configuration?.maxWidth ? { maxWidth: configuration?.maxWidth } : {}}
-            indicatorColor="primary"
-          >
-            <div title="Design" style={configuration?.maxWidth ? { flex: 1 } : {}}>
-              {children}
-            </div>
+          <Tabs onChange={this.onTabsChange} contentClassName={classes.contentContainer} indicatorColor="primary">
+            <div title="Design">{children}</div>
             <div title="settings">{secondary}</div>
           </Tabs>
         )}
-
-        {mode === 'tabbed' && !hasSettingsPanel && (
-          <div
-            className={classnames(configuration?.maxWidth && classes.contentContainerMaxWidth)}
-            style={configuration?.maxWidth ? { maxWidth: configuration?.maxWidth } : {}}
-          >
-            {children}
-          </div>
-        )}
+        {mode === 'tabbed' && !hasSettingsPanel && <div>{children}</div>}
       </div>
     );
   }
@@ -119,10 +92,6 @@ const styles = () => ({
   },
   contentContainer: {
     padding: '32px 16px 0 16px',
-  },
-  contentContainerMaxWidth: {
-    display: 'flex',
-    overflow: 'scroll',
   },
   configContainer: {
     flex: '1',

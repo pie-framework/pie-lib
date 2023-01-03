@@ -27,7 +27,7 @@ export class Tabs extends React.Component {
 
   render() {
     const { value } = this.state;
-    const { children, className, contentClassName, contentStyle, classes } = this.props;
+    const { children, className, contentClassName, contentStyle = {}, classes } = this.props;
 
     const tabClasses = {
       root: classes.tabRoot,
