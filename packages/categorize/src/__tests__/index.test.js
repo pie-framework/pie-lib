@@ -10,6 +10,7 @@ import {
   buildCategories,
   buildChoices,
   getAllPossibleResponses,
+  moveChoiceToAlternate,
 } from '../index';
 import range from 'lodash/range';
 import util from 'util';
@@ -221,6 +222,105 @@ describe('categorize', () => {
     };
     assert('1', '1', '2', 0, [answer('1', ['1'])], [answer('1', []), answer('2', ['1'])]);
     assert('1', undefined, '2', 0, [answer('1', ['1'])], [answer('1', ['1']), answer('2', ['1'])]);
+  });
+
+  describe('moveChoiceToAlternate', () => {
+    const assert = (choiceId, from, to, choiceIndex, answers, alternateIndex, categoryCount, expected) => {
+      it(`move choice:${choiceId} from category:${from} -> category:${to} == ${util.inspect(expected, {
+        colors: true,
+      })}`, () => {
+        const result = moveChoiceToAlternate(choiceId, from, to, choiceIndex, answers, alternateIndex, categoryCount);
+        expect(result).toEqual(expected);
+      });
+    };
+    assert(
+      '2',
+      '1',
+      '2',
+      0,
+      [
+        answer(
+          '1',
+          ['1'],
+          [
+            ['1', '2'],
+            ['1', '1', '2'],
+          ],
+        ),
+        answer(
+          '2',
+          ['1'],
+          [
+            ['1', '2', '2'],
+            ['1', '1'],
+          ],
+        ),
+      ],
+      1,
+      0,
+      [
+        answer(
+          '1',
+          ['1'],
+          [
+            ['1', '2'],
+            ['1', '1', '2'],
+          ],
+        ),
+        answer(
+          '2',
+          ['1'],
+          [
+            ['1', '2', '2'],
+            ['1', '1', '2'],
+          ],
+        ),
+      ],
+    );
+    assert(
+      '2',
+      '1',
+      '2',
+      0,
+      [
+        answer(
+          '1',
+          ['1'],
+          [
+            ['1', '2'],
+            ['1', '1', '2'],
+          ],
+        ),
+        answer(
+          '2',
+          ['1'],
+          [
+            ['1', '2', '2'],
+            ['1', '1'],
+          ],
+        ),
+      ],
+      1,
+      1,
+      [
+        answer(
+          '1',
+          ['1'],
+          [
+            ['1', '2'],
+            ['1', '1'],
+          ],
+        ),
+        answer(
+          '2',
+          ['1'],
+          [
+            ['1', '2', '2'],
+            ['1', '1', '2'],
+          ],
+        ),
+      ],
+    );
   });
 
   describe('buildState', () => {

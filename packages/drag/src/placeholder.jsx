@@ -71,13 +71,12 @@ const styles = (theme) => ({
   },
   board: {
     border: '1px solid #D1D1D1',
-    padding: '4px',
+    padding: '10px',
     display: 'flex',
     flexWrap: 'wrap',
     alignItems: 'center',
-    justifyContent: 'center',
-    marginLeft: '20px',
     minHeight: '200px',
+    justifyContent: 'space-between',
   },
 });
 
