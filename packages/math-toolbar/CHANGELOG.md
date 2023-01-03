@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.11.5...@pie-lib/math-toolbar@1.11.6) (2023-01-03)
+
+**Note:** Version bump only for package @pie-lib/math-toolbar
+
+
+
+
+
 ## [1.11.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.11.4...@pie-lib/math-toolbar@1.11.5) (2022-12-19)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar

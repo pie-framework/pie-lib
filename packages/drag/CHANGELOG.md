@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.0.4...@pie-lib/drag@2.0.5) (2023-01-03)
+
+
+### Bug Fixes
+
+* **drag:** fix drop for match-list ([728203d](https://github.com/pie-framework/pie-lib/commit/728203d8014ce83b843b2695bf969c4fc53eb381))
+* **drag:** fix drop function for drag-in-the-blank element ([b491299](https://github.com/pie-framework/pie-lib/commit/b4912998d920c7e085dc9c9eb4e70c432cb7eb1c))
+
+
+
+
+
 ## [2.0.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.0.3...@pie-lib/drag@2.0.4) (2022-12-19)
 
 

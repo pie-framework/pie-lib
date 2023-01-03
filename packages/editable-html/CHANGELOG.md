@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.3.0...@pie-lib/editable-html@9.4.0) (2023-01-03)
+
+
+### Bug Fixes
+
+* add param to createToolbarOpts ([b80af8a](https://github.com/pie-framework/pie-lib/commit/b80af8ad0a7381a14ba935b7ee121133ab99f765))
+* revert changes to yarn lock that are causing build issues ([390d28c](https://github.com/pie-framework/pie-lib/commit/390d28c479452d58978984c961ed56716f156f91))
+
+
+### Features
+
+* **editable-html:** add error  PD-2417 ([b53fb99](https://github.com/pie-framework/pie-lib/commit/b53fb993c27ee7058b3d4c0722b1c582592bbec4))
+
+
+
+
+
 # [9.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.2.9...@pie-lib/editable-html@9.3.0) (2022-12-19)
 
 

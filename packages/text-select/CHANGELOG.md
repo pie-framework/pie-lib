@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.28](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.8.27...@pie-lib/text-select@1.8.28) (2023-01-03)
+
+
+### Bug Fixes
+
+* **select-text:** remove hover effect from tokens for touch devices ([7219e33](https://github.com/pie-framework/pie-lib/commit/7219e337d6e7fbb83c4bc6e984f1fa633d35a448))
+
+
+
+
+
 ## [1.8.27](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.8.26...@pie-lib/text-select@1.8.27) (2022-11-23)
 
 **Note:** Version bump only for package @pie-lib/text-select

@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.1.4...@pie-lib/config-ui@11.2.0) (2023-01-03)
+
+
+### Bug Fixes
+
+* if Settings Panel disabled, do not remove the extra space PD-2425 ([de342d4](https://github.com/pie-framework/pie-lib/commit/de342d428ab9cf66f7cf8a60fbf34f4e5fc88324))
+* revert changes for PD-2425 ([f032823](https://github.com/pie-framework/pie-lib/commit/f0328231bc0673607a0a157fc71fefe0e48f8a7f))
+
+
+### Features
+
+* add maxWidth (overflow scroll) when there's no Settings Panel PD-2425 ([66f1f78](https://github.com/pie-framework/pie-lib/commit/66f1f7890dfa113d8e753fc0f89bd9b10d39ea7c))
+* add maxWidth when there's no Settings Panel PD-2425 ([8fbd0e5](https://github.com/pie-framework/pie-lib/commit/8fbd0e5c0f4064f8b06fb1606171ffe22a30f5c5))
+* **config-ui:** added support to hide the settings pannel PD-1999 ([7ae0140](https://github.com/pie-framework/pie-lib/commit/7ae0140b99fc65d116c1bcb926eb26c17bae42f8))
+* Ability to set max width - make inputs fit PD-2425 ([0621e5e](https://github.com/pie-framework/pie-lib/commit/0621e5e13de530901a4e4a3d0857010413b2f407))
+* Ability to set max width PD-2425 ([fb29ca6](https://github.com/pie-framework/pie-lib/commit/fb29ca6b12f1e4a782787354d0f09f07fd58ef2f))
+* Ability to set max width PD-2425 ([1c047e7](https://github.com/pie-framework/pie-lib/commit/1c047e79b2aead911e316482852a785ffd562f9e))
+* Ability to set max width PD-2425 ([cf569bc](https://github.com/pie-framework/pie-lib/commit/cf569bcc2b0da51f295017a8c7588d0fbebbe803))
+* Ability to set maxWidth to an item PD-2425 ([703b5a8](https://github.com/pie-framework/pie-lib/commit/703b5a8dc5ecd80a71fbe3f40897006bb6dd7246))
+
+
+
+
+
 ## [11.1.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.1.3...@pie-lib/config-ui@11.1.4) (2022-12-21)
 
 
