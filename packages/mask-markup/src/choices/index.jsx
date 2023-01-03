@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import findKey from 'lodash/findKey';
 import Choice from './choice';
-import DroppablePlaceholder from '@pie-lib/drag/lib/droppable-placeholder';
 
 export default class Choices extends React.Component {
   static propTypes = {
@@ -49,11 +48,9 @@ export default class Choices extends React.Component {
 
     return (
       <div style={elementStyle}>
-        <DroppablePlaceholder disabled={disabled}>
-          {filteredChoices.map((c, index) => (
-            <Choice key={`${c.value}-${index}`} disabled={disabled} choice={c} />
-          ))}
-        </DroppablePlaceholder>
+        {filteredChoices.map((c, index) => (
+          <Choice key={`${c.value}-${index}`} disabled={disabled} choice={c} />
+        ))}
       </div>
     );
   }

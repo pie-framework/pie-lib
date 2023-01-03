@@ -12,42 +12,12 @@ class RawLayoutContents extends React.Component {
     classes: PropTypes.object,
   };
 
-  getConfiguration = () => {
-    const { secondary } = this.props;
-    // in config-layout, secondary can be: <SettingsBox>{settings}</SettingsBox>, settings, null
-
-    return secondary?.props?.configuration || secondary?.props?.children?.props?.configuration || undefined;
-  };
-
-  // // eslint-disable-next-line no-unused-vars
-  // componentDidUpdate(prevProps, prevState, snapshot) {
-  //   const configuration = this.getConfiguration();
-  //   const { mode } = this.props;
-  //
-  //   // promptHolder class is used to wrap up inputs:
-  //   // we don't want inputs to fill the entire scrollable container,
-  //   // but instead we want inputs to fit in the first view,
-  //   // so we calculate the maximum space inputs need
-  //   try {
-  //     if (
-  //       configuration?.maxWidth &&
-  //       getComputedStyle(document.documentElement).getPropertyValue('--pie-prompt-holder-max-width') !==
-  //         configuration?.maxWidth
-  //     ) {
-  //       document.documentElement.style.setProperty(
-  //         '--pie-prompt-holder-max-width',
-  //         mode === 'inline' ? `calc(${configuration.maxWidth} - 340px)` : configuration.maxWidth,
-  //       );
-  //     }
-  //   } catch (e) {
-  //     console.log(e.toString());
-  //   }
-  // }
-
   render() {
     const { mode, secondary, children, classes } = this.props;
-    const configuration = this.getConfiguration();
-
+    // in config-layout, layout content gets called like this:
+    // <LayoutContents secondary={layoutMode === 'inline' ? <SettingsBox>{settings}</SettingsBox> : settings}>
+    const configuration =
+      secondary?.props?.configuration || secondary?.props?.children?.props?.configuration || undefined;
     let hasSettingsPanel = Object.entries(configuration || {}).some(([propName, obj]) => !!obj?.settings);
     // ebsr has configuration.partA and configuration.partB
     // because we might have nested configuration for other item types as well, let's add this simple regex to check values for settings

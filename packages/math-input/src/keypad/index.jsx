@@ -260,17 +260,16 @@ export class KeyPad extends React.Component {
             return (
               <LatexButton
                 latex={k.latex}
-                key={index}
                 {...common}
                 className={classes.latexButton}
-                ariaLabel={k.ariaLabel ? k.ariaLabel : k.name || k.label}
+                ariaLabel={k.ariaLabel ? k.ariaLabel : (k.name || k.label)}
               />
             );
           }
 
           if (k.label) {
             return (
-              <Button key={index} {...common} aria-label={k.ariaLabel ? k.ariaLabel : k.name || k.label}>
+              <Button {...common} aria-label={k.ariaLabel ? k.ariaLabel : (k.name || k.label)}>
                 {k.label}
               </Button>
             );
@@ -278,7 +277,7 @@ export class KeyPad extends React.Component {
             const Icon = k.icon ? k.icon : 'div';
 
             return (
-              <IconButton tabIndex={'-1'} {...common} key={index}>
+              <IconButton tabIndex={'-1'} {...common}>
                 <Icon className={classes.icon} />
               </IconButton>
             );
