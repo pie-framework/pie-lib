@@ -111,6 +111,9 @@ export default withStyles((theme) => {
       lineHeight: 2,
       marginTop: theme.spacing.unit / 2,
       backgroundColor: color.primaryLight(),
+      '& > *': {
+        backgroundColor: color.primaryLight(),
+      },
     },
     highlight: {
       // TODO hardcoded color,
