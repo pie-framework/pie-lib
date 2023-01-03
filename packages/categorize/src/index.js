@@ -238,13 +238,13 @@ export const moveChoiceToAlternate = (choiceId, from, to, choiceIndex, answers, 
   return answers.map((a) => {
     if (a.category === to) {
       if (categoryCount !== 0) {
-        a.alternateResponses[alternateIndex] = a.alternateResponses[alternateIndex].filter((resp) => resp != choiceId);
+        a.alternateResponses[alternateIndex] = a.alternateResponses[alternateIndex].filter((resp) => resp !== choiceId);
       }
       a.alternateResponses[alternateIndex].push(choiceId);
     }
 
     if (a.category === from && categoryCount !== 0) {
-      a.alternateResponses[alternateIndex] = a.alternateResponses[alternateIndex].filter((resp) => resp != choiceId);
+      a.alternateResponses[alternateIndex] = a.alternateResponses[alternateIndex].filter((resp) => resp !== choiceId);
     }
 
     return a;
