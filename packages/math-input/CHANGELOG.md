@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.10.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.9.0...@pie-lib/math-input@6.10.0) (2023-01-03)
+
+
+### Features
+
+* **math-input:** solve eslint error ([b4489aa](https://github.com/pie-framework/pie-lib/commit/b4489aad65d5a92989ea32294589b5a030019ecb))
+
+
+
+
+
 # [6.9.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.8.4...@pie-lib/math-input@6.9.0) (2022-12-19)
 
 

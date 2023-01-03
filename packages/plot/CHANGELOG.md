@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.5.3...@pie-lib/plot@2.5.4) (2023-01-03)
+
+
+### Bug Fixes
+
+* **graphing:** fix axis label rotation for ios devices ([08abe86](https://github.com/pie-framework/pie-lib/commit/08abe8664ad0a7221a58baec8c451da509471734))
+
+
+
+
+
 ## [2.5.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.5.2...@pie-lib/plot@2.5.3) (2022-11-23)
 
 **Note:** Version bump only for package @pie-lib/plot

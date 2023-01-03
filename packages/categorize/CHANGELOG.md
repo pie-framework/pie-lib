@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.6.26...@pie-lib/categorize@0.7.0) (2023-01-03)
+
+
+### Bug Fixes
+
+* **categorize:** add test for addChoiceToAlternate-PD-1995 ([153ada3](https://github.com/pie-framework/pie-lib/commit/153ada3ce0a27189ca1fecb5839c2843e35487d5))
+
+
+### Features
+
+* **categorize:** add method to swap teo choices-PD-1967 ([4660fcf](https://github.com/pie-framework/pie-lib/commit/4660fcfe8cd47c0d02707651812c7897182baeea))
+* **categorize:** conclude merge ([da8b332](https://github.com/pie-framework/pie-lib/commit/da8b33228705490c504be56d250f61e14ca5530d))
+* **categorize:** ensure no extra choices in alternate + sanity checks-PD-1967 ([a574028](https://github.com/pie-framework/pie-lib/commit/a5740285469691e89bc2255045f129989861892b))
+* **categorzie:** Ensure that there are no extra choices after moving and adding new choices: PD-1967 ([a2f0ebd](https://github.com/pie-framework/pie-lib/commit/a2f0ebd1dd5e0f86a255727207182a29db7e8ce0))
+
+
+
+
+
 ## [0.6.26](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.6.25...@pie-lib/categorize@0.6.26) (2022-12-19)
 
 
