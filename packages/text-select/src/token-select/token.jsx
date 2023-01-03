@@ -40,7 +40,8 @@ export class Token extends React.Component {
       correct,
       animationsDisabled,
     } = this.props;
-    const isTouchEnabled = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+    const isTouchEnabled =
+      !('ontouchstart' in window) || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
 
     let className;
 
@@ -58,7 +59,7 @@ export class Token extends React.Component {
         Token.rootClassName,
         classes.token,
         disabled && classes.disabled,
-        selectable && !disabled && !isTouchEnabled && classes.selectable,
+        selectable && !disabled && isTouchEnabled && classes.selectable,
         selected && !disabled && classes.selected,
         selected && disabled && classes.disabledAndSelected,
         highlight && selectable && !disabled && !selected && classes.highlight,
@@ -110,6 +111,9 @@ export default withStyles((theme) => {
     selected: {
       lineHeight: 2,
       marginTop: theme.spacing.unit / 2,
+      '&:hover': {
+        backgroundColor: color.primaryLight(),
+      },
       backgroundColor: color.primaryLight(),
       '& > *': {
         backgroundColor: color.primaryLight(),

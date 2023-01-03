@@ -36,11 +36,10 @@ const defaultResponseAreaProps = {
 
 const defaultLanguageCharactersProps = [];
 
-const createToolbarOpts = (toolbarOpts, error) => {
+const createToolbarOpts = (toolbarOpts) => {
   return {
     ...defaultToolbarOpts,
     ...toolbarOpts,
-    error,
   };
 };
 
@@ -120,7 +119,7 @@ export class Editor extends React.Component {
     super(props);
     this.state = {
       value: props.value,
-      toolbarOpts: createToolbarOpts(props.toolbarOpts, props.error),
+      toolbarOpts: createToolbarOpts(props.toolbarOpts),
     };
 
     this.onResize = () => {
@@ -250,7 +249,7 @@ export class Editor extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     const { toolbarOpts } = this.state;
-    const newToolbarOpts = createToolbarOpts(nextProps.toolbarOpts, nextProps.error);
+    const newToolbarOpts = createToolbarOpts(nextProps.toolbarOpts);
 
     if (!isEqual(newToolbarOpts, toolbarOpts)) {
       this.setState({

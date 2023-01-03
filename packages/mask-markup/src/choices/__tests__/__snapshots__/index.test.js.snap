@@ -42,43 +42,39 @@ exports[`index Choices renders correctly with default props 1`] = `
     }
   }
 >
-  <DropTarget(DroppablePlaceholder)
+  <DragSource(WithStyles(BlankContentComp))
+    choice={
+      Object {
+        "id": "0",
+        "label": "Jumped",
+        "value": "Jumped",
+      }
+    }
     disabled={false}
-  >
-    <DragSource(WithStyles(BlankContentComp))
-      choice={
-        Object {
-          "id": "0",
-          "label": "Jumped",
-          "value": "Jumped",
-        }
+    key="Jumped-0"
+  />
+  <DragSource(WithStyles(BlankContentComp))
+    choice={
+      Object {
+        "id": "1",
+        "label": "Laughed",
+        "value": "Laughed",
       }
-      disabled={false}
-      key="Jumped-0"
-    />
-    <DragSource(WithStyles(BlankContentComp))
-      choice={
-        Object {
-          "id": "1",
-          "label": "Laughed",
-          "value": "Laughed",
-        }
+    }
+    disabled={false}
+    key="Laughed-1"
+  />
+  <DragSource(WithStyles(BlankContentComp))
+    choice={
+      Object {
+        "id": "2",
+        "label": "Spoon",
+        "value": "Spoon",
       }
-      disabled={false}
-      key="Laughed-1"
-    />
-    <DragSource(WithStyles(BlankContentComp))
-      choice={
-        Object {
-          "id": "2",
-          "label": "Spoon",
-          "value": "Spoon",
-        }
-      }
-      disabled={false}
-      key="Spoon-2"
-    />
-  </DropTarget(DroppablePlaceholder)>
+    }
+    disabled={false}
+    key="Spoon-2"
+  />
 </div>
 `;
 
@@ -90,43 +86,39 @@ exports[`index Choices renders correctly with disabled prop as true 1`] = `
     }
   }
 >
-  <DropTarget(DroppablePlaceholder)
+  <DragSource(WithStyles(BlankContentComp))
+    choice={
+      Object {
+        "id": "0",
+        "label": "Jumped",
+        "value": "Jumped",
+      }
+    }
     disabled={true}
-  >
-    <DragSource(WithStyles(BlankContentComp))
-      choice={
-        Object {
-          "id": "0",
-          "label": "Jumped",
-          "value": "Jumped",
-        }
+    key="Jumped-0"
+  />
+  <DragSource(WithStyles(BlankContentComp))
+    choice={
+      Object {
+        "id": "1",
+        "label": "Laughed",
+        "value": "Laughed",
       }
-      disabled={true}
-      key="Jumped-0"
-    />
-    <DragSource(WithStyles(BlankContentComp))
-      choice={
-        Object {
-          "id": "1",
-          "label": "Laughed",
-          "value": "Laughed",
-        }
+    }
+    disabled={true}
+    key="Laughed-1"
+  />
+  <DragSource(WithStyles(BlankContentComp))
+    choice={
+      Object {
+        "id": "2",
+        "label": "Spoon",
+        "value": "Spoon",
       }
-      disabled={true}
-      key="Laughed-1"
-    />
-    <DragSource(WithStyles(BlankContentComp))
-      choice={
-        Object {
-          "id": "2",
-          "label": "Spoon",
-          "value": "Spoon",
-        }
-      }
-      disabled={true}
-      key="Spoon-2"
-    />
-  </DropTarget(DroppablePlaceholder)>
+    }
+    disabled={true}
+    key="Spoon-2"
+  />
 </div>
 `;
 
@@ -138,43 +130,39 @@ exports[`index Choices renders with duplicates 1`] = `
     }
   }
 >
-  <DropTarget(DroppablePlaceholder)
+  <DragSource(WithStyles(BlankContentComp))
+    choice={
+      Object {
+        "id": "0",
+        "label": "Jumped",
+        "value": "Jumped",
+      }
+    }
     disabled={false}
-  >
-    <DragSource(WithStyles(BlankContentComp))
-      choice={
-        Object {
-          "id": "0",
-          "label": "Jumped",
-          "value": "Jumped",
-        }
+    key="Jumped-0"
+  />
+  <DragSource(WithStyles(BlankContentComp))
+    choice={
+      Object {
+        "id": "1",
+        "label": "Laughed",
+        "value": "Laughed",
       }
-      disabled={false}
-      key="Jumped-0"
-    />
-    <DragSource(WithStyles(BlankContentComp))
-      choice={
-        Object {
-          "id": "1",
-          "label": "Laughed",
-          "value": "Laughed",
-        }
+    }
+    disabled={false}
+    key="Laughed-1"
+  />
+  <DragSource(WithStyles(BlankContentComp))
+    choice={
+      Object {
+        "id": "2",
+        "label": "Spoon",
+        "value": "Spoon",
       }
-      disabled={false}
-      key="Laughed-1"
-    />
-    <DragSource(WithStyles(BlankContentComp))
-      choice={
-        Object {
-          "id": "2",
-          "label": "Spoon",
-          "value": "Spoon",
-        }
-      }
-      disabled={false}
-      key="Spoon-2"
-    />
-  </DropTarget(DroppablePlaceholder)>
+    }
+    disabled={false}
+    key="Spoon-2"
+  />
 </div>
 `;
 
@@ -186,20 +174,16 @@ exports[`index Choices renders without duplicates 1`] = `
     }
   }
 >
-  <DropTarget(DroppablePlaceholder)
-    disabled={false}
-  >
-    <DragSource(WithStyles(BlankContentComp))
-      choice={
-        Object {
-          "id": "2",
-          "label": "Spoon",
-          "value": "Spoon",
-        }
+  <DragSource(WithStyles(BlankContentComp))
+    choice={
+      Object {
+        "id": "2",
+        "label": "Spoon",
+        "value": "Spoon",
       }
-      disabled={false}
-      key="Spoon-0"
-    />
-  </DropTarget(DroppablePlaceholder)>
+    }
+    disabled={false}
+    key="Spoon-0"
+  />
 </div>
 `;
