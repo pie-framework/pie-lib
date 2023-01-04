@@ -1,8 +1,8 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core';
-import Tabs from '../tabs';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core';
+import Tabs from '../tabs';
 
 class RawLayoutContents extends React.Component {
   static propTypes = {
@@ -65,7 +65,7 @@ class RawLayoutContents extends React.Component {
         {mode === 'inline' && (
           <div className={classnames(classes.flow, classes.contentContainer)}>
             <div className={classes.configContainer}>{children}</div>
-            {hasSettingsPanel && <div>{secondary}</div>}
+            {hasSettingsPanel && <div className={classes.settingsContainer}>{secondary}</div>}
           </div>
         )}
 
@@ -97,7 +97,9 @@ const styles = (theme) => ({
   },
   configContainer: {
     flex: '1',
-    marginRight: theme.spacing.unit * 2,
+  },
+  settingsContainer: {
+    marginLeft: theme.spacing.unit * 2,
   },
 });
 

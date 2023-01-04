@@ -51,11 +51,14 @@ export class FeedbackConfig extends React.Component {
   onChange(key, config) {
     const { feedback, onChange } = this.props;
     const update = { ...feedback, [key]: config };
+
     onChange(update);
   }
 
   onCorrectChange = this.onChange.bind(this, 'correct');
+
   onIncorrectChange = this.onChange.bind(this, 'incorrect');
+
   onPartialChange = this.onChange.bind(this, 'partial');
 
   render() {
@@ -66,6 +69,7 @@ export class FeedbackConfig extends React.Component {
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
           <Typography className={classes.heading}>Feedback</Typography>
         </ExpansionPanelSummary>
+
         <ExpansionPanelDetails>
           <div className={classes.feedbackContainer}>
             <FeedbackSelector
@@ -74,6 +78,7 @@ export class FeedbackConfig extends React.Component {
               onChange={this.onCorrectChange}
               toolbarOpts={toolbarOpts}
             />
+
             {allowPartial && (
               <FeedbackSelector
                 label="If partially correct, show"
@@ -82,6 +87,7 @@ export class FeedbackConfig extends React.Component {
                 toolbarOpts={toolbarOpts}
               />
             )}
+
             <FeedbackSelector
               label="If incorrect, show"
               feedback={feedback.incorrect}

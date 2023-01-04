@@ -21,6 +21,7 @@ const RawHelpButton = ({ onClick, classes }) => (
     <HelpIcon />
   </IconButton>
 );
+
 RawHelpButton.propTypes = {
   onClick: PropTypes.func,
   classes: PropTypes.object.isRequired,
@@ -70,9 +71,11 @@ class Help extends React.Component {
 
   render() {
     const { children, title } = this.props;
+
     return (
       <div>
         <HelpButton color="accent" onClick={() => this.setState({ open: true })} />
+
         <HelpDialog open={this.state.open} title={title} onClose={() => this.setState({ open: false })}>
           {children}
         </HelpDialog>
