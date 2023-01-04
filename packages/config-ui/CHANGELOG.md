@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.2.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.2.1...@pie-lib/config-ui@11.2.2) (2023-01-04)
+
+
+### Bug Fixes
+
+* **config-ui:** UI improvements ([67b6e83](https://github.com/pie-framework/pie-lib/commit/67b6e834813bd7b2bf53f5f6c757a8e55493f095))
+
+
+
+
+
 ## [11.2.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.2.0...@pie-lib/config-ui@11.2.1) (2023-01-04)
 
 

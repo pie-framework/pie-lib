@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.0.5...@pie-lib/drag@2.0.6) (2023-01-04)
+
+
+### Bug Fixes
+
+* **drag:** refactor the droppable placeholder for match-list and drag-in-the-blank PD-1954 PD-1956 ([8696d61](https://github.com/pie-framework/pie-lib/commit/8696d61a0762835186ceb876e03100e2e9c820fc))
+
+
+
+
+
 ## [2.0.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.0.4...@pie-lib/drag@2.0.5) (2023-01-03)
 
 
