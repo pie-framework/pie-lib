@@ -54,33 +54,35 @@ class RawLayoutContents extends React.Component {
 
     if (!hasSettingsPanel) {
       try {
-        hasSettingsPanel = JSON.stringify(configuration).match(/settings":true/).length;
+        hasSettingsPanel = JSON.stringify(configuration)?.match(/settings":true/)?.length;
       } catch (e) {
         console.log(e.toString());
       }
     }
 
     return (
-      <div className={classnames(classes.container)}>
+      <div className={classes.container}>
         {mode === 'inline' && (
-          <div className={classes.flow}>
+          <div className={classnames(classes.flow, classes.contentContainer)}>
             <div className={classes.configContainer}>{children}</div>
             {hasSettingsPanel && <div>{secondary}</div>}
           </div>
         )}
+
         {mode === 'tabbed' && hasSettingsPanel && (
           <Tabs onChange={this.onTabsChange} contentClassName={classes.contentContainer} indicatorColor="primary">
             <div title="Design">{children}</div>
-            <div title="settings">{secondary}</div>
+            <div title="Settings">{secondary}</div>
           </Tabs>
         )}
-        {mode === 'tabbed' && !hasSettingsPanel && <div>{children}</div>}
+
+        {mode === 'tabbed' && !hasSettingsPanel && <div className={classes.contentContainer}>{children}</div>}
       </div>
     );
   }
 }
 
-const styles = () => ({
+const styles = (theme) => ({
   flow: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -91,11 +93,11 @@ const styles = () => ({
     position: 'relative',
   },
   contentContainer: {
-    padding: '32px 16px 0 16px',
+    padding: `${theme.spacing.unit * 2}px 0`,
   },
   configContainer: {
     flex: '1',
-    marginRight: '20px',
+    marginRight: theme.spacing.unit * 2,
   },
 });
 
