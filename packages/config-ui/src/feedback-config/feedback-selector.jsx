@@ -14,8 +14,9 @@ const feedbackLabels = {
 const holder = (theme, extras) => ({
   marginTop: '0px',
   background: '#e0dee0',
-  padding: theme.spacing.unit * 0.9,
+  padding: theme.spacing.unit,
   marginBottom: theme.spacing.unit * 2,
+  borderRadius: '4px',
   ...extras,
 });
 
@@ -66,11 +67,13 @@ export class FeedbackSelector extends React.Component {
 
   changeType = (type) => {
     const { onChange, feedback } = this.props;
+
     onChange({ ...feedback, type });
   };
 
   changeCustom = (custom) => {
     const { onChange, feedback } = this.props;
+
     onChange({ ...feedback, type: 'custom', custom });
   };
 
@@ -95,6 +98,7 @@ export class FeedbackSelector extends React.Component {
             feedbackLabels={feedbackLabels}
           />
         </InputContainer>
+
         {feedback.type === 'custom' && (
           <div className={classes.customHolder}>
             <EditableHTML
@@ -106,6 +110,7 @@ export class FeedbackSelector extends React.Component {
             />
           </div>
         )}
+
         {feedback.type === 'default' && <div className={classes.defaultHolder}> {feedback.default}</div>}
       </div>
     );

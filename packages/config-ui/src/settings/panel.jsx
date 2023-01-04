@@ -273,6 +273,7 @@ export class Panel extends React.Component {
 
   render() {
     const { groups, model, configuration } = this.props;
+
     log('render:', model);
 
     const renderedGroups = Object.keys(groups || {}).map((group) => {
