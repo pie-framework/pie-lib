@@ -166,7 +166,7 @@ const tagMap = {
 
 const Group = withStyles(() => ({
   group: {
-    margin: '0 0 25px 0',
+    margin: '0 0 16px 0',
   },
   groupHeader: {
     color: '#495B8F',
@@ -257,6 +257,7 @@ export class Panel extends React.Component {
 
   change = (key, value, isConfigProperty = false) => {
     log('[changeModel]', key, value);
+
     const { onChangeModel, onChangeConfiguration } = this.props;
     const model = { ...this.props.model };
     const configuration = { ...this.props.configuration };
@@ -276,6 +277,7 @@ export class Panel extends React.Component {
 
     const renderedGroups = Object.keys(groups || {}).map((group) => {
       const showGroup = Object.entries(groups[group]).some(([propName, propVal]) => !!propVal);
+
       if (showGroup) {
         return (
           <Group
@@ -288,6 +290,7 @@ export class Panel extends React.Component {
           />
         );
       }
+
       return null;
     });
 
