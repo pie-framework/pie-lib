@@ -16,9 +16,7 @@ export class Tabs extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      value: 0,
-    };
+    this.state = { value: 0 };
   }
 
   handleChange = (event, value) => {
@@ -28,10 +26,8 @@ export class Tabs extends React.Component {
   render() {
     const { value } = this.state;
     const { children, className, contentClassName, contentStyle = {}, classes } = this.props;
+    const tabClasses = { root: classes.tabRoot };
 
-    const tabClasses = {
-      root: classes.tabRoot,
-    };
     return (
       <div className={className}>
         <MuiTabs indicatorColor="primary" value={value} onChange={this.handleChange}>
@@ -39,6 +35,7 @@ export class Tabs extends React.Component {
             c && c.props.title ? <MuiTab classes={tabClasses} key={index} label={c.props.title} /> : null,
           )}
         </MuiTabs>
+
         <div className={contentClassName} style={contentStyle}>
           {children[value]}
         </div>
@@ -47,6 +44,4 @@ export class Tabs extends React.Component {
   }
 }
 
-export default withStyles(() => ({
-  tabRoot: {},
-}))(Tabs);
+export default withStyles(() => ({ tabRoot: {} }))(Tabs);
