@@ -146,6 +146,7 @@ export class ChoiceConfiguration extends React.Component {
 
   _changeFn = (key) => (update) => {
     const { data, onChange } = this.props;
+
     if (onChange) {
       onChange({ ...data, [key]: update });
     }
@@ -177,6 +178,7 @@ export class ChoiceConfiguration extends React.Component {
   onFeedbackTypeChange = (t) => {
     const { data, onChange } = this.props;
     const fb = { ...data.feedback, type: t };
+
     if (fb.type !== 'custom') {
       fb.value = undefined;
     }
@@ -210,6 +212,7 @@ export class ChoiceConfiguration extends React.Component {
 
     const InputToggle = mode === 'checkbox' ? InputCheckbox : InputRadio;
     const names = classNames(classes.choiceConfiguration, className);
+
     return (
       <div className={names}>
         <div className={classes.topRow}>
@@ -218,6 +221,7 @@ export class ChoiceConfiguration extends React.Component {
               {useLetterOrdering ? String.fromCharCode(96 + index).toUpperCase() : index}
             </span>
           )}
+
           <InputToggle
             className={classes.toggle}
             onChange={this.onCheckedChange}
@@ -225,6 +229,7 @@ export class ChoiceConfiguration extends React.Component {
             checked={!!data.correct}
             error={noCorrectAnswerError}
           />
+
           <div className={classes.middleColumn}>
             <EditableHtmlContainer
               label={!noLabels ? 'Label' : ''}
@@ -251,6 +256,7 @@ export class ChoiceConfiguration extends React.Component {
               />
             )}
           </div>
+
           {allowFeedBack && (
             <InputContainer className={classes.feedback} label={!noLabels ? 'Feedback' : ''}>
               <FeedbackMenu
@@ -262,6 +268,7 @@ export class ChoiceConfiguration extends React.Component {
               />
             </InputContainer>
           )}
+
           {allowDelete && (
             <InputContainer className={classes.delete} label={!noLabels ? 'Delete' : ''}>
               <IconButton aria-label="delete" className={classes.deleteIcon} onClick={onDelete}>

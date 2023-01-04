@@ -29,9 +29,7 @@ const Group = (props) => {
             <RadioWithLabel
               value={key}
               checked={value === key}
-              classes={{
-                label: classes.radioLabel,
-              }}
+              classes={{ label: classes.radioLabel }}
               onChange={(e) => onChange(e.currentTarget.value)}
               label={feedbackLabels[key]}
             />

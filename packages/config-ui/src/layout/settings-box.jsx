@@ -28,7 +28,6 @@ const styles = () => ({
     minWidth: '275px',
     maxWidth: '300px',
     padding: '20px 4px 4px 20px',
-    width: '80%',
     zIndex: 99,
   },
 });
