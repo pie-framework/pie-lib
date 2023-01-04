@@ -1,10 +1,22 @@
 import { DndProvider, DragSource, DropTarget } from 'react-dnd';
 
 import PlaceHolder from './placeholder';
-import DroppablePlaceholder from './droppable-placeholder';
 import Choice from './choice';
 import withDragContext from './with-drag-context';
 import swap from './swap';
 import * as uid from './uid-context';
+import MatchDroppablePlaceholder from './match-list-dp';
+import DragDroppablePlaceholder from './drag-in-the-blank-dp';
 
-export { DndProvider, PlaceHolder, DroppablePlaceholder, withDragContext, Choice, swap, uid, DragSource, DropTarget };
+export {
+  DndProvider,
+  PlaceHolder,
+  MatchDroppablePlaceholder,
+  DragDroppablePlaceholder,
+  withDragContext,
+  Choice,
+  swap,
+  uid,
+  DragSource,
+  DropTarget,
+};
