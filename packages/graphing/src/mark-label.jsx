@@ -16,6 +16,8 @@ const styles = (theme) => ({
     border: `solid 1px ${color.secondary()}`,
     borderRadius: '3px',
     color: color.primaryDark(),
+    width: 'fit-content',
+    height: 'fit-content',
   },
   disabled: {
     border: `solid 1px ${color.primaryDark()}`,
@@ -41,14 +43,14 @@ export const position = (graphProps, mark, rect) => {
   return `${v}-${h}`;
 };
 
-export const coordinates = (graphProps, mark, rect, position) => {
+export const coordinates = (graphProps, mark, rect, position, fontSize) => {
   const { scale } = graphProps;
   const shift = 10;
   rect = rect || { width: 0, height: 0 };
-
+  console.log(fontSize, 'fontsize');
   switch (position) {
     case 'bottom-right': {
-      return { left: scale.x(mark.x) + shift, top: scale.y(mark.y) + shift };
+      return { left: `${(scale.x(mark.x) + shift) / fontSize}rem`, top: `${(scale.y(mark.y) + shift) / fontSize}rem` };
     }
     case 'bottom-left': {
       return { left: scale.x(mark.x) - shift - rect.width, top: scale.y(mark.y) + shift };
@@ -72,7 +74,9 @@ export const MarkLabel = (props) => {
   const [input, setInput] = useState(null);
   const _ref = useCallback((node) => setInput(node));
 
-  const { mark, graphProps, classes, disabled, inputRef: externalInputRef } = props;
+  const { mark, graphProps, classes, disabled, inputRef: externalInputRef, theme } = props;
+
+  console.log(theme, 'font size');
   const [label, setLabel] = useState(mark.label);
 
   const onChange = (e) => setLabel(e.target.value);
@@ -91,12 +95,15 @@ export const MarkLabel = (props) => {
     }
   }, [debouncedLabel]);
 
+  const fontSize = theme && theme.typography ? theme.typography.fontSize + 2 : 16;
   const rect = input ? input.getBoundingClientRect() : { width: 0, height: 0 };
   const pos = position(graphProps, mark, rect);
-  const leftTop = coordinates(graphProps, mark, rect, pos);
+  const leftTop = coordinates(graphProps, mark, rect, pos, fontSize);
+  console.log(pos, 'pos');
+  console.log(leftTop, 'leftTop');
 
   const style = {
-    position: 'absolute',
+    position: 'fixed',
     pointerEvents: 'auto',
     ...leftTop,
   };
@@ -125,6 +132,7 @@ MarkLabel.propTypes = {
   classes: PropTypes.object,
   inputRef: PropTypes.func,
   mark: PropTypes.object,
+  theme: PropTypes.object,
 };
 
-export default withStyles(styles)(MarkLabel);
+export default withStyles(styles, { withTheme: true })(MarkLabel);

@@ -178,8 +178,10 @@ export class Graph extends React.Component {
     let { marks } = this.props;
 
     const graphProps = createGraphProps(domain, range, size, () => this.rootNode);
+    console.log(graphProps, 'graph props');
     const maskSize = getMaskSize(size);
     const common = { graphProps, labelModeEnabled };
+    console.log(size, 'size');
 
     marks = removeBuildingToolIfCurrentToolDiffers({ marks: marks || [], currentTool });
 
@@ -217,12 +219,14 @@ export class Graph extends React.Component {
               const markType = m.type;
 
               return (
-                <Component
-                  key={`${markType}-${index}-bg`}
-                  mark={{ ...m, disabled: true, isBackground: true }}
-                  labelNode={this.state.labelNode}
-                  {...common}
-                />
+                <svg {...size}>
+                  <Component
+                    key={`${markType}-${index}-bg`}
+                    mark={{ ...m, disabled: true, isBackground: true }}
+                    labelNode={this.state.labelNode}
+                    {...common}
+                  />
+                </svg>
               );
             })}
 
@@ -246,14 +250,15 @@ export class Graph extends React.Component {
                 />
               );
             })}
-
-            <foreignObject
-              ref={(labelNode) => (this.labelNode = labelNode)}
-              x="0"
-              y="0"
-              {...size}
-              style={{ pointerEvents: 'none' }}
-            />
+            <svg {...size}>
+              <foreignObject
+                ref={(labelNode) => (this.labelNode = labelNode)}
+                x="0"
+                y="0"
+                {...size}
+                style={{ pointerEvents: 'none' }}
+              />
+            </svg>
           </g>
         </g>
       </Root>
