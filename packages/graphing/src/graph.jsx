@@ -178,10 +178,9 @@ export class Graph extends React.Component {
     let { marks } = this.props;
 
     const graphProps = createGraphProps(domain, range, size, () => this.rootNode);
-    console.log(graphProps, 'graph props');
+
     const maskSize = getMaskSize(size);
     const common = { graphProps, labelModeEnabled };
-    console.log(size, 'size');
 
     marks = removeBuildingToolIfCurrentToolDiffers({ marks: marks || [], currentTool });
 
@@ -213,20 +212,18 @@ export class Graph extends React.Component {
             <rect {...maskSize} fill="white" /> {/* TODO hardcoded color */}
           </mask>
 
-          <g id="marks" mask="url('#myMask')">
+          <g id="marks" mask="url('#myMask')" style={{ pointerEvents: 'auto' }}>
             {(backgroundMarks || []).map((m, index) => {
               const Component = this.getComponent(m);
               const markType = m.type;
 
               return (
-                <svg {...size}>
-                  <Component
-                    key={`${markType}-${index}-bg`}
-                    mark={{ ...m, disabled: true, isBackground: true }}
-                    labelNode={this.state.labelNode}
-                    {...common}
-                  />
-                </svg>
+                <Component
+                  key={`${markType}-${index}-bg`}
+                  mark={{ ...m, disabled: true, isBackground: true }}
+                  labelNode={this.state.labelNode}
+                  {...common}
+                />
               );
             })}
 
@@ -250,15 +247,13 @@ export class Graph extends React.Component {
                 />
               );
             })}
-            <svg {...size}>
-              <foreignObject
-                ref={(labelNode) => (this.labelNode = labelNode)}
-                x="0"
-                y="0"
-                {...size}
-                style={{ pointerEvents: 'none' }}
-              />
-            </svg>
+            <foreignObject
+              ref={(labelNode) => (this.labelNode = labelNode)}
+              x="0"
+              y="0"
+              {...size}
+              style={{ pointerEvents: 'none' }}
+            />
           </g>
         </g>
       </Root>

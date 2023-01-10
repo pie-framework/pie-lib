@@ -47,24 +47,24 @@ export const coordinates = (graphProps, mark, rect, position, fontSize) => {
   const { scale } = graphProps;
   const shift = 10;
   rect = rect || { width: 0, height: 0 };
-  console.log(fontSize, 'fontsize');
+
   switch (position) {
     case 'bottom-right': {
       return { left: `${(scale.x(mark.x) + shift) / fontSize}rem`, top: `${(scale.y(mark.y) + shift) / fontSize}rem` };
     }
     case 'bottom-left': {
-      return { left: scale.x(mark.x) - shift - rect.width, top: scale.y(mark.y) + shift };
+      return { left: `${scale.x(mark.x) - shift - rect.width}rem`, top: `${scale.y(mark.y) + shift}rem` };
     }
     case 'top-left': {
       return {
-        left: scale.x(mark.x) - shift - rect.width,
-        top: scale.y(mark.y) - shift - rect.height,
+        left: `${scale.x(mark.x) - shift - rect.width}rem`,
+        top: `${scale.y(mark.y) - shift - rect.height}rem`,
       };
     }
     case 'top-right': {
       return {
-        left: scale.x(mark.x) + shift,
-        top: scale.y(mark.y) - shift - rect.height,
+        left: `${scale.x(mark.x) + shift}rem`,
+        top: `${scale.y(mark.y) - shift - rect.height}rem`,
       };
     }
   }
@@ -76,7 +76,6 @@ export const MarkLabel = (props) => {
 
   const { mark, graphProps, classes, disabled, inputRef: externalInputRef, theme } = props;
 
-  console.log(theme, 'font size');
   const [label, setLabel] = useState(mark.label);
 
   const onChange = (e) => setLabel(e.target.value);
@@ -96,11 +95,9 @@ export const MarkLabel = (props) => {
   }, [debouncedLabel]);
 
   const fontSize = theme && theme.typography ? theme.typography.fontSize + 2 : 16;
-  const rect = input ? input.getBoundingClientRect() : { width: 0, height: 0 };
+  const rect = input ? input.getBoundingClientRect() : { width: 100, height: 100 };
   const pos = position(graphProps, mark, rect);
   const leftTop = coordinates(graphProps, mark, rect, pos, fontSize);
-  console.log(pos, 'pos');
-  console.log(leftTop, 'leftTop');
 
   const style = {
     position: 'fixed',
