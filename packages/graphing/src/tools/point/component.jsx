@@ -74,6 +74,7 @@ export class Point extends React.Component {
     const { coordinatesOnHover, graphProps, labelNode, labelModeEnabled } = this.props;
     const mark = this.state.mark ? this.state.mark : this.props.mark;
 
+    console.log(labelNode, "labelNode")
     return (
       <React.Fragment>
         <BasePoint
@@ -85,6 +86,10 @@ export class Point extends React.Component {
           onDragStart={this.startDrag}
           onDragStop={this.stopDrag}
           onClick={this.clickPoint}
+          onTouchStart={(e) =>{ e.stopPropagation(); this.clickPoint();}} 
+          onTouchEnd={this.clickPoint}
+          onPointerDown={(e) =>{ e.stopPropagation(); this.clickPoint();}} 
+          onPointerUp={(e) =>{ e.stopPropagation(); this.clickPoint();}} 
         />
         {labelNode &&
           mark.hasOwnProperty('label') &&
