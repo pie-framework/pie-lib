@@ -95,7 +95,7 @@ export const MarkLabel = (props) => {
   }, [debouncedLabel]);
 
   const fontSize = theme && theme.typography ? theme.typography.fontSize + 2 : 16;
-  const rect = input ? input.getBoundingClientRect() : { width: 100, height: 100 };
+  const rect = input ? input.getBoundingClientRect() : { width: 0, height: 0 };
   const pos = position(graphProps, mark, rect);
   const leftTop = coordinates(graphProps, mark, rect, pos, fontSize);
 

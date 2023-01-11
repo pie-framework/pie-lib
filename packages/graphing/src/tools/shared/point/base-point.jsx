@@ -5,7 +5,6 @@ import { types } from '@pie-lib/plot';
 import CoordinatesLabel from '../../../coordinates-label';
 import ReactDOM from 'react-dom';
 import { thinnerShapesNeeded } from '../../../utils';
-import Tappable from 'react-tappable';
 
 export class RawBp extends React.Component {
   static propTypes = {
@@ -47,26 +46,20 @@ export class RawBp extends React.Component {
     const { showCoordinates } = this.state;
     const { scale } = graphProps;
     const r = thinnerShapesNeeded(graphProps) ? 5 : 7;
-    console.log(rest, "rest")
 
     return (
-<Tappable onTap={this.handleOnClick}>
-      <g 
-        className={classNames(classes.point, disabled && classes.disabled, classes[correctness], className)}
+    <>
+        <circle style={{ fill: 'transparent', cursor: 'pointer', pointerEvents: 'all' }} r={r * 3} cx={scale.x(x)} cy={scale.y(y)}  className={classNames(classes.point, disabled && classes.disabled, classes[correctness], className)}
         onMouseEnter={() => this.setState({ showCoordinates: true })}
         onMouseLeave={() => this.setState({ showCoordinates: false })}
-        style={{cursor: 'pointer', pointerEvents: 'all'}} 
         role='button'
-        {...rest}
-      >
-        <circle style={{ fill: 'transparent' }} r={r * 2} cx={scale.x(x)} cy={scale.y(y)} />
-        <circle r={r} cx={scale.x(x)} cy={scale.y(y)} />
+        {...rest}/>
+        <circle style={{ fill: 'red', cursor: 'pointer', pointerEvents: 'all' }}    {...rest} r={r} cx={scale.x(x)} cy={scale.y(y)} />
         {labelNode &&
           coordinatesOnHover &&
           showCoordinates &&
           ReactDOM.createPortal(<CoordinatesLabel graphProps={graphProps} x={x} y={y} />, labelNode)}
-      </g>
-      </Tappable>
+      </>
     );
   }
 }
