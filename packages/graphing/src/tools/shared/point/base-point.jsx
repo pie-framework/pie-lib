@@ -50,23 +50,22 @@ export class RawBp extends React.Component {
           r={r * 3}
           cx={scale.x(x)}
           cy={scale.y(y)}
+          onMouseEnter={() => this.setState({ showCoordinates: true })}
+          onMouseLeave={() => this.setState({ showCoordinates: false })}
+          {...rest}
+        />
+        <g
           className={classNames(classes.point, disabled && classes.disabled, classes[correctness], className)}
           onMouseEnter={() => this.setState({ showCoordinates: true })}
           onMouseLeave={() => this.setState({ showCoordinates: false })}
-          role="button"
           {...rest}
-        />
-        <circle
-          style={{ fill: 'red', cursor: 'pointer', pointerEvents: 'all' }}
-          {...rest}
-          r={r}
-          cx={scale.x(x)}
-          cy={scale.y(y)}
-        />
-        {labelNode &&
-          coordinatesOnHover &&
-          showCoordinates &&
-          ReactDOM.createPortal(<CoordinatesLabel graphProps={graphProps} x={x} y={y} />, labelNode)}
+        >
+          <circle {...rest} r={r} cx={scale.x(x)} cy={scale.y(y)} />
+          {labelNode &&
+            coordinatesOnHover &&
+            showCoordinates &&
+            ReactDOM.createPortal(<CoordinatesLabel graphProps={graphProps} x={x} y={y} />, labelNode)}
+        </g>
       </>
     );
   }
