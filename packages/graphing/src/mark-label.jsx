@@ -44,25 +44,26 @@ export const position = (graphProps, mark, rect) => {
 export const coordinates = (graphProps, mark, rect, position, fontSize) => {
   const { scale } = graphProps;
   const shift = 10;
+  const font = fontSize ? fontSize : 16;
   rect = rect || { width: 0, height: 0 };
 
   switch (position) {
     case 'bottom-right': {
-      return { left: `${(scale.x(mark.x) + shift)/ fontSize}rem`, top: `${(scale.y(mark.y) + shift) / fontSize}rem`};
+      return { left: `${(scale.x(mark.x) + shift)/ font}rem`, top: `${(scale.y(mark.y) + shift) / font}rem`};
     }
     case 'bottom-left': {
-      return { left: `${(scale.x(mark.x) - shift - rect.width)  / fontSize}rem`, top: `${(scale.y(mark.y) + shift) / fontSize}rem` };
+      return { left: `${(scale.x(mark.x) - shift - rect.width)  / font}rem`, top: `${(scale.y(mark.y) + shift) / font}rem` };
     }
     case 'top-left': {
       return {
-        left: `${(scale.x(mark.x) - shift - rect.width) /fontSize}rem` ,
-        top: `${(scale.y(mark.y) - shift - rect.height)/fontSize}rem` 
+        left: `${(scale.x(mark.x) - shift - rect.width) /font}rem` ,
+        top: `${(scale.y(mark.y) - shift - rect.height)/font}rem` 
       };
     }
     case 'top-right': {
       return {
-        left: `${(scale.x(mark.x) + shift)/ fontSize}rem`,
-        top: `${(scale.y(mark.y) - shift - rect.height)/fontSize}rem`
+        left: `${(scale.x(mark.x) + shift)/ font}rem`,
+        top: `${(scale.y(mark.y) - shift - rect.height)/font}rem`
       };
     }
   }
