@@ -35,7 +35,6 @@ export class RawBp extends React.Component {
       correctness,
       graphProps,
       labelNode,
-      onClick,
       style,
       ...rest
     } = this.props;

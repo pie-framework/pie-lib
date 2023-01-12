@@ -212,7 +212,7 @@ export class Graph extends React.Component {
             <rect {...maskSize} fill="white" /> {/* TODO hardcoded color */}
           </mask>
 
-          <g id="marks" mask="url('#myMask')" style={{ pointerEvents: 'auto' }}>
+          <g id="marks" mask="url('#myMask')">
             {(backgroundMarks || []).map((m, index) => {
               const Component = this.getComponent(m);
               const markType = m.type;
