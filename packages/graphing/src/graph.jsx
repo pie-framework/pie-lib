@@ -82,7 +82,7 @@ export class Graph extends React.Component {
   changeMark = (oldMark, newMark) => {
     const { onChangeMarks, marks } = this.props;
     let newMarks = cloneDeep(marks);
-    console.log("I'm in change marks")
+
     const index = newMarks.findIndex((m) => isEqual(m, oldMark));
 
     if (index >= 0 && !isDuplicatedMark(newMark, marks, oldMark)) {

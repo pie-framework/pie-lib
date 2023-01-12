@@ -24,10 +24,6 @@ export class RawBp extends React.Component {
     this.state = { showCoordinates: false };
   }
 
-  handleOnClick = () => {
-    this.props.onClick();
-}
-
   render() {
     const {
       classes,
@@ -48,13 +44,25 @@ export class RawBp extends React.Component {
     const r = thinnerShapesNeeded(graphProps) ? 5 : 7;
 
     return (
-    <>
-        <circle style={{ fill: 'transparent', cursor: 'pointer', pointerEvents: 'all' }} r={r * 3} cx={scale.x(x)} cy={scale.y(y)}  className={classNames(classes.point, disabled && classes.disabled, classes[correctness], className)}
-        onMouseEnter={() => this.setState({ showCoordinates: true })}
-        onMouseLeave={() => this.setState({ showCoordinates: false })}
-        role='button'
-        {...rest}/>
-        <circle style={{ fill: 'red', cursor: 'pointer', pointerEvents: 'all' }}    {...rest} r={r} cx={scale.x(x)} cy={scale.y(y)} />
+      <>
+        <circle
+          style={{ fill: 'transparent', cursor: 'pointer', pointerEvents: 'all' }}
+          r={r * 3}
+          cx={scale.x(x)}
+          cy={scale.y(y)}
+          className={classNames(classes.point, disabled && classes.disabled, classes[correctness], className)}
+          onMouseEnter={() => this.setState({ showCoordinates: true })}
+          onMouseLeave={() => this.setState({ showCoordinates: false })}
+          role="button"
+          {...rest}
+        />
+        <circle
+          style={{ fill: 'red', cursor: 'pointer', pointerEvents: 'all' }}
+          {...rest}
+          r={r}
+          cx={scale.x(x)}
+          cy={scale.y(y)}
+        />
         {labelNode &&
           coordinatesOnHover &&
           showCoordinates &&

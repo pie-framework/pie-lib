@@ -58,11 +58,11 @@ describe('coordinates', () => {
       expect(result).toEqual(expected);
     });
   };
-  assertCoordinates({ x: 0, y: 0 }, { width: 0, height: 0 }, 'top-left', { left: -10, top: -10 });
-  assertCoordinates({ x: 0, y: 0 }, { width: 0, height: 0 }, 'bottom-left', { left: -10, top: 10 });
-  assertCoordinates({ x: 0, y: 0 }, { width: 0, height: 0 }, 'top-right', { left: 10, top: -10 });
+  assertCoordinates({ x: 0, y: 0 }, { width: 0, height: 0 }, 'top-left', { left: '-10rem', top: '-10rem' });
+  assertCoordinates({ x: 0, y: 0 }, { width: 0, height: 0 }, 'bottom-left', { left: '-10rem', top: '10rem' });
+  assertCoordinates({ x: 0, y: 0 }, { width: 0, height: 0 }, 'top-right', { left: '10rem', top: '-10rem' });
   assertCoordinates({ x: 0, y: 0 }, { width: 0, height: 0 }, 'bottom-right', {
-    left: 10,
-    top: 10,
+    left: '10rem',
+    top: '10rem',
   });
 });

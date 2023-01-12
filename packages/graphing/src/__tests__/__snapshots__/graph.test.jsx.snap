@@ -148,6 +148,11 @@ exports[`Graph snapshot renders 1`] = `
     <g
       id="marks"
       mask="url('#myMask')"
+      style={
+        Object {
+          "pointerEvents": "auto",
+        }
+      }
     >
       <Point
         graphProps={
