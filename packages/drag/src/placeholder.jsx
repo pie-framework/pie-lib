@@ -76,7 +76,7 @@ const styles = (theme) => ({
     flexWrap: 'wrap',
     alignItems: 'center',
     minHeight: '200px',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
   },
 });
 
