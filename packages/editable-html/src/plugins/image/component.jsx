@@ -217,14 +217,17 @@ export class Component extends React.Component {
         justifyContent = 'flex-start';
         margin = '0';
         break;
+
       case 'center':
         justifyContent = 'center';
         margin = '0 auto';
         break;
+
       case 'right':
         justifyContent = 'flex-end';
         margin = 'auto 0 0 auto ';
         break;
+
       default:
         justifyContent = 'flex-start';
         margin = '0';
@@ -280,11 +283,11 @@ const styles = (theme) => ({
     transition: 'opacity 200ms linear',
   },
   floatingButtonRow: {
-    backgroundColor: 'white',
+    backgroundColor: theme.palette.background.paper,
     borderRadius: '1px',
     display: 'flex',
     padding: '10px',
-    border: 'solid 1px #eeeeee',
+    border: `solid 1px ${theme.palette.grey[200]}`,
     boxShadow:
       '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
   },
@@ -306,7 +309,7 @@ const styles = (theme) => ({
   },
   root: {
     position: 'relative',
-    border: 'solid 1px white',
+    border: `solid 1px ${theme.palette.common.white}`,
     display: 'flex',
     transition: 'opacity 200ms linear',
   },

@@ -73,7 +73,7 @@ class App extends React.Component {
     this.state = {
       value: Value.fromJSON(data, { normalize: false }),
     };
-    console.log('this.state.value', this.state.value);
+
     this.plugins = [ImgPlugin()];
   }
 
@@ -92,5 +92,6 @@ class App extends React.Component {
 
 document.addEventListener('DOMContentLoaded', () => {
   const el = React.createElement(App, {});
+
   ReactDOM.render(el, document.querySelector('#app'));
 });

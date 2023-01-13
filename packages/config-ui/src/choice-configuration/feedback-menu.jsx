@@ -30,7 +30,6 @@ export class IconMenu extends React.Component {
 
   render() {
     const { opts, onClick } = this.props;
-
     const keys = Object.keys(opts);
 
     const handleMenuClick = (key) => () => {
@@ -66,10 +65,8 @@ export default class FeedbackMenu extends React.Component {
 
   render() {
     const { value, onChange, classes } = this.props;
-
     const t = value && value.type;
     const iconColor = t === 'custom' || t === 'default' ? 'primary' : 'disabled';
-
     const tooltip = t === 'custom' ? 'Custom Feedback' : t === 'default' ? 'Default Feedback' : 'Feedback disabled';
 
     const icon = (

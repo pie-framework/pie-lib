@@ -27,13 +27,13 @@ RawHelpButton.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export const HelpButton = withStyles({
+export const HelpButton = withStyles((theme) => ({
   icon: {
     '&:hover': {
-      color: '#ddd',
+      color: theme.palette.grey[300],
     },
   },
-})(RawHelpButton);
+}))(RawHelpButton);
 
 export const HelpDialog = ({ open, onClose, children, title }) => (
   <Dialog open={open} onRequestClose={onClose}>

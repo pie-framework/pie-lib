@@ -75,7 +75,7 @@ export const PointConfig = withStyles((theme) => ({
   },
   editor: {
     width: '100%',
-    backgroundColor: 'white !important',
+    backgroundColor: `${theme.palette.common.white} !important`,
   },
   dragIndicator: {
     paddingTop: theme.spacing.unit,
@@ -103,6 +103,7 @@ export const PointConfig = withStyles((theme) => ({
       <Typography variant="overline" className={classes.pointsLabel}>
         {pointsLabel}
       </Typography>
+
       <div className={classes.row}>
         <DragIndicator className={classes.dragIndicator} />
         <EditableHtml className={classes.editor} markup={content} onChange={props.onChange} />
@@ -114,6 +115,7 @@ export const PointConfig = withStyles((theme) => ({
           onChange={props.onMenuChange}
         />
       </div>
+
       {!showSampleAnswer && (
         <div className={classes.sampleAnswersEditor}>
           <Typography variant="overline" className={classes.dragIndicator}>
@@ -251,6 +253,7 @@ export class RawAuthoring extends React.Component {
             />
           )}
         </FormGroup>
+
         <div className={classes.container}>
           <DragDropContext onDragEnd={this.dragEnd}>
             <Droppable droppableId="droppable">

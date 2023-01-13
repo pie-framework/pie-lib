@@ -20,6 +20,7 @@ export class RawDragHandle extends React.Component {
       label: PropTypes.string,
     }),
   };
+
   render() {
     const { x, y, width, graphProps, classes, className, interactive, correctness, ...rest } = this.props;
     const { scale } = graphProps;

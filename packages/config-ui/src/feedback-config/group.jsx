@@ -4,9 +4,9 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 
-const styles = () => ({
+const styles = (theme) => ({
   radioLabel: {
-    fontSize: '12px',
+    fontSize: theme.typography.fontSize - 2,
   },
   choice: {
     display: 'flex',

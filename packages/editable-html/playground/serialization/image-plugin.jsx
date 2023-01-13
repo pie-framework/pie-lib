@@ -5,6 +5,7 @@ class Img extends React.Component {
   render() {
     const { data } = this.props.node;
     const src = data.get('src');
+
     return <img src={src} width={100} />;
   }
 }

@@ -9,6 +9,7 @@ class Img extends React.Component {
   render() {
     const { data } = this.props.node;
     const src = data.get('src');
+
     return <img src={src} width={100} />;
   }
 }
@@ -55,6 +56,7 @@ class ImageDemo extends React.Component {
 
   render() {
     const { value } = this.state;
+
     return (
       <div>
         ImageDemo
@@ -74,5 +76,6 @@ class ImageDemo extends React.Component {
 
 document.addEventListener('DOMContentLoaded', () => {
   const el = React.createElement(ImageDemo, {});
+
   ReactDOM.render(el, document.querySelector('#app'));
 });

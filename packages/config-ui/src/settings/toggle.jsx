@@ -12,7 +12,7 @@ const Toggle = withStyles((theme) => ({
   },
   label: {
     color: 'rgba(0, 0, 0, 0.89)',
-    fontSize: '14px',
+    fontSize: theme.typography.fontSize,
     paddingTop: theme.spacing.unit * 2,
   },
 }))(({ checked, label, toggle, classes }) => (

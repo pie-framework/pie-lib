@@ -70,21 +70,21 @@ const RawInputRadio = (props) => {
 
 RawInputRadio.propTypes = { ...InputTypes };
 
-const InputCheckbox = withStyles({
+const InputCheckbox = withStyles((theme) => ({
   checkboxRoot: {
     transform: 'translate(-25%, 20%)',
   },
   error: {
-    color: 'red',
+    color: theme.palette.error.main,
   },
-})(RawInputCheckbox);
+}))(RawInputCheckbox);
 
-const InputRadio = withStyles(() => ({
+const InputRadio = withStyles((theme) => ({
   radioRoot: {
     transform: 'translate(-20%, 20%)',
   },
   error: {
-    color: 'red',
+    color: theme.palette.error.main,
   },
 }))(RawInputRadio);
 

@@ -5,11 +5,11 @@ import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import { types } from '@pie-lib/plot';
 
-const style = {
+const style = (theme) => ({
   root: {
-    fill: 'var(--arrow-color, black)',
+    fill: `var(--arrow-color, ${theme.palette.common.black})`,
   },
-};
+});
 
 export class Arrow extends React.Component {
   render() {
