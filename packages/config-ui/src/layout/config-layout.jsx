@@ -1,10 +1,11 @@
 import React from 'react';
 import Measure from 'react-measure';
+import { withContentRect } from 'react-measure';
 import PropTypes from 'prop-types';
 import LayoutContents from './layout-contents';
 import SettingsBox from './settings-box';
 
-class ConfigLayout extends React.Component {
+class MeasuredConfigLayout extends React.Component {
   static propTypes = {
     children: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.element), PropTypes.element]),
     className: PropTypes.string,
@@ -54,5 +55,7 @@ class ConfigLayout extends React.Component {
     );
   }
 }
+
+const ConfigLayout = withContentRect('bounds')(MeasuredConfigLayout);
 
 export default ConfigLayout;
