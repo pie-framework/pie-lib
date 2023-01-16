@@ -35,6 +35,7 @@ export class RawBp extends React.Component {
       correctness,
       graphProps,
       labelNode,
+      style,
       ...rest
     } = this.props;
     const { showCoordinates } = this.state;
@@ -42,19 +43,29 @@ export class RawBp extends React.Component {
     const r = thinnerShapesNeeded(graphProps) ? 5 : 7;
 
     return (
-      <g
-        className={classNames(classes.point, disabled && classes.disabled, classes[correctness], className)}
-        onMouseEnter={() => this.setState({ showCoordinates: true })}
-        onMouseLeave={() => this.setState({ showCoordinates: false })}
-        {...rest}
-      >
-        <circle style={{ fill: 'transparent' }} r={r * 2} cx={2 * scale.x(x)} cy={2 * scale.y(y)} />
-        <circle r={r} cx={scale.x(x)} cy={scale.y(y)} />
-        {labelNode &&
-          coordinatesOnHover &&
-          showCoordinates &&
-          ReactDOM.createPortal(<CoordinatesLabel graphProps={graphProps} x={x} y={y} />, labelNode)}
-      </g>
+      <>
+        <circle
+          style={{ fill: 'transparent', cursor: 'pointer', pointerEvents: 'all' }}
+          r={r * 3}
+          cx={scale.x(x)}
+          cy={scale.y(y)}
+          onMouseEnter={() => this.setState({ showCoordinates: true })}
+          onMouseLeave={() => this.setState({ showCoordinates: false })}
+          {...rest}
+        />
+        <g
+          className={classNames(classes.point, disabled && classes.disabled, classes[correctness], className)}
+          onMouseEnter={() => this.setState({ showCoordinates: true })}
+          onMouseLeave={() => this.setState({ showCoordinates: false })}
+          {...rest}
+        >
+          <circle {...rest} r={r} cx={scale.x(x)} cy={scale.y(y)} />
+          {labelNode &&
+            coordinatesOnHover &&
+            showCoordinates &&
+            ReactDOM.createPortal(<CoordinatesLabel graphProps={graphProps} x={x} y={y} />, labelNode)}
+        </g>
+      </>
     );
   }
 }
