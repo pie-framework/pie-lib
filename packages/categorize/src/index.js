@@ -1,11 +1,6 @@
-import compact from 'lodash/compact';
 import debug from 'debug';
 import clone from 'lodash/clone';
-import cloneDeep from 'lodash/cloneDeep';
 import remove from 'lodash/remove';
-import every from 'lodash/every';
-import isEqual from 'lodash/isEqual';
-import isUndefined from 'lodash/isUndefined';
 import { score } from './scoring';
 
 export { score };
@@ -13,14 +8,16 @@ export { score };
 export const FooTwo = 'foo-two';
 
 const log = debug('@pie-lib:categorize');
+
 export const limitChoices = (choiceId, count, choices) => {
   const out = choices.reduce(
     (acc, id) => {
       const foundCount = countInChoices(choiceId, acc.choices);
-      // log('[limitChoices] choiceId: ', choiceId, '  foundCount: ', foundCount);
+
       if (id !== choiceId || foundCount < count) {
         acc.choices.push(id);
       }
+
       return acc;
     },
     { choices: [] },
@@ -43,8 +40,10 @@ export const limitInArrays = (id, arrays, limit) => {
     (acc, array) => {
       const l = limit - acc.count;
       const result = limitInArray(id, array, l);
+
       acc.out.push(result.array);
       acc.count = acc.count + (result.count || 0);
+
       return acc;
     },
     { out: [], count: 0 },
@@ -65,6 +64,7 @@ export const limitInArray = (id, arr, limit) => {
 
   if (limit === 0) {
     const stripped = arr.filter((v) => v !== id);
+
     return { array: stripped, count: arr.length - stripped.length };
   } else {
     const result = arr.reduce(
@@ -77,6 +77,7 @@ export const limitInArray = (id, arr, limit) => {
         } else {
           acc.out.push(v);
         }
+
         return acc;
       },
       { out: [], count: 0 },
@@ -96,12 +97,13 @@ export const ensureNoExtraChoicesInAnswer = (answer, choices) => {
 
   const out = choices.reduce((answerArray, choice) => {
     log('choice: ----> ', choice.id, 'categoryCount: ', choice.categoryCount);
-    // log('answer array: ', answerArray);
+
     if (choice.categoryCount === undefined || choice.categoryCount === 0) {
       return answerArray;
     } else {
       const choices = answerArray.map((a) => a.choices);
       const result = limitInArrays(choice.id, choices, choice.categoryCount);
+
       const updatedArray = result.map((r, index) => {
         return {
           category: answerArray[index].category,
@@ -109,6 +111,7 @@ export const ensureNoExtraChoicesInAnswer = (answer, choices) => {
           choices: r,
         };
       });
+
       return updatedArray;
     }
   }, answer);
@@ -126,11 +129,12 @@ export const ensureNoExtraChoicesInAlternate = (answer, choices) => {
 
   const out = choices.reduce((answerArray, choice) => {
     log('choice: ----> ', choice.id, 'categoryCount: ', choice.categoryCount);
-    // log('answer array: ', answerArray);
+
     if (choice.categoryCount === undefined || choice.categoryCount === 0) {
       return answerArray;
     } else {
       let alternatePair = {};
+
       answerArray.forEach((answer) =>
         (answer.alternateResponses || []).forEach((alternate, index) => {
           if (index in alternatePair) {
@@ -143,9 +147,11 @@ export const ensureNoExtraChoicesInAlternate = (answer, choices) => {
       );
 
       const recreatedAlternate = [];
+
       Object.keys(alternatePair).forEach((k) => {
         const limitAlternate = limitInArrays(choice.id, alternatePair[k], choice.categoryCount);
         alternatePair[k] = limitAlternate;
+
         alternatePair[k].forEach((item, index) => {
           if (!recreatedAlternate[index]) {
             recreatedAlternate[index] = [];
@@ -166,6 +172,7 @@ export const ensureNoExtraChoicesInAlternate = (answer, choices) => {
       return updatedArray;
     }
   }, answer);
+
   return out;
 };
 /**
@@ -175,7 +182,9 @@ export const ensureNoExtraChoicesInAlternate = (answer, choices) => {
  */
 export const countInAnswer = (choiceId, answer) => {
   const out = answer.reduce((acc, a) => acc + countInChoices(choiceId, a.choices), 0);
+
   log('[countInAnswer] choiceId:', choiceId, answer);
+
   return out;
 };
 
@@ -197,6 +206,7 @@ export const countChosen = (choice, categories) => {
 
   return categories.reduce((acc, c) => {
     const count = (c.choices || []).filter((h) => h.id === choice.id).length;
+
     return acc + count;
   }, 0);
 };
@@ -216,7 +226,9 @@ export const removeAllChoices = (choiceId, answers, categoryId) => {
   return answers.map((a) => {
     if (!categoryId || a.category === categoryId) {
       const cloned = clone(a.choices);
+
       remove(cloned, (v) => v === choiceId);
+
       return { ...a, choices: cloned };
     } else {
       return a;
@@ -228,7 +240,9 @@ export const rearrangeChoices = (choices, indexFrom, indexTo) => {
   if (choices.length === 0) {
     return choices;
   }
+
   choices.splice(indexFrom, 1, choices.splice(indexTo, 1, choices[indexFrom])[0]);
+
   return choices;
 };
 
@@ -236,11 +250,13 @@ export const verifyAllowMultiplePlacements = (choice, categoryId, answers) => {
   return answers.map((a) => {
     if (a.category !== categoryId) {
       a.choices = (a.choices || []).filter((c) => c !== choice.id);
+
       return a;
     } else {
       a.choices = a.choices.reduce((acc, currentValue) => {
         if (currentValue.id === choice.id) {
           const foundIndex = acc.findIndex((c) => c.id === choice.id);
+
           if (foundIndex === -1) {
             acc.push(currentValue);
           }
@@ -250,6 +266,7 @@ export const verifyAllowMultiplePlacements = (choice, categoryId, answers) => {
 
         return acc;
       }, []);
+
       return a;
     }
   });
@@ -264,9 +281,11 @@ export const removeChoiceFromCategory = (choiceId, categoryId, choiceIndex, answ
       const index = cloned.findIndex((v, index) => {
         return v === choiceId && index >= choiceIndex;
       });
+
       if (index !== -1) {
         cloned.splice(index, 1);
       }
+
       return { ...a, choices: cloned };
     } else {
       return a;
@@ -288,14 +307,17 @@ export const moveChoiceToCategory = (choiceId, from, to, choiceIndex, answers) =
   const index = answers.findIndex((a) => a.category === to);
   if (index === -1) {
     answers.push({ category: to, choices: [choiceId] });
+
     return answers;
   } else {
     return answers.map((a) => {
       if (a.category === to) {
         a.choices = a.choices || [];
         a.choices.push(choiceId);
+
         return a;
       }
+
       return a;
     });
   }
@@ -326,10 +348,12 @@ export const moveChoiceToAlternate = (choiceId, from, to, choiceIndex, answers, 
           (resp) => resp !== choiceId,
         );
       }
+
       if (!a.alternateResponses) {
         a.alternateResponses = [];
         a.alternateResponses[alternateIndex] = [];
       }
+
       a.alternateResponses[alternateIndex].push(choiceId);
     }
 
@@ -344,6 +368,7 @@ export const moveChoiceToAlternate = (choiceId, from, to, choiceIndex, answers, 
 export const stillSelectable = (h, builtCategories) => {
   if (h.categoryCount > 0) {
     const count = countChosen(h, builtCategories);
+
     return count < h.categoryCount;
   } else {
     return true;
@@ -363,6 +388,7 @@ export const buildChoices = (possibleResponseChoices, builtCategoryChoices) => {
     (acc, builtChoice) => {
       // set correct value on each choice that was selected by user
       const index = acc.copyOfPossibleResponse.findIndex((cRC) => cRC === builtChoice.id);
+
       // if the choice exists in the correct response
       // set the correct: true
       if (index >= 0) {

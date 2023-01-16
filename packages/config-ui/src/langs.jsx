@@ -45,6 +45,7 @@ export class RawLangs extends React.Component {
 
   choose = (event) => {
     log('[choose] event: ', event);
+
     if (this.props.onChange) {
       this.props.onChange(event.target.value);
     }
@@ -52,13 +53,16 @@ export class RawLangs extends React.Component {
 
   render() {
     let { langs, selected, label, classes } = this.props;
+
     log('[render] selected:', selected);
+
     return (
       <div className={classes.root}>
         <FormControl className={classes.formControl}>
           <InputLabel className={classes.inputLabel} htmlFor={this.uid}>
             {label}
           </InputLabel>
+
           <Select value={selected} onChange={this.choose} input={<Input id={this.uid} />}>
             {langs.map((l, index) => (
               <MenuItem key={index} value={l}>

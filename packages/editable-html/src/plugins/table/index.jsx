@@ -377,6 +377,7 @@ export const serialization = {
           data: attributes.reduce(attributesToMap(el), {}),
         };
       }
+
       case 'th': {
         return {
           object: 'block',
@@ -385,6 +386,7 @@ export const serialization = {
           data: cellAttributes.reduce(attributesToMap(el), { header: true }),
         };
       }
+
       case 'tr': {
         return {
           object: 'block',
@@ -392,6 +394,7 @@ export const serialization = {
           nodes: next(Array.from(el.children)),
         };
       }
+
       case 'td': {
         return {
           object: 'block',
@@ -410,18 +413,22 @@ export const serialization = {
     switch (object.type) {
       case 'table': {
         const attributes = dataToAttributes(object.data);
+
         return (
           <table {...attributes}>
             <tbody>{children}</tbody>
           </table>
         );
       }
+
       case 'table_row': {
         return <tr>{children}</tr>;
       }
+
       case 'table_cell': {
         const attributes = dataToAttributes(object.data);
         delete attributes.header;
+
         if (object.data.get('header')) {
           return <th {...attributes}>{children}</th>;
         } else {

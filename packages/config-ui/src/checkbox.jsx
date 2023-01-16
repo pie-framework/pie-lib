@@ -40,7 +40,7 @@ Checkbox.defaultProps = {
 
 export default withStyles((theme) => ({
   label: {
-    fontSize: '13px',
+    fontSize: theme.typography.fontSize - 1,
     transform: 'translate(-4%, 2%)',
     color: 'rgba(0,0,0,1.0)',
   },
@@ -53,7 +53,7 @@ export default withStyles((theme) => ({
   miniLabel: {
     marginLeft: theme.spacing.unit,
     color: grey[700],
-    fontSize: '11px',
+    fontSize: theme.typography.fontSize - 3,
   },
   mini: {
     margin: 0,

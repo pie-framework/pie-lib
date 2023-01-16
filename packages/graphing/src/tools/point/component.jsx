@@ -85,6 +85,8 @@ export class Point extends React.Component {
           onDragStart={this.startDrag}
           onDragStop={this.stopDrag}
           onClick={this.clickPoint}
+          onTouchStart={(e) =>{ e.stopPropagation(); this.clickPoint();}} 
+          onTouchEnd={(e) =>{ e.stopPropagation(); this.clickPoint();}} 
         />
         {labelNode &&
           mark.hasOwnProperty('label') &&

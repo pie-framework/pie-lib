@@ -61,10 +61,10 @@ const Radio = ({ classes, label, value, onChange, choices }) => {
 
 Radio.propTypes = { ...baseTypes, choices: PropTypes.arrayOf(PropTypes.shape(labelValue)) };
 
-const StyledRadio = withStyles({
+const StyledRadio = withStyles((theme) => ({
   radioSettings: {
-    marginTop: '4px',
-    paddingBottom: '4px',
+    marginTop: theme.spacing.unit / 2,
+    paddingBottom: theme.spacing.unit / 2,
     width: '100%',
     '& > label': {
       color: 'rgba(0, 0, 0, 0.89)',
@@ -72,26 +72,26 @@ const StyledRadio = withStyles({
       fontSize: '14px',
     },
     '& > div': {
-      marginTop: '20px',
+      marginTop: theme.spacing.unit * 2.5,
     },
   },
   label: {
     display: 'none',
   },
-})(Radio);
+}))(Radio);
 
-const Dropdown = withStyles({
+const Dropdown = withStyles((theme) => ({
   label: {
     margin: 0,
-    fontSize: '14px',
+    fontSize: theme.typography.fontSize,
   },
   wrapper: {
-    marginTop: '4px',
+    marginTop: theme.spacing.unit / 2,
     border: '2px solid lightgrey',
     borderRadius: '4px',
-    padding: '0 8px',
+    padding: `0 ${theme.spacing.unit}px`,
   },
-})(({ classes, label, value, onChange, choices = [] }) => {
+}))(({ classes, label, value, onChange, choices = [] }) => {
   return (
     <div>
       {label && <p className={classes.label}>{label}</p>}
@@ -114,19 +114,19 @@ const Dropdown = withStyles({
 
 Dropdown.propTypes = { ...baseTypes, choices: PropTypes.arrayOf(PropTypes.string) };
 
-const NumberField = withStyles({
+const NumberField = withStyles((theme) => ({
   field: {
     width: '35%',
-    marginRight: '24px',
-    marginTop: '8px',
+    marginRight: theme.spacing.unit * 3,
+    marginTop: theme.spacing.unit,
   },
   wrapper: {
-    marginTop: '4px',
+    marginTop: theme.spacing.unit / 2,
     border: '2px solid lightgrey',
     borderRadius: '4px',
-    padding: '0 8px',
+    padding: `0 ${theme.spacing.unit}px`,
   },
-})(({ classes, label, value, onChange = () => {}, suffix, min, max }) => {
+}))(({ classes, label, value, onChange = () => {}, suffix, min, max }) => {
   return (
     <NumberTextField
       label={label || 'Label'}
@@ -164,18 +164,18 @@ const tagMap = {
   checkbox: CheckboxChoice,
 };
 
-const Group = withStyles(() => ({
+const Group = withStyles((theme) => ({
   group: {
-    margin: '0 0 16px 0',
+    margin: `0 0 ${theme.spacing.unit * 2}px 0`,
   },
   groupHeader: {
     color: '#495B8F',
-    fontSize: '16px',
+    fontSize: theme.typography.fontSize + 2,
     fontWeight: 600,
-    marginBottom: '8px',
+    marginBottom: theme.spacing.unit,
   },
   numberFields: {
-    fontSize: '0.85rem',
+    fontSize: theme.typography.fontSize,
     marginBottom: 0,
   },
 }))((props) => {

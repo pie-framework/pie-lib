@@ -17,18 +17,21 @@ export const dataToXBand = (scaleX, data, width, type) => {
         domain: data && data.map(bandKey),
         padding: 0.2,
       });
+
     case 'histogram':
       return scaleBand({
         rangeRound: [0, width],
         domain: data && data.map(bandKey),
         padding: 0,
       });
+
     case 'lineCross':
     case 'lineDot':
       return scalePoint({
         domain: data && data.map(bandKey),
         rangeRound: [0, width],
       });
+
     default:
       return scaleBand({
         range: [0, width],
@@ -94,6 +97,7 @@ export const getDomainAndRangeByChartType = (domain, range, chartType) => {
         },
       };
     }
+
     default:
       return {
         domain: {
@@ -121,6 +125,7 @@ export const getGridLinesAndAxisByChartType = (range, chartType) => {
         horizontalLines: getTickValues(range),
         leftAxis: true,
       };
+
     case 'dotPlot':
     case 'linePlot':
       return {
@@ -128,6 +133,7 @@ export const getGridLinesAndAxisByChartType = (range, chartType) => {
         horizontalLines: [],
         leftAxis: false,
       };
+
     default:
       return {
         verticalLines: [],

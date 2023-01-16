@@ -508,7 +508,7 @@ export class MediaDialog extends React.Component {
   }
 }
 
-const styles = () => ({
+const styles = (theme) => ({
   paper: {
     minWidth: '500px',
   },
@@ -520,7 +520,7 @@ const styles = () => ({
     flexDirection: 'space-between',
   },
   rowItem: {
-    marginRight: '12px',
+    marginRight: theme.spacing.unit * 1.5,
     cursor: 'pointer',
   },
   active: {
@@ -528,14 +528,14 @@ const styles = () => ({
     borderBottom: `2px solid ${color.primary()}`,
   },
   uploadInput: {
-    marginTop: '12px',
+    marginTop: theme.spacing.unit * 1.5,
   },
   error: {
-    marginTop: '12px',
-    color: 'red',
+    marginTop: theme.spacing.unit * 1.5,
+    color: theme.palette.error.main,
   },
   deleteIcon: {
-    marginLeft: '12px',
+    marginLeft: theme.spacing.unit * 1.5,
   },
 });
 

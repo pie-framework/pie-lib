@@ -95,7 +95,7 @@ export class TagsInput extends React.Component {
 
 const styles = (theme) => ({
   tagsInput: {
-    border: 'solid 0px white',
+    border: `0px solid ${theme.palette.background.paper}`,
     display: 'flex',
     flexWrap: 'wrap',
   },
@@ -105,7 +105,7 @@ const styles = (theme) => ({
     minWidth: '30px',
     width: '100%',
     flex: '1',
-    border: 'solid 0px white',
+    border: `0px solid ${theme.palette.background.paper}`,
     height: '28px',
     fontSize: theme.typography.fontSize,
     fontFamily: theme.typography.fontFamily,

@@ -96,14 +96,14 @@ export default withStyles((theme) => ({
   axisLabel: {
     fontSize: theme.typography.fontSize - 2,
     textAlign: 'center',
-    margin: '4px',
-    padding: '4px 0',
+    margin: theme.spacing.unit / 2,
+    padding: `${theme.spacing.unit / 2}px 0`,
   },
   chartLabel: {
     fontSize: theme.typography.fontSize + 2,
     textAlign: 'center',
-    margin: '4px',
-    padding: '4px 0',
+    margin: theme.spacing.unit / 2,
+    padding: `${theme.spacing.unit / 2}px 0`,
   },
   disabledLabel: {
     pointerEvents: 'none',

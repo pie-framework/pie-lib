@@ -17,10 +17,10 @@ const useStyles = withStyles((theme) => ({
     minWidth: '90px',
   },
   correct: {
-    border: 'solid 1px green',
+    border: `solid 1px ${color.correct()}`,
   },
   incorrect: {
-    border: 'solid 1px red',
+    border: `solid 1px ${theme.palette.error.main}`,
   },
   selected: {
     border: `2px solid ${color.primaryDark()} !important`,

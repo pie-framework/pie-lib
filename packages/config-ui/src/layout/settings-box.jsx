@@ -18,10 +18,10 @@ export class SettingsBox extends React.Component {
     return <div className={classNames(classes.settingsBox, className)}>{children}</div>;
   }
 }
-const styles = () => ({
+const styles = (theme) => ({
   settingsBox: {
-    backgroundColor: '#FFF',
-    border: '2px solid #EEE',
+    backgroundColor: theme.palette.background.paper,
+    border: `2px solid ${theme.palette.grey[200]}`,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',

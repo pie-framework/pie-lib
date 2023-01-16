@@ -34,8 +34,8 @@ class RawDragHandle extends React.Component {
       correctness,
       ...rest
     } = this.props;
-
     const { scale } = graphProps;
+
     return (
       <CustomDraggableComponent
         scale={scale}
@@ -79,10 +79,12 @@ const DraggableHandle = gridDraggable({
     //TODO: should be in grid-draggable, if axis is y delta.x should always be 0.
     delta.x = 0;
     const newPoint = utils.point(props).add(utils.point(delta));
+
     return newPoint.y;
   },
   bounds: (props, { domain, range }) => {
     const area = { left: 0, top: props.y, bottom: props.y, right: 0 };
+
     return utils.bounds(area, domain, range);
   },
   anchorPoint: (props) => {

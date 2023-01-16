@@ -144,6 +144,7 @@ export class TickComponent extends React.Component {
               {longestLabel}
             </div>
           )}
+
           <MarkLabel
             autoFocus={inDefineChart ? defineChart && autoFocus : autoFocus}
             inputRef={(r) => (this.input = r)}
@@ -157,14 +158,17 @@ export class TickComponent extends React.Component {
             error={error}
           />
         </foreignObject>
+
         {error && error[index] && (
           <text className={classes.error} x={x} y={y + 23} height={4}>
             {error[index]}
           </text>
         )}
+
         {deletable && !correctness && (
           <line x1={x} y1={0} x2={x} y2={y + 4 + top} className={classes.dottedLine} strokeDasharray="4 2" />
         )}
+
         {deletable && !correctness && (
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -178,6 +182,7 @@ export class TickComponent extends React.Component {
             <path d="M128 405.429C128 428.846 147.198 448 170.667 448h170.667C364.802 448 384 428.846 384 405.429V160H128v245.429zM416 96h-80l-26.785-32H202.786L176 96H96v32h320V96z" />
           </svg>
         )}
+
         {defineChart && index === 0 && (
           <svg
             x={-55}
@@ -206,6 +211,7 @@ export class TickComponent extends React.Component {
                 set value
               </tspan>
             </text>
+
             <text
               y={y + 145 + top}
               width={barWidth}
@@ -229,6 +235,7 @@ export class TickComponent extends React.Component {
             </text>
           </svg>
         )}
+
         {defineChart && (
           <foreignObject
             x={x - 24}
@@ -244,6 +251,7 @@ export class TickComponent extends React.Component {
             />
           </foreignObject>
         )}
+
         {defineChart && (
           <foreignObject
             x={x - 24}
@@ -259,6 +267,7 @@ export class TickComponent extends React.Component {
             />
           </foreignObject>
         )}
+
         <foreignObject
           x={x - 24}
           y={y + 100 + top}
@@ -427,8 +436,8 @@ const ChartAxes = withStyles(
       opacity: 0.2,
     },
     error: {
-      fontSize: '12px',
-      fill: 'red',
+      fontSize: theme.typography.fontSize - 2,
+      fill: theme.palette.error.main,
     },
   }),
   { withTheme: true },

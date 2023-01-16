@@ -50,8 +50,8 @@ export class PartialScoringConfig extends React.Component {
   }
 }
 
-export default withStyles({
+export default withStyles((theme) => ({
   scoringConfig: {
-    paddingTop: '10px',
+    paddingTop: theme.spacing.unit,
   },
-})(PartialScoringConfig);
+}))(PartialScoringConfig);

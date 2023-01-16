@@ -9,6 +9,7 @@ export const correct = (key = 'fill') => ({
   [key]: color.correct(),
   pointerEvents: 'none',
 });
+
 export const incorrect = (key = 'fill') => ({
   [key]: color.incorrect(),
   pointerEvents: 'none',

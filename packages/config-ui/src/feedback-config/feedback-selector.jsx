@@ -13,7 +13,7 @@ const feedbackLabels = {
 
 const holder = (theme, extras) => ({
   marginTop: '0px',
-  background: '#e0dee0',
+  background: theme.palette.grey[300],
   padding: theme.spacing.unit,
   marginBottom: theme.spacing.unit * 2,
   borderRadius: '4px',
@@ -34,7 +34,7 @@ const style = (theme) => ({
     paddingBottom: 0,
   },
   customHolder: holder(theme, {
-    background: '#e0dee0',
+    background: theme.palette.grey[400],
     padding: 0,
   }),
   defaultHolder: holder(theme, {

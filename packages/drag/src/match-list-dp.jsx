@@ -1,6 +1,4 @@
 import React from 'react';
-import PlaceHolder from './placeholder';
-import PropTypes from 'prop-types';
 import { DropTarget } from 'react-dnd';
 import { DroppablePlaceholder } from './droppable-placeholder';
 

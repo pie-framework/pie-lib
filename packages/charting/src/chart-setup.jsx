@@ -100,11 +100,9 @@ const ConfigureChartPanel = (props) => {
     if (key === 'max' || key === 'step') {
       // check if current chart values are invalid for given range step/max
       const outOfRange =
-        model.data.find(
-          d => d.value > range.max || d.value - range.step * Math.floor(d.value / range.step) !== 0
-        ) ||
+        model.data.find((d) => d.value > range.max || d.value - range.step * Math.floor(d.value / range.step) !== 0) ||
         (model.correctAnswer.data || []).find(
-          d => d.value > range.max || d.value - range.step * Math.floor(d.value / range.step) !== 0
+          (d) => d.value > range.max || d.value - range.step * Math.floor(d.value / range.step) !== 0,
         );
 
       if (outOfRange) {
@@ -197,11 +195,13 @@ const ConfigureChartPanel = (props) => {
           />
         </div>
         {!model.chartType.includes('Plot') && stepConfig}
+
         {showInConfigPanel && (
           <div className={classes.dimensions}>
             <div>
               <Typography>Dimensions(px)</Typography>
             </div>
+
             <div className={classes.columnView}>
               <NumberTextFieldCustom
                 className={classes.textField}
@@ -215,6 +215,7 @@ const ConfigureChartPanel = (props) => {
               />
               <Typography className={classes.disabled}>Min 50, Max 700</Typography>
             </div>
+
             <div className={classes.columnView}>
               <NumberTextFieldCustom
                 className={classes.textField}
@@ -231,6 +232,7 @@ const ConfigureChartPanel = (props) => {
           </div>
         )}
       </div>
+
       <AlertDialog
         open={alertDialog.open}
         title={alertDialog.title}
@@ -259,7 +261,7 @@ const styles = (theme) => ({
     display: 'flex',
     flexDirection: 'column',
     width: '100%',
-    marginTop: '24px',
+    marginTop: theme.spacing.unit * 3,
   },
   columnView: {
     display: 'flex',
@@ -291,7 +293,7 @@ const styles = (theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    margin: '24px 0px',
+    margin: `${theme.spacing.unit * 3}px 0`,
   },
   disabled: {
     color: color.disabled(),

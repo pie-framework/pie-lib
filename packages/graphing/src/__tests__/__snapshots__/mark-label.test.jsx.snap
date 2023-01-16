@@ -9,10 +9,10 @@ exports[`MarkLabel snapshot renders 1`] = `
   onChange={[Function]}
   style={
     Object {
-      "left": -9,
+      "left": "-0.5625rem",
       "pointerEvents": "auto",
-      "position": "absolute",
-      "top": -9,
+      "position": "fixed",
+      "top": "-0.5625rem",
     }
   }
 />
@@ -27,10 +27,10 @@ exports[`MarkLabel snapshot renders 2`] = `
   onChange={[Function]}
   style={
     Object {
-      "left": 0,
+      "left": "0rem",
       "pointerEvents": "auto",
-      "position": "absolute",
-      "top": 0,
+      "position": "fixed",
+      "top": "0rem",
     }
   }
 />

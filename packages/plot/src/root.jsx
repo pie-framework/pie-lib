@@ -274,13 +274,13 @@ const styles = (theme) => ({
   graphTitle: {
     color: color.text(),
     fontSize: theme.typography.fontSize + 2,
-    padding: '12px 4px 0',
+    padding: `${theme.spacing.unit * 1.5}px ${theme.spacing.unit / 2}px 0`,
     textAlign: 'center',
   },
   chartTitle: {
     color: color.text(),
     fontSize: theme.typography.fontSize + 4,
-    padding: '12px 4px 0',
+    padding: `${theme.spacing.unit * 1.5}px ${theme.spacing.unit / 2}px 0`,
     textAlign: 'center',
   },
   disabledTitle: {

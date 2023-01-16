@@ -68,8 +68,10 @@ export const getDefaultElement = (opts, index) => {
   switch (opts.type) {
     case 'explicit-constructed-response':
       return defaultECR(index);
+
     case 'drag-in-the-blank':
       return defaultDIB(opts, index);
+
     default:
       // inline-dropdown
       return defaultIDD(index);

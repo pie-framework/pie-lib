@@ -122,7 +122,7 @@ export class EditorAndToolbar extends React.Component {
   }
 }
 
-const style = {
+const style = (theme) => ({
   root: {
     position: 'relative',
     padding: '0px',
@@ -178,7 +178,7 @@ const style = {
     '&:hover': {
       '&::after': {
         transform: 'scaleX(1)',
-        backgroundColor: 'black',
+        backgroundColor: theme.palette.common.black,
         height: '2px',
       },
     },
@@ -220,7 +220,7 @@ const style = {
     '&:hover': {
       '&::after': {
         transform: 'scaleX(0)',
-        backgroundColor: 'black',
+        backgroundColor: theme.palette.common.black,
         height: '2px',
       },
     },
@@ -238,7 +238,7 @@ const style = {
     },
   },
   error: {
-    border: '2px solid red',
+    border: `2px solid ${theme.palette.error.main}`,
   },
   noBorder: {
     border: 'none',
@@ -246,6 +246,6 @@ const style = {
   noPadding: {
     padding: 0,
   },
-};
+});
 
 export default withStyles(style)(EditorAndToolbar);

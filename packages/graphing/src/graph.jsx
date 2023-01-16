@@ -178,6 +178,7 @@ export class Graph extends React.Component {
     let { marks } = this.props;
 
     const graphProps = createGraphProps(domain, range, size, () => this.rootNode);
+
     const maskSize = getMaskSize(size);
     const common = { graphProps, labelModeEnabled };
 
@@ -246,7 +247,6 @@ export class Graph extends React.Component {
                 />
               );
             })}
-
             <foreignObject
               ref={(labelNode) => (this.labelNode = labelNode)}
               x="0"

@@ -23,5 +23,6 @@ class ProdTest extends React.Component {
 
 document.addEventListener('DOMContentLoaded', () => {
   const el = React.createElement(ProdTest, {});
+
   ReactDOM.render(el, document.querySelector('#app'));
 });
