@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.13.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.12.22...@pie-lib/mask-markup@1.13.0) (2023-01-16)
+
+
+### Features
+
+* added theme naming support + cleanup ([72d562d](https://github.com/pie-framework/pie-lib/commit/72d562d509e5d31d883690eb455a9afea6bf54fc))
+
+
+
+
+
+## [1.12.22](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.12.21...@pie-lib/mask-markup@1.12.22) (2023-01-04)
+
+
+### Bug Fixes
+
+* **drag:** refactor the droppable placeholder for match-list and drag-in-the-blank PD-1954 PD-1956 ([8696d61](https://github.com/pie-framework/pie-lib/commit/8696d61a0762835186ceb876e03100e2e9c820fc))
+
+
+
+
+
 ## [1.12.21](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.12.20...@pie-lib/mask-markup@1.12.21) (2023-01-03)
 
 **Note:** Version bump only for package @pie-lib/mask-markup

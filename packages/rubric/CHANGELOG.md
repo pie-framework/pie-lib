@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.6.10...@pie-lib/rubric@0.7.0) (2023-01-16)
+
+
+### Features
+
+* added theme naming support + cleanup ([72d562d](https://github.com/pie-framework/pie-lib/commit/72d562d509e5d31d883690eb455a9afea6bf54fc))
+
+
+
+
+
+## [0.6.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.6.9...@pie-lib/rubric@0.6.10) (2023-01-04)
+
+**Note:** Version bump only for package @pie-lib/rubric
+
+
+
+
+
 ## [0.6.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.6.8...@pie-lib/rubric@0.6.9) (2023-01-03)
 
 **Note:** Version bump only for package @pie-lib/rubric

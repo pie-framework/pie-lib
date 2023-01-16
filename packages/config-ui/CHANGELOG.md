@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.2.2...@pie-lib/config-ui@11.3.0) (2023-01-16)
+
+
+### Bug Fixes
+
+* **config-ui:** make sure that the bounds for the ConfigLayout are calculated before rendering the elements on iPads ([1c5fa8b](https://github.com/pie-framework/pie-lib/commit/1c5fa8bd47f33cea7678b7990ad311c9d0957c64))
+
+
+### Features
+
+* added theme naming support + cleanup ([72d562d](https://github.com/pie-framework/pie-lib/commit/72d562d509e5d31d883690eb455a9afea6bf54fc))
+
+
+
+
+
+## [11.2.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.2.1...@pie-lib/config-ui@11.2.2) (2023-01-04)
+
+
+### Bug Fixes
+
+* **config-ui:** UI improvements ([67b6e83](https://github.com/pie-framework/pie-lib/commit/67b6e834813bd7b2bf53f5f6c757a8e55493f095))
+
+
+
+
+
+## [11.2.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.2.0...@pie-lib/config-ui@11.2.1) (2023-01-04)
+
+
+### Bug Fixes
+
+* **config-ui:** adjusted layout design and fixed erros when no configuration available ([82b441c](https://github.com/pie-framework/pie-lib/commit/82b441c1aef55509ea1cf034f7f47320c2077c7e))
+
+
+
+
+
 # [11.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.1.4...@pie-lib/config-ui@11.2.0) (2023-01-03)
 
 

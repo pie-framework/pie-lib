@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.12.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.11.9...@pie-lib/graphing@2.12.0) (2023-01-16)
+
+
+### Bug Fixes
+
+* **graphing:** add background for objects labels PD-2061 ([f27ba7a](https://github.com/pie-framework/pie-lib/commit/f27ba7a1f8f476f9b9806505d1b3271057793921))
+* **graphing:** fix calculation for mark-label coordinates, fix and update tests ([84bedd2](https://github.com/pie-framework/pie-lib/commit/84bedd2139cd2b5578b951ccb32f4f29917ff6e1))
+* **graphing:** fix calculation for mark-label coordinates, fix and update tests ([a83213d](https://github.com/pie-framework/pie-lib/commit/a83213d26d28ca41c2e9575f619adb8006b4e5ee))
+* **graphing:** fix calculation for mark-label coordinates, fix and update tests ([09c1445](https://github.com/pie-framework/pie-lib/commit/09c1445e7b60a2ad10120a78e3f54acdfc162cbe))
+* **graphing:** fix mark labels position for touch devices ([12a2362](https://github.com/pie-framework/pie-lib/commit/12a2362f013b677ef912a75f212e68af1399af5e))
+* **graphing:** fix style for points, refactor ([5d5893b](https://github.com/pie-framework/pie-lib/commit/5d5893bbb993081b79ad712ed362d350574853ed))
+* **graphing:** make the base point tappable on touch devices ([d633d64](https://github.com/pie-framework/pie-lib/commit/d633d64ec1b5dde39513d49b6697f3bc12d0d994))
+* **graphing:** make the label tool responsive wip ([0694f9c](https://github.com/pie-framework/pie-lib/commit/0694f9c2816c58f16c52c4deeba04da2d55d3a54))
+* **graphing:** try to make the point tappable on touch devices ([7cfb116](https://github.com/pie-framework/pie-lib/commit/7cfb1165496b60b392c90585038f2d3f30c5e261))
+
+
+### Features
+
+* added theme naming support + cleanup ([72d562d](https://github.com/pie-framework/pie-lib/commit/72d562d509e5d31d883690eb455a9afea6bf54fc))
+
+
+
+
+
+## [2.11.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.11.8...@pie-lib/graphing@2.11.9) (2023-01-04)
+
+**Note:** Version bump only for package @pie-lib/graphing
+
+
+
+
+
 ## [2.11.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.11.7...@pie-lib/graphing@2.11.8) (2023-01-03)
 
 **Note:** Version bump only for package @pie-lib/graphing

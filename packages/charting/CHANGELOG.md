@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.6.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.6.0...@pie-lib/charting@5.6.1) (2023-01-16)
+
+
+### Bug Fixes
+
+* sanity check DNA-16247 ([9213ff4](https://github.com/pie-framework/pie-lib/commit/9213ff48d24f6492a5f7ea2ad61d059c09cbf090))
+
+
+
+
+
+# [5.6.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.5.1...@pie-lib/charting@5.6.0) (2023-01-16)
+
+
+### Features
+
+* added theme naming support + cleanup ([72d562d](https://github.com/pie-framework/pie-lib/commit/72d562d509e5d31d883690eb455a9afea6bf54fc))
+
+
+
+
+
 ## [5.5.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.5.0...@pie-lib/charting@5.5.1) (2023-01-03)
 
 **Note:** Version bump only for package @pie-lib/charting
