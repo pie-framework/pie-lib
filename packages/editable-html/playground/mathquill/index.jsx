@@ -26,6 +26,7 @@ export default class Editor extends React.Component {
     if (!MQ) {
       throw new Error('MQ is not defined - but component has mounted?');
     }
+
     this.mathField = MQ.MathField(this.input, {
       handlers: {
         edit: this.onInputEdit.bind(this),
@@ -36,6 +37,7 @@ export default class Editor extends React.Component {
 
   componentDidUpdate() {
     log('[componentDidUpdate] latex: ', this.props.latex);
+
     if (this.mathField) {
       this.mathField.latex(this.props.latex);
     }
@@ -48,29 +50,34 @@ export default class Editor extends React.Component {
 
   blur() {
     log('blur mathfield');
+
     this.mathField.blur();
   }
 
   focus() {
     log('focus mathfield...');
+
     this.mathField.focus();
   }
 
   command(v) {
     this.mathField.cmd(v);
     this.mathField.focus();
+
     return this.mathField.latex();
   }
 
   keystroke(v) {
     this.mathField.keystroke(v);
     this.mathField.focus();
+
     return this.mathField.latex();
   }
 
   write(v) {
     this.mathField.write(v);
     this.mathField.focus();
+
     return this.mathField.latex();
   }
 
@@ -86,9 +93,11 @@ export default class Editor extends React.Component {
     if (!this.mathField) {
       return;
     }
+
     if (this.latexIsEqual(this.mathField.latex(), this.props.latex)) {
       return;
     }
+
     this.props.onChange(this.mathField.latex());
   };
 
@@ -101,16 +110,21 @@ export default class Editor extends React.Component {
     if (!a && !b) {
       return true;
     }
+
     if ((a && !b) || (!a && b)) {
       return false;
     }
+
     return a.trim().replace(/\s/g, '') === b.trim().replace(/\s/, '');
   };
 
   shouldComponentUpdate(nextProps) {
     log('[shouldComponentUpdate] nextProps.latex: ', nextProps.latex, 'current: ', this.mathField.latex());
+
     const isEqual = this.latexIsEqual(nextProps.latex, this.mathField.latex());
+
     log('[shouldComponentUpdate] isEqual? ', isEqual);
+
     return !isEqual;
   }
 
@@ -130,6 +144,7 @@ class Demo extends React.Component {
   }
   render() {
     const latex = '- \\frac{1}{2}';
+
     return <Editor latex={latex} onChange={() => ({})} />;
   }
 }

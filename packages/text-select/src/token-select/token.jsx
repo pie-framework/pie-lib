@@ -89,13 +89,13 @@ export default withStyles((theme) => {
     },
     disabled: {
       cursor: 'inherit',
-      color: 'grey', // TODO hardcoded color
+      color: color.disabled(),
     },
     disabledBlack: {
       cursor: 'inherit',
     },
     disabledAndSelected: {
-      backgroundColor: 'pink', // TODO hardcoded color
+      backgroundColor: color.secondaryLight(),
     },
     selectable: {
       [theme.breakpoints.up(769)]: {
@@ -116,8 +116,7 @@ export default withStyles((theme) => {
       },
     },
     highlight: {
-      // TODO hardcoded color,
-      border: 'dashed 2px gray',
+      border: `dashed 2px ${color.disabled()}`,
       lineHeight: 2,
       boxSizing: 'border-box',
       marginTop: theme.spacing.unit / 2,
@@ -125,7 +124,7 @@ export default withStyles((theme) => {
       padding: theme.spacing.unit,
     },
     print: {
-      border: 'dashed 2px gray',
+      border: `dashed 2px ${color.disabled()}`,
       lineHeight: 2,
       boxSizing: 'border-box',
       marginTop: theme.spacing.unit / 2,

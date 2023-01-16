@@ -64,7 +64,7 @@ export const BlankContent = withStyles((theme) => ({
     fontSize: 'inherit',
     whiteSpace: 'pre-wrap',
     maxWidth: '374px',
-    margin: '4px',
+    margin: theme.spacing.unit / 2,
   },
   chipLabel: {
     whiteSpace: 'pre-wrap',

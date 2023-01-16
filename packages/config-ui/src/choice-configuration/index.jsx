@@ -61,7 +61,7 @@ const EditableHtmlContainer = withStyles((theme) => ({
   },
 );
 
-const Feedback = withStyles(() => ({
+const Feedback = withStyles((theme) => ({
   text: {
     width: '100%',
   },
@@ -69,7 +69,7 @@ const Feedback = withStyles(() => ({
     position: 'relative',
   },
   arrowIcon: {
-    fill: '#ccc',
+    fill: theme.palette.grey[400],
     left: -56,
     position: 'absolute',
     top: 20,
@@ -284,7 +284,7 @@ export class ChoiceConfiguration extends React.Component {
 
 const styles = (theme) => ({
   index: {
-    padding: '24px 10px 0 0',
+    padding: '24px 8px 0 0',
   },
   choiceConfiguration: {},
   topRow: {
@@ -328,8 +328,8 @@ const styles = (theme) => ({
     flexDirection: 'column',
   },
   errorText: {
-    fontSize: '12px',
-    color: 'red',
+    fontSize: theme.typography.fontSize - 2,
+    color: theme.palette.error.main,
   },
 });
 

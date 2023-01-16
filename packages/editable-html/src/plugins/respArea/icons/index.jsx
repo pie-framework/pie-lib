@@ -8,10 +8,13 @@ const getRotate = (direction) => {
   switch (direction) {
     case 'down':
       return 90;
+
     case 'up':
       return -90;
+
     case 'left':
       return 180;
+
     default:
       return 0;
   }
@@ -53,10 +56,10 @@ GripIcon.propTypes = {
   style: PropTypes.object,
 };
 
-export const ToolbarIcon = withStyles({
+export const ToolbarIcon = withStyles((theme) => ({
   icon: {
     fontFamily: 'Cerebri Sans !important',
-    fontSize: '14px',
+    fontSize: theme.typography.fontSize,
     fontWeight: 'bold',
     lineHeight: '14px',
     position: 'relative',
@@ -65,4 +68,4 @@ export const ToolbarIcon = withStyles({
     height: '28px',
     whiteSpace: 'nowrap',
   },
-})(({ classes }) => <div className={classes.icon}>+ Response Area</div>);
+}))(({ classes }) => <div className={classes.icon}>+ Response Area</div>);

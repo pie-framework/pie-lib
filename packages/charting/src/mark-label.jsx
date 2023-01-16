@@ -14,7 +14,7 @@ const styles = (theme) => ({
     fontSize: theme.typography.fontSize,
     border: 'none',
     color: color.primaryDark(),
-    '&.error': { border: 'solid 2px red' },
+    '&.error': { border: `2px solid ${theme.palette.error.main}` },
     '&.correct': correct('color'),
     '&.incorrect': incorrect('color'),
     '&.disabled': {

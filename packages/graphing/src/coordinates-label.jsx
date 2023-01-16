@@ -11,7 +11,7 @@ const styles = (theme) => ({
     fontFamily: theme.typography.fontFamily,
     fontSize: theme.typography.fontSize,
     borderRadius: '8px',
-    background: '#FFFFFF',
+    background: theme.palette.common.white,
     color: color.primaryDark(),
   },
   inputLabel: {

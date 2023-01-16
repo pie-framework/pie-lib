@@ -21,14 +21,17 @@ export default class Choices extends React.Component {
         return {
           margin: '0 0 40px 0',
         };
+
       case 'below':
         return {
           margin: '40px 0 0 0',
         };
+
       case 'right':
         return {
           margin: '0 0 0 40px',
         };
+
       default:
         return {
           margin: '0 40px 0 0',

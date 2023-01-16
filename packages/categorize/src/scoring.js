@@ -1,5 +1,7 @@
 import debug from 'debug';
+
 const log = debug('@pie-lib:categorize:scoring');
+
 const getWeightingRules = (scoring) => {
   if (!scoring || !scoring.weighting) {
     return [];
@@ -8,6 +10,7 @@ const getWeightingRules = (scoring) => {
       return [];
     } else {
       const rules = scoring.weighting ? scoring.weighting.rules || [] : [];
+
       return rules;
     }
   }
@@ -15,10 +18,12 @@ const getWeightingRules = (scoring) => {
 
 const getPartialRulesForCategory = (partial, categoryId) => {
   log('partial? ', partial);
+
   if (!partial || !partial.enabled) {
     return;
   } else {
     const pr = partial.rules.find((pr) => pr.category === categoryId);
+
     return pr ? pr.rules || [] : [];
   }
 };
@@ -34,10 +39,12 @@ const getPartialRulesForCategory = (partial, categoryId) => {
 export const score = (categories, scoring) =>
   new Promise((resolve) => {
     log('categories: ', categories, 'scoring: ', scoring);
+
     const weightingRules = getWeightingRules(scoring);
 
     const weights = categories.map((c) => {
       const r = weightingRules.find((r) => r.category === c.id) || { points: 1 };
+
       return { ...r, category: c.id };
     });
 
@@ -45,6 +52,7 @@ export const score = (categories, scoring) =>
 
     const weightTotal = categories.reduce((total, c) => {
       const r = weights.find((r) => r.category === c.id);
+
       return (total += r.points);
     }, 0);
 
@@ -58,16 +66,24 @@ export const score = (categories, scoring) =>
         return { category: c.id, score: w, points: w };
       } else {
         const rules = getPartialRulesForCategory(scoring.partial, c.id);
+
         log('partial rules for category: ', rules);
+
         if (!rules) {
           return { category: c.id, score: 0, points: w };
         } else {
           const correctCount = (c.choices || []).filter((h) => h.correct).length;
+
           log('correctCount: ', correctCount);
+
           let rule = rules.find((u) => u.count === correctCount);
+
           log('rule: ', rule);
+
           rule = rule || { percent: 0, count: correctCount };
+
           const score = w * (rule.percent / 100);
+
           return {
             category: c.id,
             score,
@@ -88,6 +104,7 @@ export const score = (categories, scoring) =>
     log('weightedScore: ', weightedScore);
 
     const score = parseFloat((weightedScore / weightTotal).toFixed(2), 10);
+
     resolve({
       score,
       details: {

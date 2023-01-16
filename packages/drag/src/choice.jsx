@@ -28,7 +28,7 @@ export class Choice extends React.Component {
 
 const styles = (theme) => ({
   choice: {
-    backgroundColor: 'white',
+    backgroundColor: theme.palette.background.paper,
     border: `solid 1px ${grey[400]}`,
     padding: theme.spacing.unit,
     minHeight: '30px',

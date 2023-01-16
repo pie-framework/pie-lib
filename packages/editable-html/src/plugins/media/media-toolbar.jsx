@@ -8,7 +8,7 @@ const useStyles = withStyles((theme) => ({
     bottom: '5px',
     left: 0,
     width: '100%',
-    background: 'white',
+    background: theme.palette.common.white,
     display: 'inline-flex',
     padding: '5px',
     boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
@@ -16,7 +16,7 @@ const useStyles = withStyles((theme) => ({
   editContainer: {
     cursor: 'pointer',
     flex: 3,
-    border: 'solid black',
+    border: `solid ${theme.palette.common.black}`,
     textAlign: 'right',
     borderWidth: '0 2px 0 0',
     marginRight: '5px',
