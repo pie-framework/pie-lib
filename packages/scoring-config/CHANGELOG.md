@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.6.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@3.5.198...@pie-lib/scoring-config@3.6.0) (2023-01-16)
+
+
+### Features
+
+* added theme naming support + cleanup ([72d562d](https://github.com/pie-framework/pie-lib/commit/72d562d509e5d31d883690eb455a9afea6bf54fc))
+
+
+
+
+
 ## [3.5.198](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@3.5.197...@pie-lib/scoring-config@3.5.198) (2023-01-04)
 
 **Note:** Version bump only for package @pie-lib/scoring-config

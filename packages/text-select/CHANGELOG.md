@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.8.28...@pie-lib/text-select@1.9.0) (2023-01-16)
+
+
+### Features
+
+* added theme naming support + cleanup ([72d562d](https://github.com/pie-framework/pie-lib/commit/72d562d509e5d31d883690eb455a9afea6bf54fc))
+
+
+
+
+
 ## [1.8.28](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.8.27...@pie-lib/text-select@1.8.28) (2023-01-03)
 
 
