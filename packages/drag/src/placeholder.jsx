@@ -77,6 +77,7 @@ const styles = (theme) => ({
     alignItems: 'center',
     minHeight: '200px',
     justifyContent: 'center',
+    overflow: 'hidden',
   },
 });
 
