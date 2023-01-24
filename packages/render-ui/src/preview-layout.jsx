@@ -10,7 +10,7 @@ class PreviewLayout extends React.Component {
 
   render() {
     const { children, classes, ariaLabel, role } = this.props;
-    const accessibility = { 'aria-label': ariaLabel, role };
+    const accessibility = ariaLabel ? { 'aria-label': ariaLabel, role } : {};
 
     return (
       <div className={classes.container} {...accessibility}>
