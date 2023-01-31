@@ -4,6 +4,7 @@
   "version": "independent",
   "npmClient": "yarn",
   "useWorkspaces": true,
+  "verifyAccess": "false",
   "command": {
     "publish": {
       "ignoreChanges": ["yarn.lock", "CHANGELOG.json", "CHANGELOG.md", "LICENSE.md"],
