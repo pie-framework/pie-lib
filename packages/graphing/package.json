@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "2.12.10",
+  "version": "2.12.11",
   "description": "Graphing components",
   "keywords": [
     "react",
