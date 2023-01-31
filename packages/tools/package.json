@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "0.9.27",
+  "version": "0.9.28",
   "description": "Some interactive tools",
   "keywords": [
     "react",

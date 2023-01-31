@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/test-utils",
-  "version": "0.2.22",
+  "version": "0.2.23",
   "description": "",
   "main": "lib/index.js",
   "module": "src/index.js",

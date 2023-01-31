@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/scoring-config",
-  "version": "3.6.3",
+  "version": "3.6.4",
   "description": "",
   "main": "lib/index.js",
   "module": "src/index.jsx",
