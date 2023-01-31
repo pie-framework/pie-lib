@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "1.11.10",
+  "version": "1.11.16",
   "description": "Math toolbar for editing math equations",
   "keywords": [
     "math",
