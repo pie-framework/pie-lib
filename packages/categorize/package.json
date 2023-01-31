@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/categorize",
-  "version": "0.8.8",
+  "version": "0.8.9",
   "description": "",
   "main": "lib/index.js",
   "module": "src/index.js",
