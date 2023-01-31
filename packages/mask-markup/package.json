@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/mask-markup",
-  "version": "1.13.11",
+  "version": "1.13.12",
   "description": "",
   "main": "lib/index.js",
   "module": "src/index.js",
@@ -9,9 +9,9 @@
   },
   "dependencies": {
     "@material-ui/core": "^3.9.3",
-    "@pie-lib/drag": "^2.1.10",
-    "@pie-lib/math-rendering": "^2.5.10",
-    "@pie-lib/render-ui": "^4.14.10",
+    "@pie-lib/drag": "^2.1.12",
+    "@pie-lib/math-rendering": "^2.5.12",
+    "@pie-lib/render-ui": "^4.14.12",
     "classnames": "^2.2.6",
     "debug": "^4.1.1",
     "immutable": ">=3.8.1",
