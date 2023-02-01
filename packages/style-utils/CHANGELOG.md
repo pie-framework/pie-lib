@@ -3,6 +3,62 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.42](https://github.com/pie-framework/pie-lib/compare/@pie-lib/style-utils@0.1.40...@pie-lib/style-utils@0.1.42) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/style-utils
+
+
+
+
+
+## [0.1.40](https://github.com/pie-framework/pie-lib/compare/@pie-lib/style-utils@0.1.39...@pie-lib/style-utils@0.1.40) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/style-utils
+
+
+
+
+
+## [0.1.39](https://github.com/pie-framework/pie-lib/compare/@pie-lib/style-utils@0.1.38...@pie-lib/style-utils@0.1.39) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/style-utils
+
+
+
+
+
+## [0.1.38](https://github.com/pie-framework/pie-lib/compare/@pie-lib/style-utils@0.1.37...@pie-lib/style-utils@0.1.38) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/style-utils
+
+
+
+
+
+## [0.1.37](https://github.com/pie-framework/pie-lib/compare/@pie-lib/style-utils@0.1.30...@pie-lib/style-utils@0.1.37) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/style-utils
+
+
+
+
+
+## [0.1.30](https://github.com/pie-framework/pie-lib/compare/@pie-lib/style-utils@0.1.28...@pie-lib/style-utils@0.1.30) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/style-utils
+
+
+
+
+
+## [0.1.28](https://github.com/pie-framework/pie-lib/compare/@pie-lib/style-utils@0.1.26...@pie-lib/style-utils@0.1.28) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/style-utils
+
+
+
+
+
 ## [0.1.26](https://github.com/pie-framework/pie-lib/compare/@pie-lib/style-utils@0.1.25...@pie-lib/style-utils@0.1.26) (2022-11-23)
 
 **Note:** Version bump only for package @pie-lib/style-utils

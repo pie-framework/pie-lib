@@ -3,6 +3,73 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.14.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.14.10...@pie-lib/render-ui@4.14.12) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/render-ui
+
+
+
+
+
+## [4.14.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.14.9...@pie-lib/render-ui@4.14.10) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/render-ui
+
+
+
+
+
+## [4.14.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.14.8...@pie-lib/render-ui@4.14.9) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/render-ui
+
+
+
+
+
+## [4.14.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.14.7...@pie-lib/render-ui@4.14.8) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/render-ui
+
+
+
+
+
+## [4.14.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.14.4...@pie-lib/render-ui@4.14.7) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/render-ui
+
+
+
+
+
+## [4.14.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.14.2...@pie-lib/render-ui@4.14.4) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/render-ui
+
+
+
+
+
+## [4.14.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.14.0...@pie-lib/render-ui@4.14.2) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/render-ui
+
+
+
+
+
+# [4.14.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.13.7...@pie-lib/render-ui@4.14.0) (2023-01-31)
+
+
+### Features
+
+* **multiple-choice:** add ARIA attributes ([4ab6b85](https://github.com/pie-framework/pie-lib/commit/4ab6b85d5827ea76d4095a71c482f5255671a1df))
+
+
+
+
+
 ## [4.13.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.13.6...@pie-lib/render-ui@4.13.7) (2022-11-23)
 
 **Note:** Version bump only for package @pie-lib/render-ui

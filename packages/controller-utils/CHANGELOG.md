@@ -3,6 +3,62 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.42](https://github.com/pie-framework/pie-lib/compare/@pie-lib/controller-utils@0.2.40...@pie-lib/controller-utils@0.2.42) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/controller-utils
+
+
+
+
+
+## [0.2.40](https://github.com/pie-framework/pie-lib/compare/@pie-lib/controller-utils@0.2.39...@pie-lib/controller-utils@0.2.40) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/controller-utils
+
+
+
+
+
+## [0.2.39](https://github.com/pie-framework/pie-lib/compare/@pie-lib/controller-utils@0.2.38...@pie-lib/controller-utils@0.2.39) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/controller-utils
+
+
+
+
+
+## [0.2.38](https://github.com/pie-framework/pie-lib/compare/@pie-lib/controller-utils@0.2.37...@pie-lib/controller-utils@0.2.38) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/controller-utils
+
+
+
+
+
+## [0.2.37](https://github.com/pie-framework/pie-lib/compare/@pie-lib/controller-utils@0.2.31...@pie-lib/controller-utils@0.2.37) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/controller-utils
+
+
+
+
+
+## [0.2.31](https://github.com/pie-framework/pie-lib/compare/@pie-lib/controller-utils@0.2.29...@pie-lib/controller-utils@0.2.31) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/controller-utils
+
+
+
+
+
+## [0.2.29](https://github.com/pie-framework/pie-lib/compare/@pie-lib/controller-utils@0.2.27...@pie-lib/controller-utils@0.2.29) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/controller-utils
+
+
+
+
+
 ## [0.2.27](https://github.com/pie-framework/pie-lib/compare/@pie-lib/controller-utils@0.2.26...@pie-lib/controller-utils@0.2.27) (2022-11-23)
 
 **Note:** Version bump only for package @pie-lib/controller-utils

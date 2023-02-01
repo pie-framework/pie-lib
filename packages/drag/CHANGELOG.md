@@ -3,6 +3,75 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.1.10...@pie-lib/drag@2.1.12) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/drag
+
+
+
+
+
+## [2.1.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.1.9...@pie-lib/drag@2.1.10) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/drag
+
+
+
+
+
+## [2.1.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.1.8...@pie-lib/drag@2.1.9) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/drag
+
+
+
+
+
+## [2.1.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.1.7...@pie-lib/drag@2.1.8) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/drag
+
+
+
+
+
+## [2.1.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.1.5...@pie-lib/drag@2.1.7) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/drag
+
+
+
+
+
+## [2.1.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.1.3...@pie-lib/drag@2.1.5) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/drag
+
+
+
+
+
+## [2.1.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.1.1...@pie-lib/drag@2.1.3) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/drag
+
+
+
+
+
+## [2.1.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.1.0...@pie-lib/drag@2.1.1) (2023-01-31)
+
+
+### Bug Fixes
+
+* **drag:** add support for dragging events on touch devices ([b367c15](https://github.com/pie-framework/pie-lib/commit/b367c155df323a64da9f2b6633ec5eebda879e22))
+* **drag:** downgrade react-dnd-touch-backend to a version that is compatible with react-dnd version 14.x. ([d8a3577](https://github.com/pie-framework/pie-lib/commit/d8a35779ac8c55573cf71b4dedfa3617780303e4))
+* **drag:** prevent scroll for dragging placeholder board ([d37d211](https://github.com/pie-framework/pie-lib/commit/d37d2110af7a199e14d2c7f80720d65013f63602))
+
+
+
+
+
 # [2.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.0.6...@pie-lib/drag@2.1.0) (2023-01-16)
 
 

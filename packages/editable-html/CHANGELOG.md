@@ -3,6 +3,70 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.5.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.5.10...@pie-lib/editable-html@9.5.12) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+## [9.5.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.5.9...@pie-lib/editable-html@9.5.10) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+## [9.5.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.5.8...@pie-lib/editable-html@9.5.9) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+## [9.5.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.5.7...@pie-lib/editable-html@9.5.8) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+## [9.5.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.5.5...@pie-lib/editable-html@9.5.7) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+## [9.5.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.5.3...@pie-lib/editable-html@9.5.5) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+## [9.5.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.5.1...@pie-lib/editable-html@9.5.3) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+## [9.5.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.5.0...@pie-lib/editable-html@9.5.1) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
 # [9.5.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.4.1...@pie-lib/editable-html@9.5.0) (2023-01-16)
 
 

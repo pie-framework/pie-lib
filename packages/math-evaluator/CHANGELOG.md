@@ -3,6 +3,62 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.22](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.1.20...@pie-lib/math-evaluator@2.1.22) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/math-evaluator
+
+
+
+
+
+## [2.1.20](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.1.19...@pie-lib/math-evaluator@2.1.20) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/math-evaluator
+
+
+
+
+
+## [2.1.19](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.1.18...@pie-lib/math-evaluator@2.1.19) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/math-evaluator
+
+
+
+
+
+## [2.1.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.1.17...@pie-lib/math-evaluator@2.1.18) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/math-evaluator
+
+
+
+
+
+## [2.1.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.1.11...@pie-lib/math-evaluator@2.1.17) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/math-evaluator
+
+
+
+
+
+## [2.1.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.1.9...@pie-lib/math-evaluator@2.1.11) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/math-evaluator
+
+
+
+
+
+## [2.1.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.1.7...@pie-lib/math-evaluator@2.1.9) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/math-evaluator
+
+
+
+
+
 ## [2.1.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.1.6...@pie-lib/math-evaluator@2.1.7) (2022-11-23)
 
 **Note:** Version bump only for package @pie-lib/math-evaluator

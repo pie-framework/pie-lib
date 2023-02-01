@@ -3,6 +3,70 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.3.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.3.10...@pie-lib/config-ui@11.3.12) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
+## [11.3.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.3.9...@pie-lib/config-ui@11.3.10) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
+## [11.3.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.3.8...@pie-lib/config-ui@11.3.9) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
+## [11.3.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.3.7...@pie-lib/config-ui@11.3.8) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
+## [11.3.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.3.5...@pie-lib/config-ui@11.3.7) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
+## [11.3.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.3.3...@pie-lib/config-ui@11.3.5) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
+## [11.3.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.3.1...@pie-lib/config-ui@11.3.3) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
+## [11.3.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.3.0...@pie-lib/config-ui@11.3.1) (2023-01-31)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
 # [11.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.2.2...@pie-lib/config-ui@11.3.0) (2023-01-16)
 
 
