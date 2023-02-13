@@ -40,11 +40,12 @@ class MeasuredConfigLayout extends React.Component {
           const { children, settings, hideSettings } = this.props;
           const { layoutMode } = this.state;
 
-          const settingsPanel = layoutMode === 'inline' ? <SettingsBox>{settings}</SettingsBox> : settings;
+          const settingsPanel =
+            layoutMode === 'inline' ? <SettingsBox className="settings-box">{settings}</SettingsBox> : settings;
           const secondaryContent = hideSettings ? null : settingsPanel;
 
           return (
-            <div ref={measureRef}>
+            <div ref={measureRef} className="main-container">
               <LayoutContents mode={layoutMode} secondary={secondaryContent}>
                 {children}
               </LayoutContents>
