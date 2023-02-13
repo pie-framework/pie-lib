@@ -64,19 +64,29 @@ class RawLayoutContents extends React.Component {
       <div className={classes.container}>
         {mode === 'inline' && (
           <div className={classnames(classes.flow, classes.contentContainer)}>
-            <div className={classes.configContainer}>{children}</div>
-            {hasSettingsPanel && <div className={classes.settingsContainer}>{secondary}</div>}
+            <div className={classnames(classes.configContainer, 'design-container')}>{children}</div>
+            {hasSettingsPanel && (
+              <div className={classnames(classes.settingsContainer, 'settings-container')}>{secondary}</div>
+            )}
           </div>
         )}
 
         {mode === 'tabbed' && hasSettingsPanel && (
           <Tabs onChange={this.onTabsChange} contentClassName={classes.contentContainer} indicatorColor="primary">
-            <div title="Design">{children}</div>
-            <div title="Settings">{secondary}</div>
+            <div title="Design" className="design-container">
+              {children}
+            </div>
+            <div title="Settings" className="settings-container">
+              {secondary}
+            </div>
           </Tabs>
         )}
 
-        {mode === 'tabbed' && !hasSettingsPanel && <div className={classes.contentContainer}>{children}</div>}
+        {mode === 'tabbed' && !hasSettingsPanel && (
+          <div className={classes.contentContainer} className="design-container">
+            {children}
+          </div>
+        )}
       </div>
     );
   }
