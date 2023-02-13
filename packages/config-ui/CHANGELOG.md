@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.3.12...@pie-lib/config-ui@11.4.0) (2023-02-13)
+
+
+### Features
+
+* **config-ui:** added default classnames for main components ([b07d821](https://github.com/pie-framework/pie-lib/commit/b07d821a84ad4a19bcebd3b245062d2edb0786ca))
+
+
+
+
+
 ## [11.3.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.3.10...@pie-lib/config-ui@11.3.12) (2023-01-31)
 
 **Note:** Version bump only for package @pie-lib/config-ui
