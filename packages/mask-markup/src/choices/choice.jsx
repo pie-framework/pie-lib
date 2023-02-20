@@ -27,6 +27,8 @@ class BlankContentComp extends React.Component {
     return connectDragSource(
       <span className={classnames(classes.choice, disabled && classes.disabled)}>
         <Chip
+          clickable={false}
+          disabled={true}
           ref={(ref) => {
             //eslint-disable-next-line
             this.rootRef = ReactDOM.findDOMNode(ref);
@@ -65,6 +67,7 @@ export const BlankContent = withStyles((theme) => ({
     whiteSpace: 'pre-wrap',
     maxWidth: '374px',
     margin: theme.spacing.unit / 2,
+    zIndex: 1,
   },
   chipLabel: {
     whiteSpace: 'pre-wrap',

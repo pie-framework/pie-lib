@@ -23,9 +23,11 @@ const useStyles = withStyles(() => ({
     height: 'auto',
     maxWidth: '374px',
     position: 'relative',
+    touchAction: 'none',
   },
   chipLabel: {
     whiteSpace: 'pre-wrap',
+    touchAction: 'none',
     '& img': {
       display: 'block',
       padding: '2px 0',
@@ -95,7 +97,7 @@ export class BlankContent extends React.Component {
   addDraggableFalseAttributes(parent) {
     parent.childNodes.forEach((elem) => {
       if (elem instanceof Element || elem instanceof HTMLDocument) {
-        elem.setAttribute('draggable', false);
+        elem.setAttribute('draggable', true);
       }
     });
   }
@@ -107,6 +109,8 @@ export class BlankContent extends React.Component {
 
     return (
       <Chip
+        clickable={false}
+        disabled={true}
         ref={(ref) => {
           //eslint-disable-next-line
           this.rootRef = ReactDOM.findDOMNode(ref);
