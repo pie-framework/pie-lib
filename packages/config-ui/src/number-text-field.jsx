@@ -9,7 +9,10 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 const log = debug('@pie-lib:config-ui:number-text-field');
 
 const styles = (theme) => ({
-  root: { marginRight: theme.spacing.unit },
+  marginRight: theme.spacing.unit,
+  '& label': {
+    width: 'max-content',
+  },
 });
 
 const fallbackNumber = (min, max) => {
