@@ -111,7 +111,6 @@ export class BlankContent extends React.Component {
       <Chip
         clickable={false}
         disabled={true}
-        skipFocusWhenDisabled={true}
         ref={(ref) => {
           //eslint-disable-next-line
           this.rootRef = ReactDOM.findDOMNode(ref);
