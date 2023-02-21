@@ -29,7 +29,6 @@ const useStyles = withStyles(() => ({
   chipLabel: {
     whiteSpace: 'pre-wrap',
     '& img': {
-      touchAction: 'none',
       display: 'block',
       padding: '2px 0',
     },
@@ -229,7 +228,6 @@ const tileSource = {
       const draggedItem = monitor.getItem();
 
       if (draggedItem.fromChoice) {
-        console.log(props, 'props in drag');
         props.onChange(props.id, undefined);
       }
     }
