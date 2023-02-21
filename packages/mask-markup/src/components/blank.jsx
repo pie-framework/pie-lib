@@ -15,6 +15,8 @@ const useStyles = withStyles(() => ({
   content: {
     border: `solid 0px ${color.primary()}`,
     minWidth: '200px',
+    touchAction: 'none',
+    overflow: 'hidden',
   },
   chip: {
     minWidth: '90px',
@@ -23,7 +25,6 @@ const useStyles = withStyles(() => ({
     height: 'auto',
     maxWidth: '374px',
     position: 'relative',
-    touchAction: 'none',
   },
   chipLabel: {
     whiteSpace: 'pre-wrap',
@@ -41,7 +42,6 @@ const useStyles = withStyles(() => ({
     position: 'absolute',
     left: 16,
     maxWidth: '60px',
-    touchAction: 'none',
   },
   correct: {
     border: `solid 1px ${color.correct()}`,
@@ -105,52 +105,54 @@ export class BlankContent extends React.Component {
 
   render() {
     const { disabled, choice, classes, isOver, dragItem, correct } = this.props;
-    const draggedLabel = dragItem && dragItem.choice.value;
+    const draggedLabel = dragItem && isOver && dragItem.choice.value;
     const label = choice && choice.value;
 
     return (
       <Chip
         clickable={false}
         disabled={true}
+        skipFocusWhenDisabled={true}
         ref={(ref) => {
           //eslint-disable-next-line
           this.rootRef = ReactDOM.findDOMNode(ref);
         }}
         component="span"
         label={
-          <span
-            className={classnames(classes.chipLabel, isOver && classes.over, draggedLabel && classes.dragged, {
-              [classes.hidden]: draggedLabel,
-            })}
-            ref={(ref) => {
-              if (ref) {
-                //eslint-disable-next-line
-                this.spanRef = ReactDOM.findDOMNode(ref);
-                ref.innerHTML = draggedLabel || label || '';
-                this.addDraggableFalseAttributes(ref);
-              }
-            }}
-          >
-            {' '}
-          </span>
-          //   {draggedLabel && (
-          //     <span
-          //       className={classnames(classes.chipLabel, isOver && classes.over, classes.dragged)}
-          //       ref={(ref) => {
-          //         if (ref) {
-          //           //eslint-disable-next-line
-          //           this.spanRef = ReactDOM.findDOMNode(ref);
-          //           ref.innerHTML = draggedLabel || '';
-          //           this.addDraggableFalseAttributes(ref);
-          //         }
-          //       }}
-          //     >
-          //       {' '}
-          //     </span>
-          //   )}
-          // </React.Fragment>
+          <React.Fragment>
+            <span
+              className={classnames(classes.chipLabel, isOver && classes.over, {
+                [classes.hidden]: draggedLabel,
+              })}
+              ref={(ref) => {
+                if (ref) {
+                  //eslint-disable-next-line
+                  this.spanRef = ReactDOM.findDOMNode(ref);
+                  ref.innerHTML = label || '';
+                  this.addDraggableFalseAttributes(ref);
+                }
+              }}
+            >
+              {' '}
+            </span>
+            {draggedLabel && (
+              <span
+                className={classnames(classes.chipLabel, isOver && classes.over, classes.dragged)}
+                ref={(ref) => {
+                  if (ref) {
+                    //eslint-disable-next-line
+                    this.spanRef = ReactDOM.findDOMNode(ref);
+                    ref.innerHTML = draggedLabel || '';
+                    this.addDraggableFalseAttributes(ref);
+                  }
+                }}
+              >
+                {' '}
+              </span>
+            )}
+          </React.Fragment>
         }
-        className={classnames(classes.chip, {
+        className={classnames(classes.chip, isOver && classes.over, {
           [classes.correct]: correct !== undefined && correct,
           [classes.incorrect]: correct !== undefined && !correct,
         })}
@@ -227,6 +229,7 @@ const tileSource = {
       const draggedItem = monitor.getItem();
 
       if (draggedItem.fromChoice) {
+        console.log(props, 'props in drag');
         props.onChange(props.id, undefined);
       }
     }
