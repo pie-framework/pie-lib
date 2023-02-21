@@ -27,8 +27,8 @@ const useStyles = withStyles(() => ({
   },
   chipLabel: {
     whiteSpace: 'pre-wrap',
-    touchAction: 'none',
     '& img': {
+      touchAction: 'none',
       display: 'block',
       padding: '2px 0',
     },
@@ -39,8 +39,9 @@ const useStyles = withStyles(() => ({
   },
   dragged: {
     position: 'absolute',
-    left: 14,
+    left: 16,
     maxWidth: '60px',
+    touchAction: 'none',
   },
   correct: {
     border: `solid 1px ${color.correct()}`,
@@ -97,14 +98,14 @@ export class BlankContent extends React.Component {
   addDraggableFalseAttributes(parent) {
     parent.childNodes.forEach((elem) => {
       if (elem instanceof Element || elem instanceof HTMLDocument) {
-        elem.setAttribute('draggable', true);
+        elem.setAttribute('draggable', false);
       }
     });
   }
 
   render() {
     const { disabled, choice, classes, isOver, dragItem, correct } = this.props;
-    const draggedLabel = dragItem && isOver && dragItem.choice.value;
+    const draggedLabel = dragItem && dragItem.choice.value;
     const label = choice && choice.value;
 
     return (
@@ -117,40 +118,39 @@ export class BlankContent extends React.Component {
         }}
         component="span"
         label={
-          <React.Fragment>
-            <span
-              className={classnames(classes.chipLabel, isOver && classes.over, {
-                [classes.hidden]: draggedLabel,
-              })}
-              ref={(ref) => {
-                if (ref) {
-                  //eslint-disable-next-line
-                  this.spanRef = ReactDOM.findDOMNode(ref);
-                  ref.innerHTML = label || '';
-                  this.addDraggableFalseAttributes(ref);
-                }
-              }}
-            >
-              {' '}
-            </span>
-            {draggedLabel && (
-              <span
-                className={classnames(classes.chipLabel, isOver && classes.over, classes.dragged)}
-                ref={(ref) => {
-                  if (ref) {
-                    //eslint-disable-next-line
-                    this.spanRef = ReactDOM.findDOMNode(ref);
-                    ref.innerHTML = draggedLabel || '';
-                    this.addDraggableFalseAttributes(ref);
-                  }
-                }}
-              >
-                {' '}
-              </span>
-            )}
-          </React.Fragment>
+          <span
+            className={classnames(classes.chipLabel, isOver && classes.over, draggedLabel && classes.dragged, {
+              [classes.hidden]: draggedLabel,
+            })}
+            ref={(ref) => {
+              if (ref) {
+                //eslint-disable-next-line
+                this.spanRef = ReactDOM.findDOMNode(ref);
+                ref.innerHTML = draggedLabel || label || '';
+                this.addDraggableFalseAttributes(ref);
+              }
+            }}
+          >
+            {' '}
+          </span>
+          //   {draggedLabel && (
+          //     <span
+          //       className={classnames(classes.chipLabel, isOver && classes.over, classes.dragged)}
+          //       ref={(ref) => {
+          //         if (ref) {
+          //           //eslint-disable-next-line
+          //           this.spanRef = ReactDOM.findDOMNode(ref);
+          //           ref.innerHTML = draggedLabel || '';
+          //           this.addDraggableFalseAttributes(ref);
+          //         }
+          //       }}
+          //     >
+          //       {' '}
+          //     </span>
+          //   )}
+          // </React.Fragment>
         }
-        className={classnames(classes.chip, isOver && classes.over, {
+        className={classnames(classes.chip, {
           [classes.correct]: correct !== undefined && correct,
           [classes.incorrect]: correct !== undefined && !correct,
         })}

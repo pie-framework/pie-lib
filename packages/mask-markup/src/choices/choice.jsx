@@ -74,6 +74,7 @@ export const BlankContent = withStyles((theme) => ({
     '& img': {
       display: 'block',
       padding: '2px 0',
+      touchAction: 'none',
     },
   },
   disabled: {},
