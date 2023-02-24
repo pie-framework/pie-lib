@@ -32,6 +32,8 @@ const styles = (theme) => ({
     border: `solid 1px ${grey[400]}`,
     padding: theme.spacing.unit,
     minHeight: '30px',
+    minWidth: theme.spacing.unit * 20,
+    maxWidth: theme.spacing.unit * 75,
   },
 });
 
