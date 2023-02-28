@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/config-ui",
-  "version": "11.5.2",
+  "version": "11.5.3",
   "main": "lib/index.js",
   "module": "src/index.js",
   "publishConfig": {

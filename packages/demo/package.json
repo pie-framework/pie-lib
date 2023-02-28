@@ -1,12 +1,12 @@
 {
   "name": "@pie-lib/demo",
   "private": true,
-  "version": "6.10.65",
+  "version": "6.10.66",
   "dependencies": {
     "@material-ui/core": "^3.8.3",
     "@material-ui/icons": "^3.0.2",
     "@pie-lib/charting": "^5.6.15",
-    "@pie-lib/config-ui": "^11.5.2",
+    "@pie-lib/config-ui": "^11.5.3",
     "@pie-lib/correct-answer-toggle": "^2.3.65",
     "@pie-lib/drag": "^2.1.15",
     "@pie-lib/editable-html": "^9.5.15",
@@ -18,7 +18,7 @@
     "@pie-lib/math-toolbar": "^1.11.22",
     "@pie-lib/render-ui": "^4.14.15",
     "@pie-lib/rubric": "^0.7.15",
-    "@pie-lib/scoring-config": "^3.6.16",
+    "@pie-lib/scoring-config": "^3.6.17",
     "@pie-lib/style-utils": "^0.1.42",
     "@pie-lib/text-select": "^1.9.15",
     "@pie-lib/tools": "^0.9.35",
