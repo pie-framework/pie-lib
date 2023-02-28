@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.13.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.13.13...@pie-lib/mask-markup@1.13.15) (2023-02-28)
+
+
+### Bug Fixes
+
+* version bump ([d9280a9](https://github.com/pie-framework/pie-lib/commit/d9280a9aeddab459b6d84ecdbeb62814e1eee965))
+
+
+
+
+
+## [1.13.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.13.12...@pie-lib/mask-markup@1.13.13) (2023-02-28)
+
+
+### Bug Fixes
+
+* **drag-in-the-blank:** dragging on touch device wip ([bde4003](https://github.com/pie-framework/pie-lib/commit/bde4003539001d7eaace804ab275b9ec675b5cca))
+* **drag-in-the-blank:** prevent scroll of the page when dragging the choices, try to improve removing selected choices on touch devices ([ae485e3](https://github.com/pie-framework/pie-lib/commit/ae485e342ccc542dbd91765980bbf5588bfe4726))
+
+
+
+
+
 ## [1.13.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.13.10...@pie-lib/mask-markup@1.13.12) (2023-01-31)
 
 **Note:** Version bump only for package @pie-lib/mask-markup

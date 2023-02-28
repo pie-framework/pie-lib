@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.5.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.5.0...@pie-lib/config-ui@11.5.2) (2023-02-28)
+
+
+### Bug Fixes
+
+* version bump ([d9280a9](https://github.com/pie-framework/pie-lib/commit/d9280a9aeddab459b6d84ecdbeb62814e1eee965))
+
+
+
+
+
+# [11.5.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.4.0...@pie-lib/config-ui@11.5.0) (2023-02-28)
+
+
+### Features
+
+* **config-ui:** create textField comp in settings panel-PD-2611 ([e89ce64](https://github.com/pie-framework/pie-lib/commit/e89ce644a536f26ebef0fe216e1dc65330541471))
+
+
+
+
+
 # [11.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.3.12...@pie-lib/config-ui@11.4.0) (2023-02-13)
 
 ### Features

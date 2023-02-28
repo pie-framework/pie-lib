@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.7.13...@pie-lib/rubric@0.7.15) (2023-02-28)
+
+
+### Bug Fixes
+
+* version bump ([d9280a9](https://github.com/pie-framework/pie-lib/commit/d9280a9aeddab459b6d84ecdbeb62814e1eee965))
+
+
+
+
+
+## [0.7.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.7.12...@pie-lib/rubric@0.7.13) (2023-02-28)
+
+**Note:** Version bump only for package @pie-lib/rubric
+
+
+
+
+
 ## [0.7.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.7.10...@pie-lib/rubric@0.7.12) (2023-01-31)
 
 **Note:** Version bump only for package @pie-lib/rubric
