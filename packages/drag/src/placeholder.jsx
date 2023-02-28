@@ -78,6 +78,7 @@ const styles = (theme) => ({
     minHeight: '200px',
     justifyContent: 'center',
     overflow: 'hidden',
+    touchAction: 'none',
   },
 });
 

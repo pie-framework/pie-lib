@@ -232,6 +232,7 @@ export class ChoiceConfiguration extends React.Component {
 
           <div className={classes.middleColumn}>
             <EditableHtmlContainer
+              className={classes.input}
               label={!noLabels ? 'Label' : ''}
               value={data.label}
               onChange={this.onLabelChange}
@@ -284,7 +285,8 @@ export class ChoiceConfiguration extends React.Component {
 
 const styles = (theme) => ({
   index: {
-    padding: '24px 8px 0 0',
+    paddingRight: theme.spacing.unit,
+    paddingTop: theme.spacing.unit * 3.5,
   },
   choiceConfiguration: {},
   topRow: {
@@ -299,17 +301,20 @@ const styles = (theme) => ({
   },
   toggle: {
     flex: '0 1 auto',
+    paddingTop: theme.spacing.unit / 2,
+    paddingBottom: 0,
+    marginRight: 0,
+    marginLeft: theme.spacing.unit,
   },
   feedback: {
     flex: '0 1 auto',
-    paddingTop: theme.spacing.unit,
+    paddingTop: theme.spacing.unit * 2,
     paddingLeft: 0,
     marginLeft: 0,
-    paddingRight: theme.spacing.unit * 3,
+    marginRight: theme.spacing.unit,
   },
   feedbackIcon: {
     margin: 0,
-    paddingLeft: 0,
     width: 'inherit',
   },
   deleteIcon: {
@@ -318,7 +323,7 @@ const styles = (theme) => ({
   },
   delete: {
     flex: '0 1 auto',
-    paddingTop: theme.spacing.unit,
+    paddingTop: theme.spacing.unit * 2,
     paddingLeft: 0,
     marginLeft: 0,
   },
@@ -326,6 +331,10 @@ const styles = (theme) => ({
     display: 'flex',
     flex: 1,
     flexDirection: 'column',
+    marginRight: theme.spacing.unit,
+  },
+  input: {
+    marginRight: 0,
   },
   errorText: {
     fontSize: theme.typography.fontSize - 2,

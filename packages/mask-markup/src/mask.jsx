@@ -42,7 +42,7 @@ export const renderChildren = (layout, value, onChange, rootRenderChildren, pare
   const children = [];
 
   (layout.nodes || []).forEach((n, index) => {
-    const key = `${n.type}-${index}`;
+    const key = n.type ? `${n.type}-${index}` : `${index}`;
 
     if (n.isMath) {
       children.push(
@@ -78,7 +78,7 @@ export const renderChildren = (layout, value, onChange, rootRenderChildren, pare
           if (MARK_TAGS[markKey] === mark.type) {
             const Tag = markKey;
 
-            children.push(<Tag>{content}</Tag>);
+            children.push(<Tag key={key}>{content}</Tag>);
             break;
           }
         }

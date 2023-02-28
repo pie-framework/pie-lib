@@ -387,7 +387,7 @@ export const buildChoices = (possibleResponseChoices, builtCategoryChoices) => {
   return builtCategoryChoices.reduce(
     (acc, builtChoice) => {
       // set correct value on each choice that was selected by user
-      const index = acc.copyOfPossibleResponse.findIndex((cRC) => cRC === builtChoice.id);
+      const index = acc.copyOfPossibleResponse.findIndex((cRC) => builtChoice && cRC === builtChoice.id);
 
       // if the choice exists in the correct response
       // set the correct: true

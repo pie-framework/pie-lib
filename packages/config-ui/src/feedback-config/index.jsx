@@ -14,7 +14,12 @@ export { FeedbackSelector };
 const style = {
   feedbackContainer: {
     display: 'flex',
+    flex: 1,
     flexDirection: 'column',
+  },
+  panelDetails: {
+    paddingTop: 0,
+    paddingBottom: 0,
   },
 };
 
@@ -62,41 +67,43 @@ export class FeedbackConfig extends React.Component {
   onPartialChange = this.onChange.bind(this, 'partial');
 
   render() {
-    const { classes, allowPartial, feedback, toolbarOpts } = this.props;
+    const { classes, className, allowPartial, feedback, toolbarOpts } = this.props;
 
     return (
-      <ExpansionPanel>
-        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography className={classes.heading}>Feedback</Typography>
-        </ExpansionPanelSummary>
+      <div className={className}>
+        <ExpansionPanel>
+          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+            <Typography className={classes.heading}>Feedback</Typography>
+          </ExpansionPanelSummary>
 
-        <ExpansionPanelDetails>
-          <div className={classes.feedbackContainer}>
-            <FeedbackSelector
-              label="If correct, show"
-              feedback={feedback.correct}
-              onChange={this.onCorrectChange}
-              toolbarOpts={toolbarOpts}
-            />
-
-            {allowPartial && (
+          <ExpansionPanelDetails className={classes.panelDetails}>
+            <div className={classes.feedbackContainer}>
               <FeedbackSelector
-                label="If partially correct, show"
-                feedback={feedback.partial}
-                onChange={this.onPartialChange}
+                label="If correct, show"
+                feedback={feedback.correct}
+                onChange={this.onCorrectChange}
                 toolbarOpts={toolbarOpts}
               />
-            )}
 
-            <FeedbackSelector
-              label="If incorrect, show"
-              feedback={feedback.incorrect}
-              onChange={this.onIncorrectChange}
-              toolbarOpts={toolbarOpts}
-            />
-          </div>
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
+              {allowPartial && (
+                <FeedbackSelector
+                  label="If partially correct, show"
+                  feedback={feedback.partial}
+                  onChange={this.onPartialChange}
+                  toolbarOpts={toolbarOpts}
+                />
+              )}
+
+              <FeedbackSelector
+                label="If incorrect, show"
+                feedback={feedback.incorrect}
+                onChange={this.onIncorrectChange}
+                toolbarOpts={toolbarOpts}
+              />
+            </div>
+          </ExpansionPanelDetails>
+        </ExpansionPanel>
+      </div>
     );
   }
 }

@@ -2,6 +2,12 @@ import Panel from './panel';
 
 export { Panel };
 
+export const textField = (label, isConfigProperty = true) => ({
+  label,
+  type: 'textField',
+  isConfigProperty,
+});
+
 export const toggle = (label, isConfigProperty = false) => ({
   type: 'toggle',
   label,
