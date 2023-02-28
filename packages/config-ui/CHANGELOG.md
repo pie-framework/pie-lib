@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.5.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.5.2...@pie-lib/config-ui@11.5.3) (2023-02-28)
+
+
+### Bug Fixes
+
+* **config-ui:** pd-2597 add root to styles ([197f07c](https://github.com/pie-framework/pie-lib/commit/197f07c8afd062a5bae4c3dea91ca8c018ee8cce))
+
+
+
+
+
 ## [11.5.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.5.0...@pie-lib/config-ui@11.5.2) (2023-02-28)
 
 
