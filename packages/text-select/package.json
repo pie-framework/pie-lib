@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "1.9.14",
+  "version": "1.9.15",
   "description": "Some react components for text selection",
   "keywords": [
     "react",
@@ -18,7 +18,7 @@
   "license": "ISC",
   "dependencies": {
     "@pie-framework/parse-english": "^1.0.0",
-    "@pie-lib/render-ui": "^4.14.13",
+    "@pie-lib/render-ui": "^4.14.15",
     "@pie-lib/style-utils": "^0.1.42",
     "classnames": "^2.2.6",
     "debug": "^4.1.1",
