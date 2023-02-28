@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.1.12...@pie-lib/drag@2.1.13) (2023-02-28)
+
+
+### Bug Fixes
+
+* **categorize:** set maxWidth and minWidth in order to avoid overlapping ([329578b](https://github.com/pie-framework/pie-lib/commit/329578bd3a76112b1ab26b944f69bae95e622032))
+* **drag-in-the-blank:** prevent scroll of the page when dragging the choices, try to improve removing selected choices on touch devices ([ae485e3](https://github.com/pie-framework/pie-lib/commit/ae485e342ccc542dbd91765980bbf5588bfe4726))
+
+
+
+
+
 ## [2.1.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.1.10...@pie-lib/drag@2.1.12) (2023-01-31)
 
 **Note:** Version bump only for package @pie-lib/drag

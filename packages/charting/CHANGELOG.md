@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.6.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.6.12...@pie-lib/charting@5.6.13) (2023-02-28)
+
+
+### Bug Fixes
+
+* **charting:** add sanity checks to data ([25c7bb2](https://github.com/pie-framework/pie-lib/commit/25c7bb226cac10556950ace3feeba73d1966f0ba))
+
+
+
+
+
 ## [5.6.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.6.10...@pie-lib/charting@5.6.12) (2023-01-31)
 
 **Note:** Version bump only for package @pie-lib/charting

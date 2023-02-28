@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.9.12...@pie-lib/text-select@1.9.13) (2023-02-28)
+
+**Note:** Version bump only for package @pie-lib/text-select
+
+
+
+
+
 ## [1.9.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.9.10...@pie-lib/text-select@1.9.12) (2023-01-31)
 
 **Note:** Version bump only for package @pie-lib/text-select
