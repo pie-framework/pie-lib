@@ -9,9 +9,11 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 const log = debug('@pie-lib:config-ui:number-text-field');
 
 const styles = (theme) => ({
-  marginRight: theme.spacing.unit,
-  '& label': {
-    width: 'max-content',
+  root: {
+    marginRight: theme.spacing.unit,
+    '& label': {
+      width: 'max-content',
+    },
   },
 });
 
