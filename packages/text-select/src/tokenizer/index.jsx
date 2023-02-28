@@ -144,9 +144,6 @@ export class Tokenizer extends React.Component {
 export default withStyles((theme) => ({
   text: {
     whiteSpace: 'pre-wrap',
-    marginTop: theme.spacing.unit,
-    paddingTop: theme.spacing.unit,
-    paddingBottom: theme.spacing.unit,
   },
   noselect: { ...noSelect() },
 }))(Tokenizer);

@@ -34,11 +34,12 @@ const style = (theme) => ({
     paddingBottom: 0,
   },
   customHolder: holder(theme, {
-    background: theme.palette.grey[400],
+    background: theme.palette.grey[300],
     padding: 0,
   }),
   defaultHolder: holder(theme, {
     fontFamily: theme.typography.fontFamily,
+    padding: theme.spacing.unit * 2,
     cursor: 'default',
   }),
   editor: {
