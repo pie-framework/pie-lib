@@ -242,7 +242,6 @@ export class Chart extends React.Component {
           disabledLabels={!defineChart}
           isChart={true}
           showPixelGuides={showPixelGuides}
-          classes={classes}
           rootRef={(r) => (this.rootNode = r)}
           {...rootCommon}
         >
