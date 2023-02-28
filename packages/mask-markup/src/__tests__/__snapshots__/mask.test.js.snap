@@ -17,7 +17,9 @@ exports[`Mask render renders correctly a div 1`] = `
 exports[`Mask render renders correctly a em 1`] = `
 <WithStyles(Component)>
   Foo 
-  <em>
+  <em
+    key="1"
+  >
     x
   </em>
    bar
