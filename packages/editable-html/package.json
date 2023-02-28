@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/editable-html",
-  "version": "9.5.13",
+  "version": "9.5.14",
   "description": "",
   "license": "ISC",
   "main": "lib/index.js",
