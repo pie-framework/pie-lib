@@ -92,7 +92,8 @@ const styles = (theme) => ({
     color: color.text(),
   },
   rationale: {
-    paddingLeft: theme.spacing.unit * 16,
+    paddingLeft: theme.spacing.unit * 4,
+    paddingBottom: theme.spacing.unit,
   },
   label: {
     color: `${color.text()} !important`, //'var(--choice-input-color, black)',
