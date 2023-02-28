@@ -15,6 +15,8 @@ const useStyles = withStyles(() => ({
   content: {
     border: `solid 0px ${color.primary()}`,
     minWidth: '200px',
+    touchAction: 'none',
+    overflow: 'hidden',
   },
   chip: {
     minWidth: '90px',
@@ -37,7 +39,7 @@ const useStyles = withStyles(() => ({
   },
   dragged: {
     position: 'absolute',
-    left: 14,
+    left: 16,
     maxWidth: '60px',
   },
   correct: {
@@ -107,6 +109,8 @@ export class BlankContent extends React.Component {
 
     return (
       <Chip
+        clickable={false}
+        disabled={true}
         ref={(ref) => {
           //eslint-disable-next-line
           this.rootRef = ReactDOM.findDOMNode(ref);

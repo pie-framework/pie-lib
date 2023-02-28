@@ -13,6 +13,7 @@ import { NChoice } from '../two-choice';
 import SettingsRadioLabel from './settings-radio-label';
 import { NumberTextField } from '../index';
 import Checkbox from '../checkbox';
+import Typography from '@material-ui/core/Typography';
 
 const log = debug('pie-lib:config-ui:settings:panel');
 
@@ -114,6 +115,15 @@ const Dropdown = withStyles((theme) => ({
 
 Dropdown.propTypes = { ...baseTypes, choices: PropTypes.arrayOf(PropTypes.string) };
 
+const TextField = withStyles((theme) => ({
+  field: {
+    marginRight: theme.spacing.unit * 3,
+    marginTop: theme.spacing.unit,
+  },
+}))(({ classes, label }) => {
+  return <Typography className={classes.field}>{label}</Typography>;
+});
+
 const NumberField = withStyles((theme) => ({
   field: {
     width: '35%',
@@ -152,6 +162,10 @@ NumberField.propTypes = {
   value: PropTypes.number,
 };
 
+TextField.propTypes = {
+  ...baseTypes,
+};
+
 const ToggleWrapper = ({ label, value, onChange }) => <Toggle label={label} checked={!!value} toggle={onChange} />;
 
 ToggleWrapper.propTypes = { ...baseTypes, value: PropTypes.bool };
@@ -162,6 +176,7 @@ const tagMap = {
   dropdown: Dropdown,
   numberField: NumberField,
   checkbox: CheckboxChoice,
+  textField: TextField,
 };
 
 const Group = withStyles((theme) => ({
@@ -226,7 +241,7 @@ const Group = withStyles((theme) => ({
       );
     }
 
-    // if type is toggle, radio, dropdown or numberField
+    // if type is toggle, radio, dropdown, numberField or numberText
     return getTag(group, key);
   };
 
