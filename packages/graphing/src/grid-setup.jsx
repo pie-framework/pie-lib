@@ -271,21 +271,21 @@ const GridSetup = (props) => {
       <NumberTextFieldCustom
         className={classes.largeTextField}
         label="Number of Horizontal Gridlines"
-        value={domain.max}
-        min={!includeAxes && gridProps.min}
-        max={!includeAxes && gridProps.max}
-        variant="outlined"
-        onChange={(e, v) => onDomainChanged('max', v)}
-      />
-      <NumberTextFieldCustom
-        className={classes.largeTextField}
-        label="Number of Vertical Gridlines"
         value={range.max}
         min={!includeAxes && gridProps.min}
         max={!includeAxes && gridProps.max}
         variant="outlined"
         disabled={standardGrid}
         onChange={(e, v) => onRangeChanged('max', v)}
+      />
+      <NumberTextFieldCustom
+        className={classes.largeTextField}
+        label="Number of Vertical Gridlines"
+        value={domain.max}
+        min={!includeAxes && gridProps.min}
+        max={!includeAxes && gridProps.max}
+        variant="outlined"
+        onChange={(e, v) => onDomainChanged('max', v)}
       />
     </div>
   ) : null;
