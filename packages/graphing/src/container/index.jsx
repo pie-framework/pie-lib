@@ -30,6 +30,7 @@ class Root extends React.Component {
   static propTypes = {
     onChangeMarks: PropTypes.func,
     marks: PropTypes.array,
+    preventComponentDidUpdate: PropTypes.bool,
   };
 
   constructor(props) {
@@ -43,6 +44,11 @@ class Root extends React.Component {
 
   componentDidUpdate(prevProps) {
     const { marks } = this.props;
+    const storeState = this.store.getState();
+
+    if (isEqual(storeState.marks.present, marks)) {
+      return;
+    }
 
     if (!isEqual(prevProps.marks, marks)) {
       this.store.dispatch(changeMarks(marks));
