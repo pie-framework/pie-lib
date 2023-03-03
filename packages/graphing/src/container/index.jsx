@@ -30,7 +30,6 @@ class Root extends React.Component {
   static propTypes = {
     onChangeMarks: PropTypes.func,
     marks: PropTypes.array,
-    preventComponentDidUpdate: PropTypes.bool,
   };
 
   constructor(props) {
