@@ -270,7 +270,7 @@ const GridSetup = (props) => {
     <div className={classes.columnView}>
       <NumberTextFieldCustom
         className={classes.largeTextField}
-        label="Number of Horizontal Gridlines"
+        label="Number of Vertical Gridlines"
         value={domain.max}
         min={!includeAxes && gridProps.min}
         max={!includeAxes && gridProps.max}
@@ -279,7 +279,7 @@ const GridSetup = (props) => {
       />
       <NumberTextFieldCustom
         className={classes.largeTextField}
-        label="Number of Vertical Gridlines"
+        label="Number of Horizontal Gridlines"
         value={range.max}
         min={!includeAxes && gridProps.min}
         max={!includeAxes && gridProps.max}
