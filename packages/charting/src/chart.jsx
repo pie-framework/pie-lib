@@ -219,7 +219,7 @@ export class Chart extends React.Component {
     rootCommon.graphProps.size.height += top + increaseHeight;
 
     return (
-      <div className={classNames(classes.chart, className)}>
+      <div className={classNames(classes.chart, classes.chartBox, className)}>
         <div className={classes.controls}>
           <ToolMenu
             className={classes.toolMenu}
@@ -242,7 +242,6 @@ export class Chart extends React.Component {
           disabledLabels={!defineChart}
           isChart={true}
           showPixelGuides={showPixelGuides}
-          classes={classes}
           rootRef={(r) => (this.rootNode = r)}
           {...rootCommon}
         >
@@ -288,7 +287,6 @@ const styles = (theme) => ({
     transform: 'translate(60px, 35px)',
   },
   controls: {
-    width: 'inherit',
     display: 'flex',
     justifyContent: 'space-between',
     padding: theme.spacing.unit,
@@ -303,6 +301,9 @@ const styles = (theme) => ({
   },
   toolMenu: {
     minHeight: '36px',
+  },
+  chartBox: {
+    width: 'min-content',
   },
 });
 
