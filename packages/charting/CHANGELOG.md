@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.6.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.6.15...@pie-lib/charting@5.6.16) (2023-03-06)
+
+
+### Bug Fixes
+
+* **charting:** fix style for chart boxes ([6e45b13](https://github.com/pie-framework/pie-lib/commit/6e45b130ad2a72f236d3c89269fdc180687864fe))
+
+
+
+
+
 ## [5.6.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.6.13...@pie-lib/charting@5.6.15) (2023-02-28)
 
 
