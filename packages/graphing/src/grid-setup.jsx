@@ -78,7 +78,7 @@ const AxisConfig = (props) => {
           label={min.label || ''}
           value={minValue}
           min={-10000}
-          max={maxValue - 0.01}
+          max={maxValue - 0.05}
           variant="outlined"
           disabled={disabled}
           onChange={(e, v) => onChange('min', v)}
@@ -89,7 +89,7 @@ const AxisConfig = (props) => {
           className={classes.mediumTextField}
           label={max.label || ''}
           value={maxValue}
-          min={minValue + 0.01}
+          min={minValue + 0.05}
           max={10000}
           variant="outlined"
           disabled={disabled}
