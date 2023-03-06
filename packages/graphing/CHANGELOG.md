@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.12.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.12.15...@pie-lib/graphing@2.12.16) (2023-03-06)
+
+
+### Bug Fixes
+
+* **graphing:** fix undo and redo not working in gather PD-2677 ([5e4eea3](https://github.com/pie-framework/pie-lib/commit/5e4eea3173244ce0fc99cf8aa468fe34d5950090))
+* **graphing:** replaced horizontal and vertical lines values between them PD-2674 ([ee37a40](https://github.com/pie-framework/pie-lib/commit/ee37a405d52cfc7db1368c84ca7ccd611c67aca5))
+* **graphing:** replaced horizontal and vertical lines values between them PD-2674 ([7768cb2](https://github.com/pie-framework/pie-lib/commit/7768cb2cd76d14334ab3f5f7705408e94aa6145e))
+
+
+
+
+
 ## [2.12.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.12.13...@pie-lib/graphing@2.12.15) (2023-02-28)
 
 
