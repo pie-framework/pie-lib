@@ -51,6 +51,7 @@ describe('Graph', () => {
     range: { min: 0, max: 1, step: 1 },
     size: { width: 400, height: 400 },
     currentTool,
+    maskId: 'graph-1481',
   };
 
   beforeEach(() => {

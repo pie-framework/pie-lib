@@ -64,6 +64,11 @@ export const removeBuildingToolIfCurrentToolDiffers = ({ marks, currentTool }) =
 };
 
 export class Graph extends React.Component {
+  constructor(props) {
+    super(props);
+    this.maskUid = props.maskId || 'graph-' + (Math.random() * 10000).toFixed();
+  }
+
   static propTypes = {
     ...graphPropTypes,
     currentTool: PropTypes.object,
@@ -208,11 +213,11 @@ export class Graph extends React.Component {
           <Grid {...common} />
           <Axes {...axesSettings} {...common} />
           <Bg {...size} onClick={this.onBgClick} {...common} />
-          <mask id="myMask">
+          <mask id={`${this.maskUid}`}>
             <rect {...maskSize} fill="white" /> {/* TODO hardcoded color */}
           </mask>
 
-          <g id="marks" mask="url('#myMask')">
+          <g id="marks" mask={`url('#${this.maskUid}')`}>
             {(backgroundMarks || []).map((m, index) => {
               const Component = this.getComponent(m);
               const markType = m.type;
