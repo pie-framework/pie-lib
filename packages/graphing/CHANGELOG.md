@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.12.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.12.16...@pie-lib/graphing@2.12.17) (2023-03-13)
+
+
+### Bug Fixes
+
+* **graphing:** fix arrow heads PD-2653 ([4d4e625](https://github.com/pie-framework/pie-lib/commit/4d4e6255e3e874d90813e0bb787180fd3e8e6091))
+* **graphing:** set diff between min and max to 0.05: PD-2673 ([e8862b6](https://github.com/pie-framework/pie-lib/commit/e8862b6f2f41fbfe431630b386ba999a3095cb0a))
+
+
+
+
+
 ## [2.12.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.12.15...@pie-lib/graphing@2.12.16) (2023-03-06)
 
 

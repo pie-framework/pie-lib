@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.5.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.5.3...@pie-lib/config-ui@11.5.4) (2023-03-13)
+
+
+### Bug Fixes
+
+* **config-ui:** set title to '' to prevent autocomplete by material ui and disable tooltip on hover PD-2676 ([579db88](https://github.com/pie-framework/pie-lib/commit/579db8804dc55ddf796a1e7934994e98f2e5e103))
+
+
+
+
+
 ## [11.5.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.5.2...@pie-lib/config-ui@11.5.3) (2023-02-28)
 
 
