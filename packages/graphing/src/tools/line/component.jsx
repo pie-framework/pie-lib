@@ -7,8 +7,6 @@ import { withStyles } from '@material-ui/core/styles';
 import { ArrowMarker, genUid } from '../shared/arrow-head';
 import { thinnerShapesNeeded, getAdjustedGraphLimits } from '../../utils';
 
-const markerId = genUid();
-
 const lineStyles = (theme) => ({
   line: styles.line(theme),
   enabledArrow: styles.arrow(theme),
@@ -21,6 +19,7 @@ const lineStyles = (theme) => ({
 });
 
 export const ArrowedLine = (props) => {
+  const markerId = genUid();
   const { className, classes, correctness, disabled, graphProps, from, to, ...rest } = props;
   const { scale } = graphProps;
   const { domain, range } = getAdjustedGraphLimits(graphProps);
