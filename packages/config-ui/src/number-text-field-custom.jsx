@@ -235,6 +235,7 @@ export class NumberTextFieldCustom extends React.Component {
             this.changeValue(e, -1);
           }
         }}
+        title={''}
         type="number"
         className={names}
         InputProps={{

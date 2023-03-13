@@ -97,7 +97,7 @@ const styles = (theme) => ({
   },
   label: {
     color: `${color.text()} !important`, //'var(--choice-input-color, black)',
-    display: 'inline-block',
+    display: 'inline-flex',
     verticalAlign: 'middle',
     cursor: 'pointer',
   },

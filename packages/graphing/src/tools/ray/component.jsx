@@ -7,8 +7,6 @@ import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import { thinnerShapesNeeded, getAdjustedGraphLimits } from '../../utils';
 
-const markerId = genUid();
-
 const rayStyles = (theme) => ({
   line: styles.line(theme),
   enabledArrow: styles.arrow(theme),
@@ -21,6 +19,7 @@ const rayStyles = (theme) => ({
 });
 
 export const RayLine = (props) => {
+  const markerId = genUid();
   const { graphProps, from, to, classes, disabled, correctness, className, ...rest } = props;
   const { scale } = graphProps;
   const { domain, range } = getAdjustedGraphLimits(graphProps);
