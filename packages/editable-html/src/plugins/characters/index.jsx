@@ -174,6 +174,8 @@ const insertDialog = ({ editorDOM, value, callback, opts }) => {
       const bodyRect = document.body.getBoundingClientRect();
       const boundRect = cursorItem.getBoundingClientRect();
 
+      document.body.appendChild(newEl);
+
       // when height of toolbar exceeds screen - can happen in scrollable contexts
       let additionalTopOffset = 0;
       if (boundRect.y < newEl.offsetHeight) {
