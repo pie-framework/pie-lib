@@ -115,13 +115,38 @@ const bootstrap = (opts) => {
           ['\\(', '\\)'],
         ],
         processEscapes: true,
+        options: {
+          enableExplorer: true,
+          enableAssistiveMml: true,
+          a11y: {
+            speech: true,
+            braille: true,
+            subtitles: true,
+          },
+        },
       }
     : {
         packages,
         macros,
+        options: {
+          enableExplorer: true,
+          enableAssistiveMml: true,
+          a11y: {
+            speech: true,
+            braille: true,
+            subtitles: true,
+          },
+        },
       };
 
   const mmlConfig = {
+    options: {
+      a11y: {
+        speech: true,
+        braille: true,
+        subtitles: true,
+      },
+    },
     parseError: function(node) {
       // function to process parsing errors
       console.log('error:', node);
@@ -137,6 +162,12 @@ const bootstrap = (opts) => {
       ...CHTMLWrapperFactory.defaultNodes,
       ...chtmlNodes,
     }),
+
+    options: {
+      renderActions: {
+        assistiveMml: [['AssistiveMmlHandler']],
+      },
+    },
   };
 
   const mml = new MathML(mmlConfig);
