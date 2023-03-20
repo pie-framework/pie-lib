@@ -123,6 +123,11 @@ const bootstrap = (opts) => {
             braille: true,
             subtitles: true,
           },
+          sre: {
+            domain: 'default',
+            style: 'default',
+            locale: 'en',
+          },
         },
       }
     : {
@@ -135,6 +140,11 @@ const bootstrap = (opts) => {
             speech: true,
             braille: true,
             subtitles: true,
+          },
+          sre: {
+            domain: 'default',
+            style: 'default',
+            locale: 'en',
           },
         },
       };
@@ -186,6 +196,17 @@ const bootstrap = (opts) => {
       console.log('typeset error');
       console.error(err);
       doc.typesetError(math, err);
+    },
+
+    options: {
+      enableAssistiveMml: true,
+      menuOptions: {
+        settings: {
+          assistiveMml: true,
+          collapsible: true,
+          explorer: true,
+        },
+      },
     },
 
     InputJax: [new TeX(texConfig), mml],
