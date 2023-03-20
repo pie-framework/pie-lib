@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.12.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.12.17...@pie-lib/graphing@2.12.18) (2023-03-20)
+
+
+### Bug Fixes
+
+* **graphing:** avoid components to have same id - PD-2670 ([94fdaaa](https://github.com/pie-framework/pie-lib/commit/94fdaaaec65530e3217de0e4e3e98a9ef9bcd47f))
+
+
+
+
+
 ## [2.12.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.12.16...@pie-lib/graphing@2.12.17) (2023-03-13)
 
 
