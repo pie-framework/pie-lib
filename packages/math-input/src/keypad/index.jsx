@@ -84,7 +84,7 @@ const LatexButton = withStyles((theme) => ({
       },
     },
     '& .mq-root-block': {
-      padding: '5px',
+      padding: '5px !important',
     },
     '& .mq-overarrow.mq-arrow-both.mq-empty:after': {
       right: '-6px',
