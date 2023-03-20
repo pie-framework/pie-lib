@@ -115,13 +115,48 @@ const bootstrap = (opts) => {
           ['\\(', '\\)'],
         ],
         processEscapes: true,
+        options: {
+          enableExplorer: true,
+          enableAssistiveMml: true,
+          a11y: {
+            speech: true,
+            braille: true,
+            subtitles: true,
+          },
+          sre: {
+            domain: 'default',
+            style: 'default',
+            locale: 'en',
+          },
+        },
       }
     : {
         packages,
         macros,
+        options: {
+          enableExplorer: true,
+          enableAssistiveMml: true,
+          a11y: {
+            speech: true,
+            braille: true,
+            subtitles: true,
+          },
+          sre: {
+            domain: 'default',
+            style: 'default',
+            locale: 'en',
+          },
+        },
       };
 
   const mmlConfig = {
+    options: {
+      a11y: {
+        speech: true,
+        braille: true,
+        subtitles: true,
+      },
+    },
     parseError: function(node) {
       // function to process parsing errors
       console.log('error:', node);
@@ -137,6 +172,12 @@ const bootstrap = (opts) => {
       ...CHTMLWrapperFactory.defaultNodes,
       ...chtmlNodes,
     }),
+
+    options: {
+      renderActions: {
+        assistiveMml: [['AssistiveMmlHandler']],
+      },
+    },
   };
 
   const mml = new MathML(mmlConfig);
@@ -155,6 +196,17 @@ const bootstrap = (opts) => {
       console.log('typeset error');
       console.error(err);
       doc.typesetError(math, err);
+    },
+
+    options: {
+      enableAssistiveMml: true,
+      menuOptions: {
+        settings: {
+          assistiveMml: true,
+          collapsible: true,
+          explorer: true,
+        },
+      },
     },
 
     InputJax: [new TeX(texConfig), mml],
