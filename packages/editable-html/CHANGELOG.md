@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.5.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.5.16...@pie-lib/editable-html@9.5.17) (2023-03-20)
+
+
+### Bug Fixes
+
+* **editable-html:** tweak placement of the character toolbar if parent is scrollable PD-2175 ([11daa2e](https://github.com/pie-framework/pie-lib/commit/11daa2ea984ad5fef849a612ffcd4e53dd6af7b1))
+
+
+
+
+
 ## [9.5.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.5.15...@pie-lib/editable-html@9.5.16) (2023-03-13)
 
 **Note:** Version bump only for package @pie-lib/editable-html
