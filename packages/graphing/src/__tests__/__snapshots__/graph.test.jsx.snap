@@ -134,7 +134,7 @@ exports[`Graph snapshot renders 1`] = `
       width={400}
     />
     <mask
-      id="graph-1481"
+      id="graph-1618"
     >
       <rect
         fill="white"
@@ -147,7 +147,7 @@ exports[`Graph snapshot renders 1`] = `
     </mask>
     <g
       id="marks"
-      mask="url('#graph-1481')"
+      mask="url('#graph-1618')"
     >
       <Point
         graphProps={
