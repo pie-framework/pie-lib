@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.14.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.14.17...@pie-lib/render-ui@4.14.18) (2023-03-27)
+
+
+### Bug Fixes
+
+* **render-ui:** add additional style for legend tag-PD-2711 ([639a4d5](https://github.com/pie-framework/pie-lib/commit/639a4d589938209a8542c511a5d6a5a138c802af))
+
+
+
+
+
 ## [4.14.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.14.16...@pie-lib/render-ui@4.14.17) (2023-03-20)
 
 **Note:** Version bump only for package @pie-lib/render-ui
