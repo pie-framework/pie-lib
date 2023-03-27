@@ -71,7 +71,11 @@ export class PreviewPrompt extends Component {
   render() {
     const { prompt, classes, tagName, className, onClick, defaultClassName } = this.props;
     const CustomTag = tagName || 'div';
-    const customClasses = `${classes.promptTable} ${classes[className] || ''} ${defaultClassName || ''}`;
+    // legend tag was added once with accessibility tasks, wee need extra style to make it work with images alignment
+    const legendClass = tagName === 'legend' ? 'legend' : '';
+    const customClasses = `${classes.promptTable} ${classes[className] || ''} ${defaultClassName || ''} ${classes[
+      legendClass
+    ] || ''}`;
 
     return (
       <CustomTag
@@ -90,6 +94,9 @@ const styles = (theme) => ({
   prompt: {
     verticalAlign: 'middle',
     color: color.text(),
+  },
+  legend: {
+    width: '100%',
   },
   rationale: {
     paddingLeft: theme.spacing.unit * 4,

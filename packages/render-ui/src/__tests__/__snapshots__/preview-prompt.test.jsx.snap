@@ -5,10 +5,11 @@ exports[`Prompt with Custom tag  renders with custom tag "span" correctly render
   className="prompt"
   classes={
     Object {
-      "label": "PreviewPrompt-label-3",
+      "label": "PreviewPrompt-label-4",
+      "legend": "PreviewPrompt-legend-2",
       "prompt": "PreviewPrompt-prompt-1",
-      "promptTable": "PreviewPrompt-promptTable-4",
-      "rationale": "PreviewPrompt-rationale-2",
+      "promptTable": "PreviewPrompt-promptTable-5",
+      "rationale": "PreviewPrompt-rationale-3",
     }
   }
   onClick={[Function]}
@@ -22,10 +23,11 @@ exports[`Prompt without Custom tag  default class with markup renders 1`] = `
   className=""
   classes={
     Object {
-      "label": "PreviewPrompt-label-3",
+      "label": "PreviewPrompt-label-4",
+      "legend": "PreviewPrompt-legend-2",
       "prompt": "PreviewPrompt-prompt-1",
-      "promptTable": "PreviewPrompt-promptTable-4",
-      "rationale": "PreviewPrompt-rationale-2",
+      "promptTable": "PreviewPrompt-promptTable-5",
+      "rationale": "PreviewPrompt-rationale-3",
     }
   }
   onClick={[Function]}
