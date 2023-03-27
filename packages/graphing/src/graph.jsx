@@ -66,7 +66,7 @@ export const removeBuildingToolIfCurrentToolDiffers = ({ marks, currentTool }) =
 export class Graph extends React.Component {
   constructor(props) {
     super(props);
-    this.maskUid = props.maskId || 'graph-' + (Math.random() * 10000).toFixed();
+    this.maskUid = this.generateMaskId();
   }
 
   static propTypes = {
@@ -81,6 +81,10 @@ export class Graph extends React.Component {
   };
 
   state = {};
+
+  generateMaskId() {
+    return 'graph-' + (Math.random() * 10000).toFixed();
+  }
 
   componentDidMount = () => this.setState({ labelNode: this.labelNode });
 

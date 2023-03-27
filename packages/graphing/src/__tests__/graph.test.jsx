@@ -51,7 +51,6 @@ describe('Graph', () => {
     range: { min: 0, max: 1, step: 1 },
     size: { width: 400, height: 400 },
     currentTool,
-    maskId: 'graph-1481',
   };
 
   beforeEach(() => {
@@ -82,7 +81,9 @@ describe('Graph', () => {
 
   describe('snapshot', () => {
     it('renders', () => {
-      expect(wrapper()).toMatchSnapshot();
+      jest.spyOn(Graph.prototype, 'generateMaskId').mockReturnValue('graph-1618');
+      let w = wrapper();
+      expect(w).toMatchSnapshot();
     });
   });
 
