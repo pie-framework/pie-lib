@@ -10,6 +10,7 @@ class RawLayoutContents extends React.Component {
     secondary: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
     children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
     classes: PropTypes.object,
+    dimensions: PropTypes.object,
   };
 
   getConfiguration = () => {
@@ -45,7 +46,8 @@ class RawLayoutContents extends React.Component {
   // }
 
   render() {
-    const { mode, secondary, children, classes } = this.props;
+    const { mode, secondary, children, classes, dimensions } = this.props;
+    const { minHeight, minWidth, maxHeight, maxWidth } = dimensions || {};
     const configuration = this.getConfiguration();
 
     let hasSettingsPanel = Object.entries(configuration || {}).some(([propName, obj]) => !!obj?.settings);
@@ -61,7 +63,7 @@ class RawLayoutContents extends React.Component {
     }
 
     return (
-      <div className={classes.container}>
+      <div className={classes.container} style={{ minHeight, minWidth, maxHeight, maxWidth }}>
         {mode === 'inline' && (
           <div className={classnames(classes.flow, classes.contentContainer)}>
             <div className={classnames(classes.configContainer, 'design-container')}>{children}</div>
@@ -101,6 +103,7 @@ const styles = (theme) => ({
     display: 'flex',
     flexDirection: 'column',
     position: 'relative',
+    overflow: 'auto',
   },
   contentContainer: {
     padding: `${theme.spacing.unit * 2}px 0`,

@@ -12,6 +12,7 @@ exports[`layout - snapshot renders correctly with a side panel 1`] = `
       "scroll": Object {},
     }
   }
+  dimensions={Object {}}
   hideSettings={false}
   measure={[Function]}
   measureRef={[Function]}
@@ -50,6 +51,7 @@ exports[`layout - snapshot renders correctly without a side panel 1`] = `
       "scroll": Object {},
     }
   }
+  dimensions={Object {}}
   hideSettings={false}
   measure={[Function]}
   measureRef={[Function]}
