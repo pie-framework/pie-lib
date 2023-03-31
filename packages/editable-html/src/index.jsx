@@ -67,7 +67,6 @@ export default class EditableHtml extends React.Component {
   onChange = (value, done) => {
     const html = valueToHtml(value);
     const htmlParsed = parseDegrees(html);
-    console.log('html');
 
     log('value as html: ', html);
 
@@ -141,7 +140,6 @@ export default class EditableHtml extends React.Component {
       <Editor
         onRef={(ref) => {
           if (ref) {
-            console.log('ref Andreea', ref);
             this.rootRef = ref;
           }
         }}
