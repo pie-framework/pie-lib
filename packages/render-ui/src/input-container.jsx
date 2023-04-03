@@ -29,7 +29,7 @@ RawInputContainer.propTypes = {
 export default withStyles((theme) => ({
   formControl: {
     marginLeft: 0,
-    marginRight: theme.spacing.unit,
+    marginRight: 0,
     paddingBottom: theme.spacing.unit,
     flex: '1 0 auto',
     minWidth: theme.spacing.unit * 4,

@@ -109,6 +109,7 @@ export default class EditableHtml extends React.Component {
         if (position === 'beginning' && lastText) {
           c.moveFocusTo(lastText.key, 0).moveAnchorTo(lastText.key, 0);
         }
+        editorDOM.focus();
       });
     }
   };
