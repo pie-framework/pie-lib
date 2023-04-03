@@ -10,6 +10,7 @@ class MeasuredConfigLayout extends React.Component {
     children: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.element), PropTypes.element]),
     className: PropTypes.string,
     classes: PropTypes.object,
+    dimensions: PropTypes.object,
     settings: PropTypes.element,
     sidePanelMinWidth: PropTypes.number,
     hideSettings: PropTypes.bool,
@@ -18,6 +19,7 @@ class MeasuredConfigLayout extends React.Component {
   static defaultProps = {
     sidePanelMinWidth: 950,
     hideSettings: false,
+    dimensions: {},
   };
 
   constructor(props) {
@@ -27,8 +29,11 @@ class MeasuredConfigLayout extends React.Component {
 
   onResize = (contentRect) => {
     const { bounds } = contentRect;
-    const { sidePanelMinWidth } = this.props;
-    const layoutMode = bounds.width >= sidePanelMinWidth ? 'inline' : 'tabbed';
+    const { sidePanelMinWidth, dimensions } = this.props;
+    const { maxWidth } = dimensions || {};
+
+    const layoutMode =
+      bounds.width >= sidePanelMinWidth && (maxWidth ? maxWidth >= sidePanelMinWidth : true) ? 'inline' : 'tabbed';
 
     this.setState({ layoutMode });
   };
@@ -37,7 +42,7 @@ class MeasuredConfigLayout extends React.Component {
     return (
       <Measure bounds onResize={this.onResize}>
         {({ measureRef }) => {
-          const { children, settings, hideSettings } = this.props;
+          const { children, settings, hideSettings, dimensions } = this.props;
           const { layoutMode } = this.state;
 
           const settingsPanel =
@@ -46,7 +51,7 @@ class MeasuredConfigLayout extends React.Component {
 
           return (
             <div ref={measureRef} className="main-container">
-              <LayoutContents mode={layoutMode} secondary={secondaryContent}>
+              <LayoutContents mode={layoutMode} secondary={secondaryContent} dimensions={dimensions}>
                 {children}
               </LayoutContents>
             </div>
