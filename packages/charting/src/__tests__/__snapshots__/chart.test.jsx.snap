@@ -141,7 +141,7 @@ exports[`ChartAxes snapshot renders 1`] = `
       xBand={[Function]}
     />
     <mask
-      id="myMask"
+      mask="chart-2645"
     >
       <rect
         fill="white"
@@ -153,7 +153,7 @@ exports[`ChartAxes snapshot renders 1`] = `
     </mask>
     <g
       id="marks"
-      mask="url('#myMask')"
+      mask="url('#chart-2645')"
     >
       <Component
         data={Array []}
@@ -339,7 +339,7 @@ exports[`ChartAxes snapshot renders if size is not defined 1`] = `
       xBand={[Function]}
     />
     <mask
-      id="myMask"
+      mask="chart-1553"
     >
       <rect
         fill="white"
@@ -351,7 +351,7 @@ exports[`ChartAxes snapshot renders if size is not defined 1`] = `
     </mask>
     <g
       id="marks"
-      mask="url('#myMask')"
+      mask="url('#chart-1553')"
     >
       <Component
         data={Array []}
@@ -541,7 +541,7 @@ exports[`ChartAxes snapshot renders without chartType property 1`] = `
       xBand={[Function]}
     />
     <mask
-      id="myMask"
+      mask="chart-4286"
     >
       <rect
         fill="white"
@@ -553,7 +553,7 @@ exports[`ChartAxes snapshot renders without chartType property 1`] = `
     </mask>
     <g
       id="marks"
-      mask="url('#myMask')"
+      mask="url('#chart-4286')"
     >
       <Component
         data={Array []}

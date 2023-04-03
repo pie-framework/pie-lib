@@ -39,11 +39,23 @@ describe('ChartAxes', () => {
   };
 
   describe('snapshot', () => {
-    it('renders', () => expect(wrapper()).toMatchSnapshot());
+    it('renders', () => {
+      jest.spyOn(Chart.prototype, 'generateMaskId').mockReturnValue('chart-2645');
+      let w = wrapper();
+      expect(w).toMatchSnapshot();
+    });
 
-    it('renders if size is not defined', () => expect(wrapper({ size: undefined })).toMatchSnapshot());
+    it('renders if size is not defined', () => {
+      jest.spyOn(Chart.prototype, 'generateMaskId').mockReturnValue('chart-1553');
+      let w = wrapper({ size: undefined });
+      expect(w).toMatchSnapshot();
+    });
 
-    it('renders without chartType property', () => expect(wrapper({ chartType: null })).toMatchSnapshot());
+    it('renders without chartType property', () => {
+      jest.spyOn(Chart.prototype, 'generateMaskId').mockReturnValue('chart-4286');
+      let w = wrapper({ chartType: null });
+      expect(w).toMatchSnapshot();
+    });
 
     it('renders without chartType and charts properties', () =>
       expect(wrapper({ chartType: null, charts: null })).toMatchSnapshot());

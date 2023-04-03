@@ -23,6 +23,7 @@ export class Chart extends React.Component {
         open: false,
       },
     };
+    this.maskUid = this.generateMaskId();
   }
 
   static propTypes = {
@@ -75,6 +76,10 @@ export class Chart extends React.Component {
       chartTypes.LinePlot(),
     ],
   };
+
+  generateMaskId() {
+    return 'chart-' + (Math.random() * 10000).toFixed();
+  }
 
   handleAlertDialog = (open, callback) =>
     this.setState(
@@ -257,10 +262,10 @@ export class Chart extends React.Component {
             top={top}
             error={error}
           />
-          <mask id="myMask">
+          <mask mask={`${this.maskUid}`}>
             <rect {...maskSize} fill="white" />
           </mask>
-          <g id="marks" mask="url('#myMask')">
+          <g id="marks" mask={`url('#${this.maskUid}')`}>
             <ChartComponent
               {...common}
               data={categories}
