@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.7.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.7.0...@pie-lib/charting@5.7.1) (2023-04-03)
+
+
+### Bug Fixes
+
+* **charting:** generate random maskId to avoid duplication of ids-PD-2712 ([c32c7ea](https://github.com/pie-framework/pie-lib/commit/c32c7ea84972c396e123e00ca16ac6ec41b844d3))
+
+
+
+
+
+# [5.7.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.6.16...@pie-lib/charting@5.7.0) (2023-03-27)
+
+
+### Features
+
+* **charting:** mark up the category name in the student’s response as correct or incorrect with a rectangle ([5746b54](https://github.com/pie-framework/pie-lib/commit/5746b54bdeee204e906af91dca1cb65788d91128))
+
+
+
+
+
 ## [5.6.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.6.15...@pie-lib/charting@5.6.16) (2023-03-06)
 
 

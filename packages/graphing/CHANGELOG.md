@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.12.20](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.12.19...@pie-lib/graphing@2.12.20) (2023-04-03)
+
+**Note:** Version bump only for package @pie-lib/graphing
+
+
+
+
+
+## [2.12.19](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.12.18...@pie-lib/graphing@2.12.19) (2023-03-27)
+
+
+### Bug Fixes
+
+* **graphing:** create method to generate randomId and updated tests-PD-2670 ([3e0790a](https://github.com/pie-framework/pie-lib/commit/3e0790ad3f233248fac0cfff5ba10f298cd339cb))
+
+
+
+
+
 ## [2.12.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.12.17...@pie-lib/graphing@2.12.18) (2023-03-20)
 
 
