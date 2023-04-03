@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.6.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.5.6...@pie-lib/config-ui@11.6.0) (2023-04-03)
+
+
+### Features
+
+* added the ability to set min/max width and height for the layout content PD-2425 ([f040d77](https://github.com/pie-framework/pie-lib/commit/f040d777e35bb9e917a1f2bfd33ed5591ea1aa51))
+
+
+
+
+
 ## [11.5.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.5.5...@pie-lib/config-ui@11.5.6) (2023-03-27)
 
 **Note:** Version bump only for package @pie-lib/config-ui

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.5.19](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.5.18...@pie-lib/editable-html@9.5.19) (2023-04-03)
+
+
+### Bug Fixes
+
+* **editable-html:** focus on empty choice-PD-1805 ([3497742](https://github.com/pie-framework/pie-lib/commit/34977426bfd4db1a5c6869bc275ffbbe30ad3131))
+
+
+
+
+
 ## [9.5.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.5.17...@pie-lib/editable-html@9.5.18) (2023-03-27)
 
 **Note:** Version bump only for package @pie-lib/editable-html

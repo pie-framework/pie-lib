@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.14.19](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.14.18...@pie-lib/render-ui@4.14.19) (2023-04-03)
+
+
+### Bug Fixes
+
+* **render-ui:** remove margin right from input ([4f07e4e](https://github.com/pie-framework/pie-lib/commit/4f07e4eadd70e98be2c1278f36f9a5a6eddbcf0c))
+
+
+
+
+
 ## [4.14.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.14.17...@pie-lib/render-ui@4.14.18) (2023-03-27)
 
 
