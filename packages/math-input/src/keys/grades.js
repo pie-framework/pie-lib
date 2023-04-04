@@ -53,6 +53,7 @@ export const gradeSets = [
       [comparison.lessThan, comparison.greaterThan],
       [fractions.xOverBlank, fractions.xBlankBlank],
       [vars.x, logic.longDivision],
+      [exponent.squared, exponent.xToPowerOfN],
     ],
   },
   {
