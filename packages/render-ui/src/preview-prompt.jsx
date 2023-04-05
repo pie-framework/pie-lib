@@ -104,9 +104,14 @@ const styles = (theme) => ({
   },
   label: {
     color: `${color.text()} !important`, //'var(--choice-input-color, black)',
-    display: 'inline-flex',
+    display: 'flex',
+    alignItems: 'center',
     verticalAlign: 'middle',
     cursor: 'pointer',
+    '& *': {
+      display: 'inherit',
+      alignItems: 'inherit',
+    },
   },
   promptTable: {
     '&:not(.MathJax) > table': {
