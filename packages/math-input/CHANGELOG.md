@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.11.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.10.13...@pie-lib/math-input@6.11.0) (2023-04-07)
+
+
+### Features
+
+* **math-input:** add two exponent buttons to the grade 3-5 math editor PD-2728 ([b7b87a5](https://github.com/pie-framework/pie-lib/commit/b7b87a5c0c2ca2c3e600cdac696cab3c0a576e87))
+
+
+
+
+
 ## [6.10.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.10.12...@pie-lib/math-input@6.10.13) (2023-03-20)
 
 
