@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.14.20](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.14.19...@pie-lib/render-ui@4.14.20) (2023-04-07)
+
+
+### Bug Fixes
+
+* **multiple-choice:** fix labels alignment ([0be602e](https://github.com/pie-framework/pie-lib/commit/0be602eb32abfb4ba5d1cee455924240d392506d))
+
+
+
+
+
 ## [4.14.19](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.14.18...@pie-lib/render-ui@4.14.19) (2023-04-03)
 
 
