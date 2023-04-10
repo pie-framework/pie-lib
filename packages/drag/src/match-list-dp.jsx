@@ -1,4 +1,3 @@
-import React from 'react';
 import { DropTarget } from 'react-dnd';
 import { DroppablePlaceholder } from './droppable-placeholder';
 

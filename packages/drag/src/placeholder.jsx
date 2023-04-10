@@ -34,6 +34,7 @@ export const PlaceHolder = (props) => {
 
 PlaceHolder.propTypes = {
   classes: PropTypes.object.isRequired,
+  choiceBoard: PropTypes.bool,
   grid: PropTypes.shape({
     columns: PropTypes.number,
     rows: PropTypes.number,

@@ -39,7 +39,7 @@ export class CorrectAnswerToggle extends React.Component {
     this.props.onToggle(!this.props.toggled);
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     this.setState({
       show: nextProps.show,
     });

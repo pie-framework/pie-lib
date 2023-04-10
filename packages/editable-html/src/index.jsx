@@ -23,6 +23,7 @@ const reduceMultipleBrs = (markup) => {
   try {
     return markup.replace(/(<br\s*\/?>){3,}/gi, '<br>');
   } catch (e) {
+    // eslint-disable-next-line no-console
     console.log("Couldn't remove <br/> tags: ", e);
   }
 
@@ -31,10 +32,12 @@ const reduceMultipleBrs = (markup) => {
 
 export default class EditableHtml extends React.Component {
   static propTypes = {
+    error: PropTypes.any,
     onChange: PropTypes.func.isRequired,
     onDone: PropTypes.func,
     markup: PropTypes.string.isRequired,
     allowValidation: PropTypes.bool,
+    toolbarOpts: PropTypes.object,
   };
 
   static defaultProps = {

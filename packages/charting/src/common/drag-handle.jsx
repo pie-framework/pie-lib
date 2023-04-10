@@ -56,7 +56,7 @@ export class RawDragHandle extends React.Component {
   }
 }
 
-export const DragHandle = withStyles((theme) => ({
+export const DragHandle = withStyles(() => ({
   handle: {
     height: '10px',
     fill: color.secondary(),

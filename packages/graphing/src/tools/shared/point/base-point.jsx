@@ -35,7 +35,6 @@ export class RawBp extends React.Component {
       correctness,
       graphProps,
       labelNode,
-      style,
       ...rest
     } = this.props;
     const { showCoordinates } = this.state;
