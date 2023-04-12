@@ -11,6 +11,7 @@ import * as mq from '../mq';
 import { baseSet } from '../keys';
 import debug from 'debug';
 import _ from 'lodash';
+import MathQuill from '@pie-framework/mathquill';
 
 const log = debug('pie-lib:math-inline:keypad');
 
