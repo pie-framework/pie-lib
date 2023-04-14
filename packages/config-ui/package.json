@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/config-ui",
-  "version": "11.6.1",
+  "version": "11.6.3",
   "main": "lib/index.js",
   "module": "src/index.js",
   "publishConfig": {
@@ -10,7 +10,7 @@
   "dependencies": {
     "@material-ui/core": "^3.8.3",
     "@material-ui/icons": "^3.0.2",
-    "@pie-lib/editable-html": "^9.5.20",
+    "@pie-lib/editable-html": "^9.5.22",
     "@pie-lib/icons": "^2.4.42",
     "@pie-lib/render-ui": "^4.14.20",
     "classnames": "^2.2.6",

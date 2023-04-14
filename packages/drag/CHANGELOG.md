@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.1.16...@pie-lib/drag@2.1.17) (2023-04-14)
+
+
+### Bug Fixes
+
+* **drag:** revert Carla's changes for PD-2495 because it looks like it's causing PD-2722 ([b8d6973](https://github.com/pie-framework/pie-lib/commit/b8d69737844d60b69641d57078eb6a3509d3728b))
+
+
+
+
+
+## [2.1.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.1.15...@pie-lib/drag@2.1.16) (2023-04-14)
+
+
+### Bug Fixes
+
+* commit for build (testing purpose) ([75acd61](https://github.com/pie-framework/pie-lib/commit/75acd61956f266fc3d4d2b6819782a0de61b0ec7))
+
+
+
+
+
 ## [2.1.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.1.13...@pie-lib/drag@2.1.15) (2023-02-28)
 
 
