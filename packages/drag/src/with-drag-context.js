@@ -6,6 +6,8 @@ import { DndProvider } from 'react-dnd';
 
 const isTouchEnabled = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
 
+// This is a test for a build
+
 // https://github.com/react-dnd/react-dnd/issues/3257
 export default (Component) => (props) => (
   <DndProvider backend={isTouchEnabled ? TouchBackend : HTML5Backend} context={window}>
