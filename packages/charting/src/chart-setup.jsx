@@ -40,7 +40,7 @@ const ConfigureChartPanel = (props) => {
         label="Grid Interval"
         value={range.step}
         variant="outlined"
-        onChange={(e, v) => onRangeChanged('step', v)}
+        onChange={(e, v) => onRangeChanged('step', v, e)}
         {...gridOptions}
       />
       <NumberTextFieldCustom
@@ -48,7 +48,7 @@ const ConfigureChartPanel = (props) => {
         label={'Label Interval'}
         value={range.labelStep}
         variant={'outlined'}
-        onChange={(e, v) => onRangeChanged('labelStep', v)}
+        onChange={(e, v) => onRangeChanged('labelStep', v, e)}
         {...labelOptions}
       />
     </div>
@@ -90,7 +90,7 @@ const ConfigureChartPanel = (props) => {
     onChange({ ...model, graph });
   };
 
-  const onRangeChanged = (key, value) => {
+  const onRangeChanged = (key, value, e) => {
     // use reset values to restore range to initial values
     setResetValue(range[key]);
     setRangeKey(key);
@@ -108,7 +108,11 @@ const ConfigureChartPanel = (props) => {
         );
 
       if (outOfRange) {
-        setOpen(true);
+        if (JSON.stringify(e) === '{}') {
+          removeOutOfRangeValues();
+        } else {
+          setOpen(true);
+        }
       } else {
         onChange({ ...model, range });
       }
@@ -193,7 +197,7 @@ const ConfigureChartPanel = (props) => {
             min={rangeProps(model.chartType).min}
             max={rangeProps(model.chartType).max}
             variant="outlined"
-            onChange={(e, v) => onRangeChanged('max', v)}
+            onChange={(e, v) => onRangeChanged('max', v, e)}
           />
         </div>
         {!model.chartType.includes('Plot') && stepConfig}
