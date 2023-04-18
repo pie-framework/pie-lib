@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import cn from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import AutosizeInput from 'react-input-autosize';
@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { types } from '@pie-lib/plot';
 import { correct, incorrect, disabled } from './common/styles';
 import { color } from '@pie-lib/render-ui';
+import { renderMath } from '@pie-lib/math-rendering';
 
 const styles = (theme) => ({
   input: {
@@ -24,6 +25,39 @@ const styles = (theme) => ({
   },
 });
 
+function isFractionFormat(label) {
+  const trimmedLabel = label?.trimStart().trimEnd() || '';
+  const stringRegex = /[a-zA-Z]/;
+  // Check if label contain at least one letter
+  if (stringRegex.test(label)) {
+    return false;
+  }
+  const fracRegex = new RegExp(/[1-9][0-9]*\/[1-9][0-9]*$/g);
+  return !!trimmedLabel?.match(fracRegex) || false;
+}
+
+function getLabelMathFormat(label) {
+  const trimmedLabel = label?.trimStart().trimEnd() || '';
+  let fraction;
+  let mixedNr = '';
+  let improperFraction = trimmedLabel.split(' ');
+  if (improperFraction[1] && improperFraction[1].includes('/')) {
+    fraction = improperFraction[1].split('/') || '';
+  } else {
+    fraction = trimmedLabel?.split('/') || '';
+  }
+
+  let formattedLLabel;
+  if (isFractionFormat(label)) {
+    if (improperFraction[0] && improperFraction[1]) {
+      mixedNr = improperFraction[0];
+    }
+    formattedLLabel = `\\(${mixedNr}\\frac{${fraction[0]}}{${fraction[1]}}\\)`;
+    return formattedLLabel;
+  }
+  return undefined;
+}
+
 export const MarkLabel = (props) => {
   // eslint-disable-next-line no-unused-vars
   const [input, setInput] = useState(null);
@@ -40,9 +74,24 @@ export const MarkLabel = (props) => {
     autoFocus,
     error,
   } = props;
+
   const [label, setLabel] = useState(mark.label);
-  const onChange = (e) => setLabel(e.target.value);
-  const onChangeProp = (e) => props.onChange(e.target.value);
+  const [mathLabel, setMathLabel] = useState(getLabelMathFormat(mark.label));
+  const [isEditing, setIsEditing] = useState(false);
+  // let root = useRef(null);
+  const onChange = (e) => {
+    setLabel(e.target.value);
+  };
+
+  const isMathRendering = () => {
+    return isEditing === false && mathLabel !== undefined;
+  };
+
+  const onChangeProp = (e) => {
+    setMathLabel(getLabelMathFormat(mark.label));
+    setIsEditing(false);
+    props.onChange(e.target.value);
+  };
   let extraStyle = {};
 
   if (rotate) {
@@ -57,13 +106,26 @@ export const MarkLabel = (props) => {
     setLabel(mark.label);
   }, [mark.label]);
 
-  return (
+  return isMathRendering() ? (
+    <div
+      dangerouslySetInnerHTML={{ __html: getLabelMathFormat(label) }}
+      onClick={() => setIsEditing(true)}
+      style={{
+        pointerEvents: 'auto',
+        textAlign: 'center',
+        minWidth: barWidth,
+        fontSize: '14px',
+        fontFamily: 'Roboto',
+        color: '#283593',
+      }}
+    ></div>
+  ) : (
     <AutosizeInput
-      autoFocus={autoFocus}
       inputRef={(r) => {
         _ref(r);
         externalInputRef(r);
       }}
+      autoFocus={isEditing || autoFocus}
       disabled={disabled}
       inputClassName={cn(classes.input, correctness && correctness.label, disabled && 'disabled', error && 'error')}
       inputStyle={{
