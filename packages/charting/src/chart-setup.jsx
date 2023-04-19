@@ -64,7 +64,7 @@ const ConfigureChartPanel = (props) => {
     setOpen(open);
   };
 
-  const resetValues = (data) =>
+  const resetValues = (data, updateModel) => {
     (data || []).forEach((d) => {
       const remainder = d.value - range.step * Math.floor(d.value / range.step);
 
@@ -73,10 +73,15 @@ const ConfigureChartPanel = (props) => {
       }
     });
 
-  const removeOutOfRangeValues = () => {
+    if (updateModel) {
+      onChange({ ...model, data });
+    }
+  };
+
+  const removeOutOfRangeValues = (updateModel) => {
     const { correctAnswer, data } = model;
 
-    resetValues(data);
+    resetValues(data, updateModel);
     resetValues(correctAnswer.data);
   };
 
@@ -109,7 +114,8 @@ const ConfigureChartPanel = (props) => {
 
       if (outOfRange) {
         if (JSON.stringify(e) === '{}') {
-          removeOutOfRangeValues();
+          removeOutOfRangeValues(true);
+          onChange({ ...model });
         } else {
           setOpen(true);
         }
