@@ -157,6 +157,7 @@ const marks = {
   },
 };
 
+// eslint-disable-next-line no-unused-vars
 const findPreviousText = (el) => {
   if (el.nodeName === '#text') {
     return el;
@@ -369,6 +370,7 @@ export const htmlToValue = (html) => {
   try {
     return serializer.deserialize(html);
   } catch (e) {
+    // eslint-disable-next-line no-console
     console.log("Couldn't parse html: ", e);
     return {};
   }

@@ -8,6 +8,7 @@ import { PureToolbar } from '@pie-lib/math-toolbar';
 import CustomPopper from './custom-popper';
 import { insertSnackBar } from '../respArea/utils';
 import { characterIcons, spanishConfig, specialConfig } from './utils';
+import PropTypes from 'prop-types';
 const log = debug('@pie-lib:editable-html:plugins:characters');
 
 const removePopOvers = () => {
@@ -223,6 +224,10 @@ const CharacterIcon = ({ letter }) => (
     {letter}
   </div>
 );
+
+CharacterIcon.propTypes = {
+  letter: PropTypes.string,
+};
 
 export default function CharactersPlugin(opts) {
   removeDialogs();

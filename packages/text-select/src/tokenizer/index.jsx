@@ -141,7 +141,7 @@ export class Tokenizer extends React.Component {
   }
 }
 
-export default withStyles((theme) => ({
+export default withStyles(() => ({
   text: {
     whiteSpace: 'pre-wrap',
   },

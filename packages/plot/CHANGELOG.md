@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.6.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.6.12...@pie-lib/plot@2.6.13) (2023-04-19)
+
+
+### Bug Fixes
+
+* **eslint:** fix eslint problems-PD-2732 ([9eb9976](https://github.com/pie-framework/pie-lib/commit/9eb9976749753da86e1057a07bd2cfc65bf64ae4))
+
+
+
+
+
 ## [2.6.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.6.10...@pie-lib/plot@2.6.12) (2023-01-31)
 
 **Note:** Version bump only for package @pie-lib/plot

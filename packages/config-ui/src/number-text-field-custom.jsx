@@ -9,7 +9,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import Remove from '@material-ui/icons/Remove';
 import Add from '@material-ui/icons/Add';
 
-const styles = (theme) => ({
+const styles = () => ({
   input: {
     '& input[type=number]': {
       '-moz-appearance': 'textfield',
@@ -50,6 +50,7 @@ export class NumberTextFieldCustom extends React.Component {
     disabled: PropTypes.bool,
     error: PropTypes.bool,
     inputClassName: PropTypes.string,
+    helperText: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     onlyIntegersAllowed: PropTypes.bool,
     value: PropTypes.number,
@@ -58,6 +59,7 @@ export class NumberTextFieldCustom extends React.Component {
     step: PropTypes.number,
     label: PropTypes.string,
     disableUnderline: PropTypes.bool,
+    textAlign: PropTypes.string,
     variant: PropTypes.string,
   };
 

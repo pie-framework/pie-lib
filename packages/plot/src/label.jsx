@@ -3,6 +3,7 @@ import { color, Readable } from '@pie-lib/render-ui';
 import cn from 'classnames';
 import EditableHtml from '@pie-lib/editable-html';
 import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
 
 const LabelComponent = (props) => {
   const {
@@ -87,6 +88,20 @@ const LabelComponent = (props) => {
       </div>
     </Readable>
   );
+};
+LabelComponent.propTypes = {
+  classes: PropTypes.object,
+  disabledLabel: PropTypes.bool,
+  graphHeight: PropTypes.number,
+  graphWidth: PropTypes.number,
+  isChartBottomLabel: PropTypes.bool,
+  isDefineChartBottomLabel: PropTypes.bool,
+  isChartLeftLabel: PropTypes.bool,
+  isDefineChartLeftLabel: PropTypes.bool,
+  placeholder: PropTypes.string,
+  text: PropTypes.string,
+  side: PropTypes.string,
+  onChange: PropTypes.func,
 };
 
 export default withStyles((theme) => ({

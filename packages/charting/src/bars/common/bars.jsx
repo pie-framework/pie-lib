@@ -27,6 +27,7 @@ const histogramColors = [
 
 export class RawBar extends React.Component {
   static propTypes = {
+    barColor: PropTypes.string,
     onChangeCategory: PropTypes.func,
     value: PropTypes.number,
     classes: PropTypes.object,
@@ -121,6 +122,7 @@ export class Bars extends React.Component {
     defineChart: PropTypes.bool,
     xBand: PropTypes.func,
     graphProps: types.GraphPropsType.isRequired,
+    histogram: PropTypes.bool,
   };
 
   render() {

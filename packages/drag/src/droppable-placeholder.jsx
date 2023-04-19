@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 export class DroppablePlaceholder extends React.Component {
   static propTypes = {
+    classes: PropTypes.object,
     connectDropTarget: PropTypes.func.isRequired,
     isOver: PropTypes.bool,
     children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,

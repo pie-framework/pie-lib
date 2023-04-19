@@ -258,7 +258,11 @@ const ConfigureChartPanel = (props) => {
 
 ConfigureChartPanel.propTypes = {
   classes: PropTypes.object,
+  chartDimensions: PropTypes.object,
   domain: PropTypes.object,
+  gridValues: PropTypes.object,
+  labelValues: PropTypes.object,
+  model: PropTypes.object,
   onChange: PropTypes.func,
   range: PropTypes.object,
   chartDimension: PropTypes.object,

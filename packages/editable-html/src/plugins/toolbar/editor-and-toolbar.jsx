@@ -32,6 +32,7 @@ export class EditorAndToolbar extends React.Component {
       position: PropTypes.oneOf(['bottom', 'top']),
       alwaysVisible: PropTypes.bool,
       error: PropTypes.string,
+      noBorder: PropTypes.any,
     }),
   };
 

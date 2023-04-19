@@ -92,7 +92,9 @@ export const MarkLabel = (props) => {
 };
 
 MarkLabel.propTypes = {
+  autoFocus: PropTypes.bool,
   disabled: PropTypes.bool,
+  error: PropTypes.any,
   onChange: PropTypes.func,
   graphProps: types.GraphPropsType,
   classes: PropTypes.object,

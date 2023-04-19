@@ -27,7 +27,7 @@ export default class Input extends React.Component {
     };
   }
 
-  componentWillReceiveProps(newProps) {
+  UNSAFE_componentWillReceiveProps(newProps) {
     this.setState({
       value: newProps.value,
     });

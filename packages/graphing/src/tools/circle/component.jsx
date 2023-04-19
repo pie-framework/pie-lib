@@ -259,7 +259,7 @@ export class RawBaseCircle extends React.Component {
   }
 }
 
-export const BaseCircle = withStyles((theme) => ({
+export const BaseCircle = withStyles(() => ({
   outerLine: {
     fill: 'rgb(0,0,0,0)', // TODO hardcoded color
     stroke: color.primaryLight(),

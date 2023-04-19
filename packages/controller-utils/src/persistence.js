@@ -65,8 +65,6 @@ export const getShuffledChoices = (choices, session, updateSession, choiceKey) =
     }
   });
 
-const hasShuffledValues = (s) => !!(s || {}).shuffledValues;
-
 /**
  * If we return:
  * - true - that means that the order of the choices will be ordinal (as is created in the configure item)

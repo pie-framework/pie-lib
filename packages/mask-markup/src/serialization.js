@@ -1,4 +1,3 @@
-import React from 'react';
 import Html from 'slate-html-serializer';
 import { object as toStyleObject } from 'to-style';
 import debug from 'debug';

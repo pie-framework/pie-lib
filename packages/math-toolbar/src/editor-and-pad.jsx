@@ -41,10 +41,12 @@ export class EditorAndPad extends React.Component {
     showKeypad: PropTypes.bool,
     controlledKeypad: PropTypes.bool,
     controlledKeypadMode: PropTypes.bool,
+    error: PropTypes.string,
     noDecimal: PropTypes.bool,
     hideInput: PropTypes.bool,
     noLatexHandling: PropTypes.bool,
     layoutForKeyPad: PropTypes.object,
+    maxResponseAreas: PropTypes.number,
     additionalKeys: PropTypes.array,
     latex: PropTypes.string.isRequired,
     onAnswerBlockAdd: PropTypes.func,
@@ -140,6 +142,7 @@ export class EditorAndPad extends React.Component {
         this.input.mathField.__controller.cursor.insLeftOf(this.input.mathField.__controller.cursor.parent[-1].parent);
         this.input.mathField.el().dispatchEvent(new KeyboardEvent('keydown', { keyCode: 8 }));
       } catch (e) {
+        // eslint-disable-next-line no-console
         console.error(e.toString());
       }
 

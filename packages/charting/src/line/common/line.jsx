@@ -118,7 +118,7 @@ export class RawLine extends React.Component {
   }
 }
 
-const StyledLine = withStyles((theme) => ({
+const StyledLine = withStyles(() => ({
   line: {
     fill: 'transparent',
     stroke: color.primaryLight(),

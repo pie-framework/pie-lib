@@ -32,7 +32,7 @@ export class Row {
 
     const diff = count - this.columns.length;
 
-    const padding = _.times(diff).map((n) => '__pad__');
+    const padding = _.times(diff).map(() => '__pad__');
     return direction === 'right' ? [...padding, ...this.columns] : [...this.columns, ...padding];
   }
 }
@@ -59,6 +59,7 @@ const toColumnArray = (child) => {
   if (child.kind === 'mo') {
     // We are going to treat this operator as a text array.
     // It's probably going to be a decimal point
+    // eslint-disable-next-line no-console
     console.warn('mo that is not 1st node in msrow?');
     return mathNodeToCharArray(child);
     // throw new Error('mo must be first child of msrow');
@@ -101,6 +102,7 @@ const rowStack = (child) => {
   }
 
   if (child.kind === 'mo') {
+    // eslint-disable-next-line no-console
     console.warn('mo on its own row?');
     return new Row([], child);
   }

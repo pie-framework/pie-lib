@@ -109,7 +109,7 @@ export class RawPlot extends React.Component {
   }
 }
 
-const Bar = withStyles((theme) => ({
+const Bar = withStyles(() => ({
   dot: {
     fill: color.primaryLight(),
     '&.correct': correct('stroke'),

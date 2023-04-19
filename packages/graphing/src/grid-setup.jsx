@@ -111,6 +111,17 @@ const AxisConfig = (props) => {
   );
 };
 
+AxisConfig.propTypes = {
+  classes: PropTypes.object,
+  disabled: PropTypes.bool,
+  displayedFields: PropTypes.object,
+  displayHeader: PropTypes.bool,
+  label: PropTypes.string,
+  maxValue: PropTypes.number,
+  minValue: PropTypes.number,
+  type: PropTypes.string,
+  onChange: PropTypes.func,
+};
 const GridSetup = (props) => {
   const {
     classes,
