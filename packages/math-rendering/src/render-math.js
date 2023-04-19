@@ -159,6 +159,7 @@ const bootstrap = (opts) => {
     },
     parseError: function(node) {
       // function to process parsing errors
+      // eslint-disable-next-line no-console
       console.log('error:', node);
       this.error(this.adaptor.textContent(node).replace(/\n.*/g, ''));
     },
@@ -189,11 +190,15 @@ const bootstrap = (opts) => {
 
   const html = mathjax.document(document, {
     compileError: (mj, math, err) => {
+      // eslint-disable-next-line no-console
       console.log('bad math?:', math);
+      // eslint-disable-next-line no-console
       console.error(err);
     },
     typesetError: function(doc, math, err) {
+      // eslint-disable-next-line no-console
       console.log('typeset error');
+      // eslint-disable-next-line no-console
       console.error(err);
       doc.typesetError(math, err);
     },
@@ -237,6 +242,7 @@ const bootstrap = (opts) => {
           item.data.typesetRoot.setAttribute('data-mathml', parsedMathMl);
         }
       } catch (e) {
+        // eslint-disable-next-line no-console
         console.error(e.toString());
       }
 

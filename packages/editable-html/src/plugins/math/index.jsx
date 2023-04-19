@@ -21,6 +21,7 @@ function generateAdditionalKeys(keyData = []) {
   }));
 }
 
+// eslint-disable-next-line react/display-name
 export const CustomToolbarComp = React.memo(
   (props) => {
     const { node, value, onFocus, onBlur, onClick } = props;
@@ -149,6 +150,11 @@ MathPlugin.ROUND_BRACKETS = 'round_brackets';
 MathPlugin.SQUARE_BRACKETS = 'square_brackets';
 MathPlugin.DOLLAR = 'dollar';
 MathPlugin.DOUBLE_DOLLAR = 'double_dollar';
+
+MathPlugin.propTypes = {
+  attributes: PropTypes.object,
+  node: SlatePropTypes.node,
+};
 
 export const inlineMath = () =>
   Inline.create({

@@ -209,28 +209,23 @@ export class Component extends React.Component {
     const alignment = node.data.get('alignment');
     const percent = node.data.get('percent');
     const alt = node.data.get('alt');
-    let margin;
     let justifyContent;
 
     switch (alignment) {
       case 'left':
         justifyContent = 'flex-start';
-        margin = '0';
         break;
 
       case 'center':
         justifyContent = 'center';
-        margin = '0 auto';
         break;
 
       case 'right':
         justifyContent = 'flex-end';
-        margin = 'auto 0 0 auto ';
         break;
 
       default:
         justifyContent = 'flex-start';
-        margin = '0';
         break;
     }
     log('[render] node.data:', node.data);

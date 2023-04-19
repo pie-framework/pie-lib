@@ -10,6 +10,11 @@ import MarkLabel from './mark-label';
 import Checkbox from '@material-ui/core/Checkbox';
 
 export class TickComponent extends React.Component {
+  static propTypes = {
+    defineChart: PropTypes.bool,
+    error: PropTypes.any,
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -309,6 +314,8 @@ export class RawChartAxes extends React.Component {
     bottomScale: PropTypes.func,
     classes: PropTypes.object.isRequired,
     categories: PropTypes.array,
+    defineChart: PropTypes.bool,
+    error: PropTypes.any,
     graphProps: types.GraphPropsType.isRequired,
     xBand: PropTypes.func,
     leftAxis: PropTypes.bool,

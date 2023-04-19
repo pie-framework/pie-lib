@@ -13,8 +13,13 @@ export class Root extends React.Component {
   static propTypes = {
     title: PropTypes.string,
     children: ChildrenType,
+    defineChart: PropTypes.bool,
+    disabledLabels: PropTypes.bool,
     disabledTitle: PropTypes.bool,
     graphProps: GraphPropsType.isRequired,
+    isChart: PropTypes.bool,
+    labels: PropTypes.object,
+    labelsPlaceholders: PropTypes.object,
     onChangeTitle: PropTypes.func,
     onMouseMove: PropTypes.func,
     classes: PropTypes.object.isRequired,
@@ -22,6 +27,8 @@ export class Root extends React.Component {
     showTitle: PropTypes.bool,
     showPixelGuides: PropTypes.bool,
     rootRef: PropTypes.func,
+    onChangeLabels: PropTypes.func,
+    titlePlaceholder: PropTypes.string,
   };
 
   mouseMove = (g) => {

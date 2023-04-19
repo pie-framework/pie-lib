@@ -48,6 +48,7 @@ export class Editor extends React.Component {
   static propTypes = {
     autoFocus: PropTypes.bool,
     editorRef: PropTypes.func.isRequired,
+    error: PropTypes.any,
     onRef: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired,
     onFocus: PropTypes.func,
@@ -248,7 +249,7 @@ export class Editor extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const { toolbarOpts } = this.state;
     const newToolbarOpts = createToolbarOpts(nextProps.toolbarOpts, nextProps.error);
 
@@ -260,6 +261,13 @@ export class Editor extends React.Component {
 
     if (!isEqual(nextProps.languageCharactersProps, this.props.languageCharactersProps)) {
       this.handlePlugins(nextProps);
+    }
+
+    if (!nextProps.value.document.equals(this.props.value.document)) {
+      this.setState({
+        focus: false,
+        value: nextProps.value,
+      });
     }
   }
 
@@ -498,15 +506,6 @@ export class Editor extends React.Component {
 
     return this.state.preBlurValue;
   };
-
-  UNSAFE_componentWillReceiveProps(props) {
-    if (!props.value.document.equals(this.props.value.document)) {
-      this.setState({
-        focus: false,
-        value: props.value,
-      });
-    }
-  }
 
   valueToSize = (v) => {
     if (!v) {

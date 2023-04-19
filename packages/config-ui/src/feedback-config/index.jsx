@@ -38,6 +38,7 @@ export const buildDefaults = (input) => {
 export class FeedbackConfig extends React.Component {
   static propTypes = {
     allowPartial: PropTypes.bool,
+    className: PropTypes.string,
     feedback: PropTypes.shape({
       correct: PropTypes.shape(FeedbackType),
       incorrect: PropTypes.shape(FeedbackType),

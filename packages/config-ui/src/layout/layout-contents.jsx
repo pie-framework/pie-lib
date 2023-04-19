@@ -3,6 +3,7 @@ import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core';
 import Tabs from '../tabs';
+import classNames from 'classnames';
 
 class RawLayoutContents extends React.Component {
   static propTypes = {
@@ -50,7 +51,7 @@ class RawLayoutContents extends React.Component {
     const { minHeight, minWidth, maxHeight, maxWidth } = dimensions || {};
     const configuration = this.getConfiguration();
 
-    let hasSettingsPanel = Object.entries(configuration || {}).some(([propName, obj]) => !!obj?.settings);
+    let hasSettingsPanel = Object.entries(configuration || {}).some(([, obj]) => !!obj?.settings);
     // ebsr has configuration.partA and configuration.partB
     // because we might have nested configuration for other item types as well, let's add this simple regex to check values for settings
 
@@ -58,6 +59,7 @@ class RawLayoutContents extends React.Component {
       try {
         hasSettingsPanel = JSON.stringify(configuration)?.match(/settings":true/)?.length;
       } catch (e) {
+        // eslint-disable-next-line no-console
         console.log(e.toString());
       }
     }
@@ -85,9 +87,7 @@ class RawLayoutContents extends React.Component {
         )}
 
         {mode === 'tabbed' && !hasSettingsPanel && (
-          <div className={classes.contentContainer} className="design-container">
-            {children}
-          </div>
+          <div className={classNames(classes.contentContainer, 'design-container')}>{children}</div>
         )}
       </div>
     );
