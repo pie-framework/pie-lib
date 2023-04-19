@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.23](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.7.22...@pie-lib/rubric@0.7.23) (2023-04-19)
+
+
+### Bug Fixes
+
+* **eslint:** fix eslint problems-AC-2732 ([9eb9976](https://github.com/pie-framework/pie-lib/commit/9eb9976749753da86e1057a07bd2cfc65bf64ae4))
+
+
+
+
+
 ## [0.7.22](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.7.21...@pie-lib/rubric@0.7.22) (2023-04-14)
 
 **Note:** Version bump only for package @pie-lib/rubric

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.7.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.7.1...@pie-lib/charting@5.7.2) (2023-04-19)
+
+
+### Bug Fixes
+
+* **eslint:** fix eslint problems-AC-2732 ([9eb9976](https://github.com/pie-framework/pie-lib/commit/9eb9976749753da86e1057a07bd2cfc65bf64ae4))
+
+
+
+
+
 ## [5.7.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.7.0...@pie-lib/charting@5.7.1) (2023-04-03)
 
 

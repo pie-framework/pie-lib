@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.21](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.9.20...@pie-lib/text-select@1.9.21) (2023-04-19)
+
+
+### Bug Fixes
+
+* **eslint:** fix eslint problems-AC-2732 ([9eb9976](https://github.com/pie-framework/pie-lib/commit/9eb9976749753da86e1057a07bd2cfc65bf64ae4))
+
+
+
+
+
 ## [1.9.20](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.9.19...@pie-lib/text-select@1.9.20) (2023-04-07)
 
 **Note:** Version bump only for package @pie-lib/text-select
