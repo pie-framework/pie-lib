@@ -7,6 +7,7 @@ import { types } from '@pie-lib/plot';
 import { correct, incorrect, disabled } from './common/styles';
 import { color } from '@pie-lib/render-ui';
 import { renderMath } from '@pie-lib/math-rendering';
+import classNames from 'classnames';
 
 const styles = (theme) => ({
   input: {
@@ -22,6 +23,26 @@ const styles = (theme) => ({
       ...disabled('color'),
       backgroundColor: 'transparent !important',
     },
+  },
+  mathInput: {
+    pointerEvents: 'auto',
+    textAlign: 'center',
+    fontSize: theme.typography.fontSize,
+    fontFamily: theme.typography.fontFamily,
+    color: color.primaryDark(),
+  },
+  disabled: {
+    ...disabled('color'),
+    backgroundColor: 'transparent !important',
+  },
+  error: {
+    border: `2px solid ${theme.palette.error.main}`,
+  },
+  correct: {
+    ...correct('color'),
+  },
+  incorrect: {
+    ...incorrect('color'),
   },
 });
 
@@ -78,7 +99,8 @@ export const MarkLabel = (props) => {
   const [label, setLabel] = useState(mark.label);
   const [mathLabel, setMathLabel] = useState(getLabelMathFormat(mark.label));
   const [isEditing, setIsEditing] = useState(false);
-  // let root = useRef(null);
+  let root = useRef(null);
+
   const onChange = (e) => {
     setLabel(e.target.value);
   };
@@ -106,18 +128,22 @@ export const MarkLabel = (props) => {
     setLabel(mark.label);
   }, [mark.label]);
 
+  useEffect(() => {
+    renderMath(root);
+  }, []);
+
   return isMathRendering() ? (
     <div
+      ref={(r) => (root = r)}
       dangerouslySetInnerHTML={{ __html: getLabelMathFormat(label) }}
+      className={classNames(classes.mathInput, {
+        [classes.disabled]: disabled,
+        [classes.error]: error,
+        [classes.correct]: correctness && correctness.label === 'correct',
+        [classes.incorrect]: correctness && correctness.label === 'incorrect',
+      })}
       onClick={() => setIsEditing(true)}
-      style={{
-        pointerEvents: 'auto',
-        textAlign: 'center',
-        minWidth: barWidth,
-        fontSize: '14px',
-        fontFamily: 'Roboto',
-        color: '#283593',
-      }}
+      style={{ minWidth: barWidth }}
     ></div>
   ) : (
     <AutosizeInput
