@@ -8,8 +8,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* **eslint:** fix eslint problems-AC-2732 ([9eb9976](https://github.com/pie-framework/pie-lib/commit/9eb9976749753da86e1057a07bd2cfc65bf64ae4))
-* **math-input:** add required import for MathQuill-AC-2732 ([532d786](https://github.com/pie-framework/pie-lib/commit/532d7866fa48a5f9ac68f6d26f31b0e28ac54acf))
+* **eslint:** fix eslint problems-PD-2732 ([9eb9976](https://github.com/pie-framework/pie-lib/commit/9eb9976749753da86e1057a07bd2cfc65bf64ae4))
+* **math-input:** add required import for MathQuill-PD-2732 ([532d786](https://github.com/pie-framework/pie-lib/commit/532d7866fa48a5f9ac68f6d26f31b0e28ac54acf))
 
 
 
