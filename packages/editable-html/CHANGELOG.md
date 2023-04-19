@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.5.23](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.5.22...@pie-lib/editable-html@9.5.23) (2023-04-19)
+
+
+### Bug Fixes
+
+* **eslint:** fix eslint problems-AC-2732 ([9eb9976](https://github.com/pie-framework/pie-lib/commit/9eb9976749753da86e1057a07bd2cfc65bf64ae4))
+
+
+
+
+
 ## [9.5.22](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.5.21...@pie-lib/editable-html@9.5.22) (2023-04-14)
 
 **Note:** Version bump only for package @pie-lib/editable-html

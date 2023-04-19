@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.43](https://github.com/pie-framework/pie-lib/compare/@pie-lib/controller-utils@0.2.42...@pie-lib/controller-utils@0.2.43) (2023-04-19)
+
+
+### Bug Fixes
+
+* **eslint:** fix eslint problems-AC-2732 ([9eb9976](https://github.com/pie-framework/pie-lib/commit/9eb9976749753da86e1057a07bd2cfc65bf64ae4))
+
+
+
+
+
 ## [0.2.42](https://github.com/pie-framework/pie-lib/compare/@pie-lib/controller-utils@0.2.40...@pie-lib/controller-utils@0.2.42) (2023-01-31)
 
 **Note:** Version bump only for package @pie-lib/controller-utils
