@@ -15,7 +15,7 @@ const withStatefulModel = (Component) => {
       };
     }
 
-    componentWillReceiveProps(props) {
+    UNSAFE_componentWillReceiveProps(props) {
       this.setState({ model: props.model });
     }
 

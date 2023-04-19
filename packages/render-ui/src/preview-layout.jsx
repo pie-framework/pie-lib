@@ -4,8 +4,10 @@ import PropTypes from 'prop-types';
 
 class PreviewLayout extends React.Component {
   static propTypes = {
+    ariaLabel: PropTypes.string,
     children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
     classes: PropTypes.object,
+    role: PropTypes.string,
   };
 
   render() {

@@ -57,6 +57,7 @@ export default class Static extends React.Component {
           field.__controller.cursor.insLeftOf(field.__controller.cursor.parent[-1].parent);
           field.el().dispatchEvent(new KeyboardEvent('keydown', { keyCode: 8 }));
         } catch (e) {
+          // eslint-disable-next-line no-console
           console.error(e.toString());
         }
       } else {

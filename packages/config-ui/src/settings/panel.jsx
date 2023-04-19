@@ -292,7 +292,7 @@ export class Panel extends React.Component {
     log('render:', model);
 
     const renderedGroups = Object.keys(groups || {}).map((group) => {
-      const showGroup = Object.entries(groups[group]).some(([propName, propVal]) => !!propVal);
+      const showGroup = Object.entries(groups[group]).some(([, propVal]) => !!propVal);
 
       if (showGroup) {
         return (

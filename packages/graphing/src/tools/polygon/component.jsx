@@ -81,6 +81,7 @@ export class RawBaseComponent extends React.Component {
     onClick: PropTypes.func,
     graphProps: types.GraphPropsType.isRequired,
     isToolActive: PropTypes.bool,
+    middle: PropTypes.object,
     labelNode: PropTypes.object,
     labelModeEnabled: PropTypes.bool,
     onChangeLabelProps: PropTypes.func,

@@ -110,6 +110,7 @@ export class ChoiceConfiguration extends React.Component {
     noLabels: PropTypes.bool,
     useLetterOrdering: PropTypes.bool,
     className: PropTypes.string,
+    error: PropTypes.string,
     mode: PropTypes.oneOf(['checkbox', 'radio']),
     defaultFeedback: PropTypes.object.isRequired,
     disabled: PropTypes.bool,
@@ -133,7 +134,10 @@ export class ChoiceConfiguration extends React.Component {
     disableImageAlignmentButtons: PropTypes.bool,
     allowFeedBack: PropTypes.bool,
     allowDelete: PropTypes.bool,
+    noCorrectAnswerError: PropTypes.string,
+    spellCheck: PropTypes.bool,
     toolbarOpts: PropTypes.object,
+    uploadSoundSupport: PropTypes.object,
   };
 
   static defaultProps = {

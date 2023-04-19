@@ -162,6 +162,7 @@ export class Item extends React.Component {
     connectDragPreview: PropTypes.func.isRequired,
     connectDropTarget: PropTypes.func.isRequired,
     isDragging: PropTypes.bool,
+    toolRef: PropTypes.any,
   };
 
   static defaultProps = {};

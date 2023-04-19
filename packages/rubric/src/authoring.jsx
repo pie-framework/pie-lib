@@ -36,6 +36,7 @@ export const RubricType = PropTypes.shape({
   excludeZero: PropTypes.bool,
   points: PropTypes.arrayOf(PropTypes.string),
   sampleAnswers: PropTypes.arrayOf(PropTypes.string),
+  maxPoints: PropTypes.number,
 });
 
 const MaxPoints = withStyles((theme) => ({

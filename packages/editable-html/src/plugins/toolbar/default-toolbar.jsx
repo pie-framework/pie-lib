@@ -47,6 +47,20 @@ export const ToolbarButton = (props) => {
   }
 };
 
+ToolbarButton.propTypes = {
+  buttonStyles: PropTypes.object,
+  disabled: PropTypes.bool,
+  icon: PropTypes.any,
+  isActive: PropTypes.bool,
+  isMark: PropTypes.bool,
+  getFocusedValue: PropTypes.func,
+  onToggle: PropTypes.func,
+  onChange: PropTypes.func,
+  onClick: PropTypes.func,
+  type: PropTypes.string,
+  value: PropTypes.object,
+};
+
 const isActiveToolbarPlugin = (props) => (plugin) => {
   const isDisabled = (props[plugin.name] || {}).disabled;
 

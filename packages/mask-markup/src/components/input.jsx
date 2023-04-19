@@ -40,6 +40,9 @@ Input.propTypes = {
   spellCheck: PropTypes.bool,
   correct: PropTypes.bool,
   showCorrectAnswer: PropTypes.bool,
+  charactersLimit: PropTypes.number,
+  width: PropTypes.number,
+  isConstructedResponse: PropTypes.bool,
 };
 
 export default Input;

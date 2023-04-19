@@ -39,6 +39,7 @@ const ExplicitConstructedResponse = (props) => {
 
 ExplicitConstructedResponse.propTypes = {
   attributes: PropTypes.object,
+  error: PropTypes.any,
   value: PropTypes.string,
 };
 

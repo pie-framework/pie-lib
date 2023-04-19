@@ -16,6 +16,8 @@ export class MathToolbar extends React.Component {
     controlledKeypadMode: PropTypes.bool,
     keypadMode: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     classNames: PropTypes.object,
+    error: PropTypes.string,
+    maxResponseAreas: PropTypes.number,
     showKeypad: PropTypes.bool,
     noDecimal: PropTypes.bool,
     additionalKeys: PropTypes.array,
@@ -131,6 +133,8 @@ export class RawPureToolbar extends React.Component {
     controlledKeypadMode: PropTypes.bool,
     showKeypad: PropTypes.bool,
     hideDoneButton: PropTypes.bool,
+    error: PropTypes.any,
+    maxResponseAreas: PropTypes.number,
   };
 
   render() {

@@ -5,11 +5,14 @@ import Choices from './choices';
 import Blank from './components/blank';
 import { withMask } from './with-mask';
 
+// eslint-disable-next-line react/display-name
 const Masked = withMask('blank', (props) => (node, data, onChange) => {
   const dataset = node.data ? node.data.dataset || {} : {};
   if (dataset.component === 'blank') {
+    // eslint-disable-next-line react/prop-types
     const { disabled, duplicates, correctResponse, feedback, showCorrectAnswer } = props;
     const choiceId = showCorrectAnswer ? correctResponse[dataset.id] : data[dataset.id];
+    // eslint-disable-next-line react/prop-types
     const choice = choiceId && props.choices.find((c) => c.id === choiceId);
 
     return (
@@ -41,7 +44,7 @@ export default class DragInTheBlank extends React.Component {
     showCorrectAnswer: PropTypes.bool,
   };
 
-  componentWillReceiveProps() {
+  UNSAFE_componentWillReceiveProps() {
     if (this.rootRef) {
       renderMath(this.rootRef);
     }

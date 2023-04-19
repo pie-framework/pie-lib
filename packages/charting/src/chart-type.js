@@ -6,7 +6,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 
-const ChartType = withStyles((theme) => ({
+const ChartType = withStyles(() => ({
   chartType: {
     width: '160px',
   },
