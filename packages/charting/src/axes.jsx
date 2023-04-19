@@ -325,8 +325,6 @@ export class RawChartAxes extends React.Component {
     onChangeCategory: PropTypes.func,
     top: PropTypes.number,
     theme: PropTypes.object,
-    error: PropTypes.object,
-    defineChart: PropTypes.bool,
   };
 
   state = { height: 0 };
