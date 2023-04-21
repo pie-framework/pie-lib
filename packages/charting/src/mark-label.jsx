@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect, useRef } from 'react';
-import cn from 'classnames';
+import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import AutosizeInput from 'react-input-autosize';
 import PropTypes from 'prop-types';
@@ -7,7 +7,6 @@ import { types } from '@pie-lib/plot';
 import { correct, incorrect, disabled } from './common/styles';
 import { color } from '@pie-lib/render-ui';
 import { renderMath } from '@pie-lib/math-rendering';
-import classNames from 'classnames';
 
 const styles = (theme) => ({
   input: {
@@ -47,18 +46,13 @@ const styles = (theme) => ({
 });
 
 function isFractionFormat(label) {
-  const trimmedLabel = label?.trimStart().trimEnd() || '';
-  const stringRegex = /[a-zA-Z]/;
-  // Check if label contain at least one letter
-  if (stringRegex.test(label)) {
-    return false;
-  }
-  const fracRegex = new RegExp(/[1-9][0-9]*\/[1-9][0-9]*$/g);
-  return !!trimmedLabel?.match(fracRegex) || false;
+  const trimmedLabel = label?.trim() || '';
+  const fracRegex = new RegExp(/^[1-9]*[0-9]*\s?[1-9][0-9]*\/[1-9][0-9]*$/);
+  return fracRegex.test(trimmedLabel);
 }
 
 function getLabelMathFormat(label) {
-  const trimmedLabel = label?.trimStart().trimEnd() || '';
+  const trimmedLabel = label?.trim() || '';
   let fraction;
   let mixedNr = '';
   let improperFraction = trimmedLabel.split(' ');
@@ -153,7 +147,12 @@ export const MarkLabel = (props) => {
       }}
       autoFocus={isEditing || autoFocus}
       disabled={disabled}
-      inputClassName={cn(classes.input, correctness && correctness.label, disabled && 'disabled', error && 'error')}
+      inputClassName={classNames(
+        classes.input,
+        correctness && correctness.label,
+        disabled && 'disabled',
+        error && 'error',
+      )}
       inputStyle={{
         minWidth: barWidth,
         textAlign: 'center',
@@ -180,6 +179,7 @@ export const MarkLabel = (props) => {
 };
 
 MarkLabel.propTypes = {
+  autoFocus: PropTypes.bool,
   disabled: PropTypes.bool,
   onChange: PropTypes.func,
   graphProps: types.GraphPropsType,
