@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.14.22](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.14.21...@pie-lib/render-ui@4.14.22) (2023-04-25)
+
+
+### Bug Fixes
+
+* **render-ui:** revert Carla's changes for PD-2720 because they're causing PD-2762 ([f96e689](https://github.com/pie-framework/pie-lib/commit/f96e689755368f2c31d8b0233fcd440eb685eb52))
+
+
+
+
+
 ## [4.14.21](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.14.20...@pie-lib/render-ui@4.14.21) (2023-04-19)
 
 
