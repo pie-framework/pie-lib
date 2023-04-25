@@ -35,6 +35,9 @@ export class RawBp extends React.Component {
       correctness,
       graphProps,
       labelNode,
+      // we need to remove style from props
+      // eslint-disable-next-line no-unused-vars,react/prop-types
+      style,
       ...rest
     } = this.props;
     const { showCoordinates } = this.state;
