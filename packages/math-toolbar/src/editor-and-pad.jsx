@@ -342,8 +342,8 @@ const styles = (theme) => ({
       },
 
       '& .mq-math-mode .mq-sqrt-prefix': {
-        verticalAlign: 'bottom !important',
-        top: '0 !important',
+        verticalAlign: 'baseline !important',
+        top: '1px !important',
         left: '-0.1em !important',
       },
 
@@ -426,7 +426,7 @@ const styles = (theme) => ({
       '& .mq-math-mode .mq-numerator, .mq-math-mode .mq-over': {
         padding: '0 0.1em !important',
         paddingBottom: '0 !important',
-        marginBottom: '4.5px',
+        marginBottom: '-2px',
       },
 
       '-webkit-font-smoothing': 'antialiased !important',
