@@ -24,6 +24,8 @@ class BlankContentComp extends React.Component {
   render() {
     const { connectDragSource, choice, classes, disabled } = this.props;
 
+    // TODO the Chip element is causing drag problems on touch devices. Avoid using Chip and consider refactoring the code. Keep in mind that Chip is a span with a button role, which interferes with seamless touch device dragging.
+
     return connectDragSource(
       <span className={classnames(classes.choice, disabled && classes.disabled)}>
         <Chip
@@ -67,6 +69,10 @@ export const BlankContent = withStyles((theme) => ({
     whiteSpace: 'pre-wrap',
     maxWidth: '374px',
     margin: theme.spacing.unit / 2,
+    // Added for touch devices, for image content.
+    // This will prevent the context menu from appearing and not allowing other interactions with the image.
+    // If interactions with the image in the token will be requested we should handle only the context Menu.
+    pointerEvents: 'none',
   },
   chipLabel: {
     whiteSpace: 'pre-wrap',

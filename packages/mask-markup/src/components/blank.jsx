@@ -28,6 +28,10 @@ const useStyles = withStyles(() => ({
   },
   chipLabel: {
     whiteSpace: 'pre-wrap',
+    // Added for touch devices, for image content.
+    // This will prevent the context menu from appearing and not allowing other interactions with the image.
+    // If interactions with the image in the token will be requested we should handle only the context Menu.
+    pointerEvents: 'none',
     '& img': {
       display: 'block',
       padding: '2px 0',
@@ -108,6 +112,7 @@ export class BlankContent extends React.Component {
     const label = choice && choice.value;
 
     return (
+      // TODO the Chip element is causing drag problems on touch devices. Avoid using Chip and consider refactoring the code. Keep in mind that Chip is a span with a button role, which interferes with seamless touch device dragging.
       <Chip
         clickable={false}
         disabled={true}
