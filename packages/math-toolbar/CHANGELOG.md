@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.26](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.11.25...@pie-lib/math-toolbar@1.11.26) (2023-05-01)
+
+
+### Bug Fixes
+
+* **math-toolbar:** add style to sqrt component ([be42f61](https://github.com/pie-framework/pie-lib/commit/be42f619468d9fd07f2bbc79ff70849d98b32d4d))
+
+
+
+
+
 ## [1.11.25](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.11.24...@pie-lib/math-toolbar@1.11.25) (2023-04-19)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.13.25](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.13.24...@pie-lib/mask-markup@1.13.25) (2023-05-01)
+
+
+### Bug Fixes
+
+* **drag-in-the-blank:** prevent image interaction in choice - this is creating difficulties for drag choices on touch devices PD-2770 ([aea5536](https://github.com/pie-framework/pie-lib/commit/aea5536c46b96b4c89f294d4cc3337c833bf87ee))
+
+
+
+
+
 ## [1.13.24](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.13.23...@pie-lib/mask-markup@1.13.24) (2023-04-25)
 
 **Note:** Version bump only for package @pie-lib/mask-markup
