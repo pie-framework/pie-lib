@@ -68,8 +68,8 @@ const mp = (theme) => ({
       paddingTop: '0.45em !important',
     },
     '& > .mq-math-mode .mq-sqrt-prefix': {
-      verticalAlign: 'bottom !important',
-      top: '0 !important',
+      verticalAlign: 'baseline !important',
+      top: '1px !important',
       left: '-0.1em !important',
     },
     '& > .mq-math-mode .mq-denominator': {
@@ -79,7 +79,7 @@ const mp = (theme) => ({
     '& > .mq-math-mode .mq-numerator, .mq-math-mode .mq-over': {
       padding: '0 0.1em !important',
       paddingBottom: '0 !important',
-      marginBottom: '4.5px',
+      marginBottom: '-2px',
     },
     '& > .mq-math-mode sup.mq-nthroot': {
       fontSize: '70.7% !important',
