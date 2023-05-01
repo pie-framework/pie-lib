@@ -348,18 +348,6 @@ export default class Component extends React.Component {
     });
   };
 
-  shouldComponentUpdate = (nextProps, nextState) => {
-    const { coordinatesOnHover, graphProps, mark } = this.props;
-    const { graphProps: nextGraphProps } = nextProps;
-
-    return (
-      !utils.isDomainRangeEqual(graphProps, nextGraphProps) ||
-      !isEqual(mark, nextProps.mark) ||
-      !isEqual(this.state.mark, nextState.mark) ||
-      coordinatesOnHover !== nextProps.coordinatesOnHover
-    );
-  };
-
   render() {
     const { coordinatesOnHover, mark, graphProps, onClick, isToolActive, labelNode, labelModeEnabled } = this.props;
     const { mark: stateMark } = this.state;
