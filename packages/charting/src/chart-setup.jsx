@@ -40,7 +40,7 @@ const ConfigureChartPanel = (props) => {
         label="Grid Interval"
         value={range.step}
         variant="outlined"
-        onChange={(e, v) => onRangeChanged('step', v)}
+        onChange={(e, v) => onRangeChanged('step', v, e)}
         {...gridOptions}
       />
       <NumberTextFieldCustom
@@ -48,7 +48,7 @@ const ConfigureChartPanel = (props) => {
         label={'Label Interval'}
         value={range.labelStep}
         variant={'outlined'}
-        onChange={(e, v) => onRangeChanged('labelStep', v)}
+        onChange={(e, v) => onRangeChanged('labelStep', v, e)}
         {...labelOptions}
       />
     </div>
@@ -64,7 +64,7 @@ const ConfigureChartPanel = (props) => {
     setOpen(open);
   };
 
-  const resetValues = (data) =>
+  const resetValues = (data, updateModel) => {
     (data || []).forEach((d) => {
       const remainder = d.value - range.step * Math.floor(d.value / range.step);
 
@@ -73,10 +73,15 @@ const ConfigureChartPanel = (props) => {
       }
     });
 
-  const removeOutOfRangeValues = () => {
+    if (updateModel) {
+      onChange({ ...model, data });
+    }
+  };
+
+  const removeOutOfRangeValues = (updateModel) => {
     const { correctAnswer, data } = model;
 
-    resetValues(data);
+    resetValues(data, updateModel);
     resetValues(correctAnswer.data);
   };
 
@@ -90,7 +95,20 @@ const ConfigureChartPanel = (props) => {
     onChange({ ...model, graph });
   };
 
-  const onRangeChanged = (key, value) => {
+  const handleOutOfRangeValues = (initialState, remove) => {
+    // handle the first render of the model
+    if (initialState) {
+      removeOutOfRangeValues(remove);
+      onChange({ ...model });
+    } else {
+      setOpen(true);
+    }
+  };
+
+  const isOutOfRange = (data, range) =>
+    data.find((d) => d.value > range.max || d.value - range.step * Math.floor(d.value / range.step) !== 0);
+
+  const onRangeChanged = (key, value, e) => {
     // use reset values to restore range to initial values
     setResetValue(range[key]);
     setRangeKey(key);
@@ -99,16 +117,11 @@ const ConfigureChartPanel = (props) => {
 
     if (key === 'max' || key === 'step') {
       // check if current chart values are invalid for given range step/max
-      const outOfRange =
-        (model.data || []).find(
-          (d) => d.value > range.max || d.value - range.step * Math.floor(d.value / range.step) !== 0,
-        ) ||
-        (model.correctAnswer.data || []).find(
-          (d) => d.value > range.max || d.value - range.step * Math.floor(d.value / range.step) !== 0,
-        );
+      const outOfRange = isOutOfRange(model.data || [], range) || isOutOfRange(model.correctAnswer.data || [], range);
 
       if (outOfRange) {
-        setOpen(true);
+        const initialState = JSON.stringify(e) === '{}';
+        handleOutOfRangeValues(initialState, true);
       } else {
         onChange({ ...model, range });
       }
@@ -193,7 +206,7 @@ const ConfigureChartPanel = (props) => {
             min={rangeProps(model.chartType).min}
             max={rangeProps(model.chartType).max}
             variant="outlined"
-            onChange={(e, v) => onRangeChanged('max', v)}
+            onChange={(e, v) => onRangeChanged('max', v, e)}
           />
         </div>
         {!model.chartType.includes('Plot') && stepConfig}

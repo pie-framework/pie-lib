@@ -307,6 +307,8 @@ TickComponent.propTypes = {
   onChangeCategory: PropTypes.func,
   onChange: PropTypes.func,
   classes: PropTypes.object,
+  error: PropTypes.object,
+  defineChart: PropTypes.bool,
 };
 
 export class RawChartAxes extends React.Component {
