@@ -10,7 +10,9 @@ exports[`snapshot renders with DONE button if hideDoneButton is not defined 1`] 
     controlledKeypad={true}
     showKeypad={true}
   />
-  <WithStyles(RawDoneButton) />
+  <WithStyles(RawDoneButton)
+    hideBackground={false}
+  />
 </div>
 `;
 
