@@ -133,8 +133,14 @@ export class RawPureToolbar extends React.Component {
     controlledKeypadMode: PropTypes.bool,
     showKeypad: PropTypes.bool,
     hideDoneButton: PropTypes.bool,
+    hideDoneButtonBackground: PropTypes.bool,
     error: PropTypes.any,
     maxResponseAreas: PropTypes.number,
+  };
+
+  static defaultProps = {
+    classNames: {},
+    hideDoneButtonBackground: false,
   };
 
   render() {
@@ -158,6 +164,7 @@ export class RawPureToolbar extends React.Component {
       onFocus,
       onBlur,
       hideDoneButton,
+      hideDoneButtonBackground,
       classes,
       error,
       maxResponseAreas,
@@ -187,7 +194,9 @@ export class RawPureToolbar extends React.Component {
           error={error}
           maxResponseAreas={maxResponseAreas}
         />
-        {(!controlledKeypad || (controlledKeypad && showKeypad)) && !hideDoneButton && <DoneButton onClick={onDone} />}
+        {(!controlledKeypad || (controlledKeypad && showKeypad)) && !hideDoneButton && (
+          <DoneButton hideBackground={hideDoneButtonBackground} onClick={onDone} />
+        )}
       </div>
     );
   }

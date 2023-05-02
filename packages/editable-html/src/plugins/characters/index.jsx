@@ -135,6 +135,7 @@ const insertDialog = ({ editorDOM, value, callback, opts }) => {
       noDecimal
       hideInput
       noLatexHandling
+      hideDoneButtonBackground
       layoutForKeyPad={layoutForCharacters}
       additionalKeys={configToUse.characters.reduce((arr, n) => {
         arr = [
