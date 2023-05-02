@@ -15,7 +15,7 @@
     "lodash": "^4.17.11",
     "prop-types": "^15.7.2",
     "react": "^16.8.1",
-    "react-beautiful-dnd": "^11.0.2",
+    "react-beautiful-dnd": "^13.1.1",
     "react-dom": "^16.9.0"
   }
 }
