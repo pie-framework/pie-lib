@@ -95,16 +95,6 @@ const ConfigureChartPanel = (props) => {
     onChange({ ...model, graph });
   };
 
-  const handleOutOfRangeValues = (initialState, remove) => {
-    // handle the first render of the model
-    if (initialState) {
-      removeOutOfRangeValues(remove);
-      onChange({ ...model });
-    } else {
-      setOpen(true);
-    }
-  };
-
   const isOutOfRange = (data, range) =>
     data.find((d) => d.value > range.max || d.value - range.step * Math.floor(d.value / range.step) !== 0);
 
@@ -119,9 +109,8 @@ const ConfigureChartPanel = (props) => {
       // check if current chart values are invalid for given range step/max
       const outOfRange = isOutOfRange(model.data || [], range) || isOutOfRange(model.correctAnswer.data || [], range);
 
-      if (outOfRange) {
-        const initialState = JSON.stringify(e) === '{}';
-        handleOutOfRangeValues(initialState, true);
+      if (outOfRange && JSON.stringify(e) !== '{}') {
+        setOpen(true);
       } else {
         onChange({ ...model, range });
       }
@@ -129,6 +118,10 @@ const ConfigureChartPanel = (props) => {
       onChange({ ...model, range });
     }
   };
+
+  useEffect(() => {
+    removeOutOfRangeValues(true);
+  }, []);
 
   useEffect(() => {
     if (open) {
