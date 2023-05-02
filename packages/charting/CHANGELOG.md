@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.8.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.8.0...@pie-lib/charting@5.8.1) (2023-05-02)
+
+
+### Bug Fixes
+
+* **charting:** fix bad default state for chart data in author and player PD-2755, PD-2625 ([2428bb1](https://github.com/pie-framework/pie-lib/commit/2428bb14c0d304111f79e8553e48b95e6882d628))
+
+
+
+
+
 # [5.8.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.7.2...@pie-lib/charting@5.8.0) (2023-05-01)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.5.26](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.5.25...@pie-lib/editable-html@9.5.26) (2023-05-02)
+
+
+### Bug Fixes
+
+* **math-toolbar:** add white background for spanish and special characters done button PD-2119 ([3c1dd82](https://github.com/pie-framework/pie-lib/commit/3c1dd82f7d3f21651d3e5f87d5d543ad4a0907bf))
+
+
+
+
+
 ## [9.5.25](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.5.24...@pie-lib/editable-html@9.5.25) (2023-05-01)
 
 **Note:** Version bump only for package @pie-lib/editable-html
