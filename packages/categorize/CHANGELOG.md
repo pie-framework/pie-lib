@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.8.15...@pie-lib/categorize@0.8.16) (2023-05-08)
+
+
+### Bug Fixes
+
+* **categorize:** add sanity check to fix PD-1982 ([9c221b5](https://github.com/pie-framework/pie-lib/commit/9c221b5fb7ef2469d8bc8eb96bce0203ce3d8ff3))
+
+
+
+
+
 ## [0.8.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.8.13...@pie-lib/categorize@0.8.15) (2023-02-28)
 
 
