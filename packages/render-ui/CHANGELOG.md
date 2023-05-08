@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.14.23](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.14.22...@pie-lib/render-ui@4.14.23) (2023-05-01)
+
+
+### Bug Fixes
+
+* **multiple-choice:** fix vertical allignment within choice labels PD-2720 ([7307ca7](https://github.com/pie-framework/pie-lib/commit/7307ca7738c7f0fc76b635b3b8571c168d4bb8fb))
+
+
+
+
+
 ## [4.14.22](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.14.21...@pie-lib/render-ui@4.14.22) (2023-04-25)
 
 

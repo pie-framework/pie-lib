@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.12.27](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.12.26...@pie-lib/graphing@2.12.27) (2023-05-01)
+
+
+### Bug Fixes
+
+* **graphing:** remove shouldComponentUpdate from polygon PD-2753 ([f90524f](https://github.com/pie-framework/pie-lib/commit/f90524f96c868393ce445b8daaa833f85ae17c50))
+
+
+
+
+
 ## [2.12.26](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.12.25...@pie-lib/graphing@2.12.26) (2023-04-25)
 
 

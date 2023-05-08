@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.8.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.8.0...@pie-lib/charting@5.8.1) (2023-05-02)
+
+
+### Bug Fixes
+
+* **charting:** fix bad default state for chart data in author and player PD-2755, PD-2625 ([2428bb1](https://github.com/pie-framework/pie-lib/commit/2428bb14c0d304111f79e8553e48b95e6882d628))
+
+
+
+
+
+# [5.8.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.7.2...@pie-lib/charting@5.8.0) (2023-05-01)
+
+
+### Bug Fixes
+
+* **charting:** reset invalid values from chart model ([892b90d](https://github.com/pie-framework/pie-lib/commit/892b90d049e0fd8e0ab623ebc17a2e4e1ca63a2e))
+* **charting:** update chart data in player ([657399d](https://github.com/pie-framework/pie-lib/commit/657399d1b2fe285695196df4b9641aa632394a84))
+
+
+### Features
+
+* **charting:** add classes and rerender math at correct answer: PD-491 ([79f4398](https://github.com/pie-framework/pie-lib/commit/79f4398adae30f4a5a7ad4a9da577665ece145ba))
+* **charting:** refactor regenx for mixed fractions and solve reviews and eslint-PD-491 ([49d18f4](https://github.com/pie-framework/pie-lib/commit/49d18f4a65f25fbfa010898d8486608819eece06))
+* **charting:** render fractions using mathjax-PD-491 ([336319f](https://github.com/pie-framework/pie-lib/commit/336319fa238fed333c2bddc0888a031805452a13))
+
+
+
+
+
 ## [5.7.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.7.1...@pie-lib/charting@5.7.2) (2023-04-19)
 
 
