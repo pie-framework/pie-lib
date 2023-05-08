@@ -205,7 +205,7 @@ export const countChosen = (choice, categories) => {
   }
 
   return categories.reduce((acc, c) => {
-    const count = (c.choices || []).filter((h) => h.id === choice.id).length;
+    const count = (c.choices || []).filter((h) => h && h.id === choice.id).length;
 
     return acc + count;
   }, 0);
