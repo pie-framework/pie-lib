@@ -619,6 +619,7 @@ export class Editor extends React.Component {
         const ch = change.insertInline(inline);
         this.onChange(ch);
         const handler = new InsertImageHandler(inline, () => this.state.value, this.onChange, true);
+        handler.fileChosen(file);
         this.props.imageSupport.add(handler);
       } catch (err) {
         log('[onDropPaste] error: ', err);
