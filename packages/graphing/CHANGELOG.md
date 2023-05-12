@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.12.28](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.12.27...@pie-lib/graphing@2.12.28) (2023-05-12)
+
+
+### Bug Fixes
+
+* **graphing:** add new style for missing objects - PD-1026 ([4dba6c2](https://github.com/pie-framework/pie-lib/commit/4dba6c2dcafbf9f250f1379672cba63e5c805b10))
+* **graphing:** update snapshot ([b237367](https://github.com/pie-framework/pie-lib/commit/b237367cac6cef2af22217b9f5b07dfa0f3291a0))
+
+
+
+
+
 ## [2.12.27](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.12.26...@pie-lib/graphing@2.12.27) (2023-05-01)
 
 
