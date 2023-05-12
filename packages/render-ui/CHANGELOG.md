@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.14.24](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.14.23...@pie-lib/render-ui@4.14.24) (2023-05-12)
+
+
+### Bug Fixes
+
+* **graphing:** add new style for missing objects - PD-1026 ([4dba6c2](https://github.com/pie-framework/pie-lib/commit/4dba6c2dcafbf9f250f1379672cba63e5c805b10))
+
+
+
+
+
 ## [4.14.23](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.14.22...@pie-lib/render-ui@4.14.23) (2023-05-01)
 
 
