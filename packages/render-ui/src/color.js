@@ -2,12 +2,14 @@ import green from '@material-ui/core/colors/green';
 import orange from '@material-ui/core/colors/orange';
 import pink from '@material-ui/core/colors/pink';
 import indigo from '@material-ui/core/colors/indigo';
+import red from '@material-ui/core/colors/red';
 
 export const defaults = {
   TEXT: 'black',
   DISABLED: 'grey',
   CORRECT: green[500],
   INCORRECT: orange[500],
+  MISSING: red[500],
   PRIMARY: indigo[500],
   PRIMARY_LIGHT: indigo[200],
   PRIMARY_DARK: indigo[800],
@@ -33,6 +35,7 @@ export const text = () => pv('text', defaults.TEXT);
 export const disabled = () => pv('disabled', defaults.DISABLED);
 export const correct = () => pv('correct', defaults.CORRECT);
 export const incorrect = () => pv('incorrect', defaults.INCORRECT);
+export const missing = () => pv('missing', defaults.MISSING);
 
 export const primary = () => pv('primary', defaults.PRIMARY);
 export const primaryLight = () => pv('primary-light', defaults.PRIMARY_LIGHT);

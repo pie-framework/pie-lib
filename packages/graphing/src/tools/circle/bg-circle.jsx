@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { types, gridDraggable } from '@pie-lib/plot';
 import { color } from '@pie-lib/render-ui';
 import * as utils from '../../utils';
-import { disabled, correct, incorrect } from '../shared/styles';
+import { disabled, correct, incorrect, missing } from '../shared/styles';
 
 /**
  * A low level circle component
@@ -66,6 +66,7 @@ const styles = () => ({
   disabled: applyStyle(disabled),
   correct: applyStyle(correct),
   incorrect: applyStyle(incorrect),
+  missing: applyStyle(missing),
 });
 
 export const BgCircle = withStyles(styles)(RawCircle);
