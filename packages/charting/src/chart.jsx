@@ -62,6 +62,10 @@ export class Chart extends React.Component {
     categoryDefaultLabel: PropTypes.string,
     defineChart: PropTypes.bool,
     theme: PropTypes.object,
+    categoryDefaults: PropTypes.object,
+    chartingOptions: PropTypes.object,
+    changeInteractiveEnabled: PropTypes.bool,
+    changeEditableEnabled: PropTypes.bool,
   };
 
   static defaultProps = {

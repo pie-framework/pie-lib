@@ -329,6 +329,9 @@ TickComponent.propTypes = {
   classes: PropTypes.object,
   error: PropTypes.object,
   defineChart: PropTypes.bool,
+  chartingOptions: PropTypes.object,
+  changeInteractiveEnabled: PropTypes.bool,
+  changeEditableEnabled: PropTypes.bool,
 };
 
 export class RawChartAxes extends React.Component {
@@ -345,6 +348,9 @@ export class RawChartAxes extends React.Component {
     onChangeCategory: PropTypes.func,
     top: PropTypes.number,
     theme: PropTypes.object,
+    chartingOptions: PropTypes.object,
+    changeInteractiveEnabled: PropTypes.bool,
+    changeEditableEnabled: PropTypes.bool,
   };
 
   state = { height: 0 };

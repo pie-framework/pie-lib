@@ -22,7 +22,7 @@ const ConfigureChartPanel = (props) => {
   const [rangeKey, setRangeKey] = useState('');
   const [resetValue, setResetValue] = useState(0);
 
-  const { range = {}, correctAnswer, changeInteractiveEnabled, changeEditableEnabled } = model;
+  const { range = {}, correctAnswer, changeInteractiveEnabled } = model;
 
   const size = model.graph;
   const { showInConfigPanel, width, height } = chartDimensions || {};
@@ -295,6 +295,7 @@ ConfigureChartPanel.propTypes = {
   range: PropTypes.object,
   chartDimension: PropTypes.object,
   size: PropTypes.object,
+  studentNewCategoryDefaultLabel: PropTypes.object,
 };
 
 const styles = (theme) => ({
