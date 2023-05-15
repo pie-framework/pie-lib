@@ -47,6 +47,55 @@ describe('RawChartAxes', () => {
   });
 });
 
+describe('splitText method', () => {
+  const wrapper = (extras) => {
+    const xBand = jest.fn();
+    xBand.bandwidth = jest.fn();
+
+    const defaults = {
+      graphProps: graphProps(),
+      xBand,
+    };
+    const props = { ...defaults, ...extras };
+    return shallow(<TickComponent {...props} />);
+  };
+
+  it('splits a string into chunks of up to the specified length', () => {
+    const w = wrapper();
+    const input = 'This is a test string for splitText function';
+    const output = w.instance().splitText(input, 20);
+    expect(output).toEqual(['This is a test', 'string for splitText', 'function']);
+  });
+
+  it('returns an array with a single string when the input is less than the specified length', () => {
+    const w = wrapper();
+    const input = 'Short text';
+    const output = w.instance().splitText(input, 20);
+    expect(output).toEqual(['Short text']);
+  });
+
+  it('splits a string into chunks of exact length when no spaces are present', () => {
+    const w = wrapper();
+    const input = 'ThisisateststringforsplitTextfunction';
+    const output = w.instance().splitText(input, 10);
+    expect(output).toEqual(['Thisisates', 'tstringfor', 'splitTextf', 'unction']);
+  });
+
+  it('returns an empty array when the input is an empty string', () => {
+    const w = wrapper();
+    const input = '';
+    const output = w.instance().splitText(input, 20);
+    expect(output).toEqual([]);
+  });
+
+  it('returns an empty array when the input is null', () => {
+    const w = wrapper();
+    const input = null;
+    const output = w.instance().splitText(input, 20);
+    expect(output).toEqual([]);
+  });
+});
+
 describe('TickComponent', () => {
   const wrapper = (extras) => {
     const xBand = jest.fn();
