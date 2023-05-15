@@ -8,7 +8,15 @@ import { NumberTextFieldCustom } from '@pie-lib/config-ui';
 import { AlertDialog } from '@pie-lib/config-ui';
 
 const ConfigureChartPanel = (props) => {
-  const { classes, model, onChange, chartDimensions, gridValues = {}, labelValues = {} } = props;
+  const {
+    classes,
+    model,
+    onChange,
+    chartDimensions,
+    gridValues = {},
+    labelValues = {},
+    studentNewCategoryDefaultLabel = {},
+  } = props;
   const [alertDialog, setAlertDialog] = useState(false);
   const [open, setOpen] = useState(false);
   const [rangeKey, setRangeKey] = useState('');
@@ -85,6 +93,12 @@ const ConfigureChartPanel = (props) => {
     resetValues(correctAnswer.data);
   };
 
+  const setCategoryDefaultLabel = () => {
+    const studentCategoryDefaultLabel = studentNewCategoryDefaultLabel?.label;
+
+    onChange({ ...model, studentCategoryDefaultLabel });
+  };
+
   const rangeProps = (chartType) => {
     return chartType.includes('Plot') ? { min: 3, max: 10 } : { min: 0.05, max: 10000 };
   };
@@ -121,6 +135,7 @@ const ConfigureChartPanel = (props) => {
 
   useEffect(() => {
     removeOutOfRangeValues(true);
+    setCategoryDefaultLabel();
   }, []);
 
   useEffect(() => {

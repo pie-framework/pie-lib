@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.9.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.8.1...@pie-lib/charting@5.9.0) (2023-05-12)
+
+
+### Features
+
+* **charting:** add authoring view settings for authorNewCategoryDefaults and studentNewCategoryDefaultLabel PD-2774 ([84009f7](https://github.com/pie-framework/pie-lib/commit/84009f791d1f6c1dc15ec2789e5e9c6570190536))
+
+
+
+
+
 ## [5.8.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.8.0...@pie-lib/charting@5.8.1) (2023-05-02)
 
 

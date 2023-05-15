@@ -136,7 +136,7 @@ export class Chart extends React.Component {
   };
 
   addCategory = (range) => {
-    const { onDataChange, data, categoryDefaultLabel, defineChart } = this.props;
+    const { onDataChange, data, categoryDefaultLabel, defineChart, categoryDefaults } = this.props;
 
     if (!defineChart && data.length > 19) {
       this.setState({
@@ -156,8 +156,8 @@ export class Chart extends React.Component {
           label: categoryDefaultLabel || 'New Bar',
           value: range.step,
           deletable: true,
-          editable: true,
-          interactive: true,
+          editable: categoryDefaults ? categoryDefaults?.editable : true,
+          interactive: categoryDefaults ? categoryDefaults?.interactive : true,
         },
       ]);
     }

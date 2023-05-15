@@ -13,3 +13,8 @@ export const incorrect = (key = 'fill') => ({
   [key]: color.incorrect(),
   pointerEvents: 'none',
 });
+
+export const missing = (key = 'fill') => ({
+  [key]: color.missing(),
+  pointerEvents: 'none',
+});
