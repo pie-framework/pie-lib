@@ -104,12 +104,16 @@ export class TickComponent extends React.Component {
       x,
       y,
       formattedValue,
+      changeInteractiveEnabled,
+      changeEditableEnabled,
       error,
     } = this.props;
 
     if (!formattedValue) {
       return null;
     }
+
+    console.log(changeInteractiveEnabled, changeEditableEnabled, 'changeinteractiveenabled, changeeditableenabled');
 
     const { dialog } = this.state;
     const index = parseInt(formattedValue.split('-')[0], 10);
@@ -195,53 +199,56 @@ export class TickComponent extends React.Component {
               overflow: 'visible',
             }}
           >
-            <text
-              y={y + 90 + top}
-              width={barWidth}
-              height={4}
-              style={{
-                position: 'absolute',
-                pointerEvents: 'none',
-                wordBreak: 'break-word',
-                maxWidth: barWidth,
-                display: 'inline-block',
-              }}
-            >
-              <tspan x="0" dy=".6em">
-                {' '}
-                Student can{' '}
-              </tspan>
-              <tspan x="0" dy="1.2em">
-                {' '}
-                set value
-              </tspan>
-            </text>
-
-            <text
-              y={y + 145 + top}
-              width={barWidth}
-              height={4}
-              style={{
-                position: 'absolute',
-                pointerEvents: 'none',
-                wordBreak: 'break-word',
-                maxWidth: barWidth,
-                display: 'inline-block',
-              }}
-            >
-              <tspan x="0" dy=".6em">
-                {' '}
-                Student can{' '}
-              </tspan>
-              <tspan x="0" dy="1.2em">
-                {' '}
-                edit name
-              </tspan>
-            </text>
+            {changeInteractiveEnabled && (
+              <text
+                y={y + 90 + top}
+                width={barWidth}
+                height={4}
+                style={{
+                  position: 'absolute',
+                  pointerEvents: 'none',
+                  wordBreak: 'break-word',
+                  maxWidth: barWidth,
+                  display: 'inline-block',
+                }}
+              >
+                <tspan x="0" dy=".6em">
+                  {' '}
+                  Student can{' '}
+                </tspan>
+                <tspan x="0" dy="1.2em">
+                  {' '}
+                  set value
+                </tspan>
+              </text>
+            )}
+            {changeEditableEnabled && (
+              <text
+                y={y + 145 + top}
+                width={barWidth}
+                height={4}
+                style={{
+                  position: 'absolute',
+                  pointerEvents: 'none',
+                  wordBreak: 'break-word',
+                  maxWidth: barWidth,
+                  display: 'inline-block',
+                }}
+              >
+                <tspan x="0" dy=".6em">
+                  {' '}
+                  Student can{' '}
+                </tspan>
+                <tspan x="0" dy="1.2em">
+                  {' '}
+                  edit name
+                </tspan>
+              </text>
+            )}
           </svg>
         )}
 
-        {defineChart && (
+        {defineChart && changeInteractiveEnabled && (
           <foreignObject
             x={x - 24}
             y={y + 80 + top}
@@ -257,7 +264,7 @@ export class TickComponent extends React.Component {
           </foreignObject>
         )}
 
-        {defineChart && (
+        {defineChart && changeEditableEnabled && (
           <foreignObject
             x={x - 24}
             y={y + 130 + top}
@@ -346,6 +353,8 @@ export class RawChartAxes extends React.Component {
       categories = [],
       top,
       defineChart,
+      changeInteractiveEnabled,
+      changeEditableEnabled,
       theme,
       error,
     } = this.props;
@@ -381,6 +390,8 @@ export class RawChartAxes extends React.Component {
         defineChart,
         error,
         onChangeCategory,
+        changeInteractiveEnabled,
+        changeEditableEnabled,
         onChange,
         graphProps,
         x: props.x,

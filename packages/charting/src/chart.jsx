@@ -187,6 +187,8 @@ export class Chart extends React.Component {
       labelsPlaceholders,
       titlePlaceholder,
       addCategoryEnabled,
+      changeInteractiveEnabled,
+      changeEditableEnabled,
       showPixelGuides,
       error,
     } = this.props;
@@ -264,6 +266,8 @@ export class Chart extends React.Component {
             leftAxis={leftAxis}
             onChange={this.changeData}
             onChangeCategory={this.changeCategory}
+            changeInteractiveEnabled={changeInteractiveEnabled}
+            changeEditableEnabled={changeEditableEnabled}
             top={top}
             error={error}
           />
