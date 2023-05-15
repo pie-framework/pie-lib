@@ -90,6 +90,24 @@ export class TickComponent extends React.Component {
     }
   };
 
+  splitText = (text, maxChar) => {
+    let chunks = [];
+    while ((text || '').length > 0) {
+      let indexToSplit;
+      if (text.length > maxChar) {
+        indexToSplit = text.lastIndexOf(' ', maxChar);
+        if (indexToSplit === -1) {
+          indexToSplit = maxChar;
+        }
+      } else {
+        indexToSplit = text.length;
+      }
+      chunks.push(text.substring(0, indexToSplit));
+      text = text.substring(indexToSplit).trim();
+    }
+    return chunks;
+  };
+
   render() {
     const {
       classes,
@@ -101,6 +119,7 @@ export class TickComponent extends React.Component {
       top,
       graphProps,
       defineChart,
+      chartingOptions,
       x,
       y,
       formattedValue,
@@ -113,9 +132,8 @@ export class TickComponent extends React.Component {
       return null;
     }
 
-    console.log(changeInteractiveEnabled, changeEditableEnabled, 'changeinteractiveenabled, changeeditableenabled');
-
     const { dialog } = this.state;
+    const { changeEditable, changeInteractive } = chartingOptions || {};
     const index = parseInt(formattedValue.split('-')[0], 10);
     const category = categories[index];
     const { deletable, editable, interactive, label, correctness, autoFocus, inDefineChart } = category || {};
@@ -212,16 +230,14 @@ export class TickComponent extends React.Component {
                   display: 'inline-block',
                 }}
               >
-                <tspan x="0" dy=".6em">
-                  {' '}
-                  Student can{' '}
-                </tspan>
-                <tspan x="0" dy="1.2em">
-                  {' '}
-                  set value
-                </tspan>
+                {this.splitText(changeInteractive?.authoringLabel, 20).map((word, index) => (
+                  <tspan key={index} x="0" dy={`${index > 0 ? '1.2em' : '.6em'}`}>
+                    {word}
+                  </tspan>
+                ))}
               </text>
             )}
+
             {changeEditableEnabled && (
               <text
                 y={y + 145 + top}
@@ -235,14 +251,11 @@ export class TickComponent extends React.Component {
                   display: 'inline-block',
                 }}
               >
-                <tspan x="0" dy=".6em">
-                  {' '}
-                  Student can{' '}
-                </tspan>
-                <tspan x="0" dy="1.2em">
-                  {' '}
-                  edit name
-                </tspan>
+                {this.splitText(changeEditable?.authoringLabel, 20).map((word, index) => (
+                  <tspan key={index} x="0" dy={`${index > 0 ? '1.2em' : '.6em'}`}>
+                    {word}
+                  </tspan>
+                ))}
               </text>
             )}
           </svg>
@@ -353,6 +366,7 @@ export class RawChartAxes extends React.Component {
       categories = [],
       top,
       defineChart,
+      chartingOptions,
       changeInteractiveEnabled,
       changeEditableEnabled,
       theme,
@@ -388,6 +402,7 @@ export class RawChartAxes extends React.Component {
         rotate,
         top,
         defineChart,
+        chartingOptions,
         error,
         onChangeCategory,
         changeInteractiveEnabled,

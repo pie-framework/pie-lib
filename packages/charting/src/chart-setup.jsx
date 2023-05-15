@@ -22,7 +22,7 @@ const ConfigureChartPanel = (props) => {
   const [rangeKey, setRangeKey] = useState('');
   const [resetValue, setResetValue] = useState(0);
 
-  const { range = {}, correctAnswer } = model;
+  const { range = {}, correctAnswer, changeInteractiveEnabled, changeEditableEnabled } = model;
 
   const size = model.graph;
   const { showInConfigPanel, width, height } = chartDimensions || {};
@@ -86,8 +86,25 @@ const ConfigureChartPanel = (props) => {
     }
   };
 
+  const setPropertiesToFalse = (data, property) => {
+    return data.map((obj) => {
+      if (obj.hasOwnProperty(property)) {
+        obj[property] = property == 'interactive' ? true : false;
+      }
+      return obj;
+    });
+  };
+
   const removeOutOfRangeValues = (updateModel) => {
     const { correctAnswer, data } = model;
+
+    if (changeInteractiveEnabled === false) {
+      setPropertiesToFalse(data, 'interactive');
+    }
+
+    if (changeInteractiveEnabled === false) {
+      setPropertiesToFalse(data, 'editable');
+    }
 
     resetValues(data, updateModel);
     resetValues(correctAnswer.data);

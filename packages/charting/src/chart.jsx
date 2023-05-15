@@ -180,6 +180,7 @@ export class Chart extends React.Component {
       className,
       domain = {},
       range = {},
+      chartingOptions,
       size,
       title,
       onChangeTitle,
@@ -196,6 +197,7 @@ export class Chart extends React.Component {
 
     const { dialog } = this.state;
     const defineChart = this.props.defineChart || false;
+
     const { width, height } = size || {};
     const labels = { left: range?.label || '', bottom: domain?.label || '' };
 
@@ -266,6 +268,7 @@ export class Chart extends React.Component {
             leftAxis={leftAxis}
             onChange={this.changeData}
             onChangeCategory={this.changeCategory}
+            chartingOptions={chartingOptions}
             changeInteractiveEnabled={changeInteractiveEnabled}
             changeEditableEnabled={changeEditableEnabled}
             top={top}
