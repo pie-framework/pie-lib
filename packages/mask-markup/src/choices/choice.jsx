@@ -6,6 +6,7 @@ import Chip from '@material-ui/core/Chip';
 import classnames from 'classnames';
 import ReactDOM from 'react-dom';
 import { renderMath } from '@pie-lib/math-rendering';
+import { color } from '@pie-lib/render-ui';
 
 export const DRAG_TYPE = 'MaskBlank';
 
@@ -59,8 +60,14 @@ class BlankContentComp extends React.Component {
 export const BlankContent = withStyles((theme) => ({
   choice: {
     border: `solid 0px ${theme.palette.primary.main}`,
+    borderRadius: theme.spacing.unit * 2,
+    margin: theme.spacing.unit / 2,
+    transform: 'translate(0, 0)',
   },
   chip: {
+    backgroundColor: color.background(),
+    border: `1px solid ${color.text()}`,
+    color: color.text(),
     alignItems: 'center',
     display: 'inline-flex',
     height: 'initial',
@@ -68,7 +75,6 @@ export const BlankContent = withStyles((theme) => ({
     fontSize: 'inherit',
     whiteSpace: 'pre-wrap',
     maxWidth: '374px',
-    margin: theme.spacing.unit / 2,
     // Added for touch devices, for image content.
     // This will prevent the context menu from appearing and not allowing other interactions with the image.
     // If interactions with the image in the token will be requested we should handle only the context Menu.
