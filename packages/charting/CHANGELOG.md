@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.11.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.10.0...@pie-lib/charting@5.11.0) (2023-05-18)
+
+
+### Features
+
+* **charting:** use 0 as default value for new added category ([3b17996](https://github.com/pie-framework/pie-lib/commit/3b1799687b9db2e3dc2cd60748b121e317d56f0d))
+
+
+
+
+
 # [5.10.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.9.0...@pie-lib/charting@5.10.0) (2023-05-18)
 
 
