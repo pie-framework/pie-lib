@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.10.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.9.0...@pie-lib/charting@5.10.0) (2023-05-18)
+
+
+### Bug Fixes
+
+* **charting:** provide mask id PD-2821 ([9e29841](https://github.com/pie-framework/pie-lib/commit/9e298415e6cafd03e4264ab189af8a3b03f46b97))
+
+
+### Features
+
+* **charting:** add new item properties, settings, and authoring view settings for changeInteractive, changeEditable and addCategory ([0fe39c9](https://github.com/pie-framework/pie-lib/commit/0fe39c96f2e7ddeb0e24a9ef58a5d75d42550c73))
+* **charting:** add props validation PD-2776 ([6566927](https://github.com/pie-framework/pie-lib/commit/6566927be268b358c7de10d4b63d15e502a8368e))
+* **charting:** fix value for category editable when changeEditableEnabled is false ([4214aab](https://github.com/pie-framework/pie-lib/commit/4214aab4437b5d2395515b9b1d0680b93530ac83))
+
+
+
+
+
 # [5.9.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.8.1...@pie-lib/charting@5.9.0) (2023-05-12)
 
 
