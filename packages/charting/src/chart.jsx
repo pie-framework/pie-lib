@@ -60,6 +60,7 @@ export class Chart extends React.Component {
     addCategoryEnabled: PropTypes.bool,
     showPixelGuides: PropTypes.bool,
     categoryDefaultLabel: PropTypes.string,
+    categoryDefaults: PropTypes.object,
     defineChart: PropTypes.bool,
     theme: PropTypes.object,
     categoryDefaults: PropTypes.object,
@@ -139,7 +140,7 @@ export class Chart extends React.Component {
     }
   };
 
-  addCategory = (range) => {
+  addCategory = () => {
     const { onDataChange, data, categoryDefaultLabel, defineChart, categoryDefaults } = this.props;
 
     if (!defineChart && data.length > 19) {
@@ -158,7 +159,7 @@ export class Chart extends React.Component {
           inDefineChart: defineChart,
           autoFocus: true,
           label: categoryDefaultLabel || 'New Bar',
-          value: range.step,
+          value: 0,
           deletable: true,
           editable: categoryDefaults ? categoryDefaults?.editable : true,
           interactive: categoryDefaults ? categoryDefaults?.interactive : true,
@@ -242,7 +243,7 @@ export class Chart extends React.Component {
           <ToolMenu
             className={classes.toolMenu}
             disabled={!addCategoryEnabled}
-            addCategory={() => this.addCategory(correctValues.range)}
+            addCategory={() => this.addCategory()}
           />
         </div>
 
