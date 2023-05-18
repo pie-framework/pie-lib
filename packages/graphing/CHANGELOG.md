@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.12.29](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.12.28...@pie-lib/graphing@2.12.29) (2023-05-18)
+
+
+### Bug Fixes
+
+* **graphing:** undo-redo issues ([38d5d2b](https://github.com/pie-framework/pie-lib/commit/38d5d2b4d2098d80b2d288874e0a8050be65caf4))
+
+
+
+
+
 ## [2.12.28](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.12.27...@pie-lib/graphing@2.12.28) (2023-05-12)
 
 
