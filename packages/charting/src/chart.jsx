@@ -267,7 +267,7 @@ export class Chart extends React.Component {
             top={top}
             error={error}
           />
-          <mask mask={`${this.maskUid}`}>
+          <mask id={`${this.maskUid}`}>
             <rect {...maskSize} fill="white" />
           </mask>
           <g id="marks" mask={`url('#${this.maskUid}')`}>
