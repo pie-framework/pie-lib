@@ -8,7 +8,6 @@ const Paragraph = withStyles((theme) => ({
   para: {
     paddingTop: 2 * theme.spacing.unit,
     paddingBottom: 2 * theme.spacing.unit,
-    transform: 'translate(0, 0)',
   },
 }))((props) => <div className={props.classes.para}>{props.children}</div>);
 
