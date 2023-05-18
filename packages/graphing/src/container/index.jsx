@@ -1,13 +1,14 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { applyMiddleware, createStore } from 'redux';
 import reducer from './reducer';
 import { changeMarks } from './actions';
 import PropTypes from 'prop-types';
 import isEqual from 'lodash/isEqual';
 import { ActionCreators } from 'redux-undo';
 import GraphWithControls from '../graph-with-controls';
+import { lastActionMiddleware, getLastAction } from './middleware';
 
 const mapStateToProps = (s) => ({
   marks: s.marks.present,
@@ -36,7 +37,7 @@ class Root extends React.Component {
     super(props);
 
     const r = reducer();
-    this.store = createStore(r, { marks: props.marks });
+    this.store = createStore(r, { marks: props.marks }, applyMiddleware(lastActionMiddleware));
 
     this.store.subscribe(this.onStoreChange);
   }
@@ -57,9 +58,11 @@ class Root extends React.Component {
   onStoreChange = () => {
     const { marks, onChangeMarks } = this.props;
     const storeState = this.store.getState();
+    const lastAction = getLastAction();
+    const isUndoOperation = lastAction.type.includes('UNDO') || lastAction.type.includes('REDO');
 
     if (!isEqual(storeState.marks.present, marks)) {
-      onChangeMarks(storeState.marks.present);
+      onChangeMarks(storeState.marks.present, isUndoOperation);
     }
   };
 

@@ -16,6 +16,7 @@ class InsertImageHandler {
     this.getValue = getValue;
     this.onChange = onChange;
     this.isPasted = isPasted;
+    this.chosenFile = null;
   }
 
   getPlaceholderInDocument(value) {
@@ -69,6 +70,9 @@ class InsertImageHandler {
       return;
     }
 
+    // Save the chosen file to this.chosenFile
+    this.chosenFile = file;
+
     log('[fileChosen] file: ', file);
     const reader = new FileReader();
     reader.onload = () => {
@@ -89,6 +93,11 @@ class InsertImageHandler {
     const data = child.data.set('percent', percent);
     const change = value.change().setNodeByKey(this.placeholderBlock.key, { data });
     this.onChange(change);
+  }
+
+  // Add a getter method to retrieve the chosen file
+  getChosenFile() {
+    return this.chosenFile;
   }
 }
 

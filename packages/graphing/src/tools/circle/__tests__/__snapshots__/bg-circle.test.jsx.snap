@@ -9,6 +9,7 @@ exports[`BgCircle snapshot renders 1`] = `
       "correct": "RawCircle-correct-3",
       "disabled": "RawCircle-disabled-2",
       "incorrect": "RawCircle-incorrect-4",
+      "missing": "RawCircle-missing-5",
     }
   }
   graphProps={

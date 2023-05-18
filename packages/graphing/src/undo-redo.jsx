@@ -18,13 +18,13 @@ export class UndoRedo extends React.Component {
     const { classes, className, onUndo, onRedo, onReset } = this.props;
     return (
       <div className={classNames(className)}>
-        <Button classes={{ root: classes.button }} onClick={onUndo}>
+        <Button classes={{ root: classes.button }} onClick={() => onUndo(true)}>
           Undo
         </Button>
-        <Button classes={{ root: classes.button }} onClick={onRedo}>
+        <Button classes={{ root: classes.button }} onClick={() => onRedo(true)}>
           Redo
         </Button>
-        <Button classes={{ root: classes.button }} onClick={onReset}>
+        <Button classes={{ root: classes.button }} onClick={() => onReset()}>
           Reset
         </Button>
       </div>

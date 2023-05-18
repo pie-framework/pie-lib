@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.6.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.6.0...@pie-lib/editable-html@9.6.1) (2023-05-12)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+# [9.6.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.5.26...@pie-lib/editable-html@9.6.0) (2023-05-11)
+
+
+### Features
+
+* save file in Image Handler in order to be used for imageSupport in pie-player-components PD-2707 ([a94cbf9](https://github.com/pie-framework/pie-lib/commit/a94cbf9e575955ea530eaca77e9f8a9f088c49dd))
+
+
+
+
+
 ## [9.5.26](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.5.25...@pie-lib/editable-html@9.5.26) (2023-05-02)
 
 
