@@ -62,6 +62,10 @@ export class Chart extends React.Component {
     categoryDefaultLabel: PropTypes.string,
     defineChart: PropTypes.bool,
     theme: PropTypes.object,
+    categoryDefaults: PropTypes.object,
+    chartingOptions: PropTypes.object,
+    changeInteractiveEnabled: PropTypes.bool,
+    changeEditableEnabled: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -180,6 +184,7 @@ export class Chart extends React.Component {
       className,
       domain = {},
       range = {},
+      chartingOptions,
       size,
       title,
       onChangeTitle,
@@ -187,6 +192,8 @@ export class Chart extends React.Component {
       labelsPlaceholders,
       titlePlaceholder,
       addCategoryEnabled,
+      changeInteractiveEnabled,
+      changeEditableEnabled,
       showPixelGuides,
       error,
     } = this.props;
@@ -194,6 +201,7 @@ export class Chart extends React.Component {
 
     const { dialog } = this.state;
     const defineChart = this.props.defineChart || false;
+
     const { width, height } = size || {};
     const labels = { left: range?.label || '', bottom: domain?.label || '' };
 
@@ -264,10 +272,13 @@ export class Chart extends React.Component {
             leftAxis={leftAxis}
             onChange={this.changeData}
             onChangeCategory={this.changeCategory}
+            chartingOptions={chartingOptions}
+            changeInteractiveEnabled={changeInteractiveEnabled}
+            changeEditableEnabled={changeEditableEnabled}
             top={top}
             error={error}
           />
-          <mask mask={`${this.maskUid}`}>
+          <mask id={`${this.maskUid}`}>
             <rect {...maskSize} fill="white" />
           </mask>
           <g id="marks" mask={`url('#${this.maskUid}')`}>

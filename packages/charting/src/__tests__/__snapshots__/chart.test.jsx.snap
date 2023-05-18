@@ -141,7 +141,7 @@ exports[`ChartAxes snapshot renders 1`] = `
       xBand={[Function]}
     />
     <mask
-      mask="chart-2645"
+      id="chart-2645"
     >
       <rect
         fill="white"
@@ -339,7 +339,7 @@ exports[`ChartAxes snapshot renders if size is not defined 1`] = `
       xBand={[Function]}
     />
     <mask
-      mask="chart-1553"
+      id="chart-1553"
     >
       <rect
         fill="white"
@@ -541,7 +541,7 @@ exports[`ChartAxes snapshot renders without chartType property 1`] = `
       xBand={[Function]}
     />
     <mask
-      mask="chart-4286"
+      id="chart-4286"
     >
       <rect
         fill="white"
