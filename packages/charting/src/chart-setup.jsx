@@ -22,7 +22,7 @@ const ConfigureChartPanel = (props) => {
   const [rangeKey, setRangeKey] = useState('');
   const [resetValue, setResetValue] = useState(0);
 
-  const { range = {}, correctAnswer, changeInteractiveEnabled } = model;
+  const { range = {}, correctAnswer, changeInteractiveEnabled, changeEditableEnabled } = model;
 
   const size = model.graph;
   const { showInConfigPanel, width, height } = chartDimensions || {};
@@ -102,7 +102,7 @@ const ConfigureChartPanel = (props) => {
       setPropertiesToFalse(data, 'interactive');
     }
 
-    if (changeInteractiveEnabled === false) {
+    if (changeEditableEnabled === false) {
       setPropertiesToFalse(data, 'editable');
     }
 
