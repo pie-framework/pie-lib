@@ -21,12 +21,12 @@ const ChartType = withStyles(() => ({
       </InputLabel>
 
       <Select value={value} onChange={onChange} labelWidth={0} input={<OutlinedInput name="type" id="type-helper" />}>
-        <MenuItem value={'histogram'}>{availableChartTypes.histogram}</MenuItem>
-        <MenuItem value={'bar'}>{availableChartTypes.bar}</MenuItem>
-        <MenuItem value={'lineDot'}>{availableChartTypes.lineDot}</MenuItem>
-        <MenuItem value={'lineCross'}>{availableChartTypes.lineCross}</MenuItem>
-        <MenuItem value={'dotPlot'}>{availableChartTypes.dotPlot}</MenuItem>
-        <MenuItem value={'linePlot'}>{availableChartTypes.linePlot}</MenuItem>
+        {availableChartTypes.histogram && <MenuItem value={'histogram'}>{availableChartTypes.histogram}</MenuItem>}
+        {availableChartTypes.bar && <MenuItem value={'bar'}>{availableChartTypes.bar}</MenuItem>}
+        {availableChartTypes.lineDot && <MenuItem value={'lineDot'}>{availableChartTypes.lineDot}</MenuItem>}
+        {availableChartTypes.lineCross && <MenuItem value={'lineCross'}>{availableChartTypes.lineCross}</MenuItem>}
+        {availableChartTypes.dotPlot && <MenuItem value={'dotPlot'}>{availableChartTypes.dotPlot}</MenuItem>}
+        {availableChartTypes.linePlot && <MenuItem value={'linePlot'}>{availableChartTypes.linePlot}</MenuItem>}
       </Select>
     </FormControl>
   </div>
