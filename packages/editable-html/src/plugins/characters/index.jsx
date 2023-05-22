@@ -184,6 +184,7 @@ const insertDialog = ({ editorDOM, value, callback, opts }) => {
         additionalTopOffset = newEl.offsetHeight - boundRect.y + 10;
       }
 
+      newEl.style.maxWidth = '500px';
       newEl.style.position = 'absolute';
       newEl.style.top = `${boundRect.top + Math.abs(bodyRect.top) - newEl.offsetHeight - 10 + additionalTopOffset}px`;
       newEl.style.zIndex = 99999;
