@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.13.27](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.13.26...@pie-lib/mask-markup@1.13.27) (2023-05-22)
+
+
+### Bug Fixes
+
+* **mask-markup:** update tokens design to support color contrast PD-2066 ([8e8022e](https://github.com/pie-framework/pie-lib/commit/8e8022e8ef1466d5328a2c4a5befe991e2726ad5))
+
+
+
+
+
 ## [1.13.26](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.13.25...@pie-lib/mask-markup@1.13.26) (2023-05-12)
 
 **Note:** Version bump only for package @pie-lib/mask-markup

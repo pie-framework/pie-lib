@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.28](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.11.27...@pie-lib/math-toolbar@1.11.28) (2023-05-22)
+
+
+### Bug Fixes
+
+* made sure font roboto is used for insert special characters PD-1914 ([cc875de](https://github.com/pie-framework/pie-lib/commit/cc875de6f04a673ca614c5072f9e4efc3bc71a70))
+
+
+
+
+
 ## [1.11.27](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.11.26...@pie-lib/math-toolbar@1.11.27) (2023-05-02)
 
 

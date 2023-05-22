@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.12.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.11.0...@pie-lib/charting@5.12.0) (2023-05-22)
+
+
+### Features
+
+* **charting:** add new authoring view settings to restrict the permitted chart types and allow their names to be changed PD-2777 ([ae606aa](https://github.com/pie-framework/pie-lib/commit/ae606aa81a314c9b95fec36c5f47e88b1e6cd497))
+* **charting:** show chart type only if it's available in config PD-2777 ([754876f](https://github.com/pie-framework/pie-lib/commit/754876f223e1fa57c259fd8e752340ea29e36bdc))
+
+
+
+
+
 # [5.11.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.10.0...@pie-lib/charting@5.11.0) (2023-05-18)
 
 
