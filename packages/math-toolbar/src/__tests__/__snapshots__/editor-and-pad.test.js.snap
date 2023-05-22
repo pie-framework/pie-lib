@@ -22,6 +22,7 @@ exports[`snapshot renders 1`] = `
   <hr />
   <HorizontalKeypad
     additionalKeys={Array []}
+    className=""
     mode="scientific"
     noDecimal={false}
     onClick={[Function]}

@@ -304,6 +304,13 @@ const styles = (theme) => ({
   },
   character: {
     textTransform: 'initial !important',
+    gridTemplateRows: 'repeat(5, minmax(40px, 50px)) !important',
+  },
+  language: {
+    gridTemplateRows: 'repeat(5, minmax(40px, 50px)) !important',
+    '& *': {
+      fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important',
+    },
   },
   holder: {
     position: 'relative',
