@@ -16,6 +16,8 @@ const ConfigureChartPanel = (props) => {
     gridValues = {},
     labelValues = {},
     studentNewCategoryDefaultLabel = {},
+    availableChartTypes = {},
+    chartTypeLabel,
   } = props;
   const [alertDialog, setAlertDialog] = useState(false);
   const [open, setOpen] = useState(false);
@@ -223,7 +225,12 @@ const ConfigureChartPanel = (props) => {
       <Typography variant={'subtitle1'}>Configure Chart</Typography>
       <div className={classes.content}>
         <div className={classes.rowView}>
-          <ChartType value={model.chartType} onChange={(e) => onChartTypeChange(e.target.value)} />
+          <ChartType
+            value={model.chartType}
+            onChange={(e) => onChartTypeChange(e.target.value)}
+            availableChartTypes={availableChartTypes}
+            chartTypeLabel={chartTypeLabel}
+          />
           <NumberTextFieldCustom
             className={classes.mediumTextField}
             label="Max Value"
@@ -296,6 +303,8 @@ ConfigureChartPanel.propTypes = {
   chartDimension: PropTypes.object,
   size: PropTypes.object,
   studentNewCategoryDefaultLabel: PropTypes.object,
+  availableChartTypes: PropTypes.object,
+  chartTypeLabel: PropTypes.string,
 };
 
 const styles = (theme) => ({
