@@ -303,6 +303,8 @@ ConfigureChartPanel.propTypes = {
   chartDimension: PropTypes.object,
   size: PropTypes.object,
   studentNewCategoryDefaultLabel: PropTypes.object,
+  availableChartTypes: PropTypes.object,
+  chartTypeLabel: PropTypes.string,
 };
 
 const styles = (theme) => ({
