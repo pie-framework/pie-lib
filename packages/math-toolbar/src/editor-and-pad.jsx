@@ -272,7 +272,7 @@ export class EditorAndPad extends React.Component {
         <hr className={classes.hr} />
         {shouldShowKeypad && (
           <HorizontalKeypad
-            className={classes.keyboard}
+            className={cx(classes[keypadMode], classes.keyboard)}
             layoutForKeyPad={layoutForKeyPad}
             additionalKeys={additionalKeys}
             mode={controlledKeypadMode ? this.state.equationEditor : keypadMode}
@@ -586,6 +586,11 @@ const styles = (theme) => ({
       '& .mq-math-mode .mq-overline .mq-overline-inner .mq-empty ': {
         padding: '0 !important',
       },
+    },
+  },
+  language: {
+    '& *': {
+      fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important',
     },
   },
 });
