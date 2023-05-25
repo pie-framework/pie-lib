@@ -29,6 +29,8 @@ exports[`Settings Panel snapshot does not render radio buttons 1`] = `
     }
     onChange={[Function]}
   />
+  modal && (
+  )
 </div>
 `;
 
@@ -111,5 +113,7 @@ exports[`Settings Panel snapshot renders 1`] = `
     }
     onChange={[Function]}
   />
+  modal && (
+  )
 </div>
 `;
