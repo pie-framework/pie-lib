@@ -314,7 +314,7 @@ export class Panel extends React.Component {
     return (
       <div>
         {renderedGroups}
-        modal && ({modal})
+        {modal}
       </div>
     );
   }
