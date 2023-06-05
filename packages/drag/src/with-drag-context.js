@@ -5,7 +5,6 @@ import HTML5toTouch from 'react-dnd-multi-backend/dist/cjs/HTML5toTouch';
 
 export default (Component) => (props) => (
   <DndProvider backend={MultiBackend} options={HTML5toTouch} debugMode="true">
-    <div>Drag and Drop</div>
     <Component {...props} />
   </DndProvider>
 );
