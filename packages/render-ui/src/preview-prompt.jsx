@@ -97,6 +97,7 @@ const styles = (theme) => ({
   },
   legend: {
     width: '100%',
+    fontSize: 'inherit  !important',
   },
   rationale: {
     paddingLeft: theme.spacing.unit * 4,
