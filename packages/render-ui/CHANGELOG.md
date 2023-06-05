@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.14.25](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.14.24...@pie-lib/render-ui@4.14.25) (2023-06-05)
+
+
+### Bug Fixes
+
+* **render-ui:** set font size to inherit to avoid the overwriting in some websites ([3c43288](https://github.com/pie-framework/pie-lib/commit/3c43288dc348a5712492edfac7525cb49536785d))
+
+
+
+
+
 ## [4.14.24](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.14.23...@pie-lib/render-ui@4.14.24) (2023-05-12)
 
 

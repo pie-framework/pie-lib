@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.19](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.1.18...@pie-lib/drag@2.1.19) (2023-06-05)
+
+
+### Bug Fixes
+
+* **drag:** provide drag support for multiple devices PD-2722 ([747186c](https://github.com/pie-framework/pie-lib/commit/747186c230645ca805a8c446e7c74d1ec0003ab7))
+* **drag:** provide drag support for multiple-devices PD-2722 ([04534da](https://github.com/pie-framework/pie-lib/commit/04534da486616ddbfd08794361c9bdadaa2d1655))
+
+
+
+
+
 ## [2.1.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.1.17...@pie-lib/drag@2.1.18) (2023-04-19)
 
 
