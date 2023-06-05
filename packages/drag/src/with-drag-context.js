@@ -1,16 +1,10 @@
 import React from 'react';
-import { HTML5Backend } from 'react-dnd-html5-backend';
-// import { TouchBackend } from 'react-dnd-touch-backend';
-
+import { MultiBackend } from 'react-dnd-multi-backend';
 import { DndProvider } from 'react-dnd';
+import { HTML5toTouch } from 'rdndmb-html5-to-touch';
 
-// const isTouchEnabled = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
-
-// https://github.com/react-dnd/react-dnd/issues/3257
-// eslint-disable-next-line react/display-name
 export default (Component) => (props) => (
-  // <DndProvider backend={isTouchEnabled ? TouchBackend : HTML5Backend} context={window}>
-  <DndProvider backend={HTML5Backend} context={window}>
+  <DndProvider backend={MultiBackend} options={HTML5toTouch} debugMode="true">
     <Component {...props} />
   </DndProvider>
 );
