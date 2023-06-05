@@ -22,6 +22,7 @@ const rawLinks = [
   { label: 'scoring-config', path: '/scoring-config' },
   { label: 'text-select', path: '/text-select' },
   { label: 'text-select math', path: '/text-select-math' },
+  { label: 'translator', path: '/translator' },
   { label: 'ruler', path: '/tools/ruler' },
   { label: 'protractor', path: '/tools/protractor' },
   { label: 'rotatable', path: '/tools/rotatable' },
