@@ -14,5 +14,6 @@ module.exports = {
     '^react-dnd-touch-backend$': 'react-dnd-touch-backend/dist/cjs',
     '^react-dnd-test-backend$': 'react-dnd-test-backend/dist/cjs',
     '^react-dnd-test-utils$': 'react-dnd-test-utils/dist/cjs',
+    '^react-dnd-multi-backend$': 'react-dnd-multi-backend/dist/cjs',
   },
 };

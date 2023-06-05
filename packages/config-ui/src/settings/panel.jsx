@@ -263,6 +263,7 @@ export class Panel extends React.Component {
     groups: PropTypes.object,
     onChangeModel: PropTypes.func,
     onChangeConfiguration: PropTypes.func,
+    modal: PropTypes.object,
   };
 
   static defaultProps = {
@@ -287,7 +288,7 @@ export class Panel extends React.Component {
   };
 
   render() {
-    const { groups, model, configuration } = this.props;
+    const { groups, model, configuration, modal } = this.props;
 
     log('render:', model);
 
@@ -310,7 +311,12 @@ export class Panel extends React.Component {
       return null;
     });
 
-    return <div>{renderedGroups}</div>;
+    return (
+      <div>
+        {renderedGroups}
+        {modal}
+      </div>
+    );
   }
 }
 

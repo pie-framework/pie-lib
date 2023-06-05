@@ -1,4 +1,4 @@
-import { DndProvider, DragSource, DropTarget } from 'react-dnd';
+import { DragSource, DropTarget } from 'react-dnd';
 
 import PlaceHolder from './placeholder';
 import Choice from './choice';
@@ -9,7 +9,6 @@ import MatchDroppablePlaceholder from './match-list-dp';
 import DragDroppablePlaceholder from './drag-in-the-blank-dp';
 
 export {
-  DndProvider,
   PlaceHolder,
   MatchDroppablePlaceholder,
   DragDroppablePlaceholder,
