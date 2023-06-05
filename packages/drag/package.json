@@ -10,6 +10,7 @@
     "lodash": "^4.17.11",
     "react-dnd": "^14.0.5",
     "react-dnd-html5-backend": "^14.0.2",
+    "react-dnd-multi-backend": "^6.0.2",
     "react-dnd-touch-backend": "^14.1.0"
   },
   "publishConfig": {
