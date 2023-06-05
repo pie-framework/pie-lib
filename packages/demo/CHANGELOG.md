@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.10.85](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.10.84...@pie-lib/demo@6.10.85) (2023-06-05)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
 ## [6.10.84](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.10.83...@pie-lib/demo@6.10.84) (2023-05-22)
 
 **Note:** Version bump only for package @pie-lib/demo
