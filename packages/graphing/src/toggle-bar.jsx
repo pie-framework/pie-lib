@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import { color } from '@pie-lib/render-ui';
 import { allTools } from './tools/index';
 import { withDragContext, DragSource, DropTarget } from '@pie-lib/drag';
+import translator from "@pie-lib/translator";
 
 const buttonStyles = () => ({
   root: {
@@ -33,7 +34,8 @@ const buttonStyles = () => ({
 });
 
 export const MiniButton = withStyles(buttonStyles)((props) => {
-  const { disabled, classes, className, selected, value, onClick } = props;
+  const { disabled, classes, className, selected, value, onClick, language } = props;
+  const translatorKey = value.toLowerCase();
 
   return (
     <Button
@@ -46,7 +48,7 @@ export const MiniButton = withStyles(buttonStyles)((props) => {
       variant="outlined"
       onClick={onClick}
     >
-      {value}
+      {translator.t(`graphing.${translatorKey}`, { lng: language })}
     </Button>
   );
 });
@@ -71,6 +73,7 @@ export class ToggleBar extends React.Component {
     draggableTools: PropTypes.bool,
     onChange: PropTypes.func,
     onChangeToolsOrder: PropTypes.func,
+    language: PropTypes.string,
   };
 
   static defaultProps = {};
@@ -88,7 +91,7 @@ export class ToggleBar extends React.Component {
   };
 
   render() {
-    const { classes, className, disabled, options, selectedToolType, draggableTools } = this.props;
+    const { classes, className, disabled, options, selectedToolType, draggableTools, language } = this.props;
 
     return (
       <div className={cn(className, classes.toolsContainer)}>
@@ -113,6 +116,7 @@ export class ToggleBar extends React.Component {
                   onClick={this.select}
                   value={option}
                   selected={isSelected}
+                  language={language}
                 />
               </DragTool>
             );
