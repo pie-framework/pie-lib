@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/translator@1.2.0...@pie-lib/translator@2.0.0) (2023-06-06)
+
+
+### Features
+
+* expanded translator by exposing languageOptions PD-2795 ([4d3167b](https://github.com/pie-framework/pie-lib/commit/4d3167bcdc106bc87f05c3ff0fafab7800be7a1d))
+
+
+### BREAKING CHANGES
+
+* The translator is now inside the returned object, not the object itself.
+
+
+
+
+
 # [1.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/translator@1.1.0...@pie-lib/translator@1.2.0) (2023-06-06)
 
 
