@@ -2,15 +2,17 @@ import React from "react";
 import withRoot from "../../src/withRoot";
 import { withStyles } from "@material-ui/core";
 
-import translator from "../../../translator";
+import Translator from "../../../translator";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
+
+const { translator, languageOptions } = Translator;
 
 class Demo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      language: "es"
+      language: languageOptions[0].value,
     };
   }
 
@@ -31,9 +33,9 @@ class Demo extends React.Component {
             id: 'markup',
           }}
         >
-          {['en', 'es', 'en_US', 'es_ES', 'es_MX'].map((i) => (
-            <MenuItem key={i.label} value={i}>
-              {i}
+          {languageOptions.map((i) => (
+            <MenuItem key={i.label} value={i.value}>
+              {i.label}
             </MenuItem>
           ))}
         </Select>
