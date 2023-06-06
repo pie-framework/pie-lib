@@ -57,6 +57,7 @@ export class GraphWithControls extends React.Component {
     onRedo: PropTypes.func,
     onReset: PropTypes.func,
     toolbarTools: PropTypes.arrayOf(PropTypes.string), // array of tool types that have to be displayed in the toolbar, same shape as 'allTools'
+    language: PropTypes.string,
   };
 
   static defaultProps = {
@@ -122,6 +123,7 @@ export class GraphWithControls extends React.Component {
       showTitle,
       title,
       titlePlaceholder,
+      language
     } = this.props;
     let { backgroundMarks, marks, toolbarTools } = this.props;
 
@@ -152,9 +154,10 @@ export class GraphWithControls extends React.Component {
           onToggleLabelMode={this.toggleLabelMode}
           toolbarTools={toolbarTools}
           onChangeTools={onChangeTools}
+          language={language}
         />
 
-        {!disabled && <UndoRedo onUndo={onUndo} onRedo={onRedo} onReset={onReset} />}
+        {!disabled && <UndoRedo onUndo={onUndo} onRedo={onRedo} onReset={onReset} language={language}/>}
       </React.Fragment>
     );
 

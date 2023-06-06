@@ -195,6 +195,7 @@ export class GridDemo extends React.PureComponent {
               title={settings.graphTitle && model.title}
               toolbarTools={stateTools}
               coordinatesOnHover={settings.coordinatesOnHover}
+              language={'es_ES'}
             />
           </div>
         </div>

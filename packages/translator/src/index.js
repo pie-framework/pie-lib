@@ -22,10 +22,13 @@ export default {
     switch (lng) {
       // these keys don't work with plurals, don't know why, so I added a workaround to convert them to the correct lng
       case "en_US":
+      case "en-US":
         options.lng = "en";
         break;
       case "es_ES":
+      case "es-ES":
       case "es_MX":
+      case "es-MX":
         options.lng = "es";
         break;
       default:

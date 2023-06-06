@@ -1,9 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import Button from '@material-ui/core/Button';
-import { withStyles } from '@material-ui/core';
-import { color } from '@pie-lib/render-ui';
+import React from "react";
+import PropTypes from "prop-types";
+import classNames from "classnames";
+import Button from "@material-ui/core/Button";
+import { withStyles } from "@material-ui/core";
+import { color } from "@pie-lib/render-ui";
+import translator from "@pie-lib/translator";
 
 export class UndoRedo extends React.Component {
   static propTypes = {
@@ -12,20 +13,22 @@ export class UndoRedo extends React.Component {
     onUndo: PropTypes.func.isRequired,
     onRedo: PropTypes.func.isRequired,
     onReset: PropTypes.func.isRequired,
+    language: PropTypes.string
   };
   static defaultProps = {};
+
   render() {
-    const { classes, className, onUndo, onRedo, onReset } = this.props;
+    const { classes, className, onUndo, onRedo, onReset, language } = this.props;
     return (
       <div className={classNames(className)}>
         <Button classes={{ root: classes.button }} onClick={() => onUndo(true)}>
-          Undo
+          {translator.t("common:undo", { lng: language })}
         </Button>
         <Button classes={{ root: classes.button }} onClick={() => onRedo(true)}>
-          Redo
+          {translator.t("graphing.redo", { lng: language })}
         </Button>
         <Button classes={{ root: classes.button }} onClick={() => onReset()}>
-          Reset
+          {translator.t("graphing.reset", { lng: language })}
         </Button>
       </div>
     );
@@ -37,13 +40,13 @@ const styles = (theme) => ({
     color: color.text(),
     backgroundColor: color.background(),
     marginBottom: theme.spacing.unit / 2,
-    '&:not(:last-of-type)': {
-      marginRight: theme.spacing.unit / 2,
+    "&:not(:last-of-type)": {
+      marginRight: theme.spacing.unit / 2
     },
-    '&:hover': {
-      backgroundColor: color.primary(),
-    },
-  },
+    "&:hover": {
+      backgroundColor: color.primary()
+    }
+  }
 });
 
 export default withStyles(styles)(UndoRedo);
