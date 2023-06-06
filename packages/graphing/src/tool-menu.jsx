@@ -15,6 +15,7 @@ export class ToolMenu extends React.Component {
     onToggleLabelMode: PropTypes.func,
     onChangeTools: PropTypes.func,
     toolbarTools: PropTypes.arrayOf(PropTypes.string),
+    language: PropTypes.string,
   };
 
   static defaultProps = {
@@ -40,6 +41,7 @@ export class ToolMenu extends React.Component {
       labelModeEnabled,
       onToggleLabelMode,
       onChange,
+      language
     } = this.props;
     let { toolbarTools } = this.props;
 
@@ -56,10 +58,11 @@ export class ToolMenu extends React.Component {
           selectedToolType={currentToolType}
           onChange={onChange}
           onChangeToolsOrder={(tools) => this.updateToolsOrder(tools, showLabel)}
+          language={language}
         />
 
         {showLabel && (
-          <MiniButton disabled={disabled} value={'Label'} onClick={onToggleLabelMode} selected={labelModeEnabled} />
+          <MiniButton disabled={disabled} value={'Label'} onClick={onToggleLabelMode} selected={labelModeEnabled} language={language} />
         )}
       </div>
     );

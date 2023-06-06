@@ -22,6 +22,7 @@
     "@pie-lib/graphing-utils": "^1.1.32",
     "@pie-lib/plot": "^2.6.13",
     "@pie-lib/render-ui": "^4.14.25",
+    "@pie-lib/translator": "^1.1.0",
     "@vx/axis": "^0.0.189",
     "@vx/clip-path": "^0.0.189",
     "@vx/event": "^0.0.189",
