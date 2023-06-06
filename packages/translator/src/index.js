@@ -15,25 +15,31 @@ i18next.init(
 );
 
 export default {
-  ...i18next,
-  t: (key, options) => {
-    const { lng } = options;
+  translator: {
+    ...i18next,
+    t: (key, options) => {
+      const { lng } = options;
 
-    switch (lng) {
-      // these keys don't work with plurals, don't know why, so I added a workaround to convert them to the correct lng
-      case "en_US":
-      case "en-US":
-        options.lng = "en";
-        break;
-      case "es_ES":
-      case "es-ES":
-      case "es_MX":
-      case "es-MX":
-        options.lng = "es";
-        break;
-      default:
-        break;
-    }
-    return i18next.t(key, { lng, ...options });
-  }
+      switch (lng) {
+        // these keys don't work with plurals, don't know why, so I added a workaround to convert them to the correct lng
+        case "en_US":
+        case "en-US":
+          options.lng = "en";
+          break;
+        case "es_ES":
+        case "es-ES":
+        case "es_MX":
+        case "es-MX":
+          options.lng = "es";
+          break;
+        default:
+          break;
+      }
+      return i18next.t(key, { lng, ...options });
+    },
+  },
+  languageOptions: [
+    { value: "en_US", label: "English (US)" },
+    { value: "es_ES", label: "Spanish" }
+  ],
 };
