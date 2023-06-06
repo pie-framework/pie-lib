@@ -4,7 +4,9 @@ import classNames from "classnames";
 import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core";
 import { color } from "@pie-lib/render-ui";
-import translator from "@pie-lib/translator";
+import Translator from "@pie-lib/translator";
+
+const { translator } = Translator;
 
 export class UndoRedo extends React.Component {
   static propTypes = {
