@@ -6,7 +6,9 @@ import Button from '@material-ui/core/Button';
 import { color } from '@pie-lib/render-ui';
 import { allTools } from './tools/index';
 import { withDragContext, DragSource, DropTarget } from '@pie-lib/drag';
-import translator from "@pie-lib/translator";
+import Translator from "@pie-lib/translator";
+
+const { translator } = Translator;
 
 const buttonStyles = () => ({
   root: {
