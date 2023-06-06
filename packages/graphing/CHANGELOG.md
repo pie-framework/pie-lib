@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.13.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.13.1...@pie-lib/graphing@2.13.2) (2023-06-06)
+
+
+### Bug Fixes
+
+* update graphing's usage of translator after breaking changes in the translator package ([d3081d2](https://github.com/pie-framework/pie-lib/commit/d3081d2fc6e27f3579d52e2fe5a7361aaf4b7b39))
+
+
+
+
+
 ## [2.13.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.13.0...@pie-lib/graphing@2.13.1) (2023-06-06)
 
 **Note:** Version bump only for package @pie-lib/graphing
