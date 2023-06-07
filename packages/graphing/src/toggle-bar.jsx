@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import { color } from '@pie-lib/render-ui';
 import { allTools } from './tools/index';
 import { withDragContext, DragSource, DropTarget } from '@pie-lib/drag';
-import Translator from "@pie-lib/translator";
+import Translator from '@pie-lib/translator';
 
 const { translator } = Translator;
 
@@ -48,7 +48,7 @@ export const MiniButton = withStyles(buttonStyles)((props) => {
       value={value}
       key={value}
       variant="outlined"
-      onClick={onClick}
+      onClick={(e) => onClick({ ...e, buttonValue: value })}
     >
       {translator.t(`graphing.${translatorKey}`, { lng: language })}
     </Button>
@@ -80,7 +80,7 @@ export class ToggleBar extends React.Component {
 
   static defaultProps = {};
 
-  select = (e) => this.props.onChange(e.target.textContent);
+  select = (e) => this.props.onChange(e.buttonValue || e.target.textContent);
 
   moveTool = (dragIndex, hoverIndex) => {
     const { options, onChangeToolsOrder } = this.props;
