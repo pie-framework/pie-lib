@@ -1,11 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import cn from 'classnames';
-import Button from '@material-ui/core/Button';
-import { color } from '@pie-lib/render-ui';
-import { allTools } from './tools/index';
-import { withDragContext, DragSource, DropTarget } from '@pie-lib/drag';
+import React from "react";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import cn from "classnames";
+import Button from "@material-ui/core/Button";
+import { color } from "@pie-lib/render-ui";
+import { allTools } from "./tools/index";
+import { withDragContext, DragSource, DropTarget } from "@pie-lib/drag";
 import Translator from "@pie-lib/translator";
 
 const { translator } = Translator;
@@ -13,26 +13,26 @@ const { translator } = Translator;
 const buttonStyles = () => ({
   root: {
     color: color.text(),
-    '&:hover': {
-      backgroundColor: color.primary(),
-    },
+    "&:hover": {
+      backgroundColor: color.primary()
+    }
   },
   selected: {
     backgroundColor: color.background(),
-    border: `1px solid ${color.secondary()}`,
+    border: `1px solid ${color.secondary()}`
   },
   notSelected: {
-    '& span': {
-      color: color.primary(),
+    "& span": {
+      color: color.primary()
     },
-    backgroundColor: color.background(),
+    backgroundColor: color.background()
   },
   disabled: {
-    '& span': {
-      color: color.primary(),
+    "& span": {
+      color: color.primary()
     },
-    backgroundColor: color.disabled(),
-  },
+    backgroundColor: color.disabled()
+  }
 });
 
 export const MiniButton = withStyles(buttonStyles)((props) => {
@@ -48,7 +48,7 @@ export const MiniButton = withStyles(buttonStyles)((props) => {
       value={value}
       key={value}
       variant="outlined"
-      onClick={onClick}
+      onClick={e => onClick({ ...e, buttonValue: value })}
     >
       {translator.t(`graphing.${translatorKey}`, { lng: language })}
     </Button>
@@ -62,7 +62,7 @@ MiniButton.propTypes = {
   disabledClassName: PropTypes.string,
   selected: PropTypes.bool,
   value: PropTypes.string,
-  onClick: PropTypes.func,
+  onClick: PropTypes.func
 };
 
 export class ToggleBar extends React.Component {
@@ -75,12 +75,12 @@ export class ToggleBar extends React.Component {
     draggableTools: PropTypes.bool,
     onChange: PropTypes.func,
     onChangeToolsOrder: PropTypes.func,
-    language: PropTypes.string,
+    language: PropTypes.string
   };
 
   static defaultProps = {};
 
-  select = (e) => this.props.onChange(e.target.textContent);
+  select = (e) => this.props.onChange(e.buttonValue || e.target.textContent);
 
   moveTool = (dragIndex, hoverIndex) => {
     const { options, onChangeToolsOrder } = this.props;
@@ -131,33 +131,33 @@ export class ToggleBar extends React.Component {
 
 const styles = (theme) => ({
   toolsContainer: {
-    display: 'flex',
-    flexWrap: 'wrap',
+    display: "flex",
+    flexWrap: "wrap"
   },
   button: {
     marginRight: theme.spacing.unit / 2,
     marginBottom: theme.spacing.unit / 2,
     color: color.text(),
-    backgroundColor: color.background(),
+    backgroundColor: color.background()
   },
   under: {
-    position: 'absolute',
+    position: "absolute",
     top: 0,
     left: 0,
     zIndex: -1,
-    pointerEvents: 'none',
+    pointerEvents: "none"
   },
   wrapper: {
-    position: 'relative',
+    position: "relative"
   },
   hidden: {
-    opacity: 0,
-  },
+    opacity: 0
+  }
 });
 
 export default withDragContext(withStyles(styles)(ToggleBar));
 
-const DRAG_TYPE = 'tool';
+const DRAG_TYPE = "tool";
 
 export class Item extends React.Component {
   static propTypes = {
@@ -168,7 +168,7 @@ export class Item extends React.Component {
     connectDragPreview: PropTypes.func.isRequired,
     connectDropTarget: PropTypes.func.isRequired,
     isDragging: PropTypes.bool,
-    toolRef: PropTypes.any,
+    toolRef: PropTypes.any
   };
 
   static defaultProps = {};
@@ -181,7 +181,7 @@ export class Item extends React.Component {
       connectDropTarget,
       connectDragPreview,
       isDragging,
-      toolRef,
+      toolRef
     } = this.props;
 
     return (
@@ -199,9 +199,9 @@ const itemSource = {
   },
   beginDrag(props) {
     return {
-      index: props.index,
+      index: props.index
     };
-  },
+  }
 };
 
 const itemTarget = {
@@ -228,7 +228,7 @@ const itemTarget = {
 
     props.moveTool(dragIndex, hoverIndex);
     monitor.getItem().index = hoverIndex;
-  },
+  }
 };
 
 const collectTarget = (connect) => ({ connectDropTarget: connect.dropTarget() });
@@ -236,11 +236,11 @@ const collectTarget = (connect) => ({ connectDropTarget: connect.dropTarget() })
 const collectSource = (connect, monitor) => ({
   connectDragSource: connect.dragSource(),
   connectDragPreview: connect.dragPreview(),
-  isDragging: monitor.isDragging(),
+  isDragging: monitor.isDragging()
 });
 
 const DragTool = DropTarget(
   DRAG_TYPE,
   itemTarget,
-  collectTarget,
+  collectTarget
 )(DragSource(DRAG_TYPE, itemSource, collectSource)(Item));
