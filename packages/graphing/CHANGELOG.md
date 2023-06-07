@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.13.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.13.2...@pie-lib/graphing@2.13.3) (2023-06-07)
+
+
+### Bug Fixes
+
+* prettier ([7ab7f22](https://github.com/pie-framework/pie-lib/commit/7ab7f22ac1cd0e5511036421d832ea2fbe5dd4f6))
+* switching tool not working because it was using the button's text content, which doesn't work with translations ([0006efb](https://github.com/pie-framework/pie-lib/commit/0006efb12632b016d01ee327cc36a45b91cfff4b))
+
+
+
+
+
 ## [2.13.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.13.1...@pie-lib/graphing@2.13.2) (2023-06-06)
 
 
