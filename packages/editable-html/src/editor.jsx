@@ -116,6 +116,7 @@ export class Editor extends React.Component {
     onKeyDown: () => {},
     toolbarOpts: defaultToolbarOpts,
     mmlEditing: true,
+    mmlOutput: true,
     responseAreaProps: defaultResponseAreaProps,
     languageCharactersProps: defaultLanguageCharactersProps,
   };

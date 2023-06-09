@@ -8,6 +8,7 @@ import SlatePropTypes from 'slate-prop-types';
 import PropTypes from 'prop-types';
 
 import { BLOCK_TAGS } from '../../serialization';
+import isEqual from "lodash/isEqual";
 const log = debug('@pie-lib:editable-html:plugins:math');
 
 const TEXT_NODE = 3;
@@ -231,14 +232,12 @@ export const serialization = {
      */
     if (tagName === 'math' || (el.dataset && el.dataset.type === 'mathml') || hasMathChild) {
       const newHtml = hasMathChild ? el.innerHTML : el.outerHTML;
-      const htmlToUse = mathMlOptions.mmlEditing ? newHtml : mmlToLatex(newHtml);
-
-      const latex = htmlDecode(htmlToUse);
-      const { unwrapped, wrapType } = unWrapMath(latex);
-
-      log('[deserialize]: noBrackets: ', unwrapped, wrapType);
 
       if (mathMlOptions.mmlEditing) {
+        const htmlToUse = mmlToLatex(newHtml);
+        const latex = htmlDecode(htmlToUse);
+        const { unwrapped, wrapType } = unWrapMath(latex);
+
         return {
           object: 'inline',
           type: 'math',
@@ -296,8 +295,21 @@ export const serialization = {
 
       if (mathMlOptions.mmlOutput) {
         const res = renderMath(`<span data-latex="" data-raw="${decoded}">${wrapMath(decoded, wrapper)}</span>`);
+        const newLatex = mmlToLatex(res);
 
-        return <span data-type="mathml" dangerouslySetInnerHTML={{ __html: res }} />;
+        // we need to remove all the spaces from the latex to be able to compare it
+        const strippedL = l.replace(/\s/g, '');
+        const strippedNewL = newLatex.replace(/\s/g, '');
+
+        // we check if the latex keeps his form after being converted to mathml and back to latex
+        // if it does we can safely convert it to mathml
+        if (isEqual(strippedL, strippedNewL)) {
+          return <span data-type="mathml" dangerouslySetInnerHTML={{ __html: res }} />;
+        } else {
+          // if it doesn't we keep the latex version
+          console.log('This latex can not be safely converted to mathml:', l, 'so we will keep the latex version!!!');
+          console.warn('This latex can not be safely converted to mathml:', l, 'so we will keep the latex version!!!');
+        }
       }
 
       return (
