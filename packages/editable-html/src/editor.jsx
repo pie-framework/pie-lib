@@ -57,6 +57,8 @@ export class Editor extends React.Component {
     focus: PropTypes.func.isRequired,
     value: SlateTypes.value.isRequired,
     imageSupport: PropTypes.object,
+    mmlOutput: PropTypes.bool,
+    mmlEditing: PropTypes.bool,
     disableImageAlignmentButtons: PropTypes.bool,
     uploadSoundSupport: PropTypes.shape({
       add: PropTypes.func,
@@ -113,6 +115,7 @@ export class Editor extends React.Component {
     onBlur: () => {},
     onKeyDown: () => {},
     toolbarOpts: defaultToolbarOpts,
+    mmlEditing: true,
     responseAreaProps: defaultResponseAreaProps,
     languageCharactersProps: defaultLanguageCharactersProps,
   };
@@ -142,6 +145,8 @@ export class Editor extends React.Component {
         onClick: this.onMathClick,
         onFocus: this.onPluginFocus,
         onBlur: this.onPluginBlur,
+        mmlOutput: props.mmlOutput,
+        mmlEditing: props.mmlEditing,
       },
       image: {
         disableImageAlignmentButtons: props.disableImageAlignmentButtons,

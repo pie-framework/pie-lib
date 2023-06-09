@@ -1,7 +1,7 @@
 import Functions from '@material-ui/icons/Functions';
 import { Inline } from 'slate';
 import { MathPreview, MathToolbar } from '@pie-lib/math-toolbar';
-import { wrapMath, unWrapMath } from '@pie-lib/math-rendering';
+import { wrapMath, unWrapMath, mmlToLatex, renderMath } from '@pie-lib/math-rendering';
 import React from 'react';
 import debug from 'debug';
 import SlatePropTypes from 'slate-prop-types';
@@ -94,7 +94,14 @@ CustomToolbarComp.propTypes = {
   onBlur: PropTypes.func,
 };
 
-export default function MathPlugin() {
+let mathMlOptions = {};
+
+export default function MathPlugin(opts) {
+  mathMlOptions = {
+    mmlOutput: opts.mmlOutput,
+    mmlEditing: opts.mmlEditing,
+  };
+
   return {
     name: 'math',
     toolbar: {
@@ -224,6 +231,25 @@ export const serialization = {
      */
     if (tagName === 'math' || (el.dataset && el.dataset.type === 'mathml') || hasMathChild) {
       const newHtml = hasMathChild ? el.innerHTML : el.outerHTML;
+      const htmlToUse = mathMlOptions.mmlEditing ? newHtml : mmlToLatex(newHtml);
+
+      const latex = htmlDecode(htmlToUse);
+      const { unwrapped, wrapType } = unWrapMath(latex);
+
+      log('[deserialize]: noBrackets: ', unwrapped, wrapType);
+
+      if (mathMlOptions.mmlEditing) {
+        return {
+          object: 'inline',
+          type: 'math',
+          isVoid: true,
+          nodes: [],
+          data: {
+            latex: unwrapped,
+            wrapper: wrapType,
+          },
+        };
+      }
 
       return {
         object: 'inline',
@@ -267,6 +293,13 @@ export const serialization = {
       const wrapper = object.data.get('wrapper');
       log('[serialize] latex: ', l);
       const decoded = htmlDecode(lessThanHandling(l));
+
+      if (mathMlOptions.mmlOutput) {
+        const res = renderMath(`<span data-latex="" data-raw="${decoded}">${wrapMath(decoded, wrapper)}</span>`);
+
+        return <span data-type="mathml" dangerouslySetInnerHTML={{ __html: res }} />;
+      }
+
       return (
         <span data-latex="" data-raw={decoded}>
           {wrapMath(decoded, wrapper)}
