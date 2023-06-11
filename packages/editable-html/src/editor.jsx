@@ -57,8 +57,10 @@ export class Editor extends React.Component {
     focus: PropTypes.func.isRequired,
     value: SlateTypes.value.isRequired,
     imageSupport: PropTypes.object,
-    mmlOutput: PropTypes.bool,
-    mmlEditing: PropTypes.bool,
+    mathMlOptions: PropTypes.shape({
+      mmlOutput: PropTypes.bool,
+      mmlEditing: PropTypes.bool,
+    }),
     disableImageAlignmentButtons: PropTypes.bool,
     uploadSoundSupport: PropTypes.shape({
       add: PropTypes.func,
@@ -92,6 +94,7 @@ export class Editor extends React.Component {
         characters: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)),
       }),
     ),
+    runSerializationOnMarkup: PropTypes.func,
     toolbarOpts: PropTypes.shape({
       position: PropTypes.oneOf(['bottom', 'top']),
       alignment: PropTypes.oneOf(['left', 'right']),
@@ -114,9 +117,12 @@ export class Editor extends React.Component {
     onFocus: () => {},
     onBlur: () => {},
     onKeyDown: () => {},
+    runSerializationOnMarkup: () => {},
+    mathMlOptions: {
+      mmlOutput: false,
+      mmlEditing: false,
+    },
     toolbarOpts: defaultToolbarOpts,
-    mmlEditing: true,
-    mmlOutput: true,
     responseAreaProps: defaultResponseAreaProps,
     languageCharactersProps: defaultLanguageCharactersProps,
   };
@@ -146,8 +152,7 @@ export class Editor extends React.Component {
         onClick: this.onMathClick,
         onFocus: this.onPluginFocus,
         onBlur: this.onPluginBlur,
-        mmlOutput: props.mmlOutput,
-        mmlEditing: props.mmlEditing,
+        ...props.mathMlOptions,
       },
       image: {
         disableImageAlignmentButtons: props.disableImageAlignmentButtons,
@@ -232,6 +237,10 @@ export class Editor extends React.Component {
         uploadSoundSupport: props.uploadSoundSupport,
       },
     });
+
+    if (props.mathMlOptions.mmlOutput || props.mathMlOptions.mmlEditing) {
+      this.props.runSerializationOnMarkup();
+    }
   };
 
   componentDidMount() {

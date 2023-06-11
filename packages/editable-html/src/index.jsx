@@ -67,6 +67,16 @@ export default class EditableHtml extends React.Component {
     }
   }
 
+  runSerializationOnMarkup = () => {
+    if (!this.props.markup) {
+      return;
+    }
+
+    const v = htmlToValue(reduceMultipleBrs(this.props.markup));
+
+    this.setState({ value: v });
+  };
+
   onChange = (value, done) => {
     const html = valueToHtml(value);
     const htmlParsed = parseDegrees(html);
@@ -137,6 +147,7 @@ export default class EditableHtml extends React.Component {
       value,
       onChange: this.onChange,
       focus: this.focus,
+      runSerializationOnMarkup: this.runSerializationOnMarkup,
     };
 
     return (

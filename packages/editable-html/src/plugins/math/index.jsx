@@ -8,7 +8,7 @@ import SlatePropTypes from 'slate-prop-types';
 import PropTypes from 'prop-types';
 
 import { BLOCK_TAGS } from '../../serialization';
-import isEqual from "lodash/isEqual";
+import isEqual from 'lodash/isEqual';
 const log = debug('@pie-lib:editable-html:plugins:math');
 
 const TEXT_NODE = 3;
@@ -95,10 +95,8 @@ CustomToolbarComp.propTypes = {
   onBlur: PropTypes.func,
 };
 
-let mathMlOptions = {};
-
 export default function MathPlugin(opts) {
-  mathMlOptions = {
+  MathPlugin.mathMlOptions = {
     mmlOutput: opts.mmlOutput,
     mmlEditing: opts.mmlEditing,
   };
@@ -158,6 +156,7 @@ MathPlugin.ROUND_BRACKETS = 'round_brackets';
 MathPlugin.SQUARE_BRACKETS = 'square_brackets';
 MathPlugin.DOLLAR = 'dollar';
 MathPlugin.DOUBLE_DOLLAR = 'double_dollar';
+MathPlugin.mathMlOptions = {};
 
 MathPlugin.propTypes = {
   attributes: PropTypes.object,
@@ -233,7 +232,7 @@ export const serialization = {
     if (tagName === 'math' || (el.dataset && el.dataset.type === 'mathml') || hasMathChild) {
       const newHtml = hasMathChild ? el.innerHTML : el.outerHTML;
 
-      if (mathMlOptions.mmlEditing) {
+      if (MathPlugin.mathMlOptions.mmlEditing) {
         const htmlToUse = mmlToLatex(newHtml);
         const latex = htmlDecode(htmlToUse);
         const { unwrapped, wrapType } = unWrapMath(latex);
@@ -293,7 +292,7 @@ export const serialization = {
       log('[serialize] latex: ', l);
       const decoded = htmlDecode(lessThanHandling(l));
 
-      if (mathMlOptions.mmlOutput) {
+      if (MathPlugin.mathMlOptions.mmlOutput) {
         const res = renderMath(`<span data-latex="" data-raw="${decoded}">${wrapMath(decoded, wrapper)}</span>`);
         const newLatex = mmlToLatex(res);
 

@@ -14,6 +14,12 @@ jest.mock('@pie-lib/math-toolbar', () => ({
   MathPreview: () => <div />,
   MathToolbar: () => <div />,
 }));
+jest.mock('@pie-lib/math-rendering', () => ({
+  ...jest.requireActual('@pie-lib/math-rendering'),
+  mmlToLatex: jest.fn(() => {
+    return '/foobar/latex';
+  }),
+}));
 const log = debug('@pie-lib:editable-html:test:math');
 
 // I believe @andrei is moving this stuff out.
@@ -82,6 +88,50 @@ describe('MathPlugin', () => {
       assertDeserialize('\\[&lt;\\]', '<', MathPlugin.ROUND_BRACKETS);
       assertDeserialize('latex', 'latex', MathPlugin.ROUND_BRACKETS);
       assertDeserialize('\\displaystyle foo', 'foo', MathPlugin.ROUND_BRACKETS);
+
+      it('should make mathml editable if MathPlugin.mathMlOptions.mmlEditing is true', () => {
+        MathPlugin.mathMlOptions.mmlEditing = true;
+        const el = {
+          tagName: 'math',
+          outerHTML:
+            '<math xmlns="http://www.w3.org/1998/Math/MathML">  <mn>2</mn>  <mi>x</mi>  <mtext>&#xA0;</mtext>  <mo>&#x2264;</mo>  <mn>4</mn>  <mi>y</mi>  <mtext>&#xA0;</mtext>  <mo>+</mo>  <mtext>&#xA0;</mtext>  <mn>8</mn> <msqrt>    <mi>h</mi>  </msqrt></math>',
+        };
+        const next = jest.fn();
+
+        const out = serialization.deserialize(el, next);
+
+        expect(out).toEqual({
+          object: 'inline',
+          type: 'math',
+          isVoid: true,
+          nodes: [],
+          data: {
+            latex: '/foobar/latex',
+            wrapper: 'round_brackets',
+          },
+        });
+      });
+
+      it('should make mathml readOnly if MathPlugin.mathMlOptions.mmlEditing is false', () => {
+        MathPlugin.mathMlOptions.mmlEditing = false;
+        const el = {
+          tagName: 'math',
+          outerHTML:
+            '<math xmlns="http://www.w3.org/1998/Math/MathML">  <mn>2</mn>  <mi>x</mi>  <mtext>&#xA0;</mtext>  <mo>&#x2264;</mo>  <mn>4</mn>  <mi>y</mi>  <mtext>&#xA0;</mtext>  <mo>+</mo>  <mtext>&#xA0;</mtext>  <mn>8</mn> <msqrt>    <mi>h</mi>  </msqrt></math>',
+        };
+        const next = jest.fn();
+
+        const out = serialization.deserialize(el, next);
+
+        expect(out).toEqual({
+          object: 'inline',
+          isVoid: true,
+          type: 'mathml',
+          data: {
+            html: el.outerHTML,
+          },
+        });
+      });
     });
 
     describe('serialize', () => {
