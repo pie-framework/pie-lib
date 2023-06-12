@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.12.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.12.3...@pie-lib/demo@6.12.4) (2023-06-12)
+
+
+### Bug Fixes
+
+* use mmlToLatex if mathMlOptions.mmlEditing is true; check if conversions work properly, otherwise, don't make them PD-2150 ([b78650c](https://github.com/pie-framework/pie-lib/commit/b78650c89693e4b4010950d6abdbaf6a0a0db18c))
+
+
+
+
+
 ## [6.12.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.12.2...@pie-lib/demo@6.12.3) (2023-06-07)
 
 **Note:** Version bump only for package @pie-lib/demo

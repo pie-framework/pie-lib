@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.7.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.6.11...@pie-lib/config-ui@11.7.0) (2023-06-12)
+
+
+### Features
+
+* **config-ui:** update dropdown to support format for languages PD-2795 ([52b82a5](https://github.com/pie-framework/pie-lib/commit/52b82a5199abf42ad77e78c08493744edb66ab4f))
+
+
+
+
+
 ## [11.6.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.6.10...@pie-lib/config-ui@11.6.11) (2023-06-05)
 
 **Note:** Version bump only for package @pie-lib/config-ui
