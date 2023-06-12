@@ -95,7 +95,7 @@ export const PointConfig = withStyles((theme) => ({
     right: 0,
   },
 }))((props) => {
-  const { points, content, classes, sampleAnswer, mathMlOptions } = props;
+  const { points, content, classes, sampleAnswer, mathMlOptions = {} } = props;
   const pointsLabel = `${points} ${points <= 1 ? 'pt' : 'pts'}`;
   const showSampleAnswer = checkSampleAnswer(sampleAnswer);
 
@@ -232,7 +232,7 @@ export class RawAuthoring extends React.Component {
   };
 
   render() {
-    const { classes, className, value, mathMlOptions } = this.props;
+    const { classes, className, value, mathMlOptions = {} } = this.props;
     let { excludeZeroEnabled = true, maxPointsEnabled = true } = value || {};
 
     if (value && Number.isFinite(value.maxPoints)) {

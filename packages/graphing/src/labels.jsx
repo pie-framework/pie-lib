@@ -59,7 +59,7 @@ class RawLabel extends React.Component {
   };
 
   render() {
-    const { disabledLabel, placeholder, text, side, graphProps, classes, onChange, mathMlOptions } = this.props;
+    const { disabledLabel, placeholder, text, side, graphProps, classes, onChange, mathMlOptions = {} } = this.props;
     const { size, domain, range } = graphProps;
     const totalHeight = (size.height || 500) + (range.padding || 0) * 2;
     const totalWidth = (size.width || 500) + (domain.padding || 0) * 2;
@@ -161,7 +161,7 @@ export class Labels extends React.Component {
   };
 
   render() {
-    const { disabledLabels, placeholders = {}, value = {}, graphProps, mathMlOptions } = this.props;
+    const { disabledLabels, placeholders = {}, value = {}, graphProps, mathMlOptions = {} } = this.props;
 
     return (
       <React.Fragment>

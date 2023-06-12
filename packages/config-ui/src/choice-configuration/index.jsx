@@ -76,7 +76,7 @@ const Feedback = withStyles((theme) => ({
     position: 'absolute',
     top: 20,
   },
-}))(({ value, onChange, type, correct, classes, defaults, toolbarOpts, mathMlOptions }) => {
+}))(({ value, onChange, type, correct, classes, defaults, toolbarOpts, mathMlOptions = {} }) => {
   if (!type || type === 'none') {
     return null;
   } else if (type === 'default') {

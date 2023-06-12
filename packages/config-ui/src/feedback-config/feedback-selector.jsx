@@ -79,7 +79,7 @@ export class FeedbackSelector extends React.Component {
   };
 
   render() {
-    const { keys, classes, label, feedback, toolbarOpts, mathMlOptions } = this.props;
+    const { keys, classes, label, feedback, toolbarOpts, mathMlOptions = {} } = this.props;
 
     const feedbackKeys = keys || Object.keys(feedbackLabels);
 
