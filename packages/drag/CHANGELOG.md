@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.1.19...@pie-lib/drag@2.2.0) (2023-06-12)
+
+
+### Features
+
+* **drag:** add context to dnd provider content is needed when multiple dndProviders are used ([07597d8](https://github.com/pie-framework/pie-lib/commit/07597d80aba5788c9cb3b58012742413c9bdad20))
+
+
+
+
+
 ## [2.1.19](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.1.18...@pie-lib/drag@2.1.19) (2023-06-05)
 
 
