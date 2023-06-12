@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.14.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.13.4...@pie-lib/graphing@2.14.0) (2023-06-12)
+
+
+### Features
+
+* started adding new mathMLOptions property PD-2150 ([175b45e](https://github.com/pie-framework/pie-lib/commit/175b45ecd98e9cc703bd7056b930f299a4345c75))
+
+
+
+
+
 ## [2.13.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.13.3...@pie-lib/graphing@2.13.4) (2023-06-12)
 
 **Note:** Version bump only for package @pie-lib/graphing

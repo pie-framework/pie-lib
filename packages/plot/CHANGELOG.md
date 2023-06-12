@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.6.13...@pie-lib/plot@2.7.0) (2023-06-12)
+
+
+### Features
+
+* started adding new mathMLOptions property PD-2150 ([175b45e](https://github.com/pie-framework/pie-lib/commit/175b45ecd98e9cc703bd7056b930f299a4345c75))
+
+
+
+
+
 ## [2.6.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.6.12...@pie-lib/plot@2.6.13) (2023-04-19)
 
 
