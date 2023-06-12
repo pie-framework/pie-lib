@@ -30,7 +30,7 @@ const inputOptions = [
   },
   {
     label: 'Latex \\(..\\)',
-    html: '<div><span data-latex="">\\(\\frac{1}{2}\\)</span></div>',
+    html: '<math xmlns="http://www.w3.org/1998/Math/MathML">  <mn>2</mn>  <mi>x</mi>  <mtext>&#xA0;</mtext>  <mo>&#x2264;</mo>  <mn>4</mn>  <mi>y</mi>  <mtext>&#xA0;</mtext>  <mo>+</mo>  <mtext>&#xA0;</mtext>  <mn>8</mn> <msqrt>    <mi>h</mi>  </msqrt></math>',
   },
   {
     label: 'Latex $..$',
@@ -372,7 +372,7 @@ class RteDemo extends React.Component {
         <br />
         <Typography variant="h6">Check if input contains text using the hasText function:</Typography>
         <br />
-        <EditableHtml markup={markupText} onChange={this.onChangeMarkupText} width={width} height={height} />
+        {/*<EditableHtml markup={markupText} onChange={this.onChangeMarkupText} width={width} height={height} />*/}
         <br />
         <div>{`Has text: ${hasText}`}</div>
       </div>
