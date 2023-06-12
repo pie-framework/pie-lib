@@ -1,13 +1,14 @@
 import Functions from '@material-ui/icons/Functions';
 import { Inline } from 'slate';
 import { MathPreview, MathToolbar } from '@pie-lib/math-toolbar';
-import { wrapMath, unWrapMath } from '@pie-lib/math-rendering';
+import { wrapMath, unWrapMath, mmlToLatex, renderMath } from '@pie-lib/math-rendering';
 import React from 'react';
 import debug from 'debug';
 import SlatePropTypes from 'slate-prop-types';
 import PropTypes from 'prop-types';
 
 import { BLOCK_TAGS } from '../../serialization';
+import isEqual from 'lodash/isEqual';
 const log = debug('@pie-lib:editable-html:plugins:math');
 
 const TEXT_NODE = 3;
@@ -94,7 +95,12 @@ CustomToolbarComp.propTypes = {
   onBlur: PropTypes.func,
 };
 
-export default function MathPlugin() {
+export default function MathPlugin(opts) {
+  MathPlugin.mathMlOptions = {
+    mmlOutput: opts.mmlOutput,
+    mmlEditing: opts.mmlEditing,
+  };
+
   return {
     name: 'math',
     toolbar: {
@@ -150,6 +156,7 @@ MathPlugin.ROUND_BRACKETS = 'round_brackets';
 MathPlugin.SQUARE_BRACKETS = 'square_brackets';
 MathPlugin.DOLLAR = 'dollar';
 MathPlugin.DOUBLE_DOLLAR = 'double_dollar';
+MathPlugin.mathMlOptions = {};
 
 MathPlugin.propTypes = {
   attributes: PropTypes.object,
@@ -225,6 +232,23 @@ export const serialization = {
     if (tagName === 'math' || (el.dataset && el.dataset.type === 'mathml') || hasMathChild) {
       const newHtml = hasMathChild ? el.innerHTML : el.outerHTML;
 
+      if (MathPlugin.mathMlOptions.mmlEditing) {
+        const htmlToUse = mmlToLatex(newHtml);
+        const latex = htmlDecode(htmlToUse);
+        const { unwrapped, wrapType } = unWrapMath(latex);
+
+        return {
+          object: 'inline',
+          type: 'math',
+          isVoid: true,
+          nodes: [],
+          data: {
+            latex: unwrapped,
+            wrapper: wrapType,
+          },
+        };
+      }
+
       return {
         object: 'inline',
         isVoid: true,
@@ -267,6 +291,26 @@ export const serialization = {
       const wrapper = object.data.get('wrapper');
       log('[serialize] latex: ', l);
       const decoded = htmlDecode(lessThanHandling(l));
+
+      if (MathPlugin.mathMlOptions.mmlOutput) {
+        const res = renderMath(`<span data-latex="" data-raw="${decoded}">${wrapMath(decoded, wrapper)}</span>`);
+        const newLatex = mmlToLatex(res);
+
+        // we need to remove all the spaces from the latex to be able to compare it
+        const strippedL = l.replace(/\s/g, '');
+        const strippedNewL = newLatex.replace(/\s/g, '');
+
+        // we check if the latex keeps his form after being converted to mathml and back to latex
+        // if it does we can safely convert it to mathml
+        if (isEqual(strippedL, strippedNewL)) {
+          return <span data-type="mathml" dangerouslySetInnerHTML={{ __html: res }} />;
+        } else {
+          // if it doesn't we keep the latex version
+          console.log('This latex can not be safely converted to mathml:', l, 'so we will keep the latex version!!!');
+          console.warn('This latex can not be safely converted to mathml:', l, 'so we will keep the latex version!!!');
+        }
+      }
+
       return (
         <span data-latex="" data-raw={decoded}>
           {wrapMath(decoded, wrapper)}

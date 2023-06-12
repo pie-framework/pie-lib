@@ -70,22 +70,18 @@ export const fixMathElement = (element) => {
   }
 };
 
-export const fixMathElements = () => {
-  const mathElements = document.querySelectorAll('[data-latex]');
+export const fixMathElements = (el = document) => {
+  const mathElements = el.querySelectorAll('[data-latex]');
 
   mathElements.forEach((item) => fixMathElement(item));
 };
 
-const adjustMathMLStyle = () => {
-  const nodes = document.querySelectorAll('math');
+const adjustMathMLStyle = (el = document) => {
+  const nodes = el.querySelectorAll('math');
   nodes.forEach((node) => node.setAttribute('displaystyle', 'true'));
 };
 
-const bootstrap = (opts) => {
-  if (typeof window === 'undefined') {
-    return { Typeset: () => ({}) };
-  }
-
+const createMathMLInstance = (opts, docProvided = document) => {
   opts = opts || defaultOpts();
 
   if (opts.useSingleDollar) {
@@ -188,7 +184,7 @@ const bootstrap = (opts) => {
     ...mmlNodes,
   });
 
-  const html = mathjax.document(document, {
+  const html = mathjax.document(docProvided, {
     compileError: (mj, math, err) => {
       // eslint-disable-next-line no-console
       console.log('bad math?:', math);
@@ -221,6 +217,16 @@ const bootstrap = (opts) => {
   // Note: we must set this *after* mathjax.document (no idea why)
   mml.setMmlFactory(customMmlFactory);
 
+  return html;
+};
+
+const bootstrap = (opts) => {
+  if (typeof window === 'undefined') {
+    return { Typeset: () => ({}) };
+  }
+
+  const html = createMathMLInstance(opts);
+
   return {
     version: mathjax.version,
     html: html,
@@ -252,9 +258,41 @@ const bootstrap = (opts) => {
 };
 
 const renderMath = (el, renderOpts) => {
-  //TODO: remove this - has nothing to do with math-rendering (it's from editable-html)
-  fixMathElements();
-  adjustMathMLStyle();
+  const isString = typeof el === 'string';
+  let executeOn = document.body;
+
+  if (isString) {
+    const div = document.createElement('div');
+
+    div.innerHTML = el;
+    executeOn = div;
+  }
+
+  fixMathElements(executeOn);
+  adjustMathMLStyle(executeOn);
+
+  if (isString) {
+    const html = createMathMLInstance(undefined, executeOn);
+
+    const updatedDocument = html
+      .findMath()
+      .compile()
+      .getMetrics()
+      .typeset()
+      .updateDocument();
+
+    const list = updatedDocument.math.list;
+    const item = list.next;
+
+    if (!item) {
+      return '';
+    }
+
+    const mathMl = toMMl(item.data.root);
+    const parsedMathMl = mathMl.replaceAll('\n', '');
+
+    return parsedMathMl;
+  }
 
   if (!getGlobal().instance) {
     getGlobal().instance = bootstrap(renderOpts);
