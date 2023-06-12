@@ -6,6 +6,9 @@ import { color } from '@pie-lib/render-ui';
 import { withStyles } from '@material-ui/core/styles';
 import cn from 'classnames';
 import Button from '@material-ui/core/Button';
+import Translator from '@pie-lib/translator';
+
+const { translator } = Translator;
 
 const buttonStyles = (theme) => ({
   root: {
@@ -69,16 +72,19 @@ export class ToolMenu extends React.Component {
     className: PropTypes.string,
     addCategory: PropTypes.func,
     disabled: PropTypes.bool,
+    language: PropTypes.string,
   };
 
   static defaultProps = {};
 
   render() {
-    const { className, disabled, addCategory } = this.props;
+    const { className, disabled, addCategory, language } = this.props;
 
     return (
       <div className={classNames(className)}>
-        {!disabled && <MiniButton value={'Add Category'} onClick={addCategory} />}
+        {!disabled && (
+          <MiniButton value={translator.t('charting.addCategory', { lng: language })} onClick={addCategory} />
+        )}
       </div>
     );
   }
