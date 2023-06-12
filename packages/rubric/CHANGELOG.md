@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.7.31...@pie-lib/rubric@0.8.0) (2023-06-12)
+
+
+### Features
+
+* started adding new mathMLOptions property PD-2150 ([175b45e](https://github.com/pie-framework/pie-lib/commit/175b45ecd98e9cc703bd7056b930f299a4345c75))
+
+
+
+
+
 ## [0.7.31](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.7.30...@pie-lib/rubric@0.7.31) (2023-06-12)
 
 **Note:** Version bump only for package @pie-lib/rubric

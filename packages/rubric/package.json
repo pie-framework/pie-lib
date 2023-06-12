@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/rubric",
-  "version": "0.7.31",
+  "version": "0.8.0",
   "publishConfig": {
     "access": "public"
   },
