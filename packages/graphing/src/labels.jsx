@@ -59,7 +59,7 @@ class RawLabel extends React.Component {
   };
 
   render() {
-    const { disabledLabel, placeholder, text, side, graphProps, classes, onChange } = this.props;
+    const { disabledLabel, placeholder, text, side, graphProps, classes, onChange, mathMlOptions } = this.props;
     const { size, domain, range } = graphProps;
     const totalHeight = (size.height || 500) + (range.padding || 0) * 2;
     const totalWidth = (size.width || 500) + (domain.padding || 0) * 2;
@@ -105,6 +105,7 @@ class RawLabel extends React.Component {
               noBorder: true,
             }}
             activePlugins={activePlugins}
+            mathMlOptions={mathMlOptions}
           />
         </Readable>
       </foreignObject>
@@ -160,7 +161,7 @@ export class Labels extends React.Component {
   };
 
   render() {
-    const { disabledLabels, placeholders = {}, value = {}, graphProps } = this.props;
+    const { disabledLabels, placeholders = {}, value = {}, graphProps, mathMlOptions } = this.props;
 
     return (
       <React.Fragment>
@@ -172,6 +173,7 @@ export class Labels extends React.Component {
           placeholder={placeholders.left}
           graphProps={graphProps}
           onChange={(value) => this.onChangeLabel(value, 'left')}
+          mathMlOptions={mathMlOptions}
         />
         <Label
           key="top"
@@ -181,6 +183,7 @@ export class Labels extends React.Component {
           placeholder={placeholders.top}
           graphProps={graphProps}
           onChange={(value) => this.onChangeLabel(value, 'top')}
+          mathMlOptions={mathMlOptions}
         />
         <Label
           key="bottom"
@@ -190,6 +193,7 @@ export class Labels extends React.Component {
           placeholder={placeholders.bottom}
           graphProps={graphProps}
           onChange={(value) => this.onChangeLabel(value, 'bottom')}
+          mathMlOptions={mathMlOptions}
         />
         <Label
           key="right"
@@ -199,6 +203,7 @@ export class Labels extends React.Component {
           placeholder={placeholders.right}
           graphProps={graphProps}
           onChange={(value) => this.onChangeLabel(value, 'right')}
+          mathMlOptions={mathMlOptions}
         />
       </React.Fragment>
     );

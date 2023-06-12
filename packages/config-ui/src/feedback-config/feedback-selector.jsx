@@ -79,7 +79,7 @@ export class FeedbackSelector extends React.Component {
   };
 
   render() {
-    const { keys, classes, label, feedback, toolbarOpts } = this.props;
+    const { keys, classes, label, feedback, toolbarOpts, mathMlOptions } = this.props;
 
     const feedbackKeys = keys || Object.keys(feedbackLabels);
 
@@ -108,6 +108,7 @@ export class FeedbackSelector extends React.Component {
               markup={feedback.custom || ''}
               toolbarOpts={toolbarOpts}
               languageCharactersProps={[{ language: 'spanish' }, { language: 'special' }]}
+              mathMlOptions={mathMlOptions}
             />
           </div>
         )}

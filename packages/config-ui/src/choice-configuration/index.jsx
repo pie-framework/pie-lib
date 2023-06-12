@@ -33,6 +33,7 @@ const EditableHtmlContainer = withStyles((theme) => ({
     maxImageWidth,
     maxImageHeight,
     uploadSoundSupport,
+     mathMlOptions
   }) => {
     const names = classNames(classes.labelContainer, className);
 
@@ -54,6 +55,7 @@ const EditableHtmlContainer = withStyles((theme) => ({
             maxImageHeight={maxImageHeight}
             uploadSoundSupport={uploadSoundSupport}
             languageCharactersProps={[{ language: 'spanish' }, { language: 'special' }]}
+            mathMlOptions={mathMlOptions}
           />
         </div>
       </InputContainer>
@@ -74,7 +76,7 @@ const Feedback = withStyles((theme) => ({
     position: 'absolute',
     top: 20,
   },
-}))(({ value, onChange, type, correct, classes, defaults, toolbarOpts }) => {
+}))(({ value, onChange, type, correct, classes, defaults, toolbarOpts, mathMlOptions }) => {
   if (!type || type === 'none') {
     return null;
   } else if (type === 'default') {
@@ -98,6 +100,7 @@ const Feedback = withStyles((theme) => ({
           value={value}
           onChange={onChange}
           toolbarOpts={toolbarOpts}
+          mathMlOptions={mathMlOptions}
         />
       </div>
     );
@@ -212,6 +215,7 @@ export class ChoiceConfiguration extends React.Component {
       error,
       noCorrectAnswerError,
       uploadSoundSupport,
+      mathMlOptions
     } = this.props;
 
     const InputToggle = mode === 'checkbox' ? InputCheckbox : InputRadio;
@@ -248,6 +252,7 @@ export class ChoiceConfiguration extends React.Component {
               toolbarOpts={toolbarOpts}
               error={error}
               uploadSoundSupport={uploadSoundSupport}
+              mathMlOptions={mathMlOptions}
             />
             {error && <div className={classes.errorText}>{error}</div>}
 
