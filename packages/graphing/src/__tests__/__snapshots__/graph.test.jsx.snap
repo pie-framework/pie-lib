@@ -32,6 +32,7 @@ exports[`Graph snapshot renders 1`] = `
     }
   }
   labelsPlaceholders={Object {}}
+  mathMlOptions={Object {}}
   rootRef={[Function]}
 >
   <g>

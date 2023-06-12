@@ -196,7 +196,7 @@ export class Chart extends React.Component {
       changeEditableEnabled,
       showPixelGuides,
       error,
-      mathMlOptions
+      mathMlOptions = {}
     } = this.props;
     let { chartType } = this.props;
 

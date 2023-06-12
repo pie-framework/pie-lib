@@ -183,7 +183,7 @@ export class Graph extends React.Component {
       titlePlaceholder,
       onChangeLabels,
       onChangeTitle,
-      mathMlOptions
+      mathMlOptions = {}
     } = this.props;
     let { marks } = this.props;
 

@@ -33,7 +33,7 @@ const EditableHtmlContainer = withStyles((theme) => ({
     maxImageWidth,
     maxImageHeight,
     uploadSoundSupport,
-     mathMlOptions
+     mathMlOptions = {}
   }) => {
     const names = classNames(classes.labelContainer, className);
 
@@ -215,7 +215,7 @@ export class ChoiceConfiguration extends React.Component {
       error,
       noCorrectAnswerError,
       uploadSoundSupport,
-      mathMlOptions
+      mathMlOptions = {}
     } = this.props;
 
     const InputToggle = mode === 'checkbox' ? InputCheckbox : InputRadio;
