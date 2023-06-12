@@ -98,6 +98,7 @@ export class Root extends React.Component {
       showTitle,
       title,
       rootRef,
+      mathMlOptions = {},
     } = this.props;
     const {
       size: { width = 500, height = 500 },
@@ -179,6 +180,7 @@ export class Root extends React.Component {
             graphHeight={finalHeight}
             graphWidth={finalWidth}
             onChange={(value) => this.onChangeLabel(value, 'top')}
+            mathMlOptions={mathMlOptions}
           />
         )}
         <div className={classes.wrapper}>
@@ -193,6 +195,7 @@ export class Root extends React.Component {
               isChartLeftLabel={isChart && !defineChart}
               isDefineChartLeftLabel={isChart && defineChart}
               onChange={(value) => this.onChangeLabel(value, 'left')}
+              mathMlOptions={mathMlOptions}
             />
           )}
           <svg width={finalWidth} height={finalHeight} className={defineChart ? classes.defineChart : classes.chart}>
@@ -218,6 +221,7 @@ export class Root extends React.Component {
               graphHeight={finalHeight}
               graphWidth={finalWidth}
               onChange={(value) => this.onChangeLabel(value, 'right')}
+              mathMlOptions={mathMlOptions}
             />
           )}
           {showPixelGuides && (
@@ -247,6 +251,7 @@ export class Root extends React.Component {
             isChartBottomLabel={isChart && !defineChart}
             isDefineChartBottomLabel={isChart && defineChart}
             onChange={(value) => this.onChangeLabel(value, 'bottom')}
+            mathMlOptions={mathMlOptions}
           />
         )}
       </div>

@@ -19,6 +19,7 @@ const LabelComponent = (props) => {
     text,
     side,
     onChange,
+    mathMlOptions = {},
   } = props;
   const [rotatedToHorizontal, setRotatedToHorizontal] = useState(false);
   const activePlugins = [
@@ -83,6 +84,7 @@ const LabelComponent = (props) => {
             disableScrollbar
             activePlugins={activePlugins}
             onDone={() => setRotatedToHorizontal(false)}
+            mathMlOptions={mathMlOptions}
           />
         )}
       </div>

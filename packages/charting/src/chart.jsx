@@ -200,6 +200,7 @@ export class Chart extends React.Component {
       changeEditableEnabled,
       showPixelGuides,
       error,
+      mathMlOptions = {},
       language,
     } = this.props;
     let { chartType } = this.props;
@@ -267,6 +268,7 @@ export class Chart extends React.Component {
           isChart={true}
           showPixelGuides={showPixelGuides}
           rootRef={(r) => (this.rootNode = r)}
+          mathMlOptions={mathMlOptions}
           {...rootCommon}
         >
           <ChartGrid {...common} xBand={xBand} rowTickValues={horizontalLines} columnTickValues={verticalLines} />

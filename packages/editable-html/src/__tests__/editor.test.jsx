@@ -147,7 +147,7 @@ describe('buildSizeStyle', () => {
   });
 });
 
-describe('onResize ', () => {
+describe('onResize', () => {
   it('should display html of current state on Resize', () => {
     const wrapper = shallow(
       <Editor editorRef={jest.fn()} value={value} classes={{}} onChange={jest.fn()} onRef={jest.fn()} />,
@@ -162,5 +162,44 @@ describe('onResize ', () => {
 
     resizeWindow(500, 300);
     expect(wrapper.state('value')).toEqualHtml('<div>new value</div>');
+  });
+});
+
+describe('MathMl', () => {
+  beforeEach(() => {});
+
+  it('should not call runSerializationOnMarkup if mathMl props are not there', () => {
+    const runSerializationOnMarkup = jest.fn();
+
+    const wrapper = shallow(
+      <Editor
+        editorRef={jest.fn()}
+        value={value}
+        classes={{}}
+        onChange={jest.fn()}
+        onRef={jest.fn()}
+        runSerializationOnMarkup={runSerializationOnMarkup}
+      />,
+    );
+
+    expect(runSerializationOnMarkup).not.toHaveBeenCalled();
+  });
+
+  it('should call runSerializationOnMarkup if mmlEditing or mmlOutput are true', () => {
+    const runSerializationOnMarkup = jest.fn();
+
+    const wrapper = shallow(
+      <Editor
+        editorRef={jest.fn()}
+        value={value}
+        classes={{}}
+        onChange={jest.fn()}
+        onRef={jest.fn()}
+        runSerializationOnMarkup={runSerializationOnMarkup}
+        mathMlOptions={{ mmlOutput: true }}
+      />,
+    );
+
+    expect(runSerializationOnMarkup).toHaveBeenCalled();
   });
 });
