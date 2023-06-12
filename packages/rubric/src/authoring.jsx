@@ -95,7 +95,7 @@ export const PointConfig = withStyles((theme) => ({
     right: 0,
   },
 }))((props) => {
-  const { points, content, classes, sampleAnswer } = props;
+  const { points, content, classes, sampleAnswer, mathMlOptions = {} } = props;
   const pointsLabel = `${points} ${points <= 1 ? 'pt' : 'pts'}`;
   const showSampleAnswer = checkSampleAnswer(sampleAnswer);
 
@@ -107,7 +107,7 @@ export const PointConfig = withStyles((theme) => ({
 
       <div className={classes.row}>
         <DragIndicator className={classes.dragIndicator} />
-        <EditableHtml className={classes.editor} markup={content} onChange={props.onChange} />
+        <EditableHtml className={classes.editor} markup={content} onChange={props.onChange} mathMlOptions={mathMlOptions} />
         <PointMenu
           classes={{
             icon: classes.pointMenu,
@@ -122,7 +122,7 @@ export const PointConfig = withStyles((theme) => ({
           <Typography variant="overline" className={classes.dragIndicator}>
             Sample Response
           </Typography>
-          <EditableHtml className={classes.editor} markup={sampleAnswer} onChange={props.onSampleChange} />
+          <EditableHtml className={classes.editor} markup={sampleAnswer} onChange={props.onSampleChange} mathMlOptions={mathMlOptions} />
         </div>
       )}
     </div>
@@ -232,7 +232,7 @@ export class RawAuthoring extends React.Component {
   };
 
   render() {
-    const { classes, className, value } = this.props;
+    const { classes, className, value, mathMlOptions = {} } = this.props;
     let { excludeZeroEnabled = true, maxPointsEnabled = true } = value || {};
 
     if (value && Number.isFinite(value.maxPoints)) {
@@ -278,6 +278,7 @@ export class RawAuthoring extends React.Component {
                                 onChange={(content) => this.changeContent(index, content, 'points')}
                                 onSampleChange={(content) => this.changeContent(index, content, 'sampleAnswers')}
                                 onMenuChange={(clickedItem) => this.onPointMenuChange(index, clickedItem)}
+                                mathMlOptions={mathMlOptions}
                               />
                             </div>
                           )}
