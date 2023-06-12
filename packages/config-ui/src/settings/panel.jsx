@@ -93,6 +93,8 @@ const Dropdown = withStyles((theme) => ({
     padding: `0 ${theme.spacing.unit}px`,
   },
 }))(({ classes, label, value, onChange, choices = [] }) => {
+  const getItemLabel = (l) => (typeof l === 'string' ? l : l.label);
+  const getItemValue = (l) => (typeof l === 'string' ? l : l.value);
   return (
     <div>
       {label && <p className={classes.label}>{label}</p>}
@@ -104,8 +106,8 @@ const Dropdown = withStyles((theme) => ({
         disableUnderline
       >
         {choices.map((l, index) => (
-          <MenuItem key={index} value={l}>
-            {l}
+          <MenuItem key={index} value={getItemValue(l)}>
+            {getItemLabel(l)}
           </MenuItem>
         ))}
       </Select>
