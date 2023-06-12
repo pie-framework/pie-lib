@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.6.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.6.3...@pie-lib/editable-html@9.6.4) (2023-06-12)
+
+
+### Bug Fixes
+
+* rerun serialization if mathml options are provided, added tests as well PD-2150 ([530af87](https://github.com/pie-framework/pie-lib/commit/530af87026010325124b70a47fd18e4a0d06cedb))
+* use mmlToLatex if mathMlOptions.mmlEditing is true; check if conversions work properly, otherwise, don't make them PD-2150 ([b78650c](https://github.com/pie-framework/pie-lib/commit/b78650c89693e4b4010950d6abdbaf6a0a0db18c))
+
+
+
+
+
 ## [9.6.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.6.2...@pie-lib/editable-html@9.6.3) (2023-06-05)
 
 **Note:** Version bump only for package @pie-lib/editable-html

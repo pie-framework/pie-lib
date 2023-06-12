@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.5.14...@pie-lib/math-rendering@2.5.15) (2023-06-12)
+
+
+### Bug Fixes
+
+* rerun serialization if mathml options are provided, added tests as well PD-2150 ([530af87](https://github.com/pie-framework/pie-lib/commit/530af87026010325124b70a47fd18e4a0d06cedb))
+
+
+
+
+
 ## [2.5.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.5.13...@pie-lib/math-rendering@2.5.14) (2023-04-19)
 
 
