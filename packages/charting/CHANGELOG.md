@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.14.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.13.0...@pie-lib/charting@5.14.0) (2023-06-13)
+
+
+### Features
+
+* **charting, translator:** add translator to charting. add missing text in translator ([2c722a2](https://github.com/pie-framework/pie-lib/commit/2c722a241deb1ad4b51aa22c6eba74a0ec8a5ec0))
+
+
+
+
+
 # [5.13.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.12.0...@pie-lib/charting@5.13.0) (2023-06-12)
 
 ### Features
