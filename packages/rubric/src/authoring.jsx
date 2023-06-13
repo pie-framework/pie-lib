@@ -107,7 +107,12 @@ export const PointConfig = withStyles((theme) => ({
 
       <div className={classes.row}>
         <DragIndicator className={classes.dragIndicator} />
-        <EditableHtml className={classes.editor} markup={content} onChange={props.onChange} mathMlOptions={mathMlOptions} />
+        <EditableHtml
+          className={classes.editor}
+          markup={content}
+          onChange={props.onChange}
+          mathMlOptions={mathMlOptions}
+        />
         <PointMenu
           classes={{
             icon: classes.pointMenu,
@@ -122,7 +127,12 @@ export const PointConfig = withStyles((theme) => ({
           <Typography variant="overline" className={classes.dragIndicator}>
             Sample Response
           </Typography>
-          <EditableHtml className={classes.editor} markup={sampleAnswer} onChange={props.onSampleChange} mathMlOptions={mathMlOptions} />
+          <EditableHtml
+            className={classes.editor}
+            markup={sampleAnswer}
+            onChange={props.onSampleChange}
+            mathMlOptions={mathMlOptions}
+          />
         </div>
       )}
     </div>

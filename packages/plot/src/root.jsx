@@ -98,7 +98,7 @@ export class Root extends React.Component {
       showTitle,
       title,
       rootRef,
-      mathMlOptions = {}
+      mathMlOptions = {},
     } = this.props;
     const {
       size: { width = 500, height = 500 },

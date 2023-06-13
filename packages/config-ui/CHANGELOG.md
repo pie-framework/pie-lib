@@ -7,193 +7,101 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
-
-
-
-
 # [11.8.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.7.0...@pie-lib/config-ui@11.8.0) (2023-06-12)
-
 
 ### Features
 
-* started adding new mathMLOptions property PD-2150 ([175b45e](https://github.com/pie-framework/pie-lib/commit/175b45ecd98e9cc703bd7056b930f299a4345c75))
-
-
-
-
+- started adding new mathMLOptions property PD-2150 ([175b45e](https://github.com/pie-framework/pie-lib/commit/175b45ecd98e9cc703bd7056b930f299a4345c75))
 
 # [11.7.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.6.11...@pie-lib/config-ui@11.7.0) (2023-06-12)
 
-
 ### Features
 
-* **config-ui:** update dropdown to support format for languages PD-2795 ([52b82a5](https://github.com/pie-framework/pie-lib/commit/52b82a5199abf42ad77e78c08493744edb66ab4f))
-
-
-
-
+- **config-ui:** update dropdown to support format for languages PD-2795 ([52b82a5](https://github.com/pie-framework/pie-lib/commit/52b82a5199abf42ad77e78c08493744edb66ab4f))
 
 ## [11.6.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.6.10...@pie-lib/config-ui@11.6.11) (2023-06-05)
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
-
-
-
-
 ## [11.6.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.6.9...@pie-lib/config-ui@11.6.10) (2023-05-22)
 
 **Note:** Version bump only for package @pie-lib/config-ui
-
-
-
-
 
 ## [11.6.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.6.8...@pie-lib/config-ui@11.6.9) (2023-05-12)
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
-
-
-
-
 ## [11.6.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.6.7...@pie-lib/config-ui@11.6.8) (2023-05-11)
 
 **Note:** Version bump only for package @pie-lib/config-ui
-
-
-
-
 
 ## [11.6.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.6.6...@pie-lib/config-ui@11.6.7) (2023-05-02)
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
-
-
-
-
 ## [11.6.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.6.5...@pie-lib/config-ui@11.6.6) (2023-05-01)
 
 **Note:** Version bump only for package @pie-lib/config-ui
-
-
-
-
 
 ## [11.6.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.6.4...@pie-lib/config-ui@11.6.5) (2023-04-25)
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
-
-
-
-
 ## [11.6.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.6.3...@pie-lib/config-ui@11.6.4) (2023-04-19)
-
 
 ### Bug Fixes
 
-* **eslint:** fix eslint problems-PD-2732 ([9eb9976](https://github.com/pie-framework/pie-lib/commit/9eb9976749753da86e1057a07bd2cfc65bf64ae4))
-
-
-
-
+- **eslint:** fix eslint problems-PD-2732 ([9eb9976](https://github.com/pie-framework/pie-lib/commit/9eb9976749753da86e1057a07bd2cfc65bf64ae4))
 
 ## [11.6.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.6.2...@pie-lib/config-ui@11.6.3) (2023-04-14)
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
-
-
-
-
 ## [11.6.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.6.1...@pie-lib/config-ui@11.6.2) (2023-04-14)
 
 **Note:** Version bump only for package @pie-lib/config-ui
-
-
-
-
 
 ## [11.6.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.6.0...@pie-lib/config-ui@11.6.1) (2023-04-07)
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
-
-
-
-
 # [11.6.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.5.6...@pie-lib/config-ui@11.6.0) (2023-04-03)
-
 
 ### Features
 
-* added the ability to set min/max width and height for the layout content PD-2425 ([f040d77](https://github.com/pie-framework/pie-lib/commit/f040d777e35bb9e917a1f2bfd33ed5591ea1aa51))
-
-
-
-
+- added the ability to set min/max width and height for the layout content PD-2425 ([f040d77](https://github.com/pie-framework/pie-lib/commit/f040d777e35bb9e917a1f2bfd33ed5591ea1aa51))
 
 ## [11.5.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.5.5...@pie-lib/config-ui@11.5.6) (2023-03-27)
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
-
-
-
-
 ## [11.5.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.5.4...@pie-lib/config-ui@11.5.5) (2023-03-20)
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
-
-
-
-
 ## [11.5.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.5.3...@pie-lib/config-ui@11.5.4) (2023-03-13)
-
 
 ### Bug Fixes
 
-* **config-ui:** set title to '' to prevent autocomplete by material ui and disable tooltip on hover PD-2676 ([579db88](https://github.com/pie-framework/pie-lib/commit/579db8804dc55ddf796a1e7934994e98f2e5e103))
-
-
-
-
+- **config-ui:** set title to '' to prevent autocomplete by material ui and disable tooltip on hover PD-2676 ([579db88](https://github.com/pie-framework/pie-lib/commit/579db8804dc55ddf796a1e7934994e98f2e5e103))
 
 ## [11.5.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.5.2...@pie-lib/config-ui@11.5.3) (2023-02-28)
 
-
 ### Bug Fixes
 
-* **config-ui:** pd-2597 add root to styles ([197f07c](https://github.com/pie-framework/pie-lib/commit/197f07c8afd062a5bae4c3dea91ca8c018ee8cce))
-
-
-
-
+- **config-ui:** pd-2597 add root to styles ([197f07c](https://github.com/pie-framework/pie-lib/commit/197f07c8afd062a5bae4c3dea91ca8c018ee8cce))
 
 ## [11.5.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.5.0...@pie-lib/config-ui@11.5.2) (2023-02-28)
 
-
 ### Bug Fixes
 
-* version bump ([d9280a9](https://github.com/pie-framework/pie-lib/commit/d9280a9aeddab459b6d84ecdbeb62814e1eee965))
-
-
-
-
+- version bump ([d9280a9](https://github.com/pie-framework/pie-lib/commit/d9280a9aeddab459b6d84ecdbeb62814e1eee965))
 
 # [11.5.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.4.0...@pie-lib/config-ui@11.5.0) (2023-02-28)
 
-
 ### Features
 
-* **config-ui:** create textField comp in settings panel-PD-2611 ([e89ce64](https://github.com/pie-framework/pie-lib/commit/e89ce644a536f26ebef0fe216e1dc65330541471))
-
-
-
-
+- **config-ui:** create textField comp in settings panel-PD-2611 ([e89ce64](https://github.com/pie-framework/pie-lib/commit/e89ce644a536f26ebef0fe216e1dc65330541471))
 
 # [11.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.3.12...@pie-lib/config-ui@11.4.0) (2023-02-13)
 
