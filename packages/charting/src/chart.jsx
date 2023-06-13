@@ -12,6 +12,9 @@ import { dataToXBand, getDomainAndRangeByChartType, getGridLinesAndAxisByChartTy
 import ToolMenu from './tool-menu';
 import chartTypes from './chart-types';
 import { AlertDialog } from '@pie-lib/config-ui';
+import Translator from '@pie-lib/translator';
+
+const { translator } = Translator;
 
 const log = debug('pie-lib:charts:chart');
 
@@ -66,6 +69,7 @@ export class Chart extends React.Component {
     chartingOptions: PropTypes.object,
     changeInteractiveEnabled: PropTypes.bool,
     changeEditableEnabled: PropTypes.bool,
+    language: PropTypes.string,
   };
 
   static defaultProps = {
@@ -140,14 +144,14 @@ export class Chart extends React.Component {
   };
 
   addCategory = () => {
-    const { onDataChange, data, categoryDefaultLabel, defineChart, categoryDefaults } = this.props;
+    const { onDataChange, data, categoryDefaultLabel, defineChart, categoryDefaults, language } = this.props;
 
     if (!defineChart && data.length > 19) {
       this.setState({
         dialog: {
           open: true,
-          title: 'Warning',
-          text: "There can't be more than 20 categories.",
+          title: translator.t('common:warning', { lng: language }),
+          text: translator.t('charting.reachedLimit_other', { count: 20, lng: language }),
           onConfirm: () => this.handleAlertDialog(false),
         },
       });
@@ -157,7 +161,7 @@ export class Chart extends React.Component {
         {
           inDefineChart: defineChart,
           autoFocus: true,
-          label: categoryDefaultLabel || 'New Bar',
+          label: categoryDefaultLabel || translator.t('charting.newLabel', { lng: language }),
           value: 0,
           deletable: true,
           editable: categoryDefaults ? categoryDefaults?.editable : true,
@@ -196,7 +200,8 @@ export class Chart extends React.Component {
       changeEditableEnabled,
       showPixelGuides,
       error,
-      mathMlOptions = {}
+      mathMlOptions = {},
+      language,
     } = this.props;
     let { chartType } = this.props;
 
@@ -244,6 +249,7 @@ export class Chart extends React.Component {
             className={classes.toolMenu}
             disabled={!addCategoryEnabled}
             addCategory={() => this.addCategory()}
+            language={language}
           />
         </div>
 

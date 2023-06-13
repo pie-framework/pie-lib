@@ -7,377 +7,199 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 ## [4.14.25](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.14.24...@pie-lib/render-ui@4.14.25) (2023-06-05)
-
 
 ### Bug Fixes
 
-* **render-ui:** set font size to inherit to avoid the overwriting in some websites ([3c43288](https://github.com/pie-framework/pie-lib/commit/3c43288dc348a5712492edfac7525cb49536785d))
-
-
-
-
+- **render-ui:** set font size to inherit to avoid the overwriting in some websites ([3c43288](https://github.com/pie-framework/pie-lib/commit/3c43288dc348a5712492edfac7525cb49536785d))
 
 ## [4.14.24](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.14.23...@pie-lib/render-ui@4.14.24) (2023-05-12)
 
-
 ### Bug Fixes
 
-* **graphing:** add new style for missing objects - PD-1026 ([4dba6c2](https://github.com/pie-framework/pie-lib/commit/4dba6c2dcafbf9f250f1379672cba63e5c805b10))
-
-
-
-
+- **graphing:** add new style for missing objects - PD-1026 ([4dba6c2](https://github.com/pie-framework/pie-lib/commit/4dba6c2dcafbf9f250f1379672cba63e5c805b10))
 
 ## [4.14.23](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.14.22...@pie-lib/render-ui@4.14.23) (2023-05-01)
 
-
 ### Bug Fixes
 
-* **multiple-choice:** fix vertical allignment within choice labels PD-2720 ([7307ca7](https://github.com/pie-framework/pie-lib/commit/7307ca7738c7f0fc76b635b3b8571c168d4bb8fb))
-
-
-
-
+- **multiple-choice:** fix vertical allignment within choice labels PD-2720 ([7307ca7](https://github.com/pie-framework/pie-lib/commit/7307ca7738c7f0fc76b635b3b8571c168d4bb8fb))
 
 ## [4.14.22](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.14.21...@pie-lib/render-ui@4.14.22) (2023-04-25)
 
-
 ### Bug Fixes
 
-* **render-ui:** revert Carla's changes for PD-2720 because they're causing PD-2762 ([f96e689](https://github.com/pie-framework/pie-lib/commit/f96e689755368f2c31d8b0233fcd440eb685eb52))
-
-
-
-
+- **render-ui:** revert Carla's changes for PD-2720 because they're causing PD-2762 ([f96e689](https://github.com/pie-framework/pie-lib/commit/f96e689755368f2c31d8b0233fcd440eb685eb52))
 
 ## [4.14.21](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.14.20...@pie-lib/render-ui@4.14.21) (2023-04-19)
 
-
 ### Bug Fixes
 
-* **eslint:** fix eslint problems-PD-2732 ([9eb9976](https://github.com/pie-framework/pie-lib/commit/9eb9976749753da86e1057a07bd2cfc65bf64ae4))
-
-
-
-
+- **eslint:** fix eslint problems-PD-2732 ([9eb9976](https://github.com/pie-framework/pie-lib/commit/9eb9976749753da86e1057a07bd2cfc65bf64ae4))
 
 ## [4.14.20](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.14.19...@pie-lib/render-ui@4.14.20) (2023-04-07)
 
-
 ### Bug Fixes
 
-* **multiple-choice:** fix labels alignment ([0be602e](https://github.com/pie-framework/pie-lib/commit/0be602eb32abfb4ba5d1cee455924240d392506d))
-
-
-
-
+- **multiple-choice:** fix labels alignment ([0be602e](https://github.com/pie-framework/pie-lib/commit/0be602eb32abfb4ba5d1cee455924240d392506d))
 
 ## [4.14.19](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.14.18...@pie-lib/render-ui@4.14.19) (2023-04-03)
 
-
 ### Bug Fixes
 
-* **render-ui:** remove margin right from input ([4f07e4e](https://github.com/pie-framework/pie-lib/commit/4f07e4eadd70e98be2c1278f36f9a5a6eddbcf0c))
-
-
-
-
+- **render-ui:** remove margin right from input ([4f07e4e](https://github.com/pie-framework/pie-lib/commit/4f07e4eadd70e98be2c1278f36f9a5a6eddbcf0c))
 
 ## [4.14.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.14.17...@pie-lib/render-ui@4.14.18) (2023-03-27)
 
-
 ### Bug Fixes
 
-* **render-ui:** add additional style for legend tag-PD-2711 ([639a4d5](https://github.com/pie-framework/pie-lib/commit/639a4d589938209a8542c511a5d6a5a138c802af))
-
-
-
-
+- **render-ui:** add additional style for legend tag-PD-2711 ([639a4d5](https://github.com/pie-framework/pie-lib/commit/639a4d589938209a8542c511a5d6a5a138c802af))
 
 ## [4.14.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.14.16...@pie-lib/render-ui@4.14.17) (2023-03-20)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 ## [4.14.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.14.15...@pie-lib/render-ui@4.14.16) (2023-03-13)
-
 
 ### Bug Fixes
 
-* **multiple-choice:** fix style for choice labels ([a16fcf0](https://github.com/pie-framework/pie-lib/commit/a16fcf072ce45f929bf0f1e4dbe9eadd00f19230))
-
-
-
-
+- **multiple-choice:** fix style for choice labels ([a16fcf0](https://github.com/pie-framework/pie-lib/commit/a16fcf072ce45f929bf0f1e4dbe9eadd00f19230))
 
 ## [4.14.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.14.13...@pie-lib/render-ui@4.14.15) (2023-02-28)
 
-
 ### Bug Fixes
 
-* version bump ([d9280a9](https://github.com/pie-framework/pie-lib/commit/d9280a9aeddab459b6d84ecdbeb62814e1eee965))
-
-
-
-
+- version bump ([d9280a9](https://github.com/pie-framework/pie-lib/commit/d9280a9aeddab459b6d84ecdbeb62814e1eee965))
 
 ## [4.14.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.14.12...@pie-lib/render-ui@4.14.13) (2023-02-28)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 ## [4.14.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.14.10...@pie-lib/render-ui@4.14.12) (2023-01-31)
 
 **Note:** Version bump only for package @pie-lib/render-ui
-
-
-
-
 
 ## [4.14.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.14.9...@pie-lib/render-ui@4.14.10) (2023-01-31)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 ## [4.14.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.14.8...@pie-lib/render-ui@4.14.9) (2023-01-31)
 
 **Note:** Version bump only for package @pie-lib/render-ui
-
-
-
-
 
 ## [4.14.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.14.7...@pie-lib/render-ui@4.14.8) (2023-01-31)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 ## [4.14.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.14.4...@pie-lib/render-ui@4.14.7) (2023-01-31)
 
 **Note:** Version bump only for package @pie-lib/render-ui
-
-
-
-
 
 ## [4.14.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.14.2...@pie-lib/render-ui@4.14.4) (2023-01-31)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 ## [4.14.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.14.0...@pie-lib/render-ui@4.14.2) (2023-01-31)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 # [4.14.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.13.7...@pie-lib/render-ui@4.14.0) (2023-01-31)
-
 
 ### Features
 
-* **multiple-choice:** add ARIA attributes ([4ab6b85](https://github.com/pie-framework/pie-lib/commit/4ab6b85d5827ea76d4095a71c482f5255671a1df))
-
-
-
-
+- **multiple-choice:** add ARIA attributes ([4ab6b85](https://github.com/pie-framework/pie-lib/commit/4ab6b85d5827ea76d4095a71c482f5255671a1df))
 
 ## [4.13.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.13.6...@pie-lib/render-ui@4.13.7) (2022-11-23)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 ## [4.13.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.13.5...@pie-lib/render-ui@4.13.6) (2022-09-28)
-
 
 ### Bug Fixes
 
-* update comment ([5374bb3](https://github.com/pie-framework/pie-lib/commit/5374bb30db1c9e399885a99c76a419cd558acc65))
-* **render-ui:** add parent div to image tag PD-1802 ([153db34](https://github.com/pie-framework/pie-lib/commit/153db34a317810fa49953286299b3fda1506be94))
-* **render-ui:** fix image alignment in preview-prompt PD-1802 ([27390c1](https://github.com/pie-framework/pie-lib/commit/27390c1a6ab7b72b980f3b3f0f59a39674a9c307))
-
-
-
-
+- update comment ([5374bb3](https://github.com/pie-framework/pie-lib/commit/5374bb30db1c9e399885a99c76a419cd558acc65))
+- **render-ui:** add parent div to image tag PD-1802 ([153db34](https://github.com/pie-framework/pie-lib/commit/153db34a317810fa49953286299b3fda1506be94))
+- **render-ui:** fix image alignment in preview-prompt PD-1802 ([27390c1](https://github.com/pie-framework/pie-lib/commit/27390c1a6ab7b72b980f3b3f0f59a39674a9c307))
 
 ## [4.13.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.13.4...@pie-lib/render-ui@4.13.5) (2022-09-14)
 
-
 ### Bug Fixes
 
-* revert PD-1802 work because it is causing big issues PD-2037 ([6579140](https://github.com/pie-framework/pie-lib/commit/657914060cd741cf8be7c76fa890b0655a8d3783))
-
-
-
-
+- revert PD-1802 work because it is causing big issues PD-2037 ([6579140](https://github.com/pie-framework/pie-lib/commit/657914060cd741cf8be7c76fa890b0655a8d3783))
 
 ## [4.13.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.13.3...@pie-lib/render-ui@4.13.4) (2022-08-29)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 ## [4.13.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.13.2...@pie-lib/render-ui@4.13.3) (2022-08-15)
-
 
 ### Bug Fixes
 
-* PD-1802 set style only to img parent ([d113b4e](https://github.com/pie-framework/pie-lib/commit/d113b4e48978c7619b4d9d4cfbf4996f400068e7))
-
-
-
-
+- PD-1802 set style only to img parent ([d113b4e](https://github.com/pie-framework/pie-lib/commit/d113b4e48978c7619b4d9d4cfbf4996f400068e7))
 
 ## [4.13.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.13.1...@pie-lib/render-ui@4.13.2) (2022-08-08)
 
-
 ### Bug Fixes
 
-* reverted changes for PD-1802 since it's causing PD-1937 ([b02fecb](https://github.com/pie-framework/pie-lib/commit/b02fecb54d8e243c34b864e4e5d3378899cb56d7))
-
-
-
-
+- reverted changes for PD-1802 since it's causing PD-1937 ([b02fecb](https://github.com/pie-framework/pie-lib/commit/b02fecb54d8e243c34b864e4e5d3378899cb56d7))
 
 ## [4.13.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.13.0...@pie-lib/render-ui@4.13.1) (2022-07-18)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 # [4.13.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.12.9...@pie-lib/render-ui@4.13.0) (2022-07-18)
-
 
 ### Features
 
-* **editable-html, render-ui:** wrap up PD-1802 ([e10babf](https://github.com/pie-framework/pie-lib/commit/e10babf2e80aed67c856e9e021e37072e3df33fb))
-
-
-
-
+- **editable-html, render-ui:** wrap up PD-1802 ([e10babf](https://github.com/pie-framework/pie-lib/commit/e10babf2e80aed67c856e9e021e37072e3df33fb))
 
 ## [4.12.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.12.8...@pie-lib/render-ui@4.12.9) (2022-06-13)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 ## [4.12.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.12.7...@pie-lib/render-ui@4.12.8) (2022-05-30)
 
 **Note:** Version bump only for package @pie-lib/render-ui
-
-
-
-
 
 ## [4.12.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.12.6...@pie-lib/render-ui@4.12.7) (2022-05-24)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 ## [4.12.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.12.5...@pie-lib/render-ui@4.12.6) (2022-04-28)
 
 **Note:** Version bump only for package @pie-lib/render-ui
-
-
-
-
 
 ## [4.12.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.12.4...@pie-lib/render-ui@4.12.5) (2022-03-21)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 ## [4.12.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.12.3...@pie-lib/render-ui@4.12.4) (2021-12-13)
 
 **Note:** Version bump only for package @pie-lib/render-ui
-
-
-
-
 
 ## [4.12.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.12.2...@pie-lib/render-ui@4.12.3) (2021-11-29)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 ## [4.12.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.12.1...@pie-lib/render-ui@4.12.2) (2021-09-08)
 
 **Note:** Version bump only for package @pie-lib/render-ui
-
-
-
-
 
 ## [4.12.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.12.0...@pie-lib/render-ui@4.12.1) (2021-09-08)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 # [4.12.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.11.9...@pie-lib/render-ui@4.12.0) (2021-08-30)
-
 
 ### Features
 
-* **preview-prompt:** add defaultClassName prop for static classname for pie-print ([7ca55ba](https://github.com/pie-framework/pie-lib/commit/7ca55ba))
-
-
-
-
+- **preview-prompt:** add defaultClassName prop for static classname for pie-print ([7ca55ba](https://github.com/pie-framework/pie-lib/commit/7ca55ba))
 
 ## [4.11.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.11.8...@pie-lib/render-ui@4.11.9) (2021-08-04)
 
-
 ### Bug Fixes
 
-* **render-ui:** text should serve as selector for multiple-choice questions PD-1227 ([133549b](https://github.com/pie-framework/pie-lib/commit/133549b))
-
-
-
-
+- **render-ui:** text should serve as selector for multiple-choice questions PD-1227 ([133549b](https://github.com/pie-framework/pie-lib/commit/133549b))
 
 ## [4.11.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.11.7...@pie-lib/render-ui@4.11.8) (2021-07-23)
 

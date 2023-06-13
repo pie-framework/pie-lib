@@ -7,395 +7,201 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @pie-lib/text-select
 
-
-
-
-
 ## [1.9.25](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.9.24...@pie-lib/text-select@1.9.25) (2023-06-05)
 
 **Note:** Version bump only for package @pie-lib/text-select
-
-
-
-
 
 ## [1.9.24](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.9.23...@pie-lib/text-select@1.9.24) (2023-05-12)
 
 **Note:** Version bump only for package @pie-lib/text-select
 
-
-
-
-
 ## [1.9.23](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.9.22...@pie-lib/text-select@1.9.23) (2023-05-01)
 
 **Note:** Version bump only for package @pie-lib/text-select
-
-
-
-
 
 ## [1.9.22](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.9.21...@pie-lib/text-select@1.9.22) (2023-04-25)
 
 **Note:** Version bump only for package @pie-lib/text-select
 
-
-
-
-
 ## [1.9.21](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.9.20...@pie-lib/text-select@1.9.21) (2023-04-19)
-
 
 ### Bug Fixes
 
-* **eslint:** fix eslint problems-PD-2732 ([9eb9976](https://github.com/pie-framework/pie-lib/commit/9eb9976749753da86e1057a07bd2cfc65bf64ae4))
-
-
-
-
+- **eslint:** fix eslint problems-PD-2732 ([9eb9976](https://github.com/pie-framework/pie-lib/commit/9eb9976749753da86e1057a07bd2cfc65bf64ae4))
 
 ## [1.9.20](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.9.19...@pie-lib/text-select@1.9.20) (2023-04-07)
 
 **Note:** Version bump only for package @pie-lib/text-select
 
-
-
-
-
 ## [1.9.19](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.9.18...@pie-lib/text-select@1.9.19) (2023-04-03)
 
 **Note:** Version bump only for package @pie-lib/text-select
-
-
-
-
 
 ## [1.9.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.9.17...@pie-lib/text-select@1.9.18) (2023-03-27)
 
 **Note:** Version bump only for package @pie-lib/text-select
 
-
-
-
-
 ## [1.9.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.9.16...@pie-lib/text-select@1.9.17) (2023-03-20)
 
 **Note:** Version bump only for package @pie-lib/text-select
-
-
-
-
 
 ## [1.9.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.9.15...@pie-lib/text-select@1.9.16) (2023-03-13)
 
 **Note:** Version bump only for package @pie-lib/text-select
 
-
-
-
-
 ## [1.9.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.9.13...@pie-lib/text-select@1.9.15) (2023-02-28)
-
 
 ### Bug Fixes
 
-* version bump ([d9280a9](https://github.com/pie-framework/pie-lib/commit/d9280a9aeddab459b6d84ecdbeb62814e1eee965))
-
-
-
-
+- version bump ([d9280a9](https://github.com/pie-framework/pie-lib/commit/d9280a9aeddab459b6d84ecdbeb62814e1eee965))
 
 ## [1.9.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.9.12...@pie-lib/text-select@1.9.13) (2023-02-28)
 
 **Note:** Version bump only for package @pie-lib/text-select
 
-
-
-
-
 ## [1.9.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.9.10...@pie-lib/text-select@1.9.12) (2023-01-31)
 
 **Note:** Version bump only for package @pie-lib/text-select
-
-
-
-
 
 ## [1.9.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.9.9...@pie-lib/text-select@1.9.10) (2023-01-31)
 
 **Note:** Version bump only for package @pie-lib/text-select
 
-
-
-
-
 ## [1.9.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.9.8...@pie-lib/text-select@1.9.9) (2023-01-31)
 
 **Note:** Version bump only for package @pie-lib/text-select
-
-
-
-
 
 ## [1.9.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.9.7...@pie-lib/text-select@1.9.8) (2023-01-31)
 
 **Note:** Version bump only for package @pie-lib/text-select
 
-
-
-
-
 ## [1.9.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.9.5...@pie-lib/text-select@1.9.7) (2023-01-31)
 
 **Note:** Version bump only for package @pie-lib/text-select
-
-
-
-
 
 ## [1.9.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.9.3...@pie-lib/text-select@1.9.5) (2023-01-31)
 
 **Note:** Version bump only for package @pie-lib/text-select
 
-
-
-
-
 ## [1.9.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.9.1...@pie-lib/text-select@1.9.3) (2023-01-31)
 
 **Note:** Version bump only for package @pie-lib/text-select
-
-
-
-
 
 ## [1.9.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.9.0...@pie-lib/text-select@1.9.1) (2023-01-31)
 
 **Note:** Version bump only for package @pie-lib/text-select
 
-
-
-
-
 # [1.9.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.8.28...@pie-lib/text-select@1.9.0) (2023-01-16)
-
 
 ### Features
 
-* added theme naming support + cleanup ([72d562d](https://github.com/pie-framework/pie-lib/commit/72d562d509e5d31d883690eb455a9afea6bf54fc))
-
-
-
-
+- added theme naming support + cleanup ([72d562d](https://github.com/pie-framework/pie-lib/commit/72d562d509e5d31d883690eb455a9afea6bf54fc))
 
 ## [1.8.28](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.8.27...@pie-lib/text-select@1.8.28) (2023-01-03)
 
-
 ### Bug Fixes
 
-* **select-text:** remove hover effect from tokens for touch devices ([7219e33](https://github.com/pie-framework/pie-lib/commit/7219e337d6e7fbb83c4bc6e984f1fa633d35a448))
-
-
-
-
+- **select-text:** remove hover effect from tokens for touch devices ([7219e33](https://github.com/pie-framework/pie-lib/commit/7219e337d6e7fbb83c4bc6e984f1fa633d35a448))
 
 ## [1.8.27](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.8.26...@pie-lib/text-select@1.8.27) (2022-11-23)
 
 **Note:** Version bump only for package @pie-lib/text-select
 
-
-
-
-
 ## [1.8.26](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.8.25...@pie-lib/text-select@1.8.26) (2022-09-28)
 
 **Note:** Version bump only for package @pie-lib/text-select
-
-
-
-
 
 ## [1.8.25](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.8.24...@pie-lib/text-select@1.8.25) (2022-09-14)
 
 **Note:** Version bump only for package @pie-lib/text-select
 
-
-
-
-
 ## [1.8.24](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.8.23...@pie-lib/text-select@1.8.24) (2022-09-12)
 
 **Note:** Version bump only for package @pie-lib/text-select
-
-
-
-
 
 ## [1.8.23](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.8.22...@pie-lib/text-select@1.8.23) (2022-08-29)
 
 **Note:** Version bump only for package @pie-lib/text-select
 
-
-
-
-
 ## [1.8.22](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.8.21...@pie-lib/text-select@1.8.22) (2022-08-15)
 
 **Note:** Version bump only for package @pie-lib/text-select
-
-
-
-
 
 ## [1.8.21](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.8.20...@pie-lib/text-select@1.8.21) (2022-08-08)
 
 **Note:** Version bump only for package @pie-lib/text-select
 
-
-
-
-
 ## [1.8.20](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.8.19...@pie-lib/text-select@1.8.20) (2022-07-18)
 
 **Note:** Version bump only for package @pie-lib/text-select
-
-
-
-
 
 ## [1.8.19](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.8.18...@pie-lib/text-select@1.8.19) (2022-07-18)
 
 **Note:** Version bump only for package @pie-lib/text-select
 
-
-
-
-
 ## [1.8.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.8.17...@pie-lib/text-select@1.8.18) (2022-06-13)
 
 **Note:** Version bump only for package @pie-lib/text-select
-
-
-
-
 
 ## [1.8.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.8.16...@pie-lib/text-select@1.8.17) (2022-05-30)
 
 **Note:** Version bump only for package @pie-lib/text-select
 
-
-
-
-
 ## [1.8.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.8.15...@pie-lib/text-select@1.8.16) (2022-05-24)
 
 **Note:** Version bump only for package @pie-lib/text-select
-
-
-
-
 
 ## [1.8.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.8.14...@pie-lib/text-select@1.8.15) (2022-04-28)
 
 **Note:** Version bump only for package @pie-lib/text-select
 
-
-
-
-
 ## [1.8.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.8.13...@pie-lib/text-select@1.8.14) (2022-03-21)
 
 **Note:** Version bump only for package @pie-lib/text-select
-
-
-
-
 
 ## [1.8.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.8.12...@pie-lib/text-select@1.8.13) (2022-02-21)
 
 **Note:** Version bump only for package @pie-lib/text-select
 
-
-
-
-
 ## [1.8.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.8.11...@pie-lib/text-select@1.8.12) (2022-02-03)
 
 **Note:** Version bump only for package @pie-lib/text-select
-
-
-
-
 
 ## [1.8.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.8.10...@pie-lib/text-select@1.8.11) (2021-12-13)
 
 **Note:** Version bump only for package @pie-lib/text-select
 
-
-
-
-
 ## [1.8.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.8.9...@pie-lib/text-select@1.8.10) (2021-11-29)
 
 **Note:** Version bump only for package @pie-lib/text-select
-
-
-
-
 
 ## [1.8.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.8.8...@pie-lib/text-select@1.8.9) (2021-11-10)
 
 **Note:** Version bump only for package @pie-lib/text-select
 
-
-
-
-
 ## [1.8.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.8.7...@pie-lib/text-select@1.8.8) (2021-10-04)
-
 
 ### Bug Fixes
 
-* **select-text:** made sure the new line characters are taken into consideration for offsets [PD-1145] ([a7bb44a](https://github.com/pie-framework/pie-lib/commit/a7bb44a))
-
-
-
-
+- **select-text:** made sure the new line characters are taken into consideration for offsets [PD-1145](<[a7bb44a](https://github.com/pie-framework/pie-lib/commit/a7bb44a)>)
 
 ## [1.8.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.8.6...@pie-lib/text-select@1.8.7) (2021-09-08)
 
 **Note:** Version bump only for package @pie-lib/text-select
 
-
-
-
-
 ## [1.8.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.8.5...@pie-lib/text-select@1.8.6) (2021-09-08)
 
 **Note:** Version bump only for package @pie-lib/text-select
 
-
-
-
-
 ## [1.8.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.8.4...@pie-lib/text-select@1.8.5) (2021-08-30)
-
 
 ### Bug Fixes
 
-* **text-select:** move prepareText function from pie-elements ([0eaee81](https://github.com/pie-framework/pie-lib/commit/0eaee81))
-
-
-
-
+- **text-select:** move prepareText function from pie-elements ([0eaee81](https://github.com/pie-framework/pie-lib/commit/0eaee81))
 
 ## [1.8.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.8.3...@pie-lib/text-select@1.8.4) (2021-08-04)
 
 **Note:** Version bump only for package @pie-lib/text-select
-
-
-
-
 
 ## [1.8.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.8.2...@pie-lib/text-select@1.8.3) (2021-07-23)
 

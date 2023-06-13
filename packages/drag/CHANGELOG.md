@@ -5,248 +5,139 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [2.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.1.19...@pie-lib/drag@2.2.0) (2023-06-12)
 
-
 ### Features
 
-* **drag:** add context to dnd provider content is needed when multiple dndProviders are used ([07597d8](https://github.com/pie-framework/pie-lib/commit/07597d80aba5788c9cb3b58012742413c9bdad20))
-
-
-
-
+- **drag:** add context to dnd provider content is needed when multiple dndProviders are used ([07597d8](https://github.com/pie-framework/pie-lib/commit/07597d80aba5788c9cb3b58012742413c9bdad20))
 
 ## [2.1.19](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.1.18...@pie-lib/drag@2.1.19) (2023-06-05)
 
-
 ### Bug Fixes
 
-* **drag:** provide drag support for multiple devices PD-2722 ([747186c](https://github.com/pie-framework/pie-lib/commit/747186c230645ca805a8c446e7c74d1ec0003ab7))
-* **drag:** provide drag support for multiple-devices PD-2722 ([04534da](https://github.com/pie-framework/pie-lib/commit/04534da486616ddbfd08794361c9bdadaa2d1655))
-
-
-
-
+- **drag:** provide drag support for multiple devices PD-2722 ([747186c](https://github.com/pie-framework/pie-lib/commit/747186c230645ca805a8c446e7c74d1ec0003ab7))
+- **drag:** provide drag support for multiple-devices PD-2722 ([04534da](https://github.com/pie-framework/pie-lib/commit/04534da486616ddbfd08794361c9bdadaa2d1655))
 
 ## [2.1.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.1.17...@pie-lib/drag@2.1.18) (2023-04-19)
 
-
 ### Bug Fixes
 
-* **eslint:** fix eslint problems-PD-2732 ([9eb9976](https://github.com/pie-framework/pie-lib/commit/9eb9976749753da86e1057a07bd2cfc65bf64ae4))
-
-
-
-
+- **eslint:** fix eslint problems-PD-2732 ([9eb9976](https://github.com/pie-framework/pie-lib/commit/9eb9976749753da86e1057a07bd2cfc65bf64ae4))
 
 ## [2.1.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.1.16...@pie-lib/drag@2.1.17) (2023-04-14)
 
-
 ### Bug Fixes
 
-* **drag:** revert Carla's changes for PD-2495 because it looks like it's causing PD-2722 ([b8d6973](https://github.com/pie-framework/pie-lib/commit/b8d69737844d60b69641d57078eb6a3509d3728b))
-
-
-
-
+- **drag:** revert Carla's changes for PD-2495 because it looks like it's causing PD-2722 ([b8d6973](https://github.com/pie-framework/pie-lib/commit/b8d69737844d60b69641d57078eb6a3509d3728b))
 
 ## [2.1.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.1.15...@pie-lib/drag@2.1.16) (2023-04-14)
 
-
 ### Bug Fixes
 
-* commit for build (testing purpose) ([75acd61](https://github.com/pie-framework/pie-lib/commit/75acd61956f266fc3d4d2b6819782a0de61b0ec7))
-
-
-
-
+- commit for build (testing purpose) ([75acd61](https://github.com/pie-framework/pie-lib/commit/75acd61956f266fc3d4d2b6819782a0de61b0ec7))
 
 ## [2.1.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.1.13...@pie-lib/drag@2.1.15) (2023-02-28)
 
-
 ### Bug Fixes
 
-* version bump ([d9280a9](https://github.com/pie-framework/pie-lib/commit/d9280a9aeddab459b6d84ecdbeb62814e1eee965))
-
-
-
-
+- version bump ([d9280a9](https://github.com/pie-framework/pie-lib/commit/d9280a9aeddab459b6d84ecdbeb62814e1eee965))
 
 ## [2.1.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.1.12...@pie-lib/drag@2.1.13) (2023-02-28)
 
-
 ### Bug Fixes
 
-* **categorize:** set maxWidth and minWidth in order to avoid overlapping ([329578b](https://github.com/pie-framework/pie-lib/commit/329578bd3a76112b1ab26b944f69bae95e622032))
-* **drag-in-the-blank:** prevent scroll of the page when dragging the choices, try to improve removing selected choices on touch devices ([ae485e3](https://github.com/pie-framework/pie-lib/commit/ae485e342ccc542dbd91765980bbf5588bfe4726))
-
-
-
-
+- **categorize:** set maxWidth and minWidth in order to avoid overlapping ([329578b](https://github.com/pie-framework/pie-lib/commit/329578bd3a76112b1ab26b944f69bae95e622032))
+- **drag-in-the-blank:** prevent scroll of the page when dragging the choices, try to improve removing selected choices on touch devices ([ae485e3](https://github.com/pie-framework/pie-lib/commit/ae485e342ccc542dbd91765980bbf5588bfe4726))
 
 ## [2.1.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.1.10...@pie-lib/drag@2.1.12) (2023-01-31)
 
 **Note:** Version bump only for package @pie-lib/drag
 
-
-
-
-
 ## [2.1.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.1.9...@pie-lib/drag@2.1.10) (2023-01-31)
 
 **Note:** Version bump only for package @pie-lib/drag
-
-
-
-
 
 ## [2.1.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.1.8...@pie-lib/drag@2.1.9) (2023-01-31)
 
 **Note:** Version bump only for package @pie-lib/drag
 
-
-
-
-
 ## [2.1.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.1.7...@pie-lib/drag@2.1.8) (2023-01-31)
 
 **Note:** Version bump only for package @pie-lib/drag
-
-
-
-
 
 ## [2.1.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.1.5...@pie-lib/drag@2.1.7) (2023-01-31)
 
 **Note:** Version bump only for package @pie-lib/drag
 
-
-
-
-
 ## [2.1.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.1.3...@pie-lib/drag@2.1.5) (2023-01-31)
 
 **Note:** Version bump only for package @pie-lib/drag
-
-
-
-
 
 ## [2.1.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.1.1...@pie-lib/drag@2.1.3) (2023-01-31)
 
 **Note:** Version bump only for package @pie-lib/drag
 
-
-
-
-
 ## [2.1.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.1.0...@pie-lib/drag@2.1.1) (2023-01-31)
-
 
 ### Bug Fixes
 
-* **drag:** add support for dragging events on touch devices ([b367c15](https://github.com/pie-framework/pie-lib/commit/b367c155df323a64da9f2b6633ec5eebda879e22))
-* **drag:** downgrade react-dnd-touch-backend to a version that is compatible with react-dnd version 14.x. ([d8a3577](https://github.com/pie-framework/pie-lib/commit/d8a35779ac8c55573cf71b4dedfa3617780303e4))
-* **drag:** prevent scroll for dragging placeholder board ([d37d211](https://github.com/pie-framework/pie-lib/commit/d37d2110af7a199e14d2c7f80720d65013f63602))
-
-
-
-
+- **drag:** add support for dragging events on touch devices ([b367c15](https://github.com/pie-framework/pie-lib/commit/b367c155df323a64da9f2b6633ec5eebda879e22))
+- **drag:** downgrade react-dnd-touch-backend to a version that is compatible with react-dnd version 14.x. ([d8a3577](https://github.com/pie-framework/pie-lib/commit/d8a35779ac8c55573cf71b4dedfa3617780303e4))
+- **drag:** prevent scroll for dragging placeholder board ([d37d211](https://github.com/pie-framework/pie-lib/commit/d37d2110af7a199e14d2c7f80720d65013f63602))
 
 # [2.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.0.6...@pie-lib/drag@2.1.0) (2023-01-16)
 
-
 ### Bug Fixes
 
-* **match-list:** fix choices arrangement in the drag placeholder ([c05ad41](https://github.com/pie-framework/pie-lib/commit/c05ad41d37704aad0927fb36705c47cafe40add0))
-
+- **match-list:** fix choices arrangement in the drag placeholder ([c05ad41](https://github.com/pie-framework/pie-lib/commit/c05ad41d37704aad0927fb36705c47cafe40add0))
 
 ### Features
 
-* added theme naming support + cleanup ([72d562d](https://github.com/pie-framework/pie-lib/commit/72d562d509e5d31d883690eb455a9afea6bf54fc))
-
-
-
-
+- added theme naming support + cleanup ([72d562d](https://github.com/pie-framework/pie-lib/commit/72d562d509e5d31d883690eb455a9afea6bf54fc))
 
 ## [2.0.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.0.5...@pie-lib/drag@2.0.6) (2023-01-04)
 
-
 ### Bug Fixes
 
-* **drag:** refactor the droppable placeholder for match-list and drag-in-the-blank PD-1954 PD-1956 ([8696d61](https://github.com/pie-framework/pie-lib/commit/8696d61a0762835186ceb876e03100e2e9c820fc))
-
-
-
-
+- **drag:** refactor the droppable placeholder for match-list and drag-in-the-blank PD-1954 PD-1956 ([8696d61](https://github.com/pie-framework/pie-lib/commit/8696d61a0762835186ceb876e03100e2e9c820fc))
 
 ## [2.0.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.0.4...@pie-lib/drag@2.0.5) (2023-01-03)
 
-
 ### Bug Fixes
 
-* **drag:** fix drop for match-list ([728203d](https://github.com/pie-framework/pie-lib/commit/728203d8014ce83b843b2695bf969c4fc53eb381))
-* **drag:** fix drop function for drag-in-the-blank element ([b491299](https://github.com/pie-framework/pie-lib/commit/b4912998d920c7e085dc9c9eb4e70c432cb7eb1c))
-
-
-
-
+- **drag:** fix drop for match-list ([728203d](https://github.com/pie-framework/pie-lib/commit/728203d8014ce83b843b2695bf969c4fc53eb381))
+- **drag:** fix drop function for drag-in-the-blank element ([b491299](https://github.com/pie-framework/pie-lib/commit/b4912998d920c7e085dc9c9eb4e70c432cb7eb1c))
 
 ## [2.0.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.0.3...@pie-lib/drag@2.0.4) (2022-12-19)
 
-
 ### Bug Fixes
 
-* **drag,categorize:** drag an answer choice elsewhere after it has been placed in a category-PD-1995 ([d32015b](https://github.com/pie-framework/pie-lib/commit/d32015b31d50b45851df2f27ad517eeaad8ae511))
-
-
-
-
+- **drag,categorize:** drag an answer choice elsewhere after it has been placed in a category-PD-1995 ([d32015b](https://github.com/pie-framework/pie-lib/commit/d32015b31d50b45851df2f27ad517eeaad8ae511))
 
 ## [2.0.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.0.2...@pie-lib/drag@2.0.3) (2022-12-06)
 
-
 ### Bug Fixes
 
-* **categorize:** reduce lag when removing a token from a category PD-1953 ([f3bdb44](https://github.com/pie-framework/pie-lib/commit/f3bdb44360131fc61150fd42ec988eb1c5f15eaa))
-
-
-
-
+- **categorize:** reduce lag when removing a token from a category PD-1953 ([f3bdb44](https://github.com/pie-framework/pie-lib/commit/f3bdb44360131fc61150fd42ec988eb1c5f15eaa))
 
 ## [2.0.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.0.1...@pie-lib/drag@2.0.2) (2022-11-29)
 
-
 ### Bug Fixes
 
-* react-dnd issue ([a39cb6d](https://github.com/pie-framework/pie-lib/commit/a39cb6dfa290840f3521f390ac3bd8091acee3d1))
-
-
-
-
+- react-dnd issue ([a39cb6d](https://github.com/pie-framework/pie-lib/commit/a39cb6dfa290840f3521f390ac3bd8091acee3d1))
 
 ## [2.0.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.0.0...@pie-lib/drag@2.0.1) (2022-11-23)
 
 **Note:** Version bump only for package @pie-lib/drag
 
-
-
-
-
 # [2.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@1.1.52...@pie-lib/drag@2.0.0) (2022-11-23)
-
 
 ### Features
 
-* update react-dnd and react-dnd-html5-backend versions ([be0cbe8](https://github.com/pie-framework/pie-lib/commit/be0cbe83d4014e03e1b5dd6218d6176cf3c28cc6))
-
+- update react-dnd and react-dnd-html5-backend versions ([be0cbe8](https://github.com/pie-framework/pie-lib/commit/be0cbe83d4014e03e1b5dd6218d6176cf3c28cc6))
 
 ### BREAKING CHANGES
 
-* updated react-dnd and react-dnd-html5-backend versions
-The update was made in a previous commit, but breaking changes might occur so that's the role for this commit.
-
-
-
-
+- updated react-dnd and react-dnd-html5-backend versions
+  The update was made in a previous commit, but breaking changes might occur so that's the role for this commit.
 
 ## [1.1.52](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@1.1.50...@pie-lib/drag@1.1.52) (2021-06-25)
 

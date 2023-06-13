@@ -30,7 +30,8 @@ const inputOptions = [
   },
   {
     label: 'Latex \\(..\\)',
-    html: '<math xmlns="http://www.w3.org/1998/Math/MathML">  <mn>2</mn>  <mi>x</mi>  <mtext>&#xA0;</mtext>  <mo>&#x2264;</mo>  <mn>4</mn>  <mi>y</mi>  <mtext>&#xA0;</mtext>  <mo>+</mo>  <mtext>&#xA0;</mtext>  <mn>8</mn> <msqrt>    <mi>h</mi>  </msqrt></math>',
+    html:
+      '<math xmlns="http://www.w3.org/1998/Math/MathML">  <mn>2</mn>  <mi>x</mi>  <mtext>&#xA0;</mtext>  <mo>&#x2264;</mo>  <mn>4</mn>  <mi>y</mi>  <mtext>&#xA0;</mtext>  <mo>+</mo>  <mtext>&#xA0;</mtext>  <mn>8</mn> <msqrt>    <mi>h</mi>  </msqrt></math>',
   },
   {
     label: 'Latex $..$',

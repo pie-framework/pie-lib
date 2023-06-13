@@ -19,7 +19,7 @@ const LabelComponent = (props) => {
     text,
     side,
     onChange,
-    mathMlOptions = {}
+    mathMlOptions = {},
   } = props;
   const [rotatedToHorizontal, setRotatedToHorizontal] = useState(false);
   const activePlugins = [
