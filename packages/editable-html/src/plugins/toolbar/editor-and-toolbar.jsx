@@ -239,7 +239,7 @@ const style = (theme) => ({
     },
   },
   error: {
-    border: `2px solid ${theme.palette.error.main}`,
+    border: `2px solid ${theme.palette.error.main} !important`,
   },
   noBorder: {
     border: 'none',
