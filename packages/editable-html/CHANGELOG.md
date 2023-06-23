@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.7.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.6.6...@pie-lib/editable-html@9.7.0) (2023-06-23)
+
+
+### Features
+
+* **editable-html:** make error class important to avoid overwriting ([37af2fc](https://github.com/pie-framework/pie-lib/commit/37af2fc862f3e5d0dfd0b1ad42fbd462d98bac89))
+
+
+
+
+
 ## [9.6.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.6.5...@pie-lib/editable-html@9.6.6) (2023-06-13)
 
 **Note:** Version bump only for package @pie-lib/editable-html
