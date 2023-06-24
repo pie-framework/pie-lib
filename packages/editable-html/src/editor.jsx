@@ -274,7 +274,10 @@ export class Editor extends React.Component {
       });
     }
 
-    if (!isEqual(nextProps.languageCharactersProps, this.props.languageCharactersProps)) {
+    const differentCharacterProps = !isEqual(nextProps.languageCharactersProps, this.props.languageCharactersProps);
+    const differentMathMlProps = !isEqual(nextProps.mathMlOptions, this.props.mathMlOptions);
+
+    if (differentCharacterProps || differentMathMlProps) {
       this.handlePlugins(nextProps);
     }
 
