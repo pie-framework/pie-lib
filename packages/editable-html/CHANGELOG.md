@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.7.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.7.0...@pie-lib/editable-html@9.7.1) (2023-06-24)
+
+
+### Bug Fixes
+
+* made sure mathMlOptions are editable live [PD-2150] ([31ce3d3](https://github.com/pie-framework/pie-lib/commit/31ce3d3536788021b912895c611f972aa87161b0))
+
+
+
+
+
 # [9.7.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.6.6...@pie-lib/editable-html@9.7.0) (2023-06-23)
 
 

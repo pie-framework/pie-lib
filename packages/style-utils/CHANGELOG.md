@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.43](https://github.com/pie-framework/pie-lib/compare/@pie-lib/style-utils@0.1.42...@pie-lib/style-utils@0.1.43) (2023-06-24)
+
+**Note:** Version bump only for package @pie-lib/style-utils
+
+
+
+
+
 ## [0.1.42](https://github.com/pie-framework/pie-lib/compare/@pie-lib/style-utils@0.1.40...@pie-lib/style-utils@0.1.42) (2023-01-31)
 
 **Note:** Version bump only for package @pie-lib/style-utils
