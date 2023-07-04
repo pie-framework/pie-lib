@@ -32,6 +32,10 @@ export default class Static extends React.Component {
     setInput: PropTypes.func,
   };
 
+  static defaultProps = {
+    getFieldName: () => {},
+  };
+
   componentDidMount() {
     this.update();
     updateSpans();
