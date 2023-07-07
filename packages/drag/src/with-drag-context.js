@@ -1,23 +1,20 @@
 import React from 'react';
 import MultiBackend, { TouchTransition } from 'react-dnd-multi-backend';
 import { DndProvider } from 'react-dnd';
-import HTML5Backend from 'react-dnd-html5-backend';
-import TouchBackend from 'react-dnd-touch-backend';
-
-console.log('HTML5Backend:', HTML5Backend);
-console.log('TouchBackend:', TouchBackend);
+import { TouchBackend } from 'react-dnd-touch-backend';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 const HTML5toTouch = {
   backends: [
     {
       backend: HTML5Backend,
-      transition: TouchTransition,
     },
     {
       backend: TouchBackend,
       options: { enableMouseEvents: true },
-      preview: true,
+      // preview: true,
       transition: TouchTransition,
+      skipDispatchOnTransition: true,
     },
   ],
 };
