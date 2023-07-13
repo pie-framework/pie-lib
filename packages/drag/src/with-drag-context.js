@@ -1,5 +1,6 @@
 import React from 'react';
 import MultiBackend, { TouchTransition, Preview } from 'react-dnd-multi-backend';
+import { PreviewPrompt } from '@pie-lib/render-ui';
 import { DndProvider } from 'react-dnd';
 import { TouchBackend } from 'react-dnd-touch-backend';
 import { HTML5Backend } from 'react-dnd-html5-backend';
@@ -42,8 +43,13 @@ const PreviewComponent = ({ itemType, item, style }) => {
       borderRadius: '16px',
     };
   }
+  console.log(item.choice.value, 'value');
 
-  return <div style={customStyle} dangerouslySetInnerHTML={{ __html: item.choice.value }} />;
+  return (
+    <div style={customStyle}>
+      <PreviewPrompt className="label" prompt={item.choice.value} tagName="span" />
+    </div>
+  );
 };
 
 export default (Component) => (props) => (
