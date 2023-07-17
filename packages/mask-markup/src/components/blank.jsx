@@ -226,6 +226,7 @@ const tileSource = {
       choice: props.choice,
       instanceId: props.instanceId,
       fromChoice: true,
+      root: 'test',
     };
   },
   endDrag(props, monitor) {
