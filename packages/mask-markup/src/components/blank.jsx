@@ -31,7 +31,6 @@ const useStyles = withStyles(() => ({
   },
   chipLabel: {
     whiteSpace: 'pre-wrap',
-    touchAction: 'none',
     // Added for touch devices, for image content.
     // This will prevent the context menu from appearing and not allowing other interactions with the image.
     // If interactions with the image in the token will be requested we should handle only the context Menu.
@@ -226,7 +225,6 @@ const tileSource = {
       choice: props.choice,
       instanceId: props.instanceId,
       fromChoice: true,
-      root: 'test',
     };
   },
   endDrag(props, monitor) {
