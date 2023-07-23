@@ -20,7 +20,7 @@ const MaskBlankStyle = {
 
 const ICAStyle = {
   backgroundColor: color.background(),
-  border: `1px solid ${color.primary()}`,
+  border: `1px solid ${color.text()}`,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -29,40 +29,45 @@ const ICAStyle = {
   marginLeft: 2,
   marginTop: 2,
   width: 'fit-content',
-  touchAction: 'none',
-  overflow: 'hidden',
+};
+
+const getPrompt = (itemType, item) => {
+  switch (itemType) {
+    // DRAG-IN-THE-BLANK
+    case 'MaskBlank':
+      return item?.choice?.value;
+    // IMAGE-CLOZE-ASSOCIATION
+    case 'react-dnd-response':
+      return item?.value;
+    default:
+      return undefined;
+  }
 };
 
 const PreviewComponent = () => {
-  let root = useRef(null);
   const preview = usePreview();
+  const { itemType, item, style, display } = preview;
+
+  let root = useRef(null);
 
   useEffect(() => {
-    if (preview?.display && root.current) {
+    if (display && root.current) {
       renderMath(root.current);
     }
-  }, [preview?.display, preview?.item?.choice?.value]);
+  }, [display, item?.choice?.value, item?.value, itemType, item]);
 
-  if (!preview.display) {
+  if (!display) {
     return null;
   }
 
-  const { itemType, item, style } = preview;
   const customStyle = {
     ...style,
     ...(itemType === 'MaskBlank' ? MaskBlankStyle : {}),
-    ...(itemType === 'react-dnd-response' ? ICAStyle : {}),
+    // TODO: In the image-cloze-association component, there's a noticeable delay in the image rendering process. This results in a brief display of an empty image placeholder before the actual image appears after a few seconds. This issue also impacts the correct rendering of the preview feature, thereby negatively affecting the user experience. This needs to be addressed promptly.
+    //...(itemType === 'react-dnd-response' ? ICAStyle : {}),
   };
 
-  let prompt;
-
-  // DRAG-IN-THE-BLANK
-  if (itemType === 'MaskBlank') {
-    prompt = item?.choice?.value;
-    // IMAGE-CLOZE-ASSOCIATION
-  } else if (itemType === 'react-dnd-response') {
-    prompt = item?.value;
-  }
+  const prompt = getPrompt(itemType, item);
 
   return (
     <div ref={root} style={customStyle}>

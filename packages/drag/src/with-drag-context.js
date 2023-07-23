@@ -10,7 +10,7 @@ const backends = [
   { backend: HTML5Backend },
   {
     backend: TouchBackend,
-    options: { enableMouseEvents: true },
+    options: { enableMouseEvents: true, enableTouchEvents: true },
     preview: true,
     transition: TouchTransition,
     skipDispatchOnTransition: true,
