@@ -108,6 +108,7 @@ const styles = (theme) => ({
     display: 'inline-block',
     verticalAlign: 'middle',
     cursor: 'pointer',
+    fontSize: 'initial !important',
   },
   promptTable: {
     '&:not(.MathJax) > table': {

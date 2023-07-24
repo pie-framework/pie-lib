@@ -1,10 +1,25 @@
 import React from 'react';
-import MultiBackend from 'react-dnd-multi-backend';
+import MultiBackend, { TouchTransition } from 'react-dnd-multi-backend';
 import { DndProvider } from 'react-dnd';
-import HTML5toTouch from 'react-dnd-multi-backend/dist/cjs/HTML5toTouch';
+import { TouchBackend } from 'react-dnd-touch-backend';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+
+import PreviewComponent from './preview-component';
+
+const backends = [
+  { backend: HTML5Backend },
+  {
+    backend: TouchBackend,
+    options: { enableMouseEvents: true, enableTouchEvents: true },
+    preview: true,
+    transition: TouchTransition,
+    skipDispatchOnTransition: true,
+  },
+];
 
 export default (Component) => (props) => (
-  <DndProvider backend={MultiBackend} options={HTML5toTouch} context={window}>
+  <DndProvider backend={MultiBackend} options={{ backends }} context={window}>
     <Component {...props} />
+    <PreviewComponent />
   </DndProvider>
 );
