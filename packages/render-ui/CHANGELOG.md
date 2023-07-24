@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.14.29](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.14.28...@pie-lib/render-ui@4.14.29) (2023-07-24)
+
+
+### Bug Fixes
+
+* **render-ui:** answer choices answered rendered in a smaller font-size ([e7503e0](https://github.com/pie-framework/pie-lib/commit/e7503e029ed6872098646e8787e124f2d6a8a018))
+
+
+
+
+
 ## [4.14.28](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.14.27...@pie-lib/render-ui@4.14.28) (2023-06-24)
 
 **Note:** Version bump only for package @pie-lib/render-ui

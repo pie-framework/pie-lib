@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.2.1...@pie-lib/drag@2.2.2) (2023-07-24)
+
+
+### Bug Fixes
+
+* **drag-in-the-blank:** add preview for draged items on touch backend, wip ([4e4bab6](https://github.com/pie-framework/pie-lib/commit/4e4bab63fb69e53d4cdff303d5bfd4fc18a5c7a0))
+
+
+
+
+
 ## [2.2.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.2.0...@pie-lib/drag@2.2.1) (2023-06-24)
 
 **Note:** Version bump only for package @pie-lib/drag
