@@ -2,6 +2,16 @@ import React from 'react';
 import PlaceHolder from './placeholder';
 import PropTypes from 'prop-types';
 
+const preventInteractionStyle = {
+  flex: 1,
+  WebkitTouchCallout: 'none',
+  WebkitUserSelect: 'none',
+  KhtmlUserSelect: 'none',
+  MozUserSelect: 'none',
+  MsUserSelect: 'none',
+  UserSelect: 'none',
+};
+
 export class DroppablePlaceholder extends React.Component {
   static propTypes = {
     classes: PropTypes.object,
@@ -15,7 +25,7 @@ export class DroppablePlaceholder extends React.Component {
     const { children, connectDropTarget, isOver, disabled, classes } = this.props;
 
     return connectDropTarget(
-      <div style={{ flex: 1 }}>
+      <div style={preventInteractionStyle}>
         <PlaceHolder disabled={disabled} isOver={isOver} choiceBoard={true} className={classes}>
           {children}
         </PlaceHolder>
