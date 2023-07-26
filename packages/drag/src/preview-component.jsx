@@ -37,6 +37,13 @@ const styles = {
     borderRadius: '4px',
     border: '1px solid',
   },
+  matchlist: {
+    color: color.text(),
+    backgroundColor: color.background(),
+    padding: '10px',
+    boxSizing: 'border-box',
+    border: '1px solid #D1D1D1',
+  },
 };
 
 const getPrompt = (itemType, item) => {
@@ -46,6 +53,9 @@ const getPrompt = (itemType, item) => {
       return item?.choice?.value;
     // IMAGE-CLOZE-ASSOCIATION
     case 'react-dnd-response':
+      return item?.value;
+    // MATCH-LIST
+    case 'Answer':
       return item?.value;
     default:
   }
@@ -75,6 +85,7 @@ const PreviewComponent = () => {
     ...style,
     ...(itemType === 'MaskBlank' ? styles.maskBlank : {}),
     ...(item?.itemType === 'categorize' ? styles.categorize : {}),
+    ...(itemType === 'Answer' ? styles.matchlist : {}),
     // TODO: In the image-cloze-association component, there's a noticeable delay in the image rendering process. This results in a brief display of an empty image placeholder before the actual image appears after a few seconds. This issue also impacts the correct rendering of the preview feature, thereby negatively affecting the user experience. This needs to be addressed promptly.
     //...(itemType === 'react-dnd-response' ? styles.ica : {}),
   };
