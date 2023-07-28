@@ -6,18 +6,18 @@ import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import grey from '@material-ui/core/colors/grey';
 
-const Checkbox = ({ mini, checked, onChange, value, label, classes }) => (
+const Checkbox = ({ mini, checked, onChange, value, label, classes, error }) => (
   <FormControlLabel
     className={classNames(classes.mini)}
     classes={{
-      label: classNames(classes.label, mini && classes.miniLabel),
+      label: classNames(classes.label, { [classes.miniLabel]: mini }),
     }}
     control={
       <MuiCheckbox
         checked={checked}
         onChange={onChange}
         value={value}
-        className={classNames(mini && classes.miniCheckbox)}
+        className={classNames({ [classes.miniCheckbox]: mini, [classes.error]: error })}
       />
     }
     label={label}
@@ -59,5 +59,8 @@ export default withStyles((theme) => ({
     margin: 0,
     marginLeft: 0,
     padding: 0,
+  },
+  error: {
+    color: theme.palette.error.main,
   },
 }))(Checkbox);
