@@ -37,6 +37,19 @@ const styles = {
     borderRadius: '4px',
     border: '1px solid',
   },
+  matchList: {
+    color: color.text(),
+    backgroundColor: color.background(),
+    padding: '10px',
+    boxSizing: 'border-box',
+    border: '1px solid #D1D1D1',
+  },
+  placementOrdering: {
+    padding: '10px',
+    boxSizing: 'border-box',
+    border: '1px solid #D1D1D1',
+    backgroundColor: color.background(),
+  },
 };
 
 const getPrompt = (itemType, item) => {
@@ -47,19 +60,36 @@ const getPrompt = (itemType, item) => {
     // IMAGE-CLOZE-ASSOCIATION
     case 'react-dnd-response':
       return item?.value;
+    // MATCH-LIST
+    case 'Answer':
+      return item?.value;
+    // PLACEMENT-ORDERING
+    case 'Tile':
+      return item?.value;
     default:
+      return item?.itemType === 'categorize' ? item?.value : undefined;
   }
+};
 
-  if (itemType && item?.itemType === 'categorize') {
-    return item?.value;
-  }
+const getCustomStyle = (itemType, item, style) => {
+  const baseStyle = {
+    ...style,
+    ...(itemType === 'MaskBlank' ? styles.maskBlank : {}),
+    ...(item?.itemType === 'categorize' ? styles.categorize : {}),
+    ...(itemType === 'Answer' ? styles.matchList : {}),
+    ...(itemType === 'Tile' ? styles.placementOrdering : {}),
+    // TODO: In the image-cloze-association component, there's a noticeable delay in the image rendering process. This results in a brief display of an empty image placeholder before the actual image appears after a few seconds. This issue also impacts the correct rendering of the preview feature, thereby negatively affecting the user experience. This needs to be addressed promptly.
+    //...(itemType === 'react-dnd-response' ? styles.ica : {}),
+  };
+
+  return baseStyle;
 };
 
 const PreviewComponent = () => {
   const preview = usePreview();
   const { itemType, item, style, display } = preview;
 
-  let root = useRef(null);
+  const root = useRef(null);
 
   useEffect(() => {
     if (display && root.current) {
@@ -71,13 +101,7 @@ const PreviewComponent = () => {
     return null;
   }
 
-  const customStyle = {
-    ...style,
-    ...(itemType === 'MaskBlank' ? styles.maskBlank : {}),
-    ...(item?.itemType === 'categorize' ? styles.categorize : {}),
-    // TODO: In the image-cloze-association component, there's a noticeable delay in the image rendering process. This results in a brief display of an empty image placeholder before the actual image appears after a few seconds. This issue also impacts the correct rendering of the preview feature, thereby negatively affecting the user experience. This needs to be addressed promptly.
-    //...(itemType === 'react-dnd-response' ? styles.ica : {}),
-  };
+  const customStyle = getCustomStyle(itemType, item, style);
 
   const prompt = getPrompt(itemType, item);
 
