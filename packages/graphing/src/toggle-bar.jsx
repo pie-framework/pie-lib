@@ -13,9 +13,6 @@ const { translator } = Translator;
 const buttonStyles = () => ({
   root: {
     color: color.text(),
-    '&:hover': {
-      backgroundColor: color.primary(),
-    },
   },
   selected: {
     backgroundColor: color.background(),
