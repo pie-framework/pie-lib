@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.14.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.14.4...@pie-lib/graphing@2.14.5) (2023-07-31)
+
+
+### Bug Fixes
+
+* **graphing:** remove custom hover styling for action buttons PD-2059 ([4aa1e86](https://github.com/pie-framework/pie-lib/commit/4aa1e8607a8156228a11c0d30158cd50dacee294))
+
+
+
+
+
 ## [2.14.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.14.3...@pie-lib/graphing@2.14.4) (2023-07-24)
 
 **Note:** Version bump only for package @pie-lib/graphing
