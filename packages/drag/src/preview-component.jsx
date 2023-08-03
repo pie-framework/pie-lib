@@ -105,6 +105,9 @@ const PreviewComponent = () => {
 
   const prompt = getPrompt(itemType, item);
 
+  console.log(prompt, 'prompt');
+  console.log(itemType, 'itemType');
+
   return (
     <div ref={root} style={customStyle}>
       <PreviewPrompt className="label" prompt={prompt} tagName="span" />

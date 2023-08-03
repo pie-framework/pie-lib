@@ -10,12 +10,12 @@ export const spec = {
     const item = monitor.getItem();
 
     if (props.onRemoveAnswer) {
-      props.onRemoveAnswer(item.promptId);
+      props.onRemoveAnswer(item);
     }
   },
 };
 
-const WithTarget = DropTarget(dragType.types.ml, spec, (connect, monitor) => ({
+const WithTarget = DropTarget(dragType.types.ica, spec, (connect, monitor) => ({
   connectDropTarget: connect.dropTarget(),
   isOver: monitor.isOver(),
 }))(DroppablePlaceholder);
