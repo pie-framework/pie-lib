@@ -64,5 +64,7 @@ export default {
     commonCorrectAnswerWithAlternates:
       'Nota: La respuesta que se muestra arriba es la respuesta correcta más común para esta pregunta. También se definen una o más respuestas correctas adicionales, y también se reconocerán como correctas.',
     warning: 'Advertencia',
+    showNote: 'Mostrar Nota',
+    hideNote: 'Ocultar Nota',
   },
 };

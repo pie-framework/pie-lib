@@ -7,6 +7,10 @@ import Expander from './expander';
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import Translator from '@pie-lib/translator';
+
+const { translator } = Translator;
+
 /**
  * We export the raw unstyled class for testability. For public use please use the default export.
  */
@@ -19,6 +23,7 @@ export class CorrectAnswerToggle extends React.Component {
     showMessage: PropTypes.string,
     classes: PropTypes.object.isRequired,
     className: PropTypes.string,
+    language: PropTypes.string,
   };
 
   static defaultProps = {
@@ -32,6 +37,12 @@ export class CorrectAnswerToggle extends React.Component {
     super(props);
     this.state = {
       show: props.show,
+    };
+
+    CorrectAnswerToggle.defaultProps = {
+      ...CorrectAnswerToggle.defaultProps,
+      showMessage: translator.t('common:showCorrectAnswer', { lng: props.language }),
+      hideMessage: translator.t('common:hideCorrectAnswer', { lng: props.language }),
     };
   }
 
@@ -50,20 +61,18 @@ export class CorrectAnswerToggle extends React.Component {
 
     return (
       <div className={classNames(classes.root, className)}>
-        <Expander show={this.state.show} className={classes.expander}>
+        <Expander show={true} className={classes.expander}>
           <div className={classes.content} onClick={this.onClick.bind(this)}>
             <div className={classes.iconHolder}>
               <CSSTransition timeout={400} in={toggled} exit={!toggled} classNames={classes}>
-                <CorrectResponse open={toggled} key="correct-open" className={classes.icon} />
+                <CorrectResponse open={true} key="correct-open" className={classes.icon} />
               </CSSTransition>
               <CSSTransition timeout={5000} in={!toggled} exit={toggled} classNames={classes}>
                 <CorrectResponse open={toggled} key="correct-closed" className={classes.icon} />
               </CSSTransition>
             </div>
             <Readable false>
-              <div className={classes.label} aria-hidden={!this.state.show}>
-                {toggled ? hideMessage : showMessage}
-              </div>
+              <div className={classes.label}>{toggled ? hideMessage : showMessage}</div>
             </Readable>
           </div>
         </Expander>
