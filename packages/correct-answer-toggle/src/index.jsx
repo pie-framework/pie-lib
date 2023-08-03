@@ -61,18 +61,20 @@ export class CorrectAnswerToggle extends React.Component {
 
     return (
       <div className={classNames(classes.root, className)}>
-        <Expander show={true} className={classes.expander}>
+        <Expander show={this.state.show} className={classes.expander}>
           <div className={classes.content} onClick={this.onClick.bind(this)}>
             <div className={classes.iconHolder}>
               <CSSTransition timeout={400} in={toggled} exit={!toggled} classNames={classes}>
-                <CorrectResponse open={true} key="correct-open" className={classes.icon} />
+                <CorrectResponse open={toggled} key="correct-open" className={classes.icon} />
               </CSSTransition>
               <CSSTransition timeout={5000} in={!toggled} exit={toggled} classNames={classes}>
                 <CorrectResponse open={toggled} key="correct-closed" className={classes.icon} />
               </CSSTransition>
             </div>
             <Readable false>
-              <div className={classes.label}>{toggled ? hideMessage : showMessage}</div>
+              <div className={classes.label} aria-hidden={!this.state.show}>
+                {toggled ? hideMessage : showMessage}
+              </div>
             </Readable>
           </div>
         </Expander>
