@@ -19,7 +19,7 @@ const useStyles = withStyles(() => ({
     overflow: 'hidden',
   },
   chip: {
-    // backgroundColor: color.background(),
+    backgroundColor: color.background(),
     border: `1px solid ${color.text()}`,
     color: color.text(),
     minWidth: '90px',

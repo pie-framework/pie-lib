@@ -20,7 +20,7 @@ const styles = {
   },
   ica: {
     backgroundColor: color.background(),
-    border: `1px solid ${color.text()}`,
+    border: `1px solid ${color.primary()}`,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -78,8 +78,7 @@ const getCustomStyle = (itemType, item, style) => {
     ...(item?.itemType === 'categorize' ? styles.categorize : {}),
     ...(itemType === 'Answer' ? styles.matchList : {}),
     ...(itemType === 'Tile' ? styles.placementOrdering : {}),
-    // TODO: In the image-cloze-association component, there's a noticeable delay in the image rendering process. This results in a brief display of an empty image placeholder before the actual image appears after a few seconds. This issue also impacts the correct rendering of the preview feature, thereby negatively affecting the user experience. This needs to be addressed promptly.
-    //...(itemType === 'react-dnd-response' ? styles.ica : {}),
+    ...(itemType === 'react-dnd-response' ? styles.ica : {}),
   };
 
   return baseStyle;
@@ -104,9 +103,6 @@ const PreviewComponent = () => {
   const customStyle = getCustomStyle(itemType, item, style);
 
   const prompt = getPrompt(itemType, item);
-
-  console.log(prompt, 'prompt');
-  console.log(itemType, 'itemType');
 
   return (
     <div ref={root} style={customStyle}>
