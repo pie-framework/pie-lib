@@ -7,6 +7,10 @@ import Expander from './expander';
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import Translator from '@pie-lib/translator';
+
+const { translator } = Translator;
+
 /**
  * We export the raw unstyled class for testability. For public use please use the default export.
  */
@@ -19,6 +23,7 @@ export class CorrectAnswerToggle extends React.Component {
     showMessage: PropTypes.string,
     classes: PropTypes.object.isRequired,
     className: PropTypes.string,
+    language: PropTypes.string,
   };
 
   static defaultProps = {
@@ -32,6 +37,12 @@ export class CorrectAnswerToggle extends React.Component {
     super(props);
     this.state = {
       show: props.show,
+    };
+
+    CorrectAnswerToggle.defaultProps = {
+      ...CorrectAnswerToggle.defaultProps,
+      showMessage: translator.t('common:showCorrectAnswer', { lng: props.language }),
+      hideMessage: translator.t('common:hideCorrectAnswer', { lng: props.language }),
     };
   }
 
