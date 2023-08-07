@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.7.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.7.4...@pie-lib/editable-html@9.7.5) (2023-08-07)
+
+
+### Bug Fixes
+
+* made sure content is wrapped in a paragraph in order for slate to handle it properly PD-3051 ([4e3f756](https://github.com/pie-framework/pie-lib/commit/4e3f756bc783cae3b67762cacfacc09d32828918))
+
+
+
+
+
 ## [9.7.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.7.3...@pie-lib/editable-html@9.7.4) (2023-07-31)
 
 **Note:** Version bump only for package @pie-lib/editable-html
