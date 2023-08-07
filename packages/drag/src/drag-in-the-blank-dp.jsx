@@ -1,7 +1,6 @@
 import { DropTarget } from 'react-dnd';
 import { DroppablePlaceholder } from '../lib/droppable-placeholder';
-
-const DRAG_TYPE = 'MaskBlank';
+import dragType from './drag-type';
 
 export const spec = {
   canDrop: (props) => {
@@ -12,7 +11,7 @@ export const spec = {
   }),
 };
 
-const WithTarget = DropTarget(DRAG_TYPE, spec, (connect, monitor) => ({
+const WithTarget = DropTarget(dragType.types.db, spec, (connect, monitor) => ({
   connectDropTarget: connect.dropTarget(),
   isOver: monitor.isOver(),
 }))(DroppablePlaceholder);
