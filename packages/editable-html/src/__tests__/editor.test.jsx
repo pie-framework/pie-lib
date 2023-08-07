@@ -43,17 +43,17 @@ describe('logic', () => {
 
     const v = htmlToValue('hi');
 
-    expect(wrapper.state('stashedValue')).toEqualHtml('<div>hi</div>');
+    expect(wrapper.state('stashedValue')).toEqualHtml('<p>hi</p>');
 
     wrapper.instance().onChange({ value: htmlToValue('new value') });
 
-    expect(wrapper.state('value')).toEqualHtml('<div>new value</div>');
+    expect(wrapper.state('value')).toEqualHtml('<p>new value</p>');
 
     return wrapper
       .instance()
       .onBlur({})
       .then(() => {
-        expect(wrapper.state('value')).toEqualHtml('<div>new value</div>');
+        expect(wrapper.state('value')).toEqualHtml('<p>new value</p>');
       });
   });
 });
@@ -65,7 +65,7 @@ test('onFocus stashes the value', async () => {
 
   await wrapper.instance().onFocus();
 
-  expect(wrapper.state('stashedValue')).toEqualHtml('<div>hi</div>');
+  expect(wrapper.state('stashedValue')).toEqualHtml('<p>hi</p>');
 });
 
 describe('buildSizeStyle', () => {
@@ -154,14 +154,14 @@ describe('onResize', () => {
     );
 
     resizeWindow(500, 300);
-    expect(wrapper.state('value')).toEqualHtml('<div>hi</div>');
+    expect(wrapper.state('value')).toEqualHtml('<p>hi</p>');
 
     wrapper.instance().onChange({ value: htmlToValue('new value') });
     resizeWindow(1024, 768);
-    expect(wrapper.state('value')).toEqualHtml('<div>new value</div>');
+    expect(wrapper.state('value')).toEqualHtml('<p>new value</p>');
 
     resizeWindow(500, 300);
-    expect(wrapper.state('value')).toEqualHtml('<div>new value</div>');
+    expect(wrapper.state('value')).toEqualHtml('<p>new value</p>');
   });
 });
 
