@@ -21,7 +21,8 @@ export default {
   },
   label: Object.assign(
     {
-      width: '140px',
+      width: 'fit-content',
+      minWidth: '140px',
       // eslint-disable-next-line
       fontFamily: "'Roboto', sans-serif",
       height: '25px',
