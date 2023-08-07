@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.9.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.9.0...@pie-lib/config-ui@11.9.1) (2023-08-07)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
+# [11.9.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.8.6...@pie-lib/config-ui@11.9.0) (2023-07-31)
+
+
+### Features
+
+* **config-ui:** add error support for checkboxes PD-2916 ([17b1f07](https://github.com/pie-framework/pie-lib/commit/17b1f07a5b57131663a162e7ba0ab76358e9bbe9))
+
+
+
+
+
 ## [11.8.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.8.5...@pie-lib/config-ui@11.8.6) (2023-07-24)
 
 **Note:** Version bump only for package @pie-lib/config-ui

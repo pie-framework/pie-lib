@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/translator@2.1.1...@pie-lib/translator@2.2.0) (2023-08-07)
+
+
+### Features
+
+* **correct-answer-toggle:** add translations PD-2802 ([b53b653](https://github.com/pie-framework/pie-lib/commit/b53b653246deea3f67328b37feeb17787181e590))
+
+
+
+
+
 ## [2.1.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/translator@2.1.0...@pie-lib/translator@2.1.1) (2023-06-24)
 
 **Note:** Version bump only for package @pie-lib/translator
