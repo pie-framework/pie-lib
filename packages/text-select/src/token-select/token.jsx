@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import { color } from '@pie-lib/render-ui';
+import Check from '@material-ui/icons/Check';
+import Close from '@material-ui/icons/Close';
 
 export const TokenTypes = {
   text: PropTypes.string,
@@ -39,40 +41,62 @@ export class Token extends React.Component {
       highlight,
       correct,
       animationsDisabled,
+      isMissing,
     } = this.props;
     const isTouchEnabled = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
 
     let className;
+    let classNameContainer;
+    let iconSrc;
+    let Icon;
+    let iconClass;
 
     if (correct === undefined && selected && disabled) {
       className = classNames(classes.token, classes.selected, classes.disabledBlack);
     } else if (correct !== undefined) {
-      className = classNames(
-        Token.rootClassName,
-        classes.custom,
-        correct === true && classes.correct,
-        correct === false && classes.incorrect,
-      );
+      className = classNames(Token.rootClassName, classes.custom);
+      iconSrc = correct ? faCorrect : faWrong;
+      Icon = correct ? Check : Close;
+      classNameContainer = correct === true ? classes.correct : classes.incorrect;
+      iconClass = correct === true ? classes.correctIcon : classes.incorrectIcon;
     } else {
-      className = classNames(
-        Token.rootClassName,
-        classes.token,
-        disabled && classes.disabled,
-        selectable && !disabled && !isTouchEnabled && classes.selectable,
-        selected && !disabled && classes.selected,
-        selected && disabled && classes.disabledAndSelected,
-        highlight && selectable && !disabled && !selected && classes.highlight,
-        animationsDisabled && classes.print,
-        classNameProp,
-      );
+      if (!isMissing) {
+        className = classNames(
+          Token.rootClassName,
+          classes.token,
+          disabled && classes.disabled,
+          selectable && !disabled && !isTouchEnabled && classes.selectable,
+          selected && !disabled && classes.selected,
+          selected && disabled && classes.disabledAndSelected,
+          highlight && selectable && !disabled && !selected && classes.highlight,
+          animationsDisabled && classes.print,
+          classNameProp,
+        );
+      } else {
+        className = classNames(Token.rootClassName, classes.custom, isMissing === true && classes.missing);
+      }
     }
 
+    const isCorrectDefined = correct !== undefined;
     return (
-      <span
-        className={className}
-        dangerouslySetInnerHTML={{ __html: (text || '').replace(/\n/g, '<br>') }}
-        data-indexkey={index}
-      />
+      <React.Fragment>
+        {isCorrectDefined ? (
+          <span className={classNameContainer}>
+            <span
+              className={className}
+              dangerouslySetInnerHTML={{ __html: (text || '').replace(/\n/g, '<br>') }}
+              data-indexkey={index}
+            />
+            <Icon className={iconClass} />
+          </span>
+        ) : (
+          <span
+            className={className}
+            dangerouslySetInnerHTML={{ __html: (text || '').replace(/\n/g, '<br>') }}
+            data-indexkey={index}
+          />
+        )}
+      </React.Fragment>
     );
   }
 }
@@ -137,10 +161,30 @@ export default withStyles((theme) => {
       display: 'initial',
     },
     correct: {
-      backgroundColor: color.correct(),
+      backgroundColor: color.secondaryCorrect(),
+      border: `${color.correct()} solid 2px`,
     },
     incorrect: {
-      backgroundColor: color.incorrect(),
+      backgroundColor: color.secondaryIncorrect(),
+      border: `${color.missing()} solid 2px`,
+    },
+    missing: {
+      backgroundColor: color.secondaryIncorrect(),
+      border: `${color.missing()} dashed 2px`,
+      textDecoration: `line-through ${color.missing()}`,
+    },
+    incorrectIcon: {
+      verticalAlign: 'middle',
+      fontSize: 'larger',
+      stroke: color.missing(),
+      strokeWidth: '2px',
+    },
+
+    correctIcon: {
+      verticalAlign: 'middle',
+      fontSize: 'larger',
+      stroke: color.correct(),
+      strokeWidth: '2px',
     },
   };
 })(Token);

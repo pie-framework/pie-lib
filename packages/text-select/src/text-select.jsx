@@ -54,11 +54,13 @@ export default class TextSelect extends React.Component {
       });
       const selected = selectedIndex !== -1;
       const correct = selected ? t.correct : undefined;
+      const isMissing = t.isMissing;
       return {
         ...t,
         selectable: !disabled && t.predefined,
         selected,
         correct,
+        isMissing,
       };
     });
 
