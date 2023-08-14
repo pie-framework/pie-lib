@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.4.0...@pie-lib/correct-answer-toggle@2.5.0) (2023-08-14)
+
+
+### Features
+
+* update language on props change PD-2802 ([000dae9](https://github.com/pie-framework/pie-lib/commit/000dae927ed4a650bfc3fa007b2a5d891079aafd))
+
+
+
+
+
 # [2.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.3.79...@pie-lib/correct-answer-toggle@2.4.0) (2023-08-07)
 
 
