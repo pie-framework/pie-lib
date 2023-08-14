@@ -54,6 +54,14 @@ export class CorrectAnswerToggle extends React.Component {
     this.setState({
       show: nextProps.show,
     });
+
+    if (nextProps.language !== this.props?.language) {
+      CorrectAnswerToggle.defaultProps = {
+        ...CorrectAnswerToggle.defaultProps,
+        showMessage: translator.t('common:showCorrectAnswer', { lng: nextProps.language }),
+        hideMessage: translator.t('common:hideCorrectAnswer', { lng: nextProps.language }),
+      };
+    }
   }
 
   render() {
