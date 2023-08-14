@@ -47,7 +47,6 @@ export class Token extends React.Component {
 
     let className;
     let classNameContainer;
-    let iconSrc;
     let Icon;
     let iconClass;
 
@@ -55,7 +54,6 @@ export class Token extends React.Component {
       className = classNames(classes.token, classes.selected, classes.disabledBlack);
     } else if (correct !== undefined) {
       className = classNames(Token.rootClassName, classes.custom);
-      iconSrc = correct ? faCorrect : faWrong;
       Icon = correct ? Check : Close;
       classNameContainer = correct === true ? classes.correct : classes.incorrect;
       iconClass = correct === true ? classes.correctIcon : classes.incorrectIcon;
@@ -87,7 +85,7 @@ export class Token extends React.Component {
               dangerouslySetInnerHTML={{ __html: (text || '').replace(/\n/g, '<br>') }}
               data-indexkey={index}
             />
-            <Icon className={iconClass} />
+            <Icon className={iconClass} viewBox={'0 1 24 24'} />
           </span>
         ) : (
           <span
@@ -176,15 +174,13 @@ export default withStyles((theme) => {
     incorrectIcon: {
       verticalAlign: 'middle',
       fontSize: 'larger',
-      stroke: color.missing(),
-      strokeWidth: '2px',
+      color: color.missing(),
     },
 
     correctIcon: {
       verticalAlign: 'middle',
       fontSize: 'larger',
-      stroke: color.correct(),
-      strokeWidth: '2px',
+      color: color.correct(),
     },
   };
 })(Token);
