@@ -7,9 +7,13 @@
   "module": "src/index.jsx",
   "author": "pie-framework developers",
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "@material-ui/core": "^3.8.3",
     "@material-ui/icons": "^3.0.2",
     "@material-ui/styles": "^3.0.0-alpha.10",
+    "@mui/icons-material": "^5.14.3",
+    "@mui/material": "^5.14.4",
     "@pie-lib/drag": "^2.2.4",
     "@pie-lib/math-rendering": "^2.5.17",
     "@pie-lib/math-toolbar": "^1.11.30",

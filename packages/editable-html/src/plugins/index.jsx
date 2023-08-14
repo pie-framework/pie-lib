@@ -1,5 +1,5 @@
 import Bold from '@material-ui/icons/FormatBold';
-// import Code from '@material-ui/icons/Code';
+//import Code from '@material-ui/icons/Code';
 import BulletedListIcon from '@material-ui/icons/FormatListBulleted';
 import NumberedListIcon from '@material-ui/icons/FormatListNumbered';
 import ImagePlugin from './image';
@@ -17,6 +17,8 @@ import debug from 'debug';
 import List from './list';
 import TablePlugin from './table';
 import RespAreaPlugin from './respArea';
+import { htmlToValue, valueToHtml } from '../serialization';
+import HtmlPlugin from './html';
 
 const log = debug('@pie-lib:editable-html:plugins');
 
@@ -37,6 +39,11 @@ function MarkHotkey(options) {
     renderMark(props) {
       if (props.mark.type === type) {
         const K = tag || type;
+        if (tag == 'html') {
+          console.log(htmlToValue(props.children), 'props.children');
+          // console.log(valueToHtml(props.children), "props.children")
+          return; //htmlToValue(props.children)
+        }
         return <K>{props.children}</K>;
       }
     },
@@ -57,6 +64,7 @@ function MarkHotkey(options) {
 export const ALL_PLUGINS = [
   'bold',
   // 'code',
+  'html',
   'italic',
   'underline',
   'strikethrough',
@@ -109,5 +117,6 @@ export const buildPlugins = (activePlugins, opts) => {
     ToolbarPlugin(opts.toolbar),
     SoftBreakPlugin({ shift: true }),
     addIf('responseArea', respAreaPlugin),
+    addIf('html', HtmlPlugin()),
   ]);
 };
