@@ -6,6 +6,27 @@ import { color } from '@pie-lib/render-ui';
 import Check from '@material-ui/icons/Check';
 import Close from '@material-ui/icons/Close';
 
+const Wrapper = ({ useWrapper, children, classNameContainer, iconClass, Icon }) => {
+  if (useWrapper) {
+    return (
+      <span className={classNameContainer}>
+        {children}
+        <Icon className={iconClass} viewBox={'0 1 24 24'} />
+      </span>
+    );
+  }
+
+  return children;
+};
+
+Wrapper.propTypes = {
+  useWrapper: PropTypes.bool,
+  classNameContainer: PropTypes.string,
+  iconClass: PropTypes.string,
+  Icon: PropTypes.func,
+  children: PropTypes.element,
+};
+
 export const TokenTypes = {
   text: PropTypes.string,
   selectable: PropTypes.bool,
@@ -57,44 +78,34 @@ export class Token extends React.Component {
       Icon = correct ? Check : Close;
       classNameContainer = correct === true ? classes.correct : classes.incorrect;
       iconClass = correct === true ? classes.correctIcon : classes.incorrectIcon;
+    } else if (isMissing) {
+      className = classNames(Token.rootClassName, classes.custom, isMissing === true && classes.missing);
     } else {
-      if (!isMissing) {
-        className = classNames(
-          Token.rootClassName,
-          classes.token,
-          disabled && classes.disabled,
-          selectable && !disabled && !isTouchEnabled && classes.selectable,
-          selected && !disabled && classes.selected,
-          selected && disabled && classes.disabledAndSelected,
-          highlight && selectable && !disabled && !selected && classes.highlight,
-          animationsDisabled && classes.print,
-          classNameProp,
-        );
-      } else {
-        className = classNames(Token.rootClassName, classes.custom, isMissing === true && classes.missing);
-      }
+      className = classNames(
+        Token.rootClassName,
+        classes.token,
+        disabled && classes.disabled,
+        selectable && !disabled && !isTouchEnabled && classes.selectable,
+        selected && !disabled && classes.selected,
+        selected && disabled && classes.disabledAndSelected,
+        highlight && selectable && !disabled && !selected && classes.highlight,
+        animationsDisabled && classes.print,
+        classNameProp,
+      );
     }
-
-    const isCorrectDefined = correct !== undefined;
     return (
-      <React.Fragment>
-        {isCorrectDefined ? (
-          <span className={classNameContainer}>
-            <span
-              className={className}
-              dangerouslySetInnerHTML={{ __html: (text || '').replace(/\n/g, '<br>') }}
-              data-indexkey={index}
-            />
-            <Icon className={iconClass} viewBox={'0 1 24 24'} />
-          </span>
-        ) : (
-          <span
-            className={className}
-            dangerouslySetInnerHTML={{ __html: (text || '').replace(/\n/g, '<br>') }}
-            data-indexkey={index}
-          />
-        )}
-      </React.Fragment>
+      <Wrapper
+        useWrapper={correct !== undefined}
+        classNameContainer={classNameContainer}
+        iconClass={iconClass}
+        Icon={Icon}
+      >
+        <span
+          className={className}
+          dangerouslySetInnerHTML={{ __html: (text || '').replace(/\n/g, '<br>') }}
+          data-indexkey={index}
+        />
+      </Wrapper>
     );
   }
 }
@@ -159,15 +170,15 @@ export default withStyles((theme) => {
       display: 'initial',
     },
     correct: {
-      backgroundColor: color.secondaryCorrect(),
+      backgroundColor: color.correctSecondary(),
       border: `${color.correct()} solid 2px`,
     },
     incorrect: {
-      backgroundColor: color.secondaryIncorrect(),
+      backgroundColor: color.incorrectSecondary(),
       border: `${color.missing()} solid 2px`,
     },
     missing: {
-      backgroundColor: color.secondaryIncorrect(),
+      backgroundColor: color.incorrectSecondary(),
       border: `${color.missing()} dashed 2px`,
       textDecoration: `line-through ${color.missing()}`,
     },

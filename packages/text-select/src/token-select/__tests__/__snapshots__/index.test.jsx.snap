@@ -5,7 +5,7 @@ exports[`token-select snapshot renders 1`] = `
   className=""
   dangerouslySetInnerHTML={
     Object {
-      "__html": "<p><span class=\\"tokenRootClass Token-token-1 Token-selectable-5\\" data-indexkey=\\"0\\">foo bar</span></p>",
+      "__html": "<p><span class=\\"tokenRootClass Token-token-1 Token-selectable-5\\" data-indexkey=\\"0\\" data-reactroot=\\"\\">foo bar</span></p>",
     }
   }
   onClick={[Function]}
@@ -17,7 +17,7 @@ exports[`token-select snapshot renders in view mode with selected tokens 1`] = `
   className=""
   dangerouslySetInnerHTML={
     Object {
-      "__html": "<p><span class=\\"Token-token-1 Token-selected-6 Token-disabledBlack-3\\" data-indexkey=\\"0\\">foo,</span><br><span class=\\"Token-token-1 Token-selected-6 Token-disabledBlack-3\\" data-indexkey=\\"2\\">bar</span></p>",
+      "__html": "<p><span class=\\"Token-token-1 Token-selected-6 Token-disabledBlack-3\\" data-indexkey=\\"0\\" data-reactroot=\\"\\">foo,</span><br><span class=\\"Token-token-1 Token-selected-6 Token-disabledBlack-3\\" data-indexkey=\\"2\\" data-reactroot=\\"\\">bar</span></p>",
     }
   }
   onClick={[Function]}
@@ -29,7 +29,7 @@ exports[`token-select snapshot renders paragraphs properly 1`] = `
   className=""
   dangerouslySetInnerHTML={
     Object {
-      "__html": "<p><span class=\\"tokenRootClass Token-token-1 Token-selectable-5\\" data-indexkey=\\"0\\">foo,</span></p><p><span class=\\"tokenRootClass Token-token-1 Token-selectable-5\\" data-indexkey=\\"2\\">bar</span></p>",
+      "__html": "<p><span class=\\"tokenRootClass Token-token-1 Token-selectable-5\\" data-indexkey=\\"0\\" data-reactroot=\\"\\">foo,</span></p><p><span class=\\"tokenRootClass Token-token-1 Token-selectable-5\\" data-indexkey=\\"2\\" data-reactroot=\\"\\">bar</span></p>",
     }
   }
   onClick={[Function]}
@@ -41,7 +41,7 @@ exports[`token-select snapshot renders sentences properly 1`] = `
   className=""
   dangerouslySetInnerHTML={
     Object {
-      "__html": "<p><span class=\\"tokenRootClass Token-token-1 Token-selectable-5\\" data-indexkey=\\"0\\">foo,</span><br><span class=\\"tokenRootClass Token-token-1 Token-selectable-5\\" data-indexkey=\\"2\\">bar</span></p>",
+      "__html": "<p><span class=\\"tokenRootClass Token-token-1 Token-selectable-5\\" data-indexkey=\\"0\\" data-reactroot=\\"\\">foo,</span><br><span class=\\"tokenRootClass Token-token-1 Token-selectable-5\\" data-indexkey=\\"2\\" data-reactroot=\\"\\">bar</span></p>",
     }
   }
   onClick={[Function]}
