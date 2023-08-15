@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.10.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.9.29...@pie-lib/text-select@1.10.0) (2023-08-15)
+
+
+### Features
+
+* **text-select:** adjust colors and alignment of the color ([a51ba55](https://github.com/pie-framework/pie-lib/commit/a51ba5547f6e1559915d6ea967d406923831b561))
+* **text-select:** PD-1163 create wrapper component ([b41db39](https://github.com/pie-framework/pie-lib/commit/b41db39ade332d19dca70a06d54acf51b5888c69))
+* **text-select:** PD-1163 update snapshots ([6b8edf8](https://github.com/pie-framework/pie-lib/commit/6b8edf83b763abdd93eee2655be3600cef90586b))
+* **text-select:** PD-1163 updates to tokens in text select ([2535c91](https://github.com/pie-framework/pie-lib/commit/2535c911f378f4cf41c8471bfa1898b996ffacee))
+
+
+
+
+
 ## [1.9.29](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.9.28...@pie-lib/text-select@1.9.29) (2023-07-24)
 
 **Note:** Version bump only for package @pie-lib/text-select
