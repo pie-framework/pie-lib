@@ -114,6 +114,7 @@ export class TokenSelect extends React.Component {
         (selectable && !disabled) ||
         showCorrectAnswer ||
         t.selected ||
+        t.isMissing ||
         (animationsDisabled && t.predefined) // if we are in print mode
       ) {
         return (

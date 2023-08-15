@@ -1,23 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`token snapshot renders 1`] = `
-<span
-  className="tokenRootClass token"
-  dangerouslySetInnerHTML={
-    Object {
-      "__html": "foo bar",
+<Wrapper
+  useWrapper={false}
+>
+  <span
+    className="tokenRootClass token"
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "foo bar",
+      }
     }
-  }
-/>
+  />
+</Wrapper>
 `;
 
 exports[`token snapshot renders with brs 1`] = `
-<span
-  className="tokenRootClass token"
-  dangerouslySetInnerHTML={
-    Object {
-      "__html": "foo <br>bar",
+<Wrapper
+  useWrapper={false}
+>
+  <span
+    className="tokenRootClass token"
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "foo <br>bar",
+      }
     }
-  }
-/>
+  />
+</Wrapper>
 `;
