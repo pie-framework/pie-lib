@@ -9,6 +9,7 @@ exports[`text-select snapshot renders 1`] = `
       Object {
         "correct": undefined,
         "end": 3,
+        "isMissing": undefined,
         "selectable": undefined,
         "selected": false,
         "start": 0,

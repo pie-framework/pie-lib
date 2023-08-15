@@ -8,8 +8,10 @@ export const defaults = {
   TEXT: 'black',
   DISABLED: 'grey',
   CORRECT: green[500],
+  CORRECT_SECONDARY: green[50],
   INCORRECT: orange[500],
-  MISSING: red[500],
+  INCORRECT_SECONDARY: red[50],
+  MISSING: red[700],
   PRIMARY: indigo[500],
   PRIMARY_LIGHT: indigo[200],
   PRIMARY_DARK: indigo[800],
@@ -34,7 +36,9 @@ const pv = v('pie');
 export const text = () => pv('text', defaults.TEXT);
 export const disabled = () => pv('disabled', defaults.DISABLED);
 export const correct = () => pv('correct', defaults.CORRECT);
+export const correctSecondary = () => pv('correct-secondary', defaults.CORRECT_SECONDARY);
 export const incorrect = () => pv('incorrect', defaults.INCORRECT);
+export const incorrectSecondary = () => pv('incorrect-secondary', defaults.INCORRECT_SECONDARY);
 export const missing = () => pv('missing', defaults.MISSING);
 
 export const primary = () => pv('primary', defaults.PRIMARY);

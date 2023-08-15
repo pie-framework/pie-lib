@@ -217,6 +217,7 @@ export const normalize = (textToNormalize, tokens) => {
             end: t.end,
             predefined: true,
             correct: t.correct,
+            isMissing: t.isMissing,
           },
         ];
       } else if (lastIndex < t.start) {
@@ -232,6 +233,7 @@ export const normalize = (textToNormalize, tokens) => {
             end: t.end,
             predefined: true,
             correct: t.correct,
+            isMissing: t.isMissing,
           },
         ];
       }
