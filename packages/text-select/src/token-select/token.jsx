@@ -172,10 +172,12 @@ export default withStyles((theme) => {
     correct: {
       backgroundColor: color.correctSecondary(),
       border: `${color.correct()} solid 2px`,
+      lineHeight: `${theme.spacing.unit * 4}px`,
     },
     incorrect: {
       backgroundColor: color.incorrectSecondary(),
       border: `${color.missing()} solid 2px`,
+      lineHeight: `${theme.spacing.unit * 4}px`,
     },
     missing: {
       backgroundColor: color.incorrectSecondary(),
