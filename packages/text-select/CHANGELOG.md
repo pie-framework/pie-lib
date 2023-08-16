@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.11.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.10.0...@pie-lib/text-select@1.11.0) (2023-08-16)
+
+
+### Features
+
+* **text-select:** PD-1163 - add legend for icons used in eval mode ([7b2bac2](https://github.com/pie-framework/pie-lib/commit/7b2bac262d29986db2ce57ff6cee6c04af08472a))
+
+
+
+
+
 # [1.10.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.9.29...@pie-lib/text-select@1.10.0) (2023-08-15)
 
 
