@@ -54,26 +54,6 @@ describe('htmlToValue', () => {
         nodes: [
           {
             object: 'block',
-            type: 'paragraph',
-            isVoid: false,
-            data: {
-              attributes: {},
-            },
-            nodes: [
-              {
-                object: 'text',
-                leaves: [
-                  {
-                    object: 'leaf',
-                    text: '',
-                    marks: [],
-                  },
-                ],
-              },
-            ],
-          },
-          {
-            object: 'block',
             type: 'div',
             isVoid: false,
             data: {
@@ -101,16 +81,16 @@ describe('htmlToValue', () => {
                   {
                     object: 'inline',
                     type: 'image',
-                    isVoid: true,
                     data: {
                       src: 'blah.jpg',
                       width: null,
                       height: null,
-                      margin: '',
-                      justifyContent: '',
                       alignment: null,
                       alt: null,
+                      margin: '',
+                      justifyContent: '',
                     },
+                    isVoid: true,
                     nodes: [
                       {
                         object: 'text',
@@ -138,33 +118,12 @@ describe('htmlToValue', () => {
               },
             ],
           },
-          {
-            object: 'block',
-            type: 'paragraph',
-            isVoid: false,
-            data: {
-              attributes: {},
-            },
-            nodes: [
-              {
-                object: 'text',
-                leaves: [
-                  {
-                    object: 'leaf',
-                    text: '',
-                    marks: [],
-                  },
-                ],
-              },
-            ],
-          },
         ],
       },
     };
     const html = `<div><p>foo<img src="blah.jpg"/>bar</p></div>`;
     const v = htmlToValue(html);
 
-    console.log(JSON.stringify(v.toJSON()));
     expect(v.toJSON()).toEqual(expected);
   });
 
@@ -180,31 +139,9 @@ describe('htmlToValue', () => {
         nodes: [
           {
             object: 'block',
-            type: 'paragraph',
-            isVoid: false,
-            data: {
-              attributes: {},
-            },
-            nodes: [
-              {
-                object: 'text',
-                leaves: [
-                  {
-                    object: 'leaf',
-                    text: '',
-                    marks: [],
-                  },
-                ],
-              },
-            ],
-          },
-          {
-            object: 'block',
             type: 'div',
             isVoid: false,
-            data: {
-              attributes: {},
-            },
+            data: { attributes: {} },
             nodes: [
               {
                 object: 'text',
@@ -336,26 +273,6 @@ describe('htmlToValue', () => {
                         data: {},
                       },
                     ],
-                  },
-                ],
-              },
-            ],
-          },
-          {
-            object: 'block',
-            type: 'paragraph',
-            isVoid: false,
-            data: {
-              attributes: {},
-            },
-            nodes: [
-              {
-                object: 'text',
-                leaves: [
-                  {
-                    object: 'leaf',
-                    text: '',
-                    marks: [],
                   },
                 ],
               },

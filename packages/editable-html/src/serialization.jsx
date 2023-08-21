@@ -366,39 +366,9 @@ serializer.deserialize = function deserialize(html) {
   return null;
 };
 
-const reduceMultipleBrs = (markup) => {
-  try {
-    return markup.replace(/(<br\s*\/?>){3,}/gi, '<br>');
-  } catch (e) {
-    // eslint-disable-next-line no-console
-    console.log("Couldn't remove <br/> tags: ", e);
-  }
-
-  return markup;
-};
-
-const reduceRedundantNewLineCharacters = (markup) => {
-  try {
-    return markup.replace(/\n/gi, '');
-  } catch (e) {
-    // eslint-disable-next-line no-console
-    console.log("Couldn't remove <br/> tags: ", e);
-  }
-
-  return markup;
-};
-
-const wrapHtmlProperly = (markup) => {
-  const el = document.createElement('p');
-
-  el.innerHTML = markup;
-
-  return el.outerHTML;
-};
-
 export const htmlToValue = (html) => {
   try {
-    return serializer.deserialize(wrapHtmlProperly(reduceRedundantNewLineCharacters(reduceMultipleBrs(html))));
+    return serializer.deserialize(html);
   } catch (e) {
     // eslint-disable-next-line no-console
     console.log("Couldn't parse html: ", e);
