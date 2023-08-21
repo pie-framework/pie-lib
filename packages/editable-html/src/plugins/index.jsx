@@ -39,11 +39,7 @@ function MarkHotkey(options) {
     renderMark(props) {
       if (props.mark.type === type) {
         const K = tag || type;
-        if (tag == 'html') {
-          console.log(htmlToValue(props.children), 'props.children');
-          // console.log(valueToHtml(props.children), "props.children")
-          return; //htmlToValue(props.children)
-        }
+
         return <K>{props.children}</K>;
       }
     },
@@ -84,6 +80,8 @@ export const DEFAULT_PLUGINS = ALL_PLUGINS.filter((plug) => plug !== 'responseAr
 export const buildPlugins = (activePlugins, opts) => {
   log('[buildPlugins] opts: ', opts);
 
+  console.log(opts.html, 'opts.html');
+
   activePlugins = activePlugins || DEFAULT_PLUGINS;
 
   const addIf = (key, p) => activePlugins.includes(key) && p;
@@ -117,6 +115,6 @@ export const buildPlugins = (activePlugins, opts) => {
     ToolbarPlugin(opts.toolbar),
     SoftBreakPlugin({ shift: true }),
     addIf('responseArea', respAreaPlugin),
-    addIf('html', HtmlPlugin()),
+    addIf('html', HtmlPlugin(opts.html)),
   ]);
 };

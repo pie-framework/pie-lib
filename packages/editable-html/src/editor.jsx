@@ -132,7 +132,9 @@ export class Editor extends React.Component {
     this.state = {
       value: props.value,
       toolbarOpts: createToolbarOpts(props.toolbarOpts, props.error),
+      isHtmlMode: false,
     };
+    this.toggleHtmlMode = this.toggleHtmlMode.bind(this);
 
     this.onResize = () => {
       props.onChange(this.state.value, true);
@@ -141,11 +143,30 @@ export class Editor extends React.Component {
     this.handlePlugins(this.props);
   }
 
+  toggleHtmlMode = () => {
+    console.log('Before toggle:', this.state.isHtmlMode);
+    this.setState(
+      (prevState) => ({
+        isHtmlMode: !prevState.isHtmlMode,
+      }),
+      () => {
+        console.log('After toggle:', this.state.isHtmlMode);
+      },
+    );
+  };
+
   handlePlugins = (props) => {
     const normalizedResponseAreaProps = {
       ...defaultResponseAreaProps,
       ...props.responseAreaProps,
     };
+
+    const htmlPluginOpts = {
+      isHtmlMode: this.state.isHtmlMode,
+      toggleHtmlMode: this.toggleHtmlMode,
+    };
+
+    console.log(htmlPluginOpts, 'htmlPluginOpts');
 
     this.plugins = buildPlugins(props.activePlugins, {
       math: {
@@ -154,6 +175,7 @@ export class Editor extends React.Component {
         onBlur: this.onPluginBlur,
         ...props.mathMlOptions,
       },
+      html: htmlPluginOpts,
       image: {
         disableImageAlignmentButtons: props.disableImageAlignmentButtons,
         onDelete:
@@ -263,7 +285,7 @@ export class Editor extends React.Component {
       });
     }
   }
-
+  //  const test = valueToHtml(value)
   UNSAFE_componentWillReceiveProps(nextProps) {
     const { toolbarOpts } = this.state;
     const newToolbarOpts = createToolbarOpts(nextProps.toolbarOpts, nextProps.error);
@@ -289,9 +311,13 @@ export class Editor extends React.Component {
     }
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
     // The cursor is on a zero width element and when that is placed near void elements, it is not visible
     // so we increase the width to at least 2px in order for the user to see it
+    if (this.state.isHtmlMode !== prevState.isHtmlMode) {
+      this.handlePlugins(this.props);
+      this.forceUpdate();
+    }
     const zeroWidthEls = document.querySelectorAll('[data-slate-zero-width="z"]');
 
     Array.from(zeroWidthEls).forEach((el) => {
