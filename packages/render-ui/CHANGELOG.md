@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.15.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.15.0...@pie-lib/render-ui@4.15.1) (2023-08-21)
+
+
+### Bug Fixes
+
+* **render-ui:** DNA-17953 - avoid fontSize to fave initial value, avoid margins fot p elements ([3bdf0cf](https://github.com/pie-framework/pie-lib/commit/3bdf0cfa0ff343444b387b4840e904d76b27b41a))
+
+
+
+
+
 # [4.15.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.14.29...@pie-lib/render-ui@4.15.0) (2023-08-15)
 
 
