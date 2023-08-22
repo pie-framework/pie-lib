@@ -8,6 +8,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 import { Button, MarkButton } from './toolbar-buttons';
 import debug from 'debug';
+import { is } from 'immutable';
 
 const log = debug('@pie-lib:editable-html:plugins:toolbar');
 
@@ -77,8 +78,19 @@ export const DefaultToolbar = ({
   classes,
   showDone,
   deletable,
+  isHtmlMode,
 }) => {
-  const filtered = plugins.filter(isActiveToolbarPlugin(pluginProps)).map((p) => p.toolbar);
+  let filtered;
+
+  if (isHtmlMode) {
+    filtered = plugins
+      .filter((plugin) => {
+        return isActiveToolbarPlugin(pluginProps)(plugin) && (plugin.name === 'characters' || plugin.name === 'html');
+      })
+      .map((p) => p.toolbar);
+  } else {
+    filtered = plugins.filter(isActiveToolbarPlugin(pluginProps)).map((p) => p.toolbar);
+  }
 
   return (
     <div className={classes.defaultToolbar}>

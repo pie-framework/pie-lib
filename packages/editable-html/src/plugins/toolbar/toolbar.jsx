@@ -242,6 +242,7 @@ export class Toolbar extends React.Component {
             showDone={defaultToolbarShowDone}
             onDone={handleDone}
             deletable={deletable}
+            isHtmlMode={toolbarOpts.isHtmlMode}
           />
         )}
 

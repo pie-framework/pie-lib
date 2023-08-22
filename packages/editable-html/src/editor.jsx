@@ -36,11 +36,12 @@ const defaultResponseAreaProps = {
 
 const defaultLanguageCharactersProps = [];
 
-const createToolbarOpts = (toolbarOpts, error) => {
+const createToolbarOpts = (toolbarOpts, error, isHtmlMode) => {
   return {
     ...defaultToolbarOpts,
     ...toolbarOpts,
     error,
+    isHtmlMode,
   };
 };
 
@@ -144,13 +145,17 @@ export class Editor extends React.Component {
   }
 
   toggleHtmlMode = () => {
-    console.log('Before toggle:', this.state.isHtmlMode);
     this.setState(
       (prevState) => ({
         isHtmlMode: !prevState.isHtmlMode,
       }),
       () => {
-        console.log('After toggle:', this.state.isHtmlMode);
+        const { error } = this.props;
+        const { toolbarOpts } = this.state;
+        const newToolbarOpts = createToolbarOpts(toolbarOpts, error, this.state.isHtmlMode);
+        this.setState({
+          toolbarOpts: newToolbarOpts,
+        });
       },
     );
   };
@@ -165,8 +170,6 @@ export class Editor extends React.Component {
       isHtmlMode: this.state.isHtmlMode,
       toggleHtmlMode: this.toggleHtmlMode,
     };
-
-    console.log(htmlPluginOpts, 'htmlPluginOpts');
 
     this.plugins = buildPlugins(props.activePlugins, {
       math: {
@@ -285,10 +288,10 @@ export class Editor extends React.Component {
       });
     }
   }
-  //  const test = valueToHtml(value)
+
   UNSAFE_componentWillReceiveProps(nextProps) {
-    const { toolbarOpts } = this.state;
-    const newToolbarOpts = createToolbarOpts(nextProps.toolbarOpts, nextProps.error);
+    const { isHtmlMode, toolbarOpts } = this.state;
+    const newToolbarOpts = createToolbarOpts(nextProps.toolbarOpts, nextProps.error, isHtmlMode);
 
     if (!isEqual(newToolbarOpts, toolbarOpts)) {
       this.setState({
