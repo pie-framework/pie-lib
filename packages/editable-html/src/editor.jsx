@@ -12,6 +12,7 @@ import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import { color } from '@pie-lib/render-ui';
 import Plain from 'slate-plain-serializer';
+import { AlertDialog } from '@pie-lib/config-ui';
 
 import { getBase64 } from './serialization';
 import InsertImageHandler from './plugins/image/insert-image-handler';
@@ -134,7 +135,11 @@ export class Editor extends React.Component {
       value: props.value,
       toolbarOpts: createToolbarOpts(props.toolbarOpts, props.error),
       isHtmlMode: false,
+      dialog: {
+        open: false,
+      },
     };
+
     this.toggleHtmlMode = this.toggleHtmlMode.bind(this);
 
     this.onResize = () => {
@@ -143,6 +148,18 @@ export class Editor extends React.Component {
 
     this.handlePlugins(this.props);
   }
+
+  handleAlertDialog = (open, extraDialogProps, callback) => {
+    this.setState(
+      {
+        dialog: {
+          open,
+          ...extraDialogProps,
+        },
+      },
+      callback,
+    );
+  };
 
   toggleHtmlMode = () => {
     this.setState(
@@ -169,6 +186,7 @@ export class Editor extends React.Component {
     const htmlPluginOpts = {
       isHtmlMode: this.state.isHtmlMode,
       toggleHtmlMode: this.toggleHtmlMode,
+      handleAlertDialog: this.handleAlertDialog,
     };
 
     this.plugins = buildPlugins(props.activePlugins, {
@@ -733,7 +751,7 @@ export class Editor extends React.Component {
       onKeyDown,
     } = this.props;
 
-    const { value, focusedNode, toolbarOpts } = this.state;
+    const { value, focusedNode, toolbarOpts, dialog } = this.state;
 
     log('[render] value: ', value);
     const sizeStyle = this.buildSizeStyle();
@@ -791,6 +809,13 @@ export class Editor extends React.Component {
           placeholder={placeholder}
           renderPlaceholder={this.renderPlaceholder}
           onDataChange={this.changeData}
+        />
+        <AlertDialog
+          open={dialog.open}
+          title={dialog.title}
+          text={dialog.text}
+          onClose={dialog.onClose}
+          onConfirm={dialog.onConfirm}
         />
       </div>
     );

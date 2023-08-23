@@ -3,7 +3,41 @@ import HtmlModeIcon from './icons';
 import { htmlToValue, valueToHtml } from './../../serialization';
 
 export default function HtmlPlugin(opts) {
-  const { isHtmlMode, toggleHtmlMode } = opts;
+  const { isHtmlMode, toggleHtmlMode, handleAlertDialog } = opts;
+
+  const handleHtmlModeOn = (value, onChange) => {
+    const dialogProps = {
+      title: 'Warning',
+      text: 'Returning to rich text mode may cause edits to be lost.',
+      onConfirm: () => {
+        const plainText = value.document.text;
+        const slateValue = htmlToValue(plainText);
+        const change = value
+          .change()
+          .selectAll()
+          .delete()
+          .insertFragment(slateValue.document);
+        onChange(change);
+        toggleHtmlMode();
+        handleAlertDialog(false);
+      },
+      onClose: () => {
+        handleAlertDialog(false);
+      },
+    };
+
+    handleAlertDialog(true, dialogProps);
+  };
+
+  const handleHtmlModeOff = (value, onChange) => {
+    const change = value
+      .change()
+      .selectAll()
+      .delete()
+      .insertText(valueToHtml(value));
+    onChange(change);
+    toggleHtmlMode();
+  };
 
   return {
     name: 'html',
@@ -14,28 +48,11 @@ export default function HtmlPlugin(opts) {
       },
       type: 'html',
       onClick: (value, onChange) => {
-        let change;
-
         if (isHtmlMode) {
-          const plainText = value.document.text;
-          console.log('plainTEXT');
-
-          const slateValue = htmlToValue(plainText);
-          change = value
-            .change()
-            .selectAll()
-            .delete()
-            .insertFragment(slateValue.document);
+          handleHtmlModeOn(value, onChange);
         } else {
-          change = value
-            .change()
-            .selectAll()
-            .delete()
-            .insertText(valueToHtml(value));
+          handleHtmlModeOff(value, onChange);
         }
-
-        onChange(change);
-        toggleHtmlMode();
       },
     },
   };
