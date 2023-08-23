@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.7.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.7.7...@pie-lib/editable-html@9.7.8) (2023-08-21)
+
+
+### Bug Fixes
+
+* revert revert changes made for PD-3051 because they were causing PD-3119 ([371111c](https://github.com/pie-framework/pie-lib/commit/371111c26e0b0f886724f72ea67df0da3febef74))
+
+
+
+
+
+## [9.7.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.7.6...@pie-lib/editable-html@9.7.7) (2023-08-21)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+## [9.7.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.7.5...@pie-lib/editable-html@9.7.6) (2023-08-15)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
 ## [9.7.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.7.4...@pie-lib/editable-html@9.7.5) (2023-08-07)
 
 

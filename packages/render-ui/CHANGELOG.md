@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.15.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.15.0...@pie-lib/render-ui@4.15.1) (2023-08-21)
+
+
+### Bug Fixes
+
+* **render-ui:** DNA-17953 - avoid fontSize to fave initial value, avoid margins fot p elements ([3bdf0cf](https://github.com/pie-framework/pie-lib/commit/3bdf0cfa0ff343444b387b4840e904d76b27b41a))
+
+
+
+
+
+# [4.15.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.14.29...@pie-lib/render-ui@4.15.0) (2023-08-15)
+
+
+### Features
+
+* **text-select:** adjust colors and alignment of the color ([a51ba55](https://github.com/pie-framework/pie-lib/commit/a51ba5547f6e1559915d6ea967d406923831b561))
+* **text-select:** PD-1163 create wrapper component ([b41db39](https://github.com/pie-framework/pie-lib/commit/b41db39ade332d19dca70a06d54acf51b5888c69))
+* **text-select:** PD-1163 updates to tokens in text select ([2535c91](https://github.com/pie-framework/pie-lib/commit/2535c911f378f4cf41c8471bfa1898b996ffacee))
+
+
+
+
+
 ## [4.14.29](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.14.28...@pie-lib/render-ui@4.14.29) (2023-07-24)
 
 
