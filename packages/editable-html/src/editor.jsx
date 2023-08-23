@@ -135,6 +135,7 @@ export class Editor extends React.Component {
       value: props.value,
       toolbarOpts: createToolbarOpts(props.toolbarOpts, props.error),
       isHtmlMode: false,
+      isEdited: false,
       dialog: {
         open: false,
       },
@@ -156,6 +157,7 @@ export class Editor extends React.Component {
           open,
           ...extraDialogProps,
         },
+        isEdited: false,
       },
       callback,
     );
@@ -185,6 +187,7 @@ export class Editor extends React.Component {
 
     const htmlPluginOpts = {
       isHtmlMode: this.state.isHtmlMode,
+      isEdited: this.state.isEdited,
       toggleHtmlMode: this.toggleHtmlMode,
       handleAlertDialog: this.handleAlertDialog,
     };
@@ -553,6 +556,11 @@ export class Editor extends React.Component {
 
     if (value && value.document && value.document.text && value.document.text.length > charactersLimit) {
       return;
+    }
+
+    if (this.state.isHtmlMode && !this.state.value.document.equals(value.document)) {
+      // The document has changed while in HTML mode
+      this.setState({ isEdited: true });
     }
 
     this.setState({ value }, () => {
