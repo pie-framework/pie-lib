@@ -34,9 +34,14 @@ export default class Bg extends React.Component {
   onRectClick = (rect) => {
     const { onClick, graphProps } = this.props;
     const { scale } = graphProps;
+
+    const padding = thinnerShapesNeeded(graphProps) ? 6 : 10;
     const coords = mouse(rect._groups[0][0]);
-    const x = scale.x.invert(coords[0]);
-    const y = scale.y.invert(coords[1]);
+
+    // decrease the padding from coordinates to indicate the correct point clicked
+    const x = scale.x.invert(coords[0] - padding);
+    const y = scale.y.invert(coords[1] - padding);
+
     const rowTicks = getTickValues(graphProps.range);
     const columnTicks = getTickValues(graphProps.domain);
 
@@ -69,6 +74,7 @@ export default class Bg extends React.Component {
     const { width, height, graphProps } = this.props;
     const padding = thinnerShapesNeeded(graphProps) ? 6 : 10;
 
+    // expand the size of clickable area so a small area outside the edges of the grid lines to be clickable
     return (
       <rect
         ref={(rect) => (this.rect = rect)}
