@@ -54,7 +54,7 @@ export const Legend = withStyles((theme) => ({
         return (
           <div key={index} className={classes.container}>
             <Icon className={icon.className} width={'19px'} height={'19px'}></Icon>
-            <Typography variant={'subtitle1'}>{icon.label}</Typography>
+            <span>{icon.label}</span>
           </div>
         );
       })}
