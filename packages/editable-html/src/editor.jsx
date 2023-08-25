@@ -13,6 +13,7 @@ import classNames from 'classnames';
 import { color } from '@pie-lib/render-ui';
 import Plain from 'slate-plain-serializer';
 import { AlertDialog } from '@pie-lib/config-ui';
+import { htmlToValue, valueToHtml } from './serialization';
 
 import { getBase64 } from './serialization';
 import InsertImageHandler from './plugins/image/insert-image-handler';
@@ -338,7 +339,7 @@ export class Editor extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     // The cursor is on a zero width element and when that is placed near void elements, it is not visible
     // so we increase the width to at least 2px in order for the user to see it
-    if (this.state.isHtmlMode !== prevState.isHtmlMode) {
+    if (this.state.isHtmlMode !== prevState.isHtmlMode || prevState.isEdited !== this.state.isEdited) {
       this.handlePlugins(this.props);
       this.forceUpdate();
     }
@@ -558,12 +559,16 @@ export class Editor extends React.Component {
       return;
     }
 
-    if (this.state.isHtmlMode && !this.state.value.document.equals(value.document)) {
+    const stateValue = htmlToValue(this.state.value.document.text);
+    const currentValue = htmlToValue(value.document.text);
+
+    if (this.state.isHtmlMode && stateValue.document.text != currentValue.document.text) {
       // The document has changed while in HTML mode
       this.setState({ isEdited: true });
     }
 
     this.setState({ value }, () => {
+      console.log('Inside setState callback:', this.state.value.document.text);
       log('[onChange], call done()');
 
       if (done) {

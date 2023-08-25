@@ -5,12 +5,14 @@ import { htmlToValue, valueToHtml } from './../../serialization';
 const toggleToRichText = (value, onChange, toggleHtmlMode) => {
   const plainText = value.document.text;
   const slateValue = htmlToValue(plainText);
+
   const change = value
     .change()
     .selectAll()
     .delete()
     .insertFragment(slateValue.document);
   onChange(change);
+
   toggleHtmlMode();
 };
 
@@ -40,6 +42,7 @@ export default function HtmlPlugin(opts) {
       .delete()
       .insertText(valueToHtml(value));
     onChange(change);
+
     toggleHtmlMode();
   };
 
