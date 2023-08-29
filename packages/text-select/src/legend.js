@@ -3,7 +3,6 @@ import { withStyles } from '@material-ui/core/styles';
 import Check from '@material-ui/icons/Check';
 import Close from '@material-ui/icons/Close';
 import Remove from '@material-ui/icons/Remove';
-import { Typography } from '@material-ui/core';
 import { color } from '@pie-lib/render-ui';
 
 export const Legend = withStyles((theme) => ({
@@ -54,7 +53,7 @@ export const Legend = withStyles((theme) => ({
         return (
           <div key={index} className={classes.container}>
             <Icon className={icon.className} width={'19px'} height={'19px'}></Icon>
-            <Typography variant={'subtitle1'}>{icon.label}</Typography>
+            <span>{icon.label}</span>
           </div>
         );
       })}

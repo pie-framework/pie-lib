@@ -27,6 +27,13 @@ export default class Bg extends React.Component {
       this.props.height !== nextProps.height
     );
   }
+
+  getRectPadding = () => {
+    const { graphProps } = this.props;
+
+    return thinnerShapesNeeded(graphProps) ? 6 : 10;
+  };
+
   /**
    * Note: we use d3 click + mouse to give us domain values directly.
    * Saves us having to calculate them ourselves from a MouseEvent.
@@ -34,9 +41,14 @@ export default class Bg extends React.Component {
   onRectClick = (rect) => {
     const { onClick, graphProps } = this.props;
     const { scale } = graphProps;
+
+    const padding = this.getRectPadding();
     const coords = mouse(rect._groups[0][0]);
-    const x = scale.x.invert(coords[0]);
-    const y = scale.y.invert(coords[1]);
+
+    // decrease the padding from coordinates to indicate the correct point clicked
+    const x = scale.x.invert(coords[0] - padding);
+    const y = scale.y.invert(coords[1] - padding);
+
     const rowTicks = getTickValues(graphProps.range);
     const columnTicks = getTickValues(graphProps.domain);
 
@@ -66,9 +78,10 @@ export default class Bg extends React.Component {
   };
 
   render() {
-    const { width, height, graphProps } = this.props;
-    const padding = thinnerShapesNeeded(graphProps) ? 6 : 10;
+    const { width, height } = this.props;
+    const padding = this.getRectPadding();
 
+    // expand the size of clickable area so a small area outside the edges of the grid lines to be clickable
     return (
       <rect
         ref={(rect) => (this.rect = rect)}
