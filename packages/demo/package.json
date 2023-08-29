@@ -1,7 +1,7 @@
 {
   "name": "@pie-lib/demo",
   "private": true,
-  "version": "6.12.18",
+  "version": "6.12.19",
   "dependencies": {
     "@material-ui/core": "^3.8.3",
     "@material-ui/icons": "^3.0.2",
@@ -10,7 +10,7 @@
     "@pie-lib/correct-answer-toggle": "^2.5.2",
     "@pie-lib/drag": "^2.2.4",
     "@pie-lib/editable-html": "^9.7.8",
-    "@pie-lib/graphing": "^2.14.8",
+    "@pie-lib/graphing": "^2.14.9",
     "@pie-lib/icons": "^2.4.43",
     "@pie-lib/mask-markup": "^1.13.37",
     "@pie-lib/math-input": "^6.11.4",
@@ -20,7 +20,7 @@
     "@pie-lib/rubric": "^0.8.11",
     "@pie-lib/scoring-config": "^3.6.45",
     "@pie-lib/style-utils": "^0.1.43",
-    "@pie-lib/text-select": "^1.11.1",
+    "@pie-lib/text-select": "^1.11.2",
     "@pie-lib/tools": "^0.9.36",
     "change-case": "^3.0.2",
     "classnames": "^2.2.6",
