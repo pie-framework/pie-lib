@@ -565,7 +565,6 @@ export class Editor extends React.Component {
     }
 
     if (this.state.isHtmlMode && !isEqual(this.state.value.document.text, value.document.text)) {
-      // The document has changed while in HTML mode
       this.setState({ isEdited: true });
     }
 
