@@ -12,6 +12,7 @@ import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import { color } from '@pie-lib/render-ui';
 import Plain from 'slate-plain-serializer';
+import { AlertDialog } from '@pie-lib/config-ui';
 
 import { getBase64 } from './serialization';
 import InsertImageHandler from './plugins/image/insert-image-handler';
@@ -36,11 +37,12 @@ const defaultResponseAreaProps = {
 
 const defaultLanguageCharactersProps = [];
 
-const createToolbarOpts = (toolbarOpts, error) => {
+const createToolbarOpts = (toolbarOpts, error, isHtmlMode) => {
   return {
     ...defaultToolbarOpts,
     ...toolbarOpts,
     error,
+    isHtmlMode,
   };
 };
 
@@ -132,7 +134,14 @@ export class Editor extends React.Component {
     this.state = {
       value: props.value,
       toolbarOpts: createToolbarOpts(props.toolbarOpts, props.error),
+      isHtmlMode: false,
+      isEdited: false,
+      dialog: {
+        open: false,
+      },
     };
+
+    this.toggleHtmlMode = this.toggleHtmlMode.bind(this);
 
     this.onResize = () => {
       props.onChange(this.state.value, true);
@@ -141,10 +150,46 @@ export class Editor extends React.Component {
     this.handlePlugins(this.props);
   }
 
+  handleAlertDialog = (open, extraDialogProps, callback) => {
+    this.setState(
+      {
+        dialog: {
+          open,
+          ...extraDialogProps,
+        },
+        isEdited: false,
+      },
+      callback,
+    );
+  };
+
+  toggleHtmlMode = () => {
+    this.setState(
+      (prevState) => ({
+        isHtmlMode: !prevState.isHtmlMode,
+      }),
+      () => {
+        const { error } = this.props;
+        const { toolbarOpts } = this.state;
+        const newToolbarOpts = createToolbarOpts(toolbarOpts, error, this.state.isHtmlMode);
+        this.setState({
+          toolbarOpts: newToolbarOpts,
+        });
+      },
+    );
+  };
+
   handlePlugins = (props) => {
     const normalizedResponseAreaProps = {
       ...defaultResponseAreaProps,
       ...props.responseAreaProps,
+    };
+
+    const htmlPluginOpts = {
+      isHtmlMode: this.state.isHtmlMode,
+      isEdited: this.state.isEdited,
+      toggleHtmlMode: this.toggleHtmlMode,
+      handleAlertDialog: this.handleAlertDialog,
     };
 
     this.plugins = buildPlugins(props.activePlugins, {
@@ -154,6 +199,7 @@ export class Editor extends React.Component {
         onBlur: this.onPluginBlur,
         ...props.mathMlOptions,
       },
+      html: htmlPluginOpts,
       image: {
         disableImageAlignmentButtons: props.disableImageAlignmentButtons,
         onDelete:
@@ -265,8 +311,8 @@ export class Editor extends React.Component {
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
-    const { toolbarOpts } = this.state;
-    const newToolbarOpts = createToolbarOpts(nextProps.toolbarOpts, nextProps.error);
+    const { isHtmlMode, toolbarOpts } = this.state;
+    const newToolbarOpts = createToolbarOpts(nextProps.toolbarOpts, nextProps.error, isHtmlMode);
 
     if (!isEqual(newToolbarOpts, toolbarOpts)) {
       this.setState({
@@ -289,9 +335,14 @@ export class Editor extends React.Component {
     }
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
     // The cursor is on a zero width element and when that is placed near void elements, it is not visible
     // so we increase the width to at least 2px in order for the user to see it
+    if (this.state.isHtmlMode !== prevState.isHtmlMode || prevState.isEdited !== this.state.isEdited) {
+      this.handlePlugins(this.props);
+      this.onEditingDone();
+    }
+
     const zeroWidthEls = document.querySelectorAll('[data-slate-zero-width="z"]');
 
     Array.from(zeroWidthEls).forEach((el) => {
@@ -508,6 +559,14 @@ export class Editor extends React.Component {
       return;
     }
 
+    if (!this.state.isHtmlMode) {
+      this.setState({ isEdited: false });
+    }
+
+    if (this.state.isHtmlMode && !isEqual(this.state.value.document.text, value.document.text)) {
+      this.setState({ isEdited: true });
+    }
+
     this.setState({ value }, () => {
       log('[onChange], call done()');
 
@@ -704,7 +763,7 @@ export class Editor extends React.Component {
       onKeyDown,
     } = this.props;
 
-    const { value, focusedNode, toolbarOpts } = this.state;
+    const { value, focusedNode, toolbarOpts, dialog } = this.state;
 
     log('[render] value: ', value);
     const sizeStyle = this.buildSizeStyle();
@@ -762,6 +821,13 @@ export class Editor extends React.Component {
           placeholder={placeholder}
           renderPlaceholder={this.renderPlaceholder}
           onDataChange={this.changeData}
+        />
+        <AlertDialog
+          open={dialog.open}
+          title={dialog.title}
+          text={dialog.text}
+          onClose={dialog.onClose}
+          onConfirm={dialog.onConfirm}
         />
       </div>
     );

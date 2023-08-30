@@ -2247,7 +2247,7 @@
   {
     "type": "feat",
     "scope": null,
-    "subject": "Ability to change keypadMode using props.pluginProps.math.keypadMode",
+    "subject": "Ability to change keypadMode using props.math.keypadMode",
     "merge": null,
     "header": "feat: Ability to change keypadMode using props.pluginProps.math.keypadMode",
     "body": null,
