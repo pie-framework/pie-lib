@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.14.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.14.8...@pie-lib/graphing@2.14.9) (2023-08-29)
+
+
+### Bug Fixes
+
+* **graphing:** adjust ploting position to match with the gridlines PD-3005 ([23c5727](https://github.com/pie-framework/pie-lib/commit/23c5727124309b6723517bbacbecd1c938858e6a))
+
+
+
+
+
 ## [2.14.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.14.7...@pie-lib/graphing@2.14.8) (2023-08-21)
 
 **Note:** Version bump only for package @pie-lib/graphing
