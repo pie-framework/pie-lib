@@ -560,7 +560,6 @@ export class Editor extends React.Component {
     }
 
     if (!this.state.isHtmlMode) {
-      // reset isEdited state
       this.setState({ isEdited: false });
     }
 
