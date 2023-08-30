@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.7.8...@pie-lib/editable-html@10.0.0) (2023-08-30)
+
+
+### Bug Fixes
+
+* **editable-html:** Update 'isEdited' state to accurately track changes made in HTML mode PD-2765 ([913543e](https://github.com/pie-framework/pie-lib/commit/913543ec75302da3de0b86efc48c62bb06f92515))
+
+
+### Features
+
+* **editable-html:** display warning dialog conditional on edits in HTML mode PD-2765 ([58d66d5](https://github.com/pie-framework/pie-lib/commit/58d66d57668a8288f32e3e6ed78cf97a61f58b17))
+* **editable-html:** display warning dialog upon exiting html mode PD-2765 ([8fd9fb9](https://github.com/pie-framework/pie-lib/commit/8fd9fb964f681d261e22ec09aa8b8e6def2f7744))
+* **editable-html:** implement toggle functionality for for switching between WYSIWYG and plain text HTML editors PD-2765 ([d44a549](https://github.com/pie-framework/pie-lib/commit/d44a549dcd4bb117c71a1f90bd7bc8eeb6a82a5e))
+* **editable-html:** implement toggle functionality for switching between WYSIWYG and plain text HTML editors PD-2765 ([6541a85](https://github.com/pie-framework/pie-lib/commit/6541a85dd430d4d7c81fe3960a37e597f29a0ec2))
+* **editable-html:** only show relevant toolbar buttons in HTML mode PD-2765 ([ed36dcb](https://github.com/pie-framework/pie-lib/commit/ed36dcb9a95f3d990da967f65e942922b60e42e6))
+* **editable-html:** revise state handling for isHtmlMode and isEdited to accurately display choices in response area when toggling between html mode and rich text editor ([c800a22](https://github.com/pie-framework/pie-lib/commit/c800a22e323e863bae691e07b2b80774997ba0ea))
+* **editable-html:** revise state handling for isHtmlMode and isEdited to accurately display choices in response area when toggling between html mode and rich text editor ([6daf84e](https://github.com/pie-framework/pie-lib/commit/6daf84e9692df368f7aa6866a33368941312872e))
+
+
+### BREAKING CHANGES
+
+* **editable-html:** add a button to the editable-html editor that changes the field from using a WYSIWYG editor to using a plaintext editor that displays the raw HTML and allows it to be edited.
+
+
+
+
+
 ## [9.7.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.7.7...@pie-lib/editable-html@9.7.8) (2023-08-21)
 
 
