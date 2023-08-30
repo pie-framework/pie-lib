@@ -2,7 +2,7 @@ import React from 'react';
 import HtmlModeIcon from './icons';
 import { htmlToValue, valueToHtml } from './../../serialization';
 
-const toggleToRichText = (value, onChange, toggleHtmlMode) => {
+const toggleToRichText = (value, onChange) => {
   const plainText = value.document.text;
   const slateValue = htmlToValue(plainText);
 
@@ -12,8 +12,6 @@ const toggleToRichText = (value, onChange, toggleHtmlMode) => {
     .delete()
     .insertFragment(slateValue.document);
   onChange(change);
-
-  toggleHtmlMode();
 };
 
 export default function HtmlPlugin(opts) {
@@ -24,7 +22,7 @@ export default function HtmlPlugin(opts) {
       title: 'Warning',
       text: 'Returning to rich text mode may cause edits to be lost.',
       onConfirm: () => {
-        toggleToRichText(value, onChange, toggleHtmlMode);
+        toggleToRichText(value, onChange);
         handleAlertDialog(false);
       },
       onClose: () => {
@@ -42,8 +40,6 @@ export default function HtmlPlugin(opts) {
       .delete()
       .insertText(valueToHtml(value));
     onChange(change);
-
-    toggleHtmlMode();
   };
 
   return {
@@ -59,11 +55,13 @@ export default function HtmlPlugin(opts) {
           if (isEdited) {
             handleHtmlModeOn(value, onChange);
           } else {
-            toggleToRichText(value, onChange, toggleHtmlMode);
+            toggleToRichText(value, onChange);
           }
         } else {
           handleHtmlModeOff(value, onChange);
         }
+
+        toggleHtmlMode();
       },
     },
   };

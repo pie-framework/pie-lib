@@ -17,7 +17,6 @@ import debug from 'debug';
 import List from './list';
 import TablePlugin from './table';
 import RespAreaPlugin from './respArea';
-import { htmlToValue, valueToHtml } from '../serialization';
 import HtmlPlugin from './html';
 
 const log = debug('@pie-lib:editable-html:plugins');
@@ -79,8 +78,6 @@ export const DEFAULT_PLUGINS = ALL_PLUGINS.filter((plug) => plug !== 'responseAr
 
 export const buildPlugins = (activePlugins, opts) => {
   log('[buildPlugins] opts: ', opts);
-
-  console.log(opts.html, 'opts.html');
 
   activePlugins = activePlugins || DEFAULT_PLUGINS;
 
