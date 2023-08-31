@@ -33,10 +33,12 @@ export function getInterval(domain, ticks) {
   const normalizedMajor = major - 1;
 
   if (isNaN(normalizedMajor)) {
+    console.log('from utils');
     throw new Error('Tick Frequency must be 2 or higher');
   }
 
   if (normalizedMajor <= 0) {
+    console.log('from utils');
     throw new Error('Tick Frequency must be 2 or higher');
   }
 
