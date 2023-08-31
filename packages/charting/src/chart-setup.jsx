@@ -76,10 +76,7 @@ const ConfigureChartPanel = (props) => {
 
   const resetValues = (data, updateModel) => {
     (data || []).forEach((d) => {
-      const d_value_scaled = Math.round(d.value * 10);
-      const range_step_scaled = Math.round(range.step * 10);
-      const remainder_scaled = d_value_scaled % range_step_scaled;
-      const remainder = remainder_scaled / 10;
+      const remainder = d.value - range.step * Math.floor(d.value / range.step);
 
       if (d.value > range.max || remainder !== 0) {
         d.value = 0;

@@ -23,8 +23,6 @@ export class Grid extends React.Component {
     const { classes, className, graphProps, xBand, rowTickValues, columnTickValues } = this.props;
     const { scale = {}, size = {} } = graphProps || {};
 
-    console.log(rowTickValues, 'rowTickValues', size.width, 'size.width');
-
     return (
       <VxGrid
         xScale={xBand}
