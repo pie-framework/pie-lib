@@ -18,18 +18,6 @@ export { htmlToValue, valueToHtml, Editor, DEFAULT_PLUGINS, ALL_PLUGINS };
  * compare it. TODO: This is an interim fix, we'll need to strip back `Editor` and look how best to maintain the
  * `markup` api whilst avoiding the serialization mismatch. We should be making better use of schemas w/ normalize.
  */
-
-const reduceMultipleBrs = (markup) => {
-  try {
-    return markup.replace(/(<br\s*\/?>){3,}/gi, '<br>');
-  } catch (e) {
-    // eslint-disable-next-line no-console
-    console.log("Couldn't remove <br/> tags: ", e);
-  }
-
-  return markup;
-};
-
 export default class EditableHtml extends React.Component {
   static propTypes = {
     error: PropTypes.any,
@@ -59,8 +47,8 @@ export default class EditableHtml extends React.Component {
       return;
     }
 
-    const v = htmlToValue(reduceMultipleBrs(props.markup));
-    const current = htmlToValue(reduceMultipleBrs(this.props.markup));
+    const v = htmlToValue(props.markup);
+    const current = htmlToValue(props.markup);
 
     if (v.equals && !v.equals(current)) {
       this.setState({ value: v });
