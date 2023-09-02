@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.0.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@10.0.0...@pie-lib/editable-html@10.0.1) (2023-09-02)
+
+
+### Bug Fixes
+
+* made sure multiple nodes are wrapped in a block, in order for slate to handle it properly PD-3051 ([fd6ed48](https://github.com/pie-framework/pie-lib/commit/fd6ed48070979cd34bc64403228b728394a8afed))
+
+
+
+
+
 # [10.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@9.7.8...@pie-lib/editable-html@10.0.0) (2023-08-30)
 
 
