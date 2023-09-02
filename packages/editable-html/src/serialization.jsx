@@ -393,11 +393,34 @@ const wrapHtmlProperly = (markup) => {
 
   el.innerHTML = markup;
 
-  if (el.children.length > 1) {
-    // this means we have multiple nodes that are not wrapped, so we wrap them so slate
-    // doesn't go crazy
-    return el.outerHTML;
-  }
+  /**
+   * DIV elements that are at the same level as paragraphs
+   * are replaced with P elements for normalizing purposes
+   * @param el
+   */
+  const parseNode = (el) => {
+    const childArray = Array.from(el.children);
+    const hasParagraphs = childArray.find((child) => child.nodeName === 'P');
+
+    childArray.forEach((child) => {
+      // removing empty blocks
+      if ((child.nodeName === 'DIV' || child.nodeName === 'P') && child.childNodes.length === 0) {
+        child.remove();
+        return;
+      }
+
+      if (hasParagraphs && child.nodeName === 'DIV') {
+        const p = document.createElement('p');
+
+        p.innerHTML = child.innerHTML;
+        child.replaceWith(p);
+      }
+
+      parseNode(child);
+    });
+  };
+
+  parseNode(el);
 
   return el.innerHTML;
 };
