@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.0.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@10.0.1...@pie-lib/editable-html@10.0.2) (2023-09-02)
+
+
+### Bug Fixes
+
+* made sure div blocks are not present at the same level as paragraph ones PD-3051 ([f597969](https://github.com/pie-framework/pie-lib/commit/f59796980ad87323b401543fb3963edcea3775c6))
+
+
+
+
+
 ## [10.0.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@10.0.0...@pie-lib/editable-html@10.0.1) (2023-09-02)
 
 
