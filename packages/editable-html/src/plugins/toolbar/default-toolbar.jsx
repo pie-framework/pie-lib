@@ -80,6 +80,11 @@ export const DefaultToolbar = ({
   deletable,
   isHtmlMode,
 }) => {
+  pluginProps = {
+    // disable HTML plugin by default, at least for now
+    html: { disabled: true },
+    ...pluginProps,
+  };
   let filtered;
 
   if (isHtmlMode) {

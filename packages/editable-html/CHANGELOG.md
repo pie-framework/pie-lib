@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.0.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@10.0.2...@pie-lib/editable-html@10.0.3) (2023-09-05)
+
+
+### Bug Fixes
+
+* make HTML disabled by default PD-2765 ([82bd362](https://github.com/pie-framework/pie-lib/commit/82bd36240205b8e0e31043cc8559267de0d5dc30))
+
+
+
+
+
 ## [10.0.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@10.0.1...@pie-lib/editable-html@10.0.2) (2023-09-02)
 
 
