@@ -366,9 +366,68 @@ serializer.deserialize = function deserialize(html) {
   return null;
 };
 
+const reduceMultipleBrs = (markup) => {
+  try {
+    return markup.replace(/(<br\s*\/?>){3,}/gi, '<br>');
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.log("Couldn't remove <br/> tags: ", e);
+  }
+
+  return markup;
+};
+
+const reduceRedundantNewLineCharacters = (markup) => {
+  try {
+    return markup.replace(/\n/gi, '');
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.log("Couldn't remove <br/> tags: ", e);
+  }
+
+  return markup;
+};
+
+const wrapHtmlProperly = (markup) => {
+  const el = document.createElement('div');
+
+  el.innerHTML = markup;
+
+  /**
+   * DIV elements that are at the same level as paragraphs
+   * are replaced with P elements for normalizing purposes
+   * @param el
+   */
+  const parseNode = (el) => {
+    const childArray = Array.from(el.children);
+    const hasParagraphs = childArray.find((child) => child.nodeName === 'P');
+
+    childArray.forEach((child) => {
+      // removing empty blocks
+      if ((child.nodeName === 'DIV' || child.nodeName === 'P') && child.childNodes.length === 0) {
+        child.remove();
+        return;
+      }
+
+      if (hasParagraphs && child.nodeName === 'DIV') {
+        const p = document.createElement('p');
+
+        p.innerHTML = child.innerHTML;
+        child.replaceWith(p);
+      }
+
+      parseNode(child);
+    });
+  };
+
+  parseNode(el);
+
+  return el.innerHTML;
+};
+
 export const htmlToValue = (html) => {
   try {
-    return serializer.deserialize(html);
+    return serializer.deserialize(wrapHtmlProperly(reduceRedundantNewLineCharacters(reduceMultipleBrs(html))));
   } catch (e) {
     // eslint-disable-next-line no-console
     console.log("Couldn't parse html: ", e);
