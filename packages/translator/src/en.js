@@ -53,6 +53,11 @@ export default {
       primaryCorrectWithAlternates:
         'Note: The answer shown above is the primary correct answer specified by the author for this item, but other answers may also be recognized as correct.',
     },
+    selectText: {
+      correctAnswerSelected: 'Correct answer selected',
+      correctAnswerNotSelected: 'Correct answer not selected',
+      incorrectSelection: 'Incorrect selection',
+    },
   },
   common: {
     undo: 'Undo',
