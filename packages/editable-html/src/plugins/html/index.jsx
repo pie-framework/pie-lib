@@ -22,15 +22,16 @@ export default function HtmlPlugin(opts) {
       title: 'Warning',
       text: 'Returning to rich text mode may cause edits to be lost.',
       onConfirm: () => {
-        toggleToRichText(value, onChange);
         handleAlertDialog(false);
+        toggleToRichText(value, onChange);
+        toggleHtmlMode();
       },
       onClose: () => {
-        handleAlertDialog(false);
+        handleAlertDialog(false, true);
       },
     };
 
-    handleAlertDialog(true, dialogProps);
+    handleAlertDialog(true, true, dialogProps);
   };
 
   const handleHtmlModeOff = (value, onChange) => {
@@ -56,12 +57,12 @@ export default function HtmlPlugin(opts) {
             handleHtmlModeOn(value, onChange);
           } else {
             toggleToRichText(value, onChange);
+            toggleHtmlMode();
           }
         } else {
           handleHtmlModeOff(value, onChange);
+          toggleHtmlMode();
         }
-
-        toggleHtmlMode();
       },
     },
   };

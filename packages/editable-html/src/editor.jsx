@@ -150,14 +150,14 @@ export class Editor extends React.Component {
     this.handlePlugins(this.props);
   }
 
-  handleAlertDialog = (open, extraDialogProps, callback) => {
+  handleAlertDialog = (open, keepHtml, extraDialogProps, callback) => {
     this.setState(
       {
         dialog: {
           open,
           ...extraDialogProps,
         },
-        isEdited: false,
+        isEdited: keepHtml || false,
       },
       callback,
     );
@@ -338,7 +338,8 @@ export class Editor extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     // The cursor is on a zero width element and when that is placed near void elements, it is not visible
     // so we increase the width to at least 2px in order for the user to see it
-    if (this.state.isHtmlMode !== prevState.isHtmlMode || prevState.isEdited !== this.state.isEdited) {
+
+    if (this.state.isHtmlMode !== prevState.isHtmlMode || (this.state.isHtmlMode && this.state.isEdited)) {
       this.handlePlugins(this.props);
       this.onEditingDone();
     }
@@ -383,6 +384,10 @@ export class Editor extends React.Component {
   };
 
   onEditingDone = () => {
+    if (this.state.isHtmlMode) {
+      return;
+    }
+
     log('[onEditingDone]');
     this.setState({ stashedValue: null, focusedNode: null });
     log('[onEditingDone] value: ', this.state.value);
