@@ -27,11 +27,11 @@ export default function HtmlPlugin(opts) {
         toggleHtmlMode();
       },
       onClose: () => {
-        handleAlertDialog(false, true);
+        handleAlertDialog(false);
       },
     };
 
-    handleAlertDialog(true, true, dialogProps);
+    handleAlertDialog(true, dialogProps);
   };
 
   const handleHtmlModeOff = (value, onChange) => {

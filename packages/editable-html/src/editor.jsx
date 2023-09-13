@@ -150,14 +150,14 @@ export class Editor extends React.Component {
     this.handlePlugins(this.props);
   }
 
-  handleAlertDialog = (open, keepHtml, extraDialogProps, callback) => {
+  handleAlertDialog = (open, extraDialogProps, callback) => {
     this.setState(
       {
         dialog: {
           open,
           ...extraDialogProps,
         },
-        isEdited: keepHtml || false,
+        isEdited: false,
       },
       callback,
     );
