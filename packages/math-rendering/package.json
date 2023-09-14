@@ -13,7 +13,7 @@
     "debug": "^4.1.1",
     "lodash": "^4.17.11",
     "mathjax-full": "3.2.2",
-    "mathml-to-latex": "^1.2.0"
+    "mathml-to-latex": "1.2.0"
   },
   "gitHead": "f3345ae70660f4ae88450512261c7ea1601003c8",
   "scripts": {}
