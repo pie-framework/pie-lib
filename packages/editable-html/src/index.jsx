@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Editor, { DEFAULT_PLUGINS, ALL_PLUGINS } from './editor';
-import { htmlToValue, valueToHtml } from './serialization';
+import { htmlToValue, valueToHtml, reduceMultipleBrs } from './serialization';
 import { parseDegrees } from './parse-html';
 import debug from 'debug';
 import { Range } from 'slate';

@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 
 import { BLOCK_TAGS } from '../../serialization';
 import isEqual from 'lodash/isEqual';
+
 const log = debug('@pie-lib:editable-html:plugins:math');
 
 const TEXT_NODE = 3;
@@ -306,8 +307,11 @@ export const serialization = {
           return <span data-type="mathml" dangerouslySetInnerHTML={{ __html: res }} />;
         } else {
           // if it doesn't we keep the latex version
-          console.log('This latex can not be safely converted to mathml:', l, 'so we will keep the latex version!!!');
-          console.warn('This latex can not be safely converted to mathml:', l, 'so we will keep the latex version!!!');
+          console.log('This latex can not be safely converted to mathml so we will keep the latex version!!!', {
+            initialLatex: l,
+            newLatex: newLatex,
+            mathML: res,
+          });
         }
       }
 
