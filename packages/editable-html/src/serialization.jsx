@@ -366,7 +366,7 @@ serializer.deserialize = function deserialize(html) {
   return null;
 };
 
-const reduceMultipleBrs = (markup) => {
+export const reduceMultipleBrs = (markup) => {
   try {
     return markup.replace(/(<br\s*\/?>){3,}/gi, '<br>');
   } catch (e) {
