@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.5.17...@pie-lib/math-rendering@2.5.18) (2023-09-14)
+
+
+### Bug Fixes
+
+* force v1.2.0 of mathml-to-latex, as v1.3.0 contains a braking change ([4792ed9](https://github.com/pie-framework/pie-lib/commit/4792ed965608ee5ff4c872e69dee9b3b59261cf0))
+
+
+
+
+
 ## [2.5.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@2.5.16...@pie-lib/math-rendering@2.5.17) (2023-06-24)
 
 **Note:** Version bump only for package @pie-lib/math-rendering
