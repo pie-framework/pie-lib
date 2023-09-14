@@ -327,7 +327,7 @@ export class Editor extends React.Component {
       this.handlePlugins(nextProps);
     }
 
-    if (!nextProps.value.document.equals(this.props.value.document)) {
+    if (!nextProps.value?.document?.equals(this.props.value?.document)) {
       this.setState({
         focus: false,
         value: nextProps.value,
