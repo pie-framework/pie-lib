@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/rubric",
-  "version": "0.8.15",
+  "version": "0.8.16",
   "publishConfig": {
     "access": "public"
   },
@@ -9,7 +9,7 @@
   "dependencies": {
     "@material-ui/core": "^3.9.3",
     "@material-ui/icons": "^3.0.2",
-    "@pie-lib/editable-html": "^10.0.3",
+    "@pie-lib/editable-html": "^10.0.4",
     "debug": "^4.1.1",
     "editable-html": "npm:@pie-lib/editable-html@^7.21.0",
     "lodash": "^4.17.11",

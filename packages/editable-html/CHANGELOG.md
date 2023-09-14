@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.0.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@10.0.3...@pie-lib/editable-html@10.0.4) (2023-09-14)
+
+
+### Bug Fixes
+
+* import reduceMultipleBrs, add more details into console message PD-3167 ([5adcc05](https://github.com/pie-framework/pie-lib/commit/5adcc054e1bd5a71809827484d368d172a1255d3))
+
+
+
+
+
 ## [10.0.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@10.0.2...@pie-lib/editable-html@10.0.3) (2023-09-05)
 
 
