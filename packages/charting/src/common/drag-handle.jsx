@@ -1,45 +1,37 @@
 import React from 'react';
-import classNames from 'classnames';
-import { gridDraggable, utils, types } from '@pie-lib/plot';
-import { withStyles } from '@material-ui/core/styles/index';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import { withStyles } from '@material-ui/core/styles';
+import { gridDraggable, utils, types } from '@pie-lib/plot';
 import { color } from '@pie-lib/render-ui';
 import { correct, incorrect, disabled } from './styles';
+import SwapVerticalCircleOutlinedIcon from '@mui/icons-material/SwapVerticalCircleOutlined';
 
-export class RawDragHandle extends React.Component {
-  static propTypes = {
-    x: PropTypes.number.isRequired,
-    y: PropTypes.number.isRequired,
-    width: PropTypes.number,
-    graphProps: types.GraphPropsType.isRequired,
-    classes: PropTypes.object.isRequired,
-    className: PropTypes.string,
-    interactive: PropTypes.bool,
-    correctness: PropTypes.shape({
-      value: PropTypes.string,
-      label: PropTypes.string,
-    }),
-  };
+const ICON_Y_OFFSET = -23;
+const ICON_X_OFFSET = 45;
 
-  render() {
-    const { x, y, width, graphProps, classes, className, interactive, correctness, ...rest } = this.props;
-    const { scale } = graphProps;
+const RawDragHandle = ({ x, y, width, graphProps, classes, className, interactive, correctness, ...rest }) => {
+  const { scale } = graphProps;
 
-    return (
-      <svg
-        x={x}
-        y={scale.y(y) - 10}
+  return (
+    <svg x={x} y={scale.y(y) - 10} width={width} overflow="visible">
+      {!correctness && interactive && (
+        <foreignObject x={ICON_X_OFFSET} y={ICON_Y_OFFSET} overflow="visible">
+          <SwapVerticalCircleOutlinedIcon sx={{ color: '#283593' }} fontSize="large" />
+        </foreignObject>
+      )}
+
+      <circle
+        cx={ICON_X_OFFSET - ICON_Y_OFFSET}
+        r={-ICON_Y_OFFSET}
         width={width}
-        overflow="visible"
-        className={classNames(
-          classes.handleContainer,
-          className,
-          !interactive && 'non-interactive',
-          interactive && correctness && correctness.value,
-        )}
-      >
-        <rect y={-10} width={width} className={classNames(classes.transparentHandle, className)} {...rest} />
+        className={classNames(classes.transparentHandle, className)}
+        {...rest}
+      />
+
+      {correctness && (
         <rect
+          y={10}
           width={width}
           className={classNames(
             classes.handle,
@@ -50,16 +42,15 @@ export class RawDragHandle extends React.Component {
           )}
           {...rest}
         />
-        <rect y={10} width={width} className={classNames(classes.transparentHandle, className)} {...rest} />
-      </svg>
-    );
-  }
-}
+      )}
+    </svg>
+  );
+};
 
 export const DragHandle = withStyles(() => ({
   handle: {
     height: '10px',
-    fill: color.secondary(),
+    fill: 'transparent',
     transition: 'fill 200ms linear, height 200ms linear',
     '&.correct': correct('fill'),
     '&.incorrect': incorrect('fill'),
