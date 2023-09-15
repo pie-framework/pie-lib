@@ -46,8 +46,17 @@ export class RawBar extends React.Component {
     super(props);
     this.state = {
       dragValue: undefined,
+      isHovered: false,
     };
   }
+
+  handleMouseEnter = () => {
+    this.setState({ isHovered: true });
+  };
+
+  handleMouseLeave = () => {
+    this.setState({ isHovered: false });
+  };
 
   setDragValue = (dragValue) => this.setState({ dragValue });
 
@@ -93,6 +102,8 @@ export class RawBar extends React.Component {
           height={barHeight}
           className={classes.bar}
           style={barColor && { fill: barColor }}
+          onMouseEnter={this.handleMouseEnter}
+          onMouseLeave={this.handleMouseLeave}
         />
         <Component
           x={barX}
@@ -103,6 +114,7 @@ export class RawBar extends React.Component {
           onDragStop={this.dragStop}
           graphProps={graphProps}
           correctness={correctness}
+          isHovered={this.state.isHovered}
         />
       </React.Fragment>
     );
@@ -112,6 +124,9 @@ export class RawBar extends React.Component {
 const Bar = withStyles(() => ({
   bar: {
     fill: color.primaryLight(),
+    '&:hover': {
+      fill: '#2A3CA2',
+    },
   },
 }))(RawBar);
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
@@ -10,12 +10,23 @@ import SwapVerticalCircleOutlinedIcon from '@mui/icons-material/SwapVerticalCirc
 const ICON_Y_OFFSET = -23;
 const ICON_X_OFFSET = 45;
 
-const RawDragHandle = ({ x, y, width, graphProps, classes, className, interactive, correctness, ...rest }) => {
+const RawDragHandle = ({
+  x,
+  y,
+  width,
+  graphProps,
+  classes,
+  className,
+  interactive,
+  isHovered,
+  correctness,
+  ...rest
+}) => {
   const { scale } = graphProps;
 
   return (
     <svg x={x} y={scale.y(y) - 10} width={width} overflow="visible">
-      {!correctness && interactive && (
+      {isHovered && !correctness && interactive && (
         <foreignObject x={ICON_X_OFFSET} y={ICON_Y_OFFSET} overflow="visible">
           <SwapVerticalCircleOutlinedIcon sx={{ color: '#283593' }} fontSize="large" />
         </foreignObject>

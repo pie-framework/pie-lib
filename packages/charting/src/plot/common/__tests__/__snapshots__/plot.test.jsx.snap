@@ -41,47 +41,53 @@ exports[`Plot snapshot renders 1`] = `
 
 exports[`RawPlot snapshot renders 1`] = `
 <Fragment>
-  <WithStyles(RawDragHandle)
-    graphProps={
-      Object {
-        "domain": Object {
-          "max": 1,
-          "min": 0,
-          "step": 1,
-        },
-        "range": Object {
-          "max": 1,
-          "min": 0,
-          "step": 1,
-        },
-        "scale": Object {
-          "x": [MockFunction],
-          "y": [MockFunction] {
-            "calls": Array [
-              Array [
-                NaN,
-              ],
-            ],
-            "results": Array [
-              Object {
-                "type": "return",
-                "value": NaN,
-              },
-            ],
+  <g
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+  >
+    <WithStyles(RawDragHandle)
+      graphProps={
+        Object {
+          "domain": Object {
+            "max": 1,
+            "min": 0,
+            "step": 1,
           },
-        },
-        "size": Object {
-          "height": 400,
-          "width": 400,
-        },
-        "snap": Object {
-          "x": [MockFunction],
-          "y": [MockFunction],
-        },
+          "range": Object {
+            "max": 1,
+            "min": 0,
+            "step": 1,
+          },
+          "scale": Object {
+            "x": [MockFunction],
+            "y": [MockFunction] {
+              "calls": Array [
+                Array [
+                  NaN,
+                ],
+              ],
+              "results": Array [
+                Object {
+                  "type": "return",
+                  "value": NaN,
+                },
+              ],
+            },
+          },
+          "size": Object {
+            "height": 400,
+            "width": 400,
+          },
+          "snap": Object {
+            "x": [MockFunction],
+            "y": [MockFunction],
+          },
+        }
       }
-    }
-    onDrag={[Function]}
-    onDragStop={[Function]}
-  />
+      isHovered={false}
+      onDrag={[Function]}
+      onDragStop={[Function]}
+    />
+  </g>
 </Fragment>
 `;
