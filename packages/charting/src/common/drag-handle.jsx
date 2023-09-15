@@ -58,6 +58,21 @@ const RawDragHandle = ({
   );
 };
 
+RawDragHandle.propTypes = {
+  x: PropTypes.number.isRequired,
+  y: PropTypes.number.isRequired,
+  width: PropTypes.number,
+  graphProps: types.GraphPropsType.isRequired,
+  classes: PropTypes.object.isRequired,
+  className: PropTypes.string,
+  interactive: PropTypes.bool,
+  isHovered: PropTypes.bool,
+  correctness: PropTypes.shape({
+    value: PropTypes.string,
+    label: PropTypes.string,
+  }),
+};
+
 export const DragHandle = withStyles(() => ({
   handle: {
     height: '10px',
