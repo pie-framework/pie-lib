@@ -214,6 +214,12 @@ const lessThanHandling = (input) => {
   return input;
 };
 
+function fixLatexExpression(latexInput) {
+  // for some reason, mmlToLatex parses () incorrectly - or at least in a way that our interpreter can not use them
+  // Replace '\\left.' and '\\right.' with an empty string
+  return latexInput.replace(/\\left\.\s*|\\right\.\s*/g, '');
+}
+
 export const serialization = {
   deserialize(el) {
     const tagName = getTagName(el);
@@ -236,7 +242,8 @@ export const serialization = {
       if (MathPlugin.mathMlOptions.mmlEditing) {
         const htmlToUse = mmlToLatex(newHtml);
         const latex = htmlDecode(htmlToUse);
-        const { unwrapped, wrapType } = unWrapMath(latex);
+        const correctedLatex = fixLatexExpression(latex);
+        const { unwrapped, wrapType } = unWrapMath(correctedLatex);
 
         return {
           object: 'inline',
@@ -303,16 +310,20 @@ export const serialization = {
 
         // we check if the latex keeps his form after being converted to mathml and back to latex
         // if it does we can safely convert it to mathml
-        if (isEqual(strippedL, strippedNewL)) {
-          return <span data-type="mathml" dangerouslySetInnerHTML={{ __html: res }} />;
-        } else {
+        if (!isEqual(strippedL, strippedNewL)) {
+          const correctedLatex = fixLatexExpression(newLatex);
+
+          // As George requested in PD-3167, I will set the new mathML anyway, and also log differences
           // if it doesn't we keep the latex version
           console.log('This latex can not be safely converted to mathml so we will keep the latex version!!!', {
             initialLatex: l,
             newLatex: newLatex,
+            correctedLatex,
             mathML: res,
           });
         }
+
+        return <span data-type="mathml" dangerouslySetInnerHTML={{ __html: res }} />;
       }
 
       return (
