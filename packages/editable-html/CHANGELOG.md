@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.0.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@10.0.6...@pie-lib/editable-html@10.0.7) (2023-09-18)
+
+
+### Bug Fixes
+
+* use the mathMl resulted no matter if new latex is not identical; added a function to fix the round branckets issue ([61eeaed](https://github.com/pie-framework/pie-lib/commit/61eeaedc240bc247842a0164c07e58a8d8d792c9))
+* **editable-html:** Disable HTML mode in player & retain html mode on alert dialog cancel PD-2765 ([4c56092](https://github.com/pie-framework/pie-lib/commit/4c56092bc66ebde1571b42419c563c580c68b927))
+
+
+
+
+
 ## [10.0.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@10.0.5...@pie-lib/editable-html@10.0.6) (2023-09-14)
 
 **Note:** Version bump only for package @pie-lib/editable-html
