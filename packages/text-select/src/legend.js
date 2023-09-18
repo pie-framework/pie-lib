@@ -4,6 +4,9 @@ import Check from '@material-ui/icons/Check';
 import Close from '@material-ui/icons/Close';
 import Remove from '@material-ui/icons/Remove';
 import { color } from '@pie-lib/render-ui';
+import Translator from '@pie-lib/translator';
+
+const { translator } = Translator;
 
 export const Legend = withStyles((theme) => ({
   flexContainer: {
@@ -40,12 +43,25 @@ export const Legend = withStyles((theme) => ({
     backgroundColor: color.incorrectSecondary(),
     border: `2px dashed ${color.missing()}`,
   },
-}))(({ classes }) => {
+}))(({ classes, language }) => {
   const icons = [
-    { iconName: Check, label: 'Correct answer selected', className: classes.correct },
-    { iconName: Remove, label: 'Correct answer not selected', className: classes.missing },
-    { iconName: Close, label: 'Incorrect selection', className: classes.incorrect },
+    {
+      iconName: Check,
+      label: translator.t('selectText.correctAnswerSelected', { lng: language }),
+      className: classes.correct,
+    },
+    {
+      iconName: Remove,
+      label: translator.t('selectText.correctAnswerNotSelected', { lng: language }),
+      className: classes.missing,
+    },
+    {
+      iconName: Close,
+      label: translator.t('selectText.incorrectSelection', { lng: language }),
+      className: classes.incorrect,
+    },
   ];
+
   return (
     <div className={classes.flexContainer}>
       {icons.map((icon, index) => {
