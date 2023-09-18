@@ -40,11 +40,13 @@ exports[`Bars snapshot renders 1`] = `
 `;
 
 exports[`RawBar snapshot renders 1`] = `
-<Fragment>
+<g
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+>
   <P
     height={NaN}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
+    style={Object {}}
     y={NaN}
   />
   <WithStyles(RawDragHandle)
@@ -97,5 +99,5 @@ exports[`RawBar snapshot renders 1`] = `
     onDrag={[Function]}
     onDragStop={[Function]}
   />
-</Fragment>
+</g>
 `;

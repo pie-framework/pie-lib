@@ -81,7 +81,7 @@ export class RawBar extends React.Component {
   render() {
     const { graphProps, value, label, classes, xBand, index, interactive, correctness, barColor } = this.props;
     const { scale, range } = graphProps;
-    const { dragValue } = this.state;
+    const { dragValue, isHovered } = this.state;
 
     const v = Number.isFinite(dragValue) ? dragValue : value;
     const barWidth = xBand.bandwidth();
@@ -94,16 +94,14 @@ export class RawBar extends React.Component {
     const Component = interactive ? DraggableHandle : DragHandle;
 
     return (
-      <React.Fragment>
+      <g onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
         <VxBar
           x={barX}
           y={scale.y(yy)}
           width={barWidth}
           height={barHeight}
           className={classes.bar}
-          style={barColor && { fill: barColor }}
-          onMouseEnter={this.handleMouseEnter}
-          onMouseLeave={this.handleMouseLeave}
+          style={isHovered ? { fill: '#2A3CA2' } : barColor ? { fill: barColor } : {}}
         />
         <Component
           x={barX}
@@ -114,9 +112,9 @@ export class RawBar extends React.Component {
           onDragStop={this.dragStop}
           graphProps={graphProps}
           correctness={correctness}
-          isHovered={this.state.isHovered}
+          isHovered={isHovered}
         />
-      </React.Fragment>
+      </g>
     );
   }
 }

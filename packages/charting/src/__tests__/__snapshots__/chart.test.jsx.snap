@@ -149,7 +149,7 @@ exports[`ChartAxes snapshot renders 1`] = `
         height={180}
         width={120}
         x={-10}
-        y={-10}
+        y={-30}
       />
     </mask>
     <g
@@ -348,7 +348,7 @@ exports[`ChartAxes snapshot renders if size is not defined 1`] = `
         height={560}
         width={500}
         x={-10}
-        y={-10}
+        y={-30}
       />
     </mask>
     <g
@@ -551,7 +551,7 @@ exports[`ChartAxes snapshot renders without chartType property 1`] = `
         height={180}
         width={120}
         x={-10}
-        y={-10}
+        y={-30}
       />
     </mask>
     <g
