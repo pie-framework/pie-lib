@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.14.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.14.2...@pie-lib/charting@5.14.3) (2023-09-18)
+
+
+### Bug Fixes
+
+* **charting:** add tests for resetValues PD-3105 ([972a3cd](https://github.com/pie-framework/pie-lib/commit/972a3cd4b3787352ffe4073085cbd22f91895b43))
+* **charting:** wip PD-3105 ([9e21836](https://github.com/pie-framework/pie-lib/commit/9e21836ad8c89c7c839c6561db5edc0329a6a6af))
+* **charting:** wip PD-3105 ([f2f8234](https://github.com/pie-framework/pie-lib/commit/f2f82343a373ae1a8f669754a061963cbfdbeb08))
+* **charting:** wip PD-3105 revert push in develop ([6cce5e2](https://github.com/pie-framework/pie-lib/commit/6cce5e2d25d079c1c3eb195425dc2cf016fcd36e))
+
+
+
+
+
 ## [5.14.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.14.1...@pie-lib/charting@5.14.2) (2023-08-07)
 
 **Note:** Version bump only for package @pie-lib/charting

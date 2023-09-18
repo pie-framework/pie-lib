@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/translator@2.2.0...@pie-lib/translator@2.3.0) (2023-09-18)
+
+
+### Features
+
+* **translator, text-select:** add translations for new text-select legend PD-3162 ([20ee2c1](https://github.com/pie-framework/pie-lib/commit/20ee2c17873985fa06b4b58cf781742a5923b532))
+
+
+
+
+
 # [2.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/translator@2.1.1...@pie-lib/translator@2.2.0) (2023-08-07)
 
 

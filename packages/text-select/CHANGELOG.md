@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.12.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.11.3...@pie-lib/text-select@1.12.0) (2023-09-18)
+
+
+### Features
+
+* **translator, text-select:** add translations for new text-select legend PD-3162 ([20ee2c1](https://github.com/pie-framework/pie-lib/commit/20ee2c17873985fa06b4b58cf781742a5923b532))
+
+
+
+
+
 ## [1.11.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.11.2...@pie-lib/text-select@1.11.3) (2023-09-14)
 
 **Note:** Version bump only for package @pie-lib/text-select

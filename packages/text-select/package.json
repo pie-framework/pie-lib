@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "1.11.3",
+  "version": "1.12.0",
   "description": "Some react components for text selection",
   "keywords": [
     "react",
@@ -20,7 +20,7 @@
     "@pie-framework/parse-english": "^1.0.0",
     "@pie-lib/render-ui": "^4.15.2",
     "@pie-lib/style-utils": "^0.1.43",
-    "@pie-lib/translator": "^2.2.0",
+    "@pie-lib/translator": "^2.3.0",
     "classnames": "^2.2.6",
     "debug": "^4.1.1",
     "invariant": "^2.2.4",
