@@ -7,6 +7,23 @@ import ChartType from './chart-type';
 import { NumberTextFieldCustom } from '@pie-lib/config-ui';
 import { AlertDialog } from '@pie-lib/config-ui';
 
+export const resetValues = (data, updateModel, range, onChange, model) => {
+  (data || []).forEach((d) => {
+    const d_value_scaled = Math.round(d.value * 10);
+    const range_step_scaled = Math.round(range.step * 10);
+    const remainder_scaled = d_value_scaled % range_step_scaled;
+    const remainder = remainder_scaled / 10;
+
+    if (d.value > range.max || remainder !== 0) {
+      d.value = 0;
+    }
+  });
+
+  if (updateModel) {
+    onChange({ ...model, data });
+  }
+};
+
 const ConfigureChartPanel = (props) => {
   const {
     classes,
@@ -74,20 +91,6 @@ const ConfigureChartPanel = (props) => {
     setOpen(open);
   };
 
-  const resetValues = (data, updateModel) => {
-    (data || []).forEach((d) => {
-      const remainder = d.value - range.step * Math.floor(d.value / range.step);
-
-      if (d.value > range.max || remainder !== 0) {
-        d.value = 0;
-      }
-    });
-
-    if (updateModel) {
-      onChange({ ...model, data });
-    }
-  };
-
   const setPropertiesToFalse = (data, property) => {
     return data.map((obj) => {
       if (obj.hasOwnProperty(property)) {
@@ -108,8 +111,8 @@ const ConfigureChartPanel = (props) => {
       setPropertiesToFalse(data, 'editable');
     }
 
-    resetValues(data, updateModel);
-    resetValues(correctAnswer.data);
+    resetValues(data, updateModel, range, onChange, model);
+    resetValues(correctAnswer.data, false, range, onChange, model);
   };
 
   const setCategoryDefaultLabel = () => {
