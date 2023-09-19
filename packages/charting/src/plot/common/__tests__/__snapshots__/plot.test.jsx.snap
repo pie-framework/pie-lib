@@ -46,6 +46,7 @@ exports[`RawPlot snapshot renders 1`] = `
     onMouseLeave={[Function]}
   >
     <WithStyles(RawDragHandle)
+      color="var(--pie-primary-dark, #283593)"
       graphProps={
         Object {
           "domain": Object {

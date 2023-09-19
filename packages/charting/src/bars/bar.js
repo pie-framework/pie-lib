@@ -13,7 +13,6 @@ export class Bar extends React.Component {
 
   render() {
     const props = this.props;
-
     const { data, graphProps } = props;
     const { scale = {}, size = {} } = graphProps || {};
     const xBand = dataToXBand(scale.x, data, size.width, 'bar');

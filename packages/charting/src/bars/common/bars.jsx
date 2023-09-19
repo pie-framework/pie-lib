@@ -39,6 +39,16 @@ const hoverHistogramColors = [
   '#894A65',
 ];
 
+const calculateFillColor = (isHovered, barColor, index, hoverHistogramColors) => {
+  if (isHovered && barColor) {
+    return hoverHistogramColors[index % hoverHistogramColors.length];
+  }
+  if (isHovered) {
+    return color.primaryDark();
+  }
+  return barColor || null;
+};
+
 export class RawBar extends React.Component {
   static propTypes = {
     barColor: PropTypes.string,
@@ -104,11 +114,11 @@ export class RawBar extends React.Component {
       correctness,
       barColor,
       defineChart,
-      height,
     } = this.props;
     const { scale, range } = graphProps;
     const { dragValue, isHovered } = this.state;
 
+    const fillColor = calculateFillColor(isHovered, barColor, index, hoverHistogramColors);
     const v = Number.isFinite(dragValue) ? dragValue : value;
     const barWidth = xBand.bandwidth();
     const barHeight = scale.y(range.max - v);
@@ -127,21 +137,12 @@ export class RawBar extends React.Component {
           width={barWidth}
           height={barHeight}
           className={classes.bar}
-          style={
-            isHovered && barColor
-              ? { fill: hoverHistogramColors[index % hoverHistogramColors.length] }
-              : isHovered
-              ? { fill: color.primaryDark() }
-              : barColor
-              ? { fill: barColor }
-              : {}
-          }
+          style={{ fill: fillColor }}
         />
         <Component
           x={barX}
           y={v}
           defineChart={defineChart}
-          height={height}
           interactive={interactive}
           width={barWidth}
           onDrag={(v) => this.dragValue(value, v)}
@@ -149,7 +150,7 @@ export class RawBar extends React.Component {
           graphProps={graphProps}
           correctness={correctness}
           isHovered={isHovered}
-          color={barColor ? hoverHistogramColors[index % hoverHistogramColors.length] : color.primaryDark()}
+          color={fillColor}
         />
       </g>
     );
@@ -176,7 +177,7 @@ export class Bars extends React.Component {
   };
 
   render() {
-    const { data, graphProps, xBand, onChangeCategory, defineChart, histogram, height } = this.props;
+    const { data, graphProps, xBand, onChangeCategory, defineChart, histogram } = this.props;
 
     return (
       <Group>
@@ -185,7 +186,6 @@ export class Bars extends React.Component {
             value={d.value}
             interactive={defineChart || d.interactive}
             defineChart={defineChart}
-            height={height}
             label={d.label}
             xBand={xBand}
             index={index}

@@ -7,8 +7,7 @@ import { color } from '@pie-lib/render-ui';
 import { correct, incorrect, disabled } from './styles';
 import SwapVerticalCircleOutlinedIcon from '@mui/icons-material/SwapVerticalCircleOutlined';
 
-const ICON_Y_OFFSET = -23;
-const ICON_X_OFFSET = 45;
+const ICON_Y_OFFSET = -377;
 
 const RawDragHandle = ({
   x,
@@ -31,7 +30,7 @@ const RawDragHandle = ({
       {isHovered && !correctness && interactive && (
         <SwapVerticalCircleOutlinedIcon
           x={width / 4}
-          y={defineChart ? -377 : -330}
+          y={defineChart ? ICON_Y_OFFSET : ICON_Y_OFFSET + 47}
           width={width / 2}
           sx={{ color: color }}
         />

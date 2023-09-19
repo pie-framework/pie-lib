@@ -135,6 +135,7 @@ export class RawPlot extends React.Component {
             correctness={correctness}
             isHovered={isHovered}
             defineChart={defineChart}
+            color={color.primaryDark()}
           />
         </g>
       </React.Fragment>

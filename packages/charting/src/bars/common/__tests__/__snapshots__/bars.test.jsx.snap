@@ -46,11 +46,15 @@ exports[`RawBar snapshot renders 1`] = `
 >
   <P
     height={NaN}
-    style={Object {}}
+    style={
+      Object {
+        "fill": null,
+      }
+    }
     y={NaN}
   />
   <WithStyles(RawDragHandle)
-    color="var(--pie-primary-dark, #283593)"
+    color={null}
     graphProps={
       Object {
         "domain": Object {
