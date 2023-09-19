@@ -65,7 +65,18 @@ export class RawPlot extends React.Component {
   };
 
   render() {
-    const { graphProps, value, label, classes, xBand, index, CustomBarElement, interactive, correctness } = this.props;
+    const {
+      graphProps,
+      value,
+      label,
+      classes,
+      xBand,
+      index,
+      CustomBarElement,
+      interactive,
+      correctness,
+      defineChart,
+    } = this.props;
 
     const { scale, range, size } = graphProps;
     const { max } = range || {};
@@ -123,6 +134,7 @@ export class RawPlot extends React.Component {
             graphProps={graphProps}
             correctness={correctness}
             isHovered={isHovered}
+            defineChart={defineChart}
           />
         </g>
       </React.Fragment>
@@ -163,6 +175,7 @@ export class Plot extends React.Component {
             value={d.value}
             label={d.label}
             interactive={defineChart || d.interactive}
+            defineChart={defineChart}
             xBand={xBand}
             index={index}
             key={`bar-${d.label}-${d.value}-${index}`}

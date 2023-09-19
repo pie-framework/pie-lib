@@ -223,7 +223,7 @@ export class Chart extends React.Component {
 
     log('[render] common:', common);
 
-    const maskSize = { x: -10, y: -30, width: width + 20, height: height + 80 };
+    const maskSize = { x: -10, y: -55, width: width + 20, height: height + 80 };
     const { scale } = common.graphProps;
     const xBand = dataToXBand(scale.x, categories, width, chartType);
 
@@ -293,6 +293,7 @@ export class Chart extends React.Component {
             <ChartComponent
               {...common}
               data={categories}
+              height={rootCommon.graphProps.size.height}
               defineChart={defineChart}
               onChange={this.changeData}
               onChangeCategory={this.changeCategory}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
@@ -18,8 +18,10 @@ const RawDragHandle = ({
   classes,
   className,
   interactive,
+  defineChart,
   isHovered,
   correctness,
+  color,
   ...rest
 }) => {
   const { scale } = graphProps;
@@ -27,18 +29,14 @@ const RawDragHandle = ({
   return (
     <svg x={x} y={scale.y(y) - 10} width={width} overflow="visible">
       {isHovered && !correctness && interactive && (
-        <foreignObject x={ICON_X_OFFSET} y={ICON_Y_OFFSET} overflow="visible">
-          <SwapVerticalCircleOutlinedIcon sx={{ color: '#283593' }} fontSize="large" />
-        </foreignObject>
+        <SwapVerticalCircleOutlinedIcon
+          x={width / 4}
+          y={defineChart ? -377 : -330}
+          width={width / 2}
+          sx={{ color: color }}
+        />
       )}
-
-      <circle
-        cx={ICON_X_OFFSET - ICON_Y_OFFSET}
-        r={-ICON_Y_OFFSET}
-        width={width}
-        className={classNames(classes.transparentHandle, className)}
-        {...rest}
-      />
+      <circle cx={width / 2} r={width / 2} className={classNames(classes.transparentHandle, className)} {...rest} />
 
       {correctness && (
         <rect
