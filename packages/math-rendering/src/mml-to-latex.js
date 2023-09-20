@@ -1,2 +1,2 @@
-import { MathMLToLaTeX } from 'mathml-to-latex';
+import { MathMLToLaTeX } from '@pie-framework/mathml-to-latex';
 export default (mathml) => MathMLToLaTeX.convert(mathml);
