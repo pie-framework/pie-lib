@@ -240,8 +240,11 @@ export const serialization = {
       const newHtml = hasMathChild ? el.innerHTML : el.outerHTML;
 
       if (MathPlugin.mathMlOptions.mmlEditing) {
-        const htmlToUse = mmlToLatex(newHtml);
+        // todo fix this in mathml-to-latex
+        const htmlWithRemovedSpaces = newHtml.replaceAll("&nbsp;", " ");
+        const htmlToUse = mmlToLatex(htmlWithRemovedSpaces);
         const latex = htmlDecode(htmlToUse);
+        // todo fix this in mathml-to-latex
         const correctedLatex = fixLatexExpression(latex);
         const { unwrapped, wrapType } = unWrapMath(correctedLatex);
 
