@@ -48,7 +48,7 @@ export class EditorAndPad extends React.Component {
     layoutForKeyPad: PropTypes.object,
     maxResponseAreas: PropTypes.number,
     additionalKeys: PropTypes.array,
-    latex: PropTypes.string,
+    latex: PropTypes.string.isRequired,
     onAnswerBlockAdd: PropTypes.func,
     onFocus: PropTypes.func,
     onBlur: PropTypes.func,
