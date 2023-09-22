@@ -172,7 +172,6 @@ describe('MathPlugin', () => {
 });
 
 describe('CustomToolbarComp', () => {
-  let onDataChange;
   let onToolbarDone;
 
   const wrapper = (extras) => {
@@ -189,7 +188,6 @@ describe('CustomToolbarComp', () => {
         },
         change: jest.fn().mockReturnValue(mockChange),
       },
-      onDataChange,
       onToolbarDone,
     };
 
@@ -229,15 +227,6 @@ describe('CustomToolbarComp', () => {
       const w = wrapper();
       w.find(MathToolbar).prop('onDone')('oo');
       expect(onToolbarDone).toHaveBeenCalledWith(expect.anything(), false);
-    });
-  });
-
-  describe('onChange', () => {
-    it('calls onDataChange', () => {
-      onDataChange = jest.fn();
-      const w = wrapper();
-      w.find(MathToolbar).prop('onChange')('oo');
-      expect(onDataChange).toHaveBeenCalledWith('1', { latex: 'oo' });
     });
   });
 });

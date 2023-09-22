@@ -1,4 +1,4 @@
-import EditableHtml from '@pie-lib/editable-html';
+import EditableHtml, { ALL_PLUGINS } from '@pie-lib/editable-html';
 import grey from '@material-ui/core/colors/grey';
 import React from 'react';
 import _ from 'lodash';
@@ -16,6 +16,7 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import InputChooser from '../src/editable-html/input-chooser';
 import { hasText } from '@pie-lib/render-ui';
+import InlineDropdownToolbar from './inline-dropdown-toolbar';
 
 const log = debug('@pie-lib:editable-html:demo');
 const puppySrc = 'https://bit.ly/23yROY8';
@@ -31,7 +32,7 @@ const inputOptions = [
   {
     label: 'Latex \\(..\\)',
     html:
-      '<math xmlns="http://www.w3.org/1998/Math/MathML">  <mn>2</mn>  <mi>x</mi>  <mtext>&#xA0;</mtext>  <mo>&#x2264;</mo>  <mn>4</mn>  <mi>y</mi>  <mtext>&#xA0;</mtext>  <mo>+</mo>  <mtext>&#xA0;</mtext>  <mn>8</mn> <msqrt>    <mi>h</mi>  </msqrt></math>',
+      '<p>Which of these northern European countries are EU members? <math><mstack><msrow><mn>111</mn></msrow><msline/></mstack></math></p>',
   },
   {
     label: 'Latex $..$',
@@ -108,7 +109,7 @@ class RteDemo extends React.Component {
       markupText: html,
       hasText: true,
       mathEnabled: true,
-      languageCharactersProps: [],
+      languageCharactersProps: [{ language: 'spanish' }, { language: 'special' }],
     };
   }
 
@@ -318,7 +319,7 @@ class RteDemo extends React.Component {
             <FormControlLabel
               control={
                 <Checkbox
-                  checked={languageCharactersProps.filter((a) => a.language === 'spanish').length}
+                  checked={languageCharactersProps.filter((a) => a.language === 'spanish').length > 0}
                   onChange={(event) =>
                     this.setState({
                       languageCharactersProps: event.target.checked
@@ -333,7 +334,7 @@ class RteDemo extends React.Component {
             <FormControlLabel
               control={
                 <Checkbox
-                  checked={languageCharactersProps.filter((a) => a.language === 'special').length}
+                  checked={languageCharactersProps.filter((a) => a.language === 'special').length > 0}
                   onChange={(event) =>
                     this.setState({
                       languageCharactersProps: event.target.checked
@@ -348,6 +349,7 @@ class RteDemo extends React.Component {
           </FormGroup>
         </div>
         <EditableHtml
+          activePlugins={ALL_PLUGINS}
           markup={markup}
           onChange={this.onChange}
           imageSupport={imageSupport}
@@ -361,6 +363,34 @@ class RteDemo extends React.Component {
             math: {
               disabled: !mathEnabled,
               keypadMode: this.state.keypadMode,
+            },
+          }}
+          responseAreaProps={{
+            type: 'inline-dropdown',
+            options: {
+              duplicates: true,
+            },
+            maxResponseAreas: 3,
+            respAreaToolbar: (node, value, onToolbarDone) => {
+              let { respAreaChoices } = this.state;
+              const { data: nodeData } = node;
+
+              respAreaChoices = respAreaChoices || [];
+
+              return () => (
+                <InlineDropdownToolbar
+                  onAddChoice={this.onAddChoice}
+                  onCheck={this.onCheck}
+                  onRemoveChoice={(index) => this.onRemoveChoice(nodeData.index, index)}
+                  onSelectChoice={(index) => this.onSelectChoice(nodeData.index, index)}
+                  node={node}
+                  value={value}
+                  onToolbarDone={onToolbarDone}
+                  choices={respAreaChoices[nodeData.index]}
+                  spellCheck={false}
+                  uploadSoundSupport={null}
+                />
+              );
             },
           }}
           width={width}
