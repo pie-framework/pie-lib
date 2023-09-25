@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.15.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.15.0...@pie-lib/charting@5.15.1) (2023-09-25)
+
+
+### Bug Fixes
+
+* **charting:** add @mui/icons-material to package json PD-2790 ([0262857](https://github.com/pie-framework/pie-lib/commit/026285728f998e3fe31ec43c77e99f2311f9ad22))
+
+
+
+
+
 # [5.15.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.14.3...@pie-lib/charting@5.15.0) (2023-09-25)
 
 
