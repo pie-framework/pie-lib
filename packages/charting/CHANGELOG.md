@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.15.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.14.3...@pie-lib/charting@5.15.0) (2023-09-25)
+
+
+### Bug Fixes
+
+* **charting:** set labelWidth to prevent outline from intersecting InputLabel for the ChartType menu PD-3166 ([ff9ca2b](https://github.com/pie-framework/pie-lib/commit/ff9ca2b9812d0afd209edccac2feecac396111cc))
+
+
+### Features
+
+* **charting:** add hover effect for plot and bars  PD-2790 ([af0d9ba](https://github.com/pie-framework/pie-lib/commit/af0d9bab03fa8146299bf0a1947dbe418e306f85))
+* **charting:** adjust y-coordinate in maskSize for better chart fitting after adding new design, tweaks in design PD-2790 ([0edf288](https://github.com/pie-framework/pie-lib/commit/0edf2880c8c8c0e0e51df080aa582d071f0f1e52))
+* **charting:** make style dynamic for drag icon PD-2790 ([aed8c81](https://github.com/pie-framework/pie-lib/commit/aed8c818cbc70910a7e31566c94dd731d068efa1))
+* **charting:** Replace drag-enabled horizontal bars with widget for author and gather mode PD-2790, refactor RawDragHandle component ([e0a369a](https://github.com/pie-framework/pie-lib/commit/e0a369ad2aaf9cf5d3aa3ac061c23316443b35fb))
+
+
+
+
+
 ## [5.14.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.14.2...@pie-lib/charting@5.14.3) (2023-09-18)
 
 
