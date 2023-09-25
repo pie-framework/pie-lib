@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.0.0...@pie-lib/demo@7.0.1) (2023-09-20)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+# [7.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.12.27...@pie-lib/demo@7.0.0) (2023-09-20)
+
+
+### Bug Fixes
+
+* update mathml-to-latex version ([1d101d2](https://github.com/pie-framework/pie-lib/commit/1d101d22298bd480a5aec638e4c9708d5aa52ce4))
+
+
+### BREAKING CHANGES
+
+* updated mathml-to-latex version.
+
+
+
+
+
 ## [6.12.27](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@6.12.26...@pie-lib/demo@6.12.27) (2023-09-18)
 
 **Note:** Version bump only for package @pie-lib/demo
