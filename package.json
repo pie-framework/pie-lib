@@ -20,7 +20,8 @@
     "build": "scripts/build build",
     "postinstall": "lerna bootstrap",
     "prepush": "npm run test",
-    "prepack": "scripts/build changelog"
+    "prepack": "scripts/build changelog",
+    "run-mathml": "cd node_modules/ && yarn link \"@pie-framework/mathml-to-latex\" && cd .. && ./scripts/dev"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
