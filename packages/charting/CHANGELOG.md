@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.15.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.15.1...@pie-lib/charting@5.15.2) (2023-09-25)
+
+
+### Bug Fixes
+
+* add required packages for charting to work ([c7af164](https://github.com/pie-framework/pie-lib/commit/c7af16427245d0c0c5c041e296a1cfdf034b7b64))
+
+
+
+
+
 ## [5.15.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.15.0...@pie-lib/charting@5.15.1) (2023-09-25)
 
 
