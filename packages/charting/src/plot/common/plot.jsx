@@ -32,8 +32,17 @@ export class RawPlot extends React.Component {
     super(props);
     this.state = {
       dragValue: undefined,
+      isHovered: false,
     };
   }
+
+  handleMouseEnter = () => {
+    this.setState({ isHovered: true });
+  };
+
+  handleMouseLeave = () => {
+    this.setState({ isHovered: false });
+  };
 
   setDragValue = (dragValue) => this.setState({ dragValue });
 
@@ -56,11 +65,22 @@ export class RawPlot extends React.Component {
   };
 
   render() {
-    const { graphProps, value, label, classes, xBand, index, CustomBarElement, interactive, correctness } = this.props;
+    const {
+      graphProps,
+      value,
+      label,
+      classes,
+      xBand,
+      index,
+      CustomBarElement,
+      interactive,
+      correctness,
+      defineChart,
+    } = this.props;
 
     const { scale, range, size } = graphProps;
     const { max } = range || {};
-    const { dragValue } = this.state;
+    const { dragValue, isHovered } = this.state;
 
     const v = Number.isFinite(dragValue) ? dragValue : value;
     const barWidth = xBand.bandwidth();
@@ -81,29 +101,43 @@ export class RawPlot extends React.Component {
 
     return (
       <React.Fragment>
-        {values.map((index) =>
-          CustomBarElement({
-            index,
-            pointDiameter,
-            barX,
-            barWidth,
-            pointHeight,
-            label,
-            value,
-            classes,
-            scale,
-          }),
-        )}
-        <Component
-          x={barX}
-          y={v}
-          interactive={interactive}
-          width={barWidth}
-          onDrag={(v) => this.dragValue(value, v)}
-          onDragStop={this.dragStop}
-          graphProps={graphProps}
-          correctness={correctness}
-        />
+        <g onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
+          {isHovered && (
+            <rect
+              x={barX}
+              y={scale.y(v)}
+              width={barWidth}
+              height={values?.length ? pointHeight * values.length : 0}
+              style={{ fill: '#E5E8F5' }}
+            />
+          )}
+          {values.map((index) =>
+            CustomBarElement({
+              index,
+              pointDiameter,
+              barX,
+              barWidth,
+              pointHeight,
+              label,
+              value,
+              classes,
+              scale,
+            }),
+          )}
+          <Component
+            x={barX}
+            y={v}
+            interactive={interactive}
+            width={barWidth}
+            onDrag={(v) => this.dragValue(value, v)}
+            onDragStop={this.dragStop}
+            graphProps={graphProps}
+            correctness={correctness}
+            isHovered={isHovered}
+            defineChart={defineChart}
+            color={color.primaryDark()}
+          />
+        </g>
       </React.Fragment>
     );
   }
@@ -142,6 +176,7 @@ export class Plot extends React.Component {
             value={d.value}
             label={d.label}
             interactive={defineChart || d.interactive}
+            defineChart={defineChart}
             xBand={xBand}
             index={index}
             key={`bar-${d.label}-${d.value}-${index}`}
