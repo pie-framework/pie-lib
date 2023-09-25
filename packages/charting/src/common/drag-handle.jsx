@@ -1,45 +1,45 @@
 import React from 'react';
-import classNames from 'classnames';
-import { gridDraggable, utils, types } from '@pie-lib/plot';
-import { withStyles } from '@material-ui/core/styles/index';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import { withStyles } from '@material-ui/core/styles';
+import { gridDraggable, utils, types } from '@pie-lib/plot';
 import { color } from '@pie-lib/render-ui';
 import { correct, incorrect, disabled } from './styles';
+import SwapVerticalCircleOutlinedIcon from '@mui/icons-material/SwapVerticalCircleOutlined';
 
-export class RawDragHandle extends React.Component {
-  static propTypes = {
-    x: PropTypes.number.isRequired,
-    y: PropTypes.number.isRequired,
-    width: PropTypes.number,
-    graphProps: types.GraphPropsType.isRequired,
-    classes: PropTypes.object.isRequired,
-    className: PropTypes.string,
-    interactive: PropTypes.bool,
-    correctness: PropTypes.shape({
-      value: PropTypes.string,
-      label: PropTypes.string,
-    }),
-  };
+const ICON_Y_OFFSET = -377;
 
-  render() {
-    const { x, y, width, graphProps, classes, className, interactive, correctness, ...rest } = this.props;
-    const { scale } = graphProps;
+const RawDragHandle = ({
+  x,
+  y,
+  width,
+  graphProps,
+  classes,
+  className,
+  interactive,
+  defineChart,
+  isHovered,
+  correctness,
+  color,
+  ...rest
+}) => {
+  const { scale } = graphProps;
 
-    return (
-      <svg
-        x={x}
-        y={scale.y(y) - 10}
-        width={width}
-        overflow="visible"
-        className={classNames(
-          classes.handleContainer,
-          className,
-          !interactive && 'non-interactive',
-          interactive && correctness && correctness.value,
-        )}
-      >
-        <rect y={-10} width={width} className={classNames(classes.transparentHandle, className)} {...rest} />
+  return (
+    <svg x={x} y={scale.y(y) - 10} width={width} overflow="visible">
+      {isHovered && !correctness && interactive && (
+        <SwapVerticalCircleOutlinedIcon
+          x={width / 4}
+          y={defineChart ? ICON_Y_OFFSET : ICON_Y_OFFSET + 47}
+          width={width / 2}
+          sx={{ color: color }}
+        />
+      )}
+      <circle cx={width / 2} r={width / 2} className={classNames(classes.transparentHandle, className)} {...rest} />
+
+      {correctness && (
         <rect
+          y={10}
           width={width}
           className={classNames(
             classes.handle,
@@ -50,16 +50,30 @@ export class RawDragHandle extends React.Component {
           )}
           {...rest}
         />
-        <rect y={10} width={width} className={classNames(classes.transparentHandle, className)} {...rest} />
-      </svg>
-    );
-  }
-}
+      )}
+    </svg>
+  );
+};
+
+RawDragHandle.propTypes = {
+  x: PropTypes.number.isRequired,
+  y: PropTypes.number.isRequired,
+  width: PropTypes.number,
+  graphProps: types.GraphPropsType.isRequired,
+  classes: PropTypes.object.isRequired,
+  className: PropTypes.string,
+  interactive: PropTypes.bool,
+  isHovered: PropTypes.bool,
+  correctness: PropTypes.shape({
+    value: PropTypes.string,
+    label: PropTypes.string,
+  }),
+};
 
 export const DragHandle = withStyles(() => ({
   handle: {
     height: '10px',
-    fill: color.secondary(),
+    fill: 'transparent',
     transition: 'fill 200ms linear, height 200ms linear',
     '&.correct': correct('fill'),
     '&.incorrect': incorrect('fill'),

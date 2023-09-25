@@ -24,6 +24,30 @@ const histogramColors = [
   '#F0E442',
   '#E287B2',
 ];
+const hoverHistogramColors = [
+  '#003754',
+  '#975616',
+  '#00503B',
+  '#225982',
+  '#1F687D',
+  '#825E6F',
+  '#996428',
+  '#255E44',
+  '#8A331F',
+  '#167A7A',
+  '#91862D',
+  '#894A65',
+];
+
+const calculateFillColor = (isHovered, barColor, index, hoverHistogramColors) => {
+  if (isHovered && barColor) {
+    return hoverHistogramColors[index % hoverHistogramColors.length];
+  }
+  if (isHovered) {
+    return color.primaryDark();
+  }
+  return barColor || null;
+};
 
 export class RawBar extends React.Component {
   static propTypes = {
@@ -46,8 +70,17 @@ export class RawBar extends React.Component {
     super(props);
     this.state = {
       dragValue: undefined,
+      isHovered: false,
     };
   }
+
+  handleMouseEnter = () => {
+    this.setState({ isHovered: true });
+  };
+
+  handleMouseLeave = () => {
+    this.setState({ isHovered: false });
+  };
 
   setDragValue = (dragValue) => this.setState({ dragValue });
 
@@ -70,10 +103,22 @@ export class RawBar extends React.Component {
   };
 
   render() {
-    const { graphProps, value, label, classes, xBand, index, interactive, correctness, barColor } = this.props;
+    const {
+      graphProps,
+      value,
+      label,
+      classes,
+      xBand,
+      index,
+      interactive,
+      correctness,
+      barColor,
+      defineChart,
+    } = this.props;
     const { scale, range } = graphProps;
-    const { dragValue } = this.state;
+    const { dragValue, isHovered } = this.state;
 
+    const fillColor = calculateFillColor(isHovered, barColor, index, hoverHistogramColors);
     const v = Number.isFinite(dragValue) ? dragValue : value;
     const barWidth = xBand.bandwidth();
     const barHeight = scale.y(range.max - v);
@@ -85,26 +130,29 @@ export class RawBar extends React.Component {
     const Component = interactive ? DraggableHandle : DragHandle;
 
     return (
-      <React.Fragment>
+      <g onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
         <VxBar
           x={barX}
           y={scale.y(yy)}
           width={barWidth}
           height={barHeight}
           className={classes.bar}
-          style={barColor && { fill: barColor }}
+          style={{ fill: fillColor }}
         />
         <Component
           x={barX}
           y={v}
+          defineChart={defineChart}
           interactive={interactive}
           width={barWidth}
           onDrag={(v) => this.dragValue(value, v)}
           onDragStop={this.dragStop}
           graphProps={graphProps}
           correctness={correctness}
+          isHovered={isHovered}
+          color={fillColor}
         />
-      </React.Fragment>
+      </g>
     );
   }
 }
@@ -112,6 +160,9 @@ export class RawBar extends React.Component {
 const Bar = withStyles(() => ({
   bar: {
     fill: color.primaryLight(),
+    '&:hover': {
+      fill: color.primaryDark(),
+    },
   },
 }))(RawBar);
 
@@ -134,6 +185,7 @@ export class Bars extends React.Component {
           <Bar
             value={d.value}
             interactive={defineChart || d.interactive}
+            defineChart={defineChart}
             label={d.label}
             xBand={xBand}
             index={index}
