@@ -166,3 +166,33 @@ export const getTopPadding = (barWidth) => {
 
   return 0;
 };
+
+// This function calculates the transformation scale for SVG and the icon's vertical distance from its category
+export const getScale = (width) => {
+  let scale, deltay;
+
+  if (width > 91) {
+    scale = 1.3;
+    deltay = -55;
+  } else if (width > 45) {
+    scale = 1.1;
+    deltay = -45;
+  } else if (width > 40) {
+    scale = 0.5 + (width - 34) * 0.02;
+    deltay = -25;
+  } else if (width > 30) {
+    scale = 0.5 + (width - 34) * 0.02;
+    deltay = -20;
+  } else {
+    scale = 0.5 * Math.pow(0.98, 34 - width); // 0.98 is the reduction factor. Adjust to control scaling.
+    deltay = -15;
+  }
+
+  return { scale, deltay };
+};
+
+export const getAdjustedX = (width, scaleValue) => {
+  const innerWidthOriginal = 57;
+  const effectiveInnerWidth = innerWidthOriginal * scaleValue;
+  return (width - effectiveInnerWidth) / 2;
+};
