@@ -23,7 +23,7 @@ const RawDragHandle = ({
   ...rest
 }) => {
   const { scale } = graphProps;
-  const scaleValue = getScale(width);
+  const scaleValue = getScale(width)?.scale;
 
   return (
     <svg x={x} y={scale.y(y) - 10} width={width} overflow="visible">

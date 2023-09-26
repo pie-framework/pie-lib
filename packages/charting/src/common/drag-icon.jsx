@@ -1,10 +1,10 @@
 import React from 'react';
-import { getAdjustedX } from '../utils';
+import { getAdjustedX, getScale } from '../utils';
 
 const DragIcon = ({ width, scaleValue, color }) => (
   <svg
     x={getAdjustedX(width, scaleValue)}
-    y={-width / 2 - 5}
+    y={getScale(width)?.deltay}
     color={color}
     overflow="visible"
     filter="url(#svgDropShadow)"
