@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.15.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.15.2...@pie-lib/charting@5.15.3) (2023-09-26)
+
+
+### Bug Fixes
+
+* **charting:** adjust icon for the drag handle PD-2790 ([fe670d7](https://github.com/pie-framework/pie-lib/commit/fe670d7a04f44da5c93dadbeec41b753ce50f9f6))
+
+
+
+
+
 ## [5.15.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.15.1...@pie-lib/charting@5.15.2) (2023-09-25)
 
 
