@@ -5,9 +5,8 @@ import { withStyles } from '@material-ui/core/styles';
 import { gridDraggable, utils, types } from '@pie-lib/plot';
 import { color } from '@pie-lib/render-ui';
 import { correct, incorrect, disabled } from './styles';
-import SwapVerticalCircleOutlinedIcon from '@mui/icons-material/SwapVerticalCircleOutlined';
-
-const ICON_Y_OFFSET = -377;
+import { getScale } from '../utils';
+import DragIcon from './drag-icon';
 
 const RawDragHandle = ({
   x,
@@ -24,17 +23,11 @@ const RawDragHandle = ({
   ...rest
 }) => {
   const { scale } = graphProps;
+  const scaleValue = getScale(width);
 
   return (
     <svg x={x} y={scale.y(y) - 10} width={width} overflow="visible">
-      {isHovered && !correctness && interactive && (
-        <SwapVerticalCircleOutlinedIcon
-          x={width / 4}
-          y={defineChart ? ICON_Y_OFFSET : ICON_Y_OFFSET + 47}
-          width={width / 2}
-          sx={{ color: color }}
-        />
-      )}
+      {isHovered && !correctness && interactive && <DragIcon width={width} scaleValue={scaleValue} color={color} />}
       <circle cx={width / 2} r={width / 2} className={classNames(classes.transparentHandle, className)} {...rest} />
 
       {correctness && (
@@ -68,6 +61,7 @@ RawDragHandle.propTypes = {
     value: PropTypes.string,
     label: PropTypes.string,
   }),
+  color: PropTypes.string,
 };
 
 export const DragHandle = withStyles(() => ({

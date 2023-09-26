@@ -166,3 +166,17 @@ export const getTopPadding = (barWidth) => {
 
   return 0;
 };
+
+export const getScale = (width) => {
+  if (width > 91) return 1.3;
+  if (width > 70) return 1.1;
+  if (width > 34) return 0.5 + (width - 34) * 0.02;
+
+  return 0.5 * Math.pow(0.98, 34 - width); // 0.98 is the reduction factor. Adjust to control scaling.
+};
+
+export const getAdjustedX = (width, scaleValue) => {
+  const innerWidthOriginal = 57;
+  const effectiveInnerWidth = innerWidthOriginal * scaleValue;
+  return (width - effectiveInnerWidth) / 2;
+};
