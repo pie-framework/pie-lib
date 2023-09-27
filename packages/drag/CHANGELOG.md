@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.2.4...@pie-lib/drag@2.2.5) (2023-09-27)
+
+
+### Bug Fixes
+
+* add required packages ([b0b6855](https://github.com/pie-framework/pie-lib/commit/b0b6855418a988ed6ea911c97425b89fbab2794d))
+
+
+
+
+
 ## [2.2.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.2.3...@pie-lib/drag@2.2.4) (2023-08-07)
 
 
