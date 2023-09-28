@@ -4,7 +4,7 @@ import cloneDeep from 'lodash/cloneDeep';
 import { BasePoint } from '../point';
 import { types, utils, gridDraggable, trig } from '@pie-lib/plot';
 import PropTypes from 'prop-types';
-import { disabled, correct, incorrect } from '../styles';
+import { disabled, correct, incorrect, missing } from '../styles';
 import ReactDOM from 'react-dom';
 import MarkLabel from '../../../mark-label';
 import isEmpty from 'lodash/isEmpty';
@@ -401,5 +401,8 @@ export const styles = {
   }),
   incorrect: (theme, key) => ({
     ...incorrect(key),
+  }),
+  missing: (theme, key) => ({
+    ...missing(key),
   }),
 };

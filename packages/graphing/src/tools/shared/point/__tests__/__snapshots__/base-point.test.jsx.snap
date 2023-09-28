@@ -8,6 +8,7 @@ exports[`BasePoint snapshot renders 1`] = `
       "correct": "RawBp-correct-3",
       "disabled": "RawBp-disabled-2",
       "incorrect": "RawBp-incorrect-4",
+      "missing": "RawBp-missing-5",
       "point": "RawBp-point-1",
     }
   }

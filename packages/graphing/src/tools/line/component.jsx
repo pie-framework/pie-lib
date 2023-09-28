@@ -16,6 +16,8 @@ const lineStyles = (theme) => ({
   correctArrow: styles.correct(theme),
   incorrect: styles.incorrect(theme, 'stroke'),
   incorrectArrow: styles.incorrect(theme),
+  missing: styles.missing(theme, 'stroke'),
+  missingArrow: styles.missing(theme),
 });
 
 export const ArrowedLine = (props) => {

@@ -8,6 +8,7 @@ exports[`ArrowPoint snapshot renders 1`] = `
       "correct": "RawArrow-correct-3",
       "disabled": "RawArrow-disabled-2",
       "incorrect": "RawArrow-incorrect-4",
+      "missing": "RawArrow-missing-5",
       "point": "RawArrow-point-1",
     }
   }

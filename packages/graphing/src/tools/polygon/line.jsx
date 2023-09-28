@@ -5,7 +5,7 @@ import { types, gridDraggable } from '@pie-lib/plot';
 import { color } from '@pie-lib/render-ui';
 import * as utils from '../../utils';
 import classNames from 'classnames';
-import { correct, disabled, incorrect } from '../shared/styles';
+import { correct, disabled, incorrect, missing } from '../shared/styles';
 
 class RawLine extends React.Component {
   static propTypes = {
@@ -55,6 +55,7 @@ export const Line = withStyles(() => ({
   },
   correct: correct('stoke'),
   incorrect: incorrect('stroke'),
+  missing: missing('stroke'),
 }))(RawLine);
 
 export default gridDraggable({
