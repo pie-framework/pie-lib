@@ -30,10 +30,25 @@ const RawDragHandle = ({
       {isHovered && !correctness && interactive && <DragIcon width={width} scaleValue={scaleValue} color={color} />}
       <circle cx={width / 2} r={width / 2} className={classNames(classes.transparentHandle, className)} {...rest} />
 
+      <defs>
+        <filter id="bottomShadow" x="0%" y="0%" width="100%" height="200%">
+          <feOffset result="offOut" in="SourceAlpha" dx="0" dy="5" />
+          <feGaussianBlur result="blurOut" in="offOut" stdDeviation="0 5" />
+          <feComponentTransfer>
+            <feFuncA type="linear" slope="0.2" />
+          </feComponentTransfer>
+          <feMerge>
+            <feMergeNode in="blurOut" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+
       {correctness && (
         <rect
           y={10}
           width={width}
+          filter="url(#bottomShadow)"
           className={classNames(
             classes.handle,
             'handle',
