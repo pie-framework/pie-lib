@@ -11,6 +11,7 @@ const lineStyles = (theme) => ({
   disabled: styles.disabled(theme),
   correct: styles.correct(theme, 'stroke'),
   incorrect: styles.incorrect(theme, 'stroke'),
+  missing: styles.missing(theme, 'stroke'),
 });
 export const Line = (props) => {
   const { className, classes, correctness, disabled, graphProps, from, to, ...rest } = props;
