@@ -88,14 +88,19 @@ const ConfigureChartPanel = (props) => {
   );
 
   const handleAlertDialog = (openStatus, callback) => {
-    setAlertDialog((prevState) => ({
-      ...prevState,
-      open: openStatus,
-    }));
+    setAlertDialog(
+      (prevState) => ({
+        ...prevState,
+        open: openStatus,
+      }),
+      () => {
+        if (callback) {
+          callback();
+        }
+      },
+    );
+
     setOpen(openStatus);
-    if (callback) {
-      callback();
-    }
   };
 
   const setPropertiesToFalse = (data, property) => {
