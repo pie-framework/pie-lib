@@ -36,7 +36,13 @@ const ConfigureChartPanel = (props) => {
     availableChartTypes = {},
     chartTypeLabel,
   } = props;
-  const [alertDialog, setAlertDialog] = useState(false);
+  const [alertDialog, setAlertDialog] = useState({
+    open: false,
+    title: '',
+    text: '',
+    onClose: null,
+    onConfirm: null,
+  });
   const [open, setOpen] = useState(false);
   const [rangeKey, setRangeKey] = useState('');
   const [resetValue, setResetValue] = useState(0);
@@ -81,14 +87,15 @@ const ConfigureChartPanel = (props) => {
     </div>
   );
 
-  const handleAlertDialog = (open, callback) => {
-    setAlertDialog(
-      {
-        alertDialog: open,
-      },
-      callback,
-    );
-    setOpen(open);
+  const handleAlertDialog = (openStatus, callback) => {
+    setAlertDialog((prevState) => ({
+      ...prevState,
+      open: openStatus,
+    }));
+    setOpen(openStatus);
+    if (callback) {
+      callback();
+    }
   };
 
   const setPropertiesToFalse = (data, property) => {
