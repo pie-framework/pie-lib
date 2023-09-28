@@ -11,6 +11,7 @@ exports[`LinePath snapshot renders 1`] = `
       "drawLine": "RawLinePath-drawLine-1",
       "incorrect": "RawLinePath-incorrect-6",
       "line": "RawLinePath-line-2",
+      "missing": "RawLinePath-missing-7",
     }
   }
   from={

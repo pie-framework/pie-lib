@@ -9,6 +9,7 @@ exports[`Line snapshot renders 1`] = `
       "disabled": "RawLine-disabled-2",
       "incorrect": "RawLine-incorrect-4",
       "line": "RawLine-line-1",
+      "missing": "RawLine-missing-5",
     }
   }
   from={Object {}}
