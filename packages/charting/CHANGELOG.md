@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.15.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.15.4...@pie-lib/charting@5.15.5) (2023-09-28)
+
+
+### Bug Fixes
+
+* **charting:** add drop shadow to evaluate bars PD-2790 ([328c730](https://github.com/pie-framework/pie-lib/commit/328c7308d026ca6e00575d47bdfaf1d9e4779d16))
+
+
+
+
+
 ## [5.15.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.15.3...@pie-lib/charting@5.15.4) (2023-09-28)
 
 

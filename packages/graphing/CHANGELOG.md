@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.14.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.14.17...@pie-lib/graphing@2.14.18) (2023-09-28)
+
+
+### Bug Fixes
+
+* **graphing:** use red color to indicate a missing graph object PD-3209 ([250b350](https://github.com/pie-framework/pie-lib/commit/250b3509e7f10889fbbf39fd5d0dae4d0a5cf507))
+
+
+
+
+
 ## [2.14.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.14.16...@pie-lib/graphing@2.14.17) (2023-09-27)
 
 **Note:** Version bump only for package @pie-lib/graphing
