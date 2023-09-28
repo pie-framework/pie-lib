@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.15.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.15.3...@pie-lib/charting@5.15.4) (2023-09-28)
+
+
+### Bug Fixes
+
+* **charting:** fix modal warnings ([34dbf3b](https://github.com/pie-framework/pie-lib/commit/34dbf3b04845773d23aa7c91a80fab57e1e78cd0))
+* **charting:** limit number of categories in Define Initial Chart Attributes to 20 PD-3128 ([b0da731](https://github.com/pie-framework/pie-lib/commit/b0da731a619c9d13a8b12e16a6e81dc924261396))
+
+
+
+
+
 ## [5.15.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.15.2...@pie-lib/charting@5.15.3) (2023-09-26)
 
 
