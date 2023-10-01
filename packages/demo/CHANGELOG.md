@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.0.11...@pie-lib/demo@7.0.12) (2023-10-01)
+
+
+### Bug Fixes
+
+* revert mathml-to-latex version as it seems to break math rendering ([46e841c](https://github.com/pie-framework/pie-lib/commit/46e841c00c2a04ff0e3442625870b3b457571a8e))
+
+
+
+
+
 ## [7.0.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.0.10...@pie-lib/demo@7.0.11) (2023-09-28)
 
 **Note:** Version bump only for package @pie-lib/demo
