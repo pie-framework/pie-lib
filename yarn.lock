@@ -2666,7 +2666,7 @@
     react-dnd "^11.1.3"
     react-dnd-html5-backend "^11.1.3"
 
-"@pie-lib/math-rendering@^2.4.0":
+"@pie-lib/math-rendering@2.5.18", "@pie-lib/math-rendering@^2.4.0":
   version "2.5.18"
   resolved "https://registry.yarnpkg.com/@pie-lib/math-rendering/-/math-rendering-2.5.18.tgz#dd6d5c9c31418e4c9cfde370c96f4b372ebe97cd"
   integrity sha512-HP/u8IaOJZzgHX/lQhCIUl0K8Dt1geO+ZvwFYXkWR2P58Uw1EeomLwyKZyXEZ4xL0iF1QpB8OyQGT280Qgqx0w==
