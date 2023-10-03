@@ -9,7 +9,6 @@ import { bandKey, getTickValues, getRotateAngle } from './utils';
 import MarkLabel from './mark-label';
 import Checkbox from '@material-ui/core/Checkbox';
 
-const displayedErrors = new Set();
 export class TickComponent extends React.Component {
   static propTypes = {
     defineChart: PropTypes.bool,
@@ -148,16 +147,6 @@ export class TickComponent extends React.Component {
 
     const longestLabel = (longestCategory && longestCategory.label) || '';
 
-    let renderError = null;
-    if (error && error[index] && !displayedErrors.has(error[index])) {
-      displayedErrors.add(error[index]);
-      renderError = (
-        <text className={classes.error} x={x} y={y + 23} height={4}>
-          {error[index]}
-        </text>
-      );
-    }
-
     return (
       <g>
         <foreignObject
@@ -193,17 +182,16 @@ export class TickComponent extends React.Component {
             barWidth={barWidth}
             rotate={rotate}
             correctness={correctness}
-            error={error && error[index]}
+            error={error && (error[index] || error[index] == '')}
           />
         </foreignObject>
-        {/* 
+
         {error && error[index] && (
           <text className={classes.error} x={x} y={y + 23} height={4}>
             {error[index]}
           </text>
-        )} */}
+        )}
 
-        {renderError}
         {deletable && !correctness && (
           <line x1={x} y1={0} x2={x} y2={y + 4 + top} className={classes.dottedLine} strokeDasharray="4 2" />
         )}
