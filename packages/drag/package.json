@@ -6,7 +6,7 @@
   "module": "src/index.js",
   "dependencies": {
     "@material-ui/core": "^3.8.3",
-    "@pie-lib/math-rendering": "^3.2.1",
+    "@pie-lib/math-rendering": "2.5.18",
     "@pie-lib/render-ui": "^4.15.8",
     "classnames": "^2.2.6",
     "lodash": "^4.17.11",
