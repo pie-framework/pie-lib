@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.0.12...@pie-lib/demo@7.0.13) (2023-10-03)
+
+
+### Bug Fixes
+
+* revert to pie-lib/math-rendering that what working ([25660ea](https://github.com/pie-framework/pie-lib/commit/25660ea6595e800a71c5494bd3bb9eecd3609a5a))
+
+
+
+
+
 ## [7.0.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.0.11...@pie-lib/demo@7.0.12) (2023-10-01)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.13.46](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.13.45...@pie-lib/mask-markup@1.13.46) (2023-10-03)
+
+
+### Bug Fixes
+
+* revert to pie-lib/math-rendering that what working ([25660ea](https://github.com/pie-framework/pie-lib/commit/25660ea6595e800a71c5494bd3bb9eecd3609a5a))
+
+
+
+
+
 ## [1.13.45](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.13.44...@pie-lib/mask-markup@1.13.45) (2023-10-01)
 
 **Note:** Version bump only for package @pie-lib/mask-markup

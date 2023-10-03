@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.2.8...@pie-lib/drag@2.2.9) (2023-10-03)
+
+
+### Bug Fixes
+
+* revert to pie-lib/math-rendering that what working ([25660ea](https://github.com/pie-framework/pie-lib/commit/25660ea6595e800a71c5494bd3bb9eecd3609a5a))
+
+
+
+
+
 ## [2.2.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.2.7...@pie-lib/drag@2.2.8) (2023-10-01)
 
 **Note:** Version bump only for package @pie-lib/drag
