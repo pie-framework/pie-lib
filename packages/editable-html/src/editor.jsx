@@ -339,7 +339,10 @@ export class Editor extends React.Component {
     // The cursor is on a zero width element and when that is placed near void elements, it is not visible
     // so we increase the width to at least 2px in order for the user to see it
 
-    if (this.state.isHtmlMode !== prevState.isHtmlMode || (this.state.isHtmlMode && this.state.isEdited)) {
+    if (
+      this.state.isHtmlMode !== prevState.isHtmlMode ||
+      (this.state.isHtmlMode && !prevState.isEdited && this.state.isEdited)
+    ) {
       this.handlePlugins(this.props);
       this.onEditingDone();
     }
@@ -568,7 +571,11 @@ export class Editor extends React.Component {
       this.setState({ isEdited: false });
     }
 
-    if (this.state.isHtmlMode && !isEqual(this.state.value.document.text, value.document.text)) {
+    if (
+      this.state.isHtmlMode &&
+      !this.state.isEdited &&
+      !isEqual(this.state.value.document.text, value.document.text)
+    ) {
       this.setState({ isEdited: true });
     }
 
