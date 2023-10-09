@@ -146,7 +146,7 @@ export class Chart extends React.Component {
   addCategory = () => {
     const { onDataChange, data, categoryDefaultLabel, defineChart, categoryDefaults, language } = this.props;
 
-    if (defineChart && data.length > 19) {
+    if (data.length > 19) {
       this.setState({
         dialog: {
           open: true,
