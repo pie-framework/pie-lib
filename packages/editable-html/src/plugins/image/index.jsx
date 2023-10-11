@@ -24,8 +24,12 @@ export default function ImagePlugin(opts) {
       });
 
       const change = value.change().insertInline(inline);
+
       onChange(change);
-      opts.insertImageRequested((getValue) => new InsertImageHandler(inline, getValue, onChange));
+      opts.insertImageRequested(
+        inline,
+        (onFinish, getValue) => new InsertImageHandler(inline, onFinish, getValue, onChange),
+      );
     },
     supports: (node) => node.object === 'inline' && node.type === 'image',
     customToolbar: (node, value, onToolbarDone) => {
