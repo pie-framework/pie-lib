@@ -183,7 +183,7 @@ export class TickComponent extends React.Component {
             barWidth={barWidth}
             rotate={rotate}
             correctness={correctness}
-            error={error && (error[index] || error[index] == '')}
+            error={error && error[index]}
           />
         </foreignObject>
 
