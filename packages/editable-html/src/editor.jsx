@@ -339,6 +339,9 @@ export class Editor extends React.Component {
     // The cursor is on a zero width element and when that is placed near void elements, it is not visible
     // so we increase the width to at least 2px in order for the user to see it
 
+    // Trigger plugins and finish editing if:
+    // 1. The 'isHtmlMode' state has been toggled.
+    // 2. We're currently in 'isHtmlMode' and the editor value has been modified.
     if (
       this.state.isHtmlMode !== prevState.isHtmlMode ||
       (this.state.isHtmlMode && !prevState.isEdited && this.state.isEdited)
@@ -571,6 +574,8 @@ export class Editor extends React.Component {
       this.setState({ isEdited: false });
     }
 
+    // Mark the editor as edited when in HTML mode and its content has changed.
+    // This status will later be used to decide whether to prompt a warning to the user when exiting HTML mode.
     if (
       this.state.isHtmlMode &&
       !this.state.isEdited &&
