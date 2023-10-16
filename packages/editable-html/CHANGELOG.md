@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.0.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@11.0.8...@pie-lib/editable-html@11.0.9) (2023-10-16)
+
+
+### Bug Fixes
+
+* **editable-html:** add clarifying comments for HTML mode edit tracking PD-2765 ([3870a4d](https://github.com/pie-framework/pie-lib/commit/3870a4d9b2e618ae6f32e6d20713978c4d791b14))
+* **editable-html:** hide DoneButton on active htmlMode PD-2765 ([636a302](https://github.com/pie-framework/pie-lib/commit/636a302ab81016b2de8a16b1e6d96923d25b0592))
+* **editable-html:** Prevent infinite loop in componentDidUpdate by refining isEdited state check PD-2765 ([e858ad0](https://github.com/pie-framework/pie-lib/commit/e858ad030e444b6be1ea57e950e6aa3462b5f60d))
+* **editable-html:** Remove body overflow set by Material-UI and disable dialog scroll lock PD-3233 ([8ab4bde](https://github.com/pie-framework/pie-lib/commit/8ab4bde07fa411ef3cb31794309213bde541b6eb))
+
+
+
+
+
 ## [11.0.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@11.0.7...@pie-lib/editable-html@11.0.8) (2023-10-03)
 
 

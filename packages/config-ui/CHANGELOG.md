@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.9.22](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.9.21...@pie-lib/config-ui@11.9.22) (2023-10-16)
+
+
+### Bug Fixes
+
+* **config-ui:** pd-3018 avoid scrolling for math editor ([843ba90](https://github.com/pie-framework/pie-lib/commit/843ba9099d75ec6a281985360b7d76c76e5e910d))
+
+
+
+
+
 ## [11.9.21](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.9.20...@pie-lib/config-ui@11.9.21) (2023-10-03)
 
 **Note:** Version bump only for package @pie-lib/config-ui

@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.15.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.15.5...@pie-lib/charting@5.15.6) (2023-10-16)
+
+
+### Bug Fixes
+
+* **charting:** add sanity check for data PD-3223 ([f573866](https://github.com/pie-framework/pie-lib/commit/f57386626933cdb5b8b6a1c0f91b45b6ea1b9ca7))
+* **charting:** address overlap of drag handle with category labels in charts PD-3223 ([ebe212e](https://github.com/pie-framework/pie-lib/commit/ebe212ecd315d6445b1d676568482fa47b40ebdb))
+* **charting:** limit number of categories in Define Correct Response Chart to 20 ([0b0e8ab](https://github.com/pie-framework/pie-lib/commit/0b0e8ab339126e00703c1ae5218c714bbcdb6dbf))
+* **charting:** refine error message display to prevent overlapping with other elements and other messages PD-3121 ([f2de1ad](https://github.com/pie-framework/pie-lib/commit/f2de1adb4d19a44e403beb3d88cbb333e3c5adb9))
+* **charting:** use red boxes only and for all duplicated category names, reorder CSS selectors to resolve styling conflicts, only display the validation message a single time for duplicate categories and for empty labels PD-3121 ([7cae40b](https://github.com/pie-framework/pie-lib/commit/7cae40b48a1da661d7d7c97780098a07e5b1d336))
+
+
+
+
+
 ## [5.15.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.15.4...@pie-lib/charting@5.15.5) (2023-09-28)
 
 
