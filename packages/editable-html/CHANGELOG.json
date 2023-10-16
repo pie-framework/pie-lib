@@ -3323,5 +3323,20 @@
     "committerDate": "2021-11-12 13:23:37 +0200",
     "isTagged": true,
     "tag": "@pie-lib/editable-html@7.18.0"
+  },
+  {
+    "type": "feat",
+    "scope": null,
+    "subject": "made sure editor is waiting for image and sound upload before finishes editing PD-2950 (#948)",
+    "merge": null,
+    "header": "feat: made sure editor is waiting for image and sound upload before finishes editing PD-2950 (#948)",
+    "body": "feat: made sure editor is waiting for image and sound upload before finishes editing PD-2950",
+    "footer": null,
+    "notes": [],
+    "hash": "bd16707f13f824dfe2c2db7f395e58fa25eb2ffb",
+    "gitTags": " (origin/develop, origin/HEAD, develop)",
+    "committerDate": "2023-10-16 11:14:31 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@11.1.0"
   }
 ]
