@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.7.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.7.2...@pie-lib/plot@2.7.3) (2023-10-16)
+
+
+### Bug Fixes
+
+* **charting:** refine error message display to prevent overlapping with other elements and other messages PD-3121 ([f2de1ad](https://github.com/pie-framework/pie-lib/commit/f2de1adb4d19a44e403beb3d88cbb333e3c5adb9))
+* **charting:** wip PD-3105 ([f2f8234](https://github.com/pie-framework/pie-lib/commit/f2f82343a373ae1a8f669754a061963cbfdbeb08))
+* **charting:** wip PD-3105 revert push in develop ([6cce5e2](https://github.com/pie-framework/pie-lib/commit/6cce5e2d25d079c1c3eb195425dc2cf016fcd36e))
+
+
+
+
+
 ## [2.7.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.7.1...@pie-lib/plot@2.7.2) (2023-06-24)
 
 **Note:** Version bump only for package @pie-lib/plot
