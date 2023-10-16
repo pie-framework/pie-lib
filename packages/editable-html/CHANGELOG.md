@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@11.0.9...@pie-lib/editable-html@11.1.0) (2023-10-16)
+
+
+### Bug Fixes
+
+* made sure editor is waiting for image and sound upload before finishes editing PD-2950 ([41b9407](https://github.com/pie-framework/pie-lib/commit/41b94078da7c50ce8d36fdc67bda83a44e0bff9b))
+
+
+### Features
+
+* made sure editor is waiting for image and sound upload before finishes editing PD-2950 ([#948](https://github.com/pie-framework/pie-lib/issues/948)) ([bd16707](https://github.com/pie-framework/pie-lib/commit/bd16707f13f824dfe2c2db7f395e58fa25eb2ffb))
+
+
+
+
+
 ## [11.0.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@11.0.8...@pie-lib/editable-html@11.0.9) (2023-10-16)
 
 
