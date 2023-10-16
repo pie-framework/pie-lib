@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`feedback-selector snapshot renders 1`] = `
+<div>
+  <WithStyles(RawInputContainer)
+    extraClasses={
+      Object {
+        "label": undefined,
+      }
+    }
+    label="foo"
+  >
+    <WithStyles(Group)
+      feedbackLabels={
+        Object {
+          "custom": "Customized Feedback",
+          "default": "Simple Feedback",
+          "none": "No Feedback",
+        }
+      }
+      keys={
+        Array [
+          "default",
+          "none",
+          "custom",
+        ]
+      }
+      label="foo"
+      onChange={[Function]}
+      value="default"
+    />
+  </WithStyles(RawInputContainer)>
+  <div>
+     
+    hi
+  </div>
+</div>
+`;

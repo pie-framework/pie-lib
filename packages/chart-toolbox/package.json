@@ -1,0 +1,36 @@
+{
+  "name": "@pie-lib/charts-toolbox",
+  "version": "1.0.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "lib/index.js",
+  "module": "src/index.js",
+  "dependencies": {
+    "debug": "^4.1.1",
+    "i18next": "^22.5.0",
+    "lodash": "^4.17.11",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.1",
+    "react-dom": "^16.9.0",
+    "@mapbox/point-geometry": "^0.1.0",
+    "@material-ui/core": "^3.8.3",
+    "@pie-lib/plot": "^2.7.3",
+    "@pie-lib/translator": "^2.3.0",
+    "@vx/axis": "^0.0.183",
+    "@vx/event": "^0.0.182",
+    "@vx/grid": "^0.0.183",
+    "@vx/group": "^0.0.183",
+    "@vx/point": "^0.0.182",
+    "@vx/scale": "^0.0.182",
+    "@vx/shape": "^0.0.183",
+    "classnames": "^2.2.6",
+    "d3-scale": "^2.1.2",
+    "d3-selection": "^1.3.2",
+    "invariant": "^2.2.4",
+    "react-draggable": "^3.1.1",
+    "react-input-autosize": "^2.2.1",
+    "react-redux": "^6.0.0",
+    "redux": "^4.0.1"
+  }
+}

@@ -1,0 +1,205 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`index Choice render renders correctly with default props 1`] = `
+<BlankContentComp
+  classes={
+    Object {
+      "chip": "BlankContentComp-chip-2",
+      "chipLabel": "BlankContentComp-chipLabel-3",
+      "choice": "BlankContentComp-choice-1",
+      "disabled": "BlankContentComp-disabled-4",
+    }
+  }
+  disabled={false}
+  label="Label"
+  targetId="1"
+  value="1"
+/>
+`;
+
+exports[`index Choice render renders correctly with disabled prop as true 1`] = `
+<BlankContentComp
+  classes={
+    Object {
+      "chip": "BlankContentComp-chip-2",
+      "chipLabel": "BlankContentComp-chipLabel-3",
+      "choice": "BlankContentComp-choice-1",
+      "disabled": "BlankContentComp-disabled-4",
+    }
+  }
+  disabled={true}
+  label="Label"
+  targetId="1"
+  value="1"
+/>
+`;
+
+exports[`index Choices renders correctly with default props 1`] = `
+<div
+  style={
+    Object {
+      "margin": "0 40px 0 0",
+    }
+  }
+>
+  <DropTarget(DroppablePlaceholder)
+    disabled={false}
+  >
+    <DragSource(WithStyles(BlankContentComp))
+      choice={
+        Object {
+          "id": "0",
+          "label": "Jumped",
+          "value": "Jumped",
+        }
+      }
+      disabled={false}
+      key="Jumped-0"
+    />
+    <DragSource(WithStyles(BlankContentComp))
+      choice={
+        Object {
+          "id": "1",
+          "label": "Laughed",
+          "value": "Laughed",
+        }
+      }
+      disabled={false}
+      key="Laughed-1"
+    />
+    <DragSource(WithStyles(BlankContentComp))
+      choice={
+        Object {
+          "id": "2",
+          "label": "Spoon",
+          "value": "Spoon",
+        }
+      }
+      disabled={false}
+      key="Spoon-2"
+    />
+  </DropTarget(DroppablePlaceholder)>
+</div>
+`;
+
+exports[`index Choices renders correctly with disabled prop as true 1`] = `
+<div
+  style={
+    Object {
+      "margin": "0 40px 0 0",
+    }
+  }
+>
+  <DropTarget(DroppablePlaceholder)
+    disabled={true}
+  >
+    <DragSource(WithStyles(BlankContentComp))
+      choice={
+        Object {
+          "id": "0",
+          "label": "Jumped",
+          "value": "Jumped",
+        }
+      }
+      disabled={true}
+      key="Jumped-0"
+    />
+    <DragSource(WithStyles(BlankContentComp))
+      choice={
+        Object {
+          "id": "1",
+          "label": "Laughed",
+          "value": "Laughed",
+        }
+      }
+      disabled={true}
+      key="Laughed-1"
+    />
+    <DragSource(WithStyles(BlankContentComp))
+      choice={
+        Object {
+          "id": "2",
+          "label": "Spoon",
+          "value": "Spoon",
+        }
+      }
+      disabled={true}
+      key="Spoon-2"
+    />
+  </DropTarget(DroppablePlaceholder)>
+</div>
+`;
+
+exports[`index Choices renders with duplicates 1`] = `
+<div
+  style={
+    Object {
+      "margin": "0 40px 0 0",
+    }
+  }
+>
+  <DropTarget(DroppablePlaceholder)
+    disabled={false}
+  >
+    <DragSource(WithStyles(BlankContentComp))
+      choice={
+        Object {
+          "id": "0",
+          "label": "Jumped",
+          "value": "Jumped",
+        }
+      }
+      disabled={false}
+      key="Jumped-0"
+    />
+    <DragSource(WithStyles(BlankContentComp))
+      choice={
+        Object {
+          "id": "1",
+          "label": "Laughed",
+          "value": "Laughed",
+        }
+      }
+      disabled={false}
+      key="Laughed-1"
+    />
+    <DragSource(WithStyles(BlankContentComp))
+      choice={
+        Object {
+          "id": "2",
+          "label": "Spoon",
+          "value": "Spoon",
+        }
+      }
+      disabled={false}
+      key="Spoon-2"
+    />
+  </DropTarget(DroppablePlaceholder)>
+</div>
+`;
+
+exports[`index Choices renders without duplicates 1`] = `
+<div
+  style={
+    Object {
+      "margin": "0 40px 0 0",
+    }
+  }
+>
+  <DropTarget(DroppablePlaceholder)
+    disabled={false}
+  >
+    <DragSource(WithStyles(BlankContentComp))
+      choice={
+        Object {
+          "id": "2",
+          "label": "Spoon",
+          "value": "Spoon",
+        }
+      }
+      disabled={false}
+      key="Spoon-0"
+    />
+  </DropTarget(DroppablePlaceholder)>
+</div>
+`;

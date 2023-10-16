@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UndoRedo snapshot renders 1`] = `
+<UndoRedo
+  classes={
+    Object {
+      "button": "UndoRedo-button-1",
+    }
+  }
+  onRedo={[MockFunction]}
+  onReset={[MockFunction]}
+  onUndo={[MockFunction]}
+/>
+`;

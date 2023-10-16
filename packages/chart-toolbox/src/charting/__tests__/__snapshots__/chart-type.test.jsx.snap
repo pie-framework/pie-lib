@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChartType renders snapshot 1`] = `
+<Component
+  classes={
+    Object {
+      "chartType": "Component-chartType-1",
+      "chartTypeLabel": "Component-chartTypeLabel-2",
+    }
+  }
+  onChange={[MockFunction]}
+  value="bar"
+/>
+`;

@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`placeholder snapshot className 1`] = `
+<div
+  className="placeholder bar"
+  style={Object {}}
+>
+   Foo 
+</div>
+`;
+
+exports[`placeholder snapshot disabled: true 1`] = `
+<div
+  className="placeholder disabled"
+  style={Object {}}
+>
+   Foo 
+</div>
+`;
+
+exports[`placeholder snapshot isOver: true 1`] = `
+<div
+  className="placeholder over"
+  style={Object {}}
+>
+   Foo 
+</div>
+`;
+
+exports[`placeholder snapshot reqular 1`] = `
+<div
+  className="placeholder"
+  style={Object {}}
+>
+   Foo 
+</div>
+`;
+
+exports[`placeholder snapshot specific grid rowsRepeatValue 1`] = `
+<div
+  className="placeholder"
+  style={
+    Object {
+      "gridTemplateColumns": "repeat(1, 1fr)",
+      "gridTemplateRows": "repeat(2, min-content)",
+    }
+  }
+>
+   Foo 
+</div>
+`;

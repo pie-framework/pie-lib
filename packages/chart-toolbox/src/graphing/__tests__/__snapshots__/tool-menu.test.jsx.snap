@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ToolMenu snapshot renders 1`] = `
+<div
+  className="className"
+>
+  <Component
+    onChange={[MockFunction]}
+    onChangeToolsOrder={[Function]}
+    options={Array []}
+  />
+</div>
+`;

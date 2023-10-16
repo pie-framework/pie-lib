@@ -1,0 +1,4 @@
+**/__tests__/**
+**/__mocks__/**
+*.tgz
+NEXT.CHANGELOG.json

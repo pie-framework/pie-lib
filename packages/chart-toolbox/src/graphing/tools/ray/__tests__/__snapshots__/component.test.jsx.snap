@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RayLine snapshot renders 1`] = `
+<g>
+  <defs>
+    <ArrowMarker
+      className=""
+      id="1-enabled"
+      size={5}
+    />
+  </defs>
+  <line
+    className="className"
+    markerEnd="url(#1-enabled)"
+    markerId="1"
+    onChange={[MockFunction]}
+    x1={0}
+    x2={1.0375}
+    y1={0}
+    y2={1.0375}
+  />
+</g>
+`;

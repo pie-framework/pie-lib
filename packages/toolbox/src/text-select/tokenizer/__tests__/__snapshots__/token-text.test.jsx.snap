@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`token-text snapshot renders 1`] = `
+<div
+  onClick={[Function]}
+>
+  <WithStyles(Component)
+    end={13}
+    key="0"
+    onClick={[Function]}
+    predefined={true}
+    start={0}
+    text="lorem
+foo bar"
+  />
+</div>
+`;
