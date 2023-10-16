@@ -134,6 +134,7 @@ export class Editor extends React.Component {
     this.state = {
       value: props.value,
       toolbarOpts: createToolbarOpts(props.toolbarOpts, props.error),
+      pendingImages: [],
       isHtmlMode: false,
       isEdited: false,
       dialog: {
@@ -212,13 +213,42 @@ export class Editor extends React.Component {
           }),
         insertImageRequested:
           props.imageSupport &&
-          ((getHandler) => {
-            /**
-             * The handler is the object through which the outer context
-             * communicates file upload events like: fileChosen, cancel, progress
-             */
-            const handler = getHandler(() => this.state.value);
-            props.imageSupport.add(handler);
+          ((addedImage, getHandler) => {
+            const { pendingImages } = this.state;
+            const onFinish = (result) => {
+              let cb;
+
+              if (this.state.scheduled && result) {
+                // finish editing only on success
+                cb = this.onEditingDone.bind(this);
+              }
+
+              const newPendingImages = this.state.pendingImages.filter((img) => img.key !== addedImage.key);
+              const newState = {
+                pendingImages: newPendingImages,
+              };
+
+              if (newPendingImages.length === 0) {
+                newState.scheduled = false;
+              }
+
+              this.setState(newState, cb);
+            };
+            const callback = () => {
+              /**
+               * The handler is the object through which the outer context
+               * communicates file upload events like: fileChosen, cancel, progress
+               */
+              const handler = getHandler(onFinish, () => this.state.value);
+              props.imageSupport.add(handler);
+            };
+
+            this.setState(
+              {
+                pendingImages: [...pendingImages, addedImage],
+              },
+              callback,
+            );
           }),
         onFocus: this.onPluginFocus,
         onBlur: this.onPluginBlur,
@@ -394,8 +424,15 @@ export class Editor extends React.Component {
       return;
     }
 
+    const { pendingImages } = this.state;
+
+    if (pendingImages.length) {
+      this.setState({ scheduled: true });
+      return;
+    }
+
     log('[onEditingDone]');
-    this.setState({ stashedValue: null, focusedNode: null });
+    this.setState({ pendingImages: [], stashedValue: null, focusedNode: null });
     log('[onEditingDone] value: ', this.state.value);
     this.props.onChange(this.state.value, true);
   };
@@ -712,7 +749,13 @@ export class Editor extends React.Component {
 
         const ch = change.insertInline(inline);
         this.onChange(ch);
-        const handler = new InsertImageHandler(inline, () => this.state.value, this.onChange, true);
+        const handler = new InsertImageHandler(
+          inline,
+          () => {},
+          () => this.state.value,
+          this.onChange,
+          true,
+        );
         handler.fileChosen(file);
         this.props.imageSupport.add(handler);
       } catch (err) {
@@ -780,7 +823,7 @@ export class Editor extends React.Component {
       onKeyDown,
     } = this.props;
 
-    const { value, focusedNode, toolbarOpts, dialog } = this.state;
+    const { value, focusedNode, toolbarOpts, dialog, scheduled } = this.state;
 
     log('[render] value: ', value);
     const sizeStyle = this.buildSizeStyle();
@@ -788,12 +831,14 @@ export class Editor extends React.Component {
       {
         [classes.withBg]: highlightShape,
         [classes.toolbarOnTop]: toolbarOpts.alwaysVisible && toolbarOpts.position === 'top',
+        [classes.scheduled]: scheduled,
       },
       className,
     );
 
     return (
       <div ref={(ref) => (this.wrapperRef = ref)} style={{ width: sizeStyle.width }} className={names}>
+        {scheduled && <div className={classes.uploading}>Uploading image and then saving...</div>}
         <SlateEditor
           plugins={this.plugins}
           innerRef={(r) => {
@@ -855,6 +900,17 @@ export class Editor extends React.Component {
 const styles = {
   withBg: {
     backgroundColor: 'rgba(0,0,0,0.06)',
+  },
+  scheduled: {
+    opacity: 0.5,
+    pointerEvents: 'none',
+    position: 'relative',
+  },
+  uploading: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
   },
   slateEditor: {
     fontFamily: 'Roboto, sans-serif',

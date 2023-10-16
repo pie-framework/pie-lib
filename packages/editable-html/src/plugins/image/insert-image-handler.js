@@ -6,14 +6,16 @@ const log = debug('@pie-lib:editable-html:image:insert-image-handler');
 /**
  * Handles user selection, insertion (or cancellation) of an image into the editor.
  * @param {Block} placeholderBlock - a block that has been added to the editor as a place holder for the image
+ * @param {Function} onFinish - a function to call if uploading fails or succeeds
  * @param {Function} getValue - a function to return the value of the editor
  * @param {Function} onChange - callback to notify changes applied by the handler
  * @param {Boolean} isPasted - a boolean that keeps track if the file is pasted
  */
 class InsertImageHandler {
-  constructor(placeholderBlock, getValue, onChange, isPasted = false) {
+  constructor(placeholderBlock, onFinish, getValue, onChange, isPasted = false) {
     this.placeholderBlock = placeholderBlock;
     this.getValue = getValue;
+    this.onFinish = onFinish;
     this.onChange = onChange;
     this.isPasted = isPasted;
     this.chosenFile = null;
@@ -43,6 +45,8 @@ class InsertImageHandler {
       .change()
       .removeNodeByKey(this.placeholderBlock.key);
     this.onChange(c);
+
+    this.onFinish(false);
   }
 
   done(err, src) {
@@ -50,6 +54,7 @@ class InsertImageHandler {
     if (err) {
       //eslint-disable-next-line
       console.log(err);
+      this.onFinish(false);
     } else {
       const value = this.getValue();
       const child = this.getPlaceholderInDocument(value);
@@ -57,6 +62,7 @@ class InsertImageHandler {
 
       const change = value.change().setNodeByKey(this.placeholderBlock.key, { data });
       this.onChange(change);
+      this.onFinish(true);
     }
   }
 

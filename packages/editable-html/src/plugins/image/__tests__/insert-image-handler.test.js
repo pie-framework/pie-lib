@@ -34,7 +34,12 @@ describe('insert image handler', () => {
   const block = { key: 1 };
   const onChange = jest.fn();
 
-  const handler = new InsertImageHandler(block, () => value, onChange);
+  const handler = new InsertImageHandler(
+    block,
+    () => {},
+    () => value,
+    onChange,
+  );
 
   test('it constructs', () => {
     expect(handler).not.toEqual(undefined);

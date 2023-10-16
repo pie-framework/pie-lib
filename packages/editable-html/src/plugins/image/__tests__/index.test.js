@@ -17,7 +17,7 @@ describe('image plugin', () => {
         done(e, value);
       });
     },
-    insertImageRequested: (getHandler) => {
+    insertImageRequested: (node, getHandler) => {
       const handler = getHandler(() => value);
       imageSupport.add(handler);
     },
