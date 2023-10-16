@@ -1,13 +1,13 @@
 {
   "name": "@pie-lib/drag",
-  "version": "2.2.7",
+  "version": "2.2.9",
   "description": "",
   "main": "lib/index.js",
   "module": "src/index.js",
   "dependencies": {
     "@material-ui/core": "^3.8.3",
-    "@pie-lib/math-rendering": "^3.2.0",
-    "@pie-lib/render-ui": "^4.15.7",
+    "@pie-lib/math-rendering": "2.5.18",
+    "@pie-lib/render-ui": "^4.15.9",
     "classnames": "^2.2.6",
     "lodash": "^4.17.11",
     "react-dnd": "^14.0.5",

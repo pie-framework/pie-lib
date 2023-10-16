@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.15.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.15.8...@pie-lib/render-ui@4.15.9) (2023-10-03)
+
+
+### Bug Fixes
+
+* revert to pie-lib/math-rendering that what working ([25660ea](https://github.com/pie-framework/pie-lib/commit/25660ea6595e800a71c5494bd3bb9eecd3609a5a))
+
+
+
+
+
+## [4.15.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.15.7...@pie-lib/render-ui@4.15.8) (2023-10-01)
+
+**Note:** Version bump only for package @pie-lib/render-ui
+
+
+
+
+
 ## [4.15.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.15.6...@pie-lib/render-ui@4.15.7) (2023-09-27)
 
 **Note:** Version bump only for package @pie-lib/render-ui
