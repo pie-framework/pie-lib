@@ -2,7 +2,7 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import { rootEdgeComponent, withRootEdge, rootEdgeToFromToWrapper } from '../with-root-edge';
 import { graphProps as getGraphProps } from '../../../../__tests__/utils';
-import { utils } from '@pie-lib/plot';
+import { utils } from '../../../../../plot/index';
 import { lineToolComponent, LineToolMockComponent } from '..';
 const { xy } = utils;
 jest.mock('../index', () => {

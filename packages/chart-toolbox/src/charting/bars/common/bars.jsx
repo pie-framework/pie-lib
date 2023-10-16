@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { types } from '@pie-lib/plot';
+import { types } from '../../../plot/index';
 import { Group } from '@vx/group';
 import { color } from '@pie-lib/render-ui';
 import { Bar as VxBar } from '@vx/shape';

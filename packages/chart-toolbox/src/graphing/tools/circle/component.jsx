@@ -5,7 +5,7 @@ import { BasePoint } from '../shared/point';
 import BgCircle from './bg-circle';
 import { getMiddleOfTwoPoints, point, equalPoints } from '../../utils';
 import classNames from 'classnames';
-import { types } from '@pie-lib/plot';
+import { types } from '../../../plot/index';
 import { rootEdgeComponent } from '../shared/line/with-root-edge';
 import ReactDOM from 'react-dom';
 import MarkLabel from '../../mark-label';

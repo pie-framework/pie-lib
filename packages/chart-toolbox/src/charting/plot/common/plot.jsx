@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { types } from '@pie-lib/plot';
+import { types } from '../../../plot/index';
 import { Group } from '@vx/group';
 import { withStyles } from '@material-ui/core/styles/index';
 import DraggableHandle, { DragHandle } from '../../common/drag-handle';

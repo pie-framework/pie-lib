@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { gridDraggable, utils, types } from '@pie-lib/plot';
+import { gridDraggable, utils, types } from '../../../plot/index';
 import { withStyles } from '@material-ui/core/styles/index';
 import { color } from '@pie-lib/render-ui';
 import PropTypes from 'prop-types';

@@ -1,7 +1,7 @@
 import { lineToolComponent, lineBase, styles } from '../shared/line';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { trig, types } from '@pie-lib/plot';
+import { trig, types } from '../../../plot/index';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import { ArrowMarker, genUid } from '../shared/arrow-head';

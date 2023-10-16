@@ -2,7 +2,7 @@ import React from 'react';
 import { Group } from '@vx/group';
 import { LinePath } from '@vx/shape';
 import PropTypes from 'prop-types';
-import { types } from '@pie-lib/plot';
+import { types } from '../../../plot/index';
 import DraggableHandle, { DragHandle } from './drag-handle';
 import { withStyles } from '@material-ui/core/styles/index';
 import isEqual from 'lodash/isEqual';

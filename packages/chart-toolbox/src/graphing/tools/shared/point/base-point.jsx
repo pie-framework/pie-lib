@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { types } from '@pie-lib/plot';
+import { types } from '../../../../plot/index';
 import CoordinatesLabel from '../../../coordinates-label';
 import ReactDOM from 'react-dom';
 import { thinnerShapesNeeded } from '../../../utils';

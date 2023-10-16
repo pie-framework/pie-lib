@@ -9,7 +9,7 @@ import isEqual from 'lodash/isEqual';
 import debug from 'debug';
 import Line from './line';
 import DraggablePolygon, { Polygon } from './polygon';
-import { types, utils } from '@pie-lib/plot';
+import { types, utils } from '../../../plot/index';
 import invariant from 'invariant';
 import ReactDOM from 'react-dom';
 import MarkLabel from '../../mark-label';

@@ -1,7 +1,7 @@
 import { shallow } from 'enzyme';
 import React from 'react';
 import { graphProps as getGraphProps } from '../../../../__tests__/utils';
-import { gridDraggable, utils } from '@pie-lib/plot';
+import { gridDraggable, utils } from '../../../../../plot/index';
 const { xy } = utils;
 
 import * as lineUtils from '../../../../utils';

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-import { gridDraggable, utils, types } from '@pie-lib/plot';
+import { gridDraggable, utils, types } from '../../plot/index';
 import { color } from '@pie-lib/render-ui';
 import { correct, incorrect, disabled } from './styles';
 import { getScale } from '../utils';

@@ -1,6 +1,6 @@
 import head from 'lodash/head';
 import tail from 'lodash/tail';
-import { utils } from '@pie-lib/plot';
+import { utils } from '../plot/index';
 import invariant from 'invariant';
 import isEqual from 'lodash/isEqual';
 import isEmpty from 'lodash/isEmpty';

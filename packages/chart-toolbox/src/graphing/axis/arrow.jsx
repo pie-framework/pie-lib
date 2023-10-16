@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-import { types } from '@pie-lib/plot';
+import { types } from '../../plot/index';
 
 const style = (theme) => ({
   root: {

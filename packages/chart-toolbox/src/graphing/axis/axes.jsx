@@ -1,6 +1,6 @@
 import React from 'react';
 import { Axis } from '@vx/axis';
-import { types } from '@pie-lib/plot';
+import { types } from '../../plot/index';
 import PropTypes from 'prop-types';
 import Arrow from './arrow';
 import { withStyles } from '@material-ui/core';

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { types } from '@pie-lib/plot';
+import { types } from '../../../../plot/index';
 import { LinePath } from '../line/line-path';
 import { curveMonotoneX } from '@vx/curve';
 import { lineBase, lineToolComponent } from './index';

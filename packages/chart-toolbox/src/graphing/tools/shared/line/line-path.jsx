@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { types } from '@pie-lib/plot';
+import { types } from '../../../../plot/index';
 import classNames from 'classnames';
 import { disabled, correct, incorrect, missing } from '../styles';
 import * as vx from '@vx/shape';

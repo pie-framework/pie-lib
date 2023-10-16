@@ -1,5 +1,5 @@
 import debug from 'debug';
-import { sinY, buildDataPoints, getAmplitudeAndFreq, FREQ_DIVIDER } from '@pie-lib/graphing-utils';
+import { sinY, buildDataPoints, getAmplitudeAndFreq, FREQ_DIVIDER } from '../../../graphing-utils/index';
 import { withRootEdge, rootEdgeComponent } from '../shared/line/with-root-edge';
 
 const log = debug('pie-lib:graphing:sine');

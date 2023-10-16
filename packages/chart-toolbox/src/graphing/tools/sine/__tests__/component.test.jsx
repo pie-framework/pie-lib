@@ -1,11 +1,11 @@
 import { withRootEdge } from '../../shared/line/with-root-edge';
-import { buildDataPoints, sinY } from '@pie-lib/graphing-utils';
+import { buildDataPoints, sinY } from '../../../../graphing-utils/index';
 import { utils } from '@pie-lib/plot';
 
 import { graphProps as getGraphProps } from '../../../__tests__/utils';
 
 const { xy } = utils;
-jest.mock('@pie-lib/graphing-utils', () => ({
+jest.mock('../../../../graphing-utils/index', () => ({
   sinY: jest.fn().mockReturnValue(0),
   buildDataPoints: jest.fn().mockReturnValue([]),
   parabolaFromTwoPoints: jest.fn(() => jest.fn()),

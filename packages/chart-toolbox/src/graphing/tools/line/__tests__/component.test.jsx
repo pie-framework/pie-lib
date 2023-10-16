@@ -2,9 +2,8 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import { ArrowedLine } from '../component';
 import { graphProps as getGraphProps } from '../../../__tests__/utils';
-
-jest.mock('@pie-lib/plot', () => {
-  const a = jest.requireActual('@pie-lib/plot');
+jest.mock('../../../../plot/index', () => {
+  const a = jest.requireActual('../../../../plot/index');
   return {
     types: a.types,
     gridDraggable: a.gridDraggable,

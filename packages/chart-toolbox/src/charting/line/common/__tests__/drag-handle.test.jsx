@@ -1,7 +1,7 @@
 import { shallow } from 'enzyme/build';
 import React from 'react';
 import DragHandle from '../drag-handle';
-import { gridDraggable } from '@pie-lib/plot';
+import { gridDraggable } from '../../../../plot/index';
 import { graphProps } from './utils';
 import { bounds } from '../../../utils';
 
@@ -13,7 +13,7 @@ jest.mock('../../../utils', () => {
   };
 });
 
-jest.mock('@pie-lib/plot', () => {
+jest.mock('../../../../plot/index', () => {
   const { types, utils } = jest.requireActual('@pie-lib/plot');
   return {
     gridDraggable: jest.fn((opts) => (Comp) => Comp),

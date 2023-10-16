@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { types } from '@pie-lib/plot';
+import { types } from '../../plot/index';
 import { LinePath } from '@vx/shape';
 import { Group } from '@vx/group';
 import classNames from 'classnames';

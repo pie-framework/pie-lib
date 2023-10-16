@@ -2,7 +2,7 @@ import { lineToolComponent, lineBase, styles } from '../shared/line';
 import { Arrow } from '../shared/point';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { types } from '@pie-lib/plot';
+import { types } from '../../../plot/index';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import { getDistanceBetweenTwoPoints } from '../../utils';

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { types } from '@pie-lib/plot';
+import { types } from '../plot/index';
 import { color, Readable } from '@pie-lib/render-ui';
 import EditableHtml from '@pie-lib/editable-html';
 import cn from 'classnames';

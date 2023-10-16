@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 
 import { Grid as VxGrid } from '@vx/grid';
-import { types } from '@pie-lib/plot';
+import { types } from '../plot/index';
 import { color } from '@pie-lib/render-ui';
 
 export class Grid extends React.Component {

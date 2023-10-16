@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { select, mouse } from 'd3-selection';
-import { types, utils } from '@pie-lib/plot';
+import { types, utils } from '../plot/index';
 import { getTickValues, thinnerShapesNeeded } from './utils';
 
 export default class Bg extends React.Component {

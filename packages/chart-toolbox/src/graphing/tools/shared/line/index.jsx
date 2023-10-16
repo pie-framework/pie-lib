@@ -2,7 +2,7 @@ import React from 'react';
 import isEqual from 'lodash/isEqual';
 import cloneDeep from 'lodash/cloneDeep';
 import { BasePoint } from '../point';
-import { types, utils, gridDraggable, trig } from '@pie-lib/plot';
+import { types, utils, gridDraggable, trig } from '../../../../plot/index';
 import PropTypes from 'prop-types';
 import { disabled, correct, incorrect, missing } from '../styles';
 import ReactDOM from 'react-dom';

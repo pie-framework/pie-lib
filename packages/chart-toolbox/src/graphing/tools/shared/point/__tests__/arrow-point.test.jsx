@@ -1,10 +1,9 @@
 import { shallow } from 'enzyme/build';
 import React from 'react';
 import { ArrowPoint } from '../index';
-import { gridDraggable } from '@pie-lib/plot';
 import { graphProps } from '../../../../__tests__/utils';
 import { bounds } from '../../../../utils';
-import { utils } from '@pie-lib/plot';
+import { gridDraggable, utils } from '../../../../../plot/index';
 
 const { xy } = utils;
 jest.mock('../../../../utils', () => {
@@ -15,8 +14,8 @@ jest.mock('../../../../utils', () => {
   };
 });
 
-jest.mock('@pie-lib/plot', () => {
-  const { types, utils } = jest.requireActual('@pie-lib/plot');
+jest.mock('../../../../../plot/index', () => {
+  const { types, utils } = jest.requireActual('../../../../../plot/index');
   return {
     gridDraggable: jest.fn((opts) => (Comp) => Comp),
     types,

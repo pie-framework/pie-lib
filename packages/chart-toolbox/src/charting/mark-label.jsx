@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import AutosizeInput from 'react-input-autosize';
 import PropTypes from 'prop-types';
-import { types } from '@pie-lib/plot';
+import { types } from '../plot/index';
 import { correct, incorrect, disabled } from './common/styles';
 import { color } from '@pie-lib/render-ui';
 import { renderMath } from '@pie-lib/math-rendering';

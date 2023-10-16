@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { types } from '@pie-lib/plot';
+import { types } from '../plot/index';
 import { color } from '@pie-lib/render-ui';
 import { AlertDialog } from '@pie-lib/config-ui';
 import { AxisLeft, AxisBottom } from '@vx/axis';

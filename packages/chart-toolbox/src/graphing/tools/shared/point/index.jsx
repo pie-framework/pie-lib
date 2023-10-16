@@ -1,5 +1,5 @@
 import { withStyles } from '@material-ui/core/styles/index';
-import { gridDraggable } from '@pie-lib/plot';
+import { gridDraggable } from '../../../../plot/index';
 import * as utils from '../../../utils';
 import { disabled, correct, incorrect, missing } from '../styles';
 import { RawBp } from './base-point';

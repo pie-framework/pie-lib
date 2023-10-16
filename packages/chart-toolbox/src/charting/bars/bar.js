@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { types } from '@pie-lib/plot';
+import { types } from '../../plot/index';
 import { dataToXBand } from '../utils';
 import Bars from './common/bars';
 

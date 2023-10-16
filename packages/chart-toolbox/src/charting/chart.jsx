@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
-import { Root, createGraphProps } from '@pie-lib/plot';
+import { Root, createGraphProps } from '../plot/index';
 import cloneDeep from 'lodash/cloneDeep';
 import ChartGrid from './grid';
 import ChartAxes from './axes';

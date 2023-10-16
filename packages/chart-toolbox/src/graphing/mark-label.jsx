@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AutosizeInput from 'react-input-autosize';
 import { useDebounce } from './use-debounce';
-import { types } from '@pie-lib/plot';
+import { types } from '../plot/index';
 import { color } from '@pie-lib/render-ui';
 
 const styles = (theme) => ({

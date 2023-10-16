@@ -2,7 +2,7 @@ import { lineToolComponent, lineBase, styles } from '../shared/line';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { types } from '@pie-lib/plot';
+import { types } from '../../../plot/index';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 

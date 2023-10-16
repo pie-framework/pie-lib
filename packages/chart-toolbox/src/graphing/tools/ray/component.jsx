@@ -2,7 +2,7 @@ import { lineToolComponent, lineBase, styles } from '../shared/line';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ArrowMarker, genUid } from '../shared/arrow-head';
-import { trig, types } from '@pie-lib/plot';
+import { trig, types } from '../../../plot/index';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import { thinnerShapesNeeded, getAdjustedGraphLimits } from '../../utils';

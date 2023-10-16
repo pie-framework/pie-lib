@@ -1,5 +1,5 @@
 import debug from 'debug';
-import { buildDataPoints, parabolaFromTwoPoints } from '@pie-lib/graphing-utils';
+import { buildDataPoints, parabolaFromTwoPoints } from '../../../graphing-utils/index';
 import { withRootEdge, rootEdgeComponent } from '../shared/line/with-root-edge';
 
 const log = debug('pie-lib:graphing:sine');

@@ -1,5 +1,5 @@
 import { scaleBand, scalePoint } from '@vx/scale';
-import { utils } from '@pie-lib/plot';
+import { utils } from '../plot/index';
 
 export const tickCount = utils.tickCount;
 export const bounds = utils.bounds;
