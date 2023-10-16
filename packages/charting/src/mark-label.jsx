@@ -15,13 +15,13 @@ const styles = (theme) => ({
     fontSize: theme.typography.fontSize,
     border: 'none',
     color: color.primaryDark(),
-    '&.error': { border: `2px solid ${theme.palette.error.main}` },
     '&.correct': correct('color'),
     '&.incorrect': incorrect('color'),
     '&.disabled': {
       ...disabled('color'),
       backgroundColor: 'transparent !important',
     },
+    '&.error': { border: `2px solid ${theme.palette.error.main}` },
   },
   mathInput: {
     pointerEvents: 'auto',
