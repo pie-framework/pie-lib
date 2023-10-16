@@ -12,7 +12,7 @@ import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import { color } from '@pie-lib/render-ui';
 import Plain from 'slate-plain-serializer';
-import { AlertDialog } from '@pie-lib/config-ui';
+import { AlertDialog } from '../config-ui/index';
 
 import { getBase64 } from './serialization';
 import InsertImageHandler from './plugins/image/insert-image-handler';

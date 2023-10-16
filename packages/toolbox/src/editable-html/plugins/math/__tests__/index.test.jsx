@@ -4,7 +4,7 @@ import MockChange from '../../image/__tests__/mock-change';
 import { Data } from 'slate';
 import MathPlugin, { serialization, inlineMath, CustomToolbarComp } from '../index';
 import { shallow } from 'enzyme';
-import { MathToolbar } from '@pie-lib/math-toolbar';
+import { MathToolbar } from '../../../../math-toolbar/index';
 jest.mock('@pie-framework/mathquill', () => ({
   StaticMath: jest.fn(),
   getInterface: jest.fn().mockReturnThis(),

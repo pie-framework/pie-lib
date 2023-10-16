@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import debug from 'debug';
 import get from 'lodash/get';
 
-import { PureToolbar } from '@pie-lib/math-toolbar';
+import { PureToolbar } from '../../../math-toolbar/index';
 
 import CustomPopper from './custom-popper';
 import { insertSnackBar } from '../respArea/utils';

@@ -70,9 +70,7 @@ exports[`index - snapshot renders correctly when delete is not allowed 1`] = `
         <div
           className="Component-editorHolder-55"
         >
-          <div>
-            EditableHtml
-          </div>
+          <div />
         </div>
       </div>
       <div
@@ -105,9 +103,7 @@ exports[`index - snapshot renders correctly when delete is not allowed 1`] = `
           <div
             className="Component-editorHolder-55"
           >
-            <div>
-              EditableHtml
-            </div>
+            <div />
           </div>
         </div>
       </div>
@@ -243,9 +239,7 @@ exports[`index - snapshot renders correctly when feedback is not allowed 1`] = `
         <div
           className="Component-editorHolder-55"
         >
-          <div>
-            EditableHtml
-          </div>
+          <div />
         </div>
       </div>
     </div>
@@ -374,9 +368,7 @@ exports[`index - snapshot renders correctly with default props 1`] = `
         <div
           className="Component-editorHolder-55"
         >
-          <div>
-            EditableHtml
-          </div>
+          <div />
         </div>
       </div>
       <div
@@ -409,9 +401,7 @@ exports[`index - snapshot renders correctly with default props 1`] = `
           <div
             className="Component-editorHolder-55"
           >
-            <div>
-              EditableHtml
-            </div>
+            <div />
           </div>
         </div>
       </div>

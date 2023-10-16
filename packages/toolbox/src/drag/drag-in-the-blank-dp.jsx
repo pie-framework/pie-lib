@@ -1,5 +1,5 @@
 import { DropTarget } from 'react-dnd';
-import { DroppablePlaceholder } from '../lib/droppable-placeholder';
+import { DroppablePlaceholder } from './droppable-placeholder';
 import dragType from './drag-type';
 
 export const spec = {

@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import debug from 'debug';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
-import { mq } from '@pie-lib/math-input';
+import { mq } from '../math-input/index';
 
 const log = debug('@pie-lib:math-toolbar:math-preview');
 

@@ -4,7 +4,7 @@ import { RawAuthoring } from '../authoring';
 import { Draggable } from 'react-beautiful-dnd';
 import _ from 'lodash';
 
-jest.mock('@pie-lib/editable-html', () => () => <div />);
+jest.mock('../../editable-html/index', () => () => <div />);
 
 describe('Rubric', () => {
   let w;

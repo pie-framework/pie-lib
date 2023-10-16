@@ -1,6 +1,6 @@
 import Functions from '@material-ui/icons/Functions';
 import { Inline } from 'slate';
-import { MathPreview, MathToolbar } from '@pie-lib/math-toolbar';
+import { MathPreview, MathToolbar } from '../../../math-toolbar/index';
 import { wrapMath, unWrapMath, mmlToLatex, renderMath } from '@pie-lib/math-rendering';
 import React from 'react';
 import debug from 'debug';
