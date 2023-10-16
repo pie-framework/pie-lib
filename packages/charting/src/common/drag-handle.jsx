@@ -28,7 +28,13 @@ const RawDragHandle = ({
   return (
     <svg x={x} y={scale.y(y) - 10} width={width} overflow="visible">
       {isHovered && !correctness && interactive && <DragIcon width={width} scaleValue={scaleValue} color={color} />}
-      <circle cx={width / 2} r={width / 2} className={classNames(classes.transparentHandle, className)} {...rest} />
+      <circle
+        cx={width / 2}
+        cy={10}
+        r={width / 2}
+        className={classNames(classes.transparentHandle, className)}
+        {...rest}
+      />
 
       <defs>
         <filter id="bottomShadow" x="0" y="0" width="140%" height="140%">
@@ -90,6 +96,7 @@ export const DragHandle = withStyles(() => ({
   transparentHandle: {
     height: '20px',
     fill: 'transparent',
+    clipPath: 'polygon(50% 0%, 100% 0%, 100% 50%, 0% 50%, 0% 0%)',
   },
   handleContainer: {
     height: 30,
