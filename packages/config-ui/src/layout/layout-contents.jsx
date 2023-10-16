@@ -103,7 +103,6 @@ const styles = (theme) => ({
     display: 'flex',
     flexDirection: 'column',
     position: 'relative',
-    overflow: 'auto',
   },
   contentContainer: {
     padding: `${theme.spacing.unit * 2}px 0`,

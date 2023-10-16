@@ -40,7 +40,7 @@ const LabelComponent = (props) => {
       chartValue ||
       (isChartLeftLabel && `${graphHeight - 70}px`) ||
       (side === 'left' && `${graphHeight - 8}px`) ||
-      (isChartBottomLabel && `${graphHeight - 40}px`) ||
+      (isChartBottomLabel && `${graphHeight - 30}px`) ||
       (side === 'bottom' && `${graphHeight - 90}px`) ||
       0,
     left:

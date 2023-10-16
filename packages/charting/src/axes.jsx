@@ -146,6 +146,7 @@ export class TickComponent extends React.Component {
     });
 
     const longestLabel = (longestCategory && longestCategory.label) || '';
+    const distinctMessages = error ? [...new Set(Object.values(error))].join(' ') : '';
 
     return (
       <g>
@@ -182,13 +183,13 @@ export class TickComponent extends React.Component {
             barWidth={barWidth}
             rotate={rotate}
             correctness={correctness}
-            error={error}
+            error={error && error[index]}
           />
         </foreignObject>
 
-        {error && error[index] && (
-          <text className={classes.error} x={x} y={y + 23} height={4}>
-            {error[index]}
+        {error && index === 0 && (
+          <text className={classes.error} y={y + 23} height={6} textAnchor="start">
+            {distinctMessages}
           </text>
         )}
 

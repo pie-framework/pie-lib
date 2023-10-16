@@ -106,7 +106,7 @@ export const DefaultToolbar = ({
           );
         })}
       </div>
-      {showDone && !deletable && <DoneButton onClick={onDone} />}
+      {showDone && !deletable && !isHtmlMode && <DoneButton onClick={onDone} />}
     </div>
   );
 };
