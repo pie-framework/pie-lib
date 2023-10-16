@@ -111,9 +111,10 @@ export class MediaDialog extends React.Component {
       width: width || 560,
       tabValue: 0,
       fileUpload: {
-        loading: false,
-        url: '',
         error: null,
+        loading: false,
+        scheduled: false,
+        url: '',
       },
     };
   }
@@ -245,7 +246,10 @@ export class MediaDialog extends React.Component {
       }
 
       handleClose(val);
-    } else if (isInsertURL) {
+      return;
+    }
+
+    if (isInsertURL) {
       const { ends, height, url, urlToUse, formattedUrl, starts, width } = this.state;
 
       handleClose(val, {
@@ -258,12 +262,23 @@ export class MediaDialog extends React.Component {
         urlToUse,
         src: formattedUrl,
       });
-    } else {
+      return;
+    }
+
+    if (!fileUpload.loading) {
       handleClose(val, {
         tag: 'audio',
         src: fileUpload.url,
       });
+      return;
     }
+
+    this.setState({
+      fileUpload: {
+        ...fileUpload,
+        scheduled: true,
+      },
+    });
   };
 
   handleUploadFile = async (e) => {
@@ -303,19 +318,28 @@ export class MediaDialog extends React.Component {
           this.setState({
             fileUpload: {
               ...this.state.fileUpload,
+              scheduled: false,
               loading: false,
               error: err,
             },
           });
-        } else {
-          this.setState({
+          return;
+        }
+
+        const { fileUpload } = this.state;
+        const callback = fileUpload && fileUpload.scheduled ? this.handleDone.bind(this, true) : undefined;
+
+        this.setState(
+          {
             fileUpload: {
-              ...this.state.fileUpload,
+              ...fileUpload,
+              scheduled: false,
               loading: false,
               url: src,
             },
-          });
-        }
+          },
+          callback,
+        );
       },
     });
   };
@@ -350,7 +374,9 @@ export class MediaDialog extends React.Component {
     const isYoutube = matchYoutubeUrl(url);
     const isInsertURL = tabValue === 0;
     const isUploadMedia = tabValue === 1;
-    const submitIsDisabled = isInsertURL ? invalid || url === null || url === undefined : !fileUpload.url;
+    const submitIsDisabled = isInsertURL
+      ? invalid || url === null || url === undefined
+      : !fileUpload.url || fileUpload.scheduled;
 
     return (
       <Dialog
@@ -480,7 +506,14 @@ export class MediaDialog extends React.Component {
                           <ActionDelete />
                         </IconButton>
                       </div>
-                      {fileUpload.loading ? <Typography variant="subheading">Loading...</Typography> : null}
+                      {!fileUpload.scheduled && fileUpload.loading ? (
+                        <Typography variant="subheading">Loading...</Typography>
+                      ) : null}
+                      {fileUpload.scheduled ? (
+                        <Typography variant="subheading">
+                          Waiting for Upload to finish, then inserting item...
+                        </Typography>
+                      ) : null}
                     </>
                   ) : !fileUpload.loading ? (
                     <input accept="audio/*" className={classes.input} onChange={this.handleUploadFile} type="file" />
