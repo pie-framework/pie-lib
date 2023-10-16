@@ -39,11 +39,23 @@ export class AltDialog extends React.Component {
     this.closeDialog();
   };
 
+  handleOverflow = () => {
+    document.body.style.removeProperty('overflow');
+  };
+
   render() {
     const { value } = this.state;
 
     return (
-      <Dialog open disablePortal onClose={this.closeDialog} id="text-dialog" hideBackdrop>
+      <Dialog
+        open
+        disablePortal
+        onClose={this.closeDialog}
+        id="text-dialog"
+        hideBackdrop
+        disableScrollLock
+        onEntered={this.handleOverflow}
+      >
         <DialogContent>
           <div style={{ display: 'flex' }}>
             <ArrowBackIos style={{ paddingTop: '6px' }} />
