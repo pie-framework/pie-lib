@@ -2,7 +2,7 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import { RayLine } from '../component';
 import { graphProps as getGraphProps } from '../../../__tests__/utils';
-import { utils } from '@pie-lib/plot';
+import { utils } from '../../../../plot';
 describe('RayLine', () => {
   let w;
   let onChange = jest.fn();

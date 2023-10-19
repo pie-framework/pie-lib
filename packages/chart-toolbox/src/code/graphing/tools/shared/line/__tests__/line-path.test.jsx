@@ -16,8 +16,8 @@ jest.mock('../../../../utils', () => {
   };
 });
 
-jest.mock('@pie-lib/plot', () => {
-  const a = jest.requireActual('@pie-lib/plot');
+jest.mock('../../../../../plot', () => {
+  const a = jest.requireActual('../../../../../plot');
   return {
     gridDraggable: jest.fn((opts) => jest.fn()),
     types: a.types,

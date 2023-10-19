@@ -1,6 +1,6 @@
 import { withRootEdge } from '../../shared/line/with-root-edge';
 import { buildDataPoints, sinY } from '../../../../graphing-utils';
-import { utils } from '@pie-lib/plot';
+import { utils } from '../../../../plot';
 
 import { graphProps as getGraphProps } from '../../../__tests__/utils';
 

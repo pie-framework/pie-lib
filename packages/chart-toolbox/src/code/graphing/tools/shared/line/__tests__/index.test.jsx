@@ -1,5 +1,5 @@
 import { lineTool, lineToolComponent, lineBase } from '../index';
-import { utils } from '@pie-lib/plot';
+import { utils } from '../../../../../plot';
 import { shallow } from 'enzyme';
 import React from 'react';
 import { graphProps as getGraphProps } from '../../../../__tests__/utils';
