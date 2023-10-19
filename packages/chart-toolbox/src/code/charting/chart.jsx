@@ -7,7 +7,7 @@ import cloneDeep from 'lodash/cloneDeep';
 import ChartGrid from './grid';
 import ChartAxes from './axes';
 import debug from 'debug';
-import { color } from '@pie-lib/render-ui';
+import { color } from '../render-ui';
 import { dataToXBand, getDomainAndRangeByChartType, getGridLinesAndAxisByChartType, getTopPadding } from './utils';
 import ToolMenu from './tool-menu';
 import chartTypes from './chart-types';

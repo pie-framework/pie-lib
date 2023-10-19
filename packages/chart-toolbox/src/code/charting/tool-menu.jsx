@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { color } from '@pie-lib/render-ui';
+import { color } from '../render-ui';
 
 import { withStyles } from '@material-ui/core/styles';
 import cn from 'classnames';

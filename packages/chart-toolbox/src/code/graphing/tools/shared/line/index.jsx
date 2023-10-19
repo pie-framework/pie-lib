@@ -8,7 +8,7 @@ import { disabled, correct, incorrect, missing } from '../styles';
 import ReactDOM from 'react-dom';
 import MarkLabel from '../../../mark-label';
 import isEmpty from 'lodash/isEmpty';
-import { color } from '@pie-lib/render-ui';
+import { color } from '../../../../render-ui';
 import { getMiddleOfTwoPoints, equalPoints, sameAxes } from '../../../utils';
 
 export const lineTool = (type, Component) => () => ({

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import cn from 'classnames';
 import Button from '@material-ui/core/Button';
-import { color } from '@pie-lib/render-ui';
+import { color } from '../render-ui';
 import { allTools } from './tools';
 import { withDragContext, DragSource, DropTarget } from '@pie-lib/drag';
 import Translator from '@pie-lib/translator';

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Arrow from './arrow';
 import { withStyles } from '@material-ui/core';
 import { countWords, findLongestWord, amountToIncreaseWidth, getTickValues } from '../utils';
-import { color, Readable } from '@pie-lib/render-ui';
+import { color, Readable } from '../../render-ui';
 
 export const AxisPropTypes = {
   includeArrows: PropTypes.object,

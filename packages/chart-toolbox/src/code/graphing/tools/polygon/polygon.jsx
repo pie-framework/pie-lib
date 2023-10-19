@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { gridDraggable, types } from '../../../plot';
 import * as utils from '../../utils';
 import classNames from 'classnames';
-import { color } from '@pie-lib/render-ui';
+import { color } from '../../../render-ui';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { correct, disabled, incorrect } from '../shared/styles';
 

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import * as vx from '@vx/grid';
 import { types } from '../plot';
-import { color } from '@pie-lib/render-ui';
+import { color } from '../render-ui';
 import { withStyles } from '@material-ui/core/styles';
 import { getTickValues } from './utils';
 

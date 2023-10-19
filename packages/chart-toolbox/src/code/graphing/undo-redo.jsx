@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core';
-import { color } from '@pie-lib/render-ui';
+import { color } from '../render-ui';
 import Translator from '@pie-lib/translator';
 
 const { translator } = Translator;

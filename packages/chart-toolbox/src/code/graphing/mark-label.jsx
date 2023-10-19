@@ -5,7 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import AutosizeInput from 'react-input-autosize';
 import { useDebounce } from './use-debounce';
 import { types } from '../plot';
-import { color } from '@pie-lib/render-ui';
+import { color } from '../render-ui';
 
 const styles = (theme) => ({
   input: {

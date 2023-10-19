@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import { types, gridDraggable } from '../../../plot';
-import { color } from '@pie-lib/render-ui';
+import { color } from '../../../render-ui';
 import * as utils from '../../utils';
 import { disabled, correct, incorrect, missing } from '../shared/styles';
 

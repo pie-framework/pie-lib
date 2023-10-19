@@ -1,4 +1,4 @@
-import { color } from '@pie-lib/render-ui';
+import { color } from '../../render-ui';
 
 export const disabled = (key = 'fill') => ({
   [key]: `var(--graph-disabled, ${color.disabled()})`,

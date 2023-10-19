@@ -5,7 +5,7 @@ import AutosizeInput from 'react-input-autosize';
 import PropTypes from 'prop-types';
 import { types } from '../plot';
 import { correct, incorrect, disabled } from './common/styles';
-import { color } from '@pie-lib/render-ui';
+import { color } from '../render-ui';
 import { renderMath } from '@pie-lib/math-rendering';
 
 const styles = (theme) => ({

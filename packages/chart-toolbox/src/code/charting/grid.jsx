@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 import { Grid as VxGrid } from '@vx/grid';
 import { types } from '../plot';
-import { color } from '@pie-lib/render-ui';
+import { color } from '../render-ui';
 
 export class Grid extends React.Component {
   static propTypes = {

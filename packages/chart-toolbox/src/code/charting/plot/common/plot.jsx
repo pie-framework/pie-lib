@@ -5,7 +5,7 @@ import { Group } from '@vx/group';
 import { withStyles } from '@material-ui/core/styles/index';
 import DraggableHandle, { DragHandle } from '../../common/drag-handle';
 import debug from 'debug';
-import { color } from '@pie-lib/render-ui';
+import { color } from '../../../render-ui';
 import { bandKey } from '../../utils';
 import { correct, incorrect } from '../../common/styles';
 

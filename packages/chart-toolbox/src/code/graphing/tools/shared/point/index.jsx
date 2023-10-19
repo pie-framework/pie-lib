@@ -4,7 +4,7 @@ import * as utils from '../../../utils';
 import { disabled, correct, incorrect, missing } from '../styles';
 import { RawBp } from './base-point';
 import { RawArrow } from './arrow-point';
-import { color } from '@pie-lib/render-ui';
+import { color } from '../../../../render-ui';
 import BaseArrow from './arrow';
 
 const opts = {

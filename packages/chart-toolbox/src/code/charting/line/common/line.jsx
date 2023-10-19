@@ -6,7 +6,7 @@ import { types } from '../../../plot';
 import DraggableHandle, { DragHandle } from './drag-handle';
 import { withStyles } from '@material-ui/core/styles/index';
 import isEqual from 'lodash/isEqual';
-import { color } from '@pie-lib/render-ui';
+import { color } from '../../../render-ui';
 
 const getData = (data, domain) => {
   const { max } = domain || {};

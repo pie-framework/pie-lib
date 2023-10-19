@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { types } from '../../../plot';
 import { Group } from '@vx/group';
-import { color } from '@pie-lib/render-ui';
+import { color } from '../../../render-ui';
 import { Bar as VxBar } from '@vx/shape';
 import { withStyles } from '@material-ui/core/styles/index';
 import debug from 'debug';

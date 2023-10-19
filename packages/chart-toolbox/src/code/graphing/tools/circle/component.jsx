@@ -10,7 +10,7 @@ import { rootEdgeComponent } from '../shared/line/with-root-edge';
 import ReactDOM from 'react-dom';
 import MarkLabel from '../../mark-label';
 import isEmpty from 'lodash/isEmpty';
-import { color } from '@pie-lib/render-ui';
+import { color } from '../../../render-ui';
 
 const opacityPulsate = (opacity) => ({
   '0%': { opacity: '0.0' },

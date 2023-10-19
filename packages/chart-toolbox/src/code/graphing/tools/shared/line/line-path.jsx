@@ -5,7 +5,7 @@ import { types } from '../../../../plot';
 import classNames from 'classnames';
 import { disabled, correct, incorrect, missing } from '../styles';
 import * as vx from '@vx/shape';
-import { color } from '@pie-lib/render-ui';
+import { color } from '../../../../render-ui';
 
 export class RawLinePath extends React.Component {
   static propTypes = {

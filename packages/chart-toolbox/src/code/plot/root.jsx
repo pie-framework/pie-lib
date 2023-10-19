@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { select, mouse } from 'd3-selection';
 import PropTypes from 'prop-types';
 import { GraphPropsType } from './types';
-import { color, Readable } from '@pie-lib/render-ui';
+import { color, Readable } from '../render-ui';
 import EditableHtml from '@pie-lib/editable-html';
 import cn from 'classnames';
 import Label from './label';

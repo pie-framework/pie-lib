@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import { gridDraggable, utils, types } from '../../plot';
-import { color } from '@pie-lib/render-ui';
+import { color } from '../../render-ui';
 import { correct, incorrect, disabled } from './styles';
 import { getScale } from '../utils';
 import DragIcon from './drag-icon';

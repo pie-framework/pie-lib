@@ -1,7 +1,15 @@
 code
+categorize.js
+categorize.js.map
 charting.js
 charting.js.map
 graphing.js
 graphing.js.map
 graphing-utils.js
 graphing-utils.js.map
+icons.js
+icons.js.map
+render-ui.js
+render-ui.js.map
+test-utils.js
+test-utils.js.map

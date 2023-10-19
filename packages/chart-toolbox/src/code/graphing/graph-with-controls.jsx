@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import uniq from 'lodash/uniq';
 import isString from 'lodash/isString';
-import { color } from '@pie-lib/render-ui';
+import { color } from '../render-ui';
 
 import ToolMenu from './tool-menu';
 import Graph, { graphPropTypes } from './graph';
