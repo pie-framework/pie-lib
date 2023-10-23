@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/chart-toolbox",
-  "version": "1.0.1-next.5000",
+  "version": "1.0.1-next.5001",
   "publishConfig": {
     "access": "public"
   },
