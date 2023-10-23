@@ -1,4 +1,4 @@
-import { Token, TokenSelect, TextSelect } from '@pie-lib/text-select';
+import { Token, TokenSelect, TextSelect } from '@pie-lib/chart-toolbox/text-select';
 import Section from '../src/formatting/section';
 import * as sample from '../src/text-select/math-sample';
 import * as simpleSample from '../src/text-select/simple-sample';
