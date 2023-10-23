@@ -4,8 +4,8 @@ import { color } from '../render-ui';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import ChartType from './chart-type';
-import { NumberTextFieldCustom } from '@pie-lib/config-ui';
-import { AlertDialog } from '@pie-lib/config-ui';
+import { NumberTextFieldCustom } from '../config-ui';
+import { AlertDialog } from '../config-ui';
 
 export const resetValues = (data, updateModel, range, onChange, model) => {
   (data || []).forEach((d) => {

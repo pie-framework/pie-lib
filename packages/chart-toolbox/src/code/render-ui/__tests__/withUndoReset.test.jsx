@@ -1,7 +1,7 @@
 import * as React from 'react';
 import withUndoReset from '../withUndoReset';
 import { mount, shallow } from 'enzyme';
-import { shallowChild } from '@pie-lib/test-utils';
+import { shallowChild } from '../../test-utils';
 
 describe('withUndoReset', () => {
   let wrapper;

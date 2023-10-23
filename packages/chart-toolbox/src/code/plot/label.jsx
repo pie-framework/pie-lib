@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { color, Readable } from '../../render-ui';
 import cn from 'classnames';
-import EditableHtml from '@pie-lib/editable-html';
+import EditableHtml from '../editable-html';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 

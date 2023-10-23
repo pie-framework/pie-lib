@@ -7,8 +7,8 @@ import Typography from '@material-ui/core/Typography';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { NumberTextFieldCustom, Toggle } from '@pie-lib/config-ui';
-import EditableHTML from '@pie-lib/editable-html';
+import { NumberTextFieldCustom, Toggle } from '../config-ui';
+import EditableHTML from '../editable-html';
 
 const GridConfig = (props) => {
   const { classes, disabled, displayedFields, labelValue, labelValues, gridValue, gridValues, onChange } = props;

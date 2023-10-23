@@ -5,8 +5,8 @@ import cn from 'classnames';
 import Button from '@material-ui/core/Button';
 import { color } from '../render-ui';
 import { allTools } from './tools';
-import { withDragContext, DragSource, DropTarget } from '@pie-lib/drag';
-import Translator from '@pie-lib/translator';
+import { withDragContext, DragSource, DropTarget } from '../drag';
+import Translator from '../translator';
 
 const { translator } = Translator;
 

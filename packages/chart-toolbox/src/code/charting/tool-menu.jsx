@@ -6,7 +6,7 @@ import { color } from '../render-ui';
 import { withStyles } from '@material-ui/core/styles';
 import cn from 'classnames';
 import Button from '@material-ui/core/Button';
-import Translator from '@pie-lib/translator';
+import Translator from '../translator';
 
 const { translator } = Translator;
 

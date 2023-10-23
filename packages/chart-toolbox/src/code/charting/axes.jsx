@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { types } from '../plot';
 import { color } from '../../render-ui';
-import { AlertDialog } from '@pie-lib/config-ui';
+import { AlertDialog } from '../config-ui';
 import { AxisLeft, AxisBottom } from '@vx/axis';
 import { bandKey, getTickValues, getRotateAngle } from './utils';
 import MarkLabel from './mark-label';

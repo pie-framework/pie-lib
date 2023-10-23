@@ -11,8 +11,8 @@ import { color } from '../render-ui';
 import { dataToXBand, getDomainAndRangeByChartType, getGridLinesAndAxisByChartType, getTopPadding } from './utils';
 import ToolMenu from './tool-menu';
 import chartTypes from './chart-types';
-import { AlertDialog } from '@pie-lib/config-ui';
-import Translator from '@pie-lib/translator';
+import { AlertDialog } from '../config-ui';
+import Translator from '../translator';
 
 const { translator } = Translator;
 
