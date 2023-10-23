@@ -1,4 +1,4 @@
-import { HorizontalKeypad, mq } from '../math-input';
+import { HorizontalKeypad, mq, updateSpans } from '../math-input';
 import React from 'react';
 import debug from 'debug';
 import PropTypes from 'prop-types';
@@ -9,7 +9,6 @@ const log = debug('@pie-lib:math-toolbar:editor-and-pad');
 import { color, InputContainer } from '../render-ui';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import { updateSpans } from '../math-input';
 import isEqual from 'lodash/isEqual';
 
 const decimalRegex = /\.|,/g;
