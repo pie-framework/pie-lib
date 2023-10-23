@@ -15,7 +15,7 @@ import {
   TwoChoice,
   feedbackConfigDefaults,
   MuiBox,
-} from '@pie-lib/config-ui';
+} from '@pie-lib/chart-toolbox/config-ui';
 
 import React from 'react';
 import Button from '@material-ui/core/Button';

@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot renders 1`] = `
+<div
+  className=""
+>
+  <div
+    className=""
+  >
+    <div
+      className=""
+    >
+      <WithStyles(Input)
+        className=""
+        innerRef={[Function]}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+      />
+    </div>
+  </div>
+  <hr />
+  <HorizontalKeypad
+    additionalKeys={Array []}
+    className=""
+    mode="scientific"
+    noDecimal={false}
+    onClick={[Function]}
+  />
+</div>
+`;

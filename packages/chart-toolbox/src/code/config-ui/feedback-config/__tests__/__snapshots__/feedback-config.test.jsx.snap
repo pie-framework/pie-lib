@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FeedbackConfig render Feedback Config Component snapshot matches the snapshot 1`] = `
+<div>
+  <WithStyles(ExpansionPanel)>
+    <WithStyles(ExpansionPanelSummary)
+      expandIcon={<pure(ExpandMoreIcon) />}
+    >
+      <WithStyles(Typography)>
+        Feedback
+      </WithStyles(Typography)>
+    </WithStyles(ExpansionPanelSummary)>
+    <WithStyles(ExpansionPanelDetails)>
+      <div>
+        <WithStyles(FeedbackSelector)
+          label="If correct, show"
+          onChange={[Function]}
+        />
+        <WithStyles(FeedbackSelector)
+          label="If incorrect, show"
+          onChange={[Function]}
+        />
+      </div>
+    </WithStyles(ExpansionPanelDetails)>
+  </WithStyles(ExpansionPanel)>
+</div>
+`;

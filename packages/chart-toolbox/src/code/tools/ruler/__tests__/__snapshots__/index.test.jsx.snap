@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ruler snapshot renders 1`] = `
+<WithStyles(Rotatable)
+  handle={
+    Array [
+      Object {
+        "class": "leftAnchor",
+        "origin": "bottom right",
+      },
+      Object {
+        "class": "rightAnchor",
+        "origin": "bottom left",
+      },
+    ]
+  }
+>
+  <div
+    style={
+      Object {
+        "height": "60px",
+        "width": "480px",
+      }
+    }
+  >
+    <WithStyles(Graphic)
+      height={60}
+      unit={
+        Object {
+          "ticks": 16,
+          "type": undefined,
+        }
+      }
+      units={12}
+      width={480}
+    />
+    <WithStyles(Component)
+      className="leftAnchor"
+    />
+    <WithStyles(Component)
+      className="rightAnchor"
+    />
+  </div>
+</WithStyles(Rotatable)>
+`;

@@ -1,0 +1,121 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dropdown render renders correctly with correct as true 1`] = `
+<Dropdown
+  choices={
+    Array [
+      Object {
+        "id": undefined,
+        "label": "Jumped",
+        "value": "Jumped",
+      },
+      Object {
+        "id": undefined,
+        "label": "Laughed",
+        "value": "Laughed",
+      },
+      Object {
+        "id": undefined,
+        "label": "Smiled",
+        "value": "Smiled",
+      },
+    ]
+  }
+  classes={
+    Object {
+      "icon": "Dropdown-icon-4",
+      "label": "Dropdown-label-7",
+      "menuRoot": "Dropdown-menuRoot-6",
+      "root": "Dropdown-root-1",
+      "select": "Dropdown-select-2",
+      "selectMenu": "Dropdown-selectMenu-3",
+      "selected": "Dropdown-selected-5",
+    }
+  }
+  correct={true}
+  disabled={false}
+  id="1"
+  onChange={[MockFunction]}
+  value="Jumped"
+/>
+`;
+
+exports[`Dropdown render renders correctly with default props 1`] = `
+<Dropdown
+  choices={
+    Array [
+      Object {
+        "id": undefined,
+        "label": "Jumped",
+        "value": "Jumped",
+      },
+      Object {
+        "id": undefined,
+        "label": "Laughed",
+        "value": "Laughed",
+      },
+      Object {
+        "id": undefined,
+        "label": "Smiled",
+        "value": "Smiled",
+      },
+    ]
+  }
+  classes={
+    Object {
+      "icon": "Dropdown-icon-4",
+      "label": "Dropdown-label-7",
+      "menuRoot": "Dropdown-menuRoot-6",
+      "root": "Dropdown-root-1",
+      "select": "Dropdown-select-2",
+      "selectMenu": "Dropdown-selectMenu-3",
+      "selected": "Dropdown-selected-5",
+    }
+  }
+  correct={false}
+  disabled={false}
+  id="1"
+  onChange={[MockFunction]}
+  value="Jumped"
+/>
+`;
+
+exports[`Dropdown render renders correctly with disabled prop as true 1`] = `
+<Dropdown
+  choices={
+    Array [
+      Object {
+        "id": undefined,
+        "label": "Jumped",
+        "value": "Jumped",
+      },
+      Object {
+        "id": undefined,
+        "label": "Laughed",
+        "value": "Laughed",
+      },
+      Object {
+        "id": undefined,
+        "label": "Smiled",
+        "value": "Smiled",
+      },
+    ]
+  }
+  classes={
+    Object {
+      "icon": "Dropdown-icon-4",
+      "label": "Dropdown-label-7",
+      "menuRoot": "Dropdown-menuRoot-6",
+      "root": "Dropdown-root-1",
+      "select": "Dropdown-select-2",
+      "selectMenu": "Dropdown-selectMenu-3",
+      "selected": "Dropdown-selected-5",
+    }
+  }
+  correct={false}
+  disabled={true}
+  id="1"
+  onChange={[MockFunction]}
+  value="Jumped"
+/>
+`;
