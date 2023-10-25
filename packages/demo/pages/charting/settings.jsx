@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
-import { DisplaySize } from '@pie-lib/config-ui';
+import { DisplaySize } from '@pie-lib/chart-toolbox/config-ui';
 import grey from '@material-ui/core/colors/grey';
 
 export class Settings extends React.Component {

@@ -1,4 +1,4 @@
-import { layout, TwoChoice } from '@pie-lib/config-ui';
+import { layout, TwoChoice } from '@pie-lib/chart-toolbox/config-ui';
 
 import React from 'react';
 import Typography from '@material-ui/core/Typography';

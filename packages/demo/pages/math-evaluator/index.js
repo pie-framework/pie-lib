@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import withRoot from '../../src/withRoot';
-import EditableHtml from '@pie-lib/editable-html';
+import EditableHtml from '@pie-lib/chart-toolbox/editable-html';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
-import areValuesEqual from '@pie-lib/math-evaluator';
+import areValuesEqual from '@pie-lib/chart-toolbox/math-evaluator';
 import mathExpressions from '@pie-framework/math-expressions';
 import debug from 'debug';
 import jsesc from 'jsesc';

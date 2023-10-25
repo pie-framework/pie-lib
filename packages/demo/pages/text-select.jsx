@@ -1,4 +1,4 @@
-import { TextSelect, TokenTypes, Tokenizer } from '@pie-lib/text-select';
+import { TextSelect, TokenTypes, Tokenizer } from '@pie-lib/chart-toolbox/text-select';
 import withRoot from '../src/withRoot';
 import React from 'react';
 import PropTypes from 'prop-types';

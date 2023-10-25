@@ -1,4 +1,4 @@
-import { Authoring } from '@pie-lib/rubric';
+import { Authoring } from '@pie-lib/chart-toolbox/rubric';
 import React from 'react';
 import withRoot from '../../src/withRoot';
 import { withStyles } from '@material-ui/core';
