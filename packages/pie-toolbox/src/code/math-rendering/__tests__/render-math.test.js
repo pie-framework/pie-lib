@@ -18,7 +18,7 @@ jest.mock(
     },
   }),
   {
-    virtual: true,
+    virtual: false,
   },
 );
 
