@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.0.15...@pie-lib/demo@7.0.16) (2023-10-25)
+
+
+### Bug Fixes
+
+* use correct package name ([bda3385](https://github.com/pie-framework/pie-lib/commit/bda338556159a18ccb91011803ec51aadeb27915))
+
+
+
+
+
 ## [7.0.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.0.14...@pie-lib/demo@7.0.15) (2023-10-16)
 
 **Note:** Version bump only for package @pie-lib/demo
