@@ -7,7 +7,7 @@ import withRoot from '../src/withRoot';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { renderMath } from '@pie-lib/math-rendering';
+import { renderMath } from '@pie-lib/chart-toolbox/math-rendering';
 
 const mathText = `<math xmlns="http:/www.w3.org/1998/Math/MathML">
   <mstyle displaystyle="true">

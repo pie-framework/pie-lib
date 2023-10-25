@@ -2655,16 +2655,6 @@
     unist-util-modify-children "^1.0.0"
     unist-util-visit-children "^1.0.0"
 
-"@pie-lib/math-rendering@2.5.18":
-  version "2.5.18"
-  resolved "https://registry.yarnpkg.com/@pie-lib/math-rendering/-/math-rendering-2.5.18.tgz#dd6d5c9c31418e4c9cfde370c96f4b372ebe97cd"
-  integrity sha512-HP/u8IaOJZzgHX/lQhCIUl0K8Dt1geO+ZvwFYXkWR2P58Uw1EeomLwyKZyXEZ4xL0iF1QpB8OyQGT280Qgqx0w==
-  dependencies:
-    debug "^4.1.1"
-    lodash "^4.17.11"
-    mathjax-full "3.2.2"
-    mathml-to-latex "1.2.0"
-
 "@pie-lib/test-utils@^0.0.3":
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/@pie-lib/test-utils/-/test-utils-0.0.3.tgz#9bef3bfb236af4cda24e9ed6446794d9615175a0"

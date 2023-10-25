@@ -15,8 +15,9 @@ jest.mock('../../../../math-toolbar', () => ({
   MathPreview: () => <div />,
   MathToolbar: () => <div />,
 }));
-jest.mock('@pie-lib/math-rendering', () => ({
-  ...jest.requireActual('@pie-lib/math-rendering'),
+
+jest.mock('../../../../math-rendering', () => ({
+  ...jest.requireActual('../../../../math-rendering'),
   mmlToLatex: jest.fn(() => {
     return '/foobar/latex';
   }),

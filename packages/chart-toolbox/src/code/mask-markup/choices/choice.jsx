@@ -5,7 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 import classnames from 'classnames';
 import ReactDOM from 'react-dom';
-import { renderMath } from '@pie-lib/math-rendering';
+import { renderMath } from '../../math-rendering';
 import { color } from '../../render-ui';
 
 export const DRAG_TYPE = 'MaskBlank';

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { renderMath } from '@pie-lib/math-rendering';
+import { renderMath } from '../math-rendering';
 import Choices from './choices';
 import Blank from './components/blank';
 import { withMask } from './with-mask';

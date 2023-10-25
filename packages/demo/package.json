@@ -6,7 +6,6 @@
     "@material-ui/core": "^3.8.3",
     "@material-ui/icons": "^3.0.2",
     "@pie-lib/chart-toolbox": "1.0.1-next.5002",
-    "@pie-lib/math-rendering": "2.5.18",
     "change-case": "^3.0.2",
     "classnames": "^2.2.6",
     "i18next": "^22.5.0",

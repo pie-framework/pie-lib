@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import isUndefined from 'lodash/isUndefined';
 import { DragSource, DropTarget } from '../../../../drag';
 import { color } from '../../../../render-ui';
-import { renderMath } from '@pie-lib/math-rendering';
+import { renderMath } from '../../../../math-rendering';
 import { withStyles } from '@material-ui/core/styles';
 import classnames from 'classnames';
 

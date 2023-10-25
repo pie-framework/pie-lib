@@ -1,9 +1,9 @@
 import HtmlAndMath from '../html-and-math';
 import { shallow } from 'enzyme';
 import React from 'react';
-import { renderMath } from '@pie-lib/math-rendering';
+import { renderMath } from '../../math-rendering';
 
-jest.mock('@pie-lib/math-rendering', () => ({ renderMath: jest.fn() }));
+jest.mock('../../math-rendering', () => ({ renderMath: jest.fn() }));
 
 describe('html-and-math', () => {
   const mkWrapper = (extras) => {

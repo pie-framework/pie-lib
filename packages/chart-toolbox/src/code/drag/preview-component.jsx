@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { usePreview } from 'react-dnd-multi-backend';
 import { PreviewPrompt, color } from '../render-ui';
-import { renderMath } from '@pie-lib/math-rendering';
+import { renderMath } from '../math-rendering';
 
 const styles = {
   maskBlank: {

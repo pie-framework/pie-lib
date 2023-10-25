@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderMath } from '@pie-lib/math-rendering';
+import { renderMath } from '../math-rendering';
 import PropTypes from 'prop-types';
 
 export default class HtmlAndMath extends React.Component {

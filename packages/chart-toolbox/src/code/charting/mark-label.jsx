@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { types } from '../plot';
 import { correct, incorrect, disabled } from './common/styles';
 import { color } from '../render-ui';
-import { renderMath } from '@pie-lib/math-rendering';
+import { renderMath } from '../math-rendering';
 
 const styles = (theme) => ({
   input: {
