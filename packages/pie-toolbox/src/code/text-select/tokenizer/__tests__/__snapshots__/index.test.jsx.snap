@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`tokenizer snapshot renders 1`] = `
+<div
+  className=""
+>
+  <WithStyles(Controls)
+    onClear={[Function]}
+    onParagraphs={[Function]}
+    onSentences={[Function]}
+    onToggleCorrectMode={[Function]}
+    onWords={[Function]}
+    setCorrectMode={false}
+  />
+  <TokenText
+    className=""
+    onSelectToken={[Function]}
+    onTokenClick={[Function]}
+    text="foo"
+    tokens={
+      Array [
+        Object {
+          "end": 1,
+          "start": 0,
+          "text": "f",
+        },
+      ]
+    }
+  />
+</div>
+`;

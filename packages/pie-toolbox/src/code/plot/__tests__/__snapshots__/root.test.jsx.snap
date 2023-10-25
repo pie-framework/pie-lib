@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`root snapshot matches 1`] = `
+<div>
+  <div>
+    <svg
+      height={480}
+      width={520}
+    >
+      <g
+        transform="translate(60, 40)"
+      >
+        hi
+      </g>
+    </svg>
+  </div>
+</div>
+`;

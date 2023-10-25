@@ -1,0 +1,210 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Graph snapshot renders 1`] = `
+<WithStyles(Root)
+  disabledLabels={false}
+  disabledTitle={false}
+  graphProps={
+    Object {
+      "domain": Object {
+        "max": 1,
+        "min": 0,
+        "step": 1,
+      },
+      "getRootNode": [Function],
+      "range": Object {
+        "max": 1,
+        "min": 0,
+        "step": 1,
+      },
+      "scale": Object {
+        "x": [Function],
+        "y": [Function],
+      },
+      "size": Object {
+        "height": 400,
+        "width": 400,
+      },
+      "snap": Object {
+        "x": [Function],
+        "y": [Function],
+      },
+    }
+  }
+  labelsPlaceholders={Object {}}
+  mathMlOptions={Object {}}
+  rootRef={[Function]}
+>
+  <g>
+    <WithStyles(Grid)
+      graphProps={
+        Object {
+          "domain": Object {
+            "max": 1,
+            "min": 0,
+            "step": 1,
+          },
+          "getRootNode": [Function],
+          "range": Object {
+            "max": 1,
+            "min": 0,
+            "step": 1,
+          },
+          "scale": Object {
+            "x": [Function],
+            "y": [Function],
+          },
+          "size": Object {
+            "height": 400,
+            "width": 400,
+          },
+          "snap": Object {
+            "x": [Function],
+            "y": [Function],
+          },
+        }
+      }
+    />
+    <Axes
+      graphProps={
+        Object {
+          "domain": Object {
+            "max": 1,
+            "min": 0,
+            "step": 1,
+          },
+          "getRootNode": [Function],
+          "range": Object {
+            "max": 1,
+            "min": 0,
+            "step": 1,
+          },
+          "scale": Object {
+            "x": [Function],
+            "y": [Function],
+          },
+          "size": Object {
+            "height": 400,
+            "width": 400,
+          },
+          "snap": Object {
+            "x": [Function],
+            "y": [Function],
+          },
+        }
+      }
+      includeArrows={
+        Object {
+          "down": true,
+          "left": true,
+          "right": true,
+          "up": true,
+        }
+      }
+    />
+    <Bg
+      graphProps={
+        Object {
+          "domain": Object {
+            "max": 1,
+            "min": 0,
+            "step": 1,
+          },
+          "getRootNode": [Function],
+          "range": Object {
+            "max": 1,
+            "min": 0,
+            "step": 1,
+          },
+          "scale": Object {
+            "x": [Function],
+            "y": [Function],
+          },
+          "size": Object {
+            "height": 400,
+            "width": 400,
+          },
+          "snap": Object {
+            "x": [Function],
+            "y": [Function],
+          },
+        }
+      }
+      height={400}
+      onClick={[Function]}
+      width={400}
+    />
+    <mask
+      id="graph-1618"
+    >
+      <rect
+        fill="white"
+        height={446}
+        width={446}
+        x={-23}
+        y={-23}
+      />
+       
+    </mask>
+    <g
+      id="marks"
+      mask="url('#graph-1618')"
+    >
+      <Point
+        graphProps={
+          Object {
+            "domain": Object {
+              "max": 1,
+              "min": 0,
+              "step": 1,
+            },
+            "getRootNode": [Function],
+            "range": Object {
+              "max": 1,
+              "min": 0,
+              "step": 1,
+            },
+            "scale": Object {
+              "x": [Function],
+              "y": [Function],
+            },
+            "size": Object {
+              "height": 400,
+              "width": 400,
+            },
+            "snap": Object {
+              "x": [Function],
+              "y": [Function],
+            },
+          }
+        }
+        isToolActive={false}
+        key="point-0"
+        mark={
+          Object {
+            "label": "Point",
+            "showLabel": true,
+            "type": "point",
+            "x": 2,
+            "y": 2,
+          }
+        }
+        onChange={[Function]}
+        onClick={[Function]}
+        onComplete={[Function]}
+      />
+      <foreignObject
+        height={400}
+        style={
+          Object {
+            "pointerEvents": "none",
+          }
+        }
+        width={400}
+        x="0"
+        y="0"
+      />
+    </g>
+  </g>
+</WithStyles(Root)>
+`;
