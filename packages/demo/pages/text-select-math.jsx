@@ -1,4 +1,4 @@
-import { Token, TokenSelect, TextSelect } from '@pie-lib/chart-toolbox/text-select';
+import { Token, TokenSelect, TextSelect } from '@pie-lib/pie-toolbox/text-select';
 import Section from '../src/formatting/section';
 import * as sample from '../src/text-select/math-sample';
 import * as simpleSample from '../src/text-select/simple-sample';
@@ -7,7 +7,7 @@ import withRoot from '../src/withRoot';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { renderMath } from '@pie-lib/chart-toolbox/math-rendering';
+import { renderMath } from '@pie-lib/pie-toolbox/math-rendering';
 
 const mathText = `<math xmlns="http:/www.w3.org/1998/Math/MathML">
   <mstyle displaystyle="true">

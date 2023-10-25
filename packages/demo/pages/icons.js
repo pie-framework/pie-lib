@@ -7,7 +7,7 @@ import {
   NothingSubmitted,
   PartiallyCorrect,
   ShowRationale,
-} from '@pie-lib/chart-toolbox/icons';
+} from '@pie-lib/pie-toolbox/icons';
 import withRoot from '../src/withRoot';
 
 import React from 'react';

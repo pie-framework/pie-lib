@@ -1,4 +1,4 @@
-import { utils } from '@pie-lib/chart-toolbox/plot';
+import { utils } from '@pie-lib/pie-toolbox/plot';
 const { xy } = utils;
 const fromTo = (fx, fy, tx, ty) => ({ from: xy(fx, fy), to: xy(tx, ty) });
 

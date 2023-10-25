@@ -1710,7 +1710,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### BREAKING CHANGES
 
-- component is accessible as `import {layout} from '@pie-lib/chart-toolbox/config-ui'; const {ConfigLayout}=settings;`
+- component is accessible as `import {layout} from '@pie-lib/pie-toolbox/config-ui'; const {ConfigLayout}=settings;`
 
 ## [3.4.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@3.4.1...@pie-lib/demo@3.4.2) (2019-04-11)
 

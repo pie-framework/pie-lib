@@ -1,6 +1,6 @@
 import withRoot from '../../src/withRoot';
 import React from 'react';
-import { Rotatable, utils } from '@pie-lib/chart-toolbox/tools';
+import { Rotatable, utils } from '@pie-lib/pie-toolbox/tools';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';

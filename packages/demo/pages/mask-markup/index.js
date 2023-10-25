@@ -1,11 +1,11 @@
-import { DragInTheBlank, ConstructedResponse, InlineDropdown } from '@pie-lib/chart-toolbox/mask-markup';
+import { DragInTheBlank, ConstructedResponse, InlineDropdown } from '@pie-lib/pie-toolbox/mask-markup';
 import React from 'react';
 import withRoot from '../../src/withRoot';
 import { withStyles } from '@material-ui/core';
 import Section from '../../src/formatting/section';
 import Pre from '../../src/formatting/pre';
 import inputPlugin from './input-plugin';
-import { withDragContext } from '@pie-lib/chart-toolbox/drag';
+import { withDragContext } from '@pie-lib/pie-toolbox/drag';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
