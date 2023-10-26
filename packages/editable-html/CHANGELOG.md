@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.1.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@11.1.0...@pie-lib/editable-html@11.1.1) (2023-10-26)
+
+
+### Bug Fixes
+
+* **editable-html:** avoid using setState multiple times PD-3221 ([c8af6af](https://github.com/pie-framework/pie-lib/commit/c8af6af081e68c634eb9dd16f6ffd016021bbb58))
+* **editable-html:** avoid using setState multiple times PD-3221 ([6cf868b](https://github.com/pie-framework/pie-lib/commit/6cf868b549673121f60ed10530d755873d783372))
+
+
+
+
+
 # [11.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@11.0.9...@pie-lib/editable-html@11.1.0) (2023-10-16)
 
 
