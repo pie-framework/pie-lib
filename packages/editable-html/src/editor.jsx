@@ -165,10 +165,19 @@ export class Editor extends React.Component {
   };
 
   toggleHtmlMode = () => {
-    const isHtmlMode = !this.state.isHtmlMode;
-    const toolbarOpts = createToolbarOpts(this.state.toolbarOpts, this.props.error, isHtmlMode);
-
-    this.setState({ isHtmlMode, toolbarOpts });
+    this.setState(
+      (prevState) => ({
+        isHtmlMode: !prevState.isHtmlMode,
+      }),
+      () => {
+        const { error } = this.props;
+        const { toolbarOpts } = this.state;
+        const newToolbarOpts = createToolbarOpts(toolbarOpts, error, this.state.isHtmlMode);
+        this.setState({
+          toolbarOpts: newToolbarOpts,
+        });
+      },
+    );
   };
 
   handlePlugins = (props) => {
