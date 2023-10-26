@@ -165,19 +165,10 @@ export class Editor extends React.Component {
   };
 
   toggleHtmlMode = () => {
-    this.setState(
-      (prevState) => ({
-        isHtmlMode: !prevState.isHtmlMode,
-      }),
-      () => {
-        const { error } = this.props;
-        const { toolbarOpts } = this.state;
-        const newToolbarOpts = createToolbarOpts(toolbarOpts, error, this.state.isHtmlMode);
-        this.setState({
-          toolbarOpts: newToolbarOpts,
-        });
-      },
-    );
+    const isHtmlMode = !this.state.isHtmlMode;
+    const toolbarOpts = createToolbarOpts(this.state.toolbarOpts, this.props.error, isHtmlMode);
+
+    this.setState({ isHtmlMode, toolbarOpts });
   };
 
   handlePlugins = (props) => {
@@ -607,21 +598,15 @@ export class Editor extends React.Component {
       return;
     }
 
-    if (!this.state.isHtmlMode) {
-      this.setState({ isEdited: false });
-    }
-
     // Mark the editor as edited when in HTML mode and its content has changed.
     // This status will later be used to decide whether to prompt a warning to the user when exiting HTML mode.
-    if (
-      this.state.isHtmlMode &&
-      !this.state.isEdited &&
-      !isEqual(this.state.value.document.text, value.document.text)
-    ) {
-      this.setState({ isEdited: true });
-    }
+    const isEdited = !this.state.isHtmlMode
+      ? false
+      : this.state.value.document.text !== value.document.text
+      ? true
+      : this.state.isEdited;
 
-    this.setState({ value }, () => {
+    this.setState({ value, isEdited }, () => {
       log('[onChange], call done()');
 
       if (done) {
