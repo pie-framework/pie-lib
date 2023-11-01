@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.0.2...@pie-lib/pie-toolbox@1.0.3) (2023-11-01)
+
+
+### Bug Fixes
+
+* name math rendering instance as exected ([e9255be](https://github.com/pie-framework/pie-lib/commit/e9255be80195d5e02d1894e1f01df6a4f019568f))
+
+
+
+
+
 ## [1.0.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.0.1...@pie-lib/pie-toolbox@1.0.2) (2023-10-30)
 
 
