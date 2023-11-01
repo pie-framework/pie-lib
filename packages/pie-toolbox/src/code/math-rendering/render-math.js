@@ -31,7 +31,10 @@ const NEWLINE_LATEX = '\\newline ';
 const getGlobal = () => {
   // TODO does it make sense to use version? Investigate why it was being used.
   // const key = `${pkg.name}@${pkg.version.split('.')[0]}/math-rendering`;
-  const key = '@pie-lib/pie-toolbox/math-rendering';
+  // const key = '@pie-lib/pie-toolbox/math-rendering';
+  // TODO higher level wrappers use this instance of math-rendering, and if 2 different instances are used, math rendering is not working
+  // this is a try-to-fix, just to be sure we're on the right track, but the solution might require more time
+  const key = '@pie-lib/math-rendering@2';
 
   if (typeof window !== 'undefined') {
     if (!window[key]) {
