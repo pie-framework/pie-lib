@@ -34,7 +34,21 @@ const getGlobal = () => {
   // const key = '@pie-lib/pie-toolbox/math-rendering';
   // TODO higher level wrappers use this instance of math-rendering, and if 2 different instances are used, math rendering is not working
   // this is a try-to-fix, just to be sure we're on the right track, but the solution might require more time
-  const key = '@pie-lib/math-rendering@2';
+  // const key = '@pie-lib/math-rendering@2';
+
+
+  // The code below is added to handle math-rendering instances.
+  // This is still a wip, but doing some work here to make sure it's still going to work as expected
+
+  // We check if there's an existing version on window.
+  // In a pie-player-components environment, there should already be one when items are reached
+  let key = Object.keys(window || {}).find(key => (key || '').indexOf('math-rendering') >= 0) || '@pie-lib/math-rendering@2';
+
+  // if pie-player-components already created an instance of math-rendering, we continue with that key, but if it did not, we can create our own key
+  if (!window[key]) {
+    // the new key
+    key = '@pie-lib/pie-toolbox/math-rendering';
+  }
 
   if (typeof window !== 'undefined') {
     if (!window[key]) {
