@@ -29,26 +29,15 @@ const NEWLINE_BLOCK_REGEX = /\\embed\{newLine\}\[\]/g;
 const NEWLINE_LATEX = '\\newline ';
 
 const getGlobal = () => {
-  // TODO does it make sense to use version? Investigate why it was being used.
-  // const key = `${pkg.name}@${pkg.version.split('.')[0]}/math-rendering`;
-  // const key = '@pie-lib/pie-toolbox/math-rendering';
+  // TODO does it make sense to use version?
+  // const key = `${pkg.name}@${pkg.version.split('.')[0]}`;
+  // It looks like Ed made this change when he switched from mathjax3 to mathjax-full
+  // I think it was supposed to make sure version 1 (using mathjax3) is not used
+  // in combination with version 2 (using mathjax-full)
+
   // TODO higher level wrappers use this instance of math-rendering, and if 2 different instances are used, math rendering is not working
-  // this is a try-to-fix, just to be sure we're on the right track, but the solution might require more time
-  // const key = '@pie-lib/math-rendering@2';
-
-
-  // The code below is added to handle math-rendering instances.
-  // This is still a wip, but doing some work here to make sure it's still going to work as expected
-
-  // We check if there's an existing version on window.
-  // In a pie-player-components environment, there should already be one when items are reached
-  let key = Object.keys(window || {}).find(key => (key || '').indexOf('math-rendering') >= 0) || '@pie-lib/math-rendering@2';
-
-  // if pie-player-components already created an instance of math-rendering, we continue with that key, but if it did not, we can create our own key
-  if (!window[key]) {
-    // the new key
-    key = '@pie-lib/pie-toolbox/math-rendering';
-  }
+  //  so I will hardcode this for now until a better solution is found
+  const key = '@pie-lib/math-rendering@2';
 
   if (typeof window !== 'undefined') {
     if (!window[key]) {
