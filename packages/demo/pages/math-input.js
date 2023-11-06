@@ -1,4 +1,4 @@
-import { mq, keysForGrade, keys, KeyPad, HorizontalKeypad } from '@pie-lib/math-input';
+import { mq, keysForGrade, keys, KeyPad, HorizontalKeypad } from '@pie-lib/pie-toolbox/math-input';
 import React from 'react';
 import withRoot from '../src/withRoot';
 import OutlinedInput from '@material-ui/core/OutlinedInput';

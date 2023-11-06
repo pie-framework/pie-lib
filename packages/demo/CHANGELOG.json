@@ -266,11 +266,11 @@
     "merge": null,
     "header": "feat: new config layout component",
     "body": null,
-    "footer": "BREAKING CHANGE: component is accessible as `import {layout} from\n'@pie-lib/config-ui'; const {ConfigLayout}=settings;`",
+    "footer": "BREAKING CHANGE: component is accessible as `import {layout} from\n'@pie-lib/pie-toolbox/config-ui'; const {ConfigLayout}=settings;`",
     "notes": [
       {
         "title": "BREAKING CHANGE",
-        "text": "component is accessible as `import {layout} from\n'@pie-lib/config-ui'; const {ConfigLayout}=settings;`"
+        "text": "component is accessible as `import {layout} from\n'@pie-lib/pie-toolbox/config-ui'; const {ConfigLayout}=settings;`"
       }
     ],
     "hash": "452e8a95159cd32ec76d285670402b777b4cfe04",
