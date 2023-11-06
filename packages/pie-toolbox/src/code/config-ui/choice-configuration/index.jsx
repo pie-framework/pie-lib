@@ -141,6 +141,8 @@ export class ChoiceConfiguration extends React.Component {
     spellCheck: PropTypes.bool,
     toolbarOpts: PropTypes.object,
     uploadSoundSupport: PropTypes.object,
+    maxImageWidth: PropTypes.number,
+    maxImageHeight: PropTypes.number,
   };
 
   static defaultProps = {
@@ -215,6 +217,8 @@ export class ChoiceConfiguration extends React.Component {
       error,
       noCorrectAnswerError,
       uploadSoundSupport,
+      maxImageWidth,
+      maxImageHeight,
       mathMlOptions = {},
     } = this.props;
 
@@ -253,6 +257,8 @@ export class ChoiceConfiguration extends React.Component {
               error={error}
               uploadSoundSupport={uploadSoundSupport}
               mathMlOptions={mathMlOptions}
+              maxImageWidth={maxImageWidth}
+              maxImageHeight={maxImageHeight}
             />
             {error && <div className={classes.errorText}>{error}</div>}
 
