@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.20](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.0.17-beta.8...@pie-lib/demo@7.0.20) (2023-11-06)
+
+
+### Bug Fixes
+
+* reset demo version (remove -beta) ([9a316aa](https://github.com/pie-framework/pie-lib/commit/9a316aa9814399cb0024d95c416d4c630cfffa8d))
+
+
+
+
+
 ## [7.0.17-beta.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.0.17-beta.7...@pie-lib/demo@7.0.17-beta.8) (2023-11-06)
 
 **Note:** Version bump only for package @pie-lib/demo
