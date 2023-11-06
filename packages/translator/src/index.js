@@ -13,7 +13,6 @@ i18next.init(
     }
   }
 );
-
 export default {
   translator: {
     ...i18next,
