@@ -1,4 +1,4 @@
-import { settings } from '@pie-lib/config-ui';
+import { settings } from '@pie-lib/pie-toolbox/config-ui';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
