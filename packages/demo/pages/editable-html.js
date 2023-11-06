@@ -1,4 +1,4 @@
-import EditableHtml from '@pie-lib/editable-html';
+import EditableHtml from '@pie-lib/pie-toolbox/editable-html';
 import grey from '@material-ui/core/colors/grey';
 import React from 'react';
 import _ from 'lodash';
@@ -15,7 +15,7 @@ import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import InputChooser from '../src/editable-html/input-chooser';
-import { hasText } from '@pie-lib/render-ui';
+import { hasText } from '@pie-lib/pie-toolbox/render-ui';
 
 const log = debug('@pie-lib:editable-html:demo');
 const puppySrc = 'https://bit.ly/23yROY8';

@@ -1,7 +1,7 @@
 import { withStyles } from '@material-ui/core';
 import React from 'react';
 
-import { MathToolbar } from '@pie-lib/math-toolbar';
+import { MathToolbar } from '@pie-lib/pie-toolbox/math-toolbar';
 import withRoot from '../src/withRoot';
 
 export class Demo extends React.Component {
