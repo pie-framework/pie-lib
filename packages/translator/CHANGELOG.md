@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/translator@2.3.0...@pie-lib/translator@2.3.1) (2023-11-06)
+
+
+### Bug Fixes
+
+* test build and release ([31a9b76](https://github.com/pie-framework/pie-lib/commit/31a9b76728649254df36964823ce47abcd850d14))
+
+
+
+
+
 # [2.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/translator@2.2.0...@pie-lib/translator@2.3.0) (2023-09-18)
 
 
