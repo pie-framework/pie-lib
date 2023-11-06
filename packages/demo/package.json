@@ -1,7 +1,7 @@
 {
   "name": "@pie-lib/demo",
   "private": true,
-  "version": "7.0.19",
+  "version": "7.0.20",
   "dependencies": {
     "@material-ui/core": "^3.8.3",
     "@material-ui/icons": "^3.0.2",
