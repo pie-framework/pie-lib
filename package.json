@@ -17,7 +17,6 @@
     "clean": "scripts/build clean",
     "release": "scripts/build release deploy",
     "release:next": "scripts/build release deploy --next",
-    "release:beta": "scripts/build release deploy --beta",
     "build": "scripts/build build",
     "postinstall": "lerna bootstrap",
     "prepush": "npm run test",
