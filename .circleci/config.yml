@@ -81,28 +81,28 @@ workflows:
           filters:
             branches:
               ignore:
-                - develop
-                - master
+#                - develop
+                - old-master
       - test:
           filters:
             branches:
               ignore:
-                - develop
-                - master
-  build:
-    jobs:
-      - build:
-          filters:
-            branches:
-              only:
-                - develop
+#                - develop
+                - old-master
+#  build:
+#    jobs:
+#      - build:
+#          filters:
+#            branches:
+#              only:
+#                - develop
   build_master:
     jobs:
       - release_build:
           filters:
             branches:
               only:
-                - master
+                - old-master
   # nightly:
   #   triggers:
   #     - schedule:

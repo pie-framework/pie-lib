@@ -6,6 +6,12 @@ Some reusable react components, mostly used in [pie][pie] components.
 
 Elements are in `packages`.
 
+## Important to know!
+
+> This branch is kept to be able to make changes on old pie-lib packages if needed.
+> Entire code was **moved in pie-lib/pie-toolbox** and the new code is going to be on **master branch.**
+> This branch has a CI set to make releases if they are needed.
+
 ## install
 
 ```bash
