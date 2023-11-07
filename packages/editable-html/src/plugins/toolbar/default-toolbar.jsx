@@ -8,7 +8,6 @@ import { withStyles } from '@material-ui/core/styles';
 
 import { Button, MarkButton } from './toolbar-buttons';
 import debug from 'debug';
-import { is } from 'immutable';
 
 const log = debug('@pie-lib:editable-html:plugins:toolbar');
 

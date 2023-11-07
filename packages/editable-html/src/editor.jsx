@@ -37,13 +37,12 @@ const defaultResponseAreaProps = {
 
 const defaultLanguageCharactersProps = [];
 
-const createToolbarOpts = (toolbarOpts, error, isHtmlMode, isEdited) => {
+const createToolbarOpts = (toolbarOpts, error, isHtmlMode) => {
   return {
     ...defaultToolbarOpts,
     ...toolbarOpts,
     error,
     isHtmlMode,
-    isEdited,
   };
 };
 
@@ -146,32 +145,23 @@ export class Editor extends React.Component {
     this.toggleHtmlMode = this.toggleHtmlMode.bind(this);
 
     this.onResize = () => {
-      //   props.onChange(this.state.value, true);
+      props.onChange(this.state.value, true);
     };
 
     this.handlePlugins(this.props);
   }
 
-  handleAlertDialog = (open, extraDialogProps, callback) => {
+  handleDialog = (open, extraDialogProps = {}, callback) => {
     this.setState(
       {
         dialog: {
           open,
           ...extraDialogProps,
         },
-        //  isEdited: false,
       },
       callback,
     );
   };
-
-  handlePreviewDialog = (open, callback) =>
-    this.setState(
-      {
-        dialog: { open },
-      },
-      callback,
-    );
 
   toggleHtmlMode = () => {
     this.setState(
@@ -201,7 +191,7 @@ export class Editor extends React.Component {
       isHtmlMode: this.state.isHtmlMode,
       isEdited: this.state.isEdited,
       toggleHtmlMode: this.toggleHtmlMode,
-      handleAlertDialog: this.handleAlertDialog,
+      handleAlertDialog: this.handleDialog,
     };
 
     this.plugins = buildPlugins(props.activePlugins, {
@@ -352,8 +342,8 @@ export class Editor extends React.Component {
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
-    const { isHtmlMode, toolbarOpts, isEdited } = this.state;
-    const newToolbarOpts = createToolbarOpts(nextProps.toolbarOpts, nextProps.error, isHtmlMode, isEdited);
+    const { isHtmlMode, toolbarOpts } = this.state;
+    const newToolbarOpts = createToolbarOpts(nextProps.toolbarOpts, nextProps.error, isHtmlMode);
 
     if (!isEqual(newToolbarOpts, toolbarOpts)) {
       this.setState({
@@ -486,12 +476,12 @@ export class Editor extends React.Component {
   handleConfirm = (currentValue) => {
     this.setState({ value: currentValue });
     this.props.onChange(currentValue, true);
-    this.handlePreviewDialog(false);
+    this.handleDialog(false);
     this.toggleHtmlMode();
   };
 
   handleCloseDialog = () => {
-    this.handlePreviewDialog(false);
+    this.handleDialog(false);
   };
 
   scheduleImageProcessing = () => {
