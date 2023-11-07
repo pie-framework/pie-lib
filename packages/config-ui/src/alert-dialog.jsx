@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@material-ui/core';
 
-const AlertDialog = ({ text, title, onClose, onConfirm, open }) => (
+const AlertDialog = ({ text, title, onClose, onConfirm, open, onCloseText, onConfirmText }) => (
   <Dialog open={open} onClose={onClose}>
     {title && <DialogTitle>{title}</DialogTitle>}
     {text && (
@@ -13,17 +13,22 @@ const AlertDialog = ({ text, title, onClose, onConfirm, open }) => (
     <DialogActions>
       {onClose && (
         <Button onClick={onClose} color="primary">
-          CANCEL
+          {onCloseText}
         </Button>
       )}
       {onConfirm && (
         <Button autoFocus onClick={onConfirm} color="primary">
-          OK
+          {onConfirmText}
         </Button>
       )}
     </DialogActions>
   </Dialog>
 );
+
+AlertDialog.defaultProps = {
+  onCloseText: 'CANCEL',
+  onConfirmText: 'OK',
+};
 
 AlertDialog.propTypes = {
   text: PropTypes.string,
@@ -31,6 +36,8 @@ AlertDialog.propTypes = {
   onClose: PropTypes.func,
   onConfirm: PropTypes.func,
   open: PropTypes.bool,
+  onConfirmText: PropTypes.string,
+  onCloseText: PropTypes.string,
 };
 
 export default AlertDialog;

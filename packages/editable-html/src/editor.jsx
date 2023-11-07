@@ -14,7 +14,7 @@ import { color } from '@pie-lib/render-ui';
 import Plain from 'slate-plain-serializer';
 import { AlertDialog } from '@pie-lib/config-ui';
 
-import { getBase64 } from './serialization';
+import { getBase64, htmlToValue } from './serialization';
 import InsertImageHandler from './plugins/image/insert-image-handler';
 
 export { ALL_PLUGINS, DEFAULT_PLUGINS, serialization };
@@ -37,12 +37,13 @@ const defaultResponseAreaProps = {
 
 const defaultLanguageCharactersProps = [];
 
-const createToolbarOpts = (toolbarOpts, error, isHtmlMode) => {
+const createToolbarOpts = (toolbarOpts, error, isHtmlMode, isEdited) => {
   return {
     ...defaultToolbarOpts,
     ...toolbarOpts,
     error,
     isHtmlMode,
+    isEdited,
   };
 };
 
@@ -145,7 +146,7 @@ export class Editor extends React.Component {
     this.toggleHtmlMode = this.toggleHtmlMode.bind(this);
 
     this.onResize = () => {
-      props.onChange(this.state.value, true);
+      //   props.onChange(this.state.value, true);
     };
 
     this.handlePlugins(this.props);
@@ -158,16 +159,25 @@ export class Editor extends React.Component {
           open,
           ...extraDialogProps,
         },
-        isEdited: false,
+        //  isEdited: false,
       },
       callback,
     );
   };
 
+  handlePreviewDialog = (open, callback) =>
+    this.setState(
+      {
+        dialog: { open },
+      },
+      callback,
+    );
+
   toggleHtmlMode = () => {
     this.setState(
       (prevState) => ({
         isHtmlMode: !prevState.isHtmlMode,
+        isEdited: false,
       }),
       () => {
         const { error } = this.props;
@@ -187,6 +197,7 @@ export class Editor extends React.Component {
     };
 
     const htmlPluginOpts = {
+      currentValue: this.props.value,
       isHtmlMode: this.state.isHtmlMode,
       isEdited: this.state.isEdited,
       toggleHtmlMode: this.toggleHtmlMode,
@@ -341,8 +352,8 @@ export class Editor extends React.Component {
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
-    const { isHtmlMode, toolbarOpts } = this.state;
-    const newToolbarOpts = createToolbarOpts(nextProps.toolbarOpts, nextProps.error, isHtmlMode);
+    const { isHtmlMode, toolbarOpts, isEdited } = this.state;
+    const newToolbarOpts = createToolbarOpts(nextProps.toolbarOpts, nextProps.error, isHtmlMode, isEdited);
 
     if (!isEqual(newToolbarOpts, toolbarOpts)) {
       this.setState({
@@ -372,12 +383,12 @@ export class Editor extends React.Component {
     // Trigger plugins and finish editing if:
     // 1. The 'isHtmlMode' state has been toggled.
     // 2. We're currently in 'isHtmlMode' and the editor value has been modified.
+
     if (
       this.state.isHtmlMode !== prevState.isHtmlMode ||
       (this.state.isHtmlMode && !prevState.isEdited && this.state.isEdited)
     ) {
       this.handlePlugins(this.props);
-      this.onEditingDone();
     }
 
     const zeroWidthEls = document.querySelectorAll('[data-slate-zero-width="z"]');
@@ -420,18 +431,74 @@ export class Editor extends React.Component {
   };
 
   onEditingDone = () => {
-    if (this.state.isHtmlMode) {
+    const { isHtmlMode, dialog, value, pendingImages } = this.state;
+
+    // Handling HTML mode and dialog state
+    if (isHtmlMode && !dialog?.open) {
+      const currentValue = htmlToValue(value.document.text);
+      const previewText = this.renderPreviewText(currentValue.document.text);
+
+      this.openDialogWithPreview(currentValue, previewText);
       return;
     }
 
-    const { pendingImages } = this.state;
+    // Early return if HTML mode is enabled
+    if (isHtmlMode) return;
 
+    // Handling pending images
     if (pendingImages.length) {
-      this.setState({ scheduled: true });
+      this.scheduleImageProcessing();
       return;
     }
 
-    log('[onEditingDone]');
+    // Finalizing editing
+    this.finalizeEditing();
+  };
+
+  renderPreviewText = (text) => {
+    const { classes } = this.props; // assuming this.props.classes is provided by withStyles HOC
+    return (
+      <div>
+        <div className={classes.previewSeparator}></div>
+        <div className={classes.previewText}>{text}</div>
+        <div className={classes.previewSeparator} style={{ marginTop: '10px' }}></div>
+        <div>Would you like to save these changes ?</div>
+      </div>
+    );
+  };
+
+  openDialogWithPreview = (currentValue, previewText) => {
+    this.setState({
+      dialog: {
+        open: true,
+        title: 'Preview of edited HTML',
+        text: previewText,
+        onConfirmText: 'Save changes',
+        onCloseText: 'Continue editing',
+        onConfirm: () => {
+          this.handleConfirm(currentValue);
+        },
+        onClose: this.handleCloseDialog,
+      },
+    });
+  };
+
+  handleConfirm = (currentValue) => {
+    this.setState({ value: currentValue });
+    this.props.onChange(currentValue, true);
+    this.handlePreviewDialog(false);
+    this.toggleHtmlMode();
+  };
+
+  handleCloseDialog = () => {
+    this.handlePreviewDialog(false);
+  };
+
+  scheduleImageProcessing = () => {
+    this.setState({ scheduled: true });
+  };
+
+  finalizeEditing = () => {
     this.setState({ pendingImages: [], stashedValue: null, focusedNode: null });
     log('[onEditingDone] value: ', this.state.value);
     this.props.onChange(this.state.value, true);
@@ -560,6 +627,7 @@ export class Editor extends React.Component {
 
   stashValue = () => {
     log('[stashValue]');
+
     if (!this.state.stashedValue) {
       this.setState({ stashedValue: this.state.value });
     }
@@ -614,6 +682,10 @@ export class Editor extends React.Component {
       : this.state.value.document.text !== value.document.text
       ? true
       : this.state.isEdited;
+
+    if (isEdited != this.state.isEdited) {
+      this.handlePlugins(this.props);
+    }
 
     this.setState({ value, isEdited }, () => {
       log('[onChange], call done()');
@@ -884,6 +956,8 @@ export class Editor extends React.Component {
           text={dialog.text}
           onClose={dialog.onClose}
           onConfirm={dialog.onConfirm}
+          onConfirmText={dialog.onConfirmText}
+          onCloseText={dialog.onCloseText}
         />
       </div>
     );
@@ -936,6 +1010,16 @@ const styles = {
   },
   noPadding: {
     padding: '0 !important',
+  },
+  previewSeparator: {
+    borderTop: '2px solid #000',
+    width: '100%',
+    marginBottom: '26px',
+    marginTop: '10px',
+    whiteSpace: 'pre-wrap',
+  },
+  previewText: {
+    marginBottom: '16px',
   },
 };
 

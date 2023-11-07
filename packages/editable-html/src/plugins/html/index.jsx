@@ -15,15 +15,17 @@ const toggleToRichText = (value, onChange) => {
 };
 
 export default function HtmlPlugin(opts) {
-  const { isHtmlMode, isEdited, toggleHtmlMode, handleAlertDialog } = opts;
+  const { isHtmlMode, isEdited, toggleHtmlMode, handleAlertDialog, currentValue } = opts;
 
   const handleHtmlModeOn = (value, onChange) => {
     const dialogProps = {
       title: 'Warning',
-      text: 'Returning to rich text mode may cause edits to be lost.',
+      text: 'Returning to rich text mode without saving will cause edits to be lost.',
+      onConfirmText: 'Dismiss changes',
+      onCloseText: 'Continue Editing',
       onConfirm: () => {
         handleAlertDialog(false);
-        toggleToRichText(value, onChange);
+        toggleToRichText(currentValue, onChange);
         toggleHtmlMode();
       },
       onClose: () => {
