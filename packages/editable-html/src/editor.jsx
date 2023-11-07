@@ -446,7 +446,7 @@ export class Editor extends React.Component {
   };
 
   renderPreviewText = (text) => {
-    const { classes } = this.props; // assuming this.props.classes is provided by withStyles HOC
+    const { classes } = this.props;
     return (
       <div>
         <div className={classes.previewSeparator}></div>
