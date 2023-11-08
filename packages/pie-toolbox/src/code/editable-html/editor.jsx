@@ -147,10 +147,12 @@ export class Editor extends React.Component {
     this.toggleHtmlMode = this.toggleHtmlMode.bind(this);
 
     this.onResize = () => {
-      props.onChange(this.state.value, true);
-    };
-
-    this.handlePlugins(this.props);
+      const { isHtmlMode, value } = this.state;
+      const { onChange } = this.props;
+    
+      if (!isHtmlMode) {
+        onChange(value, true);
+      }
   }
 
   handleDialog = (open, extraDialogProps = {}, callback) => {
