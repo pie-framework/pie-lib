@@ -22,19 +22,19 @@ class LibCommands extends Commands {
     ]);
   }
 
-  // sharedBuild() {
-  //   if (args.next) {
-  //     return Promise.resolve();
-  //   } else {
-  //     return this.runCmd(
-  //       `yarn pslb --config pslb/pslb.config.js --publishLibs --token ${args.token} --cleanLibs --logLevel debug`
-  //     );
-  //   }
-  // }
-  //
-  // build() {
-  //   return super.build().then(() => this.sharedBuild());
-  // }
+  sharedBuild() {
+    if (args.next) {
+      return Promise.resolve();
+    } else {
+      return this.runCmd(
+        `yarn pslb --config pslb/pslb.config.js --publishLibs --token ${args.token} --cleanLibs --logLevel debug`
+      );
+    }
+  }
+
+  build() {
+    return super.build().then(() => this.sharedBuild());
+  }
 }
 
 const cmds = new LibCommands(resolve(__dirname, '..'), args);
