@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [7.0.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.0.17...@pie-lib/demo@7.0.18) (2023-10-26)
+## [7.0.21](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.0.20...@pie-lib/demo@7.0.21) (2023-11-06)
 
 **Note:** Version bump only for package @pie-lib/demo
 
@@ -11,12 +11,79 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [7.0.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.0.15...@pie-lib/demo@7.0.17) (2023-10-26)
+## [7.0.20](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.0.17-beta.8...@pie-lib/demo@7.0.20) (2023-11-06)
 
 
 ### Bug Fixes
 
-* upgrade version ([ca61d7d](https://github.com/pie-framework/pie-lib/commit/ca61d7d19cb5dfd8da762bd0268047794cdeec7d))
+* reset demo version (remove -beta) ([9a316aa](https://github.com/pie-framework/pie-lib/commit/9a316aa9814399cb0024d95c416d4c630cfffa8d))
+
+
+
+
+
+## [7.0.17-beta.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.0.17-beta.7...@pie-lib/demo@7.0.17-beta.8) (2023-11-06)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [7.0.17-beta.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.0.17-beta.6...@pie-lib/demo@7.0.17-beta.7) (2023-11-06)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [7.0.17-beta.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.0.17-beta.5...@pie-lib/demo@7.0.17-beta.6) (2023-11-03)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [7.0.17-beta.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.0.17-beta.4...@pie-lib/demo@7.0.17-beta.5) (2023-11-01)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [7.0.17-beta.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.0.17-beta.3...@pie-lib/demo@7.0.17-beta.4) (2023-11-01)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [7.0.17-beta.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.0.17-beta.2...@pie-lib/demo@7.0.17-beta.3) (2023-10-30)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [7.0.17-beta.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.0.16...@pie-lib/demo@7.0.17-beta.2) (2023-10-26)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [7.0.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.0.15...@pie-lib/demo@7.0.16) (2023-10-25)
+
+
+### Bug Fixes
+
+* use correct package name ([bda3385](https://github.com/pie-framework/pie-lib/commit/bda338556159a18ccb91011803ec51aadeb27915))
 
 
 
@@ -1729,7 +1796,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### BREAKING CHANGES
 
-- component is accessible as `import {layout} from '@pie-lib/config-ui'; const {ConfigLayout}=settings;`
+- component is accessible as `import {layout} from '@pie-lib/pie-toolbox/config-ui'; const {ConfigLayout}=settings;`
 
 ## [3.4.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@3.4.1...@pie-lib/demo@3.4.2) (2019-04-11)
 

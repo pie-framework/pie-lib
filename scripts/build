@@ -15,6 +15,13 @@ class LibCommands extends Commands {
     return this.staticToNow(resolve(demoDir, 'out'), alias);
   }
 
+  babel() {
+    console.log('>> babel override for babel 7');
+    return this.runCmds([
+      `${this.p.lerna} exec -- ${this.p.babel} --ignore '**/__test__/**','**/__tests__/**' src -d ./ --source-maps --root-mode upward`,
+    ]);
+  }
+
   // sharedBuild() {
   //   if (args.next) {
   //     return Promise.resolve();

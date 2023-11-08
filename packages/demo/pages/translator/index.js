@@ -2,7 +2,7 @@ import React from "react";
 import withRoot from "../../src/withRoot";
 import { withStyles } from "@material-ui/core";
 
-import Translator from "../../../translator";
+import Translator from "@pie-lib/pie-toolbox/translator";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 
