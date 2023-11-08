@@ -13,6 +13,7 @@ import classNames from 'classnames';
 import { color } from '../render-ui';
 import Plain from 'slate-plain-serializer';
 import { AlertDialog } from '../config-ui';
+import { renderMath } from '../math-rendering';
 
 import { getBase64, htmlToValue } from './serialization';
 import InsertImageHandler from './plugins/image/insert-image-handler';
@@ -373,6 +374,9 @@ export class Editor extends React.Component {
     // Trigger plugins and finish editing if:
     // 1. The 'isHtmlMode' state has been toggled.
     // 2. We're currently in 'isHtmlMode' and the editor value has been modified.
+    if (this.elementRef) {
+      renderMath(this.elementRef);
+    }
 
     if (
       this.state.isHtmlMode !== prevState.isHtmlMode ||
@@ -426,6 +430,9 @@ export class Editor extends React.Component {
     // Handling HTML mode and dialog state
     if (isHtmlMode && !dialog?.open) {
       const currentValue = htmlToValue(value.document.text);
+
+      console.log(currentValue, 'current Value  ');
+      console.log(currentValue.document.text, 'currentValue.document.text');
       const previewText = this.renderPreviewText(currentValue.document.text);
 
       this.openDialogWithPreview(currentValue, previewText);
@@ -449,9 +456,10 @@ export class Editor extends React.Component {
     const { classes } = this.props;
     return (
       <div>
-        <div className={classes.previewSeparator}></div>
-        <div className={classes.previewText}>{text}</div>
-        <div className={classes.previewSeparator} style={{ marginTop: '10px' }}></div>
+        <div>Preview of Edited Html:</div>
+        <div ref={(ref) => (this.elementRef = ref)} className={classes.previewText}>
+          {text}
+        </div>
         <div>Would you like to save these changes ?</div>
       </div>
     );
@@ -461,7 +469,7 @@ export class Editor extends React.Component {
     this.setState({
       dialog: {
         open: true,
-        title: 'Preview of edited HTML',
+        title: 'Content Preview & Save',
         text: previewText,
         onConfirmText: 'Save changes',
         onCloseText: 'Continue editing',
@@ -1001,15 +1009,11 @@ const styles = {
   noPadding: {
     padding: '0 !important',
   },
-  previewSeparator: {
-    borderTop: '2px solid #000',
-    width: '100%',
-    marginBottom: '26px',
-    marginTop: '10px',
-    whiteSpace: 'pre-wrap',
-  },
   previewText: {
-    marginBottom: '16px',
+    marginBottom: '36px',
+    marginTop: '6px',
+    padding: '20px',
+    backgroundColor: 'rgba(0,0,0,0.06)',
   },
 };
 
