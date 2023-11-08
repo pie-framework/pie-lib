@@ -138,7 +138,7 @@ export class Editor extends React.Component {
       toolbarOpts: createToolbarOpts(props.toolbarOpts, props.error),
       pendingImages: [],
       isHtmlMode: false,
-      isEdited: false,
+      isEditedInHtmlMode: false,
       dialog: {
         open: false,
       },
@@ -161,6 +161,7 @@ export class Editor extends React.Component {
           open,
           ...extraDialogProps,
         },
+        isEditedInHtmlMode:false
       },
       callback,
     );
@@ -170,7 +171,7 @@ export class Editor extends React.Component {
     this.setState(
       (prevState) => ({
         isHtmlMode: !prevState.isHtmlMode,
-        isEdited: false,
+        isEditedInHtmlMode: false,
       }),
       () => {
         const { error } = this.props;
@@ -192,7 +193,7 @@ export class Editor extends React.Component {
     const htmlPluginOpts = {
       currentValue: this.props.value,
       isHtmlMode: this.state.isHtmlMode,
-      isEdited: this.state.isEdited,
+      isEditedInHtmlMode: this.state.isEditedInHtmlMode,
       toggleHtmlMode: this.toggleHtmlMode,
       handleAlertDialog: this.handleDialog,
     };
@@ -376,13 +377,9 @@ export class Editor extends React.Component {
     // Trigger plugins and finish editing if:
     // 1. The 'isHtmlMode' state has been toggled.
     // 2. We're currently in 'isHtmlMode' and the editor value has been modified.
-    if (this.elementRef || this.state.dialog.open) {
-      renderMath(this.elementRef);
-    }
-
     if (
       this.state.isHtmlMode !== prevState.isHtmlMode ||
-      (this.state.isHtmlMode && !prevState.isEdited && this.state.isEdited)
+      (this.state.isHtmlMode && !prevState.isEditedInHtmlMode && this.state.isEditedInHtmlMode)
     ) {
       this.handlePlugins(this.props);
     }
@@ -672,17 +669,17 @@ export class Editor extends React.Component {
 
     // Mark the editor as edited when in HTML mode and its content has changed.
     // This status will later be used to decide whether to prompt a warning to the user when exiting HTML mode.
-    const isEdited = !this.state.isHtmlMode
+    const isEditedInHtmlMode = !this.state.isHtmlMode
       ? false
       : this.state.value.document.text !== value.document.text
       ? true
-      : this.state.isEdited;
+      : this.state.isEditedInHtmlMode;
 
-    if (isEdited != this.state.isEdited) {
+    if (isEditedInHtmlMode != this.state.isEditedInHtmlMode) {
       this.handlePlugins(this.props);
     }
 
-    this.setState({ value, isEdited }, () => {
+    this.setState({ value, isEditedInHtmlMode }, () => {
       log('[onChange], call done()');
 
       if (done) {

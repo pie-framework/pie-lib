@@ -2,9 +2,9 @@ import React from 'react';
 import HtmlModeIcon from './icons';
 import { htmlToValue, valueToHtml } from './../../serialization';
 
-const toggleToRichText = (value, onChange) => {
+const toggleToRichText = (value, onChange, dismiss) => {
   const plainText = value.document.text;
-  const slateValue = htmlToValue(plainText);
+  const slateValue = dismiss ? value : htmlToValue(plainText);
 
   const change = value
     .change()
@@ -15,7 +15,7 @@ const toggleToRichText = (value, onChange) => {
 };
 
 export default function HtmlPlugin(opts) {
-  const { isHtmlMode, isEdited, toggleHtmlMode, handleAlertDialog, currentValue } = opts;
+  const { isHtmlMode, isEditedInHtmlMode, toggleHtmlMode, handleAlertDialog, currentValue } = opts;
 
   const handleHtmlModeOn = (value, onChange) => {
     const dialogProps = {
@@ -25,7 +25,7 @@ export default function HtmlPlugin(opts) {
       onCloseText: 'Continue Editing',
       onConfirm: () => {
         handleAlertDialog(false);
-        toggleToRichText(currentValue, onChange);
+        toggleToRichText(currentValue, onChange, true);
         toggleHtmlMode();
       },
       onClose: () => {
@@ -55,7 +55,7 @@ export default function HtmlPlugin(opts) {
       type: 'html',
       onClick: (value, onChange) => {
         if (isHtmlMode) {
-          if (isEdited) {
+          if (isEditedInHtmlMode) {
             handleHtmlModeOn(value, onChange);
           } else {
             toggleToRichText(value, onChange);
