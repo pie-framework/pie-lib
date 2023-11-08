@@ -4,7 +4,7 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import debug from 'debug';
 import { withStyles } from '@material-ui/core/styles';
-import withRoot from '../../src/withRoot';
+import withRoot from '../../source/withRoot';
 
 const log = debug('demo:config-ui');
 

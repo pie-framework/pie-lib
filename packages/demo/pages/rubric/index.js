@@ -1,9 +1,9 @@
 import { Authoring } from '@pie-lib/pie-toolbox/rubric';
 import React from 'react';
-import withRoot from '../../src/withRoot';
+import withRoot from '../../source/withRoot';
 import { withStyles } from '@material-ui/core';
-import Section from '../../src/formatting/section';
-import Pre from '../../src/formatting/pre';
+import Section from '../../source/formatting/section';
+import Pre from '../../source/formatting/pre';
 
 class Demo extends React.Component {
   constructor(props) {

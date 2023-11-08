@@ -22,7 +22,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import debug from 'debug';
-import withRoot from '../../src/withRoot';
+import withRoot from '../../source/withRoot';
 
 const log = debug('demo:config-ui');
 

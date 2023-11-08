@@ -1,7 +1,7 @@
 import Document, { Head, Main, NextScript } from 'next/document';
 import React from 'react';
 import { JssProvider } from 'react-jss';
-import getPageContext from '../src/getPageContext';
+import getPageContext from '../source/getPageContext';
 import flush from 'styled-jsx/server';
 
 export default class MyDocument extends Document {
