@@ -14,6 +14,7 @@ import { color } from '../render-ui';
 import Plain from 'slate-plain-serializer';
 import { AlertDialog } from '../config-ui';
 import { renderMath } from '../math-rendering';
+import { PreviewPrompt } from '../render-ui';
 
 import { getBase64, htmlToValue } from './serialization';
 import InsertImageHandler from './plugins/image/insert-image-handler';
@@ -374,7 +375,7 @@ export class Editor extends React.Component {
     // Trigger plugins and finish editing if:
     // 1. The 'isHtmlMode' state has been toggled.
     // 2. We're currently in 'isHtmlMode' and the editor value has been modified.
-    if (this.elementRef) {
+    if (this.elementRef || this.state.dialog.open) {
       renderMath(this.elementRef);
     }
 
@@ -430,10 +431,7 @@ export class Editor extends React.Component {
     // Handling HTML mode and dialog state
     if (isHtmlMode && !dialog?.open) {
       const currentValue = htmlToValue(value.document.text);
-
-      console.log(currentValue, 'current Value  ');
-      console.log(currentValue.document.text, 'currentValue.document.text');
-      const previewText = this.renderPreviewText(currentValue.document.text);
+      const previewText = this.renderPreviewText();
 
       this.openDialogWithPreview(currentValue, previewText);
       return;
@@ -452,14 +450,12 @@ export class Editor extends React.Component {
     this.finalizeEditing();
   };
 
-  renderPreviewText = (text) => {
+  renderPreviewText = () => {
     const { classes } = this.props;
     return (
-      <div>
+      <div ref={(ref) => (this.elementRef = ref)}>
         <div>Preview of Edited Html:</div>
-        <div ref={(ref) => (this.elementRef = ref)} className={classes.previewText}>
-          {text}
-        </div>
+        <PreviewPrompt defaultClassName={classes.previewText} prompt={this.state.value.document.text} />
         <div>Would you like to save these changes ?</div>
       </div>
     );
