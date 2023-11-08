@@ -1,5 +1,5 @@
 import React from 'react';
-import withRoot from '../../src/withRoot';
+import withRoot from '../../source/withRoot';
 import { withStyles } from '@material-ui/core/styles';
 import debug from 'debug';
 import { renderMath } from '@pie-lib/pie-toolbox/math-rendering';

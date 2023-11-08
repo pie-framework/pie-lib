@@ -10,11 +10,11 @@ import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Input from '@material-ui/core/Input';
-import withRoot from '../src/withRoot';
+import withRoot from '../source/withRoot';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
-import InputChooser from '../src/editable-html/input-chooser';
+import InputChooser from '../source/editable-html/input-chooser';
 import { hasText } from '@pie-lib/pie-toolbox/render-ui';
 
 const log = debug('@pie-lib:editable-html:demo');
@@ -43,7 +43,7 @@ const inputOptions = [
   },
   {
     label: 'Nested div w/ image',
-    html: '<div>​<div><img src="foo.com/img.png"/></div>​</div>',
+    html: '<div>​<div><img source="foo.com/img.png"/></div>​</div>',
   },
   {
     label: 'Nested div w/ text',
@@ -209,7 +209,7 @@ class RteDemo extends React.Component {
   };
 
   onDeleteImage = (url, done) => {
-    log('delete image src: ', url);
+    log('delete image source: ', url);
     done();
   };
 

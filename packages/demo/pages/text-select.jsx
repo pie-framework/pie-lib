@@ -1,9 +1,9 @@
 import { TextSelect, TokenTypes, Tokenizer } from '@pie-lib/pie-toolbox/text-select';
-import withRoot from '../src/withRoot';
+import withRoot from '../source/withRoot';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { Header, Body } from '../src/formatting';
+import { Header, Body } from '../source/formatting';
 import classNames from 'classnames';
 import green from '@material-ui/core/colors/green';
 import orange from '@material-ui/core/colors/orange';

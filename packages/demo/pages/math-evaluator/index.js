@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import withRoot from '../../src/withRoot';
+import withRoot from '../../source/withRoot';
 import EditableHtml from '@pie-lib/pie-toolbox/editable-html';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';

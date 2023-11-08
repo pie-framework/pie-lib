@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import debug from 'debug';
 import { GraphContainer as Graph, tools } from '@pie-lib/pie-toolbox/graphing';
-import withRoot from '../../src/withRoot';
+import withRoot from '../../source/withRoot';
 import Typography from '@material-ui/core/Typography';
 import Tab from '@material-ui/core/Tab';
 import Button from '@material-ui/core/Button';

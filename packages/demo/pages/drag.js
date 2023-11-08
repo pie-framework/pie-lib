@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 
-import withRoot from '../src/withRoot';
+import withRoot from '../source/withRoot';
 
 export const DRAG_TYPE = 'CHOICE';
 

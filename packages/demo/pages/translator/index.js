@@ -1,5 +1,5 @@
 import React from "react";
-import withRoot from "../../src/withRoot";
+import withRoot from "../../source/withRoot";
 import { withStyles } from "@material-ui/core";
 
 import Translator from "@pie-lib/pie-toolbox/translator";

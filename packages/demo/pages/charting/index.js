@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import debug from 'debug';
-import withRoot from '../../src/withRoot';
+import withRoot from '../../source/withRoot';
 import Settings from './settings';
 import { Chart, chartTypes } from '@pie-lib/pie-toolbox/charting';
 import Options from './options';

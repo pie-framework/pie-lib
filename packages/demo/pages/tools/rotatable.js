@@ -1,4 +1,4 @@
-import withRoot from '../../src/withRoot';
+import withRoot from '../../source/withRoot';
 import React from 'react';
 import { Rotatable, utils } from '@pie-lib/pie-toolbox/tools';
 import { withStyles } from '@material-ui/core/styles';

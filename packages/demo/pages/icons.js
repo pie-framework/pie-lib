@@ -8,7 +8,7 @@ import {
   PartiallyCorrect,
   ShowRationale,
 } from '@pie-lib/pie-toolbox/icons';
-import withRoot from '../src/withRoot';
+import withRoot from '../source/withRoot';
 
 import React from 'react';
 
