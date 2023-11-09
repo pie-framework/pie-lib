@@ -535,6 +535,8 @@ exports[`TickComponent snapshot1 renders 1`] = `
     y={NaN}
   >
     <AlertDialog
+      onCloseText="CANCEL"
+      onConfirmText="OK"
       open={false}
     />
   </foreignObject>
