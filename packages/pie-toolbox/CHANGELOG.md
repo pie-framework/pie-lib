@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.0.8...@pie-lib/pie-toolbox@1.0.9) (2023-11-09)
+
+
+### Bug Fixes
+
+* **editable-html:** Add preview dialog for HTML edits and improve exit workflow PD-2765 ([ea85f95](https://github.com/pie-framework/pie-lib/commit/ea85f952a004e4e750da30e1bde9ca4a979d2856))
+
+
+
+
+
 ## [1.0.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.0.7...@pie-lib/pie-toolbox@1.0.8) (2023-11-06)
 
 **Note:** Version bump only for package @pie-lib/pie-toolbox
