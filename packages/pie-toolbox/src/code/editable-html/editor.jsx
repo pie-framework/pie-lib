@@ -147,8 +147,9 @@ export class Editor extends React.Component {
     this.toggleHtmlMode = this.toggleHtmlMode.bind(this);
 
     this.onResize = () => {
-      if (!this.state.isHtmlMode){}
-      props.onChange(this.state.value, true);
+      if (!this.state.isHtmlMode) {
+        props.onChange(this.state.value, true);
+      }
     };
 
     this.handlePlugins(this.props);
@@ -161,7 +162,7 @@ export class Editor extends React.Component {
           open,
           ...extraDialogProps,
         },
-        isEditedInHtmlMode:false
+        isEditedInHtmlMode: false,
       },
       callback,
     );
@@ -427,28 +428,35 @@ export class Editor extends React.Component {
     const { isHtmlMode, dialog, value, pendingImages } = this.state;
 
     // Handling HTML mode and dialog state
-    if (isHtmlMode && !dialog?.open) {
-      const currentValue = htmlToValue(value.document.text);
-      const previewText = this.renderPreviewText();
+    if (isHtmlMode) {
+      // Early return if HTML mode is enabled
+      if (dialog?.open) return;
 
-      this.openDialogWithPreview(currentValue, previewText);
+      const currentValue = htmlToValue(value.document.text);
+      const previewText = this.renderHtmlPreviewContent();
+
+      this.openHtmlModeConfirmationDialog(currentValue, previewText);
       return;
     }
 
-    // Early return if HTML mode is enabled
-    if (isHtmlMode) return;
-
     // Handling pending images
     if (pendingImages.length) {
-      this.scheduleImageProcessing();
+      // schedule image processing
+      this.setState({ scheduled: true });
       return;
     }
 
     // Finalizing editing
-    this.finalizeEditing();
+    this.setState({ pendingImages: [], stashedValue: null, focusedNode: null });
+    log('[onEditingDone] value: ', this.state.value);
+    this.props.onChange(this.state.value, true);
   };
 
-  renderPreviewText = () => {
+  /**
+   * Renders the HTML preview content to be displayed inside the dialog.
+   * This content includes the edited HTML and a prompt for the user.
+   */
+  renderHtmlPreviewContent = () => {
     const { classes } = this.props;
     return (
       <div ref={(ref) => (this.elementRef = ref)}>
@@ -459,7 +467,11 @@ export class Editor extends React.Component {
     );
   };
 
-  openDialogWithPreview = (currentValue, previewText) => {
+  /**
+   * Opens a confirmation dialog in HTML mode, displaying the preview of the current HTML content
+   * and offering options to save or continue editing.
+   */
+  openHtmlModeConfirmationDialog = (currentValue, previewText) => {
     this.setState({
       dialog: {
         open: true,
@@ -468,32 +480,31 @@ export class Editor extends React.Component {
         onConfirmText: 'Save changes',
         onCloseText: 'Continue editing',
         onConfirm: () => {
-          this.handleConfirm(currentValue);
+          this.handleHtmlModeSaveConfirmation(currentValue);
         },
-        onClose: this.handleCloseDialog,
+        onClose: this.htmlModeContinueEditing,
       },
     });
   };
 
-  handleConfirm = (currentValue) => {
+  /**
+   * Handles the save confirmation action in HTML mode. This updates the value to the confirmed
+   * content, updates value on props, and exits the HTML mode.
+   * @param {string} currentValue - The confirmed value of the HTML content to save.
+   */
+  handleHtmlModeSaveConfirmation = (currentValue) => {
     this.setState({ value: currentValue });
     this.props.onChange(currentValue, true);
     this.handleDialog(false);
     this.toggleHtmlMode();
   };
 
-  handleCloseDialog = () => {
+  /**
+   * Closes the dialog in HTML mode and allows the user to continue editing the html content.
+   * This function is invoked when the user opts to not save the current changes.
+   */
+  htmlModeContinueEditing = () => {
     this.handleDialog(false);
-  };
-
-  scheduleImageProcessing = () => {
-    this.setState({ scheduled: true });
-  };
-
-  finalizeEditing = () => {
-    this.setState({ pendingImages: [], stashedValue: null, focusedNode: null });
-    log('[onEditingDone] value: ', this.state.value);
-    this.props.onChange(this.state.value, true);
   };
 
   /**

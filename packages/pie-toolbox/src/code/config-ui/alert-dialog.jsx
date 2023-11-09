@@ -31,7 +31,7 @@ AlertDialog.defaultProps = {
 };
 
 AlertDialog.propTypes = {
-  text: PropTypes.string,
+  text: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   title: PropTypes.string,
   onClose: PropTypes.func,
   onConfirm: PropTypes.func,
