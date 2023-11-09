@@ -195,6 +195,8 @@ exports[`ChartAxes snapshot renders 1`] = `
     </g>
   </WithStyles(Root)>
   <AlertDialog
+    onCloseText="CANCEL"
+    onConfirmText="OK"
     open={false}
   />
 </div>
@@ -395,6 +397,8 @@ exports[`ChartAxes snapshot renders if size is not defined 1`] = `
     </g>
   </WithStyles(Root)>
   <AlertDialog
+    onCloseText="CANCEL"
+    onConfirmText="OK"
     open={false}
   />
 </div>
@@ -599,6 +603,8 @@ exports[`ChartAxes snapshot renders without chartType property 1`] = `
     </g>
   </WithStyles(Root)>
   <AlertDialog
+    onCloseText="CANCEL"
+    onConfirmText="OK"
     open={false}
   />
 </div>

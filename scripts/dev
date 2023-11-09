@@ -38,7 +38,7 @@ const run = async () => {
 
   const args = scope.map(s => ({
     src: `packages/${s}/src`,
-    target: `packages/${s}/lib`
+    target: `packages/${s}/`
   }));
 
   watcher = watch(args);

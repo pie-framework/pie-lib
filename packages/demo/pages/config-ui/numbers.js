@@ -4,8 +4,8 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import debug from 'debug';
 import { withStyles } from '@material-ui/core/styles';
-import withRoot from '../../src/withRoot';
-import Section from '../../src/formatting/section';
+import withRoot from '../../source/withRoot';
+import Section from '../../source/formatting/section';
 
 // eslint-disable-next-line
 const log = debug('demo:config-ui');

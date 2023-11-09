@@ -60,81 +60,12 @@ module.exports = {
     repository: 'pie-framework/pie-lib',
     packages: [
       {
-        name: '@pie-lib/math-rendering-module',
+        name: '@pie-lib/pie-toolbox-module',
         output: packagesDir,
         repository: 'pie-framework/pie-lib',
         extensions: { commonJs },
         imports: {
-          namespace: ['@pie-lib/math-rendering'],
-        },
-      },
-      // core shared module lib
-      {
-        name: '@pie-lib/shared-module',
-        imports: {
-          default: [
-            'react-dom',
-            'react-dom/server',
-            'react',
-            'prop-types',
-            '@pie-lib/correct-answer-toggle',
-            'lodash',
-            'classnames',
-            'debug',
-          ],
-          namespace: [
-            '@material-ui/core/styles/colorManipulator',
-            '@material-ui/core/Collapse/index',
-            '@material-ui/core/styles',
-            '@material-ui/core',
-            '@material-ui/icons',
-            '@pie-lib/render-ui',
-          ],
-        },
-      },
-      {
-        name: '@pie-lib/drag-module',
-        output: packagesDir,
-        repository: 'pie-framework/pie-lib',
-        extensions: { commonJs },
-        imports: {
-          namespace: ['@pie-lib/drag'],
-        },
-      },
-      {
-        name: '@pie-lib/math-edit-module',
-        // eslint-disable-next-line no-undef
-        imports: {
-          default: ['@pie-framework/mathquill'],
-          namespace: ['@pie-lib/math-input', '@pie-lib/math-toolbar'],
-        },
-      },
-      {
-        name: '@pie-lib/editable-html-module',
-        imports: {
-          default: ['@pie-lib/editable-html'],
-        },
-      },
-      {
-        name: '@pie-lib/config-module',
-        imports: {
-          namespace: ['@pie-lib/config-ui'],
-        },
-      },
-
-      {
-        name: '@pie-lib/graphing-module',
-        // add dependency here? or use the order?
-        // output: path.resolve(__dirname, '../packages'),
-        imports: {
-          default: [],
-          namespace: [
-            '@pie-lib/plot',
-            '@pie-lib/graphing',
-            // take d3-scale from the repo root... so 2.x
-            'd3-scale',
-            'd3-selection',
-          ],
+          namespace: ['@pie-lib/pie-toolbox'],
         },
       },
     ],

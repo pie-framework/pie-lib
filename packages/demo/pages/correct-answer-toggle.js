@@ -6,7 +6,7 @@ import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Typography from '@material-ui/core/Typography';
 
-import withRoot from '../src/withRoot';
+import withRoot from '../source/withRoot';
 
 export class Wrapper extends React.Component {
   constructor(props) {

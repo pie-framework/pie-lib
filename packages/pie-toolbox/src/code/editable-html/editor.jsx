@@ -13,8 +13,9 @@ import classNames from 'classnames';
 import { color } from '../render-ui';
 import Plain from 'slate-plain-serializer';
 import { AlertDialog } from '../config-ui';
+import { PreviewPrompt } from '../render-ui';
 
-import { getBase64 } from './serialization';
+import { getBase64, htmlToValue } from './serialization';
 import InsertImageHandler from './plugins/image/insert-image-handler';
 
 export { ALL_PLUGINS, DEFAULT_PLUGINS, serialization };
@@ -136,7 +137,7 @@ export class Editor extends React.Component {
       toolbarOpts: createToolbarOpts(props.toolbarOpts, props.error),
       pendingImages: [],
       isHtmlMode: false,
-      isEdited: false,
+      isEditedInHtmlMode: false,
       dialog: {
         open: false,
       },
@@ -145,20 +146,21 @@ export class Editor extends React.Component {
     this.toggleHtmlMode = this.toggleHtmlMode.bind(this);
 
     this.onResize = () => {
-      props.onChange(this.state.value, true);
+      if (!this.state.isHtmlMode) {
+        props.onChange(this.state.value, true);
+      }
     };
 
     this.handlePlugins(this.props);
   }
 
-  handleAlertDialog = (open, extraDialogProps, callback) => {
+  handleDialog = (open, extraDialogProps = {}, callback) => {
     this.setState(
       {
         dialog: {
           open,
           ...extraDialogProps,
         },
-        isEdited: false,
       },
       callback,
     );
@@ -168,6 +170,7 @@ export class Editor extends React.Component {
     this.setState(
       (prevState) => ({
         isHtmlMode: !prevState.isHtmlMode,
+        isEditedInHtmlMode: false,
       }),
       () => {
         const { error } = this.props;
@@ -187,10 +190,11 @@ export class Editor extends React.Component {
     };
 
     const htmlPluginOpts = {
+      currentValue: this.props.value,
       isHtmlMode: this.state.isHtmlMode,
-      isEdited: this.state.isEdited,
+      isEditedInHtmlMode: this.state.isEditedInHtmlMode,
       toggleHtmlMode: this.toggleHtmlMode,
-      handleAlertDialog: this.handleAlertDialog,
+      handleAlertDialog: this.handleDialog,
     };
 
     this.plugins = buildPlugins(props.activePlugins, {
@@ -374,10 +378,9 @@ export class Editor extends React.Component {
     // 2. We're currently in 'isHtmlMode' and the editor value has been modified.
     if (
       this.state.isHtmlMode !== prevState.isHtmlMode ||
-      (this.state.isHtmlMode && !prevState.isEdited && this.state.isEdited)
+      (this.state.isHtmlMode && !prevState.isEditedInHtmlMode && this.state.isEditedInHtmlMode)
     ) {
       this.handlePlugins(this.props);
-      this.onEditingDone();
     }
 
     const zeroWidthEls = document.querySelectorAll('[data-slate-zero-width="z"]');
@@ -420,21 +423,86 @@ export class Editor extends React.Component {
   };
 
   onEditingDone = () => {
-    if (this.state.isHtmlMode) {
+    const { isHtmlMode, dialog, value, pendingImages } = this.state;
+
+    // Handling HTML mode and dialog state
+    if (isHtmlMode) {
+      // Early return if HTML mode is enabled
+      if (dialog?.open) return;
+
+      const currentValue = htmlToValue(value.document.text);
+      const previewText = this.renderHtmlPreviewContent();
+
+      this.openHtmlModeConfirmationDialog(currentValue, previewText);
       return;
     }
 
-    const { pendingImages } = this.state;
-
     if (pendingImages.length) {
+      // schedule image processing
       this.setState({ scheduled: true });
       return;
     }
 
+    // Finalizing editing
     log('[onEditingDone]');
     this.setState({ pendingImages: [], stashedValue: null, focusedNode: null });
     log('[onEditingDone] value: ', this.state.value);
     this.props.onChange(this.state.value, true);
+  };
+
+  /**
+   * Renders the HTML preview content to be displayed inside the dialog.
+   * This content includes the edited HTML and a prompt for the user.
+   */
+  renderHtmlPreviewContent = () => {
+    const { classes } = this.props;
+    return (
+      <div ref={(ref) => (this.elementRef = ref)}>
+        <div>Preview of Edited Html:</div>
+        <PreviewPrompt defaultClassName={classes.previewText} prompt={this.state.value.document.text} />
+        <div>Would you like to save these changes ?</div>
+      </div>
+    );
+  };
+
+  /**
+   * Opens a confirmation dialog in HTML mode, displaying the preview of the current HTML content
+   * and offering options to save or continue editing.
+   */
+  openHtmlModeConfirmationDialog = (currentValue, previewText) => {
+    this.setState({
+      dialog: {
+        open: true,
+        title: 'Content Preview & Save',
+        text: previewText,
+        onConfirmText: 'Save changes',
+        onCloseText: 'Continue editing',
+        onConfirm: () => {
+          this.handleHtmlModeSaveConfirmation(currentValue);
+        },
+        onClose: this.htmlModeContinueEditing,
+      },
+    });
+  };
+
+  /**
+   * Handles the save confirmation action in HTML mode. This updates the value to the confirmed
+   * content, updates value on props, and exits the HTML mode.
+   * @param {string} currentValue - The confirmed value of the HTML content to save.
+   */
+  handleHtmlModeSaveConfirmation = (currentValue) => {
+    this.setState({ value: currentValue });
+    this.props.onChange(currentValue, true);
+    this.handleDialog(false);
+    this.toggleHtmlMode();
+  };
+
+  /**
+   * Closes the dialog in HTML mode and allows the user to continue editing the html content.
+   * This function is invoked when the user opts to not save the current changes.
+   */
+  htmlModeContinueEditing = () => {
+    this.handleDialog(false);
   };
 
   /**
@@ -560,6 +628,7 @@ export class Editor extends React.Component {
 
   stashValue = () => {
     log('[stashValue]');
+
     if (!this.state.stashedValue) {
       this.setState({ stashedValue: this.state.value });
     }
@@ -609,13 +678,17 @@ export class Editor extends React.Component {
 
     // Mark the editor as edited when in HTML mode and its content has changed.
     // This status will later be used to decide whether to prompt a warning to the user when exiting HTML mode.
-    const isEdited = !this.state.isHtmlMode
+    const isEditedInHtmlMode = !this.state.isHtmlMode
       ? false
       : this.state.value.document.text !== value.document.text
       ? true
-      : this.state.isEdited;
+      : this.state.isEditedInHtmlMode;
 
-    this.setState({ value, isEdited }, () => {
+    if (isEditedInHtmlMode != this.state.isEditedInHtmlMode) {
+      this.handlePlugins(this.props);
+    }
+
+    this.setState({ value, isEditedInHtmlMode }, () => {
       log('[onChange], call done()');
 
       if (done) {
@@ -884,6 +957,8 @@ export class Editor extends React.Component {
           text={dialog.text}
           onClose={dialog.onClose}
           onConfirm={dialog.onConfirm}
+          onConfirmText={dialog.onConfirmText}
+          onCloseText={dialog.onCloseText}
         />
       </div>
     );
@@ -936,6 +1011,12 @@ const styles = {
   },
   noPadding: {
     padding: '0 !important',
+  },
+  previewText: {
+    marginBottom: '36px',
+    marginTop: '6px',
+    padding: '20px',
+    backgroundColor: 'rgba(0,0,0,0.06)',
   },
 };
 

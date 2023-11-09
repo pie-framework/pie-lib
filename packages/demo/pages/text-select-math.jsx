@@ -1,9 +1,9 @@
 import { Token, TokenSelect, TextSelect } from '@pie-lib/pie-toolbox/text-select';
-import Section from '../src/formatting/section';
-import * as sample from '../src/text-select/math-sample';
-import * as simpleSample from '../src/text-select/simple-sample';
+import Section from '../source/formatting/section';
+import * as sample from '../source/text-select/math-sample';
+import * as simpleSample from '../source/text-select/simple-sample';
 
-import withRoot from '../src/withRoot';
+import withRoot from '../source/withRoot';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
