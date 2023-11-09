@@ -81,7 +81,7 @@ export const DefaultToolbar = ({
 }) => {
   pluginProps = {
     // disable HTML plugin by default, at least for now
-    html: { disabled: false },
+    html: { disabled: true },
     ...pluginProps,
   };
   let filtered;

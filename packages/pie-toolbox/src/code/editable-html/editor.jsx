@@ -13,7 +13,6 @@ import classNames from 'classnames';
 import { color } from '../render-ui';
 import Plain from 'slate-plain-serializer';
 import { AlertDialog } from '../config-ui';
-import { renderMath } from '../math-rendering';
 import { PreviewPrompt } from '../render-ui';
 
 import { getBase64, htmlToValue } from './serialization';
@@ -162,7 +161,6 @@ export class Editor extends React.Component {
           open,
           ...extraDialogProps,
         },
-        isEditedInHtmlMode: false,
       },
       callback,
     );
@@ -439,7 +437,6 @@ export class Editor extends React.Component {
       return;
     }
 
-    // Handling pending images
     if (pendingImages.length) {
       // schedule image processing
       this.setState({ scheduled: true });
@@ -447,6 +444,7 @@ export class Editor extends React.Component {
     }
 
     // Finalizing editing
+    log('[onEditingDone]');
     this.setState({ pendingImages: [], stashedValue: null, focusedNode: null });
     log('[onEditingDone] value: ', this.state.value);
     this.props.onChange(this.state.value, true);
