@@ -1,14 +1,15 @@
+import React from 'react';
+import { Editor, Inline, Transforms } from 'slate';
+import { ReactEditor } from 'slate-react';
+import { jsx } from 'slate-hyperscript';
 import Functions from '@material-ui/icons/Functions';
-import { Inline } from 'slate';
 import { MathPreview, MathToolbar } from '@pie-lib/math-toolbar';
 import { wrapMath, unWrapMath, mmlToLatex, renderMath } from '@pie-lib/math-rendering';
-import React from 'react';
 import debug from 'debug';
-import SlatePropTypes from 'slate-prop-types';
 import PropTypes from 'prop-types';
-
-import { BLOCK_TAGS } from '../../serialization';
 import isEqual from 'lodash/isEqual';
+
+import { BLOCK_TAGS } from '../../new-serialization';
 const log = debug('@pie-lib:editable-html:plugins:math');
 
 const TEXT_NODE = 3;
@@ -25,43 +26,35 @@ function generateAdditionalKeys(keyData = []) {
 // eslint-disable-next-line react/display-name
 export const CustomToolbarComp = React.memo(
   (props) => {
-    const { node, value, onFocus, onBlur, onClick } = props;
+    const { node, nodePath, onFocus, onBlur, onClick, editor } = props;
     const { pluginProps } = props || {};
     const { math } = pluginProps || {};
     const { keypadMode, customKeys, controlledKeypadMode = true } = math || {};
 
     const onDone = (latex) => {
       const update = {
-        ...node.data.toObject(),
+        ...node.data,
         latex,
       };
-      const change = value.change().setNodeByKey(node.key, { data: update });
-
-      const nextText = value.document.getNextText(node.key);
-
-      change.moveFocusTo(nextText.key, 0).moveAnchorTo(nextText.key, 0);
-
-      props.onToolbarDone(change, false);
+      editor.apply({
+        type: 'set_node',
+        path: nodePath,
+        properties: {
+          data: node.data,
+        },
+        newProperties: { data: update },
+      });
+      ReactEditor.focus(editor);
+      Transforms.move(editor, { distance: 1, unit: 'offset' });
     };
 
-    const onChange = (latex) => {
-      const update = {
-        ...node.data.toObject(),
-        latex,
-      };
-      const change = value.change().setNodeByKey(node.key, { data: update });
-      log('call onToolbarChange:', change);
-      props.onDataChange(node.key, update);
-    };
-
-    const latex = node.data.get('latex');
+    const latex = node.data.latex;
 
     return (
       <MathToolbar
         autoFocus
         additionalKeys={generateAdditionalKeys(customKeys)}
         latex={latex}
-        onChange={onChange}
         onDone={onDone}
         onBlur={onBlur}
         onFocus={onFocus}
@@ -80,20 +73,32 @@ export const CustomToolbarComp = React.memo(
     const keypadModeChanged = keypadMode !== keypadModeNext;
     const controlledKeypadModeChanged = controlledKeypadMode !== controlledKeypadModeNext;
 
-    const equal = node.equals(nodeNext);
+    const equal = isEqual(node, nodeNext);
     return equal && !keypadModeChanged && !controlledKeypadModeChanged;
   },
 );
 
 CustomToolbarComp.propTypes = {
-  node: SlatePropTypes.node.isRequired,
-  value: SlatePropTypes.value,
+  editor: PropTypes.object,
+  node: PropTypes.shape({
+    type: PropTypes.string,
+    children: PropTypes.array,
+    data: PropTypes.object,
+  }).isRequired,
+  value: PropTypes.arrayOf(
+    PropTypes.shape({
+      type: PropTypes.string,
+      children: PropTypes.array,
+      data: PropTypes.object,
+    }),
+  ).isRequired,
   onToolbarDone: PropTypes.func,
-  onDataChange: PropTypes.func,
   onFocus: PropTypes.func,
   onClick: PropTypes.func,
   onBlur: PropTypes.func,
 };
+
+const mathTypes = ['math', 'mathml'];
 
 export default function MathPlugin(opts) {
   MathPlugin.mathMlOptions = {
@@ -105,13 +110,12 @@ export default function MathPlugin(opts) {
     name: 'math',
     toolbar: {
       icon: <Functions />,
-      onClick: (value, onChange) => {
+      onClick: (editor) => {
         log('[insertMath]');
         const math = inlineMath();
-        const change = value.change().insertInline(math);
-        onChange(change);
+
+        editor.insertNode(math);
       },
-      supports: (node) => node && node.object === 'inline' && node.type === 'math',
       /**
        * Return a react component function
        * @param node {Slate.Node}
@@ -121,6 +125,20 @@ export default function MathPlugin(opts) {
        */
       CustomToolbarComp,
     },
+    rules: (editor) => {
+      const { isVoid, isInline } = editor;
+
+      editor.isVoid = (element) => {
+        return mathTypes.includes(element.type) ? true : isVoid(element);
+      };
+
+      editor.isInline = (element) => {
+        return mathTypes.includes(element.type) ? true : isInline(element);
+      };
+
+      return editor;
+    },
+    supports: (node) => mathTypes.includes(node.type),
     schema: {
       document: { match: [{ type: 'math' }] },
     },
@@ -144,9 +162,16 @@ export default function MathPlugin(opts) {
        * Here for rendering mathml content
        */
       if (props.node.type === 'mathml') {
-        const html = props.node.data.get('html');
+        const {
+          data: { html },
+        } = props.node;
 
-        return <span {...props.attributes} dangerouslySetInnerHTML={{ __html: html }} />;
+        return (
+          <span>
+            <span {...props.attributes} contentEditable={false} dangerouslySetInnerHTML={{ __html: html }} />
+            {props.children}
+          </span>
+        );
       }
     },
   };
@@ -160,18 +185,16 @@ MathPlugin.mathMlOptions = {};
 
 MathPlugin.propTypes = {
   attributes: PropTypes.object,
-  node: SlatePropTypes.node,
+  node: PropTypes.node,
 };
 
-export const inlineMath = () =>
-  Inline.create({
-    object: 'inline',
-    type: 'math',
-    isVoid: true,
-    data: {
-      latex: '',
-    },
-  });
+export const inlineMath = () => ({
+  type: 'math',
+  data: {
+    latex: '',
+  },
+  children: [{ text: '' }],
+});
 
 const htmlDecode = (input) => {
   const doc = new DOMParser().parseFromString(input, 'text/html');
@@ -214,7 +237,7 @@ const lessThanHandling = (input) => {
 };
 
 export const serialization = {
-  deserialize(el) {
+  deserialize(el, children) {
     const tagName = getTagName(el);
     /**
      * This is used for when there's a wrapper over the mathml element.
@@ -237,26 +260,21 @@ export const serialization = {
         const latex = htmlDecode(htmlToUse);
         const { unwrapped, wrapType } = unWrapMath(latex);
 
-        return {
-          object: 'inline',
+        return jsx('element', {
           type: 'math',
-          isVoid: true,
-          nodes: [],
           data: {
             latex: unwrapped,
             wrapper: wrapType,
           },
-        };
+        });
       }
 
-      return {
-        object: 'inline',
-        isVoid: true,
+      return jsx('element', {
         type: 'mathml',
         data: {
           html: newHtml,
         },
-      };
+      });
     }
 
     if (el.nodeType === TEXT_NODE) {
@@ -273,31 +291,28 @@ export const serialization = {
       const latex = htmlDecode(el.innerHTML);
       const { unwrapped, wrapType } = unWrapMath(latex);
       log('[deserialize]: noBrackets: ', unwrapped, wrapType);
-      return {
-        object: 'inline',
+
+      return jsx('element', {
         type: 'math',
-        isVoid: true,
-        nodes: [],
         data: {
           latex: unwrapped,
           wrapper: wrapType,
         },
-      };
+      });
     }
   },
   serialize(object) {
     if (object.type === 'math') {
-      const l = object.data.get('latex');
-      const wrapper = object.data.get('wrapper');
-      log('[serialize] latex: ', l);
-      const decoded = htmlDecode(lessThanHandling(l));
+      const { latex, wrapper } = object.data || {};
+      log('[serialize] latex: ', latex);
+      const decoded = htmlDecode(lessThanHandling(latex));
 
       if (MathPlugin.mathMlOptions.mmlOutput) {
         const res = renderMath(`<span data-latex="" data-raw="${decoded}">${wrapMath(decoded, wrapper)}</span>`);
         const newLatex = mmlToLatex(res);
 
         // we need to remove all the spaces from the latex to be able to compare it
-        const strippedL = l.replace(/\s/g, '');
+        const strippedL = latex.replace(/\s/g, '');
         const strippedNewL = newLatex.replace(/\s/g, '');
 
         // we check if the latex keeps his form after being converted to mathml and back to latex
@@ -306,8 +321,16 @@ export const serialization = {
           return <span data-type="mathml" dangerouslySetInnerHTML={{ __html: res }} />;
         } else {
           // if it doesn't we keep the latex version
-          console.log('This latex can not be safely converted to mathml:', l, 'so we will keep the latex version!!!');
-          console.warn('This latex can not be safely converted to mathml:', l, 'so we will keep the latex version!!!');
+          console.log(
+            'This latex can not be safely converted to mathml:',
+            latex,
+            'so we will keep the latex version!!!',
+          );
+          console.warn(
+            'This latex can not be safely converted to mathml:',
+            latex,
+            'so we will keep the latex version!!!',
+          );
         }
       }
 
@@ -322,7 +345,7 @@ export const serialization = {
      * Here for rendering mathml content
      */
     if (object.type === 'mathml') {
-      const html = object.data.get('html');
+      const { html } = object.data || {};
 
       return <span data-type="mathml" dangerouslySetInnerHTML={{ __html: html }} />;
     }

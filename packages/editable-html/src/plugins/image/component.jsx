@@ -1,10 +1,12 @@
-import LinearProgress from '@material-ui/core/LinearProgress';
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import debug from 'debug';
+import isEqual from 'lodash/isEqual';
+import cloneDeep from 'lodash/cloneDeep';
+import LinearProgress from '@material-ui/core/LinearProgress';
 import { withStyles } from '@material-ui/core/styles';
-import SlatePropTypes from 'slate-prop-types';
+import { Editor } from 'slate';
 
 const log = debug('@pie-lib:editable-html:plugins:image:component');
 
@@ -12,7 +14,12 @@ const size = (s) => (s ? `${s}px` : 'auto');
 
 export class Component extends React.Component {
   static propTypes = {
-    node: SlatePropTypes.node.isRequired,
+    node: PropTypes.shape({
+      type: PropTypes.string,
+      children: PropTypes.array,
+      data: PropTypes.object,
+    }).isRequired,
+    focused: PropTypes.bool,
     editor: PropTypes.shape({
       change: PropTypes.func.isRequired,
       value: PropTypes.object,
@@ -43,17 +50,27 @@ export class Component extends React.Component {
   applySizeData = () => {
     const { node, editor } = this.props;
 
-    let update = node.data;
+    let update = cloneDeep(node.data);
 
-    const w = update.get('width');
+    const w = update.width;
+
     if (w) {
-      update = update.set('resizePercent', this.getPercentFromWidth(w));
+      update = update.resizePercent = this.getPercentFromWidth(w);
     }
 
     log('[applySizeData] update: ', update);
 
-    if (!update.equals(node.data)) {
-      editor.change((c) => c.setNodeByKey(node.key, { data: update }));
+    if (editor.selection && !isEqual(update, node.data)) {
+      const nodePath = Editor.path(editor, editor.selection);
+
+      editor.apply({
+        type: 'set_node',
+        path: nodePath,
+        properties: {
+          data: node.data,
+        },
+        newProperties: { data: update },
+      });
     }
   };
 
@@ -78,8 +95,8 @@ export class Component extends React.Component {
 
   getSize(data) {
     return {
-      width: size(data.get('width')),
-      height: size(data.get('height')),
+      width: size(data.width),
+      height: size(data.height),
       objectFit: 'contain',
     };
   }
@@ -116,13 +133,22 @@ export class Component extends React.Component {
 
       const { node, editor } = this.props;
 
-      let update = node.data;
+      const update = cloneDeep(node.data);
 
-      update = update.set('width', width);
-      update = update.set('height', height);
+      update.width = width;
+      update.height = height;
 
-      if (!update.equals(node.data)) {
-        editor.change((c) => c.setNodeByKey(node.key, { data: update }));
+      if (editor.selection && !isEqual(update, node.data)) {
+        const nodePath = Editor.path(editor, editor.selection);
+
+        editor.apply({
+          type: 'set_node',
+          path: nodePath,
+          properties: {
+            data: node.data,
+          },
+          newProperties: { data: update },
+        });
       }
     }
   };
@@ -201,14 +227,10 @@ export class Component extends React.Component {
   };
 
   render() {
-    const { node, editor, classes, attributes, onFocus } = this.props;
-    const active = editor.value.isFocused && editor.value.selection.hasEdgeIn(node);
-    const src = node.data.get('src');
-    const loaded = node.data.get('loaded') !== false;
-    const deleteStatus = node.data.get('deleteStatus');
-    const alignment = node.data.get('alignment');
-    const percent = node.data.get('percent');
-    const alt = node.data.get('alt');
+    const { node, focused, classes, attributes, children, onFocus } = this.props;
+    const active = focused;
+    const { alignment, alt, deleteStatus, loaded, percent, src } = node.data;
+    const isLoaded = loaded !== false;
     let justifyContent;
 
     switch (alignment) {
@@ -234,22 +256,22 @@ export class Component extends React.Component {
 
     log('[render] style:', size);
 
-    const className = classNames(
-      classes.root,
-      !loaded && classes.loading,
-      deleteStatus === 'pending' && classes.pendingDelete,
-    );
+    const className = classNames(classes.root, {
+      [classes.loading]: !isLoaded,
+      [classes.pendingDelete]: deleteStatus === 'pending',
+    });
 
-    const progressClasses = classNames(classes.progress, loaded && classes.hideProgress);
+    const progressClasses = classNames(classes.progress, {
+      [classes.hideProgress]: isLoaded,
+    });
 
-    return [
-      <span key={'sp1'}>&nbsp;</span>,
-      <div key={'comp'} onFocus={onFocus} className={className} style={{ justifyContent }}>
+    return (
+      <div onFocus={onFocus} className={className} style={{ justifyContent }} {...attributes}>
+        {children}
         <LinearProgress mode="determinate" value={percent > 0 ? percent : 0} className={progressClasses} />
         <div className={classes.imageContainer}>
           <img
-            {...attributes}
-            className={classNames(classes.image, active && classes.active)}
+            className={classNames(classes.image, { [classes.active]: active })}
             ref={(ref) => {
               this.img = ref;
             }}
@@ -265,9 +287,8 @@ export class Component extends React.Component {
             className={classNames(classes.resize, 'resize')}
           />
         </div>
-      </div>,
-      <span key={'sp2'}>&nbsp;</span>,
-    ];
+      </div>
+    );
   }
 }
 
@@ -307,6 +328,7 @@ const styles = (theme) => ({
     border: `solid 1px ${theme.palette.common.white}`,
     display: 'flex',
     transition: 'opacity 200ms linear',
+    width: '100%',
   },
   delete: {
     position: 'absolute',

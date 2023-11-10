@@ -1,33 +1,33 @@
-import { Data } from 'slate';
+import omit from 'lodash/omit';
 import debug from 'debug';
 
 const log = debug('@pie-lib:editable-html:image:insert-image-handler');
 
 /**
  * Handles user selection, insertion (or cancellation) of an image into the editor.
- * @param {Block} placeholderBlock - a block that has been added to the editor as a place holder for the image
+ * @param {Block} placeHolderPath - a block that has been added to the editor as a place holder for the image
  * @param {Function} getValue - a function to return the value of the editor
  * @param {Function} onChange - callback to notify changes applied by the handler
  * @param {Boolean} isPasted - a boolean that keeps track if the file is pasted
  */
 class InsertImageHandler {
-  constructor(placeholderBlock, getValue, onChange, isPasted = false) {
-    this.placeholderBlock = placeholderBlock;
-    this.getValue = getValue;
-    this.onChange = onChange;
+  constructor(node, placeHolderPath, editor, isPasted = false) {
+    this.node = node;
+    this.placeHolderPath = placeHolderPath;
+    this.editor = editor;
     this.isPasted = isPasted;
     this.chosenFile = null;
   }
 
   getPlaceholderInDocument(value) {
     const { document } = value;
-    const directChild = document.getChild(this.placeholderBlock.key);
+    const directChild = document.getChild(this.placeHolderPath);
 
     if (directChild) {
       return directChild;
     }
 
-    const child = document.getDescendant(this.placeholderBlock.key);
+    const child = document.getDescendant(this.placeHolderPath);
 
     if (child) {
       return child;
@@ -39,10 +39,10 @@ class InsertImageHandler {
 
   cancel() {
     log('insert cancelled');
-    const c = this.getValue()
-      .change()
-      .removeNodeByKey(this.placeholderBlock.key);
-    this.onChange(c);
+    this.editor.apply({
+      type: 'remove_node',
+      path: this.placeHolderPath,
+    });
   }
 
   done(err, src) {
@@ -51,12 +51,30 @@ class InsertImageHandler {
       //eslint-disable-next-line
       console.log(err);
     } else {
-      const value = this.getValue();
-      const child = this.getPlaceholderInDocument(value);
-      const data = child.data.merge(Data.create({ loaded: true, src, percent: 100 }));
+      this.editor.apply({
+        type: 'set_node',
+        path: this.placeHolderPath,
+        properties: {
+          data: this.node.data,
+        },
+        newProperties: {
+          data: {
+            src,
+            loaded: true,
+            percent: 100,
+          },
+        },
+      });
+      const newData = {
+        ...this.node.data,
+        src,
+        loaded: true,
+        percent: 100,
+      };
 
-      const change = value.change().setNodeByKey(this.placeholderBlock.key, { data });
-      this.onChange(change);
+      this.node = Object.assign({}, this.node, {
+        data: omit(newData, 'newImage'),
+      });
     }
   }
 
@@ -76,23 +94,40 @@ class InsertImageHandler {
     log('[fileChosen] file: ', file);
     const reader = new FileReader();
     reader.onload = () => {
-      const value = this.getValue();
       const dataURL = reader.result;
-      const child = this.getPlaceholderInDocument(value);
-      const data = child.data.set('src', dataURL);
-      const change = value.change().setNodeByKey(this.placeholderBlock.key, { data });
-      this.onChange(change);
+
+      this.editor.apply({
+        type: 'set_node',
+        path: this.placeHolderPath,
+        properties: {
+          data: this.node.data,
+        },
+        newProperties: {
+          data: {
+            ...this.node.data,
+            src: dataURL,
+          },
+        },
+      });
+      this.node = Object.assign({}, this.node, { data: { src: dataURL } });
     };
     reader.readAsDataURL(file);
   }
 
   progress(percent, bytes, total) {
     log('progress: ', percent, bytes, total);
-    const value = this.getValue();
-    const child = this.getPlaceholderInDocument(value);
-    const data = child.data.set('percent', percent);
-    const change = value.change().setNodeByKey(this.placeholderBlock.key, { data });
-    this.onChange(change);
+
+    this.editor.apply({
+      type: 'set_node',
+      path: this.placeHolderPath,
+      properties: {
+        data: this.node.data,
+      },
+      newProperties: {
+        data: { ...this.node.data, percent },
+      },
+    });
+    this.node = Object.assign({}, this.node, { data: { percent } });
   }
 
   // Add a getter method to retrieve the chosen file

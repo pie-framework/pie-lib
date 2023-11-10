@@ -9,7 +9,7 @@ export const onValueChange = (nodeProps, n, value) => {
   change.setNodeByKey(n.key, {
     data: {
       ...value,
-      index: n.data.get('index'),
+      index: n.data.index,
     },
   });
 
@@ -21,11 +21,11 @@ export const onValueChange = (nodeProps, n, value) => {
 export const onRemoveResponse = (nodeProps, value) => {
   const val = nodeProps.editor.value;
   const change = val.change();
-  const dragInTheBlank = val.document.findDescendant((n) => n.data && n.data.get('index') === value.index);
+  const dragInTheBlank = val.document.findDescendant((n) => n.data && n.data.index === value.index);
 
   change.setNodeByKey(dragInTheBlank.key, {
     data: {
-      index: dragInTheBlank.data.get('index'),
+      index: dragInTheBlank.data.index,
     },
   });
 
@@ -35,7 +35,7 @@ export const onRemoveResponse = (nodeProps, value) => {
 };
 
 const DragDrop = (props) => {
-  const { attributes, data, n, nodeProps, opts } = props;
+  const { attributes, children, data, n, nodeProps, opts } = props;
   const { inTable } = data;
 
   return (
@@ -60,6 +60,7 @@ const DragDrop = (props) => {
         removeResponse={(value) => onRemoveResponse(nodeProps, value)}
       >
         {nodeProps.children}
+        {children}
       </DragDropTile>
     </span>
   );
