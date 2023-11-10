@@ -11,5 +11,6 @@ NEXT.CHANGELOG.md
 PIE-*
 !pie-toolbox
 !pie-toolbox/**
+!pie-toolbox/.gitignore
 packages/*-module@*
 
