@@ -9,5 +9,7 @@ package-lock.json
 NEXT.CHANGELOG.md
 *.CHANGELOG.json
 PIE-*
+!pie-toolbox
+!pie-toolbox/**
 packages/*-module@*
 
