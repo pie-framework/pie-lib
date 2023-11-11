@@ -1,8 +1,8 @@
 import React from 'react';
-import withRoot from '../../src/withRoot';
+import withRoot from '../../source/withRoot';
 import { withStyles } from '@material-ui/core/styles';
 import debug from 'debug';
-import { renderMath } from '@pie-lib/math-rendering';
+import { renderMath } from '@pie-lib/pie-toolbox/math-rendering';
 import { Button, Typography } from '@material-ui/core';
 
 const log = debug('demo:math-evaluator');

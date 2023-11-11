@@ -1,10 +1,10 @@
-import React from "react";
-import withRoot from "../../src/withRoot";
-import { withStyles } from "@material-ui/core";
+import React from 'react';
+import withRoot from '../../source/withRoot';
+import { withStyles } from '@material-ui/core';
 
-import Translator from "../../../translator";
-import MenuItem from "@material-ui/core/MenuItem";
-import Select from "@material-ui/core/Select";
+import Translator from '@pie-lib/pie-toolbox/translator';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
 
 const { translator, languageOptions } = Translator;
 
@@ -27,7 +27,9 @@ class Demo extends React.Component {
       <div>
         <Select
           value={language}
-          onChange={(event) => { this.setState({ language: event.target.value })}}
+          onChange={(event) => {
+            this.setState({ language: event.target.value });
+          }}
           inputProps={{
             name: 'markup',
             id: 'markup',
@@ -41,16 +43,20 @@ class Demo extends React.Component {
         </Select>
 
         <br />
-        <br />{translator.t("ebsr.part", { index: 1, lng: this.state.language })}
-        <br />{translator.t("ebsr.part", { index: 2, lng: this.state.language })}
-        <br />{translator.t("numberLine.addElementLimit", { count: 1, lng: this.state.language })}
-        <br />{translator.t("numberLine.addElementLimit", { count: 2, lng: this.state.language })}
-        <br />{translator.t("numberLine.clearAll", { lng: this.state.language })}
-        <br />{translator.t("imageClozeAssociation.reachedLimit", { count: 1, lng: this.state.language })}
-        <br />{translator.t("imageClozeAssociation.reachedLimit", { count: 2, lng: this.state.language })}
-
-
-
+        <br />
+        {translator.t('ebsr.part', { index: 1, lng: this.state.language })}
+        <br />
+        {translator.t('ebsr.part', { index: 2, lng: this.state.language })}
+        <br />
+        {translator.t('numberLine.addElementLimit', { count: 1, lng: this.state.language })}
+        <br />
+        {translator.t('numberLine.addElementLimit', { count: 2, lng: this.state.language })}
+        <br />
+        {translator.t('numberLine.clearAll', { lng: this.state.language })}
+        <br />
+        {translator.t('imageClozeAssociation.reachedLimit', { count: 1, lng: this.state.language })}
+        <br />
+        {translator.t('imageClozeAssociation.reachedLimit', { count: 2, lng: this.state.language })}
       </div>
     ) : (
       <div />

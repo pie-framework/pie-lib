@@ -7,8 +7,8 @@ import {
   NothingSubmitted,
   PartiallyCorrect,
   ShowRationale,
-} from '@pie-lib/icons';
-import withRoot from '../src/withRoot';
+} from '@pie-lib/pie-toolbox/icons';
+import withRoot from '../source/withRoot';
 
 import React from 'react';
 

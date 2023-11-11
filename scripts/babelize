@@ -5,6 +5,6 @@ if (basename(process.cwd()) === 'demo') {
   return;
 }
 // eslint-disable-next-line quotes
-execSync("babel --ignore '/__test__/','/__tests__/' src -d lib", {
+execSync("babel --ignore '/__test__/','/__tests__/' src -d ./", {
   stdio: 'inherit'
 });

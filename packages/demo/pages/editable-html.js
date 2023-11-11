@@ -1,4 +1,5 @@
-import EditableHtml, { ALL_PLUGINS } from '@pie-lib/editable-html';
+import EditableHtml, { ALL_PLUGINS } from '@pie-lib/pie-toolbox/editable-html';
+import { withDragContext } from '@pie-lib/pie-toolbox/drag';
 import grey from '@material-ui/core/colors/grey';
 import React from 'react';
 import _ from 'lodash';
@@ -10,12 +11,12 @@ import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Input from '@material-ui/core/Input';
-import withRoot from '../src/withRoot';
+import withRoot from '../source/withRoot';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
-import InputChooser from '../src/editable-html/input-chooser';
-import { hasText } from '@pie-lib/render-ui';
+import InputChooser from '../source/editable-html/input-chooser';
+import { hasText } from '@pie-lib/pie-toolbox/render-ui';
 import InlineDropdownToolbar from './inline-dropdown-toolbar';
 
 const log = debug('@pie-lib:editable-html:demo');
@@ -31,8 +32,9 @@ const inputOptions = [
   },
   {
     label: 'Latex \\(..\\)',
-    html:
-      '<p>Which of these northern European countries are EU members? <math><mstack><msrow><mn>111</mn></msrow><msline/></mstack></math></p>',
+    html: `
+      <span><table class="table table-bordered table-striped"><tbody><tr><td class="text-center"><b>Word Problem</b></td><td class="text-center"><b>Array</b></td></tr><tr><td><p>Jamie is buying color pencils for an art project. There are 8 colored pencils in each pack. She buys 3 packs of colored pencils. How many colored pencils did she buy for her art project?</p></td><td><p><span data-type="drag_in_the_blank" data-index="0" data-id="1" data-value="&lt;img alt=&quot;&quot; src=&quot;https://app.fluence.net/ia/image/cc6e862dad4749d4a1ae6540ea775179&quot; /&gt;"></span></p></td></tr><tr><td><p>Mark has 36 jelly beans to split between 9 friends. How many jelly beans will each friend get?</p></td><td><p><span data-type="drag_in_the_blank" data-index="1" data-id="0" data-value="&lt;img alt=&quot;&quot; src=&quot;https://app.fluence.net/ia/image/3099cb73d5fe400b91b72f2606d1211c&quot; /&gt;"></span></p></td></tr><tr><td><p>Mr. Smith drinks 5 bottles of water each day. If there are 7 days in a week, how many bottles of water does Mr. Smith drink in 1 week?</p></td><td><p><span data-type="drag_in_the_blank" data-index="2" data-id="2" data-value="&lt;img alt=&quot;&quot; src=&quot;https://app.fluence.net/ia/image/ab3e342a466941a1a608f65eb7ec1c68&quot; /&gt;"></span></p></td></tr></tbody></table></span>
+      `,
   },
   {
     label: 'Latex $..$',
@@ -44,7 +46,7 @@ const inputOptions = [
   },
   {
     label: 'Nested div w/ image',
-    html: '<div>​<div><img src="foo.com/img.png"/></div>​</div>',
+    html: '<div>​<div><img source="foo.com/img.png"/></div>​</div>',
   },
   {
     label: 'Nested div w/ text',
@@ -187,6 +189,18 @@ class RteDemo extends React.Component {
 
   addImage = (imageHandler) => {
     log('[addImage]', imageHandler);
+
+    if (imageHandler.isPasted && imageHandler.getChosenFile) {
+      this.setState({ imageHandler }, () => {
+        // this is for images that were pasted into the editor (or dropped)
+        // they also need to be uploaded, but the file input doesn't have to be used
+        const file = imageHandler.getChosenFile();
+
+        this.handleInputFiles({ files: [file] });
+      });
+      return;
+    }
+
     this.setState({ imageHandler });
     this.fileInput.click();
 
@@ -210,7 +224,7 @@ class RteDemo extends React.Component {
   };
 
   onDeleteImage = (url, done) => {
-    log('delete image src: ', url);
+    log('delete image source: ', url);
     done();
   };
 
@@ -396,6 +410,10 @@ class RteDemo extends React.Component {
           width={width}
           height={height}
           languageCharactersProps={languageCharactersProps}
+          // mathMlOptions={{
+          //   mmlEditing: true,
+          //   mmlOutput: true
+          // }}
         />
         <input type="file" hidden ref={(r) => (this.fileInput = r)} />
         <br />
@@ -405,7 +423,7 @@ class RteDemo extends React.Component {
         <br />
         {/*<EditableHtml markup={markupText} onChange={this.onChangeMarkupText} width={width} height={height} />*/}
         <br />
-        <div>{`Has text: ${hasText}`}</div>
+        <div id="temp1">{`Has text: ${hasText}`}</div>
       </div>
     ) : (
       <div>loading...</div>
@@ -426,4 +444,4 @@ const styles = (theme) => ({
   },
 });
 
-export default withRoot(withStyles(styles)(RteDemo));
+export default withDragContext(withRoot(withStyles(styles)(RteDemo)));

@@ -1,8 +1,8 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { indicators, Feedback } from '@pie-lib/render-ui';
-import { Collapsible, color } from '@pie-lib/render-ui';
-import withRoot from '../src/withRoot';
+import { indicators, Feedback } from '@pie-lib/pie-toolbox/render-ui';
+import { Collapsible, color } from '@pie-lib/pie-toolbox/render-ui';
+import withRoot from '../source/withRoot';
 import { Typography } from '@material-ui/core';
 const { Correct, Incorrect, PartiallyCorrect, NothingSubmitted } = indicators;
 

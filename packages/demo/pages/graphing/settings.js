@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
-import { DisplaySize, Toggle, Checkbox } from '@pie-lib/config-ui';
+import { DisplaySize, Toggle, Checkbox } from '@pie-lib/pie-toolbox/config-ui';
 import debug from 'debug';
 
 const log = debug('pie-lib:demo:settings');

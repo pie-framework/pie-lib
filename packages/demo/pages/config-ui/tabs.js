@@ -1,10 +1,10 @@
-import { Tabs } from '@pie-lib/config-ui';
+import { Tabs } from '@pie-lib/pie-toolbox/config-ui';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import debug from 'debug';
 import { withStyles } from '@material-ui/core/styles';
-import withRoot from '../../src/withRoot';
+import withRoot from '../../source/withRoot';
 
 // eslint-disable-next-line
 const log = debug('demo:config-ui');
