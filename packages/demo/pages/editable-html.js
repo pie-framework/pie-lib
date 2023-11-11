@@ -1,5 +1,4 @@
 import EditableHtml, { ALL_PLUGINS } from '@pie-lib/pie-toolbox/editable-html';
-import { withDragContext } from '@pie-lib/pie-toolbox/drag';
 import grey from '@material-ui/core/colors/grey';
 import React from 'react';
 import _ from 'lodash';
@@ -32,9 +31,8 @@ const inputOptions = [
   },
   {
     label: 'Latex \\(..\\)',
-    html: `
-      <span><table class="table table-bordered table-striped"><tbody><tr><td class="text-center"><b>Word Problem</b></td><td class="text-center"><b>Array</b></td></tr><tr><td><p>Jamie is buying color pencils for an art project. There are 8 colored pencils in each pack. She buys 3 packs of colored pencils. How many colored pencils did she buy for her art project?</p></td><td><p><span data-type="drag_in_the_blank" data-index="0" data-id="1" data-value="&lt;img alt=&quot;&quot; src=&quot;https://app.fluence.net/ia/image/cc6e862dad4749d4a1ae6540ea775179&quot; /&gt;"></span></p></td></tr><tr><td><p>Mark has 36 jelly beans to split between 9 friends. How many jelly beans will each friend get?</p></td><td><p><span data-type="drag_in_the_blank" data-index="1" data-id="0" data-value="&lt;img alt=&quot;&quot; src=&quot;https://app.fluence.net/ia/image/3099cb73d5fe400b91b72f2606d1211c&quot; /&gt;"></span></p></td></tr><tr><td><p>Mr. Smith drinks 5 bottles of water each day. If there are 7 days in a week, how many bottles of water does Mr. Smith drink in 1 week?</p></td><td><p><span data-type="drag_in_the_blank" data-index="2" data-id="2" data-value="&lt;img alt=&quot;&quot; src=&quot;https://app.fluence.net/ia/image/ab3e342a466941a1a608f65eb7ec1c68&quot; /&gt;"></span></p></td></tr></tbody></table></span>
-      `,
+    html:
+      '<p>Which of these northern European countries are EU members? <math><mstack><msrow><mn>111</mn></msrow><msline/></mstack></math></p>',
   },
   {
     label: 'Latex $..$',
@@ -444,4 +442,4 @@ const styles = (theme) => ({
   },
 });
 
-export default withDragContext(withRoot(withStyles(styles)(RteDemo)));
+export default withRoot(withStyles(styles)(RteDemo));
