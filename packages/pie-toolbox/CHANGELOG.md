@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.0.9...@pie-lib/pie-toolbox@1.0.10) (2023-11-13)
+
+
+### Bug Fixes
+
+* **icons:** add image-konva.jsx pd-597 ([254bf24](https://github.com/pie-framework/pie-lib/commit/254bf247367de54c45d8b7b092b07d6b7cdc502d))
+* **icons:** add new icon(image) for react-konva pd-597 ([7e603de](https://github.com/pie-framework/pie-lib/commit/7e603de96defb439db408345edf29b385eee904a))
+* **icons:** downgrade konva version to avoid versions mismatching pd-597 ([62f8fd1](https://github.com/pie-framework/pie-lib/commit/62f8fd1918414772295dbd3866441c9b8276864f))
+
+
+
+
+
 ## [1.0.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.0.8...@pie-lib/pie-toolbox@1.0.9) (2023-11-09)
 
 
