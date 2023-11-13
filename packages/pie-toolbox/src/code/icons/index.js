@@ -6,10 +6,12 @@ import LearnMore from './learn-more-icon';
 import NothingSubmitted from './nothing-submitted-icon';
 import PartiallyCorrect from './partially-correct-icon';
 import ShowRationale from './show-rationale-icon';
+import ImageComponent from './image-konva';
 
 export {
   Correct,
   CorrectResponse,
+  ImageComponent,
   Incorrect,
   Instructions,
   LearnMore,
