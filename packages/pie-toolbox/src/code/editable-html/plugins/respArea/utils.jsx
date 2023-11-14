@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Inline } from 'slate';
 import Snackbar from '@material-ui/core/Snackbar';
 
 export const isNumber = (val) => !isNaN(parseFloat(val)) && isFinite(val);
@@ -34,35 +33,31 @@ export const insertSnackBar = (message) => {
   }, 2000);
 };
 
-export const defaultECR = (index) =>
-  Inline.create({
-    type: 'explicit_constructed_response',
-    isVoid: true,
-    data: {
-      index,
-    },
-  });
+export const defaultECR = (index) => ({
+  type: 'explicit_constructed_response',
+  children: [{ text: '' }],
+  data: {
+    index,
+  },
+});
 
-export const defaultDIB = (opts, index) =>
-  Inline.create({
-    type: 'drag_in_the_blank',
-    isVoid: true,
-    data: {
-      index,
-      duplicates: opts.options.duplicates,
-      value: null,
-    },
-  });
+export const defaultDIB = (opts, index) => ({
+  type: 'drag_in_the_blank',
+  children: [{ text: '' }],
+  data: {
+    index,
+    duplicates: opts.options.duplicates,
+    value: null,
+  },
+});
 
-export const defaultIDD = (index) =>
-  Inline.create({
-    object: 'inline',
-    type: 'inline_dropdown',
-    isVoid: true,
-    data: {
-      index,
-    },
-  });
+export const defaultIDD = (index) => ({
+  type: 'inline_dropdown',
+  children: [{ text: '' }],
+  data: {
+    index,
+  },
+});
 
 export const getDefaultElement = (opts, index) => {
   switch (opts.type) {
