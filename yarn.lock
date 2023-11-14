@@ -15068,7 +15068,7 @@ slate-prop-types@^0.5.44:
   resolved "https://registry.yarnpkg.com/slate-prop-types/-/slate-prop-types-0.5.44.tgz#da60b69c3451c3bd6cdd60a45d308eeba7e83c76"
   integrity sha512-JS0iW7uaciE/W3ADuzeN1HOnSjncQhHPXJ65nZNQzB0DF7mXVmbwQKI6cmCo/xKni7XRJT0JbWSpXFhEdPiBUA==
 
-slate-react@^0.100.1:
+slate-react@0.100.1:
   version "0.100.1"
   resolved "https://registry.yarnpkg.com/slate-react/-/slate-react-0.100.1.tgz#d542cd9181e3ad5639dcd8d9911a50da1bf46d71"
   integrity sha512-CHlUhopb+3VL0YWXPGcloUlaib4BvaT50+UOudj+rsZaa/EQVgmP6czLqLlXhlyLNiOnp5QaWso/qeoLwuBOyQ==
