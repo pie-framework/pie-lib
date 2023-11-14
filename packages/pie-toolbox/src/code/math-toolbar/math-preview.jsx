@@ -1,37 +1,14 @@
 import React from 'react';
 import classNames from 'classnames';
+import get from 'lodash/get';
 import debug from 'debug';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
 import { mq } from '../math-input';
 
 const log = debug('@pie-lib:math-toolbar:math-preview');
 
-export class RawMathPreview extends React.Component {
-  static propTypes = {
-    latex: PropTypes.string,
-    node: PropTypes.object,
-    classes: PropTypes.object,
-    isSelected: PropTypes.bool,
-    onFocus: PropTypes.func,
-    onBlur: PropTypes.func,
-  };
-
-  render() {
-    log('[render] data: ', this.props.node.data);
-    const latex = this.props.node.data.get('latex');
-    const { classes, isSelected, onFocus, onBlur } = this.props;
-    return (
-      <div className={classNames(classes.root, isSelected && classes.selected)}>
-        {' '}
-        <span className={classes.insideOverlay} />
-        <mq.Static latex={latex} onFocus={onFocus} onBlur={onBlur} />
-      </div>
-    );
-  }
-}
-
-const mp = (theme) => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'inline-flex',
     alignItems: 'center',
@@ -182,7 +159,7 @@ const mp = (theme) => ({
     },
   },
   selected: {
-    border: `solid 1px ${theme.palette.primary.main}`,
+    border: `solid 1px ${get(theme, 'palette.primary.main')}`,
     '& > .mq-math-mode': {
       border: 'solid 0px lightgrey',
     },
@@ -194,6 +171,35 @@ const mp = (theme) => ({
     right: 0,
     top: 0,
   },
+}));
+
+export const RawMathPreview = React.forwardRef((props, ref) => {
+  log('[render] data: ', props.node.data);
+  const latex = props.node.data.latex;
+  const { isSelected, onFocus, onBlur, attributes, children } = props;
+  const classes = useStyles(props);
+
+  return (
+    <div
+      className={classNames(classes.root, isSelected && classes.selected)}
+      {...attributes}
+      contentEditable={false}
+      ref={ref}
+    >
+      {children} <span className={classes.insideOverlay} />
+      <mq.Static latex={latex} onFocus={onFocus} onBlur={onBlur} />
+    </div>
+  );
 });
 
-export default withStyles(mp)(RawMathPreview);
+RawMathPreview.propTypes = {
+  element: PropTypes.object,
+  latex: PropTypes.string,
+  node: PropTypes.object,
+  classes: PropTypes.object,
+  isSelected: PropTypes.bool,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
+};
+
+export default RawMathPreview;

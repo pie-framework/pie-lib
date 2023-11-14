@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 
-const useStyles = withStyles(() => ({
+const useStyles = makeStyles(() => ({
   root: {
     position: 'relative',
   },
@@ -13,31 +13,33 @@ const useStyles = withStyles(() => ({
   },
 }));
 
-class MediaWrapper extends React.Component {
-  static propTypes = {
-    classes: PropTypes.object,
-    children: PropTypes.array,
-    editor: PropTypes.bool,
-    width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  };
+const MediaWrapper = React.forwardRef((props, ref) => {
+  const { children, width, attributes, ...rest } = props;
+  const classes = useStyles(props);
 
-  render() {
-    const { editor, classes, children, width, ...rest } = this.props;
+  return (
+    <span
+      className={classNames(classes.root, {
+        [classes.editor]: editor,
+      })}
+      ref={ref}
+      {...rest}
+      {...attributes}
+      contentEditable={false}
+      style={{
+        width: width || 300,
+      }}
+    >
+      {children}
+    </span>
+  );
+});
 
-    return (
-      <span
-        className={classNames(classes.root, {
-          [classes.editor]: editor,
-        })}
-        {...rest}
-        style={{
-          width: width || 300,
-        }}
-      >
-        {children}
-      </span>
-    );
-  }
-}
+MediaWrapper.propTypes = {
+  attributes: PropTypes.object,
+  classes: PropTypes.object,
+  children: PropTypes.array,
+  width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+};
 
-export default useStyles(MediaWrapper);
+export default MediaWrapper;

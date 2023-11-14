@@ -1,44 +1,44 @@
 import React from 'react';
-import EditTable from 'slate-edit-table';
-import { Block } from 'slate';
+import { Node as SlateNode, Element as SlateElement, Editor, Transforms } from 'slate';
 import debug from 'debug';
 import GridOn from '@material-ui/icons/GridOn';
 import TableToolbar from './table-toolbar';
 import PropTypes from 'prop-types';
-import SlatePropTypes from 'slate-prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { jsx } from 'slate-hyperscript';
+import { makeStyles } from '@material-ui/styles';
 import convert from 'react-attr-converter';
 import { object as toStyleObject } from 'to-style';
+import get from 'lodash/get';
+import omit from 'lodash/omit';
+import reduce from 'lodash/reduce';
 
 const log = debug('@pie-lib:editable-html:plugins:table');
 
-const Table = withStyles(() => ({
-  table: {},
-}))((props) => {
-  const nodeAttributes = dataToAttributes(props.node.data);
+const Table = React.forwardRef((props) => {
+  const nodeAttributes = omit(dataToAttributes(props.element.data), 'newTable');
+  const attrs = omit(props.attributes, 'newTable');
 
   return (
-    <table
-      className={props.classes.table}
-      {...props.attributes}
-      {...nodeAttributes}
-      onFocus={props.onFocus}
-      onBlur={props.onBlur}
-    >
-      <tbody>{props.children}</tbody>
+    <table {...attrs} {...nodeAttributes} onFocus={props.onFocus} onBlur={props.onBlur}>
+      {props.children}
     </table>
   );
 });
 
 Table.propTypes = {
   attributes: PropTypes.object,
+  element: PropTypes.object,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
-  node: SlatePropTypes.node,
+  node: PropTypes.shape({
+    type: PropTypes.string,
+    children: PropTypes.array,
+    data: PropTypes.object,
+  }),
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
 };
 
-const TableRow = (props) => <tr {...props.attributes}>{props.children}</tr>;
+const TableRow = React.forwardRef((props) => <tr {...props.attributes}>{props.children}</tr>);
 
 TableRow.propTypes = {
   attributes: PropTypes.object,
@@ -47,22 +47,35 @@ TableRow.propTypes = {
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
 };
 
-const TableCell = withStyles(() => ({
+const TableBody = React.forwardRef((props) => <tbody {...props.attributes}>{props.children}</tbody>);
+
+TableBody.propTypes = {
+  attributes: PropTypes.object,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
+};
+
+const useCellStyles = makeStyles({
   td: {
     minWidth: '25px',
   },
-}))((props) => {
-  const Tag = props.node.data.get('header') ? 'th' : 'td';
+});
 
-  const nodeAttributes = dataToAttributes(props.node.data);
+const TableCell = React.forwardRef((props) => {
+  const classes = useCellStyles();
+  const { node } = props;
+  const Tag = get(node, 'data.header') ? 'th' : 'td';
+
+  const nodeAttributes = dataToAttributes(props.element.data);
   delete nodeAttributes.header;
 
   return (
     <Tag
       {...props.attributes}
       {...nodeAttributes}
-      colSpan={props.node.data.get('colspan')}
-      className={props.classes[Tag]}
+      colSpan={get(node, 'data.colspan')}
+      className={classes[Tag]}
       onFocus={props.onFocus}
       onBlur={props.onBlur}
     >
@@ -72,80 +85,163 @@ const TableCell = withStyles(() => ({
 });
 
 TableCell.propTypes = {
+  node: PropTypes.object,
+  element: PropTypes.object,
   attributes: PropTypes.object,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
 };
 
-export const moveFocusToBeginningOfTable = (change) => {
-  const addedTable = change.value.document.findDescendant((d) => !!d.data && !!d.data.get('newTable'));
-
-  if (!addedTable) {
-    return;
+const getAncestorByType = (editor, type) => {
+  if (!editor || !type) {
+    return null;
   }
 
-  change.collapseToStartOf(addedTable);
-
-  const update = addedTable.data.remove('newTable');
-
-  change.setNodeByKey(addedTable.key, { data: update });
-};
-
-export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
-  const core = EditTable({
-    typeContent: 'div',
+  const ancestors = SlateNode.ancestors(editor, Editor.path(editor, editor.selection), {
+    reverse: true,
   });
 
-  // fix outdated schema
-
-  if (core.schema && core.schema.blocks) {
-    Object.keys(core.schema.blocks).forEach((key) => {
-      const block = core.schema.blocks[key];
-
-      if (block.parent) {
-        if (block.nodes[0].types) {
-          block.nodes[0] = {
-            type: block.nodes[0].types[0],
-          };
-        }
-
-        if (block.nodes[0].objects) {
-          block.nodes[0] = {
-            object: block.nodes[0].objects[0],
-          };
-        }
-
-        block.parent = {
-          type: block.parent.types[0],
-        };
-      } else {
-        block.nodes[0] = { type: block.nodes[0].types[0] };
-      }
-    });
+  for (const [ancestor, ancestorPath] of ancestors) {
+    if (ancestor.type === type) {
+      return [ancestor, ancestorPath];
+    }
   }
 
-  core.utils.getTableBlock = (containerNode, key) => {
-    const node = containerNode.getDescendant(key);
-    const ancestors = containerNode.getAncestors(key).push(node);
-    return ancestors.findLast((p) => p.type === 'table');
+  return null;
+};
+
+const moveToBeginningOfTable = (editor) => {
+  const [tableBlock, tablePath] = getAncestorByType(editor, 'table');
+  let firstTdPath;
+
+  for (const [descendant, descendantPath] of SlateNode.descendants(tableBlock, { reverse: true })) {
+    if (descendant.type === 'td') {
+      firstTdPath = descendantPath;
+    }
+  }
+
+  Transforms.select(editor, [...tablePath, ...firstTdPath]);
+};
+
+const TABLE_TYPES = ['tbody', 'tr', 'td', 'table'];
+
+export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
+  const core = {
+    utils: {},
+    rules: (editor) => {
+      const { normalizeNode } = editor;
+
+      editor.normalizeNode = (entry) => {
+        const [tableNode, tablePath] = entry;
+        const tableParent = SlateNode.get(editor, tablePath.slice(0, -1));
+
+        // If the element is a paragraph, ensure its children are valid.
+        if (SlateElement.isElement(tableNode) && tableNode.type === 'table') {
+          const emptyBlock = {
+            type: 'paragraph',
+            children: [{ text: '' }],
+          };
+          const tableIndex = tablePath.slice(-1)[0];
+
+          // if table is the first element, we need to add a space before
+          // so users can focus before the table
+          if (tableIndex === 0) {
+            const beforeTablePath = [...tablePath.slice(0, -1), 0];
+
+            editor.apply({
+              type: 'insert_node',
+              path: beforeTablePath,
+              node: emptyBlock,
+            });
+            editor.continueNormalization();
+            return;
+          }
+
+          // if table is the last element, we add element after it
+          if (tableParent.children.length - 1 === tableIndex) {
+            const afterTablePath = [...tablePath.slice(0, -1), tableIndex + 1];
+
+            editor.apply({
+              type: 'insert_node',
+              path: afterTablePath,
+              node: emptyBlock,
+            });
+            editor.continueNormalization();
+            return;
+          }
+
+          // if table does not have a tbody, we add it
+          if (tableNode.children[0].type !== 'tbody') {
+            const tBodyNode = { type: 'tbody', children: [] };
+
+            Transforms.wrapNodes(editor, tBodyNode, {
+              at: {
+                anchor: { path: [...tablePath, 0], offset: 0 },
+                focus: { path: [...tablePath, tableNode.children.length], offset: 0 },
+              },
+            });
+            editor.continueNormalization();
+            return;
+          }
+        }
+
+        // Fall back to the original `normalizeNode` to enforce other constraints.
+        normalizeNode(entry);
+      };
+
+      return editor;
+    },
   };
+
+  core.utils.createTable = (row = 2, columns = 2) => {
+    const tableRows = [];
+    const rowLength = new Array(row).fill(0).length;
+    const columnsLength = new Array(columns).fill(0).length;
+
+    for (let i = 0; i < rowLength; i++) {
+      const tableRow = { type: 'tr', children: [] };
+
+      for (let j = 0; j < columnsLength; j++) {
+        tableRow.children.push({
+          type: 'td',
+          children: [
+            {
+              text: '',
+            },
+          ],
+        });
+      }
+
+      tableRows.push(tableRow);
+    }
+
+    return {
+      type: 'table',
+      children: [
+        {
+          type: 'tbody',
+          children: tableRows,
+        },
+      ],
+    };
+  };
+
+  core.utils.getTableBlock = (editor) => getAncestorByType(editor, 'table');
+
+  core.utils.isSelectionInTable = (editor) => !!core.utils.getTableBlock(editor);
 
   core.utils.createTableWithOptions = (row, columns, extra) => {
     const createdTable = core.utils.createTable(row, columns);
-    const newTable = Block.create({
-      ...createdTable.toJSON(),
-      ...extra,
-    });
+    const newTable = { ...createdTable, ...extra };
 
     return newTable;
   };
 
   core.toolbar = {
     icon: <GridOn />,
-    onClick: (value, onChange) => {
+    onClick: (editor) => {
       log('insert table');
-      const change = value.change();
       const newTable = core.utils.createTableWithOptions(2, 2, {
         data: {
           border: '1',
@@ -153,65 +249,145 @@ export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
         },
       });
 
-      change.insertBlock(newTable);
-
-      moveFocusToBeginningOfTable(change);
-      onChange(change);
+      editor.insertNode(newTable);
+      moveToBeginningOfTable(editor, newTable);
     },
-    supports: (node, value) => node && node.object === 'block' && core.utils.isSelectionInTable(value),
     /**
      * Note - the node may not be a table node - it may be a node inside a table.
      */
-    customToolbar: (node, value, onToolbarDone) => {
+    customToolbar: (node, nodePath, editor, onToolbarDone) => {
       log('[customToolbar] node.data: ', node.data);
 
-      const tableBlock = core.utils.getTableBlock(value.document, node?.key);
+      const [tableBlock] = core.utils.getTableBlock(editor);
       log('[customToolbar] tableBlock: ', tableBlock);
 
-      const hasBorder = () => tableBlock.data.get('border') && tableBlock.data.get('border') !== '0';
+      const hasBorder = () => get(tableBlock, 'data.border') !== '0';
       const addRow = () => {
-        const change = core.changes.insertRow(value.change());
-        onToolbarDone(change, false);
-      };
+        const [trNode, trPath] = getAncestorByType(editor, 'tr');
 
-      const addColumn = () => {
-        const change = core.changes.insertColumn(value.change());
-        onToolbarDone(change, false);
+        log('[addRow]');
+
+        if (trNode) {
+          const newTr = { type: 'tr', children: [] };
+          const columnsLength = trNode.children.length;
+
+          for (let i = 0; i < columnsLength; i++) {
+            newTr.children.push({
+              type: 'td',
+              children: [
+                {
+                  text: '',
+                },
+              ],
+            });
+          }
+
+          Transforms.insertNodes(editor, [newTr], { at: trPath });
+        }
       };
 
       const removeRow = () => {
-        const change = core.changes.removeRow(value.change());
-        onToolbarDone(change, false);
+        const [tBodyNode, tBodyPath] = getAncestorByType(editor, 'tbody');
+
+        log('[removeRow]');
+
+        if (tBodyPath) {
+          if (tBodyNode.children.length > 1) {
+            const [, trPath] = getAncestorByType(editor, 'tr');
+
+            log('[removeRow]');
+
+            if (trPath) {
+              Transforms.removeNodes(editor, { at: trPath });
+            }
+          }
+        }
+      };
+
+      const addColumn = () => {
+        const [tBodyNode, tBodyPath] = getAncestorByType(editor, 'tbody');
+
+        log('[addColumn]');
+
+        if (tBodyNode) {
+          const emptyTd = {
+            type: 'td',
+            children: [{ text: '' }],
+          };
+          const trElements = Editor.nodes(editor, {
+            at: tBodyPath, // Path of Editor
+            match: (node) => 'tr' === node.type,
+          });
+
+          for (const [trNode, nodePath] of trElements) {
+            Transforms.insertNodes(editor, [emptyTd], {
+              at: [...nodePath, trNode.children.length],
+            });
+          }
+        }
       };
 
       const removeColumn = () => {
-        const change = core.changes.removeColumn(value.change());
-        onToolbarDone(change, false);
+        const [tBodyNode, tBodyPath] = getAncestorByType(editor, 'tbody');
+
+        log('[addColumn]');
+
+        if (tBodyNode) {
+          const currentPath = Editor.path(editor, editor.selection);
+          const columnIndex = currentPath[currentPath.length - 2];
+          const trElements = Editor.nodes(editor, {
+            at: tBodyPath, // Path of Editor
+            match: (node) => 'tr' === node.type,
+          });
+
+          for (const [trNode, nodePath] of trElements) {
+            if (trNode.children.length > 1) {
+              Transforms.removeNodes(editor, { at: [...nodePath, columnIndex] });
+            }
+          }
+        }
       };
 
       const removeTable = () => {
-        const change = core.changes.removeTable(value.change());
-        onToolbarDone(change, false);
+        const [tableNode, tablePath] = getAncestorByType(editor, 'table');
+
+        editor.apply({
+          type: 'remove_node',
+          path: tablePath,
+          node: tableNode,
+        });
       };
 
       const toggleBorder = () => {
         const { data } = tableBlock;
-        const update = data.set('border', hasBorder() ? '0' : '1');
+        const update = {
+          ...data,
+          border: hasBorder() ? '0' : '1',
+        };
+        const [, tablePath] = getAncestorByType(editor, 'table');
+
         log('[toggleBorder] update: ', update);
-        const change = value.change().setNodeByKey(tableBlock.key, { data: update });
-        onToolbarDone(change, false);
+
+        editor.apply({
+          type: 'set_node',
+          path: tablePath,
+          properties: {
+            data: node.data,
+          },
+          newProperties: { data: update },
+        });
       };
 
       const onDone = () => {
         log('[onDone] call onToolbarDone...');
-        onToolbarDone(null, true);
+        onToolbarDone(true);
       };
 
       const Tb = () => (
         <TableToolbar
+          editor={editor}
           plugins={toolbarPlugins}
           onChange={(c) => onToolbarDone(c, false)}
-          value={value}
           onAddRow={addRow}
           onRemoveRow={removeRow}
           onAddColumn={addColumn}
@@ -226,13 +402,17 @@ export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
     },
   };
 
+  core.supports = (node) => TABLE_TYPES.includes(node.type);
+
   const Node = (props) => {
     switch (props.node.type) {
       case 'table':
         return <Table {...props} onFocus={opts.onFocus} onBlur={opts.onBlur} />;
-      case 'table_row':
+      case 'tbody':
+        return <TableBody {...props} onFocus={opts.onFocus} onBlur={opts.onBlur} />;
+      case 'tr':
         return <TableRow {...props} />;
-      case 'table_cell':
+      case 'td':
         return <TableCell {...props} onFocus={opts.onFocus} onBlur={opts.onBlur} />;
       default:
         return null;
@@ -240,74 +420,6 @@ export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
   };
   Node.propTypes = {
     node: PropTypes.object,
-  };
-
-  core.normalizeNode = (node) => {
-    if (node.object !== 'document') {
-      return;
-    }
-
-    const tableAdded = node.findDescendant((d) => d.data && d.data.get('newTable'));
-
-    if (!tableAdded) {
-      return;
-    }
-
-    const nodeToSearch = node.getParent(tableAdded.key) || node;
-    let shouldAddTextAfterNode = false;
-    const indexToNotHaveTableOn = nodeToSearch.nodes.size - 1;
-    const indexOfLastTable = nodeToSearch.nodes.findLastIndex((d) => d.type === 'table');
-
-    // if the last table in the document is of type table, we need to do the change
-    if (indexOfLastTable === indexToNotHaveTableOn) {
-      shouldAddTextAfterNode = true;
-    }
-
-    if (!shouldAddTextAfterNode) {
-      return;
-    }
-
-    return (change) => {
-      if (shouldAddTextAfterNode) {
-        const tableJSON = tableAdded.toJSON();
-
-        // we remove the table node because otherwise we can't add the empty block after it
-        // we need a block that contains text in order to do it
-        change.removeNodeByKey(tableAdded.key);
-
-        const newBlock = Block.create({
-          object: 'block',
-          type: 'div',
-        });
-
-        // we add an empty block but that it's going to be normalized
-        // because it will add the empty text to it like it should
-        change.insertBlock(newBlock);
-
-        change.withoutNormalization(() => {
-          // we do these changes without normalization
-
-          // we get the text previous to the new block added
-          const prevText = change.value.document.getPreviousText(newBlock.key);
-
-          if (prevText) {
-            // we move focus to the previous text
-            change.moveFocusTo(prevText.key, prevText.text?.length).moveAnchorTo(prevText.key, prevText.text?.length);
-          }
-
-          // we insert the table block between the first block with text and the last block with text
-          change.insertBlock({
-            ...tableJSON,
-            data: {
-              ...tableJSON.data,
-              newTable: true,
-            },
-          });
-
-          moveFocusToBeginningOfTable(change);
-        });
-      }
-    };
   };
 
   core.renderNode = Node;
@@ -342,16 +454,16 @@ const attributesToMap = (el) => (acc, attribute) => {
 };
 
 const dataToAttributes = (data) => {
-  if (!data || !data.get) {
-    return {};
-  }
-
-  return data.reduce((acc, v, name) => {
-    if (v) {
-      acc[convert(name)] = v;
-    }
-    return acc;
-  }, {});
+  return reduce(
+    data,
+    (acc, v, name) => {
+      if (v) {
+        acc[convert(name)] = v;
+      }
+      return acc;
+    },
+    {},
+  );
 };
 
 const attributes = ['border', 'cellpadding', 'cellspacing', 'class', 'style'];
@@ -370,70 +482,78 @@ export const serialization = {
             : el.children;
         const c = Array.from(children);
 
-        return {
-          object: 'block',
-          type: 'table',
-          nodes: next(c),
-          data: attributes.reduce(attributesToMap(el), {}),
-        };
+        return jsx(
+          'element',
+          {
+            type: 'table',
+            data: attributes.reduce(attributesToMap(el), {}),
+          },
+          next(c),
+        );
+      }
+      case 'tbody': {
+        return jsx(
+          'element',
+          {
+            type: 'tbody',
+          },
+          next(el.childNodes),
+        );
       }
 
       case 'th': {
-        return {
-          object: 'block',
-          type: 'table_cell',
-          nodes: next(el.childNodes),
-          data: cellAttributes.reduce(attributesToMap(el), { header: true }),
-        };
+        return jsx(
+          'element',
+          {
+            type: 'th',
+            data: cellAttributes.reduce(attributesToMap(el), { header: true }),
+          },
+          next(el.childNodes),
+        );
       }
 
       case 'tr': {
-        return {
-          object: 'block',
-          type: 'table_row',
-          nodes: next(Array.from(el.children)),
-        };
+        return jsx(
+          'element',
+          {
+            type: 'tr',
+          },
+          next(Array.from(el.children)),
+        );
       }
 
       case 'td': {
-        return {
-          object: 'block',
-          type: 'table_cell',
-          nodes: next(Array.from(el.childNodes)),
-          data: cellAttributes.reduce(attributesToMap(el), { header: false }),
-        };
+        return jsx(
+          'element',
+          {
+            type: 'td',
+            data: cellAttributes.reduce(attributesToMap(el), { header: true }),
+          },
+          next(el.childNodes),
+        );
       }
     }
   },
   serialize(object, children) {
-    if (object.object !== 'block') {
-      return;
-    }
-
     switch (object.type) {
       case 'table': {
         const attributes = dataToAttributes(object.data);
 
-        return (
-          <table {...attributes}>
-            <tbody>{children}</tbody>
-          </table>
-        );
+        return <table {...attributes}>{children}</table>;
       }
-
-      case 'table_row': {
+      case 'tbody': {
+        return <tbody>{children}</tbody>;
+      }
+      case 'tr': {
         return <tr>{children}</tr>;
       }
-
-      case 'table_cell': {
+      case 'td': {
         const attributes = dataToAttributes(object.data);
-        delete attributes.header;
-
-        if (object.data.get('header')) {
-          return <th {...attributes}>{children}</th>;
-        } else {
-          return <td {...attributes}>{children}</td>;
-        }
+        return <td {...attributes}>{children}</td>;
+      }
+      case 'th': {
+        const attributes = dataToAttributes(object.data);
+        return <th {...attributes}>{children}</th>;
       }
     }
   },
