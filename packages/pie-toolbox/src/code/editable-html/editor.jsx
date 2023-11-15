@@ -500,7 +500,7 @@ export class EditorComponent extends React.Component {
 
     this.onResize = () => {
       if (!this.state.isHtmlMode) {
-        props.onChange(this.state.value, true);
+        props.onChange(this.state.editor, true);
       }
     };
 
@@ -1116,6 +1116,17 @@ export class EditorComponent extends React.Component {
     );
   };
 
+  onSetEditor = (editor) => {
+    const { onEditor } = this.props;
+
+    this.setState(
+      {
+        editor,
+      },
+      () => onEditor && onEditor(editor),
+    );
+  };
+
   render() {
     const {
       autoFocus,
@@ -1155,7 +1166,7 @@ export class EditorComponent extends React.Component {
           }}
           autoFocus={autoFocus}
           actionsRef={this.props.onRef}
-          onEditor={this.props.onEditor}
+          onEditor={this.onSetEditor}
           value={value}
           focus={this.focus}
           onKeyDown={onKeyDown}
