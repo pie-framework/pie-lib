@@ -65,7 +65,26 @@ module.exports = {
         repository: 'pie-framework/pie-lib',
         extensions: { commonJs },
         imports: {
-          namespace: ['@pie-lib/pie-toolbox'],
+          default: [
+            'react-dom',
+            'react-dom/server',
+            'react',
+            'prop-types',
+            'lodash',
+            'classnames',
+            'debug',
+            '@pie-framework/mathquill'
+          ],
+          namespace: [
+            '@material-ui/core/styles/colorManipulator',
+            '@material-ui/core/Collapse/index',
+            '@material-ui/core/styles',
+            '@material-ui/core',
+            '@material-ui/icons',
+            '@pie-lib/pie-toolbox',
+            'd3-scale',
+            'd3-selection',
+          ],
         },
       },
     ],

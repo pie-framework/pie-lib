@@ -9,7 +9,6 @@ import { serialization as mediaSerialization } from './plugins/media';
 import { serialization as listSerialization } from './plugins/list';
 import { serialization as tableSerialization } from './plugins/table';
 import { serialization as responseAreaSerialization } from './plugins/respArea';
-import { Mark, Value } from 'slate';
 import { jsx } from 'slate-hyperscript';
 
 const log = debug('@pie-lib:editable-html:serialization');

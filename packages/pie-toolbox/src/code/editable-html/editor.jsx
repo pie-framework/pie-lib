@@ -11,12 +11,15 @@ import debug from 'debug';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import { color } from '../render-ui';
-import Plain from 'slate-plain-serializer';
-import { AlertDialog } from '../config-ui';
+// Causing issues when building with pslb
+// because this is using  "slate": "^0.47.9 <0.50.0"
+// while slate-react 0.99.0 is using "slate": "^0.94.0",
+// import Plain from 'slate-plain-serializer';
+// import { AlertDialog } from '../config-ui';
 import { PreviewPrompt } from '../render-ui';
 
 import { getBase64, htmlToValue, valueToHtml } from './new-serialization';
-import InsertImageHandler from './plugins/image/insert-image-handler';
+// import InsertImageHandler from './plugins/image/insert-image-handler';
 
 import isHotkey from 'is-hotkey';
 import { ReactEditor, useSlateStatic, Editable, useFocused, useSlate, Slate } from 'slate-react';
