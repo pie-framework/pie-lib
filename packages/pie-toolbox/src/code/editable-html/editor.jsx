@@ -356,8 +356,11 @@ export class Editor extends React.Component {
 
     const differentCharacterProps = !isEqual(nextProps.languageCharactersProps, this.props.languageCharactersProps);
     const differentMathMlProps = !isEqual(nextProps.mathMlOptions, this.props.mathMlOptions);
+    const differentImageMaxDimensionsProps =
+      !isEqual(nextProps.maxImageWidth, this.props.maxImageWidth) ||
+      !isEqual(nextProps.maxImageHeight, this.props.maxImageHeight);
 
-    if (differentCharacterProps || differentMathMlProps) {
+    if (differentCharacterProps || differentMathMlProps || differentImageMaxDimensionsProps) {
       this.handlePlugins(nextProps);
     }
 
