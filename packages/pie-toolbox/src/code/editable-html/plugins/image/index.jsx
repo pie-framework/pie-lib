@@ -4,12 +4,12 @@ import isUrl from 'is-url';
 import { jsx } from 'slate-hyperscript';
 import debug from 'debug';
 import { Editor, Transforms } from 'slate';
+import { ReactEditor } from 'slate-react';
 
 import Image from '@material-ui/icons/Image';
 import ImageComponent from './component';
 import ImageToolbar from './image-toolbar';
 import InsertImageHandler from './insert-image-handler';
-import { ReactEditor } from 'slate-react';
 
 const log = debug('@pie-lib:editable-html:plugins:image');
 
@@ -278,6 +278,7 @@ export const serialization = {
   serialize(object /*, children*/) {
     if (object.type !== 'image') return;
 
+    const key = ReactEditor.findKey(undefined, object);
     const { data } = object;
     const { alignment, alt, src, height, margin, justifyContent, width } = data;
     const style = {};
@@ -316,6 +317,7 @@ export const serialization = {
     style.objectFit = 'contain';
 
     const props = {
+      key,
       src,
       style,
       alignment,

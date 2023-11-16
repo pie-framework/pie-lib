@@ -312,6 +312,8 @@ export const serialization = {
     }
   },
   serialize(object) {
+    const key = ReactEditor.findKey(undefined, object);
+
     if (object.type === 'math') {
       const { latex, wrapper } = object.data || {};
       log('[serialize] latex: ', latex);
@@ -340,11 +342,11 @@ export const serialization = {
           });
         }
 
-        return <span data-type="mathml" dangerouslySetInnerHTML={{ __html: res }} />;
+        return <span key={key} data-type="mathml" dangerouslySetInnerHTML={{ __html: res }} />;
       }
 
       return (
-        <span data-latex="" data-raw={decoded}>
+        <span key={key} data-latex="" data-raw={decoded}>
           {wrapMath(decoded, wrapper)}
         </span>
       );
@@ -356,7 +358,7 @@ export const serialization = {
     if (object.type === 'mathml') {
       const { html } = object.data || {};
 
-      return <span data-type="mathml" dangerouslySetInnerHTML={{ __html: html }} />;
+      return <span key={key} data-type="mathml" dangerouslySetInnerHTML={{ __html: html }} />;
     }
   },
 };
