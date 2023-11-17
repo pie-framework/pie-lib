@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactServer from 'react-dom/server';
 import escapeHtml from 'escape-html';
-import { Text } from 'slate';
+import { ReactEditor } from 'slate-react';
 import { jsx } from 'slate-hyperscript';
 import { MARK_TAGS } from './new-serialization';
 
@@ -23,17 +23,23 @@ class Html {
       return correctRule;
     }
 
+    const key = ReactEditor.findKey(undefined, node);
+
     switch (node.type) {
       case 'quote':
         return (
-          <blockquote>
+          <blockquote key={key}>
             <p>{children}</p>
           </blockquote>
         );
       case 'paragraph':
-        return <p>{children}</p>;
+        return <p key={key}>{children}</p>;
       case 'link':
-        return <a href={escapeHtml(node.url)}>{children}</a>;
+        return (
+          <a key={key} href={escapeHtml(node.url)}>
+            {children}
+          </a>
+        );
       default:
         return children;
     }

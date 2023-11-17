@@ -1,5 +1,6 @@
 import React from 'react';
-import { Node as SlateNode, Element as SlateElement, Editor, Transforms } from 'slate';
+import { Node as SlateNode, Element as SlateElement, Editor, Transforms, Text } from 'slate';
+import { ReactEditor } from 'slate-react';
 import debug from 'debug';
 import GridOn from '@material-ui/icons/GridOn';
 import TableToolbar from './table-toolbar';
@@ -248,6 +249,14 @@ export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
           newTable: true,
         },
       });
+
+      const [nodeAtSelection, nodePath] = Editor.node(editor, editor.selection);
+
+      if (Text.isText(nodeAtSelection)) {
+        const block = { type: 'paragraph', children: [] };
+
+        Transforms.wrapNodes(editor, block, { at: nodePath });
+      }
 
       editor.insertNode(newTable);
       moveToBeginningOfTable(editor, newTable);
@@ -535,25 +544,39 @@ export const serialization = {
     }
   },
   serialize(object, children) {
+    const key = ReactEditor.findKey(undefined, object);
+
     switch (object.type) {
       case 'table': {
         const attributes = dataToAttributes(object.data);
 
-        return <table {...attributes}>{children}</table>;
+        return (
+          <table key={key} {...attributes}>
+            {children}
+          </table>
+        );
       }
       case 'tbody': {
-        return <tbody>{children}</tbody>;
+        return <tbody key={key}>{children}</tbody>;
       }
       case 'tr': {
-        return <tr>{children}</tr>;
+        return <tr key={key}>{children}</tr>;
       }
       case 'td': {
         const attributes = dataToAttributes(object.data);
-        return <td {...attributes}>{children}</td>;
+        return (
+          <td key={key} {...attributes}>
+            {children}
+          </td>
+        );
       }
       case 'th': {
         const attributes = dataToAttributes(object.data);
-        return <th {...attributes}>{children}</th>;
+        return (
+          <th key={key} {...attributes}>
+            {children}
+          </th>
+        );
       }
     }
   },
