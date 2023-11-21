@@ -53,7 +53,7 @@ export class NumberTextFieldCustom extends React.Component {
     helperText: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     onlyIntegersAllowed: PropTypes.bool,
-    value: PropTypes.number,
+    value: PropTypes.any,
     min: PropTypes.number,
     max: PropTypes.number,
     step: PropTypes.number,
@@ -61,6 +61,7 @@ export class NumberTextFieldCustom extends React.Component {
     disableUnderline: PropTypes.bool,
     textAlign: PropTypes.string,
     variant: PropTypes.string,
+    type: PropTypes.string,
   };
 
   static defaultProps = {
@@ -207,6 +208,7 @@ export class NumberTextFieldCustom extends React.Component {
       helperText,
       variant,
       textAlign,
+      type = 'number',
     } = this.props;
     const { value } = this.state;
     const names = classNames(className, classes.input);
@@ -238,7 +240,7 @@ export class NumberTextFieldCustom extends React.Component {
           }
         }}
         title={''}
-        type="number"
+        type={type}
         className={names}
         InputProps={{
           className: inputClassName,
