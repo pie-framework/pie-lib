@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.0.13...@pie-lib/pie-toolbox@1.0.14) (2023-11-21)
+
+
+### Bug Fixes
+
+* **editable-html:** update plugins on image dimensions prop update PD-3261 ([da5240f](https://github.com/pie-framework/pie-lib/commit/da5240f0f14b5ecc9302889bfff6e77a8b4b1b0c))
+
+
+
+
+
 ## [1.0.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.0.12...@pie-lib/pie-toolbox@1.0.13) (2023-11-21)
 
 **Note:** Version bump only for package @pie-lib/pie-toolbox
