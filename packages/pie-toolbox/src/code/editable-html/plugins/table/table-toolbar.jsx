@@ -14,7 +14,7 @@ const log = debug('@pie-lib:editable-html:plugins:table-toolbar');
 export class TableToolbar extends React.Component {
   static propTypes = {
     plugins: PropTypes.array.isRequired,
-    editor: PropTypes.object.isRequired,
+    value: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     onAddRow: PropTypes.func.isRequired,
     onRemoveRow: PropTypes.func.isRequired,
@@ -29,6 +29,7 @@ export class TableToolbar extends React.Component {
 
   static defaultProps = {
     plugins: [],
+    value: {},
     onChange: () => {},
   };
 
@@ -41,7 +42,7 @@ export class TableToolbar extends React.Component {
   render() {
     const {
       plugins,
-      editor,
+      value,
       onChange,
       onAddRow,
       onRemoveRow,
@@ -73,7 +74,7 @@ export class TableToolbar extends React.Component {
             <RemoveTable />
           </Button>
           {plugins.map((p, index) => (
-            <ToolbarButton key={`plugin-${index}`} editor={editor} {...p.toolbar} onChange={onChange} />
+            <ToolbarButton key={`plugin-${index}`} {...p.toolbar} value={value} onChange={onChange} />
           ))}
           <Button onClick={onToggleBorder} active={hasBorder}>
             <BorderAll />

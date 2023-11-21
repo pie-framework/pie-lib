@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Text } from 'slate';
+import get from 'lodash/get';
 import { withStyles } from '@material-ui/core/styles';
 import { MARK_TAGS } from './serialization';
 
@@ -25,9 +25,13 @@ const addText = (parentNode, text) => {
 };
 
 const getMark = (n) => {
-  const markTags = Object.values(MARK_TAGS);
+  const mark = n.leaves.find((leave) => get(leave, 'marks', []).length);
 
-  return markTags.includes(n.type);
+  if (mark) {
+    return mark.marks[0];
+  }
+
+  return null;
 };
 
 export const renderChildren = (layout, value, onChange, rootRenderChildren, parentNode) => {
@@ -37,12 +41,16 @@ export const renderChildren = (layout, value, onChange, rootRenderChildren, pare
 
   const children = [];
 
-  (layout.children || []).forEach((n, index) => {
-    const key = `${n.type}-${index}`;
+  (layout.nodes || []).forEach((n, index) => {
+    const key = n.type ? `${n.type}-${index}` : `${index}`;
 
     if (n.isMath) {
       children.push(
-        <span dangerouslySetInnerHTML={{ __html: `<math displaystyle="true">${n.children[0].innerHTML}</math>` }} />,
+        <span
+          dangerouslySetInnerHTML={{
+            __html: `<math displaystyle="true">${n.nodes[0].innerHTML}</math>`,
+          }}
+        />,
       );
       return children;
     }
@@ -55,8 +63,12 @@ export const renderChildren = (layout, value, onChange, rootRenderChildren, pare
       }
     }
 
-    if (Text.isText(n)) {
-      const content = n.text;
+    if (n.object === 'text') {
+      const content = n.leaves.reduce((acc, l) => {
+        const t = l.text;
+        const extraText = addText(parentNode, t);
+        return extraText ? acc + extraText : acc;
+      }, '');
       const mark = getMark(n);
 
       if (mark) {
@@ -79,7 +91,7 @@ export const renderChildren = (layout, value, onChange, rootRenderChildren, pare
         children.push(<Paragraph key={key}>{subNodes}</Paragraph>);
       } else {
         const Tag = n.type;
-        if (Tag !== 'source' && n.children && n.children.length > 0) {
+        if (n.nodes && n.nodes.length > 0) {
           children.push(
             <Tag key={key} {...n.data.attributes}>
               {subNodes}

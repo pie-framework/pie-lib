@@ -53,25 +53,16 @@ describe('position', () => {
 
 describe('coordinates', () => {
   const assertCoordinates = (mark, rect, pos, expected, fontSize) => {
-    it(`${mark.x}, ${mark.y} -> ${pos} = ${expected.left}, ${expected.top}, ${fontSize}`, () => {
+    it(`${mark.x}, ${mark.y} -> ${pos} = ${expected.left}, ${expected.top}, ${fontSize}`,  () => {
       const result = coordinates(getGraphProps(), mark, rect, pos, fontSize);
       expect(result).toEqual(expected);
     });
   };
-  assertCoordinates({ x: 0, y: 0 }, { width: 0, height: 0 }, 'top-left', {
-    left: `${-10 / 16}rem`,
-    top: `${-10 / 16}rem`,
-  });
-  assertCoordinates({ x: 0, y: 0 }, { width: 0, height: 0 }, 'bottom-left', {
-    left: `${-10 / 16}rem`,
-    top: `${10 / 16}rem`,
-  });
-  assertCoordinates({ x: 0, y: 0 }, { width: 0, height: 0 }, 'top-right', {
-    left: `${10 / 16}rem`,
-    top: `${-10 / 16}rem`,
-  });
+  assertCoordinates({ x: 0, y: 0 }, { width: 0, height: 0 }, 'top-left', { left: `${-10/16}rem`, top: `${-10/16}rem`});
+  assertCoordinates({ x: 0, y: 0 }, { width: 0, height: 0 }, 'bottom-left', { left: `${-10/16}rem`, top: `${10/16}rem`});
+  assertCoordinates({ x: 0, y: 0 }, { width: 0, height: 0 }, 'top-right', { left: `${10/16}rem`, top: `${-10/16}rem` });
   assertCoordinates({ x: 0, y: 0 }, { width: 0, height: 0 }, 'bottom-right', {
-    left: `${10 / 16}rem`,
-    top: `${10 / 16}rem`,
+    left: `${10/16}rem`,
+    top: `${10/16}rem`,
   });
 });
