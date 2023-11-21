@@ -4,18 +4,23 @@ exports[`WithMask render renders correctly with default props 1`] = `
 <Mask
   layout={
     Object {
-      "children": Array [
+      "data": Object {},
+      "nodes": Array [
         Object {
-          "children": Array [
+          "data": Object {
+            "attributes": Object {},
+            "dataset": Object {},
+          },
+          "nodes": Array [
             Object {
-              "text": "Foo bar ",
-            },
-            Object {
-              "children": Array [
+              "leaves": Array [
                 Object {
-                  "text": "",
+                  "text": "Foo bar ",
                 },
               ],
+              "object": "text",
+            },
+            Object {
               "data": Object {
                 "attributes": Object {
                   "data-component": "foo",
@@ -26,24 +31,24 @@ exports[`WithMask render renders correctly with default props 1`] = `
                   "id": "0",
                 },
               },
+              "nodes": Array [],
+              "object": "inline",
               "type": "span",
             },
             Object {
-              "text": " over the moon;",
+              "leaves": Array [
+                Object {
+                  "text": " over the moon;",
+                },
+              ],
+              "object": "text",
             },
           ],
-          "data": Object {
-            "attributes": Object {},
-            "dataset": Object {},
-          },
+          "object": "block",
           "type": "p",
         },
       ],
-      "data": Object {
-        "attributes": Object {},
-        "dataset": Object {},
-      },
-      "type": "body",
+      "object": "document",
     }
   }
   onChange={[MockFunction]}

@@ -14,7 +14,17 @@ exports[`Mask render renders correctly a div 1`] = `
 </div>
 `;
 
-exports[`Mask render renders correctly a em 1`] = `<WithStyles(Component) />`;
+exports[`Mask render renders correctly a em 1`] = `
+<WithStyles(Component)>
+  Foo 
+  <em
+    key="1"
+  >
+    x
+  </em>
+   bar
+</WithStyles(Component)>
+`;
 
 exports[`Mask render renders correctly a paragraph 1`] = `
 <div>

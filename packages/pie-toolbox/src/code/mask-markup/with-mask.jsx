@@ -7,7 +7,7 @@ import { deserialize } from './serialization';
 export const buildLayoutFromMarkup = (markup, type) => {
   const { markup: processed } = componentize(markup, type);
   const value = deserialize(processed);
-  return value;
+  return value.document;
 };
 
 export const withMask = (type, renderChildren) => {
