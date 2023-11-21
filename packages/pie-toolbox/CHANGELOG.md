@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.0.14...@pie-lib/pie-toolbox@1.0.15) (2023-11-21)
+
+
+### Bug Fixes
+
+* **charting:** Fix SVG visibility by overriding global overflow rule in pie-components PD-3271 ([0c26a23](https://github.com/pie-framework/pie-lib/commit/0c26a23e7ac38c03e811c8f5d79a837ff5aa0de5))
+
+
+
+
+
 ## [1.0.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.0.13...@pie-lib/pie-toolbox@1.0.14) (2023-11-21)
 
 
