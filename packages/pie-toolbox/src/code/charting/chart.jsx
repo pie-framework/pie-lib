@@ -88,6 +88,7 @@ export class Chart extends React.Component {
       chartTypes.DotPlot(),
       chartTypes.LinePlot(),
     ],
+    autoFocus: false,
   };
 
   generateMaskId() {
@@ -156,11 +157,11 @@ export class Chart extends React.Component {
         },
       });
     } else {
+      this.setState({ autoFocus: true });
       onDataChange([
         ...data,
         {
           inDefineChart: defineChart,
-          autoFocus: true,
           label: categoryDefaultLabel || translator.t('charting.newLabel', { lng: language }),
           value: 0,
           deletable: true,
@@ -180,6 +181,10 @@ export class Chart extends React.Component {
           deletable: defineChart || d.deletable,
         }))
       : [];
+  };
+
+  resetAutoFocus = () => {
+    this.setState({ autoFocus: false });
   };
 
   render() {
@@ -273,6 +278,8 @@ export class Chart extends React.Component {
         >
           <ChartGrid {...common} xBand={xBand} rowTickValues={horizontalLines} columnTickValues={verticalLines} />
           <ChartAxes
+            autoFocus={this.state.autoFocus}
+            onAutoFocusUsed={this.resetAutoFocus}
             {...common}
             defineChart={defineChart}
             categories={categories}

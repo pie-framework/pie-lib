@@ -24,6 +24,12 @@ export class TickComponent extends React.Component {
     };
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.autoFocus && !prevProps.autoFocus) {
+      this.props.onAutoFocusUsed();
+    }
+  }
+
   handleAlertDialog = (open, callback) =>
     this.setState(
       {
@@ -126,6 +132,7 @@ export class TickComponent extends React.Component {
       changeInteractiveEnabled,
       changeEditableEnabled,
       error,
+      autoFocus,
     } = this.props;
 
     if (!formattedValue) {
@@ -136,7 +143,7 @@ export class TickComponent extends React.Component {
     const { changeEditable, changeInteractive } = chartingOptions || {};
     const index = parseInt(formattedValue.split('-')[0], 10);
     const category = categories[index];
-    const { deletable, editable, interactive, label, correctness, autoFocus, inDefineChart } = category || {};
+    const { deletable, editable, interactive, label, correctness } = category || {};
     const barX = xBand(bandKey({ label }, index));
     const longestCategory = (categories || []).reduce((a, b) => {
       const lengthA = a && a.label ? a.label.length : 0;
@@ -174,7 +181,7 @@ export class TickComponent extends React.Component {
           )}
 
           <MarkLabel
-            autoFocus={inDefineChart ? defineChart && autoFocus : autoFocus}
+            autoFocus={defineChart && autoFocus}
             inputRef={(r) => (this.input = r)}
             disabled={!defineChart && !editable}
             mark={category}
@@ -377,6 +384,8 @@ export class RawChartAxes extends React.Component {
       changeInteractiveEnabled,
       changeEditableEnabled,
       theme,
+      autoFocus,
+      onAutoFocusUsed,
       error,
     } = this.props;
 
@@ -410,6 +419,8 @@ export class RawChartAxes extends React.Component {
         top,
         defineChart,
         chartingOptions,
+        autoFocus,
+        onAutoFocusUsed,
         error,
         onChangeCategory,
         changeInteractiveEnabled,
@@ -447,6 +458,8 @@ export class RawChartAxes extends React.Component {
           textLabelProps={() => ({ textAnchor: 'middle' })}
           tickFormat={(count) => count}
           tickComponent={getTickComponent}
+          autoFocus={autoFocus}
+          onAutoFocusUsed={onAutoFocusUsed}
         />
       </React.Fragment>
     );
