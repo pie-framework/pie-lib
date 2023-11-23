@@ -408,10 +408,10 @@ class RteDemo extends React.Component {
           width={width}
           height={height}
           languageCharactersProps={languageCharactersProps}
-          // mathMlOptions={{
-          //   mmlEditing: true,
-          //   mmlOutput: true
-          // }}
+          mathMlOptions={{
+            mmlEditing: true,
+            mmlOutput: true
+          }}
         />
         <input type="file" hidden ref={(r) => (this.fileInput = r)} />
         <br />
