@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.0.17...@pie-lib/pie-toolbox@1.0.18) (2023-11-23)
+
+
+### Bug Fixes
+
+* **charting:** add PropTypes  PD-3130 ([432ed72](https://github.com/pie-framework/pie-lib/commit/432ed7243b3d2f9dc64d3a92dce9e0d1b92d696e))
+* **charting:** Refactor autoFocus handling for category addition PD-3130 ([a11e895](https://github.com/pie-framework/pie-lib/commit/a11e8955ee6436df33b6eeaed9f4d525fa882153))
+
+
+
+
+
 ## [1.0.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.0.16...@pie-lib/pie-toolbox@1.0.17) (2023-11-23)
 
 
