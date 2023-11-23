@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.0.15...@pie-lib/pie-toolbox@1.0.16) (2023-11-23)
+
+
+### Bug Fixes
+
+* **charting:** Fix: Update SVG style attribute to JSX format ([0a38eda](https://github.com/pie-framework/pie-lib/commit/0a38eda8658348e3199ea2ffbd33be7267ab2fd2))
+
+
+
+
+
 ## [1.0.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.0.14...@pie-lib/pie-toolbox@1.0.15) (2023-11-21)
 
 
