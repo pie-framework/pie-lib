@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.0.16...@pie-lib/pie-toolbox@1.0.17) (2023-11-23)
+
+
+### Bug Fixes
+
+* re-added mathML conversion ability PD-3011 ([e10b542](https://github.com/pie-framework/pie-lib/commit/e10b54206db7058cb0a1e28cc8e877e61c005471))
+
+
+
+
+
 ## [1.0.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.0.15...@pie-lib/pie-toolbox@1.0.16) (2023-11-23)
 
 

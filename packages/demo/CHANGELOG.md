@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.1.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.1.5...@pie-lib/demo@7.1.6) (2023-11-23)
+
+
+### Bug Fixes
+
+* re-added mathML conversion ability PD-3011 ([e10b542](https://github.com/pie-framework/pie-lib/commit/e10b54206db7058cb0a1e28cc8e877e61c005471))
+
+
+
+
+
 ## [7.1.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.1.4...@pie-lib/demo@7.1.5) (2023-11-23)
 
 **Note:** Version bump only for package @pie-lib/demo
