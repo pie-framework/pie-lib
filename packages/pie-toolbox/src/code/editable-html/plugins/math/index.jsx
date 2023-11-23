@@ -319,7 +319,7 @@ export const serialization = {
           // As George requested in PD-3167, I will set the new mathML anyway, and also log differences
           // if it doesn't we keep the latex version
           console.log('This latex can not be safely converted to mathml so we will keep the latex version!!!', {
-            initialLatex: l,
+            initialLatex: latex,
             newLatex: newLatex,
             correctedLatex,
             mathML: res,
