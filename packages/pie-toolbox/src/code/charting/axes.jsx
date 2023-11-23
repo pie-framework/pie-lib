@@ -340,6 +340,8 @@ TickComponent.propTypes = {
   chartingOptions: PropTypes.object,
   changeInteractiveEnabled: PropTypes.bool,
   changeEditableEnabled: PropTypes.bool,
+  autoFocus: PropTypes.bool,
+  onAutoFocusUsed: PropTypes.func,
 };
 
 export class RawChartAxes extends React.Component {
@@ -359,6 +361,8 @@ export class RawChartAxes extends React.Component {
     chartingOptions: PropTypes.object,
     changeInteractiveEnabled: PropTypes.bool,
     changeEditableEnabled: PropTypes.bool,
+    autoFocus: PropTypes.bool,
+    onAutoFocusUsed: PropTypes.func,
   };
 
   state = { height: 0 };
