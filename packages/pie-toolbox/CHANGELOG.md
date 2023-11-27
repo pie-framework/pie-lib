@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.1.0...@pie-lib/pie-toolbox@1.1.1) (2023-11-27)
+
+
+### Bug Fixes
+
+* prevent breaking change (caused by the revert 326b55b6ebd83f3d3ee9bdd09a2b172365131fe3) ([aa0d776](https://github.com/pie-framework/pie-lib/commit/aa0d77604f17e8c055e9915543491f5a0eb9e6fd))
+
+
+
+
+
 # [1.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.0.19...@pie-lib/pie-toolbox@1.1.0) (2023-11-27)
 
 
