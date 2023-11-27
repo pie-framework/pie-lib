@@ -1,49 +1,60 @@
-import { Data, Inline } from 'slate';
+import React from 'react';
+import imageExtensions from 'image-extensions';
+import isUrl from 'is-url';
+import { jsx } from 'slate-hyperscript';
+import debug from 'debug';
+import { Editor, Transforms } from 'slate';
+import { ReactEditor } from 'slate-react';
 
 import Image from '@material-ui/icons/Image';
 import ImageComponent from './component';
 import ImageToolbar from './image-toolbar';
 import InsertImageHandler from './insert-image-handler';
-import React from 'react';
-import debug from 'debug';
 
 const log = debug('@pie-lib:editable-html:plugins:image');
 
 export default function ImagePlugin(opts) {
   const toolbar = opts.insertImageRequested && {
     icon: <Image />,
-    onClick: (value, onChange) => {
+    onClick: (editor) => {
       log('[toolbar] onClick');
-      const inline = Inline.create({
+      const inline = {
         type: 'image',
-        isVoid: true,
         data: {
+          newImage: true,
           loaded: false,
           src: undefined,
         },
-      });
+        children: [{ text: '' }],
+      };
 
-      const change = value.change().insertInline(inline);
+      editor.insertNode(inline);
 
-      onChange(change);
-      opts.insertImageRequested(
-        inline,
-        (onFinish, getValue) => new InsertImageHandler(inline, onFinish, getValue, onChange),
-      );
+      // get the element just inserted, needed because it focuses on the empty leaf inside
+      const [node, nodePath] = Editor.parent(editor, editor.selection);
+
+      opts.insertImageRequested(node, (onFinish) => new InsertImageHandler(node, nodePath, onFinish, editor));
     },
-    supports: (node) => node.object === 'inline' && node.type === 'image',
-    customToolbar: (node, value, onToolbarDone) => {
-      const alignment = node.data.get('alignment');
-      const alt = node.data.get('alt');
-      const imageLoaded = node.data.get('loaded') !== false;
-      const onChange = (newValues, done) => {
+    customToolbar: (node, nodePath, editor, onToolbarDone) => {
+      const alignment = node.data.alignment;
+      const alt = node.data.alt;
+      const imageLoaded = node.data.loaded !== false;
+      const onChange = (newValues) => {
         const update = {
-          ...node.data.toObject(),
+          ...node.data,
           ...newValues,
         };
 
-        const change = value.change().setNodeByKey(node.key, { data: update });
-        onToolbarDone(change, done);
+        editor.apply({
+          type: 'set_node',
+          path: nodePath,
+          properties: {
+            data: node.data,
+          },
+          newProperties: { data: update },
+        });
+
+        onToolbarDone(null, false);
       };
 
       const Tb = () => (
@@ -63,26 +74,119 @@ export default function ImagePlugin(opts) {
   return {
     name: 'image',
     toolbar,
-    deleteNode: (e, node, value, onChange) => {
+    rules: (editor) => {
+      const { insertData, isVoid, isInline } = editor;
+
+      editor.isVoid = (element) => {
+        return element.type === 'image' ? true : isVoid(element);
+      };
+
+      editor.isInline = (element) => {
+        return element.type === 'image' ? true : isInline(element);
+      };
+
+      const isImageUrl = (url) => {
+        if (!url || !isUrl(url)) {
+          return false;
+        }
+
+        const ext = new URL(url).pathname.split('.').pop();
+
+        return imageExtensions.includes(ext);
+      };
+
+      const insertImage = (editor, fileProvided) => {
+        const image = {
+          type: 'image',
+          data: {
+            loaded: false,
+            src: '',
+          },
+          children: [{ text: '' }],
+        };
+
+        editor.insertNode(image);
+
+        // get the element just inserted, needed because it focuses on the empty leaf inside
+        const [node, nodePath] = Editor.parent(editor, editor.selection);
+
+        opts.insertImageRequested(
+          node,
+          (onFinish) => new InsertImageHandler(node, nodePath, onFinish, editor, true),
+          fileProvided,
+        );
+      };
+
+      editor.insertData = (data) => {
+        const text = data.getData('text/plain');
+        const { files } = data;
+
+        if (files && files.length > 0) {
+          for (const file of files) {
+            insertImage(editor, file);
+          }
+        } else if (isImageUrl(text)) {
+          insertImage(editor, text);
+        } else if (!editor.respAreaDrag) {
+          insertData(data);
+        }
+      };
+
+      return editor;
+    },
+    supports: (node) => node.type === 'image',
+    deleteNode: (e, node, nodePath, editor, onChange) => {
       e.preventDefault();
+
       if (opts.onDelete) {
-        const update = node.data.merge(Data.create({ deleteStatus: 'pending' }));
+        const update = {
+          ...node.data,
+          deleteStatus: 'pending',
+        };
 
-        let change = value.change().setNodeByKey(node.key, { data: update });
+        editor.apply({
+          type: 'set_node',
+          path: nodePath,
+          properties: {
+            data: node.data,
+          },
+          newProperties: { data: update },
+        });
 
-        onChange(change);
-        opts.onDelete(node.data.get('src'), (err, v) => {
+        editor.selection = null;
+        onChange(editor);
+        opts.onDelete(node.data.src, (err) => {
           if (!err) {
-            change = v.change().removeNodeByKey(node.key);
+            editor.apply({
+              type: 'remove_node',
+              path: nodePath,
+            });
           } else {
             log('[error]: ', err);
-            change = v.change().setNodeByKey(node.key, node.data.merge(Data.create({ deleteStatus: 'failed' })));
+            editor.apply({
+              type: 'set_node',
+              path: nodePath,
+              properties: {
+                data: node.data,
+              },
+              newProperties: { data: { ...node.data, deleteStatus: 'failed' } },
+            });
           }
-          onChange(change);
+
+          editor.selection = null;
+          onChange(editor, () => {
+            setTimeout(() => ReactEditor.focus(editor), 50);
+          });
         });
       } else {
-        let change = value.change().removeNodeByKey(node.key);
-        onChange(change);
+        editor.selection = null;
+        editor.apply({
+          type: 'remove_node',
+          path: nodePath,
+        });
+        onChange(editor, () => {
+          setTimeout(() => ReactEditor.focus(editor), 50);
+        });
       }
     },
     stopReset: (value) => {
@@ -90,7 +194,7 @@ export default function ImagePlugin(opts) {
         if (n.type !== 'image') {
           return;
         }
-        return n.data.get('loaded') === false;
+        return n.data.loaded === false;
       });
       /** don't reset if there is an image pending insertion */
       return imgPendingInsertion !== undefined && imgPendingInsertion !== null;
@@ -107,7 +211,11 @@ export default function ImagePlugin(opts) {
           },
           props,
         );
-        return <ImageComponent {...all} />;
+        return (
+          <ImageComponent {...all} contentEditable={false}>
+            {props.children}
+          </ImageComponent>
+        );
       }
     },
     normalizeNode: (node) => {
@@ -152,10 +260,8 @@ export const serialization = {
     const width = parseInt(style.width.replace('px', ''), 10) || null;
     const height = parseInt(style.height.replace('px', ''), 10) || null;
 
-    const out = {
-      object: 'inline',
+    const out = jsx('element', {
       type: 'image',
-      isVoid: true,
       data: {
         src: el.getAttribute('src'),
         width,
@@ -165,22 +271,18 @@ export const serialization = {
         alignment: el.getAttribute('alignment'),
         alt: el.getAttribute('alt'),
       },
-    };
+    });
     log('return object: ', out);
     return out;
   },
   serialize(object /*, children*/) {
     if (object.type !== 'image') return;
 
+    const key = ReactEditor.findKey(undefined, object);
     const { data } = object;
-    const src = data.get('src');
-    const width = data.get('width');
-    const height = data.get('height');
-    const alignment = data.get('alignment') || 'left';
-    const margin = data.get('margin');
-    const justifyContent = data.get('margin');
-    const alt = data.get('alt');
+    const { alignment, alt, src, height, margin, justifyContent, width } = data;
     const style = {};
+
     if (width) {
       style.width = `${width}px`;
     }
@@ -215,6 +317,7 @@ export const serialization = {
     style.objectFit = 'contain';
 
     const props = {
+      key,
       src,
       style,
       alignment,

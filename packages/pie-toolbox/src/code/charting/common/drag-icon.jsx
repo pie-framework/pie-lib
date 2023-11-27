@@ -8,6 +8,7 @@ const DragIcon = ({ width, scaleValue, color }) => (
     color={color}
     overflow="visible"
     filter="url(#svgDropShadow)"
+    style={{ overflow: 'visible !important' }}
   >
     <defs>
       <filter id="svgDropShadow" x="-20%" y="-20%" width="140%" height="140%">
