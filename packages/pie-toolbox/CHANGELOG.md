@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.0.19...@pie-lib/pie-toolbox@1.1.0) (2023-11-27)
+
+
+### Features
+
+* **translator:** add new messages for categorize PD-2996 ([49151fc](https://github.com/pie-framework/pie-lib/commit/49151fc3cf3a2b677127709c0d568c89950c0d21))
+
+
+
+
+
 ## [1.0.19](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.0.18...@pie-lib/pie-toolbox@1.0.19) (2023-11-27)
 
 
