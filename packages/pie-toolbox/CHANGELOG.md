@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.19](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.0.18...@pie-lib/pie-toolbox@1.0.19) (2023-11-27)
+
+
+### Bug Fixes
+
+* **graphing:** compute markLabel coordinates based on parent PD-3265 ([a9237b5](https://github.com/pie-framework/pie-lib/commit/a9237b57f1e26b3ff5635baa79a100a80f2c664c))
+
+
+
+
+
 ## [1.0.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.0.17...@pie-lib/pie-toolbox@1.0.18) (2023-11-23)
 
 
