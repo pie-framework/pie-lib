@@ -197,6 +197,7 @@ exports[`Graph snapshot renders 1`] = `
         height={400}
         style={
           Object {
+            "fontSize": "14px",
             "pointerEvents": "none",
           }
         }
