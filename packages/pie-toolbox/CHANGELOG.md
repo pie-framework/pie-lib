@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.1.2...@pie-lib/pie-toolbox@1.2.0) (2023-12-04)
+
+
+### Features
+
+* **rubric:** add validations controller and ui PD-3260 ([65197e0](https://github.com/pie-framework/pie-lib/commit/65197e0a50df37bb05866b0a1eaa13100cf42fb6))
+
+
+
+
+
 ## [1.1.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.1.1...@pie-lib/pie-toolbox@1.1.2) (2023-12-04)
 
 
