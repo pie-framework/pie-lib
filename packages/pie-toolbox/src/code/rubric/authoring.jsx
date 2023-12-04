@@ -94,8 +94,14 @@ export const PointConfig = withStyles((theme) => ({
     position: 'absolute',
     right: 0,
   },
+  errorText: {
+    fontSize: theme.typography.fontSize - 2,
+    color: theme.palette.error.main,
+    paddingLeft: theme.spacing.unit * 3,
+    paddingTop: theme.spacing.unit,
+  },
 }))((props) => {
-  const { points, content, classes, sampleAnswer, mathMlOptions = {} } = props;
+  const { points, content, classes, sampleAnswer, mathMlOptions = {}, error } = props;
   const pointsLabel = `${points} ${points <= 1 ? 'pt' : 'pts'}`;
   const showSampleAnswer = checkSampleAnswer(sampleAnswer);
 
@@ -109,6 +115,7 @@ export const PointConfig = withStyles((theme) => ({
         <DragIndicator className={classes.dragIndicator} />
         <EditableHtml
           className={classes.editor}
+          error={error}
           markup={content}
           onChange={props.onChange}
           mathMlOptions={mathMlOptions}
@@ -121,7 +128,7 @@ export const PointConfig = withStyles((theme) => ({
           onChange={props.onMenuChange}
         />
       </div>
-
+      {error && <div className={classes.errorText}>{error}</div>}
       {!showSampleAnswer && (
         <div className={classes.sampleAnswersEditor}>
           <Typography variant="overline" className={classes.dragIndicator}>
@@ -243,8 +250,8 @@ export class RawAuthoring extends React.Component {
 
   render() {
     const { classes, className, value, mathMlOptions = {} } = this.props;
-    let { excludeZeroEnabled = true, maxPointsEnabled = true } = value || {};
-
+    let { excludeZeroEnabled = true, maxPointsEnabled = true, errors = {} } = value || {};
+    const { pointsDescriptorsErrors } = errors || {};
     if (value && Number.isFinite(value.maxPoints)) {
       // eslint-disable-next-line no-console
       console.warn('maxPoints is deprecated - remove from model');
@@ -284,6 +291,9 @@ export class RawAuthoring extends React.Component {
                               <PointConfig
                                 points={value.points.length - 1 - index}
                                 content={p}
+                                error={
+                                  pointsDescriptorsErrors && pointsDescriptorsErrors[value.points.length - 1 - index]
+                                }
                                 sampleAnswer={value.sampleAnswers && value.sampleAnswers[index]}
                                 onChange={(content) => this.changeContent(index, content, 'points')}
                                 onSampleChange={(content) => this.changeContent(index, content, 'sampleAnswers')}
