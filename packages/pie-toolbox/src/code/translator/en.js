@@ -2,9 +2,9 @@ export default {
   translation: {
     categorize: {
       limitMaxChoicesPerCategory:
-        'You ve reached the limit of {{maxChoicesPerCategory}} responses per area. To add another response, one must first be removed',
+        "You've reached the limit of {{maxChoicesPerCategory}} responses per area. To add another response, one must first be removed.",
       maxChoicesPerCategoryRestriction:
-        'To change this value to {{maxChoicesPerCategory}}, each category must have {{maxChoicesPerCategory}} or fewer answer choice[s]',
+        'To change this value to {{maxChoicesPerCategory}}, each category must have {{maxChoicesPerCategory}} or fewer answer choice[s].',
     },
     ebsr: {
       part: 'Part {{index}}',
