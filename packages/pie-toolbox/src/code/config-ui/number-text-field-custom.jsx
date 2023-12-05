@@ -8,6 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Remove from '@material-ui/icons/Remove';
 import Add from '@material-ui/icons/Add';
+import * as math from 'mathjs';
 
 const styles = () => ({
   input: {
@@ -53,7 +54,7 @@ export class NumberTextFieldCustom extends React.Component {
     helperText: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     onlyIntegersAllowed: PropTypes.bool,
-    value: PropTypes.number,
+    value: PropTypes.any,
     min: PropTypes.number,
     max: PropTypes.number,
     step: PropTypes.number,
@@ -61,6 +62,7 @@ export class NumberTextFieldCustom extends React.Component {
     disableUnderline: PropTypes.bool,
     textAlign: PropTypes.string,
     variant: PropTypes.string,
+    type: PropTypes.string,
   };
 
   static defaultProps = {
@@ -90,42 +92,35 @@ export class NumberTextFieldCustom extends React.Component {
 
   UNSAFE_componentWillReceiveProps(props) {
     const { value, currentIndex } = this.normalizeValueAndIndex(props.customValues, props.value);
-
     this.setState({ value, currentIndex });
   }
 
   clamp(value) {
     const { min, max, customValues } = this.props;
-
     if ((customValues || []).length > 0) {
       return value;
     }
-
     if (!isFinite(value)) {
       return fallbackNumber(min, max);
     }
-
     if (isFinite(max)) {
       value = Math.min(value, max);
     }
-
     if (isFinite(min)) {
       value = Math.max(value, min);
     }
-
     return value;
   }
 
   normalizeValueAndIndex = (customValues, number) => {
+    const { type } = this.props;
     const value = this.clamp(number);
     const currentIndex = (customValues || []).findIndex((val) => val === value);
-
     if ((customValues || []).length > 0 && currentIndex === -1) {
-      const closestValue = this.getClosestValue(customValues, value);
-
+      const closestValue =
+        type === 'text' ? this.getClosestFractionValue(customValues, value) : this.getClosestValue(customValues, value);
       return { value: closestValue.value, currentIndex: closestValue.index };
     }
-
     return { value, currentIndex };
   };
 
@@ -136,50 +131,92 @@ export class NumberTextFieldCustom extends React.Component {
       { value: customValues[0], index: 0 },
     );
 
-  onBlur = (event) => {
-    const { customValues, onlyIntegersAllowed } = this.props;
-    const { value } = event.target;
-    const rawNumber = onlyIntegersAllowed ? parseInt(value) : parseFloat(value);
+  getClosestFractionValue = (customValues, number) =>
+    customValues.reduce(
+      (closest, value, index) =>
+        Math.abs(math.number(math.fraction(value)) - math.number(math.fraction(number))) <
+        Math.abs(math.number(math.fraction(closest.value)) - math.number(math.fraction(number)))
+          ? { value, index }
+          : closest,
+      { value: customValues[0], index: 0 },
+    );
 
-    const { value: number, currentIndex } = this.normalizeValueAndIndex(customValues, rawNumber);
-
-    if (number !== this.state.value) {
-      this.setState(
-        {
-          value: number.toString(),
-          currentIndex,
-        },
-        () => this.props.onChange(event, number),
-      );
+  getValidFraction = (value) => {
+    if (this.isPositiveInteger(value.trim())) {
+      return value.trim();
     }
+    if (value.trim() === '' || value.trim().split('/').length !== 2) {
+      return false;
+    }
+    let [numerator, denominator] = value.trim().split('/');
+    if (isNaN(numerator) || isNaN(denominator)) {
+      return false;
+    }
+    numerator = parseFloat(numerator);
+    denominator = parseFloat(denominator);
+    if (!Number.isInteger(numerator) || !Number.isInteger(denominator)) {
+      return false;
+    }
+    if (numerator < 0 || denominator < 1) {
+      return false;
+    }
+    return numerator + '/' + denominator;
+  };
+
+  isPositiveInteger = (n) => {
+    return n >>> 0 === parseFloat(n);
+  };
+
+  onBlur = (event) => {
+    const { customValues, onlyIntegersAllowed, type } = this.props;
+    let { value } = event.target;
+    if (type === 'text') {
+      let tempValue = this.getValidFraction(value);
+      if (tempValue) {
+        value = tempValue;
+      } else {
+        value = this.props.value;
+      }
+    }
+    let rawNumber = onlyIntegersAllowed ? Math.round(parseFloat(value)) : parseFloat(value);
+    if (type === 'text') {
+      rawNumber = value.trim();
+    }
+    const { value: number, currentIndex } = this.normalizeValueAndIndex(customValues, rawNumber);
+    this.setState(
+      {
+        value: number.toString(),
+        currentIndex,
+      },
+      () => this.props.onChange(event, number),
+    );
   };
 
   onChange(event) {
+    const { type } = this.props;
     const { value } = event.target;
-
+    if (type !== 'text' && typeof value === 'string' && value.trim() === '') {
+      return;
+    }
     this.setState({ value });
   }
 
   changeValue(event, sign = 1, shouldUpdate = false) {
     event.preventDefault();
-
     const { customValues, step, onlyIntegersAllowed, onChange } = this.props;
     const { currentIndex, value } = this.state;
     const updatedIndex = currentIndex + sign * 1;
     let number;
-
     if (customValues.length > 0) {
       if (updatedIndex < 0 || updatedIndex >= customValues.length) {
         return;
       }
-
       number = customValues[updatedIndex];
     } else {
       const rawNumber = onlyIntegersAllowed ? parseInt(value) : parseFloat(value);
       const updatedValue = (rawNumber * 10000 + step * sign * 10000) / 10000;
       number = this.clamp(updatedValue);
     }
-
     this.setState(
       {
         value: number.toString(),
@@ -207,6 +244,7 @@ export class NumberTextFieldCustom extends React.Component {
       helperText,
       variant,
       textAlign,
+      type = 'number',
     } = this.props;
     const { value } = this.state;
     const names = classNames(className, classes.input);
@@ -238,7 +276,7 @@ export class NumberTextFieldCustom extends React.Component {
           }
         }}
         title={''}
-        type="number"
+        type={type}
         className={names}
         InputProps={{
           className: inputClassName,
