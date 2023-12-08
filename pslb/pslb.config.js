@@ -94,7 +94,7 @@ module.exports = {
             '@pie-lib/pie-toolbox/math-rendering',
             '@pie-lib/pie-toolbox/math-toolbar',
             '@pie-lib/pie-toolbox/plot',
-            '@pie-lib/pie-toolbox/render-ui'
+            '@pie-lib/pie-toolbox/render-ui',
           ],
         },
       },
