@@ -111,6 +111,20 @@ workflows:
                 - develop
   build_master:
     jobs:
+      - lint:
+          filters:
+            branches:
+              ignore:
+                - develop
+                - master
+                - beta
+      - test:
+          filters:
+            branches:
+              ignore:
+                - develop
+                - master
+                - beta
       - release_build:
           filters:
             branches:
