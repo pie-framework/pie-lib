@@ -32,18 +32,9 @@ class LibCommands extends Commands {
     }
   }
 
-  clean() {
-    return this.runCmds([`${this.p.lerna} exec -- rm -fr lib`]);
-  }
-
-  async build_copy() {
-    await this.clean();
-    await this.babel();
-  }
-
-  build() {
-    return this.build_copy().then(() => this.sharedBuild());
-  }
+  // build() {
+  //   return super.build().then(() => this.sharedBuild());
+  // }
 }
 
 const cmds = new LibCommands(resolve(__dirname, '..'), args);
