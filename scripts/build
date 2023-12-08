@@ -32,6 +32,16 @@ class LibCommands extends Commands {
     }
   }
 
+  clean() {
+    return this.runCmds([`${this.p.lerna} exec -- rm -fr lib`]);
+  }
+
+  async build() {
+    await this.clean();
+    await this.babel();
+    this.sharedBuild();
+  }
+
   // build() {
   //   return super.build().then(() => this.sharedBuild());
   // }
