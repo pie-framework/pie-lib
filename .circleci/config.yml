@@ -4,7 +4,7 @@ defaults: &defaults
   working_directory: ~/repo
   docker:
     - image: cimg/node:18.12
-  resource_class: medium
+  resource_class: medium+
 
 reg_auth: &reg_auth
   name: Authenticate with registry
