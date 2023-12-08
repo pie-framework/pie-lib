@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.2.2...@pie-lib/pie-toolbox@1.2.3) (2023-12-08)
+
+
+### Bug Fixes
+
+* last try with circle ci ([51aff13](https://github.com/pie-framework/pie-lib/commit/51aff13903de5d0ebe7af07e7115305f075f5932))
+
+
+
+
+
 ## [1.2.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.2.1...@pie-lib/pie-toolbox@1.2.2) (2023-12-08)
 
 
