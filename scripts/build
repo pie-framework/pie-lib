@@ -22,6 +22,8 @@ class LibCommands extends Commands {
     ]);
   }
 
+  // TODO currently this occupies a lot of space and there's no way circle ci can handle it (I've experimented but without success)
+  //  so I'll publish manually temporarily until we find a solution
   sharedBuild() {
     if (args.next) {
       return Promise.resolve();
