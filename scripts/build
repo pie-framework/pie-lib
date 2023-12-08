@@ -39,7 +39,7 @@ class LibCommands extends Commands {
   async build() {
     await this.clean();
     await this.babel();
-    this.sharedBuild();
+    await this.sharedBuild();
   }
 
   // build() {
