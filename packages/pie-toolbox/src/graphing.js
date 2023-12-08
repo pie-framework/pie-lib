@@ -4,4 +4,6 @@ import GridSetup from './code/graphing/grid-setup';
 import * as tools from './code/graphing/tools';
 import ToolMenu from './code/graphing/tool-menu';
 
-export { Graph, GraphContainer, GridSetup, ToolMenu, tools };
+const testGraphing = 'Test';
+
+export { Graph, GraphContainer, GridSetup, ToolMenu, tools, testGraphing };
