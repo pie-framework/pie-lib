@@ -84,7 +84,7 @@ module.exports = {
             // take d3-scale from the repo root... so 2.x
             'd3-scale',
             'd3-selection',
-            '@pie-lib/pie-toolbox',
+            // '@pie-lib/pie-toolbox',
             '@pie-lib/pie-toolbox/config-ui',
             '@pie-lib/pie-toolbox/correct-answer-toggle',
             '@pie-lib/pie-toolbox/editable-html',
