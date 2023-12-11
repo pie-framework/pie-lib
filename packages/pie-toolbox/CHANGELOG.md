@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.2.3...@pie-lib/pie-toolbox@1.2.4) (2023-12-11)
+
+
+### Bug Fixes
+
+* export named components, instead of defaults, for pslb; keeping defaults to assure backwards compatibility ([17a01e1](https://github.com/pie-framework/pie-lib/commit/17a01e17aa4a6eaa3410486f9cd016c5b330c61c))
+
+
+
+
+
 ## [1.2.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.2.2...@pie-lib/pie-toolbox@1.2.3) (2023-12-08)
 
 
