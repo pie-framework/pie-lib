@@ -259,11 +259,12 @@ export class Root extends React.Component {
   }
 }
 
+// use default color theme style to avoid color contrast issues
 const styles = (theme) => ({
   root: {
     border: `solid 1px ${color.primaryLight()}`,
-    color: color.text(),
-    backgroundColor: color.background(),
+    color: color.defaults.TEXT,
+    backgroundColor: theme.palette.common.white,
     touchAction: 'none',
     position: 'relative',
   },
@@ -284,13 +285,13 @@ const styles = (theme) => ({
     userSelect: 'none',
   },
   graphTitle: {
-    color: color.text(),
+    color: color.defaults.TEXT,
     fontSize: theme.typography.fontSize + 2,
     padding: `${theme.spacing.unit * 1.5}px ${theme.spacing.unit / 2}px 0`,
     textAlign: 'center',
   },
   chartTitle: {
-    color: color.text(),
+    color: color.defaults.TEXT,
     fontSize: theme.typography.fontSize + 4,
     padding: `${theme.spacing.unit * 1.5}px ${theme.spacing.unit / 2}px 0`,
     textAlign: 'center',
@@ -306,7 +307,7 @@ const styles = (theme) => ({
     paddingTop: '6px',
   },
   topPixelIndicator: {
-    color: color.primaryLight(),
+    color: color.defaults.PRIMARY_LIGHT,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -321,7 +322,7 @@ const styles = (theme) => ({
     marginRight: '6px',
   },
   sidePixelIndicator: {
-    color: color.primaryLight(),
+    color: color.defaults.PRIMARY_LIGHT,
     textAlign: 'right',
     height: '20px',
     pointerEvents: 'none',
