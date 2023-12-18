@@ -26,8 +26,10 @@ const RawDragHandle = ({
   const scaleValue = getScale(width)?.scale;
 
   return (
-    <svg x={x} y={scale.y(y) - 10} width={width} overflow="visible" style={{ overflow: 'visible !important' }}>
-      {isHovered && !correctness && interactive && <DragIcon width={width} scaleValue={scaleValue} color={color} />}
+    <svg x={x} y={scale.y(y) - 10} width={width} overflow="visible" className={classes.svgOverflowVisible}>
+      {isHovered && !correctness && interactive && (
+        <DragIcon width={width} scaleValue={scaleValue} color={color} classes={classes} />
+      )}
       <circle
         cx={width / 2}
         cy={10}
@@ -109,6 +111,9 @@ export const DragHandle = withStyles(() => ({
     '&.non-interactive': disabled('fill'),
     '&.incorrect': incorrect('fill'),
     '&.correct': correct('fill'),
+  },
+  svgOverflowVisible: {
+    overflow: 'visible !important',
   },
 }))(RawDragHandle);
 
