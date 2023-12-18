@@ -53,7 +53,7 @@ const MaxPoints = withStyles((theme) => ({
         Max Points
       </InputLabel>
       <Select value={value} onChange={(e) => onChange(e.target.value)} input={<OutlinedInput labelWidth={80} />}>
-        {range(1, max).map((v) => (
+        {range(1, max + 1).map((v) => (
           <MenuItem key={`${v}`} value={v}>
             {v}
           </MenuItem>
@@ -152,6 +152,7 @@ export class RawAuthoring extends React.Component {
     className: PropTypes.string,
     value: RubricType,
     onChange: PropTypes.func,
+    maxMaxPoints: PropTypes.number,
   };
 
   static defaultProps = {};
@@ -249,7 +250,7 @@ export class RawAuthoring extends React.Component {
   };
 
   render() {
-    const { classes, className, value, mathMlOptions = {} } = this.props;
+    const { classes, className, value, mathMlOptions = {}, maxMaxPoints } = this.props;
     let { excludeZeroEnabled = true, maxPointsEnabled = true, errors = {} } = value || {};
     const { pointsDescriptorsErrors } = errors || {};
     if (value && Number.isFinite(value.maxPoints)) {
@@ -263,7 +264,13 @@ export class RawAuthoring extends React.Component {
           Rubric
         </Typography>
         <FormGroup row>
-          {maxPointsEnabled && <MaxPoints max={10} value={value.points.length - 1} onChange={this.changeMaxPoints} />}
+          {maxPointsEnabled && (
+            <MaxPoints
+              max={maxMaxPoints < 100 ? maxMaxPoints : 100}
+              value={value.points.length - 1}
+              onChange={this.changeMaxPoints}
+            />
+          )}
           {excludeZeroEnabled && (
             <FormControlLabel
               label="Exclude zeros"
@@ -357,13 +364,14 @@ const Reverse = (props) => {
     });
   };
 
-  return <StyledRawAuthoring value={value} onChange={onChange} />;
+  return <StyledRawAuthoring value={value} onChange={onChange} maxMaxPoints={props.maxMaxPoints} />;
 };
 
 Reverse.propTypes = {
   value: RubricType,
   getIndex: PropTypes.func,
   onChange: PropTypes.func,
+  maxMaxPoints: PropTypes.number,
 };
 
 export default Reverse;
