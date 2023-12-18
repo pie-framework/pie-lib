@@ -1,14 +1,15 @@
 import React from 'react';
 import { getAdjustedX, getScale } from '../utils';
 
-const DragIcon = ({ width, scaleValue, color }) => (
+const DragIcon = ({ width, scaleValue, color, classes }) => (
   <svg
     x={getAdjustedX(width, scaleValue)}
     y={getScale(width)?.deltay}
     color={color}
+    width={width}
     overflow="visible"
     filter="url(#svgDropShadow)"
-    style={{ overflow: 'visible !important' }}
+    className={classes.svgOverflowVisible}
   >
     <defs>
       <filter id="svgDropShadow" x="-20%" y="-20%" width="140%" height="140%">
