@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.2.4...@pie-lib/pie-toolbox@1.3.0) (2023-12-18)
+
+
+### Bug Fixes
+
+* **charting:** ensure visibility of SVG drag icon PD-3271 ([66131cf](https://github.com/pie-framework/pie-lib/commit/66131cfa9cd8b5c48f87943951496b6729dfd430))
+* **text-select:** always display token text in black and update design PD-2067 ([3164383](https://github.com/pie-framework/pie-lib/commit/31643832f9dd46f726d0c0249c90f8ca8727c4b5))
+
+
+### Features
+
+* **rubric:** change max points logic PD-3307 ([094dbc3](https://github.com/pie-framework/pie-lib/commit/094dbc367b168a41ffca96a162715ab2911dc64d))
+
+
+
+
+
 ## [1.2.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.2.3...@pie-lib/pie-toolbox@1.2.4) (2023-12-11)
 
 
