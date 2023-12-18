@@ -269,13 +269,17 @@ export class RawAuthoring extends React.Component {
       rubriclessInstructionEnabled = false,
       maxPoints = 10,
     } = value || {};
-    const { rubriclessInstruction = {} } = config || {};
+    // rubricless will contain a max value for maxPoints
+    const { rubriclessInstruction = {}, maxMaxPoints = 10 } = config || {};
     const { pointsDescriptorsErrors } = errors || {};
     if (value && Number.isFinite(value.maxPoints)) {
       // eslint-disable-next-line no-console
       console.warn('maxPoints is deprecated - remove from model');
     }
-    const maxPointsValue = value.points.length - 1 > 0 ? value.points.length - 1 : maxPoints;
+    // for rubric max value is 10
+    const max = rubricless ? maxMaxPoints : 10;
+    // foir rubric value is computed based on points
+    const maxPointsValue = !rubricless ? value.points.length - 1 : maxPoints;
 
     return (
       <div className={classNames(classes.class, className)}>
@@ -283,7 +287,7 @@ export class RawAuthoring extends React.Component {
           Rubric
         </Typography>
         <FormGroup row>
-          {maxPointsEnabled && <MaxPoints max={maxPoints} value={maxPointsValue} onChange={this.changeMaxPoints} />}
+          {maxPointsEnabled && <MaxPoints max={max} value={maxPointsValue} onChange={this.changeMaxPoints} />}
           {excludeZeroEnabled && (
             <FormControlLabel
               label="Exclude zeros"
