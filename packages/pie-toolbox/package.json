@@ -39,7 +39,7 @@
     "is-url": "^1.2.4",
     "jsesc": "^2.5.2",
     "keycode": "^2.2.0",
-    "konva": "^3.2.4",
+    "konva": "^9.2.3",
     "lodash": "^4.17.11",
     "mathjax-full": "3.2.2",
     "mathjs": "^7.0.1",
