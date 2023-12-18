@@ -103,25 +103,8 @@ const ConfigureChartPanel = (props) => {
     setOpen(openStatus);
   };
 
-  const setPropertiesToFalse = (data, property) => {
-    return data.map((obj) => {
-      if (obj.hasOwnProperty(property)) {
-        obj[property] = property == 'interactive' ? true : false;
-      }
-      return obj;
-    });
-  };
-
   const removeOutOfRangeValues = (updateModel) => {
     const { correctAnswer, data } = model;
-
-    if (changeInteractiveEnabled === false) {
-      setPropertiesToFalse(data, 'interactive');
-    }
-
-    if (changeEditableEnabled === false) {
-      setPropertiesToFalse(data, 'editable');
-    }
 
     resetValues(data, updateModel, range, onChange, model);
     resetValues(correctAnswer.data, false, range, onChange, model);
