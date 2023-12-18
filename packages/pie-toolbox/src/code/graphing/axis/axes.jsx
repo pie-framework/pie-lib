@@ -23,16 +23,16 @@ const AxisDefaultProps = {
 
 const axisStyles = (theme) => ({
   line: {
-    stroke: color.primary(),
-    strokeWidth: 5,
+    stroke: color.defaults.PRIMARY,
+    strokeWidth: 3,
   },
   arrow: {
-    fill: color.primary(),
+    fill: color.defaults.PRIMARY,
   },
   tick: {
-    fill: color.primary(),
+    fill: color.defaults.PRIMARY,
     '& > line': {
-      stroke: color.primary(),
+      stroke: color.defaults.PRIMARY,
     },
   },
   labelFontSize: {

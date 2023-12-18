@@ -12,7 +12,7 @@ const styles = (theme) => ({
     fontSize: theme.typography.fontSize,
     borderRadius: '8px',
     background: theme.palette.common.white,
-    color: color.primaryDark(),
+    color: color.defaults.PRIMARY_DARK,
   },
   inputLabel: {
     padding: 0,

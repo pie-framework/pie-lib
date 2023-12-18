@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import * as vx from '@vx/grid';
 import { types } from '../plot';
-import { color } from '../render-ui';
 import { withStyles } from '@material-ui/core/styles';
 import { getTickValues } from './utils';
 
@@ -78,7 +77,7 @@ export class Grid extends React.Component {
   };
 
   render() {
-    const { classes, graphProps } = this.props;
+    const { graphProps } = this.props;
     const {
       scale,
       size: { height, width },
@@ -95,6 +94,9 @@ export class Grid extends React.Component {
       displayAdditionalGrid,
     } = this.getAdditionalGridProps(rowTickValues, columnTickValues);
 
+    const additionalGridStroke =
+      domain.labelStep * 2 === domain.step || range.labelStep * 2 === range.step ? '#9FA8DA' : '#7985CB';
+
     return (
       <>
         <vx.Grid
@@ -103,7 +105,7 @@ export class Grid extends React.Component {
           yScale={scale.y}
           width={width}
           height={height}
-          className={classes.grid}
+          stroke="#E1E6EC"
           rowTickValues={rowTickValues}
           columnTickValues={columnTickValues}
         />
@@ -113,14 +115,14 @@ export class Grid extends React.Component {
               scale={scale.y}
               width={width}
               tickValues={rowTickLabelValues}
-              stroke={color.primary()}
+              stroke={additionalGridStroke}
               strokeDasharray={rowStrokeDasharray}
             />
             <vx.GridColumns
               scale={scale.x}
               height={height}
               tickValues={columnTickLabelValues}
-              stroke={color.primary()}
+              stroke={additionalGridStroke}
               strokeDasharray={columnStrokeDasharray}
             />
           </>
@@ -130,8 +132,4 @@ export class Grid extends React.Component {
   }
 }
 
-export default withStyles(() => ({
-  grid: {
-    stroke: 'purple', // TODO hardcoded color
-  },
-}))(Grid);
+export default withStyles(() => ({}))(Grid);
