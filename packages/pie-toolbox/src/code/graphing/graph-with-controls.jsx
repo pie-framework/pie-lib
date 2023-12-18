@@ -123,7 +123,7 @@ export class GraphWithControls extends React.Component {
       showTitle,
       title,
       titlePlaceholder,
-      language
+      language,
     } = this.props;
     let { backgroundMarks, marks, toolbarTools } = this.props;
 
@@ -157,7 +157,7 @@ export class GraphWithControls extends React.Component {
           language={language}
         />
 
-        {!disabled && <UndoRedo onUndo={onUndo} onRedo={onRedo} onReset={onReset} language={language}/>}
+        {!disabled && <UndoRedo onUndo={onUndo} onRedo={onRedo} onReset={onReset} language={language} />}
       </React.Fragment>
     );
 
@@ -216,10 +216,6 @@ const styles = (theme) => ({
     padding: theme.spacing.unit,
     color: color.text(),
     backgroundColor: color.primaryLight(),
-    borderTop: `solid 1px ${color.primaryDark()}`,
-    borderBottom: `solid 0px ${color.primaryDark()}`,
-    borderLeft: `solid 1px ${color.primaryDark()}`,
-    borderRight: `solid 1px ${color.primaryDark()}`,
     '& button': {
       fontSize: theme.typography.fontSize,
     },

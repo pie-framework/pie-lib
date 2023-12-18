@@ -55,12 +55,12 @@ const applyStyle = (fn) => ({
 const styles = () => ({
   bgCircle: {
     fill: 'transparent',
-    stroke: color.primaryLight(),
+    stroke: color.defaults.PRIMARY_LIGHT,
     strokeWidth: 3,
     transition: 'stroke 200ms ease-in, stroke-width 200ms ease-in',
     '&:hover': {
       strokeWidth: 6,
-      stroke: color.primaryDark(),
+      stroke: color.defaults.PRIMARY_DARK,
     },
   },
   disabled: applyStyle(disabled),

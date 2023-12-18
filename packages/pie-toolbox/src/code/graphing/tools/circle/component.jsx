@@ -262,16 +262,16 @@ export class RawBaseCircle extends React.Component {
 export const BaseCircle = withStyles(() => ({
   outerLine: {
     fill: 'rgb(0,0,0,0)', // TODO hardcoded color
-    stroke: color.primaryLight(),
+    stroke: color.defaults.PRIMARY_LIGHT,
     strokeWidth: 4,
     '&:hover': {
       strokeWidth: 6,
-      stroke: color.primaryDark(),
+      stroke: color.defaults.PRIMARY_DARK,
     },
   },
   root: {},
   bgCircleBuilding: {
-    stroke: color.secondaryLight(),
+    stroke: color.defaults.SECONDARY_LIGHT,
     animation: 'opacityPulse 2s ease-out',
     animationIterationCount: 'infinite',
     opacity: 1,
