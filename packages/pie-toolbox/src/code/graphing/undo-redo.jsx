@@ -40,7 +40,6 @@ export class UndoRedo extends React.Component {
 const styles = (theme) => ({
   button: {
     color: color.text(),
-    backgroundColor: color.background(),
     marginBottom: theme.spacing.unit / 2,
     '&:not(:last-of-type)': {
       marginRight: theme.spacing.unit / 2,

@@ -55,7 +55,7 @@ export class RawLinePath extends React.Component {
 
 const dragging = () => ({
   strokeWidth: 7,
-  stroke: color.secondaryLight(),
+  stroke: color.defaults.SECONDARY_LIGHT,
 });
 
 export const LinePath = withStyles((theme) => ({

@@ -29,7 +29,7 @@ const styles = () => {
     point: {
       '& circle, & polygon': {
         cursor: 'pointer',
-        fill: color.secondary(),
+        fill: color.defaults.SECONDARY,
       },
     },
     disabled: {
