@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.3.0...@pie-lib/pie-toolbox@1.4.0) (2023-12-19)
+
+
+### Bug Fixes
+
+* **rubric:** add new rubric typr to enum PD-2555 ([8511cb6](https://github.com/pie-framework/pie-lib/commit/8511cb6aa6dcdc49c4cb3b568e91e1cb8c99350c))
+
+
+### Features
+
+* **complex-rubric:** solve conflicts PD-2555 ([70e74fb](https://github.com/pie-framework/pie-lib/commit/70e74fb2b53bfa3902c96e9613b0909c33f92e45))
+* **rubric:** adjust logic for rubricless, new type of rubric PD-2555 ([8d106d3](https://github.com/pie-framework/pie-lib/commit/8d106d3f0fe4442a8078765e8a0c61b0919106f7))
+* **rubric:** solve conflicts PD-2555 ([7bdf6de](https://github.com/pie-framework/pie-lib/commit/7bdf6dec06fa85ec8bc4c32908078c7a80ec3788))
+* **rubric:** update snapshots PD-2555 ([daf65e8](https://github.com/pie-framework/pie-lib/commit/daf65e8efb014193f789dc31a39426a1c6ff37c6))
+
+
+
+
+
 # [1.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.2.4...@pie-lib/pie-toolbox@1.3.0) (2023-12-18)
 
 ### Bug Fixes

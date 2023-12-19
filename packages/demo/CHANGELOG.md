@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.1.17...@pie-lib/demo@7.2.0) (2023-12-19)
+
+
+### Features
+
+* **rubric:** solve conflicts PD-2555 ([7bdf6de](https://github.com/pie-framework/pie-lib/commit/7bdf6dec06fa85ec8bc4c32908078c7a80ec3788))
+
+
+
+
+
 ## [7.1.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.1.16...@pie-lib/demo@7.1.17) (2023-12-18)
 
 **Note:** Version bump only for package @pie-lib/demo
