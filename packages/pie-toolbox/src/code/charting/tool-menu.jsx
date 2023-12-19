@@ -12,12 +12,8 @@ const { translator } = Translator;
 
 const buttonStyles = (theme) => ({
   root: {
-    backgroundColor: color.background(),
     color: color.text(),
     border: `1px solid ${color.secondary()}`,
-    '&:hover': {
-      backgroundColor: color.secondaryLight(),
-    },
     fontSize: theme.typography.fontSize,
   },
   selected: {
