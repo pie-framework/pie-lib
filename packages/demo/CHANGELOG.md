@@ -3,6 +3,72 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.1.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.1.16...@pie-lib/demo@7.1.17) (2023-12-18)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+## [7.1.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.1.15...@pie-lib/demo@7.1.16) (2023-12-11)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+## [7.1.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.1.14...@pie-lib/demo@7.1.15) (2023-12-08)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+## [7.1.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.1.13...@pie-lib/demo@7.1.14) (2023-12-08)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+## [7.1.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.1.12...@pie-lib/demo@7.1.13) (2023-12-05)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+## [7.1.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.1.11...@pie-lib/demo@7.1.12) (2023-12-04)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+## [7.1.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.1.10...@pie-lib/demo@7.1.11) (2023-12-04)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+## [7.1.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.1.9...@pie-lib/demo@7.1.10) (2023-11-27)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+## [7.1.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.1.8...@pie-lib/demo@7.1.9) (2023-11-27)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+## [7.1.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.1.7...@pie-lib/demo@7.1.8) (2023-11-27)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+## [7.1.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.1.6...@pie-lib/demo@7.1.7) (2023-11-23)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+## [7.1.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.1.5...@pie-lib/demo@7.1.6) (2023-11-23)
+
+### Bug Fixes
+
+- re-added mathML conversion ability PD-3011 ([e10b542](https://github.com/pie-framework/pie-lib/commit/e10b54206db7058cb0a1e28cc8e877e61c005471))
+
+## [7.1.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.1.4...@pie-lib/demo@7.1.5) (2023-11-23)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+## [7.1.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.1.3...@pie-lib/demo@7.1.4) (2023-11-21)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+## [7.1.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.1.2...@pie-lib/demo@7.1.3) (2023-11-21)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+## [7.1.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.1.1...@pie-lib/demo@7.1.2) (2023-11-21)
+
+**Note:** Version bump only for package @pie-lib/demo
+
 ## [7.1.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.1.0...@pie-lib/demo@7.1.1) (2023-11-14)
 
 **Note:** Version bump only for package @pie-lib/demo
