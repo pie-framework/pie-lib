@@ -7,6 +7,7 @@ exports[`BasePoint snapshot renders 1`] = `
     Object {
       "handle": "RawDragHandle-handle-1",
       "handleContainer": "RawDragHandle-handleContainer-3",
+      "svgOverflowVisible": "RawDragHandle-svgOverflowVisible-4",
       "transparentHandle": "RawDragHandle-transparentHandle-2",
     }
   }
