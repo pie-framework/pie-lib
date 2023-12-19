@@ -13,7 +13,7 @@ exports[`Rubric render snapshot 1`] = `
     row={true}
   >
     <WithStyles(Component)
-      max={100}
+      max={10}
       onChange={[Function]}
       value={3}
     />
