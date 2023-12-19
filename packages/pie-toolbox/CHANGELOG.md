@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.4.0...@pie-lib/pie-toolbox@1.4.1) (2023-12-19)
+
+
+### Bug Fixes
+
+* **charting:** adjust color contrast and pixel gridlines position PD-2068 ([01e3b5c](https://github.com/pie-framework/pie-lib/commit/01e3b5c1a2edacc20811a9102b4bccdb0c756a76))
+
+
+
+
+
 # [1.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.3.0...@pie-lib/pie-toolbox@1.4.0) (2023-12-19)
 
 
