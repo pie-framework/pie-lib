@@ -128,7 +128,7 @@ export class Root extends React.Component {
     return (
       <div className={classes.root}>
         {showPixelGuides && (
-          <div className={classes.topPixelGuides} style={{ marginLeft: isChart ? 60 : showLabels ? 30 : 10 }}>
+          <div className={classes.topPixelGuides} style={{ marginLeft: isChart ? 80 : showLabels ? 30 : 10 }}>
             {[...Array(nbOfVerticalLines + 1).keys()].map((value) => (
               <Readable false key={`top-guide-${value}`}>
                 <div className={classes.topPixelIndicator}>
@@ -229,7 +229,7 @@ export class Root extends React.Component {
               className={classes.sidePixelGuides}
               style={{
                 paddingTop: sideGridlinesPadding,
-                marginTop: defineChart ? 25 : 31,
+                marginTop: 31,
               }}
             >
               {[...Array(nbOfHorizontalLines + 1).keys()].reverse().map((value) => (
