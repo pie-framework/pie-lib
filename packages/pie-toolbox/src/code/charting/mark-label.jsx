@@ -18,7 +18,6 @@ const styles = (theme) => ({
     '&.correct': correct('color'),
     '&.incorrect': incorrect('color'),
     '&.disabled': {
-      ...disabled('color'),
       backgroundColor: 'transparent !important',
     },
     '&.error': { border: `2px solid ${theme.palette.error.main}` },
