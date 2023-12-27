@@ -60,15 +60,6 @@ module.exports = {
     repository: 'pie-framework/pie-lib',
     packages: [
       {
-        name: '@pie-lib/toolbox-math-rendering-module',
-        output: packagesDir,
-        repository: 'pie-framework/pie-lib',
-        extensions: { commonJs },
-        imports: {
-          namespace: ['@pie-lib/pie-toolbox/math-rendering'],
-        },
-      },
-      {
         name: '@pie-lib/pie-toolbox-module',
         output: packagesDir,
         repository: 'pie-framework/pie-lib',
