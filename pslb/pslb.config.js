@@ -65,7 +65,7 @@ module.exports = {
         repository: 'pie-framework/pie-lib',
         extensions: { commonJs },
         imports: {
-          namespace: ['@pie-lib/math-rendering'],
+          namespace: ['@pie-lib/pie-toolbox/math-rendering'],
         },
       },
       {
