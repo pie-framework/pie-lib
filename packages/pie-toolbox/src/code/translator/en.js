@@ -46,6 +46,8 @@ export default {
       circle: 'Circle',
       line: 'Line',
       parabola: 'Parabola',
+      absolute: 'Absolute Value',
+      exponential: 'Exponential',
       polygon: 'Polygon',
       ray: 'Ray',
       segment: 'Segment',

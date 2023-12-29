@@ -86,6 +86,64 @@ export const pointsToABC = (one, two, three) => {
 export const parabola = (a, b, c) => (x) => a * Math.pow(x, 2) + b * x + c;
 
 /**
+ * Absolute value from two points Root (Vertex) the point where the two rays intersect and edge One point on a ray.
+ * https://www.desmos.com/calculator/rarxiatpip
+ */
+export const absoluteFromTwoPoints = (root, edge) => {
+  edge = edge || { ...root };
+  const a = pointsToAForAbsolute(root, edge);
+  return absolute(a, root.x, root.y);
+};
+
+/*
+ * Finds value of a in y=a*abs(x-h)+k function
+ * @param one 1st point
+ * @param one 2nd point
+ * */
+export const pointsToAForAbsolute = (one, two) => {
+  const y1 = two.y - one.y;
+  const x1 = two.x - one.x;
+  let a = y1 / x1;
+  if (two.x < one.x) {
+    a = a * -1;
+  }
+  return a;
+};
+
+/**
+ * y=a*abs(x-h)+k
+ */
+export const absolute = (a, h, k) => (x) => a * Math.abs(x - h) + k;
+
+/**
+ * Exponential from two points on exponential graph.
+ * https://www.desmos.com/calculator/3fisjexbvp
+ */
+export const exponentialFromTwoPoints = (root, edge) => {
+  edge = edge || { ...root };
+  const { a, b } = pointsToABForExponential(root, edge);
+  return exponential(a, b);
+};
+
+/*
+ * Finds value of a and b in y=a*(b)^x function
+ * @param one 1st point
+ * @param one 2nd point
+ * */
+export const pointsToABForExponential = (one, two) => {
+  const p = one.y / two.y;
+  const r = 1 / (one.x - two.x);
+  const b = Math.pow(p, r);
+  const a = one.y / Math.pow(b, one.x);
+  return { a, b };
+};
+
+/**
+ * y=a*(b)^x
+ */
+export const exponential = (a, b) => (x) => a * Math.pow(b, x);
+
+/**
  * Generate a set of data points, add spacing before min and after max if there is space between minx + min and maxX and max
  * @param {*} min
  * @param {*} max
@@ -98,10 +156,7 @@ export const buildDataPoints = (min, max, root, edge, interval, yFn) => {
   log('[buildDataPoints] min:', min, 'max:', max, 'root:', root);
   edge = edge ? edge : { ...root };
   const minX = Math.min(root.x, edge.x);
-  const maxX = Math.max(root.x, edge.x);
-  const leftSpace = min - minX;
-  const rightSpace = max - maxX;
-  const xs = xPoints(minX, interval, min - rightSpace, max - leftSpace);
+  const xs = xPoints(minX, interval, min - 1, max + 1);
   log('[buildDataPoints]:xs:', xs);
   return xs.map((v) => new Point(v, yFn(v)));
 };
@@ -115,5 +170,11 @@ export default {
   parabolaFromThreePoints,
   pointsToABC,
   parabola,
+  absoluteFromTwoPoints,
+  pointsToAForAbsolute,
+  absolute,
+  exponentialFromTwoPoints,
+  pointsToABForExponential,
+  exponential,
   buildDataPoints,
 };
