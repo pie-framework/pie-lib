@@ -87,6 +87,8 @@ export const parabola = (a, b, c) => (x) => a * Math.pow(x, 2) + b * x + c;
 
 /**
  * Absolute value from two points Root (Vertex) the point where the two rays intersect and edge One point on a ray.
+ * @param root 1st point selected on graph
+ * @param edge 2nd point selected on graph
  * https://www.desmos.com/calculator/rarxiatpip
  */
 export const absoluteFromTwoPoints = (root, edge) => {
@@ -98,7 +100,7 @@ export const absoluteFromTwoPoints = (root, edge) => {
 /*
  * Finds value of a in y=a*abs(x-h)+k function
  * @param one 1st point
- * @param one 2nd point
+ * @param two 2nd point
  * */
 export const pointsToAForAbsolute = (one, two) => {
   const y1 = two.y - one.y;
@@ -117,6 +119,8 @@ export const absolute = (a, h, k) => (x) => a * Math.abs(x - h) + k;
 
 /**
  * Exponential from two points on exponential graph.
+ * @param root 1st point selected on graph
+ * @param edge 2nd point selected on graph
  * https://www.desmos.com/calculator/3fisjexbvp
  */
 export const exponentialFromTwoPoints = (root, edge) => {
@@ -128,7 +132,7 @@ export const exponentialFromTwoPoints = (root, edge) => {
 /*
  * Finds value of a and b in y=a*(b)^x function
  * @param one 1st point
- * @param one 2nd point
+ * @param two 2nd point
  * */
 export const pointsToABForExponential = (one, two) => {
   const p = one.y / two.y;
