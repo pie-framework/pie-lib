@@ -6,6 +6,7 @@ import { utils } from '../../../../plot';
 import { graphProps as getGraphProps } from '../../../__tests__/utils';
 
 const { xy } = utils;
+
 jest.mock('../../../../graphing-utils', () => ({
   buildDataPoints: jest.fn().mockReturnValue([]),
   absoluteFromTwoPoints: jest.fn(() => jest.fn()),
@@ -16,12 +17,14 @@ jest.mock('../../shared/line/with-root-edge', () => ({
   withRootEdge: jest.fn(),
   rootEdgeComponent: jest.fn(),
 }));
+
 describe('Absolute', () => {
   let fnBody;
   let graphProps;
   let root;
   let edge;
   let result;
+
   beforeEach(() => {
     require('../component');
     fnBody = withRootEdge.mock.calls[0][0];
@@ -31,6 +34,7 @@ describe('Absolute', () => {
 
     result = fnBody({ graphProps, root, edge });
   });
+
   it('fnBody is not null', () => {
     expect(fnBody).toBeDefined();
   });
@@ -39,11 +43,12 @@ describe('Absolute', () => {
     const { domain } = graphProps;
     expect(buildDataPoints).toHaveBeenCalledWith(domain.min, domain.max, root, edge, 1, expect.anything());
   });
+
   it('calls absoluteFromTwoPoints', () => {
-    expect(absoluteFromTwoPoints()).toHaveBeenCalledWith(root, edge);
+    expect(absoluteFromTwoPoints).toHaveBeenCalledWith(root, edge);
   });
 
   it('returns dataPoints', () => {
-    expect(result).toEqual({ root, edge, dataPoints: [] });
+    expect(result).toEqual({ enableCurve: false, root, edge, dataPoints: [] });
   });
 });
