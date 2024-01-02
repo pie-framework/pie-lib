@@ -160,7 +160,7 @@ export const buildDataPoints = (min, max, root, edge, interval, yFn) => {
   log('[buildDataPoints] min:', min, 'max:', max, 'root:', root);
   edge = edge ? edge : { ...root };
   const minX = Math.min(root.x, edge.x);
-  const xs = xPoints(minX, interval, min - 1, max + 1);
+  const xs = xPoints(minX, interval, min - interval, max + interval);
   log('[buildDataPoints]:xs:', xs);
   return xs.map((v) => new Point(v, yFn(v)));
 };
