@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.4.2...@pie-lib/pie-toolbox@1.4.3) (2024-01-02)
+
+
+### Bug Fixes
+
+* **charting:** use default color for non-editable category labels PD-2068 ([f26ac8b](https://github.com/pie-framework/pie-lib/commit/f26ac8b7ad216d4f763feb6bfee3923e92e81c6d))
+* **render-ui:** use black text for even table rows PD-2060 ([f557810](https://github.com/pie-framework/pie-lib/commit/f557810e373b93e73fd17c0d4708cbdff6dbc57c))
+
+
+
+
+
 ## [1.4.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.4.1...@pie-lib/pie-toolbox@1.4.2) (2024-01-02)
 
 **Note:** Version bump only for package @pie-lib/pie-toolbox
