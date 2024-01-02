@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import debug from 'debug';
 import MathQuill from '@pie-framework/mathquill';
-import { updateSpans } from '../index';
+import { updateSpans } from '../updateSpans';
 
 let MQ;
 if (typeof window !== 'undefined') {
