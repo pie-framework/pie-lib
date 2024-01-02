@@ -7,7 +7,7 @@ import debug from 'debug';
 import SlatePropTypes from 'slate-prop-types';
 import PropTypes from 'prop-types';
 
-import { BLOCK_TAGS } from '../../serialization';
+import { BLOCK_TAGS } from "../../block-tags";
 import isEqual from 'lodash/isEqual';
 
 const log = debug('@pie-lib:editable-html:plugins:math');
