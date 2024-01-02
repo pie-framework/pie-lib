@@ -20,8 +20,9 @@ const styles = (theme) => ({
 });
 
 export const getLabelPosition = (graphProps, x, y, labelLength) => {
-  const { scale, domain } = graphProps;
-  const topShift = 8;
+  const { scale, domain, range } = graphProps;
+  // treat corner cases for maximum and minimum
+  const topShift = y === range.min ? 16 : y === range.max ? 0 : 8;
   const leftShift = 10;
   const rightEdge = scale.x(x) + labelLength + leftShift;
 
