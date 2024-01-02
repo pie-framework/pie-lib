@@ -73,12 +73,12 @@ module.exports = {
             'lodash',
             'classnames',
             'debug',
-            '@pie-framework/mathquill'
+            '@pie-framework/mathquill',
           ],
           namespace: [
-              // Commented out all material-ui and d3 libs below because it looks like we don't need them for any print item
-              // Also, if these are included, the build gets killed
-              // We can try to make the builds without them and test if we need them.
+            // Commented out all material-ui and d3 libs below because it looks like we don't need them for any print item
+            // Also, if these are included, the build gets killed
+            // We can try to make the builds without them and test if we need them.
             // '@material-ui/core/styles/colorManipulator',
             // '@material-ui/core/Collapse/index',
             // '@material-ui/core/styles',
@@ -88,17 +88,18 @@ module.exports = {
             // 'd3-scale',
             // 'd3-selection',
             // '@pie-lib/pie-toolbox',
-              // Keeping only the required packages:
+            // Keeping only the required packages:
             '@pie-lib/pie-toolbox/config-ui',
             '@pie-lib/pie-toolbox/correct-answer-toggle',
             '@pie-lib/pie-toolbox/editable-html',
-            '@pie-lib/pie-toolbox/drag',
-            '@pie-lib/pie-toolbox/graphing',
             '@pie-lib/pie-toolbox/math-input',
             '@pie-lib/pie-toolbox/math-rendering',
             '@pie-lib/pie-toolbox/math-toolbar',
-            '@pie-lib/pie-toolbox/plot',
             '@pie-lib/pie-toolbox/render-ui',
+            // Not used in any print module yet:
+            // '@pie-lib/pie-toolbox/drag',
+            // '@pie-lib/pie-toolbox/graphing',
+            // '@pie-lib/pie-toolbox/plot',
           ],
         },
       },
