@@ -71,20 +71,24 @@ const getPrompt = (itemType, item) => {
   }
 };
 
-const getCustomStyle = (itemType, item, touchPosition) => {
-  const baseStyle = {
-    transform: `translate(${touchPosition.x}px, ${touchPosition.y}px)`,
-    position: 'fixed',
-    top: 0,
-    left: 0,
+const getCustomStyle = (itemType, item, touchPosition, style) => {
+  // Determine the transform value based on touchPosition or fall back to style.transform
+  const transform = `translate(${touchPosition.x}px, ${touchPosition.y}px)`;
+  const top = style?.top || 0;
+  const left = style?.left || 0;
+  const position = style?.position || 'fixed';
+
+  return {
+    position,
+    top,
+    left,
+    transform,
     ...(itemType === 'MaskBlank' ? styles.maskBlank : {}),
     ...(item?.itemType === 'categorize' ? styles.categorize : {}),
     ...(itemType === 'Answer' ? styles.matchList : {}),
     ...(itemType === 'Tile' ? styles.placementOrdering : {}),
     ...(itemType === 'react-dnd-response' ? styles.ica : {}),
   };
-
-  return baseStyle;
 };
 
 const PreviewComponent = () => {
@@ -112,11 +116,9 @@ const PreviewComponent = () => {
     if (display && root.current) {
       renderMath(root.current);
 
-      //Use this for local tests
-      // const zoomAffectedElement = document.body
-
       // Adjusted for precise zoom level calculation in Online Testing, targeting the specific class pattern .asmt-zoomable.asmt-zoom-NR .asmt-question .padding
-      const zoomAffectedElement = document.querySelector('.padding');
+      const zoomAffectedElement = document.querySelector('.padding') || document.body;
+
       setZoomLevel(parseFloat(getComputedStyle(zoomAffectedElement).zoom) || 1);
     }
   }, [display, item?.choice?.value, item?.value, itemType, item]);
@@ -135,7 +137,7 @@ const PreviewComponent = () => {
     return null;
   }
 
-  const customStyle = getCustomStyle(itemType, item, touchPosition);
+  const customStyle = getCustomStyle(itemType, item, touchPosition, style);
 
   const prompt = getPrompt(itemType, item);
 
