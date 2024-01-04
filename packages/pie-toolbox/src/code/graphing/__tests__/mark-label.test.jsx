@@ -59,19 +59,19 @@ describe('coordinates', () => {
     });
   };
   assertCoordinates({ x: 0, y: 0 }, { width: 0, height: 0 }, 'top-left', {
-    left: `${-10 / 16}rem`,
-    top: `${-10 / 16}rem`,
+    left: `${-10 / 16}em`,
+    top: `${-10 / 16}em`,
   });
   assertCoordinates({ x: 0, y: 0 }, { width: 0, height: 0 }, 'bottom-left', {
-    left: `${-10 / 16}rem`,
-    top: `${10 / 16}rem`,
+    left: `${-10 / 16}em`,
+    top: `${10 / 16}em`,
   });
   assertCoordinates({ x: 0, y: 0 }, { width: 0, height: 0 }, 'top-right', {
-    left: `${10 / 16}rem`,
-    top: `${-10 / 16}rem`,
+    left: `${10 / 16}em`,
+    top: `${-10 / 16}em`,
   });
   assertCoordinates({ x: 0, y: 0 }, { width: 0, height: 0 }, 'bottom-right', {
-    left: `${10 / 16}rem`,
-    top: `${10 / 16}rem`,
+    left: `${10 / 16}em`,
+    top: `${10 / 16}em`,
   });
 });

@@ -128,7 +128,7 @@ const insertDialog = ({ editor, callback, opts }) => {
 
   const handleChange = (val) => {
     if (typeof val === 'string') {
-      callback(val, true);
+      callback(val);
     }
   };
 

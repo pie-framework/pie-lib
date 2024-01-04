@@ -26,7 +26,7 @@ const RawDragHandle = ({
   const scaleValue = getScale(width)?.scale;
 
   return (
-    <svg x={x} y={scale.y(y) - 10} width={width} overflow="visible">
+    <svg x={x} y={scale.y(y) - 10} width={width} overflow="visible" style={{ overflow: 'visible !important' }}>
       {isHovered && !correctness && interactive && <DragIcon width={width} scaleValue={scaleValue} color={color} />}
       <circle
         cx={width / 2}

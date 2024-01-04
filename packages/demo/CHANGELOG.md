@@ -7,28 +7,15 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 # [7.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.0.23...@pie-lib/demo@7.1.0) (2023-11-14)
-
 
 ### Features
 
-* **slate:** implemented new version of slate editor PD-1886 ([84e05ef](https://github.com/pie-framework/pie-lib/commit/84e05ef32f509eb998113b53a45a5b616b580ddd))
-
-
-
-
+- **slate:** implemented new version of slate editor PD-1886 ([84e05ef](https://github.com/pie-framework/pie-lib/commit/84e05ef32f509eb998113b53a45a5b616b580ddd))
 
 ## [7.0.23](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.0.22...@pie-lib/demo@7.0.23) (2023-11-13)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [7.0.22](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.0.21...@pie-lib/demo@7.0.22) (2023-11-09)
 

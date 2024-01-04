@@ -263,7 +263,7 @@ export class Graph extends React.Component {
               x="0"
               y="0"
               {...size}
-              style={{ pointerEvents: 'none' }}
+              style={{ pointerEvents: 'none', fontSize: '14px' }}
             />
           </g>
         </g>
