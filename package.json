@@ -21,7 +21,11 @@
     "postinstall": "lerna bootstrap",
     "prepush": "npm run test",
     "prepack": "scripts/build changelog",
-    "run-mathml": "cd node_modules/ && yarn link \"@pie-framework/mathml-to-latex\" && cd .. && ./scripts/dev"
+    "run-mathml": "cd node_modules/ && yarn link \"@pie-framework/mathml-to-latex\" && cd .. && ./scripts/dev",
+    "clean-install": "git clean -xdf . && yarn install && lerna bootstrap && ./scripts/build babel",
+    "link-pslb": "cd node_modules/ && yarn link '@pslb/pslb'",
+    "print-module": "time yarn pslb --config pslb/pslb.config.js --logLevel silly",
+    "clean-print-module": "yarn clean-install && yarn print-module"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
