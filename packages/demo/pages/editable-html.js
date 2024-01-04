@@ -1,4 +1,4 @@
-import EditableHtml from '@pie-lib/pie-toolbox/editable-html';
+import EditableHtml, { ALL_PLUGINS } from '@pie-lib/pie-toolbox/editable-html';
 import grey from '@material-ui/core/colors/grey';
 import React from 'react';
 import _ from 'lodash';
@@ -16,6 +16,7 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import InputChooser from '../source/editable-html/input-chooser';
 import { hasText } from '@pie-lib/pie-toolbox/render-ui';
+import InlineDropdownToolbar from './inline-dropdown-toolbar';
 
 const log = debug('@pie-lib:editable-html:demo');
 const puppySrc = 'https://bit.ly/23yROY8';
@@ -31,7 +32,7 @@ const inputOptions = [
   {
     label: 'Latex \\(..\\)',
     html:
-      '<math xmlns="http://www.w3.org/1998/Math/MathML"><mover><mrow><mi>A</mi><mi>B</mi></mrow><mo>&#175;</mo></mover></math>',
+      '<p>Which of these northern European countries are EU members? <math><mstack><msrow><mn>111</mn></msrow><msline/></mstack></math></p>',
   },
   {
     label: 'Latex $..$',
@@ -108,7 +109,7 @@ class RteDemo extends React.Component {
       markupText: html,
       hasText: true,
       mathEnabled: true,
-      languageCharactersProps: [],
+      languageCharactersProps: [{ language: 'spanish' }, { language: 'special' }],
     };
   }
 
@@ -186,6 +187,18 @@ class RteDemo extends React.Component {
 
   addImage = (imageHandler) => {
     log('[addImage]', imageHandler);
+
+    if (imageHandler.isPasted && imageHandler.getChosenFile) {
+      this.setState({ imageHandler }, () => {
+        // this is for images that were pasted into the editor (or dropped)
+        // they also need to be uploaded, but the file input doesn't have to be used
+        const file = imageHandler.getChosenFile();
+
+        this.handleInputFiles({ files: [file] });
+      });
+      return;
+    }
+
     this.setState({ imageHandler });
     this.fileInput.click();
 
@@ -318,7 +331,7 @@ class RteDemo extends React.Component {
             <FormControlLabel
               control={
                 <Checkbox
-                  checked={languageCharactersProps.filter((a) => a.language === 'spanish').length}
+                  checked={languageCharactersProps.filter((a) => a.language === 'spanish').length > 0}
                   onChange={(event) =>
                     this.setState({
                       languageCharactersProps: event.target.checked
@@ -333,7 +346,7 @@ class RteDemo extends React.Component {
             <FormControlLabel
               control={
                 <Checkbox
-                  checked={languageCharactersProps.filter((a) => a.language === 'special').length}
+                  checked={languageCharactersProps.filter((a) => a.language === 'special').length > 0}
                   onChange={(event) =>
                     this.setState({
                       languageCharactersProps: event.target.checked
@@ -348,6 +361,7 @@ class RteDemo extends React.Component {
           </FormGroup>
         </div>
         <EditableHtml
+          activePlugins={ALL_PLUGINS}
           markup={markup}
           onChange={this.onChange}
           imageSupport={imageSupport}
@@ -363,12 +377,40 @@ class RteDemo extends React.Component {
               keypadMode: this.state.keypadMode,
             },
           }}
+          responseAreaProps={{
+            type: 'inline-dropdown',
+            options: {
+              duplicates: true,
+            },
+            maxResponseAreas: 3,
+            respAreaToolbar: (node, value, onToolbarDone) => {
+              let { respAreaChoices } = this.state;
+              const { data: nodeData } = node;
+
+              respAreaChoices = respAreaChoices || [];
+
+              return () => (
+                <InlineDropdownToolbar
+                  onAddChoice={this.onAddChoice}
+                  onCheck={this.onCheck}
+                  onRemoveChoice={(index) => this.onRemoveChoice(nodeData.index, index)}
+                  onSelectChoice={(index) => this.onSelectChoice(nodeData.index, index)}
+                  node={node}
+                  value={value}
+                  onToolbarDone={onToolbarDone}
+                  choices={respAreaChoices[nodeData.index]}
+                  spellCheck={false}
+                  uploadSoundSupport={null}
+                />
+              );
+            },
+          }}
           width={width}
           height={height}
           languageCharactersProps={languageCharactersProps}
           mathMlOptions={{
             mmlEditing: true,
-            mmlOutput: true
+            mmlOutput: true,
           }}
         />
         <input type="file" hidden ref={(r) => (this.fileInput = r)} />
