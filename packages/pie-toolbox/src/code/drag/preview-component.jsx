@@ -16,7 +16,6 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: '16px',
-    cursor: 'grab',
   },
   ica: {
     backgroundColor: color.background(),
@@ -72,7 +71,6 @@ const getPrompt = (itemType, item) => {
 };
 
 const getCustomStyle = (itemType, item, touchPosition, style) => {
-  // Determine the transform value based on touchPosition or fall back to style.transform
   const transform = `translate(${touchPosition.x}px, ${touchPosition.y}px)`;
   const top = style?.top || 0;
   const left = style?.left || 0;
