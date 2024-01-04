@@ -11,6 +11,7 @@ import DragInTheBlank from './drag-in-the-blank';
 import ExplicitConstructedResponse from './explicit-constructed-response';
 import { getDefaultElement } from './utils';
 import { ToolbarIcon } from './icons';
+import { ReactEditor } from 'slate-react';
 
 const log = debug('@pie-lib:editable-html:plugins:respArea');
 
@@ -254,22 +255,27 @@ export const serialization = {
     }
   },
   serialize(object) {
+    const key = ReactEditor.findKey(undefined, object);
+
     switch (object.type) {
       case 'inline_dropdown': {
         const data = object.data;
 
-        return <span data-type="inline_dropdown" data-index={data.index} data-value={data.value} />;
+        return <span key={key} data-type="inline_dropdown" data-index={data.index} data-value={data.value} />;
       }
       case 'explicit_constructed_response': {
         const data = object.data;
 
-        return <span data-type="explicit_constructed_response" data-index={data.index} data-value={data.value} />;
+        return (
+          <span key={key} data-type="explicit_constructed_response" data-index={data.index} data-value={data.value} />
+        );
       }
       case 'drag_in_the_blank': {
         const data = object.data;
 
         return (
           <span
+            key={key}
             data-type="drag_in_the_blank"
             data-index={data.index}
             data-id={data.id}

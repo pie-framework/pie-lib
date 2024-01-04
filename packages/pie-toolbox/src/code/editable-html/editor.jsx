@@ -1118,12 +1118,13 @@ export class EditorComponent extends React.Component {
 
   onSetEditor = (editor) => {
     const { onEditor } = this.props;
+    const callback = () => onEditor && onEditor(editor);
 
     this.setState(
       {
         editor,
       },
-      () => onEditor && onEditor(editor),
+      callback,
     );
   };
 
