@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.4.4...@pie-lib/pie-toolbox@1.4.5) (2024-01-04)
+
+
+### Bug Fixes
+
+* **drag:** Implement zoom level detection and touch coordinate adjustments for drag preview in OT PD-3352 ([4635c18](https://github.com/pie-framework/pie-lib/commit/4635c1840844ac1373679e6413f7c7b3c8698a8d))
+
+
+
+
+
 ## [1.4.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.4.3...@pie-lib/pie-toolbox@1.4.4) (2024-01-04)
 
 
