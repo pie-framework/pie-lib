@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.4.3...@pie-lib/pie-toolbox@1.4.4) (2024-01-04)
+
+
+### Bug Fixes
+
+* **graphing:** treat corner cases for max and min points PD-3037 ([a675989](https://github.com/pie-framework/pie-lib/commit/a675989c04133a202ec52dde50fca9b0409928da))
+
+
+
+
+
 ## [1.4.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.4.2...@pie-lib/pie-toolbox@1.4.3) (2024-01-02)
 
 
