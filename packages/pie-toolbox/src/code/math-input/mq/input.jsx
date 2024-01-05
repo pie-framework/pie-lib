@@ -54,6 +54,7 @@ export class Input extends React.Component {
       return;
     }
     const { latex } = this.props;
+
     if (latex) {
       this.mathField.latex(latex);
     }
@@ -103,6 +104,7 @@ export class Input extends React.Component {
   onInputEdit = () => {
     log('[onInputEdit] ...');
     const { onChange } = this.props;
+
     if (!this.mathField) {
       return;
     }
@@ -128,11 +130,8 @@ export class Input extends React.Component {
     }
 
     if (event.charCode === 13) {
-      // if enter's pressed, we're going for a custom embedded element that'll
-      // have a block display (empty div) - for a hacked line break using ccs
-      // all because mathquill doesn't support a line break
-      this.write('\\embed{newLine}[]');
-      this.onInputEdit();
+      event.preventDefault();
+      return;
     }
   };
 
