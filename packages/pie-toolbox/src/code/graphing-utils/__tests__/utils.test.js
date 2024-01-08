@@ -51,12 +51,19 @@ describe('utils', () => {
 
   describe('buildDataPoints', () => {
     it('generates points', () => {
-      const result = buildDataPoints(-1, 1, { x: 0, y: 0 }, { x: 0, y: 0 }, 1, (x) => x);
+      const result = buildDataPoints(
+        { min: -1, max: 1, step: 1 },
+        { min: -1, max: 1, step: 1 },
+        { x: 0, y: 0 },
+        { x: 0, y: 0 },
+        (x) => x,
+      );
       expect(result.map((p) => p.x)).toEqual([-2, -1, 0, 1, 2]);
     });
 
     const assertParabola = (
       domain,
+      range,
       root,
       edge,
       mirror,
@@ -65,14 +72,7 @@ describe('utils', () => {
       nonExistingPointOutsideRange,
     ) => {
       it('generates points for parabola', () => {
-        const result = buildDataPoints(
-          domain.min,
-          domain.max,
-          root,
-          edge,
-          domain.step,
-          parabolaFromTwoPoints(root, edge),
-        );
+        const result = buildDataPoints(domain, range, root, edge, parabolaFromTwoPoints(root, edge));
 
         expect(result).toContainEqual(root);
         expect(result).toContainEqual(edge);
@@ -88,6 +88,7 @@ describe('utils', () => {
     // a = 8, b = 4, c = 2
     assertParabola(
       { min: -1, max: 1, step: 0.25 },
+      { min: -1, max: -1, step: 1 },
       { x: -0.25, y: 1.5 },
       { x: 0.25, y: 3.5 },
       { x: -0.75, y: 3.5 },
@@ -99,6 +100,7 @@ describe('utils', () => {
     // a = -8, b = -4, c = -2
     assertParabola(
       { min: -1, max: 1, step: 0.25 },
+      { min: -1, max: -1, step: 1 },
       { x: -0.25, y: -1.5 },
       { x: 0.25, y: -3.5 },
       { x: -0.75, y: -3.5 },
@@ -110,6 +112,7 @@ describe('utils', () => {
     // a = 10, b = 0, c = -2
     assertParabola(
       { min: -1, max: 1, step: 0.25 },
+      { min: -1, max: -1, step: 1 },
       { x: 0, y: -2 },
       { x: 0.5, y: 0.5 },
       { x: -0.5, y: 0.5 },
@@ -121,6 +124,7 @@ describe('utils', () => {
     // a = 10, b = -10, c = 0
     assertParabola(
       { min: -1, max: 1, step: 0.25 },
+      { min: -1, max: -1, step: 1 },
       { x: 0.5, y: -2.5 },
       { x: 0, y: 0 },
       { x: 1, y: 0 },
@@ -132,6 +136,7 @@ describe('utils', () => {
     // a = 10, b = -10, c = 0
     assertParabola(
       { min: -1, max: 1, step: 0.5 },
+      { min: -1, max: -1, step: 1 },
       { x: 0.5, y: -2.5 },
       { x: 0, y: 0 },
       { x: 1, y: 0 },
@@ -143,6 +148,7 @@ describe('utils', () => {
     // a = -4, b = 4, c = 0
     assertParabola(
       { min: -1, max: 5, step: 0.25 },
+      { min: -1, max: -1, step: 1 },
       { x: 0.5, y: 1 },
       { x: 0, y: 0 },
       { x: 1, y: 0 },
