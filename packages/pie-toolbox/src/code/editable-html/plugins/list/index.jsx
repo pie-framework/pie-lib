@@ -1,9 +1,9 @@
 import React from 'react';
+import { Data } from 'slate';
+import Immutable from 'immutable';
 import PropTypes from 'prop-types';
+import EditList from 'slate-edit-list';
 import debug from 'debug';
-import { Editor, Element as SlateElement, Transforms } from 'slate';
-import { ReactEditor } from 'slate-react';
-import { jsx } from 'slate-hyperscript';
 
 const log = debug('@pie-lib:editable-html:plugins:list');
 
@@ -16,107 +16,118 @@ const b = (type, next, childNodes) => ({
 export const serialization = {
   deserialize(el, next) {
     const name = el.tagName.toLowerCase();
-    const children = el.children.length ? Array.from(el.children) : el.childNodes;
 
     if (name === 'li') {
-      return jsx(
-        'element',
-        {
-          type: 'li',
-        },
-        next(children),
-      );
+      return b('list_item', next, el.childNodes);
     }
 
     if (name === 'ul') {
-      return jsx(
-        'element',
-        {
-          type: 'ul',
-        },
-        next(children),
-      );
+      return b('ul_list', next, el.children.length ? Array.from(el.children) : el.childNodes);
     }
 
     if (name === 'ol') {
-      return jsx(
-        'element',
-        {
-          type: 'ol',
-        },
-        next(children),
-      );
+      return b('ol_list', next, el.children.length ? Array.from(el.children) : el.childNodes);
     }
   },
   serialize(object, children) {
-    const key = ReactEditor.findKey(undefined, object);
+    if (object.object !== 'block') return;
 
     if (object.type === 'list_item') {
-      return <li key={key}>{children}</li>;
+      return <li>{children}</li>;
     }
 
     if (object.type === 'ul_list') {
-      return <ul key={key}>{children}</ul>;
+      return <ul>{children}</ul>;
     }
 
     if (object.type === 'ol_list') {
-      return <ol key={key}>{children}</ol>;
+      return <ol>{children}</ol>;
     }
   },
 };
 
-const isBlockActive = (editor, format) => {
-  const { selection } = editor;
-  if (!selection) return false;
-
-  const [match] = Array.from(
-    Editor.nodes(editor, {
-      at: Editor.unhangRange(editor, selection),
-      match: (node) => !Editor.isEditor(node) && SlateElement.isElement(node) && node.type === format,
-    }),
-  );
-
-  return !!match;
-};
-
 const createEditList = () => {
-  const core = {
-    changes: {},
+  const core = EditList({
+    typeDefault: 'span',
+  });
+
+  // fix outdated schema
+  if (core.schema && core.schema.blocks) {
+    Object.keys(core.schema.blocks).forEach((key) => {
+      const block = core.schema.blocks[key];
+
+      if (block.parent) {
+        return;
+      }
+
+      block.nodes[0] = { type: block.nodes[0].types[0] };
+    });
+  }
+
+  /**
+   * This override of the core.changes.wrapInList is needed because the version
+   * of immutable that we have does not support getting the element at a specific
+   * index with a square bracket (list[0]). We have to use the list.get function instead
+   */
+
+  /**
+   * Returns the highest list of blocks that cover the current selection
+   */
+  const getHighestSelectedBlocks = (value) => {
+    const range = value.selection;
+    const document = value.document;
+
+    const startBlock = document.getClosestBlock(range.startKey);
+    const endBlock = document.getClosestBlock(range.endKey);
+
+    if (startBlock === endBlock) {
+      return Immutable.List([startBlock]);
+    }
+
+    const ancestor = document.getCommonAncestor(startBlock.key, endBlock.key);
+    const startPath = ancestor.getPath(startBlock.key);
+    const endPath = ancestor.getPath(endBlock.key);
+
+    return ancestor.nodes.slice(startPath.get(0), endPath.get(0) + 1);
   };
 
-  core.changes.wrapInList = (editor, format) => {
-    const isActive = isBlockActive(editor, format);
-    const isList = LIST_TYPES.includes(format);
+  /**
+   * Wrap the blocks in the current selection in a new list. Selected
+   * lists are merged together.
+   */
+  core.changes.wrapInList = function(change, type, data) {
+    const selectedBlocks = getHighestSelectedBlocks(change.value);
 
-    Transforms.unwrapNodes(editor, {
-      match: (n) => !Editor.isEditor(n) && SlateElement.isElement(n) && LIST_TYPES.includes(n.type),
-      split: true,
+    // Wrap in container
+    change.wrapBlock({ type: type, data: Data.create(data) }, { normalize: false });
+
+    // Wrap in list items
+    selectedBlocks.forEach(function(node) {
+      if (core.utils.isList(node)) {
+        // Merge its items with the created list
+        node.nodes.forEach(function(_ref) {
+          const key = _ref.key;
+          return change.unwrapNodeByKey(key, { normalize: false });
+        });
+      } else if (node.type !== 'list_item') {
+        change.wrapBlockByKey(node.key, 'list_item', {
+          normalize: false,
+        });
+      }
     });
 
-    const newProperties = {
-      type: isActive ? 'paragraph' : isList ? 'list_item' : format,
-    };
-
-    Transforms.setNodes(editor, newProperties);
-
-    if (!isActive && isList) {
-      const block = { type: format, children: [] };
-      Transforms.wrapNodes(editor, block);
-    }
+    return change.normalize();
   };
 
   return core;
 };
-
-const LIST_TYPES = ['ol_list', 'ul_list', 'list_item'];
 
 export default (options) => {
   const { type, icon } = options;
 
   const core = createEditList();
 
-  core.supports = (node) => LIST_TYPES.includes(node.type);
-
+  // eslint-disable-next-line react/display-name
   core.renderNode = (props) => {
     const { node, attributes, children } = props;
 
@@ -134,9 +145,23 @@ export default (options) => {
     isMark: false,
     type,
     icon,
-    isActive: isBlockActive,
-    onClick: (editor) => {
-      core.changes.wrapInList(editor, type);
+    isActive: (value, type) => {
+      if (!core.utils.isSelectionInList(value)) {
+        return false;
+      }
+      const current = core.utils.getCurrentList(value);
+      return current ? current.type === type : false;
+    },
+    onClick: (value, onChange) => {
+      log('[onClick]', value);
+      const inList = core.utils.isSelectionInList(value);
+      if (inList) {
+        const change = value.change().call(core.changes.unwrapList);
+        onChange(change);
+      } else {
+        const change = value.change().call(core.changes.wrapInList, type);
+        onChange(change);
+      }
     },
   };
 

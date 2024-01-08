@@ -18,25 +18,20 @@ describe('index', () => {
     it('should have default node a span', () => {
       expect(deserialize('something')).toEqual(
         expect.objectContaining({
-          children: [
-            {
-              children: [
-                {
-                  text: 'something',
-                },
-              ],
-              data: {
-                attributes: {},
-                dataset: {},
+          object: 'value',
+          document: {
+            object: 'document',
+            data: {},
+            nodes: [
+              {
+                object: 'block',
+                data: {},
+                isVoid: false,
+                type: 'span',
+                nodes: [{ object: 'text', leaves: [{ text: 'something' }] }],
               },
-              type: 'span',
-            },
-          ],
-          data: {
-            attributes: {},
-            dataset: {},
+            ],
           },
-          type: 'body',
         }),
       );
     });

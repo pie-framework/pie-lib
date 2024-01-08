@@ -202,7 +202,7 @@ export class RawAuthoring extends React.Component {
     }
 
     if (points && !rubricless) {
-      onChange({ ...value, points, sampleAnswers });
+      onChange({ ...value, points, sampleAnswers, maxPoints });
     } else {
       onChange({ ...value, maxPoints });
     }

@@ -114,7 +114,7 @@ export class MathToolbar extends React.Component {
 export class RawPureToolbar extends React.Component {
   static propTypes = {
     classNames: PropTypes.object,
-    latex: PropTypes.string,
+    latex: PropTypes.string.isRequired,
     keypadMode: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     hideInput: PropTypes.bool,
     noLatexHandling: PropTypes.bool,
@@ -171,7 +171,7 @@ export class RawPureToolbar extends React.Component {
     } = this.props;
 
     return (
-      <div className={cx(classes.pureToolbar, (classNames || {}).toolbar)} contentEditable={false}>
+      <div className={cx(classes.pureToolbar, (classNames || {}).toolbar)}>
         <div />
         <EditorAndPad
           autoFocus={autoFocus}

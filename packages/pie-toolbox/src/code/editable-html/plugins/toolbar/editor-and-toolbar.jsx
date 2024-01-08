@@ -1,14 +1,127 @@
 import React from 'react';
-
 import Toolbar from './toolbar';
 import classNames from 'classnames';
 import debug from 'debug';
 import { primary } from '../../theme';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
+import SlatePropTypes from 'slate-prop-types';
+import { IS_FIREFOX } from 'slate-dev-environment';
 import { color } from '../../../render-ui';
 
 const log = debug('@pie-lib:editable-html:plugins:toolbar:editor-and-toolbar');
+
+export class EditorAndToolbar extends React.Component {
+  static propTypes = {
+    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
+    value: SlatePropTypes.value.isRequired,
+    plugins: PropTypes.array.isRequired,
+    onChange: PropTypes.func.isRequired,
+    getFocusedValue: PropTypes.func.isRequired,
+    onDone: PropTypes.func.isRequired,
+    onDataChange: PropTypes.func,
+    toolbarRef: PropTypes.func,
+    focusedNode: SlatePropTypes.node,
+    readOnly: PropTypes.bool,
+    disableScrollbar: PropTypes.bool,
+    disableUnderline: PropTypes.bool,
+    autoWidth: PropTypes.bool,
+    classes: PropTypes.object.isRequired,
+    pluginProps: PropTypes.object,
+    toolbarOpts: PropTypes.shape({
+      position: PropTypes.oneOf(['bottom', 'top']),
+      alwaysVisible: PropTypes.bool,
+      error: PropTypes.string,
+      noBorder: PropTypes.any,
+    }),
+  };
+
+  /** This is an interim fix until this PR is merged in slate:
+   * https://github.com/ianstormtaylor/slate/pull/2236
+   */
+  componentDidMount() {
+    if (IS_FIREFOX) {
+      this.editorRef.tmp.isUpdatingSelection = true;
+    }
+  }
+
+  render() {
+    const {
+      classes,
+      children,
+      value,
+      plugins,
+      onChange,
+      getFocusedValue,
+      onDone,
+      focusedNode,
+      autoWidth,
+      readOnly,
+      disableScrollbar,
+      disableUnderline,
+      pluginProps,
+      toolbarOpts,
+      onDataChange,
+      toolbarRef,
+    } = this.props;
+
+    const inFocus = value.isFocused || (focusedNode !== null && focusedNode !== undefined);
+    const holderNames = classNames(classes.editorHolder, {
+      [classes.editorInFocus]: inFocus,
+      [classes.readOnly]: readOnly,
+      [classes.disabledUnderline]: disableUnderline,
+      [classes.disabledScrollbar]: disableScrollbar,
+    });
+    let clonedChildren = children;
+
+    if (typeof children !== 'string') {
+      clonedChildren = React.cloneElement(children, {
+        ref: (el) => (this.editorRef = el),
+      });
+    }
+
+    log('[render] inFocus: ', inFocus, 'value.isFocused:', value.isFocused, 'focused node: ', focusedNode);
+
+    return (
+      <div
+        className={classNames(
+          {
+            [classes.noBorder]: toolbarOpts && toolbarOpts.noBorder,
+            [classes.error]: toolbarOpts && toolbarOpts.error,
+          },
+          classes.root,
+        )}
+      >
+        <div className={holderNames}>
+          <div
+            className={classNames(
+              {
+                [classes.noPadding]: toolbarOpts && toolbarOpts.noBorder,
+              },
+              classes.children,
+            )}
+          >
+            {clonedChildren}
+          </div>
+        </div>
+        <Toolbar
+          autoWidth={autoWidth}
+          plugins={plugins}
+          focusedNode={focusedNode}
+          value={value}
+          isFocused={inFocus}
+          onChange={onChange}
+          getFocusedValue={getFocusedValue}
+          onDone={onDone}
+          onDataChange={onDataChange}
+          toolbarRef={toolbarRef}
+          pluginProps={pluginProps}
+          toolbarOpts={toolbarOpts}
+        />
+      </div>
+    );
+  }
+}
 
 const style = (theme) => ({
   root: {
@@ -23,10 +136,6 @@ const style = (theme) => ({
       maxHeight: '500px',
       // needed in order to be able to put the focus before a void element when it is the first one in the editor
       padding: '5px',
-    },
-    '& [data-slate-void="true"]': {
-      // needed in order to be able to put the focus before a void element when it is the first one in the editor
-      padding: '1px',
     },
   },
   children: {
@@ -73,9 +182,6 @@ const style = (theme) => ({
         backgroundColor: theme.palette.common.black,
         height: '2px',
       },
-    },
-    '& :focus-visible': {
-      outline: 'none !important',
     },
   },
   disabledUnderline: {
@@ -142,111 +248,5 @@ const style = (theme) => ({
     padding: 0,
   },
 });
-
-export const EditorAndToolbar = (props) => {
-  const {
-    editor,
-    classes,
-    children,
-    value,
-    plugins,
-    onChange,
-    getFocusedValue,
-    onDone,
-    focusedNode,
-    autoWidth,
-    readOnly,
-    disableScrollbar,
-    disableUnderline,
-    pluginProps,
-    toolbarOpts,
-    toolbarRef,
-    isFocused,
-  } = props;
-
-  const holderNames = classNames(classes.editorHolder, {
-    [classes.editorInFocus]: isFocused,
-    [classes.readOnly]: readOnly,
-    [classes.disabledUnderline]: disableUnderline,
-    [classes.disabledScrollbar]: disableScrollbar,
-  });
-  let clonedChildren = children;
-
-  log('[render] inFocus: ', isFocused, 'value.isFocused:', value.isFocused, 'focused node: ', focusedNode);
-
-  return (
-    <div
-      className={classNames(
-        {
-          [classes.noBorder]: toolbarOpts && toolbarOpts.noBorder,
-          [classes.error]: toolbarOpts && toolbarOpts.error,
-        },
-        classes.root,
-      )}
-    >
-      <div className={holderNames}>
-        <div
-          className={classNames(
-            {
-              [classes.noPadding]: toolbarOpts && toolbarOpts.noBorder,
-            },
-            classes.children,
-          )}
-        >
-          {clonedChildren}
-        </div>
-      </div>
-      <Toolbar
-        editor={editor}
-        autoWidth={autoWidth}
-        plugins={plugins}
-        focusedNode={focusedNode}
-        value={value}
-        isFocused={isFocused}
-        onChange={onChange}
-        getFocusedValue={getFocusedValue}
-        onDone={onDone}
-        toolbarRef={toolbarRef}
-        pluginProps={pluginProps}
-        toolbarOpts={toolbarOpts}
-      />
-    </div>
-  );
-};
-
-EditorAndToolbar.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
-  value: PropTypes.arrayOf(
-    PropTypes.shape({
-      type: PropTypes.string,
-      children: PropTypes.array,
-      data: PropTypes.object,
-    }),
-  ),
-  editor: PropTypes.object.isRequired,
-  isFocused: PropTypes.bool,
-  plugins: PropTypes.array.isRequired,
-  onChange: PropTypes.func.isRequired,
-  getFocusedValue: PropTypes.func.isRequired,
-  onDone: PropTypes.func.isRequired,
-  toolbarRef: PropTypes.func,
-  focusedNode: PropTypes.shape({
-    type: PropTypes.string,
-    children: PropTypes.array,
-    data: PropTypes.object,
-  }),
-  readOnly: PropTypes.bool,
-  disableScrollbar: PropTypes.bool,
-  disableUnderline: PropTypes.bool,
-  autoWidth: PropTypes.bool,
-  classes: PropTypes.object.isRequired,
-  pluginProps: PropTypes.object,
-  toolbarOpts: PropTypes.shape({
-    alwaysVisible: PropTypes.bool,
-    error: PropTypes.string,
-    noBorder: PropTypes.bool,
-    position: PropTypes.oneOf(['bottom', 'top']),
-  }),
-};
 
 export default withStyles(style)(EditorAndToolbar);
