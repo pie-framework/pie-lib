@@ -158,7 +158,6 @@ export const tileSource = {
     return !props.disabled && !!props.value;
   },
   beginDrag(props) {
-    props.editor.respAreaDrag = true;
     return {
       id: props.targetId,
       value: props.value,
@@ -167,7 +166,6 @@ export const tileSource = {
     };
   },
   endDrag(props, monitor) {
-    delete props.editor.respAreaDrag;
     // this will be null if it did not drop
     const dropResult = monitor.getDropResult();
 

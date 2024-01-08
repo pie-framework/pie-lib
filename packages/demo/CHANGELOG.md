@@ -3,6 +3,81 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.2.7...@pie-lib/demo@7.2.8) (2024-01-08)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [7.2.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.2.6...@pie-lib/demo@7.2.7) (2024-01-08)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [7.2.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.2.5...@pie-lib/demo@7.2.6) (2024-01-08)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [7.2.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.2.4...@pie-lib/demo@7.2.5) (2024-01-04)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [7.2.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.2.3...@pie-lib/demo@7.2.4) (2024-01-04)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [7.2.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.2.2...@pie-lib/demo@7.2.3) (2024-01-02)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [7.2.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.2.1...@pie-lib/demo@7.2.2) (2024-01-02)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [7.2.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.2.0...@pie-lib/demo@7.2.1) (2023-12-19)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+# [7.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.1.17...@pie-lib/demo@7.2.0) (2023-12-19)
+
+
+### Features
+
+* **rubric:** solve conflicts PD-2555 ([7bdf6de](https://github.com/pie-framework/pie-lib/commit/7bdf6dec06fa85ec8bc4c32908078c7a80ec3788))
+
+
+
+
+
 ## [7.1.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.1.16...@pie-lib/demo@7.1.17) (2023-12-18)
 
 **Note:** Version bump only for package @pie-lib/demo

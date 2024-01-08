@@ -1,43 +1,26 @@
 import { DoneButton } from './done-button';
 import PropTypes from 'prop-types';
 import React from 'react';
+import SlatePropTypes from 'slate-prop-types';
 
 import { hasBlock, hasMark } from '../utils';
 import { withStyles } from '@material-ui/core/styles';
 
 import { Button, MarkButton } from './toolbar-buttons';
 import debug from 'debug';
-import { Editor, Element as SlateElement } from 'slate';
+import { is } from 'immutable';
 
 const log = debug('@pie-lib:editable-html:plugins:toolbar');
 
-const isMarkActive = (editor, format) => {
-  const marks = Editor.marks(editor);
-  return marks ? marks[format] === true : false;
-};
-
-const isBlockActive = (editor, format) => {
-  const { selection } = editor;
-  if (!selection) return false;
-
-  const [match] = Array.from(
-    Editor.nodes(editor, {
-      at: Editor.unhangRange(editor, selection),
-      match: (n) => !Editor.isEditor(n) && SlateElement.isElement(n) && n.type === format,
-    }),
-  );
-
-  return !!match;
-};
-
 export const ToolbarButton = (props) => {
-  const { editor } = props;
   const onToggle = () => {
-    props.onToggle(editor, props);
+    const c = props.onToggle(props.value.change(), props);
+
+    props.onChange(c);
   };
 
   if (props.isMark) {
-    const isActive = isMarkActive(editor, props.type);
+    const isActive = hasMark(props.value, props.type);
 
     log('[ToolbarButton] mark:isActive: ', isActive);
 
@@ -48,7 +31,7 @@ export const ToolbarButton = (props) => {
     );
   } else {
     const { disabled } = props;
-    const isActive = props.isActive ? props.isActive(editor, props.type) : isBlockActive(editor, props.type);
+    const isActive = props.isActive ? props.isActive(props.value, props.type) : hasBlock(props.value, props.type);
 
     log('[ToolbarButton] block:isActive: ', isActive);
 
@@ -56,7 +39,7 @@ export const ToolbarButton = (props) => {
       <Button
         active={isActive}
         disabled={disabled}
-        onClick={() => props.onClick(editor)}
+        onClick={() => props.onClick(props.value, props.onChange, props.getFocusedValue)}
         extraStyles={props.buttonStyles}
       >
         {props.icon}
@@ -66,15 +49,17 @@ export const ToolbarButton = (props) => {
 };
 
 ToolbarButton.propTypes = {
-  disabled: PropTypes.bool,
-  icon: PropTypes.object,
-  editor: PropTypes.object,
-  isActive: PropTypes.func,
-  isMark: PropTypes.bool,
-  onClick: PropTypes.func,
-  onToggle: PropTypes.func,
-  type: PropTypes.string,
   buttonStyles: PropTypes.object,
+  disabled: PropTypes.bool,
+  icon: PropTypes.any,
+  isActive: PropTypes.bool,
+  isMark: PropTypes.bool,
+  getFocusedValue: PropTypes.func,
+  onToggle: PropTypes.func,
+  onChange: PropTypes.func,
+  onClick: PropTypes.func,
+  type: PropTypes.string,
+  value: PropTypes.object,
 };
 
 const isActiveToolbarPlugin = (props) => (plugin) => {
@@ -84,7 +69,6 @@ const isActiveToolbarPlugin = (props) => (plugin) => {
 };
 
 export const DefaultToolbar = ({
-  editor,
   plugins,
   pluginProps,
   value,
@@ -118,18 +102,11 @@ export const DefaultToolbar = ({
       <div className={classes.buttonsContainer}>
         {filtered.map((p, index) => {
           return (
-            <ToolbarButton
-              {...p}
-              editor={editor}
-              key={index}
-              value={value}
-              onChange={onChange}
-              getFocusedValue={getFocusedValue}
-            />
+            <ToolbarButton {...p} key={index} value={value} onChange={onChange} getFocusedValue={getFocusedValue} />
           );
         })}
       </div>
-      {showDone && !deletable && <DoneButton onClick={() => onDone(editor)} />}
+      {showDone && !deletable && <DoneButton onClick={onDone} />}
     </div>
   );
 };
@@ -138,13 +115,7 @@ DefaultToolbar.propTypes = {
   classes: PropTypes.object.isRequired,
   plugins: PropTypes.array.isRequired,
   pluginProps: PropTypes.object,
-  value: PropTypes.arrayOf(
-    PropTypes.shape({
-      type: PropTypes.string,
-      children: PropTypes.array,
-      data: PropTypes.object,
-    }),
-  ),
+  value: SlatePropTypes.value.isRequired,
   onChange: PropTypes.func.isRequired,
   getFocusedValue: PropTypes.func.isRequired,
   onDone: PropTypes.func.isRequired,

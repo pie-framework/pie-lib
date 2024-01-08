@@ -3,6 +3,108 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.4.7...@pie-lib/pie-toolbox@1.4.8) (2024-01-08)
+
+**Note:** Version bump only for package @pie-lib/pie-toolbox
+
+
+
+
+
+## [1.4.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.4.6...@pie-lib/pie-toolbox@1.4.7) (2024-01-08)
+
+
+### Bug Fixes
+
+* **math-input:** prevent newLine insertion on Enter in math editor PD-3296 ([46e44e0](https://github.com/pie-framework/pie-lib/commit/46e44e0ed24597cb8a5a18924afa4b4347e348c7))
+
+
+
+
+
+## [1.4.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.4.5...@pie-lib/pie-toolbox@1.4.6) (2024-01-08)
+
+
+### Bug Fixes
+
+* **rubric:** update maxPoints value model when changed PD-3348 ([1496cb3](https://github.com/pie-framework/pie-lib/commit/1496cb3e3f87f1c7870fa74696313748a784231f))
+
+
+
+
+
+## [1.4.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.4.4...@pie-lib/pie-toolbox@1.4.5) (2024-01-04)
+
+
+### Bug Fixes
+
+* **drag:** Implement zoom level detection and touch coordinate adjustments for drag preview in OT PD-3352 ([4635c18](https://github.com/pie-framework/pie-lib/commit/4635c1840844ac1373679e6413f7c7b3c8698a8d))
+
+
+
+
+
+## [1.4.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.4.3...@pie-lib/pie-toolbox@1.4.4) (2024-01-04)
+
+
+### Bug Fixes
+
+* **graphing:** treat corner cases for max and min points PD-3037 ([a675989](https://github.com/pie-framework/pie-lib/commit/a675989c04133a202ec52dde50fca9b0409928da))
+
+
+
+
+
+## [1.4.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.4.2...@pie-lib/pie-toolbox@1.4.3) (2024-01-02)
+
+
+### Bug Fixes
+
+* **charting:** use default color for non-editable category labels PD-2068 ([f26ac8b](https://github.com/pie-framework/pie-lib/commit/f26ac8b7ad216d4f763feb6bfee3923e92e81c6d))
+* **render-ui:** use black text for even table rows PD-2060 ([f557810](https://github.com/pie-framework/pie-lib/commit/f557810e373b93e73fd17c0d4708cbdff6dbc57c))
+
+
+
+
+
+## [1.4.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.4.1...@pie-lib/pie-toolbox@1.4.2) (2024-01-02)
+
+**Note:** Version bump only for package @pie-lib/pie-toolbox
+
+
+
+
+
+## [1.4.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.4.0...@pie-lib/pie-toolbox@1.4.1) (2023-12-19)
+
+
+### Bug Fixes
+
+* **charting:** adjust color contrast and pixel gridlines position PD-2068 ([01e3b5c](https://github.com/pie-framework/pie-lib/commit/01e3b5c1a2edacc20811a9102b4bccdb0c756a76))
+
+
+
+
+
+# [1.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.3.0...@pie-lib/pie-toolbox@1.4.0) (2023-12-19)
+
+
+### Bug Fixes
+
+* **rubric:** add new rubric typr to enum PD-2555 ([8511cb6](https://github.com/pie-framework/pie-lib/commit/8511cb6aa6dcdc49c4cb3b568e91e1cb8c99350c))
+
+
+### Features
+
+* **complex-rubric:** solve conflicts PD-2555 ([70e74fb](https://github.com/pie-framework/pie-lib/commit/70e74fb2b53bfa3902c96e9613b0909c33f92e45))
+* **rubric:** adjust logic for rubricless, new type of rubric PD-2555 ([8d106d3](https://github.com/pie-framework/pie-lib/commit/8d106d3f0fe4442a8078765e8a0c61b0919106f7))
+* **rubric:** solve conflicts PD-2555 ([7bdf6de](https://github.com/pie-framework/pie-lib/commit/7bdf6dec06fa85ec8bc4c32908078c7a80ec3788))
+* **rubric:** update snapshots PD-2555 ([daf65e8](https://github.com/pie-framework/pie-lib/commit/daf65e8efb014193f789dc31a39426a1c6ff37c6))
+
+
+
+
+
 # [1.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.2.4...@pie-lib/pie-toolbox@1.3.0) (2023-12-18)
 
 ### Bug Fixes

@@ -1,13 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Node as SlateNode, Transforms } from 'slate';
-import { jsx } from 'slate-hyperscript';
-import { ReactEditor } from 'slate-react';
+import { Inline } from 'slate';
 import TheatersIcon from '@material-ui/icons/Theaters';
 import VolumeUpIcon from '@material-ui/icons/VolumeUp';
-import omit from 'lodash/omit';
-
 import debug from 'debug';
+
 import MediaDialog from './media-dialog';
 import MediaToolbar from './media-toolbar';
 import MediaWrapper from './media-wrapper';
@@ -52,41 +49,17 @@ export const insertDialog = (props) => {
   document.body.appendChild(newEl);
 };
 
-const getNodeBy = (editor, callback) => {
-  const descendants = SlateNode.descendants(editor, {
-    reverse: true,
-  });
-
-  for (const [descendant, descendantPath] of descendants) {
-    if (callback(descendant, descendantPath)) {
-      return [descendant, descendantPath];
-    }
-  }
-};
-
-const moveFocusAfterMedia = (editor, node) => {
-  if (!editor || !node) {
-    return;
-  }
-
-  setTimeout(() => {
-    ReactEditor.focus(editor);
-    Transforms.move(editor, { distance: 1, unit: 'offset' });
-  }, 0);
-};
-
 const types = ['audio', 'video'];
 
 export default function MediaPlugin(type, opts) {
   const toolbar = {
     icon: type === 'audio' ? <VolumeUpIcon /> : <TheatersIcon />,
-    onClick: (editor) => {
+    onClick: (value, onChange) => {
       log('[toolbar] onClick');
-      const inline = {
+      const inline = Inline.create({
         type: type,
         isVoid: true,
         data: {
-          newMedia: true,
           editing: false,
           ends: undefined,
           height: undefined,
@@ -96,163 +69,153 @@ export default function MediaPlugin(type, opts) {
           url: undefined,
           width: undefined,
         },
-        children: [{ text: '' }],
-      };
+      });
 
-      editor.insertNode(inline);
-
+      const change = value.change().insertInline(inline);
+      onChange(change);
       insertDialog({
         type,
         opts,
         callback: (val, data) => {
-          const nodePath = ReactEditor.findPath(editor, inline);
+          const nodeIsThere = change.value.document.findDescendant((d) => d.key === inline.key);
 
-          if (inline) {
+          if (nodeIsThere) {
             if (!val) {
-              editor.apply({
-                type: 'remove_node',
-                path: nodePath,
-              });
+              const c = change.removeNodeByKey(inline.key);
+              onChange(c, () => opts.focus());
             } else {
-              editor.apply({
-                type: 'set_node',
-                path: nodePath,
-                properties: {
-                  data: inline.data,
-                },
-                newProperties: {
-                  data: {
-                    ...data,
-                    newMedia: false,
-                  },
-                },
-              });
+              const c = change.setNodeByKey(inline.key, { data });
+              onChange(c, () => opts.focus('beginning', nodeIsThere));
             }
+          } else {
+            opts.focus();
           }
-
-          moveFocusAfterMedia(editor, inline);
         },
       });
     },
+    supports: (node) => node.object === 'inline' && node.type === type,
   };
 
   return {
     name: type,
     toolbar,
-    rules: (editor) => {
-      const { isVoid, isInline } = editor;
+    deleteNode: (e, node, value, onChange) => {
+      e.preventDefault();
+      const change = value.change().removeNodeByKey(node.key);
 
-      editor.isVoid = (element) => {
-        return ['audio', 'video'].includes(element.type) ? true : isVoid(element);
-      };
-
-      editor.isInline = (element) => {
-        return ['audio', 'video'].includes(element.type) ? true : isInline(element);
-      };
-
-      return editor;
+      onChange(change);
     },
-    supports: (node) => node.type === type,
     renderNode(props) {
       if (props.node.type === type) {
-        const { node, editor } = props;
+        const { node, key } = props;
         const { data } = node;
-        const { src, height, width, editing, tag, ...rest } = omit(data, ['newMedia', 'urlToUse']);
-        const attributes = { ...rest, ...props.attributes };
-        const handleEdit = (event) => {
-          const nodeToEdit = ReactEditor.toSlateNode(editor, event.target);
-          const nodePath = ReactEditor.findPath(editor, nodeToEdit);
-
-          editor.apply({
-            type: 'set_node',
-            path: nodePath,
-            properties: {
-              data: node.data,
+        const jsonData = data.toJSON();
+        const { src, height, width, editing, tag, ...rest } = jsonData;
+        const handleEdit = () => {
+          const change = opts.createChange();
+          const c = change.setNodeByKey(key, {
+            data: {
+              ...jsonData,
+              editing: true,
             },
-            newProperties: {
-              data: {
-                ...data,
-                editing: true,
+          });
+
+          opts.onChange(c, () => {
+            insertDialog({
+              ...jsonData,
+              edit: true,
+              type,
+              opts,
+              callback: (val, data) => {
+                const { key } = node;
+
+                const nodeIsThere = change.value.document.findDescendant(
+                  (d) => d.type === type && d.data.get('editing'),
+                );
+
+                if (nodeIsThere && val) {
+                  const c = change.setNodeByKey(key, { data, editing: false });
+                  opts.onChange(c, () => opts.focus('beginning', nodeIsThere));
+                } else {
+                  opts.focus();
+                }
               },
-            },
-          });
-
-          insertDialog({
-            ...data,
-            edit: true,
-            type,
-            opts,
-            callback: (val, data) => {
-              const nodePath = ReactEditor.findPath(editor, nodeToEdit);
-
-              if (nodePath && val) {
-                editor.apply({
-                  type: 'set_node',
-                  path: nodePath,
-                  properties: {
-                    data: node.data,
-                  },
-                  newProperties: {
-                    data: {
-                      ...data,
-                      editing: true,
-                    },
-                  },
-                });
-              }
-            },
+            });
           });
         };
-        const handleDelete = (event) => {
-          const nodeToEdit = ReactEditor.toSlateNode(editor, event.target);
-          const nodePath = ReactEditor.findPath(editor, nodeToEdit);
+        const handleDelete = () => {
+          const change = opts.createChange();
+          const c = change.removeNodeByKey(node.key);
 
-          editor.apply({
-            type: 'remove_node',
-            path: nodePath,
-          });
+          opts.onChange(c);
         };
-        const computedProps = {};
+        const style = {};
 
         if (width) {
-          computedProps.width = `${width}px`;
+          style.width = `${width}px`;
         }
 
         if (height) {
-          computedProps.height = `${height}px`;
+          style.height = `${height}px`;
         }
-
-        computedProps.editing = editing ? 1 : 0;
 
         if (tag === 'audio') {
           return (
-            <MediaWrapper data-type={type} width={computedProps.width} attributes={attributes}>
+            <MediaWrapper editor data-type={type} width={style.width} {...rest}>
               <audio controls="controls">
                 <source type="audio/mp3" src={src} />
               </audio>
               <MediaToolbar hideEdit onRemove={handleDelete} />
-              {props.children}
             </MediaWrapper>
           );
         }
 
         return (
-          <MediaWrapper data-type={type} width={computedProps.width} attributes={attributes}>
-            <div contentEditable={false}>
-              <iframe
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                src={src}
-                {...rest}
-                {...computedProps}
-              />
-              <MediaToolbar onEdit={handleEdit} onRemove={handleDelete} />
-            </div>
-            {props.children}
+          <MediaWrapper editor data-type={type} width={style.width} {...rest}>
+            <iframe
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              src={src}
+              editing={editing ? 1 : 0}
+              {...rest}
+              {...style}
+            />
+            <MediaToolbar onEdit={handleEdit} onRemove={handleDelete} />
           </MediaWrapper>
         );
       }
+    },
+    normalizeNode: (node) => {
+      const textNodeMap = {};
+      const updateNodesArray = [];
+      let index = 0;
+
+      if (node.object !== 'document') return;
+
+      node.findDescendant((d) => {
+        if (d.object === 'text') {
+          textNodeMap[index] = d;
+        }
+
+        const isMedia = types.indexOf(d.type) >= 0;
+
+        if (isMedia) {
+          if (index > 0 && textNodeMap[index - 1] && textNodeMap[index - 1].text === '') {
+            updateNodesArray.push(textNodeMap[index - 1]);
+          }
+        }
+
+        index++;
+      });
+
+      if (!updateNodesArray.length) return;
+
+      return (change) => {
+        change.withoutNormalization(() => {
+          updateNodesArray.forEach((n) => change.insertTextByKey(n.key, 0, ' '));
+        });
+      };
     },
   };
 }
@@ -280,8 +243,10 @@ export const serialization = {
     const width = parseInt(el.getAttribute('width'), 10) || null;
     const height = parseInt(el.getAttribute('height'), 10) || null;
 
-    const out = jsx('element', {
-      type,
+    const out = {
+      object: 'inline',
+      type: type,
+      isVoid: true,
       data: {
         tag,
         src: src || el.getAttribute('src'),
@@ -293,21 +258,27 @@ export const serialization = {
         width,
         url,
       },
-    });
-
+    };
     log('return object: ', out);
     return out;
   },
-  serialize(object) {
+  serialize(object /*, children*/) {
     const typeIndex = types.indexOf(object.type);
 
-    if (typeIndex < 0) {
-      return;
-    }
+    if (typeIndex < 0) return;
 
     const type = types[typeIndex];
 
-    const { editing, tag, ends, src, starts, title, width, height, url } = object.data || {};
+    const { data } = object;
+    const editing = data.get('editing');
+    const tag = data.get('tag');
+    const ends = data.get('ends');
+    const src = data.get('src');
+    const starts = data.get('starts');
+    const title = data.get('title');
+    const width = data.get('width');
+    const height = data.get('height');
+    const url = data.get('url');
     const style = {};
 
     if (width) {

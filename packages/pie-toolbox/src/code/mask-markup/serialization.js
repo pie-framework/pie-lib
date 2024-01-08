@@ -1,9 +1,6 @@
-import React from 'react';
-import { jsx } from 'slate-hyperscript';
+import Html from 'slate-html-serializer';
 import { object as toStyleObject } from 'to-style';
 import debug from 'debug';
-
-import Html from './test-serializer';
 
 const log = debug('@pie-lib:mask-markup:serialization');
 
@@ -108,13 +105,13 @@ export const MARK_TAGS = {
 const marks = {
   deserialize(el, next) {
     const mark = MARK_TAGS[el.tagName.toLowerCase()];
-
-    if (!mark) {
-      return;
-    }
-
+    if (!mark) return;
     log('[deserialize] mark: ', mark);
-    return jsx('text', { type: mark }, next(el.childNodes));
+    return {
+      object: 'mark',
+      type: mark,
+      nodes: next(el.childNodes),
+    };
   },
 };
 
@@ -130,7 +127,10 @@ const rules = [
       }
 
       if (el.nodeType === TEXT_NODE) {
-        return jsx('text', el.textContent);
+        return {
+          object: 'text',
+          leaves: [{ text: el.textContent }],
+        };
       }
 
       const type = el.tagName.toLowerCase();
@@ -142,33 +142,21 @@ const rules = [
       }
 
       const allAttrs = attributes.reduce(attributesToMap(el), { ...normalAttrs });
+      const object = getObject(type);
 
       if (el.tagName.toLowerCase() === 'math') {
-        return jsx('element', {
-          type: 'mathml',
-          data: {
-            html: el.innerHTML,
-          },
-        });
-
-        // return {
-        //   isMath: true,
-        //   nodes: [el]
-        // };
+        return {
+          isMath: true,
+          nodes: [el],
+        };
       }
 
-      if (el.tagName.toLowerCase() === 'br') {
-        return jsx('element', { type, data: {} });
-      }
-
-      return jsx(
-        'element',
-        {
-          type,
-          data: { dataset: { ...el.dataset }, attributes: { ...allAttrs } },
-        },
-        next(el.childNodes),
-      );
+      return {
+        object,
+        type,
+        data: { dataset: { ...el.dataset }, attributes: { ...allAttrs } },
+        nodes: next(el.childNodes),
+      };
     },
   },
 ];
