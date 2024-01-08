@@ -57,6 +57,7 @@ describe('Rubric', () => {
             excludeZero,
             points: expectedPoints,
             sampleAnswers: expectedSampleAnswers,
+            maxPoints: expectedPoints.length - 1,
           });
         });
       };
