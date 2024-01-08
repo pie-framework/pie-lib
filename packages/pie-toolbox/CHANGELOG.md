@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.4.5...@pie-lib/pie-toolbox@1.4.6) (2024-01-08)
+
+
+### Bug Fixes
+
+* **rubric:** update maxPoints value model when changed PD-3348 ([1496cb3](https://github.com/pie-framework/pie-lib/commit/1496cb3e3f87f1c7870fa74696313748a784231f))
+
+
+
+
+
 ## [1.4.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.4.4...@pie-lib/pie-toolbox@1.4.5) (2024-01-04)
 
 
