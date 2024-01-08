@@ -154,6 +154,7 @@ export const exponential = (a, b) => (x) => a * Math.pow(b, x);
  * @param {*} root
  * @param {*} edge
  * @param {*} yFn
+ * @param {*} excludeOutsidePoints
  */
 export const buildDataPoints = (domain, range, root, edge, yFn, excludeOutsidePoints = false) => {
   log('[buildDataPoints] domain:', domain, 'range:', range, 'root:', root, 'edge:', edge);
