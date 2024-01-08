@@ -1,8 +1,16 @@
 import React from 'react';
 import { Editor } from 'slate';
 import debug from 'debug';
+import isHotkey from 'is-hotkey';
 
 const log = debug('@pie-lib:editable-html:plugins');
+
+const HOTKEYS = {
+  'mod+b': 'bold',
+  'mod+i': 'italic',
+  'mod+u': 'underline',
+  'mod+`': 'code',
+};
 
 const isMarkActive = (editor, format) => {
   const marks = Editor.marks(editor);
@@ -39,16 +47,15 @@ export default function MarkHotkey(options) {
         return <K>{props.children}</K>;
       }
     },
-    onKeyDown(event, change) {
-      // Check that the key pressed matches our `key` option.
-      if (!event.metaKey || event.key !== key) return;
-
-      // Prevent the default characters from being inserted.
-      event.preventDefault();
-
-      // Toggle the mark `type`.
-      change.toggleMark(type);
-      return true;
+    onKeyDown: (editor, event) => {
+      for (const hotkey in HOTKEYS) {
+        if (isHotkey(hotkey, event)) {
+          event.preventDefault();
+          const mark = HOTKEYS[hotkey];
+          toggleMark(editor, mark);
+          return true;
+        }
+      }
     },
   };
 }

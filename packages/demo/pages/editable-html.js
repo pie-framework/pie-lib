@@ -32,7 +32,11 @@ const inputOptions = [
   {
     label: 'Latex \\(..\\)',
     html:
-      '<p>Which of these northern European countries are EU members? <math><mstack><msrow><mn>111</mn></msrow><msline/></mstack></math></p>',
+      '<p>' +
+      // 'Which of these northern European countries are EU members? <math><mstack><msrow><mn>111</mn></msrow><msline/></mstack></math>' +
+      // '<ul><li><div>1</div></li><li><div>2</div></li><li><div>3</div><ul><li><div>2</div><ul><li><div>3</div><ul><li><div>4</div><ul><li><div>5</div><ul><li><div>ds</div></li></ul></li></ul></li></ul></li></ul></li><li><div><br>dsds<br></div></li></ul></li></ul>' +
+      '<ul><li>1</li><li>2</li></ul>' +
+      '</p>',
   },
   {
     label: 'Latex $..$',
