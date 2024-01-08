@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import debug from 'debug';
 import { Editor, Element as SlateElement, Transforms } from 'slate';
+import { ReactEditor } from 'slate-react';
 import { jsx } from 'slate-hyperscript';
 
 const log = debug('@pie-lib:editable-html:plugins:list');
@@ -48,16 +49,18 @@ export const serialization = {
     }
   },
   serialize(object, children) {
+    const key = ReactEditor.findKey(undefined, object);
+
     if (object.type === 'list_item') {
-      return <li>{children}</li>;
+      return <li key={key}>{children}</li>;
     }
 
     if (object.type === 'ul_list') {
-      return <ul>{children}</ul>;
+      return <ul key={key}>{children}</ul>;
     }
 
     if (object.type === 'ol_list') {
-      return <ol>{children}</ol>;
+      return <ol key={key}>{children}</ol>;
     }
   },
 };
