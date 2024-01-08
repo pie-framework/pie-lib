@@ -55,8 +55,13 @@ export const lineToolComponent = (Component) => {
 
       this.setState({ mark: undefined }, () => {
         const { type } = update;
-        const shouldNotChange = type && (type === 'parabola' || type === 'sine') && sameAxes(update.from, update.to);
-
+        let shouldNotChange =
+          type &&
+          (type === 'parabola' || type === 'sine' || type === 'absolute' || type === 'exponential') &&
+          sameAxes(update.from, update.to);
+        if (!shouldNotChange && type && type === 'exponential' && update.from && update.to) {
+          shouldNotChange = update.from.y === 0 || update.to.y === 0 || update.from.y * update.to.y < 0;
+        }
         if (!isEqual(mark, update) && !shouldNotChange) {
           onChange(mark, update);
         }

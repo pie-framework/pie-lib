@@ -7,9 +7,36 @@ import { tool as line } from './line';
 import { tool as segment } from './segment';
 import { tool as ray } from './ray';
 import { tool as vector } from './vector';
+import { tool as absolute } from './absolute';
+import { tool as exponential } from './exponential';
 
-const allTools = ['circle', 'line', 'label', 'parabola', 'point', 'polygon', 'ray', 'segment', 'sine', 'vector'];
+const allTools = [
+  'circle',
+  'line',
+  'label',
+  'parabola',
+  'point',
+  'polygon',
+  'ray',
+  'segment',
+  'sine',
+  'vector',
+  'absolute',
+  'exponential',
+];
 
-const toolsArr = [circle(), line(), parabola(), point(), polygon(), ray(), segment(), sine(), vector()];
+const toolsArr = [
+  circle(),
+  line(),
+  parabola(),
+  point(),
+  polygon(),
+  ray(),
+  segment(),
+  sine(),
+  vector(),
+  absolute(),
+  exponential(),
+];
 
-export { allTools, toolsArr, circle, line, point, parabola, polygon, ray, sine, vector };
+export { allTools, toolsArr, circle, line, point, parabola, polygon, ray, sine, vector, absolute, exponential };
