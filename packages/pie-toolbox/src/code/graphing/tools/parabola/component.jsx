@@ -2,21 +2,22 @@ import debug from 'debug';
 import { buildDataPoints, parabolaFromTwoPoints } from '../../../graphing-utils';
 import { withRootEdge, rootEdgeComponent } from '../shared/line/with-root-edge';
 
-const log = debug('pie-lib:graphing:sine');
+const log = debug('pie-lib:graphing:parabola');
 
 const Parabola = withRootEdge((props) => {
-  const { domain } = props.graphProps;
-
-  const { root, edge } = props;
-  const interval = 1;
+  const { root, edge, graphProps } = props;
+  const { domain, range } = graphProps;
 
   const dataPoints =
     edge && edge.x === root.x
       ? []
-      : buildDataPoints(domain.min, domain.max, root, edge, domain.step || interval, parabolaFromTwoPoints(root, edge));
+      : buildDataPoints(domain, range, root, edge, parabolaFromTwoPoints(root, edge), true);
+
   log('dataPoints:', dataPoints);
+
   return { root: props.root, edge: props.edge, dataPoints };
 });
 
 const Component = rootEdgeComponent(Parabola);
+
 export default Component;

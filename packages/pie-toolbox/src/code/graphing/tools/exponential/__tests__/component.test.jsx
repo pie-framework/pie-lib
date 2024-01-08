@@ -40,8 +40,8 @@ describe('Exponential', () => {
   });
 
   it('calls buildDataPoints', () => {
-    const { domain } = graphProps;
-    expect(buildDataPoints).toHaveBeenCalledWith(domain.min, domain.max, root, edge, 1, expect.anything());
+    const { domain, range } = graphProps;
+    expect(buildDataPoints).toHaveBeenCalledWith(domain, range, root, edge, expect.anything(), true);
   });
 
   it('calls exponentialFromTwoPoints', () => {

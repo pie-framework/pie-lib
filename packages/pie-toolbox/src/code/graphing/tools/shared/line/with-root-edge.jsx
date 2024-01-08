@@ -56,7 +56,35 @@ const withPointsGenerationLinePath = (getPoints) => {
       root: from,
       edge: to,
     });
+    // const adjustValue = (value, size) => {
+    //   if (value < -40) {
+    //     return -40;
+    //   }
+    //
+    //   if (value > size) {
+    //     return size;
+    //   }
+    //
+    //   return value;
+    // };
+    //
+    // const topPadding = 40;
+    // const leftPadding = 80;
+    // const finalWidth = graphProps.size.width + leftPadding * 2 + (graphProps.domain.padding || 0) * 2;
+    // const finalHeight = graphProps.size.height + topPadding * 2 + (graphProps.range.padding || 0) * 2;
+    //
+    // console.log('>>> graphProps', graphProps);
+    // console.log('dataPoints', dataPoints);
+    // const raw = dataPoints.map((d) => {
+    //   const x = adjustValue(graphProps.scale.x(d.x), finalWidth);
+    //   const y = adjustValue(graphProps.scale.y(d.y), finalHeight);
+    //
+    //   return [x, y];
+    // });
+    // // .filter(([a, b]) => a >= 0 && b >= 0);
+
     const raw = dataPoints.map((d) => [graphProps.scale.x(d.x), graphProps.scale.y(d.y)]);
+    console.log('raw', raw);
 
     const common = {
       onClick,
