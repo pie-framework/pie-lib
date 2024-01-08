@@ -1,42 +1,73 @@
 import React from 'react';
+import { Editor } from 'slate';
 import PropTypes from 'prop-types';
 import DragDropTile from './choice';
+import omit from 'lodash/omit';
 
-export const onValueChange = (nodeProps, n, value) => {
-  const val = nodeProps.editor.value;
-  const change = val.change();
+export const onValueChange = (nodeProps, newNode, nodeData, onEditingDone) => {
+  const { editor } = nodeProps;
+  const [result] = Array.from(
+    Editor.nodes(editor, {
+      at: [0],
+      match: (n) => !Editor.isEditor(n) && n.data && n.data.index === newNode.data.index,
+    }),
+  );
 
-  change.setNodeByKey(n.key, {
-    data: {
-      ...value,
-      index: n.data.get('index'),
+  if (!result) {
+    return;
+  }
+
+  const [, nodePath] = result;
+
+  editor.apply({
+    type: 'set_node',
+    path: nodePath,
+    properties: {
+      data: nodeData,
+    },
+    newProperties: {
+      data: {
+        ...nodeData,
+        index: newNode.data.index,
+      },
     },
   });
 
-  nodeProps.editor.props.onChange(change, () => {
-    nodeProps.editor.props.onEditingDone();
-  });
+  onEditingDone(editor);
 };
 
-export const onRemoveResponse = (nodeProps, value) => {
-  const val = nodeProps.editor.value;
-  const change = val.change();
-  const dragInTheBlank = val.document.findDescendant((n) => n.data && n.data.get('index') === value.index);
+export const onRemoveResponse = (nodeProps, nodeData, onEditingDone) => {
+  const { editor } = nodeProps;
+  const [result] = Array.from(
+    Editor.nodes(editor, {
+      at: [0],
+      match: (n) => !Editor.isEditor(n) && n.data && n.data.index === nodeData.index,
+    }),
+  );
 
-  change.setNodeByKey(dragInTheBlank.key, {
-    data: {
-      index: dragInTheBlank.data.get('index'),
+  if (!result) {
+    return;
+  }
+
+  const [, nodePath] = result;
+
+  editor.apply({
+    type: 'set_node',
+    path: nodePath,
+    properties: {
+      data: nodeData,
     },
+    newProperties: { data: { ...omit(nodeData, 'value') } },
   });
 
-  nodeProps.editor.props.onChange(change, () => {
-    nodeProps.editor.props.onEditingDone();
-  });
+  onEditingDone(editor);
 };
 
 const DragDrop = (props) => {
-  const { attributes, data, n, nodeProps, opts } = props;
+  const { attributes, children, data, n, nodeProps, opts } = props;
+  const { editor } = nodeProps || {};
   const { inTable } = data;
+  const { onEditingDone } = opts;
 
   return (
     <span
@@ -55,11 +86,13 @@ const DragDrop = (props) => {
         dragKey={n.key}
         targetId="0"
         value={data}
+        editor={editor}
         duplicates={opts.options.duplicates}
-        onChange={(value) => onValueChange(nodeProps, n, value)}
-        removeResponse={(value) => onRemoveResponse(nodeProps, value)}
+        onChange={(value) => onValueChange(nodeProps, n, value, onEditingDone)}
+        removeResponse={(value) => onRemoveResponse(nodeProps, value, onEditingDone)}
       >
         {nodeProps.children}
+        {children}
       </DragDropTile>
     </span>
   );

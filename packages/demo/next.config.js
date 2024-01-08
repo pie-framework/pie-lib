@@ -31,6 +31,8 @@ module.exports = withCSS({
         publicPath,
       },
     });
+
+    console.log(config);
     return config;
   },
   webpackDevMiddleware: (config) => {

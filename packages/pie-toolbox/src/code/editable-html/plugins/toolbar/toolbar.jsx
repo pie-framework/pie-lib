@@ -1,23 +1,22 @@
-import React from 'react';
-import { Change } from 'slate';
+import React, { useEffect } from 'react';
+import { Change, Editor, Element as SlateElement, Text, Node } from 'slate';
+import { useSlate, useSlateSelection } from 'slate-react';
 import Delete from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import debug from 'debug';
-import SlatePropTypes from 'slate-prop-types';
 import debounce from 'lodash/debounce';
 
 import { DoneButton } from './done-button';
 
-import { findSingleNode, findParentNode } from '../utils';
 import { withStyles } from '@material-ui/core/styles';
 import DefaultToolbar from './default-toolbar';
 import { removeDialogs as removeCharacterDialogs } from '../characters';
 
 const log = debug('@pie-lib:editable-html:plugins:toolbar');
 
-const getCustomToolbar = (plugin, node, value, handleDone, onDataChange) => {
+const getCustomToolbar = (plugin, node, nodePath, editor, handleDone) => {
   if (!plugin) {
     return;
   }
@@ -34,237 +33,9 @@ const getCustomToolbar = (plugin, node, value, handleDone, onDataChange) => {
     return plugin.toolbar.CustomToolbarComp;
   } else if (typeof plugin.toolbar.customToolbar === 'function') {
     log('deprecated - use CustomToolbarComp');
-    return plugin.toolbar.customToolbar(node, value, handleDone, onDataChange);
+    return plugin.toolbar.customToolbar(node, nodePath, editor, handleDone);
   }
 };
-
-export class Toolbar extends React.Component {
-  static propTypes = {
-    zIndex: PropTypes.number,
-    value: SlatePropTypes.value.isRequired,
-    plugins: PropTypes.array,
-    plugin: PropTypes.object,
-    onImageClick: PropTypes.func,
-    onDone: PropTypes.func.isRequired,
-    toolbarRef: PropTypes.func.isRequired,
-    classes: PropTypes.object.isRequired,
-    isFocused: PropTypes.bool,
-    autoWidth: PropTypes.bool,
-    onChange: PropTypes.func.isRequired,
-    getFocusedValue: PropTypes.func.isRequired,
-    pluginProps: PropTypes.object,
-    toolbarOpts: PropTypes.shape({
-      position: PropTypes.oneOf(['bottom', 'top']),
-      alignment: PropTypes.oneOf(['left', 'right']),
-      alwaysVisible: PropTypes.bool,
-      ref: PropTypes.func,
-      showDone: PropTypes.bool,
-    }),
-    onDataChange: PropTypes.func,
-  };
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      change: null,
-    };
-  }
-
-  componentWillUnmount() {
-    removeCharacterDialogs();
-  }
-
-  hasMark = (type) => {
-    const { value } = this.props;
-    return value.marks.some((mark) => mark.type == type);
-  };
-
-  hasBlock = (type) => {
-    const { value } = this.props;
-    return value.blocks.some((node) => node.type == type);
-  };
-
-  onToggle = (plugin) => {
-    const { value, onChange } = this.props;
-
-    if (!plugin.onToggle) return;
-
-    const change = plugin.onToggle(value.change());
-    onChange(change);
-  };
-
-  onClick = (e) => {
-    log('[onClick]');
-    e.preventDefault();
-  };
-
-  onButtonClick = (fn) => {
-    return (e) => {
-      e.preventDefault();
-      fn();
-    };
-  };
-
-  onToolbarDone = (change, finishEditing) => {
-    log('[onToolbarDone] change: ', change, 'finishEditing: ', finishEditing);
-    const { onChange, onDone } = this.props;
-
-    // use handler only if this is an actual Slate Change
-    if (change instanceof Change) {
-      onChange(change, () => {
-        if (finishEditing) {
-          onDone();
-        }
-      });
-    } else {
-      if (finishEditing) {
-        log('[onToolbarChange] call onDone');
-        onDone();
-      }
-    }
-  };
-
-  onDeleteClick = debounce((e, plugin, node, value, onChange) => plugin.deleteNode(e, node, value, onChange), 500);
-
-  onDeleteMouseDown = (e, plugin, node, value, onChange) => {
-    e.persist();
-    this.onDeleteClick(e, plugin, node, value, onChange);
-  };
-
-  render() {
-    const {
-      classes,
-      plugins,
-      pluginProps,
-      toolbarOpts,
-      value,
-      autoWidth,
-      onChange,
-      getFocusedValue,
-      isFocused,
-      onDone,
-      toolbarRef,
-    } = this.props;
-
-    const node = findSingleNode(value);
-    const parentNode = findParentNode(value, node);
-
-    log(' --------------> [render] node: ', node);
-    log('[render] node: ', node);
-
-    const plugin = plugins.find((p) => {
-      if (!node) {
-        return;
-      }
-
-      if (p.toolbar) {
-        return p.toolbar.supports && p.toolbar.supports(node, value);
-      }
-    });
-    const parentPlugin = plugins.find((p) => {
-      if (!parentNode) {
-        return;
-      }
-
-      if (p.toolbar) {
-        return p.toolbar.supports && p.toolbar.supports(parentNode, value);
-      }
-    });
-
-    log('[render] plugin: ', plugin);
-
-    const handleDone = (change, done) => {
-      let handler = onDone;
-
-      if (plugin && plugin.toolbar && plugin.toolbar.customToolbar) {
-        handler = this.onToolbarDone;
-      }
-
-      handler(change, done);
-
-      if (parentPlugin && parentPlugin.handleDone) {
-        parentPlugin.handleDone(value, node, plugin, onChange);
-      }
-    };
-
-    const handleDataChange = (key, data) => {
-      this.props.onDataChange(key, data);
-    };
-
-    const CustomToolbar = getCustomToolbar(plugin, node, value, handleDone, this.props.onDataChange);
-
-    const filteredPlugins = plugin && plugin.filterPlugins ? plugin.filterPlugins(node, plugins) : plugins;
-
-    log('[render] CustomToolbar: ', CustomToolbar);
-    const parentExtraStyles =
-      parentPlugin && parentPlugin.pluginStyles ? parentPlugin.pluginStyles(node, parentNode, plugin) : {};
-    const pluginExtraStyles = plugin && plugin.pluginStyles ? plugin.pluginStyles(node, parentNode, plugin) : {};
-    const extraStyles = {
-      ...pluginExtraStyles,
-      ...parentExtraStyles,
-    };
-
-    const deletable = node && plugin && plugin.deleteNode;
-    const customToolbarShowDone =
-      node && plugin && plugin.toolbar && plugin.toolbar.showDone && !toolbarOpts.alwaysVisible;
-
-    // If there is a toolbarOpts we check if the showDone is not equal to false
-    const defaultToolbarShowDone = !toolbarOpts || toolbarOpts.showDone !== false;
-
-    const hasDoneButton = defaultToolbarShowDone || customToolbarShowDone;
-
-    const names = classNames(classes.toolbar, {
-      [classes.toolbarWithNoDone]: !hasDoneButton,
-      [classes.toolbarTop]: toolbarOpts.position === 'top',
-      [classes.toolbarRight]: toolbarOpts.alignment === 'right',
-      [classes.focused]: toolbarOpts.alwaysVisible || isFocused,
-      [classes.autoWidth]: autoWidth,
-      [classes.fullWidth]: !autoWidth,
-    });
-
-    return (
-      <div className={names} style={extraStyles} onClick={this.onClick} ref={toolbarRef}>
-        {CustomToolbar ? (
-          <CustomToolbar
-            node={node}
-            value={value}
-            onToolbarDone={this.onToolbarDone}
-            onDataChange={handleDataChange}
-            pluginProps={pluginProps}
-          />
-        ) : (
-          <DefaultToolbar
-            plugins={filteredPlugins}
-            pluginProps={pluginProps}
-            value={value}
-            onChange={onChange}
-            getFocusedValue={getFocusedValue}
-            showDone={defaultToolbarShowDone}
-            onDone={handleDone}
-            deletable={deletable}
-            isHtmlMode={toolbarOpts.isHtmlMode}
-          />
-        )}
-
-        <div className={classes.shared}>
-          {deletable && (
-            <IconButton
-              aria-label="Delete"
-              className={classes.iconRoot}
-              onMouseDown={(e) => this.onDeleteMouseDown(e, plugin, node, value, onChange)}
-              classes={{
-                root: classes.iconRoot,
-              }}
-            >
-              <Delete />
-            </IconButton>
-          )}
-          {customToolbarShowDone && <DoneButton onClick={handleDone} />}
-        </div>
-      </div>
-    );
-  }
-}
 
 const style = {
   toolbar: {
@@ -312,4 +83,250 @@ const style = {
     display: 'flex',
   },
 };
+
+export const Toolbar = (props) => {
+  useEffect(() => {
+    return () => removeCharacterDialogs();
+  }, []);
+
+  const onClick = (e) => {
+    log('[onClick]');
+    e.preventDefault();
+  };
+
+  const onButtonClick = (fn) => {
+    return (e) => {
+      e.preventDefault();
+      fn();
+    };
+  };
+
+  const onToolbarDone = (editor, finishEditing) => {
+    log('[onToolbarDone] change: ', editor, 'finishEditing: ', finishEditing);
+    const { onChange, onDone } = props;
+
+    if (editor) {
+      onChange(editor, () => {
+        if (finishEditing) {
+          onDone();
+        }
+      });
+    } else {
+      if (finishEditing) {
+        log('[onToolbarChange] call onDone');
+        onDone();
+      }
+    }
+  };
+
+  const onDeleteClick = debounce(
+    (e, plugin, node, nodePath, editor, onChange) => plugin.deleteNode(e, node, nodePath, editor, onChange),
+    500,
+  );
+
+  const onDeleteMouseDown = (e) => {
+    e.persist();
+    onDeleteClick(e, plugin, node, nodePath, editor, onChange);
+  };
+
+  const {
+    classes,
+    plugins,
+    pluginProps,
+    toolbarOpts,
+    value,
+    autoWidth,
+    onChange,
+    getFocusedValue,
+    isFocused,
+    onDone,
+    toolbarRef,
+  } = props;
+
+  const editor = useSlate();
+  const selection = useSlateSelection();
+  const getNode = (editor, selection, depth) => {
+    if (!selection) {
+      return null;
+    }
+
+    // this means we have selected text
+    if (selection.anchor.offset !== selection.focus.offset) {
+      return null;
+    }
+
+    const [node, path] = Editor.node(editor, selection, depth ? { depth } : undefined);
+
+    if (!node) {
+      return null;
+    }
+
+    if (!Text.isText(node)) {
+      return [node, path];
+    }
+
+    return getNode(editor, selection, path.length - 1);
+  };
+  const getParentNode = (editor, path) => Array.isArray(path) && path.length > 0 && Editor.parent(editor, path);
+
+  const [node, nodePath] = getNode(editor, selection) || [];
+  const [parentNode] = getParentNode(editor, nodePath) || [];
+
+  log(' --------------> [render] node: ', node);
+  log('[render] node: ', node);
+
+  const plugin = plugins.find((p) => {
+    if (!node) {
+      return;
+    }
+
+    if (p.toolbar) {
+      return p.supports && p.supports(node, editor, value);
+    }
+  });
+  const parentPlugin = plugins.find((p) => {
+    if (!parentNode) {
+      return;
+    }
+
+    if (p.toolbar) {
+      return p.supports && p.supports(parentNode, editor, value);
+    }
+  });
+
+  log('[render] plugin: ', plugin);
+
+  const handleDone = (done) => {
+    const isDone = done ? editor : null;
+    let handler = onDone;
+
+    if (plugin && plugin.toolbar && plugin.toolbar.customToolbar) {
+      handler = onToolbarDone;
+    }
+
+    if (isDone) {
+      editor.selection = null;
+    }
+
+    handler(isDone);
+
+    if (parentPlugin && parentPlugin.handleDone) {
+      parentPlugin.handleDone(isDone, node, plugin);
+    }
+  };
+
+  const handleDataChange = (key, data) => {
+    this.props.onDataChange(key, data);
+  };
+
+  const CustomToolbar =
+    getCustomToolbar(plugin, node, nodePath, editor, handleDone) ||
+    getCustomToolbar(parentPlugin, node, nodePath, editor, handleDone);
+
+  const filteredPlugins = plugin && plugin.filterPlugins ? plugin.filterPlugins(node, plugins) : plugins;
+
+  log('[render] CustomToolbar: ', CustomToolbar);
+  const parentExtraStyles =
+    parentPlugin && parentPlugin.pluginStyles ? parentPlugin.pluginStyles(node, parentNode, plugin) : {};
+  const pluginExtraStyles = plugin && plugin.pluginStyles ? plugin.pluginStyles(node, parentNode, plugin) : {};
+  const extraStyles = {
+    ...pluginExtraStyles,
+    ...parentExtraStyles,
+  };
+
+  const deletable = node && plugin && typeof plugin.deleteNode === 'function';
+  const customToolbarShowDone =
+    node && plugin && plugin.toolbar && plugin.toolbar.showDone && !toolbarOpts.alwaysVisible;
+
+  // If there is a toolbarOpts we check if the showDone is not equal to false
+  const defaultToolbarShowDone = !toolbarOpts || toolbarOpts.showDone !== false;
+
+  const hasDoneButton = defaultToolbarShowDone || customToolbarShowDone;
+
+  const names = classNames(classes.toolbar, {
+    [classes.toolbarWithNoDone]: !hasDoneButton,
+    [classes.toolbarTop]: toolbarOpts.position === 'top',
+    [classes.toolbarRight]: toolbarOpts.alignment === 'right',
+    [classes.focused]: toolbarOpts.alwaysVisible || isFocused,
+    [classes.autoWidth]: autoWidth,
+    [classes.fullWidth]: !autoWidth,
+  });
+
+  return (
+    <div className={names} style={extraStyles} onClick={onClick} ref={toolbarRef}>
+      {CustomToolbar ? (
+        <CustomToolbar
+          editor={editor}
+          node={node}
+          nodePath={nodePath}
+          value={value}
+          onToolbarDone={onToolbarDone}
+          onDataChange={handleDataChange}
+          pluginProps={pluginProps}
+        />
+      ) : (
+        <DefaultToolbar
+          editor={editor}
+          nodePath={nodePath}
+          plugins={filteredPlugins}
+          pluginProps={pluginProps}
+          value={value}
+          onChange={onChange}
+          getFocusedValue={getFocusedValue}
+          showDone={defaultToolbarShowDone}
+          onDone={handleDone}
+          deletable={deletable}
+          isHtmlMode={toolbarOpts.isHtmlMode}
+        />
+      )}
+
+      <div className={classes.shared}>
+        {deletable && (
+          <IconButton
+            aria-label="Delete"
+            className={classes.iconRoot}
+            onMouseDown={(e) => onDeleteMouseDown(e)}
+            classes={{
+              root: classes.iconRoot,
+            }}
+          >
+            <Delete />
+          </IconButton>
+        )}
+        {customToolbarShowDone && <DoneButton onClick={handleDone} />}
+      </div>
+    </div>
+  );
+};
+
+Toolbar.propTypes = {
+  editor: PropTypes.object.isRequired,
+  zIndex: PropTypes.number,
+  value: PropTypes.arrayOf(
+    PropTypes.shape({
+      type: PropTypes.string,
+      children: PropTypes.array,
+      data: PropTypes.object,
+    }),
+  ),
+  plugins: PropTypes.array,
+  plugin: PropTypes.object,
+  onImageClick: PropTypes.func,
+  onDone: PropTypes.func.isRequired,
+  toolbarRef: PropTypes.func.isRequired,
+  classes: PropTypes.object.isRequired,
+  isFocused: PropTypes.bool,
+  autoWidth: PropTypes.bool,
+  onChange: PropTypes.func.isRequired,
+  getFocusedValue: PropTypes.func.isRequired,
+  pluginProps: PropTypes.object,
+  toolbarOpts: PropTypes.shape({
+    position: PropTypes.oneOf(['bottom', 'top']),
+    alignment: PropTypes.oneOf(['left', 'right']),
+    alwaysVisible: PropTypes.bool,
+    ref: PropTypes.func,
+    showDone: PropTypes.bool,
+  }),
+};
+
 export default withStyles(style, { index: 1000 })(Toolbar);
