@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.4.6...@pie-lib/pie-toolbox@1.4.7) (2024-01-08)
+
+
+### Bug Fixes
+
+* **math-input:** prevent newLine insertion on Enter in math editor PD-3296 ([46e44e0](https://github.com/pie-framework/pie-lib/commit/46e44e0ed24597cb8a5a18924afa4b4347e348c7))
+
+
+
+
+
 ## [1.4.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.4.5...@pie-lib/pie-toolbox@1.4.6) (2024-01-08)
 
 
