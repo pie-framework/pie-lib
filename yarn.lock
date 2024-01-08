@@ -9846,10 +9846,10 @@ kleur@^3.0.3:
   resolved "https://registry.yarnpkg.com/kleur/-/kleur-3.0.3.tgz#a79c9ecc86ee1ce3fa6206d1216c501f147fc07e"
   integrity sha512-eTIzlVOSUR+JxdDFepEYcBMtZ9Qqdef+rnzWdRZuMbOywu5tO2w2N7rqjoANZ5k9vywhL6Br1VRjUIgTQx4E8w==
 
-konva@^3.2.4:
-  version "3.4.1"
-  resolved "https://registry.yarnpkg.com/konva/-/konva-3.4.1.tgz#bc177e844e355095c8640010456063e158586790"
-  integrity sha512-Lra+Sb9dFwsCtkWoFvtcmVFbzAZCqSS/we3iTxDogBl3DTTjieY0e/1crqvs/EZCNR5uV2Kfvkn7t2547cD1SQ==
+konva@^4.2.2:
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/konva/-/konva-4.2.2.tgz#0f1799dbe0275bb8218a03549ce931e9006a696d"
+  integrity sha512-5vq/rKy35/gdMLipjcxgFz/LhJ/S8Ct/e1XntQmH1MSwN4rMP97Oera2PzxDh3DZPsrV6TETTKHNb1G7Jb6Z5A==
 
 kuler@^2.0.0:
   version "2.0.0"
