@@ -1,17 +1,34 @@
 import { mathjax } from 'mathjax-full/js/mathjax';
 import { MathML } from 'mathjax-full/js/input/mathml';
 import { TeX } from 'mathjax-full/js/input/tex';
+import { EnrichHandler } from 'mathjax-full/js/a11y/semantic-enrich.js';
+import { useMathJax } from './mathjax-script';
 
 import { CHTML } from 'mathjax-full/js/output/chtml';
 import { RegisterHTMLHandler } from 'mathjax-full/js/handlers/html';
 import { browserAdaptor } from 'mathjax-full/js/adaptors/browserAdaptor';
 import { AllPackages } from 'mathjax-full/js/input/tex/AllPackages';
+import { LiteAdaptor } from 'mathjax-full/js/adaptors/liteAdaptor';
+
+import { MathJaxConfig, MathJaxObject } from 'mathjax-full/js/components/startup';
+import { OptionList } from 'mathjax-full/js/util/Options';
+
+const adaptor = new LiteAdaptor();
+const extensions = ['a11y/semantic-enrich', 'a11y/sre', 'a11y/complexity', 'a11y/explorer', 'a11y/assistive-mml'];
+
+console.log(mathjax, 'mathjax before register');
 
 if (typeof window !== 'undefined') {
-  RegisterHTMLHandler(browserAdaptor());
+  EnrichHandler(RegisterHTMLHandler(browserAdaptor()), new MathML());
+
+  console.log(MathJaxConfig, 'MathJaxConfig');
+  console.log(MathJaxObject, 'MathJaxObject');
 }
 
-// import pkg from '../../package.json';
+// mathjax.config()
+// mathjax.init()
+console.log(mathjax, 'mathjax after register');
+
 import { mmlNodes, chtmlNodes } from './mstack';
 import debug from 'debug';
 import { wrapMath, unWrapMath } from './normalization';
@@ -89,9 +106,28 @@ const adjustMathMLStyle = (el = document) => {
   nodes.forEach((node) => node.setAttribute('displaystyle', 'true'));
 };
 
+const accessibilityOptions = {
+  enableEnrichment: true,
+  enableAssistiveMml: true,
+  sre: {
+    speech: 'deep',
+  },
+  menuOptions: {
+    settings: {
+      assistiveMml: true,
+      collapsible: false,
+      explorer: false,
+    },
+  },
+};
+
 const createMathMLInstance = (opts, docProvided = document) => {
   opts = opts || defaultOpts();
 
+  if (window.Mathjax) {
+    console.log('-----------------------------------------------------------------you can access me');
+  }
+  console.log(opts, 'opts in createMathMLInstance');
   if (opts.useSingleDollar) {
     // eslint-disable-next-line
     console.warn('[math-rendering] using $ is not advisable, please use $$..$$ or \\(...\\)');
@@ -102,7 +138,7 @@ const createMathMLInstance = (opts, docProvided = document) => {
   // The autoload extension predefines all the macros from the extensions that haven't been loaded already
   // so that they automatically load the needed extension when they are first used
   packages.push('autoload');
-
+  packages.push('autoload');
   const macros = {
     parallelogram: '\\lower.2em{\\Huge\\unicode{x25B1}}',
     overarc: '\\overparen',
@@ -113,54 +149,59 @@ const createMathMLInstance = (opts, docProvided = document) => {
   const texConfig = opts.useSingleDollar
     ? {
         packages,
+        extensions,
         macros,
         inlineMath: [
           ['$', '$'],
           ['\\(', '\\)'],
         ],
         processEscapes: true,
-        options: {
-          enableExplorer: true,
-          enableAssistiveMml: true,
-          a11y: {
-            speech: true,
-            braille: true,
-            subtitles: true,
-          },
-          sre: {
-            domain: 'default',
-            style: 'default',
-            locale: 'en',
-          },
-        },
+
+        // enableExplorer: true,
+        // enableAssistiveMml: true,
+        // a11y: {
+        //   speech: true,
+        //   braille: true,
+        //   subtitles: true,
+        // },
+        // sre: {
+        //   domain: 'mathspeak',
+        //   style: 'default',
+        //   locale: 'en',
+        // },
       }
     : {
         packages,
+        extensions,
         macros,
-        options: {
-          enableExplorer: true,
-          enableAssistiveMml: true,
-          a11y: {
-            speech: true,
-            braille: true,
-            subtitles: true,
-          },
-          sre: {
-            domain: 'default',
-            style: 'default',
-            locale: 'en',
-          },
+        a11y: {
+          speech: true,
+          braille: true,
+          subtitles: true,
         },
+        // accessibilityExtensions,
+
+        // enableAssistiveMml: true,
+        // sre: {
+        //   speech: 'deep',
+        // },
+        // renderActions: require('./action.js').speechAction
+
+        // enableExplorer: true,
+        // enableAssistiveMml: true,
+        // a11y: {
+        //   speech: true,
+        //   braille: true,
+        //   subtitles: true,
+        // },
+        // sre: {
+        //   domain: 'mathspeak',
+        //   style: 'default',
+        //   locale: 'en',
+        // },
       };
 
   const mmlConfig = {
-    options: {
-      a11y: {
-        speech: true,
-        braille: true,
-        subtitles: true,
-      },
-    },
     parseError: function(node) {
       // function to process parsing errors
       // eslint-disable-next-line no-console
@@ -178,11 +219,7 @@ const createMathMLInstance = (opts, docProvided = document) => {
       ...chtmlNodes,
     }),
 
-    options: {
-      renderActions: {
-        assistiveMml: [['AssistiveMmlHandler']],
-      },
-    },
+    // options:  accessibilityOptions,
   };
 
   const mml = new MathML(mmlConfig);
@@ -206,18 +243,23 @@ const createMathMLInstance = (opts, docProvided = document) => {
       console.error(err);
       doc.typesetError(math, err);
     },
-
-    options: {
-      enableAssistiveMml: true,
-      menuOptions: {
-        settings: {
-          assistiveMml: true,
-          collapsible: true,
-          explorer: true,
-        },
-      },
+    // enableAssistiveMml: true,
+    //  renderActions: require('./action.js').speechAction,
+    enableEnrichment: true,
+    sre: {
+      speech: 'deep',
     },
-
+    loader: {
+      load: [
+        'input/tex-full',
+        'output/chtml',
+        'a11y/semantic-enrich',
+        // other accessibility extensions here
+      ],
+    },
+    startup: {
+      typeset: false,
+    },
     InputJax: [new TeX(texConfig), mml],
     OutputJax: new CHTML(htmlConfig),
   });
@@ -233,12 +275,62 @@ const bootstrap = (opts) => {
     return { Typeset: () => ({}) };
   }
 
+  console.log(opts, 'opts in render math');
   const html = createMathMLInstance(opts);
+  console.log(html, 'returned html');
+  const accessibilityOptions = {
+    a11y: {
+      speech: true, // switch on speech output
+      braille: true, // switch on Braille output
+      subtitles: true, // show speech as a subtitle
+      viewBraille: false, // display Braille output as subtitles
+
+      backgroundColor: 'Blue', // color for background of selected sub-expression
+      backgroundOpacity: 0.2, // opacity for background of selected sub-expression
+      foregroundColor: 'Black', // color to use for text of selected sub-expression
+      foregroundOpacity: 1, // opacity for text of selected sub-expression
+
+      highlight: 'None', // type of highlighting for collapsible sub-expressions
+      flame: false, // color collapsible sub-expressions
+      hover: false, // show collapsible sub-expression on mouse hovering
+
+      treeColoring: false, // tree color expression
+
+      magnification: 'None', // type of magnification
+      magnify: '400%', // percentage of magnification of zoomed expressions
+      keyMagnifier: false, // switch on magnification via key exploration
+      mouseMagnifier: false, // switch on magnification via mouse hovering
+      align: 'top', // placement of magnified expression
+
+      infoType: false, // show semantic type on mouse hovering
+      infoRole: false, // show semantic role on mouse hovering
+      infoPrefix: false, // show speech prefixes on mouse hovering
+    },
+    enableEnrichment: true,
+    sre: {
+      speech: 'deep',
+    },
+    enableAssistiveMml: true,
+    menuOptions: {
+      settings: {
+        assistiveMml: true,
+        collapsible: false,
+        explorer: false,
+      },
+    },
+  };
 
   return {
     version: mathjax.version,
+    options: accessibilityOptions,
     html: html,
+    a11y: {
+      speech: true,
+      braille: true,
+      subtitles: true,
+    },
     Typeset: function(...elements) {
+      console.log(this.html, 'this html');
       const updatedDocument = this.html
         .findMath(elements.length ? { elements } : {})
         .compile()
@@ -246,19 +338,19 @@ const bootstrap = (opts) => {
         .typeset()
         .updateDocument();
 
-      try {
-        const list = updatedDocument.math.list;
+      // try {
+      //   const list = updatedDocument.math.list;
 
-        for (let item = list.next; typeof item.data !== 'symbol'; item = item.next) {
-          const mathMl = toMMl(item.data.root);
-          const parsedMathMl = mathMl.replaceAll('\n', '');
+      //   for (let item = list.next; typeof item.data !== 'symbol'; item = item.next) {
+      //     const mathMl = toMMl(item.data.root);
+      //     const parsedMathMl = mathMl.replaceAll('\n', '');
 
-          item.data.typesetRoot.setAttribute('data-mathml', parsedMathMl);
-        }
-      } catch (e) {
-        // eslint-disable-next-line no-console
-        console.error(e.toString());
-      }
+      //     item.data.typesetRoot.setAttribute('data-mathml', parsedMathMl);
+      //   }
+      // } catch (e) {
+      //   // eslint-disable-next-line no-console
+      //   console.error(e.toString());
+      // }
 
       updatedDocument.clear();
     },
@@ -268,6 +360,13 @@ const bootstrap = (opts) => {
 const renderMath = (el, renderOpts) => {
   const isString = typeof el === 'string';
   let executeOn = document.body;
+  console.log(el, 'el in render Math');
+  console.log(renderOpts, 'render Opts in render math');
+
+  if (!window.MathJax) {
+    log('MathJax is not loaded yet');
+    return;
+  }
 
   if (isString) {
     const div = document.createElement('div');
@@ -301,9 +400,51 @@ const renderMath = (el, renderOpts) => {
 
     return parsedMathMl;
   }
+  const accessibilityOptions = {
+    enableEnrichment: true,
+    sre: {
+      speech: 'deep',
+    },
+    menuOptions: {
+      settings: {
+        assistiveMml: true,
+        collapsible: false,
+        explorer: false,
+      },
+    },
+    enableAssistiveMml: true,
+    enableExplorer: true, // set to false to disable the explorer
+    a11y: {
+      speech: true, // switch on speech output
+      braille: true, // switch on Braille output
+      subtitles: true, // show speech as a subtitle
+      viewBraille: false, // display Braille output as subtitles
 
+      backgroundColor: 'Blue', // color for background of selected sub-expression
+      backgroundOpacity: 0.2, // opacity for background of selected sub-expression
+      foregroundColor: 'Black', // color to use for text of selected sub-expression
+      foregroundOpacity: 1, // opacity for text of selected sub-expression
+
+      highlight: 'None', // type of highlighting for collapsible sub-expressions
+      flame: false, // color collapsible sub-expressions
+      hover: false, // show collapsible sub-expression on mouse hovering
+
+      treeColoring: false, // tree color expression
+
+      magnification: 'None', // type of magnification
+      magnify: '400%', // percentage of magnification of zoomed expressions
+      keyMagnifier: false, // switch on magnification via key exploration
+      mouseMagnifier: false, // switch on magnification via mouse hovering
+      align: 'top', // placement of magnified expression
+
+      infoType: false, // show semantic type on mouse hovering
+      infoRole: false, // show semantic role on mouse hovering
+      infoPrefix: false, // show speech prefixes on mouse hovering
+    },
+  };
+  console.log(renderOpts, 'render Opts');
   if (!getGlobal().instance) {
-    getGlobal().instance = bootstrap(renderOpts);
+    //getGlobal().instance = bootstrap(accessibilityOptions);
   }
 
   if (!el) {
@@ -312,7 +453,21 @@ const renderMath = (el, renderOpts) => {
   }
 
   if (el instanceof Element) {
-    getGlobal().instance.Typeset(el);
+    // getGlobal().instance.Typeset(el);
+    //  window.MathJax.startup.promise.then(() => {
+    //   // Process the math content
+    //   window.MathJax.typesetPromise([el]).catch((err) => console.error(err));
+    // }).catch((err) => console.error('Error in MathJax startup:', err));
+
+    window.MathJax.startup.promise = window.MathJax.startup.promise
+      .then(() => window.MathJax.startup.defaultPageReady())
+      .then(() => {
+        let mathList = window.MathJax.startup.document.getMathItemsWithin(el);
+        mathList.forEach((math) => math.typeset());
+      });
+
+    console.log(el, 'el');
+    console.log(window.MathJax, 'window.mathjax');
   } else if (el.length) {
     const arr = Array.from(el);
     getGlobal().instance.Typeset(...arr);
