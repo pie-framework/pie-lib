@@ -43,6 +43,7 @@ const useMathJax = () => {
           },
         };
       });
+      
     };
 
     return () => {
