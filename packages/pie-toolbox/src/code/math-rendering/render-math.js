@@ -1,44 +1,12 @@
-import { mathjax } from 'mathjax-full/js/mathjax';
-import { MathML } from 'mathjax-full/js/input/mathml';
-import { TeX } from 'mathjax-full/js/input/tex';
-import { EnrichHandler } from 'mathjax-full/js/a11y/semantic-enrich.js';
-import { useMathJax } from './mathjax-script';
 
-import { CHTML } from 'mathjax-full/js/output/chtml';
-import { RegisterHTMLHandler } from 'mathjax-full/js/handlers/html';
-import { browserAdaptor } from 'mathjax-full/js/adaptors/browserAdaptor';
-import { AllPackages } from 'mathjax-full/js/input/tex/AllPackages';
-import { LiteAdaptor } from 'mathjax-full/js/adaptors/liteAdaptor';
 
-import { MathJaxConfig, MathJaxObject } from 'mathjax-full/js/components/startup';
-import { OptionList } from 'mathjax-full/js/util/Options';
-
-const adaptor = new LiteAdaptor();
-const extensions = ['a11y/semantic-enrich', 'a11y/sre', 'a11y/complexity', 'a11y/explorer', 'a11y/assistive-mml'];
-
-console.log(mathjax, 'mathjax before register');
-
-if (typeof window !== 'undefined') {
-  EnrichHandler(RegisterHTMLHandler(browserAdaptor()), new MathML());
-
-  console.log(MathJaxConfig, 'MathJaxConfig');
-  console.log(MathJaxObject, 'MathJaxObject');
-}
-
-// mathjax.config()
-// mathjax.init()
-console.log(mathjax, 'mathjax after register');
+import { initializeMathJax } from './mathjax-script';
 
 import { mmlNodes, chtmlNodes } from './mstack';
 import debug from 'debug';
 import { wrapMath, unWrapMath } from './normalization';
-import { MmlFactory } from 'mathjax-full/js/core/MmlTree/MmlFactory';
-import { SerializedMmlVisitor } from 'mathjax-full/js/core/MmlTree/SerializedMmlVisitor';
-import { CHTMLWrapperFactory } from 'mathjax-full/js/output/chtml/WrapperFactory';
-import { CHTMLmspace } from 'mathjax-full/js/output/chtml/Wrappers/mspace';
 
-const visitor = new SerializedMmlVisitor();
-const toMMl = (node) => visitor.visitTree(node);
+
 
 const log = debug('pie-lib:math-rendering');
 
@@ -106,28 +74,12 @@ const adjustMathMLStyle = (el = document) => {
   nodes.forEach((node) => node.setAttribute('displaystyle', 'true'));
 };
 
-const accessibilityOptions = {
-  enableEnrichment: true,
-  enableAssistiveMml: true,
-  sre: {
-    speech: 'deep',
-  },
-  menuOptions: {
-    settings: {
-      assistiveMml: true,
-      collapsible: false,
-      explorer: false,
-    },
-  },
-};
+
+
 
 const createMathMLInstance = (opts, docProvided = document) => {
   opts = opts || defaultOpts();
 
-  if (window.Mathjax) {
-    console.log('-----------------------------------------------------------------you can access me');
-  }
-  console.log(opts, 'opts in createMathMLInstance');
   if (opts.useSingleDollar) {
     // eslint-disable-next-line
     console.warn('[math-rendering] using $ is not advisable, please use $$..$$ or \\(...\\)');
@@ -156,19 +108,6 @@ const createMathMLInstance = (opts, docProvided = document) => {
           ['\\(', '\\)'],
         ],
         processEscapes: true,
-
-        // enableExplorer: true,
-        // enableAssistiveMml: true,
-        // a11y: {
-        //   speech: true,
-        //   braille: true,
-        //   subtitles: true,
-        // },
-        // sre: {
-        //   domain: 'mathspeak',
-        //   style: 'default',
-        //   locale: 'en',
-        // },
       }
     : {
         packages,
@@ -179,26 +118,6 @@ const createMathMLInstance = (opts, docProvided = document) => {
           braille: true,
           subtitles: true,
         },
-        // accessibilityExtensions,
-
-        // enableAssistiveMml: true,
-        // sre: {
-        //   speech: 'deep',
-        // },
-        // renderActions: require('./action.js').speechAction
-
-        // enableExplorer: true,
-        // enableAssistiveMml: true,
-        // a11y: {
-        //   speech: true,
-        //   braille: true,
-        //   subtitles: true,
-        // },
-        // sre: {
-        //   domain: 'mathspeak',
-        //   style: 'default',
-        //   locale: 'en',
-        // },
       };
 
   const mmlConfig = {
@@ -229,7 +148,7 @@ const createMathMLInstance = (opts, docProvided = document) => {
     ...mmlNodes,
   });
 
-  const html = mathjax.document(docProvided, {
+  const html = mathjax.document(document, {
     compileError: (mj, math, err) => {
       // eslint-disable-next-line no-console
       console.log('bad math?:', math);
@@ -243,23 +162,7 @@ const createMathMLInstance = (opts, docProvided = document) => {
       console.error(err);
       doc.typesetError(math, err);
     },
-    // enableAssistiveMml: true,
-    //  renderActions: require('./action.js').speechAction,
-    enableEnrichment: true,
-    sre: {
-      speech: 'deep',
-    },
-    loader: {
-      load: [
-        'input/tex-full',
-        'output/chtml',
-        'a11y/semantic-enrich',
-        // other accessibility extensions here
-      ],
-    },
-    startup: {
-      typeset: false,
-    },
+
     InputJax: [new TeX(texConfig), mml],
     OutputJax: new CHTML(htmlConfig),
   });
@@ -275,54 +178,13 @@ const bootstrap = (opts) => {
     return { Typeset: () => ({}) };
   }
 
-  console.log(opts, 'opts in render math');
   const html = createMathMLInstance(opts);
-  console.log(html, 'returned html');
-  const accessibilityOptions = {
-    a11y: {
-      speech: true, // switch on speech output
-      braille: true, // switch on Braille output
-      subtitles: true, // show speech as a subtitle
-      viewBraille: false, // display Braille output as subtitles
 
-      backgroundColor: 'Blue', // color for background of selected sub-expression
-      backgroundOpacity: 0.2, // opacity for background of selected sub-expression
-      foregroundColor: 'Black', // color to use for text of selected sub-expression
-      foregroundOpacity: 1, // opacity for text of selected sub-expression
-
-      highlight: 'None', // type of highlighting for collapsible sub-expressions
-      flame: false, // color collapsible sub-expressions
-      hover: false, // show collapsible sub-expression on mouse hovering
-
-      treeColoring: false, // tree color expression
-
-      magnification: 'None', // type of magnification
-      magnify: '400%', // percentage of magnification of zoomed expressions
-      keyMagnifier: false, // switch on magnification via key exploration
-      mouseMagnifier: false, // switch on magnification via mouse hovering
-      align: 'top', // placement of magnified expression
-
-      infoType: false, // show semantic type on mouse hovering
-      infoRole: false, // show semantic role on mouse hovering
-      infoPrefix: false, // show speech prefixes on mouse hovering
-    },
-    enableEnrichment: true,
-    sre: {
-      speech: 'deep',
-    },
-    enableAssistiveMml: true,
-    menuOptions: {
-      settings: {
-        assistiveMml: true,
-        collapsible: false,
-        explorer: false,
-      },
-    },
-  };
+  
 
   return {
     version: mathjax.version,
-    options: accessibilityOptions,
+ 
     html: html,
     a11y: {
       speech: true,
@@ -359,14 +221,16 @@ const bootstrap = (opts) => {
 
 const renderMath = (el, renderOpts) => {
   const isString = typeof el === 'string';
+  console.log(isString, "isstring")
   let executeOn = document.body;
-  console.log(el, 'el in render Math');
-  console.log(renderOpts, 'render Opts in render math');
-
+console.log("in render math")
+initializeMathJax();
   if (!window.MathJax) {
-    log('MathJax is not loaded yet');
+    console.log('MathJax is not loaded yet');
     return;
   }
+
+  console.log(window.MathJax)
 
   if (isString) {
     const div = document.createElement('div');
@@ -378,100 +242,80 @@ const renderMath = (el, renderOpts) => {
   fixMathElements(executeOn);
   adjustMathMLStyle(executeOn);
 
-  if (isString) {
-    const html = createMathMLInstance(undefined, executeOn);
 
-    const updatedDocument = html
-      .findMath()
-      .compile()
-      .getMetrics()
-      .typeset()
-      .updateDocument();
-
-    const list = updatedDocument.math.list;
-    const item = list.next;
-
-    if (!item) {
-      return '';
-    }
-
-    const mathMl = toMMl(item.data.root);
-    const parsedMathMl = mathMl.replaceAll('\n', '');
-
-    return parsedMathMl;
-  }
-  const accessibilityOptions = {
-    enableEnrichment: true,
-    sre: {
-      speech: 'deep',
-    },
-    menuOptions: {
-      settings: {
-        assistiveMml: true,
-        collapsible: false,
-        explorer: false,
-      },
-    },
-    enableAssistiveMml: true,
-    enableExplorer: true, // set to false to disable the explorer
-    a11y: {
-      speech: true, // switch on speech output
-      braille: true, // switch on Braille output
-      subtitles: true, // show speech as a subtitle
-      viewBraille: false, // display Braille output as subtitles
-
-      backgroundColor: 'Blue', // color for background of selected sub-expression
-      backgroundOpacity: 0.2, // opacity for background of selected sub-expression
-      foregroundColor: 'Black', // color to use for text of selected sub-expression
-      foregroundOpacity: 1, // opacity for text of selected sub-expression
-
-      highlight: 'None', // type of highlighting for collapsible sub-expressions
-      flame: false, // color collapsible sub-expressions
-      hover: false, // show collapsible sub-expression on mouse hovering
-
-      treeColoring: false, // tree color expression
-
-      magnification: 'None', // type of magnification
-      magnify: '400%', // percentage of magnification of zoomed expressions
-      keyMagnifier: false, // switch on magnification via key exploration
-      mouseMagnifier: false, // switch on magnification via mouse hovering
-      align: 'top', // placement of magnified expression
-
-      infoType: false, // show semantic type on mouse hovering
-      infoRole: false, // show semantic role on mouse hovering
-      infoPrefix: false, // show speech prefixes on mouse hovering
-    },
-  };
-  console.log(renderOpts, 'render Opts');
-  if (!getGlobal().instance) {
-    //getGlobal().instance = bootstrap(accessibilityOptions);
-  }
 
   if (!el) {
     log('el is undefined');
     return;
   }
-
   if (el instanceof Element) {
-    // getGlobal().instance.Typeset(el);
-    //  window.MathJax.startup.promise.then(() => {
-    //   // Process the math content
-    //   window.MathJax.typesetPromise([el]).catch((err) => console.error(err));
-    // }).catch((err) => console.error('Error in MathJax startup:', err));
-
-    window.MathJax.startup.promise = window.MathJax.startup.promise
-      .then(() => window.MathJax.startup.defaultPageReady())
-      .then(() => {
-        let mathList = window.MathJax.startup.document.getMathItemsWithin(el);
-        mathList.forEach((math) => math.typeset());
-      });
-
-    console.log(el, 'el');
-    console.log(window.MathJax, 'window.mathjax');
+    console.log('Element check passed, starting typesetting...');
+ console.log(el, "element")
+    window.mathjaxLoadedP.then(() => {
+      console.log('MathJax is ready');
+      if (window.MathJax) {
+        // Typeset the entire document
+        window.MathJax.typeset();
+      }
+      console.log('window.MathJax.startup?.document:', window.MathJax.startup?.document);
+      let mathList = window.MathJax.startup?.document?.getMathItemsWithin(el);
+          console.log('Math items found:', mathList);
+          mathList.forEach((math) => {
+              console.log('Typesetting math item:', math);
+                  math.typeset();
+               });
+    });
+    // if (window.MathJax && window.MathJax.typeset) {
+    //   // If typeset method is available, use it to typeset the content
+    //   window.MathJax.typeset([el]);
+    // } else {
+    //   console.error('MathJax.typeset is not available');
+    // }
+  
+ 
   } else if (el.length) {
     const arr = Array.from(el);
-    getGlobal().instance.Typeset(...arr);
+    // your existing code to handle an array of elements
   }
+  
+
+  // if (el instanceof Element) {
+  //   console.log('Element check passed, starting promise chain...');
+
+  //   // if (window.MathJax) {
+  //   //   window.MathJax.typesetPromise([el])
+  //   //     .then(() => {
+  //   //       console.log('MathJax typesetting complete');
+  //   //     })
+  //   //     .catch((err) => console.error('MathJax typesetting error:', err));
+  //   // } else {
+  //   //   console.log('MathJax not loaded');
+  //   // }
+
+    
+  //   console.log('Checking startup.promise:', window.MathJax.startup.promise);
+  //   window.MathJax.startup.defaultPageReady().then(() => {
+  //     console.log('defaultPageReady executed, getting math items...');
+  //     console.log('window.MathJax.startup?.document:', window.MathJax.startup?.document);
+  //     let mathList = window.MathJax.startup?.document?.getMathItemsWithin(el);
+  //     console.log('Math items found:', mathList);
+  //     mathList.forEach((math) => {
+  //       console.log('Typesetting math item:', math);
+  //       math.typeset();
+  //     });
+  //     console.log('Finished processing math items.');
+  //   })
+  //   .catch((err) => {
+  //     console.error('Error in promise chain:', err);
+  //   });
+    
+
+  //   console.log(el, 'el');
+  //   console.log(window.MathJax, 'window.mathjax');
+  // } else if (el.length) {
+  //   const arr = Array.from(el);
+  //   getGlobal().instance.Typeset(...arr);
+  // }
 };
 
 /**
@@ -483,12 +327,12 @@ const renderMath = (el, renderOpts) => {
   "text-align": 'left'
 } which prevents it from showing as a newline value
  */
-CHTMLmspace.styles = {
-  'mjx-mspace': {
-    display: 'block',
-    'text-align': 'center',
-    height: '5px',
-  },
-};
+// CHTMLmspace.styles = {
+//   'mjx-mspace': {
+//     display: 'block',
+//     'text-align': 'center',
+//     height: '5px',
+//   },
+// };
 
 export default renderMath;
