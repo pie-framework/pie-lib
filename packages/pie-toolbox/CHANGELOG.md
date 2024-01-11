@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.4.8...@pie-lib/pie-toolbox@1.5.1) (2024-01-11)
+
+**Note:** Version bump only for package @pie-lib/pie-toolbox
+
+
+
+
+
 ## [1.4.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.4.7...@pie-lib/pie-toolbox@1.4.8) (2024-01-08)
 
 **Note:** Version bump only for package @pie-lib/pie-toolbox
