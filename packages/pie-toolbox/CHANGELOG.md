@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.4.8...@pie-lib/pie-toolbox@1.5.0) (2024-01-11)
+
+
+### Bug Fixes
+
+* export named components, instead of defaults, for pslb; keeping defaults to assure backwards compatibility ([14a1a8f](https://github.com/pie-framework/pie-lib/commit/14a1a8fe81828f4634d7346d24bd8de0be88ce85))
+* made sure inserting spanish characters does not cause an error PD-3300 ([9051dc2](https://github.com/pie-framework/pie-lib/commit/9051dc2c8aae78e9226ec14fcb531cacf9fd80b2))
+* made sure inserting spanish characters does not cause an error PD-3300 ([374cd2b](https://github.com/pie-framework/pie-lib/commit/374cd2ba34fb67d4e06984dcd30381bf673f3bf2))
+* made sure resizing is not messing up content PD-3298 ([8b0866d](https://github.com/pie-framework/pie-lib/commit/8b0866dc1615a5e7da42a01311aa0157fa5259dc))
+* made sure that table is inserted near a block, so it is not removed by normalization PD-3299 ([6854b20](https://github.com/pie-framework/pie-lib/commit/6854b2042c103ae47f62d7946d545b26c72b6103))
+* **charting:** Fix SVG visibility by overriding global overflow rule in pie-components PD-3271 ([bf9a7dd](https://github.com/pie-framework/pie-lib/commit/bf9a7dd3d69ca4281a740be3ef569f1d3fa68bd0))
+* **charting:** Fix: Update SVG style attribute to JSX format ([f78f677](https://github.com/pie-framework/pie-lib/commit/f78f67796c212ced08f5c49a0aedc3c0ed59e04a))
+* **editable-html:** update plugins on image dimensions prop update PD-3261 ([eee94bf](https://github.com/pie-framework/pie-lib/commit/eee94bf43e486501f1632f4cd41c98a9c22f3dda))
+* **graphing:** updates tests for matk-label PD-3265 ([6e24e17](https://github.com/pie-framework/pie-lib/commit/6e24e17fafe7fc817477fc9deea7f1d4a0ca00fb))
+* **translator:** update message according to requirement PD-2996 ([9a513e8](https://github.com/pie-framework/pie-lib/commit/9a513e8e838c3021e3b422e8077ec61d51edc777))
+* made sure resizing is not messing up content PD-3298 ([1846e90](https://github.com/pie-framework/pie-lib/commit/1846e90b01eb32073be046028a7647bd57bbfbe8))
+* made sure that table is inserted near a block, so it is not removed by normalization PD-3299 ([223f77a](https://github.com/pie-framework/pie-lib/commit/223f77a76dd8989f5e55cdb83c98f5793aa63fbc))
+* re-added mathML conversion ability PD-3011 ([43b9bef](https://github.com/pie-framework/pie-lib/commit/43b9bef3bd0b8f0105cfc805dede20422b0db16a))
+
+
+### Features
+
+* **rubric:** add validations controller and ui PD-3260 ([33f2f4f](https://github.com/pie-framework/pie-lib/commit/33f2f4f8bd6b8ce02e070810f3b85e8c3f7c6362))
+* **slate:** implemented new version of slate editor PD-1886 ([d7b5fe4](https://github.com/pie-framework/pie-lib/commit/d7b5fe41d547cff92ee696be11e1a38b7b68379e))
+
+
+
+
+
 ## [1.4.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.4.7...@pie-lib/pie-toolbox@1.4.8) (2024-01-08)
 
 **Note:** Version bump only for package @pie-lib/pie-toolbox

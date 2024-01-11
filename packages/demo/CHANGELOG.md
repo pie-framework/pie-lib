@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.2.8...@pie-lib/demo@7.3.0) (2024-01-11)
+
+
+### Bug Fixes
+
+* **graphing:** updates tests for matk-label PD-3265 ([6e24e17](https://github.com/pie-framework/pie-lib/commit/6e24e17fafe7fc817477fc9deea7f1d4a0ca00fb))
+* re-added mathML conversion ability PD-3011 ([43b9bef](https://github.com/pie-framework/pie-lib/commit/43b9bef3bd0b8f0105cfc805dede20422b0db16a))
+
+
+### Features
+
+* **slate:** implemented new version of slate editor PD-1886 ([d7b5fe4](https://github.com/pie-framework/pie-lib/commit/d7b5fe41d547cff92ee696be11e1a38b7b68379e))
+
+
+
+
+
 ## [7.2.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.2.7...@pie-lib/demo@7.2.8) (2024-01-08)
 
 **Note:** Version bump only for package @pie-lib/demo
