@@ -52,6 +52,9 @@ jobs:
       - save_cache: *save_cache
       - run: scripts/build release --next --skipForcePublish --token $NPM_TOKEN
 
+  #Beta build is actually not acting as we'd like it to act: it is not creating @beta versions, but "latest" versions instead.
+  #That happens because build-helper only permits 2 options: "next" or nothing, which actually means "latest"...
+  #One thing we could try would be to upgrade build-helper
   #  beta_build:
   #    <<: *defaults
   #    steps:
@@ -109,6 +112,7 @@ workflows:
             branches:
               only:
                 - develop
+                - feat/slate-editor-updates
   build_master:
     jobs:
       - release_build:
@@ -122,7 +126,7 @@ workflows:
 #          filters:
 #            branches:
 #              only:
-#                - beta
+#                - feat/slate-editor-updates
 # nightly:
 #   triggers:
 #     - schedule:
