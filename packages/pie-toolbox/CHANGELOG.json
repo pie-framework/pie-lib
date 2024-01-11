@@ -13,5 +13,20 @@
     "committerDate": "2023-12-19 10:02:53 +0200",
     "isTagged": true,
     "tag": "@pie-lib/pie-toolbox@1.4.0"
+  },
+  {
+    "type": "fix",
+    "scope": "graphing",
+    "subject": "updates tests for matk-label PD-3265",
+    "merge": null,
+    "header": "fix(graphing): updates tests for matk-label PD-3265",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "6e24e17fafe7fc817477fc9deea7f1d4a0ca00fb",
+    "gitTags": "",
+    "committerDate": "2023-11-27 12:16:28 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/pie-toolbox@1.5.0"
   }
 ]
