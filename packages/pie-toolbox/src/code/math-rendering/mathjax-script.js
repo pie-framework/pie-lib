@@ -6,6 +6,13 @@ export const initializeMathJax = () => {
       startup: {
         typeset: false,
         ready: () => {
+          const {mathjax} = MathJax._.mathjax;
+          const {STATE} = MathJax._.core.MathItem;
+          const {Menu} = MathJax._.ui.menu.Menu;
+          const rerender = Menu.prototype.rerender;
+          Menu.prototype.rerender = function (start = STATE.TYPESET) {
+            mathjax.handleRetriesFor(() => rerender.call(this, start));
+          }
           MathJax.startup.defaultReady();
           resolve(); // Resolve the promise here
         },

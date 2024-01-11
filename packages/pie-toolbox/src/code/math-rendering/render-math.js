@@ -219,120 +219,26 @@ const bootstrap = (opts) => {
   };
 };
 
-const renderMath = (el, renderOpts) => {
-  const isString = typeof el === 'string';
-  console.log(isString, "isstring")
-  let executeOn = document.body;
-console.log("in render math")
-initializeMathJax();
+const renderMath = (el) => {
+
   if (!window.MathJax) {
-    console.log('MathJax is not loaded yet');
-    return;
-  }
+    console.log('LOAD MathJax--------');
+    initializeMathJax();
 
-  console.log(window.MathJax)
-
-  if (isString) {
-    const div = document.createElement('div');
-
-    div.innerHTML = el;
-    executeOn = div;
-  }
-
-  fixMathElements(executeOn);
-  adjustMathMLStyle(executeOn);
-
-
-
-  if (!el) {
-    log('el is undefined');
-    return;
-  }
-  if (el instanceof Element) {
-    console.log('Element check passed, starting typesetting...');
- console.log(el, "element")
     window.mathjaxLoadedP.then(() => {
       console.log('MathJax is ready');
       if (window.MathJax) {
         // Typeset the entire document
+        window.MathJax.texReset();
+        window.MathJax.typesetClear();
         window.MathJax.typeset();
       }
-      console.log('window.MathJax.startup?.document:', window.MathJax.startup?.document);
-      let mathList = window.MathJax.startup?.document?.getMathItemsWithin(el);
-          console.log('Math items found:', mathList);
-          mathList.forEach((math) => {
-              console.log('Typesetting math item:', math);
-                  math.typeset();
-               });
     });
-    // if (window.MathJax && window.MathJax.typeset) {
-    //   // If typeset method is available, use it to typeset the content
-    //   window.MathJax.typeset([el]);
-    // } else {
-    //   console.error('MathJax.typeset is not available');
-    // }
-  
- 
-  } else if (el.length) {
-    const arr = Array.from(el);
-    // your existing code to handle an array of elements
   }
-  
 
-  // if (el instanceof Element) {
-  //   console.log('Element check passed, starting promise chain...');
 
-  //   // if (window.MathJax) {
-  //   //   window.MathJax.typesetPromise([el])
-  //   //     .then(() => {
-  //   //       console.log('MathJax typesetting complete');
-  //   //     })
-  //   //     .catch((err) => console.error('MathJax typesetting error:', err));
-  //   // } else {
-  //   //   console.log('MathJax not loaded');
-  //   // }
-
-    
-  //   console.log('Checking startup.promise:', window.MathJax.startup.promise);
-  //   window.MathJax.startup.defaultPageReady().then(() => {
-  //     console.log('defaultPageReady executed, getting math items...');
-  //     console.log('window.MathJax.startup?.document:', window.MathJax.startup?.document);
-  //     let mathList = window.MathJax.startup?.document?.getMathItemsWithin(el);
-  //     console.log('Math items found:', mathList);
-  //     mathList.forEach((math) => {
-  //       console.log('Typesetting math item:', math);
-  //       math.typeset();
-  //     });
-  //     console.log('Finished processing math items.');
-  //   })
-  //   .catch((err) => {
-  //     console.error('Error in promise chain:', err);
-  //   });
-    
-
-  //   console.log(el, 'el');
-  //   console.log(window.MathJax, 'window.mathjax');
-  // } else if (el.length) {
-  //   const arr = Array.from(el);
-  //   getGlobal().instance.Typeset(...arr);
-  // }
 };
 
-/**
- * This style is added to overried default styling of mjx-mspace Mathjax tag
- * In mathjax src code \newline latex gets parsed to <mjx-mspace></mjx-mspace>,
- * but has the default style
- * 'mjx-mspace': {
-  "display": 'in-line',
-  "text-align": 'left'
-} which prevents it from showing as a newline value
- */
-// CHTMLmspace.styles = {
-//   'mjx-mspace': {
-//     display: 'block',
-//     'text-align': 'center',
-//     height: '5px',
-//   },
-// };
+
 
 export default renderMath;
