@@ -32,20 +32,34 @@ class RawDragHandle extends React.Component {
       interactive,
       CustomDraggableComponent,
       correctness,
+      r,
       ...rest
     } = this.props;
     const { scale } = graphProps;
 
     return (
-      <CustomDraggableComponent
-        scale={scale}
-        x={x}
-        y={y}
-        classes={classes}
-        className={classNames(className, !interactive && 'non-interactive')}
-        correctness={correctness}
-        {...rest}
-      />
+      <>
+        <CustomDraggableComponent
+          scale={scale}
+          x={x}
+          y={y}
+          r={r}
+          classes={classes}
+          className={classNames(className, !interactive && 'non-interactive')}
+          correctness={correctness}
+          {...rest}
+        />
+        <CustomDraggableComponent
+          scale={scale}
+          x={x}
+          y={y}
+          r={r * 2}
+          classes={classes}
+          className={classNames(classes.transparentHandle, className)}
+          correctness={correctness}
+          {...rest}
+        />
+      </>
     );
   }
 }
@@ -60,6 +74,13 @@ export const DragHandle = withStyles(() => ({
     '&.correct': correct('fill'),
     '&.incorrect': incorrect('fill'),
     '&.non-interactive': disabled('fill'),
+  },
+  transparentHandle: {
+    height: '20px',
+    fill: 'transparent',
+    '&:hover': {
+      fill: 'transparent',
+    },
   },
   line: {
     stroke: color.secondary(),
