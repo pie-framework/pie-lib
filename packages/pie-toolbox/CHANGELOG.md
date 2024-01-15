@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.5.1...@pie-lib/pie-toolbox@1.5.2) (2024-01-15)
+
+
+### Bug Fixes
+
+* **charting:** enable Category Drag Handle icon on iPad PD-3366 ([dceb727](https://github.com/pie-framework/pie-lib/commit/dceb727c8a3cd7562b875731359d3522309e2e1a))
+* **charting:** Fix positioning for math-containing labels with fixed positioning addressing a layout issue on various devices, including iPads PD-3367 ([b4da76b](https://github.com/pie-framework/pie-lib/commit/b4da76b1c317a6e31ba7ddac9a08dd0c1eb60385))
+* **charting:** handle touch events for plot chart PD-3366 ([5ba709d](https://github.com/pie-framework/pie-lib/commit/5ba709d1c7ddcb7d4ae41db03deaad836621951f))
+* **editable-html:** make sure that image dimensions prop update after setting client config PD-3381 ([4f31bc4](https://github.com/pie-framework/pie-lib/commit/4f31bc41024de82090a52f440ce64d76d0028baa))
+
+
+
+
+
 ## [1.5.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.4.8...@pie-lib/pie-toolbox@1.5.1) (2024-01-11)
 
 **Note:** Version bump only for package @pie-lib/pie-toolbox
