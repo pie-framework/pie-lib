@@ -29,7 +29,6 @@ const styles = (theme) => ({
 });
 
 export const position = (graphProps, mark, rect) => {
-  console.log(rect, 'rect');
   rect = rect || { width: 0, height: 0 };
   const { scale, domain, range } = graphProps;
   const shift = 10;
