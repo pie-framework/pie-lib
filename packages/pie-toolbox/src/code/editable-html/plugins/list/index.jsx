@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import debug from 'debug';
-import { Node as SlateNode, Editor, Element as SlateElement, Transforms, Text } from 'slate';
+import { Node as SlateNode, Editor, Element as SlateElement, Path, Range, Transforms, Text } from 'slate';
 import { ReactEditor } from 'slate-react';
 import { jsx } from 'slate-hyperscript';
+import cloneDeep from 'lodash/cloneDeep';
 
 const log = debug('@pie-lib:editable-html:plugins:list');
 
@@ -111,6 +112,7 @@ const createEditList = () => {
 const LIST_TYPES = ['ul', 'ol', 'li'];
 
 const KEY_TAB = 'Tab';
+const KEY_ENTER = 'Enter';
 
 export default (options) => {
   const { type, icon } = options;
@@ -312,6 +314,94 @@ export default (options) => {
     return true;
   };
 
+  const unwrapListByKey = (editor, nodeInfo) => {
+    const [currentLi, currentLiPath] = nodeInfo;
+
+    editor.withoutNormalizing(() => {
+      Transforms.unwrapNodes(editor, {
+        at: {
+          anchor: {
+            path: currentLiPath,
+            offset: 0,
+          },
+          focus: {
+            path: currentLiPath,
+            offset: 0,
+          },
+        },
+        split: true,
+      });
+
+      const [parent, parentPath] = editor.parent(currentLiPath);
+      const itemIndex = currentLiPath[currentLiPath.length - 1];
+
+      currentLi.children.forEach((itemChild, index) => {
+        if (SlateElement.isElement(itemChild)) {
+          editor.moveNodes({
+            at: [...currentLiPath, index],
+            to: [...parentPath, index + itemIndex],
+          });
+        }
+      });
+
+      editor.removeNodes({
+        at: currentLiPath,
+      });
+    });
+  };
+
+  const unwrapList = (editor) => {
+    const furthestListItems = Array.from(
+      Editor.nodes(editor, {
+        at: Editor.unhangRange(editor, editor.selection),
+        match: (node) => !Editor.isEditor(node) && SlateElement.isElement(node) && node.type === 'li',
+      }),
+    );
+
+    furthestListItems.forEach((listItem) => {
+      unwrapListByKey(editor, listItem);
+    });
+  };
+
+  const onEnter = (editor, event) => {
+    event.preventDefault();
+
+    if (Range.isExpanded(editor.range(editor.selection))) {
+      editor.delete();
+    }
+
+    const [currentLi, currentLiPath] = getAncestorByType(editor, 'li');
+
+    if (editor.isEmpty(currentLi)) {
+      // Block is empty, we exit the list
+      const [, listPath] = editor.parent(currentLiPath);
+      const [parentListItem] = listPath.length > 1 ? editor.parent(editor, listPath) : [];
+
+      if (parentListItem) {
+        return decreaseItemDepth(editor);
+      }
+
+      // Exit list
+      return unwrapList(editor);
+    }
+
+    window.editor = editor;
+
+    editor.apply({
+      type: 'split_node',
+      path: currentLiPath,
+      position: 1,
+      properties: { type: 'li' },
+    });
+
+    const newLiPath = cloneDeep(currentLiPath);
+
+    newLiPath[newLiPath.length - 1] = newLiPath[newLiPath.length - 1] + 1;
+    Transforms.select(editor, newLiPath);
+
+    return true;
+  };
+
   core.onTab = (editor, event) => {
     let result;
 
@@ -319,6 +409,20 @@ export default (options) => {
       result = decreaseItemDepth(editor);
     } else {
       result = increaseItemDepth(editor);
+    }
+
+    setTimeout(() => ReactEditor.focus(editor), 50);
+
+    return result;
+  };
+
+  core.onEnter = (editor, event) => {
+    let result;
+
+    if (event.shiftKey) {
+      // this is handled elsewhere already
+    } else {
+      result = onEnter(editor, event);
     }
 
     setTimeout(() => ReactEditor.focus(editor), 50);
@@ -334,6 +438,8 @@ export default (options) => {
       switch (event.key) {
         case KEY_TAB:
           return core.onTab(editor, event);
+        case KEY_ENTER:
+          return core.onEnter(editor, event);
         default:
           return undefined;
       }
