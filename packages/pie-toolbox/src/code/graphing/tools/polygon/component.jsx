@@ -5,11 +5,10 @@ import { ToolPropTypeFields } from '../shared/types';
 import { BasePoint } from '../shared/point';
 import chunk from 'lodash/chunk';
 import initial from 'lodash/initial';
-import isEqual from 'lodash/isEqual';
 import debug from 'debug';
 import Line from './line';
 import DraggablePolygon, { Polygon } from './polygon';
-import { types, utils } from '../../../plot';
+import { types } from '../../../plot';
 import invariant from 'invariant';
 import ReactDOM from 'react-dom';
 import MarkLabel from '../../mark-label';
@@ -187,7 +186,7 @@ export class RawBaseComponent extends React.Component {
       if (isToolActive && !closed && index === 0) {
         this.close();
       } else {
-        onClick(data);
+        onClick(point || data);
       }
     }
   };
@@ -264,8 +263,8 @@ export class RawBaseComponent extends React.Component {
               x={p.x}
               y={p.y}
               onDrag={this.dragPoint.bind(this, index, p)}
-              onClick={this.clickPoint.bind(this, p, index)}
               {...common}
+              onClick={this.clickPoint.bind(this, p, index)}
             />,
             labelNode && p.hasOwnProperty('label')
               ? ReactDOM.createPortal(

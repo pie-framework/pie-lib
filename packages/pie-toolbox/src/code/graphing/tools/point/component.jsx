@@ -60,13 +60,15 @@ export class Point extends React.Component {
   clickPoint = () => {
     const { labelModeEnabled, onChange, onClick, mark } = this.props;
 
-    if (labelModeEnabled) {
-      onChange(mark, { label: '', ...mark });
-      if (this.input) {
-        this.input.focus();
-      }
-    } else {
+    if (!labelModeEnabled) {
       onClick(mark);
+      return;
+    }
+
+    onChange(mark, { label: '', ...mark });
+
+    if (this.input) {
+      this.input.focus();
     }
   };
 

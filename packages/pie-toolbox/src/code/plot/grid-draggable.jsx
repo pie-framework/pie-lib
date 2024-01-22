@@ -195,13 +195,10 @@ export const gridDraggable = (opts) => (Comp) => {
     };
 
     render() {
-      /* eslint-disable no-unused-vars */
-      //Note: we pull onClick out so that it's not in ...rest.
-      const { disabled, onClick, ...rest } = this.props;
-      /* eslint-enable no-unused-vars */
-
+      const { disabled, ...rest } = this.props;
       const grid = this.grid();
-      //prevent the text select icon from rendering.
+
+      // prevent the text select icon from rendering.
       const onMouseDown = (e) => e.nativeEvent.preventDefault();
 
       /**
