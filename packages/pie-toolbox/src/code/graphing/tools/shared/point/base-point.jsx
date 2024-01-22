@@ -38,6 +38,7 @@ export class RawBp extends React.Component {
       // we need to remove style from props
       // eslint-disable-next-line no-unused-vars,react/prop-types
       style,
+      onClick,
       ...rest
     } = this.props;
     const { showCoordinates } = this.state;
@@ -53,6 +54,7 @@ export class RawBp extends React.Component {
           cy={scale.y(y)}
           onMouseEnter={() => this.setState({ showCoordinates: true })}
           onMouseLeave={() => this.setState({ showCoordinates: false })}
+          onClick={onClick}
           {...rest}
         />
         <g
