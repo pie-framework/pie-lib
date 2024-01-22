@@ -128,8 +128,13 @@ export class RawBaseCircle extends React.Component {
     changeMarkProps({ [type]: update });
   };
 
-  clickPoint = (point, type) => {
-    const { changeMarkProps, from, to } = this.props;
+  clickPoint = (point, type, data) => {
+    const { changeMarkProps, from, to, labelModeEnabled, onClick } = this.props;
+
+    if (!labelModeEnabled) {
+      onClick(point || data);
+      return;
+    }
 
     if (type === 'middle' && !point && from && to) {
       point = { ...point, ...getMiddleOfTwoPoints(from, to) };
@@ -224,7 +229,7 @@ export class RawBaseCircle extends React.Component {
           radius={radius}
           onDrag={this.dragCircle}
           {...common}
-          onClick={labelModeEnabled ? () => this.clickPoint(middle, 'middle') : common.onClick}
+          onClick={(data) => this.clickPoint(middle, 'middle', data)}
         />
         {circleLabelNode}
 
@@ -237,7 +242,7 @@ export class RawBaseCircle extends React.Component {
           y={to.y}
           onDrag={this.dragTo}
           {...common}
-          onClick={labelModeEnabled ? () => this.clickPoint(to, 'to') : common.onClick}
+          onClick={(data) => this.clickPoint(to, 'to', data)}
         />
         {toLabelNode}
 
@@ -251,7 +256,7 @@ export class RawBaseCircle extends React.Component {
           className={classes.from}
           onDrag={this.dragFrom}
           {...common}
-          onClick={labelModeEnabled ? () => this.clickPoint(from, 'from') : common.onClick}
+          onClick={(data) => this.clickPoint(from, 'from', data)}
         />
         {fromLabelNode}
       </g>

@@ -108,8 +108,9 @@ describe('lineBase', () => {
 
   // used to test items that have labels attached to points
   const labelNode = document.createElement('foreignObject');
-  const wrapperWithLabels = () =>
+  const wrapperWithLabels = (extras = {}) =>
     wrapper({
+      ...extras,
       labelNode: labelNode,
       from: xyLabel(0, 0, 'A'),
       to: xyLabel(1, 1, 'B'),
@@ -181,7 +182,7 @@ describe('lineBase', () => {
 
     describe('labelChange', () => {
       it('updates "label" property for point', () => {
-        w = wrapperWithLabels();
+        w = wrapperWithLabels({ labelModeEnabled: true });
 
         w.instance().labelChange(xyLabel(0, 0, 'Label A'), 'from');
         expect(changeMarkProps).toBeCalledWith({
@@ -211,7 +212,7 @@ describe('lineBase', () => {
 
     describe('clickPoint', () => {
       it('adds "label" property to a point', () => {
-        w = wrapperWithLabels();
+        w = wrapperWithLabels({ labelModeEnabled: true });
 
         w.instance().clickPoint(xy(0, 0), 'from');
         expect(changeMarkProps).toBeCalledWith({
@@ -227,7 +228,7 @@ describe('lineBase', () => {
       });
 
       it('if point already has label, keeps that value', () => {
-        w = wrapperWithLabels();
+        w = wrapperWithLabels({ labelModeEnabled: true });
 
         w.instance().clickPoint(xyLabel(0, 0, 'Label A'), 'from');
         expect(changeMarkProps).toBeCalledWith({
