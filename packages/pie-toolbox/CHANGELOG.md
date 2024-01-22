@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.5.2...@pie-lib/pie-toolbox@1.5.3) (2024-01-22)
+
+
+### Bug Fixes
+
+* **charting:** add transparent circle handle for improved drag functionality on touch devices PD-3387 ([96e5063](https://github.com/pie-framework/pie-lib/commit/96e5063f2b6d2ada3a842e37cde3063875f6b593))
+* **charting:** added larger transparent circle for drag handle in line dot chart to enhance touch device usability and accessibility PD-3383 ([e0c63f1](https://github.com/pie-framework/pie-lib/commit/e0c63f107b9462582a3343d50c03f08ba8d317ab))
+* **graphing:** Remove fontSize dependency from coordinate calculations PD-3384 ([3b918d8](https://github.com/pie-framework/pie-lib/commit/3b918d804cdef621bbe0b1012402dd3eeb8a171a))
+
+
+
+
+
 ## [1.5.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.5.1...@pie-lib/pie-toolbox@1.5.2) (2024-01-15)
 
 
