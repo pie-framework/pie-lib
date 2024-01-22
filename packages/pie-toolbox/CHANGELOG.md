@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.5.3...@pie-lib/pie-toolbox@1.5.4) (2024-01-22)
+
+
+### Bug Fixes
+
+* **graphing:** made background shapes clickable PD-3392 ([f7c988a](https://github.com/pie-framework/pie-lib/commit/f7c988ad3ccc0d3ffe018ca69fdca0c9ad8540de))
+
+
+
+
+
 ## [1.5.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.5.2...@pie-lib/pie-toolbox@1.5.3) (2024-01-22)
 
 
