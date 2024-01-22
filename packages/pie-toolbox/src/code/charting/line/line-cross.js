@@ -6,7 +6,6 @@ import { Group } from '@vx/group';
 import classNames from 'classnames';
 import { dataToXBand } from '../utils';
 import RawLine from './common/line';
-import color from '@material-ui/core/colors/amber';
 
 const DraggableComponent = (props) => {
   const { classes = {}, className, scale, x, y, r, correctness, ...rest } = props;
