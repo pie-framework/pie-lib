@@ -129,10 +129,14 @@ export class RawBaseCircle extends React.Component {
   };
 
   clickPoint = (point, type, data) => {
-    const { changeMarkProps, from, to, labelModeEnabled, onClick } = this.props;
+    const { changeMarkProps, disabled, from, to, labelModeEnabled, onClick } = this.props;
 
     if (!labelModeEnabled) {
       onClick(point || data);
+      return;
+    }
+
+    if (disabled) {
       return;
     }
 
