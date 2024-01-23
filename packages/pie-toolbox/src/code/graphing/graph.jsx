@@ -116,7 +116,7 @@ export class Graph extends React.Component {
     const { onChangeMarks, marks } = this.props;
     let newMarks = cloneDeep(marks);
 
-    if (!update.building && isDuplicatedMark(update, marks)) {
+    if (!update || (!update.building && isDuplicatedMark(update, marks))) {
       return;
     }
 

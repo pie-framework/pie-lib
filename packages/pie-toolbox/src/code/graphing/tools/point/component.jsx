@@ -65,6 +65,10 @@ export class Point extends React.Component {
       return;
     }
 
+    if (mark.disabled) {
+      return;
+    }
+
     onChange(mark, { label: '', ...mark });
 
     if (this.input) {
