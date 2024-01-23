@@ -164,9 +164,22 @@ export class RawBaseComponent extends React.Component {
   };
 
   clickPoint = (point, index, data) => {
-    const { closed, onClick, isToolActive, labelModeEnabled, onChangeProps, onChangeLabelProps, points } = this.props;
+    const {
+      closed,
+      disabled,
+      onClick,
+      isToolActive,
+      labelModeEnabled,
+      onChangeProps,
+      onChangeLabelProps,
+      points,
+    } = this.props;
 
     if (labelModeEnabled) {
+      if (disabled) {
+        return;
+      }
+
       if (points && index === points.length) {
         const { a, b } = getRightestPoints(points);
         const middle = { label: '', ...point, ...getMiddleOfTwoPoints(a, b) };
@@ -182,13 +195,16 @@ export class RawBaseComponent extends React.Component {
       if (this.input[index]) {
         this.input[index].focus();
       }
-    } else {
-      if (isToolActive && !closed && index === 0) {
-        this.close();
-      } else {
-        onClick(point || data);
-      }
+
+      return;
     }
+
+    if (isToolActive && !closed && index === 0) {
+      this.close();
+      return;
+    }
+
+    onClick(point || data);
   };
 
   // IMPORTANT, do not remove
