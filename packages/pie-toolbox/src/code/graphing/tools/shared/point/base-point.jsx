@@ -39,6 +39,8 @@ export class RawBp extends React.Component {
       // eslint-disable-next-line no-unused-vars,react/prop-types
       style,
       onClick,
+      // Refactored RawBp component by isolating onTouchStart and onTouchEnd handlers to the outer circle, resolving erratic touch event behavior.
+      // Remaining props are now applied only to the inner circle for improved event handling consistency.
       onTouchStart,
       onTouchEnd,
       ...rest
