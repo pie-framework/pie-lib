@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.5.5...@pie-lib/pie-toolbox@1.5.6) (2024-01-23)
+
+
+### Bug Fixes
+
+* **graphing:** resolve polygon closure issue on touch devices post PD-3392 implementation ([77f6b82](https://github.com/pie-framework/pie-lib/commit/77f6b82e3f148e407a340e7fde409dcec89faf76))
+* **graphing:** resolve polygon closure issue post PD-3392 implementation ([55eec17](https://github.com/pie-framework/pie-lib/commit/55eec17f44fd605522e1f414a2615b7e9a7a76f4))
+
+
+
+
+
 ## [1.5.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.5.4...@pie-lib/pie-toolbox@1.5.5) (2024-01-23)
 
 
