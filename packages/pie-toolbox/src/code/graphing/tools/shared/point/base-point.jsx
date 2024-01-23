@@ -39,6 +39,8 @@ export class RawBp extends React.Component {
       // eslint-disable-next-line no-unused-vars,react/prop-types
       style,
       onClick,
+      onTouchStart,
+      onTouchEnd,
       ...rest
     } = this.props;
     const { showCoordinates } = this.state;
@@ -54,14 +56,14 @@ export class RawBp extends React.Component {
           cy={scale.y(y)}
           onMouseEnter={() => this.setState({ showCoordinates: true })}
           onMouseLeave={() => this.setState({ showCoordinates: false })}
+          onTouchStart={onTouchStart}
+          onTouchEnd={onTouchEnd}
           onClick={onClick}
-          {...rest}
         />
         <g
           className={classNames(classes.point, disabled && classes.disabled, classes[correctness], className)}
           onMouseEnter={() => this.setState({ showCoordinates: true })}
           onMouseLeave={() => this.setState({ showCoordinates: false })}
-          {...rest}
         >
           <circle {...rest} r={r} cx={scale.x(x)} cy={scale.y(y)} />
           {labelNode &&
