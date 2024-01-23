@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.5.4...@pie-lib/pie-toolbox@1.5.5) (2024-01-23)
+
+
+### Bug Fixes
+
+* **graphing:** disable click on background shapes in label model PD-3392 ([7bd8e1b](https://github.com/pie-framework/pie-lib/commit/7bd8e1b8e4f5ec8d17933b9c7e23358731cda5cb))
+
+
+
+
+
 ## [1.5.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.5.3...@pie-lib/pie-toolbox@1.5.4) (2024-01-22)
 
 
