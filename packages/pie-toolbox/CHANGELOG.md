@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.5.6...@pie-lib/pie-toolbox@1.5.7) (2024-01-24)
+
+
+### Bug Fixes
+
+* **config-ui:** fix classes undefined error in number text field PD-3404 ([1afcf14](https://github.com/pie-framework/pie-lib/commit/1afcf14afce79c748ad404642daa5d013411c6d6))
+* **config-ui:** fix import PD-3404 ([c9d660e](https://github.com/pie-framework/pie-lib/commit/c9d660e503493fa8c1ee8e18dc3b8d8087123694))
+
+
+
+
+
 ## [1.5.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.5.5...@pie-lib/pie-toolbox@1.5.6) (2024-01-23)
 
 
