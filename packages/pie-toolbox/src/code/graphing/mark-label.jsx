@@ -42,35 +42,28 @@ export const position = (graphProps, mark, rect) => {
   return `${v}-${h}`;
 };
 
-export const coordinates = (graphProps, mark, rect, position, fontSize) => {
+export const coordinates = (graphProps, mark, rect, position) => {
   const { scale } = graphProps;
   const shift = 10;
-  const font = fontSize ? fontSize : 16;
   rect = rect || { width: 0, height: 0 };
 
   switch (position) {
     case 'bottom-right': {
-      return { left: `${(scale.x(mark.x) + shift) / font}em`, top: `${(scale.y(mark.y) + shift) / font}em` };
+      return { left: scale.x(mark.x) + shift, top: scale.y(mark.y) + shift };
     }
-
     case 'bottom-left': {
-      return {
-        left: `${(scale.x(mark.x) - shift - rect.width) / font}em`,
-        top: `${(scale.y(mark.y) + shift) / font}em`,
-      };
+      return { left: scale.x(mark.x) - shift - rect.width, top: scale.y(mark.y) + shift };
     }
-
     case 'top-left': {
       return {
-        left: `${(scale.x(mark.x) - shift - rect.width) / font}em`,
-        top: `${(scale.y(mark.y) - shift - rect.height) / font}em`,
+        left: scale.x(mark.x) - shift - rect.width,
+        top: scale.y(mark.y) - shift - rect.height,
       };
     }
-
     case 'top-right': {
       return {
-        left: `${(scale.x(mark.x) + shift) / font}em`,
-        top: `${(scale.y(mark.y) - shift - rect.height) / font}em`,
+        left: scale.x(mark.x) + shift,
+        top: scale.y(mark.y) - shift - rect.height,
       };
     }
   }
@@ -100,10 +93,9 @@ export const MarkLabel = (props) => {
     }
   }, [debouncedLabel]);
 
-  const fontSize = theme && theme.typography ? theme.typography.fontSize + 2 : 16;
   const rect = input ? input.getBoundingClientRect() : { width: 0, height: 0 };
   const pos = position(graphProps, mark, rect);
-  const leftTop = coordinates(graphProps, mark, rect, pos, fontSize);
+  const leftTop = coordinates(graphProps, mark, rect, pos);
 
   const style = {
     position: 'fixed',

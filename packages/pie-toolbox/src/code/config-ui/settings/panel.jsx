@@ -11,7 +11,7 @@ import debug from 'debug';
 import Toggle from './toggle';
 import { NChoice } from '../two-choice';
 import SettingsRadioLabel from './settings-radio-label';
-import { NumberTextField } from '../number-text-field';
+import NumberTextField from '../number-text-field';
 import Checkbox from '../checkbox';
 import Typography from '@material-ui/core/Typography';
 
@@ -151,6 +151,7 @@ const NumberField = withStyles((theme) => ({
       showErrorWhenOutsideRange
       inputClassName={classes.wrapper}
       disableUnderline
+      classes={classes}
     />
   );
 });

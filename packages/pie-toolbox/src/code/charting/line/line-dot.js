@@ -6,13 +6,23 @@ import RawLine from './common/line';
 import classNames from 'classnames';
 
 const DraggableComponent = ({ scale, x, y, className, classes, r, correctness, ...rest }) => (
-  <circle
-    cx={scale.x(x)}
-    cy={scale.y(y)}
-    r={r}
-    className={classNames(className, classes.handle, correctness && correctness.value)}
-    {...rest}
-  />
+  <g>
+    <circle
+      cx={scale.x(x)}
+      cy={scale.y(y)}
+      r={r * 3}
+      className={classNames(classes.transparentHandle, className)}
+      style={{ pointerEvents: 'none' }}
+      {...rest}
+    />
+    <circle
+      cx={scale.x(x)}
+      cy={scale.y(y)}
+      r={r}
+      className={classNames(className, classes.handle, correctness && correctness.value)}
+      {...rest}
+    />
+  </g>
 );
 
 DraggableComponent.propTypes = {

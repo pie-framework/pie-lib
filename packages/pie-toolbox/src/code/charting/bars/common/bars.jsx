@@ -130,7 +130,12 @@ export class RawBar extends React.Component {
     const Component = interactive ? DraggableHandle : DragHandle;
 
     return (
-      <g onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
+      <g
+        onMouseEnter={this.handleMouseEnter}
+        onMouseLeave={this.handleMouseLeave}
+        onTouchStart={this.handleMouseEnter}
+        onTouchEnd={this.handleMouseLeave}
+      >
         <VxBar
           x={barX}
           y={scale.y(yy)}

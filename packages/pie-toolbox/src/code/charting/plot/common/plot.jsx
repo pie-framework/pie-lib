@@ -101,7 +101,12 @@ export class RawPlot extends React.Component {
 
     return (
       <React.Fragment>
-        <g onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
+        <g
+          onMouseEnter={this.handleMouseEnter}
+          onMouseLeave={this.handleMouseLeave}
+          onTouchStart={this.handleMouseEnter}
+          onTouchEnd={this.handleMouseLeave}
+        >
           {isHovered && (
             <rect
               x={barX}

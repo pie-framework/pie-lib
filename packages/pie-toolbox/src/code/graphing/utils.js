@@ -203,7 +203,7 @@ export const isDuplicatedMark = (mark, marks, oldMark) => {
   }
 
   const duplicated = filteredMarks.find((m) => {
-    if (type === 'circle' || type === 'parabola' || type === 'sine') {
+    if (type === 'circle' || type === 'parabola' || type === 'sine' || type === 'absolute' || type === 'exponential') {
       const { root, edge } = mark;
 
       return (equalPoints(root, m.root) && equalPoints(edge, m.edge)) || (type === 'circle' && isSameCircle(m, mark));

@@ -116,7 +116,7 @@ export class Graph extends React.Component {
     const { onChangeMarks, marks } = this.props;
     let newMarks = cloneDeep(marks);
 
-    if (!update.building && isDuplicatedMark(update, marks)) {
+    if (!update || (!update.building && isDuplicatedMark(update, marks))) {
       return;
     }
 
@@ -140,14 +140,14 @@ export class Graph extends React.Component {
   };
 
   onBgClick = (point) => {
-    const { x, y } = point;
+    const { x, y } = point || {};
     const { labelModeEnabled, currentTool, marks } = this.props;
 
-    log('[onBgClick] x,y: ', x, y);
-
-    if (labelModeEnabled || !currentTool) {
+    if (labelModeEnabled || !currentTool || [null, undefined].includes(x) || [null, undefined].includes(y)) {
       return;
     }
+
+    log('[onBgClick] x,y: ', x, y);
 
     const buildingMark = marks.filter((m) => m.building)[0];
     let updatedMark;
@@ -233,6 +233,7 @@ export class Graph extends React.Component {
                   key={`${markType}-${index}-bg`}
                   mark={{ ...m, disabled: true, isBackground: true }}
                   labelNode={this.state.labelNode}
+                  onClick={this.onBgClick}
                   {...common}
                 />
               );

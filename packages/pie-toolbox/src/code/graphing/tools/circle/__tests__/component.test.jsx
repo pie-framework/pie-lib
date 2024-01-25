@@ -30,8 +30,9 @@ describe('Component', () => {
   const labelNode = document.createElement('foreignObject');
   const fromWithLabel = { x: 0, y: 0, label: 'A' };
   const toWithLabel = { x: 1, y: 1, label: 'B' };
-  const wrapperWithLabels = () =>
+  const wrapperWithLabels = (extras = {}) =>
     wrapper({
+      ...extras,
       labelNode: labelNode,
       from: fromWithLabel,
       to: toWithLabel,
@@ -154,7 +155,7 @@ describe('Component', () => {
 
     describe('labelChange', () => {
       it('updates "label" property for point', () => {
-        w = wrapperWithLabels();
+        w = wrapperWithLabels({ labelModeEnabled: true });
 
         w.instance().labelChange(xyLabel(0, 0, 'Label A'), 'from');
         expect(changeMarkProps).toBeCalledWith({
@@ -168,7 +169,7 @@ describe('Component', () => {
       });
 
       it('removes "label" property if the field is empty', () => {
-        w = wrapperWithLabels();
+        w = wrapperWithLabels({ labelModeEnabled: true });
 
         w.instance().labelChange(xyLabel(0, 0, ''), 'from');
         expect(changeMarkProps).toBeCalledWith({
@@ -184,7 +185,7 @@ describe('Component', () => {
 
     describe('clickPoint', () => {
       it('adds "label" property to a point', () => {
-        w = wrapperWithLabels();
+        w = wrapperWithLabels({ labelModeEnabled: true });
 
         w.instance().clickPoint(xy(0, 0), 'from');
         expect(changeMarkProps).toBeCalledWith({
@@ -200,7 +201,7 @@ describe('Component', () => {
       });
 
       it('if point already has label, keeps that value', () => {
-        w = wrapperWithLabels();
+        w = wrapperWithLabels({ labelModeEnabled: true });
 
         w.instance().clickPoint(fromWithLabel, 'from');
         expect(changeMarkProps).toBeCalledWith({

@@ -11,7 +11,7 @@ const DraggableComponent = (props) => {
   const { classes = {}, className, scale, x, y, r, correctness, ...rest } = props;
 
   return (
-    <Group {...rest} className={classNames(className, classes.line, correctness && correctness.value)}>
+    <Group className={classNames(className, classes.line, correctness && correctness.value)}>
       <LinePath
         data={[
           { x: scale.x(x) - r, y: scale.y(y) + r },
@@ -21,6 +21,7 @@ const DraggableComponent = (props) => {
         x={(d) => d.x}
         y={(d) => d.y}
         strokeWidth={5}
+        style={{ pointerEvents: 'none' }}
       />
       <LinePath
         data={[
@@ -31,7 +32,9 @@ const DraggableComponent = (props) => {
         x={(d) => d.x}
         y={(d) => d.y}
         strokeWidth={5}
+        style={{ pointerEvents: 'none' }}
       />
+      <circle cx={scale.x(x)} cy={scale.y(y)} r={r * 2} className={classNames(classes.transparentHandle)} {...rest} />
     </Group>
   );
 };

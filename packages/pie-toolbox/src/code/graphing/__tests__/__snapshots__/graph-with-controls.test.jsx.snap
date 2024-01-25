@@ -23,6 +23,8 @@ exports[`GraphWithControls snapshot renders 1`] = `
           "segment",
           "sine",
           "vector",
+          "absolute",
+          "exponential",
         ]
       }
     />
@@ -210,6 +212,20 @@ exports[`GraphWithControls snapshot renders 1`] = `
           "addPoint": [Function],
           "toolbar": true,
           "type": "vector",
+        },
+        Object {
+          "Component": [Function],
+          "addPoint": [Function],
+          "complete": [Function],
+          "toolbar": true,
+          "type": "absolute",
+        },
+        Object {
+          "Component": [Function],
+          "addPoint": [Function],
+          "complete": [Function],
+          "toolbar": true,
+          "type": "exponential",
         },
       ]
     }

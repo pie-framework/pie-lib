@@ -61,6 +61,11 @@ export const DragHandle = withStyles(() => ({
     '&.incorrect': incorrect('fill'),
     '&.non-interactive': disabled('fill'),
   },
+  transparentHandle: {
+    height: '20px',
+    fill: 'transparent',
+    stroke: 'transparent',
+  },
   line: {
     stroke: color.secondary(),
     transition: 'fill 200ms linear, height 200ms linear',

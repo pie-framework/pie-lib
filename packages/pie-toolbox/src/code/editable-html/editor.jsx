@@ -256,8 +256,8 @@ export class Editor extends React.Component {
           }),
         onFocus: this.onPluginFocus,
         onBlur: this.onPluginBlur,
-        maxImageWidth: this.props.maxImageWidth,
-        maxImageHeight: this.props.maxImageHeight,
+        maxImageWidth: props.maxImageWidth,
+        maxImageHeight: props.maxImageHeight,
       },
       toolbar: {
         /**

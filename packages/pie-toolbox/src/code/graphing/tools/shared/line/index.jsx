@@ -55,8 +55,13 @@ export const lineToolComponent = (Component) => {
 
       this.setState({ mark: undefined }, () => {
         const { type } = update;
-        const shouldNotChange = type && (type === 'parabola' || type === 'sine') && sameAxes(update.from, update.to);
-
+        let shouldNotChange =
+          type &&
+          (type === 'parabola' || type === 'sine' || type === 'absolute' || type === 'exponential') &&
+          sameAxes(update.from, update.to);
+        if (!shouldNotChange && type && type === 'exponential' && update.from && update.to) {
+          shouldNotChange = update.from.y === 0 || update.to.y === 0 || update.from.y * update.to.y < 0;
+        }
         if (!isEqual(mark, update) && !shouldNotChange) {
           onChange(mark, update);
         }
@@ -249,8 +254,17 @@ export const lineBase = (Comp, opts) => {
       changeMarkProps({ [type]: update });
     };
 
-    clickPoint = (point, type) => {
-      const { changeMarkProps, from, to } = this.props;
+    clickPoint = (point, type, data) => {
+      const { changeMarkProps, disabled, from, to, labelModeEnabled, onClick } = this.props;
+
+      if (!labelModeEnabled) {
+        onClick(point || data);
+        return;
+      }
+
+      if (disabled) {
+        return;
+      }
 
       if (type === 'middle' && !point && from && to) {
         point = { ...point, ...getMiddleOfTwoPoints(from, to) };
@@ -338,7 +352,7 @@ export const lineBase = (Comp, opts) => {
               middle={middle}
               onDrag={this.dragComp}
               {...common}
-              onClick={labelModeEnabled ? () => this.clickPoint(middle, 'middle') : common.onClick}
+              onClick={(data) => this.clickPoint(middle, 'middle', data)}
             />
           )}
           {lineLabelNode}
@@ -350,7 +364,7 @@ export const lineBase = (Comp, opts) => {
             coordinatesOnHover={coordinatesOnHover}
             onDrag={this.dragFrom}
             {...common}
-            onClick={labelModeEnabled ? () => this.clickPoint(from, 'from') : common.onClick}
+            onClick={(data) => this.clickPoint(from, 'from', data)}
           />
           {fromLabelNode}
 
@@ -363,7 +377,7 @@ export const lineBase = (Comp, opts) => {
               coordinatesOnHover={coordinatesOnHover}
               onDrag={this.dragTo}
               {...common}
-              onClick={labelModeEnabled ? () => this.clickPoint(to, 'to') : common.onClick}
+              onClick={(data) => this.clickPoint(to, 'to', data)}
             />
           )}
           {toLabelNode}

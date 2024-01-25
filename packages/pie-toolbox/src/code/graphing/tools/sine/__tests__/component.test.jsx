@@ -37,8 +37,8 @@ describe('Parabola', () => {
   });
 
   it('calls buildDataPoints', () => {
-    const { domain } = graphProps;
-    expect(buildDataPoints).toHaveBeenCalledWith(domain.min, domain.max, root, edge, 0.25, expect.anything());
+    const { domain, range } = graphProps;
+    expect(buildDataPoints).toHaveBeenCalledWith({ ...domain, step: 0.25 }, range, root, edge, expect.anything());
   });
 
   it('calls sinY', () => {

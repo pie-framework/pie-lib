@@ -51,11 +51,12 @@ const withPointsGenerationLinePath = (getPoints) => {
   const LinePathComponent = (props) => {
     const { graphProps, from, to, onClick, onDragStart, onDragStop, onChange, disabled, correctness, ...rest } = props;
 
-    const { dataPoints } = getPoints({
+    const { dataPoints, enableCurve = true } = getPoints({
       graphProps: props.graphProps,
       root: from,
       edge: to,
     });
+
     const raw = dataPoints.map((d) => [graphProps.scale.x(d.x), graphProps.scale.y(d.y)]);
 
     const common = {
@@ -68,8 +69,13 @@ const withPointsGenerationLinePath = (getPoints) => {
       correctness,
     };
 
-    return <LinePath data={raw} from={from} to={to} curve={curveMonotoneX} {...common} {...rest} />;
+    if (!enableCurve) {
+      return <LinePath data={raw} from={from} to={to} {...common} {...rest} />;
+    } else {
+      return <LinePath data={raw} from={from} to={to} curve={curveMonotoneX} {...common} {...rest} />;
+    }
   };
+
   LinePathComponent.propTypes = {
     graphProps: types.GraphPropsType.isRequired,
     from: types.PointType.isRequired,
@@ -81,6 +87,7 @@ const withPointsGenerationLinePath = (getPoints) => {
     disabled: PropTypes.bool,
     correctness: PropTypes.string,
   };
+
   return LinePathComponent;
 };
 

@@ -43,6 +43,8 @@ exports[`RawBar snapshot renders 1`] = `
 <g
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
 >
   <P
     height={NaN}
