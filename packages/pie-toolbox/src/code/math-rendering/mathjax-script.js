@@ -6,16 +6,20 @@ export const initializeMathJax = () => {
       startup: {
         typeset: false,
         ready: () => {
-          const {mathjax} = MathJax._.mathjax;
-          const {STATE} = MathJax._.core.MathItem;
-          const {Menu} = MathJax._.ui.menu.Menu;
+          const { mathjax } = MathJax._.mathjax;
+          const { STATE } = MathJax._.core.MathItem;
+          const { Menu } = MathJax._.ui.menu.Menu;
           const rerender = Menu.prototype.rerender;
-          Menu.prototype.rerender = function (start = STATE.TYPESET) {
+          Menu.prototype.rerender = function(start = STATE.TYPESET) {
             mathjax.handleRetriesFor(() => rerender.call(this, start));
-          }
+          };
           MathJax.startup.defaultReady();
           resolve(); // Resolve the promise here
         },
+        // ready: function() {
+        //   MathJax.startup.defaultReady();
+        //   resolve();
+        // }
       },
       // loader: {
       //   load: ['input/tex', 'output/chtml']
@@ -43,9 +47,8 @@ export const initializeMathJax = () => {
     // Load the MathJax script
     const script = document.createElement('script');
     script.type = 'text/javascript';
-    script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml-full.js';
+    script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml-full.js?update=20240308';
     script.async = true;
     document.body.appendChild(script);
   });
 };
-
