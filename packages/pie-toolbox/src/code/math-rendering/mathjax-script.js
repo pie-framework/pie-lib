@@ -22,13 +22,28 @@ export const initializeMathJax = () => {
         // }
       },
       // loader: {
-      //   load: ['input/tex', 'output/chtml']
+      //   load: ['input/tex', 'output/chtml', 'input/mml']
       // },
-      // tex: {
-      //   inlineMath: [['$', '$'], ['\\(', '\\)']],
-      //   displayMath: [['$$', '$$'], ['\\[', '\\]']],
-      //   processEscapes: true
-      // },
+      tex: {
+        inlineMath: [
+          ['$', '$'],
+          ['\\(', '\\)'],
+        ],
+        macros: {
+          parallelogram: '\\lower.2em{\\Huge\\unicode{x25B1}}',
+          overarc: '\\overparen',
+          napprox: '\\not\\approx',
+          longdiv: '\\enclose{longdiv}',
+        },
+        displayMath: [
+          ['$$', '$$'],
+          ['\\[', '\\]'],
+        ],
+        processEscapes: true,
+      },
+      chtml: {
+        fontURL: 'https://unpkg.com/mathjax-full@3.2.2/ts/output/chtml/fonts/tex-woff-v2',
+      },
       options: {
         enableEnrichment: true,
         sre: {
@@ -43,7 +58,6 @@ export const initializeMathJax = () => {
         },
       },
     };
-
     // Load the MathJax script
     const script = document.createElement('script');
     script.type = 'text/javascript';
