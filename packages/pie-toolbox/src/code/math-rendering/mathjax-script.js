@@ -17,9 +17,9 @@ export const initializeMathJax = () => {
           resolve(); // Resolve the promise here
         },
       },
-      // loader: {
-      //   load: ['input/tex', 'output/chtml', 'input/mml']
-      // },
+      loader: {
+        load: ['input/tex', 'output/chtml', 'input/mml', '[tex]/textmacros']
+      },
       tex: {
         inlineMath: [
           ['$', '$'],
@@ -38,7 +38,7 @@ export const initializeMathJax = () => {
         processEscapes: true,
       },
       chtml: {
-        //fontURL: 'https://unpkg.com/mathjax-full@3.2.2/ts/output/chtml/fonts/tex-woff-v2',
+        fontURL: 'https://unpkg.com/mathjax-full@3.2.2/ts/output/chtml/fonts/tex-woff-v2',
         displayAlign: 'center',
       },
       options: {

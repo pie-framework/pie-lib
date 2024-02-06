@@ -1,7 +1,6 @@
 import { initializeMathJax } from './mathjax-script';
 import { wrapMath, unWrapMath } from './normalization';
 
-import { MmlFactory } from 'mathjax-full/js/core/MmlTree/MmlFactory';
 import { SerializedMmlVisitor } from 'mathjax-full/js/core/MmlTree/SerializedMmlVisitor';
 const visitor = new SerializedMmlVisitor();
 const toMMl = (node) => visitor.visitTree(node);
@@ -60,20 +59,18 @@ const renderMath = (el, renderOpts) => {
     console.log('Initializing MathJax...');
     initializeMathJax();
   }
-  if (window.MathJax) {
-    if (isString) {
-      window.MathJax.typeset([executeOn]);
-      const updatedDocument = window.MathJax.startup.document;
-      const list = updatedDocument.math.list;
-      const item = list.next;
-      const mathMl = toMMl(item.data.root);
-      const parsedMathMl = mathMl.replaceAll('\n', '');
+  if (isString && window.MathJax && window.mathjaxLoadedP) {
+    window.MathJax.typeset([executeOn]);
+    const updatedDocument = window.MathJax.startup.document;
+    const list = updatedDocument.math.list;
+    const item = list.next;
+    const mathMl = toMMl(item.data.root);
+    const parsedMathMl = mathMl.replaceAll('\n', '');
 
-      console.log(parsedMathMl, 'parsedMathMl');
+    console.log(parsedMathMl, 'parsedMathMl');
 
-      // Resolve the outer promise with the parsedMathMl
-      return parsedMathMl;
-    }
+    // Resolve the outer promise with the parsedMathMl
+    return parsedMathMl;
   }
 
   if (window.mathjaxLoadedP) {
