@@ -60,58 +60,64 @@ const renderMath = (el, renderOpts) => {
     console.log('Initializing MathJax...');
     initializeMathJax();
   }
+  if (window.MathJax) {
+    if (isString) {
+      window.MathJax.typeset([executeOn]);
+      const updatedDocument = window.MathJax.startup.document;
+      const list = updatedDocument.math.list;
+      const item = list.next;
+      const mathMl = toMMl(item.data.root);
+      const parsedMathMl = mathMl.replaceAll('\n', '');
+
+      console.log(parsedMathMl, 'parsedMathMl');
+
+      // Resolve the outer promise with the parsedMathMl
+      return parsedMathMl;
+    }
+  }
 
   if (window.mathjaxLoadedP) {
     window.mathjaxLoadedP
       .then(() => {
         console.log('MathJax is ready, typesetting element');
         if (window.MathJax) {
-          if (isString) {
-            // Typeset and get MathML output for string input
-            return window.MathJax.typesetPromise([executeOn]).then(() => {
-              const mathMlOutput = executeOn.innerHTML; // MathML output
-              console.log(mathMlOutput, 'mathMlOutput');
-              return mathMlOutput; // Return the MathML string
-            });
-          } else {
-            // Reset and clear typesetting before processing the new content
+          // Reset and clear typesetting before processing the new content
 
-            //  Reset the tex labels (and automatic equation number).
-            window.MathJax.texReset();
+          //  Reset the tex labels (and automatic equation number).
+          window.MathJax.texReset();
 
-            //  Reset the typesetting system (font caches, etc.)
-            window.MathJax.typesetClear();
+          //  Reset the typesetting system (font caches, etc.)
+          window.MathJax.typesetClear();
 
-            // Use typesetPromise for asynchronous typesetting
-            // Using MathJax.typesetPromise() for asynchronous typesetting to handle situations where additional code needs to be loaded (e.g., for certain TeX commands or characters).
-            // This ensures typesetting waits for any needed resources to load and complete processing, unlike the synchronous MathJax.typeset() which can't handle such dynamic loading.
-            window.MathJax.typesetPromise([executeOn])
-              .then(() => {
-                //console.log('Element after typesetting:', el.innerHTML);
-                try {
-                  const updatedDocument = window.MathJax.startup.document;
-                  const list = updatedDocument.math.list;
+          // Use typesetPromise for asynchronous typesetting
+          // Using MathJax.typesetPromise() for asynchronous typesetting to handle situations where additional code needs to be loaded (e.g., for certain TeX commands or characters).
+          // This ensures typesetting waits for any needed resources to load and complete processing, unlike the synchronous MathJax.typeset() which can't handle such dynamic loading.
+          window.MathJax.typesetPromise([executeOn])
+            .then(() => {
+              //console.log('Element after typesetting:', el.innerHTML);
+              try {
+                const updatedDocument = window.MathJax.startup.document;
+                const list = updatedDocument.math.list;
 
-                  for (let item = list.next; typeof item.data !== 'symbol'; item = item.next) {
-                    const mathMl = toMMl(item.data.root);
-                    const parsedMathMl = mathMl.replaceAll('\n', '');
+                for (let item = list.next; typeof item.data !== 'symbol'; item = item.next) {
+                  const mathMl = toMMl(item.data.root);
+                  const parsedMathMl = mathMl.replaceAll('\n', '');
 
-                    item.data.typesetRoot.setAttribute('data-mathml', parsedMathMl);
-                  }
-                  // If the original input was a string, return the parsed MathML
-                } catch (e) {
-                  console.error('Error post-processing MathJax typesetting:', e.toString());
+                  item.data.typesetRoot.setAttribute('data-mathml', parsedMathMl);
                 }
+                // If the original input was a string, return the parsed MathML
+              } catch (e) {
+                console.error('Error post-processing MathJax typesetting:', e.toString());
+              }
 
-                // Clearing the document if needed
-                window.MathJax.startup.document.clear();
-              })
-              .catch((error) => {
-                //  If there was an internal error, put the message into the output instead
+              // Clearing the document if needed
+              window.MathJax.startup.document.clear();
+            })
+            .catch((error) => {
+              //  If there was an internal error, put the message into the output instead
 
-                console.error('Error in typesetting with MathJax:', error);
-              });
-          }
+              console.error('Error in typesetting with MathJax:', error);
+            });
         }
       })
       .catch((error) => {

@@ -7,7 +7,7 @@ import debug from 'debug';
 import SlatePropTypes from 'slate-prop-types';
 import PropTypes from 'prop-types';
 
-import { BLOCK_TAGS } from "../../block-tags";
+import { BLOCK_TAGS } from '../../block-tags';
 import isEqual from 'lodash/isEqual';
 
 const log = debug('@pie-lib:editable-html:plugins:math');
@@ -241,7 +241,7 @@ export const serialization = {
 
       if (MathPlugin.mathMlOptions.mmlEditing) {
         // todo fix this in mathml-to-latex
-        const htmlWithRemovedSpaces = newHtml.replaceAll("&nbsp;", " ");
+        const htmlWithRemovedSpaces = newHtml.replaceAll('&nbsp;', ' ');
         const htmlToUse = mmlToLatex(htmlWithRemovedSpaces);
         const latex = htmlDecode(htmlToUse);
         // todo fix this in mathml-to-latex
@@ -305,6 +305,7 @@ export const serialization = {
 
       if (MathPlugin.mathMlOptions.mmlOutput) {
         const res = renderMath(`<span data-latex="" data-raw="${decoded}">${wrapMath(decoded, wrapper)}</span>`);
+        console.log(res, 'res in index');
         const newLatex = mmlToLatex(res);
 
         // we need to remove all the spaces from the latex to be able to compare it
