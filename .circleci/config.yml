@@ -95,23 +95,21 @@ workflows:
           filters:
             branches:
               ignore:
-                - develop
+#                - develop
                 - master
-                - beta
       - test:
           filters:
             branches:
               ignore:
-                - develop
+#                - develop
                 - master
-                - beta
   build:
     jobs:
       - build:
           filters:
             branches:
               only:
-                - develop
+#                we only release next versions for slate editor
                 - feat/slate-editor-updates
   build_master:
     jobs:
@@ -126,7 +124,7 @@ workflows:
 #          filters:
 #            branches:
 #              only:
-#                - feat/slate-editor-updates
+#                - beta
 # nightly:
 #   triggers:
 #     - schedule:
