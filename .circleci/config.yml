@@ -106,7 +106,7 @@ workflows:
           filters:
             branches:
               only:
-#                - develop
+                - feat/slate-editor-updates
   build_master:
     jobs:
       - release_build:
