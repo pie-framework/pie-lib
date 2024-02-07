@@ -113,6 +113,7 @@ const LIST_TYPES = ['ul', 'ol', 'li'];
 
 const KEY_TAB = 'Tab';
 const KEY_ENTER = 'Enter';
+const KEY_BACKSPACE = 'Backspace';
 
 export default (options) => {
   const { type, icon } = options;
@@ -315,38 +316,16 @@ export default (options) => {
   };
 
   const unwrapListByKey = (editor, nodeInfo) => {
-    const [currentLi, currentLiPath] = nodeInfo;
+    const [, currentLiPath] = nodeInfo;
 
     editor.withoutNormalizing(() => {
-      Transforms.unwrapNodes(editor, {
-        at: {
-          anchor: {
-            path: currentLiPath,
-            offset: 0,
-          },
-          focus: {
-            path: currentLiPath,
-            offset: 0,
-          },
-        },
-        split: true,
-      });
+      const splitItemPath = currentLiPath.slice(0, currentLiPath.length - 1);
 
-      const [parent, parentPath] = editor.parent(currentLiPath);
-      const itemIndex = currentLiPath[currentLiPath.length - 1];
+      splitItemPath[splitItemPath.length - 1] += 1;
 
-      currentLi.children.forEach((itemChild, index) => {
-        if (SlateElement.isElement(itemChild)) {
-          editor.moveNodes({
-            at: [...currentLiPath, index],
-            to: [...parentPath, index + itemIndex],
-          });
-        }
-      });
-
-      editor.removeNodes({
-        at: currentLiPath,
-      });
+      editor.splitNodes({ at: currentLiPath, always: true });
+      editor.moveNodes({ at: [...splitItemPath, 0], to: splitItemPath });
+      editor.setNodes({ type: 'div' }, { at: splitItemPath });
     });
   };
 
@@ -375,7 +354,7 @@ export default (options) => {
     if (editor.isEmpty(currentLi)) {
       // Block is empty, we exit the list
       const [, listPath] = editor.parent(currentLiPath);
-      const [parentListItem] = listPath.length > 1 ? editor.parent(editor, listPath) : [];
+      const [parentListItem] = listPath.length > 1 ? editor.parent(listPath) : [];
 
       if (parentListItem) {
         return decreaseItemDepth(editor);
@@ -387,17 +366,23 @@ export default (options) => {
 
     window.editor = editor;
 
-    editor.apply({
-      type: 'split_node',
-      path: currentLiPath,
-      position: 1,
-      properties: { type: 'li' },
-    });
+    const pathToSplit = Text.isText(currentLi.children[0]) ? currentLiPath : [...currentLiPath, 0];
 
-    const newLiPath = cloneDeep(currentLiPath);
+    if (Text.isText(currentLi.children[0])) {
+      editor.apply({
+        type: 'split_node',
+        path: pathToSplit,
+        position: 1,
+        properties: { type: 'li' },
+      });
 
-    newLiPath[newLiPath.length - 1] = newLiPath[newLiPath.length - 1] + 1;
-    Transforms.select(editor, newLiPath);
+      const newLiPath = cloneDeep(pathToSplit);
+
+      newLiPath[newLiPath.length - 1] = newLiPath[newLiPath.length - 1] + 1;
+      Transforms.select(editor, newLiPath);
+    } else {
+      editor.splitNodes({ at: pathToSplit, always: true });
+    }
 
     return true;
   };
@@ -414,6 +399,34 @@ export default (options) => {
     setTimeout(() => ReactEditor.focus(editor), 50);
 
     return result;
+  };
+
+  core.onBackSpace = (editor, event) => {
+    const startRange = Range.start(editor.selection);
+
+    if (startRange.offset !== 0) {
+      return;
+    }
+
+    if (Range.isExpanded(editor.range(editor.selection))) {
+      editor.delete();
+      return;
+    }
+
+    event.preventDefault();
+
+    const [, currentLiPath] = getAncestorByType(editor, 'li');
+    // Block is empty, we exit the list
+    const [, listPath] = editor.parent(currentLiPath);
+    const [parentListItem] = listPath.length > 1 ? editor.parent(listPath) : [];
+
+    if (parentListItem) {
+      return decreaseItemDepth(editor);
+    }
+
+    unwrapList(editor);
+
+    return true;
   };
 
   core.onEnter = (editor, event) => {
@@ -440,6 +453,8 @@ export default (options) => {
           return core.onTab(editor, event);
         case KEY_ENTER:
           return core.onEnter(editor, event);
+        case KEY_BACKSPACE:
+          return core.onBackSpace(editor, event);
         default:
           return undefined;
       }
