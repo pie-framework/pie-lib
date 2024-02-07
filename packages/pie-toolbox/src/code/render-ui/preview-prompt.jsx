@@ -126,6 +126,10 @@ const styles = (theme) => ({
       padding: '.6em 1em',
       textAlign: 'center',
     },
+    // added this to fix alignment of text in prompt imported from studio (PD-3423)
+    '&:not(.MathJax) > table td > p.kds-indent': {
+      textAlign: 'initial',
+    },
   },
 });
 export default withStyles(styles)(PreviewPrompt);
