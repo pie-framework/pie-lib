@@ -119,6 +119,7 @@ const styles = (theme) => ({
     '&:not(.MathJax) > table tr': {
       '&:nth-child(2n)': {
         backgroundColor: '#f6f8fa',
+        color: theme.palette.common.black,
       },
     },
     '&:not(.MathJax) > table td, &:not(.MathJax) > table th': {

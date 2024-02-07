@@ -12,7 +12,7 @@ import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import { color } from '../render-ui';
 import Plain from 'slate-plain-serializer';
-import { AlertDialog } from '../config-ui';
+import AlertDialog from '../config-ui/alert-dialog';
 import { PreviewPrompt } from '../render-ui';
 
 import { getBase64, htmlToValue, valueToHtml } from './new-serialization';

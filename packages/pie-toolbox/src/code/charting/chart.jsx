@@ -328,10 +328,9 @@ const styles = (theme) => ({
     justifyContent: 'space-between',
     padding: theme.spacing.unit,
     backgroundColor: color.primaryLight(),
-    borderTop: `solid 1px ${color.primaryDark()}`,
-    borderBottom: `solid 0px ${color.primaryDark()}`,
-    borderLeft: `solid 1px ${color.primaryDark()}`,
-    borderRight: `solid 1px ${color.primaryDark()}`,
+    '& button': {
+      fontSize: theme.typography.fontSize,
+    },
   },
   svg: {
     overflow: 'visible',

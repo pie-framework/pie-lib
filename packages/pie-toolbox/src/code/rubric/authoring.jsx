@@ -21,6 +21,8 @@ import takeRight from 'lodash/takeRight';
 import PointMenu from './point-menu';
 
 import range from 'lodash/range';
+import { InputContainer } from '../config-ui';
+
 const log = debug('pie-lib:rubric:authoring');
 
 const reorder = (list, startIndex, endIndex) => {
@@ -37,6 +39,7 @@ export const RubricType = PropTypes.shape({
   points: PropTypes.arrayOf(PropTypes.string),
   sampleAnswers: PropTypes.arrayOf(PropTypes.string),
   maxPoints: PropTypes.number,
+  rubriclessInstruction: PropTypes.string,
 });
 
 const MaxPoints = withStyles((theme) => ({
@@ -53,7 +56,7 @@ const MaxPoints = withStyles((theme) => ({
         Max Points
       </InputLabel>
       <Select value={value} onChange={(e) => onChange(e.target.value)} input={<OutlinedInput labelWidth={80} />}>
-        {range(1, max).map((v) => (
+        {range(1, max + 1).map((v) => (
           <MenuItem key={`${v}`} value={v}>
             {v}
           </MenuItem>
@@ -151,6 +154,8 @@ export class RawAuthoring extends React.Component {
     classes: PropTypes.object.isRequired,
     className: PropTypes.string,
     value: RubricType,
+    config: PropTypes.object,
+    rubricless: PropTypes.bool,
     onChange: PropTypes.func,
   };
 
@@ -169,8 +174,13 @@ export class RawAuthoring extends React.Component {
     onChange({ ...value, points, sampleAnswers });
   };
 
-  changeMaxPoints = (maxPoints) => {
+  changeRubriclessInstruction = (input) => {
     const { value, onChange } = this.props;
+    onChange({ ...value, rubriclessInstruction: input });
+  };
+
+  changeMaxPoints = (maxPoints) => {
+    const { value, onChange, rubricless } = this.props;
     const currentMax = value.points.length - 1;
 
     log('current', currentMax, 'new: ', maxPoints);
@@ -191,8 +201,10 @@ export class RawAuthoring extends React.Component {
       sampleAnswers = takeRight(value.sampleAnswers, maxPoints + 1);
     }
 
-    if (points) {
-      onChange({ ...value, points, sampleAnswers });
+    if (points && !rubricless) {
+      onChange({ ...value, points, sampleAnswers, maxPoints });
+    } else {
+      onChange({ ...value, maxPoints });
     }
   };
 
@@ -249,13 +261,24 @@ export class RawAuthoring extends React.Component {
   };
 
   render() {
-    const { classes, className, value, mathMlOptions = {} } = this.props;
-    let { excludeZeroEnabled = true, maxPointsEnabled = true, errors = {} } = value || {};
+    const { classes, className, value, mathMlOptions = {}, config = {}, rubricless = false } = this.props;
+    let {
+      excludeZeroEnabled = true,
+      maxPointsEnabled = true,
+      errors = {},
+      rubriclessInstructionEnabled = false,
+      maxPoints = 10,
+    } = value || {};
+    // rubric will contain a max value for maxPoints
+    const { rubriclessInstruction = {}, maxMaxPoints = 10 } = config || {};
     const { pointsDescriptorsErrors } = errors || {};
     if (value && Number.isFinite(value.maxPoints)) {
       // eslint-disable-next-line no-console
       console.warn('maxPoints is deprecated - remove from model');
     }
+
+    // for rubric value is computed based on points
+    const maxPointsValue = !rubricless ? value.points.length - 1 : maxPoints;
 
     return (
       <div className={classNames(classes.class, className)}>
@@ -263,7 +286,13 @@ export class RawAuthoring extends React.Component {
           Rubric
         </Typography>
         <FormGroup row>
-          {maxPointsEnabled && <MaxPoints max={10} value={value.points.length - 1} onChange={this.changeMaxPoints} />}
+          {maxPointsEnabled && (
+            <MaxPoints
+              max={maxMaxPoints < 100 ? maxMaxPoints : 100}
+              value={maxPointsValue}
+              onChange={this.changeMaxPoints}
+            />
+          )}
           {excludeZeroEnabled && (
             <FormControlLabel
               label="Exclude zeros"
@@ -272,7 +301,21 @@ export class RawAuthoring extends React.Component {
           )}
         </FormGroup>
 
-        <div className={classes.container}>
+        {rubriclessInstructionEnabled && rubricless && (
+          <InputContainer label={rubriclessInstruction.label} className={classes.inputContainer}>
+            <EditableHtml
+              className={classes.input}
+              markup={value.rubriclessInstruction || ''}
+              onChange={this.changeRubriclessInstruction}
+              nonEmpty={false}
+              disableUnderline
+              languageCharactersProps={[{ language: 'spanish' }, { language: 'special' }]}
+              mathMlOptions={mathMlOptions}
+            />
+          </InputContainer>
+        )}
+
+        <div className={rubricless ? classes.rubricless : classes.container}>
           <DragDropContext onDragEnd={this.dragEnd}>
             <Droppable droppableId="droppable">
               {(provided) => (
@@ -325,6 +368,14 @@ const styles = (theme) => ({
     padding: theme.spacing.unit * 2,
     margin: theme.spacing.unit,
   },
+  inputContainer: {
+    width: '100%',
+    paddingTop: theme.spacing.unit * 2,
+    marginBottom: theme.spacing.unit * 2,
+  },
+  rubricless: {
+    display: 'none',
+  },
   configHolder: {
     paddingTop: theme.spacing.unit,
     paddingBottom: theme.spacing.unit,
@@ -338,6 +389,7 @@ const styles = (theme) => ({
 const StyledRawAuthoring = withStyles(styles)(RawAuthoring);
 
 const Reverse = (props) => {
+  const { rubricless = false, config = {} } = props || {};
   const points = Array.from(props.value.points || []).reverse();
   let sampleAnswers = Array.from(props.value.sampleAnswers || []).reverse();
 
@@ -357,11 +409,13 @@ const Reverse = (props) => {
     });
   };
 
-  return <StyledRawAuthoring value={value} onChange={onChange} />;
+  return <StyledRawAuthoring value={value} config={config} onChange={onChange} rubricless={rubricless} />;
 };
 
 Reverse.propTypes = {
   value: RubricType,
+  config: PropTypes.object,
+  rubricless: PropTypes.bool,
   getIndex: PropTypes.func,
   onChange: PropTypes.func,
 };

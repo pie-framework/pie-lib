@@ -74,3 +74,9 @@ now .
 ```
 
 #
+
+## Linking pslb
+You'll have to run the link commands in the pslb repo, then you can run 
+```shell
+yarn clean-install && yarn link-pslb && yarn print-module
+```

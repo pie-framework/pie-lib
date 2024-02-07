@@ -10,28 +10,9 @@ import { serialization as listSerialization } from './plugins/list';
 import { serialization as tableSerialization } from './plugins/table';
 import { serialization as responseAreaSerialization } from './plugins/respArea';
 import { Mark, Value } from 'slate';
+import { BLOCK_TAGS } from "./block-tags";
 
 const log = debug('@pie-lib:editable-html:serialization');
-
-/**
- * Tags to blocks.
- *
- * @type {Object}
- */
-
-export const BLOCK_TAGS = {
-  div: 'div',
-  span: 'span',
-  p: 'paragraph',
-  blockquote: 'quote',
-  pre: 'code',
-  h1: 'heading-one',
-  h2: 'heading-two',
-  h3: 'heading-three',
-  h4: 'heading-four',
-  h5: 'heading-five',
-  h6: 'heading-six',
-};
 
 /**
  * Tags to marks.

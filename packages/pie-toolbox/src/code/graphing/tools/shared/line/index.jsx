@@ -55,8 +55,13 @@ export const lineToolComponent = (Component) => {
 
       this.setState({ mark: undefined }, () => {
         const { type } = update;
-        const shouldNotChange = type && (type === 'parabola' || type === 'sine') && sameAxes(update.from, update.to);
-
+        let shouldNotChange =
+          type &&
+          (type === 'parabola' || type === 'sine' || type === 'absolute' || type === 'exponential') &&
+          sameAxes(update.from, update.to);
+        if (!shouldNotChange && type && type === 'exponential' && update.from && update.to) {
+          shouldNotChange = update.from.y === 0 || update.to.y === 0 || update.from.y * update.to.y < 0;
+        }
         if (!isEqual(mark, update) && !shouldNotChange) {
           onChange(mark, update);
         }
@@ -378,16 +383,16 @@ export const lineBase = (Comp, opts) => {
 export const styles = {
   line: () => ({
     fill: 'transparent',
-    stroke: color.primaryLight(),
+    stroke: color.defaults.PRIMARY_LIGHT,
     strokeWidth: 3,
     transition: 'stroke 200ms ease-in, stroke-width 200ms ease-in',
     '&:hover': {
       strokeWidth: 6,
-      stroke: color.primaryDark(),
+      stroke: color.defaults.PRIMARY_DARK,
     },
   }),
   arrow: () => ({
-    fill: color.secondary(),
+    fill: color.defaults.SECONDARY,
   }),
   disabledArrow: () => ({
     ...disabled(),

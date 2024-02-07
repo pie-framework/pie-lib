@@ -13,12 +13,12 @@ const styles = (theme) => ({
     padding: theme.spacing.unit * 0.5,
     fontFamily: theme.typography.fontFamily,
     fontSize: theme.typography.fontSize,
-    border: `solid 1px ${color.secondary()}`,
+    border: `solid 1px ${color.defaults.SECONDARY}`,
     borderRadius: '3px',
-    color: color.primaryDark(),
+    color: color.defaults.PRIMARY_DARK,
   },
   disabled: {
-    border: `solid 1px ${color.primaryDark()}`,
+    border: `solid 1px ${color.defaults.PRIMARY_DARK}`,
     background: theme.palette.background.paper,
   },
   disabledMark: {

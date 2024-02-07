@@ -135,7 +135,6 @@ const styles = (theme) => ({
     marginRight: theme.spacing.unit / 2,
     marginBottom: theme.spacing.unit / 2,
     color: color.text(),
-    backgroundColor: color.background(),
   },
   under: {
     position: 'absolute',

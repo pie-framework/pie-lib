@@ -115,7 +115,7 @@ class RawLabel extends React.Component {
 
 const Label = withStyles((theme) => ({
   label: {
-    fill: color.secondary(),
+    fill: color.defaults.SECONDARY,
   },
   axisLabel: {
     fontSize: theme.typography.fontSize - 2,

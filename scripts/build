@@ -22,14 +22,16 @@ class LibCommands extends Commands {
     ]);
   }
 
+  // TODO pslb builds are not working with slate, this needs to be fixed PD-3379
+  //  we also need to make sure this will create beta versions
   sharedBuild() {
-    if (args.next) {
-      return Promise.resolve();
-    } else {
-      return this.runCmd(
-        `yarn pslb --config pslb/pslb.config.js --publishLibs --token ${args.token} --cleanLibs --logLevel debug`
-      );
-    }
+    // if (args.next) {
+    //   return Promise.resolve();
+    // } else {
+    //   return this.runCmd(
+    //     `yarn pslb --config pslb/pslb.config.js --publishLibs --token ${args.token} --cleanLibs --logLevel debug`
+    //   );
+    // }
   }
 
   build() {

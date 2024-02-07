@@ -86,24 +86,126 @@ export const pointsToABC = (one, two, three) => {
 export const parabola = (a, b, c) => (x) => a * Math.pow(x, 2) + b * x + c;
 
 /**
+ * Absolute value from two points Root (Vertex) the point where the two rays intersect and edge One point on a ray.
+ * @param root 1st point selected on graph
+ * @param edge 2nd point selected on graph
+ * https://www.desmos.com/calculator/rarxiatpip
+ */
+export const absoluteFromTwoPoints = (root, edge) => {
+  edge = edge || { ...root };
+  const a = pointsToAForAbsolute(root, edge);
+  return absolute(a, root.x, root.y);
+};
+
+/*
+ * Finds value of a in y=a*abs(x-h)+k function
+ * @param one 1st point
+ * @param two 2nd point
+ * */
+export const pointsToAForAbsolute = (one, two) => {
+  const y1 = two.y - one.y;
+  const x1 = two.x - one.x;
+  let a = y1 / x1;
+  if (two.x < one.x) {
+    a = a * -1;
+  }
+  return a;
+};
+
+/**
+ * y=a*abs(x-h)+k
+ */
+export const absolute = (a, h, k) => (x) => a * Math.abs(x - h) + k;
+
+/**
+ * Exponential from two points on exponential graph.
+ * @param root 1st point selected on graph
+ * @param edge 2nd point selected on graph
+ * https://www.desmos.com/calculator/3fisjexbvp
+ */
+export const exponentialFromTwoPoints = (root, edge) => {
+  edge = edge || { ...root };
+  const { a, b } = pointsToABForExponential(root, edge);
+  return exponential(a, b);
+};
+
+/*
+ * Finds value of a and b in y=a*(b)^x function
+ * @param one 1st point
+ * @param two 2nd point
+ * */
+export const pointsToABForExponential = (one, two) => {
+  const p = one.y / two.y;
+  const r = 1 / (one.x - two.x);
+  const b = Math.pow(p, r);
+  const a = one.y / Math.pow(b, one.x);
+  return { a, b };
+};
+
+/**
+ * y=a*(b)^x
+ */
+export const exponential = (a, b) => (x) => a * Math.pow(b, x);
+
+/**
  * Generate a set of data points, add spacing before min and after max if there is space between minx + min and maxX and max
- * @param {*} min
- * @param {*} max
+ * @param {*} domain
+ * @param {*} range
  * @param {*} root
  * @param {*} edge
- * @param {*} interval
  * @param {*} yFn
+ * @param {*} excludeOutsidePoints
  */
-export const buildDataPoints = (min, max, root, edge, interval, yFn) => {
-  log('[buildDataPoints] min:', min, 'max:', max, 'root:', root);
+export const buildDataPoints = (domain, range, root, edge, yFn, excludeOutsidePoints = false) => {
+  log('[buildDataPoints] domain:', domain, 'range:', range, 'root:', root, 'edge:', edge);
+
+  domain = { min: 0, max: 0, step: 1, ...domain };
+  range = { min: 0, max: 0, step: 1, ...range };
   edge = edge ? edge : { ...root };
+
   const minX = Math.min(root.x, edge.x);
-  const maxX = Math.max(root.x, edge.x);
-  const leftSpace = min - minX;
-  const rightSpace = max - maxX;
-  const xs = xPoints(minX, interval, min - rightSpace, max - leftSpace);
-  log('[buildDataPoints]:xs:', xs);
-  return xs.map((v) => new Point(v, yFn(v)));
+  const xPts = xPoints(minX, domain.step, domain.min - domain.step, domain.max + domain.step);
+
+  log('[buildDataPoints]:xPts:', xPts);
+
+  let startIndex = -1;
+  let endIndex = -1;
+
+  // generate points based on the yFn
+  const points = xPts.map((v) => new Point(v, yFn(v)));
+
+  if (!excludeOutsidePoints) {
+    return points;
+  }
+
+  // exclude the points with y outside range min and max
+  const filteredPoints = points.reduce((acc, val, index) => {
+    if (val.y >= range.min - range.step && val.y <= range.max + range.step) {
+      if (startIndex === -1) {
+        startIndex = index;
+      }
+
+      if (endIndex < index) {
+        endIndex = index;
+      }
+
+      return [...acc, val];
+    }
+
+    return acc;
+  }, []);
+
+  // add the first value outside range min and max smaller than range.min if exists
+  if (startIndex - 1 >= 0) {
+    filteredPoints.unshift(points[startIndex - 1]);
+  }
+
+  // add the first value outside range min and max greater than range.min if exists
+  if (endIndex + 1 <= points.length - 1) {
+    filteredPoints.push(points[endIndex + 1]);
+  }
+
+  return points;
 };
 
 export default {
@@ -115,5 +217,11 @@ export default {
   parabolaFromThreePoints,
   pointsToABC,
   parabola,
+  absoluteFromTwoPoints,
+  pointsToAForAbsolute,
+  absolute,
+  exponentialFromTwoPoints,
+  pointsToABForExponential,
+  exponential,
   buildDataPoints,
 };

@@ -12,7 +12,7 @@ const styles = (theme) => ({
     fontSize: theme.typography.fontSize,
     borderRadius: '8px',
     background: theme.palette.common.white,
-    color: color.primaryDark(),
+    color: color.defaults.PRIMARY_DARK,
   },
   inputLabel: {
     padding: 0,
@@ -20,8 +20,9 @@ const styles = (theme) => ({
 });
 
 export const getLabelPosition = (graphProps, x, y, labelLength) => {
-  const { scale, domain } = graphProps;
-  const topShift = 8;
+  const { scale, domain, range } = graphProps;
+  // treat corner cases for maximum and minimum
+  const topShift = y === range.min ? 16 : y === range.max ? 0 : 8;
   const leftShift = 10;
   const rightEdge = scale.x(x) + labelLength + leftShift;
 

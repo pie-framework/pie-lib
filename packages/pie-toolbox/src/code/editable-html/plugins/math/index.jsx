@@ -8,8 +8,8 @@ import { wrapMath, unWrapMath, mmlToLatex, renderMath } from '../../../math-rend
 import debug from 'debug';
 import PropTypes from 'prop-types';
 import isEqual from 'lodash/isEqual';
-
 import { BLOCK_TAGS } from '../../new-serialization';
+
 const log = debug('@pie-lib:editable-html:plugins:math');
 
 const TEXT_NODE = 3;
@@ -335,7 +335,7 @@ export const serialization = {
           // As George requested in PD-3167, I will set the new mathML anyway, and also log differences
           // if it doesn't we keep the latex version
           console.log('This latex can not be safely converted to mathml so we will keep the latex version!!!', {
-            initialLatex: latex,
+            initialLatex: l,
             newLatex: newLatex,
             correctedLatex,
             mathML: res,

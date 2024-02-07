@@ -1398,5 +1398,35 @@
     "committerDate": "2021-09-23 13:48:01 +0300",
     "isTagged": true,
     "tag": "@pie-lib/demo@6.7.0"
+  },
+  {
+    "type": "feat",
+    "scope": "rubric",
+    "subject": "solve conflicts PD-2555",
+    "merge": null,
+    "header": "feat(rubric): solve conflicts PD-2555",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "7bdf6dec06fa85ec8bc4c32908078c7a80ec3788",
+    "gitTags": "",
+    "committerDate": "2023-12-19 10:02:53 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/demo@7.2.0"
+  },
+  {
+    "type": "fix",
+    "scope": "graphing",
+    "subject": "updates tests for matk-label PD-3265",
+    "merge": null,
+    "header": "fix(graphing): updates tests for matk-label PD-3265",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "6e24e17fafe7fc817477fc9deea7f1d4a0ca00fb",
+    "gitTags": "",
+    "committerDate": "2023-11-27 12:16:28 +0200",
+    "isTagged": true,
+    "tag": "@pie-lib/demo@7.3.0"
   }
 ]

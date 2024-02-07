@@ -115,10 +115,6 @@ export default withStyles((theme) => {
     token: {
       cursor: 'pointer',
       textIndent: 0,
-      padding: theme.spacing.unit / 2,
-      paddingRight: 0,
-      paddingLeft: 0,
-      transition: 'background-color 100ms ease-in',
     },
     disabled: {
       cursor: 'inherit',
@@ -134,6 +130,7 @@ export default withStyles((theme) => {
       [theme.breakpoints.up(769)]: {
         '&:hover': {
           backgroundColor: color.primaryLight(),
+          color: theme.palette.common.black,
           '& > *': {
             backgroundColor: color.primaryLight(),
           },
@@ -141,47 +138,42 @@ export default withStyles((theme) => {
       },
     },
     selected: {
-      lineHeight: 2,
-      marginTop: theme.spacing.unit / 2,
       backgroundColor: color.primaryLight(),
+      color: theme.palette.common.black,
+      lineHeight: `${theme.spacing.unit * 3}px`,
       '& > *': {
         backgroundColor: color.primaryLight(),
       },
     },
     highlight: {
       border: `dashed 2px ${color.disabled()}`,
-      lineHeight: 2,
-      boxSizing: 'border-box',
-      marginTop: theme.spacing.unit / 2,
-      display: 'inline-block',
-      padding: theme.spacing.unit,
+      lineHeight: `${theme.spacing.unit * 3}px`,
     },
     print: {
       border: `dashed 2px ${color.disabled()}`,
-      lineHeight: 2,
-      boxSizing: 'border-box',
-      marginTop: theme.spacing.unit / 2,
-      display: 'inline-block',
-      padding: theme.spacing.unit,
+      lineHeight: `${theme.spacing.unit * 3}px`,
       color: color.text(),
     },
-
     custom: {
       display: 'initial',
     },
     correct: {
       backgroundColor: color.correctSecondary(),
       border: `${color.correct()} solid 2px`,
-      lineHeight: `${theme.spacing.unit * 4}px`,
+      color: theme.palette.common.black,
+      lineHeight: `${theme.spacing.unit * 3}px`,
     },
     incorrect: {
       backgroundColor: color.incorrectSecondary(),
       border: `${color.missing()} solid 2px`,
-      lineHeight: `${theme.spacing.unit * 4}px`,
+      color: theme.palette.common.black,
+      lineHeight: `${theme.spacing.unit * 3}px`,
     },
     missing: {
       backgroundColor: color.incorrectSecondary(),
       border: `${color.missing()} dashed 2px`,
+      color: theme.palette.common.black,
+      lineHeight: `${theme.spacing.unit * 3}px`,
       textDecoration: `line-through ${color.missing()}`,
     },
     incorrectIcon: {
@@ -189,7 +181,6 @@ export default withStyles((theme) => {
       fontSize: 'larger',
       color: color.missing(),
     },
-
     correctIcon: {
       verticalAlign: 'middle',
       fontSize: 'larger',
