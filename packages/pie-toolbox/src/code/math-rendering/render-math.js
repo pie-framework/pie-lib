@@ -39,7 +39,13 @@ const adjustMathMLStyle = (el = document) => {
   nodes.forEach((node) => node.setAttribute('displaystyle', 'true'));
 };
 
-const renderMath = (el, renderOpts) => {
+const preprocessLatex = (latex) => {
+  // Replace occurrences of \longdiv with an alternative expression
+  return latex.replace(/\\longdiv/g, '\\enclose{longdiv}');
+};
+
+
+const renderMath = (el, renderOpts, callback) => {
   const isString = typeof el === 'string';
   let executeOn = document.body;
 
@@ -59,18 +65,45 @@ const renderMath = (el, renderOpts) => {
     console.log('Initializing MathJax...');
     initializeMathJax();
   }
+  
   if (isString && window.MathJax && window.mathjaxLoadedP) {
+    try {
+    MathJax.texReset();
+    MathJax.typesetClear();
     window.MathJax.typeset([executeOn]);
     const updatedDocument = window.MathJax.startup.document;
     const list = updatedDocument.math.list;
     const item = list.next;
     const mathMl = toMMl(item.data.root);
+
+
     const parsedMathMl = mathMl.replaceAll('\n', '');
 
     console.log(parsedMathMl, 'parsedMathMl');
 
-    // Resolve the outer promise with the parsedMathMl
     return parsedMathMl;
+  } catch (error) {
+    console.error('Error rendering math:', error.message);
+   
+  }
+  // window.mathjaxLoadedP.then(() => {
+  //   try {
+  //     window.MathJax.texReset();
+  //     window.MathJax.typesetClear();
+  //     window.MathJax.typesetPromise([executeOn]).then(() => {
+  //       const updatedDocument = window.MathJax.startup.document;
+  //       const list = updatedDocument.math.list;
+  //       const item = list.next;
+  //       const mathMl = toMMl(item.data.root);
+  //       const parsedMathMl = mathMl.replaceAll('\n', '');
+  //       callback(null, parsedMathMl); // Call callback with the result
+  //     }).catch((error) => {
+  //       callback(error, null); // Call callback with the error
+  //     });
+  //   } catch (error) {
+  //     callback(error, null); // Call callback with the error
+  //   }
+  // });
   }
 
   if (window.mathjaxLoadedP) {

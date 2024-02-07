@@ -304,6 +304,14 @@ export const serialization = {
       const decoded = htmlDecode(lessThanHandling(l));
 
       if (MathPlugin.mathMlOptions.mmlOutput) {
+        // renderMath(`<span data-latex="" data-raw="${decoded}">${wrapMath(decoded, wrapper)}</span>`, {}, (error, res) => {
+        //   if (error) {
+        //     console.error('Error rendering math:', error);
+        //     // Handle the error as appropriate
+        //   } else {
+        //     console.log(res, 'res in index');
+        //     const newLatex = mmlToLatex(res);
+
         const res = renderMath(`<span data-latex="" data-raw="${decoded}">${wrapMath(decoded, wrapper)}</span>`);
         console.log(res, 'res in index');
         const newLatex = mmlToLatex(res);
@@ -328,6 +336,8 @@ export const serialization = {
         }
 
         return <span data-type="mathml" dangerouslySetInnerHTML={{ __html: res }} />;
+      // }
+      // });
       }
 
       return (

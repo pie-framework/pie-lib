@@ -14,11 +14,11 @@ export const initializeMathJax = () => {
             mathjax.handleRetriesFor(() => rerender.call(this, start));
           };
           MathJax.startup.defaultReady();
-          resolve(); // Resolve the promise here
+          resolve();
         },
       },
       loader: {
-        load: ['input/tex', 'output/chtml', 'input/mml', '[tex]/textmacros']
+        load: [ 'input/mml']
       },
       tex: {
         inlineMath: [
@@ -35,7 +35,7 @@ export const initializeMathJax = () => {
           ['$$', '$$'],
           ['\\[', '\\]'],
         ],
-        processEscapes: true,
+      processEscapes: true,
       },
       chtml: {
         fontURL: 'https://unpkg.com/mathjax-full@3.2.2/ts/output/chtml/fonts/tex-woff-v2',
@@ -58,7 +58,7 @@ export const initializeMathJax = () => {
     // Load the MathJax script
     const script = document.createElement('script');
     script.type = 'text/javascript';
-    script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js';
+    script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml-full.js';
     script.async = true;
     document.body.appendChild(script);
   });
