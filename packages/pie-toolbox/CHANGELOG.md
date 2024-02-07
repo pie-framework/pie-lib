@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.5.7...@pie-lib/pie-toolbox@1.5.8) (2024-02-07)
+
+
+### Bug Fixes
+
+* **prompt-preview:** fix text alignment for studio imported prompts PD-3423 ([094846b](https://github.com/pie-framework/pie-lib/commit/094846b39f9c34b68d15e6631b1439aabd87e358))
+
+
+
+
+
 ## [1.5.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.5.6...@pie-lib/pie-toolbox@1.5.7) (2024-01-24)
 
 
