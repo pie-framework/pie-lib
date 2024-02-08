@@ -1,13 +1,13 @@
 import { getGlobal } from './render-math';
 
 export const initializeMathJax = (renderOpts) => {
-  console.log (renderOpts, "renderopts in script")
-  if (renderOpts.useSingleDollar) {
+  console.log(renderOpts, 'renderopts in script');
+  if (renderOpts?.useSingleDollar) {
     // eslint-disable-next-line
     console.warn('[math-rendering] using $ is not advisable, please use $$..$$ or \\(...\\)');
   }
 
-  const texConfig = renderOpts.useSingleDollar
+  const texConfig = renderOpts?.useSingleDollar
     ? {
         macros: {
           parallelogram: '\\lower.2em{\\Huge\\unicode{x25B1}}',
