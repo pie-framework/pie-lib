@@ -9,7 +9,7 @@ const toMMl = (node) => visitor.visitTree(node);
 const NEWLINE_BLOCK_REGEX = /\\embed\{newLine\}\[\]/g;
 const NEWLINE_LATEX = '\\newline ';
 
-const getGlobal = () => {
+export const getGlobal = () => {
   // TODO does it make sense to use version?
   // const key = `${pkg.name}@${pkg.version.split('.')[0]}`;
   // It looks like Ed made this change when he switched from mathjax3 to mathjax-full
@@ -70,7 +70,9 @@ const adjustMathMLStyle = (el = document) => {
   nodes.forEach((node) => node.setAttribute('displaystyle', 'true'));
 };
 
-const renderMath = (el, renderOpts, callback) => {
+const renderMath = (el, renderOpts) => {
+  renderOpts = renderOpts || defaultOpts();
+
   const isString = typeof el === 'string';
   let executeOn = document.body;
 
@@ -79,16 +81,13 @@ const renderMath = (el, renderOpts, callback) => {
 
     div.innerHTML = el;
     executeOn = div;
-
-    console.log(isString, 'is string');
   }
 
   fixMathElements(executeOn);
   adjustMathMLStyle(executeOn);
 
   if (!window.MathJax && !window.mathjaxLoadedP) {
-    console.log('Initializing MathJax...');
-    initializeMathJax();
+    initializeMathJax(renderOpts);
   }
 
   if (isString && window.MathJax && window.mathjaxLoadedP) {
@@ -103,8 +102,6 @@ const renderMath = (el, renderOpts, callback) => {
 
       const parsedMathMl = mathMl.replaceAll('\n', '');
 
-      console.log(parsedMathMl, 'parsedMathMl');
-
       return parsedMathMl;
     } catch (error) {
       console.error('Error rendering math:', error.message);
@@ -114,24 +111,25 @@ const renderMath = (el, renderOpts, callback) => {
   if (window.mathjaxLoadedP) {
     window.mathjaxLoadedP
       .then(() => {
-        console.log('MathJax is ready, typesetting element');
-        if (window.MathJax) {
+        const mathJaxInstance = getGlobal().instance;
+
+        if (mathJaxInstance) {
           // Reset and clear typesetting before processing the new content
 
           //  Reset the tex labels (and automatic equation number).
-          window.MathJax.texReset();
+          mathJaxInstance.texReset();
 
           //  Reset the typesetting system (font caches, etc.)
-          window.MathJax.typesetClear();
+          mathJaxInstance.typesetClear();
 
           // Use typesetPromise for asynchronous typesetting
           // Using MathJax.typesetPromise() for asynchronous typesetting to handle situations where additional code needs to be loaded (e.g., for certain TeX commands or characters).
           // This ensures typesetting waits for any needed resources to load and complete processing, unlike the synchronous MathJax.typeset() which can't handle such dynamic loading.
-          window.MathJax.typesetPromise([executeOn])
+          mathJaxInstance
+            .typesetPromise([executeOn])
             .then(() => {
-              //console.log('Element after typesetting:', el.innerHTML);
               try {
-                const updatedDocument = window.MathJax.startup.document;
+                const updatedDocument = mathJaxInstance.startup.document;
                 const list = updatedDocument.math.list;
 
                 for (let item = list.next; typeof item.data !== 'symbol'; item = item.next) {
@@ -146,7 +144,7 @@ const renderMath = (el, renderOpts, callback) => {
               }
 
               // Clearing the document if needed
-              window.MathJax.startup.document.clear();
+              mathJaxInstance.startup.document.clear();
             })
             .catch((error) => {
               //  If there was an internal error, put the message into the output instead

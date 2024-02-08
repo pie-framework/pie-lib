@@ -1,88 +1,53 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import renderMath, { fixMathElement } from '../render-math';
-import { mathjax } from 'mathjax-full/js/mathjax';
+import * as MathJaxModule from '../mathjax-script';
 import _ from 'lodash';
 
-jest.mock(
-  'mathjax-full/js/mathjax',
-  () => ({
-    mathjax: {
-      document: jest.fn().mockReturnThis(),
-      findMath: jest.fn().mockReturnThis(),
-      compile: jest.fn().mockReturnThis(),
-      getMetrics: jest.fn().mockReturnThis(),
-      typeset: jest.fn().mockReturnThis(),
-      updateDocument: jest.fn().mockReturnThis(),
-      clear: jest.fn().mockReturnThis(),
-    },
-  }),
-  {
-    virtual: false,
-  },
-);
-
-//jest.fn().mockReturnValue({ setMmlFactory: jest.fn() })
-jest.mock('mathjax-full/js/input/mathml', () => {
-  const mock = jest.fn().mockReturnThis();
-  mock.setMmlFactory = jest.fn();
-  return {
-    MathML: () => mock,
-  };
-});
-
-jest.mock('mathjax-full/js/input/tex', () => ({
-  TeX: jest.fn(),
-}));
-jest.mock('mathjax-full/js/core/MmlTree/MmlFactory', () => {
-  const instance = {
-    setMmlFactory: jest.fn(),
-    defaultNodes: {},
-  };
-  return {
-    MmlFactory: () => instance,
-  };
-});
-jest.mock('mathjax-full/js/output/chtml', () => ({
-  CHTML: jest.fn(),
-}));
-
-jest.mock('mathjax-full/js/adaptors/browserAdaptor', () => ({
-  browserAdaptor: jest.fn(),
-}));
-
-jest.mock('mathjax-full/js/handlers/html', () => ({
-  RegisterHTMLHandler: jest.fn(),
-}));
-
-jest.mock('mathjax-full/js/core/MmlTree/SerializedMmlVisitor', () => ({
-  SerializedMmlVisitor: jest.fn(),
+jest.mock('../mathjax-script', () => ({
+  initializeMathJax: jest.fn(),
 }));
 
 describe('render-math', () => {
-  it('calls mathjax.document once', () => {
-    const div = document.createElement('div');
-    _.times(10).forEach((i) => renderMath(div));
+  beforeEach(() => {
+    // Reset the mocks before each test
+    jest.resetAllMocks();
 
-    expect(mathjax.document).toHaveBeenCalledTimes(1);
+    // Mock window.MathJax and window.mathjaxLoadedP
+    global.window.MathJax = {
+      typeset: jest.fn(),
+      texReset: jest.fn(),
+      typesetClear: jest.fn(),
+      typeset: jest.fn(),
+      typesetPromise: jest.fn(() => Promise.resolve()),
+    };
+    global.window.mathjaxLoadedP = Promise.resolve();
   });
-  it('calls MathJax render', () => {
+
+  it('calls initializeMathJax once', () => {
     const div = document.createElement('div');
+
+    // Initialize as undefined for the first call
+    global.window.MathJax = undefined;
+    global.window.mathjaxLoadedP = undefined;
+
+    // Call renderMath once to initialize MathJax
     renderMath(div);
-    expect(mathjax.document).toHaveBeenCalledTimes(1);
-    expect(mathjax.findMath).toHaveBeenCalledWith({ elements: [div] });
-  });
 
-  it('call render math for an array of elements', () => {
-    const divOne = document.createElement('div');
-    const divTwo = document.createElement('div');
+    // Subsequent calls should not re-initialize MathJax
+    global.window.MathJax = {
+      typeset: jest.fn(),
+      texReset: jest.fn(),
+      typesetClear: jest.fn(),
+      typeset: jest.fn(),
+      typesetPromise: jest.fn(() => Promise.resolve()),
+    };
+    global.window.mathjaxLoadedP = Promise.resolve();
 
-    renderMath([divOne, divTwo]);
+    // Call renderMath 9 more times
+    _.times(9).forEach((i) => renderMath(div));
 
-    expect(mathjax.document).toHaveBeenCalledTimes(1);
-    expect(mathjax.findMath).toHaveBeenCalledWith({
-      elements: [divOne, divTwo],
-    });
+    expect(MathJaxModule.initializeMathJax).toHaveBeenCalledTimes(1);
   });
 
   it('wraps the math containing element the right way', () => {
