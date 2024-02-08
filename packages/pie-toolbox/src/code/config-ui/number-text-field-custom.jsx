@@ -239,6 +239,7 @@ export class NumberTextFieldCustom extends React.Component {
       error,
       min,
       max,
+      customValues,
       inputClassName,
       disableUnderline,
       helperText,
@@ -248,6 +249,16 @@ export class NumberTextFieldCustom extends React.Component {
     } = this.props;
     const { value } = this.state;
     const names = classNames(className, classes.input);
+    //Logic to disable the increment and decrement buttons
+    let disabledStart = false;
+    let disabledEnd = false;
+    if (customValues.length > 0) {
+      disabledStart = value === customValues[0];
+      disabledEnd = value === customValues[customValues.length - 1];
+    } else if (isFinite(min) && isFinite(max)) {
+      disabledStart = value === min;
+      disabledEnd = value === max;
+    }
 
     return (
       <TextField
@@ -285,7 +296,7 @@ export class NumberTextFieldCustom extends React.Component {
             <InputAdornment position="start">
               <IconButton
                 className={classes.iconButton}
-                disabled={disabled}
+                disabled={disabled ? disabled : disabledStart}
                 onClick={(e) => this.changeValue(e, -1, true)}
               >
                 <Remove fontSize="small" />
@@ -296,7 +307,7 @@ export class NumberTextFieldCustom extends React.Component {
             <InputAdornment position="end">
               <IconButton
                 className={classes.iconButton}
-                disabled={disabled}
+                disabled={disabled ? disabled : disabledEnd}
                 onClick={(e) => this.changeValue(e, 1, true)}
               >
                 <Add fontSize="small" />
