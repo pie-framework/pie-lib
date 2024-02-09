@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.5.8...@pie-lib/pie-toolbox@1.6.0) (2024-02-09)
+
+
+### Features
+
+* **config-ui:** Modified NumberTextFieldCustom to disable Inc/Dec buttons | SC-28868 ([8cb053e](https://github.com/pie-framework/pie-lib/commit/8cb053e578db8e5daae28adf7737699c3d6a82f5))
+
+
+
+
+
 ## [1.5.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.5.7...@pie-lib/pie-toolbox@1.5.8) (2024-02-07)
 
 
