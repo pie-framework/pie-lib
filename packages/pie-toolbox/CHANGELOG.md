@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.6.0...@pie-lib/pie-toolbox@1.7.0) (2024-02-12)
+
+
+### Bug Fixes
+
+* Expose math-rendering-accessible and add it to pslb module as well (for print) ([ee3b625](https://github.com/pie-framework/pie-lib/commit/ee3b6256339c1fdb5a998d5959806f7acd0a4be2))
+
+
+### Features
+
+* add configuration for custom buttons on multiple choice PD-3395 ([0b88ab9](https://github.com/pie-framework/pie-lib/commit/0b88ab9e534934bf7905ce709ccd7f02c9287533))
+* **math-rendering-accessible:** created new math rendering package in order to introduce accessibility features PD-3418 ([125c4b3](https://github.com/pie-framework/pie-lib/commit/125c4b3fc1cf7203fea27a00f87ff25fd515396a))
+* **math-rendering-accessible:** created new math rendering package with accessibility features ([504171d](https://github.com/pie-framework/pie-lib/commit/504171dc4f3302b5ef11761e1e8a64585b6f596a))
+
+
+
+
+
 # [1.6.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.5.8...@pie-lib/pie-toolbox@1.6.0) (2024-02-09)
 
 
