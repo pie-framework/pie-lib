@@ -112,13 +112,16 @@ const SlateEditor = (editorProps) => {
       event.stopPropagation();
       return;
     }
-    for (const hotkey in HOTKEYS) {
-      if (isHotkey(hotkey, event)) {
-        event.preventDefault();
-        const mark = HOTKEYS[hotkey];
-        toggleMark(editor, mark);
+
+    let returnValue;
+
+    plugins.forEach((plugin) => {
+      if (plugin.onKeyDown && typeof returnValue === 'undefined') {
+        returnValue = plugin.onKeyDown(editor, event);
       }
-    }
+    });
+
+    return returnValue;
   };
   const onFocus = () => setIsFocused(true);
   const onBlur = (e) => {
@@ -205,7 +208,7 @@ const toggleBlock = (editor, format) => {
     };
   } else {
     newProperties = {
-      type: isActive ? 'paragraph' : isList ? 'list_item' : format,
+      type: isActive ? 'paragraph' : isList ? 'li' : format,
     };
   }
   Transforms.setNodes(editor, newProperties);

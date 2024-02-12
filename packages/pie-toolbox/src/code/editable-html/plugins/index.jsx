@@ -77,10 +77,9 @@ export const buildPlugins = (activePlugins, opts) => {
     addIf('audio', MediaPlugin('audio', opts.media)),
     addIf('math', mathPlugin),
     ...opts.languageCharacters.map((config) => addIf('languageCharacters', CharactersPlugin(config))),
-    addIf('bulleted-list', List({ key: 'l', type: 'ul_list', icon: <BulletedListIcon /> })),
-    addIf('numbered-list', List({ key: 'n', type: 'ol_list', icon: <NumberedListIcon /> })),
+    addIf('bulleted-list', List({ key: 'l', type: 'ul', icon: <BulletedListIcon /> })),
+    addIf('numbered-list', List({ key: 'n', type: 'ol', icon: <NumberedListIcon /> })),
     ToolbarPlugin(opts.toolbar),
-    SoftBreakPlugin({ shift: true }),
     addIf('responseArea', respAreaPlugin),
     addIf('html', HtmlPlugin(opts.html)),
   ]);
