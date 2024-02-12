@@ -5,11 +5,10 @@ import { ToolPropTypeFields } from '../shared/types';
 import { BasePoint } from '../shared/point';
 import chunk from 'lodash/chunk';
 import initial from 'lodash/initial';
-import isEqual from 'lodash/isEqual';
 import debug from 'debug';
 import Line from './line';
 import DraggablePolygon, { Polygon } from './polygon';
-import { types, utils } from '../../../plot';
+import { types } from '../../../plot';
 import invariant from 'invariant';
 import ReactDOM from 'react-dom';
 import MarkLabel from '../../mark-label';
@@ -165,9 +164,22 @@ export class RawBaseComponent extends React.Component {
   };
 
   clickPoint = (point, index, data) => {
-    const { closed, onClick, isToolActive, labelModeEnabled, onChangeProps, onChangeLabelProps, points } = this.props;
+    const {
+      closed,
+      disabled,
+      onClick,
+      isToolActive,
+      labelModeEnabled,
+      onChangeProps,
+      onChangeLabelProps,
+      points,
+    } = this.props;
 
     if (labelModeEnabled) {
+      if (disabled) {
+        return;
+      }
+
       if (points && index === points.length) {
         const { a, b } = getRightestPoints(points);
         const middle = { label: '', ...point, ...getMiddleOfTwoPoints(a, b) };
@@ -183,13 +195,16 @@ export class RawBaseComponent extends React.Component {
       if (this.input[index]) {
         this.input[index].focus();
       }
-    } else {
-      if (isToolActive && !closed && index === 0) {
-        this.close();
-      } else {
-        onClick(data);
-      }
+
+      return;
     }
+
+    if (isToolActive && !closed && index === 0) {
+      this.close();
+      return;
+    }
+
+    onClick(point || data);
   };
 
   // IMPORTANT, do not remove
@@ -264,8 +279,8 @@ export class RawBaseComponent extends React.Component {
               x={p.x}
               y={p.y}
               onDrag={this.dragPoint.bind(this, index, p)}
-              onClick={this.clickPoint.bind(this, p, index)}
               {...common}
+              onClick={this.clickPoint.bind(this, p, index)}
             />,
             labelNode && p.hasOwnProperty('label')
               ? ReactDOM.createPortal(

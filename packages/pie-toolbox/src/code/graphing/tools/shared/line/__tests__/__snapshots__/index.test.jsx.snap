@@ -35,6 +35,7 @@ exports[`lineBase render renders 1`] = `
         },
       }
     }
+    onClick={[Function]}
     onDrag={[Function]}
     to={
       Object {
@@ -70,6 +71,7 @@ exports[`lineBase render renders 1`] = `
         },
       }
     }
+    onClick={[Function]}
     onDrag={[Function]}
     x={0}
     y={0}
@@ -102,6 +104,7 @@ exports[`lineBase render renders 1`] = `
         },
       }
     }
+    onClick={[Function]}
     onDrag={[Function]}
     x={1}
     y={1}
@@ -145,6 +148,7 @@ exports[`lineBase render renders with labels 1`] = `
         },
       }
     }
+    onClick={[Function]}
     onDrag={[Function]}
     to={
       Object {
@@ -182,6 +186,7 @@ exports[`lineBase render renders with labels 1`] = `
       }
     }
     labelNode={<foreignobject />}
+    onClick={[Function]}
     onDrag={[Function]}
     x={0}
     y={0}
@@ -257,6 +262,7 @@ exports[`lineBase render renders with labels 1`] = `
       }
     }
     labelNode={<foreignobject />}
+    onClick={[Function]}
     onDrag={[Function]}
     x={1}
     y={1}

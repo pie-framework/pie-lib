@@ -136,7 +136,7 @@ export const MarkLabel = (props) => {
         [classes.incorrect]: correctness && correctness.label === 'incorrect',
       })}
       onClick={() => setIsEditing(true)}
-      style={{ minWidth: barWidth }}
+      style={{ minWidth: barWidth, position: 'fixed' }}
     ></div>
   ) : (
     <AutosizeInput
