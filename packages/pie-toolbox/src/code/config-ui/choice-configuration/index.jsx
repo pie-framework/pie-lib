@@ -28,6 +28,7 @@ const EditableHtmlContainer = withStyles((theme) => ({
     disabled,
     spellCheck,
     nonEmpty,
+    pluginOpts,
     toolbarOpts,
     error,
     maxImageWidth,
@@ -49,6 +50,7 @@ const EditableHtmlContainer = withStyles((theme) => ({
             imageSupport={imageSupport}
             disableImageAlignmentButtons={disableImageAlignmentButtons}
             className={classes.editor}
+            pluginProps={pluginOpts || {}}
             toolbarOpts={toolbarOpts}
             error={error}
             maxImageWidth={maxImageWidth}
@@ -139,6 +141,7 @@ export class ChoiceConfiguration extends React.Component {
     allowDelete: PropTypes.bool,
     noCorrectAnswerError: PropTypes.string,
     spellCheck: PropTypes.bool,
+    pluginOpts: PropTypes.object,
     toolbarOpts: PropTypes.object,
     uploadSoundSupport: PropTypes.object,
     maxImageWidth: PropTypes.number,
@@ -213,6 +216,7 @@ export class ChoiceConfiguration extends React.Component {
       nonEmpty,
       allowFeedBack,
       allowDelete,
+      pluginOpts,
       toolbarOpts,
       error,
       noCorrectAnswerError,
@@ -253,6 +257,7 @@ export class ChoiceConfiguration extends React.Component {
               disabled={disabled}
               spellCheck={spellCheck}
               nonEmpty={nonEmpty}
+              pluginOpts={pluginOpts}
               toolbarOpts={toolbarOpts}
               error={error}
               uploadSoundSupport={uploadSoundSupport}
