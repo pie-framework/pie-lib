@@ -94,6 +94,7 @@ module.exports = {
             '@pie-lib/pie-toolbox/editable-html',
             '@pie-lib/pie-toolbox/math-input',
             '@pie-lib/pie-toolbox/math-rendering',
+            '@pie-lib/pie-toolbox/math-rendering-accessible',
             '@pie-lib/pie-toolbox/math-toolbar',
             '@pie-lib/pie-toolbox/render-ui',
             // Not used in any print module yet:
