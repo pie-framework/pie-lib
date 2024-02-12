@@ -44,6 +44,8 @@ exports[`RawPlot snapshot renders 1`] = `
   <g
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
   >
     <WithStyles(RawDragHandle)
       color="var(--pie-primary-dark, #283593)"

@@ -3,6 +3,101 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.5.8...@pie-lib/pie-toolbox@1.6.0) (2024-02-09)
+
+
+### Features
+
+* **config-ui:** Modified NumberTextFieldCustom to disable Inc/Dec buttons | SC-28868 ([8cb053e](https://github.com/pie-framework/pie-lib/commit/8cb053e578db8e5daae28adf7737699c3d6a82f5))
+
+
+
+
+
+## [1.5.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.5.7...@pie-lib/pie-toolbox@1.5.8) (2024-02-07)
+
+
+### Bug Fixes
+
+* **prompt-preview:** fix text alignment for studio imported prompts PD-3423 ([094846b](https://github.com/pie-framework/pie-lib/commit/094846b39f9c34b68d15e6631b1439aabd87e358))
+
+
+
+
+
+## [1.5.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.5.6...@pie-lib/pie-toolbox@1.5.7) (2024-01-24)
+
+
+### Bug Fixes
+
+* **config-ui:** fix classes undefined error in number text field PD-3404 ([1afcf14](https://github.com/pie-framework/pie-lib/commit/1afcf14afce79c748ad404642daa5d013411c6d6))
+* **config-ui:** fix import PD-3404 ([c9d660e](https://github.com/pie-framework/pie-lib/commit/c9d660e503493fa8c1ee8e18dc3b8d8087123694))
+
+
+
+
+
+## [1.5.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.5.5...@pie-lib/pie-toolbox@1.5.6) (2024-01-23)
+
+
+### Bug Fixes
+
+* **graphing:** resolve polygon closure issue on touch devices post PD-3392 implementation ([77f6b82](https://github.com/pie-framework/pie-lib/commit/77f6b82e3f148e407a340e7fde409dcec89faf76))
+* **graphing:** resolve polygon closure issue post PD-3392 implementation ([55eec17](https://github.com/pie-framework/pie-lib/commit/55eec17f44fd605522e1f414a2615b7e9a7a76f4))
+
+
+
+
+
+## [1.5.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.5.4...@pie-lib/pie-toolbox@1.5.5) (2024-01-23)
+
+
+### Bug Fixes
+
+* **graphing:** disable click on background shapes in label model PD-3392 ([7bd8e1b](https://github.com/pie-framework/pie-lib/commit/7bd8e1b8e4f5ec8d17933b9c7e23358731cda5cb))
+
+
+
+
+
+## [1.5.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.5.3...@pie-lib/pie-toolbox@1.5.4) (2024-01-22)
+
+
+### Bug Fixes
+
+* **graphing:** made background shapes clickable PD-3392 ([f7c988a](https://github.com/pie-framework/pie-lib/commit/f7c988ad3ccc0d3ffe018ca69fdca0c9ad8540de))
+
+
+
+
+
+## [1.5.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.5.2...@pie-lib/pie-toolbox@1.5.3) (2024-01-22)
+
+
+### Bug Fixes
+
+* **charting:** add transparent circle handle for improved drag functionality on touch devices PD-3387 ([96e5063](https://github.com/pie-framework/pie-lib/commit/96e5063f2b6d2ada3a842e37cde3063875f6b593))
+* **charting:** added larger transparent circle for drag handle in line dot chart to enhance touch device usability and accessibility PD-3383 ([e0c63f1](https://github.com/pie-framework/pie-lib/commit/e0c63f107b9462582a3343d50c03f08ba8d317ab))
+* **graphing:** Remove fontSize dependency from coordinate calculations PD-3384 ([3b918d8](https://github.com/pie-framework/pie-lib/commit/3b918d804cdef621bbe0b1012402dd3eeb8a171a))
+
+
+
+
+
+## [1.5.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.5.1...@pie-lib/pie-toolbox@1.5.2) (2024-01-15)
+
+
+### Bug Fixes
+
+* **charting:** enable Category Drag Handle icon on iPad PD-3366 ([dceb727](https://github.com/pie-framework/pie-lib/commit/dceb727c8a3cd7562b875731359d3522309e2e1a))
+* **charting:** Fix positioning for math-containing labels with fixed positioning addressing a layout issue on various devices, including iPads PD-3367 ([b4da76b](https://github.com/pie-framework/pie-lib/commit/b4da76b1c317a6e31ba7ddac9a08dd0c1eb60385))
+* **charting:** handle touch events for plot chart PD-3366 ([5ba709d](https://github.com/pie-framework/pie-lib/commit/5ba709d1c7ddcb7d4ae41db03deaad836621951f))
+* **editable-html:** make sure that image dimensions prop update after setting client config PD-3381 ([4f31bc4](https://github.com/pie-framework/pie-lib/commit/4f31bc41024de82090a52f440ce64d76d0028baa))
+
+
+
+
+
 ## [1.5.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.4.8...@pie-lib/pie-toolbox@1.5.1) (2024-01-11)
 
 **Note:** Version bump only for package @pie-lib/pie-toolbox
