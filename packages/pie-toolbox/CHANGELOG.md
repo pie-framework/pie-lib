@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.7.0...@pie-lib/pie-toolbox@1.7.1) (2024-02-13)
+
+
+### Bug Fixes
+
+* **math-rendering-accessible:** set same key as in math-rendering for testing purpose PD-1870 ([748f76d](https://github.com/pie-framework/pie-lib/commit/748f76d0c05e44a0fcb39e86113084badf956c7b))
+
+
+
+
+
 # [1.7.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.6.0...@pie-lib/pie-toolbox@1.7.0) (2024-02-12)
 
 
