@@ -40,8 +40,15 @@ export class PreviewPrompt extends Component {
     return div.innerHTML;
   };
 
+  componentDidMount() {
+    this.alignImages();
+  }
+
   componentDidUpdate() {
-    // set image parent style so it can be horizontally aligned
+    this.alignImages();
+  }
+
+  alignImages() {
     const previewPrompt = document.querySelector('#preview-prompt');
     const images = previewPrompt && previewPrompt.getElementsByTagName('img');
 
