@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.7.1...@pie-lib/pie-toolbox@1.7.2) (2024-02-15)
+
+
+### Bug Fixes
+
+* **math-rendering:** add sanity check for Typeset function, remove certain options from the MathJax configuration because they were ineffective and were causing warnings about non-existence on the instance ([deac57d](https://github.com/pie-framework/pie-lib/commit/deac57dc22f0b3d08b72bacc15a7e5abfcfde3ad))
+* **render-ui/preview-prompt:** fix image alignment not being set on first render PD-3455 ([d18453a](https://github.com/pie-framework/pie-lib/commit/d18453a45338503f9374d84f68a19226f2b484d5))
+
+
+
+
+
 ## [1.7.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.7.0...@pie-lib/pie-toolbox@1.7.1) (2024-02-13)
 
 
