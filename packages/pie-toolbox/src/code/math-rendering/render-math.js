@@ -119,48 +119,13 @@ const createMathMLInstance = (opts, docProvided = document) => {
           ['\\(', '\\)'],
         ],
         processEscapes: true,
-        options: {
-          enableExplorer: true,
-          enableAssistiveMml: true,
-          a11y: {
-            speech: true,
-            braille: true,
-            subtitles: true,
-          },
-          sre: {
-            domain: 'default',
-            style: 'default',
-            locale: 'en',
-          },
-        },
       }
     : {
         packages,
         macros,
-        options: {
-          enableExplorer: true,
-          enableAssistiveMml: true,
-          a11y: {
-            speech: true,
-            braille: true,
-            subtitles: true,
-          },
-          sre: {
-            domain: 'default',
-            style: 'default',
-            locale: 'en',
-          },
-        },
       };
 
   const mmlConfig = {
-    options: {
-      a11y: {
-        speech: true,
-        braille: true,
-        subtitles: true,
-      },
-    },
     parseError: function(node) {
       // function to process parsing errors
       // eslint-disable-next-line no-console
@@ -177,12 +142,6 @@ const createMathMLInstance = (opts, docProvided = document) => {
       ...CHTMLWrapperFactory.defaultNodes,
       ...chtmlNodes,
     }),
-
-    options: {
-      renderActions: {
-        assistiveMml: [['AssistiveMmlHandler']],
-      },
-    },
   };
 
   const mml = new MathML(mmlConfig);
@@ -205,17 +164,6 @@ const createMathMLInstance = (opts, docProvided = document) => {
       // eslint-disable-next-line no-console
       console.error(err);
       doc.typesetError(math, err);
-    },
-
-    options: {
-      enableAssistiveMml: true,
-      menuOptions: {
-        settings: {
-          assistiveMml: true,
-          collapsible: true,
-          explorer: true,
-        },
-      },
     },
 
     InputJax: [new TeX(texConfig), mml],
@@ -311,9 +259,9 @@ const renderMath = (el, renderOpts) => {
     return;
   }
 
-  if (el instanceof Element) {
+  if (el instanceof Element && getGlobal().instance) {
     getGlobal().instance.Typeset(el);
-  } else if (el.length) {
+  } else if (el.length && getGlobal().instance) {
     const arr = Array.from(el);
     getGlobal().instance.Typeset(...arr);
   }
