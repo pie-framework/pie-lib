@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.7.2...@pie-lib/pie-toolbox@1.7.3) (2024-02-19)
+
+
+### Bug Fixes
+
+* update mathml-to-latex PD-3372 ([4675e59](https://github.com/pie-framework/pie-lib/commit/4675e5958b7bb231399c924c8df11be583647182))
+
+
+
+
+
 ## [1.7.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.7.1...@pie-lib/pie-toolbox@1.7.2) (2024-02-15)
 
 
