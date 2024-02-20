@@ -60,7 +60,7 @@ module.exports = {
     repository: 'pie-framework/pie-lib',
     packages: [
       {
-        name: '@pie-lib/pie-toolbox-module',
+        name: '@pie-lib/pie-toolbox-math-rendering-module',
         output: packagesDir,
         repository: 'pie-framework/pie-lib',
         extensions: { commonJs },
@@ -74,6 +74,21 @@ module.exports = {
             'classnames',
             'debug',
             '@pie-framework/mathquill',
+          ],
+          namespace: [
+            '@pie-lib/pie-toolbox/math-rendering',
+            '@pie-lib/pie-toolbox/math-rendering-accessible',
+          ],
+        },
+      },
+      {
+        name: '@pie-lib/pie-toolbox-module',
+        output: packagesDir,
+        repository: 'pie-framework/pie-lib',
+        extensions: { commonJs },
+        imports: {
+          default: [
+            '@pie-lib/pie-toolbox-math-rendering-module'
           ],
           namespace: [
             // Commented out all material-ui and d3 libs below because it looks like we don't need them for any print item
@@ -93,8 +108,8 @@ module.exports = {
             '@pie-lib/pie-toolbox/correct-answer-toggle',
             '@pie-lib/pie-toolbox/editable-html',
             '@pie-lib/pie-toolbox/math-input',
-            '@pie-lib/pie-toolbox/math-rendering',
-            '@pie-lib/pie-toolbox/math-rendering-accessible',
+            // '@pie-lib/pie-toolbox/math-rendering',
+            // '@pie-lib/pie-toolbox/math-rendering-accessible',
             '@pie-lib/pie-toolbox/math-toolbar',
             '@pie-lib/pie-toolbox/render-ui',
             // Not used in any print module yet:
