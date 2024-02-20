@@ -80,7 +80,9 @@
     "webpack": "^4.28.4",
     "webpack-cli": "^3.2.1",
     "webpack-dev-server": "^3.1.14",
-    "yarn": "^1.13.0"
+    "yarn": "^1.13.0",
+    "//": "the package below is added in dev dependencies because pslb needs the package to be in yarn.lock in order to load the proper versions",
+    "@pie-lib/pie-toolbox-math-rendering-module": "1.0.7"
   },
   "dependencies": {
     "@material-ui/codemod": "^1.1.0"

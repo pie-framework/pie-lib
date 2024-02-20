@@ -87,9 +87,6 @@ module.exports = {
         repository: 'pie-framework/pie-lib',
         extensions: { commonJs },
         imports: {
-          default: [
-            '@pie-lib/pie-toolbox-math-rendering-module'
-          ],
           namespace: [
             // Commented out all material-ui and d3 libs below because it looks like we don't need them for any print item
             // Also, if these are included, the build gets killed
@@ -109,6 +106,7 @@ module.exports = {
             '@pie-lib/pie-toolbox/editable-html',
             '@pie-lib/pie-toolbox/math-input',
             // created a separate package for math-rendering (see above)
+            '@pie-lib/pie-toolbox-math-rendering-module',
             // '@pie-lib/pie-toolbox/math-rendering',
             // '@pie-lib/pie-toolbox/math-rendering-accessible',
             '@pie-lib/pie-toolbox/math-toolbar',
