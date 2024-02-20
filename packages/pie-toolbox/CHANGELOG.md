@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.7.3...@pie-lib/pie-toolbox@1.7.4) (2024-02-20)
+
+
+### Bug Fixes
+
+* made sure cancelling image upload is not blocking the editor [PD-3439] ([1f66e5a](https://github.com/pie-framework/pie-lib/commit/1f66e5a8173d701c6747c40ad00d5c55406bc13b))
+* **charting:** enhanced readability of math input labels by enlarging font size and added padding to prevent overlap with tick marks PD-3385 ([d922c1d](https://github.com/pie-framework/pie-lib/commit/d922c1db28da041418debb2d84559e0f22075451))
+
+
+
+
+
 ## [1.7.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.7.2...@pie-lib/pie-toolbox@1.7.3) (2024-02-19)
 
 
