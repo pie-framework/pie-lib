@@ -98,6 +98,7 @@ describe('insert image handler', () => {
 
   describe('cancel', () => {
     beforeEach(() => {
+      document.getChild = jest.fn().mockReturnValue({ data: Data.create({}), key: block.key });
       handler.cancel();
     });
 

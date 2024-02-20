@@ -71,7 +71,7 @@ export default function ImagePlugin(opts) {
         let change = value.change().setNodeByKey(node.key, { data: update });
 
         onChange(change);
-        opts.onDelete(node.data.get('src'), (err, v) => {
+        opts.onDelete(node, (err, v) => {
           if (!err) {
             change = v.change().removeNodeByKey(node.key);
           } else {
