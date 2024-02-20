@@ -108,6 +108,7 @@ module.exports = {
             '@pie-lib/pie-toolbox/correct-answer-toggle',
             '@pie-lib/pie-toolbox/editable-html',
             '@pie-lib/pie-toolbox/math-input',
+            // created a separate package for math-rendering (see above)
             // '@pie-lib/pie-toolbox/math-rendering',
             // '@pie-lib/pie-toolbox/math-rendering-accessible',
             '@pie-lib/pie-toolbox/math-toolbar',
