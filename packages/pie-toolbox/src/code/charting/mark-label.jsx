@@ -25,9 +25,10 @@ const styles = (theme) => ({
   mathInput: {
     pointerEvents: 'auto',
     textAlign: 'center',
-    fontSize: theme.typography.fontSize,
+    fontSize: theme.typography.fontSize + 2,
     fontFamily: theme.typography.fontFamily,
     color: color.primaryDark(),
+    paddingTop: theme.typography.fontSize / 2,
   },
   disabled: {
     ...disabled('color'),
