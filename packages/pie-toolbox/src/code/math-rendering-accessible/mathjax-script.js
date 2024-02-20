@@ -1,6 +1,14 @@
 import { getGlobal } from './render-math';
 
 export const initializeMathJax = (renderOpts) => {
+  console.log(window, 'window in the script');
+
+  console.log(window['@pie-lib/math-rendering@2'], "window['@pie-lib/math-rendering@2']");
+  if (window.hasOwnProperty('@pie-lib/math-rendering@2')) {
+    console.log('use math rendering and return');
+    return;
+  }
+
   if (renderOpts?.useSingleDollar) {
     // eslint-disable-next-line
     console.warn('[math-rendering] using $ is not advisable, please use $$..$$ or \\(...\\)');
@@ -63,7 +71,7 @@ export const initializeMathJax = (renderOpts) => {
       },
       tex: texConfig,
       chtml: {
-        fontURL: 'https://unpkg.com/mathjax-full@3.2.2/ts/output/chtml/fonts/tex-woff-v2',
+        fontURL: 'https://unpkg.com/mathjax-full@3.0.0/ts/output/chtml/fonts/tex-woff-v2',
         displayAlign: 'center',
       },
       options: {
@@ -83,7 +91,7 @@ export const initializeMathJax = (renderOpts) => {
     // Load the MathJax script
     const script = document.createElement('script');
     script.type = 'text/javascript';
-    script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml-full.js';
+    script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.0.0/es5/tex-chtml-full.js';
     script.async = true;
     document.body.appendChild(script);
   });

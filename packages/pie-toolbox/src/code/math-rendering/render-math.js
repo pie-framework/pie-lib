@@ -214,6 +214,7 @@ const bootstrap = (opts) => {
 };
 
 const renderMath = (el, renderOpts) => {
+  console.log(window.MathJax, 'window in math rendering');
   const isString = typeof el === 'string';
   let executeOn = document.body;
 
