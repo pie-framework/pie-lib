@@ -210,9 +210,18 @@ export class Editor extends React.Component {
         onDelete:
           props.imageSupport &&
           props.imageSupport.delete &&
-          ((src, done) => {
+          ((node, done) => {
+            const src = node.data.get('src');
+
             props.imageSupport.delete(src, (e) => {
-              done(e, this.state.value);
+              const newPendingImages = this.state.pendingImages.filter((img) => img.key !== node.key);
+              const { scheduled: oldScheduled } = this.state;
+              const newState = {
+                pendingImages: newPendingImages,
+                scheduled: oldScheduled && newPendingImages.length === 0 ? false : oldScheduled,
+              };
+
+              this.setState(newState, () => done(e, this.state.value));
             });
           }),
         insertImageRequested:

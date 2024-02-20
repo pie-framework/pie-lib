@@ -34,19 +34,26 @@ class InsertImageHandler {
     if (child) {
       return child;
     } else {
-      //eslint-disable-next-line
+      // eslint-disable-next-line
       throw new Error("insert-image: Can't find placeholder!");
     }
   }
 
   cancel() {
     log('insert cancelled');
-    const c = this.getValue()
-      .change()
-      .removeNodeByKey(this.placeholderBlock.key);
-    this.onChange(c);
 
-    this.onFinish(false);
+    try {
+      const value = this.getValue();
+      const child = this.getPlaceholderInDocument(value);
+
+      if (child) {
+        const c = value.change().removeNodeByKey(child.key);
+        this.onChange(c);
+        this.onFinish(false);
+      }
+    } catch (err) {
+      //
+    }
   }
 
   done(err, src) {
