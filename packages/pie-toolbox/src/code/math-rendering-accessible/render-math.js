@@ -18,7 +18,7 @@ export const getGlobal = () => {
 
   // TODO higher level wrappers use this instance of math-rendering, and if 2 different instances are used, math rendering is not working
   //  so I will hardcode this for now until a better solution is found
-  const key = '@pie-lib/math-rendering@2';
+  const key = '@pie-lib/math-rendering-accessible@1';
 
   if (typeof window !== 'undefined') {
     if (!window[key]) {
@@ -85,6 +85,12 @@ const renderMath = (el, renderOpts) => {
 
   fixMathElements(executeOn);
   adjustMathMLStyle(executeOn);
+
+  if (window?.hasOwnProperty('@pie-lib/math-rendering@2')) {
+    // Check if MathJax is instantiated by the math-rendering module
+    // If true, use the math-rendering instance and return
+    return;
+  }
 
   if (!window.MathJax && !window.mathjaxLoadedP) {
     initializeMathJax(renderOpts);
