@@ -86,13 +86,106 @@ const renderMath = (el, renderOpts) => {
   fixMathElements(executeOn);
   adjustMathMLStyle(executeOn);
 
-  console.log(window, 'window');
+  //   // Call initializeMathJax and wait for its completion
+  //   initializeMathJax(renderOpts).then(() => {
+  //     console.log('MathJax initialized, now performing typesetting');
+  //     performTypesetting(executeOn);
+  //   }).catch(error => {
+  //     console.error('Error initializing MathJax:', error);
+  //   });
+  // };
 
-  console.log(window['@pie-lib/math-rendering@2'], "window['@pie-lib/math-rendering@2']");
-  if (window.hasOwnProperty('@pie-lib/math-rendering@2')) {
-    console.log('use math rendering and return');
-    return;
-  }
+  // const revertMathJaxContent = (element) => {
+  //   const mathJaxElements = element.querySelectorAll('.MathJax, .mjx-container');
+
+  //   mathJaxElements.forEach((mjxElement) => {
+  //     // Retrieve the original content. This depends on how you store it.
+  //     // For example, if you keep the original LaTeX in a data attribute:
+  //     console.log(mjxElement, "mjxElement")
+  //     const originalContent = mjxElement.getAttribute('data-raw');
+  //     console.log(originalContent, "originalContent")
+  //     if (originalContent) {
+  //       const newElement = document.createElement('span');
+  //       newElement.textContent = originalContent;
+  //       mjxElement.parentNode.replaceChild(newElement, mjxElement);
+  //     }
+  //   });
+  // };
+
+  const revertMathJaxContent = (element) => {
+    // Query for elements processed by MathJax
+    const mathJaxElements = element.querySelectorAll('.MathJax, .mjx-container');
+
+    mathJaxElements.forEach((mjxElement) => {
+      console.log(mjxElement, 'mjxElement');
+      // Navigate up to the parent span element to access the data-raw attribute
+      const parentSpan = mjxElement.closest('span[data-raw]');
+
+      console.log(parentSpan, 'parentSpan');
+      if (parentSpan && parentSpan.getAttribute('data-raw')) {
+        // Retrieve the original LaTeX content from the data-raw attribute
+        const originalLaTeX = parentSpan.getAttribute('data-raw');
+
+        // Replace the innerHTML of the parent span with the original LaTeX content
+        parentSpan.innerHTML = '<div><span data-latex="" data-raw="\\sqrt{25}">\\sqrt{25}</span></div>';
+
+        // Reset the data-math-handled attribute to false
+        parentSpan.setAttribute('data-math-handled', 'false');
+      }
+    });
+  };
+
+  // const performTypesetting = (executeOn) => {
+  //   const mathJaxInstance = getGlobal().instance;
+
+  //       console.log(mathJaxInstance, 'mathJaxInstance in window.mathjaxloaded');
+
+  //       if (mathJaxInstance) {
+  //         // Reset and clear typesetting before processing the new content
+
+  //         //  Reset the tex labels (and automatic equation number).
+  //         mathJaxInstance.texReset();
+
+  //         //  Reset the typesetting system (font caches, etc.)
+  //         mathJaxInstance.typesetClear();
+
+  //         console.log('Executing typesetting on:', executeOn);
+  //         revertMathJaxContent(executeOn);
+  //         fixMathElements(executeOn);
+  //         adjustMathMLStyle(executeOn);
+  //         console.log('Executing typesetting on after revert:', executeOn);
+  //         // Use typesetPromise for asynchronous typesetting
+  //         // Using MathJax.typesetPromise() for asynchronous typesetting to handle situations where additional code needs to be loaded (e.g., for certain TeX commands or characters).
+  //         // This ensures typesetting waits for any needed resources to load and complete processing, unlike the synchronous MathJax.typeset() which can't handle such dynamic loading.
+  //         mathJaxInstance
+  //           .typesetPromise([executeOn])
+  //           .then(() => {
+  //             try {
+  //               const updatedDocument = mathJaxInstance.startup.document;
+  //               const list = updatedDocument.math.list;
+
+  //               console.log(list, "list of math elements")
+  //               for (let item = list.next; typeof item.data !== 'symbol'; item = item.next) {
+  //                 const mathMl = toMMl(item.data.root);
+  //                 const parsedMathMl = mathMl.replaceAll('\n', '');
+
+  //                 item.data.typesetRoot.setAttribute('data-mathml', parsedMathMl);
+  //               }
+  //               // If the original input was a string, return the parsed MathML
+  //             } catch (e) {
+  //               console.error('Error post-processing MathJax typesetting:', e.toString());
+  //             }
+
+  //             // Clearing the document if needed
+  //             mathJaxInstance.startup.document.clear();
+  //           })
+  //           .catch((error) => {
+  //             //  If there was an internal error, put the message into the output instead
+
+  //             console.error('Error in typesetting with MathJax:', error);
+  //           });
+  //       }
+  //     };
 
   if (window.MathJax) {
     console.log(window.MathJax, 'window in render math accessible');
@@ -122,12 +215,13 @@ const renderMath = (el, renderOpts) => {
     }
   }
 
+  console.log(window.mathjaxLoadedP, 'mathjaxLoadedP --------------------');
   if (window.mathjaxLoadedP) {
     window.mathjaxLoadedP
       .then(() => {
         const mathJaxInstance = getGlobal().instance;
 
-        console.log(mathJaxInstance, 'mathJaxInstance');
+        console.log(mathJaxInstance, 'mathJaxInstance in window.mathjaxloaded');
 
         if (mathJaxInstance) {
           // Reset and clear typesetting before processing the new content
@@ -137,6 +231,12 @@ const renderMath = (el, renderOpts) => {
 
           //  Reset the typesetting system (font caches, etc.)
           mathJaxInstance.typesetClear();
+
+          console.log('Executing typesetting on:', executeOn);
+          revertMathJaxContent(executeOn);
+          fixMathElements(executeOn);
+          adjustMathMLStyle(executeOn);
+          console.log('Executing typesetting on after revert:', executeOn);
 
           // Use typesetPromise for asynchronous typesetting
           // Using MathJax.typesetPromise() for asynchronous typesetting to handle situations where additional code needs to be loaded (e.g., for certain TeX commands or characters).
@@ -148,6 +248,7 @@ const renderMath = (el, renderOpts) => {
                 const updatedDocument = mathJaxInstance.startup.document;
                 const list = updatedDocument.math.list;
 
+                console.log(list, 'list of math elements');
                 for (let item = list.next; typeof item.data !== 'symbol'; item = item.next) {
                   const mathMl = toMMl(item.data.root);
                   const parsedMathMl = mathMl.replaceAll('\n', '');
