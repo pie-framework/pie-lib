@@ -24,8 +24,10 @@ describe('render-math', () => {
     global.window.mathjaxLoadedP = Promise.resolve();
   });
 
-  it('calls initializeMathJax once', () => {
+  it('calls initializeMathJax once without @pie-lib/math-rendering@2', () => {
     const div = document.createElement('div');
+
+    delete window['@pie-lib/math-rendering@2'];
 
     // Initialize as undefined for the first call
     global.window.MathJax = undefined;
@@ -45,9 +47,18 @@ describe('render-math', () => {
     global.window.mathjaxLoadedP = Promise.resolve();
 
     // Call renderMath 9 more times
+    // delete window['@pie-lib/math-rendering@2'];
     _.times(9).forEach((i) => renderMath(div));
 
     expect(MathJaxModule.initializeMathJax).toHaveBeenCalledTimes(1);
+  });
+
+  it('does not call initializeMathJax when @pie-lib/math-rendering@2 is present', () => {
+    const div = document.createElement('div');
+    window['@pie-lib/math-rendering@2'] = true;
+
+    renderMath(div);
+    expect(MathJaxModule.initializeMathJax).not.toHaveBeenCalled();
   });
 
   it('wraps the math containing element the right way', () => {

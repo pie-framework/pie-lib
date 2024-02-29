@@ -86,6 +86,12 @@ const renderMath = (el, renderOpts) => {
   fixMathElements(executeOn);
   adjustMathMLStyle(executeOn);
 
+  if (window?.hasOwnProperty('@pie-lib/math-rendering@2')) {
+    // Check if MathJax is instantiated by the math-rendering module
+    // If true, use the math-rendering instance and return
+    return;
+  }
+
   if (!window.MathJax && !window.mathjaxLoadedP) {
     initializeMathJax(renderOpts);
   }
