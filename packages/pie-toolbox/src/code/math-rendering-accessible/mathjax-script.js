@@ -66,6 +66,7 @@ export const initializeMathJax = (renderOpts) => {
         fontURL: 'https://unpkg.com/mathjax-full@3.2.2/ts/output/chtml/fonts/tex-woff-v2',
         displayAlign: 'center',
       },
+      customKey: '@pie-lib/math-rendering-accessible@1',
       options: {
         enableEnrichment: true,
         sre: {

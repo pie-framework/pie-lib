@@ -214,6 +214,15 @@ const bootstrap = (opts) => {
 };
 
 const renderMath = (el, renderOpts) => {
+  if (
+    window &&
+    window.MathJax &&
+    window.MathJax.customKey &&
+    window.MathJax.customKey == '@pie-lib/math-rendering-accessible@1'
+  ) {
+    return;
+  }
+
   const isString = typeof el === 'string';
   let executeOn = document.body;
 
@@ -259,9 +268,9 @@ const renderMath = (el, renderOpts) => {
     return;
   }
 
-  if (el instanceof Element && getGlobal().instance) {
+  if (el instanceof Element && getGlobal().instance?.Typeset) {
     getGlobal().instance.Typeset(el);
-  } else if (el.length && getGlobal().instance) {
+  } else if (el.length && getGlobal().instance?.Typeset) {
     const arr = Array.from(el);
     getGlobal().instance.Typeset(...arr);
   }
