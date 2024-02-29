@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.7.4...@pie-lib/pie-toolbox@1.8.0) (2024-02-29)
+
+
+### Bug Fixes
+
+* **math-rendering:** Prevent duplicate rendering by skipping math rendering if MathJax is already initialized through math-rendering-accessibility PD-1870 ([4c3b2cb](https://github.com/pie-framework/pie-lib/commit/4c3b2cbbe4c0f589f9ce020812442b00c62d7232))
+
+
+### Features
+
+* **math-rendering-accessible:** Accessible Math Rendering Compatible with Legacy System, if MathJax is instantiated by math-rendering, the math-rendering instance is used PD-1870 ([4ea605d](https://github.com/pie-framework/pie-lib/commit/4ea605d2603c09d202d32d52811f84eff9b77a5a))
+
+
+
+
+
 ## [1.7.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.7.3...@pie-lib/pie-toolbox@1.7.4) (2024-02-20)
 
 
