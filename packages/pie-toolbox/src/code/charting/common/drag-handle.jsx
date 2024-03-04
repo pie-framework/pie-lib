@@ -25,7 +25,6 @@ const RawDragHandle = ({
   const { scale } = graphProps;
   const scaleValue = getScale(width)?.scale;
 
-  console.log('svg width', width);
   return (
     <svg x={x} y={scale.y(y) - 10} width={width} overflow="visible" className={classes.svgOverflowVisible}>
       {isHovered && !correctness && interactive && (
