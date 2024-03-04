@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.8.0...@pie-lib/pie-toolbox@1.8.1) (2024-03-04)
+
+
+### Bug Fixes
+
+* remove console logs ([deb4d8e](https://github.com/pie-framework/pie-lib/commit/deb4d8e4d9d7f5edfddd9907e828a896441ec972))
+* **charting:** change drag handle area into ellipse PD-3501 ([72e8163](https://github.com/pie-framework/pie-lib/commit/72e8163095f0d2005bfeb01de573a2c973aa4dce))
+
+
+
+
+
 # [1.8.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.7.4...@pie-lib/pie-toolbox@1.8.0) (2024-02-29)
 
 
