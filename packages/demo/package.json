@@ -8,7 +8,7 @@
     "@pie-lib/pie-toolbox": "^1.8.2",
     "change-case": "^3.0.2",
     "classnames": "^2.2.6",
-    "i18next": "^22.5.0",
+    "i18next": "^23.10.0",
     "jsesc": "^2.5.2",
     "markdown-to-jsx": "^6.9.1",
     "mathjs": "^7.0.1",
