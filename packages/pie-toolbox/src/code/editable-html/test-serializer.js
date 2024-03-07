@@ -4,6 +4,7 @@ import escapeHtml from 'escape-html';
 import { ReactEditor } from 'slate-react';
 import { jsx } from 'slate-hyperscript';
 import { MARK_TAGS } from './new-serialization';
+import { BLOCK_TAGS } from './block-tags';
 
 class Html {
   constructor(props) {
@@ -58,6 +59,7 @@ class Html {
     if (
       !body.firstChild ||
       body.firstChild.nodeType === Node.TEXT_NODE ||
+      !Object.keys(BLOCK_TAGS).includes(body.firstChild.tagName.toLowerCase()) ||
       Object.keys(MARK_TAGS).includes(body.firstChild.tagName.toLowerCase())
     ) {
       body = this.parseHtml(`<span>${html}</span>`);

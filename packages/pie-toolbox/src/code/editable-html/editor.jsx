@@ -94,7 +94,7 @@ const SlateEditor = (editorProps) => {
 
   const slateValue = useMemo(() => {
     // Slate throws an error if the value on the initial render is invalid
-    // so we directly set the value on the editor in order
+    // then we directly set the value on the editor in order
     // to be able to trigger normalization on the initial value before rendering
     editor.children = value;
     editor.marks = {};
@@ -1004,7 +1004,7 @@ export class EditorComponent extends React.Component {
     const { charactersLimit } = this.props;
     const allText = Editor.string(editor, []);
 
-    if (allText > charactersLimit) {
+    if (allText.length > charactersLimit) {
       return;
     }
 

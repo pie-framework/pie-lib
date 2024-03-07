@@ -129,7 +129,7 @@ export const DefaultToolbar = ({
           );
         })}
       </div>
-      {showDone && !deletable && <DoneButton onClick={() => onDone(editor)} />}
+      {showDone && !deletable && <DoneButton onClick={() => onDone(true)} />}
     </div>
   );
 };
