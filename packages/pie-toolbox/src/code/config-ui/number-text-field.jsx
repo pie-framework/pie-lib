@@ -68,23 +68,24 @@ export class NumberTextField extends React.Component {
   }
 
   UNSAFE_componentWillReceiveProps(props) {
-    const value = this.clamp(props.value);
+    const value = this.clamp(props.value, props.min, props.max);
+
     this.setState({ value });
   }
 
-  clamp(value) {
+  clamp(value, min = this.props.min, max = this.props.max) {
     if (!isFinite(value)) {
-      return fallbackNumber(this.props.min, this.props.max);
+      return fallbackNumber(min, max);
     }
-
-    const { min, max } = this.props;
 
     if (isFinite(max)) {
       value = Math.min(value, max);
     }
+
     if (isFinite(min)) {
       value = Math.max(value, min);
     }
+
     return value;
   }
 
