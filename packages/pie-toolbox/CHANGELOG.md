@@ -3,6 +3,109 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.8.1...@pie-lib/pie-toolbox@1.8.2) (2024-03-07)
+
+
+### Bug Fixes
+
+* **config-ui:** adjust the value with the new min and max props received PD-3509 ([3c00a7f](https://github.com/pie-framework/pie-lib/commit/3c00a7f01d48f3b8a85f3811805b72a146ff58d2))
+
+
+
+
+
+## [1.8.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.8.0...@pie-lib/pie-toolbox@1.8.1) (2024-03-04)
+
+
+### Bug Fixes
+
+* remove console logs ([deb4d8e](https://github.com/pie-framework/pie-lib/commit/deb4d8e4d9d7f5edfddd9907e828a896441ec972))
+* **charting:** change drag handle area into ellipse PD-3501 ([72e8163](https://github.com/pie-framework/pie-lib/commit/72e8163095f0d2005bfeb01de573a2c973aa4dce))
+
+
+
+
+
+# [1.8.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.7.4...@pie-lib/pie-toolbox@1.8.0) (2024-02-29)
+
+
+### Bug Fixes
+
+* **math-rendering:** Prevent duplicate rendering by skipping math rendering if MathJax is already initialized through math-rendering-accessibility PD-1870 ([4c3b2cb](https://github.com/pie-framework/pie-lib/commit/4c3b2cbbe4c0f589f9ce020812442b00c62d7232))
+
+
+### Features
+
+* **math-rendering-accessible:** Accessible Math Rendering Compatible with Legacy System, if MathJax is instantiated by math-rendering, the math-rendering instance is used PD-1870 ([4ea605d](https://github.com/pie-framework/pie-lib/commit/4ea605d2603c09d202d32d52811f84eff9b77a5a))
+
+
+
+
+
+## [1.7.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.7.3...@pie-lib/pie-toolbox@1.7.4) (2024-02-20)
+
+
+### Bug Fixes
+
+* made sure cancelling image upload is not blocking the editor [PD-3439] ([1f66e5a](https://github.com/pie-framework/pie-lib/commit/1f66e5a8173d701c6747c40ad00d5c55406bc13b))
+* **charting:** enhanced readability of math input labels by enlarging font size and added padding to prevent overlap with tick marks PD-3385 ([d922c1d](https://github.com/pie-framework/pie-lib/commit/d922c1db28da041418debb2d84559e0f22075451))
+
+
+
+
+
+## [1.7.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.7.2...@pie-lib/pie-toolbox@1.7.3) (2024-02-19)
+
+
+### Bug Fixes
+
+* update mathml-to-latex PD-3372 ([4675e59](https://github.com/pie-framework/pie-lib/commit/4675e5958b7bb231399c924c8df11be583647182))
+
+
+
+
+
+## [1.7.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.7.1...@pie-lib/pie-toolbox@1.7.2) (2024-02-15)
+
+
+### Bug Fixes
+
+* **math-rendering:** add sanity check for Typeset function, remove certain options from the MathJax configuration because they were ineffective and were causing warnings about non-existence on the instance ([deac57d](https://github.com/pie-framework/pie-lib/commit/deac57dc22f0b3d08b72bacc15a7e5abfcfde3ad))
+* **render-ui/preview-prompt:** fix image alignment not being set on first render PD-3455 ([d18453a](https://github.com/pie-framework/pie-lib/commit/d18453a45338503f9374d84f68a19226f2b484d5))
+
+
+
+
+
+## [1.7.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.7.0...@pie-lib/pie-toolbox@1.7.1) (2024-02-13)
+
+
+### Bug Fixes
+
+* **math-rendering-accessible:** set same key as in math-rendering for testing purpose PD-1870 ([748f76d](https://github.com/pie-framework/pie-lib/commit/748f76d0c05e44a0fcb39e86113084badf956c7b))
+
+
+
+
+
+# [1.7.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.6.0...@pie-lib/pie-toolbox@1.7.0) (2024-02-12)
+
+
+### Bug Fixes
+
+* Expose math-rendering-accessible and add it to pslb module as well (for print) ([ee3b625](https://github.com/pie-framework/pie-lib/commit/ee3b6256339c1fdb5a998d5959806f7acd0a4be2))
+
+
+### Features
+
+* add configuration for custom buttons on multiple choice PD-3395 ([0b88ab9](https://github.com/pie-framework/pie-lib/commit/0b88ab9e534934bf7905ce709ccd7f02c9287533))
+* **math-rendering-accessible:** created new math rendering package in order to introduce accessibility features PD-3418 ([125c4b3](https://github.com/pie-framework/pie-lib/commit/125c4b3fc1cf7203fea27a00f87ff25fd515396a))
+* **math-rendering-accessible:** created new math rendering package with accessibility features ([504171d](https://github.com/pie-framework/pie-lib/commit/504171dc4f3302b5ef11761e1e8a64585b6f596a))
+
+
+
+
+
 # [1.6.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.5.8...@pie-lib/pie-toolbox@1.6.0) (2024-02-09)
 
 

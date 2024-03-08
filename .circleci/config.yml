@@ -52,18 +52,15 @@ jobs:
       - save_cache: *save_cache
       - run: scripts/build release --next --skipForcePublish --token $NPM_TOKEN
 
-  #Beta build is actually not acting as we'd like it to act: it is not creating @beta versions, but "latest" versions instead.
-  #That happens because build-helper only permits 2 options: "next" or nothing, which actually means "latest"...
-  #One thing we could try would be to upgrade build-helper
-  #  beta_build:
-  #    <<: *defaults
-  #    steps:
-  #      - checkout
-  #      - run: *reg_auth
-  #      - restore_cache: *restore_cache
-  #      - run: yarn install
-  #      - save_cache: *save_cache
-  #      - run: scripts/build release --beta --skipForcePublish --token $NPM_TOKEN
+#  beta_build:
+#    <<: *defaults
+#    steps:
+#      - checkout
+#      - run: *reg_auth
+#      - restore_cache: *restore_cache
+#      - run: yarn install
+#      - save_cache: *save_cache
+#      - run: scripts/build release --beta --skipForcePublish --token $NPM_TOKEN
 
   release_build:
     <<: *defaults
@@ -109,7 +106,6 @@ workflows:
           filters:
             branches:
               only:
-#                we only release next versions for slate editor
                 - feat/slate-editor-updates
   build_master:
     jobs:
@@ -118,6 +114,7 @@ workflows:
             branches:
               only:
                 - master
+
 #  build_beta:
 #    jobs:
 #      - beta_build:
@@ -125,13 +122,13 @@ workflows:
 #            branches:
 #              only:
 #                - beta
-# nightly:
-#   triggers:
-#     - schedule:
-#         cron: '0 0 * * *'
-#         filters:
-#           branches:
-#             only:
-#               - develop
-#   jobs:
-#     - deploy_demo
+  # nightly:
+  #   triggers:
+  #     - schedule:
+  #         cron: '0 0 * * *'
+  #         filters:
+  #           branches:
+  #             only:
+  #               - develop
+  #   jobs:
+  #     - deploy_demo

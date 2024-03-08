@@ -1,11 +1,11 @@
 {
   "name": "@pie-lib/demo",
   "private": true,
-  "version": "7.3.9",
+  "version": "7.3.17",
   "dependencies": {
     "@material-ui/core": "^3.8.3",
     "@material-ui/icons": "^3.0.2",
-    "@pie-lib/pie-toolbox": "^1.6.0",
+    "@pie-lib/pie-toolbox": "^1.8.2",
     "change-case": "^3.0.2",
     "classnames": "^2.2.6",
     "i18next": "^22.5.0",

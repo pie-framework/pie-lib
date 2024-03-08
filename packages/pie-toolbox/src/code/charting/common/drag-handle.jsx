@@ -30,10 +30,12 @@ const RawDragHandle = ({
       {isHovered && !correctness && interactive && (
         <DragIcon width={width} scaleValue={scaleValue} color={color} classes={classes} />
       )}
-      <circle
+      <ellipse
         cx={width / 2}
         cy={10}
-        r={width / 2}
+        rx={width / 2}
+        // the drag icon has a 22px fixed r value, so the ry value is 3 times that in order to cover all the area
+        ry={66}
         className={classNames(classes.transparentHandle, className)}
         {...rest}
       />
@@ -96,7 +98,6 @@ export const DragHandle = withStyles(() => ({
     '&.non-interactive': disabled('fill'),
   },
   transparentHandle: {
-    height: '20px',
     fill: 'transparent',
     clipPath: 'polygon(50% 0%, 100% 0%, 100% 50%, 0% 50%, 0% 0%)',
   },

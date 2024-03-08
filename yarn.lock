@@ -2744,10 +2744,10 @@
     mathjs "^7.0.1"
     numeric "^1.2.6"
 
-"@pie-framework/mathml-to-latex@1.3.3":
-  version "1.3.3"
-  resolved "https://registry.yarnpkg.com/@pie-framework/mathml-to-latex/-/mathml-to-latex-1.3.3.tgz#db676051d453397e45875d8dcdb8a730011c09e3"
-  integrity sha512-Ulr6a/UapS4VrdP/cdHMXF1aiOixZ5+i15VE8gGu1sF77ULE/OKpVXNkvJtV7JluIwEDipDOKlWdl/mSeQYhEw==
+"@pie-framework/mathml-to-latex@1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@pie-framework/mathml-to-latex/-/mathml-to-latex-1.4.0.tgz#224f89409f1586966abbac71a3e99f5fcafcf7b0"
+  integrity sha512-VOuCORBUa3CsHpvZGbSI+fMKhkjBCLXE0GWIYXinOnRy7xzPGmFBosRrPWhD2PF6E6I6NuytVWncnzlleAKmhQ==
   dependencies:
     "@xmldom/xmldom" "^0.8.10"
 
@@ -2767,6 +2767,11 @@
     parse-latin "^4.0.0"
     unist-util-modify-children "^1.0.0"
     unist-util-visit-children "^1.0.0"
+
+"@pie-lib/pie-toolbox-math-rendering-module@1.0.7":
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/@pie-lib/pie-toolbox-math-rendering-module/-/pie-toolbox-math-rendering-module-1.0.7.tgz#2e8c333650debe913b80b31bafcc7e503817bf63"
+  integrity sha512-o6yZ0jqIJKWZWXTP+FejqawJ1mpKHbWu0ZCenoDVqitfrgGgkgr4bZMXVx4N0FfqhCGlS76vkYA/KD4OM4ugVQ==
 
 "@pie-lib/test-utils@^0.0.3":
   version "0.0.3"

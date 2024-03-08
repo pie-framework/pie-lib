@@ -91,36 +91,45 @@ export class NumberTextFieldCustom extends React.Component {
   }
 
   UNSAFE_componentWillReceiveProps(props) {
-    const { value, currentIndex } = this.normalizeValueAndIndex(props.customValues, props.value);
+    const { value, currentIndex } = this.normalizeValueAndIndex(props.customValues, props.value, props.min, props.max);
+
     this.setState({ value, currentIndex });
   }
 
-  clamp(value) {
-    const { min, max, customValues } = this.props;
+  clamp(value, min = this.props.min, max = this.props.max) {
+    const { customValues } = this.props;
+
     if ((customValues || []).length > 0) {
       return value;
     }
+
     if (!isFinite(value)) {
       return fallbackNumber(min, max);
     }
+
     if (isFinite(max)) {
       value = Math.min(value, max);
     }
+
     if (isFinite(min)) {
       value = Math.max(value, min);
     }
+
     return value;
   }
 
-  normalizeValueAndIndex = (customValues, number) => {
+  normalizeValueAndIndex = (customValues, number, min, max) => {
     const { type } = this.props;
-    const value = this.clamp(number);
+    const value = this.clamp(number, min, max);
     const currentIndex = (customValues || []).findIndex((val) => val === value);
+
     if ((customValues || []).length > 0 && currentIndex === -1) {
       const closestValue =
         type === 'text' ? this.getClosestFractionValue(customValues, value) : this.getClosestValue(customValues, value);
+
       return { value: closestValue.value, currentIndex: closestValue.index };
     }
+
     return { value, currentIndex };
   };
 
