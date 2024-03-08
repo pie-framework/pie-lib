@@ -9,7 +9,7 @@ export const RawDoneButton = ({ classes, onClick }) => (
   <IconButton
     aria-label="Done"
     className={classes.iconRoot}
-    onClick={onClick}
+    onClick={() => onClick(true)}
     classes={{
       label: classes.label,
       root: classes.iconRoot,

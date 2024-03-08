@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import { useSlate } from 'slate-react';
 import PropTypes from 'prop-types';
 import Editor, { DEFAULT_PLUGINS, ALL_PLUGINS } from './editor';
-import { htmlToValue, valueToHtml, reduceMultipleBrs } from './serialization';
+import { htmlToValue, valueToHtml } from './new-serialization';
 import { parseDegrees } from './parse-html';
 import debug from 'debug';
 import { Range } from 'slate';
@@ -12,75 +13,43 @@ const log = debug('@pie-lib:editable-html');
  */
 export { htmlToValue, valueToHtml, Editor, DEFAULT_PLUGINS, ALL_PLUGINS };
 
-/**
- * Wrapper around the editor that exposes a `markup` and `onChange(markup:string)` api.
- * Because of the mismatch between the markup and the `Value` we need to convert the incoming markup to a value and
- * compare it. TODO: This is an interim fix, we'll need to strip back `Editor` and look how best to maintain the
- * `markup` api whilst avoiding the serialization mismatch. We should be making better use of schemas w/ normalize.
- */
-export default class EditableHtml extends React.Component {
-  static propTypes = {
-    error: PropTypes.any,
-    onChange: PropTypes.func.isRequired,
-    onDone: PropTypes.func,
-    markup: PropTypes.string.isRequired,
-    allowValidation: PropTypes.bool,
-    toolbarOpts: PropTypes.object,
-  };
+const useConstructor = (callback = () => {}) => {
+  const [hasBeenCalled, setHasBeenCalled] = useState(false);
 
-  static defaultProps = {
-    onDone: () => {},
-    allowValidation: false,
-  };
-
-  constructor(props) {
-    super(props);
-    const v = htmlToValue(props.markup);
-    this.state = {
-      value: v,
-    };
+  if (hasBeenCalled) {
+    return;
   }
 
-  // eslint-disable-next-line react/no-deprecated
-  componentWillReceiveProps(props) {
-    if (!props.allowValidation && props.markup === this.props.markup) {
-      return;
-    }
+  callback();
+  setHasBeenCalled(true);
+};
 
+const EditableHtml = React.forwardRef((props, forwardedRef) => {
+  const editorRef = useRef(null);
+  const rootRef = useRef(null);
+  const [value, setValue] = useState();
+
+  useConstructor(() => {
     const v = htmlToValue(props.markup);
-    const current = htmlToValue(props.markup);
+    setValue(v);
+  });
 
-    if (v.equals && !v.equals(current)) {
-      this.setState({ value: v });
-    }
-  }
-
-  runSerializationOnMarkup = () => {
-    if (!this.props.markup) {
-      return;
-    }
-
-    const v = htmlToValue(reduceMultipleBrs(this.props.markup));
-
-    this.setState({ value: v });
-  };
-
-  onChange = (value, done) => {
+  const onChange = (value, done) => {
     const html = valueToHtml(value);
     const htmlParsed = parseDegrees(html);
 
     log('value as html: ', html);
 
-    if (html !== this.props.markup) {
-      this.props.onChange(htmlParsed);
+    if (html !== props.markup) {
+      props.onChange(htmlParsed);
     }
 
     if (done) {
-      this.props.onDone(htmlParsed);
+      props.onDone(htmlParsed);
     }
   };
 
-  focus = (position, node, select = false) => {
+  const focus = (position, node, select = false) => {
     if (this.editorRef) {
       this.editorRef.change((c) => {
         const lastText = node ? c.value.document.getNextText(node.key) : c.value.document.getLastText();
@@ -115,39 +84,48 @@ export default class EditableHtml extends React.Component {
     }
   };
 
-  finishEditing = () => {
-    if (this.editorRef) {
-      this.editorRef.props.onEditingDone();
-    }
+  const { toolbarOpts, error } = props;
+
+  if (toolbarOpts) {
+    toolbarOpts.error = error;
+  }
+
+  const newProps = {
+    ...props,
+    markup: null,
+    value,
+    onChange,
+    focus,
   };
 
-  render() {
-    const { value } = this.state;
-    const { toolbarOpts, error } = this.props;
+  return (
+    <Editor
+      {...newProps}
+      onRef={(ref) => {
+        if (ref) {
+          rootRef.current = ref;
 
-    if (toolbarOpts) {
-      toolbarOpts.error = error;
-    }
-
-    const props = {
-      ...this.props,
-      markup: null,
-      value,
-      onChange: this.onChange,
-      focus: this.focus,
-      runSerializationOnMarkup: this.runSerializationOnMarkup,
-    };
-
-    return (
-      <Editor
-        onRef={(ref) => {
-          if (ref) {
-            this.rootRef = ref;
+          if (forwardedRef) {
+            forwardedRef(ref);
           }
-        }}
-        editorRef={(ref) => ref && (this.editorRef = ref)}
-        {...props}
-      />
-    );
-  }
-}
+        }
+      }}
+      editorRef={(ref) => ref && (editorRef.current = ref)}
+    />
+  );
+});
+
+EditableHtml.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  onDone: PropTypes.func,
+  onEditor: PropTypes.func,
+  markup: PropTypes.string.isRequired,
+  allowValidation: PropTypes.bool,
+};
+
+EditableHtml.defaultProps = {
+  onDone: () => {},
+  allowValidation: false,
+};
+
+export default EditableHtml;

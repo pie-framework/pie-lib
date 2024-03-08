@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const ExplicitConstructedResponse = (props) => {
-  const { attributes, value, error } = props;
+  const { attributes, children, value, error } = props;
 
   return (
     <span
@@ -33,6 +33,7 @@ const ExplicitConstructedResponse = (props) => {
           __html: value || '<div>&nbsp;</div>',
         }}
       />
+      {children}
     </span>
   );
 };

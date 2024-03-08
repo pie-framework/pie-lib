@@ -102,14 +102,15 @@ export class MediaDialog extends React.Component {
 
     this.state = {
       ends: ends || 0,
-      url: url,
-      urlToUse: urlToUse,
-      formattedUrl: src,
+      url: url || '',
+      urlToUse: urlToUse || '',
+      formattedUrl: src || '',
       height: height || 315,
       invalid: false,
       starts: starts || 0,
       width: width || 560,
       tabValue: 0,
+      updating: false,
       fileUpload: {
         error: null,
         loading: false,
@@ -133,7 +134,7 @@ export class MediaDialog extends React.Component {
     const { url, urlToUse, starts, ends } = this.state;
     const isYoutube = matchYoutubeUrl(url);
     const isVimeo = matchVimeoUrl(url);
-    let formattedUrl = urlToUse;
+    let formattedUrl = urlToUse || '';
 
     if ((isYoutube || isVimeo) && urlToUse) {
       const params = [];
@@ -184,7 +185,7 @@ export class MediaDialog extends React.Component {
             this.handleStateChange({
               urlToUse,
               invalid: !urlToUse,
-              url: value,
+              url: value || '',
             });
           })
           .catch(log);
@@ -202,7 +203,7 @@ export class MediaDialog extends React.Component {
 
         this.handleStateChange({
           urlToUse,
-          url: value,
+          url: value || '',
           invalid: false,
         });
 
@@ -217,7 +218,7 @@ export class MediaDialog extends React.Component {
 
         this.handleStateChange({
           urlToUse,
-          url: value,
+          url: value || '',
           ends: null,
           invalid: false,
         });
@@ -227,8 +228,8 @@ export class MediaDialog extends React.Component {
     }
 
     this.handleStateChange({
-      urlToUse: null,
-      url: null,
+      urlToUse: '',
+      url: '',
       invalid: true,
     });
   };

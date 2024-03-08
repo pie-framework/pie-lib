@@ -1,23 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`snapshot renders 1`] = `
-<RawMathPreview
-  classes={
-    Object {
-      "insideOverlay": "RawMathPreview-insideOverlay-3",
-      "root": "RawMathPreview-root-1",
-      "selected": "RawMathPreview-selected-2",
-    }
-  }
-  isSelected={false}
-  node={
-    Object {
-      "data": Object {
-        "get": [MockFunction],
-      },
-    }
-  }
-  onBlur={[MockFunction]}
-  onFocus={[MockFunction]}
-/>
+<div
+  className="Hook-root-1o72fcy"
+  contentEditable={false}
+>
+   
+  <span
+    className="Hook-insideOverlay-h1a1x2"
+  />
+  <Static
+    getFieldName={[Function]}
+    onBlur={[MockFunction]}
+    onFocus={[MockFunction]}
+  />
+</div>
 `;

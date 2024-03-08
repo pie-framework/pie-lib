@@ -22,16 +22,16 @@ class LibCommands extends Commands {
     ]);
   }
 
-  // TODO currently this occupies a lot of space and there's no way circle ci can handle it (I've experimented but without success)
-  //  so I'll publish manually temporarily until we find a solution
+  // TODO pslb builds are not working with slate, this needs to be fixed PD-3379
+  //  we also need to make sure this will create beta versions
   sharedBuild() {
-    if (args.next) {
-      return Promise.resolve();
-    } else {
-      return this.runCmd(
-        `yarn pslb --config pslb/pslb.config.js --publishLibs --token ${args.token} --cleanLibs --logLevel debug`
-      );
-    }
+    // if (args.next) {
+    //   return Promise.resolve();
+    // } else {
+    //   return this.runCmd(
+    //     `yarn pslb --config pslb/pslb.config.js --publishLibs --token ${args.token} --cleanLibs --logLevel debug`
+    //   );
+    // }
   }
 
   build() {
