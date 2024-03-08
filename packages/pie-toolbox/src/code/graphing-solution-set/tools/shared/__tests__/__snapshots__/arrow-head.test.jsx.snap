@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ArrowHead snapshot renders 1`] = `
+<polygon
+  points="0,0 10,5 0,10"
+  transform=""
+/>
+`;
+
+exports[`ArrowMarker snapshot renders 1`] = `
+<marker
+  className="className"
+  id="id"
+  markerHeight={10}
+  markerWidth={10}
+  orient="auto-start-reverse"
+  refX={5}
+  refY={5}
+  viewBox="0 0 10 10"
+>
+  <ArrowHead
+    points=""
+    size={10}
+    transform=""
+  />
+</marker>
+`;
