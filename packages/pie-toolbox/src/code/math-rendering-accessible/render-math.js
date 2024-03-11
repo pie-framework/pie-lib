@@ -84,17 +84,16 @@ const createPlaceholder = (element) => {
   }
 };
 
-// Function to remove placeholders and restore original display style
 const removePlaceholdersAndRestoreDisplay = () => {
   document.querySelectorAll('.math-placeholder').forEach((placeholder) => {
     const targetElement = placeholder.nextElementSibling;
+
     if (targetElement && targetElement.dataset.originalDisplay !== undefined) {
-      // Restore the original display style
       targetElement.style.display = targetElement.dataset.originalDisplay;
-      // Clean up by removing the dataset attribute
       delete targetElement.dataset.originalDisplay;
     }
-    placeholder.remove(); // Remove the placeholder
+
+    placeholder.remove();
   });
 };
 
