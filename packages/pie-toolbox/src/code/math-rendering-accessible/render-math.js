@@ -133,11 +133,10 @@ const renderMath = (el, renderOpts) => {
     executeOn = div;
   }
 
-  // Checks for pie-author and pie-player elements
-  const pieAuthors = document.querySelectorAll('pie-author');
-  const piePlayers = document.querySelectorAll('pie-player');
+  const mathElements = executeOn.querySelectorAll('[data-latex]');
+  mathElements.forEach(createPlaceholder);
 
-  const performMathRendering = () => {
+  waitForMathRenderingLib(() => {
     fixMathElements(executeOn);
     adjustMathMLStyle(executeOn);
 
@@ -167,6 +166,7 @@ const renderMath = (el, renderOpts) => {
         console.error('Error rendering math:', error.message);
       }
     }
+
     if (window.mathjaxLoadedP) {
       window.mathjaxLoadedP
         .then(() => {
@@ -189,6 +189,7 @@ const renderMath = (el, renderOpts) => {
               .then(() => {
                 try {
                   removePlaceholdersAndRestoreDisplay();
+
                   const updatedDocument = mathJaxInstance.startup.document;
                   const list = updatedDocument.math.list;
 
@@ -217,20 +218,7 @@ const renderMath = (el, renderOpts) => {
           console.error('Error in initializing MathJax:', error);
         });
     }
-  };
-
-  if (pieAuthors.length > 0 && piePlayers.length > 0) {
-    // If both pieAuthors and piePlayers exist, wait for the math rendering library and add placeholders
-    const mathElements = executeOn.querySelectorAll('[data-latex]');
-    mathElements.forEach(createPlaceholder);
-
-    waitForMathRenderingLib(() => {
-      performMathRendering();
-    });
-  } else {
-    // If either check is false, proceed without waiting
-    performMathRendering();
-  }
+  });
 };
 
 export default renderMath;

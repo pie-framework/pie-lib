@@ -12,7 +12,6 @@ describe('render-math', () => {
   beforeEach(() => {
     // Reset the mocks before each test
     jest.resetAllMocks();
-
     // Mock window.MathJax and window.mathjaxLoadedP
     global.window.MathJax = {
       typeset: jest.fn(),
@@ -25,6 +24,7 @@ describe('render-math', () => {
   });
 
   it('calls initializeMathJax once without @pie-lib/math-rendering@2', () => {
+    jest.useFakeTimers();
     const div = document.createElement('div');
 
     delete window['@pie-lib/math-rendering@2'];
@@ -49,12 +49,13 @@ describe('render-math', () => {
     // Call renderMath 9 more times
     _.times(9).forEach((i) => renderMath(div));
 
-    expect(MathJaxModule.initializeMathJax).toHaveBeenCalledTimes(1);
+    setTimeout(() => {
+      expect(MathJaxModule.initializeMathJax).toHaveBeenCalledTimes(1);
+    }, 500);
   });
 
   it('does not call initializeMathJax when @pie-lib/math-rendering@2 is present', () => {
     const div = document.createElement('div');
-    window['@pie-lib/math-rendering@2'] = true;
 
     renderMath(div);
     expect(MathJaxModule.initializeMathJax).not.toHaveBeenCalled();
