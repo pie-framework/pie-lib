@@ -5,6 +5,7 @@ import { object as toStyleObject } from 'to-style';
 
 import { serialization as imgSerialization } from './plugins/image';
 import { serialization as mathSerialization } from './plugins/math';
+import { serialization as customPluginSerialization } from './plugins/customPlugin';
 import { serialization as mediaSerialization } from './plugins/media';
 import { serialization as listSerialization } from './plugins/list';
 import { serialization as tableSerialization } from './plugins/table';
@@ -201,6 +202,7 @@ const RULES = [
   listSerialization,
   mathSerialization,
   mediaSerialization,
+  customPluginSerialization,
   imgSerialization,
   tableSerialization,
   responseAreaSerialization,

@@ -18,6 +18,7 @@ import List from './list';
 import TablePlugin from './table';
 import RespAreaPlugin from './respArea';
 import HtmlPlugin from './html';
+import CustomPlugin from "./customPlugin";
 
 const log = debug('@pie-lib:editable-html:plugins');
 
@@ -72,6 +73,7 @@ export const ALL_PLUGINS = [
   'video',
   'audio',
   'responseArea',
+  'custom-plugin',
 ];
 
 export const DEFAULT_PLUGINS = ALL_PLUGINS.filter((plug) => plug !== 'responseArea');
@@ -113,5 +115,6 @@ export const buildPlugins = (activePlugins, opts) => {
     SoftBreakPlugin({ shift: true }),
     addIf('responseArea', respAreaPlugin),
     addIf('html', HtmlPlugin(opts.html)),
+    addIf('custom-plugin', CustomPlugin('custom-plugin', opts.customPlugin)),
   ]);
 };

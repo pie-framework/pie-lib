@@ -1,63 +1,80 @@
-import EditableHtml from '@pie-lib/pie-toolbox/editable-html';
-import grey from '@material-ui/core/colors/grey';
-import React from 'react';
-import _ from 'lodash';
-import debug from 'debug';
-import Checkbox from '@material-ui/core/Checkbox';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import TextField from '@material-ui/core/TextField';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-import Input from '@material-ui/core/Input';
-import withRoot from '../source/withRoot';
-import { withStyles } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
-import InputChooser from '../source/editable-html/input-chooser';
-import { hasText } from '@pie-lib/pie-toolbox/render-ui';
+import EditableHtml from "@pie-lib/pie-toolbox/editable-html";
+import grey from "@material-ui/core/colors/grey";
+import React from "react";
+import _ from "lodash";
+import debug from "debug";
+import Checkbox from "@material-ui/core/Checkbox";
+import FormGroup from "@material-ui/core/FormGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import TextField from "@material-ui/core/TextField";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import Input from "@material-ui/core/Input";
+import withRoot from "../source/withRoot";
+import { withStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
+import Typography from "@material-ui/core/Typography";
+import InputChooser from "../source/editable-html/input-chooser";
+import { hasText } from "@pie-lib/pie-toolbox/render-ui";
+import { renderMath } from "@pie-lib/pie-toolbox/math-rendering";
+import { Button } from "@material-ui/core";
 
-const log = debug('@pie-lib:editable-html:demo');
-const puppySrc = 'https://bit.ly/23yROY8';
+const Latex = "\\(2x\\ \\le4y\\ +\\ 8\\)";
+
+
+const log = debug("@pie-lib:editable-html:demo");
+const puppySrc = "https://bit.ly/23yROY8";
+
+class Demo extends React.Component {
+  componentDidMount() {
+    renderMath(this.root);
+  }
+
+  render() {
+    return <div
+      ref={(r) => (this.root = r)}
+      dangerouslySetInnerHTML={{ __html: this.props.mathml }} />;
+  }
+}
 
 /**
  * Note: See core schema rules - it normalizes so you can only have blocks or inline and text in a block.
  */
 const inputOptions = [
   {
-    label: 'An image in a P tag',
-    html: `<div><p><img src="${puppySrc}" style="width:170px;height:151px"/> bar</p><p><img src="${puppySrc}" style="width:170px;height:151px"/> bar</p></div>`,
+    label: "An image in a P tag",
+    html: `<div><p><img src="${puppySrc}" style="width:170px;height:151px"/> bar</p><p><img src="${puppySrc}" style="width:170px;height:151px"/> bar</p></div>`
   },
   {
-    label: 'Latex \\(..\\)',
+    label: "Latex \\(..\\)",
     html:
-      '<math xmlns="http://www.w3.org/1998/Math/MathML"><mover><mrow><mi>A</mi><mi>B</mi></mrow><mo>&#175;</mo></mover></math>',
+      "1   2   3   4   5   6   7   8   9   0"
   },
   {
-    label: 'Latex $..$',
-    html: '<div><span data-latex="">$\\frac{1}{2}$</span></div>',
+    label: "Latex $..$",
+    html: "<div><span data-latex=\"\">$\\frac{1}{2}$</span></div>"
   },
   {
-    label: 'Latex \\displaystyle',
-    html: '<div><span data-latex="">\\(\\displaystyle - \\frac{36}{55}\\)</span></div>',
+    label: "Latex \\displaystyle",
+    html: "<div><span data-latex=\"\">\\(\\displaystyle - \\frac{36}{55}\\)</span></div>"
   },
   {
-    label: 'Nested div w/ image',
-    html: '<div>​<div><img source="foo.com/img.png"/></div>​</div>',
+    label: "Nested div w/ image",
+    html: "<div>​<div><img source=\"foo.com/img.png\"/></div>​</div>"
   },
   {
-    label: 'Nested div w/ text',
-    html: '<div>​<div>hi</div>​</div>',
+    label: "Nested div w/ text",
+    html: "<div>​<div>hi</div>​</div>"
   },
   {
-    label: 'Table',
-    html: '<table border="1"><tr><td>a</td><td>b</td></tr></table>',
+    label: "Table",
+    html: "<table border=\"1\"><tr><td>a</td><td>b</td></tr></table>"
   },
   {
-    label: 'Table Complex',
+    label: "Table Complex",
     html:
-      '<table cellspacing="0" cellpadding="4" class="borderall"> <tbody> <tr> <td style="width:140px" class="center bold">Trial</td> <td style="width:140px" class="center bold">Mass NH<sub>3</sub></td> <td style="width:140px" class="center bold">Mass HCl</td> <td style="width:140px" class="center bold">Mass NH<sub>4</sub>Cl</td> </tr> <tr> <td class="center">1</td> <td class="center">3.40 g</td> <td class="center">7.30 g</td> <td class="center">10.70 g</td> </tr> <tr> <td class="center">2</td> <td class="center">?</td> <td class="center">?</td> <td class="center">32.10 g</td> </tr> </tbody></table>',
-  },
+      "<table cellspacing=\"0\" cellpadding=\"4\" class=\"borderall\"> <tbody> <tr> <td style=\"width:140px\" class=\"center bold\">Trial</td> <td style=\"width:140px\" class=\"center bold\">Mass NH<sub>3</sub></td> <td style=\"width:140px\" class=\"center bold\">Mass HCl</td> <td style=\"width:140px\" class=\"center bold\">Mass NH<sub>4</sub>Cl</td> </tr> <tr> <td class=\"center\">1</td> <td class=\"center\">3.40 g</td> <td class=\"center\">7.30 g</td> <td class=\"center\">10.70 g</td> </tr> <tr> <td class=\"center\">2</td> <td class=\"center\">?</td> <td class=\"center\">?</td> <td class=\"center\">32.10 g</td> </tr> </tbody></table>"
+  }
 ];
 
 const html = inputOptions[1].html;
@@ -65,7 +82,7 @@ const html = inputOptions[1].html;
 class RawMarkupPreview extends React.Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
-    markup: PropTypes.string.isRequired,
+    markup: PropTypes.string.isRequired
   };
 
   render() {
@@ -85,14 +102,14 @@ class RawMarkupPreview extends React.Component {
 
 const MarkupPreview = withStyles(() => ({
   prettyPrint: {
-    whiteSpace: 'normal',
-    width: '100%',
-  },
+    whiteSpace: "normal",
+    width: "100%"
+  }
 }))(RawMarkupPreview);
 
 class RteDemo extends React.Component {
   static propTypes = {
-    classes: PropTypes.object.isRequired,
+    classes: PropTypes.object.isRequired
   };
 
   constructor(props) {
@@ -102,28 +119,28 @@ class RteDemo extends React.Component {
       showHighlight: false,
       disableImageUpload: false,
       disabled: false,
-      width: '',
-      height: '',
-      keypadMode: 'miscellaneous',
+      width: "",
+      height: "",
+      keypadMode: "miscellaneous",
       markupText: html,
       hasText: true,
       mathEnabled: true,
-      languageCharactersProps: [],
+      languageCharactersProps: []
     };
   }
 
   onChange = (markup) => {
-    log('onChange: ');
+    log("onChange: ");
     this.setState({ markup });
   };
 
   onChangeMarkupText = (markupText) => {
-    log('onChangeMarkupText: ');
+    log("onChangeMarkupText: ");
     this.setState({ markupText, hasText: hasText(markupText) });
   };
 
   handleInputFiles = (input) => {
-    log('[handleInputFiles] input: ', input);
+    log("[handleInputFiles] input: ", input);
 
     const { imageHandler } = this.state;
     if (input.files.length < 1 || !input.files[0]) {
@@ -132,17 +149,17 @@ class RteDemo extends React.Component {
     } else {
       const file = input.files[0];
       imageHandler.fileChosen(file);
-      this.fileInput.value = '';
+      this.fileInput.value = "";
       const reader = new FileReader();
       reader.onload = () => {
-        log('[reader.onload]');
+        log("[reader.onload]");
         const dataURL = reader.result;
         setTimeout(() => {
           imageHandler.done(null, dataURL);
           this.setState({ imageHandler: null });
         }, 2000);
       };
-      log('call readAsDataUrl...', file);
+      log("call readAsDataUrl...", file);
       let progress = 0;
       imageHandler.progress(progress);
       _.range(1, 100).forEach((n) => {
@@ -155,7 +172,7 @@ class RteDemo extends React.Component {
   };
 
   handleFileSelect = (event) => {
-    log('[handleFileSelect] event: ', event);
+    log("[handleFileSelect] event: ", event);
     //disable the check cancelled call
     this.setState({ checkCancelled: false }, () => {
       this.handleInputFiles(event.target);
@@ -164,7 +181,7 @@ class RteDemo extends React.Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     if (this.state.insertImage !== nextState.insertImage) {
-      console.log('skip update if the insertImageCallback has changed');
+      console.log("skip update if the insertImageCallback has changed");
       return false;
     }
     return true;
@@ -176,16 +193,16 @@ class RteDemo extends React.Component {
 
   componentDidUpdate() {
     if (this.fileInput) {
-      this.fileInput.addEventListener('change', this.handleFileSelect);
+      this.fileInput.addEventListener("change", this.handleFileSelect);
     }
   }
 
   componentWillUnmount() {
-    this.fileInput.removeEventListener('change', this.handleFileSelect);
+    this.fileInput.removeEventListener("change", this.handleFileSelect);
   }
 
   addImage = (imageHandler) => {
-    log('[addImage]', imageHandler);
+    log("[addImage]", imageHandler);
     this.setState({ imageHandler });
     this.fileInput.click();
 
@@ -196,7 +213,7 @@ class RteDemo extends React.Component {
      * It's set to false if a 'change' event is fired.
      */
     document.body.onfocus = (e) => {
-      log('focus document...', this.fileInput.files);
+      log("focus document...", this.fileInput.files);
       document.body.onfocus = null;
       this.setState({ checkCancelled: true }, () => {
         setTimeout(() => {
@@ -209,7 +226,7 @@ class RteDemo extends React.Component {
   };
 
   onDeleteImage = (url, done) => {
-    log('delete image source: ', url);
+    log("delete image source: ", url);
     done();
   };
 
@@ -231,14 +248,14 @@ class RteDemo extends React.Component {
       markupText,
       hasText,
       mathEnabled,
-      languageCharactersProps,
+      languageCharactersProps
     } = this.state;
     const imageSupport = {
       add: this.addImage,
-      delete: this.onDeleteImage,
+      delete: this.onDeleteImage
     };
 
-    log('this.state', this.state);
+    log("this.state", this.state);
 
     //activePlugins={['bold', 'bulleted-list', 'numbered-list']}
     return mounted ? (
@@ -296,13 +313,13 @@ class RteDemo extends React.Component {
             />
             <TextField
               className={classes.sizeInput}
-              placeholder={'width'}
+              placeholder={"width"}
               value={width}
               onChange={(event) => this.setState({ width: event.target.value })}
             />
             <TextField
               className={classes.sizeInput}
-              placeholder={'height'}
+              placeholder={"height"}
               value={height}
               onChange={(event) => this.setState({ height: event.target.value })}
             />
@@ -318,12 +335,12 @@ class RteDemo extends React.Component {
             <FormControlLabel
               control={
                 <Checkbox
-                  checked={languageCharactersProps.filter((a) => a.language === 'spanish').length}
+                  checked={languageCharactersProps.filter((a) => a.language === "spanish").length}
                   onChange={(event) =>
                     this.setState({
                       languageCharactersProps: event.target.checked
-                        ? languageCharactersProps.concat([{ language: 'spanish' }])
-                        : languageCharactersProps.filter((a) => a.language !== 'spanish'),
+                        ? languageCharactersProps.concat([{ language: "spanish" }])
+                        : languageCharactersProps.filter((a) => a.language !== "spanish")
                     })
                   }
                 />
@@ -333,12 +350,12 @@ class RteDemo extends React.Component {
             <FormControlLabel
               control={
                 <Checkbox
-                  checked={languageCharactersProps.filter((a) => a.language === 'special').length}
+                  checked={languageCharactersProps.filter((a) => a.language === "special").length}
                   onChange={(event) =>
                     this.setState({
                       languageCharactersProps: event.target.checked
-                        ? languageCharactersProps.concat([{ language: 'special' }])
-                        : languageCharactersProps.filter((a) => a.language !== 'special'),
+                        ? languageCharactersProps.concat([{ language: "special" }])
+                        : languageCharactersProps.filter((a) => a.language !== "special")
                     })
                   }
                 />
@@ -356,12 +373,12 @@ class RteDemo extends React.Component {
           highlightShape={showHighlight}
           pluginProps={{
             image: {
-              disabled: disableImageUpload,
+              disabled: disableImageUpload
             },
             math: {
               disabled: !mathEnabled,
-              keypadMode: this.state.keypadMode,
-            },
+              keypadMode: this.state.keypadMode
+            }
           }}
           width={width}
           height={height}
@@ -375,6 +392,7 @@ class RteDemo extends React.Component {
         <br />
         <MarkupPreview markup={markup} />
         <br />
+        <Demo mathml={markup}/>
         <Typography variant="h6">Check if input contains text using the hasText function:</Typography>
         <br />
         {/*<EditableHtml markup={markupText} onChange={this.onChangeMarkupText} width={width} height={height} />*/}
@@ -392,12 +410,12 @@ const styles = (theme) => ({
     backgroundColor: grey[200],
     padding: theme.spacing.unit,
     marginTop: theme.spacing.unit,
-    marginBottom: theme.spacing.unit,
+    marginBottom: theme.spacing.unit
   },
   sizeInput: {
-    width: '60px',
-    paddingLeft: theme.spacing.unit * 2,
-  },
+    width: "60px",
+    paddingLeft: theme.spacing.unit * 2
+  }
 });
 
 export default withRoot(withStyles(styles)(RteDemo));

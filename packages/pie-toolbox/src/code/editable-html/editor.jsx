@@ -197,7 +197,7 @@ export class Editor extends React.Component {
       handleAlertDialog: this.handleDialog,
     };
 
-    this.plugins = buildPlugins(props.activePlugins, {
+    this.plugins = buildPlugins([...props.activePlugins || [], ...ALL_PLUGINS], {
       math: {
         onClick: this.onMathClick,
         onFocus: this.onPluginFocus,
@@ -324,6 +324,11 @@ export class Editor extends React.Component {
         createChange: () => this.state.value.change(),
         onChange: this.onChange,
         uploadSoundSupport: props.uploadSoundSupport,
+      },
+      customPlugin: {
+        focus: this.focus,
+        createChange: () => this.state.value.change(),
+        onChange: this.onChange
       },
     });
 
