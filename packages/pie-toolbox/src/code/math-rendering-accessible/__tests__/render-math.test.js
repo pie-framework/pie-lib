@@ -47,8 +47,10 @@ describe('render-math', () => {
     global.window.mathjaxLoadedP = Promise.resolve();
 
     // Call renderMath 9 more times
-    // delete window['@pie-lib/math-rendering@2'];
+    delete window['@pie-lib/math-rendering@2'];
     _.times(9).forEach((i) => renderMath(div));
+
+    delete window['@pie-lib/math-rendering@2'];
 
     expect(MathJaxModule.initializeMathJax).toHaveBeenCalledTimes(1);
   });

@@ -70,6 +70,57 @@ const adjustMathMLStyle = (el = document) => {
   nodes.forEach((node) => node.setAttribute('displaystyle', 'true'));
 };
 
+const createPlaceholder = (element) => {
+  if (!element.previousSibling || !element.previousSibling.classList.contains('math-placeholder')) {
+    // Store the original display style before setting it to 'none'
+    element.dataset.originalDisplay = element.style.display || '';
+    element.style.display = 'none';
+
+    const placeholder = document.createElement('span');
+    placeholder.style.cssText =
+      'height: 10px; width: 50px; display: inline-block; vertical-align: middle; justify-content: center; background: #fafafa; border-radius: 4px;';
+    placeholder.classList.add('math-placeholder');
+    element.parentNode.insertBefore(placeholder, element);
+  }
+};
+
+// Function to remove placeholders and restore original display style
+const removePlaceholdersAndRestoreDisplay = () => {
+  document.querySelectorAll('.math-placeholder').forEach((placeholder) => {
+    const targetElement = placeholder.nextElementSibling;
+    if (targetElement && targetElement.dataset.originalDisplay !== undefined) {
+      // Restore the original display style
+      targetElement.style.display = targetElement.dataset.originalDisplay;
+      // Clean up by removing the dataset attribute
+      delete targetElement.dataset.originalDisplay;
+    }
+    placeholder.remove(); // Remove the placeholder
+  });
+};
+
+const waitForMathRenderingLib = (callback) => {
+  // Check immediately if the library is available
+  if (window.hasOwnProperty('@pie-lib/math-rendering@2')) {
+    callback();
+    return;
+  }
+
+  let checkIntervalId;
+  const maxWaitTime = 500;
+  const startTime = Date.now();
+
+  const checkForLib = () => {
+    // If math-rendering loads or the maximum wait time is exceeded
+    if (window.hasOwnProperty('@pie-lib/math-rendering@2') || Date.now() - startTime > maxWaitTime) {
+      clearInterval(checkIntervalId);
+      callback();
+    }
+  };
+
+  // Start periodically checking for math-rendering
+  checkIntervalId = setInterval(checkForLib, 100);
+};
+
 const renderMath = (el, renderOpts) => {
   renderOpts = renderOpts || defaultOpts();
 
@@ -83,85 +134,103 @@ const renderMath = (el, renderOpts) => {
     executeOn = div;
   }
 
-  fixMathElements(executeOn);
-  adjustMathMLStyle(executeOn);
+  // Checks for pie-author and pie-player elements
+  const pieAuthors = document.querySelectorAll('pie-author');
+  const piePlayers = document.querySelectorAll('pie-player');
 
-  if (window?.hasOwnProperty('@pie-lib/math-rendering@2')) {
-    // Check if MathJax is instantiated by the math-rendering module
-    // If true, use the math-rendering instance and return
-    return;
-  }
+  const performMathRendering = () => {
+    fixMathElements(executeOn);
+    adjustMathMLStyle(executeOn);
 
-  if (!window.MathJax && !window.mathjaxLoadedP) {
-    initializeMathJax(renderOpts);
-  }
-
-  if (isString && window.MathJax && window.mathjaxLoadedP) {
-    try {
-      MathJax.texReset();
-      MathJax.typesetClear();
-      window.MathJax.typeset([executeOn]);
-      const updatedDocument = window.MathJax.startup.document;
-      const list = updatedDocument.math.list;
-      const item = list.next;
-      const mathMl = toMMl(item.data.root);
-
-      const parsedMathMl = mathMl.replaceAll('\n', '');
-
-      return parsedMathMl;
-    } catch (error) {
-      console.error('Error rendering math:', error.message);
+    if (window.hasOwnProperty('@pie-lib/math-rendering@2')) {
+      removePlaceholdersAndRestoreDisplay();
+      return;
     }
-  }
 
-  if (window.mathjaxLoadedP) {
-    window.mathjaxLoadedP
-      .then(() => {
-        const mathJaxInstance = getGlobal().instance;
+    if (!window.MathJax && !window.mathjaxLoadedP) {
+      initializeMathJax(renderOpts);
+    }
 
-        if (mathJaxInstance) {
-          // Reset and clear typesetting before processing the new content
+    if (isString && window.MathJax && window.mathjaxLoadedP) {
+      try {
+        MathJax.texReset();
+        MathJax.typesetClear();
+        window.MathJax.typeset([executeOn]);
+        const updatedDocument = window.MathJax.startup.document;
+        const list = updatedDocument.math.list;
+        const item = list.next;
+        const mathMl = toMMl(item.data.root);
 
-          //  Reset the tex labels (and automatic equation number).
-          mathJaxInstance.texReset();
+        const parsedMathMl = mathMl.replaceAll('\n', '');
 
-          //  Reset the typesetting system (font caches, etc.)
-          mathJaxInstance.typesetClear();
+        return parsedMathMl;
+      } catch (error) {
+        console.error('Error rendering math:', error.message);
+      }
+    }
+    if (window.mathjaxLoadedP) {
+      window.mathjaxLoadedP
+        .then(() => {
+          const mathJaxInstance = getGlobal().instance;
 
-          // Use typesetPromise for asynchronous typesetting
-          // Using MathJax.typesetPromise() for asynchronous typesetting to handle situations where additional code needs to be loaded (e.g., for certain TeX commands or characters).
-          // This ensures typesetting waits for any needed resources to load and complete processing, unlike the synchronous MathJax.typeset() which can't handle such dynamic loading.
-          mathJaxInstance
-            .typesetPromise([executeOn])
-            .then(() => {
-              try {
-                const updatedDocument = mathJaxInstance.startup.document;
-                const list = updatedDocument.math.list;
+          if (mathJaxInstance) {
+            // Reset and clear typesetting before processing the new content
 
-                for (let item = list.next; typeof item.data !== 'symbol'; item = item.next) {
-                  const mathMl = toMMl(item.data.root);
-                  const parsedMathMl = mathMl.replaceAll('\n', '');
+            //  Reset the tex labels (and automatic equation number).
+            mathJaxInstance.texReset();
 
-                  item.data.typesetRoot.setAttribute('data-mathml', parsedMathMl);
+            //  Reset the typesetting system (font caches, etc.)
+            mathJaxInstance.typesetClear();
+
+            // Use typesetPromise for asynchronous typesetting
+            // Using MathJax.typesetPromise() for asynchronous typesetting to handle situations where additional code needs to be loaded (e.g., for certain TeX commands or characters).
+            // This ensures typesetting waits for any needed resources to load and complete processing, unlike the synchronous MathJax.typeset() which can't handle such dynamic loading.
+            mathJaxInstance
+              .typesetPromise([executeOn])
+              .then(() => {
+                try {
+                  removePlaceholdersAndRestoreDisplay();
+                  const updatedDocument = mathJaxInstance.startup.document;
+                  const list = updatedDocument.math.list;
+
+                  for (let item = list.next; typeof item.data !== 'symbol'; item = item.next) {
+                    const mathMl = toMMl(item.data.root);
+                    const parsedMathMl = mathMl.replaceAll('\n', '');
+
+                    item.data.typesetRoot.setAttribute('data-mathml', parsedMathMl);
+                  }
+                  // If the original input was a string, return the parsed MathML
+                } catch (e) {
+                  console.error('Error post-processing MathJax typesetting:', e.toString());
                 }
-                // If the original input was a string, return the parsed MathML
-              } catch (e) {
-                console.error('Error post-processing MathJax typesetting:', e.toString());
-              }
 
-              // Clearing the document if needed
-              mathJaxInstance.startup.document.clear();
-            })
-            .catch((error) => {
-              //  If there was an internal error, put the message into the output instead
+                // Clearing the document if needed
+                mathJaxInstance.startup.document.clear();
+              })
+              .catch((error) => {
+                //  If there was an internal error, put the message into the output instead
 
-              console.error('Error in typesetting with MathJax:', error);
-            });
-        }
-      })
-      .catch((error) => {
-        console.error('Error in initializing MathJax:', error);
-      });
+                console.error('Error in typesetting with MathJax:', error);
+              });
+          }
+        })
+        .catch((error) => {
+          console.error('Error in initializing MathJax:', error);
+        });
+    }
+  };
+
+  if (pieAuthors.length > 0 && piePlayers.length > 0) {
+    // If both pieAuthors and piePlayers exist, wait for the math rendering library and add placeholders
+    const mathElements = executeOn.querySelectorAll('[data-latex]');
+    mathElements.forEach(createPlaceholder);
+
+    waitForMathRenderingLib(() => {
+      performMathRendering();
+    });
+  } else {
+    // If either check is false, proceed without waiting
+    performMathRendering();
   }
 };
 
