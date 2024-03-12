@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.8.2...@pie-lib/pie-toolbox@1.8.3) (2024-03-12)
+
+
+### Bug Fixes
+
+* **math-rendering-accessible:** enhanced math rendering logic to dynamically choose between '@pie-lib/math-rendering@2' and math-rendering-accessible if both are used PD-1870 ([5215bbe](https://github.com/pie-framework/pie-lib/commit/5215bbebbd53821c95120505f542b16c3e75f347))
+
+
+
+
+
 ## [1.8.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.8.1...@pie-lib/pie-toolbox@1.8.2) (2024-03-07)
 
 
