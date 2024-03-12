@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.8.3...@pie-lib/pie-toolbox@1.8.4) (2024-03-12)
+
+
+### Bug Fixes
+
+* remove usage of slate-dev-environment as the fix is not needed anymore and we're having versioning issues PD-3465 ([e956df0](https://github.com/pie-framework/pie-lib/commit/e956df074864b83000aa4bb913086ab536e73817))
+
+
+
+
+
 ## [1.8.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.8.2...@pie-lib/pie-toolbox@1.8.3) (2024-03-12)
 
 
