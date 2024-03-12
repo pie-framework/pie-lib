@@ -6,7 +6,6 @@ import { primary } from '../../theme';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import SlatePropTypes from 'slate-prop-types';
-import { IS_FIREFOX } from 'slate-dev-environment';
 import { color } from '../../../render-ui';
 
 const log = debug('@pie-lib:editable-html:plugins:toolbar:editor-and-toolbar');
@@ -35,15 +34,6 @@ export class EditorAndToolbar extends React.Component {
       noBorder: PropTypes.any,
     }),
   };
-
-  /** This is an interim fix until this PR is merged in slate:
-   * https://github.com/ianstormtaylor/slate/pull/2236
-   */
-  componentDidMount() {
-    if (IS_FIREFOX) {
-      this.editorRef.tmp.isUpdatingSelection = true;
-    }
-  }
 
   render() {
     const {
