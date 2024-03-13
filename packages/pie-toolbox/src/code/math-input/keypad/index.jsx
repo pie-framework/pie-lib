@@ -189,7 +189,7 @@ export class KeyPad extends React.Component {
     onPress: PropTypes.func.isRequired,
     onFocus: PropTypes.func,
     noDecimal: PropTypes.bool,
-    mode: PropTypes.string,
+    mode: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   };
   static defaultProps = {
     baseSet: baseSet,

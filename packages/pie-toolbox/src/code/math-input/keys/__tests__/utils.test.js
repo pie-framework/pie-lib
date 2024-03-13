@@ -23,8 +23,8 @@ describe('utils', () => {
   describe('keysForGrade', () => {
     it.each`
       key                        | expected
-      ${'1'}                     | ${undefined}
-      ${'2'}                     | ${undefined}
+      ${'1'}                     | ${gradeSets[2].set}
+      ${'2'}                     | ${gradeSets[2].set}
       ${'3'}                     | ${gradeSets[0].set}
       ${'4'}                     | ${gradeSets[0].set}
       ${'5'}                     | ${gradeSets[0].set}
@@ -40,7 +40,7 @@ describe('utils', () => {
       ${'geometry'}              | ${gradeSets[7].set}
       ${'advanced-algebra'}      | ${gradeSets[8].set}
       ${'statistics'}            | ${gradeSets[9].set}
-      ${'something else'}        | ${undefined}
+      ${'something else'}        | ${gradeSets[2].set}
       ${undefined}               | ${[]}
       ${null}                    | ${[]}
       ${0}                       | ${[]}
