@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.8.4...@pie-lib/pie-toolbox@1.8.5) (2024-03-13)
+
+
+### Bug Fixes
+
+* **math-rendering-accessible:** Exclude MathJax-processed elements from placeholder creation PD-1870 ([72ffc59](https://github.com/pie-framework/pie-lib/commit/72ffc5939101cdbe2eeaeca5035b6574c4629793))
+
+
+
+
+
 ## [1.8.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.8.3...@pie-lib/pie-toolbox@1.8.4) (2024-03-12)
 
 
