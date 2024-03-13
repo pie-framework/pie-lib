@@ -134,7 +134,12 @@ const renderMath = (el, renderOpts) => {
   }
 
   const mathElements = executeOn.querySelectorAll('[data-latex]');
-  mathElements.forEach(createPlaceholder);
+  mathElements.forEach((element) => {
+    // Skip placeholder creation for elements already handled by MathJax.
+    if (element.getAttribute('data-math-handled') !== 'true') {
+      createPlaceholder(element);
+    }
+  });
 
   waitForMathRenderingLib(() => {
     fixMathElements(executeOn);
