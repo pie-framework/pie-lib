@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.8.5...@pie-lib/pie-toolbox@1.8.6) (2024-03-13)
+
+
+### Bug Fixes
+
+* **math-input:** fallback to grade set 8 if key is invalid PD-3549 ([adc9262](https://github.com/pie-framework/pie-lib/commit/adc9262ddc198daab8dce4e7a212c31ec3ce757c))
+
+
+
+
+
 ## [1.8.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.8.4...@pie-lib/pie-toolbox@1.8.5) (2024-03-13)
 
 
