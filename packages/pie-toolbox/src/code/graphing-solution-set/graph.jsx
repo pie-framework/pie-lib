@@ -90,9 +90,11 @@ export class Graph extends React.Component {
 
   changeMark = (oldMark, newMark) => {
     const { onChangeMarks, marks, gssLineData } = this.props;
-    if (gssLineData.selectedTool === 'solutionSet') {
+
+    if (gssLineData?.selectedTool === 'solutionSet') {
       return;
     }
+
     let newMarks = cloneDeep(marks);
 
     const index = newMarks.findIndex((m) => isEqual(m, oldMark));
