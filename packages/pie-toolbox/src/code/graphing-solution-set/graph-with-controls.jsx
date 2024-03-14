@@ -11,7 +11,6 @@ import UndoRedo from './undo-redo';
 import { allTools, toolsArr } from './tools';
 import { ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary, Typography } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Button from '@material-ui/core/Button';
 
 export const setToolbarAvailability = (toolbarTools) =>
   toolsArr.map((tA) => ({ ...tA, toolbar: !!toolbarTools.find((t) => t === tA.type) })) || [];

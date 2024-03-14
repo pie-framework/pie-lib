@@ -12,34 +12,7 @@ exports[`GraphWithControls snapshot renders 1`] = `
         "includeArrows": true,
       }
     }
-    backgroundMarks={
-      Array [
-        Object {
-          "building": true,
-          "from": Object {
-            "x": 0,
-            "y": 0,
-          },
-          "label": "Line",
-          "to": Object {
-            "x": 1,
-            "y": 1,
-          },
-          "type": "line",
-        },
-        Object {
-          "edge": Object {
-            "x": 0,
-            "y": 0,
-          },
-          "root": Object {
-            "x": 2,
-            "y": 2,
-          },
-          "type": "line",
-        },
-      ]
-    }
+    backgroundMarks={Array []}
     coordinatesOnHover={false}
     currentTool={
       Object {
@@ -83,15 +56,21 @@ exports[`GraphWithControls snapshot renders 1`] = `
           "type": "line",
         },
         Object {
-          "edge": Object {
-            "x": 0,
-            "y": 0,
-          },
-          "root": Object {
-            "x": 2,
-            "y": 2,
-          },
-          "type": "line",
+          "points": Array [
+            Object {
+              "x": 0,
+              "y": 0,
+            },
+            Object {
+              "x": 1,
+              "y": 1,
+            },
+            Object {
+              "x": 2,
+              "y": 2,
+            },
+          ],
+          "type": "polygon",
         },
       ]
     }
