@@ -16,6 +16,11 @@ exports[`ArrowMarker snapshot renders 1`] = `
   orient="auto-start-reverse"
   refX={5}
   refY={5}
+  style={
+    Object {
+      "fill": "#000000",
+    }
+  }
   viewBox="0 0 10 10"
 >
   <ArrowHead

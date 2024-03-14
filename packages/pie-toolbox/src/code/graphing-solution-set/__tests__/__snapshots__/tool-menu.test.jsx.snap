@@ -1,13 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ToolMenu snapshot renders 1`] = `
-<div
+<ToolMenu
   className="className"
->
-  <Component
-    onChange={[MockFunction]}
-    onChangeToolsOrder={[Function]}
-    options={Array []}
-  />
-</div>
+  classes={
+    Object {
+      "lineNameFont": "ToolMenu-lineNameFont-7",
+      "lineTypeButton": "ToolMenu-lineTypeButton-8",
+      "lineTypeButtonDisabled": "ToolMenu-lineTypeButtonDisabled-9",
+      "lineTypeText": "ToolMenu-lineTypeText-6",
+      "radioButtonClass": "ToolMenu-radioButtonClass-1",
+      "radioFieldButtons": "ToolMenu-radioFieldButtons-5",
+      "radioFieldInner": "ToolMenu-radioFieldInner-3",
+      "radioFieldOuter": "ToolMenu-radioFieldOuter-4",
+      "selectLineRadioGroup": "ToolMenu-selectLineRadioGroup-2",
+    }
+  }
+  currentTool="one"
+  onChange={[MockFunction]}
+  tools={
+    Array [
+      "one",
+      "two",
+    ]
+  }
+/>
 `;

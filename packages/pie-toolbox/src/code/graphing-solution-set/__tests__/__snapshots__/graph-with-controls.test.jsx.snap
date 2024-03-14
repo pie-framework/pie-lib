@@ -4,32 +4,7 @@ exports[`GraphWithControls snapshot renders 1`] = `
 <div
   className=""
 >
-  <div>
-    <ToolMenu
-      currentToolType="circle"
-      disabled={false}
-      labelModeEnabled={false}
-      onChange={[Function]}
-      onToggleLabelMode={[Function]}
-      toolbarTools={
-        Array [
-          "circle",
-          "line",
-          "label",
-          "parabola",
-          "point",
-          "polygon",
-          "ray",
-          "segment",
-          "sine",
-          "vector",
-          "absolute",
-          "exponential",
-        ]
-      }
-    />
-    <WithStyles(UndoRedo) />
-  </div>
+  <div />
   <div />
   <Graph
     axesSettings={
@@ -39,13 +14,6 @@ exports[`GraphWithControls snapshot renders 1`] = `
     }
     backgroundMarks={
       Array [
-        Object {
-          "label": "Point",
-          "showLabel": true,
-          "type": "point",
-          "x": 2,
-          "y": 2,
-        },
         Object {
           "building": true,
           "from": Object {
@@ -77,9 +45,8 @@ exports[`GraphWithControls snapshot renders 1`] = `
       Object {
         "Component": [Function],
         "addPoint": [Function],
-        "hover": [Function],
         "toolbar": true,
-        "type": "circle",
+        "type": "line",
       }
     }
     disabledLabels={false}
@@ -102,13 +69,6 @@ exports[`GraphWithControls snapshot renders 1`] = `
     }
     marks={
       Array [
-        Object {
-          "label": "Point",
-          "showLabel": true,
-          "type": "point",
-          "x": 2,
-          "y": 2,
-        },
         Object {
           "building": true,
           "from": Object {
@@ -157,13 +117,6 @@ exports[`GraphWithControls snapshot renders 1`] = `
         Object {
           "Component": [Function],
           "addPoint": [Function],
-          "hover": [Function],
-          "toolbar": true,
-          "type": "circle",
-        },
-        Object {
-          "Component": [Function],
-          "addPoint": [Function],
           "toolbar": true,
           "type": "line",
         },
@@ -172,60 +125,7 @@ exports[`GraphWithControls snapshot renders 1`] = `
           "addPoint": [Function],
           "complete": [Function],
           "toolbar": true,
-          "type": "parabola",
-        },
-        Object {
-          "Component": [Function],
-          "addPoint": [Function],
-          "label": "Point",
-          "toolbar": true,
-          "type": "point",
-        },
-        Object {
-          "Component": [Function],
-          "addPoint": [Function],
-          "complete": [Function],
-          "toolbar": true,
           "type": "polygon",
-        },
-        Object {
-          "Component": [Function],
-          "addPoint": [Function],
-          "toolbar": true,
-          "type": "ray",
-        },
-        Object {
-          "Component": [Function],
-          "addPoint": [Function],
-          "toolbar": true,
-          "type": "segment",
-        },
-        Object {
-          "Component": [Function],
-          "addPoint": [Function],
-          "complete": [Function],
-          "toolbar": true,
-          "type": "sine",
-        },
-        Object {
-          "Component": [Function],
-          "addPoint": [Function],
-          "toolbar": true,
-          "type": "vector",
-        },
-        Object {
-          "Component": [Function],
-          "addPoint": [Function],
-          "complete": [Function],
-          "toolbar": true,
-          "type": "absolute",
-        },
-        Object {
-          "Component": [Function],
-          "addPoint": [Function],
-          "complete": [Function],
-          "toolbar": true,
-          "type": "exponential",
         },
       ]
     }

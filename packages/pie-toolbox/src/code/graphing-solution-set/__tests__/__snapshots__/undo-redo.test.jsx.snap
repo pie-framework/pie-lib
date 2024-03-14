@@ -5,6 +5,7 @@ exports[`UndoRedo snapshot renders 1`] = `
   classes={
     Object {
       "button": "UndoRedo-button-1",
+      "undoRedoDiv": "UndoRedo-undoRedoDiv-2",
     }
   }
   onRedo={[MockFunction]}

@@ -17,7 +17,7 @@ exports[`Grid snapshot renders 1`] = `
         1,
       ]
     }
-    stroke="#E1E6EC"
+    stroke="#D3D3D3"
     width={400}
     xScale={
       [MockFunction] {
