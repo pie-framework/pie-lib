@@ -61,7 +61,9 @@ export default withStyles(() => ({
     ...rest
   } = props;
   const label = typeof correct === 'boolean' ? (correct ? 'correct' : 'incorrect') : undefined;
-  const inputProps = charactersLimit ? { maxLength: charactersLimit } : {};
+  const inputProps = charactersLimit
+    ? { maxLength: charactersLimit, 'aria-label': 'Enter answer' }
+    : { 'aria-label': 'Enter answer' };
 
   if (width) {
     inputProps.style = {
