@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GraphWithControls snapshot renders 1`] = `
+<div
+  className=""
+>
+  <div />
+  <div />
+  <Graph
+    axesSettings={
+      Object {
+        "includeArrows": true,
+      }
+    }
+    backgroundMarks={Array []}
+    coordinatesOnHover={false}
+    currentTool={
+      Object {
+        "Component": [Function],
+        "addPoint": [Function],
+        "toolbar": true,
+        "type": "line",
+      }
+    }
+    disabledLabels={false}
+    disabledTitle={false}
+    domain={
+      Object {
+        "max": 10,
+        "min": 0,
+        "step": 1,
+      }
+    }
+    labelModeEnabled={false}
+    labels={
+      Object {
+        "bottom": "d",
+        "left": "b",
+        "right": "c",
+        "top": "a",
+      }
+    }
+    marks={
+      Array [
+        Object {
+          "building": true,
+          "from": Object {
+            "x": 0,
+            "y": 0,
+          },
+          "label": "Line",
+          "to": Object {
+            "x": 1,
+            "y": 1,
+          },
+          "type": "line",
+        },
+        Object {
+          "points": Array [
+            Object {
+              "x": 0,
+              "y": 0,
+            },
+            Object {
+              "x": 1,
+              "y": 1,
+            },
+            Object {
+              "x": 2,
+              "y": 2,
+            },
+          ],
+          "type": "polygon",
+        },
+      ]
+    }
+    onChangeMarks={[MockFunction]}
+    range={
+      Object {
+        "max": 10,
+        "min": 0,
+        "step": 1,
+      }
+    }
+    showLabels={true}
+    showTitle={true}
+    size={
+      Object {
+        "height": 500,
+        "width": 500,
+      }
+    }
+    title="Title"
+    tools={
+      Array [
+        Object {
+          "Component": [Function],
+          "addPoint": [Function],
+          "toolbar": true,
+          "type": "line",
+        },
+        Object {
+          "Component": [Function],
+          "addPoint": [Function],
+          "complete": [Function],
+          "toolbar": true,
+          "type": "polygon",
+        },
+      ]
+    }
+  />
+</div>
+`;

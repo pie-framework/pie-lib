@@ -20,6 +20,7 @@ export const defaults = {
   SECONDARY_DARK: pink[900],
   BACKGROUND: 'rgba(255,255,255,0)',
   SECONDARY_BACKGROUND: 'rgba(241,241,241,1)',
+  BLACK: '#000000',
 };
 
 Object.freeze(defaults);
