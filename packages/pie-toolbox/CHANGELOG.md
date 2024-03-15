@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.8.6...@pie-lib/pie-toolbox@1.9.0) (2024-03-15)
+
+
+### Features
+
+* **explicit-constructed-response:** add aria label for input items PD-2461 ([31972ea](https://github.com/pie-framework/pie-lib/commit/31972ea41dee7a8ba555a4bbeba7db7b971c66b4))
+* **graphing-solution-set:** Added pie lib modules for GSS item | SC-27890 ([1b47294](https://github.com/pie-framework/pie-lib/commit/1b47294b0e142f0ba5f612aae6555a2f8b8b0e89))
+* **graphing-solution-set:** Updated CSS for filled poygon ([876d5d0](https://github.com/pie-framework/pie-lib/commit/876d5d060fb74d9de694f92fb2ab6ebb095c4491))
+
+
+
+
+
 ## [1.8.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.8.5...@pie-lib/pie-toolbox@1.8.6) (2024-03-13)
 
 
