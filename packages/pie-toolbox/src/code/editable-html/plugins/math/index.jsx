@@ -1,13 +1,13 @@
 import Functions from '@material-ui/icons/Functions';
 import { Inline } from 'slate';
 import { MathPreview, MathToolbar } from '../../../math-toolbar';
-import { wrapMath, unWrapMath, mmlToLatex, renderMath } from '../../../math-rendering';
+import { wrapMath, unWrapMath, mmlToLatex, renderMath } from '../../../math-rendering-accessible';
 import React from 'react';
 import debug from 'debug';
 import SlatePropTypes from 'slate-prop-types';
 import PropTypes from 'prop-types';
 
-import { BLOCK_TAGS } from "../../block-tags";
+import { BLOCK_TAGS } from '../../block-tags';
 import isEqual from 'lodash/isEqual';
 
 const log = debug('@pie-lib:editable-html:plugins:math');
@@ -241,7 +241,7 @@ export const serialization = {
 
       if (MathPlugin.mathMlOptions.mmlEditing) {
         // todo fix this in mathml-to-latex
-        const htmlWithRemovedSpaces = newHtml.replaceAll("&nbsp;", " ");
+        const htmlWithRemovedSpaces = newHtml.replaceAll('&nbsp;', ' ');
         const htmlToUse = mmlToLatex(htmlWithRemovedSpaces);
         const latex = htmlDecode(htmlToUse);
         // todo fix this in mathml-to-latex
