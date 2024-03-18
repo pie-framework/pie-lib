@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.10.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.9.0...@pie-lib/pie-toolbox@1.10.0) (2024-03-18)
+
+
+### Features
+
+* Replace math-rendering package with math-rendering-accessible-package for accessibility PD-1870 ([c157418](https://github.com/pie-framework/pie-lib/commit/c157418720bde12062d3bca21c502b48af01829e))
+
+
+
+
+
 # [1.9.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.8.6...@pie-lib/pie-toolbox@1.9.0) (2024-03-15)
 
 
