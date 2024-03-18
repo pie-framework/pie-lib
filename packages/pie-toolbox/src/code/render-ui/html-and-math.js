@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderMath } from '../math-rendering';
+import { renderMath } from '../math-rendering-accessible';
 import PropTypes from 'prop-types';
 
 export default class HtmlAndMath extends React.Component {
