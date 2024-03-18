@@ -15,6 +15,7 @@ exports[`Rubric render snapshot 1`] = `
     <WithStyles(Component)
       max={10}
       onChange={[Function]}
+      pluginOpts={Object {}}
       value={3}
     />
     <WithStyles(WithFormControlContext(FormControlLabel))
