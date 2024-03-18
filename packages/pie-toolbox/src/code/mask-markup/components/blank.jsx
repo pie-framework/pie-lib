@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { renderMath } from '../../math-rendering';
+import { renderMath } from '../../math-rendering-accessible';
 import debug from 'debug';
 import { DragSource, DropTarget } from '../../drag';
 import { withStyles } from '@material-ui/core/styles';
