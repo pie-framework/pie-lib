@@ -71,7 +71,7 @@ const adjustMathMLStyle = (el = document) => {
 };
 
 const createPlaceholder = (element) => {
-  if (!element.previousSibling || !element.previousSibling.classList.contains('math-placeholder')) {
+  if (!element.previousSibling || !element.previousSibling.classList?.contains('math-placeholder')) {
     // Store the original display style before setting it to 'none'
     element.dataset.originalDisplay = element.style.display || '';
     element.style.display = 'none';
@@ -80,7 +80,7 @@ const createPlaceholder = (element) => {
     placeholder.style.cssText =
       'height: 10px; width: 50px; display: inline-block; vertical-align: middle; justify-content: center; background: #fafafa; border-radius: 4px;';
     placeholder.classList.add('math-placeholder');
-    element.parentNode.insertBefore(placeholder, element);
+    element.parentNode?.insertBefore(placeholder, element);
   }
 };
 
@@ -88,7 +88,7 @@ const removePlaceholdersAndRestoreDisplay = () => {
   document.querySelectorAll('.math-placeholder').forEach((placeholder) => {
     const targetElement = placeholder.nextElementSibling;
 
-    if (targetElement && targetElement.dataset.originalDisplay !== undefined) {
+    if (targetElement && targetElement.dataset?.originalDisplay !== undefined) {
       targetElement.style.display = targetElement.dataset.originalDisplay;
       delete targetElement.dataset.originalDisplay;
     }
