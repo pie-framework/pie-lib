@@ -72,13 +72,12 @@ export const ALL_PLUGINS = [
   'table',
   'video',
   'audio',
-  'responseArea',
-  'custom-plugin',
+  'responseArea'
 ];
 
 export const DEFAULT_PLUGINS = ALL_PLUGINS.filter((plug) => plug !== 'responseArea');
 
-export const buildPlugins = (activePlugins, opts) => {
+export const buildPlugins = (activePlugins, customPlugins, opts) => {
   log('[buildPlugins] opts: ', opts);
 
   activePlugins = activePlugins || DEFAULT_PLUGINS;
@@ -89,7 +88,7 @@ export const buildPlugins = (activePlugins, opts) => {
   const respAreaPlugin =
     opts.responseArea && opts.responseArea.type && RespAreaPlugin(opts.responseArea, compact([mathPlugin]));
 
-  return compact([
+  const builtPlugins = compact([
     addIf('table', TablePlugin(opts.table, compact([imagePlugin, mathPlugin, respAreaPlugin]))),
     addIf('bold', MarkHotkey({ key: 'b', type: 'bold', icon: <Bold />, tag: 'strong' })),
     // addIf('code', MarkHotkey({ key: '`', type: 'code', icon: <Code /> })),
@@ -114,7 +113,12 @@ export const buildPlugins = (activePlugins, opts) => {
     ToolbarPlugin(opts.toolbar),
     SoftBreakPlugin({ shift: true }),
     addIf('responseArea', respAreaPlugin),
-    addIf('html', HtmlPlugin(opts.html)),
-    addIf('custom-plugin', CustomPlugin('custom-plugin', opts.customPlugin)),
+    addIf('html', HtmlPlugin(opts.html))
   ]);
+
+  customPlugins.forEach(customPlugin => {
+    builtPlugins.push(CustomPlugin('custom-plugin', customPlugin, opts.customPlugin));
+  });
+
+  return builtPlugins;
 };

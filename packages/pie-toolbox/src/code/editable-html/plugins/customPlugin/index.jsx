@@ -1,55 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Inline } from 'slate';
-import Star from '@material-ui/icons/Star';
-import debug from 'debug';
 
-import CustomDialog from './custom-dialog';
-
-const log = debug('@pie-lib:editable-html:plugins:image');
-
-const removeDialogs = () => {
-  const prevDialogs = document.querySelectorAll('.insert-custom-dialog');
-
-  prevDialogs.forEach((s) => s.remove());
-};
-
-export const insertDialog = (props) => {
-  const newEl = document.createElement('div');
-  const { type, callback, opts, ...rest } = props;
-  const initialBodyOverflow = document.body.style.overflow;
-
-  removeDialogs();
-
-  newEl.className = 'insert-custom-dialog';
-  document.body.style.overflow = 'hidden';
-
-  const handleClose = (val, data) => {
-    callback(val, data);
-    newEl.remove();
-    document.body.style.overflow = initialBodyOverflow;
-  };
-
-  const el = (
-    <CustomDialog
-      {...rest}
-      type={type}
-      disablePortal={true}
-      open={true}
-      handleClose={handleClose}
-    />
-  );
-
-  ReactDOM.render(el, newEl);
-
-  document.body.appendChild(newEl);
-};
-
-export default function CustomPlugin(type, opts) {
+export default function CustomPlugin(type, customPluginProps, opts) {
   const toolbar = {
-    icon: <Star />,
+    icon: <p>{customPluginProps.icon}</p>,
     onClick: (value, onChange) => {
-      log('[toolbar] onClick');
       const inline = Inline.create({
         type: type,
         isVoid: true,
@@ -60,25 +15,18 @@ export default function CustomPlugin(type, opts) {
 
       const change = value.change().insertInline(inline);
       onChange(change);
-      insertDialog({
-        type,
-        opts,
-        callback: (val, data) => {
-          const nodeIsThere = change.value.document.findDescendant((d) => d.key === inline.key);
+      const callback = (insertion) => {
+        const nodeIsThere = change.value.document.findDescendant((d) => d.key === inline.key);
 
-          if (nodeIsThere) {
-            if (!val) {
-              const c = change.removeNodeByKey(inline.key);
-              onChange(c, () => opts.focus());
-            } else {
-              const c = change.setNodeByKey(inline.key, { data });
-              onChange(c, () => opts.focus('beginning', nodeIsThere));
-            }
-          } else {
-            opts.focus();
-          }
-        },
-      });
+        if (nodeIsThere) {
+          const c = change.setNodeByKey(inline.key, { data: { customContent: insertion } });
+          onChange(c, () => opts.focus('beginning', nodeIsThere));
+        } else {
+          opts.focus();
+        }
+      };
+
+      window.dispatchEvent(new CustomEvent(`PIE-${customPluginProps.event}`, { detail: { ...customPluginProps, callback } }));
     },
     supports: (node) => node.object === 'inline' && node.type === type,
   };
@@ -86,12 +34,6 @@ export default function CustomPlugin(type, opts) {
   return {
     name: type,
     toolbar,
-    deleteNode: (e, node, value, onChange) => {
-      e.preventDefault();
-      const change = value.change().removeNodeByKey(node.key);
-
-      onChange(change);
-    },
     renderNode(props) {
       if (props.node.type === type) {
         const { node } = props;
@@ -99,7 +41,7 @@ export default function CustomPlugin(type, opts) {
         const jsonData = data.toJSON();
         const { customContent } = jsonData;
 
-        return <span dangerouslySetInnerHTML={{ __html: customContent }} />;
+        return customContent;
       }
     },
     normalizeNode: (node) => {
@@ -121,23 +63,28 @@ export default function CustomPlugin(type, opts) {
 
 export const serialization = {
   deserialize(el /*, next*/) {
-    const customPluginData = el.dataset && el.dataset.customPluginData;
+    // const customPluginData = el.dataset && el.dataset.customPluginData;
 
-    if (!customPluginData) return;
+    // if (!customPluginData) return;
+
+    let type = el.dataset && el.dataset.type;
+
+    if (type !== 'custom-plugin') return;
 
     return {
       object: 'inline',
-      type: 'custom-plugin',
+      type: type,
       isVoid: true,
-      data: { customContent: customPluginData },
+      data: { customContent: el.innerHTML },
     };
   },
   serialize(object /*, children*/) {
     if (object.type !== 'custom-plugin') return;
 
     const { data } = object;
-    const customContent = decodeURIComponent(data.get('customContent'));
+    const customContent = data.get('customContent');
 
-    return <span data-custom-plugin-data={customContent} />;
+    return <span data-type="custom-plugin">{customContent}</span>;
+    // return <span data-custom-plugin-data={customContent} />;
   },
 };

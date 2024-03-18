@@ -113,6 +113,7 @@ export class Editor extends React.Component {
     className: PropTypes.string,
     maxImageWidth: PropTypes.number,
     maxImageHeight: PropTypes.number,
+    // TODO add custom plugins
   };
 
   static defaultProps = {
@@ -197,7 +198,7 @@ export class Editor extends React.Component {
       handleAlertDialog: this.handleDialog,
     };
 
-    this.plugins = buildPlugins([...props.activePlugins || [], ...ALL_PLUGINS], {
+    this.plugins = buildPlugins(props.activePlugins, props.customPlugins, {
       math: {
         onClick: this.onMathClick,
         onFocus: this.onPluginFocus,

@@ -365,6 +365,20 @@ class RteDemo extends React.Component {
           </FormGroup>
         </div>
         <EditableHtml
+          customPlugins={[
+            {
+              icon: '_A_',
+              event: 'test_event_A',
+            },
+            {
+              icon: '-B-',
+              event: 'test_event_B',
+            },
+            {
+              icon: '_C_',
+              event: 'test_event_C',
+            },
+          ]}
           markup={markup}
           onChange={this.onChange}
           imageSupport={imageSupport}
