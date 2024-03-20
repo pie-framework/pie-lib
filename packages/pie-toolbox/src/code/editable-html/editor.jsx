@@ -113,7 +113,14 @@ export class Editor extends React.Component {
     className: PropTypes.string,
     maxImageWidth: PropTypes.number,
     maxImageHeight: PropTypes.number,
-    // TODO add custom plugins
+    customPlugins: PropTypes.arrayOf(
+      PropTypes.shape({
+        event: PropTypes.string,
+        icon: PropTypes.string,
+        iconType: PropTypes.string,
+        iconAlt: PropTypes.string
+      }),
+    ),
   };
 
   static defaultProps = {

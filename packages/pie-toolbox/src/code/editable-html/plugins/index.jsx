@@ -72,7 +72,7 @@ export const ALL_PLUGINS = [
   'table',
   'video',
   'audio',
-  'responseArea'
+  'responseArea',
 ];
 
 export const DEFAULT_PLUGINS = ALL_PLUGINS.filter((plug) => plug !== 'responseArea');
@@ -116,7 +116,23 @@ export const buildPlugins = (activePlugins, customPlugins, opts) => {
     addIf('html', HtmlPlugin(opts.html))
   ]);
 
-  customPlugins.forEach(customPlugin => {
+  customPlugins.forEach((customPlugin) => {
+    const { event, icon, iconType, iconAlt } = customPlugin || {};
+
+    // TODO add more conditions here
+    const validEventKey = event && event.replace(/\s/g,'') === event;
+
+    if (!validEventKey) {
+      console.error(`The event ${event} is not a valid event!`);
+      return;
+    }
+
+    if (!icon && !iconType && !iconAlt) {
+      console.error('Your custom button requires icon, iconType and iconAlt');
+      return;
+    }
+
+    // TODO add validation on custom plugins
     builtPlugins.push(CustomPlugin('custom-plugin', customPlugin, opts.customPlugin));
   });
 
