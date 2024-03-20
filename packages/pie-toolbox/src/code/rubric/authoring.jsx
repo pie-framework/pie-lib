@@ -104,7 +104,7 @@ export const PointConfig = withStyles((theme) => ({
     paddingTop: theme.spacing.unit,
   },
 }))((props) => {
-  const { points, content, classes, sampleAnswer, mathMlOptions = {}, error } = props;
+  const { points, content, classes, sampleAnswer, mathMlOptions = {}, error, pluginOpts = {} } = props;
   const pointsLabel = `${points} ${points <= 1 ? 'pt' : 'pts'}`;
   const showSampleAnswer = checkSampleAnswer(sampleAnswer);
 
@@ -119,6 +119,7 @@ export const PointConfig = withStyles((theme) => ({
         <EditableHtml
           className={classes.editor}
           error={error}
+          pluginProps={pluginOpts}
           markup={content}
           onChange={props.onChange}
           mathMlOptions={mathMlOptions}
@@ -140,6 +141,7 @@ export const PointConfig = withStyles((theme) => ({
           <EditableHtml
             className={classes.editor}
             markup={sampleAnswer}
+            pluginProps={pluginOpts}
             onChange={props.onSampleChange}
             mathMlOptions={mathMlOptions}
           />
@@ -155,6 +157,7 @@ export class RawAuthoring extends React.Component {
     className: PropTypes.string,
     value: RubricType,
     config: PropTypes.object,
+    pluginOpts: PropTypes.object,
     rubricless: PropTypes.bool,
     onChange: PropTypes.func,
   };
@@ -261,7 +264,15 @@ export class RawAuthoring extends React.Component {
   };
 
   render() {
-    const { classes, className, value, mathMlOptions = {}, config = {}, rubricless = false } = this.props;
+    const {
+      classes,
+      className,
+      value,
+      mathMlOptions = {},
+      config = {},
+      rubricless = false,
+      pluginOpts = {},
+    } = this.props;
     let {
       excludeZeroEnabled = true,
       maxPointsEnabled = true,
@@ -291,6 +302,7 @@ export class RawAuthoring extends React.Component {
               max={maxMaxPoints < 100 ? maxMaxPoints : 100}
               value={maxPointsValue}
               onChange={this.changeMaxPoints}
+              pluginOpts={pluginOpts}
             />
           )}
           {excludeZeroEnabled && (
@@ -307,6 +319,7 @@ export class RawAuthoring extends React.Component {
               className={classes.input}
               markup={value.rubriclessInstruction || ''}
               onChange={this.changeRubriclessInstruction}
+              pluginProps={pluginOpts}
               nonEmpty={false}
               disableUnderline
               languageCharactersProps={[{ language: 'spanish' }, { language: 'special' }]}
@@ -342,6 +355,7 @@ export class RawAuthoring extends React.Component {
                                 onSampleChange={(content) => this.changeContent(index, content, 'sampleAnswers')}
                                 onMenuChange={(clickedItem) => this.onPointMenuChange(index, clickedItem)}
                                 mathMlOptions={mathMlOptions}
+                                pluginOpts={pluginOpts}
                               />
                             </div>
                           )}
@@ -389,7 +403,7 @@ const styles = (theme) => ({
 const StyledRawAuthoring = withStyles(styles)(RawAuthoring);
 
 const Reverse = (props) => {
-  const { rubricless = false, config = {} } = props || {};
+  const { rubricless = false, config = {}, pluginOpts = {} } = props || {};
   const points = Array.from(props.value.points || []).reverse();
   let sampleAnswers = Array.from(props.value.sampleAnswers || []).reverse();
 
@@ -409,12 +423,21 @@ const Reverse = (props) => {
     });
   };
 
-  return <StyledRawAuthoring value={value} config={config} onChange={onChange} rubricless={rubricless} />;
+  return (
+    <StyledRawAuthoring
+      value={value}
+      config={config}
+      onChange={onChange}
+      rubricless={rubricless}
+      pluginOpts={pluginOpts}
+    />
+  );
 };
 
 Reverse.propTypes = {
   value: RubricType,
   config: PropTypes.object,
+  pluginOpts: PropTypes.object,
   rubricless: PropTypes.bool,
   getIndex: PropTypes.func,
   onChange: PropTypes.func,
