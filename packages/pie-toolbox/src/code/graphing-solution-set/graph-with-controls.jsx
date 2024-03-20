@@ -137,8 +137,10 @@ export class GraphWithControls extends React.Component {
     // keep only the marks that have types which appear in toolbar
     marks = filterByVisibleToolTypes(toolbarTools, marks || []);
 
-    if (gssLineData && marks[0] && marks[0].type === 'line') marks[0].fill = gssLineData.lineA.lineType;
-    if (gssLineData && marks[1] && marks[1].type === 'line') marks[1].fill = gssLineData.lineB.lineType;
+    if (gssLineData && gssLineData.lineA && marks[0] && marks[0].type === 'line')
+      marks[0].fill = gssLineData.lineA.lineType;
+    if (gssLineData && gssLineData.lineB && marks[1] && marks[1].type === 'line')
+      marks[1].fill = gssLineData.lineB.lineType;
 
     const tools = setToolbarAvailability(toolbarTools);
 
