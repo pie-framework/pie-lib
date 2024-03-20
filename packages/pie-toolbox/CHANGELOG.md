@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.11.0...@pie-lib/pie-toolbox@1.11.1) (2024-03-20)
+
+
+### Bug Fixes
+
+* **graphing-utils:** Fixed missing imports in graphing-utils.js ([36b511d](https://github.com/pie-framework/pie-lib/commit/36b511d555c176ec119605fc9d9fe926bc6a31d2))
+
+
+
+
+
 # [1.11.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.10.1...@pie-lib/pie-toolbox@1.11.0) (2024-03-20)
 
 
