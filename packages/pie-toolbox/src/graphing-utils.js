@@ -8,6 +8,8 @@ import {
   pointsToABC,
   parabola,
   buildDataPoints,
+  pointsToAForAbsolute,
+  pointsToABForExponential,
 } from './code/graphing-utils';
 
 export {
@@ -20,4 +22,6 @@ export {
   pointsToABC,
   parabola,
   buildDataPoints,
+  pointsToAForAbsolute,
+  pointsToABForExponential,
 };
