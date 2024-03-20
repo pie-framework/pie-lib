@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.11.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.10.1...@pie-lib/pie-toolbox@1.11.0) (2024-03-20)
+
+
+### Bug Fixes
+
+* **graphing-solution-set:** Fixed issue while switching no of lines ([d2dfd59](https://github.com/pie-framework/pie-lib/commit/d2dfd59589746a9d03f1547618a1979d4378619d))
+
+
+### Features
+
+* Add editable html configuration for rubric PD-3529 ([d96fba6](https://github.com/pie-framework/pie-lib/commit/d96fba6e5db7c5ad948c7b86a541aaf8e1443dcf))
+
+
+
+
+
+## [1.10.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.10.0...@pie-lib/pie-toolbox@1.10.1) (2024-03-19)
+
+
+### Bug Fixes
+
+* temporary revert math-rendering-accessible updates ([e9e6fc1](https://github.com/pie-framework/pie-lib/commit/e9e6fc1341b96475a54303a53ebc355765bf4980))
+* **graphing-solution-set:** Fixed issue with switching line type ([20daceb](https://github.com/pie-framework/pie-lib/commit/20daceb7b974cf1a7918cc725e32943d061ed05e))
+
+
+
+
+
 # [1.10.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.9.0...@pie-lib/pie-toolbox@1.10.0) (2024-03-18)
 
 
