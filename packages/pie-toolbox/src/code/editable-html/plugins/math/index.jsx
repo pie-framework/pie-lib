@@ -1,7 +1,7 @@
 import Functions from '@material-ui/icons/Functions';
 import { Inline } from 'slate';
 import { MathPreview, MathToolbar } from '../../../math-toolbar';
-import { wrapMath, unWrapMath, mmlToLatex, renderMath } from '../../../math-rendering';
+import { wrapMath, unWrapMath, mmlToLatex, renderMath } from '../../../math-rendering-accessible';
 import React from 'react';
 import debug from 'debug';
 import SlatePropTypes from 'slate-prop-types';
