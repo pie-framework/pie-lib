@@ -1,10 +1,9 @@
 import React from 'react';
-import { Inline } from 'slate';
+import { htmlToValue } from "../../serialization";
+// import { Inline } from "slate";
 
 export const CONTENT_TYPE = {
-  TEXT: 'TEXT',
-  // TODO HTML is still WIP, and is not working as expected
-  HTML: 'HTML',
+  FRAGMENT: 'FRAGMENT'
 };
 
 export const ICON_TYPE = {
@@ -27,34 +26,31 @@ export default function CustomPlugin(type, customPluginProps, opts) {
 
   const toolbar = {
     icon: icon,
-    onClick: (value, onChange) => {
-      const inline = Inline.create({
-        type: type,
-        isVoid: true,
-        data: {
-          customContent: undefined,
-          contentType: CONTENT_TYPE.TEXT,
-        },
-      });
+    onClick: (value, onChange, getFocusedValue) => {
+      const editorDOM = document.querySelector(`[data-key="${value.document.key}"]`);
+      let valueToUse = value;
+      const callback = ({ customContent, contentType }, focus) => {
+        valueToUse = getFocusedValue();
 
-      const change = value.change().insertInline(inline);
-      onChange(change);
-      const callback = ({ customContent, contentType }) => {
-        if (!customContent || !contentType || !CONTENT_TYPE[contentType]) {
-          console.error(
-            'callback parameter needs to contain customContent and contentType, where contentType is one of:',
-            JSON.stringify(CONTENT_TYPE),
-          );
-          return;
+        switch (contentType) {
+          case CONTENT_TYPE.FRAGMENT:
+          default: {
+            const contentValue = htmlToValue(customContent);
+            const change = valueToUse
+              .change()
+              .insertFragment(contentValue.document);
+
+            valueToUse = change.value;
+            onChange(change);
+
+            break;
+          }
         }
 
-        const nodeIsThere = change.value.document.findDescendant((d) => d.key === inline.key);
-
-        if (nodeIsThere) {
-          const c = change.setNodeByKey(inline.key, { data: { customContent, contentType } });
-          onChange(c, () => opts.focus('beginning', nodeIsThere));
-        } else {
-          opts.focus();
+        if (focus) {
+          if (editorDOM) {
+            editorDOM.focus();
+          }
         }
       };
 
@@ -81,11 +77,9 @@ export default function CustomPlugin(type, customPluginProps, opts) {
         const { customContent, contentType } = jsonData;
 
         switch (contentType) {
-          case CONTENT_TYPE.TEXT:
+          case CONTENT_TYPE.FRAGMENT:
           default:
             return customContent;
-          case CONTENT_TYPE.HTML:
-            return <span dangerouslySetInnerHTML={{ __html: customContent }} />;
         }
       }
     },
@@ -111,52 +105,42 @@ export const serialization = {
     let type = el.dataset && el.dataset.type;
     let contentType = el.dataset && el.dataset.contentType;
 
-    if (type !== 'custom-plugin') return;
+    console.log('deserialize type', type);
+    if (type !== "custom-plugin") return;
 
     let customContent;
 
     switch (contentType) {
-      case CONTENT_TYPE.TEXT:
+      case CONTENT_TYPE.FRAGMENT:
       default:
         customContent = el.innerHTML;
         break;
-      case CONTENT_TYPE.HTML: {
-        customContent = el.dataset && el.dataset.customPluginData;
-
-        break;
-      }
     }
 
     return {
-      object: 'inline',
+      object: "inline",
       type: type,
       isVoid: true,
-      data: { customContent, contentType },
+      data: { customContent, contentType }
     };
   },
   serialize(object /*, children*/) {
-    if (object.type !== 'custom-plugin') return;
+    console.log('serialize object.type', object.type);
+
+    if (object.type !== "custom-plugin") return;
 
     const { data } = object;
-    const customContent = data.get('customContent');
-    const contentType = data.get('contentType');
+    const customContent = data.get("customContent");
+    const contentType = data.get("contentType");
 
     switch (contentType) {
-      case CONTENT_TYPE.TEXT:
+      case CONTENT_TYPE.FRAGMENT:
       default:
         return (
           <span data-type="custom-plugin" data-content-type={contentType}>
             {customContent}
           </span>
         );
-      case CONTENT_TYPE.HTML:
-        return (
-          <span
-            data-type="custom-plugin"
-            data-content-type={contentType}
-            data-custom-plugin-data={decodeURIComponent(customContent)}
-          />
-        );
     }
-  },
+  }
 };
