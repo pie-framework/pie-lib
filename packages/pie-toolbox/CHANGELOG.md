@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.12.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.11.1...@pie-lib/pie-toolbox@1.12.0) (2024-03-21)
+
+
+### Bug Fixes
+
+* **math-rendering-accessible:** add function to clean up excess mjx-container elements PD-3564 ([d14f6af](https://github.com/pie-framework/pie-lib/commit/d14f6af5a0ebe80c5ff8251208678ba0d409f785))
+* **math-rendering-accessible:** add sanity checks PD-1870 ([c62b188](https://github.com/pie-framework/pie-lib/commit/c62b188ffe4d954fdcf90360ba5ff8a39c9c602f))
+
+
+### Features
+
+* Replace math-rendering package with math-rendering-accessible-package for accessibility PD-1870 ([5cd58d1](https://github.com/pie-framework/pie-lib/commit/5cd58d1f9252826b5dbcac3df354da21d9fd80e2))
+
+
+
+
+
 ## [1.11.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.11.0...@pie-lib/pie-toolbox@1.11.1) (2024-03-20)
 
 
