@@ -71,7 +71,7 @@ const adjustMathMLStyle = (el = document) => {
 };
 
 const createPlaceholder = (element) => {
-  if (!element.previousSibling || !element.previousSibling.classList.contains('math-placeholder')) {
+  if (!element.previousSibling || !element.previousSibling.classList?.contains('math-placeholder')) {
     // Store the original display style before setting it to 'none'
     element.dataset.originalDisplay = element.style.display || '';
     element.style.display = 'none';
@@ -80,7 +80,7 @@ const createPlaceholder = (element) => {
     placeholder.style.cssText =
       'height: 10px; width: 50px; display: inline-block; vertical-align: middle; justify-content: center; background: #fafafa; border-radius: 4px;';
     placeholder.classList.add('math-placeholder');
-    element.parentNode.insertBefore(placeholder, element);
+    element.parentNode?.insertBefore(placeholder, element);
   }
 };
 
@@ -88,7 +88,7 @@ const removePlaceholdersAndRestoreDisplay = () => {
   document.querySelectorAll('.math-placeholder').forEach((placeholder) => {
     const targetElement = placeholder.nextElementSibling;
 
-    if (targetElement && targetElement.dataset.originalDisplay !== undefined) {
+    if (targetElement && targetElement.dataset?.originalDisplay !== undefined) {
       targetElement.style.display = targetElement.dataset.originalDisplay;
       delete targetElement.dataset.originalDisplay;
     }
@@ -120,6 +120,21 @@ const waitForMathRenderingLib = (callback) => {
   checkIntervalId = setInterval(checkForLib, 100);
 };
 
+const removeExcessMjxContainers = (content) => {
+  const elements = content.querySelectorAll('[data-latex][data-math-handled="true"]');
+
+  elements.forEach((element) => {
+    const mjxContainers = element.querySelectorAll('mjx-container');
+
+    // Check if there are more than two mjx-container children.
+    if (mjxContainers.length > 2) {
+      for (let i = 2; i < mjxContainers.length; i++) {
+        mjxContainers[i].parentNode.removeChild(mjxContainers[i]);
+      }
+    }
+  });
+};
+
 const renderMath = (el, renderOpts) => {
   renderOpts = renderOpts || defaultOpts();
 
@@ -133,13 +148,10 @@ const renderMath = (el, renderOpts) => {
     executeOn = div;
   }
 
-  const mathElements = executeOn.querySelectorAll('[data-latex]');
-  mathElements.forEach((element) => {
-    // Skip placeholder creation for elements already handled by MathJax.
-    if (element.getAttribute('data-math-handled') !== 'true') {
-      createPlaceholder(element);
-    }
-  });
+  // Skip placeholder creation for elements already handled by MathJax.
+  const unprocessedMathElements = executeOn.querySelectorAll('[data-latex]:not([data-math-handled="true"])');
+
+  unprocessedMathElements.forEach(createPlaceholder);
 
   waitForMathRenderingLib(() => {
     fixMathElements(executeOn);
@@ -179,8 +191,8 @@ const renderMath = (el, renderOpts) => {
 
           if (mathJaxInstance) {
             // Reset and clear typesetting before processing the new content
-
             //  Reset the tex labels (and automatic equation number).
+
             mathJaxInstance.texReset();
 
             //  Reset the typesetting system (font caches, etc.)
@@ -193,6 +205,7 @@ const renderMath = (el, renderOpts) => {
               .typesetPromise([executeOn])
               .then(() => {
                 try {
+                  removeExcessMjxContainers(executeOn);
                   removePlaceholdersAndRestoreDisplay();
 
                   const updatedDocument = mathJaxInstance.startup.document;
@@ -204,6 +217,7 @@ const renderMath = (el, renderOpts) => {
 
                     item.data.typesetRoot.setAttribute('data-mathml', parsedMathMl);
                   }
+
                   // If the original input was a string, return the parsed MathML
                 } catch (e) {
                   console.error('Error post-processing MathJax typesetting:', e.toString());
