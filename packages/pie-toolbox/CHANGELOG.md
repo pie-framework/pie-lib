@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.12.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.12.0...@pie-lib/pie-toolbox@1.12.1) (2024-03-25)
+
+
+### Bug Fixes
+
+* **math-rendering-accessible:** If MathJax is set up using the Pie Lib package for math rendering then use it PD-1870 ([759f076](https://github.com/pie-framework/pie-lib/commit/759f0767b465f7404ba44f33541a5560dfefd338))
+
+
+
+
+
 # [1.12.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.11.1...@pie-lib/pie-toolbox@1.12.0) (2024-03-21)
 
 
