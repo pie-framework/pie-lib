@@ -1,5 +1,6 @@
 import { initializeMathJax } from './mathjax-script';
 import { wrapMath, unWrapMath } from './normalization';
+import * as mr from '../math-rendering';
 
 import { SerializedMmlVisitor } from 'mathjax-full/js/core/MmlTree/SerializedMmlVisitor';
 
@@ -126,9 +127,9 @@ const removeExcessMjxContainers = (content) => {
   elements.forEach((element) => {
     const mjxContainers = element.querySelectorAll('mjx-container');
 
-    // Check if there are more than two mjx-container children.
-    if (mjxContainers.length > 2) {
-      for (let i = 2; i < mjxContainers.length; i++) {
+    // Check if there are more than one mjx-container children.
+    if (mjxContainers.length > 1) {
+      for (let i = 1; i < mjxContainers.length; i++) {
         mjxContainers[i].parentNode.removeChild(mjxContainers[i]);
       }
     }
@@ -158,7 +159,9 @@ const renderMath = (el, renderOpts) => {
     adjustMathMLStyle(executeOn);
 
     if (window.hasOwnProperty('@pie-lib/math-rendering@2')) {
+      // If MathJax is set up using the pie lib package for math rendering, then use it.
       removePlaceholdersAndRestoreDisplay();
+      mr.renderMath(el);
       return;
     }
 
@@ -191,7 +194,7 @@ const renderMath = (el, renderOpts) => {
 
           if (mathJaxInstance) {
             // Reset and clear typesetting before processing the new content
-            //  Reset the tex labels (and automatic equation number).
+            // Reset the tex labels (and automatic equation number).
 
             mathJaxInstance.texReset();
 
