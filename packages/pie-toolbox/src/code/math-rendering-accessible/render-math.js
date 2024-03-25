@@ -194,9 +194,8 @@ const renderMath = (el, renderOpts) => {
 
           if (mathJaxInstance) {
             // Reset and clear typesetting before processing the new content
-            //  Reset the tex labels (and automatic equation number).
+            // Reset the tex labels (and automatic equation number).
 
-            removeExcessMjxContainers(executeOn);
             mathJaxInstance.texReset();
 
             //  Reset the typesetting system (font caches, etc.)
