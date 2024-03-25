@@ -151,7 +151,7 @@ const marks = {
   },
   serialize(object) {
     if (Text.isText(object)) {
-      let string = escapeHtml(object.text);
+      let string = object.text;
 
       if (object.bold) {
         string = <strong>{string}</strong>;
@@ -209,9 +209,9 @@ export const TEXT_RULE = {
     }
   },
 
-  serialize(obj, children) {
-    if (obj.object === 'string') {
-      return children.split('\n').reduce((array, text, i) => {
+  serialize(obj) {
+    if (Text.isText(obj)) {
+      return obj.text.split('\n').reduce((array, text, i) => {
         if (i !== 0) array.push(<br />);
         array.push(text);
         return array;
