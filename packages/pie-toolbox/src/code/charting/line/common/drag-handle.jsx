@@ -52,10 +52,10 @@ class RawDragHandle extends React.Component {
 
 export const DragHandle = withStyles(() => ({
   handle: {
-    fill: color.secondary(),
+    fill: color.defaults.SECONDARY,
     transition: 'fill 200ms linear, height 200ms linear',
     '&:hover': {
-      fill: color.secondaryDark(),
+      fill: color.defaults.SECONDARY_DARK,
     },
     '&.correct': correct('fill'),
     '&.incorrect': incorrect('fill'),
@@ -67,10 +67,10 @@ export const DragHandle = withStyles(() => ({
     stroke: 'transparent',
   },
   line: {
-    stroke: color.secondary(),
+    stroke: color.defaults.SECONDARY,
     transition: 'fill 200ms linear, height 200ms linear',
     '&:hover': {
-      stroke: color.secondaryDark(),
+      stroke: color.defaults.SECONDARY_DARK,
     },
     '&.non-interactive': disabled('stroke'),
     '&.correct': correct('stroke'),
