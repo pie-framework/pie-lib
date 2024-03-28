@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.12.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.12.1...@pie-lib/pie-toolbox@1.12.2) (2024-03-28)
+
+
+### Bug Fixes
+
+* **math-input:** do not return grade 8 set for mode language PD-3603 ([cc5ed83](https://github.com/pie-framework/pie-lib/commit/cc5ed83d520ae658dcd6077c9556b00016fe2cd3))
+
+
+
+
+
 ## [1.12.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.12.0...@pie-lib/pie-toolbox@1.12.1) (2024-03-25)
 
 
