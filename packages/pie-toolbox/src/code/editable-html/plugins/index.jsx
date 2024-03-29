@@ -18,6 +18,7 @@ import List from './list';
 import TablePlugin from './table';
 import RespAreaPlugin from './respArea';
 import HtmlPlugin from './html';
+import CustomPlugin from "./customPlugin";
 
 const log = debug('@pie-lib:editable-html:plugins');
 
@@ -76,7 +77,7 @@ export const ALL_PLUGINS = [
 
 export const DEFAULT_PLUGINS = ALL_PLUGINS.filter((plug) => plug !== 'responseArea');
 
-export const buildPlugins = (activePlugins, opts) => {
+export const buildPlugins = (activePlugins, customPlugins, opts) => {
   log('[buildPlugins] opts: ', opts);
 
   activePlugins = activePlugins || DEFAULT_PLUGINS;
@@ -87,7 +88,7 @@ export const buildPlugins = (activePlugins, opts) => {
   const respAreaPlugin =
     opts.responseArea && opts.responseArea.type && RespAreaPlugin(opts.responseArea, compact([mathPlugin]));
 
-  return compact([
+  const builtPlugins = compact([
     addIf('table', TablePlugin(opts.table, compact([imagePlugin, mathPlugin, respAreaPlugin]))),
     addIf('bold', MarkHotkey({ key: 'b', type: 'bold', icon: <Bold />, tag: 'strong' })),
     // addIf('code', MarkHotkey({ key: '`', type: 'code', icon: <Code /> })),
@@ -112,6 +113,37 @@ export const buildPlugins = (activePlugins, opts) => {
     ToolbarPlugin(opts.toolbar),
     SoftBreakPlugin({ shift: true }),
     addIf('responseArea', respAreaPlugin),
-    addIf('html', HtmlPlugin(opts.html)),
+    addIf('html', HtmlPlugin(opts.html))
   ]);
+
+  customPlugins.forEach((customPlugin) => {
+    const { event, icon, iconType, iconAlt } = customPlugin || {};
+
+    function isValidEventName(eventName) {
+      // Check if eventName is a non-empty string
+      if (typeof eventName !== 'string' || eventName.length === 0) {
+        return false;
+      }
+
+      // Regular expression to match valid event names (only alphanumeric characters and underscore)
+      const regex = /^[a-zA-Z0-9_]+$/;
+
+      // Check if the eventName matches the regular expression
+      return regex.test(eventName);
+    }
+
+    if (!isValidEventName(event)) {
+      console.error(`The event name: ${event} is not a valid event name!`);
+      return;
+    }
+
+    if (!icon && !iconType && !iconAlt) {
+      console.error('Your custom button requires icon, iconType and iconAlt');
+      return;
+    }
+
+    builtPlugins.push(CustomPlugin('custom-plugin', customPlugin));
+  });
+
+  return builtPlugins;
 };
