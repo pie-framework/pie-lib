@@ -83,6 +83,15 @@ export class Editor extends React.Component {
     disableUnderline: PropTypes.bool,
     autoWidthToolbar: PropTypes.bool,
     pluginProps: PropTypes.any,
+    // customPlugins should be inside pluginProps (a property inside pluginProps)
+    //   customPlugins: PropTypes.arrayOf(
+    //       PropTypes.shape({
+    //         event: PropTypes.string,
+    //         icon: PropTypes.string,
+    //         iconType: PropTypes.string,
+    //         iconAlt: PropTypes.string
+    //       }),
+    //   ),
     placeholder: PropTypes.string,
     responseAreaProps: PropTypes.shape({
       type: PropTypes.oneOf(['explicit-constructed-response', 'inline-dropdown', 'drag-in-the-blank']),
@@ -112,7 +121,7 @@ export class Editor extends React.Component {
     }),
     className: PropTypes.string,
     maxImageWidth: PropTypes.number,
-    maxImageHeight: PropTypes.number,
+    maxImageHeight: PropTypes.number
   };
 
   static defaultProps = {
@@ -196,8 +205,10 @@ export class Editor extends React.Component {
       toggleHtmlMode: this.toggleHtmlMode,
       handleAlertDialog: this.handleDialog,
     };
+    let { customPlugins } = props.pluginProps || {};
+    customPlugins = customPlugins || [];
 
-    this.plugins = buildPlugins(props.activePlugins, {
+    this.plugins = buildPlugins(props.activePlugins, customPlugins, {
       math: {
         onClick: this.onMathClick,
         onFocus: this.onPluginFocus,
@@ -324,7 +335,7 @@ export class Editor extends React.Component {
         createChange: () => this.state.value.change(),
         onChange: this.onChange,
         uploadSoundSupport: props.uploadSoundSupport,
-      },
+      }
     });
 
     if (props.mathMlOptions.mmlOutput || props.mathMlOptions.mmlEditing) {
@@ -901,6 +912,11 @@ export class Editor extends React.Component {
       pluginProps,
       onKeyDown,
     } = this.props;
+    // We don't want to send customPlugins to slate.
+    // Not sure if they would do any harm, but I think it's better to not send them.
+    // We use custom plugins to be able to add custom buttons
+    // eslint-disable-next-line no-unused-vars
+    const { customPlugins, ...otherPluginProps } = pluginProps || {};
 
     const { value, focusedNode, toolbarOpts, dialog, scheduled } = this.state;
 
@@ -957,7 +973,7 @@ export class Editor extends React.Component {
             height: sizeStyle.height,
             maxHeight: sizeStyle.maxHeight,
           }}
-          pluginProps={pluginProps}
+          pluginProps={otherPluginProps}
           toolbarOpts={toolbarOpts}
           placeholder={placeholder}
           renderPlaceholder={this.renderPlaceholder}
