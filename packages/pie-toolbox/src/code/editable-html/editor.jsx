@@ -335,12 +335,7 @@ export class Editor extends React.Component {
         createChange: () => this.state.value.change(),
         onChange: this.onChange,
         uploadSoundSupport: props.uploadSoundSupport,
-      },
-      customPlugin: {
-        focus: this.focus,
-        createChange: () => this.state.value.change(),
-        onChange: this.onChange
-      },
+      }
     });
 
     if (props.mathMlOptions.mmlOutput || props.mathMlOptions.mmlEditing) {

@@ -1,31 +1,30 @@
 import React from 'react';
-import { htmlToValue } from "../../serialization";
-// import { Inline } from "slate";
+import { htmlToValue } from '../../serialization';
 
+// We're possibly going to have to support content types, so starting it as an enum
 export const CONTENT_TYPE = {
-  FRAGMENT: 'FRAGMENT'
+  FRAGMENT: 'FRAGMENT',
 };
 
+// We're possibly going to have to support multiple icon types, so starting it as an enum
 export const ICON_TYPE = {
   SVG: 'SVG',
 };
 
-export default function CustomPlugin(type, customPluginProps, opts) {
+const getIcon = (customPluginProps) => {
   const svg = customPluginProps.icon;
-
-  let icon;
 
   switch (customPluginProps.iconType) {
     case ICON_TYPE.SVG:
-      icon = <span style={{ width: 28, height: 28 }} dangerouslySetInnerHTML={{ __html: svg }} />;
-      break;
+      return <span style={{ width: 28, height: 28 }} dangerouslySetInnerHTML={{ __html: svg }} />;
     default:
-      icon = <span>{customPluginProps.iconAlt}</span>;
-      break;
+      return <span>{customPluginProps.iconAlt}</span>;
   }
+};
 
+export default function CustomPlugin(type, customPluginProps) {
   const toolbar = {
-    icon: icon,
+    icon: getIcon(customPluginProps),
     onClick: (value, onChange, getFocusedValue) => {
       const editorDOM = document.querySelector(`[data-key="${value.document.key}"]`);
       let valueToUse = value;
@@ -36,9 +35,7 @@ export default function CustomPlugin(type, customPluginProps, opts) {
           case CONTENT_TYPE.FRAGMENT:
           default: {
             const contentValue = htmlToValue(customContent);
-            const change = valueToUse
-              .change()
-              .insertFragment(contentValue.document);
+            const change = valueToUse.change().insertFragment(contentValue.document);
 
             valueToUse = change.value;
             onChange(change);
@@ -54,6 +51,7 @@ export default function CustomPlugin(type, customPluginProps, opts) {
         }
       };
 
+      // NOTE: the emitted event (custom event named by client) will be suffixed with "PIE-"
       window.dispatchEvent(
         new CustomEvent(`PIE-${customPluginProps.event}`, {
           detail: {
@@ -99,48 +97,3 @@ export default function CustomPlugin(type, customPluginProps, opts) {
     },
   };
 }
-
-export const serialization = {
-  deserialize(el /*, next*/) {
-    let type = el.dataset && el.dataset.type;
-    let contentType = el.dataset && el.dataset.contentType;
-
-    console.log('deserialize type', type);
-    if (type !== "custom-plugin") return;
-
-    let customContent;
-
-    switch (contentType) {
-      case CONTENT_TYPE.FRAGMENT:
-      default:
-        customContent = el.innerHTML;
-        break;
-    }
-
-    return {
-      object: "inline",
-      type: type,
-      isVoid: true,
-      data: { customContent, contentType }
-    };
-  },
-  serialize(object /*, children*/) {
-    console.log('serialize object.type', object.type);
-
-    if (object.type !== "custom-plugin") return;
-
-    const { data } = object;
-    const customContent = data.get("customContent");
-    const contentType = data.get("contentType");
-
-    switch (contentType) {
-      case CONTENT_TYPE.FRAGMENT:
-      default:
-        return (
-          <span data-type="custom-plugin" data-content-type={contentType}>
-            {customContent}
-          </span>
-        );
-    }
-  }
-};

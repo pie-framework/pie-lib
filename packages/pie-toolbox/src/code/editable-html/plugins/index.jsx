@@ -119,11 +119,21 @@ export const buildPlugins = (activePlugins, customPlugins, opts) => {
   customPlugins.forEach((customPlugin) => {
     const { event, icon, iconType, iconAlt } = customPlugin || {};
 
-    // TODO add more conditions here
-    const validEventKey = event && event.replace(/\s/g,'') === event;
+    function isValidEventName(eventName) {
+      // Check if eventName is a non-empty string
+      if (typeof eventName !== 'string' || eventName.length === 0) {
+        return false;
+      }
 
-    if (!validEventKey) {
-      console.error(`The event ${event} is not a valid event!`);
+      // Regular expression to match valid event names (only alphanumeric characters and underscore)
+      const regex = /^[a-zA-Z0-9_]+$/;
+
+      // Check if the eventName matches the regular expression
+      return regex.test(eventName);
+    }
+
+    if (!isValidEventName(event)) {
+      console.error(`The event name: ${event} is not a valid event name!`);
       return;
     }
 
@@ -132,8 +142,7 @@ export const buildPlugins = (activePlugins, customPlugins, opts) => {
       return;
     }
 
-    // TODO add validation on custom plugins
-    builtPlugins.push(CustomPlugin('custom-plugin', customPlugin, opts.customPlugin));
+    builtPlugins.push(CustomPlugin('custom-plugin', customPlugin));
   });
 
   return builtPlugins;
