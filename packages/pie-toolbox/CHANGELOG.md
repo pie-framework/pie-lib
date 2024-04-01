@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.13.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.13.0...@pie-lib/pie-toolbox@1.13.1) (2024-04-01)
+
+
+### Bug Fixes
+
+* **graphing:** Fixed issue when incomplete tool is hidden on changing current tool | SC-30392 ([cec6e5d](https://github.com/pie-framework/pie-lib/commit/cec6e5df37adc639e5e15f95889aefd11f3b5171))
+
+
+
+
+
 # [1.13.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.12.3...@pie-lib/pie-toolbox@1.13.0) (2024-04-01)
 
 
