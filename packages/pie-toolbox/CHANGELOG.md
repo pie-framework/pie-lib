@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.13.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.12.3...@pie-lib/pie-toolbox@1.13.0) (2024-04-01)
+
+
+### Features
+
+* **inline-dropdown:** Implement screen reader-specific labels for inline dropdowns PD-2465 ([1fd0941](https://github.com/pie-framework/pie-lib/commit/1fd0941dca8ccaf0f487ad279aa42632d24593ad))
+
+
+
+
+
 ## [1.12.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.12.2...@pie-lib/pie-toolbox@1.12.3) (2024-03-29)
 
 **Note:** Version bump only for package @pie-lib/pie-toolbox
