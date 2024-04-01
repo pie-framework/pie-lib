@@ -48,7 +48,7 @@ const getMaskSize = (size) => ({
   height: size.height + 46,
 });
 
-export const removeBuildingToolIfCurrentToolDiffers = ({ marks, currentTool }) => {
+export const removeBuildingToolIfCurrentToolDiffers = ({ marks, currentTool, onChangeMarks, removeIncompleteTool }) => {
   const buildingMark = marks.filter((m) => m.building)[0];
   let newMarks = cloneDeep(marks);
 
@@ -59,7 +59,9 @@ export const removeBuildingToolIfCurrentToolDiffers = ({ marks, currentTool }) =
       newMarks.splice(index, 1);
     }
   }
-
+  if (removeIncompleteTool && !isEqual(newMarks, marks)) {
+    onChangeMarks(newMarks);
+  }
   return newMarks;
 };
 
@@ -184,6 +186,8 @@ export class Graph extends React.Component {
       onChangeLabels,
       onChangeTitle,
       mathMlOptions = {},
+      onChangeMarks,
+      removeIncompleteTool,
     } = this.props;
     let { marks } = this.props;
 
@@ -192,7 +196,12 @@ export class Graph extends React.Component {
     const maskSize = getMaskSize(size);
     const common = { graphProps, labelModeEnabled };
 
-    marks = removeBuildingToolIfCurrentToolDiffers({ marks: marks || [], currentTool });
+    marks = removeBuildingToolIfCurrentToolDiffers({
+      marks: marks || [],
+      currentTool,
+      onChangeMarks,
+      removeIncompleteTool,
+    });
 
     return (
       <Root
