@@ -21,6 +21,7 @@ export default withMask('dropdown', (props) => (node, data, onChange) => {
         onChange={onChange}
         choices={choices[dataset.id]}
         showCorrectAnswer={showCorrectAnswer}
+        singleQuery={Object.keys(choices).length == 1}
       />
     );
   }

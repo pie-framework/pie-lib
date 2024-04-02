@@ -3,6 +3,182 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.13.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.13.0...@pie-lib/pie-toolbox@1.13.1) (2024-04-01)
+
+
+### Bug Fixes
+
+* **graphing:** Fixed issue when incomplete tool is hidden on changing current tool | SC-30392 ([cec6e5d](https://github.com/pie-framework/pie-lib/commit/cec6e5df37adc639e5e15f95889aefd11f3b5171))
+
+
+
+
+
+# [1.13.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.12.3...@pie-lib/pie-toolbox@1.13.0) (2024-04-01)
+
+
+### Features
+
+* **inline-dropdown:** Implement screen reader-specific labels for inline dropdowns PD-2465 ([1fd0941](https://github.com/pie-framework/pie-lib/commit/1fd0941dca8ccaf0f487ad279aa42632d24593ad))
+
+
+
+
+
+## [1.12.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.12.2...@pie-lib/pie-toolbox@1.12.3) (2024-03-29)
+
+**Note:** Version bump only for package @pie-lib/pie-toolbox
+
+
+
+
+
+## [1.12.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.12.1...@pie-lib/pie-toolbox@1.12.2) (2024-03-28)
+
+
+### Bug Fixes
+
+* **math-input:** do not return grade 8 set for mode language PD-3603 ([cc5ed83](https://github.com/pie-framework/pie-lib/commit/cc5ed83d520ae658dcd6077c9556b00016fe2cd3))
+
+
+
+
+
+## [1.12.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.12.0...@pie-lib/pie-toolbox@1.12.1) (2024-03-25)
+
+
+### Bug Fixes
+
+* **math-rendering-accessible:** If MathJax is set up using the Pie Lib package for math rendering then use it PD-1870 ([759f076](https://github.com/pie-framework/pie-lib/commit/759f0767b465f7404ba44f33541a5560dfefd338))
+
+
+
+
+
+# [1.12.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.11.1...@pie-lib/pie-toolbox@1.12.0) (2024-03-21)
+
+
+### Bug Fixes
+
+* **math-rendering-accessible:** add function to clean up excess mjx-container elements PD-3564 ([d14f6af](https://github.com/pie-framework/pie-lib/commit/d14f6af5a0ebe80c5ff8251208678ba0d409f785))
+* **math-rendering-accessible:** add sanity checks PD-1870 ([c62b188](https://github.com/pie-framework/pie-lib/commit/c62b188ffe4d954fdcf90360ba5ff8a39c9c602f))
+
+
+### Features
+
+* Replace math-rendering package with math-rendering-accessible-package for accessibility PD-1870 ([5cd58d1](https://github.com/pie-framework/pie-lib/commit/5cd58d1f9252826b5dbcac3df354da21d9fd80e2))
+
+
+
+
+
+## [1.11.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.11.0...@pie-lib/pie-toolbox@1.11.1) (2024-03-20)
+
+
+### Bug Fixes
+
+* **graphing-utils:** Fixed missing imports in graphing-utils.js ([36b511d](https://github.com/pie-framework/pie-lib/commit/36b511d555c176ec119605fc9d9fe926bc6a31d2))
+
+
+
+
+
+# [1.11.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.10.1...@pie-lib/pie-toolbox@1.11.0) (2024-03-20)
+
+
+### Bug Fixes
+
+* **graphing-solution-set:** Fixed issue while switching no of lines ([d2dfd59](https://github.com/pie-framework/pie-lib/commit/d2dfd59589746a9d03f1547618a1979d4378619d))
+
+
+### Features
+
+* Add editable html configuration for rubric PD-3529 ([d96fba6](https://github.com/pie-framework/pie-lib/commit/d96fba6e5db7c5ad948c7b86a541aaf8e1443dcf))
+
+
+
+
+
+## [1.10.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.10.0...@pie-lib/pie-toolbox@1.10.1) (2024-03-19)
+
+
+### Bug Fixes
+
+* temporary revert math-rendering-accessible updates ([e9e6fc1](https://github.com/pie-framework/pie-lib/commit/e9e6fc1341b96475a54303a53ebc355765bf4980))
+* **graphing-solution-set:** Fixed issue with switching line type ([20daceb](https://github.com/pie-framework/pie-lib/commit/20daceb7b974cf1a7918cc725e32943d061ed05e))
+
+
+
+
+
+# [1.10.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.9.0...@pie-lib/pie-toolbox@1.10.0) (2024-03-18)
+
+
+### Features
+
+* Replace math-rendering package with math-rendering-accessible-package for accessibility PD-1870 ([c157418](https://github.com/pie-framework/pie-lib/commit/c157418720bde12062d3bca21c502b48af01829e))
+
+
+
+
+
+# [1.9.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.8.6...@pie-lib/pie-toolbox@1.9.0) (2024-03-15)
+
+
+### Features
+
+* **explicit-constructed-response:** add aria label for input items PD-2461 ([31972ea](https://github.com/pie-framework/pie-lib/commit/31972ea41dee7a8ba555a4bbeba7db7b971c66b4))
+* **graphing-solution-set:** Added pie lib modules for GSS item | SC-27890 ([1b47294](https://github.com/pie-framework/pie-lib/commit/1b47294b0e142f0ba5f612aae6555a2f8b8b0e89))
+* **graphing-solution-set:** Updated CSS for filled poygon ([876d5d0](https://github.com/pie-framework/pie-lib/commit/876d5d060fb74d9de694f92fb2ab6ebb095c4491))
+
+
+
+
+
+## [1.8.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.8.5...@pie-lib/pie-toolbox@1.8.6) (2024-03-13)
+
+
+### Bug Fixes
+
+* **math-input:** fallback to grade set 8 if key is invalid PD-3549 ([adc9262](https://github.com/pie-framework/pie-lib/commit/adc9262ddc198daab8dce4e7a212c31ec3ce757c))
+
+
+
+
+
+## [1.8.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.8.4...@pie-lib/pie-toolbox@1.8.5) (2024-03-13)
+
+
+### Bug Fixes
+
+* **math-rendering-accessible:** Exclude MathJax-processed elements from placeholder creation PD-1870 ([72ffc59](https://github.com/pie-framework/pie-lib/commit/72ffc5939101cdbe2eeaeca5035b6574c4629793))
+
+
+
+
+
+## [1.8.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.8.3...@pie-lib/pie-toolbox@1.8.4) (2024-03-12)
+
+
+### Bug Fixes
+
+* remove usage of slate-dev-environment as the fix is not needed anymore and we're having versioning issues PD-3465 ([e956df0](https://github.com/pie-framework/pie-lib/commit/e956df074864b83000aa4bb913086ab536e73817))
+
+
+
+
+
+## [1.8.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.8.2...@pie-lib/pie-toolbox@1.8.3) (2024-03-12)
+
+
+### Bug Fixes
+
+* **math-rendering-accessible:** enhanced math rendering logic to dynamically choose between '@pie-lib/math-rendering@2' and math-rendering-accessible if both are used PD-1870 ([5215bbe](https://github.com/pie-framework/pie-lib/commit/5215bbebbd53821c95120505f542b16c3e75f347))
+
+
+
+
+
 ## [1.8.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.8.1...@pie-lib/pie-toolbox@1.8.2) (2024-03-07)
 
 

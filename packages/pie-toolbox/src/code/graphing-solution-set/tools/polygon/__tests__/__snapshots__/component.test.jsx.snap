@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RawBaseComponent snapshot renders 1`] = `
+<g>
+  <GridDraggable
+    graphProps={
+      Object {
+        "domain": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "range": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "scale": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+        "size": Object {
+          "height": 400,
+          "width": 400,
+        },
+        "snap": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+      }
+    }
+    isSolution={false}
+    onClick={[Function]}
+    points={Array []}
+  />
+</g>
+`;
+
+exports[`RawBaseComponent snapshot renders with labels 1`] = `
+<g>
+  <GridDraggable
+    graphProps={
+      Object {
+        "domain": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "range": Object {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+        },
+        "scale": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+        "size": Object {
+          "height": 400,
+          "width": 400,
+        },
+        "snap": Object {
+          "x": [MockFunction],
+          "y": [MockFunction],
+        },
+      }
+    }
+    isSolution={false}
+    onClick={[Function]}
+    points={
+      Array [
+        Object {
+          "index": 0,
+          "label": "A",
+          "x": 0,
+          "y": 0,
+        },
+        Object {
+          "index": 1,
+          "label": "B",
+          "x": 2,
+          "y": 2,
+        },
+        Object {
+          "index": 2,
+          "label": "C",
+          "x": 0,
+          "y": 2,
+        },
+      ]
+    }
+  />
+</g>
+`;

@@ -324,6 +324,11 @@ export const keysForGrade = (n) => {
   if (match) {
     return match.set || [];
   }
+
+  // if the grade is not found, return the default set which is grade 8 (as per PD-3549), for mode language it is not the default
+  if (n !== 'language') {
+    return gradeSets[2].set;
+  }
 };
 
 const ALL_KEYS = [

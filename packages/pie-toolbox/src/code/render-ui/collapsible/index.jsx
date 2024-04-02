@@ -1,7 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles/index';
 import Collapse from '@material-ui/core/Collapse/index';
-import { renderMath } from '../../math-rendering';
+import { renderMath } from '../../math-rendering-accessible';
 import PropTypes from 'prop-types';
 
 export class Collapsible extends React.Component {

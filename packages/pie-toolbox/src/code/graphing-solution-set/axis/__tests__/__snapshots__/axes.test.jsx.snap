@@ -1,0 +1,122 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RawXAxis snapshot renders 1`] = `
+<Fragment>
+  <F
+    left={0}
+    scale={[MockFunction]}
+    tickFormat={[Function]}
+    tickLabelProps={[Function]}
+    top={0}
+  />
+  <WithStyles(Arrow)
+    direction="left"
+    scale={
+      Object {
+        "x": [MockFunction],
+        "y": [MockFunction] {
+          "calls": Array [
+            Array [
+              0,
+            ],
+          ],
+          "results": Array [
+            Object {
+              "type": "return",
+              "value": 0,
+            },
+          ],
+        },
+      }
+    }
+    x={0}
+    y={0}
+  />
+  <WithStyles(Arrow)
+    direction="right"
+    scale={
+      Object {
+        "x": [MockFunction],
+        "y": [MockFunction] {
+          "calls": Array [
+            Array [
+              0,
+            ],
+          ],
+          "results": Array [
+            Object {
+              "type": "return",
+              "value": 0,
+            },
+          ],
+        },
+      }
+    }
+    x={1}
+    y={0}
+  />
+</Fragment>
+`;
+
+exports[`RawYAxis snapshot renders 1`] = `
+<Fragment>
+  <F
+    height={400}
+    hideZero={true}
+    left={0}
+    orientation="left"
+    scale={[MockFunction]}
+    tickFormat={[Function]}
+    tickLabelProps={[Function]}
+    tickLength={10}
+    tickTextAnchor="bottom"
+    top={0}
+  />
+  <WithStyles(Arrow)
+    direction="down"
+    scale={
+      Object {
+        "x": [MockFunction] {
+          "calls": Array [
+            Array [
+              0,
+            ],
+          ],
+          "results": Array [
+            Object {
+              "type": "return",
+              "value": 0,
+            },
+          ],
+        },
+        "y": [MockFunction],
+      }
+    }
+    x={0}
+    y={0}
+  />
+  <WithStyles(Arrow)
+    direction="up"
+    scale={
+      Object {
+        "x": [MockFunction] {
+          "calls": Array [
+            Array [
+              0,
+            ],
+          ],
+          "results": Array [
+            Object {
+              "type": "return",
+              "value": 0,
+            },
+          ],
+        },
+        "y": [MockFunction],
+      }
+    }
+    x={0}
+    y={1}
+  />
+</Fragment>
+`;
