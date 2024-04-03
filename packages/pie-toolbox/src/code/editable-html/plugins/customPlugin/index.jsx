@@ -1,5 +1,5 @@
 import React from 'react';
-import { htmlToValue } from '../../serialization';
+import { htmlToValue } from '../../new-serialization';
 
 // We're possibly going to have to support content types, so starting it as an enum
 export const CONTENT_TYPE = {
