@@ -222,6 +222,7 @@ export class Graph extends React.Component {
       onChangeTitle,
       mathMlOptions = {},
       gssLineData,
+      disabled,
     } = this.props;
     let { marks } = this.props;
 
@@ -242,10 +243,14 @@ export class Graph extends React.Component {
             points: section,
             isSolution: false,
           };
-          marks.push(polygon);
+          if (!disabled) marks.push(polygon);
         }
       });
     }
+    //Adjusted layering of added svg elements so that polygons will be added first and lines will be added second
+    let newMarks = [];
+    newMarks.push(...marks.filter((mark) => mark.type === 'polygon'));
+    newMarks.push(...marks.filter((mark) => mark.type === 'line'));
 
     return (
       <Root
@@ -292,7 +297,7 @@ export class Graph extends React.Component {
               );
             })}
 
-            {marks.map((m, index) => {
+            {newMarks.map((m, index) => {
               const Component = this.getComponent(m);
               const markType = m.type;
 

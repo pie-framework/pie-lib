@@ -25,8 +25,9 @@ export class ToolMenu extends React.Component {
               value={'lineA'}
               disabled={!!disabled}
               checked={gssLineData.selectedTool === 'lineA'}
+              className={classes.lineTypeRadio}
             />
-            <Typography className={classes.lineNameFont}>LINE A</Typography>
+            <Typography className={classes.lineNameFont}>Line A</Typography>
           </div>
           <div className={classes.radioFieldButtons}>
             {gssLineData.lineA.lineType === 'Solid' ? (
@@ -35,9 +36,9 @@ export class ToolMenu extends React.Component {
                 variant={'contained'}
                 color={'primary'}
                 onClick={() => this.lineTypeChange('A', 'Solid')}
-                className={disabled ? classes.lineTypeButtonDisabled : classes.lineTypeButton}
+                className={disabled ? classes.lineTypeButtonLeftSelectedDisabled : classes.lineTypeButtonLeftSelected}
               >
-                Solid
+                &#x2714; Solid
               </Button>
             ) : (
               <Button
@@ -45,7 +46,9 @@ export class ToolMenu extends React.Component {
                 variant={'contained'}
                 disabled={!!disabled}
                 onClick={() => this.lineTypeChange('A', 'Solid')}
-                className={disabled ? classes.lineTypeButtonDisabled : classes.lineTypeButton}
+                className={
+                  disabled ? classes.lineTypeButtonLeftUnSelectedDisabled : classes.lineTypeButtonLeftUnSelected
+                }
               >
                 Solid
               </Button>
@@ -56,9 +59,9 @@ export class ToolMenu extends React.Component {
                 variant={'contained'}
                 color={'primary'}
                 onClick={() => this.lineTypeChange('A', 'Dashed')}
-                className={disabled ? classes.lineTypeButtonDisabled : classes.lineTypeButton}
+                className={disabled ? classes.lineTypeButtonRightSelectedDisabled : classes.lineTypeButtonRightSelected}
               >
-                Dashed
+                &#x2714; Dashed
               </Button>
             ) : (
               <Button
@@ -66,7 +69,9 @@ export class ToolMenu extends React.Component {
                 variant={'contained'}
                 disabled={!!disabled}
                 onClick={() => this.lineTypeChange('A', 'Dashed')}
-                className={disabled ? classes.lineTypeButtonDisabled : classes.lineTypeButton}
+                className={
+                  disabled ? classes.lineTypeButtonRightUnSelectedDisabled : classes.lineTypeButtonRightUnSelected
+                }
               >
                 Dashed
               </Button>
@@ -82,8 +87,9 @@ export class ToolMenu extends React.Component {
                 value={'lineB'}
                 disabled={!!disabled}
                 checked={gssLineData.selectedTool === 'lineB'}
+                className={classes.lineTypeRadio}
               />
-              <Typography className={classes.lineNameFont}>LINE B</Typography>
+              <Typography className={classes.lineNameFont}>Line B</Typography>
             </div>
             <div className={classes.radioFieldButtons}>
               {gssLineData.lineB.lineType === 'Solid' ? (
@@ -92,9 +98,9 @@ export class ToolMenu extends React.Component {
                   variant={'contained'}
                   color={'primary'}
                   onClick={() => this.lineTypeChange('B', 'Solid')}
-                  className={disabled ? classes.lineTypeButtonDisabled : classes.lineTypeButton}
+                  className={disabled ? classes.lineTypeButtonLeftSelectedDisabled : classes.lineTypeButtonLeftSelected}
                 >
-                  Solid
+                  &#x2714; Solid
                 </Button>
               ) : (
                 <Button
@@ -102,7 +108,9 @@ export class ToolMenu extends React.Component {
                   variant={'contained'}
                   disabled={!!disabled}
                   onClick={() => this.lineTypeChange('B', 'Solid')}
-                  className={disabled ? classes.lineTypeButtonDisabled : classes.lineTypeButton}
+                  className={
+                    disabled ? classes.lineTypeButtonLeftUnSelectedDisabled : classes.lineTypeButtonLeftUnSelected
+                  }
                 >
                   Solid
                 </Button>
@@ -113,9 +121,11 @@ export class ToolMenu extends React.Component {
                   variant={'contained'}
                   color={'primary'}
                   onClick={() => this.lineTypeChange('B', 'Dashed')}
-                  className={disabled ? classes.lineTypeButtonDisabled : classes.lineTypeButton}
+                  className={
+                    disabled ? classes.lineTypeButtonRightSelectedDisabled : classes.lineTypeButtonRightSelected
+                  }
                 >
-                  Dashed
+                  &#x2714; Dashed
                 </Button>
               ) : (
                 <Button
@@ -123,7 +133,9 @@ export class ToolMenu extends React.Component {
                   variant={'contained'}
                   disabled={!!disabled}
                   onClick={() => this.lineTypeChange('B', 'Dashed')}
-                  className={disabled ? classes.lineTypeButtonDisabled : classes.lineTypeButton}
+                  className={
+                    disabled ? classes.lineTypeButtonRightUnSelectedDisabled : classes.lineTypeButtonRightUnSelected
+                  }
                 >
                   Dashed
                 </Button>
@@ -139,8 +151,9 @@ export class ToolMenu extends React.Component {
               value={'solutionSet'}
               disabled={!!disabled}
               checked={gssLineData.selectedTool === 'solutionSet'}
+              className={classes.lineTypeRadio}
             />
-            <Typography className={classes.lineNameFont}>SOLUTION SET</Typography>
+            <Typography className={classes.lineNameFont}>Solution Set</Typography>
           </div>
         </div>
       </div>
@@ -193,17 +206,88 @@ const styles = (theme) => ({
     fontWeight: 'bold',
     padding: '0 5px 0 0',
   },
-  lineTypeButton: {
+  lineTypeButtonLeftSelected: {
     textTransform: 'none',
-    border: '1.5px solid #3f51b5',
+    border: '1px solid #3E4EB1',
     borderRadius: '0',
+    backgroundColor: '#3E4EB1 !important',
+    borderTopLeftRadius: '4px',
+    borderBottomLeftRadius: '4px',
+    color: '#FFFFFF !important',
   },
-  lineTypeButtonDisabled: {
+  lineTypeButtonLeftUnSelected: {
     textTransform: 'none',
-    border: '1.5px solid #3f51b5',
+    border: '1px solid #3E4EB1',
+    borderRadius: '0',
+    backgroundColor: '#FFFFFF !important',
+    borderTopLeftRadius: '4px',
+    borderBottomLeftRadius: '4px',
+    color: '#3E4EB1 !important',
+  },
+  lineTypeButtonRightSelected: {
+    textTransform: 'none',
+    border: '1px solid #3E4EB1',
+    borderRadius: '0',
+    backgroundColor: '#3E4EB1 !important',
+    borderTopRightRadius: '4px',
+    borderBottomRightRadius: '4px',
+    color: '#FFFFFF !important',
+  },
+  lineTypeButtonRightUnSelected: {
+    textTransform: 'none',
+    border: '1px solid #3E4EB1',
+    borderRadius: '0',
+    backgroundColor: '#FFFFFF !important',
+    borderTopRightRadius: '4px',
+    borderBottomRightRadius: '4px',
+    color: '#3E4EB1 !important',
+  },
+  lineTypeRadio: {
+    color: '#000000 !important',
+  },
+  lineTypeButtonLeftSelectedDisabled: {
+    textTransform: 'none',
+    border: '1px solid #3E4EB1',
+    borderRadius: '0',
+    backgroundColor: '#3E4EB1 !important',
+    borderTopLeftRadius: '4px',
+    borderBottomLeftRadius: '4px',
+    color: '#FFFFFF !important',
     cursor: 'default',
     pointerEvents: 'none',
+  },
+  lineTypeButtonLeftUnSelectedDisabled: {
+    textTransform: 'none',
+    border: '1px solid #3E4EB1',
     borderRadius: '0',
+    backgroundColor: '#FFFFFF !important',
+    borderTopLeftRadius: '4px',
+    borderBottomLeftRadius: '4px',
+    color: '#3E4EB1 !important',
+    cursor: 'default',
+    pointerEvents: 'none',
+  },
+  lineTypeButtonRightSelectedDisabled: {
+    textTransform: 'none',
+    border: '1px solid #3E4EB1',
+    borderRadius: '0',
+    backgroundColor: '#3E4EB1 !important',
+    borderTopRightRadius: '4px',
+    borderBottomRightRadius: '4px',
+    color: '#FFFFFF !important',
+    cursor: 'default',
+    pointerEvents: 'none',
+  },
+  lineTypeButtonRightUnSelectedDisabled: {
+    textTransform: 'none',
+    border: '1px solid #3E4EB1',
+    borderRadius: '0',
+    backgroundColor: '#FFFFFF !important',
+    borderTopRightRadius: '4px',
+    borderBottomRightRadius: '4px',
+    color: '#3E4EB1 !important',
+    cursor: 'default',
+    pointerEvents: 'none',
   },
 });
 

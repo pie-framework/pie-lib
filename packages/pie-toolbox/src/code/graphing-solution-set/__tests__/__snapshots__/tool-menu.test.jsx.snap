@@ -6,8 +6,15 @@ exports[`ToolMenu snapshot renders 1`] = `
   classes={
     Object {
       "lineNameFont": "ToolMenu-lineNameFont-7",
-      "lineTypeButton": "ToolMenu-lineTypeButton-8",
-      "lineTypeButtonDisabled": "ToolMenu-lineTypeButtonDisabled-9",
+      "lineTypeButtonLeftSelected": "ToolMenu-lineTypeButtonLeftSelected-8",
+      "lineTypeButtonLeftSelectedDisabled": "ToolMenu-lineTypeButtonLeftSelectedDisabled-13",
+      "lineTypeButtonLeftUnSelected": "ToolMenu-lineTypeButtonLeftUnSelected-9",
+      "lineTypeButtonLeftUnSelectedDisabled": "ToolMenu-lineTypeButtonLeftUnSelectedDisabled-14",
+      "lineTypeButtonRightSelected": "ToolMenu-lineTypeButtonRightSelected-10",
+      "lineTypeButtonRightSelectedDisabled": "ToolMenu-lineTypeButtonRightSelectedDisabled-15",
+      "lineTypeButtonRightUnSelected": "ToolMenu-lineTypeButtonRightUnSelected-11",
+      "lineTypeButtonRightUnSelectedDisabled": "ToolMenu-lineTypeButtonRightUnSelectedDisabled-16",
+      "lineTypeRadio": "ToolMenu-lineTypeRadio-12",
       "lineTypeText": "ToolMenu-lineTypeText-6",
       "radioButtonClass": "ToolMenu-radioButtonClass-1",
       "radioFieldButtons": "ToolMenu-radioFieldButtons-5",
