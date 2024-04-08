@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.14.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.14.0...@pie-lib/pie-toolbox@1.14.1) (2024-04-08)
+
+
+### Bug Fixes
+
+* **graphing-solution-set:** Fixed CSS padding for buttons ([b008115](https://github.com/pie-framework/pie-lib/commit/b0081152c1c35e9d670a3fccd4b2e19a165fde21))
+
+
+
+
+
 # [1.14.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.13.1...@pie-lib/pie-toolbox@1.14.0) (2024-04-08)
 
 
