@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.14.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.13.1...@pie-lib/pie-toolbox@1.14.0) (2024-04-08)
+
+
+### Features
+
+* **graphing-solution-set:** Modified HTML and CSS as per SC-30530 requirements. ([3697a7f](https://github.com/pie-framework/pie-lib/commit/3697a7fdcfea8f151dc1ec305faf4eb5bf4e014b))
+
+
+
+
+
 ## [1.13.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.13.0...@pie-lib/pie-toolbox@1.13.1) (2024-04-01)
 
 
