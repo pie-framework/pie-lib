@@ -232,7 +232,7 @@ const styles = (theme) => ({
     backgroundColor: '#9FA8DA',
     '& button': {
       fontSize: '0.875rem',
-      padding: '0.25rem .5rem',
+      padding: '0.25rem .3rem',
       width: '5rem',
     },
   },
