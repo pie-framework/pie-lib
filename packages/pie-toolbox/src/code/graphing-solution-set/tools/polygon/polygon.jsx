@@ -66,11 +66,11 @@ export const Polygon = withStyles((theme) => ({
   gssClosed: {
     fill: 'transparent',
     '&:hover': {
-      fill: 'rgb(0, 0, 0, 0.42)',
+      fill: 'rgb(0, 0, 0, 0.25)',
     },
   },
   gssSolution: {
-    fill: 'rgb(0, 0, 0, 0.64)',
+    fill: 'rgb(60, 73, 150, 0.6)',
   },
   disabled: {
     ...disabled('stroke'),

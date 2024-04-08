@@ -211,6 +211,7 @@ export class GraphWithControls extends React.Component {
           tools={tools}
           gssLineData={gssLineData}
           onSolutionSetSelected={onSolutionSetSelected}
+          disabled={!!disabled}
         />
       </div>
     );
@@ -226,11 +227,13 @@ const styles = (theme) => ({
   controls: {
     display: 'flex',
     justifyContent: 'space-between',
-    padding: theme.spacing.unit,
+    padding: 'calc(1.25rem - 12px) calc(1.25rem - 12px) 1.25rem',
     color: color.text(),
-    backgroundColor: color.primaryLight(),
+    backgroundColor: '#9FA8DA',
     '& button': {
-      fontSize: theme.typography.fontSize,
+      fontSize: '0.875rem',
+      padding: '0.25rem .5rem',
+      width: '5rem',
     },
   },
   expansionPanel: {
@@ -253,6 +256,7 @@ const styles = (theme) => ({
   undoRedoOuterDiv: {
     display: 'flex',
     flexDirection: 'column',
+    marginTop: '.5rem',
   },
 });
 
