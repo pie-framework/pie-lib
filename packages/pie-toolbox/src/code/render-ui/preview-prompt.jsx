@@ -49,30 +49,37 @@ export class PreviewPrompt extends Component {
   }
 
   alignImages() {
-    const previewPrompt = document.querySelector('#preview-prompt');
-    const images = previewPrompt && previewPrompt.getElementsByTagName('img');
+    const previewPrompts = document.querySelectorAll('#preview-prompt');
 
-    if (images && images.length) {
-      for (let image of images) {
-        // check if alignment property was set
-        if (image.attributes && image.attributes.alignment && image.attributes.alignment.value) {
-          const parentNode = image.parentElement;
+    previewPrompts.forEach((previewPrompt) => {
+      const images = previewPrompt.getElementsByTagName('img');
 
-          // check if div is not already added to dom and replace current image with wrapped image
-          if (
-            !(parentNode.tagName === 'DIV' && parentNode.style.display === 'flex' && parentNode.style.width === '100%')
-          ) {
-            const div = document.createElement('div');
-            div.style.display = 'flex';
-            div.style.width = '100%';
+      if (images && images.length) {
+        for (let image of images) {
+          // check if alignment property was set
+          if (image.attributes && image.attributes.alignment && image.attributes.alignment.value) {
+            const parentNode = image.parentElement;
 
-            const copyImage = image.cloneNode(true);
-            div.appendChild(copyImage);
-            parentNode.replaceChild(div, image);
+            // check if div is not already added to dom and replace current image with wrapped image
+            if (
+              !(
+                parentNode.tagName === 'DIV' &&
+                parentNode.style.display === 'flex' &&
+                parentNode.style.width === '100%'
+              )
+            ) {
+              const div = document.createElement('div');
+              div.style.display = 'flex';
+              div.style.width = '100%';
+
+              const copyImage = image.cloneNode(true);
+              div.appendChild(copyImage);
+              parentNode.replaceChild(div, image);
+            }
           }
         }
       }
-    }
+    });
   }
 
   render() {
