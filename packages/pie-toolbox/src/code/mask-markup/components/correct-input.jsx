@@ -58,8 +58,10 @@ export default withStyles(() => ({
     isConstructedResponse,
     width,
     spellCheck,
+    value,
     ...rest
   } = props;
+  console.log(props, "props in correct input")
   const label = typeof correct === 'boolean' ? (correct ? 'correct' : 'incorrect') : undefined;
   const inputProps = charactersLimit
     ? { maxLength: charactersLimit, 'aria-label': 'Enter answer' }
@@ -89,6 +91,7 @@ export default withStyles(() => ({
       labelWidth={0}
       disabled={disabled}
       spellCheck={spellCheck}
+      value={value}
       {...rest}
     />
   );

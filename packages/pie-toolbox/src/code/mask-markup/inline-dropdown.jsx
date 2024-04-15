@@ -9,8 +9,8 @@ export default withMask('dropdown', (props) => (node, data, onChange) => {
     // eslint-disable-next-line react/prop-types
     const { choices, disabled, feedback, showCorrectAnswer } = props;
     const correctAnswer = choices && choices[dataset.id] && choices[dataset.id].find((c) => c.correct);
-    const finalChoice = showCorrectAnswer ? correctAnswer && correctAnswer.value : data[dataset.id];
-
+    const finalChoice = showCorrectAnswer ? correctAnswer && correctAnswer.label : data[dataset.id];
+    
     return (
       <Dropdown
         key={`${node.type}-dropdown-${dataset.id}`}
