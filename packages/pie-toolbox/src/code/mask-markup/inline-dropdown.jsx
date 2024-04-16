@@ -10,13 +10,14 @@ export default withMask('dropdown', (props) => (node, data, onChange) => {
     const { choices, disabled, feedback, showCorrectAnswer } = props;
     const correctAnswer = choices && choices[dataset.id] && choices[dataset.id].find((c) => c.correct);
     const finalChoice = showCorrectAnswer ? correctAnswer && correctAnswer.label : data[dataset.id];
-    
+
     return (
       <Dropdown
         key={`${node.type}-dropdown-${dataset.id}`}
         correct={feedback && feedback[dataset.id] && feedback[dataset.id] === 'correct'}
         disabled={disabled || showCorrectAnswer}
         value={finalChoice}
+        correctValue={showCorrectAnswer ? correctAnswer && correctAnswer.label : undefined}
         id={dataset.id}
         onChange={onChange}
         choices={choices[dataset.id]}

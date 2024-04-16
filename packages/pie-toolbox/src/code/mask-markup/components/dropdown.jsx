@@ -5,7 +5,6 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import CorrectInput from './correct-input';
 import { withStyles } from '@material-ui/core/styles';
 import { color } from '../../render-ui';
 
@@ -41,8 +40,8 @@ class Dropdown extends React.Component {
   handleHighlight = (index) => {
     const highlightedOptionId = `dropdown-option-${this.props.id}-${index}`;
     this.setState({ highlightedOptionId });
-  }
-  
+  };
+
   handleSelect = (value, index) => {
     this.props.onChange(this.props.id, value);
     this.handleHighlight(index);
@@ -50,15 +49,13 @@ class Dropdown extends React.Component {
   };
 
   getLabel(choices, value) {
-    // Find the object in the array where the value matches the provided value
     const found = choices.find((choice) => choice.value === value);
-    console.log(found, 'label');
 
-    // If an object is found, return its label; otherwise, return undefined
     return found ? found.label.trim() : undefined;
   }
+
   render() {
-    const { classes, id, correct, disabled, value, onChange, choices, showCorrectAnswer, singleQuery } = this.props;
+    const { classes, id, correct, disabled, value, choices, showCorrectAnswer, singleQuery, correctValue } = this.props;
 
     const { anchorEl } = this.state;
     const open = Boolean(anchorEl);
@@ -66,7 +63,11 @@ class Dropdown extends React.Component {
     const menuId = `dropdown-menu-${id}`;
     const valueDisplayId = `dropdown-value-${id}`;
 
-    console.log(this.props, 'props');
+    // Determine the class for disabled state
+    let disabledClass;
+    if (disabled && correct !== undefined) {
+      disabledClass = correct || showCorrectAnswer ? classes.disabledCorrect : classes.disabledIncorrect;
+    }
 
     // Create distinct, visually hidden labels for each dropdown
     const incrementedId = parseInt(id, 10) + 1;
@@ -78,34 +79,31 @@ class Dropdown extends React.Component {
         <InputLabel className={classes.srOnly} id={labelId}>
           {labelText}
         </InputLabel>
-        {showCorrectAnswer && <CorrectInput correct={showCorrectAnswer || correct} value={value} disabled />}
-        {!showCorrectAnswer && (
-          <Button
-            aria-controls={open ? menuId : undefined}
-            aria-haspopup="listbox"
-            aria-expanded={open ? 'true' : undefined}
-            aria-activedescendant={this.state.highlightedOptionId}
-            onClick={this.handleClick}
-            classes={{
-              root: classes.root,
-              selectMenu: classes.selectMenu,
-              disabled: classes.selectMenu,
+        <Button
+          aria-controls={open ? menuId : undefined}
+          aria-haspopup="listbox"
+          aria-expanded={open ? 'true' : undefined}
+          aria-activedescendant={this.state.highlightedOptionId}
+          onClick={this.handleClick}
+          classes={{
+            root: classes.root,
+            disabled: disabledClass,
+          }}
+          disabled={disabled}
+          id={buttonId}
+          role="combobox"
+          aria-label="Select answer"
+          aria-labelledby={valueDisplayId}
+        >
+          <span
+            id={valueDisplayId}
+            className={classes.label}
+            dangerouslySetInnerHTML={{
+              __html: correctValue ? correctValue : this.getLabel(choices, value) ? this.getLabel(choices, value) : '',
             }}
-            disabled={disabled}
-            id={buttonId}
-            role="combobox"
-            aria-label="Select answer"
-            aria-labelledby={valueDisplayId}
-          >
-            <span
-              id={valueDisplayId}
-              className={classes.label}
-              dangerouslySetInnerHTML={{ __html: this.getLabel(choices, value) ? this.getLabel(choices, value) : '' }}
-            />
-
-            <ArrowDropDownIcon />
-          </Button>
-        )}
+          />
+          <ArrowDropDownIcon />
+        </Button>
         <Menu
           id={menuId}
           anchorEl={anchorEl}
@@ -119,30 +117,26 @@ class Dropdown extends React.Component {
           }}
         >
           {(choices || []).map((c, index) => {
-    const optionId = `dropdown-option-${id}-${index}`;
-    console.log(this.state.highlightedOptionId, "this.state.highlightedOptionId")
-    console.log(optionId, "optionId")
-    return (
-      <MenuItem
-        id={optionId}
-        classes={{ root: classes.menuRoot, selected: classes.selected }}
-        key={`${c.label}-${index}`}
-        value={c.value}
-        onClick={() => this.handleSelect(c.value, index)}
-        role="option"
-        aria-selected={this.state.highlightedOptionId === optionId ? 'true' : undefined}  // Dynamically set aria-selected
-      >
-        <span
-          className={classes.label}
-          dangerouslySetInnerHTML={{ __html: c.label }}
-        />
-        <span
-          className={classes.label}
-          dangerouslySetInnerHTML={{ __html: c.value === value ? ' &check;' : '' }}
-        />
-      </MenuItem>
-    );
-  })}
+            const optionId = `dropdown-option-${id}-${index}`;
+
+            return (
+              <MenuItem
+                id={optionId}
+                classes={{ root: classes.menuRoot, selected: classes.selected }}
+                key={`${c.label}-${index}`}
+                value={c.value}
+                onClick={() => this.handleSelect(c.value, index)}
+                role="option"
+                aria-selected={this.state.highlightedOptionId === optionId ? 'true' : undefined}
+              >
+                <span className={classes.label} dangerouslySetInnerHTML={{ __html: c.label }} />
+                <span
+                  className={classes.label}
+                  dangerouslySetInnerHTML={{ __html: c.value === value ? ' &check;' : '' }}
+                />
+              </MenuItem>
+            );
+          })}
         </Menu>
       </>
     );
@@ -153,7 +147,6 @@ const styles = (theme) => ({
   root: {
     color: color.text(),
     border: `1px solid ${color.text()}`,
-    borderColor: 'initial',
     borderRadius: '4px',
     justifyContent: 'space-between',
     backgroundColor: color.background(),
@@ -182,10 +175,13 @@ const styles = (theme) => ({
       marginLeft: '5px',
     },
   },
-  select: {
-    '&:focus': {
-      borderRadius: '4px',
-    },
+  disabledCorrect: {
+    borderColor: color.correct(),
+    color: color.text(),
+  },
+  disabledIncorrect: {
+    borderColor: color.incorrect(),
+    color: color.text(),
   },
   selectMenu: {
     backgroundColor: color.background(),
