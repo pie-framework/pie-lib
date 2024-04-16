@@ -39,6 +39,7 @@ class Dropdown extends React.Component {
 
   handleHighlight = (index) => {
     const highlightedOptionId = `dropdown-option-${this.props.id}-${index}`;
+
     this.setState({ highlightedOptionId });
   };
 
@@ -63,8 +64,9 @@ class Dropdown extends React.Component {
     const menuId = `dropdown-menu-${id}`;
     const valueDisplayId = `dropdown-value-${id}`;
 
-    // Determine the class for disabled state
+    // Determine the class for disabled state, view mode and evaluate mode
     let disabledClass;
+
     if (disabled && correct !== undefined) {
       disabledClass = correct || showCorrectAnswer ? classes.disabledCorrect : classes.disabledIncorrect;
     }
@@ -143,7 +145,7 @@ class Dropdown extends React.Component {
   }
 }
 
-const styles = (theme) => ({
+const styles = () => ({
   root: {
     color: color.text(),
     border: `1px solid ${color.text()}`,
@@ -158,14 +160,6 @@ const styles = (theme) => ({
     '& span': {
       paddingRight: '5px',
     },
-    '& ul': {
-      paddingTop: 0,
-      paddingBottom: 0,
-      border: `1px solid ${color.text()}`,
-      borderRadius: '5px',
-      color: color.text(),
-      backgroundColor: color.background(),
-    },
     '& svg': {
       position: 'absolute',
       right: 0,
@@ -177,11 +171,11 @@ const styles = (theme) => ({
   },
   disabledCorrect: {
     borderColor: color.correct(),
-    color: color.text(),
+    color: `${color.text()} !important`,
   },
   disabledIncorrect: {
     borderColor: color.incorrect(),
-    color: color.text(),
+    color: `${color.text()} !important`,
   },
   selectMenu: {
     backgroundColor: color.background(),
