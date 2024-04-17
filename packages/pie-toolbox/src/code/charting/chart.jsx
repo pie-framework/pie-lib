@@ -70,6 +70,8 @@ export class Chart extends React.Component {
     changeInteractiveEnabled: PropTypes.bool,
     changeEditableEnabled: PropTypes.bool,
     language: PropTypes.string,
+    mathMlOptions: PropTypes.object,
+    charactersLimit: PropTypes.number,
   };
 
   static defaultProps = {
@@ -207,6 +209,7 @@ export class Chart extends React.Component {
       error,
       mathMlOptions = {},
       language,
+      charactersLimit,
     } = this.props;
     let { chartType } = this.props;
 
@@ -274,6 +277,7 @@ export class Chart extends React.Component {
           showPixelGuides={showPixelGuides}
           rootRef={(r) => (this.rootNode = r)}
           mathMlOptions={mathMlOptions}
+          charactersLimit={charactersLimit}
           {...rootCommon}
         >
           <ChartGrid {...common} xBand={xBand} rowTickValues={horizontalLines} columnTickValues={verticalLines} />
