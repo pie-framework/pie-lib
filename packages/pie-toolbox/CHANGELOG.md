@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.15.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.14.1...@pie-lib/pie-toolbox@1.15.0) (2024-04-18)
+
+
+### Bug Fixes
+
+* **config-ui/alert-dialog:** fixed font sizes to not be too small or client env PD-3655 ([48fcf97](https://github.com/pie-framework/pie-lib/commit/48fcf97f9fed1d6c0493628ff77e5a433be4382b))
+* **render-ui/preview-prompt:** fix image alignment for multiple prompts on screen PD-3607 ([6dbadd3](https://github.com/pie-framework/pie-lib/commit/6dbadd34eabe6793a3dd943c643a7b566a9c0bdd))
+
+
+### Features
+
+* **charting, plot:** Charting Item Label Characters Limit SC-30682 ([0417234](https://github.com/pie-framework/pie-lib/commit/0417234677eff3fe7f458eb11f24d1731c23c5bd))
+
+
+
+
+
 ## [1.14.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.14.0...@pie-lib/pie-toolbox@1.14.1) (2024-04-08)
 
 
