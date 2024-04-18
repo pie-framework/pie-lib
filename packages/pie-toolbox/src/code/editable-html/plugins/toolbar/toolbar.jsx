@@ -3,6 +3,7 @@ import { Change, Editor, Element as SlateElement, Text, Node } from 'slate';
 import { useSlate, useSlateSelection } from 'slate-react';
 import Delete from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import debug from 'debug';
@@ -36,6 +37,24 @@ const getCustomToolbar = (plugin, node, nodePath, editor, handleDone) => {
     return plugin.toolbar.customToolbar(node, nodePath, editor, handleDone);
   }
 };
+
+export const UndoButton = withStyles((theme) => ({
+  icon: {
+    fontFamily: 'Cerebri Sans !important',
+    fontSize: theme.typography.fontSize,
+    fontWeight: 'bold',
+    lineHeight: '14px',
+    position: 'relative',
+    top: '7px',
+    width: '110px',
+    height: '28px',
+    whiteSpace: 'nowrap',
+  },
+}))(({ classes, onClick }) => (
+  <div onClick={onClick} className={classes.icon}>
+    Undo
+  </div>
+));
 
 const style = {
   toolbar: {
@@ -294,6 +313,16 @@ export const Toolbar = (props) => {
           </IconButton>
         )}
         {customToolbarShowDone && <DoneButton onClick={handleDone} />}
+        <Button
+          aria-label="Undo"
+          className={classes.iconRoot}
+          onClick={(e) => editor.undo()}
+          classes={{
+            root: classes.iconRoot,
+          }}
+        >
+          Undo
+        </Button>
       </div>
     </div>
   );
