@@ -20,6 +20,7 @@ const LabelComponent = (props) => {
     side,
     onChange,
     mathMlOptions = {},
+    charactersLimit,
   } = props;
   const [rotatedToHorizontal, setRotatedToHorizontal] = useState(false);
   const activePlugins = [
@@ -85,6 +86,7 @@ const LabelComponent = (props) => {
             activePlugins={activePlugins}
             onDone={() => setRotatedToHorizontal(false)}
             mathMlOptions={mathMlOptions}
+            charactersLimit={charactersLimit}
           />
         )}
       </div>
@@ -104,6 +106,8 @@ LabelComponent.propTypes = {
   text: PropTypes.string,
   side: PropTypes.string,
   onChange: PropTypes.func,
+  mathMlOptions: PropTypes.object,
+  charactersLimit: PropTypes.number,
 };
 
 export default withStyles((theme) => ({
