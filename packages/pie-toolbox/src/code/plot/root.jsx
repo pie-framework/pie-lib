@@ -30,7 +30,7 @@ export class Root extends React.Component {
     onChangeLabels: PropTypes.func,
     titlePlaceholder: PropTypes.string,
     mathMlOptions: PropTypes.object,
-    charactersLimit: PropTypes.number,
+    labelsCharactersLimit: PropTypes.number,
   };
 
   mouseMove = (g) => {
@@ -101,7 +101,7 @@ export class Root extends React.Component {
       title,
       rootRef,
       mathMlOptions = {},
-      charactersLimit,
+      labelsCharactersLimit,
     } = this.props;
     const {
       size: { width = 500, height = 500 },
@@ -184,7 +184,7 @@ export class Root extends React.Component {
             graphWidth={finalWidth}
             onChange={(value) => this.onChangeLabel(value, 'top')}
             mathMlOptions={mathMlOptions}
-            charactersLimit={charactersLimit}
+            charactersLimit={labelsCharactersLimit}
           />
         )}
         <div className={classes.wrapper}>
@@ -200,7 +200,7 @@ export class Root extends React.Component {
               isDefineChartLeftLabel={isChart && defineChart}
               onChange={(value) => this.onChangeLabel(value, 'left')}
               mathMlOptions={mathMlOptions}
-              charactersLimit={charactersLimit}
+              charactersLimit={labelsCharactersLimit}
             />
           )}
           <svg width={finalWidth} height={finalHeight} className={defineChart ? classes.defineChart : classes.chart}>
@@ -227,7 +227,7 @@ export class Root extends React.Component {
               graphWidth={finalWidth}
               onChange={(value) => this.onChangeLabel(value, 'right')}
               mathMlOptions={mathMlOptions}
-              charactersLimit={charactersLimit}
+              charactersLimit={labelsCharactersLimit}
             />
           )}
           {showPixelGuides && (
@@ -258,7 +258,7 @@ export class Root extends React.Component {
             isDefineChartBottomLabel={isChart && defineChart}
             onChange={(value) => this.onChangeLabel(value, 'bottom')}
             mathMlOptions={mathMlOptions}
-            charactersLimit={charactersLimit}
+            charactersLimit={labelsCharactersLimit}
           />
         )}
       </div>
