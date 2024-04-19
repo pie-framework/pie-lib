@@ -304,8 +304,8 @@ export const serialization = {
       const decoded = htmlDecode(lessThanHandling(l));
 
       if (MathPlugin.mathMlOptions.mmlOutput) {
-        const res = renderMath(`<span data-latex="" data-raw="${decoded}">${wrapMath(decoded, wrapper)}</span>`);
-        const newLatex = mmlToLatex(res);
+        const res = renderMath(`<span data-latex="" data-raw="${decoded}">${wrapMath(decoded, wrapper)}</span>`, { skipWaitForMathRenderingLib: true });
+        const newLatex = res ? mmlToLatex(res) : '';
 
         // we need to remove all the spaces from the latex to be able to compare it
         const strippedL = l.replace(/\s/g, '');
