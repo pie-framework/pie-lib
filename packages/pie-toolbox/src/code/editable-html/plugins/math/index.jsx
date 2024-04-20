@@ -4,7 +4,7 @@ import { ReactEditor } from 'slate-react';
 import { jsx } from 'slate-hyperscript';
 import Functions from '@material-ui/icons/Functions';
 import { MathPreview, MathToolbar } from '../../../math-toolbar';
-import { wrapMath, unWrapMath, mmlToLatex, renderMath } from '../../../math-rendering-accessible';
+import { wrapMath, unWrapMath, mmlToLatex, renderMath } from '../../../math-rendering';
 import debug from 'debug';
 import PropTypes from 'prop-types';
 import isEqual from 'lodash/isEqual';
@@ -243,23 +243,15 @@ function fixLatexExpression(latexInput) {
 }
 
 export const serialization = {
-  deserialize(el, children) {
+  deserialize(el) {
     const tagName = getTagName(el);
-    /**
-     * This is used for when there's a wrapper over the mathml element.
-     * Because of this slate rule: "Only allow block nodes or inline and text nodes in blocks."
-     * The element that contains only the mathml is removed (along with the math) because it has
-     * an inline child and the block is of type block
-     * This is for legacy content only since our math rendering is valid for the core slate rules
-     */
-    const hasMathChild = BLOCK_TAGS[tagName] && el.childNodes.length === 1 && getTagName(el.firstChild) === 'math';
     log('[deserialize] name: ', tagName);
 
     /**
      * This is here in order to be able to render mathml content
      */
-    if (tagName === 'math' || (el.dataset && el.dataset.type === 'mathml') || hasMathChild) {
-      const newHtml = hasMathChild ? el.innerHTML : el.outerHTML;
+    if (tagName === 'math' || (el.dataset && el.dataset.type === 'mathml')) {
+      const newHtml = el.outerHTML;
 
       if (MathPlugin.mathMlOptions.mmlEditing) {
         // todo fix this in mathml-to-latex
@@ -320,8 +312,10 @@ export const serialization = {
       const decoded = htmlDecode(lessThanHandling(latex));
 
       if (MathPlugin.mathMlOptions.mmlOutput) {
-        const res = renderMath(`<span data-latex="" data-raw="${decoded}">${wrapMath(decoded, wrapper)}</span>`);
-        const newLatex = mmlToLatex(res);
+        const res = renderMath(`<span data-latex="" data-raw="${decoded}">${wrapMath(decoded, wrapper)}</span>`, {
+          skipWaitForMathRenderingLib: true,
+        });
+        const newLatex = res ? mmlToLatex(res) : '';
 
         // we need to remove all the spaces from the latex to be able to compare it
         const strippedL = latex.replace(/\s/g, '');
@@ -335,7 +329,7 @@ export const serialization = {
           // As George requested in PD-3167, I will set the new mathML anyway, and also log differences
           // if it doesn't we keep the latex version
           console.log('This latex can not be safely converted to mathml so we will keep the latex version!!!', {
-            initialLatex: l,
+            initialLatex: '',
             newLatex: newLatex,
             correctedLatex,
             mathML: res,

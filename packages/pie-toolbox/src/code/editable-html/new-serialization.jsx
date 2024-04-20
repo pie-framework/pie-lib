@@ -122,9 +122,7 @@ const blocks = {
     );
   },
   serialize: (object, children) => {
-    if (object.object !== 'block') return;
-
-    const jsonData = object.data;
+    const jsonData = object.data || {};
 
     log('[blocks:serialize] object: ', object, children);
     let key;

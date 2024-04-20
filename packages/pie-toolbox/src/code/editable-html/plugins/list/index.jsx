@@ -66,18 +66,28 @@ export const serialization = {
   },
 };
 
+const getListParent = (editor) => {
+  const pathRange = Editor.unhangRange(editor, editor.selection);
+  const ancestors = Array.from(SlateNode.ancestors(editor, pathRange.anchor.path, { reverse: true }));
+  const parentList = ancestors.find(([node]) => ['ul', 'ol'].includes(node.type));
+
+  return parentList;
+};
+
 const isBlockActive = (editor, format) => {
   const { selection } = editor;
-  if (!selection) return false;
 
-  const [match] = Array.from(
-    Editor.nodes(editor, {
-      at: Editor.unhangRange(editor, selection),
-      match: (node) => !Editor.isEditor(node) && SlateElement.isElement(node) && node.type === format,
-    }),
-  );
+  if (!selection) {
+    return false;
+  }
 
-  return !!match;
+  const parentList = getListParent(editor);
+
+  if (!parentList) {
+    return false;
+  }
+
+  return parentList[0].type === format;
 };
 
 const createEditList = () => {
@@ -89,27 +99,46 @@ const createEditList = () => {
     const isActive = isBlockActive(editor, format);
     const isList = LIST_TYPES.includes(format);
 
-    Transforms.unwrapNodes(editor, {
-      match: (n) => !Editor.isEditor(n) && SlateElement.isElement(n) && LIST_TYPES.includes(n.type),
-      split: true,
-    });
+    if (isActive && isList) {
+      unwrapList(editor);
+      return;
+    }
 
-    const newProperties = {
-      type: isActive ? 'paragraph' : isList ? 'li' : format,
-    };
+    const listSelected = getListParent(editor);
 
-    Transforms.setNodes(editor, newProperties);
+    if (!listSelected) {
+      Transforms.unwrapNodes(editor, {
+        match: (n) => !Editor.isEditor(n) && SlateElement.isElement(n) && LIST_TYPES.includes(n.type),
+        split: true,
+      });
 
-    if (!isActive && isList) {
-      const block = { type: format, children: [] };
-      Transforms.wrapNodes(editor, block);
+      const newProperties = {
+        type: isActive ? 'paragraph' : isList ? 'li' : format,
+      };
+
+      Transforms.setNodes(editor, newProperties);
+
+      if (!isActive && isList) {
+        const block = { type: format, children: [] };
+        Transforms.wrapNodes(editor, block, {
+          match: (n) => !Editor.isEditor(n) && SlateElement.isElement(n) && LIST_TYPES.includes(n.type),
+        });
+      }
+    } else {
+      const switchMap = {
+        ul: 'ol',
+        ol: 'ul',
+      };
+      const [listNode, listPath] = listSelected;
+
+      editor.setNodes({ type: switchMap[listNode.type] }, { at: listPath });
     }
   };
 
   return core;
 };
 
-const LIST_TYPES = ['ul', 'ol', 'li'];
+export const LIST_TYPES = ['ul', 'ol', 'li'];
 
 const KEY_TAB = 'Tab';
 const KEY_ENTER = 'Enter';
@@ -235,12 +264,17 @@ export default (options) => {
     const [subList, subListPath] = editor.parent(currentLiPath);
     const [parentLi, parentLiPath] = editor.parent(subListPath);
 
+    let parentList;
+    let parentListPath;
+
     if (parentLi.type !== 'li') {
-      return true;
+      parentList = subList;
+      parentListPath = subListPath;
+    } else {
+      [parentList, parentListPath] = editor.parent(parentLiPath);
     }
 
-    const [parentList, parentListPath] = editor.parent(parentLiPath);
-    const index = parentList.children.indexOf(parentLi);
+    const index = parentList.children.indexOf(parentLi.type !== 'li' ? currentLi : parentLi);
     const followingItems = subList.children.reduce(
       (acc, item, index) => {
         if (item === currentLi) {
@@ -315,6 +349,8 @@ export default (options) => {
     return true;
   };
 
+  window.decreaseItemDepth = decreaseItemDepth;
+
   const unwrapListByKey = (editor, nodeInfo) => {
     const [, currentLiPath] = nodeInfo;
 
@@ -323,24 +359,49 @@ export default (options) => {
 
       splitItemPath[splitItemPath.length - 1] += 1;
 
-      editor.splitNodes({ at: currentLiPath, always: true });
+      if (currentLiPath[currentLiPath.length - 1] !== 0) {
+        editor.splitNodes({ at: currentLiPath, always: true });
+      } else {
+        splitItemPath[splitItemPath.length - 1] -= 1;
+      }
+
       editor.moveNodes({ at: [...splitItemPath, 0], to: splitItemPath });
       editor.setNodes({ type: 'div' }, { at: splitItemPath });
+
+      const newListPath = splitItemPath.slice();
+
+      newListPath[newListPath.length - 1] += 1;
+
+      const [newList] = editor.node(newListPath);
+
+      if (!newList.children.length) {
+        editor.removeNodes({ at: newListPath });
+      }
     });
   };
 
+  window.SlateNode = SlateNode;
+
   const unwrapList = (editor) => {
-    const furthestListItems = Array.from(
+    let furthestListItems = Array.from(
       Editor.nodes(editor, {
         at: Editor.unhangRange(editor, editor.selection),
         match: (node) => !Editor.isEditor(node) && SlateElement.isElement(node) && node.type === 'li',
       }),
     );
 
-    furthestListItems.forEach((listItem) => {
-      unwrapListByKey(editor, listItem);
-    });
+    while (furthestListItems.length) {
+      unwrapListByKey(editor, furthestListItems[0]);
+      furthestListItems = Array.from(
+        Editor.nodes(editor, {
+          at: Editor.unhangRange(editor, editor.selection),
+          match: (node) => !Editor.isEditor(node) && SlateElement.isElement(node) && node.type === 'li',
+        }),
+      );
+    }
   };
+
+  window.unwrapList = unwrapList;
 
   const onEnter = (editor, event) => {
     event.preventDefault();
