@@ -17,6 +17,7 @@ export default withMask('dropdown', (props) => (node, data, onChange) => {
         correct={feedback && feedback[dataset.id] && feedback[dataset.id] === 'correct'}
         disabled={disabled || showCorrectAnswer}
         value={finalChoice}
+        correctValue={showCorrectAnswer ? correctAnswer && correctAnswer.label : undefined}
         id={dataset.id}
         onChange={onChange}
         choices={choices[dataset.id]}

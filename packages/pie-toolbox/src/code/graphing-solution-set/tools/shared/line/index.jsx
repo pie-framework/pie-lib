@@ -433,7 +433,7 @@ export const styles = {
   line: () => ({
     fill: 'transparent',
     stroke: color.defaults.BLACK,
-    strokeWidth: 3,
+    strokeWidth: 4,
     transition: 'stroke 200ms ease-in, stroke-width 200ms ease-in',
     '&:hover': {
       strokeWidth: 6,
@@ -443,7 +443,7 @@ export const styles = {
   dashedLine: () => ({
     fill: 'transparent',
     stroke: color.defaults.BLACK,
-    strokeWidth: 3,
+    strokeWidth: 4,
     transition: 'stroke 200ms ease-in, stroke-width 200ms ease-in',
     '&:hover': {
       strokeWidth: 6,
