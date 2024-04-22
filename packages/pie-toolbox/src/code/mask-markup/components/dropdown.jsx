@@ -29,13 +29,9 @@ class Dropdown extends React.Component {
     };
   }
 
-  handleClick = (event) => {
-    this.setState({ anchorEl: event.currentTarget });
-  };
+  handleClick = (event) => this.setState({ anchorEl: event.currentTarget });
 
-  handleClose = () => {
-    this.setState({ anchorEl: null });
-  };
+  handleClose = () => this.setState({ anchorEl: null });
 
   handleHighlight = (index) => {
     const highlightedOptionId = `dropdown-option-${this.props.id}-${index}`;
@@ -50,7 +46,7 @@ class Dropdown extends React.Component {
   };
 
   getLabel(choices, value) {
-    const found = choices.find((choice) => choice.value === value);
+    const found = (choices || []).find((choice) => choice.value === value);
 
     return found ? found.label.trim() : undefined;
   }
@@ -75,6 +71,8 @@ class Dropdown extends React.Component {
     const incrementedId = parseInt(id, 10) + 1;
     const labelId = singleQuery ? 'Query-label' : `Query-label-${incrementedId}`;
     const labelText = singleQuery ? 'Query' : `Query ${incrementedId}`;
+
+    // Changed from Select to Button for dropdown to enhance accessibility. This modification offers explicit control over aria attributes and focuses management, ensuring the dropdown is compliant with accessibility standards. The use of Button and Menu components allows for better handling of keyboard interactions and provides accessible labels and menus, aligning with WCAG guidelines and improving usability for assistive technology users.
 
     return (
       <>

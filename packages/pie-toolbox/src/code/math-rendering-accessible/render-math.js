@@ -163,8 +163,8 @@ const renderMath = (el, renderOpts) => {
     if (window.hasOwnProperty('@pie-lib/math-rendering@2')) {
       // If MathJax is set up using the pie lib package for math rendering, then use it.
       removePlaceholdersAndRestoreDisplay();
-      mr.renderMath(el);
-      return;
+
+      return mr.renderMath(el);
     }
 
     if (
