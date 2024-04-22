@@ -16,7 +16,7 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import InputChooser from '../source/editable-html/input-chooser';
 import { hasText } from '@pie-lib/pie-toolbox/render-ui';
-import { renderMath } from '@pie-lib/pie-toolbox/math-rendering';
+import { renderMath } from '@pie-lib/pie-toolbox/math-rendering-accessible';
 import { Button } from '@material-ui/core';
 
 const Latex = '\\(2x\\ \\le4y\\ +\\ 8\\)';
