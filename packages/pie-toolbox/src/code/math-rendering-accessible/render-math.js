@@ -138,6 +138,8 @@ const removeExcessMjxContainers = (content) => {
 
 const renderMath = (el, renderOpts) => {
   renderOpts = renderOpts || defaultOpts();
+  // skipWaitForMathRenderingLib is used currently in editable-html, when mmlOutput is enabled
+  const { skipWaitForMathRenderingLib } = renderOpts;
 
   const isString = typeof el === 'string';
   let executeOn = document.body;
@@ -154,7 +156,7 @@ const renderMath = (el, renderOpts) => {
 
   unprocessedMathElements.forEach(createPlaceholder);
 
-  waitForMathRenderingLib(() => {
+  const mathRenderingCallback = () => {
     fixMathElements(executeOn);
     adjustMathMLStyle(executeOn);
 
@@ -165,7 +167,10 @@ const renderMath = (el, renderOpts) => {
       return;
     }
 
-    if (!window.MathJax && !window.mathjaxLoadedP) {
+    if (
+      (!window.MathJax && !window.mathjaxLoadedP) ||
+      (window.MathJax && !window.hasOwnProperty('@pie-lib/math-rendering-accessible@1'))
+    ) {
       initializeMathJax(renderOpts);
     }
 
@@ -240,7 +245,13 @@ const renderMath = (el, renderOpts) => {
           console.error('Error in initializing MathJax:', error);
         });
     }
-  });
+  };
+
+  if (skipWaitForMathRenderingLib) {
+    return mathRenderingCallback();
+  } else {
+    waitForMathRenderingLib(mathRenderingCallback);
+  }
 };
 
 export default renderMath;

@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
 
-const AlertDialog = ({ text, title, onClose, onConfirm, open, onCloseText, onConfirmText }) => (
+const AlertDialog = ({ text, title, onClose, onConfirm, open, onCloseText, onConfirmText, classes }) => (
   <Dialog open={open} onClose={onClose}>
-    {title && <DialogTitle>{title}</DialogTitle>}
+    {title && <DialogTitle className={classes.heading}>{title}</DialogTitle>}
     {text && (
       <DialogContent>
-        <DialogContentText>{text}</DialogContentText>
+        <DialogContentText className={classes.subheading}>{text}</DialogContentText>
       </DialogContent>
     )}
     <DialogActions>
@@ -38,6 +39,18 @@ AlertDialog.propTypes = {
   open: PropTypes.bool,
   onConfirmText: PropTypes.string,
   onCloseText: PropTypes.string,
+  classes: PropTypes.object,
 };
 
-export default AlertDialog;
+const styles = () => ({
+  heading: {
+    '& h2': {
+      fontSize: 'max(1.25rem, 18px)',
+    },
+  },
+  subheading: {
+    fontSize: 'max(1rem, 14px)',
+  },
+});
+
+export default withStyles(styles)(AlertDialog);

@@ -3,6 +3,46 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.15.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.15.0...@pie-lib/pie-toolbox@1.15.1) (2024-04-22)
+
+
+### Bug Fixes
+
+* when used in mmlOutput, we don't have to wait to decide what math-rendering package we should instantiate, as we already have it instantiated at that point PD-3673 ([bb0e728](https://github.com/pie-framework/pie-lib/commit/bb0e728ef310aa828f6ad3153f2b1d88b19a0091))
+* **math-rendering-accessible:** Add initialization for MathJax script when the legacy math-rendering method isn't detected and the @pie-lib/math-rendering-accessible@1 property is absent from the window object PD-3644 ([04e7b05](https://github.com/pie-framework/pie-lib/commit/04e7b057b519f9152a9a1c2c09cf2d59a9c013ef))
+
+
+
+
+
+# [1.15.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.14.1...@pie-lib/pie-toolbox@1.15.0) (2024-04-18)
+
+
+### Bug Fixes
+
+* **config-ui/alert-dialog:** fixed font sizes to not be too small or client env PD-3655 ([48fcf97](https://github.com/pie-framework/pie-lib/commit/48fcf97f9fed1d6c0493628ff77e5a433be4382b))
+* **render-ui/preview-prompt:** fix image alignment for multiple prompts on screen PD-3607 ([6dbadd3](https://github.com/pie-framework/pie-lib/commit/6dbadd34eabe6793a3dd943c643a7b566a9c0bdd))
+
+
+### Features
+
+* **charting, plot:** Charting Item Label Characters Limit SC-30682 ([0417234](https://github.com/pie-framework/pie-lib/commit/0417234677eff3fe7f458eb11f24d1731c23c5bd))
+
+
+
+
+
+## [1.14.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.14.0...@pie-lib/pie-toolbox@1.14.1) (2024-04-08)
+
+
+### Bug Fixes
+
+* **graphing-solution-set:** Fixed CSS padding for buttons ([b008115](https://github.com/pie-framework/pie-lib/commit/b0081152c1c35e9d670a3fccd4b2e19a165fde21))
+
+
+
+
+
 # [1.14.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.13.1...@pie-lib/pie-toolbox@1.14.0) (2024-04-08)
 
 
