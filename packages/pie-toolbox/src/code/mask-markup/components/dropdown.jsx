@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Select from '@material-ui/core/Select';
+import Button from '@material-ui/core/Button';
 import InputLabel from '@material-ui/core/InputLabel';
+import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import CorrectInput from './correct-input';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import { withStyles } from '@material-ui/core/styles';
 import { color } from '../../render-ui';
 
@@ -23,83 +24,120 @@ class Dropdown extends React.Component {
     super(props);
 
     this.state = {
-      showCheckmark: false,
-      open: false,
+      anchorEl: null,
+      highlightedOptionId: null,
     };
   }
 
-  showCheckmarkAndOpen = () => {
-    this.setState({
-      showCheckmark: true,
-      open: true,
-    });
+  handleClick = (event) => this.setState({ anchorEl: event.currentTarget });
+
+  handleClose = () => this.setState({ anchorEl: null });
+
+  handleHighlight = (index) => {
+    const highlightedOptionId = `dropdown-option-${this.props.id}-${index}`;
+
+    this.setState({ highlightedOptionId });
   };
 
-  hideCheckmarkAndClose = () => {
-    this.setState({
-      showCheckmark: false,
-      open: false,
-    });
+  handleSelect = (value, index) => {
+    this.props.onChange(this.props.id, value);
+    this.handleHighlight(index);
+    this.handleClose();
   };
+
+  getLabel(choices, value) {
+    const found = (choices || []).find((choice) => choice.value === value);
+
+    return found ? found.label.trim() : undefined;
+  }
 
   render() {
-    const { classes, id, correct, disabled, value, onChange, choices, showCorrectAnswer, singleQuery } = this.props;
+    const { classes, id, correct, disabled, value, choices, showCorrectAnswer, singleQuery, correctValue } = this.props;
 
-    const { showCheckmark, open } = this.state;
+    const { anchorEl } = this.state;
+    const open = Boolean(anchorEl);
+    const buttonId = `dropdown-button-${id}`;
+    const menuId = `dropdown-menu-${id}`;
+    const valueDisplayId = `dropdown-value-${id}`;
+
+    // Determine the class for disabled state, view mode and evaluate mode
+    let disabledClass;
+
+    if (disabled && correct !== undefined) {
+      disabledClass = correct || showCorrectAnswer ? classes.disabledCorrect : classes.disabledIncorrect;
+    }
 
     // Create distinct, visually hidden labels for each dropdown
     const incrementedId = parseInt(id, 10) + 1;
     const labelId = singleQuery ? 'Query-label' : `Query-label-${incrementedId}`;
     const labelText = singleQuery ? 'Query' : `Query ${incrementedId}`;
 
+    // Changed from Select to Button for dropdown to enhance accessibility. This modification offers explicit control over aria attributes and focuses management, ensuring the dropdown is compliant with accessibility standards. The use of Button and Menu components allows for better handling of keyboard interactions and provides accessible labels and menus, aligning with WCAG guidelines and improving usability for assistive technology users.
+
     return (
       <>
         <InputLabel className={classes.srOnly} id={labelId}>
           {labelText}
         </InputLabel>
-        <Select
-          labelId={labelId}
+        <Button
+          aria-controls={open ? menuId : undefined}
+          aria-haspopup="listbox"
+          aria-expanded={open ? 'true' : undefined}
+          aria-activedescendant={this.state.highlightedOptionId}
+          onClick={this.handleClick}
           classes={{
             root: classes.root,
-            icon: classes.icon,
-            selectMenu: classes.selectMenu,
-            select: classes.select,
+            disabled: disabledClass,
           }}
           disabled={disabled}
-          value={value || ''}
-          onOpen={this.showCheckmarkAndOpen}
-          onClose={this.hideCheckmarkAndClose}
+          id={buttonId}
+          role="combobox"
+          aria-label="Select answer"
+          aria-labelledby={valueDisplayId}
+        >
+          <span
+            id={valueDisplayId}
+            className={classes.label}
+            dangerouslySetInnerHTML={{
+              __html: correctValue ? correctValue : this.getLabel(choices, value) ? this.getLabel(choices, value) : '',
+            }}
+          />
+          <ArrowDropDownIcon />
+        </Button>
+        <Menu
+          id={menuId}
+          anchorEl={anchorEl}
+          className={classes.selectMenu}
+          keepMounted
           open={open}
-          input={<CorrectInput correct={showCorrectAnswer || correct} />}
-          MenuProps={{
-            keepMounted: true,
-            disablePortal: true,
-          }}
-          onChange={(e) => {
-            onChange(id, e.target.value);
+          onClose={this.handleClose}
+          MenuListProps={{
+            'aria-labelledby': buttonId,
+            role: 'listbox',
           }}
         >
-          {(choices || []).map((c, index) => (
-            <MenuItem
-              classes={{ root: classes.menuRoot, selected: classes.selected }}
-              key={`${c.label}-${index}`}
-              value={c.value}
-            >
-              <span
-                className={classes.label}
-                dangerouslySetInnerHTML={{
-                  __html: c.label,
-                }}
-              />
-              {showCheckmark && (
+          {(choices || []).map((c, index) => {
+            const optionId = `dropdown-option-${id}-${index}`;
+
+            return (
+              <MenuItem
+                id={optionId}
+                classes={{ root: classes.menuRoot, selected: classes.selected }}
+                key={`${c.label}-${index}`}
+                value={c.value}
+                onClick={() => this.handleSelect(c.value, index)}
+                role="option"
+                aria-selected={this.state.highlightedOptionId === optionId ? 'true' : undefined}
+              >
+                <span className={classes.label} dangerouslySetInnerHTML={{ __html: c.label }} />
                 <span
                   className={classes.label}
                   dangerouslySetInnerHTML={{ __html: c.value === value ? ' &check;' : '' }}
                 />
-              )}
-            </MenuItem>
-          ))}
-        </Select>
+              </MenuItem>
+            );
+          })}
+        </Menu>
       </>
     );
   }
@@ -108,33 +146,46 @@ class Dropdown extends React.Component {
 const styles = () => ({
   root: {
     color: color.text(),
+    border: `1px solid ${color.text()}`,
+    borderRadius: '4px',
+    justifyContent: 'space-between',
     backgroundColor: color.background(),
-    borderColor: color.secondaryLight(),
-    '& ul': {
-      paddingTop: 0,
-      paddingBottom: 0,
-      border: `1px solid ${color.text()}`,
-      borderRadius: '5px',
+    position: 'relative',
+    height: '45px',
+    width: 'fit-content',
+    margin: '2px',
+    textTransform: 'none',
+    '& span': {
+      paddingRight: '5px',
+    },
+    '& svg': {
+      position: 'absolute',
+      right: 0,
+      top: 'calc(50% - 12px)',
+      pointerEvents: 'none',
       color: color.text(),
-      backgroundColor: color.background(),
+      marginLeft: '5px',
     },
   },
-  select: {
-    '&:focus': {
-      borderRadius: '4px',
-    },
+  disabledCorrect: {
+    borderColor: color.correct(),
+    color: `${color.text()} !important`,
+  },
+  disabledIncorrect: {
+    borderColor: color.incorrect(),
+    color: `${color.text()} !important`,
   },
   selectMenu: {
     backgroundColor: color.background(),
+    border: `1px solid ${color.correct()} !important`,
     '&:hover': {
+      border: `1px solid ${color.text()} `,
       borderColor: 'initial',
     },
     '&:focus': {
+      border: `1px solid ${color.text()}`,
       borderColor: 'initial',
     },
-  },
-  icon: {
-    color: color.text(),
   },
   selected: {
     color: `${color.text()} !important`,
