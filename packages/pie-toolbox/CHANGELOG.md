@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.16.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.15.1...@pie-lib/pie-toolbox@1.16.0) (2024-04-22)
+
+
+### Features
+
+* **inline-dropdown:** make the dropdown accessible PD-2449 ([dbfa49d](https://github.com/pie-framework/pie-lib/commit/dbfa49dae750ca688db8e0bdc8f84cc04e83f4f1))
+* **inline-dropdown:** make the dropdown accessible wip PD-2449 ([d2dbd47](https://github.com/pie-framework/pie-lib/commit/d2dbd47a61672bdef7fd10f29e9455d6fa0a9b4a))
+* **inline-dropdown:** make the dropdown accessible wip PD-2449 ([3c4124d](https://github.com/pie-framework/pie-lib/commit/3c4124d5e7fced7ade7a8e01afb37cd73b2c076a))
+
+
+
+
+
 ## [1.15.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.15.0...@pie-lib/pie-toolbox@1.15.1) (2024-04-22)
 
 
