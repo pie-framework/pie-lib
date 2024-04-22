@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.3.36](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.3.35...@pie-lib/demo@7.3.36) (2024-04-22)
+
+
+### Bug Fixes
+
+* when used in mmlOutput, we don't have to wait to decide what math-rendering package we should instantiate, as we already have it instantiated at that point PD-3673 ([bb0e728](https://github.com/pie-framework/pie-lib/commit/bb0e728ef310aa828f6ad3153f2b1d88b19a0091))
+
+
+
+
+
 ## [7.3.35](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.3.34...@pie-lib/demo@7.3.35) (2024-04-18)
 
 **Note:** Version bump only for package @pie-lib/demo

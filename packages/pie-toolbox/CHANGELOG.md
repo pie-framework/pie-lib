@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.15.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.15.0...@pie-lib/pie-toolbox@1.15.1) (2024-04-22)
+
+
+### Bug Fixes
+
+* when used in mmlOutput, we don't have to wait to decide what math-rendering package we should instantiate, as we already have it instantiated at that point PD-3673 ([bb0e728](https://github.com/pie-framework/pie-lib/commit/bb0e728ef310aa828f6ad3153f2b1d88b19a0091))
+* **math-rendering-accessible:** Add initialization for MathJax script when the legacy math-rendering method isn't detected and the @pie-lib/math-rendering-accessible@1 property is absent from the window object PD-3644 ([04e7b05](https://github.com/pie-framework/pie-lib/commit/04e7b057b519f9152a9a1c2c09cf2d59a9c013ef))
+
+
+
+
+
 # [1.15.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.14.1...@pie-lib/pie-toolbox@1.15.0) (2024-04-18)
 
 
