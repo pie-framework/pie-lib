@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.16.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.16.0...@pie-lib/pie-toolbox@1.16.1) (2024-04-22)
+
+
+### Bug Fixes
+
+* **math-rendering-accessible:** Add initialization for MathJax script when the legacy math-rendering method isn't detected and the @pie-lib/math-rendering-accessible@1 window key property is empty PD-3644 ([a8f58c0](https://github.com/pie-framework/pie-lib/commit/a8f58c00391c1a9fffb666f16da9d71f518fe0e6))
+
+
+
+
+
 # [1.16.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.15.1...@pie-lib/pie-toolbox@1.16.0) (2024-04-22)
 
 
