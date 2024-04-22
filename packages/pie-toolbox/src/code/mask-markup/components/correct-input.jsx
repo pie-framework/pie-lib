@@ -60,6 +60,7 @@ export default withStyles(() => ({
     spellCheck,
     ...rest
   } = props;
+
   const label = typeof correct === 'boolean' ? (correct ? 'correct' : 'incorrect') : undefined;
   const inputProps = charactersLimit
     ? { maxLength: charactersLimit, 'aria-label': 'Enter answer' }
