@@ -16,8 +16,8 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import InputChooser from '../source/editable-html/input-chooser';
 import { hasText } from '@pie-lib/pie-toolbox/render-ui';
+import { renderMath } from '@pie-lib/pie-toolbox/math-rendering-accessible';
 import InlineDropdownToolbar from './inline-dropdown-toolbar';
-import { renderMath } from '@pie-lib/pie-toolbox/math-rendering';
 
 const Latex = '\\(2x\\ \\le4y\\ +\\ 8\\)';
 
@@ -44,8 +44,9 @@ const inputOptions = [
   },
   {
     label: 'Latex \\(..\\)',
+    // html: '<p></p><ul><li><div>1</div><ul><li><div>1.1</div><ul><li>1.1.1</li><li>1.1.2</li><li>1.1.3</li></ul></li><li><div>1.2</div><ul><li>1.2.1</li><li>1.2.2</li></ul></li><li>1.3</li><li>1.4</li></ul></li><li>2</li><li>3</li></ul><p></p>',
     html:
-      '<math xmlns="http://www.w3.org/1998/Math/MathML"><mover><mrow><mi>A</mi><mi>B</mi></mrow><mo>&#175;</mo></mover></math>',
+      '<div>Andreea</div><div>Andrei</div><ol><li><div>1</div><ul><li>1.1</li><li>1.2</li></ul></li><li><div>2</div><ul><li>2.2</li><li>2.3</li></ul></li><li>3</li></ol><div>Andrei</div><div>Andreea</div>',
   },
   {
     label: 'Latex $..$',
