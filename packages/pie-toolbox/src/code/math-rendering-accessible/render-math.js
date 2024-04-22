@@ -167,7 +167,10 @@ const renderMath = (el, renderOpts) => {
       return;
     }
 
-    if (!window.MathJax && !window.mathjaxLoadedP) {
+    if (
+      (!window.MathJax && !window.mathjaxLoadedP) ||
+      (window.MathJax && !window.hasOwnProperty('@pie-lib/math-rendering-accessible@1'))
+    ) {
       initializeMathJax(renderOpts);
     }
 
