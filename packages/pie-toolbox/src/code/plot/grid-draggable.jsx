@@ -96,10 +96,33 @@ export const gridDraggable = (opts) => (Comp) => {
       return scaled;
     };
 
+    getClientPoint = (node, event) => {
+      const svg = node.ownerSVGElement || node;
+
+      if (svg.createSVGPoint) {
+        let point = svg.createSVGPoint();
+        // Check if it's a touch event and use the first touch point
+        if (event.touches && event.touches.length > 0) {
+          const touch = event.touches[0];
+          point.x = touch.clientX;
+          point.y = touch.clientY;
+        } else {
+          // Fall back to mouse event properties
+          point.x = event.clientX;
+          point.y = event.clientY;
+        }
+        point = point.matrixTransform(node.getScreenCTM().inverse());
+        return [point.x, point.y];
+      }
+
+      const rect = node.getBoundingClientRect();
+      return [event.clientX - rect.left - node.clientLeft, event.clientY - rect.top - node.clientTop];
+    };
+
     skipDragOutsideOfBounds = (dd, e, graphProps) => {
       // ignore drag movement outside of the domain and range.
       const rootNode = graphProps.getRootNode();
-      const [rawX, rawY] = clientPoint(rootNode, e);
+      const [rawX, rawY] = this.getClientPoint(rootNode, e);
       const { scale, domain, range } = graphProps;
       let x = scale.x.invert(rawX);
       let y = scale.y.invert(rawY);
