@@ -425,8 +425,6 @@ export default (options) => {
       return unwrapList(editor);
     }
 
-    window.editor = editor;
-
     const pathToSplit = Text.isText(currentLi.children[0]) ? currentLiPath : [...currentLiPath, 0];
 
     if (Text.isText(currentLi.children[0])) {

@@ -103,8 +103,6 @@ const SlateEditor = (editorProps) => {
     return editor.children;
   }, [editor, value]);
 
-  window.editor = editor;
-
   const onKeyDown = (event) => {
     if (event.key === 'Enter' && event.shiftKey === true) {
       editor.insertText('\n');
