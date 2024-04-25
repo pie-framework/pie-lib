@@ -101,18 +101,39 @@ const removePlaceholdersAndRestoreDisplay = () => {
 const waitForMathRenderingLib = (callback) => {
   // Check immediately if the library is available
   if (window.hasOwnProperty('@pie-lib/math-rendering@2')) {
+    removePlaceholdersAndRestoreDisplay();
+    return mr.renderMath();
+  }
+
+  if (
+    window.hasOwnProperty('@pie-lib/math-rendering-accessible@1') &&
+    window['@pie-lib/math-rendering-accessible@1'].instance
+  ) {
     callback();
     return;
   }
+
+  let executeOn = document.body;
+  const mathElements = executeOn.querySelectorAll('[data-latex]');
+  mathElements.forEach(createPlaceholder);
 
   let checkIntervalId;
   const maxWaitTime = 500;
   const startTime = Date.now();
 
   const checkForLib = () => {
-    // If math-rendering loads or the maximum wait time is exceeded
-    if (window.hasOwnProperty('@pie-lib/math-rendering@2') || Date.now() - startTime > maxWaitTime) {
+    // Check if library has loaded or if the maximum wait time has been exceeded
+    const hasLibraryLoaded = window.hasOwnProperty('@pie-lib/math-rendering@2');
+    const hasExceededMaxWait = Date.now() - startTime > maxWaitTime;
+
+    if (hasLibraryLoaded || hasExceededMaxWait) {
       clearInterval(checkIntervalId);
+
+      if (hasLibraryLoaded) {
+        removePlaceholdersAndRestoreDisplay();
+        return mr.renderMath();
+      }
+
       callback();
     }
   };
@@ -137,9 +158,8 @@ const removeExcessMjxContainers = (content) => {
 };
 
 const renderMath = (el, renderOpts) => {
-  renderOpts = renderOpts || defaultOpts();
   // skipWaitForMathRenderingLib is used currently in editable-html, when mmlOutput is enabled
-  const { skipWaitForMathRenderingLib } = renderOpts;
+  const { skipWaitForMathRenderingLib } = renderOpts || {};
 
   const isString = typeof el === 'string';
   let executeOn = document.body;
@@ -151,27 +171,16 @@ const renderMath = (el, renderOpts) => {
     executeOn = div;
   }
 
-  // Skip placeholder creation for elements already handled by MathJax.
-  const unprocessedMathElements = executeOn.querySelectorAll('[data-latex]:not([data-math-handled="true"])');
-
-  unprocessedMathElements.forEach(createPlaceholder);
-
   const mathRenderingCallback = () => {
     fixMathElements(executeOn);
     adjustMathMLStyle(executeOn);
 
-    if (window.hasOwnProperty('@pie-lib/math-rendering@2')) {
-      // If MathJax is set up using the pie lib package for math rendering, then use it.
-      removePlaceholdersAndRestoreDisplay();
-
-      return mr.renderMath(el);
-    }
-
     if (
       (!window.MathJax && !window.mathjaxLoadedP) ||
-      (window.MathJax &&
-        (!window.MathJax.customKey || window.MathJax.customKey !== '@pie-lib/math-rendering-accessible@1'))
+      (window.hasOwnProperty('@pie-lib/math-rendering-accessible@1') &&
+        !window['@pie-lib/math-rendering-accessible@1'].instance)
     ) {
+      renderOpts = renderOpts || defaultOpts();
       initializeMathJax(renderOpts);
     }
 
