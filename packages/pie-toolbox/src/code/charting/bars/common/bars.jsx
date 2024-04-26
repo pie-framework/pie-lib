@@ -72,7 +72,37 @@ export class RawBar extends React.Component {
       dragValue: undefined,
       isHovered: false,
     };
+    this.mouseX = 0;
+    this.mouseY = 0;
   }
+
+  componentDidMount() {
+    window.addEventListener('mousemove', this.handleMouseMove);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('mousemove', this.handleMouseMove);
+  }
+
+  handleMouseMove = (e) => {
+    // Update mouse position
+    this.mouseX = e.clientX;
+    this.mouseY = e.clientY;
+    // Check if the mouse is inside the <g> element
+    const isMouseInside = this.isMouseInsideSvgElement();
+    this.setState({ isHovered: isMouseInside });
+  };
+
+  isMouseInsideSvgElement = () => {
+    const gBoundingBox = this.gRef.getBoundingClientRect();
+    // Check if the mouse position is within the bounding box
+    return (
+      this.mouseX >= gBoundingBox.left &&
+      this.mouseX <= gBoundingBox.right &&
+      this.mouseY >= gBoundingBox.top &&
+      this.mouseY <= gBoundingBox.bottom
+    );
+  };
 
   handleMouseEnter = () => {
     this.setState({ isHovered: true });
@@ -131,6 +161,7 @@ export class RawBar extends React.Component {
 
     return (
       <g
+        ref={(ref) => (this.gRef = ref)}
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
         onTouchStart={this.handleMouseEnter}
