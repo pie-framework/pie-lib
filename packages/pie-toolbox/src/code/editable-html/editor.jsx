@@ -1163,6 +1163,7 @@ export class EditorComponent extends React.Component {
       className,
       placeholder,
       pluginProps,
+      disableUnderline,
       onKeyDown,
     } = this.props;
     // We don't want to send customPlugins to slate.
@@ -1196,6 +1197,7 @@ export class EditorComponent extends React.Component {
             }
           }}
           autoFocus={autoFocus}
+          disableUnderline={disableUnderline}
           actionsRef={this.props.onRef}
           onEditor={this.onSetEditor}
           value={value}
