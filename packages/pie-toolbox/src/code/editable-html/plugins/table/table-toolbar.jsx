@@ -32,9 +32,9 @@ export class TableToolbar extends React.Component {
     onChange: () => {},
   };
 
-  onDone = (e) => {
+  onDone = () => {
     const { onDone } = this.props;
-    e.preventDefault();
+
     onDone();
   };
 

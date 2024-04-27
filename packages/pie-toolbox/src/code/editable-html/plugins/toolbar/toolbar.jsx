@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import debug from 'debug';
 import debounce from 'lodash/debounce';
+import Undo from '@material-ui/icons/Undo';
 
 import { DoneButton } from './done-button';
 
@@ -38,24 +39,6 @@ const getCustomToolbar = (plugin, node, nodePath, editor, handleDone) => {
   }
 };
 
-export const UndoButton = withStyles((theme) => ({
-  icon: {
-    fontFamily: 'Cerebri Sans !important',
-    fontSize: theme.typography.fontSize,
-    fontWeight: 'bold',
-    lineHeight: '14px',
-    position: 'relative',
-    top: '7px',
-    width: '110px',
-    height: '28px',
-    whiteSpace: 'nowrap',
-  },
-}))(({ classes, onClick }) => (
-  <div onClick={onClick} className={classes.icon}>
-    Undo
-  </div>
-));
-
 const style = {
   toolbar: {
     position: 'absolute',
@@ -63,7 +46,7 @@ const style = {
     cursor: 'pointer',
     justifyContent: 'space-between',
     background: 'var(--editable-html-toolbar-bg, #efefef)',
-    minWidth: '280px',
+    minWidth: '375px',
     margin: '5px 0 0 0',
     padding: '2px',
     boxShadow:
@@ -91,6 +74,7 @@ const style = {
   },
   iconRoot: {
     width: '28px',
+    minWidth: '28px',
     height: '28px',
     padding: '4px',
     verticalAlign: 'top',
@@ -321,7 +305,7 @@ export const Toolbar = (props) => {
             root: classes.iconRoot,
           }}
         >
-          Undo
+          <Undo />
         </Button>
       </div>
     </div>
