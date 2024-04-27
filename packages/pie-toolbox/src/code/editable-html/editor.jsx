@@ -576,10 +576,10 @@ export class EditorComponent extends React.Component {
           props.imageSupport &&
           props.imageSupport.delete &&
           ((node, done) => {
-            const src = node.data.get('src');
+            const { src } = node.data;
 
             props.imageSupport.delete(src, (e) => {
-              const newPendingImages = this.state.pendingImages.filter((img) => img.key !== node.key);
+              const newPendingImages = this.state.pendingImages.filter((img) => img !== node);
               const { scheduled: oldScheduled } = this.state;
               const newState = {
                 pendingImages: newPendingImages,
