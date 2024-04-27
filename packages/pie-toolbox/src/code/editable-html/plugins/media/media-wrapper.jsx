@@ -14,7 +14,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const MediaWrapper = React.forwardRef((props, ref) => {
-  const { children, width, attributes, ...rest } = props;
+  const { editor, children, width, attributes, ...rest } = props;
   const classes = useStyles(props);
 
   return (

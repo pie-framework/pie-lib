@@ -126,7 +126,7 @@ const SlateEditor = (editorProps) => {
     setTimeout(() => {
       if (!editorRef.current || !editorRef.current.contains(document.activeElement)) {
         if (editorProps.onBlur) {
-          editorProps.onBlur(e);
+          editorProps.onBlur(editor, e);
         }
 
         if (mounted.current) {
@@ -883,7 +883,7 @@ export class EditorComponent extends React.Component {
   }
 
   // Allowing time for onChange to take effect if it is called
-  handleBlur = (resolve) => {
+  handleBlur = (editor) => {
     const { nonEmpty } = this.props;
     const {
       toolbarOpts: { doneOn },
@@ -892,19 +892,20 @@ export class EditorComponent extends React.Component {
     this.setState({ toolbarInFocus: false, focusedNode: null });
 
     if (doneOn === 'blur') {
-      if (nonEmpty && this.state.value.startText?.text?.length === 0) {
+      const texts = Array.from(SlateNode.texts(editor));
+
+      if (nonEmpty && texts.length === 0) {
         this.resetValue(true).then(() => {
-          this.onEditingDone();
-          resolve();
+          this.onEditingDone(editor);
         });
       } else {
-        this.onEditingDone();
-        resolve();
+        this.onEditingDone(editor);
       }
     }
   };
 
-  onBlur = (event) => {
+  onBlur = (editor, event) => {
+    this.handleBlur(editor);
     return this.props.onBlur(event);
     log('[onBlur]');
     const target = event.relatedTarget;
