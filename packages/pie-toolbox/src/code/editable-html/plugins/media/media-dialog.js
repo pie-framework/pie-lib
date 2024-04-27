@@ -229,7 +229,7 @@ export class MediaDialog extends React.Component {
 
     this.handleStateChange({
       urlToUse: '',
-      url: '',
+      url: value || '',
       invalid: true,
     });
   };
@@ -375,9 +375,7 @@ export class MediaDialog extends React.Component {
     const isYoutube = matchYoutubeUrl(url);
     const isInsertURL = tabValue === 0;
     const isUploadMedia = tabValue === 1;
-    const submitIsDisabled = isInsertURL
-      ? invalid || url === null || url === undefined
-      : !fileUpload.url || fileUpload.scheduled;
+    const submitIsDisabled = isInsertURL ? invalid || !url : !fileUpload.url || fileUpload.scheduled;
 
     return (
       <Dialog
