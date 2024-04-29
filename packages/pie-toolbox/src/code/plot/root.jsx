@@ -10,6 +10,13 @@ import cn from 'classnames';
 import Label from './label';
 
 export class Root extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      titleHeight: 0,
+    };
+  }
+
   static propTypes = {
     title: PropTypes.string,
     children: ChildrenType,
@@ -56,11 +63,18 @@ export class Root extends React.Component {
   componentDidMount() {
     const g = select(this.g);
     g.on('mousemove', this.mouseMove.bind(this, g));
+    this.measureTitleHeight();
   }
 
   componentWillUnmount() {
     const g = select(this.g);
     g.on('mousemove', null);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.title !== this.props.title) {
+      this.measureTitleHeight();
+    }
   }
 
   onChangeLabel = (newValue, side) => {
@@ -80,6 +94,18 @@ export class Root extends React.Component {
       ...labels,
       [side]: newValue,
     });
+  };
+
+  measureTitleHeight = () => {
+    const titleElement = document.getElementById('editable-title');
+    if (titleElement) {
+      const titleHeight = titleElement.clientHeight;
+      this.setState({ titleHeight, prevTitle: this.props.title });
+    }
+  };
+
+  handleKeyDown = () => {
+    setTimeout(this.measureTitleHeight, 0);
   };
 
   render() {
@@ -127,7 +153,7 @@ export class Root extends React.Component {
     const nbOfVerticalLines = parseInt(width / 100);
     const nbOfHorizontalLines = parseInt(actualHeight / 100);
     const sideGridlinesPadding = parseInt(actualHeight % 100);
-
+    const { titleHeight } = this.state;
     return (
       <div className={classes.root}>
         {showPixelGuides && (
@@ -145,6 +171,7 @@ export class Root extends React.Component {
         {showTitle &&
           (disabledTitle ? (
             <div
+              id="editable-title"
               style={
                 isChart && {
                   width: finalWidth,
@@ -154,25 +181,28 @@ export class Root extends React.Component {
               dangerouslySetInnerHTML={{ __html: title || '' }}
             />
           ) : (
-            <EditableHtml
-              style={
-                isChart && {
-                  width: finalWidth,
+            <div id="editable-title">
+              <EditableHtml
+                style={
+                  isChart && {
+                    width: finalWidth,
+                  }
                 }
-              }
-              className={cn(
-                { [classes.rightMargin]: showPixelGuides },
-                isChart ? classes.chartTitle : classes.graphTitle,
-              )}
-              markup={title || ''}
-              onChange={onChangeTitle}
-              placeholder={
-                (defineChart && titlePlaceholder) || (!disabledTitle && 'Click here to add a title for this graph')
-              }
-              toolbarOpts={{ noBorder: true }}
-              activePlugins={activeTitlePlugins}
-              disableScrollbar
-            />
+                className={cn(
+                  { [classes.rightMargin]: showPixelGuides },
+                  isChart ? classes.chartTitle : classes.graphTitle,
+                )}
+                markup={title || ''}
+                onChange={onChangeTitle}
+                placeholder={
+                  (defineChart && titlePlaceholder) || (!disabledTitle && 'Click here to add a title for this graph')
+                }
+                toolbarOpts={{ noBorder: true }}
+                activePlugins={activeTitlePlugins}
+                disableScrollbar
+                onKeyDown={this.handleKeyDown}
+              />
+            </div>
           ))}
         {showLabels && !isChart && (
           <Label
@@ -254,6 +284,7 @@ export class Root extends React.Component {
             placeholder={labelsPlaceholders?.bottom}
             graphHeight={finalHeight}
             graphWidth={finalWidth}
+            titleHeight={titleHeight}
             isChartBottomLabel={isChart && !defineChart}
             isDefineChartBottomLabel={isChart && defineChart}
             onChange={(value) => this.onChangeLabel(value, 'bottom')}

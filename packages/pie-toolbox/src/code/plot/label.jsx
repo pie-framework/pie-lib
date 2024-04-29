@@ -21,6 +21,7 @@ const LabelComponent = (props) => {
     onChange,
     mathMlOptions = {},
     charactersLimit,
+    titleHeight,
   } = props;
   const [rotatedToHorizontal, setRotatedToHorizontal] = useState(false);
   const activePlugins = [
@@ -41,8 +42,8 @@ const LabelComponent = (props) => {
       chartValue ||
       (isChartLeftLabel && `${graphHeight - 70}px`) ||
       (side === 'left' && `${graphHeight - 8}px`) ||
-      (isChartBottomLabel && `${graphHeight - 30}px`) ||
-      (side === 'bottom' && `${graphHeight - 90}px`) ||
+      (isChartBottomLabel && `${graphHeight - 60 + titleHeight}px`) ||
+      (side === 'bottom' && `${graphHeight - 120 + titleHeight}px`) ||
       0,
     left:
       (side === 'right' && `${graphWidth - 8}px`) ||
@@ -108,6 +109,7 @@ LabelComponent.propTypes = {
   onChange: PropTypes.func,
   mathMlOptions: PropTypes.object,
   charactersLimit: PropTypes.number,
+  titleHeight: PropTypes.number,
 };
 
 export default withStyles((theme) => ({
