@@ -117,8 +117,8 @@ export const primeArcminute = set({
 });
 export const doublePrimeArcSecond = set({
   name: 'Double Prime',
-  latex: '"',
-  write: '"',
+  latex: "''",
+  write: "''",
 });
 
 export const leftArrow = set({
