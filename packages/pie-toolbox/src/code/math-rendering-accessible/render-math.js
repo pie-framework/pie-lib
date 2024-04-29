@@ -114,8 +114,6 @@ const removeExcessMjxContainers = (content) => {
 };
 
 const renderMath = (el, renderOpts) => {
-    renderOpts = renderOpts || defaultOpts();
-
     const isString = typeof el === 'string';
     let executeOn = document.body;
 
@@ -128,6 +126,7 @@ const renderMath = (el, renderOpts) => {
 
     const {skipWaitForMathRenderingLib} = renderOpts || {};
 
+    // this is the actual math-rendering-accessible renderMath function, which initialises MathJax
     const renderMathAccessible = () => {
         fixMathElements(executeOn);
         adjustMathMLStyle(executeOn);
@@ -136,6 +135,8 @@ const renderMath = (el, renderOpts) => {
             (!window.MathJax && !window.mathjaxLoadedP) ||
             (window.hasOwnProperty(mathRenderingAccessibleKEY) && !window[mathRenderingAccessibleKEY].instance)
         ) {
+            renderOpts = renderOpts || defaultOpts();
+
             initializeMathJax(renderOpts);
         }
 
