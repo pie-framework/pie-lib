@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.16.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.16.3...@pie-lib/pie-toolbox@1.16.4) (2024-04-29)
+
+
+### Bug Fixes
+
+* compare MathJax custom key PD-3683 ([a62e7cb](https://github.com/pie-framework/pie-lib/commit/a62e7cbcd64e54142c00304168cd0bcf1481d354))
+
+
+
+
+
 ## [1.16.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.16.2...@pie-lib/pie-toolbox@1.16.3) (2024-04-29)
 
 
