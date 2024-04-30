@@ -94,11 +94,15 @@ class InsertImageHandler {
         newProperties: {
           data: {
             ...this.node.data,
+            loaded: true,
+            percent: 100,
             src: dataURL,
           },
         },
       });
       this.node = Object.assign({}, this.node, { data: { src: dataURL } });
+
+      this.onFinish(true);
     };
     reader.readAsDataURL(file);
   }

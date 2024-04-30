@@ -155,7 +155,7 @@ export default function ImagePlugin(opts) {
 
         editor.selection = null;
         onChange(editor);
-        opts.onDelete(node.data.src, (err) => {
+        opts.onDelete(node, (err) => {
           if (!err) {
             editor.apply({
               type: 'remove_node',

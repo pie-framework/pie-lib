@@ -147,32 +147,8 @@ const marks = {
 
     return jsx('text', { [mark]: true }, next(el.childNodes));
   },
-  serialize(object) {
-    if (Text.isText(object)) {
-      let string = object.text;
-
-      if (object.bold) {
-        string = <strong>{string}</strong>;
-      }
-
-      if (object.code) {
-        string = <code>{string}</code>;
-      }
-
-      if (object.italic) {
-        string = <em>{string}</em>;
-      }
-
-      if (object.underline) {
-        string = <u>{string}</u>;
-      }
-
-      if (object.strikethrough) {
-        string = <del>{string}</del>;
-      }
-
-      return string;
-    }
+  serialize() {
+    // code was moved to text rule
   },
 };
 
@@ -209,11 +185,33 @@ export const TEXT_RULE = {
 
   serialize(obj) {
     if (Text.isText(obj)) {
-      return obj.text.split('\n').reduce((array, text, i) => {
+      let string = obj.text.split('\n').reduce((array, text, i) => {
         if (i !== 0) array.push(<br />);
         array.push(text);
         return array;
       }, []);
+
+      if (obj.bold) {
+        string = <strong>{string}</strong>;
+      }
+
+      if (obj.code) {
+        string = <code>{string}</code>;
+      }
+
+      if (obj.italic) {
+        string = <em>{string}</em>;
+      }
+
+      if (obj.underline) {
+        string = <u>{string}</u>;
+      }
+
+      if (obj.strikethrough) {
+        string = <del>{string}</del>;
+      }
+
+      return string;
     }
   },
 };
