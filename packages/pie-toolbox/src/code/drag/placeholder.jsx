@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import grey from '@material-ui/core/colors/grey';
 
 export const PlaceHolder = (props) => {
-  const { children, classes, className, isOver, type, grid, disabled, choiceBoard } = props;
+  const { children, classes, className, isOver, type, grid, disabled, choiceBoard, isCategorize } = props;
   const names = classNames(
     classes.placeholder,
     disabled && classes.disabled,
@@ -25,8 +25,10 @@ export const PlaceHolder = (props) => {
     style.gridTemplateRows = `repeat(${grid.rows}, ${repeatValue})`;
   }
 
+  const boardStyle = isCategorize ? classes.categorizeBoard : classes.board;
+
   return (
-    <div style={style} className={choiceBoard ? classes.board : names}>
+    <div style={style} className={choiceBoard ? boardStyle : names}>
       {children}
     </div>
   );
@@ -47,6 +49,7 @@ PlaceHolder.propTypes = {
   index: PropTypes.number,
   type: PropTypes.string,
   disabled: PropTypes.bool,
+  isCategorize: PropTypes.bool,
 };
 
 const styles = (theme) => ({
@@ -77,6 +80,17 @@ const styles = (theme) => ({
     flexWrap: 'wrap',
     alignItems: 'center',
     minHeight: '200px',
+    justifyContent: 'center',
+    overflow: 'hidden',
+    touchAction: 'none',
+  },
+  categorizeBoard: {
+    border: '1px solid #D1D1D1',
+    padding: theme.spacing.unit / 2,
+    display: 'flex',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    minHeight: '100px',
     justifyContent: 'center',
     overflow: 'hidden',
     touchAction: 'none',
