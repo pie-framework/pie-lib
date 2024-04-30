@@ -180,6 +180,9 @@ const mp = (theme) => ({
     '& .mq-parallelogram': {
       lineHeight: 0.85,
     },
+    '& span[data-prime="true"]': {
+      fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important',
+    },
   },
   selected: {
     border: `solid 1px ${theme.palette.primary.main}`,
