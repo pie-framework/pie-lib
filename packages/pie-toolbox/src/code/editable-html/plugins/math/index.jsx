@@ -4,7 +4,7 @@ import { ReactEditor } from 'slate-react';
 import { jsx } from 'slate-hyperscript';
 import Functions from '@material-ui/icons/Functions';
 import { MathPreview, MathToolbar } from '../../../math-toolbar';
-import { wrapMath, unWrapMath, mmlToLatex, renderMath } from '../../../math-rendering';
+import { wrapMath, unWrapMath, mmlToLatex, renderMath } from '../../../math-rendering-accessible';
 import debug from 'debug';
 import PropTypes from 'prop-types';
 import isEqual from 'lodash/isEqual';
