@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.16.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.16.3...@pie-lib/pie-toolbox@1.16.4) (2024-04-29)
+
+
+### Bug Fixes
+
+* compare MathJax custom key PD-3683 ([a62e7cb](https://github.com/pie-framework/pie-lib/commit/a62e7cbcd64e54142c00304168cd0bcf1481d354))
+
+
+
+
+
+## [1.16.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.16.2...@pie-lib/pie-toolbox@1.16.3) (2024-04-29)
+
+
+### Bug Fixes
+
+* **math-rendering-accessible:** Refactor package to initiate MathJax loading only if no instance from our legacy or accessibility packages is defined, and to exclusively apply placeholders before MathJax instantiation PD-3683 ([b99303c](https://github.com/pie-framework/pie-lib/commit/b99303c6f1f91841c9c6976851aec0b87e7008aa))
+
+
+
+
+
+## [1.16.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.16.1...@pie-lib/pie-toolbox@1.16.2) (2024-04-23)
+
+
+### Bug Fixes
+
+* **math-rendering-accessible:** Add initialization for MathJax script when the legacy math-rendering method isn't detected and the @pie-lib/math-rendering-accessible script is not initialized  PD-3644 ([23ba1e5](https://github.com/pie-framework/pie-lib/commit/23ba1e582eb92de8fe758a765811470ef18215cb))
+
+
+
+
+
 ## [1.16.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.16.0...@pie-lib/pie-toolbox@1.16.1) (2024-04-22)
 
 

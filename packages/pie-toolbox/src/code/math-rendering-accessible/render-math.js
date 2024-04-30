@@ -10,22 +10,22 @@ const toMMl = (node) => visitor.visitTree(node);
 const NEWLINE_BLOCK_REGEX = /\\embed\{newLine\}\[\]/g;
 const NEWLINE_LATEX = '\\newline ';
 
+const mathRenderingKEY = '@pie-lib/math-rendering@2';
+const mathRenderingAccessibleKEY = '@pie-lib/math-rendering-accessible@1';
+
 export const getGlobal = () => {
   // TODO does it make sense to use version?
   // const key = `${pkg.name}@${pkg.version.split('.')[0]}`;
   // It looks like Ed made this change when he switched from mathjax3 to mathjax-full
   // I think it was supposed to make sure version 1 (using mathjax3) is not used
   // in combination with version 2 (using mathjax-full)
-
   // TODO higher level wrappers use this instance of math-rendering, and if 2 different instances are used, math rendering is not working
   //  so I will hardcode this for now until a better solution is found
-  const key = '@pie-lib/math-rendering-accessible@1';
-
   if (typeof window !== 'undefined') {
-    if (!window[key]) {
-      window[key] = {};
+    if (!window[mathRenderingAccessibleKEY]) {
+      window[mathRenderingAccessibleKEY] = {};
     }
-    return window[key];
+    return window[mathRenderingAccessibleKEY];
   } else {
     return {};
   }
@@ -97,30 +97,6 @@ const removePlaceholdersAndRestoreDisplay = () => {
     placeholder.remove();
   });
 };
-
-const waitForMathRenderingLib = (callback) => {
-  // Check immediately if the library is available
-  if (window.hasOwnProperty('@pie-lib/math-rendering@2')) {
-    callback();
-    return;
-  }
-
-  let checkIntervalId;
-  const maxWaitTime = 500;
-  const startTime = Date.now();
-
-  const checkForLib = () => {
-    // If math-rendering loads or the maximum wait time is exceeded
-    if (window.hasOwnProperty('@pie-lib/math-rendering@2') || Date.now() - startTime > maxWaitTime) {
-      clearInterval(checkIntervalId);
-      callback();
-    }
-  };
-
-  // Start periodically checking for math-rendering
-  checkIntervalId = setInterval(checkForLib, 100);
-};
-
 const removeExcessMjxContainers = (content) => {
   const elements = content.querySelectorAll('[data-latex][data-math-handled="true"]');
 
@@ -136,11 +112,9 @@ const removeExcessMjxContainers = (content) => {
   });
 };
 
-const renderMath = (el, renderOpts) => {
-  renderOpts = renderOpts || defaultOpts();
-  // skipWaitForMathRenderingLib is used currently in editable-html, when mmlOutput is enabled
-  const { skipWaitForMathRenderingLib } = renderOpts;
+const getMathJaxCustomKey = () => window?.MathJax?.customKey || window?.MathJax?.config?.customKey;
 
+const renderMath = (el, renderOpts) => {
   const isString = typeof el === 'string';
   let executeOn = document.body;
 
@@ -151,27 +125,21 @@ const renderMath = (el, renderOpts) => {
     executeOn = div;
   }
 
-  // Skip placeholder creation for elements already handled by MathJax.
-  const unprocessedMathElements = executeOn.querySelectorAll('[data-latex]:not([data-math-handled="true"])');
+  const { skipWaitForMathRenderingLib } = renderOpts || {};
 
-  unprocessedMathElements.forEach(createPlaceholder);
-
-  const mathRenderingCallback = () => {
+  // this is the actual math-rendering-accessible renderMath function, which initialises MathJax
+  const renderMathAccessible = () => {
     fixMathElements(executeOn);
     adjustMathMLStyle(executeOn);
 
-    if (window.hasOwnProperty('@pie-lib/math-rendering@2')) {
-      // If MathJax is set up using the pie lib package for math rendering, then use it.
-      removePlaceholdersAndRestoreDisplay();
-
-      return mr.renderMath(el);
-    }
+    const mathJaxCustomKey = getMathJaxCustomKey();
 
     if (
       (!window.MathJax && !window.mathjaxLoadedP) ||
-      (window.MathJax &&
-        (!window.MathJax.customKey || window.MathJax.customKey !== '@pie-lib/math-rendering-accessible@1'))
+      (mathJaxCustomKey && mathJaxCustomKey !== mathRenderingAccessibleKEY)
     ) {
+      renderOpts = renderOpts || defaultOpts();
+
       initializeMathJax(renderOpts);
     }
 
@@ -248,10 +216,55 @@ const renderMath = (el, renderOpts) => {
     }
   };
 
+  // skipWaitForMathRenderingLib is used currently in editable-html, when mmlOutput is enabled
   if (skipWaitForMathRenderingLib) {
-    return mathRenderingCallback();
+    // is this case, we don't need to wait for anything, because a math-instance is most probably already loaded
+    return renderMathAccessible();
   } else {
-    waitForMathRenderingLib(mathRenderingCallback);
+    // Check immediately if the math-rendering package is available, and if it is, use it
+    if (window.hasOwnProperty(mathRenderingKEY) && window[mathRenderingKEY].instance) {
+      removePlaceholdersAndRestoreDisplay();
+      return mr.renderMath();
+    }
+
+    // Check immediately if the math-rendering-accessible package is available, and if it is, use it
+    if (window.hasOwnProperty(mathRenderingAccessibleKEY) && window[mathRenderingAccessibleKEY].instance) {
+      return renderMathAccessible();
+    }
+
+    const waitForMathRenderingLib = (renderMathAccessibleCallback) => {
+      // Create placeholders for the items while math is loading
+      const mathElements = executeOn.querySelectorAll('[data-latex]');
+      mathElements.forEach(createPlaceholder);
+
+      let checkIntervalId;
+      const maxWaitTime = 500;
+      const startTime = Date.now();
+
+      const checkForLib = () => {
+        // Check if library has loaded or if the maximum wait time has been exceeded
+        const mathRenderingHasLoaded = window.hasOwnProperty(mathRenderingKEY) && window[mathRenderingKEY].instance;
+        const hasExceededMaxWait = Date.now() - startTime > maxWaitTime;
+
+        if (mathRenderingHasLoaded || hasExceededMaxWait) {
+          clearInterval(checkIntervalId);
+
+          // Check if the math-rendering package is available, and if it is, use it
+          if (mathRenderingHasLoaded) {
+            removePlaceholdersAndRestoreDisplay();
+            return mr.renderMath();
+          }
+
+          renderMathAccessibleCallback();
+        }
+      };
+
+      // Start periodically checking for math-rendering
+      checkIntervalId = setInterval(checkForLib, 100);
+    };
+
+    // otherwise, we need for it to load
+    waitForMathRenderingLib(renderMathAccessible);
   }
 };
 
