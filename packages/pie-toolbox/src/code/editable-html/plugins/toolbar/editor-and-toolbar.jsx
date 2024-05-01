@@ -17,7 +17,7 @@ const style = (theme) => ({
     border: '1px solid #ccc',
     borderRadius: '4px',
     cursor: 'text',
-    height: '100%',
+    height: 'inherit',
     '& [data-slate-editor="true"]': {
       wordBreak: 'break-word',
       overflow: 'visible',
@@ -37,7 +37,7 @@ const style = (theme) => ({
     position: 'relative',
     padding: '0px',
     overflowY: 'scroll',
-    height: '100%',
+    height: 'inherit',
     color: color.text(),
     backgroundColor: color.background(),
     '&::before': {
