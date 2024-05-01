@@ -67,11 +67,15 @@ export const serialization = {
 };
 
 const getListParent = (editor) => {
-  const pathRange = Editor.unhangRange(editor, editor.selection);
-  const ancestors = Array.from(SlateNode.ancestors(editor, pathRange.anchor.path, { reverse: true }));
-  const parentList = ancestors.find(([node]) => ['ul', 'ol'].includes(node.type));
+  try {
+    const pathRange = Editor.unhangRange(editor, editor.selection);
+    const ancestors = Array.from(SlateNode.ancestors(editor, pathRange.anchor.path, { reverse: true }));
+    const parentList = ancestors.find(([node]) => ['ul', 'ol'].includes(node.type));
 
-  return parentList;
+    return parentList;
+  } catch (e) {
+    return null;
+  }
 };
 
 const isBlockActive = (editor, format) => {

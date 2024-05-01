@@ -158,7 +158,14 @@ export const Toolbar = (props) => {
       return null;
     }
 
-    const [node, path] = Editor.node(editor, selection, depth ? { depth } : undefined);
+    let node;
+    let path;
+
+    try {
+      [node, path] = Editor.node(editor, selection, depth ? { depth } : undefined);
+    } catch (err) {
+      //
+    }
 
     if (!node) {
       return null;
@@ -209,9 +216,8 @@ export const Toolbar = (props) => {
 
     if (isDone) {
       editor.selection = null;
+      handler(editor, true);
     }
-
-    handler(isDone);
 
     if (parentPlugin && parentPlugin.handleDone) {
       parentPlugin.handleDone(isDone, node, plugin);
@@ -297,16 +303,18 @@ export const Toolbar = (props) => {
           </IconButton>
         )}
         {customToolbarShowDone && <DoneButton onClick={handleDone} />}
-        <Button
-          aria-label="Undo"
-          className={classes.iconRoot}
-          onClick={(e) => editor.undo()}
-          classes={{
-            root: classes.iconRoot,
-          }}
-        >
-          <Undo />
-        </Button>
+        {!deletable && (
+          <Button
+            aria-label="Undo"
+            className={classes.iconRoot}
+            onClick={() => editor.undo()}
+            classes={{
+              root: classes.iconRoot,
+            }}
+          >
+            <Undo />
+          </Button>
+        )}
       </div>
     </div>
   );

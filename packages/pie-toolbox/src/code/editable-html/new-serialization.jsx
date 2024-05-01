@@ -172,7 +172,7 @@ export const TEXT_RULE = {
     el.normalize();
 
     if (el.tagName && el.tagName.toLowerCase() === 'br') {
-      return jsx('text', {});
+      return jsx('text', {}, '\n');
     }
 
     if (el.nodeName === '#text') {

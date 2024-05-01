@@ -54,7 +54,7 @@ export default function ImagePlugin(opts) {
           newProperties: { data: update },
         });
 
-        onToolbarDone(null, false);
+        onToolbarDone(false);
       };
 
       const Tb = () => (

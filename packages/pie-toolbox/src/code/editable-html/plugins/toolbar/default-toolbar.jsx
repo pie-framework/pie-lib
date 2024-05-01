@@ -12,8 +12,12 @@ import { Editor, Element as SlateElement } from 'slate';
 const log = debug('@pie-lib:editable-html:plugins:toolbar');
 
 const isMarkActive = (editor, format) => {
-  const marks = Editor.marks(editor);
-  return marks ? marks[format] === true : false;
+  try {
+    const marks = Editor.marks(editor);
+    return marks ? marks[format] === true : false;
+  } catch (err) {
+    return false;
+  }
 };
 
 const isBlockActive = (editor, format) => {

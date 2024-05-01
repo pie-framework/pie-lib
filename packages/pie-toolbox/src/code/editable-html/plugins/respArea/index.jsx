@@ -122,7 +122,9 @@ export default function ResponseAreaPlugin(opts) {
           });
         }
 
-        if (isEqual(editor, oldEditor)) {
+        if (isEqual(editor, oldEditor) || !oldEditor.children.length) {
+          // ignoring when editors are equal and the first change
+          onChange(options);
           return;
         }
 
@@ -140,7 +142,7 @@ export default function ResponseAreaPlugin(opts) {
           (d) => !arrayToUseForFilter.find((e) => e.data.index === d.data.index),
         );
 
-        if (elementsWithChangedStatus.length && oldRespAreaList.length > currentRespAreaList.length) {
+        if (elementsWithChangedStatus.length && oldRespAreaList.length !== currentRespAreaList.length) {
           opts.onHandleAreaChange(elementsWithChangedStatus);
         }
 

@@ -79,7 +79,7 @@ export const renderChildren = (layout, value, onChange, rootRenderChildren, pare
         children.push(<Paragraph key={key}>{subNodes}</Paragraph>);
       } else {
         const Tag = n.type;
-        if (Tag !== 'source' && n.children && n.children.length > 0) {
+        if (!['source', 'img'].includes(Tag) && n.children && n.children.length > 0) {
           children.push(
             <Tag key={key} {...n.data.attributes}>
               {subNodes}

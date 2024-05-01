@@ -98,9 +98,17 @@ const SlateEditor = (editorProps) => {
     // Slate throws an error if the value on the initial render is invalid
     // then we directly set the value on the editor in order
     // to be able to trigger normalization on the initial value before rendering
+
+    const needsReset = editor.children.length === 0;
+
     editor.children = value;
     editor.marks = {};
     Editor.normalize(editor, { force: true });
+
+    if (needsReset) {
+      editor.history.undos = [];
+      editor.history.redos = [];
+    }
     // We return the normalized internal value so that the rendering can take over from here
     return editor.children;
   }, [editor, value]);
@@ -477,7 +485,7 @@ export class EditorComponent extends React.Component {
     }),
     className: PropTypes.string,
     maxImageWidth: PropTypes.number,
-    maxImageHeight: PropTypes.number
+    maxImageHeight: PropTypes.number,
   };
 
   static defaultProps = {
@@ -681,7 +689,7 @@ export class EditorComponent extends React.Component {
         focus: this.focus,
         onChange: this.onChange,
         uploadSoundSupport: props.uploadSoundSupport,
-      }
+      },
     });
 
     if (props.mathMlOptions.mmlOutput || props.mathMlOptions.mmlEditing) {
@@ -1189,7 +1197,12 @@ export class EditorComponent extends React.Component {
     );
 
     return (
-      <div ref={(ref) => (this.wrapperRef = ref)} style={{ width: sizeStyle.width }} className={names}>
+      <div
+        ref={(ref) => (this.wrapperRef = ref)}
+        style={{ width: sizeStyle.width }}
+        className={names}
+        data-slate-wrapper=""
+      >
         {scheduled && <div className={classes.uploading}>Uploading image and then saving...</div>}
         <SlateEditor
           plugins={this.plugins}
