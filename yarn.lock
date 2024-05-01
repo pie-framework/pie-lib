@@ -2783,10 +2783,10 @@
   resolved "https://registry.yarnpkg.com/@pslb/estree-helper/-/estree-helper-4.2.0.tgz#682d7b8eed6db06a94fe3e8687ca3ef7b69d110f"
   integrity sha512-R8FkTDSBHHvmZjZfILyX3vu/8cdfTmsqMJ0I/O3Tv0f4nC5F2vHc41KY7C5JQYxhOjhsbM/4H4N+YDmy+P7w1Q==
 
-"@pslb/pslb@^4.4.0":
-  version "4.4.1"
-  resolved "https://registry.yarnpkg.com/@pslb/pslb/-/pslb-4.4.1.tgz#7fd98770202b4c7026415e43e9c08efda5730b65"
-  integrity sha512-s6N6mUjApz+d4tw8ycGEO1F3ah6C7gKkAwSrFb576ZMVV8UhKJm66lUxfojH18tqXiaHhrRR6EdMabmMYzQyKQ==
+"@pslb/pslb@4.4.1-beta.1":
+  version "4.4.1-beta.1"
+  resolved "https://registry.yarnpkg.com/@pslb/pslb/-/pslb-4.4.1-beta.1.tgz#9c1f95bf74bacb44f0e9aa7dca93a15c020d30ba"
+  integrity sha512-nOg/pF5WCplfMZqsdzQAhdk9nXUyYxpnH9WxclTGQbHaH5XNIuGAHzlX0/EmX8ah9TqCqssvCDZOoZKIYg5QEQ==
   dependencies:
     "@pslb/estree-helper" "^4.2.0"
     "@pslb/rollup-plugin-dll" "^4.4.1"
