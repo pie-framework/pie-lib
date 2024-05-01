@@ -26,6 +26,7 @@ class LibCommands extends Commands {
   //  we also need to make sure this will create beta versions
   sharedBuild() {
     if (args.next) {
+      // releasing next versions for slate testing
       return this.runCmd(
         `yarn pslb --config pslb/pslb.config-next.js --publishLibs --token ${args.token} --cleanLibs --logLevel debug`
       );
