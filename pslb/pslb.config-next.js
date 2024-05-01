@@ -52,6 +52,7 @@ module.exports = {
   packagesDir,
   extensions: { commonJs },
   type: 'npm-package',
+  defaultTag: 'next',
   /**
    * Note: the libs feed into each other, so start with the edges that the later libs can then hook into.
    */

@@ -26,7 +26,9 @@ class LibCommands extends Commands {
   //  we also need to make sure this will create beta versions
   sharedBuild() {
     if (args.next) {
-      return Promise.resolve();
+      return this.runCmd(
+        `yarn pslb --config pslb/pslb.config-next.js --publishLibs --token ${args.token} --cleanLibs --logLevel debug`
+      );
     } else {
       return this.runCmd(
         `yarn pslb --config pslb/pslb.config.js --publishLibs --token ${args.token} --cleanLibs --logLevel debug`
