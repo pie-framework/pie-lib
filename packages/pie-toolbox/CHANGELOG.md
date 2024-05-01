@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.17.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.16.7...@pie-lib/pie-toolbox@1.17.0) (2024-05-01)
+
+
+### Features
+
+* testing builds ([5718bff](https://github.com/pie-framework/pie-lib/commit/5718bff2843cb899db222c3573f9531ee042df88))
+
+
+
+
+
 ## [1.16.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.16.6...@pie-lib/pie-toolbox@1.16.7) (2024-05-01)
 
 
