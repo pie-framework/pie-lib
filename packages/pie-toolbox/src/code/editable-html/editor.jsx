@@ -69,6 +69,8 @@ const SlateEditor = (editorProps) => {
   const [isFocused, setIsFocused] = useState(false);
   const editorRef = useRef(null);
 
+  window.editorTest = editor;
+
   useEffect(() => {
     mounted.current = true;
 

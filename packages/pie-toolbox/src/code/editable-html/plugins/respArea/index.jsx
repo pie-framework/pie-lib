@@ -1,5 +1,5 @@
 import React from 'react';
-import { Node as SlateNode } from 'slate';
+import { Node as SlateNode, Transforms } from 'slate';
 import { jsx } from 'slate-hyperscript';
 import debug from 'debug';
 
@@ -157,15 +157,13 @@ export default function ResponseAreaPlugin(opts) {
 
       return plugins.filter((p) => p.name !== 'response_area');
     },
-    deleteNode: (e, node, nodePath, editor, onChange) => {
+    deleteNode: (e, node, nodePath, editor) => {
       e.preventDefault();
 
-      editor.apply({
-        type: 'remove_node',
-        path: nodePath,
+      editor.removeNodes({
+        at: nodePath,
       });
-
-      onChange(editor);
+      ReactEditor.focus(editor);
     },
     supports: (node) => elTypesArray.indexOf(node.type) >= 0,
     renderNode(props) {
