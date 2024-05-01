@@ -11,7 +11,7 @@ import debug from 'debug';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import { color } from '../render-ui';
-import Plain from 'slate-plain-serializer';
+// import Plain from 'slate-plain-serializer';
 import AlertDialog from '../config-ui/alert-dialog';
 import { PreviewPrompt } from '../render-ui';
 
