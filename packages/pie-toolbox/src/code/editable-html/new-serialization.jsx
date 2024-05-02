@@ -9,7 +9,7 @@ import { serialization as mediaSerialization } from './plugins/media';
 import { serialization as listSerialization } from './plugins/list';
 import { serialization as tableSerialization } from './plugins/table';
 import { serialization as responseAreaSerialization } from './plugins/respArea';
-import { Mark, Text, Value } from 'slate';
+import { Mark, Text } from 'slate';
 import { jsx } from 'slate-hyperscript';
 import escapeHtml from 'escape-html';
 
@@ -72,6 +72,17 @@ export const getBase64 = (file) => {
 
 export const reactAttributes = (o) => toStyleObject(o, { camelize: true, addUnits: false });
 
+export const isSlateNodeEmpty = (node) => {
+  if (!node) {
+    return true;
+  }
+
+  const { children } = node;
+  const [first] = children;
+
+  return children.length === 0 || children.length === 1 && Text.isText(first) && first.text === '';
+};
+
 const attributesToMap = (el) => (acc, attribute) => {
   const value = el.getAttribute(attribute);
   if (value) {
@@ -126,6 +137,10 @@ const blocks = {
 
     log('[blocks:serialize] object: ', object, children);
     let key;
+
+    if (isSlateNodeEmpty(object)) {
+      return '';
+    }
 
     for (key in BLOCK_TAGS) {
       if (BLOCK_TAGS[key] === object.type) {
