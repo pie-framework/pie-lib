@@ -12,6 +12,7 @@ import { object as toStyleObject } from 'to-style';
 import get from 'lodash/get';
 import omit from 'lodash/omit';
 import reduce from 'lodash/reduce';
+import { LIST_TYPES } from "../list";
 
 const log = debug('@pie-lib:editable-html:plugins:table');
 
@@ -412,6 +413,17 @@ export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
   };
 
   core.supports = (node) => TABLE_TYPES.includes(node.type);
+
+  core.onKeyDown = (editor, event) => {
+    if (event.key === 'Backspace') {
+      const [currentNode] = editor.parent(editor.selection.anchor.path);
+
+      if (currentNode.type === 'td' && editor.selection.anchor.offset === 0) {
+        // user unable to delete td
+        event.preventDefault();
+      }
+    }
+  };
 
   const Node = (props) => {
     switch (props.node.type) {
