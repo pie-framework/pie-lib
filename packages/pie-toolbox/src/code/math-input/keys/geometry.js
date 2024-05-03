@@ -101,6 +101,7 @@ export const congruentTo = set({
   command: '\\cong',
   latex: '\\cong',
 });
+
 export const notCongruentTo = set({
   name: 'Not Congruent To',
   command: '\\ncong',
@@ -115,10 +116,13 @@ export const primeArcminute = set({
   // eslint-disable-next-line
   write: "'",
 });
+
 export const doublePrimeArcSecond = set({
   name: 'Double Prime',
-  latex: '"',
-  write: '"',
+  // eslint-disable-next-line
+  latex: "''",
+  // eslint-disable-next-line
+  write: "''",
 });
 
 export const leftArrow = set({
