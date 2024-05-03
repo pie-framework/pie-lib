@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.17.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.17.0...@pie-lib/pie-toolbox@1.17.1) (2024-05-03)
+
+
+### Bug Fixes
+
+* **drag:** add different style for categorize PD-3680 ([48c20e1](https://github.com/pie-framework/pie-lib/commit/48c20e1512e7fcbc8fd6ff044cd5c2b229d48bbf))
+* **math-editor:** Change double prime notation from double-quote to two single-quotes in Geometry math editor PD-3539 ([be65a3a](https://github.com/pie-framework/pie-lib/commit/be65a3a570d22d023cb57089719e4c97a0ab03b2))
+* **math-editor:** Correct font styling for prime notation, resolve issues with prime and double prime notations in the math editor, ensuring they render correctly during authoring and in the final display PD-3537, PD-3540 ([f2bfd18](https://github.com/pie-framework/pie-lib/commit/f2bfd1822359adc38005151af89b0862911ba642))
+* **math-editor:** Ignore ESLint warnings for latex and write properties in doublePrimeArcSecond PD-3539, PD-3538 ([07c64d5](https://github.com/pie-framework/pie-lib/commit/07c64d504ce6613b2455ebf91899273c069dbe1c))
+
+
+
+
+
 # [1.17.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.16.7...@pie-lib/pie-toolbox@1.17.0) (2024-05-01)
 
 
