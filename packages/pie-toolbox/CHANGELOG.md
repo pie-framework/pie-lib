@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.17.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.16.7...@pie-lib/pie-toolbox@1.17.0) (2024-05-01)
+
+
+### Features
+
+* testing builds ([5718bff](https://github.com/pie-framework/pie-lib/commit/5718bff2843cb899db222c3573f9531ee042df88))
+
+
+
+
+
+## [1.16.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.16.6...@pie-lib/pie-toolbox@1.16.7) (2024-05-01)
+
+
+### Bug Fixes
+
+* testing builds ([0782b58](https://github.com/pie-framework/pie-lib/commit/0782b582d6682ea45d798dc51dbf7bf6fa989a90))
+
+
+
+
+
+## [1.16.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.16.5...@pie-lib/pie-toolbox@1.16.6) (2024-05-01)
+
+
+### Bug Fixes
+
+* testing builds ([1ff0677](https://github.com/pie-framework/pie-lib/commit/1ff0677e0caca36ff720ef330bd24cb8367b5157))
+
+
+
+
+
+## [1.16.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.16.4...@pie-lib/pie-toolbox@1.16.5) (2024-05-01)
+
+
+### Bug Fixes
+
+* testing builds ([58d500b](https://github.com/pie-framework/pie-lib/commit/58d500b2ea8273a4d0c055db19fd611a6ff9bf9c))
+
+
+
+
+
 ## [1.16.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.16.3...@pie-lib/pie-toolbox@1.16.4) (2024-04-29)
 
 
