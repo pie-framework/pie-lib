@@ -18,7 +18,7 @@ import List from './list';
 import TablePlugin from './table';
 import RespAreaPlugin from './respArea';
 import HtmlPlugin from './html';
-import CustomPlugin from "./customPlugin";
+import CustomPlugin from './customPlugin';
 
 const log = debug('@pie-lib:editable-html:plugins');
 
@@ -83,13 +83,15 @@ export const buildPlugins = (activePlugins, customPlugins, opts) => {
   activePlugins = activePlugins || DEFAULT_PLUGINS;
 
   const addIf = (key, p) => activePlugins.includes(key) && p;
+
   const imagePlugin = opts.image && opts.image.onDelete && ImagePlugin(opts.image);
   const mathPlugin = MathPlugin(opts.math);
   const respAreaPlugin =
     opts.responseArea && opts.responseArea.type && RespAreaPlugin(opts.responseArea, compact([mathPlugin]));
+  const languageCharactersPlugins = (opts?.languageCharacters || []).map((config) => CharactersPlugin(config));
 
   const builtPlugins = compact([
-    addIf('table', TablePlugin(opts.table, compact([imagePlugin, mathPlugin, respAreaPlugin]))),
+    addIf('table', TablePlugin(opts.table, compact([imagePlugin, mathPlugin, ...languageCharactersPlugins]))),
     addIf('bold', MarkHotkey({ key: 'b', type: 'bold', icon: <Bold />, tag: 'strong' })),
     // addIf('code', MarkHotkey({ key: '`', type: 'code', icon: <Code /> })),
     addIf('italic', MarkHotkey({ key: 'i', type: 'italic', icon: <Italic />, tag: 'em' })),
@@ -107,13 +109,13 @@ export const buildPlugins = (activePlugins, customPlugins, opts) => {
     addIf('video', MediaPlugin('video', opts.media)),
     addIf('audio', MediaPlugin('audio', opts.media)),
     addIf('math', mathPlugin),
-    ...opts.languageCharacters.map((config) => addIf('languageCharacters', CharactersPlugin(config))),
+    ...languageCharactersPlugins.map((plugin) => addIf('languageCharacters', plugin)),
     addIf('bulleted-list', List({ key: 'l', type: 'ul_list', icon: <BulletedListIcon /> })),
     addIf('numbered-list', List({ key: 'n', type: 'ol_list', icon: <NumberedListIcon /> })),
     ToolbarPlugin(opts.toolbar),
     SoftBreakPlugin({ shift: true }),
     addIf('responseArea', respAreaPlugin),
-    addIf('html', HtmlPlugin(opts.html))
+    addIf('html', HtmlPlugin(opts.html)),
   ]);
 
   customPlugins.forEach((customPlugin) => {

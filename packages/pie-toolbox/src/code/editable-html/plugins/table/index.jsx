@@ -162,7 +162,7 @@ export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
     /**
      * Note - the node may not be a table node - it may be a node inside a table.
      */
-    customToolbar: (node, value, onToolbarDone) => {
+    customToolbar: (node, value, onToolbarDone, getFocusedValue) => {
       log('[customToolbar] node.data: ', node.data);
 
       const tableBlock = core.utils.getTableBlock(value.document, node?.key);
@@ -209,6 +209,7 @@ export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
 
       const Tb = () => (
         <TableToolbar
+          getFocusedValue={getFocusedValue}
           plugins={toolbarPlugins}
           onChange={(c) => onToolbarDone(c, false)}
           value={value}
@@ -222,6 +223,7 @@ export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
           onDone={onDone}
         />
       );
+
       return Tb;
     },
   };
