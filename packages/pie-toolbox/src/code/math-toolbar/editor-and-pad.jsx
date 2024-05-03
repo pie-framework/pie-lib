@@ -324,6 +324,7 @@ const styles = (theme) => ({
         right: '-1px',
       },
     },
+
     '& *': {
       fontFamily: 'MJXZERO, MJXTEX !important',
 
@@ -429,6 +430,10 @@ const styles = (theme) => ({
       },
 
       '-webkit-font-smoothing': 'antialiased !important',
+    },
+
+    '& span[data-prime="true"]': {
+      fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important',
     },
   },
   hide: {
