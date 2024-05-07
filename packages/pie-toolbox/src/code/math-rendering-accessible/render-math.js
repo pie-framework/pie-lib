@@ -233,7 +233,6 @@ const renderMath = (el, renderOpts) => {
     }
 
     const waitForMathRenderingLib = (renderMathAccessibleCallback) => {
-      console.log(executeOn, renderOpts);
       // Create placeholders for the items while math is loading
       const mathElements = executeOn.querySelectorAll('[data-latex]');
       mathElements.forEach(createPlaceholder);
