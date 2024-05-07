@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.17.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.17.2...@pie-lib/pie-toolbox@1.17.3) (2024-05-07)
+
+
+### Bug Fixes
+
+* **math-rendering-accessible:** Specify parameters for element and render options when invoking the previous renderMath function PD-3731 ([6db4f58](https://github.com/pie-framework/pie-lib/commit/6db4f58d53949158bb5fbf3558d60c362d832b00))
+
+
+
+
+
 ## [1.17.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.17.1...@pie-lib/pie-toolbox@1.17.2) (2024-05-07)
 
 **Note:** Version bump only for package @pie-lib/pie-toolbox
