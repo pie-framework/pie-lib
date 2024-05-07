@@ -234,7 +234,7 @@ const renderMath = (el, renderOpts) => {
     if (window.hasOwnProperty(mathRenderingKEY) && window[mathRenderingKEY].instance) {
       console.log(mathRenderingKEY, 'mathRenderingKEY');
       removePlaceholdersAndRestoreDisplay();
-      return mr.renderMath();
+      return mr.renderMath(executeOn, renderOpts);
     }
 
     // Check immediately if the math-rendering-accessible package is available, and if it is, use it
@@ -264,7 +264,7 @@ const renderMath = (el, renderOpts) => {
           if (mathRenderingHasLoaded) {
             console.log(mathRenderingHasLoaded, 'mathRenderingHasLoaded');
             removePlaceholdersAndRestoreDisplay();
-            return mr.renderMath();
+            return mr.renderMath(executeOn, renderOpts);
           }
 
           renderMathAccessibleCallback();
