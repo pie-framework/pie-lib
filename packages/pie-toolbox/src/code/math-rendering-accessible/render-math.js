@@ -224,7 +224,7 @@ const renderMath = (el, renderOpts) => {
     // Check immediately if the math-rendering package is available, and if it is, use it
     if (window.hasOwnProperty(mathRenderingKEY) && window[mathRenderingKEY].instance) {
       removePlaceholdersAndRestoreDisplay();
-      return mr.renderMath();
+      return mr.renderMath(executeOn, renderOpts);
     }
 
     // Check immediately if the math-rendering-accessible package is available, and if it is, use it
@@ -233,6 +233,7 @@ const renderMath = (el, renderOpts) => {
     }
 
     const waitForMathRenderingLib = (renderMathAccessibleCallback) => {
+      console.log(executeOn, renderOpts);
       // Create placeholders for the items while math is loading
       const mathElements = executeOn.querySelectorAll('[data-latex]');
       mathElements.forEach(createPlaceholder);
@@ -252,7 +253,7 @@ const renderMath = (el, renderOpts) => {
           // Check if the math-rendering package is available, and if it is, use it
           if (mathRenderingHasLoaded) {
             removePlaceholdersAndRestoreDisplay();
-            return mr.renderMath();
+            return mr.renderMath(executeOn, renderOpts);
           }
 
           renderMathAccessibleCallback();
