@@ -251,7 +251,7 @@ export default function ImagePlugin(opts) {
 }
 
 export const serialization = {
-  deserialize(el /*, next*/) {
+  deserialize(el , next) {
     const name = el.tagName.toLowerCase();
     if (name !== 'img') return;
 
@@ -260,18 +260,22 @@ export const serialization = {
     const width = parseInt(style.width.replace('px', ''), 10) || null;
     const height = parseInt(style.height.replace('px', ''), 10) || null;
 
-    const out = jsx('element', {
-      type: 'image',
-      data: {
-        src: el.getAttribute('src'),
-        width,
-        height,
-        margin: el.style.margin,
-        justifyContent: el.style.justifyContent,
-        alignment: el.getAttribute('alignment'),
-        alt: el.getAttribute('alt'),
+    const out = jsx(
+      'element',
+      {
+        type: 'image',
+        data: {
+          src: el.getAttribute('src'),
+          width,
+          height,
+          margin: el.style.margin,
+          justifyContent: el.style.justifyContent,
+          alignment: el.getAttribute('alignment'),
+          alt: el.getAttribute('alt'),
+        },
       },
-    });
+        next(Array.from(el.children)),
+    );
     log('return object: ', out);
     return out;
   },

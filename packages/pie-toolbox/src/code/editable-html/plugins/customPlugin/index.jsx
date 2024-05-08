@@ -1,5 +1,7 @@
 import React from 'react';
 import { htmlToValue } from '../../new-serialization';
+import {ReactEditor} from "slate-react";
+import {Editor, Text, Transforms} from "slate";
 
 // We're possibly going to have to support content types, so starting it as an enum
 export const CONTENT_TYPE = {
@@ -25,29 +27,30 @@ const getIcon = (customPluginProps) => {
 export default function CustomPlugin(type, customPluginProps) {
   const toolbar = {
     icon: getIcon(customPluginProps),
-    onClick: (value, onChange, getFocusedValue) => {
-      const editorDOM = document.querySelector(`[data-key="${value.document.key}"]`);
-      let valueToUse = value;
+    onClick: (editor) => {
       const callback = ({ customContent, contentType }, focus) => {
-        valueToUse = getFocusedValue();
-
         switch (contentType) {
           case CONTENT_TYPE.FRAGMENT:
           default: {
             const contentValue = htmlToValue(customContent);
-            const change = valueToUse.change().insertFragment(contentValue.document);
 
-            valueToUse = change.value;
-            onChange(change);
+            const [nodeAtSelection, nodePath] = Editor.node(editor, editor.selection);
+
+            if (Text.isText(nodeAtSelection)) {
+              const block = { type: 'paragraph', children: [] };
+
+              Transforms.wrapNodes(editor, block, { at: nodePath });
+            }
+
+            editor.insertNode(contentValue);
+            Transforms.move(editor, { distance: 1, unit: 'offset' });
 
             break;
           }
         }
 
         if (focus) {
-          if (editorDOM) {
-            editorDOM.focus();
-          }
+          ReactEditor.focus(editor);
         }
       };
 
