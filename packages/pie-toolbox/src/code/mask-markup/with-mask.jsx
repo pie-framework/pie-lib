@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import Mask from './mask';
 import componentize from './componentize';
@@ -24,6 +25,30 @@ export const withMask = (type, renderChildren) => {
       value: PropTypes.object,
       onChange: PropTypes.func,
     };
+
+    componentDidUpdate() {
+      // eslint-disable-next-line
+      const domNode = ReactDOM.findDOMNode(this);
+      // Query all elements that may contain outdated MathJax renderings
+      const mathElements = domNode.querySelectorAll('[data-latex][data-math-handled="true"]');
+
+      // Clean up for fresh MathJax processing
+      mathElements.forEach((el) => {
+        // Remove the MathJax container to allow for clean updates
+        const mjxContainer = el.querySelector('mjx-container');
+
+        if (mjxContainer) {
+          el.removeChild(mjxContainer);
+        }
+
+        // Update the innerHTML to match the raw LaTeX data, ensuring it is reprocessed correctly
+        const latexCode = el.getAttribute('data-raw');
+        el.innerHTML = latexCode;
+
+        // Remove the attribute to signal that MathJax should reprocess this element
+        el.removeAttribute('data-math-handled');
+      });
+    }
 
     render() {
       const { markup, layout, value, onChange } = this.props;
