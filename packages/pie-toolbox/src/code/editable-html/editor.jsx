@@ -306,17 +306,17 @@ const Element = (props) => {
           {children}
         </ol>
       );
-    default:
+    case 'div':
       return (
-        <div
-          style={{
-            ...style,
-            margin: 0,
-          }}
-          {...attributes}
-        >
+        <div style={style} {...attributes}>
           {children}
         </div>
+      );
+    default:
+      return (
+        <p style={style} {...attributes}>
+          {children}
+        </p>
       );
   }
 };
