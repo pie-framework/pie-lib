@@ -26,28 +26,30 @@ export const withMask = (type, renderChildren) => {
       onChange: PropTypes.func,
     };
 
-    componentDidUpdate() {
-      // eslint-disable-next-line
-      const domNode = ReactDOM.findDOMNode(this);
-      // Query all elements that may contain outdated MathJax renderings
-      const mathElements = domNode.querySelectorAll('[data-latex][data-math-handled="true"]');
+    componentDidUpdate(prevProps) {
+      if (this.props.markup !== prevProps.markup) {
+        // eslint-disable-next-line
+        const domNode = ReactDOM.findDOMNode(this);
+        // Query all elements that may contain outdated MathJax renderings
+        const mathElements = domNode.querySelectorAll('[data-latex][data-math-handled="true"]');
 
-      // Clean up for fresh MathJax processing
-      mathElements.forEach((el) => {
-        // Remove the MathJax container to allow for clean updates
-        const mjxContainer = el.querySelector('mjx-container');
+        // Clean up for fresh MathJax processing
+        mathElements.forEach((el) => {
+          // Remove the MathJax container to allow for clean updates
+          const mjxContainer = el.querySelector('mjx-container');
 
-        if (mjxContainer) {
-          el.removeChild(mjxContainer);
-        }
+          if (mjxContainer) {
+            el.removeChild(mjxContainer);
+          }
 
-        // Update the innerHTML to match the raw LaTeX data, ensuring it is reprocessed correctly
-        const latexCode = el.getAttribute('data-raw');
-        el.innerHTML = latexCode;
+          // Update the innerHTML to match the raw LaTeX data, ensuring it is reprocessed correctly
+          const latexCode = el.getAttribute('data-raw');
+          el.innerHTML = latexCode;
 
-        // Remove the attribute to signal that MathJax should reprocess this element
-        el.removeAttribute('data-math-handled');
-      });
+          // Remove the attribute to signal that MathJax should reprocess this element
+          el.removeAttribute('data-math-handled');
+        });
+      }
     }
 
     render() {
