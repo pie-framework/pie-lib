@@ -53,6 +53,7 @@ export class Input extends React.Component {
     if (!this.mathField) {
       return;
     }
+
     const { latex } = this.props;
 
     if (latex) {
@@ -62,6 +63,7 @@ export class Input extends React.Component {
 
   clear() {
     this.mathField.latex('');
+
     return '';
   }
 
@@ -84,13 +86,16 @@ export class Input extends React.Component {
     } else {
       this.mathField.cmd(v);
     }
+
     this.mathField.focus();
+
     return this.mathField.latex();
   }
 
   keystroke(v) {
     this.mathField.keystroke(v);
     this.mathField.focus();
+
     return this.mathField.latex();
   }
 
@@ -98,6 +103,7 @@ export class Input extends React.Component {
     log('write: ', v);
     this.mathField.write(v);
     this.mathField.focus();
+
     return this.mathField.latex();
   }
 
@@ -135,20 +141,28 @@ export class Input extends React.Component {
     }
   };
 
+  onClick = (event) => {
+    const { onClick } = this.props;
+
+    this.refresh();
+    onClick && onClick(event);
+  };
+
   shouldComponentUpdate(nextProps) {
     log('next: ', nextProps.latex);
     log('current: ', this.mathField.latex());
+
     return nextProps.latex !== this.mathField.latex();
   }
 
   render() {
-    const { onClick, onFocus, onBlur, classes, className } = this.props;
+    const { onFocus, onBlur, classes, className } = this.props;
 
     return (
       <span
         className={classNames(classes.input, className)}
-        onKeyPress={this.onKeyPress}
-        onClick={onClick}
+        onKeyDown={this.onKeyPress}
+        onClick={this.onClick}
         onFocus={onFocus}
         onBlur={onBlur}
         ref={(r) => (this.input = r)}
