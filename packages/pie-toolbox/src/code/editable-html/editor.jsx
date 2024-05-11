@@ -1270,6 +1270,7 @@ const styles = {
       borderCollapse: 'collapse',
       color: color.text(),
       backgroundColor: color.background(),
+      whiteSpace: 'pre-wrap',
     },
     '& table:not([border="1"]) tr': {
       borderTop: '1px solid #dfe2e5',

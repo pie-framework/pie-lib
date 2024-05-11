@@ -12,7 +12,6 @@ import { object as toStyleObject } from 'to-style';
 import get from 'lodash/get';
 import omit from 'lodash/omit';
 import reduce from 'lodash/reduce';
-import { LIST_TYPES } from "../list";
 
 const log = debug('@pie-lib:editable-html:plugins:table');
 
@@ -138,10 +137,10 @@ export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
         const [tableNode, tablePath] = entry;
         const tableParent = SlateNode.get(editor, tablePath.slice(0, -1));
 
-        // If the element is a paragraph, ensure its children are valid.
+        // If the element is a table, ensure its children are valid.
         if (SlateElement.isElement(tableNode) && tableNode.type === 'table') {
           const emptyBlock = {
-            type: 'paragraph',
+            type: 'div',
             children: [{ text: '' }],
           };
           const tableIndex = tablePath.slice(-1)[0];
@@ -254,7 +253,7 @@ export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
       const [nodeAtSelection, nodePath] = Editor.node(editor, editor.selection);
 
       if (Text.isText(nodeAtSelection)) {
-        const block = { type: 'paragraph', children: [] };
+        const block = { type: 'div', children: [] };
 
         Transforms.wrapNodes(editor, block, { at: nodePath });
       }
