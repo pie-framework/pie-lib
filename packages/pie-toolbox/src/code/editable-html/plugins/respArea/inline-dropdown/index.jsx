@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Chevron } from '../icons';
 
-const InlineDropdown = ({ attributes, selectedItem }) => {
-  // TODO: Investigate
+const InlineDropdown = ({ attributes, children, selectedItem }) => {
   // Needed because items with values inside have different positioning for some reason
   const html = selectedItem || '<div>&nbsp</div>';
 
   return (
     <span
       {...attributes}
+      contentEditable={false}
       style={{
         display: 'inline-flex',
         height: '50px',
@@ -29,6 +29,7 @@ const InlineDropdown = ({ attributes, selectedItem }) => {
           position: 'relative',
         }}
       >
+        {children}
         <div
           style={{
             flex: 1,

@@ -1,4 +1,4 @@
-import EditableHtml from '@pie-lib/pie-toolbox/editable-html';
+import EditableHtml, { ALL_PLUGINS } from '@pie-lib/pie-toolbox/editable-html';
 import grey from '@material-ui/core/colors/grey';
 import React from 'react';
 import _ from 'lodash';
@@ -17,7 +17,7 @@ import Typography from '@material-ui/core/Typography';
 import InputChooser from '../source/editable-html/input-chooser';
 import { hasText } from '@pie-lib/pie-toolbox/render-ui';
 import { renderMath } from '@pie-lib/pie-toolbox/math-rendering-accessible';
-import { Button } from '@material-ui/core';
+import InlineDropdownToolbar from './inline-dropdown-toolbar';
 
 const Latex = '\\(2x\\ \\le4y\\ +\\ 8\\)';
 
@@ -44,7 +44,9 @@ const inputOptions = [
   },
   {
     label: 'Latex \\(..\\)',
-    html: '1   2   3   4   5   6   7   8   9   0',
+    // html: '<p></p><ul><li><div>1</div><ul><li><div>1.1</div><ul><li>1.1.1</li><li>1.1.2</li><li>1.1.3</li></ul></li><li><div>1.2</div><ul><li>1.2.1</li><li>1.2.2</li></ul></li><li>1.3</li><li>1.4</li></ul></li><li>2</li><li>3</li></ul><p></p>',
+    html:
+      '<div>Andreea</div><div>Andrei</div><ol><li><div>1</div><ul><li>1.1</li><li>1.2</li></ul></li><li><div>2</div><ul><li>2.2</li><li>2.3</li></ul></li><li>3</li></ol><div>Andrei</div><div>Andreea</div>',
   },
   {
     label: 'Latex $..$',
@@ -121,7 +123,7 @@ class RteDemo extends React.Component {
       markupText: html,
       hasText: true,
       mathEnabled: true,
-      languageCharactersProps: [],
+      languageCharactersProps: [{ language: 'spanish' }, { language: 'special' }],
     };
 
     const setListeners = () => {
@@ -246,6 +248,18 @@ class RteDemo extends React.Component {
 
   addImage = (imageHandler) => {
     log('[addImage]', imageHandler);
+
+    if (imageHandler.isPasted && imageHandler.getChosenFile) {
+      this.setState({ imageHandler }, () => {
+        // this is for images that were pasted into the editor (or dropped)
+        // they also need to be uploaded, but the file input doesn't have to be used
+        const file = imageHandler.getChosenFile();
+
+        this.handleInputFiles({ files: [file] });
+      });
+      return;
+    }
+
     this.setState({ imageHandler });
     this.fileInput.click();
 
@@ -378,7 +392,7 @@ class RteDemo extends React.Component {
             <FormControlLabel
               control={
                 <Checkbox
-                  checked={languageCharactersProps.filter((a) => a.language === 'spanish').length}
+                  checked={languageCharactersProps.filter((a) => a.language === 'spanish').length > 0}
                   onChange={(event) =>
                     this.setState({
                       languageCharactersProps: event.target.checked
@@ -393,7 +407,7 @@ class RteDemo extends React.Component {
             <FormControlLabel
               control={
                 <Checkbox
-                  checked={languageCharactersProps.filter((a) => a.language === 'special').length}
+                  checked={languageCharactersProps.filter((a) => a.language === 'special').length > 0}
                   onChange={(event) =>
                     this.setState({
                       languageCharactersProps: event.target.checked
@@ -408,6 +422,7 @@ class RteDemo extends React.Component {
           </FormGroup>
         </div>
         <EditableHtml
+          activePlugins={ALL_PLUGINS}
           markup={markup}
           onChange={this.onChange}
           imageSupport={imageSupport}
@@ -438,6 +453,34 @@ class RteDemo extends React.Component {
                 event: 'test_event_B',
               },
             ],
+          }}
+          responseAreaProps={{
+            type: 'inline-dropdown',
+            options: {
+              duplicates: true,
+            },
+            maxResponseAreas: 3,
+            respAreaToolbar: (node, value, onToolbarDone) => {
+              let { respAreaChoices } = this.state;
+              const { data: nodeData } = node;
+
+              respAreaChoices = respAreaChoices || [];
+
+              return () => (
+                <InlineDropdownToolbar
+                  onAddChoice={this.onAddChoice}
+                  onCheck={this.onCheck}
+                  onRemoveChoice={(index) => this.onRemoveChoice(nodeData.index, index)}
+                  onSelectChoice={(index) => this.onSelectChoice(nodeData.index, index)}
+                  node={node}
+                  value={value}
+                  onToolbarDone={onToolbarDone}
+                  choices={respAreaChoices[nodeData.index]}
+                  spellCheck={false}
+                  uploadSoundSupport={null}
+                />
+              );
+            },
           }}
           width={width}
           height={height}

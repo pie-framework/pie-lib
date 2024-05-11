@@ -1,3 +1,7 @@
+import { Editor } from 'slate';
+import { withHistory } from 'slate-history';
+import { withReact } from 'slate-react';
+
 import Bold from '@material-ui/icons/FormatBold';
 //import Code from '@material-ui/icons/Code';
 import BulletedListIcon from '@material-ui/icons/FormatListBulleted';
@@ -17,45 +21,11 @@ import debug from 'debug';
 import List from './list';
 import TablePlugin from './table';
 import RespAreaPlugin from './respArea';
+import MarkHotkey from './hotKeys';
 import HtmlPlugin from './html';
 import CustomPlugin from "./customPlugin";
 
 const log = debug('@pie-lib:editable-html:plugins');
-
-function MarkHotkey(options) {
-  const { type, key, icon, tag } = options;
-
-  // Return our "plugin" object, containing the `onKeyDown` handler.
-  return {
-    toolbar: {
-      isMark: true,
-      type,
-      icon,
-      onToggle: (change) => {
-        log('[onToggleMark] type: ', type);
-        return change.toggleMark(type);
-      },
-    },
-    renderMark(props) {
-      if (props.mark.type === type) {
-        const K = tag || type;
-
-        return <K>{props.children}</K>;
-      }
-    },
-    onKeyDown(event, change) {
-      // Check that the key pressed matches our `key` option.
-      if (!event.metaKey || event.key != key) return;
-
-      // Prevent the default characters from being inserted.
-      event.preventDefault();
-
-      // Toggle the mark `type`.
-      change.toggleMark(type);
-      return true;
-    },
-  };
-}
 
 export const ALL_PLUGINS = [
   'bold',
@@ -108,10 +78,9 @@ export const buildPlugins = (activePlugins, customPlugins, opts) => {
     addIf('audio', MediaPlugin('audio', opts.media)),
     addIf('math', mathPlugin),
     ...opts.languageCharacters.map((config) => addIf('languageCharacters', CharactersPlugin(config))),
-    addIf('bulleted-list', List({ key: 'l', type: 'ul_list', icon: <BulletedListIcon /> })),
-    addIf('numbered-list', List({ key: 'n', type: 'ol_list', icon: <NumberedListIcon /> })),
+    addIf('bulleted-list', List({ key: 'l', type: 'ul', icon: <BulletedListIcon /> })),
+    addIf('numbered-list', List({ key: 'n', type: 'ol', icon: <NumberedListIcon /> })),
     ToolbarPlugin(opts.toolbar),
-    SoftBreakPlugin({ shift: true }),
     addIf('responseArea', respAreaPlugin),
     addIf('html', HtmlPlugin(opts.html))
   ]);
@@ -146,4 +115,21 @@ export const buildPlugins = (activePlugins, customPlugins, opts) => {
   });
 
   return builtPlugins;
+};
+
+export const withPlugins = (editor, activePlugins) => {
+  editor = withHistory(withReact(editor));
+
+  editor.continueNormalization = () => {
+    Editor.setNormalizing(editor, true);
+    Editor.normalize(editor, { force: true });
+  };
+
+  activePlugins.forEach((plugin) => {
+    if (typeof plugin.rules === 'function') {
+      plugin.rules(editor);
+    }
+  });
+
+  return editor;
 };

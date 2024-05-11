@@ -1,23 +1,26 @@
 import React from 'react';
+import { Editor, Transforms, Node } from 'slate';
 import HtmlModeIcon from './icons';
-import { htmlToValue, valueToHtml } from './../../serialization';
+import { htmlToValue, valueToHtml } from './../../new-serialization';
 
-const toggleToRichText = (value, onChange, dismiss) => {
-  const plainText = value.document.text;
-  const slateValue = dismiss ? value : htmlToValue(plainText);
+const toggleToRichText = (editor, onChange, dismiss) => {
+  const plainText = Node.string(editor);
+  const slateValue = dismiss ? editor : htmlToValue(plainText);
 
-  const change = value
-    .change()
-    .selectAll()
-    .delete()
-    .insertFragment(slateValue.document);
-  onChange(change);
+  Transforms.select(editor, {
+    anchor: Editor.start(editor, []),
+    focus: Editor.end(editor, []),
+  });
+  Transforms.removeNodes(editor);
+
+  editor.children = slateValue;
+  Editor.normalize(editor, { force: true });
 };
 
 export default function HtmlPlugin(opts) {
   const { isHtmlMode, isEditedInHtmlMode, toggleHtmlMode, handleAlertDialog, currentValue } = opts;
 
-  const handleHtmlModeOn = (value, onChange) => {
+  const handleHtmlModeOn = (editor, onChange) => {
     const dialogProps = {
       title: 'Warning',
       text: 'Returning to rich text mode without saving will cause edits to be lost.',
@@ -36,13 +39,20 @@ export default function HtmlPlugin(opts) {
     handleAlertDialog(true, dialogProps);
   };
 
-  const handleHtmlModeOff = (value, onChange) => {
-    const change = value
-      .change()
-      .selectAll()
-      .delete()
-      .insertText(valueToHtml(value));
-    onChange(change);
+  const handleHtmlModeOff = (editor) => {
+    const textContent = valueToHtml(editor);
+    const paragraphBlock = {
+      type: 'paragraph',
+      children: [{ text: textContent }],
+    };
+
+    Transforms.select(editor, {
+      anchor: Editor.start(editor, []),
+      focus: Editor.end(editor, []),
+    });
+    Transforms.removeNodes(editor);
+
+    editor.insertNode(paragraphBlock);
   };
 
   return {
@@ -53,16 +63,16 @@ export default function HtmlPlugin(opts) {
         margin: '0 20px 0 auto',
       },
       type: 'html',
-      onClick: (value, onChange) => {
+      onClick: (editor, onChange) => {
         if (isHtmlMode) {
           if (isEditedInHtmlMode) {
-            handleHtmlModeOn(value, onChange);
+            handleHtmlModeOn(editor, onChange);
           } else {
-            toggleToRichText(value, onChange);
+            toggleToRichText(editor, onChange);
             toggleHtmlMode();
           }
         } else {
-          handleHtmlModeOff(value, onChange);
+          handleHtmlModeOff(editor, onChange);
           toggleHtmlMode();
         }
       },

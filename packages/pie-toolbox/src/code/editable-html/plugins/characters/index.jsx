@@ -1,5 +1,8 @@
 import React from 'react';
+import { ReactEditor } from 'slate-react';
+import { Editor } from 'slate';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 import debug from 'debug';
 import get from 'lodash/get';
 
@@ -8,7 +11,6 @@ import { PureToolbar } from '../../../math-toolbar';
 import CustomPopper from './custom-popper';
 import { insertSnackBar } from '../respArea/utils';
 import { characterIcons, spanishConfig, specialConfig } from './utils';
-import PropTypes from 'prop-types';
 const log = debug('@pie-lib:editable-html:plugins:characters');
 
 const removePopOvers = () => {
@@ -26,7 +28,7 @@ export const removeDialogs = () => {
   removePopOvers();
 };
 
-const insertDialog = ({ editorDOM, value, callback, opts }) => {
+const insertDialog = ({ editor, callback, opts }) => {
   const newEl = document.createElement('div');
 
   log('[characters:insertDialog]');
@@ -106,6 +108,7 @@ const insertDialog = ({ editorDOM, value, callback, opts }) => {
     // so right after mouseup, the click will be triggered
     if (firstCallMade) {
       const focusIsInModals = newEl.contains(e.target) || (popoverEl && popoverEl.contains(e.target));
+      const editorDOM = ReactEditor.toDOMNode(editor, editor);
       const focusIsInEditor = editorDOM.contains(e.target);
 
       if (!(focusIsInModals || focusIsInEditor)) {
@@ -125,7 +128,7 @@ const insertDialog = ({ editorDOM, value, callback, opts }) => {
 
   const handleChange = (val) => {
     if (typeof val === 'string') {
-      callback(val, true);
+      callback(val);
     }
   };
 
@@ -170,7 +173,8 @@ const insertDialog = ({ editorDOM, value, callback, opts }) => {
   );
 
   ReactDOM.render(el, newEl, () => {
-    const cursorItem = document.querySelector(`[data-key="${value.anchorKey}"]`);
+    const [nodeAtSelection] = Editor.node(editor, editor.selection);
+    const cursorItem = ReactEditor.toDOMNode(editor, nodeAtSelection);
 
     if (cursorItem) {
       const bodyRect = document.body.getBoundingClientRect();
@@ -237,30 +241,21 @@ export default function CharactersPlugin(opts) {
     name: 'characters',
     toolbar: {
       icon: <CharacterIcon letter={opts.characterIcon || characterIcons[opts.language] || 'ñ'} />,
-      onClick: (value, onChange, getFocusedValue) => {
-        const editorDOM = document.querySelector(`[data-key="${value.document.key}"]`);
-        let valueToUse = value;
+      onClick: (editor) => {
         const callback = (char, focus) => {
-          valueToUse = getFocusedValue();
-
           if (char) {
-            const change = valueToUse.change().insertTextByKey(valueToUse.anchorKey, valueToUse.anchorOffset, char);
-
-            valueToUse = change.value;
-            log('[characters:insert]: ', value);
-            onChange(change);
+            log('[characters:insert]: ', char);
+            editor.insertText(char);
           }
 
           log('[characters:click]');
 
           if (focus) {
-            if (editorDOM) {
-              editorDOM.focus();
-            }
+            ReactEditor.focus(editor);
           }
         };
 
-        insertDialog({ editorDOM, value: valueToUse, callback, opts });
+        insertDialog({ editor, callback, opts });
       },
     },
 

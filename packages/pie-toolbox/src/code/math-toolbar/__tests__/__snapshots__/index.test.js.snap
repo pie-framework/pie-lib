@@ -3,6 +3,7 @@
 exports[`snapshot renders with DONE button if hideDoneButton is not defined 1`] = `
 <div
   className=""
+  contentEditable={false}
 >
   <div />
   <WithStyles(EditorAndPad)
@@ -19,6 +20,7 @@ exports[`snapshot renders with DONE button if hideDoneButton is not defined 1`] 
 exports[`snapshot renders without DONE button if hideDoneButton value is true 1`] = `
 <div
   className=""
+  contentEditable={false}
 >
   <div />
   <WithStyles(EditorAndPad)

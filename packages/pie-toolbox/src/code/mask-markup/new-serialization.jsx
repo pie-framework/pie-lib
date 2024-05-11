@@ -1,4 +1,4 @@
-import Html from 'slate-html-serializer';
+import TestSerializer from './test-serializer';
 import React from 'react';
 import debug from 'debug';
 import { object as toStyleObject } from 'to-style';
@@ -10,9 +10,29 @@ import { serialization as listSerialization } from './plugins/list';
 import { serialization as tableSerialization } from './plugins/table';
 import { serialization as responseAreaSerialization } from './plugins/respArea';
 import { Mark, Value } from 'slate';
-import { BLOCK_TAGS } from "./block-tags";
+import { jsx } from 'slate-hyperscript';
 
 const log = debug('@pie-lib:editable-html:serialization');
+
+/**
+ * Tags to blocks.
+ *
+ * @type {Object}
+ */
+
+export const BLOCK_TAGS = {
+  div: 'div',
+  span: 'span',
+  p: 'paragraph',
+  blockquote: 'quote',
+  pre: 'code',
+  h1: 'heading-one',
+  h2: 'heading-two',
+  h3: 'heading-three',
+  h4: 'heading-four',
+  h5: 'heading-five',
+  h6: 'heading-six',
+};
 
 /**
  * Tags to marks.
@@ -87,20 +107,22 @@ const blocks = {
       }
     }
 
-    return {
-      object: 'block',
-      type: block,
-      /**
-       * Here for rendering styles for all block elements
-       */
-      data: { attributes: attributes.reduce(attributesToMap(el), {}) },
-      nodes: next(el.childNodes),
-    };
+    return jsx(
+      'element',
+      {
+        type: block,
+        /**
+         * Here for rendering styles for all block elements
+         */
+        data: { attributes: attributes.reduce(attributesToMap(el), {}) },
+      },
+      next(el.childNodes),
+    );
   },
   serialize: (object, children) => {
     if (object.object !== 'block') return;
 
-    const jsonData = object.data;
+    const jsonData = object.data.toJSON();
 
     log('[blocks:serialize] object: ', object, children);
     let key;
@@ -118,27 +140,25 @@ const blocks = {
 const marks = {
   deserialize(el, next) {
     const mark = MARK_TAGS[el.tagName.toLowerCase()];
-    if (!mark) return;
+    if (!mark) {
+      return;
+    }
     log('[deserialize] mark: ', mark);
-    return {
-      object: 'mark',
-      type: mark,
-      nodes: next(el.childNodes),
-    };
+
+    return jsx('element', { type: mark }, next(el.childNodes));
   },
   serialize(object, children) {
-    if (Mark.isMark(object)) {
+    /*if (Mark.isMark(object)) {
       for (var key in MARK_TAGS) {
         if (MARK_TAGS[key] === object.type) {
           const Tag = key;
           return <Tag>{children}</Tag>;
         }
       }
-    }
+    }*/
   },
 };
 
-// eslint-disable-next-line no-unused-vars
 const findPreviousText = (el) => {
   if (el.nodeName === '#text') {
     return el;
@@ -159,30 +179,14 @@ export const TEXT_RULE = {
     el.normalize();
 
     if (el.tagName && el.tagName.toLowerCase() === 'br') {
-      return {
-        object: 'text',
-        leaves: [
-          {
-            object: 'leaf',
-            text: '\n',
-          },
-        ],
-      };
+      return jsx('text', {});
     }
 
     if (el.nodeName === '#text') {
       if (el.nodeValue && el.nodeValue.match(/<!--.*?-->/)) return;
 
       log('[text:deserialize] return text object..');
-      return {
-        object: 'text',
-        leaves: [
-          {
-            object: 'leaf',
-            text: el.nodeValue,
-          },
-        ],
-      };
+      return jsx('text', {}, el.nodeValue);
     }
   },
 
@@ -224,8 +228,8 @@ function defaultParseHtml(html) {
   const parsed = new DOMParser().parseFromString(html, 'text/html');
 
   const { body } = parsed;
-  var textNodes = document.createTreeWalker(body, NodeFilter.SHOW_TEXT, null, null);
-  var n = textNodes.nextNode();
+  const textNodes = document.createTreeWalker(body, NodeFilter.SHOW_TEXT, null, null);
+  let n = textNodes.nextNode();
 
   while (n) {
     if (allWhitespace(n) || n.nodeValue === '\u200B') {
@@ -245,7 +249,7 @@ const parseHtml =
       })
     : defaultParseHtml;
 
-const serializer = new Html({
+const serializer = new TestSerializer({
   defaultBlock: 'div',
   rules: RULES,
   parseHtml,
@@ -267,150 +271,10 @@ const _extends =
     return target;
   };
 
-/**
- * This is needed in order to override the function that eventually leads
- * to the max iteration of 12, which in most cases it's not enough. The newer versions
- * have a different way to calculate this, but updating to a newer version of slate
- * requires a lot of work fixing other issues. So we just increase the rules by 1000,
- * which means a lot of iterations.
- * Below is the code that calculates the max iterations.
- * var max = schema.stack.plugins.length + schema.rules.length + 1;
- */
-serializer.deserialize = function deserialize(html) {
-  const options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-  const _options$toJSON = options.toJSON;
-  const toJSON = _options$toJSON === undefined ? false : _options$toJSON;
-  const defaultBlock = this.defaultBlock;
-  const parseHtml = this.parseHtml;
-
-  const fragment = parseHtml(html);
-  const children = Array.from(fragment.childNodes);
-  let nodes = this.deserializeElements(children);
-
-  // COMPAT: ensure that all top-level inline nodes are wrapped into a block.
-  nodes = nodes.reduce(function(memo, node, i, original) {
-    if (node.object === 'block') {
-      memo.push(node);
-      return memo;
-    }
-
-    if (i > 0 && original[i - 1].object !== 'block') {
-      const _block = memo[memo.length - 1];
-
-      _block.nodes.push(node);
-      return memo;
-    }
-
-    const block = _extends({ object: 'block', data: {}, isVoid: false }, defaultBlock, {
-      nodes: [node],
-    });
-
-    memo.push(block);
-    return memo;
-  }, []);
-
-  if (nodes.length === 0) {
-    nodes = [
-      _extends({ object: 'block', data: {}, isVoid: false }, defaultBlock, {
-        nodes: [{ object: 'text', leaves: [{ object: 'leaf', text: '', marks: [] }] }],
-      }),
-    ];
-  }
-
-  const json = {
-    object: 'value',
-    document: {
-      object: 'document',
-      data: {},
-      nodes: nodes,
-    },
-    schema: {
-      rules: [],
-    },
-  };
-
-  let i;
-
-  for (i = 0; i < 3000; i++) {
-    json.schema.rules.push({
-      match: { object: 'document' },
-      nodes: [{ match: { object: 'block' } }],
-    });
-  }
-
-  const ret = toJSON ? json : Value.fromJSON(json);
-
-  if (ret) {
-    return ret;
-  }
-
-  return null;
-};
-
-export const reduceMultipleBrs = (markup) => {
-  try {
-    return markup.replace(/(<br\s*\/?>){3,}/gi, '<br>');
-  } catch (e) {
-    // eslint-disable-next-line no-console
-    console.log("Couldn't remove <br/> tags: ", e);
-  }
-
-  return markup;
-};
-
-const reduceRedundantNewLineCharacters = (markup) => {
-  try {
-    return markup.replace(/\n/gi, '');
-  } catch (e) {
-    // eslint-disable-next-line no-console
-    console.log("Couldn't remove <br/> tags: ", e);
-  }
-
-  return markup;
-};
-
-const wrapHtmlProperly = (markup) => {
-  const el = document.createElement('div');
-
-  el.innerHTML = markup;
-
-  /**
-   * DIV elements that are at the same level as paragraphs
-   * are replaced with P elements for normalizing purposes
-   * @param el
-   */
-  const parseNode = (el) => {
-    const childArray = Array.from(el.children);
-    const hasParagraphs = childArray.find((child) => child.nodeName === 'P');
-
-    childArray.forEach((child) => {
-      // removing empty blocks
-      if ((child.nodeName === 'DIV' || child.nodeName === 'P') && child.childNodes.length === 0) {
-        child.remove();
-        return;
-      }
-
-      if (hasParagraphs && child.nodeName === 'DIV') {
-        const p = document.createElement('p');
-
-        p.innerHTML = child.innerHTML;
-        child.replaceWith(p);
-      }
-
-      parseNode(child);
-    });
-  };
-
-  parseNode(el);
-
-  return el.innerHTML;
-};
-
 export const htmlToValue = (html) => {
   try {
-    return serializer.deserialize(wrapHtmlProperly(reduceRedundantNewLineCharacters(reduceMultipleBrs(html))));
+    return serializer.deserialize(html);
   } catch (e) {
-    // eslint-disable-next-line no-console
     console.log("Couldn't parse html: ", e);
     return {};
   }

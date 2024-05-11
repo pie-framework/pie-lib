@@ -1,9 +1,10 @@
 import React from 'react';
-import { Data } from 'slate';
-import Immutable from 'immutable';
 import PropTypes from 'prop-types';
-import EditList from 'slate-edit-list';
 import debug from 'debug';
+import { Node as SlateNode, Editor, Element as SlateElement, Path, Range, Transforms, Text } from 'slate';
+import { ReactEditor } from 'slate-react';
+import { jsx } from 'slate-hyperscript';
+import cloneDeep from 'lodash/cloneDeep';
 
 const log = debug('@pie-lib:editable-html:plugins:list');
 
@@ -16,127 +17,153 @@ const b = (type, next, childNodes) => ({
 export const serialization = {
   deserialize(el, next) {
     const name = el.tagName.toLowerCase();
+    const children = el.children.length ? Array.from(el.children) : el.childNodes;
 
     if (name === 'li') {
-      return b('list_item', next, el.childNodes);
+      return jsx(
+        'element',
+        {
+          type: 'li',
+        },
+        next(children),
+      );
     }
 
     if (name === 'ul') {
-      return b('ul_list', next, el.children.length ? Array.from(el.children) : el.childNodes);
+      return jsx(
+        'element',
+        {
+          type: 'ul',
+        },
+        next(children),
+      );
     }
 
     if (name === 'ol') {
-      return b('ol_list', next, el.children.length ? Array.from(el.children) : el.childNodes);
+      return jsx(
+        'element',
+        {
+          type: 'ol',
+        },
+        next(children),
+      );
     }
   },
   serialize(object, children) {
-    if (object.object !== 'block') return;
+    const key = ReactEditor.findKey(undefined, object);
 
-    if (object.type === 'list_item') {
-      return <li>{children}</li>;
+    if (object.type === 'li') {
+      return <li key={key}>{children}</li>;
     }
 
-    if (object.type === 'ul_list') {
-      return <ul>{children}</ul>;
+    if (object.type === 'ul') {
+      return <ul key={key}>{children}</ul>;
     }
 
-    if (object.type === 'ol_list') {
-      return <ol>{children}</ol>;
+    if (object.type === 'ol') {
+      return <ol key={key}>{children}</ol>;
     }
   },
 };
 
-const createEditList = () => {
-  const core = EditList({
-    typeDefault: 'span',
-  });
+const getListParent = (editor) => {
+  try {
+    const pathRange = Editor.unhangRange(editor, editor.selection);
+    const ancestors = Array.from(SlateNode.ancestors(editor, pathRange.anchor.path, { reverse: true }));
+    const parentList = ancestors.find(([node]) => ['ul', 'ol'].includes(node.type));
 
-  // fix outdated schema
-  if (core.schema && core.schema.blocks) {
-    Object.keys(core.schema.blocks).forEach((key) => {
-      const block = core.schema.blocks[key];
+    return parentList;
+  } catch (e) {
+    return null;
+  }
+};
 
-      if (block.parent) {
-        return;
-      }
+const isBlockActive = (editor, format) => {
+  const { selection } = editor;
 
-      block.nodes[0] = { type: block.nodes[0].types[0] };
-    });
+  if (!selection) {
+    return false;
   }
 
-  /**
-   * This override of the core.changes.wrapInList is needed because the version
-   * of immutable that we have does not support getting the element at a specific
-   * index with a square bracket (list[0]). We have to use the list.get function instead
-   */
+  const parentList = getListParent(editor);
 
-  /**
-   * Returns the highest list of blocks that cover the current selection
-   */
-  const getHighestSelectedBlocks = (value) => {
-    const range = value.selection;
-    const document = value.document;
+  if (!parentList) {
+    return false;
+  }
 
-    const startBlock = document.getClosestBlock(range.startKey);
-    const endBlock = document.getClosestBlock(range.endKey);
+  return parentList[0].type === format;
+};
 
-    if (startBlock === endBlock) {
-      return Immutable.List([startBlock]);
-    }
-
-    const ancestor = document.getCommonAncestor(startBlock.key, endBlock.key);
-    const startPath = ancestor.getPath(startBlock.key);
-    const endPath = ancestor.getPath(endBlock.key);
-
-    return ancestor.nodes.slice(startPath.get(0), endPath.get(0) + 1);
+const createEditList = () => {
+  const core = {
+    changes: {},
   };
 
-  /**
-   * Wrap the blocks in the current selection in a new list. Selected
-   * lists are merged together.
-   */
-  core.changes.wrapInList = function(change, type, data) {
-    const selectedBlocks = getHighestSelectedBlocks(change.value);
+  core.changes.wrapInList = (editor, format) => {
+    const isActive = isBlockActive(editor, format);
+    const isList = LIST_TYPES.includes(format);
 
-    // Wrap in container
-    change.wrapBlock({ type: type, data: Data.create(data) }, { normalize: false });
+    if (isActive && isList) {
+      unwrapList(editor);
+      return;
+    }
 
-    // Wrap in list items
-    selectedBlocks.forEach(function(node) {
-      if (core.utils.isList(node)) {
-        // Merge its items with the created list
-        node.nodes.forEach(function(_ref) {
-          const key = _ref.key;
-          return change.unwrapNodeByKey(key, { normalize: false });
-        });
-      } else if (node.type !== 'list_item') {
-        change.wrapBlockByKey(node.key, 'list_item', {
-          normalize: false,
+    const listSelected = getListParent(editor);
+
+    if (!listSelected) {
+      Transforms.unwrapNodes(editor, {
+        match: (n) => !Editor.isEditor(n) && SlateElement.isElement(n) && LIST_TYPES.includes(n.type),
+        split: true,
+      });
+
+      const newProperties = {
+        type: isActive ? 'paragraph' : isList ? 'li' : format,
+      };
+
+      Transforms.setNodes(editor, newProperties);
+
+      if (!isActive && isList) {
+        const block = { type: format, children: [] };
+        Transforms.wrapNodes(editor, block, {
+          match: (n) => !Editor.isEditor(n) && SlateElement.isElement(n) && LIST_TYPES.includes(n.type),
         });
       }
-    });
+    } else {
+      const switchMap = {
+        ul: 'ol',
+        ol: 'ul',
+      };
+      const [listNode, listPath] = listSelected;
 
-    return change.normalize();
+      editor.setNodes({ type: switchMap[listNode.type] }, { at: listPath });
+    }
   };
 
   return core;
 };
+
+export const LIST_TYPES = ['ul', 'ol', 'li'];
+
+const KEY_TAB = 'Tab';
+const KEY_ENTER = 'Enter';
+const KEY_BACKSPACE = 'Backspace';
 
 export default (options) => {
   const { type, icon } = options;
 
   const core = createEditList();
 
-  // eslint-disable-next-line react/display-name
+  core.supports = (node) => LIST_TYPES.includes(node.type);
+
   core.renderNode = (props) => {
     const { node, attributes, children } = props;
 
     switch (node.type) {
-      case 'ul_list':
+      case 'ul':
         return <ul {...attributes}>{children}</ul>;
-      case 'ol_list':
+      case 'ol':
         return <ol {...attributes}>{children}</ol>;
-      case 'list_item':
+      case 'li':
         return <li {...attributes}>{children}</li>;
     }
   };
@@ -145,23 +172,9 @@ export default (options) => {
     isMark: false,
     type,
     icon,
-    isActive: (value, type) => {
-      if (!core.utils.isSelectionInList(value)) {
-        return false;
-      }
-      const current = core.utils.getCurrentList(value);
-      return current ? current.type === type : false;
-    },
-    onClick: (value, onChange) => {
-      log('[onClick]', value);
-      const inList = core.utils.isSelectionInList(value);
-      if (inList) {
-        const change = value.change().call(core.changes.unwrapList);
-        onChange(change);
-      } else {
-        const change = value.change().call(core.changes.wrapInList, type);
-        onChange(change);
-      }
+    isActive: isBlockActive,
+    onClick: (editor) => {
+      core.changes.wrapInList(editor, type);
     },
   };
 
@@ -169,6 +182,346 @@ export default (options) => {
     node: PropTypes.object,
     attributes: PropTypes.object,
     children: PropTypes.func,
+  };
+
+  const getAncestorByType = (editor, type) => {
+    if (!editor || !type) {
+      return null;
+    }
+
+    const ancestors = SlateNode.ancestors(editor, Editor.path(editor, editor.selection), {
+      reverse: true,
+    });
+
+    for (const [ancestor, ancestorPath] of ancestors) {
+      if (ancestor.type === type) {
+        return [ancestor, ancestorPath];
+      }
+    }
+
+    return null;
+  };
+
+  const increaseItemDepth = (editor) => {
+    const [, currentLiPath] = getAncestorByType(editor, 'li');
+    const prevResult = editor.previous({ at: currentLiPath });
+
+    if (!prevResult) {
+      return true;
+    }
+
+    const [prevLi, prevLiPath] = prevResult;
+    const [list] = editor.parent(prevLiPath);
+
+    if (!list || !prevLi) {
+      return true;
+    }
+
+    const lastItem = prevLi.children[prevLi.children.length - 1];
+
+    if (lastItem && lastItem.type === 'ul') {
+      // if it's a list
+      const itemPath = [...prevLiPath, 1, lastItem.children.length];
+
+      editor.moveNodes({
+        at: currentLiPath,
+        to: itemPath,
+      });
+    } else {
+      const block = { type: 'div', children: [] };
+      const listItemContent = SlateNode.get(editor, [...prevLiPath, 0]);
+
+      if (Text.isText(listItemContent)) {
+        // wrap text in a block, so we can add a list on the same level
+        editor.wrapNodes(block, {
+          at: [...prevLiPath, 0],
+        });
+      }
+
+      const newList = {
+        type: type,
+        children: [],
+      };
+
+      editor.insertNode(newList, {
+        at: [...prevLiPath, prevLi.children.length],
+      });
+
+      const itemPath = [...prevLiPath, prevLi.children.length, 0];
+
+      editor.moveNodes({
+        at: currentLiPath,
+        to: itemPath,
+      });
+    }
+
+    return true;
+  };
+
+  const decreaseItemDepth = (editor) => {
+    const [currentLi, currentLiPath] = getAncestorByType(editor, 'li');
+
+    if (currentLi.type !== 'li') {
+      return true;
+    }
+
+    const [subList, subListPath] = editor.parent(currentLiPath);
+    const [parentLi, parentLiPath] = editor.parent(subListPath);
+
+    let parentList;
+    let parentListPath;
+
+    if (parentLi.type !== 'li') {
+      parentList = subList;
+      parentListPath = subListPath;
+    } else {
+      [parentList, parentListPath] = editor.parent(parentLiPath);
+    }
+
+    const index = parentList.children.indexOf(parentLi.type !== 'li' ? currentLi : parentLi);
+    const followingItems = subList.children.reduce(
+      (acc, item, index) => {
+        if (item === currentLi) {
+          acc.skip = false;
+          return acc;
+        }
+
+        if (!acc.skip) {
+          acc.list.push([item, [...subListPath, index - 1]]);
+        }
+
+        return acc;
+      },
+      { skip: true, list: [] },
+    );
+
+    if (followingItems.list.length) {
+      const newList = {
+        type: type,
+        children: [],
+      };
+
+      const listItemContent = SlateNode.get(editor, [...currentLiPath, 0]);
+
+      if (Text.isText(listItemContent)) {
+        const block = { type: 'div', children: [] };
+
+        // wrap text in a block, so we can add a list on the same level
+        editor.wrapNodes(block, {
+          at: [...currentLiPath, 0],
+        });
+      }
+
+      editor.insertNode(newList, {
+        at: [...currentLiPath, currentLi.children.length],
+      });
+
+      const itemPath = [...parentListPath, index + 1];
+
+      editor.moveNodes({
+        at: currentLiPath,
+        to: itemPath,
+      });
+
+      // otherItems.forEach((item, index) => editor.moveNodeByKey(item.key, newList.key, newList.nodes.size + index));
+      followingItems.list.forEach(([, liPath]) => {
+        const [, lastPlacePath] = SlateNode.last(editor, [...itemPath, 1]);
+
+        editor.moveNodes({
+          at: liPath,
+          to: lastPlacePath,
+        });
+      });
+    } else {
+      // if it's a list
+      const itemPath = [...parentListPath, index + 1];
+
+      editor.moveNodes({
+        at: currentLiPath,
+        to: itemPath,
+      });
+    }
+
+    if (subList.children.length === followingItems.list.length + 1) {
+      // we already remove one item from the list when we moved it
+      // and the reference is not updated => list is empty
+      editor.removeNodes({
+        at: subListPath,
+      });
+    }
+
+    return true;
+  };
+
+  window.decreaseItemDepth = decreaseItemDepth;
+
+  const unwrapListByKey = (editor, nodeInfo) => {
+    const [, currentLiPath] = nodeInfo;
+
+    editor.withoutNormalizing(() => {
+      const splitItemPath = currentLiPath.slice(0, currentLiPath.length - 1);
+
+      splitItemPath[splitItemPath.length - 1] += 1;
+
+      if (currentLiPath[currentLiPath.length - 1] !== 0) {
+        editor.splitNodes({ at: currentLiPath, always: true });
+      } else {
+        splitItemPath[splitItemPath.length - 1] -= 1;
+      }
+
+      editor.moveNodes({ at: [...splitItemPath, 0], to: splitItemPath });
+      editor.setNodes({ type: 'div' }, { at: splitItemPath });
+
+      const newListPath = splitItemPath.slice();
+
+      newListPath[newListPath.length - 1] += 1;
+
+      const [newList] = editor.node(newListPath);
+
+      if (!newList.children.length) {
+        editor.removeNodes({ at: newListPath });
+      }
+    });
+  };
+
+  window.SlateNode = SlateNode;
+
+  const unwrapList = (editor) => {
+    let furthestListItems = Array.from(
+      Editor.nodes(editor, {
+        at: Editor.unhangRange(editor, editor.selection),
+        match: (node) => !Editor.isEditor(node) && SlateElement.isElement(node) && node.type === 'li',
+      }),
+    );
+
+    while (furthestListItems.length) {
+      unwrapListByKey(editor, furthestListItems[0]);
+      furthestListItems = Array.from(
+        Editor.nodes(editor, {
+          at: Editor.unhangRange(editor, editor.selection),
+          match: (node) => !Editor.isEditor(node) && SlateElement.isElement(node) && node.type === 'li',
+        }),
+      );
+    }
+  };
+
+  window.unwrapList = unwrapList;
+
+  const onEnter = (editor, event) => {
+    event.preventDefault();
+
+    if (Range.isExpanded(editor.range(editor.selection))) {
+      editor.delete();
+    }
+
+    const [currentLi, currentLiPath] = getAncestorByType(editor, 'li');
+
+    if (editor.isEmpty(currentLi)) {
+      // Block is empty, we exit the list
+      const [, listPath] = editor.parent(currentLiPath);
+      const [parentListItem] = listPath.length > 1 ? editor.parent(listPath) : [];
+
+      if (parentListItem) {
+        return decreaseItemDepth(editor);
+      }
+
+      // Exit list
+      return unwrapList(editor);
+    }
+
+    const pathToSplit = Text.isText(currentLi.children[0]) ? currentLiPath : [...currentLiPath, 0];
+
+    if (Text.isText(currentLi.children[0])) {
+      editor.apply({
+        type: 'split_node',
+        path: pathToSplit,
+        position: 1,
+        properties: { type: 'li' },
+      });
+
+      const newLiPath = cloneDeep(pathToSplit);
+
+      newLiPath[newLiPath.length - 1] = newLiPath[newLiPath.length - 1] + 1;
+      Transforms.select(editor, newLiPath);
+    } else {
+      editor.splitNodes({ at: pathToSplit, always: true });
+    }
+
+    return true;
+  };
+
+  core.onTab = (editor, event) => {
+    let result;
+
+    if (event.shiftKey) {
+      result = decreaseItemDepth(editor);
+    } else {
+      result = increaseItemDepth(editor);
+    }
+
+    setTimeout(() => ReactEditor.focus(editor), 50);
+
+    return result;
+  };
+
+  core.onBackSpace = (editor, event) => {
+    const startRange = Range.start(editor.selection);
+
+    if (startRange.offset !== 0) {
+      return;
+    }
+
+    if (Range.isExpanded(editor.range(editor.selection))) {
+      editor.delete();
+      return;
+    }
+
+    event.preventDefault();
+
+    const [, currentLiPath] = getAncestorByType(editor, 'li');
+    // Block is empty, we exit the list
+    const [, listPath] = editor.parent(currentLiPath);
+    const [parentListItem] = listPath.length > 1 ? editor.parent(listPath) : [];
+
+    if (parentListItem) {
+      return decreaseItemDepth(editor);
+    }
+
+    unwrapList(editor);
+
+    return true;
+  };
+
+  core.onEnter = (editor, event) => {
+    let result;
+
+    if (event.shiftKey) {
+      // this is handled elsewhere already
+    } else {
+      result = onEnter(editor, event);
+    }
+
+    setTimeout(() => ReactEditor.focus(editor), 50);
+
+    return result;
+  };
+
+  core.onKeyDown = (editor, event) => {
+    const isActive = isBlockActive(editor, type);
+    const isList = LIST_TYPES.includes(type);
+
+    if (isActive && isList) {
+      switch (event.key) {
+        case KEY_TAB:
+          return core.onTab(editor, event);
+        case KEY_ENTER:
+          return core.onEnter(editor, event);
+        case KEY_BACKSPACE:
+          return core.onBackSpace(editor, event);
+        default:
+          return undefined;
+      }
+    }
   };
 
   return core;

@@ -1,22 +1,377 @@
-import { Editor as SlateEditor, findNode, getEventRange, getEventTransfer } from 'slate-react';
-import SlateTypes from 'slate-prop-types';
+import React, { useCallback, useMemo, useRef, useState, useEffect } from 'react';
+import { Editor as OldSlateEditor, findNode, getEventRange, getEventTransfer } from 'slate-react';
+import RootRef from '@material-ui/core/RootRef';
 
 import isEqual from 'lodash/isEqual';
-import * as serialization from './serialization';
+import * as serialization from './new-serialization';
 import PropTypes from 'prop-types';
-import React from 'react';
 import { Value, Block, Inline } from 'slate';
-import { buildPlugins, ALL_PLUGINS, DEFAULT_PLUGINS } from './plugins';
+import { ALL_PLUGINS, DEFAULT_PLUGINS, buildPlugins, withPlugins } from './plugins';
 import debug from 'debug';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import { color } from '../render-ui';
-import Plain from 'slate-plain-serializer';
-import AlertDialog from '../config-ui/alert-dialog';
+// import Plain from 'slate-plain-serializer';
 import { PreviewPrompt } from '../render-ui';
 
-import { getBase64, htmlToValue } from './serialization';
-import InsertImageHandler from './plugins/image/insert-image-handler';
+import { htmlToValue, valueToHtml } from './new-serialization';
+
+import { ReactEditor, useSlateStatic, Editable, useFocused, useSlate, Slate } from 'slate-react';
+import { Node as SlateNode, Path, Editor, Transforms, createEditor, Element as SlateElement } from 'slate';
+
+import { Button, Icon } from './components';
+import EditorAndToolbar from './plugins/toolbar/editor-and-toolbar';
+
+window.Path = Path;
+window.SlateNode = SlateNode;
+window.ReactEditor = ReactEditor;
+window.Editor = Editor;
+
+const HOTKEYS = {
+  'mod+b': 'bold',
+  'mod+i': 'italic',
+  'mod+u': 'underline',
+  'mod+`': 'code',
+};
+
+const LIST_TYPES = ['numbered-list', 'bulleted-list'];
+const TEXT_ALIGN_TYPES = ['left', 'center', 'right', 'justify'];
+
+const initialValue = [
+  {
+    type: 'paragraph',
+    children: [
+      {
+        type: 'math',
+        data: {
+          latex: '\\frac{1}{2}',
+          wrapper: 'round_brackets',
+        },
+        children: [
+          {
+            text: '\\(\\frac{1}{2}\\)',
+          },
+        ],
+      },
+    ],
+  },
+];
+
+const SlateEditor = (editorProps) => {
+  const mounted = useRef(false);
+  const { autoFocus, value, plugins, actionsRef, onEditingDone } = editorProps;
+  const renderElement = useCallback((props) => <Element {...props} plugins={plugins} />, []);
+  const renderLeaf = useCallback((props) => <Leaf {...props} />, []);
+  const editor = useMemo(() => withPlugins(createEditor(), plugins), []);
+  const [isFocused, setIsFocused] = useState(false);
+  const editorRef = useRef(null);
+
+  window.editorTest = editor;
+
+  useEffect(() => {
+    mounted.current = true;
+
+    return () => {
+      mounted.current = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (editorProps.onEditor) {
+      editorProps.onEditor(editor);
+    }
+
+    if (autoFocus) {
+      Transforms.select(editor, [0, 0]);
+      ReactEditor.focus(editor);
+
+      if (mounted.current) {
+        setIsFocused(true);
+      }
+    }
+  }, [editor]);
+
+  const slateValue = useMemo(() => {
+    // Slate throws an error if the value on the initial render is invalid
+    // then we directly set the value on the editor in order
+    // to be able to trigger normalization on the initial value before rendering
+
+    const needsReset = editor.children.length === 0;
+
+    editor.children = value;
+    editor.marks = {};
+    Editor.normalize(editor, { force: true });
+
+    if (needsReset) {
+      editor.history.undos = [];
+      editor.history.redos = [];
+    }
+    // We return the normalized internal value so that the rendering can take over from here
+    return editor.children;
+  }, [editor, value]);
+
+  const onKeyDown = (event) => {
+    if (event.key === 'Enter' && event.shiftKey === true) {
+      editor.insertText('\n');
+      event.preventDefault();
+      event.stopPropagation();
+      return;
+    }
+
+    let returnValue;
+
+    plugins.forEach((plugin) => {
+      if (plugin.onKeyDown && typeof returnValue === 'undefined') {
+        returnValue = plugin.onKeyDown(editor, event);
+      }
+    });
+
+    return returnValue;
+  };
+  const onFocus = () => setIsFocused(true);
+  const onBlur = (e) => {
+    setTimeout(() => {
+      if (!editorRef.current || !editorRef.current.contains(document.activeElement)) {
+        if (editorProps.onBlur) {
+          editorProps.onBlur(editor, e);
+        }
+
+        if (mounted.current) {
+          setIsFocused(false);
+        }
+      }
+    }, 50);
+  };
+  const actions = {
+    focus: (position, node) => {
+      const [, textPath] = node
+        ? Editor.leaf(editor, ReactEditor.findPath(editor, node), { edge: 'end' })
+        : Editor.leaf(editor, [0], { edge: 'end' });
+
+      Transforms.select(editor, textPath);
+      ReactEditor.focus(editor);
+    },
+    finishEditing: () => {
+      // if (!mounted.current) {
+      //   return;
+      // }
+
+      if (typeof onEditingDone === 'function') {
+        onEditingDone(editor);
+      }
+    },
+  };
+
+  if (actionsRef) {
+    actionsRef(actions);
+  }
+
+  return (
+    <Slate editor={editor} initialValue={slateValue}>
+      <RootRef rootRef={editorRef}>
+        <EditorAndToolbar
+          {...editorProps}
+          editor={editor}
+          isFocused={isFocused}
+          onDone={() => {
+            setIsFocused(false);
+            document.activeElement.blur();
+            editorProps.onDone(editor);
+          }}
+        >
+          <Editable
+            renderElement={renderElement}
+            renderLeaf={renderLeaf}
+            spellCheck
+            onKeyDown={onKeyDown}
+            onFocus={onFocus}
+            onBlur={onBlur}
+          />
+        </EditorAndToolbar>
+      </RootRef>
+    </Slate>
+  );
+};
+
+const toggleBlock = (editor, format) => {
+  const isActive = isBlockActive(editor, format, TEXT_ALIGN_TYPES.includes(format) ? 'align' : 'type');
+  const isList = LIST_TYPES.includes(format);
+
+  Transforms.unwrapNodes(editor, {
+    match: (n) =>
+      !Editor.isEditor(n) &&
+      SlateElement.isElement(n) &&
+      LIST_TYPES.includes(n.type) &&
+      !TEXT_ALIGN_TYPES.includes(format),
+    split: true,
+  });
+  let newProperties;
+  if (TEXT_ALIGN_TYPES.includes(format)) {
+    newProperties = {
+      align: isActive ? undefined : format,
+    };
+  } else {
+    newProperties = {
+      type: isActive ? 'paragraph' : isList ? 'li' : format,
+    };
+  }
+  Transforms.setNodes(editor, newProperties);
+
+  if (!isActive && isList) {
+    const block = { type: format, children: [] };
+    Transforms.wrapNodes(editor, block);
+  }
+};
+
+const toggleMark = (editor, format) => {
+  const isActive = isMarkActive(editor, format);
+
+  if (isActive) {
+    Editor.removeMark(editor, format);
+  } else {
+    Editor.addMark(editor, format, true);
+  }
+};
+
+const isBlockActive = (editor, format, blockType = 'type') => {
+  const { selection } = editor;
+  if (!selection) return false;
+
+  const [match] = Array.from(
+    Editor.nodes(editor, {
+      at: Editor.unhangRange(editor, selection),
+      match: (n) => !Editor.isEditor(n) && SlateElement.isElement(n) && n[blockType] === format,
+    }),
+  );
+
+  return !!match;
+};
+
+const isMarkActive = (editor, format) => {
+  const marks = Editor.marks(editor);
+  return marks ? marks[format] === true : false;
+};
+
+const Element = (props) => {
+  const editor = useSlateStatic();
+  const focused = useFocused();
+  const { attributes, children, element, plugins } = props;
+  const style = { textAlign: element.align };
+
+  const nodeProps = { ...attributes, ...props, node: { ...element }, children };
+  const pluginToRender = plugins.find((plugin) => typeof plugin.supports === 'function' && plugin.supports(element));
+
+  if (pluginToRender) {
+    return pluginToRender.renderNode({ ...nodeProps, editor, focused });
+  }
+
+  switch (element.type) {
+    case 'block-quote':
+      return (
+        <blockquote style={style} {...attributes}>
+          {children}
+        </blockquote>
+      );
+    case 'bulleted-list':
+      return (
+        <ul style={style} {...attributes}>
+          {children}
+        </ul>
+      );
+    case 'heading-one':
+      return (
+        <h1 style={style} {...attributes}>
+          {children}
+        </h1>
+      );
+    case 'heading-two':
+      return (
+        <h2 style={style} {...attributes}>
+          {children}
+        </h2>
+      );
+    case 'list-item':
+      return (
+        <li style={style} {...attributes}>
+          {children}
+        </li>
+      );
+    case 'numbered-list':
+      return (
+        <ol style={style} {...attributes}>
+          {children}
+        </ol>
+      );
+    case 'div':
+      return (
+        <div style={style} {...attributes}>
+          {children}
+        </div>
+      );
+    default:
+      return (
+        <p style={style} {...attributes}>
+          {children}
+        </p>
+      );
+  }
+};
+
+const Leaf = ({ attributes, children, leaf }) => {
+  if (leaf.bold) {
+    children = <strong>{children}</strong>;
+  }
+
+  if (leaf.code) {
+    children = <code>{children}</code>;
+  }
+
+  if (leaf.italic) {
+    children = <em>{children}</em>;
+  }
+
+  if (leaf.underline) {
+    children = <u>{children}</u>;
+  }
+
+  if (leaf.strikethrough) {
+    children = <del>{children}</del>;
+  }
+
+  return <span {...attributes}>{children}</span>;
+};
+
+const BlockButton = ({ format, icon }) => {
+  const editor = useSlate();
+  return (
+    <Button
+      active={isBlockActive(editor, format, TEXT_ALIGN_TYPES.includes(format) ? 'align' : 'type')}
+      onMouseDown={(event) => {
+        event.preventDefault();
+        toggleBlock(editor, format);
+      }}
+    >
+      <Icon>{icon}</Icon>
+    </Button>
+  );
+};
+
+const MarkButton = ({ format, icon }) => {
+  const editor = useSlate();
+  return (
+    <Button
+      active={isMarkActive(editor, format)}
+      onMouseDown={(event) => {
+        event.preventDefault();
+        toggleMark(editor, format);
+      }}
+    >
+      <Icon>{icon}</Icon>
+    </Button>
+  );
+};
+
+// old-editable
 
 export { ALL_PLUGINS, DEFAULT_PLUGINS, serialization };
 
@@ -47,18 +402,23 @@ const createToolbarOpts = (toolbarOpts, error, isHtmlMode) => {
   };
 };
 
-export class Editor extends React.Component {
+export class EditorComponent extends React.Component {
   static propTypes = {
     autoFocus: PropTypes.bool,
-    editorRef: PropTypes.func.isRequired,
     error: PropTypes.any,
     onRef: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired,
+    onEditor: PropTypes.func,
     onFocus: PropTypes.func,
     onBlur: PropTypes.func,
     onKeyDown: PropTypes.func,
-    focus: PropTypes.func.isRequired,
-    value: SlateTypes.value.isRequired,
+    value: PropTypes.arrayOf(
+      PropTypes.shape({
+        type: PropTypes.string,
+        children: PropTypes.array,
+        data: PropTypes.object,
+      }),
+    ),
     imageSupport: PropTypes.object,
     mathMlOptions: PropTypes.shape({
       mmlOutput: PropTypes.bool,
@@ -121,7 +481,7 @@ export class Editor extends React.Component {
     }),
     className: PropTypes.string,
     maxImageWidth: PropTypes.number,
-    maxImageHeight: PropTypes.number
+    maxImageHeight: PropTypes.number,
   };
 
   static defaultProps = {
@@ -156,7 +516,7 @@ export class Editor extends React.Component {
 
     this.onResize = () => {
       if (!this.state.isHtmlMode) {
-        props.onChange(this.state.value, true);
+        props.onChange(this.state.editor, true);
       }
     };
 
@@ -222,10 +582,10 @@ export class Editor extends React.Component {
           props.imageSupport &&
           props.imageSupport.delete &&
           ((node, done) => {
-            const src = node.data.get('src');
+            const { src } = node.data;
 
             props.imageSupport.delete(src, (e) => {
-              const newPendingImages = this.state.pendingImages.filter((img) => img.key !== node.key);
+              const newPendingImages = this.state.pendingImages.filter((img) => img !== node);
               const { scheduled: oldScheduled } = this.state;
               const newState = {
                 pendingImages: newPendingImages,
@@ -237,7 +597,7 @@ export class Editor extends React.Component {
           }),
         insertImageRequested:
           props.imageSupport &&
-          ((addedImage, getHandler) => {
+          ((addedImage, getHandler, fileProvided) => {
             const { pendingImages } = this.state;
             const onFinish = (result) => {
               let cb;
@@ -247,7 +607,7 @@ export class Editor extends React.Component {
                 cb = this.onEditingDone.bind(this);
               }
 
-              const newPendingImages = this.state.pendingImages.filter((img) => img.key !== addedImage.key);
+              const newPendingImages = this.state.pendingImages.filter((img) => img !== addedImage);
               const newState = {
                 pendingImages: newPendingImages,
               };
@@ -264,7 +624,12 @@ export class Editor extends React.Component {
                * communicates file upload events like: fileChosen, cancel, progress
                */
               const handler = getHandler(onFinish, () => this.state.value);
+
               props.imageSupport.add(handler);
+
+              if (fileProvided) {
+                handler.fileChosen(fileProvided);
+              }
             };
 
             this.setState(
@@ -287,21 +652,6 @@ export class Editor extends React.Component {
         disableScrollbar: !!props.disableScrollbar,
         disableUnderline: props.disableUnderline,
         autoWidth: props.autoWidthToolbar,
-        onDone: () => {
-          const { nonEmpty } = props;
-
-          log('[onDone]');
-          this.setState({ toolbarInFocus: false, focusedNode: null });
-          this.editor.blur();
-
-          if (nonEmpty && this.state.value.startText?.text?.length === 0) {
-            this.resetValue(true).then(() => {
-              this.onEditingDone();
-            });
-          } else {
-            this.onEditingDone();
-          }
-        },
       },
       table: {
         onFocus: () => {
@@ -319,6 +669,7 @@ export class Editor extends React.Component {
         maxResponseAreas: normalizedResponseAreaProps.maxResponseAreas,
         respAreaToolbar: normalizedResponseAreaProps.respAreaToolbar,
         onHandleAreaChange: normalizedResponseAreaProps.onHandleAreaChange,
+        onEditingDone: this.onEditingDone,
         error: normalizedResponseAreaProps.error,
         onFocus: () => {
           log('[table:onFocus]...');
@@ -332,10 +683,9 @@ export class Editor extends React.Component {
       languageCharacters: props.languageCharactersProps,
       media: {
         focus: this.focus,
-        createChange: () => this.state.value.change(),
         onChange: this.onChange,
         uploadSoundSupport: props.uploadSoundSupport,
-      }
+      },
     });
 
     if (props.mathMlOptions.mmlOutput || props.mathMlOptions.mmlEditing) {
@@ -344,17 +694,12 @@ export class Editor extends React.Component {
   };
 
   componentDidMount() {
-    // onRef is needed to get the ref of the component because we export it using withStyles
-    this.props.onRef(this);
-
     window.addEventListener('resize', this.onResize);
 
     if (this.editor && this.props.autoFocus) {
       Promise.resolve().then(() => {
         if (this.editor) {
           const editorDOM = document.querySelector(`[data-key="${this.editor.value.document.key}"]`);
-
-          this.editor.focus();
 
           if (editorDOM) {
             editorDOM.focus();
@@ -384,7 +729,7 @@ export class Editor extends React.Component {
       this.handlePlugins(nextProps);
     }
 
-    if (!nextProps.value?.document?.equals(this.props.value?.document)) {
+    if (!isEqual(nextProps.value, this.props.value)) {
       this.setState({
         focus: false,
         value: nextProps.value,
@@ -441,11 +786,10 @@ export class Editor extends React.Component {
   };
 
   onMathClick = (node) => {
-    this.editor.change((c) => c.collapseToStartOf(node));
     this.setState({ selectedNode: node });
   };
 
-  onEditingDone = () => {
+  onEditingDone = (editor) => {
     const { isHtmlMode, dialog, value, pendingImages } = this.state;
 
     // Handling HTML mode and dialog state
@@ -468,9 +812,18 @@ export class Editor extends React.Component {
 
     // Finalizing editing
     log('[onEditingDone]');
-    this.setState({ pendingImages: [], stashedValue: null, focusedNode: null });
+    this.setState({ pendingImages: [] });
     log('[onEditingDone] value: ', this.state.value);
-    this.props.onChange(this.state.value, true);
+    this.props.onChange(editor, true);
+  };
+
+  onDone = (editor) => {
+    const { nonEmpty } = this.props;
+
+    log('[onDone]');
+    this.setState({ toolbarInFocus: false, focusedNode: null });
+
+    this.onEditingDone(editor);
   };
 
   /**
@@ -536,7 +889,7 @@ export class Editor extends React.Component {
   }
 
   // Allowing time for onChange to take effect if it is called
-  handleBlur = (resolve) => {
+  handleBlur = (editor) => {
     const { nonEmpty } = this.props;
     const {
       toolbarOpts: { doneOn },
@@ -544,28 +897,26 @@ export class Editor extends React.Component {
 
     this.setState({ toolbarInFocus: false, focusedNode: null });
 
-    if (this.editor) {
-      this.editor.blur();
-    }
-
     if (doneOn === 'blur') {
-      if (nonEmpty && this.state.value.startText?.text?.length === 0) {
+      const texts = Array.from(SlateNode.texts(editor));
+
+      if (nonEmpty && texts.length === 0) {
         this.resetValue(true).then(() => {
-          this.onEditingDone();
-          resolve();
+          this.onEditingDone(editor);
         });
       } else {
-        this.onEditingDone();
-        resolve();
+        this.onEditingDone(editor);
       }
     }
   };
 
-  onBlur = (event) => {
+  onBlur = (editor, event) => {
+    this.handleBlur(editor);
+    return this.props.onBlur(event);
     log('[onBlur]');
     const target = event.relatedTarget;
 
-    const node = target ? findNode(target, this.state.value) : null;
+    const node = ReactEditor.toSlateNode(editor, target);
 
     log('[onBlur] node: ', node);
 
@@ -615,22 +966,6 @@ export class Editor extends React.Component {
       const editorDOM = document.querySelector(`[data-key="${this.state.value.document.key}"]`);
 
       log('[onFocus]', document.activeElement);
-
-      /**
-       * This is a temporary hack - @see changeData below for some more information.
-       */
-      if (this.__TEMPORARY_CHANGE_DATA) {
-        const { key, data } = this.__TEMPORARY_CHANGE_DATA;
-        const domEl = document.querySelector(`[data-key="${key}"]`);
-
-        if (domEl) {
-          let change = this.state.value.change().setNodeByKey(key, { data });
-
-          this.setState({ value: change.value }, () => {
-            this.__TEMPORARY_CHANGE_DATA = null;
-          });
-        }
-      }
 
       /**
        * This is needed just in case the browser decides to make the editor
@@ -689,15 +1024,17 @@ export class Editor extends React.Component {
     }
   };
 
-  onChange = (change, done) => {
+  onChange = (editor, done) => {
     log('[onChange]');
-
-    const { value } = change;
     const { charactersLimit } = this.props;
+    const allText = Editor.string(editor, []);
 
-    if (value && value.document && value.document.text && value.document.text.length > charactersLimit) {
+    if (allText.length > charactersLimit) {
       return;
     }
+
+    const html = valueToHtml(editor);
+    const value = htmlToValue(html);
 
     // Mark the editor as edited when in HTML mode and its content has changed.
     // This status will later be used to decide whether to prompt a warning to the user when exiting HTML mode.
@@ -707,7 +1044,7 @@ export class Editor extends React.Component {
       ? true
       : this.state.isEditedInHtmlMode;
 
-    if (isEditedInHtmlMode != this.state.isEditedInHtmlMode) {
+    if (isEditedInHtmlMode !== this.state.isEditedInHtmlMode) {
       this.handlePlugins(this.props);
     }
 
@@ -778,101 +1115,10 @@ export class Editor extends React.Component {
     return undefined;
   };
 
-  changeData = (key, data) => {
-    log('[changeData]. .. ', key, data);
-
-    /**
-     * HACK ALERT: We should be calling setState here and storing the change data:
-     *
-     * <code>this.setState({changeData: { key, data}})</code>
-     * However this is causing issues with the Mathquill instance. The 'input' event stops firing on the element and no
-     * more changes get through. The issues seem to be related to the promises in onBlur/onFocus. But removing these
-     * brings it's own problems. A major clean up is planned for this component so I've decided to temporarily settle
-     * on this hack rather than spend more time on this.
-     */
-
-    // Uncomment this line to see the bug described above.
-    // this.setState({changeData: {key, data}})
-
-    this.__TEMPORARY_CHANGE_DATA = { key, data };
-  };
-
   focus = (pos, node) => {
     const position = pos || 'end';
 
     this.props.focus(position, node);
-  };
-
-  onDropPaste = async (event, change, dropContext) => {
-    const editor = change.editor;
-    const transfer = getEventTransfer(event);
-    const file = transfer.files && transfer.files[0];
-
-    const type = transfer.type;
-    const fragment = transfer.fragment;
-    const text = transfer.text;
-
-    if (file && (file.type === 'image/jpeg' || file.type === 'image/jpg' || file.type === 'image/png')) {
-      if (!this.props.imageSupport) {
-        return;
-      }
-      try {
-        log('[onDropPaste]');
-        const src = await getBase64(file);
-        const inline = Inline.create({
-          type: 'image',
-          isVoid: true,
-          data: {
-            loading: false,
-            src,
-          },
-        });
-
-        if (dropContext) {
-          this.focus();
-        } else {
-          const range = getEventRange(event, editor);
-          if (range) {
-            change.select(range);
-          }
-        }
-
-        const ch = change.insertInline(inline);
-        this.onChange(ch);
-        const handler = new InsertImageHandler(
-          inline,
-          () => {},
-          () => this.state.value,
-          this.onChange,
-          true,
-        );
-        handler.fileChosen(file);
-        this.props.imageSupport.add(handler);
-      } catch (err) {
-        log('[onDropPaste] error: ', err);
-      }
-    } else if (type === 'fragment') {
-      change.insertFragment(fragment);
-    } else if (type === 'text' || type === 'html') {
-      if (!text) {
-        return;
-      }
-      const {
-        value: { document, selection, startBlock },
-      } = change;
-
-      if (startBlock.isVoid) {
-        return;
-      }
-
-      const defaultBlock = startBlock;
-      const defaultMarks = document.getInsertMarksAtRange(selection);
-      const frag = Plain.deserialize(text, {
-        defaultBlock,
-        defaultMarks,
-      }).document;
-      change.insertFragment(frag);
-    }
   };
 
   renderPlaceholder = (props) => {
@@ -901,8 +1147,21 @@ export class Editor extends React.Component {
     );
   };
 
+  onSetEditor = (editor) => {
+    const { onEditor } = this.props;
+    const callback = () => onEditor && onEditor(editor);
+
+    this.setState(
+      {
+        editor,
+      },
+      callback,
+    );
+  };
+
   render() {
     const {
+      autoFocus,
       disabled,
       spellCheck,
       highlightShape,
@@ -910,6 +1169,7 @@ export class Editor extends React.Component {
       className,
       placeholder,
       pluginProps,
+      disableUnderline,
       onKeyDown,
     } = this.props;
     // We don't want to send customPlugins to slate.
@@ -929,39 +1189,41 @@ export class Editor extends React.Component {
         [classes.scheduled]: scheduled,
       },
       className,
+      classes.slateEditor,
     );
 
     return (
-      <div ref={(ref) => (this.wrapperRef = ref)} style={{ width: sizeStyle.width }} className={names}>
+      <div
+        ref={(ref) => (this.wrapperRef = ref)}
+        style={{ width: sizeStyle.width }}
+        className={names}
+        data-slate-wrapper=""
+      >
         {scheduled && <div className={classes.uploading}>Uploading image and then saving...</div>}
         <SlateEditor
           plugins={this.plugins}
-          innerRef={(r) => {
-            if (r) {
-              this.slateEditor = r;
-            }
-          }}
-          ref={(r) => (this.editor = r && this.props.editorRef(r))}
           toolbarRef={(r) => {
             if (r) {
               this.toolbarRef = r;
             }
           }}
+          autoFocus={autoFocus}
+          disableUnderline={disableUnderline}
+          actionsRef={this.props.onRef}
+          onEditor={this.onSetEditor}
           value={value}
           focus={this.focus}
           onKeyDown={onKeyDown}
           onChange={this.onChange}
           getFocusedValue={this.getFocusedValue}
           onBlur={this.onBlur}
-          onDrop={(event, editor) => this.onDropPaste(event, editor, true)}
-          onPaste={(event, editor) => this.onDropPaste(event, editor)}
           onFocus={this.onFocus}
           onEditingDone={this.onEditingDone}
+          onDone={this.onDone}
           focusedNode={focusedNode}
           normalize={this.normalize}
           readOnly={disabled}
           spellCheck={spellCheck}
-          autoCorrect={spellCheck}
           className={classNames(
             {
               [classes.noPadding]: toolbarOpts && toolbarOpts.noBorder,
@@ -977,16 +1239,6 @@ export class Editor extends React.Component {
           toolbarOpts={toolbarOpts}
           placeholder={placeholder}
           renderPlaceholder={this.renderPlaceholder}
-          onDataChange={this.changeData}
-        />
-        <AlertDialog
-          open={dialog.open}
-          title={dialog.title}
-          text={dialog.text}
-          onClose={dialog.onClose}
-          onConfirm={dialog.onConfirm}
-          onConfirmText={dialog.onConfirmText}
-          onCloseText={dialog.onCloseText}
         />
       </div>
     );
@@ -1018,6 +1270,7 @@ const styles = {
       borderCollapse: 'collapse',
       color: color.text(),
       backgroundColor: color.background(),
+      whiteSpace: 'pre-wrap',
     },
     '& table:not([border="1"]) tr': {
       borderTop: '1px solid #dfe2e5',
@@ -1048,4 +1301,4 @@ const styles = {
   },
 };
 
-export default withStyles(styles)(Editor);
+export default withStyles(styles)(EditorComponent);
