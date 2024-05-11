@@ -12,13 +12,10 @@ import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import { color } from '../render-ui';
 // import Plain from 'slate-plain-serializer';
-import AlertDialog from '../config-ui/alert-dialog';
 import { PreviewPrompt } from '../render-ui';
 
-import { getBase64, htmlToValue, valueToHtml } from './new-serialization';
-import InsertImageHandler from './plugins/image/insert-image-handler';
+import { htmlToValue, valueToHtml } from './new-serialization';
 
-import isHotkey from 'is-hotkey';
 import { ReactEditor, useSlateStatic, Editable, useFocused, useSlate, Slate } from 'slate-react';
 import { Node as SlateNode, Path, Editor, Transforms, createEditor, Element as SlateElement } from 'slate';
 
@@ -185,7 +182,6 @@ const SlateEditor = (editorProps) => {
           <Editable
             renderElement={renderElement}
             renderLeaf={renderLeaf}
-            placeholder="Enter some rich text…"
             spellCheck
             onKeyDown={onKeyDown}
             onFocus={onFocus}

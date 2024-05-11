@@ -62,7 +62,7 @@ class Html {
       !Object.keys(BLOCK_TAGS).includes(body.firstChild.tagName.toLowerCase()) ||
       Object.keys(MARK_TAGS).includes(body.firstChild.tagName.toLowerCase())
     ) {
-      body = this.parseHtml(`<p>${html}</p>`);
+      body = this.parseHtml(`<div>${html}</div>`);
     }
 
     return this.deserializeEls(body);
