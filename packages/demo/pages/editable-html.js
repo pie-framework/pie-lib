@@ -132,15 +132,17 @@ class RteDemo extends React.Component {
       const words = ['first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'the seventh', 'the eighth', 'the ninth'];
       // IF SECOND custom button is pressed, we add an EXTRA
       const extras = [
-        '<math xmlns="http://www.w3.org/1998/Math/MathML"><mstack charalign="center" stackalign="right"><mn>358999</mn><msrow><mo>+</mo><mn>223</mn></msrow><msline /><msrow /></mstack></math>',
-        '<math xmlns="http://www.w3.org/1998/Math/MathML">\n<mstack charalign="center" stackalign="right">\n   <msrow>\n     <mn>1</mn>\n     <mo>.</mo>\n     <mn>5</mn>\n     <none/>\n     <none/>\n     <none/>\n   </msrow>\n   <msrow>     \n     <mo>+</mo>\n     <mn>0</mn>\n     <mo>.</mo>\n     <mn>0015</mn>\n   </msrow>\n   <msline/>\n   <msrow/>\n</mstack>\n</math>',
+          `<ol><li><div>1</div><ul><li>1.1</li><li>1.2</li></ul></li><li><div>2</div><ul><li>2.2</li><li>2.3</li></ul></li><li>3</li></ol>`,
+          `<table border="1"><tbody><tr><td></td><td></td></tr><tr><td></td><td></td></tr></tbody></table>`,
+        '<table cellspacing="0" cellpadding="4" class="borderall"> <tbody> <tr> <td style="width:140px" class="center bold">Trial</td> <td style="width:140px" class="center bold">Mass NH<sub>3</sub></td> <td style="width:140px" class="center bold">Mass HCl</td> <td style="width:140px" class="center bold">Mass NH<sub>4</sub>Cl</td> </tr> <tr> <td class="center">1</td> <td class="center">3.40 g</td> <td class="center">7.30 g</td> <td class="center">10.70 g</td> </tr> <tr> <td class="center">2</td> <td class="center">?</td> <td class="center">?</td> <td class="center">32.10 g</td> </tr> </tbody></table>',
+        // Not working because it doesn't have tbody // '<table border="1"><tr><td>a</td><td>b</td></tr></table>',
         '<p><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow> <mi>x</mi> <mo>=</mo> <mfrac> <mrow> <mrow> <mo>-</mo> <mi>b</mi> </mrow> <mo>±</mo> <msqrt> <mrow> <msup> <mi>b</mi> <mn>2</mn> </msup> <mo>-</mo> <mrow> <mn>4</mn> <mo>⁢</mo> <mi>a</mi> <mo>⁢</mo> <mi>c</mi> </mrow> </mrow> </msqrt> </mrow> <mrow> <mn>2</mn> <mo>⁢</mo> <mi>a</mi> </mrow> </mfrac></mrow></math></p>',
         '<p><math xmlns="http://www.w3.org/1998/Math/MathML" display="block" title="a x^2+b x+c=0"><mstyle mathcolor="blue" fontfamily="serif" displaystyle="true"><mi>a</mi><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mi>b</mi><mi>x</mi><mo>+</mo><mi>c</mi><mo>=</mo><mn>0</mn></mstyle></math></p>',
+        `<p>Image:<img src="${testImage}" style="width:170px;height:151px"/></p>`,
         '<div><span data-latex="">\\(\\displaystyle - \\frac{36}{55}\\)</span></div>',
         '<div><span data-latex="">\\(2x\\ \\le4y\\ +\\ 8\\)</span></div>',
-        `<div><p>Image:<img src="${testImage}" style="width:170px;height:151px"/></p></div>`,
-        '<table border="1"><tr><td>a</td><td>b</td></tr></table>',
-        '<table cellspacing="0" cellpadding="4" class="borderall"> <tbody> <tr> <td style="width:140px" class="center bold">Trial</td> <td style="width:140px" class="center bold">Mass NH<sub>3</sub></td> <td style="width:140px" class="center bold">Mass HCl</td> <td style="width:140px" class="center bold">Mass NH<sub>4</sub>Cl</td> </tr> <tr> <td class="center">1</td> <td class="center">3.40 g</td> <td class="center">7.30 g</td> <td class="center">10.70 g</td> </tr> <tr> <td class="center">2</td> <td class="center">?</td> <td class="center">?</td> <td class="center">32.10 g</td> </tr> </tbody></table>',
+        '<math xmlns="http://www.w3.org/1998/Math/MathML"><mstack charalign="center" stackalign="right"><mn>358999</mn><msrow><mo>+</mo><mn>223</mn></msrow><msline /><msrow /></mstack></math>',
+        '<math xmlns="http://www.w3.org/1998/Math/MathML">\n<mstack charalign="center" stackalign="right">\n   <msrow>\n     <mn>1</mn>\n     <mo>.</mo>\n     <mn>5</mn>\n     <none/>\n     <none/>\n     <none/>\n   </msrow>\n   <msrow>     \n     <mo>+</mo>\n     <mn>0</mn>\n     <mo>.</mo>\n     <mn>0015</mn>\n   </msrow>\n   <msline/>\n   <msrow/>\n</mstack>\n</math>',
       ];
       let indexA = 0;
       let indexB = 0;
@@ -430,6 +432,9 @@ class RteDemo extends React.Component {
           disabled={disabled}
           highlightShape={showHighlight}
           pluginProps={{
+            html: {
+              disabled: false,
+            },
             image: {
               disabled: disableImageUpload,
             },
@@ -486,8 +491,8 @@ class RteDemo extends React.Component {
           height={height}
           languageCharactersProps={languageCharactersProps}
           mathMlOptions={{
-            mmlEditing: true,
-            mmlOutput: true,
+            // mmlEditing: true,
+            // mmlOutput: true,
           }}
         />
         <input type="file" hidden ref={(r) => (this.fileInput = r)} />

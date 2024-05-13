@@ -243,7 +243,7 @@ function fixLatexExpression(latexInput) {
 }
 
 export const serialization = {
-  deserialize(el) {
+  deserialize(el, next) {
     const tagName = getTagName(el);
     log('[deserialize] name: ', tagName);
 
@@ -262,21 +262,29 @@ export const serialization = {
         const correctedLatex = fixLatexExpression(latex);
         const { unwrapped, wrapType } = unWrapMath(correctedLatex);
 
-        return jsx('element', {
-          type: 'math',
-          data: {
-            latex: unwrapped,
-            wrapper: wrapType,
+        return jsx(
+          'element',
+          {
+            type: 'math',
+            data: {
+              latex: unwrapped,
+              wrapper: wrapType,
+            },
           },
-        });
+            next(Array.from(el.children)),
+        );
       }
 
-      return jsx('element', {
-        type: 'mathml',
-        data: {
-          html: newHtml,
+      return jsx(
+        'element',
+        {
+          type: 'mathml',
+          data: {
+            html: newHtml,
+          },
         },
-      });
+          next(Array.from(el.children)),
+      );
     }
 
     if (el.nodeType === TEXT_NODE) {
@@ -294,13 +302,17 @@ export const serialization = {
       const { unwrapped, wrapType } = unWrapMath(latex);
       log('[deserialize]: noBrackets: ', unwrapped, wrapType);
 
-      return jsx('element', {
-        type: 'math',
-        data: {
-          latex: unwrapped,
-          wrapper: wrapType,
+      return jsx(
+        'element',
+        {
+          type: 'math',
+          data: {
+            latex: unwrapped,
+            wrapper: wrapType,
+          },
         },
-      });
+          next(Array.from(el.children)),
+      );
     }
   },
   serialize(object) {
