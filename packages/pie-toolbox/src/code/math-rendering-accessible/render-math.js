@@ -115,10 +115,7 @@ const removeExcessMjxContainers = (content) => {
 const getMathJaxCustomKey = () => window?.MathJax?.customKey || window?.MathJax?.config?.customKey;
 
 const renderMath = (el, renderOpts) => {
-  console.log("I'm in math rendering accessible");
   const isString = typeof el === 'string';
-  console.log('IS STRING', isString);
-  console.log('renderOpts', renderOpts);
   let executeOn = document.body;
 
   if (isString) {
@@ -129,7 +126,6 @@ const renderMath = (el, renderOpts) => {
   }
 
   const { skipWaitForMathRenderingLib } = renderOpts || {};
-  console.log(skipWaitForMathRenderingLib, 'skipWaitForMathRenderingLib');
 
   // this is the actual math-rendering-accessible renderMath function, which initialises MathJax
   const renderMathAccessible = () => {
@@ -142,7 +138,6 @@ const renderMath = (el, renderOpts) => {
       (!window.MathJax && !window.mathjaxLoadedP) ||
       (mathJaxCustomKey && mathJaxCustomKey !== mathRenderingAccessibleKEY)
     ) {
-      console.log('INITIALIZE MATHJAX ACCESSIBLE');
       renderOpts = renderOpts || defaultOpts();
 
       initializeMathJax(renderOpts);
@@ -150,7 +145,6 @@ const renderMath = (el, renderOpts) => {
 
     if (isString && window.MathJax && window.mathjaxLoadedP) {
       try {
-        console.log('THE ISSUE MUST BE HERE');
         MathJax.texReset();
         MathJax.typesetClear();
         window.MathJax.typeset([executeOn]);
@@ -161,7 +155,6 @@ const renderMath = (el, renderOpts) => {
 
         const parsedMathMl = mathMl.replaceAll('\n', '');
 
-        console.log(parsedMathMl, 'parsedMathMl');
         return parsedMathMl;
       } catch (error) {
         console.error('Error rendering math:', error.message);
@@ -172,7 +165,7 @@ const renderMath = (el, renderOpts) => {
       window.mathjaxLoadedP
         .then(() => {
           const mathJaxInstance = getGlobal().instance;
-          console.log(mathJaxInstance, 'mathJaxInstance');
+
           if (mathJaxInstance) {
             // Reset and clear typesetting before processing the new content
             // Reset the tex labels (and automatic equation number).
@@ -189,7 +182,6 @@ const renderMath = (el, renderOpts) => {
               .typesetPromise([executeOn])
               .then(() => {
                 try {
-                  console.log("I'm in typesetPromise???");
                   removeExcessMjxContainers(executeOn);
                   removePlaceholdersAndRestoreDisplay();
 
@@ -226,20 +218,18 @@ const renderMath = (el, renderOpts) => {
 
   // skipWaitForMathRenderingLib is used currently in editable-html, when mmlOutput is enabled
   if (skipWaitForMathRenderingLib) {
-    console.log(skipWaitForMathRenderingLib, 'skipWaitForMathRenderingLib');
     // is this case, we don't need to wait for anything, because a math-instance is most probably already loaded
     return renderMathAccessible();
   } else {
     // Check immediately if the math-rendering package is available, and if it is, use it
     if (window.hasOwnProperty(mathRenderingKEY) && window[mathRenderingKEY].instance) {
-      console.log(mathRenderingKEY, 'mathRenderingKEY');
       removePlaceholdersAndRestoreDisplay();
+
       return mr.renderMath(executeOn, renderOpts);
     }
 
     // Check immediately if the math-rendering-accessible package is available, and if it is, use it
     if (window.hasOwnProperty(mathRenderingAccessibleKEY) && window[mathRenderingAccessibleKEY].instance) {
-      console.log(mathRenderingAccessibleKEY, 'mathRenderingAccessibleKEY');
       return renderMathAccessible();
     }
 
@@ -262,8 +252,8 @@ const renderMath = (el, renderOpts) => {
 
           // Check if the math-rendering package is available, and if it is, use it
           if (mathRenderingHasLoaded) {
-            console.log(mathRenderingHasLoaded, 'mathRenderingHasLoaded');
             removePlaceholdersAndRestoreDisplay();
+
             return mr.renderMath(executeOn, renderOpts);
           }
 
@@ -276,7 +266,6 @@ const renderMath = (el, renderOpts) => {
     };
 
     // otherwise, we need for it to load
-    console.log('waitForMathRenderingLib');
     waitForMathRenderingLib(renderMathAccessible);
   }
 };

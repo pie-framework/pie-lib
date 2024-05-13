@@ -47,6 +47,12 @@ const createToolbarOpts = (toolbarOpts, error, isHtmlMode) => {
   };
 };
 
+/**
+ * The maximum number of characters the editor can support
+ * @type {number}
+ */
+const MAX_CHARACTERS_LIMIT = 1000000;
+
 export class Editor extends React.Component {
   static propTypes = {
     autoFocus: PropTypes.bool,
@@ -121,7 +127,7 @@ export class Editor extends React.Component {
     }),
     className: PropTypes.string,
     maxImageWidth: PropTypes.number,
-    maxImageHeight: PropTypes.number
+    maxImageHeight: PropTypes.number,
   };
 
   static defaultProps = {
@@ -335,7 +341,7 @@ export class Editor extends React.Component {
         createChange: () => this.state.value.change(),
         onChange: this.onChange,
         uploadSoundSupport: props.uploadSoundSupport,
-      }
+      },
     });
 
     if (props.mathMlOptions.mmlOutput || props.mathMlOptions.mmlEditing) {
@@ -694,8 +700,12 @@ export class Editor extends React.Component {
 
     const { value } = change;
     const { charactersLimit } = this.props;
+    let limit = charactersLimit;
+    if (!limit || limit > MAX_CHARACTERS_LIMIT) {
+      limit = MAX_CHARACTERS_LIMIT;
+    }
 
-    if (value && value.document && value.document.text && value.document.text.length > charactersLimit) {
+    if (value && value.document && value.document.text && value.document.text.length > limit) {
       return;
     }
 

@@ -96,10 +96,57 @@ export const gridDraggable = (opts) => (Comp) => {
       return scaled;
     };
 
+    /**
+     * Retrieves the coordinates of a mouse or touch event relative to an SVG element.
+     * This method has been overwritten from the d3-selection library's clientPoint to handle touch events and improve clarity.
+     * @param {Element} node - The SVG element.
+     * @param {Event} event - The mouse or touch event.
+     * @returns {Array} - An array containing the coordinates [x, y] relative to the SVG element.
+     */
+    getClientPoint = (node, event) => {
+      if (!node || !event) {
+        return null;
+      }
+      const svg = node.ownerSVGElement || node;
+
+      if (svg && svg.createSVGPoint) {
+        let point = svg.createSVGPoint();
+        // Check if it's a touch event and use the first touch point
+        if (event.touches && event.touches.length > 0) {
+          const touch = event.touches[0];
+          point.x = touch.clientX;
+          point.y = touch.clientY;
+        } else {
+          // Fall back to mouse event properties
+          point.x = event.clientX;
+          point.y = event.clientY;
+        }
+        if (node.getScreenCTM) {
+          point = point.matrixTransform(node.getScreenCTM().inverse());
+          return [point.x, point.y];
+        } else {
+          return null;
+        }
+      }
+
+      const rect = node.getBoundingClientRect();
+      if (rect) {
+        return [event.clientX - rect.left - node.clientLeft, event.clientY - rect.top - node.clientTop];
+      } else {
+        return null;
+      }
+    };
+
     skipDragOutsideOfBounds = (dd, e, graphProps) => {
-      // ignore drag movement outside of the domain and range.
+      // Ignore drag movement outside of the domain and range.
       const rootNode = graphProps.getRootNode();
-      const [rawX, rawY] = clientPoint(rootNode, e);
+      const clientPoint = this.getClientPoint(rootNode, e);
+
+      if (clientPoint === null) {
+        return true; // Indicate that the drag is outside of bounds
+      }
+
+      const [rawX, rawY] = clientPoint;
       const { scale, domain, range } = graphProps;
       let x = scale.x.invert(rawX);
       let y = scale.y.invert(rawY);

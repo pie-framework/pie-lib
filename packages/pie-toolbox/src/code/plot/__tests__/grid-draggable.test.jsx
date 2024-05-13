@@ -165,8 +165,19 @@ describe('gridDraggable', () => {
         onDrag = jest.fn();
         w = wrapper({}, { onDrag });
         w.instance().applyDelta = jest.fn().mockReturnValue(0);
+        w.instance().props.graphProps.getRootNode = jest.fn().mockReturnValue({
+          ownerSVGElement: null,
+          getBoundingClientRect: jest.fn(() => ({
+            left: 0,
+            top: 0,
+            right: 100,
+            bottom: 100,
+          })),
+        });
+        w.instance().getClientPoint = jest.fn().mockReturnValue([50, 50]); // Mocking getClientPoint
         w.instance().onDrag({}, { x: 1, y: 1 });
       });
+
       it('calls applyDelta', () => {
         expect(w.instance().applyDelta).toHaveBeenCalled();
       });
@@ -181,9 +192,9 @@ describe('gridDraggable', () => {
           it(`${JSON.stringify(bounds)}, ${dd.deltaX}, ${dd.deltaY} `, () => {
             w = wrapper({}, { onDrag });
             w.instance().getScaledBounds = jest.fn().mockReturnValue(bounds);
-            clientPoint.mockClear();
+            w.instance().getClientPoint = jest.fn().mockReturnValue([50, 50]);
             w.instance().onDrag({}, dd);
-            expect(clientPoint).not.toHaveBeenCalled();
+            expect(w.instance().getClientPoint).not.toHaveBeenCalled();
           });
         };
         assertEarlyExit(bounds(0, 0, 0, 0), { deltaX: -10 });
@@ -193,9 +204,9 @@ describe('gridDraggable', () => {
         it('calls client point if it doesnt exit early bounds', () => {
           w = wrapper({}, { onDrag });
           w.instance().getScaledBounds = jest.fn().mockReturnValue(bounds(100, 100, 100, 100));
-          clientPoint.mockClear();
+          w.instance().getClientPoint = jest.fn().mockReturnValue([50, 50]);
           w.instance().onDrag({}, { deltaX: 10 });
-          expect(clientPoint).toHaveBeenCalled();
+          expect(w.instance().getClientPoint).toHaveBeenCalled(); // Asserting that getClientPoint is called
         });
       });
     });
@@ -209,9 +220,25 @@ describe('gridDraggable', () => {
         it(`${dd.deltaX}, ${dd.deltaY}, ${expected}`, () => {
           w = wrapper({});
           const gp = getGraphProps();
-          clientPoint.mockClear();
-          clientPoint.mockReturnValue([rawXFn(gp.domain.min, gp.domain.max), rawYFn(gp.range.min, gp.range.max)]);
-          const result = w.instance().skipDragOutsideOfBounds(dd, {}, gp);
+
+          const mockGetBoundingClientRect = jest.fn(() => ({
+            left: 0,
+            top: 0,
+            right: 100,
+            bottom: 100,
+          }));
+
+          w.instance().getClientPoint = jest.fn(() => [
+            rawXFn(gp.domain.min, gp.domain.max),
+            rawYFn(gp.range.min, gp.range.max),
+          ]);
+
+          const rootNode = {
+            ownerSVGElement: null,
+            getBoundingClientRect: mockGetBoundingClientRect,
+          };
+
+          const result = w.instance().skipDragOutsideOfBounds(dd, {}, { ...gp, getRootNode: () => rootNode });
           expect(result).toEqual(expected);
         });
       };
