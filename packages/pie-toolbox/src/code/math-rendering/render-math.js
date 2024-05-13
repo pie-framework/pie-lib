@@ -129,7 +129,6 @@ const createMathMLInstance = (opts, docProvided = document) => {
     parseError: function(node) {
       // function to process parsing errors
       // eslint-disable-next-line no-console
-      console.log('error:', node);
       this.error(this.adaptor.textContent(node).replace(/\n.*/g, ''));
     },
   };
@@ -154,13 +153,11 @@ const createMathMLInstance = (opts, docProvided = document) => {
   const html = mathjax.document(docProvided, {
     compileError: (mj, math, err) => {
       // eslint-disable-next-line no-console
-      console.log('bad math?:', math);
       // eslint-disable-next-line no-console
       console.error(err);
     },
     typesetError: function(doc, math, err) {
       // eslint-disable-next-line no-console
-      console.log('typeset error');
       // eslint-disable-next-line no-console
       console.error(err);
       doc.typesetError(math, err);
@@ -220,15 +217,11 @@ const renderMath = (el, renderOpts) => {
     window.MathJax.customKey &&
     window.MathJax.customKey == '@pie-lib/math-rendering-accessible@1'
   ) {
-    console.log('RETURN FROM OLD MATH RENDERING, MATH RENDERING ACCESSIBLE WAS FOUND');
     return;
   }
 
-  console.log('we are in old math rendering');
   const isString = typeof el === 'string';
   let executeOn = document.body;
-
-  console.log(isString, 'is string in old math rendering');
 
   if (isString) {
     const div = document.createElement('div');
@@ -253,17 +246,12 @@ const renderMath = (el, renderOpts) => {
     const list = updatedDocument.math.list;
     const item = list.next;
 
-    console.log(item, 'item in old math rendering');
-
     if (!item) {
-      console.log("return '' in old math rendering");
       return '';
     }
 
     const mathMl = toMMl(item.data.root);
     const parsedMathMl = mathMl.replaceAll('\n', '');
-
-    console.log(parsedMathMl, 'parsedMathMl in old math rendering');
 
     return parsedMathMl;
   }
@@ -277,14 +265,10 @@ const renderMath = (el, renderOpts) => {
     return;
   }
 
-  console.log(el, 'element in old math rendering');
-
   if (el instanceof Element && getGlobal().instance?.Typeset) {
-    console.log('Typeset element in old math rendering');
     getGlobal().instance.Typeset(el);
   } else if (el.length && getGlobal().instance?.Typeset) {
     const arr = Array.from(el);
-    console.log(arr, 'Typeset arr in old math rendering');
     getGlobal().instance.Typeset(...arr);
   }
 };
