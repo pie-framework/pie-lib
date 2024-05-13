@@ -31,10 +31,10 @@ export const withMask = (type, renderChildren) => {
         // eslint-disable-next-line
         const domNode = ReactDOM.findDOMNode(this);
         // Query all elements that may contain outdated MathJax renderings
-        const mathElements = domNode.querySelectorAll('[data-latex][data-math-handled="true"]');
+        const mathElements = domNode && domNode.querySelectorAll('[data-latex][data-math-handled="true"]');
 
         // Clean up for fresh MathJax processing
-        mathElements.forEach((el) => {
+        (mathElements || []).forEach((el) => {
           // Remove the MathJax container to allow for clean updates
           const mjxContainer = el.querySelector('mjx-container');
 
