@@ -41,6 +41,7 @@ export class TableToolbar extends React.Component {
 
   render() {
     const {
+      getFocusedValue,
       plugins,
       value,
       onChange,
@@ -74,7 +75,13 @@ export class TableToolbar extends React.Component {
             <RemoveTable />
           </Button>
           {plugins.map((p, index) => (
-            <ToolbarButton key={`plugin-${index}`} {...p.toolbar} value={value} onChange={onChange} />
+            <ToolbarButton
+              key={`plugin-${index}`}
+              {...p.toolbar}
+              value={value}
+              onChange={onChange}
+              getFocusedValue={getFocusedValue}
+            />
           ))}
           <Button onClick={onToggleBorder} active={hasBorder}>
             <BorderAll />

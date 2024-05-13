@@ -9,6 +9,7 @@ import CustomPopper from './custom-popper';
 import { insertSnackBar } from '../respArea/utils';
 import { characterIcons, spanishConfig, specialConfig } from './utils';
 import PropTypes from 'prop-types';
+
 const log = debug('@pie-lib:editable-html:plugins:characters');
 
 const removePopOvers = () => {
@@ -219,8 +220,8 @@ const insertDialog = ({ editorDOM, value, callback, opts }) => {
 const CharacterIcon = ({ letter }) => (
   <div
     style={{
-      fontSize: '25px',
-      lineHeight: '15px',
+      fontSize: '24px',
+      lineHeight: '24px',
     }}
   >
     {letter}
@@ -233,6 +234,7 @@ CharacterIcon.propTypes = {
 
 export default function CharactersPlugin(opts) {
   removeDialogs();
+
   return {
     name: 'characters',
     toolbar: {
@@ -240,8 +242,11 @@ export default function CharactersPlugin(opts) {
       onClick: (value, onChange, getFocusedValue) => {
         const editorDOM = document.querySelector(`[data-key="${value.document.key}"]`);
         let valueToUse = value;
+
         const callback = (char, focus) => {
-          valueToUse = getFocusedValue();
+          if (getFocusedValue) {
+            valueToUse = getFocusedValue() || valueToUse;
+          }
 
           if (char) {
             const change = valueToUse.change().insertTextByKey(valueToUse.anchorKey, valueToUse.anchorOffset, char);
