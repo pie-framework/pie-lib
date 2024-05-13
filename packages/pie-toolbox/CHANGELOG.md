@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.17.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.17.3...@pie-lib/pie-toolbox@1.17.4) (2024-05-13)
+
+
+### Bug Fixes
+
+* sanity checks ([fe3fe79](https://github.com/pie-framework/pie-lib/commit/fe3fe7922a0a9d6deeaf4bc31d41f4b69f072837))
+* **charting:** enhance getClientPoint from grid-draggable with comments and sanity checks PD-3650 ([77d8ae5](https://github.com/pie-framework/pie-lib/commit/77d8ae5a9256900eb7eefc05336c21f79a4b6b46))
+* **editable-html:** add special characters in table toolbar PD-2127 ([4a5a4bc](https://github.com/pie-framework/pie-lib/commit/4a5a4bc06906e56cbb860720d5f859080f79aaa5))
+* **mask-markup:** Clear MathJax containers and reset LaTeX on markup updates for accurate re-rendering. ([81c7f4e](https://github.com/pie-framework/pie-lib/commit/81c7f4e9ee8634ac0e4297f607f751a11a16860d))
+* **math-input:** refresh content on click PD-3191 ([2146714](https://github.com/pie-framework/pie-lib/commit/2146714e8ef9ea59920337de30e1550fa1b27e58))
+* add 1 000 000 max character limit on all html editors PD-3709 ([c59b6d6](https://github.com/pie-framework/pie-lib/commit/c59b6d602c62e75aba7b72e8b5cf02b779ca6926))
+* **math-rendering-accessible:** Eliminate console logs added temporarily for debugging PD-3751 ([16d9495](https://github.com/pie-framework/pie-lib/commit/16d94953aa4237ad4e142cb55d7e5da83ce86d8c))
+* charting - bottom label is not moving with the content ([b5fed7e](https://github.com/pie-framework/pie-lib/commit/b5fed7e73dacb01104dfbb2e9c9851e1c3bac168))
+* charting - in bars handle disapear after drag ([4a56cda](https://github.com/pie-framework/pie-lib/commit/4a56cda590f6b6812c56afedd93d87214afdf495))
+* provided getFousedValue properly [PD-2127] ([b53ca49](https://github.com/pie-framework/pie-lib/commit/b53ca49af9347b659b89902ea70cee287deb0377))
+* **charting:** enhance getClientPoint to check for mouse or touch events PD-3650 & PD-3651 + fix tests for grid-draggable ([fd1c700](https://github.com/pie-framework/pie-lib/commit/fd1c7005bb25f3190ea49d575830e50fa8aebe6f))
+
+
+
+
+
 ## [1.17.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.17.2...@pie-lib/pie-toolbox@1.17.3) (2024-05-07)
 
 
