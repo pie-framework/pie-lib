@@ -3,6 +3,7 @@
 exports[`Input snapshot renders 1`] = `
 <span
   className="className"
-  onKeyPress={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
 />
 `;
