@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.17.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.17.4...@pie-lib/pie-toolbox@1.17.5) (2024-05-14)
+
+
+### Bug Fixes
+
+* **correct-answer-toggle:** enchance with touch event the expander PD-3640 ([960ece2](https://github.com/pie-framework/pie-lib/commit/960ece24b9df8a0b0640558e82e7aa6c1be7735e))
+
+
+
+
+
 ## [1.17.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.17.3...@pie-lib/pie-toolbox@1.17.4) (2024-05-13)
 
 
