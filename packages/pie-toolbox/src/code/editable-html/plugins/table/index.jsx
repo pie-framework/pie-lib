@@ -250,14 +250,6 @@ export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
         },
       });
 
-      const [nodeAtSelection, nodePath] = Editor.node(editor, editor.selection);
-
-      if (Text.isText(nodeAtSelection)) {
-        const block = { type: 'div', children: [] };
-
-        Transforms.wrapNodes(editor, block, { at: nodePath });
-      }
-
       editor.insertNode(newTable);
       moveToBeginningOfTable(editor, newTable);
     },
