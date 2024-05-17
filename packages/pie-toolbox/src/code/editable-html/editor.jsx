@@ -986,7 +986,7 @@ export class EditorComponent extends React.Component {
       //   editorDOM.addEventListener('blur', this.handleDomBlur);
       // }
       //
-      // this.stashValue();
+      this.stashValue();
       this.props.onFocus();
 
       resolve();
