@@ -59,7 +59,7 @@ const initialValue = [
 
 const SlateEditor = (editorProps) => {
   const mounted = useRef(false);
-  const { autoFocus, value, plugins, actionsRef, onEditingDone } = editorProps;
+  const { autoFocus, value, plugins, actionsRef, onEditingDone, placeholder, renderPlaceholder } = editorProps;
   const renderElement = useCallback((props) => <Element {...props} plugins={plugins} />, []);
   const renderLeaf = useCallback((props) => <Leaf {...props} />, []);
   const editor = useMemo(() => withPlugins(createEditor(), plugins), []);
@@ -180,6 +180,8 @@ const SlateEditor = (editorProps) => {
           }}
         >
           <Editable
+            placeholder={placeholder}
+            renderPlaceholder={renderPlaceholder}
             renderElement={renderElement}
             renderLeaf={renderLeaf}
             spellCheck
@@ -1122,10 +1124,7 @@ export class EditorComponent extends React.Component {
   };
 
   renderPlaceholder = (props) => {
-    const { editor } = props;
-    const { document } = editor.value;
-
-    if (!editor.props.placeholder || document.text !== '' || document.nodes.size !== 1) {
+    if (!props.children) {
       return false;
     }
 
@@ -1142,7 +1141,7 @@ export class EditorComponent extends React.Component {
           userSelect: 'none',
         }}
       >
-        {editor.props.placeholder}
+        {props.children}
       </span>
     );
   };
