@@ -28,30 +28,26 @@ class BlankContentComp extends React.Component {
     // TODO the Chip element is causing drag problems on touch devices. Avoid using Chip and consider refactoring the code. Keep in mind that Chip is a span with a button role, which interferes with seamless touch device dragging.
 
     return connectDragSource(
-      <span className={classnames(classes.choice, disabled && classes.disabled)}>
-        <Chip
-          clickable={false}
-          disabled={true}
+      <div className={classnames(classes.choice, disabled && classes.disabled)}>
+        <div
           ref={(ref) => {
             //eslint-disable-next-line
             this.rootRef = ReactDOM.findDOMNode(ref);
           }}
           className={classes.chip}
-          label={
-            <span
-              className={classes.chipLabel}
-              ref={(ref) => {
-                if (ref) {
-                  ref.innerHTML = choice.value || ' ';
-                }
-              }}
-            >
-              {' '}
-            </span>
-          }
-          variant={disabled ? 'outlined' : undefined}
-        />
-      </span>,
+        >
+          <span
+            className={classes.chipLabel}
+            ref={(ref) => {
+              if (ref) {
+                ref.innerHTML = choice.value || ' ';
+              }
+            }}
+          >
+            {' '}
+          </span>
+        </div>
+      </div>,
       {},
     );
   }
@@ -59,14 +55,14 @@ class BlankContentComp extends React.Component {
 
 export const BlankContent = withStyles((theme) => ({
   choice: {
-    border: `solid 0px ${theme.palette.primary.main}`,
+    border: `1px solid ${color.text()}`,
     borderRadius: theme.spacing.unit * 2,
     margin: theme.spacing.unit / 2,
     transform: 'translate(0, 0)',
   },
   chip: {
     backgroundColor: color.background(),
-    border: `1px solid ${color.text()}`,
+    // border: `1px solid ${color.text()}`,
     color: color.text(),
     alignItems: 'center',
     display: 'inline-flex',

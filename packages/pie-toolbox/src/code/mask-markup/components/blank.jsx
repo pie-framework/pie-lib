@@ -116,60 +116,51 @@ export class BlankContent extends React.Component {
 
     return (
       // TODO the Chip element is causing drag problems on touch devices. Avoid using Chip and consider refactoring the code. Keep in mind that Chip is a span with a button role, which interferes with seamless touch device dragging.
-      <Chip
-        clickable={false}
-        disabled={true}
+      <div
         ref={(ref) => {
           //eslint-disable-next-line
           this.rootRef = ReactDOM.findDOMNode(ref);
         }}
-        component="span"
-        label={
-          <React.Fragment>
-            <span
-              className={classnames(classes.chipLabel, isOver && classes.over, {
-                [classes.hidden]: draggedLabel,
-              })}
-              ref={(ref) => {
-                if (ref) {
-                  //eslint-disable-next-line
-                  this.spanRef = ReactDOM.findDOMNode(ref);
-                  ref.innerHTML = label || '';
-                  this.addDraggableFalseAttributes(ref);
-                }
-              }}
-            >
-              {' '}
-            </span>
-            {draggedLabel && (
-              <span
-                className={classnames(classes.chipLabel, isOver && classes.over, classes.dragged)}
-                ref={(ref) => {
-                  if (ref) {
-                    //eslint-disable-next-line
-                    this.spanRef = ReactDOM.findDOMNode(ref);
-                    ref.innerHTML = draggedLabel || '';
-                    this.addDraggableFalseAttributes(ref);
-                  }
-                }}
-              >
-                {' '}
-              </span>
-            )}
-          </React.Fragment>
-        }
         className={classnames(classes.chip, isOver && classes.over, {
           [classes.correct]: correct !== undefined && correct,
           [classes.incorrect]: correct !== undefined && !correct,
+          [classes.label]: isOver && classes.over,
         })}
-        variant={disabled ? 'outlined' : undefined}
         style={{
           ...(this.state.height ? { height: this.state.height } : {}),
         }}
-        classes={{
-          label: isOver && classes.over,
-        }}
-      />
+      >
+        <span
+          className={classnames(classes.chipLabel, isOver && classes.over, {
+            [classes.hidden]: draggedLabel,
+          })}
+          ref={(ref) => {
+            if (ref) {
+              //eslint-disable-next-line
+              this.spanRef = ReactDOM.findDOMNode(ref);
+              ref.innerHTML = label || '';
+              this.addDraggableFalseAttributes(ref);
+            }
+          }}
+        >
+          {' '}
+        </span>
+        {draggedLabel && (
+          <span
+            className={classnames(classes.chipLabel, isOver && classes.over, classes.dragged)}
+            ref={(ref) => {
+              if (ref) {
+                //eslint-disable-next-line
+                this.spanRef = ReactDOM.findDOMNode(ref);
+                ref.innerHTML = draggedLabel || '';
+                this.addDraggableFalseAttributes(ref);
+              }
+            }}
+          >
+            {' '}
+          </span>
+        )}
+      </div>
     );
   }
 }
@@ -181,9 +172,9 @@ const connectedBlankContent = useStyles(({ connectDragSource, connectDropTarget,
 
   return connectDropTarget(
     connectDragSource(
-      <span className={classnames(classes.content, isOver && classes.over)}>
+      <div className={classnames(classes.content, isOver && classes.over)}>
         <StyledBlankContent {...props} />
-      </span>,
+      </div>,
     ),
   );
 });
