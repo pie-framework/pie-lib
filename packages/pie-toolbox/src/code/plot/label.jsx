@@ -69,7 +69,6 @@ const LabelComponent = (props) => {
           [classes.customBottom]: isChartBottomLabel || isDefineChartBottomLabel,
         })}
         style={rotatedToHorizontal ? rotatedStyle : defaultStyle}
-        onClick={rotateLabel}
       >
         {disabledLabel ? (
           <div className={classes.disabledLabel} dangerouslySetInnerHTML={{ __html: text || '' }} />
@@ -84,6 +83,7 @@ const LabelComponent = (props) => {
             }}
             disableScrollbar
             activePlugins={activePlugins}
+            onFocus={rotateLabel}
             onDone={() => setRotatedToHorizontal(false)}
             mathMlOptions={mathMlOptions}
             charactersLimit={charactersLimit}

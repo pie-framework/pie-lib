@@ -128,7 +128,13 @@ const SlateEditor = (editorProps) => {
 
     return returnValue;
   };
-  const onFocus = () => setIsFocused(true);
+  const onFocus = () => {
+    setIsFocused(true);
+
+    if (editorProps.onFocus) {
+      editorProps.onFocus();
+    }
+  };
   const onBlur = (e) => {
     setTimeout(() => {
       if (!editorRef.current || !editorRef.current.contains(document.activeElement)) {
@@ -965,22 +971,22 @@ export class EditorComponent extends React.Component {
    * */
   onFocus = () =>
     new Promise((resolve) => {
-      const editorDOM = document.querySelector(`[data-key="${this.state.value.document.key}"]`);
-
-      log('[onFocus]', document.activeElement);
-
-      /**
-       * This is needed just in case the browser decides to make the editor
-       * lose focus without triggering the onBlur event (can happen in a few cases).
-       * This will also trigger onBlur if the user clicks outside of the page when the editor
-       * is focused.
-       */
-      if (editorDOM === document.activeElement) {
-        editorDOM.removeEventListener('blur', this.handleDomBlur);
-        editorDOM.addEventListener('blur', this.handleDomBlur);
-      }
-
-      this.stashValue();
+      // const editorDOM = document.querySelector(`[data-key="${this.state.value.document.key}"]`);
+      //
+      // log('[onFocus]', document.activeElement);
+      //
+      // /**
+      //  * This is needed just in case the browser decides to make the editor
+      //  * lose focus without triggering the onBlur event (can happen in a few cases).
+      //  * This will also trigger onBlur if the user clicks outside of the page when the editor
+      //  * is focused.
+      //  */
+      // if (editorDOM === document.activeElement) {
+      //   editorDOM.removeEventListener('blur', this.handleDomBlur);
+      //   editorDOM.addEventListener('blur', this.handleDomBlur);
+      // }
+      //
+      // this.stashValue();
       this.props.onFocus();
 
       resolve();

@@ -68,15 +68,15 @@ export class Root extends React.Component {
 
     if (isChart) {
       if (side === 'left') {
-        onChangeLabels('range', newValue);
+        onChangeLabels && onChangeLabels('range', newValue);
       } else {
-        onChangeLabels('domain', newValue);
+        onChangeLabels && onChangeLabels('domain', newValue);
       }
 
       return;
     }
 
-    onChangeLabels({
+    onChangeLabels && onChangeLabels({
       ...labels,
       [side]: newValue,
     });
