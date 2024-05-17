@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { types, gridDraggable } from '../../../plot';
 import { color } from '../../../render-ui';
 import * as utils from '../../utils';
-import { disabled, correct, incorrect, missing } from '../shared/styles';
+import { disabled, disabledSecondary, correct, incorrect, missing } from '../shared/styles';
 
 /**
  * A low level circle component
@@ -33,7 +33,7 @@ class RawCircle extends React.Component {
 
     return (
       <ellipse
-        className={classNames(classes.bgCircle, disabled && classes.disabled, classes[correctness], className)}
+        className={classNames(classes.bgCircle, disabled && classes.disabledSecondary, classes[correctness], className)}
         cx={scale.x(x)}
         cy={scale.y(y)}
         rx={rx}
@@ -64,6 +64,7 @@ const styles = () => ({
     },
   },
   disabled: applyStyle(disabled),
+  disabledSecondary: applyStyle(disabledSecondary),
   correct: applyStyle(correct),
   incorrect: applyStyle(incorrect),
   missing: applyStyle(missing),

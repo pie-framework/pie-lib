@@ -4,7 +4,7 @@ import cloneDeep from 'lodash/cloneDeep';
 import { BasePoint } from '../point';
 import { types, utils, gridDraggable, trig } from '../../../../plot';
 import PropTypes from 'prop-types';
-import { disabled, correct, incorrect, missing } from '../styles';
+import { disabled, disabledSecondary, correct, incorrect, missing } from '../styles';
 import ReactDOM from 'react-dom';
 import MarkLabel from '../../../mark-label';
 import isEmpty from 'lodash/isEmpty';
@@ -404,7 +404,11 @@ export const styles = {
     fill: color.defaults.SECONDARY,
   }),
   disabledArrow: () => ({
-    ...disabled(),
+    ...disabledSecondary(),
+  }),
+  disabledSecondary: () => ({
+    ...disabledSecondary('stroke'),
+    strokeWidth: 2,
   }),
   disabled: () => ({
     ...disabled('stroke'),

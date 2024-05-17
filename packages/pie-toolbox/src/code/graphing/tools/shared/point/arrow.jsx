@@ -32,7 +32,10 @@ export default class Arrow extends React.Component {
         ${scaledX - size}, ${scaledY + size / 2}`;
 
     return (
-      <g className={classNames(classes.point, disabled && classes.disabled, classes[correctness], className)} {...rest}>
+      <g
+        className={classNames(classes.point, disabled && classes.disabledSecondary, classes[correctness], className)}
+        {...rest}
+      >
         <ArrowHead size={size} transform={transform} points={points} />
       </g>
     );

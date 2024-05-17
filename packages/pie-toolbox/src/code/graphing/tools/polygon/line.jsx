@@ -5,7 +5,7 @@ import { types, gridDraggable } from '../../../plot';
 import { color } from '../../../render-ui';
 import * as utils from '../../utils';
 import classNames from 'classnames';
-import { correct, disabled, incorrect, missing } from '../shared/styles';
+import { correct, disabled, disabledSecondary, incorrect, missing } from '../shared/styles';
 
 class RawLine extends React.Component {
   static propTypes = {
@@ -32,7 +32,7 @@ class RawLine extends React.Component {
         y1={scale.y(from.y)}
         x2={scale.x(to.x)}
         y2={scale.y(to.y)}
-        className={classNames(classes.line, disabled && classes.disabled, className, classes[correctness])}
+        className={classNames(classes.line, disabled && classes.disabledSecondary, className, classes[correctness])}
         {...rest}
       />
     );
@@ -51,6 +51,10 @@ export const Line = withStyles(() => ({
   },
   disabled: {
     ...disabled('stroke'),
+    strokeWidth: 2,
+  },
+  disabledSecondary: {
+    ...disabledSecondary('stroke'),
     strokeWidth: 2,
   },
   correct: correct('stoke'),

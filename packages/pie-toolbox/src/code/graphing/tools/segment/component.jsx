@@ -9,6 +9,7 @@ import classNames from 'classnames';
 const lineStyles = (theme) => ({
   line: styles.line(theme),
   disabled: styles.disabled(theme),
+  disabledSecondary: styles.disabledSecondary(theme),
   correct: styles.correct(theme, 'stroke'),
   incorrect: styles.incorrect(theme, 'stroke'),
   missing: styles.missing(theme, 'stroke'),
@@ -25,7 +26,7 @@ export const Line = (props) => {
       y1={scale.y(from.y)}
       x2={scale.x(to.x)}
       y2={scale.y(to.y)}
-      className={classNames(classes.line, disabled && classes.disabled, classes[correctness], className)}
+      className={classNames(classes.line, disabled && classes.disabledSecondary, classes[correctness], className)}
       {...rest}
     />
   );

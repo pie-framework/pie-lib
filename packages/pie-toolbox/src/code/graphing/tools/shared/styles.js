@@ -5,6 +5,11 @@ export const disabled = (key = 'fill') => ({
   pointerEvents: 'none',
 });
 
+export const disabledSecondary = (key = 'fill') => ({
+  [key]: color.disabledSecondary(),
+  pointerEvents: 'none',
+});
+
 export const correct = (key = 'fill') => ({
   [key]: color.correct(),
   pointerEvents: 'none',
