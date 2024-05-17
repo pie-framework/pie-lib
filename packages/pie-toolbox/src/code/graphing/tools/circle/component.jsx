@@ -42,6 +42,7 @@ export class RawBaseCircle extends React.Component {
     labelNode: PropTypes.object,
     labelModeEnabled: PropTypes.bool,
     changeMarkProps: PropTypes.func,
+    limitLabeling: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -129,7 +130,12 @@ export class RawBaseCircle extends React.Component {
   };
 
   clickPoint = (point, type, data) => {
-    const { changeMarkProps, disabled, from, to, labelModeEnabled, onClick } = this.props;
+    const { changeMarkProps, disabled, from, to, labelModeEnabled, limitLabeling, onClick } = this.props;
+
+    // limit labeling the points of the circle
+    if (limitLabeling && labelModeEnabled && type !== 'middle') {
+      return;
+    }
 
     if (!labelModeEnabled) {
       onClick(point || data);

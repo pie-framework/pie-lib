@@ -39,6 +39,7 @@ export const graphPropTypes = {
   showTitle: PropTypes.bool,
   title: PropTypes.string,
   tools: PropTypes.array,
+  limitLabeling: PropTypes.bool,
 };
 
 const getMaskSize = (size) => ({
@@ -179,6 +180,7 @@ export class Graph extends React.Component {
       labels,
       labelModeEnabled,
       labelsPlaceholders,
+      limitLabeling,
       showLabels,
       showPixelGuides,
       showTitle,
@@ -194,7 +196,7 @@ export class Graph extends React.Component {
     const graphProps = createGraphProps(domain, range, size, () => this.rootNode);
 
     const maskSize = getMaskSize(size);
-    const common = { graphProps, labelModeEnabled };
+    const common = { graphProps, labelModeEnabled, limitLabeling };
 
     marks = removeBuildingToolIfCurrentToolDiffers({
       marks: marks || [],

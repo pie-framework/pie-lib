@@ -125,6 +125,7 @@ export class GraphWithControls extends React.Component {
       titlePlaceholder,
       language,
       removeIncompleteTool,
+      limitLabeling,
     } = this.props;
     let { backgroundMarks, marks, toolbarTools } = this.props;
 
@@ -200,6 +201,7 @@ export class GraphWithControls extends React.Component {
           titlePlaceholder={titlePlaceholder}
           tools={tools}
           removeIncompleteTool={removeIncompleteTool}
+          limitLabeling={limitLabeling}
         />
       </div>
     );
