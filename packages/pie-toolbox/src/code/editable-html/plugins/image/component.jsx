@@ -20,10 +20,7 @@ export class Component extends React.Component {
       data: PropTypes.object,
     }).isRequired,
     focused: PropTypes.bool,
-    editor: PropTypes.shape({
-      change: PropTypes.func.isRequired,
-      value: PropTypes.object,
-    }).isRequired,
+    editor: PropTypes.object.isRequired,
     classes: PropTypes.object.isRequired,
     attributes: PropTypes.object,
     onFocus: PropTypes.func,
@@ -48,7 +45,7 @@ export class Component extends React.Component {
   };
 
   applySizeData = () => {
-    const { node, editor } = this.props;
+    const { node, nodePath, editor } = this.props;
 
     let update = cloneDeep(node.data);
 
@@ -61,8 +58,6 @@ export class Component extends React.Component {
     log('[applySizeData] update: ', update);
 
     if (editor.selection && !isEqual(update, node.data)) {
-      const [, nodePath] = Editor.parent(editor, editor.selection);
-
       editor.apply({
         type: 'set_node',
         path: nodePath,
@@ -131,7 +126,7 @@ export class Component extends React.Component {
         dimensions: { height: height, width: width },
       });
 
-      const { node, editor } = this.props;
+      const { node, nodePath, editor } = this.props;
 
       const update = cloneDeep(node.data);
 
@@ -139,8 +134,6 @@ export class Component extends React.Component {
       update.height = height;
 
       if (editor.selection && !isEqual(update, node.data)) {
-        const [, nodePath] = Editor.parent(editor, editor.selection);
-
         editor.apply({
           type: 'set_node',
           path: nodePath,
@@ -181,7 +174,7 @@ export class Component extends React.Component {
         dimensions: { height: height, width: width },
       });
 
-      const { node, editor } = this.props;
+      const { node, nodePath, editor } = this.props;
 
       const update = {
         ...node.data,
@@ -190,8 +183,6 @@ export class Component extends React.Component {
       };
 
       if (!isEqual(update, node.data)) {
-        const [, nodePath] = Editor.parent(editor, editor.selection);
-
         editor.apply({
           type: 'set_node',
           path: nodePath,

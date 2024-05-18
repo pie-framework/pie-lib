@@ -420,8 +420,9 @@ export default (options) => {
       // Block is empty, we exit the list
       const [, listPath] = editor.parent(currentLiPath);
       const [parentListItem] = listPath.length > 1 ? editor.parent(listPath) : [];
+      const isListItem = parentListItem && parentListItem.type === 'li';
 
-      if (parentListItem) {
+      if (isListItem) {
         return decreaseItemDepth(editor);
       }
 
@@ -435,7 +436,7 @@ export default (options) => {
       editor.apply({
         type: 'split_node',
         path: pathToSplit,
-        position: 1,
+        position: currentLi.children.length,
         properties: { type: 'li' },
       });
 
@@ -466,8 +467,11 @@ export default (options) => {
 
   core.onBackSpace = (editor, event) => {
     const startRange = Range.start(editor.selection);
+    const isNotOnTheFirstNode = startRange.path[startRange.path.length - 1] !== 0;
+    const isNotOnTheFirstIndex = startRange.offset !== 0;
+    const isAtStartOfListItem = isNotOnTheFirstNode || isNotOnTheFirstIndex;
 
-    if (startRange.offset !== 0) {
+    if (isAtStartOfListItem) {
       return;
     }
 
@@ -482,8 +486,9 @@ export default (options) => {
     // Block is empty, we exit the list
     const [, listPath] = editor.parent(currentLiPath);
     const [parentListItem] = listPath.length > 1 ? editor.parent(listPath) : [];
+    const isListItem = parentListItem && parentListItem.type === 'li';
 
-    if (parentListItem) {
+    if (isListItem) {
       return decreaseItemDepth(editor);
     }
 

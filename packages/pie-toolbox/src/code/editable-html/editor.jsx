@@ -266,7 +266,18 @@ const Element = (props) => {
   const { attributes, children, element, plugins } = props;
   const style = { textAlign: element.align };
 
-  const nodeProps = { ...attributes, ...props, node: { ...element }, children };
+  let nodePath;
+  const nodeInfo = Array.from(
+    editor.nodes({
+      match: (n) => n === element,
+    }),
+  )[0];
+
+  if (nodeInfo) {
+    nodePath = nodeInfo[1];
+  }
+
+  const nodeProps = { ...attributes, ...props, node: element, nodePath, children };
   const pluginToRender = plugins.find((plugin) => typeof plugin.supports === 'function' && plugin.supports(element));
 
   if (pluginToRender) {
