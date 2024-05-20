@@ -178,7 +178,8 @@ export class RawBaseComponent extends React.Component {
     } = this.props;
 
     if (labelModeEnabled) {
-      if (disabled) {
+      // limit labeling the points of the polygon
+      if (disabled || limitLabeling) {
         return;
       }
 
@@ -188,10 +189,6 @@ export class RawBaseComponent extends React.Component {
 
         onChangeLabelProps(middle);
       } else {
-        // limit labeling the points of the polygon
-        if (limitLabeling && labelModeEnabled) {
-          return;
-        }
         const update = [...points];
 
         update.splice(index, 1, { label: '', ...point });

@@ -258,17 +258,17 @@ export const lineBase = (Comp, opts) => {
     clickPoint = (point, type, data) => {
       const { changeMarkProps, disabled, from, to, labelModeEnabled, limitLabeling, onClick } = this.props;
 
-      // limit labeling the points of the line
-      if (labelModeEnabled && limitLabeling && type !== 'middle') {
-        return;
-      }
-
       if (!labelModeEnabled) {
         onClick(point || data);
         return;
       }
 
       if (disabled) {
+        return;
+      }
+
+      // limit labeling the points of the line
+      if (limitLabeling) {
         return;
       }
 
