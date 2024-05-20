@@ -6,10 +6,11 @@ exports[`BgCircle snapshot renders 1`] = `
   classes={
     Object {
       "bgCircle": "RawCircle-bgCircle-1",
-      "correct": "RawCircle-correct-3",
+      "correct": "RawCircle-correct-4",
       "disabled": "RawCircle-disabled-2",
-      "incorrect": "RawCircle-incorrect-4",
-      "missing": "RawCircle-missing-5",
+      "disabledSecondary": "RawCircle-disabledSecondary-3",
+      "incorrect": "RawCircle-incorrect-5",
+      "missing": "RawCircle-missing-6",
     }
   }
   graphProps={
