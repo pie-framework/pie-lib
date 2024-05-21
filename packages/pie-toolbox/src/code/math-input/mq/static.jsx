@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { Component } from 'react';
 import debug from 'debug';
 import MathQuill from '@pie-framework/mathquill';
 import { updateSpans } from '../updateSpans';
+import LiveRegion from './live-region';
 
 let MQ;
 if (typeof window !== 'undefined') {
@@ -17,10 +18,7 @@ function stripSpaces(string = '') {
   return string.replace(WHITESPACE_REGEX, '');
 }
 
-/**
- * Wrapper for MathQuill MQ.MathField.
- */
-export default class Static extends React.Component {
+export default class Static extends Component {
   static propTypes = {
     latex: PropTypes.string.isRequired,
     onFocus: PropTypes.func,
@@ -36,6 +34,14 @@ export default class Static extends React.Component {
     getFieldName: () => {},
   };
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      announcement: '',
+      previousLatex: '',
+    };
+  }
+
   componentDidMount() {
     this.update();
     updateSpans();
@@ -46,39 +52,59 @@ export default class Static extends React.Component {
     updateSpans();
   }
 
-  onInputEdit(field) {
+  onInputEdit = (field) => {
     if (!this.mathField) {
       return;
     }
     const name = this.props.getFieldName(field, this.mathField.innerFields);
 
     if (this.props.onSubFieldChange) {
-      // eslint-disable-next-line no-useless-escape
       const regexMatch = field.latex().match(/[0-9]\\ \\frac\{[^\{]*\}\{ \}/);
 
-      if (this.input && regexMatch && regexMatch?.length) {
+      if (this.input && regexMatch && regexMatch.length) {
         try {
           field.__controller.cursor.insLeftOf(field.__controller.cursor.parent[-1].parent);
           field.el().dispatchEvent(new KeyboardEvent('keydown', { keyCode: 8 }));
         } catch (e) {
-          // eslint-disable-next-line no-console
           console.error(e.toString());
         }
       } else {
         this.props.onSubFieldChange(name, field.latex());
       }
     }
-  }
 
-  update() {
+    this.announceLatexConversion(field.latex());
+  };
+
+  announceLatexConversion = (newLatex) => {
+    if (!this.state) {
+      console.error('State is not initialized');
+      return;
+    }
+
+    const { previousLatex } = this.state;
+    if (previousLatex !== newLatex && previousLatex.length > 0 && newLatex.endsWith('{ }')) {
+      const announcement = `Converted from "${previousLatex}" to "${newLatex}"`;
+      this.announceMessage(announcement);
+    }
+
+    this.setState({ previousLatex: newLatex });
+  };
+
+  announceMessage = (message) => {
+    console.log('Announcing message:', message);
+    const event = new CustomEvent('announce', { detail: message });
+    document.dispatchEvent(event);
+  };
+
+  update = () => {
     if (!MQ) {
       throw new Error('MQ is not defined - but component has mounted?');
     }
-    // this.input.innerHTML = this.props.latex;
     if (!this.mathField) {
       this.mathField = MQ.StaticMath(this.input, {
         handlers: {
-          edit: this.onInputEdit.bind(this),
+          edit: this.onInputEdit,
         },
       });
     }
@@ -87,10 +113,9 @@ export default class Static extends React.Component {
       this.mathField.parseLatex(this.props.latex);
       this.mathField.latex(this.props.latex);
     } catch (e) {
-      // default latex if received has errors
       this.mathField.latex('\\MathQuillMathField[r1]{}');
     }
-  }
+  };
 
   blur() {
     log('blur mathfield');
@@ -102,23 +127,18 @@ export default class Static extends React.Component {
     this.mathField.focus();
   }
 
-  shouldComponentUpdate(nextProps) {
+  shouldComponentUpdate(nextProps, nextState) {
     try {
       const parsedLatex = this.mathField.parseLatex(nextProps.latex);
       const stripped = stripSpaces(parsedLatex);
       const newFieldCount = (nextProps.latex.match(REGEX) || []).length;
 
-      const out =
+      return (
         stripped !== stripSpaces(this.mathField.latex().trim()) ||
-        newFieldCount !== Object.keys(this.mathField.innerFields).length / 2;
-
-      log('[shouldComponentUpdate] ', out);
-      return out;
+        newFieldCount !== Object.keys(this.mathField.innerFields).length / 2
+      );
     } catch (e) {
-      // eslint-disable-next-line no-console
       console.warn('Error parsing latex:', e.message, 'skip update');
-      // eslint-disable-next-line no-console
-      console.warn(e);
       return false;
     }
   }
@@ -143,7 +163,6 @@ export default class Static extends React.Component {
         this.props.onSubFieldFocus(name, innerField);
       }
     } catch (err) {
-      // eslint-disable-next-line no-console
       console.error('error finding root block', err.message);
     }
   };
@@ -151,6 +170,10 @@ export default class Static extends React.Component {
   render() {
     const { onBlur, className } = this.props;
 
-    return <span className={className} onFocus={this.onFocus} onBlur={onBlur} ref={(r) => (this.input = r)} />;
+    return (
+      <span className={className} onFocus={this.onFocus} onBlur={onBlur} ref={(r) => (this.input = r)}>
+        <LiveRegion />
+      </span>
+    );
   }
 }
