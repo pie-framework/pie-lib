@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.18.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.17.5...@pie-lib/pie-toolbox@1.18.0) (2024-05-21)
+
+
+### Features
+
+* insert new Response Area Type: math-templated PD-632 ([26ed371](https://github.com/pie-framework/pie-lib/commit/26ed371719f1122d8ac1900a9811b78c8e2503a4))
+
+
+
+
+
 ## [1.17.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.17.4...@pie-lib/pie-toolbox@1.17.5) (2024-05-14)
 
 
