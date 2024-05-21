@@ -5,6 +5,7 @@ import isUndefined from 'lodash/isUndefined';
 import InlineDropdown from './inline-dropdown';
 import DragInTheBlank from './drag-in-the-blank';
 import ExplicitConstructedResponse from './explicit-constructed-response';
+import MathTemplated from './math-templated';
 import { getDefaultElement } from './utils';
 import { ToolbarIcon } from './icons';
 
@@ -14,6 +15,7 @@ const lastIndexMap = {};
 const elTypesMap = {
   'inline-dropdown': 'inline_dropdown',
   'explicit-constructed-response': 'explicit_constructed_response',
+  'math-templated': 'math_templated',
   'drag-in-the-blank': 'drag_in_the_blank',
 };
 const elTypesArray = Object.values(elTypesMap);
@@ -70,6 +72,13 @@ export default function ResponseAreaPlugin(opts) {
             change.moveFocusTo(nextText.key, 0).moveAnchorTo(nextText.key, 0);
           }
         }
+        if (newInline.type === 'math_templated') {
+          const nextText = change.value.document.getNextText(newInline.key);
+
+          if (nextText) {
+            change.moveFocusTo(nextText.key, 0).moveAnchorTo(nextText.key, 0);
+          }
+        }
 
         onChange(change);
       }
@@ -83,7 +92,7 @@ export default function ResponseAreaPlugin(opts) {
     name: 'response_area',
     toolbar,
     filterPlugins: (node, plugins) => {
-      if (node.type === 'explicit_constructed_response' || node.type === 'drag_in_the_blank') {
+      if (node.type === 'explicit_constructed_response' || node.type === 'math_templated' || node.type === 'drag_in_the_blank') {
         return [];
       }
 
@@ -111,6 +120,23 @@ export default function ResponseAreaPlugin(opts) {
           <ExplicitConstructedResponse
             attributes={attributes}
             value={data.value}
+            error={error && error[data.index] && error[data.index][0]}
+          />
+        );
+      }
+
+      if (n.type === 'math_templated') {
+        const data = n.data.toJSON();
+        let error;
+
+        if (opts.error) {
+          error = opts.error();
+        }
+
+        return (
+          <MathTemplated
+            attributes={attributes}
+            value={data.value || `R ${data.index}`}
             error={error && error[data.index] && error[data.index][0]}
           />
         );
@@ -205,6 +231,16 @@ export const serialization = {
             value: el.dataset.value,
           },
         };
+      case 'math_templated':
+        return {
+          object: 'inline',
+          type: 'math_templated',
+          isVoid: true,
+          data: {
+            index: el.dataset.index,
+            value: el.dataset.value,
+          },
+        };
       case 'drag_in_the_blank':
         return {
           object: 'inline',
@@ -234,6 +270,11 @@ export const serialization = {
         const data = object.data.toJSON();
 
         return <span data-type="explicit_constructed_response" data-index={data.index} data-value={data.value} />;
+      }
+      case 'math_templated': {
+        const data = object.data.toJSON();
+
+        return <span data-type="math_templated" data-index={data.index} data-value={data.value} />;
       }
       case 'drag_in_the_blank': {
         const data = object.data.toJSON();

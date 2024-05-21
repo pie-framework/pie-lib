@@ -42,6 +42,14 @@ export const defaultECR = (index) =>
       index,
     },
   });
+export const defaultMT = (index) =>
+  Inline.create({
+    type: 'math_templated',
+    isVoid: true,
+    data: {
+      index,
+    },
+  });
 
 export const defaultDIB = (opts, index) =>
   Inline.create({
@@ -68,6 +76,9 @@ export const getDefaultElement = (opts, index) => {
   switch (opts.type) {
     case 'explicit-constructed-response':
       return defaultECR(index);
+
+    case 'math-templated':
+      return defaultMT(index);
 
     case 'drag-in-the-blank':
       return defaultDIB(opts, index);
