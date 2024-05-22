@@ -25,6 +25,11 @@ const allTools = [
   'exponential',
 ];
 
+// need this because now we should treat label as other tools PD-3736
+const labelTool = {
+  type: 'label',
+};
+
 const toolsArr = [
   circle(),
   line(),
@@ -37,6 +42,7 @@ const toolsArr = [
   vector(),
   absolute(),
   exponential(),
+  labelTool,
 ];
 
 export { allTools, toolsArr, circle, line, point, parabola, polygon, ray, sine, vector, absolute, exponential };
