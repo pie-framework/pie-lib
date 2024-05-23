@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import debug from 'debug';
 import MathQuill from '@pie-framework/mathquill';
 import { updateSpans } from '../updateSpans';
-import LiveRegion from './live-region';
 
 let MQ;
 if (typeof window !== 'undefined') {
@@ -45,11 +44,31 @@ export default class Static extends Component {
   componentDidMount() {
     this.update();
     updateSpans();
+
+    // Create a live region when the component mounts
+    this.liveRegion = document.createElement('div');
+    this.liveRegion.style.position = 'absolute';
+    this.liveRegion.style.width = '1px';
+    this.liveRegion.style.height = '1px';
+    this.liveRegion.style.marginTop = '-1px';
+    this.liveRegion.style.clip = 'rect(1px, 1px, 1px, 1px)';
+    this.liveRegion.style.overflow = 'hidden';
+    this.liveRegion.setAttribute('aria-live', 'polite');
+    this.liveRegion.setAttribute('aria-atomic', 'true');
+
+    document.body.appendChild(this.liveRegion);
   }
 
   componentDidUpdate() {
     this.update();
     updateSpans();
+  }
+
+  componentWillUnmount() {
+    if (this.liveRegion) {
+      document.body.removeChild(this.liveRegion);
+      this.liveRegion = null;
+    }
   }
 
   onInputEdit = (field) => {
@@ -83,18 +102,26 @@ export default class Static extends Component {
     }
 
     const { previousLatex } = this.state;
-    if (previousLatex !== newLatex && previousLatex.length > 0 && newLatex.endsWith('{ }')) {
-      const announcement = `Converted from "${previousLatex}" to "${newLatex}"`;
-      this.announceMessage(announcement);
-    }
 
-    this.setState({ previousLatex: newLatex });
+    if (previousLatex !== newLatex && previousLatex.length > 0 && newLatex.endsWith('{ }')) {
+      const announcement = `Converted from "${previousLatex}" to math  "${newLatex}" symbol`;
+      this.announceMessage(announcement);
+    } else {
+      this.setState({ previousLatex: newLatex });
+    }
   };
 
   announceMessage = (message) => {
     console.log('Announcing message:', message);
-    const event = new CustomEvent('announce', { detail: message });
-    document.dispatchEvent(event);
+    this.setState({ previousLatex: '' });
+    if (this.liveRegion) {
+      this.liveRegion.textContent = message;
+
+      // Clear the message after it is announced
+      setTimeout(() => {
+        this.liveRegion.textContent = '';
+      }, 500);
+    }
   };
 
   update = () => {
@@ -117,15 +144,15 @@ export default class Static extends Component {
     }
   };
 
-  blur() {
+  blur = () => {
     log('blur mathfield');
     this.mathField.blur();
-  }
+  };
 
-  focus() {
+  focus = () => {
     log('focus mathfield...');
     this.mathField.focus();
-  }
+  };
 
   shouldComponentUpdate(nextProps, nextState) {
     try {
@@ -138,7 +165,7 @@ export default class Static extends Component {
         newFieldCount !== Object.keys(this.mathField.innerFields).length / 2
       );
     } catch (e) {
-      console.warn('Error parsing latex:', e.message, 'skip update');
+      console.warn('Error parsing latex:', e.message);
       return false;
     }
   }
@@ -170,10 +197,6 @@ export default class Static extends Component {
   render() {
     const { onBlur, className } = this.props;
 
-    return (
-      <span className={className} onFocus={this.onFocus} onBlur={onBlur} ref={(r) => (this.input = r)}>
-        <LiveRegion />
-      </span>
-    );
+    return <span className={className} onFocus={this.onFocus} onBlur={onBlur} ref={(r) => (this.input = r)}></span>;
   }
 }

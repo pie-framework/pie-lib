@@ -23,19 +23,24 @@ const LiveRegion = () => {
   }, []);
 
   return (
-    <div
+    <span
       ref={liveRegionRef}
       aria-live="assertive"
       aria-atomic="true"
-      style={{
-        position: 'absolute',
-        width: '1px',
-        height: '1px',
-        margin: '-1px',
-        overflow: 'hidden',
-        clip: 'rect(0, 0, 0, 0)',
-      }}
-    />
+      style={
+        {
+          // position: 'absolute',
+          // width: '1px',
+          // height: '1px',
+          // margin: '-1px',
+          // overflow: 'hidden',
+          // clip: 'rect(0, 0, 0, 0)',
+        }
+      }
+    >
+      {' '}
+      WHERE AM I
+    </span>
   );
 };
 
