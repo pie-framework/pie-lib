@@ -1,3 +1,3 @@
-import { withMask, buildLayoutFromMarkup, DragInTheBlank, ConstructedResponse, InlineDropdown, componentize } from './code/mask-markup';
+import { withMask, buildLayoutFromMarkup, DragInTheBlank, ConstructedResponse, InlineDropdown, componentize, Customizable } from './code/mask-markup';
 
-export { withMask, buildLayoutFromMarkup, DragInTheBlank, ConstructedResponse, InlineDropdown, componentize };
+export { withMask, buildLayoutFromMarkup, DragInTheBlank, ConstructedResponse, InlineDropdown, componentize, Customizable };
