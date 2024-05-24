@@ -17,6 +17,25 @@ function stripSpaces(string = '') {
   return string.replace(WHITESPACE_REGEX, '');
 }
 
+function countBraces(latex) {
+  let count = 0;
+  let inBrace = false;
+  for (let i = 0; i < latex.length; i++) {
+    if (latex[i] === '{') {
+      count++;
+      inBrace = true;
+    } else if (latex[i] === '}') {
+      inBrace = false;
+    }
+  }
+  return count;
+}
+
+function containsSpecialSymbols(latex) {
+  const specialSymbols = ['\\ne', '\\le', '\\div', '\\ge', '\\times', '\\pm'];
+  return specialSymbols.some((symbol) => latex.includes(symbol));
+}
+
 export default class Static extends Component {
   static propTypes = {
     latex: PropTypes.string.isRequired,
@@ -38,6 +57,9 @@ export default class Static extends Component {
     this.state = {
       announcement: '',
       previousLatex: '',
+      inputSource: null,
+      previousHtml: '',
+      isDeleteKeyPressed: false,
     };
   }
 
@@ -57,6 +79,10 @@ export default class Static extends Component {
     this.liveRegion.setAttribute('aria-atomic', 'true');
 
     document.body.appendChild(this.liveRegion);
+
+    // Add event listeners to detect input source
+    this.input.addEventListener('keydown', this.handleKeyDown);
+    this.input.addEventListener('click', this.handleMathKeyboardClick);
   }
 
   componentDidUpdate() {
@@ -69,7 +95,22 @@ export default class Static extends Component {
       document.body.removeChild(this.liveRegion);
       this.liveRegion = null;
     }
+
+    // Remove event listeners
+    this.input.removeEventListener('keydown', this.handleKeyDown);
+    this.input.removeEventListener('click', this.handleMathKeyboardClick);
   }
+
+  handleKeyDown = (event) => {
+    if (event.key === 'Backspace' || event.key === 'Delete') {
+      this.setState({ isDeleteKeyPressed: true });
+    }
+    this.setState({ inputSource: 'keyboard' });
+  };
+
+  handleMathKeyboardClick = () => {
+    this.setState({ inputSource: 'mathKeyboard' });
+  };
 
   onInputEdit = (field) => {
     if (!this.mathField) {
@@ -101,19 +142,37 @@ export default class Static extends Component {
       return;
     }
 
-    const { previousLatex } = this.state;
+    const { previousLatex, inputSource, isDeleteKeyPressed } = this.state;
+    const announcement = `Converted to math symbol`;
 
-    if (previousLatex !== newLatex && previousLatex.length > 0 && newLatex.endsWith('{ }')) {
-      const announcement = `Converted from "${previousLatex}" to math  "${newLatex}" symbol`;
-      this.announceMessage(announcement);
-    } else {
-      this.setState({ previousLatex: newLatex });
+    if (inputSource === 'keyboard' && !isDeleteKeyPressed) {
+      const newBraces = countBraces(newLatex);
+      const oldBraces = countBraces(previousLatex);
+
+      if (newBraces > oldBraces) {
+        this.announceMessage(announcement);
+      } else {
+        try {
+          // Try parsing the new LaTeX
+          this.mathField.parseLatex(previousLatex);
+          this.mathField.parseLatex(newLatex);
+
+          if (newLatex == previousLatex) {
+            this.announceMessage(announcement);
+          }
+        } catch (e) {
+          console.warn('Error parsing latex:', e.message);
+          console.warn(e);
+        }
+      }
     }
+
+    this.setState({ previousLatex: newLatex });
   };
 
   announceMessage = (message) => {
-    console.log('Announcing message:', message);
     this.setState({ previousLatex: '' });
+
     if (this.liveRegion) {
       this.liveRegion.textContent = message;
 
@@ -154,18 +213,23 @@ export default class Static extends Component {
     this.mathField.focus();
   };
 
-  shouldComponentUpdate(nextProps, nextState) {
+  shouldComponentUpdate(nextProps) {
     try {
       const parsedLatex = this.mathField.parseLatex(nextProps.latex);
       const stripped = stripSpaces(parsedLatex);
       const newFieldCount = (nextProps.latex.match(REGEX) || []).length;
 
-      return (
+      const out =
         stripped !== stripSpaces(this.mathField.latex().trim()) ||
-        newFieldCount !== Object.keys(this.mathField.innerFields).length / 2
-      );
+        newFieldCount !== Object.keys(this.mathField.innerFields).length / 2;
+
+      log('[shouldComponentUpdate] ', out);
+      return out;
     } catch (e) {
-      console.warn('Error parsing latex:', e.message);
+      // eslint-disable-next-line no-console
+      console.warn('Error parsing latex:', e.message, 'skip update');
+      // eslint-disable-next-line no-console
+      console.warn(e);
       return false;
     }
   }
