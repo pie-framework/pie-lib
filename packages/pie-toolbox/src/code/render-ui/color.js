@@ -9,9 +9,12 @@ export const defaults = {
   DISABLED: 'grey',
   CORRECT: green[500],
   CORRECT_SECONDARY: green[50],
+  CORRECT_WITH_ICON: '#087D38',
   INCORRECT: orange[500],
   INCORRECT_SECONDARY: red[50],
+  INCORRECT_WITH_ICON: '#BF0D00',
   MISSING: red[700],
+  MISSING_WITH_ICON: '#6A78A1',
   PRIMARY: indigo[500],
   PRIMARY_LIGHT: indigo[200],
   PRIMARY_DARK: indigo[800],
@@ -38,9 +41,12 @@ export const text = () => pv('text', defaults.TEXT);
 export const disabled = () => pv('disabled', defaults.DISABLED);
 export const correct = () => pv('correct', defaults.CORRECT);
 export const correctSecondary = () => pv('correct-secondary', defaults.CORRECT_SECONDARY);
+export const correctWithIcon = () => pv('correct-icon', defaults.CORRECT_WITH_ICON);
 export const incorrect = () => pv('incorrect', defaults.INCORRECT);
+export const incorrectWithIcon = () => pv('incorrect-icon', defaults.INCORRECT_WITH_ICON);
 export const incorrectSecondary = () => pv('incorrect-secondary', defaults.INCORRECT_SECONDARY);
 export const missing = () => pv('missing', defaults.MISSING);
+export const missingWithIcon = () => pv('missing-icon', defaults.MISSING_WITH_ICON);
 
 export const primary = () => pv('primary', defaults.PRIMARY);
 export const primaryLight = () => pv('primary-light', defaults.PRIMARY_LIGHT);

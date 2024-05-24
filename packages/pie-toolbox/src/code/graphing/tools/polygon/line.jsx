@@ -55,7 +55,11 @@ export const Line = withStyles(() => ({
   },
   correct: correct('stoke'),
   incorrect: incorrect('stroke'),
-  missing: missing('stroke'),
+  missing: {
+    ...missing('stroke'),
+    strokeWidth: 1,
+    strokeDasharray: '4 3',
+  },
 }))(RawLine);
 
 export default gridDraggable({

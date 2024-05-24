@@ -6,15 +6,15 @@ export const disabled = (key = 'fill') => ({
 });
 
 export const correct = (key = 'fill') => ({
-  [key]: color.correct(),
+  [key]: color.correctWithIcon(),
   pointerEvents: 'none',
 });
 export const incorrect = (key = 'fill') => ({
-  [key]: color.incorrect(),
+  [key]: color.incorrectWithIcon(),
   pointerEvents: 'none',
 });
 
 export const missing = (key = 'fill') => ({
-  [key]: color.missing(),
+  [key]: color.missingWithIcon(),
   pointerEvents: 'none',
 });

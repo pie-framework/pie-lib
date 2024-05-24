@@ -84,5 +84,7 @@ export const LinePath = withStyles((theme) => ({
   },
   missing: {
     ...missing('stroke'),
+    strokeWidth: 1,
+    strokeDasharray: '4 3',
   },
 }))(RawLinePath);

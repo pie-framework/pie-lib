@@ -5,6 +5,9 @@ import { types } from '../../../../plot';
 import CoordinatesLabel from '../../../coordinates-label';
 import ReactDOM from 'react-dom';
 import { thinnerShapesNeeded } from '../../../utils';
+import MissingSVG from '../icons/MissingSVG';
+import CorrectSVG from '../icons/CorrectSVG';
+import IncorrectSVG from '../icons/IncorrectSVG';
 
 export class RawBp extends React.Component {
   static propTypes = {
@@ -48,6 +51,21 @@ export class RawBp extends React.Component {
     const { showCoordinates } = this.state;
     const { scale } = graphProps;
     const r = thinnerShapesNeeded(graphProps) ? 5 : 7;
+    let SvgComponent;
+    switch (correctness) {
+      case 'missing':
+        SvgComponent = MissingSVG;
+        break;
+      case 'correct':
+        SvgComponent = CorrectSVG;
+        break;
+      case 'incorrect':
+        SvgComponent = IncorrectSVG;
+        break;
+      default:
+        SvgComponent = null;
+        break;
+    }
 
     return (
       <>
@@ -68,6 +86,7 @@ export class RawBp extends React.Component {
           onMouseLeave={() => this.setState({ showCoordinates: false })}
         >
           <circle {...rest} r={r} cx={scale.x(x)} cy={scale.y(y)} />
+          {SvgComponent && <SvgComponent scale={scale} x={x} y={y} />}
           {labelNode &&
             coordinatesOnHover &&
             showCoordinates &&
