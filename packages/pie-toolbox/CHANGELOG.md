@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.19.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.18.0...@pie-lib/pie-toolbox@1.19.0) (2024-05-24)
+
+
+### Features
+
+* insert customizable mask wip PD-632 ([6bd6308](https://github.com/pie-framework/pie-lib/commit/6bd6308915a37aa650e776a388ffd786230c9587))
+
+
+
+
+
 # [1.18.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.17.5...@pie-lib/pie-toolbox@1.18.0) (2024-05-21)
 
 
