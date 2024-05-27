@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.20.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.19.1...@pie-lib/pie-toolbox@1.20.0) (2024-05-27)
+
+
+### Features
+
+* **graphing:** label's behaviour like other tools PD-3736 ([2d3fb4e](https://github.com/pie-framework/pie-lib/commit/2d3fb4ec8900b32976312bc6e7716babb34be66d))
+* **graphing:** limit labeling the points of othe tools tha  point PD-3736 ([8bc713b](https://github.com/pie-framework/pie-lib/commit/8bc713b6d9848588eb86b4f0173a413c42c396b9))
+* **graphing:** write tests in tools for new case PD-3736 ([88dd39d](https://github.com/pie-framework/pie-lib/commit/88dd39dcbb0901205345b560f482999890ab16ce))
+* **math-input:** Enhance announcement logic PD-2488 ([6cd0c7b](https://github.com/pie-framework/pie-lib/commit/6cd0c7b8f4f097d1376fd92d89952b36d8c43a98))
+* **math-input:** Replace direct DOM manipulation with React.createRef for better lifecycle management and test fixes PD-2488 ([9059a91](https://github.com/pie-framework/pie-lib/commit/9059a916353badd1f85aa2952f58acc80d5db5d8))
+* **math-input:** WIP Implement custom event-based announcements for accessibility PD-2488 ([d8c8c36](https://github.com/pie-framework/pie-lib/commit/d8c8c36f343823eb247df54e43fb6f351dc9808d))
+* (graphing) Change the shade of gray used for background objects PD-3734 ([1a43f3b](https://github.com/pie-framework/pie-lib/commit/1a43f3b60efa6bd8694c4972e25b717d27e28604))
+* (graphing) Update snapshot tests PD-3734 ([9179add](https://github.com/pie-framework/pie-lib/commit/9179adda66bd6163d77195afd5d3c9510e35fdc2))
+
+
+
+
+
 ## [1.19.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.19.0...@pie-lib/pie-toolbox@1.19.1) (2024-05-27)
 
 
