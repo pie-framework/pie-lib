@@ -1,5 +1,4 @@
 import React from 'react';
-import EditTable from 'slate-edit-table';
 import { Block } from 'slate';
 import debug from 'debug';
 import GridOn from '@material-ui/icons/GridOn';
@@ -9,6 +8,7 @@ import SlatePropTypes from 'slate-prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import convert from 'react-attr-converter';
 import { object as toStyleObject } from 'to-style';
+import CustomTablePlugin from './CustomTablePlugin';
 
 const log = debug('@pie-lib:editable-html:plugins:table');
 
@@ -93,9 +93,7 @@ export const moveFocusToBeginningOfTable = (change) => {
 };
 
 export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
-  const core = EditTable({
-    typeContent: 'div',
-  });
+  const core = CustomTablePlugin(opts);
 
   // fix outdated schema
 
