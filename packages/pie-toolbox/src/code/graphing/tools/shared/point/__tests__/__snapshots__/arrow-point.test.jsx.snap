@@ -5,10 +5,11 @@ exports[`ArrowPoint snapshot renders 1`] = `
   className="className"
   classes={
     Object {
-      "correct": "RawArrow-correct-3",
+      "correct": "RawArrow-correct-4",
       "disabled": "RawArrow-disabled-2",
-      "incorrect": "RawArrow-incorrect-4",
-      "missing": "RawArrow-missing-5",
+      "disabledSecondary": "RawArrow-disabledSecondary-3",
+      "incorrect": "RawArrow-incorrect-5",
+      "missing": "RawArrow-missing-6",
       "point": "RawArrow-point-1",
     }
   }

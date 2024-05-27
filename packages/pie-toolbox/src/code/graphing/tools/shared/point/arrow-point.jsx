@@ -47,7 +47,10 @@ export class RawArrow extends React.Component {
     }
 
     return (
-      <g className={classNames(classes.point, disabled && classes.disabled, classes[correctness], className)} {...rest}>
+      <g
+        className={classNames(classes.point, disabled && classes.disabledSecondary, classes[correctness], className)}
+        {...rest}
+      >
         <polygon
           points={points}
           transform={`

@@ -10,6 +10,7 @@ import { getDistanceBetweenTwoPoints } from '../../utils';
 const lineStyles = (theme) => ({
   line: styles.line(theme),
   disabled: styles.disabled(theme),
+  disabledSecondary: styles.disabledSecondary(theme),
   correct: styles.correct(theme, 'stroke'),
   incorrect: styles.incorrect(theme, 'stroke'),
   missing: styles.missing(theme, 'stroke'),
@@ -32,7 +33,7 @@ export const Line = (props) => {
 
   return (
     <line
-      className={classNames(classes.line, disabled && classes.disabled, classes[correctness], className)}
+      className={classNames(classes.line, disabled && classes.disabledSecondary, classes[correctness], className)}
       x1={startPoint.x}
       y1={startPoint.y}
       x2={endPoint.x}

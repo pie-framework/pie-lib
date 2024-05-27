@@ -7,6 +7,7 @@ import red from '@material-ui/core/colors/red';
 export const defaults = {
   TEXT: 'black',
   DISABLED: 'grey',
+  DISABLED_SECONDARY: '#ABABAB',
   CORRECT: green[500],
   CORRECT_SECONDARY: green[50],
   INCORRECT: orange[500],
@@ -36,6 +37,7 @@ const pv = v('pie');
 
 export const text = () => pv('text', defaults.TEXT);
 export const disabled = () => pv('disabled', defaults.DISABLED);
+export const disabledSecondary = () => pv('disabled-secondary', defaults.DISABLED_SECONDARY);
 export const correct = () => pv('correct', defaults.CORRECT);
 export const correctSecondary = () => pv('correct-secondary', defaults.CORRECT_SECONDARY);
 export const incorrect = () => pv('incorrect', defaults.INCORRECT);
