@@ -58,6 +58,8 @@ export default class Static extends React.Component {
       inputSource: null,
       isDeleteKeyPressed: false,
     };
+
+    this.inputRef = React.createRef();
   }
 
   componentDidMount() {
@@ -65,10 +67,7 @@ export default class Static extends React.Component {
     updateSpans();
 
     this.createLiveRegion();
-
-    // Add event listeners to detect input source
-    this.input.addEventListener('keydown', this.handleKeyDown);
-    this.input.addEventListener('click', this.handleMathKeyboardClick);
+    this.addEventListeners();
   }
 
   componentDidUpdate() {
@@ -78,9 +77,7 @@ export default class Static extends React.Component {
 
   componentWillUnmount() {
     this.removeLiveRegion();
-
-    this.input.removeEventListener('keydown', this.handleKeyDown);
-    this.input.removeEventListener('click', this.handleMathKeyboardClick);
+    this.removeEventListeners();
   }
 
   createLiveRegion = () => {
@@ -95,6 +92,22 @@ export default class Static extends React.Component {
     this.liveRegion.setAttribute('aria-atomic', 'true');
 
     document.body.appendChild(this.liveRegion);
+  };
+
+  addEventListeners = () => {
+    const input = this.inputRef.current;
+    if (input) {
+      input.addEventListener('keydown', this.handleKeyDown);
+      input.addEventListener('click', this.handleMathKeyboardClick);
+    }
+  };
+
+  removeEventListeners = () => {
+    const input = this.inputRef.current;
+    if (input) {
+      input.removeEventListener('keydown', this.handleKeyDown);
+      input.removeEventListener('click', this.handleMathKeyboardClick);
+    }
   };
 
   removeLiveRegion = () => {
@@ -125,7 +138,7 @@ export default class Static extends React.Component {
       // eslint-disable-next-line no-useless-escape
       const regexMatch = field.latex().match(/[0-9]\\ \\frac\{[^\{]*\}\{ \}/);
 
-      if (this.input && regexMatch && regexMatch?.length) {
+      if (this.inputRef.current && regexMatch && regexMatch?.length) {
         try {
           field.__controller.cursor.insLeftOf(field.__controller.cursor.parent[-1].parent);
           field.el().dispatchEvent(new KeyboardEvent('keydown', { keyCode: 8 }));
@@ -193,7 +206,7 @@ export default class Static extends React.Component {
       throw new Error('MQ is not defined - but component has mounted?');
     }
     if (!this.mathField) {
-      this.mathField = MQ.StaticMath(this.input, {
+      this.mathField = MQ.StaticMath(this.inputRef.current, {
         handlers: {
           edit: this.onInputEdit.bind(this),
         },
@@ -268,6 +281,6 @@ export default class Static extends React.Component {
   render() {
     const { onBlur, className } = this.props;
 
-    return <span className={className} onFocus={this.onFocus} onBlur={onBlur} ref={(r) => (this.input = r)} />;
+    return <span className={className} onFocus={this.onFocus} onBlur={onBlur} ref={this.inputRef} />;
   }
 }
