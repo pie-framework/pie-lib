@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React from 'react';
 import debug from 'debug';
 import MathQuill from '@pie-framework/mathquill';
 import { updateSpans } from '../updateSpans';
@@ -31,12 +31,10 @@ function countBraces(latex) {
   return count;
 }
 
-function containsSpecialSymbols(latex) {
-  const specialSymbols = ['\\ne', '\\le', '\\div', '\\ge', '\\times', '\\pm'];
-  return specialSymbols.some((symbol) => latex.includes(symbol));
-}
-
-export default class Static extends Component {
+/**
+ * Wrapper for MathQuill MQ.MathField.
+ */
+export default class Static extends React.Component {
   static propTypes = {
     latex: PropTypes.string.isRequired,
     onFocus: PropTypes.func,
@@ -58,7 +56,6 @@ export default class Static extends Component {
       announcement: '',
       previousLatex: '',
       inputSource: null,
-      previousHtml: '',
       isDeleteKeyPressed: false,
     };
   }
@@ -67,18 +64,7 @@ export default class Static extends Component {
     this.update();
     updateSpans();
 
-    // Create a live region when the component mounts
-    this.liveRegion = document.createElement('div');
-    this.liveRegion.style.position = 'absolute';
-    this.liveRegion.style.width = '1px';
-    this.liveRegion.style.height = '1px';
-    this.liveRegion.style.marginTop = '-1px';
-    this.liveRegion.style.clip = 'rect(1px, 1px, 1px, 1px)';
-    this.liveRegion.style.overflow = 'hidden';
-    this.liveRegion.setAttribute('aria-live', 'polite');
-    this.liveRegion.setAttribute('aria-atomic', 'true');
-
-    document.body.appendChild(this.liveRegion);
+    this.createLiveRegion();
 
     // Add event listeners to detect input source
     this.input.addEventListener('keydown', this.handleKeyDown);
@@ -91,15 +77,32 @@ export default class Static extends Component {
   }
 
   componentWillUnmount() {
+    this.removeLiveRegion();
+
+    this.input.removeEventListener('keydown', this.handleKeyDown);
+    this.input.removeEventListener('click', this.handleMathKeyboardClick);
+  }
+
+  createLiveRegion = () => {
+    this.liveRegion = document.createElement('div');
+    this.liveRegion.style.position = 'absolute';
+    this.liveRegion.style.width = '1px';
+    this.liveRegion.style.height = '1px';
+    this.liveRegion.style.marginTop = '-1px';
+    this.liveRegion.style.clip = 'rect(1px, 1px, 1px, 1px)';
+    this.liveRegion.style.overflow = 'hidden';
+    this.liveRegion.setAttribute('aria-live', 'polite');
+    this.liveRegion.setAttribute('aria-atomic', 'true');
+
+    document.body.appendChild(this.liveRegion);
+  };
+
+  removeLiveRegion = () => {
     if (this.liveRegion) {
       document.body.removeChild(this.liveRegion);
       this.liveRegion = null;
     }
-
-    // Remove event listeners
-    this.input.removeEventListener('keydown', this.handleKeyDown);
-    this.input.removeEventListener('click', this.handleMathKeyboardClick);
-  }
+  };
 
   handleKeyDown = (event) => {
     if (event.key === 'Backspace' || event.key === 'Delete') {
@@ -119,13 +122,15 @@ export default class Static extends Component {
     const name = this.props.getFieldName(field, this.mathField.innerFields);
 
     if (this.props.onSubFieldChange) {
+      // eslint-disable-next-line no-useless-escape
       const regexMatch = field.latex().match(/[0-9]\\ \\frac\{[^\{]*\}\{ \}/);
 
-      if (this.input && regexMatch && regexMatch.length) {
+      if (this.input && regexMatch && regexMatch?.length) {
         try {
           field.__controller.cursor.insLeftOf(field.__controller.cursor.parent[-1].parent);
           field.el().dispatchEvent(new KeyboardEvent('keydown', { keyCode: 8 }));
         } catch (e) {
+          // eslint-disable-next-line no-useless-escape
           console.error(e.toString());
         }
       } else {
@@ -143,7 +148,7 @@ export default class Static extends Component {
     }
 
     const { previousLatex, inputSource, isDeleteKeyPressed } = this.state;
-    const announcement = `Converted to math symbol`;
+    const announcement = 'Converted to math symbol';
 
     if (inputSource === 'keyboard' && !isDeleteKeyPressed) {
       const newBraces = countBraces(newLatex);
@@ -167,7 +172,7 @@ export default class Static extends Component {
       }
     }
 
-    this.setState({ previousLatex: newLatex });
+    this.setState({ previousLatex: newLatex, isDeleteKeyPressed: false });
   };
 
   announceMessage = (message) => {
@@ -190,7 +195,7 @@ export default class Static extends Component {
     if (!this.mathField) {
       this.mathField = MQ.StaticMath(this.input, {
         handlers: {
-          edit: this.onInputEdit,
+          edit: this.onInputEdit.bind(this),
         },
       });
     }
@@ -199,6 +204,7 @@ export default class Static extends Component {
       this.mathField.parseLatex(this.props.latex);
       this.mathField.latex(this.props.latex);
     } catch (e) {
+      // default latex if received has errors
       this.mathField.latex('\\MathQuillMathField[r1]{}');
     }
   };
@@ -254,6 +260,7 @@ export default class Static extends Component {
         this.props.onSubFieldFocus(name, innerField);
       }
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.error('error finding root block', err.message);
     }
   };
@@ -261,6 +268,6 @@ export default class Static extends Component {
   render() {
     const { onBlur, className } = this.props;
 
-    return <span className={className} onFocus={this.onFocus} onBlur={onBlur} ref={(r) => (this.input = r)}></span>;
+    return <span className={className} onFocus={this.onFocus} onBlur={onBlur} ref={(r) => (this.input = r)} />;
   }
 }
