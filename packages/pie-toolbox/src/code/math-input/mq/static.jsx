@@ -20,7 +20,7 @@ function stripSpaces(string = '') {
 function countBraces(latex) {
   let count = 0;
 
-  for (let i = 0; i < latex.length; i++) {
+  for (let i = 0; i < (latex || '').length; i++) {
     if (latex[i] === '{') {
       count++;
     }
@@ -118,7 +118,7 @@ export default class Static extends React.Component {
   };
 
   handleKeyDown = (event) => {
-    if (event.key === 'Backspace' || event.key === 'Delete') {
+    if (event?.key === 'Backspace' || event?.key === 'Delete') {
       this.setState({ isDeleteKeyPressed: true });
     }
     this.setState({ inputSource: 'keyboard' });
@@ -138,7 +138,7 @@ export default class Static extends React.Component {
       // eslint-disable-next-line no-useless-escape
       const regexMatch = field.latex().match(/[0-9]\\ \\frac\{[^\{]*\}\{ \}/);
 
-      if (this.inputRef.current && regexMatch && regexMatch?.length) {
+      if (this.inputRef?.current && regexMatch && regexMatch?.length) {
         try {
           field.__controller.cursor.insLeftOf(field.__controller.cursor.parent[-1].parent);
           field.el().dispatchEvent(new KeyboardEvent('keydown', { keyCode: 8 }));
@@ -205,7 +205,7 @@ export default class Static extends React.Component {
       throw new Error('MQ is not defined - but component has mounted?');
     }
     if (!this.mathField) {
-      this.mathField = MQ.StaticMath(this.inputRef.current, {
+      this.mathField = MQ.StaticMath(this.inputRef?.current, {
         handlers: {
           edit: this.onInputEdit.bind(this),
         },
