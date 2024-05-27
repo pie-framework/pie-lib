@@ -10,7 +10,6 @@ exports[`GraphWithControls snapshot renders 1`] = `
       disabled={false}
       labelModeEnabled={false}
       onChange={[Function]}
-      onToggleLabelMode={[Function]}
       toolbarTools={
         Array [
           "circle",
@@ -226,6 +225,10 @@ exports[`GraphWithControls snapshot renders 1`] = `
           "complete": [Function],
           "toolbar": true,
           "type": "exponential",
+        },
+        Object {
+          "toolbar": true,
+          "type": "label",
         },
       ]
     }

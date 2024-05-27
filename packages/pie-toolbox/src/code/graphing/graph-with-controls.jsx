@@ -89,9 +89,8 @@ export class GraphWithControls extends React.Component {
     }
   }
 
-  changeCurrentTool = (tool, tools) => this.setState({ currentTool: tools.find((t) => t.type === tool) });
-
-  toggleLabelMode = () => this.setState((state) => ({ labelModeEnabled: !state.labelModeEnabled }));
+  changeCurrentTool = (tool, tools) =>
+    this.setState({ currentTool: tools.find((t) => t.type === tool), labelModeEnabled: tool === 'label' });
 
   render() {
     let { currentTool, labelModeEnabled } = this.state;
@@ -125,6 +124,7 @@ export class GraphWithControls extends React.Component {
       titlePlaceholder,
       language,
       removeIncompleteTool,
+      limitLabeling,
     } = this.props;
     let { backgroundMarks, marks, toolbarTools } = this.props;
 
@@ -152,7 +152,6 @@ export class GraphWithControls extends React.Component {
           draggableTools={draggableTools}
           labelModeEnabled={labelModeEnabled}
           onChange={(tool) => this.changeCurrentTool(tool, tools)}
-          onToggleLabelMode={this.toggleLabelMode}
           toolbarTools={toolbarTools}
           onChangeTools={onChangeTools}
           language={language}
@@ -200,6 +199,7 @@ export class GraphWithControls extends React.Component {
           titlePlaceholder={titlePlaceholder}
           tools={tools}
           removeIncompleteTool={removeIncompleteTool}
+          limitLabeling={limitLabeling}
         />
       </div>
     );

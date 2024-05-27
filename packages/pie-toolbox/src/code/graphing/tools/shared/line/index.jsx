@@ -100,7 +100,7 @@ export const lineToolComponent = (Component) => {
     };
 
     render() {
-      const { graphProps, onClick, labelNode, labelModeEnabled, coordinatesOnHover } = this.props;
+      const { graphProps, onClick, labelNode, labelModeEnabled, coordinatesOnHover, limitLabeling } = this.props;
       const mark = this.state.mark ? this.state.mark : this.props.mark;
 
       const from = cloneDeep(mark.from);
@@ -137,6 +137,7 @@ export const lineToolComponent = (Component) => {
           onDragStop={this.stopDrag}
           labelNode={labelNode}
           labelModeEnabled={labelModeEnabled}
+          limitLabeling={limitLabeling}
         />
       );
     }
@@ -255,7 +256,7 @@ export const lineBase = (Comp, opts) => {
     };
 
     clickPoint = (point, type, data) => {
-      const { changeMarkProps, disabled, from, to, labelModeEnabled, onClick } = this.props;
+      const { changeMarkProps, disabled, from, to, labelModeEnabled, limitLabeling, onClick } = this.props;
 
       if (!labelModeEnabled) {
         onClick(point || data);
@@ -263,6 +264,11 @@ export const lineBase = (Comp, opts) => {
       }
 
       if (disabled) {
+        return;
+      }
+
+      // limit labeling the points of the line
+      if (limitLabeling) {
         return;
       }
 
