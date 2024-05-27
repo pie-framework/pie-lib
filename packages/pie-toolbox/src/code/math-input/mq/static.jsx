@@ -17,6 +17,18 @@ function stripSpaces(string = '') {
   return string.replace(WHITESPACE_REGEX, '');
 }
 
+function countBraces(latex) {
+  let count = 0;
+
+  for (let i = 0; i < (latex || '').length; i++) {
+    if (latex[i] === '{') {
+      count++;
+    }
+  }
+
+  return count;
+}
+
 /**
  * Wrapper for MathQuill MQ.MathField.
  */
@@ -36,9 +48,24 @@ export default class Static extends React.Component {
     getFieldName: () => {},
   };
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      announcement: '',
+      previousLatex: '',
+      inputSource: null,
+      isDeleteKeyPressed: false,
+    };
+
+    this.inputRef = React.createRef();
+  }
+
   componentDidMount() {
     this.update();
     updateSpans();
+
+    this.createLiveRegion();
+    this.addEventListeners();
   }
 
   componentDidUpdate() {
@@ -46,7 +73,62 @@ export default class Static extends React.Component {
     updateSpans();
   }
 
-  onInputEdit(field) {
+  componentWillUnmount() {
+    this.removeLiveRegion();
+    this.removeEventListeners();
+  }
+
+  createLiveRegion = () => {
+    this.liveRegion = document.createElement('div');
+    this.liveRegion.style.position = 'absolute';
+    this.liveRegion.style.width = '1px';
+    this.liveRegion.style.height = '1px';
+    this.liveRegion.style.marginTop = '-1px';
+    this.liveRegion.style.clip = 'rect(1px, 1px, 1px, 1px)';
+    this.liveRegion.style.overflow = 'hidden';
+    this.liveRegion.setAttribute('aria-live', 'polite');
+    this.liveRegion.setAttribute('aria-atomic', 'true');
+
+    document.body.appendChild(this.liveRegion);
+  };
+
+  addEventListeners = () => {
+    const input = this.inputRef.current;
+
+    if (input) {
+      input.addEventListener('keydown', this.handleKeyDown);
+      input.addEventListener('click', this.handleMathKeyboardClick);
+    }
+  };
+
+  removeEventListeners = () => {
+    const input = this.inputRef.current;
+
+    if (input) {
+      input.removeEventListener('keydown', this.handleKeyDown);
+      input.removeEventListener('click', this.handleMathKeyboardClick);
+    }
+  };
+
+  removeLiveRegion = () => {
+    if (this.liveRegion) {
+      document.body.removeChild(this.liveRegion);
+      this.liveRegion = null;
+    }
+  };
+
+  handleKeyDown = (event) => {
+    if (event?.key === 'Backspace' || event?.key === 'Delete') {
+      this.setState({ isDeleteKeyPressed: true });
+    }
+    this.setState({ inputSource: 'keyboard' });
+  };
+
+  handleMathKeyboardClick = () => {
+    this.setState({ inputSource: 'mathKeyboard' });
+  };
+
+  onInputEdit = (field) => {
     if (!this.mathField) {
       return;
     }
@@ -56,7 +138,7 @@ export default class Static extends React.Component {
       // eslint-disable-next-line no-useless-escape
       const regexMatch = field.latex().match(/[0-9]\\ \\frac\{[^\{]*\}\{ \}/);
 
-      if (this.input && regexMatch && regexMatch?.length) {
+      if (this.inputRef?.current && regexMatch && regexMatch?.length) {
         try {
           field.__controller.cursor.insLeftOf(field.__controller.cursor.parent[-1].parent);
           field.el().dispatchEvent(new KeyboardEvent('keydown', { keyCode: 8 }));
@@ -68,15 +150,62 @@ export default class Static extends React.Component {
         this.props.onSubFieldChange(name, field.latex());
       }
     }
-  }
 
-  update() {
+    this.announceLatexConversion(field.latex());
+  };
+
+  announceLatexConversion = (newLatex) => {
+    if (!this.state) {
+      console.error('State is not initialized');
+      return;
+    }
+
+    const { previousLatex, inputSource, isDeleteKeyPressed } = this.state;
+    const announcement = 'Converted to math symbol';
+
+    if (inputSource === 'keyboard' && !isDeleteKeyPressed) {
+      const newBraces = countBraces(newLatex);
+      const oldBraces = countBraces(previousLatex);
+
+      if (newBraces > oldBraces) {
+        this.announceMessage(announcement);
+      } else {
+        try {
+          this.mathField.parseLatex(previousLatex);
+          this.mathField.parseLatex(newLatex);
+
+          if (newLatex == previousLatex) {
+            this.announceMessage(announcement);
+          }
+        } catch (e) {
+          console.warn('Error parsing latex:', e.message);
+          console.warn(e);
+        }
+      }
+    }
+
+    this.setState({ previousLatex: newLatex, isDeleteKeyPressed: false });
+  };
+
+  announceMessage = (message) => {
+    this.setState({ previousLatex: '' });
+
+    if (this.liveRegion) {
+      this.liveRegion.textContent = message;
+
+      // Clear the message after it is announced
+      setTimeout(() => {
+        this.liveRegion.textContent = '';
+      }, 500);
+    }
+  };
+
+  update = () => {
     if (!MQ) {
       throw new Error('MQ is not defined - but component has mounted?');
     }
-    // this.input.innerHTML = this.props.latex;
     if (!this.mathField) {
-      this.mathField = MQ.StaticMath(this.input, {
+      this.mathField = MQ.StaticMath(this.inputRef?.current, {
         handlers: {
           edit: this.onInputEdit.bind(this),
         },
@@ -90,17 +219,17 @@ export default class Static extends React.Component {
       // default latex if received has errors
       this.mathField.latex('\\MathQuillMathField[r1]{}');
     }
-  }
+  };
 
-  blur() {
+  blur = () => {
     log('blur mathfield');
     this.mathField.blur();
-  }
+  };
 
-  focus() {
+  focus = () => {
     log('focus mathfield...');
     this.mathField.focus();
-  }
+  };
 
   shouldComponentUpdate(nextProps) {
     try {
@@ -151,6 +280,6 @@ export default class Static extends React.Component {
   render() {
     const { onBlur, className } = this.props;
 
-    return <span className={className} onFocus={this.onFocus} onBlur={onBlur} ref={(r) => (this.input = r)} />;
+    return <span className={className} onFocus={this.onFocus} onBlur={onBlur} ref={this.inputRef} />;
   }
 }

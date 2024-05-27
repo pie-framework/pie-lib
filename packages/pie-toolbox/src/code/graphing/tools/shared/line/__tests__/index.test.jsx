@@ -227,6 +227,14 @@ describe('lineBase', () => {
         });
       });
 
+      it('adds "label" property to a point when limit labeling', () => {
+        const changeMarkProps = jest.fn();
+        w = wrapperWithLabels({ labelModeEnabled: true, limitLabeling: true, changeMarkProps });
+
+        w.instance().clickPoint(xy(0, 0), 'from');
+        expect(changeMarkProps).toHaveBeenCalledTimes(0);
+      });
+
       it('if point already has label, keeps that value', () => {
         w = wrapperWithLabels({ labelModeEnabled: true });
 

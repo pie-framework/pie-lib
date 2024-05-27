@@ -12,7 +12,6 @@ export class ToolMenu extends React.Component {
     draggableTools: PropTypes.bool,
     labelModeEnabled: PropTypes.bool,
     onChange: PropTypes.func,
-    onToggleLabelMode: PropTypes.func,
     onChangeTools: PropTypes.func,
     toolbarTools: PropTypes.arrayOf(PropTypes.string),
     language: PropTypes.string,
@@ -22,32 +21,14 @@ export class ToolMenu extends React.Component {
     toolbarTools: [],
   };
 
-  updateToolsOrder = (tools, showLabel) => {
+  updateToolsOrder = (tools) => {
     const { onChangeTools } = this.props;
-
-    if (showLabel) {
-      tools.push('label');
-    }
-
     onChangeTools(tools);
   };
 
   render() {
-    const {
-      className,
-      currentToolType,
-      disabled,
-      draggableTools,
-      labelModeEnabled,
-      onToggleLabelMode,
-      onChange,
-      language
-    } = this.props;
+    const { className, currentToolType, disabled, draggableTools, onChange, language } = this.props;
     let { toolbarTools } = this.props;
-
-    const showLabel = toolbarTools && toolbarTools.some((t) => t === 'label');
-
-    toolbarTools = (toolbarTools || []).filter((tT) => tT !== 'label');
 
     return (
       <div className={classNames(className)}>
@@ -57,13 +38,9 @@ export class ToolMenu extends React.Component {
           options={toolbarTools}
           selectedToolType={currentToolType}
           onChange={onChange}
-          onChangeToolsOrder={(tools) => this.updateToolsOrder(tools, showLabel)}
+          onChangeToolsOrder={(tools) => this.updateToolsOrder(tools)}
           language={language}
         />
-
-        {showLabel && (
-          <MiniButton disabled={disabled} value={'Label'} onClick={onToggleLabelMode} selected={labelModeEnabled} language={language} />
-        )}
       </div>
     );
   }
