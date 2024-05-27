@@ -19,15 +19,13 @@ function stripSpaces(string = '') {
 
 function countBraces(latex) {
   let count = 0;
-  let inBrace = false;
+
   for (let i = 0; i < latex.length; i++) {
     if (latex[i] === '{') {
       count++;
-      inBrace = true;
-    } else if (latex[i] === '}') {
-      inBrace = false;
     }
   }
+
   return count;
 }
 
@@ -96,6 +94,7 @@ export default class Static extends React.Component {
 
   addEventListeners = () => {
     const input = this.inputRef.current;
+
     if (input) {
       input.addEventListener('keydown', this.handleKeyDown);
       input.addEventListener('click', this.handleMathKeyboardClick);
@@ -104,6 +103,7 @@ export default class Static extends React.Component {
 
   removeEventListeners = () => {
     const input = this.inputRef.current;
+
     if (input) {
       input.removeEventListener('keydown', this.handleKeyDown);
       input.removeEventListener('click', this.handleMathKeyboardClick);
@@ -143,7 +143,7 @@ export default class Static extends React.Component {
           field.__controller.cursor.insLeftOf(field.__controller.cursor.parent[-1].parent);
           field.el().dispatchEvent(new KeyboardEvent('keydown', { keyCode: 8 }));
         } catch (e) {
-          // eslint-disable-next-line no-useless-escape
+          // eslint-disable-next-line no-console
           console.error(e.toString());
         }
       } else {
@@ -171,7 +171,6 @@ export default class Static extends React.Component {
         this.announceMessage(announcement);
       } else {
         try {
-          // Try parsing the new LaTeX
           this.mathField.parseLatex(previousLatex);
           this.mathField.parseLatex(newLatex);
 
