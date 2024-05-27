@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.19.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.19.0...@pie-lib/pie-toolbox@1.19.1) (2024-05-27)
+
+
+### Bug Fixes
+
+* made sure deletion works properly in table editing [PD-2126] ([d2e24c1](https://github.com/pie-framework/pie-lib/commit/d2e24c1f902d3ca62842e22cf2929e16e62adb5b))
+* **math-input:** fixed wrong math editor for grade 1-2 PD-3740 ([948c00f](https://github.com/pie-framework/pie-lib/commit/948c00fd81dcf3f223a58001232dbf882b7ee57d))
+
+
+
+
+
 # [1.19.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.18.0...@pie-lib/pie-toolbox@1.19.0) (2024-05-24)
 
 
