@@ -304,6 +304,12 @@ export const gradeSets = [
       ],
     ],
   },
+  // for grade 1-2, we want to display the base set only
+  // we need it here because we don't want to display the default set (grade 8)
+  {
+    predicate: (n) => n >= 1 && n <= 2,
+    set: [],
+  },
 ];
 
 export const keysForGrade = (n) => {

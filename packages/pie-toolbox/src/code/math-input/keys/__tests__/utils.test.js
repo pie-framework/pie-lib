@@ -23,8 +23,8 @@ describe('utils', () => {
   describe('keysForGrade', () => {
     it.each`
       key                        | expected
-      ${'1'}                     | ${gradeSets[2].set}
-      ${'2'}                     | ${gradeSets[2].set}
+      ${'1'}                     | ${[]}
+      ${'2'}                     | ${[]}
       ${'3'}                     | ${gradeSets[0].set}
       ${'4'}                     | ${gradeSets[0].set}
       ${'5'}                     | ${gradeSets[0].set}
