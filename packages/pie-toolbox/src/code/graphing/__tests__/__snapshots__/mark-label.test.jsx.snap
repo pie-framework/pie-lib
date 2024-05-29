@@ -1,37 +1,47 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`MarkLabel snapshot renders 1`] = `
-<AutosizeInput
-  injectStyles={true}
-  inputClassName=""
-  inputRef={[Function]}
-  minWidth={1}
-  onChange={[Function]}
+<div
   style={
     Object {
-      "left": -9,
+      "alignItems": "center",
+      "display": "flex",
+      "gap": "3px",
+      "left": 6,
       "pointerEvents": "auto",
       "position": "fixed",
-      "top": -9,
+      "top": -4,
     }
   }
-/>
+>
+  <AutosizeInput
+    injectStyles={true}
+    inputClassName=""
+    minWidth={1}
+    onChange={[Function]}
+  />
+</div>
 `;
 
 exports[`MarkLabel snapshot renders 2`] = `
-<AutosizeInput
-  injectStyles={true}
-  inputClassName=""
-  inputRef={[Function]}
-  minWidth={1}
-  onChange={[Function]}
+<div
   style={
     Object {
-      "left": 0,
+      "alignItems": "center",
+      "display": "flex",
+      "gap": "3px",
+      "left": 5,
       "pointerEvents": "auto",
       "position": "fixed",
-      "top": 0,
+      "top": 5,
     }
   }
-/>
+>
+  <AutosizeInput
+    injectStyles={true}
+    inputClassName=""
+    minWidth={1}
+    onChange={[Function]}
+  />
+</div>
 `;

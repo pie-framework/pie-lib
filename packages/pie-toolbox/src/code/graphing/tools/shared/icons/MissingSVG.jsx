@@ -2,11 +2,11 @@ import React from 'react';
 
 const MissingSVG = ({ scale, x, y }) => (
   <svg
+    width="9"
+    height="10"
     viewBox="0 0 9 10"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    width="9px"
-    height="10px"
     x={scale.x(x) - 4.5}
     y={scale.y(y) - 5}
     style={{ pointerEvents: 'none' }}
