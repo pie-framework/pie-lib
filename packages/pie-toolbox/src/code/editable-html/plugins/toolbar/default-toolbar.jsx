@@ -19,13 +19,34 @@ export const ToolbarButton = (props) => {
     props.onChange(c);
   };
 
+  const handleFocus = () => {
+    // Logic to show toolbar when button is focused
+    if (props.onFocus) {
+      props.onFocus();
+    }
+  };
+
+  const handleBlur = () => {
+    // Logic to hide toolbar when button loses focus
+    if (props.onBlur) {
+      props.onBlur();
+    }
+  };
+
   if (props.isMark) {
     const isActive = hasMark(props.value, props.type);
 
     log('[ToolbarButton] mark:isActive: ', isActive);
 
     return (
-      <MarkButton active={isActive} label={props.type} onToggle={onToggle} mark={props.type}>
+      <MarkButton
+        active={isActive}
+        label={props.type}
+        onToggle={onToggle}
+        mark={props.type}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+      >
         {props.icon}
       </MarkButton>
     );

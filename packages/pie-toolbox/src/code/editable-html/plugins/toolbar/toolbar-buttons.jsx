@@ -9,8 +9,14 @@ const styles = () => ({
     color: 'grey',
     display: 'inline-flex',
     padding: '2px',
-    '& :hover': {
+    background: 'none', // Remove default button styles
+    border: 'none',
+    cursor: 'pointer',
+    '&:hover': {
       color: 'black',
+    },
+    '&:focus': {
+      outline: '2px solid blue', // Add a focus outline for accessibility
     },
   },
   active: {
@@ -56,9 +62,16 @@ export class RawButton extends React.Component {
     });
 
     return (
-      <div style={extraStyles} className={names} onMouseDown={this.onClick}>
+      <button
+        style={extraStyles}
+        className={names}
+        onClick={this.onClick}
+        disabled={disabled}
+        aria-pressed={active}
+        tabIndex={0} // Ensure the button is focusable
+      >
         {children}
-      </div>
+      </button>
     );
   }
 }
@@ -87,9 +100,9 @@ export class RawMarkButton extends React.Component {
     const { classes, children, active } = this.props;
     const names = classNames(classes.button, active && classes.active);
     return (
-      <span className={names} onMouseDown={this.onToggle}>
+      <button className={names} onClick={this.onToggle} aria-pressed={active} tabIndex={0}>
         {children}
-      </span>
+      </button>
     );
   }
 }

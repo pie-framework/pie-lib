@@ -35,6 +35,37 @@ export class EditorAndToolbar extends React.Component {
     }),
   };
 
+  state = {
+    toolbarVisible: false,
+  };
+
+  handleEditorFocus = () => {
+    this.setState({ toolbarVisible: true });
+  };
+
+  handleEditorBlur = (e) => {
+    e.persist(); // Persist the event to access it asynchronously
+    // Delay hiding the toolbar to check if focus is moving to the toolbar
+    setTimeout(() => {
+      if (
+        this.editorRef &&
+        this.editorRef.current &&
+        !this.editorRef.current.contains(document.activeElement) &&
+        (!this.toolbarRef || (this.toolbarRef.current && !this.toolbarRef.current.contains(document.activeElement)))
+      ) {
+        this.setState({ toolbarVisible: false });
+      }
+    }, 0);
+  };
+
+  setEditorRef = (el) => {
+    this.editorRef = el;
+  };
+
+  setToolbarRef = (el) => {
+    this.toolbarRef = el;
+  };
+
   render() {
     const {
       classes,
@@ -62,13 +93,17 @@ export class EditorAndToolbar extends React.Component {
       [classes.disabledUnderline]: disableUnderline,
       [classes.disabledScrollbar]: disableScrollbar,
     });
-    let clonedChildren = children;
 
-    if (typeof children !== 'string') {
-      clonedChildren = React.cloneElement(children, {
-        ref: (el) => (this.editorRef = el),
-      });
-    }
+    // Ensure children (editor) is focusable and editable
+    const clonedChildren = React.cloneElement(children, {
+      ref: this.setEditorRef,
+      tabIndex: 0, // Ensure the editor is focusable
+      contentEditable: !readOnly,
+      role: 'textbox', // Ensure the editor is recognized as a text box
+      'aria-multiline': true,
+      onFocus: this.handleEditorFocus,
+      onBlur: this.handleEditorBlur,
+    });
 
     log('[render] inFocus: ', inFocus, 'value.isFocused:', value.isFocused, 'focused node: ', focusedNode);
 
@@ -81,6 +116,8 @@ export class EditorAndToolbar extends React.Component {
           },
           classes.root,
         )}
+        onFocus={this.handleEditorFocus}
+        onBlur={this.handleEditorBlur}
       >
         <div className={holderNames}>
           <div
@@ -94,20 +131,23 @@ export class EditorAndToolbar extends React.Component {
             {clonedChildren}
           </div>
         </div>
-        <Toolbar
-          autoWidth={autoWidth}
-          plugins={plugins}
-          focusedNode={focusedNode}
-          value={value}
-          isFocused={inFocus}
-          onChange={onChange}
-          getFocusedValue={getFocusedValue}
-          onDone={onDone}
-          onDataChange={onDataChange}
-          toolbarRef={toolbarRef}
-          pluginProps={pluginProps}
-          toolbarOpts={toolbarOpts}
-        />
+        {this.state.toolbarVisible && (
+          <Toolbar
+            ref={this.setToolbarRef}
+            autoWidth={autoWidth}
+            plugins={plugins}
+            focusedNode={focusedNode}
+            value={value}
+            isFocused={inFocus}
+            onChange={onChange}
+            getFocusedValue={getFocusedValue}
+            onDone={onDone}
+            onDataChange={onDataChange}
+            toolbarRef={toolbarRef}
+            pluginProps={pluginProps}
+            toolbarOpts={toolbarOpts}
+          />
+        )}
       </div>
     );
   }

@@ -968,7 +968,7 @@ export class Editor extends React.Component {
           onFocus={this.onFocus}
           onEditingDone={this.onEditingDone}
           focusedNode={focusedNode}
-          normalize={this.normalize}
+          normalize={this.validateNode}
           readOnly={disabled}
           spellCheck={spellCheck}
           autoCorrect={spellCheck}
