@@ -46,7 +46,7 @@ export const Line = withStyles(() => ({
     stroke: 'transparent',
     '&:hover': {
       strokeWidth: 7,
-      stroke: color.defaults.SECONDARY,
+      stroke: color.defaults.BLACK,
     },
   },
   disabled: {
