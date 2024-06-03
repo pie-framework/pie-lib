@@ -105,6 +105,7 @@ export default function MathPlugin(opts) {
   return {
     name: 'math',
     toolbar: {
+      ariaLabel: 'Math Toolbar',
       icon: <Functions />,
       onClick: (value, onChange) => {
         log('[insertMath]');

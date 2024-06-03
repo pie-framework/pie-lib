@@ -54,6 +54,7 @@ const types = ['audio', 'video'];
 export default function MediaPlugin(type, opts) {
   const toolbar = {
     icon: type === 'audio' ? <VolumeUpIcon /> : <TheatersIcon />,
+    ariaLabel: type === 'audio' ? 'Insert audio' : 'Insert video',
     onClick: (value, onChange) => {
       log('[toolbar] onClick');
       const inline = Inline.create({
