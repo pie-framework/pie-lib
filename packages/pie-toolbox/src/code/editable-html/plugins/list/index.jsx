@@ -143,6 +143,7 @@ export default (options) => {
 
   core.toolbar = {
     isMark: false,
+    ariaLabel: type == 'ul_list' ? 'bulleted list' : 'numbered-list',
     type,
     icon,
     isActive: (value, type) => {
