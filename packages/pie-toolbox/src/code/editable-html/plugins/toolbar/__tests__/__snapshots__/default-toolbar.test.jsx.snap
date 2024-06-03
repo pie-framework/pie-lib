@@ -3,7 +3,9 @@
 exports[`default-toolbar snapshot renders 1`] = `undefined`;
 
 exports[`default-toolbar snapshot renders 1 plugins 1`] = `
-<div>
+<div
+  tabIndex="1"
+>
   <div>
     <ToolbarButton
       key="0"
@@ -228,7 +230,9 @@ exports[`default-toolbar snapshot renders 1 plugins 1`] = `
 `;
 
 exports[`default-toolbar snapshot renders 1 plugins, 1 is disabled 1`] = `
-<div>
+<div
+  tabIndex="1"
+>
   <div>
     <ToolbarButton
       key="0"
@@ -453,7 +457,9 @@ exports[`default-toolbar snapshot renders 1 plugins, 1 is disabled 1`] = `
 `;
 
 exports[`default-toolbar snapshot renders 2 plugins 1`] = `
-<div>
+<div
+  tabIndex="1"
+>
   <div>
     <ToolbarButton
       key="0"
@@ -893,13 +899,17 @@ exports[`default-toolbar snapshot renders 2 plugins 1`] = `
 `;
 
 exports[`default-toolbar snapshot renders with done button 1`] = `
-<div>
+<div
+  tabIndex="1"
+>
   <div />
 </div>
 `;
 
 exports[`default-toolbar snapshot renders without done button 1`] = `
-<div>
+<div
+  tabIndex="1"
+>
   <div />
   <WithStyles(RawDoneButton)
     onClick={[MockFunction]}

@@ -19,34 +19,13 @@ export const ToolbarButton = (props) => {
     props.onChange(c);
   };
 
-  const handleFocus = () => {
-    // Logic to show toolbar when button is focused
-    if (props.onFocus) {
-      props.onFocus();
-    }
-  };
-
-  const handleBlur = () => {
-    // Logic to hide toolbar when button loses focus
-    if (props.onBlur) {
-      props.onBlur();
-    }
-  };
-
   if (props.isMark) {
     const isActive = hasMark(props.value, props.type);
 
     log('[ToolbarButton] mark:isActive: ', isActive);
 
     return (
-      <MarkButton
-        active={isActive}
-        label={props.type}
-        onToggle={onToggle}
-        mark={props.type}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
-      >
+      <MarkButton active={isActive} label={props.type} onToggle={onToggle} mark={props.type} ariaLabel={props.type}>
         {props.icon}
       </MarkButton>
     );
@@ -58,6 +37,7 @@ export const ToolbarButton = (props) => {
 
     return (
       <Button
+      ariaLabel={props.ariaLabel}
         active={isActive}
         disabled={disabled}
         onClick={() => props.onClick(props.value, props.onChange, props.getFocusedValue)}
@@ -100,6 +80,7 @@ export const DefaultToolbar = ({
   showDone,
   deletable,
   isHtmlMode,
+  onBlur, onFocus
 }) => {
   pluginProps = {
     // disable HTML plugin by default, at least for now
@@ -119,15 +100,16 @@ export const DefaultToolbar = ({
   }
 
   return (
-    <div className={classes.defaultToolbar}>
+    <div className={classes.defaultToolbar} onFocus={onFocus} tabIndex="1"
+    onBlur={onBlur}>
       <div className={classes.buttonsContainer}>
         {filtered.map((p, index) => {
           return (
-            <ToolbarButton {...p} key={index} value={value} onChange={onChange} getFocusedValue={getFocusedValue} />
+            <ToolbarButton {...p} key={index} value={value} onChange={onChange} getFocusedValue={getFocusedValue} ariaLabel={p.ariaLabel || p.type} />
           );
         })}
       </div>
-      {showDone && !deletable && <DoneButton onClick={onDone} />}
+      {showDone && !deletable && <DoneButton onClick={onDone}  onBlur={onBlur} />}
     </div>
   );
 };

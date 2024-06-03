@@ -54,8 +54,18 @@ export class RawButton extends React.Component {
     onClick(e);
   };
 
+  onKeyDown = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      log('[onKeyDown]');
+      e.preventDefault();
+      const { onClick } = this.props;
+      onClick(e);
+    }
+  };
+
   render() {
-    const { active, classes, children, disabled, extraStyles } = this.props;
+    const { active, classes, children, disabled, extraStyles, ariaLabel } = this.props;
+
     const names = classNames(classes.button, {
       [classes.active]: active,
       [classes.disabled]: disabled,
@@ -65,10 +75,12 @@ export class RawButton extends React.Component {
       <button
         style={extraStyles}
         className={names}
-        onClick={this.onClick}
+        onMouseDown={this.onClick}
+        onKeyDown={this.onKeyDown}
         disabled={disabled}
+        aria-label={ariaLabel}
         aria-pressed={active}
-        tabIndex={0} // Ensure the button is focusable
+        tabIndex={0}
       >
         {children}
       </button>
@@ -96,11 +108,18 @@ export class RawMarkButton extends React.Component {
     this.props.onToggle(this.props.mark);
   };
 
+  onKeyDown = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      this.props.onToggle(this.props.mark);
+    }
+  };
+
   render() {
-    const { classes, children, active } = this.props;
+    const { classes, children, active, label } = this.props;
     const names = classNames(classes.button, active && classes.active);
     return (
-      <button className={names} onClick={this.onToggle} aria-pressed={active} tabIndex={0}>
+      <button className={names} onMouseDown={this.onToggle} aria-pressed={active} onKeyDown={this.onKeyDown} aria-label={label} tabIndex={0}>
         {children}
       </button>
     );
