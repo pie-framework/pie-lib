@@ -1,22 +1,22 @@
 import React from 'react';
 import debug from 'debug';
-import injectSheet from 'react-jss';
+import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-const styles = () => ({
+const styles = (theme) => ({
   button: {
     color: 'grey',
     display: 'inline-flex',
     padding: '2px',
-    background: 'none', // Remove default button styles
+    background: 'none',
     border: 'none',
     cursor: 'pointer',
     '&:hover': {
       color: 'black',
     },
     '&:focus': {
-      outline: '2px solid blue', // Add a focus outline for accessibility
+      outline: `2px solid ${theme.palette.grey[700]}`,
     },
   },
   active: {
@@ -88,7 +88,7 @@ export class RawButton extends React.Component {
   }
 }
 
-export const Button = injectSheet(styles())(RawButton);
+export const Button = withStyles(styles)(RawButton);
 
 export class RawMarkButton extends React.Component {
   static propTypes = {
@@ -119,11 +119,18 @@ export class RawMarkButton extends React.Component {
     const { classes, children, active, label } = this.props;
     const names = classNames(classes.button, active && classes.active);
     return (
-      <button className={names} onMouseDown={this.onToggle} aria-pressed={active} onKeyDown={this.onKeyDown} aria-label={label} tabIndex={0}>
+      <button
+        className={names}
+        onMouseDown={this.onToggle}
+        aria-pressed={active}
+        onKeyDown={this.onKeyDown}
+        aria-label={label}
+        tabIndex={0}
+      >
         {children}
       </button>
     );
   }
 }
 
-export const MarkButton = injectSheet(styles())(RawMarkButton);
+export const MarkButton = withStyles(styles)(RawMarkButton);

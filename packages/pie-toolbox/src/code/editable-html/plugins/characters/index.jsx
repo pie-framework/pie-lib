@@ -233,7 +233,6 @@ CharacterIcon.propTypes = {
 };
 
 export default function CharactersPlugin(opts) {
-  console.log(opts, "opts in characters")
   removeDialogs();
 
   return {

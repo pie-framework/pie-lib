@@ -37,7 +37,7 @@ export const ToolbarButton = (props) => {
 
     return (
       <Button
-      ariaLabel={props.ariaLabel}
+        ariaLabel={props.ariaLabel}
         active={isActive}
         disabled={disabled}
         onClick={() => props.onClick(props.value, props.onChange, props.getFocusedValue)}
@@ -80,7 +80,8 @@ export const DefaultToolbar = ({
   showDone,
   deletable,
   isHtmlMode,
-  onBlur, onFocus
+  onBlur,
+  onFocus,
 }) => {
   pluginProps = {
     // disable HTML plugin by default, at least for now
@@ -100,16 +101,15 @@ export const DefaultToolbar = ({
   }
 
   return (
-    <div className={classes.defaultToolbar} onFocus={onFocus} tabIndex="1"
-    onBlur={onBlur}>
+    <div className={classes.defaultToolbar} onFocus={onFocus} tabIndex="1" onBlur={onBlur}>
       <div className={classes.buttonsContainer}>
         {filtered.map((p, index) => {
           return (
-            <ToolbarButton {...p} key={index} value={value} onChange={onChange} getFocusedValue={getFocusedValue} ariaLabel={p.ariaLabel || p.type} />
+            <ToolbarButton {...p} key={index} value={value} onChange={onChange} getFocusedValue={getFocusedValue} />
           );
         })}
       </div>
-      {showDone && !deletable && <DoneButton onClick={onDone}  onBlur={onBlur} />}
+      {showDone && !deletable && <DoneButton onClick={onDone} />}
     </div>
   );
 };

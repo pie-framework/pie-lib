@@ -7,7 +7,7 @@ exports[`renders correctly 1`] = `
   <button
     aria-label="left"
     aria-pressed={false}
-    className="RawMarkButton-button-0-2-1"
+    className="RawMarkButton-button-4"
     onKeyDown={[Function]}
     onMouseDown={[Function]}
     tabIndex={0}
@@ -17,7 +17,7 @@ exports[`renders correctly 1`] = `
   <button
     aria-label="center"
     aria-pressed={false}
-    className="RawMarkButton-button-0-2-1"
+    className="RawMarkButton-button-4"
     onKeyDown={[Function]}
     onMouseDown={[Function]}
     tabIndex={0}
@@ -27,7 +27,7 @@ exports[`renders correctly 1`] = `
   <button
     aria-label="right"
     aria-pressed={false}
-    className="RawMarkButton-button-0-2-1"
+    className="RawMarkButton-button-4"
     onKeyDown={[Function]}
     onMouseDown={[Function]}
     tabIndex={0}

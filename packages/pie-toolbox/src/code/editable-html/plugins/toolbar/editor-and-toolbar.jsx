@@ -33,9 +33,9 @@ export class EditorAndToolbar extends React.Component {
       error: PropTypes.string,
       noBorder: PropTypes.any,
     }),
-    focusToolbar: PropTypes.bool.isRequired, // Receive focusToolbar prop
-    onToolbarFocus: PropTypes.func.isRequired, // Handler for toolbar focus
-    onToolbarBlur: PropTypes.func.isRequired, // Handler for toolbar blur
+    focusToolbar: PropTypes.bool.isRequired,
+    onToolbarFocus: PropTypes.func.isRequired,
+    onToolbarBlur: PropTypes.func.isRequired,
   };
 
   render() {
@@ -70,14 +70,15 @@ export class EditorAndToolbar extends React.Component {
       [classes.disabledScrollbar]: disableScrollbar,
     });
 
-    // Ensure children (editor) is focusable and editable
-    const clonedChildren = React.cloneElement(children, {
-      ref: this.setEditorRef,
-      tabIndex: 0, // Ensure the editor is focusable
-      contentEditable: !readOnly,
-      role: 'textbox', // Ensure the editor is recognized as a text box
-      'aria-multiline': true,
-    });
+    let clonedChildren = children;
+
+    if (typeof children !== 'string') {
+      clonedChildren = React.cloneElement(children, {
+        ref: (el) => (this.editorRef = el),
+      });
+    }
+
+    log('[render] inFocus: ', inFocus, 'value.isFocused:', value.isFocused, 'focused node: ', focusedNode);
 
     return (
       <div
@@ -102,23 +103,22 @@ export class EditorAndToolbar extends React.Component {
           </div>
         </div>
 
-          <Toolbar
-            autoWidth={autoWidth}
-            plugins={plugins}
-            focusedNode={focusedNode}
-            value={value}
-            isFocused={inFocus}
-            onBlur={onToolbarBlur}
-            onFocus={onToolbarFocus}
-            onChange={onChange}
-            getFocusedValue={getFocusedValue}
-            onDone={onDone}
-            onDataChange={onDataChange}
-            toolbarRef={toolbarRef}
-            pluginProps={pluginProps}
-            toolbarOpts={toolbarOpts}
-          />
- 
+        <Toolbar
+          autoWidth={autoWidth}
+          plugins={plugins}
+          focusedNode={focusedNode}
+          value={value}
+          isFocused={inFocus}
+          onBlur={onToolbarBlur}
+          onFocus={onToolbarFocus}
+          onChange={onChange}
+          getFocusedValue={getFocusedValue}
+          onDone={onDone}
+          onDataChange={onDataChange}
+          toolbarRef={toolbarRef}
+          pluginProps={pluginProps}
+          toolbarOpts={toolbarOpts}
+        />
       </div>
     );
   }
