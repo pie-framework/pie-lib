@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.20.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.20.0...@pie-lib/pie-toolbox@1.20.1) (2024-06-03)
+
+
+### Bug Fixes
+
+* **feedback:** create new functions without using promise PD-1273 ([450527d](https://github.com/pie-framework/pie-lib/commit/450527d50c2e35404cf794ac8024204d056ef2b6))
+* made sure a table has a node before and after it [PD-3788] so user can focus on those ([a869a47](https://github.com/pie-framework/pie-lib/commit/a869a473f05b4ff1072a840677a2e2dad456c577))
+
+
+
+
+
 # [1.20.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.19.1...@pie-lib/pie-toolbox@1.20.0) (2024-05-27)
 
 
