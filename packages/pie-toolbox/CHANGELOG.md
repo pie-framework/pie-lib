@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.21.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.20.1...@pie-lib/pie-toolbox@1.21.0) (2024-06-03)
+
+
+### Features
+
+* **editable-html:** add aria label for list buttons PD-2455 ([ffd0ef8](https://github.com/pie-framework/pie-lib/commit/ffd0ef877b1b9f7ae23fc1976e8b91867dad5cc2))
+* **editable-html:** enhance keyboard navigation and accessibility for editor and toolbar, Make the editor and toolbar fully navigable using the keyboard, Convert toolbar items to buttons for better accessibility, Ensure toolbar buttons are actionable with keyboard interactions, Add aria-labels to toolbar buttons for improved screen reader support PD-2455 ([a95c8eb](https://github.com/pie-framework/pie-lib/commit/a95c8eb91d9826831d66ba555b80ac3505cd95fc))
+* **editable-html:** enhance keyboard navigation and accessibility for editor and toolbar, Make the editor and toolbar fully navigable using the keyboard, Convert toolbar items to buttons for better accessibility, Ensure toolbar buttons are actionable with keyboard interactions, Add aria-labels to toolbar buttons for improved screen reader support PD-2455 ([43b0677](https://github.com/pie-framework/pie-lib/commit/43b0677d4b97bcc1585d694b9e576ad390de4d72))
+* **editable-html:** WIP enhance keyboard accessibility for toolbar and buttons PD-2455 ([975e2d6](https://github.com/pie-framework/pie-lib/commit/975e2d67410896137ef9fc5792c4c2de4983a3ce))
+* (graphing) View, points, edges, and arrows should all be black PD-3733 ([783d1fb](https://github.com/pie-framework/pie-lib/commit/783d1fbf43c1ecb26ec9623a609dad8cccb0a9f9))
+
+
+
+
+
 ## [1.20.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.20.0...@pie-lib/pie-toolbox@1.20.1) (2024-06-03)
 
 
