@@ -92,13 +92,13 @@ workflows:
           filters:
             branches:
               ignore:
-#                - develop
+                - develop
                 - master
       - test:
           filters:
             branches:
               ignore:
-#                - develop
+                - develop
                 - master
   build:
     jobs:
@@ -106,7 +106,7 @@ workflows:
           filters:
             branches:
               only:
-                - feat/slate-editor-updates
+                - develop
   build_master:
     jobs:
       - release_build:
