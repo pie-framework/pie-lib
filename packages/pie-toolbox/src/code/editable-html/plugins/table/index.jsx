@@ -243,70 +243,54 @@ export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
   };
 
   core.normalizeNode = (node) => {
-    if (node.object !== 'document') {
-      return;
-    }
+    const addNodeBeforeArray = [];
 
-    const tableAdded = node.findDescendant((d) => d.data && d.data.get('newTable'));
+    if (node.object !== 'document') return;
 
-    if (!tableAdded) {
-      return;
-    }
+    node.findDescendant((d) => {
+      if (d.type === 'table') {
+        const tablePath = node.getPath(d.key);
+        const prevNode = node.getPreviousNode(tablePath);
+        const nextNode = node.getNextNode(tablePath);
 
-    const nodeToSearch = node.getParent(tableAdded.key) || node;
-    let shouldAddTextAfterNode = false;
-    const indexToNotHaveTableOn = nodeToSearch.nodes.size - 1;
-    const indexOfLastTable = nodeToSearch.nodes.findLastIndex((d) => d.type === 'table');
+        if (!prevNode || !nextNode) {
+          addNodeBeforeArray.push({
+            node: d,
+            prevNode,
+            nextNode,
+          });
+        }
+      }
+    });
 
-    // if the last table in the document is of type table, we need to do the change
-    if (indexOfLastTable === indexToNotHaveTableOn) {
-      shouldAddTextAfterNode = true;
-    }
-
-    if (!shouldAddTextAfterNode) {
+    if (!addNodeBeforeArray.length) {
       return;
     }
 
     return (change) => {
-      if (shouldAddTextAfterNode) {
-        const tableJSON = tableAdded.toJSON();
+      const newBlock = {
+        object: 'block',
+        type: 'div',
+      };
 
-        // we remove the table node because otherwise we can't add the empty block after it
-        // we need a block that contains text in order to do it
-        change.removeNodeByKey(tableAdded.key);
+      addNodeBeforeArray.forEach((n) => {
+        const tablePath = change.value.document.getPath(n.node.key).toJSON();
+        // removing tableIndex
+        let indexToAdd = tablePath.splice(-1)[0];
 
-        const newBlock = Block.create({
-          object: 'block',
-          type: 'div',
-        });
+        if (!n.prevNode) {
+          // inserting block key before table
+          change.insertNodeByPath(tablePath, indexToAdd, newBlock);
+          // this will trigger another normalization, which will figure out if there's not
+          // a block after the table and add it, so we exit for now
+          return;
+        }
 
-        // we add an empty block but that it's going to be normalized
-        // because it will add the empty text to it like it should
-        change.insertBlock(newBlock);
-
-        change.withoutNormalization(() => {
-          // we do these changes without normalization
-
-          // we get the text previous to the new block added
-          const prevText = change.value.document.getPreviousText(newBlock.key);
-
-          if (prevText) {
-            // we move focus to the previous text
-            change.moveFocusTo(prevText.key, prevText.text?.length).moveAnchorTo(prevText.key, prevText.text?.length);
-          }
-
-          // we insert the table block between the first block with text and the last block with text
-          change.insertBlock({
-            ...tableJSON,
-            data: {
-              ...tableJSON.data,
-              newTable: true,
-            },
-          });
-
-          moveFocusToBeginningOfTable(change);
-        });
-      }
+        if (!n.nextNode) {
+          // inserting block key after table
+          change.insertNodeByPath(tablePath, indexToAdd + 1, newBlock);
+        }
+      });
     };
   };
 
