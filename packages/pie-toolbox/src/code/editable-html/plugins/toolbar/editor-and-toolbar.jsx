@@ -33,6 +33,9 @@ export class EditorAndToolbar extends React.Component {
       error: PropTypes.string,
       noBorder: PropTypes.any,
     }),
+    focusToolbar: PropTypes.bool.isRequired,
+    onToolbarFocus: PropTypes.func.isRequired,
+    onToolbarBlur: PropTypes.func.isRequired,
   };
 
   render() {
@@ -53,15 +56,20 @@ export class EditorAndToolbar extends React.Component {
       toolbarOpts,
       onDataChange,
       toolbarRef,
+      focusToolbar,
+      onToolbarFocus,
+      onToolbarBlur,
     } = this.props;
 
-    const inFocus = value.isFocused || (focusedNode !== null && focusedNode !== undefined);
+    let inFocus = value.isFocused || (focusedNode !== null && focusedNode !== undefined) || focusToolbar;
+
     const holderNames = classNames(classes.editorHolder, {
       [classes.editorInFocus]: inFocus,
       [classes.readOnly]: readOnly,
       [classes.disabledUnderline]: disableUnderline,
       [classes.disabledScrollbar]: disableScrollbar,
     });
+
     let clonedChildren = children;
 
     if (typeof children !== 'string') {
@@ -94,12 +102,15 @@ export class EditorAndToolbar extends React.Component {
             {clonedChildren}
           </div>
         </div>
+
         <Toolbar
           autoWidth={autoWidth}
           plugins={plugins}
           focusedNode={focusedNode}
           value={value}
           isFocused={inFocus}
+          onBlur={onToolbarBlur}
+          onFocus={onToolbarFocus}
           onChange={onChange}
           getFocusedValue={getFocusedValue}
           onDone={onDone}

@@ -49,6 +49,7 @@ export default function HtmlPlugin(opts) {
     name: 'html',
     toolbar: {
       icon: <HtmlModeIcon isHtmlMode={isHtmlMode} />,
+      ariaLabel: 'Html editor',
       buttonStyles: {
         margin: '0 20px 0 auto',
       },

@@ -146,6 +146,7 @@ export class Toolbar extends React.Component {
       isFocused,
       onDone,
       toolbarRef,
+      onBlur, onFocus
     } = this.props;
 
     const node = findSingleNode(value);
@@ -234,6 +235,8 @@ export class Toolbar extends React.Component {
             onToolbarDone={this.onToolbarDone}
             onDataChange={handleDataChange}
             pluginProps={pluginProps}
+            onFocus={onFocus}
+        onBlur={onBlur}
           />
         ) : (
           <DefaultToolbar
@@ -246,6 +249,8 @@ export class Toolbar extends React.Component {
             onDone={handleDone}
             deletable={deletable}
             isHtmlMode={toolbarOpts.isHtmlMode}
+            onFocus={onFocus}
+        onBlur={onBlur}
           />
         )}
 

@@ -12,6 +12,7 @@ const log = debug('@pie-lib:editable-html:plugins:image');
 export default function ImagePlugin(opts) {
   const toolbar = opts.insertImageRequested && {
     icon: <Image />,
+    ariaLabel: 'Insert Image',
     onClick: (value, onChange) => {
       log('[toolbar] onClick');
       const inline = Inline.create({

@@ -1,28 +1,36 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Button renders 1`] = `
-<div
+<button
   className=""
+  onKeyDown={[Function]}
   onMouseDown={[Function]}
+  tabIndex={0}
 >
   children
-</div>
+</button>
 `;
 
 exports[`MarkButton renders active 1`] = `
-<span
+<button
+  aria-pressed={true}
   className="button active"
+  onKeyDown={[Function]}
   onMouseDown={[Function]}
+  tabIndex={0}
 >
   children
-</span>
+</button>
 `;
 
 exports[`MarkButton renders not active 1`] = `
-<span
+<button
+  aria-pressed={false}
   className="button"
+  onKeyDown={[Function]}
   onMouseDown={[Function]}
+  tabIndex={0}
 >
   children
-</span>
+</button>
 `;

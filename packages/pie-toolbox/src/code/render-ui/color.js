@@ -43,16 +43,14 @@ export const correctSecondary = () => pv('correct-secondary', defaults.CORRECT_S
 export const incorrect = () => pv('incorrect', defaults.INCORRECT);
 export const incorrectSecondary = () => pv('incorrect-secondary', defaults.INCORRECT_SECONDARY);
 export const missing = () => pv('missing', defaults.MISSING);
-
 export const primary = () => pv('primary', defaults.PRIMARY);
 export const primaryLight = () => pv('primary-light', defaults.PRIMARY_LIGHT);
 export const primaryDark = () => pv('primary-dark', defaults.PRIMARY_DARK);
 export const primaryText = () => pv('primary-text', 'text', defaults.TEXT);
-
 export const secondary = () => pv('secondary', defaults.SECONDARY);
 export const secondaryLight = () => pv('secondary-light', defaults.SECONDARY_LIGHT);
 export const secondaryDark = () => pv('secondary-dark', defaults.SECONDARY_DARK);
-
 export const secondaryText = () => pv('secondary-text', 'text', defaults.TEXT);
 export const background = () => pv('background', defaults.BACKGROUND);
 export const secondaryBackground = () => pv('secondary-background', defaults.SECONDARY_BACKGROUND);
+export const black = () => pv('black', defaults.BLACK);
