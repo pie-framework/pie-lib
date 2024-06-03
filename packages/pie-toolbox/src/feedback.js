@@ -1,11 +1,9 @@
 import {
-  getFeedbackForCorrectness,
+  defaults,
+  getActualFeedback,
+  getActualFeedbackForCorrectness,
   getFeedback,
-  defaults
-} from "./code/feedback";
+  getFeedbackForCorrectness,
+} from './code/feedback';
 
-export {
-  getFeedbackForCorrectness,
-  getFeedback,
-  defaults
-};
+export { defaults, getActualFeedback, getActualFeedbackForCorrectness, getFeedback, getFeedbackForCorrectness };
