@@ -16,14 +16,32 @@ const inputStyles = (theme) => ({
 });
 
 const styles = (theme) => ({
-  disabled: {
+  inputStudent: {
+    float: 'right',
+    padding: '0',
+    borderRadius: '4px',
+    fontSize: '10px',
+    backgroundColor: 'white',
     border: 'none',
-    backgroundColor: 'transparent',
+    color: 'inherit',
+  },
+  input: {
+    float: 'right',
+    padding: theme.spacing.unit * 0.5,
     fontFamily: theme.typography.fontFamily,
     fontSize: '10px',
-    color: 'inherit',
-    fontWeight: 'inherit',
-    padding: '0',
+    border: `solid 1px ${color.defaults.SECONDARY}`,
+    borderRadius: '3px',
+    color: color.defaults.PRIMARY_DARK,
+  },
+  disabled: {
+    border: `solid 1px ${color.defaults.PRIMARY_DARK}`,
+    backgroundColor: 'white',
+  },
+  disabledMark: {
+    border: `solid 1px ${color.disabled()}`,
+    backgroundColor: 'white',
+    color: color.disabled(),
   },
   inputCorrect: {
     ...inputStyles(theme),
@@ -145,9 +163,7 @@ export const MarkLabel = (props) => {
             externalInputRef(r);
           }}
           disabled={disabledInput}
-          inputClassName={cn({
-            [classes.disabled]: disabled,
-          })}
+          inputClassName={cn(classes.inputStudent)}
           value={correctlabel}
           onChange={onChange}
         />
@@ -170,9 +186,7 @@ export const MarkLabel = (props) => {
                 externalInputRef(r);
               }}
               disabled={disabledInput}
-              inputClassName={cn({
-                [classes.disabled]: disabled,
-              })}
+              inputClassName={cn(classes.inputStudent)}
               value={label}
               onChange={onChange}
             />
@@ -181,9 +195,7 @@ export const MarkLabel = (props) => {
         <div className={classes.inputMissing} style={secondLabelStyle}>
           <AutosizeInput
             disabled={disabledInput}
-            inputClassName={cn({
-              [classes.disabled]: disabled,
-            })}
+            inputClassName={cn(classes.inputStudent)}
             value={correctlabel}
             onChange={onChange}
           />
@@ -198,9 +210,7 @@ export const MarkLabel = (props) => {
       <div className={classes.inputMissing} style={style}>
         <AutosizeInput
           disabled={disabledInput}
-          inputClassName={cn({
-            [classes.disabled]: disabled,
-          })}
+          inputClassName={cn(classes.inputStudent)}
           value={label}
           onChange={onChange}
         />
@@ -214,9 +224,7 @@ export const MarkLabel = (props) => {
       <div className={classes.incorrect} style={style}>
         <AutosizeInput
           disabled={disabledInput}
-          inputClassName={cn({
-            [classes.disabled]: disabled,
-          })}
+          inputClassName={cn(classes.inputStudent)}
           value={label}
           onChange={onChange}
         />
@@ -227,8 +235,9 @@ export const MarkLabel = (props) => {
     <div style={style}>
       <AutosizeInput
         disabled={disabledInput}
-        inputClassName={cn({
+        inputClassName={cn(classes.input, {
           [classes.disabled]: disabled,
+          [classes.disabledMark]: mark.disabled,
         })}
         value={label}
         onChange={onChange}
