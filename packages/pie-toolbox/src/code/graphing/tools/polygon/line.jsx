@@ -53,8 +53,8 @@ export const Line = withStyles(() => ({
     ...disabled('stroke'),
     strokeWidth: 2,
   },
-  correct: correct('stoke'),
-  incorrect: incorrect('stroke'),
+  correct: ...correct('stoke'),
+  incorrect: ...incorrect('stroke'),
   missing: {
     ...missing('stroke'),
     strokeWidth: 1,

@@ -6,7 +6,7 @@ import * as utils from '../../utils';
 import classNames from 'classnames';
 import { color } from '../../../render-ui';
 import { fade } from '@material-ui/core/styles/colorManipulator';
-import { correct, disabled, incorrect } from '../shared/styles';
+import { correct, disabled, incorrect, missing } from '../shared/styles';
 
 export const getPointString = (points, scale) => {
   return (points || [])
@@ -78,6 +78,10 @@ export const Polygon = withStyles((theme) => ({
   incorrect: {
     ...incorrect('stroke'),
   },
+  missing: {
+    ...missing('stroke'),
+    stroke: 'inherit'
+  }
 }))(RawPolygon);
 
 export default gridDraggable({
