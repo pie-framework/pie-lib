@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.21.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.21.0...@pie-lib/pie-toolbox@1.21.1) (2024-06-05)
+
+
+### Bug Fixes
+
+* math-templated: needs Response Areas button when cursor is inside a table PD-3811 ([f87d83f](https://github.com/pie-framework/pie-lib/commit/f87d83f153ec4fdf94f007c2454b1491d0dd8560))
+
+
+
+
+
 # [1.21.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.20.1...@pie-lib/pie-toolbox@1.21.0) (2024-06-03)
 
 
