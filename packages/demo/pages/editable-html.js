@@ -1,4 +1,4 @@
-import EditableHtml from '@pie-lib/pie-toolbox/editable-html';
+import EditableHtml, { ALL_PLUGINS } from '@pie-lib/pie-toolbox/editable-html';
 import grey from '@material-ui/core/colors/grey';
 import React from 'react';
 import _ from 'lodash';
@@ -122,6 +122,7 @@ class RteDemo extends React.Component {
       hasText: true,
       mathEnabled: true,
       languageCharactersProps: [],
+      showMathTemplated: false,
     };
 
     const setListeners = () => {
@@ -236,18 +237,18 @@ class RteDemo extends React.Component {
 
   componentDidUpdate() {
     if (this.fileInput) {
-      this.fileInput.addEventListener('change', this.handleFileSelect);
+      this.fileInput?.addEventListener('change', this.handleFileSelect);
     }
   }
 
   componentWillUnmount() {
-    this.fileInput.removeEventListener('change', this.handleFileSelect);
+    this.fileInput?.removeEventListener('change', this.handleFileSelect);
   }
 
   addImage = (imageHandler) => {
     log('[addImage]', imageHandler);
     this.setState({ imageHandler });
-    this.fileInput.click();
+    this.fileInput?.click();
 
     /**
      * There's no way to know if 'cancel' was clicked,
@@ -256,7 +257,7 @@ class RteDemo extends React.Component {
      * It's set to false if a 'change' event is fired.
      */
     document.body.onfocus = (e) => {
-      log('focus document...', this.fileInput.files);
+      log('focus document...', this.fileInput?.files);
       document.body.onfocus = null;
       this.setState({ checkCancelled: true }, () => {
         setTimeout(() => {
@@ -292,6 +293,7 @@ class RteDemo extends React.Component {
       hasText,
       mathEnabled,
       languageCharactersProps,
+      showMathTemplated,
     } = this.state;
     const imageSupport = {
       add: this.addImage,
@@ -300,11 +302,28 @@ class RteDemo extends React.Component {
 
     log('this.state', this.state);
 
-    //activePlugins={['bold', 'bulleted-list', 'numbered-list']}
-    return mounted ? (
-      <div>
-        <Typography variant="h6">EditableHtml</Typography>
-        <Typography variant="body2">A rich text editor with a material design look.</Typography>
+    const content = showMathTemplated ? (
+      <EditableHtml
+        activePlugins={ALL_PLUGINS}
+        toolbarOpts={{ position: 'top' }}
+        responseAreaProps={{
+          type: 'math-templated',
+          respAreaToolbar: null,
+          onHandleAreaChange: this.onHandleAreaChange,
+        }}
+        className={classes.markup}
+        markup={markup}
+        onChange={this.onChange}
+        imageSupport={imageSupport}
+        disableImageAlignmentButtons={true}
+        onBlur={this.onBlur}
+        disabled={false}
+        highlightShape={false}
+      />
+    ) : (
+      <>
+        <br />
+        <br />
         <br />
         <InputChooser inputOptions={inputOptions} onChange={(markup) => this.setState({ markup })} />
         <div className={classes.controls}>
@@ -457,6 +476,16 @@ class RteDemo extends React.Component {
         {/*<EditableHtml markup={markupText} onChange={this.onChangeMarkupText} width={width} height={height} />*/}
         <br />
         <div id="temp1">{`Has text: ${hasText}`}</div>
+      </>
+    );
+
+    //activePlugins={['bold', 'bulleted-list', 'numbered-list']}
+    return mounted ? (
+      <div>
+        <Typography variant="h6">EditableHtml</Typography>
+        <Typography variant="body2">A rich text editor with a material design look.</Typography>
+
+        {content}
       </div>
     ) : (
       <div>loading...</div>
