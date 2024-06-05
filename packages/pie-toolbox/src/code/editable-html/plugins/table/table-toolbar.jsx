@@ -56,6 +56,27 @@ export class TableToolbar extends React.Component {
     } = this.props;
     log('[render] hasBorder:', hasBorder);
 
+    // we're separating the response area plugin because we want to display it next to the done button
+    const filteredPlugins = (plugins || []).reduce(
+      (acc, plugin) => {
+        if (plugin.name === 'response_area') {
+          return {
+            ...acc,
+            respAreaPlugin: plugin,
+          };
+        }
+
+        return {
+          ...acc,
+          otherPlugins: [...acc.otherPlugins, plugin],
+        };
+      },
+      {
+        respAreaPlugin: null,
+        otherPlugins: [],
+      },
+    );
+
     return (
       <div className={classes.tableToolbar}>
         <div className={classes.toolbarButtons}>
@@ -74,7 +95,7 @@ export class TableToolbar extends React.Component {
           <Button onClick={onRemoveTable}>
             <RemoveTable />
           </Button>
-          {plugins.map((p, index) => (
+          {(filteredPlugins.otherPlugins || []).map((p, index) => (
             <ToolbarButton
               key={`plugin-${index}`}
               {...p.toolbar}
@@ -87,6 +108,15 @@ export class TableToolbar extends React.Component {
             <BorderAll />
           </Button>
         </div>
+        {filteredPlugins.respAreaPlugin && (
+          <ToolbarButton
+            key={'plugin-response-area'}
+            {...filteredPlugins.respAreaPlugin.toolbar}
+            value={value}
+            onChange={onChange}
+            getFocusedValue={getFocusedValue}
+          />
+        )}
         <DoneButton onClick={this.onDone} />
       </div>
     );
