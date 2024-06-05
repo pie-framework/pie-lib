@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.3.57](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.3.56...@pie-lib/demo@7.3.57) (2024-06-05)
+
+
+### Bug Fixes
+
+* math-templated: needs Response Areas button when cursor is inside a table PD-3811 ([f87d83f](https://github.com/pie-framework/pie-lib/commit/f87d83f153ec4fdf94f007c2454b1491d0dd8560))
+
+
+
+
+
 ## [7.3.56](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.3.55...@pie-lib/demo@7.3.56) (2024-06-03)
 
 **Note:** Version bump only for package @pie-lib/demo
