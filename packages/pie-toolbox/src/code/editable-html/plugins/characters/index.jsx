@@ -239,6 +239,7 @@ export default function CharactersPlugin(opts) {
     name: 'characters',
     toolbar: {
       icon: <CharacterIcon letter={opts.characterIcon || characterIcons[opts.language] || 'ñ'} />,
+      ariaLabel: `${opts.language} characters Toolbar`,
       onClick: (value, onChange, getFocusedValue) => {
         const editorDOM = document.querySelector(`[data-key="${value.document.key}"]`);
         let valueToUse = value;

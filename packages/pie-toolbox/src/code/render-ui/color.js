@@ -7,6 +7,7 @@ import red from '@material-ui/core/colors/red';
 export const defaults = {
   TEXT: 'black',
   DISABLED: 'grey',
+  DISABLED_SECONDARY: '#ABABAB',
   CORRECT: green[500],
   CORRECT_SECONDARY: green[50],
   CORRECT_WITH_ICON: '#087D38',
@@ -40,6 +41,7 @@ const pv = v('pie');
 
 export const text = () => pv('text', defaults.TEXT);
 export const disabled = () => pv('disabled', defaults.DISABLED);
+export const disabledSecondary = () => pv('disabled-secondary', defaults.DISABLED_SECONDARY);
 export const correct = () => pv('correct', defaults.CORRECT);
 export const correctSecondary = () => pv('correct-secondary', defaults.CORRECT_SECONDARY);
 export const correctWithIcon = () => pv('correct-icon', defaults.CORRECT_WITH_ICON);
@@ -61,4 +63,5 @@ export const secondaryDark = () => pv('secondary-dark', defaults.SECONDARY_DARK)
 export const secondaryText = () => pv('secondary-text', 'text', defaults.TEXT);
 export const background = () => pv('background', defaults.BACKGROUND);
 export const secondaryBackground = () => pv('secondary-background', defaults.SECONDARY_BACKGROUND);
+export const black = () => pv('black', defaults.BLACK);
 export const white = () => pv('white', defaults.WHITE);

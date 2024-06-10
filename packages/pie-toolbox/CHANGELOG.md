@@ -3,6 +3,107 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.21.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.21.0...@pie-lib/pie-toolbox@1.21.1) (2024-06-05)
+
+
+### Bug Fixes
+
+* math-templated: needs Response Areas button when cursor is inside a table PD-3811 ([f87d83f](https://github.com/pie-framework/pie-lib/commit/f87d83f153ec4fdf94f007c2454b1491d0dd8560))
+
+
+
+
+
+# [1.21.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.20.1...@pie-lib/pie-toolbox@1.21.0) (2024-06-03)
+
+
+### Features
+
+* **editable-html:** add aria label for list buttons PD-2455 ([ffd0ef8](https://github.com/pie-framework/pie-lib/commit/ffd0ef877b1b9f7ae23fc1976e8b91867dad5cc2))
+* **editable-html:** enhance keyboard navigation and accessibility for editor and toolbar, Make the editor and toolbar fully navigable using the keyboard, Convert toolbar items to buttons for better accessibility, Ensure toolbar buttons are actionable with keyboard interactions, Add aria-labels to toolbar buttons for improved screen reader support PD-2455 ([a95c8eb](https://github.com/pie-framework/pie-lib/commit/a95c8eb91d9826831d66ba555b80ac3505cd95fc))
+* **editable-html:** enhance keyboard navigation and accessibility for editor and toolbar, Make the editor and toolbar fully navigable using the keyboard, Convert toolbar items to buttons for better accessibility, Ensure toolbar buttons are actionable with keyboard interactions, Add aria-labels to toolbar buttons for improved screen reader support PD-2455 ([43b0677](https://github.com/pie-framework/pie-lib/commit/43b0677d4b97bcc1585d694b9e576ad390de4d72))
+* **editable-html:** WIP enhance keyboard accessibility for toolbar and buttons PD-2455 ([975e2d6](https://github.com/pie-framework/pie-lib/commit/975e2d67410896137ef9fc5792c4c2de4983a3ce))
+* (graphing) View, points, edges, and arrows should all be black PD-3733 ([783d1fb](https://github.com/pie-framework/pie-lib/commit/783d1fbf43c1ecb26ec9623a609dad8cccb0a9f9))
+
+
+
+
+
+## [1.20.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.20.0...@pie-lib/pie-toolbox@1.20.1) (2024-06-03)
+
+
+### Bug Fixes
+
+* **feedback:** create new functions without using promise PD-1273 ([450527d](https://github.com/pie-framework/pie-lib/commit/450527d50c2e35404cf794ac8024204d056ef2b6))
+* made sure a table has a node before and after it [PD-3788] so user can focus on those ([a869a47](https://github.com/pie-framework/pie-lib/commit/a869a473f05b4ff1072a840677a2e2dad456c577))
+
+
+
+
+
+# [1.20.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.19.1...@pie-lib/pie-toolbox@1.20.0) (2024-05-27)
+
+
+### Features
+
+* **graphing:** label's behaviour like other tools PD-3736 ([2d3fb4e](https://github.com/pie-framework/pie-lib/commit/2d3fb4ec8900b32976312bc6e7716babb34be66d))
+* **graphing:** limit labeling the points of othe tools tha  point PD-3736 ([8bc713b](https://github.com/pie-framework/pie-lib/commit/8bc713b6d9848588eb86b4f0173a413c42c396b9))
+* **graphing:** write tests in tools for new case PD-3736 ([88dd39d](https://github.com/pie-framework/pie-lib/commit/88dd39dcbb0901205345b560f482999890ab16ce))
+* **math-input:** Enhance announcement logic PD-2488 ([6cd0c7b](https://github.com/pie-framework/pie-lib/commit/6cd0c7b8f4f097d1376fd92d89952b36d8c43a98))
+* **math-input:** Replace direct DOM manipulation with React.createRef for better lifecycle management and test fixes PD-2488 ([9059a91](https://github.com/pie-framework/pie-lib/commit/9059a916353badd1f85aa2952f58acc80d5db5d8))
+* **math-input:** WIP Implement custom event-based announcements for accessibility PD-2488 ([d8c8c36](https://github.com/pie-framework/pie-lib/commit/d8c8c36f343823eb247df54e43fb6f351dc9808d))
+* (graphing) Change the shade of gray used for background objects PD-3734 ([1a43f3b](https://github.com/pie-framework/pie-lib/commit/1a43f3b60efa6bd8694c4972e25b717d27e28604))
+* (graphing) Update snapshot tests PD-3734 ([9179add](https://github.com/pie-framework/pie-lib/commit/9179adda66bd6163d77195afd5d3c9510e35fdc2))
+
+
+
+
+
+## [1.19.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.19.0...@pie-lib/pie-toolbox@1.19.1) (2024-05-27)
+
+
+### Bug Fixes
+
+* made sure deletion works properly in table editing [PD-2126] ([d2e24c1](https://github.com/pie-framework/pie-lib/commit/d2e24c1f902d3ca62842e22cf2929e16e62adb5b))
+* **math-input:** fixed wrong math editor for grade 1-2 PD-3740 ([948c00f](https://github.com/pie-framework/pie-lib/commit/948c00fd81dcf3f223a58001232dbf882b7ee57d))
+
+
+
+
+
+# [1.19.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.18.0...@pie-lib/pie-toolbox@1.19.0) (2024-05-24)
+
+
+### Features
+
+* insert customizable mask wip PD-632 ([6bd6308](https://github.com/pie-framework/pie-lib/commit/6bd6308915a37aa650e776a388ffd786230c9587))
+
+
+
+
+
+# [1.18.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.17.5...@pie-lib/pie-toolbox@1.18.0) (2024-05-21)
+
+
+### Features
+
+* insert new Response Area Type: math-templated PD-632 ([26ed371](https://github.com/pie-framework/pie-lib/commit/26ed371719f1122d8ac1900a9811b78c8e2503a4))
+
+
+
+
+
+## [1.17.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.17.4...@pie-lib/pie-toolbox@1.17.5) (2024-05-14)
+
+
+### Bug Fixes
+
+* **correct-answer-toggle:** enchance with touch event the expander PD-3640 ([960ece2](https://github.com/pie-framework/pie-lib/commit/960ece24b9df8a0b0640558e82e7aa6c1be7735e))
+
+
+
+
+
 ## [1.17.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.17.3...@pie-lib/pie-toolbox@1.17.4) (2024-05-13)
 
 

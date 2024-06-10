@@ -203,6 +203,18 @@ describe('RawBaseComponent', () => {
       expect(onChangeProps).toHaveBeenCalledWith([xyLabel(0, 0, 0, ''), xy(2, 2, 1), xy(0, 2, 2)]);
     });
 
+    it('adds "label" property to a point when limit labeling', () => {
+      const onChangeProps = jest.fn();
+      const w = wrapperWithLabels({
+        labelModeEnabled: true,
+        onChangeProps,
+        limitLabeling: true,
+      });
+
+      w.instance().clickPoint(xy(0, 0, 0), 0, {});
+      expect(onChangeProps).toHaveBeenCalledTimes(0);
+    });
+
     it('if point already has label, keeps that value', () => {
       const onChangeProps = jest.fn();
       const w = wrapperWithLabels({ labelModeEnabled: true, onChangeProps });

@@ -3,6 +3,73 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.3.57](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.3.56...@pie-lib/demo@7.3.57) (2024-06-05)
+
+
+### Bug Fixes
+
+* math-templated: needs Response Areas button when cursor is inside a table PD-3811 ([f87d83f](https://github.com/pie-framework/pie-lib/commit/f87d83f153ec4fdf94f007c2454b1491d0dd8560))
+
+
+
+
+
+## [7.3.56](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.3.55...@pie-lib/demo@7.3.56) (2024-06-03)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [7.3.55](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.3.54...@pie-lib/demo@7.3.55) (2024-06-03)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [7.3.54](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.3.53...@pie-lib/demo@7.3.54) (2024-05-27)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [7.3.53](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.3.52...@pie-lib/demo@7.3.53) (2024-05-27)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [7.3.52](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.3.51...@pie-lib/demo@7.3.52) (2024-05-24)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [7.3.51](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.3.50...@pie-lib/demo@7.3.51) (2024-05-21)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+## [7.3.50](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.3.49...@pie-lib/demo@7.3.50) (2024-05-14)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
 ## [7.3.49](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.3.48...@pie-lib/demo@7.3.49) (2024-05-13)
 
 **Note:** Version bump only for package @pie-lib/demo

@@ -153,12 +153,15 @@ export class Editor extends React.Component {
       pendingImages: [],
       isHtmlMode: false,
       isEditedInHtmlMode: false,
+      focusToolbar: false,
       dialog: {
         open: false,
       },
     };
 
     this.toggleHtmlMode = this.toggleHtmlMode.bind(this);
+    this.handleToolbarFocus = this.handleToolbarFocus.bind(this);
+    this.handleToolbarBlur = this.handleToolbarBlur.bind(this);
 
     this.onResize = () => {
       if (!this.state.isHtmlMode) {
@@ -167,6 +170,26 @@ export class Editor extends React.Component {
     };
 
     this.handlePlugins(this.props);
+  }
+
+  handleToolbarFocus() {
+    this.setState({ focusToolbar: true });
+  }
+
+  handleToolbarBlur() {
+    setTimeout(() => {
+      if (!this.toolbarContainsFocus()) {
+        this.setState({ focusToolbar: false });
+      }
+    }, 10);
+  }
+
+  toolbarContainsFocus() {
+    if (!this.toolbarRef) return false;
+    const toolbarElement = this.toolbarRef;
+    const activeElement = document.activeElement;
+
+    return toolbarElement && toolbarElement.contains(activeElement);
   }
 
   handleDialog = (open, extraDialogProps = {}, callback) => {
@@ -297,7 +320,7 @@ export class Editor extends React.Component {
           const { nonEmpty } = props;
 
           log('[onDone]');
-          this.setState({ toolbarInFocus: false, focusedNode: null });
+          this.setState({ toolbarInFocus: false, focusedNode: null, focusToolbar: false });
           this.editor.blur();
 
           if (nonEmpty && this.state.value.startText?.text?.length === 0) {
@@ -569,9 +592,16 @@ export class Editor extends React.Component {
 
   onBlur = (event) => {
     log('[onBlur]');
-    const target = event.relatedTarget;
+    const relatedTarget = event.relatedTarget;
+    const toolbarElement = this.toolbarRef && relatedTarget?.closest(`[class*="${this.toolbarRef.className}"]`);
 
-    const node = target ? findNode(target, this.state.value) : null;
+    if (toolbarElement) {
+      this.setState({
+        focusToolbar: true,
+      });
+    }
+
+    const node = relatedTarget ? findNode(relatedTarget, this.state.value) : null;
 
     log('[onBlur] node: ', node);
 
@@ -609,6 +639,7 @@ export class Editor extends React.Component {
     }, 50);
   };
 
+
   /*
    * Needs to be wrapped otherwise it causes issues because of race conditions
    * Known issue for slatejs. See: https://github.com/ianstormtaylor/slate/issues/2097
@@ -616,7 +647,7 @@ export class Editor extends React.Component {
    *
    * Note: The use of promises has been causing issues with MathQuill
    * */
-  onFocus = () =>
+  onFocus = (event, change) =>
     new Promise((resolve) => {
       const editorDOM = document.querySelector(`[data-key="${this.state.value.document.key}"]`);
 
@@ -651,6 +682,9 @@ export class Editor extends React.Component {
 
       this.stashValue();
       this.props.onFocus();
+
+      // Added for accessibility: Ensures the editor gains focus when tabbed to for improved keyboard navigation
+      change?.focus();
 
       resolve();
     });
@@ -958,6 +992,9 @@ export class Editor extends React.Component {
             }
           }}
           value={value}
+          focusToolbar={this.state.focusToolbar}
+          onToolbarFocus={this.handleToolbarFocus}
+          onToolbarBlur={this.handleToolbarBlur}
           focus={this.focus}
           onKeyDown={onKeyDown}
           onChange={this.onChange}

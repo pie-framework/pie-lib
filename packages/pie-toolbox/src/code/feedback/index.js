@@ -59,3 +59,35 @@ export const getFeedback = (feedback, fallback) =>
     const out = feedback[feedback.type] || fallback;
     resolve(out);
   });
+
+// TODO: should replace getFeedbackForCorrectness
+/**
+ * Get feedback for correctness
+ * @param {'correct'|'incorrect'|'partial'} correctness
+ * @param {Feedback} feedback
+ */
+export const getActualFeedbackForCorrectness = (correctness, feedback) => {
+  feedback = { ...defaults, ...feedback };
+
+  // normalize correctness
+  correctness = correctness === 'partially-correct' ? 'partial' : correctness;
+
+  const defaultFeedback = defaults[correctness] || {};
+  const fb = feedback[correctness] || defaultFeedback;
+
+  return getActualFeedback(fb, defaultFeedback[fb.type || 'default']);
+};
+
+// TODO: should replace getFeedback
+/**
+ * Get the feedback from a {FeedbackConfig}
+ * @param {FeedbackConfig} feedback
+ * @param {string} fallback
+ */
+export const getActualFeedback = (feedback, fallback) => {
+  if (!feedback || feedback.type === 'none') {
+    return undefined;
+  }
+
+  return feedback[feedback.type] || fallback;
+};

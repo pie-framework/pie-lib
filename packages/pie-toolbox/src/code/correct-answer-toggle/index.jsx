@@ -49,6 +49,10 @@ export class CorrectAnswerToggle extends React.Component {
   onClick() {
     this.props.onToggle(!this.props.toggled);
   }
+  onTouch(event) {
+    event.preventDefault(); // Prevents the default action (click event)
+    this.props.onToggle(!this.props.toggled);
+  }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     this.setState({
@@ -70,7 +74,7 @@ export class CorrectAnswerToggle extends React.Component {
     return (
       <div className={classNames(classes.root, className)}>
         <Expander show={this.state.show} className={classes.expander}>
-          <div className={classes.content} onClick={this.onClick.bind(this)}>
+          <div className={classes.content} onClick={this.onClick.bind(this)} onTouchEnd={this.onTouch.bind(this)}>
             <div className={classes.iconHolder}>
               <CSSTransition timeout={400} in={toggled} exit={!toggled} classNames={classes}>
                 <CorrectResponse open={toggled} key="correct-open" className={classes.icon} />

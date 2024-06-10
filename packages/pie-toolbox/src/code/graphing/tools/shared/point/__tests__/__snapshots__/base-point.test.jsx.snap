@@ -5,10 +5,11 @@ exports[`BasePoint snapshot renders 1`] = `
   className="className"
   classes={
     Object {
-      "correct": "RawBp-correct-3",
+      "correct": "RawBp-correct-4",
       "disabled": "RawBp-disabled-2",
-      "incorrect": "RawBp-incorrect-4",
-      "missing": "RawBp-missing-5",
+      "disabledSecondary": "RawBp-disabledSecondary-3",
+      "incorrect": "RawBp-incorrect-5",
+      "missing": "RawBp-missing-6",
       "point": "RawBp-point-1",
     }
   }

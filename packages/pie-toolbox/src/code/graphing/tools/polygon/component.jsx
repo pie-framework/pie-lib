@@ -83,6 +83,7 @@ export class RawBaseComponent extends React.Component {
     middle: PropTypes.object,
     labelNode: PropTypes.object,
     labelModeEnabled: PropTypes.bool,
+    limitLabeling: PropTypes.bool,
     onChangeLabelProps: PropTypes.func,
     onChangeProps: PropTypes.func,
   };
@@ -170,13 +171,15 @@ export class RawBaseComponent extends React.Component {
       onClick,
       isToolActive,
       labelModeEnabled,
+      limitLabeling,
       onChangeProps,
       onChangeLabelProps,
       points,
     } = this.props;
 
     if (labelModeEnabled) {
-      if (disabled) {
+      // limit labeling the points of the polygon
+      if (disabled || limitLabeling) {
         return;
       }
 
@@ -364,7 +367,16 @@ export default class Component extends React.Component {
   };
 
   render() {
-    const { coordinatesOnHover, mark, graphProps, onClick, isToolActive, labelNode, labelModeEnabled } = this.props;
+    const {
+      coordinatesOnHover,
+      mark,
+      graphProps,
+      onClick,
+      isToolActive,
+      labelNode,
+      labelModeEnabled,
+      limitLabeling,
+    } = this.props;
     const { mark: stateMark } = this.state;
 
     return (
@@ -382,6 +394,7 @@ export default class Component extends React.Component {
         isToolActive={isToolActive}
         labelNode={labelNode}
         labelModeEnabled={labelModeEnabled}
+        limitLabeling={limitLabeling}
       />
     );
   }

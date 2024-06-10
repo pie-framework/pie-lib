@@ -61,12 +61,12 @@ export const Polygon = withStyles((theme) => ({
   closed: {
     fill: fade(theme.palette.primary.light, 0.2), // TODO hardcoded color
     strokeWidth: 2,
-    stroke: color.defaults.SECONDARY_LIGHT,
+    stroke: color.defaults.BLACK,
   },
   open: {
     fill: fade(theme.palette.primary.light, 0.0), // TODO hardcoded color
     strokeWidth: 2,
-    stroke: color.defaults.SECONDARY_LIGHT,
+    stroke: color.defaults.BLACK,
     pointerEvents: 'none',
   },
   disabled: {

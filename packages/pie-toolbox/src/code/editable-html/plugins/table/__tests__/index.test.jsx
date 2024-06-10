@@ -1,6 +1,6 @@
 import EditTable from 'slate-edit-table';
 import TablePlugin, { serialization, parseStyleString, reactAttributes } from '../index';
-import { Data, Block } from 'slate';
+import { Data, Block, PathUtils } from 'slate';
 import React from 'react';
 
 jest.mock('slate-edit-table', () => {
@@ -176,59 +176,46 @@ describe('table', () => {
         expect(returnValue).toEqual(undefined);
       });
 
-      it('should return a function if the last element in the document is a table', () => {
+      it('should return a function if a table does not have a node before or after it', () => {
         const tablePlugin = TablePlugin();
-        const nodes = {
-          size: 2,
-          findLastIndex: jest.fn().mockReturnValue(1),
-        };
-        const findDescendant = jest.fn().mockReturnValue(
-          Block.create({
+        const nodes = [
+          {
             object: 'block',
             type: 'table',
             key: '99',
             data: Data.create({
               newTable: true,
             }),
-          }),
-        );
-        const prevTextReturned = { key: '1', text: 'foobar' };
+          },
+        ];
+        const findDescendant = jest.fn((callback) => {
+          nodes.forEach((n) => callback(n));
+        });
         const change = {
-          withoutNormalization: jest.fn((callback) => {
-            callback();
-          }),
-          insertBlock: jest.fn(),
-          removeNodeByKey: jest.fn(),
+          insertNodeByPath: jest.fn(),
           value: {
             document: {
-              getPreviousText: jest.fn().mockReturnValue(prevTextReturned),
-              findDescendant: jest.fn(),
+              getPath: jest.fn().mockReturnValue(PathUtils.create([0, 0])),
             },
           },
         };
-        change.moveFocusTo = jest.fn().mockReturnValue(change);
-        change.moveAnchorTo = jest.fn().mockReturnValue(change);
 
         const returnValue = tablePlugin.normalizeNode({
           object: 'document',
-          nodes,
           findDescendant,
-          getParent: jest.fn().mockReturnValue(undefined),
+          getPath: jest.fn().mockReturnValue(PathUtils.create([0, 0])),
+          getPreviousNode: jest.fn().mockReturnValue(undefined),
+          getNextNode: jest.fn().mockReturnValue(undefined),
         });
 
         expect(returnValue).toEqual(expect.any(Function));
 
         returnValue(change);
 
-        expect(change.removeNodeByKey).toHaveBeenCalledWith('99');
-        expect(change.insertBlock).toHaveBeenCalledWith(expect.any(Object));
-
-        expect(change.withoutNormalization).toHaveBeenCalledWith(expect.any(Function));
-
-        expect(change.moveFocusTo).toHaveBeenCalledWith('1', prevTextReturned.text.length);
-        expect(change.moveAnchorTo).toHaveBeenCalledWith('1', prevTextReturned.text.length);
-
-        expect(change.insertBlock).toHaveBeenCalledWith(expect.objectContaining({ object: 'block', type: 'table' }));
+        expect(change.insertNodeByPath).toHaveBeenCalledWith([0], 0, {
+          object: 'block',
+          type: 'div',
+        });
       });
     });
   });

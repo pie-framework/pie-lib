@@ -42,6 +42,7 @@ export class RawBaseCircle extends React.Component {
     labelNode: PropTypes.object,
     labelModeEnabled: PropTypes.bool,
     changeMarkProps: PropTypes.func,
+    limitLabeling: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -129,14 +130,18 @@ export class RawBaseCircle extends React.Component {
   };
 
   clickPoint = (point, type, data) => {
-    const { changeMarkProps, disabled, from, to, labelModeEnabled, onClick } = this.props;
-
+    const { changeMarkProps, disabled, from, to, labelModeEnabled, limitLabeling, onClick } = this.props;
     if (!labelModeEnabled) {
       onClick(point || data);
       return;
     }
 
     if (disabled) {
+      return;
+    }
+
+    // limit labeling the points of the circle
+    if (limitLabeling) {
       return;
     }
 
@@ -271,7 +276,7 @@ export class RawBaseCircle extends React.Component {
 export const BaseCircle = withStyles(() => ({
   outerLine: {
     fill: 'rgb(0,0,0,0)', // TODO hardcoded color
-    stroke: color.defaults.PRIMARY_LIGHT,
+    stroke: color.defaults.BLACK,
     strokeWidth: 4,
     '&:hover': {
       strokeWidth: 6,
@@ -280,7 +285,7 @@ export const BaseCircle = withStyles(() => ({
   },
   root: {},
   bgCircleBuilding: {
-    stroke: color.defaults.SECONDARY_LIGHT,
+    stroke: color.defaults.BLACK,
     animation: 'opacityPulse 2s ease-out',
     animationIterationCount: 'infinite',
     opacity: 1,

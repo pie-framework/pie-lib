@@ -4,7 +4,7 @@ import cloneDeep from 'lodash/cloneDeep';
 import { BasePoint } from '../point';
 import { types, utils, gridDraggable, trig } from '../../../../plot';
 import PropTypes from 'prop-types';
-import { disabled, correct, incorrect, missing } from '../styles';
+import { disabled, disabledSecondary, correct, incorrect, missing } from '../styles';
 import ReactDOM from 'react-dom';
 import MarkLabel from '../../../mark-label';
 import isEmpty from 'lodash/isEmpty';
@@ -100,7 +100,7 @@ export const lineToolComponent = (Component) => {
     };
 
     render() {
-      const { graphProps, onClick, labelNode, labelModeEnabled, coordinatesOnHover } = this.props;
+      const { graphProps, onClick, labelNode, labelModeEnabled, coordinatesOnHover, limitLabeling } = this.props;
       const mark = this.state.mark ? this.state.mark : this.props.mark;
 
       const from = cloneDeep(mark.from);
@@ -137,6 +137,7 @@ export const lineToolComponent = (Component) => {
           onDragStop={this.stopDrag}
           labelNode={labelNode}
           labelModeEnabled={labelModeEnabled}
+          limitLabeling={limitLabeling}
         />
       );
     }
@@ -255,7 +256,7 @@ export const lineBase = (Comp, opts) => {
     };
 
     clickPoint = (point, type, data) => {
-      const { changeMarkProps, disabled, from, to, labelModeEnabled, onClick } = this.props;
+      const { changeMarkProps, disabled, from, to, labelModeEnabled, limitLabeling, onClick } = this.props;
 
       if (!labelModeEnabled) {
         onClick(point || data);
@@ -263,6 +264,11 @@ export const lineBase = (Comp, opts) => {
       }
 
       if (disabled) {
+        return;
+      }
+
+      // limit labeling the points of the line
+      if (limitLabeling) {
         return;
       }
 
@@ -392,7 +398,7 @@ export const lineBase = (Comp, opts) => {
 export const styles = {
   line: () => ({
     fill: 'transparent',
-    stroke: color.defaults.PRIMARY_LIGHT,
+    stroke: color.defaults.BLACK,
     strokeWidth: 3,
     transition: 'stroke 200ms ease-in, stroke-width 200ms ease-in',
     '&:hover': {
@@ -401,10 +407,14 @@ export const styles = {
     },
   }),
   arrow: () => ({
-    fill: color.defaults.SECONDARY,
+    fill: color.defaults.BLACK,
   }),
   disabledArrow: () => ({
-    ...disabled(),
+    ...disabledSecondary(),
+  }),
+  disabledSecondary: () => ({
+    ...disabledSecondary('stroke'),
+    strokeWidth: 2,
   }),
   disabled: () => ({
     ...disabled('stroke'),

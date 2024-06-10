@@ -81,7 +81,7 @@ export class RawBp extends React.Component {
           onClick={onClick}
         />
         <g
-          className={classNames(classes.point, disabled && classes.disabled, classes[correctness], className)}
+          className={classNames(classes.point, disabled && classes.disabledSecondary, classes[correctness], className)}
           onMouseEnter={() => this.setState({ showCoordinates: true })}
           onMouseLeave={() => this.setState({ showCoordinates: false })}
         >

@@ -1,16 +1,22 @@
 import React from 'react';
 import debug from 'debug';
-import injectSheet from 'react-jss';
+import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-const styles = () => ({
+const styles = (theme) => ({
   button: {
     color: 'grey',
     display: 'inline-flex',
     padding: '2px',
-    '& :hover': {
+    background: 'none',
+    border: 'none',
+    cursor: 'pointer',
+    '&:hover': {
       color: 'black',
+    },
+    '&:focus': {
+      outline: `2px solid ${theme.palette.grey[700]}`,
     },
   },
   active: {
@@ -48,22 +54,41 @@ export class RawButton extends React.Component {
     onClick(e);
   };
 
+  onKeyDown = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      log('[onKeyDown]');
+      e.preventDefault();
+      const { onClick } = this.props;
+      onClick(e);
+    }
+  };
+
   render() {
-    const { active, classes, children, disabled, extraStyles } = this.props;
+    const { active, classes, children, disabled, extraStyles, ariaLabel } = this.props;
+
     const names = classNames(classes.button, {
       [classes.active]: active,
       [classes.disabled]: disabled,
     });
 
     return (
-      <div style={extraStyles} className={names} onMouseDown={this.onClick}>
+      <button
+        style={extraStyles}
+        className={names}
+        onMouseDown={this.onClick}
+        onKeyDown={this.onKeyDown}
+        disabled={disabled}
+        aria-label={ariaLabel}
+        aria-pressed={active}
+        tabIndex={0}
+      >
         {children}
-      </div>
+      </button>
     );
   }
 }
 
-export const Button = injectSheet(styles())(RawButton);
+export const Button = withStyles(styles)(RawButton);
 
 export class RawMarkButton extends React.Component {
   static propTypes = {
@@ -83,15 +108,29 @@ export class RawMarkButton extends React.Component {
     this.props.onToggle(this.props.mark);
   };
 
+  onKeyDown = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      this.props.onToggle(this.props.mark);
+    }
+  };
+
   render() {
-    const { classes, children, active } = this.props;
+    const { classes, children, active, label } = this.props;
     const names = classNames(classes.button, active && classes.active);
     return (
-      <span className={names} onMouseDown={this.onToggle}>
+      <button
+        className={names}
+        onMouseDown={this.onToggle}
+        aria-pressed={active}
+        onKeyDown={this.onKeyDown}
+        aria-label={label}
+        tabIndex={0}
+      >
         {children}
-      </span>
+      </button>
     );
   }
 }
 
-export const MarkButton = injectSheet(styles())(RawMarkButton);
+export const MarkButton = withStyles(styles)(RawMarkButton);

@@ -12,6 +12,7 @@ const lineStyles = (theme) => ({
   enabledArrow: styles.arrow(theme),
   disabledArrow: styles.disabledArrow(theme),
   disabled: styles.disabled(theme),
+  disabledSecondary: styles.disabledSecondary(theme),
   correct: styles.correct(theme, 'stroke'),
   correctArrow: styles.correct(theme),
   incorrect: styles.incorrect(theme, 'stroke'),
@@ -42,7 +43,7 @@ export const ArrowedLine = (props) => {
         y1={scale.y(eFrom.y)}
         x2={scale.x(eTo.x)}
         y2={scale.y(eTo.y)}
-        className={classNames(classes.line, disabled && classes.disabled, classes[correctness], className)}
+        className={classNames(classes.line, disabled && classes.disabledSecondary, classes[correctness], className)}
         markerEnd={`url(#${props.markerId || markerId}-${suffix})`}
         markerStart={`url(#${props.markerId || markerId}-${suffix})`}
         {...rest}

@@ -4,24 +4,36 @@ exports[`renders correctly 1`] = `
 <div
   className="ImageToolbar-holder-1 holder"
 >
-  <span
-    className="RawMarkButton-button-0-2-1"
+  <button
+    aria-label="left"
+    aria-pressed={false}
+    className="RawMarkButton-button-4"
+    onKeyDown={[Function]}
     onMouseDown={[Function]}
+    tabIndex={0}
   >
     left
-  </span>
-  <span
-    className="RawMarkButton-button-0-2-1"
+  </button>
+  <button
+    aria-label="center"
+    aria-pressed={false}
+    className="RawMarkButton-button-4"
+    onKeyDown={[Function]}
     onMouseDown={[Function]}
+    tabIndex={0}
   >
     center
-  </span>
-  <span
-    className="RawMarkButton-button-0-2-1"
+  </button>
+  <button
+    aria-label="right"
+    aria-pressed={false}
+    className="RawMarkButton-button-4"
+    onKeyDown={[Function]}
     onMouseDown={[Function]}
+    tabIndex={0}
   >
     right
-  </span>
+  </button>
   <span
     className="ImageToolbar-disabled-2 ImageToolbar-altButton-3"
     onMouseDown={[Function]}

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { types } from '../../../../plot';
 import classNames from 'classnames';
-import { disabled, correct, incorrect, missing } from '../styles';
+import { disabled, correct, incorrect, missing, disabledSecondary } from '../styles';
 import * as vx from '@vx/shape';
 import { color } from '../../../../render-ui';
 
@@ -34,7 +34,12 @@ export class RawLinePath extends React.Component {
       <React.Fragment>
         <vx.LinePath
           data={data}
-          className={classNames(classes.drawLine, disabled && classes.disabled, classes[correctness], className)}
+          className={classNames(
+            classes.drawLine,
+            disabled && classes.disabledSecondary,
+            classes[correctness],
+            className,
+          )}
           {...rest}
         />
         <vx.LinePath
@@ -42,7 +47,7 @@ export class RawLinePath extends React.Component {
           className={classNames(
             classes.line,
             isDragging && classes.dragging,
-            disabled && classes.disabled,
+            disabled && classes.disabledSecondary,
             classes[correctness],
             className,
           )}
@@ -55,14 +60,14 @@ export class RawLinePath extends React.Component {
 
 const dragging = () => ({
   strokeWidth: 7,
-  stroke: color.defaults.SECONDARY_LIGHT,
+  stroke: color.defaults.BLACK,
 });
 
 export const LinePath = withStyles((theme) => ({
   drawLine: {
     fill: 'none',
     strokeWidth: 2,
-    stroke: color.secondaryLight(),
+    stroke: color.black(),
   },
   line: {
     strokeWidth: 6,
@@ -74,6 +79,10 @@ export const LinePath = withStyles((theme) => ({
   dragging: dragging(theme),
   disabled: {
     ...disabled('stroke'),
+    strokeWidth: 2,
+  },
+  disabledSecondary: {
+    ...disabledSecondary('stroke'),
     strokeWidth: 2,
   },
   correct: {

@@ -90,8 +90,14 @@ export const buildPlugins = (activePlugins, customPlugins, opts) => {
     opts.responseArea && opts.responseArea.type && RespAreaPlugin(opts.responseArea, compact([mathPlugin]));
   const languageCharactersPlugins = (opts?.languageCharacters || []).map((config) => CharactersPlugin(config));
 
+  const tablePlugins = [imagePlugin, mathPlugin, ...languageCharactersPlugins];
+
+  if (opts.responseArea && opts.responseArea.type === 'math-templated') {
+    tablePlugins.push(respAreaPlugin);
+  }
+
   const builtPlugins = compact([
-    addIf('table', TablePlugin(opts.table, compact([imagePlugin, mathPlugin, ...languageCharactersPlugins]))),
+    addIf('table', TablePlugin(opts.table, compact(tablePlugins))),
     addIf('bold', MarkHotkey({ key: 'b', type: 'bold', icon: <Bold />, tag: 'strong' })),
     // addIf('code', MarkHotkey({ key: '`', type: 'code', icon: <Code /> })),
     addIf('italic', MarkHotkey({ key: 'i', type: 'italic', icon: <Italic />, tag: 'em' })),

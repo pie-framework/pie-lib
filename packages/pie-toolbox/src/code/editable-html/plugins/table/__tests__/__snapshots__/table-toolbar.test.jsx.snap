@@ -5,37 +5,37 @@ exports[`table-toolbar snapshot renders 1`] = `
   className="table-toolbar"
 >
   <div>
-    <Jss(RawButton)
+    <WithStyles(RawButton)
       onClick={[MockFunction]}
     >
       <WithStyles(Component) />
-    </Jss(RawButton)>
-    <Jss(RawButton)
+    </WithStyles(RawButton)>
+    <WithStyles(RawButton)
       onClick={[MockFunction]}
     >
       <WithStyles(Component) />
-    </Jss(RawButton)>
-    <Jss(RawButton)
+    </WithStyles(RawButton)>
+    <WithStyles(RawButton)
       onClick={[MockFunction]}
     >
       <WithStyles(Component) />
-    </Jss(RawButton)>
-    <Jss(RawButton)
+    </WithStyles(RawButton)>
+    <WithStyles(RawButton)
       onClick={[MockFunction]}
     >
       <WithStyles(Component) />
-    </Jss(RawButton)>
-    <Jss(RawButton)
+    </WithStyles(RawButton)>
+    <WithStyles(RawButton)
       onClick={[MockFunction]}
     >
       <WithStyles(Component) />
-    </Jss(RawButton)>
-    <Jss(RawButton)
+    </WithStyles(RawButton)>
+    <WithStyles(RawButton)
       active={true}
       onClick={[MockFunction]}
     >
       <pure(BorderAllIcon) />
-    </Jss(RawButton)>
+    </WithStyles(RawButton)>
   </div>
   <WithStyles(RawDoneButton)
     onClick={[Function]}
