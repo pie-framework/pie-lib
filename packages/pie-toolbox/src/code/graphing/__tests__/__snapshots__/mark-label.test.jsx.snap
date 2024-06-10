@@ -14,10 +14,9 @@ exports[`MarkLabel snapshot renders 1`] = `
     }
   }
 >
-  <AutosizeInput
-    injectStyles={true}
+  <LabelInput
+    _ref={[Function]}
     inputClassName=""
-    minWidth={1}
     onChange={[Function]}
   />
 </div>
@@ -37,10 +36,9 @@ exports[`MarkLabel snapshot renders 2`] = `
     }
   }
 >
-  <AutosizeInput
-    injectStyles={true}
+  <LabelInput
+    _ref={[Function]}
     inputClassName=""
-    minWidth={1}
     onChange={[Function]}
   />
 </div>
