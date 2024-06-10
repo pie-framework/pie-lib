@@ -24,6 +24,7 @@ export const defaults = {
   BACKGROUND: 'rgba(255,255,255,0)',
   SECONDARY_BACKGROUND: 'rgba(241,241,241,1)',
   BLACK: '#000000',
+  WHITE: '#ffffff',
 };
 
 Object.freeze(defaults);
@@ -60,3 +61,4 @@ export const secondaryDark = () => pv('secondary-dark', defaults.SECONDARY_DARK)
 export const secondaryText = () => pv('secondary-text', 'text', defaults.TEXT);
 export const background = () => pv('background', defaults.BACKGROUND);
 export const secondaryBackground = () => pv('secondary-background', defaults.SECONDARY_BACKGROUND);
+export const white = () => pv('white', defaults.WHITE);

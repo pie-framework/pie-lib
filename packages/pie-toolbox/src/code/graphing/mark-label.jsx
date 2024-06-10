@@ -7,23 +7,22 @@ import { useDebounce } from './use-debounce';
 import { types } from '../plot';
 import { color } from '../render-ui';
 import SvgIcon from './label-svg-icon';
+
 const inputStyles = (theme) => ({
   float: 'right',
   padding: theme.spacing.unit * 0.5,
   borderRadius: '4px',
   fontSize: '10px',
-  backgroundColor: 'white',
+  backgroundColor: color.defaults.WHITE,
 });
 
 const styles = (theme) => ({
   inputStudent: {
-    float: 'right',
+    ...inputStyles(theme),
     padding: '0',
-    borderRadius: '4px',
-    fontSize: '10px',
-    backgroundColor: 'white',
     border: 'none',
     color: 'inherit',
+    fontWeight:'bold'
   },
   input: {
     float: 'right',
@@ -33,14 +32,14 @@ const styles = (theme) => ({
     border: `solid 1px ${color.defaults.SECONDARY}`,
     borderRadius: '3px',
     color: color.defaults.PRIMARY_DARK,
+    backgroundColor: color.defaults.WHITE,
   },
   disabled: {
     border: `solid 1px ${color.defaults.PRIMARY_DARK}`,
-    backgroundColor: 'white',
+    backgroundColor: color.defaults.WHITE,
   },
   disabledMark: {
     border: `solid 1px ${color.disabled()}`,
-    backgroundColor: 'white',
     color: color.disabled(),
   },
   inputCorrect: {
@@ -67,8 +66,7 @@ const styles = (theme) => ({
   },
 });
 
-export const position = (graphProps, mark, rect) => {
-  rect = rect || { width: 0, height: 0 };
+export const position = (graphProps, mark, rect = { width: 0, height: 0 }) => {
   const { scale, domain, range } = graphProps;
   const shift = 5;
 
@@ -81,32 +79,36 @@ export const position = (graphProps, mark, rect) => {
   return `${v}-${h}`;
 };
 
-export const coordinates = (graphProps, mark, rect, position) => {
+export const coordinates = (graphProps, mark, rect = { width: 0, height: 0 }, position) => {
   const { scale } = graphProps;
   const shift = 5;
-  rect = rect || { width: 0, height: 0 };
 
   switch (position) {
-    case 'bottom-right': {
+    case 'bottom-right':
       return { left: scale.x(mark.x) + shift, top: scale.y(mark.y) + shift };
-    }
-    case 'bottom-left': {
+    case 'bottom-left':
       return { left: scale.x(mark.x) - shift - rect.width, top: scale.y(mark.y) + shift };
-    }
-    case 'top-left': {
-      return {
-        left: scale.x(mark.x) - shift - rect.width,
-        top: scale.y(mark.y) - shift - rect.height,
-      };
-    }
-    case 'top-right': {
-      return {
-        left: scale.x(mark.x) + shift,
-        top: scale.y(mark.y) - shift - rect.height,
-      };
-    }
+    case 'top-left':
+      return { left: scale.x(mark.x) - shift - rect.width, top: scale.y(mark.y) - shift - rect.height };
+    case 'top-right':
+      return { left: scale.x(mark.x) + shift, top: scale.y(mark.y) - shift - rect.height };
+    default:
+      return {};
   }
 };
+
+const LabelInput = ({ _ref, externalInputRef, label, disabled, inputClassName, onChange }) => (
+    <AutosizeInput
+        inputRef={(r) => {
+          _ref(r);
+          externalInputRef(r);
+        }}
+        disabled={disabled}
+        inputClassName={inputClassName}
+        value={label}
+        onChange={onChange}
+    />
+);
 
 export const MarkLabel = (props) => {
   const [input, setInput] = useState(null);
@@ -130,7 +132,7 @@ export const MarkLabel = (props) => {
     if (typeof debouncedLabel === 'string' && debouncedLabel !== mark.label) {
       props.onChange(debouncedLabel);
     }
-  }, [debouncedLabel]);
+  }, [debouncedLabel, mark.label, props]);
 
   const rect = input ? input.getBoundingClientRect() : { width: 0, height: 0 };
   const pos = position(graphProps, mark, rect);
@@ -152,97 +154,70 @@ export const MarkLabel = (props) => {
 
   const disabledInput = disabled || mark.disabled;
 
-  // Case 1: Correctness is correct and correctnessLabel exists
+  const renderInput = (inputClass, labelValue) => (
+      <LabelInput
+          _ref={_ref}
+          externalInputRef={externalInputRef}
+          label={labelValue}
+          disabled={disabledInput}
+          inputClassName={cn(inputClass)}
+          onChange={onChange}
+      />
+  );
+
   if (correctness === 'correct' && correctnesslabel === 'correct' && correctlabel) {
     return (
-      <div className={classes.inputCorrect} style={style}>
-        <SvgIcon type="correct" />
-        <AutosizeInput
-          inputRef={(r) => {
-            _ref(r);
-            externalInputRef(r);
-          }}
-          disabled={disabledInput}
-          inputClassName={cn(classes.inputStudent)}
-          value={correctlabel}
-          onChange={onChange}
-        />
-      </div>
+        <div className={classes.inputCorrect} style={style}>
+          <SvgIcon type="correct" />
+          {renderInput(classes.inputStudent, correctlabel)}
+        </div>
     );
   }
 
-  // Case 2: Correctness is correct and correctnessLabel is missing
   if (correctness === 'correct' && correctnesslabel === 'incorrect') {
     return (
-      <>
-        <div className={classes.inputIncorrect} style={style}>
-          <SvgIcon type="incorrect" />
-          {label === '' ? (
-            <SvgIcon type="empty" style={{ marginLeft: '3px' }} />
-          ) : (
-            <AutosizeInput
-              inputRef={(r) => {
-                _ref(r);
-                externalInputRef(r);
-              }}
-              disabled={disabledInput}
-              inputClassName={cn(classes.inputStudent)}
-              value={label}
-              onChange={onChange}
-            />
-          )}
-        </div>
-        <div className={classes.inputMissing} style={secondLabelStyle}>
-          <AutosizeInput
-            disabled={disabledInput}
-            inputClassName={cn(classes.inputStudent)}
-            value={correctlabel}
-            onChange={onChange}
-          />
-        </div>
-      </>
+        <>
+          <div className={classes.inputIncorrect} style={style}>
+            <SvgIcon type="incorrect" />
+            {label === '' ? (
+                <SvgIcon type="empty" style={{ marginLeft: '3px' }} />
+            ) : (
+                renderInput(classes.inputStudent, label)
+            )}
+          </div>
+          <div className={classes.inputMissing} style={secondLabelStyle}>
+            {renderInput(classes.inputStudent, correctlabel)}
+          </div>
+        </>
     );
   }
 
-  // Case 3: Correctness is missing
   if (correctness === 'missing') {
     return (
-      <div className={classes.inputMissing} style={style}>
-        <AutosizeInput
-          disabled={disabledInput}
-          inputClassName={cn(classes.inputStudent)}
-          value={label}
-          onChange={onChange}
-        />
-      </div>
+        <div className={classes.inputMissing} style={style}>
+          {renderInput(classes.inputStudent, label)}
+        </div>
     );
   }
 
-  // Case 4: Correctness is incorrect or any other case
   if (correctness === 'incorrect') {
     return (
-      <div className={classes.incorrect} style={style}>
-        <AutosizeInput
-          disabled={disabledInput}
-          inputClassName={cn(classes.inputStudent)}
-          value={label}
-          onChange={onChange}
-        />
-      </div>
+        <div className={classes.incorrect} style={style}>
+          {renderInput(classes.inputStudent, label)}
+        </div>
     );
   }
+
   return (
-    <div style={style}>
-      <AutosizeInput
-        disabled={disabledInput}
-        inputClassName={cn(classes.input, {
-          [classes.disabled]: disabled,
-          [classes.disabledMark]: mark.disabled,
-        })}
-        value={label}
-        onChange={onChange}
-      />
-    </div>
+      <div style={style}>
+        {renderInput(
+            cn(classes.input, {
+              [classes.disabled]: disabled,
+              [classes.disabledMark]: mark.disabled,
+            }),
+            label
+        )}
+      </div>
   );
 };
 

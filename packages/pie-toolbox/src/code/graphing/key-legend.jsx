@@ -2,11 +2,36 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
+import { color } from '../render-ui';
 
-const KeyLegend = (props) => {
+const styles = theme => ({
+    container: {
+        backgroundColor: color.defaults.WHITE,
+        padding: '20px',
+        width: '355px',
+        boxShadow: '0px 1px 5px 0px #9297A6'
+    },
+    row: {
+        display: 'flex',
+        alignItems: 'center',
+        padding: '10px',
+    },
+    title: {
+        fontSize: theme.typography.h6.fontSize,
+        marginLeft: '30px',
+        fontWeight: '700',
+        marginBottom: '10px',
+    },
+    text: {
+        textAlign: 'right',
+        marginRight: '10px',
+        width: '175px',
+        fontSize:'15px'
+    },
+});
 
-        const { className, classes, isLabelAvailable } = props;
-        const names = classNames(classes.formControl, className);
+const KeyLegend = ({ className, classes, isLabelAvailable }) => {
+    const names = classNames(classes.formControl, className);
 
         return (
             <div className={classes.container}>
@@ -25,7 +50,7 @@ const KeyLegend = (props) => {
                     <svg width="75" height="15" viewBox="0 0 75 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="7.5" cy="7.5" r="7.5" fill="#6A78A1"/>
                         <path d="M3.125 5.76562V3.34375C3.125 3.08984 3.32031 2.875 3.59375 2.875H6.01562C6.13281 2.875 6.25 2.99219 6.25 3.10938V3.89062C6.25 4.02734 6.13281 4.125 6.01562 4.125H4.375V5.76562C4.375 5.90234 4.25781 6 4.14062 6H3.35938C3.22266 6 3.125 5.90234 3.125 5.76562ZM8.75 3.10938C8.75 2.99219 8.84766 2.875 8.98438 2.875H11.4062C11.6602 2.875 11.875 3.08984 11.875 3.34375V5.76562C11.875 5.90234 11.7578 6 11.6406 6H10.8594C10.7227 6 10.625 5.90234 10.625 5.76562V4.125H8.98438C8.84766 4.125 8.75 4.02734 8.75 3.89062V3.10938ZM11.6406 8.5C11.7578 8.5 11.875 8.61719 11.875 8.73438V11.1562C11.875 11.4297 11.6602 11.625 11.4062 11.625H8.98438C8.84766 11.625 8.75 11.5273 8.75 11.3906V10.6094C8.75 10.4922 8.84766 10.375 8.98438 10.375H10.625V8.73438C10.625 8.61719 10.7227 8.5 10.8594 8.5H11.6406ZM6.25 11.3906C6.25 11.5273 6.13281 11.625 6.01562 11.625H3.59375C3.32031 11.625 3.125 11.4297 3.125 11.1562V8.73438C3.125 8.61719 3.22266 8.5 3.35938 8.5H4.14062C4.25781 8.5 4.375 8.61719 4.375 8.73438V10.375H6.01562C6.13281 10.375 6.25 10.4922 6.25 10.6094V11.3906Z" fill="white"/>
-                        <path d="M75 7L15 7" stroke="#6A78A1" stroke-dasharray="4 2"/>
+                        <path d="M75 7L15 7" stroke="#6A78A1" strokeDasharray="4 2"/>
                     </svg>
                 </div>
                 {isLabelAvailable && (
@@ -43,7 +68,7 @@ const KeyLegend = (props) => {
                     <svg width="77" height="16" viewBox="0 0 77 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="8" cy="8" r="8" fill="#BF0D00"/>
                         <path d="M9.04688 8.5L11.3906 10.8672C11.6953 11.1484 11.6953 11.6172 11.3906 11.8984L10.875 12.4141C10.5938 12.7188 10.125 12.7188 9.84375 12.4141L7.5 10.0703L5.13281 12.4141C4.85156 12.7188 4.38281 12.7188 4.10156 12.4141L3.58594 11.8984C3.28125 11.6172 3.28125 11.1484 3.58594 10.8672L5.92969 8.5L3.58594 6.15625C3.28125 5.875 3.28125 5.40625 3.58594 5.125L4.10156 4.60938C4.38281 4.30469 4.85156 4.30469 5.13281 4.60938L7.5 6.95312L9.84375 4.60938C10.125 4.30469 10.5938 4.30469 10.875 4.60938L11.3906 5.125C11.6953 5.40625 11.6953 5.875 11.3906 6.15625L9.04688 8.5Z" fill="white"/>
-                        <path d="M77 8L15 8" stroke="#BF0D00" stroke-width="3"/>
+                        <path d="M77 8L15 8" stroke="#BF0D00" strokeWidth="3"/>
                     </svg>
                 </div>
                 {isLabelAvailable && (
@@ -60,7 +85,7 @@ const KeyLegend = (props) => {
                 <div className={classes.row}>
                     <div className={classes.text}> Student Correct </div>
                     <svg width="76" height="16" viewBox="0 0 76 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M76 8L14 8" stroke="#0B7D38" stroke-width="3"/>
+                        <path d="M76 8L14 8" stroke="#0B7D38" strokeWidth="3"/>
                         <circle cx="8" cy="8" r="8" fill="#0B7D38"/>
                         <path d="M12.1953 4.46875C12.3125 4.35156 12.5 4.35156 12.5938 4.46875L13.2734 5.125C13.3672 5.24219 13.3672 5.42969 13.2734 5.52344L6.24219 12.5547C6.125 12.6719 5.96094 12.6719 5.84375 12.5547L2.70312 9.4375C2.60938 9.32031 2.60938 9.13281 2.70312 9.03906L3.38281 8.35938C3.47656 8.26562 3.66406 8.26562 3.78125 8.35938L6.03125 10.6328L12.1953 4.46875Z" fill="white"/>
                     </svg>
@@ -80,33 +105,11 @@ const KeyLegend = (props) => {
 
         );
 }
+
 KeyLegend.propTypes = {
     className: PropTypes.string,
     classes: PropTypes.object.isRequired,
     isLabelAvailable: PropTypes.bool
 };
-export default withStyles((theme) => ({
-    container: {
-        backgroundColor: 'white',
-        padding: '20px',
-        width: '355px',
-        boxShadow: '0px 1px 5px 0px #9297A6'
-    },
-    row: {
-        display: 'flex',
-        alignItems: 'center',
-        padding: '10px',
-    },
-    text: {
-        textAlign: 'right',
-        marginRight: '10px',
-        width: '175px',
-        fontSize:'15px'
-    },
-    title: {
-        marginLeft: '30px',
-        fontWeight: '700',
-        marginBottom: '10px',
-        fontSize: '16px'
-    }
-}))(KeyLegend);
+
+export default withStyles(styles)(KeyLegend);

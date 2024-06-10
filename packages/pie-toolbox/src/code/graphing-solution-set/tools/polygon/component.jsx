@@ -224,7 +224,6 @@ export class RawBaseComponent extends React.Component {
     if (labelNode && middle && middle.hasOwnProperty('label')) {
       ReactDOM.createPortal(
         <MarkLabel
-          correctness={true}
           inputRef={(r) => (this.input[polygonLabelIndex] = r)}
           disabled={!labelModeEnabled}
           mark={middle}
