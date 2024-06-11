@@ -34,6 +34,7 @@ const defaultResponseAreaProps = {
   options: {},
   respAreaToolbar: () => {},
   onHandleAreaChange: () => {},
+  responsesToDisplay: () => {},
 };
 
 const defaultLanguageCharactersProps = [];
@@ -100,10 +101,18 @@ export class Editor extends React.Component {
     //   ),
     placeholder: PropTypes.string,
     responseAreaProps: PropTypes.shape({
-      type: PropTypes.oneOf(['explicit-constructed-response', 'inline-dropdown', 'drag-in-the-blank']),
+      type: PropTypes.oneOf([
+        'explicit-constructed-response',
+        'inline-dropdown',
+        'drag-in-the-blank',
+        'math-templated',
+      ]),
       options: PropTypes.object,
       respAreaToolbar: PropTypes.func,
       onHandleAreaChange: PropTypes.func,
+      maxResponseAreas: PropTypes.number,
+      error: PropTypes.any,
+      responsesToDisplay: PropTypes.any,
     }),
     languageCharactersProps: PropTypes.arrayOf(
       PropTypes.shape({
@@ -326,6 +335,7 @@ export class Editor extends React.Component {
         respAreaToolbar: normalizedResponseAreaProps.respAreaToolbar,
         onHandleAreaChange: normalizedResponseAreaProps.onHandleAreaChange,
         error: normalizedResponseAreaProps.error,
+        responsesToDisplay: normalizedResponseAreaProps.responsesToDisplay,
         onFocus: () => {
           log('[table:onFocus]...');
           this.onPluginFocus();

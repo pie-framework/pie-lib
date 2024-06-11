@@ -92,7 +92,11 @@ export default function ResponseAreaPlugin(opts) {
     name: 'response_area',
     toolbar,
     filterPlugins: (node, plugins) => {
-      if (node.type === 'explicit_constructed_response' || node.type === 'math_templated' || node.type === 'drag_in_the_blank') {
+      if (
+        node.type === 'explicit_constructed_response' ||
+        node.type === 'math_templated' ||
+        node.type === 'drag_in_the_blank'
+      ) {
         return [];
       }
 
@@ -133,10 +137,22 @@ export default function ResponseAreaPlugin(opts) {
           error = opts.error();
         }
 
+        if (opts.responsesToDisplay) {
+          const responsesToDisplay = opts.responsesToDisplay();
+
+          const answerToDisplay =
+            responsesToDisplay && responsesToDisplay[data.index] && responsesToDisplay[data.index].answer;
+
+          if (answerToDisplay) {
+            data.value = answerToDisplay;
+          }
+        }
+
         return (
           <MathTemplated
             attributes={attributes}
-            value={data.value || `R ${data.index}`}
+            keyToDisplay={`R ${data.index}`}
+            value={data.value || ''}
             error={error && error[data.index] && error[data.index][0]}
           />
         );
