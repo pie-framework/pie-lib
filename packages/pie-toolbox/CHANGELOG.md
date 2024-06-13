@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.21.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.21.2...@pie-lib/pie-toolbox@1.21.3) (2024-06-13)
+
+
+### Bug Fixes
+
+* made sure lists work properly and are merged if one after another [PD-3391] ([2dd55cd](https://github.com/pie-framework/pie-lib/commit/2dd55cd41e2f0d6cb7d69a2adfb30ae9d3a3f524))
+* upgrade mathml-to-latex version PD-3180 ([ee10da5](https://github.com/pie-framework/pie-lib/commit/ee10da5ba9ee6b1aea6cdaa22daab65e4e9c4b7f))
+
+
+
+
+
 ## [1.21.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.21.1...@pie-lib/pie-toolbox@1.21.2) (2024-06-13)
 
 
