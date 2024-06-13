@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.21.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.21.1...@pie-lib/pie-toolbox@1.21.2) (2024-06-13)
+
+
+### Bug Fixes
+
+* **editable-html:** eliminate custom onFocus and onBlur functions from CustomToolbar component, use them for accessibility (ref PD-2455) only in DefaultToolbar PD-3839 ([f1dc949](https://github.com/pie-framework/pie-lib/commit/f1dc9497f78c3001a799a51e37755a38ab487a14))
+
+
+
+
+
 ## [1.21.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.21.0...@pie-lib/pie-toolbox@1.21.1) (2024-06-05)
 
 
