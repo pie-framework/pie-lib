@@ -2638,10 +2638,10 @@
     mathjs "^7.0.1"
     numeric "^1.2.6"
 
-"@pie-framework/mathml-to-latex@1.4.0":
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/@pie-framework/mathml-to-latex/-/mathml-to-latex-1.4.0.tgz#224f89409f1586966abbac71a3e99f5fcafcf7b0"
-  integrity sha512-VOuCORBUa3CsHpvZGbSI+fMKhkjBCLXE0GWIYXinOnRy7xzPGmFBosRrPWhD2PF6E6I6NuytVWncnzlleAKmhQ==
+"@pie-framework/mathml-to-latex@1.4.1":
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/@pie-framework/mathml-to-latex/-/mathml-to-latex-1.4.1.tgz#dcaec19a2f9b69ae24dbc9884fa9e5afdd4ba4a0"
+  integrity sha512-mUaFBqIS6rLuW3q/Fb5FrK2jgXeV7H8gIzyz92zL+MnflTMa2wHlwOpu+xSI2L+ZNgrm+RUStcOO2x9aclPtlw==
   dependencies:
     "@xmldom/xmldom" "^0.8.10"
 
@@ -14475,10 +14475,10 @@ slate-dev-logger@^0.1.42, slate-dev-logger@^0.1.43:
   resolved "https://registry.yarnpkg.com/slate-dev-logger/-/slate-dev-logger-0.1.43.tgz#77f6ca7207fcbf453a5516f3aa8b19794d1d26dc"
   integrity sha512-GkcPMGzmPVm85AL+jaKnzhIA0UH9ktQDEIDM+FuQtz+TAPcpPCQiRAaZ6I2p2uD0Hq9bImhKSCtHIa0qRxiVGw==
 
-slate-edit-list@^0.11.3:
-  version "0.11.3"
-  resolved "https://registry.yarnpkg.com/slate-edit-list/-/slate-edit-list-0.11.3.tgz#d27ff2ff93a83bef49131a6a44b87a9558c9d44c"
-  integrity sha512-nqaiYYppezMmbsh+JN6vqZl2EexiUTJWwCzJVas8cv+WeRtRmuysn94LKF2VdLIxLmNAe/ZfliIkW9uC/NdO6w==
+slate-edit-list@^0.12.1:
+  version "0.12.1"
+  resolved "https://registry.yarnpkg.com/slate-edit-list/-/slate-edit-list-0.12.1.tgz#11a83e4c91af858b37a516ef0b2a868910eb4903"
+  integrity sha512-mpSTxMiuDKwxyxwVvAhEx3A/SgmQArm62lhQ5ol0cO4smBOc/UVcIq0tTUOB//XUztEZvqUp90dSq0Xh/eKvMQ==
 
 slate-edit-table@^0.17.0:
   version "0.17.0"
