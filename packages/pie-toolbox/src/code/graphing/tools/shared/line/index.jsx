@@ -428,5 +428,7 @@ export const styles = {
   }),
   missing: (theme, key) => ({
     ...missing(key),
+    strokeWidth: 1,
+    strokeDasharray: '4 3',
   }),
 };
