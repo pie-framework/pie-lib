@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.22.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.21.3...@pie-lib/pie-toolbox@1.22.0) (2024-06-13)
+
+
+### Features
+
+* **graphing:** Adjust keyLegend to show/hide legend based on isLabelAvailable + adjust height PD-3787 ([ce0cf14](https://github.com/pie-framework/pie-lib/commit/ce0cf143549ef04362b4a1a98ee6bdd1aaa63a36))
+* **graphing:** adjust label styles PD-3786 ([bfcb63a](https://github.com/pie-framework/pie-lib/commit/bfcb63a4d79d38951f0e9b58b3c35ef079ea6d61))
+* **graphing:** cleanup and refactor PD-3735 ([9e7f27d](https://github.com/pie-framework/pie-lib/commit/9e7f27de9abc07f9095dd0c2218737ef4268e762))
+* **graphing:** fix tests PD-3735 ([0d4f1b8](https://github.com/pie-framework/pie-lib/commit/0d4f1b808dbb4e995eab43bae4ee2536fc049b29))
+* (graphing) redesign graph objects - change colors and add icons PD-3785 ([ccb8375](https://github.com/pie-framework/pie-lib/commit/ccb8375bbd7c526329d910f060e769baf4b09726))
+* (graphing) Redesign treatments for points that are correctly positioned but either mislabeled or missing labels PD-3786 ([2db58e8](https://github.com/pie-framework/pie-lib/commit/2db58e865cb90b7e6d3ba81cf9935485c2ef3f04))
+
+
+
+
+
 ## [1.21.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.21.2...@pie-lib/pie-toolbox@1.21.3) (2024-06-13)
 
 
