@@ -3,6 +3,7 @@ import { Data } from 'slate';
 import Immutable from 'immutable';
 import PropTypes from 'prop-types';
 import EditList from 'slate-edit-list';
+import ListOptions from 'slate-edit-list/dist/options';
 import debug from 'debug';
 
 const log = debug('@pie-lib:editable-html:plugins:list');
@@ -48,6 +49,10 @@ export const serialization = {
 
 const createEditList = () => {
   const core = EditList({
+    typeDefault: 'span',
+  });
+
+  const listOptions = new ListOptions({
     typeDefault: 'span',
   });
 
@@ -119,6 +124,85 @@ const createEditList = () => {
     return change.normalize();
   };
 
+  core.changes.unwrapList = function unwrapList(opts, change) {
+    const items = core.utils.getItemsAtRange(change.value);
+
+    if (items.isEmpty()) {
+      return change;
+    }
+
+    // Unwrap the items from their list
+    items.forEach((item) => change.unwrapNodeByKey(item.key, { normalize: false }));
+
+    // Parent of the list of the items
+    const firstItem = items.first();
+    const parent = change.value.document.getParent(firstItem.key);
+
+    let index = parent.nodes.findIndex((node) => node.key === firstItem.key);
+
+    // Unwrap the items' children
+    items.forEach((item) => {
+      item.nodes.forEach((node) => {
+        change.moveNodeByKey(node.key, parent.key, index, {
+          normalize: false,
+        });
+        index += 1;
+      });
+    });
+
+    // Finally, remove the now empty items
+    items.forEach((item) => change.removeNodeByKey(item.key, { normalize: false }));
+
+    return change;
+  }.bind(this, listOptions);
+
+  core.utils.getItemsAtRange = function(opts, value, range) {
+    range = range || value.selection;
+
+    if (!range.startKey) {
+      return Immutable.List();
+    }
+
+    const { document } = value;
+
+    const startBlock = document.getClosestBlock(range.startKey);
+    const endBlock = document.getClosestBlock(range.endKey);
+
+    if (startBlock === endBlock) {
+      const item = core.utils.getCurrentItem(value, startBlock);
+      return item ? Immutable.List([item]) : Immutable.List();
+    }
+
+    const ancestor = document.getCommonAncestor(startBlock.key, endBlock.key);
+
+    if (core.utils.isList(ancestor)) {
+      const startPath = ancestor.getPath(startBlock.key);
+      const endPath = ancestor.getPath(endBlock.key);
+
+      return ancestor.nodes.slice(startPath.get(0), endPath.get(0) + 1);
+    } else if (ancestor.type === opts.typeItem) {
+      // The ancestor is the highest list item that covers the range
+      return Immutable.List([ancestor]);
+    }
+    // No list of items can cover the range
+    return Immutable.List();
+  }.bind(this, listOptions);
+
+  core.utils.getListForItem = function(opts, value, item) {
+    const { document } = value;
+    const parent = document.getParent(item.key);
+    return parent && core.utils.isList(parent) ? parent : null;
+  }.bind(this, listOptions);
+
+  core.utils.isSelectionInList = function(opts, value, type) {
+    const items = core.utils.getItemsAtRange(value);
+    return (
+      !items.isEmpty() &&
+      // Check the type of the list if needed
+      (!type || core.utils.getListForItem(value, items.first()).get('type') === type)
+    );
+  }.bind(this, listOptions);
+
   return core;
 };
 
@@ -165,6 +249,8 @@ export default (options) => {
       }
     },
   };
+
+  core.normalizeNode = core.validateNode;
 
   core.renderNode.propTypes = {
     node: PropTypes.object,
