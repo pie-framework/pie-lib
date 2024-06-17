@@ -208,11 +208,13 @@ export class Editor extends React.Component {
   };
 
   handlePlugins = (props) => {
+    console.log('handlePlugins');
     const normalizedResponseAreaProps = {
       ...defaultResponseAreaProps,
       ...props.responseAreaProps,
     };
 
+    console.log('normalizedResponseAreaProps.responses,', normalizedResponseAreaProps.responses);
     const htmlPluginOpts = {
       currentValue: this.props.value,
       isHtmlMode: this.state.isHtmlMode,
@@ -336,6 +338,7 @@ export class Editor extends React.Component {
         onHandleAreaChange: normalizedResponseAreaProps.onHandleAreaChange,
         error: normalizedResponseAreaProps.error,
         responsesToDisplay: normalizedResponseAreaProps.responsesToDisplay,
+        responses: normalizedResponseAreaProps.responses,
         onFocus: () => {
           log('[table:onFocus]...');
           this.onPluginFocus();
@@ -396,7 +399,13 @@ export class Editor extends React.Component {
       !isEqual(nextProps.maxImageWidth, this.props.maxImageWidth) ||
       !isEqual(nextProps.maxImageHeight, this.props.maxImageHeight);
 
-    if (differentCharacterProps || differentMathMlProps || differentImageMaxDimensionsProps) {
+    const differentResponseAreaProps = !isEqual(nextProps.responseAreaProps, this.props.responseAreaProps);
+    if (
+      differentCharacterProps ||
+      differentMathMlProps ||
+      differentImageMaxDimensionsProps ||
+      differentResponseAreaProps
+    ) {
       this.handlePlugins(nextProps);
     }
 

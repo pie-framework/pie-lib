@@ -23,6 +23,7 @@ const elTypesArray = Object.values(elTypesMap);
 export default function ResponseAreaPlugin(opts) {
   const isOfCurrentType = (d) => d.type === opts.type || d.type === elTypesMap[opts.type];
 
+  console.log('opts responsesToDisplay', opts.responsesToDisplay());
   const toolbar = {
     icon: <ToolbarIcon />,
     buttonStyles: {
@@ -136,10 +137,13 @@ export default function ResponseAreaPlugin(opts) {
         if (opts.error) {
           error = opts.error();
         }
+        console.log('opts', opts);
 
+        let responsesToDisplay;
         if (opts.responsesToDisplay) {
-          const responsesToDisplay = opts.responsesToDisplay();
+          responsesToDisplay = opts.responsesToDisplay();
 
+          console.log('responsesToDisplay', responsesToDisplay);
           const answerToDisplay =
             responsesToDisplay && responsesToDisplay[data.index] && responsesToDisplay[data.index].answer;
 
