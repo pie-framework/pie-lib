@@ -241,6 +241,7 @@ export const serialization = {
       const newHtml = hasMathChild ? el.innerHTML : el.outerHTML;
 
       if (MathPlugin.mathMlOptions.mmlEditing) {
+        console.log('MathPlugin.mathMlOptions.mmlEditing');
         // todo fix this in mathml-to-latex
         const htmlWithRemovedSpaces = newHtml.replaceAll('&nbsp;', ' ');
         const htmlToUse = mmlToLatex(htmlWithRemovedSpaces);
@@ -299,35 +300,38 @@ export const serialization = {
   },
   serialize(object) {
     if (object.type === 'math') {
-      const l = object.data.get('latex');
+      const latex = object.data.get('latex');
       const wrapper = object.data.get('wrapper');
-      log('[serialize] latex: ', l);
-      const decoded = htmlDecode(lessThanHandling(l));
+      const decoded = htmlDecode(lessThanHandling(latex));
+
+      log('[serialize] latex: ', latex);
 
       if (MathPlugin.mathMlOptions.mmlOutput) {
-        const res = renderMath(`<span data-latex="" data-raw="${decoded}">${wrapMath(decoded, wrapper)}</span>`, { skipWaitForMathRenderingLib: true });
-        const newLatex = res ? mmlToLatex(res) : '';
+        console.log('MathPlugin.mathMlOptions.mmlOutput');
+        const mathMlFromLatex = renderMath(`<span data-latex="" data-raw="${decoded}">${wrapMath(decoded, wrapper)}</span>`, { skipWaitForMathRenderingLib: true });
+        // we convert resulted mathml to latex to check if the resulted mathMl can be converted back to latex if user wants to edit it later
+        const latexFromMathMl = mathMlFromLatex ? mmlToLatex(mathMlFromLatex) : '';
 
         // we need to remove all the spaces from the latex to be able to compare it
-        const strippedL = l.replace(/\s/g, '');
-        const strippedNewL = newLatex.replace(/\s/g, '');
+        const strippedL = latex.replace(/\s/g, '');
+        const strippedNewL = latexFromMathMl.replace(/\s/g, '');
 
         // we check if the latex keeps his form after being converted to mathml and back to latex
-        // if it does we can safely convert it to mathml
+        // if it does, we can safely convert it to mathml
         if (!isEqual(strippedL, strippedNewL)) {
-          const correctedLatex = fixLatexExpression(newLatex);
+          const correctedLatex = fixLatexExpression(latexFromMathMl);
 
           // As George requested in PD-3167, I will set the new mathML anyway, and also log differences
-          // if it doesn't we keep the latex version
+          // if it doesn't keep the latex version
           console.log('This latex can not be safely converted to mathml so we will keep the latex version!!!', {
-            initialLatex: l,
-            newLatex: newLatex,
+            initialLatex: latex,
+            newLatex: latexFromMathMl,
             correctedLatex,
-            mathML: res,
+            mathML: mathMlFromLatex,
           });
         }
 
-        return <span data-type="mathml" dangerouslySetInnerHTML={{ __html: res }} />;
+        return <span data-type="mathml" dangerouslySetInnerHTML={{ __html: mathMlFromLatex }} />;
       }
 
       return (

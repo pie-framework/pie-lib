@@ -29,6 +29,10 @@ class Demo extends React.Component {
     renderMath(this.root);
   }
 
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    renderMath(this.root);
+  }
+
   render() {
     return <div ref={(r) => (this.root = r)} dangerouslySetInnerHTML={{ __html: this.props.mathml }} />;
   }
@@ -44,7 +48,21 @@ const inputOptions = [
   },
   {
     label: 'Latex \\(..\\)',
-    html: '1   2   3   4   5   6   7   8   9   0',
+    html: '' +
+      // '<math><mover> <mrow> <mi>x</mi> <mi>y</mi> <mi>z</mi> </mrow> <mrow> <mo accent="true" stretchy="true">&#x33F;</mo> </mrow> </mover></math> ' +
+      // '<math><mover> <mrow> <mi>x</mi> <mi>y</mi> <mi>z</mi> </mrow> <mrow> <mo accent="true" stretchy="true">&#x20E1;</mo> </mrow> </mover></math> ' +
+      // '<math><mover> <mrow> <mi>x</mi> <mi>y</mi> <mi>z</mi> </mrow> <mrow> <mo accent="true" stretchy="true">&#x20D6;</mo> </mrow> </mover></math> ' +
+      // '<math><mover> <mrow> <mi>x</mi> <mi>y</mi> <mi>z</mi> </mrow> <mrow> <mo accent="true" stretchy="true">&#x303;</mo> </mrow> </mover></math> ' +
+      // '<math><munder> <mrow> <mi>x</mi> <mi>y</mi> <mi>z</mi> </mrow> <mrow> <mo accent="true" stretchy="true">&#x332;</mo> </mrow> </munder></math> ' +
+      // '<math><mover> <mrow> <mi>x</mi> <mi>y</mi> <mi>z</mi> </mrow> <mrow> <mo accent="true" stretchy="true">&#x20D7;</mo> </mrow> </mover></math> ' +
+      // '<math><mover> <mrow> <mi>x</mi> <mi>y</mi> <mi>z</mi> </mrow> <mrow> <mo accent="true" stretchy="true">&#x302;</mo> </mrow> </mover></math>' +
+      // '<math><mover> <mrow> <mi>x</mi> <mi>y</mi> <mi>z</mi> </mrow> <mrow> <mo stretchy="true">=</mo> </mrow> </mover></math>' +
+      // '<math><mover> <mrow> <mi>x</mi> <mi>y</mi> <mi>z</mi> </mrow> <mrow> <mo stretchy="true">&#x2194;</mo> </mrow> </mover></math>' +
+      // '<math><mover> <mrow> <mi>x</mi> <mi>y</mi> <mi>z</mi> </mrow> <mrow> <mo accent="true" stretchy="true">&#x305;</mo> </mrow> </mover></math> ' +
+      // '<math><mover> <mrow> <mi>x</mi> <mi>y</mi> <mi>z</mi> </mrow> <mrow> <mo stretchy="true">&#xAF;</mo> </mrow> </mover></math>' +
+      // '<math xmlns="http://www.w3.org/1998/Math/MathML"> <mover> <mrow> <mi>&#x3C0;</mi> <mi>&#x3C0;</mi> <mi>&#x3C0;</mi> <mi>&#x3C0;</mi> <mi>&#x3C0;</mi> </mrow> <mo>&#x23DC;</mo> </mover></math>' +
+      '<div><span data-type="mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"> <mover> <mrow> <mi>x</mi> <mi>y</mi> <mi>z</mi> </mrow> <mo accent="true">&#x2015;</mo> </mover></math></span></div>' +
+      ''
   },
   {
     label: 'Latex $..$',

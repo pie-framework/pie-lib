@@ -1,4 +1,4 @@
-import { initializeMathJax } from './mathjax-script';
+import { initializeMathJax, getGlobal, mathRenderingAccessibleKEY } from './mathjax-script';
 import { wrapMath, unWrapMath } from './normalization';
 import * as mr from '../math-rendering';
 
@@ -11,25 +11,6 @@ const NEWLINE_BLOCK_REGEX = /\\embed\{newLine\}\[\]/g;
 const NEWLINE_LATEX = '\\newline ';
 
 const mathRenderingKEY = '@pie-lib/math-rendering@2';
-const mathRenderingAccessibleKEY = '@pie-lib/math-rendering-accessible@1';
-
-export const getGlobal = () => {
-  // TODO does it make sense to use version?
-  // const key = `${pkg.name}@${pkg.version.split('.')[0]}`;
-  // It looks like Ed made this change when he switched from mathjax3 to mathjax-full
-  // I think it was supposed to make sure version 1 (using mathjax3) is not used
-  // in combination with version 2 (using mathjax-full)
-  // TODO higher level wrappers use this instance of math-rendering, and if 2 different instances are used, math rendering is not working
-  //  so I will hardcode this for now until a better solution is found
-  if (typeof window !== 'undefined') {
-    if (!window[mathRenderingAccessibleKEY]) {
-      window[mathRenderingAccessibleKEY] = {};
-    }
-    return window[mathRenderingAccessibleKEY];
-  } else {
-    return {};
-  }
-};
 
 /** Add temporary support for a global singleDollar override
  *  <code>
