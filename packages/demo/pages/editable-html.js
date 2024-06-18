@@ -29,6 +29,10 @@ class Demo extends React.Component {
     renderMath(this.root);
   }
 
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    renderMath(this.root);
+  }
+
   render() {
     return <div ref={(r) => (this.root = r)} dangerouslySetInnerHTML={{ __html: this.props.mathml }} />;
   }

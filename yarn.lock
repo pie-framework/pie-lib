@@ -2638,17 +2638,17 @@
     mathjs "^7.0.1"
     numeric "^1.2.6"
 
-"@pie-framework/mathml-to-latex@1.4.1":
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/@pie-framework/mathml-to-latex/-/mathml-to-latex-1.4.1.tgz#dcaec19a2f9b69ae24dbc9884fa9e5afdd4ba4a0"
-  integrity sha512-mUaFBqIS6rLuW3q/Fb5FrK2jgXeV7H8gIzyz92zL+MnflTMa2wHlwOpu+xSI2L+ZNgrm+RUStcOO2x9aclPtlw==
+"@pie-framework/mathml-to-latex@1.4.3":
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/@pie-framework/mathml-to-latex/-/mathml-to-latex-1.4.3.tgz#fa9476fc9dfd2071a2573e523d6aa1419b6ef22b"
+  integrity sha512-ts7YybHaT1Y4OwoeuIUHIvN2cDCcM4gpLkIOegeeMylieuDvGAPjnX6K1vcGEDJCQ88w3yShy2Lx3Nfft9CMsw==
   dependencies:
     "@xmldom/xmldom" "^0.8.10"
 
-"@pie-framework/mathquill@^1.1.3":
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/@pie-framework/mathquill/-/mathquill-1.1.3.tgz#0ab8fd19d6a5cd29310e0a8dd588a41b1f388972"
-  integrity sha512-dKsO+jWLypw4rxgykGz5yZpAoAGFpiGKqUS1/9H8AF4ghOrsvsqu821eBn5pnX4+XErREo0zeAQpjdl2SS/dfA==
+"@pie-framework/mathquill@1.1.3-beta.0":
+  version "1.1.3-beta.0"
+  resolved "https://registry.yarnpkg.com/@pie-framework/mathquill/-/mathquill-1.1.3-beta.0.tgz#e7d034e0c37ca44ecf3b17be777f3ab5bce953e7"
+  integrity sha512-UoAqlmP0QxdXE7w0LCaLalO3CLGYj/aSFUO1vXhGV4ZikBFGwLl4K+auynL7Y7wHzIsO+2Srxr9b1quTz3PFTA==
   dependencies:
     jquery "^3.3.1"
 
