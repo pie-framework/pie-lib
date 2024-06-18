@@ -81,11 +81,9 @@ export class Input extends React.Component {
     log('command: ', v);
     if (Array.isArray(v)) {
       v.forEach((vv) => {
-        console.log('executa comanda vv= ', vv);
         this.mathField.cmd(vv);
       });
     } else {
-      console.log('executa comanda v =', v);
       this.mathField.cmd(v);
     }
 
