@@ -249,6 +249,8 @@ export const serialization = {
         const correctedLatex = fixLatexExpression(latex);
         const { unwrapped, wrapType } = unWrapMath(correctedLatex);
 
+        console.log('mmlEditing = TRUE \n Making the conversion mathml -> latex', '\n  mathml = ', newHtml, '\n  latex = ', unwrapped);
+
         return {
           object: 'inline',
           type: 'math',
@@ -305,8 +307,32 @@ export const serialization = {
       const decoded = htmlDecode(lessThanHandling(l));
 
       if (MathPlugin.mathMlOptions.mmlOutput) {
-        const res = renderMath(`<span data-latex="" data-raw="${decoded}">${wrapMath(decoded, wrapper)}</span>`, { skipWaitForMathRenderingLib: true });
+        let res = renderMath(`<span data-latex="" data-raw="${decoded}">${wrapMath(decoded, wrapper)}</span>`, { skipWaitForMathRenderingLib: true });
+
+        console.log('mmlOutput = TRUE \n Making the conversion latex -> mathml', '\n latex = ', l, '\n mathml = ', res);
+
         const newLatex = res ? mmlToLatex(res) : '';
+
+        // Create a DOM parser to set stretchy on items
+        // TODO move this to mathml-to-latex
+        let parser = new DOMParser();
+        let doc = parser.parseFromString(res, 'application/xml');
+
+        // Get all <mo> elements
+        let moElements = doc.getElementsByTagName('mo');
+
+        // Loop through each <mo> element and update the stretchy attribute
+        for (let mo of moElements) {
+          if (!mo.hasAttribute('stretchy') || mo.getAttribute('stretchy') === 'false') {
+            mo.setAttribute('stretchy', 'true');
+          }
+        }
+
+        // Serialize the updated XML back to a string
+        let serializer = new XMLSerializer();
+        res = serializer.serializeToString(doc);
+
+        // end of strecthy code
 
         // we need to remove all the spaces from the latex to be able to compare it
         const strippedL = l.replace(/\s/g, '');

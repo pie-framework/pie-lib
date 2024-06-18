@@ -2638,10 +2638,10 @@
     mathjs "^7.0.1"
     numeric "^1.2.6"
 
-"@pie-framework/mathml-to-latex@1.4.1":
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/@pie-framework/mathml-to-latex/-/mathml-to-latex-1.4.1.tgz#dcaec19a2f9b69ae24dbc9884fa9e5afdd4ba4a0"
-  integrity sha512-mUaFBqIS6rLuW3q/Fb5FrK2jgXeV7H8gIzyz92zL+MnflTMa2wHlwOpu+xSI2L+ZNgrm+RUStcOO2x9aclPtlw==
+"@pie-framework/mathml-to-latex@1.4.3":
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/@pie-framework/mathml-to-latex/-/mathml-to-latex-1.4.3.tgz#fa9476fc9dfd2071a2573e523d6aa1419b6ef22b"
+  integrity sha512-ts7YybHaT1Y4OwoeuIUHIvN2cDCcM4gpLkIOegeeMylieuDvGAPjnX6K1vcGEDJCQ88w3yShy2Lx3Nfft9CMsw==
   dependencies:
     "@xmldom/xmldom" "^0.8.10"
 
