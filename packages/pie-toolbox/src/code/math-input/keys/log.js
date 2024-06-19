@@ -12,7 +12,7 @@ export const logSubscript = set({
   name: 'log base n',
   label: 'log s',
   latex: '\\log_{}',
-  command: ['\\log', '_', ' '],
+  command: ['\\log', '_'],
 });
 export const ln = set({
   name: 'natural log',
