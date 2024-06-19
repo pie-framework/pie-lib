@@ -34,7 +34,6 @@ const defaultResponseAreaProps = {
   options: {},
   respAreaToolbar: () => {},
   onHandleAreaChange: () => {},
-  responsesToDisplay: () => {},
 };
 
 const defaultLanguageCharactersProps = [];
@@ -112,7 +111,6 @@ export class Editor extends React.Component {
       onHandleAreaChange: PropTypes.func,
       maxResponseAreas: PropTypes.number,
       error: PropTypes.any,
-      responsesToDisplay: PropTypes.any,
     }),
     languageCharactersProps: PropTypes.arrayOf(
       PropTypes.shape({
@@ -208,13 +206,11 @@ export class Editor extends React.Component {
   };
 
   handlePlugins = (props) => {
-    console.log('handlePlugins');
     const normalizedResponseAreaProps = {
       ...defaultResponseAreaProps,
       ...props.responseAreaProps,
     };
 
-    console.log('normalizedResponseAreaProps.responses,', normalizedResponseAreaProps.responses);
     const htmlPluginOpts = {
       currentValue: this.props.value,
       isHtmlMode: this.state.isHtmlMode,
@@ -337,8 +333,6 @@ export class Editor extends React.Component {
         respAreaToolbar: normalizedResponseAreaProps.respAreaToolbar,
         onHandleAreaChange: normalizedResponseAreaProps.onHandleAreaChange,
         error: normalizedResponseAreaProps.error,
-        responsesToDisplay: normalizedResponseAreaProps.responsesToDisplay,
-        responses: normalizedResponseAreaProps.responses,
         onFocus: () => {
           log('[table:onFocus]...');
           this.onPluginFocus();

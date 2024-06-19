@@ -23,7 +23,6 @@ const elTypesArray = Object.values(elTypesMap);
 export default function ResponseAreaPlugin(opts) {
   const isOfCurrentType = (d) => d.type === opts.type || d.type === elTypesMap[opts.type];
 
-  console.log('opts responsesToDisplay', opts.responsesToDisplay());
   const toolbar = {
     icon: <ToolbarIcon />,
     buttonStyles: {
@@ -137,20 +136,6 @@ export default function ResponseAreaPlugin(opts) {
         if (opts.error) {
           error = opts.error();
         }
-        console.log('opts', opts);
-
-        let responsesToDisplay;
-        if (opts.responsesToDisplay) {
-          responsesToDisplay = opts.responsesToDisplay();
-
-          console.log('responsesToDisplay', responsesToDisplay);
-          const answerToDisplay =
-            responsesToDisplay && responsesToDisplay[data.index] && responsesToDisplay[data.index].answer;
-
-          if (answerToDisplay) {
-            data.value = answerToDisplay;
-          }
-        }
 
         return (
           <MathTemplated
@@ -198,11 +183,7 @@ export default function ResponseAreaPlugin(opts) {
       const currentRespAreaList = change.value.document.filterDescendants(isOfCurrentType);
       const oldRespAreaList = editor.value.document.filterDescendants(isOfCurrentType);
 
-      if (currentRespAreaList.size >= opts.maxResponseAreas) {
-        toolbar.disabled = true;
-      } else {
-        toolbar.disabled = false;
-      }
+      toolbar.disabled = currentRespAreaList.size >= opts.maxResponseAreas;
 
       const arrayToFilter = oldRespAreaList.size > currentRespAreaList.size ? oldRespAreaList : currentRespAreaList;
       const arrayToUseForFilter = arrayToFilter === oldRespAreaList ? currentRespAreaList : oldRespAreaList;
