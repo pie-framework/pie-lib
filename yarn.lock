@@ -2645,10 +2645,10 @@
   dependencies:
     "@xmldom/xmldom" "^0.8.10"
 
-"@pie-framework/mathquill@1.1.3-beta.0":
-  version "1.1.3-beta.0"
-  resolved "https://registry.yarnpkg.com/@pie-framework/mathquill/-/mathquill-1.1.3-beta.0.tgz#e7d034e0c37ca44ecf3b17be777f3ab5bce953e7"
-  integrity sha512-UoAqlmP0QxdXE7w0LCaLalO3CLGYj/aSFUO1vXhGV4ZikBFGwLl4K+auynL7Y7wHzIsO+2Srxr9b1quTz3PFTA==
+"@pie-framework/mathquill@1.1.4":
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/@pie-framework/mathquill/-/mathquill-1.1.4.tgz#965853e1908cb50a5cd29313e46695b7fff950b3"
+  integrity sha512-sKHpE88yQP22f0V2x8LBb+8xGRzrghgu3UseGyt03KbHGJrph/I6HBCw7dw9rnbKzPytNdzlcVOLvVhKBzxgpQ==
   dependencies:
     jquery "^3.3.1"
 
