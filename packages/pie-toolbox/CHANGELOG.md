@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.23.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.23.0...@pie-lib/pie-toolbox@1.23.1) (2024-06-19)
+
+
+### Bug Fixes
+
+* use latest version for mathquill ([ac02a23](https://github.com/pie-framework/pie-lib/commit/ac02a2369536bdcb33c21ff313ade5137a9e1fa3))
+
+
+
+
+
 # [1.23.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.22.0...@pie-lib/pie-toolbox@1.23.0) (2024-06-19)
 
 
