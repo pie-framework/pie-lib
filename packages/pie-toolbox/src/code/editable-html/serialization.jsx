@@ -28,6 +28,7 @@ const MARK_TAGS = {
   code: 'code',
   strong: 'bold',
   blockquote: 'blockquote',
+  h3: 'h3',
 };
 
 export const parseStyleString = (s) => {
