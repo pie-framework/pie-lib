@@ -82,7 +82,6 @@ export const buildPlugins = (activePlugins, customPlugins, opts) => {
 
   activePlugins = activePlugins || DEFAULT_PLUGINS;
 
-  console.log('opts.responseArea', opts.responseArea);
   const addIf = (key, p) => activePlugins.includes(key) && p;
 
   const imagePlugin = opts.image && opts.image.onDelete && ImagePlugin(opts.image);

@@ -393,13 +393,7 @@ export class Editor extends React.Component {
       !isEqual(nextProps.maxImageWidth, this.props.maxImageWidth) ||
       !isEqual(nextProps.maxImageHeight, this.props.maxImageHeight);
 
-    const differentResponseAreaProps = !isEqual(nextProps.responseAreaProps, this.props.responseAreaProps);
-    if (
-      differentCharacterProps ||
-      differentMathMlProps ||
-      differentImageMaxDimensionsProps ||
-      differentResponseAreaProps
-    ) {
+    if (differentCharacterProps || differentMathMlProps || differentImageMaxDimensionsProps) {
       this.handlePlugins(nextProps);
     }
 
