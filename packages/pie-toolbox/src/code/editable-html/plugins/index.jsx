@@ -1,4 +1,5 @@
 import Bold from '@material-ui/icons/FormatBold';
+import FormatQuote from '@material-ui/icons/FormatQuote';
 //import Code from '@material-ui/icons/Code';
 import BulletedListIcon from '@material-ui/icons/FormatListBulleted';
 import NumberedListIcon from '@material-ui/icons/FormatListNumbered';
@@ -33,6 +34,46 @@ function MarkHotkey(options) {
       icon,
       onToggle: (change) => {
         log('[onToggleMark] type: ', type);
+        const { selection } = change.value;
+
+        if (type === 'blockquote') {
+          const texts = change.value.document.getTextsAtRangeAsArray(selection);
+          const onlyOneText = texts.length === 1;
+          let hasBlockQuote = false;
+          const allBlockQuotes = texts.every((t) => {
+            const marks = t.getMarksAsArray();
+
+            return marks.find((m) => {
+              if (m.type === 'blockquote') {
+                hasBlockQuote = true;
+              }
+
+              return m.type === type;
+            });
+          });
+
+          const shouldContinue = onlyOneText || allBlockQuotes || !hasBlockQuote;
+
+          if (!shouldContinue) {
+            return change;
+          }
+
+          if (selection.startKey === selection.endKey && selection.anchorOffset === selection.focusOffset) {
+            const textNode = change.value.document.getNode(selection.startKey);
+
+            // select the whole line if there is no selection
+            change.moveFocusTo(textNode.key, 0).moveAnchorTo(textNode.key, textNode.text.length);
+
+            // remove toggle
+            change.toggleMark(type);
+
+            // move focus to end of text
+            return change
+              .moveFocusTo(textNode.key, textNode.text.length)
+              .moveAnchorTo(textNode.key, textNode.text.length);
+          }
+        }
+
         return change.toggleMark(type);
       },
     },
@@ -69,6 +110,7 @@ export const ALL_PLUGINS = [
   'image',
   'math',
   'languageCharacters',
+  'blockquote',
   'table',
   'video',
   'audio',
@@ -116,6 +158,10 @@ export const buildPlugins = (activePlugins, customPlugins, opts) => {
     addIf('audio', MediaPlugin('audio', opts.media)),
     addIf('math', mathPlugin),
     ...languageCharactersPlugins.map((plugin) => addIf('languageCharacters', plugin)),
+    addIf(
+      'blockquote',
+      MarkHotkey({ key: 'blockquote', type: 'blockquote', icon: <FormatQuote />, tag: 'blockquote' }),
+    ),
     addIf('bulleted-list', List({ key: 'l', type: 'ul_list', icon: <BulletedListIcon /> })),
     addIf('numbered-list', List({ key: 'n', type: 'ol_list', icon: <NumberedListIcon /> })),
     ToolbarPlugin(opts.toolbar),

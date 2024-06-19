@@ -8,7 +8,6 @@ export const BLOCK_TAGS = {
   div: 'div',
   span: 'span',
   p: 'paragraph',
-  blockquote: 'quote',
   pre: 'code',
   h1: 'heading-one',
   h2: 'heading-two',
