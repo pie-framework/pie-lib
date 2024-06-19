@@ -36,19 +36,42 @@ function MarkHotkey(options) {
         log('[onToggleMark] type: ', type);
         const { selection } = change.value;
 
-        if (selection.anchorOffset === selection.focusOffset) {
-          const textNode = change.value.document.getNode(selection.startKey);
+        if (type === 'blockquote') {
+          const texts = change.value.document.getTextsAtRangeAsArray(selection);
+          const onlyOneText = texts.length === 1;
+          let hasBlockQuote = false;
+          const allBlockQuotes = texts.every((t) => {
+            const marks = t.getMarksAsArray();
 
-          // select the whole line if there is no selection
-          change.moveFocusTo(textNode.key, 0).moveAnchorTo(textNode.key, textNode.text.length);
+            return marks.find((m) => {
+              if (m.type === 'blockquote') {
+                hasBlockQuote = true;
+              }
 
-          // remove toggle
-          change.toggleMark(type);
+              return m.type === type;
+            });
+          });
 
-          // move focus to end of text
-          return change
-            .moveFocusTo(textNode.key, textNode.text.length)
-            .moveAnchorTo(textNode.key, textNode.text.length);
+          const shouldContinue = onlyOneText || allBlockQuotes || !hasBlockQuote;
+
+          if (!shouldContinue) {
+            return change;
+          }
+
+          if (selection.startKey === selection.endKey && selection.anchorOffset === selection.focusOffset) {
+            const textNode = change.value.document.getNode(selection.startKey);
+
+            // select the whole line if there is no selection
+            change.moveFocusTo(textNode.key, 0).moveAnchorTo(textNode.key, textNode.text.length);
+
+            // remove toggle
+            change.toggleMark(type);
+
+            // move focus to end of text
+            return change
+              .moveFocusTo(textNode.key, textNode.text.length)
+              .moveAnchorTo(textNode.key, textNode.text.length);
+          }
         }
 
         return change.toggleMark(type);
