@@ -92,7 +92,11 @@ export default function ResponseAreaPlugin(opts) {
     name: 'response_area',
     toolbar,
     filterPlugins: (node, plugins) => {
-      if (node.type === 'explicit_constructed_response' || node.type === 'math_templated' || node.type === 'drag_in_the_blank') {
+      if (
+        node.type === 'explicit_constructed_response' ||
+        node.type === 'math_templated' ||
+        node.type === 'drag_in_the_blank'
+      ) {
         return [];
       }
 
@@ -136,7 +140,8 @@ export default function ResponseAreaPlugin(opts) {
         return (
           <MathTemplated
             attributes={attributes}
-            value={data.value || `R ${data.index}`}
+            keyToDisplay={`R ${data.index}`}
+            value={data.value || ''}
             error={error && error[data.index] && error[data.index][0]}
           />
         );
@@ -178,11 +183,7 @@ export default function ResponseAreaPlugin(opts) {
       const currentRespAreaList = change.value.document.filterDescendants(isOfCurrentType);
       const oldRespAreaList = editor.value.document.filterDescendants(isOfCurrentType);
 
-      if (currentRespAreaList.size >= opts.maxResponseAreas) {
-        toolbar.disabled = true;
-      } else {
-        toolbar.disabled = false;
-      }
+      toolbar.disabled = currentRespAreaList.size >= opts.maxResponseAreas;
 
       const arrayToFilter = oldRespAreaList.size > currentRespAreaList.size ? oldRespAreaList : currentRespAreaList;
       const arrayToUseForFilter = arrayToFilter === oldRespAreaList ? currentRespAreaList : oldRespAreaList;

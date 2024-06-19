@@ -1,4 +1,5 @@
 import Bold from '@material-ui/icons/FormatBold';
+import FormatQuote from '@material-ui/icons/FormatQuote';
 //import Code from '@material-ui/icons/Code';
 import BulletedListIcon from '@material-ui/icons/FormatListBulleted';
 import NumberedListIcon from '@material-ui/icons/FormatListNumbered';
@@ -22,6 +23,22 @@ import CustomPlugin from './customPlugin';
 
 const log = debug('@pie-lib:editable-html:plugins');
 
+const HeadingIcon = () => (
+  <svg
+    width="30"
+    height="28"
+    viewBox="0 0 30 28"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    style={{ width: '20px', height: '18px' }}
+  >
+    <path
+      d="M27 4V24H29C29.5 24 30 24.5 30 25V27C30 27.5625 29.5 28 29 28H19C18.4375 28 18 27.5625 18 27V25C18 24.5 18.4375 24 19 24H21V16H9V24H11C11.5 24 12 24.5 12 25V27C12 27.5625 11.5 28 11 28H1C0.4375 28 0 27.5625 0 27V25C0 24.5 0.4375 24 1 24H3V4H1C0.4375 4 0 3.5625 0 3V1C0 0.5 0.4375 0 1 0H11C11.5 0 12 0.5 12 1V3C12 3.5625 11.5 4 11 4H9V12H21V4H19C18.4375 4 18 3.5625 18 3V1C18 0.5 18.4375 0 19 0H29C29.5 0 30 0.5 30 1V3C30 3.5625 29.5 4 29 4H27Z"
+      fill="currentColor"
+    />
+  </svg>
+);
+
 function MarkHotkey(options) {
   const { type, key, icon, tag } = options;
 
@@ -33,6 +50,49 @@ function MarkHotkey(options) {
       icon,
       onToggle: (change) => {
         log('[onToggleMark] type: ', type);
+        const { selection } = change.value;
+
+        if (['blockquote', 'h3'].includes(type)) {
+          const texts = change.value.document.getTextsAtRangeAsArray(selection);
+          const onlyOneText = texts.length === 1;
+          let hasMark = false;
+          let sameMark = true;
+
+          texts.forEach((t) => {
+            const marks = t.getMarksAsArray();
+            const markIsThere = marks.find((m) => m.type === type);
+
+            if (!markIsThere) {
+              // not all texts have this mark
+              sameMark = false;
+            } else {
+              // at least one mark
+              hasMark = true;
+            }
+          });
+
+          const shouldContinue = onlyOneText || sameMark || !hasMark;
+
+          if (!shouldContinue) {
+            return change;
+          }
+
+          if (selection.startKey === selection.endKey && selection.anchorOffset === selection.focusOffset) {
+            const textNode = change.value.document.getNode(selection.startKey);
+
+            // select the whole line if there is no selection
+            change.moveFocusTo(textNode.key, 0).moveAnchorTo(textNode.key, textNode.text.length);
+
+            // remove toggle
+            change.toggleMark(type);
+
+            // move focus to end of text
+            return change
+              .moveFocusTo(textNode.key, textNode.text.length)
+              .moveAnchorTo(textNode.key, textNode.text.length);
+          }
+        }
+
         return change.toggleMark(type);
       },
     },
@@ -69,6 +129,8 @@ export const ALL_PLUGINS = [
   'image',
   'math',
   'languageCharacters',
+  'blockquote',
+  'h3',
   'table',
   'video',
   'audio',
@@ -116,6 +178,8 @@ export const buildPlugins = (activePlugins, customPlugins, opts) => {
     addIf('audio', MediaPlugin('audio', opts.media)),
     addIf('math', mathPlugin),
     ...languageCharactersPlugins.map((plugin) => addIf('languageCharacters', plugin)),
+    addIf('blockquote', MarkHotkey({ key: 'q', type: 'blockquote', icon: <FormatQuote />, tag: 'blockquote' })),
+    addIf('h3', MarkHotkey({ key: 'h3', type: 'h3', icon: <HeadingIcon />, tag: 'h3' })),
     addIf('bulleted-list', List({ key: 'l', type: 'ul_list', icon: <BulletedListIcon /> })),
     addIf('numbered-list', List({ key: 'n', type: 'ol_list', icon: <NumberedListIcon /> })),
     ToolbarPlugin(opts.toolbar),

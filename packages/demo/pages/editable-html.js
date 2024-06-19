@@ -29,6 +29,10 @@ class Demo extends React.Component {
     renderMath(this.root);
   }
 
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    renderMath(this.root);
+  }
+
   render() {
     return <div ref={(r) => (this.root = r)} dangerouslySetInnerHTML={{ __html: this.props.mathml }} />;
   }
@@ -44,7 +48,7 @@ const inputOptions = [
   },
   {
     label: 'Latex \\(..\\)',
-    html: '1   2   3   4   5   6   7   8   9   0',
+    html: '',
   },
   {
     label: 'Latex $..$',

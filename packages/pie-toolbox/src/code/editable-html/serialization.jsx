@@ -10,7 +10,7 @@ import { serialization as listSerialization } from './plugins/list';
 import { serialization as tableSerialization } from './plugins/table';
 import { serialization as responseAreaSerialization } from './plugins/respArea';
 import { Mark, Value } from 'slate';
-import { BLOCK_TAGS } from "./block-tags";
+import { BLOCK_TAGS } from './block-tags';
 
 const log = debug('@pie-lib:editable-html:serialization');
 
@@ -27,6 +27,8 @@ const MARK_TAGS = {
   s: 'strikethrough',
   code: 'code',
   strong: 'bold',
+  blockquote: 'blockquote',
+  h3: 'h3',
 };
 
 export const parseStyleString = (s) => {

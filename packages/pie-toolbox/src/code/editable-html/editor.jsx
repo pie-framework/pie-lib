@@ -100,10 +100,17 @@ export class Editor extends React.Component {
     //   ),
     placeholder: PropTypes.string,
     responseAreaProps: PropTypes.shape({
-      type: PropTypes.oneOf(['explicit-constructed-response', 'inline-dropdown', 'drag-in-the-blank']),
+      type: PropTypes.oneOf([
+        'explicit-constructed-response',
+        'inline-dropdown',
+        'drag-in-the-blank',
+        'math-templated',
+      ]),
       options: PropTypes.object,
       respAreaToolbar: PropTypes.func,
       onHandleAreaChange: PropTypes.func,
+      maxResponseAreas: PropTypes.number,
+      error: PropTypes.any,
     }),
     languageCharactersProps: PropTypes.arrayOf(
       PropTypes.shape({
@@ -639,7 +646,6 @@ export class Editor extends React.Component {
     }, 50);
   };
 
-
   /*
    * Needs to be wrapped otherwise it causes issues because of race conditions
    * Known issue for slatejs. See: https://github.com/ianstormtaylor/slate/issues/2097
@@ -1079,6 +1085,12 @@ const styles = {
     },
     '& table:not([border="1"]) td, th': {
       border: '1px solid #dfe2e5',
+    },
+    '& blockquote': {
+      background: '#f9f9f9',
+      borderLeft: '5px solid #ccc',
+      margin: '1.5em 10px',
+      padding: '.5em 10px',
     },
   },
   toolbarOnTop: {
