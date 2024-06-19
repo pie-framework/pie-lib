@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.23.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.22.0...@pie-lib/pie-toolbox@1.23.0) (2024-06-19)
+
+
+### Bug Fixes
+
+* fixed some edge cases for blockquote handling [PD-3771] ([dac9791](https://github.com/pie-framework/pie-lib/commit/dac97910f9f062bceb80be03219ed10587372792))
+* overlines PD-3206, logaritmic expressions PD-3186 (PD-1311), long division PD-3179 ([59e6078](https://github.com/pie-framework/pie-lib/commit/59e60781111a97818e52b02eb7a5b0b53aa2a72b))
+
+
+### Features
+
+* **editable-html:** math-templated design updates and refactor PD-3817 ([ee97f7f](https://github.com/pie-framework/pie-lib/commit/ee97f7f67a6205a83f25de675f9a85d7e8f0d68f))
+* **editable-html:** remove unwanted chages PD-3817 ([79a6b9b](https://github.com/pie-framework/pie-lib/commit/79a6b9b66d61538f747cd484a215a0d48275e0a5))
+* implemented blockquote button [PD-3771] ([cf0f4ac](https://github.com/pie-framework/pie-lib/commit/cf0f4ac671041da35d09e53a406a42dc5da2082d))
+* implemented h3 functionality [PD-3772] ([ed8e20e](https://github.com/pie-framework/pie-lib/commit/ed8e20efb7d25c50d296edde69611bf862196bfd))
+* wip PD-3817 ([e774b97](https://github.com/pie-framework/pie-lib/commit/e774b9721bf81875dc5d14b40934ed44c8ac9628))
+* **editable-html:** wip response areas for math-templated PD-3817 ([a946379](https://github.com/pie-framework/pie-lib/commit/a946379bd358c0cca783cd04495b900303ce52c1))
+
+
+
+
+
 # [1.22.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.21.3...@pie-lib/pie-toolbox@1.22.0) (2024-06-13)
 
 
