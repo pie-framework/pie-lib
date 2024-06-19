@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.3.61](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.3.60...@pie-lib/demo@7.3.61) (2024-06-19)
+
+
+### Bug Fixes
+
+* overlines PD-3206, logaritmic expressions PD-3186 (PD-1311), long division PD-3179 ([59e6078](https://github.com/pie-framework/pie-lib/commit/59e60781111a97818e52b02eb7a5b0b53aa2a72b))
+
+
+
+
+
 ## [7.3.60](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.3.59...@pie-lib/demo@7.3.60) (2024-06-13)
 
 **Note:** Version bump only for package @pie-lib/demo
