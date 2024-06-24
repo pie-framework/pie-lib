@@ -44,6 +44,7 @@ function MarkHotkey(options) {
 
   // Return our "plugin" object, containing the `onKeyDown` handler.
   return {
+    name: type,
     toolbar: {
       isMark: true,
       type,
