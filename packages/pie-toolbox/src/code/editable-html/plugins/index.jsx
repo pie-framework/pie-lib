@@ -3,6 +3,8 @@ import FormatQuote from '@material-ui/icons/FormatQuote';
 //import Code from '@material-ui/icons/Code';
 import BulletedListIcon from '@material-ui/icons/FormatListBulleted';
 import NumberedListIcon from '@material-ui/icons/FormatListNumbered';
+import Redo from '@material-ui/icons/Redo';
+import Undo from '@material-ui/icons/Undo';
 import ImagePlugin from './image';
 import MediaPlugin from './media';
 import CharactersPlugin from './characters';
@@ -163,9 +165,32 @@ export const ALL_PLUGINS = [
   'video',
   'audio',
   'responseArea',
+  'redo',
+  'undo',
 ];
 
 export const DEFAULT_PLUGINS = ALL_PLUGINS.filter((plug) => plug !== 'responseArea');
+
+const ICON_MAP = {
+  undo: Undo,
+  redo: Redo,
+};
+function UndoRedo(type) {
+  const IconToUse = ICON_MAP[type];
+
+  return {
+    name: type,
+    toolbar: {
+      type,
+      icon: <IconToUse />,
+      onClick: (value, onChange) => {
+        const change = value.change();
+
+        onChange(change[type]());
+      },
+    },
+  };
+}
 
 export const buildPlugins = (activePlugins, customPlugins, opts) => {
   log('[buildPlugins] opts: ', opts);
@@ -210,6 +235,8 @@ export const buildPlugins = (activePlugins, customPlugins, opts) => {
     addIf('h3', MarkHotkey({ key: 'h3', type: 'h3', icon: <HeadingIcon />, tag: 'h3' })),
     addIf('bulleted-list', List({ key: 'l', type: 'ul_list', icon: <BulletedListIcon /> })),
     addIf('numbered-list', List({ key: 'n', type: 'ol_list', icon: <NumberedListIcon /> })),
+    addIf('redo', UndoRedo('redo')),
+    addIf('undo', UndoRedo('undo')),
     ToolbarPlugin(opts.toolbar),
     SoftBreakPlugin({ shift: true }),
     addIf('responseArea', respAreaPlugin),
