@@ -56,7 +56,7 @@ export class Input extends React.Component {
 
     const { latex } = this.props;
 
-    if (latex) {
+    if (latex !== undefined && latex !== null) {
       this.mathField.latex(latex);
     }
   }

@@ -137,10 +137,13 @@ export default function ResponseAreaPlugin(opts) {
           error = opts.error();
         }
 
+        // add 1 to index to display R 1 instead of R 0
+        const keyToDisplay = `R ${parseInt(data.index) + 1}`;
+
         return (
           <MathTemplated
             attributes={attributes}
-            keyToDisplay={`R ${data.index}`}
+            keyToDisplay={keyToDisplay}
             value={data.value || ''}
             error={error && error[data.index] && error[data.index][0]}
           />
