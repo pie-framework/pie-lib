@@ -117,6 +117,17 @@ const blocks = {
   },
 };
 
+const STYLES_MAP = {
+  h3: {
+    fontSize: 'inherit',
+  },
+  blockquote: {
+    background: '#f9f9f9',
+    borderLeft: '5px solid #ccc',
+    margin: '1.5em 10px',
+    padding: '.5em 10px',
+  },
+};
 const marks = {
   deserialize(el, next) {
     const mark = MARK_TAGS[el.tagName.toLowerCase()];
@@ -125,6 +136,10 @@ const marks = {
     return {
       object: 'mark',
       type: mark,
+      /**
+       * Here for rendering styles for all block elements
+       */
+      data: { attributes: attributes.reduce(attributesToMap(el), {}) },
       nodes: next(el.childNodes),
     };
   },
@@ -132,8 +147,24 @@ const marks = {
     if (Mark.isMark(object)) {
       for (var key in MARK_TAGS) {
         if (MARK_TAGS[key] === object.type) {
+          const jsonData = object.data.toJSON();
           const Tag = key;
-          return <Tag>{children}</Tag>;
+          const additionalStyles = STYLES_MAP[Tag];
+
+          if (additionalStyles && !jsonData.attributes) {
+            jsonData.attributes = {};
+          }
+
+          if (jsonData.attributes) {
+            const additionalStyles = STYLES_MAP[Tag];
+
+            jsonData.attributes.style = {
+              ...jsonData.attributes.style,
+              ...additionalStyles,
+            };
+          }
+
+          return <Tag {...jsonData.attributes}>{children}</Tag>;
         }
       }
     }

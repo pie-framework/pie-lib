@@ -38,6 +38,17 @@ const HeadingIcon = () => (
     />
   </svg>
 );
+const STYLES_MAP = {
+  h3: {
+    fontSize: 'inherit',
+  },
+  blockquote: {
+    background: '#f9f9f9',
+    borderLeft: '5px solid #ccc',
+    margin: '1.5em 10px',
+    padding: '.5em 10px',
+  },
+};
 
 function MarkHotkey(options) {
   const { type, key, icon, tag } = options;
@@ -99,9 +110,25 @@ function MarkHotkey(options) {
     },
     renderMark(props) {
       if (props.mark.type === type) {
+        const { data } = props.node || {};
+        const jsonData = data?.toJSON() || {};
         const K = tag || type;
+        const additionalStyles = STYLES_MAP[K];
 
-        return <K>{props.children}</K>;
+        if (additionalStyles && !jsonData.attributes) {
+          jsonData.attributes = {};
+        }
+
+        if (jsonData.attributes) {
+          const additionalStyles = STYLES_MAP[K];
+
+          jsonData.attributes.style = {
+            ...jsonData.attributes.style,
+            ...additionalStyles,
+          };
+        }
+
+        return <K {...jsonData.attributes}>{props.children}</K>;
       }
     },
     onKeyDown(event, change) {
