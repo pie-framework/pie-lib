@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.24.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.24.1...@pie-lib/pie-toolbox@1.24.2) (2024-06-24)
+
+
+### Bug Fixes
+
+* implemented undo and redo buttons [PD-3775] ([217e695](https://github.com/pie-framework/pie-lib/commit/217e695e553e0ed11ace41719128777698aa86e3))
+* made sure styles for h3 and blockquote are set properly ([ccddb38](https://github.com/pie-framework/pie-lib/commit/ccddb384af15c9d32ad6c6c0fd89798f38cdc18c))
+
+
+
+
+
 ## [1.24.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.24.0...@pie-lib/pie-toolbox@1.24.1) (2024-06-24)
 
 
