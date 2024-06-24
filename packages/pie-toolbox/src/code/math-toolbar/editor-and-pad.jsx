@@ -272,6 +272,7 @@ export class EditorAndPad extends React.Component {
         {shouldShowKeypad && (
           <HorizontalKeypad
             className={cx(classes[keypadMode], classes.keyboard)}
+            controlledKeypadMode={controlledKeypadMode}
             layoutForKeyPad={layoutForKeyPad}
             additionalKeys={additionalKeys}
             mode={controlledKeypadMode ? this.state.equationEditor : keypadMode}
