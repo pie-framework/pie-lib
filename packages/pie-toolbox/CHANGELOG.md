@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.24.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.23.1...@pie-lib/pie-toolbox@1.24.0) (2024-06-24)
+
+
+### Features
+
+* ability to turn on or off plugins as h3, blockquote, bold, italic, strikethrough, underline PD-3772 ([62a925c](https://github.com/pie-framework/pie-lib/commit/62a925c3a05c2d73c5ed23595f2e02978ee265fb))
+* **editable-html:** math-templated updates. Show index from 1, update latex even if it's an empty string PD-3813 ([5cc38ec](https://github.com/pie-framework/pie-lib/commit/5cc38ec8ec3d2ec7f57c58a782a4f49e446f4feb))
+
+
+
+
+
 ## [1.23.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.23.0...@pie-lib/pie-toolbox@1.23.1) (2024-06-19)
 
 
