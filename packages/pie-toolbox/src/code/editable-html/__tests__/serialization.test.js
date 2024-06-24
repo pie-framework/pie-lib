@@ -159,7 +159,9 @@ describe('htmlToValue', () => {
                       {
                         object: 'mark',
                         type: 'italic',
-                        data: {},
+                        data: {
+                          attributes: {},
+                        },
                       },
                     ],
                   },
@@ -175,7 +177,9 @@ describe('htmlToValue', () => {
                       {
                         object: 'mark',
                         type: 'italic',
-                        data: {},
+                        data: {
+                          attributes: {},
+                        },
                       },
                     ],
                   },
@@ -191,7 +195,9 @@ describe('htmlToValue', () => {
                       {
                         object: 'mark',
                         type: 'italic',
-                        data: {},
+                        data: {
+                          attributes: {},
+                        },
                       },
                     ],
                   },
@@ -207,7 +213,9 @@ describe('htmlToValue', () => {
                       {
                         object: 'mark',
                         type: 'italic',
-                        data: {},
+                        data: {
+                          attributes: {},
+                        },
                       },
                     ],
                   },
@@ -223,7 +231,9 @@ describe('htmlToValue', () => {
                       {
                         object: 'mark',
                         type: 'italic',
-                        data: {},
+                        data: {
+                          attributes: {},
+                        },
                       },
                     ],
                   },
@@ -239,7 +249,9 @@ describe('htmlToValue', () => {
                       {
                         object: 'mark',
                         type: 'italic',
-                        data: {},
+                        data: {
+                          attributes: {},
+                        },
                       },
                     ],
                   },
@@ -255,7 +267,9 @@ describe('htmlToValue', () => {
                       {
                         object: 'mark',
                         type: 'italic',
-                        data: {},
+                        data: {
+                          attributes: {},
+                        },
                       },
                     ],
                   },
@@ -271,7 +285,9 @@ describe('htmlToValue', () => {
                       {
                         object: 'mark',
                         type: 'italic',
-                        data: {},
+                        data: {
+                          attributes: {},
+                        },
                       },
                     ],
                   },
