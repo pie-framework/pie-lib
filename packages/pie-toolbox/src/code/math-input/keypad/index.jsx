@@ -12,6 +12,7 @@ import { baseSet } from '../keys';
 import debug from 'debug';
 import _ from 'lodash';
 import MathQuill from '@pie-framework/mathquill';
+import { MAIN_CONTAINER_CLASS } from '../../editable-html/constants';
 
 const log = debug('pie-lib:math-inline:keypad');
 
@@ -183,6 +184,7 @@ export class KeyPad extends React.Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     className: PropTypes.string,
+    controlledKeypadMode: PropTypes.bool,
     baseSet: PropTypes.array,
     additionalKeys: PropTypes.array,
     layoutForKeyPad: PropTypes.object,
@@ -195,6 +197,38 @@ export class KeyPad extends React.Component {
     baseSet: baseSet,
     noDecimal: false,
   };
+
+  constructor(props) {
+    super(props);
+    this.keypadRef = React.createRef();
+  }
+
+  componentDidMount() {
+    const mainContainer = this.keypadRef?.current?.closest(`.${MAIN_CONTAINER_CLASS}`);
+    const currentToolbar = this.keypadRef?.current?.closest('.pie-toolbar');
+    // need only for math keyboard so we need also controlledKeypadMode
+    if (this.props.controlledKeypadMode && mainContainer && currentToolbar) {
+      const mainContainerPosition = mainContainer.getBoundingClientRect();
+      const currentToolbarPosition = currentToolbar.getBoundingClientRect();
+      const difference =
+        mainContainerPosition.top +
+        mainContainerPosition.height -
+        (currentToolbarPosition.top + currentToolbarPosition.height);
+      if (difference < 0) {
+        const totalHeight = mainContainerPosition.height + mainContainerPosition.top - difference;
+        // increase the height of the main container if keyboard needs it
+        mainContainer.style.height = `${totalHeight}px`;
+      }
+    }
+  }
+
+  componentWillUnmount() {
+    // need only for math keyboard
+    if (this.props.controlledKeypadMode && this.keypadRef && this.keypadRef.current) {
+      const mainContainer = this.keypadRef.current.closest(`.${MAIN_CONTAINER_CLASS}`);
+      mainContainer.style.height = 'unset';
+    }
+  }
 
   buttonClick = (key) => {
     log('[buttonClick]', key);
@@ -234,7 +268,12 @@ export class KeyPad extends React.Component {
     };
 
     return (
-      <div className={classNames(classes.keys, className, classes[mode])} style={style} onFocus={onFocus}>
+      <div
+        ref={this.keypadRef}
+        className={classNames(classes.keys, className, classes[mode])}
+        style={style}
+        onFocus={onFocus}
+      >
         {allKeys.map((k, index) => {
           const onClick = this.buttonClick.bind(this, k);
 

@@ -17,6 +17,7 @@ const toOldModel = (d) => {
 export default class HorizontalKeypad extends React.Component {
   static propTypes = {
     className: PropTypes.string,
+    controlledKeypadMode: PropTypes.bool,
     mode: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     layoutForKeyPad: PropTypes.object,
     onClick: PropTypes.func.isRequired,
@@ -38,12 +39,13 @@ export default class HorizontalKeypad extends React.Component {
   };
 
   render() {
-    const { mode, onFocus, noDecimal, className, additionalKeys, layoutForKeyPad } = this.props;
+    const { mode, onFocus, controlledKeypadMode, noDecimal, className, additionalKeys, layoutForKeyPad } = this.props;
     const normalizedKeys = normalizeAdditionalKeys(additionalKeys);
 
     return (
       <Keypad
         className={className}
+        controlledKeypadMode={controlledKeypadMode}
         onFocus={onFocus}
         noDecimal={noDecimal}
         layoutForKeyPad={layoutForKeyPad}

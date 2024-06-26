@@ -2,7 +2,7 @@ export default {
   translation: {
     categorize: {
       limitMaxChoicesPerCategory:
-        'Has alcanzado el límite de {{maxChoicesPerCategory}} respuestas por área. Para agregar otra respuesta, primero se debe eliminar una respuesta',
+        'Has alcanzado el límite de {{maxChoicesPerCategory}} respuestas por área. Para agregar otra respuesta, primero se debe eliminar una respuesta.',
       maxChoicesPerCategoryRestriction:
         'Para cambiar este valor a {{maxChoicesPerCategory}}, cada categoría debe tener {{maxChoicesPerCategory}} o menos opciones de respuesta',
     },
@@ -79,5 +79,6 @@ export default {
     warning: 'Advertencia',
     showNote: 'Mostrar Nota',
     hideNote: 'Ocultar Nota',
+    cancel: 'Cancelar',
   },
 };

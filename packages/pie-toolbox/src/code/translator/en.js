@@ -79,5 +79,6 @@ export default {
     warning: 'Warning',
     showNote: 'Show Note',
     hideNote: 'Hide Note',
+    cancel: 'Cancel',
   },
 };
