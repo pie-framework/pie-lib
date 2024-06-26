@@ -14,6 +14,7 @@ import { findSingleNode, findParentNode } from '../utils';
 import { withStyles } from '@material-ui/core/styles';
 import DefaultToolbar from './default-toolbar';
 import { removeDialogs as removeCharacterDialogs } from '../characters';
+import { PIE_TOOLBAR__CLASS } from '../../constants';
 
 const log = debug('@pie-lib:editable-html:plugins:toolbar');
 
@@ -217,7 +218,7 @@ export class Toolbar extends React.Component {
 
     const hasDoneButton = defaultToolbarShowDone || customToolbarShowDone;
 
-    const names = classNames(classes.toolbar, {
+    const names = classNames(classes.toolbar, PIE_TOOLBAR__CLASS, {
       [classes.toolbarWithNoDone]: !hasDoneButton,
       [classes.toolbarTop]: toolbarOpts.position === 'top',
       [classes.toolbarRight]: toolbarOpts.alignment === 'right',

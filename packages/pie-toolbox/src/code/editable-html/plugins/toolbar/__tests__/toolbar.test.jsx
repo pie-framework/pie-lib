@@ -49,7 +49,7 @@ describe('toolbar', () => {
       },
     });
 
-    classes = classObject('iconRoot', 'inline', 'toolbar', 'focused', 'shared', 'inline');
+    classes = classObject('iconRoot', 'inline', 'toolbar', 'focused', 'shared', 'inline', 'pie-toolbar');
   });
 
   test('renders custom toolbar', () => {

@@ -1,3 +1,5 @@
+import Hotkeys from 'slate-hotkeys';
+import { IS_IOS } from 'slate-dev-environment';
 import Bold from '@material-ui/icons/FormatBold';
 import FormatQuote from '@material-ui/icons/FormatQuote';
 //import Code from '@material-ui/icons/Code';
@@ -192,6 +194,34 @@ function UndoRedo(type) {
   };
 }
 
+function EnterHandlingPlugin() {
+  return {
+    name: 'enterHandling',
+    onKeyDown: (event, change) => {
+      if (Hotkeys.isSplitBlock(event) && !IS_IOS) {
+        if (change.value.isInVoid) {
+          return change.collapseToStartOfNextText();
+        }
+
+        change.splitBlock();
+
+        const range = change.value.selection;
+        const newBlock = change.value.document.getClosestBlock(range.startKey);
+
+        if (newBlock.type !== 'paragraph') {
+          change.setNodeByKey(newBlock.key, {
+            type: 'paragraph',
+          });
+        }
+
+        return change;
+      }
+
+      return undefined;
+    },
+  };
+}
+
 export const buildPlugins = (activePlugins, customPlugins, opts) => {
   log('[buildPlugins] opts: ', opts);
 
@@ -212,6 +242,7 @@ export const buildPlugins = (activePlugins, customPlugins, opts) => {
   }
 
   const builtPlugins = compact([
+    EnterHandlingPlugin(),
     addIf('table', TablePlugin(opts.table, compact(tablePlugins))),
     addIf('bold', MarkHotkey({ key: 'b', type: 'bold', icon: <Bold />, tag: 'strong' })),
     // addIf('code', MarkHotkey({ key: '`', type: 'code', icon: <Code /> })),
