@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.25.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.24.2...@pie-lib/pie-toolbox@1.25.0) (2024-06-26)
+
+
+### Bug Fixes
+
+* **editable-html:** adjust container based on math toolbar and keypad PD-3028 ([a4ab477](https://github.com/pie-framework/pie-lib/commit/a4ab47713520e8b3835a3a1a5e04612f6bdd27da))
+
+
+### Features
+
+* enter adds a new paragraph, regards of the block that is splitted [PD-3773] ([610935c](https://github.com/pie-framework/pie-lib/commit/610935c38275efedc22e415457aba245b7689d3a))
+
+
+
+
+
 ## [1.24.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.24.1...@pie-lib/pie-toolbox@1.24.2) (2024-06-24)
 
 
