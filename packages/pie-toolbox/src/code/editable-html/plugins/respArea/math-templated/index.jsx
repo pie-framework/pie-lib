@@ -2,10 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
+import { mq } from '../../../../math-input';
+
 const MathTemplated = ({ attributes, value, classes, keyToDisplay }) => (
   <span {...attributes} className={classes.spanContainer}>
     <div className={classes.responseBox}>{keyToDisplay}</div>
-    <div className={classes.mathBlock} dangerouslySetInnerHTML={{ __html: value || '<div>&nbsp;</div>' }} />
+    <div className={classes.mathBlock}>
+      <mq.Static latex={value} />
+    </div>
   </span>
 );
 
@@ -25,6 +29,7 @@ const styles = (theme) => ({
     boxSizing: 'border-box',
     overflow: 'hidden',
     fontSize: '12px',
+    minHeight: '36px',
     height: '100%',
     alignItems: 'center',
     fontFamily: 'Symbola, Times New Roman, serif',
@@ -39,7 +44,7 @@ const styles = (theme) => ({
     justifyContent: 'center',
     minWidth: '50px',
     minHeight: '36px',
-    height: '36px',
+    height: 'fit-content',
   },
   mathBlock: {
     flex: 8,
