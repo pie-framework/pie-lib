@@ -22,7 +22,7 @@ const styles = (theme) => ({
     padding: '0',
     border: 'none',
     color: 'inherit',
-    fontWeight:'bold'
+    fontWeight: 'bold'
   },
   input: {
     float: 'right',
@@ -132,7 +132,7 @@ export const MarkLabel = (props) => {
     if (typeof debouncedLabel === 'string' && debouncedLabel !== mark.label) {
       props.onChange(debouncedLabel);
     }
-  }, [debouncedLabel, mark.label, props]);
+  }, [debouncedLabel]);
 
   const rect = input ? input.getBoundingClientRect() : { width: 0, height: 0 };
   const pos = position(graphProps, mark, rect);
