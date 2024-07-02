@@ -293,6 +293,22 @@ export const removeChoiceFromCategory = (choiceId, categoryId, choiceIndex, answ
   });
 };
 
+export const removeChoiceFromAlternate = (choiceId, categoryId, choiceIndex, altIndex, answers) => {
+  return answers.map((a) => {
+    if (a.category === categoryId) {
+      const newAlternates = a.alternateResponses.map((altArray, idx) => {
+        if (idx === altIndex) {
+          altArray.splice(choiceIndex, 1);
+          return altArray;
+        }
+        return altArray;
+      });
+      return { ...a, alternateResponses: newAlternates };
+    }
+    return a;
+  });
+};
+
 export const moveChoiceToCategory = (choiceId, from, to, choiceIndex, answers) => {
   log('[moveChoiceToCategory] choice: ', choiceId, 'from: ', from, 'to: ', to, 'answers: ', answers);
 
