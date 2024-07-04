@@ -646,6 +646,11 @@ export class Editor extends React.Component {
     }, 50);
   };
 
+  isRelatedTargetButton(event) {
+    const relatedTarget = event?.relatedTarget;
+    return relatedTarget && relatedTarget.tagName.toLowerCase() === 'button';
+  }
+
   /*
    * Needs to be wrapped otherwise it causes issues because of race conditions
    * Known issue for slatejs. See: https://github.com/ianstormtaylor/slate/issues/2097
@@ -690,7 +695,9 @@ export class Editor extends React.Component {
       this.props.onFocus();
 
       // Added for accessibility: Ensures the editor gains focus when tabbed to for improved keyboard navigation
-      change?.focus();
+      if (!this.isRelatedTargetButton(event)) {
+        change?.focus();
+      }
 
       resolve();
     });
