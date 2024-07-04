@@ -294,11 +294,11 @@ export const removeChoiceFromCategory = (choiceId, categoryId, choiceIndex, answ
 };
 
 export const removeChoiceFromAlternate = (choiceId, categoryId, choiceIndex, altIndex, answers) => {
-  return answers.map((a) => {
-    if (a.category === categoryId) {
-      const newAlternates = a.alternateResponses.map((altArray, idx) => {
+  return (answers || []).map((a) => {
+    if (a?.category === categoryId) {
+      const newAlternates = (a?.alternateResponses || []).map((altArray, idx) => {
         if (idx === altIndex) {
-          altArray.splice(choiceIndex, 1);
+          (altArray || []).splice(choiceIndex, 1);
           return altArray;
         }
         return altArray;
