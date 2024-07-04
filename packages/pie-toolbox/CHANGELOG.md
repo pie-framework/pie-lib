@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.25.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.25.0...@pie-lib/pie-toolbox@1.25.1) (2024-07-04)
+
+
+### Bug Fixes
+
+* **categorize:** export new method PD-3895 ([c052fda](https://github.com/pie-framework/pie-lib/commit/c052fdaad3d017b2ba01fa4cd03aacaac340c0cf))
+* **categorize:** refactor remove choice from alternates algorithm to avoid deleteing unwanted choices PD-3895 ([7545746](https://github.com/pie-framework/pie-lib/commit/7545746e99f61810949b78a44393915226528bed))
+* **drag-in-the-blank:** prevent line wrapping for response area PD-3653 ([d26928d](https://github.com/pie-framework/pie-lib/commit/d26928df06723fe9d6e24043afb643f95470db6b))
+* **editable-html:** prevent editor from regaining focus when using Spanish or special character keypad PD-3834 ([1a69b7d](https://github.com/pie-framework/pie-lib/commit/1a69b7d18aa07fe6730e5b1d28bd290f585f1527))
+* **editable-html/math-templated:** render math content PD-3879 ([4369ab8](https://github.com/pie-framework/pie-lib/commit/4369ab8e5268ad94df0ffabc3c20aed80faf778a))
+* **graphing:** app crashes when user start writing in a label field ([38d2da6](https://github.com/pie-framework/pie-lib/commit/38d2da6f86207633a314e87361172e8a5cf03dd2))
+
+
+
+
+
 # [1.25.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.24.2...@pie-lib/pie-toolbox@1.25.0) (2024-06-26)
 
 
