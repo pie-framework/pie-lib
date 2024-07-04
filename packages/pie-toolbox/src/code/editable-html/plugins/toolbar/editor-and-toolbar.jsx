@@ -82,6 +82,7 @@ export class EditorAndToolbar extends React.Component {
 
     return (
       <div
+        tabIndex={0}
         className={classNames(
           {
             [classes.noBorder]: toolbarOpts && toolbarOpts.noBorder,
