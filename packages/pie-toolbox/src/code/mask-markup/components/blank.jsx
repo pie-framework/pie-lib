@@ -17,6 +17,7 @@ const useStyles = withStyles(() => ({
     minWidth: '200px',
     touchAction: 'none',
     overflow: 'hidden',
+    whiteSpace: 'nowrap', // Prevent line wrapping
   },
   chip: {
     backgroundColor: color.background(),
