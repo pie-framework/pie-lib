@@ -67,6 +67,26 @@ test('onFocus stashes the value', async () => {
   expect(wrapper.state('stashedValue')).toEqualHtml('<div>hi</div>');
 });
 
+test('onBlur does not set focusToolbar if related target is RawDoneButton', async () => {
+  const wrapper = shallow(
+    <Editor editorRef={jest.fn()} value={value} classes={{}} onChange={jest.fn()} onRef={jest.fn()} />,
+  );
+
+  const toolbarElement = document.createElement('div');
+  const relatedTarget = document.createElement('button');
+  relatedTarget.className = 'RawDoneButton';
+  toolbarElement.className = 'toolbar';
+  toolbarElement.appendChild(relatedTarget);
+
+  wrapper.instance().toolbarRef = toolbarElement;
+
+  const event = { relatedTarget };
+
+  await wrapper.instance().onBlur(event);
+
+  expect(wrapper.state('focusToolbar')).toBe(false);
+});
+
 describe('buildSizeStyle', () => {
   const wrapper = (extras) => {
     const props = Object.assign({}, extras);
