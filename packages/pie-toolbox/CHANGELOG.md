@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.25.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.25.1...@pie-lib/pie-toolbox@1.25.2) (2024-07-10)
+
+
+### Bug Fixes
+
+* made sure blockquote and h3 are not visible by default [PD-3878] ([e799fd3](https://github.com/pie-framework/pie-lib/commit/e799fd31cd0da8db764bb14fb4e513670d1cf761))
+* made sure data attributes is not preventing toggling of blockquote and h3 [PD-3878] ([8228620](https://github.com/pie-framework/pie-lib/commit/8228620e98cd079bf0542b91cd8e86bbc1b6aa17))
+* **charting:** labels should not be marked based on correctness if are not editable PD-3799 ([7e9ec0d](https://github.com/pie-framework/pie-lib/commit/7e9ec0d06b0583e2a461d927b0ae8397a0b8949f))
+* **graphing:** Prevent editor from gaining focus after clicking Done on axis labels PD-3924 ([fb0725d](https://github.com/pie-framework/pie-lib/commit/fb0725dd418b9ac19abfad0a967d0637635871d8))
+
+
+
+
+
 ## [1.25.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.25.0...@pie-lib/pie-toolbox@1.25.1) (2024-07-04)
 
 
