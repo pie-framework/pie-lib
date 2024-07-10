@@ -57,6 +57,46 @@ describe('logic', () => {
   });
 });
 
+test('onFocus does not change focus if related target is a button', async () => {
+  const wrapper = shallow(
+    <Editor editorRef={jest.fn()} value={value} classes={{}} onChange={jest.fn()} onRef={jest.fn()} />,
+  );
+
+  const event = {
+    relatedTarget: {
+      tagName: 'button',
+    },
+  };
+
+  const change = {
+    focus: jest.fn(),
+  };
+
+  await wrapper.instance().onFocus(event, change);
+
+  expect(change.focus).not.toHaveBeenCalled();
+});
+
+test('onFocus changes focus if related target is not a button', async () => {
+  const wrapper = shallow(
+    <Editor editorRef={jest.fn()} value={value} classes={{}} onChange={jest.fn()} onRef={jest.fn()} />,
+  );
+
+  const event = {
+    relatedTarget: {
+      tagName: 'div',
+    },
+  };
+
+  const change = {
+    focus: jest.fn(),
+  };
+
+  await wrapper.instance().onFocus(event, change);
+
+  expect(change.focus).toHaveBeenCalled();
+});
+
 test('onFocus stashes the value', async () => {
   const wrapper = shallow(
     <Editor editorRef={jest.fn()} value={value} classes={{}} onChange={jest.fn()} onRef={jest.fn()} />,
@@ -65,6 +105,92 @@ test('onFocus stashes the value', async () => {
   await wrapper.instance().onFocus();
 
   expect(wrapper.state('stashedValue')).toEqualHtml('<div>hi</div>');
+});
+
+test('handleToolbarFocus sets focusToolbar to true', () => {
+  const wrapper = shallow(
+    <Editor editorRef={jest.fn()} value={value} classes={{}} onChange={jest.fn()} onRef={jest.fn()} />,
+  );
+
+  wrapper.instance().handleToolbarFocus();
+  expect(wrapper.state('focusToolbar')).toBe(true);
+});
+
+test('handleToolbarBlur sets focusToolbar to false if toolbar does not contain focus', (done) => {
+  const wrapper = shallow(
+    <Editor editorRef={jest.fn()} value={value} classes={{}} onChange={jest.fn()} onRef={jest.fn()} />,
+  );
+
+  wrapper.instance().toolbarContainsFocus = jest.fn().mockReturnValue(false);
+
+  wrapper.instance().handleToolbarBlur();
+
+  setTimeout(() => {
+    expect(wrapper.state('focusToolbar')).toBe(false);
+    done();
+  }, 20);
+});
+
+test('handleToolbarBlur does not set focusToolbar to false if toolbar contains focus', (done) => {
+  const wrapper = shallow(
+    <Editor editorRef={jest.fn()} value={value} classes={{}} onChange={jest.fn()} onRef={jest.fn()} />,
+  );
+
+  wrapper.instance().toolbarContainsFocus = jest.fn().mockReturnValue(true);
+
+  wrapper.setState({ focusToolbar: true });
+
+  wrapper.instance().handleToolbarBlur();
+
+  setTimeout(() => {
+    expect(wrapper.state('focusToolbar')).toBe(true);
+    done();
+  }, 20);
+});
+
+test('toolbarContainsFocus correctly detects focus within toolbar', () => {
+  const wrapper = shallow(
+    <Editor editorRef={jest.fn()} value={value} classes={{}} onChange={jest.fn()} onRef={jest.fn()} />,
+  );
+
+  const toolbarElement = document.createElement('div');
+  const activeElement = document.createElement('button');
+  toolbarElement.appendChild(activeElement);
+
+  Object.defineProperty(document, 'activeElement', {
+    value: activeElement,
+    configurable: true,
+  });
+
+  wrapper.instance().toolbarRef = toolbarElement;
+
+  expect(wrapper.instance().toolbarContainsFocus()).toBe(true);
+
+  Object.defineProperty(document, 'activeElement', {
+    value: document.createElement('div'),
+    configurable: true,
+  });
+
+  expect(wrapper.instance().toolbarContainsFocus()).toBe(false);
+});
+
+test('onBlur sets focusToolbar to true if related target is within toolbar', async () => {
+  const wrapper = shallow(
+    <Editor editorRef={jest.fn()} value={value} classes={{}} onChange={jest.fn()} onRef={jest.fn()} />,
+  );
+
+  const toolbarElement = document.createElement('div');
+  const relatedTarget = document.createElement('button');
+  toolbarElement.className = 'toolbar';
+  toolbarElement.appendChild(relatedTarget);
+
+  wrapper.instance().toolbarRef = toolbarElement;
+
+  const event = { relatedTarget };
+
+  await wrapper.instance().onBlur(event);
+
+  expect(wrapper.state('focusToolbar')).toBe(true);
 });
 
 describe('buildSizeStyle', () => {
