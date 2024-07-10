@@ -133,8 +133,8 @@ export const MarkLabel = (props) => {
       className={classNames(classes.mathInput, {
         [classes.disabled]: disabled,
         [classes.error]: error,
-        [classes.correct]: correctness && correctness.label === 'correct',
-        [classes.incorrect]: correctness && correctness.label === 'incorrect',
+        [classes.correct]: mark.editable && correctness?.label === 'correct',
+        [classes.incorrect]: mark.editable && correctness?.label === 'incorrect',
       })}
       onClick={() => setIsEditing(true)}
       style={{ minWidth: barWidth, position: 'fixed' }}
@@ -149,7 +149,7 @@ export const MarkLabel = (props) => {
       disabled={disabled}
       inputClassName={classNames(
         classes.input,
-        correctness && correctness.label,
+        correctness && mark.editable ? correctness.label : null,
         disabled && 'disabled',
         error && 'error',
       )}
