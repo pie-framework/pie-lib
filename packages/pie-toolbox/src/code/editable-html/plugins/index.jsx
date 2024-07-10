@@ -1,5 +1,6 @@
 import Hotkeys from 'slate-hotkeys';
 import { IS_IOS } from 'slate-dev-environment';
+import { Mark } from 'slate';
 import Bold from '@material-ui/icons/FormatBold';
 import FormatQuote from '@material-ui/icons/FormatQuote';
 //import Code from '@material-ui/icons/Code';
@@ -45,6 +46,7 @@ const HeadingIcon = () => (
 const STYLES_MAP = {
   h3: {
     fontSize: 'inherit',
+    fontWeight: 'inherit',
   },
   blockquote: {
     background: '#f9f9f9',
@@ -100,7 +102,17 @@ function MarkHotkey(options) {
             change.moveFocusTo(textNode.key, 0).moveAnchorTo(textNode.key, textNode.text.length);
 
             // remove toggle
-            change.toggleMark(type);
+            const hasMark = change.value.activeMarks.find((entry) => {
+              return entry.type === type;
+            });
+
+            if (hasMark) {
+              change.removeMark(hasMark);
+            } else {
+              const newMark = Mark.create(type);
+
+              change.addMark(newMark);
+            }
 
             // move focus to end of text
             return change
@@ -119,12 +131,10 @@ function MarkHotkey(options) {
         const K = tag || type;
         const additionalStyles = STYLES_MAP[K];
 
-        if (additionalStyles && !jsonData.attributes) {
-          jsonData.attributes = {};
-        }
-
-        if (jsonData.attributes) {
-          const additionalStyles = STYLES_MAP[K];
+        if (additionalStyles) {
+          if (!jsonData.attributes) {
+            jsonData.attributes = {};
+          }
 
           jsonData.attributes.style = {
             ...jsonData.attributes.style,
@@ -171,7 +181,7 @@ export const ALL_PLUGINS = [
   'undo',
 ];
 
-export const DEFAULT_PLUGINS = ALL_PLUGINS.filter((plug) => plug !== 'responseArea');
+export const DEFAULT_PLUGINS = ALL_PLUGINS.filter((plug) => !['responseArea'].includes(plug));
 
 const ICON_MAP = {
   undo: Undo,

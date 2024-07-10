@@ -2,6 +2,7 @@ import Html from 'slate-html-serializer';
 import React from 'react';
 import debug from 'debug';
 import { object as toStyleObject } from 'to-style';
+import isEmpty from 'lodash/isEmpty';
 
 import { serialization as imgSerialization } from './plugins/image';
 import { serialization as mathSerialization } from './plugins/math';
@@ -120,6 +121,7 @@ const blocks = {
 const STYLES_MAP = {
   h3: {
     fontSize: 'inherit',
+    fontWeight: 'inherit',
   },
   blockquote: {
     background: '#f9f9f9',
@@ -133,13 +135,16 @@ const marks = {
     const mark = MARK_TAGS[el.tagName.toLowerCase()];
     if (!mark) return;
     log('[deserialize] mark: ', mark);
+    const attrs = attributes.reduce(attributesToMap(el), {});
+    const data = isEmpty(attrs) ? undefined : { attributes: attrs };
+
     return {
       object: 'mark',
       type: mark,
       /**
        * Here for rendering styles for all block elements
        */
-      data: { attributes: attributes.reduce(attributesToMap(el), {}) },
+      data,
       nodes: next(el.childNodes),
     };
   },
@@ -151,12 +156,10 @@ const marks = {
           const Tag = key;
           const additionalStyles = STYLES_MAP[Tag];
 
-          if (additionalStyles && !jsonData.attributes) {
-            jsonData.attributes = {};
-          }
-
-          if (jsonData.attributes) {
-            const additionalStyles = STYLES_MAP[Tag];
+          if (additionalStyles) {
+            if (!jsonData.attributes) {
+              jsonData.attributes = {};
+            }
 
             jsonData.attributes.style = {
               ...jsonData.attributes.style,
