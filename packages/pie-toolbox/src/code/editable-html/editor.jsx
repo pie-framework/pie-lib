@@ -602,7 +602,10 @@ export class Editor extends React.Component {
     const relatedTarget = event.relatedTarget;
     const toolbarElement = this.toolbarRef && relatedTarget?.closest(`[class*="${this.toolbarRef.className}"]`);
 
-    if (toolbarElement) {
+    // Check if relatedTarget is a done button
+    const isRawDoneButton = relatedTarget?.closest('button[class*="RawDoneButton"]');
+
+    if (toolbarElement && !isRawDoneButton) {
       this.setState({
         focusToolbar: true,
       });
