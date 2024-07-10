@@ -217,7 +217,9 @@ export class KeyPad extends React.Component {
       if (difference < 0) {
         const totalHeight = mainContainerPosition.height + mainContainerPosition.top - difference;
         // increase the height of the main container if keyboard needs it
-        mainContainer.style.height = `${totalHeight}px`;
+        if (mainContainer) {
+          mainContainer.style.height = `${totalHeight}px`;
+        }
       }
     }
   }
@@ -226,7 +228,10 @@ export class KeyPad extends React.Component {
     // need only for math keyboard
     if (this.props.controlledKeypadMode && this.keypadRef && this.keypadRef.current) {
       const mainContainer = this.keypadRef.current.closest(`.${MAIN_CONTAINER_CLASS}`);
-      mainContainer.style.height = 'unset';
+
+      if (mainContainer) {
+        mainContainer.style.height = 'unset';
+      }
     }
   }
 
