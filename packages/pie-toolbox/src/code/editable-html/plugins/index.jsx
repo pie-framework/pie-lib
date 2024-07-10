@@ -181,7 +181,7 @@ export const ALL_PLUGINS = [
   'undo',
 ];
 
-export const DEFAULT_PLUGINS = ALL_PLUGINS.filter((plug) => !['responseArea'].includes(plug));
+export const DEFAULT_PLUGINS = ALL_PLUGINS.filter((plug) => !['responseArea', 'h3', 'blockquote'].includes(plug));
 
 const ICON_MAP = {
   undo: Undo,
