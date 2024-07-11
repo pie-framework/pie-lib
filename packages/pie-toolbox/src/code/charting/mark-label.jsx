@@ -88,6 +88,7 @@ export const MarkLabel = (props) => {
     correctness,
     autoFocus,
     error,
+    isHiddenLabel,
   } = props;
 
   const [label, setLabel] = useState(mark.label);
@@ -128,7 +129,10 @@ export const MarkLabel = (props) => {
 
   return isMathRendering() ? (
     <div
-      ref={(r) => (root = r)}
+      ref={(r) => {
+        root = r;
+        externalInputRef(r);
+      }}
       dangerouslySetInnerHTML={{ __html: getLabelMathFormat(label) }}
       className={classNames(classes.mathInput, {
         [classes.disabled]: disabled,
@@ -137,7 +141,7 @@ export const MarkLabel = (props) => {
         [classes.incorrect]: mark.editable && correctness?.label === 'incorrect',
       })}
       onClick={() => setIsEditing(true)}
-      style={{ minWidth: barWidth, position: 'fixed' }}
+      style={{ minWidth: barWidth, position: 'fixed', visibility: isHiddenLabel ? 'hidden' : 'unset' }}
     ></div>
   ) : (
     <AutosizeInput
@@ -171,6 +175,7 @@ export const MarkLabel = (props) => {
         minWidth: barWidth,
         transformOrigin: 'left',
         transform: `rotate(${rotate}deg)`,
+        visibility: isHiddenLabel ? 'hidden' : 'unset',
       }}
       onChange={onChange}
       onBlur={onChangeProp}
@@ -193,6 +198,7 @@ MarkLabel.propTypes = {
     value: PropTypes.string,
     label: PropTypes.string,
   }),
+  isHiddenLabel: PropTypes.bool,
 };
 
 export default withStyles(styles)(MarkLabel);

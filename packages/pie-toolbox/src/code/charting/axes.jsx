@@ -5,7 +5,7 @@ import { types } from '../plot';
 import { color } from '../../render-ui';
 import { AlertDialog } from '../config-ui';
 import { AxisLeft, AxisBottom } from '@vx/axis';
-import { bandKey, getTickValues, getRotateAngle } from './utils';
+import {bandKey, getTickValues, getRotateAngle} from './utils';
 import MarkLabel from './mark-label';
 import Checkbox from '@material-ui/core/Checkbox';
 
@@ -133,6 +133,7 @@ export class TickComponent extends React.Component {
       changeEditableEnabled,
       error,
       autoFocus,
+      hiddenLabelRef
     } = this.props;
 
     if (!formattedValue) {
@@ -155,6 +156,8 @@ export class TickComponent extends React.Component {
     const longestLabel = (longestCategory && longestCategory.label) || '';
     const distinctMessages = error ? [...new Set(Object.values(error))].join(' ') : '';
 
+    console.log('longestLabel', longestLabel);
+
     return (
       <g>
         <foreignObject
@@ -165,19 +168,14 @@ export class TickComponent extends React.Component {
           style={{ pointerEvents: 'none', overflow: 'visible' }}
         >
           {index === 0 && (
-            <div
-              id="hiddenLabel"
-              style={{
-                position: 'absolute',
-                visibility: 'hidden',
-                wordBreak: 'break-word',
-                overflow: 'visible',
-                maxWidth: barWidth,
-                display: 'block',
-              }}
-            >
-              {longestLabel}
-            </div>
+            <MarkLabel
+              isHiddenLabel={true}
+              inputRef={hiddenLabelRef}
+              disabled={true}
+              mark={longestCategory}
+              graphProps={graphProps}
+              barWidth={barWidth}
+            />
           )}
 
           <MarkLabel
@@ -365,12 +363,30 @@ export class RawChartAxes extends React.Component {
     onAutoFocusUsed: PropTypes.func,
   };
 
-  state = { height: 0 };
+  state = { height: 0, width: 0 };
 
   componentDidMount() {
-    const height = document.getElementById('hiddenLabel') ? document.getElementById('hiddenLabel').offsetHeight : 0;
+    console.log('componentDidMount this.hiddenLabelRef', this.hiddenLabelRef);
 
-    this.setState({ height });
+    if (this.hiddenLabelRef) {
+      const boundingClientRect = this.hiddenLabelRef.getBoundingClientRect();
+      this.setState({
+        height: Math.floor(boundingClientRect.height),
+        width: Math.floor(boundingClientRect.width),
+      });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.hiddenLabelRef) {
+      const width = Math.floor(this.hiddenLabelRef.getBoundingClientRect().width);
+
+      console.log('componentDidUpdate this.hiddenLabelRef', this.hiddenLabelRef);
+
+      if (width !== this.state.width) {
+        this.setState({ width });
+      }
+    }
   }
 
   render() {
@@ -395,7 +411,7 @@ export class RawChartAxes extends React.Component {
 
     const { axis, axisLine, tick } = classes;
     const { scale = {}, range = {}, domain = {}, size = {} } = graphProps || {};
-    const { height } = this.state;
+    const { height, width } = this.state;
 
     const bottomScale = xBand && typeof xBand.rangeRound === 'function' && xBand.rangeRound([0, size.width]);
 
@@ -405,7 +421,13 @@ export class RawChartAxes extends React.Component {
 
     const rowTickValues = getTickValues({ ...range, step: range.labelStep });
     const fontSize = theme && theme.typography ? theme.typography.fontSize : 14;
-    const rotate = getRotateAngle(fontSize, height);
+    // this mostly applies for labels that are not editable
+    const rotateBecauseOfHeight = getRotateAngle(fontSize, height);
+    // this applies for labels that are editable
+    const rotateBecauseOfWidth = width > barWidth ? 25 : 0;
+
+    console.log({ width, barWidth });
+    console.log({ rotateBecauseOfWidth, rotateBecauseOfHeight });
 
     const getTickLabelProps = (value) => ({
       dy: 4,
@@ -414,12 +436,13 @@ export class RawChartAxes extends React.Component {
 
     const getTickComponent = (props) => {
       const properties = {
+        hiddenLabelRef: ref => { this.hiddenLabelRef = ref; },
         classes,
         categories,
         xBand,
         bandWidth,
         barWidth,
-        rotate,
+        rotate: rotateBecauseOfHeight || rotateBecauseOfWidth,
         top,
         defineChart,
         chartingOptions,
