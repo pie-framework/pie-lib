@@ -56,6 +56,7 @@ export default withStyles((theme) => ({
   title: {
     color: theme.palette.primary.light,
     borderBottom: `1px dotted ${theme.palette.primary.light}`,
+    cursor: 'pointer',
   },
   collapsible: {
     paddingTop: theme.spacing.unit * 2,
