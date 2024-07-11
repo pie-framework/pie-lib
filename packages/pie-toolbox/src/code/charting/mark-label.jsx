@@ -141,7 +141,13 @@ export const MarkLabel = (props) => {
         [classes.incorrect]: mark.editable && correctness?.label === 'incorrect',
       })}
       onClick={() => setIsEditing(true)}
-      style={{ minWidth: barWidth, position: 'fixed', visibility: isHiddenLabel ? 'hidden' : 'unset' }}
+      style={{
+        minWidth: barWidth,
+        position: 'fixed',
+        transformOrigin: 'left',
+        transform: `rotate(${rotate}deg)`,
+        visibility: isHiddenLabel ? 'hidden' : 'unset',
+      }}
     ></div>
   ) : (
     <AutosizeInput
