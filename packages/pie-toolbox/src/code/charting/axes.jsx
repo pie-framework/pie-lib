@@ -152,11 +152,7 @@ export class TickComponent extends React.Component {
 
       return lengthA > lengthB ? a : b;
     });
-
-    const longestLabel = (longestCategory && longestCategory.label) || '';
     const distinctMessages = error ? [...new Set(Object.values(error))].join(' ') : '';
-
-    console.log('longestLabel', longestLabel);
 
     return (
       <g>
@@ -366,8 +362,6 @@ export class RawChartAxes extends React.Component {
   state = { height: 0, width: 0 };
 
   componentDidMount() {
-    console.log('componentDidMount this.hiddenLabelRef', this.hiddenLabelRef);
-
     if (this.hiddenLabelRef) {
       const boundingClientRect = this.hiddenLabelRef.getBoundingClientRect();
       this.setState({
@@ -380,8 +374,6 @@ export class RawChartAxes extends React.Component {
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (this.hiddenLabelRef) {
       const width = Math.floor(this.hiddenLabelRef.getBoundingClientRect().width);
-
-      console.log('componentDidUpdate this.hiddenLabelRef', this.hiddenLabelRef);
 
       if (width !== this.state.width) {
         this.setState({ width });
@@ -425,9 +417,6 @@ export class RawChartAxes extends React.Component {
     const rotateBecauseOfHeight = getRotateAngle(fontSize, height);
     // this applies for labels that are editable
     const rotateBecauseOfWidth = width > barWidth ? 25 : 0;
-
-    console.log({ width, barWidth });
-    console.log({ rotateBecauseOfWidth, rotateBecauseOfHeight });
 
     const getTickLabelProps = (value) => ({
       dy: 4,
