@@ -351,7 +351,7 @@ const styles = (theme) => ({
     gridTemplateRows: 'repeat(5, minmax(40px, 50px)) !important',
   },
   language: {
-    gridTemplateRows: 'repeat(5, minmax(40px, 50px)) !important',
+    gridTemplateRows: 'repeat(4, minmax(40px, 50px)) !important',
     '& *': {
       fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important',
     },
