@@ -54,7 +54,7 @@
     "react-measure": "^2.2.2",
     "react-portal": "^4.2.0",
     "react-redux": "^6.0.0",
-    "react-transition-group": "^2.5.2",
+    "react-transition-group": "^4.4.5",
     "redux": "^4.0.1",
     "redux-undo": "beta",
     "slate": "^0.36.2",
