@@ -30,6 +30,7 @@ const RawDragHandle = ({
       {isHovered && !correctness && interactive && (
         <DragIcon width={width} scaleValue={scaleValue} color={color} classes={classes} />
       )}
+      {interactive && !correctness && (
       <ellipse
         cx={width / 2}
         cy={10}
@@ -39,6 +40,7 @@ const RawDragHandle = ({
         className={classNames(classes.transparentHandle, className)}
         {...rest}
       />
+      )}
 
       <defs>
         <filter id="bottomShadow" x="0" y="0" width="140%" height="140%">
