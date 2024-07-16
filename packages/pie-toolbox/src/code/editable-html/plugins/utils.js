@@ -29,3 +29,19 @@ export const hasMark = (value, type) => value && value.marks.some((mark) => mark
 export const hasBlock = (value, type) => value && value.blocks.some((node) => node.type == type);
 
 export const hasNode = ({ document }, type) => document && document.nodes.some((node) => node.type == type);
+
+let activeKeypad = null;
+
+export const setActiveKeypad = (keypad) => {
+  if (activeKeypad && activeKeypad !== keypad) {
+    activeKeypad.close();
+  }
+  activeKeypad = keypad;
+};
+
+export const closeActiveKeypad = () => {
+  if (activeKeypad) {
+    activeKeypad.close();
+    activeKeypad = null;
+  }
+};
