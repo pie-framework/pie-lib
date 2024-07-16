@@ -152,9 +152,16 @@ const mp = (theme) => ({
         top: '-0.4em',
         left: '-1px',
       },
+      // NOTE: This workaround adds `!important` to enforce the correct positioning and styling
+      // of `.mq-overarrow.mq-arrow-both` elements in MathQuill. This ensures consistent display
+      // regardless of the order in which MathQuill is initialized on our websites.
+      //
+      // In the future, investigate why MathQuill scripts and styles are being initialized
+      // more than once and address the root cause to prevent potential conflicts and ensure
+      // optimal performance.
       '&:after': {
         top: '0px !important',
-        position: 'absolute',
+        position: 'absolute !important',
         right: '-2px',
       },
       '&.mq-empty:after': {
