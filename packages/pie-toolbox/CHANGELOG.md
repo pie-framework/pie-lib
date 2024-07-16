@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.26.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.25.3...@pie-lib/pie-toolbox@1.26.0) (2024-07-16)
+
+
+### Bug Fixes
+
+* **editable-html:** introduce setActiveKeypad utility for consistent keypad lifecycle management, this utility ensures that only one keypad remains active at any time by automatically closing any previously active keypad when a new one is set PD-3630 ([e089fb8](https://github.com/pie-framework/pie-lib/commit/e089fb82a775d03e5d54d8378676a1720b2c937a))
+* made sure special characters popup shows things on 4 rows [PD-3629] ([9a97e02](https://github.com/pie-framework/pie-lib/commit/9a97e0294330212e6f6cd380a21c77b0afea93d1))
+* **math-preview:** enforce consistent styling for MathQuill elements PD-3627 ([6340792](https://github.com/pie-framework/pie-lib/commit/63407926a6d638288832f32fbd7fa344fbc99116))
+* add cursor pointer PD-3631 ([86c8cf1](https://github.com/pie-framework/pie-lib/commit/86c8cf1add119eaa6838783150de010065b7808b))
+
+
+### Features
+
+* rotate inputs if they don't fit inside the space ([5f5ef67](https://github.com/pie-framework/pie-lib/commit/5f5ef67b038dea60c4067faa95fde47da7b8b378))
+* rotate math instamces if they don't fit inside the space PD-3622 ([4b8d594](https://github.com/pie-framework/pie-lib/commit/4b8d5946caf4cf9c6306dc8d3b33ccc0708347ac))
+
+
+
+
+
 ## [1.25.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.25.2...@pie-lib/pie-toolbox@1.25.3) (2024-07-10)
 
 
