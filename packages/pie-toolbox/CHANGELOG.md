@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.26.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.26.0...@pie-lib/pie-toolbox@1.26.1) (2024-07-17)
+
+
+### Bug Fixes
+
+* **graphing:** faded labels on touchscreen devices PD-3945 ([cf33d29](https://github.com/pie-framework/pie-lib/commit/cf33d294e19c47cb9429eb1fd2daa451bd5c32fc))
+* **math-preview:** ensure consistent styling for MathQuill elements within the editor and pad input container PD-3627 ([273cd24](https://github.com/pie-framework/pie-lib/commit/273cd247ee62d66c1c08d25a564dab116736b65c))
+
+
+
+
+
 # [1.26.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.25.3...@pie-lib/pie-toolbox@1.26.0) (2024-07-16)
 
 
