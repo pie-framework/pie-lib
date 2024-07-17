@@ -311,7 +311,7 @@ const styles = (theme) => ({
         left: '-1px',
       },
       '&:after': {
-        position: 'absolute',
+        position: 'absolute !important',
         top: '0px !important',
         right: '-2px',
       },

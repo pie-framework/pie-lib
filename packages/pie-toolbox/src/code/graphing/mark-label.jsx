@@ -37,10 +37,12 @@ const styles = (theme) => ({
   disabled: {
     border: `solid 1px ${color.defaults.PRIMARY_DARK}`,
     backgroundColor: color.defaults.WHITE,
+    "-webkit-opacity": '1',
   },
   disabledMark: {
     border: `solid 1px ${color.disabled()}`,
     color: color.disabled(),
+    "-webkit-text-fill-color": color.disabled(),
   },
   inputCorrect: {
     ...inputStyles(theme),
