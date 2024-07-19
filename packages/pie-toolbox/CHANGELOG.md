@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.26.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.26.1...@pie-lib/pie-toolbox@1.26.2) (2024-07-19)
+
+
+### Bug Fixes
+
+* **editable-html:** revert changes PD-3630 ([9ed0550](https://github.com/pie-framework/pie-lib/commit/9ed0550ac56959cb1b2d9ee5993989fbfde4fc4d))
+
+
+
+
+
 ## [1.26.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.26.0...@pie-lib/pie-toolbox@1.26.1) (2024-07-17)
 
 
