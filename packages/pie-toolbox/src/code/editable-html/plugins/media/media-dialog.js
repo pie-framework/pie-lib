@@ -499,7 +499,7 @@ export class MediaDialog extends React.Component {
                   {fileUpload.url ? (
                     <>
                       <div className={classes.row}>
-                        <audio controls="controls">
+                        <audio controls="controls" controlsList="nodownload">
                           <source type="audio/mp3" src={fileUpload.url} />
                         </audio>
                         <IconButton aria-label="delete" className={classes.deleteIcon} onClick={this.handleRemoveFile}>
