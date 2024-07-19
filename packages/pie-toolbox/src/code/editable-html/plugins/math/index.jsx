@@ -2,7 +2,6 @@ import Functions from '@material-ui/icons/Functions';
 import { Inline } from 'slate';
 import { MathPreview, MathToolbar } from '../../../math-toolbar';
 import { wrapMath, unWrapMath, mmlToLatex, renderMath } from '../../../math-rendering-accessible';
-import { setActiveKeypad, closeActiveKeypad } from './../utils';
 import React from 'react';
 import debug from 'debug';
 import SlatePropTypes from 'slate-prop-types';
@@ -37,8 +36,6 @@ export const CustomToolbarComp = React.memo(
         ...node.data.toObject(),
         latex,
       };
-
-      closeActiveKeypad();
 
       const change = value.change().setNodeByKey(node.key, { data: update });
 
@@ -116,7 +113,6 @@ export default function MathPlugin(opts) {
         const math = inlineMath();
         const change = value.change().insertInline(math);
         onChange(change);
-        setActiveKeypad({ close: () => onChange(change) });
       },
       supports: (node) => node && node.object === 'inline' && node.type === 'math',
       /**
