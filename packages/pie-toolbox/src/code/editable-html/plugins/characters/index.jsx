@@ -8,7 +8,6 @@ import { PureToolbar } from '../../../math-toolbar';
 import CustomPopper from './custom-popper';
 import { insertSnackBar } from '../respArea/utils';
 import { characterIcons, spanishConfig, specialConfig } from './utils';
-import { setActiveKeypad } from './../utils';
 import PropTypes from 'prop-types';
 
 const log = debug('@pie-lib:editable-html:plugins:characters');
@@ -34,7 +33,6 @@ const insertDialog = ({ editorDOM, value, callback, opts }) => {
   log('[characters:insertDialog]');
 
   removeDialogs();
-  setActiveKeypad({ close: () => newEl.remove() });
 
   newEl.className = 'insert-character-dialog';
 
