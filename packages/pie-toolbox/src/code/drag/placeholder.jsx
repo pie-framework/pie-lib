@@ -56,7 +56,7 @@ const styles = (theme) => ({
   placeholder: {
     width: '100%',
     height: '100%',
-    background: theme.palette.grey[200],
+    background: '#ffffff',
     border: '1px solid #D1D1D1',
     transition: 'background-color 200ms linear, border-color 200ms linear',
     boxSizing: 'border-box',
@@ -64,6 +64,7 @@ const styles = (theme) => ({
     gridRowGap: `${theme.spacing.unit}px`,
     gridColumnGap: `${theme.spacing.unit}px`,
     padding: theme.spacing.unit * 1,
+    border: '2px dashed #000000',
   },
   disabled: {
     boxShadow: 'none',
