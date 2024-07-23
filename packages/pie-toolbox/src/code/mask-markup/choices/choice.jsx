@@ -65,7 +65,7 @@ export const BlankContent = withStyles((theme) => ({
     transform: 'translate(0, 0)',
   },
   chip: {
-    backgroundColor: '#ffffff',
+    backgroundColor: color.background(),
     border: `1px solid ${color.text()}`,
     color: color.text(),
     alignItems: 'center',
