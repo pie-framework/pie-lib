@@ -79,10 +79,11 @@ const styles = (theme) => ({
     display: 'flex',
     flexWrap: 'wrap',
     alignItems: 'center',
-    minHeight: '200px',
+    minHeight: '100px',
     justifyContent: 'center',
     overflow: 'hidden',
     touchAction: 'none',
+    backgroundColor: '#ECEDF1',
   },
   categorizeBoard: {
     border: '1px solid #D1D1D1',
@@ -94,6 +95,7 @@ const styles = (theme) => ({
     justifyContent: 'center',
     overflow: 'hidden',
     touchAction: 'none',
+    backgroundColor: '#ECEDF1',
   },
 });
 
