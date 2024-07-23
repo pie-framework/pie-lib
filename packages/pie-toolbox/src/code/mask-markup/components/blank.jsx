@@ -20,7 +20,7 @@ const useStyles = withStyles(() => ({
     whiteSpace: 'nowrap', // Prevent line wrapping
   },
   chip: {
-    backgroundColor: color.background(),
+    backgroundColor: '#ffffff',
     border: `2px dashed ${color.text()}`,
     color: color.text(),
     minWidth: '90px',
