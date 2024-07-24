@@ -26,11 +26,11 @@ export const PlaceHolder = (props) => {
     style.gridTemplateRows = `repeat(${grid.rows}, ${repeatValue})`;
   }
   
-  // type is only sent thorugh placement-ordering / placeholder
-  // it can be "choice" or "target"
-  // we apply a different style for the "choice" type 
-  // otherwise use the dashed border black and fill white
-  if(type === 'choice'){
+  // The "type" is only sent through placement-ordering / placeholder
+  // It can be "choice" or "target"
+  // We apply a different style for the "choice" type
+  // For any other type, use a dashed black border and a white fill
+  if (type === 'choice') {
     style.border = '1px solid #D1D1D1';
     style.background = '#eeeeee';
   }
