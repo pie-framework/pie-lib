@@ -26,7 +26,7 @@ const useStyles = withStyles(() => ({
     minWidth: '90px',
     fontSize: 'inherit',
     minHeight: '32px',
-    height: 'auto',
+    // height: 'auto',
     maxWidth: '374px',
     position: 'relative',
   },
@@ -63,22 +63,11 @@ const useStyles = withStyles(() => ({
 }));
 
 export class BlankContent extends React.Component {
-  static propTypes = {
-    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    disabled: PropTypes.bool,
-    duplicates: PropTypes.bool,
-    choice: PropTypes.object,
-    classes: PropTypes.object,
-    isOver: PropTypes.bool,
-    dragItem: PropTypes.object,
-    correct: PropTypes.bool,
-    onChange: PropTypes.func,
-  };
-
   constructor() {
     super();
     this.state = {
       height: 0,
+      width: 0,
     };
   }
 
@@ -91,14 +80,25 @@ export class BlankContent extends React.Component {
       if (!currentChoice) {
         this.setState({
           height: 0,
+          width: 0,
         });
         return;
       }
       setTimeout(() => {
-        this.setState({
-          height: this.spanRef.offsetHeight,
-        });
+        this.updateDimensions();
       }, 300);
+    }
+  }
+
+  updateDimensions() {
+    const height = this.spanRef.offsetHeight;
+    const width = this.spanRef.offsetWidth;
+
+    if (height > this.props.emptyResponseAreaHeight || width > this.props.emptyResponseAreaWidth) {
+      this.setState((prevState) => ({
+        width: width > this.props.emptyResponseAreaWidth ? width : prevState.width,
+        height: height > this.props.emptyResponseAreaHeight ? height : prevState.height,
+      }));
     }
   }
 
@@ -108,6 +108,14 @@ export class BlankContent extends React.Component {
         elem.setAttribute('draggable', false);
       }
     });
+  }
+
+  getRootDimensions() {
+    const rootHeight = this.state.height
+      ? { height: this.state.height }
+      : { height: this.props.emptyResponseAreaHeight };
+    const rootWidth = this.state.width ? { width: this.state.width } : { width: this.props.emptyResponseAreaWidth };
+    return { ...rootHeight, ...rootWidth };
   }
 
   render() {
@@ -165,7 +173,7 @@ export class BlankContent extends React.Component {
         })}
         variant={disabled ? 'outlined' : undefined}
         style={{
-          ...(this.state.height ? { height: this.state.height } : {}),
+          ...this.getRootDimensions(),
         }}
         classes={{
           label: isOver && classes.over,
@@ -174,6 +182,24 @@ export class BlankContent extends React.Component {
     );
   }
 }
+
+BlankContent.defaultProps = {
+  emptyResponseAreaWidth: 0,
+  emptyResponseAreaHeight: 0,
+};
+BlankContent.propTypes = {
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  disabled: PropTypes.bool,
+  duplicates: PropTypes.bool,
+  choice: PropTypes.object,
+  classes: PropTypes.object,
+  isOver: PropTypes.bool,
+  dragItem: PropTypes.object,
+  correct: PropTypes.bool,
+  onChange: PropTypes.func,
+  emptyResponseAreaWidth: PropTypes.number,
+  emptyResponseAreaHeight: PropTypes.number,
+};
 
 const StyledBlankContent = useStyles(BlankContent);
 
