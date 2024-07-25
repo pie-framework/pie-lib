@@ -163,7 +163,7 @@ export default function MediaPlugin(type, opts) {
         if (tag === 'audio') {
           return (
             <MediaWrapper editor data-type={type} width={style.width} {...rest}>
-              <audio controls="controls">
+              <audio controls="controls" controlsList="nodownload">
                 <source type="audio/mp3" src={src} />
               </audio>
               <MediaToolbar hideEdit onRemove={handleDelete} />
@@ -304,7 +304,7 @@ export const serialization = {
 
     if (tag === 'audio') {
       return (
-        <audio controls="controls">
+        <audio controls="controls" controlsList="nodownload">
           <source type="audio/mp3" src={src} />
         </audio>
       );
