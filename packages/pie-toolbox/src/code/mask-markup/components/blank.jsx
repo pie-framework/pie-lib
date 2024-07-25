@@ -23,10 +23,7 @@ const useStyles = withStyles(() => ({
     backgroundColor: color.background(),
     border: `1px solid ${color.text()}`,
     color: color.text(),
-    minWidth: '90px',
     fontSize: 'inherit',
-    minHeight: '32px',
-    // height: 'auto',
     maxWidth: '374px',
     position: 'relative',
   },
@@ -115,7 +112,14 @@ export class BlankContent extends React.Component {
       ? { height: this.state.height }
       : { height: this.props.emptyResponseAreaHeight };
     const rootWidth = this.state.width ? { width: this.state.width } : { width: this.props.emptyResponseAreaWidth };
-    return { ...rootHeight, ...rootWidth };
+    // add minWidth, minHeight if width and height are not defined
+    // minWidth, minHeight will be also in model in the future
+    return {
+      ...rootHeight,
+      ...rootWidth,
+      ...(this.props.emptyResponseAreaWidth ? {} : { minWidth: 90 }),
+      ...(this.props.emptyResponseAreaHeight ? {} : { minHeight: 32 }),
+    };
   }
 
   render() {

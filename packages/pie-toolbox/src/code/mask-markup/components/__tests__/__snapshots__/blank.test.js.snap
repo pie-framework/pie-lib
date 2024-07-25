@@ -23,6 +23,8 @@ exports[`Blank render renders correctly with default props 1`] = `
   style={
     Object {
       "height": 0,
+      "minHeight": 32,
+      "minWidth": 90,
       "width": 0,
     }
   }
@@ -52,6 +54,8 @@ exports[`Blank render renders correctly with disabled prop as true 1`] = `
   style={
     Object {
       "height": 0,
+      "minHeight": 32,
+      "minWidth": 90,
       "width": 0,
     }
   }
@@ -82,6 +86,8 @@ exports[`Blank render renders correctly with draggedItem 1`] = `
   style={
     Object {
       "height": 0,
+      "minHeight": 32,
+      "minWidth": 90,
       "width": 0,
     }
   }
@@ -116,6 +122,8 @@ exports[`Blank render renders correctly with draggedItem and isOver 1`] = `
   style={
     Object {
       "height": 0,
+      "minHeight": 32,
+      "minWidth": 90,
       "width": 0,
     }
   }
