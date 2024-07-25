@@ -74,7 +74,6 @@ const styles = (theme) => ({
     backgroundColor: `${grey[300]}`,
   },
   board: {
-    border: '1px solid #D1D1D1',
     padding: theme.spacing.unit,
     display: 'flex',
     flexWrap: 'wrap',
@@ -86,7 +85,6 @@ const styles = (theme) => ({
     backgroundColor: '#ECEDF1',
   },
   categorizeBoard: {
-    border: '1px solid #D1D1D1',
     padding: theme.spacing.unit / 2,
     display: 'flex',
     flexWrap: 'wrap',
