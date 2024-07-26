@@ -3,6 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import grey from '@material-ui/core/colors/grey';
+import { color } from '../render-ui';
 
 export const PlaceHolder = (props) => {
   const { children, classes, className, isOver, type, grid, disabled, choiceBoard, isCategorize } = props;
@@ -74,18 +75,17 @@ const styles = (theme) => ({
     backgroundColor: `${grey[300]}`,
   },
   board: {
-    border: '1px solid #D1D1D1',
     padding: theme.spacing.unit,
     display: 'flex',
     flexWrap: 'wrap',
     alignItems: 'center',
-    minHeight: '200px',
+    minHeight: '100px',
     justifyContent: 'center',
     overflow: 'hidden',
     touchAction: 'none',
+    backgroundColor: color.backgroundDark(),
   },
   categorizeBoard: {
-    border: '1px solid #D1D1D1',
     padding: theme.spacing.unit / 2,
     display: 'flex',
     flexWrap: 'wrap',
@@ -94,6 +94,7 @@ const styles = (theme) => ({
     justifyContent: 'center',
     overflow: 'hidden',
     touchAction: 'none',
+    backgroundColor: color.backgroundDark(),
   },
 });
 
