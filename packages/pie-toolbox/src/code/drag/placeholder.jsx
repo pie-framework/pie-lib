@@ -83,7 +83,7 @@ const styles = (theme) => ({
     justifyContent: 'center',
     overflow: 'hidden',
     touchAction: 'none',
-    backgroundColor: color.defaults.BACKGROUND_DARK,
+    backgroundColor: color.backgroundDark(),
   },
   categorizeBoard: {
     padding: theme.spacing.unit / 2,
@@ -94,7 +94,7 @@ const styles = (theme) => ({
     justifyContent: 'center',
     overflow: 'hidden',
     touchAction: 'none',
-    backgroundColor: color.defaults.BACKGROUND_DARK,
+    backgroundColor: color.backgroundDark(),
   },
 });
 
