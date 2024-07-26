@@ -20,10 +20,20 @@ export const PlaceHolder = (props) => {
   if (grid && grid.columns) {
     style.gridTemplateColumns = `repeat(${grid.columns}, 1fr)`;
   }
+  
   if (grid && grid.rows) {
     const repeatValue = grid.rowsRepeatValue || '1fr';
 
     style.gridTemplateRows = `repeat(${grid.rows}, ${repeatValue})`;
+  }
+  
+  // The "type" is only sent through placement-ordering / placeholder
+  // It can be "choice" or "target"
+  // We apply a different style for the "choice" type
+  // For any other type, use a dashed black border and a white fill
+  if (type === 'choice') {
+    style.border = `1px solid ${color.borderLight()}`;
+    style.background = color.backgroundDark();
   }
 
   const boardStyle = isCategorize ? classes.categorizeBoard : classes.board;
@@ -57,14 +67,14 @@ const styles = (theme) => ({
   placeholder: {
     width: '100%',
     height: '100%',
-    background: theme.palette.grey[200],
-    border: '1px solid #D1D1D1',
+    background: color.white(),
     transition: 'background-color 200ms linear, border-color 200ms linear',
     boxSizing: 'border-box',
     display: 'grid',
     gridRowGap: `${theme.spacing.unit}px`,
     gridColumnGap: `${theme.spacing.unit}px`,
     padding: theme.spacing.unit * 1,
+    border: `2px dashed ${color.black()}`,
   },
   disabled: {
     boxShadow: 'none',
