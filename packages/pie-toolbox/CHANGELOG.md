@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.27.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.26.2...@pie-lib/pie-toolbox@1.27.0) (2024-07-25)
+
+
+### Bug Fixes
+
+* **editable-html:** remove tabindex from editor-and-toolbar component as it was causing an issue where two tab presses were required to focus on the editor PD-2451 ([b1e5ca0](https://github.com/pie-framework/pie-lib/commit/b1e5ca0ef6a6f5503e871106f4cf2b9a6f8be821))
+
+
+### Features
+
+* added new colors ([d90a51a](https://github.com/pie-framework/pie-lib/commit/d90a51a405437ff6ac8d9858b6bbf9cb0660ad7e))
+* **drag-in-the-blank:** use right-angle corners for answer choices & response areas PD-3950 ([84e5a0a](https://github.com/pie-framework/pie-lib/commit/84e5a0a2b3b15f595b71507efefcea3a984a646c))
+* **editable-html:** get rif of download option inline audio PD-3845 ([6be99b6](https://github.com/pie-framework/pie-lib/commit/6be99b69ea1c9cc1ac8e91dd0b5eb184865f9c05))
+
+
+
+
+
+## [1.26.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.26.1...@pie-lib/pie-toolbox@1.26.2) (2024-07-19)
+
+
+### Bug Fixes
+
+* **editable-html:** revert changes PD-3630 ([9ed0550](https://github.com/pie-framework/pie-lib/commit/9ed0550ac56959cb1b2d9ee5993989fbfde4fc4d))
+
+
+
+
+
 ## [1.26.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.26.0...@pie-lib/pie-toolbox@1.26.1) (2024-07-17)
 
 

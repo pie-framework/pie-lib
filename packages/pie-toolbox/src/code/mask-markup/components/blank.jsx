@@ -29,6 +29,7 @@ const useStyles = withStyles(() => ({
     height: 'auto',
     maxWidth: '374px',
     position: 'relative',
+    borderRadius: '3px'
   },
   chipLabel: {
     whiteSpace: 'pre-wrap',
