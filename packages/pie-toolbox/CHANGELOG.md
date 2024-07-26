@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.28.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.27.0...@pie-lib/pie-toolbox@1.28.0) (2024-07-26)
+
+
+### Features
+
+* **categorize,drag-in-the-blank,ica,match-list:** avoid allocating more vertical space & add background to answers pool area PD-3944 ([d24a18c](https://github.com/pie-framework/pie-lib/commit/d24a18c7db95e85818427b530f25755b42d6e1fb))
+* **categorize,drag-in-the-blank,ica,match-list:** revert white background from chip class PD-3944 ([27d02e8](https://github.com/pie-framework/pie-lib/commit/27d02e81e23f3fffeac9f5fa229109f452763b94))
+* **categorize,drag-in-the-blank,placement-ordering,match-list:** dashed border for response areas PD-3946 ([f3f62ba](https://github.com/pie-framework/pie-lib/commit/f3f62bafd6bc8ebe0ffaefb15479e8e8ff7378a2))
+* **editable-html:** Add accessible label to extended-text-entry, response-area editor for improved accessibility PD-2450 ([f0d28a9](https://github.com/pie-framework/pie-lib/commit/f0d28a92e91d79cf3534b7ec64f3f7af7e0efaea))
+* **placeholder:** change background color PD-3944 ([db0d7fd](https://github.com/pie-framework/pie-lib/commit/db0d7fd849a0f458f6dd46c3788678d9e81200ef))
+* **placeholder:** changed backgroundColor to use colors from color scheme PD-3944 ([9e64449](https://github.com/pie-framework/pie-lib/commit/9e6444918a5f8e73afd491274a7da34242e576df))
+* **placeholder:** for placement-ordering adjust style based on type PD-3946 ([2a2cde8](https://github.com/pie-framework/pie-lib/commit/2a2cde822ce0d72121c558ba9366a339fbe596a9))
+* **placeholder:** remove border from board class as no stroke is needed PD-3944 ([d6f135f](https://github.com/pie-framework/pie-lib/commit/d6f135f4b8fc28c1b3266414303a60014224e432))
+* **placeholder, blank:** update colors to use from color scheme PD-3946 ([d1bc881](https://github.com/pie-framework/pie-lib/commit/d1bc8815a2718f0de00589172913e761e8371ec3))
+
+
+
+
+
 # [1.27.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.26.2...@pie-lib/pie-toolbox@1.27.0) (2024-07-25)
 
 
