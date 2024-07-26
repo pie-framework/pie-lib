@@ -32,8 +32,8 @@ export const PlaceHolder = (props) => {
   // We apply a different style for the "choice" type
   // For any other type, use a dashed black border and a white fill
   if (type === 'choice') {
-    style.border = '1px solid #D1D1D1';
-    style.background = '#eeeeee';
+    style.border = `1px solid ${color.borderLight()}`;
+    style.background = color.backgroundDark();
   }
 
   const boardStyle = isCategorize ? classes.categorizeBoard : classes.board;
@@ -67,14 +67,14 @@ const styles = (theme) => ({
   placeholder: {
     width: '100%',
     height: '100%',
-    background: '#ffffff',
+    background: color.white(),
     transition: 'background-color 200ms linear, border-color 200ms linear',
     boxSizing: 'border-box',
     display: 'grid',
     gridRowGap: `${theme.spacing.unit}px`,
     gridColumnGap: `${theme.spacing.unit}px`,
     padding: theme.spacing.unit * 1,
-    border: '2px dashed #000000',
+    border: `2px dashed ${color.black()}`,
   },
   disabled: {
     boxShadow: 'none',
