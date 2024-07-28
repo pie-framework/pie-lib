@@ -36,6 +36,9 @@ const matchVimeoUrl = (url) =>
     url,
   );
 
+const matchDriveUrl = (url) =>
+  url && /^https:\/\/drive\.google\.com\/(?:file\/d\/|drive\/(?:u\/\d+\/)?folders\/|uc\?id=)([a-zA-Z0-9_-]+)/.test(url);
+
 const matchSoundCloudUrl = (url) => {
   if (!url) {
     return false;
@@ -173,57 +176,79 @@ export class MediaDialog extends React.Component {
 
   handleStateChange = (newState) => this.setState(newState, this.formatUrl);
 
+  checkAudio = (value) => {
+    if (matchSoundCloudUrl(value)) {
+      makeApiRequest(value)
+        .then((urlToUse) => {
+          this.handleStateChange({
+            urlToUse,
+            invalid: !urlToUse,
+            url: value,
+          });
+        })
+        .catch(log);
+    }
+  };
+
+  checkVideo = (value) => {
+    if (matchYoutubeUrl(value)) {
+      const regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+      const match = value.match(regExp);
+      const id = match[2];
+      const urlToUse = `https://youtube.com/embed/${id}`;
+
+      log('is youtube');
+
+      this.handleStateChange({
+        urlToUse,
+        url: value,
+        invalid: false,
+      });
+    }
+
+    if (matchVimeoUrl(value)) {
+      const id = value.replace(/.*vimeo.com\/(.*)/g, '$1');
+      const urlToUse = `https://player.vimeo.com/video/${id}`;
+
+      log('is vimeo');
+
+      this.handleStateChange({
+        urlToUse,
+        url: value,
+        ends: null,
+        invalid: false,
+      });
+    }
+
+    if (matchDriveUrl(value)) {
+      // https://drive.google.com/file/d/11QkK_gUO068amNvZBm9cxZpKX74WYb8q/view
+      const id = value.replace(
+        /^https:\/\/drive\.google\.com\/(?:file\/d\/|drive\/(?:u\/\d+\/)?folders\/|uc\?id=)([a-zA-Z0-9_-]+)\/.*/,
+        '$1',
+      );
+      const urlToUse = `https://drive.google.com/file/d/${id}/preview`;
+
+      log('is google drive');
+
+      this.handleStateChange({
+        urlToUse,
+        url: value,
+        ends: null,
+        invalid: false,
+      });
+    }
+  };
+
   urlChange = (e) => {
     const { value } = e.target || {};
     const { type } = this.props;
 
     if (type && type === 'audio') {
-      if (matchSoundCloudUrl(value)) {
-        makeApiRequest(value)
-          .then((urlToUse) => {
-            this.handleStateChange({
-              urlToUse,
-              invalid: !urlToUse,
-              url: value,
-            });
-          })
-          .catch(log);
-
-        return;
-      }
+      this.checkAudio();
+      return;
     } else if (type && type === 'video') {
-      if (matchYoutubeUrl(value)) {
-        const regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
-        const match = value.match(regExp);
-        const id = match[2];
-        const urlToUse = `https://youtube.com/embed/${id}`;
-
-        log('is youtube');
-
-        this.handleStateChange({
-          urlToUse,
-          url: value,
-          invalid: false,
-        });
-
-        return;
-      }
-
-      if (matchVimeoUrl(value)) {
-        const id = value.replace(/.*vimeo.com\/(.*)/g, '$1');
-        const urlToUse = `https://player.vimeo.com/video/${id}`;
-
-        log('is vimeo');
-
-        this.handleStateChange({
-          urlToUse,
-          url: value,
-          ends: null,
-          invalid: false,
-        });
-
-        return;
-      }
+      this.checkVideo(value);
+      return;
     }
 
     this.handleStateChange({
