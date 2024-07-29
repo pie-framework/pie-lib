@@ -91,10 +91,14 @@ export class BlankContent extends React.Component {
     const height = this.spanRef.offsetHeight;
     const width = this.spanRef.offsetWidth;
 
-    if (height > this.props.emptyResponseAreaHeight || width > this.props.emptyResponseAreaWidth) {
+    // force our computing to work if our client set the emptyResponseAreaHeight
+    // both to '40px' or 40
+    const responseAreaHeight = parseFloat(this.props.emptyResponseAreaHeight);
+    const responseAreaWidth = parseFloat(this.props.emptyResponseAreaWidth);
+    if (height > responseAreaHeight || width > responseAreaWidth) {
       this.setState((prevState) => ({
-        width: width > this.props.emptyResponseAreaWidth ? width : prevState.width,
-        height: height > this.props.emptyResponseAreaHeight ? height : prevState.height,
+        width: width > responseAreaWidth ? width : prevState.width,
+        height: height > responseAreaHeight ? height : prevState.height,
       }));
     }
   }
@@ -201,8 +205,8 @@ BlankContent.propTypes = {
   dragItem: PropTypes.object,
   correct: PropTypes.bool,
   onChange: PropTypes.func,
-  emptyResponseAreaWidth: PropTypes.number,
-  emptyResponseAreaHeight: PropTypes.number,
+  emptyResponseAreaWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  emptyResponseAreaHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 const StyledBlankContent = useStyles(BlankContent);
