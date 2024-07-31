@@ -66,13 +66,16 @@ export default class DragInTheBlank extends React.Component {
 
   getPositionDirection = (choicePosition) => {
     let flexDirection;
+    let justifyContent;
 
     switch (choicePosition) {
       case 'left':
         flexDirection = 'row';
+        justifyContent = 'flex-start';
         break;
       case 'right':
         flexDirection = 'row-reverse';
+        justifyContent = 'flex-end';
         break;
       case 'below':
         flexDirection = 'column-reverse';
@@ -83,7 +86,7 @@ export default class DragInTheBlank extends React.Component {
         break;
     }
 
-    return flexDirection;
+    return { flexDirection, justifyContent };
   };
 
   render() {
@@ -106,7 +109,8 @@ export default class DragInTheBlank extends React.Component {
     const choicePosition = choicesPosition || 'below';
     const style = {
       display: 'flex',
-      flexDirection: this.getPositionDirection(choicePosition),
+      alignItems: 'center',
+      ...this.getPositionDirection(choicePosition),
     };
 
     return (
