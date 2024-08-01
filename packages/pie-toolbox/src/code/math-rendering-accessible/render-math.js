@@ -1,4 +1,4 @@
-import { initializeMathJax } from './mathjax-script';
+import { initializeMathJax, MathJaxVersion } from './mathjax-script';
 import { wrapMath, unWrapMath } from './normalization';
 import * as mr from '../math-rendering';
 
@@ -134,8 +134,10 @@ const renderMath = (el, renderOpts) => {
 
     const mathJaxCustomKey = getMathJaxCustomKey();
 
+    // In OT, they are loading MathJax version 2.6.1, which prevents our MathJax initialization, so our ietms are not working properly
+    // that's why we want to initialize MathJax if the existing version is different than what we need
     if (
-      (!window.MathJax && !window.mathjaxLoadedP) ||
+      ((!window.MathJax || window.MathJax.version !== MathJaxVersion) && !window.mathjaxLoadedP) ||
       (mathJaxCustomKey && mathJaxCustomKey !== mathRenderingAccessibleKEY)
     ) {
       renderOpts = renderOpts || defaultOpts();
