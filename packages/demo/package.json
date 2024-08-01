@@ -6,7 +6,7 @@
     "@material-ui/core": "^3.8.3",
     "@material-ui/icons": "^3.0.2",
     "@pie-lib/pie-toolbox": "^1.28.1",
-    "change-case": "^3.0.2",
+    "change-case": "^5.4.4",
     "classnames": "^2.2.6",
     "i18next": "^22.5.0",
     "jsesc": "^2.5.2",
