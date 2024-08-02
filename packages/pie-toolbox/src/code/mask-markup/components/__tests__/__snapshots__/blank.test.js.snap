@@ -20,14 +20,7 @@ exports[`Blank render renders correctly with default props 1`] = `
       </span>
     </React.Fragment>
   }
-  style={
-    Object {
-      "height": 0,
-      "minHeight": 32,
-      "minWidth": 90,
-      "width": 0,
-    }
-  }
+  style={Object {}}
 />
 `;
 
@@ -51,14 +44,7 @@ exports[`Blank render renders correctly with disabled prop as true 1`] = `
       </span>
     </React.Fragment>
   }
-  style={
-    Object {
-      "height": 0,
-      "minHeight": 32,
-      "minWidth": 90,
-      "width": 0,
-    }
-  }
+  style={Object {}}
   variant="outlined"
 />
 `;
@@ -83,14 +69,7 @@ exports[`Blank render renders correctly with draggedItem 1`] = `
       </span>
     </React.Fragment>
   }
-  style={
-    Object {
-      "height": 0,
-      "minHeight": 32,
-      "minWidth": 90,
-      "width": 0,
-    }
-  }
+  style={Object {}}
 />
 `;
 
@@ -119,13 +98,6 @@ exports[`Blank render renders correctly with draggedItem and isOver 1`] = `
       </span>
     </React.Fragment>
   }
-  style={
-    Object {
-      "height": 0,
-      "minHeight": 32,
-      "minWidth": 90,
-      "width": 0,
-    }
-  }
+  style={Object {}}
 />
 `;
