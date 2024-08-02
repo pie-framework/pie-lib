@@ -245,7 +245,7 @@ export const buildPlugins = (activePlugins, customPlugins, opts) => {
     opts.responseArea && opts.responseArea.type && RespAreaPlugin(opts.responseArea, compact([mathPlugin]));
   const languageCharactersPlugins = (opts?.languageCharacters || []).map((config) => CharactersPlugin(config));
 
-  const tablePlugins = [imagePlugin, mathPlugin, ...languageCharactersPlugins];
+  const tablePlugins = [imagePlugin, mathPlugin, respAreaPlugin, ...languageCharactersPlugins];
 
   if (opts.responseArea && opts.responseArea.type === 'math-templated') {
     tablePlugins.push(respAreaPlugin);
