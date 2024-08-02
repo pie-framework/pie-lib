@@ -48,7 +48,7 @@ export default class Choices extends React.Component {
       const foundChoice = findKey(value, (v) => v === c.id);
       return foundChoice === undefined;
     });
-    const elementStyle = this.getStyleForWrapper();
+    const elementStyle = { ...this.getStyleForWrapper(), minWidth: '100px' };
 
     return (
       <div style={elementStyle}>

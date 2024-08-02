@@ -4,10 +4,11 @@ exports[`DragInTheBlank render renders correctly with default props 1`] = `
 <div
   style={
     Object {
-      "alignItems": "center",
+      "alignItems": undefined,
       "display": "flex",
       "flexDirection": "column-reverse",
       "justifyContent": undefined,
+      "minWidth": "100px",
     }
   }
 >
@@ -102,10 +103,11 @@ exports[`DragInTheBlank render renders correctly with disabled prop as true 1`] 
 <div
   style={
     Object {
-      "alignItems": "center",
+      "alignItems": undefined,
       "display": "flex",
       "flexDirection": "column-reverse",
       "justifyContent": undefined,
+      "minWidth": "100px",
     }
   }
 >
@@ -200,10 +202,11 @@ exports[`DragInTheBlank render renders correctly with feedback 1`] = `
 <div
   style={
     Object {
-      "alignItems": "center",
+      "alignItems": undefined,
       "display": "flex",
       "flexDirection": "column-reverse",
       "justifyContent": undefined,
+      "minWidth": "100px",
     }
   }
 >
