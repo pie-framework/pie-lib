@@ -21,11 +21,12 @@ const useStyles = withStyles(() => ({
   },
   chip: {
     backgroundColor: color.background(),
-    border: `1px solid ${color.text()}`,
+    border: `2px dashed ${color.text()}`,
     color: color.text(),
     fontSize: 'inherit',
     maxWidth: '374px',
     position: 'relative',
+    borderRadius: '3px'
   },
   chipLabel: {
     whiteSpace: 'pre-wrap',

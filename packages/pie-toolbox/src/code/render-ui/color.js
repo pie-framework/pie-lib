@@ -23,9 +23,15 @@ export const defaults = {
   SECONDARY_LIGHT: pink[200],
   SECONDARY_DARK: pink[900],
   BACKGROUND: 'rgba(255,255,255,0)',
+  BACKGROUND_DARK: '#ECEDF1',
+  // this is only used for multi-trait-rubric, we might want to use BACKGROUND_DARK instead
   SECONDARY_BACKGROUND: 'rgba(241,241,241,1)',
+  BORDER: '#9A9A9A',
+  BORDER_LIGHT: '#D1D1D1',
+  BORDER_DARK: '#646464',
   BLACK: '#000000',
   WHITE: '#ffffff',
+  TRANSPARENT: 'transparent',
 };
 
 Object.freeze(defaults);
@@ -62,6 +68,13 @@ export const secondaryDark = () => pv('secondary-dark', defaults.SECONDARY_DARK)
 
 export const secondaryText = () => pv('secondary-text', 'text', defaults.TEXT);
 export const background = () => pv('background', defaults.BACKGROUND);
+export const backgroundDark = () => pv('background-dark', defaults.BACKGROUND_DARK);
 export const secondaryBackground = () => pv('secondary-background', defaults.SECONDARY_BACKGROUND);
+
+export const border = () => pv('border', defaults.BORDER);
+export const borderLight = () => pv('border-light', defaults.BORDER_LIGHT);
+export const borderDark = () => pv('border-dark', defaults.BORDER_DARK);
+
 export const black = () => pv('black', defaults.BLACK);
 export const white = () => pv('white', defaults.WHITE);
+export const transparent = () => defaults.TRANSPARENT;
