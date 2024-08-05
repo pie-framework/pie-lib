@@ -88,8 +88,8 @@ export class BlankContent extends React.Component {
   }
 
   updateDimensions() {
-    const height = this.spanRef.offsetHeight;
-    const width = this.spanRef.offsetWidth;
+    const height = this.spanRef?.offsetHeight || 0;
+    const width = this.spanRef?.offsetWidth || 0;
 
     // force our computing to work if our client set the emptyResponseAreaHeight
     // both to '40px' or 40
@@ -112,15 +112,15 @@ export class BlankContent extends React.Component {
   }
 
   getRootDimensions() {
-    const rootHeight = this.state.height
-      ? { height: this.state.height }
-      : { height: this.props.emptyResponseAreaHeight };
-    const rootWidth = this.state.width ? { width: this.state.width } : { width: this.props.emptyResponseAreaWidth };
+    const rootStyle = {
+      height: this.state.height || this.props.emptyResponseAreaHeight,
+      width: this.state.width || this.props.emptyResponseAreaWidth,
+    };
+
     // add minWidth, minHeight if width and height are not defined
     // minWidth, minHeight will be also in model in the future
     return {
-      ...rootHeight,
-      ...rootWidth,
+      ...rootStyle,
       ...(this.props.emptyResponseAreaWidth ? {} : { minWidth: 90 }),
       ...(this.props.emptyResponseAreaHeight ? {} : { minHeight: 32 }),
     };
@@ -195,6 +195,7 @@ BlankContent.defaultProps = {
   emptyResponseAreaWidth: 0,
   emptyResponseAreaHeight: 0,
 };
+
 BlankContent.propTypes = {
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   disabled: PropTypes.bool,
