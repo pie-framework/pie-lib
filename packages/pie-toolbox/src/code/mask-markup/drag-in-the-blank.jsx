@@ -106,6 +106,8 @@ export default class DragInTheBlank extends React.Component {
       disabled,
       feedback,
       showCorrectAnswer,
+      emptyResponseAreaWidth,
+      emptyResponseAreaHeight,
     } = this.props;
 
     const choicePosition = choicesPosition || 'below';
@@ -135,6 +137,8 @@ export default class DragInTheBlank extends React.Component {
           feedback={feedback}
           correctResponse={correctResponse}
           showCorrectAnswer={showCorrectAnswer}
+          emptyResponseAreaWidth={emptyResponseAreaWidth}
+          emptyResponseAreaHeight={emptyResponseAreaHeight}
         />
       </div>
     );
