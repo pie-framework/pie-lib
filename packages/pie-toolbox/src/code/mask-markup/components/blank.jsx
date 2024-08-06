@@ -93,8 +93,8 @@ export class BlankContent extends React.Component {
 
     // force our computing to work if our client set the emptyResponseAreaHeight
     // both to '40px' or 40
-    const responseAreaHeight = parseFloat(this.props.emptyResponseAreaHeight);
-    const responseAreaWidth = parseFloat(this.props.emptyResponseAreaWidth);
+    const responseAreaHeight = parseFloat(this.props.emptyResponseAreaHeight) || 0;
+    const responseAreaWidth = parseFloat(this.props.emptyResponseAreaWidth) || 0;
     if (height > responseAreaHeight || width > responseAreaWidth) {
       this.setState((prevState) => ({
         width: width > responseAreaWidth ? width : prevState.width,
