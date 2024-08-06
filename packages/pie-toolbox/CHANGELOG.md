@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.29.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.28.1...@pie-lib/pie-toolbox@1.29.0) (2024-08-06)
+
+
+### Bug Fixes
+
+* **editable-html:** add Response Area button when the cursor is positioned in a table PD-3996 ([d9a77d2](https://github.com/pie-framework/pie-lib/commit/d9a77d20970955d917f6c381b7d9c3f7c059ae93))
+* **graphing:** fix tests and increase left/right padding PD-3792 ([79655ef](https://github.com/pie-framework/pie-lib/commit/79655effc32a49e6af313e82f32e6856c4d7026a))
+* **graphing:** fixed padding from domain and range PD-3791 ([cc6f659](https://github.com/pie-framework/pie-lib/commit/cc6f65992a8869e5a82efa9884c04dbb58db684e))
+* **graphing:** tighten up spacing Graphing PD-3792 ([e697c88](https://github.com/pie-framework/pie-lib/commit/e697c887a208878303c492e0fadeb6c8f770e064))
+* **mask-markup:** add minWidth, minHeight in case width and height are not defined PD-3841 ([c08cc9e](https://github.com/pie-framework/pie-lib/commit/c08cc9e583b7455d666a5aad8e2a98e71c01979b))
+* **mask-markup:** add props back due to merge conflicts PD-3956 ([7b486fb](https://github.com/pie-framework/pie-lib/commit/7b486fb218471faabb15c760beb6a75efec2ff0c))
+* **mask-markup:** add props back due to merge conflicts PD-3956 ([e1a79ed](https://github.com/pie-framework/pie-lib/commit/e1a79ed034a0fa16e30500b09562a294e6a57edd))
+* **mask-markup:** add sanity check for parseFloat PD-3841 ([21895ba](https://github.com/pie-framework/pie-lib/commit/21895ba8baf830c78829448c76d089e05dfea36e))
+* **mask-markup:** add sanity check for ref, simplify creation of new object PD-3841 ([01c2157](https://github.com/pie-framework/pie-lib/commit/01c2157e4f59dc18bfd939034fcc30693a195834))
+* **mask-markup:** add style back PD-3956 ([77b07c1](https://github.com/pie-framework/pie-lib/commit/77b07c1b5be54fd08cd8517031a1a09d0c9b63e6))
+* **mask-markup:** conclude merge with develop PD-3956 ([2181cef](https://github.com/pie-framework/pie-lib/commit/2181cef761ce254e506d162e5bd0463976cdca3d))
+* delete unneeded code PD-3956 ([7723234](https://github.com/pie-framework/pie-lib/commit/772323429c744fdd432a5eb202c42f6620ea8f74))
+* delete unneeded code PD-3956 ([ff29ad3](https://github.com/pie-framework/pie-lib/commit/ff29ad3dcd95d2a61144c10b59c4f96a68a808fc))
+* made sure arrow down is not removed randomly [PD-3569] ([efa5062](https://github.com/pie-framework/pie-lib/commit/efa50624108ef47b64abcb74c88350c0f3c64f8c))
+
+
+### Features
+
+* **mask-markup:** adjust logic if dimensions are configured in model, update snapshots PD-3841 ([80bd45a](https://github.com/pie-framework/pie-lib/commit/80bd45a79df13f6179bded3fbdf51610c5d8ef46))
+* **mask-markup:** change behaviour of choicePosition pool choices PD-3956 ([7501a5f](https://github.com/pie-framework/pie-lib/commit/7501a5f9ac8a27649ff33797653b30ccf2d0d41a))
+* **mask-markup:** Change the behavior of choicesPosition PD-3956 ([6214cc7](https://github.com/pie-framework/pie-lib/commit/6214cc7e40032e5758412e677917860426811ee0))
+* **mask-markup:** computing sould work both for numbers and strings PF-3841 ([7992856](https://github.com/pie-framework/pie-lib/commit/7992856d04fff031ee510ad19909403a5eb1ef12))
+* made sure google drive videos are allowed to be embedded [PD-3855] ([fb46905](https://github.com/pie-framework/pie-lib/commit/fb469053f0df70fc814e3491a3c8c7e192965f3b))
+
+
+
+
+
 ## [1.28.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.28.0...@pie-lib/pie-toolbox@1.28.1) (2024-08-01)
 
 
