@@ -42,6 +42,8 @@ export default class DragInTheBlank extends React.Component {
     feedback: PropTypes.object,
     correctResponse: PropTypes.object,
     showCorrectAnswer: PropTypes.bool,
+    emptyResponseAreaWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    emptyResponseAreaHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   };
 
   UNSAFE_componentWillReceiveProps() {
