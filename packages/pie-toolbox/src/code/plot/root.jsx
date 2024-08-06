@@ -8,6 +8,7 @@ import { color, Readable } from '../render-ui';
 import EditableHtml from '../editable-html';
 import cn from 'classnames';
 import Label from './label';
+import { extractTextFromHTML, isEmptyObject, isEmptyString } from './utils';
 
 export class Root extends React.Component {
   constructor(props) {
@@ -136,8 +137,9 @@ export class Root extends React.Component {
     } = graphProps;
 
     const topPadding = 40;
-    const leftPadding = showLabels ? 80 : 60;
-    const finalWidth = width + leftPadding * 2 + (domain.padding || 0) * 2;
+    const leftPadding = isEmptyString(extractTextFromHTML(labels?.left)) && isEmptyObject(labelsPlaceholders) ? 48 : 70;
+    const rightPadding = isEmptyString(extractTextFromHTML(labels?.right)) && isEmptyObject(labelsPlaceholders)  ? 48 : 70;
+    const finalWidth = width + leftPadding + rightPadding + (domain.padding || 0) * 2;
     const finalHeight = height + topPadding * 2 + (range.padding || 0) * 2;
 
     const activeTitlePlugins = [
@@ -172,11 +174,10 @@ export class Root extends React.Component {
           (disabledTitle ? (
             <div
               id="editable-title"
-              style={
-                isChart && {
-                  width: finalWidth,
-                }
-              }
+              style={{
+                ...(isChart && { width: finalWidth }),
+                ...(isEmptyString(extractTextFromHTML(title)) && { display: 'none' })
+              }}
               className={cn(isChart ? classes.chartTitle : classes.graphTitle, classes.disabledTitle)}
               dangerouslySetInnerHTML={{ __html: title || '' }}
             />
