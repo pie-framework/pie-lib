@@ -243,7 +243,7 @@ export class Root extends React.Component {
                 }
               }}
               className={classes.graphBox}
-              transform={`translate(${leftPadding}, ${topPadding})`}
+              transform={`translate(${leftPadding + domain.padding}, ${topPadding + range.padding})`}
             >
               {children}
             </g>
