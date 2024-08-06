@@ -26,7 +26,7 @@ const useStyles = withStyles(() => ({
     fontSize: 'inherit',
     maxWidth: '374px',
     position: 'relative',
-    borderRadius: '3px'
+    borderRadius: '3px',
   },
   chipLabel: {
     whiteSpace: 'pre-wrap',
