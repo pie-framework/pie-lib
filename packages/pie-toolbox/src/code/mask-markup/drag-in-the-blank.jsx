@@ -10,7 +10,15 @@ const Masked = withMask('blank', (props) => (node, data, onChange) => {
   const dataset = node.data ? node.data.dataset || {} : {};
   if (dataset.component === 'blank') {
     // eslint-disable-next-line react/prop-types
-    const { disabled, duplicates, correctResponse, feedback, showCorrectAnswer } = props;
+    const {
+      disabled,
+      duplicates,
+      correctResponse,
+      feedback,
+      showCorrectAnswer,
+      emptyResponseAreaWidth,
+      emptyResponseAreaHeight,
+    } = props;
     const choiceId = showCorrectAnswer ? correctResponse[dataset.id] : data[dataset.id];
     // eslint-disable-next-line react/prop-types
     const choice = choiceId && props.choices.find((c) => c.id === choiceId);
@@ -24,6 +32,8 @@ const Masked = withMask('blank', (props) => (node, data, onChange) => {
         choice={choice}
         id={dataset.id}
         onChange={onChange}
+        emptyResponseAreaWidth={emptyResponseAreaWidth}
+        emptyResponseAreaHeight={emptyResponseAreaHeight}
       />
     );
   }
@@ -42,6 +52,8 @@ export default class DragInTheBlank extends React.Component {
     feedback: PropTypes.object,
     correctResponse: PropTypes.object,
     showCorrectAnswer: PropTypes.bool,
+    emptyResponseAreaWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    emptyResponseAreaHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   };
 
   UNSAFE_componentWillReceiveProps() {
@@ -89,6 +101,8 @@ export default class DragInTheBlank extends React.Component {
       disabled,
       feedback,
       showCorrectAnswer,
+      emptyResponseAreaWidth,
+      emptyResponseAreaHeight,
     } = this.props;
 
     const choicePosition = choicesPosition || 'below';
@@ -117,6 +131,8 @@ export default class DragInTheBlank extends React.Component {
           feedback={feedback}
           correctResponse={correctResponse}
           showCorrectAnswer={showCorrectAnswer}
+          emptyResponseAreaWidth={emptyResponseAreaWidth}
+          emptyResponseAreaHeight={emptyResponseAreaHeight}
         />
       </div>
     );
