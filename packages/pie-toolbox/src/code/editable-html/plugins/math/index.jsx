@@ -193,27 +193,12 @@ const getTagName = (el) => {
  * @param input
  * @returns {*}
  */
-const lessThanHandling = (input) => {
-  const arrowSplit = input.split('<');
-
-  // if we don't have at least 2 characters there's no point in checking
-  if (input.length > 2) {
-    return arrowSplit.reduce((st, part) => {
-      /*
-       We check if this element resulted is:
-       div - continuation of a beginning of a HTML element
-       /div - closing of a HTML tag
-       br/> - beginning and closing of a html TAG
-       */
-      if (part.match(/<[a-zA-Z/][\s\S]*>/gi)) {
-        return `${st}${st ? '<' : ''}${part}`;
-      }
-
-      return `${st}${st ? '&lt;' : ''}${part}`;
-    }, '');
-  }
-
-  return input;
+const arrowHandlingCase = (input) => {
+  /*
+  If we have a < character followed by a letter
+  we make sure to replace it with a &lt; sign instead
+   */
+  return input.replace(/<([a-zA-Z]*)/g, '&lt;$1');
 };
 
 function replaceLeftRight(latexInput) {
@@ -231,9 +216,10 @@ const convertLatexToMathMl = ({ latex, decoded, wrapper }) => {
     // Replace all occurrences of the matched patterns
     return mmlFromLatex.replace(regex, '');
   };
+  const handled = arrowHandlingCase(decoded);
 
   // use math rendering (MathJax) to convert latex to mathMl
-  let mathMlFromLatex = renderMath(`<span data-latex="" data-raw="${decoded}">${wrapMath(decoded, wrapper)}</span>`, {
+  let mathMlFromLatex = renderMath(`<span data-latex="" data-raw="${handled}">${wrapMath(handled, wrapper)}</span>`, {
     skipWaitForMathRenderingLib: true,
   });
 
@@ -348,7 +334,7 @@ export const serialization = {
     if (object.type === 'math') {
       const latex = object.data.get('latex');
       const wrapper = object.data.get('wrapper');
-      const decoded = htmlDecode(lessThanHandling(latex));
+      const decoded = htmlDecode(arrowHandlingCase(latex));
 
       log('[serialize] latex: ', latex);
 

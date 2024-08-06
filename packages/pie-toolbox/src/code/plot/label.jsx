@@ -4,7 +4,7 @@ import cn from 'classnames';
 import EditableHtml from '../editable-html';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
-
+import { extractTextFromHTML, isEmptyString } from './utils';
 const LabelComponent = (props) => {
   const {
     classes,
@@ -68,6 +68,7 @@ const LabelComponent = (props) => {
           [classes.rotateRightLabel]: side === 'right' && !rotatedToHorizontal,
           [classes.editLabel]: rotatedToHorizontal,
           [classes.customBottom]: isChartBottomLabel || isDefineChartBottomLabel,
+          [classes.displayNone]: disabledLabel && !isChart && isEmptyString(extractTextFromHTML(text)),
         })}
         style={rotatedToHorizontal ? rotatedStyle : defaultStyle}
         onClick={rotateLabel}
@@ -153,5 +154,8 @@ export default withStyles((theme) => ({
   },
   customBottom: {
     position: 'absolute',
+  },
+  displayNone: {
+    display: 'none',
   },
 }))(LabelComponent);
