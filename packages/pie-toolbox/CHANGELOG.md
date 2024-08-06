@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.29.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.29.0...@pie-lib/pie-toolbox@1.29.1) (2024-08-06)
+
+
+### Bug Fixes
+
+* **charting:** update snapshots PD-4000 ([f5dfc20](https://github.com/pie-framework/pie-lib/commit/f5dfc20ac2a246f5935496ab7632c02bb9027116))
+
+
+
+
+
 # [1.29.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.28.1...@pie-lib/pie-toolbox@1.29.0) (2024-08-06)
 
 
