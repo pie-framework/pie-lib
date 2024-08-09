@@ -138,7 +138,8 @@ export class Root extends React.Component {
 
     const topPadding = 40;
     const leftPadding = isEmptyString(extractTextFromHTML(labels?.left)) && isEmptyObject(labelsPlaceholders) ? 48 : 70;
-    const rightPadding = isEmptyString(extractTextFromHTML(labels?.right)) && isEmptyObject(labelsPlaceholders)  ? 48 : 70;
+    const rightPadding =
+      isEmptyString(extractTextFromHTML(labels?.right)) && isEmptyObject(labelsPlaceholders) ? 48 : 70;
     const finalWidth = width + leftPadding + rightPadding + (domain.padding || 0) * 2;
     const finalHeight = height + topPadding * 2 + (range.padding || 0) * 2;
 
@@ -146,6 +147,8 @@ export class Root extends React.Component {
       'bold',
       'italic',
       'underline',
+      'superscript',
+      'subscript',
       'strikethrough',
       'math',
       // 'languageCharacters'
@@ -176,7 +179,7 @@ export class Root extends React.Component {
               id="editable-title"
               style={{
                 ...(isChart && { width: finalWidth }),
-                ...(isEmptyString(extractTextFromHTML(title)) && { display: 'none' })
+                ...(isEmptyString(extractTextFromHTML(title)) && { display: 'none' }),
               }}
               className={cn(isChart ? classes.chartTitle : classes.graphTitle, classes.disabledTitle)}
               dangerouslySetInnerHTML={{ __html: title || '' }}
