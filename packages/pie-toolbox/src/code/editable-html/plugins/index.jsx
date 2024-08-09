@@ -179,6 +179,8 @@ export const ALL_PLUGINS = [
   'responseArea',
   'redo',
   'undo',
+  'superscript',
+  'subscript',
 ];
 
 export const DEFAULT_PLUGINS = ALL_PLUGINS.filter((plug) => !['responseArea', 'h3', 'blockquote'].includes(plug));
@@ -267,6 +269,10 @@ export const buildPlugins = (activePlugins, customPlugins, opts) => {
       }),
     ),
     addIf('underline', MarkHotkey({ key: 'u', type: 'underline', icon: <Underline />, tag: 'u' })),
+    // icon should be modifies accordingly
+    addIf('superscript', MarkHotkey({ type: 'sup', icon: <Underline />, tag: 'sup' })),
+    // icon should be modifies accordingly
+    addIf('subscript', MarkHotkey({ type: 'sub', icon: <Underline />, tag: 'sub' })),
     addIf('image', imagePlugin),
     addIf('video', MediaPlugin('video', opts.media)),
     addIf('audio', MediaPlugin('audio', opts.media)),
