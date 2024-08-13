@@ -14,7 +14,6 @@ describe('render-math', () => {
     jest.resetAllMocks();
     // Mock window.MathJax and window.mathjaxLoadedP
     global.window.MathJax = {
-      typeset: jest.fn(),
       texReset: jest.fn(),
       typesetClear: jest.fn(),
       typeset: jest.fn(),
@@ -38,7 +37,6 @@ describe('render-math', () => {
 
     // Subsequent calls should not re-initialize MathJax
     global.window.MathJax = {
-      typeset: jest.fn(),
       texReset: jest.fn(),
       typesetClear: jest.fn(),
       typeset: jest.fn(),

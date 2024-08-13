@@ -2,10 +2,10 @@ import { getGlobal } from './render-math';
 
 export const MathJaxVersion = '3.2.2';
 
-export const initializeMathJax = (renderOpts) => {
+export const initializeMathJax = (renderOpts, onLoadMathJaxScript) => {
   if (renderOpts?.useSingleDollar) {
     // eslint-disable-next-line
-    console.warn('[math-rendering] using $ is not advisable, please use $$..$$ or \\(...\\)');
+    console.warn("[math-rendering] using $ is not advisable, please use $$..$$ or \\(...\\)");
   }
 
   const texConfig = renderOpts?.useSingleDollar
@@ -39,55 +39,115 @@ export const initializeMathJax = (renderOpts) => {
         ],
       };
 
+  // Set up the MathJax configuration
+  window.MathJax = {
+    startup: {
+      typeset: false,
+      ready: () => {
+        const { mathjax } = MathJax._.mathjax;
+        const { STATE } = MathJax._.core.MathItem;
+        const { Menu } = MathJax._.ui.menu.Menu;
+        const rerender = Menu.prototype.rerender;
+        Menu.prototype.rerender = function(start = STATE.TYPESET) {
+          mathjax.handleRetriesFor(() => rerender.call(this, start));
+        };
+        MathJax.startup.defaultReady();
+        // Set the MathJax instance in the global object
+        const globalObj = getGlobal();
+        globalObj.instance = MathJax;
+        onLoadMathJaxScript();
+        // resolve();
+      },
+    },
+    loader: {
+      load: ['input/mml'],
+    },
+    tex: texConfig,
+    chtml: {
+      fontURL: 'https://unpkg.com/mathjax-full@3.2.2/ts/output/chtml/fonts/tex-woff-v2',
+      displayAlign: 'center',
+    },
+    customKey: '@pie-lib/math-rendering-accessible@1',
+    options: {
+      enableEnrichment: true,
+      sre: {
+        speech: 'deep',
+      },
+      menuOptions: {
+        settings: {
+          assistiveMml: true,
+          collapsible: false,
+          explorer: false,
+        },
+      },
+    },
+  };
+  // Load the MathJax script
+  const script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src = `https://cdn.jsdelivr.net/npm/mathjax@${MathJaxVersion}/es5/tex-chtml-full.js`;
+  script.async = true;
+  document.body.appendChild(script);
+  window.mathJaxSciptLoaded = true;
+
+
+
   // Create a new promise that resolves when MathJax is ready
-  window.mathjaxLoadedP = new Promise((resolve) => {
-    // Set up the MathJax configuration
-    window.MathJax = {
-      startup: {
-        typeset: false,
-        ready: () => {
-          const { mathjax } = MathJax._.mathjax;
-          const { STATE } = MathJax._.core.MathItem;
-          const { Menu } = MathJax._.ui.menu.Menu;
-          const rerender = Menu.prototype.rerender;
-          Menu.prototype.rerender = function(start = STATE.TYPESET) {
-            mathjax.handleRetriesFor(() => rerender.call(this, start));
-          };
-          MathJax.startup.defaultReady();
-          // Set the MathJax instance in the global object
-          const globalObj = getGlobal();
-          globalObj.instance = MathJax;
-          resolve();
-        },
-      },
-      loader: {
-        load: ['input/mml'],
-      },
-      tex: texConfig,
-      chtml: {
-        fontURL: 'https://unpkg.com/mathjax-full@3.2.2/ts/output/chtml/fonts/tex-woff-v2',
-        displayAlign: 'center',
-      },
-      customKey: '@pie-lib/math-rendering-accessible@1',
-      options: {
-        enableEnrichment: true,
-        sre: {
-          speech: 'deep',
-        },
-        menuOptions: {
-          settings: {
-            assistiveMml: true,
-            collapsible: false,
-            explorer: false,
-          },
-        },
-      },
-    };
-    // Load the MathJax script
-    const script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = `https://cdn.jsdelivr.net/npm/mathjax@${MathJaxVersion}/es5/tex-chtml-full.js`;
-    script.async = true;
-    document.body.appendChild(script);
-  });
+  // window.mathjaxLoadedP =
+  //   window.mathjaxLoadedP ||
+  //   new Promise((resolve) => {
+  //     // Set up the MathJax configuration
+  //     window.MathJax = {
+  //       startup: {
+  //         typeset: false,
+  //         ready: () => {
+  //           const { mathjax } = MathJax._.mathjax;
+  //           const { STATE } = MathJax._.core.MathItem;
+  //           const { Menu } = MathJax._.ui.menu.Menu;
+  //           const rerender = Menu.prototype.rerender;
+  //           Menu.prototype.rerender = function(start = STATE.TYPESET) {
+  //             mathjax.handleRetriesFor(() => rerender.call(this, start));
+  //           };
+  //           MathJax.startup.defaultReady();
+  //           // Set the MathJax instance in the global object
+  //           const globalObj = getGlobal();
+  //           globalObj.instance = MathJax;
+  //           console.log('before resolve');
+  //
+  //           onLoadMathJaxScript();
+  //           // resolve();
+  //         },
+  //       },
+  //       loader: {
+  //         load: ['input/mml'],
+  //       },
+  //       tex: texConfig,
+  //       chtml: {
+  //         fontURL: 'https://unpkg.com/mathjax-full@3.2.2/ts/output/chtml/fonts/tex-woff-v2',
+  //         displayAlign: 'center',
+  //       },
+  //       customKey: '@pie-lib/math-rendering-accessible@1',
+  //       options: {
+  //         enableEnrichment: true,
+  //         sre: {
+  //           speech: 'deep',
+  //         },
+  //         menuOptions: {
+  //           settings: {
+  //             assistiveMml: true,
+  //             collapsible: false,
+  //             explorer: false,
+  //           },
+  //         },
+  //       },
+  //     };
+  //     // Load the MathJax script
+  //     const script = document.createElement('script');
+  //     script.type = 'text/javascript';
+  //     script.src = `https://cdn.jsdelivr.net/npm/mathjax@${MathJaxVersion}/es5/tex-chtml-full.js`;
+  //     script.async = true;
+  //     document.body.appendChild(script);
+  //     console.log('document.body.appendChild(script)');
+  //
+  //   });
 };
