@@ -60,6 +60,7 @@ export const initializeMathJax = (renderOpts, onLoaded) => {
     },
     loader: {
       load: ['input/mml'],
+      preLoad: () => {},
     },
     tex: texConfig,
     chtml: {
