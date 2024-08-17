@@ -605,6 +605,11 @@ export class Editor extends React.Component {
     // Check if relatedTarget is a done button
     const isRawDoneButton = relatedTarget?.closest('button[class*="RawDoneButton"]');
 
+    // Skip onBlur handling if relatedTarget is a button from the KeyPad characters
+    const isKeyPadCharacterButton = relatedTarget?.className.includes('KeyPad-character');
+
+    this.skipBlurHandling = isKeyPadCharacterButton ? true : false;
+
     if (toolbarElement && !isRawDoneButton) {
       this.setState({
         focusToolbar: true,
@@ -616,10 +621,12 @@ export class Editor extends React.Component {
     log('[onBlur] node: ', node);
 
     return new Promise((resolve) => {
-      this.setState(
-        { preBlurValue: this.state.value, focusedNode: !node ? null : node },
-        this.handleBlur.bind(this, resolve),
-      );
+      if (!this.skipBlurHandling) {
+        this.setState(
+          { preBlurValue: this.state.value, focusedNode: !node ? null : node },
+          this.handleBlur.bind(this, resolve),
+        );
+      }
       this.props.onBlur(event);
     });
   };
