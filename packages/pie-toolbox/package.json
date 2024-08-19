@@ -23,7 +23,7 @@
     "@vx/point": "^0.0.182",
     "@vx/scale": "^0.0.182",
     "@vx/shape": "^0.0.183",
-    "assert": "^1.4.1",
+    "assert": "^2.1.0",
     "change-case": "^3.0.2",
     "classnames": "^2.2.6",
     "d3-scale": "^2.1.2",
