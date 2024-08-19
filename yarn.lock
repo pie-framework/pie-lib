@@ -1274,14 +1274,7 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.15.4", "@babel/runtime@^7.2.0", "@babel/runtime@^7.3.1", "@babel/runtime@^7.8.3", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
-  version "7.17.9"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.17.9.tgz#d19fbf802d01a8cb6cf053a64e472d42c434ba72"
-  integrity sha512-lSiBBvodq29uShpWGNbgFdKYNiFDo5/HIYsaCEY9ff4sb10x9jizo2+pRrSyF4jKZCXqgzuqBOQKbUm90gQwJg==
-  dependencies:
-    regenerator-runtime "^0.13.4"
-
-"@babel/runtime@^7.20.6":
+"@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.15.4", "@babel/runtime@^7.2.0", "@babel/runtime@^7.20.6", "@babel/runtime@^7.3.1", "@babel/runtime@^7.8.3", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
   version "7.22.3"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.22.3.tgz#0a7fce51d43adbf0f7b517a71f4c3aaca92ebcbb"
   integrity sha512-XsDuspWKLUsxwCp6r7EhsExHtYfbe5oAGQ19kqngTdCPUoPQzOPdUbD/pB9PJiwb2ptYKQDjSJT3R6dC+EPqfQ==
@@ -3034,6 +3027,11 @@
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@types/stack-utils/-/stack-utils-1.0.1.tgz#0a851d3bd96498fa25c33ab7278ed3bd65f06c3e"
   integrity sha512-l42BggppR6zLmpfU6fq9HEa2oGPEI8yrSPL3GITjfRInppYFahObbIQOQK3UGxEnyQpltZLaPe75046NOZQikw==
+
+"@types/use-sync-external-store@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@types/use-sync-external-store/-/use-sync-external-store-0.0.3.tgz#b6725d5f4af24ace33b36fafd295136e75509f43"
+  integrity sha512-EwmlvuaxPNej9+T4v5AuBPJa2x2UOJVdjCtDHgcDqitUeOtjnJKJ+apYjVcAoBEMjKW1VVFGZLUb5+qqa09XFA==
 
 "@types/yargs-parser@*":
   version "21.0.0"
@@ -13349,7 +13347,7 @@ react-input-autosize@^2.2.1:
   dependencies:
     prop-types "^15.5.8"
 
-react-is@16.13.1, react-is@^16.12.0, react-is@^16.13.1, react-is@^16.6.3, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.2, react-is@^16.8.4, react-is@^16.8.6:
+react-is@16.13.1, react-is@^16.12.0, react-is@^16.13.1, react-is@^16.6.3, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.8.6:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
@@ -13417,18 +13415,6 @@ react-reconciler@^0.21.0:
     prop-types "^15.6.2"
     scheduler "^0.15.0"
 
-react-redux@^6.0.0:
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-6.0.1.tgz#0d423e2c1cb10ada87293d47e7de7c329623ba4d"
-  integrity sha512-T52I52Kxhbqy/6TEfBv85rQSDz6+Y28V/pf52vDWs1YRXG19mcFOGfHnY2HsNFHyhP+ST34Aih98fvt6tqwVcQ==
-  dependencies:
-    "@babel/runtime" "^7.3.1"
-    hoist-non-react-statics "^3.3.0"
-    invariant "^2.2.4"
-    loose-envify "^1.4.0"
-    prop-types "^15.7.2"
-    react-is "^16.8.2"
-
 react-redux@^7.0.3:
   version "7.2.8"
   resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-7.2.8.tgz#a894068315e65de5b1b68899f9c6ee0923dd28de"
@@ -13440,6 +13426,14 @@ react-redux@^7.0.3:
     loose-envify "^1.4.0"
     prop-types "^15.7.2"
     react-is "^17.0.2"
+
+react-redux@^9.1.2:
+  version "9.1.2"
+  resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-9.1.2.tgz#deba38c64c3403e9abd0c3fbeab69ffd9d8a7e4b"
+  integrity sha512-0OA4dhM1W48l3uzmv6B7TXPCGmokUU4p1M44DGN2/D9a1FjVPukVjER1PcPX97jIg6aUeLq1XJo1IpfbgULn0w==
+  dependencies:
+    "@types/use-sync-external-store" "^0.0.3"
+    use-sync-external-store "^1.0.0"
 
 react-refresh@0.8.3:
   version "0.8.3"
@@ -16018,6 +16012,11 @@ use-subscription@1.4.1:
   integrity sha512-7+IIwDG/4JICrWHL/Q/ZPK5yozEnvRm6vHImu0LKwQlmWGKeiF7mbAenLlK/cTNXrTtXHU/SFASQHzB6+oSJMQ==
   dependencies:
     object-assign "^4.1.1"
+
+use-sync-external-store@^1.0.0:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/use-sync-external-store/-/use-sync-external-store-1.2.2.tgz#c3b6390f3a30eba13200d2302dcdf1e7b57b2ef9"
+  integrity sha512-PElTlVMwpblvbNqQ82d2n6RjStvdSoNe9FG28kNfz3WiXilJm4DdNkEzRhCZuIDwY8U08WVihhGR5iRqAwfDiw==
 
 use@^3.1.0:
   version "3.1.1"
