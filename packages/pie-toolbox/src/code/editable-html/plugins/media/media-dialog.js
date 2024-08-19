@@ -424,7 +424,9 @@ export class MediaDialog extends React.Component {
                   this.setState({ tabValue: value });
                 }}
               >
-                <MuiTab label={type === 'video' ? 'Insert YouTube or Vimeo URL' : 'Insert SoundCloud URL'} />
+                <MuiTab
+                  label={type === 'video' ? 'Insert YouTube, Vimeo, or Google Drive URL' : 'Insert SoundCloud URL'}
+                />
                 {uploadSoundSupport?.add && uploadSoundSupport?.delete && type !== 'video' ? (
                   <MuiTab label="Upload file" />
                 ) : null}
