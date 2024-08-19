@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.29.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.29.1...@pie-lib/pie-toolbox@1.29.2) (2024-08-19)
+
+
+### Bug Fixes
+
+* **mask-markup:** Added unit tests for new logic updateDimensions and getRootDimensions PD-3841 ([217e45a](https://github.com/pie-framework/pie-lib/commit/217e45a72f32466c87b9b7f6836a739b12b61710))
+* changed labeling for insert media [PD-3855] ([cddff34](https://github.com/pie-framework/pie-lib/commit/cddff34c0319cfbb822e04a7cead299c58d5d6e9))
+
+
+
+
+
 ## [1.29.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.29.0...@pie-lib/pie-toolbox@1.29.1) (2024-08-06)
 
 
