@@ -274,9 +274,7 @@ export const buildPlugins = (activePlugins, customPlugins, opts) => {
     addIf('video', MediaPlugin('video', opts.media)),
     addIf('audio', MediaPlugin('audio', opts.media)),
     addIf('math', mathPlugin),
-    ...languageCharactersPlugins.map((plugin) => {
-      return addIf('languageCharacters', plugin);
-    }),
+    ...languageCharactersPlugins.map((plugin) => addIf('languageCharacters', plugin)),
     addIf('blockquote', MarkHotkey({ key: 'q', type: 'blockquote', icon: <FormatQuote />, tag: 'blockquote' })),
     addIf('h3', MarkHotkey({ key: 'h3', type: 'h3', icon: <HeadingIcon />, tag: 'h3' })),
     addIf('bulleted-list', List({ key: 'l', type: 'ul_list', icon: <BulletedListIcon /> })),

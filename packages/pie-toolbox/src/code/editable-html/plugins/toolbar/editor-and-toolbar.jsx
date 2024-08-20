@@ -51,7 +51,6 @@ export class EditorAndToolbar extends React.Component {
       autoWidth,
       readOnly,
       disableScrollbar,
-      rawDoneButtonRef,
       disableUnderline,
       pluginProps,
       toolbarOpts,
@@ -121,7 +120,6 @@ export class EditorAndToolbar extends React.Component {
           doneButtonRef={doneButtonRef}
           pluginProps={pluginProps}
           toolbarOpts={toolbarOpts}
-          rawDoneButtonRef={rawDoneButtonRef}
         />
       </div>
     );
