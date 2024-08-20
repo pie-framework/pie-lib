@@ -132,6 +132,7 @@ const insertDialog = ({ editorDOM, value, callback, opts }) => {
 
   const el = (
     <PureToolbar
+      keyPadCharacterRef={opts.keyPadCharacterRef}
       autoFocus
       noDecimal
       hideInput
@@ -239,6 +240,7 @@ export default function CharactersPlugin(opts) {
     name: 'characters',
     toolbar: {
       icon: <CharacterIcon letter={opts.characterIcon || characterIcons[opts.language] || 'ñ'} />,
+
       ariaLabel: `${opts.language} characters Toolbar`,
       onClick: (value, onChange, getFocusedValue) => {
         const editorDOM = document.querySelector(`[data-key="${value.document.key}"]`);

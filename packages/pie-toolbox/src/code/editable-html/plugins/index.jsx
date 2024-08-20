@@ -243,7 +243,10 @@ export const buildPlugins = (activePlugins, customPlugins, opts) => {
   const mathPlugin = MathPlugin(opts.math);
   const respAreaPlugin =
     opts.responseArea && opts.responseArea.type && RespAreaPlugin(opts.responseArea, compact([mathPlugin]));
-  const languageCharactersPlugins = (opts?.languageCharacters || []).map((config) => CharactersPlugin(config));
+
+  const languageCharactersPlugins = (opts?.languageCharacters || []).map((config) =>
+    CharactersPlugin({ ...config, keyPadCharacterRef: opts.keyPadCharacterRef }),
+  );
 
   const tablePlugins = [imagePlugin, mathPlugin, respAreaPlugin, ...languageCharactersPlugins];
 
@@ -271,7 +274,9 @@ export const buildPlugins = (activePlugins, customPlugins, opts) => {
     addIf('video', MediaPlugin('video', opts.media)),
     addIf('audio', MediaPlugin('audio', opts.media)),
     addIf('math', mathPlugin),
-    ...languageCharactersPlugins.map((plugin) => addIf('languageCharacters', plugin)),
+    ...languageCharactersPlugins.map((plugin) => {
+      return addIf('languageCharacters', plugin);
+    }),
     addIf('blockquote', MarkHotkey({ key: 'q', type: 'blockquote', icon: <FormatQuote />, tag: 'blockquote' })),
     addIf('h3', MarkHotkey({ key: 'h3', type: 'h3', icon: <HeadingIcon />, tag: 'h3' })),
     addIf('bulleted-list', List({ key: 'l', type: 'ul_list', icon: <BulletedListIcon /> })),

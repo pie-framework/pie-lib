@@ -166,6 +166,8 @@ export class Editor extends React.Component {
       },
     };
 
+    this.keyPadCharacterRef = React.createRef();
+
     this.toggleHtmlMode = this.toggleHtmlMode.bind(this);
     this.handleToolbarFocus = this.handleToolbarFocus.bind(this);
     this.handleToolbarBlur = this.handleToolbarBlur.bind(this);
@@ -366,6 +368,7 @@ export class Editor extends React.Component {
         },
       },
       languageCharacters: props.languageCharactersProps,
+      keyPadCharacterRef: this.keyPadCharacterRef,
       media: {
         focus: this.focus,
         createChange: () => this.state.value.change(),
@@ -603,10 +606,11 @@ export class Editor extends React.Component {
     const toolbarElement = this.toolbarRef && relatedTarget?.closest(`[class*="${this.toolbarRef.className}"]`);
 
     // Check if relatedTarget is a done button
-    const isRawDoneButton = relatedTarget?.closest('button[class*="RawDoneButton"]');
+    const isRawDoneButton = this.doneButtonRef && relatedTarget?.closest(`[class*="${this.doneButtonRef.className}"]`);
 
     // Skip onBlur handling if relatedTarget is a button from the KeyPad characters
-    const isKeyPadCharacterButton = relatedTarget?.className.includes('KeyPad-character');
+    const isKeyPadCharacterButton =
+      this.keyPadCharacterRef && relatedTarget?.closest(`[class*="${this.keyPadCharacterRef.current?.className}"]`);
 
     this.skipBlurHandling = isKeyPadCharacterButton ? true : false;
 
@@ -1024,6 +1028,11 @@ export class Editor extends React.Component {
             toolbarRef={(r) => {
               if (r) {
                 this.toolbarRef = r;
+              }
+            }}
+            doneButtonRef={(r) => {
+              if (r) {
+                this.doneButtonRef = r;
               }
             }}
             value={value}
