@@ -16,6 +16,7 @@ const rawLinks = [
   { label: 'math-evaluator', path: '/math-evaluator' },
   { label: 'math-input', path: '/math-input' },
   { label: 'math-rendering', path: '/math-rendering' },
+  { label: 'math-rendering-accessible', path: '/math-rendering-accessible' },
   { label: 'math-toolbar', path: '/math-toolbar' },
   { label: 'render-ui', path: '/render-ui' },
   { label: 'rubric', path: '/rubric' },

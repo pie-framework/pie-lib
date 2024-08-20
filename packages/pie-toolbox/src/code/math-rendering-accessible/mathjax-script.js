@@ -57,6 +57,8 @@ export const initializeMathJax = (renderOpts, onLoad) => {
         const globalObj = getGlobal();
         globalObj.instance = MathJax;
 
+        window.mathjaxLoadedScript = true;
+
         onLoad();
       },
     },
@@ -90,5 +92,4 @@ export const initializeMathJax = (renderOpts, onLoad) => {
   script.src = `https://cdn.jsdelivr.net/npm/mathjax@${MathJaxVersion}/es5/tex-chtml-full.js`;
   script.async = true;
   document.body.appendChild(script);
-  window.mathjaxLoadedScript = true;
 };
