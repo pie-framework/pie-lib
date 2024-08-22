@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.29.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.29.2...@pie-lib/pie-toolbox@1.29.3) (2024-08-22)
+
+
+### Bug Fixes
+
+* **editable-html:** Adjusted the class name checks in the Editor component to use dynamic references instead of hardcoded values PD-4021 ([a16fe34](https://github.com/pie-framework/pie-lib/commit/a16fe34f76555d1abd342d622340d2d34847ced1))
+* **editable-html:** Improve handling of onBlur to prevent input value reset when using special character keypads PD-4021 ([9d0d0ee](https://github.com/pie-framework/pie-lib/commit/9d0d0ee7667bebeebb4344c3a768dc1033411b87))
+
+
+
+
+
 ## [1.29.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.29.1...@pie-lib/pie-toolbox@1.29.2) (2024-08-19)
 
 
