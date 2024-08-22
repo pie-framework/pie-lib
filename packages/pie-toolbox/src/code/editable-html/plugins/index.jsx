@@ -243,7 +243,10 @@ export const buildPlugins = (activePlugins, customPlugins, opts) => {
   const mathPlugin = MathPlugin(opts.math);
   const respAreaPlugin =
     opts.responseArea && opts.responseArea.type && RespAreaPlugin(opts.responseArea, compact([mathPlugin]));
-  const languageCharactersPlugins = (opts?.languageCharacters || []).map((config) => CharactersPlugin(config));
+
+  const languageCharactersPlugins = (opts?.languageCharacters || []).map((config) =>
+    CharactersPlugin({ ...config, keyPadCharacterRef: opts.keyPadCharacterRef }),
+  );
 
   const tablePlugins = [imagePlugin, mathPlugin, respAreaPlugin, ...languageCharactersPlugins];
 
