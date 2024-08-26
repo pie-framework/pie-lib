@@ -1047,6 +1047,8 @@ export class Editor extends React.Component {
               minHeight: sizeStyle.minHeight,
               height: sizeStyle.height,
               maxHeight: sizeStyle.maxHeight,
+              display: 'flex',
+              alignItems: 'center'
             }}
             pluginProps={otherPluginProps}
             toolbarOpts={toolbarOpts}
