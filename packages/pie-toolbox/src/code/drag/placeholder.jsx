@@ -20,13 +20,13 @@ export const PlaceHolder = (props) => {
   if (grid && grid.columns) {
     style.gridTemplateColumns = `repeat(${grid.columns}, 1fr)`;
   }
-  
+
   if (grid && grid.rows) {
     const repeatValue = grid.rowsRepeatValue || '1fr';
 
     style.gridTemplateRows = `repeat(${grid.rows}, ${repeatValue})`;
   }
-  
+
   // The "type" is only sent through placement-ordering / placeholder
   // It can be "choice" or "target"
   // We apply a different style for the "choice" type

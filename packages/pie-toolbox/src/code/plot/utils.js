@@ -158,11 +158,11 @@ export const amountToIncreaseWidth = (longestWord) => {
 export const extractTextFromHTML = (htmlString) => {
   const parser = new DOMParser();
   const doc = parser.parseFromString(htmlString, 'text/html');
-  return doc.body.textContent || "";
+  return doc.body.textContent || '';
 };
 
 export const isEmptyObject = (obj) => {
   return Object.keys(obj).length === 0 && obj.constructor === Object;
 };
 
-export const isEmptyString = (str) => str.trim() === "";
+export const isEmptyString = (str) => str.trim() === '';
