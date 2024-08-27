@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.30.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.29.3...@pie-lib/pie-toolbox@1.30.0) (2024-08-27)
+
+
+### Bug Fixes
+
+* **editable-html:** change media dialog default selected tab PD-4026 ([10b4045](https://github.com/pie-framework/pie-lib/commit/10b404557ddfdab6dc3fb69397454f2309636608))
+
+
+### Features
+
+* **editable-html:** add superscript and subscript to rich editors PD-3990 ([9dc943f](https://github.com/pie-framework/pie-lib/commit/9dc943f9d1d87459fa61f41de8985aacc213a180))
+* **editable-html:** create icon componenets(svg) for superscript and subscript PD-3990 ([4e4a1d2](https://github.com/pie-framework/pie-lib/commit/4e4a1d20c1c5174179269360a16d93fb72054f23))
+
+
+
+
+
 ## [1.29.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.29.2...@pie-lib/pie-toolbox@1.29.3) (2024-08-22)
 
 ### Bug Fixes
