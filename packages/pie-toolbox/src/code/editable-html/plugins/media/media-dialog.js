@@ -77,6 +77,11 @@ const typeMap = {
   audio: 'Audio',
 };
 
+const tabsTypeMap = {
+  uploadFile: 'upload-file',
+  insertUrl: 'insert-url',
+};
+
 export class MediaDialog extends React.Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
@@ -101,7 +106,8 @@ export class MediaDialog extends React.Component {
   constructor(props) {
     super(props);
 
-    const { src, starts, ends, height, url, urlToUse, width } = props;
+    const { ends, height, src, starts, type, uploadSoundSupport, url, urlToUse, width } = props;
+    const showUploadFile = uploadSoundSupport?.add && uploadSoundSupport?.delete && type !== 'video';
 
     this.state = {
       ends: ends || 0,
@@ -112,7 +118,8 @@ export class MediaDialog extends React.Component {
       invalid: false,
       starts: starts || 0,
       width: width || 560,
-      tabValue: 0,
+      // default selected tab should be upload file if available
+      tabValue: showUploadFile ? tabsTypeMap.uploadFile : tabsTypeMap.insertUrl,
       fileUpload: {
         error: null,
         loading: false,
@@ -263,7 +270,7 @@ export class MediaDialog extends React.Component {
   handleDone = (val) => {
     const { handleClose } = this.props;
     const { tabValue, fileUpload } = this.state;
-    const isInsertURL = tabValue === 0;
+    const isInsertURL = tabValue === tabsTypeMap.insertUrl;
 
     if (!val) {
       if (fileUpload.url) {
@@ -397,11 +404,12 @@ export class MediaDialog extends React.Component {
     const { classes, open, disablePortal, type, edit, uploadSoundSupport } = this.props;
     const { ends, height, invalid, starts, width, url, formattedUrl, updating, tabValue, fileUpload } = this.state;
     const isYoutube = matchYoutubeUrl(url);
-    const isInsertURL = tabValue === 0;
-    const isUploadMedia = tabValue === 1;
+    const isInsertURL = tabValue === tabsTypeMap.insertUrl;
+    const isUploadMedia = tabValue === tabsTypeMap.uploadFile;
     const submitIsDisabled = isInsertURL
       ? invalid || url === null || url === undefined
       : !fileUpload.url || fileUpload.scheduled;
+    const showUploadFile = uploadSoundSupport?.add && uploadSoundSupport?.delete && type !== 'video';
 
     return (
       <Dialog
@@ -424,12 +432,11 @@ export class MediaDialog extends React.Component {
                   this.setState({ tabValue: value });
                 }}
               >
+                {showUploadFile ? <MuiTab value={tabsTypeMap.uploadFile} label="Upload file" /> : null}
                 <MuiTab
+                  value={tabsTypeMap.insertUrl}
                   label={type === 'video' ? 'Insert YouTube, Vimeo, or Google Drive URL' : 'Insert SoundCloud URL'}
                 />
-                {uploadSoundSupport?.add && uploadSoundSupport?.delete && type !== 'video' ? (
-                  <MuiTab label="Upload file" />
-                ) : null}
               </MuiTabs>
             </div>
             {isInsertURL && (

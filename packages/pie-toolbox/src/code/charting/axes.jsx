@@ -5,7 +5,7 @@ import { types } from '../plot';
 import { color } from '../../render-ui';
 import { AlertDialog } from '../config-ui';
 import { AxisLeft, AxisBottom } from '@vx/axis';
-import {bandKey, getTickValues, getRotateAngle} from './utils';
+import { bandKey, getTickValues, getRotateAngle } from './utils';
 import MarkLabel from './mark-label';
 import Checkbox from '@material-ui/core/Checkbox';
 
@@ -133,7 +133,7 @@ export class TickComponent extends React.Component {
       changeEditableEnabled,
       error,
       autoFocus,
-      hiddenLabelRef
+      hiddenLabelRef,
     } = this.props;
 
     if (!formattedValue) {
@@ -425,7 +425,9 @@ export class RawChartAxes extends React.Component {
 
     const getTickComponent = (props) => {
       const properties = {
-        hiddenLabelRef: ref => { this.hiddenLabelRef = ref; },
+        hiddenLabelRef: (ref) => {
+          this.hiddenLabelRef = ref;
+        },
         classes,
         categories,
         xBand,
