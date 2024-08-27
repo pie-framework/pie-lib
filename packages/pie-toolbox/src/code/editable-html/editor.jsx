@@ -166,6 +166,8 @@ export class Editor extends React.Component {
       },
     };
 
+    this.keyPadCharacterRef = React.createRef();
+
     this.toggleHtmlMode = this.toggleHtmlMode.bind(this);
     this.handleToolbarFocus = this.handleToolbarFocus.bind(this);
     this.handleToolbarBlur = this.handleToolbarBlur.bind(this);
@@ -366,6 +368,7 @@ export class Editor extends React.Component {
         },
       },
       languageCharacters: props.languageCharactersProps,
+      keyPadCharacterRef: this.keyPadCharacterRef,
       media: {
         focus: this.focus,
         createChange: () => this.state.value.change(),
@@ -603,7 +606,13 @@ export class Editor extends React.Component {
     const toolbarElement = this.toolbarRef && relatedTarget?.closest(`[class*="${this.toolbarRef.className}"]`);
 
     // Check if relatedTarget is a done button
-    const isRawDoneButton = relatedTarget?.closest('button[class*="RawDoneButton"]');
+    const isRawDoneButton = this.doneButtonRef && relatedTarget?.closest(`[class*="${this.doneButtonRef.className}"]`);
+
+    // Skip onBlur handling if relatedTarget is a button from the KeyPad characters
+    const isKeyPadCharacterButton =
+      this.keyPadCharacterRef && relatedTarget?.closest(`[class*="${this.keyPadCharacterRef.current?.className}"]`);
+
+    this.skipBlurHandling = isKeyPadCharacterButton ? true : false;
 
     if (toolbarElement && !isRawDoneButton) {
       this.setState({
@@ -616,10 +625,12 @@ export class Editor extends React.Component {
     log('[onBlur] node: ', node);
 
     return new Promise((resolve) => {
-      this.setState(
-        { preBlurValue: this.state.value, focusedNode: !node ? null : node },
-        this.handleBlur.bind(this, resolve),
-      );
+      if (!this.skipBlurHandling) {
+        this.setState(
+          { preBlurValue: this.state.value, focusedNode: !node ? null : node },
+          this.handleBlur.bind(this, resolve),
+        );
+      }
       this.props.onBlur(event);
     });
   };
@@ -990,68 +1001,86 @@ export class Editor extends React.Component {
       },
       className,
     );
+    const isResponseAreaEditor = names.includes('response-area-editor');
 
     return (
-      <div ref={(ref) => (this.wrapperRef = ref)} style={{ width: sizeStyle.width }} className={names}>
-        {scheduled && <div className={classes.uploading}>Uploading image and then saving...</div>}
-        <SlateEditor
-          plugins={this.plugins}
-          innerRef={(r) => {
-            if (r) {
-              this.slateEditor = r;
-            }
-          }}
-          ref={(r) => (this.editor = r && this.props.editorRef(r))}
-          toolbarRef={(r) => {
-            if (r) {
-              this.toolbarRef = r;
-            }
-          }}
-          value={value}
-          focusToolbar={this.state.focusToolbar}
-          onToolbarFocus={this.handleToolbarFocus}
-          onToolbarBlur={this.handleToolbarBlur}
-          focus={this.focus}
-          onKeyDown={onKeyDown}
-          onChange={this.onChange}
-          getFocusedValue={this.getFocusedValue}
-          onBlur={this.onBlur}
-          onDrop={(event, editor) => this.onDropPaste(event, editor, true)}
-          onPaste={(event, editor) => this.onDropPaste(event, editor)}
-          onFocus={this.onFocus}
-          onEditingDone={this.onEditingDone}
-          focusedNode={focusedNode}
-          normalize={this.normalize}
-          readOnly={disabled}
-          spellCheck={spellCheck}
-          autoCorrect={spellCheck}
-          className={classNames(
-            {
-              [classes.noPadding]: toolbarOpts && toolbarOpts.noBorder,
-            },
-            classes.slateEditor,
-          )}
-          style={{
-            minHeight: sizeStyle.minHeight,
-            height: sizeStyle.height,
-            maxHeight: sizeStyle.maxHeight,
-          }}
-          pluginProps={otherPluginProps}
-          toolbarOpts={toolbarOpts}
-          placeholder={placeholder}
-          renderPlaceholder={this.renderPlaceholder}
-          onDataChange={this.changeData}
-        />
-        <AlertDialog
-          open={dialog.open}
-          title={dialog.title}
-          text={dialog.text}
-          onClose={dialog.onClose}
-          onConfirm={dialog.onConfirm}
-          onConfirmText={dialog.onConfirmText}
-          onCloseText={dialog.onCloseText}
-        />
-      </div>
+      <>
+        {isResponseAreaEditor && (
+          <label htmlFor={`editor-${value?.document?.key}`} className={classes.srOnly}>
+            Answer:
+          </label>
+        )}
+        <div
+          ref={(ref) => (this.wrapperRef = ref)}
+          style={{ width: sizeStyle.width }}
+          className={names}
+          id={`editor-${value?.document?.key}`}
+        >
+          {scheduled && <div className={classes.uploading}>Uploading image and then saving...</div>}
+          <SlateEditor
+            plugins={this.plugins}
+            innerRef={(r) => {
+              if (r) {
+                this.slateEditor = r;
+              }
+            }}
+            ref={(r) => (this.editor = r && this.props.editorRef(r))}
+            toolbarRef={(r) => {
+              if (r) {
+                this.toolbarRef = r;
+              }
+            }}
+            doneButtonRef={(r) => {
+              if (r) {
+                this.doneButtonRef = r;
+              }
+            }}
+            value={value}
+            focusToolbar={this.state.focusToolbar}
+            onToolbarFocus={this.handleToolbarFocus}
+            onToolbarBlur={this.handleToolbarBlur}
+            focus={this.focus}
+            onKeyDown={onKeyDown}
+            onChange={this.onChange}
+            getFocusedValue={this.getFocusedValue}
+            onBlur={this.onBlur}
+            onDrop={(event, editor) => this.onDropPaste(event, editor, true)}
+            onPaste={(event, editor) => this.onDropPaste(event, editor)}
+            onFocus={this.onFocus}
+            onEditingDone={this.onEditingDone}
+            focusedNode={focusedNode}
+            normalize={this.normalize}
+            readOnly={disabled}
+            spellCheck={spellCheck}
+            autoCorrect={spellCheck}
+            className={classNames(
+              {
+                [classes.noPadding]: toolbarOpts && toolbarOpts.noBorder,
+              },
+              classes.slateEditor,
+            )}
+            style={{
+              minHeight: sizeStyle.minHeight,
+              height: sizeStyle.height,
+              maxHeight: sizeStyle.maxHeight,
+            }}
+            pluginProps={otherPluginProps}
+            toolbarOpts={toolbarOpts}
+            placeholder={placeholder}
+            renderPlaceholder={this.renderPlaceholder}
+            onDataChange={this.changeData}
+          />
+          <AlertDialog
+            open={dialog.open}
+            title={dialog.title}
+            text={dialog.text}
+            onClose={dialog.onClose}
+            onConfirm={dialog.onConfirm}
+            onConfirmText={dialog.onConfirmText}
+            onCloseText={dialog.onCloseText}
+          />
+        </div>
+      </>
     );
   }
 }
@@ -1108,6 +1137,16 @@ const styles = {
     marginTop: '6px',
     padding: '20px',
     backgroundColor: 'rgba(0,0,0,0.06)',
+  },
+  srOnly: {
+    border: 0,
+    clip: 'rect(0, 0, 0, 0)',
+    height: '1px',
+    margin: '-1px',
+    overflow: 'hidden',
+    padding: 0,
+    position: 'absolute',
+    width: '1px',
   },
 };
 

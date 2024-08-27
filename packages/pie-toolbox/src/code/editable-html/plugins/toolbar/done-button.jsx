@@ -5,10 +5,11 @@ import Check from '@material-ui/icons/Check';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 
-export const RawDoneButton = ({ classes, onClick }) => (
+export const RawDoneButton = ({ classes, onClick, doneButtonRef }) => (
   <IconButton
     aria-label="Done"
     className={classes.iconRoot}
+    buttonRef={doneButtonRef}
     onClick={onClick}
     classes={{
       label: classes.label,

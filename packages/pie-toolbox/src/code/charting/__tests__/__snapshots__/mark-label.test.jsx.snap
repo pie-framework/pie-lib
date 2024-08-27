@@ -27,6 +27,7 @@ exports[`MarkLabel snapshot renders 1`] = `
       "top": 0,
       "transform": "rotate(undefineddeg)",
       "transformOrigin": "left",
+      "visibility": "unset",
     }
   }
 />
@@ -59,6 +60,7 @@ exports[`MarkLabel snapshot renders 2`] = `
       "top": 0,
       "transform": "rotate(undefineddeg)",
       "transformOrigin": "left",
+      "visibility": "unset",
     }
   }
 />

@@ -22,7 +22,7 @@ const styles = (theme) => ({
     padding: '0',
     border: 'none',
     color: 'inherit',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   input: {
     float: 'right',
@@ -37,10 +37,12 @@ const styles = (theme) => ({
   disabled: {
     border: `solid 1px ${color.defaults.PRIMARY_DARK}`,
     backgroundColor: color.defaults.WHITE,
+    '-webkit-opacity': '1',
   },
   disabledMark: {
     border: `solid 1px ${color.disabled()}`,
     color: color.disabled(),
+    '-webkit-text-fill-color': color.disabled(),
   },
   inputCorrect: {
     ...inputStyles(theme),
@@ -98,16 +100,16 @@ export const coordinates = (graphProps, mark, rect = { width: 0, height: 0 }, po
 };
 
 const LabelInput = ({ _ref, externalInputRef, label, disabled, inputClassName, onChange }) => (
-    <AutosizeInput
-        inputRef={(r) => {
-          _ref(r);
-          externalInputRef(r);
-        }}
-        disabled={disabled}
-        inputClassName={inputClassName}
-        value={label}
-        onChange={onChange}
-    />
+  <AutosizeInput
+    inputRef={(r) => {
+      _ref(r);
+      externalInputRef(r);
+    }}
+    disabled={disabled}
+    inputClassName={inputClassName}
+    value={label}
+    onChange={onChange}
+  />
 );
 
 export const MarkLabel = (props) => {
@@ -155,69 +157,69 @@ export const MarkLabel = (props) => {
   const disabledInput = disabled || mark.disabled;
 
   const renderInput = (inputClass, labelValue) => (
-      <LabelInput
-          _ref={_ref}
-          externalInputRef={externalInputRef}
-          label={labelValue}
-          disabled={disabledInput}
-          inputClassName={cn(inputClass)}
-          onChange={onChange}
-      />
+    <LabelInput
+      _ref={_ref}
+      externalInputRef={externalInputRef}
+      label={labelValue}
+      disabled={disabledInput}
+      inputClassName={cn(inputClass)}
+      onChange={onChange}
+    />
   );
 
   if (correctness === 'correct' && correctnesslabel === 'correct' && correctlabel) {
     return (
-        <div className={classes.inputCorrect} style={style}>
-          <SvgIcon type="correct" />
-          {renderInput(classes.inputStudent, correctlabel)}
-        </div>
+      <div className={classes.inputCorrect} style={style}>
+        <SvgIcon type="correct" />
+        {renderInput(classes.inputStudent, correctlabel)}
+      </div>
     );
   }
 
   if (correctness === 'correct' && correctnesslabel === 'incorrect') {
     return (
-        <>
-          <div className={classes.inputIncorrect} style={style}>
-            <SvgIcon type="incorrect" />
-            {label === '' ? (
-                <SvgIcon type="empty" style={{ marginLeft: '3px' }} />
-            ) : (
-                renderInput(classes.inputStudent, label)
-            )}
-          </div>
-          <div className={classes.inputMissing} style={secondLabelStyle}>
-            {renderInput(classes.inputStudent, correctlabel)}
-          </div>
-        </>
+      <>
+        <div className={classes.inputIncorrect} style={style}>
+          <SvgIcon type="incorrect" />
+          {label === '' ? (
+            <SvgIcon type="empty" style={{ marginLeft: '3px' }} />
+          ) : (
+            renderInput(classes.inputStudent, label)
+          )}
+        </div>
+        <div className={classes.inputMissing} style={secondLabelStyle}>
+          {renderInput(classes.inputStudent, correctlabel)}
+        </div>
+      </>
     );
   }
 
   if (correctness === 'missing') {
     return (
-        <div className={classes.inputMissing} style={style}>
-          {renderInput(classes.inputStudent, label)}
-        </div>
+      <div className={classes.inputMissing} style={style}>
+        {renderInput(classes.inputStudent, label)}
+      </div>
     );
   }
 
   if (correctness === 'incorrect') {
     return (
-        <div className={classes.incorrect} style={style}>
-          {renderInput(classes.inputStudent, label)}
-        </div>
+      <div className={classes.incorrect} style={style}>
+        {renderInput(classes.inputStudent, label)}
+      </div>
     );
   }
 
   return (
-      <div style={style}>
-        {renderInput(
-            cn(classes.input, {
-              [classes.disabled]: disabled,
-              [classes.disabledMark]: mark.disabled,
-            }),
-            label
-        )}
-      </div>
+    <div style={style}>
+      {renderInput(
+        cn(classes.input, {
+          [classes.disabled]: disabled,
+          [classes.disabledMark]: mark.disabled,
+        }),
+        label,
+      )}
+    </div>
   );
 };
 

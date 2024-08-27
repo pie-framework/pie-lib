@@ -1,5 +1,7 @@
 import { getGlobal } from './render-math';
 
+export const MathJaxVersion = '3.2.2';
+
 export const initializeMathJax = (renderOpts) => {
   if (renderOpts?.useSingleDollar) {
     // eslint-disable-next-line
@@ -84,7 +86,7 @@ export const initializeMathJax = (renderOpts) => {
     // Load the MathJax script
     const script = document.createElement('script');
     script.type = 'text/javascript';
-    script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml-full.js';
+    script.src = `https://cdn.jsdelivr.net/npm/mathjax@${MathJaxVersion}/es5/tex-chtml-full.js`;
     script.async = true;
     document.body.appendChild(script);
   });

@@ -80,6 +80,7 @@ export const DefaultToolbar = ({
   showDone,
   deletable,
   isHtmlMode,
+  doneButtonRef,
   onBlur,
   onFocus,
 }) => {
@@ -109,7 +110,7 @@ export const DefaultToolbar = ({
           );
         })}
       </div>
-      {showDone && !deletable && <DoneButton onClick={onDone} />}
+      {showDone && !deletable && <DoneButton doneButtonRef={doneButtonRef} onClick={onDone} />}
     </div>
   );
 };

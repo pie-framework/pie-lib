@@ -132,6 +132,7 @@ const insertDialog = ({ editorDOM, value, callback, opts }) => {
 
   const el = (
     <PureToolbar
+      keyPadCharacterRef={opts.keyPadCharacterRef}
       autoFocus
       noDecimal
       hideInput

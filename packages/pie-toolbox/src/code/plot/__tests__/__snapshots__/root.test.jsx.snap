@@ -5,10 +5,10 @@ exports[`root snapshot matches 1`] = `
   <div>
     <svg
       height={480}
-      width={520}
+      width={540}
     >
       <g
-        transform="translate(60, 40)"
+        transform="translate(70, 40)"
       >
         hi
       </g>

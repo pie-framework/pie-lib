@@ -56,6 +56,7 @@ export class EditorAndToolbar extends React.Component {
       toolbarOpts,
       onDataChange,
       toolbarRef,
+      doneButtonRef,
       focusToolbar,
       onToolbarFocus,
       onToolbarBlur,
@@ -82,7 +83,6 @@ export class EditorAndToolbar extends React.Component {
 
     return (
       <div
-        tabIndex={0}
         className={classNames(
           {
             [classes.noBorder]: toolbarOpts && toolbarOpts.noBorder,
@@ -117,6 +117,7 @@ export class EditorAndToolbar extends React.Component {
           onDone={onDone}
           onDataChange={onDataChange}
           toolbarRef={toolbarRef}
+          doneButtonRef={doneButtonRef}
           pluginProps={pluginProps}
           toolbarOpts={toolbarOpts}
         />

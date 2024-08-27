@@ -10,7 +10,15 @@ const Masked = withMask('blank', (props) => (node, data, onChange) => {
   const dataset = node.data ? node.data.dataset || {} : {};
   if (dataset.component === 'blank') {
     // eslint-disable-next-line react/prop-types
-    const { disabled, duplicates, correctResponse, feedback, showCorrectAnswer } = props;
+    const {
+      disabled,
+      duplicates,
+      correctResponse,
+      feedback,
+      showCorrectAnswer,
+      emptyResponseAreaWidth,
+      emptyResponseAreaHeight,
+    } = props;
     const choiceId = showCorrectAnswer ? correctResponse[dataset.id] : data[dataset.id];
     // eslint-disable-next-line react/prop-types
     const choice = choiceId && props.choices.find((c) => c.id === choiceId);
@@ -23,6 +31,8 @@ const Masked = withMask('blank', (props) => (node, data, onChange) => {
         duplicates={duplicates}
         choice={choice}
         id={dataset.id}
+        emptyResponseAreaWidth={emptyResponseAreaWidth}
+        emptyResponseAreaHeight={emptyResponseAreaHeight}
         onChange={onChange}
       />
     );
@@ -42,6 +52,8 @@ export default class DragInTheBlank extends React.Component {
     feedback: PropTypes.object,
     correctResponse: PropTypes.object,
     showCorrectAnswer: PropTypes.bool,
+    emptyResponseAreaWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    emptyResponseAreaHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   };
 
   UNSAFE_componentWillReceiveProps() {
@@ -56,13 +68,18 @@ export default class DragInTheBlank extends React.Component {
 
   getPositionDirection = (choicePosition) => {
     let flexDirection;
+    let justifyContent;
+    let alignItems;
 
     switch (choicePosition) {
       case 'left':
         flexDirection = 'row';
+        alignItems = 'center';
         break;
       case 'right':
         flexDirection = 'row-reverse';
+        justifyContent = 'flex-end';
+        alignItems = 'center';
         break;
       case 'below':
         flexDirection = 'column-reverse';
@@ -73,7 +90,7 @@ export default class DragInTheBlank extends React.Component {
         break;
     }
 
-    return flexDirection;
+    return { flexDirection, justifyContent, alignItems };
   };
 
   render() {
@@ -89,12 +106,15 @@ export default class DragInTheBlank extends React.Component {
       disabled,
       feedback,
       showCorrectAnswer,
+      emptyResponseAreaWidth,
+      emptyResponseAreaHeight,
     } = this.props;
 
     const choicePosition = choicesPosition || 'below';
     const style = {
       display: 'flex',
-      flexDirection: this.getPositionDirection(choicePosition),
+      minWidth: '100px',
+      ...this.getPositionDirection(choicePosition),
     };
 
     return (
@@ -117,6 +137,8 @@ export default class DragInTheBlank extends React.Component {
           feedback={feedback}
           correctResponse={correctResponse}
           showCorrectAnswer={showCorrectAnswer}
+          emptyResponseAreaWidth={emptyResponseAreaWidth}
+          emptyResponseAreaHeight={emptyResponseAreaHeight}
         />
       </div>
     );

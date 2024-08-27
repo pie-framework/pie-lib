@@ -30,15 +30,17 @@ const RawDragHandle = ({
       {isHovered && !correctness && interactive && (
         <DragIcon width={width} scaleValue={scaleValue} color={color} classes={classes} />
       )}
-      <ellipse
-        cx={width / 2}
-        cy={10}
-        rx={width / 2}
-        // the drag icon has a 22px fixed r value, so the ry value is 3 times that in order to cover all the area
-        ry={66}
-        className={classNames(classes.transparentHandle, className)}
-        {...rest}
-      />
+      {interactive && !correctness && (
+        <ellipse
+          cx={width / 2}
+          cy={10}
+          rx={width / 2}
+          // the drag icon has a 22px fixed r value, so the ry value is 3 times that in order to cover all the area
+          ry={66}
+          className={classNames(classes.transparentHandle, className)}
+          {...rest}
+        />
+      )}
 
       <defs>
         <filter id="bottomShadow" x="0" y="0" width="140%" height="140%">
