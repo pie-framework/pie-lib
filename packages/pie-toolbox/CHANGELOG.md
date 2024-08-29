@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.30.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.30.0...@pie-lib/pie-toolbox@1.30.1) (2024-08-29)
+
+
+### Bug Fixes
+
+* sanity checks ([fba0dd9](https://github.com/pie-framework/pie-lib/commit/fba0dd9dd4706eccc15237c174ce410066a51775))
+
+
+
+
+
 # [1.30.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.29.3...@pie-lib/pie-toolbox@1.30.0) (2024-08-27)
 
 
