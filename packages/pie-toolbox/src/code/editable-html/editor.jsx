@@ -388,6 +388,16 @@ export class Editor extends React.Component {
 
     window.addEventListener('resize', this.onResize);
 
+    const isResponseAreaEditor = this.props.className?.includes('response-area-editor');
+
+    if (isResponseAreaEditor && this.editor) {
+      const responseAreaEditor = document.querySelector(`[data-key="${this.editor.value.document.key}"]`);
+
+      if (responseAreaEditor) {
+        responseAreaEditor.setAttribute('aria-label', 'Answer');
+      }
+    }
+
     if (this.editor && this.props.autoFocus) {
       Promise.resolve().then(() => {
         if (this.editor) {
