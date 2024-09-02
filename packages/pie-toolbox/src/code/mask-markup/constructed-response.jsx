@@ -3,7 +3,6 @@ import { withMask } from './with-mask';
 import EditableHtml from '../editable-html';
 import { withStyles } from '@material-ui/core/styles';
 import classnames from 'classnames';
-import { stripHtmlTags } from './serialization';
 import { color } from '../../render-ui';
 
 const styles = (theme) => ({

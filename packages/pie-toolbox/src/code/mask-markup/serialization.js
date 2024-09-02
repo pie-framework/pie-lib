@@ -168,7 +168,3 @@ const rules = [
 const html = new Html({ rules, defaultBlock: 'span' });
 
 export const deserialize = (s) => html.deserialize(s, { toJSON: true });
-
-export const stripHtmlTags = (markup) => {
-  return markup.replace(/<\/?[^>]+(>|$)/g, "");
-};
