@@ -11,7 +11,8 @@ const styles = (theme) => ({
     display: 'inline-block',
     verticalAlign: 'middle',
     margin: '4px',
-    borderRadius: '4px'
+    borderRadius: '4px',
+    border: `1px solid ${color.black()}`,
   },
   correct: {
     border: `1px solid ${color.correct()}`,
@@ -54,7 +55,11 @@ const MaskedInput = (props) => (node, data) => {
             activePlugins={['languageCharacters']}
             languageCharactersProps={languageCharactersProps}
             spellCheck={spellCheck}
-            width={width * 22}
+            width={width * 25}
+            toolbarOpts={{
+              width: 'auto'
+            }}
+            noBorder={true}
             className={classnames(
                 classes.editableHtmlCustom,
                 {

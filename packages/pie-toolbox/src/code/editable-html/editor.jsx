@@ -126,6 +126,7 @@ export class Editor extends React.Component {
       alwaysVisible: PropTypes.bool,
       showDone: PropTypes.bool,
       doneOn: PropTypes.string,
+      width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     }),
     activePlugins: PropTypes.arrayOf((values) => {
       const allValid = values.every((v) => ALL_PLUGINS.includes(v));
@@ -135,6 +136,7 @@ export class Editor extends React.Component {
     className: PropTypes.string,
     maxImageWidth: PropTypes.number,
     maxImageHeight: PropTypes.number,
+    noBorder: PropTypes.bool
   };
 
   static defaultProps = {
@@ -1055,6 +1057,7 @@ export class Editor extends React.Component {
             placeholder={placeholder}
             renderPlaceholder={this.renderPlaceholder}
             onDataChange={this.changeData}
+            noBorder={this.props.noBorder}
           />
           <AlertDialog
             open={dialog.open}
@@ -1133,6 +1136,9 @@ const styles = {
     padding: 0,
     position: 'absolute',
     width: '1px',
+  },
+  noBorder: {
+    border: 'none'
   },
 };
 
