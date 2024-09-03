@@ -149,9 +149,9 @@ const processMathJaxFullPage = (executeOn) => {
   }
 };
 
-export const initializeMathJaxScript = (renderOpts) => {
+export const initializeMathJaxScript = (renderOpts, callback) => {
   if (!window.MathJaxInitialised) {
-    initializeMathJax(renderOpts, processMathJaxFullPage);
+    initializeMathJax(renderOpts, callback);
   }
 };
 

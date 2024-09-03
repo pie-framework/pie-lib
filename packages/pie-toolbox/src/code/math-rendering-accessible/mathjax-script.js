@@ -16,7 +16,7 @@ const mathJaxCustomKey = getMathJaxCustomKey();
  */
 const defaultOpts = () => getGlobal().opts || {};
 
-export const initializeMathJax = (renderOpts, processMathJaxFullPage) => {
+export const initializeMathJax = (renderOpts, callback) => {
   window.MathJaxInitialised = true;
 
   renderOpts = renderOpts || defaultOpts();
@@ -80,8 +80,8 @@ export const initializeMathJax = (renderOpts, processMathJaxFullPage) => {
           const globalObj = getGlobal();
           globalObj.instance = MathJax;
 
-          if (processMathJaxFullPage) {
-            processMathJaxFullPage();
+          if (callback) {
+            callback();
           }
 
           window.MathJaxLoaded = true;
