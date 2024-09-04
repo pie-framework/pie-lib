@@ -1,4 +1,4 @@
-import { initializeMathJax, mathRenderingKEY, mathRenderingAccessibleKEY } from './mathjax-script';
+import { initializeMathJax, MathJaxVersion } from './mathjax-script';
 import { wrapMath, unWrapMath } from './normalization';
 import * as mr from '../math-rendering';
 
@@ -9,6 +9,9 @@ const toMMl = (node) => visitor.visitTree(node);
 
 const NEWLINE_BLOCK_REGEX = /\\embed\{newLine\}\[\]/g;
 const NEWLINE_LATEX = '\\newline ';
+
+const mathRenderingKEY = '@pie-lib/math-rendering@2';
+const mathRenderingAccessibleKEY = '@pie-lib/math-rendering-accessible@1';
 
 export const getGlobal = () => {
   // TODO does it make sense to use version?
@@ -27,6 +30,15 @@ export const getGlobal = () => {
     return {};
   }
 };
+
+/** Add temporary support for a global singleDollar override
+ *  <code>
+ *   // This will enable single dollar rendering
+ *   window.pie = window.pie || {};
+ *   window.pie.mathRendering =  {useSingleDollar: true };
+ *  </code>
+ */
+const defaultOpts = () => getGlobal().opts || {};
 
 export const fixMathElement = (element) => {
   if (element.dataset.mathHandled) {
@@ -100,67 +112,10 @@ const removeExcessMjxContainers = (content) => {
   });
 };
 
-const processMathJaxFullPage = (executeOn) => {
-  executeOn = executeOn || document.body;
-  const mathJaxInstance = getGlobal().instance;
-
-  if (mathJaxInstance) {
-    // Reset and clear typesetting before processing the new content
-    // Reset the tex labels (and automatic equation number).
-
-    mathJaxInstance.texReset();
-
-    //  Reset the typesetting system (font caches, etc.)
-    mathJaxInstance.typesetClear();
-
-    // Use typesetPromise for asynchronous typesetting
-    // Using MathJax.typesetPromise() for asynchronous typesetting to handle situations where additional code needs to be loaded (e.g., for certain TeX commands or characters).
-    // This ensures typesetting waits for any needed resources to load and complete processing, unlike the synchronous MathJax.typeset() which can't handle such dynamic loading.
-    mathJaxInstance
-      .typesetPromise([executeOn])
-      .then(() => {
-        try {
-          removeExcessMjxContainers(executeOn);
-          removePlaceholdersAndRestoreDisplay();
-
-          const updatedDocument = mathJaxInstance.startup.document;
-          const list = updatedDocument.math.list;
-
-          for (let item = list.next; typeof item.data !== 'symbol'; item = item.next) {
-            const mathMl = toMMl(item.data.root);
-            const parsedMathMl = mathMl.replaceAll('\n', '');
-
-            item.data.typesetRoot.setAttribute('data-mathml', parsedMathMl);
-          }
-
-          // If the original input was a string, return the parsed MathML
-        } catch (e) {
-          console.error('Error post-processing MathJax typesetting:', e.toString());
-        }
-
-        // Clearing the document if needed
-        mathJaxInstance.startup.document.clear();
-      })
-      .catch((error) => {
-        //  If there was an internal error, put the message into the output instead
-
-        console.error('Error in typesetting with MathJax:', error);
-      });
-  }
-};
-
-export const initializeMathJaxScript = (renderOpts, callback) => {
-  if (!window.MathJaxInitialised) {
-    initializeMathJax(renderOpts, callback);
-  }
-};
+const getMathJaxCustomKey = () => window?.MathJax?.customKey || window?.MathJax?.config?.customKey;
 
 const renderMath = (el, renderOpts) => {
-  // used for mmlOutput
   const isString = typeof el === 'string';
-  // used for mmlOutput
-  const { skipWaitForMathRenderingLib } = renderOpts || {};
-
   let executeOn = document.body;
 
   if (isString) {
@@ -170,39 +125,96 @@ const renderMath = (el, renderOpts) => {
     executeOn = div;
   }
 
+  const { skipWaitForMathRenderingLib } = renderOpts || {};
+
   // this is the actual math-rendering-accessible renderMath function, which initialises MathJax
   const renderMathAccessible = () => {
     fixMathElements(executeOn);
     adjustMathMLStyle(executeOn);
 
-    if (!window.MathJaxInitialised) {
-      initializeMathJax(renderOpts, () => processMathJaxFullPage(executeOn));
+    const mathJaxCustomKey = getMathJaxCustomKey();
 
-      return;
+    // In OT, they are loading MathJax version 2.6.1, which prevents our MathJax initialization, so our ietms are not working properly
+    // that's why we want to initialize MathJax if the existing version is different than what we need
+    if (
+      ((!window.MathJax || window.MathJax.version !== MathJaxVersion) && !window.mathjaxLoadedP) ||
+      (mathJaxCustomKey && mathJaxCustomKey !== mathRenderingAccessibleKEY)
+    ) {
+      renderOpts = renderOpts || defaultOpts();
+
+      initializeMathJax(renderOpts);
     }
 
-    if (window.MathJaxLoaded) {
-      if (isString) {
-        try {
-          MathJax.texReset();
-          MathJax.typesetClear();
-          window.MathJax.typeset([executeOn]);
-          const updatedDocument = window.MathJax.startup.document;
-          const list = updatedDocument.math.list;
-          const item = list.next;
-          const mathMl = toMMl(item.data.root);
+    if (isString && window.MathJax && window.mathjaxLoadedP) {
+      try {
+        MathJax.texReset();
+        MathJax.typesetClear();
+        window.MathJax.typeset([executeOn]);
+        const updatedDocument = window.MathJax.startup.document;
+        const list = updatedDocument.math.list;
+        const item = list.next;
+        const mathMl = toMMl(item.data.root);
 
-          const parsedMathMl = mathMl.replaceAll('\n', '');
+        const parsedMathMl = mathMl.replaceAll('\n', '');
 
-          return parsedMathMl;
-        } catch (error) {
-          console.error('Error rendering math:', error.message);
-
-          return '';
-        }
+        return parsedMathMl;
+      } catch (error) {
+        console.error('Error rendering math:', error.message);
       }
+    }
 
-      processMathJaxFullPage(executeOn);
+    if (window.mathjaxLoadedP) {
+      window.mathjaxLoadedP
+        .then(() => {
+          const mathJaxInstance = getGlobal().instance;
+
+          if (mathJaxInstance) {
+            // Reset and clear typesetting before processing the new content
+            // Reset the tex labels (and automatic equation number).
+
+            mathJaxInstance.texReset();
+
+            //  Reset the typesetting system (font caches, etc.)
+            mathJaxInstance.typesetClear();
+
+            // Use typesetPromise for asynchronous typesetting
+            // Using MathJax.typesetPromise() for asynchronous typesetting to handle situations where additional code needs to be loaded (e.g., for certain TeX commands or characters).
+            // This ensures typesetting waits for any needed resources to load and complete processing, unlike the synchronous MathJax.typeset() which can't handle such dynamic loading.
+            mathJaxInstance
+              .typesetPromise([executeOn])
+              .then(() => {
+                try {
+                  removeExcessMjxContainers(executeOn);
+                  removePlaceholdersAndRestoreDisplay();
+
+                  const updatedDocument = mathJaxInstance.startup.document;
+                  const list = updatedDocument.math.list;
+
+                  for (let item = list.next; typeof item.data !== 'symbol'; item = item.next) {
+                    const mathMl = toMMl(item.data.root);
+                    const parsedMathMl = mathMl.replaceAll('\n', '');
+
+                    item.data.typesetRoot.setAttribute('data-mathml', parsedMathMl);
+                  }
+
+                  // If the original input was a string, return the parsed MathML
+                } catch (e) {
+                  console.error('Error post-processing MathJax typesetting:', e.toString());
+                }
+
+                // Clearing the document if needed
+                mathJaxInstance.startup.document.clear();
+              })
+              .catch((error) => {
+                //  If there was an internal error, put the message into the output instead
+
+                console.error('Error in typesetting with MathJax:', error);
+              });
+          }
+        })
+        .catch((error) => {
+          console.error('Error in initializing MathJax:', error);
+        });
     }
   };
 

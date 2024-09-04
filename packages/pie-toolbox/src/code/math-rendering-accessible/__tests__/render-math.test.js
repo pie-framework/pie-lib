@@ -23,43 +23,43 @@ describe('render-math', () => {
     global.window.mathjaxLoadedP = Promise.resolve();
   });
 
-  // it('calls initializeMathJax once without @pie-lib/math-rendering@2', () => {
-  //   jest.useFakeTimers();
-  //   const div = document.createElement('div');
-  //
-  //   delete window['@pie-lib/math-rendering@2'];
-  //
-  //   // Initialize as undefined for the first call
-  //   global.window.MathJax = undefined;
-  //   global.window.mathjaxLoadedP = undefined;
-  //
-  //   // Call renderMath once to initialize MathJax
-  //   renderMath(div);
-  //
-  //   // Subsequent calls should not re-initialize MathJax
-  //   global.window.MathJax = {
-  //     typeset: jest.fn(),
-  //     texReset: jest.fn(),
-  //     typesetClear: jest.fn(),
-  //     typeset: jest.fn(),
-  //     typesetPromise: jest.fn(() => Promise.resolve()),
-  //   };
-  //   global.window.mathjaxLoadedP = Promise.resolve();
-  //
-  //   // Call renderMath 9 more times
-  //   _.times(9).forEach((i) => renderMath(div));
-  //
-  //   setTimeout(() => {
-  //     expect(MathJaxModule.initializeMathJax).toHaveBeenCalledTimes(1);
-  //   }, 500);
-  // });
+  it('calls initializeMathJax once without @pie-lib/math-rendering@2', () => {
+    jest.useFakeTimers();
+    const div = document.createElement('div');
 
-  // it('does not call initializeMathJax when @pie-lib/math-rendering@2 is present', () => {
-  //   const div = document.createElement('div');
-  //
-  //   renderMath(div);
-  //   expect(MathJaxModule.initializeMathJax).not.toHaveBeenCalled();
-  // });
+    delete window['@pie-lib/math-rendering@2'];
+
+    // Initialize as undefined for the first call
+    global.window.MathJax = undefined;
+    global.window.mathjaxLoadedP = undefined;
+
+    // Call renderMath once to initialize MathJax
+    renderMath(div);
+
+    // Subsequent calls should not re-initialize MathJax
+    global.window.MathJax = {
+      typeset: jest.fn(),
+      texReset: jest.fn(),
+      typesetClear: jest.fn(),
+      typeset: jest.fn(),
+      typesetPromise: jest.fn(() => Promise.resolve()),
+    };
+    global.window.mathjaxLoadedP = Promise.resolve();
+
+    // Call renderMath 9 more times
+    _.times(9).forEach((i) => renderMath(div));
+
+    setTimeout(() => {
+      expect(MathJaxModule.initializeMathJax).toHaveBeenCalledTimes(1);
+    }, 500);
+  });
+
+  it('does not call initializeMathJax when @pie-lib/math-rendering@2 is present', () => {
+    const div = document.createElement('div');
+
+    renderMath(div);
+    expect(MathJaxModule.initializeMathJax).not.toHaveBeenCalled();
+  });
 
   it('wraps the math containing element the right way', () => {
     const wrapper = mount(

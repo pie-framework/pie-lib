@@ -1,3 +1,3 @@
-import { renderMath, wrapMath, unWrapMath, mmlToLatex, initializeMathJaxScript } from './code/math-rendering-accessible';
+import { renderMath, wrapMath, unWrapMath, mmlToLatex } from './code/math-rendering-accessible';
 
-export { renderMath, wrapMath, unWrapMath, mmlToLatex, initializeMathJaxScript };
+export { renderMath, wrapMath, unWrapMath, mmlToLatex };
