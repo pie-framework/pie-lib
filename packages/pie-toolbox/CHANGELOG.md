@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.31.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.31.1...@pie-lib/pie-toolbox@1.31.2) (2024-09-04)
+
+
+### Bug Fixes
+
+* revert experiments with mra ([90e46f4](https://github.com/pie-framework/pie-lib/commit/90e46f4623ed93d31abeeffd6ab21b3e028fc17c))
+
+
+
+
+
 ## [1.31.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.31.0...@pie-lib/pie-toolbox@1.31.1) (2024-09-03)
 
 
