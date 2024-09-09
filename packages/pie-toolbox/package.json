@@ -22,7 +22,7 @@
     "@vx/group": "^0.0.183",
     "@vx/point": "^0.0.182",
     "@vx/scale": "^0.0.182",
-    "@vx/shape": "^0.0.183",
+    "@vx/shape": "^0.0.199",
     "assert": "^1.4.1",
     "change-case": "^3.0.2",
     "classnames": "^2.2.6",
