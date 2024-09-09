@@ -62,7 +62,7 @@
     "slate-edit-table": "^0.17.0",
     "slate-html-serializer": "^0.6.12",
     "slate-plain-serializer": "^0.5.26",
-    "slate-prop-types": "^0.4.38",
+    "slate-prop-types": "^0.5.44",
     "slate-react": "^0.14.3",
     "slate-schema-violations": "^0.1.39",
     "slate-soft-break": "^0.8.1",
