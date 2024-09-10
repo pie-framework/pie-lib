@@ -7,18 +7,12 @@ import { color } from '../render-ui';
 
 export const PlaceHolder = (props) => {
   const { children, classes, className, isOver, type, grid, disabled, choiceBoard, isCategorize } = props;
-  const placeholderClassNames = classNames(
-      classes.noSelectStyles,
+  const names = classNames(
       classes.placeholder,
       disabled && classes.disabled,
       isOver && classes.over,
       classes[type],
       className,
-  );
-
-  const boardClassNames = classNames(
-      classes.noSelectStyles,
-      isCategorize ? classes.categorizeBoard : classes.board,
   );
 
   const style = {};
@@ -41,9 +35,17 @@ export const PlaceHolder = (props) => {
     style.border = `1px solid ${color.borderLight()}`;
     style.background = color.backgroundDark();
   }
-  
+
+  const boardStyle = isCategorize ? classes.categorizeBoard : classes.board;
+
   return (
-      <div style={style} className={choiceBoard ? boardClassNames : placeholderClassNames}>
+      <div
+          style={style}
+          className={classNames(
+              classes.noSelectStyles,
+              choiceBoard ? boardStyle : names
+          )}
+      >
         {children}
       </div>
   );
