@@ -462,7 +462,6 @@ class RteDemo extends React.Component {
               keypadMode: this.state.keypadMode,
             },
             // 'bold': { disabled: true },
-            // // 'code': { disabled: true },
             // 'html': { disabled: true },
             // 'italic': { disabled: true },
             // 'underline': { disabled: true },
