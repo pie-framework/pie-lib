@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.31.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.31.3...@pie-lib/pie-toolbox@1.31.4) (2024-09-10)
+
+
+### Bug Fixes
+
+* **drag:** clean up & refactor styles for placeholder PD-3652 ([8d20af3](https://github.com/pie-framework/pie-lib/commit/8d20af343b837ffe45e47f258c87ab2708747d67))
+* **drag:** moving styles for disabling long touch default events PD-3652 ([857c1cd](https://github.com/pie-framework/pie-lib/commit/857c1cd183b32387ecacf9cfa9cef89712047666))
+* **editable-html:** Add accessible aria-label to extended-text-entry, response-area editor for improved accessibility PD-2451 ([48f287b](https://github.com/pie-framework/pie-lib/commit/48f287b5c0f68abeed48015ccd9f5def19daeb53))
+* **editable-html:** revert changes from feat/PD-2450 due to label not being correctly recognized by screen readers during keyboard navigation in the editor PD-2451 ([c53e671](https://github.com/pie-framework/pie-lib/commit/c53e671801d99bcc5aa161d7e766a07ee9e01eff))
+* **placeholder:** apply new class - noSelectStyles to placeholder, board and categorizeBoard classes PD-3652 ([2a08878](https://github.com/pie-framework/pie-lib/commit/2a0887842af95a3879bd4f80d4ceb23eb3b32632))
+* **placeholder:** Ensure noSelectStyles always applied in PlaceHolder component PD-3652 ([0d62106](https://github.com/pie-framework/pie-lib/commit/0d62106d1cdffb9fd69bc08691624a67a133cca9))
+
+
+
+
+
 ## [1.31.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.31.2...@pie-lib/pie-toolbox@1.31.3) (2024-09-10)
 
 
