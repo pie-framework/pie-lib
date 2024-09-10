@@ -7,12 +7,18 @@ import { color } from '../render-ui';
 
 export const PlaceHolder = (props) => {
   const { children, classes, className, isOver, type, grid, disabled, choiceBoard, isCategorize } = props;
-  const names = classNames(
+  const placeholderClassNames = classNames(
+      classes.noSelectStyles,
       classes.placeholder,
       disabled && classes.disabled,
       isOver && classes.over,
       classes[type],
       className,
+  );
+
+  const boardClassNames = classNames(
+      classes.noSelectStyles,
+      isCategorize ? classes.categorizeBoard : classes.board,
   );
 
   const style = {};
@@ -35,11 +41,9 @@ export const PlaceHolder = (props) => {
     style.border = `1px solid ${color.borderLight()}`;
     style.background = color.backgroundDark();
   }
-
-  const boardStyle = isCategorize ? classes.categorizeBoard : classes.board;
-
+  
   return (
-      <div style={style} className={choiceBoard ? boardStyle : names}>
+      <div style={style} className={choiceBoard ? boardClassNames : placeholderClassNames}>
         {children}
       </div>
   );
@@ -63,29 +67,15 @@ PlaceHolder.propTypes = {
   isCategorize: PropTypes.bool,
 };
 
-const commonStyles = {
-  WebkitTouchCallout: 'none',
-  WebkitUserSelect: 'none',
-  KhtmlUserSelect: 'none',
-  MozUserSelect: 'none',
-  MsUserSelect: 'none',
-  userSelect: 'none',
-};
-
-const boardCommon = (theme) => ({
-  padding: theme.spacing.unit,
-  display: 'flex',
-  flexWrap: 'wrap',
-  alignItems: 'center',
-  minHeight: '100px',
-  justifyContent: 'center',
-  overflow: 'hidden',
-  touchAction: 'none',
-  backgroundColor: color.backgroundDark(),
-  ...commonStyles,
-});
-
 const styles = (theme) => ({
+  noSelectStyles: {
+    WebkitTouchCallout: 'none',
+    WebkitUserSelect: 'none',
+    KhtmlUserSelect: 'none',
+    MozUserSelect: 'none',
+    MsUserSelect: 'none',
+    userSelect: 'none',
+  },
   placeholder: {
     width: '100%',
     height: '100%',
@@ -95,9 +85,8 @@ const styles = (theme) => ({
     display: 'grid',
     gridRowGap: `${theme.spacing.unit}px`,
     gridColumnGap: `${theme.spacing.unit}px`,
-    padding: theme.spacing.unit,
+    padding: theme.spacing.unit * 1,
     border: `2px dashed ${color.black()}`,
-    ...commonStyles,
   },
   disabled: {
     boxShadow: 'none',
@@ -107,10 +96,27 @@ const styles = (theme) => ({
     border: `1px solid ${grey[500]}`,
     backgroundColor: `${grey[300]}`,
   },
-  board: boardCommon(theme),
+  board: {
+    padding: theme.spacing.unit,
+    display: 'flex',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    minHeight: '100px',
+    justifyContent: 'center',
+    overflow: 'hidden',
+    touchAction: 'none',
+    backgroundColor: color.backgroundDark(),
+  },
   categorizeBoard: {
-    ...boardCommon(theme),
     padding: theme.spacing.unit / 2,
+    display: 'flex',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    minHeight: '100px',
+    justifyContent: 'center',
+    overflow: 'hidden',
+    touchAction: 'none',
+    backgroundColor: color.backgroundDark(),
   },
 });
 
