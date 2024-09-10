@@ -39,7 +39,13 @@ export const PlaceHolder = (props) => {
   const boardStyle = isCategorize ? classes.categorizeBoard : classes.board;
 
   return (
-      <div style={style} className={choiceBoard ? boardStyle : names}>
+      <div
+          style={style}
+          className={classNames(
+              classes.noSelectStyles,
+              choiceBoard ? boardStyle : names
+          )}
+      >
         {children}
       </div>
   );
@@ -64,6 +70,14 @@ PlaceHolder.propTypes = {
 };
 
 const styles = (theme) => ({
+  noSelectStyles: {
+    WebkitTouchCallout: 'none',
+    WebkitUserSelect: 'none',
+    KhtmlUserSelect: 'none',
+    MozUserSelect: 'none',
+    MsUserSelect: 'none',
+    userSelect: 'none',
+  },
   placeholder: {
     width: '100%',
     height: '100%',
@@ -75,12 +89,6 @@ const styles = (theme) => ({
     gridColumnGap: `${theme.spacing.unit}px`,
     padding: theme.spacing.unit * 1,
     border: `2px dashed ${color.black()}`,
-    WebkitTouchCallout: 'none',
-    WebkitUserSelect: 'none',
-    KhtmlUserSelect: 'none',
-    MozUserSelect: 'none',
-    MsUserSelect: 'none',
-    userSelect: 'none',
   },
   disabled: {
     boxShadow: 'none',
@@ -100,12 +108,6 @@ const styles = (theme) => ({
     overflow: 'hidden',
     touchAction: 'none',
     backgroundColor: color.backgroundDark(),
-    WebkitTouchCallout: 'none',
-    WebkitUserSelect: 'none',
-    KhtmlUserSelect: 'none',
-    MozUserSelect: 'none',
-    MsUserSelect: 'none',
-    userSelect: 'none',
   },
   categorizeBoard: {
     padding: theme.spacing.unit / 2,
@@ -117,12 +119,6 @@ const styles = (theme) => ({
     overflow: 'hidden',
     touchAction: 'none',
     backgroundColor: color.backgroundDark(),
-    WebkitTouchCallout: 'none',
-    WebkitUserSelect: 'none',
-    KhtmlUserSelect: 'none',
-    MozUserSelect: 'none',
-    MsUserSelect: 'none',
-    userSelect: 'none',
   },
 });
 
