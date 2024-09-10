@@ -257,6 +257,7 @@ export default (options) => {
     attributes: PropTypes.object,
     children: PropTypes.func,
   };
+  core.name = type;
 
   return core;
 };
