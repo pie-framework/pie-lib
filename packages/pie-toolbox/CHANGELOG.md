@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.31.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.31.2...@pie-lib/pie-toolbox@1.31.3) (2024-09-10)
+
+
+### Bug Fixes
+
+* table and lists buttons can not be disabled (discovered while implementing PD-4065) ([8d69c10](https://github.com/pie-framework/pie-lib/commit/8d69c108dedb624fb59825db63068f60759e06a3))
+
+
+
+
+
 ## [1.31.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.31.1...@pie-lib/pie-toolbox@1.31.2) (2024-09-04)
 
 
