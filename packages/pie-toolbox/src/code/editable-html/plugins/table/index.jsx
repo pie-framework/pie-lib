@@ -296,6 +296,7 @@ export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
   };
 
   core.renderNode = Node;
+  core.name = 'table';
 
   return core;
 };

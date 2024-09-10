@@ -438,13 +438,6 @@ class RteDemo extends React.Component {
           disabled={disabled}
           highlightShape={showHighlight}
           pluginProps={{
-            image: {
-              disabled: disableImageUpload,
-            },
-            math: {
-              disabled: !mathEnabled,
-              keypadMode: this.state.keypadMode,
-            },
             customPlugins: [
               {
                 icon:
@@ -461,6 +454,33 @@ class RteDemo extends React.Component {
                 event: 'test_event_B',
               },
             ],
+            image: {
+              disabled: disableImageUpload,
+            },
+            math: {
+              disabled: !mathEnabled,
+              keypadMode: this.state.keypadMode,
+            },
+            // 'bold': { disabled: true },
+            // 'html': { disabled: true },
+            // 'italic': { disabled: true },
+            // 'underline': { disabled: true },
+            // 'strikethrough': { disabled: true },
+            // 'bulleted-list': { disabled: true },
+            // 'numbered-list': { disabled: true },
+            // 'languageCharacters': { disabled: true },
+            // 'blockquote': { disabled: true },
+            // 'h3': { disabled: true },
+            // 'table': { disabled: true },
+            // 'video': { disabled: true },
+            // 'audio': { disabled: true },
+            // 'responseArea': { disabled: true },
+            // 'redo': { disabled: true },
+            // 'undo': { disabled: true },
+            // 'sup': { disabled: true },
+            // 'sub': { disabled: true },
+            // 'ul_list': { disabled: true },
+            // 'ol_list': { disabled: true },
           }}
           width={width}
           height={height}
