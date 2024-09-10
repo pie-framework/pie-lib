@@ -63,6 +63,28 @@ PlaceHolder.propTypes = {
   isCategorize: PropTypes.bool,
 };
 
+const commonStyles = {
+  WebkitTouchCallout: 'none',
+  WebkitUserSelect: 'none',
+  KhtmlUserSelect: 'none',
+  MozUserSelect: 'none',
+  MsUserSelect: 'none',
+  userSelect: 'none',
+};
+
+const boardCommon = (theme) => ({
+  padding: theme.spacing.unit,
+  display: 'flex',
+  flexWrap: 'wrap',
+  alignItems: 'center',
+  minHeight: '100px',
+  justifyContent: 'center',
+  overflow: 'hidden',
+  touchAction: 'none',
+  backgroundColor: color.backgroundDark(),
+  ...commonStyles,
+});
+
 const styles = (theme) => ({
   placeholder: {
     width: '100%',
@@ -73,14 +95,9 @@ const styles = (theme) => ({
     display: 'grid',
     gridRowGap: `${theme.spacing.unit}px`,
     gridColumnGap: `${theme.spacing.unit}px`,
-    padding: theme.spacing.unit * 1,
+    padding: theme.spacing.unit,
     border: `2px dashed ${color.black()}`,
-    WebkitTouchCallout: 'none',
-    WebkitUserSelect: 'none',
-    KhtmlUserSelect: 'none',
-    MozUserSelect: 'none',
-    MsUserSelect: 'none',
-    userSelect: 'none',
+    ...commonStyles,
   },
   disabled: {
     boxShadow: 'none',
@@ -90,39 +107,10 @@ const styles = (theme) => ({
     border: `1px solid ${grey[500]}`,
     backgroundColor: `${grey[300]}`,
   },
-  board: {
-    padding: theme.spacing.unit,
-    display: 'flex',
-    flexWrap: 'wrap',
-    alignItems: 'center',
-    minHeight: '100px',
-    justifyContent: 'center',
-    overflow: 'hidden',
-    touchAction: 'none',
-    backgroundColor: color.backgroundDark(),
-    WebkitTouchCallout: 'none',
-    WebkitUserSelect: 'none',
-    KhtmlUserSelect: 'none',
-    MozUserSelect: 'none',
-    MsUserSelect: 'none',
-    userSelect: 'none',
-  },
+  board: boardCommon(theme),
   categorizeBoard: {
+    ...boardCommon(theme),
     padding: theme.spacing.unit / 2,
-    display: 'flex',
-    flexWrap: 'wrap',
-    alignItems: 'center',
-    minHeight: '100px',
-    justifyContent: 'center',
-    overflow: 'hidden',
-    touchAction: 'none',
-    backgroundColor: color.backgroundDark(),
-    WebkitTouchCallout: 'none',
-    WebkitUserSelect: 'none',
-    KhtmlUserSelect: 'none',
-    MozUserSelect: 'none',
-    MsUserSelect: 'none',
-    userSelect: 'none',
   },
 });
 

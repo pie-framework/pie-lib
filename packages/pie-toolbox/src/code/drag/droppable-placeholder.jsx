@@ -4,12 +4,6 @@ import PropTypes from 'prop-types';
 
 const preventInteractionStyle = {
   flex: 1,
-  // WebkitTouchCallout: 'none',
-  // WebkitUserSelect: 'none',
-  // KhtmlUserSelect: 'none',
-  // MozUserSelect: 'none',
-  // MsUserSelect: 'none',
-  // UserSelect: 'none',
 };
 
 export class DroppablePlaceholder extends React.Component {
