@@ -148,6 +148,7 @@ export class Toolbar extends React.Component {
       isFocused,
       onDone,
       toolbarRef,
+      doneButtonRef,
       onBlur,
       onFocus,
     } = this.props;
@@ -252,6 +253,7 @@ export class Toolbar extends React.Component {
             deletable={deletable}
             isHtmlMode={toolbarOpts.isHtmlMode}
             onFocus={onFocus}
+            doneButtonRef={doneButtonRef}
             onBlur={onBlur}
           />
         )}
@@ -269,7 +271,7 @@ export class Toolbar extends React.Component {
               <Delete />
             </IconButton>
           )}
-          {customToolbarShowDone && <DoneButton onClick={handleDone} />}
+          {customToolbarShowDone && <DoneButton doneButtonRef={doneButtonRef} onClick={handleDone} />}
         </div>
       </div>
     );

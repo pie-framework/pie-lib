@@ -8,11 +8,11 @@ import { color } from '../render-ui';
 export const PlaceHolder = (props) => {
   const { children, classes, className, isOver, type, grid, disabled, choiceBoard, isCategorize } = props;
   const names = classNames(
-    classes.placeholder,
-    disabled && classes.disabled,
-    isOver && classes.over,
-    classes[type],
-    className,
+      classes.placeholder,
+      disabled && classes.disabled,
+      isOver && classes.over,
+      classes[type],
+      className,
   );
 
   const style = {};
@@ -20,13 +20,13 @@ export const PlaceHolder = (props) => {
   if (grid && grid.columns) {
     style.gridTemplateColumns = `repeat(${grid.columns}, 1fr)`;
   }
-  
+
   if (grid && grid.rows) {
     const repeatValue = grid.rowsRepeatValue || '1fr';
 
     style.gridTemplateRows = `repeat(${grid.rows}, ${repeatValue})`;
   }
-  
+
   // The "type" is only sent through placement-ordering / placeholder
   // It can be "choice" or "target"
   // We apply a different style for the "choice" type
@@ -39,9 +39,15 @@ export const PlaceHolder = (props) => {
   const boardStyle = isCategorize ? classes.categorizeBoard : classes.board;
 
   return (
-    <div style={style} className={choiceBoard ? boardStyle : names}>
-      {children}
-    </div>
+      <div
+          style={style}
+          className={classNames(
+              classes.noSelectStyles,
+              choiceBoard ? boardStyle : names
+          )}
+      >
+        {children}
+      </div>
   );
 };
 
@@ -64,6 +70,14 @@ PlaceHolder.propTypes = {
 };
 
 const styles = (theme) => ({
+  noSelectStyles: {
+    WebkitTouchCallout: 'none',
+    WebkitUserSelect: 'none',
+    KhtmlUserSelect: 'none',
+    MozUserSelect: 'none',
+    MsUserSelect: 'none',
+    userSelect: 'none',
+  },
   placeholder: {
     width: '100%',
     height: '100%',
