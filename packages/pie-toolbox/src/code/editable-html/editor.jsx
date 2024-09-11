@@ -161,6 +161,7 @@ export class Editor extends React.Component {
       isHtmlMode: false,
       isEditedInHtmlMode: false,
       focusToolbar: false,
+      languageKeypadClick: false,
       dialog: {
         open: false,
       },
@@ -184,6 +185,14 @@ export class Editor extends React.Component {
   handleToolbarFocus() {
     this.setState({ focusToolbar: true });
   }
+
+  setKeypadClick = (clicked) => {
+    console.log('setkeypad click');
+    this.setState({ languageKeypadClick: clicked }, () => {
+      // Now you can safely use the updated languageKeypadClick value
+      console.log('Updated languageKeypadClick:', this.state.languageKeypadClick);
+    });
+  };
 
   handleToolbarBlur() {
     setTimeout(() => {
@@ -369,6 +378,7 @@ export class Editor extends React.Component {
       },
       languageCharacters: props.languageCharactersProps,
       keyPadCharacterRef: this.keyPadCharacterRef,
+      setKeypadClick: this.setKeypadClick,
       media: {
         focus: this.focus,
         createChange: () => this.state.value.change(),
@@ -576,6 +586,7 @@ export class Editor extends React.Component {
 
   // Allowing time for onChange to take effect if it is called
   handleBlur = (resolve) => {
+    console.log('handleBlur');
     const { nonEmpty } = this.props;
     const {
       toolbarOpts: { doneOn },
@@ -601,19 +612,37 @@ export class Editor extends React.Component {
   };
 
   onBlur = (event) => {
-    log('[onBlur]');
+    console.log('[onBlur]');
+
+    console.log('event in on blur', event);
+    console.log('event.relatedTarget in on Blur', event.relatedTarget);
     const relatedTarget = event.relatedTarget;
     const toolbarElement = this.toolbarRef && relatedTarget?.closest(`[class*="${this.toolbarRef.className}"]`);
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    const { languageKeypadClick } = this.state;
+    console.log('Is touch device: in blur', isTouchDevice);
+    console.log(languageKeypadClick, 'languageKeypadClick in on blur');
+
+    // // Check if relatedTarget is a done button
+    // const isRawDoneButton = this.doneButtonRef && relatedTarget?.closest(`[class*="${this.doneButtonRef.className}"]`);
+
+    // // Skip onBlur handling if relatedTarget is a button from the KeyPad characters
+    // const isKeyPadCharacterButton =
+    //   this.keyPadCharacterRef && relatedTarget?.closest(`[class*="${this.keyPadCharacterRef.current?.className}"]`);
 
     // Check if relatedTarget is a done button
-    const isRawDoneButton = this.doneButtonRef && relatedTarget?.closest(`[class*="${this.doneButtonRef.className}"]`);
+    const isRawDoneButton = relatedTarget?.closest('button[class*="RawDoneButton"]');
 
     // Skip onBlur handling if relatedTarget is a button from the KeyPad characters
-    const isKeyPadCharacterButton =
-      this.keyPadCharacterRef && relatedTarget?.closest(`[class*="${this.keyPadCharacterRef.current?.className}"]`);
+    const isKeyPadCharacterButton = relatedTarget?.className.includes('KeyPad-character');
 
     this.skipBlurHandling = isKeyPadCharacterButton ? true : false;
 
+    this.skipBlurHandling = isKeyPadCharacterButton || languageKeypadClick ? true : false;
+
+    console.log(this.skipBlurHandling, '----------------------------this.skipBlurHandling-------');
+
+    //|| (this.editor && !relatedTarget && isTouchDevice)
     if (toolbarElement && !isRawDoneButton) {
       this.setState({
         focusToolbar: true,
@@ -625,12 +654,13 @@ export class Editor extends React.Component {
     log('[onBlur] node: ', node);
 
     return new Promise((resolve) => {
-      if (!this.skipBlurHandling) {
-        this.setState(
-          { preBlurValue: this.state.value, focusedNode: !node ? null : node },
-          this.handleBlur.bind(this, resolve),
-        );
-      }
+      // if (!this.skipBlurHandling) {
+      this.setState(
+        { preBlurValue: this.state.value, focusedNode: !node ? null : node, languageKeypadClick: false },
+        this.handleBlur.bind(this, resolve),
+      );
+
+      //}
       this.props.onBlur(event);
     });
   };
@@ -644,6 +674,8 @@ export class Editor extends React.Component {
       if (!this.wrapperRef) {
         return;
       }
+
+      console.log('handleDomBlur');
 
       const editorElement = !editorDOM || document.activeElement.closest(`[class*="${editorDOM.className}"]`);
       const toolbarElement =
@@ -675,7 +707,11 @@ export class Editor extends React.Component {
   onFocus = (event, change) =>
     new Promise((resolve) => {
       const editorDOM = document.querySelector(`[data-key="${this.state.value.document.key}"]`);
+      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+      console.log('Is touch device in focus:', isTouchDevice);
+      const { languageKeypadClick } = this.state;
 
+      console.log(languageKeypadClick, 'keypadClick in on focus');
       log('[onFocus]', document.activeElement);
 
       /**
@@ -684,9 +720,17 @@ export class Editor extends React.Component {
       if (this.__TEMPORARY_CHANGE_DATA) {
         const { key, data } = this.__TEMPORARY_CHANGE_DATA;
         const domEl = document.querySelector(`[data-key="${key}"]`);
+        console.log(this.state.value.document, 'this.state.value.document.text');
 
+        console.log(key, 'key');
+        console.log(data, 'data');
         if (domEl) {
           let change = this.state.value.change().setNodeByKey(key, { data });
+
+          console.log(
+            change.value,
+            'change value in on focus temporary change data============================================',
+          );
 
           this.setState({ value: change.value }, () => {
             this.__TEMPORARY_CHANGE_DATA = null;
@@ -708,8 +752,22 @@ export class Editor extends React.Component {
       this.stashValue();
       this.props.onFocus();
 
+      console.log(!languageKeypadClick && isTouchDevice, '!languageKeypadClick && isTouchDevice');
+
+      console.log(languageKeypadClick, 'setKeypadClick(true);');
+      console.log(!this.isRelatedTargetButton(event), '!this.isRelatedTargetButton(event)');
+      console.log(this.isRelatedTargetButton(event), 'this.isRelatedTargetButton(event)');
+
       // Added for accessibility: Ensures the editor gains focus when tabbed to for improved keyboard navigation
+      if (isTouchDevice) {
+        if (!languageKeypadClick) {
+          console.log("I'm in if in touch device");
+          change?.focus();
+        }
+      }
+
       if (!this.isRelatedTargetButton(event)) {
+        console.log("I'm in if");
         change?.focus();
       }
 

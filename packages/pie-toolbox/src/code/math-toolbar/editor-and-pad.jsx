@@ -205,6 +205,7 @@ export class EditorAndPad extends React.Component {
       controlledKeypad,
       controlledKeypadMode,
       showKeypad,
+      setKeypadClick,
       noDecimal,
       hideInput,
       layoutForKeyPad,
@@ -278,6 +279,7 @@ export class EditorAndPad extends React.Component {
             mode={controlledKeypadMode ? this.state.equationEditor : keypadMode}
             onClick={this.onClick}
             noDecimal={noDecimal}
+            setKeypadClick={setKeypadClick}
           />
         )}
       </div>

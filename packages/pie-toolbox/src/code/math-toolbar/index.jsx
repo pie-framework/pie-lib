@@ -84,6 +84,7 @@ export class MathToolbar extends React.Component {
       hideDoneButton,
       error,
       keyPadCharacterRef,
+      setKeypadClick,
       maxResponseAreas,
     } = this.props;
 
@@ -98,6 +99,7 @@ export class MathToolbar extends React.Component {
         noDecimal={noDecimal}
         keypadMode={keypadMode}
         keyPadCharacterRef={keyPadCharacterRef}
+        setKeypadClick={setKeypadClick}
         onChange={this.onChange}
         onDone={this.done}
         onFocus={onFocus}
@@ -161,6 +163,7 @@ export class RawPureToolbar extends React.Component {
       noLatexHandling,
       layoutForKeyPad,
       keyPadCharacterRef,
+      setKeypadClick,
       latex,
       onChange,
       onDone,
@@ -196,6 +199,7 @@ export class RawPureToolbar extends React.Component {
           onBlur={onBlur}
           error={error}
           maxResponseAreas={maxResponseAreas}
+          setKeypadClick={setKeypadClick}
         />
         {(!controlledKeypad || (controlledKeypad && showKeypad)) && !hideDoneButton && (
           <DoneButton hideBackground={hideDoneButtonBackground} onClick={onDone} />

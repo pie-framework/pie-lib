@@ -39,7 +39,16 @@ export default class HorizontalKeypad extends React.Component {
   };
 
   render() {
-    const { mode, onFocus, controlledKeypadMode, noDecimal, className, additionalKeys, layoutForKeyPad } = this.props;
+    const {
+      mode,
+      onFocus,
+      controlledKeypadMode,
+      noDecimal,
+      className,
+      additionalKeys,
+      layoutForKeyPad,
+      setKeypadClick,
+    } = this.props;
     const normalizedKeys = normalizeAdditionalKeys(additionalKeys);
 
     return (
@@ -52,6 +61,7 @@ export default class HorizontalKeypad extends React.Component {
         additionalKeys={extendKeySet(keysForGrade(mode), normalizedKeys)}
         onPress={this.keypadPress}
         mode={mode}
+        setKeypadClick={setKeypadClick}
       />
     );
   }

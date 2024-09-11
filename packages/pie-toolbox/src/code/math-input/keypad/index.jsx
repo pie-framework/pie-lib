@@ -191,6 +191,7 @@ export class KeyPad extends React.Component {
     onPress: PropTypes.func.isRequired,
     onFocus: PropTypes.func,
     noDecimal: PropTypes.bool,
+    setKeypadClick: PropTypes.func,
     mode: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   };
   static defaultProps = {
@@ -237,8 +238,14 @@ export class KeyPad extends React.Component {
 
   buttonClick = (key) => {
     log('[buttonClick]', key);
-    const { onPress } = this.props;
+    const { onPress, setKeypadClick } = this.props;
+
     onPress(key);
+
+    console.log('in keypad. button was pressed, setKeypadClick:', setKeypadClick);
+    if (setKeypadClick) {
+      setKeypadClick(true);
+    }
   };
 
   flowKeys = (base, extras) => {
