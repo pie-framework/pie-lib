@@ -185,7 +185,7 @@ const renderMath = (el, renderOpts) => {
     // In OT, they are loading MathJax version 2.6.1, which prevents our MathJax initialization, so our ietms are not working properly
     // that's why we want to initialize MathJax if the existing version is different than what we need
     if (
-      ((!window.MathJax || window.MathJax.version !== MathJaxVersion) && !window.mathjaxLoadedP) ||
+      ((!window.MathJax || window.MathJax.version !== MathJaxVersion) && !window.mathjaxInitialising) ||
       (mathJaxCustomKey && mathJaxCustomKey !== mathRenderingAccessibleKEY)
     ) {
       renderOpts = renderOpts || defaultOpts();
