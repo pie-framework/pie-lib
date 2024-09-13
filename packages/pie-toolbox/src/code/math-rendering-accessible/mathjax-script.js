@@ -69,6 +69,15 @@ export const initializeMathJax = (renderOpts, callback) => {
       },
       loader: {
         load: ['input/mml'],
+        // I just added preLoad: () => {} to prevent the console error: "MathJax.loader.preLoad is not a function",
+        //  which is being called because in math-rendering-accessible/render-math we're having this line:
+        //  import * as mr from '../math-rendering';
+        //  which takes us to: import { AllPackages } from 'mathjax-full/js/input/tex/AllPackages';
+        //  which tries to call MathJax.loader.preLoad.
+        // Understand that AllPackages is NOT needed in math-rendering-accessible, so it is not a problem if we hardcode this function.
+        // The better solution would be for math-rendering-accessible to import math-rendering only IF needed,
+        //  but that's actually complicated and could cause other issues.
+        preLoad: () => {},
       },
       tex: texConfig,
       chtml: {
