@@ -2,7 +2,7 @@ import { getGlobal } from './render-math';
 
 export const MathJaxVersion = '3.2.2';
 
-export const initializeMathJax = (renderOpts) => {
+export const initializeMathJax = (renderOpts, callback) => {
   if (renderOpts?.useSingleDollar) {
     // eslint-disable-next-line
     console.warn('[math-rendering] using $ is not advisable, please use $$..$$ or \\(...\\)');
@@ -57,7 +57,14 @@ export const initializeMathJax = (renderOpts) => {
           // Set the MathJax instance in the global object
           const globalObj = getGlobal();
           globalObj.instance = MathJax;
-          resolve();
+
+          window.mathjaxIsInitialised = true;
+
+          if (callback) {
+            callback();
+          } else {
+            resolve();
+          }
         },
       },
       loader: {
