@@ -191,6 +191,7 @@ export class KeyPad extends React.Component {
     onPress: PropTypes.func.isRequired,
     onFocus: PropTypes.func,
     noDecimal: PropTypes.bool,
+    setKeypadInteraction: PropTypes.func,
     mode: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   };
   static defaultProps = {
@@ -204,8 +205,10 @@ export class KeyPad extends React.Component {
   }
 
   componentDidMount() {
-    const mainContainer = this.keypadRef?.current?.closest(`.${MAIN_CONTAINER_CLASS}`);
-    const currentToolbar = this.keypadRef?.current?.closest('.pie-toolbar');
+    const keyPadElement = this.keypadRef?.current;
+    const mainContainer = keyPadElement?.closest(`.${MAIN_CONTAINER_CLASS}`);
+    const currentToolbar = keyPadElement?.closest('.pie-toolbar');
+
     // need only for math keyboard so we need also controlledKeypadMode
     if (this.props.controlledKeypadMode && mainContainer && currentToolbar) {
       const mainContainerPosition = mainContainer.getBoundingClientRect();
@@ -222,22 +225,42 @@ export class KeyPad extends React.Component {
         }
       }
     }
+
+    if (keyPadElement) {
+      keyPadElement.addEventListener('touchstart', this.handleKeypadInteraction, true);
+      keyPadElement.addEventListener('mousedown', this.handleKeypadInteraction, true);
+    }
   }
 
   componentWillUnmount() {
+    const keyPadElement = this.keypadRef?.current;
     // need only for math keyboard
-    if (this.props.controlledKeypadMode && this.keypadRef && this.keypadRef.current) {
-      const mainContainer = this.keypadRef.current.closest(`.${MAIN_CONTAINER_CLASS}`);
+    if (this.props.controlledKeypadMode && keyPadElement) {
+      const mainContainer = keyPadElement.closest(`.${MAIN_CONTAINER_CLASS}`);
 
       if (mainContainer) {
         mainContainer.style.height = 'unset';
       }
     }
+
+    if (keyPadElement) {
+      keyPadElement.removeEventListener('touchstart', this.handleKeypadInteraction, true);
+      keyPadElement.addEventListener('mousedown', this.handleKeypadInteraction, true);
+    }
   }
+
+  handleKeypadInteraction = () => {
+    // Check if the setKeypadInteraction prop is available, which is used for both
+    // the language keypad and the special characters keypad
+    if (this.props.setKeypadInteraction) {
+      this.props.setKeypadInteraction(true);
+    }
+  };
 
   buttonClick = (key) => {
     log('[buttonClick]', key);
     const { onPress } = this.props;
+
     onPress(key);
   };
 

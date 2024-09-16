@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.32.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.32.0...@pie-lib/pie-toolbox@1.32.1) (2024-09-16)
+
+
+### Bug Fixes
+
+* **editable-html:** fix Spanish input issue on iPad and resolve keypad interaction bugs PD-4061 & PD-4021 ([4874314](https://github.com/pie-framework/pie-lib/commit/4874314ec7b4d5e06c70dfe552fc6758fa5e134d))
+
+
+
+
+
 # [1.32.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.31.4...@pie-lib/pie-toolbox@1.32.0) (2024-09-16)
 
 
