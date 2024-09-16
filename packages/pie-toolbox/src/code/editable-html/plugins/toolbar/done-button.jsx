@@ -23,6 +23,7 @@ export const RawDoneButton = ({ classes, onClick, doneButtonRef }) => (
 RawDoneButton.propTypes = {
   classes: PropTypes.object.isRequired,
   onClick: PropTypes.func,
+  doneButtonRef: PropTypes.func,
 };
 
 const styles = {

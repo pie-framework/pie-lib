@@ -265,7 +265,11 @@ export const buildPlugins = (activePlugins, customPlugins, opts) => {
     opts.responseArea && opts.responseArea.type && RespAreaPlugin(opts.responseArea, compact([mathPlugin]));
 
   const languageCharactersPlugins = (opts?.languageCharacters || []).map((config) =>
-    CharactersPlugin({ ...config, keyPadCharacterRef: opts.keyPadCharacterRef }),
+    CharactersPlugin({
+      ...config,
+      keyPadCharacterRef: opts.keyPadCharacterRef,
+      setKeypadInteraction: opts.setKeypadInteraction,
+    }),
   );
 
   const tablePlugins = [imagePlugin, mathPlugin, respAreaPlugin, ...languageCharactersPlugins];

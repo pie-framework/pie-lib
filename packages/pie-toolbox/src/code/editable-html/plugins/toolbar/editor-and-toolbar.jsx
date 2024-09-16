@@ -36,6 +36,7 @@ export class EditorAndToolbar extends React.Component {
     focusToolbar: PropTypes.bool.isRequired,
     onToolbarFocus: PropTypes.func.isRequired,
     onToolbarBlur: PropTypes.func.isRequired,
+    doneButtonRef: PropTypes.func,
   };
 
   render() {

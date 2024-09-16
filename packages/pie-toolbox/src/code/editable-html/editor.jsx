@@ -161,6 +161,7 @@ export class Editor extends React.Component {
       isHtmlMode: false,
       isEditedInHtmlMode: false,
       focusToolbar: false,
+      keypadInteractionDetected: false,
       dialog: {
         open: false,
       },
@@ -184,6 +185,10 @@ export class Editor extends React.Component {
   handleToolbarFocus() {
     this.setState({ focusToolbar: true });
   }
+
+  setKeypadInteraction = (interacted) => {
+    this.setState({ keypadInteractionDetected: interacted });
+  };
 
   handleToolbarBlur() {
     setTimeout(() => {
@@ -369,6 +374,7 @@ export class Editor extends React.Component {
       },
       languageCharacters: props.languageCharactersProps,
       keyPadCharacterRef: this.keyPadCharacterRef,
+      setKeypadInteraction: this.setKeypadInteraction,
       media: {
         focus: this.focus,
         createChange: () => this.state.value.change(),
@@ -614,15 +620,13 @@ export class Editor extends React.Component {
     log('[onBlur]');
     const relatedTarget = event.relatedTarget;
     const toolbarElement = this.toolbarRef && relatedTarget?.closest(`[class*="${this.toolbarRef.className}"]`);
+    const { keypadInteractionDetected } = this.state;
 
     // Check if relatedTarget is a done button
     const isRawDoneButton = this.doneButtonRef && relatedTarget?.closest(`[class*="${this.doneButtonRef.className}"]`);
 
     // Skip onBlur handling if relatedTarget is a button from the KeyPad characters
-    const isKeyPadCharacterButton =
-      this.keyPadCharacterRef && relatedTarget?.closest(`[class*="${this.keyPadCharacterRef.current?.className}"]`);
-
-    this.skipBlurHandling = isKeyPadCharacterButton ? true : false;
+    this.skipBlurHandling = keypadInteractionDetected ? true : false;
 
     if (toolbarElement && !isRawDoneButton) {
       this.setState({
@@ -641,6 +645,7 @@ export class Editor extends React.Component {
           this.handleBlur.bind(this, resolve),
         );
       }
+
       this.props.onBlur(event);
     });
   };
@@ -649,10 +654,14 @@ export class Editor extends React.Component {
     const editorDOM = document.querySelector(`[data-key="${this.state.value.document.key}"]`);
 
     setTimeout(() => {
-      const { value: stateValue } = this.state;
+      const { value: stateValue, keypadInteractionDetected } = this.state;
 
       if (!this.wrapperRef) {
         return;
+      }
+
+      if (keypadInteractionDetected) {
+        this.setKeypadInteraction(false);
       }
 
       const editorElement = !editorDOM || document.activeElement.closest(`[class*="${editorDOM.className}"]`);
@@ -685,8 +694,15 @@ export class Editor extends React.Component {
   onFocus = (event, change) =>
     new Promise((resolve) => {
       const editorDOM = document.querySelector(`[data-key="${this.state.value.document.key}"]`);
+      const isTouchDevice =
+        typeof window !== 'undefined' && ('ontouchstart' in window || navigator?.maxTouchPoints > 0);
+      const { keypadInteractionDetected } = this.state;
 
       log('[onFocus]', document.activeElement);
+
+      if (keypadInteractionDetected && this.__TEMPORARY_CHANGE_DATA) {
+        this.__TEMPORARY_CHANGE_DATA = null;
+      }
 
       /**
        * This is a temporary hack - @see changeData below for some more information.
@@ -697,7 +713,6 @@ export class Editor extends React.Component {
 
         if (domEl) {
           let change = this.state.value.change().setNodeByKey(key, { data });
-
           this.setState({ value: change.value }, () => {
             this.__TEMPORARY_CHANGE_DATA = null;
           });
@@ -719,7 +734,7 @@ export class Editor extends React.Component {
       this.props.onFocus();
 
       // Added for accessibility: Ensures the editor gains focus when tabbed to for improved keyboard navigation
-      if (!this.isRelatedTargetButton(event)) {
+      if (!this.isRelatedTargetButton(event) && !isTouchDevice) {
         change?.focus();
       }
 
@@ -873,7 +888,7 @@ export class Editor extends React.Component {
      */
 
     // Uncomment this line to see the bug described above.
-    // this.setState({changeData: {key, data}})
+    //    this.setState({changeData: {key, data}})
 
     this.__TEMPORARY_CHANGE_DATA = { key, data };
   };
