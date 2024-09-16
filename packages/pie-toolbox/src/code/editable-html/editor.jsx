@@ -187,7 +187,6 @@ export class Editor extends React.Component {
   }
 
   setKeypadInteraction = (interacted) => {
-    console.log('setkeypad click');
     this.setState({ keypadInteractionDetected: interacted });
   };
 
@@ -583,10 +582,7 @@ export class Editor extends React.Component {
 
   // Allowing time for onChange to take effect if it is called
   handleBlur = (resolve) => {
-    log('handleBlur');
-
     const { nonEmpty } = this.props;
-    const { keypadInteractionDetected } = this.state;
     const {
       toolbarOpts: { doneOn },
     } = this.state;
@@ -597,7 +593,7 @@ export class Editor extends React.Component {
       this.editor.blur();
     }
 
-    if (doneOn === 'blur' && !keypadInteractionDetected) {
+    if (doneOn === 'blur') {
       if (nonEmpty && this.state.value.startText?.text?.length === 0) {
         this.resetValue(true).then(() => {
           this.onEditingDone();
@@ -646,7 +642,6 @@ export class Editor extends React.Component {
 
   handleDomBlur = (e) => {
     const editorDOM = document.querySelector(`[data-key="${this.state.value.document.key}"]`);
-    console.log('handleDomBlur');
 
     setTimeout(() => {
       const { value: stateValue, keypadInteractionDetected } = this.state;
@@ -689,7 +684,8 @@ export class Editor extends React.Component {
   onFocus = (event, change) =>
     new Promise((resolve) => {
       const editorDOM = document.querySelector(`[data-key="${this.state.value.document.key}"]`);
-      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+      const isTouchDevice =
+        typeof window !== 'undefined' && ('ontouchstart' in window || navigator?.maxTouchPoints > 0);
       const { keypadInteractionDetected } = this.state;
 
       log('[onFocus]', document.activeElement);
@@ -728,12 +724,6 @@ export class Editor extends React.Component {
       this.props.onFocus();
 
       // Added for accessibility: Ensures the editor gains focus when tabbed to for improved keyboard navigation
-      if (isTouchDevice) {
-        if (!keypadInteractionDetected) {
-          change?.focus();
-        }
-      }
-
       if (!this.isRelatedTargetButton(event) && !isTouchDevice) {
         change?.focus();
       }
@@ -875,7 +865,7 @@ export class Editor extends React.Component {
   };
 
   changeData = (key, data) => {
-    console.log('[changeData]. .. ', key, data);
+    log('[changeData]. .. ', key, data);
 
     /**
      * HACK ALERT: We should be calling setState here and storing the change data:
