@@ -3073,12 +3073,13 @@
   dependencies:
     d3-shape "^1.0.6"
 
-"@vx/event@^0.0.182":
-  version "0.0.182"
-  resolved "https://registry.yarnpkg.com/@vx/event/-/event-0.0.182.tgz#b5b20a4e14fcd383511ef7a318ca0a10e6da8140"
-  integrity sha512-kEnBfcyuSep3QdlpQjMRE4jSCcEC1xIcnIFkDGuTWLutlUgIP//o5VbeHIW4xLcOhLe4BjuMuPgmUNZB5nL5Cw==
+"@vx/event@^0.0.199":
+  version "0.0.199"
+  resolved "https://registry.yarnpkg.com/@vx/event/-/event-0.0.199.tgz#f8cc129fe3a6dfd9aa416cce4c0c2d843ad01fec"
+  integrity sha512-y/5z9hBGQ4XDfruGObzk3vFsafJyUmUea9X9JWpMNqD8uyHzgmitNtGxcno0zUXjJAUv65ALHPmcxdLzsEMfsQ==
   dependencies:
-    "@vx/point" "0.0.182"
+    "@types/react" "*"
+    "@vx/point" "0.0.199"
 
 "@vx/grid@^0.0.183":
   version "0.0.183"
@@ -3103,6 +3104,11 @@
   version "0.0.182"
   resolved "https://registry.yarnpkg.com/@vx/point/-/point-0.0.182.tgz#72abfa6ae923cf9bad23d9dd51709b2f31d81bf8"
   integrity sha512-ZWDFVL5+RQXDSY6a5DZDRAoTFUmz0nxqUJidIHP9kDN1MGwoX43yaG7Ss1iJxe5a7Np5XGB2sm3xvmgZvf4a6g==
+
+"@vx/point@0.0.199":
+  version "0.0.199"
+  resolved "https://registry.yarnpkg.com/@vx/point/-/point-0.0.199.tgz#2ae16d99ca8d351fe09857533ba1e9c995696706"
+  integrity sha512-8mlOHgaCqT8qKhMSAA5U7tsBdOQBku7DIJ5fteTWeZt6OOafVSGvfT8LjphN8NA1xbY3ZY3L1bn9ZnZurYHDJQ==
 
 "@vx/scale@^0.0.182":
   version "0.0.182"
