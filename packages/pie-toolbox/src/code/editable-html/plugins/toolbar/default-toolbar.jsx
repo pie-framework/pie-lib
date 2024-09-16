@@ -8,7 +8,6 @@ import { withStyles } from '@material-ui/core/styles';
 
 import { Button, MarkButton } from './toolbar-buttons';
 import debug from 'debug';
-import { is } from 'immutable';
 
 const log = debug('@pie-lib:editable-html:plugins:toolbar');
 
@@ -61,6 +60,7 @@ ToolbarButton.propTypes = {
   onClick: PropTypes.func,
   type: PropTypes.string,
   value: PropTypes.object,
+  ariaLabel: PropTypes.string,
 };
 
 const isActiveToolbarPlugin = (props) => (plugin) => {
@@ -126,6 +126,10 @@ DefaultToolbar.propTypes = {
   showDone: PropTypes.bool,
   addArea: PropTypes.bool,
   deletable: PropTypes.bool,
+  isHtmlMode: PropTypes.bool,
+  doneButtonRef: PropTypes.func,
+  onBlur: PropTypes.func,
+  onFocus: PropTypes.func,
 };
 
 DefaultToolbar.defaultProps = {

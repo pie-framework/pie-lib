@@ -161,7 +161,7 @@ export class Editor extends React.Component {
       isHtmlMode: false,
       isEditedInHtmlMode: false,
       focusToolbar: false,
-      languageKeypadClick: false,
+      keypadInteractionDetected: false,
       dialog: {
         open: false,
       },
@@ -186,12 +186,9 @@ export class Editor extends React.Component {
     this.setState({ focusToolbar: true });
   }
 
-  setKeypadClick = (clicked) => {
+  setKeypadInteraction = (interacted) => {
     console.log('setkeypad click');
-    this.setState({ languageKeypadClick: clicked }, () => {
-      // Now you can safely use the updated languageKeypadClick value
-      console.log('Updated languageKeypadClick:', this.state.languageKeypadClick);
-    });
+    this.setState({ keypadInteractionDetected: interacted });
   };
 
   handleToolbarBlur() {
@@ -378,7 +375,7 @@ export class Editor extends React.Component {
       },
       languageCharacters: props.languageCharactersProps,
       keyPadCharacterRef: this.keyPadCharacterRef,
-      setKeypadClick: this.setKeypadClick,
+      setKeypadInteraction: this.setKeypadInteraction,
       media: {
         focus: this.focus,
         createChange: () => this.state.value.change(),
@@ -586,8 +583,10 @@ export class Editor extends React.Component {
 
   // Allowing time for onChange to take effect if it is called
   handleBlur = (resolve) => {
-    console.log('handleBlur');
+    log('handleBlur');
+
     const { nonEmpty } = this.props;
+    const { keypadInteractionDetected } = this.state;
     const {
       toolbarOpts: { doneOn },
     } = this.state;
@@ -598,7 +597,7 @@ export class Editor extends React.Component {
       this.editor.blur();
     }
 
-    if (doneOn === 'blur') {
+    if (doneOn === 'blur' && !keypadInteractionDetected) {
       if (nonEmpty && this.state.value.startText?.text?.length === 0) {
         this.resetValue(true).then(() => {
           this.onEditingDone();
@@ -612,37 +611,17 @@ export class Editor extends React.Component {
   };
 
   onBlur = (event) => {
-    console.log('[onBlur]');
-
-    console.log('event in on blur', event);
-    console.log('event.relatedTarget in on Blur', event.relatedTarget);
+    log('[onBlur]');
     const relatedTarget = event.relatedTarget;
     const toolbarElement = this.toolbarRef && relatedTarget?.closest(`[class*="${this.toolbarRef.className}"]`);
-    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    const { languageKeypadClick } = this.state;
-    console.log('Is touch device: in blur', isTouchDevice);
-    console.log(languageKeypadClick, 'languageKeypadClick in on blur');
-
-    // // Check if relatedTarget is a done button
-    // const isRawDoneButton = this.doneButtonRef && relatedTarget?.closest(`[class*="${this.doneButtonRef.className}"]`);
-
-    // // Skip onBlur handling if relatedTarget is a button from the KeyPad characters
-    // const isKeyPadCharacterButton =
-    //   this.keyPadCharacterRef && relatedTarget?.closest(`[class*="${this.keyPadCharacterRef.current?.className}"]`);
+    const { keypadInteractionDetected } = this.state;
 
     // Check if relatedTarget is a done button
-    const isRawDoneButton = relatedTarget?.closest('button[class*="RawDoneButton"]');
+    const isRawDoneButton = this.doneButtonRef && relatedTarget?.closest(`[class*="${this.doneButtonRef.className}"]`);
 
     // Skip onBlur handling if relatedTarget is a button from the KeyPad characters
-    const isKeyPadCharacterButton = relatedTarget?.className.includes('KeyPad-character');
+    this.skipBlurHandling = keypadInteractionDetected ? true : false;
 
-    this.skipBlurHandling = isKeyPadCharacterButton ? true : false;
-
-    this.skipBlurHandling = isKeyPadCharacterButton || languageKeypadClick ? true : false;
-
-    console.log(this.skipBlurHandling, '----------------------------this.skipBlurHandling-------');
-
-    //|| (this.editor && !relatedTarget && isTouchDevice)
     if (toolbarElement && !isRawDoneButton) {
       this.setState({
         focusToolbar: true,
@@ -654,28 +633,31 @@ export class Editor extends React.Component {
     log('[onBlur] node: ', node);
 
     return new Promise((resolve) => {
-      // if (!this.skipBlurHandling) {
-      this.setState(
-        { preBlurValue: this.state.value, focusedNode: !node ? null : node, languageKeypadClick: false },
-        this.handleBlur.bind(this, resolve),
-      );
+      if (!this.skipBlurHandling) {
+        this.setState(
+          { preBlurValue: this.state.value, focusedNode: !node ? null : node },
+          this.handleBlur.bind(this, resolve),
+        );
+      }
 
-      //}
       this.props.onBlur(event);
     });
   };
 
   handleDomBlur = (e) => {
     const editorDOM = document.querySelector(`[data-key="${this.state.value.document.key}"]`);
+    console.log('handleDomBlur');
 
     setTimeout(() => {
-      const { value: stateValue } = this.state;
+      const { value: stateValue, keypadInteractionDetected } = this.state;
 
       if (!this.wrapperRef) {
         return;
       }
 
-      console.log('handleDomBlur');
+      if (keypadInteractionDetected) {
+        this.setKeypadInteraction(false);
+      }
 
       const editorElement = !editorDOM || document.activeElement.closest(`[class*="${editorDOM.className}"]`);
       const toolbarElement =
@@ -708,11 +690,13 @@ export class Editor extends React.Component {
     new Promise((resolve) => {
       const editorDOM = document.querySelector(`[data-key="${this.state.value.document.key}"]`);
       const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-      console.log('Is touch device in focus:', isTouchDevice);
-      const { languageKeypadClick } = this.state;
+      const { keypadInteractionDetected } = this.state;
 
-      console.log(languageKeypadClick, 'keypadClick in on focus');
       log('[onFocus]', document.activeElement);
+
+      if (keypadInteractionDetected && this.__TEMPORARY_CHANGE_DATA) {
+        this.__TEMPORARY_CHANGE_DATA = null;
+      }
 
       /**
        * This is a temporary hack - @see changeData below for some more information.
@@ -720,18 +704,9 @@ export class Editor extends React.Component {
       if (this.__TEMPORARY_CHANGE_DATA) {
         const { key, data } = this.__TEMPORARY_CHANGE_DATA;
         const domEl = document.querySelector(`[data-key="${key}"]`);
-        console.log(this.state.value.document, 'this.state.value.document.text');
 
-        console.log(key, 'key');
-        console.log(data, 'data');
         if (domEl) {
           let change = this.state.value.change().setNodeByKey(key, { data });
-
-          console.log(
-            change.value,
-            'change value in on focus temporary change data============================================',
-          );
-
           this.setState({ value: change.value }, () => {
             this.__TEMPORARY_CHANGE_DATA = null;
           });
@@ -752,22 +727,14 @@ export class Editor extends React.Component {
       this.stashValue();
       this.props.onFocus();
 
-      console.log(!languageKeypadClick && isTouchDevice, '!languageKeypadClick && isTouchDevice');
-
-      console.log(languageKeypadClick, 'setKeypadClick(true);');
-      console.log(!this.isRelatedTargetButton(event), '!this.isRelatedTargetButton(event)');
-      console.log(this.isRelatedTargetButton(event), 'this.isRelatedTargetButton(event)');
-
       // Added for accessibility: Ensures the editor gains focus when tabbed to for improved keyboard navigation
       if (isTouchDevice) {
-        if (!languageKeypadClick) {
-          console.log("I'm in if in touch device");
+        if (!keypadInteractionDetected) {
           change?.focus();
         }
       }
 
-      if (!this.isRelatedTargetButton(event)) {
-        console.log("I'm in if");
+      if (!this.isRelatedTargetButton(event) && !isTouchDevice) {
         change?.focus();
       }
 
@@ -908,7 +875,7 @@ export class Editor extends React.Component {
   };
 
   changeData = (key, data) => {
-    log('[changeData]. .. ', key, data);
+    console.log('[changeData]. .. ', key, data);
 
     /**
      * HACK ALERT: We should be calling setState here and storing the change data:
@@ -921,7 +888,7 @@ export class Editor extends React.Component {
      */
 
     // Uncomment this line to see the bug described above.
-    // this.setState({changeData: {key, data}})
+    //    this.setState({changeData: {key, data}})
 
     this.__TEMPORARY_CHANGE_DATA = { key, data };
   };

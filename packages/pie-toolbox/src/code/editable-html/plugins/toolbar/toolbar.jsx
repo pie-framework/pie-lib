@@ -64,6 +64,9 @@ export class Toolbar extends React.Component {
       showDone: PropTypes.bool,
     }),
     onDataChange: PropTypes.func,
+    doneButtonRef: PropTypes.func,
+    onBlur: PropTypes.func,
+    onFocus: PropTypes.func,
   };
 
   constructor(props) {

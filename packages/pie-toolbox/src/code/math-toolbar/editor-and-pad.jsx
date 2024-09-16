@@ -53,6 +53,7 @@ export class EditorAndPad extends React.Component {
     onBlur: PropTypes.func,
     onChange: PropTypes.func.isRequired,
     classes: PropTypes.object,
+    setKeypadInteraction: PropTypes.func,
   };
 
   constructor(props) {
@@ -205,7 +206,7 @@ export class EditorAndPad extends React.Component {
       controlledKeypad,
       controlledKeypadMode,
       showKeypad,
-      setKeypadClick,
+      setKeypadInteraction,
       noDecimal,
       hideInput,
       layoutForKeyPad,
@@ -279,7 +280,7 @@ export class EditorAndPad extends React.Component {
             mode={controlledKeypadMode ? this.state.equationEditor : keypadMode}
             onClick={this.onClick}
             noDecimal={noDecimal}
-            setKeypadClick={setKeypadClick}
+            setKeypadInteraction={setKeypadInteraction}
           />
         )}
       </div>
