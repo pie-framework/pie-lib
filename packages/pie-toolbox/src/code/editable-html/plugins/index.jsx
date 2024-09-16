@@ -251,7 +251,38 @@ export const buildPlugins = (activePlugins, customPlugins, opts) => {
     tablePlugins.push(respAreaPlugin);
   }
 
-  const builtPlugins = compact([
+  let builtCustomPlugins = [];
+
+  customPlugins.forEach((customPlugin) => {
+    const { event, icon, iconType, iconAlt } = customPlugin || {};
+
+    function isValidEventName(eventName) {
+      // Check if eventName is a non-empty string
+      if (typeof eventName !== 'string' || eventName.length === 0) {
+        return false;
+      }
+
+      // Regular expression to match valid event names (only alphanumeric characters and underscore)
+      const regex = /^[a-zA-Z0-9_]+$/;
+
+      // Check if the eventName matches the regular expression
+      return regex.test(eventName);
+    }
+
+    if (!isValidEventName(event)) {
+      console.error(`The event name: ${event} is not a valid event name!`);
+      return;
+    }
+
+    if (!icon && !iconType && !iconAlt) {
+      console.error('Your custom button requires icon, iconType and iconAlt');
+      return;
+    }
+
+    builtCustomPlugins.push(CustomPlugin('custom-plugin', customPlugin));
+  });
+
+  return compact([
     EnterHandlingPlugin(),
     addIf('table', TablePlugin(opts.table, compact(tablePlugins))),
     addIf('bold', MarkHotkey({ key: 'b', type: 'bold', icon: <Bold />, tag: 'strong' })),
@@ -280,38 +311,8 @@ export const buildPlugins = (activePlugins, customPlugins, opts) => {
     addIf('undo', UndoRedo('undo')),
     ToolbarPlugin(opts.toolbar),
     SoftBreakPlugin({ shift: true }),
+    ...builtCustomPlugins,
     addIf('responseArea', respAreaPlugin),
     addIf('html', HtmlPlugin(opts.html)),
   ]);
-
-  customPlugins.forEach((customPlugin) => {
-    const { event, icon, iconType, iconAlt } = customPlugin || {};
-
-    function isValidEventName(eventName) {
-      // Check if eventName is a non-empty string
-      if (typeof eventName !== 'string' || eventName.length === 0) {
-        return false;
-      }
-
-      // Regular expression to match valid event names (only alphanumeric characters and underscore)
-      const regex = /^[a-zA-Z0-9_]+$/;
-
-      // Check if the eventName matches the regular expression
-      return regex.test(eventName);
-    }
-
-    if (!isValidEventName(event)) {
-      console.error(`The event name: ${event} is not a valid event name!`);
-      return;
-    }
-
-    if (!icon && !iconType && !iconAlt) {
-      console.error('Your custom button requires icon, iconType and iconAlt');
-      return;
-    }
-
-    builtPlugins.push(CustomPlugin('custom-plugin', customPlugin));
-  });
-
-  return builtPlugins;
 };
