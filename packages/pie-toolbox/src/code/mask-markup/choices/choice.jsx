@@ -65,7 +65,7 @@ export const BlankContent = withStyles((theme) => ({
     transform: 'translate(0, 0)',
   },
   chip: {
-    backgroundColor: color.background(),
+    backgroundColor: color.white(),
     border: `1px solid ${color.text()}`,
     color: color.text(),
     alignItems: 'center',
@@ -88,7 +88,9 @@ export const BlankContent = withStyles((theme) => ({
       padding: '2px 0',
     },
   },
-  disabled: {},
+  disabled: {
+    opacity: 0.6
+  },
 }))(BlankContentComp);
 
 const tileSource = {
