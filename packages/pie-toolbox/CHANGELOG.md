@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.32.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.31.4...@pie-lib/pie-toolbox@1.32.0) (2024-09-16)
+
+
+### Bug Fixes
+
+* made sure enter handling is happening only after all the other plugins are checked [PD-4039] ([6c613ef](https://github.com/pie-framework/pie-lib/commit/6c613efc99f99a389353e007200910ac2592aa9e))
+* **editable-html:** move custom plugins buttons before response area PD-4027 ([632ae3c](https://github.com/pie-framework/pie-lib/commit/632ae3c3ab7df3596f1e23898c17f4ae9d0e6dc3))
+
+
+### Features
+
+* **mask-markup:** changed chip backgorund color to white & added opacity 0.6 for disabled class PD-4042 ([2eaf520](https://github.com/pie-framework/pie-lib/commit/2eaf5203a4e65215bf9a33ae0f210e41c3ce6f65))
+
+
+
+
+
 ## [1.31.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.31.3...@pie-lib/pie-toolbox@1.31.4) (2024-09-10)
 
 
