@@ -134,7 +134,7 @@ const renderMath = (el, renderOpts) => {
 
     const mathJaxCustomKey = getMathJaxCustomKey();
 
-    const workingWithMathJax = () => {
+    const rerenderingPageWithMathJax = () => {
       const mathJaxInstance = getGlobal().instance;
 
       if (mathJaxInstance) {
@@ -190,7 +190,7 @@ const renderMath = (el, renderOpts) => {
     ) {
       renderOpts = renderOpts || defaultOpts();
 
-      initializeMathJax(renderOpts, workingWithMathJax);
+      initializeMathJax(renderOpts, rerenderingPageWithMathJax);
     }
 
     if (isString && window.MathJax && window.mathjaxLoadedP) {
@@ -212,7 +212,7 @@ const renderMath = (el, renderOpts) => {
     }
 
     if (window.mathjaxLoadedP) {
-      workingWithMathJax();
+      rerenderingPageWithMathJax();
     }
   };
 
