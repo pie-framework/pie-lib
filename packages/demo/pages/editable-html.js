@@ -125,6 +125,8 @@ class RteDemo extends React.Component {
       markupText: html,
       hasText: true,
       mathEnabled: true,
+      mmlOutput: true,
+      mmlEditing: false,
       languageCharactersProps: [],
       showMathTemplated: false,
     };
@@ -296,6 +298,8 @@ class RteDemo extends React.Component {
       markupText,
       hasText,
       mathEnabled,
+      mmlOutput,
+      mmlEditing,
       languageCharactersProps,
       showMathTemplated,
     } = this.state;
@@ -401,6 +405,24 @@ class RteDemo extends React.Component {
             <FormControlLabel
               control={
                 <Checkbox
+                  checked={mmlOutput}
+                  onChange={(event) => this.setState({ mmlOutput: event.target.checked })}
+                />
+              }
+              label="mmlOutput"
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={mmlEditing}
+                  onChange={(event) => this.setState({ mmlEditing: event.target.checked })}
+                />
+              }
+              label="mmlEditing"
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
                   checked={languageCharactersProps.filter((a) => a.language === 'spanish').length}
                   onChange={(event) =>
                     this.setState({
@@ -486,8 +508,8 @@ class RteDemo extends React.Component {
           height={height}
           languageCharactersProps={languageCharactersProps}
           mathMlOptions={{
-            mmlEditing: true,
-            mmlOutput: true,
+            mmlEditing: mmlEditing,
+            mmlOutput: mmlOutput,
           }}
         />
         <input type="file" hidden ref={(r) => (this.fileInput = r)} />
