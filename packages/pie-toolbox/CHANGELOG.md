@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.33.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.32.1...@pie-lib/pie-toolbox@1.33.0) (2024-09-18)
+
+
+### Bug Fixes
+
+* handle the case when renderMath (MathJax) is used only for mmlOutput, and it was not yet initialised PD-4103 ([368c9bc](https://github.com/pie-framework/pie-lib/commit/368c9bc23363a30b914b4d9ba02ed6fa350169f3))
+
+
+### Features
+
+* eliminate Promises and make mra efficient PD-3989 ([e19e925](https://github.com/pie-framework/pie-lib/commit/e19e92513cc1fc7844957250514e41407d481393))
+
+
+
+
+
 ## [1.32.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.32.0...@pie-lib/pie-toolbox@1.32.1) (2024-09-16)
 
 
