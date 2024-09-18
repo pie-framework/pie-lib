@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.3.90](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.3.89...@pie-lib/demo@7.3.90) (2024-09-18)
+
+
+### Bug Fixes
+
+* handle the case when renderMath (MathJax) is used only for mmlOutput, and it was not yet initialised PD-4103 ([368c9bc](https://github.com/pie-framework/pie-lib/commit/368c9bc23363a30b914b4d9ba02ed6fa350169f3))
+
+
+
+
+
 ## [7.3.89](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.3.88...@pie-lib/demo@7.3.89) (2024-09-16)
 
 **Note:** Version bump only for package @pie-lib/demo
