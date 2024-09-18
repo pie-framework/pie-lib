@@ -3,6 +3,11 @@ import { getGlobal } from './render-math';
 export const MathJaxVersion = '3.2.2';
 
 export const initializeMathJax = (renderOpts, callback) => {
+  if (window.mathjaxLoadedP || window.mathjaxIsInitialised) {
+    console.warn('MathJax was already initialised!');
+    return;
+  }
+
   if (renderOpts?.useSingleDollar) {
     // eslint-disable-next-line
     console.warn('[math-rendering] using $ is not advisable, please use $$..$$ or \\(...\\)');

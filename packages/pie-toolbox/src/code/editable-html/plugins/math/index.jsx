@@ -218,10 +218,15 @@ const convertLatexToMathMl = ({ latex, decoded, wrapper }) => {
   };
   const handled = arrowHandlingCase(decoded);
 
+  const latexToConvert = `<span data-latex="" data-raw="${handled}">${wrapMath(handled, wrapper)}</span>`;
+
   // use math rendering (MathJax) to convert latex to mathMl
-  let mathMlFromLatex = renderMath(`<span data-latex="" data-raw="${handled}">${wrapMath(handled, wrapper)}</span>`, {
-    skipWaitForMathRenderingLib: true,
+  let mathMlFromLatex = renderMath(latexToConvert, {
+    skipWaitForMathRenderingLib: true
   });
+
+  // if renderMath returned the exact same string that we sent, it just means that the conversion could not be done
+  const conversionDidNotWork = isEqual(latexToConvert, mathMlFromLatex);
 
   mathMlFromLatex = removeEmptyMos(mathMlFromLatex);
 
@@ -245,10 +250,11 @@ const convertLatexToMathMl = ({ latex, decoded, wrapper }) => {
       newLatex: latexFromMathMl,
       correctedLatex,
       mathML: mathMlFromLatex,
+      conversionDidNotWork
     });
   }
 
-  return mathMlFromLatex;
+  return { mathMlFromLatex, conversionDidNotWork };
 };
 
 const convertMathMlToLatex = (mathMl) => {
@@ -339,18 +345,19 @@ export const serialization = {
       log('[serialize] latex: ', latex);
 
       if (MathPlugin.mathMlOptions.mmlOutput) {
-        return (
-          <span
-            data-type="mathml"
-            dangerouslySetInnerHTML={{
-              __html: convertLatexToMathMl({
-                latex,
-                decoded,
-                wrapper,
-              }),
-            }}
-          />
-        );
+        const { mathMlFromLatex, conversionDidNotWork } = convertLatexToMathMl({ latex, decoded, wrapper });
+
+        if (conversionDidNotWork) {
+          // this means we could not convert latex to mathMl, so just return the latex version,
+          // same as we would do if mmlOutput would not be enabled
+          return (
+            <span data-latex="" data-raw={decoded}>
+              {wrapMath(decoded, wrapper)}
+            </span>
+          );
+        }
+
+        return <span data-type="mathml" dangerouslySetInnerHTML={{ __html: mathMlFromLatex }} />;
       }
 
       return (
