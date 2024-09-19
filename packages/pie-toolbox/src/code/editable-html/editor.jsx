@@ -17,7 +17,6 @@ import { PreviewPrompt } from '../render-ui';
 
 import { getBase64, htmlToValue } from './serialization';
 import InsertImageHandler from './plugins/image/insert-image-handler';
-import { initializeMathJax } from "../math-rendering-accessible/mathjax-script";
 
 export { ALL_PLUGINS, DEFAULT_PLUGINS, serialization };
 
@@ -386,12 +385,6 @@ export class Editor extends React.Component {
 
     if (props.mathMlOptions.mmlOutput || props.mathMlOptions.mmlEditing) {
       this.props.runSerializationOnMarkup();
-
-      // if we're in authoring mode, and renderMath was never called,
-      // we need to initialise MathJax, because mmlOutput is using it for the conversions
-      if (props.mathMlOptions.mmlOutput && !window.mathjaxIsInitialised) {
-        initializeMathJax();
-      }
     }
   };
 
