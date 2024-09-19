@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.1...@pie-lib/pie-toolbox@2.0.2) (2024-09-19)
+
+
+### Bug Fixes
+
+* add preLoad substitution ([df0981b](https://github.com/pie-framework/pie-lib/commit/df0981bdf8cd9ad1455d7665af704c54ec0264f6))
+
+
+
+
+
 ## [2.0.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.0...@pie-lib/pie-toolbox@2.0.1) (2024-09-19)
 
 
