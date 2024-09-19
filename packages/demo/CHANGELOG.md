@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.3.91...@pie-lib/demo@8.0.0) (2024-09-19)
+
+
+### Features
+
+* major changes to math-rendering-accessible PD-3989, PD-4103, PD-3865 ([6f6f06c](https://github.com/pie-framework/pie-lib/commit/6f6f06c1235e55bc0b80642f75023b6ea745be8d))
+
+
+### BREAKING CHANGES
+
+* big refactoring on the implementation of math-rendering-accessible
+
+
+
+
+
 ## [7.3.91](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.3.90...@pie-lib/demo@7.3.91) (2024-09-19)
 
 **Note:** Version bump only for package @pie-lib/demo

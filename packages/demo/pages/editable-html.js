@@ -17,6 +17,7 @@ import Typography from '@material-ui/core/Typography';
 import InputChooser from '../source/editable-html/input-chooser';
 import { hasText } from '@pie-lib/pie-toolbox/render-ui';
 import { renderMath } from '@pie-lib/pie-toolbox/math-rendering-accessible';
+import { renderMath as renderMathOld } from '@pie-lib/pie-toolbox/math-rendering';
 import { Button } from '@material-ui/core';
 
 const Latex = '\\(2x\\ \\le4y\\ +\\ 8\\)';
@@ -26,10 +27,14 @@ const testImage = 'https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261
 
 class Demo extends React.Component {
   componentDidMount() {
-    renderMath(this.root);
+    setTimeout(() => {
+      console.log('componentDidMount');
+      renderMath(this.root);
+    }, 50)
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log('componentDidUpdate');
     renderMath(this.root);
   }
 
@@ -77,7 +82,7 @@ const inputOptions = [
   },
 ];
 
-const html = inputOptions[1].html;
+const html = inputOptions[2].html;
 
 class RawMarkupPreview extends React.Component {
   static propTypes = {
@@ -125,7 +130,7 @@ class RteDemo extends React.Component {
       markupText: html,
       hasText: true,
       mathEnabled: true,
-      mmlOutput: true,
+      mmlOutput: false,
       mmlEditing: false,
       languageCharactersProps: [],
       showMathTemplated: false,
