@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.33.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.33.0...@pie-lib/pie-toolbox@1.33.1) (2024-09-19)
+
+
+### Bug Fixes
+
+* revert changes made for PD-3989 ([79581d3](https://github.com/pie-framework/pie-lib/commit/79581d32024c413d0b31da6e0dca21e5fbff1182))
+
+
+
+
+
 # [1.33.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.32.1...@pie-lib/pie-toolbox@1.33.0) (2024-09-18)
 
 
