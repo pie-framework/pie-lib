@@ -304,7 +304,7 @@ const renderMath = (el, renderOpts) => {
   // Now we start checking for math-rendering
   window.checkIntervalId = undefined;
 
-  const maxWaitTime = 1000;
+  const maxWaitTime = 5000;
   const startTime = Date.now();
 
   const checkForLib = () => {
