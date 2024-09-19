@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.0...@pie-lib/pie-toolbox@2.0.1) (2024-09-19)
+
+
+### Bug Fixes
+
+* increase waiting time for math-rendering ([0a69dd3](https://github.com/pie-framework/pie-lib/commit/0a69dd3a97c5774bce00b230f25ca68468063f0c))
+
+
+
+
+
 # [2.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.33.1...@pie-lib/pie-toolbox@2.0.0) (2024-09-19)
 
 
