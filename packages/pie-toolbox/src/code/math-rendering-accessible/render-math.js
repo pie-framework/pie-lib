@@ -303,6 +303,7 @@ const renderMath = (el, renderOpts) => {
   }
 };
 
+// this function calls herself
 (function() {
   // We need to wait few seconds to try and see if math-rendering gets initialised because if Player uses math-rendering,
   //  then we should use math-rendering, not math-rendering-accessible (otherwise, it doesn't work)
@@ -343,6 +344,5 @@ const renderMath = (el, renderOpts) => {
   // Start periodically checking for math-rendering
   window.checkIntervalId = setInterval(checkForLib, 50);
 })();
-
 
 export default renderMath;
