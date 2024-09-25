@@ -238,7 +238,7 @@ export const initializeMathJax = (callback) => {
     script.type = "text/javascript";
     script.src = `https://cdn.jsdelivr.net/npm/mathjax@${MathJaxVersion}/es5/tex-chtml-full.js`;
     script.async = true;
-    document.body.appendChild(script);
+    document.head.appendChild(script);
   });
 };
 
