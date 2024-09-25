@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.3...@pie-lib/pie-toolbox@2.0.4) (2024-09-25)
+
+
+### Bug Fixes
+
+* experiment with mra (overwriting mr instance with mra instance) ([bb9aa6c](https://github.com/pie-framework/pie-lib/commit/bb9aa6c0012b1bbd606f9af70c8913dc1a9af329))
+
+
+
+
+
 ## [2.0.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.2...@pie-lib/pie-toolbox@2.0.3) (2024-09-24)
 
 
