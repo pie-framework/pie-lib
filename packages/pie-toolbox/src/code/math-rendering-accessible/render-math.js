@@ -1,6 +1,4 @@
 import { wrapMath, unWrapMath } from "./normalization";
-import * as mr from "../math-rendering";
-
 import { SerializedMmlVisitor } from "mathjax-full/js/core/MmlTree/SerializedMmlVisitor";
 
 const visitor = new SerializedMmlVisitor();
@@ -248,12 +246,6 @@ const renderMath = (el, renderOpts) => {
   const usedForMmlOutput = typeof el === "string";
   let executeOn = document.body;
 
-  // Check immediately if the math-rendering package is available, and if it is, use it
-  // Note: it doesn't matter if we're using this for mmlOutput or not, we still want the proper math rendering package to handle this
-  if (window.hasOwnProperty(mathRenderingKEY) && window[mathRenderingKEY].instance) {
-    return mr.renderMath(el, renderOpts);
-  }
-
   if (!usedForMmlOutput) {
     // If math-rendering was not available, then:
     //  If window.mathjaxLoadedComplete, it means that we initialised MathJax using the function from this file,
@@ -303,46 +295,15 @@ const renderMath = (el, renderOpts) => {
   }
 };
 
-// this function calls herself
+// this function calls itself
 (function() {
-  // We need to wait few seconds to try and see if math-rendering gets initialised because if Player uses math-rendering,
-  //  then we should use math-rendering, not math-rendering-accessible (otherwise, it doesn't work)
-  if (window.checkIntervalId) {
-    return;
-  }
+  initializeMathJax(renderContentWithMathJax);
 
-  // Now we start checking for math-rendering
-  window.checkIntervalId = undefined;
-
-  const maxWaitTime = 5000;
-  const startTime = Date.now();
-
-  const checkForLib = () => {
-    // Add placeholders for each math element, that will be displayed until: math-rendering has loaded or max wait was exceeded
-    const mathElements = document.body.querySelectorAll("[data-latex]");
-    mathElements.forEach(createPlaceholder);
-
-    // Check if library has loaded or if the maximum wait time has been exceeded
-    const mathRenderingHasLoaded = window.hasOwnProperty(mathRenderingKEY) && window[mathRenderingKEY].instance;
-    const hasExceededMaxWait = Date.now() - startTime > maxWaitTime;
-
-    // if math-rendering has loaded, we will use math-rendering:
-    if (mathRenderingHasLoaded || hasExceededMaxWait) {
-      clearInterval(window.checkIntervalId);
-
-      // Now that we stop checking for the right package, we can remove the placeholders
-      removePlaceholdersAndRestoreDisplay();
-    }
-
-    // but if math-rendering did not load and the wait time exceeded,
-    //  then we probably want to use math-rendering-accessible, so we initialize it
-    if (hasExceededMaxWait) {
-      initializeMathJax(renderContentWithMathJax);
-    }
+  window[mathRenderingKEY] = {
+    instance: {
+      Typeset: renderMath,
+    },
   };
-
-  // Start periodically checking for math-rendering
-  window.checkIntervalId = setInterval(checkForLib, 50);
 })();
 
 export default renderMath;
