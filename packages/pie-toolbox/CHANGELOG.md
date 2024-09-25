@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.2...@pie-lib/pie-toolbox@2.0.3) (2024-09-24)
+
+
+### Bug Fixes
+
+* trigger build for pslb ([6e06089](https://github.com/pie-framework/pie-lib/commit/6e06089d3fbd32e0ef30717a05a3f01561fde1cd))
+
+
+
+
+
 ## [2.0.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.1...@pie-lib/pie-toolbox@2.0.2) (2024-09-19)
 
 
