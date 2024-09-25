@@ -126,7 +126,7 @@ export class Editor extends React.Component {
       alwaysVisible: PropTypes.bool,
       showDone: PropTypes.bool,
       doneOn: PropTypes.string,
-      width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      minWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     }),
     activePlugins: PropTypes.arrayOf((values) => {
       const allValid = values.every((v) => ALL_PLUGINS.includes(v));
@@ -136,7 +136,6 @@ export class Editor extends React.Component {
     className: PropTypes.string,
     maxImageWidth: PropTypes.number,
     maxImageHeight: PropTypes.number,
-    noBorder: PropTypes.bool
   };
 
   static defaultProps = {
@@ -1060,7 +1059,7 @@ export class Editor extends React.Component {
           autoCorrect={spellCheck}
           className={classNames(
             {
-              [classes.noPadding]: toolbarOpts && toolbarOpts.noBorder,
+              [classes.noPadding]: toolbarOpts && toolbarOpts.noPadding,
             },
             classes.slateEditor,
           )}
@@ -1076,7 +1075,6 @@ export class Editor extends React.Component {
           placeholder={placeholder}
           renderPlaceholder={this.renderPlaceholder}
           onDataChange={this.changeData}
-          noBorder={this.props.noBorder}
         />
         <AlertDialog
           open={dialog.open}
@@ -1144,9 +1142,6 @@ const styles = {
     marginTop: '6px',
     padding: '20px',
     backgroundColor: 'rgba(0,0,0,0.06)',
-  },
-  noBorder: {
-    border: 'none'
   },
 };
 

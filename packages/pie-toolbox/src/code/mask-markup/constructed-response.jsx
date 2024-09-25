@@ -23,14 +23,13 @@ const styles = (theme) => ({
 
 // eslint-disable-next-line react/display-name
 const MaskedInput = (props) => (node, data) => {
-  const { adjustedLimit, disabled, feedback, showCorrectAnswer, maxLength, spellCheck, classes, spanishInputEnabled, onChange } = props;
+  const { adjustedLimit, disabled, feedback, showCorrectAnswer, maxLength, spellCheck, classes, pluginProps, onChange } = props;
   const dataset = node.data?.dataset || {};
 
   if (dataset.component === 'input') {
     const correctAnswer = ((props.choices && dataset && props.choices[dataset.id]) || [])[0];
     const finalValue = showCorrectAnswer ? correctAnswer && correctAnswer.label : data[dataset.id] || '';
     const width = maxLength && maxLength[dataset.id];
-    const languageCharactersProps = spanishInputEnabled ? [{ language: 'spanish' }] : [];
     const isCorrect = feedback && feedback[dataset.id] && feedback[dataset.id] === 'correct';
     const isIncorrect = feedback && feedback[dataset.id] && feedback[dataset.id] === 'incorrect';
 
@@ -52,13 +51,14 @@ const MaskedInput = (props) => (node, data) => {
             markup={finalValue || ''}
             charactersLimit={adjustedLimit ? width : 25}
             activePlugins={['languageCharacters']}
-            languageCharactersProps={languageCharactersProps}
+            pluginProps={pluginProps}
+            languageCharactersProps={[{ language: 'spanish' }]}
             spellCheck={spellCheck}
             width={width * 25}
             toolbarOpts={{
-              width: 'auto'
+              minWidth: 'auto',
+              noBorder: true
             }}
-            noBorder={true}
             className={classnames(
                 classes.editableHtmlCustom,
                 {

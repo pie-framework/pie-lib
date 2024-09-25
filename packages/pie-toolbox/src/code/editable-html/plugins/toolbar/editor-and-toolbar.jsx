@@ -32,11 +32,11 @@ export class EditorAndToolbar extends React.Component {
       alwaysVisible: PropTypes.bool,
       error: PropTypes.string,
       noBorder: PropTypes.any,
+      noPadding: PropTypes.any,
     }),
     focusToolbar: PropTypes.bool.isRequired,
     onToolbarFocus: PropTypes.func.isRequired,
     onToolbarBlur: PropTypes.func.isRequired,
-    noBorder: PropTypes.bool
   };
 
   render() {
@@ -61,7 +61,6 @@ export class EditorAndToolbar extends React.Component {
       focusToolbar,
       onToolbarFocus,
       onToolbarBlur,
-      noBorder
     } = this.props;
 
     let inFocus = value.isFocused || (focusedNode !== null && focusedNode !== undefined) || focusToolbar;
@@ -87,7 +86,7 @@ export class EditorAndToolbar extends React.Component {
       <div
         className={classNames(
           {
-            [classes.noBorder]: toolbarOpts && toolbarOpts.noBorder || noBorder,
+            [classes.noBorder]: toolbarOpts && toolbarOpts.noBorder,
             [classes.error]: toolbarOpts && toolbarOpts.error,
           },
           classes.root,
@@ -97,7 +96,7 @@ export class EditorAndToolbar extends React.Component {
           <div
             className={classNames(
               {
-                [classes.noPadding]: toolbarOpts && toolbarOpts.noBorder,
+                [classes.noPadding]: toolbarOpts && toolbarOpts.noPadding,
               },
               classes.children,
             )}
