@@ -130,6 +130,7 @@ const renderContentWithMathJax = (executeOn) => {
       .typesetPromise([executeOn])
       .then(() => {
         try {
+          removePlaceholdersAndRestoreDisplay();
           removeExcessMjxContainers(executeOn);
 
           const updatedDocument = mathJaxInstance.startup.document;
@@ -236,10 +237,10 @@ export const initializeMathJax = (callback) => {
           settings: {
             assistiveMml: true,
             collapsible: false,
-            explorer: false
-          }
-        }
-      }
+            explorer: false,
+          },
+        },
+      },
     };
     // Load the MathJax script
     const script = document.createElement("script");
@@ -247,6 +248,14 @@ export const initializeMathJax = (callback) => {
     script.src = `https://cdn.jsdelivr.net/npm/mathjax@${MathJaxVersion}/es5/tex-chtml-full.js`;
     script.async = true;
     document.head.appendChild(script);
+
+    // at this time of the execution, there's no document.body; setTimeout does the trick
+    setTimeout(() => {
+      if (!window.mathjaxLoadedComplete) {
+        const mathElements = document?.body?.querySelectorAll("[data-latex]");
+        (mathElements || []).forEach(createPlaceholder);
+      }
+    });
   });
 };
 
