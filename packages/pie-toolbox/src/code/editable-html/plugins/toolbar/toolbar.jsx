@@ -15,7 +15,6 @@ import { withStyles } from '@material-ui/core/styles';
 import DefaultToolbar from './default-toolbar';
 import { removeDialogs as removeCharacterDialogs } from '../characters';
 import { PIE_TOOLBAR__CLASS } from '../../constants';
-import { opacity } from 'to-style/src/cssUnitless';
 
 const log = debug('@pie-lib:editable-html:plugins:toolbar');
 
