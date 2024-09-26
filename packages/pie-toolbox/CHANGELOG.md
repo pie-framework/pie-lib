@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.5...@pie-lib/pie-toolbox@2.0.6) (2024-09-26)
+
+
+### Bug Fixes
+
+* don't try to initialize MathJax multiple times ([038f48a](https://github.com/pie-framework/pie-lib/commit/038f48a4c2d2f8194feee3cfce3aacaf488b52b2))
+
+
+
+
+
 ## [2.0.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.4...@pie-lib/pie-toolbox@2.0.5) (2024-09-25)
 
 
