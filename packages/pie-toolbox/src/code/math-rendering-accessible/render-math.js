@@ -155,6 +155,10 @@ const renderContentWithMathJax = (executeOn) => {
 };
 
 export const initializeMathJax = (callback) => {
+  if (window.mathjaxLoadedP) {
+    return;
+  }
+
   const texConfig = {
     macros: {
       parallelogram: "\\lower.2em{\\Huge\\unicode{x25B1}}",
