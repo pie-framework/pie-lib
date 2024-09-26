@@ -26,23 +26,23 @@ const log = debug('@pie-lib:editable-html:demo');
 const testImage = 'https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg';
 
 class Demo extends React.Component {
-  // componentDidMount() {
-  //   setTimeout(() => {
-  //     console.log('componentDidMount');
-  //     renderMathOld(this.root);
-  //   }, 50)
-  // }
+  componentDidMount() {
+    setTimeout(() => {
+      console.log('componentDidMount');
+      renderMath(this.root);
+    }, 50)
+  }
 
   random_boolean = true;
   componentDidUpdate(prevProps, prevState, snapshot) {
-    console.log('componentDidUpdate random_boolean', this.random_boolean);
-    if (this.random_boolean) {
-      renderMathOld(this.root);
-      this.random_boolean = !this.random_boolean;
-    } else {
+    // console.log('componentDidUpdate random_boolean', this.random_boolean);
+    // if (this.random_boolean) {
+    //   renderMathOld(this.root);
+    //   this.random_boolean = !this.random_boolean;
+    // } else {
       renderMath(this.root);
-      this.random_boolean = !this.random_boolean;
-    }
+      // this.random_boolean = !this.random_boolean;
+    // }
   }
 
   render() {

@@ -3,6 +3,61 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.7...@pie-lib/pie-toolbox@2.0.8) (2024-09-26)
+
+
+### Bug Fixes
+
+* put back the placeholders ([373f5f5](https://github.com/pie-framework/pie-lib/commit/373f5f5f0c96a74ddcf19bb14d3e0fa1b8181bb7))
+
+
+
+
+
+## [2.0.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.6...@pie-lib/pie-toolbox@2.0.7) (2024-09-26)
+
+
+### Bug Fixes
+
+* handle bad parameter ([8d377e3](https://github.com/pie-framework/pie-lib/commit/8d377e359ad93fe6d60cbe930840dd6c8d8badbb))
+
+
+
+
+
+## [2.0.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.5...@pie-lib/pie-toolbox@2.0.6) (2024-09-26)
+
+
+### Bug Fixes
+
+* don't try to initialize MathJax multiple times ([038f48a](https://github.com/pie-framework/pie-lib/commit/038f48a4c2d2f8194feee3cfce3aacaf488b52b2))
+
+
+
+
+
+## [2.0.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.4...@pie-lib/pie-toolbox@2.0.5) (2024-09-25)
+
+
+### Bug Fixes
+
+* use head, not body ([9efd05b](https://github.com/pie-framework/pie-lib/commit/9efd05b48fd13cdec53af1aad41396d4fdfb5f96))
+
+
+
+
+
+## [2.0.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.3...@pie-lib/pie-toolbox@2.0.4) (2024-09-25)
+
+
+### Bug Fixes
+
+* experiment with mra (overwriting mr instance with mra instance) ([bb9aa6c](https://github.com/pie-framework/pie-lib/commit/bb9aa6c0012b1bbd606f9af70c8913dc1a9af329))
+
+
+
+
+
 ## [2.0.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.2...@pie-lib/pie-toolbox@2.0.3) (2024-09-24)
 
 

@@ -105,6 +105,10 @@ const removeExcessMjxContainers = (content) => {
 const renderContentWithMathJax = (executeOn) => {
   executeOn = executeOn || document.body;
 
+  // this happens for charting - mark-label; we receive a ref which is not yet ready ( el = { current: null })
+  //  we have to fix this in charting
+  if (!(executeOn instanceof HTMLElement)) return;
+
   fixMathElements(executeOn);
   adjustMathMLStyle(executeOn);
 
@@ -126,6 +130,7 @@ const renderContentWithMathJax = (executeOn) => {
       .typesetPromise([executeOn])
       .then(() => {
         try {
+          removePlaceholdersAndRestoreDisplay();
           removeExcessMjxContainers(executeOn);
 
           const updatedDocument = mathJaxInstance.startup.document;
@@ -155,6 +160,10 @@ const renderContentWithMathJax = (executeOn) => {
 };
 
 export const initializeMathJax = (callback) => {
+  if (window.mathjaxLoadedP) {
+    return;
+  }
+
   const texConfig = {
     macros: {
       parallelogram: "\\lower.2em{\\Huge\\unicode{x25B1}}",
@@ -228,17 +237,25 @@ export const initializeMathJax = (callback) => {
           settings: {
             assistiveMml: true,
             collapsible: false,
-            explorer: false
-          }
-        }
-      }
+            explorer: false,
+          },
+        },
+      },
     };
     // Load the MathJax script
     const script = document.createElement("script");
     script.type = "text/javascript";
     script.src = `https://cdn.jsdelivr.net/npm/mathjax@${MathJaxVersion}/es5/tex-chtml-full.js`;
     script.async = true;
-    document.body.appendChild(script);
+    document.head.appendChild(script);
+
+    // at this time of the execution, there's no document.body; setTimeout does the trick
+    setTimeout(() => {
+      if (!window.mathjaxLoadedComplete) {
+        const mathElements = document?.body?.querySelectorAll("[data-latex]");
+        (mathElements || []).forEach(createPlaceholder);
+      }
+    });
   });
 };
 
