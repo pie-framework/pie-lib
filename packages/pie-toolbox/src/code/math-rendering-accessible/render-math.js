@@ -105,6 +105,10 @@ const removeExcessMjxContainers = (content) => {
 const renderContentWithMathJax = (executeOn) => {
   executeOn = executeOn || document.body;
 
+  // this happens for charting - mark-label; we receive a ref which is not yet ready ( el = { current: null })
+  //  we have to fix this in charting
+  if (!(executeOn instanceof HTMLElement)) return;
+
   fixMathElements(executeOn);
   adjustMathMLStyle(executeOn);
 
