@@ -15,6 +15,7 @@ import { withStyles } from '@material-ui/core/styles';
 import DefaultToolbar from './default-toolbar';
 import { removeDialogs as removeCharacterDialogs } from '../characters';
 import { PIE_TOOLBAR__CLASS } from '../../constants';
+import { opacity } from 'to-style/src/cssUnitless';
 
 const log = debug('@pie-lib:editable-html:plugins:toolbar');
 
@@ -292,7 +293,8 @@ const style = {
     boxShadow:
       '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
     boxSizing: 'border-box',
-    display: 'none',
+    display: 'flex',
+    opacity: 0,
   },
   toolbarWithNoDone: {
     minWidth: '265px',
@@ -310,7 +312,7 @@ const style = {
     width: 'auto',
   },
   focused: {
-    display: 'flex',
+    opacity: 1,
   },
   iconRoot: {
     width: '28px',
