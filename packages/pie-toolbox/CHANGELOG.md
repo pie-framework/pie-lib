@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.6...@pie-lib/pie-toolbox@2.0.7) (2024-09-26)
+
+
+### Bug Fixes
+
+* handle bad parameter ([8d377e3](https://github.com/pie-framework/pie-lib/commit/8d377e359ad93fe6d60cbe930840dd6c8d8badbb))
+
+
+
+
+
 ## [2.0.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.5...@pie-lib/pie-toolbox@2.0.6) (2024-09-26)
 
 
