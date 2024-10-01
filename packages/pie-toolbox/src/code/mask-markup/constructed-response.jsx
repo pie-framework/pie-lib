@@ -1,34 +1,75 @@
 import React from 'react';
-import Input from './components/input';
 import { withMask } from './with-mask';
+import EditableHtml from '../editable-html';
+import { withStyles } from '@material-ui/core/styles';
+import classnames from 'classnames';
+import { color } from '../../render-ui';
+
+const styles = (theme) => ({
+  editableHtmlCustom: {
+    display: 'inline-block',
+    verticalAlign: 'middle',
+    margin: '4px',
+    borderRadius: '4px',
+    border: `1px solid ${color.black()}`,
+  },
+  correct: {
+    border: `1px solid ${color.correct()}`,
+  },
+  incorrect: {
+    border: `1px solid ${color.incorrect()}`,
+  }
+});
 
 // eslint-disable-next-line react/display-name
-export default withMask('input', (props) => (node, data, onChange) => {
-  const dataset = node.data ? node.data.dataset || {} : {};
-  if (dataset.component === 'input') {
-    // eslint-disable-next-line react/prop-types
-    const { adjustedLimit, disabled, feedback, showCorrectAnswer, maxLength, spellCheck } = props;
+const MaskedInput = (props) => (node, data) => {
+  const { adjustedLimit, disabled, feedback, showCorrectAnswer, maxLength, spellCheck, classes, pluginProps, onChange } = props;
+  const dataset = node.data?.dataset || {};
 
-    // the first answer is the correct one
-    // eslint-disable-next-line react/prop-types
+  if (dataset.component === 'input') {
     const correctAnswer = ((props.choices && dataset && props.choices[dataset.id]) || [])[0];
     const finalValue = showCorrectAnswer ? correctAnswer && correctAnswer.label : data[dataset.id] || '';
     const width = maxLength && maxLength[dataset.id];
+    const isCorrect = feedback && feedback[dataset.id] && feedback[dataset.id] === 'correct';
+    const isIncorrect = feedback && feedback[dataset.id] && feedback[dataset.id] === 'incorrect';
+
+    const handleInputChange = (newValue) => {
+      const updatedValue = {
+        ...data,
+        [dataset.id]: newValue
+      };
+      onChange(updatedValue);
+    };
 
     return (
-      <Input
-        key={`${node.type}-input-${dataset.id}`}
-        correct={feedback && feedback[dataset.id] && feedback[dataset.id] === 'correct'}
-        disabled={showCorrectAnswer || disabled}
-        value={finalValue}
-        id={dataset.id}
-        onChange={onChange}
-        showCorrectAnswer={showCorrectAnswer}
-        width={width}
-        charactersLimit={adjustedLimit ? width : 25}
-        isConstructedResponse={true}
-        spellCheck={spellCheck}
-      />
+        <EditableHtml
+            id={dataset.id}
+            key={`${node.type}-input-${dataset.id}`}
+            disabled={showCorrectAnswer || disabled}
+            disableUnderline
+            onChange={handleInputChange}
+            markup={finalValue || ''}
+            charactersLimit={adjustedLimit ? width : 25}
+            activePlugins={['languageCharacters']}
+            pluginProps={pluginProps}
+            languageCharactersProps={[{ language: 'spanish' }]}
+            spellCheck={spellCheck}
+            width={width * 25}
+            toolbarOpts={{
+              minWidth: 'auto',
+              noBorder: true
+            }}
+            className={classnames(
+                classes.editableHtmlCustom,
+                {
+                  [classes.correct]: isCorrect,
+                  [classes.incorrect]: isIncorrect,
+                }
+            )}
+        />
     );
   }
-});
+};
+
+export default withStyles(styles)(withMask('input', MaskedInput));
+

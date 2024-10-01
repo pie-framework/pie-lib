@@ -82,7 +82,7 @@ const LabelComponent = (props) => {
             placeholder={!disabledLabel && placeholder}
             toolbarOpts={{
               position: side === 'bottom' ? 'top' : 'bottom',
-              noBorder: true,
+              noPadding: true,
             }}
             disableScrollbar
             activePlugins={activePlugins}

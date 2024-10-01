@@ -62,6 +62,7 @@ export class Toolbar extends React.Component {
       alwaysVisible: PropTypes.bool,
       ref: PropTypes.func,
       showDone: PropTypes.bool,
+      minWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     }),
     onDataChange: PropTypes.func,
     doneButtonRef: PropTypes.func,
@@ -230,9 +231,10 @@ export class Toolbar extends React.Component {
       [classes.autoWidth]: autoWidth,
       [classes.fullWidth]: !autoWidth,
     });
+    const customStyles = toolbarOpts.minWidth !== undefined ? { minWidth: toolbarOpts.minWidth } : {};
 
     return (
-      <div className={names} style={extraStyles} onClick={this.onClick} ref={toolbarRef}>
+      <div className={names} style={{ ...extraStyles, ...customStyles }} onClick={this.onClick} ref={toolbarRef}>
         {CustomToolbar ? (
           <CustomToolbar
             node={node}
