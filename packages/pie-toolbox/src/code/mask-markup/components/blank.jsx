@@ -69,6 +69,12 @@ export class BlankContent extends React.Component {
     };
   }
 
+  componentDidMount() {
+    setTimeout(() => {
+      this.updateDimensions();
+    }, 1000);
+  }
+
   componentDidUpdate(prevProps) {
     renderMath(this.rootRef);
     const { choice: currentChoice } = this.props;
