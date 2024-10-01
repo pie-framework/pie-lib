@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.8...@pie-lib/pie-toolbox@2.0.9) (2024-10-01)
+
+
+### Bug Fixes
+
+* use pointerEvents to prevent clicking on toolbar (exists in dom, even if opacity is 0) PD-4018 ([75a6d69](https://github.com/pie-framework/pie-lib/commit/75a6d693b31d28adbd34ce570fe4bee3ddba6edf))
+* **editable-html:** ensured toolbar remains accessible to screen readers, and addressed focus issue when shift-tabbing from toolbar to text entry PD-4018 ([80dda51](https://github.com/pie-framework/pie-lib/commit/80dda517b22e650e05e120ee13ee6bf0d62cfee5))
+* **inline-dropdown:** ensure MathJax is rendered correctly for dropdown choices, use renderMath in the dropdown to ensure that math in the choices is always rendered correctly and handle refs properly to trigger MathJax rendering after each update PD-4154 DNA-22372 ([b764d60](https://github.com/pie-framework/pie-lib/commit/b764d60fdc1451241076fda862c62de9f153b80a))
+
+
+
+
+
 ## [2.0.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.7...@pie-lib/pie-toolbox@2.0.8) (2024-09-26)
 
 
