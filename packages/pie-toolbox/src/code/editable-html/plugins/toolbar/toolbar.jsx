@@ -294,6 +294,7 @@ const style = {
     boxSizing: 'border-box',
     display: 'flex',
     opacity: 0,
+    pointerEvents: 'none'
   },
   toolbarWithNoDone: {
     minWidth: '265px',
@@ -312,6 +313,7 @@ const style = {
   },
   focused: {
     opacity: 1,
+    pointerEvents: 'auto'
   },
   iconRoot: {
     width: '28px',
