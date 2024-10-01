@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button';
 import InputLabel from '@material-ui/core/InputLabel';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import { renderMath } from '../../../math-rendering-accessible';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import { withStyles } from '@material-ui/core/styles';
 import { color } from '../../render-ui';
@@ -27,6 +28,16 @@ class Dropdown extends React.Component {
       anchorEl: null,
       highlightedOptionId: null,
     };
+
+    this.elementRefs = [];
+  }
+
+  componentDidUpdate() {
+    this.elementRefs.forEach((ref) => {
+      if (ref) {
+        renderMath(ref);
+      }
+    });
   }
 
   handleClick = (event) => this.setState({ anchorEl: event.currentTarget });
@@ -62,6 +73,8 @@ class Dropdown extends React.Component {
 
     // Determine the class for disabled state, view mode and evaluate mode
     let disabledClass;
+    // Reset elementRefs before each render to avoid stale references
+    this.elementRefs = [];
 
     if (disabled && correct !== undefined) {
       disabledClass = correct || showCorrectAnswer ? classes.disabledCorrect : classes.disabledIncorrect;
@@ -129,7 +142,11 @@ class Dropdown extends React.Component {
                 role="option"
                 aria-selected={this.state.highlightedOptionId === optionId ? 'true' : undefined}
               >
-                <span className={classes.label} dangerouslySetInnerHTML={{ __html: c.label }} />
+                <span
+                  ref={(ref) => (this.elementRefs[index] = ref)}
+                  className={classes.label}
+                  dangerouslySetInnerHTML={{ __html: c.label }}
+                />
                 <span
                   className={classes.label}
                   dangerouslySetInnerHTML={{ __html: c.value === value ? ' &check;' : '' }}

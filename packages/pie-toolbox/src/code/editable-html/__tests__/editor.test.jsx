@@ -57,7 +57,7 @@ describe('logic', () => {
   });
 });
 
-test('onFocus does not change focus if related target is a button', async () => {
+test('onFocus does not change focus if related target is a button from language keypad', async () => {
   const wrapper = shallow(
     <Editor editorRef={jest.fn()} value={value} classes={{}} onChange={jest.fn()} onRef={jest.fn()} />,
   );
@@ -72,12 +72,14 @@ test('onFocus does not change focus if related target is a button', async () => 
     focus: jest.fn(),
   };
 
+  wrapper.setState({ keypadInteractionDetected: true });
+
   await wrapper.instance().onFocus(event, change);
 
   expect(change.focus).not.toHaveBeenCalled();
 });
 
-test('onFocus changes focus if related target is not a button', async () => {
+test('onFocus changes focus if related target is not a button from language keypad', async () => {
   const wrapper = shallow(
     <Editor editorRef={jest.fn()} value={value} classes={{}} onChange={jest.fn()} onRef={jest.fn()} />,
   );
