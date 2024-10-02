@@ -281,7 +281,7 @@ const tileSource = {
     // this will be null if it did not drop
     const dropResult = monitor.getDropResult();
 
-    if (!dropResult || (dropResult.dropped && !props.duplicates)) {
+    if (!dropResult) {
       const draggedItem = monitor.getItem();
 
       if (draggedItem.fromChoice) {
