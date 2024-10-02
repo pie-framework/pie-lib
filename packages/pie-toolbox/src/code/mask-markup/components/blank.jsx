@@ -70,11 +70,10 @@ export class BlankContent extends React.Component {
   }
 
   componentDidMount() {
-    const img = this.spanRef.querySelector('img');
-    if (img) {
-      img.onload = this.handleImageLoad;
-    }
-    else {
+    const imageElement = this.spanRef?.current?.querySelector('img');
+    if (imageElement) {
+      imageElement.onload = this.handleImageLoad;
+    } else {
       this.updateDimensions();
     }
   }
