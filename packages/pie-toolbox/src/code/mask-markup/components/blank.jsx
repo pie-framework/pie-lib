@@ -70,9 +70,13 @@ export class BlankContent extends React.Component {
   }
 
   componentDidMount() {
-    setTimeout(() => {
+    const img = this.spanRef.querySelector('img');
+    if (img) {
+      img.onload = this.handleImageLoad;
+    }
+    else {
       this.updateDimensions();
-    }, 1000);
+    }
   }
 
   componentDidUpdate(prevProps) {
@@ -117,6 +121,10 @@ export class BlankContent extends React.Component {
       }
     });
   }
+
+  handleImageLoad = () => {
+    this.updateDimensions(); // Update dimensions once the image is loaded
+  };
 
   getRootDimensions() {
     const rootStyle = {
