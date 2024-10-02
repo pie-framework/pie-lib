@@ -70,7 +70,7 @@ export class BlankContent extends React.Component {
   }
 
   componentDidMount() {
-    const imageElement = this.spanRef?.current?.querySelector('img');
+    const imageElement = this.spanRef?.querySelector('img');
     if (imageElement) {
       imageElement.onload = this.handleImageLoad;
     } else {
@@ -122,7 +122,7 @@ export class BlankContent extends React.Component {
   }
 
   handleImageLoad = () => {
-    this.updateDimensions(); // Update dimensions once the image is loaded
+    this.updateDimensions();
   };
 
   getRootDimensions() {
