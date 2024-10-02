@@ -659,10 +659,6 @@ export class Editor extends React.Component {
         return;
       }
 
-      if (this.keypadInteractionDetected) {
-        this.setKeypadInteraction(false);
-      }
-
       const editorElement = !editorDOM || document.activeElement.closest(`[class*="${editorDOM.className}"]`);
       const toolbarElement =
         !this.toolbarRef || document.activeElement.closest(`[class*="${this.toolbarRef.className}"]`);
@@ -727,8 +723,15 @@ export class Editor extends React.Component {
       this.props.onFocus();
 
       // Added for accessibility: Ensures the editor gains focus when tabbed to for improved keyboard navigation
-      if (!this.keypadInteractionDetected && !isTouchDevice) {
+      const isKeypadInteractionActive = this.keypadInteractionDetected;
+      const shouldFocusEditor = !isKeypadInteractionActive && !isTouchDevice;
+
+      if (shouldFocusEditor) {
         change?.focus();
+      }
+
+      if (isKeypadInteractionActive) {
+        this.setKeypadInteraction(false);
       }
 
       resolve();
