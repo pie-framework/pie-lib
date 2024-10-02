@@ -183,6 +183,10 @@ export class Editor extends React.Component {
   }
 
   handleToolbarFocus() {
+    if (this.state.focusToolbar) {
+      return;
+    }
+
     this.setState({ focusToolbar: true });
   }
 
@@ -195,7 +199,7 @@ export class Editor extends React.Component {
       if (!this.toolbarContainsFocus()) {
         this.setState({ focusToolbar: false });
       }
-    }, 10);
+    }, 0);
   }
 
   toolbarContainsFocus() {
@@ -627,7 +631,7 @@ export class Editor extends React.Component {
     // Skip onBlur handling if relatedTarget is a button from the KeyPad characters
     this.skipBlurHandling = this.keypadInteractionDetected ? true : false;
 
-    if (toolbarElement && !isRawDoneButton) {
+    if (toolbarElement && !isRawDoneButton && !this.state.focusToolbar) {
       this.setState({
         focusToolbar: true,
       });
