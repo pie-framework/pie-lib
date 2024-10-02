@@ -226,10 +226,10 @@ export const specialConfig = {
     ],
     [
       {
-        unicode: 'U+00A0',
-        description: 'NO-BREAK SPACE',
-        write: String.fromCodePoint('0x00A0'),
-        label: '&nbsp;',
+        unicode: 'U+200A',
+        description: 'HAIR SPACE',
+        write: String.fromCodePoint('0x200A'),
+        label: '&hairsp;',
       },
       {
         unicode: 'U+00A7',
@@ -333,10 +333,10 @@ export const specialConfig = {
     ],
     [
       {
-        unicode: 'U+200A',
-        description: 'HAIR SPACE',
-        write: String.fromCodePoint('0x200A'),
-        label: '&hairsp;',
+        unicode: 'U+00A0',
+        description: 'NO-BREAK SPACE',
+        write: String.fromCodePoint('0x00A0'),
+        label: '&nbsp;',
       },
       {
         unicode: 'U+2022',
@@ -390,10 +390,10 @@ export const specialConfig = {
     ],
     [
       {
-        unicode: 'U+0009',
-        description: 'TAB',
-        write: String.fromCodePoint('0x0009'),
-        label: 'TAB',
+        unicode: 'U+2003',
+        description: 'EM SPACE',
+        write: String.fromCodePoint('0x2003'),
+        label: '&emsp;',
       },
       {
         unicode: 'U+25E6',
