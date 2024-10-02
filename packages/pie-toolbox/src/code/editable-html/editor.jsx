@@ -161,13 +161,13 @@ export class Editor extends React.Component {
       isHtmlMode: false,
       isEditedInHtmlMode: false,
       focusToolbar: false,
-      keypadInteractionDetected: false,
       dialog: {
         open: false,
       },
     };
 
     this.keyPadCharacterRef = React.createRef();
+    this.keypadInteractionDetected = false;
 
     this.toggleHtmlMode = this.toggleHtmlMode.bind(this);
     this.handleToolbarFocus = this.handleToolbarFocus.bind(this);
@@ -187,7 +187,7 @@ export class Editor extends React.Component {
   }
 
   setKeypadInteraction = (interacted) => {
-    this.setState({ keypadInteractionDetected: interacted });
+    this.keypadInteractionDetected = interacted;
   };
 
   handleToolbarBlur() {
@@ -620,13 +620,12 @@ export class Editor extends React.Component {
     log('[onBlur]');
     const relatedTarget = event.relatedTarget;
     const toolbarElement = this.toolbarRef && relatedTarget?.closest(`[class*="${this.toolbarRef.className}"]`);
-    const { keypadInteractionDetected } = this.state;
 
     // Check if relatedTarget is a done button
     const isRawDoneButton = this.doneButtonRef && relatedTarget?.closest(`[class*="${this.doneButtonRef.className}"]`);
 
     // Skip onBlur handling if relatedTarget is a button from the KeyPad characters
-    this.skipBlurHandling = keypadInteractionDetected ? true : false;
+    this.skipBlurHandling = this.keypadInteractionDetected ? true : false;
 
     if (toolbarElement && !isRawDoneButton) {
       this.setState({
@@ -654,13 +653,13 @@ export class Editor extends React.Component {
     const editorDOM = document.querySelector(`[data-key="${this.state.value.document.key}"]`);
 
     setTimeout(() => {
-      const { value: stateValue, keypadInteractionDetected } = this.state;
+      const { value: stateValue } = this.state;
 
       if (!this.wrapperRef) {
         return;
       }
 
-      if (keypadInteractionDetected) {
+      if (this.keypadInteractionDetected) {
         this.setKeypadInteraction(false);
       }
 
@@ -691,11 +690,10 @@ export class Editor extends React.Component {
       const editorDOM = document.querySelector(`[data-key="${this.state.value.document.key}"]`);
       const isTouchDevice =
         typeof window !== 'undefined' && ('ontouchstart' in window || navigator?.maxTouchPoints > 0);
-      const { keypadInteractionDetected } = this.state;
 
       log('[onFocus]', document.activeElement);
 
-      if (keypadInteractionDetected && this.__TEMPORARY_CHANGE_DATA) {
+      if (this.keypadInteractionDetected && this.__TEMPORARY_CHANGE_DATA) {
         this.__TEMPORARY_CHANGE_DATA = null;
       }
 
@@ -729,7 +727,7 @@ export class Editor extends React.Component {
       this.props.onFocus();
 
       // Added for accessibility: Ensures the editor gains focus when tabbed to for improved keyboard navigation
-      if (!keypadInteractionDetected && !isTouchDevice) {
+      if (!this.keypadInteractionDetected && !isTouchDevice) {
         change?.focus();
       }
 
