@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.9...@pie-lib/pie-toolbox@2.0.10) (2024-10-03)
+
+
+### Bug Fixes
+
+* **blank:** Improve image element handling DNA-22354 ([95cf14b](https://github.com/pie-framework/pie-lib/commit/95cf14b5c75b656b2a2a3b81af483e63d55c8359))
+* **blank:** small fix handle image load DNA-22354 ([fcc2787](https://github.com/pie-framework/pie-lib/commit/fcc278721d5af7099694913848f2b487070fd112))
+* **blank:** Trigger updateDimensions in componentDidMount in case tokens are already placed to adjust blank dimensions DNA-22354 ([4677284](https://github.com/pie-framework/pie-lib/commit/4677284b2b38cf90106035fd7851b100ad4775b3))
+* **blank:** updateDimensions in componentDidMount DNA-22354 ([7e4b084](https://github.com/pie-framework/pie-lib/commit/7e4b084737ffb6b536952abd30a2352fb34c2016))
+* **editable-html:** changed keypadInteractionDetected from state to a class property to avoid triggering component re-renders PD-4018 ([2bc3433](https://github.com/pie-framework/pie-lib/commit/2bc34333485eb4e2ae5c08426b869c1c34206c7c))
+* **editable-html:** insert special character - replace TAB with em space, rearrange a few buttons PD-4158 ([7aa72ea](https://github.com/pie-framework/pie-lib/commit/7aa72ea285b217ec06c338ab80ac5c574276b4ab))
+* **editable-html:** moved keypadInteractionDetected reset from handleDomBlur to prevent premature resetting on fast machines PD-4018 ([e3d598d](https://github.com/pie-framework/pie-lib/commit/e3d598d0bf001084a38867004780bb02a9023c2b))
+* **mask-markup:** allow move choices back to pool PD-4126 ([cde09de](https://github.com/pie-framework/pie-lib/commit/cde09deb678d84133bd4adbac453b06d8e38ef20))
+
+
+
+
+
 ## [2.0.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.8...@pie-lib/pie-toolbox@2.0.9) (2024-10-01)
 
 
