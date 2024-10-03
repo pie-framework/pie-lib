@@ -245,7 +245,7 @@ export class KeyPad extends React.Component {
 
     if (keyPadElement) {
       keyPadElement.removeEventListener('touchstart', this.handleKeypadInteraction, true);
-      keyPadElement.addEventListener('mousedown', this.handleKeypadInteraction, true);
+      keyPadElement.removeEventListener('mousedown', this.handleKeypadInteraction, true);
     }
   }
 
