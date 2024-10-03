@@ -72,7 +72,7 @@ test('onFocus does not change focus if related target is a button from language 
     focus: jest.fn(),
   };
 
-  wrapper.setState({ keypadInteractionDetected: true });
+  wrapper.instance().keypadInteractionDetected = true;
 
   await wrapper.instance().onFocus(event, change);
 

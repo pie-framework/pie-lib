@@ -69,6 +69,15 @@ export class BlankContent extends React.Component {
     };
   }
 
+  componentDidMount() {
+    const imageElement = this.spanRef?.querySelector('img');
+    if (imageElement) {
+      imageElement.onload = this.handleImageLoad;
+    } else {
+      this.updateDimensions();
+    }
+  }
+
   componentDidUpdate(prevProps) {
     renderMath(this.rootRef);
     const { choice: currentChoice } = this.props;
@@ -111,6 +120,10 @@ export class BlankContent extends React.Component {
       }
     });
   }
+
+  handleImageLoad = () => {
+    this.updateDimensions();
+  };
 
   getRootDimensions() {
     const rootStyle = {
@@ -268,7 +281,7 @@ const tileSource = {
     // this will be null if it did not drop
     const dropResult = monitor.getDropResult();
 
-    if (!dropResult || (dropResult.dropped && !props.duplicates)) {
+    if (!dropResult) {
       const draggedItem = monitor.getItem();
 
       if (draggedItem.fromChoice) {

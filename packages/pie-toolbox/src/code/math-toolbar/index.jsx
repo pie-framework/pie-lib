@@ -142,7 +142,7 @@ export class RawPureToolbar extends React.Component {
     hideDoneButtonBackground: PropTypes.bool,
     error: PropTypes.any,
     maxResponseAreas: PropTypes.number,
-    keyPadCharacterRef: PropTypes.func,
+    keyPadCharacterRef: PropTypes.object,
     setKeypadInteraction: PropTypes.func,
   };
 
