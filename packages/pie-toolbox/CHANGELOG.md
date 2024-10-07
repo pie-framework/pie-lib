@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.10...@pie-lib/pie-toolbox@2.0.11) (2024-10-07)
+
+
+### Bug Fixes
+
+* made sure a working version of complexjs is used for elements [PD-4200] ([ec438f0](https://github.com/pie-framework/pie-lib/commit/ec438f0eb22780067c54524203913e1610f47356))
+
+
+
+
+
 ## [2.0.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.9...@pie-lib/pie-toolbox@2.0.10) (2024-10-03)
 
 
