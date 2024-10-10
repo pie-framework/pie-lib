@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.0.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.0.11...@pie-lib/demo@8.0.12) (2024-10-10)
+
+
+### Bug Fixes
+
+* add MathJax v2 - v3 compatibility code PD-4241 ([351f4cf](https://github.com/pie-framework/pie-lib/commit/351f4cf0b4fd841a01afdb5b92969d48ccdc5b82))
+
+
+
+
+
 ## [8.0.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.0.10...@pie-lib/demo@8.0.11) (2024-10-07)
 
 **Note:** Version bump only for package @pie-lib/demo
