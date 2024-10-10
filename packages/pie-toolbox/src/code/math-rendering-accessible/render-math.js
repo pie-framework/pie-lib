@@ -247,7 +247,7 @@ export const initializeMathJax = (callback) => {
     return;
   }
 
-  const PreviousMathJaxIsUsed = window.MathJax && window.MathJax.version !== MathJaxVersion;
+  const PreviousMathJaxIsUsed = window.MathJax && window.MathJax.version && window.MathJax.version !== MathJaxVersion && window.MathJax.version[0] === '2';
 
   const texConfig = {
     macros: {

@@ -54,10 +54,12 @@ export default class MyDocument extends Document {
           {/* MathJax Script for rendering mathematical expressions */}
           {/*<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>*/}
           {/*<script type="text/javascript" src="https://app-asset-cdn.schoolcity.com/live/mathjax/MathJax-2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>*/}
+          {/*<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>*/}
 
           {/*<script*/}
           {/*  type="text/x-mathjax-config"*/}
           {/*  dangerouslySetInnerHTML={{*/}
+          {/*    // for mathjax 2.6.1*/}
           {/*    // __html: `*/}
           {/*    //   MathJax.Hub.Config({*/}
           {/*    //     tex2jax: {*/}
@@ -66,32 +68,45 @@ export default class MyDocument extends Document {
           {/*    //     }*/}
           {/*    //   });*/}
           {/*    // `,*/}
-          {/*    __html: `*/}
-          {/*    window.preventPIEtoOverwriteMathJax = true;*/}
-          {/*      MathJax.Hub.Config({*/}
-          {/*        tex2jax: {*/}
-          {/*          inlineMath: [['\\\\(','\\\\)']]*/}
-          {/*        },*/}
-          {/*        MathML: {*/}
-          {/*          extensions: [*/}
-          {/*            "mml3.js",*/}
-          {/*            "https://app-asset-cdn.schoolcity.com/live/mathjax/MathJax-2.7.2/extensions/TeX/mhchem.js"*/}
-          {/*          ]*/}
-          {/*        },*/}
-          {/*        TeX: {*/}
-          {/*          Macros: {*/}
-          {/*            rightangle: "\\\\unicode{x0221F}",*/}
-          {/*            rightanglewitharc: "\\\\unicode{x22be}",*/}
-          {/*            rightanglewithcorner: "\\\\unicode{x0299C}",*/}
-          {/*            righttriangle: "\\\\unicode{x022BF}"*/}
-          {/*          }*/}
-          {/*        },*/}
-          {/*        showMathMenu: false,*/}
-          {/*        messageStyle: "none"*/}
-          {/*      });*/}
-          {/*      MathJax.Hub.processSectionDelay = 0;*/}
-          {/*      MathJax.Hub.processUpdateDelay = 0;*/}
-          {/*    `,*/}
+
+          {/*    // for mathjax 2.7.2*/}
+          {/*    // __html: `*/}
+          {/*    // window.preventPIEtoOverwriteMathJax = true;*/}
+          {/*    //   MathJax.Hub.Config({*/}
+          {/*    //     tex2jax: {*/}
+          {/*    //       inlineMath: [['\\\\(','\\\\)']]*/}
+          {/*    //     },*/}
+          {/*    //     MathML: {*/}
+          {/*    //       extensions: [*/}
+          {/*    //         "mml3.js",*/}
+          {/*    //         "https://app-asset-cdn.schoolcity.com/live/mathjax/MathJax-2.7.2/extensions/TeX/mhchem.js"*/}
+          {/*    //       ]*/}
+          {/*    //     },*/}
+          {/*    //     TeX: {*/}
+          {/*    //       Macros: {*/}
+          {/*    //         rightangle: "\\\\unicode{x0221F}",*/}
+          {/*    //         rightanglewitharc: "\\\\unicode{x22be}",*/}
+          {/*    //         rightanglewithcorner: "\\\\unicode{x0299C}",*/}
+          {/*    //         righttriangle: "\\\\unicode{x022BF}"*/}
+          {/*    //       }*/}
+          {/*    //     },*/}
+          {/*    //     showMathMenu: false,*/}
+          {/*    //     messageStyle: "none"*/}
+          {/*    //   });*/}
+          {/*    //   MathJax.Hub.processSectionDelay = 0;*/}
+          {/*    //   MathJax.Hub.processUpdateDelay = 0;*/}
+          {/*    // `,*/}
+
+          {/*    // for mathjax 3:*/}
+          {/*    // __html: `*/}
+          {/*    // MathJax = {*/}
+          {/*    //   tex: {*/}
+          {/*    //     inlineMath: [['$', '$'], ['\\\\(', '\\\\)']]*/}
+          {/*    //   },*/}
+          {/*    //   svg: {*/}
+          {/*    //     fontCache: 'global'*/}
+          {/*    //   }*/}
+          {/*    // };`*/}
           {/*  }}*/}
           {/*></script>*/}
         </Head>
