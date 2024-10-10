@@ -1,5 +1,6 @@
 import { wrapMath, unWrapMath } from "./normalization";
 import { SerializedMmlVisitor } from "mathjax-full/js/core/MmlTree/SerializedMmlVisitor";
+import TexError from "mathjax-full/js/input/tex/TexError";
 
 const visitor = new SerializedMmlVisitor();
 const toMMl = (node) => visitor.visitTree(node);
@@ -159,10 +160,94 @@ const renderContentWithMathJax = (executeOn) => {
   }
 };
 
+const convertMathJax2ToMathJax3 = () => {
+  // Make MathJax v2 compatible with v3
+  //  https://docs.mathjax.org/en/v3.2-latest/upgrading/v2.html#version-2-compatibility-example
+  //  Replace the require command map with a new one that checks for
+  //    renamed extensions and converts them to the new names.
+  const CommandMap = MathJax._.input.tex.SymbolMap.CommandMap;
+  const requireMap = MathJax.config.startup.requireMap;
+  const RequireLoad = MathJax._.input.tex.require.RequireConfiguration.RequireLoad;
+  const RequireMethods = {
+    Require: function(parser, name) {
+      let required = parser.GetArgument(name);
+      if (required.match(/[^_a-zA-Z0-9]/) || required === "") {
+        throw new TexError("BadPackageName", "Argument for %1 is not a valid package name", name);
+      }
+      if (requireMap.hasOwnProperty(required)) {
+        required = requireMap[required];
+      }
+      RequireLoad(parser, required);
+    },
+  };
+
+  new CommandMap("require", { require: "Require" }, RequireMethods);
+
+  //
+  // Add a replacement for MathJax.Callback command
+  //
+  MathJax.Callback = function(args) {
+    if (Array.isArray(args)) {
+      if (args.length === 1 && typeof args[0] === "function") {
+        return args[0];
+      } else if (
+        typeof args[0] === "string" &&
+        args[1] instanceof Object &&
+        typeof args[1][args[0]] === "function"
+      ) {
+        return Function.bind.apply(args[1][args[0]], args.slice(1));
+      } else if (typeof args[0] === "function") {
+        return Function.bind.apply(args[0], [window].concat(args.slice(1)));
+      } else if (typeof args[1] === "function") {
+        return Function.bind.apply(args[1], [args[0]].concat(args.slice(2)));
+      }
+    } else if (typeof args === "function") {
+      return args;
+    }
+    throw Error("Can't make callback from given data");
+  };
+
+  //
+  // Add a replacement for MathJax.Hub commands
+  //
+  MathJax.Hub = {
+    Queue: function() {
+      for (let i = 0, m = arguments.length; i < m; i++) {
+        const fn = MathJax.Callback(arguments[i]);
+        MathJax.startup.promise = MathJax.startup.promise.then(fn);
+      }
+      return MathJax.startup.promise;
+    },
+    Typeset: function(elements, callback) {
+      let promise = MathJax.typesetPromise(elements);
+
+      if (callback) {
+        promise = promise.then(callback);
+      }
+      return promise;
+    },
+    Register: {
+      MessageHook: function() {
+        console.log("MessageHooks are not supported in version 3");
+      },
+      StartupHook: function() {
+        console.log("StartupHooks are not supported in version 3");
+      },
+      LoadHook: function() {
+        console.log("LoadHooks are not supported in version 3");
+      },
+    },
+    Config: function() {
+      console.log("MathJax configurations should be converted for version 3");
+    },
+  };
+};
 export const initializeMathJax = (callback) => {
   if (window.mathjaxLoadedP) {
     return;
   }
+
+  const PreviousMathJaxIsUsed = window.MathJax && window.MathJax.version !== MathJaxVersion;
 
   const texConfig = {
     macros: {
@@ -177,13 +262,37 @@ export const initializeMathJax = (callback) => {
     ]
   };
 
+  if (PreviousMathJaxIsUsed) {
+    texConfig.autoload = {
+      color: [], // don't autoload the color extension
+      colorv2: ["color"] // do autoload the colorv2 extension
+    };
+  }
+
   // Create a new promise that resolves when MathJax is ready
   window.mathjaxLoadedP = new Promise((resolve) => {
     // Set up the MathJax configuration
     window.MathJax = {
       startup: {
+        //
+        //  Mapping of old extension names to new ones
+        //
+        requireMap: PreviousMathJaxIsUsed
+          ? {
+              AMSmath: "ams",
+              AMSsymbols: "ams",
+              AMScd: "amscd",
+              HTML: "html",
+              noErrors: "noerrors",
+              noUndefined: "noundefined"
+            }
+          : {},
         typeset: false,
         ready: () => {
+          if (PreviousMathJaxIsUsed) {
+            convertMathJax2ToMathJax3();
+          }
+
           const { mathjax } = MathJax._.mathjax;
           const { STATE } = MathJax._.core.MathItem;
           const { Menu } = MathJax._.ui.menu.Menu;
