@@ -58,7 +58,9 @@ export class TokenSelect extends React.Component {
     const targetedTokenIndex = targetSpanWrapper && targetSpanWrapper.dataset && targetSpanWrapper.dataset.indexkey;
     const t = targetedTokenIndex && tokensCloned[targetedTokenIndex];
 
-    if (t && t.correct === undefined && !animationsDisabled) {
+    // don't toggle if we are in print mode, token correctness is defined or if it's missing
+    // (missing means that it was evaluated as correct and not selected)
+    if (t && t.correct === undefined && !animationsDisabled && !t.isMissing) {
       const { onChange, maxNoOfSelections } = this.props;
       const selected = !t.selected;
 
