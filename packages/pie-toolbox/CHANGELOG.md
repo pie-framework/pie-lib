@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.12...@pie-lib/pie-toolbox@2.0.13) (2024-10-14)
+
+
+### Bug Fixes
+
+* handle the case when el is an array PD-4231 ([8707f22](https://github.com/pie-framework/pie-lib/commit/8707f2205f1c6f5945a9e732fb5fa63ce72e3382))
+
+
+
+
+
 ## [2.0.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.11...@pie-lib/pie-toolbox@2.0.12) (2024-10-10)
 
 
