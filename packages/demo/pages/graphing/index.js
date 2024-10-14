@@ -80,6 +80,14 @@ export class GridDemo extends React.PureComponent {
 
   changeMarks = (marks) => this.setState({ model: { ...this.state.model, marks } });
 
+  changeTitle = (value, position) => {
+    this.setState({ model: { ...this.state.model, label: { ...this.state.model.label, [position]: value } } });
+  };
+
+  changeTitle = (title) => {
+    this.setState({ model: { ...this.state.model, title } });
+  };
+
   addMark = (mark) => {
     const model = {
       ...this.state.model,
@@ -190,8 +198,11 @@ export class GridDemo extends React.PureComponent {
               labels={settings.labels && model.labels}
               marks={model.marks}
               onChangeMarks={this.changeMarks}
+              onChangeLabel={this.changeLabel}
+              onChangeTitle={this.changeTitle}
               range={model.range}
               size={settings.size}
+              disabledTitle={!settings.graphTitle}
               title={settings.graphTitle && model.title}
               toolbarTools={stateTools}
               coordinatesOnHover={settings.coordinatesOnHover}
