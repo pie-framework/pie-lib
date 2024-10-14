@@ -41,11 +41,11 @@ class RawLine extends React.Component {
 
 export const Line = withStyles(() => ({
   line: {
-    strokeWidth: 6,
+    strokeWidth: 3,
     transition: 'stroke-width 200ms ease-in, stroke 200ms ease-in',
     stroke: 'transparent',
     '&:hover': {
-      strokeWidth: 7,
+      strokeWidth: 4,
       stroke: color.defaults.BLACK,
     },
   },
@@ -57,8 +57,8 @@ export const Line = withStyles(() => ({
     ...disabledSecondary('stroke'),
     strokeWidth: 2,
   },
-  correct: {...correct('stroke')},
-  incorrect: {...incorrect('stroke')},
+  correct: { ...correct('stroke') },
+  incorrect: { ...incorrect('stroke') },
   missing: {
     ...missing('stroke'),
     strokeWidth: 1,
