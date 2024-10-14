@@ -103,6 +103,17 @@ const removeExcessMjxContainers = (content) => {
   });
 };
 
+const renderContentsWithMathJax = (el) => {
+  // el sometimes is an array
+  // renderMath is used like that in pie-print-support and pie-element-extensions
+  // there seems to be no reason for that, however, it's better to handle the case here
+  if (el instanceof Array) {
+    el.forEach(elNode => renderContentWithMathJax(elNode));
+  } else {
+    renderContentWithMathJax(el);
+  }
+};
+
 const renderContentWithMathJax = (executeOn) => {
   executeOn = executeOn || document.body;
 
@@ -377,7 +388,7 @@ const renderMath = (el, renderOpts) => {
     //  If window.mathjaxLoadedComplete, it means that we initialised MathJax using the function from this file,
     //  and it means MathJax is successfully completed, so we can already use it
     if (window.mathjaxLoadedComplete) {
-      renderContentWithMathJax(el);
+      renderContentsWithMathJax(el);
     } else if (window.mathjaxLoadedP) {
       //  However, because there is a small chance that MathJax was initialised by a previous version of math-rendering-accessible,
       //    we need to keep the old handling method, which means adding the .then.catch on window.mathjaxLoadedP Promise.
@@ -386,7 +397,7 @@ const renderMath = (el, renderOpts) => {
       window.mathjaxLoadedP
         .then(() => {
           window.mathjaxLoadedComplete = true;
-          renderContentWithMathJax(el);
+          renderContentsWithMathJax(el);
         })
         .catch((error) => console.error("Error in initializing MathJax:", error));
     }
