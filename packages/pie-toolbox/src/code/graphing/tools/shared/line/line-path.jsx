@@ -59,7 +59,7 @@ export class RawLinePath extends React.Component {
 }
 
 const dragging = () => ({
-  strokeWidth: 7,
+  strokeWidth: 4,
   stroke: color.defaults.BLACK,
 });
 
@@ -70,7 +70,7 @@ export const LinePath = withStyles((theme) => ({
     stroke: color.black(),
   },
   line: {
-    strokeWidth: 6,
+    strokeWidth: 3,
     fill: 'none',
     transition: 'stroke-width 200ms ease-in, stroke 200ms ease-in',
     stroke: 'transparent',
