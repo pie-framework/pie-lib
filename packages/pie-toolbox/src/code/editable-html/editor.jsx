@@ -975,7 +975,7 @@ export class Editor extends React.Component {
     const { editor } = props;
     const { document } = editor.value;
 
-    if (!editor.props.placeholder || document.text !== '' || document.nodes.size !== 1) {
+    if (!editor.props.placeholder || document.text !== '' || document.nodes.size !== 1 || !document.isEmpty) {
       return false;
     }
 
