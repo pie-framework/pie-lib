@@ -203,10 +203,7 @@ export class Root extends React.Component {
                 markup={title || ''}
                 onChange={onChangeTitle}
                 placeholder={
-                  (defineChart && titlePlaceholder) ||
-                  (!disabledTitle &&
-                    isEmptyString(extractTextFromHTML(title)) &&
-                    'Click here to add a title for this graph')
+                  (defineChart && titlePlaceholder) || (!disabledTitle && 'Click here to add a title for this graph')
                 }
                 toolbarOpts={{ noBorder: true }}
                 activePlugins={activeTitlePlugins}
