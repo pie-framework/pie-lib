@@ -80,7 +80,7 @@ export class GridDemo extends React.PureComponent {
 
   changeMarks = (marks) => this.setState({ model: { ...this.state.model, marks } });
 
-  changeTitle = (value, position) => {
+  changeLabel = (value, position) => {
     this.setState({ model: { ...this.state.model, label: { ...this.state.model.label, [position]: value } } });
   };
 
