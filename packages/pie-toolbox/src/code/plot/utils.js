@@ -165,4 +165,6 @@ export const isEmptyObject = (obj) => {
   return obj && Object.keys(obj).length === 0 && obj.constructor === Object;
 };
 
-export const isEmptyString = (str) => str && str.trim() === '';
+export const isEmptyString = (str) => {
+  return typeof str === 'string' && str.trim() === '';
+};

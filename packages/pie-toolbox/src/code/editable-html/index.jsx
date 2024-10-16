@@ -69,13 +69,11 @@ export default class EditableHtml extends React.Component {
     const html = valueToHtml(value);
     const htmlParsed = parseDegrees(html);
 
-    log('value as html: ', html);
-
-    if (html !== this.props.markup) {
+    if (html !== this.props.markup && this.props.onChange) {
       this.props.onChange(htmlParsed);
     }
 
-    if (done) {
+    if (done && this.props.onDone) {
       this.props.onDone(htmlParsed);
     }
   };

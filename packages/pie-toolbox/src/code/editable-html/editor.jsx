@@ -174,7 +174,7 @@ export class Editor extends React.Component {
     this.handleToolbarBlur = this.handleToolbarBlur.bind(this);
 
     this.onResize = () => {
-      if (!this.state.isHtmlMode) {
+      if (this.state.isHtmlMode && props.onChange) {
         props.onChange(this.state.value, true);
       }
     };
