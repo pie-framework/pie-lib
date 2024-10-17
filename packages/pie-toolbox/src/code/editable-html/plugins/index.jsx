@@ -215,6 +215,7 @@ function UndoRedo(type) {
     toolbar: {
       type,
       icon: <IconToUse />,
+      ariaLabel: type === 'undo' ? 'Undo (revert the last action)' : 'Redo (reapply the last undone action)',
       onClick: (value, onChange) => {
         const change = value.change();
 

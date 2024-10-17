@@ -5,7 +5,6 @@ exports[`renders correctly 1`] = `
   className="ImageToolbar-holder-1 holder"
 >
   <button
-    aria-label="left"
     aria-pressed={false}
     className="RawMarkButton-button-4"
     onKeyDown={[Function]}
@@ -15,7 +14,6 @@ exports[`renders correctly 1`] = `
     left
   </button>
   <button
-    aria-label="center"
     aria-pressed={false}
     className="RawMarkButton-button-4"
     onKeyDown={[Function]}
@@ -25,7 +23,6 @@ exports[`renders correctly 1`] = `
     center
   </button>
   <button
-    aria-label="right"
     aria-pressed={false}
     className="RawMarkButton-button-4"
     onKeyDown={[Function]}
