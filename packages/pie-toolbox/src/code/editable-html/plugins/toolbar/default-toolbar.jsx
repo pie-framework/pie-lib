@@ -34,7 +34,7 @@ export const ToolbarButton = (props) => {
     }
 
     return (
-      <MarkButton active={isActive} onToggle={onToggle} mark={props.type} ariaLabel={ariaLabel}>
+      <MarkButton active={isActive} onToggle={onToggle} mark={props.type} label={ariaLabel}>
         {props.icon}
       </MarkButton>
     );
