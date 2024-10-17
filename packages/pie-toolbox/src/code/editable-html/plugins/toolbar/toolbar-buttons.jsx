@@ -94,6 +94,7 @@ export class RawMarkButton extends React.Component {
   static propTypes = {
     onToggle: PropTypes.func.isRequired,
     mark: PropTypes.string,
+    label: PropTypes.string.isRequired,
     children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
     classes: PropTypes.object.isRequired,
     active: PropTypes.bool,
@@ -117,6 +118,7 @@ export class RawMarkButton extends React.Component {
 
   render() {
     const { classes, children, active, label } = this.props;
+
     const names = classNames(classes.button, active && classes.active);
     return (
       <button

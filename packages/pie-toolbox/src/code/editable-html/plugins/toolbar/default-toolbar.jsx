@@ -23,8 +23,18 @@ export const ToolbarButton = (props) => {
 
     log('[ToolbarButton] mark:isActive: ', isActive);
 
+    let ariaLabel;
+
+    if (props.type === 'sup') {
+      ariaLabel = 'Superscript (marks text as superscripted)';
+    } else if (props.type === 'sub') {
+      ariaLabel = 'Subscript (marks text as subscripted)';
+    } else {
+      ariaLabel = props.type;
+    }
+
     return (
-      <MarkButton active={isActive} label={props.type} onToggle={onToggle} mark={props.type} ariaLabel={props.type}>
+      <MarkButton active={isActive} onToggle={onToggle} mark={props.type} label={ariaLabel}>
         {props.icon}
       </MarkButton>
     );
