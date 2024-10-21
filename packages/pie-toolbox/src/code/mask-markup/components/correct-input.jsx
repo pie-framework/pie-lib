@@ -37,6 +37,8 @@ export default withStyles(() => ({
   incorrect: correctStyle(color.incorrect()),
   box: {
     fontSize: 'inherit',
+    display: 'inline-block',
+    verticalAlign: 'middle',
   },
   outlinedInput: {
     padding: '2px',
