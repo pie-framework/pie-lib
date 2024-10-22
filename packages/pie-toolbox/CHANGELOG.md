@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.13...@pie-lib/pie-toolbox@2.0.14) (2024-10-22)
+
+
+### Bug Fixes
+
+* **correct-input:** for constructed-response in Student View text aligned with response areas PD-4187 ([6d3a51e](https://github.com/pie-framework/pie-lib/commit/6d3a51e31c566deff63ae2c7f8bf43c506013d49))
+* **editable-html:** Added aria-labels for superscript, subscript, undo, and redo buttons in the toolbar PD-4018 ([b70e28f](https://github.com/pie-framework/pie-lib/commit/b70e28f5be6f7a4a07e1a35d1a4e6f87e1807aaa))
+* **editable-html:** avoid render placeholder when node focused PD-4203 ([e3bb638](https://github.com/pie-framework/pie-lib/commit/e3bb63811c90730c859b48a0712c587f639d27ac))
+* **editable-html:** avoid render placeholder when user input exists PD-4189 ([7cfe3d0](https://github.com/pie-framework/pie-lib/commit/7cfe3d03dcf6eae72190885a21bab6eba51436e3))
+* **graphing:** updated stroke width on polygon PD-4193 ([97053d2](https://github.com/pie-framework/pie-lib/commit/97053d2fcff76cb939a949e1ac24036479415917))
+* **graphing:** updated stroke width on polygon PD-4193 ([410599f](https://github.com/pie-framework/pie-lib/commit/410599f1f5417d46c570cf92fe28158e06253a5b))
+* **inline-dropdown:** adjust styling for response areas to be center aligned PD-4201 ([92309a1](https://github.com/pie-framework/pie-lib/commit/92309a13bb6544ed420f2846aa0b46b7a1c21c97))
+* **mask-markup:** allow dragging back a choice to choices pool PD-4220 ([d92103d](https://github.com/pie-framework/pie-lib/commit/d92103d2c01332973092249ec096c5cf41729000))
+* **text-select:** missing tokens were selectable PD-4194 ([a16ac69](https://github.com/pie-framework/pie-lib/commit/a16ac697bbf67b0da8f61b673aec0bc197b92e85))
+
+
+
+
+
 ## [2.0.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.12...@pie-lib/pie-toolbox@2.0.13) (2024-10-14)
 
 
