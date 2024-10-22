@@ -57,8 +57,8 @@ export const Line = withStyles(() => ({
     ...disabledSecondary('stroke'),
     strokeWidth: 2,
   },
-  correct: { ...correct('stroke') },
-  incorrect: { ...incorrect('stroke') },
+  correct: correct('stroke'),
+  incorrect: incorrect('stroke'),
   missing: {
     ...missing('stroke'),
     strokeWidth: 1,
