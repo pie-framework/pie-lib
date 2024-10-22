@@ -81,6 +81,10 @@ export class Root extends React.Component {
   onChangeLabel = (newValue, side) => {
     const { labels, onChangeLabels, isChart } = this.props;
 
+    if (!onChangeLabels) {
+      return;
+    }
+
     if (isChart) {
       if (side === 'left') {
         onChangeLabels('range', newValue);
