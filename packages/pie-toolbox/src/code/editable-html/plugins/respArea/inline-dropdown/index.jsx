@@ -27,6 +27,7 @@ const InlineDropdown = ({ attributes, selectedItem }) => {
           boxSizing: 'border-box',
           borderRadius: '3px',
           position: 'relative',
+          alignItems: 'center',
         }}
       >
         <div
@@ -36,12 +37,18 @@ const InlineDropdown = ({ attributes, selectedItem }) => {
             padding: '0 25px 0 8px',
             whiteSpace: 'nowrap',
             textOverflow: 'ellipsis',
-            lineHeight: '35px',
           }}
-          dangerouslySetInnerHTML={{
-            __html: html,
-          }}
-        />
+        >
+          <span
+            style={{
+              display: 'inline-block',
+              verticalAlign: 'middle',
+            }}
+            dangerouslySetInnerHTML={{
+              __html: html,
+            }}
+          />
+        </div>
         <Chevron
           direction="down"
           style={{
