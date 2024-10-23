@@ -107,7 +107,8 @@ export class BlankContent extends React.Component {
     const responseAreaWidth = parseFloat(this.props.emptyResponseAreaWidth) || 0;
     if (height > responseAreaHeight || width > responseAreaWidth) {
       this.setState((prevState) => ({
-        width: width > responseAreaWidth ? width : prevState.width,
+        // Add 24px padding (12px on each side) to ensure spacing, as width is calculated just to fit exactly to the content
+        width: width > responseAreaWidth ? width + 24 : prevState.width,
         height: height > responseAreaHeight ? height : prevState.height,
       }));
     }
