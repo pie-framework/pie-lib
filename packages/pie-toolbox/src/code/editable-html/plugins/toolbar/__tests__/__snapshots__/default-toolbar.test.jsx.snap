@@ -4,6 +4,7 @@ exports[`default-toolbar snapshot renders 1`] = `undefined`;
 
 exports[`default-toolbar snapshot renders 1 plugins 1`] = `
 <div
+  onFocus={[Function]}
   tabIndex="1"
 >
   <div>
@@ -231,6 +232,7 @@ exports[`default-toolbar snapshot renders 1 plugins 1`] = `
 
 exports[`default-toolbar snapshot renders 1 plugins, 1 is disabled 1`] = `
 <div
+  onFocus={[Function]}
   tabIndex="1"
 >
   <div>
@@ -458,6 +460,7 @@ exports[`default-toolbar snapshot renders 1 plugins, 1 is disabled 1`] = `
 
 exports[`default-toolbar snapshot renders 2 plugins 1`] = `
 <div
+  onFocus={[Function]}
   tabIndex="1"
 >
   <div>
@@ -900,6 +903,7 @@ exports[`default-toolbar snapshot renders 2 plugins 1`] = `
 
 exports[`default-toolbar snapshot renders with done button 1`] = `
 <div
+  onFocus={[Function]}
   tabIndex="1"
 >
   <div />
@@ -908,6 +912,7 @@ exports[`default-toolbar snapshot renders with done button 1`] = `
 
 exports[`default-toolbar snapshot renders without done button 1`] = `
 <div
+  onFocus={[Function]}
   tabIndex="1"
 >
   <div />

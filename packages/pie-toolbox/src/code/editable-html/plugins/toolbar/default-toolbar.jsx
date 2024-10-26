@@ -91,6 +91,15 @@ export const DefaultToolbar = ({
   };
   let filtered;
 
+  const handleFocus = (event) => {
+    const doneButtonClassName = doneButtonRef?.current?.className;
+    const isRawDoneButton = doneButtonClassName && event.target?.closest(`[class*="${doneButtonClassName}"]`);
+
+    if (onFocus && !isRawDoneButton) {
+      onFocus(event);
+    }
+  };
+
   if (isHtmlMode) {
     filtered = plugins
       .filter((plugin) => {
@@ -102,7 +111,7 @@ export const DefaultToolbar = ({
   }
 
   return (
-    <div className={classes.defaultToolbar} onFocus={onFocus} tabIndex="1" onBlur={onBlur}>
+    <div className={classes.defaultToolbar} onFocus={handleFocus} tabIndex="1" onBlur={onBlur}>
       <div className={classes.buttonsContainer}>
         {filtered.map((p, index) => {
           return (

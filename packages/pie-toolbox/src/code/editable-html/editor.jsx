@@ -167,6 +167,7 @@ export class Editor extends React.Component {
     };
 
     this.keyPadCharacterRef = React.createRef();
+    this.doneButtonRef = React.createRef();
     this.keypadInteractionDetected = false;
 
     this.toggleHtmlMode = this.toggleHtmlMode.bind(this);
@@ -626,7 +627,8 @@ export class Editor extends React.Component {
     const toolbarElement = this.toolbarRef && relatedTarget?.closest(`[class*="${this.toolbarRef.className}"]`);
 
     // Check if relatedTarget is a done button
-    const isRawDoneButton = this.doneButtonRef && relatedTarget?.closest(`[class*="${this.doneButtonRef.className}"]`);
+    const isRawDoneButton =
+      this.doneButtonRef && relatedTarget?.closest(`[class*="${this.doneButtonRef.current?.className}"]`);
 
     // Skip onBlur handling if relatedTarget is a button from the KeyPad characters
     this.skipBlurHandling = this.keypadInteractionDetected ? true : false;
@@ -1048,11 +1050,7 @@ export class Editor extends React.Component {
               this.toolbarRef = r;
             }
           }}
-          doneButtonRef={(r) => {
-            if (r) {
-              this.doneButtonRef = r;
-            }
-          }}
+          doneButtonRef={this.doneButtonRef}
           value={value}
           focusToolbar={this.state.focusToolbar}
           onToolbarFocus={this.handleToolbarFocus}
