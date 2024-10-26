@@ -67,7 +67,7 @@ const insertDialog = ({ editorDOM, value, callback, opts, textNode, parentNode }
   };
 
   const selectedText = textNode.text.slice(value.selection.anchorOffset, value.selection.focusOffset);
-  const parentNodeClass = parentNode?.data?.get('attributes').class;
+  const parentNodeClass = parentNode?.data?.get('attributes')?.class;
   const createHTML = (name) => {
     let html = `<span class="${name}">${selectedText}</span>`;
 

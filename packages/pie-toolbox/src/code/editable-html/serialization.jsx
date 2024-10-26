@@ -188,7 +188,6 @@ const reactToHTMLAttributesMap = {
 
 const marks = {
   deserialize(el, next) {
-    console.log('deserialize', 'extraCSSRulesOpts', extraCSSRulesOpts);
     const mark = MARK_TAGS[el.tagName.toLowerCase()];
     const elClasses = el.getAttribute('class') || '';
     const hasCSSRule = (extraCSSRulesOpts?.names || []).find((name) => elClasses?.includes(name));
@@ -213,7 +212,6 @@ const marks = {
   },
   serialize(object, children) {
     const jsonData = object.data?.toJSON() || {};
-    console.log('serialize', 'extraCSSRulesOpts', extraCSSRulesOpts);
     const elClasses = jsonData.attributes?.class || '';
     const hasCSSRule = (extraCSSRulesOpts?.names || []).find((name) => elClasses?.includes(name));
 
