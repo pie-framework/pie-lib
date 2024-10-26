@@ -20,6 +20,8 @@ export const ToolbarButton = (props) => {
 
   if (props.isMark) {
     const isActive = hasMark(props.value, props.type);
+    const fnToCall =
+      props.type === 'css' ? () => props.onClick(props.value, props.onChange, props.getFocusedValue) : onToggle;
 
     log('[ToolbarButton] mark:isActive: ', isActive);
 
@@ -34,28 +36,28 @@ export const ToolbarButton = (props) => {
     }
 
     return (
-      <MarkButton active={isActive} onToggle={onToggle} mark={props.type} label={ariaLabel}>
+      <MarkButton active={isActive} onToggle={fnToCall} mark={props.type} label={ariaLabel}>
         {props.icon}
       </MarkButton>
     );
-  } else {
-    const { disabled } = props;
-    const isActive = props.isActive ? props.isActive(props.value, props.type) : hasBlock(props.value, props.type);
-
-    log('[ToolbarButton] block:isActive: ', isActive);
-
-    return (
-      <Button
-        ariaLabel={props.ariaLabel}
-        active={isActive}
-        disabled={disabled}
-        onClick={() => props.onClick(props.value, props.onChange, props.getFocusedValue)}
-        extraStyles={props.buttonStyles}
-      >
-        {props.icon}
-      </Button>
-    );
   }
+
+  const { disabled } = props;
+  const isActive = props.isActive ? props.isActive(props.value, props.type) : hasBlock(props.value, props.type);
+
+  log('[ToolbarButton] block:isActive: ', isActive);
+
+  return (
+    <Button
+      ariaLabel={props.ariaLabel}
+      active={isActive}
+      disabled={disabled}
+      onClick={() => props.onClick(props.value, props.onChange, props.getFocusedValue)}
+      extraStyles={props.buttonStyles}
+    >
+      {props.icon}
+    </Button>
+  );
 };
 
 ToolbarButton.propTypes = {

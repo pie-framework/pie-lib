@@ -120,6 +120,55 @@ const blocks = {
   },
 };
 
+export const INLINE_TAGS = {
+  span: 'span',
+};
+
+const inlines = {
+  deserialize(el, next) {
+    log('[inlines:deserialize] inline: ', el);
+    const inlineTag = INLINE_TAGS[el.tagName.toLowerCase()];
+    if (!inlineTag) return;
+    log('[inlines:deserialize] inline: ', inlineTag);
+
+    if (el.childNodes.length === 1) {
+      const cn = el.childNodes[0];
+      if (cn && cn.tagName && cn.tagName.toLowerCase() === inlineTag) {
+        log('[we have a child node of the same]...');
+        return;
+      }
+    }
+
+    return {
+      object: 'inline',
+      type: inlineTag,
+      /**
+       * Here for rendering styles for all inline elements
+       */
+      data: { attributes: attributes.reduce(attributesToMap(el), {}) },
+      nodes: next(el.childNodes),
+    };
+  },
+  serialize: (object, children) => {
+    if (object.object !== 'inline') return;
+
+    const jsonData = object.data.toJSON();
+
+    log('[inlines:serialize] object: ', object, children);
+    let key;
+
+    for (key in INLINE_TAGS) {
+      if (INLINE_TAGS[key] === object.type) {
+        const Tag = key;
+
+        return <Tag {...jsonData.attributes}>{children}</Tag>;
+      }
+    }
+  },
+};
+
+export const extraCSSRulesOpts = {};
+
 const STYLES_MAP = {
   h3: {
     fontSize: 'inherit',
@@ -132,29 +181,54 @@ const STYLES_MAP = {
     padding: '.5em 10px',
   },
 };
+
+const reactToHTMLAttributesMap = {
+  class: 'className',
+};
+
 const marks = {
   deserialize(el, next) {
+    console.log('deserialize', 'extraCSSRulesOpts', extraCSSRulesOpts);
     const mark = MARK_TAGS[el.tagName.toLowerCase()];
-    if (!mark) return;
+    const elClasses = el.getAttribute('class') || '';
+    const hasCSSRule = (extraCSSRulesOpts?.names || []).find((name) => elClasses?.includes(name));
+
+    if (!mark && !hasCSSRule) {
+      return;
+    }
+
     log('[deserialize] mark: ', mark);
     const attrs = attributes.reduce(attributesToMap(el), {});
     const data = isEmpty(attrs) ? undefined : { attributes: attrs };
 
     return {
       object: 'mark',
-      type: mark,
+      type: hasCSSRule ? 'css' : mark,
       /**
-       * Here for rendering styles for all block elements
+       * Here for rendering styles for all elements
        */
       data,
       nodes: next(el.childNodes),
     };
   },
   serialize(object, children) {
+    const jsonData = object.data?.toJSON() || {};
+    console.log('serialize', 'extraCSSRulesOpts', extraCSSRulesOpts);
+    const elClasses = jsonData.attributes?.class || '';
+    const hasCSSRule = (extraCSSRulesOpts?.names || []).find((name) => elClasses?.includes(name));
+
+    if (hasCSSRule) {
+      const htmlAttrs = Object.keys(jsonData.attributes).reduce((obj, key) => {
+        obj[reactToHTMLAttributesMap[key] || key] = jsonData.attributes[key];
+        return obj;
+      }, {});
+
+      return <span {...htmlAttrs}>{children}</span>;
+    }
+
     if (Mark.isMark(object)) {
       for (var key in MARK_TAGS) {
         if (MARK_TAGS[key] === object.type) {
-          const jsonData = object.data.toJSON();
           const Tag = key;
           const additionalStyles = STYLES_MAP[Tag];
 
@@ -243,6 +317,7 @@ const RULES = [
   tableSerialization,
   responseAreaSerialization,
   TEXT_RULE,
+  // inlines,
   blocks,
   marks,
 ];

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Editor, { DEFAULT_PLUGINS, ALL_PLUGINS } from './editor';
-import { htmlToValue, valueToHtml, reduceMultipleBrs } from './serialization';
+import { extraCSSRulesOpts, htmlToValue, valueToHtml, reduceMultipleBrs } from './serialization';
 import { parseDegrees } from './parse-html';
 import debug from 'debug';
 import { Range } from 'slate';
@@ -35,6 +35,11 @@ export default class EditableHtml extends React.Component {
 
   constructor(props) {
     super(props);
+
+    if (props.extraCSSRules) {
+      Object.assign(extraCSSRulesOpts, this.props.extraCSSRules);
+    }
+
     const v = htmlToValue(props.markup);
     this.state = {
       value: v,

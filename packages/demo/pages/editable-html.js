@@ -30,7 +30,7 @@ class Demo extends React.Component {
     setTimeout(() => {
       console.log('componentDidMount');
       renderMath(this.root);
-    }, 50)
+    }, 50);
   }
 
   random_boolean = true;
@@ -40,8 +40,8 @@ class Demo extends React.Component {
     //   renderMathOld(this.root);
     //   this.random_boolean = !this.random_boolean;
     // } else {
-      renderMath(this.root);
-      // this.random_boolean = !this.random_boolean;
+    renderMath(this.root);
+    // this.random_boolean = !this.random_boolean;
     // }
   }
 
@@ -60,7 +60,7 @@ const inputOptions = [
   },
   {
     label: 'Latex \\(..\\)',
-    html: '',
+    html: '<div class="hala">Hala madrid</div>',
   },
   {
     label: 'Latex $..$',

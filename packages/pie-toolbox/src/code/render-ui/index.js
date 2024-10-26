@@ -3,6 +3,7 @@ import Feedback from './feedback';
 import Collapsible from './collapsible';
 import withUndoReset from './withUndoReset';
 import PreviewLayout from './preview-layout';
+import UiLayout from './ui-layout';
 import HtmlAndMath from './html-and-math';
 import InputContainer from './input-container';
 import PreviewPrompt from './preview-prompt';
@@ -17,6 +18,7 @@ export {
   withUndoReset,
   Feedback,
   PreviewLayout,
+  UiLayout,
   Collapsible,
   InputContainer,
   PreviewPrompt,
