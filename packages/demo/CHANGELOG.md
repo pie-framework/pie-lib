@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.0.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.0.14...@pie-lib/demo@8.0.15) (2024-10-28)
+
+
+### Bug Fixes
+
+* **graphing:** fix title not updating properly and investigate labels PD-4209 ([220a22f](https://github.com/pie-framework/pie-lib/commit/220a22f9c364add5fb15a410ca2968a539fbb138))
+* **graphing:** remove placeholder fix as it was updated in another PR PD-4209 ([1e5d67a](https://github.com/pie-framework/pie-lib/commit/1e5d67a4936672c5c20698be251ee28f4c66c46f))
+
+
+
+
+
 ## [8.0.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.0.13...@pie-lib/demo@8.0.14) (2024-10-22)
 
 **Note:** Version bump only for package @pie-lib/demo
