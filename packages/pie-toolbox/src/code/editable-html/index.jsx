@@ -26,6 +26,10 @@ export default class EditableHtml extends React.Component {
     markup: PropTypes.string.isRequired,
     allowValidation: PropTypes.bool,
     toolbarOpts: PropTypes.object,
+    extraCSSRules: PropTypes.shape({
+      names: PropTypes.arrayOf(PropTypes.string),
+      rules: PropTypes.string,
+    }),
   };
 
   static defaultProps = {

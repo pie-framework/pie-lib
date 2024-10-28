@@ -2,6 +2,7 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import omit from 'lodash/omit';
 import AppendCSSRules from './append-css-rules';
 
 class UiLayout extends AppendCSSRules {
@@ -27,9 +28,10 @@ class UiLayout extends AppendCSSRules {
   render() {
     const { children, className, classes, ...rest } = this.props;
     const finalClass = classNames(className, classes.extraCSSRules);
+    const restProps = omit(rest, 'extraCSSRules');
 
     return (
-      <div className={finalClass} {...rest}>
+      <div className={finalClass} {...restProps}>
         {children}
       </div>
     );
