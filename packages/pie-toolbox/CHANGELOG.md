@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.14...@pie-lib/pie-toolbox@2.0.15) (2024-10-28)
+
+
+### Bug Fixes
+
+* **blank:** for DITB adjust width by adding spacing after updateDimensions PD-4215 ([6600078](https://github.com/pie-framework/pie-lib/commit/660007804ad719182db4ac5ba697aebefd77dde0))
+* **editable-html:** swap position of undo and redo buttons PD-4322 ([9ddf5c8](https://github.com/pie-framework/pie-lib/commit/9ddf5c866746a09f69450fe7a6ee9880abd81022))
+* **editable-html,graphing:** Refactor focus handling in DefaultToolbar PD-4209 ([c31c698](https://github.com/pie-framework/pie-lib/commit/c31c69809411324c9f12a471175b9c559b51e742))
+* **graphing:** fix PR comment PD-4209 ([49a3a3a](https://github.com/pie-framework/pie-lib/commit/49a3a3a0eae6f0775f941499e10ac6c810afdcfb))
+* **graphing:** fix title not updating properly and investigate labels PD-4209 ([220a22f](https://github.com/pie-framework/pie-lib/commit/220a22f9c364add5fb15a410ca2968a539fbb138))
+* **graphing:** remove placeholder fix as it was updated in another PR PD-4209 ([3ba9bb8](https://github.com/pie-framework/pie-lib/commit/3ba9bb8363a8c948fda5b13d6f1c7c776dea9fb9))
+
+
+
+
+
 ## [2.0.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.13...@pie-lib/pie-toolbox@2.0.14) (2024-10-22)
 
 
