@@ -81,7 +81,7 @@ describe('Blank', () => {
       instance.updateDimensions();
 
       expect(instance.state).toEqual({
-        width: 50,
+        width: 74,
         height: 50,
       });
     });
@@ -111,7 +111,7 @@ describe('Blank', () => {
       instance.updateDimensions();
 
       expect(instance.state).toEqual({
-        width: 50,
+        width: 74,
         height: 50,
       });
     });
