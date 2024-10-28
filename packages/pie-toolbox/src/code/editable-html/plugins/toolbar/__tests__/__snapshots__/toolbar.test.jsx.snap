@@ -8,6 +8,7 @@ exports[`toolbar default renders default toolbar 1`] = `
 >
   <div
     className="DefaultToolbar-defaultToolbar-1"
+    onFocus={[Function]}
     tabIndex="1"
   >
     <div

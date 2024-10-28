@@ -121,7 +121,7 @@ test('onBlur does not set focusToolbar if related target is RawDoneButton', asyn
   toolbarElement.appendChild(relatedTarget);
 
   wrapper.instance().toolbarRef = toolbarElement;
-  wrapper.instance().doneButtonRef = relatedTarget;
+  wrapper.instance().doneButtonRef.current = relatedTarget;
 
   const event = { relatedTarget };
 
