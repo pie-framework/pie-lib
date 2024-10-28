@@ -58,7 +58,7 @@
     "react-transition-group": "^2.5.2",
     "redux": "^4.0.1",
     "redux-undo": "beta",
-    "slate": "^0.36.2",
+    "slate": "^0.47.9",
     "slate-edit-list": "^0.12.1",
     "slate-edit-table": "^0.17.0",
     "slate-html-serializer": "^0.6.12",
