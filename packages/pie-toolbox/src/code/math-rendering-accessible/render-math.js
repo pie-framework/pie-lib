@@ -341,6 +341,9 @@ export const initializeMathJax = (callback) => {
         // The better solution would be for math-rendering-accessible to import math-rendering only IF needed,
         //  but that's actually complicated and could cause other issues.
         preLoad: () => {},
+        // function to call if a component fails to load
+        // eslint-disable-next-line no-console
+        failed: (error) => console.log(`MathJax(${error.package || '?'}): ${error.message}`),
       },
       tex: texConfig,
       chtml: {
