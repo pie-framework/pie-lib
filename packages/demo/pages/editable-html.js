@@ -30,7 +30,7 @@ class Demo extends React.Component {
     setTimeout(() => {
       console.log('componentDidMount');
       renderMath(this.root);
-    }, 50)
+    }, 50);
   }
 
   random_boolean = true;
@@ -40,8 +40,8 @@ class Demo extends React.Component {
     //   renderMathOld(this.root);
     //   this.random_boolean = !this.random_boolean;
     // } else {
-      renderMath(this.root);
-      // this.random_boolean = !this.random_boolean;
+    renderMath(this.root);
+    // this.random_boolean = !this.random_boolean;
     // }
   }
 
@@ -60,7 +60,7 @@ const inputOptions = [
   },
   {
     label: 'Latex \\(..\\)',
-    html: '',
+    html: '<div class="hala">Hala madrid</div>',
   },
   {
     label: 'Latex $..$',
@@ -87,9 +87,14 @@ const inputOptions = [
     html:
       '<table cellspacing="0" cellpadding="4" class="borderall"> <tbody> <tr> <td style="width:140px" class="center bold">Trial</td> <td style="width:140px" class="center bold">Mass NH<sub>3</sub></td> <td style="width:140px" class="center bold">Mass HCl</td> <td style="width:140px" class="center bold">Mass NH<sub>4</sub>Cl</td> </tr> <tr> <td class="center">1</td> <td class="center">3.40 g</td> <td class="center">7.30 g</td> <td class="center">10.70 g</td> </tr> <tr> <td class="center">2</td> <td class="center">?</td> <td class="center">?</td> <td class="center">32.10 g</td> </tr> </tbody></table>',
   },
+  {
+    label: 'Sum',
+    html:
+      '<p>Solve:</p><p><math xmlns="http://www.w3.org/1998/Math/MathML"><mstack charalign="center" stackalign="right"><msrow><mn>6</mn><mo>,</mo><mn>057</mn></msrow><msrow><mo>-</mo><mn>4</mn><mo>,</mo><mn>859</mn></msrow><msline/><msrow/></mstack></math></p>',
+  },
 ];
 
-const html = inputOptions[2].html;
+const html = inputOptions[8].html;
 
 class RawMarkupPreview extends React.Component {
   static propTypes = {

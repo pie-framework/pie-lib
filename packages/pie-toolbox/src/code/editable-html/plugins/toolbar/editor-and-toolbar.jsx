@@ -32,6 +32,7 @@ export class EditorAndToolbar extends React.Component {
       alwaysVisible: PropTypes.bool,
       error: PropTypes.string,
       noBorder: PropTypes.any,
+      noPadding: PropTypes.any,
     }),
     focusToolbar: PropTypes.bool.isRequired,
     onToolbarFocus: PropTypes.func.isRequired,
@@ -96,7 +97,7 @@ export class EditorAndToolbar extends React.Component {
           <div
             className={classNames(
               {
-                [classes.noPadding]: toolbarOpts && toolbarOpts.noBorder,
+                [classes.noPadding]: toolbarOpts && toolbarOpts.noPadding,
               },
               classes.children,
             )}

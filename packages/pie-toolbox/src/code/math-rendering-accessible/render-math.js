@@ -331,7 +331,7 @@ export const initializeMathJax = (callback) => {
         },
       },
       loader: {
-        load: ["input/mml"],
+        load: ["input/mml", '[mml]/mml3'],
         // I just added preLoad: () => {} to prevent the console error: "MathJax.loader.preLoad is not a function",
         //  which is being called because in math-rendering-accessible/render-math we're having this line:
         //  import * as mr from '../math-rendering';
@@ -341,6 +341,9 @@ export const initializeMathJax = (callback) => {
         // The better solution would be for math-rendering-accessible to import math-rendering only IF needed,
         //  but that's actually complicated and could cause other issues.
         preLoad: () => {},
+        // function to call if a component fails to load
+        // eslint-disable-next-line no-console
+        failed: (error) => console.log(`MathJax(${error.package || '?'}): ${error.message}`),
       },
       tex: texConfig,
       chtml: {

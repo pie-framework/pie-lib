@@ -1,21 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`layout - snapshot renders correctly with a side panel 1`] = `
-<MeasuredConfigLayout
-  contentRect={
+<WithContentRect
+  classes={
     Object {
-      "bounds": Object {},
-      "client": Object {},
-      "entry": Object {},
-      "margin": Object {},
-      "offset": Object {},
-      "scroll": Object {},
+      "extraCSSRules": "WithContentRect-extraCSSRules-1",
     }
   }
-  dimensions={Object {}}
-  hideSettings={false}
-  measure={[Function]}
-  measureRef={[Function]}
   settings={
     <div>
       <div>
@@ -26,7 +17,6 @@ exports[`layout - snapshot renders correctly with a side panel 1`] = `
       </div>
     </div>
   }
-  sidePanelMinWidth={950}
 >
   <div>
     <div>
@@ -36,25 +26,16 @@ exports[`layout - snapshot renders correctly with a side panel 1`] = `
       Bar
     </div>
   </div>
-</MeasuredConfigLayout>
+</WithContentRect>
 `;
 
 exports[`layout - snapshot renders correctly without a side panel 1`] = `
-<MeasuredConfigLayout
-  contentRect={
+<WithContentRect
+  classes={
     Object {
-      "bounds": Object {},
-      "client": Object {},
-      "entry": Object {},
-      "margin": Object {},
-      "offset": Object {},
-      "scroll": Object {},
+      "extraCSSRules": "WithContentRect-extraCSSRules-1",
     }
   }
-  dimensions={Object {}}
-  hideSettings={false}
-  measure={[Function]}
-  measureRef={[Function]}
   settings={
     <div>
       <div>
@@ -65,7 +46,6 @@ exports[`layout - snapshot renders correctly without a side panel 1`] = `
       </div>
     </div>
   }
-  sidePanelMinWidth={950}
 >
   <div>
     <div>
@@ -75,5 +55,5 @@ exports[`layout - snapshot renders correctly without a side panel 1`] = `
       Bar
     </div>
   </div>
-</MeasuredConfigLayout>
+</WithContentRect>
 `;

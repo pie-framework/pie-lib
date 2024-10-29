@@ -6,7 +6,7 @@
 
 export const BLOCK_TAGS = {
   div: 'div',
-  span: 'span',
+  // span: 'span',
   p: 'paragraph',
   pre: 'code',
   h1: 'heading-one',

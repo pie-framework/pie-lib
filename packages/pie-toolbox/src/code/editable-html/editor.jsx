@@ -2,6 +2,7 @@ import { Editor as SlateEditor, findNode, getEventRange, getEventTransfer } from
 import SlateTypes from 'slate-prop-types';
 
 import isEqual from 'lodash/isEqual';
+import isEmpty from 'lodash/isEmpty';
 import * as serialization from './serialization';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -112,6 +113,10 @@ export class Editor extends React.Component {
       maxResponseAreas: PropTypes.number,
       error: PropTypes.any,
     }),
+    extraCSSRules: PropTypes.shape({
+      names: PropTypes.arrayOf(PropTypes.string),
+      rules: PropTypes.string,
+    }),
     languageCharactersProps: PropTypes.arrayOf(
       PropTypes.shape({
         language: PropTypes.string,
@@ -126,6 +131,7 @@ export class Editor extends React.Component {
       alwaysVisible: PropTypes.bool,
       showDone: PropTypes.bool,
       doneOn: PropTypes.string,
+      minWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     }),
     activePlugins: PropTypes.arrayOf((values) => {
       const allValid = values.every((v) => ALL_PLUGINS.includes(v));
@@ -150,6 +156,7 @@ export class Editor extends React.Component {
     toolbarOpts: defaultToolbarOpts,
     responseAreaProps: defaultResponseAreaProps,
     languageCharactersProps: defaultLanguageCharactersProps,
+    extraCSSRules: null,
   };
 
   constructor(props) {
@@ -264,6 +271,7 @@ export class Editor extends React.Component {
         ...props.mathMlOptions,
       },
       html: htmlPluginOpts,
+      extraCSSRules: props.extraCSSRules || {},
       image: {
         disableImageAlignmentButtons: props.disableImageAlignmentButtons,
         onDelete:
@@ -785,6 +793,7 @@ export class Editor extends React.Component {
 
   onChange = (change, done) => {
     log('[onChange]');
+    window.me = this;
 
     const { value } = change;
     const { charactersLimit } = this.props;
@@ -1078,7 +1087,7 @@ export class Editor extends React.Component {
           autoCorrect={spellCheck}
           className={classNames(
             {
-              [classes.noPadding]: toolbarOpts && toolbarOpts.noBorder,
+              [classes.noPadding]: toolbarOpts && toolbarOpts.noPadding,
             },
             classes.slateEditor,
           )}
@@ -1086,6 +1095,8 @@ export class Editor extends React.Component {
             minHeight: sizeStyle.minHeight,
             height: sizeStyle.height,
             maxHeight: sizeStyle.maxHeight,
+            display: 'flex',
+            alignItems: 'center'
           }}
           pluginProps={otherPluginProps}
           toolbarOpts={toolbarOpts}

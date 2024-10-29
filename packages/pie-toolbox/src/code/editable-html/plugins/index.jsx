@@ -18,13 +18,16 @@ import Strikethrough from '@material-ui/icons/FormatStrikethrough';
 import ToolbarPlugin from './toolbar';
 import Underline from '@material-ui/icons/FormatUnderlined';
 import compact from 'lodash/compact';
+import isEmpty from 'lodash/isEmpty';
 import SoftBreakPlugin from 'slate-soft-break';
 import debug from 'debug';
 import List from './list';
 import TablePlugin from './table';
 import RespAreaPlugin from './respArea';
 import HtmlPlugin from './html';
+import CSSPlugin from './css';
 import CustomPlugin from './customPlugin';
+import RenderingPlugin from './rendering';
 
 const log = debug('@pie-lib:editable-html:plugins');
 
@@ -181,6 +184,7 @@ export const ALL_PLUGINS = [
   'bold',
   // 'code',
   'html',
+  'extraCSSRules',
   'italic',
   'underline',
   'strikethrough',
@@ -264,6 +268,7 @@ export const buildPlugins = (activePlugins, customPlugins, opts) => {
   const mathPlugin = MathPlugin(opts.math);
   const respAreaPlugin =
     opts.responseArea && opts.responseArea.type && RespAreaPlugin(opts.responseArea, compact([mathPlugin]));
+  const cssPlugin = !isEmpty(opts.extraCSSRules) && CSSPlugin(opts.extraCSSRules);
 
   const languageCharactersPlugins = (opts?.languageCharacters || []).map((config) =>
     CharactersPlugin({
@@ -311,6 +316,7 @@ export const buildPlugins = (activePlugins, customPlugins, opts) => {
   });
 
   return compact([
+    RenderingPlugin(),
     addIf('table', TablePlugin(opts.table, compact(tablePlugins))),
     addIf('bold', MarkHotkey({ key: 'b', type: 'bold', icon: <Bold />, tag: 'strong' })),
     // addIf('code', MarkHotkey({ key: '`', type: 'code', icon: <Code /> })),
@@ -344,6 +350,7 @@ export const buildPlugins = (activePlugins, customPlugins, opts) => {
     SoftBreakPlugin({ shift: true }),
     ...builtCustomPlugins,
     addIf('responseArea', respAreaPlugin),
+    cssPlugin,
     addIf('html', HtmlPlugin(opts.html)),
     EnterHandlingPlugin(),
   ]);

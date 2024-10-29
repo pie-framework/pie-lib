@@ -1,11 +1,18 @@
 import React from 'react';
 import Measure from 'react-measure';
 import { withContentRect } from 'react-measure';
+import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import LayoutContents from './layout-contents';
 import SettingsBox from './settings-box';
+import AppendCSSRules from '../../render-ui/append-css-rules';
 
-class MeasuredConfigLayout extends React.Component {
+const styles = {
+  extraCSSRules: {},
+};
+
+class MeasuredConfigLayout extends AppendCSSRules {
   static propTypes = {
     children: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.element), PropTypes.element]),
     className: PropTypes.string,
@@ -22,8 +29,8 @@ class MeasuredConfigLayout extends React.Component {
     dimensions: {},
   };
 
-  constructor(props) {
-    super(props);
+  constructor(...props) {
+    super(...props);
     this.state = { layoutMode: undefined };
   }
 
@@ -42,15 +49,16 @@ class MeasuredConfigLayout extends React.Component {
     return (
       <Measure bounds onResize={this.onResize}>
         {({ measureRef }) => {
-          const { children, settings, hideSettings, dimensions } = this.props;
+          const { children, settings, hideSettings, dimensions, classes } = this.props;
           const { layoutMode } = this.state;
 
           const settingsPanel =
             layoutMode === 'inline' ? <SettingsBox className="settings-box">{settings}</SettingsBox> : settings;
           const secondaryContent = hideSettings ? null : settingsPanel;
+          const finalClass = classNames('main-container', classes.extraCSSRules);
 
           return (
-            <div ref={measureRef} className="main-container">
+            <div ref={measureRef} className={finalClass}>
               <LayoutContents mode={layoutMode} secondary={secondaryContent} dimensions={dimensions}>
                 {children}
               </LayoutContents>
@@ -62,6 +70,6 @@ class MeasuredConfigLayout extends React.Component {
   }
 }
 
-const ConfigLayout = withContentRect('bounds')(MeasuredConfigLayout);
+const ConfigLayout = withStyles(styles)(withContentRect('bounds')(MeasuredConfigLayout));
 
 export default ConfigLayout;
