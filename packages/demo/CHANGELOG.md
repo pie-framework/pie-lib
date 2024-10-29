@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.0.15...@pie-lib/demo@8.1.0) (2024-10-29)
+
+
+### Features
+
+* added ability to add css and span and div attributes handling [PD-1460] ([f0fc161](https://github.com/pie-framework/pie-lib/commit/f0fc161c4c6d41c798fa87d2453545eec6e5832f))
+* handle mml3 PD-4319 ([cbad571](https://github.com/pie-framework/pie-lib/commit/cbad571444d33748b8e52116a9638b02553c326b))
+
+
+
+
+
 ## [8.0.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.0.14...@pie-lib/demo@8.0.15) (2024-10-28)
 
 

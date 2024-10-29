@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.15...@pie-lib/pie-toolbox@2.1.0) (2024-10-29)
+
+
+### Features
+
+* add loader options to catch possible issues PD-4319 ([d9e62b7](https://github.com/pie-framework/pie-lib/commit/d9e62b758b3023c545f21853fe6d55edd9830b54))
+* added ability to add css and span and div attributes handling [PD-1460] ([f0fc161](https://github.com/pie-framework/pie-lib/commit/f0fc161c4c6d41c798fa87d2453545eec6e5832f))
+* added missing stuff [PD-1460] ([75596c6](https://github.com/pie-framework/pie-lib/commit/75596c6dec74487107b4631a2865033f838f324d))
+* handle mml3 PD-4319 ([cbad571](https://github.com/pie-framework/pie-lib/commit/cbad571444d33748b8e52116a9638b02553c326b))
+* removed unnecessary console logs [PD-1460] ([107523c](https://github.com/pie-framework/pie-lib/commit/107523c7352531f7f7e686238997ec43c02b332e))
+* **editor-toolbar:** added noBorder property to editor and width property for toolbarOpts PD-4004 ([a82aba4](https://github.com/pie-framework/pie-lib/commit/a82aba47d0383ed95c3d1e72f4a5ead8e65e52d0))
+* **editor-toolbar:** remove unnecessary code PD-4004 ([21fe6f6](https://github.com/pie-framework/pie-lib/commit/21fe6f6d11b67160f6ed06694f00ad8559cd497a))
+* **mask-markup/ECR:** code review changes - adjusted noPadding & noBorder for toolbarOpts PD-4004 ([ced9cae](https://github.com/pie-framework/pie-lib/commit/ced9caed723e5b7aefc34bef505798d98c2afa9a))
+* **respArea:** changed response area for ECR from input into editable-html ([c3de789](https://github.com/pie-framework/pie-lib/commit/c3de789c55be6f7d01738136deb5c711046d0803))
+
+
+
+
+
 ## [2.0.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.14...@pie-lib/pie-toolbox@2.0.15) (2024-10-28)
 
 
