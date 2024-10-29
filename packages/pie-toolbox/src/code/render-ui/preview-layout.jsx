@@ -1,6 +1,7 @@
 import React from 'react';
 import { withStyles, createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
+import UiLayout from './ui-layout';
 
 class PreviewLayout extends React.Component {
   static propTypes = {
@@ -8,16 +9,20 @@ class PreviewLayout extends React.Component {
     children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
     classes: PropTypes.object,
     role: PropTypes.string,
+    extraCSSRules: PropTypes.shape({
+      names: PropTypes.arrayOf(PropTypes.string),
+      rules: PropTypes.string,
+    }),
   };
 
   render() {
-    const { children, classes, ariaLabel, role } = this.props;
+    const { children, classes, ariaLabel, role, extraCSSRules } = this.props;
     const accessibility = ariaLabel ? { 'aria-label': ariaLabel, role } : {};
 
     return (
-      <div className={classes.container} {...accessibility}>
+      <UiLayout className={classes.container} {...accessibility} extraCSSRules={extraCSSRules}>
         {children}
-      </div>
+      </UiLayout>
     );
   }
 }
