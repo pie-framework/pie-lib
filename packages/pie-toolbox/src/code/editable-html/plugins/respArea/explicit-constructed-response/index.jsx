@@ -12,22 +12,22 @@ const ExplicitConstructedResponse = (props) => {
         minHeight: '50px',
         minWidth: '178px',
         position: 'relative',
-        margin: '0 5px',
         cursor: 'pointer',
       }}
     >
       <div
         style={{
-          display: 'inline-flex',
-          minWidth: '178px',
-          minHeight: '36px',
-          height: '36px',
-          background: '#FFF',
-          border: `1px solid ${error ? 'red' : '#C0C3CF'}`,
-          boxSizing: 'border-box',
-          borderRadius: '3px',
-          overflow: 'hidden',
-          padding: '8px',
+            display: 'inline-flex',
+            width: '100%',
+            minHeight: '42px',
+            height: '42px',
+            backgroundColor: '#FFF',
+            border: `1px solid ${error ? 'red' : '#C0C3CF'}`,
+            boxSizing: 'border-box',
+            borderRadius: '4px',
+            overflow: 'hidden',
+            padding: '10px 21px',
+            marginLeft: '4px',
         }}
         dangerouslySetInnerHTML={{
           __html: value || '<div>&nbsp;</div>',

@@ -131,6 +131,7 @@ export class Editor extends React.Component {
       alwaysVisible: PropTypes.bool,
       showDone: PropTypes.bool,
       doneOn: PropTypes.string,
+      minWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     }),
     activePlugins: PropTypes.arrayOf((values) => {
       const allValid = values.every((v) => ALL_PLUGINS.includes(v));
@@ -1086,7 +1087,7 @@ export class Editor extends React.Component {
           autoCorrect={spellCheck}
           className={classNames(
             {
-              [classes.noPadding]: toolbarOpts && toolbarOpts.noBorder,
+              [classes.noPadding]: toolbarOpts && toolbarOpts.noPadding,
             },
             classes.slateEditor,
           )}
@@ -1094,6 +1095,8 @@ export class Editor extends React.Component {
             minHeight: sizeStyle.minHeight,
             height: sizeStyle.height,
             maxHeight: sizeStyle.maxHeight,
+            display: 'flex',
+            alignItems: 'center'
           }}
           pluginProps={otherPluginProps}
           toolbarOpts={toolbarOpts}
