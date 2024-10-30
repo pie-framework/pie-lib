@@ -316,7 +316,6 @@ export const buildPlugins = (activePlugins, customPlugins, opts) => {
   });
 
   return compact([
-    !isEmpty(opts.extraCSSRules) && RenderingPlugin(),
     addIf('table', TablePlugin(opts.table, compact(tablePlugins))),
     addIf('bold', MarkHotkey({ key: 'b', type: 'bold', icon: <Bold />, tag: 'strong' })),
     // addIf('code', MarkHotkey({ key: '`', type: 'code', icon: <Code /> })),
@@ -353,5 +352,6 @@ export const buildPlugins = (activePlugins, customPlugins, opts) => {
     cssPlugin,
     addIf('html', HtmlPlugin(opts.html)),
     EnterHandlingPlugin(),
+    RenderingPlugin()
   ]);
 };
