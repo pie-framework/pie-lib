@@ -985,15 +985,8 @@ export class Editor extends React.Component {
   renderPlaceholder = (props) => {
     const { editor } = props;
     const { document } = editor.value;
-    const { value: stateValue } = this.state;
 
-    if (
-      !editor.props.placeholder ||
-      document.text !== '' ||
-      document.nodes.size !== 1 ||
-      !document.isEmpty ||
-      stateValue.isFocused
-    ) {
+    if (!editor.props.placeholder || document.text !== '' || document.nodes.size !== 1 || !document.isEmpty) {
       return false;
     }
 
@@ -1096,7 +1089,7 @@ export class Editor extends React.Component {
             height: sizeStyle.height,
             maxHeight: sizeStyle.maxHeight,
             display: 'flex',
-            alignItems: 'center'
+            alignItems: 'center',
           }}
           pluginProps={otherPluginProps}
           toolbarOpts={toolbarOpts}
