@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.1.0...@pie-lib/pie-toolbox@2.1.1) (2024-10-30)
+
+
+### Bug Fixes
+
+* **editable-html:** allow placeholder on focus ([c037c24](https://github.com/pie-framework/pie-lib/commit/c037c2416650bd225e226b178bf33e2d81fb3244))
+* moved RenderingPlugin at the end fixes the issue PD-1460 ([0733c12](https://github.com/pie-framework/pie-lib/commit/0733c12a70a679f60045a48a147baae19d4ba9b1))
+* RenderingPlugin causes a breaking change: math nodes are not being rendered PD-1460 ([7b739c9](https://github.com/pie-framework/pie-lib/commit/7b739c96cb90c7d4b03570f3e86697f455725b7b))
+
+
+
+
+
 # [2.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.15...@pie-lib/pie-toolbox@2.1.0) (2024-10-29)
 
 
