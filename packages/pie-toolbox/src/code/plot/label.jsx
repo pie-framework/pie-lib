@@ -83,6 +83,7 @@ const LabelComponent = (props) => {
             toolbarOpts={{
               position: side === 'bottom' ? 'top' : 'bottom',
               noPadding: true,
+              noBorder: true,
             }}
             disableScrollbar
             activePlugins={activePlugins}
