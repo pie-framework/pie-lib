@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.1.2...@pie-lib/pie-toolbox@2.1.3) (2024-11-01)
+
+
+### Bug Fixes
+
+* **graphing:** remove unused CSS class PD-4372 ([0066bdb](https://github.com/pie-framework/pie-lib/commit/0066bdbf59918d9a4f953637e5fb917f1ec2bf6a))
+* **respArea:** resolve UI misalignment and unintended border PD-4372 ([03b5f50](https://github.com/pie-framework/pie-lib/commit/03b5f50930c5a4c90e8ad79ff246d44c5c3b0448))
+
+
+
+
+
 ## [2.1.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.1.1...@pie-lib/pie-toolbox@2.1.2) (2024-11-01)
 
 
