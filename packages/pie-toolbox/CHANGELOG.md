@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.1.1...@pie-lib/pie-toolbox@2.1.2) (2024-11-01)
+
+
+### Bug Fixes
+
+* removed code that messes up enter and caret in the editor [PD-4361] ([94309cf](https://github.com/pie-framework/pie-lib/commit/94309cfd2f74bb4fd3691a2f28a17013d06dd5ce))
+
+
+
+
+
 ## [2.1.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.1.0...@pie-lib/pie-toolbox@2.1.1) (2024-10-30)
 
 
