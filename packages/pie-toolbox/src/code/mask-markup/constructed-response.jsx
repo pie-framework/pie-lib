@@ -57,7 +57,7 @@ const MaskedInput = (props) => (node, data) => {
             width={width * 25}
             toolbarOpts={{
               minWidth: 'auto',
-              noBorder: true
+              noBorder: true,
             }}
             className={classnames(
                 classes.editableHtmlCustom,

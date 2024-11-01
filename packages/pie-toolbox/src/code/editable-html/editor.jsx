@@ -1080,7 +1080,7 @@ export class Editor extends React.Component {
           autoCorrect={spellCheck}
           className={classNames(
             {
-              [classes.noPadding]: toolbarOpts && toolbarOpts.noPadding,
+              [classes.noPadding]: toolbarOpts?.noPadding,
             },
             classes.slateEditor,
           )}

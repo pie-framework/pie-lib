@@ -205,7 +205,7 @@ export class Root extends React.Component {
                 placeholder={
                   (defineChart && titlePlaceholder) || (!disabledTitle && 'Click here to add a title for this graph')
                 }
-                toolbarOpts={{ noPadding: true }}
+                toolbarOpts={{ noPadding: true, noBorder: true }}
                 activePlugins={activeTitlePlugins}
                 disableScrollbar
                 onKeyDown={this.handleKeyDown}
