@@ -1080,7 +1080,7 @@ export class Editor extends React.Component {
           autoCorrect={spellCheck}
           className={classNames(
             {
-              [classes.noPadding]: toolbarOpts && toolbarOpts.noPadding,
+              [classes.noPadding]: toolbarOpts?.noPadding,
             },
             classes.slateEditor,
           )}
@@ -1088,8 +1088,6 @@ export class Editor extends React.Component {
             minHeight: sizeStyle.minHeight,
             height: sizeStyle.height,
             maxHeight: sizeStyle.maxHeight,
-            display: 'flex',
-            alignItems: 'center',
           }}
           pluginProps={otherPluginProps}
           toolbarOpts={toolbarOpts}
@@ -1163,6 +1161,9 @@ const styles = {
     marginTop: '6px',
     padding: '20px',
     backgroundColor: 'rgba(0,0,0,0.06)',
+  },
+  noBorder: {
+    border: 'none'
   },
 };
 

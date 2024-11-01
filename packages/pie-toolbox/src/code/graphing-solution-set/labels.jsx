@@ -103,6 +103,7 @@ class RawLabel extends React.Component {
             toolbarOpts={{
               position: side === 'bottom' ? 'top' : 'bottom',
               noPadding: true,
+              noBorder: true,
             }}
             activePlugins={activePlugins}
             mathMlOptions={mathMlOptions}
