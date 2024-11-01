@@ -1162,9 +1162,6 @@ const styles = {
     padding: '20px',
     backgroundColor: 'rgba(0,0,0,0.06)',
   },
-  noBorder: {
-    border: 'none'
-  },
 };
 
 export default withStyles(styles)(Editor);
