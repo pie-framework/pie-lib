@@ -51,7 +51,7 @@
     "babel-loader": "^8.0.5",
     "chalk": "^2.4.2",
     "chokidar": "^3.4.2",
-    "css-loader": "^2.1.0",
+    "css-loader": "^7.1.2",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "enzyme-to-json": "^3.3.5",
