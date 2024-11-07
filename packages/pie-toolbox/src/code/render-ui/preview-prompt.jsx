@@ -136,9 +136,10 @@ const styles = (theme) => ({
         color: theme.palette.common.black,
       },
     },
-    '&:not(.MathJax) > table td, &:not(.MathJax) > table th': {
+    // align table content to left as per STAR requirement PD-3687
+    '&:not(.MathJax) table td, &:not(.MathJax) table th': {
       padding: '.6em 1em',
-      textAlign: 'center',
+      textAlign: 'left',
     },
     // added this to fix alignment of text in prompt imported from studio (PD-3423)
     '&:not(.MathJax) > table td > p.kds-indent': {
