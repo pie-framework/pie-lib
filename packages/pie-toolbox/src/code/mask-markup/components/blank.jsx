@@ -98,19 +98,29 @@ export class BlankContent extends React.Component {
   }
 
   updateDimensions() {
-    const height = this.spanRef?.offsetHeight || 0;
-    const width = this.spanRef?.offsetWidth || 0;
+    if(this.spanRef) {
+      // Temporarily set rootRef width to 'auto' for natural measurement
+      this.rootRef.style.width = 'auto';
 
-    // force our computing to work if our client set the emptyResponseAreaHeight
-    // both to '40px' or 40
-    const responseAreaHeight = parseFloat(this.props.emptyResponseAreaHeight) || 0;
-    const responseAreaWidth = parseFloat(this.props.emptyResponseAreaWidth) || 0;
-    if (height > responseAreaHeight || width > responseAreaWidth) {
-      this.setState((prevState) => ({
-        // Add 24px padding (12px on each side) to ensure spacing, as width is calculated just to fit exactly to the content
-        width: width > responseAreaWidth ? width + 24 : prevState.width,
-        height: height > responseAreaHeight ? height : prevState.height,
-      }));
+      // Get the natural dimensions of the content
+      const width = this.spanRef?.offsetWidth || 0;
+      const height = this.spanRef?.offsetHeight || 0;
+
+      const widthWithPadding = width + 24;  // 12px padding on each side
+
+      const responseAreaWidth = parseFloat(this.props.emptyResponseAreaWidth) || 0;
+      const responseAreaHeight = parseFloat(this.props.emptyResponseAreaHeight) || 0;
+
+      const adjustedWidth = widthWithPadding <= responseAreaWidth ? responseAreaWidth : widthWithPadding;
+
+      if (height > responseAreaHeight || width > responseAreaWidth) {
+        this.setState((prevState) => ({
+          width: width > responseAreaWidth ? widthWithPadding : prevState.width,
+          height: height > responseAreaHeight ? height : prevState.height,
+        }));
+      }
+
+      this.rootRef.style.width = `${adjustedWidth}px`;
     }
   }
 
