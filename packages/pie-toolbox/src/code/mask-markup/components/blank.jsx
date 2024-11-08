@@ -98,13 +98,13 @@ export class BlankContent extends React.Component {
   }
 
   updateDimensions() {
-    if(this.spanRef) {
+    if(this.spanRef && this.rootRef) {
       // Temporarily set rootRef width to 'auto' for natural measurement
       this.rootRef.style.width = 'auto';
 
       // Get the natural dimensions of the content
-      const width = this.spanRef?.offsetWidth || 0;
-      const height = this.spanRef?.offsetHeight || 0;
+      const width = this.spanRef.offsetWidth || 0;
+      const height = this.spanRef.offsetHeight || 0;
 
       const widthWithPadding = width + 24;  // 12px padding on each side
 
@@ -113,9 +113,9 @@ export class BlankContent extends React.Component {
 
       const adjustedWidth = widthWithPadding <= responseAreaWidth ? responseAreaWidth : widthWithPadding;
 
-      if (height > responseAreaHeight || width > responseAreaWidth) {
+      if (height > responseAreaHeight || adjustedWidth > responseAreaWidth) {
         this.setState((prevState) => ({
-          width: width > responseAreaWidth ? widthWithPadding : prevState.width,
+          width: adjustedWidth > responseAreaWidth ? widthWithPadding : prevState.width,
           height: height > responseAreaHeight ? height : prevState.height,
         }));
       }
@@ -137,17 +137,21 @@ export class BlankContent extends React.Component {
   };
 
   getRootDimensions() {
+    // Handle potential NaN or undefined for height and width
+    const responseAreaWidth = !isNaN(parseFloat(this.props.emptyResponseAreaWidth)) ? parseFloat(this.props.emptyResponseAreaWidth) : 0;
+    const responseAreaHeight = !isNaN(parseFloat(this.props.emptyResponseAreaHeight)) ? parseFloat(this.props.emptyResponseAreaHeight) : 0;
+
     const rootStyle = {
-      height: this.state.height || this.props.emptyResponseAreaHeight,
-      width: this.state.width || this.props.emptyResponseAreaWidth,
+      height: this.state.height || responseAreaHeight,
+      width: this.state.width || responseAreaWidth,
     };
 
     // add minWidth, minHeight if width and height are not defined
     // minWidth, minHeight will be also in model in the future
     return {
       ...rootStyle,
-      ...(this.props.emptyResponseAreaWidth ? {} : { minWidth: 90 }),
-      ...(this.props.emptyResponseAreaHeight ? {} : { minHeight: 32 }),
+      ...(responseAreaWidth ? {} : { minWidth: 90 }),
+      ...(responseAreaHeight ? {} : { minHeight: 32 }),
     };
   }
 

@@ -58,6 +58,7 @@ describe('Blank', () => {
 
   describe('updateDimensions', () => {
     let span;
+    let rootRef;
 
     const setSpanDimensions = (height, width) => {
       Object.defineProperty(span, 'offsetHeight', { value: height, configurable: true });
@@ -69,7 +70,10 @@ describe('Blank', () => {
       instance = wrapper.instance();
 
       span = document.createElement('span');
+      rootRef = document.createElement('span'); // rootRef should be a span or div in the real component
+
       instance.spanRef = span;
+      instance.rootRef = rootRef; // Attach rootRef
 
       Object.defineProperty(span, 'offsetHeight', { value: 0, configurable: true });
       Object.defineProperty(span, 'offsetWidth', { value: 0, configurable: true });
