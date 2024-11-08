@@ -70,10 +70,10 @@ describe('Blank', () => {
       instance = wrapper.instance();
 
       span = document.createElement('span');
-      rootRef = document.createElement('span'); // rootRef should be a span or div in the real component
+      rootRef = document.createElement('span');
 
       instance.spanRef = span;
-      instance.rootRef = rootRef; // Attach rootRef
+      instance.rootRef = rootRef;
 
       Object.defineProperty(span, 'offsetHeight', { value: 0, configurable: true });
       Object.defineProperty(span, 'offsetWidth', { value: 0, configurable: true });

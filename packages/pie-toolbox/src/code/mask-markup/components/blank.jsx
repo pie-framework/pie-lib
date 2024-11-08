@@ -137,7 +137,7 @@ export class BlankContent extends React.Component {
   };
 
   getRootDimensions() {
-    // Handle potential NaN or undefined for height and width
+    // Handle potential non-numeric values
     const responseAreaWidth = !isNaN(parseFloat(this.props.emptyResponseAreaWidth)) ? parseFloat(this.props.emptyResponseAreaWidth) : 0;
     const responseAreaHeight = !isNaN(parseFloat(this.props.emptyResponseAreaHeight)) ? parseFloat(this.props.emptyResponseAreaHeight) : 0;
 
