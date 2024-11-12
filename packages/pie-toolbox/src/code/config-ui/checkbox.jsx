@@ -6,7 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import grey from '@material-ui/core/colors/grey';
 
-const Checkbox = ({ mini, checked, onChange, value, label, classes, error }) => (
+const Checkbox = ({ mini, checked, onChange, value, label, classes, error, customClasses }) => (
   <FormControlLabel
     className={classNames(classes.mini)}
     classes={{
@@ -17,7 +17,11 @@ const Checkbox = ({ mini, checked, onChange, value, label, classes, error }) => 
         checked={checked}
         onChange={onChange}
         value={value}
-        className={classNames({ [classes.miniCheckbox]: mini, [classes.error]: error })}
+        className={classNames({
+          [classes.miniCheckbox]: mini,
+          [classes.error]: error,
+          customClasses
+        })}
       />
     }
     label={label}
@@ -31,6 +35,7 @@ Checkbox.propTypes = {
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string,
   label: PropTypes.string.isRequired,
+  customClasses: PropTypes.object,
 };
 
 Checkbox.defaultProps = {

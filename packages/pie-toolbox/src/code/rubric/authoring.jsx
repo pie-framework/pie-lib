@@ -22,6 +22,7 @@ import PointMenu from './point-menu';
 
 import range from 'lodash/range';
 import { InputContainer } from '../config-ui';
+import { color } from '../render-ui';
 
 const log = debug('pie-lib:rubric:authoring');
 
@@ -308,7 +309,7 @@ export class RawAuthoring extends React.Component {
           {excludeZeroEnabled && (
             <FormControlLabel
               label="Exclude zeros"
-              control={<Checkbox checked={value.excludeZero} onChange={this.excludeZeros} />}
+              control={<Checkbox customClass={classNames(classes.customColor)} checked={value.excludeZero} onChange={this.excludeZeros} />}
             />
           )}
         </FormGroup>
@@ -397,6 +398,9 @@ const styles = (theme) => ({
   rubricTitle: {
     paddingLeft: theme.spacing.unit,
     margin: theme.spacing.unit,
+  },
+  customColor: {
+    color: `${color.tertiary()} !important`
   },
 });
 
