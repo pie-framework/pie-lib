@@ -55,9 +55,9 @@ export class Controls extends React.Component {
           control={
           <Switch
               classes={{
-                checked: classes.customCheckedThumb,
+                checked: classes.checkedThumb,
                 bar: classNames({
-                  [classes.customCheckedBar]: setCorrectMode,
+                  [classes.checkedBar]: setCorrectMode,
                 }),
               }}
               checked={setCorrectMode} 
@@ -79,10 +79,10 @@ export default withStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  customCheckedThumb: {
+  checkedThumb: {
     color: `${color.tertiary()} !important`,
   },
-  customCheckedBar: {
+  checkedBar: {
     backgroundColor: `${color.tertiaryLight()} !important`,
   }
 }))(Controls);

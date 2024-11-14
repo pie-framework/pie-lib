@@ -311,20 +311,11 @@ const GridSetup = (props) => {
           <div className={classes.content}>
             {includeAxesEnabled && (
               <Toggle
-                  customClasses={{
-                    checkedThumb: classes.customCheckedThumb,
-                    checkedBar: classes.customCheckedBar
-                  }}
                   label="Include axes and labels?"
                   toggle={onIncludeAxes}
                   checked={includeAxes} />
             )}
             {standardGridEnabled && (
-                <Toggle
-                  customClasses={{
-                    checkedThumb: classes.customCheckedThumb,
-                    checkedBar: classes.customCheckedBar
-                  }}
                   label="Constrain to standard coordinate grid?"
                   toggle={onStandardGridChanged}
                   checked={standardGrid}
@@ -430,12 +421,6 @@ const styles = (theme) => ({
   axisLabel: {
     paddingTop: theme.spacing.unit * 2,
   },
-  customCheckedThumb: {
-    color: `${color.tertiary()} !important`,
-  },
-  customCheckedBar: {
-    backgroundColor: `${color.tertiaryLight()} !important`,
-  }
 });
 
 export default withStyles(styles)(GridSetup);

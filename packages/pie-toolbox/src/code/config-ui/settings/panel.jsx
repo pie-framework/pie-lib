@@ -14,8 +14,6 @@ import SettingsRadioLabel from './settings-radio-label';
 import NumberTextField from '../number-text-field';
 import Checkbox from '../checkbox';
 import Typography from '@material-ui/core/Typography';
-import { color } from '../../render-ui';
-import classNames from 'classnames';
 
 const log = debug('pie-lib:config-ui:settings:panel');
 
@@ -30,14 +28,9 @@ const baseTypes = {
   onChange: PropTypes.func,
 };
 
-const CheckboxChoice = withStyles((theme) => ({
-  customColor: {
-    color: `${color.tertiary()} !important`
-  },
-}))(({ classes, label, value, onChange }) => {
+const CheckboxChoice = ({ label, value, onChange }) => {
   return (
     <Checkbox
-      customClass={classNames(classes.customColor)}
       checked={value}
       label={label}
       onChange={(event) => {
@@ -45,7 +38,7 @@ const CheckboxChoice = withStyles((theme) => ({
       }}
     />
   );
-});
+};
 
 CheckboxChoice.propTypes = {
   label: PropTypes.string,
@@ -176,25 +169,7 @@ TextField.propTypes = {
   ...baseTypes,
 };
 
-const ToggleWrapper = withStyles((theme) => ({
-  customCheckedThumb: {
-    color: `${color.tertiary()} !important`,
-  },
-  customCheckedBar: {
-    backgroundColor: `${color.tertiaryLight()} !important`,
-  },
-}))(({ classes, label, value, onChange }) => {
-  return (
-      <Toggle
-          customClasses={{
-            checkedThumb: classes.customCheckedThumb,
-            checkedBar: classes.customCheckedBar
-          }}
-          label={label}
-          checked={!!value}
-          toggle={onChange}
-      />
-)});
+const ToggleWrapper = ({ label, value, onChange }) => <Toggle label={label} checked={!!value} toggle={onChange} />;
 
 ToggleWrapper.propTypes = { ...baseTypes, value: PropTypes.bool };
 

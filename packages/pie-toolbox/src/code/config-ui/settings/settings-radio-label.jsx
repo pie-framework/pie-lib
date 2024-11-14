@@ -17,7 +17,7 @@ export default withStyles((theme) => ({
 }))(({ label, value, checked, onChange, classes }) => (
   <FormControlLabel
     value={value}
-    classes={classes}
+    classes={{ label: classes.label }}
     control={
     <Radio
         className={classes.customColor}
