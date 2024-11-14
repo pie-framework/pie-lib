@@ -14,10 +14,10 @@ exports[`NChoice renders n choice radio buttons vertical correctly 1`] = `
     className="RawNChoice-group-1 RawNChoice-vertical-2"
   >
     <label
-      className="MuiFormControlLabel-root-28"
+      className="MuiFormControlLabel-root-29"
     >
       <span
-        className="MuiButtonBase-root-49 MuiIconButton-root-43 MuiPrivateSwitchBase-root-39 MuiRadio-root-34 MuiRadio-colorSecondary-38 MuiPrivateSwitchBase-checked-40 MuiRadio-checked-35"
+        className="MuiButtonBase-root-50 MuiIconButton-root-44 MuiPrivateSwitchBase-root-40 MuiRadio-root-35 MuiRadio-colorSecondary-39 MuiPrivateSwitchBase-checked-41 MuiRadio-checked-36 Component-customColor-28"
         onBlur={[Function]}
         onContextMenu={[Function]}
         onFocus={[Function]}
@@ -32,11 +32,11 @@ exports[`NChoice renders n choice radio buttons vertical correctly 1`] = `
         tabIndex={null}
       >
         <span
-          className="MuiIconButton-label-48"
+          className="MuiIconButton-label-49"
         >
           <svg
             aria-hidden="true"
-            className="MuiSvgIcon-root-52"
+            className="MuiSvgIcon-root-53"
             focusable="false"
             role="presentation"
             viewBox="0 0 24 24"
@@ -47,7 +47,7 @@ exports[`NChoice renders n choice radio buttons vertical correctly 1`] = `
           </svg>
           <input
             checked={true}
-            className="MuiPrivateSwitchBase-input-42"
+            className="MuiPrivateSwitchBase-input-43"
             disabled={false}
             onChange={[Function]}
             type="radio"
@@ -55,20 +55,20 @@ exports[`NChoice renders n choice radio buttons vertical correctly 1`] = `
           />
         </span>
         <span
-          className="MuiTouchRipple-root-97"
+          className="MuiTouchRipple-root-98"
         />
       </span>
       <span
-        className="MuiTypography-root-61 MuiTypography-body1-70 MuiFormControlLabel-label-33 Component-label-27"
+        className="MuiTypography-root-62 MuiTypography-body1-71 MuiFormControlLabel-label-34 Component-label-27"
       >
         left
       </span>
     </label>
     <label
-      className="MuiFormControlLabel-root-28"
+      className="MuiFormControlLabel-root-29"
     >
       <span
-        className="MuiButtonBase-root-49 MuiIconButton-root-43 MuiPrivateSwitchBase-root-39 MuiRadio-root-34 MuiRadio-colorSecondary-38"
+        className="MuiButtonBase-root-50 MuiIconButton-root-44 MuiPrivateSwitchBase-root-40 MuiRadio-root-35 MuiRadio-colorSecondary-39 Component-customColor-28"
         onBlur={[Function]}
         onContextMenu={[Function]}
         onFocus={[Function]}
@@ -83,11 +83,11 @@ exports[`NChoice renders n choice radio buttons vertical correctly 1`] = `
         tabIndex={null}
       >
         <span
-          className="MuiIconButton-label-48"
+          className="MuiIconButton-label-49"
         >
           <svg
             aria-hidden="true"
-            className="MuiSvgIcon-root-52"
+            className="MuiSvgIcon-root-53"
             focusable="false"
             role="presentation"
             viewBox="0 0 24 24"
@@ -98,7 +98,7 @@ exports[`NChoice renders n choice radio buttons vertical correctly 1`] = `
           </svg>
           <input
             checked={false}
-            className="MuiPrivateSwitchBase-input-42"
+            className="MuiPrivateSwitchBase-input-43"
             disabled={false}
             onChange={[Function]}
             type="radio"
@@ -106,20 +106,20 @@ exports[`NChoice renders n choice radio buttons vertical correctly 1`] = `
           />
         </span>
         <span
-          className="MuiTouchRipple-root-97"
+          className="MuiTouchRipple-root-98"
         />
       </span>
       <span
-        className="MuiTypography-root-61 MuiTypography-body1-70 MuiFormControlLabel-label-33 Component-label-27"
+        className="MuiTypography-root-62 MuiTypography-body1-71 MuiFormControlLabel-label-34 Component-label-27"
       >
         center
       </span>
     </label>
     <label
-      className="MuiFormControlLabel-root-28"
+      className="MuiFormControlLabel-root-29"
     >
       <span
-        className="MuiButtonBase-root-49 MuiIconButton-root-43 MuiPrivateSwitchBase-root-39 MuiRadio-root-34 MuiRadio-colorSecondary-38"
+        className="MuiButtonBase-root-50 MuiIconButton-root-44 MuiPrivateSwitchBase-root-40 MuiRadio-root-35 MuiRadio-colorSecondary-39 Component-customColor-28"
         onBlur={[Function]}
         onContextMenu={[Function]}
         onFocus={[Function]}
@@ -134,11 +134,11 @@ exports[`NChoice renders n choice radio buttons vertical correctly 1`] = `
         tabIndex={null}
       >
         <span
-          className="MuiIconButton-label-48"
+          className="MuiIconButton-label-49"
         >
           <svg
             aria-hidden="true"
-            className="MuiSvgIcon-root-52"
+            className="MuiSvgIcon-root-53"
             focusable="false"
             role="presentation"
             viewBox="0 0 24 24"
@@ -149,7 +149,7 @@ exports[`NChoice renders n choice radio buttons vertical correctly 1`] = `
           </svg>
           <input
             checked={false}
-            className="MuiPrivateSwitchBase-input-42"
+            className="MuiPrivateSwitchBase-input-43"
             disabled={false}
             onChange={[Function]}
             type="radio"
@@ -157,11 +157,11 @@ exports[`NChoice renders n choice radio buttons vertical correctly 1`] = `
           />
         </span>
         <span
-          className="MuiTouchRipple-root-97"
+          className="MuiTouchRipple-root-98"
         />
       </span>
       <span
-        className="MuiTypography-root-61 MuiTypography-body1-70 MuiFormControlLabel-label-33 Component-label-27"
+        className="MuiTypography-root-62 MuiTypography-body1-71 MuiFormControlLabel-label-34 Component-label-27"
       >
         right
       </span>

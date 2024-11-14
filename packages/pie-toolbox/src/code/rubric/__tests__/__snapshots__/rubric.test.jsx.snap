@@ -22,7 +22,6 @@ exports[`Rubric render snapshot 1`] = `
       control={
         <WithStyles(Checkbox)
           checked={false}
-          customClass=""
           onChange={[Function]}
         />
       }
