@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.1.4...@pie-lib/pie-toolbox@2.1.5) (2024-11-15)
+
+
+### Bug Fixes
+
+* **blank:** adjust comments PD-4394 ([9a488c8](https://github.com/pie-framework/pie-lib/commit/9a488c8b4225f3dbb754247457eb60209cafe7b1))
+* **blank:** adjust width for longer text-based answer choices PD-4394 ([357b7fc](https://github.com/pie-framework/pie-lib/commit/357b7fc0aa33db3051a3b7ee4102d941eccd1d0c))
+* **blank:** Handle non-numeric values for emptyResponseAreaHeight and emptyResponseAreaWidth PD-4394 ([4083cf4](https://github.com/pie-framework/pie-lib/commit/4083cf4af220583fe24601cb66b90e95c167e2ec))
+* **blank:** small adjustments on blank's height PD-4394 ([113df87](https://github.com/pie-framework/pie-lib/commit/113df87251975e61b1681cc659d17c8b70ac4f1f))
+* **blank:** update tests after updateDimensions logic changed PD-4394 ([5044a15](https://github.com/pie-framework/pie-lib/commit/5044a159d1a1c22df005bcace86c20799c6d615a))
+* **preview-prompt:** align table content to left as per STAR requirement PD-3687 ([af124a9](https://github.com/pie-framework/pie-lib/commit/af124a91f88be9b8b4abaaba2866c40e596efe37))
+
+
+
+
+
 ## [2.1.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.1.3...@pie-lib/pie-toolbox@2.1.4) (2024-11-15)
 
 
