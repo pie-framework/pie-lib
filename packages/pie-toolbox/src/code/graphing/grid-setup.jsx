@@ -316,6 +316,7 @@ const GridSetup = (props) => {
                   checked={includeAxes} />
             )}
             {standardGridEnabled && (
+                <Toggle
                   label="Constrain to standard coordinate grid?"
                   toggle={onStandardGridChanged}
                   checked={standardGrid}
