@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.1.3...@pie-lib/pie-toolbox@2.1.4) (2024-11-15)
+
+
+### Bug Fixes
+
+* revert usage of mml3 experimental plugin (added for PD-4319) to fix PD-4401, PD-4441 ([db2ce5f](https://github.com/pie-framework/pie-lib/commit/db2ce5f1066bb092d25be6c074cded3e7a7d085b))
+
+
+
+
+
 ## [2.1.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.1.2...@pie-lib/pie-toolbox@2.1.3) (2024-11-01)
 
 
