@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import InputLabel from '@material-ui/core/InputLabel';
 import { withStyles } from '@material-ui/core/styles';
 import Switch from '@material-ui/core/Switch';
+import classNames from 'classnames';
+import { color } from '../../render-ui';
 
 const Toggle = withStyles((theme) => ({
   toggle: {
@@ -15,10 +17,25 @@ const Toggle = withStyles((theme) => ({
     fontSize: theme.typography.fontSize,
     paddingTop: theme.spacing.unit * 2,
   },
+  checkedThumb: {
+      color: `${color.tertiary()} !important`,
+  },
+  checkedBar: {
+      backgroundColor: `${color.tertiaryLight()} !important`,
+  },
 }))(({ checked, label, toggle, classes }) => (
   <div className={classes.toggle}>
     <InputLabel className={classes.label}>{label}</InputLabel>
-    <Switch checked={checked} onChange={(e) => toggle(e.target.checked)} />
+    <Switch
+        classes={{
+          checked: classNames(classes.checkedThumb),
+          bar: classNames( {
+            [classes.checkedBar]: checked,
+          }),
+        }}
+        checked={checked}
+        onChange={(e) => toggle(e.target.checked)}
+    />
   </div>
 ));
 

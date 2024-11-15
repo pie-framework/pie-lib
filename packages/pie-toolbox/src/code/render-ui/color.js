@@ -22,6 +22,8 @@ export const defaults = {
   SECONDARY: pink.A400,
   SECONDARY_LIGHT: pink[200],
   SECONDARY_DARK: pink[900],
+  TERTIARY: '#146EB3',
+  TERTIARY_LIGHT: '#D0E2F0',
   BACKGROUND: 'rgba(255,255,255,0)',
   BACKGROUND_DARK: '#ECEDF1',
   // this is only used for multi-trait-rubric, we might want to use BACKGROUND_DARK instead
@@ -70,6 +72,9 @@ export const secondaryText = () => pv('secondary-text', 'text', defaults.TEXT);
 export const background = () => pv('background', defaults.BACKGROUND);
 export const backgroundDark = () => pv('background-dark', defaults.BACKGROUND_DARK);
 export const secondaryBackground = () => pv('secondary-background', defaults.SECONDARY_BACKGROUND);
+
+export const tertiary = () => pv('tertiary', defaults.TERTIARY);
+export const tertiaryLight = () => pv('tertiary-light', defaults.TERTIARY_LIGHT);
 
 export const border = () => pv('border', defaults.BORDER);
 export const borderLight = () => pv('border-light', defaults.BORDER_LIGHT);

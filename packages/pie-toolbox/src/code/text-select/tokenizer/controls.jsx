@@ -4,6 +4,8 @@ import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import { color } from '../../render-ui';
+import classNames from 'classnames';
 
 export class Controls extends React.Component {
   static propTypes = {
@@ -50,7 +52,18 @@ export class Controls extends React.Component {
           </Button>
         </div>
         <FormControlLabel
-          control={<Switch checked={setCorrectMode} onChange={onToggleCorrectMode} />}
+          control={
+          <Switch
+              classes={{
+                checked: classes.checkedThumb,
+                bar: classNames({
+                  [classes.checkedBar]: setCorrectMode,
+                }),
+              }}
+              checked={setCorrectMode} 
+              onChange={onToggleCorrectMode} 
+          />
+        }
           label="Set correct answers"
         />
       </div>
@@ -66,4 +79,10 @@ export default withStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
+  checkedThumb: {
+    color: `${color.tertiary()} !important`,
+  },
+  checkedBar: {
+    backgroundColor: `${color.tertiaryLight()} !important`,
+  }
 }))(Controls);

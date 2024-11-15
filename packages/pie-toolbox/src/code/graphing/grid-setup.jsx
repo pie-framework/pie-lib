@@ -310,14 +310,17 @@ const GridSetup = (props) => {
         <ExpansionPanelDetails>
           <div className={classes.content}>
             {includeAxesEnabled && (
-              <Toggle label="Include axes and labels?" toggle={onIncludeAxes} checked={includeAxes} />
+              <Toggle
+                  label="Include axes and labels?"
+                  toggle={onIncludeAxes}
+                  checked={includeAxes} />
             )}
             {standardGridEnabled && (
-              <Toggle
-                label="Constrain to standard coordinate grid?"
-                toggle={onStandardGridChanged}
-                checked={standardGrid}
-              />
+                <Toggle
+                  label="Constrain to standard coordinate grid?"
+                  toggle={onStandardGridChanged}
+                  checked={standardGrid}
+                />
             )}
             {includeAxes ? axesConfig : gridlinesConfig}
             {dimensionsEnabled && (

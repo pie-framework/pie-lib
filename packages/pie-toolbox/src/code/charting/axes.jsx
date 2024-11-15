@@ -272,6 +272,7 @@ export class TickComponent extends React.Component {
             style={{ pointerEvents: 'visible', overflow: 'visible' }}
           >
             <Checkbox
+              className={classes.customColor}
               style={{ position: 'fixed' }}
               checked={interactive}
               onChange={(e) => this.changeInteractive(index, e.target.checked)}
@@ -288,6 +289,7 @@ export class TickComponent extends React.Component {
             style={{ pointerEvents: 'visible', overflow: 'visible' }}
           >
             <Checkbox
+              className={classes.customColor}
               style={{ position: 'fixed' }}
               checked={editable}
               onChange={(e) => this.changeEditable(index, e.target.checked)}
@@ -511,6 +513,9 @@ const ChartAxes = withStyles(
     error: {
       fontSize: theme.typography.fontSize - 2,
       fill: theme.palette.error.main,
+    },
+    customColor: {
+      color: `${color.tertiary()} !important`
     },
   }),
   { withTheme: true },

@@ -5,8 +5,10 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import grey from '@material-ui/core/colors/grey';
+import { color } from '../render-ui';
 
 const Checkbox = ({ mini, checked, onChange, value, label, classes, error }) => (
+
   <FormControlLabel
     className={classNames(classes.mini)}
     classes={{
@@ -17,7 +19,13 @@ const Checkbox = ({ mini, checked, onChange, value, label, classes, error }) => 
         checked={checked}
         onChange={onChange}
         value={value}
-        className={classNames({ [classes.miniCheckbox]: mini, [classes.error]: error })}
+        className={classNames(
+            classes.customColor,
+            {
+              [classes.miniCheckbox]: mini,
+              [classes.error]: error,
+            }
+            )}
       />
     }
     label={label}
@@ -62,5 +70,8 @@ export default withStyles((theme) => ({
   },
   error: {
     color: theme.palette.error.main,
+  },
+  customColor: {
+    color: `${color.tertiary()} !important`
   },
 }))(Checkbox);

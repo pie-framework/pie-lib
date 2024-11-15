@@ -44,6 +44,12 @@ exports[`controls snapshot renders 1`] = `
     control={
       <WithStyles(Switch)
         checked={false}
+        classes={
+          Object {
+            "bar": "",
+            "checked": undefined,
+          }
+        }
         onChange={[MockFunction]}
       />
     }

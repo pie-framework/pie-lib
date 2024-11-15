@@ -6,6 +6,7 @@ import React from 'react';
 import Switch from '@material-ui/core/Switch';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
+import { color } from '../render-ui';
 
 const InputTypes = {
   classes: PropTypes.object.isRequired,
@@ -40,7 +41,7 @@ const RawInputCheckbox = (props) => {
   return (
     <InputContainer className={className} label={label}>
       <Checkbox
-        className={classNames(classes.checkboxRoot, error && classes.error)}
+        className={classNames(classes.checkboxRoot, classes.customColor, error && classes.error)}
         disabled={disabled}
         checked={checked}
         onChange={onChange}
@@ -58,7 +59,7 @@ const RawInputRadio = (props) => {
   return (
     <InputContainer className={className} label={label}>
       <Radio
-        className={classNames(classes.radioRoot, error && classes.error)}
+        className={classNames(classes.radioRoot, classes.customColor, error && classes.error)}
         disabled={disabled}
         checked={checked}
         onChange={onChange}
@@ -77,6 +78,9 @@ const InputCheckbox = withStyles((theme) => ({
   error: {
     color: theme.palette.error.main,
   },
+  customColor: {
+    color: `${color.tertiary()} !important`
+  },
 }))(RawInputCheckbox);
 
 const InputRadio = withStyles((theme) => ({
@@ -85,6 +89,9 @@ const InputRadio = withStyles((theme) => ({
   },
   error: {
     color: theme.palette.error.main,
+  },
+  customColor: {
+    color: `${color.tertiary()} !important`
   },
 }))(RawInputRadio);
 
