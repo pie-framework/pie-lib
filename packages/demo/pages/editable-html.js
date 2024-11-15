@@ -92,6 +92,16 @@ const inputOptions = [
     html:
       '<p>Solve:</p><p><math xmlns="http://www.w3.org/1998/Math/MathML"><mstack charalign="center" stackalign="right"><msrow><mn>6</mn><mo>,</mo><mn>057</mn></msrow><msrow><mo>-</mo><mn>4</mn><mo>,</mo><mn>859</mn></msrow><msline/><msrow/></mstack></math></p>',
   },
+  {
+    label: 'PD-4401',
+    html:
+      '<p><math xmlns="http://www.w3.org/1998/Math/MathML"><mo>(</mo><mo>-</mo><mn>1</mn><mo>,</mo><mo>&nbsp;</mo><mn>1</mn><mo>)</mo></math><br><img alt="The coordinate plane showing 2 lines intersecting at (-1, 1)." width="222" height="214" src="https://assets.pie-api.com/assets/830281a5-cabf-45a7-a778-4efd9d6ce63b/image/jpg/fc4ede78-5e5c-4696-9efc-ed4f58959380"></p>',
+  },
+  {
+    label: 'PD-4441',
+    html:
+      '<div>Given the piecewise-defined function:<br /><br />&#160;</div><div><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>y</mi><mo>=</mo><mfenced open="{" close=""><mtable columnalign="left"><mtr><mtd><mfrac><mn>1</mn><mn>2</mn></mfrac><msup><mi>x</mi><mn>2</mn></msup><mo>&#160;</mo><mtext>&#160;for&#160;</mtext><mi>x</mi><mo>&lt;</mo><mn>0</mn></mtd></mtr><mtr><mtd><mn>4</mn><mi>x</mi><mo>-</mo><mn>3</mn><mo>&#160;</mo><mtext>&#160;for&#160;</mtext><mn>0</mn><mo>&#8804;</mo><mi>x</mi><mo>&#8804;</mo><mn>2</mn><mspace linebreak="newline" /><mo>-</mo><msqrt><mi>x</mi><mo>-</mo><mn>2</mn></msqrt><mo>&#160;</mo><mtext>&#160;for&#160;</mtext><mi>x</mi><mo>&gt;</mo><mn>2</mn></mtd></mtr></mtable></mfenced></math></div><p><br /><br />Place<span class="relative-emphasis"> four </span>points on the coordinate grid to show the values of <span class="variable">y</span> when <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>x</mi><mo>=</mo><mo>-</mo><mn>2</mn></math>, <math xmlns="http://www.w3.org/1998/Math/MathML"><mn>0</mn></math>, <math xmlns="http://www.w3.org/1998/Math/MathML"><mn>1</mn></math>, and <math xmlns="http://www.w3.org/1998/Math/MathML"><mn>3</mn></math>.</p>',
+  },
 ];
 
 const html = inputOptions[8].html;

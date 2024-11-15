@@ -331,7 +331,7 @@ export const initializeMathJax = (callback) => {
         },
       },
       loader: {
-        load: ["input/mml", '[mml]/mml3'],
+        load: ["input/mml"],
         // I just added preLoad: () => {} to prevent the console error: "MathJax.loader.preLoad is not a function",
         //  which is being called because in math-rendering-accessible/render-math we're having this line:
         //  import * as mr from '../math-rendering';
