@@ -58,6 +58,7 @@ describe('Blank', () => {
 
   describe('updateDimensions', () => {
     let span;
+    let rootRef;
 
     const setSpanDimensions = (height, width) => {
       Object.defineProperty(span, 'offsetHeight', { value: height, configurable: true });
@@ -69,7 +70,10 @@ describe('Blank', () => {
       instance = wrapper.instance();
 
       span = document.createElement('span');
+      rootRef = document.createElement('span');
+
       instance.spanRef = span;
+      instance.rootRef = rootRef;
 
       Object.defineProperty(span, 'offsetHeight', { value: 0, configurable: true });
       Object.defineProperty(span, 'offsetWidth', { value: 0, configurable: true });
@@ -96,7 +100,7 @@ describe('Blank', () => {
       instance.updateDimensions();
 
       expect(instance.state).toEqual({
-        width: 0,
+        width: 54, // with padding it does exceed (30 + 24 > 50) so it's updating
         height: 0,
       });
     });
