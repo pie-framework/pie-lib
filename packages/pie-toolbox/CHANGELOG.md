@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.1.5...@pie-lib/pie-toolbox@2.2.0) (2024-11-15)
+
+
+### Features
+
+* adjusments for controls to support custom colors PD-4334 ([4596674](https://github.com/pie-framework/pie-lib/commit/45966749fa957f33291d84c21a384b11d2065d7d))
+* Restore accidentally deleted line PD-4334 ([a3dd1a5](https://github.com/pie-framework/pie-lib/commit/a3dd1a569291195d4f73b2c3adbcbdd7aefa4c62))
+* update snapshots PD-4334 ([12fe1b0](https://github.com/pie-framework/pie-lib/commit/12fe1b0f751ef3fabeb6fdeb3bc532ac14090b2a))
+* **checkbox,radio,toggle:** added custom class to change colors PD-4334 ([116393d](https://github.com/pie-framework/pie-lib/commit/116393d64fdd2abc71521e6e4b73d0782047c7fd))
+* **color:** added new tertiary theme - blue PD-4334 ([63bedff](https://github.com/pie-framework/pie-lib/commit/63bedfffaee5aa2da2f3e9aaadcd8fc38641ae48))
+* **color:** update snapshots PD-4334 ([c19c77f](https://github.com/pie-framework/pie-lib/commit/c19c77f70d66b360568cae7b8082fdc4b95c62f5))
+* **panel:** adjust panel to support custom colors for controls PD-4334 ([2130736](https://github.com/pie-framework/pie-lib/commit/213073613082af6b682e368e081fbef4c42ad392))
+* **toggle:** changes for toggle to accept custom colors PD-4334 ([1d87fa0](https://github.com/pie-framework/pie-lib/commit/1d87fa03eb779ab145c642759eb94da0475731bb))
+
+
+
+
+
 ## [2.1.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.1.4...@pie-lib/pie-toolbox@2.1.5) (2024-11-15)
 
 
