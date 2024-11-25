@@ -3059,11 +3059,12 @@
     classnames "^2.2.5"
     prop-types "^15.6.0"
 
-"@vx/clip-path@^0.0.189":
-  version "0.0.189"
-  resolved "https://registry.yarnpkg.com/@vx/clip-path/-/clip-path-0.0.189.tgz#c482bc5f02169109a8f6687bb20c1f8f326fded7"
-  integrity sha512-P/xtwINTEwBWKNZwttHieeGKTukNADx0hNzEcpsNt2EU/6ax7niTjsZOLNPcNV080StL4GCuLevrc3rMdJP+Ew==
+"@vx/clip-path@^0.0.199":
+  version "0.0.199"
+  resolved "https://registry.yarnpkg.com/@vx/clip-path/-/clip-path-0.0.199.tgz#fd0ce3ff0a7ee4d927a6657b5095011032fc1ed3"
+  integrity sha512-G1kgBe0fxt3UdgOOrmDBVBAIs5tSd2wYPhf3bgE9X09UbANYRCVa3CeROoUSm+4mcY7l2ZDl8KY+ciLJqOYLYw==
   dependencies:
+    "@types/react" "*"
     prop-types "^15.5.10"
 
 "@vx/curve@0.0.182":

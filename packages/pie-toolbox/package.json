@@ -16,7 +16,7 @@
     "@pie-framework/mathquill": "1.1.4",
     "@pie-framework/parse-english": "^1.0.0",
     "@vx/axis": "^0.0.183",
-    "@vx/clip-path": "^0.0.189",
+    "@vx/clip-path": "^0.0.199",
     "@vx/event": "^0.0.182",
     "@vx/grid": "^0.0.183",
     "@vx/group": "^0.0.183",
