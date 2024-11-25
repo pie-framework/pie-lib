@@ -14,10 +14,12 @@ class UiLayout extends AppendCSSRules {
       names: PropTypes.arrayOf(PropTypes.string),
       rules: PropTypes.string,
     }),
+    fontSizeFactor: PropTypes.number,
   };
 
   static defaultProps = {
     extraCSSRules: {},
+    fontSizeFactor: 1,
   };
 
   constructor(props) {
@@ -25,13 +27,20 @@ class UiLayout extends AppendCSSRules {
     this.classesSheet = document.createElement('style');
   }
 
+  computeStyle(fontSizeFactor) {
+    // get the standard fontSize  of the page (rootFontSize)
+    const rootFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
+    return { fontSize: `${rootFontSize * fontSizeFactor}px` };
+  }
+
   render() {
-    const { children, className, classes, ...rest } = this.props;
+    const { children, className, classes, fontSizeFactor, ...rest } = this.props;
+
     const finalClass = classNames(className, classes.extraCSSRules);
     const restProps = omit(rest, 'extraCSSRules');
 
     return (
-      <div className={finalClass} {...restProps}>
+      <div className={finalClass} {...restProps} style={this.computeStyle(fontSizeFactor)}>
         {children}
       </div>
     );
