@@ -29,7 +29,6 @@ export default {
       lineHeight: '25px',
       verticalAlign: 'middle',
       color: `var(--correct-answer-toggle-label-color,  ${color.text()})`,
-      fontSize: '15px',
       fontWeight: 'normal',
     },
     noTouch,
