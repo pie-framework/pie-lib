@@ -13,14 +13,23 @@ export class DroppablePlaceholder extends React.Component {
     isOver: PropTypes.bool,
     children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
     disabled: PropTypes.bool,
+    isVerticalPool: PropTypes.bool,
+    minHeight: PropTypes.number,
   };
 
   render() {
-    const { children, connectDropTarget, isOver, disabled, classes } = this.props;
+    const { children, connectDropTarget, isOver, disabled, classes, isVerticalPool, minHeight } = this.props;
 
     return connectDropTarget(
       <div style={preventInteractionStyle}>
-        <PlaceHolder disabled={disabled} isOver={isOver} choiceBoard={true} className={classes}>
+        <PlaceHolder
+          disabled={disabled}
+          isOver={isOver}
+          choiceBoard={true}
+          className={classes}
+          isVerticalPool={isVerticalPool}
+          minHeight={minHeight}
+        >
           {children}
         </PlaceHolder>
       </div>,

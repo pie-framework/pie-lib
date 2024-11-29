@@ -24,7 +24,6 @@ const styleSheet = {
     backgroundColor: `var(--feedback-bg-color, ${color.disabled()})`,
     borderRadius: '4px',
     fontFamily: '"Roboto", "Noto", sans-serif',
-    fontSize: '12px',
     lineHeight: '25px',
     margin: '0px',
     padding: '10px',

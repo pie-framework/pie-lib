@@ -13,14 +13,20 @@ class PreviewLayout extends React.Component {
       names: PropTypes.arrayOf(PropTypes.string),
       rules: PropTypes.string,
     }),
+    fontSizeFactor: PropTypes.number,
   };
 
   render() {
-    const { children, classes, ariaLabel, role, extraCSSRules } = this.props;
+    const { children, classes, ariaLabel, role, extraCSSRules, fontSizeFactor } = this.props;
     const accessibility = ariaLabel ? { 'aria-label': ariaLabel, role } : {};
 
     return (
-      <UiLayout className={classes.container} {...accessibility} extraCSSRules={extraCSSRules}>
+      <UiLayout
+        className={classes.container}
+        {...accessibility}
+        extraCSSRules={extraCSSRules}
+        fontSizeFactor={fontSizeFactor}
+      >
         {children}
       </UiLayout>
     );
