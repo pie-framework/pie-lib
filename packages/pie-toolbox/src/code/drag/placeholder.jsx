@@ -6,13 +6,26 @@ import grey from '@material-ui/core/colors/grey';
 import { color } from '../render-ui';
 
 export const PlaceHolder = (props) => {
-  const { children, classes, className, isOver, type, grid, disabled, choiceBoard, isCategorize } = props;
+  const {
+    children,
+    classes,
+    className,
+    isOver,
+    type,
+    grid,
+    disabled,
+    choiceBoard,
+    isCategorize,
+    isVerticalPool,
+    minHeight,
+  } = props;
+
   const names = classNames(
-      classes.placeholder,
-      disabled && classes.disabled,
-      isOver && classes.over,
-      classes[type],
-      className,
+    classes.placeholder,
+    disabled && classes.disabled,
+    isOver && classes.over,
+    classes[type],
+    className,
   );
 
   const style = {};
@@ -39,15 +52,16 @@ export const PlaceHolder = (props) => {
   const boardStyle = isCategorize ? classes.categorizeBoard : classes.board;
 
   return (
-      <div
-          style={style}
-          className={classNames(
-              classes.noSelectStyles,
-              choiceBoard ? boardStyle : names
-          )}
-      >
-        {children}
-      </div>
+    <div
+      style={{ ...style, minHeight: minHeight }}
+      className={classNames(
+        classes.noSelectStyles,
+        choiceBoard ? boardStyle : names,
+        isVerticalPool && classes.verticalPool,
+      )}
+    >
+      {children}
+    </div>
   );
 };
 
@@ -67,6 +81,8 @@ PlaceHolder.propTypes = {
   type: PropTypes.string,
   disabled: PropTypes.bool,
   isCategorize: PropTypes.bool,
+  isVerticalPool: PropTypes.bool,
+  minHeight: PropTypes.number,
 };
 
 const styles = (theme) => ({
@@ -119,6 +135,10 @@ const styles = (theme) => ({
     overflow: 'hidden',
     touchAction: 'none',
     backgroundColor: color.backgroundDark(),
+  },
+  verticalPool: {
+    display: 'flex',
+    flexFlow: 'column wrap',
   },
 });
 
