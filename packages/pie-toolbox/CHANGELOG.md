@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.2.0...@pie-lib/pie-toolbox@2.3.0) (2024-11-29)
+
+
+### Bug Fixes
+
+* tests ([13b1b98](https://github.com/pie-framework/pie-lib/commit/13b1b988bad1b218b2e5720a828d4e35239c6081))
+
+
+### Features
+
+* **drag:** for ICA choice pool, add isVertical and minHeight props PD-4387 ([6521750](https://github.com/pie-framework/pie-lib/commit/65217501843e9d53e2d6d6bbc61ed02f8328a6a7))
+* **render-ui:** create testfile for ui-layout PD-4388 ([036b837](https://github.com/pie-framework/pie-lib/commit/036b837a1237fc5f3b7aa9d6190ae9a411a410af))
+* **render-ui): introdu fontSizeFactor for ui layout(src port:** PD-4388 ([2f9eea0](https://github.com/pie-framework/pie-lib/commit/2f9eea07d3cf2962974264b50b6f489778403ae9))
+
+
+
+
+
 # [2.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.1.5...@pie-lib/pie-toolbox@2.2.0) (2024-11-15)
 
 
