@@ -1,3 +1,4 @@
+import grey from '@material-ui/core/colors/grey';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
@@ -8,6 +9,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 import classnames from 'classnames';
 import { color } from '../../render-ui';
+
 const log = debug('pie-lib:mask-markup:blank');
 export const DRAG_TYPE = 'MaskBlank';
 
@@ -58,6 +60,10 @@ const useStyles = withStyles(() => ({
     whiteSpace: 'nowrap',
     overflow: 'hidden',
   },
+  parentOver: {
+    border: `1px solid ${grey[500]}`,
+    backgroundColor: `${grey[300]}`,
+  },
 }));
 
 export class BlankContent extends React.Component {
@@ -98,7 +104,7 @@ export class BlankContent extends React.Component {
   }
 
   updateDimensions() {
-    if(this.spanRef && this.rootRef) {
+    if (this.spanRef && this.rootRef) {
       // Temporarily set rootRef width to 'auto' for natural measurement
       this.rootRef.style.width = 'auto';
 
@@ -106,7 +112,7 @@ export class BlankContent extends React.Component {
       const width = this.spanRef.offsetWidth || 0;
       const height = this.spanRef.offsetHeight || 0;
 
-      const widthWithPadding = width + 24;  // 12px padding on each side
+      const widthWithPadding = width + 24; // 12px padding on each side
 
       const responseAreaWidth = parseFloat(this.props.emptyResponseAreaWidth) || 0;
       const responseAreaHeight = parseFloat(this.props.emptyResponseAreaHeight) || 0;
@@ -138,8 +144,12 @@ export class BlankContent extends React.Component {
 
   getRootDimensions() {
     // Handle potential non-numeric values
-    const responseAreaWidth = !isNaN(parseFloat(this.props.emptyResponseAreaWidth)) ? parseFloat(this.props.emptyResponseAreaWidth) : 0;
-    const responseAreaHeight = !isNaN(parseFloat(this.props.emptyResponseAreaHeight)) ? parseFloat(this.props.emptyResponseAreaHeight) : 0;
+    const responseAreaWidth = !isNaN(parseFloat(this.props.emptyResponseAreaWidth))
+      ? parseFloat(this.props.emptyResponseAreaWidth)
+      : 0;
+    const responseAreaHeight = !isNaN(parseFloat(this.props.emptyResponseAreaHeight))
+      ? parseFloat(this.props.emptyResponseAreaHeight)
+      : 0;
 
     const rootStyle = {
       height: this.state.height || responseAreaHeight,
@@ -204,16 +214,13 @@ export class BlankContent extends React.Component {
             )}
           </React.Fragment>
         }
-        className={classnames(classes.chip, isOver && classes.over, {
+        className={classnames(classes.chip, isOver && classes.over, isOver && classes.parentOver, {
           [classes.correct]: correct !== undefined && correct,
           [classes.incorrect]: correct !== undefined && !correct,
         })}
         variant={disabled ? 'outlined' : undefined}
         style={{
           ...this.getRootDimensions(),
-        }}
-        classes={{
-          label: isOver && classes.over,
         }}
       />
     );
