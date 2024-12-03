@@ -36,7 +36,7 @@ class UiLayout extends AppendCSSRules {
   render() {
     const { children, className, classes, fontSizeFactor, ...rest } = this.props;
 
-    const finalClass = classNames(className, classes.extraCSSRules);
+    const finalClass = classNames(className, classes.extraCSSRules, classes.uiLayoutContainer);
     const restProps = omit(rest, 'extraCSSRules');
 
     return (
@@ -49,6 +49,12 @@ class UiLayout extends AppendCSSRules {
 
 const styles = {
   extraCSSRules: {},
+  // need this because some browsers set their own style on table
+  uiLayoutContainer: {
+    '& table, th, td': {
+      fontSize: 'inherit' /* Ensure table elements inherit font size */,
+    },
+  },
 };
 
 const Styled = withStyles(styles)(UiLayout);
