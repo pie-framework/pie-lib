@@ -80,6 +80,8 @@ export const BlankContent = withStyles((theme) => ({
     // If interactions with the image in the token will be requested we should handle only the context Menu.
     pointerEvents: 'none',
     borderRadius: '3px',
+    paddingTop: '12px',
+    paddingBottom: '12px',
   },
   chipLabel: {
     whiteSpace: 'pre-wrap',
@@ -89,7 +91,7 @@ export const BlankContent = withStyles((theme) => ({
     },
   },
   disabled: {
-    opacity: 0.6
+    opacity: 0.6,
   },
 }))(BlankContentComp);
 

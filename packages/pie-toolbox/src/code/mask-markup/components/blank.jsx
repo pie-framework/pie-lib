@@ -98,7 +98,7 @@ export class BlankContent extends React.Component {
   }
 
   updateDimensions() {
-    if(this.spanRef && this.rootRef) {
+    if (this.spanRef && this.rootRef) {
       // Temporarily set rootRef width to 'auto' for natural measurement
       this.rootRef.style.width = 'auto';
 
@@ -106,13 +106,14 @@ export class BlankContent extends React.Component {
       const width = this.spanRef.offsetWidth || 0;
       const height = this.spanRef.offsetHeight || 0;
 
-      const widthWithPadding = width + 24;  // 12px padding on each side
+      const widthWithPadding = width + 24; // 12px padding on each side
+      const heightWithPadding = height + 24; // 12px padding on each side
 
       const responseAreaWidth = parseFloat(this.props.emptyResponseAreaWidth) || 0;
       const responseAreaHeight = parseFloat(this.props.emptyResponseAreaHeight) || 0;
 
       const adjustedWidth = widthWithPadding <= responseAreaWidth ? responseAreaWidth : widthWithPadding;
-      const adjustedHeight = height <= responseAreaHeight ? responseAreaHeight : height;
+      const adjustedHeight = heightWithPadding <= responseAreaHeight ? responseAreaHeight : heightWithPadding;
 
       this.setState((prevState) => ({
         width: adjustedWidth > responseAreaWidth ? adjustedWidth : prevState.width,
@@ -138,8 +139,12 @@ export class BlankContent extends React.Component {
 
   getRootDimensions() {
     // Handle potential non-numeric values
-    const responseAreaWidth = !isNaN(parseFloat(this.props.emptyResponseAreaWidth)) ? parseFloat(this.props.emptyResponseAreaWidth) : 0;
-    const responseAreaHeight = !isNaN(parseFloat(this.props.emptyResponseAreaHeight)) ? parseFloat(this.props.emptyResponseAreaHeight) : 0;
+    const responseAreaWidth = !isNaN(parseFloat(this.props.emptyResponseAreaWidth))
+      ? parseFloat(this.props.emptyResponseAreaWidth)
+      : 0;
+    const responseAreaHeight = !isNaN(parseFloat(this.props.emptyResponseAreaHeight))
+      ? parseFloat(this.props.emptyResponseAreaHeight)
+      : 0;
 
     const rootStyle = {
       height: this.state.height || responseAreaHeight,

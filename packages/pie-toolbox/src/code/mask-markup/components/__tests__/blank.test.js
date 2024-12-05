@@ -86,7 +86,7 @@ describe('Blank', () => {
 
       expect(instance.state).toEqual({
         width: 74,
-        height: 50,
+        height: 74,
       });
     });
 
@@ -101,7 +101,7 @@ describe('Blank', () => {
 
       expect(instance.state).toEqual({
         width: 54, // with padding it does exceed (30 + 24 > 50) so it's updating
-        height: 0,
+        height: 54,
       });
     });
 
@@ -116,7 +116,7 @@ describe('Blank', () => {
 
       expect(instance.state).toEqual({
         width: 74,
-        height: 50,
+        height: 74,
       });
     });
   });
