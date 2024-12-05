@@ -113,12 +113,13 @@ export class BlankContent extends React.Component {
       const height = this.spanRef.offsetHeight || 0;
 
       const widthWithPadding = width + 24; // 12px padding on each side
+      const heightWithPadding = height + 24; // 12px padding on each side
 
       const responseAreaWidth = parseFloat(this.props.emptyResponseAreaWidth) || 0;
       const responseAreaHeight = parseFloat(this.props.emptyResponseAreaHeight) || 0;
 
       const adjustedWidth = widthWithPadding <= responseAreaWidth ? responseAreaWidth : widthWithPadding;
-      const adjustedHeight = height <= responseAreaHeight ? responseAreaHeight : height;
+      const adjustedHeight = heightWithPadding <= responseAreaHeight ? responseAreaHeight : heightWithPadding;
 
       this.setState((prevState) => ({
         width: adjustedWidth > responseAreaWidth ? adjustedWidth : prevState.width,
