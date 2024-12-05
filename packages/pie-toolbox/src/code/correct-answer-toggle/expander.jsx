@@ -34,14 +34,16 @@ export default withStyles(() => ({
   enter: {
     transition,
     opacity: 1,
-    height: '25px',
+    height: 'auto',
     width: 'auto',
     visibility: 'visible',
+    minHeight: '25px',
   },
   enterDone: {
-    height: '25px',
+    height: 'auto',
     visibility: 'visible',
     width: 'auto',
+    minHeight: '25px',
   },
   exit: {
     transition,
