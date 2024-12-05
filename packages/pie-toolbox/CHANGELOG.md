@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.3.0...@pie-lib/pie-toolbox@2.4.0) (2024-12-05)
+
+
+### Bug Fixes
+
+* **render-ui, anser-toggle:** avoid table to be overwritten by browsers fontsize, adjust correct answer style to fit new fontsize PD-4388 ([8b72778](https://github.com/pie-framework/pie-lib/commit/8b72778971af0878e0230a84e940f1fd496bc643))
+* made sure spans are handled as its one entity and also keeps attributes [PD-4165] ([d1f62ed](https://github.com/pie-framework/pie-lib/commit/d1f62ed3922da4efa498f8039a81d5e39ea46e8c))
+* **blank drag-in-the-blank:** Remove default <p> margins for consistent spacing across wrapped content in blank drag-in-the-blank for optimal space PD-4394 ([ac6bbb9](https://github.com/pie-framework/pie-lib/commit/ac6bbb9affdaf845c084c0849191df3e4e55705a))
+
+
+### Features
+
+* **mask-markup:** add top and bottom padding for element PD-4393 ([75de76f](https://github.com/pie-framework/pie-lib/commit/75de76fd1a5e07e80f4839d3f7540d4c6d4a4c4e))
+* **mask-markup:** change target droppable area on hover PD-4550 ([40391f7](https://github.com/pie-framework/pie-lib/commit/40391f7a4c1753333d1c40aa66c9491f632ea78e))
+
+
+
+
+
 # [2.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.2.0...@pie-lib/pie-toolbox@2.3.0) (2024-11-29)
 
 
