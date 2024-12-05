@@ -315,7 +315,7 @@ const RULES = [
   tableSerialization,
   responseAreaSerialization,
   TEXT_RULE,
-  // inlines,
+  inlines,
   blocks,
   marks,
 ];
@@ -339,7 +339,11 @@ function defaultParseHtml(html) {
   var n = textNodes.nextNode();
 
   while (n) {
-    if (allWhitespace(n) || n.nodeValue === '\u200B') {
+    const isWhiteSpace = allWhitespace(n);
+    const isNotNearMarkup =
+      !MARK_TAGS[n.nextSibling?.tagName?.toLowerCase()] && !MARK_TAGS[n.previousSibling?.tagName?.toLowerCase()];
+
+    if ((isWhiteSpace && isNotNearMarkup) || n.nodeValue === '\u200B') {
       n.parentNode.removeChild(n);
     }
     n = textNodes.nextNode();
