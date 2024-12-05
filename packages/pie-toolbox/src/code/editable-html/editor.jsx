@@ -741,6 +741,7 @@ export class Editor extends React.Component {
       const shouldFocusEditor = !isKeypadInteractionActive && !isTouchDevice;
 
       if (shouldFocusEditor) {
+        change?.moveToEndOfBlock();
         change?.focus();
       }
 
