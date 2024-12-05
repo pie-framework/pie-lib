@@ -1,3 +1,4 @@
+import grey from '@material-ui/core/colors/grey';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
@@ -8,6 +9,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 import classnames from 'classnames';
 import { color } from '../../render-ui';
+
 const log = debug('pie-lib:mask-markup:blank');
 export const DRAG_TYPE = 'MaskBlank';
 
@@ -57,6 +59,10 @@ const useStyles = withStyles(() => ({
   over: {
     whiteSpace: 'nowrap',
     overflow: 'hidden',
+  },
+  parentOver: {
+    border: `1px solid ${grey[500]}`,
+    backgroundColor: `${grey[300]}`,
   },
 }));
 
@@ -209,16 +215,13 @@ export class BlankContent extends React.Component {
             )}
           </React.Fragment>
         }
-        className={classnames(classes.chip, isOver && classes.over, {
+        className={classnames(classes.chip, isOver && classes.over, isOver && classes.parentOver, {
           [classes.correct]: correct !== undefined && correct,
           [classes.incorrect]: correct !== undefined && !correct,
         })}
         variant={disabled ? 'outlined' : undefined}
         style={{
           ...this.getRootDimensions(),
-        }}
-        classes={{
-          label: isOver && classes.over,
         }}
       />
     );
