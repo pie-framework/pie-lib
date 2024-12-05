@@ -25,8 +25,7 @@ export default {
       minWidth: '140px',
       // eslint-disable-next-line
       fontFamily: "'Roboto', sans-serif",
-      height: '25px',
-      lineHeight: '25px',
+      alignSelf: 'center',
       verticalAlign: 'middle',
       color: `var(--correct-answer-toggle-label-color,  ${color.text()})`,
       fontWeight: 'normal',
