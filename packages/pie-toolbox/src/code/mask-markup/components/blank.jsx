@@ -40,6 +40,13 @@ const useStyles = withStyles(() => ({
       display: 'block',
       padding: '2px 0',
     },
+    // Remove default <p> margins to ensure consistent spacing across all wrapped content (p, span, div, math)
+    // Padding for top and bottom will instead be controlled by the container for consistent layout
+    // Ensures consistent behavior with pie-api-browser, where marginTop is already removed by a Bootstrap stylesheet
+    '& p': {
+      marginTop: '0',
+      marginBottom: '0'
+    }
   },
   hidden: {
     color: 'transparent',
@@ -112,8 +119,9 @@ export class BlankContent extends React.Component {
       const width = this.spanRef.offsetWidth || 0;
       const height = this.spanRef.offsetHeight || 0;
 
-      const widthWithPadding = width + 24; // 12px padding on each side
-      const heightWithPadding = height + 24; // 12px padding on each side
+
+      const widthWithPadding = width + 24;  // 12px padding on each side
+      const heightWithPadding = height + 24; // 12px padding on top and bottom
 
       const responseAreaWidth = parseFloat(this.props.emptyResponseAreaWidth) || 0;
       const responseAreaHeight = parseFloat(this.props.emptyResponseAreaHeight) || 0;

@@ -100,8 +100,8 @@ describe('Blank', () => {
       instance.updateDimensions();
 
       expect(instance.state).toEqual({
-        width: 54, // with padding it does exceed (30 + 24 > 50) so it's updating
-        height: 54,
+        width: 54,  // with padding it does exceed (30 + 24 > 50) so it's updating
+        height: 54, // with padding it does exceed (30 + 24 > 50) so it's updating
       });
     });
 
