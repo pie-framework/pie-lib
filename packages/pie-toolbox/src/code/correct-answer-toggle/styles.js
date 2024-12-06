@@ -39,6 +39,8 @@ export default {
   iconHolder: {
     width: '25px',
     marginRight: '5px',
+    display: 'flex',
+    alignItems: 'center',
   },
   enter: {
     opacity: '0',
