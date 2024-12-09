@@ -99,9 +99,10 @@ const PreviewComponent = () => {
     (event) => {
       if (event.touches.length > 0) {
         const touch = event.touches[0];
+        const touchOffset = 1;
         setTouchPosition({
-          x: touch.clientX / zoomLevel,
-          y: touch.clientY / zoomLevel,
+          x: (touch.clientX + touchOffset) / zoomLevel,
+          y: (touch.clientY + touchOffset) / zoomLevel,
         });
       }
     },
