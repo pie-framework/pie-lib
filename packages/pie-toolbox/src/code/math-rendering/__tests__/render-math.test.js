@@ -1,7 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import renderMath, { fixMathElement } from '../render-math';
-import { mathjax } from 'mathjax-full/js/mathjax';
 import _ from 'lodash';
 
 jest.mock(
@@ -15,6 +14,10 @@ jest.mock(
       typeset: jest.fn().mockReturnThis(),
       updateDocument: jest.fn().mockReturnThis(),
       clear: jest.fn().mockReturnThis(),
+      handlers: {
+        handlesDocument: jest.fn().mockReturnThis(),
+      },
+      handleRetriesFor: jest.fn().mockImplementation((callback) => callback()),
     },
   }),
   {
@@ -22,7 +25,6 @@ jest.mock(
   },
 );
 
-//jest.fn().mockReturnValue({ setMmlFactory: jest.fn() })
 jest.mock('mathjax-full/js/input/mathml', () => {
   const mock = jest.fn().mockReturnThis();
   mock.setMmlFactory = jest.fn();
@@ -43,6 +45,56 @@ jest.mock('mathjax-full/js/core/MmlTree/MmlFactory', () => {
     MmlFactory: () => instance,
   };
 });
+
+const mockMathInstance = {
+  document: jest.fn().mockReturnThis(),
+  findMath: jest.fn().mockReturnThis(),
+  compile: jest.fn().mockReturnThis(),
+  enrich: jest.fn().mockReturnThis(),
+  addMenu: jest.fn().mockReturnThis(),
+  attachSpeech: jest.fn().mockReturnThis(),
+  assistiveMml: jest.fn().mockReturnThis(),
+  getMetrics: jest.fn().mockReturnThis(),
+  typeset: jest.fn().mockReturnThis(),
+  updateDocument: jest.fn().mockReturnValue({
+    math: {
+      list: undefined,
+    },
+    clear: jest.fn().mockReturnThis(),
+  }),
+  clear: jest.fn().mockReturnThis(),
+  handlers: {
+    handlesDocument: jest.fn().mockReturnThis(),
+  },
+  handleRetriesFor: jest.fn().mockImplementation((callback) => callback()),
+};
+
+const mockHtml = {
+  findMath: jest.fn().mockReturnValue(mockMathInstance),
+};
+
+const mockEnrichHandlerInstance = {
+  create: jest.fn().mockImplementation(() => mockHtml),
+};
+
+jest.mock('mathjax-full/js/a11y/semantic-enrich', () => {
+  return {
+    EnrichHandler: () => mockEnrichHandlerInstance,
+  };
+});
+
+jest.mock('mathjax-full/js/a11y/assistive-mml', () => {
+  return {
+    AssistiveMmlHandler: () => {},
+  };
+});
+
+jest.mock('mathjax-full/js/ui/menu/MenuHandler', () => {
+  return {
+    MenuHandler: () => {},
+  };
+});
+
 jest.mock('mathjax-full/js/output/chtml', () => ({
   CHTML: jest.fn(),
 }));
@@ -60,17 +112,20 @@ jest.mock('mathjax-full/js/core/MmlTree/SerializedMmlVisitor', () => ({
 }));
 
 describe('render-math', () => {
-  it('calls mathjax.document once', () => {
+  it('calls classFactory.create once', () => {
     const div = document.createElement('div');
+
     _.times(10).forEach((i) => renderMath(div));
 
-    expect(mathjax.document).toHaveBeenCalledTimes(1);
+    expect(mockEnrichHandlerInstance.create).toHaveBeenCalledTimes(1);
   });
+
   it('calls MathJax render', () => {
     const div = document.createElement('div');
+
     renderMath(div);
-    expect(mathjax.document).toHaveBeenCalledTimes(1);
-    expect(mathjax.findMath).toHaveBeenCalledWith({ elements: [div] });
+    expect(mockEnrichHandlerInstance.create).toHaveBeenCalledTimes(1);
+    expect(mockHtml.findMath).toHaveBeenCalledWith({ elements: [div] });
   });
 
   it('call render math for an array of elements', () => {
@@ -79,8 +134,8 @@ describe('render-math', () => {
 
     renderMath([divOne, divTwo]);
 
-    expect(mathjax.document).toHaveBeenCalledTimes(1);
-    expect(mathjax.findMath).toHaveBeenCalledWith({
+    expect(mockEnrichHandlerInstance.create).toHaveBeenCalledTimes(1);
+    expect(mockHtml.findMath).toHaveBeenCalledWith({
       elements: [divOne, divTwo],
     });
   });
