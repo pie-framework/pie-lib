@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.4.0...@pie-lib/pie-toolbox@2.4.1) (2024-12-10)
+
+
+### Bug Fixes
+
+* **correct-answer-toggle:** add alignemnet to toggle PD-4388 ([cceda41](https://github.com/pie-framework/pie-lib/commit/cceda41a5a8d78c248b3865b9ec7b3bfbe7f5555))
+* **drag:** Fix touch position handling with zoom adjustment and offset PD-4548 ([9a66ced](https://github.com/pie-framework/pie-lib/commit/9a66cedc143830fed2166766205f1f956c8c3272))
+
+
+
+
+
 # [2.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.3.0...@pie-lib/pie-toolbox@2.4.0) (2024-12-05)
 
 
