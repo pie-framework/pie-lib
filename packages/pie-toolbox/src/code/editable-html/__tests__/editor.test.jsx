@@ -224,7 +224,7 @@ describe('buildSizeStyle', () => {
     );
   };
 
-  it('builds width', () => {
+  it('builds width with px', () => {
     const w = wrapper({ width: 100 });
     expect(w.instance().buildSizeStyle()).toEqual({
       width: '100px',
@@ -274,10 +274,20 @@ describe('buildSizeStyle', () => {
     });
   });
 
-  it('builds width', () => {
-    const w = wrapper({ width: 100 });
+  it('builds width with calc()', () => {
+    const w = wrapper({ width: 'calc(10ch + 42px)' });
     expect(w.instance().buildSizeStyle()).toEqual({
-      width: '100px',
+      width: 'calc(10ch + 42px)',
+      height: undefined,
+      minHeight: undefined,
+      maxHeight: undefined,
+    });
+  });
+
+  it('builds width with ch', () => {
+    const w = wrapper({ width: '9ch' });
+    expect(w.instance().buildSizeStyle()).toEqual({
+      width: '9ch',
       height: undefined,
       minHeight: undefined,
       maxHeight: undefined,
