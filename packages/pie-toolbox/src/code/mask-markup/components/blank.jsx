@@ -82,13 +82,42 @@ export class BlankContent extends React.Component {
     };
   }
 
-  componentDidMount() {
+  handleImageLoad = () => {
+    this.updateDimensions();
+  };
+
+  handleMathRendering = (element) => {
+    if (window.MathJax) {
+      return window.MathJax.startup.promise
+          .then(() => {
+            return window.MathJax.typesetPromise([element]);
+          })
+          .then(() => {
+            this.updateDimensions();
+          })
+          .catch((error) => {
+            console.error("MathJax rendering error:", error);
+          });
+    } else {
+      console.error("MathJax is not available.");
+    }
+  };
+
+  handleElements() {
     const imageElement = this.spanRef?.querySelector('img');
+    const mathElements = this.spanRef?.querySelector('math');
+
     if (imageElement) {
       imageElement.onload = this.handleImageLoad;
+    } else if (mathElements) {
+      this.handleMathRendering(this.rootRef);
     } else {
       this.updateDimensions();
     }
+  }
+
+  componentDidMount() {
+    this.handleElements();
   }
 
   componentDidUpdate(prevProps) {
@@ -104,9 +133,7 @@ export class BlankContent extends React.Component {
         });
         return;
       }
-      setTimeout(() => {
-        this.updateDimensions();
-      }, 300);
+      this.handleElements();
     }
   }
 
@@ -118,7 +145,6 @@ export class BlankContent extends React.Component {
       // Get the natural dimensions of the content
       const width = this.spanRef.offsetWidth || 0;
       const height = this.spanRef.offsetHeight || 0;
-
 
       const widthWithPadding = width + 24;  // 12px padding on each side
       const heightWithPadding = height + 24; // 12px padding on top and bottom
@@ -146,10 +172,6 @@ export class BlankContent extends React.Component {
       }
     });
   }
-
-  handleImageLoad = () => {
-    this.updateDimensions();
-  };
 
   getRootDimensions() {
     // Handle potential non-numeric values
