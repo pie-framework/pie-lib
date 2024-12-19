@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.4.1...@pie-lib/pie-toolbox@2.5.0) (2024-12-19)
+
+
+### Bug Fixes
+
+* **blank:** Added margin for response areas in student view PD-4588 ([c7fd69e](https://github.com/pie-framework/pie-lib/commit/c7fd69e6c98b78138097d6bf8198fa7c6f302e14))
+* **ECR:** enhance valueToSize in editor to handle calc expressions and ch units PD-4618 ([6bc6c7e](https://github.com/pie-framework/pie-lib/commit/6bc6c7eb683389c3c004f5a7ba4a21cdab6f2a16))
+* **editable-html:** Fix focus moving to start after typing Spanish or special characters PD-4210 ([0c82b43](https://github.com/pie-framework/pie-lib/commit/0c82b435597f858c6a2504da07b2a289bff4f4da))
+* **graphing:** avoid renderinf empty label when correct respose without label provided PD-4362 ([7d510b5](https://github.com/pie-framework/pie-lib/commit/7d510b5a5027a0c3111443c1510ff118fb1735ac))
+
+
+### Features
+
+* **translator:** add text for min/max selections PD-3843 PD-4518 ([0a3fea2](https://github.com/pie-framework/pie-lib/commit/0a3fea2bbb0bb3d25afb46b9f244b42f3d8afc60))
+
+
+
+
+
 ## [2.4.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.4.0...@pie-lib/pie-toolbox@2.4.1) (2024-12-10)
 
 
