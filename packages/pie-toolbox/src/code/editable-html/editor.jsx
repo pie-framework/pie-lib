@@ -639,7 +639,7 @@ export class Editor extends React.Component {
       this.doneButtonRef && relatedTarget?.closest(`[class*="${this.doneButtonRef.current?.className}"]`);
 
     // Skip onBlur handling if relatedTarget is a button from the KeyPad characters
-    this.skipBlurHandling = this.keypadInteractionDetected ? true : false;
+    this.skipBlurHandling = this.keypadInteractionDetected && relatedTarget !== null;
 
     if (toolbarElement && !isRawDoneButton && !this.state.focusToolbar) {
       this.setState({
@@ -653,6 +653,7 @@ export class Editor extends React.Component {
 
     return new Promise((resolve) => {
       if (!this.skipBlurHandling) {
+        this.setKeypadInteraction(false);
         this.setState(
           { preBlurValue: this.state.value, focusedNode: !node ? null : node },
           this.handleBlur.bind(this, resolve),
@@ -737,15 +738,10 @@ export class Editor extends React.Component {
       this.props.onFocus();
 
       // Added for accessibility: Ensures the editor gains focus when tabbed to for improved keyboard navigation
-      const isKeypadInteractionActive = this.keypadInteractionDetected;
-      const shouldFocusEditor = !isKeypadInteractionActive && !isTouchDevice;
+      const shouldFocusEditor = !this.keypadInteractionDetected && !isTouchDevice;
 
       if (shouldFocusEditor) {
         change?.focus();
-      }
-
-      if (isKeypadInteractionActive) {
-        this.setKeypadInteraction(false);
       }
 
       resolve();
