@@ -176,6 +176,11 @@ export const MarkLabel = (props) => {
     );
   }
 
+  // avoid rendering empty label when a correct point without label  was provided
+  if (correctness === 'correct' && correctnesslabel === 'correct' && !correctlabel) {
+    return null;
+  }
+
   if (correctness === 'correct' && correctnesslabel === 'incorrect') {
     return (
       <>

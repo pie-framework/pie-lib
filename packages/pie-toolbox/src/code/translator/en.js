@@ -61,6 +61,12 @@ export default {
       primaryCorrectWithAlternates:
         'Note: The answer shown above is the primary correct answer specified by the author for this item, but other answers may also be recognized as correct.',
     },
+    multipleChoice: {
+      minSelections_one: 'This question requires at least {{minSelections}} answer.',
+      minSelections_other: 'This question requires at least {{minSelections}} answers.',
+      maxSelections_one: 'Only {{maxSelections}} answer is allowed.',
+      maxSelections_other: 'Only {{maxSelections}} answers are allowed.',
+    },
     selectText: {
       correctAnswerSelected: 'Correct answer selected',
       correctAnswerNotSelected: 'Correct answer not selected',
