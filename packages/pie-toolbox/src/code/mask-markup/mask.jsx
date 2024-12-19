@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import { withStyles } from '@material-ui/core/styles';
 import { MARK_TAGS } from './serialization';
+import cx from 'classnames';
 
 const Paragraph = withStyles((theme) => ({
   para: {
@@ -110,7 +111,17 @@ const MaskContainer = withStyles(() => ({
   main: {
     display: 'initial',
   },
-}))((props) => <div className={props.classes.main}>{props.children}</div>);
+  tableStyle: {
+    '&:not(.MathJax) table': {
+      borderCollapse: 'collapse',
+    },
+    // align table content to left as per STAR requirement PD-3687
+    '&:not(.MathJax) table td, &:not(.MathJax) table th': {
+      padding: '.6em 1em',
+      textAlign: 'left',
+    },
+  },
+}))((props) => <div className={cx(props.classes.main, props.classes.tableStyle)}>{props.children}</div>);
 
 /**
  * Renders a layout that uses the slate.js Value model structure.
