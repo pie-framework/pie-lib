@@ -92,6 +92,7 @@ test('onFocus changes focus if related target is not a button from language keyp
 
   const change = {
     focus: jest.fn(),
+    moveToEndOfBlock: jest.fn(),
   };
 
   await wrapper.instance().onFocus(event, change);
