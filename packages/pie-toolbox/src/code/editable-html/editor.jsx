@@ -835,11 +835,12 @@ export class Editor extends React.Component {
     if (!v) {
       return;
     }
+    const calcRegex = /^calc\((.*)\)$/;
 
     if (typeof v === 'string') {
       if (v.endsWith('%')) {
         return undefined;
-      } else if (v.endsWith('px') || v.endsWith('vh') || v.endsWith('vw')) {
+      } else if (v.endsWith('px') || v.endsWith('vh') || v.endsWith('vw') || v.endsWith('ch') || v.match(calcRegex)) {
         return v;
       } else {
         const value = parseInt(v, 10);

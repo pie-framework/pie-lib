@@ -21,7 +21,6 @@ const styles = (theme) => ({
   }
 });
 
-// eslint-disable-next-line react/display-name
 const MaskedInput = (props) => (node, data) => {
   const { adjustedLimit, disabled, feedback, showCorrectAnswer, maxLength, spellCheck, classes, pluginProps, onChange } = props;
   const dataset = node.data?.dataset || {};
@@ -41,6 +40,13 @@ const MaskedInput = (props) => (node, data) => {
       onChange(updatedValue);
     };
 
+    const handleKeyDown = (event) => {
+        // the keyCode value for the Enter/Return key is 13
+        if (event.key === 'Enter' || event.keyCode === 13) {
+            return false;
+        }
+    };
+
     return (
         <EditableHtml
             id={dataset.id}
@@ -54,7 +60,8 @@ const MaskedInput = (props) => (node, data) => {
             pluginProps={pluginProps}
             languageCharactersProps={[{ language: 'spanish' }]}
             spellCheck={spellCheck}
-            width={width * 25}
+            width={`calc(${width}ch + 42px)`} // added 42px for left and right padding of editable-html
+            onKeyDown={handleKeyDown}
             toolbarOpts={{
               minWidth: 'auto',
               noBorder: true,
