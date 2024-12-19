@@ -1,4 +1,7 @@
 import { mathjax } from 'mathjax-full/js/mathjax';
+import { AssistiveMmlHandler } from 'mathjax-full/js/a11y/assistive-mml';
+import { EnrichHandler } from 'mathjax-full/js/a11y/semantic-enrich';
+import { MenuHandler } from 'mathjax-full/js/ui/menu/MenuHandler';
 import { MathML } from 'mathjax-full/js/input/mathml';
 import { TeX } from 'mathjax-full/js/input/tex';
 
@@ -129,6 +132,7 @@ const createMathMLInstance = (opts, docProvided = document) => {
     parseError: function(node) {
       // function to process parsing errors
       // eslint-disable-next-line no-console
+      console.log('error:', node);
       this.error(this.adaptor.textContent(node).replace(/\n.*/g, ''));
     },
   };
@@ -149,19 +153,30 @@ const createMathMLInstance = (opts, docProvided = document) => {
     ...MmlFactory.defaultNodes,
     ...mmlNodes,
   });
+  const classFactory = EnrichHandler(
+    MenuHandler(AssistiveMmlHandler(mathjax.handlers.handlesDocument(docProvided))),
+    mml,
+  );
 
-  const html = mathjax.document(docProvided, {
+  const html = classFactory.create(docProvided, {
     compileError: (mj, math, err) => {
       // eslint-disable-next-line no-console
+      console.log('bad math?:', math);
       // eslint-disable-next-line no-console
       console.error(err);
     },
     typesetError: function(doc, math, err) {
       // eslint-disable-next-line no-console
+      console.log('typeset error');
       // eslint-disable-next-line no-console
       console.error(err);
       doc.typesetError(math, err);
     },
+
+    sre: {
+      speech: 'deep',
+    },
+    enrichSpeech: 'deep',
 
     InputJax: [new TeX(texConfig), mml],
     OutputJax: new CHTML(htmlConfig),
@@ -184,28 +199,36 @@ const bootstrap = (opts) => {
     version: mathjax.version,
     html: html,
     Typeset: function(...elements) {
-      const updatedDocument = this.html
-        .findMath(elements.length ? { elements } : {})
-        .compile()
-        .getMetrics()
-        .typeset()
-        .updateDocument();
+      mathjax.handleRetriesFor(() => {
+        const updatedDocument = this.html
+          .findMath(elements.length ? { elements } : {})
+          .compile()
+          .enrich()
+          .getMetrics()
+          .typeset()
+          .assistiveMml()
+          .attachSpeech()
+          .addMenu()
+          .updateDocument();
 
-      try {
-        const list = updatedDocument.math.list;
+        try {
+          const list = updatedDocument.math.list;
 
-        for (let item = list.next; typeof item.data !== 'symbol'; item = item.next) {
-          const mathMl = toMMl(item.data.root);
-          const parsedMathMl = mathMl.replaceAll('\n', '');
+          if (list) {
+            for (let item = list.next; typeof item.data !== 'symbol'; item = item.next) {
+              const mathMl = toMMl(item.data.root);
+              const parsedMathMl = mathMl.replaceAll('\n', '');
 
-          item.data.typesetRoot.setAttribute('data-mathml', parsedMathMl);
+              item.data.typesetRoot.setAttribute('data-mathml', parsedMathMl);
+            }
+          }
+        } catch (e) {
+          // eslint-disable-next-line no-console
+          console.error(e.toString());
         }
-      } catch (e) {
-        // eslint-disable-next-line no-console
-        console.error(e.toString());
-      }
 
-      updatedDocument.clear();
+        updatedDocument.clear();
+      });
     },
   };
 };

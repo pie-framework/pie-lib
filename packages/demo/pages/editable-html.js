@@ -35,14 +35,14 @@ class Demo extends React.Component {
 
   random_boolean = true;
   componentDidUpdate(prevProps, prevState, snapshot) {
-    // console.log('componentDidUpdate random_boolean', this.random_boolean);
-    // if (this.random_boolean) {
-    //   renderMathOld(this.root);
-    //   this.random_boolean = !this.random_boolean;
-    // } else {
-    renderMath(this.root);
-    // this.random_boolean = !this.random_boolean;
-    // }
+    console.log('componentDidUpdate random_boolean', this.random_boolean);
+    if (this.random_boolean) {
+      renderMathOld(this.root);
+      this.random_boolean = !this.random_boolean;
+    } else {
+      renderMath(this.root);
+      this.random_boolean = !this.random_boolean;
+    }
   }
 
   render() {
