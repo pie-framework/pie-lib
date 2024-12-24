@@ -86,33 +86,16 @@ export class BlankContent extends React.Component {
     this.updateDimensions();
   };
 
-  handleMathRendering = (element) => {
-    if (window.MathJax) {
-      return window.MathJax.startup.promise
-          .then(() => {
-            return window.MathJax.typesetPromise([element]);
-          })
-          .then(() => {
-            this.updateDimensions();
-          })
-          .catch((error) => {
-            console.error("MathJax rendering error:", error);
-          });
-    } else {
-      console.error("MathJax is not available.");
-    }
-  };
-
   handleElements() {
     const imageElement = this.spanRef?.querySelector('img');
-    const mathElements = this.spanRef?.querySelector('math');
 
     if (imageElement) {
       imageElement.onload = this.handleImageLoad;
-    } else if (mathElements) {
-      this.handleMathRendering(this.rootRef);
-    } else {
-      this.updateDimensions();
+    }
+    else {
+      setTimeout(() => {
+        this.updateDimensions();
+      }, 300);
     }
   }
 
