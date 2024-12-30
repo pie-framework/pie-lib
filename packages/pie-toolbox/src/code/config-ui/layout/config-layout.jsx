@@ -24,7 +24,7 @@ class MeasuredConfigLayout extends AppendCSSRules {
   };
 
   static defaultProps = {
-    sidePanelMinWidth: 950,
+    sidePanelMinWidth: 1135,
     hideSettings: false,
     dimensions: {},
   };
@@ -40,7 +40,7 @@ class MeasuredConfigLayout extends AppendCSSRules {
     const { maxWidth } = dimensions || {};
 
     const layoutMode =
-      bounds.width >= sidePanelMinWidth && (maxWidth ? maxWidth >= sidePanelMinWidth : true) ? 'inline' : 'tabbed';
+      bounds.width > sidePanelMinWidth && (maxWidth ? maxWidth > sidePanelMinWidth : true) ? 'inline' : 'tabbed';
 
     this.setState({ layoutMode });
   };
