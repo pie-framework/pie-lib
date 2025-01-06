@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.5.0...@pie-lib/pie-toolbox@2.6.0) (2025-01-06)
+
+
+### Bug Fixes
+
+* **blank:** code review changes regarding math rendering PD-4394 ([4502058](https://github.com/pie-framework/pie-lib/commit/45020589efb8a0703e85eb7a28d6ede6815f14d8))
+* **blank:** Fix MathJax rendering issue PD-4394 ([8032f68](https://github.com/pie-framework/pie-lib/commit/8032f6869ef6f845bc1883a0d4dd0a76c486057b))
+* **config-layout:** updated sidePanelMinWidth default value to 1135px to accomodate the max width across all elements PD-4426 ([9e676fa](https://github.com/pie-framework/pie-lib/commit/9e676fa175332cb2e921ee889c012c9f66a23787))
+* **mask-markup:** add styling from prompt tables to response area tables PD-4521 ([6c86da6](https://github.com/pie-framework/pie-lib/commit/6c86da67c1be31165f21e5e8c1814ef6f5b9b75c))
+* **mask-markup:** use whitespace normal for chip labels PD-4607 ([809a1bb](https://github.com/pie-framework/pie-lib/commit/809a1bb1f0f8077516b4329e40fb1075fe35be50))
+
+
+### Features
+
+* defined focus colors in defaults for consistency and maintainability PD-4555 ([5f50776](https://github.com/pie-framework/pie-lib/commit/5f50776120e878ab216099d65ae467c61c63ae98))
+* **editable-html:** add minWidth and maxWidth props to editor. Some refactoring PD-4660 ([74db285](https://github.com/pie-framework/pie-lib/commit/74db2853cb3af88fe4301b00e7ee6ca44ce4008f))
+
+
+
+
+
 # [2.5.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.4.1...@pie-lib/pie-toolbox@2.5.0) (2024-12-19)
 
 
