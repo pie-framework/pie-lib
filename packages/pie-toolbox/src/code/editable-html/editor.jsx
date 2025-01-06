@@ -1,23 +1,22 @@
+import React from 'react';
 import { Editor as SlateEditor, findNode, getEventRange, getEventTransfer } from 'slate-react';
 import SlateTypes from 'slate-prop-types';
-
-import isEqual from 'lodash/isEqual';
-import isEmpty from 'lodash/isEmpty';
-import * as serialization from './serialization';
-import PropTypes from 'prop-types';
-import React from 'react';
 import { Value, Block, Inline } from 'slate';
-import { buildPlugins, ALL_PLUGINS, DEFAULT_PLUGINS } from './plugins';
+import Plain from 'slate-plain-serializer';
+import PropTypes from 'prop-types';
+import isEqual from 'lodash/isEqual';
+import classNames from 'classnames';
 import debug from 'debug';
 import { withStyles } from '@material-ui/core/styles';
-import classNames from 'classnames';
+
 import { color } from '../render-ui';
-import Plain from 'slate-plain-serializer';
 import AlertDialog from '../config-ui/alert-dialog';
 import { PreviewPrompt } from '../render-ui';
 
 import { getBase64, htmlToValue } from './serialization';
 import InsertImageHandler from './plugins/image/insert-image-handler';
+import * as serialization from './serialization';
+import { buildPlugins, ALL_PLUGINS, DEFAULT_PLUGINS } from './plugins';
 
 export { ALL_PLUGINS, DEFAULT_PLUGINS, serialization };
 
@@ -78,6 +77,8 @@ export class Editor extends React.Component {
     }),
     charactersLimit: PropTypes.number,
     width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    minWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    maxWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     minHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     maxHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -850,15 +851,15 @@ export class Editor extends React.Component {
     if (typeof v === 'number') {
       return `${v}px`;
     }
-
-    return;
   };
 
   buildSizeStyle() {
-    const { width, minHeight, height, maxHeight } = this.props;
+    const { minWidth, width, maxWidth, minHeight, height, maxHeight } = this.props;
 
     return {
       width: this.valueToSize(width),
+      minWidth: this.valueToSize(minWidth),
+      maxWidth: this.valueToSize(maxWidth),
       height: this.valueToSize(height),
       minHeight: this.valueToSize(minHeight),
       maxHeight: this.valueToSize(maxHeight),
@@ -1038,7 +1039,7 @@ export class Editor extends React.Component {
     return (
       <div
         ref={(ref) => (this.wrapperRef = ref)}
-        style={{ width: sizeStyle.width }}
+        style={{ width: sizeStyle.width, minWidth: sizeStyle.minWidth, maxWidth: sizeStyle.maxWidth }}
         className={names}
         id={`editor-${value?.document?.key}`}
       >
