@@ -83,13 +83,25 @@ export class BlankContent extends React.Component {
     };
   }
 
-  componentDidMount() {
+  handleImageLoad = () => {
+    this.updateDimensions();
+  };
+
+  handleElements() {
     const imageElement = this.spanRef?.querySelector('img');
+
     if (imageElement) {
       imageElement.onload = this.handleImageLoad;
-    } else {
-      this.updateDimensions();
     }
+    else {
+      setTimeout(() => {
+        this.updateDimensions();
+      }, 300);
+    }
+  }
+
+  componentDidMount() {
+    this.handleElements();
   }
 
   componentDidUpdate(prevProps) {
@@ -105,9 +117,7 @@ export class BlankContent extends React.Component {
         });
         return;
       }
-      setTimeout(() => {
-        this.updateDimensions();
-      }, 300);
+      this.handleElements();
     }
   }
 
@@ -146,10 +156,6 @@ export class BlankContent extends React.Component {
       }
     });
   }
-
-  handleImageLoad = () => {
-    this.updateDimensions();
-  };
 
   getRootDimensions() {
     // Handle potential non-numeric values
