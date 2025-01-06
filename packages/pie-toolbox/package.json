@@ -38,7 +38,7 @@
     "konva": "^3.2.4",
     "lodash": "^4.17.11",
     "mathjax-full": "3.2.2",
-    "mathjs": "^7.0.1",
+    "mathjs": "^14.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.8.1",
     "react-attr-converter": "^0.3.1",
