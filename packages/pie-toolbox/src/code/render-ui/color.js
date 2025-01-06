@@ -34,6 +34,11 @@ export const defaults = {
   BLACK: '#000000',
   WHITE: '#ffffff',
   TRANSPARENT: 'transparent',
+  // this is used for multiple-choice accessibility
+  FOCUS_CHECKED: '#BBDEFB',
+  FOCUS_CHECKED_BORDER: '#1565C0',
+  FOCUS_UNCHECKED: '#E0E0E0',
+  FOCUS_UNCHECKED_BORDER: '#9E9E9E',
 };
 
 Object.freeze(defaults);
@@ -83,3 +88,8 @@ export const borderDark = () => pv('border-dark', defaults.BORDER_DARK);
 export const black = () => pv('black', defaults.BLACK);
 export const white = () => pv('white', defaults.WHITE);
 export const transparent = () => defaults.TRANSPARENT;
+
+export const focusChecked = () => pv('focus-checked', defaults.FOCUS_CHECKED);
+export const focusCheckedBorder = () => pv('focus-checked-border', defaults.FOCUS_CHECKED_BORDER);
+export const focusUnchecked = () => pv('focus-unchecked', defaults.FOCUS_UNCHECKED);
+export const focusUncheckedBorder = () => pv('focus-unchecked-border', defaults.FOCUS_UNCHECKED_BORDER);
