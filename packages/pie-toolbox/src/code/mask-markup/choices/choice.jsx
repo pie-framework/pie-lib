@@ -84,7 +84,7 @@ export const BlankContent = withStyles((theme) => ({
     paddingBottom: '12px',
   },
   chipLabel: {
-    whiteSpace: 'pre-wrap',
+    whiteSpace: 'normal',
     '& img': {
       display: 'block',
       padding: '2px 0',
