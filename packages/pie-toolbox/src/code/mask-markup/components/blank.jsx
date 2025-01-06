@@ -32,7 +32,7 @@ const useStyles = withStyles(() => ({
     margin: '8px',
   },
   chipLabel: {
-    whiteSpace: 'pre-wrap',
+    whiteSpace: 'normal',
     // Added for touch devices, for image content.
     // This will prevent the context menu from appearing and not allowing other interactions with the image.
     // If interactions with the image in the token will be requested we should handle only the context Menu.
@@ -46,8 +46,8 @@ const useStyles = withStyles(() => ({
     // Ensures consistent behavior with pie-api-browser, where marginTop is already removed by a Bootstrap stylesheet
     '& p': {
       marginTop: '0',
-      marginBottom: '0'
-    }
+      marginBottom: '0',
+    },
   },
   hidden: {
     color: 'transparent',
@@ -83,13 +83,25 @@ export class BlankContent extends React.Component {
     };
   }
 
-  componentDidMount() {
+  handleImageLoad = () => {
+    this.updateDimensions();
+  };
+
+  handleElements() {
     const imageElement = this.spanRef?.querySelector('img');
+
     if (imageElement) {
       imageElement.onload = this.handleImageLoad;
-    } else {
-      this.updateDimensions();
     }
+    else {
+      setTimeout(() => {
+        this.updateDimensions();
+      }, 300);
+    }
+  }
+
+  componentDidMount() {
+    this.handleElements();
   }
 
   componentDidUpdate(prevProps) {
@@ -105,9 +117,7 @@ export class BlankContent extends React.Component {
         });
         return;
       }
-      setTimeout(() => {
-        this.updateDimensions();
-      }, 300);
+      this.handleElements();
     }
   }
 
@@ -120,8 +130,7 @@ export class BlankContent extends React.Component {
       const width = this.spanRef.offsetWidth || 0;
       const height = this.spanRef.offsetHeight || 0;
 
-
-      const widthWithPadding = width + 24;  // 12px padding on each side
+      const widthWithPadding = width + 24; // 12px padding on each side
       const heightWithPadding = height + 24; // 12px padding on top and bottom
 
       const responseAreaWidth = parseFloat(this.props.emptyResponseAreaWidth) || 0;
@@ -147,10 +156,6 @@ export class BlankContent extends React.Component {
       }
     });
   }
-
-  handleImageLoad = () => {
-    this.updateDimensions();
-  };
 
   getRootDimensions() {
     // Handle potential non-numeric values
