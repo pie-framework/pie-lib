@@ -63,6 +63,7 @@ export class Toolbar extends React.Component {
       ref: PropTypes.func,
       showDone: PropTypes.bool,
       minWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      isHidden: PropTypes.bool,
     }),
     onDataChange: PropTypes.func,
     doneButtonRef: PropTypes.func,
@@ -230,6 +231,7 @@ export class Toolbar extends React.Component {
       [classes.focused]: toolbarOpts.alwaysVisible || isFocused,
       [classes.autoWidth]: autoWidth,
       [classes.fullWidth]: !autoWidth,
+      [classes.hidden]: toolbarOpts.isHidden === 'true'
     });
     const customStyles = toolbarOpts.minWidth !== undefined ? { minWidth: toolbarOpts.minWidth } : {};
 
@@ -309,6 +311,9 @@ const style = {
   },
   fullWidth: {
     width: '100%',
+  },
+  hidden: {
+    visibility: 'hidden'
   },
   autoWidth: {
     width: 'auto',
