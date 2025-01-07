@@ -2,7 +2,7 @@
 
 exports[`toolbar default renders default toolbar 1`] = `
 <div
-  className="toolbar pie-toolbar undefined"
+  className="toolbar pie-toolbar"
   onClick={[Function]}
   style={Object {}}
 >
@@ -27,7 +27,7 @@ exports[`toolbar default renders default toolbar 1`] = `
 
 exports[`toolbar renders custom toolbar 1`] = `
 <div
-  className="toolbar pie-toolbar undefined"
+  className="toolbar pie-toolbar"
   onClick={[Function]}
   style={Object {}}
 >
