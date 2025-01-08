@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.6.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.6.0...@pie-lib/pie-toolbox@2.6.1) (2025-01-08)
+
+
+### Bug Fixes
+
+* implemented math rendering accessible with the imported package [PD-4527] ([a324d36](https://github.com/pie-framework/pie-lib/commit/a324d369333b42613ae0854b3ba38260e9fb443c))
+* replace mra package with mr, includes accessibility PD-4527 ([4bd6d0b](https://github.com/pie-framework/pie-lib/commit/4bd6d0bc50309c6b15a1d05bd4e803692e2e52e3))
+
+
+
+
+
 # [2.6.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.5.0...@pie-lib/pie-toolbox@2.6.0) (2025-01-06)
 
 

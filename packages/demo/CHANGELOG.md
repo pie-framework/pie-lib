@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.1.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.11...@pie-lib/demo@8.1.12) (2025-01-08)
+
+
+### Bug Fixes
+
+* implemented math rendering accessible with the imported package [PD-4527] ([a324d36](https://github.com/pie-framework/pie-lib/commit/a324d369333b42613ae0854b3ba38260e9fb443c))
+
+
+
+
+
 ## [8.1.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.10...@pie-lib/demo@8.1.11) (2025-01-06)
 
 **Note:** Version bump only for package @pie-lib/demo
