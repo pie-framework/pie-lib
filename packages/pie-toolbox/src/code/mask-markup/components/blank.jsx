@@ -2,7 +2,7 @@ import grey from '@material-ui/core/colors/grey';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { renderMath } from '../../math-rendering-accessible';
+import { renderMath } from '../../math-rendering';
 import debug from 'debug';
 import { DragSource, DropTarget } from '../../drag';
 import { withStyles } from '@material-ui/core/styles';
@@ -92,8 +92,7 @@ export class BlankContent extends React.Component {
 
     if (imageElement) {
       imageElement.onload = this.handleImageLoad;
-    }
-    else {
+    } else {
       setTimeout(() => {
         this.updateDimensions();
       }, 300);

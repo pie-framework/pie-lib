@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 import InputLabel from '@material-ui/core/InputLabel';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import { renderMath } from '../../../math-rendering-accessible';
+import { renderMath } from '../../../math-rendering';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import { withStyles } from '@material-ui/core/styles';
 import { color } from '../../render-ui';
