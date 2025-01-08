@@ -75,10 +75,7 @@ module.exports = {
             'debug',
             '@pie-framework/mathquill',
           ],
-          namespace: [
-            '@pie-lib/pie-toolbox/math-rendering',
-            '@pie-lib/pie-toolbox/math-rendering-accessible',
-          ],
+          namespace: ['@pie-lib/pie-toolbox/math-rendering', '@pie-lib/pie-toolbox/math-rendering-accessible'],
         },
       },
       {
@@ -108,7 +105,7 @@ module.exports = {
             // created a separate package for math-rendering (see above)
             '@pie-lib/pie-toolbox-math-rendering-module',
             // '@pie-lib/pie-toolbox/math-rendering',
-            // '@pie-lib/pie-toolbox/math-rendering-accessible',
+            // '@pie-lib/pie-toolbox/math-rendering',
             '@pie-lib/pie-toolbox/math-toolbar',
             '@pie-lib/pie-toolbox/render-ui',
             // Not used in any print module yet:

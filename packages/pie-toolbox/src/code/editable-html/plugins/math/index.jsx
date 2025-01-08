@@ -1,7 +1,7 @@
 import Functions from '@material-ui/icons/Functions';
 import { Inline } from 'slate';
 import { MathPreview, MathToolbar } from '../../../math-toolbar';
-import { wrapMath, unWrapMath, mmlToLatex, renderMath } from '../../../math-rendering-accessible';
+import { wrapMath, unWrapMath, mmlToLatex, renderMath } from '../../../math-rendering';
 import React from 'react';
 import debug from 'debug';
 import SlatePropTypes from 'slate-prop-types';
@@ -222,7 +222,7 @@ const convertLatexToMathMl = ({ latex, decoded, wrapper }) => {
 
   // use math rendering (MathJax) to convert latex to mathMl
   let mathMlFromLatex = renderMath(latexToConvert, {
-    skipWaitForMathRenderingLib: true
+    skipWaitForMathRenderingLib: true,
   });
 
   // if renderMath returned the exact same string that we sent, it just means that the conversion could not be done
@@ -250,7 +250,7 @@ const convertLatexToMathMl = ({ latex, decoded, wrapper }) => {
       newLatex: latexFromMathMl,
       correctedLatex,
       mathML: mathMlFromLatex,
-      conversionDidNotWork
+      conversionDidNotWork,
     });
   }
 
