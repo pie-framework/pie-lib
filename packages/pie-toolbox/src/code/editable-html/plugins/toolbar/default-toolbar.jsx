@@ -122,17 +122,33 @@ export const DefaultToolbar = ({
     filtered = plugins.filter(isActiveToolbarPlugin(pluginProps)).map((p) => p.toolbar);
   }
 
+  const isListActive = plugins.some((plugin) => {
+    return (
+        isActiveToolbarPlugin(pluginProps)(plugin) &&
+        (['ul_list', 'ol_list'].includes(plugin.name) && plugin.toolbar.isActive(value, plugin.name))
+    );
+  });
+
+
   return (
-    <div className={classes.defaultToolbar} onFocus={handleFocus} tabIndex="1" onBlur={onBlur}>
-      <div className={classes.buttonsContainer}>
-        {filtered.map((p, index) => {
-          return (
-            <ToolbarButton {...p} key={index} value={value} onChange={onChange} getFocusedValue={getFocusedValue} />
-          );
-        })}
+      <div className={classes.defaultToolbar} onFocus={handleFocus} tabIndex="1" onBlur={onBlur}>
+        <div className={classes.buttonsContainer}>
+          {filtered.map((p, index) => {
+            const isInsertTable = p.ariaLabel === 'Insert Table';
+            return (
+                <ToolbarButton
+                    {...p}
+                    key={index}
+                    value={value}
+                    onChange={onChange}
+                    getFocusedValue={getFocusedValue}
+                    disabled={isInsertTable ? isListActive : p.disabled}
+                />
+            );
+          })}
+        </div>
+        {showDone && !deletable && <DoneButton doneButtonRef={doneButtonRef} onClick={onDone} />}
       </div>
-      {showDone && !deletable && <DoneButton doneButtonRef={doneButtonRef} onClick={onDone} />}
-    </div>
   );
 };
 
