@@ -16,7 +16,7 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import InputChooser from '../source/editable-html/input-chooser';
 import { hasText } from '@pie-lib/pie-toolbox/render-ui';
-import { renderMath } from '@pie-lib/pie-toolbox/math-rendering-accessible';
+// import { renderMath } from '@pie-lib/pie-toolbox/math-rendering-accessible';
 import { renderMath as renderMathOld } from '@pie-lib/pie-toolbox/math-rendering';
 import { Button } from '@material-ui/core';
 
@@ -40,7 +40,7 @@ class Demo extends React.Component {
       renderMathOld(this.root);
       this.random_boolean = !this.random_boolean;
     } else {
-      renderMath(this.root);
+      //  renderMath(this.root);
       this.random_boolean = !this.random_boolean;
     }
   }
