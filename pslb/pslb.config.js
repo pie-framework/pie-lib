@@ -75,7 +75,7 @@ module.exports = {
             'debug',
             '@pie-framework/mathquill',
           ],
-          namespace: ['@pie-lib/pie-toolbox/math-rendering', '@pie-lib/pie-toolbox/math-rendering-accessible'],
+          namespace: ['@pie-lib/pie-toolbox/math-rendering'],
         },
       },
       {
