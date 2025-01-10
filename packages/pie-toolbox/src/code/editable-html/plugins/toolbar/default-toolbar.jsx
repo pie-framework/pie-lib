@@ -124,31 +124,49 @@ export const DefaultToolbar = ({
 
   const isListActive = plugins.some((plugin) => {
     return (
-        isActiveToolbarPlugin(pluginProps)(plugin) &&
-        (['ul_list', 'ol_list'].includes(plugin.name) && plugin.toolbar.isActive(value, plugin.name))
+      isActiveToolbarPlugin(pluginProps)(plugin) &&
+      ['ul_list', 'ol_list'].includes(plugin.name) &&
+      plugin.toolbar.isActive(value, plugin.name)
     );
   });
 
+  const isTableActive = plugins.some((plugin) => {
+    return (
+      isActiveToolbarPlugin(pluginProps)(plugin) &&
+      ['table'].includes(plugin.name) &&
+      plugin.utils &&
+      plugin.utils.isSelectionInTable &&
+      plugin.utils.isSelectionInTable(value)
+    );
+  });
+
+  const isToolbarButtonDisabled = (plugin) => {
+    if (plugin.type === 'table') {
+      return isListActive;
+    } else if (plugin.type === 'ul_list' || plugin.type === 'ol_list') {
+      return isTableActive;
+    }
+    return plugin.disabled;
+  };
 
   return (
-      <div className={classes.defaultToolbar} onFocus={handleFocus} tabIndex="1" onBlur={onBlur}>
-        <div className={classes.buttonsContainer}>
-          {filtered.map((p, index) => {
-            const isInsertTable = p.ariaLabel === 'Insert Table';
-            return (
-                <ToolbarButton
-                    {...p}
-                    key={index}
-                    value={value}
-                    onChange={onChange}
-                    getFocusedValue={getFocusedValue}
-                    disabled={isInsertTable ? isListActive : p.disabled}
-                />
-            );
-          })}
-        </div>
-        {showDone && !deletable && <DoneButton doneButtonRef={doneButtonRef} onClick={onDone} />}
+    <div className={classes.defaultToolbar} onFocus={handleFocus} tabIndex="1" onBlur={onBlur}>
+      <div className={classes.buttonsContainer}>
+        {filtered.map((p, index) => {
+          return (
+            <ToolbarButton
+              {...p}
+              key={index}
+              value={value}
+              onChange={onChange}
+              getFocusedValue={getFocusedValue}
+              disabled={isToolbarButtonDisabled(p)}
+            />
+          );
+        })}
       </div>
+      {showDone && !deletable && <DoneButton doneButtonRef={doneButtonRef} onClick={onDone} />}
+    </div>
   );
 };
 
