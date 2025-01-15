@@ -149,7 +149,7 @@ const style = (theme) => ({
   editorHolder: {
     position: 'relative',
     padding: '0px',
-    overflowY: 'scroll',
+    overflowY: 'auto',
     color: color.text(),
     backgroundColor: color.background(),
     '&::before': {
