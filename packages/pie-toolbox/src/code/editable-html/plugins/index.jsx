@@ -28,6 +28,7 @@ import HtmlPlugin from './html';
 import CSSPlugin from './css';
 import CustomPlugin from './customPlugin';
 import RenderingPlugin from './rendering';
+import TextAlign from './textAlign';
 
 const log = debug('@pie-lib:editable-html:plugins');
 
@@ -193,6 +194,7 @@ export const ALL_PLUGINS = [
   'image',
   'math',
   'languageCharacters',
+  'text-align',
   'blockquote',
   'h3',
   'table',
@@ -339,6 +341,7 @@ export const buildPlugins = (activePlugins, customPlugins, opts) => {
     addIf('audio', MediaPlugin('audio', opts.media)),
     addIf('math', mathPlugin),
     ...languageCharactersPlugins.map((plugin) => addIf('languageCharacters', plugin)),
+    addIf('text-align', TextAlign(opts.textAlign)),
     addIf('blockquote', MarkHotkey({ key: 'q', type: 'blockquote', icon: <FormatQuote />, tag: 'blockquote' })),
     addIf('h3', MarkHotkey({ key: 'h3', type: 'h3', icon: <HeadingIcon />, tag: 'h3' })),
     addIf('bulleted-list', List({ key: 'l', type: 'ul_list', icon: <BulletedListIcon /> })),
@@ -352,6 +355,6 @@ export const buildPlugins = (activePlugins, customPlugins, opts) => {
     cssPlugin,
     addIf('html', HtmlPlugin(opts.html)),
     EnterHandlingPlugin(),
-    RenderingPlugin()
+    RenderingPlugin(),
   ]);
 };
