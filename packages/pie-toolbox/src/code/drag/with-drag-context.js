@@ -14,9 +14,9 @@ const backends = [
   {
     backend: TouchBackend,
     options: { enableMouseEvents: true, enableTouchEvents: true },
-    preview: false,
+    preview: true,
     transition: TouchTransition,
-    skipDispatchOnTransition: false,
+    skipDispatchOnTransition: true,
   },
 ];
 
