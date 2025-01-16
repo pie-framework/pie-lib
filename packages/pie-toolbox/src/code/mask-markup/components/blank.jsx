@@ -29,7 +29,6 @@ const useStyles = withStyles(() => ({
     maxWidth: '374px',
     position: 'relative',
     borderRadius: '3px',
-    margin: '8px',
   },
   chipLabel: {
     whiteSpace: 'normal',
