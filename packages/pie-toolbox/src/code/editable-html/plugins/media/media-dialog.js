@@ -325,15 +325,12 @@ export class MediaDialog extends React.Component {
       },
     });
 
-    console.log('handleUploadFile Andreea', e.target.files);
     const fileChosen = e.target.files[0];
 
     const reader = new FileReader();
 
     reader.onload = () => {
       const dataURL = reader.result;
-
-      console.log('fileChosen Andreea tupe', fileChosen);
 
       this.setState({
         fileUpload: {
@@ -428,8 +425,6 @@ export class MediaDialog extends React.Component {
       ? invalid || url === null || url === undefined
       : !fileUpload.url || fileUpload.scheduled;
     const showUploadFile = uploadSoundSupport?.add && uploadSoundSupport?.delete && type !== 'video';
-
-    console.log('Andreea fileUplaod on state', fileUpload);
 
     return (
       <Dialog
