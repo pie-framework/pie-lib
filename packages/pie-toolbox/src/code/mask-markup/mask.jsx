@@ -12,6 +12,13 @@ const Paragraph = withStyles((theme) => ({
   },
 }))((props) => <div className={props.classes.para}>{props.children}</div>);
 
+const Spacer = withStyles(() => ({
+  spacer: {
+    display: 'inline-block',
+    width: '1.5em',
+  },
+}))((props) => <span className={props.classes.spacer} />);
+
 const restrictWhitespaceTypes = ['tbody', 'tr'];
 
 const addText = (parentNode, text) => {
@@ -60,6 +67,9 @@ export const renderChildren = (layout, value, onChange, rootRenderChildren, pare
       const c = rootRenderChildren(n, value, onChange);
       if (c) {
         children.push(c);
+        if (parentNode?.type !== 'td') {
+          children.push(<Spacer key={`spacer-${index}`} />);
+        }
         return;
       }
     }
