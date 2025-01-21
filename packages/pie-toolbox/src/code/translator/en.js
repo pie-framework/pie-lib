@@ -17,7 +17,9 @@ export default {
     imageClozeAssociation: {
       reachedLimit_one:
         'You’ve reached the limit of {{count}} response per area. To add another response, one must first be removed.',
-      reachedLimit_other: 'Next',
+      reachedLimit_other:
+        'You’ve reached the limit of {{count}} responses per area. To add another response, one must first be removed.',
+      next: 'Next',
     },
     drawingResponse: {
       fillColor: 'Fill color',
