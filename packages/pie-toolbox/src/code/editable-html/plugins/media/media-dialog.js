@@ -125,6 +125,7 @@ export class MediaDialog extends React.Component {
         loading: false,
         scheduled: false,
         url: '',
+        mimeType: '',
       },
     };
   }
@@ -335,6 +336,7 @@ export class MediaDialog extends React.Component {
         fileUpload: {
           ...this.state.fileUpload,
           url: dataURL,
+          mimeType: fileChosen.type,
         },
       });
     };
@@ -396,13 +398,26 @@ export class MediaDialog extends React.Component {
         ...this.state.fileUpload,
         loading: false,
         url: '',
+        mimeType: '',
       },
     });
   };
 
   render() {
     const { classes, open, disablePortal, type, edit, uploadSoundSupport } = this.props;
-    const { ends, height, invalid, starts, width, url, formattedUrl, updating, tabValue, fileUpload } = this.state;
+    const {
+      ends,
+      height,
+      invalid,
+      starts,
+      width,
+      url,
+      mimeType,
+      formattedUrl,
+      updating,
+      tabValue,
+      fileUpload,
+    } = this.state;
     const isYoutube = matchYoutubeUrl(url);
     const isInsertURL = tabValue === tabsTypeMap.insertUrl;
     const isUploadMedia = tabValue === tabsTypeMap.uploadFile;
@@ -534,7 +549,7 @@ export class MediaDialog extends React.Component {
                     <>
                       <div className={classes.row}>
                         <audio controls="controls" controlsList="nodownload">
-                          <source type="audio/mp3" src={fileUpload.url} />
+                          <source type={mimeType} src={fileUpload.url} />
                         </audio>
                         <IconButton aria-label="delete" className={classes.deleteIcon} onClick={this.handleRemoveFile}>
                           <ActionDelete />

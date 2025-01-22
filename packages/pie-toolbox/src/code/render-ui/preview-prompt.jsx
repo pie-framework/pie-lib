@@ -15,6 +15,7 @@ export class PreviewPrompt extends Component {
     className: PropTypes.string,
     onClick: PropTypes.func,
     defaultClassName: PropTypes.string,
+    autoplayAudioEnabled: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -22,6 +23,7 @@ export class PreviewPrompt extends Component {
   };
 
   parsedText = (text) => {
+    const { autoplayAudioEnabled } = this.props;
     // fix imported audio content for Safari PD-1419
     const div = document.createElement('div');
     div.innerHTML = text;
@@ -34,6 +36,11 @@ export class PreviewPrompt extends Component {
       source.setAttribute('src', audio.getAttribute('src'));
 
       audio.removeAttribute('src');
+
+      if (autoplayAudioEnabled) {
+        audio.setAttribute('autoplay', 'autoplay');
+      }
+
       audio.appendChild(source);
     }
 
