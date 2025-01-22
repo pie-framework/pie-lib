@@ -66,7 +66,7 @@ const MaskedInput = (props) => (node, data) => {
             toolbarOpts={{
               minWidth: 'auto',
               noBorder: true,
-              isHidden: pluginProps?.characters?.disabled ? 'true' : 'false'
+              isHidden: !!pluginProps?.characters?.disabled
             }}
             className={classnames(
                 classes.editableHtmlCustom,

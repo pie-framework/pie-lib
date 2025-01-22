@@ -231,7 +231,7 @@ export class Toolbar extends React.Component {
       [classes.focused]: toolbarOpts.alwaysVisible || isFocused,
       [classes.autoWidth]: autoWidth,
       [classes.fullWidth]: !autoWidth,
-      [classes.hidden]: toolbarOpts.isHidden === 'true'
+      [classes.hidden]: toolbarOpts.isHidden === true
     });
     const customStyles = toolbarOpts.minWidth !== undefined ? { minWidth: toolbarOpts.minWidth } : {};
 
