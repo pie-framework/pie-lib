@@ -122,23 +122,19 @@ export const DefaultToolbar = ({
     filtered = plugins.filter(isActiveToolbarPlugin(pluginProps)).map((p) => p.toolbar);
   }
 
-  const isListActive = plugins.some((plugin) => {
-    return (
+  const isListActive = plugins.some((plugin) =>
       isActiveToolbarPlugin(pluginProps)(plugin) &&
       ['ul_list', 'ol_list'].includes(plugin.name) &&
       plugin.toolbar.isActive(value, plugin.name)
-    );
-  });
+  );
 
-  const isTableActive = plugins.some((plugin) => {
-    return (
+  const isTableActive = plugins.some((plugin) =>
       isActiveToolbarPlugin(pluginProps)(plugin) &&
-      ['table'].includes(plugin.name) &&
+      plugin.name === 'table' &&
       plugin.utils &&
       plugin.utils.isSelectionInTable &&
       plugin.utils.isSelectionInTable(value)
-    );
-  });
+  );
 
   const isToolbarButtonDisabled = (plugin) => {
     if (plugin.type === 'table') {
