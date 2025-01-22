@@ -17,9 +17,7 @@ export default {
     imageClozeAssociation: {
       reachedLimit_one:
         'Has alcanzado el límite de {{count}} respuesta por área. Para agregar otra respuesta, primero se debe eliminar una respuesta.',
-      reachedLimit_other:
-        'Has alcanzado el límite de {{count}} respuestas por área. Para agregar otra respuesta, primero se debe eliminar una respuesta.',
-      next: 'Lleno',
+      reachedLimit_other: 'Lleno',
     },
     drawingResponse: {
       fillColor: 'Color de relleno',
