@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.6.1...@pie-lib/pie-toolbox@2.7.0) (2025-01-22)
+
+
+### Bug Fixes
+
+* **blank:** remove margins for chips in ditb PD-4704 ([d0a1f2b](https://github.com/pie-framework/pie-lib/commit/d0a1f2bc2a8b5a89678a3150df59715aca37a514))
+* **drag:** Fix touchpad interaction after touchscreen drag for image-cloze-association PD-4689 ([f646ddb](https://github.com/pie-framework/pie-lib/commit/f646ddb457c27987dc99e5b7119cea57344f0c23))
+* **drag:** switch back props for TouchBackend PD-4689 ([7863c28](https://github.com/pie-framework/pie-lib/commit/7863c28f7db6df5bb3b43f8f151429bb95b0be89))
+* **editable-html:** delete unused logs ([0d55d57](https://github.com/pie-framework/pie-lib/commit/0d55d579760e858a0afe317d57f60c605524b48a))
+* **editable-html:** set mimeType dinamically based on uploaded file PD-4698 ([8841055](https://github.com/pie-framework/pie-lib/commit/8841055a5f0fbc1495d2343bd6fcb71e2a8f7552))
+* **editor-and-toolbar:** Changed overflowY from 'scroll' to 'auto' for dynamic scrollbar PD-4618 ([9176ab8](https://github.com/pie-framework/pie-lib/commit/9176ab82c63a12cc50b69e4a45858e4af7dc264e))
+* **mask:** add space between response areas but only if they are not inside a table PD-4704 & PD-4588 ([dd58e01](https://github.com/pie-framework/pie-lib/commit/dd58e01b44ff10f229ba5db79333ddfc2cddd32a))
+* **translator:** add new key for the message to be more intuitive PD-3872 ([64195e6](https://github.com/pie-framework/pie-lib/commit/64195e623555d190cb30546a18233decc6d2f54e))
+* **translator:** add new key for the message to be more intuitive PD-3872 ([d517c9a](https://github.com/pie-framework/pie-lib/commit/d517c9a7b43cdcbeaaaf02f332d49c292b1f8bff))
+* **translator:** update warning message for ica borh en and es PD-3872 ([f86cc49](https://github.com/pie-framework/pie-lib/commit/f86cc49218ab56375951d693c72be54dc49d884a))
+
+
+### Features
+
+* **preview-prompt:** add autoplay attribute to audio if it has the autoplayAudioEnabled prop PD-4452 ([332bd4b](https://github.com/pie-framework/pie-lib/commit/332bd4bcd0bb562fe08856fe0c0a76d61871466c))
+
+
+
+
+
 ## [2.6.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.6.0...@pie-lib/pie-toolbox@2.6.1) (2025-01-08)
 
 
