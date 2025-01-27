@@ -122,10 +122,14 @@ const createMathMLInstance = (opts, docProvided = document) => {
           ['\\(', '\\)'],
         ],
         processEscapes: true,
+        ignoreHtmlClass: 'mathjax-ignore',
+        skipHtmlTags: ['mjx-assistive-mml', 'mjx-container'],
       }
     : {
         packages,
         macros,
+        ignoreHtmlClass: 'mathjax-ignore',
+        skipHtmlTags: ['mjx-assistive-mml', 'mjx-container'],
       };
 
   const mmlConfig = {
@@ -135,6 +139,8 @@ const createMathMLInstance = (opts, docProvided = document) => {
       console.log('error:', node);
       this.error(this.adaptor.textContent(node).replace(/\n.*/g, ''));
     },
+    ignoreHtmlClass: 'mathjax-ignore',
+    skipHtmlTags: ['mjx-assistive-mml', 'mjx-container'],
   };
 
   const fontURL = `https://unpkg.com/mathjax-full@${mathjax.version}/ts/output/chtml/fonts/tex-woff-v2`;
@@ -177,7 +183,8 @@ const createMathMLInstance = (opts, docProvided = document) => {
       speech: 'deep',
     },
     enrichSpeech: 'deep',
-
+    ignoreHtmlClass: 'mathjax-ignore',
+    skipHtmlTags: ['mjx-assistive-mml', 'mjx-container'],
     InputJax: [new TeX(texConfig), mml],
     OutputJax: new CHTML(htmlConfig),
   });
@@ -212,6 +219,15 @@ const bootstrap = (opts) => {
           .updateDocument();
 
         try {
+          document.querySelectorAll('mjx-assistive-mml').forEach((el) => {
+            el.setAttribute('data-math-handled', 'true');
+            el.classList.add('mathjax-ignore');
+
+            Array.from(el.children).forEach((child) => {
+              child.setAttribute('data-math-handled', 'true');
+              child.classList.add('mathjax-ignore');
+            });
+          });
           const list = updatedDocument.math.list;
 
           if (list) {
