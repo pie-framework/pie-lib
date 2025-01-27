@@ -123,12 +123,42 @@ export const DefaultToolbar = ({
     filtered = plugins.filter(isActiveToolbarPlugin(pluginProps)).map((p) => p.toolbar);
   }
 
+  const isListActive = plugins.some((plugin) =>
+      isActiveToolbarPlugin(pluginProps)(plugin) &&
+      ['ul_list', 'ol_list'].includes(plugin.name) &&
+      plugin.toolbar.isActive(value, plugin.name)
+  );
+
+  const isTableActive = plugins.some((plugin) =>
+      isActiveToolbarPlugin(pluginProps)(plugin) &&
+      plugin.name === 'table' &&
+      plugin.utils &&
+      plugin.utils.isSelectionInTable &&
+      plugin.utils.isSelectionInTable(value)
+  );
+
+  const isToolbarButtonDisabled = (plugin) => {
+    if (plugin.type === 'table') {
+      return isListActive;
+    } else if (plugin.type === 'ul_list' || plugin.type === 'ol_list') {
+      return isTableActive;
+    }
+    return plugin.disabled;
+  };
+
   return (
     <div className={classes.defaultToolbar} onFocus={handleFocus} tabIndex="1" onBlur={onBlur}>
       <div className={classes.buttonsContainer}>
         {filtered.map((p, index) => {
           return (
-            <ToolbarButton {...p} key={index} value={value} onChange={onChange} getFocusedValue={getFocusedValue} />
+            <ToolbarButton
+              {...p}
+              key={index}
+              value={value}
+              onChange={onChange}
+              getFocusedValue={getFocusedValue}
+              disabled={isToolbarButtonDisabled(p)}
+            />
           );
         })}
       </div>
