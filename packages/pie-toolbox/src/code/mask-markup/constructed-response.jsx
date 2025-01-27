@@ -62,9 +62,11 @@ const MaskedInput = (props) => (node, data) => {
             spellCheck={spellCheck}
             width={`calc(${width}ch + 42px)`} // added 42px for left and right padding of editable-html
             onKeyDown={handleKeyDown}
+            autoWidthToolbar
             toolbarOpts={{
               minWidth: 'auto',
               noBorder: true,
+              isHidden: !!pluginProps?.characters?.disabled
             }}
             className={classnames(
                 classes.editableHtmlCustom,

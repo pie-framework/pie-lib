@@ -9,7 +9,7 @@ const ExplicitConstructedResponse = (props) => {
       {...attributes}
       style={{
         display: 'inline-flex',
-        minHeight: '50px',
+        minHeight: '55px',
         minWidth: '178px',
         position: 'relative',
         cursor: 'pointer',
@@ -19,14 +19,14 @@ const ExplicitConstructedResponse = (props) => {
         style={{
             display: 'inline-flex',
             width: '100%',
-            minHeight: '42px',
-            height: '42px',
+            minHeight: '46px',
+            height: '46px',
             backgroundColor: '#FFF',
             border: `1px solid ${error ? 'red' : '#C0C3CF'}`,
             boxSizing: 'border-box',
             borderRadius: '4px',
             overflow: 'hidden',
-            padding: '10px 21px',
+            padding: '12px 21px',
             marginLeft: '4px',
         }}
         dangerouslySetInnerHTML={{
