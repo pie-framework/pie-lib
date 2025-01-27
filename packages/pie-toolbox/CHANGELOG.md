@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.7.1...@pie-lib/pie-toolbox@2.8.0) (2025-01-27)
+
+
+### Features
+
+* **toolbar:** refactor: simplify arrow functions with implicit returns PD-4679 ([de43f3b](https://github.com/pie-framework/pie-lib/commit/de43f3bf60abda5a4b3a4b919dcac5499690a893))
+* implemented textAlign capabilities [PD-3995] ([cf5a2d1](https://github.com/pie-framework/pie-lib/commit/cf5a2d1c77fab8fdf2275513deae1cfaf1c0738c))
+* **editable-html:** set list toolbars disabled when selection inside of table PD-4678 ([7648509](https://github.com/pie-framework/pie-lib/commit/764850937ef4c17df8f2291270ce9bd400927421))
+* **toolbar:** Disable table button in toolbar if cursor inside a list PD-4679 ([4856427](https://github.com/pie-framework/pie-lib/commit/4856427ccca4a3a1340e4710ea8e16ad626d7a01))
+
+
+
+
+
 ## [2.7.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.7.0...@pie-lib/pie-toolbox@2.7.1) (2025-01-27)
 
 
