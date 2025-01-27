@@ -188,6 +188,8 @@ const createMathMLInstance = (opts, docProvided = document) => {
   return html;
 };
 
+let enrichSpeechInitialized = false;
+
 const bootstrap = (opts) => {
   if (typeof window === 'undefined') {
     return { Typeset: () => ({}) };
@@ -199,17 +201,24 @@ const bootstrap = (opts) => {
     version: mathjax.version,
     html: html,
     Typeset: function(...elements) {
-      mathjax.handleRetriesFor(() => {
-        const updatedDocument = this.html
-          .findMath(elements.length ? { elements } : {})
-          .compile()
-          .enrich()
+      const attemptRender = (temporary = false) => {
+        let updatedDocument = this.html.findMath(elements.length ? { elements } : {}).compile();
+
+        if (!temporary) {
+          updatedDocument = updatedDocument.enrich();
+        }
+
+        updatedDocument = updatedDocument
           .getMetrics()
           .typeset()
           .assistiveMml()
           .attachSpeech()
           .addMenu()
           .updateDocument();
+
+        if (!enrichSpeechInitialized && typeof updatedDocument.math.list?.next?.data === 'object') {
+          enrichSpeechInitialized = true;
+        }
 
         try {
           const list = updatedDocument.math.list;
@@ -228,6 +237,14 @@ const bootstrap = (opts) => {
         }
 
         updatedDocument.clear();
+      };
+
+      if (!enrichSpeechInitialized) {
+        attemptRender(true);
+      }
+
+      mathjax.handleRetriesFor(() => {
+        attemptRender();
       });
     },
   };
