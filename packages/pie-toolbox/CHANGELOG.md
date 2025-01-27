@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.7.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.7.0...@pie-lib/pie-toolbox@2.7.1) (2025-01-27)
+
+
+### Bug Fixes
+
+* **math-templated:** code formatting PD-4589 ([5757146](https://github.com/pie-framework/pie-lib/commit/57571461f21d928b5201eb524ea04fa6b9e8dae4))
+* made sure math rendering is not delayed [PD-4688] ([eb92bb1](https://github.com/pie-framework/pie-lib/commit/eb92bb10331ebe0865e3b8ceaf3f9b2e5095c0d0))
+* **constructed-response:**  hide editable html toolbar in ECR if characters is not enabled PD-4616 ([3961e57](https://github.com/pie-framework/pie-lib/commit/3961e57b4da1c5612992a61af0935733a2b36fa9))
+* **constructed-response:** updated snapshots ([271ccc8](https://github.com/pie-framework/pie-lib/commit/271ccc8e315be45a04cc852ab22c597eb5e68ec1))
+* **ECR:** add error handling for undefined pluginProps ([ac55144](https://github.com/pie-framework/pie-lib/commit/ac5514449e37dad31df2b3287ae9c34fe198344c))
+* **ECR:** code review changes - isHidden property in toolbarOpts as boolean PD-4616 ([b3bd5f0](https://github.com/pie-framework/pie-lib/commit/b3bd5f029f04c378454e4bce562f75f3e33b8c42))
+* **math-templated:** fix math rendering in math templated response areas PD-4589 ([e8eacd7](https://github.com/pie-framework/pie-lib/commit/e8eacd745fdfa22fb0b0e2241f8c92c292e991c5))
+
+
+
+
+
 # [2.7.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.6.1...@pie-lib/pie-toolbox@2.7.0) (2025-01-22)
 
 
