@@ -140,6 +140,7 @@ export default (opts, toolbarPlugins /* :  {toolbar: {}}[] */) => {
   };
 
   core.toolbar = {
+    type: 'table',
     icon: <GridOn />,
     ariaLabel: 'Insert Table',
     onClick: (value, onChange) => {

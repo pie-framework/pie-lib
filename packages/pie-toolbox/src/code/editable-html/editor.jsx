@@ -271,6 +271,10 @@ export class Editor extends React.Component {
         onBlur: this.onPluginBlur,
         ...props.mathMlOptions,
       },
+      textAlign: {
+        getValue: () => this.state.value,
+        onChange: this.onChange,
+      },
       html: htmlPluginOpts,
       extraCSSRules: props.extraCSSRules || {},
       image: {
