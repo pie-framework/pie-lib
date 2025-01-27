@@ -16,8 +16,7 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import InputChooser from '../source/editable-html/input-chooser';
 import { hasText } from '@pie-lib/pie-toolbox/render-ui';
-// import { renderMath } from '@pie-lib/pie-toolbox/math-rendering-accessible';
-import { renderMath as renderMathOld } from '@pie-lib/pie-toolbox/math-rendering';
+import { renderMath } from '@pie-lib/pie-toolbox/math-rendering';
 import { Button } from '@material-ui/core';
 
 const Latex = '\\(2x\\ \\le4y\\ +\\ 8\\)';
@@ -33,16 +32,8 @@ class Demo extends React.Component {
     }, 50);
   }
 
-  random_boolean = true;
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    console.log('componentDidUpdate random_boolean', this.random_boolean);
-    if (this.random_boolean) {
-      renderMathOld(this.root);
-      this.random_boolean = !this.random_boolean;
-    } else {
-      //  renderMath(this.root);
-      this.random_boolean = !this.random_boolean;
-    }
+  componentDidUpdate() {
+    renderMath(this.root);
   }
 
   render() {
@@ -60,7 +51,7 @@ const inputOptions = [
   },
   {
     label: 'Latex \\(..\\)',
-    html: '<div class="hala">Hala madrid</div>',
+    html: '<div align="right">Hala madrid</div>',
   },
   {
     label: 'Latex $..$',
@@ -104,7 +95,7 @@ const inputOptions = [
   },
 ];
 
-const html = inputOptions[8].html;
+const html = inputOptions[1].html;
 
 class RawMarkupPreview extends React.Component {
   static propTypes = {
