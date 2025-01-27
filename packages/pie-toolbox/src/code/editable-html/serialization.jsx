@@ -69,7 +69,7 @@ const attributesToMap = (el) => (acc, attribute) => {
   return acc;
 };
 
-const attributes = ['border', 'cellpadding', 'cellspacing', 'class', 'style'];
+const attributes = ['border', 'cellpadding', 'cellspacing', 'class', 'style', 'align'];
 
 /**
  * Serializer rules.
@@ -509,6 +509,10 @@ const wrapHtmlProperly = (markup) => {
         const p = document.createElement('p');
 
         p.innerHTML = child.innerHTML;
+
+        Array.from(child.attributes).forEach((attr) => {
+          p.setAttribute(attr.name, attr.value);
+        });
         child.replaceWith(p);
       }
 

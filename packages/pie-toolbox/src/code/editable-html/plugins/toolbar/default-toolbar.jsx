@@ -46,16 +46,17 @@ export const ToolbarButton = (props) => {
   const isActive = props.isActive ? props.isActive(props.value, props.type) : hasBlock(props.value, props.type);
 
   log('[ToolbarButton] block:isActive: ', isActive);
+  const newIcon = React.cloneElement(props.icon);
 
   return (
     <Button
       ariaLabel={props.ariaLabel}
       active={isActive}
       disabled={disabled}
-      onClick={() => props.onClick(props.value, props.onChange, props.getFocusedValue)}
+      onClick={(event) => props.onClick(props.value, props.onChange, props.getFocusedValue, event)}
       extraStyles={props.buttonStyles}
     >
-      {props.icon}
+      {newIcon}
     </Button>
   );
 };
