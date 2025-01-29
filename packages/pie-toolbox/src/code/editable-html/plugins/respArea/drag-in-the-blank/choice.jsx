@@ -12,6 +12,9 @@ import { GripIcon } from '../icons';
 const useStyles = withStyles((theme) => ({
   content: {
     border: `solid 0px ${theme.palette.primary.main}`,
+    '& mjx-frac': {
+      fontSize: '120% !important',
+    },
   },
   chip: {
     minWidth: '90px',

@@ -47,6 +47,9 @@ const useStyles = withStyles(() => ({
       marginTop: '0',
       marginBottom: '0',
     },
+    '& mjx-frac': {
+      fontSize: '120% !important',
+    },
   },
   hidden: {
     color: 'transparent',
