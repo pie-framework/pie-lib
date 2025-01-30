@@ -275,9 +275,9 @@ describe('buildSizeStyle', () => {
   });
 
   it('builds width with calc()', () => {
-    const w = wrapper({ width: 'calc(10ch + 42px)' });
+    const w = wrapper({ width: 'calc(10em + 42px)' });
     expect(w.instance().buildSizeStyle()).toEqual({
-      width: 'calc(10ch + 42px)',
+      width: 'calc(10em + 42px)',
       height: undefined,
       minHeight: undefined,
       maxHeight: undefined,
