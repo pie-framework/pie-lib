@@ -62,8 +62,8 @@ export default {
         'Note: The answer shown above is the primary correct answer specified by the author for this item, but other answers may also be recognized as correct.',
     },
     multipleChoice: {
-      minSelections_one: 'This question requires at least {{minSelections}} answer.',
-      minSelections_other: 'This question requires at least {{minSelections}} answers.',
+      minSelections_one: 'Select at least {{minSelections}}.',
+      minSelections_other: 'Select at least {{minSelections}}.',
       maxSelections_one: 'Only {{maxSelections}} answer is allowed.',
       maxSelections_other: 'Only {{maxSelections}} answers are allowed.',
     },
