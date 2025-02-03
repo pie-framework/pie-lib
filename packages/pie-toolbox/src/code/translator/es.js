@@ -62,10 +62,11 @@ export default {
         'Nota: La respuesta que se muestra arriba es la respuesta correcta principal especificada por el autor para esta pregunta, pero también se pueden reconocer otras respuestas como correctas.',
     },
     multipleChoice: {
-      minSelections_one: 'Esta pregunta requiere al menos {{minSelections}} respuesta.',
-      minSelections_other: 'Esta pregunta requiere al menos {{minSelections}} respuestas.',
+      minSelections: 'Seleccione al menos {{minSelections}}.',
       maxSelections_one: 'Sólo se permite {{maxSelections}} respuesta.',
       maxSelections_other: 'Sólo se permiten {{maxSelections}} respuestas.',
+      minmaxSelections_equal: 'Seleccione {{minSelections}}.',
+      minmaxSelections_range: 'Seleccione entre {{minSelections}} y {{maxSelections}}.',
     },
     selectText: {
       correctAnswerSelected: 'Respuesta correcta seleccionada',

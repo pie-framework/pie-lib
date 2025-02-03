@@ -62,10 +62,11 @@ export default {
         'Note: The answer shown above is the primary correct answer specified by the author for this item, but other answers may also be recognized as correct.',
     },
     multipleChoice: {
-      minSelections_one: 'Select at least {{minSelections}}.',
-      minSelections_other: 'Select at least {{minSelections}}.',
+      minSelections: 'Select at least {{minSelections}}.',
       maxSelections_one: 'Only {{maxSelections}} answer is allowed.',
       maxSelections_other: 'Only {{maxSelections}} answers are allowed.',
+      minmaxSelections_equal: 'Select {{minSelections}}.',
+      minmaxSelections_range: 'Select between {{minSelections}} and {{maxSelections}}.',
     },
     selectText: {
       correctAnswerSelected: 'Correct answer selected',
