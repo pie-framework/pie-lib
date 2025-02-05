@@ -484,21 +484,85 @@ const reduceRedundantNewLineCharacters = (markup) => {
   return markup;
 };
 
-const wrapHtmlProperly = (markup) => {
-  const el = document.createElement('div');
+/**
+ * Makes sure that the html provided respects the schema
+ * rules for the slate editor.
+ * @param markup
+ * @returns {string}
+ */
+const fixHtmlCode = (markup) => {
+  const wrapperEl = document.createElement('div');
 
-  el.innerHTML = markup;
+  wrapperEl.innerHTML = markup;
 
   /**
    * DIV elements that are at the same level as paragraphs
    * are replaced with P elements for normalizing purposes
-   * @param el
+   * @param child
    */
-  const parseNode = (el) => {
-    const childArray = Array.from(el.children);
-    const hasParagraphs = childArray.find((child) => child.nodeName === 'P');
+  const fixParagraphs = (child) => {
+    const p = document.createElement('p');
 
-    childArray.forEach((child) => {
+    p.innerHTML = child.innerHTML;
+
+    Array.from(child.attributes).forEach((attr) => {
+      p.setAttribute(attr.name, attr.value);
+    });
+    child.replaceWith(p);
+  };
+
+  /**
+   * @summary Makes sure that tables are placed in the root document.
+   * @description This function removes the tables from the nodes that are
+   * placed inside the root element and places them exactly near
+   * the parent element.
+   * @param tableArray
+   */
+  const fixTables = (tableArray) => {
+    tableArray.forEach((el) => {
+      const { index, child, parent } = el;
+      const nodesBefore = [];
+      const nodesAfter = [];
+      const allNodes = Array.from(parent.childNodes);
+      let i;
+
+      for (i = 0; i < allNodes.length; i++) {
+        const node = allNodes[i];
+
+        if (i < index) {
+          nodesBefore.push(node);
+        } else if (i > index) {
+          nodesAfter.push(node);
+        }
+      }
+
+      // creating the element that is going to be placed instead of the parent
+      const beforeEl = document.createElement(parent.nodeName);
+
+      beforeEl.append(...nodesBefore);
+
+      // replacing parent with the beforeElement
+      parent.replaceWith(beforeEl);
+
+      // adding the table right after the before element
+      beforeEl.after(child);
+
+      // creating the element that is going to be placed after the table
+      const afterEl = document.createElement(parent.nodeName);
+
+      afterEl.append(...nodesAfter);
+
+      // adding the after element near the table
+      child.after(afterEl);
+    });
+  };
+
+  const parseNode = (el) => {
+    const childArray = Array.from(el.childNodes);
+    const hasParagraphs = childArray.find((child) => child.nodeName === 'P');
+    const tables = [];
+
+    childArray.forEach((child, index) => {
       // removing empty blocks
       if ((child.nodeName === 'DIV' || child.nodeName === 'P') && child.childNodes.length === 0) {
         child.remove();
@@ -506,28 +570,34 @@ const wrapHtmlProperly = (markup) => {
       }
 
       if (hasParagraphs && child.nodeName === 'DIV') {
-        const p = document.createElement('p');
+        fixParagraphs(child);
+      }
 
-        p.innerHTML = child.innerHTML;
-
-        Array.from(child.attributes).forEach((attr) => {
-          p.setAttribute(attr.name, attr.value);
+      if (wrapperEl !== el && child.nodeName === 'TABLE') {
+        // we don't need to fix tables in the root element
+        tables.push({
+          index,
+          child,
+          parent: el,
         });
-        child.replaceWith(p);
       }
 
       parseNode(child);
     });
+
+    if (tables.length) {
+      fixTables(tables);
+    }
   };
 
-  parseNode(el);
+  parseNode(wrapperEl);
 
-  return el.innerHTML;
+  return wrapperEl.innerHTML;
 };
 
 export const htmlToValue = (html) => {
   try {
-    return serializer.deserialize(wrapHtmlProperly(reduceRedundantNewLineCharacters(reduceMultipleBrs(html))));
+    return serializer.deserialize(fixHtmlCode(reduceRedundantNewLineCharacters(reduceMultipleBrs(html))));
   } catch (e) {
     // eslint-disable-next-line no-console
     console.log("Couldn't parse html: ", e);
