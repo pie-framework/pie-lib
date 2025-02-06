@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.9.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.8.0...@pie-lib/pie-toolbox@2.9.0) (2025-02-06)
+
+
+### Bug Fixes
+
+* **blank:** fix font size for fractions in mathematical answer choices PD-4641 ([61a559d](https://github.com/pie-framework/pie-lib/commit/61a559dcf231fd437f880418971d21f12b358f94))
+* **ECR:** adjusted width for constructed response areas PD-4618 ([68857b9](https://github.com/pie-framework/pie-lib/commit/68857b9d51846d8a1a7e7ff2db5effc9c4c9e254))
+
+
+### Features
+
+* change the wording for the min selections message in multiple-choice PD-4753 ([fefc02f](https://github.com/pie-framework/pie-lib/commit/fefc02f84627150e532e0a5b97e1007a56234680))
+* messages updates for the min and max selections in multiple-choice PD-4755 ([af6db48](https://github.com/pie-framework/pie-lib/commit/af6db480121b3d4a609499681576052262885e9b))
+
+
+
+
+
 # [2.8.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.7.1...@pie-lib/pie-toolbox@2.8.0) (2025-01-27)
 
 
