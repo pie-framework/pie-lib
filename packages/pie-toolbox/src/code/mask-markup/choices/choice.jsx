@@ -89,6 +89,9 @@ export const BlankContent = withStyles((theme) => ({
       display: 'block',
       padding: '2px 0',
     },
+    '& mjx-frac': {
+      fontSize: '120% !important',
+    },
   },
   disabled: {
     opacity: 0.6,
