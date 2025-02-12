@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.9.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.9.0...@pie-lib/pie-toolbox@2.9.1) (2025-02-12)
+
+
+### Bug Fixes
+
+* made sure math rendering is not handling nodes that have been handled already [PD-4717] ([2d3d2be](https://github.com/pie-framework/pie-lib/commit/2d3d2bec0ff6fff3f19d61c5a47c70f518a7154f))
+
+
+
+
+
 # [2.9.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.8.0...@pie-lib/pie-toolbox@2.9.0) (2025-02-06)
 
 
