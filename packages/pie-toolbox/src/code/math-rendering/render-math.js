@@ -2,6 +2,7 @@ import { mathjax } from 'mathjax-full/js/mathjax';
 import { AssistiveMmlHandler } from 'mathjax-full/js/a11y/assistive-mml';
 import { EnrichHandler } from 'mathjax-full/js/a11y/semantic-enrich';
 import { MenuHandler } from 'mathjax-full/js/ui/menu/MenuHandler';
+import { FindMathML } from 'mathjax-full/js/input/mathml/FindMathML';
 import { MathML } from 'mathjax-full/js/input/mathml';
 import { TeX } from 'mathjax-full/js/input/tex';
 
@@ -22,6 +23,7 @@ import { MmlFactory } from 'mathjax-full/js/core/MmlTree/MmlFactory';
 import { SerializedMmlVisitor } from 'mathjax-full/js/core/MmlTree/SerializedMmlVisitor';
 import { CHTMLWrapperFactory } from 'mathjax-full/js/output/chtml/WrapperFactory';
 import { CHTMLmspace } from 'mathjax-full/js/output/chtml/Wrappers/mspace';
+import { HTMLDomStrings } from 'mathjax-full/js/handlers/html/HTMLDomStrings';
 
 const visitor = new SerializedMmlVisitor();
 const toMMl = (node) => visitor.visitTree(node);
@@ -92,6 +94,18 @@ const adjustMathMLStyle = (el = document) => {
   nodes.forEach((node) => node.setAttribute('displaystyle', 'true'));
 };
 
+class myFindMathML extends FindMathML {
+  processMath(set) {
+    const adaptor = this.adaptor;
+    for (const mml of Array.from(set)) {
+      if (adaptor.kind(adaptor.parent(mml)) === 'mjx-assistive-mml') {
+        set.delete(mml);
+      }
+    }
+    return super.processMath(set);
+  }
+}
+
 const createMathMLInstance = (opts, docProvided = document) => {
   opts = opts || defaultOpts();
 
@@ -135,6 +149,7 @@ const createMathMLInstance = (opts, docProvided = document) => {
       console.log('error:', node);
       this.error(this.adaptor.textContent(node).replace(/\n.*/g, ''));
     },
+    FindMathML: new myFindMathML(),
   };
 
   const fontURL = `https://unpkg.com/mathjax-full@${mathjax.version}/ts/output/chtml/fonts/tex-woff-v2`;
@@ -180,6 +195,20 @@ const createMathMLInstance = (opts, docProvided = document) => {
 
     InputJax: [new TeX(texConfig), mml],
     OutputJax: new CHTML(htmlConfig),
+    DomStrings: new HTMLDomStrings({
+      skipHtmlTags: [
+        'script',
+        'noscript',
+        'style',
+        'textarea',
+        'pre',
+        'code',
+        'annotation',
+        'annotation-xml',
+        'mjx-assistive-mml',
+        'mjx-container',
+      ],
+    }),
   });
 
   // Note: we must set this *after* mathjax.document (no idea why)
