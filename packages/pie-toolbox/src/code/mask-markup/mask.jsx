@@ -127,7 +127,7 @@ const MaskContainer = withStyles(() => ({
     },
     // align table content to left as per STAR requirement PD-3687
     '&:not(.MathJax) table td, &:not(.MathJax) table th': {
-      padding: '.6em 1em',
+      padding: '8px 12px',
       textAlign: 'left',
     },
   },
