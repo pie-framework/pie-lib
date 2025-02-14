@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.9.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.9.1...@pie-lib/pie-toolbox@2.9.2) (2025-02-14)
+
+
+### Bug Fixes
+
+* **mask-markup:** adjust padding for tables PD-4801 ([8fe06e0](https://github.com/pie-framework/pie-lib/commit/8fe06e04d3301a5a9347cfb089845e9aacf13804))
+
+
+
+
+
 ## [2.9.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.9.0...@pie-lib/pie-toolbox@2.9.1) (2025-02-12)
 
 
