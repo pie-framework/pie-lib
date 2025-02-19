@@ -19,7 +19,7 @@ const styles = {
   },
   ica: {
     backgroundColor: color.background(),
-    border: `1px solid ${color.primary()}`,
+    border: `1px solid ${color.borderDark()}`,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
