@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.9.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.9.2...@pie-lib/pie-toolbox@2.9.3) (2025-02-19)
+
+
+### Bug Fixes
+
+* made sure table nodes are only placed in the root document [PD-4168] ([4c54392](https://github.com/pie-framework/pie-lib/commit/4c54392e9a253b42ba8df06645a80f227775aa7f))
+* **render-ui:** change label display such as strike properties to work in OT PD-4723 ([1026d48](https://github.com/pie-framework/pie-lib/commit/1026d484bddcc786db4581c3b436dc1229368ad8))
+
+
+
+
+
 ## [2.9.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.9.1...@pie-lib/pie-toolbox@2.9.2) (2025-02-14)
 
 
