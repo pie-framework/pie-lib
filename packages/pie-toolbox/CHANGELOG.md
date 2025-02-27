@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.9.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.9.3...@pie-lib/pie-toolbox@2.9.4) (2025-02-27)
+
+
+### Bug Fixes
+
+* Fix MC answer choice persistence by correctly retrieving shuffledValues PD-4820 ([d1447b2](https://github.com/pie-framework/pie-lib/commit/d1447b2bb938d984e7745c3b6cf69137036b6787))
+* **drag:** use same border color ica on drag PD-4766 ([704e95f](https://github.com/pie-framework/pie-lib/commit/704e95f8c145e9b78acf65c80dc1ab4bcbb6d73c))
+
+
+
+
+
 ## [2.9.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.9.2...@pie-lib/pie-toolbox@2.9.3) (2025-02-19)
 
 
