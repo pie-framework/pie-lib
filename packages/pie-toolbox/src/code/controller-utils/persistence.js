@@ -23,7 +23,7 @@ export const getShuffledChoices = (choices, session, updateSession, choiceKey) =
     log('updateSession type: ', typeof updateSession);
     log('session: ', session);
 
-    const currentShuffled = session?.data?.shuffledValues ? compact(session.data.shuffledValues) : [];
+    const currentShuffled = compact(session?.data?.shuffledValues || session?.shuffledValues || []);
 
     if (!session) {
       // eslint-disable-next-line quotes
