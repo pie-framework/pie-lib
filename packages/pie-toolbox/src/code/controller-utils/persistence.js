@@ -23,14 +23,14 @@ export const getShuffledChoices = (choices, session, updateSession, choiceKey) =
     log('updateSession type: ', typeof updateSession);
     log('session: ', session);
 
-    const currentShuffled = compact((session || {}).shuffledValues);
+    const currentShuffled = session?.data?.shuffledValues ? compact(session.data.shuffledValues) : [];
 
     if (!session) {
       // eslint-disable-next-line quotes
       warn("unable to save shuffled choices because there's no session.");
       resolve(undefined);
     } else if (!isEmpty(currentShuffled)) {
-      debug('use shuffledValues to sort the choices...', session.shuffledValues);
+      debug('use shuffledValues to sort the choices...', session.data?.shuffledValues);
       resolve(compact(currentShuffled.map((v) => choices.find((c) => c[choiceKey] === v))));
     } else {
       const shuffledChoices = shuffle(choices);
