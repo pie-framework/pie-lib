@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.9.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.9.4...@pie-lib/pie-toolbox@2.9.5) (2025-02-27)
+
+
+### Bug Fixes
+
+* Ensure compatibility for shuffledValues retrieval PD-4820 ([f306a59](https://github.com/pie-framework/pie-lib/commit/f306a599d4268d7c52f9e4c85ff2dbaabba25cf6))
+
+
+
+
+
 ## [2.9.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.9.3...@pie-lib/pie-toolbox@2.9.4) (2025-02-27)
 
 
