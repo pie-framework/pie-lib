@@ -16,6 +16,10 @@ export class PreviewPrompt extends Component {
     onClick: PropTypes.func,
     defaultClassName: PropTypes.string,
     autoplayAudioEnabled: PropTypes.bool,
+    customAudioButton: {
+      playImage: PropTypes.string,
+      pauseImage: PropTypes.string,
+    },
   };
 
   static defaultProps = {
@@ -23,8 +27,7 @@ export class PreviewPrompt extends Component {
   };
 
   parsedText = (text) => {
-    const { autoplayAudioEnabled } = this.props;
-    // fix imported audio content for Safari PD-1419
+    const { customAudioButton } = this.props;
     const div = document.createElement('div');
     div.innerHTML = text;
 
@@ -36,23 +39,116 @@ export class PreviewPrompt extends Component {
       source.setAttribute('src', audio.getAttribute('src'));
 
       audio.removeAttribute('src');
-
-      if (autoplayAudioEnabled) {
-        audio.setAttribute('autoplay', 'autoplay');
-      }
+      audio.setAttribute('id', 'pie-prompt-audio-player');
 
       audio.appendChild(source);
+
+      if (customAudioButton) {
+        audio.style.display = 'none';
+
+        const playButton = document.createElement('div');
+        playButton.id = 'play-audio-button';
+
+        Object.assign(playButton.style, {
+          cursor: 'pointer',
+          display: 'block',
+          width: '128px',
+          height: '128px',
+          backgroundImage: `url(${customAudioButton.pauseImage})`,
+          backgroundSize: 'cover',
+          borderRadius: '50%',
+          border: '1px solid #326295',
+        });
+
+        audio.parentNode.insertBefore(playButton, audio);
+      }
     }
 
     return div.innerHTML;
   };
 
+  addCustomAudioButtonControls() {
+    const { autoplayAudioEnabled, customAudioButton } = this.props;
+    const playButton = document.getElementById('play-audio-button');
+    const audio = document.getElementById('pie-prompt-audio-player');
+
+    if (autoplayAudioEnabled && audio) {
+      audio
+        .play()
+        .then(() => {
+          if (playButton && customAudioButton) {
+            audio.addEventListener('ended', handleAudioEnded);
+          }
+        })
+        .catch((error) => {
+          console.error('Error playing audio', error);
+        });
+    }
+
+    if (!playButton || !audio || !customAudioButton) return;
+
+    const handlePlayClick = () => {
+      // if already playing, don't play again
+      if (!audio.paused) return;
+      if (playButton.style.backgroundImage.includes(customAudioButton.pauseImage)) return;
+
+      audio.play();
+    };
+
+    const handleAudioEnded = () => {
+      playButton.style.backgroundImage = `url(${customAudioButton.playImage})`;
+    };
+
+    const handleAudioPlay = () => {
+      Object.assign(playButton.style, {
+        backgroundImage: `url(${customAudioButton.pauseImage})`,
+        border: '1px solid #ccc',
+      });
+    };
+
+    const handleAudioPause = () => {
+      Object.assign(playButton.style, {
+        backgroundImage: `url(${customAudioButton.playImage})`,
+        border: '1px solid #326295',
+      });
+    };
+
+    playButton.addEventListener('click', handlePlayClick);
+    audio.addEventListener('play', handleAudioPlay);
+    audio.addEventListener('pause', handleAudioPause);
+    audio.addEventListener('ended', handleAudioEnded);
+
+    // store event handler references so they can be removed later
+    this._handlePlayClick = handlePlayClick;
+    this._handleAudioPlay = handleAudioPlay;
+    this._handleAudioPause = handleAudioPause;
+    this._handleAudioEnded = handleAudioEnded;
+  }
+
+  removeCustomAudioButtonListeners() {
+    const playButton = document.getElementById('play-audio-button');
+    const audio = document.querySelector('audio');
+
+    if (!playButton || !audio) return;
+
+    // remove event listeners using stored references
+    playButton.removeEventListener('click', this._handlePlayClick);
+    audio.removeEventListener('play', this._handleAudioPlay);
+    audio.removeEventListener('pause', this._handleAudioPause);
+    audio.removeEventListener('ended', this._handleAudioEnded);
+  }
+
   componentDidMount() {
     this.alignImages();
+    this.addCustomAudioButtonControls();
   }
 
   componentDidUpdate() {
     this.alignImages();
+  }
+
+  componentWillUnmount() {
+    this.removeCustomAudioButtonListeners();
   }
 
   alignImages() {
