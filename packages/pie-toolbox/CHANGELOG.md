@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.10.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.9.5...@pie-lib/pie-toolbox@2.10.0) (2025-03-03)
+
+
+### Features
+
+* **preview-prompt:** implement customAudioButton support in prompt PD-4795 ([730ab86](https://github.com/pie-framework/pie-lib/commit/730ab860c5073a7a1c7fa93c0fff305d7f372f06))
+
+
+
+
+
 ## [2.9.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.9.4...@pie-lib/pie-toolbox@2.9.5) (2025-02-27)
 
 
