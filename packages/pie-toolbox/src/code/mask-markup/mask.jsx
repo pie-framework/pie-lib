@@ -15,7 +15,7 @@ const Paragraph = withStyles((theme) => ({
 const Spacer = withStyles(() => ({
   spacer: {
     display: 'inline-block',
-    width: '1.5em',
+    width: '.75em',
   },
 }))((props) => <span className={props.classes.spacer} />);
 
@@ -42,7 +42,7 @@ const getMark = (n) => {
   return null;
 };
 
-export const renderChildren = (layout, value, onChange, rootRenderChildren, parentNode) => {
+export const renderChildren = (layout, value, onChange, rootRenderChildren, parentNode, elementType) => {
   if (!value) {
     return null;
   }
@@ -67,7 +67,7 @@ export const renderChildren = (layout, value, onChange, rootRenderChildren, pare
       const c = rootRenderChildren(n, value, onChange);
       if (c) {
         children.push(c);
-        if (parentNode?.type !== 'td') {
+        if (parentNode?.type !== 'td' && elementType === 'drag-in-the-blank') {
           children.push(<Spacer key={`spacer-${index}`} />);
         }
         return;
@@ -95,9 +95,12 @@ export const renderChildren = (layout, value, onChange, rootRenderChildren, pare
         }
       } else if (content.length > 0) {
         children.push(content);
+        if (parentNode?.type !== 'td' && elementType === 'drag-in-the-blank') {
+          children.push(<Spacer key={`spacer-${index}`} />);
+        }
       }
     } else {
-      const subNodes = renderChildren(n, value, onChange, rootRenderChildren, n);
+      const subNodes = renderChildren(n, value, onChange, rootRenderChildren, n, elementType);
       if (n.type === 'p' || n.type === 'paragraph') {
         children.push(<Paragraph key={key}>{subNodes}</Paragraph>);
       } else {
@@ -142,6 +145,7 @@ export default class Mask extends React.Component {
     layout: PropTypes.object,
     value: PropTypes.object,
     onChange: PropTypes.func,
+    elementType: PropTypes.string,
   };
 
   handleChange = (id, value) => {
@@ -150,8 +154,8 @@ export default class Mask extends React.Component {
   };
 
   render() {
-    const { value, layout } = this.props;
-    const children = renderChildren(layout, value, this.handleChange, this.props.renderChildren);
+    const { value, layout, elementType } = this.props;
+    const children = renderChildren(layout, value, this.handleChange, this.props.renderChildren, null, elementType);
 
     return <MaskContainer>{children}</MaskContainer>;
   }
