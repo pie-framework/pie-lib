@@ -127,6 +127,7 @@ export default class DragInTheBlank extends React.Component {
           disabled={disabled}
         />
         <Masked
+          elementType={'drag-in-the-blank'}
           markup={markup}
           layout={layout}
           value={value}

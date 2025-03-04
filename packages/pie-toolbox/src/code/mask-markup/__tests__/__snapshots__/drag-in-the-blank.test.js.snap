@@ -79,6 +79,7 @@ exports[`DragInTheBlank render renders correctly with default props 1`] = `
       ]
     }
     disabled={false}
+    elementType="drag-in-the-blank"
     feedback={Object {}}
     markup="<div>
   <img src=\\"https://image.shutterstock.com/image-vector/cow-jumped-over-moon-traditional-260nw-1152899330.jpg\\"></img>
@@ -178,6 +179,7 @@ exports[`DragInTheBlank render renders correctly with disabled prop as true 1`] 
       ]
     }
     disabled={true}
+    elementType="drag-in-the-blank"
     feedback={Object {}}
     markup="<div>
   <img src=\\"https://image.shutterstock.com/image-vector/cow-jumped-over-moon-traditional-260nw-1152899330.jpg\\"></img>
@@ -277,6 +279,7 @@ exports[`DragInTheBlank render renders correctly with feedback 1`] = `
       ]
     }
     disabled={false}
+    elementType="drag-in-the-blank"
     feedback={
       Object {
         "0": Object {

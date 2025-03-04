@@ -54,10 +54,18 @@ export const withMask = (type, renderChildren) => {
     }
 
     render() {
-      const { markup, layout, value, onChange } = this.props;
+      const { markup, layout, value, onChange, elementType } = this.props;
 
       const maskLayout = layout ? layout : buildLayoutFromMarkup(markup, type);
-      return <Mask layout={maskLayout} value={value} onChange={onChange} renderChildren={renderChildren(this.props)} />;
+      return (
+        <Mask
+          elementType={elementType}
+          layout={maskLayout}
+          value={value}
+          onChange={onChange}
+          renderChildren={renderChildren(this.props)}
+        />
+      );
     }
   };
 };
