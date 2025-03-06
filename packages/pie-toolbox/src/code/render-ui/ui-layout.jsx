@@ -38,7 +38,7 @@ class UiLayout extends AppendCSSRules {
   }
 
   render() {
-    let { children, className, classes, fontSizeFactor, ...rest } = this.props;
+    const { children, className, classes, fontSizeFactor, ...rest } = this.props;
 
     const finalClass = classNames(className, classes.extraCSSRules, classes.uiLayoutContainer);
     const restProps = omit(rest, 'extraCSSRules');
