@@ -110,7 +110,7 @@ export default function ResponseAreaPlugin(opts) {
       onChange(change);
     },
     renderNode(props) {
-      const { attributes, node: n } = props;
+      const { attributes, node: n, isFocused } = props;
 
       if (n.type === 'explicit_constructed_response') {
         const data = n.data.toJSON();
@@ -123,6 +123,7 @@ export default function ResponseAreaPlugin(opts) {
         return (
           <ExplicitConstructedResponse
             attributes={attributes}
+            isFocused={isFocused}
             value={data.value}
             error={error && error[data.index] && error[data.index][0]}
           />
