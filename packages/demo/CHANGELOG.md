@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.1.24](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.23...@pie-lib/demo@8.1.24) (2025-03-13)
+
+
+### Bug Fixes
+
+* made sure that a paragraph sign is added after every block [PD-4093] ([4b7203e](https://github.com/pie-framework/pie-lib/commit/4b7203ea7e4a928406b8693c51574b19b83b9f2f))
+
+
+
+
+
 ## [8.1.23](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.22...@pie-lib/demo@8.1.23) (2025-03-03)
 
 **Note:** Version bump only for package @pie-lib/demo

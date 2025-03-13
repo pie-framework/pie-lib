@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.10.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.10.0...@pie-lib/pie-toolbox@2.10.1) (2025-03-13)
+
+
+### Bug Fixes
+
+* avoid rendering response area when editor is focused PD-4872 ([ec3627b](https://github.com/pie-framework/pie-lib/commit/ec3627bc2a10e90c7904d9ad5c751df2ed5dc558))
+* made sure that a paragraph sign is added after every block [PD-4093] ([4b7203e](https://github.com/pie-framework/pie-lib/commit/4b7203ea7e4a928406b8693c51574b19b83b9f2f))
+* **mask:** update snapshots ([bd747c2](https://github.com/pie-framework/pie-lib/commit/bd747c227e29e7917a14a5a576a765cfe6ce2803))
+* **render-ui:** set fontSize only when fontSizeFactor is provided, take body font size  in consideration PD-4867 ([7c254d2](https://github.com/pie-framework/pie-lib/commit/7c254d26397b130277367ec774d3c8a6220c8d7e))
+* **render-ui:** set fontSize only when fontSizeFactor is provided, take body font size  in consideration PD-4867 ([4382164](https://github.com/pie-framework/pie-lib/commit/43821647adcea7680f71c312bc886affd44689f8))
+
+
+
+
+
 # [2.10.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.9.5...@pie-lib/pie-toolbox@2.10.0) (2025-03-03)
 
 
