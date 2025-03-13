@@ -28,9 +28,13 @@ class UiLayout extends AppendCSSRules {
   }
 
   computeStyle(fontSizeFactor) {
-    // get the standard fontSize  of the page (rootFontSize)
-    const rootFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
-    return { fontSize: `${rootFontSize * fontSizeFactor}px` };
+    const getFontSize = (element) => parseFloat(getComputedStyle(element).fontSize);
+
+    const rootFontSize = getFontSize(document.documentElement);
+    const bodyFontSize = getFontSize(document.body);
+    const effectiveFontSize = Math.max(rootFontSize, bodyFontSize);
+
+    return fontSizeFactor !== 1 ? { fontSize: `${effectiveFontSize * fontSizeFactor}px` } : null;
   }
 
   render() {
@@ -38,9 +42,10 @@ class UiLayout extends AppendCSSRules {
 
     const finalClass = classNames(className, classes.extraCSSRules, classes.uiLayoutContainer);
     const restProps = omit(rest, 'extraCSSRules');
+    const style = this.computeStyle(fontSizeFactor);
 
     return (
-      <div className={finalClass} {...restProps} style={this.computeStyle(fontSizeFactor)}>
+      <div className={finalClass} {...restProps} {...(style && { style })}>
         {children}
       </div>
     );
