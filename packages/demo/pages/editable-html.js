@@ -51,7 +51,7 @@ const inputOptions = [
   },
   {
     label: 'Latex \\(..\\)',
-    html: '<div>Hala madrid</div>',
+    html: '<div align="right">Hala madrid</div>',
   },
   {
     label: 'Latex $..$',
