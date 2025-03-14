@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.10.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.10.1...@pie-lib/pie-toolbox@2.10.2) (2025-03-14)
+
+
+### Bug Fixes
+
+* reverted paragraph indication [PD-4093] ([a541bed](https://github.com/pie-framework/pie-lib/commit/a541bedb9f4f6783d13f18b00005936a22c02a67))
+
+
+
+
+
 ## [2.10.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.10.0...@pie-lib/pie-toolbox@2.10.1) (2025-03-13)
 
 
