@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.1.25](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.24...@pie-lib/demo@8.1.25) (2025-03-14)
+
+
+### Bug Fixes
+
+* reverted paragraph indication [PD-4093] ([a541bed](https://github.com/pie-framework/pie-lib/commit/a541bedb9f4f6783d13f18b00005936a22c02a67))
+
+
+
+
+
 ## [8.1.24](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.23...@pie-lib/demo@8.1.24) (2025-03-13)
 
 
