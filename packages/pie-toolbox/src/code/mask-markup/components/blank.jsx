@@ -103,24 +103,30 @@ export class BlankContent extends React.Component {
 
   componentDidMount() {
     this.handleElements();
-  }
-
-  componentDidUpdate(prevProps) {
-    renderMath(this.rootRef);
-    const { choice: currentChoice } = this.props;
-    const { choice: prevChoice } = prevProps;
-
-    if (JSON.stringify(currentChoice) !== JSON.stringify(prevChoice)) {
-      if (!currentChoice) {
-        this.setState({
-          height: 0,
-          width: 0,
-        });
-        return;
-      }
-      this.handleElements();
+    if (this.rootRef) {
+      this.rootRef.addEventListener('touchstart', this.handleTouchStart, { passive: false });
     }
   }
+
+  componentWillUnmount() {
+    if (this.rootRef) {
+      this.rootRef.removeEventListener('touchstart', this.handleTouchStart);
+    }
+  }
+
+  handleTouchStart = (e) => {
+    e.preventDefault();
+    this.touchStartTimer = setTimeout(() => {
+      this.startDrag();
+    }, 300); // Start drag after 300ms (touch and hold duration)
+  };
+
+  startDrag = () => {
+    const { connectDragSource, disabled } = this.props;
+    if (!disabled) {
+      connectDragSource(this.rootRef);
+    }
+  };
 
   updateDimensions() {
     if (this.spanRef && this.rootRef) {
