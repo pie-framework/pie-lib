@@ -414,14 +414,6 @@ const styles = (theme) => ({
         fontSize: '70.7%',
       },
 
-      '& .mq-math-mode .mq-supsub.mq-sup-only': {
-        verticalAlign: '-0.1em !important',
-
-        '& .mq-sup': {
-          marginBottom: '0px !important',
-        },
-      },
-
       '& .mq-math-mode .mq-denominator': {
         marginTop: '-5px !important',
         padding: '0.5em 0.1em 0.1em !important',
