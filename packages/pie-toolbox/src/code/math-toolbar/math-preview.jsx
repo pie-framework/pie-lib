@@ -4,6 +4,7 @@ import debug from 'debug';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import { mq } from '../math-input';
+import { markFractionBaseSuperscripts } from './utils';
 
 const log = debug('@pie-lib:math-toolbar:math-preview');
 
@@ -16,6 +17,17 @@ export class RawMathPreview extends React.Component {
     onFocus: PropTypes.func,
     onBlur: PropTypes.func,
   };
+
+  componentDidMount() {
+    markFractionBaseSuperscripts();
+  }
+
+  componentDidUpdate(prevProps) {
+    // Re-run only if LaTeX changed
+    if (this.props.node.data.get('latex') !== prevProps.node.data.get('latex')) {
+      markFractionBaseSuperscripts();
+    }
+  }
 
   render() {
     log('[render] data: ', this.props.node.data);
@@ -134,6 +146,14 @@ const mp = (theme) => ({
         marginBottom: '0px !important',
       },
     },
+    /* But when the base is a fraction, move it higher */
+    '& .mq-math-mode .mq-fraction + .mq-supsub.mq-sup-only': {
+      verticalAlign: '0.4em !important',
+    },
+    '& .mq-math-mode .mq-supsub.mq-sup-only.mq-after-fraction-group': {
+      verticalAlign: '0.4em !important',
+    },
+
     '& .mq-overarrow-inner': {
       paddingTop: '0 !important',
       border: 'none !important',
