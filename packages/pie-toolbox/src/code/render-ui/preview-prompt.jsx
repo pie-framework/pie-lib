@@ -223,6 +223,7 @@ const styles = (theme) => ({
   label: {
     color: `${color.text()} !important`, //'var(--choice-input-color, black)',
     display: 'flex',
+    flexDirection: 'column',
     verticalAlign: 'middle',
     cursor: 'pointer',
     '& > p': {
