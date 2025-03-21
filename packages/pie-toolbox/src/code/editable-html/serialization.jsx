@@ -595,9 +595,11 @@ const fixHtmlCode = (markup) => {
   return wrapperEl.innerHTML;
 };
 
+export const handleHtml = (html) => fixHtmlCode(reduceRedundantNewLineCharacters(reduceMultipleBrs(html)));
+
 export const htmlToValue = (html) => {
   try {
-    return serializer.deserialize(fixHtmlCode(reduceRedundantNewLineCharacters(reduceMultipleBrs(html))));
+    return serializer.deserialize(handleHtml(html));
   } catch (e) {
     // eslint-disable-next-line no-console
     console.log("Couldn't parse html: ", e);
