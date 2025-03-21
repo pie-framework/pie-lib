@@ -10,6 +10,7 @@ import { color, InputContainer } from '../render-ui';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import isEqual from 'lodash/isEqual';
+import { markFractionBaseSuperscripts } from './utils';
 
 const decimalRegex = /\.|,/g;
 
@@ -124,6 +125,7 @@ export class EditorAndPad extends React.Component {
     const { onChange, noDecimal } = this.props;
 
     updateSpans();
+    markFractionBaseSuperscripts();
 
     this.updateDisable(true);
 
@@ -412,6 +414,21 @@ const styles = (theme) => ({
 
       '& .mq-supsub ': {
         fontSize: '70.7%',
+      },
+      '& .mq-math-mode .mq-supsub.mq-sup-only': {
+        verticalAlign: '-0.1em !important',
+
+        '& .mq-sup': {
+          marginBottom: '0px !important',
+        },
+      },
+      /* But when the base is a fraction, move it higher */
+      '& .mq-math-mode .mq-fraction + .mq-supsub.mq-sup-only': {
+        verticalAlign: '0.4em !important',
+      },
+
+      '& .mq-math-mode .mq-supsub.mq-sup-only.mq-after-fraction-group': {
+        verticalAlign: '0.4em !important',
       },
 
       '& .mq-math-mode .mq-denominator': {
