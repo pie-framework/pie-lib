@@ -1,5 +1,4 @@
 export const markFractionBaseSuperscripts = () => {
-  console.log('Andreea heree');
   document.querySelectorAll('.mq-supsub.mq-sup-only').forEach((supsub) => {
     const prev = supsub.previousElementSibling;
 
