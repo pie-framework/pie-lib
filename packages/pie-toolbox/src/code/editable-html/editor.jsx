@@ -101,6 +101,7 @@ export class Editor extends React.Component {
     //       }),
     //   ),
     placeholder: PropTypes.string,
+    isEditor: PropTypes.bool,
     responseAreaProps: PropTypes.shape({
       type: PropTypes.oneOf([
         'explicit-constructed-response',
@@ -158,6 +159,7 @@ export class Editor extends React.Component {
     responseAreaProps: defaultResponseAreaProps,
     languageCharactersProps: defaultLanguageCharactersProps,
     extraCSSRules: null,
+    isEditor: false,
   };
 
   constructor(props) {
@@ -1024,6 +1026,7 @@ export class Editor extends React.Component {
       highlightShape,
       classes,
       className,
+      isEditor,
       placeholder,
       pluginProps,
       onKeyDown,
@@ -1032,7 +1035,7 @@ export class Editor extends React.Component {
     // Not sure if they would do any harm, but I think it's better to not send them.
     // We use custom plugins to be able to add custom buttons
     // eslint-disable-next-line no-unused-vars
-    const { customPlugins, ...otherPluginProps } = pluginProps || {};
+    const { customPlugins, showParagraphs, ...otherPluginProps } = pluginProps || {};
 
     const { value, focusedNode, toolbarOpts, dialog, scheduled } = this.state;
 
@@ -1090,6 +1093,7 @@ export class Editor extends React.Component {
           className={classNames(
             {
               [classes.noPadding]: toolbarOpts?.noPadding,
+              [classes.showParagraph]: showParagraphs && !showParagraphs.disabled,
             },
             classes.slateEditor,
           )}
@@ -1157,6 +1161,14 @@ const styles = {
     },
     '& table:not([border="1"]) td, th': {
       border: '1px solid #dfe2e5',
+    },
+  },
+  showParagraph: {
+    // a div that has a div after it
+    '& > div:has(+ div)::after': {
+      display: 'block',
+      content: '"¶"',
+      color: '#146EB3',
     },
   },
   toolbarOnTop: {
