@@ -103,6 +103,9 @@ export class BlankContent extends React.Component {
 
   componentDidMount() {
     this.handleElements();
+    if (this.rootRef) {
+      this.rootRef.addEventListener('touchstart', this.handleTouchStart, { passive: false });
+    }
   }
 
   componentDidUpdate(prevProps) {
@@ -121,6 +124,26 @@ export class BlankContent extends React.Component {
       this.handleElements();
     }
   }
+
+  componentWillUnmount() {
+    if (this.rootRef) {
+      this.rootRef.removeEventListener('touchstart', this.handleTouchStart);
+    }
+  }
+
+  handleTouchStart = (e) => {
+    e.preventDefault();
+    this.touchStartTimer = setTimeout(() => {
+      this.startDrag();
+    }, 300); // Start drag after 300ms (touch and hold duration)
+  };
+
+  startDrag = () => {
+    const { connectDragSource, disabled } = this.props;
+    if (!disabled) {
+      connectDragSource(this.rootRef);
+    }
+  };
 
   updateDimensions() {
     if (this.spanRef && this.rootRef) {
