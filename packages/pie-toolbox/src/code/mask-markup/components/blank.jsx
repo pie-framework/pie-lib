@@ -108,6 +108,23 @@ export class BlankContent extends React.Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    renderMath(this.rootRef);
+    const { choice: currentChoice } = this.props;
+    const { choice: prevChoice } = prevProps;
+
+    if (JSON.stringify(currentChoice) !== JSON.stringify(prevChoice)) {
+      if (!currentChoice) {
+        this.setState({
+          height: 0,
+          width: 0,
+        });
+        return;
+      }
+      this.handleElements();
+    }
+  }
+
   componentWillUnmount() {
     if (this.rootRef) {
       this.rootRef.removeEventListener('touchstart', this.handleTouchStart);
