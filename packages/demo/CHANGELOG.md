@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.26...@pie-lib/demo@8.2.0) (2025-03-27)
+
+
+### Features
+
+* show paragraph symbol only after line breaks [PD-4093] ([ec0db15](https://github.com/pie-framework/pie-lib/commit/ec0db15980b62036ec9feb86b5691c449c26fa10))
+
+
+
+
+
 ## [8.1.26](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.25...@pie-lib/demo@8.1.26) (2025-03-21)
 
 **Note:** Version bump only for package @pie-lib/demo

@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.11.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.10.3...@pie-lib/pie-toolbox@2.11.0) (2025-03-27)
+
+
+### Bug Fixes
+
+* PD-4888 revert changes in blank for componentDidUpdate ([243ef16](https://github.com/pie-framework/pie-lib/commit/243ef16052afdec172cbf92cb477abe584542ae3))
+* **editor-and-pad:** delete unused logs ([0ec6d55](https://github.com/pie-framework/pie-lib/commit/0ec6d558697be49fa365eaf04deee809e68602d7))
+* **math-toolbar:** process latex to catch fractions raised to an exponent and add style PD-4895 ([66a45b9](https://github.com/pie-framework/pie-lib/commit/66a45b9b5209b7b437971aa1a68b7dccd6fc163c))
+* DITB Tokens cannot be dragged when touch and hold for some time into the response area PD-4888 ([e9543d6](https://github.com/pie-framework/pie-lib/commit/e9543d61ee9631656a9ba14e09093f5518fa49a4))
+* get rid of margins for exponent is used for fractions PD-4895 ([b034068](https://github.com/pie-framework/pie-lib/commit/b0340680ee5586d0068675cde48b227a36134961))
+
+
+### Features
+
+* show paragraph symbol only after line breaks [PD-4093] ([ec0db15](https://github.com/pie-framework/pie-lib/commit/ec0db15980b62036ec9feb86b5691c449c26fa10))
+
+
+
+
+
 ## [2.10.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.10.2...@pie-lib/pie-toolbox@2.10.3) (2025-03-21)
 
 **Note:** Version bump only for package @pie-lib/pie-toolbox
