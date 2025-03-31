@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.13.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.12.0...@pie-lib/pie-toolbox@2.13.0) (2025-03-31)
+
+
+### Features
+
+* **render-ui:** export image PD-4938 ([a44a39b](https://github.com/pie-framework/pie-lib/commit/a44a39baf9af411d4ad0d2da515f9c9d86d67820))
+
+
+
+
+
 # [2.12.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.11.0...@pie-lib/pie-toolbox@2.12.0) (2025-03-31)
 
 
