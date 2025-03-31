@@ -12,6 +12,7 @@ import {
   Readable,
   Purpose,
   hasText,
+  EnableAudioAutoplayImage,
 } from './code/render-ui';
 
 export {
@@ -28,4 +29,5 @@ export {
   Readable,
   Purpose,
   hasText,
+  EnableAudioAutoplayImage,
 };
