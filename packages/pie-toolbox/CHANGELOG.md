@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.12.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.11.0...@pie-lib/pie-toolbox@2.12.0) (2025-03-31)
+
+
+### Features
+
+* **render-ui:** enable audio autoplay image in base64 PD-4938 ([d9213fe](https://github.com/pie-framework/pie-lib/commit/d9213fe2302b771e53959401f1079b16001ff3db))
+
+
+
+
+
 # [2.11.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.10.3...@pie-lib/pie-toolbox@2.11.0) (2025-03-27)
 
 
