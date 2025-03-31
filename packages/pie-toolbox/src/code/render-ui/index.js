@@ -11,6 +11,7 @@ import Readable from './readable';
 import Purpose from './purpose';
 import * as color from './color';
 import { hasText } from './has-text';
+import EnableAudioAutoplayImage from './assets/enableAudioAutoplayImage';
 
 export {
   HtmlAndMath,
@@ -26,4 +27,5 @@ export {
   Readable,
   Purpose,
   hasText,
+  EnableAudioAutoplayImage,
 };
