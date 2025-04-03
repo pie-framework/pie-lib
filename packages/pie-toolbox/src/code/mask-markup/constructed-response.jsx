@@ -1,11 +1,12 @@
 import React from 'react';
-import { withMask } from './with-mask';
-import EditableHtml from '../editable-html';
 import { withStyles } from '@material-ui/core/styles';
 import classnames from 'classnames';
-import { color } from '../../render-ui';
 
-const styles = (theme) => ({
+import { color } from '../../render-ui';
+import EditableHtml from '../editable-html';
+import { withMask } from './with-mask';
+
+const styles = () => ({
   editableHtmlCustom: {
     display: 'inline-block',
     verticalAlign: 'middle',
@@ -39,8 +40,9 @@ const MaskedInput = (props) => (node, data) => {
     const correctAnswer = ((props.choices && dataset && props.choices[dataset.id]) || [])[0];
     const finalValue = showCorrectAnswer ? correctAnswer && correctAnswer.label : data[dataset.id] || '';
     const width = maxLength && maxLength[dataset.id];
-    const isCorrect = feedback && feedback[dataset.id] && feedback[dataset.id] === 'correct';
-    const isIncorrect = feedback && feedback[dataset.id] && feedback[dataset.id] === 'incorrect';
+    const feedbackStatus = feedback && feedback[dataset.id];
+    const isCorrect = showCorrectAnswer || feedbackStatus === 'correct';
+    const isIncorrect = !showCorrectAnswer && feedbackStatus === 'incorrect';
 
     const handleInputChange = (newValue) => {
       const updatedValue = {
