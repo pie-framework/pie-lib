@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.14.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.13.0...@pie-lib/pie-toolbox@2.14.0) (2025-04-10)
+
+
+### Features
+
+* **drag:** fix style to be the same as chip PD-4765 ([f638e46](https://github.com/pie-framework/pie-lib/commit/f638e46e1e3a8584eea2907b90bfd262a939ead7))
+* **mask-markup:** include showCorrectAnswer logic in class style PD-4947 ([ff1b9f8](https://github.com/pie-framework/pie-lib/commit/ff1b9f826af8089115032a8d4c49c6a947bd21d8))
+
+
+
+
+
 # [2.13.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.12.0...@pie-lib/pie-toolbox@2.13.0) (2025-03-31)
 
 
