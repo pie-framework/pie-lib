@@ -5,4 +5,12 @@ import Customizable from './customizable';
 import InlineDropdown from './inline-dropdown';
 import componentize from './componentize';
 
-export { withMask, buildLayoutFromMarkup, DragInTheBlank, ConstructedResponse, InlineDropdown, componentize, Customizable };
+export {
+  withMask,
+  buildLayoutFromMarkup,
+  DragInTheBlank,
+  ConstructedResponse,
+  InlineDropdown,
+  componentize,
+  Customizable,
+};

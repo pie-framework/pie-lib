@@ -25,6 +25,7 @@ export const withMask = (type, renderChildren) => {
       value: PropTypes.object,
       onChange: PropTypes.func,
       customMarkMarkupComponent: PropTypes.func,
+      elementType: PropTypes.string,
     };
 
     componentDidUpdate(prevProps) {
