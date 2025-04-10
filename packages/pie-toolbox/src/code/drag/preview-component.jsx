@@ -5,17 +5,20 @@ import { renderMath } from '../math-rendering';
 
 const styles = {
   maskBlank: {
-    border: '1px solid black',
-    color: 'black',
-    minWidth: '90px',
-    minHeight: '32px',
-    height: 'auto',
-    maxWidth: '374px',
-    display: 'flex',
-    padding: '4px',
+    // this style is applied only on small screens and for touch devices when dragging, for drag-in-the-blank.
+    // It is styled to be identical to the drag-in-the-blank chip
+    backgroundColor: color.white(),
+    border: `1px solid ${color.text()}`,
+    color: color.text(),
     alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: '16px',
+    display: 'inline-flex',
+    height: 'initial',
+    minHeight: '32px',
+    fontSize: 'inherit',
+    whiteSpace: 'pre-wrap',
+    maxWidth: '374px',
+    borderRadius: '3px',
+    padding: '12px',
   },
   ica: {
     backgroundColor: color.background(),
