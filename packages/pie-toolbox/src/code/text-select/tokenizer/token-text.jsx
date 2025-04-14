@@ -16,6 +16,12 @@ export const Text = withStyles(() => ({
     cursor: 'pointer',
     backgroundColor: yellow[100],
     border: `dashed 0px ${yellow[700]}`,
+    // we need this for paragraphs, where p is inside span
+    '& p': {
+      cursor: 'pointer',
+      backgroundColor: yellow[100],
+      border: `dashed 0px ${yellow[700]}`,
+    },
   },
   correct: {
     backgroundColor: green[500],
