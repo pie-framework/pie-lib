@@ -1,4 +1,4 @@
-import { CHTMLWrapper } from 'mathjax-full/js/output/chtml/Wrapper';
+import { CHTMLWrapper } from 'mathjax-full-pie/js/output/chtml/Wrapper';
 import _ from 'lodash';
 
 const reduceText = (acc, n) => {
