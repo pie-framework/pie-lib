@@ -10428,15 +10428,15 @@ math-expression-evaluator@^1.2.14:
   resolved "https://registry.yarnpkg.com/math-expression-evaluator/-/math-expression-evaluator-1.3.14.tgz#0ebeaccf65fea0f6f5a626f88df41814e5fcd9bf"
   integrity sha512-M6AMrvq9bO8uL42KvQHPA2/SbAobA0R7gviUmPrcTcGfdwpaLitz4q2Euzx2lP9Oy88vxK3HOrsISgSwKsYS4A==
 
-mathjax-full@3.2.2:
+mathjax-full-pie@3.2.2:
   version "3.2.2"
-  resolved "https://registry.yarnpkg.com/mathjax-full/-/mathjax-full-3.2.2.tgz#43f02e55219db393030985d2b6537ceae82f1fa7"
-  integrity sha512-+LfG9Fik+OuI8SLwsiR02IVdjcnRCy5MufYLi0C3TdMT56L/pjB0alMVGgoWJF8pN9Rc7FESycZB9BMNWIid5w==
+  resolved "https://registry.yarnpkg.com/mathjax-full-pie/-/mathjax-full-pie-3.2.2.tgz#797af3146b6d5f1c0f0f3dee24dc0b20a8093f8e"
+  integrity sha512-4bQTP2jeTVRRmBLqsQ4JBJdveFnH7TUy5+Q14c1JL2A9VSWmVg30CDJHE/TBvNhHKj94OsRWI1eMlOGX0nbh/A==
   dependencies:
     esm "^3.2.25"
     mhchemparser "^4.1.0"
     mj-context-menu "^0.6.1"
-    speech-rule-engine "^4.0.6"
+    speech-rule-engine "4.0.7"
 
 mathjs@^7.0.1:
   version "7.6.0"
@@ -14798,7 +14798,7 @@ spdy@^4.0.2:
     select-hose "^2.0.0"
     spdy-transport "^3.0.0"
 
-speech-rule-engine@4.0.7, speech-rule-engine@^4.0.6:
+speech-rule-engine@4.0.7:
   version "4.0.7"
   resolved "https://registry.yarnpkg.com/speech-rule-engine/-/speech-rule-engine-4.0.7.tgz#b655dacbad3dae04acc0f7665e26ef258397dd09"
   integrity sha512-sJrL3/wHzNwJRLBdf6CjJWIlxC04iYKkyXvYSVsWVOiC2DSkHmxsqOhEeMsBA9XK+CHuNcsdkbFDnoUfAsmp9g==

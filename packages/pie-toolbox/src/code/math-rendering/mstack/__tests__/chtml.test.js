@@ -1,8 +1,8 @@
 import { getStackData, Line, Row, CHTMLmstack } from '../chtml';
-// import { CHTMLWrapper, instance } from 'mathjax-full/js/output/chtml/Wrapper';
+// import { CHTMLWrapper, instance } from 'mathjax-full-pie/js/output/chtml/Wrapper';
 import { JSDOM } from 'jsdom';
 
-jest.mock('mathjax-full/js/output/chtml/Wrapper', () => {
+jest.mock('mathjax-full-pie/js/output/chtml/Wrapper', () => {
   const instance = {
     adaptor: {
       document: {
