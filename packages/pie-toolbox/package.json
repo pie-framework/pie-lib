@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/pie-toolbox",
-  "version": "2.14.1",
+  "version": "2.14.2",
   "publishConfig": {
     "access": "public"
   },
@@ -37,7 +37,6 @@
     "keycode": "^2.2.0",
     "konva": "^3.2.4",
     "lodash": "^4.17.11",
-    "speech-rule-engine": "4.0.7",
     "mathjax-full-pie": "3.2.2",
     "mathjs": "^7.0.1",
     "prop-types": "^15.7.2",

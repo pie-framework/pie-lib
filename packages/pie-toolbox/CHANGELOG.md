@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.14.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.14.1...@pie-lib/pie-toolbox@2.14.2) (2025-04-17)
+
+
+### Bug Fixes
+
+* use forked version of mathjax-full ([b7ea257](https://github.com/pie-framework/pie-lib/commit/b7ea2573494e6221cc00dbeea4c2f4b450ba0d7d))
+
+
+
+
+
 ## [2.14.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.14.0...@pie-lib/pie-toolbox@2.14.1) (2025-04-17)
 
 
