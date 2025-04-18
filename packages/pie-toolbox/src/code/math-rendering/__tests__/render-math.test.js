@@ -4,7 +4,7 @@ import renderMath, { fixMathElement } from '../render-math';
 import _ from 'lodash';
 
 jest.mock(
-  'mathjax-full-pie/js/mathjax',
+  'mathjax-full/js/mathjax',
   () => ({
     mathjax: {
       document: jest.fn().mockReturnThis(),
@@ -25,7 +25,7 @@ jest.mock(
   },
 );
 
-jest.mock('mathjax-full-pie/js/input/mathml', () => {
+jest.mock('mathjax-full/js/input/mathml', () => {
   const mock = jest.fn().mockReturnThis();
   mock.setMmlFactory = jest.fn();
   return {
@@ -33,10 +33,10 @@ jest.mock('mathjax-full-pie/js/input/mathml', () => {
   };
 });
 
-jest.mock('mathjax-full-pie/js/input/tex', () => ({
+jest.mock('mathjax-full/js/input/tex', () => ({
   TeX: jest.fn(),
 }));
-jest.mock('mathjax-full-pie/js/core/MmlTree/MmlFactory', () => {
+jest.mock('mathjax-full/js/core/MmlTree/MmlFactory', () => {
   const instance = {
     setMmlFactory: jest.fn(),
     defaultNodes: {},
@@ -77,37 +77,37 @@ const mockEnrichHandlerInstance = {
   create: jest.fn().mockImplementation(() => mockHtml),
 };
 
-jest.mock('mathjax-full-pie/js/a11y/semantic-enrich', () => {
+jest.mock('mathjax-full/js/a11y/semantic-enrich', () => {
   return {
     EnrichHandler: () => mockEnrichHandlerInstance,
   };
 });
 
-jest.mock('mathjax-full-pie/js/a11y/assistive-mml', () => {
+jest.mock('mathjax-full/js/a11y/assistive-mml', () => {
   return {
     AssistiveMmlHandler: () => {},
   };
 });
 
-jest.mock('mathjax-full-pie/js/ui/menu/MenuHandler', () => {
+jest.mock('mathjax-full/js/ui/menu/MenuHandler', () => {
   return {
     MenuHandler: () => {},
   };
 });
 
-jest.mock('mathjax-full-pie/js/output/chtml', () => ({
+jest.mock('mathjax-full/js/output/chtml', () => ({
   CHTML: jest.fn(),
 }));
 
-jest.mock('mathjax-full-pie/js/adaptors/browserAdaptor', () => ({
+jest.mock('mathjax-full/js/adaptors/browserAdaptor', () => ({
   browserAdaptor: jest.fn(),
 }));
 
-jest.mock('mathjax-full-pie/js/handlers/html', () => ({
+jest.mock('mathjax-full/js/handlers/html', () => ({
   RegisterHTMLHandler: jest.fn(),
 }));
 
-jest.mock('mathjax-full-pie/js/core/MmlTree/SerializedMmlVisitor', () => ({
+jest.mock('mathjax-full/js/core/MmlTree/SerializedMmlVisitor', () => ({
   SerializedMmlVisitor: jest.fn(),
 }));
 

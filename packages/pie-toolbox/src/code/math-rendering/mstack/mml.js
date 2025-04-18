@@ -1,4 +1,4 @@
-import { AbstractMmlNode } from 'mathjax-full-pie/js/core/MmlTree/MmlNode';
+import { AbstractMmlNode } from 'mathjax-full/js/core/MmlTree/MmlNode';
 
 export class MmlNone extends AbstractMmlNode {
   get kind() {
