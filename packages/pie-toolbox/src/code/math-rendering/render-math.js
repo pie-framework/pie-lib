@@ -1,15 +1,15 @@
-import { mathjax } from 'mathjax-full-pie/js/mathjax';
-import { AssistiveMmlHandler } from 'mathjax-full-pie/js/a11y/assistive-mml';
-import { EnrichHandler } from 'mathjax-full-pie/js/a11y/semantic-enrich';
-import { MenuHandler } from 'mathjax-full-pie/js/ui/menu/MenuHandler';
-import { FindMathML } from 'mathjax-full-pie/js/input/mathml/FindMathML';
-import { MathML } from 'mathjax-full-pie/js/input/mathml';
-import { TeX } from 'mathjax-full-pie/js/input/tex';
+import { mathjax } from 'mathjax-full/js/mathjax';
+import { AssistiveMmlHandler } from 'mathjax-full/js/a11y/assistive-mml';
+import { EnrichHandler } from 'mathjax-full/js/a11y/semantic-enrich';
+import { MenuHandler } from 'mathjax-full/js/ui/menu/MenuHandler';
+import { FindMathML } from 'mathjax-full/js/input/mathml/FindMathML';
+import { MathML } from 'mathjax-full/js/input/mathml';
+import { TeX } from 'mathjax-full/js/input/tex';
 
-import { CHTML } from 'mathjax-full-pie/js/output/chtml';
-import { RegisterHTMLHandler } from 'mathjax-full-pie/js/handlers/html';
-import { browserAdaptor } from 'mathjax-full-pie/js/adaptors/browserAdaptor';
-import { AllPackages } from 'mathjax-full-pie/js/input/tex/AllPackages';
+import { CHTML } from 'mathjax-full/js/output/chtml';
+import { RegisterHTMLHandler } from 'mathjax-full/js/handlers/html';
+import { browserAdaptor } from 'mathjax-full/js/adaptors/browserAdaptor';
+import { AllPackages } from 'mathjax-full/js/input/tex/AllPackages';
 
 if (typeof window !== 'undefined') {
   RegisterHTMLHandler(browserAdaptor());
@@ -19,11 +19,11 @@ if (typeof window !== 'undefined') {
 import { mmlNodes, chtmlNodes } from './mstack';
 import debug from 'debug';
 import { wrapMath, unWrapMath } from './normalization';
-import { MmlFactory } from 'mathjax-full-pie/js/core/MmlTree/MmlFactory';
-import { SerializedMmlVisitor } from 'mathjax-full-pie/js/core/MmlTree/SerializedMmlVisitor';
-import { CHTMLWrapperFactory } from 'mathjax-full-pie/js/output/chtml/WrapperFactory';
-import { CHTMLmspace } from 'mathjax-full-pie/js/output/chtml/Wrappers/mspace';
-import { HTMLDomStrings } from 'mathjax-full-pie/js/handlers/html/HTMLDomStrings';
+import { MmlFactory } from 'mathjax-full/js/core/MmlTree/MmlFactory';
+import { SerializedMmlVisitor } from 'mathjax-full/js/core/MmlTree/SerializedMmlVisitor';
+import { CHTMLWrapperFactory } from 'mathjax-full/js/output/chtml/WrapperFactory';
+import { CHTMLmspace } from 'mathjax-full/js/output/chtml/Wrappers/mspace';
+import { HTMLDomStrings } from 'mathjax-full/js/handlers/html/HTMLDomStrings';
 
 const visitor = new SerializedMmlVisitor();
 const toMMl = (node) => visitor.visitTree(node);

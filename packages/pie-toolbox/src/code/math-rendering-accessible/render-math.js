@@ -1,6 +1,6 @@
 import { wrapMath, unWrapMath } from './normalization';
-import { SerializedMmlVisitor } from 'mathjax-full-pie/js/core/MmlTree/SerializedMmlVisitor';
-import TexError from 'mathjax-full-pie/js/input/tex/TexError';
+import { SerializedMmlVisitor } from 'mathjax-full/js/core/MmlTree/SerializedMmlVisitor';
+import TexError from 'mathjax-full/js/input/tex/TexError';
 
 const visitor = new SerializedMmlVisitor();
 const toMMl = (node) => visitor.visitTree(node);
@@ -335,7 +335,7 @@ export const initializeMathJax = (callback) => {
         // I just added preLoad: () => {} to prevent the console error: "MathJax.loader.preLoad is not a function",
         //  which is being called because in math-rendering-accessible/render-math we're having this line:
         //  import * as mr from '../math-rendering';
-        //  which takes us to: import { AllPackages } from 'mathjax-full-pie/js/input/tex/AllPackages';
+        //  which takes us to: import { AllPackages } from 'mathjax-full/js/input/tex/AllPackages';
         //  which tries to call MathJax.loader.preLoad.
         // Understand that AllPackages is NOT needed in math-rendering-accessible, so it is not a problem if we hardcode this function.
         // The better solution would be for math-rendering-accessible to import math-rendering only IF needed,
