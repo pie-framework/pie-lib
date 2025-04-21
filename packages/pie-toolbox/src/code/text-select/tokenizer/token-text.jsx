@@ -16,8 +16,8 @@ export const Text = withStyles(() => ({
     cursor: 'pointer',
     backgroundColor: yellow[100],
     border: `dashed 0px ${yellow[700]}`,
-    // we need this for paragraphs, where p is inside span
-    '& p': {
+    // we need this for nested tokenized elements like paragraphs, where p is inside span
+    '& *': {
       cursor: 'pointer',
       backgroundColor: yellow[100],
       border: `dashed 0px ${yellow[700]}`,
@@ -25,7 +25,7 @@ export const Text = withStyles(() => ({
   },
   correct: {
     backgroundColor: green[500],
-    '& p': {
+    '& *': {
       backgroundColor: green[500],
     },
   },
