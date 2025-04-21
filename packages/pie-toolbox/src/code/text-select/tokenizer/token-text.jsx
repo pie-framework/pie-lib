@@ -25,6 +25,9 @@ export const Text = withStyles(() => ({
   },
   correct: {
     backgroundColor: green[500],
+    '& p': {
+      backgroundColor: green[500],
+    },
   },
 }))(({ text, predefined, classes, onClick, correct }) => {
   const formattedText = (text || '').replace(/\n/g, '<br>');
