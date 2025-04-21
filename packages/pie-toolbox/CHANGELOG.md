@@ -3,6 +3,48 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.14.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.14.2...@pie-lib/pie-toolbox@2.14.3) (2025-04-18)
+
+**Note:** Version bump only for package @pie-lib/pie-toolbox
+
+
+
+
+
+## [2.14.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.14.1...@pie-lib/pie-toolbox@2.14.2) (2025-04-17)
+
+
+### Bug Fixes
+
+* use forked version of mathjax-full ([b7ea257](https://github.com/pie-framework/pie-lib/commit/b7ea2573494e6221cc00dbeea4c2f4b450ba0d7d))
+
+
+
+
+
+## [2.14.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.14.0...@pie-lib/pie-toolbox@2.14.1) (2025-04-17)
+
+
+### Bug Fixes
+
+* dependency on speech-rule-engine ([9a362df](https://github.com/pie-framework/pie-lib/commit/9a362df19a11f7712a49988eed52b26fb7e53d1c))
+
+
+
+
+
+# [2.14.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.13.0...@pie-lib/pie-toolbox@2.14.0) (2025-04-10)
+
+
+### Features
+
+* **drag:** fix style to be the same as chip PD-4765 ([f638e46](https://github.com/pie-framework/pie-lib/commit/f638e46e1e3a8584eea2907b90bfd262a939ead7))
+* **mask-markup:** include showCorrectAnswer logic in class style PD-4947 ([ff1b9f8](https://github.com/pie-framework/pie-lib/commit/ff1b9f826af8089115032a8d4c49c6a947bd21d8))
+
+
+
+
+
 # [2.13.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.12.0...@pie-lib/pie-toolbox@2.13.0) (2025-03-31)
 
 

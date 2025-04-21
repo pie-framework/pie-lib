@@ -1,17 +1,17 @@
-import { wrapMath, unWrapMath } from "./normalization";
-import { SerializedMmlVisitor } from "mathjax-full/js/core/MmlTree/SerializedMmlVisitor";
-import TexError from "mathjax-full/js/input/tex/TexError";
+import { wrapMath, unWrapMath } from './normalization';
+import { SerializedMmlVisitor } from 'mathjax-full/js/core/MmlTree/SerializedMmlVisitor';
+import TexError from 'mathjax-full/js/input/tex/TexError';
 
 const visitor = new SerializedMmlVisitor();
 const toMMl = (node) => visitor.visitTree(node);
 
 const NEWLINE_BLOCK_REGEX = /\\embed\{newLine\}\[\]/g;
-const NEWLINE_LATEX = "\\newline ";
+const NEWLINE_LATEX = '\\newline ';
 
-const mathRenderingKEY = "@pie-lib/math-rendering@2";
-const mathRenderingAccessibleKEY = "@pie-lib/math-rendering-accessible@1";
+const mathRenderingKEY = '@pie-lib/math-rendering@2';
+const mathRenderingAccessibleKEY = '@pie-lib/math-rendering-accessible@1';
 
-export const MathJaxVersion = "3.2.2";
+export const MathJaxVersion = '3.2.2';
 
 export const getGlobal = () => {
   // TODO does it make sense to use version?
@@ -21,7 +21,7 @@ export const getGlobal = () => {
   // in combination with version 2 (using mathjax-full)
   // TODO higher level wrappers use this instance of math-rendering, and if 2 different instances are used, math rendering is not working
   //  so I will hardcode this for now until a better solution is found
-  if (typeof window !== "undefined") {
+  if (typeof window !== 'undefined') {
     if (!window[mathRenderingAccessibleKEY]) {
       window[mathRenderingAccessibleKEY] = {};
     }
@@ -36,10 +36,10 @@ export const fixMathElement = (element) => {
     return;
   }
 
-  let property = "innerText";
+  let property = 'innerText';
 
   if (element.textContent) {
-    property = "textContent";
+    property = 'textContent';
   }
 
   if (element[property]) {
@@ -52,32 +52,32 @@ export const fixMathElement = (element) => {
 };
 
 export const fixMathElements = (el = document) => {
-  const mathElements = el.querySelectorAll("[data-latex]");
+  const mathElements = el.querySelectorAll('[data-latex]');
 
   mathElements.forEach((item) => fixMathElement(item));
 };
 
 const adjustMathMLStyle = (el = document) => {
-  const nodes = el.querySelectorAll("math");
-  nodes.forEach((node) => node.setAttribute("displaystyle", "true"));
+  const nodes = el.querySelectorAll('math');
+  nodes.forEach((node) => node.setAttribute('displaystyle', 'true'));
 };
 
 const createPlaceholder = (element) => {
-  if (!element.previousSibling || !element.previousSibling.classList?.contains("math-placeholder")) {
+  if (!element.previousSibling || !element.previousSibling.classList?.contains('math-placeholder')) {
     // Store the original display style before setting it to 'none'
-    element.dataset.originalDisplay = element.style.display || "";
-    element.style.display = "none";
+    element.dataset.originalDisplay = element.style.display || '';
+    element.style.display = 'none';
 
-    const placeholder = document.createElement("span");
+    const placeholder = document.createElement('span');
     placeholder.style.cssText =
-      "height: 10px; width: 50px; display: inline-block; vertical-align: middle; justify-content: center; background: #fafafa; border-radius: 4px;";
-    placeholder.classList.add("math-placeholder");
+      'height: 10px; width: 50px; display: inline-block; vertical-align: middle; justify-content: center; background: #fafafa; border-radius: 4px;';
+    placeholder.classList.add('math-placeholder');
     element.parentNode?.insertBefore(placeholder, element);
   }
 };
 
 const removePlaceholdersAndRestoreDisplay = () => {
-  document.querySelectorAll(".math-placeholder").forEach((placeholder) => {
+  document.querySelectorAll('.math-placeholder').forEach((placeholder) => {
     const targetElement = placeholder.nextElementSibling;
 
     if (targetElement && targetElement.dataset?.originalDisplay !== undefined) {
@@ -89,10 +89,10 @@ const removePlaceholdersAndRestoreDisplay = () => {
   });
 };
 const removeExcessMjxContainers = (content) => {
-  const elements = content.querySelectorAll("[data-latex][data-math-handled=\"true\"]");
+  const elements = content.querySelectorAll('[data-latex][data-math-handled="true"]');
 
   elements.forEach((element) => {
-    const mjxContainers = element.querySelectorAll("mjx-container");
+    const mjxContainers = element.querySelectorAll('mjx-container');
 
     // Check if there are more than one mjx-container children.
     if (mjxContainers.length > 1) {
@@ -108,7 +108,7 @@ const renderContentsWithMathJax = (el) => {
   // renderMath is used like that in pie-print-support and pie-element-extensions
   // there seems to be no reason for that, however, it's better to handle the case here
   if (el instanceof Array) {
-    el.forEach(elNode => renderContentWithMathJax(elNode));
+    el.forEach((elNode) => renderContentWithMathJax(elNode));
   } else {
     renderContentWithMathJax(el);
   }
@@ -150,14 +150,14 @@ const renderContentWithMathJax = (executeOn) => {
 
           for (let item = list.next; typeof item.data !== 'symbol'; item = item.next) {
             const mathMl = toMMl(item.data.root);
-            const parsedMathMl = mathMl.replaceAll("\n", "");
+            const parsedMathMl = mathMl.replaceAll('\n', '');
 
-            item.data.typesetRoot.setAttribute("data-mathml", parsedMathMl);
+            item.data.typesetRoot.setAttribute('data-mathml', parsedMathMl);
           }
 
           // If the original input was a string, return the parsed MathML
         } catch (e) {
-          console.error("Error post-processing MathJax typesetting:", e.toString());
+          console.error('Error post-processing MathJax typesetting:', e.toString());
         }
 
         // Clearing the document if needed
@@ -166,7 +166,7 @@ const renderContentWithMathJax = (executeOn) => {
       .catch((error) => {
         //  If there was an internal error, put the message into the output instead
 
-        console.error("Error in typesetting with MathJax:", error);
+        console.error('Error in typesetting with MathJax:', error);
       });
   }
 };
@@ -182,8 +182,8 @@ const convertMathJax2ToMathJax3 = () => {
   const RequireMethods = {
     Require: function(parser, name) {
       let required = parser.GetArgument(name);
-      if (required.match(/[^_a-zA-Z0-9]/) || required === "") {
-        throw new TexError("BadPackageName", "Argument for %1 is not a valid package name", name);
+      if (required.match(/[^_a-zA-Z0-9]/) || required === '') {
+        throw new TexError('BadPackageName', 'Argument for %1 is not a valid package name', name);
       }
       if (requireMap.hasOwnProperty(required)) {
         required = requireMap[required];
@@ -192,27 +192,23 @@ const convertMathJax2ToMathJax3 = () => {
     },
   };
 
-  new CommandMap("require", { require: "Require" }, RequireMethods);
+  new CommandMap('require', { require: 'Require' }, RequireMethods);
 
   //
   // Add a replacement for MathJax.Callback command
   //
   MathJax.Callback = function(args) {
     if (Array.isArray(args)) {
-      if (args.length === 1 && typeof args[0] === "function") {
+      if (args.length === 1 && typeof args[0] === 'function') {
         return args[0];
-      } else if (
-        typeof args[0] === "string" &&
-        args[1] instanceof Object &&
-        typeof args[1][args[0]] === "function"
-      ) {
+      } else if (typeof args[0] === 'string' && args[1] instanceof Object && typeof args[1][args[0]] === 'function') {
         return Function.bind.apply(args[1][args[0]], args.slice(1));
-      } else if (typeof args[0] === "function") {
+      } else if (typeof args[0] === 'function') {
         return Function.bind.apply(args[0], [window].concat(args.slice(1)));
-      } else if (typeof args[1] === "function") {
+      } else if (typeof args[1] === 'function') {
         return Function.bind.apply(args[1], [args[0]].concat(args.slice(2)));
       }
-    } else if (typeof args === "function") {
+    } else if (typeof args === 'function') {
       return args;
     }
     throw Error("Can't make callback from given data");
@@ -239,17 +235,17 @@ const convertMathJax2ToMathJax3 = () => {
     },
     Register: {
       MessageHook: function() {
-        console.log("MessageHooks are not supported in version 3");
+        console.log('MessageHooks are not supported in version 3');
       },
       StartupHook: function() {
-        console.log("StartupHooks are not supported in version 3");
+        console.log('StartupHooks are not supported in version 3');
       },
       LoadHook: function() {
-        console.log("LoadHooks are not supported in version 3");
+        console.log('LoadHooks are not supported in version 3');
       },
     },
     Config: function() {
-      console.log("MathJax configurations should be converted for version 3");
+      console.log('MathJax configurations should be converted for version 3');
     },
   };
 };
@@ -258,25 +254,29 @@ export const initializeMathJax = (callback) => {
     return;
   }
 
-  const PreviousMathJaxIsUsed = window.MathJax && window.MathJax.version && window.MathJax.version !== MathJaxVersion && window.MathJax.version[0] === '2';
+  const PreviousMathJaxIsUsed =
+    window.MathJax &&
+    window.MathJax.version &&
+    window.MathJax.version !== MathJaxVersion &&
+    window.MathJax.version[0] === '2';
 
   const texConfig = {
     macros: {
-      parallelogram: "\\lower.2em{\\Huge\\unicode{x25B1}}",
-      overarc: "\\overparen",
-      napprox: "\\not\\approx",
-      longdiv: "\\enclose{longdiv}"
+      parallelogram: '\\lower.2em{\\Huge\\unicode{x25B1}}',
+      overarc: '\\overparen',
+      napprox: '\\not\\approx',
+      longdiv: '\\enclose{longdiv}',
     },
     displayMath: [
-      ["$$", "$$"],
-      ["\\[", "\\]"]
-    ]
+      ['$$', '$$'],
+      ['\\[', '\\]'],
+    ],
   };
 
   if (PreviousMathJaxIsUsed) {
     texConfig.autoload = {
       color: [], // don't autoload the color extension
-      colorv2: ["color"] // do autoload the colorv2 extension
+      colorv2: ['color'], // do autoload the colorv2 extension
     };
   }
 
@@ -290,12 +290,12 @@ export const initializeMathJax = (callback) => {
         //
         requireMap: PreviousMathJaxIsUsed
           ? {
-              AMSmath: "ams",
-              AMSsymbols: "ams",
-              AMScd: "amscd",
-              HTML: "html",
-              noErrors: "noerrors",
-              noUndefined: "noundefined"
+              AMSmath: 'ams',
+              AMSsymbols: 'ams',
+              AMScd: 'amscd',
+              HTML: 'html',
+              noErrors: 'noerrors',
+              noUndefined: 'noundefined',
             }
           : {},
         typeset: false,
@@ -318,7 +318,7 @@ export const initializeMathJax = (callback) => {
           globalObj.instance = MathJax;
 
           window.mathjaxLoadedComplete = true;
-          console.log("MathJax has initialised!", new Date().toString());
+          console.log('MathJax has initialised!', new Date().toString());
 
           // in this file, initializeMathJax is called with a callback that has to be executed when MathJax was loaded
           if (callback) {
@@ -331,7 +331,7 @@ export const initializeMathJax = (callback) => {
         },
       },
       loader: {
-        load: ["input/mml"],
+        load: ['input/mml'],
         // I just added preLoad: () => {} to prevent the console error: "MathJax.loader.preLoad is not a function",
         //  which is being called because in math-rendering-accessible/render-math we're having this line:
         //  import * as mr from '../math-rendering';
@@ -347,14 +347,14 @@ export const initializeMathJax = (callback) => {
       },
       tex: texConfig,
       chtml: {
-        fontURL: "https://unpkg.com/mathjax-full@3.2.2/ts/output/chtml/fonts/tex-woff-v2",
-        displayAlign: "center"
+        fontURL: 'https://unpkg.com/mathjax-full@3.2.2/ts/output/chtml/fonts/tex-woff-v2',
+        displayAlign: 'center',
       },
-      customKey: "@pie-lib/math-rendering-accessible@1",
+      customKey: '@pie-lib/math-rendering-accessible@1',
       options: {
         enableEnrichment: true,
         sre: {
-          speech: "deep"
+          speech: 'deep',
         },
         menuOptions: {
           settings: {
@@ -366,8 +366,8 @@ export const initializeMathJax = (callback) => {
       },
     };
     // Load the MathJax script
-    const script = document.createElement("script");
-    script.type = "text/javascript";
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
     script.src = `https://cdn.jsdelivr.net/npm/mathjax@${MathJaxVersion}/es5/tex-chtml-full.js`;
     script.async = true;
     document.head.appendChild(script);
@@ -375,7 +375,7 @@ export const initializeMathJax = (callback) => {
     // at this time of the execution, there's no document.body; setTimeout does the trick
     setTimeout(() => {
       if (!window.mathjaxLoadedComplete) {
-        const mathElements = document?.body?.querySelectorAll("[data-latex]");
+        const mathElements = document?.body?.querySelectorAll('[data-latex]');
         (mathElements || []).forEach(createPlaceholder);
       }
     });
@@ -383,7 +383,7 @@ export const initializeMathJax = (callback) => {
 };
 
 const renderMath = (el, renderOpts) => {
-  const usedForMmlOutput = typeof el === "string";
+  const usedForMmlOutput = typeof el === 'string';
   let executeOn = document.body;
 
   if (!usedForMmlOutput) {
@@ -402,12 +402,12 @@ const renderMath = (el, renderOpts) => {
           window.mathjaxLoadedComplete = true;
           renderContentsWithMathJax(el);
         })
-        .catch((error) => console.error("Error in initializing MathJax:", error));
+        .catch((error) => console.error('Error in initializing MathJax:', error));
     }
   } else {
     // Here we're handling the case when renderMath is being called for mmlOutput
     if (window.MathJax && window.mathjaxLoadedP) {
-      const div = document.createElement("div");
+      const div = document.createElement('div');
 
       div.innerHTML = el;
       executeOn = div;
@@ -421,11 +421,11 @@ const renderMath = (el, renderOpts) => {
         const item = list.next;
         const mathMl = toMMl(item.data.root);
 
-        const parsedMathMl = mathMl.replaceAll("\n", "");
+        const parsedMathMl = mathMl.replaceAll('\n', '');
 
         return parsedMathMl;
       } catch (error) {
-        console.error("Error rendering math:", error.message);
+        console.error('Error rendering math:', error.message);
       }
 
       return el;
