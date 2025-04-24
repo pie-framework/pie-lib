@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.14.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.14.3...@pie-lib/pie-toolbox@2.14.4) (2025-04-24)
+
+
+### Bug Fixes
+
+* removed html handling that causes issues [PD-4093] ([b8237c1](https://github.com/pie-framework/pie-lib/commit/b8237c1340ae59fdbfa8f9d8d28e8f955d55f9a6))
+
+
+
+
+
 ## [2.14.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.14.2...@pie-lib/pie-toolbox@2.14.3) (2025-04-18)
 
 **Note:** Version bump only for package @pie-lib/pie-toolbox
