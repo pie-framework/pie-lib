@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Editor, { DEFAULT_PLUGINS, ALL_PLUGINS } from './editor';
-import { extraCSSRulesOpts, htmlToValue, valueToHtml, reduceMultipleBrs, handleHtml } from './serialization';
+import { extraCSSRulesOpts, htmlToValue, valueToHtml, reduceMultipleBrs } from './serialization';
 import { parseDegrees } from './parse-html';
 import debug from 'debug';
 import { Range } from 'slate';
@@ -76,7 +76,7 @@ export default class EditableHtml extends React.Component {
 
   onChange = (value, done) => {
     const html = valueToHtml(value);
-    const htmlParsed = handleHtml(parseDegrees(html));
+    const htmlParsed = parseDegrees(html);
 
     if (html !== this.props.markup && this.props.onChange) {
       this.props.onChange(htmlParsed);
