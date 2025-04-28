@@ -4,6 +4,7 @@ import SlateTypes from 'slate-prop-types';
 import { Value, Block, Inline } from 'slate';
 import Plain from 'slate-plain-serializer';
 import PropTypes from 'prop-types';
+import debounce from 'lodash/debounce';
 import isEqual from 'lodash/isEqual';
 import classNames from 'classnames';
 import debug from 'debug';
@@ -184,11 +185,11 @@ export class Editor extends React.Component {
     this.handleToolbarFocus = this.handleToolbarFocus.bind(this);
     this.handleToolbarBlur = this.handleToolbarBlur.bind(this);
 
-    this.onResize = () => {
+    this.onResize = debounce(() => {
       if (!this.state.isHtmlMode && props.onChange) {
         props.onChange(this.state.value, true);
       }
-    };
+    }, 50);
 
     this.handlePlugins(this.props);
   }
