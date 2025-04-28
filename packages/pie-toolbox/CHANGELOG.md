@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.14.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.14.4...@pie-lib/pie-toolbox@2.14.5) (2025-04-28)
+
+
+### Bug Fixes
+
+* **charting:** fix use of label error PD-4980 ([70baa15](https://github.com/pie-framework/pie-lib/commit/70baa15e31be713692af7831160245112ec250f6))
+* **text-select:** apply class for nested tokenized content PD-3496 ([d0f0e68](https://github.com/pie-framework/pie-lib/commit/d0f0e689b350fba952dd4413d5af91999178674b))
+* **text-select:** apply correct class for tokenized content PD-3496 ([6095619](https://github.com/pie-framework/pie-lib/commit/6095619595b4878d55d7c759cca3a90f934d456b))
+* **text-select:** appy selected class for paragraphs PD-3496 ([4122509](https://github.com/pie-framework/pie-lib/commit/4122509a16e0bd67c97cd42d072950c86cad9169))
+
+
+
+
+
 ## [2.14.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.14.3...@pie-lib/pie-toolbox@2.14.4) (2025-04-24)
 
 
