@@ -16,9 +16,18 @@ export const Text = withStyles(() => ({
     cursor: 'pointer',
     backgroundColor: yellow[100],
     border: `dashed 0px ${yellow[700]}`,
+    // we need this for nested tokenized elements like paragraphs, where p is inside span
+    '& *': {
+      cursor: 'pointer',
+      backgroundColor: yellow[100],
+      border: `dashed 0px ${yellow[700]}`,
+    },
   },
   correct: {
     backgroundColor: green[500],
+    '& *': {
+      backgroundColor: green[500],
+    },
   },
 }))(({ text, predefined, classes, onClick, correct }) => {
   const formattedText = (text || '').replace(/\n/g, '<br>');
