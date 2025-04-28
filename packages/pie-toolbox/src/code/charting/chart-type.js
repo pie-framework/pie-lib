@@ -16,11 +16,15 @@ const ChartType = withStyles(() => ({
 }))(({ onChange, value, classes, availableChartTypes, chartTypeLabel }) => (
   <div className={classes.chartType}>
     <FormControl variant={'outlined'} className={classes.chartType}>
-      <InputLabel htmlFor="type-helper" className={classes.chartTypeLabel}>
+      <InputLabel id="type-helper-label" className={classes.chartTypeLabel}>
         {chartTypeLabel}
       </InputLabel>
-
-      <Select value={value} onChange={onChange} labelWidth={75} input={<OutlinedInput name="type" id="type-helper" />}>
+      <Select
+        labelId="type-helper-label"
+        value={value}
+        onChange={onChange}
+        input={<OutlinedInput labelWidth={75} name="type" />}
+      >
         {availableChartTypes?.histogram && <MenuItem value={'histogram'}>{availableChartTypes.histogram}</MenuItem>}
         {availableChartTypes?.bar && <MenuItem value={'bar'}>{availableChartTypes.bar}</MenuItem>}
         {availableChartTypes?.lineDot && <MenuItem value={'lineDot'}>{availableChartTypes.lineDot}</MenuItem>}
