@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.14.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.14.5...@pie-lib/pie-toolbox@2.14.6) (2025-05-07)
+
+
+### Bug Fixes
+
+* made sure speech-rule-engine is ready before using it [PD-4977] ([6805eae](https://github.com/pie-framework/pie-lib/commit/6805eae1aec402667a8c8c16c1835a56649f3b4c))
+
+
+
+
+
 ## [2.14.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.14.4...@pie-lib/pie-toolbox@2.14.5) (2025-04-28)
 
 
