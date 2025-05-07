@@ -10,10 +10,17 @@ import { CHTML } from 'mathjax-full/js/output/chtml';
 import { RegisterHTMLHandler } from 'mathjax-full/js/handlers/html';
 import { browserAdaptor } from 'mathjax-full/js/adaptors/browserAdaptor';
 import { AllPackages } from 'mathjax-full/js/input/tex/AllPackages';
+import { engineReady } from 'speech-rule-engine/js/common/system';
 
 if (typeof window !== 'undefined') {
   RegisterHTMLHandler(browserAdaptor());
 }
+
+let sreReady = false;
+
+engineReady().then(() => {
+  sreReady = true;
+});
 
 // import pkg from '../../package.json';
 import { mmlNodes, chtmlNodes } from './mstack';
@@ -233,7 +240,7 @@ const bootstrap = (opts) => {
       const attemptRender = (temporary = false) => {
         let updatedDocument = this.html.findMath(elements.length ? { elements } : {}).compile();
 
-        if (!temporary) {
+        if (!temporary && sreReady) {
           updatedDocument = updatedDocument.enrich();
         }
 
