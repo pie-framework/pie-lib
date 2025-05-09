@@ -23,8 +23,11 @@ exports[`Dropdown render renders correctly with correct as true 1`] = `
   }
   classes={
     Object {
+      "correctIcon": "Dropdown-correctIcon-10",
+      "correctnessIndicatorIcon": "Dropdown-correctnessIndicatorIcon-9",
       "disabledCorrect": "Dropdown-disabledCorrect-2",
       "disabledIncorrect": "Dropdown-disabledIncorrect-3",
+      "incorrectIcon": "Dropdown-incorrectIcon-11",
       "label": "Dropdown-label-7",
       "menuRoot": "Dropdown-menuRoot-6",
       "root": "Dropdown-root-1",
@@ -64,8 +67,11 @@ exports[`Dropdown render renders correctly with default props 1`] = `
   }
   classes={
     Object {
+      "correctIcon": "Dropdown-correctIcon-10",
+      "correctnessIndicatorIcon": "Dropdown-correctnessIndicatorIcon-9",
       "disabledCorrect": "Dropdown-disabledCorrect-2",
       "disabledIncorrect": "Dropdown-disabledIncorrect-3",
+      "incorrectIcon": "Dropdown-incorrectIcon-11",
       "label": "Dropdown-label-7",
       "menuRoot": "Dropdown-menuRoot-6",
       "root": "Dropdown-root-1",
@@ -105,8 +111,11 @@ exports[`Dropdown render renders correctly with disabled prop as true 1`] = `
   }
   classes={
     Object {
+      "correctIcon": "Dropdown-correctIcon-10",
+      "correctnessIndicatorIcon": "Dropdown-correctnessIndicatorIcon-9",
       "disabledCorrect": "Dropdown-disabledCorrect-2",
       "disabledIncorrect": "Dropdown-disabledIncorrect-3",
+      "incorrectIcon": "Dropdown-incorrectIcon-11",
       "label": "Dropdown-label-7",
       "menuRoot": "Dropdown-menuRoot-6",
       "root": "Dropdown-root-1",

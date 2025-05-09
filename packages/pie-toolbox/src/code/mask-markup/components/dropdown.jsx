@@ -4,10 +4,14 @@ import Button from '@material-ui/core/Button';
 import InputLabel from '@material-ui/core/InputLabel';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import { renderMath } from '../../../math-rendering';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import Close from '@material-ui/icons/Close';
+import Check from '@material-ui/icons/Check';
 import { withStyles } from '@material-ui/core/styles';
+import classNames from 'classnames';
+
 import { color } from '../../render-ui';
+import { renderMath } from '../../../math-rendering';
 
 class Dropdown extends React.Component {
   static propTypes = {
@@ -87,6 +91,16 @@ class Dropdown extends React.Component {
 
     // Changed from Select to Button for dropdown to enhance accessibility. This modification offers explicit control over aria attributes and focuses management, ensuring the dropdown is compliant with accessibility standards. The use of Button and Menu components allows for better handling of keyboard interactions and provides accessible labels and menus, aligning with WCAG guidelines and improving usability for assistive technology users.
 
+    let correctnessIcon = null;
+    if (disabled && correct !== undefined) {
+      correctnessIcon =
+        correct || showCorrectAnswer ? (
+          <Check className={classNames(classes.correctnessIndicatorIcon, classes.correctIcon)} />
+        ) : (
+          <Close className={classNames(classes.correctnessIndicatorIcon, classes.incorrectIcon)} />
+        );
+    }
+
     return (
       <>
         <InputLabel className={classes.srOnly} id={labelId}>
@@ -108,6 +122,7 @@ class Dropdown extends React.Component {
           aria-label="Select answer"
           aria-labelledby={valueDisplayId}
         >
+          {correctnessIcon}
           <span
             id={valueDisplayId}
             className={classes.label}
@@ -185,11 +200,13 @@ const styles = () => ({
     },
   },
   disabledCorrect: {
+    borderWidth: '2px',
     borderColor: color.correct(),
     color: `${color.text()} !important`,
   },
   disabledIncorrect: {
-    borderColor: color.incorrect(),
+    borderWidth: '2px',
+    borderColor: color.incorrectWithIcon(),
     color: `${color.text()} !important`,
   },
   selectMenu: {
@@ -242,6 +259,22 @@ const styles = () => ({
     width: '1px',
     height: '1px',
     overflow: 'hidden',
+  },
+  correctnessIndicatorIcon: {
+    color: `${color.white()} !important`,
+    position: 'absolute',
+    top: '-8px !important',
+    left: '-8px',
+    marginLeft: '0 !important',
+    borderRadius: '50%',
+    fontSize: '16px',
+    padding: '2px',
+  },
+  correctIcon: {
+    backgroundColor: color.correct(),
+  },
+  incorrectIcon: {
+    backgroundColor: color.incorrectWithIcon(),
   },
 });
 
