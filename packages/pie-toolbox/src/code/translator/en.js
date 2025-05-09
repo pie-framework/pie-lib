@@ -72,6 +72,9 @@ export default {
       correctAnswerNotSelected: 'Correct answer not selected',
       incorrectSelection: 'Incorrect selection',
     },
+    passage: {
+      confirmToDeleteText: '{{label}} will be deleted',
+    },
   },
   common: {
     undo: 'Undo',
@@ -86,5 +89,6 @@ export default {
     showNote: 'Show Note',
     hideNote: 'Hide Note',
     cancel: 'Cancel',
+    ok: 'Ok',
   },
 };

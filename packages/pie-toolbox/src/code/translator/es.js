@@ -72,6 +72,9 @@ export default {
       correctAnswerNotSelected: 'Respuesta correcta no seleccionada',
       incorrectSelection: 'Selección incorrecta',
     },
+    passage: {
+      confirmToDeleteText: '{{label}} se suprimirá',
+    },
   },
   common: {
     undo: 'Deshacer',
@@ -86,5 +89,6 @@ export default {
     showNote: 'Mostrar Nota',
     hideNote: 'Ocultar Nota',
     cancel: 'Cancelar',
+    yes: 'Ok',
   },
 };
