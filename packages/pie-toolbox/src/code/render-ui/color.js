@@ -38,7 +38,7 @@ export const defaults = {
   FOCUS_CHECKED: '#BBDEFB',
   FOCUS_CHECKED_BORDER: '#1565C0',
   FOCUS_UNCHECKED: '#E0E0E0',
-  FOCUS_UNCHECKED_BORDER: '#9E9E9E',
+  FOCUS_UNCHECKED_BORDER: '#757575',
 };
 
 Object.freeze(defaults);
