@@ -153,6 +153,7 @@ const renderContentWithMathJax = (executeOn) => {
             const parsedMathMl = mathMl.replaceAll('\n', '');
 
             item.data.typesetRoot.setAttribute('data-mathml', parsedMathMl);
+            item.data.typesetRoot.setAttribute('tabindex', '-1');
           }
 
           // If the original input was a string, return the parsed MathML
