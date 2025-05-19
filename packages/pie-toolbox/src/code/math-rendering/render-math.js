@@ -265,6 +265,7 @@ const bootstrap = (opts) => {
               const parsedMathMl = mathMl.replaceAll('\n', '');
 
               item.data.typesetRoot.setAttribute('data-mathml', parsedMathMl);
+              item.data.typesetRoot.setAttribute('tabindex', '-1');
             }
           }
         } catch (e) {
