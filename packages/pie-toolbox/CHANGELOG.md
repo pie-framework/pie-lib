@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.15.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.14.6...@pie-lib/pie-toolbox@2.15.0) (2025-05-19)
+
+
+### Bug Fixes
+
+* **multiple-choice:** update focus outline color to meet WCAG 3:1 contrast ratio requirement PD-4555 ([7bb7e80](https://github.com/pie-framework/pie-lib/commit/7bb7e8052c7cadc857705df46d2bc5ed3f3ee356))
+
+
+### Features
+
+* **math-rendering:** remove mathml from tab navigation PD-4561 ([17c2d15](https://github.com/pie-framework/pie-lib/commit/17c2d15f802fa0f82e1a2d7bb765c8c31ba0db8c))
+
+
+
+
+
 ## [2.14.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.14.5...@pie-lib/pie-toolbox@2.14.6) (2025-05-07)
 
 
