@@ -156,6 +156,21 @@ const createEditList = () => {
     return change;
   }.bind(this, listOptions);
 
+  core.utils.getCurrentItem = function(opts, value, block) {
+    const { document } = value;
+
+    if (!block) {
+      if (!value.selection.startKey) return null;
+      block = value.startBlock;
+    }
+
+    const parent = document.getParent(block.key);
+    if (block.type === opts.typeItem) {
+      return block;
+    }
+    return parent && parent.type === opts.typeItem ? parent : null;
+  }.bind(this, listOptions);
+
   core.utils.getItemsAtRange = function(opts, value, range) {
     range = range || value.selection;
 
@@ -227,7 +242,7 @@ export default (options) => {
 
   core.toolbar = {
     isMark: false,
-    ariaLabel: type == 'ul_list' ? 'bulleted list' : 'numbered-list',
+    ariaLabel: type === 'ul_list' ? 'bulleted list' : 'numbered-list',
     type,
     icon,
     isActive: (value, type) => {
