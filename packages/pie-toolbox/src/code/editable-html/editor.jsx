@@ -1035,7 +1035,7 @@ export class Editor extends React.Component {
     // Not sure if they would do any harm, but I think it's better to not send them.
     // We use custom plugins to be able to add custom buttons
     // eslint-disable-next-line no-unused-vars
-    const { customPlugins, showParagraphs, ...otherPluginProps } = pluginProps || {};
+    const { customPlugins, showParagraphs, separateParagraphs, ...otherPluginProps } = pluginProps || {};
 
     const { value, focusedNode, toolbarOpts, dialog, scheduled } = this.state;
 
@@ -1094,6 +1094,7 @@ export class Editor extends React.Component {
             {
               [classes.noPadding]: toolbarOpts?.noPadding,
               [classes.showParagraph]: showParagraphs && !showParagraphs.disabled,
+              [classes.separateParagraph]: separateParagraphs && !separateParagraphs.disabled,
             },
             classes.slateEditor,
           )}
@@ -1168,7 +1169,14 @@ const styles = {
     '& > div:has(+ div)::after': {
       display: 'block',
       content: '"¶"',
+      fontSize: '1em',
       color: '#146EB3',
+    },
+  },
+  separateParagraph: {
+    // a div that has a div after it
+    '& > div:has(+ div)': {
+      marginBottom: '1em',
     },
   },
   toolbarOnTop: {
