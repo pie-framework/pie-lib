@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.16.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.15.0...@pie-lib/pie-toolbox@2.16.0) (2025-05-22)
+
+
+### Features
+
+* **mask-markup:** design update for inline-dropdown PD-5002 ([9deb917](https://github.com/pie-framework/pie-lib/commit/9deb91781c7f439b3bc889dbc9fc3c8b4ea84205))
+
+
+
+
+
 # [2.15.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.14.6...@pie-lib/pie-toolbox@2.15.0) (2025-05-19)
 
 
