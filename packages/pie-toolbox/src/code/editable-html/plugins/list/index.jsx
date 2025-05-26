@@ -250,7 +250,49 @@ export default (options) => {
     },
   };
 
-  core.normalizeNode = core.validateNode;
+  core.normalizeNode = (node) => {
+    if (node.object !== 'document' && node.object !== 'block') {
+      return undefined;
+    }
+
+    const response = core.validateNode(node);
+
+    const invalidListItems = [];
+
+    node.forEachDescendant((d) => {
+      if (d.type === 'list_item' && d.nodes.size === 1 && d.nodes.first().object === 'text') {
+        // if we have a list_item that has only a text inside, we need to add a block in it
+        invalidListItems.push(d);
+      }
+    });
+
+    if (!invalidListItems.length && !response) {
+      return undefined;
+    }
+
+    return (change) => {
+      if (response) {
+        response(change);
+      }
+
+      if (invalidListItems.length) {
+        change.withoutNormalization(() => {
+          invalidListItems.forEach((node) => {
+            const textNode = node.nodes.first();
+            const wrappedBlock = {
+              object: 'block',
+              type: 'div',
+              nodes: [textNode.toJSON()],
+            };
+
+            change.removeNodeByKey(textNode.key);
+
+            change.insertNodeByKey(node.key, 0, wrappedBlock);
+          });
+        });
+      }
+    };
+  };
 
   core.renderNode.propTypes = {
     node: PropTypes.object,
