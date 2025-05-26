@@ -81,19 +81,5 @@ export default function CustomPlugin(type, customPluginProps) {
         }
       }
     },
-    normalizeNode: (node) => {
-      const textNodeMap = {};
-      let index = 0;
-
-      if (node.object !== 'document') return;
-
-      node.findDescendant((d) => {
-        if (d.object === 'text') {
-          textNodeMap[index] = d;
-        }
-
-        index++;
-      });
-    },
   };
 }
