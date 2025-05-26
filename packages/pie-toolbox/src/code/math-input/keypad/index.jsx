@@ -338,7 +338,12 @@ export class KeyPad extends React.Component {
 
           if (k.label) {
             return (
-              <Button key={index} {...common} aria-label={k.ariaLabel ? k.ariaLabel : k.name || k.label}>
+              <Button
+                key={index}
+                {...common}
+                className={classNames(common.className, { [classes.deleteButton]: k.label === '⌫' })}
+                aria-label={k.ariaLabel ? k.ariaLabel : k.name || k.label}
+              >
                 {k.label}
               </Button>
             );
@@ -402,6 +407,11 @@ const styles = (theme) => ({
     backgroundColor: lighten(theme.palette.primary.light, 0.5),
     '&:hover': {
       backgroundColor: lighten(theme.palette.primary.light, 0.7),
+    },
+  },
+  deleteButton: {
+    '& > span': {
+      fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important',
     },
   },
   base: {},
