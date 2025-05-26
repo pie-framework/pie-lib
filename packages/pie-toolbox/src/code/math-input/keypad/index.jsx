@@ -119,7 +119,7 @@ const LatexButton = withStyles((theme) => ({
     },
   },
   parallelButton: {
-    fontStyle: 'italic',
+    fontStyle: 'italic !important',
   },
   leftRightArrowButton: {
     '& .mq-overarrow.mq-arrow-both': {
