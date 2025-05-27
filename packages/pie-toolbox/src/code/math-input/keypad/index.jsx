@@ -6,13 +6,15 @@ import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import { lighten, fade } from '@material-ui/core/styles/colorManipulator';
 import green from '@material-ui/core/colors/green';
-import { sortKeys } from './keys-layout';
-import * as mq from '../mq';
-import { baseSet } from '../keys';
 import debug from 'debug';
 import _ from 'lodash';
 import MathQuill from '@pie-framework/mathquill';
+
+import * as mq from '../mq';
+import { baseSet } from '../keys';
 import { MAIN_CONTAINER_CLASS } from '../../editable-html/constants';
+import { commonMqKeyboardStyles } from '../mq/common-mq-styles';
+import { sortKeys } from './keys-layout';
 
 const log = debug('pie-lib:math-inline:keypad');
 
@@ -51,8 +53,8 @@ const LatexButton = withStyles((theme) => ({
         },
         '&:before': {
           fontSize: '80%',
-          left: 'calc(-13%)',
-          top: '-0.31em',
+          left: 'calc(-13%) !important',
+          top: '-0.31em !important',
         },
         '&:after': {
           fontSize: '80% !important',
@@ -75,8 +77,8 @@ const LatexButton = withStyles((theme) => ({
       },
       '&.mq-arrow-right:before': {
         fontSize: '80%',
-        right: 'calc(-13%)',
-        top: '-0.26em',
+        right: 'calc(-13%) !important',
+        top: '-0.26em !important',
       },
       '& .mq-overarrow-inner': {
         border: 'none !important',
@@ -364,9 +366,7 @@ export class KeyPad extends React.Component {
 
 const styles = (theme) => ({
   keys: {
-    '& *': {
-      fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important',
-    },
+    ...commonMqKeyboardStyles,
     width: '100%',
     display: 'grid',
     gridTemplateRows: 'repeat(5, minmax(40px, 60px))',
