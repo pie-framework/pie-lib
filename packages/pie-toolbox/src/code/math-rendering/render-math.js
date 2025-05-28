@@ -14,6 +14,11 @@ import { engineReady } from 'speech-rule-engine/js/common/system';
 
 if (typeof window !== 'undefined') {
   RegisterHTMLHandler(browserAdaptor());
+
+  if (window.MathJax && window.MathJax.Menu) {
+    console.log('Prevent MathJax v2 from interfering with v3 MenuHandler');
+    delete window.MathJax.Menu;
+  }
 }
 
 let sreReady = false;
@@ -99,85 +104,6 @@ export const fixMathElements = (el = document) => {
 const adjustMathMLStyle = (el = document) => {
   const nodes = el.querySelectorAll('math');
   nodes.forEach((node) => node.setAttribute('displaystyle', 'true'));
-};
-
-const convertMathJax2ToMathJax3 = () => {
-  // Make MathJax v2 compatible with v3
-  //  https://docs.mathjax.org/en/v3.2-latest/upgrading/v2.html#version-2-compatibility-example
-  //  Replace the require command map with a new one that checks for
-  //    renamed extensions and converts them to the new names.
-  const CommandMap = MathJax._.input.tex.SymbolMap.CommandMap;
-  const requireMap = MathJax.config.startup.requireMap;
-  const RequireLoad = MathJax._.input.tex.require.RequireConfiguration.RequireLoad;
-  const RequireMethods = {
-    Require: function(parser, name) {
-      let required = parser.GetArgument(name);
-      if (required.match(/[^_a-zA-Z0-9]/) || required === '') {
-        throw new TexError('BadPackageName', 'Argument for %1 is not a valid package name', name);
-      }
-      if (requireMap.hasOwnProperty(required)) {
-        required = requireMap[required];
-      }
-      RequireLoad(parser, required);
-    },
-  };
-
-  new CommandMap('require', { require: 'Require' }, RequireMethods);
-
-  //
-  // Add a replacement for MathJax.Callback command
-  //
-  MathJax.Callback = function(args) {
-    if (Array.isArray(args)) {
-      if (args.length === 1 && typeof args[0] === 'function') {
-        return args[0];
-      } else if (typeof args[0] === 'string' && args[1] instanceof Object && typeof args[1][args[0]] === 'function') {
-        return Function.bind.apply(args[1][args[0]], args.slice(1));
-      } else if (typeof args[0] === 'function') {
-        return Function.bind.apply(args[0], [window].concat(args.slice(1)));
-      } else if (typeof args[1] === 'function') {
-        return Function.bind.apply(args[1], [args[0]].concat(args.slice(2)));
-      }
-    } else if (typeof args === 'function') {
-      return args;
-    }
-    throw Error("Can't make callback from given data");
-  };
-
-  //
-  // Add a replacement for MathJax.Hub commands
-  //
-  MathJax.Hub = {
-    Queue: function() {
-      for (let i = 0, m = arguments.length; i < m; i++) {
-        const fn = MathJax.Callback(arguments[i]);
-        MathJax.startup.promise = MathJax.startup.promise.then(fn);
-      }
-      return MathJax.startup.promise;
-    },
-    Typeset: function(elements, callback) {
-      let promise = MathJax.typesetPromise(elements);
-
-      if (callback) {
-        promise = promise.then(callback);
-      }
-      return promise;
-    },
-    Register: {
-      MessageHook: function() {
-        console.log('MessageHooks are not supported in version 3');
-      },
-      StartupHook: function() {
-        console.log('StartupHooks are not supported in version 3');
-      },
-      LoadHook: function() {
-        console.log('LoadHooks are not supported in version 3');
-      },
-    },
-    Config: function() {
-      console.log('MathJax configurations should be converted for version 3');
-    },
-  };
 };
 
 class myFindMathML extends FindMathML {
@@ -308,18 +234,6 @@ let enrichSpeechInitialized = false;
 const bootstrap = (opts) => {
   if (typeof window === 'undefined') {
     return { Typeset: () => ({}) };
-  }
-
-  if (window.MathJax && typeof window.MathJax.version === 'string' && window.MathJax.version.startsWith('2')) {
-    console.warn('[math-rendering] MathJax v2 detected — patching with v3 compatibility helpers.');
-    window.MathJax.config = window.MathJax.config || {};
-    window.MathJax.config.menuSettings = window.MathJax.config.menuSettings || {};
-    window.MathJax.config.menuSettings.a11y = {
-      assistiveMml: true,
-      collapsible: false,
-      explorer: false,
-    };
-    convertMathJax2ToMathJax3();
   }
 
   const html = createMathMLInstance(opts);
