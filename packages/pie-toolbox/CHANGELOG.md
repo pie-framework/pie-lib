@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.17.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.17.0...@pie-lib/pie-toolbox@2.17.1) (2025-05-28)
+
+
+### Bug Fixes
+
+* add a11y config to support client-side MathJax usage PD-4810 ([831eb94](https://github.com/pie-framework/pie-lib/commit/831eb943e409a8a2c75e5068aa18cdd1d421e0f1))
+
+
+
+
+
 # [2.17.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.16.0...@pie-lib/pie-toolbox@2.17.0) (2025-05-28)
 
 
