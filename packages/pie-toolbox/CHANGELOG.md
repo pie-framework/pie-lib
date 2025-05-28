@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.17.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.17.1...@pie-lib/pie-toolbox@2.17.2) (2025-05-28)
+
+
+### Bug Fixes
+
+* **math-rendering:** delete MathJax.Menu if v2 is present to avoid v3 MenuHandler crash ([85e59ac](https://github.com/pie-framework/pie-lib/commit/85e59ac1b7265593eb61a73fdf1cf4942e4b2023))
+
+
+
+
+
 ## [2.17.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.17.0...@pie-lib/pie-toolbox@2.17.1) (2025-05-28)
 
 
