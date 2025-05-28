@@ -312,6 +312,13 @@ const bootstrap = (opts) => {
 
   if (window.MathJax && typeof window.MathJax.version === 'string' && window.MathJax.version.startsWith('2')) {
     console.warn('[math-rendering] MathJax v2 detected — patching with v3 compatibility helpers.');
+    window.MathJax.config = window.MathJax.config || {};
+    window.MathJax.config.menuSettings = window.MathJax.config.menuSettings || {};
+    window.MathJax.config.menuSettings.a11y = {
+      assistiveMml: true,
+      collapsible: false,
+      explorer: false,
+    };
     convertMathJax2ToMathJax3();
   }
 
