@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.17.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.16.0...@pie-lib/pie-toolbox@2.17.0) (2025-05-28)
+
+
+### Bug Fixes
+
+* add MathJax v2 fallback support in renderMath to prevent v3 compatibility errors PD-4810 ([81acf89](https://github.com/pie-framework/pie-lib/commit/81acf8904f2a82221e31ebc83fbd1c4981771f9b))
+
+
+### Features
+
+* remove mra from pie-toolbox-math-rendering-module ([b42acd1](https://github.com/pie-framework/pie-lib/commit/b42acd1fd400c468261642e5530bb6b3c00e8a8e))
+* use updated math-rendering package instead of mra, clean up circular dependencies test PD-4810 ([0a9d404](https://github.com/pie-framework/pie-lib/commit/0a9d404a3a8147baa29903f840e7add1e262df58))
+
+
+
+
+
 # [2.16.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.15.0...@pie-lib/pie-toolbox@2.16.0) (2025-05-22)
 
 
