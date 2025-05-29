@@ -40,7 +40,7 @@ const LatexButton = withStyles((theme) => ({
     '& .mq-overline .mq-overline-inner': {
       borderTop: '2px solid black',
     },
-    '& .mq-non-leaf .mq-overline': {
+    '& .mq-non-leaf.mq-overline': {
       borderTop: 'none !important', // fixing PD-4873 - in OT, it has border-top 1px and adds extra line
     },
     '& .mq-overarrow': {
@@ -53,7 +53,7 @@ const LatexButton = withStyles((theme) => ({
         top: '0px !important',
         '& *': {
           lineHeight: '1 !important',
-          borderTop: 'none !important', // fixing PD-4873 - in OT, it has border-top 1px and adds extra line
+          borderTop: 'none !important', // fixing PD-4873 - in OT, it has border-top 1px and adds extra line,
         },
         '&:before': {
           fontSize: '80%',
