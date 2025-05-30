@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.17.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.17.3...@pie-lib/pie-toolbox@2.17.4) (2025-05-30)
+
+
+### Bug Fixes
+
+* conditionally disable MathJax v3 menu handler when MathJax v2 menu is detected to avoid conflicts ([e02f6c8](https://github.com/pie-framework/pie-lib/commit/e02f6c87a0d8892d40d01b24f9b1d88e474e890b))
+
+
+
+
+
 ## [2.17.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.17.2...@pie-lib/pie-toolbox@2.17.3) (2025-05-30)
 
 
