@@ -1,12 +1,13 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { DragSource } from '../../drag';
 import { withStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 import classnames from 'classnames';
-import ReactDOM from 'react-dom';
+
 import { renderMath } from '../../math-rendering';
 import { color } from '../../render-ui';
+import { DragSource } from '../../drag';
 
 export const DRAG_TYPE = 'MaskBlank';
 
@@ -18,6 +19,45 @@ class BlankContentComp extends React.Component {
     connectDragSource: PropTypes.func,
   };
 
+  startDrag = () => {
+    const { connectDragSource, disabled } = this.props;
+    if (!disabled) {
+      connectDragSource(this.dragContainerRef);
+    }
+  };
+
+  // start drag after 500ms (touch and hold duration) for chromebooks and other touch devices PD-4888
+  handleTouchStart = (e) => {
+    e.preventDefault();
+    this.longPressTimer = setTimeout(() => {
+      this.startDrag(e);
+    }, 500);
+  };
+
+  handleTouchEnd = () => {
+    clearTimeout(this.longPressTimer);
+  };
+
+  handleTouchMove = () => {
+    clearTimeout(this.longPressTimer);
+  };
+
+  componentDidMount() {
+    if (this.dragContainerRef) {
+      this.dragContainerRef.addEventListener('touchstart', this.handleTouchStart, { passive: false });
+      this.dragContainerRef.addEventListener('touchend', this.handleTouchEnd);
+      this.dragContainerRef.addEventListener('touchmove', this.handleTouchMove);
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.dragContainerRef) {
+      this.dragContainerRef.removeEventListener('touchstart', this.handleTouchStart);
+      this.dragContainerRef.removeEventListener('touchend', this.handleTouchEnd);
+      this.dragContainerRef.removeEventListener('touchmove', this.handleTouchMove);
+    }
+  }
+
   componentDidUpdate() {
     renderMath(this.rootRef);
   }
@@ -28,7 +68,13 @@ class BlankContentComp extends React.Component {
     // TODO the Chip element is causing drag problems on touch devices. Avoid using Chip and consider refactoring the code. Keep in mind that Chip is a span with a button role, which interferes with seamless touch device dragging.
 
     return connectDragSource(
-      <span className={classnames(classes.choice, disabled && classes.disabled)}>
+      <span
+        className={classnames(classes.choice, disabled && classes.disabled)}
+        ref={(ref) => {
+          //eslint-disable-next-line
+          this.dragContainerRef = ReactDOM.findDOMNode(ref);
+        }}
+      >
         <Chip
           clickable={false}
           disabled={true}
