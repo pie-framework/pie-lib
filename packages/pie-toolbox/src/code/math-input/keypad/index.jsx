@@ -6,13 +6,15 @@ import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import { lighten, fade } from '@material-ui/core/styles/colorManipulator';
 import green from '@material-ui/core/colors/green';
-import { sortKeys } from './keys-layout';
-import * as mq from '../mq';
-import { baseSet } from '../keys';
 import debug from 'debug';
 import _ from 'lodash';
 import MathQuill from '@pie-framework/mathquill';
+
+import * as mq from '../mq';
+import { baseSet } from '../keys';
 import { MAIN_CONTAINER_CLASS } from '../../editable-html/constants';
+import { commonMqKeyboardStyles } from '../mq/common-mq-styles';
+import { sortKeys } from './keys-layout';
 
 const log = debug('pie-lib:math-inline:keypad');
 
@@ -38,6 +40,9 @@ const LatexButton = withStyles((theme) => ({
     '& .mq-overline .mq-overline-inner': {
       borderTop: '2px solid black',
     },
+    '& .mq-non-leaf.mq-overline': {
+      borderTop: 'none !important', // fixing PD-4873 - in OT, it has border-top 1px and adds extra line
+    },
     '& .mq-overarrow': {
       width: '30px',
       marginTop: '0 !important',
@@ -48,11 +53,12 @@ const LatexButton = withStyles((theme) => ({
         top: '0px !important',
         '& *': {
           lineHeight: '1 !important',
+          borderTop: 'none !important', // fixing PD-4873 - in OT, it has border-top 1px and adds extra line,
         },
         '&:before': {
           fontSize: '80%',
-          left: 'calc(-13%)',
-          top: '-0.31em',
+          left: 'calc(-13%) !important',
+          top: '-0.31em !important',
         },
         '&:after': {
           fontSize: '80% !important',
@@ -75,8 +81,8 @@ const LatexButton = withStyles((theme) => ({
       },
       '&.mq-arrow-right:before': {
         fontSize: '80%',
-        right: 'calc(-13%)',
-        top: '-0.26em',
+        right: 'calc(-13%) !important',
+        top: '-0.26em !important',
       },
       '& .mq-overarrow-inner': {
         border: 'none !important',
@@ -112,6 +118,9 @@ const LatexButton = withStyles((theme) => ({
     },
     '& .mq-overarc': {
       borderTop: '2px solid black !important',
+      '& .mq-overline': {
+        borderTop: 'none !important', // fixing PD-4873 - in OT, it has border-top 1px and adds extra line
+      },
       '& .mq-overline-inner': {
         borderTop: 'none !important',
         paddingTop: '0 !important',
@@ -119,7 +128,7 @@ const LatexButton = withStyles((theme) => ({
     },
   },
   parallelButton: {
-    fontStyle: 'italic',
+    fontStyle: 'italic !important',
   },
   leftRightArrowButton: {
     '& .mq-overarrow.mq-arrow-both': {
@@ -338,7 +347,12 @@ export class KeyPad extends React.Component {
 
           if (k.label) {
             return (
-              <Button key={index} {...common} aria-label={k.ariaLabel ? k.ariaLabel : k.name || k.label}>
+              <Button
+                key={index}
+                {...common}
+                className={classNames(common.className, { [classes.deleteButton]: k.label === '⌫' })}
+                aria-label={k.ariaLabel ? k.ariaLabel : k.name || k.label}
+              >
                 {k.label}
               </Button>
             );
@@ -359,9 +373,7 @@ export class KeyPad extends React.Component {
 
 const styles = (theme) => ({
   keys: {
-    '& *': {
-      fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important',
-    },
+    ...commonMqKeyboardStyles,
     width: '100%',
     display: 'grid',
     gridTemplateRows: 'repeat(5, minmax(40px, 60px))',
@@ -402,6 +414,11 @@ const styles = (theme) => ({
     backgroundColor: lighten(theme.palette.primary.light, 0.5),
     '&:hover': {
       backgroundColor: lighten(theme.palette.primary.light, 0.7),
+    },
+  },
+  deleteButton: {
+    '& > span': {
+      fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important',
     },
   },
   base: {},

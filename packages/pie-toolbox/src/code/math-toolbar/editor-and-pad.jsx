@@ -1,16 +1,24 @@
-import { HorizontalKeypad, mq, updateSpans } from '../math-input';
 import React from 'react';
 import debug from 'debug';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
-const log = debug('@pie-lib:math-toolbar:editor-and-pad');
-import { color, InputContainer } from '../render-ui';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import isEqual from 'lodash/isEqual';
+
+import {
+  commonMqFontStyles,
+  commonMqKeyboardStyles,
+  longdivStyles,
+  supsubStyles,
+} from '../math-input/mq/common-mq-styles';
+import { HorizontalKeypad, mq, updateSpans } from '../math-input';
+import { color, InputContainer } from '../render-ui';
 import { markFractionBaseSuperscripts } from './utils';
+
+const log = debug('@pie-lib:math-toolbar:editor-and-pad');
 
 const decimalRegex = /\.|,/g;
 
@@ -332,21 +340,9 @@ const styles = (theme) => ({
     },
 
     '& *': {
-      fontFamily: 'MJXZERO, MJXTEX !important',
-
-      '& .mq-math-mode > span > var': {
-        fontFamily: 'MJXZERO, MJXTEX-I !important',
-      },
-      '& .mq-math-mode span var': {
-        fontFamily: 'MJXZERO, MJXTEX-I !important',
-      },
-      '& .mq-math-mode .mq-nonSymbola': {
-        fontFamily: 'MJXZERO, MJXTEX-I !important',
-      },
-      '& .mq-math-mode > span > var.mq-operator-name': {
-        fontFamily: 'MJXZERO, MJXTEX !important',
-      },
-
+      ...commonMqFontStyles,
+      ...supsubStyles,
+      ...longdivStyles,
       '& .mq-math-mode .mq-sqrt-prefix': {
         verticalAlign: 'baseline !important',
         top: '1px !important',
@@ -355,12 +351,6 @@ const styles = (theme) => ({
 
       '& .mq-math-mode .mq-overarc ': {
         paddingTop: '0.45em !important',
-      },
-
-      '& .mq-math-mode sup.mq-nthroot': {
-        fontSize: '70% !important',
-        verticalAlign: '0.5em !important',
-        paddingRight: '0.15em',
       },
 
       '& .mq-math-mode .mq-empty': {
@@ -375,29 +365,10 @@ const styles = (theme) => ({
         top: '0 !important',
       },
 
-      '& .mq-longdiv-inner': {
-        marginTop: '-1px',
-        marginLeft: '5px !important;',
-
-        '& > .mq-empty': {
-          padding: '0 !important',
-          marginLeft: '0px !important',
-          marginTop: '2px',
-        },
-      },
-
-      '& .mq-math-mode .mq-longdiv': {
-        display: 'inline-flex !important',
-      },
-
       '& .mq-math-mode .mq-longdiv .mq-longdiv-inner': {
         marginLeft: '4px !important',
         paddingTop: '6px !important',
         paddingLeft: '6px !important',
-      },
-
-      '& .mq-math-mode .mq-supsub': {
-        fontSize: '70.7% !important',
       },
 
       '& .mq-math-mode .mq-paren': {
@@ -412,25 +383,6 @@ const styles = (theme) => ({
         paddingTop: '5px !important',
       },
 
-      '& .mq-supsub ': {
-        fontSize: '70.7%',
-      },
-      '& .mq-math-mode .mq-supsub.mq-sup-only': {
-        verticalAlign: '-0.1em !important',
-
-        '& .mq-sup': {
-          marginBottom: '0px !important',
-        },
-      },
-      /* But when the base is a fraction, move it higher */
-      '& .mq-math-mode .mq-fraction + .mq-supsub.mq-sup-only': {
-        verticalAlign: '0.4em !important',
-      },
-
-      '& .mq-math-mode .mq-supsub.mq-sup-only.mq-after-fraction-group': {
-        verticalAlign: '0.4em !important',
-      },
-
       '& .mq-math-mode .mq-denominator': {
         marginTop: '-5px !important',
         padding: '0.5em 0.1em 0.1em !important',
@@ -441,8 +393,6 @@ const styles = (theme) => ({
         paddingBottom: '0 !important',
         marginBottom: '-2px',
       },
-
-      '-webkit-font-smoothing': 'antialiased !important',
     },
 
     '& span[data-prime="true"]': {
@@ -543,68 +493,7 @@ const styles = (theme) => ({
   error: {
     border: '2px solid red',
   },
-  keyboard: {
-    '& *': {
-      fontFamily: 'MJXZERO, MJXTEX !important',
-
-      '& .mq-math-mode > span > var': {
-        fontFamily: 'MJXZERO, MJXTEX-I !important',
-      },
-      '& .mq-math-mode span var': {
-        fontFamily: 'MJXZERO, MJXTEX-I !important',
-      },
-      '& .mq-math-mode .mq-nonSymbola': {
-        fontFamily: 'MJXZERO, MJXTEX-I !important',
-      },
-      '& .mq-math-mode > span > var.mq-operator-name': {
-        fontFamily: 'MJXZERO, MJXTEX !important',
-      },
-
-      '& .mq-math-mode .mq-sqrt-prefix': {
-        top: '0 !important',
-      },
-
-      '& .mq-math-mode .mq-empty': {
-        padding: '9px 1px !important',
-      },
-
-      '& .mq-longdiv-inner': {
-        marginTop: '-1px',
-        marginLeft: '5px !important;',
-
-        '& > .mq-empty': {
-          padding: '0 !important',
-          marginLeft: '0px !important',
-          marginTop: '2px',
-        },
-      },
-
-      '& .mq-math-mode .mq-longdiv': {
-        display: 'inline-flex !important',
-      },
-
-      '& .mq-math-mode .mq-supsub': {
-        fontSize: '70.7% !important',
-      },
-
-      '& .mq-math-mode .mq-sqrt-stem': {
-        marginTop: '-5px',
-        paddingTop: '4px',
-      },
-
-      '& .mq-math-mode .mq-paren': {
-        verticalAlign: 'middle !important',
-      },
-
-      '& .mq-math-mode .mq-overarrow .mq-overarrow-inner .mq-empty': {
-        padding: '0 !important',
-      },
-
-      '& .mq-math-mode .mq-overline .mq-overline-inner .mq-empty ': {
-        padding: '0 !important',
-      },
-    },
-  },
+  keyboard: commonMqKeyboardStyles,
   language: {
     '& *': {
       fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important',

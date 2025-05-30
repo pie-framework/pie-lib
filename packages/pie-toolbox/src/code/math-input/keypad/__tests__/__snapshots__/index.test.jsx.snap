@@ -137,7 +137,7 @@ exports[`Keypad snapshot renders 1`] = `
   </WithStyles(Button)>
   <WithStyles(Button)
     aria-label="Delete"
-    className=""
+    className="undefined"
     disabled={false}
     key="⌫-14"
     onClick={[Function]}
