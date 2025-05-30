@@ -200,6 +200,14 @@ const createMathMLInstance = (opts, docProvided = document) => {
       doc.typesetError(math, err);
     },
 
+    menuOptions: {
+      settings: {
+        assistiveMml: true,
+        collapsible: false,
+        explorer: false,
+      },
+    },
+
     sre: {
       speech: 'deep',
     },
