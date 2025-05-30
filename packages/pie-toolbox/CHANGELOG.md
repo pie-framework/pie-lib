@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.17.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.17.2...@pie-lib/pie-toolbox@2.17.3) (2025-05-30)
+
+
+### Bug Fixes
+
+* provide fallback menuOptions.settings to prevent crash when rendering with MathJax v3 PD-4810 ([62b5f43](https://github.com/pie-framework/pie-lib/commit/62b5f4358e17a8bc814f70890c75ed1d9c6d016f))
+
+
+
+
+
 ## [2.17.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.17.1...@pie-lib/pie-toolbox@2.17.2) (2025-05-28)
 
 
