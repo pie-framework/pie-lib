@@ -180,10 +180,11 @@ const createMathMLInstance = (opts, docProvided = document) => {
     ...MmlFactory.defaultNodes,
     ...mmlNodes,
   });
-  const classFactory = EnrichHandler(
-    MenuHandler(AssistiveMmlHandler(mathjax.handlers.handlesDocument(docProvided))),
-    mml,
-  );
+  const withAssistive = AssistiveMmlHandler(mathjax.handlers.handlesDocument(docProvided));
+
+  const handler = window.MathJax && window.MathJax.Menu ? withAssistive : MenuHandler(withAssistive);
+
+  const classFactory = EnrichHandler(handler, mml);
 
   const html = classFactory.create(docProvided, {
     compileError: (mj, math, err) => {
@@ -251,6 +252,8 @@ const bootstrap = (opts) => {
     html: html,
     Typeset: function(...elements) {
       const attemptRender = (temporary = false) => {
+        const usesMenuHandler = !(window.MathJax && window.MathJax.Menu);
+
         let updatedDocument = this.html.findMath(elements.length ? { elements } : {}).compile();
 
         if (!temporary && sreReady) {
@@ -261,10 +264,14 @@ const bootstrap = (opts) => {
           .getMetrics()
           .typeset()
           .assistiveMml()
-          .attachSpeech()
-          .addMenu()
-          .updateDocument();
+          .attachSpeech();
 
+        if (usesMenuHandler) {
+          console.log('Using MenuHandler');
+          updatedDocument = updatedDocument.addMenu();
+        }
+
+        updatedDocument = updatedDocument.updateDocument();
         if (!enrichSpeechInitialized && typeof updatedDocument.math.list?.next?.data === 'object') {
           enrichSpeechInitialized = true;
         }
