@@ -14,11 +14,6 @@ import { engineReady } from 'speech-rule-engine/js/common/system';
 
 if (typeof window !== 'undefined') {
   RegisterHTMLHandler(browserAdaptor());
-
-  if (window.MathJax && window.MathJax.Menu) {
-    console.log('Prevent MathJax v2 from interfering with v3 MenuHandler');
-    delete window.MathJax.Menu;
-  }
 }
 
 let sreReady = false;
@@ -180,11 +175,10 @@ const createMathMLInstance = (opts, docProvided = document) => {
     ...MmlFactory.defaultNodes,
     ...mmlNodes,
   });
-  const withAssistive = AssistiveMmlHandler(mathjax.handlers.handlesDocument(docProvided));
-
-  const handler = window.MathJax && window.MathJax.Menu ? withAssistive : MenuHandler(withAssistive);
-
-  const classFactory = EnrichHandler(handler, mml);
+  const classFactory = EnrichHandler(
+    MenuHandler(AssistiveMmlHandler(mathjax.handlers.handlesDocument(docProvided))),
+    mml,
+  );
 
   const html = classFactory.create(docProvided, {
     compileError: (mj, math, err) => {
@@ -199,14 +193,6 @@ const createMathMLInstance = (opts, docProvided = document) => {
       // eslint-disable-next-line no-console
       console.error(err);
       doc.typesetError(math, err);
-    },
-
-    menuOptions: {
-      settings: {
-        assistiveMml: true,
-        collapsible: false,
-        explorer: false,
-      },
     },
 
     sre: {
@@ -252,8 +238,6 @@ const bootstrap = (opts) => {
     html: html,
     Typeset: function(...elements) {
       const attemptRender = (temporary = false) => {
-        const usesMenuHandler = !(window.MathJax && window.MathJax.Menu);
-
         let updatedDocument = this.html.findMath(elements.length ? { elements } : {}).compile();
 
         if (!temporary && sreReady) {
@@ -264,14 +248,10 @@ const bootstrap = (opts) => {
           .getMetrics()
           .typeset()
           .assistiveMml()
-          .attachSpeech();
+          .attachSpeech()
+          .addMenu()
+          .updateDocument();
 
-        if (usesMenuHandler) {
-          console.log('Using MenuHandler');
-          updatedDocument = updatedDocument.addMenu();
-        }
-
-        updatedDocument = updatedDocument.updateDocument();
         if (!enrichSpeechInitialized && typeof updatedDocument.math.list?.next?.data === 'object') {
           enrichSpeechInitialized = true;
         }
