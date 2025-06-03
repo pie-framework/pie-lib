@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.17.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.17.4...@pie-lib/pie-toolbox@2.17.5) (2025-06-03)
+
+
+### Bug Fixes
+
+* **render-ui:** add comment for new method PD-3756 ([5efc966](https://github.com/pie-framework/pie-lib/commit/5efc9663ee3c1cd68ab0029d5b9ca61a9208ec94))
+* **render-ui:** add test for the new method PD-3756 ([68dad8d](https://github.com/pie-framework/pie-lib/commit/68dad8d6922830e7682b79ad07cf6ad55567e27c))
+* **render-ui:** create methods to verify media in markup PD-3756 ([1e80106](https://github.com/pie-framework/pie-lib/commit/1e801069502ff47ff99f17dd2a5b600780610af7))
+* **render-ui:** export the component correctly PD-3756 ([9f4c779](https://github.com/pie-framework/pie-lib/commit/9f4c779fa40a349ae97f4aa8d8b1fb5aef04eeef))
+
+
+
+
+
 ## [2.17.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.17.3...@pie-lib/pie-toolbox@2.17.4) (2025-05-30)
 
 
