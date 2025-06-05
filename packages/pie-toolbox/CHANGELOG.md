@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.17.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.17.5...@pie-lib/pie-toolbox@2.17.6) (2025-06-05)
+
+
+### Bug Fixes
+
+* **graphing:** don't need action verif based on refactoring PD-3542 ([d25ee7f](https://github.com/pie-framework/pie-lib/commit/d25ee7f8f6ccdc245de1783de9f6749ca54ce31a))
+* **math-input:** IBX specific issue with border in some keypad math buttons ([d9472ab](https://github.com/pie-framework/pie-lib/commit/d9472abd8dfee74e81fee137ca96cedfa6ea1e6a))
+* **math-input:** IBX specific issue with border in some keypad math buttons ([48d1320](https://github.com/pie-framework/pie-lib/commit/48d1320f197ee86d666c1bc03dbbdbd7b78fe137))
+* tests ([a08b8b4](https://github.com/pie-framework/pie-lib/commit/a08b8b416df3e29a7d06d88664fd9fa91ca9b68d))
+* **math-input:** make sure parallel button is always italic - part of PD-4873 ([5c35b5a](https://github.com/pie-framework/pie-lib/commit/5c35b5aa8a440a1ba52dd8114eddc63cba7cb106))
+* added normalization to list plugin, to not allow empty li items [PD-467] ([a0985f5](https://github.com/pie-framework/pie-lib/commit/a0985f5bd06218b0737ecf2f13e6c2bfb18dd8f8))
+
+
+
+
+
 ## [2.17.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.17.4...@pie-lib/pie-toolbox@2.17.5) (2025-06-03)
 
 
