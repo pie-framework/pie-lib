@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import isEqual from 'lodash/isEqual';
 import { ActionCreators } from 'redux-undo';
 import GraphWithControls from '../graph-with-controls';
-import { lastActionMiddleware, getLastAction } from './middleware';
+import { lastActionMiddleware } from './middleware';
 
 const mapStateToProps = (s) => ({
   marks: s.marks.present,
@@ -58,11 +58,9 @@ class Root extends React.Component {
   onStoreChange = () => {
     const { marks, onChangeMarks } = this.props;
     const storeState = this.store.getState();
-    const lastAction = getLastAction();
-    const isUndoOperation = lastAction.type.includes('UNDO') || lastAction.type.includes('REDO');
 
     if (!isEqual(storeState.marks.present, marks)) {
-      onChangeMarks(storeState.marks.present, isUndoOperation);
+      onChangeMarks(storeState.marks.present);
     }
   };
 

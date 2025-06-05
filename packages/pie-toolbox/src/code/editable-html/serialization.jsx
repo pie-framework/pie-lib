@@ -557,6 +557,9 @@ const fixHtmlCode = (markup) => {
     });
   };
 
+  const emptyBlockCheck = (node) =>
+    (node.nodeName === 'DIV' || node.nodeName === 'P' || node.nodeName === 'LI') && node.childNodes.length === 0;
+
   const parseNode = (el) => {
     const childArray = Array.from(el.childNodes);
     const hasParagraphs = childArray.find((child) => child.nodeName === 'P');
@@ -564,7 +567,7 @@ const fixHtmlCode = (markup) => {
 
     childArray.forEach((child, index) => {
       // removing empty blocks
-      if ((child.nodeName === 'DIV' || child.nodeName === 'P') && child.childNodes.length === 0) {
+      if (emptyBlockCheck(child)) {
         child.remove();
         return;
       }
