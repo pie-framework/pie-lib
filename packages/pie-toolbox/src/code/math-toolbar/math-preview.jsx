@@ -5,6 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import { mq } from '../math-input';
 import { markFractionBaseSuperscripts } from './utils';
+import { commonMqFontStyles, longdivStyles, supsubStyles } from '../math-input/mq/common-mq-styles';
 
 const log = debug('@pie-lib:math-toolbar:math-preview');
 
@@ -48,22 +49,9 @@ const mp = (theme) => ({
     display: 'inline-flex',
     alignItems: 'center',
     position: 'relative',
-    '& *': {
-      fontFamily: 'MJXZERO, MJXTEX !important',
-      '-webkit-font-smoothing': 'antialiased !important',
-    },
-    '& > .mq-math-mode > span > var': {
-      fontFamily: 'MJXZERO, MJXTEX-I !important',
-    },
-    '& > .mq-math-mode span var': {
-      fontFamily: 'MJXZERO, MJXTEX-I !important',
-    },
-    '& > .mq-math-mode .mq-nonSymbola': {
-      fontFamily: 'MJXZERO, MJXTEX-I !important',
-    },
-    '& > .mq-math-mode > span > var.mq-operator-name': {
-      fontFamily: 'MJXZERO, MJXTEX !important',
-    },
+    '& *': commonMqFontStyles,
+    ...supsubStyles,
+    ...longdivStyles,
     '& > .mq-math-mode': {
       border: 'solid 1px lightgrey',
     },
@@ -93,33 +81,12 @@ const mp = (theme) => ({
       paddingBottom: '0 !important',
       marginBottom: '-2px',
     },
-    '& > .mq-math-mode sup.mq-nthroot': {
-      fontSize: '70.7% !important',
-      verticalAlign: '0.5em !important',
-      paddingRight: '0.15em',
-    },
-    '& > .mq-longdiv-inner': {
-      marginTop: '-1px',
-      marginLeft: '5px !important;',
-
-      '& > .mq-empty': {
-        padding: '0 !important',
-        marginLeft: '0px !important',
-        marginTop: '2px',
-      },
-    },
-    '& > .mq-math-mode .mq-longdiv': {
-      display: 'inline-flex !important',
-    },
     '& > .mq-math-mode .mq-longdiv .mq-longdiv-inner .mq-empty': {
       paddingTop: '6px !important',
       paddingLeft: '4px !important',
     },
     '& > .mq-math-mode .mq-longdiv .mq-longdiv-inner': {
       marginLeft: '0 !important',
-    },
-    '& > .mq-math-mode .mq-supsub': {
-      fontSize: '70.7% !important',
     },
     '& > .mq-math-mode .mq-overarrow': {
       fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important',
@@ -134,24 +101,6 @@ const mp = (theme) => ({
       marginLeft: '-1.5px',
       marginTop: '-2px !important',
       paddingTop: '5px !important',
-    },
-    '& > .mq-supsub ': {
-      fontSize: '70.7%',
-    },
-
-    '& > .mq-math-mode .mq-supsub.mq-sup-only': {
-      verticalAlign: '-0.1em !important',
-
-      '& .mq-sup': {
-        marginBottom: '0px !important',
-      },
-    },
-    /* But when the base is a fraction, move it higher */
-    '& .mq-math-mode .mq-fraction + .mq-supsub.mq-sup-only': {
-      verticalAlign: '0.4em !important',
-    },
-    '& .mq-math-mode .mq-supsub.mq-sup-only.mq-after-fraction-group': {
-      verticalAlign: '0.4em !important',
     },
 
     '& .mq-overarrow-inner': {
