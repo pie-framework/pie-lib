@@ -591,10 +591,6 @@ const fixHtmlCode = (markup) => {
     if (tables.length) {
       fixTables(tables);
     }
-
-    // if (emptyBlockCheck(el)) {
-    //   el.remove();
-    // }
   };
 
   parseNode(wrapperEl);
