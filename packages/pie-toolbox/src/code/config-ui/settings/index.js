@@ -8,10 +8,11 @@ export const textField = (label, isConfigProperty = true) => ({
   isConfigProperty,
 });
 
-export const toggle = (label, isConfigProperty = false) => ({
+export const toggle = (label, isConfigProperty = false, disabled = false) => ({
   type: 'toggle',
   label,
   isConfigProperty,
+  disabled,
 });
 
 const toChoice = (opt) => {
