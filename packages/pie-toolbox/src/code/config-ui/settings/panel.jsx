@@ -169,7 +169,9 @@ TextField.propTypes = {
   ...baseTypes,
 };
 
-const ToggleWrapper = ({ label, value, onChange }) => <Toggle label={label} checked={!!value} toggle={onChange} />;
+const ToggleWrapper = ({ disabled, label, value, onChange }) => (
+  <Toggle label={label} checked={!!value} disabled={!!disabled} toggle={onChange} />
+);
 
 ToggleWrapper.propTypes = { ...baseTypes, value: PropTypes.bool };
 
