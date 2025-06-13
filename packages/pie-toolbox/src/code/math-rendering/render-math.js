@@ -236,7 +236,7 @@ const createMathMLInstance = (opts, docProvided = document) => {
   mml.setMmlFactory(customMmlFactory);
 
   if (cachedMathjax) {
-    // if we have a cached version, we replace it jere
+    // if we have a cached version, we replace it here
     window.MathJax = cachedMathjax;
   }
 
