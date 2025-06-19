@@ -18,23 +18,24 @@ const Toggle = withStyles((theme) => ({
     paddingTop: theme.spacing.unit * 2,
   },
   checkedThumb: {
-      color: `${color.tertiary()} !important`,
+    color: `${color.tertiary()} !important`,
   },
   checkedBar: {
-      backgroundColor: `${color.tertiaryLight()} !important`,
+    backgroundColor: `${color.tertiaryLight()} !important`,
   },
-}))(({ checked, label, toggle, classes }) => (
+}))(({ checked, disabled, label, toggle, classes }) => (
   <div className={classes.toggle}>
     <InputLabel className={classes.label}>{label}</InputLabel>
     <Switch
-        classes={{
-          checked: classNames(classes.checkedThumb),
-          bar: classNames( {
-            [classes.checkedBar]: checked,
-          }),
-        }}
-        checked={checked}
-        onChange={(e) => toggle(e.target.checked)}
+      classes={{
+        checked: classNames(classes.checkedThumb),
+        bar: classNames({
+          [classes.checkedBar]: checked,
+        }),
+      }}
+      checked={checked}
+      disabled={disabled}
+      onChange={(e) => toggle(e.target.checked)}
     />
   </div>
 ));

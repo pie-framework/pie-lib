@@ -120,6 +120,7 @@ describe('toggle', () => {
       label: 'Label',
       type: 'toggle',
       isConfigProperty: false,
+      disabled: false,
     });
   });
 });
