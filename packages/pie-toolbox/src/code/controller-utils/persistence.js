@@ -1,8 +1,6 @@
 import get from 'lodash/get';
 import shuffle from 'lodash/shuffle';
 import isEmpty from 'lodash/isEmpty';
-import isNull from 'lodash/isNull';
-import isUndefined from 'lodash/isUndefined';
 
 // eslint-disable-next-line no-console
 const lg = (n) => console[n].bind(console, 'controller-utils:');
@@ -13,7 +11,7 @@ const error = lg('error');
 
 export const compact = (arr) => {
   if (Array.isArray(arr)) {
-    return arr.filter((v) => !isNull(v) && !isUndefined(v));
+    return arr.filter((v) => v !== null && v !== undefined);
   }
   return arr;
 };

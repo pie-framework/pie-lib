@@ -1,5 +1,3 @@
-import _ from 'lodash';
-
 export const enabled = (config, env, defaultValue) => {
   // if model.partialScoring = false
   //  - if env.partialScoring = false || env.partialScoring = true => use dichotomous scoring
@@ -17,5 +15,5 @@ export const enabled = (config, env, defaultValue) => {
     return false;
   }
 
-  return _.isBoolean(defaultValue) ? defaultValue : true;
+  return typeof defaultValue === 'boolean' ? defaultValue : true;
 };
