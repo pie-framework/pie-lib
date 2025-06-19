@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.18.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.17.7...@pie-lib/pie-toolbox@2.18.0) (2025-06-19)
+
+
+### Bug Fixes
+
+* **config-ui:** add disable support for toggle PD-4832 ([21d87e5](https://github.com/pie-framework/pie-lib/commit/21d87e5728a0b6f785f591464ca7da686cafd9ba))
+
+
+### Features
+
+* remove lodash from controller utils PD-5076 ([1b99abe](https://github.com/pie-framework/pie-lib/commit/1b99abe6e74ce0a16b117f9cf47ac49b2def0e38))
+
+
+
+
+
 ## [2.17.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.17.6...@pie-lib/pie-toolbox@2.17.7) (2025-06-13)
 
 
