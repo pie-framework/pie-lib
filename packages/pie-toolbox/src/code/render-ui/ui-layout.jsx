@@ -2,7 +2,6 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import omit from 'lodash/omit';
 import AppendCSSRules from './append-css-rules';
 
 class UiLayout extends AppendCSSRules {
@@ -41,7 +40,7 @@ class UiLayout extends AppendCSSRules {
     const { children, className, classes, fontSizeFactor, ...rest } = this.props;
 
     const finalClass = classNames(className, classes.extraCSSRules, classes.uiLayoutContainer);
-    const restProps = omit(rest, 'extraCSSRules');
+    const { extraCSSRules, ...restProps } = rest;
     const style = this.computeStyle(fontSizeFactor);
 
     return (
