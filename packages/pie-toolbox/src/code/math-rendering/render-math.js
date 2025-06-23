@@ -1,5 +1,5 @@
 import { mathjax } from 'mathjax-full/js/mathjax';
-import global from 'mathjax-full/js/components/global';
+import { MathJax as globalMathjax } from 'mathjax-full/js/components/global';
 import { AssistiveMmlHandler } from 'mathjax-full/js/a11y/assistive-mml';
 import { EnrichHandler } from 'mathjax-full/js/a11y/semantic-enrich';
 import { MenuHandler } from 'mathjax-full/js/ui/menu/MenuHandler';
@@ -160,6 +160,17 @@ const createMathMLInstance = (opts, docProvided = document) => {
     FindMathML: new myFindMathML(),
   };
 
+  let cachedMathjax;
+
+  if (globalMathjax && globalMathjax.version !== mathjax.version) {
+    // handling other MathJax version on the page
+    // replacing it temporarily with the version we have
+    window.MathJax._ = window.MathJax._ || {};
+    window.MathJax.config = window.MathJax.config || {};
+    cachedMathjax = window.MathJax;
+    Object.assign(globalMathjax, mathjax);
+  }
+
   const fontURL = `https://unpkg.com/mathjax-full@${mathjax.version}/ts/output/chtml/fonts/tex-woff-v2`;
   const htmlConfig = {
     fontURL,
@@ -169,19 +180,6 @@ const createMathMLInstance = (opts, docProvided = document) => {
       ...chtmlNodes,
     }),
   };
-
-  let cachedMathjax;
-
-  if (global?.MathJax && global.MathJax.version !== mathjax.version) {
-    // handling other MathJax version on the page
-    // replacing it temporarily with the version we have
-    window.MathJax._ = window.MathJax._ || {};
-    window.MathJax.config = window.MathJax.config || {};
-    cachedMathjax = window.MathJax;
-    Object.assign(global, {
-      MathJax: mathjax,
-    });
-  }
 
   const mml = new MathML(mmlConfig);
 
