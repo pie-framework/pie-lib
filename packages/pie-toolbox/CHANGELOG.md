@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.18.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.18.0...@pie-lib/pie-toolbox@2.18.1) (2025-06-23)
+
+
+### Bug Fixes
+
+* made sure mathjax import is handled properly [PD-5059] ([a53501e](https://github.com/pie-framework/pie-lib/commit/a53501ec168b8d129429c4041a21eac5dd53c6bc))
+
+
+
+
+
 # [2.18.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.17.7...@pie-lib/pie-toolbox@2.18.0) (2025-06-19)
 
 
