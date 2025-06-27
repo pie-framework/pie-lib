@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.19.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.18.1...@pie-lib/pie-toolbox@2.19.0) (2025-06-27)
+
+
+### Features
+
+* remove konva PD-5064 ([57e524e](https://github.com/pie-framework/pie-lib/commit/57e524e03040652cc9723689c910c84bd529debf))
+
+
+
+
+
 ## [2.18.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.18.0...@pie-lib/pie-toolbox@2.18.1) (2025-06-23)
 
 
