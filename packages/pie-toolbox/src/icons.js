@@ -1,7 +1,6 @@
 import {
   Correct,
   CorrectResponse,
-  ImageComponent,
   Incorrect,
   Instructions,
   LearnMore,
@@ -13,7 +12,6 @@ import {
 export {
   Correct,
   CorrectResponse,
-  ImageComponent,
   Incorrect,
   Instructions,
   LearnMore,
