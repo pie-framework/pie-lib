@@ -79,6 +79,25 @@ module.exports = {
         },
       },
       {
+        name: '@pie-lib/pie-toolbox-editable-html-module',
+        output: packagesDir,
+        repository: 'pie-framework/pie-lib',
+        extensions: { commonJs },
+        imports: {
+          default: [
+            'react-dom',
+            'react-dom/server',
+            'react',
+            'prop-types',
+            'lodash',
+            'classnames',
+            'debug',
+            '@pie-framework/mathquill',
+          ],
+          namespace: ['@pie-lib/pie-toolbox/editable-html'],
+        },
+      },
+      {
         name: '@pie-lib/pie-toolbox-module',
         output: packagesDir,
         repository: 'pie-framework/pie-lib',
