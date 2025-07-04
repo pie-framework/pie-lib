@@ -68,9 +68,10 @@ export default {
       minmaxSelections_range: 'Seleccione entre {{minSelections}} y {{maxSelections}}.',
     },
     selectText: {
-      correctAnswerSelected: 'Respuesta correcta seleccionada',
-      correctAnswerNotSelected: 'Respuesta correcta no seleccionada',
-      incorrectSelection: 'Selección incorrecta',
+      correctAnswerSelected: 'Respuesta Correcta',
+      correctAnswerNotSelected: 'Respuesta Correcta No Seleccionada',
+      incorrectSelection: 'Selección Incorrecta',
+      key: 'Clave',
     },
   },
   common: {
