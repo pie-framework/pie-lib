@@ -117,6 +117,7 @@ export const getDomainAndRangeByChartType = (domain, range, chartType) => {
 };
 
 export const getGridLinesAndAxisByChartType = (range, chartType) => {
+  console.log('range:', range);
   switch (chartType) {
     case 'lineDot':
     case 'lineCross':
