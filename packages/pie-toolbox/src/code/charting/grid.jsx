@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
-
-import { Grid as VxGrid, GridRows, GridColumns } from '@vx/grid';
+import { GridRows, GridColumns } from '@vx/grid';
 
 import { types } from '../plot';
 import { color } from '../render-ui';
@@ -59,15 +58,6 @@ export class Grid extends React.Component {
 const styles = () => ({
   grid: {
     stroke: color.primaryLight(),
-  },
-  // container to override non-labelStep lines to red
-  gridContainer: (props) => {
-    const n = props.graphProps.range.labelStep || 1;
-    return {
-      [`& g > line:not(:nth-child(${n}n))`]: {
-        stroke: 'red !important',
-      },
-    };
   },
 });
 
