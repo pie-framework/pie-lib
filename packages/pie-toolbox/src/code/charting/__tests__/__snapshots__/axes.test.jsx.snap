@@ -536,6 +536,7 @@ exports[`TickComponent snapshot1 renders 1`] = `
         }
       }
       inputRef={[Function]}
+      limitCharacters={true}
       mark={
         Object {
           "label": "test",

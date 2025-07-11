@@ -185,6 +185,7 @@ export class TickComponent extends React.Component {
             rotate={rotate}
             correctness={correctness}
             error={error && error[index]}
+            limitCharacters
           />
         </foreignObject>
 
@@ -515,7 +516,7 @@ const ChartAxes = withStyles(
       fill: theme.palette.error.main,
     },
     customColor: {
-      color: `${color.tertiary()} !important`
+      color: `${color.tertiary()} !important`,
     },
   }),
   { withTheme: true },
