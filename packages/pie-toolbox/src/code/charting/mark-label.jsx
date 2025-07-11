@@ -89,6 +89,7 @@ export const MarkLabel = (props) => {
     autoFocus,
     error,
     isHiddenLabel,
+    limitCharacters,
   } = props;
 
   const [label, setLabel] = useState(mark.label);
@@ -97,6 +98,10 @@ export const MarkLabel = (props) => {
   let root = useRef(null);
 
   const onChange = (e) => {
+    if (limitCharacters && e.target.value && e.target.value.length > 20) {
+      return;
+    }
+
     setLabel(e.target.value);
   };
 
@@ -205,6 +210,7 @@ MarkLabel.propTypes = {
     label: PropTypes.string,
   }),
   isHiddenLabel: PropTypes.bool,
+  limitCharacters: PropTypes.bool,
 };
 
 export default withStyles(styles)(MarkLabel);
