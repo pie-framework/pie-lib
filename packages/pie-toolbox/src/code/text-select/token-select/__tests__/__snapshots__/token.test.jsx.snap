@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`token snapshot renders 1`] = `
-<Wrapper
-  useWrapper={false}
->
+<Wrapper>
   <span
     className="tokenRootClass token"
     dangerouslySetInnerHTML={
@@ -16,9 +14,7 @@ exports[`token snapshot renders 1`] = `
 `;
 
 exports[`token snapshot renders with brs 1`] = `
-<Wrapper
-  useWrapper={false}
->
+<Wrapper>
   <span
     className="tokenRootClass token"
     dangerouslySetInnerHTML={
