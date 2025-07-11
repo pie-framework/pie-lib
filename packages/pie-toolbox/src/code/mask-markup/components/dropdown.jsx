@@ -5,10 +5,12 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import Close from '@material-ui/icons/Close';
 import Check from '@material-ui/icons/Check';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
+import isEqual from 'lodash/isEqual';
 
 import { color } from '../../render-ui';
 import { renderMath } from '../../../math-rendering';
@@ -23,6 +25,8 @@ class Dropdown extends React.Component {
     correct: PropTypes.bool,
     choices: PropTypes.arrayOf(PropTypes.shape({ value: PropTypes.string, label: PropTypes.string })),
     showCorrectAnswer: PropTypes.bool,
+    singleQuery: PropTypes.bool,
+    correctValue: PropTypes.string,
   };
 
   constructor(props) {
@@ -31,33 +35,62 @@ class Dropdown extends React.Component {
     this.state = {
       anchorEl: null,
       highlightedOptionId: null,
+      menuWidth: null,
+      previewValue: null,
     };
-
+    this.hiddenRef = React.createRef();
+    this.buttonRef = React.createRef();
     this.elementRefs = [];
   }
 
-  componentDidUpdate() {
+  componentDidMount() {
+    // render math on actual items
     this.elementRefs.forEach((ref) => {
-      if (ref) {
-        renderMath(ref);
-      }
+      if (ref) renderMath(ref);
     });
+    // measure hidden menu width once
+    if (this.hiddenRef.current && this.state.menuWidth === null) {
+      this.setState({ menuWidth: this.hiddenRef.current.clientWidth });
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    // recalculate hidden menu width if available
+    const { choices } = this.props;
+
+    if (this.hiddenRef.current && !isEqual(choices, prevProps.choices)) {
+      const newWidth = this.hiddenRef.current.clientWidth;
+      if (newWidth !== this.state.menuWidth) {
+        this.setState({ menuWidth: newWidth });
+      }
+    }
   }
 
   handleClick = (event) => this.setState({ anchorEl: event.currentTarget });
 
-  handleClose = () => this.setState({ anchorEl: null });
+  handleClose = () => this.setState({ anchorEl: null, previewValue: null });
 
   handleHighlight = (index) => {
     const highlightedOptionId = `dropdown-option-${this.props.id}-${index}`;
 
-    this.setState({ highlightedOptionId });
+    // preview on hover if nothing selected
+    const stateUpdate = { highlightedOptionId };
+    if (!this.props.value) {
+      stateUpdate.previewValue = this.props.choices[index].value;
+    }
+    this.setState(stateUpdate);
   };
 
   handleSelect = (value, index) => {
     this.props.onChange(this.props.id, value);
     this.handleHighlight(index);
     this.handleClose();
+  };
+
+  handleHover = (value, index) => {
+    const highlightedOptionId = `dropdown-option-${this.props.id}-${index}`;
+    const previewValue = !this.props.value ? value : this.state.previewValue;
+    this.setState({ highlightedOptionId, previewValue });
   };
 
   getLabel(choices, value) {
@@ -68,7 +101,6 @@ class Dropdown extends React.Component {
 
   render() {
     const { classes, id, correct, disabled, value, choices, showCorrectAnswer, singleQuery, correctValue } = this.props;
-
     const { anchorEl } = this.state;
     const open = Boolean(anchorEl);
     const buttonId = `dropdown-button-${id}`;
@@ -90,7 +122,6 @@ class Dropdown extends React.Component {
     const labelText = singleQuery ? 'Query' : `Query ${incrementedId}`;
 
     // Changed from Select to Button for dropdown to enhance accessibility. This modification offers explicit control over aria attributes and focuses management, ensuring the dropdown is compliant with accessibility standards. The use of Button and Menu components allows for better handling of keyboard interactions and provides accessible labels and menus, aligning with WCAG guidelines and improving usability for assistive technology users.
-
     let correctnessIcon = null;
     if (disabled && correct !== undefined) {
       correctnessIcon =
@@ -103,10 +134,23 @@ class Dropdown extends React.Component {
 
     return (
       <>
+        <div ref={this.hiddenRef} style={{ position: 'absolute', visibility: 'hidden', top: 0, left: 0 }}>
+          {(choices || []).map((c, index) => (
+            <MenuItem key={index} classes={{ root: classes.menuRoot, selected: classes.selected }}>
+              <span className={classes.label} dangerouslySetInnerHTML={{ __html: c.label }} />
+            </MenuItem>
+          ))}
+        </div>
         <InputLabel className={classes.srOnly} id={labelId}>
           {labelText}
         </InputLabel>
         <Button
+          ref={this.buttonRef}
+          style={{
+            ...(this.state.menuWidth && { minWidth: `calc(${this.state.menuWidth}px + 8px)` }),
+            borderWidth: open ? '2px' : '1px',
+            transition: 'border-width 0.2s ease-in-out',
+          }}
           aria-controls={open ? menuId : undefined}
           aria-haspopup="listbox"
           aria-expanded={open ? 'true' : undefined}
@@ -127,10 +171,14 @@ class Dropdown extends React.Component {
             id={valueDisplayId}
             className={classes.label}
             dangerouslySetInnerHTML={{
-              __html: correctValue ? correctValue : this.getLabel(choices, value) ? this.getLabel(choices, value) : '',
+              __html: correctValue
+                ? correctValue
+                : open && this.state.previewValue
+                ? this.getLabel(choices, this.state.previewValue)
+                : this.getLabel(choices, value) || '',
             }}
           />
-          <ArrowDropDownIcon />
+          {open ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
         </Button>
         <Menu
           id={menuId}
@@ -139,9 +187,14 @@ class Dropdown extends React.Component {
           keepMounted
           open={open}
           onClose={this.handleClose}
+          getContentAnchorEl={null}
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+          transformOrigin={{ vertical: 'top', horizontal: 'left' }}
+          PaperProps={this.state.menuWidth ? { style: { minWidth: this.state.menuWidth, padding: '4px' } } : undefined}
           MenuListProps={{
             'aria-labelledby': buttonId,
             role: 'listbox',
+            disablePadding: true,
           }}
         >
           {(choices || []).map((c, index) => {
@@ -156,6 +209,7 @@ class Dropdown extends React.Component {
                 onClick={() => this.handleSelect(c.value, index)}
                 role="option"
                 aria-selected={this.state.highlightedOptionId === optionId ? 'true' : undefined}
+                onMouseOver={() => this.handleHover(c.value, index)}
               >
                 <span
                   ref={(ref) => (this.elementRefs[index] = ref)}
@@ -163,7 +217,7 @@ class Dropdown extends React.Component {
                   dangerouslySetInnerHTML={{ __html: c.label }}
                 />
                 <span
-                  className={classes.label}
+                  className={classes.selectedIndicator}
                   dangerouslySetInnerHTML={{ __html: c.value === value ? ' &check;' : '' }}
                 />
               </MenuItem>
@@ -178,7 +232,7 @@ class Dropdown extends React.Component {
 const styles = () => ({
   root: {
     color: color.text(),
-    border: `1px solid ${color.text()}`,
+    border: `1px solid ${color.borderGray()}`,
     borderRadius: '4px',
     justifyContent: 'space-between',
     backgroundColor: color.background(),
@@ -220,13 +274,17 @@ const styles = () => ({
       border: `1px solid ${color.text()}`,
       borderColor: 'initial',
     },
+    // remove default padding on the inner list
+    '& .MuiList-root': {
+      padding: 0,
+    },
   },
   selected: {
     color: `${color.text()} !important`,
     backgroundColor: `${color.background()} !important`,
     '&:hover': {
       color: color.text(),
-      backgroundColor: `${color.secondaryLight()} !important`,
+      backgroundColor: `${color.dropdownBackground()} !important`,
     },
   },
   menuRoot: {
@@ -238,19 +296,19 @@ const styles = () => ({
     },
     '&:hover': {
       color: color.text(),
-      backgroundColor: color.secondaryLight(),
+      backgroundColor: color.dropdownBackground(),
     },
     boxSizing: 'border-box',
     padding: '25px',
-    '&:first-of-type': {
-      borderRadius: '3px 3px 0 0',
-    },
-    '&:last-of-type': {
-      borderRadius: '0 0 3px 3px',
-    },
+    borderRadius: '4px',
   },
   label: {
     fontSize: 'max(1rem, 14px)',
+  },
+  selectedIndicator: {
+    fontSize: 'max(1rem, 14px)',
+    position: 'absolute',
+    right: '10px',
   },
   srOnly: {
     position: 'absolute',
