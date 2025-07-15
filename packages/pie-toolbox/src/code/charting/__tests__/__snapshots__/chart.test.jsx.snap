@@ -4,12 +4,6 @@ exports[`ChartAxes snapshot renders 1`] = `
 <div
   className="className"
 >
-  <div>
-    <ToolMenu
-      addCategory={[Function]}
-      disabled={true}
-    />
-  </div>
   <WithStyles(Root)
     defineChart={false}
     disabledLabels={true}
@@ -205,12 +199,6 @@ exports[`ChartAxes snapshot renders if size is not defined 1`] = `
 <div
   className="className"
 >
-  <div>
-    <ToolMenu
-      addCategory={[Function]}
-      disabled={true}
-    />
-  </div>
   <WithStyles(Root)
     defineChart={false}
     disabledLabels={true}
@@ -410,12 +398,6 @@ exports[`ChartAxes snapshot renders without chartType property 1`] = `
 <div
   className="className"
 >
-  <div>
-    <ToolMenu
-      addCategory={[Function]}
-      disabled={true}
-    />
-  </div>
   <WithStyles(Root)
     defineChart={false}
     disabledLabels={true}

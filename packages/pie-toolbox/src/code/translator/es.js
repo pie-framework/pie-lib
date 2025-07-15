@@ -37,6 +37,9 @@ export default {
     },
     charting: {
       addCategory: 'Añadir categoría',
+      actions: 'Acciones',
+      add: 'Añadir',
+      delete: 'Eliminar',
       newLabel: 'Nueva etiqueta',
       reachedLimit_other: 'No puede haber más de {{count}} categorías.',
     },

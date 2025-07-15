@@ -45,14 +45,6 @@ export class TickComponent extends React.Component {
     onChangeCategory(index, { ...category, label: newLabel });
   };
 
-  deleteCategory = (index) => {
-    const { categories, onChange } = this.props;
-
-    if (index >= 0 && categories[index]) {
-      onChange([...categories.slice(0, index), ...categories.slice(index + 1)]);
-    }
-  };
-
   changeInteractive = (index, value) => {
     const { categories, onChangeCategory } = this.props;
     const category = categories[index];
@@ -144,7 +136,7 @@ export class TickComponent extends React.Component {
     const { changeEditable, changeInteractive } = chartingOptions || {};
     const index = parseInt(formattedValue.split('-')[0], 10);
     const category = categories[index];
-    const { deletable, editable, interactive, label, correctness } = category || {};
+    const { editable, interactive, label, correctness } = category || {};
     const barX = xBand(bandKey({ label }, index));
     const longestCategory = (categories || []).reduce((a, b) => {
       const lengthA = a && a.label ? a.label.length : 0;
@@ -192,24 +184,6 @@ export class TickComponent extends React.Component {
           <text className={classes.error} y={y + 23} height={6} textAnchor="start">
             {distinctMessages}
           </text>
-        )}
-
-        {deletable && !correctness && (
-          <line x1={x} y1={0} x2={x} y2={y + 4 + top} className={classes.dottedLine} strokeDasharray="4 2" />
-        )}
-
-        {deletable && !correctness && (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            x={x - 8}
-            y={y + 60 + top}
-            width={16}
-            height={16}
-            viewBox="0 0 512 512"
-            onClick={() => this.deleteCategory(index)}
-          >
-            <path d="M128 405.429C128 428.846 147.198 448 170.667 448h170.667C364.802 448 384 428.846 384 405.429V160H128v245.429zM416 96h-80l-26.785-32H202.786L176 96H96v32h320V96z" />
-          </svg>
         )}
 
         {defineChart && index === 0 && (
@@ -515,7 +489,7 @@ const ChartAxes = withStyles(
       fill: theme.palette.error.main,
     },
     customColor: {
-      color: `${color.tertiary()} !important`
+      color: `${color.tertiary()} !important`,
     },
   }),
   { withTheme: true },

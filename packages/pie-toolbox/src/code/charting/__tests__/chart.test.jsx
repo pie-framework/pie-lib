@@ -83,5 +83,13 @@ describe('ChartAxes', () => {
 
       expect(chart.type).toEqual('bar');
     });
+
+    it('deleteCategory', () => {
+      const w = wrapper();
+
+      w.instance().deleteCategory(0);
+
+      expect(onDataChange).toHaveBeenCalled();
+    });
   });
 });
