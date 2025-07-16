@@ -1,12 +1,3 @@
-import {
-  Controls,
-  TextSelect,
-  TokenTypes,
-  Tokenizer,
-  TokenSelect,
-  Token,
-  prepareText,
-  Legend,
-} from './code/text-select';
+import { TextSelect, TokenTypes, Tokenizer, TokenSelect, Token, prepareText, Legend } from './code/text-select';
 
-export { Controls, TextSelect, TokenTypes, Tokenizer, TokenSelect, Token, prepareText, Legend };
+export { TextSelect, TokenTypes, Tokenizer, TokenSelect, Token, prepareText, Legend };
