@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.21.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.20.0...@pie-lib/pie-toolbox@2.21.0) (2025-07-16)
+
+
+### Features
+
+* **charting:** add actions button for adding and deleting categories PD-5082 ([338cabd](https://github.com/pie-framework/pie-lib/commit/338cabd80f0b243e999dbf6b8ab0bce0d6e42913))
+* **charting:** color change to grid component on unlabeled lines PD-5070 ([218376c](https://github.com/pie-framework/pie-lib/commit/218376c1be13877f6445e02dc34a5cca43f41fda))
+* **charting:** create KeyLegend component for charting PD-5083 ([0edca75](https://github.com/pie-framework/pie-lib/commit/0edca75bb2fd4470e7a6d4ac8d8f33762a23d6a6))
+* **charting:** limit input length to 20 for category labels PD-5081 ([b575cbf](https://github.com/pie-framework/pie-lib/commit/b575cbf50cbaaa62f90fc7a2a75bd209fca47c22))
+* **charting:** move icons separate file, use translator PD-5083 ([d86b0ea](https://github.com/pie-framework/pie-lib/commit/d86b0eaafba1d6a1afca9e77873dfb5ae524cdb0))
+* **charting:** move icons separate file, use translator PD-5083 ([fba13f0](https://github.com/pie-framework/pie-lib/commit/fba13f0230e0055af64f66be94d74eff0a5d3837))
+* **charting:** use material-ui icons PD-5083 ([a7a7aa7](https://github.com/pie-framework/pie-lib/commit/a7a7aa7065692ecf6284bad4569d44e4416a8f7f))
+* remove unused component and console logs ([3421591](https://github.com/pie-framework/pie-lib/commit/34215910666385de821b99e67c0e5df6fca1e6eb))
+
+
+
+
+
 # [2.20.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.19.0...@pie-lib/pie-toolbox@2.20.0) (2025-07-11)
 
 
