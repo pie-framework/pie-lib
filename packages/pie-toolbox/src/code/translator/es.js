@@ -41,7 +41,7 @@ export default {
       reachedLimit_other: 'No puede haber más de {{count}} categorías.',
       keyLegend: {
         incorrectAnswer: 'Respuesta incorrecta del estudiante',
-        correctAnswer: 'Respuesta correcta del estudiante.',
+        correctAnswer: 'Respuesta correcta del estudiante',
         correctKeyAnswer: 'Clave de respuesta correcta',
       },
     },
