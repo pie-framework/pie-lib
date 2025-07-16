@@ -39,6 +39,8 @@ export const defaults = {
   FOCUS_CHECKED_BORDER: '#1565C0',
   FOCUS_UNCHECKED: '#E0E0E0',
   FOCUS_UNCHECKED_BORDER: '#757575',
+  // this is used for charting
+  FADED_PRIMARY: '#DCDAFB',
 };
 
 Object.freeze(defaults);
@@ -68,6 +70,7 @@ export const primary = () => pv('primary', defaults.PRIMARY);
 export const primaryLight = () => pv('primary-light', defaults.PRIMARY_LIGHT);
 export const primaryDark = () => pv('primary-dark', defaults.PRIMARY_DARK);
 export const primaryText = () => pv('primary-text', 'text', defaults.TEXT);
+export const fadedPrimary = () => pv('faded-primary', defaults.FADED_PRIMARY);
 
 export const secondary = () => pv('secondary', defaults.SECONDARY);
 export const secondaryLight = () => pv('secondary-light', defaults.SECONDARY_LIGHT);

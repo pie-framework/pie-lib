@@ -2662,10 +2662,10 @@
     unist-util-modify-children "^1.0.0"
     unist-util-visit-children "^1.0.0"
 
-"@pie-lib/pie-toolbox-math-rendering-module@5.0.4":
-  version "5.0.4"
-  resolved "https://registry.yarnpkg.com/@pie-lib/pie-toolbox-math-rendering-module/-/pie-toolbox-math-rendering-module-5.0.4.tgz#461adba5bf98839ee078af55570e2bd0abfc5e35"
-  integrity sha512-F6JqgKgFDBsSpbQ5EGr5cmPLCj2DOzG/qhHQnPMbrCUbEsFxb4JwQcOw9m485BQUCPypBv6ocxthz0n6ttHPpQ==
+"@pie-lib/pie-toolbox-math-rendering-module@5.1.4":
+  version "5.1.4"
+  resolved "https://registry.yarnpkg.com/@pie-lib/pie-toolbox-math-rendering-module/-/pie-toolbox-math-rendering-module-5.1.4.tgz#e1381e310cd2890e52c8a132d4dd82f158d70ac7"
+  integrity sha512-zFY/Tfkj2l4y7hOguRwECvTruSn9gnfT+2oDL9sdESSzAEqG2+9yx9fSFwqhfeI5Yhh0V+nRUR+d6B/U/N88TQ==
 
 "@pie-lib/test-utils@^0.0.3":
   version "0.0.3"
