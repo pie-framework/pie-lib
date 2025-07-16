@@ -177,6 +177,7 @@ export class TickComponent extends React.Component {
             rotate={rotate}
             correctness={correctness}
             error={error && error[index]}
+            limitCharacters
           />
         </foreignObject>
 
