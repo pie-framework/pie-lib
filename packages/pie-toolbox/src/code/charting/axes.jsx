@@ -493,7 +493,8 @@ const ChartAxes = withStyles(
       strokeWidth: 2,
     },
     axisLine: {
-      stroke: color.primaryDark(),
+      // orizontal and vertical exes
+      stroke: '#5A53C9',
       strokeWidth: 2,
     },
     tick: {
@@ -501,7 +502,8 @@ const ChartAxes = withStyles(
         stroke: color.primaryDark(),
         strokeWidth: 2,
       },
-      fill: color.primaryDark(),
+      // labels on the vertical axis
+      // fill: color.primaryDark(),
       fontFamily: theme.typography.body1.fontFamily,
       fontSize: theme.typography.fontSize,
       textAnchor: 'middle',
@@ -515,7 +517,7 @@ const ChartAxes = withStyles(
       fill: theme.palette.error.main,
     },
     customColor: {
-      color: `${color.tertiary()} !important`
+      color: `${color.tertiary()} !important`,
     },
   }),
   { withTheme: true },

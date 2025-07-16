@@ -121,13 +121,16 @@ export class RawLine extends React.Component {
 const StyledLine = withStyles(() => ({
   line: {
     fill: 'transparent',
-    stroke: color.primaryLight(),
+    // stroke: color.primaryLight(),
+    // color for segments in chart type line
+    stroke: '#146EB3',
     strokeWidth: 3,
     transition: 'stroke 200ms ease-in, stroke-width 200ms ease-in',
-    '&:hover': {
-      strokeWidth: 6,
-      stroke: color.primaryDark(),
-    },
+    // get rid of rollover state for segments
+    // '&:hover': {
+    //   strokeWidth: 6,
+    //   stroke: color.primaryDark(),
+    // },
   },
 }))(RawLine);
 

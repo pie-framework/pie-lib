@@ -107,13 +107,15 @@ export class RawPlot extends React.Component {
           onTouchStart={this.handleMouseEnter}
           onTouchEnd={this.handleMouseLeave}
         >
-          {isHovered && (
+          {isHovered && interactive && !correctness && (
             <rect
               x={barX}
               y={scale.y(v)}
               width={barWidth}
               height={values?.length ? pointHeight * values.length : 0}
-              style={{ fill: '#E5E8F5' }}
+              stroke={'#7E8494'}
+              strokeWidth={'4px'}
+              fill={'transparent'}
             />
           )}
           {values.map((index) =>
@@ -150,12 +152,12 @@ export class RawPlot extends React.Component {
 
 const Bar = withStyles(() => ({
   dot: {
-    fill: color.primaryLight(),
+    fill: '#1463B3',
     '&.correct': correct('stroke'),
     '&.incorrect': incorrect('stroke'),
   },
   line: {
-    stroke: color.primaryLight(),
+    stroke: '#1463B3',
     '&.correct': correct('stroke'),
     '&.incorrect': incorrect('stroke'),
   },

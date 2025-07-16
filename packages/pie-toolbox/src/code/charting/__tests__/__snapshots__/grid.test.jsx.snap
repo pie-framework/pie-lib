@@ -4,6 +4,7 @@ exports[`Grid snapshot renders 1`] = `
 <r
   className="className"
   height={400}
+  stroke="#8E88EA"
   width={400}
   xOffset={NaN}
   xScale={
@@ -18,6 +19,7 @@ exports[`Grid snapshot renders 1`] = `
 exports[`Grid snapshot renders if graphProps is not defined 1`] = `
 <r
   className="className"
+  stroke="#8E88EA"
   xOffset={NaN}
   xScale={
     Object {
