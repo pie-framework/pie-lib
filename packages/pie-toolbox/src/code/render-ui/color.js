@@ -93,3 +93,12 @@ export const focusChecked = () => pv('focus-checked', defaults.FOCUS_CHECKED);
 export const focusCheckedBorder = () => pv('focus-checked-border', defaults.FOCUS_CHECKED_BORDER);
 export const focusUnchecked = () => pv('focus-unchecked', defaults.FOCUS_UNCHECKED);
 export const focusUncheckedBorder = () => pv('focus-unchecked-border', defaults.FOCUS_UNCHECKED_BORDER);
+
+export const visualElementsColors = {
+  AXIS_LINE_COLOR: '#5A53C9',
+  ROLLOVER_FILL_BAR_COLOR: '#050F2D',
+  REGULAR_FILL: '#146EB3',
+  REGULAR_ROLLOVER_FILL: '#7E8494',
+  GRIDLINES_COLOR: '#8E88EA',
+  PLOT_FILL_COLOR: '#1463B3',
+};

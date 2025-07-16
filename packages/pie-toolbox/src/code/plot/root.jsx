@@ -368,8 +368,6 @@ const styles = (theme) => ({
     marginRight: '6px',
   },
   sidePixelIndicator: {
-    // pixel indicator
-    // color: color.defaults.PRIMARY_LIGHT,
     textAlign: 'right',
     height: '20px',
     pointerEvents: 'none',

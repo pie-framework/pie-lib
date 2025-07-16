@@ -53,12 +53,7 @@ class RawDragHandle extends React.Component {
 
 export const DragHandle = withStyles(() => ({
   handle: {
-    // points for liner chart to be black
-    // fill: color.defaults.SECONDARY,
     transition: 'fill 200ms linear, height 200ms linear',
-    '&:hover': {
-      // fill: color.defaults.SECONDARY_DARK,
-    },
     '&.correct': correct('fill'),
     '&.incorrect': incorrect('fill'),
     '&.non-interactive': disabled('fill'),
@@ -69,12 +64,8 @@ export const DragHandle = withStyles(() => ({
     stroke: 'transparent',
   },
   line: {
-    // line chart x (xpoints fill)
-    stroke: 'black',
+    stroke: color.defaults.TEXT,
     transition: 'fill 200ms linear, height 200ms linear',
-    '&:hover': {
-      // stroke: color.defaults.SECONDARY_DARK,
-    },
     '&.non-interactive': disabled('stroke'),
     '&.correct': correct('stroke'),
     '&.incorrect': incorrect('stroke'),

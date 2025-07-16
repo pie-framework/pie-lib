@@ -4,6 +4,7 @@ import { types } from '../../plot';
 import { LinePath } from '@vx/shape';
 import { Group } from '@vx/group';
 import classNames from 'classnames';
+import { color } from '../../../render-ui';
 import { dataToXBand } from '../utils';
 import RawLine from './common/line';
 
@@ -41,14 +42,13 @@ const DraggableComponent = (props) => {
         strokeWidth={5}
         style={{ pointerEvents: 'none' }}
       />
-      {/* Square around the cross, only visible on hover */}
       {hover && (
         <rect
           x={cx - squareHalf}
           y={cy - squareHalf}
           width={squareSize}
           height={squareSize}
-          stroke="#7E8494"
+          stroke={color.visualElementsColors.REGULAR_ROLLOVER_FILL}
           fill="none"
           strokeWidth={2}
           pointerEvents="none"

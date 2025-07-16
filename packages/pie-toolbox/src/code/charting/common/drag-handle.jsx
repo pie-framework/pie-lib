@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import { gridDraggable, utils, types } from '../../plot';
-import { color } from '../../render-ui';
+import { color as enumColor } from '../../render-ui';
 import { correct, incorrect, disabled } from './styles';
 import { getScale } from '../utils';
 import DragIcon from './drag-icon';
@@ -28,7 +28,12 @@ const RawDragHandle = ({
   return (
     <svg x={x} y={scale.y(y) - 10} width={width} overflow="visible" className={classes.svgOverflowVisible}>
       {isHovered && !correctness && interactive && (
-        <DragIcon width={width} scaleValue={scaleValue} color={'#7E8494'} classes={classes} />
+        <DragIcon
+          width={width}
+          scaleValue={scaleValue}
+          color={enumColor.visualElementsColors.REGULAR_ROLLOVER_FILL}
+          classes={classes}
+        />
       )}
       {interactive && !correctness && (
         <ellipse
@@ -107,7 +112,7 @@ export const DragHandle = withStyles(() => ({
     height: 30,
     '&:hover': {
       '& .handle': {
-        fill: color.secondaryDark(),
+        fill: enumColor.secondaryDark(),
         height: '16px',
       },
     },

@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { types } from '../../plot';
+import { color } from '../../render-ui';
 import { dataToXBand } from '../utils';
 import RawLine from './common/line';
 import classNames from 'classnames';
 
 const DraggableComponent = ({ scale, x, y, className, classes, r, correctness, interactive, ...rest }) => {
   const [isHovered, setIsHovered] = React.useState(false);
+  const allowRolloverEvent = !correctness && interactive;
 
   return (
     <g onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
@@ -25,13 +27,13 @@ const DraggableComponent = ({ scale, x, y, className, classes, r, correctness, i
         className={classNames(className, classes.handle, correctness && correctness.value)}
         {...rest}
       />
-      {isHovered && !correctness && interactive && (
+      {isHovered && allowRolloverEvent && (
         <rect
           x={scale.x(x) - r * 2}
           y={scale.y(y) - r * 2}
           width={r * 4}
           height={r * 4}
-          stroke="#7E8494"
+          stroke={color.visualElementsColors.REGULAR_ROLLOVER_FILL}
           strokeWidth="1"
           fill="none"
         />

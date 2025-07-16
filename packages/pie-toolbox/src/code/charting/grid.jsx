@@ -33,7 +33,7 @@ export class Grid extends React.Component {
         xOffset={xBand.bandwidth() / 2}
         rowTickValues={rowTickValues}
         columnTickValues={columnTickValues}
-        stroke={'#8E88EA'}
+        stroke={color.visualElementsColors.GRIDLINES_COLOR}
       />
     );
   }
