@@ -2,17 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
-import { Root, createGraphProps } from '../plot';
-import cloneDeep from 'lodash/cloneDeep';
-import ChartGrid from './grid';
-import ChartAxes from './axes';
 import debug from 'debug';
-import { color } from '../render-ui';
-import { dataToXBand, getDomainAndRangeByChartType, getGridLinesAndAxisByChartType, getTopPadding } from './utils';
-import ToolMenu from './tool-menu';
-import chartTypes from './chart-types';
+import cloneDeep from 'lodash/cloneDeep';
+
+import { Root, createGraphProps } from '../plot';
 import { AlertDialog } from '../config-ui';
 import Translator from '../translator';
+import ChartGrid from './grid';
+import ChartAxes from './axes';
+import { dataToXBand, getDomainAndRangeByChartType, getGridLinesAndAxisByChartType, getTopPadding } from './utils';
+import chartTypes from './chart-types';
+import ActionsButton from './actions-button';
 
 const { translator } = Translator;
 
@@ -25,6 +25,7 @@ export class Chart extends React.Component {
       dialog: {
         open: false,
       },
+      actionsAnchorEl: null,
     };
     this.maskUid = this.generateMaskId();
   }
@@ -174,6 +175,18 @@ export class Chart extends React.Component {
     }
   };
 
+  deleteCategory = (index) => {
+    const { data, onDataChange } = this.props;
+
+    if (typeof index !== 'number' || index < 0) {
+      return;
+    }
+
+    if (data && data.length > 0) {
+      onDataChange(data.filter((_, i) => i !== index));
+    }
+  };
+
   getFilteredCategories = () => {
     const { data, defineChart } = this.props;
 
@@ -252,15 +265,6 @@ export class Chart extends React.Component {
 
     return (
       <div className={classNames(classes.chart, classes.chartBox, className)}>
-        <div className={classes.controls}>
-          <ToolMenu
-            className={classes.toolMenu}
-            disabled={!addCategoryEnabled}
-            addCategory={() => this.addCategory()}
-            language={language}
-          />
-        </div>
-
         <Root
           title={title}
           onChangeTitle={onChangeTitle}
@@ -297,6 +301,18 @@ export class Chart extends React.Component {
             top={top}
             error={error}
           />
+          {addCategoryEnabled ? (
+            <foreignObject x={width - 8} y={height - 8} width={100} height={40}>
+              <div xmlns="http://www.w3.org/1999/xhtml" style={{ display: 'flex', justifyContent: 'center' }}>
+                <ActionsButton
+                  categories={categories}
+                  addCategory={this.addCategory}
+                  deleteCategory={this.deleteCategory}
+                  language={language}
+                />
+              </div>
+            </foreignObject>
+          ) : null}
           <mask id={`${this.maskUid}`}>
             <rect {...maskSize} fill="white" />
           </mask>
@@ -327,21 +343,10 @@ const styles = (theme) => ({
   graphBox: {
     transform: 'translate(60px, 35px)',
   },
-  controls: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    padding: theme.spacing.unit,
-    backgroundColor: color.primaryLight(),
-    '& button': {
-      fontSize: theme.typography.fontSize,
-    },
-  },
   svg: {
     overflow: 'visible',
   },
-  toolMenu: {
-    minHeight: '36px',
-  },
+
   chartBox: {
     width: 'min-content',
   },
