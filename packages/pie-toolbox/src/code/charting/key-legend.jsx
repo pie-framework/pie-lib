@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { color } from '../render-ui';
+import Icons from './key-legend-icons';
+import Translator from '../translator';
 
 const styles = (theme) => ({
   container: {
@@ -22,61 +24,34 @@ const styles = (theme) => ({
     fontSize: theme.typography.h6.fontSize,
     fontWeight: '700',
   },
-  smallIcon: {
-    marginLeft: '2px',
-  },
   smallText: {
     marginLeft: '2px',
   },
 });
 
-const KeyLegend = ({ classes }) => {
-  return (
-    <div className={classes.container}>
-      <div className={classes.title}>Key</div>
-      <div className={classes.row}>
-        <svg width="20" height="20" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="8" cy="8" r="8" fill="#BF0D00" />
-          <path
-            d="M9.04688 8.5L11.3906 10.8672C11.6953 11.1484 11.6953 11.6172 11.3906 11.8984L10.875 12.4141C10.5938 12.7188 10.125 12.7188 9.84375 12.4141L7.5 10.0703L5.13281 12.4141C4.85156 12.7188 4.38281 12.7188 4.10156 12.4141L3.58594 11.8984C3.28125 11.6172 3.28125 11.1484 3.58594 10.8672L5.92969 8.5L3.58594 6.15625C3.28125 5.875 3.28125 5.40625 3.58594 5.125L4.10156 4.60938C4.38281 4.30469 4.85156 4.30469 5.13281 4.60938L7.5 6.95312L9.84375 4.60938C10.125 4.30469 10.5938 4.30469 10.875 4.60938L11.3906 5.125C11.6953 5.40625 11.6953 5.875 11.3906 6.15625L9.04688 8.5Z"
-            fill="white"
-          />
-        </svg>
-        <div className={classes.text}> Student incorrect answer </div>
-      </div>
-      <div className={classes.row}>
-        <svg width="20" height="20" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="8" cy="8" r="8" fill="#0B7D38" />
-          <path
-            d="M12.1953 4.46875C12.3125 4.35156 12.5 4.35156 12.5938 4.46875L13.2734 5.125C13.3672 5.24219 13.3672 5.42969 13.2734 5.52344L6.24219 12.5547C6.125 12.6719 5.96094 12.6719 5.84375 12.5547L2.70312 9.4375C2.60938 9.32031 2.60938 9.13281 2.70312 9.03906L3.38281 8.35938C3.47656 8.26562 3.66406 8.26562 3.78125 8.35938L6.03125 10.6328L12.1953 4.46875Z"
-            fill="white"
-          />
-        </svg>
-        <div className={classes.text}> Student correct answer </div>
-      </div>
-      <div className={classes.row}>
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 0 16 16"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className={classes.smallIcon}
-        >
-          <circle cx="8" cy="8" r="8" fill="#0B7D38" />
-          <path
-            d="M12.1953 4.46875C12.3125 4.35156 12.5 4.35156 12.5938 4.46875L13.2734 5.125C13.3672 5.24219 13.3672 5.42969 13.2734 5.52344L6.24219 12.5547C6.125 12.6719 5.96094 12.6719 5.84375 12.5547L2.70312 9.4375C2.60938 9.32031 2.60938 9.13281 2.70312 9.03906L3.38281 8.35938C3.47656 8.26562 3.66406 8.26562 3.78125 8.35938L6.03125 10.6328L12.1953 4.46875Z"
-            fill="white"
-          />
-        </svg>
-        <div className={classes.smallText}> Answer key correct </div>
-      </div>
+const { translator } = Translator;
+
+const KeyLegend = ({ classes, language }) => (
+  <div className={classes.container}>
+    <div className={classes.title}>Key</div>
+    <div className={classes.row}>
+      <Icons.IncorrectAnswerIcon />
+      <div className={classes.text}>{translator.t('charting.keyLegend.incorrectAnswer', { lng: language })}</div>
     </div>
-  );
-};
+    <div className={classes.row}>
+      <Icons.CorrectAnswerIcon />
+      <div className={classes.text}>{translator.t('charting.keyLegend.correctAnswer', { lng: language })}</div>
+    </div>
+    <div className={classes.row}>
+      <Icons.AnswerKeyCorrectIcon />
+      <div className={classes.smallText}>{translator.t('charting.keyLegend.correctKeyAnswer', { lng: language })}</div>
+    </div>
+  </div>
+);
 
 KeyLegend.propTypes = {
   classes: PropTypes.object.isRequired,
+  language: PropTypes.string,
 };
 
 export default withStyles(styles)(KeyLegend);
