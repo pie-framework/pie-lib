@@ -42,6 +42,11 @@ export default {
       delete: 'Delete',
       newLabel: 'New label',
       reachedLimit_other: "There can't be more than {{count}} categories.",
+      keyLegend: {
+        incorrectAnswer: 'Student incorrect answer',
+        correctAnswer: 'Student correct answer',
+        correctKeyAnswer: 'Answer key correct',
+      },
     },
     graphing: {
       point: 'Point',
