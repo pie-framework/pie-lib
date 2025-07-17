@@ -10,6 +10,7 @@ export const defaults = {
   DISABLED_SECONDARY: '#ABABAB',
   CORRECT: green[500],
   CORRECT_SECONDARY: green[50],
+  CORRECT_TERTIARY: '#0EA449',
   CORRECT_WITH_ICON: '#087D38',
   INCORRECT: orange[500],
   INCORRECT_SECONDARY: red[50],
@@ -41,6 +42,11 @@ export const defaults = {
   FOCUS_CHECKED_BORDER: '#1565C0',
   FOCUS_UNCHECKED: '#E0E0E0',
   FOCUS_UNCHECKED_BORDER: '#757575',
+  // this is used for select text tokens
+  BLUE_GREY100: '#F3F5F7',
+  BLUE_GREY300: '#C0C3CF',
+  BLUE_GREY600: '#7E8494',
+  BLUE_GREY900: '#152452',
   // this is used for charting
   FADED_PRIMARY: '#DCDAFB',
 };
@@ -61,6 +67,7 @@ export const disabled = () => pv('disabled', defaults.DISABLED);
 export const disabledSecondary = () => pv('disabled-secondary', defaults.DISABLED_SECONDARY);
 export const correct = () => pv('correct', defaults.CORRECT);
 export const correctSecondary = () => pv('correct-secondary', defaults.CORRECT_SECONDARY);
+export const correctTertiary = () => pv('correct-tertiary', defaults.CORRECT_TERTIARY);
 export const correctWithIcon = () => pv('correct-icon', defaults.CORRECT_WITH_ICON);
 export const incorrect = () => pv('incorrect', defaults.INCORRECT);
 export const incorrectWithIcon = () => pv('incorrect-icon', defaults.INCORRECT_WITH_ICON);
@@ -100,3 +107,8 @@ export const focusChecked = () => pv('focus-checked', defaults.FOCUS_CHECKED);
 export const focusCheckedBorder = () => pv('focus-checked-border', defaults.FOCUS_CHECKED_BORDER);
 export const focusUnchecked = () => pv('focus-unchecked', defaults.FOCUS_UNCHECKED);
 export const focusUncheckedBorder = () => pv('focus-unchecked-border', defaults.FOCUS_UNCHECKED_BORDER);
+
+export const blueGrey100 = () => pv('blue-grey-100', defaults.BLUE_GREY100);
+export const blueGrey300 = () => pv('blue-grey-300', defaults.BLUE_GREY300);
+export const blueGrey600 = () => pv('blue-grey-600', defaults.BLUE_GREY600);
+export const blueGrey900 = () => pv('blue-grey-900', defaults.BLUE_GREY900);
