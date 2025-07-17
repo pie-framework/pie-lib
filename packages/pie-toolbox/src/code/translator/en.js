@@ -37,8 +37,16 @@ export default {
     },
     charting: {
       addCategory: 'Add category',
+      actions: 'Actions',
+      add: 'Add',
+      delete: 'Delete',
       newLabel: 'New label',
       reachedLimit_other: "There can't be more than {{count}} categories.",
+      keyLegend: {
+        incorrectAnswer: 'Student incorrect answer',
+        correctAnswer: 'Student correct answer',
+        correctKeyAnswer: 'Answer key correct',
+      },
     },
     graphing: {
       point: 'Point',
@@ -68,9 +76,10 @@ export default {
       minmaxSelections_range: 'Select between {{minSelections}} and {{maxSelections}}.',
     },
     selectText: {
-      correctAnswerSelected: 'Correct answer selected',
-      correctAnswerNotSelected: 'Correct answer not selected',
-      incorrectSelection: 'Incorrect selection',
+      correctAnswerSelected: 'Correct',
+      correctAnswerNotSelected: 'Correct Answer Not Selected',
+      incorrectSelection: 'Incorrect Selection',
+      key: 'Key',
     },
   },
   common: {

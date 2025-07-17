@@ -196,7 +196,7 @@ export class RawBar extends React.Component {
 
 const Bar = withStyles(() => ({
   bar: {
-    fill: color.visualElementsColors.REGULAR_FILL,
+    fill: color.defaults.TERTIARY,
   },
 }))(RawBar);
 

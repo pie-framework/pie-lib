@@ -1,30 +1,60 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Grid snapshot renders 1`] = `
-<r
+<g
   className="className"
-  height={400}
-  stroke="#8E88EA"
-  width={400}
-  xOffset={NaN}
-  xScale={
-    Object {
-      "bandwidth": [Function],
+>
+  <q
+    lineStyle={
+      Object {
+        "stroke": "#8E88EA",
+        "strokeWidth": 1,
+      }
     }
-  }
-  yScale={[MockFunction]}
-/>
+    scale={[MockFunction]}
+    tickValues={Array []}
+    width={400}
+  />
+  <q
+    scale={[MockFunction]}
+    tickValues={Array []}
+    width={400}
+  />
+  <V
+    height={400}
+    offset={NaN}
+    scale={
+      Object {
+        "bandwidth": [Function],
+      }
+    }
+  />
+</g>
 `;
 
 exports[`Grid snapshot renders if graphProps is not defined 1`] = `
-<r
+<g
   className="className"
-  stroke="#8E88EA"
-  xOffset={NaN}
-  xScale={
-    Object {
-      "bandwidth": [Function],
+>
+  <q
+    lineStyle={
+      Object {
+        "stroke": "#8E88EA",
+        "strokeWidth": 1,
+      }
     }
-  }
-/>
+    tickValues={Array []}
+  />
+  <q
+    tickValues={Array []}
+  />
+  <V
+    offset={NaN}
+    scale={
+      Object {
+        "bandwidth": [Function],
+      }
+    }
+  />
+</g>
 `;

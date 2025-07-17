@@ -114,7 +114,7 @@ export class RawPlot extends React.Component {
               y={scale.y(v)}
               width={barWidth}
               height={values?.length ? pointHeight * values.length : 0}
-              stroke={color.visualElementsColors.REGULAR_ROLLOVER_FILL}
+              stroke={color.defaults.BORDER_GRAY}
               strokeWidth={'4px'}
               fill={'transparent'}
             />

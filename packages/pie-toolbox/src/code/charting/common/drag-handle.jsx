@@ -28,12 +28,7 @@ const RawDragHandle = ({
   return (
     <svg x={x} y={scale.y(y) - 10} width={width} overflow="visible" className={classes.svgOverflowVisible}>
       {isHovered && !correctness && interactive && (
-        <DragIcon
-          width={width}
-          scaleValue={scaleValue}
-          color={enumColor.visualElementsColors.REGULAR_ROLLOVER_FILL}
-          classes={classes}
-        />
+        <DragIcon width={width} scaleValue={scaleValue} color={enumColor.defaults.BORDER_GRAY} classes={classes} />
       )}
       {interactive && !correctness && (
         <ellipse

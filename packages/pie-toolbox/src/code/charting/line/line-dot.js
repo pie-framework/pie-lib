@@ -33,7 +33,7 @@ const DraggableComponent = ({ scale, x, y, className, classes, r, correctness, i
           y={scale.y(y) - r * 2}
           width={r * 4}
           height={r * 4}
-          stroke={color.visualElementsColors.REGULAR_ROLLOVER_FILL}
+          stroke={color.defaults.BORDER_GRAY}
           strokeWidth="1"
           fill="none"
         />

@@ -48,7 +48,7 @@ const DraggableComponent = (props) => {
           y={cy - squareHalf}
           width={squareSize}
           height={squareSize}
-          stroke={color.visualElementsColors.REGULAR_ROLLOVER_FILL}
+          stroke={color.defaults.BORDER_GRAY}
           fill="none"
           strokeWidth={2}
           pointerEvents="none"

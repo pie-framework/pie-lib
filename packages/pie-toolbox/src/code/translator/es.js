@@ -37,8 +37,16 @@ export default {
     },
     charting: {
       addCategory: 'Añadir categoría',
+      actions: 'Acciones',
+      add: 'Añadir',
+      delete: 'Eliminar',
       newLabel: 'Nueva etiqueta',
       reachedLimit_other: 'No puede haber más de {{count}} categorías.',
+      keyLegend: {
+        incorrectAnswer: 'Respuesta incorrecta del estudiante',
+        correctAnswer: 'Respuesta correcta del estudiante',
+        correctKeyAnswer: 'Clave de respuesta correcta',
+      },
     },
     graphing: {
       point: 'Punto',
@@ -68,9 +76,10 @@ export default {
       minmaxSelections_range: 'Seleccione entre {{minSelections}} y {{maxSelections}}.',
     },
     selectText: {
-      correctAnswerSelected: 'Respuesta correcta seleccionada',
-      correctAnswerNotSelected: 'Respuesta correcta no seleccionada',
-      incorrectSelection: 'Selección incorrecta',
+      correctAnswerSelected: 'Respuesta Correcta',
+      correctAnswerNotSelected: 'Respuesta Correcta No Seleccionada',
+      incorrectSelection: 'Selección Incorrecta',
+      key: 'Clave',
     },
   },
   common: {
