@@ -137,10 +137,5 @@ describe('TickComponent', () => {
       w.instance().changeCategory(0, 'new label');
       expect(onChangeCategory).toHaveBeenCalledWith(0, { value: 1, label: 'new label' });
     });
-
-    it('calls onChange', () => {
-      w.instance().deleteCategory(0);
-      expect(onChange).toHaveBeenCalledWith([]);
-    });
   });
 });

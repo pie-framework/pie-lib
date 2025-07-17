@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.20.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.19.0...@pie-lib/pie-toolbox@2.20.0) (2025-07-11)
+
+
+### Features
+
+* **select-text:** export controls for pie-elements PD-363 ([099891a](https://github.com/pie-framework/pie-lib/commit/099891a57fcf56f0180f869bfb581415aae5c2e8))
+
+
+
+
+
 # [2.19.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.18.1...@pie-lib/pie-toolbox@2.19.0) (2025-06-27)
 
 
