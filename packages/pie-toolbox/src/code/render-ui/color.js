@@ -26,11 +26,13 @@ export const defaults = {
   TERTIARY_LIGHT: '#D0E2F0',
   BACKGROUND: 'rgba(255,255,255,0)',
   BACKGROUND_DARK: '#ECEDF1',
+  DROPDOWN_BACKGROUND: '#E0E1E6', // this is used for inline-dropdown
   // this is only used for multi-trait-rubric, we might want to use BACKGROUND_DARK instead
   SECONDARY_BACKGROUND: 'rgba(241,241,241,1)',
   BORDER: '#9A9A9A',
   BORDER_LIGHT: '#D1D1D1',
   BORDER_DARK: '#646464',
+  BORDER_GRAY: '#7E8494',
   BLACK: '#000000',
   WHITE: '#ffffff',
   TRANSPARENT: 'transparent',
@@ -80,6 +82,7 @@ export const secondaryText = () => pv('secondary-text', 'text', defaults.TEXT);
 export const background = () => pv('background', defaults.BACKGROUND);
 export const backgroundDark = () => pv('background-dark', defaults.BACKGROUND_DARK);
 export const secondaryBackground = () => pv('secondary-background', defaults.SECONDARY_BACKGROUND);
+export const dropdownBackground = () => pv('dropdown-background', defaults.DROPDOWN_BACKGROUND);
 
 export const tertiary = () => pv('tertiary', defaults.TERTIARY);
 export const tertiaryLight = () => pv('tertiary-light', defaults.TERTIARY_LIGHT);
@@ -87,6 +90,7 @@ export const tertiaryLight = () => pv('tertiary-light', defaults.TERTIARY_LIGHT)
 export const border = () => pv('border', defaults.BORDER);
 export const borderLight = () => pv('border-light', defaults.BORDER_LIGHT);
 export const borderDark = () => pv('border-dark', defaults.BORDER_DARK);
+export const borderGray = () => pv('border-gray', defaults.BORDER_GRAY);
 
 export const black = () => pv('black', defaults.BLACK);
 export const white = () => pv('white', defaults.WHITE);
