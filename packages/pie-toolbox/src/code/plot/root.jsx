@@ -353,7 +353,6 @@ const styles = (theme) => ({
     paddingTop: '6px',
   },
   topPixelIndicator: {
-    color: color.defaults.PRIMARY_LIGHT,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
