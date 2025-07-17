@@ -468,7 +468,6 @@ const ChartAxes = withStyles(
       strokeWidth: 2,
     },
     axisLine: {
-      // orizontal and vertical exes
       stroke: color.visualElementsColors.AXIS_LINE_COLOR,
       strokeWidth: 2,
     },

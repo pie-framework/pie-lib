@@ -12,8 +12,7 @@ const DraggableComponent = (props) => {
   const { classes = {}, className, scale, x, y, r, correctness, ...rest } = props;
   const [hover, setHover] = useState(false);
 
-  // Size of the square (side length)
-  const squareSize = r * 4; // Adjust as needed
+  const squareSize = r * 4;
   const squareHalf = squareSize / 2;
   const cx = scale.x(x);
   const cy = scale.y(y);
