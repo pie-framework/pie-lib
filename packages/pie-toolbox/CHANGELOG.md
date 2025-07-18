@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.22.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.21.0...@pie-lib/pie-toolbox@2.22.0) (2025-07-18)
+
+
+### Bug Fixes
+
+* ensure math renders correctly on hover preview and in dropdown choices PD-5131 ([4a4687f](https://github.com/pie-framework/pie-lib/commit/4a4687fa40bd63751c1e7e41b249105afa61d62d))
+* remove unneeded comments ([e91904f](https://github.com/pie-framework/pie-lib/commit/e91904fb140f4d091f51692319e360b802a1c237))
+* **categorize:** remove renderMath to prevent excessive re-renders, refactor PD-5097 ([972d55d](https://github.com/pie-framework/pie-lib/commit/972d55d94ce532c1ae55036b2254b65bfbade04c))
+* **charting:** color scheme and related changes for different modes PD-5080 ([0711bcb](https://github.com/pie-framework/pie-lib/commit/0711bcbfc112a35614f647596c562917a9cf57ca))
+
+
+### Features
+
+* **charting:** merge with develop, get rid of duplicated colors ([fce8ae8](https://github.com/pie-framework/pie-lib/commit/fce8ae8e8501d555a65c3ed88d6bdbbeb04fb9b2))
+* **charting, rendrr-ui:** add color vars, clean code charting PD-5080 ([d41dd6f](https://github.com/pie-framework/pie-lib/commit/d41dd6f6b48a831fa1a4f253cf5f1d5422424df2))
+* **plot:** change top pixel guides  PD-5080 ([5fa1ba5](https://github.com/pie-framework/pie-lib/commit/5fa1ba527dc86eee6f154c6fef43cffde06ebfd5))
+* dropdown menu changes PD-4885 ([a1b8364](https://github.com/pie-framework/pie-lib/commit/a1b836459ab2d55145a4c66a1bc71c3c662a233b))
+* **text-select:** ux changes - add new colors and new styles ([c6ae8f4](https://github.com/pie-framework/pie-lib/commit/c6ae8f4a2d72d4507c858aafe1701b8f2036d73d))
+
+
+
+
+
+# [2.21.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.20.0...@pie-lib/pie-toolbox@2.21.0) (2025-07-16)
+
+
+### Features
+
+* **charting:** add actions button for adding and deleting categories PD-5082 ([338cabd](https://github.com/pie-framework/pie-lib/commit/338cabd80f0b243e999dbf6b8ab0bce0d6e42913))
+* **charting:** color change to grid component on unlabeled lines PD-5070 ([218376c](https://github.com/pie-framework/pie-lib/commit/218376c1be13877f6445e02dc34a5cca43f41fda))
+* **charting:** create KeyLegend component for charting PD-5083 ([0edca75](https://github.com/pie-framework/pie-lib/commit/0edca75bb2fd4470e7a6d4ac8d8f33762a23d6a6))
+* **charting:** limit input length to 20 for category labels PD-5081 ([b575cbf](https://github.com/pie-framework/pie-lib/commit/b575cbf50cbaaa62f90fc7a2a75bd209fca47c22))
+* **charting:** move icons separate file, use translator PD-5083 ([d86b0ea](https://github.com/pie-framework/pie-lib/commit/d86b0eaafba1d6a1afca9e77873dfb5ae524cdb0))
+* **charting:** move icons separate file, use translator PD-5083 ([fba13f0](https://github.com/pie-framework/pie-lib/commit/fba13f0230e0055af64f66be94d74eff0a5d3837))
+* **charting:** use material-ui icons PD-5083 ([a7a7aa7](https://github.com/pie-framework/pie-lib/commit/a7a7aa7065692ecf6284bad4569d44e4416a8f7f))
+* remove unused component and console logs ([3421591](https://github.com/pie-framework/pie-lib/commit/34215910666385de821b99e67c0e5df6fca1e6eb))
+
+
+
+
+
 # [2.20.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.19.0...@pie-lib/pie-toolbox@2.20.0) (2025-07-11)
 
 ### Features
