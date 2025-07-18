@@ -121,13 +121,9 @@ export class RawLine extends React.Component {
 const StyledLine = withStyles(() => ({
   line: {
     fill: 'transparent',
-    stroke: color.primaryLight(),
+    stroke: color.defaults.TERTIARY,
     strokeWidth: 3,
     transition: 'stroke 200ms ease-in, stroke-width 200ms ease-in',
-    '&:hover': {
-      strokeWidth: 6,
-      stroke: color.primaryDark(),
-    },
   },
 }))(RawLine);
 

@@ -39,12 +39,12 @@ const hoverHistogramColors = [
   '#894A65',
 ];
 
-const calculateFillColor = (isHovered, barColor, index, hoverHistogramColors) => {
-  if (isHovered && barColor) {
+const calculateFillColor = (isHovered, barColor, index, hoverHistogramColors, allowRolloverEvent) => {
+  if (isHovered && barColor && allowRolloverEvent) {
     return hoverHistogramColors[index % hoverHistogramColors.length];
   }
-  if (isHovered) {
-    return color.primaryDark();
+  if (isHovered && allowRolloverEvent) {
+    return color.visualElementsColors.ROLLOVER_FILL_BAR_COLOR;
   }
   return barColor || null;
 };
@@ -148,7 +148,8 @@ export class RawBar extends React.Component {
     const { scale, range } = graphProps;
     const { dragValue, isHovered } = this.state;
 
-    const fillColor = calculateFillColor(isHovered, barColor, index, hoverHistogramColors);
+    const allowRolloverEvent = interactive && !correctness;
+    const fillColor = calculateFillColor(isHovered, barColor, index, hoverHistogramColors, allowRolloverEvent);
     const v = Number.isFinite(dragValue) ? dragValue : value;
     const barWidth = xBand.bandwidth();
     const barHeight = scale.y(range.max - v);
@@ -195,10 +196,7 @@ export class RawBar extends React.Component {
 
 const Bar = withStyles(() => ({
   bar: {
-    fill: color.primaryLight(),
-    '&:hover': {
-      fill: color.primaryDark(),
-    },
+    fill: color.defaults.TERTIARY,
   },
 }))(RawBar);
 

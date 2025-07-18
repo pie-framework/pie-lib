@@ -468,7 +468,7 @@ const ChartAxes = withStyles(
       strokeWidth: 2,
     },
     axisLine: {
-      stroke: color.primaryDark(),
+      stroke: color.visualElementsColors.AXIS_LINE_COLOR,
       strokeWidth: 2,
     },
     tick: {
@@ -476,7 +476,6 @@ const ChartAxes = withStyles(
         stroke: color.primaryDark(),
         strokeWidth: 2,
       },
-      fill: color.primaryDark(),
       fontFamily: theme.typography.body1.fontFamily,
       fontSize: theme.typography.fontSize,
       textAnchor: 'middle',

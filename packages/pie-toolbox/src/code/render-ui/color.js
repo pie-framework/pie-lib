@@ -112,3 +112,10 @@ export const blueGrey100 = () => pv('blue-grey-100', defaults.BLUE_GREY100);
 export const blueGrey300 = () => pv('blue-grey-300', defaults.BLUE_GREY300);
 export const blueGrey600 = () => pv('blue-grey-600', defaults.BLUE_GREY600);
 export const blueGrey900 = () => pv('blue-grey-900', defaults.BLUE_GREY900);
+
+export const visualElementsColors = {
+  AXIS_LINE_COLOR: '#5A53C9',
+  ROLLOVER_FILL_BAR_COLOR: '#050F2D',
+  GRIDLINES_COLOR: '#8E88EA',
+  PLOT_FILL_COLOR: '#1463B3',
+};

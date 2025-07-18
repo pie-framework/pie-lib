@@ -98,6 +98,7 @@ export class RawPlot extends React.Component {
     const pointHeight = size.height / max;
     const pointDiameter = (pointHeight > barWidth ? barWidth : pointHeight) * 0.8;
     const Component = interactive ? DraggableHandle : DragHandle;
+    const allowRolloverEvent = interactive && !correctness;
 
     return (
       <React.Fragment>
@@ -107,13 +108,15 @@ export class RawPlot extends React.Component {
           onTouchStart={this.handleMouseEnter}
           onTouchEnd={this.handleMouseLeave}
         >
-          {isHovered && (
+          {isHovered && allowRolloverEvent && (
             <rect
               x={barX}
               y={scale.y(v)}
               width={barWidth}
               height={values?.length ? pointHeight * values.length : 0}
-              style={{ fill: '#E5E8F5' }}
+              stroke={color.defaults.BORDER_GRAY}
+              strokeWidth={'4px'}
+              fill={'transparent'}
             />
           )}
           {values.map((index) =>
@@ -150,12 +153,12 @@ export class RawPlot extends React.Component {
 
 const Bar = withStyles(() => ({
   dot: {
-    fill: color.primaryLight(),
+    fill: color.visualElementsColors.PLOT_FILL_COLOR,
     '&.correct': correct('stroke'),
     '&.incorrect': incorrect('stroke'),
   },
   line: {
-    stroke: color.primaryLight(),
+    stroke: color.visualElementsColors.PLOT_FILL_COLOR,
     '&.correct': correct('stroke'),
     '&.incorrect': incorrect('stroke'),
   },

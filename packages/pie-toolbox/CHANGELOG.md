@@ -5,1035 +5,633 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [2.20.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.19.0...@pie-lib/pie-toolbox@2.20.0) (2025-07-11)
 
-
 ### Features
 
-* **select-text:** export controls for pie-elements PD-363 ([099891a](https://github.com/pie-framework/pie-lib/commit/099891a57fcf56f0180f869bfb581415aae5c2e8))
-
-
-
-
+- **select-text:** export controls for pie-elements PD-363 ([099891a](https://github.com/pie-framework/pie-lib/commit/099891a57fcf56f0180f869bfb581415aae5c2e8))
 
 # [2.19.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.18.1...@pie-lib/pie-toolbox@2.19.0) (2025-06-27)
 
-
 ### Features
 
-* remove konva PD-5064 ([57e524e](https://github.com/pie-framework/pie-lib/commit/57e524e03040652cc9723689c910c84bd529debf))
-
-
-
-
+- remove konva PD-5064 ([57e524e](https://github.com/pie-framework/pie-lib/commit/57e524e03040652cc9723689c910c84bd529debf))
 
 ## [2.18.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.18.0...@pie-lib/pie-toolbox@2.18.1) (2025-06-23)
 
-
 ### Bug Fixes
 
-* made sure mathjax import is handled properly [PD-5059] ([a53501e](https://github.com/pie-framework/pie-lib/commit/a53501ec168b8d129429c4041a21eac5dd53c6bc))
-
-
-
-
+- made sure mathjax import is handled properly [PD-5059](<[a53501e](https://github.com/pie-framework/pie-lib/commit/a53501ec168b8d129429c4041a21eac5dd53c6bc)>)
 
 # [2.18.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.17.7...@pie-lib/pie-toolbox@2.18.0) (2025-06-19)
 
-
 ### Bug Fixes
 
-* **config-ui:** add disable support for toggle PD-4832 ([21d87e5](https://github.com/pie-framework/pie-lib/commit/21d87e5728a0b6f785f591464ca7da686cafd9ba))
-
+- **config-ui:** add disable support for toggle PD-4832 ([21d87e5](https://github.com/pie-framework/pie-lib/commit/21d87e5728a0b6f785f591464ca7da686cafd9ba))
 
 ### Features
 
-* remove lodash from controller utils PD-5076 ([1b99abe](https://github.com/pie-framework/pie-lib/commit/1b99abe6e74ce0a16b117f9cf47ac49b2def0e38))
-
-
-
-
+- remove lodash from controller utils PD-5076 ([1b99abe](https://github.com/pie-framework/pie-lib/commit/1b99abe6e74ce0a16b117f9cf47ac49b2def0e38))
 
 ## [2.17.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.17.6...@pie-lib/pie-toolbox@2.17.7) (2025-06-13)
 
-
 ### Bug Fixes
 
-* handling other mathjax version on the page for accessibility [PD-5059] ([35b5f9e](https://github.com/pie-framework/pie-lib/commit/35b5f9e4af58d3f30ec185016ceeeb5157382527))
-
-
-
-
+- handling other mathjax version on the page for accessibility [PD-5059](<[35b5f9e](https://github.com/pie-framework/pie-lib/commit/35b5f9e4af58d3f30ec185016ceeeb5157382527)>)
 
 ## [2.17.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.17.5...@pie-lib/pie-toolbox@2.17.6) (2025-06-05)
 
-
 ### Bug Fixes
 
-* **graphing:** don't need action verif based on refactoring PD-3542 ([d25ee7f](https://github.com/pie-framework/pie-lib/commit/d25ee7f8f6ccdc245de1783de9f6749ca54ce31a))
-* **math-input:** IBX specific issue with border in some keypad math buttons ([d9472ab](https://github.com/pie-framework/pie-lib/commit/d9472abd8dfee74e81fee137ca96cedfa6ea1e6a))
-* **math-input:** IBX specific issue with border in some keypad math buttons ([48d1320](https://github.com/pie-framework/pie-lib/commit/48d1320f197ee86d666c1bc03dbbdbd7b78fe137))
-* tests ([a08b8b4](https://github.com/pie-framework/pie-lib/commit/a08b8b416df3e29a7d06d88664fd9fa91ca9b68d))
-* **math-input:** make sure parallel button is always italic - part of PD-4873 ([5c35b5a](https://github.com/pie-framework/pie-lib/commit/5c35b5aa8a440a1ba52dd8114eddc63cba7cb106))
-* added normalization to list plugin, to not allow empty li items [PD-467] ([a0985f5](https://github.com/pie-framework/pie-lib/commit/a0985f5bd06218b0737ecf2f13e6c2bfb18dd8f8))
-
-
-
-
+- **graphing:** don't need action verif based on refactoring PD-3542 ([d25ee7f](https://github.com/pie-framework/pie-lib/commit/d25ee7f8f6ccdc245de1783de9f6749ca54ce31a))
+- **math-input:** IBX specific issue with border in some keypad math buttons ([d9472ab](https://github.com/pie-framework/pie-lib/commit/d9472abd8dfee74e81fee137ca96cedfa6ea1e6a))
+- **math-input:** IBX specific issue with border in some keypad math buttons ([48d1320](https://github.com/pie-framework/pie-lib/commit/48d1320f197ee86d666c1bc03dbbdbd7b78fe137))
+- tests ([a08b8b4](https://github.com/pie-framework/pie-lib/commit/a08b8b416df3e29a7d06d88664fd9fa91ca9b68d))
+- **math-input:** make sure parallel button is always italic - part of PD-4873 ([5c35b5a](https://github.com/pie-framework/pie-lib/commit/5c35b5aa8a440a1ba52dd8114eddc63cba7cb106))
+- added normalization to list plugin, to not allow empty li items [PD-467](<[a0985f5](https://github.com/pie-framework/pie-lib/commit/a0985f5bd06218b0737ecf2f13e6c2bfb18dd8f8)>)
 
 ## [2.17.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.17.4...@pie-lib/pie-toolbox@2.17.5) (2025-06-03)
 
-
 ### Bug Fixes
 
-* **render-ui:** add comment for new method PD-3756 ([5efc966](https://github.com/pie-framework/pie-lib/commit/5efc9663ee3c1cd68ab0029d5b9ca61a9208ec94))
-* **render-ui:** add test for the new method PD-3756 ([68dad8d](https://github.com/pie-framework/pie-lib/commit/68dad8d6922830e7682b79ad07cf6ad55567e27c))
-* **render-ui:** create methods to verify media in markup PD-3756 ([1e80106](https://github.com/pie-framework/pie-lib/commit/1e801069502ff47ff99f17dd2a5b600780610af7))
-* **render-ui:** export the component correctly PD-3756 ([9f4c779](https://github.com/pie-framework/pie-lib/commit/9f4c779fa40a349ae97f4aa8d8b1fb5aef04eeef))
-
-
-
-
+- **render-ui:** add comment for new method PD-3756 ([5efc966](https://github.com/pie-framework/pie-lib/commit/5efc9663ee3c1cd68ab0029d5b9ca61a9208ec94))
+- **render-ui:** add test for the new method PD-3756 ([68dad8d](https://github.com/pie-framework/pie-lib/commit/68dad8d6922830e7682b79ad07cf6ad55567e27c))
+- **render-ui:** create methods to verify media in markup PD-3756 ([1e80106](https://github.com/pie-framework/pie-lib/commit/1e801069502ff47ff99f17dd2a5b600780610af7))
+- **render-ui:** export the component correctly PD-3756 ([9f4c779](https://github.com/pie-framework/pie-lib/commit/9f4c779fa40a349ae97f4aa8d8b1fb5aef04eeef))
 
 ## [2.17.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.17.3...@pie-lib/pie-toolbox@2.17.4) (2025-05-30)
 
-
 ### Bug Fixes
 
-* conditionally disable MathJax v3 menu handler when MathJax v2 menu is detected to avoid conflicts ([e02f6c8](https://github.com/pie-framework/pie-lib/commit/e02f6c87a0d8892d40d01b24f9b1d88e474e890b))
-
-
-
-
+- conditionally disable MathJax v3 menu handler when MathJax v2 menu is detected to avoid conflicts ([e02f6c8](https://github.com/pie-framework/pie-lib/commit/e02f6c87a0d8892d40d01b24f9b1d88e474e890b))
 
 ## [2.17.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.17.2...@pie-lib/pie-toolbox@2.17.3) (2025-05-30)
 
-
 ### Bug Fixes
 
-* provide fallback menuOptions.settings to prevent crash when rendering with MathJax v3 PD-4810 ([62b5f43](https://github.com/pie-framework/pie-lib/commit/62b5f4358e17a8bc814f70890c75ed1d9c6d016f))
-
-
-
-
+- provide fallback menuOptions.settings to prevent crash when rendering with MathJax v3 PD-4810 ([62b5f43](https://github.com/pie-framework/pie-lib/commit/62b5f4358e17a8bc814f70890c75ed1d9c6d016f))
 
 ## [2.17.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.17.1...@pie-lib/pie-toolbox@2.17.2) (2025-05-28)
 
-
 ### Bug Fixes
 
-* **math-rendering:** delete MathJax.Menu if v2 is present to avoid v3 MenuHandler crash ([85e59ac](https://github.com/pie-framework/pie-lib/commit/85e59ac1b7265593eb61a73fdf1cf4942e4b2023))
-
-
-
-
+- **math-rendering:** delete MathJax.Menu if v2 is present to avoid v3 MenuHandler crash ([85e59ac](https://github.com/pie-framework/pie-lib/commit/85e59ac1b7265593eb61a73fdf1cf4942e4b2023))
 
 ## [2.17.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.17.0...@pie-lib/pie-toolbox@2.17.1) (2025-05-28)
 
-
 ### Bug Fixes
 
-* add a11y config to support client-side MathJax usage PD-4810 ([831eb94](https://github.com/pie-framework/pie-lib/commit/831eb943e409a8a2c75e5068aa18cdd1d421e0f1))
-
-
-
-
+- add a11y config to support client-side MathJax usage PD-4810 ([831eb94](https://github.com/pie-framework/pie-lib/commit/831eb943e409a8a2c75e5068aa18cdd1d421e0f1))
 
 # [2.17.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.16.0...@pie-lib/pie-toolbox@2.17.0) (2025-05-28)
 
-
 ### Bug Fixes
 
-* add MathJax v2 fallback support in renderMath to prevent v3 compatibility errors PD-4810 ([81acf89](https://github.com/pie-framework/pie-lib/commit/81acf8904f2a82221e31ebc83fbd1c4981771f9b))
-
+- add MathJax v2 fallback support in renderMath to prevent v3 compatibility errors PD-4810 ([81acf89](https://github.com/pie-framework/pie-lib/commit/81acf8904f2a82221e31ebc83fbd1c4981771f9b))
 
 ### Features
 
-* remove mra from pie-toolbox-math-rendering-module ([b42acd1](https://github.com/pie-framework/pie-lib/commit/b42acd1fd400c468261642e5530bb6b3c00e8a8e))
-* use updated math-rendering package instead of mra, clean up circular dependencies test PD-4810 ([0a9d404](https://github.com/pie-framework/pie-lib/commit/0a9d404a3a8147baa29903f840e7add1e262df58))
-
-
-
-
+- remove mra from pie-toolbox-math-rendering-module ([b42acd1](https://github.com/pie-framework/pie-lib/commit/b42acd1fd400c468261642e5530bb6b3c00e8a8e))
+- use updated math-rendering package instead of mra, clean up circular dependencies test PD-4810 ([0a9d404](https://github.com/pie-framework/pie-lib/commit/0a9d404a3a8147baa29903f840e7add1e262df58))
 
 # [2.16.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.15.0...@pie-lib/pie-toolbox@2.16.0) (2025-05-22)
 
-
 ### Features
 
-* **mask-markup:** design update for inline-dropdown PD-5002 ([9deb917](https://github.com/pie-framework/pie-lib/commit/9deb91781c7f439b3bc889dbc9fc3c8b4ea84205))
-
-
-
-
+- **mask-markup:** design update for inline-dropdown PD-5002 ([9deb917](https://github.com/pie-framework/pie-lib/commit/9deb91781c7f439b3bc889dbc9fc3c8b4ea84205))
 
 # [2.15.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.14.6...@pie-lib/pie-toolbox@2.15.0) (2025-05-19)
 
-
 ### Bug Fixes
 
-* **multiple-choice:** update focus outline color to meet WCAG 3:1 contrast ratio requirement PD-4555 ([7bb7e80](https://github.com/pie-framework/pie-lib/commit/7bb7e8052c7cadc857705df46d2bc5ed3f3ee356))
-
+- **multiple-choice:** update focus outline color to meet WCAG 3:1 contrast ratio requirement PD-4555 ([7bb7e80](https://github.com/pie-framework/pie-lib/commit/7bb7e8052c7cadc857705df46d2bc5ed3f3ee356))
 
 ### Features
 
-* **math-rendering:** remove mathml from tab navigation PD-4561 ([17c2d15](https://github.com/pie-framework/pie-lib/commit/17c2d15f802fa0f82e1a2d7bb765c8c31ba0db8c))
-
-
-
-
+- **math-rendering:** remove mathml from tab navigation PD-4561 ([17c2d15](https://github.com/pie-framework/pie-lib/commit/17c2d15f802fa0f82e1a2d7bb765c8c31ba0db8c))
 
 ## [2.14.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.14.5...@pie-lib/pie-toolbox@2.14.6) (2025-05-07)
 
-
 ### Bug Fixes
 
-* made sure speech-rule-engine is ready before using it [PD-4977] ([6805eae](https://github.com/pie-framework/pie-lib/commit/6805eae1aec402667a8c8c16c1835a56649f3b4c))
-
-
-
-
+- made sure speech-rule-engine is ready before using it [PD-4977](<[6805eae](https://github.com/pie-framework/pie-lib/commit/6805eae1aec402667a8c8c16c1835a56649f3b4c)>)
 
 ## [2.14.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.14.4...@pie-lib/pie-toolbox@2.14.5) (2025-04-28)
 
-
 ### Bug Fixes
 
-* **charting:** fix use of label error PD-4980 ([70baa15](https://github.com/pie-framework/pie-lib/commit/70baa15e31be713692af7831160245112ec250f6))
-* **text-select:** apply class for nested tokenized content PD-3496 ([d0f0e68](https://github.com/pie-framework/pie-lib/commit/d0f0e689b350fba952dd4413d5af91999178674b))
-* **text-select:** apply correct class for tokenized content PD-3496 ([6095619](https://github.com/pie-framework/pie-lib/commit/6095619595b4878d55d7c759cca3a90f934d456b))
-* **text-select:** appy selected class for paragraphs PD-3496 ([4122509](https://github.com/pie-framework/pie-lib/commit/4122509a16e0bd67c97cd42d072950c86cad9169))
-
-
-
-
+- **charting:** fix use of label error PD-4980 ([70baa15](https://github.com/pie-framework/pie-lib/commit/70baa15e31be713692af7831160245112ec250f6))
+- **text-select:** apply class for nested tokenized content PD-3496 ([d0f0e68](https://github.com/pie-framework/pie-lib/commit/d0f0e689b350fba952dd4413d5af91999178674b))
+- **text-select:** apply correct class for tokenized content PD-3496 ([6095619](https://github.com/pie-framework/pie-lib/commit/6095619595b4878d55d7c759cca3a90f934d456b))
+- **text-select:** appy selected class for paragraphs PD-3496 ([4122509](https://github.com/pie-framework/pie-lib/commit/4122509a16e0bd67c97cd42d072950c86cad9169))
 
 ## [2.14.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.14.3...@pie-lib/pie-toolbox@2.14.4) (2025-04-24)
 
-
 ### Bug Fixes
 
-* removed html handling that causes issues [PD-4093] ([b8237c1](https://github.com/pie-framework/pie-lib/commit/b8237c1340ae59fdbfa8f9d8d28e8f955d55f9a6))
-
-
-
-
+- removed html handling that causes issues [PD-4093](<[b8237c1](https://github.com/pie-framework/pie-lib/commit/b8237c1340ae59fdbfa8f9d8d28e8f955d55f9a6)>)
 
 ## [2.14.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.14.2...@pie-lib/pie-toolbox@2.14.3) (2025-04-18)
 
 **Note:** Version bump only for package @pie-lib/pie-toolbox
 
-
-
-
-
 ## [2.14.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.14.1...@pie-lib/pie-toolbox@2.14.2) (2025-04-17)
-
 
 ### Bug Fixes
 
-* use forked version of mathjax-full ([b7ea257](https://github.com/pie-framework/pie-lib/commit/b7ea2573494e6221cc00dbeea4c2f4b450ba0d7d))
-
-
-
-
+- use forked version of mathjax-full ([b7ea257](https://github.com/pie-framework/pie-lib/commit/b7ea2573494e6221cc00dbeea4c2f4b450ba0d7d))
 
 ## [2.14.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.14.0...@pie-lib/pie-toolbox@2.14.1) (2025-04-17)
 
-
 ### Bug Fixes
 
-* dependency on speech-rule-engine ([9a362df](https://github.com/pie-framework/pie-lib/commit/9a362df19a11f7712a49988eed52b26fb7e53d1c))
-
-
-
-
+- dependency on speech-rule-engine ([9a362df](https://github.com/pie-framework/pie-lib/commit/9a362df19a11f7712a49988eed52b26fb7e53d1c))
 
 # [2.14.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.13.0...@pie-lib/pie-toolbox@2.14.0) (2025-04-10)
 
-
 ### Features
 
-* **drag:** fix style to be the same as chip PD-4765 ([f638e46](https://github.com/pie-framework/pie-lib/commit/f638e46e1e3a8584eea2907b90bfd262a939ead7))
-* **mask-markup:** include showCorrectAnswer logic in class style PD-4947 ([ff1b9f8](https://github.com/pie-framework/pie-lib/commit/ff1b9f826af8089115032a8d4c49c6a947bd21d8))
-
-
-
-
+- **drag:** fix style to be the same as chip PD-4765 ([f638e46](https://github.com/pie-framework/pie-lib/commit/f638e46e1e3a8584eea2907b90bfd262a939ead7))
+- **mask-markup:** include showCorrectAnswer logic in class style PD-4947 ([ff1b9f8](https://github.com/pie-framework/pie-lib/commit/ff1b9f826af8089115032a8d4c49c6a947bd21d8))
 
 # [2.13.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.12.0...@pie-lib/pie-toolbox@2.13.0) (2025-03-31)
 
-
 ### Features
 
-* **render-ui:** export image PD-4938 ([a44a39b](https://github.com/pie-framework/pie-lib/commit/a44a39baf9af411d4ad0d2da515f9c9d86d67820))
-
-
-
-
+- **render-ui:** export image PD-4938 ([a44a39b](https://github.com/pie-framework/pie-lib/commit/a44a39baf9af411d4ad0d2da515f9c9d86d67820))
 
 # [2.12.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.11.0...@pie-lib/pie-toolbox@2.12.0) (2025-03-31)
 
-
 ### Features
 
-* **render-ui:** enable audio autoplay image in base64 PD-4938 ([d9213fe](https://github.com/pie-framework/pie-lib/commit/d9213fe2302b771e53959401f1079b16001ff3db))
-
-
-
-
+- **render-ui:** enable audio autoplay image in base64 PD-4938 ([d9213fe](https://github.com/pie-framework/pie-lib/commit/d9213fe2302b771e53959401f1079b16001ff3db))
 
 # [2.11.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.10.3...@pie-lib/pie-toolbox@2.11.0) (2025-03-27)
 
-
 ### Bug Fixes
 
-* PD-4888 revert changes in blank for componentDidUpdate ([243ef16](https://github.com/pie-framework/pie-lib/commit/243ef16052afdec172cbf92cb477abe584542ae3))
-* **editor-and-pad:** delete unused logs ([0ec6d55](https://github.com/pie-framework/pie-lib/commit/0ec6d558697be49fa365eaf04deee809e68602d7))
-* **math-toolbar:** process latex to catch fractions raised to an exponent and add style PD-4895 ([66a45b9](https://github.com/pie-framework/pie-lib/commit/66a45b9b5209b7b437971aa1a68b7dccd6fc163c))
-* DITB Tokens cannot be dragged when touch and hold for some time into the response area PD-4888 ([e9543d6](https://github.com/pie-framework/pie-lib/commit/e9543d61ee9631656a9ba14e09093f5518fa49a4))
-* get rid of margins for exponent is used for fractions PD-4895 ([b034068](https://github.com/pie-framework/pie-lib/commit/b0340680ee5586d0068675cde48b227a36134961))
-
+- PD-4888 revert changes in blank for componentDidUpdate ([243ef16](https://github.com/pie-framework/pie-lib/commit/243ef16052afdec172cbf92cb477abe584542ae3))
+- **editor-and-pad:** delete unused logs ([0ec6d55](https://github.com/pie-framework/pie-lib/commit/0ec6d558697be49fa365eaf04deee809e68602d7))
+- **math-toolbar:** process latex to catch fractions raised to an exponent and add style PD-4895 ([66a45b9](https://github.com/pie-framework/pie-lib/commit/66a45b9b5209b7b437971aa1a68b7dccd6fc163c))
+- DITB Tokens cannot be dragged when touch and hold for some time into the response area PD-4888 ([e9543d6](https://github.com/pie-framework/pie-lib/commit/e9543d61ee9631656a9ba14e09093f5518fa49a4))
+- get rid of margins for exponent is used for fractions PD-4895 ([b034068](https://github.com/pie-framework/pie-lib/commit/b0340680ee5586d0068675cde48b227a36134961))
 
 ### Features
 
-* show paragraph symbol only after line breaks [PD-4093] ([ec0db15](https://github.com/pie-framework/pie-lib/commit/ec0db15980b62036ec9feb86b5691c449c26fa10))
-
-
-
-
+- show paragraph symbol only after line breaks [PD-4093](<[ec0db15](https://github.com/pie-framework/pie-lib/commit/ec0db15980b62036ec9feb86b5691c449c26fa10)>)
 
 ## [2.10.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.10.2...@pie-lib/pie-toolbox@2.10.3) (2025-03-21)
 
 **Note:** Version bump only for package @pie-lib/pie-toolbox
 
-
-
-
-
 ## [2.10.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.10.1...@pie-lib/pie-toolbox@2.10.2) (2025-03-14)
-
 
 ### Bug Fixes
 
-* reverted paragraph indication [PD-4093] ([a541bed](https://github.com/pie-framework/pie-lib/commit/a541bedb9f4f6783d13f18b00005936a22c02a67))
-
-
-
-
+- reverted paragraph indication [PD-4093](<[a541bed](https://github.com/pie-framework/pie-lib/commit/a541bedb9f4f6783d13f18b00005936a22c02a67)>)
 
 ## [2.10.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.10.0...@pie-lib/pie-toolbox@2.10.1) (2025-03-13)
 
-
 ### Bug Fixes
 
-* avoid rendering response area when editor is focused PD-4872 ([ec3627b](https://github.com/pie-framework/pie-lib/commit/ec3627bc2a10e90c7904d9ad5c751df2ed5dc558))
-* made sure that a paragraph sign is added after every block [PD-4093] ([4b7203e](https://github.com/pie-framework/pie-lib/commit/4b7203ea7e4a928406b8693c51574b19b83b9f2f))
-* **mask:** update snapshots ([bd747c2](https://github.com/pie-framework/pie-lib/commit/bd747c227e29e7917a14a5a576a765cfe6ce2803))
-* **render-ui:** set fontSize only when fontSizeFactor is provided, take body font size  in consideration PD-4867 ([7c254d2](https://github.com/pie-framework/pie-lib/commit/7c254d26397b130277367ec774d3c8a6220c8d7e))
-* **render-ui:** set fontSize only when fontSizeFactor is provided, take body font size  in consideration PD-4867 ([4382164](https://github.com/pie-framework/pie-lib/commit/43821647adcea7680f71c312bc886affd44689f8))
-
-
-
-
+- avoid rendering response area when editor is focused PD-4872 ([ec3627b](https://github.com/pie-framework/pie-lib/commit/ec3627bc2a10e90c7904d9ad5c751df2ed5dc558))
+- made sure that a paragraph sign is added after every block [PD-4093](<[4b7203e](https://github.com/pie-framework/pie-lib/commit/4b7203ea7e4a928406b8693c51574b19b83b9f2f)>)
+- **mask:** update snapshots ([bd747c2](https://github.com/pie-framework/pie-lib/commit/bd747c227e29e7917a14a5a576a765cfe6ce2803))
+- **render-ui:** set fontSize only when fontSizeFactor is provided, take body font size in consideration PD-4867 ([7c254d2](https://github.com/pie-framework/pie-lib/commit/7c254d26397b130277367ec774d3c8a6220c8d7e))
+- **render-ui:** set fontSize only when fontSizeFactor is provided, take body font size in consideration PD-4867 ([4382164](https://github.com/pie-framework/pie-lib/commit/43821647adcea7680f71c312bc886affd44689f8))
 
 # [2.10.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.9.5...@pie-lib/pie-toolbox@2.10.0) (2025-03-03)
 
-
 ### Features
 
-* **preview-prompt:** implement customAudioButton support in prompt PD-4795 ([730ab86](https://github.com/pie-framework/pie-lib/commit/730ab860c5073a7a1c7fa93c0fff305d7f372f06))
-
-
-
-
+- **preview-prompt:** implement customAudioButton support in prompt PD-4795 ([730ab86](https://github.com/pie-framework/pie-lib/commit/730ab860c5073a7a1c7fa93c0fff305d7f372f06))
 
 ## [2.9.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.9.4...@pie-lib/pie-toolbox@2.9.5) (2025-02-27)
 
-
 ### Bug Fixes
 
-* Ensure compatibility for shuffledValues retrieval PD-4820 ([f306a59](https://github.com/pie-framework/pie-lib/commit/f306a599d4268d7c52f9e4c85ff2dbaabba25cf6))
-
-
-
-
+- Ensure compatibility for shuffledValues retrieval PD-4820 ([f306a59](https://github.com/pie-framework/pie-lib/commit/f306a599d4268d7c52f9e4c85ff2dbaabba25cf6))
 
 ## [2.9.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.9.3...@pie-lib/pie-toolbox@2.9.4) (2025-02-27)
 
-
 ### Bug Fixes
 
-* Fix MC answer choice persistence by correctly retrieving shuffledValues PD-4820 ([d1447b2](https://github.com/pie-framework/pie-lib/commit/d1447b2bb938d984e7745c3b6cf69137036b6787))
-* **drag:** use same border color ica on drag PD-4766 ([704e95f](https://github.com/pie-framework/pie-lib/commit/704e95f8c145e9b78acf65c80dc1ab4bcbb6d73c))
-
-
-
-
+- Fix MC answer choice persistence by correctly retrieving shuffledValues PD-4820 ([d1447b2](https://github.com/pie-framework/pie-lib/commit/d1447b2bb938d984e7745c3b6cf69137036b6787))
+- **drag:** use same border color ica on drag PD-4766 ([704e95f](https://github.com/pie-framework/pie-lib/commit/704e95f8c145e9b78acf65c80dc1ab4bcbb6d73c))
 
 ## [2.9.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.9.2...@pie-lib/pie-toolbox@2.9.3) (2025-02-19)
 
-
 ### Bug Fixes
 
-* made sure table nodes are only placed in the root document [PD-4168] ([4c54392](https://github.com/pie-framework/pie-lib/commit/4c54392e9a253b42ba8df06645a80f227775aa7f))
-* **render-ui:** change label display such as strike properties to work in OT PD-4723 ([1026d48](https://github.com/pie-framework/pie-lib/commit/1026d484bddcc786db4581c3b436dc1229368ad8))
-
-
-
-
+- made sure table nodes are only placed in the root document [PD-4168](<[4c54392](https://github.com/pie-framework/pie-lib/commit/4c54392e9a253b42ba8df06645a80f227775aa7f)>)
+- **render-ui:** change label display such as strike properties to work in OT PD-4723 ([1026d48](https://github.com/pie-framework/pie-lib/commit/1026d484bddcc786db4581c3b436dc1229368ad8))
 
 ## [2.9.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.9.1...@pie-lib/pie-toolbox@2.9.2) (2025-02-14)
 
-
 ### Bug Fixes
 
-* **mask-markup:** adjust padding for tables PD-4801 ([8fe06e0](https://github.com/pie-framework/pie-lib/commit/8fe06e04d3301a5a9347cfb089845e9aacf13804))
-
-
-
-
+- **mask-markup:** adjust padding for tables PD-4801 ([8fe06e0](https://github.com/pie-framework/pie-lib/commit/8fe06e04d3301a5a9347cfb089845e9aacf13804))
 
 ## [2.9.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.9.0...@pie-lib/pie-toolbox@2.9.1) (2025-02-12)
 
-
 ### Bug Fixes
 
-* made sure math rendering is not handling nodes that have been handled already [PD-4717] ([2d3d2be](https://github.com/pie-framework/pie-lib/commit/2d3d2bec0ff6fff3f19d61c5a47c70f518a7154f))
-
-
-
-
+- made sure math rendering is not handling nodes that have been handled already [PD-4717](<[2d3d2be](https://github.com/pie-framework/pie-lib/commit/2d3d2bec0ff6fff3f19d61c5a47c70f518a7154f)>)
 
 # [2.9.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.8.0...@pie-lib/pie-toolbox@2.9.0) (2025-02-06)
 
-
 ### Bug Fixes
 
-* **blank:** fix font size for fractions in mathematical answer choices PD-4641 ([61a559d](https://github.com/pie-framework/pie-lib/commit/61a559dcf231fd437f880418971d21f12b358f94))
-* **ECR:** adjusted width for constructed response areas PD-4618 ([68857b9](https://github.com/pie-framework/pie-lib/commit/68857b9d51846d8a1a7e7ff2db5effc9c4c9e254))
-
+- **blank:** fix font size for fractions in mathematical answer choices PD-4641 ([61a559d](https://github.com/pie-framework/pie-lib/commit/61a559dcf231fd437f880418971d21f12b358f94))
+- **ECR:** adjusted width for constructed response areas PD-4618 ([68857b9](https://github.com/pie-framework/pie-lib/commit/68857b9d51846d8a1a7e7ff2db5effc9c4c9e254))
 
 ### Features
 
-* change the wording for the min selections message in multiple-choice PD-4753 ([fefc02f](https://github.com/pie-framework/pie-lib/commit/fefc02f84627150e532e0a5b97e1007a56234680))
-* messages updates for the min and max selections in multiple-choice PD-4755 ([af6db48](https://github.com/pie-framework/pie-lib/commit/af6db480121b3d4a609499681576052262885e9b))
-
-
-
-
+- change the wording for the min selections message in multiple-choice PD-4753 ([fefc02f](https://github.com/pie-framework/pie-lib/commit/fefc02f84627150e532e0a5b97e1007a56234680))
+- messages updates for the min and max selections in multiple-choice PD-4755 ([af6db48](https://github.com/pie-framework/pie-lib/commit/af6db480121b3d4a609499681576052262885e9b))
 
 # [2.8.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.7.1...@pie-lib/pie-toolbox@2.8.0) (2025-01-27)
 
-
 ### Features
 
-* **toolbar:** refactor: simplify arrow functions with implicit returns PD-4679 ([de43f3b](https://github.com/pie-framework/pie-lib/commit/de43f3bf60abda5a4b3a4b919dcac5499690a893))
-* implemented textAlign capabilities [PD-3995] ([cf5a2d1](https://github.com/pie-framework/pie-lib/commit/cf5a2d1c77fab8fdf2275513deae1cfaf1c0738c))
-* **editable-html:** set list toolbars disabled when selection inside of table PD-4678 ([7648509](https://github.com/pie-framework/pie-lib/commit/764850937ef4c17df8f2291270ce9bd400927421))
-* **toolbar:** Disable table button in toolbar if cursor inside a list PD-4679 ([4856427](https://github.com/pie-framework/pie-lib/commit/4856427ccca4a3a1340e4710ea8e16ad626d7a01))
-
-
-
-
+- **toolbar:** refactor: simplify arrow functions with implicit returns PD-4679 ([de43f3b](https://github.com/pie-framework/pie-lib/commit/de43f3bf60abda5a4b3a4b919dcac5499690a893))
+- implemented textAlign capabilities [PD-3995](<[cf5a2d1](https://github.com/pie-framework/pie-lib/commit/cf5a2d1c77fab8fdf2275513deae1cfaf1c0738c)>)
+- **editable-html:** set list toolbars disabled when selection inside of table PD-4678 ([7648509](https://github.com/pie-framework/pie-lib/commit/764850937ef4c17df8f2291270ce9bd400927421))
+- **toolbar:** Disable table button in toolbar if cursor inside a list PD-4679 ([4856427](https://github.com/pie-framework/pie-lib/commit/4856427ccca4a3a1340e4710ea8e16ad626d7a01))
 
 ## [2.7.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.7.0...@pie-lib/pie-toolbox@2.7.1) (2025-01-27)
 
-
 ### Bug Fixes
 
-* **math-templated:** code formatting PD-4589 ([5757146](https://github.com/pie-framework/pie-lib/commit/57571461f21d928b5201eb524ea04fa6b9e8dae4))
-* made sure math rendering is not delayed [PD-4688] ([eb92bb1](https://github.com/pie-framework/pie-lib/commit/eb92bb10331ebe0865e3b8ceaf3f9b2e5095c0d0))
-* **constructed-response:**  hide editable html toolbar in ECR if characters is not enabled PD-4616 ([3961e57](https://github.com/pie-framework/pie-lib/commit/3961e57b4da1c5612992a61af0935733a2b36fa9))
-* **constructed-response:** updated snapshots ([271ccc8](https://github.com/pie-framework/pie-lib/commit/271ccc8e315be45a04cc852ab22c597eb5e68ec1))
-* **ECR:** add error handling for undefined pluginProps ([ac55144](https://github.com/pie-framework/pie-lib/commit/ac5514449e37dad31df2b3287ae9c34fe198344c))
-* **ECR:** code review changes - isHidden property in toolbarOpts as boolean PD-4616 ([b3bd5f0](https://github.com/pie-framework/pie-lib/commit/b3bd5f029f04c378454e4bce562f75f3e33b8c42))
-* **math-templated:** fix math rendering in math templated response areas PD-4589 ([e8eacd7](https://github.com/pie-framework/pie-lib/commit/e8eacd745fdfa22fb0b0e2241f8c92c292e991c5))
-
-
-
-
+- **math-templated:** code formatting PD-4589 ([5757146](https://github.com/pie-framework/pie-lib/commit/57571461f21d928b5201eb524ea04fa6b9e8dae4))
+- made sure math rendering is not delayed [PD-4688](<[eb92bb1](https://github.com/pie-framework/pie-lib/commit/eb92bb10331ebe0865e3b8ceaf3f9b2e5095c0d0)>)
+- **constructed-response:** hide editable html toolbar in ECR if characters is not enabled PD-4616 ([3961e57](https://github.com/pie-framework/pie-lib/commit/3961e57b4da1c5612992a61af0935733a2b36fa9))
+- **constructed-response:** updated snapshots ([271ccc8](https://github.com/pie-framework/pie-lib/commit/271ccc8e315be45a04cc852ab22c597eb5e68ec1))
+- **ECR:** add error handling for undefined pluginProps ([ac55144](https://github.com/pie-framework/pie-lib/commit/ac5514449e37dad31df2b3287ae9c34fe198344c))
+- **ECR:** code review changes - isHidden property in toolbarOpts as boolean PD-4616 ([b3bd5f0](https://github.com/pie-framework/pie-lib/commit/b3bd5f029f04c378454e4bce562f75f3e33b8c42))
+- **math-templated:** fix math rendering in math templated response areas PD-4589 ([e8eacd7](https://github.com/pie-framework/pie-lib/commit/e8eacd745fdfa22fb0b0e2241f8c92c292e991c5))
 
 # [2.7.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.6.1...@pie-lib/pie-toolbox@2.7.0) (2025-01-22)
 
-
 ### Bug Fixes
 
-* **blank:** remove margins for chips in ditb PD-4704 ([d0a1f2b](https://github.com/pie-framework/pie-lib/commit/d0a1f2bc2a8b5a89678a3150df59715aca37a514))
-* **drag:** Fix touchpad interaction after touchscreen drag for image-cloze-association PD-4689 ([f646ddb](https://github.com/pie-framework/pie-lib/commit/f646ddb457c27987dc99e5b7119cea57344f0c23))
-* **drag:** switch back props for TouchBackend PD-4689 ([7863c28](https://github.com/pie-framework/pie-lib/commit/7863c28f7db6df5bb3b43f8f151429bb95b0be89))
-* **editable-html:** delete unused logs ([0d55d57](https://github.com/pie-framework/pie-lib/commit/0d55d579760e858a0afe317d57f60c605524b48a))
-* **editable-html:** set mimeType dinamically based on uploaded file PD-4698 ([8841055](https://github.com/pie-framework/pie-lib/commit/8841055a5f0fbc1495d2343bd6fcb71e2a8f7552))
-* **editor-and-toolbar:** Changed overflowY from 'scroll' to 'auto' for dynamic scrollbar PD-4618 ([9176ab8](https://github.com/pie-framework/pie-lib/commit/9176ab82c63a12cc50b69e4a45858e4af7dc264e))
-* **mask:** add space between response areas but only if they are not inside a table PD-4704 & PD-4588 ([dd58e01](https://github.com/pie-framework/pie-lib/commit/dd58e01b44ff10f229ba5db79333ddfc2cddd32a))
-* **translator:** add new key for the message to be more intuitive PD-3872 ([64195e6](https://github.com/pie-framework/pie-lib/commit/64195e623555d190cb30546a18233decc6d2f54e))
-* **translator:** add new key for the message to be more intuitive PD-3872 ([d517c9a](https://github.com/pie-framework/pie-lib/commit/d517c9a7b43cdcbeaaaf02f332d49c292b1f8bff))
-* **translator:** update warning message for ica borh en and es PD-3872 ([f86cc49](https://github.com/pie-framework/pie-lib/commit/f86cc49218ab56375951d693c72be54dc49d884a))
-
+- **blank:** remove margins for chips in ditb PD-4704 ([d0a1f2b](https://github.com/pie-framework/pie-lib/commit/d0a1f2bc2a8b5a89678a3150df59715aca37a514))
+- **drag:** Fix touchpad interaction after touchscreen drag for image-cloze-association PD-4689 ([f646ddb](https://github.com/pie-framework/pie-lib/commit/f646ddb457c27987dc99e5b7119cea57344f0c23))
+- **drag:** switch back props for TouchBackend PD-4689 ([7863c28](https://github.com/pie-framework/pie-lib/commit/7863c28f7db6df5bb3b43f8f151429bb95b0be89))
+- **editable-html:** delete unused logs ([0d55d57](https://github.com/pie-framework/pie-lib/commit/0d55d579760e858a0afe317d57f60c605524b48a))
+- **editable-html:** set mimeType dinamically based on uploaded file PD-4698 ([8841055](https://github.com/pie-framework/pie-lib/commit/8841055a5f0fbc1495d2343bd6fcb71e2a8f7552))
+- **editor-and-toolbar:** Changed overflowY from 'scroll' to 'auto' for dynamic scrollbar PD-4618 ([9176ab8](https://github.com/pie-framework/pie-lib/commit/9176ab82c63a12cc50b69e4a45858e4af7dc264e))
+- **mask:** add space between response areas but only if they are not inside a table PD-4704 & PD-4588 ([dd58e01](https://github.com/pie-framework/pie-lib/commit/dd58e01b44ff10f229ba5db79333ddfc2cddd32a))
+- **translator:** add new key for the message to be more intuitive PD-3872 ([64195e6](https://github.com/pie-framework/pie-lib/commit/64195e623555d190cb30546a18233decc6d2f54e))
+- **translator:** add new key for the message to be more intuitive PD-3872 ([d517c9a](https://github.com/pie-framework/pie-lib/commit/d517c9a7b43cdcbeaaaf02f332d49c292b1f8bff))
+- **translator:** update warning message for ica borh en and es PD-3872 ([f86cc49](https://github.com/pie-framework/pie-lib/commit/f86cc49218ab56375951d693c72be54dc49d884a))
 
 ### Features
 
-* **preview-prompt:** add autoplay attribute to audio if it has the autoplayAudioEnabled prop PD-4452 ([332bd4b](https://github.com/pie-framework/pie-lib/commit/332bd4bcd0bb562fe08856fe0c0a76d61871466c))
-
-
-
-
+- **preview-prompt:** add autoplay attribute to audio if it has the autoplayAudioEnabled prop PD-4452 ([332bd4b](https://github.com/pie-framework/pie-lib/commit/332bd4bcd0bb562fe08856fe0c0a76d61871466c))
 
 ## [2.6.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.6.0...@pie-lib/pie-toolbox@2.6.1) (2025-01-08)
 
-
 ### Bug Fixes
 
-* implemented math rendering accessible with the imported package [PD-4527] ([a324d36](https://github.com/pie-framework/pie-lib/commit/a324d369333b42613ae0854b3ba38260e9fb443c))
-* replace mra package with mr, includes accessibility PD-4527 ([4bd6d0b](https://github.com/pie-framework/pie-lib/commit/4bd6d0bc50309c6b15a1d05bd4e803692e2e52e3))
-
-
-
-
+- implemented math rendering accessible with the imported package [PD-4527](<[a324d36](https://github.com/pie-framework/pie-lib/commit/a324d369333b42613ae0854b3ba38260e9fb443c)>)
+- replace mra package with mr, includes accessibility PD-4527 ([4bd6d0b](https://github.com/pie-framework/pie-lib/commit/4bd6d0bc50309c6b15a1d05bd4e803692e2e52e3))
 
 # [2.6.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.5.0...@pie-lib/pie-toolbox@2.6.0) (2025-01-06)
 
-
 ### Bug Fixes
 
-* **blank:** code review changes regarding math rendering PD-4394 ([4502058](https://github.com/pie-framework/pie-lib/commit/45020589efb8a0703e85eb7a28d6ede6815f14d8))
-* **blank:** Fix MathJax rendering issue PD-4394 ([8032f68](https://github.com/pie-framework/pie-lib/commit/8032f6869ef6f845bc1883a0d4dd0a76c486057b))
-* **config-layout:** updated sidePanelMinWidth default value to 1135px to accomodate the max width across all elements PD-4426 ([9e676fa](https://github.com/pie-framework/pie-lib/commit/9e676fa175332cb2e921ee889c012c9f66a23787))
-* **mask-markup:** add styling from prompt tables to response area tables PD-4521 ([6c86da6](https://github.com/pie-framework/pie-lib/commit/6c86da67c1be31165f21e5e8c1814ef6f5b9b75c))
-* **mask-markup:** use whitespace normal for chip labels PD-4607 ([809a1bb](https://github.com/pie-framework/pie-lib/commit/809a1bb1f0f8077516b4329e40fb1075fe35be50))
-
+- **blank:** code review changes regarding math rendering PD-4394 ([4502058](https://github.com/pie-framework/pie-lib/commit/45020589efb8a0703e85eb7a28d6ede6815f14d8))
+- **blank:** Fix MathJax rendering issue PD-4394 ([8032f68](https://github.com/pie-framework/pie-lib/commit/8032f6869ef6f845bc1883a0d4dd0a76c486057b))
+- **config-layout:** updated sidePanelMinWidth default value to 1135px to accomodate the max width across all elements PD-4426 ([9e676fa](https://github.com/pie-framework/pie-lib/commit/9e676fa175332cb2e921ee889c012c9f66a23787))
+- **mask-markup:** add styling from prompt tables to response area tables PD-4521 ([6c86da6](https://github.com/pie-framework/pie-lib/commit/6c86da67c1be31165f21e5e8c1814ef6f5b9b75c))
+- **mask-markup:** use whitespace normal for chip labels PD-4607 ([809a1bb](https://github.com/pie-framework/pie-lib/commit/809a1bb1f0f8077516b4329e40fb1075fe35be50))
 
 ### Features
 
-* defined focus colors in defaults for consistency and maintainability PD-4555 ([5f50776](https://github.com/pie-framework/pie-lib/commit/5f50776120e878ab216099d65ae467c61c63ae98))
-* **editable-html:** add minWidth and maxWidth props to editor. Some refactoring PD-4660 ([74db285](https://github.com/pie-framework/pie-lib/commit/74db2853cb3af88fe4301b00e7ee6ca44ce4008f))
-
-
-
-
+- defined focus colors in defaults for consistency and maintainability PD-4555 ([5f50776](https://github.com/pie-framework/pie-lib/commit/5f50776120e878ab216099d65ae467c61c63ae98))
+- **editable-html:** add minWidth and maxWidth props to editor. Some refactoring PD-4660 ([74db285](https://github.com/pie-framework/pie-lib/commit/74db2853cb3af88fe4301b00e7ee6ca44ce4008f))
 
 # [2.5.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.4.1...@pie-lib/pie-toolbox@2.5.0) (2024-12-19)
 
-
 ### Bug Fixes
 
-* **blank:** Added margin for response areas in student view PD-4588 ([c7fd69e](https://github.com/pie-framework/pie-lib/commit/c7fd69e6c98b78138097d6bf8198fa7c6f302e14))
-* **ECR:** enhance valueToSize in editor to handle calc expressions and ch units PD-4618 ([6bc6c7e](https://github.com/pie-framework/pie-lib/commit/6bc6c7eb683389c3c004f5a7ba4a21cdab6f2a16))
-* **editable-html:** Fix focus moving to start after typing Spanish or special characters PD-4210 ([0c82b43](https://github.com/pie-framework/pie-lib/commit/0c82b435597f858c6a2504da07b2a289bff4f4da))
-* **graphing:** avoid renderinf empty label when correct respose without label provided PD-4362 ([7d510b5](https://github.com/pie-framework/pie-lib/commit/7d510b5a5027a0c3111443c1510ff118fb1735ac))
-
+- **blank:** Added margin for response areas in student view PD-4588 ([c7fd69e](https://github.com/pie-framework/pie-lib/commit/c7fd69e6c98b78138097d6bf8198fa7c6f302e14))
+- **ECR:** enhance valueToSize in editor to handle calc expressions and ch units PD-4618 ([6bc6c7e](https://github.com/pie-framework/pie-lib/commit/6bc6c7eb683389c3c004f5a7ba4a21cdab6f2a16))
+- **editable-html:** Fix focus moving to start after typing Spanish or special characters PD-4210 ([0c82b43](https://github.com/pie-framework/pie-lib/commit/0c82b435597f858c6a2504da07b2a289bff4f4da))
+- **graphing:** avoid renderinf empty label when correct respose without label provided PD-4362 ([7d510b5](https://github.com/pie-framework/pie-lib/commit/7d510b5a5027a0c3111443c1510ff118fb1735ac))
 
 ### Features
 
-* **translator:** add text for min/max selections PD-3843 PD-4518 ([0a3fea2](https://github.com/pie-framework/pie-lib/commit/0a3fea2bbb0bb3d25afb46b9f244b42f3d8afc60))
-
-
-
-
+- **translator:** add text for min/max selections PD-3843 PD-4518 ([0a3fea2](https://github.com/pie-framework/pie-lib/commit/0a3fea2bbb0bb3d25afb46b9f244b42f3d8afc60))
 
 ## [2.4.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.4.0...@pie-lib/pie-toolbox@2.4.1) (2024-12-10)
 
-
 ### Bug Fixes
 
-* **correct-answer-toggle:** add alignemnet to toggle PD-4388 ([cceda41](https://github.com/pie-framework/pie-lib/commit/cceda41a5a8d78c248b3865b9ec7b3bfbe7f5555))
-* **drag:** Fix touch position handling with zoom adjustment and offset PD-4548 ([9a66ced](https://github.com/pie-framework/pie-lib/commit/9a66cedc143830fed2166766205f1f956c8c3272))
-
-
-
-
+- **correct-answer-toggle:** add alignemnet to toggle PD-4388 ([cceda41](https://github.com/pie-framework/pie-lib/commit/cceda41a5a8d78c248b3865b9ec7b3bfbe7f5555))
+- **drag:** Fix touch position handling with zoom adjustment and offset PD-4548 ([9a66ced](https://github.com/pie-framework/pie-lib/commit/9a66cedc143830fed2166766205f1f956c8c3272))
 
 # [2.4.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.3.0...@pie-lib/pie-toolbox@2.4.0) (2024-12-05)
 
-
 ### Bug Fixes
 
-* **render-ui, anser-toggle:** avoid table to be overwritten by browsers fontsize, adjust correct answer style to fit new fontsize PD-4388 ([8b72778](https://github.com/pie-framework/pie-lib/commit/8b72778971af0878e0230a84e940f1fd496bc643))
-* made sure spans are handled as its one entity and also keeps attributes [PD-4165] ([d1f62ed](https://github.com/pie-framework/pie-lib/commit/d1f62ed3922da4efa498f8039a81d5e39ea46e8c))
-* **blank drag-in-the-blank:** Remove default <p> margins for consistent spacing across wrapped content in blank drag-in-the-blank for optimal space PD-4394 ([ac6bbb9](https://github.com/pie-framework/pie-lib/commit/ac6bbb9affdaf845c084c0849191df3e4e55705a))
-
+- **render-ui, anser-toggle:** avoid table to be overwritten by browsers fontsize, adjust correct answer style to fit new fontsize PD-4388 ([8b72778](https://github.com/pie-framework/pie-lib/commit/8b72778971af0878e0230a84e940f1fd496bc643))
+- made sure spans are handled as its one entity and also keeps attributes [PD-4165](<[d1f62ed](https://github.com/pie-framework/pie-lib/commit/d1f62ed3922da4efa498f8039a81d5e39ea46e8c)>)
+- **blank drag-in-the-blank:** Remove default <p> margins for consistent spacing across wrapped content in blank drag-in-the-blank for optimal space PD-4394 ([ac6bbb9](https://github.com/pie-framework/pie-lib/commit/ac6bbb9affdaf845c084c0849191df3e4e55705a))
 
 ### Features
 
-* **mask-markup:** add top and bottom padding for element PD-4393 ([75de76f](https://github.com/pie-framework/pie-lib/commit/75de76fd1a5e07e80f4839d3f7540d4c6d4a4c4e))
-* **mask-markup:** change target droppable area on hover PD-4550 ([40391f7](https://github.com/pie-framework/pie-lib/commit/40391f7a4c1753333d1c40aa66c9491f632ea78e))
-
-
-
-
+- **mask-markup:** add top and bottom padding for element PD-4393 ([75de76f](https://github.com/pie-framework/pie-lib/commit/75de76fd1a5e07e80f4839d3f7540d4c6d4a4c4e))
+- **mask-markup:** change target droppable area on hover PD-4550 ([40391f7](https://github.com/pie-framework/pie-lib/commit/40391f7a4c1753333d1c40aa66c9491f632ea78e))
 
 # [2.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.2.0...@pie-lib/pie-toolbox@2.3.0) (2024-11-29)
 
-
 ### Bug Fixes
 
-* tests ([13b1b98](https://github.com/pie-framework/pie-lib/commit/13b1b988bad1b218b2e5720a828d4e35239c6081))
-
+- tests ([13b1b98](https://github.com/pie-framework/pie-lib/commit/13b1b988bad1b218b2e5720a828d4e35239c6081))
 
 ### Features
 
-* **drag:** for ICA choice pool, add isVertical and minHeight props PD-4387 ([6521750](https://github.com/pie-framework/pie-lib/commit/65217501843e9d53e2d6d6bbc61ed02f8328a6a7))
-* **render-ui:** create testfile for ui-layout PD-4388 ([036b837](https://github.com/pie-framework/pie-lib/commit/036b837a1237fc5f3b7aa9d6190ae9a411a410af))
-* **render-ui): introdu fontSizeFactor for ui layout(src port:** PD-4388 ([2f9eea0](https://github.com/pie-framework/pie-lib/commit/2f9eea07d3cf2962974264b50b6f489778403ae9))
-
-
-
-
+- **drag:** for ICA choice pool, add isVertical and minHeight props PD-4387 ([6521750](https://github.com/pie-framework/pie-lib/commit/65217501843e9d53e2d6d6bbc61ed02f8328a6a7))
+- **render-ui:** create testfile for ui-layout PD-4388 ([036b837](https://github.com/pie-framework/pie-lib/commit/036b837a1237fc5f3b7aa9d6190ae9a411a410af))
+- **render-ui): introdu fontSizeFactor for ui layout(src port:** PD-4388 ([2f9eea0](https://github.com/pie-framework/pie-lib/commit/2f9eea07d3cf2962974264b50b6f489778403ae9))
 
 # [2.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.1.5...@pie-lib/pie-toolbox@2.2.0) (2024-11-15)
 
-
 ### Features
 
-* adjusments for controls to support custom colors PD-4334 ([4596674](https://github.com/pie-framework/pie-lib/commit/45966749fa957f33291d84c21a384b11d2065d7d))
-* Restore accidentally deleted line PD-4334 ([a3dd1a5](https://github.com/pie-framework/pie-lib/commit/a3dd1a569291195d4f73b2c3adbcbdd7aefa4c62))
-* update snapshots PD-4334 ([12fe1b0](https://github.com/pie-framework/pie-lib/commit/12fe1b0f751ef3fabeb6fdeb3bc532ac14090b2a))
-* **checkbox,radio,toggle:** added custom class to change colors PD-4334 ([116393d](https://github.com/pie-framework/pie-lib/commit/116393d64fdd2abc71521e6e4b73d0782047c7fd))
-* **color:** added new tertiary theme - blue PD-4334 ([63bedff](https://github.com/pie-framework/pie-lib/commit/63bedfffaee5aa2da2f3e9aaadcd8fc38641ae48))
-* **color:** update snapshots PD-4334 ([c19c77f](https://github.com/pie-framework/pie-lib/commit/c19c77f70d66b360568cae7b8082fdc4b95c62f5))
-* **panel:** adjust panel to support custom colors for controls PD-4334 ([2130736](https://github.com/pie-framework/pie-lib/commit/213073613082af6b682e368e081fbef4c42ad392))
-* **toggle:** changes for toggle to accept custom colors PD-4334 ([1d87fa0](https://github.com/pie-framework/pie-lib/commit/1d87fa03eb779ab145c642759eb94da0475731bb))
-
-
-
-
+- adjusments for controls to support custom colors PD-4334 ([4596674](https://github.com/pie-framework/pie-lib/commit/45966749fa957f33291d84c21a384b11d2065d7d))
+- Restore accidentally deleted line PD-4334 ([a3dd1a5](https://github.com/pie-framework/pie-lib/commit/a3dd1a569291195d4f73b2c3adbcbdd7aefa4c62))
+- update snapshots PD-4334 ([12fe1b0](https://github.com/pie-framework/pie-lib/commit/12fe1b0f751ef3fabeb6fdeb3bc532ac14090b2a))
+- **checkbox,radio,toggle:** added custom class to change colors PD-4334 ([116393d](https://github.com/pie-framework/pie-lib/commit/116393d64fdd2abc71521e6e4b73d0782047c7fd))
+- **color:** added new tertiary theme - blue PD-4334 ([63bedff](https://github.com/pie-framework/pie-lib/commit/63bedfffaee5aa2da2f3e9aaadcd8fc38641ae48))
+- **color:** update snapshots PD-4334 ([c19c77f](https://github.com/pie-framework/pie-lib/commit/c19c77f70d66b360568cae7b8082fdc4b95c62f5))
+- **panel:** adjust panel to support custom colors for controls PD-4334 ([2130736](https://github.com/pie-framework/pie-lib/commit/213073613082af6b682e368e081fbef4c42ad392))
+- **toggle:** changes for toggle to accept custom colors PD-4334 ([1d87fa0](https://github.com/pie-framework/pie-lib/commit/1d87fa03eb779ab145c642759eb94da0475731bb))
 
 ## [2.1.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.1.4...@pie-lib/pie-toolbox@2.1.5) (2024-11-15)
 
-
 ### Bug Fixes
 
-* **blank:** adjust comments PD-4394 ([9a488c8](https://github.com/pie-framework/pie-lib/commit/9a488c8b4225f3dbb754247457eb60209cafe7b1))
-* **blank:** adjust width for longer text-based answer choices PD-4394 ([357b7fc](https://github.com/pie-framework/pie-lib/commit/357b7fc0aa33db3051a3b7ee4102d941eccd1d0c))
-* **blank:** Handle non-numeric values for emptyResponseAreaHeight and emptyResponseAreaWidth PD-4394 ([4083cf4](https://github.com/pie-framework/pie-lib/commit/4083cf4af220583fe24601cb66b90e95c167e2ec))
-* **blank:** small adjustments on blank's height PD-4394 ([113df87](https://github.com/pie-framework/pie-lib/commit/113df87251975e61b1681cc659d17c8b70ac4f1f))
-* **blank:** update tests after updateDimensions logic changed PD-4394 ([5044a15](https://github.com/pie-framework/pie-lib/commit/5044a159d1a1c22df005bcace86c20799c6d615a))
-* **preview-prompt:** align table content to left as per STAR requirement PD-3687 ([af124a9](https://github.com/pie-framework/pie-lib/commit/af124a91f88be9b8b4abaaba2866c40e596efe37))
-
-
-
-
+- **blank:** adjust comments PD-4394 ([9a488c8](https://github.com/pie-framework/pie-lib/commit/9a488c8b4225f3dbb754247457eb60209cafe7b1))
+- **blank:** adjust width for longer text-based answer choices PD-4394 ([357b7fc](https://github.com/pie-framework/pie-lib/commit/357b7fc0aa33db3051a3b7ee4102d941eccd1d0c))
+- **blank:** Handle non-numeric values for emptyResponseAreaHeight and emptyResponseAreaWidth PD-4394 ([4083cf4](https://github.com/pie-framework/pie-lib/commit/4083cf4af220583fe24601cb66b90e95c167e2ec))
+- **blank:** small adjustments on blank's height PD-4394 ([113df87](https://github.com/pie-framework/pie-lib/commit/113df87251975e61b1681cc659d17c8b70ac4f1f))
+- **blank:** update tests after updateDimensions logic changed PD-4394 ([5044a15](https://github.com/pie-framework/pie-lib/commit/5044a159d1a1c22df005bcace86c20799c6d615a))
+- **preview-prompt:** align table content to left as per STAR requirement PD-3687 ([af124a9](https://github.com/pie-framework/pie-lib/commit/af124a91f88be9b8b4abaaba2866c40e596efe37))
 
 ## [2.1.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.1.3...@pie-lib/pie-toolbox@2.1.4) (2024-11-15)
 
-
 ### Bug Fixes
 
-* revert usage of mml3 experimental plugin (added for PD-4319) to fix PD-4401, PD-4441 ([db2ce5f](https://github.com/pie-framework/pie-lib/commit/db2ce5f1066bb092d25be6c074cded3e7a7d085b))
-
-
-
-
+- revert usage of mml3 experimental plugin (added for PD-4319) to fix PD-4401, PD-4441 ([db2ce5f](https://github.com/pie-framework/pie-lib/commit/db2ce5f1066bb092d25be6c074cded3e7a7d085b))
 
 ## [2.1.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.1.2...@pie-lib/pie-toolbox@2.1.3) (2024-11-01)
 
-
 ### Bug Fixes
 
-* **graphing:** remove unused CSS class PD-4372 ([0066bdb](https://github.com/pie-framework/pie-lib/commit/0066bdbf59918d9a4f953637e5fb917f1ec2bf6a))
-* **respArea:** resolve UI misalignment and unintended border PD-4372 ([03b5f50](https://github.com/pie-framework/pie-lib/commit/03b5f50930c5a4c90e8ad79ff246d44c5c3b0448))
-
-
-
-
+- **graphing:** remove unused CSS class PD-4372 ([0066bdb](https://github.com/pie-framework/pie-lib/commit/0066bdbf59918d9a4f953637e5fb917f1ec2bf6a))
+- **respArea:** resolve UI misalignment and unintended border PD-4372 ([03b5f50](https://github.com/pie-framework/pie-lib/commit/03b5f50930c5a4c90e8ad79ff246d44c5c3b0448))
 
 ## [2.1.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.1.1...@pie-lib/pie-toolbox@2.1.2) (2024-11-01)
 
-
 ### Bug Fixes
 
-* removed code that messes up enter and caret in the editor [PD-4361] ([94309cf](https://github.com/pie-framework/pie-lib/commit/94309cfd2f74bb4fd3691a2f28a17013d06dd5ce))
-
-
-
-
+- removed code that messes up enter and caret in the editor [PD-4361](<[94309cf](https://github.com/pie-framework/pie-lib/commit/94309cfd2f74bb4fd3691a2f28a17013d06dd5ce)>)
 
 ## [2.1.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.1.0...@pie-lib/pie-toolbox@2.1.1) (2024-10-30)
 
-
 ### Bug Fixes
 
-* **editable-html:** allow placeholder on focus ([c037c24](https://github.com/pie-framework/pie-lib/commit/c037c2416650bd225e226b178bf33e2d81fb3244))
-* moved RenderingPlugin at the end fixes the issue PD-1460 ([0733c12](https://github.com/pie-framework/pie-lib/commit/0733c12a70a679f60045a48a147baae19d4ba9b1))
-* RenderingPlugin causes a breaking change: math nodes are not being rendered PD-1460 ([7b739c9](https://github.com/pie-framework/pie-lib/commit/7b739c96cb90c7d4b03570f3e86697f455725b7b))
-
-
-
-
+- **editable-html:** allow placeholder on focus ([c037c24](https://github.com/pie-framework/pie-lib/commit/c037c2416650bd225e226b178bf33e2d81fb3244))
+- moved RenderingPlugin at the end fixes the issue PD-1460 ([0733c12](https://github.com/pie-framework/pie-lib/commit/0733c12a70a679f60045a48a147baae19d4ba9b1))
+- RenderingPlugin causes a breaking change: math nodes are not being rendered PD-1460 ([7b739c9](https://github.com/pie-framework/pie-lib/commit/7b739c96cb90c7d4b03570f3e86697f455725b7b))
 
 # [2.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.15...@pie-lib/pie-toolbox@2.1.0) (2024-10-29)
 
-
 ### Features
 
-* add loader options to catch possible issues PD-4319 ([d9e62b7](https://github.com/pie-framework/pie-lib/commit/d9e62b758b3023c545f21853fe6d55edd9830b54))
-* added ability to add css and span and div attributes handling [PD-1460] ([f0fc161](https://github.com/pie-framework/pie-lib/commit/f0fc161c4c6d41c798fa87d2453545eec6e5832f))
-* added missing stuff [PD-1460] ([75596c6](https://github.com/pie-framework/pie-lib/commit/75596c6dec74487107b4631a2865033f838f324d))
-* handle mml3 PD-4319 ([cbad571](https://github.com/pie-framework/pie-lib/commit/cbad571444d33748b8e52116a9638b02553c326b))
-* removed unnecessary console logs [PD-1460] ([107523c](https://github.com/pie-framework/pie-lib/commit/107523c7352531f7f7e686238997ec43c02b332e))
-* **editor-toolbar:** added noBorder property to editor and width property for toolbarOpts PD-4004 ([a82aba4](https://github.com/pie-framework/pie-lib/commit/a82aba47d0383ed95c3d1e72f4a5ead8e65e52d0))
-* **editor-toolbar:** remove unnecessary code PD-4004 ([21fe6f6](https://github.com/pie-framework/pie-lib/commit/21fe6f6d11b67160f6ed06694f00ad8559cd497a))
-* **mask-markup/ECR:** code review changes - adjusted noPadding & noBorder for toolbarOpts PD-4004 ([ced9cae](https://github.com/pie-framework/pie-lib/commit/ced9caed723e5b7aefc34bef505798d98c2afa9a))
-* **respArea:** changed response area for ECR from input into editable-html ([c3de789](https://github.com/pie-framework/pie-lib/commit/c3de789c55be6f7d01738136deb5c711046d0803))
-
-
-
-
+- add loader options to catch possible issues PD-4319 ([d9e62b7](https://github.com/pie-framework/pie-lib/commit/d9e62b758b3023c545f21853fe6d55edd9830b54))
+- added ability to add css and span and div attributes handling [PD-1460](<[f0fc161](https://github.com/pie-framework/pie-lib/commit/f0fc161c4c6d41c798fa87d2453545eec6e5832f)>)
+- added missing stuff [PD-1460](<[75596c6](https://github.com/pie-framework/pie-lib/commit/75596c6dec74487107b4631a2865033f838f324d)>)
+- handle mml3 PD-4319 ([cbad571](https://github.com/pie-framework/pie-lib/commit/cbad571444d33748b8e52116a9638b02553c326b))
+- removed unnecessary console logs [PD-1460](<[107523c](https://github.com/pie-framework/pie-lib/commit/107523c7352531f7f7e686238997ec43c02b332e)>)
+- **editor-toolbar:** added noBorder property to editor and width property for toolbarOpts PD-4004 ([a82aba4](https://github.com/pie-framework/pie-lib/commit/a82aba47d0383ed95c3d1e72f4a5ead8e65e52d0))
+- **editor-toolbar:** remove unnecessary code PD-4004 ([21fe6f6](https://github.com/pie-framework/pie-lib/commit/21fe6f6d11b67160f6ed06694f00ad8559cd497a))
+- **mask-markup/ECR:** code review changes - adjusted noPadding & noBorder for toolbarOpts PD-4004 ([ced9cae](https://github.com/pie-framework/pie-lib/commit/ced9caed723e5b7aefc34bef505798d98c2afa9a))
+- **respArea:** changed response area for ECR from input into editable-html ([c3de789](https://github.com/pie-framework/pie-lib/commit/c3de789c55be6f7d01738136deb5c711046d0803))
 
 ## [2.0.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.14...@pie-lib/pie-toolbox@2.0.15) (2024-10-28)
 
-
 ### Bug Fixes
 
-* **blank:** for DITB adjust width by adding spacing after updateDimensions PD-4215 ([6600078](https://github.com/pie-framework/pie-lib/commit/660007804ad719182db4ac5ba697aebefd77dde0))
-* **editable-html:** swap position of undo and redo buttons PD-4322 ([9ddf5c8](https://github.com/pie-framework/pie-lib/commit/9ddf5c866746a09f69450fe7a6ee9880abd81022))
-* **editable-html,graphing:** Refactor focus handling in DefaultToolbar PD-4209 ([c31c698](https://github.com/pie-framework/pie-lib/commit/c31c69809411324c9f12a471175b9c559b51e742))
-* **graphing:** fix PR comment PD-4209 ([49a3a3a](https://github.com/pie-framework/pie-lib/commit/49a3a3a0eae6f0775f941499e10ac6c810afdcfb))
-* **graphing:** fix title not updating properly and investigate labels PD-4209 ([220a22f](https://github.com/pie-framework/pie-lib/commit/220a22f9c364add5fb15a410ca2968a539fbb138))
-* **graphing:** remove placeholder fix as it was updated in another PR PD-4209 ([3ba9bb8](https://github.com/pie-framework/pie-lib/commit/3ba9bb8363a8c948fda5b13d6f1c7c776dea9fb9))
-
-
-
-
+- **blank:** for DITB adjust width by adding spacing after updateDimensions PD-4215 ([6600078](https://github.com/pie-framework/pie-lib/commit/660007804ad719182db4ac5ba697aebefd77dde0))
+- **editable-html:** swap position of undo and redo buttons PD-4322 ([9ddf5c8](https://github.com/pie-framework/pie-lib/commit/9ddf5c866746a09f69450fe7a6ee9880abd81022))
+- **editable-html,graphing:** Refactor focus handling in DefaultToolbar PD-4209 ([c31c698](https://github.com/pie-framework/pie-lib/commit/c31c69809411324c9f12a471175b9c559b51e742))
+- **graphing:** fix PR comment PD-4209 ([49a3a3a](https://github.com/pie-framework/pie-lib/commit/49a3a3a0eae6f0775f941499e10ac6c810afdcfb))
+- **graphing:** fix title not updating properly and investigate labels PD-4209 ([220a22f](https://github.com/pie-framework/pie-lib/commit/220a22f9c364add5fb15a410ca2968a539fbb138))
+- **graphing:** remove placeholder fix as it was updated in another PR PD-4209 ([3ba9bb8](https://github.com/pie-framework/pie-lib/commit/3ba9bb8363a8c948fda5b13d6f1c7c776dea9fb9))
 
 ## [2.0.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.13...@pie-lib/pie-toolbox@2.0.14) (2024-10-22)
 
-
 ### Bug Fixes
 
-* **correct-input:** for constructed-response in Student View text aligned with response areas PD-4187 ([6d3a51e](https://github.com/pie-framework/pie-lib/commit/6d3a51e31c566deff63ae2c7f8bf43c506013d49))
-* **editable-html:** Added aria-labels for superscript, subscript, undo, and redo buttons in the toolbar PD-4018 ([b70e28f](https://github.com/pie-framework/pie-lib/commit/b70e28f5be6f7a4a07e1a35d1a4e6f87e1807aaa))
-* **editable-html:** avoid render placeholder when node focused PD-4203 ([e3bb638](https://github.com/pie-framework/pie-lib/commit/e3bb63811c90730c859b48a0712c587f639d27ac))
-* **editable-html:** avoid render placeholder when user input exists PD-4189 ([7cfe3d0](https://github.com/pie-framework/pie-lib/commit/7cfe3d03dcf6eae72190885a21bab6eba51436e3))
-* **graphing:** updated stroke width on polygon PD-4193 ([97053d2](https://github.com/pie-framework/pie-lib/commit/97053d2fcff76cb939a949e1ac24036479415917))
-* **graphing:** updated stroke width on polygon PD-4193 ([410599f](https://github.com/pie-framework/pie-lib/commit/410599f1f5417d46c570cf92fe28158e06253a5b))
-* **inline-dropdown:** adjust styling for response areas to be center aligned PD-4201 ([92309a1](https://github.com/pie-framework/pie-lib/commit/92309a13bb6544ed420f2846aa0b46b7a1c21c97))
-* **mask-markup:** allow dragging back a choice to choices pool PD-4220 ([d92103d](https://github.com/pie-framework/pie-lib/commit/d92103d2c01332973092249ec096c5cf41729000))
-* **text-select:** missing tokens were selectable PD-4194 ([a16ac69](https://github.com/pie-framework/pie-lib/commit/a16ac697bbf67b0da8f61b673aec0bc197b92e85))
-
-
-
-
+- **correct-input:** for constructed-response in Student View text aligned with response areas PD-4187 ([6d3a51e](https://github.com/pie-framework/pie-lib/commit/6d3a51e31c566deff63ae2c7f8bf43c506013d49))
+- **editable-html:** Added aria-labels for superscript, subscript, undo, and redo buttons in the toolbar PD-4018 ([b70e28f](https://github.com/pie-framework/pie-lib/commit/b70e28f5be6f7a4a07e1a35d1a4e6f87e1807aaa))
+- **editable-html:** avoid render placeholder when node focused PD-4203 ([e3bb638](https://github.com/pie-framework/pie-lib/commit/e3bb63811c90730c859b48a0712c587f639d27ac))
+- **editable-html:** avoid render placeholder when user input exists PD-4189 ([7cfe3d0](https://github.com/pie-framework/pie-lib/commit/7cfe3d03dcf6eae72190885a21bab6eba51436e3))
+- **graphing:** updated stroke width on polygon PD-4193 ([97053d2](https://github.com/pie-framework/pie-lib/commit/97053d2fcff76cb939a949e1ac24036479415917))
+- **graphing:** updated stroke width on polygon PD-4193 ([410599f](https://github.com/pie-framework/pie-lib/commit/410599f1f5417d46c570cf92fe28158e06253a5b))
+- **inline-dropdown:** adjust styling for response areas to be center aligned PD-4201 ([92309a1](https://github.com/pie-framework/pie-lib/commit/92309a13bb6544ed420f2846aa0b46b7a1c21c97))
+- **mask-markup:** allow dragging back a choice to choices pool PD-4220 ([d92103d](https://github.com/pie-framework/pie-lib/commit/d92103d2c01332973092249ec096c5cf41729000))
+- **text-select:** missing tokens were selectable PD-4194 ([a16ac69](https://github.com/pie-framework/pie-lib/commit/a16ac697bbf67b0da8f61b673aec0bc197b92e85))
 
 ## [2.0.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.12...@pie-lib/pie-toolbox@2.0.13) (2024-10-14)
 
-
 ### Bug Fixes
 
-* handle the case when el is an array PD-4231 ([8707f22](https://github.com/pie-framework/pie-lib/commit/8707f2205f1c6f5945a9e732fb5fa63ce72e3382))
-
-
-
-
+- handle the case when el is an array PD-4231 ([8707f22](https://github.com/pie-framework/pie-lib/commit/8707f2205f1c6f5945a9e732fb5fa63ce72e3382))
 
 ## [2.0.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.11...@pie-lib/pie-toolbox@2.0.12) (2024-10-10)
 
-
 ### Bug Fixes
 
-* add MathJax v2 - v3 compatibility code PD-4241 ([351f4cf](https://github.com/pie-framework/pie-lib/commit/351f4cf0b4fd841a01afdb5b92969d48ccdc5b82))
-
-
-
-
+- add MathJax v2 - v3 compatibility code PD-4241 ([351f4cf](https://github.com/pie-framework/pie-lib/commit/351f4cf0b4fd841a01afdb5b92969d48ccdc5b82))
 
 ## [2.0.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.10...@pie-lib/pie-toolbox@2.0.11) (2024-10-07)
 
-
 ### Bug Fixes
 
-* made sure a working version of complexjs is used for elements [PD-4200] ([ec438f0](https://github.com/pie-framework/pie-lib/commit/ec438f0eb22780067c54524203913e1610f47356))
-
-
-
-
+- made sure a working version of complexjs is used for elements [PD-4200](<[ec438f0](https://github.com/pie-framework/pie-lib/commit/ec438f0eb22780067c54524203913e1610f47356)>)
 
 ## [2.0.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.9...@pie-lib/pie-toolbox@2.0.10) (2024-10-03)
 
-
 ### Bug Fixes
 
-* **blank:** Improve image element handling DNA-22354 ([95cf14b](https://github.com/pie-framework/pie-lib/commit/95cf14b5c75b656b2a2a3b81af483e63d55c8359))
-* **blank:** small fix handle image load DNA-22354 ([fcc2787](https://github.com/pie-framework/pie-lib/commit/fcc278721d5af7099694913848f2b487070fd112))
-* **blank:** Trigger updateDimensions in componentDidMount in case tokens are already placed to adjust blank dimensions DNA-22354 ([4677284](https://github.com/pie-framework/pie-lib/commit/4677284b2b38cf90106035fd7851b100ad4775b3))
-* **blank:** updateDimensions in componentDidMount DNA-22354 ([7e4b084](https://github.com/pie-framework/pie-lib/commit/7e4b084737ffb6b536952abd30a2352fb34c2016))
-* **editable-html:** changed keypadInteractionDetected from state to a class property to avoid triggering component re-renders PD-4018 ([2bc3433](https://github.com/pie-framework/pie-lib/commit/2bc34333485eb4e2ae5c08426b869c1c34206c7c))
-* **editable-html:** insert special character - replace TAB with em space, rearrange a few buttons PD-4158 ([7aa72ea](https://github.com/pie-framework/pie-lib/commit/7aa72ea285b217ec06c338ab80ac5c574276b4ab))
-* **editable-html:** moved keypadInteractionDetected reset from handleDomBlur to prevent premature resetting on fast machines PD-4018 ([e3d598d](https://github.com/pie-framework/pie-lib/commit/e3d598d0bf001084a38867004780bb02a9023c2b))
-* **mask-markup:** allow move choices back to pool PD-4126 ([cde09de](https://github.com/pie-framework/pie-lib/commit/cde09deb678d84133bd4adbac453b06d8e38ef20))
-
-
-
-
+- **blank:** Improve image element handling DNA-22354 ([95cf14b](https://github.com/pie-framework/pie-lib/commit/95cf14b5c75b656b2a2a3b81af483e63d55c8359))
+- **blank:** small fix handle image load DNA-22354 ([fcc2787](https://github.com/pie-framework/pie-lib/commit/fcc278721d5af7099694913848f2b487070fd112))
+- **blank:** Trigger updateDimensions in componentDidMount in case tokens are already placed to adjust blank dimensions DNA-22354 ([4677284](https://github.com/pie-framework/pie-lib/commit/4677284b2b38cf90106035fd7851b100ad4775b3))
+- **blank:** updateDimensions in componentDidMount DNA-22354 ([7e4b084](https://github.com/pie-framework/pie-lib/commit/7e4b084737ffb6b536952abd30a2352fb34c2016))
+- **editable-html:** changed keypadInteractionDetected from state to a class property to avoid triggering component re-renders PD-4018 ([2bc3433](https://github.com/pie-framework/pie-lib/commit/2bc34333485eb4e2ae5c08426b869c1c34206c7c))
+- **editable-html:** insert special character - replace TAB with em space, rearrange a few buttons PD-4158 ([7aa72ea](https://github.com/pie-framework/pie-lib/commit/7aa72ea285b217ec06c338ab80ac5c574276b4ab))
+- **editable-html:** moved keypadInteractionDetected reset from handleDomBlur to prevent premature resetting on fast machines PD-4018 ([e3d598d](https://github.com/pie-framework/pie-lib/commit/e3d598d0bf001084a38867004780bb02a9023c2b))
+- **mask-markup:** allow move choices back to pool PD-4126 ([cde09de](https://github.com/pie-framework/pie-lib/commit/cde09deb678d84133bd4adbac453b06d8e38ef20))
 
 ## [2.0.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.8...@pie-lib/pie-toolbox@2.0.9) (2024-10-01)
 
-
 ### Bug Fixes
 
-* use pointerEvents to prevent clicking on toolbar (exists in dom, even if opacity is 0) PD-4018 ([75a6d69](https://github.com/pie-framework/pie-lib/commit/75a6d693b31d28adbd34ce570fe4bee3ddba6edf))
-* **editable-html:** ensured toolbar remains accessible to screen readers, and addressed focus issue when shift-tabbing from toolbar to text entry PD-4018 ([80dda51](https://github.com/pie-framework/pie-lib/commit/80dda517b22e650e05e120ee13ee6bf0d62cfee5))
-* **inline-dropdown:** ensure MathJax is rendered correctly for dropdown choices, use renderMath in the dropdown to ensure that math in the choices is always rendered correctly and handle refs properly to trigger MathJax rendering after each update PD-4154 DNA-22372 ([b764d60](https://github.com/pie-framework/pie-lib/commit/b764d60fdc1451241076fda862c62de9f153b80a))
-
-
-
-
+- use pointerEvents to prevent clicking on toolbar (exists in dom, even if opacity is 0) PD-4018 ([75a6d69](https://github.com/pie-framework/pie-lib/commit/75a6d693b31d28adbd34ce570fe4bee3ddba6edf))
+- **editable-html:** ensured toolbar remains accessible to screen readers, and addressed focus issue when shift-tabbing from toolbar to text entry PD-4018 ([80dda51](https://github.com/pie-framework/pie-lib/commit/80dda517b22e650e05e120ee13ee6bf0d62cfee5))
+- **inline-dropdown:** ensure MathJax is rendered correctly for dropdown choices, use renderMath in the dropdown to ensure that math in the choices is always rendered correctly and handle refs properly to trigger MathJax rendering after each update PD-4154 DNA-22372 ([b764d60](https://github.com/pie-framework/pie-lib/commit/b764d60fdc1451241076fda862c62de9f153b80a))
 
 ## [2.0.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.7...@pie-lib/pie-toolbox@2.0.8) (2024-09-26)
 
-
 ### Bug Fixes
 
-* put back the placeholders ([373f5f5](https://github.com/pie-framework/pie-lib/commit/373f5f5f0c96a74ddcf19bb14d3e0fa1b8181bb7))
-
-
-
-
+- put back the placeholders ([373f5f5](https://github.com/pie-framework/pie-lib/commit/373f5f5f0c96a74ddcf19bb14d3e0fa1b8181bb7))
 
 ## [2.0.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.6...@pie-lib/pie-toolbox@2.0.7) (2024-09-26)
 
-
 ### Bug Fixes
 
-* handle bad parameter ([8d377e3](https://github.com/pie-framework/pie-lib/commit/8d377e359ad93fe6d60cbe930840dd6c8d8badbb))
-
-
-
-
+- handle bad parameter ([8d377e3](https://github.com/pie-framework/pie-lib/commit/8d377e359ad93fe6d60cbe930840dd6c8d8badbb))
 
 ## [2.0.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.5...@pie-lib/pie-toolbox@2.0.6) (2024-09-26)
 
-
 ### Bug Fixes
 
-* don't try to initialize MathJax multiple times ([038f48a](https://github.com/pie-framework/pie-lib/commit/038f48a4c2d2f8194feee3cfce3aacaf488b52b2))
-
-
-
-
+- don't try to initialize MathJax multiple times ([038f48a](https://github.com/pie-framework/pie-lib/commit/038f48a4c2d2f8194feee3cfce3aacaf488b52b2))
 
 ## [2.0.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.4...@pie-lib/pie-toolbox@2.0.5) (2024-09-25)
 
-
 ### Bug Fixes
 
-* use head, not body ([9efd05b](https://github.com/pie-framework/pie-lib/commit/9efd05b48fd13cdec53af1aad41396d4fdfb5f96))
-
-
-
-
+- use head, not body ([9efd05b](https://github.com/pie-framework/pie-lib/commit/9efd05b48fd13cdec53af1aad41396d4fdfb5f96))
 
 ## [2.0.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.3...@pie-lib/pie-toolbox@2.0.4) (2024-09-25)
 
-
 ### Bug Fixes
 
-* experiment with mra (overwriting mr instance with mra instance) ([bb9aa6c](https://github.com/pie-framework/pie-lib/commit/bb9aa6c0012b1bbd606f9af70c8913dc1a9af329))
-
-
-
-
+- experiment with mra (overwriting mr instance with mra instance) ([bb9aa6c](https://github.com/pie-framework/pie-lib/commit/bb9aa6c0012b1bbd606f9af70c8913dc1a9af329))
 
 ## [2.0.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.2...@pie-lib/pie-toolbox@2.0.3) (2024-09-24)
 
-
 ### Bug Fixes
 
-* trigger build for pslb ([6e06089](https://github.com/pie-framework/pie-lib/commit/6e06089d3fbd32e0ef30717a05a3f01561fde1cd))
-
-
-
-
+- trigger build for pslb ([6e06089](https://github.com/pie-framework/pie-lib/commit/6e06089d3fbd32e0ef30717a05a3f01561fde1cd))
 
 ## [2.0.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.1...@pie-lib/pie-toolbox@2.0.2) (2024-09-19)
 
-
 ### Bug Fixes
 
-* add preLoad substitution ([df0981b](https://github.com/pie-framework/pie-lib/commit/df0981bdf8cd9ad1455d7665af704c54ec0264f6))
-
-
-
-
+- add preLoad substitution ([df0981b](https://github.com/pie-framework/pie-lib/commit/df0981bdf8cd9ad1455d7665af704c54ec0264f6))
 
 ## [2.0.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.0.0...@pie-lib/pie-toolbox@2.0.1) (2024-09-19)
 
-
 ### Bug Fixes
 
-* increase waiting time for math-rendering ([0a69dd3](https://github.com/pie-framework/pie-lib/commit/0a69dd3a97c5774bce00b230f25ca68468063f0c))
-
-
-
-
+- increase waiting time for math-rendering ([0a69dd3](https://github.com/pie-framework/pie-lib/commit/0a69dd3a97c5774bce00b230f25ca68468063f0c))
 
 # [2.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.33.1...@pie-lib/pie-toolbox@2.0.0) (2024-09-19)
 
-
 ### Features
 
-* major changes to math-rendering-accessible PD-3989, PD-4103, PD-3865 ([6f6f06c](https://github.com/pie-framework/pie-lib/commit/6f6f06c1235e55bc0b80642f75023b6ea745be8d))
-
+- major changes to math-rendering-accessible PD-3989, PD-4103, PD-3865 ([6f6f06c](https://github.com/pie-framework/pie-lib/commit/6f6f06c1235e55bc0b80642f75023b6ea745be8d))
 
 ### BREAKING CHANGES
 
-* big refactoring on the implementation of math-rendering-accessible
-
-
-
-
+- big refactoring on the implementation of math-rendering-accessible
 
 ## [1.33.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.33.0...@pie-lib/pie-toolbox@1.33.1) (2024-09-19)
 
-
 ### Bug Fixes
 
-* revert changes made for PD-3989 ([79581d3](https://github.com/pie-framework/pie-lib/commit/79581d32024c413d0b31da6e0dca21e5fbff1182))
-
-
-
-
+- revert changes made for PD-3989 ([79581d3](https://github.com/pie-framework/pie-lib/commit/79581d32024c413d0b31da6e0dca21e5fbff1182))
 
 # [1.33.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.32.1...@pie-lib/pie-toolbox@1.33.0) (2024-09-18)
 
-
 ### Bug Fixes
 
-* handle the case when renderMath (MathJax) is used only for mmlOutput, and it was not yet initialised PD-4103 ([368c9bc](https://github.com/pie-framework/pie-lib/commit/368c9bc23363a30b914b4d9ba02ed6fa350169f3))
-
+- handle the case when renderMath (MathJax) is used only for mmlOutput, and it was not yet initialised PD-4103 ([368c9bc](https://github.com/pie-framework/pie-lib/commit/368c9bc23363a30b914b4d9ba02ed6fa350169f3))
 
 ### Features
 
-* eliminate Promises and make mra efficient PD-3989 ([e19e925](https://github.com/pie-framework/pie-lib/commit/e19e92513cc1fc7844957250514e41407d481393))
-
-
-
-
+- eliminate Promises and make mra efficient PD-3989 ([e19e925](https://github.com/pie-framework/pie-lib/commit/e19e92513cc1fc7844957250514e41407d481393))
 
 ## [1.32.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.32.0...@pie-lib/pie-toolbox@1.32.1) (2024-09-16)
 
-
 ### Bug Fixes
 
-* **editable-html:** fix Spanish input issue on iPad and resolve keypad interaction bugs PD-4061 & PD-4021 ([4874314](https://github.com/pie-framework/pie-lib/commit/4874314ec7b4d5e06c70dfe552fc6758fa5e134d))
-
-
-
-
+- **editable-html:** fix Spanish input issue on iPad and resolve keypad interaction bugs PD-4061 & PD-4021 ([4874314](https://github.com/pie-framework/pie-lib/commit/4874314ec7b4d5e06c70dfe552fc6758fa5e134d))
 
 # [1.32.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.31.4...@pie-lib/pie-toolbox@1.32.0) (2024-09-16)
 
-
 ### Bug Fixes
 
-* made sure enter handling is happening only after all the other plugins are checked [PD-4039] ([6c613ef](https://github.com/pie-framework/pie-lib/commit/6c613efc99f99a389353e007200910ac2592aa9e))
-* **editable-html:** move custom plugins buttons before response area PD-4027 ([632ae3c](https://github.com/pie-framework/pie-lib/commit/632ae3c3ab7df3596f1e23898c17f4ae9d0e6dc3))
-
+- made sure enter handling is happening only after all the other plugins are checked [PD-4039](<[6c613ef](https://github.com/pie-framework/pie-lib/commit/6c613efc99f99a389353e007200910ac2592aa9e)>)
+- **editable-html:** move custom plugins buttons before response area PD-4027 ([632ae3c](https://github.com/pie-framework/pie-lib/commit/632ae3c3ab7df3596f1e23898c17f4ae9d0e6dc3))
 
 ### Features
 
-* **mask-markup:** changed chip backgorund color to white & added opacity 0.6 for disabled class PD-4042 ([2eaf520](https://github.com/pie-framework/pie-lib/commit/2eaf5203a4e65215bf9a33ae0f210e41c3ce6f65))
-
-
-
-
+- **mask-markup:** changed chip backgorund color to white & added opacity 0.6 for disabled class PD-4042 ([2eaf520](https://github.com/pie-framework/pie-lib/commit/2eaf5203a4e65215bf9a33ae0f210e41c3ce6f65))
 
 ## [1.31.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.31.3...@pie-lib/pie-toolbox@1.31.4) (2024-09-10)
 
-
 ### Bug Fixes
 
-* **drag:** clean up & refactor styles for placeholder PD-3652 ([8d20af3](https://github.com/pie-framework/pie-lib/commit/8d20af343b837ffe45e47f258c87ab2708747d67))
-* **drag:** moving styles for disabling long touch default events PD-3652 ([857c1cd](https://github.com/pie-framework/pie-lib/commit/857c1cd183b32387ecacf9cfa9cef89712047666))
-* **editable-html:** Add accessible aria-label to extended-text-entry, response-area editor for improved accessibility PD-2451 ([48f287b](https://github.com/pie-framework/pie-lib/commit/48f287b5c0f68abeed48015ccd9f5def19daeb53))
-* **editable-html:** revert changes from feat/PD-2450 due to label not being correctly recognized by screen readers during keyboard navigation in the editor PD-2451 ([c53e671](https://github.com/pie-framework/pie-lib/commit/c53e671801d99bcc5aa161d7e766a07ee9e01eff))
-* **placeholder:** apply new class - noSelectStyles to placeholder, board and categorizeBoard classes PD-3652 ([2a08878](https://github.com/pie-framework/pie-lib/commit/2a0887842af95a3879bd4f80d4ceb23eb3b32632))
-* **placeholder:** Ensure noSelectStyles always applied in PlaceHolder component PD-3652 ([0d62106](https://github.com/pie-framework/pie-lib/commit/0d62106d1cdffb9fd69bc08691624a67a133cca9))
-
-
-
-
+- **drag:** clean up & refactor styles for placeholder PD-3652 ([8d20af3](https://github.com/pie-framework/pie-lib/commit/8d20af343b837ffe45e47f258c87ab2708747d67))
+- **drag:** moving styles for disabling long touch default events PD-3652 ([857c1cd](https://github.com/pie-framework/pie-lib/commit/857c1cd183b32387ecacf9cfa9cef89712047666))
+- **editable-html:** Add accessible aria-label to extended-text-entry, response-area editor for improved accessibility PD-2451 ([48f287b](https://github.com/pie-framework/pie-lib/commit/48f287b5c0f68abeed48015ccd9f5def19daeb53))
+- **editable-html:** revert changes from feat/PD-2450 due to label not being correctly recognized by screen readers during keyboard navigation in the editor PD-2451 ([c53e671](https://github.com/pie-framework/pie-lib/commit/c53e671801d99bcc5aa161d7e766a07ee9e01eff))
+- **placeholder:** apply new class - noSelectStyles to placeholder, board and categorizeBoard classes PD-3652 ([2a08878](https://github.com/pie-framework/pie-lib/commit/2a0887842af95a3879bd4f80d4ceb23eb3b32632))
+- **placeholder:** Ensure noSelectStyles always applied in PlaceHolder component PD-3652 ([0d62106](https://github.com/pie-framework/pie-lib/commit/0d62106d1cdffb9fd69bc08691624a67a133cca9))
 
 ## [1.31.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.31.2...@pie-lib/pie-toolbox@1.31.3) (2024-09-10)
 
-
 ### Bug Fixes
 
-* table and lists buttons can not be disabled (discovered while implementing PD-4065) ([8d69c10](https://github.com/pie-framework/pie-lib/commit/8d69c108dedb624fb59825db63068f60759e06a3))
-
-
-
-
+- table and lists buttons can not be disabled (discovered while implementing PD-4065) ([8d69c10](https://github.com/pie-framework/pie-lib/commit/8d69c108dedb624fb59825db63068f60759e06a3))
 
 ## [1.31.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.31.1...@pie-lib/pie-toolbox@1.31.2) (2024-09-04)
 
-
 ### Bug Fixes
 
-* revert experiments with mra ([90e46f4](https://github.com/pie-framework/pie-lib/commit/90e46f4623ed93d31abeeffd6ab21b3e028fc17c))
-
-
-
-
+- revert experiments with mra ([90e46f4](https://github.com/pie-framework/pie-lib/commit/90e46f4623ed93d31abeeffd6ab21b3e028fc17c))
 
 ## [1.31.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.31.0...@pie-lib/pie-toolbox@1.31.1) (2024-09-03)
 
-
 ### Bug Fixes
 
-* experiment with mra ([b46be25](https://github.com/pie-framework/pie-lib/commit/b46be25a94b6b6d713193e741aac6db4ee3a8cb6))
-
-
-
-
+- experiment with mra ([b46be25](https://github.com/pie-framework/pie-lib/commit/b46be25a94b6b6d713193e741aac6db4ee3a8cb6))
 
 # [1.31.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.30.2...@pie-lib/pie-toolbox@1.31.0) (2024-09-03)
 
-
 ### Features
 
-* experiment with mra ([f99ddb0](https://github.com/pie-framework/pie-lib/commit/f99ddb0c767c952774b1d4e576c96328f576591e))
-
-
-
-
+- experiment with mra ([f99ddb0](https://github.com/pie-framework/pie-lib/commit/f99ddb0c767c952774b1d4e576c96328f576591e))
 
 ## [1.30.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.30.1...@pie-lib/pie-toolbox@1.30.2) (2024-08-29)
 
-
 ### Bug Fixes
 
-* trigger build ([afcc754](https://github.com/pie-framework/pie-lib/commit/afcc75469374b074fe02768960e783491d551f26))
-
-
-
-
+- trigger build ([afcc754](https://github.com/pie-framework/pie-lib/commit/afcc75469374b074fe02768960e783491d551f26))
 
 ## [1.30.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.30.0...@pie-lib/pie-toolbox@1.30.1) (2024-08-29)
 
-
 ### Bug Fixes
 
-* sanity checks ([fba0dd9](https://github.com/pie-framework/pie-lib/commit/fba0dd9dd4706eccc15237c174ce410066a51775))
-
-
-
-
+- sanity checks ([fba0dd9](https://github.com/pie-framework/pie-lib/commit/fba0dd9dd4706eccc15237c174ce410066a51775))
 
 # [1.30.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.29.3...@pie-lib/pie-toolbox@1.30.0) (2024-08-27)
 
-
 ### Bug Fixes
 
-* **editable-html:** change media dialog default selected tab PD-4026 ([10b4045](https://github.com/pie-framework/pie-lib/commit/10b404557ddfdab6dc3fb69397454f2309636608))
-
+- **editable-html:** change media dialog default selected tab PD-4026 ([10b4045](https://github.com/pie-framework/pie-lib/commit/10b404557ddfdab6dc3fb69397454f2309636608))
 
 ### Features
 
-* **editable-html:** add superscript and subscript to rich editors PD-3990 ([9dc943f](https://github.com/pie-framework/pie-lib/commit/9dc943f9d1d87459fa61f41de8985aacc213a180))
-* **editable-html:** create icon componenets(svg) for superscript and subscript PD-3990 ([4e4a1d2](https://github.com/pie-framework/pie-lib/commit/4e4a1d20c1c5174179269360a16d93fb72054f23))
-
-
-
-
+- **editable-html:** add superscript and subscript to rich editors PD-3990 ([9dc943f](https://github.com/pie-framework/pie-lib/commit/9dc943f9d1d87459fa61f41de8985aacc213a180))
+- **editable-html:** create icon componenets(svg) for superscript and subscript PD-3990 ([4e4a1d2](https://github.com/pie-framework/pie-lib/commit/4e4a1d20c1c5174179269360a16d93fb72054f23))
 
 ## [1.29.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@1.29.2...@pie-lib/pie-toolbox@1.29.3) (2024-08-22)
 

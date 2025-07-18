@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { types } from '../../plot';
 import { LinePath } from '@vx/shape';
 import { Group } from '@vx/group';
 import classNames from 'classnames';
+import { color } from '../../../render-ui';
 import { dataToXBand } from '../utils';
 import RawLine from './common/line';
 
 const DraggableComponent = (props) => {
   const { classes = {}, className, scale, x, y, r, correctness, ...rest } = props;
+  const [hover, setHover] = useState(false);
+
+  const squareSize = r * 4;
+  const squareHalf = squareSize / 2;
+  const cx = scale.x(x);
+  const cy = scale.y(y);
 
   return (
     <Group className={classNames(className, classes.line, correctness && correctness.value)}>
@@ -34,7 +41,27 @@ const DraggableComponent = (props) => {
         strokeWidth={5}
         style={{ pointerEvents: 'none' }}
       />
-      <circle cx={scale.x(x)} cy={scale.y(y)} r={r * 2} className={classNames(classes.transparentHandle)} {...rest} />
+      {hover && (
+        <rect
+          x={cx - squareHalf}
+          y={cy - squareHalf}
+          width={squareSize}
+          height={squareSize}
+          stroke={color.defaults.BORDER_GRAY}
+          fill="none"
+          strokeWidth={2}
+          pointerEvents="none"
+        />
+      )}
+      <circle
+        cx={cx}
+        cy={cy}
+        r={r * 2}
+        className={classNames(classes.transparentHandle)}
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
+        {...rest}
+      />
     </Group>
   );
 };

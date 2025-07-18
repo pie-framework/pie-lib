@@ -44,7 +44,7 @@ export class Grid extends React.Component {
           width={size.width}
           tickValues={unlabeledLines}
           lineStyle={{
-            stroke: color.fadedPrimary(),
+            stroke: color.visualElementsColors.GRIDLINES_COLOR,
             strokeWidth: 1,
           }}
         />
