@@ -14,7 +14,6 @@ const styles = (theme) => ({
     fontFamily: theme.typography.fontFamily,
     fontSize: theme.typography.fontSize,
     border: 'none',
-    color: color.primaryDark(),
     '&.correct': correct('color'),
     '&.incorrect': incorrect('color'),
     '&.disabled': {

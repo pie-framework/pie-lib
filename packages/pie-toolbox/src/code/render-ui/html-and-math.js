@@ -1,5 +1,4 @@
 import React from 'react';
-import { renderMath } from '../math-rendering';
 import PropTypes from 'prop-types';
 
 export default class HtmlAndMath extends React.Component {
@@ -13,18 +12,6 @@ export default class HtmlAndMath extends React.Component {
     tag: 'div',
     html: '',
   };
-
-  componentDidMount() {
-    if (this.node) {
-      renderMath(this.node);
-    }
-  }
-
-  componentDidUpdate() {
-    if (this.node) {
-      renderMath(this.node);
-    }
-  }
 
   render() {
     const { tag, className, html } = this.props;

@@ -353,7 +353,6 @@ const styles = (theme) => ({
     paddingTop: '6px',
   },
   topPixelIndicator: {
-    color: color.defaults.PRIMARY_LIGHT,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -368,7 +367,6 @@ const styles = (theme) => ({
     marginRight: '6px',
   },
   sidePixelIndicator: {
-    color: color.defaults.PRIMARY_LIGHT,
     textAlign: 'right',
     height: '20px',
     pointerEvents: 'none',

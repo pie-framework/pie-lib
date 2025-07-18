@@ -2,9 +2,9 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Check from '@material-ui/icons/Check';
 import Close from '@material-ui/icons/Close';
-import Remove from '@material-ui/icons/Remove';
 import { color } from '../render-ui';
 import Translator from '../translator';
+import classNames from 'classnames';
 
 const { translator } = Translator;
 
@@ -12,6 +12,7 @@ export const Legend = withStyles((theme) => ({
   flexContainer: {
     display: 'flex',
     flexDirection: 'row',
+    alignItems: 'center',
     gap: `${2 * theme.spacing.unit}px`,
     borderBottom: '1px solid lightgrey',
     borderTop: '1px solid lightgrey',
@@ -19,60 +20,77 @@ export const Legend = withStyles((theme) => ({
     paddingTop: theme.spacing.unit,
     marginBottom: theme.spacing.unit,
   },
+  key: {
+    fontSize: '14px',
+    fontWeight: 'bold',
+    color: color.black(),
+    marginLeft: theme.spacing.unit,
+  },
   container: {
-    display: 'flex',
-    flexDirection: 'row',
-    gap: `${theme.spacing.unit / 2}px`,
-    alignItems: 'center',
+    position: 'relative',
+    padding: '4px',
+    fontSize: '14px',
+    borderRadius: '4px',
   },
   correct: {
-    fontSize: 'larger',
-    color: color.correct(),
-    backgroundColor: color.correctSecondary(),
-    border: `2px solid ${color.correct()}`,
+    border: `${color.correctTertiary()} solid 2px`,
   },
   incorrect: {
-    fontSize: 'larger',
-    color: color.missing(),
-    backgroundColor: color.incorrectSecondary(),
-    border: `2px solid ${color.missing()}`,
+    border: `${color.incorrectWithIcon()} solid 2px`,
   },
   missing: {
-    fontSize: 'larger',
-    color: color.missing(),
-    backgroundColor: color.incorrectSecondary(),
-    border: `2px dashed ${color.missing()}`,
+    border: `${color.incorrectWithIcon()} dashed 2px`,
   },
-}))(({ classes, language }) => {
-  const icons = [
+  incorrectIcon: {
+    backgroundColor: color.incorrectWithIcon(),
+  },
+  correctIcon: {
+    backgroundColor: color.correctTertiary(),
+  },
+  icon: {
+    color: color.white(),
+    position: 'absolute',
+    top: '-8px',
+    left: '-8px',
+    borderRadius: '50%',
+    fontSize: '12px',
+    padding: '2px',
+  },
+}))(({ classes, language, showOnlyCorrect }) => {
+  const legendItems = [
     {
-      iconName: Check,
+      Icon: Check,
       label: translator.t('selectText.correctAnswerSelected', { lng: language }),
-      className: classes.correct,
+      containerClass: classNames(classes.correct, classes.container),
+      iconClass: classNames(classes.correctIcon, classes.icon),
     },
     {
-      iconName: Remove,
-      label: translator.t('selectText.correctAnswerNotSelected', { lng: language }),
-      className: classes.missing,
-    },
-    {
-      iconName: Close,
+      Icon: Close,
       label: translator.t('selectText.incorrectSelection', { lng: language }),
-      className: classes.incorrect,
+      containerClass: classNames(classes.incorrect, classes.container),
+      iconClass: classNames(classes.incorrectIcon, classes.icon),
+    },
+    {
+      Icon: Close,
+      label: translator.t('selectText.correctAnswerNotSelected', { lng: language }),
+      containerClass: classNames(classes.missing, classes.container),
+      iconClass: classNames(classes.incorrectIcon, classes.icon),
     },
   ];
 
+  if (showOnlyCorrect) {
+    legendItems.splice(1, 2);
+  }
+
   return (
     <div className={classes.flexContainer}>
-      {icons.map((icon, index) => {
-        const Icon = icon.iconName;
-        return (
-          <div key={index} className={classes.container}>
-            <Icon className={icon.className} width={'19px'} height={'19px'}></Icon>
-            <span>{icon.label}</span>
-          </div>
-        );
-      })}
+      <span className={classes.key}>{translator.t('selectText.key', { lng: language })}</span>
+      {legendItems.map(({ Icon, label, containerClass, iconClass }, idx) => (
+        <div key={idx} className={containerClass}>
+          <Icon className={iconClass} />
+          <span>{label}</span>
+        </div>
+      ))}
     </div>
   );
 });

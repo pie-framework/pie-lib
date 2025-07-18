@@ -7,7 +7,7 @@ exports[`Grid snapshot renders 1`] = `
   <q
     lineStyle={
       Object {
-        "stroke": "var(--pie-faded-primary, #DCDAFB)",
+        "stroke": "#8E88EA",
         "strokeWidth": 1,
       }
     }
@@ -39,7 +39,7 @@ exports[`Grid snapshot renders if graphProps is not defined 1`] = `
   <q
     lineStyle={
       Object {
-        "stroke": "var(--pie-faded-primary, #DCDAFB)",
+        "stroke": "#8E88EA",
         "strokeWidth": 1,
       }
     }

@@ -15,685 +15,353 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [8.2.22](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.2.21...@pie-lib/demo@8.2.22) (2025-06-27)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [8.2.21](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.2.20...@pie-lib/demo@8.2.21) (2025-06-23)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [8.2.20](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.2.19...@pie-lib/demo@8.2.20) (2025-06-19)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [8.2.19](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.2.18...@pie-lib/demo@8.2.19) (2025-06-13)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [8.2.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.2.17...@pie-lib/demo@8.2.18) (2025-06-05)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [8.2.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.2.16...@pie-lib/demo@8.2.17) (2025-06-03)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [8.2.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.2.15...@pie-lib/demo@8.2.16) (2025-05-30)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [8.2.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.2.14...@pie-lib/demo@8.2.15) (2025-05-30)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [8.2.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.2.13...@pie-lib/demo@8.2.14) (2025-05-28)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [8.2.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.2.12...@pie-lib/demo@8.2.13) (2025-05-28)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [8.2.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.2.11...@pie-lib/demo@8.2.12) (2025-05-28)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [8.2.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.2.10...@pie-lib/demo@8.2.11) (2025-05-22)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [8.2.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.2.9...@pie-lib/demo@8.2.10) (2025-05-19)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [8.2.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.2.8...@pie-lib/demo@8.2.9) (2025-05-07)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [8.2.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.2.7...@pie-lib/demo@8.2.8) (2025-04-28)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [8.2.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.2.6...@pie-lib/demo@8.2.7) (2025-04-24)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [8.2.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.2.5...@pie-lib/demo@8.2.6) (2025-04-18)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [8.2.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.2.4...@pie-lib/demo@8.2.5) (2025-04-17)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [8.2.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.2.3...@pie-lib/demo@8.2.4) (2025-04-17)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [8.2.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.2.2...@pie-lib/demo@8.2.3) (2025-04-10)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [8.2.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.2.1...@pie-lib/demo@8.2.2) (2025-03-31)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [8.2.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.2.0...@pie-lib/demo@8.2.1) (2025-03-31)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 # [8.2.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.26...@pie-lib/demo@8.2.0) (2025-03-27)
-
 
 ### Features
 
-* show paragraph symbol only after line breaks [PD-4093] ([ec0db15](https://github.com/pie-framework/pie-lib/commit/ec0db15980b62036ec9feb86b5691c449c26fa10))
-
-
-
-
+- show paragraph symbol only after line breaks [PD-4093](<[ec0db15](https://github.com/pie-framework/pie-lib/commit/ec0db15980b62036ec9feb86b5691c449c26fa10)>)
 
 ## [8.1.26](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.25...@pie-lib/demo@8.1.26) (2025-03-21)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [8.1.25](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.24...@pie-lib/demo@8.1.25) (2025-03-14)
-
 
 ### Bug Fixes
 
-* reverted paragraph indication [PD-4093] ([a541bed](https://github.com/pie-framework/pie-lib/commit/a541bedb9f4f6783d13f18b00005936a22c02a67))
-
-
-
-
+- reverted paragraph indication [PD-4093](<[a541bed](https://github.com/pie-framework/pie-lib/commit/a541bedb9f4f6783d13f18b00005936a22c02a67)>)
 
 ## [8.1.24](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.23...@pie-lib/demo@8.1.24) (2025-03-13)
 
-
 ### Bug Fixes
 
-* made sure that a paragraph sign is added after every block [PD-4093] ([4b7203e](https://github.com/pie-framework/pie-lib/commit/4b7203ea7e4a928406b8693c51574b19b83b9f2f))
-
-
-
-
+- made sure that a paragraph sign is added after every block [PD-4093](<[4b7203e](https://github.com/pie-framework/pie-lib/commit/4b7203ea7e4a928406b8693c51574b19b83b9f2f)>)
 
 ## [8.1.23](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.22...@pie-lib/demo@8.1.23) (2025-03-03)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [8.1.22](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.21...@pie-lib/demo@8.1.22) (2025-02-27)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [8.1.21](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.20...@pie-lib/demo@8.1.21) (2025-02-27)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [8.1.20](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.19...@pie-lib/demo@8.1.20) (2025-02-19)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [8.1.19](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.18...@pie-lib/demo@8.1.19) (2025-02-14)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [8.1.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.17...@pie-lib/demo@8.1.18) (2025-02-12)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [8.1.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.16...@pie-lib/demo@8.1.17) (2025-02-06)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [8.1.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.15...@pie-lib/demo@8.1.16) (2025-01-27)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [8.1.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.14...@pie-lib/demo@8.1.15) (2025-01-27)
-
 
 ### Bug Fixes
 
-* made sure math rendering is not delayed [PD-4688] ([eb92bb1](https://github.com/pie-framework/pie-lib/commit/eb92bb10331ebe0865e3b8ceaf3f9b2e5095c0d0))
-
-
-
-
+- made sure math rendering is not delayed [PD-4688](<[eb92bb1](https://github.com/pie-framework/pie-lib/commit/eb92bb10331ebe0865e3b8ceaf3f9b2e5095c0d0)>)
 
 ## [8.1.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.13...@pie-lib/demo@8.1.14) (2025-01-22)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [8.1.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.12...@pie-lib/demo@8.1.13) (2025-01-09)
-
 
 ### Bug Fixes
 
-* remove mra from demo file, remove mra from pslb config ([d3741e9](https://github.com/pie-framework/pie-lib/commit/d3741e9c4975e5ec54e9dd433a863e64bc1ee827))
-
-
-
-
+- remove mra from demo file, remove mra from pslb config ([d3741e9](https://github.com/pie-framework/pie-lib/commit/d3741e9c4975e5ec54e9dd433a863e64bc1ee827))
 
 ## [8.1.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.11...@pie-lib/demo@8.1.12) (2025-01-08)
 
-
 ### Bug Fixes
 
-* implemented math rendering accessible with the imported package [PD-4527] ([a324d36](https://github.com/pie-framework/pie-lib/commit/a324d369333b42613ae0854b3ba38260e9fb443c))
-
-
-
-
+- implemented math rendering accessible with the imported package [PD-4527](<[a324d36](https://github.com/pie-framework/pie-lib/commit/a324d369333b42613ae0854b3ba38260e9fb443c)>)
 
 ## [8.1.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.10...@pie-lib/demo@8.1.11) (2025-01-06)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [8.1.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.9...@pie-lib/demo@8.1.10) (2024-12-19)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [8.1.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.8...@pie-lib/demo@8.1.9) (2024-12-10)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [8.1.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.7...@pie-lib/demo@8.1.8) (2024-12-05)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [8.1.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.6...@pie-lib/demo@8.1.7) (2024-11-29)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [8.1.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.5...@pie-lib/demo@8.1.6) (2024-11-15)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [8.1.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.4...@pie-lib/demo@8.1.5) (2024-11-15)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [8.1.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.3...@pie-lib/demo@8.1.4) (2024-11-15)
-
 
 ### Bug Fixes
 
-* revert usage of mml3 experimental plugin (added for PD-4319) to fix PD-4401, PD-4441 ([db2ce5f](https://github.com/pie-framework/pie-lib/commit/db2ce5f1066bb092d25be6c074cded3e7a7d085b))
-
-
-
-
+- revert usage of mml3 experimental plugin (added for PD-4319) to fix PD-4401, PD-4441 ([db2ce5f](https://github.com/pie-framework/pie-lib/commit/db2ce5f1066bb092d25be6c074cded3e7a7d085b))
 
 ## [8.1.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.2...@pie-lib/demo@8.1.3) (2024-11-01)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [8.1.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.1...@pie-lib/demo@8.1.2) (2024-11-01)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [8.1.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.0...@pie-lib/demo@8.1.1) (2024-10-30)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 # [8.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.0.15...@pie-lib/demo@8.1.0) (2024-10-29)
-
 
 ### Features
 
-* added ability to add css and span and div attributes handling [PD-1460] ([f0fc161](https://github.com/pie-framework/pie-lib/commit/f0fc161c4c6d41c798fa87d2453545eec6e5832f))
-* handle mml3 PD-4319 ([cbad571](https://github.com/pie-framework/pie-lib/commit/cbad571444d33748b8e52116a9638b02553c326b))
-
-
-
-
+- added ability to add css and span and div attributes handling [PD-1460](<[f0fc161](https://github.com/pie-framework/pie-lib/commit/f0fc161c4c6d41c798fa87d2453545eec6e5832f)>)
+- handle mml3 PD-4319 ([cbad571](https://github.com/pie-framework/pie-lib/commit/cbad571444d33748b8e52116a9638b02553c326b))
 
 ## [8.0.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.0.14...@pie-lib/demo@8.0.15) (2024-10-28)
 
-
 ### Bug Fixes
 
-* **graphing:** fix title not updating properly and investigate labels PD-4209 ([220a22f](https://github.com/pie-framework/pie-lib/commit/220a22f9c364add5fb15a410ca2968a539fbb138))
-* **graphing:** remove placeholder fix as it was updated in another PR PD-4209 ([1e5d67a](https://github.com/pie-framework/pie-lib/commit/1e5d67a4936672c5c20698be251ee28f4c66c46f))
-
-
-
-
+- **graphing:** fix title not updating properly and investigate labels PD-4209 ([220a22f](https://github.com/pie-framework/pie-lib/commit/220a22f9c364add5fb15a410ca2968a539fbb138))
+- **graphing:** remove placeholder fix as it was updated in another PR PD-4209 ([1e5d67a](https://github.com/pie-framework/pie-lib/commit/1e5d67a4936672c5c20698be251ee28f4c66c46f))
 
 ## [8.0.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.0.13...@pie-lib/demo@8.0.14) (2024-10-22)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [8.0.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.0.12...@pie-lib/demo@8.0.13) (2024-10-14)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [8.0.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.0.11...@pie-lib/demo@8.0.12) (2024-10-10)
-
 
 ### Bug Fixes
 
-* add MathJax v2 - v3 compatibility code PD-4241 ([351f4cf](https://github.com/pie-framework/pie-lib/commit/351f4cf0b4fd841a01afdb5b92969d48ccdc5b82))
-
-
-
-
+- add MathJax v2 - v3 compatibility code PD-4241 ([351f4cf](https://github.com/pie-framework/pie-lib/commit/351f4cf0b4fd841a01afdb5b92969d48ccdc5b82))
 
 ## [8.0.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.0.10...@pie-lib/demo@8.0.11) (2024-10-07)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [8.0.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.0.9...@pie-lib/demo@8.0.10) (2024-10-03)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [8.0.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.0.8...@pie-lib/demo@8.0.9) (2024-10-01)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [8.0.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.0.7...@pie-lib/demo@8.0.8) (2024-09-26)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [8.0.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.0.6...@pie-lib/demo@8.0.7) (2024-09-26)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [8.0.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.0.5...@pie-lib/demo@8.0.6) (2024-09-26)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [8.0.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.0.4...@pie-lib/demo@8.0.5) (2024-09-25)
-
 
 ### Bug Fixes
 
-* use head, not body ([9efd05b](https://github.com/pie-framework/pie-lib/commit/9efd05b48fd13cdec53af1aad41396d4fdfb5f96))
-
-
-
-
+- use head, not body ([9efd05b](https://github.com/pie-framework/pie-lib/commit/9efd05b48fd13cdec53af1aad41396d4fdfb5f96))
 
 ## [8.0.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.0.3...@pie-lib/demo@8.0.4) (2024-09-25)
 
-
 ### Bug Fixes
 
-* experiment with mra (overwriting mr instance with mra instance) ([bb9aa6c](https://github.com/pie-framework/pie-lib/commit/bb9aa6c0012b1bbd606f9af70c8913dc1a9af329))
-
-
-
-
+- experiment with mra (overwriting mr instance with mra instance) ([bb9aa6c](https://github.com/pie-framework/pie-lib/commit/bb9aa6c0012b1bbd606f9af70c8913dc1a9af329))
 
 ## [8.0.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.0.2...@pie-lib/demo@8.0.3) (2024-09-24)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [8.0.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.0.1...@pie-lib/demo@8.0.2) (2024-09-19)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [8.0.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.0.0...@pie-lib/demo@8.0.1) (2024-09-19)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 # [8.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.3.91...@pie-lib/demo@8.0.0) (2024-09-19)
-
 
 ### Features
 
-* major changes to math-rendering-accessible PD-3989, PD-4103, PD-3865 ([6f6f06c](https://github.com/pie-framework/pie-lib/commit/6f6f06c1235e55bc0b80642f75023b6ea745be8d))
-
+- major changes to math-rendering-accessible PD-3989, PD-4103, PD-3865 ([6f6f06c](https://github.com/pie-framework/pie-lib/commit/6f6f06c1235e55bc0b80642f75023b6ea745be8d))
 
 ### BREAKING CHANGES
 
-* big refactoring on the implementation of math-rendering-accessible
-
-
-
-
+- big refactoring on the implementation of math-rendering-accessible
 
 ## [7.3.91](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.3.90...@pie-lib/demo@7.3.91) (2024-09-19)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [7.3.90](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.3.89...@pie-lib/demo@7.3.90) (2024-09-18)
-
 
 ### Bug Fixes
 
-* handle the case when renderMath (MathJax) is used only for mmlOutput, and it was not yet initialised PD-4103 ([368c9bc](https://github.com/pie-framework/pie-lib/commit/368c9bc23363a30b914b4d9ba02ed6fa350169f3))
-
-
-
-
+- handle the case when renderMath (MathJax) is used only for mmlOutput, and it was not yet initialised PD-4103 ([368c9bc](https://github.com/pie-framework/pie-lib/commit/368c9bc23363a30b914b4d9ba02ed6fa350169f3))
 
 ## [7.3.89](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.3.88...@pie-lib/demo@7.3.89) (2024-09-16)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [7.3.88](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.3.87...@pie-lib/demo@7.3.88) (2024-09-16)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [7.3.87](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.3.86...@pie-lib/demo@7.3.87) (2024-09-10)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [7.3.86](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.3.85...@pie-lib/demo@7.3.86) (2024-09-10)
-
 
 ### Bug Fixes
 
-* table and lists buttons can not be disabled (discovered while implementing PD-4065) ([8d69c10](https://github.com/pie-framework/pie-lib/commit/8d69c108dedb624fb59825db63068f60759e06a3))
-
-
-
-
+- table and lists buttons can not be disabled (discovered while implementing PD-4065) ([8d69c10](https://github.com/pie-framework/pie-lib/commit/8d69c108dedb624fb59825db63068f60759e06a3))
 
 ## [7.3.85](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.3.84...@pie-lib/demo@7.3.85) (2024-09-04)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [7.3.84](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.3.83...@pie-lib/demo@7.3.84) (2024-09-03)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [7.3.83](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.3.82...@pie-lib/demo@7.3.83) (2024-09-03)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [7.3.82](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.3.81...@pie-lib/demo@7.3.82) (2024-08-29)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [7.3.81](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.3.80...@pie-lib/demo@7.3.81) (2024-08-29)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [7.3.80](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.3.79...@pie-lib/demo@7.3.80) (2024-08-27)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [7.3.79](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@7.3.78...@pie-lib/demo@7.3.79) (2024-08-22)
 

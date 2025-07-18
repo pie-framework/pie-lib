@@ -1,9 +1,6 @@
 import HtmlAndMath from '../html-and-math';
 import { shallow } from 'enzyme';
 import React from 'react';
-import { renderMath } from '../../math-rendering';
-
-jest.mock('../../math-rendering', () => ({ renderMath: jest.fn() }));
 
 describe('html-and-math', () => {
   const mkWrapper = (extras) => {
@@ -22,25 +19,6 @@ describe('html-and-math', () => {
       const w = mkWrapper();
 
       expect(w).toMatchSnapshot();
-    });
-  });
-
-  describe('componentDidMount', () => {
-    it('calls renderMath', () => {
-      const w = mkWrapper();
-      //mock the ref
-      w.instance().node = { node: true };
-      w.instance().componentDidMount();
-      expect(renderMath).toHaveBeenCalled();
-    });
-  });
-  describe('componentDidUpdate', () => {
-    it('calls renderMath', () => {
-      const w = mkWrapper();
-      //mock the ref
-      w.instance().node = { node: true };
-      w.instance().componentDidUpdate();
-      expect(renderMath).toHaveBeenCalled();
     });
   });
 });
