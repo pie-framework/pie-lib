@@ -40,14 +40,11 @@ class Dropdown extends React.Component {
     };
     this.hiddenRef = React.createRef();
     this.buttonRef = React.createRef();
+    this.previewRef = React.createRef();
     this.elementRefs = [];
   }
 
   componentDidMount() {
-    // render math on actual items
-    this.elementRefs.forEach((ref) => {
-      if (ref) renderMath(ref);
-    });
     // measure hidden menu width once
     if (this.hiddenRef.current && this.state.menuWidth === null) {
       this.setState({ menuWidth: this.hiddenRef.current.clientWidth });
@@ -63,6 +60,12 @@ class Dropdown extends React.Component {
       if (newWidth !== this.state.menuWidth) {
         this.setState({ menuWidth: newWidth });
       }
+    }
+
+    if (!isEqual(choices, prevProps.choices)) {
+      this.elementRefs.forEach((ref) => {
+        if (ref) renderMath(ref);
+      });
     }
   }
 
@@ -87,10 +90,23 @@ class Dropdown extends React.Component {
     this.handleClose();
   };
 
-  handleHover = (value, index) => {
+  handleHover = (index) => {
+    const selectedValue = this.props.value;
+
+    if (selectedValue) return;
+
     const highlightedOptionId = `dropdown-option-${this.props.id}-${index}`;
-    const previewValue = !this.props.value ? value : this.state.previewValue;
-    this.setState({ highlightedOptionId, previewValue });
+    const previewValue = this.state.previewValue;
+
+    this.setState({ highlightedOptionId, previewValue }, () => {
+      // On hover, preview the math-rendered content inside the button if no value is selected.
+      const ref = this.elementRefs[index];
+      const preview = this.previewRef.current;
+
+      if (ref && preview) {
+        preview.innerHTML = ref.innerHTML;
+      }
+    });
   };
 
   getLabel(choices, value) {
@@ -169,6 +185,7 @@ class Dropdown extends React.Component {
           {correctnessIcon}
           <span
             id={valueDisplayId}
+            ref={this.previewRef}
             className={classes.label}
             dangerouslySetInnerHTML={{
               __html: correctValue
@@ -209,7 +226,7 @@ class Dropdown extends React.Component {
                 onClick={() => this.handleSelect(c.value, index)}
                 role="option"
                 aria-selected={this.state.highlightedOptionId === optionId ? 'true' : undefined}
-                onMouseOver={() => this.handleHover(c.value, index)}
+                onMouseOver={() => this.handleHover(index)}
               >
                 <span
                   ref={(ref) => (this.elementRefs[index] = ref)}
