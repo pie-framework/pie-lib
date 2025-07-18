@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.2.24...@pie-lib/demo@8.3.0) (2025-07-18)
+
+
+### Features
+
+* **charting:** merge with develop, get rid of duplicated colors ([fce8ae8](https://github.com/pie-framework/pie-lib/commit/fce8ae8e8501d555a65c3ed88d6bdbbeb04fb9b2))
+
+
+
+
+
 ## [8.2.24](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.2.23...@pie-lib/demo@8.2.24) (2025-07-16)
 
 **Note:** Version bump only for package @pie-lib/demo
