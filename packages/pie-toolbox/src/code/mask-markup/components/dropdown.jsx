@@ -55,23 +55,35 @@ class Dropdown extends React.Component {
     // recalculate hidden menu width if available
     const { choices } = this.props;
 
+    if (!isEqual(choices, prevProps.choices)) {
+      this.elementRefs.forEach((ref) => {
+        if (ref) renderMath(ref);
+      });
+
+      // render math in the hidden menu
+      if (this.hiddenRef.current) {
+        renderMath(this.hiddenRef.current);
+      }
+    }
+
     if (this.hiddenRef.current && !isEqual(choices, prevProps.choices)) {
       const newWidth = this.hiddenRef.current.clientWidth;
       if (newWidth !== this.state.menuWidth) {
         this.setState({ menuWidth: newWidth });
       }
     }
-
-    if (!isEqual(choices, prevProps.choices)) {
-      this.elementRefs.forEach((ref) => {
-        if (ref) renderMath(ref);
-      });
-    }
   }
 
   handleClick = (event) => this.setState({ anchorEl: event.currentTarget });
 
-  handleClose = () => this.setState({ anchorEl: null, previewValue: null });
+  handleClose = () => {
+    const { value } = this.props;
+    this.setState({ anchorEl: null, previewValue: null, highlightedOptionId: null });
+    // clear displayed preview if no selection
+    if (!value && this.previewRef.current) {
+      this.previewRef.current.innerHTML = '';
+    }
+  };
 
   handleHighlight = (index) => {
     const highlightedOptionId = `dropdown-option-${this.props.id}-${index}`;
