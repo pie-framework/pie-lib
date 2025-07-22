@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.22.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.22.0...@pie-lib/pie-toolbox@2.22.1) (2025-07-22)
+
+
+### Bug Fixes
+
+* **dropdown:** improve dropdown rendering and state management PD-4885 ([b64c44f](https://github.com/pie-framework/pie-lib/commit/b64c44fa72b4d55900a18ce20baba7a995fdf5ec))
+
+
+
+
+
 # [2.22.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.21.0...@pie-lib/pie-toolbox@2.22.0) (2025-07-18)
 
 
