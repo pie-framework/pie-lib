@@ -52,23 +52,10 @@ class Dropdown extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    // recalculate hidden menu width if available
-    const { choices } = this.props;
+    const hiddenEl = this.hiddenRef.current;
 
-    // TODO: Calling renderMath here is not efficient,
-    // but it's currently the only way found to ensure correct width calculation
-    // for the new design introduced in PD-4885.
-    // If performance becomes an issue, this should be revisited and optimized.
-    this.elementRefs.forEach((ref) => {
-      if (ref) renderMath(ref);
-    });
-
-    // render math in the hidden menu
-    if (this.hiddenRef.current) {
-      renderMath(this.hiddenRef.current);
-    }
-
-    if (!prevState.anchorEl && this.state.anchorEl) {
+    const dropdownJustOpened = !prevState.anchorEl && this.state.anchorEl;
+    if (dropdownJustOpened) {
       this.elementRefs.forEach((ref) => {
         if (!ref) return;
 
@@ -76,16 +63,20 @@ class Dropdown extends React.Component {
         const hasMathJax = ref.querySelector('mjx-container');
         const mathHandled = ref.querySelector('[data-math-handled="true"]');
 
-        // Only render math if the ref looks like a math expression and it's not rendered yet
         if (containsLatex && (!mathHandled || !hasMathJax)) {
           renderMath(ref);
         }
       });
     }
 
-    if (this.hiddenRef.current && !isEqual(choices, prevProps.choices)) {
-      const newWidth = this.hiddenRef.current.clientWidth;
+    if (hiddenEl) {
+      const newWidth = hiddenEl.clientWidth;
       if (newWidth !== this.state.menuWidth) {
+        this.elementRefs.forEach((ref) => {
+          if (ref) renderMath(ref);
+        });
+
+        renderMath(hiddenEl);
         this.setState({ menuWidth: newWidth });
       }
     }
