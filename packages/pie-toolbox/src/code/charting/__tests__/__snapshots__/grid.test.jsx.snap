@@ -7,7 +7,7 @@ exports[`Grid snapshot renders 1`] = `
   <q
     lineStyle={
       Object {
-        "stroke": "#8E88EA",
+        "stroke": "var(--pie-faded-primary, #DCDAFB)",
         "strokeWidth": 1,
       }
     }
@@ -16,6 +16,12 @@ exports[`Grid snapshot renders 1`] = `
     width={400}
   />
   <q
+    lineStyle={
+      Object {
+        "stroke": "#8E88EA",
+        "strokeWidth": 1,
+      }
+    }
     scale={[MockFunction]}
     tickValues={Array []}
     width={400}
@@ -39,13 +45,19 @@ exports[`Grid snapshot renders if graphProps is not defined 1`] = `
   <q
     lineStyle={
       Object {
-        "stroke": "#8E88EA",
+        "stroke": "var(--pie-faded-primary, #DCDAFB)",
         "strokeWidth": 1,
       }
     }
     tickValues={Array []}
   />
   <q
+    lineStyle={
+      Object {
+        "stroke": "#8E88EA",
+        "strokeWidth": 1,
+      }
+    }
     tickValues={Array []}
   />
   <V
