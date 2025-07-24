@@ -44,11 +44,19 @@ export class Grid extends React.Component {
           width={size.width}
           tickValues={unlabeledLines}
           lineStyle={{
+            stroke: color.fadedPrimary(),
+            strokeWidth: 1,
+          }}
+        />
+        <GridRows
+          scale={scale.y}
+          width={size.width}
+          tickValues={labeledLines}
+          lineStyle={{
             stroke: color.visualElementsColors.GRIDLINES_COLOR,
             strokeWidth: 1,
           }}
         />
-        <GridRows scale={scale.y} width={size.width} tickValues={labeledLines} />
         <GridColumns scale={xBand} height={size.height} offset={xBand.bandwidth() / 2} tickValues={columnTickValues} />
       </g>
     );
