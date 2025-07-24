@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.22.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.22.1...@pie-lib/pie-toolbox@2.22.2) (2025-07-24)
+
+
+### Bug Fixes
+
+* **inline-dropdown:** improve math rendering logic and width calculation for PD-4885, PD-5131 ([6ff09ff](https://github.com/pie-framework/pie-lib/commit/6ff09ff765d463a8874e482a6ed0b73e63ceb064))
+* **inline-dropdown:** refactor, improve math rendering logic and width calculation for PD-4885, PD-5131 ([a332e10](https://github.com/pie-framework/pie-lib/commit/a332e105c5b4bb7f5a234f148f2783c4f91901fc))
+
+
+
+
+
 ## [2.22.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.22.0...@pie-lib/pie-toolbox@2.22.1) (2025-07-22)
 
 
