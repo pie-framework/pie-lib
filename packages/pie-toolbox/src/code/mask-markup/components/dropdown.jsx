@@ -51,24 +51,32 @@ class Dropdown extends React.Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
-    // recalculate hidden menu width if available
-    const { choices } = this.props;
+  componentDidUpdate(prevProps, prevState) {
+    const hiddenEl = this.hiddenRef.current;
 
-    if (!isEqual(choices, prevProps.choices)) {
+    const dropdownJustOpened = !prevState.anchorEl && this.state.anchorEl;
+    if (dropdownJustOpened) {
       this.elementRefs.forEach((ref) => {
-        if (ref) renderMath(ref);
-      });
+        if (!ref) return;
 
-      // render math in the hidden menu
-      if (this.hiddenRef.current) {
-        renderMath(this.hiddenRef.current);
-      }
+        const containsLatex = ref.querySelector('[data-latex], [data-raw]');
+        const hasMathJax = ref.querySelector('mjx-container');
+        const mathHandled = ref.querySelector('[data-math-handled="true"]');
+
+        if (containsLatex && (!mathHandled || !hasMathJax)) {
+          renderMath(ref);
+        }
+      });
     }
 
-    if (this.hiddenRef.current && !isEqual(choices, prevProps.choices)) {
-      const newWidth = this.hiddenRef.current.clientWidth;
+    if (hiddenEl) {
+      const newWidth = hiddenEl.clientWidth;
       if (newWidth !== this.state.menuWidth) {
+        this.elementRefs.forEach((ref) => {
+          if (ref) renderMath(ref);
+        });
+
+        renderMath(hiddenEl);
         this.setState({ menuWidth: newWidth });
       }
     }
