@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.22.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.22.2...@pie-lib/pie-toolbox@2.22.3) (2025-07-24)
+
+
+### Bug Fixes
+
+* **grid:** fix line style color grid rows pd-3797 ([ec24303](https://github.com/pie-framework/pie-lib/commit/ec24303d69bbed7e4c7abbd10e6411d8c690150b))
+
+
+
+
+
 ## [2.22.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.22.1...@pie-lib/pie-toolbox@2.22.2) (2025-07-24)
 
 
