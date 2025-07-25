@@ -78,7 +78,7 @@ export class RawLine extends React.Component {
   };
 
   render() {
-    const { graphProps, data, classes, CustomDraggableComponent, defineChart } = this.props;
+    const { graphProps, data, classes, CustomDraggableComponent, defineChart, correctData } = this.props;
     const { line: lineState, dragging } = this.state;
     const { scale } = graphProps;
     const lineToUse = dragging ? lineState : getData(data, graphProps.domain);
@@ -110,6 +110,8 @@ export class RawLine extends React.Component {
                 graphProps={graphProps}
                 CustomDraggableComponent={CustomDraggableComponent}
                 correctness={point.correctness}
+                correctData={correctData}
+                label={point.label}
               />
             );
           })}
