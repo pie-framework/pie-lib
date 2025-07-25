@@ -73,6 +73,12 @@ export class Chart extends React.Component {
     language: PropTypes.string,
     mathMlOptions: PropTypes.object,
     labelsCharactersLimit: PropTypes.number,
+    correctData: PropTypes.arrayOf(
+      PropTypes.shape({
+        label: PropTypes.string,
+        value: PropTypes.number,
+      }),
+    ),
   };
 
   static defaultProps = {
@@ -223,6 +229,7 @@ export class Chart extends React.Component {
       mathMlOptions = {},
       language,
       labelsCharactersLimit,
+      correctData,
     } = this.props;
     let { chartType } = this.props;
 
@@ -324,6 +331,7 @@ export class Chart extends React.Component {
               defineChart={defineChart}
               onChange={this.changeData}
               onChangeCategory={this.changeCategory}
+              correctData={correctData}
             />
           </g>
         </Root>

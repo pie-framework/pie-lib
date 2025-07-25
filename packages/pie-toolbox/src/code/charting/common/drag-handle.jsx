@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
+import Check from '@material-ui/icons/Check';
+import Close from '@material-ui/icons/Close';
+
 import { gridDraggable, utils, types } from '../../plot';
 import { color as enumColor } from '../../render-ui';
 import { correct, incorrect, disabled } from './styles';
@@ -55,20 +58,14 @@ const RawDragHandle = ({
         </filter>
       </defs>
 
-      {correctness && (
-        <rect
-          y={10}
-          width={width}
-          filter="url(#bottomShadow)"
-          className={classNames(
-            classes.handle,
-            'handle',
-            className,
-            !interactive && 'non-interactive',
-            interactive && correctness && correctness.value,
+      {correctness && interactive && (
+        <foreignObject x={width / 2 - 14} y={0} width={40} height={40}>
+          {correctness.value === 'correct' ? (
+            <Check className={classNames(classes.correctnessIcon, classes.correctIcon)} title={correctness.label} />
+          ) : (
+            <Close className={classNames(classes.correctnessIcon, classes.incorrectIcon)} title={correctness.label} />
           )}
-          {...rest}
-        />
+        </foreignObject>
       )}
     </svg>
   );
@@ -90,7 +87,7 @@ RawDragHandle.propTypes = {
   color: PropTypes.string,
 };
 
-export const DragHandle = withStyles(() => ({
+export const DragHandle = withStyles((theme) => ({
   handle: {
     height: '10px',
     fill: 'transparent',
@@ -117,6 +114,19 @@ export const DragHandle = withStyles(() => ({
   },
   svgOverflowVisible: {
     overflow: 'visible !important',
+  },
+  correctIcon: {
+    backgroundColor: enumColor.correct(),
+  },
+  incorrectIcon: {
+    backgroundColor: enumColor.incorrectWithIcon(),
+  },
+  correctnessIcon: {
+    borderRadius: theme.spacing.unit * 2,
+    color: enumColor.defaults.WHITE,
+    fontSize: '16px',
+    padding: '2px',
+    border: `4px solid ${enumColor.defaults.WHITE}`,
   },
 }))(RawDragHandle);
 
