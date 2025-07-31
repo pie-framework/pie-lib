@@ -3,48 +3,207 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.19.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.16...@pie-lib/demo@8.19.0) (2025-07-31)
+
+### Bug Fixes
+
+- made sure that a paragraph sign is added after every block [PD-4093](<[4b7203e](https://github.com/pie-framework/pie-lib/commit/4b7203ea7e4a928406b8693c51574b19b83b9f2f)>)
+- reverted paragraph indication [PD-4093](<[a541bed](https://github.com/pie-framework/pie-lib/commit/a541bedb9f4f6783d13f18b00005936a22c02a67)>)
+
+### Features
+
+- **charting:** merge with develop, get rid of duplicated colors ([fce8ae8](https://github.com/pie-framework/pie-lib/commit/fce8ae8e8501d555a65c3ed88d6bdbbeb04fb9b2))
+- show paragraph symbol only after line breaks [PD-4093](<[ec0db15](https://github.com/pie-framework/pie-lib/commit/ec0db15980b62036ec9feb86b5691c449c26fa10)>)
+
+# [8.18.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.16...@pie-lib/demo@8.18.0) (2025-07-31)
+
+### Bug Fixes
+
+- made sure that a paragraph sign is added after every block [PD-4093](<[4b7203e](https://github.com/pie-framework/pie-lib/commit/4b7203ea7e4a928406b8693c51574b19b83b9f2f)>)
+- reverted paragraph indication [PD-4093](<[a541bed](https://github.com/pie-framework/pie-lib/commit/a541bedb9f4f6783d13f18b00005936a22c02a67)>)
+
+### Features
+
+- **charting:** merge with develop, get rid of duplicated colors ([fce8ae8](https://github.com/pie-framework/pie-lib/commit/fce8ae8e8501d555a65c3ed88d6bdbbeb04fb9b2))
+- show paragraph symbol only after line breaks [PD-4093](<[ec0db15](https://github.com/pie-framework/pie-lib/commit/ec0db15980b62036ec9feb86b5691c449c26fa10)>)
+
+# [8.17.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.16...@pie-lib/demo@8.17.0) (2025-07-31)
+
+### Bug Fixes
+
+- made sure that a paragraph sign is added after every block [PD-4093](<[4b7203e](https://github.com/pie-framework/pie-lib/commit/4b7203ea7e4a928406b8693c51574b19b83b9f2f)>)
+- reverted paragraph indication [PD-4093](<[a541bed](https://github.com/pie-framework/pie-lib/commit/a541bedb9f4f6783d13f18b00005936a22c02a67)>)
+
+### Features
+
+- **charting:** merge with develop, get rid of duplicated colors ([fce8ae8](https://github.com/pie-framework/pie-lib/commit/fce8ae8e8501d555a65c3ed88d6bdbbeb04fb9b2))
+- show paragraph symbol only after line breaks [PD-4093](<[ec0db15](https://github.com/pie-framework/pie-lib/commit/ec0db15980b62036ec9feb86b5691c449c26fa10)>)
+
+# [8.16.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.16...@pie-lib/demo@8.16.0) (2025-07-31)
+
+### Bug Fixes
+
+- made sure that a paragraph sign is added after every block [PD-4093](<[4b7203e](https://github.com/pie-framework/pie-lib/commit/4b7203ea7e4a928406b8693c51574b19b83b9f2f)>)
+- reverted paragraph indication [PD-4093](<[a541bed](https://github.com/pie-framework/pie-lib/commit/a541bedb9f4f6783d13f18b00005936a22c02a67)>)
+
+### Features
+
+- **charting:** merge with develop, get rid of duplicated colors ([fce8ae8](https://github.com/pie-framework/pie-lib/commit/fce8ae8e8501d555a65c3ed88d6bdbbeb04fb9b2))
+- show paragraph symbol only after line breaks [PD-4093](<[ec0db15](https://github.com/pie-framework/pie-lib/commit/ec0db15980b62036ec9feb86b5691c449c26fa10)>)
+
+# [8.15.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.16...@pie-lib/demo@8.15.0) (2025-07-31)
+
+### Bug Fixes
+
+- made sure that a paragraph sign is added after every block [PD-4093](<[4b7203e](https://github.com/pie-framework/pie-lib/commit/4b7203ea7e4a928406b8693c51574b19b83b9f2f)>)
+- reverted paragraph indication [PD-4093](<[a541bed](https://github.com/pie-framework/pie-lib/commit/a541bedb9f4f6783d13f18b00005936a22c02a67)>)
+
+### Features
+
+- **charting:** merge with develop, get rid of duplicated colors ([fce8ae8](https://github.com/pie-framework/pie-lib/commit/fce8ae8e8501d555a65c3ed88d6bdbbeb04fb9b2))
+- show paragraph symbol only after line breaks [PD-4093](<[ec0db15](https://github.com/pie-framework/pie-lib/commit/ec0db15980b62036ec9feb86b5691c449c26fa10)>)
+
+# [8.14.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.16...@pie-lib/demo@8.14.0) (2025-07-31)
+
+### Bug Fixes
+
+- made sure that a paragraph sign is added after every block [PD-4093](<[4b7203e](https://github.com/pie-framework/pie-lib/commit/4b7203ea7e4a928406b8693c51574b19b83b9f2f)>)
+- reverted paragraph indication [PD-4093](<[a541bed](https://github.com/pie-framework/pie-lib/commit/a541bedb9f4f6783d13f18b00005936a22c02a67)>)
+
+### Features
+
+- **charting:** merge with develop, get rid of duplicated colors ([fce8ae8](https://github.com/pie-framework/pie-lib/commit/fce8ae8e8501d555a65c3ed88d6bdbbeb04fb9b2))
+- show paragraph symbol only after line breaks [PD-4093](<[ec0db15](https://github.com/pie-framework/pie-lib/commit/ec0db15980b62036ec9feb86b5691c449c26fa10)>)
+
+# [8.13.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.16...@pie-lib/demo@8.13.0) (2025-07-31)
+
+### Bug Fixes
+
+- made sure that a paragraph sign is added after every block [PD-4093](<[4b7203e](https://github.com/pie-framework/pie-lib/commit/4b7203ea7e4a928406b8693c51574b19b83b9f2f)>)
+- reverted paragraph indication [PD-4093](<[a541bed](https://github.com/pie-framework/pie-lib/commit/a541bedb9f4f6783d13f18b00005936a22c02a67)>)
+
+### Features
+
+- **charting:** merge with develop, get rid of duplicated colors ([fce8ae8](https://github.com/pie-framework/pie-lib/commit/fce8ae8e8501d555a65c3ed88d6bdbbeb04fb9b2))
+- show paragraph symbol only after line breaks [PD-4093](<[ec0db15](https://github.com/pie-framework/pie-lib/commit/ec0db15980b62036ec9feb86b5691c449c26fa10)>)
+
+# [8.12.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.16...@pie-lib/demo@8.12.0) (2025-07-31)
+
+### Bug Fixes
+
+- made sure that a paragraph sign is added after every block [PD-4093](<[4b7203e](https://github.com/pie-framework/pie-lib/commit/4b7203ea7e4a928406b8693c51574b19b83b9f2f)>)
+- reverted paragraph indication [PD-4093](<[a541bed](https://github.com/pie-framework/pie-lib/commit/a541bedb9f4f6783d13f18b00005936a22c02a67)>)
+
+### Features
+
+- **charting:** merge with develop, get rid of duplicated colors ([fce8ae8](https://github.com/pie-framework/pie-lib/commit/fce8ae8e8501d555a65c3ed88d6bdbbeb04fb9b2))
+- show paragraph symbol only after line breaks [PD-4093](<[ec0db15](https://github.com/pie-framework/pie-lib/commit/ec0db15980b62036ec9feb86b5691c449c26fa10)>)
+
+# [8.11.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.16...@pie-lib/demo@8.11.0) (2025-07-31)
+
+### Bug Fixes
+
+- made sure that a paragraph sign is added after every block [PD-4093](<[4b7203e](https://github.com/pie-framework/pie-lib/commit/4b7203ea7e4a928406b8693c51574b19b83b9f2f)>)
+- reverted paragraph indication [PD-4093](<[a541bed](https://github.com/pie-framework/pie-lib/commit/a541bedb9f4f6783d13f18b00005936a22c02a67)>)
+
+### Features
+
+- **charting:** merge with develop, get rid of duplicated colors ([fce8ae8](https://github.com/pie-framework/pie-lib/commit/fce8ae8e8501d555a65c3ed88d6bdbbeb04fb9b2))
+- show paragraph symbol only after line breaks [PD-4093](<[ec0db15](https://github.com/pie-framework/pie-lib/commit/ec0db15980b62036ec9feb86b5691c449c26fa10)>)
+
+# [8.10.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.16...@pie-lib/demo@8.10.0) (2025-07-31)
+
+### Bug Fixes
+
+- made sure that a paragraph sign is added after every block [PD-4093](<[4b7203e](https://github.com/pie-framework/pie-lib/commit/4b7203ea7e4a928406b8693c51574b19b83b9f2f)>)
+- reverted paragraph indication [PD-4093](<[a541bed](https://github.com/pie-framework/pie-lib/commit/a541bedb9f4f6783d13f18b00005936a22c02a67)>)
+
+### Features
+
+- **charting:** merge with develop, get rid of duplicated colors ([fce8ae8](https://github.com/pie-framework/pie-lib/commit/fce8ae8e8501d555a65c3ed88d6bdbbeb04fb9b2))
+- show paragraph symbol only after line breaks [PD-4093](<[ec0db15](https://github.com/pie-framework/pie-lib/commit/ec0db15980b62036ec9feb86b5691c449c26fa10)>)
+
+# [8.9.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.16...@pie-lib/demo@8.9.0) (2025-07-31)
+
+### Bug Fixes
+
+- made sure that a paragraph sign is added after every block [PD-4093](<[4b7203e](https://github.com/pie-framework/pie-lib/commit/4b7203ea7e4a928406b8693c51574b19b83b9f2f)>)
+- reverted paragraph indication [PD-4093](<[a541bed](https://github.com/pie-framework/pie-lib/commit/a541bedb9f4f6783d13f18b00005936a22c02a67)>)
+
+### Features
+
+- **charting:** merge with develop, get rid of duplicated colors ([fce8ae8](https://github.com/pie-framework/pie-lib/commit/fce8ae8e8501d555a65c3ed88d6bdbbeb04fb9b2))
+- show paragraph symbol only after line breaks [PD-4093](<[ec0db15](https://github.com/pie-framework/pie-lib/commit/ec0db15980b62036ec9feb86b5691c449c26fa10)>)
+
+# [8.8.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.16...@pie-lib/demo@8.8.0) (2025-07-31)
+
+### Bug Fixes
+
+- made sure that a paragraph sign is added after every block [PD-4093](<[4b7203e](https://github.com/pie-framework/pie-lib/commit/4b7203ea7e4a928406b8693c51574b19b83b9f2f)>)
+- reverted paragraph indication [PD-4093](<[a541bed](https://github.com/pie-framework/pie-lib/commit/a541bedb9f4f6783d13f18b00005936a22c02a67)>)
+
+### Features
+
+- **charting:** merge with develop, get rid of duplicated colors ([fce8ae8](https://github.com/pie-framework/pie-lib/commit/fce8ae8e8501d555a65c3ed88d6bdbbeb04fb9b2))
+- show paragraph symbol only after line breaks [PD-4093](<[ec0db15](https://github.com/pie-framework/pie-lib/commit/ec0db15980b62036ec9feb86b5691c449c26fa10)>)
+
+# [8.7.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.16...@pie-lib/demo@8.7.0) (2025-07-31)
+
+### Bug Fixes
+
+- made sure that a paragraph sign is added after every block [PD-4093](<[4b7203e](https://github.com/pie-framework/pie-lib/commit/4b7203ea7e4a928406b8693c51574b19b83b9f2f)>)
+- reverted paragraph indication [PD-4093](<[a541bed](https://github.com/pie-framework/pie-lib/commit/a541bedb9f4f6783d13f18b00005936a22c02a67)>)
+
+### Features
+
+- **charting:** merge with develop, get rid of duplicated colors ([fce8ae8](https://github.com/pie-framework/pie-lib/commit/fce8ae8e8501d555a65c3ed88d6bdbbeb04fb9b2))
+- show paragraph symbol only after line breaks [PD-4093](<[ec0db15](https://github.com/pie-framework/pie-lib/commit/ec0db15980b62036ec9feb86b5691c449c26fa10)>)
+
+# [8.6.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.16...@pie-lib/demo@8.6.0) (2025-07-31)
+
+### Bug Fixes
+
+- made sure that a paragraph sign is added after every block [PD-4093](<[4b7203e](https://github.com/pie-framework/pie-lib/commit/4b7203ea7e4a928406b8693c51574b19b83b9f2f)>)
+- reverted paragraph indication [PD-4093](<[a541bed](https://github.com/pie-framework/pie-lib/commit/a541bedb9f4f6783d13f18b00005936a22c02a67)>)
+
+### Features
+
+- **charting:** merge with develop, get rid of duplicated colors ([fce8ae8](https://github.com/pie-framework/pie-lib/commit/fce8ae8e8501d555a65c3ed88d6bdbbeb04fb9b2))
+- show paragraph symbol only after line breaks [PD-4093](<[ec0db15](https://github.com/pie-framework/pie-lib/commit/ec0db15980b62036ec9feb86b5691c449c26fa10)>)
+
+# [8.5.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.16...@pie-lib/demo@8.5.0) (2025-07-31)
+
+### Bug Fixes
+
+- made sure that a paragraph sign is added after every block [PD-4093](<[4b7203e](https://github.com/pie-framework/pie-lib/commit/4b7203ea7e4a928406b8693c51574b19b83b9f2f)>)
+- reverted paragraph indication [PD-4093](<[a541bed](https://github.com/pie-framework/pie-lib/commit/a541bedb9f4f6783d13f18b00005936a22c02a67)>)
+
+### Features
+
+- **charting:** merge with develop, get rid of duplicated colors ([fce8ae8](https://github.com/pie-framework/pie-lib/commit/fce8ae8e8501d555a65c3ed88d6bdbbeb04fb9b2))
+- show paragraph symbol only after line breaks [PD-4093](<[ec0db15](https://github.com/pie-framework/pie-lib/commit/ec0db15980b62036ec9feb86b5691c449c26fa10)>)
+
 ## [8.3.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.3.2...@pie-lib/demo@8.3.3) (2025-07-24)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [8.3.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.3.1...@pie-lib/demo@8.3.2) (2025-07-24)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [8.3.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.3.0...@pie-lib/demo@8.3.1) (2025-07-22)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 # [8.3.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.2.24...@pie-lib/demo@8.3.0) (2025-07-18)
-
 
 ### Features
 
-* **charting:** merge with develop, get rid of duplicated colors ([fce8ae8](https://github.com/pie-framework/pie-lib/commit/fce8ae8e8501d555a65c3ed88d6bdbbeb04fb9b2))
-
-
-
-
+- **charting:** merge with develop, get rid of duplicated colors ([fce8ae8](https://github.com/pie-framework/pie-lib/commit/fce8ae8e8501d555a65c3ed88d6bdbbeb04fb9b2))
 
 ## [8.2.24](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.2.23...@pie-lib/demo@8.2.24) (2025-07-16)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [8.2.23](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.2.22...@pie-lib/demo@8.2.23) (2025-07-11)
 

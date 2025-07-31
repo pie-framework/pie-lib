@@ -1,0 +1,33 @@
+{
+  "name": "@pie-lib/config-ui",
+  "version": "11.17.0",
+  "main": "lib/index.js",
+  "module": "src/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {},
+  "dependencies": {
+    "@material-ui/core": "^3.8.3",
+    "@material-ui/icons": "^3.0.2",
+    "@pie-lib/editable-html": "^11.9.0",
+    "@pie-lib/icons": "^2.12.0",
+    "@pie-lib/render-ui": "^4.23.0",
+    "assert": "^1.4.1",
+    "classnames": "^2.2.6",
+    "complex.js": "2.1.1",
+    "debug": "^4.1.1",
+    "lodash": "^4.17.11",
+    "mathjs": "^7.0.1",
+    "prop-types": "^15.6.2",
+    "react-measure": "^2.2.2"
+  },
+  "devDependencies": {
+    "react": "^16.8.1",
+    "react-dom": "^16.9.0"
+  },
+  "peerDependencies": {
+    "react": "^16.8.1"
+  },
+  "gitHead": "889a13bfea2c768b8a3a6eabfc6fe7b7725aa832"
+}
