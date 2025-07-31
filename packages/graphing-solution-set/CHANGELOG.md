@@ -1,0 +1,144 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# 2.22.0 (2025-07-31)
+
+**Note:** Version bump only for package @pie-lib/graphing-solution-set
+
+# 2.21.0 (2025-07-31)
+
+**Note:** Version bump only for package @pie-lib/graphing-solution-set
+
+# 2.20.0 (2025-07-31)
+
+**Note:** Version bump only for package @pie-lib/graphing-solution-set
+
+# 2.19.0 (2025-07-31)
+
+**Note:** Version bump only for package @pie-lib/graphing-solution-set
+
+# 2.18.0 (2025-07-31)
+
+**Note:** Version bump only for package @pie-lib/graphing-solution-set
+
+# 2.17.0 (2025-07-31)
+
+**Note:** Version bump only for package @pie-lib/graphing-solution-set
+
+# 2.19.0 (2025-07-31)
+
+**Note:** Version bump only for package @pie-lib/graphing-solution-set
+
+# 2.18.0 (2025-07-31)
+
+**Note:** Version bump only for package @pie-lib/graphing-solution-set
+
+# 2.17.0 (2025-07-31)
+
+**Note:** Version bump only for package @pie-lib/graphing-solution-set
+
+# 2.18.0 (2025-07-31)
+
+**Note:** Version bump only for package @pie-lib/graphing-solution-set
+
+# 2.17.0 (2025-07-31)
+
+**Note:** Version bump only for package @pie-lib/graphing-solution-set
+
+# 2.16.0 (2025-07-31)
+
+**Note:** Version bump only for package @pie-lib/graphing-solution-set
+
+# 2.16.0 (2025-07-31)
+
+**Note:** Version bump only for package @pie-lib/graphing-solution-set
+
+# 2.17.0 (2025-07-31)
+
+**Note:** Version bump only for package @pie-lib/graphing-solution-set
+
+# 2.16.0 (2025-07-31)
+
+**Note:** Version bump only for package @pie-lib/graphing-solution-set
+
+# 2.15.0-beta.8 (2025-07-25)
+
+**Note:** Version bump only for package @pie-lib/graphing-solution-set
+
+# 2.15.0-beta.7 (2025-07-25)
+
+**Note:** Version bump only for package @pie-lib/graphing-solution-set
+
+# 2.15.0-beta.7 (2025-07-25)
+
+**Note:** Version bump only for package @pie-lib/graphing-solution-set
+
+# 2.15.0-beta.6 (2025-07-25)
+
+**Note:** Version bump only for package @pie-lib/graphing-solution-set
+
+# 2.15.0-beta.6 (2025-07-25)
+
+**Note:** Version bump only for package @pie-lib/graphing-solution-set
+
+# 2.15.0-beta.5 (2025-07-25)
+
+**Note:** Version bump only for package @pie-lib/graphing-solution-set
+
+# 2.15.0-beta.5 (2025-07-25)
+
+**Note:** Version bump only for package @pie-lib/graphing-solution-set
+
+# 2.15.0-beta.4 (2025-07-25)
+
+**Note:** Version bump only for package @pie-lib/graphing-solution-set
+
+# 2.15.0-beta.3 (2025-07-25)
+
+**Note:** Version bump only for package @pie-lib/graphing-solution-set
+
+# 2.15.0-beta.4 (2025-07-23)
+
+**Note:** Version bump only for package @pie-lib/graphing-solution-set
+
+# 2.15.0-beta.3 (2025-07-23)
+
+**Note:** Version bump only for package @pie-lib/graphing-solution-set
+
+# 2.15.0-beta.3 (2025-07-20)
+
+**Note:** Version bump only for package @pie-lib/graphing-solution-set
+
+# 2.15.0-beta.2 (2025-07-20)
+
+**Note:** Version bump only for package @pie-lib/graphing-solution-set
+
+# 2.15.0-beta.1 (2025-07-20)
+
+**Note:** Version bump only for package @pie-lib/graphing-solution-set
+
+# 2.15.0-beta.2 (2025-07-20)
+
+**Note:** Version bump only for package @pie-lib/graphing-solution-set
+
+# 2.15.0-beta.1 (2025-07-20)
+
+**Note:** Version bump only for package @pie-lib/graphing-solution-set
+
+# 2.15.0-beta.1 (2025-07-20)
+
+**Note:** Version bump only for package @pie-lib/graphing-solution-set
+
+# 2.15.0-beta.0 (2025-07-20)
+
+**Note:** Version bump only for package @pie-lib/graphing-solution-set
+
+# 2.16.0-beta.0 (2025-07-15)
+
+**Note:** Version bump only for package @pie-lib/graphing-solution-set
+
+# 2.15.0-beta.0 (2025-07-15)
+
+**Note:** Version bump only for package @pie-lib/graphing-solution-set

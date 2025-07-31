@@ -1,0 +1,14 @@
+{
+  "name": "@pie-lib/style-utils",
+  "version": "0.9.0",
+  "description": "",
+  "main": "lib/index.js",
+  "module": "src/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {},
+  "author": "",
+  "license": "ISC",
+  "gitHead": "889a13bfea2c768b8a3a6eabfc6fe7b7725aa832"
+}

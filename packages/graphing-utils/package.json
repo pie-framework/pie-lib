@@ -1,0 +1,19 @@
+{
+  "name": "@pie-lib/graphing-utils",
+  "version": "1.9.0",
+  "description": "",
+  "main": "lib/index.js",
+  "module": "src/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@mapbox/point-geometry": "^0.1.0",
+    "debug": "^4.1.1",
+    "lodash": "^4.17.11"
+  },
+  "gitHead": "889a13bfea2c768b8a3a6eabfc6fe7b7725aa832",
+  "scripts": {}
+}

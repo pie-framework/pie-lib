@@ -4,14 +4,21 @@ const argv = require('minimist')(process.argv.slice(2));
 const debug = require('debug');
 const fs = require('fs-extra');
 const { processFix, watch } = require('@pie-framework/build-helper');
+const { spawn } = require("child_process");
 const log = debug('@pie-lib:scripts:watch');
 
 let watcher = null;
+let libWatcherProcess = null;
 
 processFix(log, () => {
   if (watcher) {
     watcher.exit();
   }
+
+  if (libWatcherProcess) {
+    libWatcherProcess.kill();
+  }
+
   process.exit();
 });
 
@@ -25,10 +32,14 @@ const run = async () => {
   log('scope: ', scope);
   const args = scope.map(s => ({
     src: `packages/${s}/src`,
-    target: `packages/${s}/`
+    target: `packages/${s}/lib`
   }));
 
   watcher = watch(args);
+  libWatcherProcess = spawn('node', ['scripts/watch-lib-changes.js'], {
+    stdio: 'inherit',
+    env: process.env
+  });
 };
 
 run()

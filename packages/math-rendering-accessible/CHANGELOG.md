@@ -1,0 +1,144 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# 3.10.0 (2025-07-31)
+
+**Note:** Version bump only for package @pie-lib/math-rendering-accessible
+
+# 3.9.0 (2025-07-31)
+
+**Note:** Version bump only for package @pie-lib/math-rendering-accessible
+
+# 3.8.0 (2025-07-31)
+
+**Note:** Version bump only for package @pie-lib/math-rendering-accessible
+
+# 3.7.0 (2025-07-31)
+
+**Note:** Version bump only for package @pie-lib/math-rendering-accessible
+
+# 3.6.0 (2025-07-31)
+
+**Note:** Version bump only for package @pie-lib/math-rendering-accessible
+
+# 3.5.0 (2025-07-31)
+
+**Note:** Version bump only for package @pie-lib/math-rendering-accessible
+
+# 3.7.0 (2025-07-31)
+
+**Note:** Version bump only for package @pie-lib/math-rendering-accessible
+
+# 3.6.0 (2025-07-31)
+
+**Note:** Version bump only for package @pie-lib/math-rendering-accessible
+
+# 3.5.0 (2025-07-31)
+
+**Note:** Version bump only for package @pie-lib/math-rendering-accessible
+
+# 3.6.0 (2025-07-31)
+
+**Note:** Version bump only for package @pie-lib/math-rendering-accessible
+
+# 3.5.0 (2025-07-31)
+
+**Note:** Version bump only for package @pie-lib/math-rendering-accessible
+
+# 3.4.0 (2025-07-31)
+
+**Note:** Version bump only for package @pie-lib/math-rendering-accessible
+
+# 3.4.0 (2025-07-31)
+
+**Note:** Version bump only for package @pie-lib/math-rendering-accessible
+
+# 3.5.0 (2025-07-31)
+
+**Note:** Version bump only for package @pie-lib/math-rendering-accessible
+
+# 3.4.0 (2025-07-31)
+
+**Note:** Version bump only for package @pie-lib/math-rendering-accessible
+
+# 3.3.0-beta.8 (2025-07-25)
+
+**Note:** Version bump only for package @pie-lib/math-rendering-accessible
+
+# 3.3.0-beta.7 (2025-07-25)
+
+**Note:** Version bump only for package @pie-lib/math-rendering-accessible
+
+# 3.3.0-beta.7 (2025-07-25)
+
+**Note:** Version bump only for package @pie-lib/math-rendering-accessible
+
+# 3.3.0-beta.6 (2025-07-25)
+
+**Note:** Version bump only for package @pie-lib/math-rendering-accessible
+
+# 3.3.0-beta.6 (2025-07-25)
+
+**Note:** Version bump only for package @pie-lib/math-rendering-accessible
+
+# 3.3.0-beta.5 (2025-07-25)
+
+**Note:** Version bump only for package @pie-lib/math-rendering-accessible
+
+# 3.3.0-beta.5 (2025-07-25)
+
+**Note:** Version bump only for package @pie-lib/math-rendering-accessible
+
+# 3.3.0-beta.4 (2025-07-25)
+
+**Note:** Version bump only for package @pie-lib/math-rendering-accessible
+
+# 3.3.0-beta.3 (2025-07-25)
+
+**Note:** Version bump only for package @pie-lib/math-rendering-accessible
+
+# 3.3.0-beta.4 (2025-07-23)
+
+**Note:** Version bump only for package @pie-lib/math-rendering-accessible
+
+# 3.3.0-beta.3 (2025-07-23)
+
+**Note:** Version bump only for package @pie-lib/math-rendering-accessible
+
+# 3.3.0-beta.3 (2025-07-20)
+
+**Note:** Version bump only for package @pie-lib/math-rendering-accessible
+
+# 3.3.0-beta.2 (2025-07-20)
+
+**Note:** Version bump only for package @pie-lib/math-rendering-accessible
+
+# 3.3.0-beta.1 (2025-07-20)
+
+**Note:** Version bump only for package @pie-lib/math-rendering-accessible
+
+# 3.3.0-beta.2 (2025-07-20)
+
+**Note:** Version bump only for package @pie-lib/math-rendering-accessible
+
+# 3.3.0-beta.1 (2025-07-20)
+
+**Note:** Version bump only for package @pie-lib/math-rendering-accessible
+
+# 3.3.0-beta.1 (2025-07-20)
+
+**Note:** Version bump only for package @pie-lib/math-rendering-accessible
+
+# 3.3.0-beta.0 (2025-07-20)
+
+**Note:** Version bump only for package @pie-lib/math-rendering-accessible
+
+# 3.4.0-beta.0 (2025-07-15)
+
+**Note:** Version bump only for package @pie-lib/math-rendering-accessible
+
+# 3.3.0-beta.0 (2025-07-15)
+
+**Note:** Version bump only for package @pie-lib/math-rendering-accessible
