@@ -8,7 +8,7 @@ import { color } from '../../../render-ui';
 import { dataToXBand } from '../utils';
 import { types } from '../../plot';
 import RawLine from './common/line';
-import { CorrectnessIndicator, SmallCorrectPointIndicator } from './common/correctness-indicators';
+import { CorrectnessIndicator, SmallCorrectPointIndicator } from '../common/correctness-indicators';
 
 const DraggableComponent = (props) => {
   const { classes = {}, className, scale, x, y, r, correctness, interactive, correctData, label, ...rest } = props;

@@ -5,12 +5,12 @@ import Close from '@material-ui/icons/Close';
 
 export const CorrectnessIndicator = ({ scale, x, y, classes, r, correctness, interactive }) => {
   if (!correctness || !interactive) return null;
-  const cx = scale.x(x);
-  const cy = scale.y(y);
+  const cx = scale ? scale.x(x) : x;
+  const cy = scale ? scale.y(y) : y;
   const isCorrect = correctness.value === 'correct';
   const iconClass = isCorrect ? classes.correctIcon : classes.incorrectIcon;
 
-  // The icon is 16px + 2px padding + 1px border, so total size is 22px
+  // the icon is 16px + 2px padding + 1px border, so total size is 22px
   return (
     <foreignObject x={cx - 11} y={cy - 11} width={22} height={22}>
       {isCorrect ? (
@@ -42,4 +42,14 @@ export const SmallCorrectPointIndicator = ({ scale, x, r, correctness, classes, 
   }
 
   return null;
+};
+
+export const TickCorrectnessIndicator = ({ classes, correctness, interactive }) => {
+  if (!correctness || !interactive) return null;
+
+  return correctness.value === 'correct' ? (
+    <Check className={classNames(classes.correctnessIcon, classes.correctIcon)} title={correctness.label} />
+  ) : (
+    <Close className={classNames(classes.correctnessIcon, classes.incorrectIcon)} title={correctness.label} />
+  );
 };

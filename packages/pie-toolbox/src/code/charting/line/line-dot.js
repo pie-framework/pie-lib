@@ -6,7 +6,7 @@ import { types } from '../../plot';
 import { color } from '../../render-ui';
 import { dataToXBand } from '../utils';
 import RawLine from './common/line';
-import { CorrectnessIndicator, SmallCorrectPointIndicator } from './common/correctness-indicators';
+import { CorrectnessIndicator, SmallCorrectPointIndicator } from '../common/correctness-indicators';
 
 const DraggableComponent = ({
   scale,

@@ -23,6 +23,7 @@ const RawDragHandle = ({
   isHovered,
   correctness,
   color,
+  isPlot,
   ...rest
 }) => {
   const { scale } = graphProps;
@@ -58,7 +59,7 @@ const RawDragHandle = ({
         </filter>
       </defs>
 
-      {correctness && interactive && (
+      {correctness && interactive && !isPlot && (
         <foreignObject x={width / 2 - 14} y={0} width={40} height={40}>
           {correctness.value === 'correct' ? (
             <Check className={classNames(classes.correctnessIcon, classes.correctIcon)} title={correctness.label} />

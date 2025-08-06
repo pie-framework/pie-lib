@@ -307,6 +307,7 @@ export class Chart extends React.Component {
             changeEditableEnabled={changeEditableEnabled}
             top={top}
             error={error}
+            showCorrectness={chartType === 'linePlot' || chartType === 'dotPlot'}
           />
           {addCategoryEnabled ? (
             <foreignObject x={width - 8} y={height - 8} width={100} height={40}>
