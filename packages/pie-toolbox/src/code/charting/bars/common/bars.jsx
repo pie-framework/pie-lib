@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { types } from '../../../plot';
 import { Group } from '@vx/group';
-import { color } from '../../../render-ui';
 import { Bar as VxBar } from '@vx/shape';
 import { withStyles } from '@material-ui/core/styles/index';
+import Check from '@material-ui/icons/Check';
 import debug from 'debug';
+
+import { color } from '../../../render-ui';
+import { types } from '../../../plot';
 import { bandKey } from '../../utils';
 import DraggableHandle, { DragHandle } from '../../common/drag-handle';
 
@@ -64,6 +66,7 @@ export class RawBar extends React.Component {
       value: PropTypes.string,
       label: PropTypes.string,
     }),
+    correctData: PropTypes.array,
   };
 
   constructor(props) {
@@ -144,6 +147,7 @@ export class RawBar extends React.Component {
       correctness,
       barColor,
       defineChart,
+      correctData,
     } = this.props;
     const { scale, range } = graphProps;
     const { dragValue, isHovered } = this.state;
@@ -156,6 +160,7 @@ export class RawBar extends React.Component {
     const barX = xBand(bandKey({ label }, index));
     const rawY = range.max - v;
     const yy = range.max - rawY;
+    const correctValue = correctData ? correctData.find((d) => d.label === label) : null;
     log('label:', label, 'barX:', barX, 'v: ', v, 'barHeight:', barHeight, 'barWidth: ', barWidth);
 
     const Component = interactive ? DraggableHandle : DragHandle;
@@ -176,6 +181,39 @@ export class RawBar extends React.Component {
           className={classes.bar}
           style={{ fill: fillColor }}
         />
+        {correctness &&
+          correctness.value === 'incorrect' &&
+          (() => {
+            const correctVal = parseFloat(correctValue.value);
+            if (isNaN(correctVal)) return null;
+            const correctPxHeight = scale.y(range.max - correctVal);
+            const actualPxHeight = barHeight;
+            const diffPx = Math.abs(correctPxHeight - actualPxHeight);
+            const yDiff = scale.y(correctVal);
+            const barColor = correctPxHeight > actualPxHeight ? color.borderGray() : color.defaults.WHITE;
+            const yToRender = correctPxHeight > actualPxHeight ? yDiff : yDiff - diffPx;
+
+            return (
+              <>
+                <VxBar
+                  x={barX + 2} // add 2px for the stroke (the dashed border)
+                  y={yToRender}
+                  width={barWidth - 4} // substract 4px for the total stroke
+                  height={diffPx}
+                  className={classes.bar}
+                  style={{
+                    stroke: barColor,
+                    strokeWidth: 2,
+                    strokeDasharray: '5,2',
+                    fill: 'none',
+                  }}
+                />
+                <foreignObject x={barX + barWidth / 2 - 8} y={yDiff - 8} width={16} height={16}>
+                  <Check className={classes.correctIcon} title={correctness.label} />
+                </foreignObject>
+              </>
+            );
+          })()}
         <Component
           x={barX}
           y={v}
@@ -194,15 +232,24 @@ export class RawBar extends React.Component {
   }
 }
 
-const Bar = withStyles(() => ({
+const Bar = withStyles((theme) => ({
   bar: {
     fill: color.defaults.TERTIARY,
+  },
+  correctIcon: {
+    backgroundColor: color.correct(),
+    borderRadius: theme.spacing.unit * 2,
+    color: color.defaults.WHITE,
+    fontSize: '10px',
+    padding: '2px',
+    border: `1px solid ${color.defaults.WHITE}`,
   },
 }))(RawBar);
 
 export class Bars extends React.Component {
   static propTypes = {
     data: PropTypes.array,
+    correctData: PropTypes.array,
     onChangeCategory: PropTypes.func,
     defineChart: PropTypes.bool,
     xBand: PropTypes.func,
@@ -211,7 +258,7 @@ export class Bars extends React.Component {
   };
 
   render() {
-    const { data, graphProps, xBand, onChangeCategory, defineChart, histogram } = this.props;
+    const { data, graphProps, xBand, onChangeCategory, defineChart, histogram, correctData } = this.props;
 
     return (
       <Group>
@@ -227,6 +274,7 @@ export class Bars extends React.Component {
             onChangeCategory={(category) => onChangeCategory(index, category)}
             graphProps={graphProps}
             correctness={d.correctness}
+            correctData={correctData}
             barColor={
               histogram &&
               (histogramColors[index] ? histogramColors[index] : histogramColors[index % histogramColors.length])

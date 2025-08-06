@@ -88,6 +88,7 @@ exports[`RawPlot snapshot renders 1`] = `
         }
       }
       isHovered={false}
+      isPlot={true}
       onDrag={[Function]}
       onDragStop={[Function]}
     />

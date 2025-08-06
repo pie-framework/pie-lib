@@ -5,8 +5,11 @@ exports[`BasePoint snapshot renders 1`] = `
   className="className"
   classes={
     Object {
+      "correctIcon": "RawDragHandle-correctIcon-5",
+      "correctnessIcon": "RawDragHandle-correctnessIcon-7",
       "handle": "RawDragHandle-handle-1",
       "handleContainer": "RawDragHandle-handleContainer-3",
+      "incorrectIcon": "RawDragHandle-incorrectIcon-6",
       "svgOverflowVisible": "RawDragHandle-svgOverflowVisible-4",
       "transparentHandle": "RawDragHandle-transparentHandle-2",
     }

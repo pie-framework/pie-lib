@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import AutosizeInput from 'react-input-autosize';
 import PropTypes from 'prop-types';
+
 import { types } from '../plot';
 import { correct, incorrect, disabled } from './common/styles';
 import { color } from '../render-ui';
@@ -41,6 +42,11 @@ const styles = (theme) => ({
   },
   incorrect: {
     ...incorrect('color'),
+  },
+  flexContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
 });
 
@@ -89,6 +95,7 @@ export const MarkLabel = (props) => {
     error,
     isHiddenLabel,
     limitCharacters,
+    correctnessIndicator,
   } = props;
 
   const [label, setLabel] = useState(mark.label);
@@ -131,65 +138,72 @@ export const MarkLabel = (props) => {
     renderMath(root);
   }, []);
 
-  return isMathRendering() ? (
-    <div
-      ref={(r) => {
-        root = r;
-        externalInputRef(r);
-      }}
-      dangerouslySetInnerHTML={{ __html: getLabelMathFormat(label) }}
-      className={classNames(classes.mathInput, {
-        [classes.disabled]: disabled,
-        [classes.error]: error,
-        [classes.correct]: mark.editable && correctness?.label === 'correct',
-        [classes.incorrect]: mark.editable && correctness?.label === 'incorrect',
-      })}
-      onClick={() => setIsEditing(true)}
-      style={{
-        minWidth: barWidth,
-        position: 'fixed',
-        transformOrigin: 'left',
-        transform: `rotate(${rotate}deg)`,
-        visibility: isHiddenLabel ? 'hidden' : 'unset',
-      }}
-    ></div>
-  ) : (
-    <AutosizeInput
-      inputRef={(r) => {
-        _ref(r);
-        externalInputRef(r);
-      }}
-      autoFocus={isEditing || autoFocus}
-      disabled={disabled}
-      inputClassName={classNames(
-        classes.input,
-        correctness && mark.editable ? correctness.label : null,
-        disabled && 'disabled',
-        error && 'error',
+  return (
+    <div className={classes.flexContainer}>
+      {correctnessIndicator}
+      {isMathRendering() ? (
+        <div
+          ref={(r) => {
+            root = r;
+            externalInputRef(r);
+          }}
+          dangerouslySetInnerHTML={{ __html: getLabelMathFormat(label) }}
+          className={classNames(classes.mathInput, {
+            [classes.disabled]: disabled,
+            [classes.error]: error,
+            [classes.correct]: mark.editable && correctness?.label === 'correct',
+            [classes.incorrect]: mark.editable && correctness?.label === 'incorrect',
+          })}
+          onClick={() => setIsEditing(true)}
+          style={{
+            minWidth: barWidth,
+            position: 'fixed',
+            transformOrigin: 'left',
+            transform: `rotate(${rotate}deg)`,
+            visibility: isHiddenLabel ? 'hidden' : 'unset',
+            marginTop: correctnessIndicator ? '24px' : '0',
+          }}
+        ></div>
+      ) : (
+        <AutosizeInput
+          inputRef={(r) => {
+            _ref(r);
+            externalInputRef(r);
+          }}
+          autoFocus={isEditing || autoFocus}
+          disabled={disabled}
+          inputClassName={classNames(
+            classes.input,
+            correctness && mark.editable ? correctness.label : null,
+            disabled && 'disabled',
+            error && 'error',
+          )}
+          inputStyle={{
+            minWidth: barWidth,
+            textAlign: 'center',
+            background: 'transparent',
+            boxSizing: 'border-box',
+            paddingLeft: 0,
+            paddingRight: 0,
+            ...extraStyle,
+          }}
+          value={label}
+          style={{
+            position: 'fixed',
+            pointerEvents: 'auto',
+            top: 0,
+            left: 0,
+            minWidth: barWidth,
+            transformOrigin: 'left',
+            transform: `rotate(${rotate}deg)`,
+            visibility: isHiddenLabel ? 'hidden' : 'unset',
+            marginTop: correctnessIndicator ? '24px' : '0',
+          }}
+          onChange={onChange}
+          onBlur={onChangeProp}
+        />
       )}
-      inputStyle={{
-        minWidth: barWidth,
-        textAlign: 'center',
-        background: 'transparent',
-        boxSizing: 'border-box',
-        paddingLeft: 0,
-        paddingRight: 0,
-        ...extraStyle,
-      }}
-      value={label}
-      style={{
-        position: 'fixed',
-        pointerEvents: 'auto',
-        top: 0,
-        left: 0,
-        minWidth: barWidth,
-        transformOrigin: 'left',
-        transform: `rotate(${rotate}deg)`,
-        visibility: isHiddenLabel ? 'hidden' : 'unset',
-      }}
-      onChange={onChange}
-      onBlur={onChangeProp}
-    />
+    </div>
   );
 };
 
@@ -210,6 +224,7 @@ MarkLabel.propTypes = {
   }),
   isHiddenLabel: PropTypes.bool,
   limitCharacters: PropTypes.bool,
+  correctnessIndicator: PropTypes.node,
 };
 
 export default withStyles(styles)(MarkLabel);

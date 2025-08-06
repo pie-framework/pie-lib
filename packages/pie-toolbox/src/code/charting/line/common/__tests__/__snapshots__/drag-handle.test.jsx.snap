@@ -5,8 +5,13 @@ exports[`BasePoint snapshot renders 1`] = `
   className="className"
   classes={
     Object {
+      "correctIcon": "RawDragHandle-correctIcon-5",
+      "correctnessIcon": "RawDragHandle-correctnessIcon-7",
+      "disabledPoint": "RawDragHandle-disabledPoint-4",
       "handle": "RawDragHandle-handle-1",
+      "incorrectIcon": "RawDragHandle-incorrectIcon-6",
       "line": "RawDragHandle-line-3",
+      "smallIcon": "RawDragHandle-smallIcon-8",
       "transparentHandle": "RawDragHandle-transparentHandle-2",
     }
   }

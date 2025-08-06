@@ -133,6 +133,7 @@ exports[`ChartAxes snapshot renders 1`] = `
       onAutoFocusUsed={[Function]}
       onChange={[Function]}
       onChangeCategory={[Function]}
+      showCorrectness={false}
       top={0}
       xBand={[Function]}
     />
@@ -328,6 +329,7 @@ exports[`ChartAxes snapshot renders if size is not defined 1`] = `
       onAutoFocusUsed={[Function]}
       onChange={[Function]}
       onChangeCategory={[Function]}
+      showCorrectness={false}
       top={0}
       xBand={[Function]}
     />
@@ -527,6 +529,7 @@ exports[`ChartAxes snapshot renders without chartType property 1`] = `
       onAutoFocusUsed={[Function]}
       onChange={[Function]}
       onChangeCategory={[Function]}
+      showCorrectness={false}
       top={0}
       xBand={[Function]}
     />
