@@ -151,7 +151,7 @@ export class RawPlot extends React.Component {
           {correctness &&
             correctness.value === 'incorrect' &&
             (() => {
-              const correctVal = parseFloat(correctData[index].value);
+              const correctVal = parseFloat(correctData[index] && correctData[index].value);
               if (isNaN(correctVal)) return null;
               const selectedVal = v;
               if (selectedVal > correctVal) {
