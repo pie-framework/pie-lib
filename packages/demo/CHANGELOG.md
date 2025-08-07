@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.20.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.16...@pie-lib/demo@8.20.0) (2025-08-07)
+
+### Bug Fixes
+
+- made sure that a paragraph sign is added after every block [PD-4093](<[4b7203e](https://github.com/pie-framework/pie-lib/commit/4b7203ea7e4a928406b8693c51574b19b83b9f2f)>)
+- reverted paragraph indication [PD-4093](<[a541bed](https://github.com/pie-framework/pie-lib/commit/a541bedb9f4f6783d13f18b00005936a22c02a67)>)
+
+### Features
+
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
+- **charting:** merge with develop, get rid of duplicated colors ([fce8ae8](https://github.com/pie-framework/pie-lib/commit/fce8ae8e8501d555a65c3ed88d6bdbbeb04fb9b2))
+- show paragraph symbol only after line breaks [PD-4093](<[ec0db15](https://github.com/pie-framework/pie-lib/commit/ec0db15980b62036ec9feb86b5691c449c26fa10)>)
+
 # [8.19.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.16...@pie-lib/demo@8.19.0) (2025-07-31)
 
 ### Bug Fixes

@@ -7,7 +7,7 @@ import { renderMath } from '@pie-lib/math-rendering';
 import { withStyles } from '@material-ui/core/styles';
 import classnames from 'classnames';
 
-import { GripIcon } from '@pie-lib/icons';
+import { GripIcon } from '../icons';
 
 const useStyles = withStyles((theme) => ({
   content: {

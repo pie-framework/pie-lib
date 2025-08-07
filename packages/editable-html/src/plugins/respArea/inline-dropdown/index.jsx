@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Chevron } from '@pie-lib/icons';
+import { Chevron } from '../icons';
 
 const InlineDropdown = ({ attributes, selectedItem }) => {
   // TODO: Investigate
