@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`response-indicators snapshot  - no feedback  1`] = `
+<div>
+  <span
+    onClick={[Function]}
+  >
+    <div>
+      correct
+    </div>
+  </span>
+</div>
+`;
+
+exports[`response-indicators snapshot  - with feedback  1`] = `
+<div
+  className="RawIndicator-responseIndicator-1"
+>
+  <span
+    onClick={[Function]}
+  >
+    <div>
+      correct
+    </div>
+  </span>
+</div>
+`;
