@@ -1,5 +1,5 @@
 import React from 'react';
-import ScoringConfig from '@pie-lib/pie-toolbox/scoring-config';
+import ScoringConfig from '@pie-lib/scoring-config';
 import withRoot from '../source/withRoot';
 
 class Container extends React.Component {

@@ -1,0 +1,32 @@
+[
+  {
+    "type": "feat",
+    "scope": "layout",
+    "subject": "merged develop into master [ch2242]",
+    "merge": null,
+    "header": "feat(layout): merged develop into master [ch2242]",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "28f11ba7391c26e99a4fabaec388461b63c4a169",
+    "gitTags": "",
+    "committerDate": "2019-06-25 21:07:13 -0400",
+    "isTagged": true,
+    "tag": "@pie-lib/config-ui@10.10.0"
+  },
+  {
+    "type": "feat",
+    "scope": "mask-markup",
+    "subject": "merging with the develop branch",
+    "merge": null,
+    "header": "feat(mask-markup): merging with the develop branch",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "0153c1aba8a08ba6c974fcc69476a87b9086f6c5",
+    "gitTags": "",
+    "committerDate": "2019-05-02 07:12:59 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/config-ui@10.1.0"
+  }
+]
