@@ -2667,10 +2667,10 @@
   resolved "https://registry.yarnpkg.com/@pie-lib/pie-toolbox-math-rendering-module/-/pie-toolbox-math-rendering-module-5.1.4.tgz#e1381e310cd2890e52c8a132d4dd82f158d70ac7"
   integrity sha512-zFY/Tfkj2l4y7hOguRwECvTruSn9gnfT+2oDL9sdESSzAEqG2+9yx9fSFwqhfeI5Yhh0V+nRUR+d6B/U/N88TQ==
 
-"@pie-lib/test-utils@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@pie-lib/test-utils/-/test-utils-0.0.3.tgz#9bef3bfb236af4cda24e9ed6446794d9615175a0"
-  integrity sha512-oZ5XTtdy7NiFdN9M9fRSwc56M3CgNC1YFH9P9BryuBT39GlMyWTABz/neCzBc/TGhVylfMVuGo0LJOA0IkwUOw==
+"@pie-lib/test-utils@^0.11.1":
+  version "0.11.1"
+  resolved "https://registry.yarnpkg.com/@pie-lib/test-utils/-/test-utils-0.11.1.tgz#68a0ab558c7b7c306fdd8318831f850b57e6d2f2"
+  integrity sha512-rpRJS129JAgC/SHTTIJ9UVHdiYMbJynIYRnKdEX70hfvPr3e5seRXq3Tk2iOzHAKf/bTk3D7uww2yJ9tDLpGRQ==
 
 "@pslb/estree-helper@^4.2.0":
   version "4.2.0"
