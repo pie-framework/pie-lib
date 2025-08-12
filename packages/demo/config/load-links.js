@@ -18,7 +18,6 @@ const rawLinks = [
   { label: 'math-rendering', path: '/math-rendering' },
   { label: 'math-toolbar', path: '/math-toolbar' },
   { label: 'render-ui', path: '/render-ui' },
-  { label: 'rubric', path: '/rubric' },
   { label: 'scoring-config', path: '/scoring-config' },
   { label: 'text-select', path: '/text-select' },
   { label: 'text-select math', path: '/text-select-math' },
