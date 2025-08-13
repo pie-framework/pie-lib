@@ -10,7 +10,6 @@ import Close from '@material-ui/icons/Close';
 import Check from '@material-ui/icons/Check';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
-import isEqual from 'lodash/isEqual';
 
 import { color } from '../../render-ui';
 import { renderMath } from '../../../math-rendering';
@@ -199,7 +198,7 @@ class Dropdown extends React.Component {
           disabled={disabled}
           id={buttonId}
           role="combobox"
-          aria-label="Select answer"
+          aria-label={`Select an option for ${labelText}`}
           aria-labelledby={valueDisplayId}
         >
           {correctnessIcon}
