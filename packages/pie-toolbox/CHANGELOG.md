@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.23.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.22.4...@pie-lib/pie-toolbox@2.23.0) (2025-08-14)
+
+
+### Bug Fixes
+
+* **charting:** handle potential undefined value in correctness check ([f9b5bd7](https://github.com/pie-framework/pie-lib/commit/f9b5bd763d59a5ff775ba9882596857812510b60))
+* **dropdown:** update aria-label for improved accessibility PD-4579. remove unused import ([5c75976](https://github.com/pie-framework/pie-lib/commit/5c7597664fbe3a146f96ed6979c0d1f8040c384a))
+* made sure onChange is checking parsed html, debounced onResize [PD-4093] ([9fff77b](https://github.com/pie-framework/pie-lib/commit/9fff77ba7d1633aa91b08837d644573119b10348))
+
+
+### Features
+
+* **charting:** evaluate changes for bar and histogram charts PD-5084 ([d32939a](https://github.com/pie-framework/pie-lib/commit/d32939af9e21e02d645f3e6c5454e948094d53ae))
+* **charting:** evaluate changes for dot plot and line plot charting types PD-5084 ([422fb0e](https://github.com/pie-framework/pie-lib/commit/422fb0ea4228f47f3c5d163709ce3b3bef8e0b69))
+* **charting:** evaluate changes for line type charting, new components for correctness indicators ([ccdae58](https://github.com/pie-framework/pie-lib/commit/ccdae580f28fb1bd03d0b13996cca572dd792dd0))
+
+
+
+
+
 ## [2.22.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.22.3...@pie-lib/pie-toolbox@2.22.4) (2025-08-14)
 
 
