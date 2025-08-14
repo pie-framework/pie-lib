@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.22.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.22.3...@pie-lib/pie-toolbox@2.22.4) (2025-08-14)
+
+
+### Bug Fixes
+
+* **chart:** adjust positioning of foreignObject and update ActionsButton alignment PD-5147 ([e1767e6](https://github.com/pie-framework/pie-lib/commit/e1767e683dbb803006a8a3779e9978495ed3b7de))
+
+
+
+
+
 ## [2.22.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.22.2...@pie-lib/pie-toolbox@2.22.3) (2025-07-24)
 
 
