@@ -91,6 +91,7 @@ const styles = (theme) => ({
     cursor: 'pointer',
     fontSize: theme.typography.fontSize,
     color: color.tertiary(),
+    padding: theme.spacing.unit,
   },
   actionsPaper: {
     padding: theme.spacing.unit,
