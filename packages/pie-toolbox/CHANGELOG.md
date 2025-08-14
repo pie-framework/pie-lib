@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.23.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.23.0...@pie-lib/pie-toolbox@2.23.1) (2025-08-14)
+
+
+### Bug Fixes
+
+* **charting:** adjust margin for side pixel guides in root component styles PD-5147 ([ccded3d](https://github.com/pie-framework/pie-lib/commit/ccded3d5f5f62e24a34eee4e9f95b340a9217cde))
+
+
+
+
+
 # [2.23.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.22.4...@pie-lib/pie-toolbox@2.23.0) (2025-08-14)
 
 
