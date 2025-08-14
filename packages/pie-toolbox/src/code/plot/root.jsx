@@ -365,6 +365,7 @@ const styles = (theme) => ({
     display: 'flex',
     flexDirection: 'column',
     marginRight: '6px',
+    marginLeft: '12px',
   },
   sidePixelIndicator: {
     textAlign: 'right',
