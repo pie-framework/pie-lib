@@ -1,15 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { types } from '../../../plot';
-import { Group } from '@vx/group';
+import classNames from 'classnames';
+import Check from '@material-ui/icons/Check';
 import { withStyles } from '@material-ui/core/styles/index';
-import DraggableHandle, { DragHandle } from '../../common/drag-handle';
+import { Group } from '@vx/group';
 import debug from 'debug';
+
+import { types } from '../../../plot';
+import DraggableHandle, { DragHandle } from '../../common/drag-handle';
 import { color } from '../../../render-ui';
 import { bandKey } from '../../utils';
 import { correct, incorrect } from '../../common/styles';
 
 const log = debug('pie-lib:chart:bars');
+const ICON_SIZE = 24;
 
 export class RawPlot extends React.Component {
   static propTypes = {
@@ -64,6 +68,17 @@ export class RawPlot extends React.Component {
     this.setDragValue(next);
   };
 
+  renderCorrectnessIcon = (barX, barWidth, correctVal, correctness, classes, scale) => (
+    <foreignObject
+      x={barX + barWidth / 2 - ICON_SIZE / 2 + 1} // 1 px for the border
+      y={scale.y(correctVal) + ICON_SIZE / 2 + 1}
+      width={ICON_SIZE}
+      height={ICON_SIZE}
+    >
+      <Check className={classNames(classes.correctnessIcon, classes.correctIcon)} title={correctness.label} />
+    </foreignObject>
+  );
+
   render() {
     const {
       graphProps,
@@ -76,6 +91,7 @@ export class RawPlot extends React.Component {
       interactive,
       correctness,
       defineChart,
+      correctData,
     } = this.props;
 
     const { scale, range, size } = graphProps;
@@ -132,6 +148,67 @@ export class RawPlot extends React.Component {
               scale,
             }),
           )}
+          {correctness &&
+            correctness.value === 'incorrect' &&
+            (() => {
+              const correctVal = parseFloat(correctData[index] && correctData[index].value);
+              if (isNaN(correctVal)) return null;
+              const selectedVal = v;
+              if (selectedVal > correctVal) {
+                // selected is higher than correct: overlay the correct last segment
+                const overlayValues = [];
+                for (let i = 0; i < correctVal; i++) {
+                  overlayValues.push(i);
+                }
+                const lastIndexOfOverlay = overlayValues.length - 1;
+                const lastOverlayValue = overlayValues[lastIndexOfOverlay];
+                const barX = xBand(bandKey({ label }, index));
+                const barWidth = xBand.bandwidth();
+                const pointHeight = size.height / max;
+                const pointDiameter = (pointHeight > barWidth ? barWidth : pointHeight) * 0.8;
+                return (
+                  <>
+                    <CustomBarElement
+                      index={lastOverlayValue}
+                      pointDiameter={pointDiameter + 10} // increase point diameter for dotted line
+                      barX={barX}
+                      barWidth={barWidth}
+                      pointHeight={pointHeight}
+                      label={label}
+                      value={value}
+                      classes={classes}
+                      scale={scale}
+                      dottedOverline={true}
+                    />
+                    {this.renderCorrectnessIcon(barX, barWidth, correctVal, correctness, classes, scale)}
+                  </>
+                );
+              }
+              // selected is lower than correct, render missing segment below the correct bar
+              const valuesToRender = [];
+              for (let i = selectedVal; i < correctVal; i++) {
+                valuesToRender.push(i);
+              }
+              return (
+                <>
+                  {valuesToRender.map((idx) =>
+                    CustomBarElement({
+                      index: idx,
+                      pointDiameter,
+                      barX,
+                      barWidth,
+                      pointHeight,
+                      label,
+                      value,
+                      classes,
+                      scale,
+                      dottedOverline: true,
+                    }),
+                  )}
+                  {this.renderCorrectnessIcon(barX, barWidth, correctVal, correctness, classes, scale)}
+                </>
+              );
+            })()}
           <Component
             x={barX}
             y={v}
@@ -144,6 +221,7 @@ export class RawPlot extends React.Component {
             isHovered={isHovered}
             defineChart={defineChart}
             color={color.primaryDark()}
+            isPlot
           />
         </g>
       </React.Fragment>
@@ -151,16 +229,35 @@ export class RawPlot extends React.Component {
   }
 }
 
-const Bar = withStyles(() => ({
+const Bar = withStyles((theme) => ({
   dot: {
     fill: color.visualElementsColors.PLOT_FILL_COLOR,
     '&.correct': correct('stroke'),
     '&.incorrect': incorrect('stroke'),
   },
+  dotColor: {
+    fill: color.visualElementsColors.PLOT_FILL_COLOR,
+    '&.correct': correct('fill'),
+    '&.incorrect': incorrect('fill'),
+  },
   line: {
     stroke: color.visualElementsColors.PLOT_FILL_COLOR,
     '&.correct': correct('stroke'),
     '&.incorrect': incorrect('stroke'),
+  },
+  correctIcon: {
+    backgroundColor: color.correct(),
+  },
+  incorrectIcon: {
+    backgroundColor: color.incorrectWithIcon(),
+  },
+  correctnessIcon: {
+    borderRadius: theme.spacing.unit * 2,
+    color: color.defaults.WHITE,
+    fontSize: '16px',
+    padding: '2px',
+    border: `1px solid ${color.defaults.WHITE}`,
+    stroke: 'initial',
   },
 }))(RawPlot);
 
@@ -175,7 +272,7 @@ export class Plot extends React.Component {
   };
 
   render() {
-    const { data, graphProps, xBand, CustomBarElement, onChangeCategory, defineChart } = this.props;
+    const { data, graphProps, xBand, CustomBarElement, onChangeCategory, defineChart, correctData } = this.props;
 
     return (
       <Group>
@@ -192,6 +289,7 @@ export class Plot extends React.Component {
             graphProps={graphProps}
             CustomBarElement={CustomBarElement}
             correctness={d.correctness}
+            correctData={correctData}
           />
         ))}
       </Group>

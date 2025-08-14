@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import { AxisLeft, AxisBottom } from '@vx/axis';
+import Checkbox from '@material-ui/core/Checkbox';
+
 import { types } from '../plot';
 import { color } from '../../render-ui';
 import { AlertDialog } from '../config-ui';
-import { AxisLeft, AxisBottom } from '@vx/axis';
+import { TickCorrectnessIndicator } from './common/correctness-indicators';
 import { bandKey, getTickValues, getRotateAngle } from './utils';
 import MarkLabel from './mark-label';
-import Checkbox from '@material-ui/core/Checkbox';
 
 export class TickComponent extends React.Component {
   static propTypes = {
@@ -126,6 +128,7 @@ export class TickComponent extends React.Component {
       error,
       autoFocus,
       hiddenLabelRef,
+      showCorrectness,
     } = this.props;
 
     if (!formattedValue) {
@@ -178,6 +181,12 @@ export class TickComponent extends React.Component {
             correctness={correctness}
             error={error && error[index]}
             limitCharacters
+            correctnessIndicator={
+              showCorrectness &&
+              correctness && (
+                <TickCorrectnessIndicator correctness={correctness} interactive={interactive} classes={classes} />
+              )
+            }
           />
         </foreignObject>
 
@@ -313,6 +322,7 @@ TickComponent.propTypes = {
   changeEditableEnabled: PropTypes.bool,
   autoFocus: PropTypes.bool,
   onAutoFocusUsed: PropTypes.func,
+  showCorrectness: PropTypes.bool,
 };
 
 export class RawChartAxes extends React.Component {
@@ -334,6 +344,7 @@ export class RawChartAxes extends React.Component {
     changeEditableEnabled: PropTypes.bool,
     autoFocus: PropTypes.bool,
     onAutoFocusUsed: PropTypes.func,
+    showCorrectness: PropTypes.bool,
   };
 
   state = { height: 0, width: 0 };
@@ -376,6 +387,7 @@ export class RawChartAxes extends React.Component {
       autoFocus,
       onAutoFocusUsed,
       error,
+      showCorrectness,
     } = this.props;
 
     const { axis, axisLine, tick } = classes;
@@ -425,6 +437,7 @@ export class RawChartAxes extends React.Component {
         x: props.x,
         y: props.y,
         formattedValue: props.formattedValue,
+        showCorrectness,
       };
 
       return <TickComponent {...properties} />;
@@ -490,6 +503,24 @@ const ChartAxes = withStyles(
     },
     customColor: {
       color: `${color.tertiary()} !important`,
+    },
+    correctnessIcon: {
+      borderRadius: theme.spacing.unit * 2,
+      color: color.defaults.WHITE,
+      fontSize: '16px',
+      padding: '2px',
+      border: `1px solid ${color.defaults.WHITE}`,
+    },
+    incorrectIcon: {
+      backgroundColor: color.incorrectWithIcon(),
+    },
+    correctIcon: {
+      backgroundColor: color.correct(),
+    },
+    tickContainer: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
     },
   }),
   { withTheme: true },
