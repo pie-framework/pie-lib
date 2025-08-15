@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.23.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.23.1...@pie-lib/pie-toolbox@2.23.2) (2025-08-15)
+
+
+### Bug Fixes
+
+* **charting:** ensure correct value parsing in RawBar component ([f3c8ee5](https://github.com/pie-framework/pie-lib/commit/f3c8ee562ffd8e73c02cdc9489d43f527dc5c3ec))
+
+
+
+
+
 ## [2.23.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.23.0...@pie-lib/pie-toolbox@2.23.1) (2025-08-14)
 
 
