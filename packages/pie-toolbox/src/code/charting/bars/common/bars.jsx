@@ -184,7 +184,7 @@ export class RawBar extends React.Component {
         {correctness &&
           correctness.value === 'incorrect' &&
           (() => {
-            const correctVal = parseFloat(correctValue.value);
+            const correctVal = parseFloat(correctValue && correctValue.value);
             if (isNaN(correctVal)) return null;
             const correctPxHeight = scale.y(range.max - correctVal);
             const actualPxHeight = barHeight;
