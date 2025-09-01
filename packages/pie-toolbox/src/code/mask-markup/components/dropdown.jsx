@@ -169,14 +169,24 @@ class Dropdown extends React.Component {
 
     return (
       <>
-        <div ref={this.hiddenRef} style={{ position: 'absolute', visibility: 'hidden', top: 0, left: 0 }}>
+        <div
+          ref={this.hiddenRef}
+          style={{ position: 'absolute', visibility: 'hidden', top: 0, left: 0 }}
+          tabIndex={-1}
+          aria-hidden="true"
+        >
           {(choices || []).map((c, index) => (
-            <MenuItem key={index} classes={{ root: classes.menuRoot, selected: classes.selected }}>
+            <MenuItem
+              key={index}
+              classes={{ root: classes.menuRoot, selected: classes.selected }}
+              tabIndex={-1}
+              aria-hidden="true"
+            >
               <span className={classes.label} dangerouslySetInnerHTML={{ __html: c.label }} />
             </MenuItem>
           ))}
         </div>
-        <InputLabel className={classes.srOnly} id={labelId}>
+        <InputLabel className={classes.srOnly} id={labelId} tabIndex={-1} aria-hidden="true">
           {labelText}
         </InputLabel>
         <Button
