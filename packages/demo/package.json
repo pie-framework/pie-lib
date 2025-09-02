@@ -11,7 +11,7 @@
     "i18next": "^22.5.0",
     "jsesc": "^2.5.2",
     "markdown-to-jsx": "^6.9.1",
-    "mathjs": "^7.0.1",
+    "mathjs": "^14.6.0",
     "react": "^16.8.1",
     "react-attr-converter": "^0.3.1",
     "react-dnd": "^14.0.5",
