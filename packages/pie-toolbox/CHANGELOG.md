@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.23.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.23.2...@pie-lib/pie-toolbox@2.23.3) (2025-09-01)
+
+
+### Bug Fixes
+
+* **editable-html:** avoid layout resizing when new choice is dragged ditb  PD-4430 ([f9508a0](https://github.com/pie-framework/pie-lib/commit/f9508a02039f065dd3cc06c4ecff6dba6d2f9237))
+* improve keyboard navigation behaviour PD-4579 ([8ab454b](https://github.com/pie-framework/pie-lib/commit/8ab454b14b8503d153ad57cc53d939a85a3ddce6))
+
+
+
+
+
 ## [2.23.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.23.1...@pie-lib/pie-toolbox@2.23.2) (2025-08-15)
 
 
