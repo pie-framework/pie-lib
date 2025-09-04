@@ -153,7 +153,7 @@ export class TickComponent extends React.Component {
       <g>
         <foreignObject
           x={bandWidth ? barX : x - barWidth / 2}
-          y={6}
+          y={20} // before was 6
           width={barWidth}
           height={4}
           style={{ pointerEvents: 'none', overflow: 'visible' }}
