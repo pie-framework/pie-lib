@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import { Group } from '@vx/group';
 import { Bar as VxBar } from '@vx/shape';
 import { withStyles } from '@material-ui/core/styles/index';
-import Check from '@material-ui/icons/Check';
 import debug from 'debug';
 
 import { color } from '../../../render-ui';
 import { types } from '../../../plot';
 import { bandKey } from '../../utils';
 import DraggableHandle, { DragHandle } from '../../common/drag-handle';
+import { CorrectCheckIcon } from './correct-check-icon';
 
 const log = debug('pie-lib:chart:bars');
 const histogramColors = [
@@ -164,6 +164,7 @@ export class RawBar extends React.Component {
     log('label:', label, 'barX:', barX, 'v: ', v, 'barHeight:', barHeight, 'barWidth: ', barWidth);
 
     const Component = interactive ? DraggableHandle : DragHandle;
+    const isHistogram = !!barColor;
 
     return (
       <g
@@ -190,7 +191,7 @@ export class RawBar extends React.Component {
             const actualPxHeight = barHeight;
             const diffPx = Math.abs(correctPxHeight - actualPxHeight);
             const yDiff = scale.y(correctVal);
-            const barColor = correctPxHeight > actualPxHeight ? color.borderGray() : color.defaults.WHITE;
+            const indicatorBarColor = correctPxHeight > actualPxHeight ? color.borderGray() : color.defaults.WHITE;
             const yToRender = correctPxHeight > actualPxHeight ? yDiff : yDiff - diffPx;
 
             return (
@@ -202,14 +203,15 @@ export class RawBar extends React.Component {
                   height={diffPx}
                   className={classes.bar}
                   style={{
-                    stroke: barColor,
+                    stroke: indicatorBarColor,
                     strokeWidth: 2,
                     strokeDasharray: '5,2',
                     fill: 'none',
                   }}
                 />
-                <foreignObject x={barX + barWidth / 2 - 8} y={yDiff - 8} width={16} height={16}>
-                  <Check className={classes.correctIcon} title={correctness.label} />
+                {/* adjust the position based on whether it's a histogram or not, because the histogram does not have space for the icon on the side */}
+                <foreignObject x={barX + barWidth - (isHistogram ? 24 : 14)} y={yDiff - 12} width={24} height={24}>
+                  <CorrectCheckIcon dashColor={indicatorBarColor} />
                 </foreignObject>
               </>
             );
