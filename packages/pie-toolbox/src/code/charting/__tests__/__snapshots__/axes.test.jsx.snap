@@ -473,7 +473,7 @@ exports[`TickComponent snapshot1 renders 1`] = `
       }
     }
     x={NaN}
-    y={20}
+    y={18}
   >
     <WithStyles(MarkLabel)
       disabled={true}
