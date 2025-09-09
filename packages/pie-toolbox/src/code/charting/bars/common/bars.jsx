@@ -241,6 +241,8 @@ const Bar = withStyles((theme) => ({
     borderRadius: theme.spacing.unit * 2,
     color: color.defaults.WHITE,
     fontSize: '10px',
+    width: '10px',
+    height: '10px',
     padding: '2px',
     border: `1px solid ${color.defaults.WHITE}`,
   },

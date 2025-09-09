@@ -508,6 +508,8 @@ const ChartAxes = withStyles(
       borderRadius: theme.spacing.unit * 2,
       color: color.defaults.WHITE,
       fontSize: '16px',
+      width: '16px',
+      height: '16px',
       padding: '2px',
       border: `1px solid ${color.defaults.WHITE}`,
     },
