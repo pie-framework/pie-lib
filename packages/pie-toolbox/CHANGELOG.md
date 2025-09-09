@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.25.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.25.0...@pie-lib/pie-toolbox@2.25.1) (2025-09-09)
+
+
+### Bug Fixes
+
+* **charting:** fix box-sizing that breaks charting svg in IBX PD-5196 ([f2cbd96](https://github.com/pie-framework/pie-lib/commit/f2cbd96a99bd5d215ae1d2e43f4fcf41973e86b3))
+
+
+
+
+
 # [2.25.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.24.0...@pie-lib/pie-toolbox@2.25.0) (2025-09-09)
 
 
