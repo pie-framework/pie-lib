@@ -245,6 +245,7 @@ const Bar = withStyles((theme) => ({
     height: '10px',
     padding: '2px',
     border: `1px solid ${color.defaults.WHITE}`,
+    boxSizing: 'unset', // to override the default border-box in IBX
   },
 }))(RawBar);
 

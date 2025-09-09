@@ -512,6 +512,7 @@ const ChartAxes = withStyles(
       height: '16px',
       padding: '2px',
       border: `1px solid ${color.defaults.WHITE}`,
+      boxSizing: 'unset', // to override the default border-box in IBX
     },
     incorrectIcon: {
       backgroundColor: color.incorrectWithIcon(),

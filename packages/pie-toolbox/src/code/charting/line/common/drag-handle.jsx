@@ -86,6 +86,7 @@ export const DragHandle = withStyles((theme) => ({
     padding: '2px',
     border: `1px solid ${color.defaults.WHITE}`,
     stroke: 'initial',
+    boxSizing: 'unset', // to override the default border-box in IBX
   },
   smallIcon: {
     fontSize: '10px',

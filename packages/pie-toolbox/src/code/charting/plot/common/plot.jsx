@@ -260,6 +260,7 @@ const Bar = withStyles((theme) => ({
     padding: '2px',
     border: `1px solid ${color.defaults.WHITE}`,
     stroke: 'initial',
+    boxSizing: 'unset', // to override the default border-box in IBX
   },
 }))(RawPlot);
 

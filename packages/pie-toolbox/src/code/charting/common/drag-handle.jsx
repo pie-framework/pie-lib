@@ -130,6 +130,7 @@ export const DragHandle = withStyles((theme) => ({
     border: `4px solid ${enumColor.defaults.WHITE}`,
     width: '16px',
     height: '16px',
+    boxSizing: 'unset', // to override the default border-box in IBX
   },
 }))(RawDragHandle);
 
