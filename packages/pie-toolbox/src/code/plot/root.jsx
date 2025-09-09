@@ -314,6 +314,7 @@ const styles = (theme) => ({
     backgroundColor: theme.palette.common.white,
     touchAction: 'none',
     position: 'relative',
+    boxSizing: 'unset', // to override the default border-box in IBX that breaks the component width layout
   },
   wrapper: {
     display: 'flex',
@@ -366,7 +367,6 @@ const styles = (theme) => ({
     display: 'flex',
     flexDirection: 'column',
     marginRight: '6px',
-    marginLeft: '12px',
   },
   sidePixelIndicator: {
     textAlign: 'right',
