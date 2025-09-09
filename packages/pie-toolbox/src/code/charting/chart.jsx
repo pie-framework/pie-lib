@@ -251,7 +251,7 @@ export class Chart extends React.Component {
 
     log('[render] common:', common);
 
-    const maskSize = { x: -10, y: -75, width: width + 20, height: height + 80 };
+    const maskSize = { x: -10, y: -75, width: width + 20, height: height + 130 };
     const { scale } = common.graphProps;
     const xBand = dataToXBand(scale.x, categories, width, chartType);
 
