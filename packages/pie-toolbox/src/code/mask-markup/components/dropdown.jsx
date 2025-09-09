@@ -298,6 +298,11 @@ const styles = () => ({
       color: color.text(),
       marginLeft: '5px',
     },
+    '&:focus, &:focus-visible': {
+      outline: `3px solid ${color.tertiary()}`,
+      outlineOffset: '2px',
+      borderWidth: '3px',
+    },
   },
   disabledCorrect: {
     borderWidth: '2px',
@@ -336,6 +341,10 @@ const styles = () => ({
   menuRoot: {
     color: color.text(),
     backgroundColor: color.background(),
+    '&:focus, &:focus-visible': {
+      outline: `3px solid ${color.tertiary()}`,
+      outlineOffset: '-1px', // keeps it inside the item
+    },
     '&:focus': {
       color: color.text(),
       backgroundColor: color.background(),

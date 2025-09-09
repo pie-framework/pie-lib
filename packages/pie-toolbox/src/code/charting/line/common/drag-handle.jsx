@@ -81,12 +81,17 @@ export const DragHandle = withStyles((theme) => ({
     borderRadius: theme.spacing.unit * 2,
     color: color.defaults.WHITE,
     fontSize: '16px',
+    width: '16px',
+    height: '16px',
     padding: '2px',
     border: `1px solid ${color.defaults.WHITE}`,
     stroke: 'initial',
+    boxSizing: 'unset', // to override the default border-box in IBX
   },
   smallIcon: {
     fontSize: '10px',
+    width: '10px',
+    height: '10px',
   },
 }))(RawDragHandle);
 
