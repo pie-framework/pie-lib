@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.24.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.23.3...@pie-lib/pie-toolbox@2.24.0) (2025-09-09)
+
+
+### Bug Fixes
+
+* **charting:** adjust y value ([6adac8f](https://github.com/pie-framework/pie-lib/commit/6adac8f1946e85c9f3e06131570dbe75b4b922cb))
+* tests ([93e88c9](https://github.com/pie-framework/pie-lib/commit/93e88c90f9bf03f51b3b423f63d7ac4a37afd7b3))
+* **charting:** adjust mask size height in Chart component rendering ([c85be1a](https://github.com/pie-framework/pie-lib/commit/c85be1a2a68054132a3dac0e7e11a485da877531))
+
+
+### Features
+
+* **charting:** add CorrectCheckIcon component and integrate into RawBar PD-5187 ([84f7d9a](https://github.com/pie-framework/pie-lib/commit/84f7d9abe2687b471cb45dba5e8af1c24ee79a51))
+
+
+
+
+
 ## [2.23.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.23.2...@pie-lib/pie-toolbox@2.23.3) (2025-09-01)
 
 
