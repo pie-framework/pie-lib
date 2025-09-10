@@ -45,6 +45,7 @@ export class BlankContent extends React.Component {
     super(props);
 
     this.handleClick = this.handleClick.bind(this);
+    this.state = { hoveredElementSize: null };
   }
 
   componentDidMount() {
@@ -63,18 +64,42 @@ export class BlankContent extends React.Component {
     }
   }
 
-  componentDidUpdate() {
-    if (this.elementRef) {
+  getSnapshotBeforeUpdate(prevProps) {
+    if (!prevProps.isOver && this.props.isOver && this.elementRef) {
+      const node = this.elementRef;
+      return { width: node.offsetWidth, height: node.offsetHeight };
+    }
+    return null;
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.elementRef && typeof renderMath === 'function') {
       renderMath(this.elementRef);
+    }
+
+    if (
+      snapshot &&
+      (!this.state.hoveredElementSize ||
+        this.state.hoveredElementSize.width !== snapshot.width ||
+        this.state.hoveredElementSize.height !== snapshot.height)
+    ) {
+      this.setState({ hoveredElementSize: snapshot });
+      return;
+    }
+
+    if (prevProps.isOver && !this.props.isOver && this.state.hoveredElementSize) {
+      this.setState({ hoveredElementSize: null });
     }
   }
 
   render() {
     const { n, children, isDragging, dragItem, isOver, value } = this.props;
+    const { hoveredElementSize } = this.state;
 
     const label = dragItem && isOver ? dragItem.value.value : value.value || '\u00A0';
     const finalLabel = isDragging ? '\u00A0' : label;
     const hasGrip = finalLabel !== '\u00A0';
+    const isPreview = dragItem && isOver;
 
     return (
       <div
@@ -83,13 +108,15 @@ export class BlankContent extends React.Component {
           display: 'inline-flex',
           minWidth: '178px',
           minHeight: '36px',
-          background: '#FFF',
-          border: '1px solid #C0C3CF',
+          background: isPreview ? `${color.defaults.BORDER_LIGHT}` : `${color.defaults.WHITE}`,
+          border: isPreview ? `1px solid  ${color.defaults.BORDER_DARK}` : `1px solid  ${color.defaults.BORDER_LIGHT}`,
           boxSizing: 'border-box',
           borderRadius: '3px',
           overflow: 'hidden',
           position: 'relative',
           padding: '8px 8px 8px 35px',
+          width: hoveredElementSize ? hoveredElementSize.width : undefined,
+          height: hoveredElementSize ? hoveredElementSize.height : undefined,
         }}
         data-key={n.key}
         contentEditable={false}
@@ -152,7 +179,7 @@ export const tileTarget = {
 
 const DropTile = DropTarget('drag-in-the-blank-choice', tileTarget, (connect, monitor) => ({
   connectDropTarget: connect.dropTarget(),
-  isOver: monitor.isOver(),
+  isOver: monitor.isOver({ shallow: true }),
   dragItem: monitor.getItem(),
 }))(connectedBlankContent);
 

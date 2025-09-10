@@ -1,12 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
+
 import { types } from '@pie-lib/plot';
 import { color } from '@pie-lib/render-ui';
 import { dataToXBand } from '../utils';
 import RawLine from './common/line';
-import classNames from 'classnames';
+import { CorrectnessIndicator, SmallCorrectPointIndicator } from '../common/correctness-indicators';
 
-const DraggableComponent = ({ scale, x, y, className, classes, r, correctness, interactive, ...rest }) => {
+const DraggableComponent = ({
+  scale,
+  x,
+  y,
+  className,
+  classes,
+  r,
+  correctness,
+  interactive,
+  correctData,
+  label,
+  ...rest
+}) => {
   const [isHovered, setIsHovered] = React.useState(false);
   const allowRolloverEvent = !correctness && interactive;
 
@@ -24,9 +38,32 @@ const DraggableComponent = ({ scale, x, y, className, classes, r, correctness, i
         cx={scale.x(x)}
         cy={scale.y(y)}
         r={r}
-        className={classNames(className, classes.handle, correctness && correctness.value)}
+        className={classNames(className, classes.handle, correctness && !interactive && classes.disabledPoint)}
         {...rest}
       />
+      {/* show correctness indicators */}
+      <CorrectnessIndicator
+        scale={scale}
+        x={x}
+        y={y}
+        classes={classes}
+        r={r}
+        correctness={correctness}
+        interactive={interactive}
+      />
+
+      {/* show correct point if answer was incorrect */}
+      <SmallCorrectPointIndicator
+        scale={scale}
+        x={x}
+        r={r}
+        correctness={correctness}
+        classes={classes}
+        correctData={correctData}
+        label={label}
+      />
+
+      {/* show rollover rectangle */}
       {isHovered && allowRolloverEvent && (
         <rect
           x={scale.x(x) - r * 2}

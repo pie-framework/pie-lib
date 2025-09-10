@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { types } from '@pie-lib/plot';
 import { Group } from '@vx/group';
-import { color } from '@pie-lib/render-ui';
 import { Bar as VxBar } from '@vx/shape';
 import { withStyles } from '@material-ui/core/styles/index';
 import debug from 'debug';
+
+import { color } from '@pie-lib/render-ui';
+import { types } from '@pie-lib/plot';
 import { bandKey } from '../../utils';
 import DraggableHandle, { DragHandle } from '../../common/drag-handle';
+import { CorrectCheckIcon } from './correct-check-icon';
 
 const log = debug('pie-lib:chart:bars');
 const histogramColors = [
@@ -64,6 +66,7 @@ export class RawBar extends React.Component {
       value: PropTypes.string,
       label: PropTypes.string,
     }),
+    correctData: PropTypes.array,
   };
 
   constructor(props) {
@@ -144,6 +147,7 @@ export class RawBar extends React.Component {
       correctness,
       barColor,
       defineChart,
+      correctData,
     } = this.props;
     const { scale, range } = graphProps;
     const { dragValue, isHovered } = this.state;
@@ -156,9 +160,11 @@ export class RawBar extends React.Component {
     const barX = xBand(bandKey({ label }, index));
     const rawY = range.max - v;
     const yy = range.max - rawY;
+    const correctValue = correctData ? correctData.find((d) => d.label === label) : null;
     log('label:', label, 'barX:', barX, 'v: ', v, 'barHeight:', barHeight, 'barWidth: ', barWidth);
 
     const Component = interactive ? DraggableHandle : DragHandle;
+    const isHistogram = !!barColor;
 
     return (
       <g
@@ -176,6 +182,40 @@ export class RawBar extends React.Component {
           className={classes.bar}
           style={{ fill: fillColor }}
         />
+        {correctness &&
+          correctness.value === 'incorrect' &&
+          (() => {
+            const correctVal = parseFloat(correctValue && correctValue.value);
+            if (isNaN(correctVal)) return null;
+            const correctPxHeight = scale.y(range.max - correctVal);
+            const actualPxHeight = barHeight;
+            const diffPx = Math.abs(correctPxHeight - actualPxHeight);
+            const yDiff = scale.y(correctVal);
+            const indicatorBarColor = correctPxHeight > actualPxHeight ? color.borderGray() : color.defaults.WHITE;
+            const yToRender = correctPxHeight > actualPxHeight ? yDiff : yDiff - diffPx;
+
+            return (
+              <>
+                <VxBar
+                  x={barX + 2} // add 2px for the stroke (the dashed border)
+                  y={yToRender}
+                  width={barWidth - 4} // substract 4px for the total stroke
+                  height={diffPx}
+                  className={classes.bar}
+                  style={{
+                    stroke: indicatorBarColor,
+                    strokeWidth: 2,
+                    strokeDasharray: '5,2',
+                    fill: 'none',
+                  }}
+                />
+                {/* adjust the position based on whether it's a histogram or not, because the histogram does not have space for the icon on the side */}
+                <foreignObject x={barX + barWidth - (isHistogram ? 24 : 14)} y={yDiff - 12} width={24} height={24}>
+                  <CorrectCheckIcon dashColor={indicatorBarColor} />
+                </foreignObject>
+              </>
+            );
+          })()}
         <Component
           x={barX}
           y={v}
@@ -194,15 +234,27 @@ export class RawBar extends React.Component {
   }
 }
 
-const Bar = withStyles(() => ({
+const Bar = withStyles((theme) => ({
   bar: {
     fill: color.defaults.TERTIARY,
+  },
+  correctIcon: {
+    backgroundColor: color.correct(),
+    borderRadius: theme.spacing.unit * 2,
+    color: color.defaults.WHITE,
+    fontSize: '10px',
+    width: '10px',
+    height: '10px',
+    padding: '2px',
+    border: `1px solid ${color.defaults.WHITE}`,
+    boxSizing: 'unset', // to override the default border-box in IBX
   },
 }))(RawBar);
 
 export class Bars extends React.Component {
   static propTypes = {
     data: PropTypes.array,
+    correctData: PropTypes.array,
     onChangeCategory: PropTypes.func,
     defineChart: PropTypes.bool,
     xBand: PropTypes.func,
@@ -211,7 +263,7 @@ export class Bars extends React.Component {
   };
 
   render() {
-    const { data, graphProps, xBand, onChangeCategory, defineChart, histogram } = this.props;
+    const { data, graphProps, xBand, onChangeCategory, defineChart, histogram, correctData } = this.props;
 
     return (
       <Group>
@@ -227,6 +279,7 @@ export class Bars extends React.Component {
             onChangeCategory={(category) => onChangeCategory(index, category)}
             graphProps={graphProps}
             correctness={d.correctness}
+            correctData={correctData}
             barColor={
               histogram &&
               (histogramColors[index] ? histogramColors[index] : histogramColors[index % histogramColors.length])

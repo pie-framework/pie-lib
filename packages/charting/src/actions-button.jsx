@@ -20,10 +20,10 @@ export class ActionsButton extends React.Component {
 
   static propTypes = {
     classes: PropTypes.object.isRequired,
-    categories: PropTypes.array,
     addCategory: PropTypes.func.isRequired,
     deleteCategory: PropTypes.func.isRequired,
-    language: PropTypes.string.isRequired,
+    language: PropTypes.string,
+    categories: PropTypes.array,
   };
 
   handleActionsClick = (event) => {
@@ -91,6 +91,7 @@ const styles = (theme) => ({
     cursor: 'pointer',
     fontSize: theme.typography.fontSize,
     color: color.tertiary(),
+    padding: theme.spacing.unit,
   },
   actionsPaper: {
     padding: theme.spacing.unit,

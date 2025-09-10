@@ -7,10 +7,14 @@ exports[`ChartAxes snapshot renders 1`] = `
     Object {
       "axis": "RawChartAxes-axis-1",
       "axisLine": "RawChartAxes-axisLine-2",
+      "correctIcon": "RawChartAxes-correctIcon-9",
+      "correctnessIcon": "RawChartAxes-correctnessIcon-7",
       "customColor": "RawChartAxes-customColor-6",
       "dottedLine": "RawChartAxes-dottedLine-4",
       "error": "RawChartAxes-error-5",
+      "incorrectIcon": "RawChartAxes-incorrectIcon-8",
       "tick": "RawChartAxes-tick-3",
+      "tickContainer": "RawChartAxes-tickContainer-10",
     }
   }
   graphProps={
@@ -469,7 +473,7 @@ exports[`TickComponent snapshot1 renders 1`] = `
       }
     }
     x={NaN}
-    y={6}
+    y={18}
   >
     <WithStyles(MarkLabel)
       disabled={true}
