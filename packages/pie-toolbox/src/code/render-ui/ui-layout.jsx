@@ -1,8 +1,21 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import AppendCSSRules from './append-css-rules';
+
+const theme = createMuiTheme({
+  typography: {
+    // In MUI v3, this opts into the h1–h6 variants; otherwise use display1/headline/etc.
+    useNextVariants: true,
+    fontFamily: 'inherit',
+  },
+  overrides: {
+    MuiTypography: {
+      root: { fontFamily: 'inherit' },
+    },
+  },
+});
 
 class UiLayout extends AppendCSSRules {
   static propTypes = {
@@ -44,9 +57,11 @@ class UiLayout extends AppendCSSRules {
     const style = this.computeStyle(fontSizeFactor);
 
     return (
-      <div className={finalClass} {...restProps} {...(style && { style })}>
-        {children}
-      </div>
+      <MuiThemeProvider theme={theme}>
+        <div className={finalClass} {...restProps} {...(style && { style })}>
+          {children}
+        </div>
+      </MuiThemeProvider>
     );
   }
 }
