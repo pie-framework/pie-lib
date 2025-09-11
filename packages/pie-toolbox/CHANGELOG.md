@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.25.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.25.1...@pie-lib/pie-toolbox@2.25.2) (2025-09-11)
+
+
+### Bug Fixes
+
+* **charting:** make the “answer key correct” indicators smaller for plot charts PD-5198 PD-5187 ([c0621eb](https://github.com/pie-framework/pie-lib/commit/c0621ebdc81fbb2695f3e073d080c214b3a24627))
+
+
+
+
+
 ## [2.25.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/pie-toolbox@2.25.0...@pie-lib/pie-toolbox@2.25.1) (2025-09-09)
 
 
