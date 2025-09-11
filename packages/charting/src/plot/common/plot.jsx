@@ -13,7 +13,7 @@ import { bandKey } from '../../utils';
 import { correct, incorrect } from '../../common/styles';
 
 const log = debug('pie-lib:chart:bars');
-const ICON_SIZE = 24;
+const ICON_SIZE = 16; // 10px icon + 2px padding on all sides + 1px border
 
 export class RawPlot extends React.Component {
   static propTypes = {
@@ -70,12 +70,15 @@ export class RawPlot extends React.Component {
 
   renderCorrectnessIcon = (barX, barWidth, correctVal, correctness, classes, scale) => (
     <foreignObject
-      x={barX + barWidth / 2 - ICON_SIZE / 2 + 1} // 1 px for the border
-      y={scale.y(correctVal) + ICON_SIZE / 2 + 1}
+      x={barX + barWidth / 2 - ICON_SIZE / 2}
+      y={scale.y(correctVal) + ICON_SIZE}
       width={ICON_SIZE}
       height={ICON_SIZE}
     >
-      <Check className={classNames(classes.correctnessIcon, classes.correctIcon)} title={correctness.label} />
+      <Check
+        className={classNames(classes.correctnessIcon, classes.correctIcon, classes.smallIcon)}
+        title={correctness.label}
+      />
     </foreignObject>
   );
 
@@ -261,6 +264,11 @@ const Bar = withStyles((theme) => ({
     border: `1px solid ${color.defaults.WHITE}`,
     stroke: 'initial',
     boxSizing: 'unset', // to override the default border-box in IBX
+  },
+  smallIcon: {
+    fontSize: '10px',
+    width: '10px',
+    height: '10px',
   },
 }))(RawPlot);
 
