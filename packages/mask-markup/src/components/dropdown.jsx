@@ -10,7 +10,6 @@ import Close from '@material-ui/icons/Close';
 import Check from '@material-ui/icons/Check';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
-import isEqual from 'lodash/isEqual';
 
 import { color } from '@pie-lib/render-ui';
 import { renderMath } from '@pie-lib/math-rendering';
@@ -170,14 +169,24 @@ class Dropdown extends React.Component {
 
     return (
       <>
-        <div ref={this.hiddenRef} style={{ position: 'absolute', visibility: 'hidden', top: 0, left: 0 }}>
+        <div
+          ref={this.hiddenRef}
+          style={{ position: 'absolute', visibility: 'hidden', top: 0, left: 0 }}
+          tabIndex={-1}
+          aria-hidden="true"
+        >
           {(choices || []).map((c, index) => (
-            <MenuItem key={index} classes={{ root: classes.menuRoot, selected: classes.selected }}>
+            <MenuItem
+              key={index}
+              classes={{ root: classes.menuRoot, selected: classes.selected }}
+              tabIndex={-1}
+              aria-hidden="true"
+            >
               <span className={classes.label} dangerouslySetInnerHTML={{ __html: c.label }} />
             </MenuItem>
           ))}
         </div>
-        <InputLabel className={classes.srOnly} id={labelId}>
+        <InputLabel className={classes.srOnly} id={labelId} tabIndex={-1} aria-hidden="true">
           {labelText}
         </InputLabel>
         <Button
@@ -199,7 +208,7 @@ class Dropdown extends React.Component {
           disabled={disabled}
           id={buttonId}
           role="combobox"
-          aria-label="Select answer"
+          aria-label={`Select an option for ${labelText}`}
           aria-labelledby={valueDisplayId}
         >
           {correctnessIcon}
@@ -289,6 +298,11 @@ const styles = () => ({
       color: color.text(),
       marginLeft: '5px',
     },
+    '&:focus, &:focus-visible': {
+      outline: `3px solid ${color.tertiary()}`,
+      outlineOffset: '2px',
+      borderWidth: '3px',
+    },
   },
   disabledCorrect: {
     borderWidth: '2px',
@@ -327,6 +341,10 @@ const styles = () => ({
   menuRoot: {
     color: color.text(),
     backgroundColor: color.background(),
+    '&:focus, &:focus-visible': {
+      outline: `3px solid ${color.tertiary()}`,
+      outlineOffset: '-1px', // keeps it inside the item
+    },
     '&:focus': {
       color: color.text(),
       backgroundColor: color.background(),

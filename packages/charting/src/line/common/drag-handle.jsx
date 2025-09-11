@@ -1,10 +1,11 @@
 import React from 'react';
 import classNames from 'classnames';
-import { gridDraggable, utils, types } from '@pie-lib/plot';
-import { withStyles } from '@material-ui/core/styles/index';
-import { color } from '@pie-lib/render-ui';
 import PropTypes from 'prop-types';
-import { correct, incorrect, disabled } from '../../common/styles';
+import { withStyles } from '@material-ui/core/styles/index';
+
+import { gridDraggable, utils, types } from '@pie-lib/plot';
+import { color } from '@pie-lib/render-ui';
+import { disabled } from '../../common/styles';
 
 class RawDragHandle extends React.Component {
   static propTypes = {
@@ -51,11 +52,9 @@ class RawDragHandle extends React.Component {
   }
 }
 
-export const DragHandle = withStyles(() => ({
+export const DragHandle = withStyles((theme) => ({
   handle: {
     transition: 'fill 200ms linear, height 200ms linear',
-    '&.correct': correct('fill'),
-    '&.incorrect': incorrect('fill'),
     '&.non-interactive': disabled('fill'),
   },
   transparentHandle: {
@@ -67,8 +66,32 @@ export const DragHandle = withStyles(() => ({
     stroke: color.defaults.TEXT,
     transition: 'fill 200ms linear, height 200ms linear',
     '&.non-interactive': disabled('stroke'),
-    '&.correct': correct('stroke'),
-    '&.incorrect': incorrect('stroke'),
+  },
+  disabledPoint: {
+    fill: color.defaults.BLACK + ' !important',
+    stroke: color.defaults.BLACK + ' !important',
+  },
+  correctIcon: {
+    backgroundColor: color.correct(),
+  },
+  incorrectIcon: {
+    backgroundColor: color.incorrectWithIcon(),
+  },
+  correctnessIcon: {
+    borderRadius: theme.spacing.unit * 2,
+    color: color.defaults.WHITE,
+    fontSize: '16px',
+    width: '16px',
+    height: '16px',
+    padding: '2px',
+    border: `1px solid ${color.defaults.WHITE}`,
+    stroke: 'initial',
+    boxSizing: 'unset', // to override the default border-box in IBX
+  },
+  smallIcon: {
+    fontSize: '10px',
+    width: '10px',
+    height: '10px',
   },
 }))(RawDragHandle);
 

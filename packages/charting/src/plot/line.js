@@ -1,18 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { types } from '@pie-lib/plot';
-import { dataToXBand } from '../utils';
-import Plot from './common/plot';
 import { LinePath } from '@vx/shape';
 import { Group } from '@vx/group';
 
+import { types } from '@pie-lib/plot';
+import { dataToXBand } from '../utils';
+import { color } from '@pie-lib/render-ui';
+import Plot from './common/plot';
+
 const CustomBarElement = (props) => {
-  const { index, pointDiameter, barX, barWidth, pointHeight, label, value, classes, scale } = props;
+  const { index, pointDiameter, barX, barWidth, pointHeight, label, value, classes, scale, dottedOverline } = props;
 
   const x = barX + (barWidth - pointDiameter) / 2;
   const y = scale.y(index) - (pointHeight - pointDiameter) / 2;
+  const EXTRA_PADDING = 2;
 
-  return (
+  return dottedOverline ? (
+    <rect
+      key={`point-${label}-${value}-${index}`}
+      x={x - EXTRA_PADDING}
+      y={y - pointDiameter - EXTRA_PADDING}
+      width={pointDiameter + EXTRA_PADDING * 2}
+      height={pointDiameter + EXTRA_PADDING * 2}
+      strokeDasharray="4,4"
+      stroke={color.defaults.BORDER_GRAY}
+      fill="none"
+    />
+  ) : (
     <Group>
       <LinePath
         data={[

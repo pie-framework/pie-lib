@@ -1,12 +1,13 @@
 import React from 'react';
-import { ChildrenType } from './types';
 import { withStyles } from '@material-ui/core/styles';
-import { select, mouse } from 'd3-selection';
 import PropTypes from 'prop-types';
-import { GraphPropsType } from './types';
+import { select, mouse } from 'd3-selection';
+import cn from 'classnames';
+
 import { color, Readable } from '@pie-lib/render-ui';
 import EditableHtml from '@pie-lib/editable-html';
-import cn from 'classnames';
+import { ChildrenType } from './types';
+import { GraphPropsType } from './types';
 import Label from './label';
 import { extractTextFromHTML, isEmptyObject, isEmptyString } from './utils';
 
@@ -102,7 +103,7 @@ export class Root extends React.Component {
   };
 
   measureTitleHeight = () => {
-    const titleElement = document.getElementById('editable-title');
+    const titleElement = this.titleRef;
     if (titleElement) {
       const titleHeight = titleElement.clientHeight;
       this.setState({ titleHeight, prevTitle: this.props.title });
@@ -180,7 +181,7 @@ export class Root extends React.Component {
         {showTitle &&
           (disabledTitle ? (
             <div
-              id="editable-title"
+              ref={(r) => (this.titleRef = r)}
               style={{
                 ...(isChart && { width: finalWidth }),
                 ...(isEmptyString(extractTextFromHTML(title)) && { display: 'none' }),
@@ -189,7 +190,7 @@ export class Root extends React.Component {
               dangerouslySetInnerHTML={{ __html: title || '' }}
             />
           ) : (
-            <div id="editable-title">
+            <div ref={(r) => (this.titleRef = r)}>
               <EditableHtml
                 style={
                   isChart && {
@@ -313,6 +314,7 @@ const styles = (theme) => ({
     backgroundColor: theme.palette.common.white,
     touchAction: 'none',
     position: 'relative',
+    boxSizing: 'unset', // to override the default border-box in IBX that breaks the component width layout
   },
   wrapper: {
     display: 'flex',
