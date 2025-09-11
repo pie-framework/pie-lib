@@ -38,7 +38,7 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/plugin-transform-runtime": "^7.0.0",
     "@pie-framework/build-helper": "^5.2.9",
-    "@pie-lib/test-utils": "^0.0.3",
+    "@pie-lib/test-utils": "^0.8.0",
     "@pslb/pslb": "^4.4.0",
     "@types/enzyme": "^3.9.3",
     "@types/fs-extra": "^5.0.5",
@@ -82,7 +82,7 @@
     "webpack-dev-server": "^3.1.14",
     "yarn": "^1.13.0",
     "//": "the package below is added in dev dependencies because pslb needs the package to be in yarn.lock in order to load the proper versions",
-    "@pie-lib/pie-toolbox-math-rendering-module": "5.1.4"
+    "@pie-lib/pie-toolbox-math-rendering-module": "^5.4.2"
   },
   "dependencies": {
     "@material-ui/codemod": "^1.1.0"

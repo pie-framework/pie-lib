@@ -11,6 +11,7 @@ const log = debug('@pie-lib:scripts:dev');
 
 let watcher = null;
 let nextProcess = null;
+let libWatcherProcess = null;
 processFix(log, () => {
   if (watcher) {
     watcher.exit();
@@ -18,6 +19,10 @@ processFix(log, () => {
 
   if (nextProcess) {
     nextProcess.kill();
+  }
+
+  if (libWatcherProcess) {
+    libWatcherProcess.kill();
   }
 
   process.exit();
@@ -38,10 +43,15 @@ const run = async () => {
 
   const args = scope.map(s => ({
     src: `packages/${s}/src`,
-    target: `packages/${s}/`
+    target: `packages/${s}/lib`
   }));
 
   watcher = watch(args);
+
+  libWatcherProcess = spawn('node', ['scripts/watch-lib-changes.js'], {
+    stdio: 'inherit',
+    env: process.env
+  });
 
   const nextCmd = './node_modules/.bin/next';
 

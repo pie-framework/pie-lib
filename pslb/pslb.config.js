@@ -60,59 +60,74 @@ module.exports = {
     repository: 'pie-framework/pie-lib',
     packages: [
       {
-        name: '@pie-lib/pie-toolbox-math-rendering-module',
+        name: '@pie-lib/math-rendering-module',
         output: packagesDir,
         repository: 'pie-framework/pie-lib',
         extensions: { commonJs },
+        imports: {
+          namespace: ['@pie-lib/math-rendering'],
+        },
+      },
+      // core shared module lib
+      {
+        name: '@pie-lib/shared-module',
         imports: {
           default: [
             'react-dom',
             'react-dom/server',
             'react',
             'prop-types',
+            '@pie-lib/correct-answer-toggle',
             'lodash',
             'classnames',
             'debug',
-            '@pie-framework/mathquill',
           ],
-          namespace: ['@pie-lib/pie-toolbox/math-rendering'],
+          namespace: [
+            '@material-ui/core/styles/colorManipulator',
+            '@material-ui/core/Collapse/index',
+            '@material-ui/core/styles',
+            '@material-ui/core',
+            '@material-ui/icons',
+            '@pie-lib/render-ui',
+          ],
         },
       },
       {
-        name: '@pie-lib/pie-toolbox-module',
+        name: '@pie-lib/drag-module',
         output: packagesDir,
         repository: 'pie-framework/pie-lib',
         extensions: { commonJs },
         imports: {
-          namespace: [
-            // Commented out all material-ui and d3 libs below because it looks like we don't need them for any print item
-            // Also, if these are included, the build gets killed
-            // We can try to make the builds without them and test if we need them.
-            // '@material-ui/core/styles/colorManipulator',
-            // '@material-ui/core/Collapse/index',
-            // '@material-ui/core/styles',
-            // '@material-ui/core',
-            // '@material-ui/icons',
-            // take d3-scale from the repo root... so 2.x
-            // 'd3-scale',
-            // 'd3-selection',
-            // '@pie-lib/pie-toolbox',
-            // Keeping only the required packages:
-            '@pie-lib/pie-toolbox/config-ui',
-            '@pie-lib/pie-toolbox/correct-answer-toggle',
-            '@pie-lib/pie-toolbox/editable-html',
-            '@pie-lib/pie-toolbox/math-input',
-            // created a separate package for math-rendering (see above)
-            '@pie-lib/pie-toolbox-math-rendering-module',
-            // '@pie-lib/pie-toolbox/math-rendering',
-            // '@pie-lib/pie-toolbox/math-rendering-accessible',
-            '@pie-lib/pie-toolbox/math-toolbar',
-            '@pie-lib/pie-toolbox/render-ui',
-            // Not used in any print module yet:
-            // '@pie-lib/pie-toolbox/drag',
-            // '@pie-lib/pie-toolbox/graphing',
-            // '@pie-lib/pie-toolbox/plot',
-          ],
+          namespace: ['@pie-lib/drag'],
+        },
+      },
+      {
+        name: '@pie-lib/math-edit-module',
+        // eslint-disable-next-line no-undef
+        imports: {
+          default: ['@pie-framework/mathquill'],
+          namespace: ['@pie-lib/math-input', '@pie-lib/math-toolbar'],
+        },
+      },
+      {
+        name: '@pie-lib/editable-html-module',
+        imports: {
+          default: ['@pie-lib/editable-html'],
+        },
+      },
+      {
+        name: '@pie-lib/config-module',
+        imports: {
+          namespace: ['@pie-lib/config-ui'],
+        },
+      },
+      {
+        name: '@pie-lib/graphing-module',
+        // add dependency here? or use the order?
+        // output: path.resolve(__dirname, '../packages'),
+        imports: {
+          default: [],
+          namespace: ['@pie-lib/plot', '@pie-lib/graphing'],
         },
       },
     ],

@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import debug from 'debug';
 import withRoot from '../../source/withRoot';
 import Settings from './settings';
-import { Chart, chartTypes } from '@pie-lib/pie-toolbox/charting';
+import { Chart, chartTypes } from '@pie-lib/charting';
 import Options from './options';
 
 const log = debug('pie-lib:charting:graph-lines-demo');
