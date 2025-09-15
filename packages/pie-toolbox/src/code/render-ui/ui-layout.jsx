@@ -6,13 +6,47 @@ import AppendCSSRules from './append-css-rules';
 
 const theme = createMuiTheme({
   typography: {
-    // In MUI v3, this opts into the h1–h6 variants; otherwise use display1/headline/etc.
     useNextVariants: true,
     fontFamily: 'inherit',
+  },
+  palette: {
+    action: {
+      disabled: 'rgba(0, 0, 0, 0.54);',
+    },
   },
   overrides: {
     MuiTypography: {
       root: { fontFamily: 'inherit' },
+    },
+    MuiRadio: {
+      root: {
+        '&$checked': {
+          color: '#3f51b5 !important',
+        },
+      },
+    },
+    MuiCheckbox: {
+      root: {
+        '&$checked': {
+          color: '#3f51b5 !important',
+        },
+      },
+    },
+    MuiTabs: {
+      root: {
+        borderBottom: '1px solid #eee',
+      },
+    },
+    MuiSwitch: {
+      root: {
+        '&$checked': {
+          color: '#3f51b5 !important',
+          '& + $bar': {
+            backgroundColor: '#3f51b5 !important',
+            opacity: 0.5,
+          },
+        },
+      },
     },
   },
 });
