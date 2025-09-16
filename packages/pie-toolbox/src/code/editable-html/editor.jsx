@@ -1141,8 +1141,6 @@ const styles = {
     transform: 'translate(-50%, -50%)',
   },
   slateEditor: {
-    fontFamily: 'Roboto, sans-serif',
-
     '& table': {
       tableLayout: 'fixed',
       width: '100%',

@@ -23,7 +23,6 @@ const styleSheet = {
     '-webkit-font-smoothing': 'antialiased',
     backgroundColor: `var(--feedback-bg-color, ${color.disabled()})`,
     borderRadius: '4px',
-    fontFamily: '"Roboto", "Noto", sans-serif',
     lineHeight: '25px',
     margin: '0px',
     padding: '10px',
