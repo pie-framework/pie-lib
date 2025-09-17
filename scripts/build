@@ -36,7 +36,7 @@ class LibCommands extends Commands {
   }
 
   build() {
-    return super.build();
+    return super.build().then(() => this.sharedBuild());
   }
 }
 
