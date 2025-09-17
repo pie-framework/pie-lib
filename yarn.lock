@@ -2683,11 +2683,6 @@
     mathjax-full "3.2.2"
     mathml-to-latex "1.2.0"
 
-"@pie-lib/pie-toolbox-math-rendering-module@^5.4.2":
-  version "5.4.2"
-  resolved "https://registry.yarnpkg.com/@pie-lib/pie-toolbox-math-rendering-module/-/pie-toolbox-math-rendering-module-5.4.2.tgz#90f9b6d755d3ae3483414bf7459aefd62b5a6cb5"
-  integrity sha512-jQkpFXWWrClszbhHzzt+Y2uY1YmvNLb80PYvhr+rb4ezswMLk5/ohQarV/ipfgC80usBiFu8OTBZh0Jd1I0xeg==
-
 "@pie-lib/test-utils@^0.8.0":
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/@pie-lib/test-utils/-/test-utils-0.8.0.tgz#29f60bfd277906297f841532c4d5c2769847489c"
