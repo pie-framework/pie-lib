@@ -1,13 +1,13 @@
 {
   "name": "@pie-lib/drag",
-  "version": "2.13.0",
+  "version": "2.14.0",
   "description": "",
   "main": "lib/index.js",
   "module": "src/index.js",
   "dependencies": {
     "@material-ui/core": "^3.8.3",
-    "@pie-lib/math-rendering": "^3.13.0",
-    "@pie-lib/render-ui": "^4.26.0",
+    "@pie-lib/math-rendering": "^3.14.0",
+    "@pie-lib/render-ui": "^4.27.0",
     "classnames": "^2.2.6",
     "lodash": "^4.17.11",
     "prop-types": "^15.7.2",
@@ -23,5 +23,5 @@
   "scripts": {},
   "author": "",
   "license": "ISC",
-  "gitHead": "cb4470f65d42610bfdd055888b6dbb8f0c9ed31c"
+  "gitHead": "ff5ec2ebe11110b7652812a10c6dc230f08e12cb"
 }
