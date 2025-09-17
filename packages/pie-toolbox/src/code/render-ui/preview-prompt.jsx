@@ -234,7 +234,7 @@ const styles = (theme) => ({
     '&:not(.MathJax) > table': {
       borderCollapse: 'collapse',
     },
-    '&:not(.MathJax) > table tr': {
+    '&:not(.MathJax) > table td': {
       '&:nth-child(2n)': {
         backgroundColor: '#f6f8fa',
         color: theme.palette.common.black,
