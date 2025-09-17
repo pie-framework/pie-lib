@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/translator",
-  "version": "2.13.0",
+  "version": "2.14.0",
   "publishConfig": {
     "access": "public"
   },
@@ -14,5 +14,5 @@
     "react": "^16.8.1",
     "react-dom": "^16.9.0"
   },
-  "gitHead": "889a13bfea2c768b8a3a6eabfc6fe7b7725aa832"
+  "gitHead": "cb4470f65d42610bfdd055888b6dbb8f0c9ed31c"
 }
