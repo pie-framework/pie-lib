@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.19.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@3.6.65...@pie-lib/scoring-config@3.19.0) (2025-09-18)
+
+
+### Bug Fixes
+
+* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
+
+
+### Features
+
+* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
+
+
+
+
+
 # [3.18.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@3.17.0...@pie-lib/scoring-config@3.18.0) (2025-09-17)
 
 **Note:** Version bump only for package @pie-lib/scoring-config
