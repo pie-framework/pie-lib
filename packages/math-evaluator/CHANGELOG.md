@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.16.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.15.0...@pie-lib/math-evaluator@2.16.0) (2025-09-18)
+
+**Note:** Version bump only for package @pie-lib/math-evaluator
+
+
+
+
+
 # [2.15.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.14.0...@pie-lib/math-evaluator@2.15.0) (2025-09-18)
 
 **Note:** Version bump only for package @pie-lib/math-evaluator

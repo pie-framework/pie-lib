@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/feedback",
-  "version": "0.18.0",
+  "version": "0.19.0",
   "description": "Feedback utilities",
   "main": "lib/index.js",
   "module": "src/index.js",
