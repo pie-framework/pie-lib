@@ -47,7 +47,7 @@
     "react-input-autosize": "^2.2.1",
     "react-redux": "^6.0.0",
     "redux": "^4.0.1",
-    "redux-undo": "latest"
+    "redux-undo": "beta"
   },
   "peerDependencies": {
     "react": "^16.8.1"

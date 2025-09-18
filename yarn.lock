@@ -13904,10 +13904,10 @@ reduce-function-call@^1.0.1:
   dependencies:
     balanced-match "^1.0.0"
 
-redux-undo@latest:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/redux-undo/-/redux-undo-1.1.0.tgz#ae28e517797b1aa5521d55da561f7214d310f8a5"
-  integrity sha512-zzLFh2qeF0MTIlzDhDLm9NtkfBqCllQJ3OCuIl5RKlG/ayHw6GUdIFdMhzMS9NnrnWdBX5u//ExMOHpfudGGOg==
+redux-undo@beta:
+  version "1.0.0-beta9-9-7"
+  resolved "https://registry.yarnpkg.com/redux-undo/-/redux-undo-1.0.0-beta9-9-7.tgz#fe3baa1b271423d7ddbbfc3a82c71b029a2db8ba"
+  integrity sha512-TTo1X0rkWJaHB4NOnMWXuuyZ3XOHzqplAPUtKFfuAxsSnrLN+ft+CsQy3vuT5+/n02DKWRpkj5hpxsLgmTPPBQ==
 
 redux@^4.0.0, redux@^4.0.1, redux@^4.1.1:
   version "4.2.0"
