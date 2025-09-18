@@ -12,7 +12,6 @@
     "@pie-lib/editable-html": "^11.13.0",
     "classnames": "^2.2.6",
     "debug": "^4.1.1",
-    "editable-html": "npm:@pie-lib/editable-html@^7.21.0",
     "lodash": "^4.17.11",
     "prop-types": "^15.7.2",
     "react": "^16.8.1",
