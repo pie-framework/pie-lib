@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/graphing-utils",
-  "version": "1.14.0",
+  "version": "1.15.0",
   "description": "",
   "main": "lib/index.js",
   "module": "src/index.js",

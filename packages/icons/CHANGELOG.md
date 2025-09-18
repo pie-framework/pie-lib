@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.18.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.17.0...@pie-lib/icons@2.18.0) (2025-09-18)
+
+**Note:** Version bump only for package @pie-lib/icons
+
+
+
+
+
 # [2.17.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.4.43...@pie-lib/icons@2.17.0) (2025-09-18)
 
 

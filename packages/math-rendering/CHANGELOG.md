@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.16.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@3.15.0...@pie-lib/math-rendering@3.16.0) (2025-09-18)
+
+**Note:** Version bump only for package @pie-lib/math-rendering
+
+
+
+
+
 # [3.15.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@3.2.1...@pie-lib/math-rendering@3.15.0) (2025-09-18)
 
 
