@@ -27,7 +27,6 @@ const rawLinks = [
   { label: 'protractor', path: '/tools/protractor' },
   { label: 'rotatable', path: '/tools/rotatable' },
   { label: 'drag', path: '/drag' },
-  { label: 'pie-toolbox', path: '/pie-toolbox' },
 ];
 
 module.exports.loadLinks = () => {

@@ -1,0 +1,46 @@
+{
+  "name": "@pie-lib/text-select",
+  "publishConfig": {
+    "access": "public"
+  },
+  "version": "1.27.0",
+  "description": "Some react components for text selection",
+  "keywords": [
+    "react",
+    "pie",
+    "text",
+    "select"
+  ],
+  "repository": "pie-framework/pie-lib",
+  "main": "lib/index.js",
+  "module": "src/index.js",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@material-ui/icons": "^3.0.2",
+    "@pie-framework/parse-english": "^1.0.0",
+    "@pie-lib/render-ui": "^4.30.0",
+    "@pie-lib/style-utils": "^0.16.0",
+    "@pie-lib/translator": "^2.18.0",
+    "classnames": "^2.2.6",
+    "debug": "^4.1.1",
+    "invariant": "^2.2.4",
+    "lodash": "^4.17.11",
+    "prop-types": "^15.6.2",
+    "unist-util-inspect": "^4.1.3"
+  },
+  "devDependencies": {
+    "@material-ui/core": "^3.8.3",
+    "@pie-framework/parse-english": "^1.0.0",
+    "@pie-lib/test-utils": "^0.17.0",
+    "natural": "^0.6.3",
+    "react": "^16.8.1",
+    "react-dom": "^16.9.0"
+  },
+  "peerDependencies": {
+    "@material-ui/core": "^3.8.3",
+    "react": "^16.8.1"
+  },
+  "gitHead": "ff5ec2ebe11110b7652812a10c6dc230f08e12cb",
+  "scripts": {}
+}

@@ -1,0 +1,27 @@
+{
+  "name": "@pie-lib/drag",
+  "version": "2.17.0",
+  "description": "",
+  "main": "lib/index.js",
+  "module": "src/index.js",
+  "dependencies": {
+    "@material-ui/core": "^3.8.3",
+    "@pie-lib/math-rendering": "^3.17.0",
+    "@pie-lib/render-ui": "^4.30.0",
+    "classnames": "^2.2.6",
+    "lodash": "^4.17.11",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.1",
+    "react-dnd": "^14.0.5",
+    "react-dnd-html5-backend": "^14.0.2",
+    "react-dnd-multi-backend": "^6.0.2",
+    "react-dnd-touch-backend": "^12.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {},
+  "author": "",
+  "license": "ISC",
+  "gitHead": "ff5ec2ebe11110b7652812a10c6dc230f08e12cb"
+}
