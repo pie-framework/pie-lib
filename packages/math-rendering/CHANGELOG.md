@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.18.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@3.2.1...@pie-lib/math-rendering@3.18.0) (2025-09-25)
+
+
+### Bug Fixes
+
+* **math-rendering:** move mathjax-full back to dependencies ([3073e44](https://github.com/pie-framework/pie-lib/commit/3073e444419d8e52d451df750e8d1d604f23bd3f))
+* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
+
+
+### Features
+
+* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
+
+
+
+
+
 # [3.17.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@3.16.0...@pie-lib/math-rendering@3.17.0) (2025-09-18)
 
 

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.17.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@11.1.1...@pie-lib/editable-html@11.17.0) (2025-09-25)
+
+
+### Bug Fixes
+
+* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
+
+
+### Features
+
+* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
+
+
+
+
+
 # [11.16.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@11.15.0...@pie-lib/editable-html@11.16.0) (2025-09-18)
 
 **Note:** Version bump only for package @pie-lib/editable-html

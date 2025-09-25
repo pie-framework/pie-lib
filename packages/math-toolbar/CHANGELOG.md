@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.27.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.11.30...@pie-lib/math-toolbar@1.27.0) (2025-09-25)
+
+
+### Bug Fixes
+
+* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
+
+
+### Features
+
+* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
+
+
+
+
+
 # [1.26.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.25.0...@pie-lib/math-toolbar@1.26.0) (2025-09-18)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
