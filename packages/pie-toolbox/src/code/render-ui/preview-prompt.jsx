@@ -194,6 +194,8 @@ export class PreviewPrompt extends Component {
       legendClass
     ] || ''}`;
 
+    console.log('prompt Andreea', prompt);
+
     return (
       <CustomTag
         id={'preview-prompt'}
@@ -234,7 +236,15 @@ const styles = (theme) => ({
     '&:not(.MathJax) > table': {
       borderCollapse: 'collapse',
     },
-    '&:not(.MathJax) > table td': {
+    // Apply vertical striping only when first column is a header column (th)
+    '&:not(.MathJax) > table:has(tr:first-child th:first-child) td': {
+      '&:nth-child(2n)': {
+        backgroundColor: '#f6f8fa',
+        color: theme.palette.common.black,
+      },
+    },
+    // Apply horizontal striping for tables where first element is NOT a header (th)
+    '&:not(.MathJax) > table:not(:has(tr:first-child th:first-child)) tr': {
       '&:nth-child(2n)': {
         backgroundColor: '#f6f8fa',
         color: theme.palette.common.black,
