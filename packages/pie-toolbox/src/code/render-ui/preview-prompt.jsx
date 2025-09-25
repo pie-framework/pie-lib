@@ -194,8 +194,6 @@ export class PreviewPrompt extends Component {
       legendClass
     ] || ''}`;
 
-    console.log('prompt Andreea', prompt);
-
     return (
       <CustomTag
         id={'preview-prompt'}
