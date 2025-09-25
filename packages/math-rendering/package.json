@@ -1,0 +1,21 @@
+{
+  "name": "@pie-lib/math-rendering",
+  "version": "3.17.0",
+  "description": "math rendering utilities",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "lib/index.js",
+  "module": "src/index.js",
+  "author": "pie-framework developers",
+  "license": "ISC",
+  "dependencies": {
+    "@pie-framework/mathml-to-latex": "1.4.4",
+    "debug": "^4.1.1",
+    "lodash": "^4.17.11",
+    "mathjax-full": "3.2.2",
+    "react": "^16.8.1"
+  },
+  "gitHead": "ff5ec2ebe11110b7652812a10c6dc230f08e12cb",
+  "scripts": {}
+}
