@@ -1,0 +1,37 @@
+{
+  "name": "@pie-lib/correct-answer-toggle",
+  "description": "A react based toggle component",
+  "repository": "pie-framework/pie-lib",
+  "license": "ISC",
+  "keywords": [
+    "react",
+    "pie",
+    "material-ui"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "version": "2.21.0",
+  "main": "lib/index.js",
+  "module": "src/index.jsx",
+  "scripts": {},
+  "dependencies": {
+    "@material-ui/core": "^3.8.3",
+    "@pie-lib/icons": "^2.20.0",
+    "@pie-lib/render-ui": "^4.31.0",
+    "@pie-lib/translator": "^2.19.0",
+    "classnames": "^2.2.6",
+    "lodash": "^4.17.11",
+    "prop-types": "^15.6.2",
+    "react-transition-group": "^2.5.2"
+  },
+  "devDependencies": {
+    "react": "^16.8.1",
+    "react-dom": "^16.9.0"
+  },
+  "peerDependencies": {
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1"
+  },
+  "gitHead": "ff5ec2ebe11110b7652812a10c6dc230f08e12cb"
+}
