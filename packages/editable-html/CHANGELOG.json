@@ -1,0 +1,32 @@
+[
+  {
+    "type": "feat",
+    "scope": null,
+    "subject": "made sure editor is waiting for image and sound upload before finishes editing PD-2950 (#948)",
+    "merge": null,
+    "header": "feat: made sure editor is waiting for image and sound upload before finishes editing PD-2950 (#948)",
+    "body": "feat: made sure editor is waiting for image and sound upload before finishes editing PD-2950",
+    "footer": null,
+    "notes": [],
+    "hash": "bd16707f13f824dfe2c2db7f395e58fa25eb2ffb",
+    "gitTags": "",
+    "committerDate": "2023-10-16 11:14:31 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@11.1.0"
+  },
+  {
+    "type": "feat",
+    "scope": "mask-markup",
+    "subject": "merging with the develop branch",
+    "merge": null,
+    "header": "feat(mask-markup): merging with the develop branch",
+    "body": null,
+    "footer": null,
+    "notes": [],
+    "hash": "0153c1aba8a08ba6c974fcc69476a87b9086f6c5",
+    "gitTags": "",
+    "committerDate": "2019-05-02 07:12:59 +0300",
+    "isTagged": true,
+    "tag": "@pie-lib/editable-html@10.0.0"
+  }
+]
