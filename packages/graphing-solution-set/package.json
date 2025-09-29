@@ -28,7 +28,7 @@
     "@pie-lib/translator": "^2.19.0",
     "@vx/axis": "^0.0.189",
     "@vx/clip-path": "^0.0.189",
-    "@vx/curve": "^0.0.189",
+    "@vx/curve": "^0.0.199",
     "@vx/event": "^0.0.189",
     "@vx/grid": "^0.0.189",
     "@vx/group": "^0.0.183",
