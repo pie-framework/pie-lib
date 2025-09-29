@@ -33,7 +33,7 @@
     "@material-ui/core": "^3.8.3",
     "@pie-framework/parse-english": "^1.0.0",
     "@pie-lib/test-utils": "^0.18.0",
-    "natural": "^0.6.3",
+    "natural": "^8.1.0",
     "react": "^16.8.1",
     "react-dom": "^16.9.0"
   },
