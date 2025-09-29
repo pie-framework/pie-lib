@@ -18,7 +18,7 @@
     "complex.js": "2.1.1",
     "debug": "^4.1.1",
     "lodash": "^4.17.11",
-    "mathjs": "^7.0.1",
+    "mathjs": "^14.8.1",
     "prop-types": "^15.6.2",
     "react-measure": "^2.2.2"
   },
