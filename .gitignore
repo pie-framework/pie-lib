@@ -13,4 +13,5 @@ PIE-*
 !pie-toolbox/**
 !pie-toolbox/.gitignore
 packages/*-module@*
+packages/**/esm
 
