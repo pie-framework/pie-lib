@@ -5,7 +5,13 @@ This repository now supports building ESM (ECMAScript Module) bundles alongside 
 ## Commands
 
 ```bash
-# Build ESM bundles for all packages
+# Build everything (CommonJS + ESM) - DEFAULT
+yarn build
+
+# Build only CommonJS
+yarn build:cjs
+
+# Build only ESM
 yarn build:esm
 
 # Run tests
@@ -54,20 +60,19 @@ packages/my-package/
 
 When publishing packages:
 
-1. Build both formats:
+1. Build everything:
    ```bash
-   yarn build        # Build CommonJS (lib/)
-   yarn build:esm    # Build ESM (esm/)
+   yarn build    # Builds both CommonJS (lib/) and ESM (esm/)
    ```
 
 2. Publish to npm:
    ```bash
-   lerna publish --preid esm --dist-tag esm  # For testing
-   # or
-   lerna publish                              # For production
+   lerna publish  # For production (builds both formats automatically)
    ```
 
 Both `lib/` and `esm/` directories are included in the published package.
+
+**Note:** `yarn build` now builds BOTH formats by default to prevent accidental incomplete publishes.
 
 ## Adding ESM Support to New Packages
 
