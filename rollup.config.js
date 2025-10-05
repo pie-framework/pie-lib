@@ -45,6 +45,11 @@ const plugins = [
     browser: true,
     preferBuiltins: false,
   }),
+  // CommonJS MUST come BEFORE Babel
+  // Convert require() to import FIRST, then transpile
+  commonjs({
+    include: /node_modules/,
+  }),
   postcss({
     extract: true,
     minimize: isProduction,
@@ -75,9 +80,6 @@ const plugins = [
       }],
     ],
     extensions: ['.js', '.jsx'],
-  }),
-  commonjs({
-    include: /node_modules/,
   }),
 ].filter(Boolean);
 

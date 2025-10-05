@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const { rollup } = require('rollup');
-const { readdirSync, pathExistsSync, mkdirSync, readJsonSync } = require('fs-extra');
+const { readdirSync, pathExistsSync, mkdirSync, readJsonSync, writeJsonSync } = require('fs-extra');
 const { resolve, join } = require('path');
 const createConfig = require('../rollup.config.js').default;
 
@@ -32,6 +32,13 @@ async function buildEntry(pkgDir, entry, outputName) {
 
   const esmDir = join(pkgDir, 'esm');
   mkdirSync(esmDir, { recursive: true });
+
+  // Create package.json to mark this directory as ESM
+  // This eliminates Node.js warnings about module type
+  const esmPkgJson = join(esmDir, 'package.json');
+  if (!pathExistsSync(esmPkgJson)) {
+    writeJsonSync(esmPkgJson, { type: 'module' });
+  }
 
   const output = join(esmDir, outputName);
   const rollupConfig = createConfig(input, output);
