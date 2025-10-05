@@ -21,7 +21,10 @@ const external = [
   'react-dnd-html5-backend',
   'react-dnd-touch-backend',
   'react-dnd-multi-backend',
-  'react-portal',
+  // NOTE: react-portal bundled due to improper ESM default export
+  // - Has 'es/index.js' but doesn't export default correctly
+  // - Bundling ensures compatibility
+  // 'react-portal',
   'react-draggable',
   'react-redux',
   'react-input-autosize',
