@@ -10,10 +10,15 @@ const isProduction = process.env.NODE_ENV === 'production';
 const external = [
   // React ecosystem
   'react',
-  'react-dom',
+  // NOTE: react-dom (+ server) bundled for packages using Slate
+  // - Slate uses deprecated findDOMNode and renderToStaticMarkup
+  // - These are not exported correctly by esm.sh as named imports
+  // - Bundling react-dom + react-dom/server (~120KB) ensures compatibility
+  // - Only affects: editable-html, mask-markup, math-rendering-accessible
+  // 'react-dom',
   'prop-types',
   /^react\//,
-  /^react-dom\//,
+  // /^react-dom\//,  // Also commented to bundle react-dom/server
   'react-transition-group',
   /^react-transition-group\//, // CSSTransition, etc.
   'react-beautiful-dnd',
