@@ -22,6 +22,7 @@
     "build": "scripts/build build && node scripts/build-esm.js",
     "build:cjs": "scripts/build build",
     "build:esm": "node scripts/build-esm.js",
+    "prepublish-check": "./scripts/prepublish-check.sh",
     "postinstall": "lerna bootstrap",
     "prepush": "npm run test",
     "prepublishOnly": "yarn build",

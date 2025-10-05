@@ -27,10 +27,12 @@ const external = [
   'react-attr-converter',
   'react-measure',
 
-  // Material-UI (keep all sub-paths external)
+  // Material-UI core (keep external, but bundle icons)
   '@material-ui/core',
-  '@material-ui/icons',
-  /^@material-ui\//,
+  /^@material-ui\/core\//,
+  '@material-ui/styles',
+  /^@material-ui\/styles\//,
+  // Note: @material-ui/icons are bundled (not external) because old version lacks ESM support
 
   // Lodash (keep all sub-paths external)
   'lodash',
