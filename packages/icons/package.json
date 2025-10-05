@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/icons",
-  "version": "2.21.4",
+  "version": "2.21.5-esmbeta.0",
   "description": "Some simple icons",
   "main": "lib/index.js",
   "module": "src/index.js",
