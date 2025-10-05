@@ -1,3 +1,27 @@
+/**
+ * Rollup configuration for ESM builds - SIMPLE VERSION
+ * 
+ * Strategy: Bundle EVERYTHING except what's 100% proven safe
+ * 
+ * Safe External (proven to work):
+ * - React (universal, always works)
+ * - @pie-lib/* (our packages, we control the ESM)
+ * - @pie-framework/* (our packages, we control the ESM)
+ * 
+ * Everything Else: BUNDLED
+ * - react-dom (Slate needs it)
+ * - Material-UI (old versions)
+ * - Lodash (works but bundle for safety)
+ * - Slate ecosystem (no ESM)
+ * - All third-party deps
+ * 
+ * Benefits:
+ * - Maximum compatibility
+ * - Zero CDN transformation issues
+ * - Predictable behavior
+ * - Optimize later based on real data
+ */
+
 const { nodeResolve } = require('@rollup/plugin-node-resolve');
 const commonjs = require('@rollup/plugin-commonjs');
 const { babel } = require('@rollup/plugin-babel');
@@ -5,95 +29,14 @@ const postcss = require('rollup-plugin-postcss');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
-// External dependencies that should not be bundled
-// Generated from: node scripts/discover-esm-imports.mjs
+// MINIMAL external list - Only 100% proven safe dependencies
 const external = [
-  // React ecosystem
+  // React core - Universal, always works fine external
   'react',
-  // NOTE: react-dom (+ server) bundled for packages using Slate
-  // - Slate uses deprecated findDOMNode and renderToStaticMarkup
-  // - These are not exported correctly by esm.sh as named imports
-  // - Bundling react-dom + react-dom/server (~120KB) ensures compatibility
-  // - Only affects: editable-html, mask-markup, math-rendering-accessible
-  // 'react-dom',
-  'prop-types',
-  /^react\//,
-  // /^react-dom\//,  // Also commented to bundle react-dom/server
-  'react-transition-group',
-  /^react-transition-group\//, // CSSTransition, etc.
-  'react-beautiful-dnd',
-  'react-dnd',
-  'react-dnd-html5-backend',
-  'react-dnd-touch-backend',
-  'react-dnd-multi-backend',
-  // NOTE: react-portal bundled due to improper ESM default export
-  // - Has 'es/index.js' but doesn't export default correctly
-  // - Bundling ensures compatibility
-  // 'react-portal',
-  'react-draggable',
-  'react-redux',
-  'react-input-autosize',
-  'react-attr-converter',
-  'react-measure',
-
-  // Material-UI core (keep external, but bundle icons)
-  '@material-ui/core',
-  /^@material-ui\/core\//,
-  '@material-ui/styles',
-  /^@material-ui\/styles\//,
-  // Note: @material-ui/icons are bundled (not external) because old version lacks ESM support
-
-  // Lodash (keep all sub-paths external)
-  'lodash',
-  /^lodash\//,
-
-  // Slate editor ecosystem + immutable
-  // NOTE: Bundled instead of external due to ESM compatibility issues:
-  // - Old Slate packages expect immutable v3 (no ESM support)
-  // - esm.sh can't properly transform these transitive dependencies
-  // - Bundling Slate + immutable together (~100KB) ensures compatibility
-  // - When moving away from Slate, these can be removed entirely
-  // 
-  // 'slate',
-  // 'slate-react',
-  // 'slate-prop-types',
-  // 'slate-plain-serializer',
-  // 'slate-html-serializer',
-  // 'slate-dev-environment',
-  // 'slate-hotkeys',
-  // 'slate-soft-break',
-  // /^slate-edit-/, // slate-edit-list, slate-edit-table
-  // 'immutable',
-
-  // Visualization libraries
-  /^@vx\//, // @vx/axis, @vx/grid, etc.
-  /^d3-/, // d3-scale, d3-selection
-
-  // Math libraries
-  /^mathjax-full\//,
-  /^speech-rule-engine\//,
-  'mathjs',
-  // NOTE: @pie-framework/mathquill bundled due to no ESM support
-  // - MathQuill is a jQuery plugin, no ESM exports
-  // - Bundling ensures compatibility (~100KB for math input)
-  // '@pie-framework/mathquill',
-
-  // State management
-  'redux',
-
-  // Other libraries
-  'classnames',
-  'debug',
-  'enzyme',
-  'i18next',
-  'invariant',
-  'trigonometry-calculator',
-  'to-style',
-  '@mapbox/point-geometry',
-
-  // PIE framework
+  
+  // PIE packages - Our own, we control the ESM builds
   /^@pie-lib\//,
-  /^@pie-framework\/(?!mathquill)/, // Bundle mathquill, keep others external
+  /^@pie-framework\//,
 ];
 
 const plugins = [
@@ -101,24 +44,18 @@ const plugins = [
     extensions: ['.js', '.jsx'],
     browser: true,
     preferBuiltins: false,
-    // Resolve from node_modules to bundle @material-ui/icons
-    // The external array controls what stays external
   }),
   postcss({
-    // Extract CSS to separate files (one per entry point)
     extract: true,
-    // Minimize CSS in production
     minimize: isProduction,
-    // Don't inject CSS into JS
     inject: false,
   }),
   babel({
-    babelHelpers: 'bundled', // Inline helpers for pure ESM
+    babelHelpers: 'bundled',
     exclude: /node_modules/,
-    babelrc: false, // Don't read .babelrc files
-    configFile: false, // Don't read babel.config.js
+    babelrc: false,
+    configFile: false,
     assumptions: {
-      // Force pure ESM output (no CommonJS)
       setPublicClassFields: true,
       constantSuper: true,
       noDocumentAll: true,
@@ -129,16 +66,13 @@ const plugins = [
     },
     presets: [
       ['@babel/preset-react'],
-      [
-        '@babel/preset-env',
-        {
-          targets: {
-            esmodules: true, // Target modern browsers with ESM support
-          },
-          modules: false, // Keep ES modules
-          bugfixes: true, // Use smaller, modern transforms
+      ['@babel/preset-env', {
+        targets: {
+          esmodules: true,
         },
-      ],
+        modules: false,
+        bugfixes: true,
+      }],
     ],
     extensions: ['.js', '.jsx'],
   }),
@@ -160,3 +94,4 @@ module.exports.default = function createConfig(input, output) {
     plugins,
   };
 };
+
