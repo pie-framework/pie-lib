@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/scoring-config",
-  "version": "3.23.2",
+  "version": "3.23.3",
   "description": "",
   "main": "lib/index.js",
   "module": "src/index.jsx",
@@ -13,7 +13,7 @@
   "dependencies": {
     "@material-ui/core": "^3.8.3",
     "@material-ui/icons": "^3.0.2",
-    "@pie-lib/config-ui": "^11.26.2",
+    "@pie-lib/config-ui": "^11.26.3",
     "classnames": "^2.2.6",
     "debug": "^4.1.1",
     "lodash": "^4.17.11",
@@ -26,7 +26,7 @@
     "react": "^16.8.1",
     "react-dom": "^16.9.0"
   },
-  "gitHead": "ff5ec2ebe11110b7652812a10c6dc230f08e12cb",
+  "gitHead": "20caabe19279c68c86fc179191d3eb403bb0be76",
   "exports": {
     ".": {
       "import": "./esm/index.js",

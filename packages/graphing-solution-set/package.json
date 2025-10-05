@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "2.31.2",
+  "version": "2.31.3",
   "description": "Graphing components",
   "keywords": [
     "react",
@@ -19,13 +19,13 @@
     "@mapbox/point-geometry": "^0.1.0",
     "@material-ui/core": "^3.8.3",
     "@material-ui/icons": "^3.0.2",
-    "@pie-lib/drag": "^2.19.2",
-    "@pie-lib/editable-html": "^11.18.2",
-    "@pie-lib/graphing-utils": "^1.18.1",
-    "@pie-lib/plot": "^2.24.2",
-    "@pie-lib/render-ui": "^4.32.2",
-    "@pie-lib/tools": "^0.26.1",
-    "@pie-lib/translator": "^2.20.1",
+    "@pie-lib/drag": "^2.19.3",
+    "@pie-lib/editable-html": "^11.18.3",
+    "@pie-lib/graphing-utils": "^1.18.2",
+    "@pie-lib/plot": "^2.24.3",
+    "@pie-lib/render-ui": "^4.32.3",
+    "@pie-lib/tools": "^0.26.2",
+    "@pie-lib/translator": "^2.20.2",
     "@vx/axis": "^0.0.189",
     "@vx/clip-path": "^0.0.189",
     "@vx/curve": "^0.0.189",
@@ -52,7 +52,7 @@
   "peerDependencies": {
     "react": "^16.8.1"
   },
-  "gitHead": "ff5ec2ebe11110b7652812a10c6dc230f08e12cb",
+  "gitHead": "20caabe19279c68c86fc179191d3eb403bb0be76",
   "scripts": {},
   "exports": {
     ".": {
