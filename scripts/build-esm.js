@@ -8,7 +8,11 @@ const createConfig = require('../rollup.config.js').default;
 const packagesDir = resolve(__dirname, '../packages');
 
 // Packages that can't be built as ESM due to CommonJS source or other issues
-const BLACKLIST = ['demo', 'pie-toolbox'];
+const BLACKLIST = [
+  'demo',
+  'pie-toolbox',
+  'test-utils', // Testing package with CommonJS dependencies (enzyme), not needed for browser
+];
 
 const packages = readdirSync(packagesDir).filter((dir) => {
   const pkgPath = join(packagesDir, dir, 'package.json');

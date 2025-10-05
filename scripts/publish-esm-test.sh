@@ -1,9 +1,15 @@
 #!/bin/bash
 
 # Publish test packages with 'esmbeta' dist-tag
+# Usage: ./publish-esm-test.sh [--skip-build]
 # Non-interactive
 
 set -e
+
+SKIP_BUILD=false
+if [[ "$1" == "--skip-build" ]]; then
+  SKIP_BUILD=true
+fi
 
 echo "════════════════════════════════════════════════════════════"
 echo "📦 Publishing @pie-lib packages with 'esmbeta' dist-tag"
@@ -27,8 +33,13 @@ if [[ -n "$(git status --porcelain)" ]]; then
   fi
 fi
 
-echo "Building packages..."
-yarn build
+if [[ "$SKIP_BUILD" == "false" ]]; then
+  echo "Building packages..."
+  yarn build
+else
+  echo "⚠️  Skipping build (using existing build)"
+  echo ""
+fi
 
 echo ""
 echo "Publishing with esmbeta dist-tag..."
@@ -41,10 +52,12 @@ echo ""
 #   - Next time: 1.0.1-esmbeta.1 → 1.0.1-esmbeta.2
 # --preid esmbeta: Use 'esmbeta' as prerelease identifier
 # --dist-tag esmbeta: Publish to 'esmbeta' tag instead of 'latest'
+# --force-publish: Publish all packages even if no changes detected
 # --yes: Non-interactive, no prompts
 lerna publish prerelease \
   --preid esmbeta \
   --dist-tag esmbeta \
+  --force-publish \
   --yes
 
 echo ""
