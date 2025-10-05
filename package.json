@@ -14,6 +14,7 @@
     "test": "./scripts/test",
     "test:esm": "node scripts/test-esm-integrity.mjs",
     "test:esm:runtime": "node scripts/test-esm-runtime.mjs",
+    "test:esm:cdn": "node scripts/test-esm-cdn.mjs",
     "dev": "./scripts/dev",
     "lint": "scripts/build lint",
     "clean": "scripts/build clean",
