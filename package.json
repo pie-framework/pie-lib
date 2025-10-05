@@ -12,6 +12,8 @@
   "scripts": {
     "static": "./scripts/static",
     "test": "./scripts/test",
+    "test:esm": "node scripts/test-esm-integrity.mjs",
+    "test:esm:runtime": "node scripts/test-esm-runtime.mjs",
     "dev": "./scripts/dev",
     "lint": "scripts/build lint",
     "clean": "scripts/build clean",
@@ -22,6 +24,7 @@
     "build:esm": "node scripts/build-esm.js",
     "postinstall": "lerna bootstrap",
     "prepush": "npm run test",
+    "prepublishOnly": "yarn build",
     "prepack": "scripts/build changelog",
     "run-mathml": "cd node_modules/ && yarn link \"@pie-framework/mathml-to-latex\" && cd .. && ./scripts/dev",
     "clean-install": "git clean -xdf . && yarn install && lerna bootstrap && ./scripts/build babel",

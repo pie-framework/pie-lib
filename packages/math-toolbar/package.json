@@ -35,5 +35,12 @@
     "@pie-lib/test-utils": "^0.19.0"
   },
   "scripts": {},
-  "gitHead": "ff5ec2ebe11110b7652812a10c6dc230f08e12cb"
+  "gitHead": "ff5ec2ebe11110b7652812a10c6dc230f08e12cb",
+  "exports": {
+    ".": {
+      "import": "./esm/index.js",
+      "require": "./lib/index.js",
+      "default": "./esm/index.js"
+    }
+  }
 }

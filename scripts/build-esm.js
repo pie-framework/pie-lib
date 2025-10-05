@@ -10,7 +10,7 @@ const packagesDir = resolve(__dirname, '../packages');
 // Packages that can't be built as ESM due to CommonJS source or other issues
 const BLACKLIST = ['demo', 'pie-toolbox'];
 
-const packages = readdirSync(packagesDir).filter(dir => {
+const packages = readdirSync(packagesDir).filter((dir) => {
   const pkgPath = join(packagesDir, dir, 'package.json');
   if (!pathExistsSync(pkgPath)) return false;
   const pkg = readJsonSync(pkgPath);
@@ -52,8 +52,9 @@ async function buildPackage(pkgName) {
 
   const built = [];
 
-  // Most pie-lib packages have a simple src/index.js entry point
-  const main = await buildEntry(pkgDir, 'src/index.js', 'index.js');
+  // Most pie-lib packages have a simple src/index.js or src/index.jsx entry point
+  let main = await buildEntry(pkgDir, 'src/index.js', 'index.js');
+  if (!main) main = await buildEntry(pkgDir, 'src/index.jsx', 'index.js');
   if (main) built.push(main);
 
   if (built.length > 0) {
@@ -76,8 +77,7 @@ async function main() {
   console.log(`✨ ESM build complete in ${duration}s`);
 }
 
-main().catch(error => {
+main().catch((error) => {
   console.error('Build failed:', error);
   process.exit(1);
 });
-
