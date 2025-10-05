@@ -82,8 +82,8 @@ const plugins = [
     extensions: ['.js', '.jsx'],
     browser: true,
     preferBuiltins: false,
-    // Only resolve relative/local imports, not node_modules
-    moduleDirectories: [], // Don't resolve from node_modules
+    // Resolve from node_modules to bundle @material-ui/icons
+    // The external array controls what stays external
   }),
   babel({
     babelHelpers: 'bundled', // Inline helpers for pure ESM
