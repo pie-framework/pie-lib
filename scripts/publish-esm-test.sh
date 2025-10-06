@@ -1,15 +1,10 @@
 #!/bin/bash
 
 # Publish test packages with 'esmbeta' dist-tag
-# Usage: ./publish-esm-test.sh [--skip-build]
+# Note: Build happens automatically via prepublishOnly hook
 # Non-interactive
 
 set -e
-
-SKIP_BUILD=false
-if [[ "$1" == "--skip-build" ]]; then
-  SKIP_BUILD=true
-fi
 
 echo "════════════════════════════════════════════════════════════"
 echo "📦 Publishing @pie-lib packages with 'esmbeta' dist-tag"
@@ -33,16 +28,8 @@ if [[ -n "$(git status --porcelain)" ]]; then
   fi
 fi
 
-if [[ "$SKIP_BUILD" == "false" ]]; then
-  echo "Building packages..."
-  yarn build
-else
-  echo "⚠️  Skipping build (using existing build)"
-  echo ""
-fi
-
-echo ""
 echo "Publishing with esmbeta dist-tag..."
+echo "(Build will run automatically via prepublishOnly hook)"
 echo ""
 
 # Lerna publish prerelease with esmbeta tag

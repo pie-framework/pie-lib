@@ -77,6 +77,6 @@ echo "✅ All pre-publish checks passed!"
 echo ""
 echo "Safe to publish with:"
 echo "  lerna publish patch --yes"
-echo "  lerna publish prepatch --preid esm --dist-tag esm-test --yes"
+echo "  lerna publish prerelease --preid esmbeta --dist-tag esmbeta --yes"
 echo ""
 
