@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/categorize",
-  "version": "0.25.5-esmbeta.1",
+  "version": "0.25.5-esmbeta.2",
   "description": "",
   "main": "lib/index.js",
   "module": "src/index.js",

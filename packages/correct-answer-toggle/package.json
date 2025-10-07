@@ -11,15 +11,15 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "2.22.6-esmbeta.1",
+  "version": "2.22.6-esmbeta.2",
   "main": "lib/index.js",
   "module": "src/index.jsx",
   "scripts": {},
   "dependencies": {
     "@material-ui/core": "^3.8.3",
-    "@pie-lib/icons": "^2.21.5-esmbeta.1",
-    "@pie-lib/render-ui": "^4.32.6-esmbeta.1",
-    "@pie-lib/translator": "^2.20.5-esmbeta.1",
+    "@pie-lib/icons": "^2.21.5-esmbeta.2",
+    "@pie-lib/render-ui": "^4.32.6-esmbeta.2",
+    "@pie-lib/translator": "^2.20.5-esmbeta.2",
     "classnames": "^2.2.6",
     "lodash": "^4.17.11",
     "prop-types": "^15.6.2",
