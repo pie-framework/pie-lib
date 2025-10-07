@@ -81,6 +81,8 @@ const plugins = [
     ],
     extensions: ['.js', '.jsx'],
   }),
+  // CommonJS SECOND PASS: Clean up any Babel-emitted CommonJS helpers
+  commonjs(),
 ].filter(Boolean);
 
 module.exports.default = function createConfig(input, output) {
