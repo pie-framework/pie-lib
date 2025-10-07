@@ -82,7 +82,10 @@ const plugins = [
     extensions: ['.js', '.jsx'],
   }),
   // CommonJS SECOND PASS: Clean up any Babel-emitted CommonJS helpers
-  commonjs(),
+  // Exclude node_modules to avoid re-processing already-converted ESM
+  commonjs({
+    exclude: /node_modules/,
+  }),
 ].filter(Boolean);
 
 module.exports.default = function createConfig(input, output) {
