@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/math-rendering",
-  "version": "3.19.5-esmbeta.0",
+  "version": "3.19.5-esmbeta.1",
   "description": "math rendering utilities",
   "publishConfig": {
     "access": "public"
