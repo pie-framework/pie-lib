@@ -1,0 +1,18 @@
+{
+  "name": "@pie-lib/categorize",
+  "version": "0.24.0",
+  "description": "",
+  "main": "lib/index.js",
+  "module": "src/index.js",
+  "dependencies": {
+    "debug": "^4.1.1",
+    "lodash": "^4.17.11"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {},
+  "author": "",
+  "license": "ISC",
+  "gitHead": "ff5ec2ebe11110b7652812a10c6dc230f08e12cb"
+}
