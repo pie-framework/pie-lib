@@ -1,7 +1,7 @@
 {
   "name": "@pie-lib/demo",
   "private": true,
-  "version": "8.27.1",
+  "version": "8.27.2",
   "dependencies": {
     "@mapbox/point-geometry": "^0.1.0",
     "@material-ui/core": "^3.8.3",
@@ -10,7 +10,7 @@
     "@pie-framework/mathml-to-latex": "1.4.4",
     "@pie-framework/mathquill": "1.1.4",
     "@pie-framework/parse-english": "^1.0.0",
-    "@pie-lib/charting": "^5.32.0",
+    "@pie-lib/charting": "^5.32.6",
     "@pie-lib/config-ui": "^11.25.1",
     "@pie-lib/correct-answer-toggle": "^2.21.1",
     "@pie-lib/drag": "^2.18.1",
