@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles, createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import UiLayout from './ui-layout';
 
@@ -41,55 +41,8 @@ const styles = () => ({
   },
 });
 
-const theme = createMuiTheme({
-  typography: {
-    useNextVariants: true,
-  },
-  palette: {
-    action: {
-      disabled: 'rgba(0, 0, 0, 0.54);',
-    },
-  },
-  overrides: {
-    MuiRadio: {
-      root: {
-        '&$checked': {
-          color: '#3f51b5 !important',
-        },
-      },
-    },
-    MuiCheckbox: {
-      root: {
-        '&$checked': {
-          color: '#3f51b5 !important',
-        },
-      },
-    },
-    MuiTabs: {
-      root: {
-        borderBottom: '1px solid #eee',
-      },
-    },
-    MuiSwitch: {
-      root: {
-        '&$checked': {
-          color: '#3f51b5 !important',
-          '& + $bar': {
-            backgroundColor: '#3f51b5 !important',
-            opacity: 0.5,
-          },
-        },
-      },
-    },
-  },
-});
-
 const Styled = withStyles(styles)(PreviewLayout);
 
-const RootElem = (props) => (
-  <MuiThemeProvider theme={theme}>
-    <Styled {...props} />
-  </MuiThemeProvider>
-);
+const RootElem = (props) => <Styled {...props} />;
 
 export default RootElem;

@@ -270,6 +270,14 @@ export class Chart extends React.Component {
     const rootCommon = cloneDeep(common);
     rootCommon.graphProps.size.height += top + increaseHeight;
 
+    // for plot evaluations we need extra space because we render correctness icon below x axis
+    const isPlotEvaluation = (chartType === 'dotPlot' || chartType === 'linePlot') && correctData?.length;
+    const needsExtraHeight = isPlotEvaluation && labels.bottom;
+
+    if (needsExtraHeight) {
+      rootCommon.graphProps.size.height += 25;
+    }
+
     return (
       <div className={classNames(classes.chart, classes.chartBox, className)}>
         <Root
