@@ -68,19 +68,27 @@ export class RawPlot extends React.Component {
     this.setDragValue(next);
   };
 
-  renderCorrectnessIcon = (barX, barWidth, correctVal, correctness, classes, scale) => (
-    <foreignObject
-      x={barX + barWidth / 2 - ICON_SIZE / 2}
-      y={scale.y(correctVal) + ICON_SIZE}
-      width={ICON_SIZE}
-      height={ICON_SIZE}
-    >
-      <Check
-        className={classNames(classes.correctnessIcon, classes.correctIcon, classes.smallIcon)}
-        title={correctness.label}
-      />
-    </foreignObject>
-  );
+  renderCorrectnessIcon = (barX, barWidth, correctVal, correctness, classes, scale, pointHeight, pointDiameter) => {
+    let iconY;
+
+    if (correctVal === 0) {
+      // if correct value is 0, position icon on the horizontal axis
+      iconY = scale.y(0) - ICON_SIZE / 2;
+    } else {
+      const shapeIndex = correctVal - 1; // the index of the shape representing the correct value
+      const shapeCenterY = scale.y(shapeIndex) - (pointHeight - pointDiameter) / 2 - pointDiameter / 2;
+      iconY = shapeCenterY - ICON_SIZE / 2; // center the icon
+    }
+
+    return (
+      <foreignObject x={barX + barWidth / 2 - ICON_SIZE / 2} y={iconY} width={ICON_SIZE} height={ICON_SIZE}>
+        <Check
+          className={classNames(classes.correctnessIcon, classes.correctIcon, classes.smallIcon)}
+          title={correctness.label}
+        />
+      </foreignObject>
+    );
+  };
 
   render() {
     const {
@@ -157,6 +165,21 @@ export class RawPlot extends React.Component {
               const correctVal = parseFloat(correctData[index] && correctData[index].value);
               if (isNaN(correctVal)) return null;
               const selectedVal = v;
+
+              // special case: if correct value is 0, only show the icon on the axis
+              if (correctVal === 0) {
+                return this.renderCorrectnessIcon(
+                  barX,
+                  barWidth,
+                  correctVal,
+                  correctness,
+                  classes,
+                  scale,
+                  pointHeight,
+                  pointDiameter,
+                );
+              }
+
               if (selectedVal > correctVal) {
                 // selected is higher than correct: overlay the correct last segment
                 const overlayValues = [];
@@ -183,7 +206,16 @@ export class RawPlot extends React.Component {
                       scale={scale}
                       dottedOverline={true}
                     />
-                    {this.renderCorrectnessIcon(barX, barWidth, correctVal, correctness, classes, scale)}
+                    {this.renderCorrectnessIcon(
+                      barX,
+                      barWidth,
+                      correctVal,
+                      correctness,
+                      classes,
+                      scale,
+                      pointHeight,
+                      pointDiameter,
+                    )}
                   </>
                 );
               }
@@ -208,7 +240,16 @@ export class RawPlot extends React.Component {
                       dottedOverline: true,
                     }),
                   )}
-                  {this.renderCorrectnessIcon(barX, barWidth, correctVal, correctness, classes, scale)}
+                  {this.renderCorrectnessIcon(
+                    barX,
+                    barWidth,
+                    correctVal,
+                    correctness,
+                    classes,
+                    scale,
+                    pointHeight,
+                    pointDiameter,
+                  )}
                 </>
               );
             })()}
