@@ -17,6 +17,7 @@ export class Root extends React.Component {
     this.state = {
       titleHeight: 0,
     };
+    this.resizeObserver = null;
   }
 
   static propTypes = {
@@ -66,11 +67,13 @@ export class Root extends React.Component {
     const g = select(this.g);
     g.on('mousemove', this.mouseMove.bind(this, g));
     this.measureTitleHeight();
+    this.setupVisibilityObserver();
   }
 
   componentWillUnmount() {
     const g = select(this.g);
     g.on('mousemove', null);
+    this.cleanupVisibilityObserver();
   }
 
   componentDidUpdate(prevProps) {
@@ -107,11 +110,44 @@ export class Root extends React.Component {
     if (titleElement) {
       const titleHeight = titleElement.clientHeight;
       this.setState({ titleHeight, prevTitle: this.props.title });
+
+      if (!this.resizeObserver && typeof ResizeObserver !== 'undefined') {
+        this.setupVisibilityObserver();
+      }
     }
   };
 
   handleKeyDown = () => {
-    setTimeout(this.measureTitleHeight, 0);
+    setTimeout(() => {
+      this.measureTitleHeight();
+    }, 0);
+  };
+
+  // handle edge case where chart is hidden with display:none and then shown with display:block
+  setupVisibilityObserver = () => {
+    if (typeof ResizeObserver !== 'undefined' && this.titleRef) {
+      this.resizeObserver = new ResizeObserver((entries) => {
+        for (let entry of entries) {
+          const { width, height } = entry.contentRect;
+          // trigger if element becomes visible and we haven't measured this height yet
+          if (width > 0 && height > 0) {
+            setTimeout(() => {
+              this.measureTitleHeight();
+            }, 10);
+            break;
+          }
+        }
+      });
+
+      this.resizeObserver.observe(this.titleRef);
+    }
+  };
+
+  cleanupVisibilityObserver = () => {
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
+      this.resizeObserver = null;
+    }
   };
 
   render() {
