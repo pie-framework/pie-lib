@@ -18,7 +18,7 @@
     "change-case": "^3.0.2",
     "classnames": "^2.2.6",
     "debug": "^4.1.1",
-    "immutable": "^4.0.0-rc.12",
+    "immutable": "^5.1.4",
     "keycode": "^2.2.0",
     "lodash": "^4.17.11",
     "prop-types": "^15.6.2",
