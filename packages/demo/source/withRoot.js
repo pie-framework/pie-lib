@@ -1,46 +1,51 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { MuiThemeProvider } from '@material-ui/core/styles';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { JssProvider, SheetsRegistry, createGenerateClassName } from 'react-jss';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import getPageContext from './getPageContext';
 import Root from './root';
-// import links from './links';
 
-function withRoot(Component) {
+function createPageContext() {
+  const theme = createMuiTheme({}); // customize your theme here
+  return {
+    theme,
+    sheetsManager: new Map(),
+    sheetsRegistry: new SheetsRegistry(),
+    generateClassName: createGenerateClassName(),
+  };
+}
+
+export default function withRoot(Component) {
   class WithRoot extends React.Component {
-    constructor(props, context) {
-      super(props, context);
+    constructor(props) {
+      super(props);
 
-      this.pageContext = this.props.pageContext || getPageContext();
+      // Use the pageContext passed from _document.js (SSR) or create a new one on client
+      this.pageContext = props.pageContext || createPageContext();
     }
 
     componentDidMount() {
-      // Remove the server-side injected CSS.
+      // Remove the server-side injected CSS to prevent duplication
       const jssStyles = document.querySelector('#jss-server-side');
       if (jssStyles && jssStyles.parentNode) {
         jssStyles.parentNode.removeChild(jssStyles);
       }
     }
 
-    pageContext = null;
-
     render() {
-      // MuiThemeProvider makes the theme available down the React tree thanks to React context.
       return (
-        <MuiThemeProvider theme={this.pageContext.theme} sheetsManager={this.pageContext.sheetsManager}>
-          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-          <CssBaseline />
-          <Root
-            // eslint-disable-next-line
-            gitInfo={process.env.gitInfo}
-            // eslint-disable-next-line
-            links={process.env.links}
-            // eslint-disable-next-line
-            packageInfo={process.env.packageInfo}
+        <JssProvider registry={this.pageContext.sheetsRegistry} generateClassName={this.pageContext.generateClassName}>
+          <MuiThemeProvider
+            theme={this.pageContext.theme}
+            sheetsManager={this.pageContext.sheetsManager}
+            generateClassName={this.pageContext.generateClassName}
           >
-            <Component {...this.props} />
-          </Root>
-        </MuiThemeProvider>
+            <CssBaseline />
+            <Root gitInfo={process.env.gitInfo} links={process.env.links} packageInfo={process.env.packageInfo}>
+              <Component {...this.props} />
+            </Root>
+          </MuiThemeProvider>
+        </JssProvider>
       );
     }
   }
@@ -49,15 +54,13 @@ function withRoot(Component) {
     pageContext: PropTypes.object,
   };
 
-  WithRoot.getInitialProps = (ctx) => {
+  WithRoot.getInitialProps = async (ctx) => {
+    let pageProps = {};
     if (Component.getInitialProps) {
-      return Component.getInitialProps(ctx);
+      pageProps = await Component.getInitialProps(ctx);
     }
-
-    return {};
+    return pageProps;
   };
 
   return WithRoot;
 }
-
-export default withRoot;

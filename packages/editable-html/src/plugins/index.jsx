@@ -6,6 +6,8 @@ import FormatQuote from '@material-ui/icons/FormatQuote';
 //import Code from '@material-ui/icons/Code';
 import BulletedListIcon from '@material-ui/icons/FormatListBulleted';
 import NumberedListIcon from '@material-ui/icons/FormatListNumbered';
+import GridOn from '@material-ui/icons/GridOn';
+import Image from '@material-ui/icons/Image';
 import Redo from '@material-ui/icons/Redo';
 import Undo from '@material-ui/icons/Undo';
 import ImagePlugin from './image';
@@ -32,7 +34,7 @@ import TextAlign from './textAlign';
 
 const log = debug('@pie-lib:editable-html:plugins');
 
-const SuperscriptIcon = () => (
+export const SuperscriptIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="none">
     <path
       d="M22,7h-2v1h3v1h-4V7c0-0.55,0.45-1,1-1h2V5h-3V4h3c0.55,0,1,0.45,1,1v1C23,6.55,22.55,7,22,7z M5.88,20h2.66l3.4-5.42h0.12 l3.4,5.42h2.66l-4.65-7.27L17.81,6h-2.68l-3.07,4.99h-0.12L8.85,6H6.19l4.32,6.73L5.88,20z"
@@ -41,7 +43,7 @@ const SuperscriptIcon = () => (
   </svg>
 );
 
-const SubscriptIcon = () => (
+export const SubscriptIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="none">
     <path
       d="M22,18h-2v1h3v1h-4v-2c0-0.55,0.45-1,1-1h2v-1h-3v-1h3c0.55,0,1,0.45,1,1v1C23,17.55,22.55,18,22,18z M5.88,18h2.66 l3.4-5.42h0.12l3.4,5.42h2.66l-4.65-7.27L17.81,4h-2.68l-3.07,4.99h-0.12L8.85,4H6.19l4.32,6.73L5.88,18z"
@@ -50,7 +52,7 @@ const SubscriptIcon = () => (
   </svg>
 );
 
-const HeadingIcon = () => (
+export const HeadingIcon = () => (
   <svg
     width="30"
     height="28"
@@ -209,6 +211,21 @@ export const ALL_PLUGINS = [
 
 export const DEFAULT_PLUGINS = ALL_PLUGINS.filter((plug) => !['responseArea', 'h3', 'blockquote'].includes(plug));
 
+export const EXTENSIONS_LIST = [
+  GridOn,
+  Bold,
+  Italic,
+  Strikethrough,
+  Underline,
+  SuperscriptIcon,
+  SubscriptIcon,
+  Image,
+  HeadingIcon,
+  BulletedListIcon,
+  NumberedListIcon,
+  FormatQuote,
+];
+
 const ICON_MAP = {
   undo: Undo,
   redo: Redo,
@@ -267,7 +284,7 @@ export const buildPlugins = (activePlugins, customPlugins, opts) => {
   const addIf = (key, p) => activePlugins.includes(key) && p;
 
   const imagePlugin = opts.image && opts.image.onDelete && ImagePlugin(opts.image);
-  const mathPlugin = MathPlugin(opts.math);
+  const mathPlugin = opts.math && MathPlugin(opts.math);
   const respAreaPlugin =
     opts.responseArea && opts.responseArea.type && RespAreaPlugin(opts.responseArea, compact([mathPlugin]));
   const cssPlugin = !isEmpty(opts.extraCSSRules) && CSSPlugin(opts.extraCSSRules);
@@ -288,7 +305,7 @@ export const buildPlugins = (activePlugins, customPlugins, opts) => {
 
   let builtCustomPlugins = [];
 
-  customPlugins.forEach((customPlugin) => {
+  customPlugins?.forEach((customPlugin) => {
     const { event, icon, iconType, iconAlt } = customPlugin || {};
 
     function isValidEventName(eventName) {

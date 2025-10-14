@@ -15,7 +15,7 @@ const toggleToRichText = (value, onChange, dismiss) => {
 };
 
 export default function HtmlPlugin(opts) {
-  const { isHtmlMode, isEditedInHtmlMode, toggleHtmlMode, handleAlertDialog, currentValue } = opts;
+  const { isHtmlMode, isEditedInHtmlMode, toggleHtmlMode, handleAlertDialog, currentValue } = opts || {};
 
   const handleHtmlModeOn = (value, onChange) => {
     const dialogProps = {

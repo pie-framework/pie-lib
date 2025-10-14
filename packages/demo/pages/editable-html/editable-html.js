@@ -169,7 +169,7 @@ class RteDemo extends React.Component {
       let indexB = 0;
 
       // YOU NEED the event listener
-      window.addEventListener('PIE-test_event_A', (event) => {
+      (typeof window !== 'undefined' ? window : null)?.addEventListener('PIE-test_event_A', (event) => {
         // YOU NEED to call the callback
         event.detail.callback({ customContent: words[indexA] });
 
@@ -182,7 +182,7 @@ class RteDemo extends React.Component {
       });
 
       // YOU NEED the event listener
-      window.addEventListener('PIE-test_event_B', (event) => {
+      (typeof window !== 'undefined' ? window : null)?.addEventListener('PIE-test_event_B', (event) => {
         // YOU NEED to call the callback
         event.detail.callback({ customContent: extras[indexB] });
 

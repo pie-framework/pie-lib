@@ -23,7 +23,7 @@ chokidar
     ignoreInitial: true,
   })
   .on('all', (event, path) => {
-    console.log(`[watcher] Detected ${event}: ${path}`);
+    // console.log(`[watcher] Detected ${event}: ${path}`);
     clearTimeout(timeout);
     timeout = setTimeout(runPatch, DEBOUNCE_MS);
   });

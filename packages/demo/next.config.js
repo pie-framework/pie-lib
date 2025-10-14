@@ -1,27 +1,30 @@
-const withCSS = require('@zeit/next-css');
-
+const path = require('path');
 const { loadLinks } = require('./config/load-links');
-
 const gitInfo = require('./config/git-info')();
 const links = loadLinks();
-
 const packageInfo = require('./config/package-info');
 
+const withTM = require('next-transpile-modules')([
+  '@pie-framework/mathquill', // 👈 your package name
+]);
+
+
 const getAssetPrefix = () => {
-  //eslint-disable-next-line
   if (process.env.NODE_ENV !== 'production') {
     return '';
   }
-
-  return process.env.ASSET_PREFIX || ''; //eslint-disable-line
+  return process.env.ASSET_PREFIX || '';
 };
 
-module.exports = withCSS({
-  webpack: (config /*opts*/) => {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  webpack: (config) => {
     const publicPath = `${getAssetPrefix()}/_next/static`;
 
     config.resolve.mainFields = ['browser', 'main'];
 
+    // Optional: keep url-loader rule if you still want inlined assets
     config.module.rules.push({
       test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2|otf)$/,
       loader: 'url-loader',
@@ -31,29 +34,54 @@ module.exports = withCSS({
         publicPath,
       },
     });
+
+    config.module.rules.push({
+      test: /\.[jt]sx?$/,
+      include: [
+        path.resolve(__dirname, '../../node_modules/@tiptap/core'),
+        path.resolve(__dirname, '../../node_modules/@tiptap/pm'),
+        path.resolve(__dirname, '../../node_modules/@tiptap/extension-color'),
+        path.resolve(__dirname, '../../node_modules/@tiptap/extension-text-style'),
+        path.resolve(__dirname, '../../node_modules/@tiptap/extension-list-item'),
+        path.resolve(__dirname, '../../node_modules/@tiptap/starter-kit'),
+      ],
+      use: {
+        loader: 'babel-loader',
+        options: {
+          presets: ['next/babel'],
+        },
+      },
+    });
+
+    // Optional: if you have "fullySpecified" errors
+    config.module.rules.forEach((rule) => {
+      if (rule.resolve) {
+        rule.resolve.fullySpecified = false;
+      }
+    });
+
     return config;
   },
-  webpackDevMiddleware: (config) => {
-    //in dev mode - we want to watch for changes in node_modules coming from babel updates
-    const out = Object.assign({}, config);
-    out.watch = true;
-    out.watchOptions = undefined;
-    out.devtool = 'inline-cheap-source-map';
-    return out;
-  },
-  exportPathMap: function(/*defaultPathMap*/) {
+
+  // Only runs when using `next export`
+  exportPathMap: async () => {
     return links.reduce(
       (acc, l) => {
         acc[l.path] = { page: l.path };
         return acc;
       },
-      { '/': { page: '/' } },
+      { '/': { page: '/' } }
     );
   },
+
   assetPrefix: getAssetPrefix(),
+
+  // env must be flat strings now
   env: {
-    links,
-    gitInfo,
+    links: links,
+    gitInfo: gitInfo,
     packageInfo: packageInfo.load(),
   },
-});
+};
+
+module.exports = withTM(nextConfig);

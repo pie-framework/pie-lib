@@ -17,11 +17,11 @@
     "react-portal": "^4.2.0"
   },
   "peerDependencies": {
-    "react": "^16.8.1"
+    "react": "18.2.0"
   },
   "devDependencies": {
-    "react": "^16.8.1",
-    "react-dom": "^16.9.0"
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
   },
   "scripts": {},
   "gitHead": "ff5ec2ebe11110b7652812a10c6dc230f08e12cb"
