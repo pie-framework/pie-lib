@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "@pie-framework/mathml-to-latex": "1.4.4",
-    "@pie-lib/math-rendering": "^3.18.0",
+    "@pie-lib/math-rendering": "^3.19.4",
     "debug": "^4.1.1",
     "lodash": "^4.17.11",
     "mathjax-full": "3.2.2",

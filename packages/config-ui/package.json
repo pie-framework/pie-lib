@@ -11,7 +11,7 @@
     "@material-ui/core": "^3.8.3",
     "@material-ui/icons": "^3.0.2",
     "@pie-lib/editable-html": "^11.17.1",
-    "@pie-lib/icons": "^2.20.0",
+    "@pie-lib/icons": "^2.21.4",
     "@pie-lib/render-ui": "^4.31.1",
     "assert": "^1.4.1",
     "classnames": "^2.2.6",
