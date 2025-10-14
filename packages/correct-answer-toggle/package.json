@@ -17,9 +17,9 @@
   "scripts": {},
   "dependencies": {
     "@material-ui/core": "^3.8.3",
-    "@pie-lib/icons": "^2.20.0",
+    "@pie-lib/icons": "^2.21.4",
     "@pie-lib/render-ui": "^4.31.1",
-    "@pie-lib/translator": "^2.19.0",
+    "@pie-lib/translator": "^2.20.4",
     "classnames": "^2.2.6",
     "lodash": "^4.17.11",
     "prop-types": "^15.6.2",
