@@ -2662,100 +2662,10 @@
     unist-util-modify-children "^1.0.0"
     unist-util-visit-children "^1.0.0"
 
-"@pie-lib/graphing-utils@^1.18.4":
-  version "1.18.4"
-  resolved "https://registry.yarnpkg.com/@pie-lib/graphing-utils/-/graphing-utils-1.18.4.tgz#67880af59c2d6d230aad435ac23a4d601d27017f"
-  integrity sha512-ZyEjMIKSkP4o6FzdgZ0J3NT7v9/APGvHdf/I81V1bzjqb3tcoQu3CEo4b4NAoK0U5rPE8mR/1EOvUadz/Drmbg==
-  dependencies:
-    "@mapbox/point-geometry" "^0.1.0"
-    debug "^4.1.1"
-    lodash "^4.17.11"
-
-"@pie-lib/icons@^2.21.4":
-  version "2.21.4"
-  resolved "https://registry.yarnpkg.com/@pie-lib/icons/-/icons-2.21.4.tgz#9375e0df8be378c4af9fc33e898694ce8e6d1591"
-  integrity sha512-20gbVhNWJFuF7B7e0ryjtnVu20hQsagzwUswFS/OqAHgX7kYvYvsWbDB967X8kMqmN0ZkeB0X2jIeSI37WtD9g==
-  dependencies:
-    classnames "^2.2.6"
-    prop-types "^15.6.2"
-
-"@pie-lib/math-evaluator@^2.18.5":
-  version "2.18.5"
-  resolved "https://registry.yarnpkg.com/@pie-lib/math-evaluator/-/math-evaluator-2.18.5.tgz#caa7388fc9ad6e4fa00e9fe2dcb6d3283ce7bd43"
-  integrity sha512-+fYYCSmEhkCVmysYYdnjyBPUgQ+iuu5j1G+wJJRIdngSDrFMJeMW/Y25TsR/hoO8irCsM2Lv/nI6nzGhrlUl7A==
-  dependencies:
-    "@pie-framework/math-expressions" "^3.0.0"
-    jsesc "^2.5.2"
-    lodash "^4.17.11"
-    mathjs "^7.0.1"
-
-"@pie-lib/math-input@^6.28.5":
-  version "6.28.5"
-  resolved "https://registry.yarnpkg.com/@pie-lib/math-input/-/math-input-6.28.5.tgz#b19a051ff8d9d5a91998eefeee7502d29f26687f"
-  integrity sha512-h9po7CgW0EZzA2B8swZsRXsfx0beDugMDY77JhHcjATwKv4X8HRnAJvcB3mDgtc2q3AdH3S8SS7nkMLlg13klA==
-  dependencies:
-    "@material-ui/core" "^3.8.3"
-    "@material-ui/icons" "^3.0.2"
-    "@pie-framework/mathquill" "^1.1.3"
-    classnames "^2.2.6"
-    debug "^4.1.1"
-    lodash "^4.17.11"
-    prop-types "^15.7.2"
-    react-portal "^4.2.0"
-
-"@pie-lib/math-rendering@^3.19.4":
-  version "3.19.4"
-  resolved "https://registry.yarnpkg.com/@pie-lib/math-rendering/-/math-rendering-3.19.4.tgz#c8376bf197d8746d4e2826169fb0d937a4f91bfd"
-  integrity sha512-wudhuv0waZxBlUs4NlNlXX2g2V7laczNH9AGoZB6VnlkmC0N+wJjtCIIwbkPoGRf4Fvf/mT7+f//LIr2hCJZfw==
-  dependencies:
-    "@pie-framework/mathml-to-latex" "1.4.4"
-    debug "^4.1.1"
-    lodash "^4.17.11"
-    mathjax-full "3.2.2"
-    react "^16.8.1"
-
-"@pie-lib/style-utils@^0.18.4":
-  version "0.18.4"
-  resolved "https://registry.yarnpkg.com/@pie-lib/style-utils/-/style-utils-0.18.4.tgz#2f54db7955bdbb6daa6918e2609564521338a89e"
-  integrity sha512-X96YITrnwCJCEHJtSyNK0XwxHLnjczYBLu9B7I05kzqziJOY/cuIRzXEchuSseYoGOq5H2o45Z5D8Fdn5IkdzQ==
-
-"@pie-lib/test-utils@^0.19.5":
-  version "0.19.5"
-  resolved "https://registry.yarnpkg.com/@pie-lib/test-utils/-/test-utils-0.19.5.tgz#0006d20e0a52f0eb9178055ca4e05bd29760a591"
-  integrity sha512-HYvIA6A865PEzxzKvEbh+CGmXFJg8ra6QVdKAxTa2+ROu1HXLyJqal0l8juzZRwT0cDrwVxPQTtxP2+2QSw6HQ==
-
 "@pie-lib/test-utils@^0.8.0":
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/@pie-lib/test-utils/-/test-utils-0.8.0.tgz#29f60bfd277906297f841532c4d5c2769847489c"
   integrity sha512-gN0ssH49ey/8qseSgMgqEEpD+Egieaz0k2zI8UQkgYuF5bRha2/tvmbcsmOq92v6H2LJCiiJOI/9pmwS20ll/A==
-
-"@pie-lib/tools@^0.26.4":
-  version "0.26.4"
-  resolved "https://registry.yarnpkg.com/@pie-lib/tools/-/tools-0.26.4.tgz#5294c310719b5fef4aba14cf40a8d65f999f7d65"
-  integrity sha512-o05b3+D4CUimMONdZdsh7PKd8YZrUVsrT6P5TK8swNGdlYLEtHPaFAC0f1SjRI/t6UzAxBs61c2nwjF4M/3r0A==
-  dependencies:
-    "@mapbox/point-geometry" "^0.1.0"
-    "@pie-lib/style-utils" "^0.18.4"
-    assert "^1.4.1"
-    classnames "^2.2.6"
-    debug "^4.1.1"
-    invariant "^2.2.4"
-    lodash "^4.17.11"
-    prop-types "^15.7.2"
-    react-portal "^4.2.0"
-    trigonometry-calculator "^2.0.0"
-
-"@pie-lib/translator@^2.20.4":
-  version "2.20.4"
-  resolved "https://registry.yarnpkg.com/@pie-lib/translator/-/translator-2.20.4.tgz#c8215f86bebc748111699303f487ee339372150c"
-  integrity sha512-aV0T8T5M+rtXyQbqbZq6vvYO3YCgjo6c03WP9ZsBq+6Lx7SEEuZpSNtSOeqlXdE7jUE9NeZEW0dakfW/oXrdkA==
-  dependencies:
-    debug "^4.1.1"
-    i18next "^22.5.0"
-    lodash "^4.17.11"
-    prop-types "^15.7.2"
-    react "^16.8.1"
-    react-dom "^16.9.0"
 
 "@pslb/estree-helper@^4.2.0":
   version "4.2.0"
