@@ -7,6 +7,8 @@ import Checkbox from '@material-ui/core/Checkbox';
 import { types } from '@pie-lib/plot';
 import { color } from '@pie-lib/render-ui';
 import { AlertDialog } from '@pie-lib/config-ui';
+import { renderMath } from '@pie-lib/math-rendering';
+
 import { TickCorrectnessIndicator } from './common/correctness-indicators';
 import { bandKey, getTickValues, getRotateAngle } from './utils';
 import MarkLabel from './mark-label';
@@ -352,10 +354,23 @@ export class RawChartAxes extends React.Component {
   componentDidMount() {
     if (this.hiddenLabelRef) {
       const boundingClientRect = this.hiddenLabelRef.getBoundingClientRect();
-      this.setState({
-        height: Math.floor(boundingClientRect.height),
-        width: Math.floor(boundingClientRect.width),
-      });
+      const hiddenEl = this.hiddenLabelRef.current;
+
+      // same logic used in dropdown.jsx for hidden labels width calculation
+      if (hiddenEl) {
+        const containsLatex = hiddenEl.querySelector('[data-latex], [data-raw]');
+        const hasMathJax = hiddenEl.querySelector('mjx-container');
+        const mathHandled = hiddenEl.querySelector('[data-math-handled="true"]');
+
+        if (containsLatex && (!mathHandled || !hasMathJax)) {
+          renderMath(this.hiddenLabelRef);
+        }
+
+        this.setState({
+          height: Math.floor(boundingClientRect.height),
+          width: Math.floor(boundingClientRect.width),
+        });
+      }
     }
   }
 

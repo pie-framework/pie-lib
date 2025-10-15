@@ -44,33 +44,32 @@ const ExplicitConstructedResponse = (props) => {
       data-selected={selected}
       style={{
         display: 'inline-flex',
-        visibility: props.isFocused ? 'hidden' : 'visible',
         minHeight: '55px',
-        minWidth: '178px',
         position: 'relative',
         cursor: 'pointer',
       }}
     >
-      <span {...attributes} onClick={() => setShowToolbar(true)}>
-        <div
-          style={{
-            display: 'inline-flex',
-            width: '100%',
-            minHeight: '46px',
-            height: '46px',
-            backgroundColor: '#FFF',
-            border: `1px solid ${error ? 'red' : '#C0C3CF'}`,
-            boxSizing: 'border-box',
-            borderRadius: '4px',
-            overflow: 'hidden',
-            padding: '12px 21px',
-            marginLeft: '4px',
-          }}
-          dangerouslySetInnerHTML={{
-            __html: value || '<div>&nbsp;</div>',
-          }}
-        />
-      </span>
+      <div
+        {...attributes}
+        style={{
+          display: 'inline-flex',
+          width: '100%',
+          minHeight: '46px',
+          height: '46px',
+          backgroundColor: '#FFF',
+          border: `1px solid ${error ? 'red' : '#C0C3CF'}`,
+          boxSizing: 'border-box',
+          borderRadius: '4px',
+          overflow: 'hidden',
+          padding: '12px 21px',
+          marginLeft: '4px',
+          visibility: showToolbar ? 'hidden' : 'visible',
+        }}
+        onClick={() => setShowToolbar(true)}
+        dangerouslySetInnerHTML={{
+          __html: value || '<div>&nbsp;</div>',
+        }}
+      />
       {showToolbar && (
         <div ref={toolbarRef} className="absolute z-50 bg-white shadow-lg rounded p-2">
           <EcrToolbar />

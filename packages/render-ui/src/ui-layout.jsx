@@ -1,8 +1,55 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import AppendCSSRules from './append-css-rules';
+
+const theme = createMuiTheme({
+  typography: {
+    useNextVariants: true,
+    fontFamily: 'inherit',
+  },
+  palette: {
+    action: {
+      disabled: 'rgba(0, 0, 0, 0.54);',
+    },
+  },
+  overrides: {
+    MuiTypography: {
+      root: { fontFamily: 'inherit' },
+    },
+    MuiRadio: {
+      root: {
+        '&$checked': {
+          color: '#3f51b5 !important',
+        },
+      },
+    },
+    MuiCheckbox: {
+      root: {
+        '&$checked': {
+          color: '#3f51b5 !important',
+        },
+      },
+    },
+    MuiTabs: {
+      root: {
+        borderBottom: '1px solid #eee',
+      },
+    },
+    MuiSwitch: {
+      root: {
+        '&$checked': {
+          color: '#3f51b5 !important',
+          '& + $bar': {
+            backgroundColor: '#3f51b5 !important',
+            opacity: 0.5,
+          },
+        },
+      },
+    },
+  },
+});
 
 class UiLayout extends AppendCSSRules {
   static propTypes = {
@@ -44,9 +91,11 @@ class UiLayout extends AppendCSSRules {
     const style = this.computeStyle(fontSizeFactor);
 
     return (
-      <div className={finalClass} {...restProps} {...(style && { style })}>
-        {children}
-      </div>
+      <MuiThemeProvider theme={theme}>
+        <div className={finalClass} {...restProps} {...(style && { style })}>
+          {children}
+        </div>
+      </MuiThemeProvider>
     );
   }
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { createRoot } from 'react-dom/client';
 import { NodeSelection } from 'prosemirror-state';
@@ -18,9 +18,9 @@ import {
   ExplicitConstructedResponseNode,
   DragInTheBlankNode,
   InlineDropdownNode,
-  ResponseAreaExtension
-} from "./extensions/responseArea";
-import { MathNode, MathToolbarExtension } from "./extensions/math";
+  ResponseAreaExtension,
+} from './extensions/responseArea';
+import { MathNode, MathToolbarExtension } from './extensions/math';
 import classNames from 'classnames';
 import { color } from '@pie-lib/render-ui';
 import { primary } from './theme';
@@ -482,7 +482,17 @@ const defaultResponseAreaProps = {
 };
 
 function TiptapContainer(props) {
-  const { editor, editorState, classes, children, disableUnderline, disableScrollbar, toolbarOpts, responseAreaProps, autoFocus } = props;
+  const {
+    editor,
+    editorState,
+    classes,
+    children,
+    disableUnderline,
+    disableScrollbar,
+    toolbarOpts,
+    responseAreaProps,
+    autoFocus,
+  } = props;
   const holderNames = classNames(classes.editorHolder, {
     [classes.editorInFocus]: editorState.isFocused,
     [classes.readOnly]: editorState.readOnly,
@@ -523,7 +533,14 @@ function TiptapContainer(props) {
 
       {/*{editorState.isFocused && <MenuBar editor={editor} />}*/}
       {/*<Toolbar editor={editor} editorState={editorState} plugins={plugins} toolbarOpts={toolbarOpts} isFocused={editorState.isFocused} />*/}
-      {editor && <StyledMenuBar editor={editor} responseAreaProps={responseAreaProps} toolbarOpts={toolbarOpts} onChange={props.onChange} />}
+      {editor && (
+        <StyledMenuBar
+          editor={editor}
+          responseAreaProps={responseAreaProps}
+          toolbarOpts={toolbarOpts}
+          onChange={props.onChange}
+        />
+      )}
     </div>
   );
 }
@@ -669,374 +686,372 @@ function MenuBar({ editor, classes, toolbarOpts: toolOpts, responseAreaProps, on
           keypadMode="basic"
         />)
       }*/}
-      {
-        (!editorState.isMathActive && !editorState.isECRActive) && (
-          <div className={classes.defaultToolbar} tabIndex="1">
-            <div className={classes.buttonsContainer}>
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  editor
-                    .chain()
-                    .focus()
-                    .insertTable()
-                    .run();
-                }}
-                disabled={!editorState.canTable}
-                className={classNames(classes.button, { [classes.active]: editorState.isTable })}
-              >
-                <GridOn />
-              </button>
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  editor
-                    .chain()
-                    .focus()
-                    .toggleBold()
-                    .run();
-                }}
-                disabled={!editorState.canBold}
-                className={classNames(classes.button, { [classes.active]: editorState.isBold })}
-              >
-                <Bold />
-              </button>
-              <button
-                onClick={() =>
-                  editor
-                    .chain()
-                    .focus()
-                    .toggleItalic()
-                    .run()
-                }
-                disabled={!editorState.canItalic}
-                active={editorState.isItalic}
-                className={classNames(classes.button, { [classes.active]: editorState.isItalic })}
-              >
-                <Italic />
-              </button>
-              <button
-                onClick={() =>
-                  editor
-                    .chain()
-                    .focus()
-                    .toggleStrike()
-                    .run()
-                }
-                disabled={!editorState.canStrike}
-                active={editorState.isStrike}
-                className={classNames(classes.button, { [classes.active]: editorState.isStrike })}
-              >
-                <Strikethrough />
-              </button>
-              <button
-                onClick={() =>
-                  editor
-                    .chain()
-                    .focus()
-                    .toggleCode()
-                    .run()
-                }
-                disabled={!editorState.canCode}
-                active={editorState.isCode}
-                className={classNames(classes.button, { [classes.active]: editorState.isCode })}
-              >
-                <Code />
-              </button>
-              {/*<button*/}
-              {/*  onClick={() =>*/}
-              {/*    editor*/}
-              {/*      .chain()*/}
-              {/*      .focus()*/}
-              {/*      .unsetAllMarks()*/}
-              {/*      .run()*/}
-              {/*  }*/}
-              {/*>*/}
-              {/*  Clear marks*/}
-              {/*</button>*/}
-              {/*<button*/}
-              {/*  onClick={() =>*/}
-              {/*    editor*/}
-              {/*      .chain()*/}
-              {/*      .focus()*/}
-              {/*      .clearNodes()*/}
-              {/*      .run()*/}
-              {/*  }*/}
-              {/*>*/}
-              {/*  Clear nodes*/}
-              {/*</button>*/}
-              {/*<button*/}
-              {/*  onClick={() =>*/}
-              {/*    editor*/}
-              {/*      .chain()*/}
-              {/*      .focus()*/}
-              {/*      .setParagraph()*/}
-              {/*      .run()*/}
-              {/*  }*/}
-              {/*  className={editorState.isParagraph ? classes.isActive : ''}*/}
-              {/*>*/}
-              {/*  Paragraph*/}
-              {/*</button>*/}
-              {/*<button*/}
-              {/*  onClick={() =>*/}
-              {/*    editor*/}
-              {/*      .chain()*/}
-              {/*      .focus()*/}
-              {/*      .toggleHeading({ level: 1 })*/}
-              {/*      .run()*/}
-              {/*  }*/}
-              {/*  className={editorState.isHeading1 ? classes.isActive : ''}*/}
-              {/*>*/}
-              {/*  H1*/}
-              {/*</button>*/}
-              {/*<button*/}
-              {/*  onClick={() =>*/}
-              {/*    editor*/}
-              {/*      .chain()*/}
-              {/*      .focus()*/}
-              {/*      .toggleHeading({ level: 2 })*/}
-              {/*      .run()*/}
-              {/*  }*/}
-              {/*  className={editorState.isHeading2 ? classes.isActive : ''}*/}
-              {/*>*/}
-              {/*  H2*/}
-              {/*</button>*/}
-              <button
-                onClick={() =>
-                  editor
-                    .chain()
-                    .focus()
-                    .toggleUnderline()
-                    .run()
-                }
-                className={classNames(classes.button, { [classes.active]: editorState.isUnderline })}
-              >
-                <Underline />
-              </button>
-              <button
-                onClick={() =>
-                  editor
-                    .chain()
-                    .focus()
-                    .toggleSubscript()
-                    .run()
-                }
-                className={classNames(classes.button, { [classes.active]: editorState.isSubScript })}
-              >
-                <SubscriptIcon />
-              </button>
-              <button
-                onClick={() =>
-                  editor
-                    .chain()
-                    .focus()
-                    .toggleSuperscript()
-                    .run()
-                }
-                className={classNames(classes.button, { [classes.active]: editorState.isSuperScript })}
-              >
-                <SuperscriptIcon />
-              </button>
-              <button
-                onClick={() =>
-                  editor
-                    .chain()
-                    .focus()
-                    .toggleHeading({ level: 3 })
-                    .run()
-                }
-                className={classNames(classes.button, { [classes.active]: editorState.isHeading3 })}
-              >
-                <HeadingIcon />
-              </button>
-              {/*<button*/}
-              {/*  onClick={() =>*/}
-              {/*    editor*/}
-              {/*      .chain()*/}
-              {/*      .focus()*/}
-              {/*      .toggleHeading({ level: 3 })*/}
-              {/*      .run()*/}
-              {/*  }*/}
-              {/*  className={classNames(classes.button, { [classes.active]: editorState.isHeading3 })}*/}
-              {/*>*/}
-              {/*  <Image />*/}
-              {/*</button>*/}
-              {/*<button*/}
-              {/*  onClick={() =>*/}
-              {/*    editor*/}
-              {/*      .chain()*/}
-              {/*      .focus()*/}
-              {/*      .toggleHeading({ level: 4 })*/}
-              {/*      .run()*/}
-              {/*  }*/}
-              {/*  className={editorState.isHeading4 ? classes.isActive : ''}*/}
-              {/*>*/}
-              {/*  H4*/}
-              {/*</button>*/}
-              {/*<button*/}
-              {/*  onClick={() =>*/}
-              {/*    editor*/}
-              {/*      .chain()*/}
-              {/*      .focus()*/}
-              {/*      .toggleHeading({ level: 5 })*/}
-              {/*      .run()*/}
-              {/*  }*/}
-              {/*  className={editorState.isHeading5 ? classes.isActive : ''}*/}
-              {/*>*/}
-              {/*  H5*/}
-              {/*</button>*/}
-              {/*<button*/}
-              {/*  onClick={() =>*/}
-              {/*    editor*/}
-              {/*      .chain()*/}
-              {/*      .focus()*/}
-              {/*      .toggleHeading({ level: 6 })*/}
-              {/*      .run()*/}
-              {/*  }*/}
-              {/*  className={editorState.isHeading6 ? classes.isActive : ''}*/}
-              {/*>*/}
-              {/*  H6*/}
-              {/*</button>*/}
-              <button
-                onClick={() =>
-                  editor
-                    .chain()
-                    .focus()
-                    .insertMath('')
-                    .run()
-                }
-                className={classes.button}
-              >
-                <Functions />
-              </button>
-              <button onClick={() => setShowPicker(spanishConfig)} className={classes.button}>
-                <CharacterIcon letter="ñ" />
-              </button>
-              <button onClick={() => setShowPicker(specialConfig)} className={classes.button}>
-                <CharacterIcon letter="€" />
-              </button>
-              <button onClick={() => {}} className={classes.button}>
-                <TextAlignIcon editor={editor} />
-              </button>
-              <button
-                onClick={() =>
-                  editor
-                    .chain()
-                    .focus()
-                    .toggleBulletList()
-                    .run()
-                }
-                className={classNames(classes.button, { [classes.active]: editorState.isBulletList })}
-              >
-                <BulletedListIcon />
-              </button>
-              <button
-                onClick={() =>
-                  editor
-                    .chain()
-                    .focus()
-                    .toggleOrderedList()
-                    .run()
-                }
-                className={classNames(classes.button, { [classes.active]: editorState.isOrderedList })}
-              >
-                <NumberedListIcon />
-              </button>
-              {/*<button*/}
-              {/*  onClick={() =>*/}
-              {/*    editor*/}
-              {/*      .chain()*/}
-              {/*      .focus()*/}
-              {/*      .toggleCodeBlock()*/}
-              {/*      .run()*/}
-              {/*  }*/}
-              {/*  className={classNames(classes.button, { [classes.active]: editorState.isCodeBlock })}*/}
-              {/*>*/}
-              {/*  Code block*/}
-              {/*</button>*/}
-              {/*<button*/}
-              {/*  onClick={() =>*/}
-              {/*    editor*/}
-              {/*      .chain()*/}
-              {/*      .focus()*/}
-              {/*      .toggleBlockquote()*/}
-              {/*      .run()*/}
-              {/*  }*/}
-              {/*  className={classNames(classes.button, { [classes.active]: editorState.isBlockquote })}*/}
-              {/*>*/}
-              {/*  Blockquote*/}
-              {/*</button>*/}
-              {/*<button*/}
-              {/*  onClick={() =>*/}
-              {/*    editor*/}
-              {/*      .chain()*/}
-              {/*      .focus()*/}
-              {/*      .setHorizontalRule()*/}
-              {/*      .run()*/}
-              {/*  }*/}
-              {/*>*/}
-              {/*  Horizontal rule*/}
-              {/*</button>*/}
-              {/*<button*/}
-              {/*  onClick={() =>*/}
-              {/*    editor*/}
-              {/*      .chain()*/}
-              {/*      .focus()*/}
-              {/*      .setHardBreak()*/}
-              {/*      .run()*/}
-              {/*  }*/}
-              {/*>*/}
-              {/*  Hard break*/}
-              {/*</button>*/}
-              <button
-                onClick={() =>
-                  editor
-                    .chain()
-                    .focus()
-                    .undo()
-                    .run()
-                }
-                disabled={!editorState.canUndo}
-                className={classes.button}
-              >
-                <Undo />
-              </button>
-              <button
-                onClick={() =>
-                  editor
-                    .chain()
-                    .focus()
-                    .redo()
-                    .run()
-                }
-                disabled={!editorState.canRedo}
-                className={classes.button}
-              >
-                <Redo />
-              </button>
-            </div>
+      {!editorState.isMathActive && !editorState.isECRActive && (
+        <div className={classes.defaultToolbar} tabIndex="1">
+          <div className={classes.buttonsContainer}>
             <button
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault();
                 editor
                   .chain()
                   .focus()
-                  .insertResponseArea(responseAreaProps.type)
+                  .insertTable()
                   .run();
               }}
+              disabled={!editorState.canTable}
+              className={classNames(classes.button, { [classes.active]: editorState.isTable })}
+            >
+              <GridOn />
+            </button>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                editor
+                  .chain()
+                  .focus()
+                  .toggleBold()
+                  .run();
+              }}
+              disabled={!editorState.canBold}
+              className={classNames(classes.button, { [classes.active]: editorState.isBold })}
+            >
+              <Bold />
+            </button>
+            <button
+              onClick={() =>
+                editor
+                  .chain()
+                  .focus()
+                  .toggleItalic()
+                  .run()
+              }
+              disabled={!editorState.canItalic}
+              active={editorState.isItalic}
+              className={classNames(classes.button, { [classes.active]: editorState.isItalic })}
+            >
+              <Italic />
+            </button>
+            <button
+              onClick={() =>
+                editor
+                  .chain()
+                  .focus()
+                  .toggleStrike()
+                  .run()
+              }
+              disabled={!editorState.canStrike}
+              active={editorState.isStrike}
+              className={classNames(classes.button, { [classes.active]: editorState.isStrike })}
+            >
+              <Strikethrough />
+            </button>
+            <button
+              onClick={() =>
+                editor
+                  .chain()
+                  .focus()
+                  .toggleCode()
+                  .run()
+              }
+              disabled={!editorState.canCode}
+              active={editorState.isCode}
+              className={classNames(classes.button, { [classes.active]: editorState.isCode })}
+            >
+              <Code />
+            </button>
+            {/*<button*/}
+            {/*  onClick={() =>*/}
+            {/*    editor*/}
+            {/*      .chain()*/}
+            {/*      .focus()*/}
+            {/*      .unsetAllMarks()*/}
+            {/*      .run()*/}
+            {/*  }*/}
+            {/*>*/}
+            {/*  Clear marks*/}
+            {/*</button>*/}
+            {/*<button*/}
+            {/*  onClick={() =>*/}
+            {/*    editor*/}
+            {/*      .chain()*/}
+            {/*      .focus()*/}
+            {/*      .clearNodes()*/}
+            {/*      .run()*/}
+            {/*  }*/}
+            {/*>*/}
+            {/*  Clear nodes*/}
+            {/*</button>*/}
+            {/*<button*/}
+            {/*  onClick={() =>*/}
+            {/*    editor*/}
+            {/*      .chain()*/}
+            {/*      .focus()*/}
+            {/*      .setParagraph()*/}
+            {/*      .run()*/}
+            {/*  }*/}
+            {/*  className={editorState.isParagraph ? classes.isActive : ''}*/}
+            {/*>*/}
+            {/*  Paragraph*/}
+            {/*</button>*/}
+            {/*<button*/}
+            {/*  onClick={() =>*/}
+            {/*    editor*/}
+            {/*      .chain()*/}
+            {/*      .focus()*/}
+            {/*      .toggleHeading({ level: 1 })*/}
+            {/*      .run()*/}
+            {/*  }*/}
+            {/*  className={editorState.isHeading1 ? classes.isActive : ''}*/}
+            {/*>*/}
+            {/*  H1*/}
+            {/*</button>*/}
+            {/*<button*/}
+            {/*  onClick={() =>*/}
+            {/*    editor*/}
+            {/*      .chain()*/}
+            {/*      .focus()*/}
+            {/*      .toggleHeading({ level: 2 })*/}
+            {/*      .run()*/}
+            {/*  }*/}
+            {/*  className={editorState.isHeading2 ? classes.isActive : ''}*/}
+            {/*>*/}
+            {/*  H2*/}
+            {/*</button>*/}
+            <button
+              onClick={() =>
+                editor
+                  .chain()
+                  .focus()
+                  .toggleUnderline()
+                  .run()
+              }
+              className={classNames(classes.button, { [classes.active]: editorState.isUnderline })}
+            >
+              <Underline />
+            </button>
+            <button
+              onClick={() =>
+                editor
+                  .chain()
+                  .focus()
+                  .toggleSubscript()
+                  .run()
+              }
+              className={classNames(classes.button, { [classes.active]: editorState.isSubScript })}
+            >
+              <SubscriptIcon />
+            </button>
+            <button
+              onClick={() =>
+                editor
+                  .chain()
+                  .focus()
+                  .toggleSuperscript()
+                  .run()
+              }
+              className={classNames(classes.button, { [classes.active]: editorState.isSuperScript })}
+            >
+              <SuperscriptIcon />
+            </button>
+            <button
+              onClick={() =>
+                editor
+                  .chain()
+                  .focus()
+                  .toggleHeading({ level: 3 })
+                  .run()
+              }
+              className={classNames(classes.button, { [classes.active]: editorState.isHeading3 })}
+            >
+              <HeadingIcon />
+            </button>
+            {/*<button*/}
+            {/*  onClick={() =>*/}
+            {/*    editor*/}
+            {/*      .chain()*/}
+            {/*      .focus()*/}
+            {/*      .toggleHeading({ level: 3 })*/}
+            {/*      .run()*/}
+            {/*  }*/}
+            {/*  className={classNames(classes.button, { [classes.active]: editorState.isHeading3 })}*/}
+            {/*>*/}
+            {/*  <Image />*/}
+            {/*</button>*/}
+            {/*<button*/}
+            {/*  onClick={() =>*/}
+            {/*    editor*/}
+            {/*      .chain()*/}
+            {/*      .focus()*/}
+            {/*      .toggleHeading({ level: 4 })*/}
+            {/*      .run()*/}
+            {/*  }*/}
+            {/*  className={editorState.isHeading4 ? classes.isActive : ''}*/}
+            {/*>*/}
+            {/*  H4*/}
+            {/*</button>*/}
+            {/*<button*/}
+            {/*  onClick={() =>*/}
+            {/*    editor*/}
+            {/*      .chain()*/}
+            {/*      .focus()*/}
+            {/*      .toggleHeading({ level: 5 })*/}
+            {/*      .run()*/}
+            {/*  }*/}
+            {/*  className={editorState.isHeading5 ? classes.isActive : ''}*/}
+            {/*>*/}
+            {/*  H5*/}
+            {/*</button>*/}
+            {/*<button*/}
+            {/*  onClick={() =>*/}
+            {/*    editor*/}
+            {/*      .chain()*/}
+            {/*      .focus()*/}
+            {/*      .toggleHeading({ level: 6 })*/}
+            {/*      .run()*/}
+            {/*  }*/}
+            {/*  className={editorState.isHeading6 ? classes.isActive : ''}*/}
+            {/*>*/}
+            {/*  H6*/}
+            {/*</button>*/}
+            <button
+              onClick={() =>
+                editor
+                  .chain()
+                  .focus()
+                  .insertMath('')
+                  .run()
+              }
               className={classes.button}
             >
-              <ToolbarIcon />
+              <Functions />
             </button>
-
-            <DoneButton
-              onClick={() => {
-                onChange?.(editor.getHTML());
-                editor.commands.blur();
-              }}
-            />
+            <button onClick={() => setShowPicker(spanishConfig)} className={classes.button}>
+              <CharacterIcon letter="ñ" />
+            </button>
+            <button onClick={() => setShowPicker(specialConfig)} className={classes.button}>
+              <CharacterIcon letter="€" />
+            </button>
+            <button onClick={() => {}} className={classes.button}>
+              <TextAlignIcon editor={editor} />
+            </button>
+            <button
+              onClick={() =>
+                editor
+                  .chain()
+                  .focus()
+                  .toggleBulletList()
+                  .run()
+              }
+              className={classNames(classes.button, { [classes.active]: editorState.isBulletList })}
+            >
+              <BulletedListIcon />
+            </button>
+            <button
+              onClick={() =>
+                editor
+                  .chain()
+                  .focus()
+                  .toggleOrderedList()
+                  .run()
+              }
+              className={classNames(classes.button, { [classes.active]: editorState.isOrderedList })}
+            >
+              <NumberedListIcon />
+            </button>
+            {/*<button*/}
+            {/*  onClick={() =>*/}
+            {/*    editor*/}
+            {/*      .chain()*/}
+            {/*      .focus()*/}
+            {/*      .toggleCodeBlock()*/}
+            {/*      .run()*/}
+            {/*  }*/}
+            {/*  className={classNames(classes.button, { [classes.active]: editorState.isCodeBlock })}*/}
+            {/*>*/}
+            {/*  Code block*/}
+            {/*</button>*/}
+            {/*<button*/}
+            {/*  onClick={() =>*/}
+            {/*    editor*/}
+            {/*      .chain()*/}
+            {/*      .focus()*/}
+            {/*      .toggleBlockquote()*/}
+            {/*      .run()*/}
+            {/*  }*/}
+            {/*  className={classNames(classes.button, { [classes.active]: editorState.isBlockquote })}*/}
+            {/*>*/}
+            {/*  Blockquote*/}
+            {/*</button>*/}
+            {/*<button*/}
+            {/*  onClick={() =>*/}
+            {/*    editor*/}
+            {/*      .chain()*/}
+            {/*      .focus()*/}
+            {/*      .setHorizontalRule()*/}
+            {/*      .run()*/}
+            {/*  }*/}
+            {/*>*/}
+            {/*  Horizontal rule*/}
+            {/*</button>*/}
+            {/*<button*/}
+            {/*  onClick={() =>*/}
+            {/*    editor*/}
+            {/*      .chain()*/}
+            {/*      .focus()*/}
+            {/*      .setHardBreak()*/}
+            {/*      .run()*/}
+            {/*  }*/}
+            {/*>*/}
+            {/*  Hard break*/}
+            {/*</button>*/}
+            <button
+              onClick={() =>
+                editor
+                  .chain()
+                  .focus()
+                  .undo()
+                  .run()
+              }
+              disabled={!editorState.canUndo}
+              className={classes.button}
+            >
+              <Undo />
+            </button>
+            <button
+              onClick={() =>
+                editor
+                  .chain()
+                  .focus()
+                  .redo()
+                  .run()
+              }
+              disabled={!editorState.canRedo}
+              className={classes.button}
+            >
+              <Redo />
+            </button>
           </div>
-        )
-      }
+          <button
+            onClick={() => {
+              editor
+                .chain()
+                .focus()
+                .insertResponseArea(responseAreaProps.type)
+                .run();
+            }}
+            className={classes.button}
+          >
+            <ToolbarIcon />
+          </button>
+
+          <DoneButton
+            onClick={() => {
+              onChange?.(editor.getHTML());
+              editor.commands.blur();
+            }}
+          />
+        </div>
+      )}
       {showPicker && (
         <CharacterPicker
           editor={editor}
@@ -1222,9 +1237,54 @@ export const EditableHtml = (props) => {
     },
   });
 
+  const valueToSize = (v) => {
+    if (!v) {
+      return;
+    }
+    const calcRegex = /^calc\((.*)\)$/;
+
+    if (typeof v === 'string') {
+      if (v.endsWith('%')) {
+        return undefined;
+      } else if (
+        v.endsWith('px') ||
+        v.endsWith('vh') ||
+        v.endsWith('vw') ||
+        v.endsWith('ch') ||
+        v.endsWith('em') ||
+        v.match(calcRegex)
+      ) {
+        return v;
+      } else {
+        const value = parseInt(v, 10);
+        return isNaN(value) ? value : `${value}px`;
+      }
+    }
+    if (typeof v === 'number') {
+      return `${v}px`;
+    }
+  };
+
+  const sizeStyle = useMemo(() => {
+    const { minWidth, width, maxWidth, minHeight, height, maxHeight } = props;
+
+    return {
+      width: valueToSize(width),
+      minWidth: valueToSize(minWidth),
+      maxWidth: valueToSize(maxWidth),
+      height: valueToSize(height),
+      minHeight: valueToSize(minHeight),
+      maxHeight: valueToSize(maxHeight),
+    };
+  }, [props]);
+
   return (
     <EditorContainer {...props} editorState={editorState} editor={editor}>
-      {editor && <EditorContent className={classes.root} editor={editor} />}
+      {editor && <EditorContent style={{
+        minHeight: sizeStyle.minHeight,
+        height: sizeStyle.height,
+        maxHeight: sizeStyle.maxHeight,
+      }} className={classes.root} editor={editor} />}
     </EditorContainer>
   );
 };
