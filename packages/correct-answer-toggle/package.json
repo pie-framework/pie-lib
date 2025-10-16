@@ -11,15 +11,15 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "2.24.0",
+  "version": "2.25.0",
   "main": "lib/index.js",
   "module": "src/index.jsx",
   "scripts": {},
   "dependencies": {
     "@material-ui/core": "^3.8.3",
-    "@pie-lib/icons": "^2.23.0",
-    "@pie-lib/render-ui": "^4.34.0",
-    "@pie-lib/translator": "^2.22.0",
+    "@pie-lib/icons": "^2.24.0",
+    "@pie-lib/render-ui": "^4.35.0",
+    "@pie-lib/translator": "^2.23.0",
     "classnames": "^2.2.6",
     "lodash": "^4.17.11",
     "prop-types": "^15.6.2",
