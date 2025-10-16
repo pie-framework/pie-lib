@@ -6,7 +6,7 @@ import * as simpleSample from '../source/text-select/simple-sample';
 import withRoot from '../source/withRoot';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import withStyles from '@mui/styles/withStyles';
 import { renderMath } from '@pie-lib/math-rendering';
 
 const mathText = `<math xmlns="http:/www.w3.org/1998/Math/MathML">

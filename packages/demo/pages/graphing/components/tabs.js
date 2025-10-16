@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
+import Typography from '@mui/material/Typography';
 import Settings from '../settings';
 import { Options } from './fields';
-import Tabs from '@material-ui/core/Tabs';
+import Tabs from '@mui/material/Tabs';
 
 function TabContainer(props) {
   return (

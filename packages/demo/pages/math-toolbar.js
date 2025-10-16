@@ -1,4 +1,4 @@
-import { withStyles } from '@material-ui/core';
+import withStyles from '@mui/styles/withStyles';
 import React from 'react';
 
 import { MathToolbar } from '@pie-lib/math-toolbar';

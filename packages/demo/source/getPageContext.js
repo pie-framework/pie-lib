@@ -1,18 +1,11 @@
 /* eslint-disable no-underscore-dangle */
-import { SheetsRegistry } from 'jss';
-import { createMuiTheme, createGenerateClassName } from '@material-ui/core/styles';
+import { createTheme } from '@mui/material/styles';
 
-const theme = createMuiTheme({});
+const theme = createTheme({});
 
 function createPageContext() {
   return {
     theme,
-    // This is needed in order to deduplicate the injection of CSS in the page.
-    sheetsManager: new Map(),
-    // This is needed in order to inject the critical CSS.
-    sheetsRegistry: new SheetsRegistry(),
-    // The standard class name generator.
-    generateClassName: createGenerateClassName(),
   };
 }
 
@@ -20,7 +13,7 @@ export default function getPageContext() {
   // Make sure to create a new context for every server-side request so that data
   // isn't shared between connections (which would be bad).
   // eslint-disable-next-line
-  if (!process.browser) {
+  if (typeof window === 'undefined') {
     return createPageContext();
   }
 

@@ -1,46 +1,70 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+// import withStyles from '@mui/styles/withStyles';
 import { indicators, Feedback } from '@pie-lib/render-ui';
 import { Collapsible, color } from '@pie-lib/render-ui';
 import withRoot from '../source/withRoot';
-import { Typography } from '@material-ui/core';
+import { Typography } from '@mui/material';
 const { Correct, Incorrect, PartiallyCorrect, NothingSubmitted } = indicators;
 
-const Section = withStyles((theme) => ({
-  label: {},
-  section: {
-    padding: theme.spacing.unit,
-  },
-}))(({ title, children, classes }) => (
+// const Section = withStyles((theme) => ({
+//   label: {},
+//   section: {
+//     padding: theme.spacing.unit,
+//   },
+// }))(({ title, children, classes }) => (
+//   <div className={classes.section}>
+//     <h4>{title}</h4>
+//     {children}
+//   </div>
+// ));
+
+const Section = ({ title, children, classes }) => (
   <div className={classes.section}>
     <h4>{title}</h4>
     {children}
   </div>
-));
+);
 
-const ColorSample = withStyles((theme) => ({
-  colorSample: {
-    border: 'solid red 0px',
-    paddingBottom: theme.spacing.unit,
-    paddingTop: theme.spacing.unit,
-  },
-  row: {
-    display: 'flex',
-  },
-  colorBox: {
-    width: '100px',
-    marginRight: theme.spacing.unit,
-    border: 'solid 1px lightgrey',
-  },
-}))(({ name, classes }) => (
-  <div className={classes.colorSample}>
+// const ColorSample = withStyles((theme) => ({
+//   colorSample: {
+//     border: 'solid red 0px',
+//     paddingBottom: theme.spacing.unit,
+//     paddingTop: theme.spacing.unit,
+//   },
+//   row: {
+//     display: 'flex',
+//   },
+//   colorBox: {
+//     width: '100px',
+//     marginRight: theme.spacing.unit,
+//     border: 'solid 1px lightgrey',
+//   },
+// }))(({ name, classes }) => (
+//   <div className={classes.colorSample}>
+//     <Typography variant="h5">{name}</Typography>
+//     <div className={classes.row}>
+//       <div className={classes.colorBox} style={{ backgroundColor: color[name]() }}></div>
+//       <pre>{`color.${name}() //=> ${color[name]()}`}</pre>
+//     </div>
+//   </div>
+// ));
+
+const ColorSample = ({ name }) => (
+  <div style={{ border: 'solid red 0px', paddingBottom: 8, paddingTop: 8 }}>
     <Typography variant="h5">{name}</Typography>
-    <div className={classes.row}>
-      <div className={classes.colorBox} style={{ backgroundColor: color[name]() }}></div>
+    <div style={{ display: 'flex' }}>
+      <div
+        style={{
+          width: '100px',
+          marginRight: 8,
+          border: 'solid 1px lightgrey',
+          backgroundColor: color[name](),
+        }}
+      ></div>
       <pre>{`color.${name}() //=> ${color[name]()}`}</pre>
     </div>
   </div>
-));
+);
 
 class App extends React.Component {
   constructor(props) {
@@ -123,20 +147,20 @@ class App extends React.Component {
   }
 }
 
-const StyledApp = withStyles((theme) => ({
-  root: {
-    fontFamily: theme.typography.fontFamily,
-  },
-  flow: {
-    display: 'flex',
-    alignItems: 'center',
-    '& > *': {
-      paddingLeft: '20px',
-    },
-  },
-  collapsible: {
-    paddingTop: theme.spacing.unit,
-  },
-}))(App);
+// const StyledApp = withStyles((theme) => ({
+//   root: {
+//     fontFamily: theme.typography.fontFamily,
+//   },
+//   flow: {
+//     display: 'flex',
+//     alignItems: 'center',
+//     '& > *': {
+//       paddingLeft: '20px',
+//     },
+//   },
+//   collapsible: {
+//     paddingTop: theme.spacing.unit,
+//   },
+// }))(App);
 
-export default withRoot(StyledApp);
+export default withRoot(App);

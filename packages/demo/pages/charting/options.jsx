@@ -1,18 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
-import classNames from 'classnames';
-import TextField from '@material-ui/core/TextField';
-import Switch from '@material-ui/core/Switch';
+import Typography from '@mui/material/Typography';
+import { styled } from '@mui/material/styles';
+import TextField from '@mui/material/TextField';
+import Switch from '@mui/material/Switch';
 import { set } from './nested-setter-getter';
 import ChartType from './chart-type';
 import Category from './category';
 import Nt from './nt';
 
+const OptionsContainer = styled('div')({
+  // Add any base styles for options container if needed
+});
+
+const StyledTextField = styled(TextField)(({ theme }) => ({
+  marginTop: theme.spacing(2),
+  '&.title': {
+    width: '100%',
+  },
+}));
+
+const CategoriesHeader = styled('div')({
+  display: 'flex',
+  justifyContent: 'space-between',
+});
+
+const RowContainer = styled('div')({
+  // Add row styles if needed
+});
+
 export class Options extends React.Component {
   static propTypes = {
-    classes: PropTypes.object.isRequired,
     className: PropTypes.string,
     model: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
@@ -75,19 +93,18 @@ export class Options extends React.Component {
   };
 
   render() {
-    const { classes, className, model } = this.props;
+    const { className, model } = this.props;
     return (
-      <div className={classNames(classes.options, className)}>
+      <OptionsContainer className={className}>
         <ChartType value={model.chartType} onChange={(e) => this.change('chartType', e.target.value)} />
-        <TextField
+        <StyledTextField
           variant="outlined"
           label="Chart Title"
-          className={classNames(classes.textField, classes.title)}
+          className="title"
           value={model.title}
           onChange={(e) => this.change('title', e.target.value)}
         />
-        <TextField
-          className={classes.textField}
+        <StyledTextField
           label="Default Category Label"
           variant="outlined"
           value={model.categoryDefaultLabel}
@@ -124,45 +141,32 @@ export class Options extends React.Component {
             value={model.editCategoryEnabled}
           />
         </div>
-        <div className={classes.row}>
-          <TextField
-            className={classes.textField}
+        <RowContainer>
+          <StyledTextField
             label="X axis label"
             variant="outlined"
             value={model.domain.label}
             onChange={(e) => this.change('domain.label', e.target.value)}
           />
-          <TextField
+          <StyledTextField
             label="Y axis label"
-            className={classes.textField}
             variant="outlined"
             value={model.range.label}
             onChange={(e) => this.change('range.label', e.target.value)}
           />
-        </div>
-        <Nt
-          label="Max Y Value"
-          className={classes.textField}
-          value={model.range.max}
-          onChange={(v) => this.change('range.max', v)}
-        />
-        <Nt
-          label="Range Step Value"
-          className={classes.textField}
-          value={model.range.step}
-          onChange={(v) => this.change('range.step', v)}
-        />
+        </RowContainer>
+        <Nt label="Max Y Value" value={model.range.max} onChange={(v) => this.change('range.max', v)} />
+        <Nt label="Range Step Value" value={model.range.step} onChange={(v) => this.change('range.step', v)} />
         <Nt
           label="Range Label Step Value"
-          className={classes.textField}
           value={model.range.labelStep}
           onChange={(v) => this.change('range.labelStep', v)}
         />
 
-        <div className={classes.categories}>
+        <CategoriesHeader>
           <Typography variant="subtitle2">Define Categories</Typography>
           <Typography variant="subtitle2">Interactive</Typography>
-        </div>
+        </CategoriesHeader>
         {(model.data || []).map((d, index) => (
           <Category
             label={d.label}
@@ -174,21 +178,9 @@ export class Options extends React.Component {
             onChange={(label, value, interactive) => this.changeCategory(index, label, value, interactive)}
           />
         ))}
-      </div>
+      </OptionsContainer>
     );
   }
 }
-const styles = (theme) => ({
-  title: {
-    width: '100%',
-  },
-  textField: {
-    marginTop: theme.spacing.unit * 2,
-  },
-  categories: {
-    display: 'flex',
-    justifyContent: 'space-between',
-  },
-});
 
-export default withStyles(styles)(Options);
+export default Options;

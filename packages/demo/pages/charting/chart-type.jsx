@@ -1,22 +1,23 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import Select from '@material-ui/core/Select';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
+import { styled } from '@mui/material/styles';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import Select from '@mui/material/Select';
+import OutlinedInput from '@mui/material/OutlinedInput';
 
-const ChartType = withStyles((theme) => ({
-  formControl: {
-    width: '100%',
-  },
-  chartType: {
-    paddingTop: theme.spacing.unit * 2,
-  },
-}))(({ onChange, value, classes }) => {
+const ChartTypeContainer = styled('div')(({ theme }) => ({
+  paddingTop: theme.spacing(2),
+}));
+
+const StyledFormControl = styled(FormControl)({
+  width: '100%',
+});
+
+const ChartType = ({ onChange, value }) => {
   return (
-    <div className={classes.chartType}>
-      <FormControl variant="outlined" className={classes.formControl}>
+    <ChartTypeContainer>
+      <StyledFormControl variant="outlined">
         <InputLabel htmlFor="type-helper">ChartType</InputLabel>
 
         <Select value={value} onChange={onChange} input={<OutlinedInput name="type" id="type-helper" />}>
@@ -27,9 +28,9 @@ const ChartType = withStyles((theme) => ({
           <MenuItem value={'dotPlot'}>Dot Plot</MenuItem>
           <MenuItem value={'linePlot'}>Line Plot</MenuItem>
         </Select>
-      </FormControl>
-    </div>
+      </StyledFormControl>
+    </ChartTypeContainer>
   );
-});
+};
 
 export default ChartType;

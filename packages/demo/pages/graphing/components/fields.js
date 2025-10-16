@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import withStyles from '@mui/styles/withStyles';
 import { types } from '@pie-lib/plot';
-import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
 import classNames from 'classnames';
 
 const Nt = withStyles((theme) => ({

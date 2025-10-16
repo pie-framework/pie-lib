@@ -1,10 +1,10 @@
-import Input from '@material-ui/core/Input';
+import Input from '@mui/material/Input';
 import React, { useState } from 'react';
-import { withStyles } from '@material-ui/core';
+import withStyles from '@mui/styles/withStyles';
 import { Data } from 'slate';
 
 import PropTypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
+import Typography from '@mui/material/Typography';
 import classNames from 'classnames';
 import debug from 'debug';
 

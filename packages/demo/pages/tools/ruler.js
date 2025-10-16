@@ -1,9 +1,9 @@
 import withRoot from '../../source/withRoot';
 import React from 'react';
 import { Ruler } from '@pie-lib/tools';
-import { withStyles } from '@material-ui/core/styles';
+import withStyles from '@mui/styles/withStyles';
 import PropTypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
+import Typography from '@mui/material/Typography';
 import Link from 'next/link';
 
 class Demo extends React.Component {

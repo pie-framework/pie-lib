@@ -1,7 +1,6 @@
 import { Authoring } from '@pie-lib/rubric';
 import React from 'react';
 import withRoot from '../../source/withRoot';
-import { withStyles } from '@material-ui/core';
 import Section from '../../source/formatting/section';
 import Pre from '../../source/formatting/pre';
 
@@ -41,6 +40,4 @@ class Demo extends React.Component {
   }
 }
 
-const Styled = withStyles((theme) => ({}))(Demo);
-
-export default withRoot(Styled);
+export default withRoot(Demo);

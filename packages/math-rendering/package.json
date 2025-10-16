@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/math-rendering",
-  "version": "3.18.0",
+  "version": "3.22.0",
   "description": "math rendering utilities",
   "publishConfig": {
     "access": "public"
@@ -14,6 +14,9 @@
     "debug": "^4.1.1",
     "lodash": "^4.17.11",
     "mathjax-full": "3.2.2",
+    "react": "^18.2.0"
+  },
+  "resolutions": {
     "react": "^18.2.0"
   },
   "gitHead": "ff5ec2ebe11110b7652812a10c6dc230f08e12cb",

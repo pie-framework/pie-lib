@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
+import Typography from '@mui/material/Typography';
+import withStyles from '@mui/styles/withStyles';
 import classNames from 'classnames';
 import { DisplaySize, Toggle, Checkbox } from '@pie-lib/config-ui';
 import debug from 'debug';

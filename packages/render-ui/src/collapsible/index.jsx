@@ -1,12 +1,21 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles/index';
-import Collapse from '@material-ui/core/Collapse/index';
+import { styled } from '@mui/material/styles';
+import Collapse from '@mui/material/Collapse';
 import { renderMath } from '@pie-lib/math-rendering';
 import PropTypes from 'prop-types';
 
+const Title = styled('span')(({ theme }) => ({
+  color: theme.palette.primary.light,
+  borderBottom: `1px dotted ${theme.palette.primary.light}`,
+  cursor: 'pointer',
+}));
+
+const StyledCollapse = styled(Collapse)(({ theme }) => ({
+  paddingTop: theme.spacing(2),
+}));
+
 export class Collapsible extends React.Component {
   static propTypes = {
-    classes: PropTypes.object.isRequired,
     className: PropTypes.string,
     children: PropTypes.object,
     labels: PropTypes.shape({
@@ -36,29 +45,20 @@ export class Collapsible extends React.Component {
   }
 
   render() {
-    const { classes, labels, children, className } = this.props;
+    const { labels, children, className } = this.props;
     const title = this.state.expanded ? labels.visible || 'Hide' : labels.hidden || 'Show';
 
     return (
       <div className={className} ref={(r) => (this.root = r)}>
         <div onClick={this.toggleExpanded}>
-          <span className={classes.title}>{title}</span>
+          <Title>{title}</Title>
         </div>
-        <Collapse in={this.state.expanded} timeout="auto" unmountOnExit className={classes.collapsible}>
+        <StyledCollapse in={this.state.expanded} timeout="auto" unmountOnExit>
           {children}
-        </Collapse>
+        </StyledCollapse>
       </div>
     );
   }
 }
 
-export default withStyles((theme) => ({
-  title: {
-    color: theme.palette.primary.light,
-    borderBottom: `1px dotted ${theme.palette.primary.light}`,
-    cursor: 'pointer',
-  },
-  collapsible: {
-    paddingTop: theme.spacing.unit * 2,
-  },
-}))(Collapsible);
+export default Collapsible;

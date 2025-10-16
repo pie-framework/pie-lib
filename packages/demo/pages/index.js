@@ -1,14 +1,13 @@
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import React from 'react';
 
 import withRoot from '../source/withRoot';
-import Typography from '@material-ui/core/Typography';
-const D = ({ classes }) => <Typography variant={'title'}>Welcome to the @pie-libs demo</Typography>;
+import Typography from '@mui/material/Typography';
 
-export default withRoot(
-  withStyles({
-    root: {
-      backgroundColor: 'blue',
-    },
-  })(D),
-);
+const StyledTypography = styled(Typography)({
+  backgroundColor: 'blue',
+});
+
+const D = () => <StyledTypography variant={'h6'}>Welcome to the @pie-libs demo</StyledTypography>;
+
+export default withRoot(D);

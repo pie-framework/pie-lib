@@ -1,14 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import classNames from 'classnames';
 import { DisplaySize } from '@pie-lib/config-ui';
-import grey from '@material-ui/core/colors/grey';
+import { grey } from '@mui/material/colors';
+
+const SettingsContainer = styled('div')(({ theme }) => ({
+  padding: theme.spacing(1),
+  background: grey[100],
+  border: `solid 1px ${grey[300]}`,
+}));
 
 export class Settings extends React.Component {
   static propTypes = {
-    classes: PropTypes.object.isRequired,
     className: PropTypes.string,
     model: PropTypes.object,
     onChange: PropTypes.func.isRequired,
@@ -21,21 +25,13 @@ export class Settings extends React.Component {
   };
 
   render() {
-    const { model, classes, className } = this.props;
+    const { model, className } = this.props;
     return (
-      <div className={classNames(classes.settings, className)}>
+      <SettingsContainer className={className}>
         {/* <DisplaySize label={'Chart Display Size'} size={model.size} onChange={this.updateSize} />*/}
-      </div>
+      </SettingsContainer>
     );
   }
 }
 
-const styles = (theme) => ({
-  settings: {
-    padding: theme.spacing.unit,
-    background: grey[100],
-    border: `solid 1px ${grey[300]}`,
-  },
-});
-
-export default withStyles(styles)(Settings);
+export default Settings;

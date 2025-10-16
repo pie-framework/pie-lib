@@ -1,33 +1,36 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
-import { withStyles } from '@material-ui/core/styles';
-import Restore from '@material-ui/icons/Restore';
-import Undo from '@material-ui/icons/Undo';
+import Button from '@mui/material/Button';
+import { styled } from '@mui/material/styles';
+import Restore from '@mui/icons-material/Restore';
+import Undo from '@mui/icons-material/Undo';
 
-const styles = (theme) => ({
-  wrapper: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  resetUndoContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  icon: {
-    width: '24px',
-    height: '24px',
-    color: 'gray',
-    marginRight: theme.spacing.unit,
-  },
-  buttonContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    marginLeft: theme.spacing.unit * 3,
-    marginRight: theme.spacing.unit * 3,
-  },
+const Wrapper = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
 });
+
+const ResetUndoContainer = styled('div')({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+});
+
+const StyledIcon = styled('div')(({ theme }) => ({
+  width: '24px',
+  height: '24px',
+  color: 'gray',
+  marginRight: theme.spacing(1),
+  display: 'flex',
+  alignItems: 'center',
+}));
+
+const StyledButton = styled(Button)(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  marginLeft: theme.spacing(3),
+  marginRight: theme.spacing(3),
+}));
 
 /**
  * HOC that adds undo and reset functionality for session values
@@ -35,7 +38,6 @@ const styles = (theme) => ({
 const withUndoReset = (WrappedComponent) => {
   class WithUndoReset extends React.Component {
     static propTypes = {
-      classes: PropTypes.object,
       session: PropTypes.object,
       onSessionChange: PropTypes.func,
     };
@@ -81,36 +83,32 @@ const withUndoReset = (WrappedComponent) => {
     };
 
     render() {
-      const { classes, ...rest } = this.props;
+      const { ...rest } = this.props;
       const { changes, session } = this.state;
 
       return (
-        <div className={classes.wrapper}>
-          <div className={classes.resetUndoContainer}>
-            <Button
-              className={classes.buttonContainer}
-              color="primary"
-              disabled={changes.length === 0}
-              onClick={this.onUndo}
-            >
-              <Undo className={classes.icon} /> Undo
-            </Button>
-            <Button
-              className={classes.buttonContainer}
-              color="primary"
-              disabled={changes.length === 0}
-              onClick={this.onReset}
-            >
-              <Restore className={classes.icon} /> Start Over
-            </Button>
-          </div>
+        <Wrapper>
+          <ResetUndoContainer>
+            <StyledButton color="primary" disabled={changes.length === 0} onClick={this.onUndo}>
+              <StyledIcon>
+                <Undo />
+              </StyledIcon>
+              Undo
+            </StyledButton>
+            <StyledButton color="primary" disabled={changes.length === 0} onClick={this.onReset}>
+              <StyledIcon>
+                <Restore />
+              </StyledIcon>
+              Start Over
+            </StyledButton>
+          </ResetUndoContainer>
           <WrappedComponent {...rest} session={session} onSessionChange={this.onSessionChange} />
-        </div>
+        </Wrapper>
       );
     }
   }
 
-  return withStyles(styles)(WithUndoReset);
+  return WithUndoReset;
 };
 
 export default withUndoReset;

@@ -1,14 +1,14 @@
 import { mq, keysForGrade, keys, KeyPad, HorizontalKeypad } from '@pie-lib/math-input';
 import React from 'react';
 import withRoot from '../source/withRoot';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
-import { withStyles } from '@material-ui/core';
-import grey from '@material-ui/core/colors/grey';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+import withStyles from '@mui/styles/withStyles';
 import Section from '../source/formatting/section';
+import { grey } from '@mui/material/colors';
 
 console.log('mq:', mq);
 

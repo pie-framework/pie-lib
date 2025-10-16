@@ -1,19 +1,40 @@
-import { InputCheckbox, InputRadio, NumberTextField, NumberTextFieldCustom } from '@pie-lib/config-ui';
-import PropTypes from 'prop-types';
+import { InputCheckbox, NumberTextField, NumberTextFieldCustom } from '@pie-lib/config-ui';
 import React from 'react';
-import Typography from '@material-ui/core/Typography';
+import Typography from '@mui/material/Typography';
 import debug from 'debug';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import withRoot from '../../source/withRoot';
 import Section from '../../source/formatting/section';
 
 // eslint-disable-next-line
 const log = debug('demo:config-ui');
 
-class RawContainer extends React.Component {
-  static propTypes = {
-    classes: PropTypes.object.isRequired,
-  };
+const RootContainer = styled('div')({
+  display: 'flex',
+});
+
+const LeftSection = styled('div')({
+  flex: 1,
+});
+
+const RightSection = styled('div')({
+  flex: 0.3,
+});
+
+const CodeBlock = styled('pre')({
+  position: 'fixed',
+});
+
+const SmallTextField = styled(NumberTextField)({
+  width: '100px',
+});
+
+const TextFieldStyled = styled(NumberTextFieldCustom)({
+  width: '150px',
+  margin: '8px',
+});
+
+class Container extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -41,72 +62,48 @@ class RawContainer extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
     const { mounted, numberTextField } = this.state;
     const initalValueMessage = `
     If there is no initial value, it'll be set to either the min or max if present, or 0
               if there is no min/max.`;
 
     return mounted ? (
-      <div className={classes.root}>
-        <div className={classes.left}>
+      <RootContainer>
+        <LeftSection>
           <Section name="NumberTextField - no initial value">
             <Typography variant={'body1'}>{initalValueMessage}</Typography>
             <Typography variant={'body1'}>
               onChange will only call when a number within the min max has been set.
             </Typography>
-            <NumberTextField
-              label="1 - 10"
-              value={numberTextField.one}
-              max={10}
-              min={0}
-              className={classes.smallTextField}
-              onChange={this.update('one')}
-            />
-            <NumberTextField
-              label={'no min/max'}
-              className={classes.smallTextField}
-              value={numberTextField.two}
-              className={classes.smallTextField}
-              onChange={this.update('two')}
-            />
+            <SmallTextField label="1 - 10" value={numberTextField.one} max={10} min={0} onChange={this.update('one')} />
+            <SmallTextField label={'no min/max'} value={numberTextField.two} onChange={this.update('two')} />
           </Section>
           <Section name="with suffix">
-            <NumberTextField
+            <SmallTextField
               label="1 - 10"
               suffix={'%'}
               value={numberTextField.one}
               max={10}
               min={1}
-              className={classes.smallTextField}
               onChange={this.update('one')}
             />
           </Section>
           <Section name="layout - works with Input* components">
             <InputCheckbox label="Foo" />
-            <NumberTextField
-              label="1 - 10"
-              value={numberTextField.one}
-              max={10}
-              min={1}
-              className={classes.smallTextField}
-              onChange={this.update('one')}
-            />
+            <SmallTextField label="1 - 10" value={numberTextField.one} max={10} min={1} onChange={this.update('one')} />
           </Section>
           <Section name="validation">
-            <NumberTextField
+            <SmallTextField
               label="1 - 10"
               min={1}
               max={10}
               showErrorWhenOutsideRange={true}
               value={numberTextField.validation}
-              className={classes.smallTextField}
               onChange={this.update('validation')}
             />
           </Section>
           <Section name="custom">
-            <NumberTextFieldCustom
-              className={classes.textField}
+            <TextFieldStyled
               label="Custom"
               value={numberTextField.custom}
               max={600}
@@ -115,8 +112,7 @@ class RawContainer extends React.Component {
               variant={'outlined'}
               onChange={this.update('custom')}
             />
-            <NumberTextFieldCustom
-              className={classes.textField}
+            <TextFieldStyled
               label="Custom values"
               value={numberTextField.custom2}
               customValues={[1, 10, 20, 35, 64]}
@@ -124,37 +120,15 @@ class RawContainer extends React.Component {
               onChange={this.update('custom2')}
             />
           </Section>
-        </div>
-        <div className={classes.right}>
-          <pre className={classes.code}>{JSON.stringify(this.state, null, '  ')}</pre>
-        </div>
-      </div>
+        </LeftSection>
+        <RightSection>
+          <CodeBlock>{JSON.stringify(this.state, null, '  ')}</CodeBlock>
+        </RightSection>
+      </RootContainer>
     ) : (
       <div>loading...</div>
     );
   }
 }
-
-const Container = withStyles(() => ({
-  root: {
-    display: 'flex',
-  },
-  left: {
-    flex: 1,
-  },
-  code: {
-    position: 'fixed',
-  },
-  right: {
-    flex: 0.3,
-  },
-  smallTextField: {
-    width: '100px',
-  },
-  textField: {
-    width: '150px',
-    margin: '8px',
-  },
-}))(RawContainer);
 
 export default withRoot(Container);

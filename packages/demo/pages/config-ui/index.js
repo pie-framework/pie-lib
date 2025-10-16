@@ -18,41 +18,61 @@ import {
 } from '@pie-lib/config-ui';
 
 import React from 'react';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import { styled } from '@mui/material/styles';
 import debug from 'debug';
 import withRoot from '../../source/withRoot';
 
 const log = debug('demo:config-ui');
 
-const Section = withStyles({
-  section: {
-    padding: '20px',
-    paddingTop: '40px',
-    paddingBottom: '40px',
-    position: 'relative',
-    '&::after': {
-      display: 'block',
-      position: 'absolute',
-      left: '0',
-      top: '0',
-      bottom: '0',
-      right: '0',
-      height: '2px',
-      content: '""',
-      backgroundColor: 'rgba(0,0,0,0.2)',
-    },
+const SectionContainer = styled('div')({
+  padding: '20px',
+  paddingTop: '40px',
+  paddingBottom: '40px',
+  position: 'relative',
+  '&::after': {
+    display: 'block',
+    position: 'absolute',
+    left: '0',
+    top: '0',
+    bottom: '0',
+    right: '0',
+    height: '2px',
+    content: '""',
+    backgroundColor: 'rgba(0,0,0,0.2)',
   },
-})(({ name, children, classes }) => (
-  <div className={classes.section}>
+});
+
+const Section = ({ name, children }) => (
+  <SectionContainer>
     <Typography>{name}</Typography>
     <br />
     {children}
-  </div>
-));
+  </SectionContainer>
+);
 
-class RawContainer extends React.Component {
+const RootContainer = styled('div')({
+  display: 'flex',
+});
+
+const LeftSection = styled('div')({
+  flex: 1,
+});
+
+const RightSection = styled('div')({
+  flex: 0.3,
+});
+
+const CodeBlock = styled('pre')({
+  position: 'fixed',
+});
+
+const NumberField = styled(NumberTextField)({
+  width: '270px',
+});
+
+class Container extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -108,14 +128,13 @@ class RawContainer extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
     const { mounted, openDialog } = this.state;
 
     console.log('this.state: ', this.state);
 
     return mounted ? (
-      <div className={classes.root}>
-        <div className={classes.left}>
+      <RootContainer>
+        <LeftSection>
           <Section name="Choice Configuration">
             <Typography>
               This is a single choice configuration that can be used where the user can build up a list of choices
@@ -186,22 +205,20 @@ class RawContainer extends React.Component {
           </Section>
 
           <Section name="NumberTextField">
-            <NumberTextField
+            <NumberField
               label="Number Text Field Without Validation"
               value={this.state.numberTextField.one}
               max={10}
               min={1}
               onChange={this.updateOne}
-              className={classes.numberField}
             />
-            <NumberTextField
+            <NumberField
               label="Number Text Field With Validation"
               value={this.state.numberTextField.one}
               max={10}
               min={1}
               onChange={this.updateOne}
               showErrorWhenOutsideRange
-              className={classes.numberField}
             />
           </Section>
           <Section name="FeedbackSelector">
@@ -247,33 +264,15 @@ class RawContainer extends React.Component {
               onConfirm={() => this.setState({ openDialog: false })}
             />
           </Section>
-        </div>
-        <div className={classes.right}>
-          <pre className={classes.code}>{JSON.stringify(this.state, null, '  ')}</pre>
-        </div>
-      </div>
+        </LeftSection>
+        <RightSection>
+          <CodeBlock>{JSON.stringify(this.state, null, '  ')}</CodeBlock>
+        </RightSection>
+      </RootContainer>
     ) : (
       <div>loading...</div>
     );
   }
 }
-
-const Container = withStyles((theme) => ({
-  root: {
-    display: 'flex',
-  },
-  left: {
-    flex: 1,
-  },
-  code: {
-    position: 'fixed',
-  },
-  right: {
-    flex: 0.3,
-  },
-  numberField: {
-    width: '270px',
-  },
-}))(RawContainer);
 
 export default withRoot(Container);

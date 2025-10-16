@@ -1,27 +1,25 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
+import { styled } from '@mui/material/styles';
+import TextField from '@mui/material/TextField';
 import Nt from './nt';
 import PropTypes from 'prop-types';
-import Switch from '@material-ui/core/Switch';
+import Switch from '@mui/material/Switch';
 
-const styles = (theme) => ({
-  category: {
-    display: 'flex',
-    marginTop: theme.spacing.unit * 2,
-  },
-  ntt: {
-    marginTop: 0,
-  },
+const CategoryContainer = styled('div')(({ theme }) => ({
+  display: 'flex',
+  marginTop: theme.spacing(2),
+}));
+
+const StyledNt = styled(Nt)({
+  marginTop: 0,
 });
 
-class RawCategory extends React.Component {
+class Category extends React.Component {
   static propTypes = {
     label: PropTypes.string,
     value: PropTypes.number,
     interactive: PropTypes.boolean,
     onChange: PropTypes.func,
-    classes: PropTypes.object,
   };
   changeLabel = (event) => {
     const { onChange, value } = this.props;
@@ -46,10 +44,10 @@ class RawCategory extends React.Component {
   };
 
   render() {
-    const { value, label, interactive, classes } = this.props;
+    const { value, label, interactive } = this.props;
 
     return (
-      <div className={classes.category}>
+      <CategoryContainer>
         <TextField
           value={label}
           variant="outlined"
@@ -57,11 +55,11 @@ class RawCategory extends React.Component {
           inputRef={(r) => (this.tf = r)}
           onChange={this.changeLabel}
         />
-        <Nt value={value} label="Value" onChange={this.changeValue} className={classes.ntt} />
+        <StyledNt value={value} label="Value" onChange={this.changeValue} />
         <Switch checked={interactive} onChange={this.changeInteractive} value={interactive} />
-      </div>
+      </CategoryContainer>
     );
   }
 }
 
-export default withStyles(styles)(RawCategory);
+export default Category;

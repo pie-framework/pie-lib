@@ -1,8 +1,8 @@
 import React from 'react';
 import { PlaceHolder, Choice, withDragContext, uid, DropTarget } from '@pie-lib/drag';
-import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
+import withStyles from '@mui/styles/withStyles';
+import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
 
 import withRoot from '../source/withRoot';
 

@@ -1,40 +1,60 @@
 import { layout, TwoChoice } from '@pie-lib/config-ui';
 
 import React from 'react';
-import Typography from '@material-ui/core/Typography';
+import Typography from '@mui/material/Typography';
 import debug from 'debug';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import withRoot from '../../source/withRoot';
 
 const log = debug('demo:config-ui');
 
-const Section = withStyles({
-  section: {
-    padding: '20px',
-    paddingTop: '40px',
-    paddingBottom: '40px',
-    position: 'relative',
-    '&::after': {
-      display: 'block',
-      position: 'absolute',
-      left: '0',
-      top: '0',
-      bottom: '0',
-      right: '0',
-      height: '2px',
-      content: '""',
-      backgroundColor: 'rgba(0,0,0,0.2)',
-    },
+const SectionContainer = styled('div')({
+  padding: '20px',
+  paddingTop: '40px',
+  paddingBottom: '40px',
+  position: 'relative',
+  '&::after': {
+    display: 'block',
+    position: 'absolute',
+    left: '0',
+    top: '0',
+    bottom: '0',
+    right: '0',
+    height: '2px',
+    content: '""',
+    backgroundColor: 'rgba(0,0,0,0.2)',
   },
-})(({ name, children, classes }) => (
-  <div className={classes.section}>
+});
+
+const Section = ({ name, children }) => (
+  <SectionContainer>
     <Typography>{name}</Typography>
     <br />
     {children}
-  </div>
-));
+  </SectionContainer>
+);
 
-class RawContainer extends React.Component {
+const RootContainer = styled('div')({
+  display: 'flex',
+});
+
+const LeftSection = styled('div')({
+  flex: 1,
+});
+
+const RightSection = styled('div')({
+  flex: 0.3,
+});
+
+const CodeBlock = styled('pre')({
+  position: 'fixed',
+});
+
+const NumberFieldContainer = styled('div')({
+  width: '270px',
+});
+
+class Container extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -50,15 +70,14 @@ class RawContainer extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
     const { mounted, layoutMode } = this.state;
     const text = `A component that loads content in 2 slots: it's children and 'settings', depending on
               the width, the settings will either be rendered in a tab or to the right of the
               children.`;
 
     return mounted ? (
-      <div className={classes.root}>
-        <div className={classes.left}>
+      <RootContainer>
+        <LeftSection>
           <Section name="ConfigLayout">
             <Typography>{text}</Typography>
 
@@ -118,33 +137,15 @@ class RawContainer extends React.Component {
               content
             </layout.ConfigLayout>
           </Section>
-        </div>
-        <div className={classes.right}>
-          <pre className={classes.code}>{JSON.stringify(this.state, null, '  ')}</pre>
-        </div>
-      </div>
+        </LeftSection>
+        <RightSection>
+          <CodeBlock>{JSON.stringify(this.state, null, '  ')}</CodeBlock>
+        </RightSection>
+      </RootContainer>
     ) : (
       <div>loading...</div>
     );
   }
 }
-
-const Container = withStyles((theme) => ({
-  root: {
-    display: 'flex',
-  },
-  left: {
-    flex: 1,
-  },
-  code: {
-    position: 'fixed',
-  },
-  right: {
-    flex: 0.3,
-  },
-  numberField: {
-    width: '270px',
-  },
-}))(RawContainer);
 
 export default withRoot(Container);

@@ -1,13 +1,13 @@
 import { DragInTheBlank, ConstructedResponse, InlineDropdown } from '@pie-lib/mask-markup';
 import React from 'react';
 import withRoot from '../../source/withRoot';
-import { withStyles } from '@material-ui/core';
+import withStyles from '@mui/styles/withStyles';
 import Section from '../../source/formatting/section';
 import Pre from '../../source/formatting/pre';
 import inputPlugin from './input-plugin';
 import { withDragContext } from '@pie-lib/drag';
-import Switch from '@material-ui/core/Switch';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Switch from '@mui/material/Switch';
+import FormControlLabel from '@mui/material/FormControlLabel';
 
 const markup = `<div>
   <img src="https://image.shutterstock.com/image-vector/cow-jumped-over-moon-traditional-260nw-1152899330.jpg"></img>

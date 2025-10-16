@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import withStyles from '@mui/styles/withStyles';
 import debug from 'debug';
 import { GraphContainer as Graph, tools } from '@pie-lib/graphing';
 import withRoot from '../../source/withRoot';
-import Typography from '@material-ui/core/Typography';
-import Tab from '@material-ui/core/Tab';
-import Button from '@material-ui/core/Button';
+import Typography from '@mui/material/Typography';
+import Tab from '@mui/material/Tab';
+import Button from '@mui/material/Button';
 import { marks, backgroundMarks } from './demo-data';
-import { Checkbox, FormControlLabel } from '@material-ui/core';
+import { Checkbox, FormControlLabel } from '@mui/material';
 
 import { Tabs, Tab0, Tab1 } from './components/tabs';
 

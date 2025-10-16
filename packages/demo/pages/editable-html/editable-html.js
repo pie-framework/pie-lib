@@ -1,23 +1,22 @@
 import EditableHtml, { ALL_PLUGINS } from '@pie-lib/editable-html';
-import grey from '@material-ui/core/colors/grey';
 import React from 'react';
 import _ from 'lodash';
 import debug from 'debug';
-import Checkbox from '@material-ui/core/Checkbox';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import TextField from '@material-ui/core/TextField';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-import Input from '@material-ui/core/Input';
+import Checkbox from '@mui/material/Checkbox';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import TextField from '@mui/material/TextField';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import Input from '@mui/material/Input';
 import withRoot from '../../source/withRoot';
-import { withStyles } from '@material-ui/core/styles';
+import withStyles from '@mui/styles/withStyles';
 import PropTypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
+import Typography from '@mui/material/Typography';
 import InputChooser from '../../source/editable-html/input-chooser';
 import { hasText } from '@pie-lib/render-ui';
 import { renderMath } from '@pie-lib/math-rendering';
-import { Button } from '@material-ui/core';
+import { grey } from '@mui/material/colors';
 
 const Latex = '\\(2x\\ \\le4y\\ +\\ 8\\)';
 
@@ -169,7 +168,7 @@ class RteDemo extends React.Component {
       let indexB = 0;
 
       // YOU NEED the event listener
-      window.addEventListener('PIE-test_event_A', (event) => {
+      (typeof window !== 'undefined' ? window : null)?.addEventListener('PIE-test_event_A', (event) => {
         // YOU NEED to call the callback
         event.detail.callback({ customContent: words[indexA] });
 
@@ -182,7 +181,7 @@ class RteDemo extends React.Component {
       });
 
       // YOU NEED the event listener
-      window.addEventListener('PIE-test_event_B', (event) => {
+      (typeof window !== 'undefined' ? window : null)?.addEventListener('PIE-test_event_B', (event) => {
         // YOU NEED to call the callback
         event.detail.callback({ customContent: extras[indexB] });
 

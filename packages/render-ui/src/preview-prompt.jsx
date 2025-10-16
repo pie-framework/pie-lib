@@ -1,7 +1,61 @@
 import React, { Component } from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import PropTypes from 'prop-types';
 import * as color from './color';
+
+const StyledPromptContainer = styled('div')(({ theme, tagName }) => ({
+  // Base promptTable styles
+  '&:not(.MathJax) > table': {
+    borderCollapse: 'collapse',
+  },
+  // Apply vertical striping only when first column is a header column (th)
+  '&:not(.MathJax) > table:has(tr:first-child th:first-child) td': {
+    '&:nth-child(2n)': {
+      backgroundColor: '#f6f8fa',
+      color: theme.palette.common.black,
+    },
+  },
+  // Apply horizontal striping for tables where first element is NOT a header (th)
+  '&:not(.MathJax) > table:not(:has(tr:first-child th:first-child)) tr': {
+    '&:nth-child(2n)': {
+      backgroundColor: '#f6f8fa',
+      color: theme.palette.common.black,
+    },
+  },
+  // align table content to left as per STAR requirement PD-3687
+  '&:not(.MathJax) table td, &:not(.MathJax) table th': {
+    padding: '.6em 1em',
+    textAlign: 'left',
+  },
+  // added this to fix alignment of text in prompt imported from studio (PD-3423)
+  '&:not(.MathJax) > table td > p.kds-indent': {
+    textAlign: 'initial',
+  },
+
+  // Conditional styles based on class names
+  '&.prompt': {
+    verticalAlign: 'middle',
+    color: color.text(),
+  },
+  '&.legend': {
+    width: '100%',
+    fontSize: 'inherit !important',
+  },
+  '&.rationale': {
+    paddingLeft: theme.spacing(4),
+    paddingBottom: theme.spacing(1),
+  },
+  '&.label': {
+    color: `${color.text()} !important`,
+    display: 'flex',
+    flexDirection: 'column',
+    verticalAlign: 'middle',
+    cursor: 'pointer',
+    '& > p': {
+      margin: '0 0 0 0 !important',
+    },
+  },
+}));
 
 //Used these below to replace \\embed{newLine} with \\newline from prompt which will get parsed in MathJax
 const NEWLINE_BLOCK_REGEX = /\\embed\{newLine\}\[\]/g;
@@ -9,7 +63,6 @@ const NEWLINE_LATEX = '\\newline ';
 
 export class PreviewPrompt extends Component {
   static propTypes = {
-    classes: PropTypes.object,
     prompt: PropTypes.string,
     tagName: PropTypes.string,
     className: PropTypes.string,
@@ -186,19 +239,18 @@ export class PreviewPrompt extends Component {
   }
 
   render() {
-    const { prompt, classes, tagName, className, onClick, defaultClassName } = this.props;
-    const CustomTag = tagName || 'div';
-    // legend tag was added once with accessibility tasks, wee need extra style to make it work with images alignment
+    const { prompt, tagName, className, onClick, defaultClassName } = this.props;
+    // legend tag was added once with accessibility tasks, we need extra style to make it work with images alignment
     const legendClass = tagName === 'legend' ? 'legend' : '';
-    const customClasses = `${classes.promptTable} ${classes[className] || ''} ${defaultClassName || ''} ${classes[
-      legendClass
-    ] || ''}`;
+    const customClasses = `${className || ''} ${defaultClassName || ''} ${legendClass}`.trim();
 
     return (
-      <CustomTag
+      <StyledPromptContainer
+        as={tagName || 'div'}
         id={'preview-prompt'}
         onClick={onClick}
         className={customClasses}
+        tagName={tagName}
         dangerouslySetInnerHTML={{
           __html: this.parsedText(prompt || '').replace(NEWLINE_BLOCK_REGEX, NEWLINE_LATEX),
         }}
@@ -207,56 +259,4 @@ export class PreviewPrompt extends Component {
   }
 }
 
-const styles = (theme) => ({
-  prompt: {
-    verticalAlign: 'middle',
-    color: color.text(),
-  },
-  legend: {
-    width: '100%',
-    fontSize: 'inherit  !important',
-  },
-  rationale: {
-    paddingLeft: theme.spacing.unit * 4,
-    paddingBottom: theme.spacing.unit,
-  },
-  label: {
-    color: `${color.text()} !important`, //'var(--choice-input-color, black)',
-    display: 'flex',
-    flexDirection: 'column',
-    verticalAlign: 'middle',
-    cursor: 'pointer',
-    '& > p': {
-      margin: '0 0 0 0 !important',
-    },
-  },
-  promptTable: {
-    '&:not(.MathJax) > table': {
-      borderCollapse: 'collapse',
-    },
-    // Apply vertical striping only when first column is a header column (th)
-    '&:not(.MathJax) > table:has(tr:first-child th:first-child) td': {
-      '&:nth-child(2n)': {
-        backgroundColor: '#f6f8fa',
-        color: theme.palette.common.black,
-      },
-    },
-    // Apply horizontal striping for tables where first element is NOT a header (th)
-    '&:not(.MathJax) > table:not(:has(tr:first-child th:first-child)) tr': {
-      '&:nth-child(2n)': {
-        backgroundColor: '#f6f8fa',
-        color: theme.palette.common.black,
-      },
-    },
-    // align table content to left as per STAR requirement PD-3687
-    '&:not(.MathJax) table td, &:not(.MathJax) table th': {
-      padding: '.6em 1em',
-      textAlign: 'left',
-    },
-    // added this to fix alignment of text in prompt imported from studio (PD-3423)
-    '&:not(.MathJax) > table td > p.kds-indent': {
-      textAlign: 'initial',
-    },
-  },
-});
-export default withStyles(styles)(PreviewPrompt);
+export default PreviewPrompt;

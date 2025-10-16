@@ -1,12 +1,12 @@
 import React from 'react';
-import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import AppendCSSRules from './append-css-rules';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
-    useNextVariants: true,
     fontFamily: 'inherit',
   },
   palette: {
@@ -14,36 +14,46 @@ const theme = createMuiTheme({
       disabled: 'rgba(0, 0, 0, 0.54);',
     },
   },
-  overrides: {
+  components: {
     MuiTypography: {
-      root: { fontFamily: 'inherit' },
+      styleOverrides: {
+        root: { fontFamily: 'inherit' },
+      },
     },
     MuiRadio: {
-      root: {
-        '&$checked': {
-          color: '#3f51b5 !important',
+      styleOverrides: {
+        root: {
+          '&.Mui-checked': {
+            color: '#3f51b5 !important',
+          },
         },
       },
     },
     MuiCheckbox: {
-      root: {
-        '&$checked': {
-          color: '#3f51b5 !important',
+      styleOverrides: {
+        root: {
+          '&.Mui-checked': {
+            color: '#3f51b5 !important',
+          },
         },
       },
     },
     MuiTabs: {
-      root: {
-        borderBottom: '1px solid #eee',
+      styleOverrides: {
+        root: {
+          borderBottom: '1px solid #eee',
+        },
       },
     },
     MuiSwitch: {
-      root: {
-        '&$checked': {
-          color: '#3f51b5 !important',
-          '& + $bar': {
-            backgroundColor: '#3f51b5 !important',
-            opacity: 0.5,
+      styleOverrides: {
+        root: {
+          '&.Mui-checked': {
+            color: '#3f51b5 !important',
+            '& + .MuiSwitch-track': {
+              backgroundColor: '#3f51b5 !important',
+              opacity: 0.5,
+            },
           },
         },
       },
@@ -51,9 +61,15 @@ const theme = createMuiTheme({
   },
 });
 
+const StyledContainer = styled('div')({
+  // need this because some browsers set their own style on table
+  '& table, th, td': {
+    fontSize: 'inherit' /* Ensure table elements inherit font size */,
+  },
+});
+
 class UiLayout extends AppendCSSRules {
   static propTypes = {
-    classes: PropTypes.object,
     className: PropTypes.string,
     children: PropTypes.array,
     extraCSSRules: PropTypes.shape({
@@ -84,32 +100,21 @@ class UiLayout extends AppendCSSRules {
   }
 
   render() {
-    const { children, className, classes, fontSizeFactor, ...rest } = this.props;
+    const { children, className, fontSizeFactor, ...rest } = this.props;
 
-    const finalClass = classNames(className, classes.extraCSSRules, classes.uiLayoutContainer);
     const { extraCSSRules, ...restProps } = rest;
     const style = this.computeStyle(fontSizeFactor);
 
     return (
-      <MuiThemeProvider theme={theme}>
-        <div className={finalClass} {...restProps} {...(style && { style })}>
-          {children}
-        </div>
-      </MuiThemeProvider>
+      <StyledEngineProvider injectFirst>
+        <ThemeProvider theme={theme}>
+          <StyledContainer className={className} {...restProps} {...(style && { style })}>
+            {children}
+          </StyledContainer>
+        </ThemeProvider>
+      </StyledEngineProvider>
     );
   }
 }
 
-const styles = {
-  extraCSSRules: {},
-  // need this because some browsers set their own style on table
-  uiLayoutContainer: {
-    '& table, th, td': {
-      fontSize: 'inherit' /* Ensure table elements inherit font size */,
-    },
-  },
-};
-
-const Styled = withStyles(styles)(UiLayout);
-
-export default Styled;
+export default UiLayout;

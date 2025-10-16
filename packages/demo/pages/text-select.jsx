@@ -2,12 +2,12 @@ import { TextSelect, TokenTypes, Tokenizer } from '@pie-lib/text-select';
 import withRoot from '../source/withRoot';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import withStyles from '@mui/styles/withStyles';
 import { Header, Body } from '../source/formatting';
 import classNames from 'classnames';
-import green from '@material-ui/core/colors/green';
-import orange from '@material-ui/core/colors/orange';
 import compact from 'lodash/compact';
+
+import { green, orange } from '@mui/material/colors';
 
 const text = () => [
   'This is me.',
