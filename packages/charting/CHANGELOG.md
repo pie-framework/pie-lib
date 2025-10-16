@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.36.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.35.0...@pie-lib/charting@5.36.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+
+
+
+
+# [5.35.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.31.0...@pie-lib/charting@5.35.0) (2025-10-16)
+
+
+### Features
+
+* PD-5128 only needed files ([64d375b](https://github.com/pie-framework/pie-lib/commit/64d375b1731179ae46f735c2c4da21215101bd95))
+* PD-5217 only needed file ([b21b343](https://github.com/pie-framework/pie-lib/commit/b21b34348569c73253eff72eea43c6c3235b25df))
+
+
+
+
+
+# [5.34.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.31.0...@pie-lib/charting@5.34.0) (2025-10-16)
+
+
+### Features
+
+* PD-5128 only needed files ([64d375b](https://github.com/pie-framework/pie-lib/commit/64d375b1731179ae46f735c2c4da21215101bd95))
+* PD-5217 only needed file ([b21b343](https://github.com/pie-framework/pie-lib/commit/b21b34348569c73253eff72eea43c6c3235b25df))
+
+
+
+
+
+# [5.33.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.31.0...@pie-lib/charting@5.33.0) (2025-10-16)
+
+
+### Features
+
+* PD-5128 only needed files ([64d375b](https://github.com/pie-framework/pie-lib/commit/64d375b1731179ae46f735c2c4da21215101bd95))
+* PD-5217 only needed file ([b21b343](https://github.com/pie-framework/pie-lib/commit/b21b34348569c73253eff72eea43c6c3235b25df))
+
+
+
+
+
 ## [5.32.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.32.6...@pie-lib/charting@5.32.7) (2025-10-14)
 
 **Note:** Version bump only for package @pie-lib/charting

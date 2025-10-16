@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/translator",
-  "version": "2.20.4",
+  "version": "2.23.0",
   "publishConfig": {
     "access": "public"
   },
