@@ -24,7 +24,6 @@ export default {
       width: 'fit-content',
       minWidth: '140px',
       // eslint-disable-next-line
-      fontFamily: "'Roboto', sans-serif",
       alignSelf: 'center',
       verticalAlign: 'middle',
       color: `var(--correct-answer-toggle-label-color,  ${color.text()})`,
