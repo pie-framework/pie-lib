@@ -14,6 +14,13 @@
     "debug": "^4.1.1",
     "lodash": "^4.17.11"
   },
-  "gitHead": "ff5ec2ebe11110b7652812a10c6dc230f08e12cb",
-  "scripts": {}
+  "gitHead": "20caabe19279c68c86fc179191d3eb403bb0be76",
+  "scripts": {},
+  "exports": {
+    ".": {
+      "import": "./esm/index.js",
+      "require": "./lib/index.js",
+      "default": "./esm/index.js"
+    }
+  }
 }

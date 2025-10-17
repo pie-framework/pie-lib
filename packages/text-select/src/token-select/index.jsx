@@ -162,3 +162,6 @@ export default withStyles(() => ({
     },
   },
 }))(TokenSelect);
+
+// Re-export TokenTypes for external use
+export { TokenTypes };

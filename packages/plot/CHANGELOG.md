@@ -3,66 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.27.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.26.0...@pie-lib/plot@2.27.0) (2025-10-16)
-
-**Note:** Version bump only for package @pie-lib/plot
-
-
-
-
-
-# [2.26.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.23.0...@pie-lib/plot@2.26.0) (2025-10-16)
-
-
-### Bug Fixes
-
-* **plot/graphing:** add title height calculations through observer PD-5208 ([f993541](https://github.com/pie-framework/pie-lib/commit/f99354174b23dcd6a1f3524a15f9b64c4041d7e2))
-
-
-
-
-
-# [2.25.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.23.0...@pie-lib/plot@2.25.0) (2025-10-16)
-
-
-### Bug Fixes
-
-* **plot/graphing:** add title height calculations through observer PD-5208 ([f993541](https://github.com/pie-framework/pie-lib/commit/f99354174b23dcd6a1f3524a15f9b64c4041d7e2))
-
-
-
-
-
-# [2.24.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.23.0...@pie-lib/plot@2.24.0) (2025-10-16)
-
-
-### Bug Fixes
-
-* **plot/graphing:** add title height calculations through observer PD-5208 ([f993541](https://github.com/pie-framework/pie-lib/commit/f99354174b23dcd6a1f3524a15f9b64c4041d7e2))
-
-
-
-
-
-## [2.23.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.23.1...@pie-lib/plot@2.23.2) (2025-10-14)
-
-**Note:** Version bump only for package @pie-lib/plot
-
-
-
-
-
-## [2.23.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.23.0...@pie-lib/plot@2.23.1) (2025-10-09)
-
-
-### Bug Fixes
-
-* **plot/graphing:** add title height calculations through observer PD-5208 ([f993541](https://github.com/pie-framework/pie-lib/commit/f99354174b23dcd6a1f3524a15f9b64c4041d7e2))
-
-
-
-
-
 # [2.23.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.7.3...@pie-lib/plot@2.23.0) (2025-09-25)
 
 
