@@ -1,36 +1,37 @@
 import React from 'react';
-import withStyles from '@mui/styles/withStyles';
+import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 
-const Section = withStyles((theme) => ({
-  section: {
-    padding: '0px',
-    paddingTop: '40px',
-    paddingBottom: '40px',
-    position: 'relative',
+const SectionContainer = styled('div')({
+  padding: '0px',
+  paddingTop: '40px',
+  paddingBottom: '40px',
+  position: 'relative',
+});
+
+const SectionHeader = styled(Typography)(({ theme }) => ({
+  position: 'relative',
+  paddingBottom: theme.spacing(1),
+  marginBottom: theme.spacing(1),
+  '&::after': {
+    display: 'block',
+    position: 'absolute',
+    left: '0',
+    bottom: '0',
+    right: '0',
+    height: '1px',
+    content: '""',
+    backgroundColor: 'rgba(0,0,0,0.2)',
   },
-  header: {
-    position: 'relative',
-    paddingBottom: theme.spacing.unit,
-    marginBottom: theme.spacing.unit,
-    '&::after': {
-      display: 'block',
-      position: 'absolute',
-      left: '0',
-      bottom: '0',
-      right: '0',
-      height: '1px',
-      content: '""',
-      backgroundColor: 'rgba(0,0,0,0.2)',
-    },
-  },
-}))(({ name, children, classes }) => (
-  <div className={classes.section}>
-    <Typography variant="h5" className={classes.header}>
+}));
+
+const Section = ({ name, children }) => (
+  <SectionContainer>
+    <SectionHeader variant="h5">
       {name}
-    </Typography>
+    </SectionHeader>
     {children}
-  </div>
-));
+  </SectionContainer>
+);
 
 export default Section;

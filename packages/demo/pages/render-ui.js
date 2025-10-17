@@ -1,70 +1,63 @@
 import React from 'react';
-// import withStyles from '@mui/styles/withStyles';
+import { styled } from '@mui/material/styles';
 import { indicators, Feedback } from '@pie-lib/render-ui';
 import { Collapsible, color } from '@pie-lib/render-ui';
 import withRoot from '../source/withRoot';
 import { Typography } from '@mui/material';
 const { Correct, Incorrect, PartiallyCorrect, NothingSubmitted } = indicators;
 
-// const Section = withStyles((theme) => ({
-//   label: {},
-//   section: {
-//     padding: theme.spacing.unit,
-//   },
-// }))(({ title, children, classes }) => (
-//   <div className={classes.section}>
-//     <h4>{title}</h4>
-//     {children}
-//   </div>
-// ));
+const SectionContainer = styled('div')(({ theme }) => ({
+  padding: theme.spacing(1),
+}));
 
-const Section = ({ title, children, classes }) => (
-  <div className={classes.section}>
+const Section = ({ title, children }) => (
+  <SectionContainer>
     <h4>{title}</h4>
     {children}
-  </div>
+  </SectionContainer>
 );
 
-// const ColorSample = withStyles((theme) => ({
-//   colorSample: {
-//     border: 'solid red 0px',
-//     paddingBottom: theme.spacing.unit,
-//     paddingTop: theme.spacing.unit,
-//   },
-//   row: {
-//     display: 'flex',
-//   },
-//   colorBox: {
-//     width: '100px',
-//     marginRight: theme.spacing.unit,
-//     border: 'solid 1px lightgrey',
-//   },
-// }))(({ name, classes }) => (
-//   <div className={classes.colorSample}>
-//     <Typography variant="h5">{name}</Typography>
-//     <div className={classes.row}>
-//       <div className={classes.colorBox} style={{ backgroundColor: color[name]() }}></div>
-//       <pre>{`color.${name}() //=> ${color[name]()}`}</pre>
-//     </div>
-//   </div>
-// ));
+const ColorSampleContainer = styled('div')(({ theme }) => ({
+  border: 'solid red 0px',
+  paddingBottom: theme.spacing(1),
+  paddingTop: theme.spacing(1),
+}));
+
+const ColorRow = styled('div')({
+  display: 'flex',
+});
+
+const ColorBox = styled('div')(({ theme }) => ({
+  width: '100px',
+  marginRight: theme.spacing(1),
+  border: 'solid 1px lightgrey',
+}));
 
 const ColorSample = ({ name }) => (
-  <div style={{ border: 'solid red 0px', paddingBottom: 8, paddingTop: 8 }}>
+  <ColorSampleContainer>
     <Typography variant="h5">{name}</Typography>
-    <div style={{ display: 'flex' }}>
-      <div
-        style={{
-          width: '100px',
-          marginRight: 8,
-          border: 'solid 1px lightgrey',
-          backgroundColor: color[name](),
-        }}
-      ></div>
+    <ColorRow>
+      <ColorBox style={{ backgroundColor: color[name]() }} />
       <pre>{`color.${name}() //=> ${color[name]()}`}</pre>
-    </div>
-  </div>
+    </ColorRow>
+  </ColorSampleContainer>
 );
+
+const AppContainer = styled('div')(({ theme }) => ({
+  fontFamily: theme.typography.fontFamily,
+}));
+
+const FlowContainer = styled('div')({
+  display: 'flex',
+  alignItems: 'center',
+  '& > *': {
+    paddingLeft: '20px',
+  },
+});
+
+const StyledCollapsible = styled(Collapsible)(({ theme }) => ({
+  paddingTop: theme.spacing(1),
+}));
 
 class App extends React.Component {
   constructor(props) {
@@ -77,12 +70,11 @@ class App extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
     const { mounted } = this.state;
     return mounted ? (
-      <div className={classes.root}>
+      <AppContainer>
         <Section title="response indicators">
-          <div className={classes.flow}>
+          <FlowContainer>
             <div>correct</div>
             <Correct feedback="you are correct" />
             <div>correct (no feedback)</div>
@@ -93,7 +85,7 @@ class App extends React.Component {
             <PartiallyCorrect feedback="partially correct" />
             <div>nothing submitted</div>
             <NothingSubmitted feedback="nothing submitted" />
-          </div>
+          </FlowContainer>
         </Section>
         <Section title="Feedback">
           <Feedback correctness="correct" feedback="Correct!" />
@@ -102,7 +94,7 @@ class App extends React.Component {
         </Section>
 
         <Section title="Collapsible">
-          <Collapsible labels={{ visible: 'Hide Content', hidden: 'Show Content' }} className={classes.collapsible}>
+          <StyledCollapsible labels={{ visible: 'Hide Content', hidden: 'Show Content' }}>
             This is the collapsed content.
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
@@ -111,7 +103,7 @@ class App extends React.Component {
               fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
               mollit anim id est laborum.
             </p>
-          </Collapsible>
+          </StyledCollapsible>
         </Section>
         <Section title="color">
           <div>
@@ -140,27 +132,11 @@ class App extends React.Component {
           <div>To override a var simply set the style property on the appropriate selector</div>
           <pre>{"document.body.style.setProperty('--pie-text', 'green');"}</pre>
         </Section>
-      </div>
+      </AppContainer>
     ) : (
       <div>loading...</div>
     );
   }
 }
-
-// const StyledApp = withStyles((theme) => ({
-//   root: {
-//     fontFamily: theme.typography.fontFamily,
-//   },
-//   flow: {
-//     display: 'flex',
-//     alignItems: 'center',
-//     '& > *': {
-//       paddingLeft: '20px',
-//     },
-//   },
-//   collapsible: {
-//     paddingTop: theme.spacing.unit,
-//   },
-// }))(App);
 
 export default withRoot(App);

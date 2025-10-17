@@ -1,6 +1,6 @@
 import React from 'react';
 import withRoot from '../../source/withRoot';
-import withStyles from '@mui/styles/withStyles';
+import { styled } from '@mui/material/styles';
 import debug from 'debug';
 import { renderMath } from '@pie-lib/math-rendering';
 import { Button, Typography } from '@mui/material';
@@ -50,6 +50,21 @@ const mathTwo = `<math xmlns="http://www.w3.org/1998/Math/MathML">
 // const Latex = "\\(\\triangle\\) \\(\\parallelogram\\) \\(2x\\ \\le4y\\ +\\ 8\\)";
 const Latex = '\\(2x\\ \\le4y\\ +\\ 8\\)';
 
+const Holder = styled('div')({
+  width: '100%',
+  display: 'flex',
+});
+
+const Child = styled('div')({
+  flex: 1,
+});
+
+const TextArea = styled('textarea')({
+  width: '100%',
+  height: '100%',
+  minHeight: '300px',
+});
+
 class Demo extends React.Component {
   constructor(props) {
     super(props);
@@ -70,25 +85,23 @@ class Demo extends React.Component {
 
   render() {
     const { foo, mounted } = this.state;
-    const { classes } = this.props;
     return mounted ? (
       <div ref={(r) => (this.root = r)}>
-        <Typography variant="display1">Math Rendering</Typography>
+        <Typography variant="h3">Math Rendering</Typography>
         <hr />
-        <div className={classes.holder}>
-          <div className={classes.child}>
-            <textarea
+        <Holder>
+          <Child>
+            <TextArea
               value={this.state.mathml}
               onChange={(e) => this.updateMathMl(e.target.value)}
-              className={classes.ta}
-            ></textarea>
+            />
             <br />
-            <Button variant="raised" onClick={this.updateMathJax}>
+            <Button variant="contained" onClick={this.updateMathJax}>
               Update
             </Button>
-          </div>
-          <div className={classes.child} dangerouslySetInnerHTML={{ __html: this.state.mathml }}></div>
-        </div>
+          </Child>
+          <Child dangerouslySetInnerHTML={{ __html: this.state.mathml }}></Child>
+        </Holder>
         <br />
         <br />
         <div>
@@ -172,23 +185,4 @@ class Demo extends React.Component {
   }
 }
 
-const styles = (theme) => ({
-  sizeInput: {
-    width: '60px',
-    paddingLeft: theme.spacing.unit * 2,
-  },
-  holder: {
-    width: '100%',
-    display: 'flex',
-  },
-  child: {
-    flex: 1,
-  },
-  ta: {
-    width: '100%',
-    height: '100%',
-    minHeight: '300px',
-  },
-});
-
-export default withRoot(withStyles(styles)(Demo));
+export default withRoot(Demo);

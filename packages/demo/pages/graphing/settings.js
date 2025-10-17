@@ -1,16 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
-import withStyles from '@mui/styles/withStyles';
-import classNames from 'classnames';
+import { styled } from '@mui/material/styles';
 import { DisplaySize, Toggle, Checkbox } from '@pie-lib/config-ui';
 import debug from 'debug';
 
 const log = debug('pie-lib:demo:settings');
 
+const SettingsContainer = styled('div')(({ theme }) => ({
+  display: 'block',
+  maxWidth: '300px',
+  backgroundColor: '#eaeaea',
+  border: 'solid 1px #cccccc',
+  padding: theme.spacing(1),
+}));
+
+const Holder = styled('div')({
+  width: '100%',
+});
+
 export class Settings extends React.Component {
   static propTypes = {
-    classes: PropTypes.object.isRequired,
     className: PropTypes.string,
     model: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
@@ -38,12 +48,12 @@ export class Settings extends React.Component {
   };
 
   render() {
-    const { classes, className, model } = this.props;
+    const { className, model } = this.props;
     const { includeArrows, graphTitle, labels, size, coordinatesOnHover } = model;
 
     return (
-      <div className={classNames(classes.class, className)}>
-        <div className={classes.holder}>
+      <SettingsContainer className={className}>
+        <Holder>
           <div>
             <p>Include Arrows</p>
             <Checkbox
@@ -81,26 +91,10 @@ export class Settings extends React.Component {
             <Typography variant="overline">Properties</Typography>
             <div> .... </div>
           </div>
-        </div>
-      </div>
+        </Holder>
+      </SettingsContainer>
     );
   }
 }
-const styles = (theme) => ({
-  class: {
-    display: 'block',
-    maxWidth: '300px',
-    backgroundColor: '#eaeaea',
-    border: 'solid 1px #cccccc',
-    padding: theme.spacing.unit,
-  },
-  holder: {
-    width: '100%',
-  },
-  displaySize: {
-    display: 'flex',
-    paddingTop: theme.spacing.unit,
-  },
-});
 
-export default withStyles(styles)(Settings);
+export default Settings;

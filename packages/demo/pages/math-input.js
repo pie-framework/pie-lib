@@ -6,7 +6,7 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
-import withStyles from '@mui/styles/withStyles';
+import { styled } from '@mui/material/styles';
 import Section from '../source/formatting/section';
 import { grey } from '@mui/material/colors';
 
@@ -63,7 +63,6 @@ class Demo extends React.Component {
    * * support for var extra key injection
    */
   render() {
-    const { classes } = this.props;
     const { readOnly, latex, mounted, editorType } = this.state;
     const keyset = keysForGrade(editorType);
     const customKeyMessage = `
@@ -107,7 +106,7 @@ class Demo extends React.Component {
             latex={this.state.inputOne}
             onChange={(latex) => this.setState({ inputOne: latex })}
           />
-          <pre className={classes.pre}>{this.state.inputOne}</pre>
+          <pre className="pre">{this.state.inputOne}</pre>
           <br />
           <br />
           <br />
@@ -137,7 +136,7 @@ class Demo extends React.Component {
               [keys.misc.parenthesis, keys.fractions.xBlankBlank, keys.exponent.xToPowerOfN, keys.exponent.squareRoot],
             ]}
           />
-          <pre className={classes.pre}>{this.state.inputTwo}</pre>
+          <pre className="pre">{this.state.inputTwo}</pre>
         </Section>
 
         {/* <Section name="keypad standalone">
@@ -158,24 +157,24 @@ class Demo extends React.Component {
   }
 }
 
-const Styled = withStyles((theme) => ({
-  oldK: {
+const StyledDemo = styled(Demo)(({ theme }) => ({
+  '& .oldK': {
     width: '200px',
   },
-  pre: {
-    padding: theme.spacing.unit,
+  '& .pre': {
+    padding: theme.spacing(1),
     backgroundColor: grey[300],
   },
-  iconsHolder: {
+  '& .iconsHolder': {
     display: 'flex',
     flexWrap: 'wrap',
   },
-  iconAndText: {
-    padding: theme.spacing.unit,
+  '& .iconAndText': {
+    padding: theme.spacing(1),
   },
-  icon: {
-    width: '50px;',
+  '& .icon': {
+    width: '50px',
   },
-}))(Demo);
+}));
 
-export default withRoot(Styled);
+export default withRoot(StyledDemo);

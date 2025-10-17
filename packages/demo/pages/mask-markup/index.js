@@ -1,7 +1,6 @@
 import { DragInTheBlank, ConstructedResponse, InlineDropdown } from '@pie-lib/mask-markup';
 import React from 'react';
 import withRoot from '../../source/withRoot';
-import withStyles from '@mui/styles/withStyles';
 import Section from '../../source/formatting/section';
 import Pre from '../../source/formatting/pre';
 import inputPlugin from './input-plugin';
@@ -276,6 +275,4 @@ class Demo extends React.Component {
   }
 }
 
-const Styled = withStyles((theme) => ({}))(Demo);
-
-export default withDragContext(withRoot(Styled));
+export default withDragContext(withRoot(Demo));

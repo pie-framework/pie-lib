@@ -1,20 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import withStyles from '@mui/styles/withStyles';
-import classNames from 'classnames';
+import { styled } from '@mui/material/styles';
+
+const StyledPre = styled('pre')({});
+
 export class Pre extends React.Component {
   static propTypes = {
-    classes: PropTypes.object.isRequired,
     className: PropTypes.string,
     value: PropTypes.any,
   };
+  
   static defaultProps = {};
+  
   render() {
-    const { classes, className, value } = this.props;
-    return <pre className={classNames(classes.class, className)}>{JSON.stringify(value, null, '  ')}</pre>;
+    const { className, value } = this.props;
+    return <StyledPre className={className}>{JSON.stringify(value, null, '  ')}</StyledPre>;
   }
 }
-const styles = () => ({
-  class: {},
-});
-export default withStyles(styles)(Pre);
+
+export default Pre;

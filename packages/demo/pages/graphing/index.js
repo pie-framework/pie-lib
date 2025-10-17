@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import withStyles from '@mui/styles/withStyles';
+import { styled } from '@mui/material/styles';
 import debug from 'debug';
 import { GraphContainer as Graph, tools } from '@pie-lib/graphing';
 import withRoot from '../../source/withRoot';
@@ -16,11 +15,12 @@ const { allTools } = tools;
 
 const log = debug('pie-lib:charting:graph-lines-demo');
 
-export class GridDemo extends React.PureComponent {
-  static propTypes = {
-    classes: PropTypes.object.isRequired,
-  };
+const DemoContainer = styled('div')({
+  width: '100%',
+  display: 'flex',
+});
 
+export class GridDemo extends React.PureComponent {
   state = {
     tools: allTools,
     settings: {
@@ -159,12 +159,11 @@ export class GridDemo extends React.PureComponent {
 
   render() {
     log('render..');
-    const { classes } = this.props;
     const { model, settings, mounted, tabIndex = 0, hideLabel, tools: stateTools } = this.state;
 
     return mounted ? (
       <div>
-        <div className={classes.demo}>
+        <DemoContainer>
           <div>
             <Tabs value={tabIndex} onChange={this.changeTab}>
               <Tab label="Config" />
@@ -209,7 +208,7 @@ export class GridDemo extends React.PureComponent {
               language={'es_ES'}
             />
           </div>
-        </div>
+        </DemoContainer>
       </div>
     ) : (
       <div>loading...</div>
@@ -217,13 +216,5 @@ export class GridDemo extends React.PureComponent {
   }
 }
 
-const styles = {
-  demo: {
-    width: '100%',
-    display: 'flex',
-  },
-};
-
-export const Styled = withStyles(styles)(GridDemo);
-const Demo = () => <Styled />;
+const Demo = () => <GridDemo />;
 export default withRoot(Demo);

@@ -2,7 +2,7 @@ import { TextSelect, TokenTypes, Tokenizer } from '@pie-lib/text-select';
 import withRoot from '../source/withRoot';
 import React from 'react';
 import PropTypes from 'prop-types';
-import withStyles from '@mui/styles/withStyles';
+import { styled } from '@mui/material/styles';
 import { Header, Body } from '../source/formatting';
 import classNames from 'classnames';
 import compact from 'lodash/compact';
@@ -55,35 +55,31 @@ const correctedTokens = tokens.map((t, index) => {
 class RawCustomToken extends React.Component {
   static propTypes = {
     ...TokenTypes,
-    classes: PropTypes.object.isRequired,
     correct: PropTypes.bool,
     selected: PropTypes.bool,
   };
 
   render() {
-    const { classes, text, correct, selected } = this.props;
+    const { text, correct, selected } = this.props;
     const className = classNames(
-      classes.custom,
-      correct && selected && classes.correct,
-      !correct && selected && classes.incorrect,
+      correct && selected && 'correct',
+      !correct && selected && 'incorrect',
     );
     return <span className={className}>!!{text}</span>;
   }
 }
 
-const CustomToken = withStyles((theme) => ({
-  correct: {
+const CustomToken = styled(RawCustomToken)(({ theme }) => ({
+  '&.correct': {
     backgroundColor: green[500],
   },
-  incorrect: {
+  '&.incorrect': {
     backgroundColor: orange[500],
   },
-}))(RawCustomToken);
+}));
 
 class Demo extends React.Component {
-  static propTypes = {
-    classes: PropTypes.object.isRequired,
-  };
+  static propTypes = {};
 
   static defaultProps = {};
 
@@ -105,16 +101,15 @@ class Demo extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
     const { mounted } = this.state;
     return mounted ? (
-      <div className={classes.demo}>
+      <div className="demo">
         <Header>TextSelect (uses TokenSelect)</Header>
         <Body>This is the comp</Body>
         <TextSelect
           highlightChoices={true}
           maxNoOfSelections={2}
-          className={classes.textSelect}
+          className="textSelect"
           disabled={false}
           text={raw}
           tokens={tokens}
@@ -127,7 +122,7 @@ class Demo extends React.Component {
         />
         <Body>Disabled</Body>
         <TextSelect
-          className={classes.textSelect}
+          className="textSelect"
           disabled={true}
           text={raw}
           tokens={tokens}
@@ -136,7 +131,7 @@ class Demo extends React.Component {
         />
         <Body>Correct/Incorrect</Body>
         <TextSelect
-          className={classes.textSelect}
+          className="textSelect"
           disabled={true}
           text={raw}
           tokens={correctedTokens}
@@ -173,21 +168,21 @@ class Demo extends React.Component {
   }
 }
 
-const StyledDemo = withStyles((theme) => ({
-  demo: {
+const StyledDemo = styled(Demo)(({ theme }) => ({
+  '&.demo': {
     backgroundColor: 'none',
   },
-  description: {
-    paddingTop: theme.spacing.unit,
-    paddingBottom: theme.spacing.unit,
+  '& .description': {
+    paddingTop: theme.spacing(1),
+    paddingBottom: theme.spacing(1),
   },
-  tokenSelect: {
+  '& .tokenSelect': {
     backgroundColor: 'none',
-    padding: theme.spacing.unit,
+    padding: theme.spacing(1),
     border: `solid 1px ${theme.palette.primary.light}`,
   },
-  textSelect: {
-    paddingBottom: theme.spacing.unit * 3,
+  '& .textSelect': {
+    paddingBottom: theme.spacing(3),
   },
-}))(Demo);
+}));
 export default withRoot(StyledDemo);

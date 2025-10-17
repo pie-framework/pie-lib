@@ -1,36 +1,44 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import withStyles from '@mui/styles/withStyles';
+import { styled } from '@mui/material/styles';
 import { types } from '@pie-lib/plot';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import classNames from 'classnames';
 
-const Nt = withStyles((theme) => ({
-  nt: {
-    marginTop: theme.spacing.unit * 2,
-    paddingRight: theme.spacing.unit,
-  },
-  thin: {
-    // maxWidth: '100px'
-  },
-}))(({ className, label, value, onChange, classes, variant }) => (
-  <TextField
+const StyledTextField = styled(TextField)(({ theme }) => ({
+  marginTop: theme.spacing(2),
+  paddingRight: theme.spacing(1),
+}));
+
+const Nt = ({ className, label, value, onChange, variant }) => (
+  <StyledTextField
     label={label}
-    className={classNames(classes.nt, classes[variant], className)}
+    className={className}
     type="number"
     variant="outlined"
     value={value}
     onChange={(e) => onChange(parseFloat(e.target.value))}
   />
-));
+);
 
-class RawMinMax extends React.Component {
+const MinMaxContainer = styled('div')({
+  display: 'flex',
+  flex: '0 0 auto',
+});
+
+const FillWidth = styled('div')({
+  width: '100%',
+});
+
+const FillTextField = styled(TextField)({
+  width: '100%',
+});
+
+class MinMax extends React.Component {
   static propTypes = {
     model: PropTypes.shape(types.BaseDomainRangeType),
     onChange: PropTypes.func.isRequired,
     label: PropTypes.string.isRequired,
-    classes: PropTypes.object.isRequired,
   };
 
   change = (key, pair) => {
@@ -39,30 +47,27 @@ class RawMinMax extends React.Component {
   };
 
   render() {
-    const { model, label, classes } = this.props;
+    const { model, label } = this.props;
     return (
       <div>
         <Typography variant="overline">{label}</Typography>
-        <div className={classes.minMax}>
+        <MinMaxContainer>
           <Nt label="min" value={model.min} variant="thin" onChange={(n) => this.change('min', n)} />
           <Nt label="max" value={model.max} variant="thin" onChange={(n) => this.change('max', n)} />
-        </div>
+        </MinMaxContainer>
         <Nt
           label="tick frequency"
           value={model.step}
-          className={classes.fill}
           onChange={(n) => this.change('step', n)}
         />
         <Nt
           label="tick label frequency"
           value={model.labelStep}
-          className={classes.fill}
           onChange={(n) => this.change('labelStep', n)}
         />
-        <TextField
+        <FillTextField
           label="axis label"
           value={model.axisLabel}
-          className={classes.fill}
           onChange={(e) => this.change('axisLabel', e.target.value)}
         />
       </div>
@@ -70,17 +75,28 @@ class RawMinMax extends React.Component {
   }
 }
 
-const MinMax = withStyles((theme) => ({
-  minMax: {
-    display: 'flex',
-    flex: '0 0 auto',
-  },
-  fill: {
-    width: '100%',
-  },
-}))(RawMinMax);
+const LabelsContainer = styled('div')(({ theme }) => ({
+  width: '100%',
+  paddingRight: theme.spacing(1),
+}));
 
-export class RawLabels extends React.Component {
+const LabelsRow = styled('div')(({ theme }) => ({
+  width: '100%',
+  display: 'flex',
+  paddingTop: theme.spacing(1),
+}));
+
+const LabelsField = styled(TextField)(({ theme }) => ({
+  width: '100%',
+  paddingRight: theme.spacing(1),
+}));
+
+const RightField = styled(TextField)({
+  width: '100%',
+  paddingRight: 0,
+});
+
+export class LabelsConfig extends React.Component {
   static propTypes = {
     value: PropTypes.shape({
       left: PropTypes.string,
@@ -89,7 +105,6 @@ export class RawLabels extends React.Component {
       right: PropTypes.string,
     }),
     onChange: PropTypes.func,
-    classes: PropTypes.object,
   };
 
   static defaultProps = {
@@ -105,115 +120,89 @@ export class RawLabels extends React.Component {
   };
 
   render() {
-    let { value, classes } = this.props;
+    let { value } = this.props;
 
     value = value || {};
     return (
-      <div className={classes.labels}>
-        <div className={classes.row}>
-          <TextField
+      <LabelsContainer>
+        <LabelsRow>
+          <LabelsField
             variant="outlined"
             label="left label"
-            className={classes.field}
             value={value.left}
             onChange={(e) => this.change('left', e)}
           />
-          <TextField
+          <RightField
             variant="outlined"
-            className={classNames(classes.field, classes.rightField)}
             label="top label"
             value={value.top}
             onChange={(e) => this.change('top', e)}
           />
-        </div>
-        <div className={classes.row}>
-          <TextField
+        </LabelsRow>
+        <LabelsRow>
+          <LabelsField
             variant="outlined"
             label="bottom label"
-            className={classes.field}
             value={value.bottom}
             onChange={(e) => this.change('bottom', e)}
           />
-          <TextField
+          <RightField
             variant="outlined"
-            className={classNames(classes.field, classes.rightField)}
             label="right label"
             value={value.right}
             onChange={(e) => this.change('right', e)}
           />
-        </div>
-      </div>
+        </LabelsRow>
+      </LabelsContainer>
     );
   }
 }
 
-const LabelsConfig = withStyles((theme) => ({
-  labels: {
-    width: '100%',
-    paddingRight: theme.spacing.unit,
-  },
-  row: {
-    width: '100%',
-    display: 'flex',
-    paddingTop: theme.spacing.unit,
-  },
-  field: {
-    width: '100%',
-    paddingRight: theme.spacing.unit,
-  },
-  rightField: {
-    paddingRight: 0,
-  },
-}))(RawLabels);
+const OptionsContainer = styled('div')(({ theme }) => ({
+  paddingTop: theme.spacing(1),
+}));
 
-export class RawOptions extends React.Component {
+const DomainAndRange = styled('div')(({ theme }) => ({
+  display: 'flex',
+  paddingTop: theme.spacing(1),
+}));
+
+const GraphTitleField = styled(TextField)(({ theme }) => ({
+  width: '100%',
+  paddingRight: theme.spacing(1),
+}));
+
+export class Options extends React.Component {
   static propTypes = {
     model: PropTypes.object,
-    classes: PropTypes.object,
     onChange: PropTypes.func,
     graphTitle: PropTypes.bool,
     labels: PropTypes.bool,
   };
+  
   change = (name, value) => {
     const { model, onChange } = this.props;
     onChange({ ...model, [name]: value });
   };
 
   render = () => {
-    const { model, classes, graphTitle, labels } = this.props;
+    const { model, graphTitle, labels } = this.props;
     return (
-      <div className={classes.options}>
+      <OptionsContainer>
         {graphTitle && (
-          <TextField
+          <GraphTitleField
             variant="outlined"
             label="Graph Title"
-            className={classes.graphTitle}
             value={model.title || ''}
             onChange={(e) => this.change('title', e.target.value)}
           />
         )}
         {labels && <LabelsConfig value={model.labels} onChange={(l) => this.change('labels', l)} />}
-        <div className={classes.domainAndRange}>
+        <DomainAndRange>
           <MinMax label={'Domain (X)'} model={model.domain} onChange={(d) => this.change('domain', d)} />
           <MinMax label={'Range (Y)'} model={model.range} onChange={(d) => this.change('range', d)} />
-        </div>
-      </div>
+        </DomainAndRange>
+      </OptionsContainer>
     );
   };
 }
-
-const Options = withStyles((theme) => ({
-  domainAndRange: {
-    display: 'flex',
-    paddingTop: theme.spacing.unit,
-  },
-  options: {
-    paddingTop: theme.spacing.unit,
-  },
-  graphTitle: {
-    width: '100%',
-    paddingRight: theme.spacing.unit,
-  },
-}))(RawOptions);
-
-export { Options };

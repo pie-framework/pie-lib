@@ -1,7 +1,6 @@
 import withRoot from '../../source/withRoot';
 import React from 'react';
 import { Protractor } from '@pie-lib/tools';
-import withStyles from '@mui/styles/withStyles';
 import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
 
@@ -38,4 +37,4 @@ class Demo extends React.Component {
   }
 }
 
-export default withRoot(withStyles(() => ({}))(Demo));
+export default withRoot(Demo);

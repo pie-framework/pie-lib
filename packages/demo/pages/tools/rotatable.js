@@ -1,16 +1,26 @@
 import withRoot from '../../source/withRoot';
 import React from 'react';
 import { Rotatable, utils } from '@pie-lib/tools';
-import withStyles from '@mui/styles/withStyles';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 
 const square = (opts) => {
   return { ...opts };
 };
 
-class RawBox extends React.Component {
+const BoxContainer = styled('div')({
+  width: '100px',
+  height: '100px',
+  position: 'absolute',
+  backgroundColor: 'none',
+  left: 0,
+  top: 0,
+  opacity: 0.5,
+});
+
+const BoxLabel = styled('span')({});
+
+class Box extends React.Component {
   componentDidMount() {
     if (this.props.div) {
       this.props.div(this.div);
@@ -20,30 +30,38 @@ class RawBox extends React.Component {
   }
 
   render() {
-    const { label, className, classes, style } = this.props;
+    const { label, className, style } = this.props;
 
     return (
-      <div ref={(r) => (this.div = r)} className={classNames(classes.box, className)} style={style}>
-        <span className={classes.label}>{label}</span>
-      </div>
+      <BoxContainer ref={(r) => (this.div = r)} className={className} style={style}>
+        <BoxLabel>{label}</BoxLabel>
+      </BoxContainer>
     );
   }
 }
-const boxStyles = {
-  box: {
-    width: '100px',
-    height: '100px',
-    position: 'absolute',
-    backgroundColor: 'none',
-    left: 0,
-    top: 0,
-    opacity: 0.5,
-  },
-};
 
-const Box = withStyles(boxStyles)(RawBox);
+const PlaygroundRoot = styled('div')({
+  position: 'relative',
+  width: '150px',
+  height: '150px',
+});
 
-class RawPlayground extends React.Component {
+const BaseBox = styled(Box)(square({
+  backgroundColor: 'pink',
+  transformOrigin: '50% 50%',
+}));
+
+const FromBox = styled(Box)(square({
+  backgroundColor: 'green',
+  transformOrigin: '50% 50%',
+}));
+
+const ToBox = styled(Box)({
+  backgroundColor: 'none',
+  border: 'solid 1px blue',
+});
+
+class Playground extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -81,7 +99,7 @@ class RawPlayground extends React.Component {
   };
 
   render() {
-    const { classes, degrees, from, to } = this.props;
+    const { degrees, from, to } = this.props;
     const { toPosition } = this.state;
 
     const fromStyle = {
@@ -100,41 +118,36 @@ class RawPlayground extends React.Component {
     }
 
     return (
-      <div className={classes.root}>
-        <Box className={classes.base} label={'base'} />
-        <Box className={classes.from} style={fromStyle} label={'from: ' + from} />
-        <Box div={(r) => (this.toBox = r)} className={classes.to} style={toStyle} label={'to: ' + to} />
-      </div>
+      <PlaygroundRoot>
+        <BaseBox label={'base'} />
+        <FromBox style={fromStyle} label={'from: ' + from} />
+        <ToBox div={(r) => (this.toBox = r)} style={toStyle} label={'to: ' + to} />
+      </PlaygroundRoot>
     );
   }
 }
-const styles = (theme) => ({
-  root: {
-    position: 'relative',
-    width: '150px',
-    height: '150px',
-  },
-  base: square({
-    backgroundColor: 'pink',
-    transformOrigin: '50% 50%',
-  }),
-  from: square({
-    backgroundColor: 'green',
-    transformOrigin: '50% 50%',
-  }),
-  to: {
-    backgroundColor: 'none',
-    border: 'solid 1px blue',
-  },
+
+const OneDiv = styled('div')({
+  position: 'absolute',
+  backgroundColor: 'mistyrose',
+  top: 0,
+  left: 0,
 });
 
-const Playground = withStyles(styles)(RawPlayground);
+const TwoDiv = styled('div')({
+  position: 'absolute',
+  backgroundColor: 'cyan',
+  right: 0,
+  top: 0,
+});
+
+const MainBox = styled('div')(({ theme }) => ({
+  width: '200px',
+  height: '200px',
+  backgroundColor: theme.palette.primary.dark,
+}));
 
 class Demo extends React.Component {
-  static propTypes = {
-    classes: PropTypes.object.isRequired,
-  };
-
   constructor(props) {
     super(props);
     this.state = {};
@@ -145,7 +158,6 @@ class Demo extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
     const { mounted } = this.state;
     return mounted ? (
       <div>
@@ -158,9 +170,9 @@ class Demo extends React.Component {
           ]}
         >
           <div>
-            <div className={'one ' + classes.one}>one</div>
-            <div className={'two ' + classes.two}>two</div>
-            <div className={classes.box}>I am a box</div>
+            <OneDiv className="one">one</OneDiv>
+            <TwoDiv className="two">two</TwoDiv>
+            <MainBox>I am a box</MainBox>
           </div>
         </Rotatable>
 
@@ -177,30 +189,4 @@ class Demo extends React.Component {
   }
 }
 
-export default withRoot(
-  withStyles((theme) => ({
-    one: {
-      position: 'absolute',
-      backgroundColor: 'mistyrose',
-      top: 0,
-      left: 0,
-    },
-    two: {
-      position: 'absolute',
-      backgroundColor: 'cyan',
-      right: 0,
-      top: 0,
-    },
-    box: {
-      width: '200px',
-      height: '200px',
-      backgroundColor: theme.palette.primary.dark,
-    },
-    tester: {
-      width: '100px',
-      height: '100px',
-      transform: 'rotate(45deg)',
-      backgroundColor: theme.palette.secondary.dark,
-    },
-  }))(Demo),
-);
+export default withRoot(Demo);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { PlaceHolder, Choice, withDragContext, uid, DropTarget } from '@pie-lib/drag';
-import withStyles from '@mui/styles/withStyles';
+import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 
@@ -10,17 +10,28 @@ const { Provider: IdProvider } = uid;
 
 export const DRAG_TYPE = 'CHOICE';
 
-const TargetContainer = withStyles(() => ({
-  container: {
-    background: '#fff',
-    border: '1px solid black',
-    height: '500px',
-    marginTop: '40px',
-    width: '500px',
-  },
-}))(({ classes, connectDropTarget, val }) => {
-  return connectDropTarget(<div className={classes.container}>{val}</div>);
+const Container = styled('div')({
+  background: '#fff',
+  border: '1px solid black',
+  height: '500px',
+  marginTop: '40px',
+  width: '500px',
 });
+
+const StyledPlaceHolder = styled(PlaceHolder)(({ theme }) => ({
+  marginTop: theme.spacing(1),
+}));
+
+const StyledWrapper = styled('div')(({ theme }) => ({
+  backgroundColor: 'blue',
+  '& .redLabel': {
+    '--correct-answer-toggle-label-color': 'red',
+  },
+}));
+
+const TargetContainer = ({ connectDropTarget, val }) => {
+  return connectDropTarget(<Container>{val}</Container>);
+};
 
 const tileTarget = {
   drop(props, monitor) {
@@ -61,16 +72,15 @@ export class Wrapper extends React.Component {
 
   render() {
     const { containerVal } = this.state;
-    const { classes } = this.props;
 
     return (
       <IdProvider value={this.uid}>
-        <div>
+        <StyledWrapper>
           <Typography variant="h6">Drag</Typography>
 
           <Divider />
 
-          <PlaceHolder className={classes.grid} grid={{ columns: 3 }}>
+          <PlaceHolder grid={{ columns: 3 }}>
             <Choice>foo bar</Choice>
             <Choice>
               <h1>Some Text</h1>
@@ -84,7 +94,7 @@ export class Wrapper extends React.Component {
             </Choice>
           </PlaceHolder>
 
-          <PlaceHolder isOver={true} className={classes.grid} grid={{ columns: 3 }}>
+          <StyledPlaceHolder isOver={true} grid={{ columns: 3 }}>
             <Choice>foo bar</Choice>
             <Choice>
               <h1>Some Text</h1>
@@ -96,9 +106,9 @@ export class Wrapper extends React.Component {
                 src="http://cdn.skim.gs/images/c_fill,dpr_2.0,f_auto,fl_lossy,h_391,q_auto,w_695/fajkx3pdvvt9ax6btssg/20-of-the-cutest-small-dog-breeds-on-the-planet"
               />
             </Choice>
-          </PlaceHolder>
+          </StyledPlaceHolder>
 
-          <PlaceHolder disabled={true} className={classes.grid} grid={{ columns: 3 }}>
+          <StyledPlaceHolder disabled={true} grid={{ columns: 3 }}>
             <Choice>foo bar</Choice>
             <Choice>
               <h1>Some Text</h1>
@@ -110,27 +120,15 @@ export class Wrapper extends React.Component {
                 src="http://cdn.skim.gs/images/c_fill,dpr_2.0,f_auto,fl_lossy,h_391,q_auto,w_695/fajkx3pdvvt9ax6btssg/20-of-the-cutest-small-dog-breeds-on-the-planet"
               />
             </Choice>
-          </PlaceHolder>
+          </StyledPlaceHolder>
 
           <DropContainer val={containerVal} onDrop={this.onDrop} />
-        </div>
+        </StyledWrapper>
       </IdProvider>
     );
   }
 }
 
-const StyledWrapper = withStyles((theme) => ({
-  root: {
-    backgroundColor: 'blue',
-  },
-  grid: {
-    marginTop: theme.spacing.unit,
-  },
-  redLabel: {
-    '--correct-answer-toggle-label-color': 'red',
-  },
-}))(Wrapper);
-
-const DndWrapper = withDragContext(StyledWrapper);
+const DndWrapper = withDragContext(Wrapper);
 
 export default withRoot(DndWrapper);

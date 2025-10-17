@@ -1,4 +1,3 @@
-import withStyles from '@mui/styles/withStyles';
 import React from 'react';
 
 import { MathToolbar } from '@pie-lib/math-toolbar';
@@ -35,6 +34,4 @@ export class Demo extends React.Component {
   }
 }
 
-const styles = (theme) => ({});
-const Styled = withStyles(styles)(Demo);
-export default withRoot(Styled);
+export default withRoot(Demo);

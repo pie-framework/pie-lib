@@ -1,7 +1,6 @@
 import withRoot from '../../source/withRoot';
 import React from 'react';
 import { Ruler } from '@pie-lib/tools';
-import withStyles from '@mui/styles/withStyles';
 import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
 import Link from 'next/link';
@@ -48,4 +47,4 @@ class Demo extends React.Component {
   }
 }
 
-export default withRoot(withStyles(() => ({}))(Demo));
+export default withRoot(Demo);

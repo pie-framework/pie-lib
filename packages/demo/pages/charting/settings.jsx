@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
-import classNames from 'classnames';
 import { DisplaySize } from '@pie-lib/config-ui';
 import { grey } from '@mui/material/colors';
 

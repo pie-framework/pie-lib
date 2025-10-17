@@ -1,9 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import withRoot from '../../source/withRoot';
 import EditableHtml from '@pie-lib/editable-html';
 import Typography from '@mui/material/Typography';
-import withStyles from '@mui/styles/withStyles';
+import { styled } from '@mui/material/styles';
 import Input from '@mui/material/Input';
 import Button from '@mui/material/Button';
 import areValuesEqual from '@pie-lib/math-evaluator';
@@ -22,32 +21,26 @@ const renderOpts = {
 
 const html = '<div><span data-latex=""></span></div>';
 
-class RawMarkupPreview extends React.Component {
-  static propTypes = {
-    classes: PropTypes.object.isRequired,
-    markup: PropTypes.string.isRequired,
-  };
+const PrettyPrint = styled('pre')({
+  whiteSpace: 'normal',
+  width: '100%',
+});
 
+class MarkupPreview extends React.Component {
   render() {
-    const { markup, classes } = this.props;
+    const { markup } = this.props;
     return (
       <div>
         <Typography variant="h6">Markup</Typography>
         <div ref={(r) => (this.preview = r)} dangerouslySetInnerHTML={{ __html: markup }} />
         <hr />
         <Typography variant="subtitle1">Raw</Typography>
-        <pre className={classes.prettyPrint}>{markup}</pre>
+        <PrettyPrint>{markup}</PrettyPrint>
         <hr />
       </div>
     );
   }
 }
-const MarkupPreview = withStyles(() => ({
-  prettyPrint: {
-    whiteSpace: 'normal',
-    width: '100%',
-  },
-}))(RawMarkupPreview);
 
 const EscapeInput = (props) => (
   <div>
@@ -223,11 +216,4 @@ class Demo extends React.Component {
   }
 }
 
-const styles = (theme) => ({
-  sizeInput: {
-    width: '60px',
-    paddingLeft: theme.spacing.unit * 2,
-  },
-});
-
-export default withRoot(withStyles(styles)(Demo));
+export default withRoot(Demo);

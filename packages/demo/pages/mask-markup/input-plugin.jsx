@@ -1,11 +1,7 @@
 import Input from '@mui/material/Input';
 import React, { useState } from 'react';
-import withStyles from '@mui/styles/withStyles';
-import { Data } from 'slate';
+import { styled } from '@mui/material/styles';
 
-import PropTypes from 'prop-types';
-import Typography from '@mui/material/Typography';
-import classNames from 'classnames';
 import debug from 'debug';
 
 const log = debug('pie-lib:demo:masked-markup');
@@ -14,20 +10,19 @@ const log = debug('pie-lib:demo:masked-markup');
  * Plugins for masked-markup dont need to trigger any changes the editor's value.
  * Instead the just work with their inital value?
  */
-const CompWithState = withStyles((theme) => ({
-  comp: {
-    display: 'inline-block',
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-  },
-}))((props) => {
-  const { classes, onChange } = props;
+const StyledInputWithState = styled(Input)(({ theme }) => ({
+  display: 'inline-block',
+  marginLeft: theme.spacing(1),
+  marginRight: theme.spacing(1),
+}));
+
+const CompWithState = (props) => {
+  const { onChange } = props;
 
   const [value, setValue] = useState(props.value);
 
   return (
-    <Input
-      className={classes.comp}
+    <StyledInputWithState
       variant="outlined"
       value={value}
       onChange={(e) => {
@@ -36,27 +31,26 @@ const CompWithState = withStyles((theme) => ({
       }}
     />
   );
-});
+};
 
-const CompNoState = withStyles((theme) => ({
-  comp: {
-    border: `solid 1px ${theme.palette.primary.main}`,
-  },
-}))((props) => {
-  const { classes, onChange, value } = props;
+const StyledInputNoState = styled(Input)(({ theme }) => ({
+  border: `solid 1px ${theme.palette.primary.main}`,
+  display: 'block',
+}));
+
+const CompNoState = (props) => {
+  const { onChange, value } = props;
 
   return (
-    <Input
-      className={classes.comp}
+    <StyledInputNoState
       variant="outlined"
-      style={{ display: 'block' }}
       value={value}
       onChange={(e) => {
         onChange(e.target.value);
       }}
     />
   );
-});
+};
 export default (opts) => ({
   name: 'text-input',
   /**
