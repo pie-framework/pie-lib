@@ -1,15 +1,70 @@
-import styles from './styles';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import CSSTransition from 'react-transition-group/CSSTransition';
 import { CorrectResponse } from '@pie-lib/icons';
 import { Readable } from '@pie-lib/render-ui';
 import Expander from './expander';
 import React from 'react';
-import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import Translator from '@pie-lib/translator';
+import { color } from '@pie-lib/render-ui';
 
 const { translator } = Translator;
+
+const noTouch = {
+  '-webkit-touchCcallout': 'none',
+  '-webkit-user-select': 'none',
+  '-khtml-user-select': 'none',
+  '-moz-user-select': 'none',
+  '-ms-user-select': 'none',
+  'user-select': 'none',
+};
+
+const StyledRoot = styled('div')(() => ({
+  width: '100%',
+  cursor: 'pointer',
+}));
+
+const StyledContent = styled('div')(() => ({
+  margin: '0 auto',
+  textAlign: 'center',
+  display: 'flex',
+}));
+
+const StyledLabel = styled('div')(() => ({
+  width: 'fit-content',
+  minWidth: '140px',
+  alignSelf: 'center',
+  verticalAlign: 'middle',
+  color: `var(--correct-answer-toggle-label-color, ${color.text()})`,
+  fontWeight: 'normal',
+  ...noTouch,
+}));
+
+const StyledIcon = styled('div')(() => ({
+  position: 'absolute',
+  width: '25px',
+  '&.enter': {
+    opacity: '0',
+  },
+  '&.enter-active': {
+    opacity: '1',
+    transition: 'opacity 0.3s ease-in',
+  },
+  '&.exit': {
+    opacity: '1',
+  },
+  '&.exit-active': {
+    opacity: '0',
+    transition: 'opacity 0.3s ease-in',
+  },
+}));
+
+const StyledIconHolder = styled('div')(() => ({
+  width: '25px',
+  marginRight: '5px',
+  display: 'flex',
+  alignItems: 'center',
+}));
 
 /**
  * We export the raw unstyled class for testability. For public use please use the default export.
@@ -21,7 +76,6 @@ export class CorrectAnswerToggle extends React.Component {
     show: PropTypes.bool,
     hideMessage: PropTypes.string,
     showMessage: PropTypes.string,
-    classes: PropTypes.object.isRequired,
     className: PropTypes.string,
     language: PropTypes.string,
   };
@@ -69,30 +123,54 @@ export class CorrectAnswerToggle extends React.Component {
   }
 
   render() {
-    const { classes, className, toggled, hideMessage, showMessage } = this.props;
+    const { className, toggled, hideMessage, showMessage } = this.props;
 
     return (
-      <div className={classNames(classes.root, className)}>
-        <Expander show={this.state.show} className={classes.expander}>
-          <div className={classes.content} onClick={this.onClick.bind(this)} onTouchEnd={this.onTouch.bind(this)}>
-            <div className={classes.iconHolder}>
-              <CSSTransition timeout={400} in={toggled} exit={!toggled} classNames={classes}>
-                <CorrectResponse open={toggled} key="correct-open" className={classes.icon} />
+      <StyledRoot className={className}>
+        <Expander show={this.state.show}>
+          <StyledContent onClick={this.onClick.bind(this)} onTouchEnd={this.onTouch.bind(this)}>
+            <StyledIconHolder>
+              <CSSTransition 
+                timeout={400} 
+                in={toggled} 
+                exit={!toggled} 
+                classNames={{
+                  enter: 'enter',
+                  enterActive: 'enter-active',
+                  exit: 'exit',
+                  exitActive: 'exit-active'
+                }}
+              >
+                <StyledIcon>
+                  <CorrectResponse open={toggled} key="correct-open" />
+                </StyledIcon>
               </CSSTransition>
-              <CSSTransition timeout={5000} in={!toggled} exit={toggled} classNames={classes}>
-                <CorrectResponse open={toggled} key="correct-closed" className={classes.icon} />
+              <CSSTransition 
+                timeout={5000} 
+                in={!toggled} 
+                exit={toggled} 
+                classNames={{
+                  enter: 'enter',
+                  enterActive: 'enter-active',
+                  exit: 'exit',
+                  exitActive: 'exit-active'
+                }}
+              >
+                <StyledIcon>
+                  <CorrectResponse open={toggled} key="correct-closed" />
+                </StyledIcon>
               </CSSTransition>
-            </div>
+            </StyledIconHolder>
             <Readable false>
-              <div className={classes.label} aria-hidden={!this.state.show}>
+              <StyledLabel aria-hidden={!this.state.show}>
                 {toggled ? hideMessage : showMessage}
-              </div>
+              </StyledLabel>
             </Readable>
-          </div>
+          </StyledContent>
         </Expander>
-      </div>
+      </StyledRoot>
     );
   }
 }
 
-export default withStyles(styles)(CorrectAnswerToggle);
+export default CorrectAnswerToggle;

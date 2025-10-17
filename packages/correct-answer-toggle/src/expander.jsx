@@ -1,37 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import { CSSTransition } from 'react-transition-group';
-
-const Expander = (props) => {
-  const { classes, show, children } = props;
-
-  return (
-    <CSSTransition in={show} appear={true} mountOnEnter={false} timeout={300} classNames={{ ...classes }}>
-      <div className={classes.expander}>{children}</div>
-    </CSSTransition>
-  );
-};
-
-Expander.propTypes = {
-  show: PropTypes.bool.isRequired,
-  className: PropTypes.string,
-  classes: PropTypes.object,
-  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
-};
 
 const transition = 'height ease-in 300ms, opacity ease-in 300ms';
 
-export default withStyles(() => ({
-  expander: {
-    position: 'relative',
-    height: 0,
-    overflow: 'hidden',
-    display: 'flex',
-    visibility: 'hidden',
-    width: 0,
-  },
-  enter: {
+const StyledExpander = styled('div')(() => ({
+  position: 'relative',
+  height: 0,
+  overflow: 'hidden',
+  display: 'flex',
+  visibility: 'hidden',
+  width: 0,
+  '&.enter': {
     transition,
     opacity: 1,
     height: 'auto',
@@ -39,23 +20,52 @@ export default withStyles(() => ({
     visibility: 'visible',
     minHeight: '25px',
   },
-  enterDone: {
+  '&.enter-done': {
     height: 'auto',
     visibility: 'visible',
     width: 'auto',
     minHeight: '25px',
   },
-  exit: {
+  '&.exit': {
     transition,
     opacity: 0,
     height: 0,
     visibility: 'visible',
     width: 0,
   },
-  exitDone: {
+  '&.exit-done': {
     opacity: 0,
     visibility: 'hidden',
     height: 0,
     width: 0,
   },
-}))(Expander);
+}));
+
+const Expander = (props) => {
+  const { show, children, className } = props;
+
+  return (
+    <CSSTransition 
+      in={show} 
+      appear={true} 
+      mountOnEnter={false} 
+      timeout={300} 
+      classNames={{
+        enter: 'enter',
+        enterDone: 'enter-done',
+        exit: 'exit',
+        exitDone: 'exit-done'
+      }}
+    >
+      <StyledExpander className={className}>{children}</StyledExpander>
+    </CSSTransition>
+  );
+};
+
+Expander.propTypes = {
+  show: PropTypes.bool.isRequired,
+  className: PropTypes.string,
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
+};
+
+export default Expander;

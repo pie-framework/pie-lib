@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Token, { TokenTypes } from './token';
-import { withStyles } from '@material-ui/core/styles';
-import classNames from 'classnames';
+import { styled } from '@mui/material/styles';
 import clone from 'lodash/clone';
 import debug from 'debug';
 import { noSelect } from '@pie-lib/style-utils';
@@ -11,11 +10,19 @@ import isEqual from 'lodash/isEqual';
 
 const log = debug('@pie-lib:text-select:token-select');
 
+const StyledTokenSelect = styled('div')(() => ({
+  backgroundColor: 'none',
+  whiteSpace: 'pre',
+  ...noSelect(),
+  '& p': {
+    whiteSpace: 'break-spaces',
+  },
+}));
+
 export class TokenSelect extends React.Component {
   static propTypes = {
     tokens: PropTypes.arrayOf(PropTypes.shape(TokenTypes)).isRequired,
     className: PropTypes.string,
-    classes: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     disabled: PropTypes.bool,
     highlightChoices: PropTypes.bool,
@@ -144,21 +151,11 @@ export class TokenSelect extends React.Component {
   };
 
   render() {
-    const { classes, className: classNameProp } = this.props;
-    const className = classNames(classes.tokenSelect, classNameProp);
+    const { className: classNameProp } = this.props;
     const html = this.generateTokensInHtml();
 
-    return <div className={className} dangerouslySetInnerHTML={{ __html: html }} onClick={this.toggleToken} />;
+    return <StyledTokenSelect className={classNameProp} dangerouslySetInnerHTML={{ __html: html }} onClick={this.toggleToken} />;
   }
 }
 
-export default withStyles(() => ({
-  tokenSelect: {
-    backgroundColor: 'none',
-    whiteSpace: 'pre',
-    ...noSelect(),
-    '& p': {
-      whiteSpace: 'break-spaces',
-    },
-  },
-}))(TokenSelect);
+export default TokenSelect;

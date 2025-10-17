@@ -6,7 +6,8 @@
   "keywords": [
     "react",
     "pie",
-    "material-ui"
+    "mui",
+    "@mui/material"
   ],
   "publishConfig": {
     "access": "public"
@@ -16,7 +17,10 @@
   "module": "src/index.jsx",
   "scripts": {},
   "dependencies": {
-    "@material-ui/core": "^3.8.3",
+    "@emotion/react": "^11.14.0",
+    "@emotion/style": "^0.8.0",
+    "@mui/icons-material": "^7.3.4",
+    "@mui/material": "^7.3.4",
     "@pie-lib/icons": "^2.21.4",
     "@pie-lib/render-ui": "^4.31.2",
     "@pie-lib/translator": "^2.20.4",

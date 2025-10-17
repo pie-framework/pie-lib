@@ -1,18 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import { normalize, intersection } from './builder';
-import yellow from '@material-ui/core/colors/yellow';
-import green from '@material-ui/core/colors/green';
 import debug from 'debug';
 import classNames from 'classnames';
 
 import { clearSelection, getCaretCharacterOffsetWithin } from './selection-utils';
 
+import { yellow, green } from '@mui/material/colors';
+
 const log = debug('@pie-lib:text-select:token-text');
 
-export const Text = withStyles(() => ({
-  predefined: {
+const StyledText = styled('span')(() => ({
+  '&.predefined': {
     cursor: 'pointer',
     backgroundColor: yellow[100],
     border: `dashed 0px ${yellow[700]}`,
@@ -23,23 +23,25 @@ export const Text = withStyles(() => ({
       border: `dashed 0px ${yellow[700]}`,
     },
   },
-  correct: {
+  '&.correct': {
     backgroundColor: green[500],
     '& *': {
       backgroundColor: green[500],
     },
   },
-}))(({ text, predefined, classes, onClick, correct }) => {
+}));
+
+export const Text = ({ text, predefined, onClick, correct }) => {
   const formattedText = (text || '').replace(/\n/g, '<br>');
 
   if (predefined) {
-    const className = classNames(classes.predefined, correct && classes.correct);
+    const className = classNames('predefined', correct && 'correct');
 
-    return <span onClick={onClick} className={className} dangerouslySetInnerHTML={{ __html: formattedText }} />;
+    return <StyledText onClick={onClick} className={className} dangerouslySetInnerHTML={{ __html: formattedText }} />;
   } else {
     return <span dangerouslySetInnerHTML={{ __html: formattedText }} />;
   }
-});
+};
 
 const notAllowedCharacters = ['\n', ' ', '\t'];
 
