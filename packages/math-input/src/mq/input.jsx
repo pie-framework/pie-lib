@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import debug from 'debug';
-import classNames from 'classnames';
 import { registerLineBreak } from './custom-elements';
 import MathQuill from '@pie-framework/mathquill';
 
@@ -17,13 +16,16 @@ if (typeof window !== 'undefined') {
 
 const log = debug('math-input:mq:input');
 
+const StyledSpan = styled('span')({
+  // No specific styles needed, but component is available for future styling
+});
+
 /**
  * Wrapper for MathQuill MQ.MathField.
  */
 export class Input extends React.Component {
   static propTypes = {
     className: PropTypes.string,
-    classes: PropTypes.object.isRequired,
     onClick: PropTypes.func,
     onChange: PropTypes.func,
     latex: PropTypes.string,
@@ -156,11 +158,11 @@ export class Input extends React.Component {
   }
 
   render() {
-    const { onFocus, onBlur, classes, className } = this.props;
+    const { onFocus, onBlur, className } = this.props;
 
     return (
-      <span
-        className={classNames(classes.input, className)}
+      <StyledSpan
+        className={className}
         onKeyDown={this.onKeyPress}
         onClick={this.onClick}
         onFocus={onFocus}
@@ -171,6 +173,4 @@ export class Input extends React.Component {
   }
 }
 
-const styles = () => ({});
-
-export default withStyles(styles)(Input);
+export default Input;
