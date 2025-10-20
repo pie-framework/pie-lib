@@ -41,7 +41,6 @@ const nextConfig = {
         rule.resolve.fullySpecified = false;
       }
     });
-
     return config;
   },
 

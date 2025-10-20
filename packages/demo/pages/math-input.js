@@ -1,4 +1,3 @@
-import { mq, keysForGrade, keys, KeyPad, HorizontalKeypad } from '@pie-lib/math-input';
 import React from 'react';
 import withRoot from '../source/withRoot';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -9,6 +8,17 @@ import Select from '@mui/material/Select';
 import { styled } from '@mui/material/styles';
 import Section from '../source/formatting/section';
 import { grey } from '@mui/material/colors';
+
+let mq, keysForGrade, keys, KeyPad, HorizontalKeypad;
+
+if (typeof window !== 'undefined') {
+  const mathInput = require('@pie-lib/math-input');
+  mq = mathInput.mq;
+  keysForGrade = mathInput.keysForGrade;
+  keys = mathInput.keys;
+  KeyPad = mathInput.KeyPad;
+  HorizontalKeypad = mathInput.HorizontalKeypad;
+}
 
 console.log('mq:', mq);
 
