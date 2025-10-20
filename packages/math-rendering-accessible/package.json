@@ -15,7 +15,7 @@
     "debug": "^4.1.1",
     "lodash": "^4.17.11",
     "mathjax-full": "3.2.2",
-    "mathml-to-latex": "1.2.0",
+    "mathml-to-latex": "1.5.0",
     "react": "^16.8.1",
     "slate": "^0.36.2"
   },
