@@ -1,7 +1,12 @@
 import React from 'react';
 
-import { MathToolbar } from '@pie-lib/math-toolbar';
 import withRoot from '../source/withRoot';
+let MathToolbar;
+
+if (typeof window !== 'undefined') {
+  MathToolbarPackage = require('@pie-lib/math-toolbar');
+  MathToolbar = MathToolbarPackage.MathToolbar;
+}
 
 export class Demo extends React.Component {
   constructor(props) {

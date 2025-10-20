@@ -8,17 +8,21 @@
   "keywords": [
     "pie",
     "react",
-    "material-ui"
+    "mui"
   ],
   "scripts": {},
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/style": "^0.8.0",
+    "@mui/icons-material": "^7.3.4",
+    "@mui/material": "^7.3.4",
     "classnames": "^2.2.6",
     "prop-types": "^15.6.2"
   },
   "peerDependencies": {
-    "@material-ui/core": "^3.8.3",
+    "@mui/material": "^7.3.4",
     "react": "^18.2.0"
   },
   "publishConfig": {

@@ -2,9 +2,7 @@ import IconBase from './icon-base';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { getStyles } from './icon-root';
-import { withStyles } from '@material-ui/core/styles';
-
-const styles = getStyles('correct', '#f8ffe2', '#4aaf46');
+import { styled } from '@mui/material/styles';
 
 const Emoji = ({ className }) => (
   <g transform={'translate(1, 0)'}>
@@ -61,4 +59,7 @@ Correct.defaultProps = {
   open: false,
 };
 
-export default withStyles(styles)(Correct);
+const styles = getStyles('correct', '#f8ffe2', '#4aaf46');
+const StyledCorrect = styled(Correct)(styles);
+
+export default StyledCorrect;

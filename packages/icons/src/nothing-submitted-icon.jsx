@@ -2,7 +2,7 @@ import { IconRoot, getStyles } from './icon-root';
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import withStyles from '@mui/styles/withStyles';
 
 const Exclamation = ({ className }) => (
   <g>

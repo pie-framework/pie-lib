@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 
 const OpenIcon = ({ bg, fg }) => (
   <svg
@@ -75,40 +74,43 @@ CloseIcon.propTypes = {
   border: PropTypes.string,
 };
 
-const styles = {
-  root: {
-    width: (props) => props.size || '25px',
-    height: (props) => props.size || '25px',
-  },
-  hideIconBg: {
+const CorrectResponseContainer = styled('div')(({ size }) => ({
+  width: size || '25px',
+  height: size || '25px',
+}));
+
+const StyledOpenIcon = styled(OpenIcon)({
+  '& .hideIconBg': {
     fill: '#bce2ff',
   },
-  hideIconFg: {
+  '& .hideIconFg': {
     fill: '#1a9cff',
   },
-  showIconBg: {
+});
+
+const StyledCloseIcon = styled(CloseIcon)({
+  '& .showIconBg': {
     fill: 'white',
   },
-  showIconFg: {
+  '& .showIconFg': {
     fill: '#1a9cff',
   },
-  showIconBorder: {
+  '& .showIconBorder': {
     fill: '#bce2ff',
   },
-};
+});
 
-const CorrectResponse = ({ open, classes, className }) => (
-  <div className={classNames(className, classes.root)}>
+const CorrectResponse = ({ open, className, size }) => (
+  <CorrectResponseContainer className={className} size={size}>
     {open ? (
-      <OpenIcon bg={classes.hideIconBg} fg={classes.hideIconFg} />
+      <StyledOpenIcon bg="hideIconBg" fg="hideIconFg" />
     ) : (
-      <CloseIcon bg={classes.showIconBg} border={classes.showIconBorder} fg={classes.showIconFg} />
+      <StyledCloseIcon bg="showIconBg" border="showIconBorder" fg="showIconFg" />
     )}
-  </div>
+  </CorrectResponseContainer>
 );
 
 CorrectResponse.propTypes = {
-  classes: PropTypes.object.isRequired,
   open: PropTypes.bool,
   size: PropTypes.string,
   className: PropTypes.string,
@@ -118,4 +120,4 @@ CorrectResponse.defaultProps = {
   open: false,
 };
 
-export default withStyles(styles)(CorrectResponse);
+export default CorrectResponse;

@@ -3,10 +3,17 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import EditorAndPad from './editor-and-pad';
 import { DoneButton } from './done-button';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import MathPreview from './math-preview';
 
 export { MathPreview };
+
+const PureToolbarContainer = styled('div')({
+  display: 'flex',
+  width: '100%',
+  zIndex: 8,
+  alignItems: 'center',
+});
 
 export class MathToolbar extends React.Component {
   static propTypes = {
@@ -131,7 +138,6 @@ export class RawPureToolbar extends React.Component {
     onAnswerBlockAdd: PropTypes.func,
     additionalKeys: PropTypes.array,
     onFocus: PropTypes.func,
-    classes: PropTypes.object.isRequired,
     autoFocus: PropTypes.bool,
     noDecimal: PropTypes.bool,
     allowAnswerBlock: PropTypes.bool,
@@ -175,13 +181,12 @@ export class RawPureToolbar extends React.Component {
       onBlur,
       hideDoneButton,
       hideDoneButtonBackground,
-      classes,
       error,
       maxResponseAreas,
     } = this.props;
 
     return (
-      <div className={cx(classes.pureToolbar, (classNames || {}).toolbar)} ref={keyPadCharacterRef}>
+      <PureToolbarContainer className={cx((classNames || {}).toolbar)} ref={keyPadCharacterRef}>
         <div />
         <EditorAndPad
           autoFocus={autoFocus}
@@ -208,17 +213,9 @@ export class RawPureToolbar extends React.Component {
         {(!controlledKeypad || (controlledKeypad && showKeypad)) && !hideDoneButton && (
           <DoneButton hideBackground={hideDoneButtonBackground} onClick={onDone} />
         )}
-      </div>
+      </PureToolbarContainer>
     );
   }
 }
-const styles = () => ({
-  pureToolbar: {
-    display: 'flex',
-    width: '100%',
-    zIndex: 8,
-    alignItems: 'center',
-  },
-});
 
-export const PureToolbar = withStyles(styles)(RawPureToolbar);
+export const PureToolbar = RawPureToolbar;
