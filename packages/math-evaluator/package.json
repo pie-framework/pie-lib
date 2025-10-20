@@ -20,7 +20,7 @@
     "@pie-framework/math-expressions": "^3.0.0",
     "jsesc": "^2.5.2",
     "lodash": "^4.17.11",
-    "mathjs": "^7.0.1"
+    "mathjs": "^15.0.0"
   },
   "devDependencies": {
     "@pie-lib/test-utils": "^0.19.5"
