@@ -1,14 +1,66 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import grey from '@material-ui/core/colors/grey';
 import { color } from '@pie-lib/render-ui';
+import { grey } from '@mui/material/colors';
+
+const StyledPlaceholder = styled('div')(({ theme }) => ({
+  WebkitTouchCallout: 'none',
+  WebkitUserSelect: 'none',
+  KhtmlUserSelect: 'none',
+  MozUserSelect: 'none',
+  MsUserSelect: 'none',
+  userSelect: 'none',
+  width: '100%',
+  height: '100%',
+  background: color.white(),
+  transition: 'background-color 200ms linear, border-color 200ms linear',
+  boxSizing: 'border-box',
+  display: 'grid',
+  gridRowGap: `${theme.spacing(1)}px`,
+  gridColumnGap: `${theme.spacing(1)}px`,
+  padding: theme.spacing(1),
+  border: `2px dashed ${color.black()}`,
+  '&.disabled': {
+    boxShadow: 'none',
+    background: theme.palette.background.paper,
+  },
+  '&.over': {
+    border: `1px solid ${grey[500]}`,
+    backgroundColor: `${grey[300]}`,
+  },
+  '&.board': {
+    padding: theme.spacing(1),
+    display: 'flex',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    minHeight: '100px',
+    justifyContent: 'center',
+    overflow: 'hidden',
+    touchAction: 'none',
+    backgroundColor: color.backgroundDark(),
+  },
+  '&.categorizeBoard': {
+    padding: theme.spacing(0.5),
+    display: 'flex',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    minHeight: '100px',
+    justifyContent: 'center',
+    overflow: 'hidden',
+    touchAction: 'none',
+    backgroundColor: color.backgroundDark(),
+  },
+  '&.verticalPool': {
+    display: 'flex',
+    flexFlow: 'column wrap',
+  },
+}));
 
 export const PlaceHolder = (props) => {
   const {
     children,
-    classes,
     className,
     isOver,
     type,
@@ -21,10 +73,10 @@ export const PlaceHolder = (props) => {
   } = props;
 
   const names = classNames(
-    classes.placeholder,
-    disabled && classes.disabled,
-    isOver && classes.over,
-    classes[type],
+    'placeholder',
+    disabled && 'disabled',
+    isOver && 'over',
+    type,
     className,
   );
 
@@ -49,24 +101,22 @@ export const PlaceHolder = (props) => {
     style.background = color.backgroundDark();
   }
 
-  const boardStyle = isCategorize ? classes.categorizeBoard : classes.board;
+  const boardStyle = isCategorize ? 'categorizeBoard' : 'board';
 
   return (
-    <div
+    <StyledPlaceholder
       style={{ ...style, minHeight: minHeight }}
       className={classNames(
-        classes.noSelectStyles,
         choiceBoard ? boardStyle : names,
-        isVerticalPool && classes.verticalPool,
+        isVerticalPool && 'verticalPool',
       )}
     >
       {children}
-    </div>
+    </StyledPlaceholder>
   );
 };
 
 PlaceHolder.propTypes = {
-  classes: PropTypes.object.isRequired,
   choiceBoard: PropTypes.bool,
   grid: PropTypes.shape({
     columns: PropTypes.number,
@@ -85,61 +135,4 @@ PlaceHolder.propTypes = {
   minHeight: PropTypes.number,
 };
 
-const styles = (theme) => ({
-  noSelectStyles: {
-    WebkitTouchCallout: 'none',
-    WebkitUserSelect: 'none',
-    KhtmlUserSelect: 'none',
-    MozUserSelect: 'none',
-    MsUserSelect: 'none',
-    userSelect: 'none',
-  },
-  placeholder: {
-    width: '100%',
-    height: '100%',
-    background: color.white(),
-    transition: 'background-color 200ms linear, border-color 200ms linear',
-    boxSizing: 'border-box',
-    display: 'grid',
-    gridRowGap: `${theme.spacing.unit}px`,
-    gridColumnGap: `${theme.spacing.unit}px`,
-    padding: theme.spacing.unit * 1,
-    border: `2px dashed ${color.black()}`,
-  },
-  disabled: {
-    boxShadow: 'none',
-    background: theme.palette.background.paper,
-  },
-  over: {
-    border: `1px solid ${grey[500]}`,
-    backgroundColor: `${grey[300]}`,
-  },
-  board: {
-    padding: theme.spacing.unit,
-    display: 'flex',
-    flexWrap: 'wrap',
-    alignItems: 'center',
-    minHeight: '100px',
-    justifyContent: 'center',
-    overflow: 'hidden',
-    touchAction: 'none',
-    backgroundColor: color.backgroundDark(),
-  },
-  categorizeBoard: {
-    padding: theme.spacing.unit / 2,
-    display: 'flex',
-    flexWrap: 'wrap',
-    alignItems: 'center',
-    minHeight: '100px',
-    justifyContent: 'center',
-    overflow: 'hidden',
-    touchAction: 'none',
-    backgroundColor: color.backgroundDark(),
-  },
-  verticalPool: {
-    display: 'flex',
-    flexFlow: 'column wrap',
-  },
-});
-
-export default withStyles(styles)(PlaceHolder);
+export default PlaceHolder;
