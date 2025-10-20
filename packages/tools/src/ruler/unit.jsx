@@ -1,18 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import { noSelect, strokeColor } from '../style-utils';
 import range from 'lodash/range';
 
-const Tick = withStyles((theme) => ({
-  tick: {
-    stroke: strokeColor(theme),
-  },
-}))(({ x, height, bottom, classes, major, minor }) => {
+const StyledTick = styled('line')(({ theme }) => ({
+  stroke: strokeColor(theme),
+}));
+
+const Tick = ({ x, height, bottom, major, minor }) => {
   const y1 = major ? bottom - height * 2 : minor ? bottom - height * 1.5 : bottom - height;
 
-  return <line y1={y1} y2={bottom} x1={x} x2={x} className={classes.tick} />;
-});
+  return <StyledTick y1={y1} y2={bottom} x1={x} x2={x} />;
+};
 
 const Ticks = ({ count, width, height }) => {
   return (
@@ -40,48 +40,44 @@ Ticks.propTypes = {
   height: PropTypes.number.isRequired,
 };
 
+const StyledEndTick = styled('line')(({ theme }) => ({
+  stroke: strokeColor(theme),
+  strokeWidth: 1,
+}));
+
+const StyledLabel = styled('text')(({ theme }) => ({
+  textAnchor: 'end',
+  fontSize: '12px',
+  fill: strokeColor(theme),
+  ...noSelect(),
+}));
+
 export class Unit extends React.Component {
   static propTypes = {
     index: PropTypes.number.isRequired,
     width: PropTypes.number.isRequired,
     height: PropTypes.number.isRequired,
-    classes: PropTypes.object.isRequired,
     last: PropTypes.bool.isRequired,
     config: PropTypes.object.isRequired,
   };
 
   render() {
-    const { index, width, height, classes, last, config } = this.props;
+    const { index, width, height, last, config } = this.props;
 
     const style = {
       transform: `translate(${width * (index - 1)}px, 0px)`,
     };
     return (
       <g style={style}>
-        {!last && <line x1={width} y1={0} x2={width} y2={height} className={classes.endTick} />}
+        {!last && <StyledEndTick x1={width} y1={0} x2={width} y2={height} />}
 
         <Ticks count={config.ticks} width={width} height={height} />
-        <text width={width} className={classes.label} x={width - 5} y={15}>
+        <StyledLabel width={width} x={width - 5} y={15}>
           {index}
-        </text>
+        </StyledLabel>
       </g>
     );
   }
 }
 
-export default withStyles((theme) => ({
-  endTick: {
-    stroke: strokeColor(theme),
-    strokeWidth: 1,
-  },
-  label: {
-    textAnchor: 'end',
-    fontSize: '12px',
-    fill: strokeColor(theme),
-    ...noSelect(),
-  },
-  base: {
-    fill: 'none',
-    stroke: 'red',
-  },
-}))(Unit);
+export default Unit;

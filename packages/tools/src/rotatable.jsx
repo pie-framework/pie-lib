@@ -1,44 +1,47 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import { getAnchor as calcAnchor, distanceBetween, arctangent } from './anchor-utils';
 import { Portal } from 'react-portal';
 import Point from '@mapbox/point-geometry';
 import { parse as parseOrigin } from './transform-origin';
-import classNames from 'classnames';
 
-const Anchor = withStyles({
-  anchor: {
-    position: 'absolute',
-    zIndex: 100,
-    width: '200px',
-    height: '80px',
-  },
-})(({ classes, left, top, color, fill }) => {
+const AnchorSvg = styled('svg')({
+  position: 'absolute',
+  zIndex: 100,
+  width: '200px',
+  height: '80px',
+});
+
+const Anchor = ({ left, top, color, fill }) => {
   color = color || 'green';
   fill = fill || 'white';
   return (
     <Portal>
-      <svg
-        className={classes.anchor}
+      <AnchorSvg
         style={{
           left: left - 10,
           top: top - 10,
         }}
       >
         <circle cx={10} cy={10} r={8} strokeWidth={1} stroke={color} fill={fill} />
-      </svg>
+      </AnchorSvg>
     </Portal>
   );
-});
+};
 
 /**
  * Tip o' the hat to:
  * https://bl.ocks.org/joyrexus/7207044
  */
+const RotatableContainer = styled('div')({
+  position: 'relative',
+  display: 'inline-block',
+  cursor: 'move',
+});
+
 export class Rotatable extends React.Component {
   static propTypes = {
-    classes: PropTypes.object.isRequired,
     children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
     showAnchor: PropTypes.bool,
     handle: PropTypes.arrayOf(
@@ -259,7 +262,7 @@ export class Rotatable extends React.Component {
   };
 
   render() {
-    const { children, classes, showAnchor, className } = this.props;
+    const { children, showAnchor, className } = this.props;
     const { rotation, anchor, origin, translate, position } = this.state;
 
     const t = translate ? `translate(${translate.x}px, ${translate.y}px)` : '';
@@ -272,8 +275,8 @@ export class Rotatable extends React.Component {
     };
 
     return (
-      <div
-        className={classNames(classes.rotatable, className)}
+      <RotatableContainer
+        className={className}
         style={style}
         ref={(r) => (this.rotatable = r)}
         onMouseDown={this.mouseDown}
@@ -281,15 +284,9 @@ export class Rotatable extends React.Component {
       >
         {anchor && showAnchor && <Anchor {...anchor} />}
         {children}
-      </div>
+      </RotatableContainer>
     );
   }
 }
 
-export default withStyles({
-  rotatable: {
-    position: 'relative',
-    display: 'inline-block',
-    cursor: 'move',
-  },
-})(Rotatable);
+export default Rotatable;

@@ -2727,11 +2727,6 @@
   resolved "https://registry.yarnpkg.com/@pie-lib/test-utils/-/test-utils-0.19.5.tgz#0006d20e0a52f0eb9178055ca4e05bd29760a591"
   integrity sha512-HYvIA6A865PEzxzKvEbh+CGmXFJg8ra6QVdKAxTa2+ROu1HXLyJqal0l8juzZRwT0cDrwVxPQTtxP2+2QSw6HQ==
 
-"@pie-lib/test-utils@^0.8.0":
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/@pie-lib/test-utils/-/test-utils-0.8.0.tgz#29f60bfd277906297f841532c4d5c2769847489c"
-  integrity sha512-gN0ssH49ey/8qseSgMgqEEpD+Egieaz0k2zI8UQkgYuF5bRha2/tvmbcsmOq92v6H2LJCiiJOI/9pmwS20ll/A==
-
 "@pie-lib/tools@^0.26.4":
   version "0.26.4"
   resolved "https://registry.yarnpkg.com/@pie-lib/tools/-/tools-0.26.4.tgz#5294c310719b5fef4aba14cf40a8d65f999f7d65"

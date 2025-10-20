@@ -1,10 +1,28 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import Rotatable from '../rotatable';
 import classNames from 'classnames';
 import RulerGraphic from './graphic';
 import PropTypes from 'prop-types';
 import Anchor from '../anchor';
+
+const StyledRuler = styled('div')(({ theme }) => ({
+  cursor: 'move',
+  position: 'relative',
+  backgroundColor: theme.palette.secondary.light,
+  opacity: 1.0,
+  border: `solid 0px ${theme.palette.primary.main}`,
+}));
+
+const StyledLeftAnchor = styled(Anchor)(() => ({
+  left: '-10px',
+  top: '40%',
+}));
+
+const StyledRightAnchor = styled(Anchor)(() => ({
+  right: '-10px',
+  top: '40%',
+}));
 
 export class Ruler extends React.Component {
   static propTypes = {
@@ -12,7 +30,6 @@ export class Ruler extends React.Component {
     height: PropTypes.number,
     units: PropTypes.number.isRequired,
     measure: PropTypes.oneOf(['imperial', 'metric']).isRequired,
-    classes: PropTypes.object.isRequired,
     className: PropTypes.string,
     startPosition: PropTypes.shape({
       left: PropTypes.number.isRequired,
@@ -30,7 +47,7 @@ export class Ruler extends React.Component {
   };
 
   render() {
-    const { classes, width, height, units, measure, className, startPosition, label, tickCount } = this.props;
+    const { width, height, units, measure, className, startPosition, label, tickCount } = this.props;
 
     const unit =
       measure === 'imperial'
@@ -51,31 +68,14 @@ export class Ruler extends React.Component {
           { class: 'rightAnchor', origin: 'bottom left' },
         ]}
       >
-        <div className={classes.ruler} style={{ width: `${width}px`, height: `${height}px` }}>
+        <StyledRuler style={{ width: `${width}px`, height: `${height}px` }}>
           <RulerGraphic width={width} height={height} units={units} unit={unit} />
-          <Anchor className={classNames('leftAnchor', classes.leftAnchor)} />
-          <Anchor className={classNames('rightAnchor', classes.rightAnchor)} />
-        </div>
+          <StyledLeftAnchor className={classNames('leftAnchor')} />
+          <StyledRightAnchor className={classNames('rightAnchor')} />
+        </StyledRuler>
       </Rotatable>
     );
   }
 }
-const styles = (theme) => ({
-  ruler: {
-    cursor: 'move',
-    position: 'relative',
-    backgroundColor: theme.palette.secondary.light,
-    opacity: 1.0,
-    border: `solid 0px ${theme.palette.primary.main}`,
-  },
-  leftAnchor: {
-    left: '-10px',
-    top: '40%',
-  },
-  rightAnchor: {
-    right: '-10px',
-    top: '40%',
-  },
-});
 
-export default withStyles(styles)(Ruler);
+export default Ruler;
