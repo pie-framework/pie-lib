@@ -4,7 +4,6 @@ import Check from '@mui/icons-material/Check';
 import Close from '@mui/icons-material/Close';
 import { color } from '@pie-lib/render-ui';
 import Translator from '@pie-lib/translator';
-import classNames from 'classnames';
 
 const { translator } = Translator;
 
