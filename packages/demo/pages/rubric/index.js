@@ -1,4 +1,3 @@
-import { Authoring } from '@pie-lib/rubric';
 import React from 'react';
 import withRoot from '../../source/withRoot';
 import Section from '../../source/formatting/section';
@@ -8,6 +7,7 @@ class Demo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      Authoring: null,
       rubric: {
         excludeZero: false,
         // the index is the points
@@ -20,13 +20,16 @@ class Demo extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({ mounted: true });
+    // Dynamic import to avoid SSR issues
+    import('@pie-lib/rubric').then((module) => {
+      this.setState({ Authoring: module.Authoring, mounted: true });
+    });
   }
 
   render() {
-    const { mounted, rubric } = this.state;
+    const { mounted, rubric, Authoring } = this.state;
     // TODO: check similar comps to see what they support...
-    return mounted ? (
+    return mounted && Authoring ? (
       <div>
         <Section name="Rubric Authoring">
           <br />
@@ -35,7 +38,7 @@ class Demo extends React.Component {
         </Section>
       </div>
     ) : (
-      <div />
+      <div>Loading...</div>
     );
   }
 }
