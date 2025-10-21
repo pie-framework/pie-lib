@@ -38,7 +38,7 @@ class Demo extends React.Component {
         <br />
         <br />
         <Link href="/tools/rotatable">
-          <a>Ruler uses Rotatable</a>
+          Ruler uses Rotatable
         </Link>
       </div>
     ) : (
