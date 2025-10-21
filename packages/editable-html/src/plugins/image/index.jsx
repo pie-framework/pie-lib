@@ -1,6 +1,6 @@
 import { Data, Inline } from 'slate';
 
-import Image from '@material-ui/icons/Image';
+import Image from '@mui/icons-material/Image';
 import ImageComponent from './component';
 import ImageToolbar from './image-toolbar';
 import InsertImageHandler from './insert-image-handler';

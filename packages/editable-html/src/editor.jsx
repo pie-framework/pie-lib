@@ -8,7 +8,7 @@ import debounce from 'lodash/debounce';
 import isEqual from 'lodash/isEqual';
 import classNames from 'classnames';
 import debug from 'debug';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 
 import { color } from '@pie-lib/render-ui';
 import AlertDialog from '../../config-ui/src/alert-dialog';
@@ -83,7 +83,6 @@ export class Editor extends React.Component {
     height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     minHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     maxHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    classes: PropTypes.object.isRequired,
     highlightShape: PropTypes.bool,
     disabled: PropTypes.bool,
     spellCheck: PropTypes.bool,
@@ -410,7 +409,7 @@ export class Editor extends React.Component {
   };
 
   componentDidMount() {
-    // onRef is needed to get the ref of the component because we export it using withStyles
+    // onRef is needed to get the ref of the component
     this.props.onRef(this);
 
     window.addEventListener('resize', this.onResize);
@@ -554,11 +553,13 @@ export class Editor extends React.Component {
    * This content includes the edited HTML and a prompt for the user.
    */
   renderHtmlPreviewContent = () => {
-    const { classes } = this.props;
     return (
       <div ref={(ref) => (this.elementRef = ref)}>
         <div>Preview of Edited Html:</div>
-        <PreviewPrompt defaultClassName={classes.previewText} prompt={this.state.value.document.text} />
+        {/* TODO: check if this works and we don't need to send style over to preview prompt */}
+        <StyledPreviewText> 
+          <PreviewPrompt prompt={this.state.value.document.text} />
+        </StyledPreviewText>
         <div>Would you like to save these changes ?</div>
       </div>
     );
@@ -1025,9 +1026,7 @@ export class Editor extends React.Component {
       disabled,
       spellCheck,
       highlightShape,
-      classes,
       className,
-      isEditor,
       placeholder,
       pluginProps,
       onKeyDown,
@@ -1042,74 +1041,76 @@ export class Editor extends React.Component {
 
     log('[render] value: ', value);
     const sizeStyle = this.buildSizeStyle();
-    const names = classNames(
+    const wrapperClassNames = classNames(
       {
-        [classes.withBg]: highlightShape,
-        [classes.toolbarOnTop]: toolbarOpts.alwaysVisible && toolbarOpts.position === 'top',
-        [classes.scheduled]: scheduled,
+        withBg: highlightShape,
+        toolbarOnTop: toolbarOpts.alwaysVisible && toolbarOpts.position === 'top',
+        scheduled: scheduled,
       },
       className,
     );
 
     return (
-      <div
+      <StyledEditorWrapper
         ref={(ref) => (this.wrapperRef = ref)}
         style={{ width: sizeStyle.width, minWidth: sizeStyle.minWidth, maxWidth: sizeStyle.maxWidth }}
-        className={names}
+        className={wrapperClassNames}
         id={`editor-${value?.document?.key}`}
       >
-        {scheduled && <div className={classes.uploading}>Uploading image and then saving...</div>}
-        <SlateEditor
-          plugins={this.plugins}
-          innerRef={(r) => {
-            if (r) {
-              this.slateEditor = r;
-            }
-          }}
-          ref={(r) => (this.editor = r && this.props.editorRef(r))}
-          toolbarRef={(r) => {
-            if (r) {
-              this.toolbarRef = r;
-            }
-          }}
-          doneButtonRef={this.doneButtonRef}
-          value={value}
-          focusToolbar={this.state.focusToolbar}
-          onToolbarFocus={this.handleToolbarFocus}
-          onToolbarBlur={this.handleToolbarBlur}
-          focus={this.focus}
-          onKeyDown={onKeyDown}
-          onChange={this.onChange}
-          getFocusedValue={this.getFocusedValue}
-          onBlur={this.onBlur}
-          onDrop={(event, editor) => this.onDropPaste(event, editor, true)}
-          onPaste={(event, editor) => this.onDropPaste(event, editor)}
-          onFocus={this.onFocus}
-          onEditingDone={this.onEditingDone}
-          focusedNode={focusedNode}
-          normalize={this.normalize}
-          readOnly={disabled}
-          spellCheck={spellCheck}
-          autoCorrect={spellCheck}
+        {scheduled && <StyledUploadingMessage>Uploading image and then saving...</StyledUploadingMessage>}
+        <StyledSlateEditor
           className={classNames(
             {
-              [classes.noPadding]: toolbarOpts?.noPadding,
-              [classes.showParagraph]: showParagraphs && !showParagraphs.disabled,
-              [classes.separateParagraph]: separateParagraphs && !separateParagraphs.disabled,
+              noPadding: toolbarOpts?.noPadding,
+              showParagraph: showParagraphs && !showParagraphs.disabled,
+              separateParagraph: separateParagraphs && !separateParagraphs.disabled,
             },
-            classes.slateEditor,
           )}
-          style={{
-            minHeight: sizeStyle.minHeight,
-            height: sizeStyle.height,
-            maxHeight: sizeStyle.maxHeight,
-          }}
-          pluginProps={otherPluginProps}
-          toolbarOpts={toolbarOpts}
-          placeholder={placeholder}
-          renderPlaceholder={this.renderPlaceholder}
-          onDataChange={this.changeData}
-        />
+        >
+          <SlateEditor
+            plugins={this.plugins}
+            innerRef={(r) => {
+              if (r) {
+                this.slateEditor = r;
+              }
+            }}
+            ref={(r) => (this.editor = r && this.props.editorRef(r))}
+            toolbarRef={(r) => {
+              if (r) {
+                this.toolbarRef = r;
+              }
+            }}
+            doneButtonRef={this.doneButtonRef}
+            value={value}
+            focusToolbar={this.state.focusToolbar}
+            onToolbarFocus={this.handleToolbarFocus}
+            onToolbarBlur={this.handleToolbarBlur}
+            focus={this.focus}
+            onKeyDown={onKeyDown}
+            onChange={this.onChange}
+            getFocusedValue={this.getFocusedValue}
+            onBlur={this.onBlur}
+            onDrop={(event, editor) => this.onDropPaste(event, editor, true)}
+            onPaste={(event, editor) => this.onDropPaste(event, editor)}
+            onFocus={this.onFocus}
+            onEditingDone={this.onEditingDone}
+            focusedNode={focusedNode}
+            normalize={this.normalize}
+            readOnly={disabled}
+            spellCheck={spellCheck}
+            autoCorrect={spellCheck}
+            style={{
+              minHeight: sizeStyle.minHeight,
+              height: sizeStyle.height,
+              maxHeight: sizeStyle.maxHeight,
+            }}
+            pluginProps={otherPluginProps}
+            toolbarOpts={toolbarOpts}
+            placeholder={placeholder}
+            renderPlaceholder={this.renderPlaceholder}
+            onDataChange={this.changeData}
+          />
+        </StyledSlateEditor>
         <AlertDialog
           open={dialog.open}
           title={dialog.title}
@@ -1119,51 +1120,56 @@ export class Editor extends React.Component {
           onConfirmText={dialog.onConfirmText}
           onCloseText={dialog.onCloseText}
         />
-      </div>
+      </StyledEditorWrapper>
     );
   }
 }
 
 // TODO color - hardcoded gray background and keypad colors will need to change too
-const styles = {
-  withBg: {
+const StyledEditorWrapper = styled('div')(({ theme, scheduled }) => ({
+  '&.withBg': {
     backgroundColor: 'rgba(0,0,0,0.06)',
   },
-  scheduled: {
+  '&.scheduled': {
     opacity: 0.5,
     pointerEvents: 'none',
     position: 'relative',
   },
-  uploading: {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
+  '&.toolbarOnTop': {
+    marginTop: '45px',
   },
-  slateEditor: {
-    '& table': {
-      tableLayout: 'fixed',
-      width: '100%',
-      borderCollapse: 'collapse',
-      color: color.text(),
-      backgroundColor: color.background(),
-    },
-    '& table:not([border="1"]) tr': {
-      borderTop: '1px solid #dfe2e5',
-      // TODO perhaps secondary color for background, for now disable
-      // '&:nth-child(2n)': {
-      //   backgroundColor: '#f6f8fa'
-      // }
-    },
-    '& td, th': {
-      padding: '.6em 1em',
-      textAlign: 'center',
-    },
-    '& table:not([border="1"]) td, th': {
-      border: '1px solid #dfe2e5',
-    },
+}));
+
+const StyledUploadingMessage = styled('div')({
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+});
+
+const StyledSlateEditor = styled('div')(() => ({
+  '& table': {
+    tableLayout: 'fixed',
+    width: '100%',
+    borderCollapse: 'collapse',
+    color: color.text(),
+    backgroundColor: color.background(),
   },
-  showParagraph: {
+  '& table:not([border="1"]) tr': {
+    borderTop: '1px solid #dfe2e5',
+    // TODO perhaps secondary color for background, for now disable
+    // '&:nth-child(2n)': {
+    //   backgroundColor: '#f6f8fa'
+    // }
+  },
+  '& td, th': {
+    padding: '.6em 1em',
+    textAlign: 'center',
+  },
+  '& table:not([border="1"]) td, th': {
+    border: '1px solid #dfe2e5',
+  },
+  '&.showParagraph': {
     // a div that has a div after it
     '& > div:has(+ div)::after': {
       display: 'block',
@@ -1172,24 +1178,22 @@ const styles = {
       color: '#146EB3',
     },
   },
-  separateParagraph: {
+  '&.separateParagraph': {
     // a div that has a div after it
     '& > div:has(+ div)': {
       marginBottom: '1em',
     },
   },
-  toolbarOnTop: {
-    marginTop: '45px',
-  },
-  noPadding: {
+  '&.noPadding': {
     padding: '0 !important',
   },
-  previewText: {
-    marginBottom: '36px',
-    marginTop: '6px',
-    padding: '20px',
-    backgroundColor: 'rgba(0,0,0,0.06)',
-  },
-};
+}));
 
-export default withStyles(styles)(Editor);
+const StyledPreviewText = styled('div')({
+  marginBottom: '36px',
+  marginTop: '6px',
+  padding: '20px',
+  backgroundColor: 'rgba(0,0,0,0.06)',
+});
+
+export default Editor;

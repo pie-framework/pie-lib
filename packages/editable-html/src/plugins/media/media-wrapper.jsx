@@ -1,13 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 
-const useStyles = withStyles(() => ({
-  root: {
-    position: 'relative',
-  },
-  editor: {
+const StyledMediaWrapper = styled('span')(() => ({
+  position: 'relative',
+  '&.editor': {
     display: 'inline-block',
     overflow: 'hidden',
   },
@@ -15,19 +13,18 @@ const useStyles = withStyles(() => ({
 
 class MediaWrapper extends React.Component {
   static propTypes = {
-    classes: PropTypes.object,
     children: PropTypes.array,
     editor: PropTypes.bool,
     width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   };
 
   render() {
-    const { editor, classes, children, width, ...rest } = this.props;
+    const { editor, children, width, ...rest } = this.props;
 
     return (
-      <span
-        className={classNames(classes.root, {
-          [classes.editor]: editor,
+      <StyledMediaWrapper
+        className={classNames({
+          editor: editor,
         })}
         {...rest}
         style={{
@@ -35,9 +32,9 @@ class MediaWrapper extends React.Component {
         }}
       >
         {children}
-      </span>
+      </StyledMediaWrapper>
     );
   }
 }
 
-export default useStyles(MediaWrapper);
+export default MediaWrapper;

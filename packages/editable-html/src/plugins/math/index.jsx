@@ -1,4 +1,4 @@
-import Functions from '@material-ui/icons/Functions';
+import Functions from '@mui/icons-material/Functions';
 import { Inline } from 'slate';
 import { MathPreview, MathToolbar } from '@pie-lib/math-toolbar';
 import { wrapMath, unWrapMath, mmlToLatex, renderMath } from '@pie-lib/math-rendering';

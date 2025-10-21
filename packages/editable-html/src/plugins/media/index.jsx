@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Inline } from 'slate';
-import TheatersIcon from '@material-ui/icons/Theaters';
-import VolumeUpIcon from '@material-ui/icons/VolumeUp';
+import TheatersIcon from '@mui/icons-material/Theaters';
+import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import debug from 'debug';
 
 import MediaDialog from './media-dialog';

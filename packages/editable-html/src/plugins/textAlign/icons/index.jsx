@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Collapse from '@material-ui/core/Collapse';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
+import Collapse from '@mui/material/Collapse';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
 
 export const AlignLeft = () => (
   <svg width="20" height="20" viewBox="0 0 66 66" fill="none" xmlns="http://www.w3.org/2000/svg">

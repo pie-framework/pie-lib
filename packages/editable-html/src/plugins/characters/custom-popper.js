@@ -1,34 +1,29 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import Popper from '@material-ui/core/Popper';
-import Typography from '@material-ui/core/Typography';
+import { styled } from '@mui/material/styles';
+import Popper from '@mui/material/Popper';
+import Typography from '@mui/material/Typography';
 
-const styles = () => ({
-  popover: {
-    background: '#fff',
-    padding: '10px',
-    pointerEvents: 'none',
-    zIndex: 99999,
-  },
-  paper: {
+const StyledPopper = styled(Popper)(() => ({
+  background: '#fff',
+  padding: '10px',
+  pointerEvents: 'none',
+  zIndex: 99999,
+  '& .MuiPaper-root': {
     padding: 20,
     height: 'auto',
     width: 'auto',
   },
-  typography: {
-    fontSize: 50,
-    textAlign: 'center',
-  },
-});
+}));
 
-const CustomPopper = withStyles(styles)(({ classes, children, ...props }) => (
-  <Popper
+const StyledTypography = styled(Typography)(() => ({
+  fontSize: 50,
+  textAlign: 'center',
+}));
+
+const CustomPopper = ({ children, ...props }) => (
+  <StyledPopper
     id="mouse-over-popover"
     open
-    className={classes.popover}
-    classes={{
-      paper: classes.paper,
-    }}
     anchorOrigin={{
       vertical: 'bottom',
       horizontal: 'left',
@@ -41,8 +36,8 @@ const CustomPopper = withStyles(styles)(({ classes, children, ...props }) => (
     disableAutoFocus
     {...props}
   >
-    <Typography classes={{ root: classes.typography }}>{children}</Typography>
-  </Popper>
-));
+    <StyledTypography>{children}</StyledTypography>
+  </StyledPopper>
+);
 
 export default CustomPopper;

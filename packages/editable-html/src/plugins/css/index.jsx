@@ -1,10 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import List from '@material-ui/core/List';
-import { Leaf, Mark } from 'slate';
-import Immutable from 'immutable';
-import ListItem from '@material-ui/core/ListItem';
-import isEmpty from 'lodash/isEmpty';
+import List from '@mui/material/List';
+import { Mark } from 'slate';
+import ListItem from '@mui/material/ListItem';
 import debug from 'debug';
 import CssIcon from './icons';
 

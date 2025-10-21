@@ -1,7 +1,7 @@
 import React from 'react';
 import { Change } from 'slate';
-import Delete from '@material-ui/icons/Delete';
-import IconButton from '@material-ui/core/IconButton';
+import Delete from '@mui/icons-material/Delete';
+import IconButton from '@mui/material/IconButton';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import debug from 'debug';
@@ -11,12 +11,50 @@ import debounce from 'lodash/debounce';
 import { DoneButton } from './done-button';
 
 import { findSingleNode, findParentNode } from '../utils';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import DefaultToolbar from './default-toolbar';
 import { removeDialogs as removeCharacterDialogs } from '../characters';
 import { PIE_TOOLBAR__CLASS } from '../../constants';
 
 const log = debug('@pie-lib:editable-html:plugins:toolbar');
+
+const StyledToolbar = styled('div', {
+  shouldForwardProp: (prop) => !['hasDoneButton', 'position', 'alignment', 'focused', 'autoWidth', 'hidden'].includes(prop),
+})(({ hasDoneButton, position, alignment, focused, autoWidth, hidden }) => ({
+  position: 'absolute',
+  zIndex: 10,
+  cursor: 'pointer',
+  justifyContent: 'space-between',
+  background: 'var(--editable-html-toolbar-bg, #efefef)',
+  minWidth: hasDoneButton ? '280px' : '265px',
+  margin: '5px 0 0 0',
+  padding: '2px',
+  boxShadow:
+    '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
+  boxSizing: 'border-box',
+  display: 'flex',
+  opacity: focused ? 1 : 0,
+  pointerEvents: focused ? 'auto' : 'none',
+  top: position === 'top' ? '-45px' : 'auto',
+  right: alignment === 'right' ? 0 : 'auto',
+  width: autoWidth ? 'auto' : '100%',
+  visibility: hidden ? 'hidden' : 'visible',
+}));
+
+const SharedContainer = styled('div')({
+  display: 'flex',
+});
+
+const StyledIconButton = styled(IconButton)({
+  width: '28px',
+  height: '28px',
+  padding: '4px',
+  verticalAlign: 'top',
+});
+
+const StyledLabel = styled('div')({
+  color: 'var(--editable-html-toolbar-check, #00bb00)',
+});
 
 const getCustomToolbar = (plugin, node, value, handleDone, getFocusedValue, onDataChange) => {
   if (!plugin) {
@@ -141,7 +179,6 @@ export class Toolbar extends React.Component {
 
   render() {
     const {
-      classes,
       plugins,
       pluginProps,
       toolbarOpts,
@@ -223,20 +260,21 @@ export class Toolbar extends React.Component {
     const defaultToolbarShowDone = !toolbarOpts || toolbarOpts.showDone !== false;
 
     const hasDoneButton = defaultToolbarShowDone || customToolbarShowDone;
-
-    const names = classNames(classes.toolbar, PIE_TOOLBAR__CLASS, {
-      [classes.toolbarWithNoDone]: !hasDoneButton,
-      [classes.toolbarTop]: toolbarOpts.position === 'top',
-      [classes.toolbarRight]: toolbarOpts.alignment === 'right',
-      [classes.focused]: toolbarOpts.alwaysVisible || isFocused,
-      [classes.autoWidth]: autoWidth,
-      [classes.fullWidth]: !autoWidth,
-      [classes.hidden]: toolbarOpts.isHidden === true,
-    });
     const customStyles = toolbarOpts.minWidth !== undefined ? { minWidth: toolbarOpts.minWidth } : {};
 
     return (
-      <div className={names} style={{ ...extraStyles, ...customStyles }} onClick={this.onClick} ref={toolbarRef}>
+      <StyledToolbar
+        className={PIE_TOOLBAR__CLASS}
+        hasDoneButton={hasDoneButton}
+        position={toolbarOpts.position}
+        alignment={toolbarOpts.alignment}
+        focused={toolbarOpts.alwaysVisible || isFocused}
+        autoWidth={autoWidth}
+        hidden={toolbarOpts.isHidden === true}
+        style={{ ...extraStyles, ...customStyles }}
+        onClick={this.onClick}
+        ref={toolbarRef}
+      >
         {CustomToolbar ? (
           <CustomToolbar
             node={node}
@@ -262,77 +300,21 @@ export class Toolbar extends React.Component {
             onBlur={onBlur}
           />
         )}
-
-        <div className={classes.shared}>
+        <SharedContainer>
           {deletable && (
-            <IconButton
+            <StyledIconButton
               aria-label="Delete"
-              className={classes.iconRoot}
               onMouseDown={(e) => this.onDeleteMouseDown(e, plugin, node, value, onChange)}
-              classes={{
-                root: classes.iconRoot,
-              }}
+              size="large"
             >
               <Delete />
-            </IconButton>
+            </StyledIconButton>
           )}
           {customToolbarShowDone && <DoneButton doneButtonRef={doneButtonRef} onClick={handleDone} />}
-        </div>
-      </div>
+        </SharedContainer>
+      </StyledToolbar>
     );
   }
 }
 
-const style = {
-  toolbar: {
-    position: 'absolute',
-    zIndex: 10,
-    cursor: 'pointer',
-    justifyContent: 'space-between',
-    background: 'var(--editable-html-toolbar-bg, #efefef)',
-    minWidth: '280px',
-    margin: '5px 0 0 0',
-    padding: '2px',
-    boxShadow:
-      '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
-    boxSizing: 'border-box',
-    display: 'flex',
-    opacity: 0,
-    pointerEvents: 'none',
-  },
-  toolbarWithNoDone: {
-    minWidth: '265px',
-  },
-  toolbarTop: {
-    top: '-45px',
-  },
-  toolbarRight: {
-    right: 0,
-  },
-  fullWidth: {
-    width: '100%',
-  },
-  hidden: {
-    visibility: 'hidden',
-  },
-  autoWidth: {
-    width: 'auto',
-  },
-  focused: {
-    opacity: 1,
-    pointerEvents: 'auto',
-  },
-  iconRoot: {
-    width: '28px',
-    height: '28px',
-    padding: '4px',
-    verticalAlign: 'top',
-  },
-  label: {
-    color: 'var(--editable-html-toolbar-check, #00bb00)',
-  },
-  shared: {
-    display: 'flex',
-  },
-};
-export default withStyles(style, { index: 1000 })(Toolbar);
+export default Toolbar;

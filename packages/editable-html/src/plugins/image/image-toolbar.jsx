@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import debug from 'debug';
 import ReactDOM from 'react-dom';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import classNames from 'classnames';
 
 import { MarkButton } from '../toolbar/toolbar-buttons';
@@ -24,10 +24,26 @@ AlignmentButton.propTypes = {
   onClick: PropTypes.func.isRequired,
 };
 
+const StyledHolder = styled('div')(({ theme }) => ({
+  paddingLeft: theme.spacing(1),
+  display: 'flex',
+  alignItems: 'center',
+}));
+
+const StyledAltText = styled('span')(() => ({
+  '&.disabled': {
+    opacity: 0.5,
+  },
+  '&.altButton': {
+    borderLeft: '1px solid grey',
+    paddingLeft: 8,
+    marginLeft: 4,
+  },
+}));
+
 export class ImageToolbar extends React.Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
-    classes: PropTypes.object.isRequired,
     alignment: PropTypes.string,
     alt: PropTypes.string,
     imageLoaded: PropTypes.bool,
@@ -57,9 +73,9 @@ export class ImageToolbar extends React.Component {
   };
 
   render() {
-    const { classes, alignment, imageLoaded, disableImageAlignmentButtons } = this.props;
+    const { alignment, imageLoaded, disableImageAlignmentButtons } = this.props;
     return (
-      <div className={classes.holder}>
+      <StyledHolder>
         {!disableImageAlignmentButtons && (
           <>
             <AlignmentButton alignment={'left'} active={alignment === 'left'} onClick={this.onAlignmentClick} />
@@ -67,34 +83,18 @@ export class ImageToolbar extends React.Component {
             <AlignmentButton alignment={'right'} active={alignment === 'right'} onClick={this.onAlignmentClick} />
           </>
         )}
-        <span
+        <StyledAltText
           className={classNames({
-            [classes.disabled]: !imageLoaded,
-            [classes.altButton]: !disableImageAlignmentButtons,
+            disabled: !imageLoaded,
+            altButton: !disableImageAlignmentButtons,
           })}
           onMouseDown={(event) => imageLoaded && this.renderDialog(event)}
         >
           Alt text
-        </span>
-      </div>
+        </StyledAltText>
+      </StyledHolder>
     );
   }
 }
 
-const styles = (theme) => ({
-  holder: {
-    paddingLeft: theme.spacing.unit,
-    display: 'flex',
-    alignItems: 'center',
-  },
-  disabled: {
-    opacity: 0.5,
-  },
-  altButton: {
-    borderLeft: '1px solid grey',
-    paddingLeft: 8,
-    marginLeft: 4,
-  },
-});
-
-export default withStyles(styles)(ImageToolbar);
+export default ImageToolbar;

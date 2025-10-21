@@ -4,12 +4,24 @@ import React from 'react';
 import SlatePropTypes from 'slate-prop-types';
 
 import { hasBlock, hasMark } from '../utils';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 
 import { Button, MarkButton } from './toolbar-buttons';
 import debug from 'debug';
 
 const log = debug('@pie-lib:editable-html:plugins:toolbar');
+
+const DefaultToolbarContainer = styled('div')({
+  display: 'flex',
+  width: '100%',
+  justifyContent: 'space-between',
+});
+
+const ButtonsContainer = styled('div')({
+  alignItems: 'center',
+  display: 'flex',
+  width: '100%',
+});
 
 export const ToolbarButton = (props) => {
   const onToggle = () => {
@@ -89,7 +101,6 @@ export const DefaultToolbar = ({
   onChange,
   getFocusedValue,
   onDone,
-  classes,
   showDone,
   deletable,
   isHtmlMode,
@@ -149,8 +160,8 @@ export const DefaultToolbar = ({
   };
 
   return (
-    <div className={classes.defaultToolbar} onFocus={handleFocus} tabIndex="1" onBlur={onBlur}>
-      <div className={classes.buttonsContainer}>
+    <DefaultToolbarContainer onFocus={handleFocus} tabIndex="1" onBlur={onBlur}>
+      <ButtonsContainer>
         {filtered.map((p, index) => {
           return (
             <ToolbarButton
@@ -163,14 +174,13 @@ export const DefaultToolbar = ({
             />
           );
         })}
-      </div>
+      </ButtonsContainer>
       {showDone && !deletable && <DoneButton doneButtonRef={doneButtonRef} onClick={onDone} />}
-    </div>
+    </DefaultToolbarContainer>
   );
 };
 
 DefaultToolbar.propTypes = {
-  classes: PropTypes.object.isRequired,
   plugins: PropTypes.array.isRequired,
   pluginProps: PropTypes.object,
   value: SlatePropTypes.value.isRequired,
@@ -190,17 +200,4 @@ DefaultToolbar.defaultProps = {
   pluginProps: {},
 };
 
-const toolbarStyles = () => ({
-  defaultToolbar: {
-    display: 'flex',
-    width: '100%',
-    justifyContent: 'space-between',
-  },
-  buttonsContainer: {
-    alignItems: 'center',
-    display: 'flex',
-    width: '100%',
-  },
-});
-
-export default withStyles(toolbarStyles)(DefaultToolbar);
+export default DefaultToolbar;

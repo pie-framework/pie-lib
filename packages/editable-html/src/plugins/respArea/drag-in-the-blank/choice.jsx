@@ -4,28 +4,26 @@ import isUndefined from 'lodash/isUndefined';
 import { DragSource, DropTarget } from '@pie-lib/drag';
 import { color } from '@pie-lib/render-ui';
 import { renderMath } from '@pie-lib/math-rendering';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import classnames from 'classnames';
 
 import { GripIcon } from '../icons';
 
-const useStyles = withStyles((theme) => ({
-  content: {
-    border: `solid 0px ${theme.palette.primary.main}`,
-    '& mjx-frac': {
-      fontSize: '120% !important',
-    },
+const StyledContent = styled('span')(({ theme }) => ({
+  border: `solid 0px ${theme.palette.primary.main}`,
+  '& mjx-frac': {
+    fontSize: '120% !important',
   },
-  chip: {
+  '&.chip': {
     minWidth: '90px',
   },
-  correct: {
+  '&.correct': {
     border: `solid 1px ${color.correct()}`,
   },
-  incorrect: {
+  '&.incorrect': {
     border: `solid 1px ${theme.palette.error.main}`,
   },
-  selected: {
+  '&.selected': {
     border: `2px solid ${color.primaryDark()} !important`,
   },
 }));
@@ -38,7 +36,6 @@ export class BlankContent extends React.Component {
     isOver: PropTypes.bool,
     dragItem: PropTypes.object,
     value: PropTypes.object,
-    classes: PropTypes.object,
   };
 
   constructor(props) {
@@ -57,10 +54,8 @@ export class BlankContent extends React.Component {
   }
 
   handleClick(event) {
-    const { classes } = this.props;
-
     if (this.elementRef) {
-      this.elementRef.className = this.elementRef.contains(event.target) ? classes.selected : '';
+      this.elementRef.className = this.elementRef.contains(event.target) ? 'selected' : '';
     }
   }
 
@@ -143,16 +138,14 @@ export class BlankContent extends React.Component {
   }
 }
 
-const StyledBlankContent = useStyles(BlankContent);
-
-const connectedBlankContent = useStyles(({ connectDropTarget, connectDragSource, ...props }) => {
-  const { classes, isOver, value } = props;
-  const dragContent = <StyledBlankContent {...props} />;
+const connectedBlankContent = ({ connectDropTarget, connectDragSource, isOver, ...props }) => {
+  const { value } = props;
+  const dragContent = <BlankContent {...props} />;
   const dragEl = !value ? dragContent : connectDragSource(<span>{dragContent}</span>);
-  const content = <span className={classnames(classes.content, isOver && classes.over)}>{dragEl}</span>;
+  const content = <StyledContent className={classnames(isOver && 'over')}>{dragEl}</StyledContent>;
 
   return connectDropTarget ? connectDropTarget(content) : content;
-});
+};
 
 export const tileTarget = {
   drop(props, monitor) {

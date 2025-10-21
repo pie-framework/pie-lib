@@ -10,7 +10,7 @@ import renderer from 'react-test-renderer';
 
 mockMathInput();
 
-jest.mock('@material-ui/core/IconButton', () => {
+jest.mock('@mui/material/IconButton', () => {
   return (props) => <div className={props.className} style={props.style} ariaLabel={props['aria-label']} />;
 });
 

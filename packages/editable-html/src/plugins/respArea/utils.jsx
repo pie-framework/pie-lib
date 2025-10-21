@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Inline } from 'slate';
-import Snackbar from '@material-ui/core/Snackbar';
+import Snackbar from '@mui/material/Snackbar';
 
 export const isNumber = (val) => !isNaN(parseFloat(val)) && isFinite(val);
 

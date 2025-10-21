@@ -1,34 +1,45 @@
 import React from 'react';
 import { Block } from 'slate';
 import debug from 'debug';
-import GridOn from '@material-ui/icons/GridOn';
+import GridOn from '@mui/icons-material/GridOn';
 import TableToolbar from './table-toolbar';
 import PropTypes from 'prop-types';
 import SlatePropTypes from 'slate-prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import convert from 'react-attr-converter';
 import { object as toStyleObject } from 'to-style';
 import CustomTablePlugin from './CustomTablePlugin';
 
 const log = debug('@pie-lib:editable-html:plugins:table');
 
-const Table = withStyles(() => ({
-  table: {},
-}))((props) => {
+const StyledTable = styled('table')({});
+
+const StyledTableCell = styled(({ node, ...props }) => {
+  const Tag = node.data.get('header') ? 'th' : 'td';
+  return <Tag {...props} />;
+})({
+  '&': {
+    minWidth: '25px',
+  },
+  '&[data-cell-type="td"]': {
+    minWidth: '25px',
+  },
+});
+
+const Table = (props) => {
   const nodeAttributes = dataToAttributes(props.node.data);
 
   return (
-    <table
-      className={props.classes.table}
+    <StyledTable
       {...props.attributes}
       {...nodeAttributes}
       onFocus={props.onFocus}
       onBlur={props.onBlur}
     >
       <tbody>{props.children}</tbody>
-    </table>
+    </StyledTable>
   );
-});
+};
 
 Table.propTypes = {
   attributes: PropTypes.object,
@@ -47,29 +58,26 @@ TableRow.propTypes = {
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
 };
 
-const TableCell = withStyles(() => ({
-  td: {
-    minWidth: '25px',
-  },
-}))((props) => {
+const TableCell = (props) => {
   const Tag = props.node.data.get('header') ? 'th' : 'td';
-
   const nodeAttributes = dataToAttributes(props.node.data);
   delete nodeAttributes.header;
 
   return (
-    <Tag
+    <StyledTableCell
+      as={Tag}
+      node={props.node}
       {...props.attributes}
       {...nodeAttributes}
       colSpan={props.node.data.get('colspan')}
-      className={props.classes[Tag]}
+      data-cell-type={Tag}
       onFocus={props.onFocus}
       onBlur={props.onBlur}
     >
       {props.children}
-    </Tag>
+    </StyledTableCell>
   );
-});
+};
 
 TableCell.propTypes = {
   attributes: PropTypes.object,

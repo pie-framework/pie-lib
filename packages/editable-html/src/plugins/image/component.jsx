@@ -1,14 +1,65 @@
-import LinearProgress from '@material-ui/core/LinearProgress';
+import LinearProgress from '@mui/material/LinearProgress';
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 import debug from 'debug';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import SlatePropTypes from 'slate-prop-types';
 
 const log = debug('@pie-lib:editable-html:plugins:image:component');
 
 const size = (s) => (s ? `${s}px` : 'auto');
+
+const StyledImageRoot = styled('div')(({ theme }) => ({
+  position: 'relative',
+  border: `solid 1px ${theme.palette.common.white}`,
+  display: 'flex',
+  transition: 'opacity 200ms linear',
+  '&.loading': {
+    opacity: 0.3,
+  },
+  '&.pendingDelete': {
+    opacity: 0.3,
+  },
+}));
+
+const StyledProgress = styled(LinearProgress)(() => ({
+  position: 'absolute',
+  left: '0',
+  width: 'fit-content',
+  top: '0%',
+  transition: 'opacity 200ms linear',
+  '&.hideProgress': {
+    opacity: 0,
+  },
+}));
+
+const StyledImageContainer = styled('div')(() => ({
+  position: 'relative',
+  width: 'fit-content',
+  display: 'flex',
+  alignItems: 'center',
+  '&&:hover > .resize': {
+    display: 'block',
+  },
+}));
+
+const StyledImage = styled('img')(({ theme }) => ({
+  '&.active': {
+    border: `solid 1px ${theme.palette.primary.main}`,
+  },
+}));
+
+const StyledResize = styled('div')(({ theme }) => ({
+  backgroundColor: theme.palette.primary.main,
+  cursor: 'col-resize',
+  height: '35px',
+  width: '5px',
+  borderRadius: 8,
+  marginLeft: '5px',
+  marginRight: '10px',
+  display: 'none',
+}));
 
 export class Component extends React.Component {
   static propTypes = {
@@ -17,7 +68,6 @@ export class Component extends React.Component {
       change: PropTypes.func.isRequired,
       value: PropTypes.object,
     }).isRequired,
-    classes: PropTypes.object.isRequired,
     attributes: PropTypes.object,
     onFocus: PropTypes.func,
     onBlur: PropTypes.func,
@@ -201,7 +251,7 @@ export class Component extends React.Component {
   };
 
   render() {
-    const { node, editor, classes, attributes, onFocus } = this.props;
+    const { node, editor, attributes, onFocus } = this.props;
     const active = editor.value.isFocused && editor.value.selection.hasEdgeIn(node);
     const src = node.data.get('src');
     const loaded = node.data.get('loaded') !== false;
@@ -235,21 +285,20 @@ export class Component extends React.Component {
     log('[render] style:', size);
 
     const className = classNames(
-      classes.root,
-      !loaded && classes.loading,
-      deleteStatus === 'pending' && classes.pendingDelete,
+      !loaded && 'loading',
+      deleteStatus === 'pending' && 'pendingDelete',
     );
 
-    const progressClasses = classNames(classes.progress, loaded && classes.hideProgress);
+    const progressClasses = classNames(loaded && 'hideProgress');
 
     return [
       <span key={'sp1'}>&nbsp;</span>,
-      <div key={'comp'} onFocus={onFocus} className={className} style={{ justifyContent }}>
-        <LinearProgress mode="determinate" value={percent > 0 ? percent : 0} className={progressClasses} />
-        <div className={classes.imageContainer}>
-          <img
+      <StyledImageRoot key={'comp'} onFocus={onFocus} className={className} style={{ justifyContent }}>
+        <StyledProgress mode="determinate" value={percent > 0 ? percent : 0} className={progressClasses} />
+        <StyledImageContainer>
+          <StyledImage
             {...attributes}
-            className={classNames(classes.image, active && classes.active)}
+            className={classNames(active && 'active')}
             ref={(ref) => {
               this.img = ref;
             }}
@@ -258,86 +307,17 @@ export class Component extends React.Component {
             onLoad={this.loadImage}
             alt={alt}
           />
-          <div
+          <StyledResize
             ref={(ref) => {
               this.resize = ref;
             }}
-            className={classNames(classes.resize, 'resize')}
+            className="resize"
           />
-        </div>
-      </div>,
+        </StyledImageContainer>
+      </StyledImageRoot>,
       <span key={'sp2'}>&nbsp;</span>,
     ];
   }
 }
 
-const styles = (theme) => ({
-  portal: {
-    position: 'absolute',
-    opacity: 0,
-    transition: 'opacity 200ms linear',
-  },
-  floatingButtonRow: {
-    backgroundColor: theme.palette.background.paper,
-    borderRadius: '1px',
-    display: 'flex',
-    padding: '10px',
-    border: `solid 1px ${theme.palette.grey[200]}`,
-    boxShadow:
-      '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
-  },
-  progress: {
-    position: 'absolute',
-    left: '0',
-    width: 'fit-content',
-    top: '0%',
-    transition: 'opacity 200ms linear',
-  },
-  hideProgress: {
-    opacity: 0,
-  },
-  loading: {
-    opacity: 0.3,
-  },
-  pendingDelete: {
-    opacity: 0.3,
-  },
-  root: {
-    position: 'relative',
-    border: `solid 1px ${theme.palette.common.white}`,
-    display: 'flex',
-    transition: 'opacity 200ms linear',
-  },
-  delete: {
-    position: 'absolute',
-    right: 0,
-  },
-  imageContainer: {
-    position: 'relative',
-    width: 'fit-content',
-    display: 'flex',
-    alignItems: 'center',
-
-    '&&:hover > .resize': {
-      display: 'block',
-    },
-  },
-  active: {
-    border: `solid 1px ${theme.palette.primary.main}`,
-  },
-  resize: {
-    backgroundColor: theme.palette.primary.main,
-    cursor: 'col-resize',
-    height: '35px',
-    width: '5px',
-    borderRadius: 8,
-    marginLeft: '5px',
-    marginRight: '10px',
-    display: 'none',
-  },
-  drawableHeight: {
-    minHeight: 350,
-  },
-});
-
-export default withStyles(styles)(Component);
+export default Component;

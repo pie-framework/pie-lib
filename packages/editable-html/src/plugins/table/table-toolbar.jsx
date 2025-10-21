@@ -1,8 +1,8 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import { Button } from '../toolbar/toolbar-buttons';
 import { DoneButton } from '../toolbar/done-button';
-import BorderAll from '@material-ui/icons/BorderAll';
+import BorderAll from '@mui/icons-material/BorderAll';
 import { ToolbarButton } from '../toolbar/default-toolbar';
 
 import { AddRow, AddColumn, RemoveColumn, RemoveRow, RemoveTable } from './icons';
@@ -10,6 +10,16 @@ import PropTypes from 'prop-types';
 import debug from 'debug';
 
 const log = debug('@pie-lib:editable-html:plugins:table-toolbar');
+
+const TableToolbarContainer = styled('div')({
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'space-between',
+});
+
+const ToolbarButtons = styled('div')({
+  display: 'flex',
+});
 
 export class TableToolbar extends React.Component {
   static propTypes = {
@@ -24,7 +34,6 @@ export class TableToolbar extends React.Component {
     onToggleBorder: PropTypes.func.isRequired,
     hasBorder: PropTypes.bool,
     onDone: PropTypes.func.isRequired,
-    classes: PropTypes.object.isRequired,
   };
 
   static defaultProps = {
@@ -52,7 +61,6 @@ export class TableToolbar extends React.Component {
       onRemoveTable,
       onToggleBorder,
       hasBorder,
-      classes,
     } = this.props;
     log('[render] hasBorder:', hasBorder);
 
@@ -78,8 +86,8 @@ export class TableToolbar extends React.Component {
     );
 
     return (
-      <div className={classes.tableToolbar}>
-        <div className={classes.toolbarButtons}>
+      <TableToolbarContainer>
+        <ToolbarButtons>
           <Button onClick={onAddRow}>
             <AddRow />
           </Button>
@@ -107,7 +115,7 @@ export class TableToolbar extends React.Component {
           <Button onClick={onToggleBorder} active={hasBorder}>
             <BorderAll />
           </Button>
-        </div>
+        </ToolbarButtons>
         {filteredPlugins.respAreaPlugin && (
           <ToolbarButton
             key={'plugin-response-area'}
@@ -118,19 +126,9 @@ export class TableToolbar extends React.Component {
           />
         )}
         <DoneButton onClick={this.onDone} />
-      </div>
+      </TableToolbarContainer>
     );
   }
 }
 
-const styles = () => ({
-  tableToolbar: {
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'space-between',
-  },
-  toolbarButtons: {
-    display: 'flex',
-  },
-});
-export default withStyles(styles)(TableToolbar);
+export default TableToolbar;
