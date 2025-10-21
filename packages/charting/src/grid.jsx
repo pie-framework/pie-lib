@@ -1,15 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import classNames from 'classnames';
+import { styled } from '@mui/material/styles';
 import { GridRows, GridColumns } from '@vx/grid';
 
 import { types } from '@pie-lib/plot';
 import { color } from '@pie-lib/render-ui';
 
+const StyledGridGroup = styled('g')(() => ({
+  stroke: color.primaryLight(),
+}));
+
 export class Grid extends React.Component {
   static propTypes = {
-    classes: PropTypes.object.isRequired,
     className: PropTypes.string,
     graphProps: types.GraphPropsType.isRequired,
     xBand: PropTypes.func,
@@ -20,7 +22,7 @@ export class Grid extends React.Component {
   static defaultProps = {};
 
   render() {
-    const { classes, className, graphProps, xBand, rowTickValues, columnTickValues } = this.props;
+    const { className, graphProps, xBand, rowTickValues, columnTickValues } = this.props;
     const { scale = {}, size = {}, range = {} } = graphProps || {};
     const { step = 0, labelStep = 0 } = range;
     const highlightNonLabel = step && labelStep && step < labelStep;
@@ -38,7 +40,7 @@ export class Grid extends React.Component {
     );
 
     return (
-      <g className={classNames(classes.grid, className)}>
+      <StyledGridGroup className={className}>
         <GridRows
           scale={scale.y}
           width={size.width}
@@ -58,15 +60,9 @@ export class Grid extends React.Component {
           }}
         />
         <GridColumns scale={xBand} height={size.height} offset={xBand.bandwidth() / 2} tickValues={columnTickValues} />
-      </g>
+      </StyledGridGroup>
     );
   }
 }
 
-const styles = () => ({
-  grid: {
-    stroke: color.primaryLight(),
-  },
-});
-
-export default withStyles(styles)(Grid);
+export default Grid;

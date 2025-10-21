@@ -9,9 +9,10 @@ import { styled } from '@mui/material/styles';
 import Section from '../source/formatting/section';
 import { grey } from '@mui/material/colors';
 
+// import { MathInput, keysForGrade, keys } from '@pie-lib/math-input'; - mathquill error window not defined
 let mq, keysForGrade, keys, KeyPad, HorizontalKeypad;
 
-if (typeof window !== 'undefined') {
+if (typeof window !== 'undefined') { 
   const mathInput = require('@pie-lib/math-input');
   mq = mathInput.mq;
   keysForGrade = mathInput.keysForGrade;

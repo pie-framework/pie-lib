@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
-import Check from '@material-ui/icons/Check';
-import Close from '@material-ui/icons/Close';
+import Check from '@mui/icons-material/Check';
+import Close from '@mui/icons-material/Close';
 
 export const CorrectnessIndicator = ({ scale, x, y, classes, r, correctness, interactive }) => {
   if (!correctness || !interactive) return null;

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import classNames from 'classnames';
+import { styled } from '@mui/material/styles';
 import debug from 'debug';
 import cloneDeep from 'lodash/cloneDeep';
 
@@ -18,6 +17,10 @@ const { translator } = Translator;
 
 const log = debug('pie-lib:charts:chart');
 
+const StyledChartContainer = styled('div')(() => ({
+  width: 'min-content',
+}));
+
 export class Chart extends React.Component {
   constructor(props) {
     super(props);
@@ -31,7 +34,6 @@ export class Chart extends React.Component {
   }
 
   static propTypes = {
-    classes: PropTypes.object.isRequired,
     className: PropTypes.string,
     chartType: PropTypes.string.isRequired,
     size: PropTypes.shape({
@@ -210,7 +212,6 @@ export class Chart extends React.Component {
 
   render() {
     const {
-      classes,
       className,
       domain = {},
       range = {},
@@ -279,7 +280,7 @@ export class Chart extends React.Component {
     }
 
     return (
-      <div className={classNames(classes.chart, classes.chartBox, className)}>
+      <StyledChartContainer className={className}>
         <Root
           title={title}
           onChangeTitle={onChangeTitle}
@@ -351,22 +352,9 @@ export class Chart extends React.Component {
           onClose={dialog.onClose}
           onConfirm={dialog.onConfirm}
         />
-      </div>
+      </StyledChartContainer>
     );
   }
 }
 
-const styles = (theme) => ({
-  graphBox: {
-    transform: 'translate(60px, 35px)',
-  },
-  svg: {
-    overflow: 'visible',
-  },
-
-  chartBox: {
-    width: 'min-content',
-  },
-});
-
-export default withStyles(styles, { withTheme: true })(Chart);
+export default Chart;

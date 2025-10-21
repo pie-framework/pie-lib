@@ -4,7 +4,7 @@ import { LinePath } from '@vx/shape';
 import PropTypes from 'prop-types';
 import { types } from '@pie-lib/plot';
 import DraggableHandle, { DragHandle } from './drag-handle';
-import { withStyles } from '@material-ui/core/styles/index';
+import { styled } from '@mui/material/styles';
 import isEqual from 'lodash/isEqual';
 import { color } from '@pie-lib/render-ui';
 
@@ -120,14 +120,14 @@ export class RawLine extends React.Component {
   }
 }
 
-const StyledLine = withStyles(() => ({
-  line: {
+const StyledLine = styled(RawLine)(() => ({
+  '& .line': {
     fill: 'transparent',
     stroke: color.defaults.TERTIARY,
     strokeWidth: 3,
     transition: 'stroke 200ms ease-in, stroke-width 200ms ease-in',
   },
-}))(RawLine);
+}));
 
 export class Line extends React.Component {
   static propTypes = {

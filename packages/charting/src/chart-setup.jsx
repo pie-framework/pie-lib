@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { color } from '@pie-lib/render-ui';
-import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
+import { styled } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
 import ChartType from './chart-type';
 import { NumberTextFieldCustom } from '@pie-lib/config-ui';
 import { AlertDialog } from '@pie-lib/config-ui';
@@ -24,9 +24,52 @@ export const resetValues = (data, updateModel, range, onChange, model) => {
   }
 };
 
+const StyledWrapper = styled('div')(() => ({
+  width: '450px',
+}));
+
+const StyledContent = styled('div')(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  width: '100%',
+  marginTop: theme.spacing(3),
+}));
+
+const StyledColumnView = styled('div')(() => ({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+}));
+
+const StyledRowView = styled('div')(() => ({
+  display: 'flex',
+  justifyContent: 'space-around',
+  alignItems: 'center',
+}));
+
+const StyledTextField = styled(NumberTextFieldCustom)(({ theme }) => ({
+  width: '130px',
+  margin: `${theme.spacing(1)} ${theme.spacing(0.5)}`,
+}));
+
+const StyledMediumTextField = styled(NumberTextFieldCustom)(({ theme }) => ({
+  width: '160px',
+  margin: `${theme.spacing(1)} ${theme.spacing(0.5)}`,
+}));
+
+const StyledDimensions = styled('div')(({ theme }) => ({
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  margin: `${theme.spacing(3)} 0`,
+}));
+
+const StyledDisabled = styled(Typography)(() => ({
+  color: color.disabled(),
+}));
+
 const ConfigureChartPanel = (props) => {
   const {
-    classes,
     model,
     onChange,
     chartDimensions,
@@ -67,24 +110,22 @@ const ConfigureChartPanel = (props) => {
   const labelOptions = labelValues && labelValues.range ? { customValues: labelValues.range } : { min: 0, max: 10000 };
 
   const stepConfig = (
-    <div className={classes.rowView}>
-      <NumberTextFieldCustom
-        className={classes.mediumTextField}
+    <StyledRowView>
+      <StyledMediumTextField
         label="Grid Interval"
         value={range.step}
         variant="outlined"
         onChange={(e, v) => onRangeChanged('step', v, e)}
         {...gridOptions}
       />
-      <NumberTextFieldCustom
-        className={classes.mediumTextField}
+      <StyledMediumTextField
         label={'Label Interval'}
         value={range.labelStep}
         variant={'outlined'}
         onChange={(e, v) => onRangeChanged('labelStep', v, e)}
         {...labelOptions}
       />
-    </div>
+    </StyledRowView>
   );
 
   const handleAlertDialog = (openStatus, callback) => {
@@ -236,18 +277,17 @@ const ConfigureChartPanel = (props) => {
   };
 
   return (
-    <div className={classes.wrapper}>
+    <StyledWrapper>
       <Typography variant={'subtitle1'}>Configure Chart</Typography>
-      <div className={classes.content}>
-        <div className={classes.rowView}>
+      <StyledContent>
+        <StyledRowView>
           <ChartType
             value={model.chartType}
             onChange={(e) => onChartTypeChange(e.target.value)}
             availableChartTypes={availableChartTypes}
             chartTypeLabel={chartTypeLabel}
           />
-          <NumberTextFieldCustom
-            className={classes.mediumTextField}
+          <StyledMediumTextField
             label="Max Value"
             value={range.max}
             min={rangeProps(model.chartType).min}
@@ -255,18 +295,17 @@ const ConfigureChartPanel = (props) => {
             variant="outlined"
             onChange={(e, v) => onRangeChanged('max', v, e)}
           />
-        </div>
+        </StyledRowView>
         {!model.chartType.includes('Plot') && stepConfig}
 
         {showInConfigPanel && (
-          <div className={classes.dimensions}>
+          <StyledDimensions>
             <div>
               <Typography>Dimensions(px)</Typography>
             </div>
 
-            <div className={classes.columnView}>
-              <NumberTextFieldCustom
-                className={classes.textField}
+            <StyledColumnView>
+              <StyledTextField
                 label={'Width'}
                 value={size.width}
                 min={widthConstraints.min}
@@ -275,12 +314,11 @@ const ConfigureChartPanel = (props) => {
                 variant={'outlined'}
                 onChange={(e, v) => onSizeChanged('width', v)}
               />
-              <Typography className={classes.disabled}>Min 50, Max 700</Typography>
-            </div>
+              <StyledDisabled>Min 50, Max 700</StyledDisabled>
+            </StyledColumnView>
 
-            <div className={classes.columnView}>
-              <NumberTextFieldCustom
-                className={classes.textField}
+            <StyledColumnView>
+              <StyledTextField
                 label={'Height'}
                 value={size.height}
                 min={heightConstraints.min}
@@ -289,11 +327,11 @@ const ConfigureChartPanel = (props) => {
                 variant={'outlined'}
                 onChange={(e, v) => onSizeChanged('height', v)}
               />
-              <Typography className={classes.disabled}>Min 400, Max 700</Typography>
-            </div>
-          </div>
+              <StyledDisabled>Min 400, Max 700</StyledDisabled>
+            </StyledColumnView>
+          </StyledDimensions>
         )}
-      </div>
+      </StyledContent>
 
       <AlertDialog
         open={alertDialog.open}
@@ -302,12 +340,11 @@ const ConfigureChartPanel = (props) => {
         onClose={alertDialog.onClose}
         onConfirm={alertDialog.onConfirm}
       />
-    </div>
+    </StyledWrapper>
   );
 };
 
 ConfigureChartPanel.propTypes = {
-  classes: PropTypes.object,
   chartDimensions: PropTypes.object,
   domain: PropTypes.object,
   gridValues: PropTypes.object,
@@ -322,51 +359,4 @@ ConfigureChartPanel.propTypes = {
   chartTypeLabel: PropTypes.string,
 };
 
-const styles = (theme) => ({
-  wrapper: {
-    width: '450px',
-  },
-  content: {
-    display: 'flex',
-    flexDirection: 'column',
-    width: '100%',
-    marginTop: theme.spacing.unit * 3,
-  },
-  columnView: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  rowView: {
-    display: 'flex',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-  },
-  textField: {
-    width: '130px',
-    margin: `${theme.spacing.unit}px ${theme.spacing.unit / 2}px`,
-  },
-  mediumTextField: {
-    width: '160px',
-    margin: `${theme.spacing.unit}px ${theme.spacing.unit / 2}px`,
-  },
-  largeTextField: {
-    width: '230px',
-    margin: `${theme.spacing.unit}px ${theme.spacing.unit / 2}px`,
-  },
-  text: {
-    fontStyle: 'italic',
-    margin: `${theme.spacing.unit}px 0`,
-  },
-  dimensions: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    margin: `${theme.spacing.unit * 3}px 0`,
-  },
-  disabled: {
-    color: color.disabled(),
-  },
-});
-
-export default withStyles(styles)(ConfigureChartPanel);
+export default ConfigureChartPanel;

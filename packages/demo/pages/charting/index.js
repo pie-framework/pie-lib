@@ -4,7 +4,13 @@ import { styled } from '@mui/material/styles';
 import debug from 'debug';
 import withRoot from '../../source/withRoot';
 import Settings from './settings';
-import { Chart, chartTypes } from '@pie-lib/charting';
+// import { Chart, chartTypes } from '@pie-lib/charting'; - mathquill error window not defined
+let Chart, chartTypes;
+
+if (typeof window !== 'undefined') {
+  ({ Chart, chartTypes } = require('@pie-lib/charting'));
+}
+
 import Options from './options';
 
 const log = debug('pie-lib:charting:graph-lines-demo');
@@ -60,12 +66,12 @@ export class ChartDemo extends React.Component {
           createCategory('Melons', 4),
         ],
         charts: [
-          chartTypes.Bar(),
-          chartTypes.Histogram(),
-          chartTypes.LineDot(),
-          chartTypes.LineCross(),
-          chartTypes.DotPlot(),
-          chartTypes.LinePlot(),
+          // chartTypes.Bar(),
+          // chartTypes.Histogram(),
+          // chartTypes.LineDot(),
+          // chartTypes.LineCross(),
+          // chartTypes.DotPlot(),
+          // chartTypes.LinePlot(),
         ],
         editCategoryEnabled: true,
         addCategoryEnabled: true,
@@ -105,7 +111,7 @@ export class ChartDemo extends React.Component {
             <Options model={model} onChange={this.change} />
           </div>
           <div>
-            <Chart
+            {/* <Chart
               chartType={model.chartType}
               size={settings.size}
               domain={model.domain}
@@ -117,7 +123,7 @@ export class ChartDemo extends React.Component {
               editCategoryEnabled={model.editCategoryEnabled}
               addCategoryEnabled={model.addCategoryEnabled}
               categoryDefaultLabel={model.categoryDefaultLabel}
-            />
+            /> */}
           </div>
         </DemoContainer>
       </div>

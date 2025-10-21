@@ -1,14 +1,38 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Popover from '@material-ui/core/Popover';
-import Paper from '@material-ui/core/Paper';
+import { styled } from '@mui/material/styles';
+import Button from '@mui/material/Button';
+import Popover from '@mui/material/Popover';
+import Paper from '@mui/material/Paper';
 
 import { color } from '@pie-lib/render-ui';
 import Translator from '@pie-lib/translator';
 
 const { translator } = Translator;
+
+const StyledActions = styled('div')(() => ({
+  alignSelf: 'flex-end',
+}));
+
+const StyledTrigger = styled('div')(({ theme }) => ({
+  cursor: 'pointer',
+  fontSize: theme.typography.fontSize,
+  color: color.tertiary(),
+  padding: theme.spacing(1),
+}));
+
+const StyledActionsPaper = styled(Paper)(({ theme }) => ({
+  padding: theme.spacing(1),
+  display: 'flex',
+  flexDirection: 'column',
+  gap: theme.spacing(1),
+  '& button': {
+    textTransform: 'none',
+    fontSize: theme.typography.fontSize,
+    color: color.text(),
+    justifyContent: 'flex-start',
+  },
+}));
 
 export class ActionsButton extends React.Component {
   constructor(props) {
@@ -19,7 +43,6 @@ export class ActionsButton extends React.Component {
   }
 
   static propTypes = {
-    classes: PropTypes.object.isRequired,
     addCategory: PropTypes.func.isRequired,
     deleteCategory: PropTypes.func.isRequired,
     language: PropTypes.string,
@@ -47,13 +70,13 @@ export class ActionsButton extends React.Component {
   };
 
   render() {
-    const { classes, categories, language } = this.props;
+    const { categories, language } = this.props;
 
     return (
-      <div className={classes.actions}>
-        <div role="button" tabIndex={0} className={classes.trigger} onClick={this.handleActionsClick}>
+      <StyledActions>
+        <StyledTrigger role="button" tabIndex={0} onClick={this.handleActionsClick}>
           Actions
-        </div>
+        </StyledTrigger>
         <Popover
           open={Boolean(this.state.actionsAnchorEl)}
           anchorEl={this.state.actionsAnchorEl}
@@ -61,7 +84,7 @@ export class ActionsButton extends React.Component {
           anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
           transformOrigin={{ vertical: 'top', horizontal: 'left' }}
         >
-          <Paper className={classes.actionsPaper}>
+          <StyledActionsPaper>
             <Button onClick={() => this.handleAddCategory()}>
               + {translator.t('charting.add', { lng: language })}
             </Button>
@@ -76,35 +99,11 @@ export class ActionsButton extends React.Component {
                     </Button>
                   ),
               )}
-          </Paper>
+          </StyledActionsPaper>
         </Popover>
-      </div>
+      </StyledActions>
     );
   }
 }
 
-const styles = (theme) => ({
-  actions: {
-    alignSelf: 'flex-end',
-  },
-  trigger: {
-    cursor: 'pointer',
-    fontSize: theme.typography.fontSize,
-    color: color.tertiary(),
-    padding: theme.spacing.unit,
-  },
-  actionsPaper: {
-    padding: theme.spacing.unit,
-    display: 'flex',
-    flexDirection: 'column',
-    gap: theme.spacing.unit,
-    '& button': {
-      textTransform: 'none',
-      fontSize: theme.typography.fontSize,
-      color: color.text(),
-      justifyContent: 'flex-start',
-    },
-  },
-});
-
-export default withStyles(styles)(ActionsButton);
+export default ActionsButton;

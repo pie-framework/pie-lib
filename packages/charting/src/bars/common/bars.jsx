@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Group } from '@vx/group';
 import { Bar as VxBar } from '@vx/shape';
-import { withStyles } from '@material-ui/core/styles/index';
+import { styled } from '@mui/material/styles';
 import debug from 'debug';
 
 import { color } from '@pie-lib/render-ui';
@@ -51,12 +51,15 @@ const calculateFillColor = (isHovered, barColor, index, hoverHistogramColors, al
   return barColor || null;
 };
 
+const StyledVxBar = styled(VxBar)(() => ({
+  fill: color.defaults.TERTIARY,
+}));
+
 export class RawBar extends React.Component {
   static propTypes = {
     barColor: PropTypes.string,
     onChangeCategory: PropTypes.func,
     value: PropTypes.number,
-    classes: PropTypes.object,
     label: PropTypes.string,
     xBand: PropTypes.func,
     index: PropTypes.number.isRequired,
@@ -140,7 +143,6 @@ export class RawBar extends React.Component {
       graphProps,
       value,
       label,
-      classes,
       xBand,
       index,
       interactive,
@@ -174,12 +176,11 @@ export class RawBar extends React.Component {
         onTouchStart={this.handleMouseEnter}
         onTouchEnd={this.handleMouseLeave}
       >
-        <VxBar
+        <StyledVxBar
           x={barX}
           y={scale.y(yy)}
           width={barWidth}
           height={barHeight}
-          className={classes.bar}
           style={{ fill: fillColor }}
         />
         {correctness &&
@@ -196,12 +197,11 @@ export class RawBar extends React.Component {
 
             return (
               <>
-                <VxBar
+                <StyledVxBar
                   x={barX + 2} // add 2px for the stroke (the dashed border)
                   y={yToRender}
                   width={barWidth - 4} // substract 4px for the total stroke
                   height={diffPx}
-                  className={classes.bar}
                   style={{
                     stroke: indicatorBarColor,
                     strokeWidth: 2,
@@ -234,22 +234,7 @@ export class RawBar extends React.Component {
   }
 }
 
-const Bar = withStyles((theme) => ({
-  bar: {
-    fill: color.defaults.TERTIARY,
-  },
-  correctIcon: {
-    backgroundColor: color.correct(),
-    borderRadius: theme.spacing.unit * 2,
-    color: color.defaults.WHITE,
-    fontSize: '10px',
-    width: '10px',
-    height: '10px',
-    padding: '2px',
-    border: `1px solid ${color.defaults.WHITE}`,
-    boxSizing: 'unset', // to override the default border-box in IBX
-  },
-}))(RawBar);
+const Bar = RawBar;
 
 export class Bars extends React.Component {
   static propTypes = {

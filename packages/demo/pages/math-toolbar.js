@@ -1,6 +1,7 @@
 import React from 'react';
 
 import withRoot from '../source/withRoot';
+// import { MathToolbar } from '@pie-lib/math-toolbar'; - mathquill error window not defined
 let MathToolbar;
 
 if (typeof window !== 'undefined') {

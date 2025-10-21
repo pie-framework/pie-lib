@@ -1,22 +1,52 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
-import Check from '@material-ui/icons/Check';
-import Close from '@material-ui/icons/Close';
+import { styled } from '@mui/material/styles';
+import Check from '@mui/icons-material/Check';
+import Close from '@mui/icons-material/Close';
 
 import { gridDraggable, utils, types } from '@pie-lib/plot';
 import { color as enumColor } from '@pie-lib/render-ui';
-import { correct, incorrect, disabled } from './styles';
 import { getScale } from '../utils';
 import DragIcon from './drag-icon';
+
+const StyledSvg = styled('svg')(() => ({
+  overflow: 'visible !important',
+}));
+
+const StyledEllipse = styled('ellipse')(() => ({
+  fill: 'transparent',
+  clipPath: 'polygon(50% 0%, 100% 0%, 100% 50%, 0% 50%, 0% 0%)',
+}));
+
+const StyledCorrectIcon = styled(Check)(() => ({
+  backgroundColor: enumColor.correct(),
+  borderRadius: '16px', // equivalent to theme.spacing(2) for most themes
+  color: enumColor.defaults.WHITE,
+  fontSize: '16px',
+  padding: '2px',
+  border: `4px solid ${enumColor.defaults.WHITE}`,
+  width: '16px',
+  height: '16px',
+  boxSizing: 'unset', // to override the default border-box in IBX
+}));
+
+const StyledIncorrectIcon = styled(Close)(() => ({
+  backgroundColor: enumColor.incorrectWithIcon(),
+  borderRadius: '16px', // equivalent to theme.spacing(2) for most themes
+  color: enumColor.defaults.WHITE,
+  fontSize: '16px',
+  padding: '2px',
+  border: `4px solid ${enumColor.defaults.WHITE}`,
+  width: '16px',
+  height: '16px',
+  boxSizing: 'unset', // to override the default border-box in IBX
+}));
 
 const RawDragHandle = ({
   x,
   y,
   width,
   graphProps,
-  classes,
   className,
   interactive,
   defineChart,
@@ -30,18 +60,18 @@ const RawDragHandle = ({
   const scaleValue = getScale(width)?.scale;
 
   return (
-    <svg x={x} y={scale.y(y) - 10} width={width} overflow="visible" className={classes.svgOverflowVisible}>
+    <StyledSvg x={x} y={scale.y(y) - 10} width={width} overflow="visible">
       {isHovered && !correctness && interactive && (
-        <DragIcon width={width} scaleValue={scaleValue} color={enumColor.defaults.BORDER_GRAY} classes={classes} />
+        <DragIcon width={width} scaleValue={scaleValue} color={enumColor.defaults.BORDER_GRAY} />
       )}
       {interactive && !correctness && (
-        <ellipse
+        <StyledEllipse
           cx={width / 2}
           cy={10}
           rx={width / 2}
           // the drag icon has a 22px fixed r value, so the ry value is 3 times that in order to cover all the area
           ry={66}
-          className={classNames(classes.transparentHandle, className)}
+          className={className}
           {...rest}
         />
       )}
@@ -62,13 +92,13 @@ const RawDragHandle = ({
       {correctness && interactive && !isPlot && (
         <foreignObject x={width / 2 - 14} y={0} width={40} height={40}>
           {correctness.value === 'correct' ? (
-            <Check className={classNames(classes.correctnessIcon, classes.correctIcon)} title={correctness.label} />
+            <StyledCorrectIcon title={correctness.label} />
           ) : (
-            <Close className={classNames(classes.correctnessIcon, classes.incorrectIcon)} title={correctness.label} />
+            <StyledIncorrectIcon title={correctness.label} />
           )}
         </foreignObject>
       )}
-    </svg>
+    </StyledSvg>
   );
 };
 
@@ -77,7 +107,6 @@ RawDragHandle.propTypes = {
   y: PropTypes.number.isRequired,
   width: PropTypes.number,
   graphProps: types.GraphPropsType.isRequired,
-  classes: PropTypes.object.isRequired,
   className: PropTypes.string,
   interactive: PropTypes.bool,
   isHovered: PropTypes.bool,
@@ -88,51 +117,7 @@ RawDragHandle.propTypes = {
   color: PropTypes.string,
 };
 
-export const DragHandle = withStyles((theme) => ({
-  handle: {
-    height: '10px',
-    fill: 'transparent',
-    transition: 'fill 200ms linear, height 200ms linear',
-    '&.correct': correct('fill'),
-    '&.incorrect': incorrect('fill'),
-    '&.non-interactive': disabled('fill'),
-  },
-  transparentHandle: {
-    fill: 'transparent',
-    clipPath: 'polygon(50% 0%, 100% 0%, 100% 50%, 0% 50%, 0% 0%)',
-  },
-  handleContainer: {
-    height: 30,
-    '&:hover': {
-      '& .handle': {
-        fill: enumColor.secondaryDark(),
-        height: '16px',
-      },
-    },
-    '&.non-interactive': disabled('fill'),
-    '&.incorrect': incorrect('fill'),
-    '&.correct': correct('fill'),
-  },
-  svgOverflowVisible: {
-    overflow: 'visible !important',
-  },
-  correctIcon: {
-    backgroundColor: enumColor.correct(),
-  },
-  incorrectIcon: {
-    backgroundColor: enumColor.incorrectWithIcon(),
-  },
-  correctnessIcon: {
-    borderRadius: theme.spacing.unit * 2,
-    color: enumColor.defaults.WHITE,
-    fontSize: '16px',
-    padding: '2px',
-    border: `4px solid ${enumColor.defaults.WHITE}`,
-    width: '16px',
-    height: '16px',
-    boxSizing: 'unset', // to override the default border-box in IBX
-  },
-}))(RawDragHandle);
+export const DragHandle = RawDragHandle;
 
 export const D = gridDraggable({
   axis: 'y',

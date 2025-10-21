@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect, useRef } from 'react';
 import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import AutosizeInput from 'react-input-autosize';
 import PropTypes from 'prop-types';
 
@@ -9,46 +9,46 @@ import { correct, incorrect, disabled } from './common/styles';
 import { color } from '@pie-lib/render-ui';
 import { renderMath } from '@pie-lib/math-rendering';
 
-const styles = (theme) => ({
-  input: {
-    float: 'right',
-    fontFamily: theme.typography.fontFamily,
-    fontSize: theme.typography.fontSize,
-    border: 'none',
-    '&.correct': correct('color'),
-    '&.incorrect': incorrect('color'),
-    '&.disabled': {
-      backgroundColor: 'transparent !important',
-    },
-    '&.error': { border: `2px solid ${theme.palette.error.main}` },
+const StyledContainer = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+});
+
+const StyledInput = styled('input')(({ theme }) => ({
+  float: 'right',
+  fontFamily: theme.typography.fontFamily,
+  fontSize: theme.typography.fontSize,
+  border: 'none',
+  '&.correct': correct('color'),
+  '&.incorrect': incorrect('color'),
+  '&.disabled': {
+    backgroundColor: 'transparent !important',
   },
-  mathInput: {
-    pointerEvents: 'auto',
-    textAlign: 'center',
-    fontSize: theme.typography.fontSize + 2,
-    fontFamily: theme.typography.fontFamily,
-    color: color.primaryDark(),
-    paddingTop: theme.typography.fontSize / 2,
-  },
-  disabled: {
+  '&.error': { border: `2px solid ${theme.palette.error.main}` },
+}));
+
+const StyledMathInput = styled('div')(({ theme }) => ({
+  pointerEvents: 'auto',
+  textAlign: 'center',
+  fontSize: theme.typography.fontSize + 2,
+  fontFamily: theme.typography.fontFamily,
+  color: color.primaryDark(),
+  paddingTop: theme.typography.fontSize / 2,
+  '&.disabled': {
     ...disabled('color'),
     backgroundColor: 'transparent !important',
   },
-  error: {
+  '&.error': {
     border: `2px solid ${theme.palette.error.main}`,
   },
-  correct: {
+  '&.correct': {
     ...correct('color'),
   },
-  incorrect: {
+  '&.incorrect': {
     ...incorrect('color'),
   },
-  flexContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-});
+}));
 
 function isFractionFormat(label) {
   const trimmedLabel = label?.trim() || '';
@@ -85,7 +85,6 @@ export const MarkLabel = (props) => {
 
   const {
     mark,
-    classes,
     disabled,
     inputRef: externalInputRef,
     barWidth,
@@ -139,20 +138,20 @@ export const MarkLabel = (props) => {
   }, []);
 
   return (
-    <div className={classes.flexContainer}>
+    <StyledContainer>
       {correctnessIndicator}
       {isMathRendering() ? (
-        <div
+        <StyledMathInput
           ref={(r) => {
             root = r;
             externalInputRef(r);
           }}
           dangerouslySetInnerHTML={{ __html: getLabelMathFormat(label) }}
-          className={classNames(classes.mathInput, {
-            [classes.disabled]: disabled,
-            [classes.error]: error,
-            [classes.correct]: mark.editable && correctness?.label === 'correct',
-            [classes.incorrect]: mark.editable && correctness?.label === 'incorrect',
+          className={classNames({
+            disabled: disabled,
+            error: error,
+            correct: mark.editable && correctness?.label === 'correct',
+            incorrect: mark.editable && correctness?.label === 'incorrect',
           })}
           onClick={() => setIsEditing(true)}
           style={{
@@ -163,7 +162,7 @@ export const MarkLabel = (props) => {
             visibility: isHiddenLabel ? 'hidden' : 'unset',
             marginTop: correctnessIndicator ? '24px' : '0',
           }}
-        ></div>
+        ></StyledMathInput>
       ) : (
         <AutosizeInput
           inputRef={(r) => {
@@ -173,7 +172,6 @@ export const MarkLabel = (props) => {
           autoFocus={isEditing || autoFocus}
           disabled={disabled}
           inputClassName={classNames(
-            classes.input,
             correctness && mark.editable ? correctness.label : null,
             disabled && 'disabled',
             error && 'error',
@@ -203,7 +201,7 @@ export const MarkLabel = (props) => {
           onBlur={onChangeProp}
         />
       )}
-    </div>
+    </StyledContainer>
   );
 };
 
@@ -213,7 +211,6 @@ MarkLabel.propTypes = {
   error: PropTypes.any,
   onChange: PropTypes.func,
   graphProps: types.GraphPropsType,
-  classes: PropTypes.object,
   inputRef: PropTypes.func,
   mark: PropTypes.object,
   barWidth: PropTypes.number,
@@ -227,4 +224,4 @@ MarkLabel.propTypes = {
   correctnessIndicator: PropTypes.node,
 };
 
-export default withStyles(styles)(MarkLabel);
+export default MarkLabel;
