@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import PropTypes from 'prop-types';
 import { select, mouse } from 'd3-selection';
 import cn from 'classnames';
@@ -10,6 +10,91 @@ import { ChildrenType } from './types';
 import { GraphPropsType } from './types';
 import Label from './label';
 import { extractTextFromHTML, isEmptyObject, isEmptyString } from './utils';
+
+const StyledRoot = styled('div')(({ theme }) => ({
+  border: `solid 1px ${color.primaryLight()}`,
+  color: color.defaults.TEXT,
+  backgroundColor: theme.palette.common.white,
+  touchAction: 'none',
+  position: 'relative',
+  boxSizing: 'unset', // to override the default border-box in IBX that breaks the component width layout
+}));
+
+const Wrapper = styled('div')({
+  display: 'flex',
+  position: 'relative',
+});
+
+const DefineChartSvg = styled('svg')({
+  paddingLeft: '50px',
+  overflow: 'visible',
+});
+
+const ChartSvg = styled('svg')({
+  overflow: 'visible',
+});
+
+const GraphBox = styled('g')({
+  cursor: 'pointer',
+  userSelect: 'none',
+});
+
+const GraphTitle = styled('div')(({ theme }) => ({
+  color: color.defaults.TEXT,
+  fontSize: theme.typography.fontSize + 2,
+  padding: `${theme.spacing(1.5)} ${theme.spacing(0.5)} 0`,
+  textAlign: 'center',
+  '&.disabled': {
+    pointerEvents: 'none',
+  },
+  '&.rightMargin': {
+    marginRight: '74px',
+  },
+}));
+
+const ChartTitle = styled('div')(({ theme }) => ({
+  color: color.defaults.TEXT,
+  fontSize: theme.typography.fontSize + 4,
+  padding: `${theme.spacing(1.5)} ${theme.spacing(0.5)} 0`,
+  textAlign: 'center',
+  '&.disabled': {
+    pointerEvents: 'none',
+  },
+  '&.rightMargin': {
+    marginRight: '74px',
+  },
+}));
+
+const TopPixelGuides = styled('div')({
+  display: 'flex',
+  paddingTop: '6px',
+});
+
+const TopPixelIndicator = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  width: '100px',
+  pointerEvents: 'none',
+  userSelect: 'none',
+});
+
+const SidePixelGuides = styled('div')({
+  width: '70px',
+  display: 'flex',
+  flexDirection: 'column',
+  marginRight: '6px',
+});
+
+const SidePixelIndicator = styled('div')({
+  textAlign: 'right',
+  height: '20px',
+  pointerEvents: 'none',
+  userSelect: 'none',
+  '&:not(:last-child)': {
+    marginBottom: '80px',
+  },
+});
 
 export class Root extends React.Component {
   constructor(props) {
@@ -32,7 +117,6 @@ export class Root extends React.Component {
     labelsPlaceholders: PropTypes.object,
     onChangeTitle: PropTypes.func,
     onMouseMove: PropTypes.func,
-    classes: PropTypes.object.isRequired,
     showLabels: PropTypes.bool,
     showTitle: PropTypes.bool,
     showPixelGuides: PropTypes.bool,
@@ -159,7 +243,6 @@ export class Root extends React.Component {
       titlePlaceholder,
       graphProps,
       children,
-      classes,
       defineChart,
       onChangeTitle,
       isChart,
@@ -200,19 +283,20 @@ export class Root extends React.Component {
     const nbOfHorizontalLines = parseInt(actualHeight / 100);
     const sideGridlinesPadding = parseInt(actualHeight % 100);
     const { titleHeight } = this.state;
+    
     return (
-      <div className={classes.root}>
+      <StyledRoot>
         {showPixelGuides && (
-          <div className={classes.topPixelGuides} style={{ marginLeft: isChart ? 80 : showLabels ? 30 : 10 }}>
+          <TopPixelGuides style={{ marginLeft: isChart ? 80 : showLabels ? 30 : 10 }}>
             {[...Array(nbOfVerticalLines + 1).keys()].map((value) => (
               <Readable false key={`top-guide-${value}`}>
-                <div className={classes.topPixelIndicator}>
+                <TopPixelIndicator>
                   <div>{value * 100}px</div>
                   <div>|</div>
-                </div>
+                </TopPixelIndicator>
               </Readable>
             ))}
-          </div>
+          </TopPixelGuides>
         )}
         {showTitle &&
           (disabledTitle ? (
@@ -222,31 +306,54 @@ export class Root extends React.Component {
                 ...(isChart && { width: finalWidth }),
                 ...(isEmptyString(extractTextFromHTML(title)) && { display: 'none' }),
               }}
-              className={cn(isChart ? classes.chartTitle : classes.graphTitle, classes.disabledTitle)}
-              dangerouslySetInnerHTML={{ __html: title || '' }}
-            />
+            >
+              {isChart ? (
+                <ChartTitle className="disabled" dangerouslySetInnerHTML={{ __html: title || '' }} />
+              ) : (
+                <GraphTitle className="disabled" dangerouslySetInnerHTML={{ __html: title || '' }} />
+              )}
+            </div>
           ) : (
             <div ref={(r) => (this.titleRef = r)}>
-              <EditableHtml
-                style={
-                  isChart && {
-                    width: finalWidth,
-                  }
-                }
-                className={cn(
-                  { [classes.rightMargin]: showPixelGuides },
-                  isChart ? classes.chartTitle : classes.graphTitle,
-                )}
-                markup={title || ''}
-                onChange={onChangeTitle}
-                placeholder={
-                  (defineChart && titlePlaceholder) || (!disabledTitle && 'Click here to add a title for this graph')
-                }
-                toolbarOpts={{ noPadding: true, noBorder: true }}
-                activePlugins={activeTitlePlugins}
-                disableScrollbar
-                onKeyDown={this.handleKeyDown}
-              />
+              {isChart ? (
+                <ChartTitle className={cn({ rightMargin: showPixelGuides })}>
+                  <EditableHtml
+                    style={
+                      isChart && {
+                        width: finalWidth,
+                      }
+                    }
+                    markup={title || ''}
+                    onChange={onChangeTitle}
+                    placeholder={
+                      (defineChart && titlePlaceholder) || (!disabledTitle && 'Click here to add a title for this graph')
+                    }
+                    toolbarOpts={{ noPadding: true, noBorder: true }}
+                    activePlugins={activeTitlePlugins}
+                    disableScrollbar
+                    onKeyDown={this.handleKeyDown}
+                  />
+                </ChartTitle>
+              ) : (
+                <GraphTitle className={cn({ rightMargin: showPixelGuides })}>
+                  <EditableHtml
+                    style={
+                      isChart && {
+                        width: finalWidth,
+                      }
+                    }
+                    markup={title || ''}
+                    onChange={onChangeTitle}
+                    placeholder={
+                      (defineChart && titlePlaceholder) || (!disabledTitle && 'Click here to add a title for this graph')
+                    }
+                    toolbarOpts={{ noPadding: true, noBorder: true }}
+                    activePlugins={activeTitlePlugins}
+                    disableScrollbar
+                    onKeyDown={this.handleKeyDown}
+                  />
+                </GraphTitle>
+              )}
             </div>
           ))}
         {showLabels && !isChart && (
@@ -262,7 +369,7 @@ export class Root extends React.Component {
             charactersLimit={labelsCharactersLimit}
           />
         )}
-        <div className={classes.wrapper}>
+        <Wrapper>
           {showLabels && (
             <Label
               side="left"
@@ -278,20 +385,35 @@ export class Root extends React.Component {
               charactersLimit={labelsCharactersLimit}
             />
           )}
-          <svg width={finalWidth} height={finalHeight} className={defineChart ? classes.defineChart : classes.chart}>
-            <g
-              ref={(r) => {
-                this.g = r;
-                if (rootRef) {
-                  rootRef(r);
-                }
-              }}
-              className={classes.graphBox}
-              transform={`translate(${leftPadding + (domain.padding || 0)}, ${topPadding + (range.padding || 0)})`}
-            >
-              {children}
-            </g>
-          </svg>
+          {defineChart ? (
+            <DefineChartSvg width={finalWidth} height={finalHeight}>
+              <GraphBox
+                ref={(r) => {
+                  this.g = r;
+                  if (rootRef) {
+                    rootRef(r);
+                  }
+                }}
+                transform={`translate(${leftPadding + (domain.padding || 0)}, ${topPadding + (range.padding || 0)})`}
+              >
+                {children}
+              </GraphBox>
+            </DefineChartSvg>
+          ) : (
+            <ChartSvg width={finalWidth} height={finalHeight}>
+              <GraphBox
+                ref={(r) => {
+                  this.g = r;
+                  if (rootRef) {
+                    rootRef(r);
+                  }
+                }}
+                transform={`translate(${leftPadding + (domain.padding || 0)}, ${topPadding + (range.padding || 0)})`}
+              >
+                {children}
+              </GraphBox>
+            </ChartSvg>
+          )}
           {showLabels && !isChart && (
             <Label
               side="right"
@@ -306,8 +428,7 @@ export class Root extends React.Component {
             />
           )}
           {showPixelGuides && (
-            <div
-              className={classes.sidePixelGuides}
+            <SidePixelGuides
               style={{
                 paddingTop: sideGridlinesPadding,
                 marginTop: 31,
@@ -315,12 +436,12 @@ export class Root extends React.Component {
             >
               {[...Array(nbOfHorizontalLines + 1).keys()].reverse().map((value) => (
                 <Readable false key={`top-guide-${value}`}>
-                  <div className={classes.sidePixelIndicator}>━ {value * 100}px</div>
+                  <SidePixelIndicator>━ {value * 100}px</SidePixelIndicator>
                 </Readable>
               ))}
-            </div>
+            </SidePixelGuides>
           )}
-        </div>
+        </Wrapper>
         {showLabels && (
           <Label
             side="bottom"
@@ -337,83 +458,9 @@ export class Root extends React.Component {
             charactersLimit={labelsCharactersLimit}
           />
         )}
-      </div>
+      </StyledRoot>
     );
   }
 }
 
-// use default color theme style to avoid color contrast issues
-const styles = (theme) => ({
-  root: {
-    border: `solid 1px ${color.primaryLight()}`,
-    color: color.defaults.TEXT,
-    backgroundColor: theme.palette.common.white,
-    touchAction: 'none',
-    position: 'relative',
-    boxSizing: 'unset', // to override the default border-box in IBX that breaks the component width layout
-  },
-  wrapper: {
-    display: 'flex',
-    position: 'relative',
-  },
-  svg: {},
-  defineChart: {
-    paddingLeft: '50px',
-    overflow: 'visible',
-  },
-  chart: {
-    overflow: 'visible',
-  },
-  graphBox: {
-    cursor: 'pointer',
-    userSelect: 'none',
-  },
-  graphTitle: {
-    color: color.defaults.TEXT,
-    fontSize: theme.typography.fontSize + 2,
-    padding: `${theme.spacing.unit * 1.5}px ${theme.spacing.unit / 2}px 0`,
-    textAlign: 'center',
-  },
-  chartTitle: {
-    color: color.defaults.TEXT,
-    fontSize: theme.typography.fontSize + 4,
-    padding: `${theme.spacing.unit * 1.5}px ${theme.spacing.unit / 2}px 0`,
-    textAlign: 'center',
-  },
-  disabledTitle: {
-    pointerEvents: 'none',
-  },
-  rightMargin: {
-    marginRight: '74px',
-  },
-  topPixelGuides: {
-    display: 'flex',
-    paddingTop: '6px',
-  },
-  topPixelIndicator: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    width: '100px',
-    pointerEvents: 'none',
-    userSelect: 'none',
-  },
-  sidePixelGuides: {
-    width: '70px',
-    display: 'flex',
-    flexDirection: 'column',
-    marginRight: '6px',
-  },
-  sidePixelIndicator: {
-    textAlign: 'right',
-    height: '20px',
-    pointerEvents: 'none',
-    userSelect: 'none',
-
-    '&:not(:last-child)': {
-      marginBottom: '80px',
-    },
-  },
-});
-
-export default withStyles(styles)(Root);
+export default Root;
