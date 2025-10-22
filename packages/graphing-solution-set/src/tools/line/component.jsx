@@ -2,28 +2,33 @@ import { lineToolComponent, lineBase, styles } from '../shared/line';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { trig, types } from '@pie-lib/plot';
-import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import { ArrowMarker, genUid } from '../shared/arrow-head';
 import { thinnerShapesNeeded, getAdjustedGraphLimits } from '../../utils';
 
-const lineStyles = (theme) => ({
-  line: styles.line(theme),
-  dashedLine: styles.dashedLine(theme),
-  enabledArrow: styles.arrow(theme),
-  disabledArrow: styles.disabledArrow(theme),
-  disabled: styles.disabled(theme),
-  correct: styles.correct(theme, 'stroke'),
-  correctArrow: styles.correct(theme),
-  incorrect: styles.incorrect(theme, 'stroke'),
-  incorrectArrow: styles.incorrect(theme),
-  missing: styles.missing(theme, 'stroke'),
-  missingArrow: styles.missing(theme),
-});
+const StyledLine = styled('line', {
+  shouldForwardProp: (prop) => !['fill', 'disabled', 'correctness'].includes(prop),
+})(({ theme, fill, disabled, correctness }) => ({
+  ...(fill === 'Solid' ? styles.line(theme) : styles.dashedLine(theme)),
+  ...(disabled && styles.disabled(theme)),
+  ...(correctness === 'correct' && styles.correct(theme, 'stroke')),
+  ...(correctness === 'incorrect' && styles.incorrect(theme, 'stroke')),
+  ...(correctness === 'missing' && styles.missing(theme, 'stroke')),
+}));
+
+const StyledArrowMarker = styled(ArrowMarker, {
+  shouldForwardProp: (prop) => !['suffix'].includes(prop),
+})(({ theme, suffix }) => ({
+  ...(suffix === 'enabled' && styles.arrow(theme)),
+  ...(suffix === 'disabled' && styles.disabledArrow(theme)),
+  ...(suffix === 'correct' && styles.correct(theme)),
+  ...(suffix === 'incorrect' && styles.incorrect(theme)),
+  ...(suffix === 'missing' && styles.missing(theme)),
+}));
 
 export const ArrowedLine = (props) => {
   const markerId = genUid();
-  const { className, classes, correctness, disabled, graphProps, fill = 'Solid', from, to, ...rest } = props;
+  const { className, correctness, disabled, graphProps, fill = 'Solid', from, to, ...rest } = props;
   const { scale } = graphProps;
   const { domain, range } = getAdjustedGraphLimits(graphProps);
   const [eFrom, eTo] = trig.edges(domain, range)(from, to);
@@ -32,23 +37,21 @@ export const ArrowedLine = (props) => {
   return (
     <g>
       <defs>
-        <ArrowMarker
+        <StyledArrowMarker
           size={thinnerShapesNeeded(graphProps) ? 4 : 5}
           id={`${props.markerId || markerId}-${suffix}`}
-          className={classNames(classes[`${suffix}Arrow`])}
+          suffix={suffix}
         />
       </defs>
-      <line
+      <StyledLine
         x1={scale.x(eFrom.x)}
         y1={scale.y(eFrom.y)}
         x2={scale.x(eTo.x)}
         y2={scale.y(eTo.y)}
-        className={classNames(
-          fill === 'Solid' ? classes.line : classes.dashedLine,
-          disabled && classes.disabled,
-          classes[correctness],
-          className,
-        )}
+        fill={fill}
+        disabled={disabled}
+        correctness={correctness}
+        className={className}
         markerEnd={`url(#${props.markerId || markerId}-${suffix})`}
         markerStart={`url(#${props.markerId || markerId}-${suffix})`}
         {...rest}
@@ -59,7 +62,6 @@ export const ArrowedLine = (props) => {
 
 ArrowedLine.propTypes = {
   className: PropTypes.string,
-  classes: PropTypes.object,
   fill: PropTypes.string,
   correctness: PropTypes.string,
   disabled: PropTypes.bool,
@@ -69,9 +71,7 @@ ArrowedLine.propTypes = {
   markerId: PropTypes.string,
 };
 
-const StyledArrowedLine = withStyles(lineStyles)(ArrowedLine);
-
-const Line = lineBase(StyledArrowedLine);
+const Line = lineBase(ArrowedLine);
 const Component = lineToolComponent(Line);
 
 export default Component;

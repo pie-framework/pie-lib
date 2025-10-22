@@ -1,12 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { alpha, styled } from '@mui/material/styles';
 import { gridDraggable, types } from '@pie-lib/plot';
 import * as utils from '../../utils';
-import classNames from 'classnames';
 import { color } from '@pie-lib/render-ui';
-import { fade } from '@material-ui/core/styles/colorManipulator';
 import { correct, disabled, incorrect } from '../shared/styles';
+
+const StyledPolygon = styled('polygon', {
+  shouldForwardProp: (prop) => !['isSolution', 'correctness'].includes(prop),
+})(({ theme, isSolution, correctness }) => ({
+  fill: isSolution ? 'rgb(60, 73, 150, 0.6)' : 'transparent',
+  strokeWidth: 2,
+  stroke: color.defaults.SECONDARY_LIGHT,
+  '&:hover': {
+    fill: isSolution ? 'rgb(60, 73, 150, 0.6)' : 'rgb(0, 0, 0, 0.25)',
+  },
+  ...(correctness === 'correct' && correct('stroke')),
+  ...(correctness === 'incorrect' && incorrect('stroke')),
+}));
+
+const StyledPolyline = styled('polyline', {
+  shouldForwardProp: (prop) => !['isSolution', 'correctness'].includes(prop),
+})(({ theme, isSolution, correctness }) => ({
+  fill: isSolution ? 'rgb(60, 73, 150, 0.6)' : 'transparent',
+  strokeWidth: 2,
+  stroke: color.defaults.SECONDARY_LIGHT,
+  '&:hover': {
+    fill: isSolution ? 'rgb(60, 73, 150, 0.6)' : 'rgb(0, 0, 0, 0.25)',
+  },
+  ...(correctness === 'correct' && correct('stroke')),
+  ...(correctness === 'incorrect' && incorrect('stroke')),
+}));
 
 export const getPointString = (points, scale) => {
   return (points || [])
@@ -22,7 +46,6 @@ export const getPointString = (points, scale) => {
 
 export class RawPolygon extends React.Component {
   static propTypes = {
-    classes: PropTypes.object,
     className: PropTypes.string,
     isSolution: PropTypes.bool,
     points: PropTypes.arrayOf(types.PointType),
@@ -36,52 +59,24 @@ export class RawPolygon extends React.Component {
   };
 
   render() {
-    const { points, classes, className, correctness, graphProps, closed, isSolution, ...rest } = this.props;
+    const { points, className, correctness, graphProps, closed, isSolution, ...rest } = this.props;
     const { scale } = graphProps;
 
     const pointString = getPointString(points, scale);
-    const Tag = closed ? 'polygon' : 'polyline';
+    const Component = closed ? StyledPolygon : StyledPolyline;
     return (
-      <Tag
+      <Component
         points={pointString}
-        className={classNames(isSolution ? classes.gssSolution : classes.gssClosed, classes[correctness], className)}
+        isSolution={isSolution}
+        correctness={correctness}
+        className={className}
         {...rest}
       />
     );
   }
 }
 
-export const Polygon = withStyles((theme) => ({
-  closed: {
-    fill: fade(theme.palette.primary.light, 0.2), // TODO hardcoded color
-    strokeWidth: 2,
-    stroke: color.defaults.SECONDARY_LIGHT,
-  },
-  open: {
-    fill: fade(theme.palette.primary.light, 0.0), // TODO hardcoded color
-    strokeWidth: 2,
-    stroke: color.defaults.SECONDARY_LIGHT,
-    pointerEvents: 'none',
-  },
-  gssClosed: {
-    fill: 'transparent',
-    '&:hover': {
-      fill: 'rgb(0, 0, 0, 0.25)',
-    },
-  },
-  gssSolution: {
-    fill: 'rgb(60, 73, 150, 0.6)',
-  },
-  disabled: {
-    ...disabled('stroke'),
-  },
-  correct: {
-    ...correct('stroke'),
-  },
-  incorrect: {
-    ...incorrect('stroke'),
-  },
-}))(RawPolygon);
+export const Polygon = RawPolygon;
 
 export default gridDraggable({
   bounds: (props, { domain, range }) => {
