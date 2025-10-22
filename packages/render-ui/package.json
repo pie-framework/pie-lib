@@ -13,7 +13,7 @@
     "@material-ui/icons": "^3.0.2",
     "@pie-lib/icons": "^2.24.0",
     "@pie-lib/math-rendering": "^3.22.0",
-    "@pie-lib/test-utils": "^0.19.5",
+    "@pie-lib/test-utils": "^0.22.0",
     "classnames": "^2.2.6",
     "debug": "^4.1.1",
     "lodash": "^4.17.11",
@@ -21,7 +21,6 @@
     "react-transition-group": "^2.5.2"
   },
   "peerDependencies": {
-    "@pie-lib/test-utils": "beta",
     "react": "^16.8.1",
     "react-dom": "^16.8.1"
   },
